@@ -71992,7 +71992,7 @@
 		<monster name="Memory Of An Ogre" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33467" centery="31031" centerz="9" radius="1">
-		<monster name="Memory Of An Ogre" x="-1" y="0" z="9" spawntime="-1238175488" />
+		<monster name="Memory Of An Ogre" x="-1" y="0" z="9" spawntime="60" />
 		<monster name="Memory Of An Ogre" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="31937" centery="31032" centerz="9" radius="3">
@@ -98396,7 +98396,7 @@
 		<monster name="Freakish Lost Soul" x="1" y="1" z="10" spawntime="60" />
 		<monster name="Mean Lost Soul" x="-5" y="2" z="10" spawntime="60" />
 		<monster name="Flimsy Lost Soul" x="1" y="2" z="10" spawntime="60" />
-		<monster name="Flimsy Lost Soul" x="2" y="2" z="10" spawntime="-1620529408" />
+		<monster name="Flimsy Lost Soul" x="2" y="2" z="10" spawntime="60" />
 		<monster name="Freakish Lost Soul" x="3" y="2" z="10" spawntime="60" />
 		<monster name="Flimsy Lost Soul" x="-6" y="3" z="10" spawntime="60" />
 	</monster>
@@ -98477,7 +98477,7 @@
 	<monster centerx="33637" centery="31513" centerz="10" radius="8">
 		<monster name="Flimsy Lost Soul" x="6" y="-5" z="10" spawntime="60" />
 		<monster name="Mean Lost Soul" x="7" y="-5" z="10" spawntime="60" />
-		<monster name="Flimsy Lost Soul" x="6" y="-4" z="10" spawntime="-1620529408" />
+		<monster name="Flimsy Lost Soul" x="6" y="-4" z="10" spawntime="60" />
 		<monster name="Flimsy Lost Soul" x="3" y="-2" z="10" spawntime="60" />
 		<monster name="Mean Lost Soul" x="-5" y="-1" z="10" spawntime="60" />
 		<monster name="Flimsy Lost Soul" x="-3" y="0" z="10" spawntime="60" />
