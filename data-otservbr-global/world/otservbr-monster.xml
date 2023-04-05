@@ -61642,6 +61642,12 @@
 		<monster name="Undead Elite Gladiator" x="15" y="21" z="8" spawntime="60" />
 		<monster name="Sandcrawler" x="-16" y="22" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="33071" centery="32298" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33077" centery="32298" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33602" centery="32298" centerz="8" radius="5">
 		<monster name="Enfeebled Silencer" x="1" y="-5" z="8" spawntime="60" />
 		<monster name="Weakened Frazzlemaw" x="0" y="-4" z="8" spawntime="60" />
@@ -61649,11 +61655,24 @@
 	<monster centerx="32497" centery="32300" centerz="8" radius="3">
 		<monster name="Troll" x="1" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33064" centery="32300" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33084" centery="32300" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33087" centery="32300" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="32580" centery="32301" centerz="8" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="33057" centery="32301" centerz="8" radius="3">
 		<monster name="Burster Spectre" x="1" y="0" z="8" spawntime="60" />
+		<monster name="Burster Spectre" x="0" y="1" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33078" centery="32301" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33082" centery="32301" centerz="8" radius="1">
 		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
@@ -61681,6 +61700,9 @@
 	</monster>
 	<monster centerx="32597" centery="32303" centerz="8" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33087" centery="32303" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33226" centery="32303" centerz="8" radius="2">
 		<monster name="Rotworm" x="-2" y="1" z="8" spawntime="90" />
@@ -61771,6 +61793,9 @@
 	<monster centerx="31968" centery="32307" centerz="8" radius="1">
 		<monster name="Flimsy Lost Soul" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="33087" centery="32307" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33582" centery="32307" centerz="8" radius="5">
 		<monster name="Weakened Frazzlemaw" x="-1" y="-2" z="8" spawntime="60" />
 		<monster name="Weakened Frazzlemaw" x="0" y="0" z="8" spawntime="60" />
@@ -61792,6 +61817,7 @@
 	</monster>
 	<monster centerx="33057" centery="32308" centerz="8" radius="3">
 		<monster name="Burster Spectre" x="1" y="-2" z="8" spawntime="60" />
+		<monster name="Burster Spectre" x="-1" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33155" centery="32308" centerz="8" radius="3">
 		<monster name="Mummy" x="0" y="0" z="8" spawntime="90" />
@@ -61851,6 +61877,9 @@
 	<monster centerx="32585" centery="32313" centerz="8" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33079" centery="32313" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="32337" centery="32314" centerz="8" radius="1">
 		<monster name="Wolf" x="-1" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61877,8 +61906,12 @@
 	<monster centerx="32341" centery="32315" centerz="8" radius="1">
 		<monster name="Wolf" x="-1" y="1" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33051" centery="32315" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33085" centery="32315" centerz="8" radius="3">
 		<monster name="Burster Spectre" x="1" y="-2" z="8" spawntime="60" />
+		<monster name="Burster Spectre" x="2" y="-2" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33092" centery="32315" centerz="8" radius="3">
 		<monster name="Burster Spectre" x="3" y="3" z="8" spawntime="60" />
@@ -61898,6 +61931,9 @@
 	</monster>
 	<monster centerx="31963" centery="32316" centerz="8" radius="1">
 		<monster name="Flimsy Lost Soul" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33053" centery="32316" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33298" centery="32316" centerz="8" radius="2">
 		<monster name="Rotworm" x="-1" y="-2" z="8" spawntime="90" />
@@ -61948,6 +61984,7 @@
 		<monster name="Misguided Thief" x="2" y="2" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33057" centery="32322" centerz="8" radius="3">
+		<monster name="Burster Spectre" x="0" y="-2" z="8" spawntime="60" />
 		<monster name="Burster Spectre" x="-2" y="-1" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33071" centery="32322" centerz="8" radius="3">
@@ -61996,8 +62033,20 @@
 		<monster name="Wasp" x="-2" y="1" z="8" spawntime="90" />
 		<monster name="Wasp" x="2" y="2" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33056" centery="32326" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33106" centery="32326" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33252" centery="32326" centerz="8" radius="1">
 		<monster name="Rotworm" x="-1" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33073" centery="32327" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33104" centery="32327" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33304" centery="32327" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="-1" z="8" spawntime="90" />
@@ -62007,6 +62056,9 @@
 	</monster>
 	<monster centerx="31951" centery="32328" centerz="8" radius="1">
 		<monster name="Demon" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33106" centery="32328" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33213" centery="32328" centerz="8" radius="2">
 		<monster name="Rotworm" x="-1" y="1" z="8" spawntime="90" />
@@ -62042,8 +62094,12 @@
 		<monster name="Misguided Bully" x="0" y="1" z="8" spawntime="60" />
 		<monster name="Misguided Thief" x="-2" y="2" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="33055" centery="32329" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33085" centery="32329" centerz="8" radius="3">
 		<monster name="Burster Spectre" x="0" y="-2" z="8" spawntime="60" />
+		<monster name="Burster Spectre" x="-1" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33127" centery="32329" centerz="8" radius="3">
 		<monster name="Crypt Shambler" x="0" y="1" z="8" spawntime="90" />
@@ -62117,8 +62173,14 @@
 	<monster centerx="32295" centery="32333" centerz="8" radius="1">
 		<monster name="Tarantula" x="-1" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33058" centery="32334" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="32794" centery="32335" centerz="8" radius="2">
 		<monster name="Skeleton" x="2" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33064" centery="32335" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33208" centery="32335" centerz="8" radius="2">
 		<monster name="Rotworm" x="-1" y="1" z="8" spawntime="90" />
@@ -62136,7 +62198,11 @@
 	<monster centerx="31958" centery="32336" centerz="8" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="33059" centery="32336" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33106" centery="32336" centerz="8" radius="3">
+		<monster name="Burster Spectre" x="1" y="-2" z="8" spawntime="60" />
 		<monster name="Burster Spectre" x="0" y="-1" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33127" centery="32336" centerz="8" radius="3">
@@ -62197,11 +62263,20 @@
 		<monster name="Skeleton" x="-1" y="-2" z="8" spawntime="90" />
 		<monster name="Ghoul" x="2" y="2" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33056" centery="32337" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33064" centery="32337" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="32012" centery="32338" centerz="8" radius="1">
 		<monster name="Flimsy Lost Soul" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="32770" centery="32338" centerz="8" radius="2">
 		<monster name="Skeleton" x="2" y="1" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33059" centery="32338" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33300" centery="32338" centerz="8" radius="1">
 		<monster name="Rotworm" x="-1" y="1" z="8" spawntime="90" />
@@ -62233,9 +62308,12 @@
 	</monster>
 	<monster centerx="33085" centery="32343" centerz="8" radius="3">
 		<monster name="Burster Spectre" x="2" y="-3" z="8" spawntime="60" />
+		<monster name="Burster Spectre" x="3" y="-2" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33106" centery="32343" centerz="8" radius="3">
+		<monster name="Burster Spectre" x="2" y="-3" z="8" spawntime="60" />
 		<monster name="Burster Spectre" x="0" y="-2" z="8" spawntime="60" />
+		<monster name="Burster Spectre" x="2" y="-1" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33148" centery="32343" centerz="8" radius="3">
 		<monster name="Scarab" x="-3" y="-1" z="8" spawntime="90" />
@@ -62514,6 +62592,7 @@
 		<monster name="Rotworm" x="2" y="2" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="33085" centery="32357" centerz="8" radius="3">
+		<monster name="Burster Spectre" x="3" y="-1" z="8" spawntime="60" />
 		<monster name="Burster Spectre" x="2" y="1" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33127" centery="32357" centerz="8" radius="3">
@@ -62633,6 +62712,9 @@
 		<monster name="Feversleep" x="2" y="1" z="8" spawntime="60" />
 		<monster name="Terrorsleep" x="-2" y="2" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="33087" centery="32366" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="32181" centery="32367" centerz="8" radius="1">
 		<monster name="Cave Rat" x="-1" y="1" z="8" spawntime="90" />
 	</monster>
@@ -62727,6 +62809,9 @@
 	<monster centerx="32412" centery="32373" centerz="8" radius="3">
 		<monster name="Cyclops" x="3" y="-1" z="8" spawntime="90" />
 		<monster name="Cyclops" x="-3" y="1" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33083" centery="32374" centerz="8" radius="1">
+		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33697" centery="32374" centerz="8" radius="2">
 		<monster name="Terrorsleep" x="-1" y="-1" z="8" spawntime="60" />
@@ -91950,7 +92035,9 @@
 		<monster name="Crocodile" x="3" y="3" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="32847" centery="32742" centerz="9" radius="3">
-		<monster name="Dawnfire Asura" x="-1" y="3" z="9" spawntime="60" />
+		<monster name="Frost Flower Asura" x="-1" y="-2" z="9" spawntime="60" />
+		<monster name="Hellspawn" x="2" y="2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-1" y="3" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32742" centerz="9" radius="3">
 		<monster name="Hellspawn" x="-1" y="3" z="9" spawntime="60" />
@@ -92035,19 +92122,28 @@
 	<monster centerx="32616" centery="32749" centerz="9" radius="3">
 		<monster name="Tortoise" x="-2" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="32826" centery="32749" centerz="9" radius="3">
-		<monster name="Midnight Asura" x="-3" y="2" z="9" spawntime="60" />
-		<monster name="Frost Flower Asura" x="1" y="2" z="9" spawntime="60" />
+	<monster centerx="32812" centery="32749" centerz="9" radius="1">
+		<monster name="Hellspawn" x="1" y="1" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="32840" centery="32749" centerz="9" radius="3">
-		<monster name="Midnight Asura" x="-2" y="3" z="9" spawntime="60" />
+	<monster centerx="32826" centery="32749" centerz="9" radius="8">
+		<monster name="Midnight Asura" x="4" y="1" z="9" spawntime="60" />
+		<monster name="Hellspawn" x="8" y="1" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-3" y="2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="2" y="2" z="9" spawntime="60" />
+		<monster name="Hellspawn" x="6" y="3" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="2" y="6" z="9" spawntime="60" />
+		<monster name="Hellspawn" x="0" y="8" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32847" centery="32749" centerz="9" radius="3">
-		<monster name="Dawnfire Asura" x="1" y="-1" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="1" y="-2" z="9" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="3" y="0" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="1" y="3" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32749" centerz="9" radius="3">
-		<monster name="Dawnfire Asura" x="2" y="-2" z="9" spawntime="60" />
-		<monster name="Frost Flower Asura" x="-3" y="0" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-2" y="-2" z="9" spawntime="60" />
+		<monster name="Frost Flower Asura" x="1" y="-2" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="-2" y="2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="1" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33095" centery="32749" centerz="9" radius="3">
 		<monster name="Larva" x="0" y="0" z="9" spawntime="90" />
@@ -92075,6 +92171,9 @@
 	<monster centerx="32261" centery="32751" centerz="9" radius="2">
 		<monster name="Rotworm" x="-2" y="-2" z="9" spawntime="90" />
 		<monster name="Rotworm" x="1" y="2" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="32809" centery="32751" centerz="9" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32958" centery="32751" centerz="9" radius="1">
 		<monster name="Sacred Spider" x="-1" y="0" z="9" spawntime="90" />
@@ -92132,24 +92231,17 @@
 		<monster name="Tortoise" x="3" y="-3" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="32812" centery="32756" centerz="9" radius="3">
-		<monster name="Midnight Asura" x="-3" y="-3" z="9" spawntime="60" />
-		<monster name="Midnight Asura" x="1" y="3" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="32826" centery="32756" centerz="9" radius="3">
-		<monster name="Dawnfire Asura" x="2" y="-1" z="9" spawntime="60" />
-		<monster name="Hellspawn" x="0" y="1" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="32840" centery="32756" centerz="9" radius="3">
-		<monster name="Frost Flower Asura" x="-2" y="2" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="32847" centery="32756" centerz="9" radius="3">
-		<monster name="Dawnfire Asura" x="-1" y="2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="1" y="-3" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="-3" y="-1" z="9" spawntime="60" />
+		<monster name="Hellspawn" x="3" y="-1" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="3" y="1" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-2" y="2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-1" y="3" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="2" y="3" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32868" centery="32756" centerz="9" radius="3">
 		<monster name="Dawnfire Asura" x="-1" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="32875" centery="32756" centerz="9" radius="3">
-		<monster name="Frost Flower Asura" x="-2" y="3" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="3" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33102" centery="32756" centerz="9" radius="2">
 		<monster name="Scarab" x="0" y="1" z="9" spawntime="90" />
@@ -92157,6 +92249,10 @@
 	<monster centerx="33294" centery="32756" centerz="9" radius="2">
 		<monster name="Larva" x="2" y="-2" z="9" spawntime="90" />
 		<monster name="Larva" x="-1" y="1" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="32839" centery="32757" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="-2" y="-1" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="0" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33026" centery="32757" centerz="9" radius="1">
 		<monster name="Larva" x="1" y="0" z="9" spawntime="90" />
@@ -92176,6 +92272,14 @@
 	</monster>
 	<monster centerx="32084" centery="32758" centerz="9" radius="1">
 		<monster name="Elder Bonelord" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="32845" centery="32758" centerz="9" radius="3">
+		<monster name="Frost Flower Asura" x="-1" y="0" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="1" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="32864" centery="32758" centerz="9" radius="1">
+		<monster name="Midnight Asura" x="-1" y="0" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32193" centery="32759" centerz="9" radius="2">
 		<monster name="Tarantula" x="0" y="1" z="9" spawntime="90" />
@@ -92202,6 +92306,9 @@
 	</monster>
 	<monster centerx="32186" centery="32761" centerz="9" radius="2">
 		<monster name="Tarantula" x="-1" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="32878" centery="32761" centerz="9" radius="1">
+		<monster name="Frost Flower Asura" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33133" centery="32761" centerz="9" radius="3">
 		<monster name="Larva" x="2" y="-2" z="9" spawntime="90" />
@@ -92233,10 +92340,12 @@
 	</monster>
 	<monster centerx="32861" centery="32763" centerz="9" radius="3">
 		<monster name="Dawnfire Asura" x="3" y="-2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="3" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32868" centery="32763" centerz="9" radius="3">
 		<monster name="Hellspawn" x="2" y="0" z="9" spawntime="60" />
 		<monster name="Dawnfire Asura" x="1" y="1" z="9" spawntime="60" />
+		<monster name="True Midnight Asura" x="3" y="1" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="-2" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32874" centery="32763" centerz="9" radius="3">
@@ -92382,14 +92491,15 @@
 	<monster centerx="32847" centery="32770" centerz="9" radius="3">
 		<monster name="Dawnfire Asura" x="-3" y="1" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="3" y="1" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="1" y="2" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="32868" centery="32770" centerz="9" radius="3">
-		<monster name="Frost Flower Asura" x="0" y="-2" z="9" spawntime="60" />
-		<monster name="Dawnfire Asura" x="-3" y="0" z="9" spawntime="60" />
-		<monster name="Midnight Asura" x="0" y="2" z="9" spawntime="60" />
-		<monster name="Dawnfire Asura" x="2" y="2" z="9" spawntime="60" />
+	<monster centerx="32867" centery="32770" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="1" y="-2" z="9" spawntime="60" />
+		<monster name="Dawnfire Asura" x="-2" y="0" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="1" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32770" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="1" y="2" z="9" spawntime="60" />
 		<monster name="Hellspawn" x="2" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32382" centery="32771" centerz="9" radius="8">
@@ -92413,6 +92523,10 @@
 	<monster centerx="32256" centery="32772" centerz="9" radius="3">
 		<monster name="Rotworm" x="0" y="-1" z="9" spawntime="90" />
 		<monster name="Centipede" x="-1" y="2" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="32858" centery="32772" centerz="9" radius="1">
+		<monster name="Dawnfire Asura" x="-1" y="-1" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33027" centery="32772" centerz="9" radius="1">
 		<monster name="Scarab" x="1" y="0" z="9" spawntime="90" />
@@ -92497,8 +92611,10 @@
 	</monster>
 	<monster centerx="32819" centery="32777" centerz="9" radius="3">
 		<monster name="Dawnfire Asura" x="-1" y="3" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="3" y="3" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32826" centery="32777" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="0" y="-3" z="9" spawntime="60" />
 		<monster name="Dawnfire Asura" x="1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32777" centerz="9" radius="3">
@@ -92572,6 +92688,9 @@
 		<monster name="Rotworm" x="-2" y="2" z="9" spawntime="90" />
 		<monster name="Rotworm" x="2" y="3" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="32850" centery="32782" centerz="9" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="33237" centery="32782" centerz="9" radius="2">
 		<monster name="Scarab" x="1" y="0" z="9" spawntime="90" />
 	</monster>
@@ -92594,12 +92713,17 @@
 		<monster name="Braindeath" x="-3" y="1" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="32812" centery="32784" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="-1" y="0" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-1" y="3" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32868" centery="32784" centerz="9" radius="3">
+		<monster name="Frost Flower Asura" x="3" y="-3" z="9" spawntime="60" />
 		<monster name="Hellspawn" x="3" y="0" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="2" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32784" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="-1" y="-2" z="9" spawntime="60" />
 		<monster name="Dawnfire Asura" x="-1" y="2" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="0" y="3" z="9" spawntime="60" />
 	</monster>
@@ -92634,6 +92758,9 @@
 	</monster>
 	<monster centerx="32109" centery="32785" centerz="9" radius="1">
 		<monster name="Elder Bonelord" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="32852" centery="32785" centerz="9" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33199" centery="32785" centerz="9" radius="2">
 		<monster name="Larva" x="-2" y="-1" z="9" spawntime="90" />
@@ -92713,16 +92840,25 @@
 		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
 		<monster name="Frost Flower Asura" x="2" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="32820" centery="32791" centerz="9" radius="1">
+		<monster name="Frost Flower Asura" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="32826" centery="32791" centerz="9" radius="3">
 		<monster name="Dawnfire Asura" x="2" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32833" centery="32791" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="-2" y="-1" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="-1" y="2" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="32839" centery="32791" centerz="9" radius="1">
+		<monster name="Frost Flower Asura" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="32854" centery="32791" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="2" y="0" z="9" spawntime="60" />
 		<monster name="Dawnfire Asura" x="-2" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32861" centery="32791" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="-1" y="-1" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="2" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32791" centerz="9" radius="3">
@@ -92835,6 +92971,10 @@
 	<monster centerx="32509" centery="32797" centerz="9" radius="2">
 		<monster name="Water Elemental" x="1" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="32863" centery="32797" centerz="9" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Frost Flower Asura" x="-1" y="1" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="33048" centery="32797" centerz="9" radius="2">
 		<monster name="Larva" x="-1" y="-1" z="9" spawntime="90" />
 	</monster>
@@ -92858,11 +92998,15 @@
 	</monster>
 	<monster centerx="32826" centery="32798" centerz="9" radius="3">
 		<monster name="Hellspawn" x="-1" y="-2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="-3" y="0" z="9" spawntime="60" />
+		<monster name="Frost Flower Asura" x="-3" y="3" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32833" centery="32798" centerz="9" radius="3">
-		<monster name="Frost Flower Asura" x="2" y="0" z="9" spawntime="60" />
+		<monster name="True Midnight Asura" x="3" y="-2" z="9" spawntime="60" />
+		<monster name="Midnight Asura" x="2" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32798" centerz="9" radius="3">
+		<monster name="Midnight Asura" x="-2" y="-3" z="9" spawntime="60" />
 		<monster name="Midnight Asura" x="-3" y="0" z="9" spawntime="60" />
 		<monster name="Dawnfire Asura" x="0" y="2" z="9" spawntime="60" />
 	</monster>
@@ -92958,6 +93102,7 @@
 	</monster>
 	<monster centerx="32861" centery="32805" centerz="9" radius="3">
 		<monster name="Midnight Asura" x="2" y="-3" z="9" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="2" y="-1" z="9" spawntime="60" />
 		<monster name="Dawnfire Asura" x="2" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32805" centerz="9" radius="3">
@@ -107686,6 +107831,12 @@
 	<monster centerx="33004" centery="32332" centerz="10" radius="1">
 		<monster name="Ghoul" x="0" y="-1" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33562" centery="32332" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33565" centery="32332" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32764" centery="32333" centerz="10" radius="7">
 		<monster name="Demon Skeleton" x="0" y="-5" z="10" spawntime="90" />
 		<monster name="Demon Skeleton" x="-5" y="-4" z="10" spawntime="90" />
@@ -107699,12 +107850,6 @@
 	</monster>
 	<monster centerx="33552" centery="32333" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33562" centery="32333" centerz="10" radius="1">
-		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33574" centery="32333" centerz="10" radius="1">
-		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33576" centery="32333" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
@@ -107724,6 +107869,19 @@
 	<monster centerx="33530" centery="32334" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33561" centery="32334" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33564" centery="32334" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33568" centery="32334" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33571" centery="32334" centerz="10" radius="2">
+		<monster name="Dark Torturer" x="-1" y="-2" z="10" spawntime="60" />
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="33584" centery="32334" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -107734,9 +107892,6 @@
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33603" centery="32334" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33558" centery="32335" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32532" centery="32336" centerz="10" radius="3">
@@ -107751,11 +107906,8 @@
 		<monster name="Hellhound" x="-1" y="-3" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="-2" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33568" centery="32336" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-2" y="-2" z="10" spawntime="90" />
-		<monster name="Dark Torturer" x="-1" y="-2" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-3" y="2" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="-1" y="3" z="10" spawntime="90" />
+	<monster centerx="33566" centery="32336" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33610" centery="32336" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="0" y="-3" z="10" spawntime="90" />
@@ -107861,7 +108013,8 @@
 		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33582" centery="32343" centerz="10" radius="3">
-		<monster name="Juggernaut" x="-2" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="0" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33596" centery="32343" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-2" y="0" z="10" spawntime="90" />
@@ -107959,21 +108112,13 @@
 		<monster name="Blightwalker" x="-1" y="0" z="10" spawntime="90" />
 		<monster name="Hellhound" x="2" y="2" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33568" centery="32350" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-1" y="0" z="10" spawntime="90" />
-		<monster name="Juggernaut" x="0" y="0" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="-3" y="1" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="-2" y="1" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="90" />
-		<monster name="Energy Elemental" x="0" y="2" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-3" y="3" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-2" y="3" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="33575" centery="32350" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="1" y="-1" z="10" spawntime="90" />
 		<monster name="Plaguesmith" x="-3" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32350" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="1" y="-3" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="1" y="-2" z="10" spawntime="60" />
 		<monster name="Plaguesmith" x="2" y="1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="90" />
 	</monster>
@@ -107996,6 +108141,16 @@
 	<monster centerx="32981" centery="32351" centerz="10" radius="1">
 		<monster name="Zombie" x="1" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33564" centery="32351" centerz="10" radius="5">
+		<monster name="Plaguesmith" x="3" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Plaguesmith" x="1" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="4" y="0" z="10" spawntime="60" />
+		<monster name="Energy Elemental" x="4" y="1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="1" y="2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="90" />
+		<monster name="Blightwalker" x="2" y="3" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="33583" centery="32351" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -108004,6 +108159,9 @@
 	</monster>
 	<monster centerx="31966" centery="32352" centerz="10" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33547" centery="32352" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32754" centery="32353" centerz="10" radius="7">
 		<monster name="Demon Skeleton" x="-4" y="-6" z="10" spawntime="90" />
@@ -108094,9 +108252,6 @@
 	<monster centerx="33554" centery="32357" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33568" centery="32357" centerz="10" radius="3">
-		<monster name="Blightwalker" x="-2" y="-3" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="33582" centery="32357" centerz="10" radius="1">
 		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -108164,6 +108319,9 @@
 	</monster>
 	<monster centerx="33615" centery="32362" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33556" centery="32363" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32525" centery="32364" centerz="10" radius="3">
 		<monster name="Misguided Thief" x="3" y="-3" z="10" spawntime="60" />
@@ -108302,6 +108460,7 @@
 		<monster name="Plaguesmith" x="-1" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33547" centery="32371" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="2" y="-1" z="10" spawntime="60" />
 		<monster name="Demon Outcast" x="1" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33568" centery="32371" centerz="10" radius="3">
@@ -108309,6 +108468,8 @@
 	</monster>
 	<monster centerx="33596" centery="32371" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="0" y="-2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="3" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33603" centery="32371" centerz="10" radius="3">
 		<monster name="Plaguesmith" x="3" y="1" z="10" spawntime="90" />
@@ -108332,6 +108493,9 @@
 	</monster>
 	<monster centerx="33065" centery="32373" centerz="10" radius="3">
 		<monster name="Ghoul" x="2" y="3" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33584" centery="32373" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33019" centery="32374" centerz="10" radius="3">
 		<monster name="Priestess" x="-1" y="0" z="10" spawntime="90" />
@@ -108420,13 +108584,18 @@
 		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
 		<monster name="Plaguesmith" x="1" y="2" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33548" centery="32378" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="33568" centery="32378" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
 		<monster name="Plaguesmith" x="-3" y="1" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="0" y="1" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="1" y="1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="60" />
 		<monster name="Dark Torturer" x="1" y="2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32378" centerz="10" radius="3">
 		<monster name="Plaguesmith" x="-2" y="2" z="10" spawntime="90" />
@@ -108572,10 +108741,13 @@
 		<monster name="Demon Outcast" x="0" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33547" centery="32385" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="-1" y="-2" z="10" spawntime="60" />
 		<monster name="Demon Outcast" x="2" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32385" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="2" y="-2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="1" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32385" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="-3" y="-2" z="10" spawntime="90" />
@@ -108593,6 +108765,9 @@
 	</monster>
 	<monster centerx="33518" centery="32386" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33585" centery="32386" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33001" centery="32387" centerz="10" radius="3">
 		<monster name="Necromancer" x="0" y="-1" z="10" spawntime="90" />
@@ -108638,6 +108813,9 @@
 	</monster>
 	<monster centerx="33043" centery="32391" centerz="10" radius="3">
 		<monster name="Priestess" x="0" y="1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33555" centery="32391" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33594" centery="32391" centerz="10" radius="1">
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
@@ -108888,8 +109066,12 @@
 	<monster centerx="33517" centery="32405" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33583" centery="32405" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="33586" centery="32405" centerz="10" radius="1">
-		<monster name="Juggernaut" x="0" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32021" centery="32406" centerz="10" radius="3">
 		<monster name="Dragon Lord" x="-3" y="-3" z="10" spawntime="60" />
@@ -108958,6 +109140,7 @@
 	</monster>
 	<monster centerx="33533" centery="32406" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="-3" y="1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="2" y="1" z="10" spawntime="60" />
 		<monster name="Demon Outcast" x="-1" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33547" centery="32406" centerz="10" radius="3">
@@ -108982,6 +109165,7 @@
 	</monster>
 	<monster centerx="33603" centery="32406" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-3" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32253" centery="32408" centerz="10" radius="1">
 		<monster name="Minotaur" x="0" y="-1" z="10" spawntime="90" />
@@ -108992,6 +109176,9 @@
 	<monster centerx="32994" centery="32408" centerz="10" radius="3">
 		<monster name="Necromancer" x="-3" y="-1" z="10" spawntime="90" />
 		<monster name="Shadow Pupil" x="0" y="1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33565" centery="32408" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32320" centery="32409" centerz="10" radius="1">
 		<monster name="Banshee" x="1" y="-1" z="10" spawntime="90" />
@@ -109085,13 +109272,21 @@
 		<monster name="Hellhound" x="3" y="2" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="0" y="3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33554" centery="32413" centerz="10" radius="3">
-		<monster name="Blightwalker" x="-1" y="-3" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="1" y="-2" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-3" y="-1" z="10" spawntime="90" />
+	<monster centerx="33553" centery="32413" centerz="10" radius="4">
+		<monster name="Blightwalker" x="0" y="-3" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="2" y="-2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-4" y="4" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="1" y="4" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32413" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="-2" y="-3" z="10" spawntime="60" />
 		<monster name="Demon Outcast" x="-1" y="-3" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="-1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-2" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32413" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="0" y="-3" z="10" spawntime="90" />
@@ -109100,7 +109295,7 @@
 		<monster name="Demon Outcast" x="3" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33582" centery="32413" centerz="10" radius="3">
-		<monster name="Blightwalker" x="0" y="-3" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="-2" z="10" spawntime="60" />
 		<monster name="Hellhound" x="-1" y="2" z="10" spawntime="90" />
 		<monster name="Blightwalker" x="1" y="2" z="10" spawntime="90" />
 	</monster>
@@ -109190,12 +109385,8 @@
 	<monster centerx="33190" centery="32420" centerz="10" radius="3">
 		<monster name="Werehyaena" x="2" y="-2" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="33547" centery="32420" centerz="10" radius="3">
-		<monster name="Juggernaut" x="0" y="-2" z="10" spawntime="90" />
-		<monster name="Juggernaut" x="0" y="0" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="33554" centery="32420" centerz="10" radius="3">
-		<monster name="Juggernaut" x="2" y="-3" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="3" y="-1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33582" centery="32420" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-2" y="0" z="10" spawntime="90" />
@@ -109309,6 +109500,7 @@
 	</monster>
 	<monster centerx="33563" centery="32427" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33617" centery="32427" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-2" y="-3" z="10" spawntime="90" />
@@ -109323,6 +109515,7 @@
 	</monster>
 	<monster centerx="33555" centery="32428" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33566" centery="32428" centerz="10" radius="1">
 		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
@@ -113339,6 +113532,9 @@
 	<monster centerx="32581" centery="32728" centerz="10" radius="3">
 		<monster name="Tortoise" x="-1" y="1" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32814" centery="32728" centerz="10" radius="1">
+		<monster name="Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32970" centery="32728" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
 	</monster>
@@ -113382,6 +113578,12 @@
 		<monster name="Dark Monk" x="-2" y="6" z="10" spawntime="90" />
 		<monster name="Novice Of The Cult" x="5" y="6" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32812" centery="32730" centerz="10" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32815" centery="32730" centerz="10" radius="1">
+		<monster name="Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32970" centery="32730" centerz="10" radius="1">
 		<monster name="Tomb Servant" x="1" y="0" z="10" spawntime="90" />
 		<monster name="Clay Guardian" x="0" y="1" z="10" spawntime="90" />
@@ -113409,6 +113611,14 @@
 		<monster name="Rotworm" x="3" y="1" z="10" spawntime="90" />
 		<monster name="Rotworm" x="-2" y="2" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32815" centery="32732" centerz="10" radius="1">
+		<monster name="Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32817" centery="32732" centerz="10" radius="1">
+		<monster name="Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="0" y="1" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="1" y="1" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="33109" centery="32732" centerz="10" radius="3">
 		<monster name="Larva" x="1" y="-1" z="10" spawntime="90" />
 		<monster name="Larva" x="-2" y="2" z="10" spawntime="90" />
@@ -113432,6 +113642,9 @@
 		<monster name="Zombie" x="-1" y="3" z="10" spawntime="90" />
 		<monster name="Crypt Shambler" x="2" y="3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32821" centery="32735" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="32256" centery="32736" centerz="10" radius="4">
 		<monster name="Rotworm" x="1" y="-2" z="10" spawntime="90" />
 		<monster name="Carrion Worm" x="-2" y="0" z="10" spawntime="90" />
@@ -113447,6 +113660,16 @@
 	<monster centerx="32974" centery="32736" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32823" centery="32737" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32851" centery="32738" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="-1" y="1" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32857" centery="32738" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="33054" centery="32738" centerz="10" radius="5">
 		<monster name="Scarab" x="-1" y="-2" z="10" spawntime="90" />
 		<monster name="Larva" x="2" y="-2" z="10" spawntime="90" />
@@ -113454,6 +113677,9 @@
 		<monster name="Larva" x="-2" y="1" z="10" spawntime="90" />
 		<monster name="Scarab" x="-5" y="2" z="10" spawntime="90" />
 		<monster name="Larva" x="3" y="2" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32823" centery="32739" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32987" centery="32740" centerz="10" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="10" spawntime="90" />
@@ -113477,16 +113703,16 @@
 		<monster name="Tortoise" x="-3" y="-3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32819" centery="32742" centerz="10" radius="3">
-		<monster name="True Dawnfire Asura" x="1" y="1" z="10" spawntime="60" />
-		<monster name="Dawnfire Asura" x="1" y="3" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="32847" centery="32742" centerz="10" radius="3">
-		<monster name="True Dawnfire Asura" x="3" y="-3" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="-1" y="1" z="10" spawntime="60" />
+		<monster name="Dawnfire Asura" x="1" y="1" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="-1" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32742" centerz="10" radius="3">
 		<monster name="True Dawnfire Asura" x="3" y="-2" z="10" spawntime="60" />
 		<monster name="True Midnight Asura" x="-3" y="0" z="10" spawntime="60" />
 		<monster name="Hellspawn" x="0" y="2" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="3" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32949" centery="32742" centerz="10" radius="1">
 		<monster name="Tomb Servant" x="1" y="0" z="10" spawntime="90" />
@@ -113537,6 +113763,12 @@
 		<monster name="Larva" x="-1" y="3" z="10" spawntime="90" />
 		<monster name="Scarab" x="-3" y="5" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32814" centery="32746" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32819" centery="32746" centerz="10" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32204" centery="32747" centerz="10" radius="4">
 		<monster name="Rotworm" x="-3" y="-2" z="10" spawntime="90" />
 		<monster name="Rotworm" x="3" y="1" z="10" spawntime="90" />
@@ -113546,6 +113778,9 @@
 	<monster centerx="32242" centery="32747" centerz="10" radius="4">
 		<monster name="Rotworm" x="0" y="-1" z="10" spawntime="90" />
 		<monster name="Carrion Worm" x="3" y="1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32854" centery="32747" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32954" centery="32747" centerz="10" radius="1">
 		<monster name="Tomb Servant" x="1" y="0" z="10" spawntime="90" />
@@ -113587,14 +113822,20 @@
 	<monster centerx="32623" centery="32749" centerz="10" radius="3">
 		<monster name="Tortoise" x="-1" y="-3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32817" centery="32749" centerz="10" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32833" centery="32749" centerz="10" radius="3">
+		<monster name="True Midnight Asura" x="-1" y="3" z="10" spawntime="60" />
 		<monster name="Hellspawn" x="3" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32749" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="-2" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32868" centery="32749" centerz="10" radius="3">
+		<monster name="True Frost Flower Asura" x="-1" y="0" z="10" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="-2" y="3" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="1" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32946" centery="32749" centerz="10" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="10" spawntime="90" />
@@ -113602,9 +113843,18 @@
 	<monster centerx="32958" centery="32749" centerz="10" radius="1">
 		<monster name="Tomb Servant" x="1" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32815" centery="32750" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32380" centery="32751" centerz="10" radius="3">
 		<monster name="Dark Monk" x="-1" y="-1" z="10" spawntime="90" />
 		<monster name="Dark Monk" x="2" y="2" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32845" centery="32751" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32854" centery="32751" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32968" centery="32751" centerz="10" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="10" spawntime="90" />
@@ -113640,6 +113890,9 @@
 		<monster name="Larva" x="3" y="1" z="10" spawntime="90" />
 		<monster name="Larva" x="3" y="3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32853" centery="32755" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32972" centery="32755" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
 	</monster>
@@ -113665,9 +113918,11 @@
 	</monster>
 	<monster centerx="32861" centery="32756" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="2" y="0" z="10" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="-1" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32868" centery="32756" centerz="10" radius="3">
 		<monster name="Hellspawn" x="-1" y="-3" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="-3" y="-2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32934" centery="32756" centerz="10" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="10" spawntime="90" />
@@ -113694,6 +113949,16 @@
 		<monster name="Scarab" x="-1" y="-1" z="10" spawntime="90" />
 		<monster name="Larva" x="1" y="2" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32854" centery="32759" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="-1" y="1" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32875" centery="32759" centerz="10" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32878" centery="32759" centerz="10" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32954" centery="32759" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
 	</monster>
@@ -113702,6 +113967,9 @@
 	</monster>
 	<monster centerx="33232" centery="32759" centerz="10" radius="2">
 		<monster name="Scarab" x="1" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32829" centery="32760" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32946" centery="32760" centerz="10" radius="1">
 		<monster name="Tomb Servant" x="1" y="0" z="10" spawntime="90" />
@@ -113767,9 +114035,10 @@
 	</monster>
 	<monster centerx="32812" centery="32763" centerz="10" radius="3">
 		<monster name="True Frost Flower Asura" x="-2" y="0" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="3" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32819" centery="32763" centerz="10" radius="3">
-		<monster name="True Dawnfire Asura" x="-3" y="1" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="-3" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32833" centery="32763" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="-1" y="2" z="10" spawntime="60" />
@@ -113778,21 +114047,25 @@
 	<monster centerx="32840" centery="32763" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="3" y="-3" z="10" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="-3" y="1" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="3" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32847" centery="32763" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="3" y="-3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32763" centerz="10" radius="3">
-		<monster name="True Frost Flower Asura" x="-1" y="-3" z="10" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="3" y="-3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32763" centerz="10" radius="3">
+		<monster name="Midnight Asura" x="0" y="-2" z="10" spawntime="60" />
 		<monster name="Dawnfire Asura" x="1" y="-2" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="-2" y="0" z="10" spawntime="60" />
 		<monster name="Hellspawn" x="1" y="0" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="2" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32882" centery="32763" centerz="10" radius="3">
-		<monster name="True Dawnfire Asura" x="-3" y="-3" z="10" spawntime="60" />
 		<monster name="Dawnfire Asura" x="-2" y="-2" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="-3" y="-1" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="-2" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33196" centery="32763" centerz="10" radius="3">
 		<monster name="Larva" x="0" y="-2" z="10" spawntime="90" />
@@ -113847,6 +114120,9 @@
 		<monster name="Novice Of The Cult" x="-4" y="3" z="10" spawntime="90" />
 		<monster name="Dark Monk" x="1" y="3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32816" centery="32767" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32927" centery="32767" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
 	</monster>
@@ -113868,12 +114144,15 @@
 		<monster name="Larva" x="-1" y="-1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32812" centery="32770" centerz="10" radius="3">
+		<monster name="True Frost Flower Asura" x="-3" y="-3" z="10" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="1" y="-2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32770" centerz="10" radius="3">
 		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="-3" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32861" centery="32770" centerz="10" radius="3">
+		<monster name="Hellspawn" x="-2" y="-3" z="10" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="0" y="-2" z="10" spawntime="60" />
 		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -113882,6 +114161,12 @@
 	</monster>
 	<monster centerx="32982" centery="32770" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32843" centery="32771" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32847" centery="32771" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32934" centery="32771" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
@@ -113903,6 +114188,9 @@
 		<monster name="Carrion Worm" x="1" y="0" z="10" spawntime="90" />
 		<monster name="Rotworm" x="1" y="2" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32829" centery="32773" centerz="10" radius="1">
+		<monster name="Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32932" centery="32773" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
 	</monster>
@@ -113917,10 +114205,22 @@
 		<monster name="Larva" x="-2" y="-2" z="10" spawntime="90" />
 		<monster name="Larva" x="2" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32815" centery="32774" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32856" centery="32774" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32183" centery="32775" centerz="10" radius="4">
 		<monster name="Carrion Worm" x="0" y="-2" z="10" spawntime="90" />
 		<monster name="Rotworm" x="2" y="-2" z="10" spawntime="90" />
 		<monster name="Rotworm" x="1" y="3" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32854" centery="32775" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32859" centery="32775" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32936" centery="32775" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
@@ -113951,20 +114251,27 @@
 		<monster name="Rotworm" x="-1" y="2" z="10" spawntime="90" />
 		<monster name="Carrion Worm" x="3" y="2" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32815" centery="32777" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32826" centery="32777" centerz="10" radius="3">
 		<monster name="Midnight Asura" x="-3" y="-3" z="10" spawntime="60" />
 		<monster name="Midnight Asura" x="0" y="-2" z="10" spawntime="60" />
 		<monster name="Frost Flower Asura" x="2" y="-2" z="10" spawntime="60" />
+		<monster name="Frost Flower Asura" x="-2" y="0" z="10" spawntime="60" />
 		<monster name="Dawnfire Asura" x="-3" y="1" z="10" spawntime="60" />
+		<monster name="Frost Flower Asura" x="-1" y="1" z="10" spawntime="60" />
+		<monster name="Midnight Asura" x="2" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32777" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="3" y="-3" z="10" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="1" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32847" centery="32777" centerz="10" radius="3">
-		<monster name="True Dawnfire Asura" x="-2" y="1" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="-1" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32868" centery="32777" centerz="10" radius="3">
+		<monster name="True Dawnfire Asura" x="3" y="1" z="10" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="0" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33094" centery="32777" centerz="10" radius="3">
@@ -114018,6 +114325,12 @@
 		<monster name="Acolyte Of The Cult" x="-3" y="-3" z="10" spawntime="90" />
 		<monster name="Acolyte Of The Cult" x="0" y="1" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32869" centery="32782" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32834" centery="32783" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32968" centery="32783" centerz="10" radius="1">
 		<monster name="Tomb Servant" x="1" y="0" z="10" spawntime="90" />
 	</monster>
@@ -114030,22 +114343,25 @@
 	<monster centerx="32819" centery="32784" centerz="10" radius="3">
 		<monster name="Hellspawn" x="-3" y="-2" z="10" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="-1" y="0" z="10" spawntime="60" />
-		<monster name="True Midnight Asura" x="2" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32826" centery="32784" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="-2" y="-1" z="10" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="1" y="-1" z="10" spawntime="60" />
-		<monster name="True Dawnfire Asura" x="3" y="-1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32784" centerz="10" radius="3">
 		<monster name="True Dawnfire Asura" x="1" y="1" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="2" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32847" centery="32784" centerz="10" radius="3">
+		<monster name="True Midnight Asura" x="-1" y="-2" z="10" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="-1" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32784" centerz="10" radius="3">
 		<monster name="True Dawnfire Asura" x="0" y="2" z="10" spawntime="60" />
 		<monster name="True Midnight Asura" x="3" y="3" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32868" centery="32784" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32784" centerz="10" radius="3">
 		<monster name="Hellspawn" x="-2" y="-2" z="10" spawntime="60" />
@@ -114054,6 +114370,9 @@
 	</monster>
 	<monster centerx="33193" centery="32784" centerz="10" radius="2">
 		<monster name="Scarab" x="2" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32870" centery="32785" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32331" centery="32786" centerz="10" radius="7">
 		<monster name="Dark Monk" x="3" y="-6" z="10" spawntime="90" />
@@ -114119,11 +114438,12 @@
 		<monster name="Larva" x="-2" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32826" centery="32791" centerz="10" radius="3">
-		<monster name="True Midnight Asura" x="2" y="1" z="10" spawntime="60" />
+		<monster name="True Midnight Asura" x="-1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32833" centery="32791" centerz="10" radius="3">
 		<monster name="True Dawnfire Asura" x="-2" y="2" z="10" spawntime="60" />
 		<monster name="Hellspawn" x="-1" y="2" z="10" spawntime="60" />
+		<monster name="True Midnight Asura" x="1" y="2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32945" centery="32791" centerz="10" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="10" spawntime="90" />
@@ -114135,6 +114455,9 @@
 	</monster>
 	<monster centerx="32405" centery="32792" centerz="10" radius="3">
 		<monster name="Novice Of The Cult" x="2" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32857" centery="32792" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32956" centery="32793" centerz="10" radius="1">
 		<monster name="Sacred Spider" x="1" y="0" z="10" spawntime="90" />
@@ -114156,6 +114479,18 @@
 		<monster name="Carrion Worm" x="1" y="-2" z="10" spawntime="90" />
 		<monster name="Rotworm" x="-3" y="3" z="10" spawntime="90" />
 		<monster name="Rotworm" x="2" y="3" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32826" centery="32796" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32859" centery="32796" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32864" centery="32796" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32869" centery="32796" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33168" centery="32796" centerz="10" radius="3">
 		<monster name="Scarab" x="2" y="-3" z="10" spawntime="90" />
@@ -114194,18 +114529,18 @@
 	</monster>
 	<monster centerx="32833" centery="32798" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="2" y="-1" z="10" spawntime="60" />
+		<monster name="True Midnight Asura" x="0" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32798" centerz="10" radius="3">
-		<monster name="True Midnight Asura" x="-3" y="2" z="10" spawntime="60" />
-		<monster name="True Dawnfire Asura" x="2" y="2" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="-1" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32798" centerz="10" radius="3">
-		<monster name="True Midnight Asura" x="2" y="-3" z="10" spawntime="60" />
 		<monster name="Hellspawn" x="3" y="-2" z="10" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="3" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32875" centery="32798" centerz="10" radius="3">
-		<monster name="True Midnight Asura" x="-2" y="-2" z="10" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="1" y="-2" z="10" spawntime="60" />
+		<monster name="Hellspawn" x="2" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33199" centery="32799" centerz="10" radius="3">
 		<monster name="Larva" x="1" y="-2" z="10" spawntime="90" />
@@ -114221,6 +114556,9 @@
 	<monster centerx="32029" centery="32800" centerz="10" radius="2">
 		<monster name="Pirate Skeleton" x="-2" y="1" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32826" centery="32800" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32050" centery="32801" centerz="10" radius="2">
 		<monster name="Pirate Ghost" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -114235,6 +114573,9 @@
 		<monster name="Carrion Worm" x="1" y="2" z="10" spawntime="90" />
 		<monster name="Rotworm" x="3" y="2" z="10" spawntime="90" />
 		<monster name="Rotworm" x="-3" y="3" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32828" centery="32802" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32423" centery="32803" centerz="10" radius="3">
 		<monster name="Novice Of The Cult" x="-2" y="-2" z="10" spawntime="90" />
@@ -114260,6 +114601,12 @@
 		<monster name="Dark Monk" x="-4" y="3" z="10" spawntime="90" />
 		<monster name="Dark Monk" x="4" y="4" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32857" centery="32804" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32877" centery="32804" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="33191" centery="32804" centerz="10" radius="3">
 		<monster name="Scarab" x="-3" y="-2" z="10" spawntime="90" />
 		<monster name="Scarab" x="3" y="-1" z="10" spawntime="90" />
@@ -114276,12 +114623,21 @@
 		<monster name="Hellspawn" x="-1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32805" centerz="10" radius="3">
-		<monster name="True Frost Flower Asura" x="0" y="2" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="2" y="-2" z="10" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="-2" y="-1" z="10" spawntime="60" />
+		<monster name="True Midnight Asura" x="2" y="1" z="10" spawntime="60" />
+		<monster name="True Midnight Asura" x="3" y="3" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32874" centery="32805" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32039" centery="32806" centerz="10" radius="4">
 		<monster name="Pirate Ghost" x="1" y="-2" z="10" spawntime="90" />
 		<monster name="Pirate Skeleton" x="-3" y="-1" z="10" spawntime="90" />
 		<monster name="Pirate Skeleton" x="1" y="3" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32849" centery="32806" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32251" centery="32807" centerz="10" radius="4">
 		<monster name="Rotworm" x="2" y="-3" z="10" spawntime="90" />
@@ -114289,6 +114645,9 @@
 		<monster name="Rotworm" x="2" y="1" z="10" spawntime="90" />
 		<monster name="Rotworm" x="-2" y="2" z="10" spawntime="90" />
 		<monster name="Carrion Worm" x="1" y="4" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32880" centery="32807" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33177" centery="32807" centerz="10" radius="3">
 		<monster name="Larva" x="2" y="-3" z="10" spawntime="90" />
@@ -114312,6 +114671,16 @@
 	</monster>
 	<monster centerx="32029" centery="32809" centerz="10" radius="2">
 		<monster name="Pirate Skeleton" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32874" centery="32810" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32879" centery="32810" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32882" centery="32810" centerz="10" radius="1">
+		<monster name="Hellspawn" x="1" y="-1" z="10" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33225" centery="32810" centerz="10" radius="5">
 		<monster name="Larva" x="-2" y="-5" z="10" spawntime="90" />
@@ -114339,10 +114708,10 @@
 	</monster>
 	<monster centerx="32819" centery="32812" centerz="10" radius="3">
 		<monster name="True Midnight Asura" x="0" y="-2" z="10" spawntime="60" />
-		<monster name="True Frost Flower Asura" x="-1" y="2" z="10" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="-2" y="3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32812" centerz="10" radius="3">
-		<monster name="True Dawnfire Asura" x="-2" y="-3" z="10" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="2" y="-2" z="10" spawntime="60" />
 		<monster name="Hellspawn" x="-2" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32854" centery="32812" centerz="10" radius="3">
@@ -114365,6 +114734,12 @@
 	</monster>
 	<monster centerx="32048" centery="32816" centerz="10" radius="2">
 		<monster name="Pirate Ghost" x="0" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="32812" centery="32816" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32824" centery="32816" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="31997" centery="32817" centerz="10" radius="1">
 		<monster name="Scorpion" x="1" y="0" z="10" spawntime="90" />
@@ -114389,6 +114764,12 @@
 	<monster centerx="32034" centery="32818" centerz="10" radius="2">
 		<monster name="Ghoul" x="0" y="1" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32869" centery="32818" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32871" centery="32818" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32595" centery="32819" centerz="10" radius="3">
 		<monster name="Corym Skirmisher" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -114400,8 +114781,39 @@
 		<monster name="Corym Skirmisher" x="2" y="2" z="10" spawntime="90" />
 		<monster name="Corym Vanguard" x="0" y="3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="32814" centery="32819" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32819" centery="32819" centerz="10" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32822" centery="32819" centerz="10" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="32854" centery="32819" centerz="10" radius="3">
 		<monster name="True Dawnfire Asura" x="3" y="-1" z="10" spawntime="60" />
+		<monster name="True Midnight Asura" x="1" y="1" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32873" centery="32819" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32875" centery="32819" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32812" centery="32820" centerz="10" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32866" centery="32820" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32877" centery="32820" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32869" centery="32821" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32872" centery="32821" centerz="10" radius="1">
+		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32837" centery="32822" centerz="10" radius="5">
 		<monster name="True Dawnfire Asura" x="1" y="-3" z="10" spawntime="60" />
@@ -117797,6 +118209,9 @@
 	<monster centerx="33620" centery="31240" centerz="11" radius="1">
 		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="33645" centery="31240" centerz="11" radius="1">
+		<monster name="Tanjis" x="0" y="-1" z="11" spawntime="1800" />
+	</monster>
 	<monster centerx="32749" centery="31241" centerz="11" radius="4">
 		<monster name="Dragon" x="0" y="-3" z="11" spawntime="90" />
 		<monster name="Dragon" x="2" y="4" z="11" spawntime="90" />
@@ -118042,6 +118457,9 @@
 	<monster centerx="32764" centery="31266" centerz="11" radius="2">
 		<monster name="Dragon" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="33437" centery="31266" centerz="11" radius="1">
+		<monster name="Obujos" x="0" y="-1" z="11" spawntime="1800" />
+	</monster>
 	<monster centerx="33123" centery="31267" centerz="11" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -118071,6 +118489,9 @@
 	<monster centerx="32729" centery="31271" centerz="11" radius="4">
 		<monster name="Dragon" x="2" y="-2" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="-3" y="2" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="33545" centery="31275" centerz="11" radius="1">
+		<monster name="Jaul" x="0" y="-1" z="11" spawntime="1800" />
 	</monster>
 	<monster centerx="32127" centery="31278" centerz="11" radius="3">
 		<monster name="Nightmare" x="-1" y="0" z="11" spawntime="60" />
@@ -128743,6 +129164,7 @@
 	</monster>
 	<monster centerx="32805" centery="32742" centerz="11" radius="3">
 		<monster name="True Dawnfire Asura" x="2" y="1" z="11" spawntime="60" />
+		<monster name="True Midnight Asura" x="2" y="3" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="33352" centery="32742" centerz="11" radius="4">
 		<monster name="Skeleton" x="-1" y="-2" z="11" spawntime="90" />
@@ -128765,6 +129187,12 @@
 		<monster name="Witch" x="1" y="4" z="11" spawntime="90" />
 		<monster name="Novice Of The Cult" x="-2" y="5" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32812" centery="32745" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32816" centery="32745" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32947" centery="32747" centerz="11" radius="1">
 		<monster name="Sandstone Scorpion" x="1" y="0" z="11" spawntime="90" />
 	</monster>
@@ -128778,6 +129206,9 @@
 		<monster name="Ghoul" x="-3" y="2" z="11" spawntime="90" />
 		<monster name="Poison Spider" x="0" y="2" z="11" spawntime="90" />
 		<monster name="Skeleton" x="1" y="4" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="32808" centery="32748" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32930" centery="32748" centerz="11" radius="1">
 		<monster name="Grave Guard" x="1" y="0" z="11" spawntime="90" />
@@ -128818,6 +129249,9 @@
 	<monster centerx="32956" centery="32750" centerz="11" radius="1">
 		<monster name="Grave Guard" x="1" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32817" centery="32753" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32941" centery="32754" centerz="11" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="11" spawntime="90" />
 	</monster>
@@ -128828,8 +129262,10 @@
 	<monster centerx="32833" centery="32756" centerz="11" radius="3">
 		<monster name="True Midnight Asura" x="3" y="-3" z="11" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="1" y="-2" z="11" spawntime="60" />
+		<monster name="True Midnight Asura" x="3" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32756" centerz="11" radius="3">
+		<monster name="True Frost Flower Asura" x="1" y="-3" z="11" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="-3" y="-1" z="11" spawntime="60" />
 		<monster name="Hellhound" x="-2" y="3" z="11" spawntime="60" />
 	</monster>
@@ -128887,6 +129323,9 @@
 		<monster name="Scarab" x="3" y="1" z="11" spawntime="90" />
 		<monster name="Scarab" x="-2" y="2" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32813" centery="32762" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="33039" centery="32762" centerz="11" radius="6">
 		<monster name="Ancient Scarab" x="-1" y="-4" z="11" spawntime="90" />
 		<monster name="Larva" x="-6" y="-2" z="11" spawntime="90" />
@@ -128923,10 +129362,12 @@
 		<monster name="Quara Predator" x="-3" y="2" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32833" centery="32763" centerz="11" radius="3">
+		<monster name="True Frost Flower Asura" x="1" y="-3" z="11" spawntime="60" />
 		<monster name="True Midnight Asura" x="3" y="-3" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32763" centerz="11" radius="3">
 		<monster name="True Frost Flower Asura" x="-1" y="-3" z="11" spawntime="60" />
+		<monster name="True Frost Flower Asura" x="1" y="-3" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32970" centery="32763" centerz="11" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="11" spawntime="90" />
@@ -128945,6 +129386,9 @@
 	</monster>
 	<monster centerx="32941" centery="32768" centerz="11" radius="1">
 		<monster name="Grave Guard" x="1" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="32817" centery="32769" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32959" centery="32769" centerz="11" radius="1">
 		<monster name="Clay Guardian" x="1" y="0" z="11" spawntime="90" />
@@ -129064,6 +129508,7 @@
 		<monster name="True Midnight Asura" x="3" y="-1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32777" centerz="11" radius="3">
+		<monster name="True Midnight Asura" x="0" y="-3" z="11" spawntime="60" />
 		<monster name="Hellspawn" x="1" y="-1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32971" centery="32777" centerz="11" radius="1">
@@ -129112,14 +129557,23 @@
 		<monster name="Larva" x="-2" y="2" z="11" spawntime="90" />
 		<monster name="Ancient Scarab" x="3" y="3" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32813" centery="32782" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32803" centery="32783" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32070" centery="32784" centerz="11" radius="3">
 		<monster name="Quara Hydromancer" x="0" y="-2" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32798" centery="32784" centerz="11" radius="3">
+		<monster name="True Midnight Asura" x="-2" y="2" z="11" spawntime="60" />
 		<monster name="Hellspawn" x="1" y="3" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32819" centery="32784" centerz="11" radius="3">
+		<monster name="True Frost Flower Asura" x="2" y="-1" z="11" spawntime="60" />
 		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+		<monster name="True Midnight Asura" x="-2" y="1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32833" centery="32784" centerz="11" radius="3">
 		<monster name="True Frost Flower Asura" x="2" y="2" z="11" spawntime="60" />
@@ -129134,6 +129588,15 @@
 	<monster centerx="33484" centery="32784" centerz="11" radius="3">
 		<monster name="Lion" x="-3" y="-3" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="32813" centery="32785" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32826" centery="32785" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32803" centery="32788" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="33035" centery="32789" centerz="11" radius="5">
 		<monster name="Larva" x="-1" y="-3" z="11" spawntime="90" />
 		<monster name="Larva" x="-4" y="-1" z="11" spawntime="90" />
@@ -129142,11 +129605,16 @@
 		<monster name="Ancient Scarab" x="-3" y="2" z="11" spawntime="90" />
 		<monster name="Larva" x="0" y="4" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32802" centery="32790" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32392" centery="32791" centerz="11" radius="3">
 		<monster name="Dark Monk" x="1" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32798" centery="32791" centerz="11" radius="3">
+		<monster name="True Dawnfire Asura" x="-1" y="-3" z="11" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="0" y="-1" z="11" spawntime="60" />
+		<monster name="True Midnight Asura" x="2" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="33078" centery="32791" centerz="11" radius="5">
 		<monster name="Scarab" x="1" y="-4" z="11" spawntime="90" />
@@ -129156,6 +129624,9 @@
 		<monster name="Scarab" x="-1" y="2" z="11" spawntime="90" />
 		<monster name="Ancient Scarab" x="2" y="2" z="11" spawntime="90" />
 		<monster name="Larva" x="4" y="2" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="32841" centery="32792" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="33065" centery="32792" centerz="11" radius="5">
 		<monster name="Larva" x="0" y="-3" z="11" spawntime="90" />
@@ -129216,12 +129687,18 @@
 		<monster name="Larva" x="1" y="2" z="11" spawntime="90" />
 		<monster name="Scarab" x="-1" y="4" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32862" centery="32797" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32826" centery="32798" centerz="11" radius="3">
 		<monster name="True Midnight Asura" x="-2" y="2" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32833" centery="32798" centerz="11" radius="3">
 		<monster name="True Midnight Asura" x="-1" y="2" z="11" spawntime="60" />
 		<monster name="Hellspawn" x="2" y="2" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32841" centery="32798" centerz="11" radius="1">
+		<monster name="True Frost Flower Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32847" centery="32798" centerz="11" radius="3">
 		<monster name="True Dawnfire Asura" x="-1" y="2" z="11" spawntime="60" />
@@ -129233,6 +129710,18 @@
 	</monster>
 	<monster centerx="33456" centery="32798" centerz="11" radius="30">
 		<monster name="Desperate Soul" x="14" y="12" z="11" spawntime="10" />
+	</monster>
+	<monster centerx="32804" centery="32800" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32812" centery="32802" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32803" centery="32804" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32856" centery="32804" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32819" centery="32805" centerz="11" radius="3">
 		<monster name="True Midnight Asura" x="1" y="3" z="11" spawntime="60" />
@@ -129247,6 +129736,10 @@
 		<monster name="Scarab" x="4" y="3" z="11" spawntime="90" />
 		<monster name="Larva" x="-2" y="4" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32801" centery="32807" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="-1" y="-1" z="11" spawntime="60" />
+		<monster name="Hellhound" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32381" centery="32809" centerz="11" radius="3">
 		<monster name="Ghoul" x="-2" y="-2" z="11" spawntime="90" />
 		<monster name="Ghoul" x="2" y="1" z="11" spawntime="90" />
@@ -129254,15 +129747,21 @@
 	<monster centerx="32372" centery="32810" centerz="11" radius="3">
 		<monster name="Ghoul" x="0" y="-2" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32794" centery="32810" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32820" centery="32811" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32798" centery="32812" centerz="11" radius="3">
+		<monster name="Hellhound" x="-2" y="-3" z="11" spawntime="60" />
 		<monster name="Hellspawn" x="0" y="-3" z="11" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="1" y="-3" z="11" spawntime="60" />
+		<monster name="True Dawnfire Asura" x="-1" y="-1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32812" centerz="11" radius="3">
+		<monster name="True Midnight Asura" x="3" y="1" z="11" spawntime="60" />
 		<monster name="True Dawnfire Asura" x="1" y="2" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="32847" centery="32812" centerz="11" radius="3">
-		<monster name="True Midnight Asura" x="-2" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="33250" centery="32813" centerz="11" radius="6">
 		<monster name="Larva" x="1" y="-5" z="11" spawntime="90" />
@@ -129271,25 +129770,41 @@
 		<monster name="Larva" x="-3" y="3" z="11" spawntime="90" />
 		<monster name="Ancient Scarab" x="2" y="6" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32818" centery="32815" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32832" centery="32816" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32815" centery="32817" centerz="11" radius="1">
+		<monster name="True Dawnfire Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="33260" centery="32817" centerz="11" radius="2">
 		<monster name="Larva" x="1" y="-2" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="32812" centery="32818" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="32826" centery="32819" centerz="11" radius="3">
-		<monster name="True Dawnfire Asura" x="-3" y="-3" z="11" spawntime="60" />
 		<monster name="True Midnight Asura" x="-1" y="-3" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32840" centery="32819" centerz="11" radius="3">
 		<monster name="True Frost Flower Asura" x="-3" y="-3" z="11" spawntime="60" />
-		<monster name="Hellspawn" x="2" y="-3" z="11" spawntime="60" />
-		<monster name="True Dawnfire Asura" x="3" y="-3" z="11" spawntime="60" />
 		<monster name="True Frost Flower Asura" x="3" y="1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32847" centery="32819" centerz="11" radius="3">
 		<monster name="True Midnight Asura" x="0" y="-3" z="11" spawntime="60" />
-		<monster name="True Frost Flower Asura" x="2" y="-3" z="11" spawntime="60" />
+		<monster name="Hellhound" x="-3" y="-1" z="11" spawntime="60" />
+		<monster name="True Midnight Asura" x="-3" y="3" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="32851" centery="32819" centerz="11" radius="1">
+		<monster name="True Midnight Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32384" centery="32820" centerz="11" radius="2">
 		<monster name="Dark Monk" x="-1" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="32815" centery="32820" centerz="11" radius="1">
+		<monster name="Hellhound" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32355" centery="32821" centerz="11" radius="5">
 		<monster name="Novice Of The Cult" x="-1" y="-5" z="11" spawntime="90" />
