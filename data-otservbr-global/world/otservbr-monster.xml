@@ -40881,9 +40881,6 @@
 	<monster centerx="33575" centery="32395" centerz="7" radius="1">
 		<monster name="Choking Fear" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33567" centery="32396" centerz="7" radius="1">
-		<monster name="Retching Horror" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32276" centery="32397" centerz="7" radius="2">
 		<monster name="Yellow Butterfly" x="-2" y="1" z="7" spawntime="90" />
 	</monster>
@@ -41032,9 +41029,6 @@
 	<monster centerx="33701" centery="32406" centerz="7" radius="3">
 		<monster name="Retching Horror" x="-3" y="-2" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33542" centery="32408" centerz="7" radius="1">
-		<monster name="Choking Fear" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32305" centery="32409" centerz="7" radius="1">
 		<monster name="Minotaur" x="1" y="0" z="7" spawntime="90" />
 	</monster>
@@ -41082,12 +41076,6 @@
 	</monster>
 	<monster centerx="33554" centery="32413" centerz="7" radius="3">
 		<monster name="Choking Fear" x="1" y="-1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33561" centery="32413" centerz="7" radius="1">
-		<monster name="Choking Fear" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33596" centery="32413" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-1" y="-1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="33603" centery="32413" centerz="7" radius="3">
 		<monster name="Retching Horror" x="-2" y="1" z="7" spawntime="90" />
@@ -86604,9 +86592,6 @@
 	<monster centerx="33029" centery="32382" centerz="9" radius="1">
 		<monster name="Rotworm" x="0" y="-1" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33516" centery="32382" centerz="9" radius="1">
-		<monster name="Hellhound" x="0" y="0" z="9" spawntime="90" />
-	</monster>
 	<monster centerx="33706" centery="32382" centerz="9" radius="2">
 		<monster name="Terrorsleep" x="0" y="-1" z="9" spawntime="60" />
 	</monster>
@@ -86645,12 +86630,11 @@
 		<monster name="Misguided Thief" x="0" y="-2" z="9" spawntime="60" />
 		<monster name="Misguided Bully" x="0" y="1" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="33518" centery="32385" centerz="9" radius="1">
+		<monster name="Hellhound" x="0" y="-1" z="9" spawntime="90" />
+	</monster>
 	<monster centerx="33533" centery="32385" centerz="9" radius="3">
 		<monster name="Dark Torturer" x="3" y="3" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33540" centery="32385" centerz="9" radius="3">
-		<monster name="Energy Elemental" x="-1" y="3" z="9" spawntime="90" />
-		<monster name="Plaguesmith" x="0" y="3" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33554" centery="32385" centerz="9" radius="3">
 		<monster name="Dark Torturer" x="-1" y="3" z="9" spawntime="90" />
@@ -86660,7 +86644,6 @@
 		<monster name="Demon Outcast" x="3" y="0" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32385" centerz="9" radius="3">
-		<monster name="Betrayed Wraith" x="-3" y="0" z="9" spawntime="90" />
 		<monster name="Demon Outcast" x="-3" y="2" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33715" centery="32385" centerz="9" radius="3">
@@ -86792,7 +86775,6 @@
 		<monster name="Demon Outcast" x="1" y="0" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32392" centerz="9" radius="3">
-		<monster name="Hellhound" x="0" y="-2" z="9" spawntime="90" />
 		<monster name="Demon Outcast" x="-1" y="-1" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33617" centery="32392" centerz="9" radius="3">
@@ -107831,11 +107813,8 @@
 	<monster centerx="33004" centery="32332" centerz="10" radius="1">
 		<monster name="Ghoul" x="0" y="-1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33562" centery="32332" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33565" centery="32332" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	<monster centerx="33563" centery="32332" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32764" centery="32333" centerz="10" radius="7">
 		<monster name="Demon Skeleton" x="0" y="-5" z="10" spawntime="90" />
@@ -107848,11 +107827,16 @@
 		<monster name="Demon Skeleton" x="-2" y="3" z="10" spawntime="90" />
 		<monster name="Demon Skeleton" x="6" y="4" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33552" centery="32333" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33561" centery="32333" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33576" centery="32333" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33565" centery="32333" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="-1" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="-1" y="1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33572" centery="32333" centerz="10" radius="2">
+		<monster name="Dark Torturer" x="-2" y="-1" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="-1" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="31984" centery="32334" centerz="10" radius="1">
 		<monster name="Freakish Lost Soul" x="0" y="0" z="10" spawntime="60" />
@@ -107869,21 +107853,11 @@
 	<monster centerx="33530" centery="32334" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33561" centery="32334" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33564" centery="32334" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33568" centery="32334" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33571" centery="32334" centerz="10" radius="2">
-		<monster name="Dark Torturer" x="-1" y="-2" z="10" spawntime="60" />
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
 	<monster centerx="33584" centery="32334" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33589" centery="32334" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33594" centery="32334" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
@@ -107894,20 +107868,26 @@
 	<monster centerx="33603" centery="32334" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33551" centery="32335" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33568" centery="32335" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="-1" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="32532" centery="32336" centerz="10" radius="3">
 		<monster name="Misguided Bully" x="-1" y="-3" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33519" centery="32336" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="-2" y="-3" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="3" y="-2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="1" y="-2" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33540" centery="32336" centerz="10" radius="3">
 		<monster name="Hellhound" x="-1" y="-3" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="-2" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33566" centery="32336" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
+	<monster centerx="33567" centery="32336" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33610" centery="32336" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="0" y="-3" z="10" spawntime="90" />
@@ -107977,8 +107957,8 @@
 		<monster name="Priestess" x="2" y="-1" z="10" spawntime="90" />
 		<monster name="Priestess" x="-2" y="3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33566" centery="32342" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33567" centery="32342" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32001" centery="32343" centerz="10" radius="1">
 		<monster name="Freakish Lost Soul" x="0" y="0" z="10" spawntime="60" />
@@ -108013,8 +107993,8 @@
 		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33582" centery="32343" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="-2" y="1" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="0" y="2" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-2" y="1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32343" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-2" y="0" z="10" spawntime="90" />
@@ -108042,14 +108022,17 @@
 	<monster centerx="33017" centery="32344" centerz="10" radius="3">
 		<monster name="Ghoul" x="1" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33577" centery="32344" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="31915" centery="32345" centerz="10" radius="1">
 		<monster name="Freakish Lost Soul" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33087" centery="32345" centerz="10" radius="1">
 		<monster name="Scorpion" x="1" y="-1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33532" centery="32345" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33533" centery="32345" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32820" centery="32346" centerz="10" radius="1">
 		<monster name="Nightmare" x="1" y="-1" z="10" spawntime="90" />
@@ -108066,6 +108049,9 @@
 	</monster>
 	<monster centerx="31954" centery="32348" centerz="10" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33548" centery="32348" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="-1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="31965" centery="32349" centerz="10" radius="1">
 		<monster name="Freakish Lost Soul" x="0" y="0" z="10" spawntime="60" />
@@ -108099,22 +108085,24 @@
 		<monster name="Werehyaena" x="-2" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33526" centery="32350" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-1" y="2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="1" y="-3" z="10" spawntime="90" />
+		<monster name="Plaguesmith" x="2" y="2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33533" centery="32350" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="2" y="-1" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="-3" y="0" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="3" y="0" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33554" centery="32350" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-3" y="-3" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="3" y="-2" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="-1" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
 		<monster name="Hellhound" x="2" y="2" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33575" centery="32350" centerz="10" radius="3">
-		<monster name="Energy Elemental" x="1" y="-1" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="-3" y="1" z="10" spawntime="90" />
+	<monster centerx="33576" centery="32350" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32350" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="1" y="-3" z="10" spawntime="60" />
@@ -108141,16 +108129,6 @@
 	<monster centerx="32981" centery="32351" centerz="10" radius="1">
 		<monster name="Zombie" x="1" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33564" centery="32351" centerz="10" radius="5">
-		<monster name="Plaguesmith" x="3" y="-1" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
-		<monster name="Plaguesmith" x="1" y="0" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="4" y="0" z="10" spawntime="60" />
-		<monster name="Energy Elemental" x="4" y="1" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="1" y="2" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="2" y="3" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="33583" centery="32351" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -108160,8 +108138,15 @@
 	<monster centerx="31966" centery="32352" centerz="10" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="33547" centery="32352" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+	<monster centerx="33548" centery="32352" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33565" centery="32352" centerz="10" radius="5">
+		<monster name="Demon Outcast" x="-1" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="3" y="-1" z="10" spawntime="90" />
+		<monster name="Energy Elemental" x="3" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32754" centery="32353" centerz="10" radius="7">
 		<monster name="Demon Skeleton" x="-4" y="-6" z="10" spawntime="90" />
@@ -108183,9 +108168,6 @@
 		<monster name="Necromancer" x="0" y="-2" z="10" spawntime="90" />
 		<monster name="Priestess" x="3" y="3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33579" centery="32353" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="31946" centery="32354" centerz="10" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -108201,14 +108183,17 @@
 	<monster centerx="33576" centery="32355" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33581" centery="32355" centerz="10" radius="1">
-		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="31917" centery="32356" centerz="10" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32995" centery="32356" centerz="10" radius="1">
 		<monster name="Necromancer" x="1" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33581" centery="32356" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33584" centery="32356" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32560" centery="32357" centerz="10" radius="3">
 		<monster name="Misguided Thief" x="1" y="-1" z="10" spawntime="60" />
@@ -108232,28 +108217,18 @@
 		<monster name="Demon Outcast" x="1" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33526" centery="32357" centerz="10" radius="3">
-		<monster name="Dark Torturer" x="-1" y="-3" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="3" y="-2" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="3" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33533" centery="32357" centerz="10" radius="3">
 		<monster name="Hellhound" x="3" y="-3" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="0" y="-2" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="-2" y="-1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="3" y="-1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33540" centery="32357" centerz="10" radius="3">
-		<monster name="Blightwalker" x="-3" y="-2" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="-2" y="2" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33548" centery="32357" centerz="10" radius="1">
-		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33554" centery="32357" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33582" centery="32357" centerz="10" radius="1">
-		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32357" centerz="10" radius="3">
 		<monster name="Plaguesmith" x="3" y="-2" z="10" spawntime="90" />
@@ -108298,11 +108273,11 @@
 	<monster centerx="33045" centery="32359" centerz="10" radius="3">
 		<monster name="Priestess" x="1" y="-2" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33575" centery="32360" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33551" centery="32360" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33582" centery="32360" centerz="10" radius="1">
-		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33576" centery="32360" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33698" centery="32360" centerz="10" radius="2">
 		<monster name="Feversleep" x="1" y="-2" z="10" spawntime="60" />
@@ -108314,14 +108289,18 @@
 	<monster centerx="33532" centery="32361" centerz="10" radius="1">
 		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33551" centery="32361" centerz="10" radius="1">
-		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33547" centery="32362" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33584" centery="32362" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33615" centery="32362" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33556" centery="32363" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+	<monster centerx="33557" centery="32363" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32525" centery="32364" centerz="10" radius="3">
 		<monster name="Misguided Thief" x="3" y="-3" z="10" spawntime="60" />
@@ -108350,6 +108329,9 @@
 	</monster>
 	<monster centerx="33204" centery="32364" centerz="10" radius="3">
 		<monster name="Werehyaena" x="2" y="1" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33566" centery="32364" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33589" centery="32364" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-3" y="-3" z="10" spawntime="90" />
@@ -108398,8 +108380,8 @@
 		<monster name="Demon Skeleton" x="-1" y="5" z="10" spawntime="90" />
 		<monster name="Demon Skeleton" x="4" y="5" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33518" centery="32367" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33567" centery="32367" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32991" centery="32368" centerz="10" radius="1">
 		<monster name="Necromancer" x="0" y="1" z="10" spawntime="90" />
@@ -108456,15 +108438,12 @@
 	<monster centerx="33211" centery="32371" centerz="10" radius="3">
 		<monster name="Werehyaena" x="-3" y="-2" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="33519" centery="32371" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-1" y="3" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="33547" centery="32371" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="2" y="-1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="2" y="-1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="1" y="3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33568" centery="32371" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-2" y="1" z="10" spawntime="90" />
+	<monster centerx="33581" centery="32371" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32371" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="0" y="-2" z="10" spawntime="90" />
@@ -108490,9 +108469,13 @@
 	</monster>
 	<monster centerx="33554" centery="32372" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="1" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33065" centery="32373" centerz="10" radius="3">
 		<monster name="Ghoul" x="2" y="3" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33519" centery="32373" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33584" centery="32373" centerz="10" radius="1">
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
@@ -108511,6 +108494,9 @@
 	</monster>
 	<monster centerx="33579" centery="32375" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33586" centery="32377" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33594" centery="32377" centerz="10" radius="1">
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
@@ -108578,31 +108564,18 @@
 	<monster centerx="33211" centery="32378" centerz="10" radius="3">
 		<monster name="Werehyaena" x="-2" y="3" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="33528" centery="32378" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="33533" centery="32378" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-3" y="-3" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="1" y="-3" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="1" y="2" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33548" centery="32378" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33568" centery="32378" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="-3" y="0" z="10" spawntime="90" />
-		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="-3" y="1" z="10" spawntime="90" />
-		<monster name="Dark Torturer" x="0" y="1" z="10" spawntime="90" />
-		<monster name="Dark Torturer" x="1" y="1" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="60" />
-		<monster name="Dark Torturer" x="1" y="2" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-2" y="3" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="1" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33575" centery="32378" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-2" y="2" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="2" y="0" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-1" y="3" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33581" centery="32378" centerz="10" radius="1">
-		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33610" centery="32378" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="-2" y="1" z="10" spawntime="90" />
@@ -108614,15 +108587,26 @@
 		<monster name="Blightwalker" x="-2" y="3" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-1" y="3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33548" centery="32379" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="33555" centery="32379" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="1" y="-2" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="-1" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="0" y="1" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="-1" y="2" z="10" spawntime="90" />
-		<monster name="Hellhound" x="1" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33595" centery="32379" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33517" centery="32380" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33566" centery="32380" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="-1" y="-2" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="1" y="-2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="0" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33583" centery="32380" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
@@ -108630,8 +108614,8 @@
 	<monster centerx="33021" centery="32381" centerz="10" radius="3">
 		<monster name="Necromancer" x="1" y="1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33520" centery="32381" centerz="10" radius="1">
-		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33525" centery="32381" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33598" centery="32381" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
@@ -108639,8 +108623,8 @@
 	<monster centerx="32986" centery="32382" centerz="10" radius="3">
 		<monster name="Necromancer" x="0" y="2" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33538" centery="32382" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33537" centery="32382" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33581" centery="32382" centerz="10" radius="1">
 		<monster name="Plaguesmith" x="0" y="0" z="10" spawntime="90" />
@@ -108664,9 +108648,6 @@
 		<monster name="Assassin" x="2" y="4" z="10" spawntime="90" />
 		<monster name="Dark Monk" x="6" y="4" z="10" spawntime="90" />
 		<monster name="Dark Magician" x="0" y="6" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33527" centery="32383" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32978" centery="32384" centerz="10" radius="3">
 		<monster name="Bat" x="1" y="-2" z="10" spawntime="90" />
@@ -108741,13 +108722,13 @@
 		<monster name="Demon Outcast" x="0" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33547" centery="32385" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="-1" y="-2" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-1" y="-2" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="2" y="-1" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="2" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33554" centery="32385" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="2" y="-2" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="1" y="2" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="1" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33575" centery="32385" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="-3" y="-2" z="10" spawntime="90" />
@@ -108762,9 +108743,6 @@
 	<monster centerx="33617" centery="32385" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-3" y="-3" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="-1" y="3" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33518" centery="32386" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33585" centery="32386" centerz="10" radius="1">
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
@@ -108814,8 +108792,8 @@
 	<monster centerx="33043" centery="32391" centerz="10" radius="3">
 		<monster name="Priestess" x="0" y="1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33555" centery="32391" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+	<monster centerx="33556" centery="32391" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33594" centery="32391" centerz="10" radius="1">
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
@@ -108890,12 +108868,15 @@
 		<monster name="Demon Outcast" x="-2" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33568" centery="32392" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-1" y="2" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="0" y="-2" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="-2" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-2" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33575" centery="32392" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="3" y="-3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33582" centery="32392" centerz="10" radius="3">
+		<monster name="Dark Torturer" x="-1" y="-3" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="3" y="-3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33603" centery="32392" centerz="10" radius="3">
@@ -109006,9 +108987,6 @@
 	<monster centerx="33533" centery="32399" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-3" y="1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33554" centery="32399" centerz="10" radius="3">
-		<monster name="Plaguesmith" x="-3" y="0" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="33568" centery="32399" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-2" y="0" z="10" spawntime="90" />
 	</monster>
@@ -109030,6 +109008,9 @@
 	<monster centerx="33024" centery="32400" centerz="10" radius="3">
 		<monster name="Ghoul" x="-2" y="3" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33556" centery="32400" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="32251" centery="32401" centerz="10" radius="1">
 		<monster name="Minotaur Archer" x="0" y="1" z="10" spawntime="90" />
 	</monster>
@@ -109050,28 +109031,18 @@
 	<monster centerx="32993" centery="32402" centerz="10" radius="3">
 		<monster name="Necromancer" x="0" y="-3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33559" centery="32402" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33582" centery="32403" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33581" centery="32403" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33617" centery="32403" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="33548" centery="32404" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="90" />
+	</monster>
 	<monster centerx="32276" centery="32405" centerz="10" radius="2">
 		<monster name="Minotaur" x="-2" y="-1" z="10" spawntime="90" />
 		<monster name="Minotaur" x="2" y="-1" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33517" centery="32405" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33583" centery="32405" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33586" centery="32405" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="-1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32021" centery="32406" centerz="10" radius="3">
 		<monster name="Dragon Lord" x="-3" y="-3" z="10" spawntime="60" />
@@ -109140,23 +109111,23 @@
 	</monster>
 	<monster centerx="33533" centery="32406" centerz="10" radius="3">
 		<monster name="Energy Elemental" x="-3" y="1" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="2" y="1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="2" y="1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-1" y="3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33547" centery="32406" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="3" y="-3" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="0" y="-1" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33554" centery="32406" centerz="10" radius="3">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
-		<monster name="Energy Elemental" x="2" y="2" z="10" spawntime="90" />
-		<monster name="Hellhound" x="-3" y="3" z="10" spawntime="90" />
+	<monster centerx="33555" centery="32406" centerz="10" radius="3">
+		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
+		<monster name="Energy Elemental" x="1" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33575" centery="32406" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-1" y="-2" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="3" y="0" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="-2" y="1" z="10" spawntime="90" />
-		<monster name="Energy Elemental" x="-2" y="3" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="2" y="-2" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33582" centery="32406" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="1" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33586" centery="32406" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33596" centery="32406" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
@@ -109166,6 +109137,9 @@
 	<monster centerx="33603" centery="32406" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-3" y="-1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-2" y="3" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="33518" centery="32407" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32253" centery="32408" centerz="10" radius="1">
 		<monster name="Minotaur" x="0" y="-1" z="10" spawntime="90" />
@@ -109177,8 +109151,8 @@
 		<monster name="Necromancer" x="-3" y="-1" z="10" spawntime="90" />
 		<monster name="Shadow Pupil" x="0" y="1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33565" centery="32408" centerz="10" radius="1">
-		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
+	<monster centerx="33566" centery="32408" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32320" centery="32409" centerz="10" radius="1">
 		<monster name="Banshee" x="1" y="-1" z="10" spawntime="90" />
@@ -109205,6 +109179,11 @@
 	<monster centerx="32979" centery="32412" centerz="10" radius="3">
 		<monster name="Priestess" x="2" y="-2" z="10" spawntime="90" />
 		<monster name="Bat" x="-1" y="-1" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33567" centery="32412" centerz="10" radius="3">
+		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33595" centery="32412" centerz="10" radius="1">
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
@@ -109266,27 +109245,17 @@
 		<monster name="Demon Outcast" x="3" y="-3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33533" centery="32413" centerz="10" radius="3">
-		<monster name="Blightwalker" x="-3" y="-3" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="3" y="-3" z="10" spawntime="90" />
-		<monster name="Plaguesmith" x="-3" y="-1" z="10" spawntime="90" />
 		<monster name="Hellhound" x="3" y="2" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="0" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33553" centery="32413" centerz="10" radius="4">
-		<monster name="Blightwalker" x="0" y="-3" z="10" spawntime="90" />
+		<monster name="Hellhound" x="-2" y="-4" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="2" y="-2" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="-2" y="-1" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="-4" y="4" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="1" y="4" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33568" centery="32413" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="-2" y="-3" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="-1" y="-3" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="-2" y="-1" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="0" y="-1" z="10" spawntime="60" />
-		<monster name="Demon Outcast" x="-2" y="0" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-1" y="2" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-4" y="4" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="1" y="4" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33575" centery="32413" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="0" y="-3" z="10" spawntime="90" />
@@ -109295,7 +109264,7 @@
 		<monster name="Demon Outcast" x="3" y="2" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33582" centery="32413" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="-2" y="-2" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="-2" y="-2" z="10" spawntime="90" />
 		<monster name="Hellhound" x="-1" y="2" z="10" spawntime="90" />
 		<monster name="Blightwalker" x="1" y="2" z="10" spawntime="90" />
 	</monster>
@@ -109320,11 +109289,14 @@
 	<monster centerx="32993" centery="32417" centerz="10" radius="3">
 		<monster name="Necromancer" x="1" y="-1" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33530" centery="32417" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33519" centery="32417" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33536" centery="32417" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33531" centery="32417" centerz="10" radius="1">
+		<monster name="Blightwalker" x="-1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33537" centery="32417" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="-1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32448" centery="32418" centerz="10" radius="1">
 		<monster name="Instable Sparkion" x="0" y="0" z="10" spawntime="90" />
@@ -109386,7 +109358,7 @@
 		<monster name="Werehyaena" x="2" y="-2" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32420" centerz="10" radius="3">
-		<monster name="Demon Outcast" x="3" y="-1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="3" y="-1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33582" centery="32420" centerz="10" radius="3">
 		<monster name="Demon Outcast" x="-2" y="0" z="10" spawntime="90" />
@@ -109419,14 +109391,16 @@
 	<monster centerx="33005" centery="32421" centerz="10" radius="3">
 		<monster name="Blood Hand" x="2" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33565" centery="32421" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="32447" centery="32422" centerz="10" radius="1">
 		<monster name="Instable Breach Brood" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33519" centery="32423" centerz="10" radius="1">
-		<monster name="Hellhound" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33518" centery="32423" centerz="10" radius="1">
+		<monster name="Hellhound" x="1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33566" centery="32426" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="1" y="-1" z="10" spawntime="90" />
+		<monster name="Demon Outcast" x="-1" y="1" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="1" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32441" centery="32427" centerz="10" radius="3">
 		<monster name="Instable Sparkion" x="2" y="-3" z="10" spawntime="90" />
@@ -109488,19 +109462,17 @@
 	</monster>
 	<monster centerx="33519" centery="32427" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="0" y="-1" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="2" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33533" centery="32427" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="3" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33547" centery="32427" centerz="10" radius="3">
-		<monster name="Blightwalker" x="-1" y="0" z="10" spawntime="90" />
-		<monster name="Blightwalker" x="-2" y="2" z="10" spawntime="90" />
 		<monster name="Dark Torturer" x="1" y="3" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33563" centery="32427" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="1" y="-1" z="10" spawntime="90" />
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="0" y="1" z="10" spawntime="60" />
+		<monster name="Demon Outcast" x="0" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33617" centery="32427" centerz="10" radius="3">
 		<monster name="Dark Torturer" x="-2" y="-3" z="10" spawntime="90" />
@@ -109510,18 +109482,9 @@
 	<monster centerx="33524" centery="32428" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="33541" centery="32428" centerz="10" radius="1">
-		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33555" centery="32428" centerz="10" radius="1">
-		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
-		<monster name="Demon Outcast" x="1" y="1" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="33566" centery="32428" centerz="10" radius="1">
-		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="33573" centery="32428" centerz="10" radius="1">
-		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="90" />
+	<monster centerx="33574" centery="32428" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="-1" y="-1" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="0" y="1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33592" centery="32428" centerz="10" radius="1">
 		<monster name="Demon Outcast" x="0" y="0" z="10" spawntime="90" />
@@ -109532,6 +109495,13 @@
 	<monster centerx="33606" centery="32428" centerz="10" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="10" spawntime="90" />
 		<monster name="Demon Outcast" x="1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33555" centery="32429" centerz="10" radius="1">
+		<monster name="Demon Outcast" x="1" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="33566" centery="32429" centerz="10" radius="1">
+		<monster name="Dark Torturer" x="0" y="-1" z="10" spawntime="90" />
+		<monster name="Dark Torturer" x="1" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="33587" centery="32429" centerz="10" radius="1">
 		<monster name="Blightwalker" x="1" y="-1" z="10" spawntime="90" />
@@ -126814,8 +126784,6 @@
 		<monster name="Werehyaena" x="3" y="-2" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="32756" centery="32505" centerz="11" radius="10">
-		<monster name="Serpent Spawn" x="0" y="-8" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="-1" y="-3" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="-8" y="-1" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="7" y="0" z="11" spawntime="90" />
 		<monster name="Medusa" x="-2" y="1" z="11" spawntime="90" />
@@ -126855,7 +126823,6 @@
 		<monster name="Bonebeast" x="-3" y="-6" z="11" spawntime="90" />
 		<monster name="Hydra" x="3" y="-5" z="11" spawntime="90" />
 		<monster name="Bonebeast" x="6" y="-5" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="-3" y="-3" z="11" spawntime="90" />
 		<monster name="Medusa" x="-6" y="-2" z="11" spawntime="90" />
 		<monster name="Hydra" x="5" y="-1" z="11" spawntime="90" />
 		<monster name="Bonebeast" x="5" y="2" z="11" spawntime="90" />
@@ -127200,7 +127167,6 @@
 	</monster>
 	<monster centerx="32846" centery="32553" centerz="11" radius="3">
 		<monster name="Hydra" x="0" y="0" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="2" y="2" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32106" centery="32555" centerz="11" radius="6">
 		<monster name="Priestess" x="4" y="-3" z="11" spawntime="90" />
@@ -127231,7 +127197,6 @@
 	<monster centerx="32750" centery="32559" centerz="11" radius="7">
 		<monster name="Serpent Spawn" x="-4" y="-6" z="11" spawntime="90" />
 		<monster name="Medusa" x="3" y="-4" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="-1" y="-1" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="3" y="1" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="0" y="5" z="11" spawntime="90" />
 	</monster>
@@ -127267,7 +127232,6 @@
 	</monster>
 	<monster centerx="32869" centery="32560" centerz="11" radius="4">
 		<monster name="Bonebeast" x="4" y="-2" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="1" y="-1" z="11" spawntime="90" />
 		<monster name="Bonebeast" x="-3" y="0" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="4" y="2" z="11" spawntime="90" />
 	</monster>
@@ -128099,19 +128063,15 @@
 		<monster name="Acolyte Of The Cult" x="0" y="1" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32808" centery="32620" centerz="11" radius="9">
-		<monster name="Serpent Spawn" x="-4" y="-6" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="0" y="-4" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="-6" y="1" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="0" y="1" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="4" y="2" z="11" spawntime="28815" />
 		<monster name="Serpent Spawn" x="5" y="2" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32830" centery="32620" centerz="11" radius="4">
-		<monster name="Medusa" x="-3" y="1" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="1" y="1" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32843" centery="32620" centerz="11" radius="4">
-		<monster name="Serpent Spawn" x="4" y="-1" z="11" spawntime="90" />
 		<monster name="Hydra" x="0" y="0" z="11" spawntime="90" />
 		<monster name="Medusa" x="1" y="2" z="11" spawntime="90" />
 	</monster>
@@ -128340,7 +128300,6 @@
 	<monster centerx="32843" centery="32633" centerz="11" radius="4">
 		<monster name="Medusa" x="-2" y="0" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="1" y="0" z="11" spawntime="90" />
-		<monster name="Serpent Spawn" x="-1" y="4" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="33652" centery="32633" centerz="11" radius="1">
 		<monster name="Grimeleech" x="0" y="0" z="11" spawntime="60" />
@@ -128513,7 +128472,6 @@
 		<monster name="Serpent Spawn" x="5" y="3" z="11" spawntime="90" />
 		<monster name="Medusa" x="-4" y="4" z="11" spawntime="90" />
 		<monster name="Serpent Spawn" x="-1" y="4" z="11" spawntime="90" />
-		<monster name="Medusa" x="0" y="7" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="32147" centery="32651" centerz="11" radius="3">
 		<monster name="Mutated Rat" x="1" y="0" z="11" spawntime="90" />
