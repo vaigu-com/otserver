@@ -49428,6 +49428,9 @@
 		<monster name="Skeleton" x="2" y="-1" z="8" spawntime="90" />
 		<monster name="Skeleton" x="-1" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33446" centery="31126" centerz="8" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="33536" centery="31126" centerz="8" radius="1">
 		<monster name="Mutated Tiger" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49447,8 +49450,8 @@
 	<monster centerx="33461" centery="31128" centerz="8" radius="1">
 		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="33470" centery="31128" centerz="8" radius="1">
-		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
+	<monster centerx="33468" centery="31128" centerz="8" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33488" centery="31128" centerz="8" radius="1">
 		<monster name="Mutated Bat" x="0" y="0" z="8" spawntime="60" />
@@ -49460,10 +49463,13 @@
 	<monster centerx="33338" centery="31129" centerz="8" radius="1">
 		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33433" centery="31129" centerz="8" radius="1">
-		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
+	<monster centerx="33435" centery="31129" centerz="8" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33443" centery="31129" centerz="8" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="33450" centery="31129" centerz="8" radius="1">
 		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33483" centery="31129" centerz="8" radius="1">
@@ -49533,10 +49539,7 @@
 		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="33452" centery="31134" centerz="8" radius="1">
-		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="33431" centery="31135" centerz="8" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33512" centery="31135" centerz="8" radius="1">
 		<monster name="Mutated Bat" x="0" y="0" z="8" spawntime="60" />
@@ -49605,9 +49608,6 @@
 	<monster centerx="32851" centery="31142" centerz="8" radius="2">
 		<monster name="Cave Rat" x="-1" y="-1" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33428" centery="31142" centerz="8" radius="1">
-		<monster name="Mutated Tiger" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="32685" centery="31143" centerz="8" radius="4">
 		<monster name="Nightmare Scion" x="-3" y="-4" z="8" spawntime="90" />
 		<monster name="Bog Raider" x="0" y="-4" z="8" spawntime="90" />
@@ -49636,8 +49636,8 @@
 	<monster centerx="33300" centery="31144" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="-1" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33425" centery="31144" centerz="8" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="8" spawntime="60" />
+	<monster centerx="33423" centery="31145" centerz="8" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="32035" centery="31146" centerz="8" radius="3">
 		<monster name="Quara Constrictor Scout" x="2" y="1" z="8" spawntime="90" />
@@ -49663,14 +49663,14 @@
 	<monster centerx="33339" centery="31149" centerz="8" radius="1">
 		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33418" centery="31149" centerz="8" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="32827" centery="31150" centerz="8" radius="2">
 		<monster name="Cave Rat" x="-1" y="1" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="32844" centery="31150" centerz="8" radius="2">
 		<monster name="Cave Rat" x="0" y="1" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33418" centery="31150" centerz="8" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33449" centery="31150" centerz="8" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
@@ -49742,8 +49742,8 @@
 	<monster centerx="33443" centery="31153" centerz="8" radius="1">
 		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="33418" centery="31154" centerz="8" radius="1">
-		<monster name="Mutated Tiger" x="0" y="0" z="8" spawntime="60" />
+	<monster centerx="33419" centery="31154" centerz="8" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="32482" centery="31156" centerz="8" radius="5">
 		<monster name="Ghoul" x="-2" y="-3" z="8" spawntime="90" />
@@ -49764,14 +49764,14 @@
 	<monster centerx="33369" centery="31157" centerz="8" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33422" centery="31157" centerz="8" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="33293" centery="31158" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="1" y="1" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="33349" centery="31158" centerz="8" radius="1">
 		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="33423" centery="31158" centerz="8" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33446" centery="31158" centerz="8" radius="1">
 		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
@@ -49796,12 +49796,6 @@
 	</monster>
 	<monster centerx="32833" centery="31161" centerz="8" radius="2">
 		<monster name="Cave Rat" x="0" y="1" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="33427" centery="31162" centerz="8" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="33429" centery="31162" centerz="8" radius="1">
-		<monster name="Mutated Tiger" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="32657" centery="31163" centerz="8" radius="3">
 		<monster name="Bog Raider" x="1" y="0" z="8" spawntime="90" />
@@ -49836,9 +49830,6 @@
 	<monster centerx="33084" centery="31166" centerz="8" radius="1">
 		<monster name="Centipede" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33432" centery="31166" centerz="8" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="33443" centery="31166" centerz="8" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49862,10 +49853,6 @@
 	</monster>
 	<monster centerx="33304" centery="31169" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="1" y="-1" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="33423" centery="31169" centerz="8" radius="1">
-		<monster name="Lizard Legionnaire" x="1" y="-1" z="8" spawntime="27741" />
-		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33449" centery="31169" centerz="8" radius="1">
 		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
@@ -49924,9 +49911,6 @@
 	</monster>
 	<monster centerx="33070" centery="31177" centerz="8" radius="1">
 		<monster name="Mutated Rat" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="33417" centery="31177" centerz="8" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="32658" centery="31178" centerz="8" radius="2">
 		<monster name="Nightmare Scion" x="2" y="-2" z="8" spawntime="90" />
@@ -49988,6 +49972,9 @@
 	<monster centerx="33317" centery="31182" centerz="8" radius="1">
 		<monster name="Lizard Chosen" x="1" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="33417" centery="31182" centerz="8" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="32701" centery="31183" centerz="8" radius="2">
 		<monster name="Mutated Human" x="-1" y="-1" z="8" spawntime="90" />
 	</monster>
@@ -50013,9 +50000,6 @@
 	<monster centerx="33084" centery="31187" centerz="8" radius="1">
 		<monster name="Centipede" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="33415" centery="31187" centerz="8" radius="1">
-		<monster name="Lizard Legionnaire" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="32084" centery="31188" centerz="8" radius="3">
 		<monster name="Gargoyle" x="3" y="-1" z="8" spawntime="90" />
 	</monster>
@@ -50034,9 +50018,6 @@
 	</monster>
 	<monster centerx="33330" centery="31188" centerz="8" radius="3">
 		<monster name="Lizard Chosen" x="3" y="1" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="33420" centery="31188" centerz="8" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="32750" centery="31189" centerz="8" radius="2">
 		<monster name="Cave Rat" x="0" y="-1" z="8" spawntime="90" />
@@ -73519,9 +73500,6 @@
 	<monster centerx="33054" centery="31113" centerz="9" radius="1">
 		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33389" centery="31113" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="33066" centery="31114" centerz="9" radius="1">
 		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="90" />
 	</monster>
@@ -73534,14 +73512,11 @@
 	<monster centerx="33280" centery="31114" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33385" centery="31114" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33390" centery="31114" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33394" centery="31114" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33401" centery="31114" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33399" centery="31114" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33408" centery="31114" centerz="9" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
@@ -73588,12 +73563,15 @@
 	<monster centerx="33276" centery="31116" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="33383" centery="31116" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="32761" centery="31117" centerz="9" radius="2">
 		<monster name="Skeleton" x="-2" y="-1" z="9" spawntime="90" />
 		<monster name="Skeleton" x="1" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33409" centery="31117" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33395" centery="31117" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33930" centery="31117" centerz="9" radius="5">
 		<monster name="Turbulent Elemental" x="0" y="-4" z="9" spawntime="60" />
@@ -73632,9 +73610,6 @@
 	<monster centerx="32420" centery="31119" centerz="9" radius="1">
 		<monster name="Chakoya Toolshaper" x="1" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33381" centery="31119" centerz="9" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32106" centery="31120" centerz="9" radius="3">
 		<monster name="Stone Golem" x="2" y="-1" z="9" spawntime="90" />
 		<monster name="Novice Of The Cult" x="-3" y="2" z="9" spawntime="90" />
@@ -73660,9 +73635,6 @@
 	</monster>
 	<monster centerx="33272" centery="31120" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33396" centery="31120" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33891" centery="31120" centerz="9" radius="5">
 		<monster name="Turbulent Elemental" x="2" y="-3" z="9" spawntime="60" />
@@ -73704,6 +73676,9 @@
 	<monster centerx="33363" centery="31121" centerz="9" radius="1">
 		<monster name="Mutated Bat" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="33395" centery="31121" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="31902" centery="31122" centerz="9" radius="3">
 		<monster name="Sea Serpent" x="0" y="-1" z="9" spawntime="90" />
 	</monster>
@@ -73738,11 +73713,11 @@
 	<monster centerx="33321" centery="31122" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33380" centery="31123" centerz="9" radius="1">
-		<monster name="Mutated Tiger" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33379" centery="31122" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33428" centery="31123" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33381" centery="31122" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33908" centery="31123" centerz="9" radius="5">
 		<monster name="Capricious Phantom" x="-1" y="-4" z="9" spawntime="60" />
@@ -73767,9 +73742,6 @@
 		<monster name="Nightmare Scion" x="5" y="-1" z="9" spawntime="90" />
 		<monster name="Nightmare Scion" x="-5" y="0" z="9" spawntime="90" />
 		<monster name="Death Blob" x="0" y="4" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33421" centery="31124" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="31979" centery="31125" centerz="9" radius="3">
 		<monster name="Demon" x="-2" y="-2" z="9" spawntime="90" />
@@ -73796,9 +73768,6 @@
 	</monster>
 	<monster centerx="33277" centery="31125" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33419" centery="31125" centerz="9" radius="5">
-		<monster name="Draken Warmaster" x="2" y="2" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33285" centery="31126" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
@@ -73831,11 +73800,8 @@
 	<monster centerx="33356" centery="31127" centerz="9" radius="1">
 		<monster name="Mutated Bat" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33376" centery="31127" centerz="9" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33425" centery="31127" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33375" centery="31127" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32678" centery="31128" centerz="9" radius="5">
 		<monster name="Bog Raider" x="1" y="-3" z="9" spawntime="90" />
@@ -73851,12 +73817,6 @@
 	</monster>
 	<monster centerx="33298" centery="31128" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33374" centery="31128" centerz="9" radius="1">
-		<monster name="Mutated Tiger" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33428" centery="31128" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33920" centery="31128" centerz="9" radius="5">
 		<monster name="Turbulent Elemental" x="-3" y="-3" z="9" spawntime="60" />
@@ -73939,21 +73899,12 @@
 	<monster centerx="33315" centery="31134" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33408" centery="31134" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32780" centery="31135" centerz="9" radius="5">
 		<monster name="Skeleton" x="-4" y="-3" z="9" spawntime="90" />
 		<monster name="Skeleton" x="1" y="-1" z="9" spawntime="90" />
 		<monster name="Ghoul" x="3" y="0" z="9" spawntime="90" />
 		<monster name="Skeleton" x="-4" y="3" z="9" spawntime="90" />
 		<monster name="Skeleton" x="2" y="4" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33374" centery="31135" centerz="9" radius="1">
-		<monster name="Mutated Tiger" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33425" centery="31135" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32073" centery="31137" centerz="9" radius="3">
 		<monster name="Novice Of The Cult" x="-2" y="-1" z="9" spawntime="90" />
@@ -73989,6 +73940,9 @@
 	<monster centerx="33202" centery="31138" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="33408" centery="31138" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="32132" centery="31139" centerz="9" radius="4">
 		<monster name="Novice Of The Cult" x="-2" y="-3" z="9" spawntime="90" />
 		<monster name="Novice Of The Cult" x="4" y="-3" z="9" spawntime="90" />
@@ -74000,8 +73954,8 @@
 	<monster centerx="33271" centery="31139" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33425" centery="31139" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33424" centery="31139" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33174" centery="31140" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
@@ -74010,10 +73964,7 @@
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33376" centery="31140" centerz="9" radius="1">
-		<monster name="Mutated Bat" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33408" centery="31140" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33203" centery="31141" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
@@ -74037,11 +73988,8 @@
 		<monster name="Crypt Shambler" x="2" y="1" z="9" spawntime="90" />
 		<monster name="Mummy" x="-1" y="4" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33393" centery="31142" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33401" centery="31142" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33398" centery="31142" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33102" centery="31143" centerz="9" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="9" spawntime="90" />
@@ -74049,17 +73997,17 @@
 	<monster centerx="33312" centery="31143" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33382" centery="31143" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33379" centery="31143" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33419" centery="31143" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33391" centery="31143" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33408" centery="31144" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33421" centery="31143" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33385" centery="31145" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33409" centery="31144" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="-1" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32189" centery="31146" centerz="9" radius="3">
 		<monster name="Gargoyle" x="1" y="-2" z="9" spawntime="90" />
@@ -74082,9 +74030,6 @@
 	</monster>
 	<monster centerx="33280" centery="31148" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33396" centery="31148" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33174" centery="31149" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
@@ -74124,9 +74069,6 @@
 	<monster centerx="33257" centery="31152" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33395" centery="31152" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32096" centery="31153" centerz="9" radius="4">
 		<monster name="Novice Of The Cult" x="-3" y="-1" z="9" spawntime="90" />
 		<monster name="Novice Of The Cult" x="2" y="1" z="9" spawntime="90" />
@@ -74151,8 +74093,11 @@
 	<monster centerx="33182" centery="31153" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33409" centery="31153" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33398" centery="31153" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="33406" centery="31153" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32053" centery="31154" centerz="9" radius="3">
 		<monster name="Gargoyle" x="0" y="1" z="9" spawntime="90" />
@@ -74167,6 +74112,9 @@
 	</monster>
 	<monster centerx="33321" centery="31154" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="33397" centery="31155" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32189" centery="31156" centerz="9" radius="3">
 		<monster name="Novice Of The Cult" x="-1" y="-3" z="9" spawntime="90" />
@@ -74215,25 +74163,25 @@
 	<monster centerx="33308" centery="31159" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33396" centery="31159" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32035" centery="31160" centerz="9" radius="3">
 		<monster name="Stone Golem" x="1" y="-1" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33266" centery="31160" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33401" centery="31160" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33391" centery="31160" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33411" centery="31160" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33409" centery="31160" centerz="9" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32776" centery="31161" centerz="9" radius="5">
 		<monster name="Yalahari" x="1" y="-5" z="9" spawntime="90" />
 		<monster name="Yalahari" x="0" y="-3" z="9" spawntime="90" />
 		<monster name="Yalahari" x="-2" y="3" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="33396" centery="31161" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33098" centery="31162" centerz="9" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="9" spawntime="90" />
@@ -74295,9 +74243,6 @@
 	<monster centerx="33313" centery="31167" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33396" centery="31167" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32072" centery="31168" centerz="9" radius="3">
 		<monster name="Novice Of The Cult" x="-1" y="-3" z="9" spawntime="90" />
 		<monster name="Novice Of The Cult" x="1" y="-1" z="9" spawntime="90" />
@@ -74317,6 +74262,9 @@
 	<monster centerx="33292" centery="31168" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="33404" centery="31168" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="32713" centery="31169" centerz="9" radius="7">
 		<monster name="Mutated Human" x="2" y="-4" z="9" spawntime="90" />
 		<monster name="Mutated Human" x="-6" y="0" z="9" spawntime="90" />
@@ -74327,12 +74275,6 @@
 	</monster>
 	<monster centerx="33328" centery="31169" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33389" centery="31169" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33410" centery="31169" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33285" centery="31170" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
@@ -74383,9 +74325,6 @@
 	</monster>
 	<monster centerx="33331" centery="31174" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33396" centery="31174" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32659" centery="31175" centerz="9" radius="2">
 		<monster name="Nightmare" x="0" y="0" z="9" spawntime="90" />
@@ -74443,9 +74382,6 @@
 	<monster centerx="33382" centery="31181" centerz="9" radius="1">
 		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="33412" centery="31181" centerz="9" radius="1">
-		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32076" centery="31182" centerz="9" radius="3">
 		<monster name="Novice Of The Cult" x="-1" y="-1" z="9" spawntime="90" />
 		<monster name="Novice Of The Cult" x="0" y="2" z="9" spawntime="90" />
@@ -74466,9 +74402,6 @@
 		<monster name="Novice Of The Cult" x="-3" y="1" z="9" spawntime="90" />
 		<monster name="Novice Of The Cult" x="3" y="1" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33380" centery="31182" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="32704" centery="31183" centerz="9" radius="2">
 		<monster name="Mutated Human" x="1" y="-1" z="9" spawntime="90" />
 		<monster name="Mutated Human" x="-1" y="1" z="9" spawntime="90" />
@@ -74482,8 +74415,8 @@
 	<monster centerx="33272" centery="31183" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33410" centery="31183" centerz="9" radius="1">
-		<monster name="Draken Spellweaver" x="0" y="0" z="9" spawntime="60" />
+	<monster centerx="33395" centery="31185" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="33117" centery="31186" centerz="9" radius="1">
 		<monster name="Terramite" x="0" y="0" z="9" spawntime="90" />
@@ -74494,14 +74427,14 @@
 	<monster centerx="33382" centery="31186" centerz="9" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="33388" centery="31187" centerz="9" radius="1">
+		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="33403" centery="31187" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="33182" centery="31188" centerz="9" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="33396" centery="31188" centerz="9" radius="1">
-		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="33408" centery="31188" centerz="9" radius="1">
-		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32031" centery="31189" centerz="9" radius="3">
 		<monster name="Ice Golem" x="1" y="0" z="9" spawntime="90" />
