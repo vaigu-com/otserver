@@ -1,7 +1,7 @@
 local config = {
-	monsterName = 'Grand Chaplain Gaunder',
-	bossPosition = Position(33370, 31327, 5),
-	centerPosition = Position(33370, 31327, 5),
+	monsterName = 'Tyrn',
+	bossPosition = Position(33056, 32393, 14),
+	centerPosition = Position(33056, 32393, 14),
 	rangeX = 50,
 	rangeY = 50
 }
@@ -19,16 +19,16 @@ local function checkBoss(centerPosition, rangeX, rangeY, bossName)
 	return false
 end
 
-local chaplaingaunder = GlobalEvent("chaplaingaunder")
-function chaplaingaunder.onThink(interval, lastExecution)
+local tyrn = GlobalEvent("tyrn")
+function tyrn.onThink(interval, lastExecution)
 	if checkBoss(config.centerPosition, config.rangeX, config.rangeY, config.monsterName) then
 		return true
 	end
-
+	addEvent(Game.broadcastMessage, 150, 'Beware of Tyrn!', MESSAGE_EVENT_ADVANCE)
 	local boss = Game.createMonster(config.monsterName, config.bossPosition, true, true)
 	boss:setReward(true)
 	return true
 end
 
-chaplaingaunder:interval(15 * 60 * 1000)
-chaplaingaunder:register()
+tyrn:interval(9 * 60 * 60 * 1000) -- spawns every 9 hours
+tyrn:register()

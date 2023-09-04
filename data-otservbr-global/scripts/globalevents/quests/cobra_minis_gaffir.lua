@@ -1,7 +1,7 @@
 local config = {
-	monsterName = 'Grand Chaplain Gaunder',
-	bossPosition = Position(33370, 31327, 5),
-	centerPosition = Position(33370, 31327, 5),
+	monsterName = 'Gaffir',
+	bossPosition = Position(33394, 32674, 4),
+	centerPosition = Position(33394, 32674, 4),
 	rangeX = 50,
 	rangeY = 50
 }
@@ -19,8 +19,8 @@ local function checkBoss(centerPosition, rangeX, rangeY, bossName)
 	return false
 end
 
-local chaplaingaunder = GlobalEvent("chaplaingaunder")
-function chaplaingaunder.onThink(interval, lastExecution)
+local miniBoss = GlobalEvent("gaffir")
+function miniBoss.onThink(interval, lastExecution)
 	if checkBoss(config.centerPosition, config.rangeX, config.rangeY, config.monsterName) then
 		return true
 	end
@@ -30,5 +30,5 @@ function chaplaingaunder.onThink(interval, lastExecution)
 	return true
 end
 
-chaplaingaunder:interval(15 * 60 * 1000)
-chaplaingaunder:register()
+miniBoss:interval(15 * 60 * 1000)
+miniBoss:register()
