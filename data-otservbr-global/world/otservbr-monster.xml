@@ -42056,6 +42056,9 @@
 	<monster centerx="32447" centery="32497" centerz="7" radius="1">
 		<monster name="Usurper Warlock" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="32458" centery="32497" centerz="7" radius="1">
+		<monster name="Ancient Lion Knight" x="0" y="0" z="7" spawntime="180" />
+	</monster>
 	<monster centerx="32941" centery="32497" centerz="7" radius="2">
 		<monster name="Carniphila" x="-1" y="-2" z="7" spawntime="90" />
 		<monster name="Carniphila" x="2" y="1" z="7" spawntime="90" />
