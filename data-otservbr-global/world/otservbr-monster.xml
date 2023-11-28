@@ -161325,11 +161325,6 @@
 	</monster>
 	<monster centerx="33391" centery="31458" centerz="14" radius="10">
 		<monster name="Void" x="0" y="3" z="14" spawntime="10" />
-		<monster name="Rift Invader" x="-2" y="6" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="10" y="6" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="5" y="7" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="-8" y="10" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="2" y="10" z="14" spawntime="30" />
 	</monster>
 	<monster centerx="32774" centery="31460" centerz="14" radius="1">
 		<monster name="Troll Legionnaire" x="1" y="0" z="14" spawntime="90" />
@@ -161398,9 +161393,6 @@
 	</monster>
 	<monster centerx="33379" centery="31467" centerz="14" radius="10">
 		<monster name="Electric Sparks" x="0" y="1" z="14" spawntime="10" />
-		<monster name="Rift Invader" x="9" y="3" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="4" y="7" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="9" y="7" z="14" spawntime="30" />
 	</monster>
 	<monster centerx="32048" centery="31468" centerz="14" radius="1">
 		<monster name="Tremendous Tyrant" x="0" y="0" z="14" spawntime="60" />
@@ -161443,10 +161435,6 @@
 		<monster name="Troll Legionnaire" x="1" y="0" z="14" spawntime="90" />
 	</monster>
 	<monster centerx="33404" centery="31469" centerz="14" radius="10">
-		<monster name="Rift Invader" x="-8" y="2" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="-8" y="5" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="-2" y="5" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="-9" y="8" z="14" spawntime="30" />
 		<monster name="Electric Sparks" x="1" y="9" z="14" spawntime="10" />
 	</monster>
 	<monster centerx="32682" centery="31470" centerz="14" radius="1">
@@ -161583,13 +161571,10 @@
 		<monster name="Dwarf Geomancer" x="1" y="0" z="14" spawntime="90" />
 	</monster>
 	<monster centerx="33385" centery="31482" centerz="14" radius="10">
-		<monster name="Rift Invader" x="6" y="-5" z="14" spawntime="30" />
-		<monster name="Rift Invader" x="-2" y="-2" z="14" spawntime="30" />
 		<monster name="Electric Sparks" x="-6" y="2" z="14" spawntime="10" />
 		<monster name="Electric Sparks" x="2" y="3" z="14" spawntime="10" />
 	</monster>
 	<monster centerx="33402" centery="31482" centerz="14" radius="10">
-		<monster name="Rift Invader" x="-4" y="-1" z="14" spawntime="30" />
 		<monster name="Electric Sparks" x="3" y="2" z="14" spawntime="10" />
 		<monster name="Electric Sparks" x="-5" y="3" z="14" spawntime="10" />
 	</monster>
