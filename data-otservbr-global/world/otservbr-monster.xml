@@ -4076,7 +4076,6 @@
 		<monster name="Midnight Asura" x="-2" y="2" z="3" spawntime="90" />
 	</monster>
 	<monster centerx="32959" centery="32672" centerz="3" radius="3">
-		<monster name="Destroyer" x="-1" y="3" z="3" spawntime="90" />
 		<monster name="Midnight Asura" x="1" y="3" z="3" spawntime="90" />
 	</monster>
 	<monster centerx="33064" centery="32672" centerz="3" radius="3">
@@ -4121,9 +4120,6 @@
 	</monster>
 	<monster centerx="33060" centery="32684" centerz="3" radius="1">
 		<monster name="Massive Energy Elemental" x="1" y="-1" z="3" spawntime="90" />
-	</monster>
-	<monster centerx="32938" centery="32686" centerz="3" radius="3">
-		<monster name="Destroyer" x="-1" y="-2" z="3" spawntime="90" />
 	</monster>
 	<monster centerx="33379" centery="32686" centerz="3" radius="3">
 		<monster name="Cobra Scout" x="3" y="0" z="3" spawntime="60" />
@@ -6928,18 +6924,12 @@
 		<monster name="Hydra" x="0" y="2" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="32945" centery="32672" centerz="4" radius="3">
-		<monster name="Massive Fire Elemental" x="0" y="-1" z="4" spawntime="90" />
 		<monster name="Midnight Asura" x="1" y="-1" z="4" spawntime="90" />
 		<monster name="Destroyer" x="0" y="1" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="32959" centery="32672" centerz="4" radius="3">
-		<monster name="Massive Fire Elemental" x="2" y="-2" z="4" spawntime="90" />
 		<monster name="Midnight Asura" x="3" y="-1" z="4" spawntime="90" />
 		<monster name="Destroyer" x="1" y="2" z="4" spawntime="60" />
-	</monster>
-	<monster centerx="32966" centery="32672" centerz="4" radius="3">
-		<monster name="Destroyer" x="-3" y="-2" z="4" spawntime="90" />
-		<monster name="Destroyer" x="-1" y="1" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="33085" centery="32672" centerz="4" radius="1">
 		<monster name="Energy Elemental" x="-1" y="1" z="4" spawntime="90" />
@@ -6953,9 +6943,6 @@
 		<monster name="Dawnfire Asura" x="1" y="-1" z="4" spawntime="90" />
 		<monster name="Midnight Asura" x="0" y="0" z="4" spawntime="90" />
 	</monster>
-	<monster centerx="32934" centery="32677" centerz="4" radius="1">
-		<monster name="Massive Fire Elemental" x="0" y="0" z="4" spawntime="90" />
-	</monster>
 	<monster centerx="32944" centery="32677" centerz="4" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="4" spawntime="90" />
 	</monster>
@@ -6963,7 +6950,6 @@
 		<monster name="Destroyer" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="32952" centery="32679" centerz="4" radius="3">
-		<monster name="Destroyer" x="0" y="-3" z="4" spawntime="90" />
 		<monster name="Midnight Asura" x="-1" y="-2" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="33379" centery="32679" centerz="4" radius="3">
@@ -6985,14 +6971,10 @@
 		<monster name="Dawnfire Asura" x="0" y="0" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="32957" centery="32684" centerz="4" radius="1">
-		<monster name="Massive Fire Elemental" x="-1" y="0" z="4" spawntime="90" />
 		<monster name="Dawnfire Asura" x="0" y="0" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="33073" centery="32684" centerz="4" radius="2">
 		<monster name="Energy Elemental" x="0" y="0" z="4" spawntime="90" />
-	</monster>
-	<monster centerx="32931" centery="32686" centerz="4" radius="3">
-		<monster name="Destroyer" x="2" y="-1" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="32121" centery="32687" centerz="4" radius="7">
 		<monster name="Demon" x="-4" y="-4" z="4" spawntime="90" />
@@ -7008,9 +6990,6 @@
 	</monster>
 	<monster centerx="32953" centery="32687" centerz="4" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="4" spawntime="90" />
-	</monster>
-	<monster centerx="32964" centery="32687" centerz="4" radius="1">
-		<monster name="Massive Fire Elemental" x="0" y="0" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="33049" centery="32687" centerz="4" radius="1">
 		<monster name="Dragon Lord" x="1" y="0" z="4" spawntime="90" />
@@ -63284,9 +63263,6 @@
 	<monster centerx="33319" centery="32310" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="1" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="31968" centery="32311" centerz="8" radius="1">
-		<monster name="Demon" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="31991" centery="32311" centerz="8" radius="1">
 		<monster name="Mean Lost Soul" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -63490,9 +63466,6 @@
 	</monster>
 	<monster centerx="33309" centery="32327" centerz="8" radius="1">
 		<monster name="Rotworm" x="1" y="1" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="31951" centery="32328" centerz="8" radius="1">
-		<monster name="Demon" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="33106" centery="32328" centerz="8" radius="1">
 		<monster name="Burster Spectre" x="0" y="0" z="8" spawntime="60" />
@@ -96125,14 +96098,14 @@
 	<monster centerx="33234" centery="32794" centerz="9" radius="2">
 		<monster name="Larva" x="0" y="-2" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="32006" centery="32795" centerz="9" radius="2">
+		<monster name="Ghoul" x="-1" y="-1" z="9" spawntime="90" />
+	</monster>
 	<monster centerx="32296" centery="32795" centerz="9" radius="1">
 		<monster name="Corym Skirmisher" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32300" centery="32795" centerz="9" radius="1">
 		<monster name="Corym Charlatan" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="32006" centery="32795" centerz="9" radius="2">
-		<monster name="Ghoul" x="-1" y="-1" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="33071" centery="32795" centerz="9" radius="2">
 		<monster name="Scarab" x="1" y="-1" z="9" spawntime="90" />
@@ -96718,15 +96691,15 @@
 	<monster centerx="32245" centery="32835" centerz="9" radius="1">
 		<monster name="Rotworm" x="1" y="-1" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="32274" centery="32835" centerz="9" radius="1">
+		<monster name="Corym Skirmisher" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="32015" centery="32836" centerz="9" radius="3">
 		<monster name="Ghoul" x="1" y="-3" z="9" spawntime="90" />
 		<monster name="Ghoul" x="-2" y="0" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="32024" centery="32836" centerz="9" radius="3">
 		<monster name="Pirate Skeleton" x="2" y="-1" z="9" spawntime="90" />
-	</monster>
-	<monster centerx="32274" centery="32835" centerz="9" radius="1">
-		<monster name="Corym Skirmisher" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="32566" centery="32836" centerz="9" radius="2">
 		<monster name="Water Elemental" x="0" y="0" z="9" spawntime="90" />
@@ -118889,11 +118862,11 @@
 		<monster name="Rotworm" x="-3" y="3" z="10" spawntime="90" />
 		<monster name="Carrion Worm" x="1" y="3" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="32026" centery="32830" centerz="10" radius="2">
-		<monster name="Pirate Skeleton" x="0" y="-1" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="32276" centery="32829" centerz="10" radius="1">
 		<monster name="Corym Skirmisher" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="32026" centery="32830" centerz="10" radius="2">
+		<monster name="Pirate Skeleton" x="0" y="-1" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="32224" centery="32831" centerz="10" radius="4">
 		<monster name="Rotworm" x="-3" y="-1" z="10" spawntime="90" />
