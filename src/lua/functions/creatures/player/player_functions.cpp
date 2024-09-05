@@ -155,6 +155,31 @@ int PlayerFunctions::luaPlayerCreate(lua_State* L) {
 	return 1;
 }
 
+// Wykopots custom
+int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
+	// getLanguage()
+	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	if (player) {
+		lua_pushstring(L, player->getLanguage().c_str());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int PlayerFunctions::luaPlayerSetLanguage(lua_State* L) {
+	// setLanguage(language)
+	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	player->setLanguage(getString(L, 2));
+	pushBoolean(L, true);
+	return 1;
+}
+
 int PlayerFunctions::luaPlayerResetCharmsMonsters(lua_State* L) {
 	// player:resetCharmsBestiary()
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
@@ -3152,6 +3177,31 @@ int PlayerFunctions::luaPlayerGetFightMode(lua_State* L) {
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
 	if (player) {
 		lua_pushnumber(L, player->fightMode);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Wykopots custom
+int PlayerFunctions::luaPlayerSetAttackSpeed(lua_State* L) {
+	// player:setAttackSpeed(ms)
+	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	uint32_t ms = getNumber<uint32_t>(L, 2);
+	if (player) {
+		player->setAttackSpeed(ms);
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int PlayerFunctions::luaPlayerGetAttackSpeed(lua_State* L) {
+	// player:getAttackSpeed()
+	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	if (player) {
+		lua_pushnumber(L, player->getAttackSpeed());
 	} else {
 		lua_pushnil(L);
 	}

@@ -25,16 +25,89 @@ PreySlot::PreySlot(PreySlot_t id) :
 	freeRerollTimeStamp = OTSYS_TIME() + g_configManager().getNumber(PREY_FREE_REROLL_TIME, __FUNCTION__) * 1000;
 }
 
-void PreySlot::reloadBonusType() {
-	if (bonusRarity == 10) {
-		PreyBonus_t bonus_tmp = bonus;
-		while (bonus_tmp == bonus) {
-			bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+// Wykopots custom
+void PreySlot::reloadBonusValue() {
+	preyBonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+
+	// Wykopots custom
+	int roll = uniform_random(0, 100);
+	bool upgrade = false;
+	bool downgrade = false;
+	int requiredRollForUpgrade = (int)floor(1.0 - (bonusRarity / 100.0) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
+	if (roll >= requiredRollForUpgrade){
+		bonusRarity++;
+	} else if (roll < 0.15 ){
+		bonusRarity--;
+	}
+}
+
+void IOPrey::initializePreyMonsters() {
+	std::map<std::string, std::shared_ptr<MonsterType>> monsters = g_monsters().monsters;
+	for (std::pair<std::string, std::shared_ptr<MonsterType>> monster : monsters) {
+		MonsterType* monsterType = monster.second.get();
+		auto &monsterInfo = monsterType->info;
+		auto &name = monsterType->typeName;
+		if (!whitelist.contains(name) || monsterInfo.raceid <= 0) {
+			continue;
 		}
-		return;
+
+		double raceid = monsterInfo.raceid;
+		double healthMax = monsterInfo.healthMax;
+		double experience = monsterInfo.experience;
+		double difficulty = floor((1 + experience / healthMax) * healthMax);
+
+		PreyMonster preyMonster;
+		preyMonster.name = name;
+		preyMonster.raceid = raceid;
+		preyMonster.difficulty = difficulty;
+		preyMonsters.push_back(preyMonster);
+	}
+}
+
+std::vector<PreyMonster> levelFilter(std::vector<PreyMonster> preyMonsters, uint32_t level) {
+	const double baseIndex = 2 * (level * pow(std::log10(level), 2) * 2 + 1);
+	double minDifficulty = baseIndex * 2 - 100;
+	double maxDifficulty = baseIndex * (1 + std::log10(baseIndex)) + 100;
+	if (level >= 200) {
+		minDifficulty = 4500;
+		maxDifficulty = 100000;
 	}
 
-	bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+	std::vector<PreyMonster> result;
+	for (PreyMonster preyMonster : preyMonsters) {
+		double difficulty = preyMonster.difficulty;
+		if (minDifficulty <= difficulty && difficulty <= maxDifficulty) {
+			result.push_back(preyMonster);
+		}
+		if (result.size() >= 36) {
+			break;
+		}
+	}
+	return result;
+}
+
+std::vector<PreyMonster> trimList(std::vector<PreyMonster> preyMonsters, uint16_t newSize) {
+	std::vector<PreyMonster> result;
+	for (PreyMonster preyMonster : preyMonsters) {
+		result.push_back(preyMonster);
+		if (result.size() >= 9) {
+			break;
+		}
+	}
+	return result;
+}
+
+std::vector<PreyMonster> blacklistFilter(std::vector<PreyMonster> preyMonsters, std::vector<uint16_t> blackList) {
+	std::vector<PreyMonster> result;
+	for (PreyMonster preyMonster : preyMonsters) {
+		if (std::find(blackList.begin(), blackList.end(), preyMonster.raceid) == blackList.end()) {
+			result.push_back(preyMonster);
+		}
+		if (result.size() >= 9) {
+			break;
+		}
+	}
+	return result;
 }
 
 void PreySlot::reloadBonusValue() {
@@ -53,6 +126,7 @@ void PreySlot::reloadBonusValue() {
 	}
 }
 
+// Wykopots custom
 void PreySlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_t level) {
 	raceIdList.clear();
 
@@ -60,71 +134,17 @@ void PreySlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_t level
 		return;
 	}
 
-	// Disabling prey system if the server have less then 36 registered monsters on bestiary because:
-	// - Impossible to generate random lists without duplications on slots.
-	// - Stress the server with unnecessary loops.
-	std::map<uint16_t, std::string> bestiary = g_game().getBestiaryList();
-	if (bestiary.size() < 36) {
-		return;
-	}
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	auto preyMonsters = g_ioprey().preyMonsters;
+	std::shuffle(preyMonsters.begin(), preyMonsters.end(), rng);
 
-	uint8_t stageOne;
-	uint8_t stageTwo;
-	uint8_t stageThree;
-	uint8_t stageFour;
-	if (auto levelStage = static_cast<uint32_t>(std::floor(level / 100));
-	    levelStage == 0) { // From level 0 to 99
-		stageOne = 3;
-		stageTwo = 3;
-		stageThree = 2;
-		stageFour = 1;
-	} else if (levelStage <= 2) { // From level 100 to 299
-		stageOne = 1;
-		stageTwo = 3;
-		stageThree = 3;
-		stageFour = 2;
-	} else if (levelStage <= 4) { // From level 300 to 499
-		stageOne = 1;
-		stageTwo = 2;
-		stageThree = 3;
-		stageFour = 3;
-	} else { // From level 500 to ...
-		stageOne = 1;
-		stageTwo = 1;
-		stageThree = 3;
-		stageFour = 4;
-	}
-
-	uint8_t tries = 0;
-	auto maxIndex = static_cast<int32_t>(bestiary.size() - 1);
-	while (raceIdList.size() < 9) {
-		uint16_t raceId = (*(std::next(bestiary.begin(), uniform_random(0, maxIndex)))).first;
-		tries++;
-
-		if (std::count(blackList.begin(), blackList.end(), raceId) != 0) {
-			continue;
-		}
-
-		blackList.push_back(raceId);
-		const auto mtype = g_monsters().getMonsterTypeByRaceId(raceId);
-		if (!mtype || mtype->info.experience == 0 || !mtype->info.isPreyable || mtype->info.isPreyExclusive) {
-			continue;
-		} else if (stageOne != 0 && mtype->info.bestiaryStars <= 1) {
-			raceIdList.push_back(raceId);
-			--stageOne;
-		} else if (stageTwo != 0 && mtype->info.bestiaryStars == 2) {
-			raceIdList.push_back(raceId);
-			--stageTwo;
-		} else if (stageThree != 0 && mtype->info.bestiaryStars == 3) {
-			raceIdList.push_back(raceId);
-			--stageThree;
-		} else if (stageFour != 0 && mtype->info.bestiaryStars >= 4) {
-			raceIdList.push_back(raceId);
-			--stageFour;
-		} else if (tries >= 10) {
-			raceIdList.push_back(raceId);
-			tries = 0;
-		}
+	std::vector<PreyMonster> levelFiltered = levelFilter(preyMonsters, level);
+	std::vector<PreyMonster> blacklistFiltered = blacklistFilter(levelFiltered, blackList);
+	std::vector<PreyMonster> trimmed = trimList(blacklistFiltered, 9);
+	for (auto &preyMonster : blacklistFiltered) {
+		auto raceid = preyMonster.raceid;
+		raceIdList.push_back(raceid);
 	}
 }
 

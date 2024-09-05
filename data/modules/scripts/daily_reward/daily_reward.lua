@@ -110,11 +110,14 @@ DailyReward = {
 			freeAccount = 5,
 			premiumAccount = 10,
 		},
+		// Wykopots custom
 		[2] = {
 			type = DAILY_REWARD_TYPE_ITEM,
 			systemType = DAILY_REWARD_SYSTEM_TYPE_ONE,
-			freeAccount = 5,
-			premiumAccount = 10,
+			items = { 28540, 28541, 28542, 28543, 28544, 28545, 44064 },
+			freeAccount = 1,
+			premiumAccount = 1,
+			itemCharges = 250,
 		},
 		[3] = {
 			type = DAILY_REWARD_TYPE_PREY_REROLL,
@@ -134,13 +137,14 @@ DailyReward = {
 			freeAccount = 1,
 			premiumAccount = 2,
 		},
+		// Wykopots custom
 		[6] = {
 			type = DAILY_REWARD_TYPE_ITEM,
 			systemType = DAILY_REWARD_SYSTEM_TYPE_ONE,
 			items = { 28540, 28541, 28542, 28543, 28544, 28545, 44064 },
 			freeAccount = 1,
-			premiumAccount = 2,
-			itemCharges = 50,
+			premiumAccount = 1,
+			itemCharges = 500,
 		},
 		[7] = {
 			type = DAILY_REWARD_TYPE_XP_BOOST,

@@ -229,6 +229,7 @@ function Creature.getKillers(self, onlyPlayers)
 	return killers
 end
 
+-- Wykopots custom
 function Creature:addEventStamina(target)
 	local player = self:getPlayer()
 	local monster = target:getMonster()
@@ -236,6 +237,9 @@ function Creature:addEventStamina(target)
 		local playerId = player:getId()
 		if not staminaBonus.eventsTrainer[playerId] then
 			staminaBonus.eventsTrainer[playerId] = addEvent(addStamina, staminaBonus.period, playerId)
+		end
+		if not soulBonus.eventsTrainer[playerId] then
+			soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.period, playerId)
 		end
 	end
 end

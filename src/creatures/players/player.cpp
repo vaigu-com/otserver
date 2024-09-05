@@ -551,6 +551,9 @@ void Player::updateInventoryWeight() {
 
 	inventoryWeight = 0;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
+		if (i == CONST_SLOT_STORE_INBOX) { // Wykopots custom
+			continue;
+		}
 		std::shared_ptr<Item> item = inventory[i];
 		if (item) {
 			inventoryWeight += item->getWeight();
@@ -5371,6 +5374,11 @@ uint32_t Player::getCapacity() const {
 	return capacity + bonusCapacity + varStats[STAT_CAPACITY] + m_wheelPlayer->getStat(WheelStat_t::CAPACITY);
 }
 
+// Wykopots custom
+int32_t Player::getMaxBaseHealth() const {
+	return std::max<int32_t>(1, healthMax + varStats[STAT_MAXHITPOINTS] + m_wheelPlayer->getStat(WheelStat_t::HEALTH));
+}
+
 int32_t Player::getMaxHealth() const {
 	return std::max<int32_t>(1, healthMax + varStats[STAT_MAXHITPOINTS] + m_wheelPlayer->getStat(WheelStat_t::HEALTH));
 }
@@ -8135,6 +8143,12 @@ bool Player::hasPermittedConditionInPZ() const {
 	return hasPermittedCondition;
 }
 
+const std::string &Player::getLanguage() {
+	return language;
+}
+void Player::setLanguage(std::string l){
+	language = l;
+}
 uint16_t Player::getDodgeChance() const {
 	uint16_t chance = 0;
 	if (auto playerArmor = getInventoryItem(CONST_SLOT_ARMOR);

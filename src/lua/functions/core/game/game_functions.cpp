@@ -116,9 +116,19 @@ int GameFunctions::luaGameGetSpectators(lua_State* L) {
 	return 1;
 }
 
-int GameFunctions::luaGameGetBoostedCreature(lua_State* L) {
-	// Game.getBoostedCreature()
-	pushString(L, g_game().getBoostedMonsterName());
+// Wykopots custom
+int GameFunctions::luaGameGetBoostedCreatures(lua_State* L) {
+	// Game.getBoostedCreatures()
+	const auto boostedMonsters = g_game().getBoostedMonsterNames();
+
+	lua_newtable(L);
+
+	for (size_t i = 0; i < boostedMonsters.size(); ++i) {
+		lua_pushnumber(L, i + 1); 
+		lua_pushstring(L, boostedMonsters[i].c_str());
+		lua_settable(L, -3); 
+	}
+
 	return 1;
 }
 
@@ -808,6 +818,40 @@ int GameFunctions::luaGameGetEventCallbacks(lua_State* L) {
 	lua_pop(L, 1);
 	return 1;
 }
+
+// Wykopots custom
+int GameFunctions::luaInitializeTranslationTable(lua_State* L) {
+	lua_getglobal(L, "STRINGS_TABLES");
+	if (!lua_istable(L, -1)) {
+		lua_pop(L, 1);
+		return 1;
+	}
+
+	GameFunctions::copyLuaTable(L, lua_gettop(L), g_game().translationMap);
+	return 1;
+}
+int GameFunctions::copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement> &result) {
+	lua_pushnil(L);
+	while (lua_next(L, index)) {
+		lua_pushvalue(L, -2);
+		Game::LuaElement element;
+		if (lua_isstring(L, -1)) {
+			element.key = lua_tostring(L, -1);
+		}
+		if (lua_isstring(L, -2)) {
+			element.value = lua_tostring(L, -2);
+		} else if (lua_istable(L, -2)) {
+			lua_pop(L, 1);
+			copyLuaTable(L, lua_gettop(L), element.subtable);
+			lua_pop(L, 1);
+			result.push_back(element);
+			continue;
+		}
+
+		lua_pop(L, 2);
+		result.push_back(element);
+	}
+
 
 int GameFunctions::luaGameRegisterAchievement(lua_State* L) {
 	// Game.registerAchievement(id, name, description, secret, grade, points)

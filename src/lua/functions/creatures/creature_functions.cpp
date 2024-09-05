@@ -514,6 +514,18 @@ int CreatureFunctions::luaCreatureAddHealth(lua_State* L) {
 	return 1;
 }
 
+// Wykopots custom
+int CreatureFunctions::luaCreatureGetMaxBaseHealth(lua_State* L) {
+	// creature:getMaxBaseHealth()
+	std::shared_ptr<Creature> creature = getUserdataShared<Creature>(L, 1);
+	if (creature) {
+		lua_pushnumber(L, creature->getMaxBaseHealth());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int CreatureFunctions::luaCreatureGetMaxHealth(lua_State* L) {
 	// creature:getMaxHealth()
 	std::shared_ptr<Creature> creature = getUserdataShared<Creature>(L, 1);

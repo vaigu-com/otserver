@@ -749,6 +749,19 @@ int ItemFunctions::luaItemGetDescription(lua_State* L) {
 	return 1;
 }
 
+// Wykopots custom
+int ItemFunctions::luaItemGetNameDescription(lua_State* L) {
+	// item:getNameDescription(distance)
+	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);
+	if (item) {
+		int32_t distance = getNumber<int32_t>(L, 2);
+		pushString(L, item->getNameDescription());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int ItemFunctions::luaItemHasProperty(lua_State* L) {
 	// item:hasProperty(property)
 	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);

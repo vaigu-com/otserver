@@ -181,10 +181,10 @@ GameStore.RecivedPackets = {
 
 GameStore.ExpBoostValues = {
 	[1] = 30,
-	[2] = 45,
-	[3] = 90,
-	[4] = 180,
-	[5] = 360,
+	[2] = 30,
+	[3] = 30,
+	[4] = 30,
+	[5] = 30
 }
 
 GameStore.DefaultValues = {
@@ -1131,7 +1131,6 @@ function sendStoreTransactionHistory(playerId, page, entriesPerPage)
 	if not player then
 		return false
 	end
-
 	local entries = GameStore.retrieveHistoryEntries(player:getAccountId(), page, entriesPerPage) -- this makes everything easy!
 	if #entries == 0 then
 		return addPlayerEvent(sendStoreError, 250, playerId, GameStore.StoreErrors.STORE_ERROR_HISTORY, "You don't have any entries yet.")
@@ -1595,7 +1594,7 @@ end
 
 function GameStore.processInstantRewardAccess(player, offerCount)
 	local limit = GameStore.ItemLimit.INSTANT_REWARD_ACCESS
-	if player:getCollectionTokens() + offerCount >= limit + 1 then
+	if player:getCollectionTokens() + offerCount > limit then
 		return error({ code = 1, message = "You cannot own more than " .. limit .. " reward tokens." })
 	end
 	player:setCollectionTokens(player:getCollectionTokens() + offerCount)

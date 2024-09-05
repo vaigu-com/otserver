@@ -43,6 +43,7 @@ public:
 		registerMethod(L, "ItemType", "getArticle", ItemTypeFunctions::luaItemTypeGetArticle);
 		registerMethod(L, "ItemType", "getDescription", ItemTypeFunctions::luaItemTypeGetDescription);
 		registerMethod(L, "ItemType", "getSlotPosition", ItemTypeFunctions::luaItemTypeGetSlotPosition);
+		registerMethod(L, "ItemType", "getAllowDistRead", ItemTypeFunctions::luaItemTypeGetAllowDistRead); // Wykopots custom
 
 		registerMethod(L, "ItemType", "getCharges", ItemTypeFunctions::luaItemTypeGetCharges);
 		registerMethod(L, "ItemType", "getFluidSource", ItemTypeFunctions::luaItemTypeGetFluidSource);
@@ -110,6 +111,7 @@ private:
 	static int luaItemTypeGetArticle(lua_State* L);
 	static int luaItemTypeGetDescription(lua_State* L);
 	static int luaItemTypeGetSlotPosition(lua_State* L);
+	static int luaItemTypeGetAllowDistRead(lua_State* L); // Wykopots custom
 
 	static int luaItemTypeGetCharges(lua_State* L);
 	static int luaItemTypeGetFluidSource(lua_State* L);

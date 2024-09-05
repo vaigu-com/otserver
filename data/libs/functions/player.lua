@@ -505,13 +505,16 @@ function Player.updateHazard(self)
 	return true
 end
 
-function Player:addItemStoreInboxEx(item, movable, setOwner)
+function Player:addItemStoreInboxEx(item, movable, setOwner, actionId)
 	local inbox = self:getStoreInbox()
 	if not movable then
 		item:setOwner(self)
 		item:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 	elseif setOwner then
 		item:setOwner(self)
+	end
+	if actionId then
+		item:setActionId(actionId)
 	end
 	inbox:addItemEx(item, INDEX_WHEREEVER, FLAG_NOLIMIT)
 	return item

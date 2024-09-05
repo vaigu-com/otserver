@@ -294,6 +294,18 @@ int ItemTypeFunctions::luaItemTypeGetSlotPosition(lua_State* L) {
 	return 1;
 }
 
+// Wykopots custom
+int ItemTypeFunctions::luaItemTypeGetAllowDistRead(lua_State* L) {
+	// itemType:getAllowDistRead()
+	const ItemType* itemType = getUserdata<const ItemType>(L, 1);
+	if (itemType) {
+		lua_pushboolean(L, itemType->allowDistRead);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int ItemTypeFunctions::luaItemTypeGetCharges(lua_State* L) {
 	// itemType:getCharges()
 	const ItemType* itemType = getUserdata<const ItemType>(L, 1);

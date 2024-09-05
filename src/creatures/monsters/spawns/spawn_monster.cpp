@@ -39,8 +39,6 @@ bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 	this->filemonstername = filemonstername;
 	loaded = true;
 
-	std::string boostedNameGet = g_game().getBoostedMonsterName();
-
 	for (auto spawnMonsterNode : doc.child("monsters").children()) {
 		Position centerPos(
 			pugi::cast<uint16_t>(spawnMonsterNode.attribute("centerx").value()),
@@ -310,10 +308,11 @@ bool SpawnMonster::addMonster(const std::string &name, const Position &pos, Dire
 	}
 
 	uint32_t eventschedule = g_eventsScheduler().getSpawnMonsterSchedule();
-	std::string boostedMonster = g_game().getBoostedMonsterName();
-	int32_t boostedrate = 1;
-	if (name == boostedMonster) {
-		boostedrate = 2;
+	auto boostedMonsters = g_game().getBoostedMonsterNames();
+	int32_t boostedRate = 1;
+
+	if (std::find(boostedMonsters.begin(), boostedMonsters.end(), name) != boostedMonsters.end()) {
+		boostedRate = 2;
 	}
 	// eventschedule is a whole percentage, so we need to multiply by 100 to match the order of magnitude of the other values
 	scheduleInterval = scheduleInterval * 100 / std::max((uint32_t)1, (g_configManager().getNumber(RATE_SPAWN, __FUNCTION__) * boostedrate * eventschedule));

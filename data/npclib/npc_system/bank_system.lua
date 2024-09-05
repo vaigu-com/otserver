@@ -99,7 +99,7 @@ function Npc:parseBank(message, npc, creature, npcHandler)
 		count[playerId] = player:getMoney()
 		npcHandler:say(string.format("Would you really like to deposit %d gold?", count[playerId]), npc, creature)
 		npcHandler:setTopic(playerId, 2)
-	elseif MsgContains(message, "deposit") then
+	elseif MsgContains(message, "deposit") or MsgContains(message, "wplac") then
 		if string.match(message, "%d+") then
 			count[playerId] = getMoneyCount(message)
 			if isValidMoney(count[playerId]) then
@@ -223,7 +223,7 @@ function Npc:parseBank(message, npc, creature, npcHandler)
 		end
 		return true
 		-- Transfer
-	elseif MsgContains(message, "transfer") then
+	elseif MsgContains(message, "transfer") or MsgContains(message, "przelew") then
 		count[playerId] = getMoneyCount(message)
 		transfer[playerId] = string.match(message, "[^transfer %d+ to ].+")
 		if string.match(message, "%d+") then

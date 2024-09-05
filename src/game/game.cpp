@@ -411,78 +411,75 @@ void Game::resetNpcs() const {
 	}
 }
 
+// ToDo: check if working
+// Wykopots custom
 void Game::loadBoostedCreature() {
 	auto &db = Database::getInstance();
-	const auto result = db.storeQuery("SELECT * FROM `boosted_creature`");
+
+	time_t now = time(0);
+	tm* ltm = localtime(&now);
+	std::string todayDate = std::to_string(ltm->tm_mday);
+
+	auto result = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayDate + "'");
 	if (!result) {
 		g_logger().warn("[Game::loadBoostedCreature] - "
-		                "Failed to detect boosted creature database. (CODE 01)");
+		                "No boosted creatures found for today.");
 		return;
 	}
 
-	const uint16_t date = result->getNumber<uint16_t>("date");
-	const time_t now = time(0);
-	tm* ltm = localtime(&now);
+	std::vector<std::string> boostedMonsters;
+	do {
+		boostedMonsters.push_back(result->getString("boostname"));
+	} while (result->next());
 
-	if (date == ltm->tm_mday) {
-		setBoostedName(result->getString("boostname"));
-		return;
-	}
-
-	const uint16_t oldRace = result->getNumber<uint16_t>("raceid");
-	const auto monsterlist = getBestiaryList();
-
-	struct MonsterRace {
-		uint16_t raceId { 0 };
-		std::string name;
-	};
-
-	MonsterRace selectedMonster;
-	if (!monsterlist.empty()) {
+	if (boostedMonsters.size() < NUMBER_BOOSTED_MONSTERS) {
+		const auto monsterlist = getBestiaryList();
 		std::vector<MonsterRace> m_monsters;
 		for (const auto &[raceId, _name] : BestiaryList) {
-			if (raceId != oldRace) {
-				m_monsters.emplace_back(raceId, _name);
+			if (std::find(boostedMonsters.begin(), boostedMonsters.end(), _name) == boostedMonsters.end()) {
+				m_monsters.emplace_back(MonsterRace{raceId, _name});
 			}
 		}
 
-		if (!m_monsters.empty()) {
-			selectedMonster = m_monsters[normal_random(0, m_monsters.size() - 1)];
+		if (m_monsters.size() < NUMBER_BOOSTED_MONSTERS) {
+			g_logger().warn("[Game::loadBoostedCreature] - "
+			                "Not enough monsters available to boost.");
+			return;
+		}
+
+		std::random_shuffle(m_monsters.begin(), m_monsters.end());
+		boostedMonsters.clear();
+		for (uint32_t i = 0; i < NUMBER_BOOSTED_MONSTERS; ++i) {
+			auto& selectedMonster = m_monsters[i];
+			boostedMonsters.push_back(selectedMonster.name);
+
+			const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
+			if (!monsterType) {
+				g_logger().warn("[Game::loadBoostedCreature] - "
+				                "Failed to get monster type for '{}'.", selectedMonster.name);
+				continue;
+			}
+
+			auto query = std::string("INSERT INTO `boosted_creature` (`date`, `boostname`, `looktype`, `lookfeet`, `looklegs`, `lookhead`, `lookbody`, `lookaddons`, `lookmount`, `raceid`) VALUES ")
+				+ "('" + todayDate + "', "
+				+ db.escapeString(selectedMonster.name) + ", "
+				+ std::to_string(monsterType->info.outfit.lookType) + ", "
+				+ std::to_string(monsterType->info.outfit.lookFeet) + ", "
+				+ std::to_string(monsterType->info.outfit.lookLegs) + ", "
+				+ std::to_string(monsterType->info.outfit.lookHead) + ", "
+				+ std::to_string(monsterType->info.outfit.lookBody) + ", "
+				+ std::to_string(monsterType->info.outfit.lookAddons) + ", "
+				+ std::to_string(monsterType->info.outfit.lookMount) + ", "
+				+ std::to_string(selectedMonster.raceId) + ")";
+
+			if (!db.executeQuery(query)) {
+				g_logger().warn("[Game::loadBoostedCreature] - "
+				                "Failed to store boosted creature in the database. (CODE 02)");
+			}
 		}
 	}
 
-	if (selectedMonster.raceId == 0) {
-		g_logger().warn("[Game::loadBoostedCreature] - "
-		                "It was not possible to generate a new boosted creature->");
-		return;
-	}
-
-	const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
-	if (!monsterType) {
-		g_logger().warn("[Game::loadBoostedCreature] - "
-		                "It was not possible to generate a new boosted creature-> Monster '{}' not found.",
-		                selectedMonster.name);
-		return;
-	}
-
-	setBoostedName(selectedMonster.name);
-
-	auto query = std::string("UPDATE `boosted_creature` SET ")
-		+ "`date` = '" + std::to_string(ltm->tm_mday) + "',"
-		+ "`boostname` = " + db.escapeString(selectedMonster.name) + ","
-		+ "`looktype` = " + std::to_string(monsterType->info.outfit.lookType) + ","
-		+ "`lookfeet` = " + std::to_string(monsterType->info.outfit.lookFeet) + ","
-		+ "`looklegs` = " + std::to_string(monsterType->info.outfit.lookLegs) + ","
-		+ "`lookhead` = " + std::to_string(monsterType->info.outfit.lookHead) + ","
-		+ "`lookbody` = " + std::to_string(monsterType->info.outfit.lookBody) + ","
-		+ "`lookaddons` = " + std::to_string(monsterType->info.outfit.lookAddons) + ","
-		+ "`lookmount` = " + std::to_string(monsterType->info.outfit.lookMount) + ","
-		+ "`raceid` = '" + std::to_string(selectedMonster.raceId) + "'";
-
-	if (!db.executeQuery(query)) {
-		g_logger().warn("[Game::loadBoostedCreature] - "
-		                "Failed to detect boosted creature database. (CODE 02)");
-	}
+	setBoostedName(boostedMonsters);
 }
 
 void Game::start(ServiceManager* manager) {
@@ -2296,7 +2293,6 @@ ReturnValue Game::internalRemoveItem(std::shared_ptr<Item> item, int32_t count /
 	if (count == -1) {
 		count = item->getItemCount();
 	}
-
 	ReturnValue ret = cylinder->queryRemove(item, count, flags | FLAG_IGNORENOTMOVABLE);
 	if (!force && ret != RETURNVALUE_NOERROR) {
 		g_logger().debug("{} - Failed to execute query remove", __FUNCTION__);
@@ -6361,6 +6357,19 @@ void Game::changeSpeed(std::shared_ptr<Creature> creature, int32_t varSpeedDelta
 
 	creature->setSpeed(varSpeed);
 
+	// Events equalized movement speed
+	int32_t stepSpeed = creature->getStepSpeed();
+	int32_t HasteStorageValue = 0;
+	std::shared_ptr<Player> player = creature->getPlayer();
+	if (player) {
+		HasteStorageValue = player->getStorageValue(STORAGEVALUE_HASTELOCK);
+		if (HasteStorageValue >= 1) {
+			stepSpeed = HasteStorageValue;
+		}
+	}
+
+	for (const auto &spectator : Spectators().find<Player>(creature->getPosition())) {
+		spectator->getPlayer()->sendChangeSpeed(creature, stepSpeed);
 	// Send to clients
 	for (const auto &spectator : Spectators().find<Player>(creature->getPosition())) {
 		spectator->getPlayer()->sendChangeSpeed(creature, creature->getStepSpeed());
@@ -6382,6 +6391,17 @@ void Game::changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varS
 
 	player->setSpeed(varSpeed);
 
+	// Wykopots custom
+	int32_t stepSpeed = player->getStepSpeed();
+	int32_t HasteStorageValue = 0;
+	HasteStorageValue = player->getStorageValue(STORAGEVALUE_HASTELOCK);
+	if (HasteStorageValue >= 1) {
+		stepSpeed = HasteStorageValue;
+	}
+
+	// Send new player speed to the spectators
+	for (const auto &creatureSpectator : Spectators().find<Player>(player->getPosition())) {
+		creatureSpectator->getPlayer()->sendChangeSpeed(player, stepSpeed);
 	// Send new player speed to the spectators
 	for (const auto &creatureSpectator : Spectators().find<Player>(player->getPosition())) {
 		creatureSpectator->getPlayer()->sendChangeSpeed(player, player->getStepSpeed());

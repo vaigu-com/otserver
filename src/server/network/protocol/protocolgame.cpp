@@ -7607,6 +7607,21 @@ void ProtocolGame::sendModalWindow(const ModalWindow &modalWindow) {
 	writeToOutputBuffer(msg);
 }
 
+// Wykopots custom
+std::string findValueByKey(const std::vector<Game::LuaElement> &elements, const std::vector<std::string> &keys) {
+	for (const auto &element : elements) {
+		if (element.key == keys[0]) {
+			if (keys.size() == 1) {
+				return element.value;
+			} else {
+				return findValueByKey(element.subtable, std::vector<std::string>(keys.begin() + 1, keys.end()));
+			}
+		}
+	}
+	// Key not found
+	return "";
+}
+
 ////////////// Add common messages
 void ProtocolGame::AddCreature(NetworkMessage &msg, std::shared_ptr<Creature> creature, bool known, uint32_t remove) {
 	CreatureType_t creatureType = creature->getType();
@@ -7634,9 +7649,21 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, std::shared_ptr<Creature> cr
 		}
 
 		if (!oldProtocol && creature->isHealthHidden()) {
-			msg.addString(std::string());
+			msg.addString("", "ProtocolGame::AddCreature - empty");
 		} else {
-			msg.addString(creature->getName(), "ProtocolGame::AddCreature - creature->getName()");
+
+			const std::string creatureName = creature->getName();
+			std::string displayName = creatureName;
+			try {
+				std::string playerLang = player->language;
+				std::vector<std::string> keys = { playerLang, "LOCALIZER_NPC_NAME", creatureName };
+				std::string translatedName = findValueByKey(g_game().translationMap, keys);
+				if (!translatedName.empty()) {
+					displayName = translatedName;
+				}
+			} catch (...) { }
+
+			msg.addString(displayName, "ProtocolGame::AddCreature - creature->getName()");
 		}
 	}
 

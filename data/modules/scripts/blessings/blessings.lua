@@ -18,7 +18,8 @@ Blessings.Credits = {
 		"Check if store is inside lua or source...",
 	},
 }
-
+-- Wykopots custom
+DISABLE_TWIST_OF_FATE = true
 Blessings.Config = {
 	AdventurerBlessingLevel = configManager.getNumber(configKeys.ADVENTURERSBLESSING_LEVEL), -- Free full bless until level
 	HasToF = not configManager.getBoolean(configKeys.TOGGLE_SERVER_IS_RETRO), -- Enables/disables twist of fate
@@ -27,6 +28,9 @@ Blessings.Config = {
 	InventoryGlowOnFiveBless = configManager.getBoolean(configKeys.INVENTORY_GLOW), -- Glow in yellow inventory items when the player has 5 or more bless,
 	Debug = false, -- Prin debug messages in console if enabled
 }
+if DISABLE_TWIST_OF_FATE then
+	Blessings.Config.HasToF = false
+end
 
 dofile(CORE_DIRECTORY .. "/modules/scripts/blessings/assets.lua")
 
@@ -90,7 +94,7 @@ Blessings.sendBlessStatus = function(player, curBless)
 	-- why not using ProtocolGame::sendBlessStatus ?
 	local msg = NetworkMessage()
 	msg:addByte(Blessings.S_Packet.BlessStatus)
-	callback = function(k)
+	local callback = function(k)
 		return true
 	end
 	if curBless == nil then
@@ -130,7 +134,7 @@ Blessings.sendBlessDialog = function(player)
 	local msg = NetworkMessage()
 	msg:addByte(Blessings.S_Packet.BlessDialog)
 
-	callback = function(k)
+	local callback = function(k)
 		return true
 	end
 	local curBless = player:getBlessings()

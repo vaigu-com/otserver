@@ -433,13 +433,15 @@ public:
 		return BestiaryList;
 	}
 
-	void setBoostedName(std::string name) {
-		boostedCreature = name;
-		g_logger().info("Boosted creature: {}", name);
+	// Wykopots custom
+	void setBoostedName(const std::vector<std::string> &names) {
+		boostedCreatures = names;
+		for (const auto &name : names) {
+			g_logger().info("Boosted creature: {}", name);
+		}
 	}
-
-	std::string getBoostedMonsterName() const {
-		return boostedCreature;
+	std::vector<std::string> getBoostedMonsterNames() const {
+		return boostedCreatures;
 	}
 
 	bool canThrowObjectTo(const Position &fromPos, const Position &toPos, SightLines_t lineOfSight = SightLine_CheckSightLine, int32_t rangex = MAP_MAX_CLIENT_VIEW_PORT_X, int32_t rangey = MAP_MAX_CLIENT_VIEW_PORT_Y);
@@ -738,6 +740,14 @@ public:
 	const std::unordered_map<uint16_t, std::string> &getHirelingSkills();
 	const std::unordered_map<uint16_t, std::string> &getHirelingOutfits();
 
+	// Wykopots custom
+	struct LuaElement {
+		std::string key;
+		std::string value;
+		std::vector<LuaElement> subtable;
+	};
+	std::vector<LuaElement> translationMap;
+
 private:
 	std::map<uint16_t, Achievement> m_achievements;
 	std::map<std::string, uint16_t> m_achievementsNameToId;
@@ -856,7 +866,7 @@ private:
 	std::map<Position, uint16_t> mapLuaItemsStored;
 
 	std::map<uint16_t, std::string> BestiaryList;
-	std::string boostedCreature = "";
+	std::vector<std::string> boostedCreatures; // Wykopots custom
 
 	std::vector<std::shared_ptr<Charm>> CharmList;
 	std::vector<std::shared_ptr<Creature>> checkCreatureLists[EVENT_CREATURECOUNT];
