@@ -1,0 +1,9 @@
+return {
+	["Far to the west there is small village called Knurowo. You need to be aware of elves and bandits if you want to go there. To the south west there is main farm of our town, and some hills inhabited by amazons and goblins to the north."] = "Far to the west there is small village called Knurowo. You need to be aware of elves and bandits if you want to go there. To the south west there is main farm of our town, and some hills inhabited by amazons and goblins to the north.",
+	["I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one."] = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
+	["Help Commissioner Fisher first. I cant trust you now."] = "Help Commissioner Fisher first. I cant trust you now.",
+	["Arrgh, that's gross! I definitely prefer hamburgers, but well, take this lump of chocolate dough. I tried to make a chocolate cake, but something went wrong. Also take my old knight legs, I don't fit in them anymore anyway."] = "Arrgh, that's gross! I definitely prefer hamburgers, but well, take this lump of chocolate dough. I tried to make a chocolate cake, but something went wrong. Also take my old knight legs, I don't fit in them anymore anyway.",
+	["Come back when you reach 20 level!"] = "Come back when you reach 20 level!",
+	["Thats some fake one."] = "Thats some fake one.",
+	["Come back with eco carrot."] = "Come back with eco carrot.",
+}
