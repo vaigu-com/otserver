@@ -1,9 +1,14 @@
+
+DONT_BROADCAST_SERVER_SAVE_COMPLETE = true
 local function serverSave(interval)
 	if configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL_CLEAN_MAP) then
 		cleanMap()
 	end
 
 	saveServer()
+	if DONT_BROADCAST_SERVER_SAVE_COMPLETE then
+		return
+	end
 	local message = string.format(SAVE_INTERVAL_CONFIG_TIME > 1 and "Server save complete. Next save in %d %ss!" or "Server save complete. Next save in %d %s!", SAVE_INTERVAL_CONFIG_TIME, SAVE_INTERVAL_TYPE)
 	Game.broadcastMessage(message, MESSAGE_GAME_HIGHLIGHT)
 	logger.info(message)

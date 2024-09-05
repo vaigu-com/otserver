@@ -88,7 +88,6 @@ function getTimeInWords(secsParam)
 		if timeStr ~= "" then
 			timeStr = timeStr .. ", "
 		end
-
 		timeStr = timeStr .. minutes .. (minutes > 1 and " minutes" or " minute")
 	end
 
@@ -102,9 +101,14 @@ function getTimeInWords(secsParam)
 	return timeStr
 end
 
-function getLootRandom(modifier)
-	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE) * (modifier or 1)
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
+-- Wykopots custom
+function getLootRandom(modifier, forceBaseLoot)
+	local mutiplier = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * BONUS_LOOT) * (modifier or 1)
+	if forceBaseLoot then
+		mutiplier = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * 1) * (modifier or 1)
+	end
+	
+	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, mutiplier)
 end
 
 local start = os.time()

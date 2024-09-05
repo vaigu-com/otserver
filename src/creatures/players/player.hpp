@@ -774,6 +774,7 @@ public:
 		}
 	}
 
+	int32_t getMaxBaseHealth() const override; // Wykpots custom
 	int32_t getMaxHealth() const override;
 	uint32_t getMaxMana() const override;
 
@@ -915,7 +916,6 @@ public:
 	bool getAddAttackSkill() const {
 		return addAttackSkillPoint;
 	}
-
 	BlockType_t getLastAttackBlockType() const {
 		return lastAttackBlockType;
 	}
@@ -2649,6 +2649,11 @@ public:
 
 	bool hasPermittedConditionInPZ() const;
 
+	// i18n
+	std::string language = "EN"; // ISO-639-1
+	const std::string &getLanguage();
+	void setLanguage(std::string language);
+	
 	std::shared_ptr<Container> getStoreInbox() const;
 
 	bool canSpeakWithHireling(uint8_t speechbubble);

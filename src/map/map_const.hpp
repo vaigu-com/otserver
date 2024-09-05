@@ -11,6 +11,8 @@
 
 static constexpr int32_t MAP_MAX_CLIENT_VIEW_PORT_X = 8;
 static constexpr int32_t MAP_MAX_CLIENT_VIEW_PORT_Y = 6;
+static constexpr int32_t MAP_MAX_CLIENT_THROW_RANGE_X = MAP_MAX_CLIENT_VIEW_PORT_X + 1; // Wykopots custom
+static constexpr int32_t MAP_MAX_CLIENT_THROW_RANGE_Y = MAP_MAX_CLIENT_VIEW_PORT_Y + 1; // Wykopots custom
 static constexpr int32_t MAP_MAX_VIEW_PORT_X = MAP_MAX_CLIENT_VIEW_PORT_X + 3; // min value: maxClientViewportX + 1
 static constexpr int32_t MAP_MAX_VIEW_PORT_Y = MAP_MAX_CLIENT_VIEW_PORT_Y + 5; // min value: maxClientViewportY + 1
 

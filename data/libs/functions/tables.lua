@@ -48,7 +48,7 @@ table.getCombinations = function(table, num)
 		end
 
 		newlist[#newlist + 1] = newrow
-		i = select
+		local i = select
 		while a[i] == (number - select + i) do
 			i = i - 1
 		end
@@ -126,4 +126,31 @@ function pairsByKeys(t, f)
 		end
 	end
 	return iter
+end
+
+-- Each next table key-values will override previous table key-values in case of conflicts
+function MergedTable(...)
+	local result = {}
+	for _, maybeTable in pairs({ ... }) do
+		if type(maybeTable) == "table" then
+			result = table.merged(result, maybeTable)
+		end
+	end
+	return result
+end
+
+function table.merged(table1, table2)
+	local result = {}
+
+	for key, value in pairs(table1) do
+		result[key] = value
+	end
+	for key, value in pairs(table2) do
+		if type(value) == "table" and result[key] then
+			result[key] = table.merged(result[key], value)
+		else
+			result[key] = value
+		end
+	end
+	return result
 end

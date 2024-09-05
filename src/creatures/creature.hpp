@@ -199,6 +199,10 @@ public:
 	int32_t getHealth() const {
 		return health;
 	}
+	// Wykopots custom
+	virtual int32_t getMaxBaseHealth() const {
+		return maxBaseHealth;
+	}
 	virtual int32_t getMaxHealth() const {
 		return healthMax;
 	}
@@ -750,6 +754,7 @@ protected:
 	uint32_t mana = 0;
 	int32_t varSpeed = 0;
 	int32_t health = 1000;
+	int32_t maxBaseHealth = 1000;
 	int32_t healthMax = 1000;
 
 	uint16_t manaShield = 0;

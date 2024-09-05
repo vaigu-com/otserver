@@ -31,13 +31,18 @@ function setGlobalStorage(key, value)
 	db.query("INSERT INTO `global_storage` (`key`, `value`) VALUES (" .. key .. ", " .. value .. ") ON DUPLICATE KEY UPDATE `value` = " .. value)
 end
 
-function Game.broadcastMessage(message, messageType)
+-- Wykopots custom
+function Game.broadcastMessage(message, messageType, translate)
 	if not messageType then
 		messageType = MESSAGE_GAME_HIGHLIGHT
 	end
 
 	for _, player in ipairs(Game.getPlayers()) do
-		player:sendTextMessage(messageType, message)
+		local translatedMessage = message
+		if translate then
+			translatedMessage = player:Localizer(nil):Get(message)
+		end
+		player:sendTextMessage(messageType, translatedMessage)
 	end
 end
 

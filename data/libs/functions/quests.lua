@@ -1,5 +1,8 @@
 dofile(DATA_DIRECTORY .. "/lib/core/quests.lua")
 
+-- Wykopots custom
+RegisterTasksInQuestsList()
+RegisterDailyTasksInQuestsList()
 if not LastQuestlogUpdate then
 	LastQuestlogUpdate = {}
 end
@@ -8,23 +11,12 @@ if not PlayerTrackedMissionsData then
 	PlayerTrackedMissionsData = {}
 end
 
--- Text functions
-
-local function evaluateText(value, player)
-	if type(value) == "function" then
-		return tostring(value(player))
-	end
-
-	return tostring(value)
-end
-
 -- Game functions
 
 function Player.hasTrackingQuest(self, missionId)
 	local trackedQuests = PlayerTrackedMissionsData[self:getId()]
 	if trackedQuests then
-		for i = 1, #trackedQuests do
-			local mission = trackedQuests[i]
+		for _, mission in pairs(trackedQuests) do
 			if mission and mission.missionId == missionId then
 				return true
 			end
@@ -34,27 +26,29 @@ function Player.hasTrackingQuest(self, missionId)
 end
 
 function Player.getQuestDataByMissionId(self, missionId)
-	for questId = 1, #Quests do
+	for questId in pairs(Quests) do
 		local quest = Game.getQuest(questId)
-		if quest then
-			if quest.missions then
-				for i = 1, #quest.missions do
-					local mission = quest.missions[i]
-					if mission and mission.missionId == missionId then
-						return quest.name, questId, i
-					end
-				end
+		if not quest then
+			goto continue
+		end
+		if not quest.missions then
+			goto continue
+		end
+		for i = 1, #quest.missions do
+			local mission = quest.missions[i]
+			if mission and mission.missionId == missionId then
+				return self:Localizer(LOCALIZER_QUESTLOG):Context({ storageId = mission.storageId }):Get(quest.name), questId, i
 			end
 		end
+		::continue::
 	end
 	return false
 end
 
-function Player.resetTrackedMissions(self, missions)
+function Player.resetTrackedMissions(self, missionsIds)
 	local maxAllowed = self:getAllowedTrackedQuestCount()
 	PlayerTrackedMissionsData[self:getId()] = {}
-	for i = 1, #missions do
-		local missionId = missions[i]
+	for _, missionId in pairs(missionsIds) do
 		local questName, questId, missionIndex = self:getQuestDataByMissionId(missionId)
 		if questName and questId and missionIndex then
 			if self:missionIsStarted(questId, missionIndex) then
@@ -73,6 +67,21 @@ function Player.resetTrackedMissions(self, missions)
 	end
 
 	self:sendTrackedQuests(maxAllowed - #PlayerTrackedMissionsData[self:getId()], PlayerTrackedMissionsData[self:getId()])
+end
+
+function Player.sendTrackedMissions(self)
+	for questIndex, quest in pairs(Quests) do
+		for missionIndex, mission in pairs(quest.missions) do
+			if self:hasTrackingQuest(mission.missionId) then
+				local data = {
+					missionId = mission.missionId,
+					missionName = self:getMissionName(questIndex, missionIndex),
+					missionDesc = self:getMissionDescription(questIndex, missionIndex),
+				}
+				self:sendUpdateTrackedQuest(data)
+			end
+		end
+	end
 end
 
 function Player.getAllowedTrackedQuestCount(self)
@@ -95,7 +104,7 @@ function Game.getQuest(questId)
 end
 
 function Game.getQuestIdByName(name)
-	for questId = 1, #Quests do
+	for questId in pairs(Quests) do
 		local quest = Game.getQuest(questId)
 		if quest and quest.name:lower() == name:lower() then
 			return questId
@@ -113,10 +122,10 @@ end
 
 function Player.getMissionsData(self, storage)
 	local missions = {}
-	for questId = 1, #Quests do
+	for questId in pairs(Quests) do
 		local quest = Game.getQuest(questId)
 		if quest and quest.missions then
-			for missionId = 1, #quest.missions do
+			for missionId in pairs(quest.missions) do
 				local started = self:missionIsStarted(questId, missionId)
 				if started then
 					local mission = quest.missions[missionId]
@@ -136,21 +145,24 @@ function Player.getMissionsData(self, storage)
 end
 
 function Game.isQuestStorage(key, value, oldValue)
-	for questId = 1, #Quests do
+	for questId in pairs(Quests) do
 		local quest = Game.getQuest(questId)
-		if quest then
-			if quest.startStorageId == key and quest.startStorageValue == value then
-				return true
-			end
+		if not quest then
+			return false
+		end
+		if quest.startStorageId == key and quest.startStorageValue == value then
+			return true
+		end
 
-			if quest.missions then
-				for missionId = 1, #quest.missions do
-					local mission = Game.getMission(questId, missionId)
-					if mission then
-						if mission.storageId == key and value >= mission.startValue and value <= mission.endValue then
-							return mission.description or oldValue < mission.storageId or oldValue > mission.endValue
-						end
-					end
+		if not quest.missions then
+			return false
+		end
+
+		for missionId in pairs(quest.missions) do
+			local mission = Game.getMission(questId, missionId)
+			if mission then
+				if mission.storageId == key and value >= mission.startValue and value <= mission.endValue then
+					return mission.description or oldValue < mission.storageId or oldValue > mission.endValue
 				end
 			end
 		end
@@ -161,7 +173,7 @@ end
 function Game.getQuestsCount(player)
 	local count = 0
 	if Quests then
-		for id = 1, #Quests do
+		for id in pairs(Quests) do
 			if player:questIsStarted(id) then
 				count = count + 1
 			end
@@ -176,7 +188,7 @@ function Game.getMissionsCount(player, questId)
 	if quest then
 		local missions = quest.missions
 		if missions then
-			for missionId = 1, #missions do
+			for missionId in pairs(missions) do
 				if player:missionIsStarted(questId, missionId) then
 					count = count + 1
 				end
@@ -226,7 +238,7 @@ function Player.questIsCompleted(self, questId)
 	if quest then
 		local missions = quest.missions
 		if missions then
-			for missionId = 1, #missions do
+			for missionId in pairs(missions) do
 				if not self:missionIsCompleted(questId, missionId) then
 					return false
 				end
@@ -256,13 +268,18 @@ end
 
 function Player.getMissionName(self, questId, missionId)
 	local mission = Game.getMission(questId, missionId)
-	if mission then
-		if self:missionIsCompleted(questId, missionId) then
-			return mission.name .. " (completed)"
-		end
-		return mission.name
+	local result = ""
+	if not mission then
+		return result
 	end
-	return ""
+
+	local context = { player = self, questId = questId, missionId = missionId, storageId = mission.storageId, task = mission.task, dailyTask = mission.dailyTask }
+	result = result .. self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(mission.name)
+	if self:missionIsCompleted(questId, missionId) then
+		local completedSuffix = self:Localizer(LOCALIZER_QUESTLOG):Get("QUEST_MISION_COMPLETE_SUFFIX")
+		result = result .. completedSuffix
+	end
+	return result
 end
 
 function Player.getMissionId(self, questId, missionId)
@@ -275,29 +292,37 @@ end
 
 function Player.getMissionDescription(self, questId, missionId)
 	local mission = Game.getMission(questId, missionId)
-	if mission then
-		if mission.description then
-			return evaluateText(mission.description, self)
-		end
-
-		local value = self:getStorageValue(mission.storageId)
-		local state = value
-		if mission.ignoreendvalue and value > table.maxn(mission.states) then
-			state = table.maxn(mission.states)
-		end
-		return evaluateText(mission.states[state], self)
+	if not mission then
+		return "An error has occurred, please contact a gamemaster."
 	end
-	return "An error has occurred, please contact a gamemaster."
+	local context = { player = self, questId = questId, missionId = missionId, storageId = mission.storageId, task = mission.task, dailyTask = mission.dailyTask }
+	local description = self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(mission.description)
+	if description then
+		return description
+	end
+
+	local value = self:getStorageValue(mission.storageId)
+	local state = value
+
+	if mission.ignoreendvalue and value > table.maxn(mission.states) then
+		state = table.maxn(mission.states)
+	end
+	description = self:Localizer(LOCALIZER_QUESTLOG):Get(mission.states[state])
+	return description
 end
 
 function Player.sendQuestLog(self)
 	local msg = NetworkMessage()
 	msg:addByte(0xF0)
 	msg:addU16(Game.getQuestsCount(self))
-	for questId = 1, #Quests do
+	for questId in pairs(Quests) do
 		if self:questIsStarted(questId) then
 			msg:addU16(questId)
-			msg:addString(Quests[questId].name .. (self:questIsCompleted(questId) and " (completed)" or ""), "Player.sendQuestLog")
+			local translatedQuestName = self:Localizer(LOCALIZER_QUESTLOG):Get(Quests[questId].name)
+			if self:questIsCompleted(questId) then
+				translatedQuestName = translatedQuestName .. " (completed)"
+			end
+			msg:addString(translatedQuestName)
 			msg:addByte(self:questIsCompleted(questId))
 		end
 	end
@@ -314,7 +339,7 @@ function Player.sendQuestLine(self, questId)
 		msg:addU16(questId)
 		msg:addByte(Game.getMissionsCount(self, questId))
 		if missions then
-			for missionId = 1, #missions do
+			for missionId in pairs(missions) do
 				if self:missionIsStarted(questId, missionId) then
 					if self:getClient().version >= 1200 then
 						msg:addU16(self:getMissionId(questId, missionId))
@@ -357,17 +382,30 @@ function Player.sendUpdateTrackedQuest(self, mission)
 	msg:delete()
 end
 
+local function questUpdateIsAnnouncable(key, value, oldValue)
+	if value == oldValue then
+		return false
+	end
+	if GetTaskByStorage(key) and oldValue ~= TASK_FINISHED and oldValue ~= TASK_CAN_START_DESPITE_HIGHER_LEVEL then
+		return false
+	end
+	if GetDailyTaskByStorage(key) and oldValue ~= DAILY_TASK_NOT_STARTED then
+		return false
+	end
+	return true
+end
+
 function Player.updateStorage(self, key, value, oldValue, currentFrameTime)
 	local playerId = self:getId()
 	if LastQuestlogUpdate[playerId] ~= currentFrameTime and Game.isQuestStorage(key, value, oldValue) then
 		LastQuestlogUpdate[playerId] = currentFrameTime
-		if value ~= oldValue then
+		if questUpdateIsAnnouncable(key, value, oldValue) then
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your questlog has been updated.")
 		end
 	end
+
 	local missions = self:getMissionsData(key)
-	for i = 1, #missions do
-		local mission = missions[i]
+	for _, mission in pairs(missions) do
 		if self:hasTrackingQuest(mission.missionId) then
 			self:sendUpdateTrackedQuest(mission)
 		end
@@ -378,10 +416,10 @@ local function sendPrint(questId, index)
 	logger.warn("[sendPrint] - Quest id:[{}]] mission:[{}]", questId, index)
 end
 
-for questId = 1, #Quests do
+for questId in pairs(Quests) do
 	local quest = Game.getQuest(questId)
 	if quest then
-		for index, value in ipairs(quest.missions) do
+		for index, value in pairs(quest.missions) do
 			if index then
 				if not value.name then
 					logger.error("Quest.load: Wrong mission name found")

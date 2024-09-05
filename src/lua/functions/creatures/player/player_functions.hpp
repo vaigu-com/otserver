@@ -379,6 +379,13 @@ private:
 
 		registerMethod(L, "Player", "sendIconBakragore", PlayerFunctions::luaPlayerSendIconBakragore);
 
+		// Wykopots custom
+		registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerGetAttackSpeed);
+		registerMethod(L, "Player", "setAttackSpeed", PlayerFunctions::luaPlayerSetAttackSpeed);
+		registerMethod(L, "Player", "getLanguage", PlayerFunctions::luaPlayerGetLanguage);
+		registerMethod(L, "Player", "setLanguage", PlayerFunctions::luaPlayerSetLanguage);
+
+
 		GroupFunctions::init(L);
 		GuildFunctions::init(L);
 		MountFunctions::init(L);
@@ -616,6 +623,10 @@ private:
 
 	static int luaPlayerIsPzLocked(lua_State* L);
 	static int luaPlayerIsOffline(lua_State* L);
+	
+	// Wykopots custom
+	static int luaPlayerGetLanguage(lua_State* L);
+	static int luaPlayerSetLanguage(lua_State* L);
 
 	static int luaPlayerGetClient(lua_State* L);
 
@@ -744,5 +755,11 @@ private:
 	static int luaPlayerTakeScreenshot(lua_State* L);
 	static int luaPlayerSendIconBakragore(lua_State* L);
 
+	// Wykopots custom
+	static int luaPlayerGetLanguage(lua_State* L);
+	static int luaPlayerSetLanguage(lua_State* L);
+	static int luaPlayerSetAttackSpeed(lua_State* L);
+	static int luaPlayerGetAttackSpeed(lua_State* L);
+	
 	friend class CreatureFunctions;
 };

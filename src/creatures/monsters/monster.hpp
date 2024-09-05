@@ -47,6 +47,18 @@ public:
 	const std::string &getName() const override;
 	void setName(const std::string &name);
 
+	// Wykopots custom; Revert in Monster::configureForgeSystem and Monster::getName
+	std::string fullName;
+	std::map<uint16_t, std::string> influenceRankToTitle = {
+        {0, ""},
+		{1, "Potent "},
+        {2, "Sturdy "},
+        {3, "Veteran "},
+		{4, "Epic "}, 
+		{5, "Legendary "},
+		{15, "Fiendish "}
+    };
+
 	// Real monster name, set on monster creation "createMonsterType(typeName)"
 	const std::string &getTypeName() const override {
 		return mType->typeName;

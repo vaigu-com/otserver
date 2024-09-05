@@ -54,6 +54,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> mType) :
 			                scriptName);
 		}
 	}
+	fullName = mType->name; // Wykopots custom
 }
 
 void Monster::addList() {
@@ -68,7 +69,8 @@ const std::string &Monster::getName() const {
 	if (name.empty()) {
 		return mType->name;
 	}
-	return name;
+	//return name;
+	return fullName; // Wykopots custom
 }
 
 void Monster::setName(const std::string &name) {
@@ -2177,6 +2179,10 @@ void Monster::configureForgeSystem() {
 	float percentToIncrement = static_cast<float>((forgeStack * 6) + 100) / 100.f;
 	auto newHealth = static_cast<int32_t>(std::ceil(static_cast<float>(healthMax) * percentToIncrement));
 
+	// Set monster title based on influence
+	std::string title = influenceRankToTitle[getForgeStack()];
+	fullName = title + mType->name; 
+
 	healthMax = newHealth;
 	health = newHealth;
 
@@ -2195,6 +2201,7 @@ void Monster::clearFiendishStatus() {
 	health = mType->info.health * mType->getHealthMultiplier();
 	healthMax = mType->info.healthMax * mType->getHealthMultiplier();
 
+	fullName = mType->name; 
 	removeIcon("forge");
 	g_game().updateCreatureIcon(static_self_cast<Monster>());
 	g_game().sendUpdateCreature(static_self_cast<Monster>());

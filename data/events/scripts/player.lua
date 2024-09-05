@@ -1,3 +1,9 @@
+--[[ 
+	Wykopots custom:
+	- Store inbox items can be moved within inbox
+	- Prey monster timers only decay on killing that prey target
+	- Multiple immovable aid can exist
+]]--
 local storeItemID = {
 	-- registered item ids here are not tradable with players
 	-- these items can be set to movable at items.xml
@@ -36,6 +42,8 @@ local storeItemID = {
 	29415, -- consecrated beef
 	29416, -- overcooked noodles
 }
+
+BOOSTED_CREATURE_EXP_MULTIPLIER = 1.5
 
 -- Players cannot throw items on teleports if set to true
 local blockTeleportTrashing = true
@@ -96,7 +104,16 @@ local soulCondition = Condition(CONDITION_SOUL, CONDITIONID_DEFAULT)
 soulCondition:setTicks(4 * 60 * 1000)
 soulCondition:setParameter(CONDITION_PARAM_SOULGAIN, 1)
 
-local function useStamina(player, isStaminaEnabled)
+local function usePreyStamina(player, intervalSeconds, raceId)
+	local playerId = player:getId()
+	_G.NextUsePreysTime[playerId] = _G.NextUsePreysTime[playerId] or {}
+	if os.time() > (_G.NextUsePreysTime[playerId][raceId] or 0) then
+		_G.NextUsePreysTime[playerId][raceId] = os.time() + intervalSeconds
+		player:removePreyStamina(intervalSeconds, raceId)
+	end
+end
+
+local function useStamina(player, isStaminaEnabled, raceId)
 	if not player then
 		return false
 	end
@@ -117,22 +134,18 @@ local function useStamina(player, isStaminaEnabled)
 		return
 	end
 
-	if timePassed > 60 then
-		if staminaMinutes > 2 then
-			staminaMinutes = staminaMinutes - 2
-		else
-			staminaMinutes = 0
-		end
-		_G.NextUseStaminaTime[playerId] = currentTime + 120
-		player:removePreyStamina(120)
-	else
-		staminaMinutes = staminaMinutes - 1
-		_G.NextUseStaminaTime[playerId] = currentTime + 60
-		player:removePreyStamina(60)
+	if timePassed < 60 or not isStaminaEnabled  then
+		return
 	end
-	if isStaminaEnabled then
-		player:setStamina(staminaMinutes)
+
+	staminaMinutes = staminaMinutes - 2
+	if staminaMinutes < 0 then
+		staminaMinutes = 0
 	end
+
+	_G.NextUseStaminaTime[playerId] = currentTime + 120
+	usePreyStamina(player, 120, raceId)
+	player:setStamina(staminaMinutes)
 end
 
 local function useStaminaXpBoost(player)
@@ -236,17 +249,40 @@ function Player:onLookInBattleList(creature, distance)
 	self:sendTextMessage(MESSAGE_LOOK, description)
 end
 
-local exhaust = {}
+local storeInboxName = "your store inbox"
+local function itemIsInStoreInbox(item)
+	local maybeStoreInbox = item:getParent()
+	return maybeStoreInbox:getName() == storeInboxName
+end
 
+local immovableAid = {
+	[IMMOVABLE_ACTION_ID] = true,
+	[POSITIONCHEST_ACTION_ID] = true,
+}
+
+local function isImmovable(item)
+	return immovableAid[item:getActionId()]
+end
+
+local exhaust = {}
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
-	if item:getActionId() == IMMOVABLE_ACTION_ID then
-		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-		return false
+	if isImmovable(item) then
+		if toPosition.x ~= CONTAINER_POSITION then
+			local thing = Tile(toPosition):getItemByType(ITEM_TYPE_TRASHHOLDER)
+			if not thing then
+				self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+				return false
+			end
+			item:remove()
+		else
+			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+			return false
+		end
 	end
 
-	-- No move if tile item count > 20 items
+	-- No move if item count > 30 items
 	local tile = Tile(toPosition)
-	if tile and tile:getItemCount() > 20 then
+	if tile and tile:getItemCount() > 30 then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		return false
 	end
@@ -459,12 +495,7 @@ function Player:onReportRuleViolation(targetName, reportType, reportReason, comm
 	io.close(file)
 	self:sendTextMessage(
 		MESSAGE_EVENT_ADVANCE,
-		string.format(
-			"Thank you for reporting %s. Your report \z
-	will be processed by %s team as soon as possible.",
-			targetName,
-			configManager.getString(configKeys.SERVER_NAME)
-		)
+		T("Thank you for reporting :targetName:. Your report will be processed by :teamName: team as soon as possible.",{targetName=targetName,teamName = configManager.getString(configKeys.SERVER_NAME)})
 	)
 	return
 end
@@ -504,14 +535,22 @@ function Player:onTurn(direction)
 	return true
 end
 
+local function isQuestItem(item)
+	local aid = item:getActionId()
+	if aid and aid > 0 and itemIsInStoreInbox(item) then
+		return true
+	end
+	return false
+end
+
 function Player:onTradeRequest(target, item)
-	if item:getActionId() == IMMOVABLE_ACTION_ID then
+	if isImmovable(item) then
+		return false
+	end
+	if isQuestItem(item) then
 		return false
 	end
 
-	if table.contains(storeItemID, item.itemid) then
-		return false
-	end
 	return true
 end
 
@@ -520,6 +559,10 @@ function Player:onGainExperience(target, exp, rawExp)
 		return exp
 	end
 
+	local raceId = nil
+	if target then
+		raceId = target:getType():raceId()
+	end
 	-- Soul regeneration
 	local vocation = self:getVocation()
 	if self:getSoul() < vocation:getMaxSoul() and exp >= self:getLevel() then
@@ -539,7 +582,7 @@ function Player:onGainExperience(target, exp, rawExp)
 	-- Stamina Bonus
 	local staminaBonusXp = 1
 	local isStaminaEnabled = configManager.getBoolean(configKeys.STAMINA_SYSTEM)
-	useStamina(self, isStaminaEnabled)
+	useStamina(self, isStaminaEnabled, raceId)
 	if isStaminaEnabled then
 		staminaBonusXp = self:getFinalBonusStamina()
 		self:setStaminaXpBoost(staminaBonusXp * 100)
@@ -549,8 +592,9 @@ function Player:onGainExperience(target, exp, rawExp)
 	useConcoctionTime(self)
 
 	-- Boosted creature
-	if target:getName():lower() == (Game.getBoostedCreature()):lower() then
-		exp = exp * 2
+	local multiplierIfBoostedCreature  = 1
+	if target:isBoosted() then
+		multiplierIfBoostedCreature =  BOOSTED_CREATURE_EXP_MULTIPLIER
 	end
 
 	-- Prey system
@@ -569,10 +613,21 @@ function Player:onGainExperience(target, exp, rawExp)
 		end
 	end
 
-	local lowLevelBonuxExp = self:getFinalLowLevelBonus()
 	local baseRate = self:getFinalBaseRateExperience()
 
-	return (exp + (exp * (xpBoostPercent / 100) + (exp * (lowLevelBonuxExp / 100)))) * staminaBonusXp * baseRate
+	local finalExp = exp * staminaBonusXp * baseRate * multiplierIfBoostedCreature
+	
+	-- Daily or store xp boost
+	if stillHasXpBoost then
+		finalExp = finalExp * (1 + xpBoostPercent) 
+	end
+
+	-- Server protection
+	if Game.getStorageValue(GlobalStorage.Protection) == 1 then
+		finalExp = finalExp / 2
+	end
+
+	return finalExp
 end
 
 function Player:onLoseExperience(exp)

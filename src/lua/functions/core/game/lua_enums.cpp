@@ -229,6 +229,10 @@ void LuaEnums::initOthersEnums(lua_State* L) {
 	registerEnum(L, SCREENSHOT_TYPE_TREASUREFOUND);
 	registerEnum(L, SCREENSHOT_TYPE_SKILLUP);
 	registerEnum(L, SCREENSHOT_TYPE_GIFTOFLIFE);
+
+	// Wykopots custom
+	registerEnum(L, NUMBER_BOOSTED_MONSTERS);
+	registerEnum(L, POSITIONCHEST_ACTION_ID);
 }
 
 void LuaEnums::initAccountEnums(lua_State* L) {

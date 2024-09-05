@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <events>
+	<!--
 	<event name="Otservbr example 1" startdate="11/03/2020" enddate="12/30/2023" script="example.lua" >
 		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="100" />
 		<description description="Otserver br example 1 description double exp and a half, double loot !chance!, regular spawn and double skill" />
@@ -7,9 +8,58 @@
 		<details displaypriority="6" isseasonal="0" specialevent="0" />
 	</event>
 	<event name="Otservbr example 2" startdate="2/2/2022" enddate="12/31/2023" script="" >
-		<ingame exprate="100" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="100" />
+		<ingame exprate="100" lootrate="100" spawnrate="100" skillrate="100" />
 		<description description="Otserver br example 2 description 50% less exp, triple loot !chance!, 50% faster spawn and regular skill" />
 		<colors colordark="#735D10" colorlight="#8B6D05" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event> 
+	-->
+	<event name="21. Double Exp and Double Skill Event!" startdate="9/29/2023" enddate="10/1/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="22. Double Exp and Double Skill Event!" startdate="10/6/2023" enddate="10/8/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="23. Double Exp and Double Skill Event!" startdate="10/13/2023" enddate="10/15/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="24. Double Exp and Double Skill Event!" startdate="10/20/2023" enddate="10/22/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="25. Double Exp and Double Skill Event!" startdate="10/27/2023" enddate="10/29/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="26. Double Exp and Double Skill Event!" startdate="11/3/2023" enddate="11/5/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="27. Double Exp and Double Skill Event!" startdate="11/10/2023" enddate="11/12/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="28. Double Exp and Double Skill Event!" startdate="11/17/2023" enddate="11/19/2023" script="" >
+		<ingame exprate="200" lootrate="100" spawnrate="100" skillrate="200" />
+		<description description="Double exp and double skill rate." />
+		<colors colordark="#235c00" colorlight="#2d7400" />
 		<details displaypriority="6" isseasonal="0" specialevent="0" />
 	</event>
 </events>
