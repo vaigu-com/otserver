@@ -1,0 +1,21 @@
+local spell = Spell("instant")
+
+function spell.onCastSpell(creature, variant)
+	return creature:conjureItem(0, 35901, 5, CONST_ME_MAGIC_BLUE)
+end
+
+spell:group("support")
+spell:id(192)
+spell:name("Conjure Diamond Arrow")
+spell:words("exevo gran con hur")
+spell:cooldown(2 * 1000)
+spell:groupCooldown(2 * 1000)
+spell:level(150)
+spell:mana(800)
+spell:soul(5)
+spell:isPremium(true)
+spell:isSelfTarget(true)
+spell:isAggressive(false)
+spell:vocation("paladin;true", "royal paladin;true")
+spell:needLearn(false)
+spell:register()
