@@ -2,8 +2,8 @@
 -- Note: If you want to use datapack folder canary (custom), put only "data-canary"
 -- If you want to use the global datapack folder, put "data-otservbr-global"
 -- If "useAnyDatapackFolder" is set to true then you can choose any datapack folder for your server
-useAnyDatapackFolder = false
-dataPackDirectory = "data-otservbr-global"
+useAnyDatapackFolder = true
+dataPackDirectory = "data-wykopots"
 -- Don't change this unless you know what you're doing
 coreDirectory = "data"
 
@@ -40,12 +40,12 @@ whiteSkullTime = 15 * 60 * 1000
 stairJumpExhaustion = 2 * 1000
 experienceByKillingPlayers = false
 expFromPlayersLevelRange = 75
-dayKillsToRedSkull = 3
-weekKillsToRedSkull = 5
-monthKillsToRedSkull = 10
-redSkullDuration = 1
+dayKillsToRedSkull = 6
+weekKillsToRedSkull = 10
+monthKillsToRedSkull = 20
+redSkullDuration = 2
 blackSkullDuration = 3
-orangeSkullDuration = 7
+orangeSkullDuration = 3
 
 cleanProtectionZones = false
 
@@ -65,7 +65,7 @@ serverName = "OTServBR-Global"
 serverMotd = "Welcome to the OTServBR-Global!"
 statusTimeout = 5 * 1000
 replaceKickOnLogin = true
-maxPacketsPerSecond = 25
+maxPacketsPerSecond = 35
 maxItem = 2000
 maxContainer = 100
 maxPlayersOnlinePerAccount = 1
@@ -110,7 +110,7 @@ preyFreeRerollTime = 20 * 60 * 60
 -- NOTE: taskHuntingLimitedTasksExhaust: Time to wait to select a new creature on the task hunting slot after claiming the reward.
 -- NOTE: taskHuntingRerollPricePerLevel: Price multiplier in gold coin for rerolling task hunting list.
 -- NOTE: taskHuntingFreeRerollTime: Time in seconds that players will have to wait to get a new free task hunting list.
-taskHuntingSystemEnabled = true
+taskHuntingSystemEnabled = false
 taskHuntingFreeThirdSlot = false
 taskHuntingLimitedTasksExhaust = 20 * 60 * 60
 taskHuntingRerollPricePerLevel = 200
@@ -207,7 +207,7 @@ pvpMaxLevelDifference = 0
 -- NOTE: set wheelSystemEnabled = false to disable the wheel of destiny
 -- NOTE: only the wheel points are modified, all other data is on the client executable and cannot be modified
 wheelSystemEnabled = true
-wheelPointsPerLevel = 1
+wheelPointsPerLevel = 3
 
 -- Gem Atelier
 wheelAtelierRotateLesserCost = 125000
@@ -225,7 +225,7 @@ familiarTime = 30
 
 partyAutoShareExperience = true
 -- partyShareRangeMultiplier: the range of the party share experience, default 3/2 (1.5)
-partyShareRangeMultiplier = 1.5
+partyShareRangeMultiplier = 2.0
 partyShareLootBoosts = false
 partyShareLootBoostsDimishingFactor = 0.7
 
@@ -263,7 +263,7 @@ autoLoot = false
 autoBank = false
 toggleGoldPouchAllowAnything = false
 toggleGoldPouchQuickLootOnly = false
-toggleServerIsRetroPVP = false
+toggleServerIsRetroPVP = true
 toggleTravelsFree = false
 buyAolCommandFee = 0
 buyBlessCommandFee = 0
@@ -307,9 +307,9 @@ maxAllowedOnADummy = 1
 -- NOTE: saveIntervalTime: time based on what was set in "saveIntervalType"
 toggleSaveAsync = false
 toggleSaveInterval = true
-saveIntervalType = "hour"
-toggleSaveIntervalCleanMap = true
-saveIntervalTime = 1
+saveIntervalType = "minute"
+toggleSaveIntervalCleanMap = false
+saveIntervalTime = 30
 
 -- Imbuement
 toggleImbuementShrineStorage = false
@@ -344,7 +344,7 @@ housePriceEachSQM = 1000
 houseRentPeriod = "never"
 houseRentRate = 1.0
 houseOwnedByAccount = false
-houseBuyLevel = 100
+houseBuyLevel = 20
 housePurchasedShowPrice = false
 houseLoseAfterInactivity = 30 -- days; 0 = never
 onlyInvitedCanMoveHouseItems = true
@@ -352,7 +352,7 @@ togglehouseTransferOnRestart = true
 
 -- Item Usage
 timeBetweenActions = 200
-timeBetweenExActions = 1000
+timeBetweenExActions = 950
 
 -- Push
 -- NOTE: pushDelay: interval for every push
@@ -366,10 +366,10 @@ pushWhenAttacking = false
 -- Note: Set mapName without .otbm at the end.
 -- Note: If toggleDownloadMap is set to false, the mapDownloadUrl will not be used.
 -- Note: If a map with the same name already exists in the world folder, the map will not be downloaded, even if toggleDownloadMap is set to true.
-toggleDownloadMap = true
-mapDownloadUrl = "https://github.com/opentibiabr/canary/releases/download/v3.1.0/otservbr.otbm"
-mapName = "otservbr"
-mapAuthor = "OpenTibiaBR"
+toggleDownloadMap = false
+mapName = "wykopots"
+mapDownloadUrl = "https://github.com/opentibiabr/canary/releases/download/v3.0.0/otservbr.otbm"
+mapAuthor = "GDPR"
 
 -- Party List limitations
 -- max distance in which players in party list are visible
@@ -393,7 +393,7 @@ maxMarketOffersAtATimePerPlayer = 100
 mysqlHost = "127.0.0.1"
 mysqlUser = "root"
 mysqlPass = "root"
-mysqlDatabase = "otservbr-global"
+mysqlDatabase = "wykopots"
 mysqlPort = 3306
 mysqlSock = ""
 passwordType = "sha1"
@@ -418,10 +418,10 @@ resetSessionsOnStartup = false
 -- NOTE: disableLegacyRaids: set to true to disable legacy XML raids
 allowChangeOutfit = true
 toggleMountInProtectionZone = false
-freePremium = false
+freePremium = true
 kickIdlePlayerAfterMinutes = 15
 maxMessageBuffer = 4
-emoteSpells = false
+emoteSpells = true
 allowWalkthrough = true
 coinPacketSize = 25
 coinImagesURL = "http://127.0.0.1/images/store/"
@@ -431,7 +431,7 @@ showScriptsLogInConsole = false
 minDelayBetweenConditions = 0
 -- configure maximum value of critical imbuement
 criticalChance = 10
-inventoryGlowOnFiveBless = false
+inventoryGlowOnFiveBless = true
 adventurersBlessingLevel = 21
 skulledDeathLoseStoreItem = false
 experienceDisplayRates = true
@@ -463,7 +463,7 @@ globalServerSaveNotifyDuration = 5
 globalServerSaveCleanMap = false
 globalServerSaveClose = false
 globalServerSaveShutdown = true
-globalServerSaveTime = "06:00:00"
+globalServerSaveTime = "04:59:59"
 
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
@@ -476,12 +476,12 @@ sortLootByChance = false
 -- NOTE: rateExp, rateSkill and rateMagic is used when 'rateUseStages = false' - or a fallback only
 -- To configure rates see file data/stages.lua
 -- lowLevelBonusExp works up to level 50
-rateUseStages = false
-lowLevelBonusExp = 50
+rateUseStages = true
+lowLevelBonusExp = 0
 rateExp = 1
-rateSkill = 1
+rateSkill = 7
 rateLoot = 1
-rateMagic = 1
+rateMagic = 4
 rateSpawn = 1
 
 -- Killing in the name of Quest
@@ -514,7 +514,7 @@ rateBossHealth = 1.0
 rateBossAttack = 1.0
 rateBossDefense = 1.0
 
-bossDefaultTimeToFightAgain = 20 * 60 * 60 -- 20 hours
+bossDefaultLockoutTime = 20 * 60 * 60 -- 20 hours
 bossDefaultTimeToDefeat = 20 * 60 -- 20 minutes
 
 -- Monsters
