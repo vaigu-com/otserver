@@ -99,18 +99,20 @@ local config = {
 		[{ "sail", "plynac" }] = {
 			text = "",
 			specialActionsOnSuccess = {
-				[function(context)
-					tryTeleportToOtherSide(context.player)
-				end] = {},
+				{
+					action = tryTeleportToOtherSide,
+				},
 			},
 			specialConditions = {
-				[SPECIAL_CONDITIONS_GENERAL.playerIsPzLocked] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
 					requiredOutcome = false,
-					textOnFailedCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
 				},
-				[SPECIAL_CONDITIONS_GENERAL.hasMoney] = {
+				{
+					conditions = SPECIAL_CONDITIONS_UNIVERSAL.hasMoney,
 					requiredOutcome = true,
-					textOnFailedCondition = "You dont have enough money.",
+					textNoRequiredCondition = "You dont have enough money.",
 					price = 100,
 				},
 			},
@@ -194,19 +196,23 @@ local config = {
 				text = "Here you go.",
 				requiredTopic = { min = 10, max = 10 },
 				specialConditions = {
-					[SPECIAL_CONDITIONS_GENERAL.hasMoney] = {
+					{
+						condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMoney,
 						requiredOutcome = true,
-						textOnFailedCondition = "You dont have enough money.",
+						textNoRequiredCondition = "You dont have enough money.",
 						price = 1000,
 					},
 				},
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.removeMoneyBank] = { price = 1000 },
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.removeMoneyBank,
+						price = 1000,
+					},
 				},
 			},
 		},
 	},
-	-- 38f
+	-- ToDo: change to reference
 	[2050] = {
 		[-1] = {
 			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
@@ -222,7 +228,7 @@ local config = {
 				expReward = 5000,
 				requiredItems = { { id = 901, count = 2 } },
 				requiredState = { min = 1, max = 1 },
-				textOnFailedCondition = "Bring me exactly two marlins",
+				textNoRequiredCondition = "Bring me exactly two marlins",
 			},
 		},
 		[1] = {

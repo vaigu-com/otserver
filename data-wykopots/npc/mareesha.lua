@@ -71,7 +71,8 @@ local config = {
 				nextState = { [Storage.PerIustitiaAdAstra.HelpedRubelstein] = 3 },
 				rewards = { { id = 3043, count = 10 } },
 				specialConditions = {
-					[PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS.saidRubelsteinsChecksum] = {
+					{
+						condition = PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS.saidRubelsteinsChecksum,
 						requiredOutcome = true,
 					},
 				},
@@ -116,7 +117,9 @@ local config = {
 					[Storage.AssassinsCreedSkurwoala.Mission03] = 1,
 				},
 				specialActionsOnSuccess = {
-					[ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount] = {},
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount,
+					},
 				},
 			},
 		},

@@ -54,13 +54,17 @@ local config = {
 			[{ "mission" }] = {
 				text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
 				specialActionsOnSuccess = {
-					[ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek] = {},
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+					},
 				},
 			},
 			[{ "Rat King", "Krol Szczurow", "King of Rats" }] = {
 				text = "Rat King! Psst, now say: {away to the Ratlands}.",
 				specialActionsOnSuccess = {
-					[ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek] = {},
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+					},
 				},
 			},
 			[{ "away to the Ratlands", "won do szczurolandii" }] = {
@@ -74,7 +78,9 @@ local config = {
 					[Storage.KrolSzczurowHub.Questline] = 0,
 				},
 				specialActionsOnSuccess = {
-					[ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.despawnGmTomek] = {},
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.despawnGmTomek,
+					},
 				},
 			},
 		},

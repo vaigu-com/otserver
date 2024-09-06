@@ -52,28 +52,27 @@ local config = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ ANY_MESSAGE }] = {
 			specialActionsOnSuccess = {
-				[GENERAL_SPECIAL_ACTIONS.doDamageNotLethal] = {
+				{
+					action = SPECIAL_ACTIONS_UNIVERSAL.dealDamageNonLethal,
 					damage = 500,
 					damageType = COMBAT_PHYSICALDAMAGE,
 					magicEffect = CONST_ME_POFF,
 				},
-				[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
-				[GENERAL_SPECIAL_ACTIONS.npcSay] = {
-					talkType = TALKTYPE_SAY,
-					text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived.",
-				},
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue },
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.npcSay, talkType = TALKTYPE_SAY, text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived." },
 			},
 		},
 		[GREET] = {
 			text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived.",
 			specialActionsOnSuccess = {
-				[GENERAL_SPECIAL_ACTIONS.doDamageNotLethal] = {
+				{
+					action = SPECIAL_ACTIONS_UNIVERSAL.dealDamageNonLethal,
 					damage = 500,
 					damageType = COMBAT_PHYSICALDAMAGE,
 					magicEffect = CONST_ME_POFF,
 				},
-				[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
-				[GENERAL_SPECIAL_ACTIONS.npcSay] = {
+				[SPECIAL_ACTIONS_UNIVERSAL.endDialogue] = {},
+				[SPECIAL_ACTIONS_UNIVERSAL.npcSay] = {
 					talkType = TALKTYPE_SAY,
 					text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived.",
 				},

@@ -100,9 +100,10 @@ local config = {
 			[{ "mission" }] = {
 				text = "Let's head to the private docks of the vampire lords. They receive a daily supply of wine for the nobility. We'll sneak in there unnoticed. No one will figure out few bottles or barrels missing.",
 				specialConditions = {
-					[TRZEJ_SRAMACI_I_SMOK_SPECIAL_CONDITIONS.playerIsDrunk] = {
+					{
+						condition = TRZEJ_SRAMACI_I_SMOK_SPECIAL_CONDITIONS.playerIsDrunk,
 						requiredOutcome = true,
-						textOnFailedCondition = "I have a great idea, but I won't tell you while you are sober. I'm already tipsy, now it's your turn.",
+						textNoRequiredCondition = "I have a great idea, but I won't tell you while you are sober. I'm already tipsy, now it's your turn.",
 					},
 				},
 				nextState = {
@@ -192,7 +193,9 @@ local config = {
 				removeRequiredItems = false,
 				textNoRequiredItems = "Unfortunately, I don't know the exact location of the runes.",
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+					},
 				},
 			},
 		},

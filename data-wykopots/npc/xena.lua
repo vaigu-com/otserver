@@ -75,7 +75,9 @@ local config = {
 					BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS["GRAZYNA_DOCUMENT"],
 				},
 				specialActionsOnSuccess = {
-					[BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.feministCake] = {},
+					{
+						action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.feministCake,
+					},
 				},
 			},
 		},

@@ -133,9 +133,10 @@ local config = {
 			[{ "mission", "misja", "zadanie", "marchew", "marchewka", "carrot" }] = {
 				text = "Arrgh, that's gross! I definitely prefer hamburgers, but well, take this lump of chocolate dough. I tried to make a chocolate cake, but something went wrong. Also take my old knight legs, I don't fit in them anymore anyway.",
 				specialConditions = {
-					[SPECIAL_CONDITIONS_GENERAL.playerHasLevel] = {
+					{
+						condition = SPECIAL_CONDITIONS_UNIVERSAL.playerHasLevel,
 						requiredOutcome = true,
-						textOnFailedCondition = "Come back when you reach 20 level!",
+						textNoRequiredCondition = "Come back when you reach 20 level!",
 						minLevel = 20,
 					},
 				},

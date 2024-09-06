@@ -110,7 +110,7 @@ DailyReward = {
 			freeAccount = 5,
 			premiumAccount = 10,
 		},
-		// Wykopots custom
+		-- Wykopots custom
 		[2] = {
 			type = DAILY_REWARD_TYPE_ITEM,
 			systemType = DAILY_REWARD_SYSTEM_TYPE_ONE,
@@ -137,7 +137,7 @@ DailyReward = {
 			freeAccount = 1,
 			premiumAccount = 2,
 		},
-		// Wykopots custom
+		-- Wykopots custom
 		[6] = {
 			type = DAILY_REWARD_TYPE_ITEM,
 			systemType = DAILY_REWARD_SYSTEM_TYPE_ONE,

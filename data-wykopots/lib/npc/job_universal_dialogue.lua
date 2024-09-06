@@ -1,8 +1,3 @@
-local baseBoltsPerOrb = 1
-local additionalBoltsChance = 0.1
-local additionalBoltsNumber = 6
-local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
-
 local topicsWildcard = { sayingWildcardNumber = 1, confirmingNwildcards = 2 }
 
 NPC_UNIVERSAL_DIALOGUES = {
@@ -16,20 +11,7 @@ NPC_UNIVERSAL_DIALOGUES = {
 			requiredTopic = { min = 1, max = 1 },
 			requiredItems = { { id = 5944, take = TAKE_ALL_AVAILABLE } },
 			specialActionsOnSuccess = {
-				[function(context)
-					local player = context.player
-					local count = player:CountItem(5944, 0)
-					local totalBoltsGranted = (count - count % additionalBoltsNumber) * averageAdditionalBoltsMultiplier
-					local uncertainBolts = count - totalBoltsGranted
-					for _ = 1, uncertainBolts do
-						if math.random(1, 100) < additionalBoltsChance * 100 then
-							totalBoltsGranted = totalBoltsGranted + additionalBoltsNumber
-						else
-							totalBoltsGranted = totalBoltsGranted + baseBoltsPerOrb
-						end
-					end
-					player:AddCustomItem({ id = 6528, count = totalBoltsGranted })
-				end] = {},
+				{ action = SPECIAL_ACTIONS_SOULORB.soulOrbToInfernalBolt },
 			},
 			textNoRequiredItems = "I can see you don't have them! I can only craft infernal bolts from {soul orb}.",
 		},
@@ -46,14 +28,13 @@ NPC_UNIVERSAL_DIALOGUES = {
 				max = topicsWildcard.sayingWildcardNumber,
 			},
 			specialActionsOnSuccess = {
-				[function(context)
-					context.player:SetCustomConversationData(tonumber(context.msg))
-				end] = {},
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.setCustomConversationDataAsNumber },
 			},
 			specialConditions = {
-				[SPECIAL_CONDITIONS_GENERAL.saidPositiveInteger] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.saidPositiveInteger,
 					requiredOutcome = true,
-					textOnFailedCondition = "You need to tell me the number of wildcards you'd like to buy.",
+					textNoRequiredCondition = "You need to tell me the number of wildcards you'd like to buy.",
 				},
 			},
 			nextTopic = topicsWildcard.confirmingNwildcards,
@@ -66,29 +47,15 @@ NPC_UNIVERSAL_DIALOGUES = {
 				max = topicsWildcard.confirmingNwildcards,
 			},
 			specialConditions = {
-				[function(context)
-					local player = context.player
-					local orderedCards = context.player:GetCustomConversationData()
-					local requiredMoney = player:GetWildcardPrice() * orderedCards
-					local playerMoney = player:GetTotalMoney()
-					return playerMoney >= requiredMoney
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_WILDCARD.hasMoneyForWildcards,
 					requiredOutcome = true,
-					textOnFailedCondition = "You dont have enough money.",
+					textNoRequiredCondition = "You dont have enough money.",
 				},
 			},
 			specialActionsOnSuccess = {
-				[function(context)
-					local player = context.player
-					local orderedCards = context.player:GetCustomConversationData()
-					player:addPreyCards(orderedCards)
-				end] = {},
-				[function(context)
-					local player = context.player
-					local orderedCards = context.player:GetCustomConversationData()
-					local requiredMoney = player:GetWildcardPrice() * orderedCards
-					player:removeMoney(requiredMoney)
-				end] = {},
+				{ action = SPECIAL_ACTIONS_WILDCARD.addWilcard },
+				{ action = SPECIAL_ACTIONS_WILDCARD.removeMoneyPreycards },
 			},
 		},
 	},
@@ -137,11 +104,7 @@ NPC_UNIVERSAL_DIALOGUES = {
 			text = "Here you go.",
 			requiredItems = { { id = 3061, min = 1 } },
 			specialActionsOnSuccess = {
-				[function(context)
-					local player = context.player
-					local crystalCount = player:CountItem(3051, 0)
-					player:AddCustomItem({ id = 3052, count = crystalCount })
-				end] = {},
+				{ action = SPECIAL_ACTIONS_JEWELER.exchangeLifeCrystal },
 			},
 			textNoRequiredItems = "Im sorry, but you dont have such crystal. Only life crystal counts.",
 		},
@@ -149,32 +112,37 @@ NPC_UNIVERSAL_DIALOGUES = {
 	[JOB_TASKS] = {
 		[{ "zadanie", "zadania", "nagroda", "wykonane", "reward" }] = {
 			specialConditions = {
-				[TASK_SPECIAL_CONDITIONS.hasDoneAnyTask] = {
+				{
+					condition = SPECIAL_CONDITIONS_TASKS.hasDoneAnyTask,
 					requiredOutcome = true,
-					textOnFailedCondition = "Finish one of {tasks}, then we can talk about reward.",
+					textNoRequiredCondition = "Finish one of {tasks}, then we can talk about reward.",
 				},
 			},
 			specialActionsOnSuccess = {
-				[TASK_SPECIAL_ACTIONS.grantTaskRewards] = {},
+				{
+					action = SPECIAL_ACTIONS_TASKS.grantTaskRewards,
+				},
 			},
 		},
 		[{ "tasks", "taski", "biore", "task", "taskow" }] = {
 			text = "",
-			specialActionsOnSuccess = { [OpenTaskWindow] = {} },
 			specialConditions = {
-				[TASK_SPECIAL_CONDITIONS.canTakeAnotherTask] = {
+				{
+					condition = SPECIAL_CONDITIONS_TASKS.canTakeAnotherTask,
 					requiredOutcome = true,
-					textOnFailedCondition = "YOU_HAVE_MAX_ONGOING_TASKS",
+					textNoRequiredCondition = "YOU_HAVE_MAX_ONGOING_TASKS",
 				},
 			},
+			specialActionsOnSuccess = { { action = SPECIAL_ACTIONS_TASKS.openTaskWindow } },
 		},
 		[{ "zakoncz", "koniec", "cancel", "anuluj", "Anuluj" }] = {
 			text = "",
-			specialActionsOnSuccess = { [OpenTaskCancelWindow] = {} },
+			specialActionsOnSuccess = { { action = SPECIAL_ACTIONS_TASKS.openTaskCancelWindow } },
 			specialConditions = {
-				[TASK_SPECIAL_CONDITIONS.hasAnyOngoingTask] = {
+				{
+					condition = SPECIAL_CONDITIONS_TASKS.hasAnyOngoingTask,
 					requiredOutcome = true,
-					textOnFailedCondition = "You don't have any active tasks. Ask me for {tasks} to sign up for one.",
+					textNoRequiredCondition = "You don't have any active tasks. Ask me for {tasks} to sign up for one.",
 				},
 			},
 		},
@@ -187,14 +155,10 @@ NPC_UNIVERSAL_DIALOGUES = {
 		[{ ANY_MESSAGE }] = {
 			text = "YOU_SELECTED_IMBUING_NAME",
 			specialConditions = {
-				[function(context)
-					local bundleData = GetImbuingBundleByName(context.msg)
-					if type(bundleData) == "table" then
-						context.player:SetCustomConversationData(bundleData)
-						return true
-					end
-					return false
-				end] = { requiredOutcome = true },
+				{
+					condition = SPECIAL_CONDITIONS_IMBUING.saidImbuingName,
+					requiredOutcome = true,
+				},
 			},
 			requiredTopic = {
 				min = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingName,
@@ -205,15 +169,10 @@ NPC_UNIVERSAL_DIALOGUES = {
 		[{ ANY_MESSAGE }] = {
 			text = "YOU_SELECTED_IMBUING_LEVEL",
 			specialConditions = {
-				[function(context)
-					local bundleData = context.player:GetCustomConversationData()
-					local bundleLevelData = bundleData[context.msg]
-					if type(bundleLevelData) == "table" then
-						context.player:SetCustomConversationData(bundleLevelData)
-						return true
-					end
-					return false
-				end] = { requiredOutcome = true },
+				{
+					condition = SPECIAL_CONDITIONS_IMBUING.saidImbuingLevels,
+					requiredOutcome = true,
+				},
 			},
 			requiredTopic = {
 				min = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingLevel,
@@ -229,69 +188,48 @@ NPC_UNIVERSAL_DIALOGUES = {
 				max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmBuyingImbuing,
 			},
 			specialConditions = {
-				[function(context)
-					local bundleData = context.player:GetCustomConversationData()
-					local level = bundleData.levelName
-					if level ~= "powerful" then
-						return true
-					end
-					return context.player:getStorageValue(Storage.powerfulImbue) >= 1
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_IMBUING.canPurchaseThisImbuingLevel,
 					requiredOutcome = true,
-					textOnFailedCondition = "You don't yet have the {ability} to buy this level of bundle yet.",
+					textNoRequiredCondition = "You don't yet have the {ability} to buy this level of bundle yet.",
 				},
-				[function(context)
-					local bundleData = context.player:GetCustomConversationData()
-					local requiredTaskPoints = bundleData.taskPointsCost
-					local playerTaskPoints = context.player:getStorageValue(Storage.taskPoints)
-					local playerHasPoints = playerTaskPoints >= requiredTaskPoints
-					if not playerHasPoints then
-						context.player:SetCustomConversationData(requiredTaskPoints)
-					end
-					return playerHasPoints
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_IMBUING.hasEnoughTaskPoints,
 					requiredOutcome = true,
-					textOnFailedCondition = "YOU_DONT_HAVE_ENOUGH_TASK_POINTS",
+					textNoRequiredCondition = "YOU_DONT_HAVE_ENOUGH_TASK_POINTS",
 				},
-				[function(context)
-					local bundleData = context.player:GetCustomConversationData()
-					local requiredMoney = bundleData.moneyCost
-					local playerMoney = context.player:GetTotalMoney()
-					return playerMoney >= requiredMoney
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_IMBUING.hasEnoughMoney,
 					requiredOutcome = true,
-					textOnFailedCondition = "You dont have enough money.",
+					textNoRequiredCondition = "You dont have enough money.",
 				},
-				[function(context)
-					local bundleData = context.player:GetCustomConversationData()
-					return context.player:CanAddItems(bundleData.items)
-				end] = { requiredOutcome = true, NOT_ENOUGH_CAP_OR_SLOTS },
+				{
+					condition = SPECIAL_CONDITIONS_IMBUING.hasEnoughCapSlots,
+					requiredOutcome = true,
+					NOT_ENOUGH_CAP_OR_SLOTS,
+				},
 			},
 			specialActionsOnSuccess = {
-				[function(context)
-					local bundleData = context.player:GetCustomConversationData()
-
-					local player = context.player
-					player:AddItems(bundleData.items)
-					player:removeMoney(bundleData.moneyPrice)
-					player:IncrementStorage(Storage.taskPoints, -bundleData.taskPointsCost)
-				end] = {},
+				{ action = SPECIAL_ACTIONS_IMBUING.chargeTaskPoints },
 			},
 		},
 	},
 	[JOB_DAILYTASK] = {
 		[{ "anuluj", "zrezygnowac", "cancel" }] = {
-			specialActionsOnSuccess = { [OpenDailyTaskCancelWindow] = {} },
+			specialActionsOnSuccess = { { SPECIAL_ACTIONS_DAILY_TASK.openDailyTaskCancelWindow } },
 			specialConditions = {
-				[DAILY_TASK_SPECIAL_CONDITIONS.hasAnyOngoingDailyTask] = {
+				{
+					condition = SPECIAL_CONDITIONS_DAILY_TASK.hasAnyOngoingDailyTask,
 					requiredOutcome = true,
-					textOnFailedCondition = "You don't have any active daily tasks. You can sign up for daily task on the daily task board. Please report me if you finish one of them.",
+					textNoRequiredCondition = "You don't have any active daily tasks. You can sign up for daily task on the daily task board. Please report me if you finish one of them.",
 				},
 			},
 		},
 		[{ "ogloszenie", "task", "nagroda", "reward" }] = {
 			specialActionsOnSuccess = {
-				[DAILY_TASK_SPECIAL_ACTIONS.grantDailyTaskRewards] = {},
+				{
+					action = SPECIAL_ACTIONS_DAILY_TASK.grantDailyTaskRewards,
+				},
 			},
 		},
 	},

@@ -1,18 +1,33 @@
 return {
-	["WELCOME_TO_SERVER"] = function ()
-		return T("Welcome to :serverName:!",{serverName = configManager.getString(configKeys.SERVER_NAME)})
+	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
+		return T("You or a member in your team still has a cooldown for the :encounterName: encounter.", { encounterName = context.encounterName })
 	end,
-	["YOUR_LAST_VISIT"] = function (context)
-		return T("Your last visit: :date:", {date = os.date("%d-%m-%Y %X", context.player:getLastLoginSaved())})
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_COOLDOWN] = function(context)
+		return T("You still have to wait :timeLeftString: to enter the :encounterName: encounter.", { encounterName = context.encounterName, timeLeftString = context.timeLeftString })
 	end,
-	["YOU_CHANGED_YOUR_LOOTRATE"] = function(context)
-		return T("You changed your loot rate to x:rate:", { rate = context.rate })
+	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
+		return T("You or a member in your team does not have the required access to enter :encounterName: encounter.", { encounterName = context.encounterName })
 	end,
-	["AVAILABLE_COMMANDS"] = function (context)
-		return T("Available commands: !serverinfo - !language - !faq - !pvpinfo - !preyinfo - !online - !emote - !uptime - !outfit - !spells - !kills - !bless - !bosses - !buyhouse - !sellhouse")
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function()
+		return T("You dont have access to this boss.")
 	end,
-	["YOU_CAN_REPORT_BUGS"] = function (context)
-		return T("You can report ingame bugs using ctrl+z.")
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_TO_WAIT] = function(context)
+		return T("You or a member in your team does not have the required access to enter :encounterName: encounter.", { encounterName = context.encounterName })
+	end,
+	[ENCOUNTER_ERROR_CODES.ONLY_PLAYERS] = function()
+		return "Only players can participate in the fight!"
+	end,
+	[ENCOUNTER_ERROR_CODES.SOMEONE_INSIDE_ALREADY] = function(context)
+		return T("There's someone fighting :encounterName: already.", { encounterName = context.encounterName })
+	end,
+	[ENCOUNTER_ERROR_CODES.STAND_ON_ENTRANCE] = function()
+		return "You have to be standing on the entrance array to start the encounter."
+	end,
+	[ENCOUNTER_ERROR_CODES.NO_LEVEL] = function(context)
+		return T("All players need to be at least level :minLevel:.", { minLevel = context.requiredLevel })
+	end,
+	[ENCOUNTER_ERROR_CODES.ENCOUNTER_DISABLED] = function()
+		return "This encounter is temporarily disabled."
 	end,
 	["ModalWindowOk"] = "Ok",
 	["ExerciseWeaponBoxTitle"] = "Reward",

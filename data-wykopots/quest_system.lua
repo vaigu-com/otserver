@@ -1,5 +1,17 @@
+--[[
+-- ToDo: allow keyword to be function, and evaluate using context
+[{ ANY_MESSAGE }] = {
+				text = "Here, take your money.",
+}
+[{ func }] = {
+				text = "Here, take your money.",
+}
+]]
+--
 -- quest system
 PROMOTION_PRICE = 15000
+PROMOTION_LEVEL = 20
+ALL_BLESSINGS_COUNT = 5
 ALL_CONDITIONS = {
 	CONDITION_POISON,
 	CONDITION_FIRE,
@@ -33,11 +45,15 @@ WALKAWAY = "LOCALIZER_WALKAWAY"
 
 QUEST_NOT_STARTED = -1
 
-CAN_RESOLVE = "CAN_RESOLVE"
-SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
+CONDITION_STATUS = {
+	CONDITION_PASSED = "CONDITION_PASSED",
+	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
+	SKIP_DIALOGUE = "SKIP_DIALOGUE",
+}
+
 DISCARD_DIALOGUE = "DISCARD_DIALOGUE"
-CONVERSATION_RESOLVED = "CONVERSATION_RESOLVED"
-CONVERSATION_UNRESOLVED = "CONVERSATION_UNRESOLVED"
+SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
+FAIL_RESOLVE = "FAIL_RESOLVE"
 
 local defaultMaxState = 99999
 
@@ -47,139 +63,8 @@ local specialMessageTypeToMessage = {
 	[MESSAGE_FAREWELL] = "LOCALIZER_FAREWELL",
 	[MESSAGE_WALKAWAY] = "LOCALIZER_WALKAWAY",
 }
-GENERAL_SPECIAL_ACTIONS = {
-	clearConditions = function(context)
-		local player = context.player
-		local conditions = context.conditions or ALL_CONDITIONS
-		for _, condition in pairs(conditions) do
-			player:removeCondition(condition)
-		end
-	end,
-	endDialogue = function(context)
-		local player = context.player
-		local npcHandler = context.npcHandler
-		local npc = context.npc
-		if not (player and npcHandler) then
-			return
-		end
-		addEvent(function()
-			npcHandler:removeInteraction(npc, player)
-		end, 10)
-	end,
-	doDamageNotLethal = function(context)
-		local target = context.target or context.monster or context.player
-		local minDmg = context.minDMG or context.dmg or context.damage
-		local maxDmg = context.maxDMG or context.dmg or context.damage
-		if maxDmg >= target:getHealth() then
-			return
-		end
-		local damageType = context.damageType or COMBAT_ENERGYDAMAGE
-		local magicEffect = context.magicEffect or context.me or CONST_ME_NONE
-		doTargetCombatHealth(0, target, damageType, -minDmg, -maxDmg, magicEffect)
-	end,
-	npcSay = function(context)
-		local talkType = context.talkType or context.npc
-		local player = context.player
-		local aid = context.questlineAid
-		local text = context.text
-		local npc = context.npc
-		local npcHandler = context.npcHandler
 
-		local translatedMessage = player:Localizer(aid):Get(text)
-
-		addEvent(function()
-			npcHandler:say(translatedMessage, npc, player, nil, talkType)
-		end, 50)
-	end,
-	teleportToTemple = function(context)
-		local player = context.player
-		player:teleportTo(player:getTown():getTemplePosition(), true)
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-	end,
-	createMonstersAtPlayer = function(context)
-		local player = context.player
-		local monsters = context.monsters
-		for _, monsterconfig in pairs(monsters) do
-			SpawnMonstersAtPlayer(monsterconfig.name, player, monsterconfig.count or 1)
-		end
-	end,
-	teleportPlayer = function(context)
-		local player = context.player
-		local toPos = context.pos or context.toPos or context.topos or context.destination
-		player:teleportTo(toPos)
-	end,
-	grantBless = function(context)
-		local player = context.player
-		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-		local min, max = context.min, context.max
-		for i = min, max do
-			player:addBlessing(i, 1)
-		end
-	end,
-	removeMoneyBank = function(context)
-		local player = context.player
-		local price = context.price
-		player:removeMoneyBank(price)
-	end,
-	despawnEscortee = function(context)
-		local escorteeName = context.escorteeName
-		local despawnAfterSeconds = context.despawnAfterSeconds
-
-		addEvent(function()
-			local creature = Creature(EscortRegistry():GetState(escorteeName).escortee)
-			if not creature then
-				return
-			end
-			creature:remove()
-		end, despawnAfterSeconds * 1000)
-	end,
-}
-
-SPECIAL_CONDITIONS_GENERAL = {
-	playerHasLevel = function(context)
-		local player = context.player
-		local playerLevel = player:getLevel()
-		local minLevel = context.minLevel or 0
-		local maxLevel = context.maxLevel or 9999
-		return playerLevel >= minLevel and playerLevel <= maxLevel
-	end,
-	canBuyBless = function(context)
-		local player = context.player
-		local price = getBlessingsCost(player:getlevel()) * 5
-		context.price = price
-		if SPECIAL_CONDITIONS_GENERAL.hasMoney(context) then
-			return true
-		end
-		return false
-	end,
-	hasMoney = function(context)
-		local player = context.player
-		local itemPrice = context.price
-		local balance = Bank.balance(player)
-		local playerMoney = player:getMoney()
-		return (balance + playerMoney) > itemPrice, "You dont have enough money."
-	end,
-	playerIsPzLocked = function(context)
-		local player = context.player
-		return player:isPzLocked()
-	end,
-	SAID_NUMBER = function(context)
-		local msg = context.msg
-		return tonumber(msg:lower()) ~= nil
-	end,
-	saidPositiveInteger = function(context)
-		local msg = context.msg
-		local number = tonumber(msg:lower())
-		if not number then
-			return false
-		end
-		if number % 1 ~= 0 then
-			return false
-		end
-		return number > 0
-	end,
-}
-
+-- ToDo: storage keys will be converted to kv, therefore this function will no longer be needed
 local FIRST_AVAILABLE_STORAGE = 8100
 NEXT_STORAGE = NEXT_STORAGE or FIRST_AVAILABLE_STORAGE
 function NextStorage()
@@ -188,97 +73,11 @@ function NextStorage()
 end
 
 function GrantPlayerExpByAid(player, actionId)
-	local expValue = CustomItemRegistry():getState(actionId).expReward
+	local expValue = CustomItemRegistry():GetState(actionId).expReward
 	if not expValue then
 		return
 	end
 	AddExperienceWithAnnouncement(player, expValue)
-end
-
-function TryExecuteSpecialActionsOnFail(actionId, player, rewardChest)
-	local actions = CustomItemRegistry():getState(actionId).specialActionsOnFail
-	if not actions then
-		return
-	end
-
-	for action, context in pairs(actions) do
-		context.player = player
-		context.item = rewardChest
-		action(context)
-	end
-end
-
-function TryExecuteSpecialActionsSuccess(actionId, player, rewardChest)
-	local actions = CustomItemRegistry():getState(actionId).specialActionsOnSuccess
-	if not actions then
-		return
-	end
-
-	for action, context in pairs(actions) do
-		context.player = player
-		context.item = rewardChest
-		action(context)
-	end
-end
-
-function SendChestIsEmpty(player, itemId)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The " .. ItemType(itemId):getName() .. " is empty.")
-end
-
-local function playerCanOpenChest(player, actionId)
-	local requiredState = CustomItemRegistry():getState(actionId).requiredState
-	if requiredState and (not player:HasCorrectStorageValues(requiredState)) then
-		return false
-	end
-	if player:getStorageValue(actionId) ~= -1 then
-		return false
-	end
-	return true
-end
-
-local function playerIsUsingRewardChest(itemId, actionId)
-	local requiredId = CustomItemRegistry():getState(actionId).id
-	if requiredId then
-		return itemId == requiredId
-	end
-	return true
-end
-
-function ChestQuestTryAddItems(player, rewardChest)
-	local actionId = rewardChest:getActionId()
-	if not actionId then
-		return false
-	end
-
-	local itemId = rewardChest:getId()
-	if not playerIsUsingRewardChest(itemId, actionId) then
-		return false
-	end
-
-	local rewards = CustomItemRegistry():getState(actionId).rewards
-	if not playerCanOpenChest(player, actionId) then
-		if rewardChest:isContainer() then
-			SendChestIsEmpty(player, itemId)
-		end
-		TryExecuteSpecialActionsOnFail(actionId, player, rewardChest)
-		return false
-	end
-
-	if rewards then
-		if not player:TryAddItems(rewards) then
-			return
-		end
-	end
-
-	TryExecuteSpecialActionsSuccess(actionId, player, rewardChest)
-	GrantPlayerExpByAid(player, actionId)
-	player:setStorageValue(actionId, 1)
-	local updateStorages = CustomItemRegistry():getState(actionId).nextState
-	if updateStorages then
-		player:UpdateStorages(updateStorages)
-	end
-
-	return true
 end
 
 function string:contains(patterns)
@@ -433,11 +232,10 @@ end
 ---@field specialMessageType string
 ---@field questlineAid number
 ---@field dialogues table
----@field dialogue table
+---@field requirements table
 ---@alias Player table
 ConversationContext = {}
 ConversationContext.__index = ConversationContext
-
 setmetatable(ConversationContext, {
 	__call = function(class, player, msg, npcConversationData, npcHandler, npc, specialMessageType)
 		local instance = setmetatable({}, class)
@@ -451,19 +249,112 @@ setmetatable(ConversationContext, {
 		instance.npcHandler = npcHandler
 		instance.npc = npc
 		instance.specialMessageType = specialMessageType
-		instance.dialogue = nil
-		instance.resolvedStatus = CONVERSATION_UNRESOLVED
+		instance.requirements = nil
+		instance.resolvedStatus = nil
 		return instance
 	end,
 })
 
-function ConversationContext:ParseTranslatedText(dialogue)
-	local text = Evaluate(dialogue.text, self)
-	if not text then
-		return nil
+local requirementsWhitelist = {
+	requiredTopic = true,
+	requiredItems = true,
+	requiredState = true,
+	requiredGlobalState = true,
+	requiredMoney = true,
+	specialConditions = true,
+}
+local actionsWhitelist = {
+	specialActionsOnSuccess = true,
+	removeRequiredItems = true,
+	rewards = true,
+	spawnMonstersOnSuccess = true,
+	outfitRewards = true,
+	mountRewards = true,
+	expReward = true,
+	nextState = true,
+	nextGlobalState = true,
+	nextTopic = true,
+	setLastMessageData = true,
+	text = true,
+}
+
+function ResolutionContext:ParseRequirementsActionsOther(table)
+	self.otherFields = {}
+	self.requirements = {}
+	self.actionsOnSuccess = {}
+	for key, value in pairs(table) do
+		if requirementsWhitelist[key] then
+			self.requirements = value
+		elseif actionsWhitelist[key] then
+			self.actionsOnSuccess = value
+		else
+			self[key] = value
+		end
 	end
-	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(text)
-	return translatedMessage
+end
+
+---@class ResolutionContext
+---@field requirements table
+---@field actionsOnSuccess table
+---@field player Player
+---@field cid integer?
+---@field npc Npc?
+---@field specialMessageType string?
+---@field questlineAid integer
+---@field npcHandler NpcHandler?
+---@field topic integer?
+ResolutionContext = {}
+ResolutionContext.__index = ResolutionContext
+function ResolutionContext.FromConversationContext(context, data)
+	local newObj = {}
+	for key, value in pairs(context) do
+		newObj[key] = value
+	end
+	for key, value in pairs(data) do
+		newObj[key] = value
+	end
+	newObj:ParseRequirementsActionsCustoms()
+	newObj.__index = newObj
+	setmetatable(newObj, ResolutionContext)
+	return newObj
+end
+
+function ResolutionContext:New(table)
+	local newObj = {}
+	self.requirements = {}
+	self.actionsOnSuccess = {}
+	for key, value in pairs(table) do
+		if requirementsWhitelist[key] then
+			self.requirements[key] = value
+		elseif actionsWhitelist[key] then
+			self.actionsOnSuccess[key] = value
+		else
+			self[key] = value
+		end
+	end
+	newObj.__index = ResolutionContext
+	setmetatable(newObj, ResolutionContext)
+	return newObj
+end
+
+function ResolutionContext.FromEncounter(encounterData, player)
+	local newObj = {}
+	newObj:ParseRequirementsActionsCustoms()
+	newObj.questlineAid = encounterData.questlineAid
+	newObj.player = player
+	newObj.__index = ResolutionContext
+	setmetatable(newObj, ResolutionContext)
+	return newObj
+end
+
+function ResolutionContext.FromCustomItemState(state, player)
+	local newObj = {}
+	newObj:ParseRequirementsActionsCustoms()
+	newObj.questlineAid = state.questlineAid
+	newObj.player = player
+	newObj.__index = ResolutionContext
+	setmetatable(newObj, ResolutionContext)
+	return newObj
 end
 
 function ConversationContext:SendIncomprehensibleError()
@@ -554,7 +445,7 @@ function ConversationContext:SetDefaultGreetFarewellWalkaway()
 	end
 	local translatedMessage = self.player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(self.msg)
 	self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
-	self.resolvedStatus = CONVERSATION_RESOLVED
+	self.resolvedStatus = SUCCESS_RESOLVE
 end
 
 local conversationResolvers = {
@@ -600,13 +491,13 @@ function ConversationContext:ResolveQuestState()
 		return
 	end
 
-	for keyword, dialogue in pairs(self.keywordToDialogue) do
+	for keyword, data in pairs(self.keywordToDialogue) do
 		self.keyword = keyword
 		if not self:PlayerSaidRequiredWord() then
 			goto continue
 		end
-		self.dialogue = dialogue
-		self:ResolveQuestStateDialogue()
+		local resolutionContext = ResolutionContext.FromConversationContext(self, data)
+		self.resolvedStatus = resolutionContext:Resolve()
 		if self:IsResolved() then
 			return
 		end
@@ -615,7 +506,7 @@ function ConversationContext:ResolveQuestState()
 end
 
 function ConversationContext:IsResolved()
-	return self.resolvedStatus == CONVERSATION_RESOLVED
+	return self.resolvedStatus == SUCCESS_RESOLVE or self.resolvedStatus == FAIL_RESOLVE
 end
 
 function ParseTopicMinMax(config)
@@ -633,288 +524,225 @@ function ParseTopicMinMax(config)
 	return min, max
 end
 
+-- ToDo: if text on fail: CONDITION_NOT_PASSED
+--		else: SKIP_DIALOGUE
 -- Dialogue requirements
-function ConversationContext:CheckTopic()
-	local dialogue = self.dialogue
-	if not dialogue.requiredTopic then
-		return CAN_RESOLVE
+function ResolutionContext:CheckTopic()
+	local requirements = self.requirements
+	if not requirements.requiredTopic then
+		return CONDITION_STATUS.CONDITION_PASSED
 	end
 
 	local topic = self.npcHandler.topic[self.cid]
 
-	local min, max = ParseTopicMinMax(dialogue)
+	local min, max = ParseTopicMinMax(requirements)
 	if topic < min or topic > max then
-		return DISCARD_DIALOGUE
+		return CONDITION_STATUS.SKIP_DIALOGUE
 	end
-	return CAN_RESOLVE
+	return CONDITION_STATUS.CONDITION_PASSED
 end
 
-function ConversationContext:CheckRequiredItems()
-	local dialogue = self.dialogue
-	if not dialogue.requiredItems then
-		return CAN_RESOLVE
+function ResolutionContext:CheckRequiredItems()
+	local requirements = self.requirements
+	if not requirements.requiredItems then
+		return CONDITION_STATUS.CONDITION_PASSED
 	end
-	if not self.player:HasItems(dialogue.requiredItems) then
-		if dialogue.textNoRequiredItems then
-			return dialogue.textNoRequiredItems
-		end
-		return DISCARD_DIALOGUE
+	if not self.player:HasItems(requirements.requiredItems) then
+		self.errorMessage = requirements.textNoRequiredItems
+		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
-	return CAN_RESOLVE
+	return CONDITION_STATUS.CONDITION_PASSED
 end
 
-function ConversationContext:CheckRequiredState()
-	local dialogue = self.dialogue
-	if not dialogue.requiredState then
-		return CAN_RESOLVE
+function ResolutionContext:CheckRequiredState()
+	local requirements = self.requirements
+	if not requirements.requiredState then
+		return CONDITION_STATUS.CONDITION_PASSED
 	end
-	if not self.player:HasCorrectStorageValues(dialogue.requiredState) then
-		if dialogue.textNoRequiredState then
-			return dialogue.textNoRequiredState
-		end
-		return DISCARD_DIALOGUE
+	if not self.player:HasCorrectStorageValues(requirements.requiredState) then
+		self.errorMessage = requirements.textNoRequiredState
+		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
-	return CAN_RESOLVE
+	return CONDITION_STATUS.CONDITION_PASSED
 end
 
-function ConversationContext:CheckGlobalState()
-	local dialogue = self.dialogue
-	if not dialogue.requiredGlobalState then
-		return CAN_RESOLVE
+function ResolutionContext:CheckGlobalState()
+	local requirements = self.requirements
+	if not requirements.requiredGlobalState then
+		return CONDITION_STATUS.CONDITION_PASSED
 	end
-	for key, value in pairs(dialogue.requiredGlobalState) do
-		if Game.getStorageValue(key) == value then
-			goto continue
+	for key, value in pairs(requirements.requiredGlobalState) do
+		if Game.getStorageValue(key) ~= value then
+			self.errorMessage = requirements.textNoRequiredGlobalState
+			return CONDITION_STATUS.CONDITION_NOT_PASSED
 		end
-		local errorMessage = dialogue.textNoRequiredGlobalState or DISCARD_DIALOGUE
-		if errorMessage then
-			return DISCARD_DIALOGUE
-		end
-		::continue::
 	end
-	return CAN_RESOLVE
+	return CONDITION_STATUS.CONDITION_PASSED
 end
 
-function ConversationContext:CheckCanAddRewards()
-	local dialogue = self.dialogue
-	if not dialogue.rewards then
-		return CAN_RESOLVE
+function ResolutionContext:CheckCanAddRewards()
+	local actions = self.actionsOnSuccess
+	if not actions.rewards then
+		return CONDITION_STATUS.CONDITION_PASSED
 	end
-	local result, errorMessage = self.player:CanAddItems(dialogue.rewards, self.questlineAid)
+	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.questlineAid)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
-		return NOT_ENOUGH_CAP_OR_SLOTS
+		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
+		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
-	return CAN_RESOLVE
+	return CONDITION_STATUS.CONDITION_PASSED
 end
 
-function ConversationContext:CheckSpecialConditions()
-	local dialogue = self.dialogue
-	if not dialogue.specialConditions then
-		return CAN_RESOLVE
-	end
-	for condition, conditionContext in pairs(dialogue.specialConditions) do
-		local specialConditionContext = MergedTable(conditionContext, self) --38f
-		local outcome, errorMessage = condition(specialConditionContext)
-		if outcome == specialConditionContext.requiredOutcome then
-			goto continue
-		end
-
-		local textToTranslate = errorMessage or specialConditionContext.textOnFailedCondition
-		if textToTranslate then
-			return textToTranslate
-		end
-
-		do
-			return DISCARD_DIALOGUE
-		end
-
-		::continue::
-	end
-	return CAN_RESOLVE
-end
-
-function ConversationContext:CheckRequiredMoney()
-	local dialogue = self.dialogue
-	if not dialogue.requiredMoney then
-		return CAN_RESOLVE
+function ResolutionContext:CheckRequiredMoney()
+	local requirements = self.requirements
+	if not requirements.requiredMoney then
+		return CONDITION_STATUS.CONDITION_PASSED
 	end
 	local balance = Bank.balance(self.player)
 	local playerMoney = self.player:getMoney()
 	local totalPlayerMoney = balance + playerMoney
-	if totalPlayerMoney < dialogue.requiredMoney then
-		if dialogue.textNoRequiredMoney then
-			return dialogue.textNoRequiredMoney
-		end
-		return DISCARD_DIALOGUE
+	if totalPlayerMoney < requirements.requiredMoney then
+		self.errorMessage = requirements.textNoRequiredMoney
+		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
-	return CAN_RESOLVE
+	return CONDITION_STATUS.CONDITION_PASSED
+end
+
+function ResolutionContext:CheckSpecialConditions()
+	local requirements = self.requirements
+	if not requirements.specialConditions then
+		return CONDITION_STATUS.CONDITION_PASSED
+	end
+	for _, context in pairs(requirements.specialConditions) do
+		local conditionContext = MergedTable(context, self)
+		local condition = conditionContext.condition
+		local outcome, errorMessage = condition(conditionContext)
+		if outcome ~= conditionContext.requiredOutcome then
+			self.errorMessage = errorMessage or conditionContext.textNoRequiredCondition
+			return CONDITION_STATUS.CONDITION_NOT_PASSED
+		end
+	end
+	return CONDITION_STATUS.CONDITION_PASSED
 end
 
 -- Dialogue actions (on success)
-function ConversationContext:TriggerSpecialActions()
-	local dialogue = self.dialogue
-	if not dialogue.specialActionsOnSuccess then
+function ResolutionContext:TriggerSpecialActions()
+	local actions = self.actionsOnSuccess
+	if not actions.specialActionsOnSuccess then
 		return
 	end
-	for action, specialActionContext in pairs(dialogue.specialActionsOnSuccess) do
-		specialActionContext = table.merged(specialActionContext, self)
-		action(specialActionContext)
+	for _, context in pairs(actions.specialActionsOnSuccess) do
+		local action = context.action
+		local actionContext = MergedTable(action, self)
+		action(actionContext)
 	end
 end
 
-function ConversationContext:RemoveRequiredItems()
-	local dialogue = self.dialogue
+function ResolutionContext:RemoveRequiredItems()
+	local requirements = self.requirements
+	local actions = self.actionsOnSuccess
 
-	if not dialogue.requiredItems then
+	if not requirements.requiredItems then
 		return
 	end
-	if dialogue.removeRequiredItems ~= false then
-		self.player:RemoveItems(dialogue.requiredItems)
+	if actions.removeRequiredItems ~= false then
+		self.player:RemoveItems(actions.requiredItems)
 	end
 end
 
-function ConversationContext:AddRewards()
-	local dialogue = self.dialogue
-	if not dialogue.rewards then
+function ResolutionContext:AddRewards()
+	local actions = self.actionsOnSuccess
+	if not actions.rewards then
 		return
 	end
-	self.player:AddItems(dialogue.rewards)
+	self.player:AddItems(actions.rewards)
 end
 
-function ConversationContext:RemoveRequiredMoney()
-	local dialogue = self.dialogue
-	if not dialogue.requiredMoney then
+function ResolutionContext:RemoveRequiredMoney()
+	local requirements = self.requirements
+	if not requirements.requiredMoney then
 		return
 	end
-	self.player:removeMoneyBank(dialogue.requiredMoney)
+	self.player:removeMoneyBank(requirements.requiredMoney)
 end
 
-function ConversationContext:SpawnMonsters()
-	local dialogue = self.dialogue
-	if not dialogue.spawnMonstersOnSuccess then
+function ResolutionContext:SpawnMonsters()
+	local actions = self.actionsOnSuccess
+	if not actions.spawnMonstersOnSuccess then
 		return
 	end
-	for monsterName, count in pairs(dialogue.spawnMonstersOnSuccess) do
+	for monsterName, count in pairs(actions.spawnMonstersOnSuccess) do
 		for _ = 1, count do
 			Game.createMonster(monsterName, self.player:getPosition())
 		end
 	end
 end
 
-function ConversationContext:AddOutfits()
-	local dialogue = self.dialogue
-	if not dialogue.outfitRewards then
+function ResolutionContext:AddOutfits()
+	local actions = self.actionsOnSuccess
+	if not actions.outfitRewards then
 		return
 	end
-	self.player:AddOutfitsAndAddons(dialogue.outfitRewards)
+	self.player:AddOutfitsAndAddons(actions.outfitRewards)
 end
 
-function ConversationContext:AddMounts()
-	local dialogue = self.dialogue
-	if not dialogue.mountRewards then
+function ResolutionContext:AddMounts()
+	local actions = self.actionsOnSuccess
+	if not actions.mountRewards then
 		return
 	end
-	self.player:AddMounts(dialogue.mountRewards)
+	self.player:AddMounts(actions.mountRewards)
 end
 
-function ConversationContext:AddExperience()
-	local dialogue = self.dialogue
-	if not dialogue.expReward then
+function ResolutionContext:AddExperience()
+	local actions = self.actionsOnSuccess
+	if not actions.expReward then
 		return
 	end
-	AddExperienceWithAnnouncement(self.player, dialogue.expReward)
+	AddExperienceWithAnnouncement(self.player, actions.expReward)
 end
 
-function ConversationContext:UpdatePlayerState()
-	local dialogue = self.dialogue
-	if not dialogue.nextState then
+function ResolutionContext:UpdatePlayerState()
+	local actions = self.actionsOnSuccess
+	if not actions.nextState then
 		return
 	end
-	self.player:UpdateStorages(dialogue.nextState)
+	self.player:UpdateStorages(actions.nextState)
 end
 
-function ConversationContext:UpdateGlobalState()
-	local dialogue = self.dialogue
-	if not dialogue.nextGlobalState then
+function ResolutionContext:UpdateGlobalState()
+	local actions = self.actionsOnSuccess
+	if not actions.nextGlobalState then
 		return
 	end
-	UpdateGlobalStorages(dialogue.nextGlobalState)
+	UpdateGlobalStorages(actions.nextGlobalState)
 end
 
-function ConversationContext:SetNextTopic()
-	local dialogue = self.dialogue
-	if not dialogue.nextTopic then
+function ResolutionContext:SetNextTopic()
+	local actions = self.actionsOnSuccess
+	if not actions.nextTopic then
 		return
 	end
-	self.npcHandler.topic[self.cid] = dialogue.nextTopic
+	self.npcHandler.topic[self.cid] = actions.nextTopic
 	addEvent(function()
-		self.npcHandler.topic[self.cid] = dialogue.nextTopic
+		self.npcHandler.topic[self.cid] = actions.nextTopic
 	end, 5)
 end
 
-local dialogueConditions = {
-	ConversationContext.CheckTopic,
-	ConversationContext.CheckRequiredItems,
-	ConversationContext.CheckRequiredState,
-	ConversationContext.CheckGlobalState,
-	ConversationContext.CheckCanAddRewards,
-	ConversationContext.CheckSpecialConditions,
-	ConversationContext.CheckRequiredMoney,
-}
-
-function ConversationContext:ErrorMessageIfCannotResolve()
-	if not (self.player and self.npcHandler and self.keyword and self.dialogue) then
-		return DISCARD_DIALOGUE
-	end
-
-	for _, condition in pairs(dialogueConditions) do
-		local errorMessage = condition(self)
-		if errorMessage == DISCARD_DIALOGUE then
-			return DISCARD_DIALOGUE
-		end
-		if errorMessage ~= CAN_RESOLVE then
-			return errorMessage
-		end
-	end
-	return SUCCESS_RESOLVE
-end
-
-function ConversationContext:SetLastMessageData()
-	local dialogue = self.dialogue
-	if dialogue.setLastMessageData ~= false then
+function ResolutionContext:SetLastMessageData()
+	local actions = self.actionsOnSuccess
+	if actions.setLastMessageData ~= false then
 		self.player:SetLastMessageData(self)
 	end
 end
 
-local actionsOnSuccessfulDialogue = {
-	ConversationContext.TriggerSpecialActions,
-	ConversationContext.RemoveRequiredItems,
-	ConversationContext.AddRewards,
-	ConversationContext.RemoveRequiredMoney,
-	ConversationContext.SpawnMonsters,
-	ConversationContext.AddOutfits,
-	ConversationContext.AddMounts,
-	ConversationContext.AddExperience,
-	ConversationContext.UpdatePlayerState,
-	ConversationContext.UpdateGlobalState,
-	ConversationContext.SetNextTopic,
-	ConversationContext.SetLastMessageData,
-}
-
-function ConversationContext:ActionsOnSuccess()
-	for _, action in pairs(actionsOnSuccessfulDialogue) do
-		action(self)
-	end
-end
-
-function ConversationContext:TrySendTranslatedMessage(message)
-	--ToDo: is it even possible?
-	if not message then
+function ResolutionContext:TrySendTranslatedMessage()
+	if not self.actionsOnSuccess.text then
 		return
 	end
 
-	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(message)
+	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.actionsOnSuccess.text)
 	if not translatedMessage then
 		return
 	end
@@ -926,21 +754,62 @@ function ConversationContext:TrySendTranslatedMessage(message)
 	end
 end
 
-function ConversationContext:ResolveQuestStateDialogue()
-	local errorMessage = self:ErrorMessageIfCannotResolve()
-	if errorMessage == DISCARD_DIALOGUE then
-		return
+local resolutionConditions = {
+	ResolutionContext.CheckTopic,
+	ResolutionContext.CheckRequiredItems,
+	ResolutionContext.CheckRequiredState,
+	ResolutionContext.CheckGlobalState,
+	ResolutionContext.CheckCanAddRewards,
+	ResolutionContext.CheckRequiredMoney,
+	ResolutionContext.CheckSpecialConditions,
+}
+
+local actionsOnSuccessfulResolution = {
+	ResolutionContext.TriggerSpecialActions,
+	ResolutionContext.RemoveRequiredItems,
+	ResolutionContext.AddRewards,
+	ResolutionContext.RemoveRequiredMoney,
+	ResolutionContext.SpawnMonsters,
+	ResolutionContext.AddOutfits,
+	ResolutionContext.AddMounts,
+	ResolutionContext.AddExperience,
+	ResolutionContext.UpdatePlayerState,
+	ResolutionContext.UpdateGlobalState,
+	ResolutionContext.SetNextTopic,
+	ResolutionContext.SetLastMessageData,
+	ResolutionContext.TrySendTranslatedMessage,
+}
+
+function ResolutionContext:ConditionsArePassable()
+	for _, condition in pairs(resolutionConditions) do
+		local status = condition(self)
+		if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
+			return CONDITION_STATUS.CONDITION_NOT_PASSED
+		end
+	end
+	return SUCCESS_RESOLVE
+end
+
+function ResolutionContext:ActionsOnSuccess()
+	for _, action in pairs(actionsOnSuccessfulResolution) do
+		action(self)
+	end
+end
+
+function ResolutionContext:Resolve()
+	local status = self:ConditionsArePassable()
+	if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
+		if self.errorMessage then
+			self:TrySendTranslatedMessage(self.errorMessage)
+			return FAIL_RESOLVE
+		end
+		return DISCARD_DIALOGUE
 	end
 
-	self.resolvedStatus = CONVERSATION_RESOLVED
-
-	if errorMessage == SUCCESS_RESOLVE then
+	if status == CONDITION_STATUS.CONDITION_PASSED then
 		self:ActionsOnSuccess()
-		self:TrySendTranslatedMessage(Evaluate(self.dialogue.text, self))
-		return
+		return SUCCESS_RESOLVE
 	end
-
-	self:TrySendTranslatedMessage(errorMessage)
 end
 
 function InitializeResponses(player, config, npcHandler, npc, msg)

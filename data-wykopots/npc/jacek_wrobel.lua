@@ -62,14 +62,17 @@ local config = {
 		[{ "sail", "plynac" }] = {
 			text = "",
 			specialActionsOnSuccess = {
-				[function(context)
-					CreateTransportWindow(context.player, SHIP_ROUTES_JACEK_WROBEL, TRANSPORT_TYPE_SHIP)
-				end] = {},
+				{
+					action = CreateTransportWindow,
+					transports = TRANSPORT_ROUTES.JACEK_WROBEL_SHIP,
+					transportType = TRANSPORT_TYPE.SHIP,
+				},
 			},
 			specialConditions = {
-				[SPECIAL_CONDITIONS_GENERAL.playerIsPzLocked] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
 					requiredOutcome = false,
-					textOnFailedCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
 				},
 			},
 		},

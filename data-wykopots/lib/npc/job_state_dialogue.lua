@@ -96,7 +96,7 @@ NPC_STATE_DIALOGUES = {
 						min = JOB_TOPICS[JOB_TASKS].confirmingTrophyBuy,
 						max = JOB_TOPICS[JOB_TASKS].confirmingTrophyBuy,
 					},
-					specialActionsOnSuccess = { [buyTrophy] = {} },
+					specialActionsOnSuccess = { {action=buyTrophy} },
 				},
 			},
 			[{ min = antelopeCost }] = {
@@ -116,11 +116,11 @@ NPC_STATE_DIALOGUES = {
 						[Storage.taskPoints] = "-" .. tostring(antelopeCost),
 					},
 					specialConditions = {
-						[function(context)
-							return context.player:hasMount(antelopeMountId)
-						end] = {
+						{
+							condition = SPECIAL_CONDITIONS_UNIVERSAL,
+							mountId = antelopeCost,
 							requiredOutcome = false,
-							textOnFailedCondition = "You already have this mount.",
+							textNoRequiredCondition = "You already have this mount.",
 						},
 					},
 				},

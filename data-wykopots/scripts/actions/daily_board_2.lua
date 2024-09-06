@@ -17,9 +17,10 @@ function dailyBoard.onUse(player, item, fromPosition, target, toPosition, isHotk
 		return false
 	end
 
-	OpenDailyTaskWindow({ player = player })
+	SPECIAL_ACTIONS_DAILY_TASK.openDailyTaskWindow({ player = player })
 	return true
 end
 
+--ToDo: add ref instead of hardcoded
 dailyBoard:aid(12000)
 dailyBoard:register()

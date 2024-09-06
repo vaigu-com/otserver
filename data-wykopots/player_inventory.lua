@@ -10,61 +10,9 @@ function Player:GetTotalMoney()
 	return balance + playerMoney
 end
 
-local ItemList = {}
-function ItemList:new()
-	local newObj = {}
-	self.__index = self
-	setmetatable(newObj, self)
-	return newObj
-end
-setmetatable(ItemList, {
-	__call = function(class, ...)
-		return class:new(...)
-	end,
-})
-
-function ItemList:FilteredByAid(aid)
-	if not aid then
-		return self
-	end
-	local result = ItemList()
-	for _, item in pairs(self) do
-		if item:getActionId() == aid then
-			table.insert(result, item)
-		end
-	end
-	return result
-end
-
-function ItemList:FilteredByFluidtype(fluidtype)
-	if not fluidtype then
-		return self
-	end
-	local result = ItemList()
-	for _, item in pairs(self) do
-		if item:getFluidType() == fluidtype then
-			table.insert(result, item)
-		end
-	end
-	return result
-end
-
-function ItemList:FilteredById(id)
-	if not id then
-		return self
-	end
-	local result = ItemList()
-	for _, item in pairs(self) do
-		if item:getId() == id then
-			table.insert(result, item)
-		end
-	end
-	return result
-end
-
 function Player:GetAllItems()
 	local containers = {}
-	local items = ItemList()
+	local items = ItemExList()
 	for i = CONST_SLOT_FIRST, CONST_SLOT_LAST do
 		local item = self:getSlotItem(i)
 		if not item then
@@ -74,7 +22,7 @@ function Player:GetAllItems()
 			if isContainer(item.uid) then
 				table.insert(containers, item)
 			end
-			table.insert(items, item)
+			items:Add(item)
 		end
 		::continue::
 	end
@@ -85,7 +33,7 @@ function Player:GetAllItems()
 			if isContainer(item.uid) then
 				table.insert(containers, item)
 			end
-			table.insert(items, item)
+			items:Add(item)
 		end
 		table.remove(containers, 1)
 	end
@@ -122,62 +70,68 @@ local function nodeIsItem(node)
 	return node.id ~= nil
 end
 
-local function parseGroupQuantifier(quantifier)
-	if type(quantifier) == "string" and quantifier == "any" then
-		return true
+REQUIRE_ANY = "REQUIRE_ANY"
+REQUIRE_ALL = "REQUIRE_ALL"
+local function parseGroupQuantifier(quantfier)
+	if type(quantfier) ~= "string" then
+		return REQUIRE_ALL
 	end
-	return false
+	if quantfier == "any" or quantfier == REQUIRE_ANY then
+		return REQUIRE_ANY
+	end
+	if quantfier == "all" or quantfier == REQUIRE_ALL then
+		return REQUIRE_ALL
+	end
+	return REQUIRE_ALL
 end
 
-local function appendNewItems(chosenitems, node, newChosenItems)
-	if not newChosenItems then
-		table.insert(chosenitems, node)
-		return
-	end
-
-	for _, item in pairs(newChosenItems) do
-		table.insert(chosenitems, item)
-	end
-end
-
-local function succeededMatchAny(requiresAny, hasItems)
-	if requiresAny and hasItems then
-		return true
-	end
-	return false
-end
-
-local function failedMatchAll(requiresAny, hasItems)
-	if not requiresAny and not hasItems then
+local function matchAnySucceeded(requirement, hasItems)
+	if requirement ~= REQUIRE_ANY then
 		return false
 	end
+	if hasItems then
+		return true
+	end
+	return false
 end
 
-function Player:HasItems(items, requiresAny)
+local function matchAllSucceeded(quantfier, hasItems)
+	if quantfier ~= REQUIRE_ALL then
+		return false
+	end
+	return hasItems
+end
+
+---@param items table item list
+---@param quantifier string? Default: false
+---@return boolean hasItems
+---@return ItemExList|nil takenItems
+function Player:HasItems(items, quantifier)
 	local hasItems = false
-	local takenItems = {}
-	for groupQuantifier, node in pairs(items) do
+	local takeableItems = ItemExList()
+	for subgroupQuantifier, node in pairs(items) do
 		local candidateTakenitems
 		if nodeIsItem(node) then
 			node = normalizeItemData(node)
 			hasItems = self:HasItem(node)
 		else
-			local requiredGroup = parseGroupQuantifier(groupQuantifier)
-			hasItems, candidateTakenitems = self:HasItems(node, requiredGroup)
+			subgroupQuantifier = parseGroupQuantifier(subgroupQuantifier)
+			hasItems, candidateTakenitems = self:HasItems(node, subgroupQuantifier)
 		end
 
 		if hasItems then
-			appendNewItems(takenItems, node, candidateTakenitems)
+			takeableItems:AddMultipleElseSingle(candidateTakenitems, node)
 		end
 
-		if succeededMatchAny(requiresAny, hasItems) then
-			return true, takenItems
+		if matchAnySucceeded(quantifier, hasItems) then
+			return true, takeableItems
 		end
-		if failedMatchAll() then
-			return false
+
+		if not matchAllSucceeded(quantifier, hasItems) then
+			return false, nil
 		end
 	end
-	return hasItems, takenItems
+	return hasItems, takeableItems
 end
 
 function Player:TryRemoveItems(items)
@@ -187,7 +141,7 @@ function Player:TryRemoveItems(items)
 	return self:RemoveItems(items)
 end
 
-local function countItemsToTake(player, item)
+local function parseItemCountToRemove(player, item)
 	if item.take == TAKE_ALL_AVAILABLE then
 		return player:CountItem(item.id, item.aid, item.fluidType)
 	end
@@ -196,33 +150,31 @@ end
 
 function Player:RemoveItem(item)
 	local id = item.id
-	local itemsToTakeCount = countItemsToTake(self, item)
+	local itemCountToRemove = parseItemCountToRemove(self, item)
 	local aid = item.actionid or item.aid or 0
 	local fluidType = item.fluidType
 
 	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType)
-	for i = 1, #filteredItems do
-		if itemsToTakeCount <= 0 then
+
+	for _, removableItem in pairs(filteredItems.items) do
+		if itemCountToRemove <= 0 then
 			return
 		end
-		local itemToRemove = filteredItems[i]
-		local currentCountToremove = itemToRemove:getCount()
-		if currentCountToremove > itemsToTakeCount then
-			currentCountToremove = itemsToTakeCount
+		local maxRemovableCount = removableItem:getCount()
+		if maxRemovableCount > itemCountToRemove then
+			maxRemovableCount = itemCountToRemove
 		end
-		itemToRemove:remove(currentCountToremove)
-		itemsToTakeCount = itemsToTakeCount - currentCountToremove
+		removableItem:remove(maxRemovableCount)
+		itemCountToRemove = itemCountToRemove - maxRemovableCount
 	end
 end
 
 function Player:RemoveItems(items)
 	local _, chosenItems = self:HasItems(items)
 	for _, item in pairs(chosenItems) do
-		if item.remove == false then
-			goto continue
+		if item.remove then
+			self:RemoveItem(item)
 		end
-		self:RemoveItem(item)
-		::continue::
 	end
 	return true
 end
@@ -241,48 +193,58 @@ function Player:TryTradeInItems(givenUpItems, newItems)
 end
 
 function Player:TryAddItems(items)
-	local result, errorMessage = self:CanAddItems(items)
-	if result ~= true then
+	local canAdd, errorMessage = self:CanAddItems(items)
+	if canAdd ~= true then
 		self:sendTextMessage(MESSAGE_FAILURE, errorMessage)
-		return result
+		return canAdd
 	end
 	return self:AddItems(items)
 end
 
-function Player:HasEnoughCapacity(desiredCap)
+---@param requiredCapTotal number
+---@return boolean hasEnoughCap
+---@return string|nil errorMessageIfHasNoCap
+function Player:HasEnoughCapacity(context)
+	local requiredCapTotal = context.requiredCapTotal
 	local playerFreeCapacityOz = self:getFreeCapacity() / 100
-	if desiredCap > playerFreeCapacityOz then
-		return false, "The total weight of the items You are trying to pick up is " .. desiredCap .. " oz. Therefore You need another " .. tostring(math.abs(playerFreeCapacityOz - desiredCap)) .. " oz."
+	if requiredCapTotal > playerFreeCapacityOz then
+		local lackingCap = tostring(math.abs(playerFreeCapacityOz - requiredCapTotal))
+		return false, T("The total weight of the items You are trying to pick up is :requiredCapTotal: oz. Therefore You need another :lackingCap: oz.", { requiredCapTotal = requiredCapTotal, lackingCap = lackingCap })
 	end
 	return true
 end
 
-function Player:HasEnoughSlots(requiredItemSlots)
+function Player:HasEnoughSlots(context)
+	local requiredItemSlots = context.requiredItemSlots
 	local freeSlots = self:getFreeBackpackSlots()
 	if requiredItemSlots > freeSlots then
-		local requiredMoreSlots = requiredItemSlots - freeSlots
-		return false, T("Items you are trying to pick up take up :totalItemSlots: inventory slots. You need another :requiredMoreSlots: free slots in your inventory.", {
+		local lackingSlots = requiredItemSlots - freeSlots
+		return false, T("Items you are trying to pick up take up :totalItemSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
 			totalItemSlots = requiredItemSlots,
-			requiredMoreSlots = requiredMoreSlots,
+			lackingSlots = lackingSlots,
 		})
 	end
 
 	return true
 end
 
+local canAddItemsChecks = {
+	Player.HasEnoughCapacity,
+	Player.HasEnoughSlots,
+}
+
 function Player:CanAddItems(items)
-	local totalItemWeight = GetItemsWeight(items)
+	local context = {
+		totalItemWeight = CalculateItemsWeight(items),
+		totalItemSlots = CalculateItemsRequiredSlots(items),
+	}
 	local canProceed, message
+	for _, check in pairs(canAddItemsChecks) do
+		canProceed, message = check(self, context)
 
-	canProceed, message = self:HasEnoughCapacity(totalItemWeight)
-	if not canProceed then
-		return canProceed, message
-	end
-
-	local totalItemSlots = ItemsRequiredSlots(items)
-	canProceed, message = self:HasEnoughSlots(totalItemSlots)
-	if not canProceed then
-		return canProceed, message
+		if not canProceed then
+			return canProceed, message
+		end
 	end
 
 	return true
@@ -359,7 +321,9 @@ function CountNotAddableItems(items)
 	return count
 end
 
--- For any non-standard fields tries to set it with setCustomAttribute(key, value)
+-- For any non-standard field f with value v: set it with setCustomAttribute(f, v)
+---@param item table
+---@param container Container|nil
 function Player:AddCustomItem(item, container)
 	item = normalizedItem(item)
 	local id = item.id
@@ -374,7 +338,7 @@ function Player:AddCustomItem(item, container)
 	if actionOnAdd then
 		local context = { player = self, item = item }
 		if actionOnAdd(context) == DONT_CONTINUE_ON_ADD then
-			return true
+			return
 		end
 	end
 
@@ -423,14 +387,14 @@ function Player:AddCustomItem(item, container)
 	end
 end
 
-function ItemsRequiredSlots(items)
+function CalculateItemsRequiredSlots(items)
 	local slotsCount = 0
 	local storeSlotsCount = 0
 	for containerId, item in pairs(items) do
 		local count = 1
 		local stackable = false
 		if ItemType(containerId):isContainer() then
-			count = ItemsRequiredSlots(item)
+			count = CalculateItemsRequiredSlots(item)
 			count = count + 1
 		else
 			count = item.count or count
@@ -453,13 +417,13 @@ function ItemsRequiredSlots(items)
 	return slotsCount, storeSlotsCount
 end
 
-function GetItemsWeight(items)
+function CalculateItemsWeight(items)
 	local totalWeight = 0
 	for containerId, item in pairs(items) do
 		local count = 1
 		local weight = 0
 		if ItemType(containerId):isContainer() then
-			weight = GetItemsWeight(item)
+			weight = CalculateItemsWeight(item)
 			weight = weight + getItemWeight(tonumber(containerId))
 		else
 			count = item.count or count

@@ -194,7 +194,9 @@ local conversationData = {
 					[Storage.SynMarnotrawny.TrainDestinations.ToHurghada] = 1,
 				},
 				specialActionsOnSuccess = {
-					[SYN_MARNOTRAWNY_SPECIAL_ACTIONS.setPersonalBlackboardPassword] = {},
+					{
+						action = SYN_MARNOTRAWNY_SPECIAL_ACTIONS.setPersonalBlackboardPassword,
+					},
 				},
 			},
 		},

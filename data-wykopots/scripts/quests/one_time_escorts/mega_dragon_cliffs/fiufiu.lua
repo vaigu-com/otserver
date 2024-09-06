@@ -83,7 +83,10 @@ local config = {
 			[{ "yes", "tak" }] = {
 				text = "Lets go!",
 				specialActionsOnSuccess = {
-					[StartEscort] = escortContext,
+					{
+						action = StartEscortDialogue,
+						escortContext = escortContext,
+					},
 				},
 			},
 		},

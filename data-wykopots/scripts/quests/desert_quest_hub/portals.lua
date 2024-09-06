@@ -39,7 +39,7 @@ function fromHubToQuestPortal.onStepIn(creature, item, position, fromPosition)
 
 	player:teleportTo(destination)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-	GENERAL_SPECIAL_ACTIONS.clearConditions({ player = player })
+	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 	return true
 end
 

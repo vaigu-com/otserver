@@ -109,7 +109,9 @@ local config = {
 			[{ "attack", "atak" }] = {
 				text = "Oh wow, they are swarming!",
 				specialActionsOnSuccess = {
-					[BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.turdstinAttack] = {},
+					{
+						action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.turdstinAttack,
+					},
 				},
 			},
 		},

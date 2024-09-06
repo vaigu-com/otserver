@@ -13,9 +13,9 @@ PER_IUSTITIA_AD_ASTRA_SPECIAL_ACTIONS = {
 PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS = {
 	saidRubelsteinsChecksum = function(context)
 		local player = context.player
-		local saidNumber = context.msg
+		local number = context.msg
 		local requiredNumber = player:getStorageValue(Storage.PerIustitiaAdAstra.RubelsteinChecksum)
-		return tostring(saidNumber) == tostring(requiredNumber)
+		return tostring(number) == tostring(requiredNumber)
 	end,
 }
 

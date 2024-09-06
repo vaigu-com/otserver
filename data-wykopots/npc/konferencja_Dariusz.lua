@@ -51,7 +51,7 @@ end
 local config = {
 	[Storage.SynMarnotrawny.Questline] = {
 		[14] = {
-			[{ GREET }] = { text = "Hello.", specialActionsOnSuccess = {} },
+			[{ GREET }] = { text = "Hello." },
 			[{ "potion", "mikstura" }] = {
 				text = "This is something i needed. Here is my singature.",
 				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["LOVE_POTION"] },
