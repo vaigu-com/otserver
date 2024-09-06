@@ -67,21 +67,11 @@ end
 
 function getTimeInWords(secsParam)
 	local secs = tonumber(secsParam)
-	local days = math.floor(secs / (24 * 3600))
-	secs = secs - (days * 24 * 3600)
 	local hours, minutes, seconds = getHours(secs), getMinutes(secs), getSeconds(secs)
 	local timeStr = ""
 
-	if days > 0 then
-		timeStr = days .. (days > 1 and " days" or " day")
-	end
-
 	if hours > 0 then
-		if timeStr ~= "" then
-			timeStr = timeStr .. ", "
-		end
-
-		timeStr = timeStr .. hours .. (hours > 1 and " hours" or " hour")
+		timeStr = hours .. (hours > 1 and " hours" or " hour")
 	end
 
 	if minutes > 0 then
@@ -95,20 +85,20 @@ function getTimeInWords(secsParam)
 		if timeStr ~= "" then
 			timeStr = timeStr .. " and "
 		end
-
 		timeStr = timeStr .. seconds .. (seconds > 1 and " seconds" or " second")
 	end
+
 	return timeStr
 end
 
--- Wykopots custom
-function getLootRandom(modifier, forceBaseLoot)
-	local mutiplier = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * BONUS_LOOT) * (modifier or 1)
-	if forceBaseLoot then
-		mutiplier = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * 1) * (modifier or 1)
-	end
-	
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, mutiplier)
+function getLootRandom(modifier)
+	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * BONUS_LOOT) * (modifier or 1)
+	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
+end
+
+function getLootRandom13(modifier)
+	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * 1.3) * (modifier or 1)
+	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
 end
 
 local start = os.time()
@@ -603,7 +593,7 @@ function cleanAreaQuest(frompos, topos, itemtable, blockmonsters)
 	return true
 end
 
-function kickerPlayerRoomAfterMin(playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, firstCall, itemtable, blockmonsters)
+function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, firstCall, itemtable, blockmonsters)
 	local players = false
 	if type(playername) == table then
 		players = true
@@ -673,7 +663,7 @@ function kickerPlayerRoomAfterMin(playername, fromPosition, toPosition, teleport
 	end
 	local min = 60 -- Use the 60 for 1 minute
 	if firstCall then
-		addEvent(kickerPlayerRoomAfterMin, 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, false, itemtable, blockmonsters)
+		addEvent(kickerPlayerRoomAfferMin, 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, false, itemtable, blockmonsters)
 	else
 		local subt = minutes - 1
 		if monsterName ~= "" then
@@ -681,7 +671,7 @@ function kickerPlayerRoomAfterMin(playername, fromPosition, toPosition, teleport
 				subt = 2
 			end
 		end
-		addEvent(kickerPlayerRoomAfterMin, min * 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, subt, false, itemtable, blockmonsters)
+		addEvent(kickerPlayerRoomAfferMin, min * 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, subt, false, itemtable, blockmonsters)
 	end
 end
 
@@ -1012,8 +1002,9 @@ end
 ---@param timeStr string The time string in the format HH:MM:SS
 ---@return number|nil The timestamp of the next occurrence, or nil if the string is invalid
 function GetNextOccurrence(timeStr)
-	local hours, minutes, seconds = string.match(timeStr, "(%d+):(%d+):(%d+)")
-	if not hours or not minutes or not seconds then
+	local hours, minutes, seconds = string.match(timeStr, "(%d%d):(%d%d):?(%d?%d?)")
+	seconds = seconds or "00"
+	if not hours or not minutes then
 		error("Invalid time string format.")
 		return nil
 	end
@@ -1040,7 +1031,7 @@ end
 
 --- Parse a duration string into milliseconds
 ---@param duration string|number The duration string to parse or a number of milliseconds (for idempotency)
----@return number|nil The duration in milliseconds, or nil if the string is invalid
+---@return number result The duration in milliseconds, or nil if the string is invalid
 function ParseDuration(duration)
 	if not duration then
 		return nil
@@ -1135,26 +1126,5 @@ function toboolean(value)
 		return true
 	elseif value == "false" then
 		return false
-	end
-end
-
--- Utility to combine onDeath event with a "kill" event for a player with a party (or not).
-function onDeathForParty(creature, player, func)
-	if not player or not player:isPlayer() then
-		return
-	end
-
-	local participants = Participants(player, true)
-	for _, participant in ipairs(participants) do
-		func(creature, participant)
-	end
-end
-
-function onDeathForDamagingPlayers(creature, func)
-	for key, value in pairs(creature:getDamageMap()) do
-		local player = Player(key)
-		if player then
-			func(creature, player)
-		end
 	end
 end
