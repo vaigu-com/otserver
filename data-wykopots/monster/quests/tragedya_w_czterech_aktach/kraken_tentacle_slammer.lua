@@ -117,7 +117,7 @@ local function activatePhase2()
 	local fightningPlatformPositions = KRAKEN_ENCOUNTER_DATA.fightningPlatformPositions
 	local fightingShipPositions = KRAKEN_ENCOUNTER_DATA.fightingShipPositions
 
-	local immovableTentancles = fightingShipPositions.topLeft:MonstersBetween(fightingShipPositions.downRight):FilterByName("Kraken tentacles"):Get()
+	local immovableTentancles = fightingShipPositions.topLeft:MonstersBetween(fightingShipPositions.downRight, "Kraken tentacles")
 	local totalDamage = 0
 
 	for i = 1, 2 do
@@ -132,14 +132,14 @@ local function activatePhase2()
 		end
 	end
 
-	local kraken = fightningPlatformPositions.downRight:MonstersBetween(fightningPlatformPositions.topLeft):FilterByName("The kraken"):First()
+	local kraken = fightningPlatformPositions.downRight:MonstersBetween(fightningPlatformPositions.topLeft, "The Kraken")
 	local damageThreshold = kraken:getMaxHealth() * 0.4
 	if totalDamage > damageThreshold then
 		totalDamage = damageThreshold
 	end
 	kraken:setHealth(kraken:getMaxHealth() - totalDamage)
 
-	local players = fightingShipPositions.topLeft:PlayersBetween(fightingShipPositions.downRight):Get()
+	local players = fightingShipPositions.topLeft:PlayersBetween(fightingShipPositions.downRight)
 	for _, player in pairs(players) do
 		print(player)
 		print(player:getName())
@@ -148,7 +148,7 @@ local function activatePhase2()
 end
 
 local function doShipDamage()
-	local shipHealth = KRAKEN_ENCOUNTER_DATA.corner1:MonstersBetween(KRAKEN_ENCOUNTER_DATA.corner2):FilterByName("Ship health"):First()
+	local shipHealth = KRAKEN_ENCOUNTER_DATA.corner1:MonstersBetween(KRAKEN_ENCOUNTER_DATA.corner2, "Ship health")
 
 	if not shipHealth then
 		return activatePhase2()
@@ -161,7 +161,7 @@ local function doShipDamage()
 end
 
 local function tryDamageAnything(columnPos)
-	local player = columnPos:Moved(0, -3, 0):PlayersBetween(columnPos:Moved(0, 3, 0)):First()
+	local player = columnPos:Moved(0, -3, 0):FirstPlayerBetween(columnPos:Moved(0, 3, 0))
 	if player then
 		doTentacleCombatDamage(player)
 	else
@@ -183,7 +183,7 @@ mType.onAppear = function(monster, creature)
 		spawnSlamSqm(pos:Moved(0, -j, 0))
 	end
 
-	local shipHealth = KRAKEN_ENCOUNTER_DATA.corner1:MonstersBetween(KRAKEN_ENCOUNTER_DATA.corner2):FilterByName("Ship health"):First()
+	local shipHealth = KRAKEN_ENCOUNTER_DATA.corner1:MonstersBetween(KRAKEN_ENCOUNTER_DATA.corner2, "Ship health")
 	if shipHealth then
 		doTentacleCombatDamage(shipHealth, -tentacleDamageOnHit)
 	end

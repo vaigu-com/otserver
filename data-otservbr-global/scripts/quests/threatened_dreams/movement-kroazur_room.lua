@@ -68,7 +68,7 @@ function kroazurRoom.onStepIn(creature, item, position, fromPosition)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	player:say("You have ten minutes to kill and loot this boss, else you will lose that chance and will be kicked out.", TALKTYPE_MONSTER_SAY)
 	addEvent(clearBossRoom, 60 * room.time * 1000, player.uid, room.centerPos, false, room.rangeX, room.rangeY, room.exitPos)
-	player:setBossCooldown(room.bossName, os.time() + 2 * 3600)
+	player:setEncounterLockout(room.bossName, os.time() + 2 * 3600)
 	return true
 end
 

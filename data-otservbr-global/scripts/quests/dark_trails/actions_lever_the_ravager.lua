@@ -1,7 +1,7 @@
 local setting = {
 	centerRoom = { x = 33487, y = 32079, z = 8 },
 	range = 10,
-	playerPositions = {
+	entranceTiles = {
 		Position(33417, 32102, 10),
 		Position(33418, 32102, 10),
 		Position(33419, 32102, 10),
@@ -30,8 +30,8 @@ function leverTheRavager.onUse(player, item, fromPosition, target, toPosition, i
 		end
 
 		local storePlayers, playerTile = {}
-		for i = 1, #setting.playerPositions do
-			local creature = Tile(setting.playerPositions[i]):getTopCreature()
+		for i = 1, #setting.entranceTiles do
+			local creature = Tile(setting.entranceTiles[i]):getTopCreature()
 			if not creature or not creature:isPlayer() then
 				player:sendCancelMessage("You need 4 of players to fight with The Ravager.")
 				return true
@@ -47,7 +47,7 @@ function leverTheRavager.onUse(player, item, fromPosition, target, toPosition, i
 		local players
 		for i = 1, #storePlayers do
 			players = storePlayers[i]
-			setting.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+			setting.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 			players:teleportTo(setting.newPositions[i])
 			setting.newPositions[i]:sendMagicEffect(CONST_ME_ENERGYAREA)
 		end

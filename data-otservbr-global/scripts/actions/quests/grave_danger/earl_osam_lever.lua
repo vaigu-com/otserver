@@ -1,0 +1,21 @@
+local config = {
+	bossName = "Earl Osam",
+	bossPosition = Position(33488, 31441, 13),
+	requiredLevel = 250,
+	entranceTiles = {
+		{ pos = Position(33516, 31444, 13), destination = Position(33488, 31430, 13), effect = CONST_ME_TELEPORT },
+		{ pos = Position(33517, 31444, 13), destination = Position(33488, 31430, 13), effect = CONST_ME_TELEPORT },
+		{ pos = Position(33518, 31444, 13), destination = Position(33488, 31430, 13), effect = CONST_ME_TELEPORT },
+		{ pos = Position(33519, 31444, 13), destination = Position(33488, 31430, 13), effect = CONST_ME_TELEPORT },
+		{ pos = Position(33520, 31444, 13), destination = Position(33488, 31430, 13), effect = CONST_ME_TELEPORT },
+	},
+	zoneArea = {
+		from = Position(33479, 31429, 13),
+		to = Position(33497, 31446, 13),
+	},
+	exitTpDestination = Position(33261, 31986, 8),
+}
+
+local lever = EncounterData(config)
+lever:position({ x = 33515, y = 31444, z = 13 })
+lever:register()

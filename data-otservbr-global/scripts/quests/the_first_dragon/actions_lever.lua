@@ -11,7 +11,7 @@ local config = {
 		{ position = Position(33574, 31031, 14) },
 		{ position = Position(33592, 31031, 14) },
 	},
-	playerPositions = {
+	entranceTiles = {
 		Position(33582, 30993, 14),
 		Position(33583, 30993, 14),
 		Position(33584, 30993, 14),
@@ -62,8 +62,8 @@ local config = {
 
 function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == 8911 then
-		for i = 1, #config.playerPositions do
-			local creature = Tile(config.playerPositions[i]):getTopCreature()
+		for i = 1, #config.entranceTiles do
+			local creature = Tile(config.entranceTiles[i]):getTopCreature()
 			if not creature then
 				item:transform(8912)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need 5 players to fight with this boss.")
@@ -83,8 +83,8 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		for b = 1, #config.monsterPosition do
 			Game.createMonster("fallen challenger", config.monsterPosition[b].position, true, true)
 		end
-		for i = 1, #config.playerPositions do
-			local creature = Tile(config.playerPositions[i]):getTopCreature()
+		for i = 1, #config.entranceTiles do
+			local creature = Tile(config.entranceTiles[i]):getTopCreature()
 			if creature then
 				for i = 1, #config.roomTile1 do
 					local toRoom1 = Tile(config.roomTile1[i].fromPosition):getTopCreature()

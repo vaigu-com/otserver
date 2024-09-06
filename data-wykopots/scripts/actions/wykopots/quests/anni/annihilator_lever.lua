@@ -1,6 +1,6 @@
 local config = {
 	centerDemonRoomPosition = Position(5686, 1458, 14),
-	playerPositions = {
+	entranceTiles = {
 		Position(5687, 1470, 14),
 		Position(5688, 1470, 14),
 		Position(5689, 1470, 14),
@@ -28,8 +28,8 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == 2773 then
 		local storePlayers, playerTile = {}
 
-		for i = 1, #config.playerPositions do
-			playerTile = Tile(config.playerPositions[i]):getTopCreature()
+		for i = 1, #config.entranceTiles do
+			playerTile = Tile(config.entranceTiles[i]):getTopCreature()
 			if not playerTile or not playerTile:isPlayer() then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Potrzebujesz czterech graczy.")
 				return true
@@ -56,7 +56,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		local players
 		for i = 1, #storePlayers do
 			players = storePlayers[i]
-			config.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+			config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 			players:teleportTo(config.newPositions[i])
 			config.newPositions[i]:sendMagicEffect(CONST_ME_ENERGYAREA)
 			players:setDirection(DIRECTION_EAST)

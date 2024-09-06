@@ -1,21 +1,19 @@
 local config = {
-	boss = {
-		name = "Mazzinor",
-		position = Position(32725, 32719, 10),
-	},
+	bossName = "Mazzinor",
+	bossPosition = Position(32725, 32719, 10),
 	requiredLevel = 250,
-	playerPositions = {
-		{ pos = Position(32721, 32773, 10), teleport = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32722, 32773, 10), teleport = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32723, 32773, 10), teleport = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32724, 32773, 10), teleport = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32725, 32773, 10), teleport = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
+	entranceTiles = {
+		{ pos = Position(32721, 32773, 10), destination = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32722, 32773, 10), destination = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32723, 32773, 10), destination = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32724, 32773, 10), destination = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32725, 32773, 10), destination = Position(32726, 32726, 10), effect = CONST_ME_TELEPORT },
 	},
-	specPos = {
+	zoneArea = {
 		from = Position(32716, 32713, 10),
 		to = Position(32732, 32728, 10),
 	},
-	exit = Position(32616, 32531, 13),
+	exitTpDestination = Position(32616, 32531, 13),
 }
 
 local lever = BossLever(config)

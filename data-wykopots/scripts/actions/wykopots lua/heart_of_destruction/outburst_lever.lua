@@ -55,7 +55,7 @@ end
 local heartDestructionOutburst = Action()
 function heartDestructionOutburst.onUse(player, item, fromPosition, itemEx, toPosition)
 	local config = {
-		playerPositions = {
+		entranceTiles = {
 			Position(5440, 1412, 14), --{x = 5440, y = 1412, z = 14}
 			Position(5440, 1413, 14),
 			Position(5440, 1414, 14),
@@ -72,8 +72,8 @@ function heartDestructionOutburst.onUse(player, item, fromPosition, itemEx, toPo
 		if item.itemid == 8911 then
 			if player:getPosition().x == pushPos.x and player:getPosition().y == pushPos.y and player:getPosition().z == pushPos.z then
 				local storePlayers, playerTile = {}
-				for i = 1, #config.playerPositions do
-					playerTile = Tile(config.playerPositions[i]):getTopCreature()
+				for i = 1, #config.entranceTiles do
+					playerTile = Tile(config.entranceTiles[i]):getTopCreature()
 					if isPlayer(playerTile) then
 						storePlayers[#storePlayers + 1] = playerTile
 					end
@@ -86,7 +86,7 @@ function heartDestructionOutburst.onUse(player, item, fromPosition, itemEx, toPo
 
 					for i = 1, #storePlayers do
 						players = storePlayers[i]
-						config.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
 						players:setStorageValue(14331, os.time() + 20 * 60 * 60)
 					end

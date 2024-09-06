@@ -86,7 +86,7 @@ encounter:addStage({
 	end,
 })
 
-encounter:register()
+EncounterDefinitionRegistry():register(encounter)
 
 local spawnContainers = GlobalEvent("fight.the-monster.containers.onThink")
 function spawnContainers.onThink(interval, lastExecution)
