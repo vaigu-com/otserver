@@ -1,7 +1,7 @@
 local setting = {
 	centerRoom = { x = 33487, y = 32111, z = 9 },
 	range = 10,
-	playerPositions = {
+	entranceTiles = {
 		{ x = 33583, y = 31844, z = 10 },
 		{ x = 33584, y = 31844, z = 10 },
 		{ x = 33585, y = 31844, z = 10 },
@@ -38,8 +38,8 @@ function leverDeathPriestShargon.onUse(player, item, fromPosition, target, toPos
 		end
 
 		local storePlayers, playerTile = {}
-		for i = 1, #setting.playerPositions do
-			local creature = Tile(setting.playerPositions[i]):getTopCreature()
+		for i = 1, #setting.entranceTiles do
+			local creature = Tile(setting.entranceTiles[i]):getTopCreature()
 			if not creature or not creature:isPlayer() then
 				player:sendCancelMessage("You need 5 of players to fight with Death Priest Shargon.")
 				return true
@@ -55,7 +55,7 @@ function leverDeathPriestShargon.onUse(player, item, fromPosition, target, toPos
 		local players
 		for i = 1, #storePlayers do
 			players = storePlayers[i]
-			config.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+			config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 			players:teleportTo(config.newPositions[i])
 			config.newPositions[i]:sendMagicEffect(CONST_ME_ENERGYAREA)
 		end

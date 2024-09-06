@@ -192,7 +192,7 @@ end
 local heartDestructionCharges = Action()
 function heartDestructionCharges.onUse(player, item, fromPosition, itemEx, toPosition)
 	local config = {
-		playerPositions = {
+		entranceTiles = {
 			Position(32091, 31327, 12),
 			Position(32092, 31327, 12),
 			Position(32093, 31327, 12),
@@ -209,8 +209,8 @@ function heartDestructionCharges.onUse(player, item, fromPosition, itemEx, toPos
 		if item.itemid == 8911 then
 			if player:getPosition().x == pushPos.x and player:getPosition().y == pushPos.y and player:getPosition().z == pushPos.z then
 				local storePlayers = {}
-				for i = 1, #config.playerPositions do
-					local tile = Tile(Position(config.playerPositions[i]))
+				for i = 1, #config.entranceTiles do
+					local tile = Tile(Position(config.entranceTiles[i]))
 					if tile then
 						local playerTile = tile:getTopCreature()
 						if playerTile and playerTile:isPlayer() then
@@ -227,7 +227,7 @@ function heartDestructionCharges.onUse(player, item, fromPosition, itemEx, toPos
 					for i = 1, #storePlayers do
 						players = storePlayers[i]
 						table.insert(team, players) -- Insert players on table to get a random teleport
-						config.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
 						Position(config.newPos):sendMagicEffect(11)
 					end

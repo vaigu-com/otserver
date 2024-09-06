@@ -38,7 +38,7 @@ function bossCooldown.onSay(player, words, param)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Player " .. playerName .. " not found.")
 		return
 	end
-	targetPlayer:setBossCooldown(boss, 0)
+	targetPlayer:setEncounterLockout(boss, 0)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Boss cooldown for " .. playerName .. " cleared.")
 	targetPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Boss cooldown for " .. boss .. " cleared.")
 end

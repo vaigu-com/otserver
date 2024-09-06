@@ -38,7 +38,7 @@ function elementalSpheresLever.onUse(player, item, fromPosition, target, toPosit
 
 	local spectators = Game.getSpectators(Position(33268, 31836, 12), false, true, 30, 30, 30, 30)
 	if #spectators > 0 or Game.getStorageValue(Storage.Quest.U8_2.ElementalSpheres.BossRoom) > 0 then
-		player:say("Wait for the current team to exit.", TALKTYPE_MONSTER_SAY, false, 0, Position(33268, 31835, 10))
+		player:say("Wait for the current team to exitTpDestination.", TALKTYPE_MONSTER_SAY, false, 0, Position(33268, 31835, 10))
 		return true
 	end
 

@@ -11,14 +11,14 @@ local config = {
 		end,
 	},
 	requiredLevel = 250,
-	playerPositions = {
-		{ pos = Position(33424, 31413, 13), teleport = Position(33423, 31448, 13) },
-		{ pos = Position(33425, 31413, 13), teleport = Position(33423, 31448, 13) },
-		{ pos = Position(33426, 31413, 13), teleport = Position(33423, 31448, 13) },
-		{ pos = Position(33427, 31413, 13), teleport = Position(33423, 31448, 13) },
-		{ pos = Position(33428, 31413, 13), teleport = Position(33423, 31448, 13) },
+	entranceTiles = {
+		{ pos = Position(33424, 31413, 13), destination = Position(33423, 31448, 13) },
+		{ pos = Position(33425, 31413, 13), destination = Position(33423, 31448, 13) },
+		{ pos = Position(33426, 31413, 13), destination = Position(33423, 31448, 13) },
+		{ pos = Position(33427, 31413, 13), destination = Position(33423, 31448, 13) },
+		{ pos = Position(33428, 31413, 13), destination = Position(33423, 31448, 13) },
 	},
-	specPos = {
+	zoneArea = {
 		from = Position(33414, 31426, 13),
 		to = Position(33433, 31449, 13),
 	},
@@ -31,7 +31,7 @@ local config = {
 			nictros:teleportTo(Position(33427, 31436, 13))
 		end, 5 * 1000)
 	end,
-	exit = Position(33290, 32474, 9),
+	exitTpDestination = Position(33290, 32474, 9),
 }
 
 local lever = BossLever(config)

@@ -1,13 +1,20 @@
 ---@class Zone
----@method getName
----@method addArea
----@method getPositions
----@method getTiles
----@method getCreatures
----@method getPlayers
----@method getMonsters
----@method getNpcs
----@method getItems
+---@field getByEncounter function
+---@field getName function
+---@field addArea function
+---@field getPositions function
+---@field getTiles function
+---@field getCreatures function
+---@field getPlayers function
+---@field getMonsters function
+---@field getNpcs function
+---@field getItems function
+Zone = Zone
+
+---@param encounterData EncounterData
+function Zone.getByEncounter(encounterData)
+	return Zone("encounter." .. toKey(encounterData.encounterName))
+end
 
 function Zone:randomPosition()
 	local positions = self:getPositions()

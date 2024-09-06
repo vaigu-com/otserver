@@ -101,7 +101,7 @@ function drumeAction.onUse(player, item, fromPosition, target, toPosition, isHot
 		totalUsurper = totalUsurper + 1
 	end
 	for _, pi in pairs(players) do
-		pi:setBossCooldown("Drume", os.time() + (configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN)))
+		pi:setEncounterLockout("Drume", os.time() + (configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN)))
 		pi:teleportTo(config.newPosition)
 		pi:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have " .. config.timeToKill .. " minutes to defeat Drume.")
 	end

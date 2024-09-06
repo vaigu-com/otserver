@@ -139,7 +139,7 @@ end
 local heartDestructionSparks = Action()
 function heartDestructionSparks.onUse(player, item, fromPosition, itemEx, toPosition)
 	local config = {
-		playerPositions = {
+		entranceTiles = {
 			Position(32227, 31343, 11),
 			Position(32227, 31344, 11),
 			Position(32227, 31345, 11),
@@ -156,8 +156,8 @@ function heartDestructionSparks.onUse(player, item, fromPosition, itemEx, toPosi
 		if item.itemid == 8911 then
 			if player:getPosition().x == pushPos.x and player:getPosition().y == pushPos.y and player:getPosition().z == pushPos.z then
 				local storePlayers = {}
-				for i = 1, #config.playerPositions do
-					local tile = Tile(Position(config.playerPositions[i]))
+				for i = 1, #config.entranceTiles do
+					local tile = Tile(Position(config.entranceTiles[i]))
 					if tile then
 						local playerTile = tile:getTopCreature()
 						if playerTile and playerTile:isPlayer() then
@@ -173,7 +173,7 @@ function heartDestructionSparks.onUse(player, item, fromPosition, itemEx, toPosi
 
 					for i = 1, #storePlayers do
 						players = storePlayers[i]
-						config.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
 					end
 					Position(config.newPos):sendMagicEffect(11)

@@ -24,10 +24,7 @@ local rukcaConfig = {
 }
 RegisterEncounter(rukcaConfig)
 
-local originalSealCage = {
-	topLeft = RUKCA_ANCHOR:Moved(-1, 26, 0),
-	downRight = RUKCA_ANCHOR:Moved(0, 27, 0),
-}
+local originalSealCage = ItemExList():Area(RUKCA_ANCHOR:Moved(-1, 26, 0), RUKCA_ANCHOR:Moved(0, 27, 0))
 
 local sealCagePositions = {
 	RUKCA_ANCHOR:Moved(3, 1, 0),
@@ -41,23 +38,15 @@ local sealCagePositions = {
 	RUKCA_ANCHOR:Moved(-24, 2, 0),
 }
 
-local cages = {}
+local cages = ItemExList()
 
 local function tryRemoveBabySealCages()
-	for _, cage in pairs(cages) do
-		for _, items in pairs(cage) do
-			for _, item in pairs(items) do
-				item:remove()
-				item = nil
-			end
-		end
-	end
-	cages = {}
+	cages:Remove()
 end
 
 local function initializeBabySealCages()
-	for _, pos in pairs(sealCagePositions) do
-		cages[#cages + 1] = CopyItemsArea(originalSealCage.topLeft, originalSealCage.downRight, pos)
+	for _, destination in pairs(sealCagePositions) do
+		cages:AddMultiple(originalSealCage:Copied(destination))
 	end
 end
 

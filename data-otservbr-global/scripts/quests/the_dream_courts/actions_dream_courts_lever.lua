@@ -11,38 +11,38 @@ local config = {
 	requiredLevel = 250,
 	timeToFightAgain = 10, -- In hour
 	timeToDefeat = 30, -- In minutes
-	playerPositions = {
-		{ pos = Position(32208, 32021, 13), teleport = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32208, 32022, 13), teleport = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32208, 32023, 13), teleport = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32208, 32024, 13), teleport = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32208, 32025, 13), teleport = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
+	entranceTiles = {
+		{ pos = Position(32208, 32021, 13), destination = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32208, 32022, 13), destination = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32208, 32023, 13), destination = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32208, 32024, 13), destination = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32208, 32025, 13), destination = Position(32207, 32041, 14), effect = CONST_ME_TELEPORT },
 	},
 	bossPosition = Position(32207, 32051, 14),
-	specPos = {
+	zoneArea = {
 		from = Position(32199, 32039, 14),
 		to = Position(32229, 32055, 14),
 	},
-	exit = Position(32210, 32035, 13),
+	exitTpDestination = Position(32210, 32035, 13),
 }
 local bossToday = config.bossName[os.date("%A")]
 
 local dreamCourtsLever = Action()
 function dreamCourtsLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if config.playerPositions[1].pos ~= player:getPosition() then
+	if config.entranceTiles[1].pos ~= player:getPosition() then
 		return false
 	end
 	local spec = Spectators()
 	spec:setOnlyPlayer(false)
-	spec:setRemoveDestination(config.exit)
-	spec:setCheckPosition(config.specPos)
+	spec:setRemoveDestination(config.exitTpDestination)
+	spec:setCheckPosition(config.zoneArea)
 	spec:check()
 	if spec:getPlayers() > 0 then
 		player:say("There's someone fighting with " .. bossToday .. ".", TALKTYPE_MONSTER_SAY)
 		return true
 	end
 	local lever = Lever()
-	lever:setPositions(config.playerPositions)
+	lever:setPositions(config.entranceTiles)
 	lever:setCondition(function(creature)
 		if not creature or not creature:isPlayer() then
 			return true

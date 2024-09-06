@@ -55,7 +55,7 @@ end
 local heartDestructionQuake = Action()
 function heartDestructionQuake.onUse(player, item, fromPosition, itemEx, toPosition)
 	local config = {
-		playerPositions = {
+		entranceTiles = {
 			Position(5415, 1372, 14), --{x = 5415, y = 1372, z = 14}
 			Position(5415, 1373, 14),
 			Position(5415, 1374, 14),
@@ -72,8 +72,8 @@ function heartDestructionQuake.onUse(player, item, fromPosition, itemEx, toPosit
 		if item.itemid == 8911 then
 			if player:getPosition().x == pushPos.x and player:getPosition().y == pushPos.y and player:getPosition().z == pushPos.z then
 				local storePlayers, playerTile = {}
-				for i = 1, #config.playerPositions do
-					playerTile = Tile(config.playerPositions[i]):getTopCreature()
+				for i = 1, #config.entranceTiles do
+					playerTile = Tile(config.entranceTiles[i]):getTopCreature()
 					if isPlayer(playerTile) then
 						storePlayers[#storePlayers + 1] = playerTile
 					end
@@ -86,7 +86,7 @@ function heartDestructionQuake.onUse(player, item, fromPosition, itemEx, toPosit
 
 					for i = 1, #storePlayers do
 						players = storePlayers[i]
-						config.playerPositions[i]:sendMagicEffect(CONST_ME_POFF)
+						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
 						players:setStorageValue(14325, os.time() + 20 * 60 * 60)
 					end
