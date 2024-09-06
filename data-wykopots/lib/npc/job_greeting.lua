@@ -12,9 +12,10 @@ JOBS_GREETINGS = {
 	[JOB_TASKS_IMBUING] = {
 		text = "Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!",
 		specialConditions = {
-			[TASK_SPECIAL_CONDITIONS.hasDoneAnyTask] = {
+			{
+				condition = SPECIAL_CONDITIONS_TASKS.hasDoneAnyTask,
 				requiredOutcome = true,
-				textOnFailedCondition = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
+				textNoRequiredCondition = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
 			},
 		},
 	},

@@ -25,7 +25,10 @@ local startupRewardsStatic = {
 		requiredState = { [Storage.TrzejSramaciISmok.Questline] = 5 },
 		nextState = { [Storage.TrzejSramaciISmok.Questline] = 6, [Storage.TrzejSramaciISmok.Mission03] = 4 },
 		specialActionsOnSuccess = {
-			[GENERAL_SPECIAL_ACTIONS.createMonstersAtPlayer] = { monsters = { { name = "Pirate Corsair", count = 2 } } },
+			{
+				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
+				monsters = { { name = "Pirate Corsair", count = 2 } },
+			},
 		},
 	},
 	{
@@ -44,7 +47,10 @@ local startupRewardsStatic = {
 		requiredState = { [Storage.TrzejSramaciISmok.Rewards.Rune1] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
 		nextState = { [Storage.TrzejSramaciISmok.Rewards.Rune1] = 1 },
 		specialActionsOnSuccess = {
-			[GENERAL_SPECIAL_ACTIONS.createMonstersAtPlayer] = { monsters = { { name = "Jan Kockodan", count = 1 } } },
+			{
+				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
+				monsters = { { name = "Jan Kockodan", count = 1 } },
+			},
 		},
 		rewards = {
 			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE1"],
@@ -58,7 +64,10 @@ local startupRewardsStatic = {
 		requiredState = { [Storage.TrzejSramaciISmok.Rewards.Rune2] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
 		nextState = { [Storage.TrzejSramaciISmok.Rewards.Rune2] = 1 },
 		specialActionsOnSuccess = {
-			[GENERAL_SPECIAL_ACTIONS.createMonstersAtPlayer] = { monsters = { { name = "Enchanted Hellspawn", count = 2 } } },
+			{
+				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
+				monsters = { { name = "Enchanted Hellspawn", count = 2 } },
+			},
 		},
 		rewards = {
 			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE2"],
@@ -72,7 +81,10 @@ local startupRewardsStatic = {
 		requiredState = { [Storage.TrzejSramaciISmok.Rewards.Rune3] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
 		nextState = { [Storage.TrzejSramaciISmok.Rewards.Rune3] = 1 },
 		specialActionsOnSuccess = {
-			[GENERAL_SPECIAL_ACTIONS.createMonstersAtPlayer] = { monsters = { { name = "Runic Hellspawn", count = 2 } } },
+			{
+				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
+				monsters = { { name = "Runic Hellspawn", count = 2 } },
+			},
 		},
 		rewards = {
 			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE3"],

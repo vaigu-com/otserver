@@ -58,7 +58,9 @@ local config = {
 				text = "",
 				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS["flare"] },
 				specialActionsOnSuccess = {
-					[ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.aunorTeleportOut] = {},
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.aunorTeleportOut,
+					},
 				},
 				nextState = {
 					[Storage.AssassinsCreedSkurwoala.Questline] = 15,

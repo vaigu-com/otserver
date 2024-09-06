@@ -40,7 +40,7 @@ local desertQuestTwoTrickSign = function(context)
 
 	return resultReal
 end
-OnLook(desertQuestTwoTrickSign, "TRICK_SIGN", Storage.DesertQuestTwo.Questline)
+RegisterOnLook(desertQuestTwoTrickSign, "TRICK_SIGN", Storage.DesertQuestTwo.Questline)
 
 local desertQuestTwoTrickGrave = function(context)
 	local user = context.player
@@ -62,4 +62,4 @@ local desertQuestTwoTrickGrave = function(context)
 	killingCurse(user)
 	return finalString
 end
-OnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", Storage.DesertQuestTwo.Questline)
+RegisterOnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", Storage.DesertQuestTwo.Questline)

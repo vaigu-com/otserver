@@ -97,10 +97,7 @@ local config = {
 				},
 				nextState = { [Storage.PerIustitiaAdAstra.HelpedRubelstein] = 2 },
 				specialActionsOnSuccess = {
-					[function(context)
-						local randomNumber = math.random(10 ^ 8, 10 ^ 9)
-						context.player:setStorageValue(Storage.PerIustitiaAdAstra.RubelsteinChecksum, randomNumber)
-					end] = {},
+					{ action = SPECIAL_ACTIONS_UNIVERSAL.setStorageRandomNumber, storage = Storage.PerIustitiaAdAstra.RubelsteinChecksum, min = 10 ^ 8, max = 10 ^ 9 },
 				},
 			},
 		},

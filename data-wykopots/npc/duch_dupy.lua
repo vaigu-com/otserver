@@ -113,7 +113,9 @@ local config = {
 			[{ ANY_MESSAGE }] = {
 				text = "Finally, I can end this charade. You, sucker. I'm not a princess, I'm the undead king of the crypt. An angel will arrive shortly, whom I can easily defeat and drain of all his power. You can't do {anything} about it.",
 				specialActionsOnSuccess = {
-					[ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.transformNpcToCryptKingLook] = {},
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.transformNpcToCryptKingLook,
+					},
 				},
 			},
 			[{ "anything", "nic" }] = {
@@ -123,7 +125,9 @@ local config = {
 					[Storage.AssassinsCreedSkurwoala.Mission05] = 4,
 				},
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.teleportToTemple] = {},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.teleportToTemple,
+					},
 				},
 				expReward = 500000,
 			},

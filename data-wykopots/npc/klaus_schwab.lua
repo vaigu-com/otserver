@@ -63,7 +63,9 @@ local config = {
 			[{ "yes", "no", "tak", "nie", "mission" }] = {
 				text = "Eine kleine Betruger... Wachen, zu den Waffen!",
 				specialActionsOnSuccess = {
-					[PER_IUSTITIA_AD_ASTRA_SPECIAL_ACTIONS.officerCaughtYou] = {},
+					{
+						action = PER_IUSTITIA_AD_ASTRA_SPECIAL_ACTIONS.officerCaughtYou,
+					},
 				},
 			},
 			[{ "ja", "jawohl", "doch" }] = {

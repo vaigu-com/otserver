@@ -1,3 +1,5 @@
+-- ToDo: convert trySomething into canSomething (condition) an doSomething (action)
+
 local internalNpcName = "Father Natanek"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
@@ -434,9 +436,7 @@ local config = {
 		[{ "mark", "map", "zaznacz", "zaznaczyc" }] = {
 			text = "I marked few points of interest on your map.",
 			specialActionsOnSuccess = {
-				[function(context)
-					markMap(context.player)
-				end] = {},
+				{ action = markMap },
 			},
 		},
 		[{
@@ -455,30 +455,34 @@ local config = {
 			requiredTopic = { min = 1, max = 1 },
 			nextTopic = 0,
 			specialConditions = {
-				[SPECIAL_CONDITIONS_GENERAL.canBuyBless] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.canBuyBless,
 					requiredOutcome = true,
-					textOnFailedCondition = "BLESS_INSUFFICIENT_MONEY",
+					textNoRequiredCondition = "BLESS_INSUFFICIENT_MONEY",
 				},
-				[function(context)
-					return context.player:hasBlessing(5)
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasBlessings,
+					count = ALL_BLESSINGS_COUNT,
 					requiredOutcome = false,
-					textOnFailedCondition = "You have been blessed already.",
+					textNoRequiredCondition = "You have been blessed already.",
 				},
 			},
 			specialActionsOnSuccess = {
-				[GENERAL_SPECIAL_ACTIONS.grantBless] = { min = 2, max = 6 },
+				{
+					action = SPECIAL_ACTIONS_UNIVERSAL.grantBless,
+					min = 2,
+					max = 6,
+				},
 			},
 		},
 		[{ "promotion", "promocja", "promote", "awans", "awansowac" }] = {
 			text = "PROMOTION_TEXT",
 			nextTopic = 2,
 			specialConditions = {
-				[function(context)
-					return context.player:getVocation():getId() < 5
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.isPromoted,
 					requiredOutcome = true,
-					textOnFailedCondition = "You are already promoted!",
+					textNoRequiredCondition = "You are already promoted!",
 				},
 			},
 		},
@@ -487,38 +491,32 @@ local config = {
 			requiredTopic = { min = 2, max = 2 },
 			nextTopic = 0,
 			specialConditions = {
-				[SPECIAL_CONDITIONS_GENERAL.hasMoney] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMoney,
 					requiredOutcome = true,
-					textOnFailedCondition = "PROMOTION_INSUFFICIENT_MONEY",
+					textNoRequiredCondition = "PROMOTION_INSUFFICIENT_MONEY",
 					price = PROMOTION_PRICE,
 				},
-				[SPECIAL_CONDITIONS_GENERAL.playerHasLevel] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerHasLevel,
 					requiredOutcome = true,
-					textOnFailedCondition = "You need at least 20 level to get promoted!",
-					minLevel = 20,
+					textNoRequiredCondition = "You need at least 20 level to get promoted!",
+					minLevel = PROMOTION_LEVEL,
 				},
 			},
 			specialActionsOnSuccess = {
-				[function(context)
-					local player = context.player
-					local vocation = player:getVocation()
-					local promotion = vocation:getPromotion()
-					if player:removeMoney(15000) then
-						player:setVocation(promotion)
-						player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-					end
-				end] = {},
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.buyPromotion },
 			},
 		},
 		[{ "heal", "uleczyc" }] = {
 			text = "You have been healed.",
 			specialActionsOnSuccess = {
-				[GENERAL_SPECIAL_ACTIONS.clearConditions] = {},
-				[function(context)
-					local player = context.player
-					player:addHealth(20000)
-					player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-				end] = {},
+				{
+					action = SPECIAL_ACTIONS_UNIVERSAL.clearConditions,
+				},
+				{
+					action = SPECIAL_ACTIONS_UNIVERSAL.heal,
+				},
 			},
 		},
 		-- marriage
@@ -534,34 +532,30 @@ local config = {
 		[{ "marriage", "malzenstwo", "malzenstwa" }] = {
 			text = "Just ask me to get a {wedding} ceremony!",
 			specialConditions = {
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == MARRIED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMarriedStatus,
 					requiredOutcome = false,
-					textOnFailedCondition = "My chronicles suggest that you are married already. Do you want to get a {divorce} now?",
+					textNoRequiredCondition = "My chronicles suggest that you are married already. Do you want to get a {divorce} now?",
 				},
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == PROPOSED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasProposedStatus,
 					requiredOutcome = false,
-					textOnFailedCondition = "NO_PROPOSAL_RESPONSE",
+					textNoRequiredCondition = "NO_PROPOSAL_RESPONSE",
 				},
 			},
 		},
 		[{ "wedding", "slub" }] = {
 			text = "Thats great! So you want to {marry} someone?",
 			specialConditions = {
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == MARRIED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMarriedStatus,
 					requiredOutcome = false,
-					textOnFailedCondition = "You are married already. Do you want to get a {divorce} now?",
+					textNoRequiredCondition = "My chronicles suggest that you are married already. Do you want to get a {divorce} now?",
 				},
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == PROPOSED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasProposedStatus,
 					requiredOutcome = false,
-					textOnFailedCondition = "NO_PROPOSAL_RESPONSE",
+					textNoRequiredCondition = "NO_PROPOSAL_RESPONSE",
 				},
 			},
 		},
@@ -583,11 +577,10 @@ local config = {
 			requiredTopic = { min = 4, max = 4 },
 			text = "Since both young souls are willing to marry - get ready. Let me know if you are willing to start the {celebration}.",
 			specialConditions = {
-				[function(context)
-					return tryEngage(context)
-				end] = {
+				{
+					condition = tryEngage,
 					requiredOutcome = true,
-					textOnFailedCondition = "",
+					textNoRequiredCondition = "",
 				},
 			},
 		},
@@ -605,18 +598,18 @@ local config = {
 			nextTopic = 6,
 			text = "Good, let's {begin} then!",
 			specialConditions = {
-				[function(context)
-					return tryConfirmWedding(context)
-				end] = {
+				{
+					condition = tryConfirmWedding,
 					requiredOutcome = true,
-					textOnFailedCondition = "Your partner did not accept your proposal yet.",
+					textNoRequiredCondition = "Your partner did not accept your proposal yet.",
 				},
 			},
 		},
 		[{ "begin", "rozpocznijmy" }] = {
 			text = "",
 			specialActionsOnSuccess = {
-				[GENERAL_SPECIAL_ACTIONS.npcSay] = {
+				{
+					action = SPECIAL_ACTIONS_UNIVERSAL.npcSay,
 					talkType = TALKTYPE_SAY,
 					text = "MARRIAGE_TALKTYPE_SAY_TEXT",
 				},
@@ -632,18 +625,13 @@ local config = {
 			requiredTopic = { min = 7, max = 7 },
 			nextTopic = 0,
 			specialActionsOnSuccess = {
-				[function(context)
-					local player = context.player
-					setPlayerMarriageStatus(player:getGuid(), 0)
-					setPlayerSpouse(player:getGuid(), -1)
-				end] = {},
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.cancelMarriage },
 			},
 			specialConditions = {
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == PROPOSED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasProposedStatus,
 					requiredOutcome = true,
-					textOnFailedCondition = "You are not proposed to anyone.",
+					textNoRequiredCondition = "You are not proposed to anyone.",
 				},
 			},
 		},
@@ -652,11 +640,10 @@ local config = {
 			requiredTopic = { min = 7, max = 7 },
 			nextTopic = 0,
 			specialConditions = {
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == PROPOSED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasProposedStatus,
 					requiredOutcome = true,
-					textOnFailedCondition = "You are not proposed to anyone.",
+					textNoRequiredCondition = "You are not proposed to anyone.",
 				},
 			},
 		},
@@ -666,21 +653,13 @@ local config = {
 			text = "Well. I hope you wont regret it.",
 			requiredTopic = { min = 8, max = 8 },
 			specialActionsOnSuccess = {
-				[function(context)
-					local player = context.player
-					local spouse = getPlayerSpouse(player:getGuid())
-					setPlayerMarriageStatus(player:getGuid(), 0)
-					setPlayerSpouse(player:getGuid(), -1)
-					setPlayerMarriageStatus(spouse, 0)
-					setPlayerSpouse(spouse, -1)
-				end] = {},
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.divorce },
 			},
 			specialConditions = {
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == MARRIED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMarriedStatus,
 					requiredOutcome = true,
-					textOnFailedCondition = "You are not married to anyone.",
+					textNoRequiredCondition = "You are not married to anyone.",
 				},
 			},
 		},
@@ -688,11 +667,10 @@ local config = {
 			text = "I'm very happy with your decision.",
 			requiredTopic = { min = 8, max = 8 },
 			specialConditions = {
-				[function(context)
-					return getPlayerMarriageStatus(context.player:getGuid()) == MARRIED_STATUS
-				end] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMarriedStatus,
 					requiredOutcome = true,
-					textOnFailedCondition = "You are not married to anyone.",
+					textNoRequiredCondition = "You are not married to anyone.",
 				},
 			},
 		},

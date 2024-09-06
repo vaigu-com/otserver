@@ -92,9 +92,7 @@ local config = {
 		[1] = {
 			[{ "fuel", "rod", "paliwo", "pret" }] = {
 				specialActionsOnSuccess = {
-					[function(context)
-						context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)
-					end] = {},
+					{ action = SPECIAL_ACTIONS_UNIVERSAL.openTradeWindow },
 				},
 			},
 		},

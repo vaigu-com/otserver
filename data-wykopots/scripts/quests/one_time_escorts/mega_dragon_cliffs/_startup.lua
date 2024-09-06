@@ -35,9 +35,8 @@ function tileAboveNpc.onStepIn(creature, item, position, fromPosition)
 		return
 	end
 
-	escortContext.player = player
 	escortContext.npc = escortNpc
-	StartEscort(escortContext)
+	StartEscortDialogue(escortContext, player)
 
 	return true
 end

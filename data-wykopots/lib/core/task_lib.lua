@@ -6,44 +6,8 @@ DAILY_TASK_NOT_STARTED = -1
 
 DAILY_TASK_LIMIT = 3
 
-TASK_SPECIAL_CONDITIONS = {
-    canTakeAnotherTask = function(context)
-        local player = context.player
-        return player:CanTakeAnotherTask()
-    end,
-    hasAnyOngoingTask = function(context)
-        local player = context.player
-        return player:HasAnyOngoingTask()
-    end,
-    hasDoneAnyTask = function(context)
-        local player = context.player
-        return player:DoneAnyTask()
-    end
-}
-
-TASK_SPECIAL_ACTIONS = {
-    grantTaskRewards = function(context)
-        local player = context.player
-        player:GrantRewardsForAllTasks(context)
-    end
-}
-
-DAILY_TASK_SPECIAL_CONDITIONS = {
-    hasAnyOngoingDailyTask = function(context)
-        local player = context.player
-        return player:HasAnyOngoingDailyTask()
-    end
-}
-DAILY_TASK_SPECIAL_ACTIONS = {
-    grantDailyTaskRewards = function(context)
-        local player = context.player
-        player:GrantRewardsForAllDailyTasks(context)
-    end
-}
-
 function Player:TryResetDailyTaskCounter()
-    local lastResetTimestamp = self:getStorageValue(Storage.DailyTasks
-                                                        .LastResetTimestamp)
+    local lastResetTimestamp = self:getStorageValue(Storage.DailyTasks.LastResetTimestamp)
     local todayTimeStamp = KV.get(Storage.DailyTasks.LastResetTimestamp)
     if lastResetTimestamp >= todayTimeStamp then return end
     self:setStorageValue(Storage.DailyTasks.LastResetTimestamp, todayTimeStamp)
@@ -329,8 +293,7 @@ function OpenDailyTaskCancelWindow(context)
         ::continue::
     end
 
-    local select = modalWindow:addButton(localizer:Get("Select"),
-                                         canceDailyTaskFromList)
+    local select = modalWindow:addButton(localizer:Get("Select"), canceDailyTaskFromList)
     local exit = modalWindow:addButton(localizer:Get("Exit"))
     modalWindow:setDefaultEnterButton(select.id - 1)
     modalWindow:setDefaultEscapeButton(exit.id - 1)

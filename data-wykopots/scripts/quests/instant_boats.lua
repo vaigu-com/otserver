@@ -1,3 +1,9 @@
+--[[
+ToDo: create fields:
+	positions,
+	requiredState,
+]] 
+
 local boatsInit = {
 	["Boat behind house, Island trolls archipelago"] = { Position(7143, 944, 7), Position(7014, 906, 7) },
 	["Hellfire spawn cave entrance, Mercuru blob rocks"] = { Position(7468, 1014, 7), Position(7645, 974, 7) },
@@ -53,7 +59,7 @@ function boat.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	local toPos = boatConfig.toPos:GetAnyFreePosInRadius()
+	local toPos = boatConfig.toPos:FindAnyUnoccupiedSpot()
 	player:teleportTo(toPos)
 	toPos:sendMagicEffect(CONST_ME_TELEPORT)
 end

@@ -170,18 +170,24 @@ local dialogues = {
 					max = topics.askedForRecipe,
 				},
 				specialConditions = {
-					[canRemoveIngredients] = {
+					{
+						condition = canRemoveIngredients,
 						requiredOutcome = true,
-						textOnFailedCondition = "Make sure you have all the required ingredients.",
+						textNoRequiredCondition = "Make sure you have all the required ingredients.",
 					},
-					[canAddDish] = {
+					{
+						condition = canAddDish,
 						requiredOutcome = true,
-						textOnFailedCondition = "You dont have either cap or bags slots for this dish.",
+						textNoRequiredCondition = "You dont have either cap or bags slots for this dish.",
 					},
 				},
 				specialActionsOnSuccess = {
-					[removeIngredients] = {},
-					[addDish] = {},
+					{
+						action = removeIngredients,
+					},
+					{
+						action = addDish,
+					},
 				},
 				nextState = { [Storage.TopChef.Questline] = "+1" },
 			},
@@ -213,36 +219,38 @@ local dialogues = {
 			[{ ANY_MESSAGE }] = {
 				text = "Do you have all the necessary ingredients?",
 				specialConditions = {
-					[saidDishName] = {
+					{
+						condition = saidDishName,
 						requiredOutcome = true,
-						textOnFailedCondition = "Just tell me any dish name from the recipe books.",
+						textNoRequiredCondition = "Just tell me any dish name from the recipe books.",
 					},
 				},
 				specialActionsOnSuccess = {
-					[function(context)
-						local dishName = context.msg
-						local dishStorage = COOKING_DISH_NAMES[dishName]
-						local dishData = COOKING_INGREDIENT_DATA[dishStorage]
-						context.player:SetCustomConversationData(dishData)
-					end] = {},
+					{ action = SPECIAL_ACTIONS_COOK.setDishData },
 				},
 				nextTopic = topics.confirmMakingAnyDish,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!",
 				specialConditions = {
-					[canRemoveIngredients] = {
+					{
+						condition = canRemoveIngredients,
 						requiredOutcome = true,
-						textOnFailedCondition = "Make sure you have all the required ingredients.",
+						textNoRequiredCondition = "Make sure you have all the required ingredients.",
 					},
-					[canAddDish] = {
+					{
+						condition = canAddDish,
 						requiredOutcome = true,
-						textOnFailedCondition = "You dont have either cap or bags slots for this dish.",
+						textNoRequiredCondition = "You dont have either cap or bags slots for this dish.",
 					},
 				},
 				specialActionsOnSuccess = {
-					[removeIngredients] = {},
-					[addDish] = {},
+					{
+						action = removeIngredients,
+					},
+					{
+						action = addDish,
+					},
 				},
 				nextTopic = 0,
 				requiredTopic = {

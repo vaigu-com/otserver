@@ -56,13 +56,15 @@ local config = {
 			[{ ANY_MESSAGE }] = {
 				text = "Correct password. Come in.",
 				specialConditions = {
-					[SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword] = {
+					{
+						condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword,
 						requiredOutcome = true,
-						textOnFailedCondition = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
+						textNoRequiredCondition = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
 					},
 				},
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.teleportPlayer] = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
 						pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
 					},
 				},

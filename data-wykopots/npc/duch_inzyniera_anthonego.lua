@@ -64,7 +64,9 @@ local config = {
 				text = "How come im translucent then?",
 				requiredTopic = { min = 1, max = 1 },
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+					},
 				},
 			},
 			[{ "no", "nie" }] = {

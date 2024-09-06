@@ -1,26 +1,26 @@
 local safeDelaySeconds = 2
 
 Escort = {}
-function Escort:New(context)
+function Escort:New(context, player)
 	local newObj = {}
-	self.npc = context.npc
-	self.npcName = context.npcName or context.npc:getName()
-	self.npcRespawnPos = context.npcRespawnPos or context.npc:getPosition()
-	self.player = context.player
-	self.escortee = nil
-	self.escorteeName = context.escorteeName or context.npcName + " Escort"
-	self.timeLimitSeconds = context.timeLimitSeconds or (15 * 60)
-	self.startAfterSeconds = context.startAfterSeconds or 2
-	self.deadline = os.time() + context.timeLimitSeconds + context.startAfterSeconds
-	self.destinationPos = context.destinationPos
-	self.finishMessage = context.finishMessage
-	self.questlineAid = context.questlineAid or -1
-	self.requiredState = context.requiredState or {}
-	self.nextState = context.nextState or {}
-	self.rewards = context.rewards or {}
-	self.expReward = context.expReward or 0
-	self.distanceToSucceed = context.distanceToSucceed or 5
-	self.grantQuestCreditRadius = context.grantQuestCreditRadius or 10
+	newObj.npc = context.npc
+	newObj.npcName = context.npcName or context.npc:getName()
+	newObj.npcRespawnPos = context.npcRespawnPos or context.npc:getPosition()
+	newObj.player = player or context.player
+	newObj.escortee = nil
+	newObj.escorteeName = context.escorteeName or context.npcName + " Escort"
+	newObj.timeLimitSeconds = context.timeLimitSeconds or (15 * 60)
+	newObj.startAfterSeconds = context.startAfterSeconds or 2
+	newObj.deadline = os.time() + context.timeLimitSeconds + context.startAfterSeconds
+	newObj.destinationPos = context.destinationPos
+	newObj.finishMessage = context.finishMessage
+	newObj.questlineAid = context.questlineAid or -1
+	newObj.requiredState = context.requiredState or {}
+	newObj.nextState = context.nextState or {}
+	newObj.rewards = context.rewards or {}
+	newObj.expReward = context.expReward or 0
+	newObj.distanceToSucceed = context.distanceToSucceed or 5
+	newObj.grantQuestCreditRadius = context.grantQuestCreditRadius or 10
 
 	if context.startAfterSeconds < 2 then
 		logger.debug(T("[Escort:New] - you cannot set startAfterSeconds lower than minimal safe delay of :safeDelaySeconds: seconds", { safeDelaySeconds = safeDelaySeconds }))
@@ -34,13 +34,13 @@ function Escort:New(context)
 end
 setmetatable(Escort, {
 	__call = function(class, ...)
-		return class:new(...)
+		return class:New(...)
 	end,
 })
 
 local escortRegistrySingleton = nil
 EscortRegistry = {}
-function EscortRegistry:new()
+function EscortRegistry:New()
 	if escortRegistrySingleton then
 		return escortRegistrySingleton
 	end
@@ -51,7 +51,7 @@ function EscortRegistry:new()
 end
 setmetatable(EscortRegistry, {
 	__call = function(class, ...)
-		return class:new(...)
+		return class:New(...)
 	end,
 })
 escortRegistrySingleton = EscortRegistry()
@@ -207,8 +207,14 @@ function Escort:Start()
 	end, self.startAfterSeconds * 1000)
 end
 
-function StartEscort(context)
-	local escort = Escort:New(context)
+function StartEscortOpenWorld(context, player)
+	local escort = Escort:New(context, player)
+	EscortRegistry():Register(escort)
+	escort:Start()
+end
+
+function StartEscortDialogue(context)
+	local escort = Escort:New(context.escortContext, context.player)
 	EscortRegistry():Register(escort)
 	escort:Start()
 end

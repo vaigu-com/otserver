@@ -107,7 +107,9 @@ local config = {
 				},
 				textNoRequiredItems = "I see you don't have all the runes yet.",
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+					},
 				},
 				nextState = {
 					[Storage.TrzejSramaciISmok.Questline] = 22,

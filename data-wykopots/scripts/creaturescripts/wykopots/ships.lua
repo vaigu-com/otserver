@@ -1,7 +1,9 @@
 FREE_TRANSPORTS = 10
 
-TRANSPORT_TYPE_SHIP = "TRANSPORT_TYPE_SHIP"
-TRANSPORT_TYPE_CARPET = "TRANSPORT_TYPE_CARPET"
+TRANSPORT_TYPE = {
+	SHIP = "TRANSPORT_TYPE.SHIP",
+	CARPET = "TRANSPORT_TYPE.CARPET",
+}
 DEFAULT_TRANSPORT_COST = 200
 
 local function createHelpDialog(player, _, _)
@@ -50,16 +52,21 @@ local function confirmDestination(player, _, choice)
 end
 
 local transportNameToWindowTitle = {
-	[TRANSPORT_TYPE_SHIP] = "ShipWindowTitle",
-	[TRANSPORT_TYPE_CARPET] = "CarpetWindowTitle",
+	[TRANSPORT_TYPE.SHIP] = "ShipWindowTitle",
+	[TRANSPORT_TYPE.CARPET] = "CarpetWindowTitle",
 }
 
 local transportnameToWindowMessage = {
-	[TRANSPORT_TYPE_SHIP] = "ShipWindowMessage",
-	[TRANSPORT_TYPE_CARPET] = "CarpetWindowMessage",
+	[TRANSPORT_TYPE.SHIP] = "ShipWindowMessage",
+	[TRANSPORT_TYPE.CARPET] = "CarpetWindowMessage",
 }
 
-function CreateTransportWindow(player, transports, transportName)
+--ToDoL use context
+function CreateTransportWindow(context)
+	local player = context.player
+	local transports = context.transports
+	local transportName = context.transportName
+
 	local title = player:Localizer(LOCALIZER_UNIVERSAL):Get(transportNameToWindowTitle[transportName])
 	local message = player:Localizer("UNIVRESAL"):Get(transportnameToWindowMessage[transportName])
 	local window = ModalWindow({ title = title, message = message })
@@ -103,10 +110,36 @@ SHIP_ROUTES_RUDOBRODY = {
 	--	{ toPos = Position(7318, 1090, 6), name = "Maioor'ka" },
 	--	{ toPos = Position(7929, 1533, 6), name = "Bydgoshch" },
 }
-
-CARPET_ROUTES_ALI_BABA = {
-	{ toPos = Position(7273, 1104, 3), name = "Maioor'ka" },
-	{ toPos = Position(7027, 1201, 2), name = "Zoltystok" },
-	{ toPos = Position(7477, 1775, 6), name = "Orshaawa" },
-	{ toPos = Position(6322, 1929, 4), name = "A'laska" },
+TRANSPORT_ROUTES = {
+	ALI_BABA_CARPET = {
+		{ toPos = Position(7273, 1104, 3), name = "Maioor'ka" },
+		{ toPos = Position(7027, 1201, 2), name = "Zoltystok" },
+		{ toPos = Position(7477, 1775, 6), name = "Orshaawa" },
+		{ toPos = Position(6322, 1929, 4), name = "A'laska" },
+	},
+	RUDOBRODY_SHIP = {
+		--	{ toPos = Position(7318, 1090, 6), name = "Maioor'ka" },
+		--	{ toPos = Position(7929, 1533, 6), name = "Bydgoshch" },
+	},
+	KRZYSZTOF_KOLUMB_SHIP = {
+		{ toPos = Position(5909, 1233, 6), name = "North Mirko" },
+		{ toPos = Position(6247, 1023, 6), name = "Stepy" },
+		{ toPos = Position(5747, 1217, 6), name = "Bornholm", minLevel = 50 },
+		{ toPos = Position(6223, 1392, 7), name = "Wyspa Quar" },
+		{ toPos = KRAKEN_ANCHOR, name = "Leviathan", minLevel = 50 },
+	},
+	JACEK_WROBEL_SHIP = {
+		{ toPos = Position(5980, 1502, 6), name = "Mirko Town" },
+		{ toPos = Position(6740, 1357, 6), name = "Hurgada" },
+		{ toPos = Position(7074, 801, 6), name = "Kongo" },
+		{ toPos = Position(5539, 1509, 6), name = "Knurowo" },
+		{ toPos = Position(6602, 1877, 7), name = "Sybir" },
+		{ toPos = Position(6791, 1082, 6), name = "Wyspa Piratow" },
+		{ toPos = Position(5990, 766, 6), name = "Karaiby", minLevel = 60 },
+		{ toPos = Position(6421, 727, 7), name = "Praga Polnoc", minLevel = 60 },
+		--	{ toPos = Position(7318, 1090, 6), name = "Maioor'ka" },
+		--	{ toPos = Position(7929, 1533, 6), name = "Bydgoshch" },
+	},
 }
+
+TRANSPORT_ROUTES_ALI_BABA = {}

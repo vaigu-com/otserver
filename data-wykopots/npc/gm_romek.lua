@@ -316,7 +316,9 @@ local dialogues = {
 					[Storage.TeatrTaniejSensacji.Mission08] = 3,
 				},
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+					},
 				},
 			},
 		},
@@ -422,7 +424,9 @@ local dialogues = {
 					["Corym Skirmisher"] = 2,
 				},
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.endDialogue] = {},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+					},
 				},
 			},
 			[{ "mission", "misja" }] = {

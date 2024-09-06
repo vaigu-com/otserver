@@ -62,7 +62,7 @@ local config = {
 				text = "Alrigth, lets go.",
 				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["FREDI_BEER"] },
 				specialActionsOnSuccess = {
-					[StartEscort] = escortContext,
+					{ action = StartEscortDialogue, escortContext = escortContext },
 				},
 				textNoRequiredItems = "Give me the booze! Give me the booze!",
 			},

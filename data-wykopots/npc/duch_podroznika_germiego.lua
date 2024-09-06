@@ -90,7 +90,9 @@ local config = {
 					[Storage.DesertQuestGhosts.Mission01] = 1,
 				},
 				specialActionsOnSuccess = {
-					[DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect] = {},
+					{
+						action = DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect,
+					},
 				},
 			},
 		},
@@ -118,7 +120,9 @@ local config = {
 					[Storage.DesertQuestGhosts.Mission01] = 3,
 				},
 				specialActionsOnSuccess = {
-					[DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect] = {},
+					{
+						action = DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect,
+					},
 				},
 			},
 			[{ ANY_MESSAGE }] = {
@@ -168,7 +172,9 @@ local config = {
 				},
 				rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS["PUNCHCARD"] },
 				specialActionsOnSuccess = {
-					[DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect] = {},
+					{
+						action = DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect,
+					},
 				},
 			},
 		},

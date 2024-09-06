@@ -1,4 +1,4 @@
-local config = {
+local vectorToMessage = {
 	["90, 66, -1"] = "I just discovered a pattern that will help me identify correct hints. Phantasms can use our human language, but they aren't fluent at it. Phantasms' hints can be identified by many linguistic errors  more or less obvious. Therefore if you encounter a message with a lot of errors, you can be sure it was forged by a phantasm. However, if you find a message with no mistakes at all, you can't be sure about its genuinity. It only works one way. \n\n~Page 57 of Germi Journal.",
 	["71, 54, -1"] = "I tested the information left by Fifonz Kuciapa with my dog companion's assistance, and thanks to it we made it out alive with no problem at all. \n\n~Patrycja Suchodolska",
 	["117, 103, -2"] = "I measured every array for every tile until I found the correct combination. The correct sign was the one located at the place second from the bottom. \n\n~Page 89 from Eustachy Wiertara journal",
@@ -47,7 +47,7 @@ end
 
 function LoadDesertQuestBooks()
 	local desertQuestBookOffsets = {}
-	for offset, _ in pairs(config) do
+	for offset, _ in pairs(vectorToMessage) do
 		local parts = {}
 		for part in offset:gmatch("([^,]+)") do
 			table.insert(parts, part)
@@ -78,11 +78,11 @@ function book.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 	player:registerEvent("DesertQuestBook_Modal_Window")
 
-	local offsetStr = OffsetToString(PosToOffset(toPosition, DESERT_QUEST_ONE_ANCHOR))
-	local message = player:Localizer(Storage.DesertQuestOne.Questline):Get(config[offsetStr])
+	local message = vectorToMessage[toPosition:VectorBetween(DESERT_QUEST_ONE_ANCHOR):ToStringShort()]
+	local translatedMessage = player:Localizer(Storage.DesertQuestOne.Questline):Get(message)
 	local title = "You read the following."
 
-	local window = ModalWindow(item.actionid, title, message)
+	local window = ModalWindow(item.actionid, title, translatedMessage)
 	window:addButton(101, "Close")
 	window:setDefaultEscapeButton(101)
 	window:sendToPlayer(player)

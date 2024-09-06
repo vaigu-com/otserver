@@ -1,6 +1,10 @@
 -- Functions from The Forgotten Server
 local foodCondition = Condition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
 
+local function firstToUpper(str)
+	return (str:gsub("^%l", string.upper))
+end
+
 function Player.feed(self, food)
 	local condition = self:getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
 	if condition then
@@ -97,16 +101,16 @@ function Player.getCookiesDelivered(self)
 
 	local storage, amount =
 		{
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.SimonTheBeggar,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Markwin,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Ariella,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Hairycles,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Djinn,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.AvarTar,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.OrcKing,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Lorbas,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Wyda,
-			Storage.Quest.U8_1.WhatAFoolishQuest.CookieDelivery.Hjaern,
+			Storage.WhatAFoolish.CookieDelivery.SimonTheBeggar,
+			Storage.WhatAFoolish.CookieDelivery.Markwin,
+			Storage.WhatAFoolish.CookieDelivery.Ariella,
+			Storage.WhatAFoolish.CookieDelivery.Hairycles,
+			Storage.WhatAFoolish.CookieDelivery.Djinn,
+			Storage.WhatAFoolish.CookieDelivery.AvarTar,
+			Storage.WhatAFoolish.CookieDelivery.OrcKing,
+			Storage.WhatAFoolish.CookieDelivery.Lorbas,
+			Storage.WhatAFoolish.CookieDelivery.Wyda,
+			Storage.WhatAFoolish.CookieDelivery.Hjaern,
 		}, 0
 	for i = 1, #storage do
 		if self:getStorageValue(storage[i]) == 1 then
@@ -116,29 +120,38 @@ function Player.getCookiesDelivered(self)
 	return amount
 end
 
+function Player.allowMovement(self, allow)
+	return allow and self:kv():remove("block-movement") or self:kv():set("block-movement", 1)
+end
+
+function Player.hasAllowMovement(self)
+	local blockMovement = self:kv():get("block-movement") or 0
+	return blockMovement ~= 1
+end
+
 function Player.checkGnomeRank(self)
 	if not IsRunningGlobalDatapack() then
 		return true
 	end
 
-	local points = self:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank)
-	local questProgress = self:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine)
+	local points = self:getStorageValue(Storage.BigfootBurden.Rank)
+	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
 	if points >= 30 and points < 120 then
 		if questProgress <= 25 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 26)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 26)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 		end
 	elseif points >= 120 and points < 480 then
 		if questProgress <= 26 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 27)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 27)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
 		end
 	elseif points >= 480 and points < 1440 then
 		if questProgress <= 27 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 28)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 28)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
@@ -146,7 +159,7 @@ function Player.checkGnomeRank(self)
 		end
 	elseif points >= 1440 then
 		if questProgress <= 29 then
-			self:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 30)
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
@@ -309,11 +322,46 @@ function Player.getMarriageDescription(thing)
 		if self == thing then
 			descr = descr .. " You are "
 		else
-			descr = descr .. " " .. thing:getSubjectPronoun():titleCase() .. " " .. thing:getSubjectVerb() .. " "
+			descr = descr .. " " .. firstToUpper(thing:getSubjectPronoun()) .. " " .. thing:getSubjectVerb() .. " "
 		end
 		descr = descr .. "married to " .. getPlayerNameById(playerSpouse) .. "."
 	end
 	return descr
+end
+
+function Player.sendWeatherEffect(self, groundEffect, fallEffect, thunderEffect)
+	local position, random = self:getPosition(), math.random
+	position.x = position.x + random(-7, 7)
+	position.y = position.y + random(-5, 5)
+	local fromPosition = Position(position.x + 1, position.y, position.z)
+	fromPosition.x = position.x - 7
+	fromPosition.y = position.y - 5
+	local tile, getGround
+	for Z = 1, 7 do
+		fromPosition.z = Z
+		position.z = Z
+		tile = Tile(position)
+		if tile then
+			-- If there is a tile, stop checking floors
+			fromPosition:sendDistanceEffect(position, fallEffect)
+			position:sendMagicEffect(groundEffect, self)
+			getGround = tile:getGround()
+			if getGround and ItemType(getGround:getId()):getFluidSource() == 1 then
+				position:sendMagicEffect(CONST_ME_LOSEENERGY, self)
+			end
+			break
+		end
+	end
+	if thunderEffect and tile and not tile:hasFlag(TILESTATE_PROTECTIONZONE) then
+		if random(2) == 1 then
+			local topCreature = tile:getTopCreature()
+			if topCreature and topCreature:isPlayer() and topCreature:getAccountType() < ACCOUNT_TYPE_SENIORTUTOR then
+				position:sendMagicEffect(CONST_ME_BIGCLOUDS, self)
+				doTargetCombatHealth(0, self, COMBAT_ENERGYDAMAGE, -weatherConfig.minDMG, -weatherConfig.maxDMG, CONST_ME_NONE)
+				--self:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You were hit by lightning and lost some health.")
+			end
+		end
+	end
 end
 
 function Player:getFamiliarName()
@@ -473,7 +521,7 @@ function Player.getSubjectVerb(self, past)
 end
 
 function Player.findItemInInbox(self, itemId)
-	local inbox = self:getStoreInbox()
+	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	local items = inbox:getItems()
 	for _, item in pairs(items) do
 		if item:getId() == itemId then
@@ -490,23 +538,25 @@ function Player.updateHazard(self)
 		return true
 	end
 
-	self:setHazardSystemPoints(0)
 	for _, zone in pairs(zones) do
 		local hazard = Hazard.getByName(zone:getName())
-		if hazard then
-			if self:getParty() then
-				self:getParty():refreshHazard()
-			else
-				self:setHazardSystemPoints(hazard:getPlayerCurrentLevel(self))
-			end
+		if not hazard then
+			self:setHazardSystemPoints(0)
 			return true
 		end
+
+		if self:getParty() then
+			self:getParty():refreshHazard()
+		else
+			self:setHazardSystemPoints(hazard:getPlayerCurrentLevel(self))
+		end
+		return true
 	end
 	return true
 end
 
 function Player:addItemStoreInboxEx(item, movable, setOwner, actionId)
-	local inbox = self:getStoreInbox()
+	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	if not movable then
 		item:setOwner(self)
 		item:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
@@ -521,39 +571,20 @@ function Player:addItemStoreInboxEx(item, movable, setOwner, actionId)
 end
 
 function Player:addItemStoreInbox(itemId, amount, movable, setOwner)
-	if not amount then
-		logger.error("[Player:addItemStoreInbox] item '{}' amount is nil.", itemId)
-		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Item amount is wrong, please contact an administrator.")
-		return nil
-	end
-
 	local iType = ItemType(itemId)
 	if not iType then
 		return nil
 	end
-
 	if iType:isStackable() then
-		local stackSize = iType:getStackSize()
-		while amount > stackSize do
-			self:addItemStoreInboxEx(Game.createItem(itemId, stackSize), movable, setOwner)
-			amount = amount - stackSize
+		while amount > iType:getStackSize() do
+			self:addItemStoreInboxEx(Game.createItem(itemId, iType:getStackSize()), movable, setOwner)
+			amount = amount - iType:getStackSize()
 		end
 	end
-
-	local item
-	if iType:getCharges() > 0 then
-		item = Game.createItem(itemId, 1)
-		if item then
-			item:setAttribute(ITEM_ATTRIBUTE_CHARGES, amount)
-		end
-	else
-		item = Game.createItem(itemId, amount)
-	end
-
+	local item = Game.createItem(itemId, amount)
 	if not item then
 		return nil
 	end
-
 	return self:addItemStoreInboxEx(item, movable, setOwner)
 end
 
@@ -635,7 +666,7 @@ function Player:setFiendish()
 end
 
 function Player:findItemInInbox(itemId, name)
-	local inbox = self:getStoreInbox()
+	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	local items = inbox:getItems()
 	for _, item in pairs(items) do
 		if item:getId() == itemId and (not name or item:getName() == name) then
@@ -690,35 +721,36 @@ function Player:removeAll(itemId)
 	return count
 end
 
-local function bossKVScope(bossNameOrId)
+local function encounterKVscope(bossNameOrId)
 	local mType = MonsterType(bossNameOrId)
 	if not mType then
-		logger.error("bossKVScope - Invalid boss name or id: " .. bossNameOrId)
+		logger.error("[encounterKVscope] Invalid boss name/id:  " .. bossNameOrId)
 		return false
 	end
-	return "boss.cooldown." .. toKey(tostring(mType:raceId()))
+	return "encounter.cooldown." .. toKey(tostring(mType:raceId()))
 end
 
-function Player:getBossCooldown(bossNameOrId)
-	local scope = bossKVScope(bossNameOrId)
+function Player:getEncounterLockout(bossNameOrId)
+	local scope = encounterKVscope(bossNameOrId)
 	if not scope then
 		return false
 	end
 	return self:kv():get(scope) or 0
 end
 
-function Player:setBossCooldown(bossNameOrId, time)
-	local scope = bossKVScope(bossNameOrId)
+function Player:setEncounterLockout(identifier, time)
+	local scope = encounterKVscope(identifier)
 	if not scope then
 		return false
 	end
 	local result = self:kv():set(scope, time)
+	--ToDo: maybe not send?
 	self:sendBosstiaryCooldownTimer()
 	return result
 end
 
 function Player:canFightBoss(bossNameOrId)
-	local cooldown = self:getBossCooldown(bossNameOrId)
+	local cooldown = self:getEncounterLockout(bossNameOrId)
 	return cooldown <= os.time()
 end
 

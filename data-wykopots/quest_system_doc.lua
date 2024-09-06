@@ -153,11 +153,11 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 	-- This param allows user to define special conditions required to success-resolve dialogue
 	-- Most of common conditions can be checked using decicated params (eg. requiredMoney, requiredState, requiredItems)
 	-- Other conditions can be checked with special function, either declared by you or found in global function tables, eg. SPECIAL_CONDITIONS_GENERAL
-	-- Structure: [function] = { requiredOutcome, [textOnFailedCondition,] [params...] }
+	-- Structure: {condition, requiredOutcome, [textNoRequiredCondition,] [params...] }
 	-- The context argument will contain everything declared on the right side (value) as well as other context things like player, npc, npcHandler, msg, etc.
 	-- If condition function return value is not equal to requiredOutcome:
-	--	If textOnFailedCondition is not nil, npc will say the textOnFailedCondition and fail-resolve dialogue
-	--	If textOnFailedCondition is nil, this dialogue is discarded, and system will try to resolve next dialogue
+	--	If textNoRequiredCondition is not nil, npc will say the textNoRequiredCondition and fail-resolve dialogue
+	--	If textNoRequiredCondition is nil, this dialogue is discarded, and system will try to resolve next dialogue
 	local playerHasLevel = function(context)
 		local level = context.player:getLevel()
 		local min = context.min or 0
@@ -172,11 +172,13 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 		return true
 	end
 	specialConditions = {
-		[playerHasLevel] = {
+		{
+			-- Callback function - Required
+			condition = playerHasLevel,
 			-- This field is required
 			requiredOutcome = true,
 			-- Dont specify it to discard this dialogue on failed requiredOutcome
-			textOnFailedCondition = "Your level is not in range",
+			textNoRequiredCondition = "Your level is not in range",
 			-- Additional custom params
 			minLevel = 20,
 			maxLevel = 60,
@@ -200,6 +202,7 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 
 	-- Allows rewards to be distributed on success-resolution of dialogue
 	-- If player lacks cap/slots, npc will say according line, and fail-resolve the dialogue
+	-- Set key to
 	-- Item has to have id. Other attributes are optional
 	-- id = argument, Required
 	-- count = argument, Default: 1
@@ -231,6 +234,11 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 
 			--custom
 			meow_o_meter = 5,
+		},
+		-- Will put all items in container 1949
+		[1949] = {
+			{ id = 269, count = 100 },
+			{ id = 277, count = 5 },
 		},
 	}
 
@@ -343,9 +351,9 @@ local function exampleNpc()
 	-- Dialogue structure is split into two categories: requirements and actions
 	-- If all requirements are met, all actions will be executed and dialogue is success-resolved
 	-- If a requirements is not met, then either:
-	--  If this requirements has text on fail(eg. textOnFailedCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialogue is fail-resolved
+	--  If this requirements has text on fail(eg. textNoRequiredCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialogue is fail-resolved
 	--  Else This dialogue will be discarded and quest system will try to process the next dialogue
-	--ToDo: rename textOnFailedCondition to textNoRequiredCondition
+	--ToDo: rename textNoRequiredCondition to textNoRequiredCondition
 	local dialogues = {
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialogue can always be accessed. In case of conflicting keywords you should use topic to differentiate
@@ -430,14 +438,15 @@ local function exampleNpc()
 					text = "Cats have four legs.",
 					-- removes money from bank only
 					specialActionsOnSucess = {
-						[GENERAL_SPECIAL_ACTIONS.removeMoneyBank] = { price = 10 },
+						[SPECIAL_ACTIONS_UNIVERSAL.removeMoneyBank] = { price = 10 },
 					},
 					-- removes money from backpacks and then from bank if its not enoug
 					requiredMoney = 10,
 					specialConditions = {
-						[SPECIAL_CONDITIONS_GENERAL.playerHasLevel] = {
+						{
+							condition = SPECIAL_CONDITIONS_UNIVERSAL.playerHasLevel,
 							requiredOutcome = true,
-							textOnFailedCondition = "I cannot tell such things to an underage person!",
+							textNoRequiredCondition = "I cannot tell such things to an underage person!",
 							minLevel = 18,
 						},
 					},

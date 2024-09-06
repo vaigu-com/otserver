@@ -76,7 +76,7 @@ function playerDeathByCow.onPrepareDeath(player, killer)
 	if guillotineIsReserved then
 		return true
 	end
-	GENERAL_SPECIAL_ACTIONS.clearConditions({ player = player })
+	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 	guillotineIsReserved = true
 	local originalDeathPos = player:getPosition()
 	player:teleportTo(Position(7954, 1463, 7))

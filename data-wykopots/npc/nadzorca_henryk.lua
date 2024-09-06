@@ -246,13 +246,15 @@ local config = {
 					[Storage.SynMarnotrawny.Mission05] = 7,
 				},
 				specialConditions = {
-					[SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.frediIsNearby] = {
+					{
+						condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.frediIsNearby,
 						requiredOutcome = true,
-						textOnFailedCondition = "Come back with Fredi.",
+						textNoRequiredCondition = "Come back with Fredi.",
 					},
 				},
 				specialActionsOnSuccess = {
-					[GENERAL_SPECIAL_ACTIONS.despawnEscortee] = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.despawnEscortee,
 						escorteeName = "fredi kamionka monster",
 						despawnAfterSeconds = 10,
 					},
@@ -269,9 +271,10 @@ local config = {
 					[Storage.SynMarnotrawny.PolAccess] = 1,
 				},
 				specialConditions = {
-					[SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.frediIsNearby] = {
+					{
+						condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.frediIsNearby,
 						requiredOutcome = false,
-						textOnFailedCondition = "Give us a moment.",
+						textNoRequiredCondition = "Give us a moment.",
 					},
 				},
 			},
@@ -286,9 +289,10 @@ local config = {
 			[{ ANY_MESSAGE }] = {
 				text = "Yeah, thats it! Go and get rid of our imperator!",
 				specialConditions = {
-					[SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword] = {
+					{
+						condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword,
 						requiredOutcome = true,
-						textOnFailedCondition = "No. Im sure its not the password. Try looking behind the waterfall.",
+						textNoRequiredCondition = "No. Im sure its not the password. Try looking behind the waterfall.",
 					},
 				},
 			},

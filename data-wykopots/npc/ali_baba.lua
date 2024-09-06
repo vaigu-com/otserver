@@ -53,14 +53,17 @@ local config = {
 		[{ "fly", "poleciec", "yes", "tak" }] = {
 			text = "",
 			specialActionsOnSuccess = {
-				[function(context)
-					CreateTransportWindow(context.player, CARPET_ROUTES_ALI_BABA, TRANSPORT_TYPE_CARPET)
-				end] = {},
+				{
+					action = CreateTransportWindow,
+					transports = TRANSPORT_ROUTES.ALI_BABA_CARPET,
+					transportType = TRANSPORT_TYPE.CARPET,
+				},
 			},
 			specialConditions = {
-				[SPECIAL_CONDITIONS_GENERAL.playerIsPzLocked] = {
+				{
+					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
 					requiredOutcome = false,
-					textOnFailedCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
 				},
 			},
 		},
