@@ -107,7 +107,7 @@ function Game.startCountdown(position, totalSeconds)
 	addEvent(Game.setCountdown, 1000, position, seconds - 1)
 end
 
-local nextAvailableSpellId = 0
+local nextAvailableSpellId = 40000
 function NextSpellId()
 	nextAvailableSpellId = nextAvailableSpellId + 1
 	local nextAvailableSpellIdString = "###" .. nextAvailableSpellId
