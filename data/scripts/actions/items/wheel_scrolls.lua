@@ -14,6 +14,7 @@ function scroll.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
+	--[[
 	local scrollData = promotionScrolls[item:getId()]
 	local scrollKV = player:kv():scoped("wheel-of-destiny"):scoped("scrolls")
 	if scrollKV:get(scrollData.name) then
@@ -22,6 +23,7 @@ function scroll.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	scrollKV:set(scrollData.name, true)
+	]]
 	player:sendTextMessage(MESSAGE_LOOK, "You have gained " .. scrollData.points .. " promotion points for the Wheel of Destiny by deciphering the " .. scrollData.itemName .. ".")
 	item:remove(1)
 	return true
