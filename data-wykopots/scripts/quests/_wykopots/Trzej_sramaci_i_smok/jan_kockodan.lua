@@ -58,6 +58,7 @@ monster.attacks = {
 		minDamage = -150,
 		maxDamage = -225,
 		radius = 5,
+		effect = CONST_ME_HOLYAREA,
 		shootEffect = CONST_ANI_THROWINGKNIFE,
 		target = true,
 	},

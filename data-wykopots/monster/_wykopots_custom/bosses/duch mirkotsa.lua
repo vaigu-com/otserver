@@ -112,7 +112,7 @@ monster.loot = {
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 40, attack = 90 },
-	{ name = "effect", interval = 2000, chance = 12, length = 7, spread = 3, target = false },
+	{ name = "effect", interval = 2000, chance = 12, length = 7, spread = 3, target = false, effect = CONST_ME_POISONAREA },
 	-- poison
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -1100, maxDamage = -2200, radius = 6, effect = CONST_ME_INSECTS, target = false },
 	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -250, length = 6, spread = 2, effect = CONST_ME_POISONAREA, target = false },

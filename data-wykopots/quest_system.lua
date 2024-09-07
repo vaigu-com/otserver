@@ -319,7 +319,7 @@ function ResolutionContext:ParseRequirementsActionsOther(table)
 	end
 end
 
-function ResolutionContext:New(table)
+function ResolutionContext:New()
 	local newObj = {}
 	newObj.__index = ResolutionContext
 	setmetatable(newObj, ResolutionContext)
