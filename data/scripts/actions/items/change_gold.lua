@@ -1,3 +1,4 @@
+--[[
 local config = {
 	[ITEM_GOLD_COIN] = { changeTo = ITEM_PLATINUM_COIN },
 	[ITEM_PLATINUM_COIN] = { changeBack = ITEM_GOLD_COIN, changeTo = ITEM_CRYSTAL_COIN },
@@ -22,3 +23,4 @@ end
 
 changeGold:id(ITEM_GOLD_COIN, ITEM_PLATINUM_COIN, ITEM_CRYSTAL_COIN)
 changeGold:register()
+]]

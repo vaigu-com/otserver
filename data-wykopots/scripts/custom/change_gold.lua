@@ -1,4 +1,4 @@
-local config = {
+local data = {
 	[ITEM_GOLD_COIN] = { changeTo = ITEM_PLATINUM_COIN },
 	[ITEM_PLATINUM_COIN] = { changeBack = ITEM_GOLD_COIN, changeTo = ITEM_CRYSTAL_COIN },
 	[ITEM_CRYSTAL_COIN] = { changeBack = ITEM_PLATINUM_COIN },
@@ -14,23 +14,23 @@ local function get100Stack(potentialsStacks)
 end
 
 local changeGold = Action()
-function changeGold.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local coinId = item:getId()
-	local coinConfig = config[coinId]
-	local allStacks = player:GetAllItems(coinId)
-	table.insert(allStacks, item)
+function changeGold.onUse(player, coin, fromPosition, target, toPosition, isHotkey)
+	local coinId = coin:getId()
+	local coinData = data[coinId]
+	local allStacks = player:GetAllItems():FilteredById(coinId):Get()
+	-- local allStacks = player:GetAllItems():FilteredById(coinId):Add(coin):Get()
 	local fullStack = get100Stack(allStacks)
-	if coinConfig.changeTo and fullStack then
+	if coinData.changeTo and fullStack then
 		fullStack:remove()
-		player:addItem(coinConfig.changeTo, 1)
+		player:addItem(coinData.changeTo, 1)
 		return true
-	elseif coinConfig.changeBack and not fullStack then
-		item:remove(1)
-		player:addItem(coinConfig.changeBack, 100)
+	end
+	if coinData.changeBack and not fullStack then
+		coin:remove(1)
+		player:addItem(coinData.changeBack, 100)
 		return true
 	end
 	return false
 end
-print("CHANGE GOLD REGISTER")
-changeGold:id(3031, 3035, 3043)
+changeGold:id(ITEM_GOLD_COIN, ITEM_PLATINUM_COIN, ITEM_CRYSTAL_COIN)
 changeGold:register()
