@@ -630,3 +630,15 @@ int MonsterFunctions::luaMonsterHazardDefenseBoost(lua_State* L) {
 	}
 	return 1;
 }
+
+int MonsterFunctions::luaMonsterIsBoosted(lua_State* L) {
+	std::shared_ptr<Monster> monster = getUserdataShared<Monster>(L, 1);
+	const std::string monsterName = monster->getName();
+	const auto boostedMonsters = g_game().getBoostedMonsterNames();
+	if (std::find(boostedMonsters.begin(), boostedMonsters.end(), monsterName) != boostedMonsters.end()) {
+		pushBoolean(L, true);
+	} else {
+		pushBoolean(L, false);
+	}
+	return 1;
+}

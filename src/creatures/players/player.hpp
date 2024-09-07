@@ -2836,6 +2836,7 @@ private:
 	uint32_t inventoryWeight = 0;
 	uint32_t capacity = 40000;
 	uint32_t bonusCapacity = 0;
+	uint32_t attackSpeed = 0;
 
 	std::bitset<CombatType_t::COMBAT_COUNT> m_damageImmunities;
 	std::bitset<ConditionType_t::CONDITION_COUNT> m_conditionImmunities;
@@ -2987,6 +2988,10 @@ private:
 
 	bool onFistAttackSpeed = g_configManager().getBoolean(TOGGLE_ATTACK_SPEED_ONFIST, "Player.hpp::onFistAttackSpeed");
 	uint32_t MAX_ATTACK_SPEED = g_configManager().getNumber(MAX_SPEED_ATTACKONFIST, "Player.hpp::MAX_ATTACK_SPEED");
+
+	void setAttackSpeed(uint32_t speed) {
+		attackSpeed = speed;
+	}
 
 	uint32_t getAttackSpeed() const {
 		if (onFistAttackSpeed) {

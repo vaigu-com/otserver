@@ -309,10 +309,10 @@ bool SpawnMonster::addMonster(const std::string &name, const Position &pos, Dire
 
 	uint32_t eventschedule = g_eventsScheduler().getSpawnMonsterSchedule();
 	auto boostedMonsters = g_game().getBoostedMonsterNames();
-	int32_t boostedRate = 1;
+	int32_t boostedrate = 1;
 
 	if (std::find(boostedMonsters.begin(), boostedMonsters.end(), name) != boostedMonsters.end()) {
-		boostedRate = 2;
+		boostedrate = 2;
 	}
 	// eventschedule is a whole percentage, so we need to multiply by 100 to match the order of magnitude of the other values
 	scheduleInterval = scheduleInterval * 100 / std::max((uint32_t)1, (g_configManager().getNumber(RATE_SPAWN, __FUNCTION__) * boostedrate * eventschedule));
