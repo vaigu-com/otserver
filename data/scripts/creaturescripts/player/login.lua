@@ -1,3 +1,4 @@
+--[[
 local function sendBoostMessage(player, category, isIncreased)
 	return player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Event! %s is %screased. Happy Hunting!", category, isIncreased and "in" or "de"))
 end
@@ -186,3 +187,4 @@ function playerLoginGlobal.onLogin(player)
 end
 
 playerLoginGlobal:register()
+]]
