@@ -1,6 +1,6 @@
 local config = {
 	bossName = "The Monster",
-	encounter = "The Monster",
+	encounterName = "The Monster",
 	requiredLevel = 250,
 
 	entranceTiles = {

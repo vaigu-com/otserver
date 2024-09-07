@@ -114,7 +114,7 @@ local setting = {
 	bossPosition = { x = 6121, y = 654, z = 12 },
 }
 
-local playerPositions = {
+local entranceTiles = {
 	{ fromPos = { x = 6206, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
 	{ fromPos = { x = 6207, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
 	{ fromPos = { x = 6208, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
@@ -126,8 +126,8 @@ local golden = Action()
 
 function golden.onUse(player, item, fromPosition, target, toPosition, monster, isHotkey)
 	if toPosition == Position(6205, 682, 11) then
-		for i = 1, #playerPositions do
-			local creature = Tile(playerPositions[i].fromPos):getTopCreature()
+		for i = 1, #entranceTiles do
+			local creature = Tile(entranceTiles[i].fromPos):getTopCreature()
 			if not creature then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need 5 players to fight with this boss.")
 				return true
@@ -141,8 +141,8 @@ function golden.onUse(player, item, fromPosition, target, toPosition, monster, i
 			return true
 		end
 
-		for i = 1, #playerPositions do
-			local creature = Tile(playerPositions[i].fromPos):getTopCreature()
+		for i = 1, #entranceTiles do
+			local creature = Tile(entranceTiles[i].fromPos):getTopCreature()
 			if creature and creature:isPlayer() then
 				if creature:getStorageValue(setting.storage) >= os.time() then
 					creature:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have faced this boss in the last " .. setting.timeToFightAgain .. " hours.")
@@ -150,7 +150,7 @@ function golden.onUse(player, item, fromPosition, target, toPosition, monster, i
 				end
 				if creature:getStorageValue(setting.storage) < os.time() then
 					creature:setStorageValue(setting.storage, os.time() + setting.timeToFightAgain * 60 * 60)
-					creature:teleportTo(playerPositions[i].toPos)
+					creature:teleportTo(entranceTiles[i].toPos)
 					creature:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				end
 			else

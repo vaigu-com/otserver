@@ -176,7 +176,7 @@ void TaskHuntingSlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_
 
 		blackList.push_back(raceId);
 		const auto mtype = g_monsters().getMonsterTypeByRaceId(raceId);
-		if (!mtype || mtype->info.experience == 0 || !mtype->info.isPreyable || mtype->info.isPreyExclusive) {
+		if (!mtype || mtype->info.experience == 0) {
 			continue;
 		} else if (stageOne != 0 && mtype->info.bestiaryStars <= 1) {
 			raceIdList.push_back(raceId);
@@ -320,10 +320,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		} else if (player->getPreyWithMonster(raceId)) {
 			player->sendMessageDialog("This creature is already selected on another slot.");
 			return;
-		} else if (!mtype->info.isPreyable) {
-			player->sendMessageDialog("This creature can't be select on prey. Please choose another one.");
-			return;
-		}
+		} 
 
 		if (slot->bonus == PreyBonus_None) {
 			slot->reloadBonusType();

@@ -17,53 +17,6 @@ local function getJobConfigs(jobs)
 	return totalShop, totalDialogues
 end
 
-local function rangesCommonPart(userReservedRange, jobReservedRange)
-	local commonRange = {}
-	for key, value in pairs(userReservedRange) do
-		if jobReservedRange[key] then
-			commonRange[key] = true
-		end
-	end
-	return commonRange
-end
-
-local function appendReservedTopics(reservedTopics, min, max)
-	for i = min, max do
-		reservedTopics[i] = true
-	end
-	return reservedTopics
-end
-
-local function extractKeywordToTopicTable(dialogueTable)
-	local keywordToTopicRange = {}
-	for questAid, quest in pairs(dialogueTable) do
-		for requiredState, dialogues in pairs(quest) do
-			for keywords, dialogue in pairs(dialogues) do
-				local min, max = ParseTopicMinMax(dialogue)
-				for _, keyword in pairs(keywords) do
-					keywordToTopicRange[keyword] = keywordToTopicRange[keyword] or {}
-					appendReservedTopics(keywordToTopicRange[keyword], min, max)
-				end
-			end
-		end
-	end
-	return keywordToTopicRange
-end
-
-local function calculateKeywordConflictingTopicRange(userDialogueTable, jobDialogueTable)
-	local userTopics = extractKeywordToTopicTable(userDialogueTable)
-	local jobTopics = extractKeywordToTopicTable(jobDialogueTable)
-
-	local keywordToConflictingRange = {}
-	for keyword, userReservedRange in pairs(userTopics) do
-		local jobReservedRange = jobTopics[keyword]
-
-		local commonRange = rangesCommonPart(userReservedRange, jobReservedRange)
-		keywordToConflictingRange[keyword] = commonRange
-	end
-	return keywordToConflictingRange
-end
-
 ---@param internalNpcName string string required
 ---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
 ---@param npcDescription string? optional - greentext when using look on npc, Default: "a " + internalNpcName
@@ -90,16 +43,6 @@ function CreateNpcDefinition(context)
 	shop = MergedTable(shop, customShop)
 
 	local jobStateDialogues = getJobStateDialogues(jobs)
-
-	local conflictingRange = calculateKeywordConflictingTopicRange(userDialogues, jobStateDialogues)
-	if TableSize(conflictingRange) then
-		logger.debug(T("[CreateNpcDefinition] Potentially conflicting keyword topics for npc :name:", { name = name }))
-		logger.debug(T("\tKeyword\tMin\tMax"))
-		for keyword, range in pairs(conflictingRange) do
-			local min, max = FindMinMaxKey(range)
-			logger.debug(T("\t:keyword:\t:min:\t:max:", { keyword = keyword, min = min, max = max }))
-		end
-	end
 
 	local allDialogues = {}
 	allDialogues[LOCALIZER_UNIVERSAL] = jobDialoguesUniversal

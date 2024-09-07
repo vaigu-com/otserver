@@ -1,3 +1,8 @@
+---@deprecated
+RegisterEncounter = function ()
+	logger.error("[RegisterEncounter] is deprecated. Use EncounterData and Encounter")
+end
+
 function T(template, variables)
 	local result = template
 	for key, value in pairs(variables) do
