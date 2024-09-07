@@ -35,12 +35,13 @@ lightCondition:setParameter(CONDITION_PARAM_LIGHT_LEVEL, 15)
 lightCondition:setParameter(CONDITION_PARAM_LIGHT_COLOR, 154)
 lightCondition:setTicks(60 * 60 * 1000)
 
+local errorMessage = "You need to wait before using it again."
 local demonicCandyBall = Action()
 
 function demonicCandyBall.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:hasExhaustion("special-foods-cooldown") then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to wait before using it again.")
-		return true
+	local canUse = player:canUseCooldownItem("special-foods-cooldown")
+	if not canUse then
+		player:say(errorMessage)
 	end
 
 	local availableConditions = { defenseCondition, magicLevelCondition, meleeCondition, distanceCondition, speedCondition }

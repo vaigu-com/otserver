@@ -1,6 +1,22 @@
 ---@deprecated
-RegisterEncounter = function ()
+RegisterEncounter = function()
 	logger.error("[RegisterEncounter] is deprecated. Use EncounterData and Encounter")
+end
+
+function Player:canUseCooldownItem(cooldownKV)
+	if self:isOnEvent() then
+		return false
+	end
+	if self:hasExhaustion(cooldownKV) then
+		return false
+	end
+	return true
+end
+
+function Player:isOnEvent()
+	if self:getStorageValue(Storage.GrimEvent.Joined) >= 1 or self:getStorageValue(Storage.hasteLock) == 1 or self:getStorageValue(Storage.healLock) == 1 then
+		return true
+	end
 end
 
 function T(template, variables)

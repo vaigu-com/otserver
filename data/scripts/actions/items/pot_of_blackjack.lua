@@ -1,11 +1,17 @@
+local errorMessage = "You need to wait before using it again."
 local potOfBlackjack = Action()
 
 function potOfBlackjack.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:hasExhaustion("special-foods-cooldown") then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to wait before using it again.")
-		return true
+	local canUse = player:canUseCooldownItem("special-foods-cooldown")
+	if not canUse then
+		player:say(errorMessage)
 	end
 
+	if IsOnEvent(player) then
+		player:sendCancelMessage("You cannot eat dishes on this event.")
+		return true
+	end
+	
 	local remainingGulps = player:kv():get("pot-of-blackjack") or math.random(2, 4)
 
 	if remainingGulps > 0 then

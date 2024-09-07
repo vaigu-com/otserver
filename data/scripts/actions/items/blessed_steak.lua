@@ -1,9 +1,10 @@
+local errorMessage = "You need to wait before using it again."
 local blessedSteak = Action()
 
 function blessedSteak.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:hasExhaustion("special-foods-cooldown") then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to wait before using it again.")
-		return true
+	local canUse = player:canUseCooldownItem("special-foods-cooldown")
+	if not canUse then
+		player:say(errorMessage)
 	end
 
 	player:addMana(player:getMaxMana())

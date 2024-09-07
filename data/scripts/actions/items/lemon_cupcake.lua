@@ -4,12 +4,13 @@ distanceCondition:setParameter(CONDITION_PARAM_TICKS, 60 * 60 * 1000)
 distanceCondition:setParameter(CONDITION_PARAM_SKILL_DISTANCE, 10)
 distanceCondition:setParameter(CONDITION_PARAM_FORCEUPDATE, true)
 
+local errorMessage = "You need to wait before using it again."
 local lemonCupcake = Action()
 
 function lemonCupcake.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:hasExhaustion("lemon-cupcake-cooldown") then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to wait before using it again.")
-		return true
+	local canUse = player:canUseCooldownItem("lemon-cupcake-cooldown")
+	if not canUse then
+		player:say(errorMessage)
 	end
 
 	player:addCondition(distanceCondition)
