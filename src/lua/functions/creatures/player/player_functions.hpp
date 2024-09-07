@@ -623,11 +623,6 @@ private:
 
 	static int luaPlayerIsPzLocked(lua_State* L);
 	static int luaPlayerIsOffline(lua_State* L);
-	
-	// Wykopots custom
-	static int luaPlayerGetLanguage(lua_State* L);
-	static int luaPlayerSetLanguage(lua_State* L);
-
 	static int luaPlayerGetClient(lua_State* L);
 
 	static int luaPlayerGetHouse(lua_State* L);

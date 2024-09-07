@@ -432,12 +432,17 @@ void Game::loadBoostedCreature() {
 		boostedMonsters.push_back(result->getString("boostname"));
 	} while (result->next());
 
+	struct MonsterRace {
+		uint16_t raceId { 0 };
+		std::string name;
+	};
+
 	if (boostedMonsters.size() < NUMBER_BOOSTED_MONSTERS) {
 		const auto monsterlist = getBestiaryList();
 		std::vector<MonsterRace> m_monsters;
 		for (const auto &[raceId, _name] : BestiaryList) {
 			if (std::find(boostedMonsters.begin(), boostedMonsters.end(), _name) == boostedMonsters.end()) {
-				m_monsters.emplace_back(MonsterRace{raceId, _name});
+				m_monsters.emplace_back(MonsterRace { raceId, _name });
 			}
 		}
 
@@ -447,16 +452,19 @@ void Game::loadBoostedCreature() {
 			return;
 		}
 
-		std::random_shuffle(m_monsters.begin(), m_monsters.end());
+		std::random_device rd;
+		std::mt19937 g(rd());
+		std::shuffle(m_monsters.begin(), m_monsters.end(), g);
 		boostedMonsters.clear();
 		for (uint32_t i = 0; i < NUMBER_BOOSTED_MONSTERS; ++i) {
-			auto& selectedMonster = m_monsters[i];
+			auto &selectedMonster = m_monsters[i];
 			boostedMonsters.push_back(selectedMonster.name);
 
 			const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
 			if (!monsterType) {
 				g_logger().warn("[Game::loadBoostedCreature] - "
-				                "Failed to get monster type for '{}'.", selectedMonster.name);
+				                "Failed to get monster type for '{}'.",
+				                selectedMonster.name);
 				continue;
 			}
 
@@ -6368,11 +6376,9 @@ void Game::changeSpeed(std::shared_ptr<Creature> creature, int32_t varSpeedDelta
 		}
 	}
 
-	for (const auto &spectator : Spectators().find<Player>(creature->getPosition())) {
-		spectator->getPlayer()->sendChangeSpeed(creature, stepSpeed);
 	// Send to clients
 	for (const auto &spectator : Spectators().find<Player>(creature->getPosition())) {
-		spectator->getPlayer()->sendChangeSpeed(creature, creature->getStepSpeed());
+		spectator->getPlayer()->sendChangeSpeed(creature, stepSpeed);
 	}
 }
 
@@ -6402,9 +6408,6 @@ void Game::changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varS
 	// Send new player speed to the spectators
 	for (const auto &creatureSpectator : Spectators().find<Player>(player->getPosition())) {
 		creatureSpectator->getPlayer()->sendChangeSpeed(player, stepSpeed);
-	// Send new player speed to the spectators
-	for (const auto &creatureSpectator : Spectators().find<Player>(player->getPosition())) {
-		creatureSpectator->getPlayer()->sendChangeSpeed(player, player->getStepSpeed());
 	}
 }
 

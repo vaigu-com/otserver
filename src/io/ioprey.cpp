@@ -25,22 +25,6 @@ PreySlot::PreySlot(PreySlot_t id) :
 	freeRerollTimeStamp = OTSYS_TIME() + g_configManager().getNumber(PREY_FREE_REROLL_TIME, __FUNCTION__) * 1000;
 }
 
-// Wykopots custom
-void PreySlot::reloadBonusValue() {
-	preyBonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
-
-	// Wykopots custom
-	int roll = uniform_random(0, 100);
-	bool upgrade = false;
-	bool downgrade = false;
-	int requiredRollForUpgrade = (int)floor(1.0 - (bonusRarity / 100.0) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
-	if (roll >= requiredRollForUpgrade){
-		bonusRarity++;
-	} else if (roll < 0.15 ){
-		bonusRarity--;
-	}
-}
-
 void IOPrey::initializePreyMonsters() {
 	std::map<std::string, std::shared_ptr<MonsterType>> monsters = g_monsters().monsters;
 	for (std::pair<std::string, std::shared_ptr<MonsterType>> monster : monsters) {
@@ -108,22 +92,6 @@ std::vector<PreyMonster> blacklistFilter(std::vector<PreyMonster> preyMonsters, 
 		}
 	}
 	return result;
-}
-
-void PreySlot::reloadBonusValue() {
-	if (bonusRarity >= 9) {
-		bonusRarity = 10;
-	} else {
-		// Every time you roll it will increase the rarity (star)
-		bonusRarity = static_cast<uint8_t>(uniform_random(bonusRarity + 1, 10));
-	}
-	if (bonus == PreyBonus_Damage) {
-		bonusPercentage = 2 * bonusRarity + 5;
-	} else if (bonus == PreyBonus_Defense) {
-		bonusPercentage = 2 * bonusRarity + 10;
-	} else {
-		bonusPercentage = 3 * bonusRarity + 10;
-	}
 }
 
 // Wykopots custom

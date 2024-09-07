@@ -121,4 +121,4 @@ enum Boosted_Monsters_t : uint32_t {
 
 enum Wykopots_Custom_t : uint32_t{
 	POSITIONCHEST_ACTION_ID = 2013
-}
+};

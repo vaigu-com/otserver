@@ -52,5 +52,8 @@ static constexpr int32_t PSTRG_FAMILIARS_RANGE_SIZE = 500;
 
 static constexpr int32_t IMMOVABLE_ACTION_ID = 100;
 
+// Wykopots custom
+static constexpr int32_t STORAGEVALUE_HASTELOCK = 30059;
+
 #define IS_IN_KEYRANGE(key, range) \
 	(key >= PSTRG_##range##_START && ((key - PSTRG_##range##_START) <= PSTRG_##range##_SIZE))

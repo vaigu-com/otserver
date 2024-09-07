@@ -790,7 +790,7 @@ Attr_ReadValue Item::readAttr(AttrTypes_t attr, PropStream &propStream) {
 				if (!propStream.readString(key)) {
 					g_logger().error("[{}] failed to read custom type", __FUNCTION__);
 					return ATTR_READ_ERROR;
-				};
+				}
 
 				CustomAttribute customAttribute;
 				if (!customAttribute.unserialize(propStream, __FUNCTION__)) {

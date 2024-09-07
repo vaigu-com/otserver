@@ -830,7 +830,8 @@ int GameFunctions::luaInitializeTranslationTable(lua_State* L) {
 	GameFunctions::copyLuaTable(L, lua_gettop(L), g_game().translationMap);
 	return 1;
 }
-int GameFunctions::copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement> &result) {
+
+int GameFunctions::copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement> &destination) {
 	lua_pushnil(L);
 	while (lua_next(L, index)) {
 		lua_pushvalue(L, -2);
@@ -844,14 +845,16 @@ int GameFunctions::copyLuaTable(lua_State* L, int index, std::vector<Game::LuaEl
 			lua_pop(L, 1);
 			copyLuaTable(L, lua_gettop(L), element.subtable);
 			lua_pop(L, 1);
-			result.push_back(element);
+			destination.push_back(element);
 			continue;
 		}
 
 		lua_pop(L, 2);
-		result.push_back(element);
+		destination.push_back(element);
 	}
 
+	return 1;
+}
 
 int GameFunctions::luaGameRegisterAchievement(lua_State* L) {
 	// Game.registerAchievement(id, name, description, secret, grade, points)
