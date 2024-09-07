@@ -1,6 +1,7 @@
 ---@class ItemExList
 ---@field items table
 ItemExList = {}
+ItemExList.__index = ItemExList
 function ItemExList:new()
 	local newObj = {}
 	newObj.__index = self
@@ -42,7 +43,7 @@ function ItemExList:AddMultipleElseSingle(multipleItems, item)
 		self:AddMultiple(multipleItems)
 		return self
 	end
-	
+
 	self:Add(item)
 	return self
 end
