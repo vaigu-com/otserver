@@ -9,7 +9,9 @@ function dailyPamphlet.onUse(player, item, fromPosition, target, toPosition, isH
 end
 
 for _, dailyTask in pairs(GetAllDailyTasks()) do
-	local pamphletState = CustomItemRegistry():Register({ aid = dailyTask.storage }):GetState(dailyTask.storage)
+	local aid = dailyTask.storage
+	dailyPamphlet:aid(aid)
+	local pamphletState = CustomItemRegistry():Register({ aid = aid }):GetState(dailyTask.storage)
 	pamphletState.text = "DAILY_TASK_PAMPHLET_DESCRIPTION"
 end
 dailyPamphlet:register()
