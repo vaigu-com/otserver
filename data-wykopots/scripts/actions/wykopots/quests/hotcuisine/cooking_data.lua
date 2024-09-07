@@ -79,6 +79,19 @@ function IngredientsToString(dishData)
 	return ingredientStrings[dishData.storage]
 end
 
+local cookBook = Action()
+function cookBook.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	local fullText = {}
+	for _, dishText in pairs(ingredientStrings) do
+		table.insert(fullText, dishText)
+	end
+	player:showTextDialog(item.itemid, table.concat(fullText))
+	return true
+end
+
+cookBook:id(9093)
+cookBook:register()
+
 local function generateCookingAuxillaryData()
 	for storage, dishData in pairs(COOKING_INGREDIENT_DATA) do
 		local requiredItemsString = ""
