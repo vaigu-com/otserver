@@ -45,7 +45,7 @@ function Player:CountItem(item)
 	local id = item.id
 	local aid = item.aid
 	local fluidType = item.fluidType
-	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType)
+	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType):Get()
 	local count = 0
 	for _, fiteredItem in pairs(filteredItems) do
 		count = count + fiteredItem:getCount()
@@ -154,9 +154,9 @@ function Player:RemoveItem(item)
 	local aid = item.actionid or item.aid or 0
 	local fluidType = item.fluidType
 
-	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType)
+	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType):Get()
 
-	for _, removableItem in pairs(filteredItems.items) do
+	for _, removableItem in pairs(filteredItems) do
 		if itemCountToRemove <= 0 then
 			return
 		end
