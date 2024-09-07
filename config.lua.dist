@@ -514,7 +514,7 @@ rateBossHealth = 1.0
 rateBossAttack = 1.0
 rateBossDefense = 1.0
 
-bossDefaultLockoutTime = 20 * 60 * 60 -- 20 hours
+bossDefaultTimeToDefeat = 20 * 60 * 60 -- 20 hours
 bossDefaultTimeToDefeat = 20 * 60 -- 20 minutes
 
 -- Monsters
@@ -583,3 +583,8 @@ metricsPrometheusAddress = "0.0.0.0:9464"
 --- OStream
 metricsEnableOstream = false
 metricsOstreamInterval = 1000
+
+--- Wykopots custom
+weatherRain = false
+thunderEffect = false
+allConsoleLog = false
