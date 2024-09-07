@@ -392,7 +392,7 @@ LowLvlBoostedMonstersName = {
 
 	["Hunter"] = 11,
 	["Poacher"] = 376,
-		
+
 	["Valkyrie"] = 12,
 	["Amazon"] = 77,
 
@@ -704,66 +704,16 @@ BoostedTestNames = {
 	["Tarantula"] = 219,
 	["Crawler"] = 786,
 }
-	
-if not BoostedCreature then
-	BoostedCreature = {name = ""}
+
+local boostedCreatureAnnouncementInit = GlobalEvent("BoostedCreatureAnnouncementInit")
+function boostedCreatureAnnouncementInit.onStartup()
+	local booostedCreatures = Game.getBoostedCreatures()
+	print("booostedCreatures", booostedCreatures)
+	print(#booostedCreatures)
+	local names = ""
+	for _, name in pairs(booostedCreatures) do
+		names = names .. ", " .. name
+	end
+	logger.info(T("Today boosted creatures: :names:", { names = names }))
 end
-
-function BoostedCreature:startup()
-
-	-- ToDo: check if cpp side is ok
-	do return end
-	local boostedLvl = BoostedMonstersName
-	if DAY_SINCE_START <= 2 then
-		boostedLvl = LowLvlBoostedMonstersName
-	elseif DAY_SINCE_START >= 3 and DAY_SINCE_START <= 12 then
-		boostedLvl = MidBoostedMonstersName
-	end
-	
-	local canRepeatAfterDays = 14
-	local nameTable = {}
-	local entries = {}
-	local resultId = db.storeQuery("SELECT `boostname`, `date` FROM `boosted_creature` ORDER BY `date` ASC")
-	if resultId ~= false then
-		repeat
-			local entry = {
-				booldnamestamp = result.getStream(resultId, "boostname"),
-				bodatestamp = result.getStream(resultId, "date"),
-			}
-			table.insert(entries, entry)
-		until not result.next(resultId)
-		result.free(resultId)
-	end
-	
-	for k, entry in ipairs(entries) do
-		table.insert(nameTable, entry.booldnamestamp)
-	end
-
-	local dateNoSpace = os.date("%e"):gsub("%s+", "")
-		
-	for k, entry in ipairs(entries) do
-		if entry.bodatestamp == dateNoSpace then -- same date = nick i return false
-			self.name = entry.booldnamestamp
-		return false
-		end
-	end
-
-	local cloneTable = {}
-
-	-- Populate `cloneTable` with monsters from `boostedLvl`
-	for name, raceId in pairs(boostedLvl) do
-		table.insert(cloneTable, { name = name, raceId = raceId })
-	end
-
-	local randMonster = nil
-	repeat
-		randMonster = cloneTable[math.random(#cloneTable)]
-	until not nameTable[randMonster.name]
-	db.query("INSERT INTO `boosted_creature` (`boostname`, `date`, `raceid`, `weekdays`) VALUES ('".. randMonster.name .."', ".. os.date("%d") ..", ".. randMonster.raceId ..", ".. 0 ..")")
-	db.query('UPDATE `boosted_creature` SET `weekdays` = `weekdays` + 1')
-	db.query("DELETE FROM `boosted_creature` WHERE `weekdays` > " .. canRepeatAfterDays)
-	self.name = randMonster[1]
-
-	--return print(">> Boosted creature: " .. self.name)
-end
-BoostedCreature:startup() -- Force startup before cpp load map.
+boostedCreatureAnnouncementInit:register()

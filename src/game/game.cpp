@@ -421,73 +421,75 @@ void Game::loadBoostedCreature() {
 	std::string todayDate = std::to_string(ltm->tm_mday);
 
 	auto result = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayDate + "'");
+	std::vector<std::string> boostedMonsters;
+
 	if (!result) {
-		g_logger().warn("[Game::loadBoostedCreature] - "
-		                "No boosted creatures found for today.");
+		g_logger().warn("[Game::loadBoostedCreature] - No boosted creatures found for today. Generating new boosted monsters.");
+	} else {
+		do {
+			boostedMonsters.push_back(result->getString("boostname"));
+		} while (result->next());
+	}
+
+	if (boostedMonsters.size() >= NUMBER_BOOSTED_MONSTERS) {
+		setBoostedName(boostedMonsters);
 		return;
 	}
 
-	std::vector<std::string> boostedMonsters;
-	do {
-		boostedMonsters.push_back(result->getString("boostname"));
-	} while (result->next());
+	db.executeQuery(std::string("DELETE FROM `boosted_creature`"));
 
 	struct MonsterRace {
 		uint16_t raceId { 0 };
 		std::string name;
 	};
 
-	if (boostedMonsters.size() < NUMBER_BOOSTED_MONSTERS) {
-		const auto monsterlist = getBestiaryList();
-		std::vector<MonsterRace> m_monsters;
-		for (const auto &[raceId, _name] : BestiaryList) {
-			if (std::find(boostedMonsters.begin(), boostedMonsters.end(), _name) == boostedMonsters.end()) {
-				m_monsters.emplace_back(MonsterRace { raceId, _name });
-			}
-		}
-
-		if (m_monsters.size() < NUMBER_BOOSTED_MONSTERS) {
-			g_logger().warn("[Game::loadBoostedCreature] - "
-			                "Not enough monsters available to boost.");
-			return;
-		}
-
-		std::random_device rd;
-		std::mt19937 g(rd());
-		std::shuffle(m_monsters.begin(), m_monsters.end(), g);
-		boostedMonsters.clear();
-		for (uint32_t i = 0; i < NUMBER_BOOSTED_MONSTERS; ++i) {
-			auto &selectedMonster = m_monsters[i];
-			boostedMonsters.push_back(selectedMonster.name);
-
-			const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
-			if (!monsterType) {
-				g_logger().warn("[Game::loadBoostedCreature] - "
-				                "Failed to get monster type for '{}'.",
-				                selectedMonster.name);
-				continue;
-			}
-
-			auto query = std::string("INSERT INTO `boosted_creature` (`date`, `boostname`, `looktype`, `lookfeet`, `looklegs`, `lookhead`, `lookbody`, `lookaddons`, `lookmount`, `raceid`) VALUES ")
-				+ "('" + todayDate + "', "
-				+ db.escapeString(selectedMonster.name) + ", "
-				+ std::to_string(monsterType->info.outfit.lookType) + ", "
-				+ std::to_string(monsterType->info.outfit.lookFeet) + ", "
-				+ std::to_string(monsterType->info.outfit.lookLegs) + ", "
-				+ std::to_string(monsterType->info.outfit.lookHead) + ", "
-				+ std::to_string(monsterType->info.outfit.lookBody) + ", "
-				+ std::to_string(monsterType->info.outfit.lookAddons) + ", "
-				+ std::to_string(monsterType->info.outfit.lookMount) + ", "
-				+ std::to_string(selectedMonster.raceId) + ")";
-
-			if (!db.executeQuery(query)) {
-				g_logger().warn("[Game::loadBoostedCreature] - "
-				                "Failed to store boosted creature in the database. (CODE 02)");
-			}
+	const auto monsterlist = getBestiaryList();
+	std::vector<MonsterRace> m_monsters;
+	for (const auto &[raceId, _name] : BestiaryList) {
+		if (std::find(boostedMonsters.begin(), boostedMonsters.end(), _name) == boostedMonsters.end()) {
+			m_monsters.emplace_back(MonsterRace { raceId, _name });
 		}
 	}
 
-	setBoostedName(boostedMonsters);
+	if (m_monsters.size() < NUMBER_BOOSTED_MONSTERS) {
+		g_logger().warn("[Game::loadBoostedCreature] - "
+		                "Not enough monsters available to boost.");
+		return;
+	}
+
+	std::random_device rd;
+	std::mt19937 g(rd());
+	std::shuffle(m_monsters.begin(), m_monsters.end(), g);
+	boostedMonsters.clear();
+	for (uint32_t i = 0; i < NUMBER_BOOSTED_MONSTERS; ++i) {
+		auto &selectedMonster = m_monsters[i];
+		boostedMonsters.push_back(selectedMonster.name);
+
+		const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
+		if (!monsterType) {
+			g_logger().warn("[Game::loadBoostedCreature] - "
+			                "Failed to get monster type for '{}'.",
+			                selectedMonster.name);
+			continue;
+		}
+
+		auto query = std::string("INSERT INTO `boosted_creature` (`date`, `boostname`, `looktype`, `lookfeet`, `looklegs`, `lookhead`, `lookbody`, `lookaddons`, `lookmount`, `raceid`) VALUES ")
+			+ "('" + todayDate + "', "
+			+ db.escapeString(selectedMonster.name) + ", "
+			+ std::to_string(monsterType->info.outfit.lookType) + ", "
+			+ std::to_string(monsterType->info.outfit.lookFeet) + ", "
+			+ std::to_string(monsterType->info.outfit.lookLegs) + ", "
+			+ std::to_string(monsterType->info.outfit.lookHead) + ", "
+			+ std::to_string(monsterType->info.outfit.lookBody) + ", "
+			+ std::to_string(monsterType->info.outfit.lookAddons) + ", "
+			+ std::to_string(monsterType->info.outfit.lookMount) + ", "
+			+ std::to_string(selectedMonster.raceId) + ")";
+
+		if (!db.executeQuery(query)) {
+			g_logger().warn("[Game::loadBoostedCreature] - "
+			                "Failed to store boosted creature in the database. (CODE 02)");
+		}
+	}
 }
 
 void Game::start(ServiceManager* manager) {
