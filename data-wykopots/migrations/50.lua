@@ -1,3 +1,6 @@
 function onUpdateDatabase()
-	return false -- true = There are others migrations file | false = this is the last migration file
+	logger.info("Updating database to version 51 (drop boosted_creature key)")
+	db.query([[
+		ALTER TABLE boosted_creature DROP PRIMARY KEY;
+	]])
 end
