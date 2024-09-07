@@ -671,7 +671,6 @@ local dailyTaskData = {
 			"quara pincher scout",
 			"quara predator",
 			"quara predator scout",
-			"quara predator slow",
 		},
 		exp = 80000,
 		money = 8000,

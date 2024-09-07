@@ -1,6 +1,6 @@
 local config = {
 	bossName = "Timira the Many-Headed",
-	encounter = "Timira the Many-Headed",
+	encounterName = "Timira the Many-Headed",
 	requiredLevel = 250,
 	entranceTiles = {
 		{ pos = Position(33809, 32702, 8), destination = Position(33787, 32680, 10), effect = CONST_ME_TELEPORT },

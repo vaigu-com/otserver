@@ -31,5 +31,6 @@ function changeGold.onUse(player, item, fromPosition, target, toPosition, isHotk
 	end
 	return false
 end
+print("CHANGE GOLD REGISTER")
 changeGold:id(3031, 3035, 3043)
 changeGold:register()

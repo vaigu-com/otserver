@@ -61,3 +61,15 @@ end
 
 magicGoldConverter:id(28525, 28526)
 magicGoldConverter:register()
+
+local converterOnLogin = CreatureEvent("MagicConverter")
+
+function converterOnLogin.onLogin(player)
+	if not player then
+		return false
+	end
+	startConverter(player:getId(), 33299)
+	return true
+end
+
+converterOnLogin:register()

@@ -773,7 +773,6 @@ local taskData = {
 			"quara pincher scout",
 			"quara predator",
 			"quara predator scout",
-			"quara predator slow",
 		},
 		exp = 337500,
 		money = 10000,

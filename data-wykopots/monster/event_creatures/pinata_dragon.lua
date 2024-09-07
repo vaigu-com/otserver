@@ -1,3 +1,4 @@
+--[[
 local mType = Game.createMonsterType("Pinata Dragon")
 local monster = {}
 
@@ -100,3 +101,4 @@ monster.immunities = {
 }
 
 mType:register(monster)
+]]

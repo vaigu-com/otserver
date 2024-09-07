@@ -120,7 +120,7 @@ local function loadStartupItem(itemConfig, anchor)
 	if context.aid and context.aid ~= 0 then
 		CustomItemRegistry():Register(context)
 	end
-	if itemWontBeCreatedOrRegistered() then
+	if itemWontBeCreatedOrRegistered(context) then
 		logger.debug(T("[loadStartupItem] Item declared wont be created of registered. This renders this item declaration useless."))
 		logger.debug(debug.traceback())
 	end

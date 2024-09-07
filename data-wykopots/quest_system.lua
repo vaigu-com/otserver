@@ -290,37 +290,22 @@ local actionsWhitelist = {
 ---@field topic integer?
 ResolutionContext = {}
 ResolutionContext.__index = ResolutionContext
+setmetatable(ResolutionContext, {
+	__call = function(class, ...)
+		return class:New(...)
+	end,
+})
+
 function ResolutionContext.FromConversationContext(context, data)
 	local newObj = {}
-	for key, value in pairs(context) do
-		newObj[key] = value
-	end
-	for key, value in pairs(data) do
-		newObj[key] = value
-	end
-	newObj:ParseRequirementsActionsCustoms()
-	newObj.__index = newObj
 	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(context)
+	newObj.__index = newObj
 	return newObj
 end
 
 function ResolutionContext:ParseRequirementsActionsOther(table)
 	self.otherFields = {}
-	self.requirements = {}
-	self.actionsOnSuccess = {}
-	for key, value in pairs(table) do
-		if requirementsWhitelist[key] then
-			self.requirements = value
-		elseif actionsWhitelist[key] then
-			self.actionsOnSuccess = value
-		else
-			self[key] = value
-		end
-	end
-end
-
-function ResolutionContext:New(table)
-	local newObj = {}
 	self.requirements = {}
 	self.actionsOnSuccess = {}
 	for key, value in pairs(table) do
@@ -332,6 +317,10 @@ function ResolutionContext:New(table)
 			self[key] = value
 		end
 	end
+end
+
+function ResolutionContext:New(table)
+	local newObj = {}
 	newObj.__index = ResolutionContext
 	setmetatable(newObj, ResolutionContext)
 	return newObj
@@ -339,21 +328,20 @@ end
 
 function ResolutionContext.FromEncounter(encounterData, player)
 	local newObj = {}
-	newObj:ParseRequirementsActionsCustoms()
+	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(encounterData)
 	newObj.questlineAid = encounterData.questlineAid
 	newObj.player = player
-	newObj.__index = ResolutionContext
-	setmetatable(newObj, ResolutionContext)
-	return newObj
+	newObj.__index = ResolutionContext	return newObj
 end
 
-function ResolutionContext.FromCustomItemState(state, player)
+function ResolutionContext.FromCustomItemState(item, player)
 	local newObj = {}
-	newObj:ParseRequirementsActionsCustoms()
-	newObj.questlineAid = state.questlineAid
+	setmetatable(newObj, ResolutionContext)
+	newObj.questlineAid = item.questlineAid
 	newObj.player = player
 	newObj.__index = ResolutionContext
-	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(item)
 	return newObj
 end
 

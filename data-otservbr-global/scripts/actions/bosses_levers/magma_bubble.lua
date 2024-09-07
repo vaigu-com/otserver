@@ -1,6 +1,6 @@
 local config = {
 	bossName = "Magma Bubble",
-	encounter = "Magma Bubble",
+	encounterName = "Magma Bubble",
 	requiredLevel = 500,
 	entranceTiles = {
 		{ pos = Position(33669, 32926, 15), destination = Position(33655, 32917, 15), effect = CONST_ME_TELEPORT },

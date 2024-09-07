@@ -34,14 +34,13 @@ ENCOUNTER_RESET_TIME_LOCAL = 5
 ---@field private ejectAfterSeconds number?
 ---@field private requiredLevel number?
 ---@field private disabled boolean?
----@field private entranceTiles table
 ---@field private requiredPlayers integer?
 ---@field private onUseExtra function
 ---@field private leverId integer?
 ---@field private _position Position registers action on position
 ---@field private _uid number registers action on uid
 ---@field private _aid number registers action on aid
----@field private playerPositions {pos: Position, destination: Position}[]
+---@field private entranceTiles {pos: Position, destination: Position}[]
 ---@field private zoneArea {from: Position, to: Position}
 ---@field private monsters {name: string, pos: Position}[]
 ---@field private exitTpPosition Position
@@ -430,8 +429,8 @@ function EncounterData:register()
 	if not self.bossName then
 		table.insert(missingParams, "bossName")
 	end
-	if not self.playerPositions then
-		table.insert(missingParams, "playerPositions")
+	if not self.entranceTiles then
+		table.insert(missingParams, "entranceTiles")
 	end
 	if not self.zoneArea then
 		table.insert(missingParams, "zoneArea")
@@ -456,7 +455,7 @@ function EncounterData:register()
 
 	self:registerLever()
 
-	EncounterDataRegistry():register(self.encounterName)
+	EncounterDataRegistry():register(self)
 
 	if self.exitTpPosition then
 		SimpleTeleport(self.exitTpPosition, self.exitTpDestination)
