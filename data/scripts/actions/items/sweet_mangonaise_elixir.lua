@@ -15,14 +15,20 @@ local ringMultiplicationTable = {
 	[16114] = 16264,
 }
 
+local errorMessage = "You need to wait before using it again."
 local sweetMangonaiseElixir = Action()
 
 function sweetMangonaiseElixir.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:hasExhaustion("special-foods-cooldown") then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to wait before using it again.")
-		return true
+	local canUse = player:canUseCooldownItem("special-foods-cooldown")
+	if not canUse then
+		player:say(errorMessage)
 	end
 
+	if IsOnEvent(player) then
+		player:sendCancelMessage("You cannot eat dishes on this event.")
+		return true
+	end
+	
 	local playerRing = player:getSlotItem(CONST_SLOT_RING)
 	if not playerRing or not table.contains(ringMultiplicationTable, playerRing:getId()) then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "No ring equipped.")
