@@ -1,7 +1,7 @@
 local mType = Game.createMonsterType("Whirling Blades")
 local monster = {}
 
-monster.description = "a Whirling Blades"
+monster.description = "a whirling blades"
 monster.experience = 0
 monster.outfit = {
 	lookType = 102,
@@ -37,7 +37,7 @@ monster.flags = {
 	attackable = true,
 	hostile = true,
 	convinceable = false,
-	pushable = true,
+	pushable = false,
 	rewardBoss = false,
 	illusionable = false,
 	canPushItems = true,
@@ -47,10 +47,9 @@ monster.flags = {
 	runHealth = 20,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = false,
-	canWalkOnFire = false,
-	canWalkOnPoison = false,
-	pet = false,
+	canWalkOnEnergy = true,
+	canWalkOnFire = true,
+	canWalkOnPoison = true,
 }
 
 monster.light = {
@@ -73,6 +72,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 199,
 	armor = 199,
+	--	mitigation = ???,
 }
 
 monster.elements = {
@@ -80,8 +80,8 @@ monster.elements = {
 	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
 	{ type = COMBAT_FIREDAMAGE, percent = 100 },
-	{ type = COMBAT_LIFEDRAIN, percent = 100 },
-	{ type = COMBAT_MANADRAIN, percent = 100 },
+	{ type = COMBAT_LIFEDRAIN, percent = 0 },
+	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 100 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 100 },
@@ -89,7 +89,7 @@ monster.elements = {
 }
 
 monster.immunities = {
-	{ type = "paralyze", condition = true },
+	{ type = "paralyze", condition = false },
 	{ type = "outfit", condition = true },
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },

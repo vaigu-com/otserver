@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 80000
-monster.maxHealth = 80000
+monster.health = 100000
+monster.maxHealth = 100000
 monster.race = "blood"
 monster.corpse = 0
 monster.speed = 175
@@ -23,6 +23,11 @@ monster.manaCost = 0
 monster.changeTarget = {
 	interval = 2000,
 	chance = 2,
+}
+
+monster.bosstiary = {
+	bossRaceId = 1149,
+	bossRace = RARITY_NEMESIS,
 }
 
 monster.strategiesTarget = {
@@ -47,10 +52,9 @@ monster.flags = {
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.events = {

@@ -1,8 +1,8 @@
 local mType = Game.createMonsterType("Munster")
 local monster = {}
 
-monster.description = "a munster"
-monster.experience = 23
+monster.description = "Munster"
+monster.experience = 35
 monster.outfit = {
 	lookType = 56,
 	lookHead = 0,
@@ -18,17 +18,17 @@ monster.maxHealth = 58
 monster.race = "blood"
 monster.corpse = 3994
 monster.speed = 100
-monster.manaCost = 250
+monster.manaCost = 0
 
 monster.changeTarget = {
-	interval = 60000,
-	chance = 0,
+	interval = 10000,
+	chance = 5,
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,19 +38,18 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = true,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
-	canPushItems = false,
-	canPushCreatures = false,
+	canPushItems = true,
+	canPushCreatures = true,
 	staticAttackChance = 80,
 	targetDistance = 1,
 	runHealth = 10,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -68,20 +67,21 @@ monster.summon = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
+	{ text = "Meep!", yell = false },
 	{ text = "Meeeeep!", yell = false },
 }
 
 monster.loot = {
-	{ name = "silver raid token", chance = 100000 },
-	{ name = "gold coin", chance = 100000, maxCount = 16 },
-	{ id = 3607, chance = 50000 },
-	{ id = 3598, chance = 5000 },
-	{ id = 3561, chance = 50000 },
-	{ id = 3337, chance = 5000 },
+	{ id = 3337, chance = 87000 }, -- bone club
+	{ id = 3031, chance = 71000, maxCount = 22 }, -- gold coin
+	{ id = 3607, chance = 56000 }, -- cheese
+	{ id = 3492, chance = 51000, maxCount = 4 }, -- worm
+	{ id = 3598, chance = 2500, maxCount = 2 }, -- cookie
+	{ id = 5792, chance = 250 }, -- die
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -1, maxDamage = -15 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -15 },
 }
 
 monster.defenses = {
@@ -108,5 +108,19 @@ monster.immunities = {
 	{ type = "invisible", condition = false },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

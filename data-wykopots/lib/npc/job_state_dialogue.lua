@@ -72,7 +72,7 @@ NPC_STATE_DIALOGUES = {
 				[{ "trofeow", "trophies", "trofeum", "trophy" }] = {
 					text = "WOULD_YOU_LIKE_TO_BUY_ANY_TROPHY",
 					cost = trophyCost,
-					nextTopic = JOB_TOPICS[JOB_TASKS].buyingTropies,
+					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].buyingTropies,
 				},
 				[{
 					"bronze hunter trophy",
@@ -84,17 +84,17 @@ NPC_STATE_DIALOGUES = {
 				}] = {
 					text = "YOU_WANT_TO_BUY_TROHPY_NAME",
 					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS].buyingTropies,
-						max = JOB_TOPICS[JOB_TASKS].buyingTropies,
+						min = JOB_TOPICS[JOB_TASKS_IMBUING].buyingTropies,
+						max = JOB_TOPICS[JOB_TASKS_IMBUING].buyingTropies,
 					},
-					nextTopic = JOB_TOPICS[JOB_TASKS].confirmingTrophyBuy,
+					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
 					cost = trophyCost,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
 					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS].confirmingTrophyBuy,
-						max = JOB_TOPICS[JOB_TASKS].confirmingTrophyBuy,
+						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
+						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
 					},
 					specialActionsOnSuccess = { {action=buyTrophy} },
 				},
@@ -103,13 +103,13 @@ NPC_STATE_DIALOGUES = {
 				[{ "wierzchowca", "mount" }] = {
 					text = "YOU_WANT_TO_BUY_ANTELOPE",
 					cost = antelopeCost,
-					nextTopic = JOB_TOPICS[JOB_TASKS].confirmAntelopeBuy,
+					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmAntelopeBuy,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
 					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS].confirmAntelopeBuy,
-						max = JOB_TOPICS[JOB_TASKS].confirmAntelopeBuy,
+						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmAntelopeBuy,
+						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmAntelopeBuy,
 					},
 					mountRewards = { antelopeMountId },
 					nextState = {
@@ -133,8 +133,8 @@ NPC_STATE_DIALOGUES = {
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
 					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS].confirmingPowerfulImbueUnlockBuy,
-						max = JOB_TOPICS[JOB_TASKS].confirmingPowerfulImbueUnlockBuy,
+						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
+						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
 					},
 					requiredState = {
 						[Storage.taskPoints] = powerfulImbueUnlockCost,
@@ -148,7 +148,7 @@ NPC_STATE_DIALOGUES = {
 				},
 				[{ "mozliwosc", "ability" }] = {
 					text = "YOU_WANT_BUY_ABILITY_POWEFUL_IMBUEMENT",
-					nextTopic = JOB_TOPICS[JOB_TASKS].confirmingPowerfulImbueUnlockBuy,
+					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
 					cost = powerfulImbueUnlockCost,
 				},
 			},
@@ -156,8 +156,8 @@ NPC_STATE_DIALOGUES = {
 				[{ "yes", "tak" }] = {
 					text = "You already got it.",
 					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS].confirmingPowerfulImbueUnlockBuy,
-						max = JOB_TOPICS[JOB_TASKS].confirmingPowerfulImbueUnlockBuy,
+						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
+						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
 					},
 				},
 				[{ "mozliwosc", "ability" }] = { text = "You already got it." },

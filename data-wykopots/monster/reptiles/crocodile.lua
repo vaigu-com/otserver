@@ -10,7 +10,7 @@ monster.outfit = {
 	lookLegs = 0,
 	lookFeet = 0,
 	lookAddons = 0,
-	lookMount = 0
+	lookMount = 0,
 }
 
 monster.raceId = 119
@@ -24,9 +24,9 @@ monster.Bestiary = {
 	Stars = 2,
 	Occurrence = 0,
 	Locations = "In the crocodile cave and the jungle east of Port Hope as well as the swamp to the north, \z
-		Fenrock, Arena and Zoo Quarter, Trade Quarter, Talahu, also located on Meriana and Laguna Islands."
-		}
-		
+		Fenrock, Arena and Zoo Quarter, Trade Quarter, Talahu, also located on Meriana and Laguna Islands.",
+}
+
 monster.health = 105
 monster.maxHealth = 105
 monster.race = "blood"
@@ -35,8 +35,8 @@ monster.speed = 78
 monster.manaCost = 350
 
 monster.changeTarget = {
-	interval = 4000,
-	chance = 5
+	interval = 5000,
+	chance = 0,
 }
 
 monster.strategiesTarget = {
@@ -62,12 +62,11 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
-	pet = false
 }
 
 monster.light = {
 	level = 0,
-	color = 0
+	color = 0,
 }
 
 monster.voices = {
@@ -76,39 +75,40 @@ monster.voices = {
 }
 
 monster.loot = {
-	{name = "gold coin", chance = 50000, maxCount = 10},
-	{name = "ham", chance = 40000},
-	{id = 3556, chance = 130},
-	{id = 10279, chance = 20180}
+	{ name = "gold coin", chance = 50000, maxCount = 10 },
+	{ name = "ham", chance = 40000 },
+	{ name = "crocodile boots", chance = 100 },
+	{ name = "piece of crocodile leather", chance = 20180 },
 }
 
 monster.attacks = {
-	{name ="melee", interval = 2000, chance = 100, skill = 30, attack = 20}
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -40 },
 }
 
 monster.defenses = {
-	defense = 5,
-	armor = 13
+	defense = 15,
+	armor = 13,
+	mitigation = 0.13,
 }
 
 monster.elements = {
-	{type = COMBAT_PHYSICALDAMAGE, percent = -5},
-	{type = COMBAT_ENERGYDAMAGE, percent = -5},
-	{type = COMBAT_EARTHDAMAGE, percent = 20},
-	{type = COMBAT_FIREDAMAGE, percent = -10},
-	{type = COMBAT_LIFEDRAIN, percent = 0},
-	{type = COMBAT_MANADRAIN, percent = 0},
-	{type = COMBAT_DROWNDAMAGE, percent = 0},
-	{type = COMBAT_ICEDAMAGE, percent = 10},
-	{type = COMBAT_HOLYDAMAGE , percent = 0},
-	{type = COMBAT_DEATHDAMAGE , percent = 0}
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -5 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
+	{ type = COMBAT_LIFEDRAIN, percent = 0 },
+	{ type = COMBAT_MANADRAIN, percent = 0 },
+	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
 monster.immunities = {
-	{type = "paralyze", condition = false},
-	{type = "outfit", condition = false},
-	{type = "invisible", condition = false},
-	{type = "bleed", condition = false}
+	{ type = "paralyze", condition = false },
+	{ type = "outfit", condition = false },
+	{ type = "invisible", condition = false },
+	{ type = "bleed", condition = false },
 }
 
 mType:register(monster)

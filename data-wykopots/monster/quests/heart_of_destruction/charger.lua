@@ -39,7 +39,7 @@ monster.flags = {
 	convinceable = false,
 	pushable = false,
 	rewardBoss = false,
-	illusionable = true,
+	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = false,
 	staticAttackChance = 90,
@@ -48,9 +48,8 @@ monster.flags = {
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = true,
-	canWalkOnFire = false,
+	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.events = {
@@ -80,19 +79,20 @@ monster.attacks = {
 monster.defenses = {
 	defense = 50,
 	armor = 50,
+	--	mitigation = ???,
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 80 },
-	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 50 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -15 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = -10 },
+	{ type = COMBAT_ICEDAMAGE, percent = -15 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 25 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 50 },
 }
 
 monster.immunities = {

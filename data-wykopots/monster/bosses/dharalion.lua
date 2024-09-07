@@ -1,8 +1,8 @@
 local mType = Game.createMonsterType("Dharalion")
 local monster = {}
 
-monster.description = "dharalion"
-monster.experience = 380
+monster.description = "Dharalion"
+monster.experience = 570
 monster.outfit = {
 	lookType = 203,
 	lookHead = 0,
@@ -11,6 +11,11 @@ monster.outfit = {
 	lookFeet = 0,
 	lookAddons = 0,
 	lookMount = 0,
+}
+
+monster.bosstiary = {
+	bossRaceId = 203,
+	bossRace = RARITY_NEMESIS,
 }
 
 monster.health = 380
@@ -38,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -50,7 +55,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.light = {
@@ -69,31 +73,28 @@ monster.voices = {
 	interval = 5000,
 	chance = 10,
 	{ text = "Feel my wrath!", yell = false },
-	{ text = "Noone will stop my ascension!", yell = false },
+	{ text = "No one will stop my ascension!", yell = false },
 	{ text = "My powers are divine!", yell = false },
+	{ text = "You desecrated this temple!", yell = false },
+	{ text = "Muahahaha!", yell = false },
 }
 
 monster.loot = {
-	{ name = "silver raid token", chance = 100000 },
-	{ name = "platinum coin", chance = 100000, maxCount = 15 },
-	{ id = 2815, chance = 10000 },
-	{ id = 3481, chance = 5000 },
-	{ id = 3147, chance = 4000 },
-	{ id = 3289, chance = 5000 },
-	{ id = 3551, chance = 20000 },
-	{ id = 3593, chance = 6666 },
-	{ id = 3738, chance = 10000 },
-	{ id = 3509, chance = 33333 },
-	{ id = 3061, chance = 80057 },
-	{ id = 3600, chance = 20000, maxCount = 3 },
-	{ id = 3492, chance = 50000, maxCount = 10 },
-	{ id = 3563, chance = 5000 },
-	{ id = 3447, chance = 20000, maxCount = 10 },
-	{ name = "elvish bow", chance = 70000 },
-	{ id = 2902, chance = 4000 },
-	{ id = 2932, chance = 2857 },
-	{ id = 3008, chance = 1818 },
-	{ id = 3037, chance = 23330 },
+	{ name = "gold coin", chance = 100000, maxCount = 100 },
+	{ name = "holy orchid", chance = 100000 },
+	{ name = "elvish talisman", chance = 88000 },
+	{ name = "elven astral observer", chance = 82000 },
+	{ name = "yellow gem", chance = 41790 },
+	{ name = "blank rune", chance = 25370, maxCount = 1 },
+	{ name = "melon", chance = 22390 },
+	{ name = "bread", chance = 16420 },
+	{ name = "elven amulet", chance = 14930 },
+	{ name = "great mana potion", chance = 13430 },
+	{ name = "life crystal", chance = 13430 },
+	{ name = "sling herb", chance = 8960 },
+	{ id = 3257, chance = 7460 }, -- cornucopia
+	{ name = "green tunic", chance = 4480 },
+	{ name = "royal spear", chance = 1490, maxCount = 2 },
 }
 
 monster.attacks = {
@@ -105,8 +106,9 @@ monster.attacks = {
 }
 
 monster.defenses = {
-	defense = 39,
+	defense = 25,
 	armor = 15,
+	--	mitigation = ???,
 	{ name = "combat", interval = 1000, chance = 20, type = COMBAT_HEALING, minDamage = 90, maxDamage = 120, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 1000, chance = 7, speedChange = 300, effect = CONST_ME_MAGIC_RED, target = false, duration = 10000 },
 }
@@ -114,21 +116,35 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 100 },
-	{ type = COMBAT_LIFEDRAIN, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
 monster.immunities = {
-	{ type = "paralyze", condition = false },
-	{ type = "outfit", condition = true },
+	{ type = "paralyze", condition = true },
+	{ type = "outfit", condition = false },
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

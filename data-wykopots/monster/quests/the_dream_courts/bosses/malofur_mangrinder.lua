@@ -5,24 +5,34 @@ monster.description = "Malofur Mangrinder"
 monster.experience = 55000
 monster.outfit = {
 	lookType = 1120,
-	lookHead = 19,
-	lookBody = 22,
-	lookLegs = 76,
-	lookFeet = 22,
+	lookHead = 0,
+	lookBody = 0,
+	lookLegs = 0,
+	lookFeet = 0,
 	lookAddons = 0,
 	lookMount = 0,
 }
 
-monster.health = 200000
-monster.maxHealth = 200000
+monster.events = {
+	"DreamCourtsBossDeath",
+}
+
+monster.health = 320000
+monster.maxHealth = 320000
 monster.race = "blood"
 monster.corpse = 30017
 monster.speed = 125
 monster.manaCost = 0
 
 monster.changeTarget = {
-	interval = 2000,
-	chance = 18,
+	interval = 4000,
+	chance = 10,
+}
+
+monster.bosstiary = {
+	bossRaceId = 1696,
+	bossRace = RARITY_NEMESIS,
+	storage = Storage.Quest.U12_00.TheDreamCourts.ArenaTimer,
 }
 
 monster.strategiesTarget = {
@@ -50,11 +60,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
-}
-
-monster.events = {
-	"DreamBossDeath",
 }
 
 monster.light = {
@@ -65,58 +70,66 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "BOOOM!", yell = false },
-	{ text = "BOOOOM!!!", yell = false },
-	{ text = "BOOOOOM!!!", yell = false },
+	{ text = "RAAAARGH! I'M MASHING YE TO DUST BOOM!", yell = true },
+	{ text = "BOOOM!", yell = true },
+	{ text = "BOOOOM!!!", yell = true },
+	{ text = "BOOOOOM!!!", yell = true },
 }
 
 monster.loot = {
-	{ name = "ultimate Spirit Potion", chance = 50000, maxCount = 20 },
-	{ name = "crystal Coin", chance = 20000 },
-	{ name = "ultimate Mana Potion", chance = 50000, maxCount = 20 },
-	{ name = "supreme Health Potion", chance = 50000, maxCount = 20 },
-	{ name = "gold Token", chance = 50000, minCount = 2, maxCount = 2 },
-	{ name = "silver Token", chance = 90000, minCount = 2, maxCount = 3 },
-	{ id = 281, chance = 100000 },
-	{ name = "green Gem", chance = 50000 },
-	{ name = "gold ingot", chance = 24000 },
-	{ id = 3039, chance = 50000 },
-	{ name = "blue Gem", chance = 40000 },
-	{ id = 23529, chance = 50000 },
-	{ name = "platinum Coin", chance = 100000, maxCount = 5 },
-	{ name = "bullseye Potion", chance = 25000, maxCount = 10 },
-	{ name = "piggy Bank", chance = 90000 },
-	{ name = "mysterious Remains", chance = 85000 },
-	{ name = "energy Bar", chance = 80000 },
-	{ id = 23543, chance = 20000 },
-	{ name = "ring of the Sky", chance = 10000 },
-	{ name = "crunor Idol", chance = 6000 },
-	{ name = "resizer", chance = 3000 },
-	{ name = "shoulder Plate", chance = 4000 },
-	{ name = "malofur's Lunchbox", chance = 5000 },
-	{ name = "pomegranate", chance = 50000 },
-	{ name = "chaos mace", chance = 5000 },
-	{ name = "skull staff", chance = 12000 },
+	{ id = 23544, chance = 22220 }, -- collar of red plasma
+	{ id = 23529, chance = 13890 }, --  ring of blue plasma
+	{ id = 23531, chance = 8330 }, -- ring of green plasma
+	{ id = 23542, chance = 8330 }, -- collar of blue plasma
+	{ id = 23543, chance = 16670 }, -- collar of green plasma
+	{ id = 3039, chance = 47220 }, -- red gem
+	{ name = "berserk potion", chance = 20000 },
+	{ name = "blue gem", chance = 20000 },
+	{ name = "bullseye potion", chance = 20000 },
+	{ name = "chaos mace", chance = 8330 },
+	{ name = "crystal coin", chance = 25000, maxCount = 2 },
+	{ name = "energy bar", chance = 88890 },
+	{ id = 282, chance = 8330 }, -- giant shimmering pearl
+	{ name = "gold ingot", chance = 22220 },
+	{ name = "gold token", chance = 60000, maxCount = 3 },
+	{ name = "green gem", chance = 11110 },
+	{ name = "huge chunk of crude iron", chance = 40000 },
+	{ name = "magic sulphur", chance = 5560 },
+	{ name = "mastermind potion", chance = 22220 },
+	{ name = "mysterious remains", chance = 88890 },
+	{ name = "piggy bank", chance = 97220 },
+	{ name = "platinum coin", chance = 100000, maxCount = 8 },
+	{ name = "pomegranate", chance = 16670 },
+	{ name = "resizer", chance = 2780 },
+	{ id = 23533, chance = 5560 }, -- ring of red plasma
+	{ name = "ring of the sky", chance = 2780 },
+	{ name = "royal star", chance = 52780 },
+	{ name = "silver token", chance = 91670, maxCount = 3 },
+	{ name = "skull staff", chance = 8330 },
+	{ name = "soul stone", chance = 8330 },
+	{ name = "supreme health potion", chance = 80000, maxCount = 29 },
+	{ name = "ultimate mana potion", chance = 55560, maxCount = 20 },
+	{ name = "ultimate spirit potion", chance = 80000, maxCount = 13 },
+	{ name = "violet gem", chance = 8330 },
+	{ name = "yellow gem", chance = 44440, maxCount = 2 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -1500 },
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_PHYSICALDAMAGE, minDamage = -300, maxDamage = -600, range = 6, shootEffect = CONST_ANI_LARGEROCK, target = true },
-	{ name = "groundshaker", interval = 2000, chance = 30, minDamage = -400, maxDamage = -1800, target = false },
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_DEATHDAMAGE, minDamage = -500, maxDamage = -1800, length = 7, spread = 0, effect = CONST_ME_SMALLCLOUDS, target = false },
-	{ name = "vampire paralyze", interval = 2000, chance = 13, range = 7, target = false },
+	{ name = "combat", interval = 2000, chance = 100, type = COMBAT_PHYSICALDAMAGE, minDamage = -400, maxDamage = -2500, target = true }, -- basic attack
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = -400, maxDamage = -5500, effect = CONST_ME_GROUNDSHAKER, radius = 4, target = false }, -- groundshaker
 }
 
 monster.defenses = {
-	defense = 80,
-	armor = 80,
+	defense = 60,
+	armor = 60,
+	--	mitigation = ???,
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 5 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 80 },
+	{ type = COMBAT_FIREDAMAGE, percent = 100 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

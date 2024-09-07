@@ -1,9 +1,5 @@
 function onUpdateDatabase()
-	logger.info("Updating database to version 39 (add bs&rs skullticks)")
-	db.query([[
-        ALTER TABLE `players`
-        ADD `rsskulltime` bigint NOT NULL DEFAULT '0' AFTER `skulltime`,
-        ADD `bsskulltime` bigint NOT NULL DEFAULT '0' AFTER `rsskulltime`
-    ]])
+	logger.info("Updating database to version 40 (house transfer ownership on startup)")
+	db.query("ALTER TABLE `houses` ADD `new_owner` int(11) NOT NULL DEFAULT '-1';")
 	return true
 end

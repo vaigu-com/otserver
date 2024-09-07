@@ -1,7 +1,7 @@
 local mType = Game.createMonsterType("Penguin")
 local monster = {}
 
-monster.description = "penguin"
+monster.description = "a penguin"
 monster.experience = 1
 monster.outfit = {
 	lookType = 250,
@@ -30,8 +30,8 @@ monster.health = 33
 monster.maxHealth = 33
 monster.race = "blood"
 monster.corpse = 7334
-monster.speed = 60
-monster.manaCost = 300
+monster.speed = 58
+monster.manaCost = 290
 
 monster.changeTarget = {
 	interval = 4000,
@@ -50,7 +50,7 @@ monster.flags = {
 	pushable = false,
 	rewardBoss = false,
 	illusionable = true,
-	canPushItems = false,
+	canPushItems = true,
 	canPushCreatures = false,
 	staticAttackChance = 90,
 	targetDistance = 1,
@@ -60,7 +60,7 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
-	pet = false,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -74,18 +74,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3578, chance = 7500, maxCount = 2 },
-	{ id = 7159, chance = 140 },
-	{ id = 7158, chance = 70 },
+	{ id = 3578, chance = 7830, maxCount = 2 }, -- fish
+	{ name = "rainbow trout", chance = 70 },
+	{ name = "green perch", chance = 130 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 10, attack = 3 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -3 },
 }
 
 monster.defenses = {
-	defense = 2,
+	defense = 5,
 	armor = 2,
+	mitigation = 0.07,
 }
 
 monster.elements = {

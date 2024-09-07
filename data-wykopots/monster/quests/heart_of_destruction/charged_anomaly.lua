@@ -6,8 +6,8 @@ monster.experience = 0
 monster.outfit = {
 	lookType = 876,
 	lookHead = 80,
-	lookBody = 80,
-	lookLegs = 19,
+	lookBody = 6,
+	lookLegs = 5,
 	lookFeet = 80,
 	lookAddons = 1,
 	lookMount = 0,
@@ -50,9 +50,7 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
-
 monster.events = {
 	"ChargedAnomalyDeath",
 }
@@ -81,6 +79,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 100,
 	armor = 100,
+	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_HEALING, radius = 8, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
@@ -90,7 +89,7 @@ monster.elements = {
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
 	{ type = COMBAT_FIREDAMAGE, percent = 100 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
-	{ type = COMBAT_MANADRAIN, percent = 0 },
+	{ type = COMBAT_MANADRAIN, percent = 100 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 100 },
 	{ type = COMBAT_ICEDAMAGE, percent = 100 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 100 },

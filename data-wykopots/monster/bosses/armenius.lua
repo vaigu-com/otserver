@@ -1,4 +1,4 @@
-local mType = Game.createMonsterType("Armenius")
+local mType = Game.createMonsterType("Armenius (Creature)")
 local monster = {}
 
 monster.description = "Armenius"
@@ -26,9 +26,9 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,7 +38,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -50,7 +50,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.light = {
@@ -61,24 +60,11 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "I smell warm blood!", yell = false },
+	{ text = "You know what, I changed my mind. BRING IT!", yell = false },
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 90230, maxCount = 60 },
-	{ id = 9685, chance = 7600 },
-	{ id = 11449, chance = 5100 },
-	{ id = 3661, chance = 1910 },
-	{ id = 3027, chance = 1800 },
-	{ id = 3300, chance = 1560 },
-	{ id = 236, chance = 1500 },
-	{ id = 3271, chance = 1000 },
-	{ id = 3114, chance = 1000 },
-	{ id = 3284, chance = 420 },
-	{ id = 3373, chance = 420 },
-	{ id = 3010, chance = 230 },
-	{ id = 3434, chance = 230 },
-	{ id = 3056, chance = 220 },
+	{ id = 3434, chance = 5230 }, -- vampire shield
 }
 
 monster.attacks = {
@@ -90,22 +76,23 @@ monster.attacks = {
 monster.defenses = {
 	defense = 30,
 	armor = 30,
+	--	mitigation = ???,
 	{ name = "outfit", interval = 2000, chance = 10, effect = CONST_ME_GROUNDSHAKER, target = false, duration = 5000, outfitMonster = "bat" },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = 300, effect = CONST_ME_MAGIC_RED, target = false, duration = 3000 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 15, maxDamage = 25, target = false },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 35 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = -10 },
-	{ type = COMBAT_LIFEDRAIN, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
-	{ type = COMBAT_DROWNDAMAGE, percent = 100 },
+	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -25 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -50 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
 monster.immunities = {
@@ -114,5 +101,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

@@ -15,14 +15,14 @@ monster.outfit = {
 
 monster.raceId = 2349
 monster.Bestiary = {
-	class = "Iks",
+	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
-	CharmsPoints = 25,
+	toKill = 5,
+	FirstUnlock = 1,
+	SecondUnlock = 2,
+	CharmsPoints = 50,
 	Stars = 3,
-	Occurrence = 1,
+	Occurrence = 0,
 	Locations = "Iksupan",
 }
 

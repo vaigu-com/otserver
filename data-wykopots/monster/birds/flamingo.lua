@@ -30,7 +30,7 @@ monster.health = 25
 monster.maxHealth = 25
 monster.race = "blood"
 monster.corpse = 6054
-monster.speed = 85
+monster.speed = 84
 monster.manaCost = 250
 
 monster.changeTarget = {
@@ -47,10 +47,10 @@ monster.flags = {
 	attackable = true,
 	hostile = false,
 	convinceable = true,
-	pushable = true,
+	pushable = false,
 	rewardBoss = false,
 	illusionable = true,
-	canPushItems = false,
+	canPushItems = true,
 	canPushCreatures = false,
 	staticAttackChance = 90,
 	targetDistance = 1,
@@ -60,7 +60,7 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
-	pet = false,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -74,12 +74,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 11684, chance = 127 },
+	{ name = "downy feather", chance = 1180 },
 }
 
 monster.defenses = {
-	defense = 6,
+	defense = 5,
 	armor = 1,
+	mitigation = 0.15,
 }
 
 monster.elements = {

@@ -15,7 +15,7 @@ function CustomItemRegistry:New()
 end
 setmetatable(CustomItemRegistry, {
 	__call = function(class, ...)
-		return class:Newew(...)
+		return class:New(...)
 	end,
 })
 customItemRegistrySingleton = CustomItemRegistry()

@@ -8,7 +8,7 @@ monster.outfit = {
 	lookHead = 0,
 	lookBody = 77,
 	lookLegs = 92,
-	lookFeet = 115,
+	lookFeet = 97,
 	lookAddons = 1,
 	lookMount = 0,
 }
@@ -25,10 +25,15 @@ monster.changeTarget = {
 	chance = 10,
 }
 
+monster.bosstiary = {
+	bossRaceId = 421,
+	bossRace = RARITY_NEMESIS,
+}
+
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -47,10 +52,9 @@ monster.flags = {
 	runHealth = 900,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -59,9 +63,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 3,
+	maxSummons = 5,
 	summons = {
-		{ name = "Warlock", chance = 10, interval = 2000, count = 3 },
+		{ name = "Warlock", chance = 10, interval = 2000, count = 2 },
 		{ name = "Green Djinn", chance = 10, interval = 2000, count = 3 },
 	},
 }
@@ -71,33 +75,19 @@ monster.voices = {
 	chance = 10,
 	{ text = "Killing is such a splendid diversion from my studies.", yell = false },
 	{ text = "Time to test my newest spells!", yell = false },
+	{ text = "Ah, practice time once again!", yell = false },
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 32000, maxCount = 80 },
-	{ id = 3590, chance = 21000, maxCount = 4 },
-	{ id = 3600, chance = 11000 },
-	{ id = 3299, chance = 9600 },
-	{ id = 3324, chance = 8330 },
-	{ name = "great health potion", chance = 7190 },
-	{ name = "great mana potion", chance = 6760 },
-	{ name = "assassin star", chance = 5500, maxCount = 4 },
-	{ id = 3728, chance = 5000 },
-	{ id = 3051, chance = 4200 },
-	{ id = 3062, chance = 4000 },
-	{ id = 2917, chance = 3500 },
-	{ id = 3567, chance = 3390 },
-	{ id = 3029, chance = 3190 },
-	{ id = 3034, chance = 3160 },
-	{ id = 825, chance = 3040 },
-	{ id = 3509, chance = 3000 },
-	{ id = 3007, chance = 2670 },
-	{ id = 11454, chance = 2500 },
-	{ id = 3006, chance = 2420 },
-	{ id = 3081, chance = 2320 },
-	{ id = 2852, chance = 2310 },
-	{ id = 3360, chance = 2240 },
-	{ id = 2995, chance = 2060 },
+	{ id = 3031, chance = 32000, maxCount = 80 }, -- gold coin
+	{ id = 3299, chance = 9600 }, -- poison dagger
+	{ id = 3324, chance = 8330 }, -- skull staff
+	{ id = 7368, chance = 5500, maxCount = 4 }, -- assassin star
+	{ id = 3567, chance = 3390 }, -- blue robe
+	{ id = 3029, chance = 3190 }, -- small sapphire
+	{ id = 825, chance = 3040 }, -- lightning robe
+	{ id = 3006, chance = 2420 }, -- ring of the sky
+	{ id = 3360, chance = 2240 }, -- golden armor
 }
 
 monster.attacks = {
@@ -137,5 +127,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

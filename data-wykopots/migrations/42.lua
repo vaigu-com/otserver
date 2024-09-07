@@ -1,14 +1,10 @@
 function onUpdateDatabase()
-	logger.info("Updating database to version 42 (optimize house_lists)")
-	db.query([[
-			ALTER TABLE `house_lists` DROP COLUMN `id`;
-		]])
+	logger.info("Updating database to version 43 (fix guildwar_kills_unique)")
 
 	db.query([[
-			ALTER TABLE `house_lists`
-			ADD COLUMN `version` bigint NOT NULL DEFAULT 0 AFTER `listid`,
-			ADD INDEX `version` (`version`),
-			ADD PRIMARY KEY (`house_id`, `listid`);
-		]])
+		ALTER TABLE `guildwar_kills`
+		DROP INDEX `guildwar_kills_unique`
+	]])
+
 	return true
 end

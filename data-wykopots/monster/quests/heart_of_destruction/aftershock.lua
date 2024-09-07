@@ -7,8 +7,8 @@ monster.outfit = {
 	lookType = 875,
 	lookHead = 114,
 	lookBody = 114,
-	lookLegs = 0,
-	lookFeet = 0,
+	lookLegs = 19,
+	lookFeet = 57,
 	lookAddons = 0,
 	lookMount = 0,
 }
@@ -50,9 +50,7 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
-
 monster.events = {
 	"ShocksDeath",
 	"AftershockTransform",
@@ -84,14 +82,15 @@ monster.attacks = {
 monster.defenses = {
 	defense = 100,
 	armor = 100,
+	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 300, maxDamage = 600, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 100 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 100 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

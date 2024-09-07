@@ -1,7 +1,7 @@
 local mType = Game.createMonsterType("Heoni")
 local monster = {}
 
-monster.description = "heoni"
+monster.description = "Heoni"
 monster.experience = 515
 monster.outfit = {
 	lookType = 239,
@@ -13,10 +13,15 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 795
-monster.maxHealth = 795
+monster.bosstiary = {
+	bossRaceId = 671,
+	bossRace = RARITY_BANE,
+}
+
+monster.health = 900
+monster.maxHealth = 900
 monster.race = "blood"
-monster.corpse = 6301
+monster.corpse = 11590
 monster.speed = 150
 monster.manaCost = 0
 
@@ -26,9 +31,9 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -47,10 +52,9 @@ monster.flags = {
 	runHealth = 300,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.light = {
@@ -76,6 +80,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 18,
 	armor = 25,
+	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 11, type = COMBAT_HEALING, minDamage = 76, maxDamage = 84, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = 290, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
 }
@@ -83,7 +88,7 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
@@ -94,10 +99,24 @@ monster.elements = {
 }
 
 monster.immunities = {
-	{ type = "paralyze", condition = false },
+	{ type = "paralyze", condition = true },
 	{ type = "outfit", condition = false },
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

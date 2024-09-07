@@ -278,21 +278,6 @@ local actionsWhitelist = {
 	text = true,
 }
 
-function ResolutionContext:ParseRequirementsActionsOther(table)
-	self.otherFields = {}
-	self.requirements = {}
-	self.actionsOnSuccess = {}
-	for key, value in pairs(table) do
-		if requirementsWhitelist[key] then
-			self.requirements = value
-		elseif actionsWhitelist[key] then
-			self.actionsOnSuccess = value
-		else
-			self[key] = value
-		end
-	end
-end
-
 ---@class ResolutionContext
 ---@field requirements table
 ---@field actionsOnSuccess table
@@ -317,6 +302,21 @@ function ResolutionContext.FromConversationContext(context, data)
 	newObj.__index = newObj
 	setmetatable(newObj, ResolutionContext)
 	return newObj
+end
+
+function ResolutionContext:ParseRequirementsActionsOther(table)
+	self.otherFields = {}
+	self.requirements = {}
+	self.actionsOnSuccess = {}
+	for key, value in pairs(table) do
+		if requirementsWhitelist[key] then
+			self.requirements = value
+		elseif actionsWhitelist[key] then
+			self.actionsOnSuccess = value
+		else
+			self[key] = value
+		end
+	end
 end
 
 function ResolutionContext:New(table)

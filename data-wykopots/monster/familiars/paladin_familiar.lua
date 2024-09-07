@@ -1,10 +1,10 @@
-local mType = Game.createMonsterType("Paladin familiar")
+local mType = Game.createMonsterType("Paladin Familiar")
 local monster = {}
 
 monster.description = "a paladin familiar"
 monster.experience = 0
 monster.outfit = {
-	lookType = 992,
+	--lookType = 992,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -17,12 +17,19 @@ monster.health = 15000
 monster.maxHealth = 15000
 monster.race = "undead"
 monster.corpse = 0
-monster.speed = 150
+monster.speed = 154
 monster.manaCost = 2000
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 20,
+}
+
+monster.strategiesTarget = {
+	nearest = 70,
+	health = 10,
+	damage = 10,
+	random = 10,
 }
 
 monster.flags = {
@@ -35,7 +42,7 @@ monster.flags = {
 	illusionable = false,
 	canPushItems = false,
 	canPushCreatures = true,
-	staticAttackChance = 100,
+	staticAttackChance = 90,
 	targetDistance = 2,
 	runHealth = 0,
 	healthHidden = false,
@@ -60,13 +67,17 @@ monster.loot = {}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -200 },
-	{ name = "emberwing spells", interval = 2000, chance = 75, range = 6, target = true },
+	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_HOLYDAMAGE, minDamage = -200, maxDamage = -270, range = 5, radius = 3, shootEffect = CONST_ANI_HOLY, effect = CONST_ME_HOLYAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_FIREDAMAGE, minDamage = -200, maxDamage = -270, range = 5, radius = 3, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREATTACK, target = true },
+	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_FIREDAMAGE, minDamage = -170, maxDamage = -230, range = 5, radius = 5, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREATTACK, target = true },
+	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_HOLYDAMAGE, minDamage = -170, maxDamage = -230, range = 5, radius = 5, shootEffect = CONST_ANI_HOLY, effect = CONST_ME_HOLYAREA, target = true },
 }
 
 monster.defenses = {
 	defense = 55,
 	armor = 55,
-	{ name = "paladin familiar heal", interval = 2000, chance = 75, effect = CONST_ME_MAGIC_GREEN, target = false },
+	--	mitigation = ???,
+	{ name = "combat", interval = 2000, chance = 75, type = COMBAT_HEALING, minDamage = 450, maxDamage = 450, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.elements = {
@@ -84,9 +95,7 @@ monster.elements = {
 
 monster.immunities = {
 	{ type = "paralyze", condition = true },
-	{ type = "outfit", condition = false },
 	{ type = "invisible", condition = true },
-	{ type = "bleed", condition = false },
 }
 
 mType:register(monster)

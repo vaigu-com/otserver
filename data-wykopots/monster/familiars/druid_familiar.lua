@@ -1,10 +1,10 @@
-local mType = Game.createMonsterType("Druid familiar")
+local mType = Game.createMonsterType("Druid Familiar")
 local monster = {}
 
 monster.description = "a druid familiar"
 monster.experience = 0
 monster.outfit = {
-	lookType = 993,
+	--lookType = 993,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -17,12 +17,19 @@ monster.health = 20000
 monster.maxHealth = 20000
 monster.race = "undead"
 monster.corpse = 0
-monster.speed = 150
+monster.speed = 154
 monster.manaCost = 3000
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 20,
+}
+
+monster.strategiesTarget = {
+	nearest = 70,
+	health = 10,
+	damage = 10,
+	random = 10,
 }
 
 monster.flags = {
@@ -35,7 +42,7 @@ monster.flags = {
 	illusionable = false,
 	canPushItems = false,
 	canPushCreatures = true,
-	staticAttackChance = 100,
+	staticAttackChance = 90,
 	targetDistance = 1,
 	runHealth = 0,
 	healthHidden = false,
@@ -68,7 +75,8 @@ monster.attacks = {
 monster.defenses = {
 	defense = 55,
 	armor = 55,
-	{ name = "mage familiar heal", interval = 2000, chance = 75, effect = CONST_ME_MAGIC_GREEN, target = false },
+	--	mitigation = ???,
+	{ name = "combat", interval = 2000, chance = 75, type = COMBAT_HEALING, minDamage = 600, maxDamage = 600, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.elements = {
@@ -86,9 +94,7 @@ monster.elements = {
 
 monster.immunities = {
 	{ type = "paralyze", condition = true },
-	{ type = "outfit", condition = false },
 	{ type = "invisible", condition = true },
-	{ type = "bleed", condition = false },
 }
 
 mType:register(monster)

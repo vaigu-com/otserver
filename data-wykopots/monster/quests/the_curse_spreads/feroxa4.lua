@@ -6,16 +6,16 @@ monster.description = "Feroxa"
 monster.experience = 0
 monster.outfit = {
 	lookType = 716,
-	lookHead = 57,
-	lookBody = 76,
-	lookLegs = 77,
-	lookFeet = 57,
+	lookHead = 0,
+	lookBody = 0,
+	lookLegs = 0,
+	lookFeet = 0,
 	lookAddons = 0,
 	lookMount = 0,
 }
 
-monster.health = 80000
-monster.maxHealth = 80000
+monster.health = 130000
+monster.maxHealth = 130000
 monster.race = "blood"
 monster.corpse = 0
 monster.speed = 200
@@ -48,10 +48,9 @@ monster.flags = {
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.events = {
@@ -73,7 +72,7 @@ monster.loot = {}
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = -1400, maxDamage = -1800 },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_DEATHDAMAGE, minDamage = -700, maxDamage = -1250, radius = 6, effect = CONST_ME_MORTAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_MANADRAIN, minDamage = -700, maxDamage = -1250, length = 9, spread = 1, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_MANADRAIN, minDamage = -700, maxDamage = -1250, length = 9, spread = 0, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = -700, maxDamage = -1250, range = 6, shootEffect = CONST_ANI_ARROW, effect = CONST_ME_EXPLOSIONAREA, target = true },
 }
 

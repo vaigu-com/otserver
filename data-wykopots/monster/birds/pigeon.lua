@@ -21,7 +21,7 @@ monster.Bestiary = {
 	FirstUnlock = 5,
 	SecondUnlock = 10,
 	CharmsPoints = 1,
-	Stars = 1,
+	Stars = 0,
 	Occurrence = 1,
 	Locations = "Streets of Venore, Gardens of Night.",
 }
@@ -30,7 +30,7 @@ monster.health = 30
 monster.maxHealth = 30
 monster.race = "blood"
 monster.corpse = 17429
-monster.speed = 130
+monster.speed = 65
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -60,7 +60,7 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
-	pet = false,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -80,20 +80,21 @@ monster.loot = {}
 
 monster.defenses = {
 	defense = 5,
-	armor = 5,
+	armor = 1,
+	mitigation = 0.05,
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = -10 },
 }
 
 monster.immunities = {
