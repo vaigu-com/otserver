@@ -1,8 +1,8 @@
 local mType = Game.createMonsterType("Shadowpelt")
 local monster = {}
 
-monster.description = "a shadowpelt"
-monster.experience = 4000
+monster.description = "Shadowpelt"
+monster.experience = 4600
 monster.outfit = {
 	lookType = 1040,
 	lookHead = 0,
@@ -13,13 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.bosstiary = {
-	bossRaceId = 1561,
-	bossRace = RARITY_ARCHFOE,
-}
-
-monster.health = 5000
-monster.maxHealth = 5000
+monster.health = 6000
+monster.maxHealth = 6000
 monster.race = "blood"
 monster.corpse = 27722
 monster.speed = 115
@@ -28,6 +23,11 @@ monster.manaCost = 0
 monster.changeTarget = {
 	interval = 2000,
 	chance = 11,
+}
+
+monster.bosstiary = {
+	bossRaceId = 1561,
+	bossRace = RARITY_ARCHFOE,
 }
 
 monster.strategiesTarget = {
@@ -43,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -53,13 +53,8 @@ monster.flags = {
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = true,
-	canWalkOnFire = true,
+	canWalkOnFire = false,
 	canWalkOnPoison = true,
-	pet = false,
-}
-
-monster.events = {
-	"WereBossDeath",
 }
 
 monster.light = {
@@ -68,41 +63,40 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 1,
+	maxSummons = 2,
 	summons = {
-		{ name = "Werebear", chance = 20, interval = 2000, count = 1 },
+		{ name = "Werebear", chance = 20, interval = 2000, count = 2 },
 	},
 }
 
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "The strength of bears will subdue the weak!", yell = false },
-	{ text = "It was a mistake to enter my cave!", yell = false },
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 80000, maxCount = 100 },
-	{ name = "platinum coin", chance = 100000, maxCount = 5 },
-	{ name = "black pearl", chance = 55000, maxCount = 2 },
-	{ name = "ham", chance = 12000, maxCount = 2 },
-	{ name = "opal", chance = 40000, maxCount = 2 },
-	{ name = "small enchanted sapphire", chance = 7000, maxCount = 2 },
-	{ name = "bear paw", chance = 100000 },
-	{ name = "furry club", chance = 30000 },
+	{ name = "gold coin", chance = 13600000, maxCount = 200 },
+	{ name = "gold coin", chance = 13600000, maxCount = 100 },
+	{ name = "platinum coin", chance = 13600000, maxCount = 5 },
+	{ name = "black pearl", chance = 13600000, maxCount = 2 },
+	{ name = "ham", chance = 13600000, maxCount = 2 },
+	{ name = "opal", chance = 13600000, maxCount = 2 },
+	{ name = "small enchanted sapphire", chance = 13600000, maxCount = 2 },
+	{ name = "bear paw", chance = 13600000, maxCount = 2 },
+	{ name = "furry club", chance = 13600000 },
 	{ id = 281, chance = 5000 }, -- giant shimmering pearl (green)
-	{ name = "great health potion", chance = 35000, maxCount = 5 },
-	{ name = "honeycomb", chance = 12000, maxCount = 2 },
-	{ name = "spiked squelcher", chance = 3700 },
-	{ name = "ultimate health potion", chance = 35000, maxCount = 5 },
-	{ name = "werebear fur", chance = 100000 },
-	{ name = "werebear skull", chance = 100000 },
-	{ name = "dreaded cleaver", chance = 7000 },
-	{ name = "fur armor", chance = 3700 },
-	{ name = "relic sword", chance = 800 },
-	{ name = "silver token", chance = 2500 },
-	{ id = 22103, chance = 2400 },
-	{ name = "wolf backpack", chance = 400 },
+	{ name = "great health potion", chance = 13600000, maxCount = 5 },
+	{ name = "honeycomb", chance = 13600000, maxCount = 2 },
+	{ name = "spiked squelcher", chance = 13600000 },
+	{ name = "ultimate health potion", chance = 13600000, maxCount = 5 },
+	{ name = "werebear fur", chance = 13600000, maxCount = 2 },
+	{ name = "werebear skull", chance = 13600000, maxCount = 2 },
+	{ name = "dreaded cleaver", chance = 550 },
+	{ name = "fur armor", chance = 550 },
+	{ name = "relic sword", chance = 550 },
+	{ name = "silver token", chance = 150 },
+	{ id = 22103, chance = 150 }, -- werebear trophy
+	{ name = "wolf backpack", chance = 100 },
 }
 
 monster.attacks = {
@@ -115,20 +109,21 @@ monster.attacks = {
 monster.defenses = {
 	defense = 30,
 	armor = 30,
+	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 7, type = COMBAT_HEALING, minDamage = 120, maxDamage = 310, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = 520, effect = CONST_ME_POFF, target = false, duration = 5000 },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 15 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 40 },
+	{ type = COMBAT_FIREDAMAGE, percent = -5 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = -5 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
@@ -138,5 +133,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

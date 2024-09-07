@@ -1,0 +1,1122 @@
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 129802.203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 129803.2109375ms
+INFO: Check if Lua library is loaded at 129809.3203125ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 129965.1484375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 129966.1484375ms
+WARNING: Failed to find Lua library at 129966.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 129966.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 131969.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 131969.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 133673.3046875ms
+INFO: Found kernel32 library at 133675.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 134004.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 137465.15625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 137465.15625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 139346.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 139347.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 140551.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 140552.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 142024.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 142025.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 143748.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 143749.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 145565.5078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 145566.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 146174.2578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 146175.2578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 147581.15625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 147582.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 149186.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 149188.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 149211.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 149211.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 149258.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 149260.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 149287.28125ms
+INFO: Check if Lua library is loaded at 149289.28125ms
+INFO: Found Lua library (from a worker component) at 149314.265625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 149316.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 149358.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 149388.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 150939.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 152504ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 154022.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 155525.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 157318.359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 158535.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 158724.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 158806.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 158875.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 159013.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 159034.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197774.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197775.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197775.171875ms
+INFO: Check if Lua library is loaded at 197776.1640625ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 197821.1328125ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 197821.1328125ms
+WARNING: Failed to find Lua library at 197821.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197822.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197833.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197833.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197841.125ms
+INFO: Found kernel32 library at 197842.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197843.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197867.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197868.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197875.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197876.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197879.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197880.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197884.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197885.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197892.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197892.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197899.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197899.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197911.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197911.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197916.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197917.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197923.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197923.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197931.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197932.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197953.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 197953.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197964.0625ms
+INFO: Check if Lua library is loaded at 197964.0625ms
+INFO: Found Lua library (from a worker component) at 197969.203125ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 197970.203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197988.203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 197999.1953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198005.1875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198016.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198022.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198027.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198033.1640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198040.1640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198046.15625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198123.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198134.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198195.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 198205.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 375171.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 375172.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 375173.734375ms
+INFO: Check if Lua library is loaded at 375173.734375ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 376538.8046875ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 376543.8125ms
+WARNING: Failed to find Lua library at 376543.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376544.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376555.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376556.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376563.7890625ms
+INFO: Found kernel32 library at 376564.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376564.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376587.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376588.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376595.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376596.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376599.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376600.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376604.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376605.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376611.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376611.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376617.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376618.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376630.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376630.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376635.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376636.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376642.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376642.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376650.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376650.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376671.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 376672.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376682.7265625ms
+INFO: Check if Lua library is loaded at 376683.7265625ms
+INFO: Found Lua library (from a worker component) at 376689.7265625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 376689.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376708.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376719.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376726.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376737.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376744.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376775.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376781.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376787.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376793.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376843.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376860.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376894.609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 376904.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121413.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121414.734375ms
+INFO: Check if Lua library is loaded at 121420.7265625ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 121472.6953125ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 121473.6953125ms
+WARNING: Failed to find Lua library at 121473.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121473.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121493.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121493.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121528.671875ms
+INFO: Found kernel32 library at 121528.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121533.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121562.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121563.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121576.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121577.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121581.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121582.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121589.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121590.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121596.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121596.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121602.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121602.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121614.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121614.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121620.609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121621.609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121626.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121627.609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121635.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121636.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121661.5859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 121662.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121675.5859375ms
+INFO: Check if Lua library is loaded at 121676.5859375ms
+INFO: Found Lua library (from a worker component) at 121681.578125ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 121683.5703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121710.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121729.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121737.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121750.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121760.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121763.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121768.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121777.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121784.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121818.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121829.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121861.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 121868.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 123797.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 126209.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 127401.359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 129073.421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 130255.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 131869.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 133012.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 134756.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 135174.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 136361.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 145382.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 145684.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 147143.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224280.1953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224281.1953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224281.1953125ms
+INFO: Check if Lua library is loaded at 224282.1953125ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 224320.171875ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 224321.1640625ms
+WARNING: Failed to find Lua library at 224321.1640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224321.1640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224352.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224352.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224378.125ms
+INFO: Found kernel32 library at 224378.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224379.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224401.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224402.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224408.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224409.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224412.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224413.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224416.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224417.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224422.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224423.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224428.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224428.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224441.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224441.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224450.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224450.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224455.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224456.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224464.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224464.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224484.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 224485.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224498.0625ms
+INFO: Check if Lua library is loaded at 224499.0625ms
+INFO: Found Lua library (from a worker component) at 224505.0625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 224505.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224524.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224539.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224548.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224561.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224569.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224574.015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224580.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224588.0078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224595.0078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224643.984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224653.9765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224731.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224748.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224756.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224778.90625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224786.8984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224791.8984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224797.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224805.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224812.8828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224819.8828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224825.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 224856.859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 233670.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 233682.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 233687.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260016.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260017.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260018.7578125ms
+INFO: Check if Lua library is loaded at 260018.7578125ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 260055.734375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 260055.734375ms
+WARNING: Failed to find Lua library at 260055.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260056.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260065.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260065.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260073.734375ms
+INFO: Found kernel32 library at 260073.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260074.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260095.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260095.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260102.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260103.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260106.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260106.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260110.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260111.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260116.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260116.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260122.71875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260122.71875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260132.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260133.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260138.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260138.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260144.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260145.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260151.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260152.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260171.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 260172.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260182.65625ms
+INFO: Check if Lua library is loaded at 260183.6796875ms
+INFO: Found Lua library (from a worker component) at 260187.6796875ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 260188.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260263.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260275.609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260280.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260290.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260295.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260299.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260305.5859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260311.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260318.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260349.5703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260357.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260390.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260402.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260410.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260446.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260465.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260470.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260475.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260485.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260493.484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260503.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260516.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 260561.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 263937.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 263966.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 264023.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310568.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310569.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310570.1171875ms
+INFO: Check if Lua library is loaded at 310570.1171875ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 310610.0859375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 310611.0859375ms
+WARNING: Failed to find Lua library at 310611.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310611.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310623.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310624.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310632.078125ms
+INFO: Found kernel32 library at 310633.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310633.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310659.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310659.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310680.0546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310680.0546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310684.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310684.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310689.0546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310690.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310696.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310696.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310704.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310704.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310715.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310716.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310722.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310722.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310728.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310728.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310737.015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310738.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310758.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 310759.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310770.28125ms
+INFO: Check if Lua library is loaded at 310771.28125ms
+INFO: Found Lua library (from a worker component) at 310776.2734375ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 310776.2734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310796.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310808.2578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310814.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310824.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310829.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310834.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310849.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310861.2265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310871.21875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310967.171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 310998.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311073.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311082.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311093.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311117.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311128.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311140.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311152.0546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311163.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311176.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311184.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311192.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 311223.015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 313385.65625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 313406.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 313412.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381871.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381872.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381872.59375ms
+INFO: Check if Lua library is loaded at 381873.5859375ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 381911.5703125ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 381912.578125ms
+WARNING: Failed to find Lua library at 381912.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381912.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381921.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381922.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381928.5625ms
+INFO: Found kernel32 library at 381928.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381929.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381949.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381949.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381955.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381955.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381958.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381959.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381962.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381963.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381969.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381970.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381975.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381975.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381986.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381986.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381990.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381991.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 381996.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 381996.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382004.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 382005.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382025.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 382026.5078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382036.5078125ms
+INFO: Check if Lua library is loaded at 382037.5078125ms
+INFO: Found Lua library (from a worker component) at 382041.5ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 382042.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382059.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382070.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382076.484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382085.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382090.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382094.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382100.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382105.4609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382110.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382139.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382151.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382180.421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382190.4140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382198.4140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382234.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382244.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382251.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382255.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382268.3671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382275.3671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382291.359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382300.3515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 382331.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 393852.96875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 393864.9609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 393870.953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 395163.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 396311.390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 397350.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 398542.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 399843.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 401430.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 402408.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 403445.0078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 404433.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 437936.953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 437937.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 437937.9453125ms
+INFO: Check if Lua library is loaded at 437938.9453125ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 437982.9140625ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 437982.9140625ms
+WARNING: Failed to find Lua library at 437982.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 437982.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 437992.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 437993.90625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438000.9140625ms
+INFO: Found kernel32 library at 438001.90625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438001.90625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438020.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438020.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438027.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438027.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438031.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438031.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438035.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438035.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438040.8828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438041.8828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438116.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438117.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438127.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438127.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438132.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438133.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438138.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438138.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438147.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438148.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438174.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 438175.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438185.8203125ms
+INFO: Check if Lua library is loaded at 438185.8203125ms
+INFO: Found Lua library (from a worker component) at 438190.8125ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 438190.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438207.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438218.78125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438223.78125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438233.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438238.7890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438241.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438246.7890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438252.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438258.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438285.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438293.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438319.71875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438325.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438332.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438364.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438390.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438396.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438402.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438418.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438429.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438454.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438463.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 438501.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471357.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471357.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471358.65625ms
+INFO: Check if Lua library is loaded at 471358.65625ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 471397.6328125ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 471398.6484375ms
+WARNING: Failed to find Lua library at 471398.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471399.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471420.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471421.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471457.6015625ms
+INFO: Found kernel32 library at 471458.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471459.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471498.5859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471498.5859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471505.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471505.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471508.5703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471509.5703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471514.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471515.5703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471521.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471522.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471529.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471529.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471540.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471540.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471546.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471547.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471551.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471552.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471559.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471559.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471580.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 471581.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471590.53125ms
+INFO: Check if Lua library is loaded at 471591.53125ms
+INFO: Found Lua library (from a worker component) at 471597.515625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 471597.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471615.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471625.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471632.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471641.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471647.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471651.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471655.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471662.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471668.484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471698.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471705.4609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471731.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471738.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471746.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471763.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471767.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471775.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471898.359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471937.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471952.3203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471970.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 471981.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 472060.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501176.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501292.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501328.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501458.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501466.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501471.65625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501475.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501480.65625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501486.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501490.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501495.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 501500.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709263.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709263.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709264.5ms
+INFO: Check if Lua library is loaded at 709264.5ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 709301.484375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 709301.484375ms
+WARNING: Failed to find Lua library at 709302.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709302.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709311.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709311.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709317.46875ms
+INFO: Found kernel32 library at 709318.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709318.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709335.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709335.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709341.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709342.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709345.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709345.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709349.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709349.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709355.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709355.4453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709360.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709360.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709370.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709371.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709376.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709376.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709382.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709383.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709390.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709390.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709411.40625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 709412.40625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709424.3984375ms
+INFO: Check if Lua library is loaded at 709424.3984375ms
+INFO: Found Lua library (from a worker component) at 709430.40625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 709430.40625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709449.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709460.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709465.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709476.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709481.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709484.3671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709489.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709494.3671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709500.3515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709554.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709561.3203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709586.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709593.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709600.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709617.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709622.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709626.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709630.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709638.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709644.28125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709659.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709677.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 709726.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725852.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725865.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725875.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725956.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725979.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725988.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725993.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 725999.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 726011.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 726016.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 726042.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 726059.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755682.859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755685.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755686.8515625ms
+INFO: Check if Lua library is loaded at 3755687.859375ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 3755837.7734375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 3755837.7734375ms
+WARNING: Failed to find Lua library at 3755837.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755838.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755859.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755859.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755893.734375ms
+INFO: Found kernel32 library at 3755894.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755894.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755924.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755925.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755939.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755939.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755955.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755956.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755972.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755972.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3755994.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3755995.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756009.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3756009.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756025.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3756025.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756040.65625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3756041.65625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756058.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3756058.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756076.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3756077.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756105.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3756106.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756127.609375ms
+INFO: Check if Lua library is loaded at 3756128.6015625ms
+INFO: Found Lua library (from a worker component) at 3756143.59375ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 3756143.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756179.5703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756195.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756208.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756230.546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756245.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756257.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756265.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756274.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756289.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756320.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756348.484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756408.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756457.4140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756479.3984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756505.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756515.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756553.359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756586.34375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756635.3203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756694.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756741.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756782.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3756834.203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3760718.9765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3760770.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3760787.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761007.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761030.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761049.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761079.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761097.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761123.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761138.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761157.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3761180.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870611.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870612.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870612.328125ms
+INFO: Check if Lua library is loaded at 3870613.34375ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 3870657.3046875ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 3870657.3046875ms
+WARNING: Failed to find Lua library at 3870657.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870658.3046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870680.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870681.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870707.28125ms
+INFO: Found kernel32 library at 3870708.28125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870708.28125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870736.2734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870737.2734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870749.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870749.265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870761.2578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870761.2578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870773.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870773.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870786.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870787.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870802.2265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870802.2265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870819.21875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870820.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870830.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870830.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870838.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870839.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870849.203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870850.203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870879.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3870880.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870902.171875ms
+INFO: Check if Lua library is loaded at 3870902.171875ms
+INFO: Found Lua library (from a worker component) at 3870908.1640625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 3870908.1640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870927.15625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870943.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870953.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870963.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870975.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870980.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870991.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3870998.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871022.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871063.078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871087.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871129.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871142.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871161.0234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871193ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871209ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871228.984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871247.9765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871270.96875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871289.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871318.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871352.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3871493.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3873978.40625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874044.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874125.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874484.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874500.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874514.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874530.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874547.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874577.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874583.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874595.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3874603.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3982867.9609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3982868.953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3982868.953125ms
+INFO: Check if Lua library is loaded at 3982869.953125ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 3982912.921875ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 3982913.921875ms
+WARNING: Failed to find Lua library at 3982913.921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3982913.921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3982943.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3982944.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3982972.890625ms
+INFO: Found kernel32 library at 3982972.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3982973.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983001.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983001.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983016.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983016.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983024.859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983024.859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983047.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983047.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983068.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983068.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983087.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983087.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983104.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983105.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983118.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983118.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983132.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983132.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983144.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983144.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983173.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 3983173.7734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983186.765625ms
+INFO: Check if Lua library is loaded at 3983187.765625ms
+INFO: Found Lua library (from a worker component) at 3983197.765625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 3983199.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983221.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983234.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983244.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983258.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983267.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983276.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983285.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983295.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983307.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983344.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983357.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983387.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983398.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983411.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983436.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983444.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983456.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983463.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983484.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983504.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983518.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983529.578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3983569.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993082.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993172.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993232.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993346.9609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993363.9609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993369.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993378.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993387.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993398.9375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993404.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993415.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 3993423.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067097.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067098.703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067099.703125ms
+INFO: Check if Lua library is loaded at 4067099.703125ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 4067147.6796875ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 4067148.671875ms
+WARNING: Failed to find Lua library at 4067148.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067148.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067175.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067175.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067209.640625ms
+INFO: Found kernel32 library at 4067210.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067210.640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067247.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067247.6171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067273.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067274.6015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067296.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067296.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067375.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067375.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067394.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067394.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067411.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067411.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067427.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067427.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067440.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067441.515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067455.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067455.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067475.5ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067476.4921875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067503.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4067503.4765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067527.46875ms
+INFO: Check if Lua library is loaded at 4067528.4609375ms
+INFO: Found Lua library (from a worker component) at 4067543.453125ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 4067544.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067570.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067583.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067596.421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067610.40625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067634.3984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067658.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067681.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067697.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067710.3671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067745.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067758.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067787.3203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067800.3125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067814.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067836.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067845.2734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067855.2734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067865.2734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067880.2578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067900.25ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067920.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4067937.234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4068670.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091016.9140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091062.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091087.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091600.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091621.3515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091637.34375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091655.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091670.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091688.3203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091700.3125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091712.3125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4091721.296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239461.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239462.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239463.875ms
+INFO: Check if Lua library is loaded at 4239464.875ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 4239507.8515625ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 4239508.8515625ms
+WARNING: Failed to find Lua library at 4239508.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239509.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239523.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239524.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239548.828125ms
+INFO: Found kernel32 library at 4239549.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239549.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239578.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239578.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239596.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239597.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239603.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239603.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239619.7890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239620.7890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239635.78125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239635.78125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239650.78125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239651.78125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239667.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239667.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239681.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239682.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239693.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239693.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239705.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239706.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239733.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4239733.7265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239750.71875ms
+INFO: Check if Lua library is loaded at 4239751.71875ms
+INFO: Found Lua library (from a worker component) at 4239765.7109375ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 4239766.7109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239785.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239801.6953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239812.671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239826.6796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239835.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239843.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239851.6640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239861.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239869.6484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239903.6328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239914.625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239957.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239975.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4239989.5859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240016.5625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240032.5546875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240063.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240092.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240164.484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240183.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240223.453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240238.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4240296.3984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4680360.4375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4680371.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4680371.4296875ms
+INFO: Check if Lua library is loaded at 4680389.4140625ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 4680461.375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 4680461.375ms
+WARNING: Failed to find Lua library at 4680463.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4680464.375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4680518.2265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4680519.21875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4680540.2109375ms
+INFO: Found kernel32 library at 4680541.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4680551.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4680601.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4680601.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682505.09375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682506.0859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682533.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682534.0703125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682554.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682554.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682572.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682572.046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682593.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682594.0390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682622.015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682622.015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682663.0078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682666ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682689.984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682689.984375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682722.96875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682722.96875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682776.9375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682776.9375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682859.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 4682859.890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4682939.84375ms
+INFO: Check if Lua library is loaded at 4682939.84375ms
+INFO: Found Lua library (from a worker component) at 4682946.84375ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 4682946.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683118.7890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683218.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683256.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683274.8046875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683295.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683311.796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683360.8125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683378.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683405.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683489.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683519.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683568.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683580.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683637.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683686.875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683729.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683747.8515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683785.859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683810.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683829.8671875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4683905.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4684086.9765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4685237.765625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4685270.75ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 4685309.7265625ms

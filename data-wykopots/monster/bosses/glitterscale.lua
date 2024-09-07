@@ -1,7 +1,7 @@
 local mType = Game.createMonsterType("Glitterscale")
 local monster = {}
 
-monster.description = "glitterscale"
+monster.description = "Glitterscale"
 monster.experience = 700
 monster.outfit = {
 	lookType = 34,
@@ -13,10 +13,15 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+monster.bosstiary = {
+	bossRaceId = 670,
+	bossRace = RARITY_BANE,
+}
+
 monster.health = 1000
 monster.maxHealth = 1000
 monster.race = "blood"
-monster.corpse = 5973
+monster.corpse = 11589
 monster.speed = 90
 monster.manaCost = 0
 
@@ -26,9 +31,9 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -50,7 +55,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.light = {
@@ -74,6 +78,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 18,
 	armor = 25,
+	--	mitigation = ???,
 }
 
 monster.elements = {
@@ -95,5 +100,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

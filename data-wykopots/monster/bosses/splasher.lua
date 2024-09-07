@@ -1,10 +1,10 @@
 local mType = Game.createMonsterType("Splasher")
 local monster = {}
 
-monster.description = "a splasher"
-monster.experience = 500
+monster.description = "Splasher"
+monster.experience = 1500
 monster.outfit = {
-	lookType = 72,
+	lookType = 47,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -13,12 +13,16 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 1000
-monster.maxHealth = 1000
+monster.events = {
+	"QuaraLeadersDeath",
+}
+
+monster.health = 1700
+monster.maxHealth = 1700
 monster.race = "blood"
-monster.corpse = 6064
+monster.corpse = 6066
 monster.speed = 260
-monster.manaCost = 480
+monster.manaCost = 0
 
 monster.changeTarget = {
 	interval = 5000,
@@ -26,9 +30,9 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,24 +42,23 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
-	canPushCreatures = false,
+	canPushCreatures = true,
 	staticAttackChance = 90,
 	targetDistance = 1,
-	runHealth = 40,
+	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
+	canWalkOnEnergy = false,
 	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
-	level = 0,
-	color = 0,
+	level = 2,
+	color = 35,
 }
 
 monster.voices = {
@@ -72,16 +75,18 @@ monster.voices = {
 monster.loot = {}
 
 monster.attacks = {
-	{ name = "melee", interval = 1000, chance = 100, skill = 60, attack = 109 },
-	{ name = "combat", interval = 2000, chance = 8, type = COMBAT_LIFEDRAIN, minDamage = -162, maxDamage = -228, range = 7, effect = CONST_ME_MAGIC_RED, target = true },
-	{ name = "combat", interval = 2000, chance = 7, type = COMBAT_LIFEDRAIN, minDamage = -106, maxDamage = -169, length = 8, spread = 3, effect = CONST_ME_HITBYPOISON, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -109, condition = { type = CONDITION_POISON, totalDamage = 5, interval = 4000 } },
+	{ name = "combat", interval = 2000, chance = 8, type = COMBAT_LIFEDRAIN, minDamage = -106, maxDamage = -169, range = 7, effect = CONST_ME_MAGIC_RED, target = true },
+	{ name = "combat", interval = 2000, chance = 7, type = COMBAT_LIFEDRAIN, minDamage = -162, maxDamage = -228, length = 8, spread = 0, effect = CONST_ME_HITBYPOISON, target = false },
 	{ name = "combat", interval = 2000, chance = 9, type = COMBAT_ICEDAMAGE, minDamage = -134, maxDamage = -148, length = 8, spread = 0, effect = CONST_ME_BUBBLES, target = false },
 	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -101, maxDamage = -149, radius = 3, effect = CONST_ME_BUBBLES, target = false },
+	{ name = "speed", interval = 2000, chance = 20, speedChange = -300, range = 1, effect = CONST_ME_MAGIC_RED, target = false, duration = 3000 },
 }
 
 monster.defenses = {
 	defense = 15,
 	armor = 15,
+	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 100, maxDamage = 120, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
@@ -101,8 +106,22 @@ monster.elements = {
 monster.immunities = {
 	{ type = "paralyze", condition = true },
 	{ type = "outfit", condition = false },
-	{ type = "invisible", condition = false },
+	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

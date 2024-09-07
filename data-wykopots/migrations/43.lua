@@ -1,7 +1,12 @@
 function onUpdateDatabase()
-	logger.info("Updating database to version 43 (add day since start)")
+	logger.info("Updating database to version 44 (feat frags_limit, payment and duration_days in guild wars)")
+
 	db.query([[
-			INSERT INTO `server_config` (`config`, `value`) VALUES ('day_since_start', '0');
+			ALTER TABLE `guild_wars`
+			ADD `frags_limit` smallint(4) UNSIGNED NOT NULL DEFAULT '0',
+			ADD `payment` bigint(13) UNSIGNED NOT NULL DEFAULT '0',
+			ADD `duration_days` tinyint(3) UNSIGNED NOT NULL DEFAULT '0'
 		]])
+
 	return true
 end

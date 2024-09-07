@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Depolarized Crackler")
 local monster = {}
 
 monster.description = "a depolarized crackler"
-monster.experience = 0
+monster.experience = 30000
 monster.outfit = {
 	lookType = 290,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 5000
-monster.maxHealth = 5000
+monster.health = 15000
+monster.maxHealth = 15000
 monster.race = "venom"
 monster.corpse = 0
 monster.speed = 180
@@ -50,7 +50,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.events = {
@@ -80,19 +79,20 @@ monster.attacks = {
 monster.defenses = {
 	defense = 80,
 	armor = 80,
+	--	mitigation = ???,
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -1 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 30 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -9 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 1 },
 }
 
 monster.immunities = {

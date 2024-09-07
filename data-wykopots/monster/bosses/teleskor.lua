@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Teleskor")
 local monster = {}
 
 monster.description = "Teleskor"
-monster.experience = 370
+monster.experience = 70
 monster.outfit = {
 	lookType = 298,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 380
-monster.maxHealth = 380
+monster.health = 80
+monster.maxHealth = 80
 monster.race = "undead"
 monster.corpse = 5972
 monster.speed = 75
@@ -26,9 +26,9 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -38,7 +38,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -47,10 +47,9 @@ monster.flags = {
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -61,24 +60,23 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "Who disturbs my slumber?", yell = false },
+	{ text = "Who Disturbs my slumber?", yell = false },
 	{ text = "Mourn the dead, do not hunt them!", yell = false },
 }
 
 monster.loot = {
-	{ name = "silver raid token", chance = 100000 },
-	{ id = 11481, chance = 100000 },
-	{ name = "platinum coin", chance = 91000, maxCount = 20 },
-	{ id = 3286, chance = 72000 },
-	{ id = 3367, chance = 72000 },
-	{ id = 3411, chance = 45000 },
-	{ id = 2920, chance = 36000 },
-	{ id = 3276, chance = 27000 },
-	{ id = 3264, chance = 27000 },
+	{ id = 11481, chance = 100000 }, -- pelvis bone
+	{ id = 3031, chance = 81000, maxCount = 79 }, -- gold coin
+	{ id = 3286, chance = 72000 }, -- mace
+	{ id = 3367, chance = 72000 }, -- viking helmet
+	{ id = 3411, chance = 45000 }, -- brass shield
+	{ id = 2920, chance = 36000 }, -- torch
+	{ id = 3276, chance = 27000 }, -- hatchet
+	{ id = 3264, chance = 27000 }, -- sword
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -80 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -30 },
 }
 
 monster.defenses = {
@@ -105,5 +103,19 @@ monster.immunities = {
 	{ type = "invisible", condition = false },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

@@ -4,10 +4,11 @@ do
 	end
 end
 
+dofile(DATA_DIRECTORY .. "/enums.lua")
 dofile(DATA_DIRECTORY .. "/custom_item_registry.lua")
 dofile(DATA_DIRECTORY .. "/escort_system.lua")
 dofile(DATA_DIRECTORY .. "/imbuproducts.lua")
-dofile(DATA_DIRECTORY .. "/item_manipulationlua")
+dofile(DATA_DIRECTORY .. "/item_manipulation.lua")
 dofile(DATA_DIRECTORY .. "/language_config.lua")
 dofile(DATA_DIRECTORY .. "/player_inventory.lua")
 dofile(DATA_DIRECTORY .. "/quest_system.lua")

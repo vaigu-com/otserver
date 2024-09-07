@@ -3,19 +3,19 @@ local monster = {}
 
 monster.name = "Feroxa"
 monster.description = "Feroxa"
-monster.experience = 10000
+monster.experience = 0
 monster.outfit = {
 	lookType = 731,
-	lookHead = 57,
-	lookBody = 76,
-	lookLegs = 77,
-	lookFeet = 57,
+	lookHead = 0,
+	lookBody = 0,
+	lookLegs = 0,
+	lookFeet = 0,
 	lookAddons = 0,
 	lookMount = 0,
 }
 
-monster.health = 100000
-monster.maxHealth = 100000
+monster.health = 150000
+monster.maxHealth = 150000
 monster.race = "blood"
 monster.corpse = 22089
 monster.speed = 175
@@ -48,10 +48,9 @@ monster.flags = {
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -62,50 +61,35 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "GROOOWL", yell = false },
-	{ text = "GRRR", yell = false },
 }
 
 monster.loot = {
-	{ name = "golden raid token", chance = 100000, unique = 1 },
-	{ name = "silver raid token", chance = 100000, maxCount = 3 },
-	{ name = "gold coin", chance = 97000, maxCount = 242 },
-	{ name = "platinum coin", chance = 18200, maxCount = 5 },
-	{ name = "great health potion", chance = 1200, maxCount = 2 },
-	{ id = 16124, chance = 1200, maxCount = 3 },
-	{ id = 16123, chance = 1200, maxCount = 3 },
-	{ name = "great mana potion", chance = 1200 },
-	{ id = 7642, chance = 2210 },
-	{ id = 16121, chance = 800 },
-	{ id = 16122, chance = 1900, maxCount = 2 },
-	{ id = 3028, chance = 950, maxCount = 3 },
-	{ id = 3030, chance = 880, maxCount = 3 },
-	{ id = 3029, chance = 900, maxCount = 3 },
-	{ id = 9057, chance = 960, maxCount = 3 },
-	{ id = 16120, chance = 4030 },
-	{ id = 7436, chance = 9020 },
-	{ id = 3041, chance = 4000 },
-	{ id = 7428, chance = 1000 },
-	{ id = 22086, chance = 2000 },
-	{ id = 7419, chance = 20000 },
-	{ id = 22085, chance = 400 },
-	{ id = 7454, chance = 1000 },
-	{ id = 22060, chance = 1000 },
-	{ id = 3039, chance = 1000 },
-	{ id = 7383, chance = 3000 },
-	{ id = 3081, chance = 1000 },
-	{ id = 22104, chance = 65000, unique = 1 },
-	{ id = 7643, chance = 80000, maxCount = 2 },
-	{ id = 8082, chance = 900 },
-	{ id = 8094, chance = 5000 },
-	{ id = 22087, chance = 8000 },
-	{ id = 22084, chance = 30000 },
-	{ id = 22062, chance = 20000, unique = 1 },
-	{ id = 22083, chance = 800000, maxCount = 6 },
-	{ id = 8061, chance = 25000 },
+	{ id = 16119, chance = 10000, maxCount = 5 }, -- blue crystal shard
+	{ id = 16120, chance = 10000, maxCount = 5 }, -- violet crystal shard
+	{ id = 16124, chance = 10000, maxCount = 5 }, -- blue crystal splinter
+	{ id = 3041, chance = 2500 }, -- blue gem
+	{ id = 3039, chance = 2500 }, -- red gem
+	{ id = 3079, chance = 1500 }, -- boots of haste
+	{ id = 3035, chance = 100000, maxCount = 50 }, -- platinum coin
+	{ id = 7643, chance = 10000, maxCount = 5 }, -- ultimate health potion
+	{ id = 238, chance = 10000, maxCount = 5 }, -- great mana potion
+	{ id = 239, chance = 10000, maxCount = 5 }, -- great health potion
+	{ id = 22062, chance = 10000, unique = true }, -- werewolf helmet
+	{ id = 22060, chance = 1500 }, -- werewolf amulet
+	{ id = 22084, chance = 1500 }, -- wolf backpack
+	{ id = 7436, chance = 1500 }, -- angelic axe
+	{ id = 7419, chance = 1500 }, -- dreaded cleaver
+	{ id = 22085, chance = 1500 }, -- fur armor
+	{ id = 22086, chance = 1500 }, -- badger boots
+	{ id = 22104, chance = 12000 }, -- trophy of feroxa
 }
 
-monster.attacks = {}
+monster.attacks = {
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -1400, maxDamage = -1800 },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_DEATHDAMAGE, minDamage = -700, maxDamage = -1050, radius = 6, effect = CONST_ME_MORTAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_MANADRAIN, minDamage = -700, maxDamage = -1250, length = 9, spread = 0, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = -450, maxDamage = -700, radius = 7, effect = CONST_ME_BLOCKHIT, target = false },
+}
 
 monster.defenses = {
 	defense = 55,
@@ -116,14 +100,14 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 30 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 20 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 20 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -8 },
+	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 

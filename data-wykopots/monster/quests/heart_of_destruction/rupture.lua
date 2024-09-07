@@ -6,7 +6,7 @@ monster.experience = 112000
 monster.outfit = {
 	lookType = 875,
 	lookHead = 77,
-	lookBody = 98,
+	lookBody = 79,
 	lookLegs = 3,
 	lookFeet = 85,
 	lookAddons = 0,
@@ -55,7 +55,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.events = {
@@ -75,26 +74,25 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 200 },
-	{ name = "platinum coin", chance = 100000, maxCount = 10 },
-	{ id = 7643, chance = 8000, maxCount = 5 },
-	{ id = 16119, chance = 8000, maxCount = 3 },
-	{ id = 16121, chance = 8000, maxCount = 3 },
-	{ id = 3033, chance = 8000, maxCount = 10 },
-	{ id = 3029, chance = 8000, maxCount = 5 },
-	{ id = 16120, chance = 8000, maxCount = 3 },
-	{ id = 23535, chance = 8000, maxCount = 5 },
-	{ id = 23511, chance = 8000 },
-	{ id = 23506, chance = 8000 },
-	{ id = 23510, chance = 100000 },
-	{ id = 22721, chance = 100000, minCount = 4, maxCount = 4 },
-	{ id = 23509, chance = 100000 },
-	{ id = 3038, chance = 6000 },
-	{ id = 7427, chance = 6000 },
-	{ id = 23531, chance = 4000 },
-	{ id = 23533, chance = 4000 },
-	{ id = 23474, chance = 2000 },
-	{ id = 23477, chance = 2000 },
+	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
+	{ id = 3035, chance = 100000, maxCount = 10 }, -- platinum coin
+	{ id = 7643, chance = 8000, maxCount = 5 }, -- ultimate health potion
+	{ id = 16119, chance = 8000, maxCount = 3 }, -- blue crystal shard
+	{ id = 16121, chance = 8000, maxCount = 3 }, -- green crystal shard
+	{ id = 3033, chance = 8000, maxCount = 10 }, -- small amethyst
+	{ id = 3029, chance = 8000, maxCount = 5 }, -- small sapphire
+	{ id = 16120, chance = 8000, maxCount = 3 }, -- violet crystal shard
+	{ id = 23535, chance = 8000, maxCount = 5 }, -- energy bar
+	{ id = 23506, chance = 8000 }, -- plasma pearls
+	{ id = 23510, chance = 100000 }, -- odd organ
+	{ id = 22721, chance = 100000 }, -- gold token
+	{ id = 23509, chance = 100000 }, -- mysterious remains
+	{ id = 3038, chance = 6000 }, -- green gem
+	{ id = 7427, chance = 6000 }, -- chaos mace
+	{ id = 23531, chance = 4000 }, -- ring of green plasma
+	{ id = 23533, chance = 4000 }, -- ring of red plasma
+	{ id = 23474, chance = 2000, unique = true }, -- tiara of power
+	{ id = 23477, chance = 2000, unique = true }, -- void boots
 }
 
 monster.attacks = {
@@ -109,18 +107,19 @@ monster.attacks = {
 monster.defenses = {
 	defense = 100,
 	armor = 100,
+	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 150, maxDamage = 400, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = -10 },
+	{ type = COMBAT_ICEDAMAGE, percent = 0 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }

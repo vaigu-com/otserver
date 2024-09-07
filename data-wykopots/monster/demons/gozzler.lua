@@ -17,9 +17,9 @@ monster.raceId = 523
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 50,
-	FirstUnlock = 10,
-	SecondUnlock = 25,
+	toKill = 500,
+	FirstUnlock = 25,
+	SecondUnlock = 250,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -63,7 +63,6 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
-	pet = false,
 }
 
 monster.light = {
@@ -77,30 +76,32 @@ monster.voices = {
 	{ text = "Huhuhuhuuu!", yell = false },
 	{ text = "Let the fun begin!", yell = false },
 	{ text = "Yihahaha!", yell = false },
-	{ text = "I'll bite you! Nyehehehehe!", yell = false },
+	{ text = "I'll bite you! Nyehehehe!", yell = false },
+	{ text = "Nyarnyarnyarnyar.", yell = false },
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 82500, maxCount = 70 },
-	{ id = 3266, chance = 3100 },
-	{ id = 2885, chance = 8750 },
-	{ id = 3311, chance = 900 },
-	{ id = 3282, chance = 5000 },
-	{ id = 3410, chance = 10000 },
-	{ id = 3273, chance = 8250 },
-	{ id = 3297, chance = 280 },
-	{ id = 3097, chance = 190 },
-	{ id = 3029, chance = 360 },
+	{ name = "brown flask", chance = 8750 },
+	{ name = "small sapphire", chance = 360 },
+	{ name = "gold coin", chance = 52500, maxCount = 70 },
+	{ id = 3097, chance = 190 }, -- dwarven ring
+	{ name = "battle axe", chance = 3100 },
+	{ name = "sabre", chance = 8250 },
+	{ name = "morning star", chance = 5000 },
+	{ name = "serpent sword", chance = 250 },
+	{ name = "clerical mace", chance = 900 },
+	{ name = "plate shield", chance = 10000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 45, attack = 40 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -110 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -32, maxDamage = -135, range = 1, target = false },
 }
 
 monster.defenses = {
-	defense = 25,
+	defense = 15,
 	armor = 25,
+	mitigation = 1.37,
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 30, maxDamage = 50, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = 210, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
 }

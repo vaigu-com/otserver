@@ -4,7 +4,7 @@ local monster = {}
 monster.description = "a dreadmaw"
 monster.experience = 1500
 monster.outfit = {
-	lookType = 119,
+	lookType = 358,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -13,12 +13,17 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 2700
-monster.maxHealth = 2700
+monster.bosstiary = {
+	bossRaceId = 639,
+	bossRace = RARITY_NEMESIS,
+}
+
+monster.health = 2000
+monster.maxHealth = 2000
 monster.race = "blood"
-monster.corpse = 6046
-monster.speed = 110
-monster.manaCost = 350
+monster.corpse = 10221
+monster.speed = 95
+monster.manaCost = 0
 
 monster.changeTarget = {
 	interval = 5000,
@@ -35,19 +40,18 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
 	staticAttackChance = 90,
 	targetDistance = 1,
-	runHealth = 0,
+	runHealth = 10,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = false,
-	canWalkOnFire = false,
-	canWalkOnPoison = false,
-	pet = false,
+	canWalkOnEnergy = true,
+	canWalkOnFire = true,
+	canWalkOnPoison = true,
 }
 
 monster.light = {
@@ -61,12 +65,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "silver raid token", chance = 100000 },
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ id = 10328, chance = 75000 },
-	{ name = "gold ingot", chance = 85000 },
-	{ id = 3556, chance = 10000 },
-	{ id = 10279, chance = 100000 },
+	{ name = "gold coin", chance = 99990, maxCount = 10 },
+	{ name = "gold ingot", chance = 99990 },
+	{ name = "ham", chance = 50000 },
+	{ name = "piece of crocodile leather", chance = 99990 },
 }
 
 monster.attacks = {
@@ -76,12 +78,13 @@ monster.attacks = {
 monster.defenses = {
 	defense = 15,
 	armor = 15,
+	--	mitigation = ???,
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -5 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
@@ -92,9 +95,9 @@ monster.elements = {
 }
 
 monster.immunities = {
-	{ type = "paralyze", condition = false },
+	{ type = "paralyze", condition = true },
 	{ type = "outfit", condition = false },
-	{ type = "invisible", condition = false },
+	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
 

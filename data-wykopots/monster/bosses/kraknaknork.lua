@@ -1,10 +1,10 @@
 local mType = Game.createMonsterType("Kraknaknork")
 local monster = {}
 
-monster.description = "a Kraknaknork"
-monster.experience = 0
+monster.description = "Kraknaknork"
+monster.experience = 300
 monster.outfit = {
-	lookType = 74,
+	lookType = 6,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -13,44 +13,43 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 15
-monster.maxHealth = 15
+monster.health = 80
+monster.maxHealth = 80
 monster.race = "blood"
-monster.corpse = 6017
-monster.speed = 190
-monster.manaCost = 220
+monster.corpse = 5978
+monster.speed = 90
+monster.manaCost = 0
 
 monster.changeTarget = {
-	interval = 5000,
-	chance = 20,
+	interval = 4000,
+	chance = 10,
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
 monster.flags = {
 	summonable = false,
 	attackable = true,
-	hostile = false,
+	hostile = true,
 	convinceable = false,
-	pushable = true,
+	pushable = false,
 	rewardBoss = false,
 	illusionable = false,
-	canPushItems = false,
+	canPushItems = true,
 	canPushCreatures = false,
 	staticAttackChance = 90,
-	targetDistance = 1,
-	runHealth = 15,
+	targetDistance = 4,
+	runHealth = 23,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -58,23 +57,39 @@ monster.light = {
 	color = 0,
 }
 
+monster.summon = {
+	maxSummons = 1,
+	summons = {
+		{ name = "Weakened Demon", chance = 20, interval = 2000, count = 1 },
+	},
+}
+
 monster.voices = {
 	interval = 5000,
 	chance = 10,
+	{ text = "KRAK ORC DEMON", yell = false },
+	{ text = "???!!!", yell = false },
+	{ text = "Grak brrretz gulu.", yell = false },
 }
 
 monster.loot = {
-	{ id = 3595, chance = 9000, maxCount = 2 },
-	{ id = 3577, chance = 20000, maxCount = 2 },
+	{ name = "gold coin", chance = 95000, maxCount = 15 },
+	{ name = "orc leather", chance = 4300 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = 0 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -10, condition = { type = CONDITION_POISON, totalDamage = 5, interval = 4000 } },
+	{ name = "kraknaknork ice wave", interval = 2000, chance = 10, minDamage = -1, maxDamage = -15, target = false },
+	{ name = "kraknaknork poison wave", interval = 2000, chance = 10, minDamage = -1, maxDamage = -10, target = false },
+	{ name = "kraknaknork explosion wave", interval = 2000, chance = 10, minDamage = 0, maxDamage = -12, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -8, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_MORTAREA, target = false },
+	{ name = "speed", interval = 1000, chance = 6, speedChange = -100, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 20000 },
+	{ name = "outfit", interval = 2000, chance = 10, range = 7, target = false, duration = 3000, outfitMonster = "Sheep" },
 }
 
 monster.defenses = {
-	defense = 2,
-	armor = 1,
+	defense = 5,
+	armor = 5,
 }
 
 monster.elements = {
@@ -96,5 +111,15 @@ monster.immunities = {
 	{ type = "invisible", condition = false },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature) end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

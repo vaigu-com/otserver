@@ -13,11 +13,6 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.bosstiary = {
-	bossRaceId = 1559,
-	bossRace = RARITY_ARCHFOE,
-}
-
 monster.health = 3200
 monster.maxHealth = 3200
 monster.race = "blood"
@@ -28,6 +23,11 @@ monster.manaCost = 0
 monster.changeTarget = {
 	interval = 4000,
 	chance = 10,
+}
+
+monster.bosstiary = {
+	bossRaceId = 1559,
+	bossRace = RARITY_ARCHFOE,
 }
 
 monster.strategiesTarget = {
@@ -43,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -52,14 +52,9 @@ monster.flags = {
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
-}
-
-monster.events = {
-	"WereBossDeath",
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -68,9 +63,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 1,
+	maxSummons = 2,
 	summons = {
-		{ name = "werefox", chance = 20, interval = 2000, count = 1 },
+		{ name = "werefox", chance = 20, interval = 2000, count = 2 },
 	},
 }
 
@@ -82,29 +77,30 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 70000, maxCount = 100 },
-	{ name = "platinum coin", chance = 100000, maxCount = 10 },
-	{ name = "assassin star", chance = 70000, maxCount = 10 },
-	{ name = "black pearl", chance = 650000, maxCount = 2 },
-	{ name = "great mana potion", chance = 40000, maxCount = 2 },
-	{ name = "great spirit potion", chance = 40000, maxCount = 2 },
-	{ name = "small enchanted emerald", chance = 15000, maxCount = 2 },
-	{ name = "ultimate mana potion", chance = 11000, maxCount = 2 },
-	{ name = "ultimate spirit potion", chance = 11000, maxCount = 2 },
-	{ name = "fox paw", chance = 100000, maxCount = 2 },
-	{ name = "moonlight rod", chance = 6000 },
-	{ id = 3049, chance = 7000 }, -- stealth ring
-	{ name = "werefox tail", chance = 100000 },
-	{ name = "green gem", chance = 20000 },
-	{ name = "troll green", chance = 7000 },
-	{ name = "werewolf amulet", chance = 3200 },
-	{ name = "composite hornbow", chance = 900 },
-	{ name = "sai", chance = 8000 },
-	{ name = "silver token", chance = 2000 },
-	{ id = 27706, chance = 5000 },
+	{ name = "gold coin", chance = 13600000, maxCount = 100 },
+	{ name = "gold coin", chance = 13600000, maxCount = 100 },
+	{ name = "platinum coin", chance = 13600000, maxCount = 10 },
+	{ name = "assassin star", chance = 13600000, maxCount = 9 },
+	{ name = "black pearl", chance = 13600000, maxCount = 2 },
+	{ name = "great mana potion", chance = 13600000, maxCount = 2 },
+	{ name = "great spirit potion", chance = 13600000, maxCount = 2 },
+	{ name = "small enchanted emerald", chance = 13600000, maxCount = 2 },
+	{ name = "ultimate mana potion", chance = 13600000, maxCount = 2 },
+	{ name = "ultimate spirit potion", chance = 13600000, maxCount = 2 },
+	{ name = "fox paw", chance = 13600000, maxCount = 2 },
+	{ name = "moonlight rod", chance = 13600000 },
+	{ id = 3049, chance = 13600000 }, -- stealth ring
+	{ name = "werefox tail", chance = 13600000 },
+	{ name = "green gem", chance = 400 },
+	{ name = "troll green", chance = 400 },
+	{ name = "werewolf amulet", chance = 400 },
+	{ name = "composite hornbow", chance = 250 },
+	{ name = "sai", chance = 250 },
+	{ name = "silver token", chance = 250 },
+	{ id = 27706, chance = 250 }, -- werefox trophy
 	{ name = "foxtail", chance = 100 },
 	{ name = "wolf backpack", chance = 100 },
-	{ name = "silver token", chance = 2000 },
+	{ name = "silver token", chance = 100 },
 }
 
 monster.attacks = {
@@ -119,19 +115,19 @@ monster.defenses = {
 	defense = 45,
 	armor = 40,
 	{ name = "combat", interval = 4000, chance = 15, type = COMBAT_HEALING, minDamage = 150, maxDamage = 345, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 2000, chance = 15, duration = 3000, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "invisible", interval = 2000, chance = 15, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = -5 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 50 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 50 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 50 },
+	{ type = COMBAT_FIREDAMAGE, percent = 50 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -40 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 50 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 50 },
 }
 
@@ -141,5 +137,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

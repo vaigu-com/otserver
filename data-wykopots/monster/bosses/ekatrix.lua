@@ -1,8 +1,8 @@
 local mType = Game.createMonsterType("Ekatrix")
 local monster = {}
 
-monster.description = "an ekatrix"
-monster.experience = 375
+monster.description = "Ekatrix"
+monster.experience = 200
 monster.outfit = {
 	lookType = 54,
 	lookHead = 0,
@@ -13,27 +13,27 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+monster.health = 500
+monster.maxHealth = 500
+monster.race = "blood"
+monster.corpse = 18254
+monster.speed = 51
+monster.manaCost = 0
+
+monster.changeTarget = {
+	interval = 4000,
+	chance = 10,
+}
+
 monster.bosstiary = {
 	bossRaceId = 1140,
 	bossRace = RARITY_ARCHFOE,
 }
 
-monster.health = 1620
-monster.maxHealth = 1620
-monster.race = "blood"
-monster.corpse = 6081
-monster.speed = 120
-monster.manaCost = 0
-
-monster.changeTarget = {
-	interval = 5000,
-	chance = 8,
-}
-
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
+	nearest = 70,
+	health = 10,
+	damage = 10,
 	random = 10,
 }
 
@@ -43,19 +43,18 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
-	illusionable = false,
+	rewardBoss = true,
+	illusionable = true,
 	canPushItems = true,
 	canPushCreatures = false,
 	staticAttackChance = 90,
 	targetDistance = 4,
-	runHealth = 0,
+	runHealth = 30,
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -66,51 +65,43 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "Where did I park my hut?", yell = false },
-	{ text = "You will taste so sweet!", yell = false },
-	{ text = "Hexipooh, bewitched are you!", yell = false },
 }
 
 monster.loot = {
-	{ name = "silver raid token", chance = 100000 },
-	{ id = 3598, chance = 30000, maxCount = 8 },
-	{ id = 3069, chance = 25000 },
-	{ id = 3562, chance = 25000 },
-	{ id = 3454, chance = 15000 },
-	{ id = 3565, chance = 15000 },
-	{ id = 3012, chance = 10000 },
-	{ id = 8074, chance = 25000 },
-	{ id = 3736, chance = 20000 },
-	{ id = 3083, chance = 18000 },
-	{ id = 12548, chance = 50000 },
+	{ name = "gold coin", chance = 100000, maxCount = 60 },
+	{ name = "witch broom", chance = 100000 },
+	{ name = "cape", chance = 64500 },
+	{ id = 3012, chance = 41670 }, -- wolf tooth chain
+	{ name = "broom", chance = 37500 },
+	{ name = "coat", chance = 37500 },
+	{ name = "cookie", chance = 25000, maxCount = 10 },
+	{ name = "star herb", chance = 11333 },
+	{ name = "bag of apple slices", chance = 2940 },
+	{ name = "necrotic rod", chance = 2940 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -90 },
-	{ name = "combat", interval = 2500, chance = 50, type = COMBAT_FIREDAMAGE, minDamage = -30, maxDamage = -80, range = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_HITBYFIRE, target = false },
-	-- poison
-	{ name = "condition", type = CONDITION_POISON, interval = 3000, chance = 13, minDamage = -200, maxDamage = -300, range = 7, shootEffect = CONST_ANI_POISON, target = false },
-	{ name = "firefield", interval = 2000, chance = 13, range = 7, shootEffect = CONST_ANI_FIRE, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -20 },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -30, maxDamage = -60, range = 5, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_HITBYFIRE, target = false },
+	{ name = "firefield", interval = 2000, chance = 10, range = 5, radius = 1, shootEffect = CONST_ANI_FIRE, target = true },
 }
 
 monster.defenses = {
-	defense = 20,
-	armor = 15,
-	{ name = "invisible", interval = 1000, chance = 9, duration = 3000, effect = CONST_ME_MAGIC_RED },
-	{ name = "outfit", interval = 4000, chance = 9, effect = CONST_ME_MAGIC_RED, target = false, duration = 4000, outfitMonster = "green frog" },
+	defense = 10,
+	armor = 10,
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = -1 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 1 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = -5 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
 monster.immunities = {
@@ -119,5 +110,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

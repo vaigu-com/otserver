@@ -20,6 +20,8 @@ IMBUING_NAMES = {
 	precision = "precision",
 	blockade = "blockade",
 	epiphany = "epiphany",
+	swiftness = "swiftness",
+	featherweight = "featherweight"
 }
 
 -- Names only

@@ -1,7 +1,7 @@
 local mType = Game.createMonsterType("Darkfang")
 local monster = {}
 
-monster.description = "a darkfang"
+monster.description = "Darkfang"
 monster.experience = 4000
 monster.outfit = {
 	lookType = 308,
@@ -11,11 +11,6 @@ monster.outfit = {
 	lookFeet = 0,
 	lookAddons = 0,
 	lookMount = 0,
-}
-
-monster.bosstiary = {
-	bossRaceId = 1558,
-	bossRace = RARITY_ARCHFOE,
 }
 
 monster.health = 4800
@@ -28,6 +23,11 @@ monster.manaCost = 0
 monster.changeTarget = {
 	interval = 4000,
 	chance = 10,
+}
+
+monster.bosstiary = {
+	bossRaceId = 1558,
+	bossRace = RARITY_ARCHFOE,
 }
 
 monster.strategiesTarget = {
@@ -43,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -52,14 +52,9 @@ monster.flags = {
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
-	canWalkOnFire = true,
-	canWalkOnPoison = true,
-	pet = false,
-}
-
-monster.events = {
-	"WereBossDeath",
+	canWalkOnEnergy = false,
+	canWalkOnFire = false,
+	canWalkOnPoison = false,
 }
 
 monster.light = {
@@ -77,32 +72,31 @@ monster.summon = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "The ferocity of wolves will frighten the fearful! Roarrr!", yell = false },
 	{ text = "You are my next meal! Grrr!", yell = false },
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 120 },
-	{ name = "platinum coin", chance = 100000, maxCount = 10 },
-	{ name = "berserk potion", chance = 80000, maxCount = 2 },
-	{ name = "black pearl", chance = 80000, maxCount = 5 },
-	{ name = "onyx chip", chance = 85000, maxCount = 5 },
-	{ name = "small enchanted sapphire", chance = 75000, maxCount = 2 },
-	{ name = "ultimate health potion", chance = 100000, maxCount = 2 },
-	{ name = "platinum amulet", chance = 4500 },
-	{ name = "stone skin amulet", chance = 22000 },
-	{ id = 3053, chance = 5200 },
-	{ name = "troll green", chance = 25000 },
-	{ name = "werewolf fur", chance = 100000 },
-	{ name = "werewolf fangs", chance = 100000 },
-	{ name = "wolf paw", chance = 100000, maxCount = 2 },
-	{ name = "bonebreaker", chance = 11000 },
-	{ name = "dreaded cleaver", chance = 8000 },
-	{ name = "werewolf amulet", chance = 3600 },
-	{ name = "sai", chance = 3600 },
-	{ id = 7394, chance = 8000 },
-	{ name = "silver token", chance = 3200 },
-	{ name = "wolf backpack", chance = 400 },
+	{ name = "gold coin", chance = 13600000, maxCount = 100 },
+	{ name = "gold coin", chance = 13600000, maxCount = 100 },
+	{ name = "platinum coin", chance = 13600000, maxCount = 10 },
+	{ name = "berserk potion", chance = 13600000, maxCount = 3 },
+	{ name = "black pearl", chance = 13600000, maxCount = 3 },
+	{ name = "onyx chip", chance = 13600000, maxCount = 5 },
+	{ name = "small enchanted sapphire", chance = 13600000, maxCount = 10 },
+	{ name = "ultimate health potion", chance = 13600000, maxCount = 5 },
+	{ name = "platinum amulet", chance = 13600000 },
+	{ name = "stone skin amulet", chance = 13600000 },
+	{ id = 3053, chance = 13600000 }, -- time ring
+	{ name = "troll green", chance = 13600000, maxCount = 2 },
+	{ name = "werewolf fur", chance = 13600000, maxCount = 2 },
+	{ name = "wolf paw", chance = 13600000, maxCount = 2 },
+	{ name = "bonebreaker", chance = 400 },
+	{ name = "dreaded cleaver", chance = 400 },
+	{ name = "werewolf amulet", chance = 400 },
+	{ name = "sai", chance = 250 },
+	{ id = 7394, chance = 13600000 }, -- wolf trophy
+	{ name = "silver token", chance = 250 },
+	{ name = "wolf backpack", chance = 100 },
 }
 
 monster.attacks = {
@@ -116,20 +110,21 @@ monster.attacks = {
 monster.defenses = {
 	defense = 45,
 	armor = 40,
+	--	mitigation = ???,
 	{ name = "combat", interval = 4000, chance = 15, type = COMBAT_HEALING, minDamage = 150, maxDamage = 345, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 30 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 70 },
 	{ type = COMBAT_FIREDAMAGE, percent = -5 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 30 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 70 },
 }
 
 monster.immunities = {
@@ -138,5 +133,19 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onThink = function(monster, interval) end
+
+mType.onAppear = function(monster, creature)
+	if monster:getType():isRewardBoss() then
+		monster:setReward(true)
+	end
+end
+
+mType.onDisappear = function(monster, creature) end
+
+mType.onMove = function(monster, creature, fromPosition, toPosition) end
+
+mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

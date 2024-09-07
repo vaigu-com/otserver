@@ -30,7 +30,7 @@ monster.health = 25
 monster.maxHealth = 25
 monster.race = "blood"
 monster.corpse = 6056
-monster.speed = 130
+monster.speed = 160
 monster.manaCost = 250
 
 monster.changeTarget = {
@@ -47,10 +47,10 @@ monster.flags = {
 	attackable = true,
 	hostile = false,
 	convinceable = true,
-	pushable = true,
+	pushable = false,
 	rewardBoss = false,
 	illusionable = true,
-	canPushItems = false,
+	canPushItems = true,
 	canPushCreatures = false,
 	staticAttackChance = 90,
 	targetDistance = 1,
@@ -60,7 +60,7 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
-	pet = false,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -71,27 +71,31 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	{ text = "BR? PL? SWE?", yell = false },
+	{ text = "You advanshed, you advanshed!", yell = false },
+	{ text = "Neeewbiiieee!", yell = false },
 	{ text = "Screeech!", yell = false },
-	{ text = "Neeeewbiiieee!", yell = false },
-	{ text = "You advanshed, you advanshed!", yell = false },
-	{ text = "Hope you die and loooosh it!", yell = false },
 	{ text = "Hunterrr ish PK!", yell = false },
-	{ text = "Shhtop whining! Rrah", yell = false },
-	{ text = "I'm heeerrre! Screeeech!", yell = false },
-	{ text = "Leeave orrr hunted!!", yell = false },
-	{ text = "Blesshhh my stake! Screeech!", yell = false },
-	{ text = "Tarrrrp?", yell = false },
-	{ text = "You are corrrrupt! Corrrrupt!", yell = false },
+	{ text = "BR? PL? SWE?", yell = true },
+	{ text = "Hope you die and loooosh it!", yell = false },
 	{ text = "You powerrrrrrabuserrrrr!", yell = false },
-	{ text = "You advanshed, you advanshed!", yell = false },
+	{ text = "You are corrrrupt! Corrrrupt!", yell = false },
+	{ text = "Tarrrrp?", yell = false },
+	{ text = "Blesshhh my stake! Screeech!", yell = false },
+	{ text = "Leeave orrr hunted!!", yell = false },
+	{ text = "Shhtop whining! Rraaah!", yell = false },
+	{ text = "I'm heeerrre! Screeeech!", yell = false },
 }
 
 monster.loot = {}
 
+monster.attacks = {
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -5 },
+}
+
 monster.defenses = {
-	defense = 2,
+	defense = 5,
 	armor = 2,
+	mitigation = 0.15,
 }
 
 monster.elements = {

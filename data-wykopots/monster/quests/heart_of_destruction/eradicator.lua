@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Eradicator")
 local monster = {}
 
 monster.description = "Eradicator"
-monster.experience = 120000
+monster.experience = 50000
 monster.outfit = {
 	lookType = 875,
 	lookHead = 79,
@@ -55,7 +55,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.events = {
@@ -74,31 +73,32 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 200 },
-	{ name = "platinum coin", chance = 100000, maxCount = 25 },
-	{ id = 16121, chance = 8000, maxCount = 3 },
-	{ name = "great mana potion", chance = 8000, maxCount = 5 },
-	{ id = 7642, chance = 8000, maxCount = 5 },
-	{ id = 3033, chance = 8000, maxCount = 5 },
-	{ id = 3030, chance = 8000, maxCount = 5 },
-	{ id = 9057, chance = 8000, maxCount = 5 },
-	{ id = 7643, chance = 8000, maxCount = 10 },
-	{ id = 16120, chance = 8000, maxCount = 3 },
-	{ id = 23535, chance = 8000 },
-	{ id = 23520, chance = 8000 },
-	{ id = 23518, chance = 8000 },
-	{ id = 22721, chance = 100000, minCount = 4, maxCount = 4 },
-	{ id = 23509, chance = 100000 },
-	{ id = 23510, chance = 100000 },
-	{ id = 3041, chance = 6000 },
-	{ id = 3038, chance = 6000 },
-	{ id = 8073, chance = 6000 },
-	{ id = 3333, chance = 4000 },
-	{ id = 23529, chance = 3500 },
-	{ id = 23531, chance = 3500 },
-	{ id = 23533, chance = 3500 },
-	{ name = "steel boots", chance = 5000 },
-	{ id = 8075, chance = 3000 },
+	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
+	{ id = 3035, chance = 100000, maxCount = 25 }, -- platinum coin
+	{ id = 16121, chance = 8000, maxCount = 3 }, -- green crystal shard
+	{ id = 238, chance = 8000, maxCount = 5 }, -- great mana potion
+	{ id = 7642, chance = 8000, maxCount = 5 }, -- great spirit potion
+	{ id = 3033, chance = 8000, maxCount = 5 }, -- small amethyst
+	{ id = 3030, chance = 8000, maxCount = 5 }, -- small ruby
+	{ id = 9057, chance = 8000, maxCount = 5 }, -- small topaz
+	{ id = 7643, chance = 8000, maxCount = 10 }, -- ultimate health potion
+	{ id = 16120, chance = 8000, maxCount = 3 }, -- violet crystal shard
+	{ id = 23535, chance = 8000 }, -- energy bar
+	{ id = 23520, chance = 8000 }, -- plasmatic lightning
+	{ id = 23516, chance = 8000 }, -- instable proto matter
+	{ id = 22721, chance = 100000 }, -- gold token
+	{ id = 23509, chance = 100000 }, -- mysterious remains
+	{ id = 23510, chance = 100000 }, -- odd organ
+	{ id = 3041, chance = 6000 }, -- blue gem
+	{ id = 3038, chance = 6000 }, -- green gem
+	{ id = 8073, chance = 6000 }, -- spellbook of warding
+	{ id = 3333, chance = 4000 }, -- crystal mace
+	{ id = 23529, chance = 3500 }, -- ring of blue plasma
+	{ id = 23531, chance = 3500 }, -- ring of green plasma
+	{ id = 23533, chance = 3500 }, -- ring of red plasma
+	{ id = 3554, chance = 5000, unique = true }, -- steel boots
+	{ id = 8075, chance = 3000, unique = true }, -- spellbook of lost souls
+	{ name = "spark sphere", chance = 100000 },
 }
 
 monster.attacks = {
@@ -114,18 +114,19 @@ monster.attacks = {
 monster.defenses = {
 	defense = 100,
 	armor = 100,
+	--	mitigation = ???,
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 70 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 30 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 30 },
-	{ type = COMBAT_FIREDAMAGE, percent = 30 },
-	{ type = COMBAT_LIFEDRAIN, percent = 0 },
-	{ type = COMBAT_MANADRAIN, percent = 0 },
-	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 30 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 30 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 50 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 50 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 50 },
+	{ type = COMBAT_FIREDAMAGE, percent = 50 },
+	{ type = COMBAT_LIFEDRAIN, percent = 50 },
+	{ type = COMBAT_MANADRAIN, percent = 50 },
+	{ type = COMBAT_DROWNDAMAGE, percent = 50 },
+	{ type = COMBAT_ICEDAMAGE, percent = 50 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 50 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 

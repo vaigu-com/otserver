@@ -1,10 +1,10 @@
-local mType = Game.createMonsterType("Knight familiar")
+local mType = Game.createMonsterType("Knight Familiar")
 local monster = {}
 
 monster.description = "a knight familiar"
 monster.experience = 0
 monster.outfit = {
-	lookType = 991,
+	--lookType = 991,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -17,12 +17,19 @@ monster.health = 10000
 monster.maxHealth = 10000
 monster.race = "undead"
 monster.corpse = 0
-monster.speed = 150
+monster.speed = 154
 monster.manaCost = 1000
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 20,
+}
+
+monster.strategiesTarget = {
+	nearest = 70,
+	health = 10,
+	damage = 10,
+	random = 10,
 }
 
 monster.flags = {
@@ -35,7 +42,7 @@ monster.flags = {
 	illusionable = false,
 	canPushItems = false,
 	canPushCreatures = true,
-	staticAttackChance = 100,
+	staticAttackChance = 90,
 	targetDistance = 4,
 	runHealth = 0,
 	healthHidden = false,
@@ -60,13 +67,19 @@ monster.loot = {}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -200 },
-	{ name = "skullfrost spells", interval = 2000, chance = 75, range = 6, target = true },
+	{ name = "sudden death rune", interval = 2000, chance = 17, minDamage = -300, maxDamage = -350, range = 7, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_DEATHDAMAGE, minDamage = -200, maxDamage = -250, range = 6, radius = 2, effect = CONST_ME_MORTAREA, target = true },
+	{ name = "combat", interval = 3000, chance = 25, type = COMBAT_DEATHDAMAGE, minDamage = -180, maxDamage = -250, range = 5, radius = 3, effect = CONST_ME_MORTAREA, target = true },
+	{ name = "combat", interval = 3000, chance = 25, type = COMBAT_ICEDAMAGE, minDamage = -180, maxDamage = -250, range = 5, radius = 3, effect = CONST_ME_ICEAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ICEDAMAGE, minDamage = -200, maxDamage = -250, range = 6, radius = 2, effect = CONST_ME_ICETORNADO, target = true },
+	{ name = "ice strike", interval = 2000, chance = 17, minDamage = -300, maxDamage = -350, range = 5, target = true },
 }
 
 monster.defenses = {
 	defense = 55,
 	armor = 55,
-	{ name = "knight familiar heal", interval = 2000, chance = 75, effect = CONST_ME_MAGIC_GREEN, target = false },
+	--	mitigation = ???,
+	{ name = "combat", interval = 2000, chance = 75, type = COMBAT_HEALING, minDamage = 300, maxDamage = 300, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.elements = {
@@ -84,9 +97,7 @@ monster.elements = {
 
 monster.immunities = {
 	{ type = "paralyze", condition = true },
-	{ type = "outfit", condition = false },
 	{ type = "invisible", condition = true },
-	{ type = "bleed", condition = false },
 }
 
 mType:register(monster)

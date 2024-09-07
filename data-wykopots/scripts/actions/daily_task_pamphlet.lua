@@ -8,7 +8,7 @@ end
 
 for _, dailyTask in pairs(GetAllDailyTasks()) do
 	dailyPamphlet:aid(dailyTask.storage)
-	local pamphletState = CustomItemRegistry():register(dailyTask.storage):getState(dailyTask.storage)
+	local pamphletState = CustomItemRegistry():Register(dailyTask.storage):GetState(dailyTask.storage)
 	pamphletState.text = "DAILY_TASK_PAMPHLET_DESCRIPTION"
 end
 dailyPamphlet:register()

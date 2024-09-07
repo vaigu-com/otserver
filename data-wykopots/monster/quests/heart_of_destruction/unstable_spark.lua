@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 5000
-monster.maxHealth = 5000
+monster.health = 10500
+monster.maxHealth = 10500
 monster.race = "venom"
 monster.corpse = 0
 monster.speed = 139
@@ -50,7 +50,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
 }
 
 monster.events = {
@@ -78,7 +77,8 @@ monster.attacks = {
 
 monster.defenses = {
 	defense = 80,
-	armor = 80,
+	armor = 70,
+	--	mitigation = ???,
 }
 
 monster.elements = {
@@ -86,9 +86,9 @@ monster.elements = {
 	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
 	{ type = COMBAT_FIREDAMAGE, percent = -10 },
-	{ type = COMBAT_LIFEDRAIN, percent = 0 },
-	{ type = COMBAT_MANADRAIN, percent = 0 },
-	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+	{ type = COMBAT_LIFEDRAIN, percent = -10 },
+	{ type = COMBAT_MANADRAIN, percent = -10 },
+	{ type = COMBAT_DROWNDAMAGE, percent = -10 },
 	{ type = COMBAT_ICEDAMAGE, percent = -10 },
 	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },

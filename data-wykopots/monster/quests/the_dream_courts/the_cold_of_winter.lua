@@ -1,8 +1,8 @@
-local mType = Game.createMonsterType("The Cold Of Winter")
+local mType = Game.createMonsterType("The Cold of Winter")
 local monster = {}
 
-monster.description = "the cold of winter"
-monster.experience = 23
+monster.description = "a the cold of winter"
+monster.experience = 0
 monster.outfit = {
 	lookType = 53,
 	lookHead = 0,
@@ -13,11 +13,11 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 3000
-monster.maxHealth = 3000
+monster.health = 40
+monster.maxHealth = 40
 monster.race = "blood"
 monster.corpse = 5998
-monster.speed = 150
+monster.speed = 95
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -50,11 +50,6 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
-	pet = false,
-}
-
-monster.events = {
-	"IzcandarSummonDeath",
 }
 
 monster.light = {
@@ -70,25 +65,26 @@ monster.voices = {
 monster.loot = {}
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -400 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -2 },
 }
 
 monster.defenses = {
-	defense = 30,
-	armor = 30,
+	defense = 15,
+	armor = 15,
+	--	mitigation = ???,
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
-	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
-	{ type = COMBAT_FIREDAMAGE, percent = 50 },
-	{ type = COMBAT_LIFEDRAIN, percent = 100 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
-	{ type = COMBAT_DEATHDAMAGE, percent = -15 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
 monster.immunities = {
