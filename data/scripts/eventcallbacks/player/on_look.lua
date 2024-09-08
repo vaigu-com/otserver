@@ -121,7 +121,7 @@ function OnLookMessage:ParseCustomOnLook()
 		return nil
 	end
 
-	local itemConfig = CustomItemRegistry():getState(aid)
+	local itemConfig = CustomItemRegistry():GetState(aid)
 	if itemConfig and itemConfig.onLook then
 		local onLookFunc = itemConfig.onLook
 		local result = onLookFunc({ player = player, aid = aid, item = inspectedThing })
@@ -262,26 +262,24 @@ function OnLookMessage:Build()
 	if self.player:getGroup():getAccess() then
 		self.adminDescription = self:ParseAdminDetails()
 	end
+	return self
 end
 
 function OnLookMessage:Get()
-	if self.normalDescription == nil then
-		return nil
+	local finalMessage = self.normalDescription or ""
+	if self.player:getGroup():getAccess() and self.adminDescription then
+		finalMessage = finalMessage .. self.adminDescription
 	end
-	if self.player:getGroup():getAccess() then
-		return self.normalDescription .. self.adminDescription
-	end
-	return self.normalDescription
+	return finalMessage
 end
 
 local callback = EventCallback()
 function callback.playerOnLook(player, inspectedThing, inspectedPosition, lookDistance)
 	local onLookDescriptionBuilder = OnLookMessage(player, inspectedThing, inspectedPosition, lookDistance)
-	onLookDescriptionBuilder:Build()
-
-	local description = onLookDescriptionBuilder:Build()
-
-	player:sendTextMessage(MESSAGE_LOOK, description)
+	local description = onLookDescriptionBuilder:Build():Get()
+	if description then
+		player:sendTextMessage(MESSAGE_LOOK, description)
+	end
 end
 
 callback:register()

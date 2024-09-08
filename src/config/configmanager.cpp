@@ -365,7 +365,7 @@ bool ConfigManager::load() {
 	loadStringConfig(L, URL, "url", "");
 	loadStringConfig(L, WORLD_TYPE, "worldType", "pvp");
 
-	// Wykopots custom
+	// Vaigu custom
 	loadBoolConfig(L, WEATHER_RAIN, "weatherRain", false);
 	loadBoolConfig(L, WEATHER_THUNDER, "thunderEffect", false);
 	loadBoolConfig(L, ALL_CONSOLE_LOG, "allConsoleLog", false);

@@ -47,7 +47,7 @@ public:
 	const std::string &getName() const override;
 	void setName(const std::string &name);
 
-	// Wykopots custom; Revert in Monster::configureForgeSystem and Monster::getName
+	// Vaigu custom; Revert in Monster::configureForgeSystem and Monster::getName
 	std::string fullName;
 	std::map<uint16_t, std::string> influenceRankToTitle = {
         {0, ""},

@@ -229,7 +229,7 @@ function Creature.getKillers(self, onlyPlayers)
 	return killers
 end
 
--- Wykopots custom
+-- Vaigu custom
 function Creature:addEventStamina(target)
 	local player = self:getPlayer()
 	local monster = target:getMonster()

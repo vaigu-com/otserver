@@ -1,4 +1,4 @@
--- Wykopots custom
+-- Vaigu custom
 ForceBaseLootMonsters = {
 	--Issavi
 	["Burning Gladiator"] = true,

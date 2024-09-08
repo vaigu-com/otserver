@@ -114,7 +114,7 @@ end
 
 function ModalWindow:addChoice(text, callback)
 	if type(text) ~= "string" then
-		io.write("ModalWindow:addChoice: text must be a string.")
+		logger.debug("ModalWindow:addChoice: text must be a string.")
 		text = tostring(text)
 	end
 
@@ -122,7 +122,7 @@ function ModalWindow:addChoice(text, callback)
 	local choice = { id = id, text = text, callback = callback }
 	self.choices[id] = choice
 	self.choices[text] = choice
-	return true
+	return choice
 end
 
 function ModalWindow:removeChoice(text)

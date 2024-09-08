@@ -1,3 +1,4 @@
+--[[
 local config = {
 	[VOCATION.ID.NONE] = {
 		container = {
@@ -111,3 +112,4 @@ function sendFirstItems.onLogin(player)
 end
 
 sendFirstItems:register()
+]]

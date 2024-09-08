@@ -1,29 +1,9 @@
-local function onMovementRemoveProtection(playerId, oldPos, time)
-	local player = Player(playerId)
-	if not player then
-		return true
-	end
-
-	local playerPos = player:getPosition()
-	if (playerPos.x ~= oldPos.x or playerPos.y ~= oldPos.y or playerPos.z ~= oldPos.z) or player:getTarget() then
-		player:setStorageValue(Global.Storage.CombatProtectionStorage, 0)
-		return true
-	end
-
-	addEvent(onMovementRemoveProtection, 1000, playerId, oldPos, time - 1)
-end
-
-local function protectionZoneCheck(playerName)
-	doRemoveCreature(playerName)
-	return true
-end
-
 local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
 	local afterLoginStr = ""
 	if player:getLastLoginSaved() <= 0 then
-		afterLoginStr = " Please choose your outfit."
+		afterLoginStr = "Please choose your outfit."
 		player:sendOutfitWindow()
 		player:sendTextMessage(MESSAGE_INFO_DESCR, "Premade action bars for every vocation are available in options.")
 		player:setStorageValue(Storage.EmoteSpells, 1) -- emote on first login
@@ -34,9 +14,8 @@ function playerLogin.onLogin(player)
 		afterLoginStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
 	end
 
-	local commandStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("AVAILABLE_COMMANDS")
-	local bugStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("YOU_CAN_REPORT_BUGS")
-
+	local commandStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
+	local bugStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("You can report ingame bugs using ctrl+z.")
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, bugStr)
@@ -44,9 +23,6 @@ function playerLogin.onLogin(player)
 	if isPremium(player) then
 		player:setStorageValue(Storage.PremiumAccount, 1)
 	end
-
-	local playerId = player:getId()
-	local playerGuid = player:getGuid()
 
 	-- Promotion
 	local vocation = player:getVocation()
@@ -62,11 +38,12 @@ function playerLogin.onLogin(player)
 
 	-- Boosted
 	local booostedCreatures = Game.getBoostedCreatures()
-	local boostedCreaturesString = "\n"
+	local names = ""
 	for _, name in pairs(booostedCreatures) do
-		boostedCreaturesString = T(":str:\t:name:\n", { str = boostedCreaturesString, name = name })
+		names = names .. name .. ", "
 	end
-	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, T("Today's boosted creatures: :boostedCreaturesString: Boosted creatures yield more experience points, carry more loot than usual, and respawn at a faster rate.", { boostedCreaturesString = boostedCreaturesString }))
+	names = names:sub(1, -3)
+	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, T("Today's boosted creatures: :names:.\nBoosted creatures yield more experience points, carry more loot than usual, and respawn at a faster rate.", { names = names }))
 	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Today's boosted boss: %s.\nBoosted bosses contain more loot and count more kills for your Bosstiary.", Game.getBoostedBoss()))
 
 	-- Rate events:
@@ -177,7 +154,6 @@ function playerLogin.onLogin(player)
 	local isProtected = player:kv():get("combat-protection") or 0
 	if isProtected < 1 then
 		player:kv():set("combat-protection", 1)
-		onMovementRemoveProtection(playerId, player:getPosition(), 10)
 	end
 
 	-- Change support outfit to a normal outfit to open customize character without crashes
@@ -194,7 +170,7 @@ function playerLogin.onLogin(player)
 	player:registerEvent("BossParticipation")
 	player:registerEvent("UpdatePlayerOnAdvancedLevel")
 
-	-- Wykopots custom
+	-- Vaigu custom
 	player:openChannel(3) -- General
 	player:openChannel(5) -- Trade
 	player:openChannel(7) -- Help

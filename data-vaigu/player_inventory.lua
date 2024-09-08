@@ -344,12 +344,13 @@ function Player:AddCustomItem(item, container)
 
 	local addItem = nil
 	if shouldAddToStore(item) then
-		local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
+		container = nil
+		local inbox = self:getStoreInbox()
 		addItem = inbox:addItem(id, count)
 		addItem:setOwner(self)
 		addItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 	else
-		container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
+		container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
 		addItem = container:addItem(id, count)
 	end
 
@@ -382,7 +383,7 @@ function Player:AddCustomItem(item, container)
 		name = desc
 	end
 
-	if name then
+	if name and item.dontAnnounce == false then
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. name .. ".")
 	end
 end
