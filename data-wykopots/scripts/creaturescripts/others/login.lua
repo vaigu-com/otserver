@@ -42,7 +42,7 @@ function playerLogin.onLogin(player)
 	for _, name in pairs(booostedCreatures) do
 		names = names .. name .. ", "
 	end
-	names = names:sub(1, -2)
+	names = names:sub(1, -3)
 	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, T("Today's boosted creatures: :names:.\nBoosted creatures yield more experience points, carry more loot than usual, and respawn at a faster rate.", { names = names }))
 	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Today's boosted boss: %s.\nBoosted bosses contain more loot and count more kills for your Bosstiary.", Game.getBoostedBoss()))
 
