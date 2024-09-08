@@ -1,4 +1,7 @@
 return {
+	["Starter weapons"] = "Starter weapons",
+	["Choose your starter weapon:"] = "Choose your starter weapon:",
+	["Fine, i will choose your starter weapon then..."] = "Fine, i will choose your starter weapon then...",
 	["WELCOME_TO_SERVER"] = function()
 		return T("Welcome to :serverName:!", { serverName = configManager.getString(configKeys.SERVER_NAME) })
 	end,

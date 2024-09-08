@@ -180,7 +180,7 @@ local function trySetMarks(player)
 end
 
 local function onAcceptLanguage(player, button, choice)
-	player = GetPlayerByCidOrObject(player)
+	player = Player(player)
 	if not player then
 		return
 	end
@@ -200,9 +200,7 @@ local function onAcceptLanguage(player, button, choice)
 	return true
 end
 
-local changeLanguage = TalkAction("!language", "/language")
-
-function changeLanguage.onSay(player, words, param)
+function CreateChooseLanguageWindow(player)
 	local window = ModalWindow({ title = "Language", message = "Set your default language: " })
 	local localizer = player:Localizer(LOCALIZER_UNIVERSAL)
 	window:addButton(localizer:Get("Select"), onAcceptLanguage)
@@ -215,6 +213,10 @@ function changeLanguage.onSay(player, words, param)
 	return false
 end
 
+local changeLanguage = TalkAction("!language", "/language")
+function changeLanguage.onSay(player, words, param)
+	CreateChooseLanguageWindow(player)
+end
 changeLanguage:separator(" ")
 changeLanguage:groupType("normal")
 changeLanguage:register()

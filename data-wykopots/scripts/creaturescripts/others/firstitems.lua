@@ -1,83 +1,145 @@
-local config = {
-	[0] = {
-		--club, coat
-		items = { { 3059, 1 }, { 3066, 1 }, { 7991, 1 }, { 7992, 1 }, { 3362, 1 }, { 3552, 1 }, { 3572, 1 } },
-		--rope, shovel, red apple
-		container = { { 3003, 1 }, { 266, 1 }, { 268, 1 }, { 8015, 20 }, { 7879, 1 } },
+local starterItems = {
+	[VOCATION.ID.SORCERER] = {
+		toBody = {
+			{ id = 3059, count = 1, dontAnnounce = true },
+			{ id = 3074, count = 1, dontAnnounce = true },
+			{ id = 7991, count = 1, dontAnnounce = true },
+			{ id = 7992, count = 1, dontAnnounce = true },
+			{ id = 3362, count = 1, dontAnnounce = true },
+			{ id = 3552, count = 1, dontAnnounce = true },
+			{ id = 3572, count = 1, dontAnnounce = true },
+		},
+		toBackpack = {
+			{ id = 3003, count = 1, dontAnnounce = true },
+			{ id = 266, count = 2, addToStore = true, dontAnnounce = true },
+			{ id = 268, count = 10, addToStore = true, dontAnnounce = true },
+			{ id = 8015, count = 20, dontAnnounce = true },
+			{ id = 7879, count = 1, dontAnnounce = true },
+		},
 	},
-	[1] = { --Sorcerer
-		--spellbook, wand of vortex, magician's robe, mage hat, studded legs, leather boots, scarf
-		items = { { 3059, 1 }, { 3074, 1 }, { 7991, 1 }, { 7992, 1 }, { 3362, 1 }, { 3552, 1 }, { 3572, 1 } },
-		--rope, mana potion
-		container = { { 3003, 1 }, { 266, 1 }, { 268, 1 }, { 8015, 20 }, { 7879, 1 } },
+	[VOCATION.ID.DRUID] = {
+		toBody = {
+			{ id = 3059, count = 1, dontAnnounce = true },
+			{ id = 3066, count = 1, dontAnnounce = true },
+			{ id = 7991, count = 1, dontAnnounce = true },
+			{ id = 7992, count = 1, dontAnnounce = true },
+			{ id = 3362, count = 1, dontAnnounce = true },
+			{ id = 3552, count = 1, dontAnnounce = true },
+			{ id = 3572, count = 1, dontAnnounce = true },
+		},
+		toBackpack = {
+			{ id = 3003, count = 1, dontAnnounce = true },
+			{ id = 266, count = 2, addToStore = true, dontAnnounce = true },
+			{ id = 268, count = 10, addToStore = true, dontAnnounce = true },
+			{ id = 8015, count = 20, dontAnnounce = true },
+			{ id = 7879, count = 1, dontAnnounce = true },
+		},
 	},
-	[2] = { -- Druid
-		--spellbook, snakebite rod, magician's robe, mage hat, studded legs, leather boots, scarf
-		items = { { 3059, 1 }, { 3066, 1 }, { 7991, 1 }, { 7992, 1 }, { 3362, 1 }, { 3552, 1 }, { 3572, 1 } },
-		--rope, mana potion
-		container = { { 3003, 1 }, { 266, 1 }, { 268, 1 }, { 8015, 20 }, { 7879, 1 } },
+	[VOCATION.ID.PALADIN] = {
+		toBody = {
+
+			{ id = 3430, count = 1, dontAnnounce = true },
+			{ id = 3277, count = 5, dontAnnounce = true },
+			{ id = 3571, count = 1, dontAnnounce = true },
+			{ id = 8095, count = 1, dontAnnounce = true },
+			{ id = 3552, count = 1, dontAnnounce = true },
+			{ id = 3572, count = 1, dontAnnounce = true },
+			{ id = 3354, count = 1, dontAnnounce = true },
+		},
+		toBackpack = {
+			{ id = 3003, count = 1, dontAnnounce = true },
+			{ id = 266, count = 3, addToStore = true, dontAnnounce = true },
+			{ id = 268, count = 6, addToStore = true, dontAnnounce = true },
+			{ id = 8015, count = 20, dontAnnounce = true },
+			{ id = 7879, count = 1, dontAnnounce = true },
+		},
 	},
-	[3] = { --Paladin
-		--steel shield, 5 spear, ranger's cloak, ranger legs, scarf, brass helmet
-		items = { { 3430, 1 }, { 3277, 5 }, { 3571, 1 }, { 8095, 1 }, { 3552, 1 }, { 3572, 1 }, { 3354, 1 } },
-		--rope, health potion, mana potion
-		container = { { 3003, 1 }, { 266, 1 }, { 268, 1 }, { 8015, 20 }, { 7879, 1 } },
-	},
-	[4] = { --Knight
-		--steel shield, brass armor, brass helmet, brass legs, scarf
-		items = {},
-		--items = {{3430, 1}, {3359, 1}, {3354, 1}, {3372, 1}, {3552, 1}, {3572, 1}}, -- knight dostaje w knightweapons.lua
-		--rope, health potion, mana potion
-		container = { { 3003, 1 }, { 266, 1 }, { 268, 1 }, { 8015, 20 }, { 7879, 1 } },
+
+	[VOCATION.ID.KNIGHT] = {
+		toBody = {
+			{ id = 3430, count = 1, dontAnnounce = true },
+			{ id = 3359, count = 1, dontAnnounce = true },
+			{ id = 3354, count = 1, dontAnnounce = true },
+			{ id = 3372, count = 1, dontAnnounce = true },
+			{ id = 3552, count = 1, dontAnnounce = true },
+			{ id = 3572, count = 1, dontAnnounce = true },
+		},
+		toBackpack = {
+			{ id = 3003, count = 1, dontAnnounce = true },
+			{ id = 266, count = 10, addToStore = true, dontAnnounce = true },
+			{ id = 268, count = 4, addToStore = true, dontAnnounce = true },
+			{ id = 8015, count = 20, dontAnnounce = true },
+			{ id = 7879, count = 1, dontAnnounce = true },
+		},
 	},
 }
 
-local function setFreeSails(player)
+local function setFreeTravels(player)
 	player:setStorageValue(Storage.FreeTravels, FREE_TRANSPORTS)
 end
-local firstLogin = CreatureEvent("FirstItems")
 
-function firstLogin.onLogin(player)
-	local targetVocation = config[player:getVocation():getId()]
-	if not targetVocation then
-		return true
+local knightWeaponChoices = {
+	Club = 3327,
+	Sword = 7774,
+	Axe = 7773,
+}
+local defaultWeapon = 7774
+
+local confirmStarterWeaponChoice = function(player, button, choice)
+	if not choice then
+		choice = { weaponType = defaultWeapon }
+		player:sendTextMessage(32, player:Localizer(Storage.SynMarnotrawny.Questline):Get("Fine, i will choose your weapon then..."))
 	end
 
+	player:AddCustomItem({ id = choice.id })
+
+	CreateChooseLanguageWindow(player)
+end
+
+local function sendKnightStarterWeaponChoice(player)
+	local title = player:Localizer(LOCALIZER_UNIVERSAL):Get("Starter weapons")
+	local message = player:Localizer(LOCALIZER_UNIVERSAL):Get("Choose your starter weapon:")
+	local window = ModalWindow({ title = title, message = message })
+
+	for weaponType, id in pairs(knightWeaponChoices) do
+		local choice = window:addChoice(weaponType)
+		choice.weaponType = weaponType
+		choice.id = id
+	end
+
+	window:addButton(player:Localizer(LOCALIZER_UNIVERSAL):Get("ModalWindowOk"), confirmStarterWeaponChoice)
+	window:sendToPlayer(player)
+end
+
+local firstLogin = CreatureEvent("FirstLogin")
+function firstLogin.onLogin(player)
 	if player:getLastLoginSaved() ~= 0 then
 		return true
 	end
 
-	setFreeSails(player)
+	setFreeTravels(player)
 
-	for i = 1, #targetVocation.items do
-		player:addItem(targetVocation.items[i][1], targetVocation.items[i][2])
-	end
-
-	local backpack = player:getVocation():getId() == 0 and player:addItem(2853) or player:addItem(2854)
-	if not backpack then
+	local playerVocation = player:getVocation():getId()
+	local items = starterItems[playerVocation]
+	if not items then
 		return true
 	end
 
-	for i = 1, #targetVocation.container do
-		backpack:addItem(targetVocation.container[i][1], targetVocation.container[i][2])
+	for _, item in pairs(items.toBody) do
+		player:AddCustomItem(item, nil)
 	end
 
-	if player:getVocation():getId() == 4 then
-		local modal = ModalWindow(30, "Wybor broni", "Jaka bron chcesz dostac? ")
-		modal:addButton(1, "Club")
-		modal:addButton(2, "Sword")
-		modal:addButton(3, "Axe")
-		modal:sendToPlayer(player)
-	else
-		local modal = ModalWindow(20, "Language", "Set your default language: ")
-		modal:addButton(1, "Accept")
-		modal:addButton(2, "Cancel")
-		modal:addChoice(1, "Polski")
-		modal:addChoice(2, "English")
-		modal:setDefaultEnterButton(1)
-		modal:setDefaultEscapeButton(2)
-		modal:sendToPlayer(player)
+	local backpack = player:addItem(2854)
+	for _, item in pairs(items.toBackpack) do
+		player:AddCustomItem(item, backpack)
 	end
+
+	if player:getVocation():getId() ~= VOCATION.ID.KNIGHT then
+		CreateChooseLanguageWindow(player)
+		return true
+	end
+
+	sendKnightStarterWeaponChoice(player)
 
 	return true
 end
