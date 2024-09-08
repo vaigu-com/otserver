@@ -11,18 +11,12 @@ local conditionsToRemove = {
 	CONDITION_BLEEDING,
 }
 
-local errorMessage = "You need to wait before using it again."
 local hydraTongueSalad = Action()
 
 function hydraTongueSalad.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local canUse = player:canUseCooldownItem("special-foods-cooldown")
-	if not canUse then
+	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
+	if not errorMessage then
 		player:say(errorMessage)
-	end
-
-	if IsOnEvent(player) then
-		player:sendCancelMessage("You cannot eat dishes on this event.")
-		return true
 	end
 
 	for _, conditionType in ipairs(conditionsToRemove) do
