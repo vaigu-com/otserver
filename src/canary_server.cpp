@@ -197,7 +197,7 @@ void CanaryServer::setupHousesRent() {
 
 void CanaryServer::logInfos() {
 	logger.info("Vaigu - v2024.1");
-
+	
 #if defined(GIT_RETRIEVED_STATE) && GIT_RETRIEVED_STATE
 	logger.debug("{} - Version [{}] dated [{}]", ProtocolStatus::SERVER_NAME, SERVER_RELEASE_VERSION, GIT_COMMIT_DATE_ISO8601);
 	#if GIT_IS_DIRTY

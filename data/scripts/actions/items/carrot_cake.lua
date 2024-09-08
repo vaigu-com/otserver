@@ -5,12 +5,11 @@ distanceCondition:setParameter(CONDITION_PARAM_TICKS, 60 * 60 * 1000)
 distanceCondition:setParameter(CONDITION_PARAM_SKILL_DISTANCE, 10)
 distanceCondition:setParameter(CONDITION_PARAM_FORCEUPDATE, true)
 
-local errorMessage = "You need to wait before using it again."
 local carrotCake = Action()
 
 function carrotCake.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local canUse = player:canUseCooldownItem("special-foods-cooldown")
-	if not canUse then
+	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
+	if errorMessage then
 		player:say(errorMessage)
 	end
 

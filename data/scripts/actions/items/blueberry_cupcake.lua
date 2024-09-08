@@ -1,9 +1,8 @@
-local errorMessage = "You need to wait before using it again."
 local blueberryCupcake = Action()
 
 function blueberryCupcake.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local canUse = player:canUseCooldownItem("blueberry-cupcake-cooldown")
-	if not canUse then
+	local errorMessage = player:errorIfCannotUseCooldownItem("blueberry-cupcake-cooldown")
+	if errorMessage then
 		player:say(errorMessage)
 	end
 
