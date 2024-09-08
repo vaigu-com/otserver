@@ -54,7 +54,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> mType) :
 			                scriptName);
 		}
 	}
-	fullName = mType->name; // Wykopots custom
+	fullName = mType->name; // Vaigu custom
 }
 
 void Monster::addList() {
@@ -70,7 +70,7 @@ const std::string &Monster::getName() const {
 		return mType->name;
 	}
 	//return name;
-	return fullName; // Wykopots custom
+	return fullName; // Vaigu custom
 }
 
 void Monster::setName(const std::string &name) {

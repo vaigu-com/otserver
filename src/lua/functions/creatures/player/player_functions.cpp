@@ -155,7 +155,7 @@ int PlayerFunctions::luaPlayerCreate(lua_State* L) {
 	return 1;
 }
 
-// Wykopots custom
+// Vaigu custom
 int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
 	// getLanguage()
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
@@ -3183,7 +3183,7 @@ int PlayerFunctions::luaPlayerGetFightMode(lua_State* L) {
 	return 1;
 }
 
-// Wykopots custom
+// Vaigu custom
 int PlayerFunctions::luaPlayerSetAttackSpeed(lua_State* L) {
 	// player:setAttackSpeed(ms)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);

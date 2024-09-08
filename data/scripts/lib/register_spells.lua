@@ -417,7 +417,7 @@ RANGE = {
 	[19] = { 1, 2 },
 }
 
--- Wykopots custom
+-- Vaigu custom
 AREA_SIDEBEAMS1 = {
 	{ 1, 0, 1 },
 	{ 1, 0, 1 },

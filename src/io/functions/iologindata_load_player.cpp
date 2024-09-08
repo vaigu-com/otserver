@@ -134,7 +134,7 @@ bool IOLoginDataLoad::loadPlayerFirst(std::shared_ptr<Player> player, DBResult_p
 	player->quickLootFallbackToMainContainer = result->getNumber<bool>("quickloot_fallback");
 	player->setSex(static_cast<PlayerSex_t>(result->getNumber<uint16_t>("sex")));
 	player->setPronoun(static_cast<PlayerPronoun_t>(result->getNumber<uint16_t>("pronoun")));
-	player->language = result->getString("language"); // Wykopots custom
+	player->language = result->getString("language"); // Vaigu custom
 	player->level = std::max<uint32_t>(1, result->getNumber<uint32_t>("level"));
 	player->soul = static_cast<uint8_t>(result->getNumber<unsigned short>("soul"));
 	player->capacity = result->getNumber<uint32_t>("cap") * 100;

@@ -196,17 +196,8 @@ void CanaryServer::setupHousesRent() {
 }
 
 void CanaryServer::logInfos() {
-	logger.info(R"(
- ____      ____      __                         ___    _________   ______   
-|_  _|    |_  _|    [  |  _                   .'   `. |  _   _  |.' ____ \  
-  \ \  /\  / /_   __ | | / ]  .--.   _ .--.  /  .-.  \|_/ | | \_|| (___ \_| 
-   \ \/  \/ /[ \ [  ]| '' < / .'`\ \[ '/'`\ \| |   | |    | |     _.____`.  
-    \  /\  /  \ '/ / | |`\ \| \__. | | \__/ |\  `-'  /   _| |_   | \____) | 
-     \/  \/ [\_:  / [__|  \_]'.__.'  | ;.__/  `.___.'   |_____|   \______.' 
-             \__.'                  [__|                                    
-	)");
-	logger.info("WykopOTS - v2024.1");
-	
+	logger.info("Vaigu - v2024.1");
+
 #if defined(GIT_RETRIEVED_STATE) && GIT_RETRIEVED_STATE
 	logger.debug("{} - Version [{}] dated [{}]", ProtocolStatus::SERVER_NAME, SERVER_RELEASE_VERSION, GIT_COMMIT_DATE_ISO8601);
 	#if GIT_IS_DIRTY
@@ -387,7 +378,7 @@ void CanaryServer::loadModules() {
 
 	g_game().loadBoostedCreature();
 	g_ioBosstiary().loadBoostedBoss();
-	g_ioprey().initializePreyMonsters(); // Wykopots custom
+	g_ioprey().initializePreyMonsters(); // Vaigu custom
 	g_ioprey().initializeTaskHuntOptions();
 	g_game().logCyclopediaStats();
 }

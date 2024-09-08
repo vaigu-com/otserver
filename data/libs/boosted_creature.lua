@@ -1,4 +1,4 @@
--- Wykopots custom
+-- Vaigu custom
 BoostedMonstersName = {
 	--["Toad"] = 262,
 	--["Salamander"] = 913,

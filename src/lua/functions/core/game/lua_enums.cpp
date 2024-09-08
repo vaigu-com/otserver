@@ -230,7 +230,7 @@ void LuaEnums::initOthersEnums(lua_State* L) {
 	registerEnum(L, SCREENSHOT_TYPE_SKILLUP);
 	registerEnum(L, SCREENSHOT_TYPE_GIFTOFLIFE);
 
-	// Wykopots custom
+	// Vaigu custom
 	registerEnum(L, NUMBER_BOOSTED_MONSTERS);
 	registerEnum(L, POSITIONCHEST_ACTION_ID);
 }

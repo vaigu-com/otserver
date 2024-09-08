@@ -433,7 +433,7 @@ public:
 		return BestiaryList;
 	}
 
-	// Wykopots custom
+	// Vaigu custom
 	void setBoostedName(const std::vector<std::string> &names) {
 		boostedCreatures = names;
 		for (const auto &name : names) {
@@ -740,7 +740,7 @@ public:
 	const std::unordered_map<uint16_t, std::string> &getHirelingSkills();
 	const std::unordered_map<uint16_t, std::string> &getHirelingOutfits();
 
-	// Wykopots custom
+	// Vaigu custom
 	struct LuaElement {
 		std::string key;
 		std::string value;
@@ -866,7 +866,7 @@ private:
 	std::map<Position, uint16_t> mapLuaItemsStored;
 
 	std::map<uint16_t, std::string> BestiaryList;
-	std::vector<std::string> boostedCreatures; // Wykopots custom
+	std::vector<std::string> boostedCreatures; // Vaigu custom
 
 	std::vector<std::shared_ptr<Charm>> CharmList;
 	std::vector<std::shared_ptr<Creature>> checkCreatureLists[EVENT_CREATURECOUNT];

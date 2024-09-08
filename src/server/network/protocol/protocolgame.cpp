@@ -7607,7 +7607,7 @@ void ProtocolGame::sendModalWindow(const ModalWindow &modalWindow) {
 	writeToOutputBuffer(msg);
 }
 
-// Wykopots custom
+// Vaigu custom
 std::string findValueByKey(const std::vector<Game::LuaElement> &elements, const std::vector<std::string> &keys) {
 	for (const auto &element : elements) {
 		if (element.key == keys[0]) {
