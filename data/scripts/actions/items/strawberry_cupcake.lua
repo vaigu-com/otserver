@@ -1,17 +1,11 @@
-local errorMessage = "You need to wait before using it again."
 local strawberryCupcake = Action()
 
 function strawberryCupcake.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local canUse = player:canUseCooldownItem("strawberry-cupcake-cooldown")
-	if not canUse then
+	local errorMessage = player:errorIfCannotUseCooldownItem("strawberry-cupcake-cooldown")
+	if errorMessage then
 		player:say(errorMessage)
 	end
 
-	if IsOnEvent(player) then
-		player:sendCancelMessage("You cannot eat dishes on this event.")
-		return true
-	end
-	
 	player:addHealth(player:getMaxHealth())
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your health has been refilled.")
 	player:say("Mmmm.", TALKTYPE_MONSTER_SAY)

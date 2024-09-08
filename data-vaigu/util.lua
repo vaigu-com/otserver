@@ -3,18 +3,22 @@ RegisterEncounter = function()
 	logger.error("[RegisterEncounter] is deprecated. Use EncounterData and Encounter")
 end
 
-function Player:canUseCooldownItem(cooldownKV)
+function Player:errorIfCannotUseCooldownItem(cooldownKV)
 	if self:isOnEvent() then
-		return false
+		return "You cannot use this item on events."
 	end
 	if self:hasExhaustion(cooldownKV) then
-		return false
+		return "You need to wait before using this again."
 	end
 	return true
 end
 
 function Player:isOnEvent()
-	if self:getStorageValue(Storage.GrimEvent.Joined) >= 1 or self:getStorageValue(Storage.hasteLock) == 1 or self:getStorageValue(Storage.healLock) == 1 then
+	if
+		self:getStorageValue(Storage.GrimEvent.Joined) >= 1
+		or self:getStorageValue(Storage.hasteLock) == 1
+		or self:getStorageValue(Storage.healLock) == 1
+	then
 		return true
 	end
 end
