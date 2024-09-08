@@ -7,3 +7,4 @@
      \/  \/ [\_:  / [__|  \_]'.__.'  | ;.__/  `.___.'   |_____|   \______.' 
              \__.'                  [__|                                    
 ```
+Based on https://github.com/opentibiabr/canary
