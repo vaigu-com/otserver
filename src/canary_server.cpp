@@ -205,6 +205,7 @@ void CanaryServer::logInfos() {
      \/  \/ [\_:  / [__|  \_]'.__.'  | ;.__/  `.___.'   |_____|   \______.' 
              \__.'                  [__|                                    
 	)");
+	logger.info("WykopOTS - v2024.1);
 	
 #if defined(GIT_RETRIEVED_STATE) && GIT_RETRIEVED_STATE
 	logger.debug("{} - Version [{}] dated [{}]", ProtocolStatus::SERVER_NAME, SERVER_RELEASE_VERSION, GIT_COMMIT_DATE_ISO8601);
