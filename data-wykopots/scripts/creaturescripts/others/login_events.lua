@@ -12,7 +12,7 @@ function loginEvents.onLogin(player)
 		--Others
 		"MagicConverter",
 		"AntiMc",
-		"FirstItems",
+		"FirstLogin",
 		"tp_save",
 		"sharedLife",
 		"freebless",
