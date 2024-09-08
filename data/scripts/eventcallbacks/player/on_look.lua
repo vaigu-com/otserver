@@ -1,3 +1,5 @@
+DONT_SHOW_ONLOOK = "DONT_SHOW_ONLOOK"
+
 local OnLookMessage = {}
 function OnLookMessage:new(player, inspectedThing, inspectedPosition, lookDistance)
 	local newObj = {}
@@ -126,12 +128,14 @@ function OnLookMessage:ParseCustomOnLook()
 		local onLookFunc = itemConfig.onLook
 		local result = onLookFunc({ player = player, aid = aid, item = inspectedThing })
 		if result == DONT_SHOW_ONLOOK then
-			return DONT_SHOW_ONLOOK
+			self.dontShowOnLook = true
+			return
 		end
 	end
 
 	if tryDisplayItemText(player, inspectedThing) == DONT_SHOW_ONLOOK then
-		return DONT_SHOW_ONLOOK
+		self.dontShowOnLook = true
+		return
 	end
 
 	local finalDescription = tryFindAnyDescription(player, inspectedThing)
@@ -153,8 +157,8 @@ function OnLookMessage:ParseItemDescription()
 	local inspectedThing = self.inspectedThing
 	local lookDistance = self.lookDistance
 	local customDescription = self:ParseCustomOnLook()
-	if customDescription == DONT_SHOW_ONLOOK then
-		return nil
+	if self.dontShowOnLook then
+		return
 	end
 
 	if customDescription then
@@ -266,8 +270,11 @@ function OnLookMessage:Build()
 end
 
 function OnLookMessage:Get()
-	local finalMessage = self.normalDescription or ""
-	if self.player:getGroup():getAccess() and self.adminDescription then
+	local finalMessage = ""
+	if self.normalDescription and self.dontShowOnLook ~= true then
+		finalMessage = finalMessage .. self.normalDescription
+	end
+	if self.adminDescription then
 		finalMessage = finalMessage .. self.adminDescription
 	end
 	return finalMessage
@@ -276,9 +283,10 @@ end
 local callback = EventCallback()
 function callback.playerOnLook(player, inspectedThing, inspectedPosition, lookDistance)
 	local onLookDescriptionBuilder = OnLookMessage(player, inspectedThing, inspectedPosition, lookDistance)
-	local description = onLookDescriptionBuilder:Build():Get()
-	if description then
-		player:sendTextMessage(MESSAGE_LOOK, description)
+	local message = onLookDescriptionBuilder:Build():Get()
+
+	if message and message ~= "" then
+		player:sendTextMessage(MESSAGE_LOOK, message)
 	end
 end
 
