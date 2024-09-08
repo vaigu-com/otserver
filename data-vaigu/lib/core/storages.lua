@@ -67,7 +67,7 @@ Storage = {
 		OnlineTokensGain = 150003,
 	},
 
-	-- ====== WYKOPOTS =====
+	-- ====== VAIGU =====
 	Exercisedummy = { exaust = 98231521 },
 	VampireHunter = { -- Reserved 402
 		Rank = 402,

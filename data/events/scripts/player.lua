@@ -1,5 +1,5 @@
 --[[ 
-	Wykopots custom:
+	Vaigu custom:
 	- Store inbox items can be moved within inbox
 	- Prey monster timers only decay on killing that prey target
 	- Multiple immovable aid can exist

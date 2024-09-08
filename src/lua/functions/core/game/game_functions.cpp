@@ -116,7 +116,7 @@ int GameFunctions::luaGameGetSpectators(lua_State* L) {
 	return 1;
 }
 
-// Wykopots custom
+// Vaigu custom
 int GameFunctions::luaGameGetBoostedCreatures(lua_State* L) {
 	// Game.getBoostedCreatures()
 	const auto boostedMonsters = g_game().getBoostedMonsterNames();
@@ -819,7 +819,7 @@ int GameFunctions::luaGameGetEventCallbacks(lua_State* L) {
 	return 1;
 }
 
-// Wykopots custom
+// Vaigu custom
 int GameFunctions::luaInitializeTranslationTable(lua_State* L) {
 	lua_getglobal(L, "STRINGS_TABLES");
 	if (!lua_istable(L, -1)) {

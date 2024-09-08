@@ -199,7 +199,7 @@ public:
 	int32_t getHealth() const {
 		return health;
 	}
-	// Wykopots custom
+	// Vaigu custom
 	virtual int32_t getMaxBaseHealth() const {
 		return maxBaseHealth;
 	}

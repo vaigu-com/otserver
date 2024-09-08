@@ -114,11 +114,11 @@ enum Webhook_Colors_t : uint32_t {
 	WEBHOOK_COLOR_BLUE = 0x0000FF
 };
 
-// Wykopots custom
+// Vaigu custom
 enum Boosted_Monsters_t : uint32_t {
 	NUMBER_BOOSTED_MONSTERS = 5
 };
 
-enum Wykopots_Custom_t : uint32_t{
+enum Vaigu_Custom_t : uint32_t{
 	POSITIONCHEST_ACTION_ID = 2013
 };

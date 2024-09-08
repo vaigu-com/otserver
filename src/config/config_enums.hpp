@@ -325,7 +325,7 @@ enum ConfigKey_t : uint16_t {
 	WHITE_SKULL_TIME,
 	WORLD_TYPE,
 	XP_DISPLAY_MODE,
-	// Wykopots custom
+	// Vaigu custom
 	WEATHER_RAIN,
 	WEATHER_THUNDER,
 	ALL_CONSOLE_LOG

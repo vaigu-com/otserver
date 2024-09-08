@@ -1,4 +1,17 @@
 return {
+	["Starter weapons"] = "Starter weapons",
+	["Choose your starter weapon:"] = "Choose your starter weapon:",
+	["Fine, i will choose your starter weapon then..."] = "Fine, i will choose your starter weapon then...",
+	["WELCOME_TO_SERVER"] = function()
+		return T("Welcome to :serverName:!", { serverName = configManager.getString(configKeys.SERVER_NAME) })
+	end,
+	["YOUR_LAST_VISIT"] = function(context)
+		return T("Your last login was on :lastLogin:.", { lastLogin = os.date("%d-%m-%Y %X", context.player:getLastLoginSaved()) })
+	end,
+	["Please choose your outfit."] = "Please choose your outfit.",
+	["Premade action bars for every vocation are available in options."] = "Premade action bars for every vocation are available in options.",
+	["LIST_AVAILABLE_COMMANDS"] = "List of available commands: !serverinfo - !language - !faq. Rest of commands is available under !commands",
+	["You can report ingame bugs using ctrl+z."] = "You can report ingame bugs using ctrl+z.",
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
 		return T("You or a member in your team still has a cooldown for the :encounterName: encounter.", { encounterName = context.encounterName })
 	end,
@@ -8,11 +21,8 @@ return {
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
 		return T("You or a member in your team does not have the required access to enter :encounterName: encounter.", { encounterName = context.encounterName })
 	end,
-	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function()
-		return T("You dont have access to this boss.")
-	end,
-	[ENCOUNTER_ERROR_CODES.YOU_HAVE_TO_WAIT] = function(context)
-		return T("You or a member in your team does not have the required access to enter :encounterName: encounter.", { encounterName = context.encounterName })
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function(context)
+		return T("You dont have access to :encounterName: encounter.", { encounterName = context.encounterName })
 	end,
 	[ENCOUNTER_ERROR_CODES.ONLY_PLAYERS] = function()
 		return "Only players can participate in the fight!"
@@ -24,10 +34,13 @@ return {
 		return "You have to be standing on the entrance array to start the encounter."
 	end,
 	[ENCOUNTER_ERROR_CODES.NO_LEVEL] = function(context)
-		return T("All players need to be at least level :minLevel:.", { minLevel = context.requiredLevel })
+		return T("You or a member in your team doesnt have a minimal level of :minLevel:.", { minLevel = context.requiredLevel })
 	end,
 	[ENCOUNTER_ERROR_CODES.ENCOUNTER_DISABLED] = function()
 		return "This encounter is temporarily disabled."
+	end,
+	["YOU_CHANGED_YOUR_LOOTRATE"] = function(context)
+		return T("You changed your loot rate to x:rate:", { rate = context.rate })
 	end,
 	["ModalWindowOk"] = "Ok",
 	["ExerciseWeaponBoxTitle"] = "Reward",

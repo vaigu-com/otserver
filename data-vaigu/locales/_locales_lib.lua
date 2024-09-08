@@ -70,12 +70,13 @@ TRANSLATION_TABLES = {
 Game.initializeTranslationTable() -- cpp side
 
 Localizer = {}
+Localizer.__index = Localizer
 function Localizer:new(player, questId)
 	local newObj = {}
 	newObj.player = player
 	newObj.questId = questId
 	newObj.translated = nil
-	newObj.context = nil
+	newObj.context = { player = player, questId = questId }
 	self.__index = self
 	setmetatable(newObj, self)
 	return newObj

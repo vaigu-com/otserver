@@ -31,7 +31,7 @@ function setGlobalStorage(key, value)
 	db.query("INSERT INTO `global_storage` (`key`, `value`) VALUES (" .. key .. ", " .. value .. ") ON DUPLICATE KEY UPDATE `value` = " .. value)
 end
 
--- Wykopots custom
+-- Vaigu custom
 function Game.broadcastMessage(message, messageType, translate)
 	if not messageType then
 		messageType = MESSAGE_GAME_HIGHLIGHT
