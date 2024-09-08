@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <items>
-	<!-- Wykopots custom: corpses become movable after 1 second-->
+	<!-- Vaigu custom: corpses become movable after 1 second-->
 	<!-- Liquids -->
     <!-- Fluid type 0 is same as water (id="1") -->
     <item id="1" name="water"/>

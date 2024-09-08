@@ -412,7 +412,7 @@ void Game::resetNpcs() const {
 }
 
 // ToDo: check if working
-// Wykopots custom
+// Vaigu custom
 void Game::loadBoostedCreature() {
 	auto &db = Database::getInstance();
 
@@ -6399,7 +6399,7 @@ void Game::changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varS
 
 	player->setSpeed(varSpeed);
 
-	// Wykopots custom
+	// Vaigu custom
 	int32_t stepSpeed = player->getStepSpeed();
 	int32_t HasteStorageValue = 0;
 	HasteStorageValue = player->getStorageValue(STORAGEVALUE_HASTELOCK);

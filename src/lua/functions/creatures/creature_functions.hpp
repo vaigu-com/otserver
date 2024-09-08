@@ -56,7 +56,7 @@ public:
 		registerMethod(L, "Creature", "getHealth", CreatureFunctions::luaCreatureGetHealth);
 		registerMethod(L, "Creature", "setHealth", CreatureFunctions::luaCreatureSetHealth);
 		registerMethod(L, "Creature", "addHealth", CreatureFunctions::luaCreatureAddHealth);
-		registerMethod(L, "Creature", "getMaxBaseHealth", CreatureFunctions::luaCreatureGetMaxBaseHealth); // Wykopots custom
+		registerMethod(L, "Creature", "getMaxBaseHealth", CreatureFunctions::luaCreatureGetMaxBaseHealth); // Vaigu custom
 		registerMethod(L, "Creature", "getMaxHealth", CreatureFunctions::luaCreatureGetMaxHealth);
 		registerMethod(L, "Creature", "setMaxHealth", CreatureFunctions::luaCreatureSetMaxHealth);
 		registerMethod(L, "Creature", "setHiddenHealth", CreatureFunctions::luaCreatureSetHiddenHealth);

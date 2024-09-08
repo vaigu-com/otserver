@@ -73,7 +73,7 @@ public:
 		registerMethod(L, "Item", "moveToSlot", ItemFunctions::luaItemMoveToSlot);
 
 		registerMethod(L, "Item", "getDescription", ItemFunctions::luaItemGetDescription);
-		registerMethod(L, "Item", "getNameDescription", ItemFunctions::luaItemGetNameDescription); // Wykopots custom
+		registerMethod(L, "Item", "getNameDescription", ItemFunctions::luaItemGetNameDescription); // Vaigu custom
 
 		registerMethod(L, "Item", "hasProperty", ItemFunctions::luaItemHasProperty);
 
@@ -146,7 +146,7 @@ private:
 	static int luaItemMoveToSlot(lua_State* L);
 
 	static int luaItemGetDescription(lua_State* L);
-	static int luaItemGetNameDescription(lua_State* L); // Wykopots custom
+	static int luaItemGetNameDescription(lua_State* L); // Vaigu custom
 
 	static int luaItemHasProperty(lua_State* L);
 

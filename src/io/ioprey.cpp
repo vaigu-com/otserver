@@ -94,7 +94,7 @@ std::vector<PreyMonster> blacklistFilter(std::vector<PreyMonster> preyMonsters, 
 	return result;
 }
 
-// Wykopots custom
+// Vaigu custom
 void PreySlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_t level) {
 	raceIdList.clear();
 

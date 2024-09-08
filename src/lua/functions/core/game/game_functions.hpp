@@ -21,7 +21,7 @@ public:
 
 		registerMethod(L, "Game", "getSpectators", GameFunctions::luaGameGetSpectators);
 
-		registerMethod(L, "Game", "getBoostedCreatures", GameFunctions::luaGameGetBoostedCreatures); // Wykopots custom
+		registerMethod(L, "Game", "getBoostedCreatures", GameFunctions::luaGameGetBoostedCreatures); // Vaigu custom
 		registerMethod(L, "Game", "getBestiaryList", GameFunctions::luaGameGetBestiaryList);
 
 		registerMethod(L, "Game", "getPlayers", GameFunctions::luaGameGetPlayers);
@@ -90,7 +90,7 @@ public:
 		registerMethod(L, "Game", "getPublicAchievements", GameFunctions::luaGameGetPublicAchievements);
 		registerMethod(L, "Game", "getAchievements", GameFunctions::luaGameGetAchievements);
 
-		// Wykopots custom
+		// Vaigu custom
 		registerMethod(L, "Game", "initializeTranslationTable", GameFunctions::luaInitializeTranslationTable);
 	}
 
@@ -100,7 +100,7 @@ private:
 
 	static int luaGameGetSpectators(lua_State* L);
 
-	static int luaGameGetBoostedCreatures(lua_State* L); // Wykopots custom
+	static int luaGameGetBoostedCreatures(lua_State* L); // Vaigu custom
 	static int luaGameGetBestiaryList(lua_State* L);
 
 	static int luaGameGetPlayers(lua_State* L);
@@ -170,7 +170,7 @@ private:
 	static int luaGameGetPublicAchievements(lua_State* L);
 	static int luaGameGetAchievements(lua_State* L);
 
-	// Wykopots custom
+	// Vaigu custom
 	static int luaInitializeTranslationTable(lua_State* L);
 	static int copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement>& result);
 };

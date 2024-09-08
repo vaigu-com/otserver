@@ -95,7 +95,7 @@ enum PreyTaskDifficult_t : uint8_t {
 
 class NetworkMessage;
 
-// Wykopots custom
+// Vaigu custom
 class PreyMonster {
 public:
 	uint16_t raceid;
@@ -133,7 +133,7 @@ public:
 	}
 
 
-	// Wykopots custom
+	// Vaigu custom
 	void eraseBonus(bool maintainBonus = false) {
 		if (!maintainBonus) {
 			bonus = PreyBonus_None;
@@ -269,7 +269,7 @@ public:
 		return inject<IOPrey>();
 	}
 
-	// Wykopots custom
+	// Vaigu custom
 	std::unordered_set<std::string> loadWhitelist();
 	void initializePreyMonsters();
 
@@ -288,7 +288,7 @@ public:
 	NetworkMessage baseDataMessage;
 	std::vector<std::unique_ptr<TaskHuntingOption>> taskOption;
 
-	// Wykopots custom
+	// Vaigu custom
 	std::vector<PreyMonster> preyMonsters;
 	std::unordered_set<std::string> whitelist = {
 		"Rotworm", "Carrion Worm",

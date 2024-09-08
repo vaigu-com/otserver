@@ -294,7 +294,7 @@ int ItemTypeFunctions::luaItemTypeGetSlotPosition(lua_State* L) {
 	return 1;
 }
 
-// Wykopots custom
+// Vaigu custom
 int ItemTypeFunctions::luaItemTypeGetAllowDistRead(lua_State* L) {
 	// itemType:getAllowDistRead()
 	const ItemType* itemType = getUserdata<const ItemType>(L, 1);

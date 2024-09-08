@@ -18,7 +18,7 @@ Blessings.Credits = {
 		"Check if store is inside lua or source...",
 	},
 }
--- Wykopots custom
+-- Vaigu custom
 DISABLE_TWIST_OF_FATE = true
 Blessings.Config = {
 	AdventurerBlessingLevel = configManager.getNumber(configKeys.ADVENTURERSBLESSING_LEVEL), -- Free full bless until level

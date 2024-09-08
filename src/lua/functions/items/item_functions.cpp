@@ -749,7 +749,7 @@ int ItemFunctions::luaItemGetDescription(lua_State* L) {
 	return 1;
 }
 
-// Wykopots custom
+// Vaigu custom
 int ItemFunctions::luaItemGetNameDescription(lua_State* L) {
 	// item:getNameDescription(distance)
 	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);

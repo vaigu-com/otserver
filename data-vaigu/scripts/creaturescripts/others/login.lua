@@ -170,7 +170,7 @@ function playerLogin.onLogin(player)
 	player:registerEvent("BossParticipation")
 	player:registerEvent("UpdatePlayerOnAdvancedLevel")
 
-	-- Wykopots custom
+	-- Vaigu custom
 	player:openChannel(3) -- General
 	player:openChannel(5) -- Trade
 	player:openChannel(7) -- Help

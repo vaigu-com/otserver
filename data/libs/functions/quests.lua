@@ -1,6 +1,6 @@
 dofile(DATA_DIRECTORY .. "/lib/core/quests.lua")
 
--- Wykopots custom
+-- Vaigu custom
 RegisterTasksInQuestsList()
 RegisterDailyTasksInQuestsList()
 if not LastQuestlogUpdate then

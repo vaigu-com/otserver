@@ -380,7 +380,7 @@ private:
 		registerMethod(L, "Player", "sendIconBakragore", PlayerFunctions::luaPlayerSendIconBakragore);
 		registerMethod(L, "Player", "removeIconBakragore", PlayerFunctions::luaPlayerRemoveIconBakragore);
 
-		// Wykopots custom
+		// Vaigu custom
 		registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerGetAttackSpeed);
 		registerMethod(L, "Player", "setAttackSpeed", PlayerFunctions::luaPlayerSetAttackSpeed);
 		registerMethod(L, "Player", "getLanguage", PlayerFunctions::luaPlayerGetLanguage);
@@ -752,7 +752,7 @@ private:
 	static int luaPlayerSendIconBakragore(lua_State* L);
 	static int luaPlayerRemoveIconBakragore(lua_State* L);
 
-	// Wykopots custom
+	// Vaigu custom
 	static int luaPlayerGetLanguage(lua_State* L);
 	static int luaPlayerSetLanguage(lua_State* L);
 	static int luaPlayerSetAttackSpeed(lua_State* L);
