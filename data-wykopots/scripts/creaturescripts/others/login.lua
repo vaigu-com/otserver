@@ -23,7 +23,7 @@ local playerLogin = CreatureEvent("PlayerLogin")
 function playerLogin.onLogin(player)
 	local afterLoginStr = ""
 	if player:getLastLoginSaved() <= 0 then
-		afterLoginStr = " Please choose your outfit."
+		afterLoginStr = "Please choose your outfit."
 		player:sendOutfitWindow()
 		player:sendTextMessage(MESSAGE_INFO_DESCR, "Premade action bars for every vocation are available in options.")
 		player:setStorageValue(Storage.EmoteSpells, 1) -- emote on first login
@@ -34,9 +34,8 @@ function playerLogin.onLogin(player)
 		afterLoginStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
 	end
 
-	local commandStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("AVAILABLE_COMMANDS")
-	local bugStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("YOU_CAN_REPORT_BUGS")
-
+	local commandStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
+	local bugStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("You can report ingame bugs using ctrl+z.")
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, bugStr)
@@ -44,9 +43,6 @@ function playerLogin.onLogin(player)
 	if isPremium(player) then
 		player:setStorageValue(Storage.PremiumAccount, 1)
 	end
-
-	local playerId = player:getId()
-	local playerGuid = player:getGuid()
 
 	-- Promotion
 	local vocation = player:getVocation()

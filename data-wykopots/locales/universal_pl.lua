@@ -1,4 +1,41 @@
 return {
+	["WELCOME_TO_SERVER"] = function()
+		return T("Witaj to :serverName:!", { serverName = configManager.getString(configKeys.SERVER_NAME) })
+	end,
+	["YOUR_LAST_VISIT"] = function(context)
+		return T("Twoja ostatnia wizyta byla :lastLogin:.", { lastLogin = os.date("%d-%m-%Y %X", context.player:getLastLoginSaved()) })
+	end,
+	["Please choose your outfit."] = "Ubierz sie jak Ci sie podoba.",
+	["Premade action bars for every vocation are available in options."] = "Domyslne paski ze skillami dla kazdej profesji znajdziesz w opcjach.",
+	["LIST_AVAILABLE_COMMANDS"] = "Lista dostepnych komend: !serverinfo - !language - !faq. Reszte znajdziesz pod !commands",
+	["You can report ingame bugs using ctrl+z."] = "Bledy w grze zglaszac mozesz poprzez ctrl+z.",
+	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
+		return T("Ty albo czlonek twojego zespolu nie moze jeszcze wejsc na :encounterName:.", { encounterName = context.encounterName })
+	end,
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT] = function(context)
+		return T("Musisz jeszcze odczekac :timeLeftString: aby wejsc na :encounterName:.", { encounterName = context.encounterName, timeLeftString = context.timeLeftString })
+	end,
+	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
+		return T("Ty albo czlonek twojego zespolu nie ma dostepu na :encounterName:.", { encounterName = context.encounterName })
+	end,
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function()
+		return T("Nie masz dostepu do :encounterName:")
+	end,
+	[ENCOUNTER_ERROR_CODES.ONLY_PLAYERS] = function()
+		return "W tej walce brac moga udzial tylko gracze!"
+	end,
+	[ENCOUNTER_ERROR_CODES.SOMEONE_INSIDE_ALREADY] = function(context)
+		return T("Ktos juz bierze udzial w :encounterName:.", { encounterName = context.encounterName })
+	end,
+	[ENCOUNTER_ERROR_CODES.STAND_ON_ENTRANCE] = function()
+		return "Aby zaczac, musisz stac w miejscu wyznaczonym do wejscia."
+	end,
+	[ENCOUNTER_ERROR_CODES.NO_LEVEL] = function(context)
+		return T("Ty albo czlonek twojego zespolu nie posiada wymaganego poziomu: :minLevel:.", { minLevel = context.requiredLevel })
+	end,
+	[ENCOUNTER_ERROR_CODES.ENCOUNTER_DISABLED] = function()
+		return "Ta walka jest tymaczosowo wylaczona."
+	end,
 	["YOU_CHANGED_YOUR_LOOTRATE"] = function(context)
 		return T("Zmieniles swoj loot rate na x:rate:", { rate = context.rate })
 	end,
