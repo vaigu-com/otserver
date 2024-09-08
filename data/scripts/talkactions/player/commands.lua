@@ -11,7 +11,7 @@ function commands.onSay(player, words, param)
 			if talkaction:getGroupType() <= playerGroupId then
 				text = text .. talkaction:getName()
 
-				description = talkaction:getDescription()
+				local description = talkaction:getDescription()
 
 				if description ~= "" then
 					text = text .. " " .. talkaction:getDescription()
