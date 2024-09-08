@@ -349,11 +349,8 @@ function Player:AddCustomItem(item, container)
 		addItem = inbox:addItem(id, count)
 		addItem:setOwner(self)
 		addItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
-	elseif item.addToBody == true then
-		container = nil
-		addItem = self:addItem(id, count)
 	else
-		container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
+		container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
 		addItem = container:addItem(id, count)
 	end
 
