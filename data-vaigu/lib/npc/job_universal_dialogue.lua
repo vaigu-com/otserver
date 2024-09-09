@@ -1,6 +1,6 @@
 local topicsWildcard = { sayingWildcardNumber = 1, confirmingNwildcards = 2 }
 
-NPC_UNIVERSAL_DIALOGUES = {
+NPC_UNIVERSAL_DIALOGS = {
 	[JOB_SOULORB] = {
 		[{ "soul orb", "soul orbs", "soul" }] = {
 			text = "I can craft infernal bolts out of {soul orb} for you. I learned that from the Devil himself. Do you want to exchange all of your soul orbs?",
@@ -28,7 +28,7 @@ NPC_UNIVERSAL_DIALOGUES = {
 				max = topicsWildcard.sayingWildcardNumber,
 			},
 			specialActionsOnSuccess = {
-				{ action = SPECIAL_ACTIONS_UNIVERSAL.setCustomConversationDataAsNumber },
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.SetCustomDialogDataAsNumber, key = "orderedCards" },
 			},
 			specialConditions = {
 				{
@@ -210,7 +210,7 @@ NPC_UNIVERSAL_DIALOGUES = {
 				},
 			},
 			specialActionsOnSuccess = {
-				{ action = SPECIAL_ACTIONS_IMBUING.chargeTaskPoints },
+				{ action = SPECIAL_ACTIONS_IMBUING.removeTaskPointsByImbuing },
 			},
 		},
 	},

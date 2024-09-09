@@ -48,12 +48,12 @@ QUEST_NOT_STARTED = -1
 CONDITION_STATUS = {
 	CONDITION_PASSED = "CONDITION_PASSED",
 	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
-	SKIP_DIALOGUE = "SKIP_DIALOGUE",
+	SKIP_DIALOG = "SKIP_DIALOG",
 	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
 	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
 }
 
-DISCARD_DIALOGUE = "DISCARD_DIALOGUE"
+DISCARD_DIALOG = "DISCARD_DIALOG"
 SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
 FAIL_RESOLVE = "FAIL_RESOLVE"
 
@@ -224,22 +224,22 @@ function AddExperienceWithAnnouncement(player, exp)
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
 end
 
----@class ConversationContext
+---@class DialogContext
 ---@field player Player player object
 ---@field cid number player id
 ---@field msg string player message
----@field npcConversationData table conversation and dialogues
+---@field npcDialogData table Dialog and dialogs
 ---@field npcHandler table
 ---@field npc userdata npc object
 ---@field specialMessageType string
 ---@field questlineAid number
----@field dialogues table
+---@field dialogs table
 ---@field requirements table
 ---@alias Player table
-ConversationContext = {}
-ConversationContext.__index = ConversationContext
-setmetatable(ConversationContext, {
-	__call = function(class, player, msg, npcConversationData, npcHandler, npc, specialMessageType)
+DialogContext = {}
+DialogContext.__index = DialogContext
+setmetatable(DialogContext, {
+	__call = function(class, player, msg, npcDialogData, npcHandler, npc, specialMessageType)
 		local instance = setmetatable({}, class)
 		instance.player = player
 		instance.cid = player:getId()
@@ -247,7 +247,7 @@ setmetatable(ConversationContext, {
 		if specialMessageType then
 			instance.msg = specialMessageTypeToMessage[specialMessageType]
 		end
-		instance.npcConversationData = npcConversationData
+		instance.npcDialogData = npcDialogData
 		instance.npcHandler = npcHandler
 		instance.npc = npc
 		instance.specialMessageType = specialMessageType
@@ -276,7 +276,7 @@ local actionsWhitelist = {
 	nextState = true,
 	nextGlobalState = true,
 	nextTopic = true,
-	setLastMessageData = true,
+	addDialogData = true,
 	text = true,
 }
 
@@ -298,7 +298,7 @@ setmetatable(ResolutionContext, {
 	end,
 })
 
-function ResolutionContext.FromConversationContext(context, data)
+function ResolutionContext.FromDialogContext(context, data)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
 	newObj:ParseRequirementsActionsOther(context)
@@ -349,12 +349,12 @@ function ResolutionContext.FromCustomItemState(item, player)
 	return newObj
 end
 
-function ConversationContext:SendIncomprehensibleError()
+function DialogContext:SendIncomprehensibleError()
 	local player = self.player
 	local npc = self.npc
 	local npcHandler = self.npcHandler
-	local npcConversationData = self.npcConversationData
-	local errorMessageIdentifier = npcConversationData["INCOMPREHENSIBLE"] or "INCOMPREHENSIBLE"
+	local npcDialogData = self.npcDialogData
+	local errorMessageIdentifier = npcDialogData["INCOMPREHENSIBLE"] or "INCOMPREHENSIBLE"
 	local errorMessage = player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
 	npcHandler:say(errorMessage, npc, player)
 	return true
@@ -397,7 +397,7 @@ PATTERN_MESSAGE_TYPE = {
 	KEYWORD = "KEYWORD",
 }
 
-function ConversationContext:ExtractPatternFields()
+function DialogContext:ExtractPatternFields()
 	local playerWords = {}
 	local requiredFields = 0
 	for k in self.pattern:gmatch("[^%s]+") do
@@ -420,7 +420,7 @@ function ConversationContext:ExtractPatternFields()
 	return playerWords, requiredFields
 end
 
-function ConversationContext:IfPlayerMessageConformsToPattern(playerWords, requiredFields)
+function DialogContext:IfPlayerMessageConformsToPattern(playerWords, requiredFields)
 	local i = 1
 	local requiredWordsSet = 0
 	for k in self.msg:gmatch("[^%s]+") do
@@ -445,12 +445,12 @@ function ConversationContext:IfPlayerMessageConformsToPattern(playerWords, requi
 	return true
 end
 
-function ConversationContext:MatchPattern()
+function DialogContext:MatchPattern()
 	local allPatternFields, patternRequiredFields = self:ExtractPatternFields()
 	return self:IfPlayerMessageConformsToPattern(allPatternFields, patternRequiredFields)
 end
 
-function ConversationContext:PlayerSaidRequiredWord()
+function DialogContext:PlayerSaidRequiredWord()
 	local msg = self.msg
 	local pattern = self.keyword
 	if type(pattern) ~= "table" then
@@ -471,27 +471,27 @@ function ConversationContext:PlayerSaidRequiredWord()
 end
 
 -- refer to quest_system_doc.lua for guidelines
-function TryResolveConversation(player, msg, npcConversationData, npcHandler, npc, messageType)
+function TryResolveDialog(player, msg, npcDialogData, npcHandler, npc, messageType)
 	player = Player(player)
-	local conversationContext = ConversationContext(player, msg, npcConversationData, npcHandler, npc, messageType)
-	return conversationContext:TryResolveConversation():IsResolved()
+	local dialogContext = DialogContext(player, msg, npcDialogData, npcHandler, npc, messageType)
+	return dialogContext:TryResolveDialog():IsResolved()
 end
 
-function ConversationContext:ResolveUniversalQuest()
-	local universalKeywordToDialogue = self.npcConversationData[LOCALIZER_UNIVERSAL]
-	if not universalKeywordToDialogue then
+function DialogContext:ResolveUniversalQuest()
+	local universalKeywordToDialog = self.npcDialogData[LOCALIZER_UNIVERSAL]
+	if not universalKeywordToDialog then
 		return
 	end
 	self.questlineAid = nil
-	self.keywordToDialogue = universalKeywordToDialogue
+	self.keywordToDialog = universalKeywordToDialog
 	self:ResolveQuestState()
 	if self:IsResolved() then
 		return
 	end
 end
 
-function ConversationContext:ResolveQuests()
-	for questlineAid, stateToKeywords in pairs(self.npcConversationData) do
+function DialogContext:ResolveQuests()
+	for questlineAid, stateToKeywords in pairs(self.npcDialogData) do
 		if questlineAid == LOCALIZER_UNIVERSAL then
 			goto continue
 		end
@@ -509,12 +509,12 @@ function ConversationContext:ResolveQuests()
 	self:ResolveUniversalQuest()
 end
 
-function ConversationContext:ResolveQuestsAnyMsg()
+function DialogContext:ResolveQuestsAnyMsg()
 	self.msg = ANY_MESSAGE
 	self:ResolveQuests()
 end
 
-function ConversationContext:SetDefaultGreetFarewellWalkaway()
+function DialogContext:SetDefaultGreetFarewellWalkaway()
 	if not self.specialMessageType then
 		return
 	end
@@ -523,18 +523,18 @@ function ConversationContext:SetDefaultGreetFarewellWalkaway()
 	self.resolvedStatus = SUCCESS_RESOLVE
 end
 
-local conversationResolvers = {
-	ConversationContext.ResolveQuests,
-	ConversationContext.SetDefaultGreetFarewellWalkaway,
-	ConversationContext.ResolveQuestsAnyMsg,
+local dialogResolvers = {
+	DialogContext.ResolveQuests,
+	DialogContext.SetDefaultGreetFarewellWalkaway,
+	DialogContext.ResolveQuestsAnyMsg,
 }
 
-function ConversationContext:TryResolveConversation()
+function DialogContext:TryResolveDialog()
 	if not self.msg then
 		return self
 	end
 
-	for _, resolver in pairs(conversationResolvers) do
+	for _, resolver in pairs(dialogResolvers) do
 		resolver(self)
 		if self:IsResolved() then
 			return self
@@ -544,15 +544,15 @@ function ConversationContext:TryResolveConversation()
 	return self
 end
 
-function ConversationContext:ResolveQuest()
+function DialogContext:ResolveQuest()
 	local state = self.player:getStorageValue(self.questlineAid)
 	self.state = state
-	for requiredState, keywordToDialogue in pairs(self.stateToKeywords) do
+	for requiredState, keywordToDialog in pairs(self.stateToKeywords) do
 		local canProceed = hasRequiredQuestlineState(state, requiredState)
 		if not canProceed then
 			goto continue
 		end
-		self.keywordToDialogue = keywordToDialogue
+		self.keywordToDialog = keywordToDialog
 		self:ResolveQuestState()
 		if self:IsResolved() then
 			return
@@ -561,17 +561,17 @@ function ConversationContext:ResolveQuest()
 	end
 end
 
-function ConversationContext:ResolveQuestState()
-	if not self.keywordToDialogue then
+function DialogContext:ResolveQuestState()
+	if not self.keywordToDialog then
 		return
 	end
 
-	for keyword, data in pairs(self.keywordToDialogue) do
+	for keyword, data in pairs(self.keywordToDialog) do
 		self.keyword = keyword
 		if not self:PlayerSaidRequiredWord() then
 			goto continue
 		end
-		local resolutionContext = ResolutionContext.FromConversationContext(self, data)
+		local resolutionContext = ResolutionContext.FromDialogContext(self, data)
 		self.resolvedStatus = resolutionContext:Resolve()
 		if self:IsResolved() then
 			return
@@ -580,7 +580,7 @@ function ConversationContext:ResolveQuestState()
 	end
 end
 
-function ConversationContext:IsResolved()
+function DialogContext:IsResolved()
 	return self.resolvedStatus == SUCCESS_RESOLVE or self.resolvedStatus == FAIL_RESOLVE
 end
 
@@ -600,8 +600,8 @@ function ParseTopicMinMax(config)
 end
 
 -- ToDo: if text on fail: CONDITION_NOT_PASSED
---		else: SKIP_DIALOGUE
--- Dialogue requirements
+--		else: SKIP_DIALOG
+-- Dialog requirements
 function ResolutionContext:CheckTopic()
 	local requirements = self.requirements
 	if not requirements.requiredTopic then
@@ -611,7 +611,7 @@ function ResolutionContext:CheckTopic()
 	local topic = self.npcHandler.topic[self.cid]
 	local min, max = ParseTopicMinMax(requirements)
 	if topic < min or topic > max then
-		return CONDITION_STATUS.SKIP_DIALOGUE
+		return CONDITION_STATUS.SKIP_DIALOG
 	end
 	return CONDITION_STATUS.CONDITION_PASSED
 end
@@ -706,7 +706,7 @@ function ResolutionContext:CheckSpecialConditions()
 	return CONDITION_STATUS.CONDITION_PASSED
 end
 
--- Dialogue actions (on success)
+-- Dialog actions (on success)
 function ResolutionContext:TriggerSpecialActions()
 	local actions = self.actionsOnSuccess
 	if not actions.specialActionsOnSuccess then
@@ -821,10 +821,10 @@ function ResolutionContext:SetNextTopic()
 	end, 5)
 end
 
-function ResolutionContext:SetLastMessageData()
+function ResolutionContext:AddDialogData()
 	local actions = self.actionsOnSuccess
-	if actions.setLastMessageData ~= false then
-		self.player:SetLastMessageData(self)
+	if actions.addDialogData ~= false then
+		PlayerDialogDataRegistry:Get(self.player):Add(self)
 	end
 end
 
@@ -884,7 +884,7 @@ local actionsOnSuccessfulResolution = {
 	ResolutionContext.UpdatePlayerState,
 	ResolutionContext.UpdateGlobalState,
 	ResolutionContext.SetNextTopic,
-	ResolutionContext.SetLastMessageData,
+	ResolutionContext.AddDialogData,
 	ResolutionContext.TrySendTranslateSuccessMessage,
 }
 
@@ -911,10 +911,11 @@ function ResolutionContext:Resolve()
 			self:TrySendTranslateFailMessage()
 			return FAIL_RESOLVE
 		end
-		return DISCARD_DIALOGUE
+		return DISCARD_DIALOG
 	end
 
 	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
+		self.lastDialogData = PlayerDialogDataRegistry:Get(self.player):Latest()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
 	end
@@ -922,37 +923,100 @@ end
 
 function InitializeResponses(player, config, npcHandler, npc, msg)
 	player = Player(player)
-	player:SetCustomConversationData(nil)
+
+	PlayerDialogDataRegistry:Register(player)
 	local cid = player:getId()
 
 	--ToDo: does it work? or should it be done with addEvent?
 	npcHandler.topic[cid] = 0
 
 	for _, specialMessageType in pairs(specialMessageTypes) do
-		local conversationContext = ConversationContext(player, msg, config, npcHandler, npc, specialMessageType)
-		if not conversationContext:TryResolveConversation():IsResolved() then
+		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
+		if not dialogContext:TryResolveDialog():IsResolved() then
 			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end
 end
 
-local playerIdToLastMessageData = {}
-local playerIdToCustomConversationData = {}
-function Player:SetLastMessageData(data)
-	playerIdToLastMessageData[self:getId()] = data
+PlayerDialogData = {}
+PlayerDialogDataRegistry = {}
+PlayerDialogDataRegistry.__index = PlayerDialogDataRegistry
+PlayerCustomDialogDataRegistry = {}
+PlayerCustomDialogDataRegistry.__index = PlayerCustomDialogDataRegistry
+local playerDialogDataRegistrySingleton = nil
+local playerCustomnDialogDataRegistrySingleton = nil
+setmetatable(PlayerDialogData, {
+	__call = function(class, ...)
+		return class:New(...)
+	end,
+})
+function PlayerDialogData:New()
+	local newObj = {}
+	setmetatable(newObj, PlayerDialogData)
+	newObj.data = {}
+	self.__index = self
+	return newObj
+end
+setmetatable(PlayerDialogDataRegistry, {
+	__call = function(class, ...)
+		return class:New(...)
+	end,
+})
+function PlayerDialogDataRegistry:New()
+	if playerDialogDataRegistrySingleton then
+		return playerDialogDataRegistrySingleton
+	end
+	playerDialogDataRegistrySingleton = {}
+	setmetatable(playerDialogDataRegistrySingleton, PlayerDialogDataRegistry)
+	self.__index = self
+	playerDialogDataRegistrySingleton.registry = {}
+
+	return playerDialogDataRegistrySingleton
+end
+setmetatable(PlayerCustomDialogDataRegistry, {
+	__call = function(class, ...)
+		return class:New(...)
+	end,
+})
+function PlayerCustomDialogDataRegistry:New()
+	if playerCustomnDialogDataRegistrySingleton then
+		return playerCustomnDialogDataRegistrySingleton
+	end
+	playerCustomnDialogDataRegistrySingleton = {}
+	setmetatable(playerCustomnDialogDataRegistrySingleton, PlayerCustomDialogDataRegistry)
+	self.__index = self
+	playerCustomnDialogDataRegistrySingleton.registry = {}
+	return playerCustomnDialogDataRegistrySingleton
 end
 
-function Player:GetLastMessageData()
-	return playerIdToLastMessageData[self:getId()]
+function PlayerDialogData:Add(data)
+	table.insert(self.data, data)
+	return self
+end
+function PlayerDialogData:Latest()
+	return self.data[#self.data]
+end
+function PlayerDialogData:ByIndex(index)
+	return self.data[index]
 end
 
-function Player:SetCustomConversationData(data)
-	playerIdToCustomConversationData[self:getId()] = data
+function PlayerDialogDataRegistry:Register(player)
+	self.registry = {}
+	self.registry[player:getId()] = PlayerDialogData()
+	return self.registry[player:getId()]
+end
+function PlayerDialogDataRegistry:Get(player)
+	return self.registry[player:getId()]
 end
 
-function Player:GetCustomConversationData()
-	return playerIdToCustomConversationData[self:getId()]
+function PlayerCustomDialogDataRegistry:Register(player)
+	self.registry[player:getId()] = PlayerDialogData()
+	return self.registry[player:getId()]
+end
+
+function PlayerCustomDialogDataRegistry:Get(player)
+	return self.registry[player:getId()]
 end
 
 function dump2(object)

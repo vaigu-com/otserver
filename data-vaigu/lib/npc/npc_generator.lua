@@ -1,29 +1,29 @@
-local function getJobStateDialogues(jobs)
-	local totalDialogues = {}
+local function getJobStateDialogs(jobs)
+	local totalDialogs = {}
 	for _, job in pairs(jobs) do
-		totalDialogues = MergedTable(totalDialogues, NPC_STATE_DIALOGUES[job])
+		totalDialogs = MergedTable(totalDialogs, NPC_STATE_DIALOGS[job])
 	end
-	return totalDialogues
+	return totalDialogs
 end
 
 local function getJobConfigs(jobs)
 	local totalShop = {}
-	local totalDialogues = {}
+	local totalDialogs = {}
 	for _, job in pairs(jobs) do
 		totalShop = MergedTable(totalShop, NPC_SHOP_TABLES[job])
-		totalDialogues = MergedTable(totalDialogues, NPC_UNIVERSAL_DIALOGUES[job])
+		totalDialogs = MergedTable(totalDialogs, NPC_UNIVERSAL_DIALOGS[job])
 	end
 
-	return totalShop, totalDialogues
+	return totalShop, totalDialogs
 end
 
 ---@param internalNpcName string string required
 ---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
 ---@param npcDescription string? optional - greentext when using look on npc, Default: "a " + internalNpcName
 ---@param greetJob string? sets default greet message based on this job
----@param jobs table? jobs that will determine dialogues and shop content
+---@param jobs table? jobs that will determine dialogs and shop content
 ---@param outfit table outfit required
----@param dialogues table? custom dialogues that can override job dialogues
+---@param dialogs table? custom dialogs that can override job dialogs
 ---@param voices table? orange color text that npc may or may not say from time to time
 function CreateNpcDefinition(context)
 	local name = context.internalNpcName or context.name
@@ -33,26 +33,26 @@ function CreateNpcDefinition(context)
 	local greetJob = context.greetJob
 	local jobs = context.jobs
 	local outfit = context.outfit
-	local userDialogues = context.dialogues
+	local userDialogs = context.dialogs
 	local customShop = context.shop
 	local voices = context.voices
 
-	local shop, jobDialoguesUniversal = getJobConfigs(jobs)
+	local shop, jobDialogsUniversal = getJobConfigs(jobs)
 	--ToDo: check if this should be removed
-	--jobDialogues = MergedTable(jobDialogues, userDialogues)
+	--jobDialogs = MergedTable(jobDialogs, userDialogs)
 	shop = MergedTable(shop, customShop)
 
-	local jobStateDialogues = getJobStateDialogues(jobs)
+	local jobStateDialogs = getJobStateDialogs(jobs)
 
-	local allDialogues = {}
-	allDialogues[LOCALIZER_UNIVERSAL] = jobDialoguesUniversal
-	allDialogues[LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
-	allDialogues = MergedTable(allDialogues, jobStateDialogues)
-	allDialogues = MergedTable(allDialogues, userDialogues)
+	local allDialogs = {}
+	allDialogs[LOCALIZER_UNIVERSAL] = jobDialogsUniversal
+	allDialogs[LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
+	allDialogs = MergedTable(allDialogs, jobStateDialogs)
+	allDialogs = MergedTable(allDialogs, userDialogs)
 
 	local npcConfig = {}
 	npcConfig.shop = shop
-	npcConfig.dialogues = allDialogues
+	npcConfig.dialogs = allDialogs
 
 	npcConfig.name = displayName or name
 	npcConfig.description = onlookName or ("a " .. name)
@@ -108,7 +108,7 @@ function CreateNpcDefinition(context)
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
 	local function greetCallback(npc, creature, type, message)
-		InitializeResponses(creature, npcConfig.dialogues, npcHandler, npc)
+		InitializeResponses(creature, npcConfig.dialogs, npcHandler, npc)
 		return true
 	end
 
@@ -116,7 +116,7 @@ function CreateNpcDefinition(context)
 		if not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end
-		return TryResolveConversation(creature, msg, npcConfig.dialogues, npcHandler, npc)
+		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc)
 	end
 
 	npcHandler:setCallback(CALLBACK_GREET, greetCallback)
