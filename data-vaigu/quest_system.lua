@@ -300,6 +300,7 @@ function ResolutionContext.FromConversationContext(context, data)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
 	newObj:ParseRequirementsActionsOther(context)
+	newObj:ParseRequirementsActionsOther(data)
 	newObj.__index = newObj
 	return newObj
 end
@@ -332,7 +333,8 @@ function ResolutionContext.FromEncounter(encounterData, player)
 	newObj:ParseRequirementsActionsOther(encounterData)
 	newObj.questlineAid = encounterData.questlineAid
 	newObj.player = player
-	newObj.__index = ResolutionContext	return newObj
+	newObj.__index = ResolutionContext
+	return newObj
 end
 
 function ResolutionContext.FromCustomItemState(item, player)
@@ -522,7 +524,6 @@ function ResolutionContext:CheckTopic()
 	end
 
 	local topic = self.npcHandler.topic[self.cid]
-
 	local min, max = ParseTopicMinMax(requirements)
 	if topic < min or topic > max then
 		return CONDITION_STATUS.SKIP_DIALOGUE
@@ -535,6 +536,7 @@ function ResolutionContext:CheckRequiredItems()
 	if not requirements.requiredItems then
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
+
 	if not self.player:HasItems(requirements.requiredItems) then
 		self.errorMessage = requirements.textNoRequiredItems
 		return CONDITION_STATUS.CONDITION_NOT_PASSED
@@ -547,6 +549,7 @@ function ResolutionContext:CheckRequiredState()
 	if not requirements.requiredState then
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
+
 	if not self.player:HasCorrectStorageValues(requirements.requiredState) then
 		self.errorMessage = requirements.textNoRequiredState
 		return CONDITION_STATUS.CONDITION_NOT_PASSED
@@ -559,6 +562,7 @@ function ResolutionContext:CheckGlobalState()
 	if not requirements.requiredGlobalState then
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
+
 	for key, value in pairs(requirements.requiredGlobalState) do
 		if Game.getStorageValue(key) ~= value then
 			self.errorMessage = requirements.textNoRequiredGlobalState
@@ -573,6 +577,7 @@ function ResolutionContext:CheckCanAddRewards()
 	if not actions.rewards then
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
+
 	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.questlineAid)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
@@ -587,6 +592,7 @@ function ResolutionContext:CheckRequiredMoney()
 	if not requirements.requiredMoney then
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
+
 	local balance = Bank.balance(self.player)
 	local playerMoney = self.player:getMoney()
 	local totalPlayerMoney = balance + playerMoney
@@ -602,6 +608,7 @@ function ResolutionContext:CheckSpecialConditions()
 	if not requirements.specialConditions then
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
+
 	for _, context in pairs(requirements.specialConditions) do
 		local conditionContext = MergedTable(context, self)
 		local condition = conditionContext.condition
@@ -620,6 +627,7 @@ function ResolutionContext:TriggerSpecialActions()
 	if not actions.specialActionsOnSuccess then
 		return
 	end
+
 	for _, context in pairs(actions.specialActionsOnSuccess) do
 		local action = context.action
 		local actionContext = MergedTable(action, self)
@@ -634,6 +642,7 @@ function ResolutionContext:RemoveRequiredItems()
 	if not requirements.requiredItems then
 		return
 	end
+
 	if actions.removeRequiredItems ~= false then
 		self.player:RemoveItems(actions.requiredItems)
 	end
@@ -644,6 +653,7 @@ function ResolutionContext:AddRewards()
 	if not actions.rewards then
 		return
 	end
+
 	self.player:AddItems(actions.rewards)
 end
 
@@ -652,6 +662,7 @@ function ResolutionContext:RemoveRequiredMoney()
 	if not requirements.requiredMoney then
 		return
 	end
+
 	self.player:removeMoneyBank(requirements.requiredMoney)
 end
 
@@ -660,6 +671,7 @@ function ResolutionContext:SpawnMonsters()
 	if not actions.spawnMonstersOnSuccess then
 		return
 	end
+
 	for monsterName, count in pairs(actions.spawnMonstersOnSuccess) do
 		for _ = 1, count do
 			Game.createMonster(monsterName, self.player:getPosition())
@@ -672,6 +684,7 @@ function ResolutionContext:AddOutfits()
 	if not actions.outfitRewards then
 		return
 	end
+
 	self.player:AddOutfitsAndAddons(actions.outfitRewards)
 end
 
@@ -680,6 +693,7 @@ function ResolutionContext:AddMounts()
 	if not actions.mountRewards then
 		return
 	end
+
 	self.player:AddMounts(actions.mountRewards)
 end
 
@@ -688,6 +702,7 @@ function ResolutionContext:AddExperience()
 	if not actions.expReward then
 		return
 	end
+
 	AddExperienceWithAnnouncement(self.player, actions.expReward)
 end
 
@@ -696,6 +711,7 @@ function ResolutionContext:UpdatePlayerState()
 	if not actions.nextState then
 		return
 	end
+
 	self.player:UpdateStorages(actions.nextState)
 end
 
@@ -704,6 +720,7 @@ function ResolutionContext:UpdateGlobalState()
 	if not actions.nextGlobalState then
 		return
 	end
+
 	UpdateGlobalStorages(actions.nextGlobalState)
 end
 
@@ -712,6 +729,7 @@ function ResolutionContext:SetNextTopic()
 	if not actions.nextTopic then
 		return
 	end
+
 	self.npcHandler.topic[self.cid] = actions.nextTopic
 	addEvent(function()
 		self.npcHandler.topic[self.cid] = actions.nextTopic
@@ -725,12 +743,29 @@ function ResolutionContext:SetLastMessageData()
 	end
 end
 
-function ResolutionContext:TrySendTranslatedMessage()
+function ResolutionContext:TrySendTranslateSuccessMessage()
 	if not self.actionsOnSuccess.text then
 		return
 	end
 
 	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.actionsOnSuccess.text)
+	if not translatedMessage then
+		return
+	end
+
+	if self.specialMessageType then
+		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
+	else
+		self.npcHandler:say(translatedMessage, self.npc, self.player)
+	end
+end
+
+function ResolutionContext:TrySendTranslateFailMessage()
+	if not self.actionsOnSuccess.text then
+		return
+	end
+
+	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
 		return
 	end
@@ -765,17 +800,17 @@ local actionsOnSuccessfulResolution = {
 	ResolutionContext.UpdateGlobalState,
 	ResolutionContext.SetNextTopic,
 	ResolutionContext.SetLastMessageData,
-	ResolutionContext.TrySendTranslatedMessage,
+	ResolutionContext.TrySendTranslateSuccessMessage,
 }
 
 function ResolutionContext:ConditionsArePassable()
 	for _, condition in pairs(resolutionConditions) do
 		local status = condition(self)
 		if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
+			return CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED
 		end
 	end
-	return SUCCESS_RESOLVE
+	return CONDITION_STATUS.ALL_CONDITIONS_PASSED
 end
 
 function ResolutionContext:ActionsOnSuccess()
@@ -786,15 +821,15 @@ end
 
 function ResolutionContext:Resolve()
 	local status = self:ConditionsArePassable()
-	if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
+	if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 		if self.errorMessage then
-			self:TrySendTranslatedMessage(self.errorMessage)
+			self:TrySendTranslateFailMessage()
 			return FAIL_RESOLVE
 		end
 		return DISCARD_DIALOGUE
 	end
 
-	if status == CONDITION_STATUS.CONDITION_PASSED then
+	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
 	end
