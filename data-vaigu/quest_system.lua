@@ -49,6 +49,8 @@ CONDITION_STATUS = {
 	CONDITION_PASSED = "CONDITION_PASSED",
 	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
 	SKIP_DIALOGUE = "SKIP_DIALOGUE",
+	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
+	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
 }
 
 DISCARD_DIALOGUE = "DISCARD_DIALOGUE"
@@ -376,13 +378,96 @@ local function hasRequiredQuestlineState(state, requiredState)
 	return true
 end
 
+local function isPattern(pattern)
+	do
+		return true
+	end
+	if pattern:gmatch("<[^%s]->")() then
+		return true
+	end
+	if pattern:gmatch("%[[^%s]-%]")() then
+		return true
+	end
+	return false
+end
+
+PATTERN_MESSAGE_TYPE = {
+	REQUIRED = "REQUIRED",
+	OPTIONAL = "OPTIONAL",
+	KEYWORD = "KEYWORD",
+}
+
+function ConversationContext:ExtractPatternFields()
+	local playerWords = {}
+	local requiredFields = 0
+	for k in self.pattern:gmatch("[^%s]+") do
+		local wordData = {
+			word = k,
+			messageType = PATTERN_MESSAGE_TYPE.KEYWORD,
+		}
+		if k:gmatch("<.*>")() then
+			wordData.word = k:gmatch("[^<>]+")()
+			wordData.messageType = PATTERN_MESSAGE_TYPE.REQUIRED
+			requiredFields = requiredFields + 1
+		end
+		if k:gmatch("%[.*%]")() then
+			wordData.word = k:gmatch("[^%[%]]+")()
+			wordData.messageType = PATTERN_MESSAGE_TYPE.OPTIONAL
+		end
+
+		table.insert(playerWords, wordData)
+	end
+	return playerWords, requiredFields
+end
+
+function ConversationContext:IfPlayerMessageConformsToPattern(playerWords, requiredFields)
+	local i = 1
+	local requiredWordsSet = 0
+	for k in self.msg:gmatch("[^%s]+") do
+		local playerWordData = playerWords[i]
+		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.KEYWORD then
+			if playerWordData.word ~= k then
+				return false
+			end
+		end
+		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.REQUIRED then
+			self[playerWordData.word] = k
+			requiredWordsSet = requiredWordsSet + 1
+		end
+		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.OPTIONAL then
+			self[playerWordData.word] = k
+		end
+		i = i + 1
+	end
+	if requiredWordsSet < requiredFields then
+		return false
+	end
+	return true
+end
+
+function ConversationContext:MatchPattern()
+	local allPatternFields, patternRequiredFields = self:ExtractPatternFields()
+	return self:IfPlayerMessageConformsToPattern(allPatternFields, patternRequiredFields)
+end
+
 function ConversationContext:PlayerSaidRequiredWord()
 	local msg = self.msg
-	local keyword = self.keyword
-	if type(keyword) ~= "table" then
-		return keyword == msg
+	local pattern = self.keyword
+	if type(pattern) ~= "table" then
+		pattern = { pattern }
 	end
-	return table.contains(keyword, self.msg)
+	if not isPattern(pattern) then
+		return table.contains(pattern, msg)
+	end
+
+	for _, value in pairs(pattern) do
+		self.pattern = value
+		if self:MatchPattern() then
+			return true
+		end
+	end
+
+	return false
 end
 
 -- refer to quest_system_doc.lua for guidelines
