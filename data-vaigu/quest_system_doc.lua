@@ -1,3 +1,4 @@
+do return end
 -- Terminology:
 --  processing: The npc system is going through all npc dialogues and determines if player meets the requirement for the dialogues
 --  discarded: A dialogue processing has been cancelled and another dialogue will be processed
@@ -5,7 +6,7 @@
 --   success-resolved: Npc will say text that is supposed to be shown on success for this dialogue. Actions on success (eg. rewards, special effects) will all be perfomed for this dialogue
 --   fail-resolved: Npc will say text that corresponds to the reason of this dialogue fail. Actions on success wont be performed for this dialogue
 
-local function exampleDialogue(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, setLastMessageData)
+local function exampleDialogue(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogueData)
 	-- Topic required to resolve this dialogue.
 	-- Int:
 	--	min = argument, Default: nil
@@ -57,8 +58,30 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 			},
 		},
 	}
+	-- Use <> and [] to match word as variable
+	-- <> means the variable is required
+	-- [] means variable is optional
+	-- Example:
+	--	"withdraw <amount>" will put amount field with value passed by user in ResolutionContext
+	local dialogues2 = {
+		[{ "withdraw <amount>" }] = {
+			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
+			nextTopic = JOB_TOPICS[JOB_BANK].confirmWithdrawing,
+		},
+		[{"yes","tak"}] = {
+			text = "YOU_WITHDREW_MONEY",
+		}
+	}
+	translationTable = {
+		["WOULD_YOU_LIKE_TO_WITHDRAW"] = function(context)
+			return T("Would you like to withdraw :amount:?", { amount = context.amount })
+		end,
+		["YOU_WITHDREW_MONEY"] = function (context)
+			return T("Would you like to withdraw :amount:?", { amount = context.lastMessageData.amount })
+		end
+	}
 
-	-- Specifies the topic to be set for this conversation on success-resolve
+	-- Specifies the topic to be set for this Dialogue on success-resolve
 	nextTopic = 1
 
 	-- Specifies the required storage states for player to be able to success-resolve this dialogue
@@ -141,12 +164,12 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 	-- ToDo: text for each unmatched item
 	textNoRequiredItems = "Oh nooo, you dont have that item! :("
 
-	-- Npc will say it if conversation i success-resolved
+	-- Npc will say it if Dialogue i success-resolved
 	text = "O tempora, {o mores}! What do you want from me?"
 
-	-- Specifies the money needed to success-resolve the conversation
+	-- Specifies the money needed to success-resolve the Dialogue
 	-- Npc will say corresponding line when you dont have the money
-	-- This money will only be removed if conversation is sucess-resolved
+	-- This money will only be removed if Dialogue is sucess-resolved
 	-- Counts money from backpack and the bank
 	requiredMoney = 10
 
@@ -278,7 +301,7 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 
 	-- If dialogue is success-resolved, sets dialogue context in the global variable associated with player
 	-- Default: true
-	setLastMessageData = false
+	addDialogueData = false
 end
 
 --Example npc with dialogues
@@ -464,7 +487,7 @@ local function exampleNpc()
 		if not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end
-		return TryResolveConversation(creature, msg, dialogues, npcHandler, npc)
+		return TryResolveDialogue(creature, msg, dialogues, npcHandler, npc)
 	end
 
 	npcHandler:setCallback(CALLBACK_GREET, greetCallback)
