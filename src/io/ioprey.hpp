@@ -156,12 +156,12 @@ public:
 		else {
 			bonusRarity = bonusRarity - (int)floor(log2(bonusRarity));
 		}
-		updateBonusPercentage();
 
 		state = PreyDataState_Selection;
 		option = PreyOption_None;
 		selectedRaceId = 0;
 		bonusTimeLeft = 0;
+		updateBonusPercentage();
 	}
 
 	void reloadBonusValue() {
@@ -173,7 +173,9 @@ public:
 		else if (roll <= 20) {
 			bonusRarity--;
 		}
+		updateBonusPercentage();
 		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		updateBonusPercentage();
 	}
 
 	void reloadBonusType() {
