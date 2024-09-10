@@ -117,6 +117,8 @@ local function useStamina(player, isStaminaEnabled, raceId)
 	if not player then
 		return false
 	end
+	
+	usePreyStamina(player, 120, raceId)
 
 	local staminaMinutes = player:getStamina()
 	if staminaMinutes == 0 then
@@ -144,7 +146,6 @@ local function useStamina(player, isStaminaEnabled, raceId)
 	end
 
 	_G.NextUseStaminaTime[playerId] = currentTime + 120
-	usePreyStamina(player, 120, raceId)
 	player:setStamina(staminaMinutes)
 end
 

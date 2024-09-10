@@ -398,10 +398,11 @@ int PlayerFunctions::luaPlayergetCharmMonsterType(lua_State* L) {
 }
 
 int PlayerFunctions::luaPlayerRemovePreyStamina(lua_State* L) {
-	// player:removePreyStamina(amount)
+	// player:removePreyStamina(amount, raceId)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
 	if (player) {
-		g_ioprey().checkPlayerPreys(player, getNumber<uint8_t>(L, 2, 1));
+		g_ioprey().reducePlayerPreyTime(player, getNumber<uint8_t>(L, 2, 1), getNumber<uint16_t>(L, 3, -1));
+		g_ioprey().updatePlayerPreyStatus(player);
 		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
