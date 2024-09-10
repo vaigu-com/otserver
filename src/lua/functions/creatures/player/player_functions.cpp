@@ -3329,6 +3329,17 @@ int PlayerFunctions::luaPlayerSetStaminaXpBoost(lua_State* L) {
 	return 1;
 }
 
+int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
+	// player:getXpBoostTime()
+	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	if (player) {
+		lua_pushnumber(L, player->getXpBoostTime());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int PlayerFunctions::luaPlayerSetXpBoostTime(lua_State* L) {
 	// player:setXpBoostTime(timeLeft)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
@@ -3343,11 +3354,15 @@ int PlayerFunctions::luaPlayerSetXpBoostTime(lua_State* L) {
 	return 1;
 }
 
-int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
-	// player:getXpBoostTime()
+int PlayerFunctions::luaPlayerAddXpBoostTime(lua_State* L) {
+	// player:addXpBoostTime(time)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
 	if (player) {
-		lua_pushnumber(L, player->getXpBoostTime());
+		uint16_t time = getNumber<uint16_t>(L, 2);
+		uint16_t timeLeft = player->getXpBoostTime();
+		player->setXpBoostTime(time + timeLeft);
+		player->sendStats();
+		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
 	}

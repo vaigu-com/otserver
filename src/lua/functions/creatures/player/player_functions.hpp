@@ -279,6 +279,7 @@ private:
 		registerMethod(L, "Player", "setStaminaXpBoost", PlayerFunctions::luaPlayerSetStaminaXpBoost);
 		registerMethod(L, "Player", "getXpBoostTime", PlayerFunctions::luaPlayerGetXpBoostTime);
 		registerMethod(L, "Player", "setXpBoostTime", PlayerFunctions::luaPlayerSetXpBoostTime);
+		registerMethod(L, "Player", "addXpBoostTime", PlayerFunctions::luaPlayerAddXpBoostTime);
 
 		registerMethod(L, "Player", "getIdleTime", PlayerFunctions::luaPlayerGetIdleTime);
 		registerMethod(L, "Player", "getFreeBackpackSlots", PlayerFunctions::luaPlayerGetFreeBackpackSlots);
@@ -655,6 +656,7 @@ private:
 	static int luaPlayerSetStaminaXpBoost(lua_State* L);
 	static int luaPlayerGetXpBoostTime(lua_State* L);
 	static int luaPlayerSetXpBoostTime(lua_State* L);
+	static int luaPlayerAddXpBoostTime(lua_State* L); // Wykopots custom
 
 	static int luaPlayerGetIdleTime(lua_State* L);
 	static int luaPlayerGetFreeBackpackSlots(lua_State* L);
