@@ -166,15 +166,14 @@ public:
 
 	void reloadBonusValue() {
 		int roll = uniform_random(0, 100);
-		bool upgrade = false;
-		bool downgrade = false;
-		int requiredRollForUpgrade = (int)floor(1.0 - (bonusRarity / 100.0) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
+		int requiredRollForUpgrade = (int)(floor(bonusRarity) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
 		if (roll >= requiredRollForUpgrade) {
 			bonusRarity++;
 		}
-		else if (roll < 0.15) {
+		else if (roll <= 20) {
 			bonusRarity--;
 		}
+		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
 	}
 
 	void reloadBonusType() {
