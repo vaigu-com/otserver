@@ -299,14 +299,33 @@ end
 
 DONT_CONTINUE_ON_ADD = "DONT_CONTINUE_ON_ADD"
 
-local itemIdToActionOnAdd = {
-	[130] = function(context)
-		local player = context.player
-		local count = context.item.count
+local explodingCookie = 130
+local explodingCookieCount = {
+	grantExpDefaultFormula = 1,
+	grantBoostMinutesEqualToActionId = 2,
+}
+local explodingCookieCountToAction = {
+	[explodingCookieCount.grantExpDefaultFormula] = function(context)
 		local aid = context.item.aid
+		local uid = context.item.aid
+		local expAmount = aid * 10 ^ uid
+		AddExperienceWithAnnouncement(context.player, expAmount)
+	end,
+	[explodingCookieCount.grantBoostMinutesEqualToActionId] = function(context)
+		local aid = context.item.aid
+		local boostMinutes = aid * 60
+		context.player:addXpBoostTime(boostMinutes)
+	end,
+}
+local function addExplodingCookieContent(context)
+	local count = context.item.count
+	local action = explodingCookieCountToAction[count]
+	action(context)
+end
 
-		local expAmount = aid * 10 ^ count
-		AddExperienceWithAnnouncement(player, expAmount)
+local itemIdToActionOnAdd = {
+	[explodingCookie] = function(context)
+		addExplodingCookieContent(context)
 		return DONT_CONTINUE_ON_ADD
 	end,
 }
