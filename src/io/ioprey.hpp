@@ -286,7 +286,8 @@ public:
 	std::unordered_set<std::string> loadWhitelist();
 	void initializePreyMonsters();
 
-	void checkPlayerPreys(std::shared_ptr<Player> player, uint8_t amount) const;
+	void reducePlayerPreyTime(std::shared_ptr<Player> player, uint8_t time, uint16_t raceId) const;
+	void updatePlayerPreyStatus(std::shared_ptr<Player> player) const;
 	void parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyAction_t action, PreyOption_t option, int8_t index, uint16_t raceId) const;
 
 	void parseTaskHuntingAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
