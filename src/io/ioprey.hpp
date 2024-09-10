@@ -170,10 +170,9 @@ public:
 		if (roll >= requiredRollForUpgrade) {
 			bonusRarity++;
 		}
-		else if (roll <= 20) {
+		else if (roll <= 25) {
 			bonusRarity--;
 		}
-		updateBonusPercentage();
 		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
 		updateBonusPercentage();
 	}
