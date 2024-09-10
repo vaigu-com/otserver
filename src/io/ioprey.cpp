@@ -31,7 +31,10 @@ void IOPrey::initializePreyMonsters() {
 		MonsterType* monsterType = monster.second.get();
 		auto &monsterInfo = monsterType->info;
 		auto &name = monsterType->typeName;
-		if (!whitelist.contains(name) || monsterInfo.raceid <= 0) {
+		if (monsterInfo.raceid <= 0) {
+			continue;
+		}
+		if (!whitelist.contains(name)){
 			continue;
 		}
 
@@ -48,17 +51,24 @@ void IOPrey::initializePreyMonsters() {
 	}
 }
 
-std::vector<PreyMonster> levelFilter(std::vector<PreyMonster> preyMonsters, uint32_t level) {
+void PreyMonsterBuilder::init(){
+	monsters = g_ioprey().preyMonsters;
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::shuffle(monsters.begin(), monsters.end(), rng);
+}
+
+void PreyMonsterBuilder::filterByLevel( uint32_t level) {
 	const double baseIndex = 2 * (level * pow(std::log10(level), 2) * 2 + 1);
 	double minDifficulty = baseIndex * 2 - 100;
 	double maxDifficulty = baseIndex * (1 + std::log10(baseIndex)) + 100;
 	if (level >= 200) {
 		minDifficulty = 4500;
-		maxDifficulty = 100000;
+		maxDifficulty = DBL_MAX;
 	}
 
 	std::vector<PreyMonster> result;
-	for (PreyMonster preyMonster : preyMonsters) {
+	for (PreyMonster preyMonster : monsters) {
 		double difficulty = preyMonster.difficulty;
 		if (minDifficulty <= difficulty && difficulty <= maxDifficulty) {
 			result.push_back(preyMonster);
@@ -70,7 +80,7 @@ std::vector<PreyMonster> levelFilter(std::vector<PreyMonster> preyMonsters, uint
 	return result;
 }
 
-std::vector<PreyMonster> trimList(std::vector<PreyMonster> preyMonsters, uint16_t newSize) {
+void  PreyMonsterBuilder::trim(std::vector<PreyMonster> preyMonsters, uint16_t newSize) {
 	std::vector<PreyMonster> result;
 	for (PreyMonster preyMonster : preyMonsters) {
 		result.push_back(preyMonster);
@@ -81,36 +91,38 @@ std::vector<PreyMonster> trimList(std::vector<PreyMonster> preyMonsters, uint16_
 	return result;
 }
 
-std::vector<PreyMonster> blacklistFilter(std::vector<PreyMonster> preyMonsters, std::vector<uint16_t> blackList) {
+void PreyMonsterBuilder::filterByBlacklist(std::vector<PreyMonster> preyMonsters, std::vector<uint16_t> blackList) {
 	std::vector<PreyMonster> result;
 	for (PreyMonster preyMonster : preyMonsters) {
 		if (std::find(blackList.begin(), blackList.end(), preyMonster.raceid) == blackList.end()) {
 			result.push_back(preyMonster);
 		}
-		if (result.size() >= 9) {
+		if (result.size() >= PreyGridSize) {
 			break;
 		}
 	}
 	return result;
 }
 
+std::vector<PreyMonster> PreyMonsterBuilder::get(){
+	return monsters;
+}
+
 // Vaigu custom
 void PreySlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_t level) {
-	raceIdList.clear();
-
 	if (!g_configManager().getBoolean(PREY_ENABLED, __FUNCTION__)) {
 		return;
 	}
 
-	std::random_device rd;
-	std::mt19937 rng(rd());
-	auto preyMonsters = g_ioprey().preyMonsters;
-	std::shuffle(preyMonsters.begin(), preyMonsters.end(), rng);
+	raceIdList.clear();
 
-	std::vector<PreyMonster> levelFiltered = levelFilter(preyMonsters, level);
-	std::vector<PreyMonster> blacklistFiltered = blacklistFilter(levelFiltered, blackList);
-	std::vector<PreyMonster> trimmed = trimList(blacklistFiltered, 9);
-	for (auto &preyMonster : blacklistFiltered) {
+	PreyMonsterBuilder builder;
+	builder.init(preyMonsters);
+	builder.filterByLevel(level);
+	builder.filterByBlacklist(blackList);
+	builder.trim(PreyGridSize);
+	std::vector<PreyMonster> filteredMonsters = builder.get();
+	for (auto &preyMonster : filteredMonsters) {
 		auto raceid = preyMonster.raceid;
 		raceIdList.push_back(raceid);
 	}

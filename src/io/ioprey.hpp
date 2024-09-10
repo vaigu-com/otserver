@@ -20,6 +20,8 @@ static const std::unique_ptr<PreySlot>& PreySlotNull{};
 static const std::unique_ptr<TaskHuntingSlot>& TaskHuntingSlotNull{};
 static const std::unique_ptr<TaskHuntingOption>& TaskHuntingOptionNull{};
 
+static const std::string PreyGridSize = 9;
+
 enum PreySlot_t : uint8_t {
 	PreySlot_One = 0,
 	PreySlot_Two = 1,
@@ -103,6 +105,16 @@ public:
 	uint32_t difficulty;
 };
 
+// Vaigu custom
+class PreyMonsterBuilder {
+	private:
+		std::vector<PreyMonster> monsters;
+	public:
+		filterByLevel(uint32_t level);
+		filterByBlacklist(std::vector<PreyMonster> blacklist);
+		trim(uint16_t newSize);
+}
+
 class PreySlot {
 public:
 	PreySlot() = default;
@@ -117,6 +129,7 @@ public:
 		return (state == PreyDataState_Selection || state == PreyDataState_SelectionChangeMonster || state == PreyDataState_ListSelection || state == PreyDataState_Inactive);
 	}
 
+	// Vaigu custom
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
 			bonusPercentage = 6 * bonusRarity + 10;
@@ -128,10 +141,9 @@ public:
 			bonusPercentage = 5 * bonusRarity + 10;
 		}
 		else if (bonus == PreyBonus_Loot) {
-			bonusPercentage = 10 * bonusRarity;
+			bonusPercentage = 9 * bonusRarity + 10;
 		}
 	}
-
 
 	// Vaigu custom
 	void eraseBonus(bool maintainBonus = false) {
