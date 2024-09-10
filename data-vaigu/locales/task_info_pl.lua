@@ -11,7 +11,7 @@ return {
 	["TASKS_HELP_WINDOW_INFO"] = function()
 		return T("Za wykonywanie taskow dostajesz nagrody w postaci: expa, pieniedzy, osiagniec od CV oraz mozliwosci walki z bossami.\n\nMozesz posiadac jednoczesnie :maxTasks: zadania.", { maxTasks = #Storage.Tasks.PlayerOngoingTasks })
 	end,
-	["TASK_REWARDS_DIALOGUE"] = function(context)
+	["TASK_REWARDS_DIALOG"] = function(context)
 		local task = context.task
 		return T("Nagroda za task na :name: to: :exp: puktow doswiadczenia, :money: zlota oraz mozliwosc walki z bossem :bossName: (szczegoly w questlogu).\n Utrzymujesz :points: coiny oraz punkty taskow.", {
 			name = task.name,

@@ -120,7 +120,7 @@ return {
 	["MINIMUM_LEVEL_TO_TRAVEL"] = function(context)
 		return T("You need :minLevel: level to travel there", { minLevel = context.minLevel })
 	end,
-	["TravelHelpDialogue"] = function(context)
+	["TravelHelpDialog"] = function(context)
 		return T("You can travel between cities if you have enough money. Also, you cannot be a suspect in any illegal activity. Current cost is :transportCost:. You currently have :money: gold.", {
 			transportCost = TRANSPORT_COST,
 			money = context.player:getMoney(),

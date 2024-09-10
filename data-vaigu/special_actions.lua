@@ -11,7 +11,7 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 			player:removeCondition(condition)
 		end
 	end,
-	endDialogue = function(context)
+	endDialog = function(context)
 		local player = context.player
 		local npcHandler = context.npcHandler
 		local npc = context.npc
@@ -108,8 +108,8 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		player:addHealth(20000)
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 	end,
-	setCustomConversationDataAsNumber = function(context)
-		context.player:SetCustomConversationData(tonumber(context.msg))
+	SetCustomDialogDataAsNumber = function(context)
+		PlayerCustomDialogDataRegistry:Get(context.player)[context.key] = tonumber(context.msg)
 	end,
 	cancelMarriage = function(context)
 		local player = context.player
@@ -128,9 +128,9 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		local randomVal = math.random(context.min, context.max)
 		context.player:setStorageValue(context.storage, randomVal)
 	end,
-	openTradeWindow = function (context)
+	openTradeWindow = function(context)
 		context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)
-	end
+	end,
 }
 
 SPECIAL_ACTIONS_SOULORB = {
@@ -153,12 +153,12 @@ SPECIAL_ACTIONS_SOULORB = {
 SPECIAL_ACTIONS_WILDCARD = {
 	addWilcard = function(context)
 		local player = context.player
-		local orderedCards = context.player:GetCustomConversationData()
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
 		player:addPreyCards(orderedCards)
 	end,
 	removeMoneyPreycards = function(context)
 		local player = context.player
-		local orderedCards = constext.player:GetCustomConversationData()
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
 		local requiredMoney = player:GetWildcardPrice() * orderedCards
 		player:removeMoney(requiredMoney)
 	end,
@@ -199,8 +199,8 @@ SPECIAL_ACTIONS_DAILY_TASK = {
 }
 
 SPECIAL_ACTIONS_IMBUING = {
-	chargeTaskPoints = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+	removeTaskPointsByImbuing = function(context)
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 
 		local player = context.player
 		player:AddItems(bundleData.items)
@@ -214,6 +214,6 @@ SPECIAL_ACTIONS_COOK = {
 		local dishName = context.msg
 		local dishStorage = COOKING_DISH_NAMES[dishName]
 		local dishData = COOKING_INGREDIENT_DATA[dishStorage]
-		context.player:SetCustomConversationData(dishData)
+		PlayerCustomDialogDataRegistry:Get(context.player).dishData = dishData
 	end,
 }

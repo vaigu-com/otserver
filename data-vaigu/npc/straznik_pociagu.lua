@@ -58,7 +58,7 @@ local config = {
 					damageType = COMBAT_PHYSICALDAMAGE,
 					magicEffect = CONST_ME_POFF,
 				},
-				{ action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue },
+				{ action = SPECIAL_ACTIONS_UNIVERSAL.endDialog },
 				{ action = SPECIAL_ACTIONS_UNIVERSAL.npcSay, talkType = TALKTYPE_SAY, text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived." },
 			},
 		},
@@ -71,7 +71,7 @@ local config = {
 					damageType = COMBAT_PHYSICALDAMAGE,
 					magicEffect = CONST_ME_POFF,
 				},
-				[SPECIAL_ACTIONS_UNIVERSAL.endDialogue] = {},
+				[SPECIAL_ACTIONS_UNIVERSAL.endDialog] = {},
 				[SPECIAL_ACTIONS_UNIVERSAL.npcSay] = {
 					talkType = TALKTYPE_SAY,
 					text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived.",
@@ -87,7 +87,7 @@ local function greetCallback(npc, creature, type, message)
 end
 
 local function creatureSayCallback(npc, creature, type, msg)
-	return TryResolveConversation(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, msg, config, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

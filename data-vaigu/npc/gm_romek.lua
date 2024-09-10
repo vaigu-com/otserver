@@ -48,7 +48,7 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local dialogues = {
+local dialogs = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ "exercise" }] = { text = "Ok", rewards = { ExerciseWeaponBox(50) } },
 	},
@@ -317,7 +317,7 @@ local dialogues = {
 				},
 				specialActionsOnSuccess = {
 					{
-						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialog,
 					},
 				},
 			},
@@ -425,7 +425,7 @@ local dialogues = {
 				},
 				specialActionsOnSuccess = {
 					{
-						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialog,
 					},
 				},
 			},
@@ -717,7 +717,7 @@ local dialogues = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialogues, npcHandler, npc)
+	InitializeResponses(creature, dialogs, npcHandler, npc)
 	return true
 end
 
@@ -725,7 +725,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveConversation(creature, msg, dialogues, npcHandler, npc)
+	return TryResolveDialog(creature, msg, dialogs, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

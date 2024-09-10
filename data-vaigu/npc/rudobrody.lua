@@ -77,7 +77,7 @@ local function greetCallback(npc, creature, type, message)
 end
 
 local function creatureSayCallback(npc, creature, type, msg)
-	return TryResolveConversation(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, msg, config, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

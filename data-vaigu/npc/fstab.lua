@@ -1,4 +1,4 @@
-local dialogues = {
+local dialogs = {
 	[Storage.SciezkaNieumarlych.Questline] = {
 		[2] = {
 			[{ "krag", "kregi", "circles", "cromlech" }] = {
@@ -77,7 +77,7 @@ local context = {
 	greetJob = JOB_MAGIC_WILDCARD,
 	jobs = { JOB_WILDCARD, JOB_MAGIC, additionalJob },
 	outfit = outfit,
-	dialogues = dialogues,
+	dialogs = dialogs,
 	voices = voices,
 }
 local npcType, npcConfig = CreateNpcDefinition(context)

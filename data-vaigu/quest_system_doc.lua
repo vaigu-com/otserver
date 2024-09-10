@@ -1,12 +1,13 @@
+do return end
 -- Terminology:
---  processing: The npc system is going through all npc dialogues and determines if player meets the requirement for the dialogues
---  discarded: A dialogue processing has been cancelled and another dialogue will be processed
---  resolved: A dialogue has been processed and no other dialogue will be processed. This means the npc will say some text corresponding to this dialogue (fail or success dialogue)
---   success-resolved: Npc will say text that is supposed to be shown on success for this dialogue. Actions on success (eg. rewards, special effects) will all be perfomed for this dialogue
---   fail-resolved: Npc will say text that corresponds to the reason of this dialogue fail. Actions on success wont be performed for this dialogue
+--  processing: The npc system is going through all npc dialogs and determines if player meets the requirement for the dialogs
+--  discarded: A dialog processing has been cancelled and another dialog will be processed
+--  resolved: A dialog has been processed and no other dialog will be processed. This means the npc will say some text corresponding to this dialog (fail or success dialog)
+--   success-resolved: Npc will say text that is supposed to be shown on success for this dialog. Actions on success (eg. rewards, special effects) will all be perfomed for this dialog
+--   fail-resolved: Npc will say text that corresponds to the reason of this dialog fail. Actions on success wont be performed for this dialog
 
-local function exampleDialogue(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, setLastMessageData)
-	-- Topic required to resolve this dialogue.
+local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogData)
+	-- Topic required to resolve this dialog.
 	-- Int:
 	--	min = argument, Default: nil
 	--  max = argument, Default: nil
@@ -24,14 +25,14 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 	requiredTopic = 1
 	-- eq, alternative
 	requiredTopic = { min = 1, max = 1 }
-	-- Only use them to differentiate dialogue paths: if you have more than two dialogues that have "yes" as keyword, then you should differentiate them using requiredState (most cases) or requiredTopic
+	-- Only use them to differentiate dialog paths: if you have more than two dialogs that have "yes" as keyword, then you should differentiate them using requiredState (most cases) or requiredTopic
 	-- Functionality of this param depends on passed argument type:
 	-- Example:
 	local topics = {
 		confirmBuyingCake = 1,
 		confirmBuyingBread = 2,
 	}
-	local dialogues = {
+	local dialogs = {
 		[{ "cake" }] = {
 			text = "Would you like to buy a cake?",
 			nextTopic = topics.confirmBuyingCake,
@@ -57,11 +58,33 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 			},
 		},
 	}
+	-- Use <> and [] to match word as variable
+	-- <> means the variable is required
+	-- [] means variable is optional
+	-- Example:
+	--	"withdraw <amount>" will put amount field with value passed by user in ResolutionContext
+	local dialogs2 = {
+		[{ "withdraw <amount>" }] = {
+			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
+			nextTopic = JOB_TOPICS[JOB_BANK].confirmWithdrawing,
+		},
+		[{"yes","tak"}] = {
+			text = "YOU_WITHDREW_MONEY",
+		}
+	}
+	translationTable = {
+		["WOULD_YOU_LIKE_TO_WITHDRAW"] = function(context)
+			return T("Would you like to withdraw :amount:?", { amount = context.amount })
+		end,
+		["YOU_WITHDREW_MONEY"] = function (context)
+			return T("Would you like to withdraw :amount:?", { amount = context.lastMessageData.amount })
+		end
+	}
 
-	-- Specifies the topic to be set for this conversation on success-resolve
+	-- Specifies the topic to be set for this Dialog on success-resolve
 	nextTopic = 1
 
-	-- Specifies the required storage states for player to be able to success-resolve this dialogue
+	-- Specifies the required storage states for player to be able to success-resolve this dialog
 	-- Its worth noting that default behavior when the argument passed was int, is to allow storage values GREATER THAN or equal to argument. This differs from the topic default behavior
 	-- Functionality of this param depends on passed argument type:
 	-- Int:
@@ -104,7 +127,7 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 		[Storage.SomeQuest.SomeStorage6] = { min = 9, max = 13 },
 	}
 
-	-- If player has the required items, then this will take those items (assuming ALL other conditions for dialogue are satisfied)
+	-- If player has the required items, then this will take those items (assuming ALL other conditions for dialog are satisfied)
 	-- count = argument, Default: 1
 	-- remove = argument, Defailt: true
 	-- take = argumen, Default: count (set to TAKE_ALL_AVAILABLE if u want to take all those items, eg. exchange empty potions for tickets)
@@ -129,7 +152,7 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 		},
 	}
 
-	-- You can use this param to not remove items on success-resolved dialogue - just check if player holds something in their bags
+	-- You can use this param to not remove items on success-resolved dialog - just check if player holds something in their bags
 	-- true:
 	--  no item will be removed
 	-- false:
@@ -141,23 +164,23 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 	-- ToDo: text for each unmatched item
 	textNoRequiredItems = "Oh nooo, you dont have that item! :("
 
-	-- Npc will say it if conversation i success-resolved
+	-- Npc will say it if Dialog i success-resolved
 	text = "O tempora, {o mores}! What do you want from me?"
 
-	-- Specifies the money needed to success-resolve the conversation
+	-- Specifies the money needed to success-resolve the Dialog
 	-- Npc will say corresponding line when you dont have the money
-	-- This money will only be removed if conversation is sucess-resolved
+	-- This money will only be removed if Dialog is sucess-resolved
 	-- Counts money from backpack and the bank
 	requiredMoney = 10
 
-	-- This param allows user to define special conditions required to success-resolve dialogue
+	-- This param allows user to define special conditions required to success-resolve dialog
 	-- Most of common conditions can be checked using decicated params (eg. requiredMoney, requiredState, requiredItems)
 	-- Other conditions can be checked with special function, either declared by you or found in global function tables, eg. SPECIAL_CONDITIONS_GENERAL
 	-- Structure: {condition, requiredOutcome, [textNoRequiredCondition,] [params...] }
 	-- The context argument will contain everything declared on the right side (value) as well as other context things like player, npc, npcHandler, msg, etc.
 	-- If condition function return value is not equal to requiredOutcome:
-	--	If textNoRequiredCondition is not nil, npc will say the textNoRequiredCondition and fail-resolve dialogue
-	--	If textNoRequiredCondition is nil, this dialogue is discarded, and system will try to resolve next dialogue
+	--	If textNoRequiredCondition is not nil, npc will say the textNoRequiredCondition and fail-resolve dialog
+	--	If textNoRequiredCondition is nil, this dialog is discarded, and system will try to resolve next dialog
 	local playerHasLevel = function(context)
 		local level = context.player:getLevel()
 		local min = context.min or 0
@@ -177,7 +200,7 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 			condition = playerHasLevel,
 			-- This field is required
 			requiredOutcome = true,
-			-- Dont specify it to discard this dialogue on failed requiredOutcome
+			-- Dont specify it to discard this dialog on failed requiredOutcome
 			textNoRequiredCondition = "Your level is not in range",
 			-- Additional custom params
 			minLevel = 20,
@@ -185,7 +208,7 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 		},
 	}
 
-	-- This param allows user to define special actions to be invoked when dialogue success-resolved
+	-- This param allows user to define special actions to be invoked when dialog success-resolved
 	-- Most of common actions can be invoked using decicated params (spawnMonstersOnSuccess, rewards, expRewards etc.)
 	-- Structure: { [func] = { [params...] } }
 	-- The context will contain everything declared on the right side value as well as other context things like player, npc, npcHandler, msg, etc.
@@ -200,8 +223,8 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 		[anotherFunction] = {},
 	}
 
-	-- Allows rewards to be distributed on success-resolution of dialogue
-	-- If player lacks cap/slots, npc will say according line, and fail-resolve the dialogue
+	-- Allows rewards to be distributed on success-resolution of dialog
+	-- If player lacks cap/slots, npc will say according line, and fail-resolve the dialog
 	-- Set key to
 	-- Item has to have id. Other attributes are optional
 	-- id = argument, Required
@@ -276,12 +299,12 @@ local function exampleDialogue(text, requiredTopic, requiredItems, removeRequire
 	-- ToDo: also allow change value based on function
 	nextGlobalState = { [Storage.SomeQuest.MagicNumber] = 5 }
 
-	-- If dialogue is success-resolved, sets dialogue context in the global variable associated with player
+	-- If dialog is success-resolved, sets dialog context in the global variable associated with player
 	-- Default: true
-	setLastMessageData = false
+	addDialogData = false
 end
 
---Example npc with dialogues
+--Example npc with dialogs
 local function exampleNpc()
 	local internalNpcName = "example npc"
 	local npcType = Game.createNpcType(internalNpcName)
@@ -340,31 +363,31 @@ local function exampleNpc()
 		},
 	}
 
-	-- Order of processing dialogues:
-	---1: anything but LOCALIZER_UNIVERSAL dialogues
-	---2: LOCALIZER_UNIVERSAL dialogues
-	---3: if message type is greet/farewell/walkaway, the default corresponding message is set and dialogue i success-resolved
-	---4: anything but LOCALIZER_UNIVERSAL dialogues, with player message set to ANY_MESSAGE
-	---5: LOCALIZER_UNIVERSAL dialogue, with player message set to ANY_MESSAGE
-	---6: default "INCOMPREHENSIBLE" is used and dialogue is success-resolved
+	-- Order of processing dialogs:
+	---1: anything but LOCALIZER_UNIVERSAL dialogs
+	---2: LOCALIZER_UNIVERSAL dialogs
+	---3: if message type is greet/farewell/walkaway, the default corresponding message is set and dialog i success-resolved
+	---4: anything but LOCALIZER_UNIVERSAL dialogs, with player message set to ANY_MESSAGE
+	---5: LOCALIZER_UNIVERSAL dialog, with player message set to ANY_MESSAGE
+	---6: default "INCOMPREHENSIBLE" is used and dialog is success-resolved
 
-	-- Dialogue structure is split into two categories: requirements and actions
-	-- If all requirements are met, all actions will be executed and dialogue is success-resolved
+	-- Dialog structure is split into two categories: requirements and actions
+	-- If all requirements are met, all actions will be executed and dialog is success-resolved
 	-- If a requirements is not met, then either:
-	--  If this requirements has text on fail(eg. textNoRequiredCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialogue is fail-resolved
-	--  Else This dialogue will be discarded and quest system will try to process the next dialogue
+	--  If this requirements has text on fail(eg. textNoRequiredCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialog is fail-resolved
+	--  Else This dialog will be discarded and quest system will try to process the next dialog
 	--ToDo: rename textNoRequiredCondition to textNoRequiredCondition
-	local dialogues = {
+	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
-			-- This dialogue can always be accessed. In case of conflicting keywords you should use topic to differentiate
+			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate
 			[{ "secret code" }] = { text = "okkk" },
 		},
-		-- Quest dialogues main storage that determines required state
+		-- Quest dialogs main storage that determines required state
 		[Storage.CatBranchman.Questline] = {
 			-- Main questline requirements are different to the ones in requiredState table - player state has to be exactly the key
 			-- This requires player storage: Storage.CatBranchman.Questline to be exacly QUEST_NOT_STARTED (-1)
 			[QUEST_NOT_STARTED] = {
-				-- This is possible candidate dialogue to be resolved when a player says "hi" if player hadnt started the quest
+				-- This is possible candidate dialog to be resolved when a player says "hi" if player hadnt started the quest
 				-- WARNING: if player has multiple matching states (from other quests) then its undeterministic which one will be chosen. This is true only for greet message, as other messages can be deterministically reached using topics
 				[{ GREET }] = { text = "*Muttering* i dont know you, meow!" },
 				[{ "mission", "misja" }] = {
@@ -392,7 +415,7 @@ local function exampleNpc()
 
 					nextTopic = topics.CatBranchman.confirmingHavingBranch,
 				},
-				-- Use topic to differentiate between dialogues with exact same keywords
+				-- Use topic to differentiate between dialogs with exact same keywords
 				[{ "yes", "tak" }] = {
 					text = "You can find branch in the cat shop.",
 					requiredTopic = {
@@ -456,7 +479,7 @@ local function exampleNpc()
 	}
 
 	local function greetCallback(npc, creature, type, message)
-		InitializeResponses(creature, dialogues, npcHandler, npc)
+		InitializeResponses(creature, dialogs, npcHandler, npc)
 		return true
 	end
 
@@ -464,7 +487,7 @@ local function exampleNpc()
 		if not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end
-		return TryResolveConversation(creature, msg, dialogues, npcHandler, npc)
+		return TryResolveDialog(creature, msg, dialogs, npcHandler, npc)
 	end
 
 	npcHandler:setCallback(CALLBACK_GREET, greetCallback)
@@ -474,13 +497,13 @@ local function exampleNpc()
 	npcType:register(npcConfig)
 end
 
--- Example of npc that is generated using this npc-specific dialogues (quests etc.) combined with template job
+-- Example of npc that is generated using this npc-specific dialogs (quests etc.) combined with template job
 -- In this example the JOB_FOOD is used, so npc will have all dialgues and shop offer defined in JOB_FOOD template
--- Dialogues defined in "local dialogues" can override the template dialogues in case of conflicts. Example of overriding a greet message below
+-- Dialogs defined in "local dialogs" can override the template dialogs in case of conflicts. Example of overriding a greet message below
 local function exampleNpcFromGenerator()
-	local dialogues = {
+	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
-			-- Warning! This wont override the greet dialogue from template
+			-- Warning! This wont override the greet dialog from template
 			-- Set "context.greetJob" below to nil if you dont want that job greet and define it yourself like below
 			[{ GREET }] = {
 				text = "Hello, my name is walmart007",
@@ -576,7 +599,7 @@ local function exampleNpcFromGenerator()
 		greetJob = JOB_FOOD,
 		jobs = { JOB_FOOD },
 		outfit = outfit,
-		dialogues = dialogues,
+		dialogs = dialogs,
 		voices = voices,
 	}
 
@@ -584,6 +607,6 @@ local function exampleNpcFromGenerator()
 	npcType:register(npcConfig)
 end
 
-exampleDialogue()
+exampleDialog()
 exampleNpc()
 exampleNpcFromGenerator()

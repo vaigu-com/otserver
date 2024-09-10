@@ -213,7 +213,7 @@ function StartEscortOpenWorld(context, player)
 	escort:Start()
 end
 
-function StartEscortDialogue(context)
+function StartEscortDialog(context)
 	local escort = Escort:New(context.escortContext, context.player)
 	EscortRegistry():Register(escort)
 	escort:Start()

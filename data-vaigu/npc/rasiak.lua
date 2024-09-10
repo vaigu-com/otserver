@@ -77,7 +77,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	return true
 end
 
-local dialogues = {
+local dialogs = {
 	[Storage.TrudnePoczatki.DostawaDrewna] = {
 		[1] = {
 			[{ "drewno", "dostawa", "wood", "delivery" }] = {

@@ -4,7 +4,7 @@ return {
 	["DAILY_TASKS_HELP_WINDOW_INFO"] = function()
 		return T("For completing the daily tasks you'll get the following rewards: exp, gold and store coins.\n\nAfter finishing a task you can claim reward from the Mayor.\n\nYou can finish up to :maxTasks: tasks daily.\n\nYou can report a finished task the next day.", { maxTasks = DAILY_TASK_LIMIT })
 	end,
-	["DAILY_TASK_REWARDS_DIALOGUE"] = function(context)
+	["DAILY_TASK_REWARDS_DIALOG"] = function(context)
 		local taskConfig = context.taskConfig
 		return T("Your rewards for :name: daily task is: :exp: experience points, :money: gold.\n You received :points: store coins and task points", {
 			name = taskConfig.name,
