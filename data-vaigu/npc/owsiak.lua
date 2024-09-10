@@ -7,7 +7,7 @@ local outfit = {
 	lookAddons = 3,
 }
 
-local dialogues = {
+local dialogs = {
 	["GREETING"] = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 }
 local voices = {
@@ -26,7 +26,7 @@ local context = {
 	greetJob = JOB_AOL,
 	jobs = { JOB_AOL },
 	outfit = outfit,
-	dialogues = dialogues,
+	dialogs = dialogs,
 	voices = voices,
 }
 local npcType, npcConfig = CreateNpcDefinition(context)

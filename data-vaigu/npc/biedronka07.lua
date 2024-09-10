@@ -1,4 +1,4 @@
-local dialogues = {
+local dialogs = {
 	[Storage.TrudnePoczatki.BiedronkaAsked] = {
 		[-1] = {
 			[{ "help", "pomoc" }] = {
@@ -87,7 +87,7 @@ local context = {
 	greetJob = JOB_FOOD,
 	jobs = { JOB_FOOD },
 	outfit = outfit,
-	dialogues = dialogues,
+	dialogs = dialogs,
 	voices = voices,
 }
 

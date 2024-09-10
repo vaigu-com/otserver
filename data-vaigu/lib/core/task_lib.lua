@@ -338,7 +338,7 @@ function Player:TryAddTaskRewards(context, task)
     resetTaskSlot(self, task.storage)
 
     return self:Localizer(Storage.Tasks.TaskInfo):Context({task = task}):Get(
-               "TASK_REWARDS_DIALOGUE")
+               "TASK_REWARDS_DIALOG")
 end
 
 function Player:GrantRewardsForAllTasks(context)
@@ -384,7 +384,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
     resetTaskKillCounter(self, dailyTask)
     resetTaskSlot(self, storage)
     self:IncrementStorage(Storage.DailyTasks.DailyLimit, 1)
-    return localizer:Get("DAILY_TASK_REWARDS_DIALOGUE")
+    return localizer:Get("DAILY_TASK_REWARDS_DIALOG")
 end
 
 function Player:GrantRewardsForAllDailyTasks(context)

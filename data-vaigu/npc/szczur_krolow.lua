@@ -108,7 +108,7 @@ local config = {
 				textNoRequiredItems = "I see you don't have all the runes yet.",
 				specialActionsOnSuccess = {
 					{
-						action = SPECIAL_ACTIONS_UNIVERSAL.endDialogue,
+						action = SPECIAL_ACTIONS_UNIVERSAL.endDialog,
 					},
 				},
 				nextState = {
@@ -143,7 +143,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveConversation(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, msg, config, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

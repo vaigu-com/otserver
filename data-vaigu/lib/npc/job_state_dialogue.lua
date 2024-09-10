@@ -12,7 +12,7 @@ local antelopeMountId = 163
 local powerfulImbueUnlockCost = 15
 local function buyTrophy(context)
 	local player = context.player
-	local trophyName = player:GetLastMessageData().msg
+	local trophyName = PlayerDialogDataRegistry:Get(player):Latest().msg
 	local trophyId = trophyNameToId[trophyName]
 	local decoKitName = ItemType(trophyId):getName()
 
@@ -27,7 +27,7 @@ local function buyTrophy(context)
 	player:IncrementStorage(Storage.taskPoints, -trophyCost)
 end
 
-NPC_STATE_DIALOGUES = {
+NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
 		[Storage.Tasks.TaskInfo] = {
 			[-1] = {
@@ -96,7 +96,7 @@ NPC_STATE_DIALOGUES = {
 						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
 						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
 					},
-					specialActionsOnSuccess = { {action=buyTrophy} },
+					specialActionsOnSuccess = { { action = buyTrophy } },
 				},
 			},
 			[{ min = antelopeCost }] = {
