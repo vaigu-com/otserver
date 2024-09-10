@@ -20,7 +20,7 @@ static const std::unique_ptr<PreySlot>& PreySlotNull{};
 static const std::unique_ptr<TaskHuntingSlot>& TaskHuntingSlotNull{};
 static const std::unique_ptr<TaskHuntingOption>& TaskHuntingOptionNull{};
 
-static const std::string PreyGridSize = 9;
+static const uint8_t PreyGridSize = 9;
 
 enum PreySlot_t : uint8_t {
 	PreySlot_One = 0,
@@ -110,10 +110,12 @@ class PreyMonsterBuilder {
 	private:
 		std::vector<PreyMonster> monsters;
 	public:
-		filterByLevel(uint32_t level);
-		filterByBlacklist(std::vector<PreyMonster> blacklist);
-		trim(uint16_t newSize);
-}
+		void init();
+		void filterByLevel(uint32_t level);
+		void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
+		void trim(uint16_t newSize);
+		std::vector<PreyMonster> get();
+};
 
 class PreySlot {
 public:

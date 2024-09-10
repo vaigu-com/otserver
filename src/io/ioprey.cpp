@@ -58,7 +58,7 @@ void PreyMonsterBuilder::init(){
 	std::shuffle(monsters.begin(), monsters.end(), rng);
 }
 
-void PreyMonsterBuilder::filterByLevel( uint32_t level) {
+void PreyMonsterBuilder::filterByLevel(uint32_t level) {
 	const double baseIndex = 2 * (level * pow(std::log10(level), 2) * 2 + 1);
 	double minDifficulty = baseIndex * 2 - 100;
 	double maxDifficulty = baseIndex * (1 + std::log10(baseIndex)) + 100;
@@ -77,31 +77,31 @@ void PreyMonsterBuilder::filterByLevel( uint32_t level) {
 			break;
 		}
 	}
-	return result;
+	monsters = result;
 }
 
-void  PreyMonsterBuilder::trim(std::vector<PreyMonster> preyMonsters, uint16_t newSize) {
+void  PreyMonsterBuilder::trim(uint16_t newSize) {
 	std::vector<PreyMonster> result;
-	for (PreyMonster preyMonster : preyMonsters) {
+	for (PreyMonster preyMonster : monsters) {
 		result.push_back(preyMonster);
 		if (result.size() >= 9) {
 			break;
 		}
 	}
-	return result;
+	monsters = result;
 }
 
-void PreyMonsterBuilder::filterByBlacklist(std::vector<PreyMonster> preyMonsters, std::vector<uint16_t> blackList) {
+void PreyMonsterBuilder::filterByBlacklist( std::vector<uint16_t> raceIdBlacklist) {
 	std::vector<PreyMonster> result;
-	for (PreyMonster preyMonster : preyMonsters) {
-		if (std::find(blackList.begin(), blackList.end(), preyMonster.raceid) == blackList.end()) {
+	for (PreyMonster preyMonster : monsters) {
+		if (std::find(raceIdBlacklist.begin(), raceIdBlacklist.end(), preyMonster.raceid) == raceIdBlacklist.end()) {
 			result.push_back(preyMonster);
 		}
 		if (result.size() >= PreyGridSize) {
 			break;
 		}
 	}
-	return result;
+	monsters = result;
 }
 
 std::vector<PreyMonster> PreyMonsterBuilder::get(){
@@ -109,7 +109,7 @@ std::vector<PreyMonster> PreyMonsterBuilder::get(){
 }
 
 // Vaigu custom
-void PreySlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_t level) {
+void PreySlot::reloadMonsterGrid(std::vector<uint16_t> raceIdBlacklist, uint32_t level) {
 	if (!g_configManager().getBoolean(PREY_ENABLED, __FUNCTION__)) {
 		return;
 	}
@@ -117,13 +117,13 @@ void PreySlot::reloadMonsterGrid(std::vector<uint16_t> blackList, uint32_t level
 	raceIdList.clear();
 
 	PreyMonsterBuilder builder;
-	builder.init(preyMonsters);
+	builder.init();
 	builder.filterByLevel(level);
-	builder.filterByBlacklist(blackList);
+	builder.filterByBlacklist(raceIdBlacklist);
 	builder.trim(PreyGridSize);
 	std::vector<PreyMonster> filteredMonsters = builder.get();
 	for (auto &preyMonster : filteredMonsters) {
-		auto raceid = preyMonster.raceid;
+		const auto raceid = preyMonster.raceid;
 		raceIdList.push_back(raceid);
 	}
 }
