@@ -2,6 +2,7 @@
 LOCKOUT_TIME = {
 	DAILY = "DAILY",
 	WEEKLY = "WEEKLY",
+	FOREVER = "FOREVER",
 }
 
 ---@enum LOCKOUT_TYPE
