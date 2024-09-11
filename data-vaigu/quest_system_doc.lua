@@ -16,15 +16,15 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	--  max = argument.max, Default: 2^15
 	-- General example:
 	-- range
-	requiredTopic = { min = 1, max = 4 }
+	requiredTopic = { min = JOB_TOPICS.someTopic, max = JOB_TOPICS.someOtherTopic }
 	-- gte
-	requiredTopic = { min = 1 }
+	requiredTopic = { min = JOB_TOPICS.someTopic }
 	-- lte
-	requiredTopic = { max = 2 }
+	requiredTopic = { max = JOB_TOPICS.someTopic }
 	-- eq
-	requiredTopic = 1
-	-- eq, alternative
-	requiredTopic = { min = 1, max = 1 }
+	requiredTopic = JOB_TOPICS.someTopic
+	-- eq, alternative notation
+	requiredTopic = { min = JOB_TOPICS.someTopic, max = JOB_TOPICS.someTopic }
 	-- Only use them to differentiate dialog paths: if you have more than two dialogs that have "yes" as keyword, then you should differentiate them using requiredState (most cases) or requiredTopic
 	-- Functionality of this param depends on passed argument type:
 	-- Example:

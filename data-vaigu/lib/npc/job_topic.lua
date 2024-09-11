@@ -23,4 +23,9 @@ JOB_TOPICS = {
 	confirmLifecrystalExchange = NextJobTopic(),
 	-- JOB_SOULORB
 	exchangingSoulorbToInfernalbolts = NextJobTopic(),
+	-- JOB_GOLDENOUTFIT
+	confirmExplaingoldenoutfit = NextJobTopic(),
+	confirmGoldenoutfitchestBuy = NextJobTopic(),
+	confirmGoldenoutfithelmetBuy = NextJobTopic(),
+	confirmGoldenoutfitbootsBuy = NextJobTopic(),
 }

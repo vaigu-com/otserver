@@ -104,7 +104,7 @@ NPC_STATE_DIALOGS = {
 					requiredTopic = JOB_TOPICS.confirmAntelopeBuy,
 					mountRewards = { antelopeMountId },
 					nextState = {
-						[Storage.taskPoints] = T("-:cost:", { cost = tostring(antelopeCost) }),
+						[Storage.taskPoints] = T("-:cost:", { cost = antelopeCost }),
 					},
 					specialConditions = {
 						{
@@ -129,7 +129,7 @@ NPC_STATE_DIALOGS = {
 					},
 					nextState = {
 						[Storage.powerfulImbue] = 1,
-						[Storage.taskPoints] = "-" .. tostring(powerfulImbueUnlockCost),
+						[Storage.taskPoints] = T("-:cost:", { cost = powerfulImbueUnlockCost }),
 					},
 					textNoRequiredState = "YOU_DONT_HAVE_ENOUGH_TASK_POINTS",
 					cost = powerfulImbueUnlockCost,
@@ -150,37 +150,65 @@ NPC_STATE_DIALOGS = {
 		},
 	},
 	[JOB_GOLDENOUTFIT] = {
-		[Storage.GoldenOutfit] = {
-			[{ max = 999 }] = {
+		[Storage.GoldenOutfit.Full] = {
+			[{ min = -1 }] = {
 				[{ "outfit", "addon", "stroj" }] = {
 					text = "In exchange for a truly generous donation, I will offer a special outfit. Do you want to make a donation?",
-					nextTopic = 1,
-				},
-				[{ "yes", "tak" }] = {
-					text = "Excellent! Now, let me explain. If you donate 20.000.000 gold pieces, you will be entitled to wear a unique outfit.\nYou will be entitled to wear the {armor} for 10.000.000 gold pieces, {helmet} for an additional 5.000.000 and the {boots} for another 5.000.000 gold pieces.\nWhat will it be?",
-					requiredTopic = { min = 1, max = 1 },
-					nextTopic = 2,
+					nextTopic = JOB_TOPICS.confirmExplaingoldenoutfit,
 				},
 			},
-			-- nothing bought
+			[1] = {
+				[{ "yes", "tak" }] = {
+					text = "You already have that outfit.",
+					requiredTopic = JOB_TOPICS.confirmExplaingoldenoutfit,
+				},
+			},
 			[-1] = {
+				[{ "yes", "tak" }] = {
+					text = "Excellent! Now, let me explain. If you donate 20.000.000 gold pieces, you will be entitled to wear a unique outfit.\nYou will be entitled to wear the {armor} for 10.000.000 gold pieces, {helmet} for an additional 5.000.000 and the {boots} for another 5.000.000 gold pieces.\nWhat will it be?",
+					requiredTopic = JOB_TOPICS.confirmExplaingoldenoutfit,
+				},
 				[{ "armor", "armour", "zbroje", "zbroje" }] = {
 					text = "So you would like to donate 10.000.000 gold pieces which in return will entitle you to wear a unique armor?",
-					nextTopic = 3,
-					requiredTopic = { min = 1, max = 2 },
+					nextTopic = JOB_TOPICS.confirmGoldenoutfitarmourBuy,
+					requiredState = {
+						[Storage.GoldenOutfit.Chest] = { max = -1, errorMessage = "You already have that addon." },
+					},
 				},
 				[{ "helmet", "helm" }] = {
-					text = "You need to donate for {armor} outfit first.",
+					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?",
+					nextTopic = JOB_TOPICS.confirmGoldenoutfithelmetBuy,
+					requiredState = {
+						[Storage.GoldenOutfit.Helmet] = { max = -1, errorMessage = "You already have that addon." },
+						[Storage.GoldenOutfit.Chest] = {
+							max = -1,
+							errorMessage = "You need to donate for {armor} outfit first.",
+						},
+					},
 				},
 				[{ "boots", "buty" }] = {
-					text = "You need to donate for {helmet} outfit first.",
+					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique pair of boots?",
+					nextTopic = JOB_TOPICS.confirmGoldenoutfitbootsBuy,
+					requiredState = {
+						[Storage.GoldenOutfit.Boots] = { max = -1, errorMessage = "You already have that addon." },
+						[Storage.GoldenOutfit.Chest] = {
+							min = 1,
+							errorMessage = "You need to donate for {armor} outfit first.",
+						},
+						[Storage.GoldenOutfit.Helmet] = {
+							min = 1,
+							errorMessage = "You need to donate for {helmet} outfit first.",
+						},
+					},
 				},
 				[{ "yes", "tak" }] = {
 					text = "Take this armor as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 10 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = { min = 3, max = 3 },
-					nextState = { [Storage.GoldenOutfit] = 1 },
+					requiredTopic = JOB_TOPICS.confirmGoldenoutfitchestBuy,
+					nextState = {
+						[Storage.GoldenOutfit.Chest] = 1,
+					},
 					rewards = {
 						{
 							id = 23398,
@@ -197,72 +225,32 @@ NPC_STATE_DIALOGS = {
 						{ outfitId = 1210, addon = 0 },
 					},
 				},
-			},
-			-- has armor bought
-			[1] = {
-				[{ "armor", "zbroje" }] = {
-					text = "You already have that addon.",
-					requiredTopic = { min = 1, max = 2 },
-				},
-				[{ "helmet", "helm" }] = {
-					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?",
-					requiredTopic = { min = 1, max = 2 },
-					nextTopic = 4,
-				},
-				[{ "boots", "buty" }] = {
-					text = "You need to donate for {helmet} outfit first.",
-				},
 				[{ "yes", "tak" }] = {
 					text = "Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 5 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = { min = 4, max = 4 },
-					nextState = { [Storage.GoldenOutfit] = 2 },
+					requiredTopic = JOB_TOPICS.confirmGoldenoutfithelmetBuy,
+					nextState = {
+						[Storage.GoldenOutfit.Helmet] = 1,
+					},
 					outfitRewards = {
 						{ outfitId = 1211, addon = 2 },
 						{ outfitId = 1210, addon = 2 },
 					},
 				},
-			},
-			-- has armor and helmet bought
-			[2] = {
-				[{ "armor", "zbroje" }] = {
-					text = "You already have that addon.",
-					requiredTopic = { min = 1, max = 2 },
-				},
-				[{ "helmet", "helm" }] = {
-					text = "You already have that addon.",
-					requiredTopic = { min = 1, max = 2 },
-				},
-				[{ "boots", "buty" }] = {
-					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique pair of boots?",
-					nextTopic = 5,
-				},
 				[{ "yes", "tak" }] = {
 					text = "Take these boots as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 5 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = { min = 5, max = 5 },
-					nextState = { [Storage.GoldenOutfit] = 3 },
+					requiredTopic = JOB_TOPICS.confirmGoldenoutfitbootsBuy,
+					nextState = {
+						[Storage.GoldenOutfit.Boots] = 1,
+						[Storage.GoldenOutfit.Full] = 1,
+					},
 					outfitRewards = {
 						{ outfitId = 1211, addon = 3 },
 						{ outfitId = 1210, addon = 3 },
 					},
-				},
-			},
-			-- has pieces bought
-			[3] = {
-				[{ "armor", "zbroje" }] = {
-					text = "You already have that addon.",
-					requiredTopic = { min = 1, max = 2 },
-				},
-				[{ "helmet", "helm" }] = {
-					text = "You already have that addon.",
-					requiredTopic = { min = 1, max = 2 },
-				},
-				[{ "boots", "buty" }] = {
-					text = "You already have that addon.",
-					requiredTopic = { min = 1, max = 2 },
 				},
 			},
 		},
