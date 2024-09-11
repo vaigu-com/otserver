@@ -39,7 +39,6 @@ QUEST_NOT_STARTED = -1
 CONDITION_STATUS = {
 	CONDITION_PASSED = "CONDITION_PASSED",
 	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
-	SKIP_DIALOG = "SKIP_DIALOG",
 	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
 	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
 }
@@ -616,8 +615,6 @@ function ParseTopicMinMax(config)
 	return min, max
 end
 
--- ToDo: if text on fail: CONDITION_NOT_PASSED
---		else: SKIP_DIALOG
 -- Dialog requirements
 function ResolutionContext:CheckTopic()
 	local requirements = self.requirements
@@ -628,7 +625,7 @@ function ResolutionContext:CheckTopic()
 	local topic = self.npcHandler.topic[self.cid]
 	local min, max = ParseTopicMinMax(requirements)
 	if topic < min or topic > max then
-		return CONDITION_STATUS.SKIP_DIALOG
+		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
 	return CONDITION_STATUS.CONDITION_PASSED
 end
