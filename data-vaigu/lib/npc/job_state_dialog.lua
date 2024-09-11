@@ -46,14 +46,14 @@ NPC_STATE_DIALOGS = {
 					text = "You don't have any points. You'll get some after finishing the {tasks}. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.",
 				},
 			},
-			[{ min = -1 }] = {
-				[{ "creature product" }] = {
-					text = "I can sell you creature product bundles for each of {imbuings}. They will cost you some gold and {points}.",
-				},
-			},
 			[{ min = 1 }] = {
 				[{ "punkt", "point", "punktow", "points", "punkty" }] = {
 					text = "YOU_CURRENTLY_HAVE_N_TASK_POINTS",
+				},
+			},
+			[{ min = -1 }] = {
+				[{ "creature product" }] = {
+					text = "I can sell you creature product bundles for each of {imbuings}. They will cost you some gold and {points}.",
 				},
 			},
 			[{ min = -1, max = trophyCost - 1 }] = {
@@ -70,9 +70,9 @@ NPC_STATE_DIALOGS = {
 			},
 			[{ min = trophyCost }] = {
 				[{ "trofeow", "trophies", "trofeum", "trophy" }] = {
-					text = "WOULD_YOU_LIKE_TO_BUY_ANY_TROPHY",
+					text = "THIS_TROPHY_WILL_COST_YOU_N",
 					cost = trophyCost,
-					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].buyingTropies,
+					nextTopic = JOB_TOPICS.buyingTropies,
 				},
 				[{
 					"bronze hunter trophy",
@@ -83,19 +83,13 @@ NPC_STATE_DIALOGS = {
 					"sea serpent doll",
 				}] = {
 					text = "YOU_WANT_TO_BUY_TROHPY_NAME",
-					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS_IMBUING].buyingTropies,
-						max = JOB_TOPICS[JOB_TASKS_IMBUING].buyingTropies,
-					},
-					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
+					requiredTopic = JOB_TOPICS.buyingTropies,
+					nextTopic = JOB_TOPICS.confirmTrophyBuy,
 					cost = trophyCost,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
-						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingTrophyBuy,
-					},
+					requiredTopic = JOB_TOPICS.confirmTrophyBuy,
 					specialActionsOnSuccess = { { action = buyTrophy } },
 				},
 			},
@@ -103,23 +97,20 @@ NPC_STATE_DIALOGS = {
 				[{ "wierzchowca", "mount" }] = {
 					text = "YOU_WANT_TO_BUY_ANTELOPE",
 					cost = antelopeCost,
-					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmAntelopeBuy,
+					nextTopic = JOB_TOPICS.confirmAntelopeBuy,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmAntelopeBuy,
-						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmAntelopeBuy,
-					},
+					requiredTopic = JOB_TOPICS.confirmAntelopeBuy,
 					mountRewards = { antelopeMountId },
 					nextState = {
-						[Storage.taskPoints] = "-" .. tostring(antelopeCost),
+						[Storage.taskPoints] = T("-:cost:", { cost = tostring(antelopeCost) }),
 					},
 					specialConditions = {
 						{
-							condition = SPECIAL_CONDITIONS_UNIVERSAL,
-							mountId = antelopeCost,
+							condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMount,
 							requiredOutcome = false,
+							mountId = antelopeMountId,
 							textNoRequiredCondition = "You already have this mount.",
 						},
 					},
@@ -132,10 +123,7 @@ NPC_STATE_DIALOGS = {
 			[{ max = 0 }] = {
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
-						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
-					},
+					requiredTopic = JOB_TOPICS.confirmPowerfulimbueUnlock,
 					requiredState = {
 						[Storage.taskPoints] = powerfulImbueUnlockCost,
 					},
@@ -148,17 +136,14 @@ NPC_STATE_DIALOGS = {
 				},
 				[{ "mozliwosc", "ability" }] = {
 					text = "YOU_WANT_BUY_ABILITY_POWEFUL_IMBUEMENT",
-					nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
+					nextTopic = JOB_TOPICS.confirmPowerfulimbueUnlock,
 					cost = powerfulImbueUnlockCost,
 				},
 			},
 			[{ min = 1 }] = {
 				[{ "yes", "tak" }] = {
 					text = "You already got it.",
-					requiredTopic = {
-						min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
-						max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmingPowerfulImbueUnlockBuy,
-					},
+					requiredTopic = JOB_TOPICS.confirmPowerfulimbueUnlock,
 				},
 				[{ "mozliwosc", "ability" }] = { text = "You already got it." },
 			},
@@ -201,7 +186,10 @@ NPC_STATE_DIALOGS = {
 							id = 23398,
 							addToStore = true,
 							unwrapId = 31510,
-							[ITEM_ATTRIBUTE_DESCRIPTION] = T("Unwrap it in your own house to create a :name:.", { name = ItemType(31510):getName() }),
+							[ITEM_ATTRIBUTE_DESCRIPTION] = T(
+								"Unwrap it in your own house to create a :name:.",
+								{ name = ItemType(31510):getName() }
+							),
 						},
 					},
 					outfitRewards = {

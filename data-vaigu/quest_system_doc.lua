@@ -66,7 +66,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	local dialogs2 = {
 		[{ "withdraw <amount>" }] = {
 			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
-			nextTopic = JOB_TOPICS[JOB_BANK].confirmWithdrawing,
+			nextTopic = JOB_TOPICS.confirmWithdrawing,
 		},
 		[{"yes","tak"}] = {
 			text = "YOU_WITHDREW_MONEY",

@@ -8,7 +8,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "yes", "tak" }] = {
 			text = "You're welcome! Use them wisely.",
-			requiredTopic = { min = 1, max = 1 },
+			requiredTopic = JOB_TOPICS.exchangingSoulorbToInfernalbolts,
 			requiredItems = { { id = 5944, take = TAKE_ALL_AVAILABLE } },
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_SOULORB.soulOrbToInfernalBolt },
@@ -23,10 +23,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ ANY_MESSAGE }] = {
 			text = "WILDCARD_CHOSEN_COUNT",
-			requiredTopic = {
-				min = topicsWildcard.sayingWildcardNumber,
-				max = topicsWildcard.sayingWildcardNumber,
-			},
+			requiredTopic = topicsWildcard.sayingWildcardNumber,
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_UNIVERSAL.SetCustomDialogDataAsNumber, key = "orderedCards" },
 			},
@@ -42,10 +39,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		[{ "yes", "tak" }] = {
 			text = "Here are your wildcards!",
 			nextTopic = 0,
-			requiredTopic = {
-				min = topicsWildcard.confirmingNwildcards,
-				max = topicsWildcard.confirmingNwildcards,
-			},
+			requiredTopic = topicsWildcard.confirmingNwildcards,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_WILDCARD.hasMoneyForWildcards,
@@ -62,11 +56,11 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_SOFT_BOOTS_RECHARGE] = {
 		[{ "soft boots" }] = {
 			text = "Would you like to exchange {worn soft boots}, or {charge} active ones? Cost of both services is 20k of gold.",
-			nextTopic = 1,
+			nextTopic = JOB_TOPICS.buyingSoftBootsRecharge,
 		},
 		[{ "worn soft boots" }] = {
 			text = "Here you are. There are your soft boots.",
-			requiredTopic = { min = 1, max = 1 },
+			requiredTopic = JOB_TOPICS.buyingSoftBootsRecharge,
 			rewards = { { id = 6529 } },
 			requiredItems = { { id = 6530 } },
 			requiredMoney = 20000,
@@ -75,7 +69,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "doladowac", "charge" }] = {
 			text = "Here are your soft boots.",
-			requiredTopic = { min = 1, max = 1 },
+			requiredTopic = JOB_TOPICS.buyingSoftBootsRecharge,
 			rewards = { { id = 6529 } },
 			requiredItems = { { id = 6529 } },
 			requiredMoney = 20000,
@@ -84,24 +78,19 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "medicine", "belongings" }] = {
 			text = "You have medicine pouch for me?",
-			nextTopic = 6,
+			nextTopic = JOB_TOPICS.confirmMedicinepouchExchance,
 			requiredItems = { { id = 12517, remove = false } },
 			textNoRequiredItems = "I can give you {belongings of deceased} for your {medicine puch}. Come back if you get one.",
 		},
-		[{ "yes", "tak" }] = {
-			text = "Here you are. There are your soft boots.",
-			requiredItems = { { id = 12517 } },
-			rewards = { { id = 12413 } },
-			textNoRequiredItems = "You dont have that.",
-		},
 	},
-	[JOB_JEWELER] = {
+	[JOB_JEWELLER] = {
 		[{ "life crystal", "life ring", "life" }] = {
 			text = "I can exchange your life crystals for a life rings. Is that what youre interested in?",
-			nextTopic = 1,
+			nextTopic = JOB_TOPICS.confirmLifecrystalExchange,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Here you go.",
+			requiredTopic = JOB_TOPICS.confirmLifecrystalExchange,
 			requiredItems = { { id = 3061, min = 1 } },
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_JEWELER.exchangeLifeCrystal },
@@ -150,7 +139,7 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_IMBUING] = {
 		[{ "imbuing", "imbuings" }] = {
 			text = "LIST_IMBUING_NAMES",
-			nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingName,
+			nextTopic = JOB_TOPICS.chooseImbuingName,
 		},
 		[{ ANY_MESSAGE }] = {
 			text = "YOU_SELECTED_IMBUING_NAME",
@@ -160,11 +149,8 @@ NPC_UNIVERSAL_DIALOGS = {
 					requiredOutcome = true,
 				},
 			},
-			requiredTopic = {
-				min = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingName,
-				max = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingName,
-			},
-			nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingLevel,
+			requiredTopic = JOB_TOPICS.chooseImbuingName,
+			nextTopic = JOB_TOPICS.chooseImbuingLevel,
 		},
 		[{ ANY_MESSAGE }] = {
 			text = "YOU_SELECTED_IMBUING_LEVEL",
@@ -174,19 +160,13 @@ NPC_UNIVERSAL_DIALOGS = {
 					requiredOutcome = true,
 				},
 			},
-			requiredTopic = {
-				min = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingLevel,
-				max = JOB_TOPICS[JOB_TASKS_IMBUING].chooseImbuingLevel,
-			},
-			nextTopic = JOB_TOPICS[JOB_TASKS_IMBUING].confirmBuyingImbuing,
+			requiredTopic = JOB_TOPICS.chooseImbuingLevel,
+			nextTopic = JOB_TOPICS.confirmBuyingImbuing,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Here you go.",
 			nextTopic = TOPIC_DEFAULT,
-			requiredTopic = {
-				min = JOB_TOPICS[JOB_TASKS_IMBUING].confirmBuyingImbuing,
-				max = JOB_TOPICS[JOB_TASKS_IMBUING].confirmBuyingImbuing,
-			},
+			requiredTopic = JOB_TOPICS.confirmBuyingImbuing,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_IMBUING.canPurchaseThisImbuingLevel,
