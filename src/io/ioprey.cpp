@@ -63,8 +63,8 @@ void PreyMonsterBuilder::filterByLevel(uint32_t level) {
 	double minDifficulty = baseIndex * 2 - 100;
 	double maxDifficulty = baseIndex * (1 + std::log10(baseIndex)) + 100;
 	if (level >= 200) {
-		minDifficulty = 4500;
-		maxDifficulty = DBL_MAX;
+		minDifficulty = 4500.0;
+		maxDifficulty = std::numeric_limits<double>::max();
 	}
 
 	std::vector<PreyMonster> result;
