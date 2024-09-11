@@ -376,7 +376,6 @@ local function exampleNpc()
 	-- If a requirements is not met, then either:
 	--  If this requirements has text on fail(eg. textNoRequiredCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialog is fail-resolved
 	--  Else This dialog will be discarded and quest system will try to process the next dialog
-	--ToDo: rename textNoRequiredCondition to textNoRequiredCondition
 	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate

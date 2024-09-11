@@ -1,13 +1,3 @@
---[[
--- ToDo: allow keyword to be function, and evaluate using context
-[{ ANY_MESSAGE }] = {
-				text = "Here, take your money.",
-}
-[{ func }] = {
-				text = "Here, take your money.",
-}
-]]
---
 -- quest system
 PROMOTION_PRICE = 15000
 PROMOTION_LEVEL = 20
