@@ -141,18 +141,21 @@ local function parseRequiredState(requiredState)
 	local min
 	local max
 	local neq
+	local errorMessage
 
 	if type(requiredState) == "number" then
 		min = requiredState
 		max = defaultMaxState
 		neq = nil
+		errorMessage = ""
 	elseif type(requiredState) == "table" then
 		min = requiredState.min or QUEST_NOT_STARTED
 		max = requiredState.max or defaultMaxState
 		neq = requiredState.neq
+		errorMessage = requiredState.errorMessage or ""
 	end
 
-	return min, max, neq
+	return min, max, neq, errorMessage
 end
 
 function Player:HasCorrectStorageValues(storages)
@@ -174,6 +177,28 @@ function Player:HasCorrectStorageValues(storages)
 		end
 	end
 	return true
+end
+
+-- First matched incorrect value returns error
+function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
+	if not storages then
+		return true
+	end
+	for storage, requiredState in pairs(storages) do
+		local min, max, neq, errorMessage = parseRequiredState(requiredState)
+
+		local currentState = self:getStorageValue(storage)
+		if currentState < min then
+			return errorMessage
+		end
+		if currentState > max then
+			return errorMessage
+		end
+		if neq ~= nil and neq == currentState then
+			return errorMessage
+		end
+	end
+	return nil
 end
 
 function UpdateGlobalStorages(storages)
@@ -636,8 +661,9 @@ function ResolutionContext:CheckRequiredState()
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
 
-	if not self.player:HasCorrectStorageValues(requirements.requiredState) then
-		self.errorMessage = requirements.textNoRequiredState
+	local errorMessage = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
+	if errorMessage then
+		self.errorMessage = errorMessage or requirements.textNoRequiredState
 		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
 	return CONDITION_STATUS.CONDITION_PASSED
@@ -934,7 +960,8 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
+			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType])
+			or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end
