@@ -72,7 +72,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 			text = "YOU_WITHDREW_MONEY",
 		}
 	}
-	translationTable = {
+	translationTable = { -- locales
 		["WOULD_YOU_LIKE_TO_WITHDRAW"] = function(context)
 			return T("Would you like to withdraw :amount:?", { amount = context.amount })
 		end,
@@ -82,7 +82,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	}
 
 	-- Specifies the topic to be set for this Dialog on success-resolve
-	nextTopic = 1
+	nextTopic = JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt
 
 	-- Specifies the required storage states for player to be able to success-resolve this dialog
 	-- Its worth noting that default behavior when the argument passed was int, is to allow storage values GREATER THAN or equal to argument. This differs from the topic default behavior

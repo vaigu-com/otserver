@@ -72,7 +72,7 @@ NPC_STATE_DIALOGS = {
 				[{ "trofeow", "trophies", "trofeum", "trophy" }] = {
 					text = "THIS_TROPHY_WILL_COST_YOU_N",
 					cost = trophyCost,
-					nextTopic = JOB_TOPICS.buyingTropies,
+					nextTopic = JOB_TOPICS.browsingTrophies,
 				},
 				[{
 					"bronze hunter trophy",
@@ -83,13 +83,13 @@ NPC_STATE_DIALOGS = {
 					"sea serpent doll",
 				}] = {
 					text = "YOU_WANT_TO_BUY_TROHPY_NAME",
-					requiredTopic = JOB_TOPICS.buyingTropies,
-					nextTopic = JOB_TOPICS.confirmTrophyBuy,
+					requiredTopic = JOB_TOPICS.browsingTrophies,
+					nextTopic = JOB_TOPICS.confirmBuyTrophy,
 					cost = trophyCost,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = JOB_TOPICS.confirmTrophyBuy,
+					requiredTopic = JOB_TOPICS.confirmBuyTrophy,
 					specialActionsOnSuccess = { { action = buyTrophy } },
 				},
 			},
@@ -97,11 +97,11 @@ NPC_STATE_DIALOGS = {
 				[{ "wierzchowca", "mount" }] = {
 					text = "YOU_WANT_TO_BUY_ANTELOPE",
 					cost = antelopeCost,
-					nextTopic = JOB_TOPICS.confirmAntelopeBuy,
+					nextTopic = JOB_TOPICS.confirmBuyAntelope,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = JOB_TOPICS.confirmAntelopeBuy,
+					requiredTopic = JOB_TOPICS.confirmBuyAntelope,
 					mountRewards = { antelopeMountId },
 					nextState = {
 						[Storage.taskPoints] = T("-:cost:", { cost = antelopeCost }),
@@ -123,7 +123,7 @@ NPC_STATE_DIALOGS = {
 			[{ max = 0 }] = {
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = JOB_TOPICS.confirmPowerfulimbueUnlock,
+					requiredTopic = JOB_TOPICS.confirmUnlockPowerfulimbue,
 					requiredState = {
 						[Storage.taskPoints] = powerfulImbueUnlockCost,
 					},
@@ -136,14 +136,14 @@ NPC_STATE_DIALOGS = {
 				},
 				[{ "mozliwosc", "ability" }] = {
 					text = "YOU_WANT_BUY_ABILITY_POWEFUL_IMBUEMENT",
-					nextTopic = JOB_TOPICS.confirmPowerfulimbueUnlock,
+					nextTopic = JOB_TOPICS.confirmUnlockPowerfulimbue,
 					cost = powerfulImbueUnlockCost,
 				},
 			},
 			[{ min = 1 }] = {
 				[{ "yes", "tak" }] = {
 					text = "You already got it.",
-					requiredTopic = JOB_TOPICS.confirmPowerfulimbueUnlock,
+					requiredTopic = JOB_TOPICS.confirmUnlockPowerfulimbue,
 				},
 				[{ "mozliwosc", "ability" }] = { text = "You already got it." },
 			},
@@ -177,7 +177,7 @@ NPC_STATE_DIALOGS = {
 				},
 				[{ "helmet", "helm" }] = {
 					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?",
-					nextTopic = JOB_TOPICS.confirmGoldenoutfithelmetBuy,
+					nextTopic = JOB_TOPICS.confirmBuyGoldenoutfithelmet,
 					requiredState = {
 						[Storage.GoldenOutfit.Helmet] = { max = -1, errorMessage = "You already have that addon." },
 						[Storage.GoldenOutfit.Chest] = {
@@ -205,7 +205,7 @@ NPC_STATE_DIALOGS = {
 					text = "Take this armor as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 10 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = JOB_TOPICS.confirmGoldenoutfitchestBuy,
+					requiredTopic = JOB_TOPICS.confirmBuyGoldenoutfitbody,
 					nextState = {
 						[Storage.GoldenOutfit.Chest] = 1,
 					},
@@ -229,7 +229,7 @@ NPC_STATE_DIALOGS = {
 					text = "Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 5 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = JOB_TOPICS.confirmGoldenoutfithelmetBuy,
+					requiredTopic = JOB_TOPICS.confirmBuyGoldenoutfithelmet,
 					nextState = {
 						[Storage.GoldenOutfit.Helmet] = 1,
 					},

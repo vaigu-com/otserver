@@ -292,6 +292,7 @@ local actionsWhitelist = {
 	nextState = true,
 	nextGlobalState = true,
 	nextTopic = true,
+	preserveTopic = true,
 	addDialogData = true,
 	text = true,
 }
@@ -828,13 +829,13 @@ end
 
 function ResolutionContext:SetNextTopic()
 	local actions = self.actionsOnSuccess
-	if not actions.nextTopic then
+	if actions.preserveTopic == true then
 		return
 	end
 
-	self.npcHandler.topic[self.cid] = actions.nextTopic
+	self.npcHandler.topic[self.cid] = actions.nextTopic or 0
 	addEvent(function()
-		self.npcHandler.topic[self.cid] = actions.nextTopic
+		self.npcHandler.topic[self.cid] = actions.nextTopic or 0
 	end, 5)
 end
 
@@ -951,7 +952,7 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
 			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType])
-			or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
+				or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end

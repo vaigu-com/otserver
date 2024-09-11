@@ -21,5 +21,5 @@ JOBS_GREETINGS = {
 	},
 	[JOB_DAILYTASKS_GOLDENOUTFIT] = "Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors.",
 	[JOB_FISHER] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
-	[JOB_AOL] = nil, -- 38f
+	[JOB_AOL] = nil, -- ToDo: add greeting
 }
