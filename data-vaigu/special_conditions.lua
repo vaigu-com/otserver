@@ -8,7 +8,7 @@ SPECIAL_CONDITIONS_UNIVERSAL = {
 	end,
 	canBuyBless = function(context)
 		local player = context.player
-		local price = getBlessingsCost(player:getlevel()) * 5
+		local price = getBlessingsCost(player:getLevel()) * 5
 		context.price = price
 		if SPECIAL_CONDITIONS_UNIVERSAL.hasMoney(context) then
 			return true
