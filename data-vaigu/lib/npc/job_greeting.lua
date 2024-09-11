@@ -4,7 +4,7 @@ JOBS_GREETINGS = {
 	[JOB_MAGIC_WILDCARD] = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard}, which will increase your prey powers!",
 	[JOB_CREATURE_PRODUCT] = "Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer.",
 	[JOB_FURNITURE] = "Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}.",
-	[JOB_JEWELER] = "Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}",
+	[JOB_JEWELLER] = "Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}",
 	[JOB_UTILITY] = "Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested.",
 	[JOB_POST] = "I am local postman, ask about {trade} if you want to buy some parcel or letter.",
 	[JOB_SOFT_BOOTS_RECHARGE] = "Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}.",
@@ -21,5 +21,5 @@ JOBS_GREETINGS = {
 	},
 	[JOB_DAILYTASKS_GOLDENOUTFIT] = "Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors.",
 	[JOB_FISHER] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
-	[JOB_AOL] = nil, -- 38f
+	[JOB_AOL] = nil, -- ToDo: add greeting
 }

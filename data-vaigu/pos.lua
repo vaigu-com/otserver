@@ -12,6 +12,7 @@ end
 
 ---@class CreatureList
 ---@field creatures table
+---@field customData table
 CreatureList = {}
 CreatureList.__index = CreatureList
 
@@ -19,6 +20,7 @@ setmetatable(CreatureList, {
 	__call = function(class, creatures)
 		local instance = setmetatable({}, class)
 		instance.creatures = creatures or {}
+		instance.customData = {}
 		return instance
 	end,
 })
@@ -27,12 +29,25 @@ function CreatureList:Get()
 	return self.creatures
 end
 
-function CreatureList:Add(creature)
-	table.insert(self.creatures, creature)
+function CreatureList:Add(creature, customData)
+	customData = customData or {}
+	self.creatures[customData] = creature
 	return self
 end
 
-function CreatureList:Area(pos1, pos2)
+function CreatureList:Pos(pos, customData)
+	local tile = Tile(pos)
+	if not tile then
+		return
+	end
+	local creatures = tile:getCreatures()
+	for _, creature in pairs(creatures) do
+		self:Add(creature, customData)
+	end
+	return self
+end
+
+function CreatureList:Area(pos1, pos2, customData)
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then
@@ -40,7 +55,7 @@ function CreatureList:Area(pos1, pos2)
 		end
 		local creatures = tile:getCreatures()
 		for _, creature in pairs(creatures) do
-			self:Add(creature)
+			self:Add(creature, customData)
 		end
 	end)
 	return self
@@ -421,7 +436,6 @@ function Position:GetBoundariesByRadius(radius)
 	local downRight = self:Moved(radius, radius, 0)
 	return topLeft, downRight
 end
-
 
 ---@param destination Position
 ---@return Vector vector

@@ -1297,7 +1297,12 @@ Storage = {
 	santaPresent = 50803,
 	allowHealthRegen = 50810,
 	allowManaRegen = 50811,
-	GoldenOutfit = 51015,
+	GoldenOutfit = {
+		Chest = 51015,
+		Boots = 51016,
+		Helmet = 51017,
+		Full = 51018,
+	},
 	Uniwheel = 54321,
 	Tinlizzard = 54322,
 	-- blockMovementStorage = 100000,

@@ -3,7 +3,7 @@ return {
 		local points = context.player:getStorageValue(Storage.taskPoints)
 		return T("Aktualnie posiadasz :points: punktow taskow.  Mozesz wymienic je na kilka {trofeow}, {wierzchowca} oraz {mozliwosc} nasycania na najwyzszy poziom.", { points = points })
 	end,
-	["WOULD_YOU_LIKE_TO_BUY_ANY_TROPHY"] = function(context)
+	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
 		return T("Ktore chcial bys zakupic? Kosztowac cie to bedzie :cost: punktow taskow: {bronze hunter trophy}, {silver hunter trophy}, {gold hunter trophy}, {gozzler trophy}, {hellflayer trophy} oraz {sea serpent doll}.", { cost = context.keywordConfig.cost })
 	end,
 	["YOU_WANT_TO_BUY_TROHPY_NAME"] = function(context)

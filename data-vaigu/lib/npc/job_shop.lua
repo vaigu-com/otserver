@@ -1361,7 +1361,7 @@ NPC_SHOP_TABLES = {
 		{ itemName = "spellbook of mind control", clientId = 8074, sell = 13000 },
 		{ itemName = "spellbook of warding", clientId = 8073, sell = 8000 },
 	},
-	[JOB_JEWELER] = {
+	[JOB_JEWELLER] = {
 		{ itemName = "wedding ring", clientId = 3004, sell = 100 },
 		{ itemName = "time ring", clientId = 3053, sell = 100 },
 		{ itemName = "sword ring", clientId = 3091, sell = 100 },

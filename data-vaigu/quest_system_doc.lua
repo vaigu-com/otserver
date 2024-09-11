@@ -16,15 +16,15 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	--  max = argument.max, Default: 2^15
 	-- General example:
 	-- range
-	requiredTopic = { min = 1, max = 4 }
+	requiredTopic = { min = JOB_TOPICS.someTopic, max = JOB_TOPICS.someOtherTopic }
 	-- gte
-	requiredTopic = { min = 1 }
+	requiredTopic = { min = JOB_TOPICS.someTopic }
 	-- lte
-	requiredTopic = { max = 2 }
+	requiredTopic = { max = JOB_TOPICS.someTopic }
 	-- eq
-	requiredTopic = 1
-	-- eq, alternative
-	requiredTopic = { min = 1, max = 1 }
+	requiredTopic = JOB_TOPICS.someTopic
+	-- eq, alternative notation
+	requiredTopic = { min = JOB_TOPICS.someTopic, max = JOB_TOPICS.someTopic }
 	-- Only use them to differentiate dialog paths: if you have more than two dialogs that have "yes" as keyword, then you should differentiate them using requiredState (most cases) or requiredTopic
 	-- Functionality of this param depends on passed argument type:
 	-- Example:
@@ -66,13 +66,13 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	local dialogs2 = {
 		[{ "withdraw <amount>" }] = {
 			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
-			nextTopic = JOB_TOPICS[JOB_BANK].confirmWithdrawing,
+			nextTopic = JOB_TOPICS.confirmWithdrawing,
 		},
 		[{"yes","tak"}] = {
 			text = "YOU_WITHDREW_MONEY",
 		}
 	}
-	translationTable = {
+	translationTable = { -- locales
 		["WOULD_YOU_LIKE_TO_WITHDRAW"] = function(context)
 			return T("Would you like to withdraw :amount:?", { amount = context.amount })
 		end,
@@ -82,7 +82,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	}
 
 	-- Specifies the topic to be set for this Dialog on success-resolve
-	nextTopic = 1
+	nextTopic = JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt
 
 	-- Specifies the required storage states for player to be able to success-resolve this dialog
 	-- Its worth noting that default behavior when the argument passed was int, is to allow storage values GREATER THAN or equal to argument. This differs from the topic default behavior
@@ -376,7 +376,6 @@ local function exampleNpc()
 	-- If a requirements is not met, then either:
 	--  If this requirements has text on fail(eg. textNoRequiredCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialog is fail-resolved
 	--  Else This dialog will be discarded and quest system will try to process the next dialog
-	--ToDo: rename textNoRequiredCondition to textNoRequiredCondition
 	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate
