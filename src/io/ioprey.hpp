@@ -166,7 +166,7 @@ public:
 
 	void reloadBonusValue() {
 		int roll = uniform_random(0, 100);
-		int requiredRollForUpgrade = (int)(floor(bonusRarity) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
+		int requiredRollForUpgrade = (int)(100.0 - (log2(bonusRarity - 0.4) * 30.0 - 8.0)); // high chance at low level, and low chance at high level
 		if (roll >= requiredRollForUpgrade) {
 			bonusRarity++;
 		}
