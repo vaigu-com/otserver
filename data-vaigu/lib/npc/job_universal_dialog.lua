@@ -94,8 +94,7 @@ local function canEngage(context)
 
 	local candidate = Player(candidateId)
 	if not canPerformProaccept({ candidate, player }) then
-		local translatedMessage =
-			player:Localizer(nil):Get("At least one of you doens't have their wedding ring or wedding outfit box.")
+		local translatedMessage = player:Localizer(nil):Get("At least one of you doens't have their wedding ring or wedding outfit box.")
 		return false, translatedMessage
 	end
 
@@ -406,8 +405,8 @@ NPC_UNIVERSAL_DIALOGS = {
 			text = "And who would you like to marry?",
 		},
 		[{ ANY_MESSAGE }] = {
-			requiredTopic = JOB_TOPICS.playerWouldLikeToGetMarried,
 			text = "Since both young souls are willing to marry - get ready. Let me know if you are willing to start the {celebration}.",
+			requiredTopic = JOB_TOPICS.playerWouldLikeToGetMarried,
 			specialConditions = {
 				{
 					condition = canEngage,
@@ -515,7 +514,9 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 	},
 	[JOB_BLESS] = {
-		[GREET] = "Hello, you need some help? Check {services} that I offer...",
+		[GREET] = {
+			text = "Hello, you need some help? Check {services} that I offer...",
+		},
 		[{ "pomoc", "uslug", "uslugi", "help", "services" }] = {
 			text = "You are in the MirkoTown temple. If you wish, I can {bless} you, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
 		},
