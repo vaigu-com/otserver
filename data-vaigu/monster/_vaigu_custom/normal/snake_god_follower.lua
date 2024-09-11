@@ -13,7 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.raceId = 356
+monster.raceId = 2583
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
@@ -29,7 +29,7 @@ monster.Bestiary = {
 monster.health = 2500
 monster.maxHealth = 2500
 monster.race = "blood"
-monster.corpse = 11429
+monster.corpse = 6061
 monster.speed = 150
 monster.manaCost = 0
 
