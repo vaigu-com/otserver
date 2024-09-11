@@ -16,9 +16,9 @@ class PreySlot;
 class TaskHuntingSlot;
 class TaskHuntingOption;
 
-static const std::unique_ptr<PreySlot>& PreySlotNull{};
-static const std::unique_ptr<TaskHuntingSlot>& TaskHuntingSlotNull{};
-static const std::unique_ptr<TaskHuntingOption>& TaskHuntingOptionNull{};
+static const std::unique_ptr<PreySlot> &PreySlotNull {};
+static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
+static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
 
 static const uint8_t PreyGridSize = 9;
 
@@ -107,14 +107,15 @@ public:
 
 // Vaigu custom
 class PreyMonsterBuilder {
-	private:
-		std::vector<PreyMonster> monsters;
-	public:
-		void init();
-		void filterByLevel(uint32_t level);
-		void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
-		void trim(uint16_t newSize);
-		std::vector<PreyMonster> get();
+private:
+	std::vector<PreyMonster> monsters;
+
+public:
+	void init();
+	void filterByLevel(uint32_t level);
+	void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
+	void trim(uint16_t newSize);
+	std::vector<PreyMonster> get();
 };
 
 class PreySlot {
@@ -135,14 +136,11 @@ public:
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
 			bonusPercentage = 6 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Defense) {
+		} else if (bonus == PreyBonus_Defense) {
 			bonusPercentage = 4 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Experience) {
+		} else if (bonus == PreyBonus_Experience) {
 			bonusPercentage = 5 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Loot) {
+		} else if (bonus == PreyBonus_Loot) {
 			bonusPercentage = 9 * bonusRarity + 10;
 		}
 	}
@@ -152,8 +150,7 @@ public:
 		if (!maintainBonus) {
 			bonus = PreyBonus_None;
 			bonusRarity = (int)ceil(bonusRarity / 2.0);
-		}
-		else {
+		} else {
 			bonusRarity = bonusRarity - (int)floor(log2(bonusRarity));
 		}
 
@@ -164,13 +161,26 @@ public:
 		updateBonusPercentage();
 	}
 
-	void reloadBonusValue() {
+	std::map<uint8_t, uint8_t> rarityToUpgradeChance = {
+		{ 1, 80 },
+		{ 2, 80 },
+		{ 3, 70 },
+		{ 4, 70 },
+		{ 5, 30 },
+		{ 6, 30 },
+		{ 7, 20 },
+		{ 8, 20 },
+		{ 9, 15 },
+		{ 10, 100 }, // Dont lower when user just wants to reroll type
+	};
+
+	void
+	reloadBonusValue() {
 		int roll = uniform_random(0, 100);
-		int requiredRollForUpgrade = (int)(100.0 - (log2(bonusRarity - 0.4) * 30.0 - 8.0)); // high chance at low level, and low chance at high level
+		int requiredRollForUpgrade = 100 - rarityToUpgradeChance[bonusRarity];
 		if (roll >= requiredRollForUpgrade) {
 			bonusRarity++;
-		}
-		else if (roll <= 25) {
+		} else if (roll <= 20) {
 			bonusRarity--;
 		}
 		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
@@ -232,7 +242,7 @@ public:
 	bool isCreatureOnList(uint16_t raceId) const {
 		auto it = std::find_if(raceIdList.begin(), raceIdList.end(), [raceId](uint16_t it) {
 			return it == raceId;
-			});
+		});
 
 		return it != raceIdList.end();
 	}
@@ -276,10 +286,10 @@ public:
 	IOPrey() = default;
 
 	// non-copyable
-	IOPrey(const IOPrey&) = delete;
-	void operator=(const IOPrey&) = delete;
+	IOPrey(const IOPrey &) = delete;
+	void operator=(const IOPrey &) = delete;
 
-	static IOPrey& getInstance() {
+	static IOPrey &getInstance() {
 		return inject<IOPrey>();
 	}
 
@@ -294,7 +304,7 @@ public:
 	void parseTaskHuntingAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
 
 	void initializeTaskHuntOptions();
-	const std::unique_ptr<TaskHuntingOption>& getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot>& slot) const;
+	const std::unique_ptr<TaskHuntingOption> &getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot> &slot) const;
 
 	NetworkMessage getTaskHuntingBaseDate() const {
 		return baseDataMessage;
