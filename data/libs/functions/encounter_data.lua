@@ -451,7 +451,14 @@ function EncounterData:register()
 
 	local zone = self:getZone()
 
-	zone:addArea(self.zoneArea.from, self.zoneArea.to)
+	local zoneArea = (function ()
+		local positions = {}
+		for key, value in pairs(self.zoneArea) do
+			table.insert(positions, value)
+		end
+		return positions
+	end)()
+	zone:addArea(zoneArea[1], zoneArea[2])
 	zone:blockFamiliars()
 	zone:setRemoveDestination(self.exitTpDestination)
 

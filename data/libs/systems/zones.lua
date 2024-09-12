@@ -17,18 +17,19 @@ function Zone.getByEncounter(encounterData)
 end
 
 function Zone:randomPosition()
-	local positions = self:getPositions()
-	if #positions == 0 then
-		logger.error("Zone:randomPosition() - Zone {} has no positions", self:getName())
+	local walkable = {}
+	for _, pos in pairs(self:getPositions()) do
+		if pos:isWalkable(false, false, false, false, true) then
+			table.insert(walkable, pos)
+		end
+	end
+
+	if #walkable == 0 then
+		logger.error("Zone:randomPosition() - Zone {} has no walkable positions", self:getName())
 		return nil
 	end
-	local destination = positions[math.random(1, #positions)]
-	local tile = destination:getTile()
-	while not tile or not tile:isWalkable(false, false, false, false, true) do
-		destination = positions[math.random(1, #positions)]
-		tile = destination:getTile()
-	end
-	return destination
+
+	return walkable[math.random(1, #walkable)]
 end
 
 function Zone:sendTextMessage(...)

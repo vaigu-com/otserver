@@ -29,6 +29,10 @@ function CreatureList:Get()
 	return self.creatures
 end
 
+function CreatureList:Count()
+	return TableSize(self.creatures)
+end
+
 function CreatureList:Add(creature, customData)
 	customData = customData or {}
 	self.creatures[customData] = creature
@@ -192,6 +196,14 @@ end
 
 function Position:RemoveItem(id)
 	self:removeItem(id)
+end
+function Position:IsWalkable(a, b, c, d, e)
+	local tile = Tile(self)
+	if not tile then
+		return false
+	end
+
+	return tile:isWalkable(a, b, c, d, e)
 end
 
 local function xyzBoundaries(pos1, pos2)
