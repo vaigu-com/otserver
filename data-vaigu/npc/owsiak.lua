@@ -8,7 +8,11 @@ local outfit = {
 }
 
 local dialogs = {
-	["GREETING"] = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
+	[LOCALIZER_UNIVERSAL] = {
+		[{ GREET }] = {
+			text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
+		},
+	},
 }
 local voices = {
 	interval = 15000,
@@ -22,7 +26,7 @@ local voices = {
 }
 
 local context = {
-	name = "Lebowski",
+	name = "Owsiak",
 	greetJob = JOB_AOL,
 	jobs = { JOB_AOL },
 	outfit = outfit,

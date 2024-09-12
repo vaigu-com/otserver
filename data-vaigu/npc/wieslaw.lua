@@ -87,9 +87,13 @@ local dialogs = {
 			rewards = { { id = 5957 } },
 			textNoRequiredItems = "You don't have 100 empty flasks.",
 		},
+		[{ WALKAWAY }] = {
+			text = "You won't even farewell me..",
+		},
+		[{ FAREWELL }] = {
+			text = "Well, go away.",
+		},
 	},
-	[WALKAWAY] = "You won't even farewell me..",
-	[FAREWELL] = "Well, go away.",
 	[Storage.AssassinsCreedSkurwoala.Questline] = {
 		[9] = {
 			[{ "mission", "dywan", "carpet", "misja", "zaczarowany dywan" }] = {

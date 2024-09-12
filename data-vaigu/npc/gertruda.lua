@@ -55,7 +55,7 @@ local config = {
 		[{ "konmuld" }] = {
 			text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
 		},
-		[GREET] = "Hi |PLAYERNAME|. You can check my offer, say {trade} if you're down for garden work.",
+		[{ GREET }] = { text = "Hi |PLAYERNAME|. You can check my offer, say {trade} if you're down for garden work." },
 	},
 	[Storage.Yalahar.MiloscAriela] = {
 		[{ min = -1, max = 8 }] = {
