@@ -9,10 +9,10 @@ local confirmChoice = function(player, button, choice)
 		return
 	end
 
-	player:CoalesceNewExerciseWeapon(choice.id, choice.charges)
+	player:AddOrCoalesceExerciseWepon(choice.id, choice.charges)
 end
 
-function Player:CoalesceNewExerciseWeapon(id, newWeaponCharges)
+function Player:AddOrCoalesceExerciseWepon(id, newWeaponCharges)
 	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	local oldWeapon = self:getItemById(id, true)
 	local oldWeaponCharges = 0
