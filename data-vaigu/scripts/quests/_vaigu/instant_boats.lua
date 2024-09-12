@@ -59,7 +59,7 @@ function boat.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	local toPos = boatConfig.toPos:FindAnyUnoccupiedSpot()
+	local toPos = boatConfig.toPos:FindAnyUnoccupiedSpot() or boatConfig.toPos
 	player:teleportTo(toPos)
 	toPos:sendMagicEffect(CONST_ME_TELEPORT)
 end
