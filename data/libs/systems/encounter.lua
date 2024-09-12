@@ -39,11 +39,7 @@ function EncounterStage:autoAdvance(config)
 		if originalStart then
 			originalStart()
 		end
-		self.encounter:debug(
-			"Encounter[{}]:autoAdvance | next stage in: {}",
-			self.encounter.name,
-			delay == 50 and "instant" or delay
-		)
+		self.encounter:debug("Encounter[{}]:autoAdvance | next stage in: {}", self.encounter.name, delay == 50 and "instant" or delay)
 		self.encounter:addEvent(function()
 			delayElapsed = true
 			if not config.monstersKilled then
@@ -76,12 +72,18 @@ end
 ---@field protected global boolean
 ---@field protected timeToSpawnMonsters number|string
 ---@field onReset function
----@field minigameName string?
+---@fielf active boolean
 Encounter = {
 	registry = {},
 	unstarted = 0,
 	enableDebug = true,
 }
+
+FIRST_ENCOUNTER_ID = 0
+function NextEncounterId()
+	FIRST_ENCOUNTER_ID = FIRST_ENCOUNTER_ID + 1
+	return FIRST_ENCOUNTER_ID
+end
 
 setmetatable(Encounter, {
 	---@param self Encounter
@@ -99,13 +101,18 @@ setmetatable(Encounter, {
 				name = name,
 			}, { __index = Encounter })
 		end
+		local zone = Zone("encounter." .. toKey(name)) -- ToDo: .. NextEncounterId()
+		zone:addArea(config.zoneArea[1], config.zoneArea[2])
+		zone:blockFamiliars()
+		config.zone = zone
+
 		if config then
 			encounter:resetConfig(config)
 		end
+
 		return encounter
 	end,
 })
-
 function Encounter:registerAuxillaryConfig(config)
 	for key, value in pairs(config) do
 		if self[key] == nil then
@@ -137,6 +144,10 @@ function Encounter:addEvent(callable, delay, ...)
 		self.events:remove(event)
 	end, ParseDuration(delay), callable, ...)
 	self.events:insert(event)
+end
+
+function Encounter:isActive()
+	return self.active
 end
 
 ---Cancels all the events associated with the encounter
@@ -304,6 +315,7 @@ function Encounter:reset()
 	if self.onReset then
 		self:onReset()
 	end
+	self.active = false
 	return self:enterStage(Encounter.unstarted)
 end
 
@@ -338,6 +350,7 @@ end
 ---Starts the encounter
 ---@return boolean True if the encounter is started successfully, false otherwise
 function Encounter:start()
+	self.active = true
 	Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.name })
 	self:debug("Encounter[{}]:start", self.name)
 	return self:enterStage(1)
@@ -425,14 +438,14 @@ function Encounter:afterEnterMinigame(player)
 	player:registerEvent("MinigamePlayerDeath")
 
 	player:kv():scoped("minigames"):scoped("current"):set(self.name)
-	player:kv():scoped("minigames"):scoped(self.minigameName):scoped("matches"):increment()
-	player:kv():scoped("minigames"):scoped("total"):scoped("matches"):increment()
+	player:kv():scoped("minigames"):scoped(self.name):scoped("matches"):incrementOrSet()
+	player:kv():scoped("minigames"):scoped("total"):scoped("matches"):incrementOrSet()
 	player:kv():scoped("minigames"):scoped("locks"):scoped("magic-wall"):set(true)
 	player:kv():scoped("minigames"):scoped("locks"):scoped("healing"):set(true)
 	player:kv():scoped("minigames"):scoped("locks"):scoped("haste"):set(400)
 
 	player:changeSpeed()
-	SPECIAL_ACTIONS_UNIVERSAL.clearConditions(player)
+	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 end
 
 function Encounter:afterLeaveMinigame(player) end
@@ -441,7 +454,7 @@ function Encounter:afterLeaveMinigame(player) end
 function Encounter:startOnEnter()
 	local zoneEvents = ZoneEvent(self:getZone())
 
-	function zoneEvents.beforeEnter(zone, creature)
+	function zoneEvents.afterEnter(zone, creature)
 		if not self.registered then
 			return true
 		end
@@ -455,18 +468,8 @@ function Encounter:startOnEnter()
 		if self:canStart() then
 			self:start()
 		end
-	end
-
-	function zoneEvents.afterEnter(zone, creature)
-		local player = creature:getPlayer()
-		if not player then
-			return true
-		end
-		if player:hasGroupFlag(IgnoredByMonsters) then
-			return
-		end
 		if self.isMinigame then
-			self:afterEnterMinigame()
+			self:afterEnterMinigame(player)
 		end
 	end
 
@@ -484,7 +487,7 @@ function Encounter:startOnEnter()
 			return
 		end
 		self:reset()
-		self:afterLeaveMinigame()
+		self:afterLeaveMinigame(player)
 	end
 
 	zoneEvents:register()

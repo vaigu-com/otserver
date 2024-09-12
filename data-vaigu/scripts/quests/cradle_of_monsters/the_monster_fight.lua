@@ -7,8 +7,8 @@ local encounter = Encounter("The Monster", {
 	zone = bossZone,
 	timeToSpawnMonsters = "10ms",
 	zoneArea = {
-		Position(5930, 1618, 7),
-		Position(5941, 1630, 7),
+		Position(33828, 32584, 12),
+		Position(33846, 32598, 12),
 	},
 })
 

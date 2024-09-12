@@ -51,8 +51,8 @@ local function grantRewards(player, eventKv, grandPlace, minigameName)
 		eventKv:scoped("second-place"):set(player:getName())
 	end
 	if grandPlace == 1 then
-		player:kv():scoped("minigames"):scoped(minigameName):scoped("matches"):increment()
-		player:kv():scoped("minigames"):scoped("total"):scoped("matches"):increment()
+		player:kv():scoped("minigames"):scoped(minigameName):scoped("matches"):incrementOrSet()
+		player:kv():scoped("minigames"):scoped("total"):scoped("matches"):incrementOrSet()
 		eventKv:scoped("first-place"):set(player:getName())
 	end
 	player:addXpBoostTime(bonus * 5)
@@ -91,7 +91,7 @@ local function tryUpdatePlayerPersonalRecord(context)
 end
 
 local function tryUpdateGlobalRecord(context)
-	local eventKv = kv():scoped("minigames"):scoped(context.eventName)
+	local eventKv = kv:scoped("minigames"):scoped(context.eventName)
 	context.timeKv = eventKv:scoped("best-time")
 	tryUpdateRecordKv(context)
 end
@@ -103,9 +103,9 @@ end
 
 function zombiePrepareDeath.onPrepareDeath(creature, killer)
 	local player = Player(creature)
-	local minigameName = player:kv():scoped("minigames"):scoped("current"):get().name
+	local minigameName = player:kv():scoped("encounter"):scoped("current"):get().name
 
-	local eventKv = kv():scoped("minigames"):scoped(minigameName)
+	local eventKv = kv:scoped("encounter"):scoped(minigameName)
 	local currentPlayersKv = eventKv:scoped("current-players")
 
 	local currentPlayers = currentPlayersKv:get()
@@ -124,7 +124,7 @@ function zombiePrepareDeath.onPrepareDeath(creature, killer)
 
 	grantRewards(player, eventKv, grandPlace, minigameName)
 	bringPlayerBackToNormal(player)
-	currentPlayersKv:increment(nil, -1)
+	currentPlayersKv:incrementOrSet(nil, -1)
 
 	winnerGlobalMessage(eventCompletionContext)
 

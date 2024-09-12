@@ -1,3 +1,4 @@
+require("lldebugger").start()
 ---@class Zone
 ---@field getByEncounter function
 ---@field getName function
@@ -19,7 +20,7 @@ end
 function Zone:randomPosition()
 	local walkable = {}
 	for _, pos in pairs(self:getPositions()) do
-		if pos:isWalkable(false, false, false, false, true) then
+		if pos:IsWalkable(false, false, false, false, true) then
 			table.insert(walkable, pos)
 		end
 	end
@@ -108,19 +109,18 @@ setmetatable(ZoneEvent, {
 
 function ZoneEvent:register()
 	if self.beforeEnter then
-		local beforeEnter = EventCallback()
+		local beforeEnter = EventCallback("ZoneEventBeforeEnter", true)
 		function beforeEnter.zoneBeforeCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true
 			end
 			return self.beforeEnter(zone, creature)
 		end
-
 		beforeEnter:register()
 	end
 
 	if self.beforeLeave then
-		local beforeLeave = EventCallback()
+		local beforeLeave = EventCallback("ZoneEventBeforeLeave", true)
 		function beforeLeave.zoneBeforeCreatureLeave(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -132,7 +132,7 @@ function ZoneEvent:register()
 	end
 
 	if self.afterEnter then
-		local afterEnter = EventCallback()
+		local afterEnter = EventCallback("ZoneEventAfterEnter", true)
 		function afterEnter.zoneAfterCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -144,7 +144,7 @@ function ZoneEvent:register()
 	end
 
 	if self.afterLeave then
-		local afterLeave = EventCallback()
+		local afterLeave = EventCallback("ZoneEventAfterLeave", true)
 		function afterLeave.zoneAfterCreatureLeave(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -156,7 +156,7 @@ function ZoneEvent:register()
 	end
 
 	if self.onSpawn then
-		local afterEnter = EventCallback()
+		local afterEnter = EventCallback("ZoneEventAfterEnterOnSpawn", true)
 		function afterEnter.zoneAfterCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true

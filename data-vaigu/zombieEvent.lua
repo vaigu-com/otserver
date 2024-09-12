@@ -1,6 +1,5 @@
 -- Store player kills
-local zombieEventData = Minigame("Zombie")
-
+do return end
 if zombieKillCount == nil then
 	zombieKillCount = {}
 end

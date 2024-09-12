@@ -449,19 +449,6 @@ function EncounterData:register()
 		return false
 	end
 
-	local zone = self:getZone()
-
-	local zoneArea = (function ()
-		local positions = {}
-		for key, value in pairs(self.zoneArea) do
-			table.insert(positions, value)
-		end
-		return positions
-	end)()
-	zone:addArea(zoneArea[1], zoneArea[2])
-	zone:blockFamiliars()
-	zone:setRemoveDestination(self.exitTpDestination)
-
 	self:registerLever()
 
 	EncounterDataRegistry():register(self)
