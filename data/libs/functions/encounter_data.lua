@@ -362,7 +362,7 @@ function EncounterData:onUse(leverUser)
 	local playerToEntranceTileData = {}
 	local players = CreatureList()
 	for _, entranceTile in pairs(self.entranceTiles) do
-		local player = CreatureList():Area(entranceTile.pos, entranceTile.pos):FilterByPlayer():First()
+		local player = CreatureList():Area(entranceTile.pos, entranceTile.pos):FilteredByPlayer():First()
 		playerToEntranceTileData[player] = entranceTile
 		players:Add(player)
 	end

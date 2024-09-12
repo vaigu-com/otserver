@@ -1,9 +1,5 @@
 local function movePlayersFromArea(topLeft, downRight, safePos)
-	IterateBetweenPositions(topLeft, downRight, function(context)
-		local pos = context.pos
-		pos:MoveCreatures(safePos)
-	end)
-	return true
+	CreatureList():Area(topLeft, downRight):FilteredByPlayer():MovedToPos(safePos)
 end
 
 local topLeft = DESERT_QUEST_ONE_ANCHOR:Moved({ x = -42, y = 55, z = 3 })
