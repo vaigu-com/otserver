@@ -12,7 +12,7 @@ function panpipeLever.onUse(player, item, fromPosition, target, toPosition, isHo
 		return
 	end
 
-	local fanfare = Tile(fanfareSacrificePos):getItemById(TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["FANFARE"].id)
+	local fanfare = Tile(fanfareSacrificePos):getItemById(TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.fanfare.id)
 
 	if not fanfare then
 		return false

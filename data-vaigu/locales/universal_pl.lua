@@ -265,5 +265,5 @@ return {
 	["Rats are gone, thanks again."] = "Szczury przepedzone, jeszcze raz dzieki.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "Podobno przynosi szczescie, jesli zlapiesz do niej swietlika z magicznego drzewka.",
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "No witam, mam do zaoferowania {sprzet wedkarski} oraz skupuje ryby.",
-	["Hello hello, |PLAYERNAME| I am Lebowski and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Siemano siemanko, |PLAYERNAME| ja jestem Jurek i sprzedaje zabezpieczenie przed zbyt ostrym imprezowaniem! Napisz {trade} to zobaczysz o co mi chodzi!",
+	["Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Siemano siemanko, |PLAYERNAME| ja jestem Jurek i sprzedaje zabezpieczenie przed zbyt ostrym imprezowaniem! Napisz {trade} to zobaczysz o co mi chodzi!",
 }

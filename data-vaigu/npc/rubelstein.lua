@@ -92,7 +92,7 @@ local config = {
 				},
 				rewards = {
 					[6104] = {
-						PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["RUBELSTEIN_SCROLL"],
+						PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.rubelsteinScroll,
 					},
 				},
 				nextState = { [Storage.PerIustitiaAdAstra.HelpedRubelstein] = 2 },

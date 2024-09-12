@@ -165,15 +165,15 @@ local config = {
 			[{ "mission" }] = {
 				text = "Alright, there are all the book you need. Now for the real task: we are hosting a party in the conference room. You can find some of our clients here. Try to convince them to take out a loan for one of our 'pristine' products. The books i had you bring to me were in Swahili, so you wouldnt understand a word. And now: I doth grant unto thee ye might of larcraeft.",
 				requiredItems = {
-					SYN_MARNOTRAWNY_KEY_ITEMS["BOOK_ONE"],
-					SYN_MARNOTRAWNY_KEY_ITEMS["BOOK_TWO"],
-					SYN_MARNOTRAWNY_KEY_ITEMS["BOOK_THREE"],
+					SYN_MARNOTRAWNY_KEY_ITEMS.bookOne,
+					SYN_MARNOTRAWNY_KEY_ITEMS.bookTwo,
+					SYN_MARNOTRAWNY_KEY_ITEMS.bookThree,
 				},
 				textNoRequiredItems = "Come back when you are done collecting the books.",
 				rewards = {
-					SYN_MARNOTRAWNY_KEY_ITEMS["POT"],
-					SYN_MARNOTRAWNY_KEY_ITEMS["LOVE_POTION"],
-					SYN_MARNOTRAWNY_KEY_ITEMS["HERBS"],
+					SYN_MARNOTRAWNY_KEY_ITEMS.pot,
+					SYN_MARNOTRAWNY_KEY_ITEMS.lovePotion,
+					SYN_MARNOTRAWNY_KEY_ITEMS.herbs,
 				},
 				nextState = {
 					[Storage.SynMarnotrawny.Questline] = 14,
@@ -187,8 +187,8 @@ local config = {
 				textNoRequiredItems = "Come back when you are done collecting the loan declarations.",
 				requiredItems = {
 					{
-						id = SYN_MARNOTRAWNY_KEY_ITEMS["LOAN_DOCUMENT"].id,
-						aid = SYN_MARNOTRAWNY_KEY_ITEMS["LOAN_DOCUMENT"].aid,
+						id = SYN_MARNOTRAWNY_KEY_ITEMS.loanDocument.id,
+						aid = SYN_MARNOTRAWNY_KEY_ITEMS.loanDocument.aid,
 						count = 3,
 					},
 				},
@@ -216,7 +216,7 @@ local config = {
 					[Storage.SynMarnotrawny.Questline] = 17,
 					[Storage.SynMarnotrawny.Mission05] = 3,
 				},
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["DIAMOND_NECKLACE"] },
+				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.diamondNecklace },
 				textNoRequiredItems = "Grab necklace from that corpse first. Be careful, those monsters are aggressive!",
 			},
 		},
@@ -300,7 +300,7 @@ local config = {
 		[23] = {
 			[{ "mission" }] = {
 				text = "Alright. For all your effort i present to you this legendary payslip. Dont worry, it works outside our company shop.",
-				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["PAYSLIP"] },
+				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.payslip },
 				nextState = {
 					[Storage.SynMarnotrawny.Questline] = 24,
 					[Storage.SynMarnotrawny.Mission06] = 3,

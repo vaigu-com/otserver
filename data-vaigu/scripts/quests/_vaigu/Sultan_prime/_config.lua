@@ -1,6 +1,6 @@
 SULTAN_PRIME_KEY_ITEMS = {
-	["bottle"] = { id = 10183, aid = Storage.SultanPrime.MagicianFountain },
-	["amulet"] = { id = 3015, aid = Storage.SultanPrime.RewardsScripted.Necklace },
+	bottle = { id = 10183, aid = Storage.SultanPrime.MagicianFountain },
+	amulet = { id = 3015, aid = Storage.SultanPrime.RewardsScripted.Necklace },
 }
 
 SULTAN_PRIME_CAMEL_FARM = { topLeft = { -37, -25, 0 }, downRight = { 12, 22, 0 }, requiredDromedaryCount = 6 }

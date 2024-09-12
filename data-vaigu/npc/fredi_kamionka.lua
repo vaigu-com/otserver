@@ -60,7 +60,7 @@ local config = {
 		[20] = {
 			[{ "mission" }] = {
 				text = "Alrigth, lets go.",
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["FREDI_BEER"] },
+				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.frediBeer },
 				specialActionsOnSuccess = {
 					{ action = StartEscortDialog, escortContext = escortContext },
 				},

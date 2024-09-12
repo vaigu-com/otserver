@@ -3,7 +3,7 @@ local rewardChests = {
 		pos = { 6051, 1503, 9 },
 		id = 2484,
 		actionid = Storage.AssassinsCreedSkurwoala.Rewards.CartSilicon,
-		rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS["silicon"] },
+		rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
 		requiredState = { [Storage.AssassinsCreedSkurwoala.Questline] = 11 },
 		nextState = { [Storage.AssassinsCreedSkurwoala.Questline] = 12, [Storage.AssassinsCreedSkurwoala.Mission04] = 3 },
 	},

@@ -69,7 +69,7 @@ local config = {
 			[{ "mission" }] = {
 				text = "Thank you, that's mine. Okay, now I'm going back to the {present}!",
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["TIMMY_BAG"],
+					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag,
 				},
 				textNoRequiredItems = "Are you sure you didn't lose any of my stuff along the way?",
 				nextState = {
@@ -82,7 +82,7 @@ local config = {
 			[{ "mission", "present", "terazniejszosci" }] = {
 				text = "Tell Tomek that I will deal with those refugees as soon as I can. Actually, I've already dealt with them. Yeah, the paradoxes of time travel. And one more thing: the person responsible for convincing immigrants to use the HF-P/X portal was none other than Rat Bum.",
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["TIMMY_POWDER"],
+					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
 				},
 				textNoRequiredItems = "My magic doesn't seem to work. We'll need elven spells. Go to the elves' rock and get some magical powder that I can use for the ritual. Watch out for the dormant Soros foundations. I've seen that they too got lost in this world.",
 				nextState = {

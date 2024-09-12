@@ -50,7 +50,7 @@ function tile.onStepIn(player, item, toPosition, fromPosition)
 	if not player:isPlayer() then
 		return false
 	end
-	if item.itemid == DESERT_QUEST_GHOSTS_KEY_ITEMS["PUNCHCARD"].id then
+	if item.itemid == DESERT_QUEST_GHOSTS_KEY_ITEMS.punchcard.id then
 		return false
 	end
 	if not Tile(toPosition):getItemById(355) then

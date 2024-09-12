@@ -32,8 +32,8 @@ function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if storageVal < 4 then
 		player:IncrementStorages({ Storage.SpoczywajacyTutaj.Questline }, 1)
 	elseif storageVal == 4 then
-		if player:RemoveItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS["crowbar"] }) then
-			if player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS["last_will"] }) then
+		if player:RemoveItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar }) then
+			if player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill }) then
 				player:UpdateStorages(updateStorages)
 				return true
 			end

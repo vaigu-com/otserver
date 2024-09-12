@@ -10,7 +10,7 @@ local startupItemsStatic = {
 		id = 2472,
 		aid = Storage.TeatrTaniejSensacji.Rewards.Cheese,
 		uid = 1000,
-		rewards = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS["cheese"] },
+		rewards = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS.cheese },
 		requiredState = { [Storage.TeatrTaniejSensacji.Questline] = 1 },
 	},
 }

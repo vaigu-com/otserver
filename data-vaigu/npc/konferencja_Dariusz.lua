@@ -54,8 +54,8 @@ local config = {
 			[{ GREET }] = { text = "Hello." },
 			[{ "potion", "mikstura" }] = {
 				text = "This is something i needed. Here is my singature.",
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["LOVE_POTION"] },
-				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["LOAN_DOCUMENT"] },
+				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.lovePotion },
+				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.loanDocument },
 			},
 		},
 	},

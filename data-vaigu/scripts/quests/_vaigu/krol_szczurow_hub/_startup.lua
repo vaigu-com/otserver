@@ -30,7 +30,7 @@ local artifactsStartup = {
 			[Storage.TeatrTaniejSensacji.Questline] = 10,
 			[Storage.TeatrTaniejSensacji.Mission04] = 3,
 		},
-		rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.librumVortex },
+		rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.librumvortex },
 	},
 	{
 		pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(-3, 2, 1),
