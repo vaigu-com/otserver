@@ -324,8 +324,8 @@ function EncounterData:createBoss()
 	end
 end
 
-function EncounterData:teleportPlayers(playerToEntranceTileData)
-	for player, data in pairs(playerToEntranceTileData) do
+function EncounterData:teleportPlayers(players)
+	for data, player in pairs(players) do
 		player:teleportTo(data.destination)
 		local effect = data.effect or CONST_ME_TELEPORT
 		Position(data.destination):sendMagicEffect(effect)
@@ -344,7 +344,7 @@ end
 
 function EncounterData:everyoneCanEnter(leverUser, players)
 	for _, check in pairs(leverUseConditions) do
-		local error, message = check(self, players:Get(), leverUser)
+		local error, message = check(self, players, leverUser)
 		if error ~= ENCOUNTER_ERROR_CODES.NO_ERROR then
 			local translatedMessage = leverUser:Localizer():Context(self):Get(message)
 			leverUser:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
@@ -357,17 +357,13 @@ end
 ---@param leverUser Player
 ---@return boolean
 function EncounterData:onUse(leverUser)
-	-- ToDo: wyjebac players, i zmienic funkcje w leverUseConditons:
-	-- ALBO: zmienic CreatureList, aby miala funkcjonalnosc to co playerToEntranceTileData
-	local playerToEntranceTileData = {}
 	local players = CreatureList()
 	for _, entranceTile in pairs(self.entranceTiles) do
-		local player = CreatureList():Area(entranceTile.pos, entranceTile.pos):FilteredByPlayer():First()
-		playerToEntranceTileData[player] = entranceTile
-		players:Add(player)
+		players:Pos(entranceTile.pos, { destination = entranceTile.destination })
 	end
+	players:FilterByPlayer()
 
-	if not self:everyoneCanEnter(leverUser, players) then
+	if not self:everyoneCanEnter(leverUser, players:Get()) then
 		return false
 	end
 	local zone = self:getZone()
@@ -378,10 +374,15 @@ function EncounterData:onUse(leverUser)
 
 	local bossMonster = self:createBoss()
 	if not bossMonster then
-		logger.error(T("[EncounterData:onUse] Failed to create boss :bossName: on position :pos:", { bossName = self.bossName, pos = self.bossPosition }))
+		logger.error(
+			T(
+				"[EncounterData:onUse] Failed to create boss :bossName: on position :pos:",
+				{ bossName = self.bossName, pos = self.bossPosition }
+			)
+		)
 	end
 
-	self:teleportPlayers(playerToEntranceTileData)
+	self:teleportPlayers(players:Get())
 
 	if self.encounterName then
 		local encounter = Encounter(self.encounterName)
@@ -389,7 +390,7 @@ function EncounterData:onUse(leverUser)
 		encounter:start()
 	end
 	if self.lockoutType == LOCKOUT_TYPE.ON_ENTER then
-		self:setLockouts(players)
+		self:setLockouts(players:Get())
 	end
 	self:handleTimeEvent(zone)
 	return true

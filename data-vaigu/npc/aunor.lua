@@ -79,7 +79,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveConversation(creature, message, config, npcHandler, npc)
+	return TryResolveDialog(creature, message, config, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

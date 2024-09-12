@@ -3,4 +3,6 @@ function onUpdateDatabase()
 	db.query([[
 		ALTER TABLE boosted_creature DROP PRIMARY KEY;
 	]])
+	
+	return true
 end

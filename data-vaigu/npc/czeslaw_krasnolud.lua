@@ -48,7 +48,7 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local conversationData = {
+local dialogs = {
 	[Storage.SpoczywajacyTutaj.Questline] = {
 		[6] = {
 			[{ "mission" }] = {
@@ -226,7 +226,7 @@ local conversationData = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, conversationData, npcHandler, npc)
+	InitializeResponses(creature, dialogs, npcHandler, npc)
 	return true
 end
 
@@ -234,7 +234,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveConversation(creature, msg, conversationData, npcHandler, npc)
+	return TryResolveDialog(creature, msg, dialogs, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

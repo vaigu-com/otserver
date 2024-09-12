@@ -20,6 +20,8 @@ static const std::unique_ptr<PreySlot>& PreySlotNull{};
 static const std::unique_ptr<TaskHuntingSlot>& TaskHuntingSlotNull{};
 static const std::unique_ptr<TaskHuntingOption>& TaskHuntingOptionNull{};
 
+static const uint8_t PreyGridSize = 9;
+
 enum PreySlot_t : uint8_t {
 	PreySlot_One = 0,
 	PreySlot_Two = 1,
@@ -103,6 +105,18 @@ public:
 	uint32_t difficulty;
 };
 
+// Vaigu custom
+class PreyMonsterBuilder {
+	private:
+		std::vector<PreyMonster> monsters;
+	public:
+		void init();
+		void filterByLevel(uint32_t level);
+		void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
+		void trim(uint16_t newSize);
+		std::vector<PreyMonster> get();
+};
+
 class PreySlot {
 public:
 	PreySlot() = default;
@@ -117,6 +131,7 @@ public:
 		return (state == PreyDataState_Selection || state == PreyDataState_SelectionChangeMonster || state == PreyDataState_ListSelection || state == PreyDataState_Inactive);
 	}
 
+	// Vaigu custom
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
 			bonusPercentage = 6 * bonusRarity + 10;
@@ -128,10 +143,9 @@ public:
 			bonusPercentage = 5 * bonusRarity + 10;
 		}
 		else if (bonus == PreyBonus_Loot) {
-			bonusPercentage = 10 * bonusRarity;
+			bonusPercentage = 9 * bonusRarity + 10;
 		}
 	}
-
 
 	// Vaigu custom
 	void eraseBonus(bool maintainBonus = false) {
@@ -142,25 +156,25 @@ public:
 		else {
 			bonusRarity = bonusRarity - (int)floor(log2(bonusRarity));
 		}
-		updateBonusPercentage();
 
 		state = PreyDataState_Selection;
 		option = PreyOption_None;
 		selectedRaceId = 0;
 		bonusTimeLeft = 0;
+		updateBonusPercentage();
 	}
 
 	void reloadBonusValue() {
 		int roll = uniform_random(0, 100);
-		bool upgrade = false;
-		bool downgrade = false;
-		int requiredRollForUpgrade = (int)floor(1.0 - (bonusRarity / 100.0) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
+		int requiredRollForUpgrade = (int)(floor(bonusRarity) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
 		if (roll >= requiredRollForUpgrade) {
 			bonusRarity++;
 		}
-		else if (roll < 0.15) {
+		else if (roll <= 25) {
 			bonusRarity--;
 		}
+		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		updateBonusPercentage();
 	}
 
 	void reloadBonusType() {
@@ -273,7 +287,8 @@ public:
 	std::unordered_set<std::string> loadWhitelist();
 	void initializePreyMonsters();
 
-	void checkPlayerPreys(std::shared_ptr<Player> player, uint8_t amount) const;
+	void reducePlayerPreyTime(std::shared_ptr<Player> player, uint8_t time, uint16_t raceId) const;
+	void updatePlayerPreyStatus(std::shared_ptr<Player> player) const;
 	void parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyAction_t action, PreyOption_t option, int8_t index, uint16_t raceId) const;
 
 	void parseTaskHuntingAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
