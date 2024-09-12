@@ -422,7 +422,6 @@ function Position:GetBoundariesByRadius(radius)
 	return topLeft, downRight
 end
 
-
 ---@param destination Position
 ---@return Vector vector
 function Position:VectorBetween(destination)
@@ -650,43 +649,18 @@ function Position:GetFirstNpcInRadius(radius, name)
 	end, { stopCondition = STOP_CONDITIONS.isNotNull })
 end
 
---38f
 function PlayersPresentAtAllPositions(positions, anchor)
 	for _, pos in pairs(positions) do
 		pos = pos.offPos or pos.pos or pos.position or pos
 		if anchor then
 			pos = anchor:Moved(pos)
 		end
-		local tile = Tile(pos)
-		local creature = tile:getTopCreature()
-		if not creature then
-			return false
-		end
-		if not creature:isPlayer() then
-			return false
+		local player = CreatureList():Pos(pos):FilterByPlayer():First()
+		if not player then
+			return
 		end
 	end
 	return true
-end
-
--- in an offset the magnitude of each coordinate is very rarely higher than 200
--- trying to create Position() with negative coordinate causes overflow, eg. Position(-10, 2, 3) will have {x: 65526, y: 2, z:3} -> this is Position class
--- such coordinates are never used relistically, so:
---- if x/y is higher than OVERFLOW_XY, and lowered back by 2^16 so it has its original value, eg. {x: -10, y: 2, z: 3} -> this is normal table
---- if z is higher than OVERFLOW_Z, then its lowered back by 2^8, so its has its original value
-local OVERFLOW_XY = 2 ^ 16 - 5000
-local OVERFLOW_Z = 2 ^ 8 - 50
-local function calculateOverflow(x, y, z)
-	if x > OVERFLOW_XY then
-		x = x - 2 ^ 16
-	end
-	if y > OVERFLOW_XY then
-		y = y - 2 ^ 16
-	end
-	if z > OVERFLOW_Z then
-		z = z - 2 ^ 8
-	end
-	return x, y, z
 end
 
 function ExtractCoords(...)
