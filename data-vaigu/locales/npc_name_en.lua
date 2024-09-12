@@ -92,7 +92,7 @@ return {
 	["Oldrak"] = "Oldrak",
 	["Ornuld"] = "Ornuld",
 	["Ocellatus"] = "Ocellatus",
-	["Lebowski"] = "Lebowski",
+	["Owsiak"] = "Owsiak",
 	["Pewter"] = "Pewter",
 	["Polychek"] = "Polychek",
 	["Qasim"] = "Qasim",

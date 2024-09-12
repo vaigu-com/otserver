@@ -7,6 +7,9 @@ do return end
 --   fail-resolved: Npc will say text that corresponds to the reason of this dialog fail. Actions on success wont be performed for this dialog
 
 local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogData)
+	-- Important note: all text in dialogues (text on no required items, text on success, text on no required state etc.) is not conidered final text, but an identifier for the localizer.
+	-- This means that all text will be translated based on player language and other context.
+
 	-- Topic required to resolve this dialog.
 	-- Int:
 	--	min = argument, Default: nil
@@ -380,6 +383,7 @@ local function exampleNpc()
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate
 			[{ "secret code" }] = { text = "okkk" },
+			[{GREET}] = {text = "Hello."}
 		},
 		-- Quest dialogs main storage that determines required state
 		[Storage.CatBranchman.Questline] = {
