@@ -135,13 +135,13 @@ public:
 	// Vaigu custom
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
-			bonusPercentage = 6 * bonusRarity + 10;
+			bonusPercentage = 4 * bonusRarity + 25;
 		} else if (bonus == PreyBonus_Defense) {
-			bonusPercentage = 4 * bonusRarity + 10;
+			bonusPercentage = 3 * bonusRarity + 15;
 		} else if (bonus == PreyBonus_Experience) {
-			bonusPercentage = 5 * bonusRarity + 10;
+			bonusPercentage = 3 * bonusRarity + 20;
 		} else if (bonus == PreyBonus_Loot) {
-			bonusPercentage = 9 * bonusRarity + 10;
+			bonusPercentage = 8 * bonusRarity + 20;
 		}
 	}
 
@@ -149,10 +149,13 @@ public:
 	void eraseBonus(bool maintainBonus = false) {
 		if (!maintainBonus) {
 			bonus = PreyBonus_None;
-			bonusRarity = (int)ceil(bonusRarity / 2.0);
+			if (bonusRarity > 4) {
+				bonusRarity = bonusRarity - (int)floor(bonusRarity * 0.33);
+			}
 		} else {
 			bonusRarity = bonusRarity - (int)floor(log2(bonusRarity));
 		}
+		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
 
 		state = PreyDataState_Selection;
 		option = PreyOption_None;
@@ -161,33 +164,86 @@ public:
 		updateBonusPercentage();
 	}
 
-	std::map<uint8_t, uint8_t> rarityToUpgradeChance = {
-		{ 1, 80 },
-		{ 2, 80 },
-		{ 3, 70 },
-		{ 4, 70 },
-		{ 5, 30 },
-		{ 6, 30 },
-		{ 7, 20 },
-		{ 8, 20 },
-		{ 9, 15 },
-		{ 10, 100 }, // Dont lower when user just wants to reroll type
-	};
+	void refreshBonus(
+		 bool maintainOption = true, 
+		 bool maintainState = true,
+		 bool maintainMonster = true, 
 
-	void
-	reloadBonusValue() {
-		int roll = uniform_random(0, 100);
-		int requiredRollForUpgrade = 100 - rarityToUpgradeChance[bonusRarity];
-		if (roll >= requiredRollForUpgrade) {
-			bonusRarity++;
-		} else if (roll <= 20) {
-			bonusRarity--;
+		PreyOption_t nextOption = PreyOption_None,
+		PreyDataState_t nextState =   PreyDataState_Active,
+		uint16_t nextRaceId = 0,
+
+		bool maintainBonusType = true,
+		 bool refreshTime = false,
+		 bool isReroll = false,
+		 bool rarityPenalty = 0, 
+
+		){
+
+		if (!maintainType) {
+			bonus = nextBonusType;
 		}
-		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		if (!maintainMonster) {
+			selectedRaceId = nextRaceId;
+			removeMonsterType(nextRaceId);
+		}
+		if (!maintainOption) {
+			option = nextOption;
+		}
+		if (!maintainState){
+			state = nextState;
+		}
+		if (maintainTime)
+
+		if (rarityPenalty > 0) {
+			bonusRarity = bonusRarity - rarityPenalty;
+			bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		}
+
+		if (refreshTime) {
+			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME, __FUNCTION__));
+		} else {
+			bonusTimeLeft = 0;
+		}
+		if(isReroll){
+			rerollBonusType();
+			rerollBonusValue();
+		}
 		updateBonusPercentage();
 	}
 
-	void reloadBonusType() {
+	uint16_t failstack[11];
+
+	std::map<uint8_t, uint8_t> rarityToUpgradeChance = {
+		{ 1, 90 },
+		{ 2, 90 },
+		{ 3, 70 },
+		{ 4, 70 },
+		{ 5, 50 },
+		{ 6, 40 },
+		{ 7, 30 },
+		{ 8, 20 },
+		{ 9, 15 },
+		{ 10, 100 },
+	};
+
+	void rerollBonusValue() {
+		failstack = std::clamp(player.kv()->scoped("failstack")->scoped("prey")->get(), 1, 10);
+		uint8_t roll = uniform_random(1, 100);
+		uint8_t requiredRollForUpgrade = 100 - rarityToUpgradeChance[bonusRarity];
+		if ((roll + failstack[bonusRarity]) >= requiredRollForUpgrade) {
+			bonusRarity++;
+			failstack[bonusRarity] = 0;
+		} else {
+			failstack[bonusRarity]++;
+			bonusRarity--;
+		}
+		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		
+		updateBonusPercentage();
+	}
+	player.kv()->scoped("failstack")->scoped("prey")->set(failstack);
+	void rerollBonusType() {
 		bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
 	}
 
