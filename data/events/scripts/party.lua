@@ -65,26 +65,34 @@ function Party:onDisband()
 	return true
 end
 
+local vocationCountToBonus = {
+	[1] = 1.25,
+	[2] = 1.35,
+	[3] = 1.65,
+	[4] = 1.8,
+	-- Allow non-promoted for higher bonus
+	[5] = 2.0,
+	[6] = 2.1,
+	[7] = 2.2,
+	[8] = 2.3,
+	[9] = 2.4,
+}
+
 function Party:onShareExperience(exp)
-	local sharedExperienceMultiplier = 1.20 --20%
-	local vocationsIds = {}
-
-	local vocationId = self:getLeader():getVocation():getBase():getId()
-	if vocationId ~= VOCATION_NONE then
-		table.insert(vocationsIds, vocationId)
+	local distinctVocationsTable = {}
+	local membersAndLeader = { self:getLeader():getVocation():getBase():getId() }
+	for _, member in pairs(self:getmembers()) do
+		membersAndLeader.insert(member)
 	end
 
-	for _, member in ipairs(self:getMembers()) do
-		vocationId = member:getVocation():getBase():getId()
-		if not table.contains(vocationsIds, vocationId) and vocationId ~= VOCATION_NONE then
-			table.insert(vocationsIds, vocationId)
-		end
+	for _, member in pairs(membersAndLeader) do
+		local vocationId = member:getVocation():getBase():getId()
+		distinctVocationsTable[vocationId] = true
 	end
 
-	local size = #vocationsIds
-	if size > 1 then
-		sharedExperienceMultiplier = 1.0 + ((size * (5 * (size - 1) + 10)) / 100)
-	end
+	local distintVocationsCount = TableSize(distinctVocationsTable)
 
-	return math.ceil((exp * sharedExperienceMultiplier) / (#self:getMembers() + 1))
+	local partyBonusMultiplier = vocationCountToBonus[distintVocationsCount]
+	local bonusPerMember = math.ceil(partyBonusMultiplier / (#self:getMembers() + 1))
+	return bonusPerMember
 end

@@ -3,7 +3,8 @@
 	- Store inbox items can be moved within inbox
 	- Prey monster timers only decay on killing that prey target
 	- Multiple immovable aid can exist
-]]--
+]]
+--
 local storeItemID = {
 	-- registered item ids here are not tradable with players
 	-- these items can be set to movable at items.xml
@@ -43,7 +44,7 @@ local storeItemID = {
 	29416, -- overcooked noodles
 }
 
-BOOSTED_CREATURE_EXP_MULTIPLIER = 1.5
+BOOSTED_CREATURE_EXP_MULTIPLIER = 0.7
 
 -- Players cannot throw items on teleports if set to true
 local blockTeleportTrashing = true
@@ -117,7 +118,7 @@ local function useStamina(player, isStaminaEnabled, raceId)
 	if not player then
 		return false
 	end
-	
+
 	usePreyStamina(player, 120, raceId)
 
 	local staminaMinutes = player:getStamina()
@@ -136,7 +137,7 @@ local function useStamina(player, isStaminaEnabled, raceId)
 		return
 	end
 
-	if timePassed < 60 or not isStaminaEnabled  then
+	if timePassed < 60 or not isStaminaEnabled then
 		return
 	end
 
@@ -494,10 +495,7 @@ function Player:onReportRuleViolation(targetName, reportType, reportReason, comm
 	end
 	io.write("------------------------------\n")
 	io.close(file)
-	self:sendTextMessage(
-		MESSAGE_EVENT_ADVANCE,
-		T("Thank you for reporting :targetName:. Your report will be processed by :teamName: team as soon as possible.",{targetName=targetName,teamName = configManager.getString(configKeys.SERVER_NAME)})
-	)
+	self:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("Thank you for reporting :targetName:. Your report will be processed by :teamName: team as soon as possible.", { targetName = targetName, teamName = configManager.getString(configKeys.SERVER_NAME) }))
 	return
 end
 
@@ -555,6 +553,7 @@ function Player:onTradeRequest(target, item)
 	return true
 end
 
+-- Prey system is handled on cpp side. Total party's exp prey percentage is split with all members evenly.
 function Player:onGainExperience(target, exp, rawExp)
 	if not target or target:isPlayer() then
 		return exp
@@ -571,57 +570,47 @@ function Player:onGainExperience(target, exp, rawExp)
 		self:addCondition(soulCondition)
 	end
 
-	-- XP Boost Bonus
-	useStaminaXpBoost(self) -- Use stamina XP boost (store or daily reward)
-
+	-- XP Boost Bonus -- From daily shrine, event or store
+	useStaminaXpBoost(self)
 	local xpBoostTimeLeft = self:getXpBoostTime()
 	local stillHasXpBoost = xpBoostTimeLeft > 0
-	local xpBoostPercent = stillHasXpBoost and self:getXpBoostPercent() or 0
+	local xpboostPercentage = stillHasXpBoost and self:getXpBoostPercent() or 0
 
-	self:setXpBoostPercent(xpBoostPercent)
+	self:setXpBoostPercent(xpboostPercentage)
 
 	-- Stamina Bonus
-	local staminaBonusXp = 1
+	local staminaMultiplier = 1
 	local isStaminaEnabled = configManager.getBoolean(configKeys.STAMINA_SYSTEM)
 	useStamina(self, isStaminaEnabled, raceId)
 	if isStaminaEnabled then
-		staminaBonusXp = self:getFinalBonusStamina()
-		self:setStaminaXpBoost(staminaBonusXp * 100)
+		staminaMultiplier = self:getFinalBonusStamina()
+		self:setStaminaXpBoost(staminaMultiplier * 100)
 	end
 
 	-- Concoction System
 	useConcoctionTime(self)
 
 	-- Boosted creature
-	local multiplierIfBoostedCreature  = 1
+	local boostedcreaturePercentage = 0
 	if target:isBoosted() then
-		multiplierIfBoostedCreature =  BOOSTED_CREATURE_EXP_MULTIPLIER
+		boostedcreaturePercentage = BOOSTED_CREATURE_EXP_MULTIPLIER
 	end
 
-	-- Prey system
-	if configManager.getBoolean(configKeys.PREY_ENABLED) then
-		local monsterType = target:getType()
-		if monsterType and monsterType:raceId() > 0 then
-			exp = math.ceil((exp * self:getPreyExperiencePercentage(monsterType:raceId())) / 100)
-		end
-	end
-
+	-- Vip system
+	--[[
+	local vipBonusPercentage = 0
 	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
-		local vipBonusExp = configManager.getNumber(configKeys.VIP_BONUS_EXP)
-		if vipBonusExp > 0 and self:isVip() then
-			vipBonusExp = (vipBonusExp > 100 and 100) or vipBonusExp
-			exp = exp * (1 + (vipBonusExp / 100))
+		vipBonusPercentage = configManager.getNumber(configKeys.VIP_BONUS_EXP)
+		if self:isVip() and vipBonusPercentage > 0 then
+			vipBonusPercentage = (vipBonusPercentage > 100 and 100) or vipBonusPercentage
+			vipBonusPercentage = vipBonusPercentage / 100
 		end
 	end
+	]]
 
-	local baseRate = self:getFinalBaseRateExperience()
+	local playerexpstageMultiplier = self:getFinalBaseRateExperience()
 
-	local finalExp = exp * staminaBonusXp * baseRate * multiplierIfBoostedCreature
-	
-	-- Daily or store xp boost
-	if stillHasXpBoost then
-		finalExp = finalExp * (1 + xpBoostPercent) 
-	end
+	local finalExp = exp * playerexpstageMultiplier * staminaMultiplier * (1 + boostedcreaturePercentage) * (1 + xpboostPercentage)
 
 	-- Server protection
 	if Game.getStorageValue(GlobalStorage.Protection) == 1 then
