@@ -13,6 +13,19 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+monster.raceId = 2581
+monster.Bestiary = {
+	class = "Undead",
+	race = BESTY_RACE_UNDEAD,
+	toKill = 500,
+	FirstUnlock = 25,
+	SecondUnlock = 250,
+	CharmsPoints = 15,
+	Stars = 2,
+	Occurrence = 0,
+	Locations = "Unknown.",
+}
+
 monster.health = 3000
 monster.maxHealth = 3000
 monster.race = "blood"

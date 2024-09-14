@@ -24,7 +24,6 @@ function loginEvents.onLogin(player)
 		"PlayerDeath",
 		"FamiliarLogin",
 		"FamiliarAdvance",
-		"BonusExpKill",
 		--"Recompense",
 		-- Concoctions
 		"ConcoctionsOnLogin",

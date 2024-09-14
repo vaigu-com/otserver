@@ -262,7 +262,9 @@ function checkBoss(centerPosition, rangeX, rangeY, bossName, bossPos)
 	end
 	if not found then
 		local boss = Game.createMonster(bossName, bossPos, true, true)
-		boss:setReward(true)
+		if boss then
+			boss:setReward(true)
+		end
 	end
 	return found
 end
