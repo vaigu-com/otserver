@@ -326,7 +326,7 @@ void IOPrey::updatePlayerPreyStatus(std::shared_ptr<Player> player) const {
 			maintainOption = false;
 			refreshTime = false;
 			rarityPenalty = 0;
-			isReroll = true;
+			isReroll = false;
 			message = "Your prey bonus has expired.";
 		}
 
@@ -411,9 +411,6 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			return;
 		}
 
-		if (slot->bonus != PreyBonus_None) {
-			isReroll = true;
-		}
 		nextRaceId = raceId;
 		maintainMonster = false;
 		rarityPenalty = 3;
@@ -444,7 +441,6 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		}
 
 		rarityPenalty = 1;
-		isReroll = true;
 		nextState = PreyDataState_Active;
 		maintainState = false;
 		nextRaceId = slot->raceIdList[index];

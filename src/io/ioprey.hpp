@@ -210,7 +210,7 @@ public:
 		updateBonusPercentage();
 	}
 
-	std::vector<uint16_t> failstack;
+	std::vector<uint16_t> failstack = std::vector<uint16_t>(11);
 
 	const std::map<uint8_t, uint8_t> starsToUpgradeChance = {
 		{ PreyStars_1, 90 },
