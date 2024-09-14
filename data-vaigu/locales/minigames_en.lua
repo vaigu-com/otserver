@@ -47,4 +47,7 @@ return {
 			}
 		)
 	end,
+	["COIN_LOTTERY_WINNER"] = function(context)
+		return T("Coin lottery! :playerName: winds :coins: coins. Congratulations!", { playerName = context.playerName, coins = context.coins })
+	end,
 }

@@ -25,7 +25,7 @@ do
 	return
 end
 
-local encounter = Encounter("zombie", {
+local zombieMinigame = Encounter("zombie", {
 	timeToSpawnMonsters = "1000ms",
 	jackedChance = 0,
 	playerSpeed = 400,
@@ -37,33 +37,33 @@ local encounter = Encounter("zombie", {
 	},
 })
 
-
-
-function encounter:onReset()
-	encounter:removeMonsters()
-	encounter.jackedChance = 0
+function zombieMinigame:onReset()
+	zombieMinigame:removeMonsters()
+	zombieMinigame.jackedChance = 0
 end
 
-encounter:addRemoveMonsters():autoAdvance()
+zombieMinigame:addRemoveMonsters():autoAdvance()
 
-EncounterDefinitionRegistry():Register(encounter)
+EncounterDefinitionRegistry():Register(zombieMinigame)
 
 local zombieSpawns = GlobalEvent("encounter.zombie.spawn-zombies")
 function zombieSpawns.onThink()
-	local pos = encounter.zone:randomPosition()
+	local pos = zombieMinigame.zone:randomPosition()
 	local roll = math.random(1, 100)
-	if roll < encounter.jackedChance then
+	if roll < zombieMinigame.jackedChance then
 		Game.createMonster("Zombie Event Jacked", pos)
 	else
 		Game.createMonster("Zombie Event", pos)
 	end
-	encounter.jackedChance = encounter.jackedChance + 1
+	zombieMinigame.jackedChance = zombieMinigame.jackedChance + 1
 	return true
 end
 zombieSpawns:interval(10000)
 zombieSpawns:register()
 
-kv:scoped("encounter"):scoped(encounter.name):scoped("current-players"):set(0)
-kv:scoped("encounter"):scoped(encounter.name):scoped("starting-players"):set(0)
-kv:scoped("encounter"):scoped(encounter.name):scoped("monster-count"):set(0)
-kv:scoped("encounter"):scoped(encounter.name):scoped("start-time"):set(os.time())
+local eventKv = kv:scoped("encounter"):scoped(zombieMinigame.name)
+eventKv:scoped("current-players"):set(0)
+eventKv:scoped("starting-players"):set(0)
+eventKv:scoped("monster-count"):set(0)
+eventKv:scoped("start-time"):set(os.time())
+eventKv:scoped("win-condition"):set(MINIGAMES_WIN_CONDITION.last_man_standing)

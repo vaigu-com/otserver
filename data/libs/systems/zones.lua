@@ -1,4 +1,3 @@
-require("lldebugger").start()
 ---@class Zone
 ---@field getByEncounter function
 ---@field getName function

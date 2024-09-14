@@ -4,7 +4,7 @@ MINIGAMES_WIN_CONDITION = {
 	last_man_standing = "last_man_standing",
 }
 
-local function winnerGlobalMessage(context)
+local function announceNthPlace(context)
 	local message = ""
 	if context.winCondition == MINIGAMES_WIN_CONDITION.speedrun then
 		message = "MINIGAMES_BROADCAST_SPEEDRUN"
@@ -22,8 +22,6 @@ local function winnerGlobalMessage(context)
 	Game.broadcastMessage(message, nil, true, context)
 end
 
-local zombiePrepareDeath = CreatureEvent("MinigameDeath")
-
 local function bringPlayerBackToNormal(player)
 	local depo = Position(6238, 1605, 8)
 	player:teleportTo(depo)
@@ -39,30 +37,31 @@ local function bringPlayerBackToNormal(player)
 	SPECIAL_ACTIONS_UNIVERSAL.clearConditions(player)
 end
 
-local function grantRewards(player, eventKv, grandPlace, minigameName)
-	local bonus = 5 - grandPlace
-	if bonus < 1 then
-		bonus = 1
+local placeToBonus = {
+	[1] = 4,
+	[2] = 3,
+	[3] = 2,
+	[4] = 1,
+}
+
+local function grantRewards(player, eventKv, placement, minigameName)
+	if placement > 4 then
+		placement = 4
 	end
-	if grandPlace == 3 then
+	local bonus = placeToBonus[placement]
+	if placement == 3 then
 		eventKv:scoped("third-place"):set(player:getName())
 	end
-	if grandPlace == 2 then
+	if placement == 2 then
 		eventKv:scoped("second-place"):set(player:getName())
 	end
-	if grandPlace == 1 then
+	if placement == 1 then
 		player:kv():scoped("minigames"):scoped(minigameName):scoped("matches"):incrementOrSet()
 		player:kv():scoped("minigames"):scoped("total"):scoped("matches"):incrementOrSet()
 		eventKv:scoped("first-place"):set(player:getName())
 	end
 	player:addXpBoostTime(bonus * 5)
-	player:addTaskCoins(bonus)
-end
-
-TRANSFERABLE_COINS_MULTIPLIER = 30
-function Player:addTaskCoins(count)
-	self:addTibiaCoins(count)
-	self:addTransferableCoins(count * TRANSFERABLE_COINS_MULTIPLIER)
+	player:AddAllCoins(bonus)
 end
 
 local winConditionToRecordString = {
@@ -71,9 +70,11 @@ local winConditionToRecordString = {
 }
 
 local function tryUpdateRecordKv(context)
-	local timeKv = context.timeKv
+	local timeKv = context.eventKv:scoped(MINIGAMES_WIN_CONDITION.speedrun)
+	local monstersKv = context.eventKv:scoped(winConditionToRecordString[context.winCondition])
+
 	if context.winCondition == MINIGAMES_WIN_CONDITION.speedrun then
-		if timeKv:get() > context.timeElapsed then
+		if context.timeElapsed < timeKv:get() then
 			timeKv:set(context.timeElapsed)
 		end
 	end
@@ -81,18 +82,21 @@ local function tryUpdateRecordKv(context)
 		if context.timeElapsed > timeKv:get() then
 			timeKv:set(context.timeElapsed)
 		end
+		if context.monsterCount > monstersKv:get() then
+			monstersKv:set(context.monsterCount)
+		end
 	end
 end
 
 local function tryUpdatePlayerPersonalRecord(context)
 	local eventKv = context.player:kv():scoped("minigames"):scoped(context.eventName)
-	context.timeKv = eventKv:scoped("best-time")
+	context.eventKv = eventKv
 	tryUpdateRecordKv(context)
 end
 
 local function tryUpdateGlobalRecord(context)
 	local eventKv = kv:scoped("minigames"):scoped(context.eventName)
-	context.timeKv = eventKv:scoped("best-time")
+	context.eventKv = eventKv
 	tryUpdateRecordKv(context)
 end
 
@@ -101,7 +105,8 @@ local function tryUpdateRecords(context)
 	tryUpdateGlobalRecord(context)
 end
 
-function zombiePrepareDeath.onPrepareDeath(creature, killer)
+local minigameDeath = CreatureEvent("MinigameDeath")
+function minigameDeath.onPrepareDeath(creature, killer)
 	local player = Player(creature)
 	local minigameName = player:kv():scoped("encounter"):scoped("current"):get().name
 
@@ -112,7 +117,7 @@ function zombiePrepareDeath.onPrepareDeath(creature, killer)
 	local startingPlayers = eventKv:scoped("starting-players"):get()
 	local monsterCount = eventKv:scoped("monster-count"):get()
 	local timeElapsed = os.time() - eventKv:scoped("start-time")
-	local winCondition = eventKv:scoped("win-condition-type"):get()
+	local winCondition = eventKv:scoped("win-condition"):get()
 
 	local grandPlace = currentPlayers
 	if winCondition == MINIGAMES_WIN_CONDITION.speedrun then
@@ -120,17 +125,15 @@ function zombiePrepareDeath.onPrepareDeath(creature, killer)
 	end
 
 	local eventCompletionContext = { player = player, eventName = minigameName, timeElapsed = timeElapsed, winCondition = winCondition, grandPlace = grandPlace, monsterCount = monsterCount }
-	tryUpdateRecords(eventCompletionContext)
 
+	tryUpdateRecords(eventCompletionContext)
 	grantRewards(player, eventKv, grandPlace, minigameName)
 	bringPlayerBackToNormal(player)
+	announceNthPlace(eventCompletionContext)
+
 	currentPlayersKv:incrementOrSet(nil, -1)
-
-	winnerGlobalMessage(eventCompletionContext)
-
-	player:kv():scoped("minigames"):scoped("")
 
 	return false
 end
 
-zombiePrepareDeath:register()
+minigameDeath:register()
