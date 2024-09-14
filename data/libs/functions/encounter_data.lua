@@ -449,12 +449,6 @@ function EncounterData:register()
 		return false
 	end
 
-	local zone = self:getZone()
-
-	zone:addArea(self.zoneArea.from, self.zoneArea.to)
-	zone:blockFamiliars()
-	zone:setRemoveDestination(self.exitTpDestination)
-
 	self:registerLever()
 
 	EncounterDataRegistry():register(self)

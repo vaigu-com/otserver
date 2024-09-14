@@ -1186,6 +1186,27 @@ Storage = {
 	-- arena = 26100
 	-- arena = 26101
 	-- arena = 26102
+	Minigames = {
+		Locks = {
+			MwLock = 30014,
+			HasteLock = 30059,
+			HealLock = 30016,
+		},
+		Total = {
+			Wins = NextStorage(),
+			Matches = NextStorage(),
+			Points = NextStorage(),
+		},
+		CurrentEvent = NextStorage(),
+		Events = {
+			ZombieMinigame = {
+				Wins = NextStorage(),
+				Matches = NextStorage(),
+				Points = NextStorage(),
+				LongestRecord = NextStorage(),
+			},
+		},
+	},
 	mwLock = 30014,
 	allowWTstorage = 30015,
 	healLock = 30016,

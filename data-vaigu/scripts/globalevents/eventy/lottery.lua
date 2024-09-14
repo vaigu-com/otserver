@@ -6,26 +6,25 @@ local startHours = {
 
 local function runLottery()
 	local players = Game.getPlayers()
-	local onlineList = {
-		Active = {},
-	}
+	local onlineList = {}
 
 	for _, targetPlayer in ipairs(players) do
 		local hasAccess = targetPlayer:getGroup():getAccess()
 		if hasAccess == false then
-			table.insert(onlineList.Active, targetPlayer)
+			table.insert(onlineList, targetPlayer)
 		end
 	end
 
-	if #onlineList.Active > 0 then
-		local uid = math.random(1, #onlineList.Active)
-		local lucky = onlineList.Active[uid]
+	if #onlineList <= 0 then
+		return
+	end
 
-		if lucky then
-			lucky:addTibiaCoins(5)
-			lucky:addTransferableCoins(15)
-			Game.broadcastMessage("Coin Lottery! " .. lucky:getName() .. " wygrywa 15 coinow. Gratulacje!", MESSAGE_STATUS_WARNING)
-		end
+	local uid = math.random(1, #onlineList)
+	local luckyPlayer = onlineList[uid]
+
+	if luckyPlayer then
+		luckyPlayer:AddAllCoins(5)
+		Game.broadcastMessage("COIN_LOTTERY_WINNER", MESSAGE_STATUS_WARNING, true { playerName = luckyPlayer:getName(), 5})
 	end
 end
 

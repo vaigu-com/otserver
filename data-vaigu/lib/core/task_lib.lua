@@ -305,6 +305,12 @@ function PlayerFinishedTaskAtLeastOnce(player, task)
     return player:getStorageValue(task.storage) == TASK_FINISHED
 end
 
+TRANSFERABLE_COINS_MULTIPLIER = 30
+function Player:AddAllCoins(coins)
+    self:addTibiaCoins(coins)
+    self:addTransferableCoins(coins * 30)
+end
+
 local function grantTaskRewards(context)
     local player = context.player
     local task = context.task or context.dailyTask
