@@ -1,3 +1,8 @@
 function onUpdateDatabase()
-	return false -- true = There are others migrations file | false = this is the last migration file
+	logger.info("Updating database to version 52 (add failstack to preyslot)")
+	db.query([[
+		ALTER TABLE player_prey ADD failstack blob;
+	]])
+	
+	return true
 end

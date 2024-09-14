@@ -521,7 +521,6 @@ int PlayerFunctions::luaPlayerPreyThirdSlot(lua_State* L) {
 			pushBoolean(L, slot->state != PreyDataState_Locked);
 		} else {
 			if (getBoolean(L, 2, false)) {
-				slot->eraseBonus();
 				slot->state = PreyDataState_Selection;
 				slot->reloadMonsterGrid(player->getPreyBlackList(), player->getLevel());
 				player->reloadPreySlot(PreySlot_Three);
