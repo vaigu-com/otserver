@@ -4847,22 +4847,25 @@ void Player::onGainExperience(uint64_t gainExp, std::shared_ptr<Creature> target
 	}
 	std::shared_ptr<Monster> monster = target->getMonster();
 
-	uint16_t expPreyPercentage = 0;
+	double expPreyPercentage = 0;
 	if (target && !target->getPlayer() && m_party && m_party->isSharedExperienceActive() && m_party->isSharedExperienceEnabled()) {
-
 		for (std::shared_ptr<Player> member : m_party->getPlayers()) {
 			const std::unique_ptr<PreySlot> &slot = member->getPreyWithMonster(monster->getRaceId());
 			if (slot && slot->isOccupied() && slot->bonus == PreyBonus_Experience && slot->bonusTimeLeft > 0) {
 				expPreyPercentage = expPreyPercentage + slot->bonusPercentage;
 			}
 		}
-		expPreyPercentage = (int)ceil(expPreyPercentage / m_party->getMemberCount());
-		gainExp = gainExp * (1 + expPreyPercentage);
+		expPreyPercentage = (int)ceil(expPreyPercentage / m_party->getPlayersCount());
+		gainExp = gainExp * (1.0 + expPreyPercentage / 100.0);
 		m_party->shareExperience(gainExp, target);
 		return;
-	} else {
-		gainExp = gainExp * (1 + expPreyPercentage);
 	}
+
+	const std::unique_ptr<PreySlot> &slot = getPreyWithMonster(monster->getRaceId());
+	if (slot && slot->isOccupied() && slot->bonus == PreyBonus_Experience && slot->bonusTimeLeft > 0) {
+		expPreyPercentage = expPreyPercentage + slot->bonusPercentage;
+	}
+	gainExp = gainExp * (1.0 + expPreyPercentage / 100.0);
 
 	Creature::onGainExperience(gainExp, target);
 	gainExperience(gainExp, target);
