@@ -70,27 +70,28 @@ local vocationCountToBonus = {
 	[2] = 1.35,
 	[3] = 1.65,
 	[4] = 1.8,
-	-- Allow non-promoted for higher bonus
+	--[[
 	[5] = 2.0,
 	[6] = 2.1,
 	[7] = 2.2,
 	[8] = 2.3,
 	[9] = 2.4,
+	]]
 }
 
 function Party:onShareExperience(exp)
 	local distinctVocationsTable = {}
-	local membersAndLeader = { self:getLeader():getVocation():getBase():getId() }
-	for _, member in pairs(self:getmembers()) do
-		membersAndLeader.insert(member)
-	end
+	local partyPlayers = self:getPlayers()
 
-	for _, member in pairs(membersAndLeader) do
+	for _, member in pairs(partyPlayers) do
 		local vocationId = member:getVocation():getBase():getId()
 		distinctVocationsTable[vocationId] = true
 	end
 
 	local distintVocationsCount = TableSize(distinctVocationsTable)
+	if distintVocationsCount > 4 then
+		distintVocationsCount = 4
+	end
 
 	local partyBonusMultiplier = vocationCountToBonus[distintVocationsCount]
 	local bonusPerMember = math.ceil(partyBonusMultiplier / (#self:getMembers() + 1))

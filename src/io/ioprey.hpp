@@ -16,9 +16,9 @@ class PreySlot;
 class TaskHuntingSlot;
 class TaskHuntingOption;
 
-static const std::unique_ptr<PreySlot>& PreySlotNull{};
-static const std::unique_ptr<TaskHuntingSlot>& TaskHuntingSlotNull{};
-static const std::unique_ptr<TaskHuntingOption>& TaskHuntingOptionNull{};
+static const std::unique_ptr<PreySlot> &PreySlotNull {};
+static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
+static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
 
 static const uint8_t PreyGridSize = 9;
 
@@ -50,6 +50,22 @@ enum PreyBonus_t : uint8_t {
 
 	PreyBonus_First = PreyBonus_Damage,
 	PreyBonus_Last = PreyBonus_Loot
+};
+
+enum PreyStars_t : uint8_t {
+	PreyStars_0 = 0,
+	PreyStars_1 = 1,
+	PreyStars_2 = 2,
+	PreyStars_3 = 3,
+	PreyStars_4 = 4,
+	PreyStars_5 = 5,
+	PreyStars_6 = 6,
+	PreyStars_7 = 7,
+	PreyStars_8 = 8,
+	PreyStars_9 = 9,
+	PreyStars_10 = 10,
+	PreyStars_Min = PreyStars_1,
+	PreyStars_Max = PreyStars_10
 };
 
 enum PreyOption_t : uint8_t {
@@ -107,14 +123,15 @@ public:
 
 // Vaigu custom
 class PreyMonsterBuilder {
-	private:
-		std::vector<PreyMonster> monsters;
-	public:
-		void init();
-		void filterByLevel(uint32_t level);
-		void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
-		void trim(uint16_t newSize);
-		std::vector<PreyMonster> get();
+private:
+	std::vector<PreyMonster> monsters;
+
+public:
+	void init();
+	void filterByLevel(uint32_t level);
+	void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
+	void trim(uint16_t newSize);
+	std::vector<PreyMonster> get();
 };
 
 class PreySlot {
@@ -134,50 +151,96 @@ public:
 	// Vaigu custom
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
-			bonusPercentage = 6 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Defense) {
-			bonusPercentage = 4 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Experience) {
-			bonusPercentage = 5 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Loot) {
-			bonusPercentage = 9 * bonusRarity + 10;
+			bonusPercentage = 4 * bonusRarity + 25;
+		} else if (bonus == PreyBonus_Defense) {
+			bonusPercentage = 3 * bonusRarity + 15;
+		} else if (bonus == PreyBonus_Experience) {
+			bonusPercentage = 3 * bonusRarity + 20;
+		} else if (bonus == PreyBonus_Loot) {
+			bonusPercentage = 8 * bonusRarity + 20;
 		}
 	}
 
 	// Vaigu custom
-	void eraseBonus(bool maintainBonus = false) {
-		if (!maintainBonus) {
+	void refreshBonus(
+		bool maintainOption = true,
+		bool maintainState = true,
+		bool maintainMonster = true,
+
+		PreyOption_t nextOption = PreyOption_None,
+		PreyDataState_t nextState = PreyDataState_Selection,
+		uint16_t nextRaceId = 0,
+
+		bool maintainBonusType = true,
+		bool refreshTime = false,
+		bool isReroll = false,
+		uint16_t rarityPenalty = 0
+	) {
+
+		if (!maintainBonusType) {
 			bonus = PreyBonus_None;
-			bonusRarity = (int)ceil(bonusRarity / 2.0);
 		}
-		else {
-			bonusRarity = bonusRarity - (int)floor(log2(bonusRarity));
+		if (!maintainMonster) {
+			selectedRaceId = nextRaceId;
+			removeMonsterType(nextRaceId);
+		}
+		if (!maintainOption) {
+			option = nextOption;
+		}
+		if (!maintainState) {
+			state = nextState;
 		}
 
-		state = PreyDataState_Selection;
-		option = PreyOption_None;
-		selectedRaceId = 0;
-		bonusTimeLeft = 0;
+		if (rarityPenalty > 0) {
+			bonusRarity = bonusRarity - rarityPenalty;
+			bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		}
+
+		if (refreshTime) {
+			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME, __FUNCTION__));
+		} else {
+			bonusTimeLeft = 0;
+		}
+		if (isReroll) {
+			rerollBonusType();
+			rerollBonusValue();
+		}
 		updateBonusPercentage();
 	}
 
-	void reloadBonusValue() {
-		int roll = uniform_random(0, 100);
-		int requiredRollForUpgrade = (int)(floor(bonusRarity) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
-		if (roll >= requiredRollForUpgrade) {
+	std::vector<uint16_t> failstack;
+
+	const std::map<uint8_t, uint8_t> starsToUpgradeChance = {
+		{ PreyStars_1, 90 },
+		{ PreyStars_2, 90 },
+		{ PreyStars_3, 70 },
+		{ PreyStars_4, 70 },
+		{ PreyStars_5, 50 },
+		{ PreyStars_6, 40 },
+		{ PreyStars_7, 30 },
+		{ PreyStars_8, 20 },
+		{ PreyStars_9, 15 },
+		{ PreyStars_Max, 100 },
+	};
+
+	const uint16_t failstackBonus = 5;
+	void rerollBonusValue() {
+		const uint8_t roll = uniform_random(1, 100) + failstack.at(bonusRarity);
+		const uint8_t requiredRollForUpgrade = 100 - starsToUpgradeChance.at(bonusRarity);
+		//  + failstack.at(bonusRarity)
+		if ((roll) >= requiredRollForUpgrade) {
 			bonusRarity++;
-		}
-		else if (roll <= 25) {
+			failstack.at(bonusRarity) = 0;
+		} else {
+			failstack.at(bonusRarity) = failstack.at(bonusRarity) + failstackBonus;
 			bonusRarity--;
 		}
 		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+
 		updateBonusPercentage();
 	}
 
-	void reloadBonusType() {
+	void rerollBonusType() {
 		bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
 	}
 
@@ -232,7 +295,7 @@ public:
 	bool isCreatureOnList(uint16_t raceId) const {
 		auto it = std::find_if(raceIdList.begin(), raceIdList.end(), [raceId](uint16_t it) {
 			return it == raceId;
-			});
+		});
 
 		return it != raceIdList.end();
 	}
@@ -276,10 +339,10 @@ public:
 	IOPrey() = default;
 
 	// non-copyable
-	IOPrey(const IOPrey&) = delete;
-	void operator=(const IOPrey&) = delete;
+	IOPrey(const IOPrey &) = delete;
+	void operator=(const IOPrey &) = delete;
 
-	static IOPrey& getInstance() {
+	static IOPrey &getInstance() {
 		return inject<IOPrey>();
 	}
 
@@ -294,7 +357,7 @@ public:
 	void parseTaskHuntingAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
 
 	void initializeTaskHuntOptions();
-	const std::unique_ptr<TaskHuntingOption>& getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot>& slot) const;
+	const std::unique_ptr<TaskHuntingOption> &getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot> &slot) const;
 
 	NetworkMessage getTaskHuntingBaseDate() const {
 		return baseDataMessage;

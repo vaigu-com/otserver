@@ -591,6 +591,21 @@ bool IOLoginDataSave::savePlayerPreyClass(std::shared_ptr<Player> player) {
 		std::ostringstream query;
 		for (uint8_t slotId = PreySlot_First; slotId <= PreySlot_Last; slotId++) {
 			if (const auto &slot = player->getPreySlotById(static_cast<PreySlot_t>(slotId))) {
+				PropWriteStream propPreyStream;
+				std::ranges::for_each(slot->raceIdList.begin(), slot->raceIdList.end(), [&propPreyStream](uint16_t raceId) {
+					propPreyStream.write<uint16_t>(raceId);
+				});
+				size_t preySize;
+				const char* preyList = propPreyStream.getStream(preySize);
+
+				PropWriteStream propFailstackStream;
+				for (size_t starFailstack = PreyStars_Min; starFailstack <= PreyStars_Max; starFailstack++) {
+					uint16_t failstackMagnitude = slot->failstack.at(starFailstack);
+					propFailstackStream.write<uint16_t>(failstackMagnitude);
+				}
+				size_t failstackSize;
+				const char* failstackList = propFailstackStream.getStream(failstackSize);
+
 				query.str(std::string());
 				query << "INSERT INTO player_prey (`player_id`, `slot`, `state`, `raceid`, `option`, `bonus_type`, `bonus_rarity`, `bonus_percentage`, `bonus_time`, `free_reroll`, `monster_list`) "
 					  << "VALUES (" << player->getGUID() << ", "
@@ -603,15 +618,8 @@ bool IOLoginDataSave::savePlayerPreyClass(std::shared_ptr<Player> player) {
 					  << slot->bonusPercentage << ", "
 					  << slot->bonusTimeLeft << ", "
 					  << slot->freeRerollTimeStamp << ", ";
-
-				PropWriteStream propPreyStream;
-				std::ranges::for_each(slot->raceIdList.begin(), slot->raceIdList.end(), [&propPreyStream](uint16_t raceId) {
-					propPreyStream.write<uint16_t>(raceId);
-				});
-
-				size_t preySize;
-				const char* preyList = propPreyStream.getStream(preySize);
-				query << db.escapeBlob(preyList, static_cast<uint32_t>(preySize)) << ")";
+				query << db.escapeBlob(preyList, static_cast<uint32_t>(preySize)) << ", ";
+				query << db.escapeBlob(failstackList, static_cast<uint32_t>(failstackSize)) << ")";
 
 				query << " ON DUPLICATE KEY UPDATE "
 					  << "`state` = VALUES(`state`), "
@@ -622,7 +630,8 @@ bool IOLoginDataSave::savePlayerPreyClass(std::shared_ptr<Player> player) {
 					  << "`bonus_percentage` = VALUES(`bonus_percentage`), "
 					  << "`bonus_time` = VALUES(`bonus_time`), "
 					  << "`free_reroll` = VALUES(`free_reroll`), "
-					  << "`monster_list` = VALUES(`monster_list`)";
+					  << "`monster_list` = VALUES(`monster_list`), "
+					  << "`failstack` = VALUES(`monster_list`)";
 
 				if (!db.executeQuery(query.str())) {
 					g_logger().warn("[IOLoginData::savePlayer] - Error saving prey slot data from player: {}", player->getName());
