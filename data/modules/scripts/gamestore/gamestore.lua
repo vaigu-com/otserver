@@ -5337,7 +5337,7 @@ GameStore.Categories = {
 			{
 				icons = { "Hireling_Male.png" },
 				name = "Hireling Apprentice",
-				price = 150,
+				price = 5,
 				id = 25440,
 				count = 1,
 				number = 1,
@@ -5349,25 +5349,24 @@ GameStore.Categories = {
 			{
 				icons = { "Hireling_Male.png" },
 				name = "Hireling Name Change",
-				price = 250,
+				price = 1,
 				id = 25438,
 				count = 1,
 				number = 1,
 				description = "{info} Change the name of one of your hirelings",
 				type = GameStore.OfferTypes.OFFER_TYPE_HIRELING_NAMECHANGE,
-				coinType = GameStore.CoinType.Coin,
 			},
 			{
 				icons = { "Hireling_Male.png" },
 				name = "Hireling Sex Change",
-				price = 120,
+				price = 1,
 				id = 25437,
 				count = 1,
 				number = 1,
 				description = "{info} Change the sex of one of your hirelings",
 				type = GameStore.OfferTypes.OFFER_TYPE_HIRELING_SEXCHANGE,
-				coinType = GameStore.CoinType.Coin,
 			},
+			--[[
 			{
 				icons = { "Hireling_Cook.png" },
 				name = "Hireling Cook",
@@ -5390,10 +5389,11 @@ GameStore.Categories = {
 				type = GameStore.OfferTypes.OFFER_TYPE_HIRELING_SKILL,
 				coinType = GameStore.CoinType.Coin,
 			},
+			]]
 			{
 				icons = { "Hireling_Steward.png" },
 				name = "Hireling Steward",
-				price = 250,
+				price = 25,
 				id = HIRELING_SKILLS.STEWARD[1],
 				count = 1,
 				number = 1,
@@ -5404,7 +5404,7 @@ GameStore.Categories = {
 			{
 				icons = { "Hireling_Banker.png" },
 				name = "Hireling Banker",
-				price = 250,
+				price = 25,
 				id = HIRELING_SKILLS.BANKER[1],
 				count = 1,
 				number = 1,
