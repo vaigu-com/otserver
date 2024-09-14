@@ -21,6 +21,10 @@ RegisterEncounter = function()
 	logger.error("[RegisterEncounter] is deprecated. Use EncounterData and Encounter")
 end
 
+function SendPlayerIsPzLocked(player)
+	player:sendTextMessage(MESSAGE_FAILURE, "You can not use this after attacking another player.")
+end
+
 function Player:errorIfCannotUseCooldownItem(cooldownKV)
 	if self:isOnEvent() then
 		return "You cannot use this item on events."
