@@ -56,6 +56,10 @@ public:
 		return inviteList.size();
 	}
 
+	size_t getPlayersCount() const {
+		return getPlayers().size();
+	}
+
 	void disband();
 	bool invitePlayer(const std::shared_ptr<Player> &player);
 	bool joinParty(const std::shared_ptr<Player> &player);
