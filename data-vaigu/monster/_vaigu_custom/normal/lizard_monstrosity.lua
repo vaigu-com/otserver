@@ -23,7 +23,7 @@ monster.Bestiary = {
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
-	Locations = "Unknown.",
+	Locations = "Vaux Mach mountain range on Ganymede.",
 }
 
 monster.health = 3000
@@ -79,7 +79,15 @@ monster.voices = {
 	{ text = "I WILL MAKE YOU ZHEE!", yell = true },
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "platinum coin", chance = 28000, maxCount = 6 },
+	{ name = "demonic essence", chance = 22500 },
+	{ name = "violet crystal shard", chance = 6000 },
+	{ name = "stone skin amulet", chance = 980 },
+	{ id = 3036, chance = 8300 }, -- violet gem
+	{ id = 7439, chance = 934 }, -- berserk potion
+	{ id = 6300, chance = 550 }, -- death ring
+}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -250 },
