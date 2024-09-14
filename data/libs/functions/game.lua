@@ -32,7 +32,7 @@ function setGlobalStorage(key, value)
 end
 
 -- Vaigu custom
-function Game.broadcastMessage(message, messageType, translate)
+function Game.broadcastMessage(message, messageType, translate, context)
 	if not messageType then
 		messageType = MESSAGE_GAME_HIGHLIGHT
 	end
@@ -40,7 +40,7 @@ function Game.broadcastMessage(message, messageType, translate)
 	for _, player in ipairs(Game.getPlayers()) do
 		local translatedMessage = message
 		if translate then
-			translatedMessage = player:Localizer(nil):Get(message)
+			translatedMessage = player:Localizer(nil):Context(context):Get(message)
 		end
 		player:sendTextMessage(messageType, translatedMessage)
 	end

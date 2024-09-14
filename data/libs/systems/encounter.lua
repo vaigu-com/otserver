@@ -72,11 +72,18 @@ end
 ---@field protected global boolean
 ---@field protected timeToSpawnMonsters number|string
 ---@field onReset function
+---@fielf active boolean
 Encounter = {
 	registry = {},
 	unstarted = 0,
 	enableDebug = true,
 }
+
+FIRST_ENCOUNTER_ID = 0
+function NextEncounterId()
+	FIRST_ENCOUNTER_ID = FIRST_ENCOUNTER_ID + 1
+	return FIRST_ENCOUNTER_ID
+end
 
 setmetatable(Encounter, {
 	---@param self Encounter
@@ -94,12 +101,25 @@ setmetatable(Encounter, {
 				name = name,
 			}, { __index = Encounter })
 		end
+		local zone = Zone("encounter." .. toKey(name)) -- ToDo: .. NextEncounterId()
+		zone:addArea(config.zoneArea[1], config.zoneArea[2])
+		zone:blockFamiliars()
+		config.zone = zone
+
 		if config then
 			encounter:resetConfig(config)
 		end
+
 		return encounter
 	end,
 })
+function Encounter:registerAuxillaryConfig(config)
+	for key, value in pairs(config) do
+		if self[key] == nil then
+			self[key] = value
+		end
+	end
+end
 
 ---@alias EncounterConfig { zone: Zone, spawnZone: Zone, global: boolean, timeToSpawnMonsters: number }
 ---Resets the encounter configuration
@@ -113,6 +133,7 @@ function Encounter:resetConfig(config)
 	self.global = config.global or false
 	self.timeToSpawnMonsters = ParseDuration(config.timeToSpawnMonsters or "3s")
 	self.events = Set()
+	self:registerAuxillaryConfig(config)
 end
 
 ---@param callable function The callable function for the event
@@ -123,6 +144,10 @@ function Encounter:addEvent(callable, delay, ...)
 		self.events:remove(event)
 	end, ParseDuration(delay), callable, ...)
 	self.events:insert(event)
+end
+
+function Encounter:isActive()
+	return self.active
 end
 
 ---Cancels all the events associated with the encounter
@@ -290,6 +315,7 @@ function Encounter:reset()
 	if self.onReset then
 		self:onReset()
 	end
+	self.active = false
 	return self:enterStage(Encounter.unstarted)
 end
 
@@ -315,12 +341,17 @@ function Encounter:nextStage()
 	return self:enterStage(self.currentStage + 1)
 end
 
+---Check if can start encounter
+---@return boolean True if encounter can be started, fale otherwise
+function Encounter:canStart()
+	return self.currentStage == Encounter.unstarted
+end
+
 ---Starts the encounter
 ---@return boolean True if the encounter is started successfully, false otherwise
 function Encounter:start()
-	if self.currentStage ~= Encounter.unstarted then
-		return false
-	end
+	self.active = true
+	Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.name })
 	self:debug("Encounter[{}]:start", self.name)
 	return self:enterStage(1)
 end
@@ -399,6 +430,26 @@ function Encounter:addRemovePlayers()
 	})
 end
 
+function Encounter:afterEnterMinigame(player)
+	player:addHealth(player:getMaxHealth())
+	player:addHealth(-(player:getMaxHealth() - player:getMaxBaseHealth()), COMBAT_UNDEFINEDDAMAGE)
+	local maxMana = player:getMaxMana()
+	player:addMana(-maxMana)
+	player:registerEvent("MinigamePlayerDeath")
+
+	player:kv():scoped("minigames"):scoped("current"):set(self.name)
+	player:kv():scoped("minigames"):scoped(self.name):scoped("matches"):incrementOrSet()
+	player:kv():scoped("minigames"):scoped("total"):scoped("matches"):incrementOrSet()
+	player:kv():scoped("minigames"):scoped("locks"):scoped("magic-wall"):set(true)
+	player:kv():scoped("minigames"):scoped("locks"):scoped("healing"):set(true)
+	player:kv():scoped("minigames"):scoped("locks"):scoped("haste"):set(400)
+
+	player:changeSpeed()
+	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
+end
+
+function Encounter:afterLeaveMinigame(player) end
+
 ---Automatically starts the encounter when players enter the zone
 function Encounter:startOnEnter()
 	local zoneEvents = ZoneEvent(self:getZone())
@@ -414,7 +465,12 @@ function Encounter:startOnEnter()
 		if player:hasGroupFlag(IgnoredByMonsters) then
 			return
 		end
-		self:start()
+		if self:canStart() then
+			self:start()
+		end
+		if self.isMinigame then
+			self:afterEnterMinigame(player)
+		end
 	end
 
 	function zoneEvents.afterLeave(zone, creature)
@@ -425,11 +481,13 @@ function Encounter:startOnEnter()
 		if player:hasGroupFlag(IgnoredByMonsters) then
 			return
 		end
+		--ToDo: check if its actually just after leave (after event death event) or just before it
 		-- last player left; reset encounter
 		if self:countPlayers() == 1 then
 			return
 		end
 		self:reset()
+		self:afterLeaveMinigame(player)
 	end
 
 	zoneEvents:register()
@@ -451,4 +509,3 @@ function Encounter:debug(...)
 	end
 	logger.debug(...)
 end
-
