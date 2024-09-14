@@ -34,6 +34,7 @@ TRANSLATION_TABLES = {
 		[Storage.taskPoints] = loadStrings("task_points_pl.lua"),
 		[Storage.GoldenOutfit] = loadStrings("golden_outfit_pl.lua"),
 		[Storage.TopChef.Questline] = loadStrings("top_chef_pl.lua"),
+		[LOCALIZER_BANK_SYSTEM] = loadStrings("bank_system_pl.lua"),
 	},
 	["EN"] = {
 		[LOCALIZER_UNIVERSAL] = loadStrings("universal_en.lua"),
