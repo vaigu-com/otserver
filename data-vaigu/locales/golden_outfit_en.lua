@@ -6,6 +6,7 @@ return {
 	["You need to donate for {helmet} outfit first."] = "You need to donate for {helmet} outfit first.",
 	["Take this armor as a token of great gratitude. Let us forever remember this day, my friend!"] = "Take this armor as a token of great gratitude. Let us forever remember this day, my friend!",
 	["You already have that addon."] = "You already have that addon.",
+	["You already have that outfit."] = "You already have that outfit.",
 	["So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?"] = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?",
 	["Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!"] = "Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!",
 	["So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique pair of boots?"] = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique pair of boots?",

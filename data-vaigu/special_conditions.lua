@@ -8,7 +8,7 @@ SPECIAL_CONDITIONS_UNIVERSAL = {
 	end,
 	canBuyBless = function(context)
 		local player = context.player
-		local price = getBlessingsCost(player:getlevel()) * 5
+		local price = getBlessingsCost(player:getLevel()) * 5
 		context.price = price
 		if SPECIAL_CONDITIONS_UNIVERSAL.hasMoney(context) then
 			return true
@@ -62,22 +62,22 @@ SPECIAL_CONDITIONS_IMBUING = {
 	saidImbuingName = function(context)
 		local bundleData = GetImbuingBundleByName(context.msg)
 		if type(bundleData) == "table" then
-			context.player:SetCustomConversationData(bundleData)
+			PlayerCustomDialogDataRegistry:Get(context.player).bundleData = bundleData
 			return true
 		end
 		return false
 	end,
 	saidImbuingLevel = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 		local bundleLevelData = bundleData[context.msg]
 		if type(bundleLevelData) == "table" then
-			context.player:SetCustomConversationData(bundleLevelData)
+			PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData = bundleLevelData
 			return true
 		end
 		return false
 	end,
 	canPurchaseThisImbuingLevel = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 		local level = bundleData.levelName
 		if level ~= IMBUING_LEVELS.powerful then
 			return true
@@ -85,23 +85,23 @@ SPECIAL_CONDITIONS_IMBUING = {
 		return context.player:getStorageValue(Storage.powerfulImbue) >= 1
 	end,
 	hasEnoughTaskPoints = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 		local requiredTaskPoints = bundleData.taskPointsCost
 		local playerTaskPoints = context.player:getStorageValue(Storage.taskPoints)
 		local playerHasPoints = playerTaskPoints >= requiredTaskPoints
 		if not playerHasPoints then
-			context.player:SetCustomConversationData(requiredTaskPoints)
+			PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints = requiredTaskPoints
 		end
 		return playerHasPoints
 	end,
 	hasEnoughMoney = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 		local requiredMoney = bundleData.moneyCost
 		local playerMoney = context.player:GetTotalMoney()
 		return playerMoney >= requiredMoney
 	end,
 	hasEnoughCapSlots = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 		return context.player:CanAddItems(bundleData.items)
 	end,
 }
@@ -109,7 +109,7 @@ SPECIAL_CONDITIONS_IMBUING = {
 SPECIAL_CONDITIONS_WILDCARD = {
 	hasMoneyForWildcards = function(context)
 		local player = context.player
-		local orderedCards = context.player:GetCustomConversationData()
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
 		local requiredMoney = player:GetWildcardPrice() * orderedCards
 		local playerMoney = player:GetTotalMoney()
 		return playerMoney >= requiredMoney

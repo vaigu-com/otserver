@@ -12,6 +12,7 @@ end
 
 ---@class CreatureList
 ---@field creatures table
+---@field customData table
 CreatureList = {}
 CreatureList.__index = CreatureList
 
@@ -19,6 +20,7 @@ setmetatable(CreatureList, {
 	__call = function(class, creatures)
 		local instance = setmetatable({}, class)
 		instance.creatures = creatures or {}
+		instance.customData = {}
 		return instance
 	end,
 })
@@ -27,12 +29,29 @@ function CreatureList:Get()
 	return self.creatures
 end
 
-function CreatureList:Add(creature)
-	table.insert(self.creatures, creature)
+function CreatureList:Count()
+	return TableSize(self.creatures)
+end
+
+function CreatureList:Add(creature, customData)
+	customData = customData or {}
+	self.creatures[customData] = creature
 	return self
 end
 
-function CreatureList:Area(pos1, pos2)
+function CreatureList:Pos(pos, customData)
+	local tile = Tile(pos)
+	if not tile then
+		return
+	end
+	local creatures = tile:getCreatures()
+	for _, creature in pairs(creatures) do
+		self:Add(creature, customData)
+	end
+	return self
+end
+
+function CreatureList:Area(pos1, pos2, customData)
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then
@@ -40,18 +59,27 @@ function CreatureList:Area(pos1, pos2)
 		end
 		local creatures = tile:getCreatures()
 		for _, creature in pairs(creatures) do
-			self:Add(creature)
+			self:Add(creature, customData)
 		end
 	end)
 	return self
 end
 
-function CreatureList:Move(destination)
+function CreatureList:MovedToPos(destination)
 	for _, creature in pairs(self.creatures) do
 		creature:teleportTo(destination)
 	end
 	return self
 end
+
+function CreatureList:MovedByVector(vector)
+	for _, creature in pairs(self.creatures) do
+		local pos = creature:getPosition()
+		creature:teleportTo(pos:Moved(vector))
+	end
+	return self
+end
+
 
 function CreatureList:FilterByName(name)
 	if name == nil then
@@ -71,7 +99,7 @@ function CreatureList:First()
 	return result
 end
 
-function CreatureList:FilterByPlayer()
+function CreatureList:FilteredByPlayer()
 	for key, creature in pairs(self.creatures) do
 		if not creature:isPlayer() then
 			self.creatures[key] = nil
@@ -104,7 +132,7 @@ function Position:CreaturesBetween(destination, name)
 end
 
 function Position:PlayersBetween(destination, name)
-	local players = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer()
+	local players = CreatureList():Area(self, destination):FilterByName(name):FilteredByPlayer()
 	return players:Get()
 end
 
@@ -124,7 +152,7 @@ function Position:FirstCreatureBetween(destination, name)
 end
 
 function Position:FirstPlayerBetween(destination, name)
-	local player = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer():First()
+	local player = CreatureList():Area(self, destination):FilterByName(name):FilteredByPlayer():First()
 	return player
 end
 
@@ -148,19 +176,19 @@ function Position:MoveThings(destination)
 end
 
 function Position:MoveCreatures(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):Move(destination)
+	CreatureList():Area(self, self):FilterByName(name):MovedToPos(destination)
 end
 
 function Position:MovePlayers(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilterByPlayer():Move(destination)
+	CreatureList():Area(self, self):FilterByName(name):FilteredByPlayer():MovedToPos(destination)
 end
 
 function Position:MoveMonsters(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilterByMonster():Move(destination)
+	CreatureList():Area(self, self):FilterByName(name):FilterByMonster():MovedToPos(destination)
 end
 
 function Position:MoveNpcs(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilterByNpc():Move(destination)
+	CreatureList():Area(self, self):FilterByName(name):FilterByNpc():MovedToPos(destination)
 end
 
 function Position:MoveItems(destination)
@@ -177,6 +205,14 @@ end
 
 function Position:RemoveItem(id)
 	self:removeItem(id)
+end
+function Position:IsWalkable(a, b, c, d, e)
+	local tile = Tile(self)
+	if not tile then
+		return false
+	end
+
+	return tile:isWalkable(a, b, c, d, e)
 end
 
 local function xyzBoundaries(pos1, pos2)
@@ -377,6 +413,7 @@ function Position:DirectionTo(toPos)
 end
 
 ---@param radius integer abs of radius value will be used
+---@return Position|nil unoccupiedPos
 function Position:FindAnyUnoccupiedSpot(radius)
 	radius = radius or 1
 	if radius < 0 then
@@ -385,14 +422,14 @@ function Position:FindAnyUnoccupiedSpot(radius)
 
 	local pos1, pos2 = self:GetBoundariesByRadius(radius)
 
-	local result = IterateBetweenPositions(pos1, pos2, function(context)
+	local unoccupiedPos = IterateBetweenPositions(pos1, pos2, function(context)
 		local pos = context.pos
 		local tile = Tile(pos)
 		if tile and tile:isWalkable(false, false, true, false, false) then
 			return pos
 		end
 	end, { stopCondition = STOP_CONDITIONS.isNotNull })
-	return result or self
+	return unoccupiedPos
 end
 
 ---@return Creature|nil creature
@@ -421,7 +458,6 @@ function Position:GetBoundariesByRadius(radius)
 	local downRight = self:Moved(radius, radius, 0)
 	return topLeft, downRight
 end
-
 
 ---@param destination Position
 ---@return Vector vector
@@ -630,63 +666,21 @@ end
 ---@param name string?
 function Position:GetFirstNpcInRadius(radius, name)
 	local corner1, corner2 = self:GetBoundariesByRadius(radius)
-	return IterateBetweenPositions(corner1, corner2, function(context)
-		local pos = context.pos
-		local tile = Tile(pos)
-		if not tile then
-			return
-		end
-		local creature = tile:getTopCreature()
-		if not (creature and creature:isNpc()) then
-			return
-		end
-
-		if name == nil then
-			return creature
-		end
-		if creature:getName() == name then
-			return creature
-		end
-	end, { stopCondition = STOP_CONDITIONS.isNotNull })
+	return CreatureList():Area(corner1, corner2):First()
 end
 
---38f
 function PlayersPresentAtAllPositions(positions, anchor)
 	for _, pos in pairs(positions) do
 		pos = pos.offPos or pos.pos or pos.position or pos
 		if anchor then
 			pos = anchor:Moved(pos)
 		end
-		local tile = Tile(pos)
-		local creature = tile:getTopCreature()
-		if not creature then
-			return false
-		end
-		if not creature:isPlayer() then
-			return false
+		local player = CreatureList():Pos(pos):FilteredByPlayer():First()
+		if not player then
+			return
 		end
 	end
 	return true
-end
-
--- in an offset the magnitude of each coordinate is very rarely higher than 200
--- trying to create Position() with negative coordinate causes overflow, eg. Position(-10, 2, 3) will have {x: 65526, y: 2, z:3} -> this is Position class
--- such coordinates are never used relistically, so:
---- if x/y is higher than OVERFLOW_XY, and lowered back by 2^16 so it has its original value, eg. {x: -10, y: 2, z: 3} -> this is normal table
---- if z is higher than OVERFLOW_Z, then its lowered back by 2^8, so its has its original value
-local OVERFLOW_XY = 2 ^ 16 - 5000
-local OVERFLOW_Z = 2 ^ 8 - 50
-local function calculateOverflow(x, y, z)
-	if x > OVERFLOW_XY then
-		x = x - 2 ^ 16
-	end
-	if y > OVERFLOW_XY then
-		y = y - 2 ^ 16
-	end
-	if z > OVERFLOW_Z then
-		z = z - 2 ^ 8
-	end
-	return x, y, z
 end
 
 function ExtractCoords(...)

@@ -59,11 +59,11 @@ return {
 	["Is your soulmate and friends here with you for the celebration?"] = "Is your soulmate and friends here with you for the celebration?",
 	["Then go bring them here!"] = "Then go bring them here!",
 	["Good, let's {begin} then!"] = "Good, let's {begin} then!",
-	["TROPHY_DESC"] = function(context)
+	["MARRIAGE_TROPHY_DESC"] = function(context)
 		local finalString = T("This trophy belongs to :player:, given to them by Ks. Natanek in memory of their wedding.", { player = context.player:getName() })
 		return finalString
 	end,
-	["RING_DESC"] = function(context)
+	["MARRIAGE_RING_DESC"] = function(context)
 		local finalString = T(":player: and :spouse: forever and ever, since :date:", {
 			player = context.player:getName(),
 			spouse = getPlayerNameById(getPlayerSpouse(context.player:getGuid())),

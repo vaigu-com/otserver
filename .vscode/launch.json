@@ -8,7 +8,7 @@
             "type": "lua",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/data-wykopots/lib/npc/npc_generator.lua"
+            "program": "${workspaceFolder}/data-vaigu/lib/npc/npc_generator.lua"
         },
         {
             "address": "127.0.0.1:4278",

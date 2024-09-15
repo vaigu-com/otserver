@@ -1186,6 +1186,27 @@ Storage = {
 	-- arena = 26100
 	-- arena = 26101
 	-- arena = 26102
+	Minigames = {
+		Locks = {
+			MwLock = 30014,
+			HasteLock = 30059,
+			HealLock = 30016,
+		},
+		Total = {
+			Wins = NextStorage(),
+			Matches = NextStorage(),
+			Points = NextStorage(),
+		},
+		CurrentEvent = NextStorage(),
+		Events = {
+			ZombieMinigame = {
+				Wins = NextStorage(),
+				Matches = NextStorage(),
+				Points = NextStorage(),
+				LongestRecord = NextStorage(),
+			},
+		},
+	},
 	mwLock = 30014,
 	allowWTstorage = 30015,
 	healLock = 30016,
@@ -1297,7 +1318,12 @@ Storage = {
 	santaPresent = 50803,
 	allowHealthRegen = 50810,
 	allowManaRegen = 50811,
-	GoldenOutfit = 51015,
+	GoldenOutfit = {
+		Chest = 51015,
+		Boots = 51016,
+		Helmet = 51017,
+		Full = 51018,
+	},
 	Uniwheel = 54321,
 	Tinlizzard = 54322,
 	-- blockMovementStorage = 100000,

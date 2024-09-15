@@ -1,4 +1,4 @@
-local dialogues = {
+local dialogs = {
 	[Storage.TrudnePoczatki.KomorAsked] = {
 		[{ max = 0 }] = {
 			[{ "help", "pomoc" }] = {
@@ -85,7 +85,7 @@ local context = {
 	greetJob = JOB_FURNITURE,
 	jobs = { JOB_FURNITURE },
 	outfit = outfit,
-	dialogues = dialogues,
+	dialogs = dialogs,
 	voices = voices,
 }
 local npcType, npcConfig = CreateNpcDefinition(context)

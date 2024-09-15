@@ -305,6 +305,12 @@ function PlayerFinishedTaskAtLeastOnce(player, task)
     return player:getStorageValue(task.storage) == TASK_FINISHED
 end
 
+TRANSFERABLE_COINS_MULTIPLIER = 30
+function Player:AddAllCoins(coins)
+    self:addTibiaCoins(coins)
+    self:addTransferableCoins(coins * 30)
+end
+
 local function grantTaskRewards(context)
     local player = context.player
     local task = context.task or context.dailyTask
@@ -338,7 +344,7 @@ function Player:TryAddTaskRewards(context, task)
     resetTaskSlot(self, task.storage)
 
     return self:Localizer(Storage.Tasks.TaskInfo):Context({task = task}):Get(
-               "TASK_REWARDS_DIALOGUE")
+               "TASK_REWARDS_DIALOG")
 end
 
 function Player:GrantRewardsForAllTasks(context)
@@ -384,7 +390,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
     resetTaskKillCounter(self, dailyTask)
     resetTaskSlot(self, storage)
     self:IncrementStorage(Storage.DailyTasks.DailyLimit, 1)
-    return localizer:Get("DAILY_TASK_REWARDS_DIALOGUE")
+    return localizer:Get("DAILY_TASK_REWARDS_DIALOG")
 end
 
 function Player:GrantRewardsForAllDailyTasks(context)

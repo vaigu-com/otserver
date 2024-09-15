@@ -746,10 +746,19 @@ void IOLoginDataLoad::loadPlayerPreyClass(std::shared_ptr<Player> player, DBResu
 				const char* preyStream = result->getStream("monster_list", preySize);
 				PropStream propPreyStream;
 				propPreyStream.init(preyStream, preySize);
-
 				uint16_t raceId;
 				while (propPreyStream.read<uint16_t>(raceId)) {
 					slot->raceIdList.push_back(raceId);
+				}
+
+				unsigned long failstackSize;
+				const char* failstackStream = result->getStream("failstack", failstackSize);
+				PropStream propFailstackStream;
+				propFailstackStream.init(failstackStream, failstackSize);
+				uint16_t failstackMagnitude;
+				for (int star = PreyStars_Min; star <= PreyStars_Max; star++) {
+					propFailstackStream.read<uint16_t>(failstackMagnitude);
+					slot->failstack.at(star) = (failstackMagnitude);
 				}
 
 				player->setPreySlotClass(slot);
