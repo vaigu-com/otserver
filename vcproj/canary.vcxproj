@@ -125,6 +125,7 @@
     <ClInclude Include="..\src\lua\creature\actions.hpp" />
     <ClInclude Include="..\src\lua\creature\creatureevent.hpp" />
     <ClInclude Include="..\src\lua\creature\events.hpp" />
+    <ClInclude Include="..\src\lua\creature\looks.hpp" />
     <ClInclude Include="..\src\lua\creature\movement.hpp" />
     <ClInclude Include="..\src\lua\creature\raids.hpp" />
     <ClInclude Include="..\src\lua\creature\talkaction.hpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="..\src\lua\functions\events\events_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\events_scheduler_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\global_event_functions.hpp" />
+    <ClInclude Include="..\src\lua\functions\events\look_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\move_event_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\talk_action_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\items\container_functions.hpp" />
@@ -325,6 +327,7 @@
     <ClCompile Include="..\src\lua\creature\actions.cpp" />
     <ClCompile Include="..\src\lua\creature\creatureevent.cpp" />
     <ClCompile Include="..\src\lua\creature\events.cpp" />
+    <ClCompile Include="..\src\lua\creature\looks.cpp" />
     <ClCompile Include="..\src\lua\creature\movement.cpp" />
     <ClCompile Include="..\src\lua\creature\raids.cpp" />
     <ClCompile Include="..\src\lua\creature\talkaction.cpp" />
@@ -367,6 +370,7 @@
     <ClCompile Include="..\src\lua\functions\events\event_callback_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\events_scheduler_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\global_event_functions.cpp" />
+    <ClCompile Include="..\src\lua\functions\events\look_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\move_event_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\talk_action_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\items\container_functions.cpp" />
@@ -604,4 +608,3 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
-

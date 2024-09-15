@@ -12,6 +12,7 @@
 #include "game/game.hpp"
 
 #include "lua/creature/actions.hpp"
+#include "lua/creature/looks.hpp"
 #include "items/bed.hpp"
 #include "creatures/creature.hpp"
 #include "database/databasetasks.hpp"
@@ -5310,6 +5311,7 @@ void Game::playerLookAt(uint32_t playerId, uint16_t itemId, const Position &pos,
 		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
 		return;
 	}
+	std::shared_ptr<Item> item = thing->getItem();
 
 	Position thingPos = thing->getPosition();
 	if (!player->canSee(thingPos)) {
@@ -5330,6 +5332,10 @@ void Game::playerLookAt(uint32_t playerId, uint16_t itemId, const Position &pos,
 	}
 
 	// Parse onLook from event player
+	// ToDo: TEST
+	if (g_looks().lookItemEx(player, player->getPosition(), pos, stackPos, item)) {
+		return;
+	}
 	g_events().eventPlayerOnLook(player, pos, thing, stackPos, lookDistance);
 	g_callbacks().executeCallback(EventCallback_t::playerOnLook, &EventCallback::playerOnLook, player, pos, thing, stackPos, lookDistance);
 }
