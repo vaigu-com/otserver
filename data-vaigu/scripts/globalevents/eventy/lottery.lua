@@ -24,7 +24,7 @@ local function runLottery()
 
 	if luckyPlayer then
 		luckyPlayer:AddAllCoins(5)
-		Game.broadcastMessage("COIN_LOTTERY_WINNER", MESSAGE_STATUS_WARNING, true { playerName = luckyPlayer:getName(), 5})
+		Game.broadcastMessage("COIN_LOTTERY_WINNER", MESSAGE_STATUS_WARNING, true, { playerName = luckyPlayer:getName(), 5})
 	end
 end
 

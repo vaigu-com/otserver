@@ -36,8 +36,8 @@ local boatPosToData = {}
 local function initializeBoatRoutes(routes)
 	for _, route in pairs(routes) do
 		for i = 1, #route.positions do
-			local fromPos = config[i]
-			local toPos = config[i + 1] or config[1]
+			local fromPos = route.positions[i]
+			local toPos = route.positions[i + 1] or route.positions[1] -- Loop back to 1 if out of bounds
 
 			local boatItem = fromPos:GetTopItem()
 			boatItem:setActionId(Storage.InstantBoat)
