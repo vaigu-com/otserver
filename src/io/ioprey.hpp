@@ -75,9 +75,9 @@ enum PreyOption_t : uint8_t {
 };
 
 enum PreyAction_t : uint8_t {
-	PreyAction_ListReroll = 0,
+	PreyAction_GridReroll = 0,
 	PreyAction_BonusReroll = 1,
-	PreyAction_MonsterSelection = 2,
+	PreyAction_GridSelection = 2,
 	PreyAction_ListAll_Cards = 3,
 	PreyAction_ListAll_Selection = 4,
 	PreyAction_Option = 5
@@ -173,7 +173,8 @@ public:
 
 		bool maintainBonusType = true,
 		bool refreshTime = false,
-		bool isReroll = false,
+		bool rerollType = false,
+		bool rerollRarity = false,
 		uint16_t rarityPenalty = 0
 	) {
 		if (!maintainMonster) {
@@ -203,9 +204,11 @@ public:
 		} else {
 			bonusTimeLeft = 0;
 		}
-		if (isReroll) {
+		if (rerollType) {
 			rerollBonusType();
-			rerollBonusValue();
+		}
+		if (rerollRarity) {
+			rerollBonusRarity();
 		}
 		updateBonusPercentage();
 	}
@@ -226,7 +229,7 @@ public:
 	};
 
 	const uint16_t failstackBonus = 5;
-	void rerollBonusValue() {
+	void rerollBonusRarity() {
 		const uint8_t roll = uniform_random(1, 100) + failstack.at(bonusRarity);
 		const uint8_t requiredRollForUpgrade = 100 - starsToUpgradeChance.at(bonusRarity);
 		if ((roll) >= requiredRollForUpgrade) {
