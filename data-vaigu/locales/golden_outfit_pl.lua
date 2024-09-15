@@ -6,6 +6,7 @@ return {
 	["You need to donate for {helmet} outfit first."] = "Najpierw musisz uzyskac {helm}.",
 	["Take this armor as a token of great gratitude. Let us forever remember this day, my friend!"] = "Przyjmij te zbroje jako wyraz wielkiej wdziecznosci.",
 	["You already have that addon."] = "Juz posiadasz ten dodatek.",
+	["You already have that outfit."] = "Juz posiadasz ten stroj.",
 	["So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?"] = "Wiec zechcialbys przekazac 5.000.000 zlota, ktore wzamian upowaznia cie do noszenia unikalnego helmu?",
 	["Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!"] = "Przyjmij ten helm jako wyraz wielkiej wdziecznosci.",
 	["So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique pair of boots?"] = "Wiec zechcialbys przekazac 5.000.000 zlota, ktore wzamian upowaznia cie do noszenia unikalnych butow?",

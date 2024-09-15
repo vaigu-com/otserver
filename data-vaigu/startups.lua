@@ -54,6 +54,9 @@ local function createCustomItemOnMap(context)
 		print(debug.traceback(T("Cannot create item :id:, on position :pos:", { id = id, pos = pos:ToString() })))
 		return
 	end
+	if context.immovable == true then
+		item:setUniqueId(1000)
+	end
 	if aid and aid ~= 0 then
 		item:setActionId(aid)
 		item:setUniqueId(1000)
@@ -86,6 +89,7 @@ local function normalizeItemData(itemData, anchor)
 	context.specialActionsOnSuccess = itemData.specialActionsOnSuccess
 	context.specialActionsOnFail = itemData.specialActionsOnFail
 	context.onLook = itemData.onLook or itemData.onlook
+	context.immovable = itemData.immovable
 	local pos = itemData.pos or itemData.offset or itemData.position or itemData.offpos or itemData.vector
 	if pos then
 		if anchor then

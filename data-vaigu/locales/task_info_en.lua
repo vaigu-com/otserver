@@ -11,7 +11,7 @@ return {
 	["TASKS_HELP_WINDOW_INFO"] = function()
 		return T("Finishing tasks grants you experience points, money, store coins and after each task you can face the corresponding boss.\n\nYou can have up to :maxTasks: active tasks at the time.", { maxTasks = #Storage.Tasks.PlayerOngoingTasks })
 	end,
-	["TASK_REWARDS_DIALOGUE"] = function(context)
+	["TASK_REWARDS_DIALOG"] = function(context)
 		local task = context.task
 		return T("Your rewards for :name: task is: :exp: experience points, :money: gold and ability to fight with the boss :bossName: (details in questlog).\n You received :points: store coins and task points", {
 			name = task.name,

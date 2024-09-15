@@ -55,7 +55,7 @@ end
 
 local function getPlayerCurrentDish(player)
 	local state = player:getStorageValue(Storage.TopChef.Questline)
-	local dishData = COOKING_INGREDIENT_DATA[state] or player:GetCustomConversationData()
+	local dishData = COOKING_INGREDIENT_DATA[state] or PlayerCustomDialogDataRegistry:Get(player).dishData
 	return dishData
 end
 
@@ -102,7 +102,7 @@ local topics = {
 	confirmMakingAnyDish = 4,
 }
 
-local dialogues = {
+local dialogs = {
 	[LOCALIZER_UNIVERSAL] = {
 		[GREET] = {
 			text = "Hello, welcome to my {kitchen} again, |PLAYERNAME|! Did you visit me again to be taught cooking skills by the best chef around? Ask me for a {recipe} if you wish to continue your training.",
@@ -263,7 +263,7 @@ local dialogues = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialogues, npcHandler, npc)
+	InitializeResponses(creature, dialogs, npcHandler, npc)
 	return true
 end
 
@@ -271,7 +271,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveConversation(creature, msg, dialogues, npcHandler, npc)
+	return TryResolveDialog(creature, msg, dialogs, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

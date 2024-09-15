@@ -5,13 +5,13 @@ local function addPlayerBonusExperience(player, baseExp)
 	player:addExperience(finalExp)
 end
 
-local bonusExpKill = CreatureEvent("BonusExpKill")
-function bonusExpKill.onKill(player, killedMonster)
-	if killedMonster:isPlayer() or killedMonster:getMaster() then
+local bonusExpKill = CreatureEvent("BonusExpForLifespan")
+function bonusExpKill.onDeath(creature, corpse, lasthitkiller, mostdamagekiller, lasthitunjustified, mostdamageunjustified)
+	if creature:isPlayer() or creature:getMaster() then
 		return true
 	end
 
-	local targetMonster = killedMonster:getMonster()
+	local targetMonster = creature:getMonster()
 	if not targetMonster then
 		return true
 	end
@@ -20,7 +20,7 @@ function bonusExpKill.onKill(player, killedMonster)
 	if baseBonusExp <= 0 then
 		return
 	end
-	
+
 	local damageMap = targetMonster:getDamageMap()
 	local playerCount = TableSize(damageMap)
 	local expPerPlayer = math.floor(baseBonusExp / playerCount)
@@ -37,5 +37,4 @@ function bonusExpKill.onKill(player, killedMonster)
 
 	return true
 end
-
 bonusExpKill:register()

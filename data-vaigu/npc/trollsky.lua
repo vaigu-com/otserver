@@ -1,4 +1,4 @@
-local dialogues = {
+local dialogs = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ "backpack", "plecak" }] = {
 			text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
@@ -99,7 +99,7 @@ local context = {
 	greetJob = JOB_ARMOR_WEAPON,
 	jobs = { JOB_ARMOR_WEAPON },
 	outfit = outfit,
-	dialogues = dialogues,
+	dialogs = dialogs,
 	voices = voices,
 }
 local npcType, npcConfig = CreateNpcDefinition(context)

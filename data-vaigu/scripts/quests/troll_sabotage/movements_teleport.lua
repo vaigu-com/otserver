@@ -1,3 +1,11 @@
+local config = {
+	[1] = Position(33234, 31748, 7),
+	[2] = Position(33234, 31749, 7),
+	[3] = Position(33241, 31772, 8),
+	[4] = Position(33231, 31762, 2),
+	[5] = Position(33231, 31760, 2),
+}
+
 local function boots(player, item, fromPosition, position)
 	local bootsItem = player:getSlotItem(CONST_SLOT_FEET)
 	if not bootsItem then
@@ -46,14 +54,6 @@ local function helmet(player, item, fromPosition, position)
 		end
 	end
 end
-
-config = {
-	[1] = Position(33234, 31748, 7),
-	[2] = Position(33234, 31749, 7),
-	[3] = Position(33241, 31772, 8),
-	[4] = Position(33231, 31762, 2),
-	[5] = Position(33231, 31760, 2),
-}
 
 local teleport = MoveEvent()
 

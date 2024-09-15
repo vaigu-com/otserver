@@ -40,7 +40,7 @@ end
 local lever = Action()
 function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if isPlayerPzLocked(player) then
-		player:sendTextMessage(MESSAGE_FAILURE, "You can not use this after attacking another player.")
+		SendPlayerIsPzLocked(player)
 		return false
 	end
 

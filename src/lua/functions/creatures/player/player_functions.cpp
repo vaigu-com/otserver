@@ -398,10 +398,11 @@ int PlayerFunctions::luaPlayergetCharmMonsterType(lua_State* L) {
 }
 
 int PlayerFunctions::luaPlayerRemovePreyStamina(lua_State* L) {
-	// player:removePreyStamina(amount)
+	// player:removePreyStamina(amount, raceId)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
 	if (player) {
-		g_ioprey().checkPlayerPreys(player, getNumber<uint8_t>(L, 2, 1));
+		g_ioprey().reducePlayerPreyTime(player, getNumber<uint8_t>(L, 2, 1), getNumber<uint16_t>(L, 3, -1));
+		g_ioprey().updatePlayerPreyStatus(player);
 		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
@@ -520,7 +521,6 @@ int PlayerFunctions::luaPlayerPreyThirdSlot(lua_State* L) {
 			pushBoolean(L, slot->state != PreyDataState_Locked);
 		} else {
 			if (getBoolean(L, 2, false)) {
-				slot->eraseBonus();
 				slot->state = PreyDataState_Selection;
 				slot->reloadMonsterGrid(player->getPreyBlackList(), player->getLevel());
 				player->reloadPreySlot(PreySlot_Three);
@@ -3328,6 +3328,17 @@ int PlayerFunctions::luaPlayerSetStaminaXpBoost(lua_State* L) {
 	return 1;
 }
 
+int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
+	// player:getXpBoostTime()
+	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	if (player) {
+		lua_pushnumber(L, player->getXpBoostTime());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int PlayerFunctions::luaPlayerSetXpBoostTime(lua_State* L) {
 	// player:setXpBoostTime(timeLeft)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
@@ -3342,11 +3353,15 @@ int PlayerFunctions::luaPlayerSetXpBoostTime(lua_State* L) {
 	return 1;
 }
 
-int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
-	// player:getXpBoostTime()
+int PlayerFunctions::luaPlayerAddXpBoostTime(lua_State* L) {
+	// player:addXpBoostTime(time)
 	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
 	if (player) {
-		lua_pushnumber(L, player->getXpBoostTime());
+		uint16_t time = getNumber<uint16_t>(L, 2);
+		uint16_t timeLeft = player->getXpBoostTime();
+		player->setXpBoostTime(time + timeLeft);
+		player->sendStats();
+		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
 	}

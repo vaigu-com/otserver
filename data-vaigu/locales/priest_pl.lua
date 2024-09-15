@@ -59,11 +59,11 @@ return {
 	["Is your soulmate and friends here with you for the celebration?"] = "A wiec mozemy zaczynac. Czy swiadkowie i goscie sa na miejscu? ({tak} / {nie})",
 	["Then go bring them here!"] = "W takim razie po co mnie wolasz?! Sciagnij ich tu!",
 	["Good, let's {begin} then!"] = "Pieknie! {Rozpocznijmy}, dajcie tylko znak.",
-	["TROPHY_DESC"] = function(context)
+	["MARRIAGE_TROPHY_DESC"] = function(context)
 		local finalString = T("To trofeum nalezy do :player:, nadane przez Ks. Natanka, za zawarcie zwiazku malzenskiego.", { player = context.player:getName() })
 		return finalString
 	end,
-	["RING_DESC"] = function(context)
+	["MARRIAGE_RING_DESC"] = function(context)
 		local finalString = T(":player: & :spouse:, dopoki tagi na Wykopie nie zostana naprawione, od :date:", {
 			player = context.player:getName(),
 			spouse = getPlayerNameById(getPlayerSpouse(context.player:getGuid())),

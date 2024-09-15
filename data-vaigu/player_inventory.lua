@@ -201,15 +201,15 @@ function Player:TryAddItems(items)
 	return self:AddItems(items)
 end
 
----@param requiredCapTotal number
+---@param requiredCap number
 ---@return boolean hasEnoughCap
 ---@return string|nil errorMessageIfHasNoCap
 function Player:HasEnoughCapacity(context)
-	local requiredCapTotal = context.requiredCapTotal
-	local playerFreeCapacityOz = self:getFreeCapacity() / 100
-	if requiredCapTotal > playerFreeCapacityOz then
-		local lackingCap = tostring(math.abs(playerFreeCapacityOz - requiredCapTotal))
-		return false, T("The total weight of the items You are trying to pick up is :requiredCapTotal: oz. Therefore You need another :lackingCap: oz.", { requiredCapTotal = requiredCapTotal, lackingCap = lackingCap })
+	local requiredCap = context.requiredCap
+	local playerFreeCap = self:getFreeCapacity() / 100
+	if requiredCap > playerFreeCap then
+		local lackingCap = tostring(math.abs(playerFreeCap - requiredCap))
+		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap, lackingCap = lackingCap })
 	end
 	return true
 end
@@ -219,8 +219,8 @@ function Player:HasEnoughSlots(context)
 	local freeSlots = self:getFreeBackpackSlots()
 	if requiredItemSlots > freeSlots then
 		local lackingSlots = requiredItemSlots - freeSlots
-		return false, T("Items you are trying to pick up take up :totalItemSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
-			totalItemSlots = requiredItemSlots,
+		return false, T("Items you are trying to pick up take up :requiredItemSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
+			requiredItemSlots = requiredItemSlots,
 			lackingSlots = lackingSlots,
 		})
 	end
@@ -235,8 +235,8 @@ local canAddItemsChecks = {
 
 function Player:CanAddItems(items)
 	local context = {
-		totalItemWeight = CalculateItemsWeight(items),
-		totalItemSlots = CalculateItemsRequiredSlots(items),
+		requiredCap = CalculateItemsWeight(items),
+		requiredItemSlots = CalculateItemsRequiredSlots(items),
 	}
 	local canProceed, message
 	for _, check in pairs(canAddItemsChecks) do
@@ -299,14 +299,33 @@ end
 
 DONT_CONTINUE_ON_ADD = "DONT_CONTINUE_ON_ADD"
 
-local itemIdToActionOnAdd = {
-	[130] = function(context)
-		local player = context.player
-		local count = context.item.count
+local explodingCookie = 130
+local explodingCookieCountToAction = {
+	grantExpDefaultFormula = 1,
+	grantBoostMinutesEqualToActionId = 2,
+}
+local explodingCookieCountToAction = {
+	[explodingCookieCountToAction.grantExpDefaultFormula] = function(context)
 		local aid = context.item.aid
+		local uid = context.item.aid
+		local expAmount = aid * 10 ^ uid
+		AddExperienceWithAnnouncement(context.player, expAmount)
+	end,
+	[explodingCookieCountToAction.grantBoostMinutesEqualToActionId] = function(context)
+		local aid = context.item.aid
+		local boostMinutes = aid * 60
+		context.player:addXpBoostTime(boostMinutes)
+	end,
+}
+local function addExplodingCookieContent(context)
+	local count = context.item.count
+	local action = explodingCookieCountToAction[count]
+	action(context)
+end
 
-		local expAmount = aid * 10 ^ count
-		AddExperienceWithAnnouncement(player, expAmount)
+local itemIdToActionOnAdd = {
+	[explodingCookie] = function(context)
+		addExplodingCookieContent(context)
 		return DONT_CONTINUE_ON_ADD
 	end,
 }

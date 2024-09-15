@@ -7,7 +7,7 @@ TRANSPORT_TYPE = {
 DEFAULT_TRANSPORT_COST = 200
 
 local function createHelpDialog(player, _, _)
-	player:showTextDialog(2994, player:Localizer(LOCALIZER_UNIVERSAL):Get("TravelHelpDialogue"))
+	player:showTextDialog(2994, player:Localizer(LOCALIZER_UNIVERSAL):Get("TravelHelpDialog"))
 end
 
 local function chargeForTravel(player, price)

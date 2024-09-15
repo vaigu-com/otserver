@@ -16,9 +16,11 @@ class PreySlot;
 class TaskHuntingSlot;
 class TaskHuntingOption;
 
-static const std::unique_ptr<PreySlot>& PreySlotNull{};
-static const std::unique_ptr<TaskHuntingSlot>& TaskHuntingSlotNull{};
-static const std::unique_ptr<TaskHuntingOption>& TaskHuntingOptionNull{};
+static const std::unique_ptr<PreySlot> &PreySlotNull {};
+static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
+static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
+
+static const uint8_t PreyGridSize = 9;
 
 enum PreySlot_t : uint8_t {
 	PreySlot_One = 0,
@@ -50,6 +52,22 @@ enum PreyBonus_t : uint8_t {
 	PreyBonus_Last = PreyBonus_Loot
 };
 
+enum PreyStars_t : uint8_t {
+	PreyStars_0 = 0,
+	PreyStars_1 = 1,
+	PreyStars_2 = 2,
+	PreyStars_3 = 3,
+	PreyStars_4 = 4,
+	PreyStars_5 = 5,
+	PreyStars_6 = 6,
+	PreyStars_7 = 7,
+	PreyStars_8 = 8,
+	PreyStars_9 = 9,
+	PreyStars_10 = 10,
+	PreyStars_Min = PreyStars_1,
+	PreyStars_Max = PreyStars_10
+};
+
 enum PreyOption_t : uint8_t {
 	PreyOption_None = 0,
 	PreyOption_AutomaticReroll = 1,
@@ -57,9 +75,9 @@ enum PreyOption_t : uint8_t {
 };
 
 enum PreyAction_t : uint8_t {
-	PreyAction_ListReroll = 0,
+	PreyAction_GridReroll = 0,
 	PreyAction_BonusReroll = 1,
-	PreyAction_MonsterSelection = 2,
+	PreyAction_GridSelection = 2,
 	PreyAction_ListAll_Cards = 3,
 	PreyAction_ListAll_Selection = 4,
 	PreyAction_Option = 5
@@ -103,6 +121,19 @@ public:
 	uint32_t difficulty;
 };
 
+// Vaigu custom
+class PreyMonsterBuilder {
+private:
+	std::vector<PreyMonster> monsters;
+
+public:
+	void init();
+	void filterByLevel(uint32_t level);
+	void filterByBlacklist(std::vector<uint16_t> raceIdBlacklist);
+	void trim(uint16_t newSize);
+	std::vector<PreyMonster> get();
+};
+
 class PreySlot {
 public:
 	PreySlot() = default;
@@ -117,53 +148,103 @@ public:
 		return (state == PreyDataState_Selection || state == PreyDataState_SelectionChangeMonster || state == PreyDataState_ListSelection || state == PreyDataState_Inactive);
 	}
 
+	// Vaigu custom
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
-			bonusPercentage = 6 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Defense) {
-			bonusPercentage = 4 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Experience) {
-			bonusPercentage = 5 * bonusRarity + 10;
-		}
-		else if (bonus == PreyBonus_Loot) {
-			bonusPercentage = 10 * bonusRarity;
+			bonusPercentage = 4 * bonusRarity + 25;
+		} else if (bonus == PreyBonus_Defense) {
+			bonusPercentage = 3 * bonusRarity + 15;
+		} else if (bonus == PreyBonus_Experience) {
+			bonusPercentage = 3 * bonusRarity + 20;
+		} else if (bonus == PreyBonus_Loot) {
+			bonusPercentage = 8 * bonusRarity + 20;
 		}
 	}
-
 
 	// Vaigu custom
-	void eraseBonus(bool maintainBonus = false) {
-		if (!maintainBonus) {
-			bonus = PreyBonus_None;
-			bonusRarity = (int)ceil(bonusRarity / 2.0);
+	void refreshBonus(
+		bool maintainOption = true,
+		bool maintainState = true,
+		bool maintainMonster = true,
+
+		PreyOption_t nextOption = PreyOption_None,
+		PreyDataState_t nextState = PreyDataState_Selection,
+		uint16_t nextRaceId = 0,
+
+		bool maintainBonusType = true,
+		bool refreshTime = false,
+		bool rerollType = false,
+		bool rerollRarity = false,
+		uint16_t rarityPenalty = 0
+	) {
+		if (!maintainMonster) {
+			selectedRaceId = nextRaceId;
+			removeMonsterType(nextRaceId);
 		}
-		else {
-			bonusRarity = bonusRarity - (int)floor(log2(bonusRarity));
+		if (!maintainOption) {
+			option = nextOption;
+		}
+		if (!maintainState) {
+			state = nextState;
+		}
+
+		if (rarityPenalty > 0) {
+			if (rarityPenalty > bonusRarity){
+				rarityPenalty = bonusRarity;
+			}
+			bonusRarity = bonusRarity - rarityPenalty;
+			bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		}
+
+		if (!maintainBonusType) {
+			bonus = PreyBonus_None;
+		}
+		if (refreshTime) {
+			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME, __FUNCTION__));
+		} else {
+			bonusTimeLeft = 0;
+		}
+		if (rerollType) {
+			rerollBonusType();
+		}
+		if (rerollRarity) {
+			rerollBonusRarity();
 		}
 		updateBonusPercentage();
-
-		state = PreyDataState_Selection;
-		option = PreyOption_None;
-		selectedRaceId = 0;
-		bonusTimeLeft = 0;
 	}
 
-	void reloadBonusValue() {
-		int roll = uniform_random(0, 100);
-		bool upgrade = false;
-		bool downgrade = false;
-		int requiredRollForUpgrade = (int)floor(1.0 - (bonusRarity / 100.0) * (4.0 + bonusRarity / 2.0)); // high chance at low level, and low chance at high level
-		if (roll >= requiredRollForUpgrade) {
+	std::vector<uint16_t> failstack = std::vector<uint16_t>(11);
+
+	const std::map<uint8_t, uint8_t> starsToUpgradeChance = {
+		{ PreyStars_1, 90 },
+		{ PreyStars_2, 90 },
+		{ PreyStars_3, 70 },
+		{ PreyStars_4, 70 },
+		{ PreyStars_5, 50 },
+		{ PreyStars_6, 50 },
+		{ PreyStars_7, 50 },
+		{ PreyStars_8, 50 },
+		{ PreyStars_9, 50 },
+		{ PreyStars_Max, 100 },
+	};
+
+	const uint16_t failstackBonus = 5;
+	void rerollBonusRarity() {
+		const uint8_t roll = uniform_random(1, 100) + failstack.at(bonusRarity);
+		const uint8_t requiredRollForUpgrade = 100 - starsToUpgradeChance.at(bonusRarity);
+		if ((roll) >= requiredRollForUpgrade) {
+			failstack.at(bonusRarity) = 0;
 			bonusRarity++;
-		}
-		else if (roll < 0.15) {
+		} else {
+			failstack.at(bonusRarity) = failstack.at(bonusRarity) + failstackBonus;
 			bonusRarity--;
 		}
+
+		bonusRarity = std::clamp((int)bonusRarity, 1, 10);
+		updateBonusPercentage();
 	}
 
-	void reloadBonusType() {
+	void rerollBonusType() {
 		bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
 	}
 
@@ -218,7 +299,7 @@ public:
 	bool isCreatureOnList(uint16_t raceId) const {
 		auto it = std::find_if(raceIdList.begin(), raceIdList.end(), [raceId](uint16_t it) {
 			return it == raceId;
-			});
+		});
 
 		return it != raceIdList.end();
 	}
@@ -262,10 +343,10 @@ public:
 	IOPrey() = default;
 
 	// non-copyable
-	IOPrey(const IOPrey&) = delete;
-	void operator=(const IOPrey&) = delete;
+	IOPrey(const IOPrey &) = delete;
+	void operator=(const IOPrey &) = delete;
 
-	static IOPrey& getInstance() {
+	static IOPrey &getInstance() {
 		return inject<IOPrey>();
 	}
 
@@ -273,13 +354,14 @@ public:
 	std::unordered_set<std::string> loadWhitelist();
 	void initializePreyMonsters();
 
-	void checkPlayerPreys(std::shared_ptr<Player> player, uint8_t amount) const;
+	void reducePlayerPreyTime(std::shared_ptr<Player> player, uint8_t time, uint16_t raceId) const;
+	void updatePlayerPreyStatus(std::shared_ptr<Player> player) const;
 	void parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyAction_t action, PreyOption_t option, int8_t index, uint16_t raceId) const;
 
 	void parseTaskHuntingAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
 
 	void initializeTaskHuntOptions();
-	const std::unique_ptr<TaskHuntingOption>& getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot>& slot) const;
+	const std::unique_ptr<TaskHuntingOption> &getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot> &slot) const;
 
 	NetworkMessage getTaskHuntingBaseDate() const {
 		return baseDataMessage;

@@ -4,7 +4,7 @@ return {
 	["DAILY_TASKS_HELP_WINDOW_INFO"] = function()
 		return T("Za wykonywanie zadan z ogloszenia dostajesz nagrody w postaci expa i pieniedzy.\n\nPo zakonczeniu zadania i zebraniu materialow mozesz udac sie po nagrode to Pani Burmistrz.\n\nKazdego dnia mozesz otrzymac nagrode za maksymalnie :maxTasks: zadan.\n\n.Ukonczone zadanie mozesz oddac nastepnego dnia.", { maxTasks = DAILY_TASK_LIMIT })
 	end,
-	["DAILY_TASK_REWARDS_DIALOGUE"] = function(context)
+	["DAILY_TASK_REWARDS_DIALOG"] = function(context)
 		local taskConfig = context.taskConfig
 		return T("Nagroda za dzisiejszy task na :name: to: :exp: punktow doswiadczenia oraz :money: zlota.\n Utrzymujesz :points: coiny oraz punkty taskow.", {
 			name = taskConfig.name,

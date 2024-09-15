@@ -4840,16 +4840,32 @@ void Player::gainExperience(uint64_t gainExp, std::shared_ptr<Creature> target) 
 	addExperience(target, gainExp, true);
 }
 
+// Vaigu custom
 void Player::onGainExperience(uint64_t gainExp, std::shared_ptr<Creature> target) {
 	if (hasFlag(PlayerFlags_t::NotGainExperience)) {
 		return;
 	}
+	std::shared_ptr<Monster> monster = target->getMonster();
 
+	double expPreyPercentage = 0;
 	if (target && !target->getPlayer() && m_party && m_party->isSharedExperienceActive() && m_party->isSharedExperienceEnabled()) {
+		for (std::shared_ptr<Player> member : m_party->getPlayers()) {
+			const std::unique_ptr<PreySlot> &slot = member->getPreyWithMonster(monster->getRaceId());
+			if (slot && slot->isOccupied() && slot->bonus == PreyBonus_Experience && slot->bonusTimeLeft > 0) {
+				expPreyPercentage = expPreyPercentage + slot->bonusPercentage;
+			}
+		}
+		expPreyPercentage = (int)ceil(expPreyPercentage / m_party->getPlayersCount());
+		gainExp = gainExp * (1.0 + expPreyPercentage / 100.0);
 		m_party->shareExperience(gainExp, target);
-		// We will get a share of the experience through the sharing mechanism
 		return;
 	}
+
+	const std::unique_ptr<PreySlot> &slot = getPreyWithMonster(monster->getRaceId());
+	if (slot && slot->isOccupied() && slot->bonus == PreyBonus_Experience && slot->bonusTimeLeft > 0) {
+		expPreyPercentage = expPreyPercentage + slot->bonusPercentage;
+	}
+	gainExp = gainExp * (1.0 + expPreyPercentage / 100.0);
 
 	Creature::onGainExperience(gainExp, target);
 	gainExperience(gainExp, target);
@@ -8160,7 +8176,7 @@ bool Player::hasPermittedConditionInPZ() const {
 const std::string &Player::getLanguage() {
 	return language;
 }
-void Player::setLanguage(std::string l){
+void Player::setLanguage(std::string l) {
 	language = l;
 }
 uint16_t Player::getDodgeChance() const {

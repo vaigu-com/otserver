@@ -120,7 +120,7 @@ return {
 	["MinimumLevelToTravel"] = function(context)
 		return T("Potrzebujesz co najmniej :minLevel: poziom, abym cie tam wyslal.", { minLevel = context.minLevel })
 	end,
-	["TravelHelpDialogue"] = function(context)
+	["TravelHelpDialog"] = function(context)
 		return T("Mozesz podrozowac miedzy miastami, jesli masz wystarczjaca ilosc pieniedzy. Aktualnie usluga transportu kosztuje :transportCost:. Aktualnie posiadasz :money:.", {
 			transportCost = TRANSPORT_COST,
 			money = context.player:getMoney(),

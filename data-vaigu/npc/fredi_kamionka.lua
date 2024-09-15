@@ -62,7 +62,7 @@ local config = {
 				text = "Alrigth, lets go.",
 				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["FREDI_BEER"] },
 				specialActionsOnSuccess = {
-					{ action = StartEscortDialogue, escortContext = escortContext },
+					{ action = StartEscortDialog, escortContext = escortContext },
 				},
 				textNoRequiredItems = "Give me the booze! Give me the booze!",
 			},
@@ -79,7 +79,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveConversation(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, msg, config, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

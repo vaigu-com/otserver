@@ -2,6 +2,7 @@
 LOCKOUT_TIME = {
 	DAILY = "DAILY",
 	WEEKLY = "WEEKLY",
+	FOREVER = "FOREVER",
 }
 
 ---@enum LOCKOUT_TYPE
@@ -41,7 +42,6 @@ ENCOUNTER_RESET_TIME_LOCAL = 5
 ---@field private _uid number registers action on uid
 ---@field private _aid number registers action on aid
 ---@field private entranceTiles {pos: Position, destination: Position}[]
----@field private zoneArea {from: Position, to: Position}
 ---@field private monsters {name: string, pos: Position}[]
 ---@field private exitTpPosition Position
 ---@field private exitTpDestination Position
@@ -72,7 +72,6 @@ setmetatable(EncounterData, {
 			onUseExtra = config.onUseExtra or function() end,
 			exitTpPosition = config.exitTpPosition,
 			exitTpDestination = config.exitTpDestination,
-			zoneArea = config.zoneArea,
 			monsters = config.monsters or {},
 			disableLockout = config.disableLockout,
 			leverId = config.leverId or DEFAULT_LEVER_ID,
@@ -323,8 +322,8 @@ function EncounterData:createBoss()
 	end
 end
 
-function EncounterData:teleportPlayers(playerToEntranceTileData)
-	for player, data in pairs(playerToEntranceTileData) do
+function EncounterData:teleportPlayers(players)
+	for data, player in pairs(players) do
 		player:teleportTo(data.destination)
 		local effect = data.effect or CONST_ME_TELEPORT
 		Position(data.destination):sendMagicEffect(effect)
@@ -343,7 +342,7 @@ end
 
 function EncounterData:everyoneCanEnter(leverUser, players)
 	for _, check in pairs(leverUseConditions) do
-		local error, message = check(self, players:Get(), leverUser)
+		local error, message = check(self, players, leverUser)
 		if error ~= ENCOUNTER_ERROR_CODES.NO_ERROR then
 			local translatedMessage = leverUser:Localizer():Context(self):Get(message)
 			leverUser:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
@@ -356,17 +355,13 @@ end
 ---@param leverUser Player
 ---@return boolean
 function EncounterData:onUse(leverUser)
-	-- ToDo: wyjebac players, i zmienic funkcje w leverUseConditons:
-	-- ALBO: zmienic CreatureList, aby miala funkcjonalnosc to co playerToEntranceTileData
-	local playerToEntranceTileData = {}
 	local players = CreatureList()
 	for _, entranceTile in pairs(self.entranceTiles) do
-		local player = CreatureList():Area(entranceTile.pos, entranceTile.pos):FilterByPlayer():First()
-		playerToEntranceTileData[player] = entranceTile
-		players:Add(player)
+		players:Pos(entranceTile.pos, { destination = entranceTile.destination })
 	end
+	players:FilterByPlayer()
 
-	if not self:everyoneCanEnter(leverUser, players) then
+	if not self:everyoneCanEnter(leverUser, players:Get()) then
 		return false
 	end
 	local zone = self:getZone()
@@ -377,10 +372,15 @@ function EncounterData:onUse(leverUser)
 
 	local bossMonster = self:createBoss()
 	if not bossMonster then
-		logger.error(T("[EncounterData:onUse] Failed to create boss :bossName: on position :pos:", { bossName = self.bossName, pos = self.bossPosition }))
+		logger.error(
+			T(
+				"[EncounterData:onUse] Failed to create boss :bossName: on position :pos:",
+				{ bossName = self.bossName, pos = self.bossPosition }
+			)
+		)
 	end
 
-	self:teleportPlayers(playerToEntranceTileData)
+	self:teleportPlayers(players:Get())
 
 	if self.encounterName then
 		local encounter = Encounter(self.encounterName)
@@ -388,7 +388,7 @@ function EncounterData:onUse(leverUser)
 		encounter:start()
 	end
 	if self.lockoutType == LOCKOUT_TYPE.ON_ENTER then
-		self:setLockouts(players)
+		self:setLockouts(players:Get())
 	end
 	self:handleTimeEvent(zone)
 	return true
@@ -432,9 +432,6 @@ function EncounterData:register()
 	if not self.entranceTiles then
 		table.insert(missingParams, "entranceTiles")
 	end
-	if not self.zoneArea then
-		table.insert(missingParams, "zoneArea")
-	end
 	if not self.exitTpDestination then
 		table.insert(missingParams, "exitTpDestination")
 	end
@@ -446,12 +443,6 @@ function EncounterData:register()
 		logger.error("[EncounterData:register] - boss with name {} missing parameters: {}", bossName, table.concat(missingParams, ", "))
 		return false
 	end
-
-	local zone = self:getZone()
-
-	zone:addArea(self.zoneArea.from, self.zoneArea.to)
-	zone:blockFamiliars()
-	zone:setRemoveDestination(self.exitTpDestination)
 
 	self:registerLever()
 

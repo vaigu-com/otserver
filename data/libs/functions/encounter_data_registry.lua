@@ -16,6 +16,7 @@ setmetatable(EncounterDataRegistry, {
 })
 singleton = EncounterDataRegistry()
 EncounterDataRegistry.states = {}
+---@param encounterData EncounterData
 function EncounterDataRegistry:register(encounterData)
 	self.states[encounterData.encounterName] = encounterData
 	self.states[encounterData.bossName] = encounterData

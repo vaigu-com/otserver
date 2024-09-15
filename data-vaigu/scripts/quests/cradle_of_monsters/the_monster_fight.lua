@@ -6,6 +6,10 @@ local jailBarsId = 2184
 local encounter = Encounter("The Monster", {
 	zone = bossZone,
 	timeToSpawnMonsters = "10ms",
+	zoneArea = {
+		Position(33828, 32584, 12),
+		Position(33846, 32598, 12),
+	},
 })
 
 local function freeMonster()

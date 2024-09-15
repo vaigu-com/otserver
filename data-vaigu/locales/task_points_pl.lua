@@ -3,7 +3,7 @@ return {
 		local points = context.player:getStorageValue(Storage.taskPoints)
 		return T("Aktualnie posiadasz :points: punktow taskow.  Mozesz wymienic je na kilka {trofeow}, {wierzchowca} oraz {mozliwosc} nasycania na najwyzszy poziom.", { points = points })
 	end,
-	["WOULD_YOU_LIKE_TO_BUY_ANY_TROPHY"] = function(context)
+	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
 		return T("Ktore chcial bys zakupic? Kosztowac cie to bedzie :cost: punktow taskow: {bronze hunter trophy}, {silver hunter trophy}, {gold hunter trophy}, {gozzler trophy}, {hellflayer trophy} oraz {sea serpent doll}.", { cost = context.keywordConfig.cost })
 	end,
 	["YOU_WANT_TO_BUY_TROHPY_NAME"] = function(context)
@@ -11,7 +11,7 @@ return {
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
 		local current = context.player:getStorageValue(Storage.taskPoints)
-		local required = context.keywordConfig.cost or context.player:GetCustomConversationData()
+		local required = context.keywordConfig.cost or PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("Nie posiadasz odpowiedniej liczby punktow taskowych. Potrzebuejsz :required: punktow aby to kupic. Posiadasz :current: punktow, co oznacza, ze potrzebuejesz jeszcze :diff: punktow.", { current = current, required = required, diff = diff })
 	end,
@@ -32,12 +32,12 @@ return {
 		return translatedString
 	end,
 	["YOU_SELECTED_IMBUING_NAME"] = function(context)
-		local bundleData = context.player:GetCustomConversationData()
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 		local imbuementName = bundleData.name
 		return T("Jakim poziomem nasycenia :imbuementName: jestes zainteresowany : {basic}, {intricate}, {powerful}?", { imbuementName = imbuementName })
 	end,
 	["YOU_SELECTED_IMBUING_LEVEL"] = function(context)
-		local bundleLevelData = context.player:GetCustomConversationData()
+		local bundleLevelData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 		local levelName = bundleLevelData.levelName
 		local imbuementName = bundleLevelData.name
 		local moneyCost = bundleLevelData.moneyCost
