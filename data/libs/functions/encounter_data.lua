@@ -42,7 +42,6 @@ ENCOUNTER_RESET_TIME_LOCAL = 5
 ---@field private _uid number registers action on uid
 ---@field private _aid number registers action on aid
 ---@field private entranceTiles {pos: Position, destination: Position}[]
----@field private zoneArea {from: Position, to: Position}
 ---@field private monsters {name: string, pos: Position}[]
 ---@field private exitTpPosition Position
 ---@field private exitTpDestination Position
@@ -73,7 +72,6 @@ setmetatable(EncounterData, {
 			onUseExtra = config.onUseExtra or function() end,
 			exitTpPosition = config.exitTpPosition,
 			exitTpDestination = config.exitTpDestination,
-			zoneArea = config.zoneArea,
 			monsters = config.monsters or {},
 			disableLockout = config.disableLockout,
 			leverId = config.leverId or DEFAULT_LEVER_ID,
@@ -433,9 +431,6 @@ function EncounterData:register()
 	end
 	if not self.entranceTiles then
 		table.insert(missingParams, "entranceTiles")
-	end
-	if not self.zoneArea then
-		table.insert(missingParams, "zoneArea")
 	end
 	if not self.exitTpDestination then
 		table.insert(missingParams, "exitTpDestination")
