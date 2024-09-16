@@ -80,7 +80,6 @@ function CreatureList:MovedByVector(vector)
 	return self
 end
 
-
 function CreatureList:FilterByName(name)
 	if name == nil then
 		return self
@@ -294,12 +293,13 @@ local function drawBackslashLine1(positions, verticalId, horizontalId)
 		local nextPos = positions[i + 1]
 
 		local item1 = Game.createItem(horizontalId, 1, currentPos:Moved(0, -1, 0))
-		table.insert(items, item1)
+		items:Add(item1)
 		if nextPos.y ~= currentPos.y then
 			local item2 = Game.createItem(verticalId, 1, currentPos)
-			table.insert(items, item2)
+			items:Add(item2)
 		end
 	end
+	return items
 end
 
 local function drawBackslashLine2(positions, verticalId, horizontalId)
@@ -309,12 +309,13 @@ local function drawBackslashLine2(positions, verticalId, horizontalId)
 		local nextPos = positions[i + 1]
 
 		local item1 = Game.createItem(verticalId, 1, currentPos)
-		table.insert(items, item1)
+		items:Add(item1)
 		if nextPos.x ~= currentPos.x then
 			local item2 = Game.createItem(horizontalId, 1, currentPos)
-			table.insert(items, item2)
+			items:Add(item2)
 		end
 	end
+	return items
 end
 
 local function drawSlashLine1(positions, verticalId, horizontalId)
@@ -324,12 +325,13 @@ local function drawSlashLine1(positions, verticalId, horizontalId)
 		local nextPos = positions[i + 1]
 
 		local item1 = Game.createItem(horizontalId, 1, currentPos)
-		table.insert(items, item1)
+		items:Add(item1)
 		if nextPos.y ~= currentPos.y then
 			local item2 = Game.createItem(verticalId, 1, currentPos)
-			table.insert(items, item2)
+			items:Add(item2)
 		end
 	end
+	return items
 end
 
 local function drawSlashLine2(positions, verticalId, horizontalId)
@@ -339,18 +341,19 @@ local function drawSlashLine2(positions, verticalId, horizontalId)
 		local nextPos = positions[i + 1]
 
 		local item1 = Game.createItem(verticalId, 1, currentPos)
-		table.insert(items, item1)
+		items:Add(item1)
 		if nextPos.x ~= currentPos.x then
 			local item2 = Game.createItem(horizontalId, 1, currentPos)
-			table.insert(items, item2)
+			items:Add(item2)
 		end
 	end
+	return items
 end
 
-function Position:DrawLineTo(destination, verticalId, horizontalId, removeAfterSeconds)
+function Position:DrawLine(destination, verticalId, horizontalId, removeAfterSeconds)
 	local positions, dx, dy, flipAxis = self:CalculatePositionsOnSlope(destination)
 
-	local items = {}
+	local items = nil
 
 	if flipAxis and dx >= dy then
 		items = drawBackslashLine1(positions, verticalId, horizontalId)
@@ -362,9 +365,11 @@ function Position:DrawLineTo(destination, verticalId, horizontalId, removeAfterS
 		items = drawSlashLine2(positions, verticalId, horizontalId)
 	end
 
-	if removeAfterSeconds and items then
+	if removeAfterSeconds then
 		addEvent(function()
-			items:Remove()
+			if items then
+				items:Remove()
+			end
 		end, removeAfterSeconds)
 	end
 end
@@ -785,10 +790,10 @@ LIBRUM_VORTEX_ANCHOR = Position(6802, 1224, 10)
 SCIEZKA_NIEUMARLYCH_ANCHOR = Position(6713, 1373, 14)
 
 PETRUS_CIEMIEZCA_ANCHOR = Position(6078, 1349, 2)
-HFPX_ANCHOR = Position(6788, 547, 13)
+ANCHOR = Position(6788, 547, 13)
 RETRO_KNUROWO_ANCHOR = Position(4445, 859, 7)
 KRAKEN_ANCHOR = Position(5974, 1177, 6)
-SKURWIWIJ_ANCHOR = Position(6546, 543, 9)
+SKURWIWIJ_ANCHOR = Position(6534, 536, 9)
 ZUL_SZCZUROW_ANCHOR = Position(6006, 1382, 13)
 
 KUZNIA_YAANUSHA_ANCHOR = Position(6657, 1066, 15)
