@@ -11,7 +11,7 @@
 ---@field getItems function
 Zone = Zone
 
----@param encounterData EncounterData
+---@param encounterData EncounterLever
 function Zone.getByEncounter(encounterData)
 	return Zone("encounter." .. toKey(encounterData.encounterName))
 end

@@ -26,6 +26,6 @@ local zamuloshSummons = {
 	Position(33644, 32756, 11),
 }
 
-local lever = EncounterData(config)
+local lever = EncounterLever(config)
 lever:uid(1026)
 lever:register()

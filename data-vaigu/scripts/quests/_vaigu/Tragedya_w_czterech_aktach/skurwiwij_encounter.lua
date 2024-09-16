@@ -1,47 +1,89 @@
-SKURWIWIJ_ENCOUNTER_DATA = {
-	actionid = Storage.TragedyaWCzterechAktach.SkurwiwijAccess,
-	bossName = "Skurwiwij",
-	timerStorage = Storage.TragedyaWCzterechAktach.SkurwiwijAccess,
-	cooldown = "weekly",
-
-	leverPosition = Position(6576, 557, 9),
-	entranceGrid = { topLeft = Position(6577, 557, 9), downRight = Position(6580, 557, 9) },
-
-	bossPos = SKURWIWIJ_ANCHOR:Moved(-6, 0, 0),
-	enterPos = SKURWIWIJ_ANCHOR:Moved(0, 0, 0),
-	durationMinutes = 10,
-	exitTeleportDestination = Position(6582, 557, 9),
-	exitTeleportPosition = SKURWIWIJ_ANCHOR:Moved(7, 2, 0),
-	exitTeleportActionid = Storage.TragedyaWCzterechAktach.Portals.AfterSkurwiwij,
-	corner1 = SKURWIWIJ_ANCHOR:Moved(-11, -8, 0),
-	corner2 = SKURWIWIJ_ANCHOR:Moved(16, 12, 0),
-
-	scalingConfig = { hpPerPlayer = 1 },
-
-	requiredStorages = { [Storage.TragedyaWCzterechAktach.SkurwiwijAccess] = 1 },
+local pylonFlam = "pylonFlam"
+local pylonVis = "pylonVis"
+local pylons = {
+	[pylonFlam] = { power = 0, pos = SKURWIWIJ_ANCHOR:Moved(9, 2, 0), verticalTextureId = 5066, horizontalTextureId = 5064, name = pylonFlam, magicEffect = CONST_ME_FIREAREA },
+	[pylonVis] = { power = 0, pos = SKURWIWIJ_ANCHOR:Moved(9, 12, 0), verticalTextureId = 5069, horizontalTextureId = 5068, name = pylonVis, magicEffect = CONST_ME_ENERGYHIT },
 }
-RegisterEncounter(SKURWIWIJ_ENCOUNTER_DATA)
 
-local skurwiwijEncounterSingleton = nil
-SkurwiwijEncounter = {}
-function SkurwiwijEncounter:new()
-	if skurwiwijEncounterSingleton then
-		return skurwiwijEncounterSingleton
+local function resetPylons()
+	for _, pylonData in pairs(pylons) do
+		pylonData.power = 0
 	end
-	local newObj = {}
-	self.__index = self
-	setmetatable(newObj, self)
-	return newObj
 end
-setmetatable(SkurwiwijEncounter, {
-	__call = function(class, ...)
-		return class:new(...)
-	end,
+
+local encounter = Encounter("skurwiwij-lair", {
+	timeToSpawnMonsters = "1000ms",
+	bossName = "Skurwiwij",
+	bossPosition = SKURWIWIJ_ANCHOR:Moved(6, 6, 0),
+	zoneArea = {
+		SKURWIWIJ_ANCHOR:Moved(0, 0, 0),
+		SKURWIWIJ_ANCHOR:Moved(21, 17, 0),
+	},
 })
-skurwiwijEncounterSingleton = SkurwiwijEncounter()
-function SkurwiwijEncounter:Get()
-	return self
+
+function encounter:onReset()
+	encounter:removeMonsters()
 end
+
+function encounter:beforeStart()
+	resetPylons()
+	self.pylons = pylons
+	self.lastPylon = self.pylons[pylonFlam]
+	self.explosionsCount = 0
+	self.baseExplosionDamage = 200
+	self.damagePerConsecutiveExplosion = 50
+end
+
+encounter:addSpawnMonsters({
+	{
+		name = encounter.bossName,
+		positions = {
+			encounter.bossPosition,
+		},
+		spawn = function(monster)
+			encounter.skurwiwij = monster
+		end,
+	},
+})
+
+encounter:addRemoveMonsters()
+encounter:startOnEnter()
+encounter:register()
+
+-- EncounterDefinitionRegistry():Register(encounter)
+
+local channelPowerInterval = 400
+local empowerPylons = GlobalEvent("encounter.skurwiwij-lair.empower-pylons")
+function empowerPylons.onThink()
+	if not encounter:isActive() then
+		return true
+	end
+	if not encounter.skurwiwij then
+		return true
+	end
+
+	local skurwiwijPos = encounter.skurwiwij:getPosition()
+	local closestPylon = {}
+	local closestPylonDistance = 999
+	for pylonName, pylonData in pairs(pylons) do
+		local distance = pylonData.pos:DistanceTo(skurwiwijPos, true)
+		if distance <= closestPylonDistance then
+			closestPylonDistance = distance
+			closestPylon = pylonData
+		end
+	end
+
+	if encounter.lastPylon ~= closestPylon then
+		TriggerPylonExplosion(encounter.lastPylon)
+		encounter.lastPylon = closestPylon
+		closestPylon.power = closestPylon.power + 1
+	end
+	closestPylon.pos:DrawLine(encounter.skurwiwij:getPosition(), closestPylon.verticalTextureId, closestPylon.horizontalTextureId, channelPowerInterval)
+
+	return true
+end
+empowerPylons:interval(channelPowerInterval)
+empowerPylons:register()
 
 local function tryDamagePlayer(pos, damage)
 	local tile = Tile(pos)
@@ -102,76 +144,13 @@ local function drawPylonExplosion(i, pos, damage, magicEffect)
 	end, pylonExplosionsInterval)
 end
 
-local pylonFlam = "pylonFlam"
-local pylonVis = "pylonVis"
-local pylons = {
-	[pylonFlam] = { power = 0, pos = SKURWIWIJ_ANCHOR:Moved(-3, -5, 0), verticalTextureId = 5066, horizontalTextureId = 5064, name = pylonFlam, magicEffect = CONST_ME_FIREAREA },
-	[pylonVis] = { power = 0, pos = SKURWIWIJ_ANCHOR:Moved(-3, 5, 0), verticalTextureId = 5069, horizontalTextureId = 5068, name = pylonVis, magicEffect = CONST_ME_ENERGYHIT },
-}
-local function resetPylons()
-	for _, pylonData in pairs(pylons) do
-		pylonData.power = 0
-	end
-end
-
-function SkurwiwijEncounter:Start(encounterContext)
-	self.skurwiwij = encounterContext.boss
-	resetPylons()
-	self.pylons = pylons
-	self.lastPylon = self.pylons[pylonFlam]
-	self.explosionsCount = 0
-	self.baseExplosionDamage = 200
-	self.damagePerConsecutiveExplosion = 50
-	self:Loop()
-end
-
-function SkurwiwijEncounter:TriggerPylonExplosion(pylon)
-	local damage = self.baseExplosionDamage + self.damagePerConsecutiveExplosion * self.explosionsCount
+function TriggerPylonExplosion(pylon)
+	local damage = encounter.baseExplosionDamage + encounter.damagePerConsecutiveExplosion * encounter.explosionsCount
 	if pylon.power < 25 then
 		damage = damage * 2
 	end
 	pylon.power = 0
 
 	drawPylonExplosion(0, pylon.pos, damage, pylon.magicEffect)
-	self.explosionsCount = self.explosionsCount + 1
+	encounter.explosionsCount = encounter.explosionsCount + 1
 end
-
-local channelPowerInterval = 400
-function SkurwiwijEncounter:ChannelClosestPylon()
-	local skurwiwijPos = self.skurwiwij:getPosition()
-	local closestPylon = self.pylons[pylonFlam]
-	local closestPylonDistance = 999
-	for pylonName, pylon in pairs(pylons) do
-		local distance = pylon.pos:DistanceTo(skurwiwijPos, true)
-		if distance < closestPylonDistance then
-			closestPylonDistance = distance
-			closestPylon = pylon
-		end
-	end
-
-	if self.lastPylon ~= closestPylon then
-		self:TriggerPylonExplosion(self.lastPylon)
-		self.lastPylon = closestPylon
-		closestPylon.power = closestPylon.power + 1
-	end
-	closestPylon.pos:DrawLineTo(self.skurwiwij:getPosition(), closestPylon.verticalTextureId, closestPylon.horizontalTextureId, channelPowerInterval)
-end
-
-function SkurwiwijEncounter:Loop()
-	addEvent(function()
-		self:ChannelClosestPylon()
-		self:Loop()
-	end, channelPowerInterval)
-end
-
-local skurwiwijLever = Action()
-function skurwiwijLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local encounterContext = UseEncounterLever(player, item, SKURWIWIJ_ENCOUNTER_DATA)
-	if not encounterContext then
-		return
-	end
-	SkurwiwijEncounter:Get():Start(encounterContext)
-end
-
-skurwiwijLever:aid(SKURWIWIJ_ENCOUNTER_DATA.actionid)
-skurwiwijLever:register()
