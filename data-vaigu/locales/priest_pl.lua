@@ -28,6 +28,7 @@ return {
 		local finalString = T("Jestes pewny, ze chcesz otrzymac promocje? Kosztowac cie to bedzie :price: zlota.", { price = PROMOTION_PRICE })
 		return finalString
 	end,
+	["Here is your promotion, good luck!"] = "Awansuje Cie na dzika jakich malo!",
 	["NO_PROPOSAL_RESPONSE"] = function(context)
 		local finalString = T("{:spouse:} dalej nie odpowiada na oswiadczyny. Czy chcesz je {anulowac}?", {
 			spouse = getPlayerNameById(getPlayerSpouse(context.player:getGuid())),
