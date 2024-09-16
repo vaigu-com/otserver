@@ -556,16 +556,3 @@ for _, value in pairs(Storage.DesertQuestTwo.Puzzles.RubiksCube) do
 	lever:aid(value)
 end
 lever:register()
-
-local completeCube = Action()
-function completeCube.onUse(creature, item, _, _, _, _)
-	local player = creature:getPlayer()
-	if not player then
-		return false
-	end
-
-	return false
-end
-
-completeCube:aid(Storage.DesertQuestTwo.Puzzles.RubiksCubeComplete)
-completeCube:register()

@@ -16,11 +16,14 @@ setmetatable(EncounterDataRegistry, {
 })
 singleton = EncounterDataRegistry()
 EncounterDataRegistry.states = {}
----@param encounterData EncounterData
+---@param encounterData EncounterLever
 function EncounterDataRegistry:register(encounterData)
 	self.states[encounterData.encounterName] = encounterData
-	self.states[encounterData.bossName] = encounterData
 	return self
+end
+
+function EncounterDataRegistry:mapBossToEncounter(encounterName, bossName)
+	self.states[bossName] = self:getStateByEncounterName(encounterName)
 end
 
 function EncounterDataRegistry:getStateByCreature(creature)
@@ -31,7 +34,6 @@ end
 function EncounterDataRegistry:getStateByCreatureName(creatureName)
 	return self.states[creatureName]
 end
-
 
 function EncounterDataRegistry:getStateByEncounterName(encounterName)
 	return self.states[encounterName]

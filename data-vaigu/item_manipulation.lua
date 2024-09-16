@@ -2,7 +2,7 @@
 ---@field items table
 ItemExList = {}
 ItemExList.__index = ItemExList
-function ItemExList:new()
+function ItemExList:New()
 	local newObj = {}
 	newObj.__index = self
 	newObj.items = {}
@@ -10,8 +10,8 @@ function ItemExList:new()
 	return newObj
 end
 setmetatable(ItemExList, {
-	__call = function(class, ...)
-		return class:new(...)
+	__call = function(ItemExList, ...)
+		return ItemExList:New(...)
 	end,
 })
 
@@ -101,6 +101,13 @@ function ItemExList:Copied(destination)
 		copiedList:Add(item:clone():moveTo(destination))
 	end
 	return copiedList
+end
+
+function ItemExList:Remove()
+	for key, value in pairs(self.items) do
+		value:remove()
+	end
+	return self
 end
 
 -- Old dependency

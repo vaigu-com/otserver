@@ -5332,7 +5332,6 @@ void Game::playerLookAt(uint32_t playerId, uint16_t itemId, const Position &pos,
 	}
 
 	// Parse onLook from event player
-	// ToDo: TEST
 	if (g_looks().lookItemEx(player, player->getPosition(), pos, stackPos, item)) {
 		return;
 	}

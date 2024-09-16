@@ -1,5 +1,3 @@
--- require("lldebuggr").start()
-
 local stonePos = DESERT_QUEST_TWO_ANCHOR:Moved(41, -6, 0)
 local moaPos = DESERT_QUEST_TWO_ANCHOR:Moved(45, -17, 0)
 
@@ -32,11 +30,19 @@ end
 lever:aid(Storage.DesertQuestTwo.Puzzles.FastMoaLever)
 lever:register()
 
-local item2 = Look()
-function item2.onLook(a, b, c, d, e, f)
-	print("MOA LEVER LOOK")
-	print(a, b, c, d, e, f)
+local action = Action()
+function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	player:say("meow")
 	return true
 end
-item2:aid(Storage.DesertQuestTwo.Puzzles.FastMoaLever)
-item2:register()
+action:aid(6969)
+action:register()
+
+local look = Look()
+function look.onLook(player, item, fromPosition, target, toPosition)
+	player:say("meow")
+	return true
+end
+look:aid(6969)
+look:position({ x = 6585, y = 557, z = 9 })
+look:register()

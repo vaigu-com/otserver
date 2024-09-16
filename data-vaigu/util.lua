@@ -18,7 +18,7 @@ NUMBER_TO_ORDINAL_STRING = {
 
 ---@deprecated
 RegisterEncounter = function()
-	logger.error("[RegisterEncounter] is deprecated. Use EncounterData and Encounter")
+	logger.error("[RegisterEncounter] is deprecated. Use EncounterLever and Encounter")
 end
 
 function SendPlayerIsPzLocked(player)

@@ -538,11 +538,11 @@ NPC_UNIVERSAL_DIALOGS = {
 			"poblogoslaw",
 		}] = {
 			text = "BLESS_PRICE_TEXT",
-			nextTopic = JOB_TOPICS.confirmAllblessingsBuy,
+			nextTopic = JOB_TOPICS.confirmBuyAllregularblessings,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Thank you.",
-			requiredTopic = JOB_TOPICS.confirmAllblessingsBuy,
+			requiredTopic = JOB_TOPICS.confirmBuyAllregularblessings,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.canBuyBless,
@@ -570,12 +570,12 @@ NPC_UNIVERSAL_DIALOGS = {
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.isPromoted,
-					requiredOutcome = true,
+					requiredOutcome = false,
 					textNoRequiredCondition = "You are already promoted!",
 				},
 			},
 		},
-		[{ "yes" }] = {
+		[{ "yes" ,"tak"}] = {
 			text = "Here is your promotion, good luck!",
 			requiredTopic = JOB_TOPICS.confirmBuyPromotion,
 			specialConditions = {

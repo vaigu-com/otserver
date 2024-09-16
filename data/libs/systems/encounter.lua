@@ -71,8 +71,11 @@ end
 ---@field protected registered boolean
 ---@field protected global boolean
 ---@field protected timeToSpawnMonsters number|string
----@field onReset function
----@fielf active boolean
+---@field onReset function?
+---@field beforeStart function?
+---@field private active boolean
+---@field protected isMinigame boolean?
+---@field protected bossName string?
 Encounter = {
 	registry = {},
 	unstarted = 0,
@@ -100,11 +103,12 @@ setmetatable(Encounter, {
 			encounter = setmetatable({
 				name = name,
 			}, { __index = Encounter })
+			local zone = Zone("encounter." .. toKey(name)) -- ToDo: .. NextEncounterId()
+			zone:addArea(config.zoneArea[1], config.zoneArea[2])
+			zone:blockFamiliars()
+			config.zone = zone
+			Encounter.registry[name] = encounter
 		end
-		local zone = Zone("encounter." .. toKey(name)) -- ToDo: .. NextEncounterId()
-		zone:addArea(config.zoneArea[1], config.zoneArea[2])
-		zone:blockFamiliars()
-		config.zone = zone
 
 		if config then
 			encounter:resetConfig(config)
@@ -350,8 +354,13 @@ end
 ---Starts the encounter
 ---@return boolean True if the encounter is started successfully, false otherwise
 function Encounter:start()
+	if self.beforeStart then
+		self:beforeStart()
+	end
 	self.active = true
-	Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.name })
+	if self.bossName then
+		EncounterDataRegistry():mapBossToEncounter(self.name, self.bossName)
+	end
 	self:debug("Encounter[{}]:start", self.name)
 	return self:enterStage(1)
 end
@@ -469,6 +478,7 @@ function Encounter:startOnEnter()
 			self:start()
 		end
 		if self.isMinigame then
+			Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.name })
 			self:afterEnterMinigame(player)
 		end
 	end
