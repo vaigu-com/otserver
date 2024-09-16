@@ -152,19 +152,34 @@ bool Looks::registerLuaPositionEvent(const std::shared_ptr<Look> look) {
 }
 
 bool Looks::registerLuaEvent(const std::shared_ptr<Look> look) {
+	std::vector<std::function<bool(const std::shared_ptr<Look> &)>> luaEventCallbacks = {
+		[this](const std::shared_ptr<Look> &look) { return registerLuaItemEvent(look); },
+		[this](const std::shared_ptr<Look> &look) { return registerLuaUniqueEvent(look); },
+		[this](const std::shared_ptr<Look> &look) { return registerLuaActionEvent(look); },
+		[this](const std::shared_ptr<Look> &look) { return registerLuaPositionEvent(look); }
+	};
 	// Call all register lua events
-	if (registerLuaItemEvent(look) || registerLuaUniqueEvent(look) || registerLuaActionEvent(look) || registerLuaPositionEvent(look)) {
-		return true;
-	} else {
-		g_logger().warn(
-			"[{}] missing id/aid/uid/position for one script event, for script: {}",
-			__FUNCTION__,
-			look->getScriptInterface()->getLoadingScriptName()
-		);
-		return false;
+	bool registeredAny = false;
+	for (const auto &callback : luaEventCallbacks) {
+		if (callback(look)) {
+			registeredAny = true;
+		}
 	}
-	g_logger().debug("[{}] missing or incorrect script: {}", __FUNCTION__, look->getScriptInterface()->getLoadingScriptName());
+
+	if (registeredAny) {
+		return true;
+	}
+
+	g_logger().warn(
+		"[{}] missing id/aid/uid/position for one script event, for script: {}",
+		__FUNCTION__,
+		look->getScriptInterface()->getLoadingScriptName()
+	);
+
 	return false;
+	// Code was unreachable
+	// g_logger().debug("[{}] missing or incorrect script: {}", __FUNCTION__, look->getScriptInterface()->getLoadingScriptName());
+	// return false;
 }
 
 ReturnValue Looks::canLook(std::shared_ptr<Player> player, const Position &pos) {
@@ -228,41 +243,41 @@ std::shared_ptr<Look> Looks::getLook(std::shared_ptr<Item> item) {
 
 /*
 ReturnValue Looks::internalLookItem(std::shared_ptr<Player> player, const Position &fromPos, uint8_t stackPos, std::shared_ptr<Item> item, const Position &toPos) {
-    if (std::shared_ptr<Door> door = item->getDoor()) {
-        if (!door->canUse(player)) {
-            return RETURNVALUE_CANNOTUSETHISOBJECT;
-        }
-    }
-
-    auto itemId = item->getID();
-    const ItemType &itemType = Item::items[itemId];
-    auto transformTo = itemType.m_transformOnUse;
-    const std::shared_ptr<Look> look = getLook(item);
-    if (!look && transformTo > 0 && itemId != transformTo) {
-        if (g_game().transformItem(item, transformTo) == nullptr) {
-            g_logger().warn("[{}] item with id {} failed to transform to item {}", __FUNCTION__, itemId, transformTo);
-            return RETURNVALUE_CANNOTUSETHISOBJECT;
+        if (std::shared_ptr<Door> door = item->getDoor()) {
+                if (!door->canUse(player)) {
+                        return RETURNVALUE_CANNOTUSETHISOBJECT;
+                }
         }
 
-        return RETURNVALUE_NOERROR;
-    } else if (transformTo > 0 && look) {
-        g_logger().warn("[{}] item with id {} already have look registered and cannot be use transformTo tag", __FUNCTION__, itemId);
-    }
+        auto itemId = item->getID();
+        const ItemType &itemType = Item::items[itemId];
+        auto transformTo = itemType.m_transformOnUse;
+        const std::shared_ptr<Look> look = getLook(item);
+        if (!look && transformTo > 0 && itemId != transformTo) {
+                if (g_game().transformItem(item, transformTo) == nullptr) {
+                        g_logger().warn("[{}] item with id {} failed to transform to item {}", __FUNCTION__, itemId, transformTo);
+                        return RETURNVALUE_CANNOTUSETHISOBJECT;
+                }
 
-    if (look != nullptr) {
-        if (look->isLoadedCallback()) {
-            if (look->executeLook(player, item, fromPos, nullptr, fromPos)) {
                 return RETURNVALUE_NOERROR;
-            }
-            if (item->isRemoved()) {
-                return RETURNVALUE_CANNOTUSETHISOBJECT;
-            }
-        } else if (look->useFunction && look->useFunction(player, item, fromPos, nullptr, toPos)) {
-            return RETURNVALUE_NOERROR;
+        } else if (transformTo > 0 && look) {
+                g_logger().warn("[{}] item with id {} already have look registered and cannot be use transformTo tag", __FUNCTION__, itemId);
         }
-    }
 
-    return RETURNVALUE_CANNOTUSETHISOBJECT;
+        if (look != nullptr) {
+                if (look->isLoadedCallback()) {
+                        if (look->executeLook(player, item, fromPos, nullptr, fromPos)) {
+                                return RETURNVALUE_NOERROR;
+                        }
+                        if (item->isRemoved()) {
+                                return RETURNVALUE_CANNOTUSETHISOBJECT;
+                        }
+                } else if (look->useFunction && look->useFunction(player, item, fromPos, nullptr, toPos)) {
+                        return RETURNVALUE_NOERROR;
+                }
+        }
+
+        return RETURNVALUE_CANNOTUSETHISOBJECT;
 }
 */
 
@@ -318,31 +333,30 @@ std::shared_ptr<Thing> Look::getTarget(std::shared_ptr<Player> player, std::shar
 	return g_game().internalGetThing(player, toPosition, toStackPos, 0, STACKPOS_USETARGET);
 }
 
-
 bool Look::executeLook(std::shared_ptr<Player> player, std::shared_ptr<Item> item, const Position &fromPosition, std::shared_ptr<Thing> target, const Position &toPosition) {
-    // onUse(player, item, fromPosition, target, toPosition, isHotkey)
-    if (!getScriptInterface()->reserveScriptEnv()) {
-        g_logger().error("[Look::executeLook - Player {}, on item {}] "
-                         "Call stack overflow. Too many lua script calls being nested.",
-                         player->getName(), item->getName());
-        return false;
-    }
+	// onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	if (!getScriptInterface()->reserveScriptEnv()) {
+		g_logger().error("[Look::executeLook - Player {}, on item {}] "
+		                 "Call stack overflow. Too many lua script calls being nested.",
+		                 player->getName(), item->getName());
+		return false;
+	}
 
-    ScriptEnvironment* scriptEnvironment = getScriptInterface()->getScriptEnv();
-    scriptEnvironment->setScriptId(getScriptId(), getScriptInterface());
+	ScriptEnvironment* scriptEnvironment = getScriptInterface()->getScriptEnv();
+	scriptEnvironment->setScriptId(getScriptId(), getScriptInterface());
 
-    lua_State* L = getScriptInterface()->getLuaState();
+	lua_State* L = getScriptInterface()->getLuaState();
 
-    getScriptInterface()->pushFunction(getScriptId());
+	getScriptInterface()->pushFunction(getScriptId());
 
-    LuaScriptInterface::pushUserdata<Player>(L, player);
-    LuaScriptInterface::setMetatable(L, -1, "Player");
+	LuaScriptInterface::pushUserdata<Player>(L, player);
+	LuaScriptInterface::setMetatable(L, -1, "Player");
 
-    LuaScriptInterface::pushThing(L, item);
-    LuaScriptInterface::pushPosition(L, fromPosition);
+	LuaScriptInterface::pushThing(L, item);
+	LuaScriptInterface::pushPosition(L, fromPosition);
 
-    LuaScriptInterface::pushThing(L, target);
-    LuaScriptInterface::pushPosition(L, toPosition);
+	LuaScriptInterface::pushThing(L, target);
+	LuaScriptInterface::pushPosition(L, toPosition);
 
-    return getScriptInterface()->callFunction(5);
+	return getScriptInterface()->callFunction(5);
 }
