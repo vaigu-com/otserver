@@ -547,6 +547,7 @@ Storage = {
 		Questline = 11085,
 		Mission01 = 11086,
 		Mission02 = 11087,
+		Mission03 = 11088,
 		FajtlapaFloat = 11087,
 		FajtlapaReel = 11088,
 		FajtlapaStool = 11089,

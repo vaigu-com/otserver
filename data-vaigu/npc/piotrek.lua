@@ -55,7 +55,7 @@ end
 
 local function getPlayerCurrentDish(player)
 	local state = player:getStorageValue(Storage.TopChef.Questline)
-	local dishData = COOKING_INGREDIENT_DATA[state] or PlayerCustomDialogDataRegistry:Get(player).dishData
+	local dishData = COOKING_INGREDIENT_DATA[state] or PlayerCustomDialogDataRegistry():Get(player).dishData
 	return dishData
 end
 

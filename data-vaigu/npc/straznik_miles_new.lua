@@ -71,7 +71,7 @@ local config = {
 			},
 		},
 	},
-	[Storge.IKEAdlazuchwalych.Questline] = {
+	[Storage.IKEAdlazuchwalych.Questline] = {
 		[8] = {
 			[{ "thief", "zlodziej" }] = {
 				text = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",

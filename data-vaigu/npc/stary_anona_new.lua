@@ -58,7 +58,7 @@ local dialogs = {
 			text = "Say {trade} if you want to see my offer.",
 		},
 	},
-	[Storge.IKEAdlazuchwalych.Questline] = {
+	[Storage.IKEAdlazuchwalych.Questline] = {
 		[8] = {
 			[{ "mission", "misja" }] = {
 				text = "",
