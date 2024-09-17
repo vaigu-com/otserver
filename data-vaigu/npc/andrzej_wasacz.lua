@@ -100,18 +100,18 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	config = GetConfigByPlayer(creature, lang_to_config)
 
-	if table.contains({ "zlodziej", "thief" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 9 then
+	if table.contains({ "zlodziej", "thief" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 9 then
 		npcHandler:say(config[1], npc, creature)
 		npcHandler:setTopic(playerId, 2)
-	elseif table.contains({ "informacje", "info", "information", "informations" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 9 and npcHandler:getTopic(playerId) == 2 then
+	elseif table.contains({ "informacje", "info", "information", "informations" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 9 and npcHandler:getTopic(playerId) == 2 then
 		npcHandler:say(config[2], npc, creature)
 		spawnBandits(player)
-		player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 10)
-	elseif table.contains({ "informacje", "informations", "zlodziej", "thief" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 10 then
+		player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 10)
+	elseif table.contains({ "informacje", "informations", "zlodziej", "thief" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 10 then
 		npcHandler:say(config[3], npc, creature)
 		npcHandler:setTopic(playerId, 1)
-	elseif table.contains({ "meble", "drewno", "furniture", "wood" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 10 and npcHandler:getTopic(playerId) == 1 then
-		player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 11)
+	elseif table.contains({ "meble", "drewno", "furniture", "wood" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 10 and npcHandler:getTopic(playerId) == 1 then
+		player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 11)
 		npcHandler:say(config[4], npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({

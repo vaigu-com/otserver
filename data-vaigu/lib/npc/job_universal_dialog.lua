@@ -350,7 +350,6 @@ NPC_UNIVERSAL_DIALOGS = {
 			},
 		},
 	},
-	-- ToDo: changed topics to refs
 	[JOB_MARRIAGE] = {
 		[{
 			"stroj",

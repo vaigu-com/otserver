@@ -120,6 +120,7 @@ questChests = {
 			[5] = { type = "experience", amount = 2000 },
 		},
 	},
+	-- ToDo: remake to questChest (same as in _startup.lua)
 	[5020] = {
 		minLevel = 12,
 		storageId = Storage.IKEAdlazuchwalych.TakeBall,
@@ -128,6 +129,7 @@ questChests = {
 			[2] = { type = "experience", amount = 3000 },
 		},
 	},
+	-- ToDo: remake to questChest (same as in _startup.lua)
 	[5021] = {
 		minLevel = 30,
 		storageId = Storage.IKEAdlazuchwalych.TakeReward,
@@ -138,6 +140,7 @@ questChests = {
 			[4] = { type = "experience", amount = 2000 },
 		},
 	},
+	-- ToDo: remake to questChest (same as in _startup.lua)
 	[5022] = {
 		minLevel = 15,
 		storageId = Storage.IKEAdlazuchwalych.TakeKey,

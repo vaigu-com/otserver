@@ -64,11 +64,10 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		local toPos = context.pos or context.toPos or context.topos or context.destination
 		player:teleportTo(toPos)
 	end,
-	-- ToDo: register TWIST_OF_FATE etc. on lua side
 	-- twist is 1
 	-- first regular is 2
 	-- last regular is 6
-	-- two new are 7 and 8
+	-- two new are 7 and 8 (blood and heart of the mountain)
 	grantBless = function(context)
 		local player = context.player
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
@@ -130,6 +129,12 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 	end,
 	openTradeWindow = function(context)
 		context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)
+	end,
+	sendMagicEffect = function(context)
+		local player = context.player
+		if player then
+			player:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
+		end
 	end,
 }
 

@@ -163,14 +163,14 @@ local function creatureSayCallback(npc, creature, type, message)
 		"meble",
 		"zlodziej",
 		"kradziez",
-	}, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 2 and npcHandler:getTopic(playerId) == 0 then
+	}, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 2 and npcHandler:getTopic(playerId) == 0 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Po pierwsze: nic nie widzialem, po drugie: .. czekaj, powiedziales {meble}?" or "First: I didnt see anything, Second: ... wait, did you say {furniture}?", npc, creature)
 		npcHandler:setTopic(playerId, 3)
 	elseif table.contains({ "furniture", "meble", "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 3 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie znam nikogo kto chcialby {krasc} te rupiecie od Komora." or "I don't know of anyone who would like to {steal} this junk from Komor.", npc, creature)
 		npcHandler:setTopic(playerId, 4)
 	elseif table.contains({ "krasc", "steal" }, message) and npcHandler:getTopic(playerId) == 4 then
-		player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 3)
+		player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 3)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Ta rozmowa przypomniala mi o mojej kuli do wrozenia, ktora takze zostala skradziona." or "This conversation reminded me of my fortune telling ball, which was also stolen.", npc, creature)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Byc moze zlodziej ukrywa sie w podziemiach MirkoTown, raczej nie jest to nikt z zewnatrz. Nikt jednak nie ma odwagi tego sprawdzic." or "Maybe the thief is hiding beneath the MirkoTown, I doubt its anyone from outside of town. However, no one has the courage to check it out.", npc, creature)
 		npcHandler:setTopic(playerId, 0)

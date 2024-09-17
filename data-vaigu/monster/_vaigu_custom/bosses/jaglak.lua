@@ -115,9 +115,7 @@ monster.loot = {
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = -1200, maxDamage = -2500 },
 	{ name = "groundshaker", interval = 2000, chance = 25, minDamage = -800, maxDamage = -1300, target = false },
-	
-	-- ToDo: add custom exori spell
-	-- { name = "exori", interval = 6000, chance = 50, minDamage = -1500, maxDamage = -3500, target = false },
+	{ name = "phantasm drown", interval = 2000, chance = 15, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = -650, range = 6, shootEffect = CONST_ANI_WHIRLWINDAXE, target = true, duration = 10000 },
 }
 
