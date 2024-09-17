@@ -109,7 +109,7 @@ local config = {
 				requiredItems = {
 					{ id = 2395, count = 1 },
 					{ id = 5879, count = 5 },
-					ASSASSINS_CREED_SKURWOALA_KEY_ITEMS["palette"],
+					ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette,
 				},
 				nextState = {
 					[Storage.AssassinsCreedSkurwoala.Questline] = 8,

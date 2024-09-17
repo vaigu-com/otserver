@@ -72,7 +72,7 @@ local config = {
 					[Storage.BezpieczenstwoIHigienaPracy.Mission05] = 1,
 				},
 				rewards = {
-					BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS["GRAZYNA_DOCUMENT"],
+					BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS.grazynaDocument,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -86,7 +86,7 @@ local config = {
 		[15] = {
 			[{ "mission", "grazhenacore", "grazynacore", "grazyna", "grazhena" }] = {
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["GRAZYNA_CORE"],
+					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore,
 				},
 				textNoRequiredItems = "Come back when you have Grazhenacore with you.",
 				text = "The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures.",

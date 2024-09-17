@@ -9125,7 +9125,7 @@ void ProtocolGame::sendBosstiaryCooldownTimer() {
 			continue;
 		}
 
-		auto timerValue = player->kv()->scoped("boss.cooldown")->get(toKey(std::to_string(bossRaceId)));
+		auto timerValue = player->kv()->scoped("boss.lockout")->get(toKey(std::to_string(bossRaceId)));
 		if (!timerValue || !timerValue.has_value()) {
 			continue;
 		}

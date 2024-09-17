@@ -61,7 +61,7 @@ local dialogs = {
 					[Storage.CzeslawKrasnolud.Mission01] = 1,
 					[Storage.SpoczywajacyTutaj.Questline] = 7,
 				},
-				requiredItems = { SPOCZYWAJACY_TUTAJ_KEY_ITEMS["last_will"] },
+				requiredItems = { SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill },
 			},
 		},
 	},
@@ -109,7 +109,7 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "Thanks for your help. Now I'll be able to set up my office properly. Please take my mining helmet as a reward. As for the costs, I didn't expect such a high amount. I only have 70 platinum with me. I'll try to cover the rest in the future.",
 				requiredItems = {
-					CZESLAW_KRANSOLUD_KEY_ITEMS["identity_document"],
+					CZESLAW_KRANSOLUD_KEY_ITEMS.identityDocument,
 				},
 				nextState = {
 					[Storage.CzeslawKrasnolud.Questline] = 5,
@@ -175,7 +175,7 @@ local dialogs = {
 						{ id = 3041 },
 						{ id = 5801 },
 					},
-					CZESLAW_KRANSOLUD_KEY_ITEMS["gandalf_bag"],
+					CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag,
 					{ id = 11698 },
 					{ id = 27565 },
 				},
@@ -218,7 +218,7 @@ local dialogs = {
 				},
 				expReward = 2000000,
 				rewards = { ExerciseWeaponBox(6000) },
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["PAYSLIP"] },
+				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.payslip },
 				textNoRequiredItems = "Come back when you have it.",
 			},
 		},

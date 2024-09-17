@@ -1,11 +1,11 @@
 local data = {
-	[ITEM_GOLD_COIN] = { changeTo = ITEM_PLATINUM_COIN },
-	[ITEM_PLATINUM_COIN] = { changeBack = ITEM_GOLD_COIN, changeTo = ITEM_CRYSTAL_COIN },
-	[ITEM_CRYSTAL_COIN] = { changeBack = ITEM_PLATINUM_COIN },
+	[ITEM_GOLD_COIN] = { upgrade = ITEM_PLATINUM_COIN },
+	[ITEM_PLATINUM_COIN] = { downgrade = ITEM_GOLD_COIN, upgrade = ITEM_CRYSTAL_COIN },
+	[ITEM_CRYSTAL_COIN] = { downgrade = ITEM_PLATINUM_COIN },
 }
 
-local function get100Stack(potentialsStacks)
-	for _, item in pairs(potentialsStacks) do
+local function findFullPile(allCoinPiles)
+	for _, item in pairs(allCoinPiles) do
 		if item.type == 100 then
 			return item
 		end
@@ -14,20 +14,24 @@ local function get100Stack(potentialsStacks)
 end
 
 local changeGold = Action()
-function changeGold.onUse(player, coin, fromPosition, target, toPosition, isHotkey)
-	local coinId = coin:getId()
-	local coinData = data[coinId]
-	local allStacks = player:GetAllItems():FilteredById(coinId):Get()
-	-- local allStacks = player:GetAllItems():FilteredById(coinId):Add(coin):Get()
-	local fullStack = get100Stack(allStacks)
-	if coinData.changeTo and fullStack then
-		fullStack:remove()
-		player:addItem(coinData.changeTo, 1)
+function changeGold.onUse(player, usedCoinPile, fromPosition, target, toPosition, isHotkey)
+	if player:getFreeBackpackSlots() < 1 then
+		player:sendTextMessage(MESSAGE_FAILURE, string.format("You need at least one free slot in your inventory to do that."))
+		return
+	end
+
+	local usedCoinId = usedCoinPile:getId()
+	local usedCoinData = data[usedCoinId]
+	local allCoinPiles = player:GetAllItems():FilteredById(usedCoinId):Add(usedCoinPile):Get()
+	local fullPile = findFullPile(allCoinPiles)
+	if fullPile and usedCoinData.upgrade then
+		fullPile:remove()
+		player:addItem(usedCoinData.upgrade, 1)
 		return true
 	end
-	if coinData.changeBack and not fullStack then
-		coin:remove(1)
-		player:addItem(coinData.changeBack, 100)
+	if usedCoinData.downgrade then
+		usedCoinPile:remove(1)
+		player:addItem(usedCoinData.downgrade, 100)
 		return true
 	end
 	return false

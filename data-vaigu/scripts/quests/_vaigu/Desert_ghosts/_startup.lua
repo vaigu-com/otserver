@@ -6,7 +6,7 @@ local items = {
 		aid = Storage.DesertQuestGhosts.Rewards.Firebug,
 		uid = 1000,
 		pos = { 82, 53, -2 },
-		rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS["firebug"] },
+		rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS.firebug },
 	},
 	["germiFireplace"] = {
 		id = 2001,
@@ -30,7 +30,7 @@ local items = {
 		uid = 1000,
 		pos = { 63, 35, 0 },
 		nextState = { [Storage.DesertQuestGhosts.Questline] = 2, [Storage.DesertQuestGhosts.Mission01] = 2 },
-		rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS["germiDocument"] },
+		rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS.germiDocument },
 	},
 	{ pos = { 5, -8, 1 }, id = 231, aid = Storage.DesertQuestGhosts.Misc.AnthonyGate },
 	{ pos = { 6, -8, 1 }, id = 231, aid = Storage.DesertQuestGhosts.Misc.AnthonyGate },

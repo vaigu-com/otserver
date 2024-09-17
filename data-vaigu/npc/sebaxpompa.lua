@@ -50,9 +50,9 @@ end
 
 local config = {
 	[LOCALIZER_UNIVERSAL] = {
-		[WALKAWAY] = "Peace God.",
-		[FAREWELL] = "Seeee yaaa.",
-		[GREET] = "Waddup, G?",
+		[{ WALKAWAY }] = { text = "Peace God." },
+		[{ FAREWELL }] = { text = "Seeee yaaa." },
+		[{ GREET }] = { text = "Waddup, G?" },
 	},
 	[Storage.BezpieczenstwoIHigienaPracy.Questline] = {
 		[1] = {

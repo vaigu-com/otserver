@@ -22,14 +22,14 @@ local startUpCorpse = {
 	{
 		id = 31649,
 		actionid = Storage.TragedyaWCzterechAktach.Rewards.TimmyBag,
-		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["TIMMY_BAG"] },
+		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag },
 		requiredState = { [Storage.TragedyaWCzterechAktach.Questline] = 5 },
 		nextState = { [Storage.TragedyaWCzterechAktach.Questline] = 6, [Storage.TragedyaWCzterechAktach.Mission02] = 3 },
 	},
 	{
 		id = 18021,
 		actionid = Storage.TragedyaWCzterechAktach.Rewards.GrazynaCore,
-		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["GRAZYNA_CORE"] },
+		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore },
 		requiredState = { [Storage.TragedyaWCzterechAktach.Questline] = 14 },
 	},
 }
@@ -41,7 +41,7 @@ local startupRetro = {
 		id = 11809,
 		actionid = Storage.TragedyaWCzterechAktach.Rewards.Fanfare,
 		uid = 1000,
-		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["FANFARE"] },
+		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.fanfare },
 	},
 	{
 		pos = { 61, 21, -1 },
@@ -49,7 +49,7 @@ local startupRetro = {
 		actionid = Storage.TragedyaWCzterechAktach.Rewards.Powder,
 		uid = 1000,
 		rewards = {
-			TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["TIMMY_POWDER"],
+			TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
 		},
 		requiredState = { [Storage.TragedyaWCzterechAktach.Questline] = 7 },
 	},

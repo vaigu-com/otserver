@@ -20,53 +20,53 @@ PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS = {
 }
 
 PER_IUSTITIA_AD_ASTRA_KEY_ITEMS = {
-	["CONVERTER"] = {
+	converter = {
 		id = 21761,
 		aid = Storage.PerIustitiaAdAstra.Rewards.Converter,
 	},
-	["ENGINE_BLUEPRINT"] = {
+	engineBlueprint = {
 		id = 2822,
 		aid = Storage.PerIustitiaAdAstra.Rewards.EngineBlueprint,
 		desc = "Rocket engine blueprint. Qasim might have a use for it",
 	},
-	["MAP1"] = {
+	map1 = {
 		id = 2823,
 		aid = Storage.PerIustitiaAdAstra.Rewards.Map1,
 		desc = "Galactic map fragment. Qasim requested three of those",
 	},
-	["MAP2"] = {
+	map2 = {
 		id = 2823,
 		aid = Storage.PerIustitiaAdAstra.Rewards.Map2,
 		desc = "Galactic map fragment. Qasim requested three of those",
 	},
-	["MAP3"] = {
+	map3 = {
 		id = 2823,
 		aid = Storage.PerIustitiaAdAstra.Rewards.Map3,
 		desc = "Galactic map fragment. Qasim requested three of those",
 	},
-	["FUEL_ROD"] = { id = 7752, desc = "Fissile fuel rod" },
-	["ROCKET_FUEL"] = { id = 24948, aid = Storage.PerIustitiaAdAstra.Rewards.RocketFuel, desc = "Rocket fuel" },
-	["SWAGIER_CRATE"] = {
+	fuelRod = { id = 7752, desc = "Fissile fuel rod" },
+	rocketFuel = { id = 24948, aid = Storage.PerIustitiaAdAstra.Rewards.RocketFuel, desc = "Rocket fuel" },
+	swagierCrate = {
 		id = 2471,
 		aid = Storage.PerIustitiaAdAstra.Rewards.SwagierCrate,
 		desc = "Crate of rods. Recipient: Swagger",
 	},
-	["RUBELSTEIN_SCROLL"] = {
+	rubelsteinScroll = {
 		id = 2815,
 		aid = Storage.PerIustitiaAdAstra.Rewards.RubelsteinScroll,
 		desc = "RubelsteinScrollDesc",
 		addToStore = false,
 	},
-	["OFFICER_ID"] = {
+	officerId = {
 		id = 3507,
 		text = "Name: Friedrich Knopf \nNationality: Kuuyvdoobie",
 	},
-	["HUGO_RECIPE"] = {
+	hugoRecipe = {
 		id = 2815,
 		aid = Storage.PerIustitiaAdAstra.Rewards.HugoRecipe,
 		desc = "Booty Sweat Lean recipe",
 	},
-	["LECINA_HAMMER"] = {
+	lecinaHammer = {
 		id = 3460,
 		aid = Storage.PerIustitiaAdAstra.HammerUse,
 		desc = "Power Hammer MK3. Collectible - not for professional use",

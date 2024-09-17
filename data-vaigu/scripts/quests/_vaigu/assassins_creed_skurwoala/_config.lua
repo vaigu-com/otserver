@@ -55,17 +55,17 @@ ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS = {
 }
 
 ASSASSINS_CREED_SKURWOALA_KEY_ITEMS = {
-	["palette"] = {
+	palette = {
 		aid = Storage.AssassinsCreedSkurwoala.KeyItems.Palette,
 		id = 14684,
 		desc = "Assortment of paints. Can be used to paint any surface",
 	},
-	["silicon"] = {
+	silicon = {
 		aid = Storage.AssassinsCreedSkurwoala.KeyItems.Silicon,
 		id = 2469,
 		desc = "Box of sillicon wafers. Jannah'ma might be interested in it",
 	},
-	["flare"] = {
+	flare = {
 		aid = Storage.AssassinsCreedSkurwoala.KeyItems.Flare,
 		id = 30209,
 		desc = "Flare from Aunor. Use it before Ghasstly Princess's cave entrance",

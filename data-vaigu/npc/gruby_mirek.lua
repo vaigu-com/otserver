@@ -58,13 +58,15 @@ npcConfig.voices = {
 	{ text = "W moim sercu tylko guwnowpis!" },
 }
 
--- 38f
+-- ToDo: add encounters descriptions
 GRUBY_MIREK_ENCOUNTERS = { { name = "KRAKEN" } }
 
 local config = {
 	[LOCALIZER_UNIVERSAL] = {
-		[GREET] = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
-		[WALKAWAY] = "SoldierWalkaway",
+		[{ GREET }] = {
+			text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
+		},
+		[{ WALKAWAY }] = { text = "SoldierWalkaway" },
 		[{ "informacja", "information" }] = {
 			text = "Far to the west there is small village called Knurowo. You need to be aware of elves and bandits if you want to go there. To the south west there is main farm of our town, and some hills inhabited by amazons and goblins to the north.",
 		},

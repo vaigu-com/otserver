@@ -30,9 +30,10 @@ LOCALIZER_TASK_BOSS_LOCATIONS = "LOCALIZER_TASK_BOSS_LOCATIONS"
 LOCALIZER_QUESTLOG = "LOCALIZER_QUESTLOG"
 LOCALIZER_NPC_NAME = "LOCALIZER_NPC_NAME" -- modify cpp definition in case of changes
 LOCALIZER_BANK_SYSTEM = "LOCALIZER_BANK_SYSTEM"
-GREET = "LOCALIZER_GREET"
-FAREWELL = "LOCALIZER_FAREWELL"
-WALKAWAY = "LOCALIZER_WALKAWAY"
+GREET = "DIALOG_MESSAGE_GREET"
+FAREWELL = "DIALOG_MESSAGE_FAREWELL"
+WALKAWAY = "DIALOG_MESSAGE_WALKAWAY"
+INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
 QUEST_NOT_STARTED = -1
 
@@ -376,7 +377,7 @@ function DialogContext:SendIncomprehensibleError()
 	local npc = self.npc
 	local npcHandler = self.npcHandler
 	local npcDialogData = self.npcDialogData
-	local errorMessageIdentifier = npcDialogData["INCOMPREHENSIBLE"] or "INCOMPREHENSIBLE"
+	local errorMessageIdentifier = npcDialogData[{ INCOMPREHENSIBLE }] or INCOMPREHENSIBLE
 	local errorMessage = player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
 	npcHandler:say(errorMessage, npc, player)
 	return true

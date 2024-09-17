@@ -91,7 +91,7 @@ local config = {
 					[Storage.AssassinsCreedSkurwoala.Questline] = 7,
 					[Storage.AssassinsCreedSkurwoala.Mission02] = 4,
 				},
-				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS["palette"] },
+				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette },
 			},
 		},
 	},

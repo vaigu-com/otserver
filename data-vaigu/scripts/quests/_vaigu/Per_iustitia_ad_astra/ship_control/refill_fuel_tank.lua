@@ -15,7 +15,7 @@ function valve.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if not player:TryRemoveItems({ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["ROCKET_FUEL"] }) then
+	if not player:TryRemoveItems({ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.rocketFuel }) then
 		player:say(player:Localizer(Storage.PerIustitiaAdAstra.Questline):Get("You dont have any fuel."), TALKTYPE_MONSTER_SAY)
 		sendFuelStatus(player)
 		return

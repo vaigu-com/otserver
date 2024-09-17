@@ -56,7 +56,7 @@ local config = {
 			},
 			[{ "mission", "amulet", "naszyjnik" }] = {
 				text = "Thanks for your cooperation. Now if you don't mind, i have a {mission} for you.",
-				requiredItems = { SULTAN_PRIME_KEY_ITEMS["amulet"] },
+				requiredItems = { SULTAN_PRIME_KEY_ITEMS.amulet },
 				textNoRequiredItems = "Ehh, you lost it? Guess Imma take over the world in next season.",
 				nextState = {
 					[Storage.SultanPrime.Questline] = 3,
@@ -75,7 +75,7 @@ local config = {
 					[Storage.SultanPrime.Questline] = 4,
 					[Storage.SultanPrime.Mission02] = 2,
 				},
-				rewards = { SULTAN_PRIME_KEY_ITEMS["bottle"] },
+				rewards = { SULTAN_PRIME_KEY_ITEMS.bottle },
 			},
 		},
 		[4] = {
@@ -144,7 +144,7 @@ local config = {
 					[Storage.SultanPrime.Questline] = 13,
 					[Storage.SultanPrime.Mission03] = 5,
 				},
-				rewards = { SULTAN_PRIME_KEY_ITEMS["amulet"] },
+				rewards = { SULTAN_PRIME_KEY_ITEMS.amulet },
 			},
 		},
 	},

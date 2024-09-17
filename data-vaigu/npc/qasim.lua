@@ -92,13 +92,13 @@ local config = {
 			[{ "mission" }] = {
 				text = "Alright, that's everything I needed. I'll send your spaceship into orbit with a special catapult shortly. I'd have you sit inside it right now, but it's too dangerous. You'll be able to access it through the unlicensed teleporter in the deepling base. Besides, I found this item in my warehouse. If I remember correctly, it's one of the components of rocket fuel. You can produce the fuel by using an atomic splitter on the fuel rod. I've placed this device on your spaceship. You'll also find a remote depot there. I think it will come in handy.",
 				requiredItems = {
-					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["MAP1"],
-					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["MAP2"],
-					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["MAP3"],
-					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["ENGINE_BLUEPRINT"],
+					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.map1,
+					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.map2,
+					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.map3,
+					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.engineBlueprint,
 				},
 				textNoRequiredItems = "I'll need engine blueprints. Also, you'll need to have some basic knowledge of astronomy, so have three sky map pieces with you. Without them, you won't get far.",
-				rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["FUEL_ROD"] },
+				rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.fuelRod },
 				nextState = {
 					[Storage.PerIustitiaAdAstra.Questline] = 6,
 					[Storage.PerIustitiaAdAstra.Mission02] = 4,

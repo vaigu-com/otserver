@@ -130,9 +130,39 @@ local function isDummy(id)
 	return dummies[id] and dummies[id] > 0
 end
 
-local exerciseTraining = Action()
+local function findWeaponToMerge(player, addedWeaponSkill)
+	local inbox = player:getStoreInbox()
+	if not inbox then
+		logger.error(T("[findWeaponToColaesce] Player :name: has no store inbox.", { name = player:getName() }))
+		return
+	end
 
-function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	local inboxItems = inbox:getItems(true)
+	for _, inboxItem in pairs(inboxItems) do
+		local exerciseWeaponData = exerciseWeaponsTable[inboxItem:getId()]
+		if exerciseWeaponData and exerciseWeaponData.skill == addedWeaponSkill then
+			return inboxItem
+		end
+	end
+end
+
+function TryMergeExerciseWeapons(player, addedWeapon, oldWeapon)
+	oldWeapon = oldWeapon or findWeaponToMerge(player, exerciseWeaponsTable[addedWeapon:getId()].skill)
+	if not oldWeapon then
+		return false
+	end
+	local oldId = oldWeapon:getId()
+
+	local totalCharges = addedWeapon:getCharges() + oldWeapon:getCharges()
+	addedWeapon:remove()
+	oldWeapon:remove()
+
+	player:AddCustomItem({ id = oldId, charges = totalCharges, addToStore = true })
+	return true
+end
+
+local exerciseTraining = Action()
+function exerciseTraining.onUse(player, exerciseWeapon, fromPosition, target, toPosition, isHotkey)
 	if not target or type(target) == "table" or not target:getId() then
 		return true
 	end
@@ -140,60 +170,69 @@ function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, 
 	local playerId = player:getId()
 	local targetId = target:getId()
 
-	if target:isItem() and isDummy(targetId) then
-		if _G.OnExerciseTraining[playerId] then
-			player:sendTextMessage(MESSAGE_FAILURE, "You are already training!")
+	if not target:isItem() then
+		return true
+	end
+
+	if player:TryMergeExerciseWeapons(exerciseWeapon, target) then
+		return
+	end
+
+	if not isDummy(targetId) then
+		return true
+	end
+
+	if _G.OnExerciseTraining[playerId] then
+		player:sendTextMessage(MESSAGE_FAILURE, "You are already training!")
+		return true
+	end
+
+	local playerPos = player:getPosition()
+	if not exerciseWeaponsTable[exerciseWeapon.itemid].allowFarUse and (playerPos:getDistance(target:getPosition()) > 1) then
+		player:sendTextMessage(MESSAGE_FAILURE, "Get closer to the dummy.")
+		return true
+	end
+
+	if not playerPos:isProtectionZoneTile() then
+		player:sendTextMessage(MESSAGE_FAILURE, "You need to be in a protection zone.")
+		return true
+	end
+
+	local playerHouse = player:getTile():getHouse()
+	local targetPos = target:getPosition()
+	local targetHouse = Tile(targetPos):getHouse()
+
+	if targetHouse and isDummy(targetId) then
+		if playerHouse ~= targetHouse then
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You must be inside the house to use this dummy.")
 			return true
 		end
 
-		local playerPos = player:getPosition()
-		if not exerciseWeaponsTable[item.itemid].allowFarUse and (playerPos:getDistance(target:getPosition()) > 1) then
-			player:sendTextMessage(MESSAGE_FAILURE, "Get closer to the dummy.")
-			return true
-		end
+		local playersOnDummy = 0
+		for _, playerTraining in pairs(_G.OnExerciseTraining) do
+			if playerTraining.dummyPos == targetPos then
+				playersOnDummy = playersOnDummy + 1
+			end
 
-		if not playerPos:isProtectionZoneTile() then
-			player:sendTextMessage(MESSAGE_FAILURE, "You need to be in a protection zone.")
-			return true
-		end
-
-		local playerHouse = player:getTile():getHouse()
-		local targetPos = target:getPosition()
-		local targetHouse = Tile(targetPos):getHouse()
-
-		if targetHouse and isDummy(targetId) then
-			if playerHouse ~= targetHouse then
-				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You must be inside the house to use this dummy.")
+			if playersOnDummy >= configManager.getNumber(configKeys.MAX_ALLOWED_ON_A_DUMMY) then
+				player:sendTextMessage(MESSAGE_FAILURE, "That exercise dummy is busy.")
 				return true
 			end
-
-			local playersOnDummy = 0
-			for _, playerTraining in pairs(_G.OnExerciseTraining) do
-				if playerTraining.dummyPos == targetPos then
-					playersOnDummy = playersOnDummy + 1
-				end
-
-				if playersOnDummy >= configManager.getNumber(configKeys.MAX_ALLOWED_ON_A_DUMMY) then
-					player:sendTextMessage(MESSAGE_FAILURE, "That exercise dummy is busy.")
-					return true
-				end
-			end
 		end
+	end
 
-		if player:hasExhaustion("training-exhaustion") then
-			player:sendTextMessage(MESSAGE_FAILURE, "This exercise dummy can only be used after a " .. exhaustionTime .. " seconds cooldown.")
-			return true
-		end
-
-		_G.OnExerciseTraining[playerId] = {}
-		if not _G.OnExerciseTraining[playerId].event then
-			_G.OnExerciseTraining[playerId].event = addEvent(exerciseTrainingEvent, 0, playerId, targetPos, item.itemid, targetId)
-			_G.OnExerciseTraining[playerId].dummyPos = targetPos
-			player:setTraining(true)
-			player:setExhaustion("training-exhaustion", exhaustionTime)
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have started training on an exercise dummy.")
-		end
+	if player:hasExhaustion("training-exhaustion") then
+		player:sendTextMessage(MESSAGE_FAILURE, "This exercise dummy can only be used after a " .. exhaustionTime .. " seconds cooldown.")
 		return true
+	end
+
+	_G.OnExerciseTraining[playerId] = {}
+	if not _G.OnExerciseTraining[playerId].event then
+		_G.OnExerciseTraining[playerId].event = addEvent(exerciseTrainingEvent, 0, playerId, targetPos, exerciseWeapon.itemid, targetId)
+		_G.OnExerciseTraining[playerId].dummyPos = targetPos
+		player:setTraining(true)
+		player:setExhaustion("training-exhaustion", exhaustionTime)
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have started training on an exercise dummy.")
 	end
 	return false
 end

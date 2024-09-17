@@ -54,8 +54,8 @@ local config = {
 			[{ GREET }] = { text = "Hey." },
 			[{ "pot", "garnek" }] = {
 				text = "A pot with those properties is what i need. Teacher salary isn't enough even for a single theater ticket. I guess i will have to take out a loan...",
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS["POT"] },
-				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["LOAN_DOCUMENT"] },
+				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.pot },
+				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.loanDocument },
 			},
 		},
 	},

@@ -12,7 +12,11 @@ local dialogs = {
 			},
 		},
 	},
-	["GREETING"] = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
+	[LOCALIZER_UNIVERSAL] = {
+		[{ GREET }] = {
+			text = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
+		},
+	},
 }
 local voices = {
 	interval = 15000,

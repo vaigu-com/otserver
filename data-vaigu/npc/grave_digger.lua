@@ -128,7 +128,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 then
 		if player:getStorageValue(Storage.CrowbarBought) <= 0 then
 			if player:removeMoney(10) then
-				player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS["crowbar"] })
+				player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar })
 				player:setStorageValue(Storage.CrowbarBought, 1)
 				player:setStorageValue(Storage.SpoczywajacyTutaj.Questline, 1)
 				player:setStorageValue(Storage.SpoczywajacyTutaj.Mission01, 1)

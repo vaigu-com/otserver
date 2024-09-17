@@ -56,7 +56,7 @@ local config = {
 			},
 			[{ "seeing", "zegnaj" }] = {
 				text = "",
-				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS["flare"] },
+				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare },
 				specialActionsOnSuccess = {
 					{
 						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.aunorTeleportOut,

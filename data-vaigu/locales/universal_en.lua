@@ -231,6 +231,7 @@ return {
 	["Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer."] = "Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer.",
 	["You need to tell me the number of wildcards you'd like to buy."] = "You need to tell me the number of wildcards you'd like to buy.",
 	["Here are your wildcards!"] = "Here are your wildcards!",
+	["Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 	["Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}."] = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 	["Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road."] = "Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road.",
 	["There is one problem with which you could help me. Some furnitures started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my furnitures.\nDo you want to find for me who is responsible for stealing my furnitures?"] = "There is one problem with which you could help me. Some furnitures started to disappear from my storages.\nI know for sure that it wasnt Waski's mafia, because they are using wood for different purposes, they are not interested in my furnitures.\nDo you want to find for me who is responsible for stealing my furnitures?",
@@ -265,5 +266,5 @@ return {
 	["Rats are gone, thanks again."] = "Rats are gone, thanks again.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
-	["Hello hello, |PLAYERNAME| I am Lebowski and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Lebowski and I sell some.. protection thing.. Ask about {trade} if you want to see!",
+	["Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 }

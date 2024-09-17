@@ -107,7 +107,7 @@ local config = {
 				text = "What is that... That looks like my writing... I am remembering now... Yes, I remember! I was an adventurer, and our camp was built there. My memories... They are coming back! Do you... also are up to something in this place? You are the first living human being that I encountered after my... death. I have so much to say. Do you want to listen to my {story}?",
 				nextTopic = 1,
 				requiredTopic = { min = 0, max = 0 },
-				requiredItems = { DESERT_QUEST_GHOSTS_KEY_ITEMS["germiDocument"] },
+				requiredItems = { DESERT_QUEST_GHOSTS_KEY_ITEMS.germiDocument },
 				removeRequiredItems = false,
 				textNoRequiredItems = "Please come back with something of mine.",
 			},
@@ -170,7 +170,7 @@ local config = {
 					[Storage.DesertQuestGhosts.Questline] = 4,
 					[Storage.DesertQuestGhosts.Mission02] = 1,
 				},
-				rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS["PUNCHCARD"] },
+				rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS.punchcard },
 				specialActionsOnSuccess = {
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffect,
@@ -187,8 +187,8 @@ local config = {
 				rewards = { { id = 3035, count = 100 } },
 				expReward = 50000,
 				requiredItems = {
-					DESERT_QUEST_GHOSTS_KEY_ITEMS["firebug"],
-					DESERT_QUEST_GHOSTS_KEY_ITEMS["germiDocument"],
+					DESERT_QUEST_GHOSTS_KEY_ITEMS.firebug,
+					DESERT_QUEST_GHOSTS_KEY_ITEMS.germiDocument,
 				},
 			},
 		},

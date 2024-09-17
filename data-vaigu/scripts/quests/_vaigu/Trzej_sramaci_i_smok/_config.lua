@@ -9,13 +9,13 @@ TRZEJ_SRAMACI_I_SMOK_SPECIAL_CONDITIONS = {
 }
 
 TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS = {
-	["RUM"] = {
+	rum = {
 		aid = Storage.TrzejSramaciISmok.Rewards.Rum,
 		id = 2875,
 		desc = "Pirate rum. Bilbeus might be interested in this one",
 	},
-	["RUNE1"] = { aid = Storage.TrzejSramaciISmok.Rewards.Rune1, id = 3181, desc = "Unsealing rune" },
-	["RUNE2"] = { aid = Storage.TrzejSramaciISmok.Rewards.Rune2, id = 3183, desc = "Unsealing rune" },
-	["RUNE3"] = { aid = Storage.TrzejSramaciISmok.Rewards.Rune3, id = 3184, desc = "Unsealing rune" },
-	["DEEP_CRYSTAL"] = { aid = Storage.TrzejSramaciISmok.Rewards.DeepCrystal, id = 7281, desc = "Deep sea crystal" },
+	rune1 = { aid = Storage.TrzejSramaciISmok.Rewards.Rune1, id = 3181, desc = "Unsealing rune" },
+	rune2 = { aid = Storage.TrzejSramaciISmok.Rewards.Rune2, id = 3183, desc = "Unsealing rune" },
+	rune3 = { aid = Storage.TrzejSramaciISmok.Rewards.Rune3, id = 3184, desc = "Unsealing rune" },
+	deepCrystal = { aid = Storage.TrzejSramaciISmok.Rewards.DeepCrystal, id = 7281, desc = "Deep sea crystal" },
 }

@@ -8,7 +8,14 @@ BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_CONDITIONS = {
 	end,
 }
 
-BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS = { ["GRAZYNA_DOCUMENT"] = { id = 2815, text = "scp420text", addToStore = false, aid = Storage.BezpieczenstwoIHigienaPracy.Scp420Document } }
+BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS = {
+	grazynaDocument = {
+		id = 2815,
+		text = "scp420text",
+		addToStore = false,
+		aid = Storage.BezpieczenstwoIHigienaPracy.Scp420Document,
+	},
+}
 
 BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS = {
 	turdstinAttack = function(context)

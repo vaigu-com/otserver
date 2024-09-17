@@ -75,9 +75,9 @@ local config = {
 			[{ "mission" }] = {
 				text = "Thanks for your help. In return, I can give you one rod. Be careful; they're very heavy! I can sell you more rods for a small fee of 1000 gp each. One more thing: recently, Sad Gentlemen turned up at my station. From an overheard conversation, I learned that they're involved in transporting REDACTED to Hugo Boss's summer cottage.",
 				requiredItems = {
-					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["SWAGIER_CRATE"],
+					PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.swagierCrate,
 				},
-				rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["FUEL_ROD"] },
+				rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.fuelRod },
 				nextState = {
 					[Storage.PerIustitiaAdAstra.Questline] = 10,
 					[Storage.PerIustitiaAdAstra.Mission03] = 5,
