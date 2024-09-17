@@ -1,7 +1,16 @@
 TAKE_ALL_AVAILABLE = "TAKE_ALL_AVAILABLE"
 
 function Player:GetWildcardPrice()
-	return math.min((self:getLevel() / 2) * 150, 7500)
+	local level = self:getLevel()
+	local price = level * 75
+	if level < 80 then
+		price = price * (100 + level) / 100
+		price = price * 5 / 9
+	end
+	if level >= 200 then
+		price = 15000
+	end
+	return math.floor(price)
 end
 
 function Player:GetTotalMoney()

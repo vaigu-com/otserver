@@ -306,6 +306,7 @@ local actionsWhitelist = {
 ---@field questlineAid integer
 ---@field npcHandler NpcHandler?
 ---@field topic integer?
+---@field extractedParams table
 ResolutionContext = {}
 ResolutionContext.__index = ResolutionContext
 setmetatable(ResolutionContext, {
@@ -324,9 +325,8 @@ function ResolutionContext.FromDialogContext(context, data)
 end
 
 function ResolutionContext:ParseRequirementsActionsOther(table)
-	self.otherFields = {}
-	self.requirements = {}
-	self.actionsOnSuccess = {}
+	self.requirements = self.requirements or {}
+	self.actionsOnSuccess = self.requirements or {}
 	for key, value in pairs(table) do
 		if requirementsWhitelist[key] then
 			self.requirements[key] = value
@@ -414,56 +414,64 @@ PATTERN_MESSAGE_TYPE = {
 }
 
 function DialogContext:ExtractPatternFields()
-	local playerWords = {}
-	local requiredFields = 0
+	local expectedFields = {}
+	local requiredFieldsCount = 0
 	for k in self.pattern:gmatch("[^%s]+") do
-		local wordData = {
-			word = k,
-			messageType = PATTERN_MESSAGE_TYPE.KEYWORD,
-		}
+		local wordData = {}
 		if k:gmatch("<.*>")() then
 			wordData.word = k:gmatch("[^<>]+")()
 			wordData.messageType = PATTERN_MESSAGE_TYPE.REQUIRED
-			requiredFields = requiredFields + 1
-		end
-		if k:gmatch("%[.*%]")() then
+			requiredFieldsCount = requiredFieldsCount + 1
+		elseif k:gmatch("%[.*%]")() then
 			wordData.word = k:gmatch("[^%[%]]+")()
 			wordData.messageType = PATTERN_MESSAGE_TYPE.OPTIONAL
+		else
+			wordData.word = k
+			wordData.messageType = PATTERN_MESSAGE_TYPE.KEYWORD
+			requiredFieldsCount = requiredFieldsCount + 1
 		end
 
-		table.insert(playerWords, wordData)
+		table.insert(expectedFields, wordData)
 	end
-	return playerWords, requiredFields
+	return expectedFields, requiredFieldsCount
 end
 
-function DialogContext:IfPlayerMessageConformsToPattern(playerWords, requiredFields)
+function DialogContext:IfPlayerMessageConformsToPattern(expectedFields, requiredFieldsCount)
 	local i = 1
-	local requiredWordsSet = 0
-	for k in self.msg:gmatch("[^%s]+") do
-		local playerWordData = playerWords[i]
-		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.KEYWORD then
-			if playerWordData.word ~= k then
+	local requiredWordsMatched = 0
+	self.extractedParams = {}
+	print("#expected, requiredCount", #expectedFields, requiredFieldsCount)
+	for playerWord in self.msg:gmatch("[^%s]+") do
+		local expectedField = expectedFields[i]
+		if not expectedField then
+			print("requiredmatched, count",requiredWordsMatched, requiredFieldsCount)
+			return requiredWordsMatched >= requiredFieldsCount
+		end
+		print("expected:", expectedField.word, "player said:", playerWord)
+		if expectedField.messageType == PATTERN_MESSAGE_TYPE.KEYWORD then
+			if expectedField.word ~= playerWord then
 				return false
 			end
+			requiredWordsMatched = requiredWordsMatched + 1
 		end
-		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.REQUIRED then
-			self[playerWordData.word] = k
-			requiredWordsSet = requiredWordsSet + 1
+		if expectedField.messageType == PATTERN_MESSAGE_TYPE.REQUIRED then
+			self.extractedParams[expectedField.word] = playerWord
+			requiredWordsMatched = requiredWordsMatched + 1
 		end
-		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.OPTIONAL then
-			self[playerWordData.word] = k
+		if expectedField.messageType == PATTERN_MESSAGE_TYPE.OPTIONAL then
+			self.extractedParams[expectedField.word] = playerWord
 		end
 		i = i + 1
 	end
-	if requiredWordsSet < requiredFields then
-		return false
-	end
-	return true
+	return requiredWordsMatched >= requiredFieldsCount
 end
 
 function DialogContext:MatchPattern()
-	local allPatternFields, patternRequiredFields = self:ExtractPatternFields()
-	return self:IfPlayerMessageConformsToPattern(allPatternFields, patternRequiredFields)
+	local patternFieldNames, requiredFieldsCount = self:ExtractPatternFields()
+	if #patternFieldNames > requiredFieldsCount then
+		return false
+	end
+	return self:IfPlayerMessageConformsToPattern(patternFieldNames, requiredFieldsCount)
 end
 
 function DialogContext:PlayerSaidRequiredWord()
@@ -473,6 +481,7 @@ function DialogContext:PlayerSaidRequiredWord()
 		pattern = { pattern }
 	end
 	if not isPattern(pattern) then
+		print("is not pattern", pattern, msg)
 		return table.contains(pattern, msg)
 	end
 
@@ -588,6 +597,7 @@ function DialogContext:ResolveQuestState()
 			goto continue
 		end
 		local resolutionContext = ResolutionContext.FromDialogContext(self, data)
+
 		self.resolvedStatus = resolutionContext:Resolve()
 		if self:IsResolved() then
 			return
@@ -715,6 +725,7 @@ function ResolutionContext:CheckSpecialConditions()
 		local outcome, errorMessage = condition(conditionContext)
 		if outcome ~= conditionContext.requiredOutcome then
 			self.errorMessage = errorMessage or conditionContext.textNoRequiredCondition
+			self.npcHandler.topic[self.cid] = conditionContext.nextTopic or TOPIC_DEFAULT
 			return CONDITION_STATUS.CONDITION_NOT_PASSED
 		end
 	end
@@ -839,7 +850,7 @@ end
 function ResolutionContext:AddDialogData()
 	local actions = self.actionsOnSuccess
 	if actions.addDialogData ~= false then
-		PlayerDialogDataRegistry:Get(self.player):Add(self)
+		PlayerDialogDataRegistry():Get(self.player):Add(self)
 	end
 end
 
@@ -874,6 +885,14 @@ function ResolutionContext:TrySendTranslateFailMessage()
 		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	else
 		self.npcHandler:say(translatedMessage, self.npc, self.player)
+	end
+end
+
+function ResolutionContext:AppendExtractedParams()
+	print("apeending extracted")
+	for key, value in pairs(self.extractedParams or {}) do
+		print(key, value)
+		self[key] = value
 	end
 end
 
@@ -920,6 +939,7 @@ function ResolutionContext:ActionsOnSuccess()
 end
 
 function ResolutionContext:Resolve()
+	self:AppendExtractedParams()
 	local status = self:ConditionsArePassable()
 	if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 		if self.errorMessage then
@@ -930,7 +950,7 @@ function ResolutionContext:Resolve()
 	end
 
 	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
-		self.lastDialogData = PlayerDialogDataRegistry:Get(self.player):Latest()
+		self.lastDialogData = PlayerDialogDataRegistry():Get(self.player):Latest()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
 	end
@@ -939,7 +959,7 @@ end
 function InitializeResponses(player, config, npcHandler, npc, msg)
 	player = Player(player)
 
-	PlayerDialogDataRegistry:Register(player)
+	PlayerDialogDataRegistry():Register(player)
 	local cid = player:getId()
 
 	--ToDo: does it work? or should it be done with addEvent?
@@ -948,8 +968,7 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType])
-				or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
+			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end
@@ -987,7 +1006,6 @@ function PlayerDialogDataRegistry:New()
 	setmetatable(playerDialogDataRegistrySingleton, PlayerDialogDataRegistry)
 	self.__index = self
 	playerDialogDataRegistrySingleton.registry = {}
-
 	return playerDialogDataRegistrySingleton
 end
 setmetatable(PlayerCustomDialogDataRegistry, {
@@ -1011,14 +1029,13 @@ function PlayerDialogData:Add(data)
 	return self
 end
 function PlayerDialogData:Latest()
-	return self.data[#self.data]
+	return self.data[#self.data] or {}
 end
 function PlayerDialogData:ByIndex(index)
-	return self.data[index]
+	return self.data[index] or {}
 end
 
 function PlayerDialogDataRegistry:Register(player)
-	self.registry = {}
 	self.registry[player:getId()] = PlayerDialogData()
 	return self.registry[player:getId()]
 end

@@ -575,7 +575,7 @@ NPC_UNIVERSAL_DIALOGS = {
 				},
 			},
 		},
-		[{ "yes" ,"tak"}] = {
+		[{ "yes", "tak" }] = {
 			text = "Here is your promotion, good luck!",
 			requiredTopic = JOB_TOPICS.confirmBuyPromotion,
 			specialConditions = {
@@ -607,5 +607,171 @@ NPC_UNIVERSAL_DIALOGS = {
 				},
 			},
 		},
+	},
+	[JOB_BANK] = {
+		--balance
+		[{ "balance" }] = {
+			text = "ACCOUNT_BALANCE",
+		},
+		--deposit
+		[{ "deposit <amount>" }] = {
+			text = "CONFIRM_DEPOSIT",
+			nextTopic = JOB_TOPICS.confirmDeposit,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
+			},
+		},
+		[{ "deposit" }] = {
+			text = "DECLARE_DEPOSIT_AMOUNT",
+			nextTopic = JOB_TOPICS.declareAmountdeposit,
+		},
+		[{ "<amount>" }] = {
+			text = "CONFIRM_DEPOSIT",
+			nextTopic = JOB_TOPICS.confirmDeposit,
+			requiredTopic = JOB_TOPICS.declareAmountdeposit,
+			{
+				condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
+				requiredOutcome = true,
+				textNoRequiredCondition = "You do not have enough gold.",
+			},
+		},
+		[{ "yes" }] = {
+			text = "DEPOSIT_OK",
+			requiredTopic = JOB_TOPICS.confirmDeposit,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.depositMoney },
+			},
+		},
+		--withdraw
+		[{ "withdraw <amount>" }] = {
+			text = "CONFIRM_WITHDRAW",
+			nextTopic = JOB_TOPICS.confirmWithdraw,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
+			},
+		},
+		[{ "withdraw" }] = {
+			text = "DECLARE_WITHDRAW_AMOUNT",
+			nextTopic = JOB_TOPICS.declareAmount,
+		},
+		[{ "<amount>" }] = {
+			text = "CONFIRM_WITHDRAW",
+			nextTopic = JOB_TOPICS.confirmWithdraw,
+			requiredTopic = JOB_TOPICS.declareAmountwithdraw,
+			{
+				condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+				requiredOutcome = true,
+				textNoRequiredCondition = "You do not have enough gold.",
+			},
+		},
+		[{ "yes" }] = {
+			text = "WITHDRAW_OK",
+			requiredTopic = JOB_TOPICS.confirmWithdraw,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.withdrawMoney },
+			},
+		},
+		--transfer
+		[{ "transfer <amount> <recipient>" }] = {
+			text = "CONFIRM_TRANSFER",
+			nextTopic = JOB_TOPICS.confirmTransfer,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+					requiredOutcome = true,
+					textNoRequiredCondition = "There in no such player.",
+				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You can't do that.",
+				},
+			},
+		},
+		[{ "transfer" }] = {
+			text = "DECLARE_TRANSFER_AMOUNT",
+			nextTopic = JOB_TOPICS.declareAmounttransfer,
+		},
+		[{ "<amount>" }] = {
+			text = "CONFIRM_RECIPIENT",
+			nextTopic = JOB_TOPICS.confirmRecipient,
+			requiredTopic = JOB_TOPICS.declareAmounttransfer,
+			{
+				condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+				requiredOutcome = true,
+				textNoRequiredCondition = "You do not have enough gold.",
+			},
+		},
+		[{ "<recipient>" }] = {
+			text = "CONFIRM_TRANSFER",
+			requiredTopic = JOB_TOPICS.confirmRecipient,
+			{
+				condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+				requiredOutcome = true,
+				textNoRequiredCondition = "There in no such player.",
+			},
+			{
+				condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
+				requiredOutcome = true,
+				textNoRequiredCondition = "You can't do that.",
+			},
+		},
+		[{ "yes" }] = {
+			text = "TRANSFER_OK",
+			requiredTopic = JOB_TOPICS.confirmTransfer,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+					requiredOutcome = true,
+					textNoRequiredCondition = "There in no such player.",
+				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You can't do that.",
+				},
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.transferMoney },
+			},
+		},
+
+		--change money
+		--guild balance
+		--guild deposit
+		--guild withdraw
+		--guild transfer
 	},
 }
