@@ -1239,20 +1239,9 @@ uint16_t PlayerWheel::getExtraPoints() const {
 		return 0;
 	}
 
-	uint16_t totalBonus = 0;
-	for (const auto &scroll : WheelOfDestinyPromotionScrolls) {
-		const auto &scrollKv = m_player.kv()->scoped("wheel-of-destiny")->scoped("scrolls");
-		if (!scrollKv) {
-			continue;
-		}
-
-		auto scrollKV = scrollKv->get(scroll.name);
-		if (scrollKV && scrollKV->get<bool>()) {
-			totalBonus += scroll.extraPoints;
-		}
-	}
-
-	return totalBonus;
+	const auto &scrollKv = m_player.kv()->scoped("wheel-of-destiny")->get("scroll-points");
+	auto x = scrollKv->getNumber();
+	return static_cast<uint16_t>(scrollKv ? scrollKv->getNumber() : 0);
 }
 
 uint16_t PlayerWheel::getWheelPoints(bool includeExtraPoints /* = true*/) const {
