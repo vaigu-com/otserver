@@ -37,4 +37,12 @@ JOB_TOPICS = {
 	-- JOB_BLESS
 	confirmBuyAllregularblessings = NextJobTopic(),
 	confirmBuyPromotion = NextJobTopic(),
+	-- JOB_BANK
+	confirmDeposit = NextJobTopic(),
+	declareAmountdeposit = NextJobTopic(),
+	confirmWithdraw = NextJobTopic(),
+	declareAmountwithdraw = NextJobTopic(),
+	confirmTransfer = NextJobTopic(),
+	declareAmounttransfer = NextJobTopic(),
+	confirmRecipient = NextJobTopic(),
 }

@@ -74,7 +74,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		return false
 	end
 	-- ============= MISJA TRUDNE POCZATKI =================
-	if table.contains({ "zlodziej", "thief" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 7 then
+	if table.contains({ "zlodziej", "thief" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 7 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
 			"Dziekuje, ze sie tym zajales. Znalem Drwala Domino, pamietam ze kiedys pracowal w tartaku. ...",
 			"Ktoregos razu zadarl z hunterami, i od tego czasu go nie widziano. Co do orkow, to ostatnio sobie smielej poczynaja, ale ta sytuacja nie powinna {zaognic} ich wojny z elfami.",
@@ -83,10 +83,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			"Once upon a time he messed up with hunters, from that time he wasn't seen. As for the orcs, they've been more aggressive lately, but this situation shouldn't aggravate their war with the elves.",
 		}, npc, creature)
 		npcHandler:setTopic(playerId, 1)
-	elseif table.contains({ "zlodziej", "thief", "nagroda", "reward", "drwal" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 13 then
+	elseif table.contains({ "zlodziej", "thief", "nagroda", "reward", "drwal" }, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 13 then
 		if player:getLevel() >= 35 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dobra robota zolnierzu, oto twoja nagroda. Znalazlem te przedmioty wsrod skradzionych rupieci, ktore znalezlismy w norze zbira." or "Well done soldier, here's your reward. I found these items among stolen goods which we found in a thugs den.", npc, creature)
-			player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 14)
+			player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 14)
 			player:setStorageValue(Storage.Finished.Ikea, 1)
 			player:addItem(22195, 1) -- onyx pendant
 			player:addExperience(100000, true) -- 100k expa
@@ -103,7 +103,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "No i bardzo dobrze, zglos sie do Trollskyego po nagrode, od teraz jestes certyfikowanym wojownikiem MirkoTown." or "Very good, go speak with Trollsky about your reward, from now on you are certified warrior of MirkoTown.", npc, creature)
 	elseif table.contains({ "mission", "misja" }, message) and player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 3 then
-		player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 0)
+		player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 0)
 		player:setStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 4)
 		player:addItem(3421, 1) -- dark shield
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
@@ -144,8 +144,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Orki sa zbyt glupie, zeby spostrzec tak male zmiany w inwentarzu. Teraz mamy inny problem, mianowicie musimy {zlapac} naszego zlodzieja-uciekiniera." or "Orcs are too dumb to notice some changes in inventory. Now we have different issue, we need to {catch} our thief-fugitive.", npc, creature)
 		npcHandler:setTopic(playerId, 2)
 	elseif table.contains({ "catch", "zlapac" }, message) and npcHandler:getTopic(playerId) == 2 then
-		player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 8)
-		player:setStorageValue(Storage.IKEAdlazuchwalych.ZlodziejAsked, 0)
+		player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 8)
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL" and "Tak, musimy jak najszybciej zatrzymac naszego zlodzieja. Juz teraz pewnie planuje jak wrocic do 'biznesu' meblarskiego. Popytaj ludzi wokol, moze ktos widzial, w ktora strone uciekl."
 				or "Yes, we must stop our thief as fast as possible. Probably he is planning to come back to the furniture ‘business’. Ask people around, maybe someone seen where he ran.",

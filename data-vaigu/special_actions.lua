@@ -64,11 +64,10 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		local toPos = context.pos or context.toPos or context.topos or context.destination
 		player:teleportTo(toPos)
 	end,
-	-- ToDo: register TWIST_OF_FATE etc. on lua side
 	-- twist is 1
 	-- first regular is 2
 	-- last regular is 6
-	-- two new are 7 and 8
+	-- two new are 7 and 8 (blood and heart of the mountain)
 	grantBless = function(context)
 		local player = context.player
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
@@ -109,7 +108,7 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 	end,
 	SetCustomDialogDataAsNumber = function(context)
-		PlayerCustomDialogDataRegistry:Get(context.player)[context.key] = tonumber(context.msg)
+		PlayerCustomDialogDataRegistry():Get(context.player)[context.key] = tonumber(context.msg)
 	end,
 	cancelMarriage = function(context)
 		local player = context.player
@@ -130,6 +129,12 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 	end,
 	openTradeWindow = function(context)
 		context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)
+	end,
+	sendMagicEffect = function(context)
+		local player = context.player
+		if player then
+			player:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
+		end
 	end,
 }
 
@@ -153,12 +158,12 @@ SPECIAL_ACTIONS_SOULORB = {
 SPECIAL_ACTIONS_WILDCARD = {
 	addWilcard = function(context)
 		local player = context.player
-		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
+		local orderedCards = PlayerCustomDialogDataRegistry():Get(context.player).orderedCards
 		player:addPreyCards(orderedCards)
 	end,
 	removeMoneyPreycards = function(context)
 		local player = context.player
-		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
+		local orderedCards = PlayerCustomDialogDataRegistry():Get(context.player).orderedCards
 		local requiredMoney = player:GetWildcardPrice() * orderedCards
 		player:removeMoney(requiredMoney)
 	end,
@@ -200,7 +205,7 @@ SPECIAL_ACTIONS_DAILY_TASK = {
 
 SPECIAL_ACTIONS_IMBUING = {
 	removeTaskPointsByImbuing = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 
 		local player = context.player
 		player:AddItems(bundleData.items)
@@ -214,6 +219,47 @@ SPECIAL_ACTIONS_COOK = {
 		local dishName = context.msg
 		local dishStorage = COOKING_DISH_NAMES[dishName]
 		local dishData = COOKING_INGREDIENT_DATA[dishStorage]
-		PlayerCustomDialogDataRegistry:Get(context.player).dishData = dishData
+		PlayerCustomDialogDataRegistry():Get(context.player).dishData = dishData
+	end,
+}
+
+SPECIAL_ACTIONS_BANK = {
+	setAmountDeposit = function(context)
+		local amount = nil
+		if type(context.amount) == "string" and context.amount == "all" then
+			amount = context.player:getMoney()
+		else
+			amount = tonumber(context.amount)
+		end
+		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		data.amount = amount
+	end,
+	setAmountWithdrawTransfer = function(context)
+		local amount = nil
+		if type(context.amount) == "string" and context.amount == "all" then
+			amount = Bank.balance(context.player)
+		else
+			amount = tonumber(context.amount)
+		end
+		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		data.amount = amount
+	end,
+	setRecipient = function(context)
+		local recipient = context.recipient
+		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		data.recipient = recipient
+	end,
+	depositMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		context.player:depositMoney(amount)
+	end,
+	withdrawMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		context.player:withdrawMoney(amount)
+	end,
+	transferMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		context.player:transferMoneyTo(recipient, amount)
 	end,
 }
