@@ -396,9 +396,6 @@ local function hasRequiredQuestlineState(state, requiredState)
 end
 
 local function isPattern(pattern)
-	do
-		return true
-	end
 	if pattern:gmatch("<[^%s]->")() then
 		return true
 	end
@@ -415,64 +412,60 @@ PATTERN_MESSAGE_TYPE = {
 }
 
 function DialogContext:ExtractPatternFields()
-	local expectedFields = {}
+	local fields = {}
 	local requiredFieldsCount = 0
 	for k in self.pattern:gmatch("[^%s]+") do
-		local wordData = {}
+		local wordData = {
+			word = k,
+			messageType = PATTERN_MESSAGE_TYPE.KEYWORD,
+		}
 		if k:gmatch("<.*>")() then
 			wordData.word = k:gmatch("[^<>]+")()
 			wordData.messageType = PATTERN_MESSAGE_TYPE.REQUIRED
 			requiredFieldsCount = requiredFieldsCount + 1
-		elseif k:gmatch("%[.*%]")() then
+		end
+		if k:gmatch("%[.*%]")() then
 			wordData.word = k:gmatch("[^%[%]]+")()
 			wordData.messageType = PATTERN_MESSAGE_TYPE.OPTIONAL
-		else
-			wordData.word = k
-			wordData.messageType = PATTERN_MESSAGE_TYPE.KEYWORD
-			requiredFieldsCount = requiredFieldsCount + 1
 		end
 
-		table.insert(expectedFields, wordData)
+		table.insert(fields, wordData)
 	end
-	return expectedFields, requiredFieldsCount
+	return fields, requiredFieldsCount
 end
 
-function DialogContext:IfPlayerMessageConformsToPattern(expectedFields, requiredFieldsCount)
+function DialogContext:IfPlayerMessageConformsToPattern(fields, requiredFields)
 	local i = 1
 	local requiredWordsMatched = 0
-	self.extractedParams = {}
-	print("#expected, requiredCount", #expectedFields, requiredFieldsCount)
+	self.patternFields = {}
 	for playerWord in self.msg:gmatch("[^%s]+") do
-		local expectedField = expectedFields[i]
-		if not expectedField then
-			print("requiredmatched, count",requiredWordsMatched, requiredFieldsCount)
-			return requiredWordsMatched >= requiredFieldsCount
+		local field = fields[i]
+		if not field then
+			return false
 		end
-		print("expected:", expectedField.word, "player said:", playerWord)
-		if expectedField.messageType == PATTERN_MESSAGE_TYPE.KEYWORD then
-			if expectedField.word ~= playerWord then
+		if field.messageType == PATTERN_MESSAGE_TYPE.KEYWORD then
+			if field.word ~= playerWord then
 				return false
 			end
+		end
+		if field.messageType == PATTERN_MESSAGE_TYPE.REQUIRED then
+			self.patternFields[field.word] = playerWord
 			requiredWordsMatched = requiredWordsMatched + 1
 		end
-		if expectedField.messageType == PATTERN_MESSAGE_TYPE.REQUIRED then
-			self.extractedParams[expectedField.word] = playerWord
-			requiredWordsMatched = requiredWordsMatched + 1
-		end
-		if expectedField.messageType == PATTERN_MESSAGE_TYPE.OPTIONAL then
-			self.extractedParams[expectedField.word] = playerWord
+		if field.messageType == PATTERN_MESSAGE_TYPE.OPTIONAL then
+			self.patternFields[field.word] = playerWord
 		end
 		i = i + 1
 	end
-	return requiredWordsMatched >= requiredFieldsCount
+	if requiredWordsMatched < requiredFields then
+		return false
+	end
+	return true
 end
 
 function DialogContext:MatchPattern()
-	local patternFieldNames, requiredFieldsCount = self:ExtractPatternFields()
-	if #patternFieldNames > requiredFieldsCount then
-		return false
-	end
-	return self:IfPlayerMessageConformsToPattern(patternFieldNames, requiredFieldsCount)
+	local fields, requiredFieldsCount = self:ExtractPatternFields()
+	return self:IfPlayerMessageConformsToPattern(fields, requiredFieldsCount)
 end
 
 function DialogContext:PlayerSaidRequiredWord()
@@ -597,6 +590,10 @@ function DialogContext:ResolveQuestState()
 		if not self:PlayerSaidRequiredWord() then
 			goto continue
 		end
+		for key, value in pairs(self.patternFields) do
+			self[key] = value
+		end
+		self.patternFields = nil
 		local resolutionContext = ResolutionContext.FromDialogContext(self, data)
 
 		self.resolvedStatus = resolutionContext:Resolve()
