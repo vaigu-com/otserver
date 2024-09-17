@@ -224,5 +224,42 @@ SPECIAL_ACTIONS_COOK = {
 }
 
 SPECIAL_ACTIONS_BANK = {
-
+	setAmountDeposit = function(context)
+		local amount = nil
+		if type(context.amount) == "string" and context.amount == "all" then
+			amount = context.player:getMoney()
+		else
+			amount = tonumber(context.amount)
+		end
+		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		data.amount = amount
+	end,
+	setAmountWithdrawTransfer = function(context)
+		local amount = nil
+		if type(context.amount) == "string" and context.amount == "all" then
+			amount = Bank.balance(context.player)
+		else
+			amount = tonumber(context.amount)
+		end
+		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		data.amount = amount
+	end,
+	setRecipient = function(context)
+		local recipient = context.recipient
+		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		data.recipient = recipient
+	end,
+	depositMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		context.player:depositMoney(amount)
+	end,
+	withdrawMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		context.player:withdrawMoney(amount)
+	end,
+	transferMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		context.player:transferMoneyTo(recipient, amount)
+	end,
 }

@@ -140,15 +140,51 @@ SPECIAL_CONDITIONS_DAILY_TASK = {
 
 SPECIAL_CONDITIONS_BANK = {
 	hasMoneyininventory = function(context)
+		local moneyInInventory = context.player:getMoney()
 		if type(context.amount) == "string" and context.amount == "all" then
-			return context.player:getMoney()
+			return moneyInInventory > 0
 		end
 
-		print(context.amount, type(context.amount))
-		local x = PlayerDialogDataRegistry():Get(context.player):Latest()
-		for key, value in pairs(t) do
-			
-		end
+		local declaredMoney = tonumber(context.amount) or PlayerCustomDialogDataRegistry():Get(context.player).amount
+		return declaredMoney <= moneyInInventory
 	end,
-	hasMoneyinbank = function(context) end,
+	hasMoneyinbank = function(context)
+		if type(context.amount) == "string" and context.amount == "all" then
+			return Bank.balance(context.player) > 0
+		end
+		local amount = tonumber(context.amount) or PlayerCustomDialogDataRegistry():Get(context.player).amount
+		return amount <= context.player:getBankBalance()
+	end,
+	canCarryWithdrawnMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local crystalCoins = math.floor(amount / 10000)
+		amount = amount % 10000
+		local platinumCoins = math.floor(amount / 100)
+		amount = amount % 100
+		local goldCoins = math.floor(amount / 1)
+		local crystalPiles = math.floor((crystalCoins + 99) / 100)
+		local platinumPiles = math.floor((platinumCoins + 99) / 100)
+		local goldPiles = math.floor((goldCoins + 99) / 100)
+		local pilesCount = crystalPiles + platinumPiles + goldPiles
+
+		local player = context.player
+		local hasCap, noCapMessage = player:HasEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
+		if not hasCap then
+			player:sendTextMessage(MESSAGE_FAILURE, noCapMessage)
+		end
+		local hasSlots, noSlotsMessage = player:HasEnoughSlots({ requiredSlots = pilesCount })
+		if not hasSlots then
+			player:sendTextMessage(MESSAGE_FAILURE, noSlotsMessage)
+		end
+
+		return true
+	end,
+	recipientIsnotself = function(context)
+		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		return context.player:getName() ~= recipient
+	end,
+	recipientExists = function(context)
+		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		return type(Bank.balance(recipient)) == "number"
+	end,
 }

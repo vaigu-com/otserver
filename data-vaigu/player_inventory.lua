@@ -224,12 +224,12 @@ function Player:HasEnoughCapacity(context)
 end
 
 function Player:HasEnoughSlots(context)
-	local requiredItemSlots = context.requiredItemSlots
+	local requiredSlots = context.requiredSlots
 	local freeSlots = self:getFreeBackpackSlots()
-	if requiredItemSlots > freeSlots then
-		local lackingSlots = requiredItemSlots - freeSlots
-		return false, T("Items you are trying to pick up take up :requiredItemSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
-			requiredItemSlots = requiredItemSlots,
+	if requiredSlots > freeSlots then
+		local lackingSlots = requiredSlots - freeSlots
+		return false, T("Items you are trying to pick up take up :requiredSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
+			requiredSlots = requiredSlots,
 			lackingSlots = lackingSlots,
 		})
 	end
@@ -245,7 +245,7 @@ local canAddItemsChecks = {
 function Player:CanAddItems(items)
 	local context = {
 		requiredCap = CalculateItemsWeight(items),
-		requiredItemSlots = CalculateItemsRequiredSlots(items),
+		requiredSlots = CalculateItemsRequiredSlots(items),
 	}
 	local canProceed, message
 	for _, check in pairs(canAddItemsChecks) do

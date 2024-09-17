@@ -269,6 +269,7 @@ setmetatable(DialogContext, {
 		instance.specialMessageType = specialMessageType
 		instance.requirements = nil
 		instance.resolvedStatus = nil
+		instance.patternFields = {}
 		return instance
 	end,
 })
@@ -308,6 +309,7 @@ local actionsWhitelist = {
 ---@field npcHandler NpcHandler?
 ---@field topic integer?
 ---@field extractedParams table
+---@field patternFields table
 ResolutionContext = {}
 ResolutionContext.__index = ResolutionContext
 setmetatable(ResolutionContext, {
@@ -336,6 +338,9 @@ function ResolutionContext:ParseRequirementsActionsOther(table)
 		else
 			self[key] = value
 		end
+	end
+	for key, value in pairs(self.patternFields or {}) do
+		self[key] = value
 	end
 end
 
@@ -396,11 +401,13 @@ local function hasRequiredQuestlineState(state, requiredState)
 end
 
 local function isPattern(pattern)
-	if pattern:gmatch("<[^%s]->")() then
-		return true
-	end
-	if pattern:gmatch("%[[^%s]-%]")() then
-		return true
+	for _, value in pairs(pattern) do
+		if value:gmatch("<[^%s]->")() then
+			return true
+		end
+		if value:gmatch("%[[^%s]-%]")() then
+			return true
+		end
 	end
 	return false
 end
@@ -475,7 +482,6 @@ function DialogContext:PlayerSaidRequiredWord()
 		pattern = { pattern }
 	end
 	if not isPattern(pattern) then
-		print("is not pattern", pattern, msg)
 		return table.contains(pattern, msg)
 	end
 
@@ -590,11 +596,8 @@ function DialogContext:ResolveQuestState()
 		if not self:PlayerSaidRequiredWord() then
 			goto continue
 		end
-		for key, value in pairs(self.patternFields) do
-			self[key] = value
-		end
-		self.patternFields = nil
 		local resolutionContext = ResolutionContext.FromDialogContext(self, data)
+		self.patternFields = {}
 
 		self.resolvedStatus = resolutionContext:Resolve()
 		if self:IsResolved() then
@@ -887,9 +890,7 @@ function ResolutionContext:TrySendTranslateFailMessage()
 end
 
 function ResolutionContext:AppendExtractedParams()
-	print("apeending extracted")
 	for key, value in pairs(self.extractedParams or {}) do
-		print(key, value)
 		self[key] = value
 	end
 end
@@ -1047,6 +1048,8 @@ function PlayerCustomDialogDataRegistry:Register(player)
 end
 
 function PlayerCustomDialogDataRegistry:Get(player)
+	local playerId = player:getId()
+	self.registry[playerId] = self.registry[playerId] or PlayerDialogData()
 	return self.registry[player:getId()]
 end
 

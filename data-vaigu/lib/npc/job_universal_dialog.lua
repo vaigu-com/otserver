@@ -623,6 +623,9 @@ NPC_UNIVERSAL_DIALOGS = {
 					textNoRequiredCondition = "You do not have enough gold.",
 				},
 			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setAmountDeposit },
+			},
 		},
 		[{ "deposit" }] = {
 			text = "DECLARE_DEPOSIT_AMOUNT",
@@ -636,6 +639,9 @@ NPC_UNIVERSAL_DIALOGS = {
 				condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
 				requiredOutcome = true,
 				textNoRequiredCondition = "You do not have enough gold.",
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setAmountDeposit },
 			},
 		},
 		[{ "yes" }] = {
@@ -652,6 +658,10 @@ NPC_UNIVERSAL_DIALOGS = {
 				{ action = SPECIAL_ACTIONS_BANK.depositMoney },
 			},
 		},
+		[{ "no" }] = {
+			text = "DEPOSIT_CANCEL",
+			requiredTopic = JOB_TOPICS.confirmDeposit,
+		},
 		--withdraw
 		[{ "withdraw <amount>" }] = {
 			text = "CONFIRM_WITHDRAW",
@@ -660,8 +670,11 @@ NPC_UNIVERSAL_DIALOGS = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
 					requiredOutcome = true,
-					textNoRequiredCondition = "You do not have enough gold.",
+					textNoRequiredCondition = "There is not enough gold on your account.",
 				},
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setAmountWithdrawTransfer },
 			},
 		},
 		[{ "withdraw" }] = {
@@ -672,10 +685,15 @@ NPC_UNIVERSAL_DIALOGS = {
 			text = "CONFIRM_WITHDRAW",
 			nextTopic = JOB_TOPICS.confirmWithdraw,
 			requiredTopic = JOB_TOPICS.declareAmountwithdraw,
-			{
-				condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
-				requiredOutcome = true,
-				textNoRequiredCondition = "You do not have enough gold.",
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+					requiredOutcome = true,
+					textNoRequiredCondition = "There is not enough gold on your account.",
+				},
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setAmountWithdrawTransfer },
 			},
 		},
 		[{ "yes" }] = {
@@ -685,33 +703,46 @@ NPC_UNIVERSAL_DIALOGS = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
 					requiredOutcome = true,
-					textNoRequiredCondition = "You do not have enough gold.",
+					textNoRequiredCondition = "There is not enough gold on your account.",
+				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.canCarryWithdrawnMoney,
+					requiredOutcome = true,
+					textNoRequiredCondition = NOT_ENOUGH_CAP_OR_SLOTS,
 				},
 			},
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_BANK.withdrawMoney },
 			},
 		},
+		[{ "no" }] = {
+			text = "WITHDRAW_CANCEL",
+			requiredTopic = JOB_TOPICS.confirmWithdraw,
+		},
 		--transfer
-		[{ "transfer <amount> <recipient>" }] = {
+		[{ "transfer <amount> to <recipient>", "transfer <amount> <recipient>" }] = {
 			text = "CONFIRM_TRANSFER",
 			nextTopic = JOB_TOPICS.confirmTransfer,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
 					requiredOutcome = true,
-					textNoRequiredCondition = "You do not have enough gold.",
-				},
-				{
-					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
-					requiredOutcome = true,
-					textNoRequiredCondition = "There in no such player.",
+					textNoRequiredCondition = "There is not enough gold on your account.",
 				},
 				{
 					condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
 					requiredOutcome = true,
 					textNoRequiredCondition = "You can't do that.",
 				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You cannot transfer money to this account.",
+				},
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setAmountWithdrawTransfer },
+				{ action = SPECIAL_ACTIONS_BANK.setRecipient },
 			},
 		},
 		[{ "transfer" }] = {
@@ -719,27 +750,33 @@ NPC_UNIVERSAL_DIALOGS = {
 			nextTopic = JOB_TOPICS.declareAmounttransfer,
 		},
 		[{ "<amount>" }] = {
-			text = "CONFIRM_RECIPIENT",
+			text = "CONFIRM_TRANFER_RECIPIENT",
 			nextTopic = JOB_TOPICS.confirmRecipient,
 			requiredTopic = JOB_TOPICS.declareAmounttransfer,
 			{
 				condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
 				requiredOutcome = true,
-				textNoRequiredCondition = "You do not have enough gold.",
+				textNoRequiredCondition = "There is not enough gold on your account.",
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setAmountWithdrawTransfer },
 			},
 		},
 		[{ "<recipient>" }] = {
 			text = "CONFIRM_TRANSFER",
 			requiredTopic = JOB_TOPICS.confirmRecipient,
 			{
-				condition = SPECIAL_CONDITIONS_BANK.recipientExists,
-				requiredOutcome = true,
-				textNoRequiredCondition = "There in no such player.",
-			},
-			{
 				condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
 				requiredOutcome = true,
 				textNoRequiredCondition = "You can't do that.",
+			},
+			{
+				condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+				requiredOutcome = true,
+				textNoRequiredCondition = "You cannot transfer money to this account.",
+			},
+			specialActionsOnSuccess = {
+				{ action = SPECIAL_ACTIONS_BANK.setRecipient },
 			},
 		},
 		[{ "yes" }] = {
@@ -749,24 +786,27 @@ NPC_UNIVERSAL_DIALOGS = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
 					requiredOutcome = true,
-					textNoRequiredCondition = "You do not have enough gold.",
-				},
-				{
-					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
-					requiredOutcome = true,
-					textNoRequiredCondition = "There in no such player.",
+					textNoRequiredCondition = "There is not enough gold on your account.",
 				},
 				{
 					condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
 					requiredOutcome = true,
 					textNoRequiredCondition = "You can't do that.",
 				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You cannot transfer money to this account.",
+				},
 			},
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_BANK.transferMoney },
 			},
 		},
-
+		[{ "no" }] = {
+			text = "TRANSFER_CANCEL",
+			requiredTopic = JOB_TOPICS.confirmTransfer,
+		},
 		--change money
 		--guild balance
 		--guild deposit
