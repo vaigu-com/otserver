@@ -1,5 +1,3 @@
-require("lldebugger").start()
-
 ---@enum LOCKOUT_TIME
 LOCKOUT_TIME = {
 	DAILY = "DAILY",

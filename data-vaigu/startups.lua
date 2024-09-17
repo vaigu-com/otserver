@@ -73,7 +73,6 @@ local function createCustomItemOnMap(context)
 	end
 end
 
--- ToDo: extact to class, remove dupicate in util.lua
 local function normalizeItemData(itemData, anchor)
 	local context = {}
 	context.id = itemData.id
