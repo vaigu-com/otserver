@@ -9,25 +9,8 @@ local confirmChoice = function(player, button, choice)
 		return
 	end
 
-	player:AddOrCoalesceExerciseWepon(choice.id, choice.charges)
-end
-
-function Player:AddOrCoalesceExerciseWepon(id, newWeaponCharges)
-	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
-	local oldWeapon = self:getItemById(id, true)
-	local oldWeaponCharges = 0
-	if oldWeapon then
-		oldWeaponCharges = oldWeapon:getCharges()
-		oldWeapon:remove()
-	end
-
-	local totalCharges = oldWeaponCharges + newWeaponCharges
-
-	local inboxItem = inbox:addItem(id, totalCharges)
-	if inboxItem then
-		inboxItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
-		inboxItem:setOwner(self)
-	end
+	local addedWeapon = player:AddCustomItem({ id = choice.id, charges = choice.charges })
+	player:TryMergeExerciseWeapons(addedWeapon)
 end
 
 local exerciseWeaponChoice = {
@@ -37,6 +20,7 @@ local exerciseWeaponChoice = {
 	["bow"] = 28555,
 	["rod"] = 28556,
 	["wand"] = 28557,
+	["shield"] = 44065,
 }
 
 ---@param charges number
@@ -53,7 +37,11 @@ function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition,
 
 	local charges = item:getCustomAttribute("charges")
 	local title = player:Localizer(Storage.PerIustitiaAdAstra.Questline):Get("ExerciseWeaponBoxTitle")
-	local message = player:Localizer(Storage.PerIustitiaAdAstra.Questline):Context({ charges = charges }):Get("ExerciseWeaponBoxMessage")
+	local message = player
+		:Localizer(Storage.PerIustitiaAdAstra.Questline)
+		:Context({ charges = charges })
+		:Get("ExerciseWeaponBoxMessage")
+		
 	local window = ModalWindow({ title = title, message = message })
 	window:addButton(player:Localizer(Storage.PerIustitiaAdAstra.Questline):Get("ModalWindowOk"), confirmChoice)
 
