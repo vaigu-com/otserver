@@ -56,6 +56,7 @@ local specialMessageTypeToMessage = {
 	[MESSAGE_WALKAWAY] = "LOCALIZER_WALKAWAY",
 }
 
+-- ToDo: create item kv field (string) in rme
 -- ToDo: storage keys will be converted to kv, therefore this function will no longer be needed
 local FIRST_AVAILABLE_STORAGE = 8100
 NEXT_STORAGE = NEXT_STORAGE or FIRST_AVAILABLE_STORAGE
@@ -215,9 +216,9 @@ function SpawnMonstersAtPlayer(monsterName, player, count)
 end
 
 function Player:AddOutfitsAndAddons(outfitsAndAddons)
-	for _, var in pairs(outfitsAndAddons) do
-		local addon = var.addon
-		local outfit = var.outfitId
+	for _, data in pairs(outfitsAndAddons) do
+		local outfit = data.outfitId or data.outfit
+		local addon = data.addon
 
 		self:addOutfit(outfit)
 		if addon then
@@ -963,7 +964,7 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	local cid = player:getId()
 
 	--ToDo: does it work? or should it be done with addEvent?
-	npcHandler.topic[cid] = 0
+	npcHandler.topic[cid] = TOPIC_DEFAULT
 
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)

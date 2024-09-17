@@ -381,12 +381,3 @@ DESERT_QUEST_ONE_CASTLE_SWAP_LIST = {
 	[1971] = 1972,
 	[1972] = 1971,
 }
-
-DESERT_QUEST_ONE_SPECIAL_ACTIONS = {
-	sendMagicEffect = function(context)
-		local player = context.player
-		if player then
-			player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-		end
-	end,
-}

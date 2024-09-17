@@ -609,7 +609,6 @@ function openStore(playerId)
 	local addCategory = function(category)
 		msg:addString(category.name, "openStore - category.name")
 		if oldProtocol then
-			-- ToDo: translations and chaning hardcoded descriptions to templates
 			msg:addString(category.description, "openStore - category.description")
 		end
 
