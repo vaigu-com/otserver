@@ -11,24 +11,25 @@
 ---@field getItems function
 Zone = Zone
 
----@param encounterData EncounterData
+---@param encounterData EncounterLever
 function Zone.getByEncounter(encounterData)
 	return Zone("encounter." .. toKey(encounterData.encounterName))
 end
 
 function Zone:randomPosition()
-	local positions = self:getPositions()
-	if #positions == 0 then
-		logger.error("Zone:randomPosition() - Zone {} has no positions", self:getName())
+	local walkable = {}
+	for _, pos in pairs(self:getPositions()) do
+		if pos:IsWalkable(false, false, false, false, true) then
+			table.insert(walkable, pos)
+		end
+	end
+
+	if #walkable == 0 then
+		logger.error("Zone:randomPosition() - Zone {} has no walkable positions", self:getName())
 		return nil
 	end
-	local destination = positions[math.random(1, #positions)]
-	local tile = destination:getTile()
-	while not tile or not tile:isWalkable(false, false, false, false, true) do
-		destination = positions[math.random(1, #positions)]
-		tile = destination:getTile()
-	end
-	return destination
+
+	return walkable[math.random(1, #walkable)]
 end
 
 function Zone:sendTextMessage(...)
@@ -107,19 +108,18 @@ setmetatable(ZoneEvent, {
 
 function ZoneEvent:register()
 	if self.beforeEnter then
-		local beforeEnter = EventCallback()
+		local beforeEnter = EventCallback("ZoneEventBeforeEnter", true)
 		function beforeEnter.zoneBeforeCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true
 			end
 			return self.beforeEnter(zone, creature)
 		end
-
 		beforeEnter:register()
 	end
 
 	if self.beforeLeave then
-		local beforeLeave = EventCallback()
+		local beforeLeave = EventCallback("ZoneEventBeforeLeave", true)
 		function beforeLeave.zoneBeforeCreatureLeave(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -131,7 +131,7 @@ function ZoneEvent:register()
 	end
 
 	if self.afterEnter then
-		local afterEnter = EventCallback()
+		local afterEnter = EventCallback("ZoneEventAfterEnter", true)
 		function afterEnter.zoneAfterCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -143,7 +143,7 @@ function ZoneEvent:register()
 	end
 
 	if self.afterLeave then
-		local afterLeave = EventCallback()
+		local afterLeave = EventCallback("ZoneEventAfterLeave", true)
 		function afterLeave.zoneAfterCreatureLeave(zone, creature)
 			if zone ~= self.zone then
 				return true
@@ -155,7 +155,7 @@ function ZoneEvent:register()
 	end
 
 	if self.onSpawn then
-		local afterEnter = EventCallback()
+		local afterEnter = EventCallback("ZoneEventAfterEnterOnSpawn", true)
 		function afterEnter.zoneAfterCreatureEnter(zone, creature)
 			if zone ~= self.zone then
 				return true

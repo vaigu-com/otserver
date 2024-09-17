@@ -11,17 +11,13 @@ local config = {
 		{ pos = { x = 33808, y = 32584, z = 12 }, destination = { x = 33831, y = 32591, z = 12 }, effect = CONST_ME_TELEPORT },
 	},
 	requiredPlayers = 5,
-	zoneArea = {
-		from = { x = 33828, y = 32584, z = 12 },
-		to = { x = 33846, y = 32598, z = 12 },
-	},
 	exitTpPosition = { x = 33829, y = 32591, z = 12 },
 	exitTpDestination = { x = 33810, y = 32587, z = 12 },
 }
 
-local encounterData = EncounterData(config)
+local encounterData = EncounterLever(config)
 encounterData:position({ x = 33813, y = 32584, z = 12 })
-encounterData:register()
+--encounterData:register()
 
 -- Entrance to lever room
 SimpleTeleport({ x = 33792, y = 32581, z = 12 }, { x = 33806, y = 32584, z = 12 })

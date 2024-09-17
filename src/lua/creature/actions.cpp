@@ -152,19 +152,34 @@ bool Actions::registerLuaPositionEvent(const std::shared_ptr<Action> action) {
 }
 
 bool Actions::registerLuaEvent(const std::shared_ptr<Action> action) {
+	std::vector<std::function<bool(const std::shared_ptr<Action> &)>> luaEventCallbacks = {
+		[this](const std::shared_ptr<Action> &look) { return registerLuaItemEvent(look); },
+		[this](const std::shared_ptr<Action> &look) { return registerLuaUniqueEvent(look); },
+		[this](const std::shared_ptr<Action> &look) { return registerLuaActionEvent(look); },
+		[this](const std::shared_ptr<Action> &look) { return registerLuaPositionEvent(look); }
+	};
 	// Call all register lua events
-	if (registerLuaItemEvent(action) || registerLuaUniqueEvent(action) || registerLuaActionEvent(action) || registerLuaPositionEvent(action)) {
-		return true;
-	} else {
-		g_logger().warn(
-			"[{}] missing id/aid/uid/position for one script event, for script: {}",
-			__FUNCTION__,
-			action->getScriptInterface()->getLoadingScriptName()
-		);
-		return false;
+	bool registeredAny = false;
+	for (const auto &callback : luaEventCallbacks) {
+		if (callback(action)) {
+			registeredAny = true;
+		}
 	}
-	g_logger().debug("[{}] missing or incorrect script: {}", __FUNCTION__, action->getScriptInterface()->getLoadingScriptName());
+
+	if (registeredAny) {
+		return true;
+	}
+
+	g_logger().warn(
+		"[{}] missing id/aid/uid/position for one script event, for script: {}",
+		__FUNCTION__,
+		action->getScriptInterface()->getLoadingScriptName()
+	);
+
 	return false;
+	// Code was unreachable
+	// g_logger().debug("[{}] missing or incorrect script: {}", __FUNCTION__, look->getScriptInterface()->getLoadingScriptName());
+	// return false;
 }
 
 ReturnValue Actions::canUse(std::shared_ptr<Player> player, const Position &pos) {
@@ -346,7 +361,7 @@ ReturnValue Actions::internalUseItem(std::shared_ptr<Player> player, const Posit
 		if (container->isRewardCorpse()) {
 			// only players who participated in the fight can open the corpse
 			/* if (player->getGroup()->id >= account::GROUP_TYPE_GAMEMASTER) {
-			    return RETURNVALUE_YOUCANTOPENCORPSEADM;
+			        return RETURNVALUE_YOUCANTOPENCORPSEADM;
 			}*/
 			auto reward = player->getReward(rewardId, false);
 			if (!reward) {

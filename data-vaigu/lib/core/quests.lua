@@ -433,12 +433,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Local Support",
-			startStorageId = 11019,
+			startStorageId = Storage.TrudnePoczatki.Rozeznanie,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Freaking Rats",
-					storageId = 11046,
+					storageId = Storage.PomocMiejscowym.PrzekleteSzczury,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 4,
@@ -451,7 +451,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Cheap Recycling",
-					storageId = 11045,
+					storageId = Storage.PomocMiejscowym.TaniRecykling,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 2,
@@ -462,7 +462,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Broken Orb",
-					storageId = 11072,
+					storageId = Storage.PomocMiejscowym.ZniszczonaKula,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 2,
@@ -473,7 +473,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "Biodegradable",
-					storageId = 11084,
+					storageId = Storage.Biodegradowalny.Questline,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 4,
@@ -856,12 +856,12 @@ if not Quests then
 			},
 		},
 		[NextQuestId()] = {
-			name = "IKEA for the bold",
+			name = "IKEA for the BOLD",
 			startStorageId = 11077,
 			startStorageValue = 0,
 			missions = {
 				[1] = {
-					name = "Stocktaking",
+					name = "The Stocktaking",
 					storageId = 11077,
 					missionId = NextMissionId(),
 					startValue = 0,
@@ -873,11 +873,11 @@ if not Quests then
 						[3] = "Try to find the thief; he's possibly hiding in the sewers.",
 						[4] = "You found the thief, but he managed to get away. Try to look around his hideout.",
 						[5] = "You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list.",
-						[6] = "You helped Komor and got rewarded for that. You have started the new mission 'Needle in the Haystack'.",
+						[6] = "You helped Komor and got rewarded for that. You have started the new mission 'Needle in a Haystack'.",
 					},
 				},
 				[2] = {
-					name = "Needle in the Haystack",
+					name = "Needle in a Haystack",
 					storageId = 11077,
 					missionId = NextMissionId(),
 					startValue = 6,
@@ -897,24 +897,24 @@ if not Quests then
 			},
 		},
 		[NextQuestId()] = {
-			name = "Settled down Fisherman",
-			startStorageId = 11085,
+			name = "Settled down Fishmonger",
+			startStorageId = Storage.UstatkowanyFanatyk.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Stagnation",
-					storageId = 11085,
+					storageId = Storage.UstatkowanyFanatyk.Mission01,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 2,
 					states = {
 						[1] = "Anon's father is waiting for his order.",
-						[2] = "You helped Anon's father recover his long-awaited package.",
+						[2] = "You helped Anon's father recover his long-awaited package. Ask him for new mission now.",
 					},
 				},
 				[2] = {
 					name = "Milksop",
-					storageId = 11086,
+					storageId = Storage.UstatkowanyFanatyk.Mission02,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 2,
@@ -925,7 +925,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Stew for Trouble",
-					storageId = 11091,
+					storageId = Storage.UstatkowanyFanatyk.Mission03,
 					missionId = NextMissionId(),
 					startValue = 1,
 					endValue = 4,
@@ -933,7 +933,7 @@ if not Quests then
 						[1] = "Anon's father received his table in a deplorable state, ask how you can improve his mood.",
 						[2] = "Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew.",
 						[3] = "You helped Anon's father with all the troubles. Now, go to his son for your reward.",
-						[4] = "You have received a reward from the Syn Wedkarza. You gained the ability to purchase Shimmer Swimmer.",
+						[4] = "You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer.",
 					},
 				},
 			},
@@ -996,7 +996,7 @@ if not Quests then
 						[1] = "Go to Sultan of Phantasms for another task.",
 						[2] = "Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask.",
 						[3] = "You've successfully completed the first task for Sultan of Phantasms. Return to him now.",
-						[4] = "Camels Killed Status",
+						[4] = "CAMELS_KILLED_STATUS",
 						[5] = "You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it.",
 						[6] = "Sultan will be pleased with your actions. Return to him for your reward.",
 						[7] = "Sultan rewarded you for your cooperation.",
@@ -1009,12 +1009,12 @@ if not Quests then
 					startValue = 0,
 					endValue = 6,
 					states = {
-						[1] = "Opened Coffins Status",
-						[2] = "Bodies Thrown Status",
+						[1] = "OPENED_COFFINS_STATUS",
+						[2] = "BODIES_THROWN_STATUS",
 						[3] = "Hello, recipient. This is Sultan. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut.",
-						[4] = "Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
-						[5] = "Sultan ordered you to... You can go to Father Natank and ask him for redemption.",
-						[6] = "Father Natank gave you today's offering from the Mass in exchange for your silence.",
+						[4] = "~Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
+						[5] = "Sultan ordered you to.. You can go to Father Natanek and ask him for redemption.",
+						[6] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
 					},
 				},
 			},
@@ -1038,7 +1038,7 @@ if not Quests then
 					},
 				},
 				[2] = {
-					name = "The Sheikh's Hand",
+					name = "The Tailor's Touch",
 					storageId = Storage.AssassinsCreedSkurwoala.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
@@ -1064,7 +1064,7 @@ if not Quests then
 					},
 				},
 				[4] = {
-					name = "Djinn's Request",
+					name = "Djinn's Ordeal",
 					storageId = Storage.AssassinsCreedSkurwoala.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,

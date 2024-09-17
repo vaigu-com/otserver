@@ -3059,7 +3059,7 @@ void ProtocolGame::parsePreyAction(NetworkMessage &msg) {
 	uint8_t action = msg.getByte();
 	uint8_t option = 0;
 	uint16_t raceId = 0;
-	if (action == static_cast<uint8_t>(PreyAction_MonsterSelection)) {
+	if (action == static_cast<uint8_t>(PreyAction_GridSelection)) {
 		index = msg.getByte();
 	} else if (action == static_cast<uint8_t>(PreyAction_Option)) {
 		option = msg.getByte();

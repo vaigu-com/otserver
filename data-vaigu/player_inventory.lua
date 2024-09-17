@@ -1,7 +1,16 @@
 TAKE_ALL_AVAILABLE = "TAKE_ALL_AVAILABLE"
 
 function Player:GetWildcardPrice()
-	return math.min((self:getLevel() / 2) * 150, 7500)
+	local level = self:getLevel()
+	local price = level * 75
+	if level < 80 then
+		price = price * (100 + level) / 100
+		price = price * 5 / 9
+	end
+	if level >= 200 then
+		price = 15000
+	end
+	return math.floor(price)
 end
 
 function Player:GetTotalMoney()
@@ -201,26 +210,26 @@ function Player:TryAddItems(items)
 	return self:AddItems(items)
 end
 
----@param requiredCapTotal number
+---@param requiredCap number
 ---@return boolean hasEnoughCap
 ---@return string|nil errorMessageIfHasNoCap
 function Player:HasEnoughCapacity(context)
-	local requiredCapTotal = context.requiredCapTotal
-	local playerFreeCapacityOz = self:getFreeCapacity() / 100
-	if requiredCapTotal > playerFreeCapacityOz then
-		local lackingCap = tostring(math.abs(playerFreeCapacityOz - requiredCapTotal))
-		return false, T("The total weight of the items You are trying to pick up is :requiredCapTotal: oz. Therefore You need another :lackingCap: oz.", { requiredCapTotal = requiredCapTotal, lackingCap = lackingCap })
+	local requiredCap = context.requiredCap
+	local playerFreeCap = self:getFreeCapacity() / 100
+	if requiredCap > playerFreeCap then
+		local lackingCap = tostring(math.abs(playerFreeCap - requiredCap))
+		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap, lackingCap = lackingCap })
 	end
 	return true
 end
 
 function Player:HasEnoughSlots(context)
-	local requiredItemSlots = context.requiredItemSlots
+	local requiredSlots = context.requiredSlots
 	local freeSlots = self:getFreeBackpackSlots()
-	if requiredItemSlots > freeSlots then
-		local lackingSlots = requiredItemSlots - freeSlots
-		return false, T("Items you are trying to pick up take up :totalItemSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
-			totalItemSlots = requiredItemSlots,
+	if requiredSlots > freeSlots then
+		local lackingSlots = requiredSlots - freeSlots
+		return false, T("Items you are trying to pick up take up :requiredSlots: inventory slots. You need another :lackingSlots: free slots in your inventory.", {
+			requiredSlots = requiredSlots,
 			lackingSlots = lackingSlots,
 		})
 	end
@@ -235,8 +244,8 @@ local canAddItemsChecks = {
 
 function Player:CanAddItems(items)
 	local context = {
-		totalItemWeight = CalculateItemsWeight(items),
-		totalItemSlots = CalculateItemsRequiredSlots(items),
+		requiredCap = CalculateItemsWeight(items),
+		requiredSlots = CalculateItemsRequiredSlots(items),
 	}
 	local canProceed, message
 	for _, check in pairs(canAddItemsChecks) do

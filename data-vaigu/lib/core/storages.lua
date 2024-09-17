@@ -393,6 +393,7 @@ Storage = {
 			OberonKilled = 12305,
 		},
 	},
+	-- ToDo: add special function to dialogues eg. SetQuestFInishedWebsite(storage), so it will be easier to find and modify (if needed)
 	Finished = {
 		DemonHelmet = 2493,
 		Annihilator = 4015,
@@ -537,24 +538,23 @@ Storage = {
 	},
 	NieproszeniGoscie = { ZasraniBarbarzyncy = 11076 },
 	IKEAdlazuchwalych = {
-		RemanentMain = 11077,
-		TakeBall = 11078,
-		TakeReward = 11079,
-		ZlodziejAsked = 11080,
+		Questline = 11077,
 		StaryAsked = 11081,
 		MilesAsked = 11082,
-		TakeKey = 11083,
 	},
-	Biodegradowalny = { BiodegradowalnyMain = 11084 },
+	Biodegradowalny = { Questline = 11084, Parcel = 11085 },
 	UstatkowanyFanatyk = {
-		Zastoj = 11085,
-		Fajtlapa = 11086,
-		FajtlapaSplawik = 11087,
-		FajtlapaSpinning = 11088,
-		FajtlapaStolek = 11089,
+		Questline = 11085,
+		Mission01 = 11086,
+		Mission02 = 11087,
+		Mission03 = 11088,
+		FajtlapaFloat = 11087,
+		FajtlapaReel = 11088,
+		FajtlapaStool = 11089,
 		FajtlapaItems = 11090,
 		Bigos = 11091,
 	},
+	TwoMarlinQuest = 2050,
 	PositionChest = POSITIONCHEST_ACTION_ID,
 	ExerciseWeaponBox = NextStorage(),
 	SpecialStepins = { DontAllowDiagonal = NextStorage() },
@@ -1186,6 +1186,27 @@ Storage = {
 	-- arena = 26100
 	-- arena = 26101
 	-- arena = 26102
+	Minigames = {
+		Locks = {
+			MwLock = 30014,
+			HasteLock = 30059,
+			HealLock = 30016,
+		},
+		Total = {
+			Wins = NextStorage(),
+			Matches = NextStorage(),
+			Points = NextStorage(),
+		},
+		CurrentEvent = NextStorage(),
+		Events = {
+			ZombieMinigame = {
+				Wins = NextStorage(),
+				Matches = NextStorage(),
+				Points = NextStorage(),
+				LongestRecord = NextStorage(),
+			},
+		},
+	},
 	mwLock = 30014,
 	allowWTstorage = 30015,
 	healLock = 30016,

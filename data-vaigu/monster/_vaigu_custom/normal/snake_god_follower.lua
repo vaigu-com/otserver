@@ -13,7 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.raceId = 356
+monster.raceId = 2583
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
@@ -23,13 +23,13 @@ monster.Bestiary = {
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
-	Locations = "Unknown.",
+	Locations = "Vaux Mach mountain range on Ganymede.",
 }
 
 monster.health = 2500
 monster.maxHealth = 2500
 monster.race = "blood"
-monster.corpse = 11429
+monster.corpse = 6061
 monster.speed = 150
 monster.manaCost = 0
 
@@ -78,7 +78,22 @@ monster.voices = {
 	{ text = "ZHE TIME OF ZHE SNAKE HAZ COME!", yell = true },
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "small ruby", chance = 6640, maxCount = 5 },
+	{ name = "platinum coin", chance = 50590, maxCount = 3 },
+	{ name = "great mana potion", chance = 9950, maxCount = 5 },
+	{ name = "terra hood", chance = 2310 },
+	{ name = "wand of voodoo", chance = 1020 },
+	{ name = "small topaz", chance = 2900, maxCount = 4 },
+	{ name = "luminous orb", chance = 2580 },
+	{ name = "green gem", chance = 1290 },
+	{ name = "focus cape", chance = 740 },
+	{ name = "spellweaver's robe", chance = 740 },
+	{ name = "ring of the sky", chance = 120 },
+	{ name = "snake god's wristguard", chance = 10 },
+	{ name = "snake god's sceptre", chance = 10 },
+	{ name = "snake god trophy", chance = 10}
+}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -150 },

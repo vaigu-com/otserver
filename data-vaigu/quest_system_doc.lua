@@ -164,7 +164,6 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	removeRequiredItems = false
 
 	-- If no match found for required items
-	-- ToDo: text for each unmatched item
 	textNoRequiredItems = "Oh nooo, you dont have that item! :("
 
 	-- Npc will say it if Dialog i success-resolved

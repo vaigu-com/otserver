@@ -22,10 +22,7 @@ DEFAULT_LEVER_ID = 2772
 -- Daily/Weekly encounters will reset at this hour local server time
 ENCOUNTER_RESET_TIME_LOCAL = 5
 
----@class EncounterData
----@field public bossName string
----@field private bossPosition Position?
----@field private bossCreateFunction function?
+---@class EncounterLever
 ---@field public encounterName string
 ---@field public disableLockout boolean do not apply cooldown
 ---@field private requiredState table?
@@ -42,24 +39,18 @@ ENCOUNTER_RESET_TIME_LOCAL = 5
 ---@field private _uid number registers action on uid
 ---@field private _aid number registers action on aid
 ---@field private entranceTiles {pos: Position, destination: Position}[]
----@field private zoneArea {from: Position, to: Position}
 ---@field private monsters {name: string, pos: Position}[]
 ---@field private exitTpPosition Position
 ---@field private exitTpDestination Position
+---@field private exitTpId number
 ---@field private timeoutEvent Event
-EncounterData = {}
-setmetatable(EncounterData, {
-	---@param self EncounterData
+EncounterLever = {}
+setmetatable(EncounterLever, {
+	---@param self EncounterLever
 	---@param config table
 	__call = function(self, config)
-		if not config.bossName then
-			error("[EncounterData] bossName is required")
-		end
 		return setmetatable({
 			encounterName = config.encounterName,
-			bossName = config.bossName,
-			bossPosition = config.bossPosition,
-			bossCreateFunction = config.bossCreateFunction,
 			requiredState = config.requiredState or {},
 			nextState = config.nextState or {},
 			lockoutTime = config.lockoutTime or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN),
@@ -73,37 +64,36 @@ setmetatable(EncounterData, {
 			onUseExtra = config.onUseExtra or function() end,
 			exitTpPosition = config.exitTpPosition,
 			exitTpDestination = config.exitTpDestination,
-			zoneArea = config.zoneArea,
 			monsters = config.monsters or {},
 			disableLockout = config.disableLockout,
 			leverId = config.leverId or DEFAULT_LEVER_ID,
 			_position = nil,
 			_uid = nil,
 			_aid = nil,
-		}, { __index = EncounterData })
+		}, { __index = EncounterLever })
 	end,
 })
 
----@param self EncounterData
+---@param self EncounterLever
 ---@param position Position
----@return EncounterData
-function EncounterData:position(position)
+---@return EncounterLever
+function EncounterLever:position(position)
 	self._position = position
 	return self
 end
 
----@param self EncounterData
+---@param self EncounterLever
 ---@param uid number
----@return EncounterData
-function EncounterData:uid(uid)
+---@return EncounterLever
+function EncounterLever:uid(uid)
 	self._uid = uid
 	return self
 end
 
----@param self EncounterData
+---@param self EncounterLever
 ---@param aid number
----@return EncounterData
-function EncounterData:aid(aid)
+---@return EncounterLever
+function EncounterLever:aid(aid)
 	self._aid = aid
 	return self
 end
@@ -133,7 +123,7 @@ local function getNextWednesdayEpochTime()
 	return nextWednesday
 end
 
-function EncounterData:calculateLockoutExpiry()
+function EncounterLever:calculateLockoutExpiry()
 	local cooldownExpiry = 0
 	if self.lockoutTime == LOCKOUT_TIME.DAILY then
 		cooldownExpiry = getNextDayEpochTime()
@@ -147,15 +137,15 @@ function EncounterData:calculateLockoutExpiry()
 end
 
 ---@param self Player
----@param bossLever EncounterData
+---@param encounterLever EncounterLever
 ---@return LOCKOUT_STATUS
 ---@return integer|nil timeLeft
-function Player:hasLockout(bossLever)
-	if not self or bossLever.disableLockout then
+function Player:hasLockout(encounterLever)
+	if not self or encounterLever.disableLockout then
 		return LOCKOUT_STATUS.ACTIVE
 	end
 
-	local lockoutExpiry = self:getEncounterLockout(bossLever.bossName)
+	local lockoutExpiry = self:getEncounterLockout(encounterLever.encounterName)
 	local currentTime = os.time()
 	if not lockoutExpiry then
 		return LOCKOUT_STATUS.INACTIVE
@@ -168,7 +158,7 @@ function Player:hasLockout(bossLever)
 	return LOCKOUT_STATUS.ACTIVE, timeLeft
 end
 
-function EncounterData:checkUserIsOnEntranceGrid(players, leverUser)
+function EncounterLever:checkUserIsOnEntranceGrid(players, leverUser)
 	for _, player in pairs(players) do
 		if player == leverUser then
 			return ENCOUNTER_ERROR_CODES.NO_ERROR
@@ -177,14 +167,14 @@ function EncounterData:checkUserIsOnEntranceGrid(players, leverUser)
 	return ENCOUNTER_ERROR_CODES.STAND_ON_ENTRANCE
 end
 
-function EncounterData:checkEncounterDisabled()
+function EncounterLever:checkEncounterDisabled()
 	if self.disabled then
 		return ENCOUNTER_ERROR_CODES.ENCOUNTER_DISABLED
 	end
 	return ENCOUNTER_ERROR_CODES.NO_ERROR
 end
 
-function EncounterData:checkMinLevel(players)
+function EncounterLever:checkMinLevel(players)
 	if not self.requiredLevel then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
@@ -198,7 +188,7 @@ function EncounterData:checkMinLevel(players)
 	return ENCOUNTER_ERROR_CODES.NO_ERROR
 end
 
-function EncounterData:checkLockout(players, leverUser)
+function EncounterLever:checkLockout(players, leverUser)
 	if leverUser:getGroup():getId() >= GROUP_TYPE_GOD then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
@@ -220,14 +210,14 @@ function EncounterData:checkLockout(players, leverUser)
 	return status
 end
 
-function EncounterData:checkAccess(players, leverUser)
+function EncounterLever:checkAccess(players, leverUser)
 	if leverUser:getGroup():getId() >= GROUP_TYPE_GOD then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
 
 	local requiredState = self.requiredState
 
-	local checkStatus = ENCOUNTER_ERROR_CODES.NO_ERROR
+	local status = ENCOUNTER_ERROR_CODES.NO_ERROR
 	for _, currentPlayer in pairs(players) do
 		if currentPlayer:HasCorrectStorageValues(requiredState) then
 			 goto continue
@@ -236,13 +226,13 @@ function EncounterData:checkAccess(players, leverUser)
 		local translatedMessage = currentPlayer:Localizer():Context(self):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS)
 		currentPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 		currentPlayer:getPosition():sendMagicEffect(CONST_ME_POFF)
-		checkStatus = ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS
+		status = ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS
 		::continue::
 	end
-	return checkStatus
+	return status
 end
 
-function EncounterData:checkZoneOccupied()
+function EncounterLever:checkZoneOccupied()
 	local zone = self:getZone()
 	if zone:countPlayers(IgnoredByMonsters) > 0 then
 		return ENCOUNTER_ERROR_CODES.SOMEONE_INSIDE_ALREADY
@@ -250,14 +240,14 @@ function EncounterData:checkZoneOccupied()
 	return ENCOUNTER_ERROR_CODES.NO_ERROR
 end
 
-function EncounterData:setLockouts(players)
+function EncounterLever:setLockouts(players)
 	local expiry = self:calculateLockoutExpiry()
 	for _, player in pairs(players) do
 		player:setEncounterLockout(self.encounterName, expiry)
 	end
 end
 
-function EncounterData:handleTimeEvent(zone)
+function EncounterLever:handleTimeEvent(zone)
 	if self.timeoutEvent then
 		stopEvent(self.timeoutEvent)
 		self.timeoutEvent = nil
@@ -269,16 +259,16 @@ function EncounterData:handleTimeEvent(zone)
 end
 
 local leverUseConditions = {
-	EncounterData.checkUserIsOnEntranceGrid,
-	EncounterData.checkEncounterDisabled,
-	EncounterData.checkMinLevel,
-	EncounterData.checkAccess,
-	EncounterData.checkLockout,
-	EncounterData.checkZoneOccupied,
-	EncounterData.checkCustom
+	EncounterLever.checkUserIsOnEntranceGrid,
+	EncounterLever.checkEncounterDisabled,
+	EncounterLever.checkMinLevel,
+	EncounterLever.checkAccess,
+	EncounterLever.checkLockout,
+	EncounterLever.checkZoneOccupied,
+	EncounterLever.checkCustom
 }
 
-function EncounterData:onSuccessfulCompletion()
+function EncounterLever:onSuccessfulCompletion()
 	local zone = self:getZone()
 	if not zone then
 		return true
@@ -309,22 +299,7 @@ function EncounterData:onSuccessfulCompletion()
 	end
 end
 
-function EncounterData:createBoss()
-	if self.bossCreateFunction then
-		return self.bossCreateFunction()
-	end
-	if self.bossPosition then
-		logger.debug("[EncounterData:onUse] - creating boss: {}", self.bossName)
-		local bossMonster = Game.createMonster(self.bossName, self.bossPosition, true, true)
-		if not bossMonster then
-			return
-		end
-		bossMonster:registerEvent("EncounterOnSuccessfulCompletionn")
-		return bossMonster
-	end
-end
-
-function EncounterData:teleportPlayers(players)
+function EncounterLever:teleportPlayers(players)
 	for data, player in pairs(players) do
 		player:teleportTo(data.destination)
 		local effect = data.effect or CONST_ME_TELEPORT
@@ -332,7 +307,7 @@ function EncounterData:teleportPlayers(players)
 	end
 end
 
-function EncounterData:checkCustom(leverUser, players)
+function EncounterLever:checkCustom(leverUser, players)
 	for _, player in pairs(players) do
 		local resolutionContext = ResolutionContext.FromEncounter(self, player)
 		local status  = resolutionContext:ConditionsArePassable()
@@ -342,11 +317,11 @@ function EncounterData:checkCustom(leverUser, players)
 	end
 end
 
-function EncounterData:everyoneCanEnter(leverUser, players)
+function EncounterLever:everyoneCanEnter(leverUser, players)
 	for _, check in pairs(leverUseConditions) do
-		local error, message = check(self, players, leverUser)
+		local error = check(self, players, leverUser)
 		if error ~= ENCOUNTER_ERROR_CODES.NO_ERROR then
-			local translatedMessage = leverUser:Localizer():Context(self):Get(message)
+			local translatedMessage = leverUser:Localizer():Context(self):Get(error)
 			leverUser:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 			return false
 		end
@@ -356,12 +331,12 @@ end
 
 ---@param leverUser Player
 ---@return boolean
-function EncounterData:onUse(leverUser)
+function EncounterLever:onUse(leverUser)
 	local players = CreatureList()
 	for _, entranceTile in pairs(self.entranceTiles) do
 		players:Pos(entranceTile.pos, { destination = entranceTile.destination })
 	end
-	players:FilterByPlayer()
+	players:FilteredByPlayer()
 
 	if not self:everyoneCanEnter(leverUser, players:Get()) then
 		return false
@@ -370,16 +345,6 @@ function EncounterData:onUse(leverUser)
 	zone:removeMonsters()
 	for _, monster in pairs(self.monsters) do
 		Game.createMonster(monster.name, monster.pos, true, true)
-	end
-
-	local bossMonster = self:createBoss()
-	if not bossMonster then
-		logger.error(
-			T(
-				"[EncounterData:onUse] Failed to create boss :bossName: on position :pos:",
-				{ bossName = self.bossName, pos = self.bossPosition }
-			)
-		)
 	end
 
 	self:teleportPlayers(players:Get())
@@ -397,11 +362,11 @@ function EncounterData:onUse(leverUser)
 end
 
 ---@param Zone
-function EncounterData:getZone()
+function EncounterLever:getZone()
 	return Zone.getByEncounter(self)
 end
 
-function EncounterData:registerLever()
+function EncounterLever:registerLeverTp()
 	local leverAction = Action()
 	leverAction.onUse = function(player)
 		self:onUse(player)
@@ -418,24 +383,33 @@ function EncounterData:registerLever()
 	leverAction:register()
 
 	if self._position then
-		local lever = Game.createItem(self.leverId)
-		lever:setActionId(self._aid)
-		lever:setUniqueId(self._aid)
+		local encounterLeverInit = GlobalEvent("EncounterLeverInit" .. self.encounterName)
+		function encounterLeverInit.onStartup()
+			local lever = Game.createItem(self.leverId, 1, self._position)
+			lever:setActionId(self._aid)
+			lever:setUniqueId(self._uid)
+		end
+		encounterLeverInit:register()
+	end
+
+	if self.exitTpPosition then
+		SimpleTeleport(self.exitTpPosition, self.exitTpDestination)
+		local encounterLeverInit = GlobalEvent("EncounterTpInit" .. self.encounterName)
+		function encounterLeverInit.onStartup()
+			local tp = Game.createItem(1949 or self.exitTpId, 1, self.exitTpPosition)
+			tp:setActionId(self._aid)
+			tp:setUniqueId(self._uid)
+		end
+		encounterLeverInit:register()
 	end
 end
 
----@param self EncounterData
+---@param self EncounterLever
 ---@return boolean
-function EncounterData:register()
+function EncounterLever:register()
 	local missingParams = {}
-	if not self.bossName then
-		table.insert(missingParams, "bossName")
-	end
 	if not self.entranceTiles then
 		table.insert(missingParams, "entranceTiles")
-	end
-	if not self.zoneArea then
-		table.insert(missingParams, "zoneArea")
 	end
 	if not self.exitTpDestination then
 		table.insert(missingParams, "exitTpDestination")
@@ -444,23 +418,12 @@ function EncounterData:register()
 		table.insert(missingParams, "position or uid or aid")
 	end
 	if #missingParams > 0 then
-		local bossName = self.bossName or "unknown"
-		logger.error("[EncounterData:register] - boss with name {} missing parameters: {}", bossName, table.concat(missingParams, ", "))
+		logger.error("[EncounterLever:register] - encounter with name {} missing parameters: {}", (self.encounterName  or "Unknown"), table.concat(missingParams, ", "))
 		return false
 	end
 
-	local zone = self:getZone()
-
-	zone:addArea(self.zoneArea.from, self.zoneArea.to)
-	zone:blockFamiliars()
-	zone:setRemoveDestination(self.exitTpDestination)
-
-	self:registerLever()
+	self:registerLeverTp()
 
 	EncounterDataRegistry():register(self)
-
-	if self.exitTpPosition then
-		SimpleTeleport(self.exitTpPosition, self.exitTpDestination)
-	end
 	return true
 end

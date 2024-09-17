@@ -14,17 +14,18 @@ function scroll.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	--[[
 	local scrollData = promotionScrolls[item:getId()]
-	local scrollKV = player:kv():scoped("wheel-of-destiny"):scoped("scrolls")
-	if scrollKV:get(scrollData.name) then
-		player:sendTextMessage(MESSAGE_LOOK, "You have already deciphered this scroll.")
-		return true
+
+	local scrollKV = player:kv():scoped("wheel-of-destiny")
+	local currentPoints = scrollKV:get("scroll-points")
+	if not currentPoints or currentPoints < 0 then
+		currentPoints = 0
 	end
 
-	scrollKV:set(scrollData.name, true)
-	]]
-	player:sendTextMessage(MESSAGE_LOOK, "You have gained " .. scrollData.points .. " promotion points for the Wheel of Destiny by deciphering the " .. scrollData.itemName .. ".")
+	local addedPoints = scrollData.points
+
+	scrollKV:set("scroll-points", currentPoints + addedPoints)
+	player:sendTextMessage(MESSAGE_LOOK, T("You have gained :points: promotion points for the Wheel of Destiny by deciphering the :name:. You now have a total of :total: points.", { points = addedPoints, name = scrollData.itemName, total = currentPoints + addedPoints }))
 	item:remove(1)
 	return true
 end

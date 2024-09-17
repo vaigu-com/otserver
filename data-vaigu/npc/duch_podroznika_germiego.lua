@@ -91,7 +91,7 @@ local config = {
 				},
 				specialActionsOnSuccess = {
 					{
-						action = DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect,
+						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffect,
 					},
 				},
 			},
@@ -121,7 +121,7 @@ local config = {
 				},
 				specialActionsOnSuccess = {
 					{
-						action = DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect,
+						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffect,
 					},
 				},
 			},
@@ -173,7 +173,7 @@ local config = {
 				rewards = { DESERT_QUEST_GHOSTS_KEY_ITEMS.punchcard },
 				specialActionsOnSuccess = {
 					{
-						action = DESERT_QUEST_ONE_SPECIAL_ACTIONS.sendMagicEffect,
+						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffect,
 					},
 				},
 			},
