@@ -282,6 +282,8 @@ end
 local function normalizedItem(item)
 	item.count = item.count or 1
 	item.aid = item.aid or item.actionid
+	item.desc = item.desc or item.description
+	item.uid = item.uid or item.uniqueid
 	return item
 end
 
@@ -340,7 +342,7 @@ function CountNotAddableItems(items)
 	return count
 end
 
--- For any non-standard field f with value v: set it with setCustomAttribute(f, v)
+-- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param item table
 ---@param container Container|nil
 function Player:AddCustomItem(item, container)
@@ -349,9 +351,10 @@ function Player:AddCustomItem(item, container)
 	local count = item.count
 	local aid = item.aid
 	local showCustomDescOnAcquire = item.showCustomDescOnAcquire
-	local desc = item.desc or item.description
+	local desc = item.desc
 	local text = item.text
-	local uid = item.uid or item.uniqueid
+	local uid = item.uid
+	local fluidType = item.fluidType
 
 	local actionOnAdd = itemIdToActionOnAdd[id]
 	if actionOnAdd then
@@ -395,6 +398,9 @@ function Player:AddCustomItem(item, container)
 	end
 	if text and count == 1 then
 		addItem:setText(text)
+	end
+	if fluidType then
+		addItem:transform(id, fluidType)
 	end
 
 	local name = addItem:getName()
