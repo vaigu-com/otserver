@@ -429,20 +429,27 @@ Storage = {
 		LiquidBlack = 15011,
 		SciezkaDruida = 15012,
 		BigfootsBurden = 15013,
+
 		Ikea = 15014,
 		Fanatyk = 15015,
+
+		PathOfTheUndead = 15020,
 		SultanPrime = 15016,
-		Assassin = 15017,
-		SpoczywajacyTutaj = 15018,
-		Czeslaw = 15019,
-		SciezkaNieumarlych = 15020,
-		TeatrTaniejSensacji = 15021,
-		BHP = 15022,
-		Sramaci = 15023,
-		Tragedya = 15024,
-		AdAstra = 15025,
-		SynMarnotrawny = 15026,
-		DesertQuest = 15027,
+		AssassinsCreedSquurvaali = 15017,
+		ImRestingHere = 15018,
+		ChesterTheDwarf = 15019,
+		ProdigalSon = 15026,
+
+		TheaterOfCheapThrills = 15021,
+		SafetyAndOccupationalHygiene = 15022,
+		TheThreeSramatiansAndTheDragon = 15023,
+		FourActTragedy = 15024,
+		PerIustitiaAdAstra = 15025,
+		KingOfRatsHQ = 15026,
+
+		CaveExplorerOnShield = 15027,
+		DesertQuestOne = 15028,
+		DesertQuestTwo = 15029,
 	},
 	Grimvale = {
 		-- Reserved storage from 50380 - 50399
@@ -762,12 +769,11 @@ Storage = {
 	},
 	SultanPrime = {
 		Questline = NextStorage(),
-		Mission01 = NextStorage(),
-		Mission02 = NextStorage(),
-		Mission03 = NextStorage(),
 
+		Mission01 = NextStorage(),
 		MagicianFountain = NextStorage(),
 
+		Mission02 = NextStorage(),
 		FarmerChair = NextStorage(),
 		DromedaryCount = NextStorage(),
 
@@ -780,7 +786,7 @@ Storage = {
 
 		RewardsScripted = { Necklace = NextStorage() },
 	},
-	AssassinsCreedSkurwoala = {
+	AssassinsCreedSquurvaali = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
@@ -797,7 +803,7 @@ Storage = {
 			Silicon = NextStorage(),
 		},
 	},
-	KrolSzczurowHub = {
+	KingOfRatsHQ = {
 		Questline = NextStorage(),
 		Portals = {
 			Ryan = NextStorage(),
@@ -822,7 +828,7 @@ Storage = {
 		},
 	},
 	-- Krol szczurow
-	TeatrTaniejSensacji = {
+	TheaterOfCheapThrills = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
@@ -844,16 +850,15 @@ Storage = {
 			MachineWest = NextStorage(),
 			Book = NextStorage(),
 		},
-
 		Rewards = { Cheese = NextStorage() },
 		Spawns = {
-			PaniPitca = NextStorage(),
+			MissPizza = NextStorage(),
 			Robercik = NextStorage(),
 			JuerdoTitsgo = NextStorage(),
 		},
 		BrazilMap = NextStorage(),
 	},
-	BezpieczenstwoIHigienaPracy = {
+	SafetyAndOccupationalHygiene = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
@@ -867,7 +872,7 @@ Storage = {
 		Ytong = NextStorage(),
 		Scp420Document = NextStorage(),
 	},
-	TrzejSramaciISmok = {
+	TheThreeSramatiansAndTheDragon = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
@@ -898,10 +903,10 @@ Storage = {
 		},
 		AbandonedFireplace = NextStorage(),
 		VampireCityTrap = NextStorage(),
-		SzczurKrolowTile = NextStorage(),
+		RatOfKingsTile = NextStorage(),
 		Portals = { AfterHfpx = NextStorage() },
 	},
-	TragedyaWCzterechAktach = {
+	FourActTragedy = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
@@ -992,7 +997,7 @@ Storage = {
 			HugoBeachPlanet = NextStorage(),
 		},
 	},
-	SynMarnotrawny = {
+	ProdigalSon = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
@@ -1003,7 +1008,7 @@ Storage = {
 		MetroAccess = NextStorage(),
 		MainGateAccess = NextStorage(),
 		NorthMinesAccess = NextStorage(),
-		TileBeforeCzeslawCompartment = NextStorage(),
+		TileBeforeChesterCompartment = NextStorage(),
 		HammerMaking = { Lever = NextStorage(), Paint = NextStorage() },
 		CalculatorMaking = {
 			Lever = NextStorage(),
@@ -1075,26 +1080,26 @@ Storage = {
 		Cuckoo = NextStorage(),
 		Lamp = NextStorage(),
 	},
-	SpoczywajacyTutaj = {
+	ImRestingHere = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Coffin = NextStorage(),
 		LastWill = NextStorage(),
 		Corpse = NextStorage(),
 	},
-	CzeslawKrasnolud = {
+	ChesterTheDwarf = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
-		CzeslawHouseStairs = NextStorage(),
+		ChesterHouseStairs = NextStorage(),
 		Document = NextStorage(),
 		CaveTile = NextStorage(),
 		GandalfBag = NextStorage(),
-		DoorToCzeslawCompartment = NextStorage(),
+		DoorToChesterCompartment = NextStorage(),
 	},
-	SciezkaNieumarlych = {
+	PathOfTheUndead = {
 		Questline = NextStorage(),
 		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),

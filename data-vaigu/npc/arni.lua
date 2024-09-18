@@ -102,9 +102,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc z tym o co prosilem." or "Come back with what I asked for.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.TeatrTaniejSensacji.Questline) == 16 and player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) == 4 then
-			player:setStorageValue(Storage.TeatrTaniejSensacji.Questline, 17)
-			player:setStorageValue(Storage.TeatrTaniejSensacji.Mission06, 3)
+		elseif player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 16 and player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) == 4 then
+			player:setStorageValue(Storage.TheaterOfCheapThrills.Questline, 17)
+			player:setStorageValue(Storage.TheaterOfCheapThrills.Mission06, 3)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Okej, zaltawione. Przekaz Kitzowi, zeby nie bral ze soba nic poza pizama." or "Okay, done. Tell Kitz not to bring anything but pajamas.", npc, creature)
 		elseif player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) < 1 then
 			if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 6 then
@@ -118,7 +118,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"I always wanted to show off with my teeth necklace. I need 5 orc teeth,  5 rotworm teeth and maybe some of the vampire. Would you get them for me?",
 				}, npc, creature)
 				npcHandler:setTopic(playerId, 1)
-			elseif player:getStorageValue(Storage.TeatrTaniejSensacji.Questline) == 16 and message ~= "pomoc" and message ~= "help" then
+			elseif player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 16 and message ~= "pomoc" and message ~= "help" then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Moge go zapisac na oboz, ale jak to mowie: przysluga za przysluge. Najpierw pomoz mi zdobyc naszyjnik, a ja pomoge ci z wycieczka." or "I can sign him up for camp, but as I say, favor for favor. First, help me get the necklace, and I'll help you with the trip.", npc, creature)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Najpierw pomoz Komisarzowi Rybie, na te chwile nie jestem w stanie ci zaufac." or "Help Commissioner Fisher first, I cant trust you now.", npc, creature)

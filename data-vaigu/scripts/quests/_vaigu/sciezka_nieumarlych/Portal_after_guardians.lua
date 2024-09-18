@@ -38,9 +38,9 @@ function beforeGate.onStepIn(player, item, toPosition, fromPosition)
 			pos:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 		end
 	end
-	player:setStorageValue(Storage.SciezkaNieumarlych.SkipDoor, 1)
+	player:setStorageValue(Storage.PathOfTheUndead.SkipDoor, 1)
 end
 
-beforeGate:aid(Storage.SciezkaNieumarlych.GuardianGateTile)
+beforeGate:aid(Storage.PathOfTheUndead.GuardianGateTile)
 beforeGate:type("stepin")
 beforeGate:register()

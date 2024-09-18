@@ -34,14 +34,14 @@ function tileBeforeBook.onStepIn(player, item, fromPosition, target, toPosition,
 	local bookStand = Tile(pos):getItemById(unlitBookId)
 	bookStand:transform(litBookId)
 
-	player:say(player:Localizer(Storage.TeatrTaniejSensacji.Questline):Get("The book has been unsealed. You have one minute before its closed."), TALKTYPE_MONSTER_SAY)
+	player:say(player:Localizer(Storage.TheaterOfCheapThrills.Questline):Get("The book has been unsealed. You have one minute before its closed."), TALKTYPE_MONSTER_SAY)
 	addEvent(function()
 		bookStand:transform(unlitBookId)
 	end, 60 * 1000)
 	return true
 end
 
-tileBeforeBook:aid(Storage.TeatrTaniejSensacji.PlusShapePuzzle.Book)
+tileBeforeBook:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book)
 tileBeforeBook:type("stepin")
 tileBeforeBook:register()
 

@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialogs = {
-	[Storage.SpoczywajacyTutaj.Questline] = {
+	[Storage.ImRestingHere.Questline] = {
 		[6] = {
 			[{ "mission" }] = {
 				text = "Listen, I've finished exploring holes, and now I have a different passion. If you want to help me, listen up. Some time ago, I got a job as a TV presenter, and I still have that job. Unfortunately, the salary is not entirely satisfactory. I found out that one of the fortune tellers hosting some show on the network where I work has been quarantined. The station is now looking for a replacement for his position, and I think I'm suited for it - I have a degree in quackery, but I'll need a few props. Are you ready to help me?",
@@ -57,15 +57,15 @@ local dialogs = {
 			[{ "yes", "tak" }] = {
 				text = "Great. I need a Magic Light Wand to blind viewers with false promises. A Magician's Robe to look like a magician. A crystal ball with a small hole... just find a round aquarium. Lastly, I need a life crystal. If you gather these items, come back to me.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 1,
-					[Storage.CzeslawKrasnolud.Mission01] = 1,
-					[Storage.SpoczywajacyTutaj.Questline] = 7,
+					[Storage.ChesterTheDwarf.Questline] = 1,
+					[Storage.ChesterTheDwarf.Mission01] = 1,
+					[Storage.ImRestingHere.Questline] = 7,
 				},
 				requiredItems = { SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill },
 			},
 		},
 	},
-	[Storage.CzeslawKrasnolud.Questline] = {
+	[Storage.ChesterTheDwarf.Questline] = {
 		[1] = {
 			[{ GREET }] = {
 				text = "Hello, hello. Have you already acquired all the items I requested?",
@@ -73,9 +73,9 @@ local dialogs = {
 			[{ "mission", "yes", "tak" }] = {
 				text = "Thanks. I'm heading for the casting soon. Here's your reward, my pickaxe.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 2,
-					[Storage.CzeslawKrasnolud.Mission01] = 2,
-					[Storage.CzeslawKrasnolud.Mission02] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 2,
+					[Storage.ChesterTheDwarf.Mission01] = 2,
+					[Storage.ChesterTheDwarf.Mission02] = 1,
 				},
 				requiredItems = {
 					{ id = 3046 },
@@ -95,8 +95,8 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "My career as a TV fortune teller was going well. Some time ago, I took out a loan to start my own business, which turned out to be a scam, of course. I went to the turf accountant and bet on RKS Huwdu winning. Those failures of a human decided to lose, and I ended up with a payday loan with 69% interest! The deadline for the first loan installment is approaching. I don't want the bailiff to seize my house. Try asking Andrew the Moustachizzle about my problem. They always manage to avoid the law and responsibility.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 3,
-					[Storage.CzeslawKrasnolud.Mission02] = 2,
+					[Storage.ChesterTheDwarf.Questline] = 3,
+					[Storage.ChesterTheDwarf.Mission02] = 2,
 				},
 			},
 		},
@@ -112,9 +112,9 @@ local dialogs = {
 					CZESLAW_KRANSOLUD_KEY_ITEMS.identityDocument,
 				},
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 5,
-					[Storage.CzeslawKrasnolud.Mission02] = 4,
-					[Storage.CzeslawKrasnolud.Mission03] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 5,
+					[Storage.ChesterTheDwarf.Mission02] = 4,
+					[Storage.ChesterTheDwarf.Mission03] = 1,
 				},
 				outfitRewards = {
 					{ outfitId = 574, addon = 3 },
@@ -129,8 +129,8 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "You still need to help me with one more thing. I accidentally burned my cover, and the officials will seize my house soon. For financial scams, evading the authorities and other frauds, I'll get at least 15 years. I'm too old for that. I won't even survive that long. I thought about escaping from this continent. Somewhere in the desert, deep underground, I parked my steamboat. It was a long time ago, so I don't remember where the entrance to the cave is where I keep the steam engine. All I remember is that the entrance is boarded up. Just find that place and come back to me to mark it on the map.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 6,
-					[Storage.CzeslawKrasnolud.Mission03] = 2,
+					[Storage.ChesterTheDwarf.Questline] = 6,
+					[Storage.ChesterTheDwarf.Mission03] = 2,
 				},
 			},
 		},
@@ -143,9 +143,9 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "Are you sure that's the place? All right, here are the keys to my mole. I don't remember where I parked it, but actually, any mole will do. One more thing: I heard that my travel companion, Gandalf, is still alive. We used to steal from a certain library where we found a prophecy about the resurrection of the Crypt King. If that moment ever comes, I think Gandalf will count on the help of the bravest warriors like you. If you want to befriend him, it's worth remembering this secret passphrase: {aside from that people}. Meanwhile, I'm heading out of here. Goodbye.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 8,
-					[Storage.CzeslawKrasnolud.Mission03] = 4,
-					[Storage.CzeslawKrasnolud.DoorToCzeslawCompartment] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 8,
+					[Storage.ChesterTheDwarf.Mission03] = 4,
+					[Storage.ChesterTheDwarf.DoorToChesterCompartment] = 1,
 				},
 				expReward = 30000,
 				rewards = { { id = 27605 } },
@@ -160,8 +160,8 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "Found, not stolen. But due to our acquaintance, I can return what I took from Gandalf. Here's his camo backpack that I couldn't open. I won't lie, I'd like to know what's inside. Besides that, I have some stuff from WotE and this strange bag.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 10,
-					[Storage.CzeslawKrasnolud.Mission04] = 2,
+					[Storage.ChesterTheDwarf.Questline] = 10,
+					[Storage.ChesterTheDwarf.Mission04] = 2,
 				},
 				rewards = {
 					[10326] = {
@@ -182,16 +182,16 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.SynMarnotrawny.Questline] = {
+	[Storage.ProdigalSon.Questline] = {
 		[1] = {
 			[{ "mission" }] = {
 				text = "I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside.",
 				nextState = {
-					[Storage.SynMarnotrawny.Questline] = 2,
-					[Storage.SynMarnotrawny.Mission01] = 2,
-					[Storage.SynMarnotrawny.MetroAccess] = 1,
-					[Storage.SynMarnotrawny.TrainDestinations.ToJanuszex] = 1,
-					[Storage.SynMarnotrawny.TrainDestinations.ToHurghada] = 1,
+					[Storage.ProdigalSon.Questline] = 2,
+					[Storage.ProdigalSon.Mission01] = 2,
+					[Storage.ProdigalSon.MetroAccess] = 1,
+					[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = 1,
+					[Storage.ProdigalSon.TrainDestinations.ToHurghada] = 1,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -210,9 +210,9 @@ local dialogs = {
 			[{ "yes", "tak" }] = {
 				text = "Thanks for the info. This is your reward for your good job!",
 				nextState = {
-					[Storage.SynMarnotrawny.Questline] = 25,
-					[Storage.SynMarnotrawny.Mission06] = 4,
-					[Storage.Finished.SynMarnotrawny] = 1,
+					[Storage.ProdigalSon.Questline] = 25,
+					[Storage.ProdigalSon.Mission06] = 4,
+					[Storage.Finished.ProdigalSon] = 1,
 					[Storage.BigKlamoty.Questline] = 1,
 					[Storage.BigKlamoty.Mission01] = 1,
 				},

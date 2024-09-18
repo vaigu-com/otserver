@@ -1,11 +1,11 @@
 local travelTimeSeconds = 20
 local aidToDest = {
-	[Storage.SynMarnotrawny.TrainDestinations.ToHurghada] = Position(6461, 1125, 14),
-	[Storage.SynMarnotrawny.TrainDestinations.ToJanuszex] = Position(7550, 962, 13),
+	[Storage.ProdigalSon.TrainDestinations.ToHurghada] = Position(6461, 1125, 14),
+	[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = Position(7550, 962, 13),
 }
 local aidToName = {
-	[Storage.SynMarnotrawny.TrainDestinations.ToHurghada] = "Hurghada",
-	[Storage.SynMarnotrawny.TrainDestinations.ToJanuszex] = "Januszex",
+	[Storage.ProdigalSon.TrainDestinations.ToHurghada] = "Hurghada",
+	[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = "Januszex",
 }
 
 local confirmChoice = function(player, button, choice)
@@ -17,7 +17,7 @@ local confirmChoice = function(player, button, choice)
 	end
 
 	player:teleportTo(JANUSZEX_MOVING_TRAIN_ANCHOR)
-	player:say(player:Localizer(Storage.SynMarnotrawny.Questline):Get("TrainMovingTo") .. choice.text, TALKTYPE_MONSTER_SAY)
+	player:say(player:Localizer(Storage.ProdigalSon.Questline):Get("TrainMovingTo") .. choice.text, TALKTYPE_MONSTER_SAY)
 	addEvent(function()
 		if player then
 			player:teleportTo(aidToDest[choice.aid])
@@ -30,9 +30,9 @@ local function hasUnlockedDestination(player, aid)
 end
 
 local updateStorages = {
-	[Storage.SynMarnotrawny.Questline] = 3,
-	[Storage.SynMarnotrawny.Mission01] = 3,
-	[Storage.SynMarnotrawny.Mission02] = 1,
+	[Storage.ProdigalSon.Questline] = 3,
+	[Storage.ProdigalSon.Mission01] = 3,
+	[Storage.ProdigalSon.Mission02] = 1,
 }
 
 local trainTravel = Action()
@@ -41,18 +41,18 @@ function trainTravel.onUse(player, item, toPosition, fromPosition)
 		return false
 	end
 
-	if player:getStorageValue(Storage.SynMarnotrawny.MetroAccess) == -1 then
+	if player:getStorageValue(Storage.ProdigalSon.MetroAccess) == -1 then
 		return true
 	end
 
-	if player:getStorageValue(Storage.SynMarnotrawny.Questline) == 2 then
+	if player:getStorageValue(Storage.ProdigalSon.Questline) == 2 then
 		player:UpdateStorages(updateStorages)
 	end
 
 	player:ClearConditions()
 
-	local title = player:Localizer(Storage.SynMarnotrawny.Questline):Get("ShipTitle")
-	local message = player:Localizer(Storage.SynMarnotrawny.Questline):Get("ShipMessage")
+	local title = player:Localizer(Storage.ProdigalSon.Questline):Get("ShipTitle")
+	local message = player:Localizer(Storage.ProdigalSon.Questline):Get("ShipMessage")
 	local window = ModalWindow({ title = title, message = message })
 
 	for aid in pairs(aidToDest) do
@@ -64,10 +64,10 @@ function trainTravel.onUse(player, item, toPosition, fromPosition)
 		end
 	end
 
-	window:addButton(player:Localizer(Storage.SynMarnotrawny.Questline):Get("ShipOk"), confirmChoice)
+	window:addButton(player:Localizer(Storage.ProdigalSon.Questline):Get("ShipOk"), confirmChoice)
 	window:sendToPlayer(player)
 	return true
 end
 
-trainTravel:aid(Storage.SynMarnotrawny.Train.SelectDestination)
+trainTravel:aid(Storage.ProdigalSon.Train.SelectDestination)
 trainTravel:register()

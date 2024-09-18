@@ -21,5 +21,5 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return true
 end
 
-lever:aid(Storage.SciezkaNieumarlych.UpperLever)
+lever:aid(Storage.PathOfTheUndead.UpperLever)
 lever:register()

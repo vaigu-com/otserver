@@ -50,7 +50,16 @@ end
 
 local config = {
 	[Storage.SultanPrime.Questline] = {
-		[2] = {
+		[1] = {
+			[{ GREET }] = {
+				text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
+				nextState = {
+					[Storage.SultanPrime.Questline] = 2,
+					[Storage.SultanPrime.Mission01] = 2,
+				},
+			},
+		},
+		[1] = {
 			[{ GREET }] = {
 				text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
 			},

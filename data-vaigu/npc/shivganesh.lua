@@ -59,19 +59,19 @@ local function creatureSayCallback(npc, creature, type, message)
 	if table.contains({ "walker", "jezyk", "papier", "list" }, message) and player:getStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu) == 2 and player:getItemCount(22160) > 0 then
 		player:setStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu, 3)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "A to bardzo proste, zapisze ci na tym skrawku tlumaczenie i pozdrow odemnie Walkera." or "Ah that's really simple. I will describe a translation on this piece of paper. Say hi to Walker from me.", npc, creature)
-	elseif table.contains({ "mission", "misja", "kebab" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Mission05) == 2 then
+	elseif table.contains({ "mission", "misja", "kebab" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission05) == 2 then
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL" and "Jasne, ze moge przygotowac takie zamowienie. Ostatnio krucho u mnie z czosnkiem, wiec bedziesz musial skombinowac tak z trzy glowki. Zamowienie bedzie kosztowac 8 platynek." or "Sure, I can prepare such an order. Lately, I've been running low on garlic, so you'll have to manage with about three bulbs. The order will cost 8 platinum coins.",
 			npc,
 			creature
 		)
-		player:setStorageValue(Storage.TeatrTaniejSensacji.Mission05, 3)
-	elseif table.contains({ "mission", "misja", "czosnek", "garlic", "kebab" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Mission05) == 3 then
+		player:setStorageValue(Storage.TheaterOfCheapThrills.Mission05, 3)
+	elseif table.contains({ "mission", "misja", "czosnek", "garlic", "kebab" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission05) == 3 then
 		if player:getItemCount(8197) >= 3 and player:removeMoney(800) then
 			player:removeItem(8197, 3)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dzieki za pomoc. Przekaz Tomkowi, ze dostarcze kebaby na czas." or "Thanks for the help. Let Tom know that I'll deliver the kebabs on time.", npc, creature)
-			player:setStorageValue(Storage.TeatrTaniejSensacji.Questline, 14)
-			player:setStorageValue(Storage.TeatrTaniejSensacji.Mission05, 4)
+			player:setStorageValue(Storage.TheaterOfCheapThrills.Questline, 14)
+			player:setStorageValue(Storage.TheaterOfCheapThrills.Mission05, 4)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc, gdy bedziesz miec trzy zabki czosnku. I nie zapomnij o oplacie 8 platynek." or "Return when you have three garlic cloves. And don't forget about the payment of 8 platinum coins.", npc, creature)
 		end

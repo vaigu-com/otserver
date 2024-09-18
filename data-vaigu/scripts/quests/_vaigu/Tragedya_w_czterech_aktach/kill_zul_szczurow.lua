@@ -1,6 +1,6 @@
 local updateStorages = {
-	[Storage.TragedyaWCzterechAktach.Questline] = 18,
-	[Storage.TragedyaWCzterechAktach.Mission06] = 4,
+	[Storage.FourActTragedy.Questline] = 18,
+	[Storage.FourActTragedy.Mission06] = 4,
 }
 
 local zulSzczurowDeath = CreatureEvent("ZulSzczurowDeath")
@@ -11,7 +11,7 @@ function zulSzczurowDeath.onDeath(creature)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		local storage_val = player:getStorageValue(Storage.TragedyaWCzterechAktach.Questline)
+		local storage_val = player:getStorageValue(Storage.FourActTragedy.Questline)
 		if storage_val ~= 17 then
 			return true
 		end

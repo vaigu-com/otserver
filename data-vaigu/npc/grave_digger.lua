@@ -130,8 +130,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeMoney(10) then
 				player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar })
 				player:setStorageValue(Storage.CrowbarBought, 1)
-				player:setStorageValue(Storage.SpoczywajacyTutaj.Questline, 1)
-				player:setStorageValue(Storage.SpoczywajacyTutaj.Mission01, 1)
+				player:setStorageValue(Storage.ImRestingHere.Questline, 1)
+				player:setStorageValue(Storage.ImRestingHere.Mission01, 1)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo, oto twoj lom." or "Here you are.", npc, creature)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "No co ty, 10gp nie masz?!" or "What?! Its only 10gps.", npc, creature)
@@ -140,23 +140,23 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wiecej ci nie sprzedam, musi cos starczyc dla innych!" or "I won't sell you more than one of these.", npc, creature)
 		end
 		npcHandler:setTopic(playerId, 0)
-	elseif table.contains({ "mission", "misja", "klatwa", "curse" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Mission04) == 2 then
+	elseif table.contains({ "mission", "misja", "klatwa", "curse" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission04) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Tak, troche sie znam na zdejmowaniu klatw, ale o jaka dokladnie chodzi?" or "Yes, I'm somewhat knowledgeable about lifting curses, but which curse are you specifically referring to?", npc, creature)
-	elseif table.contains({ "ytong" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Mission04) == 2 then
+	elseif table.contains({ "ytong" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission04) == 2 then
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL" and "Wyjatkowo paskudna. Bede musial cie prosic o udanie sie w pewne miejsce. Aby zdjac klatwe, bedziesz musial podac tajne haslo przekletemu. Niestety, ja tego hasla nie znam, ale pomoc ci moze specjalna {ksiega} zaklec."
 				or "Particularly nasty, indeed. I'll have to ask you to go to a certain place. To lift the curse, you'll need to provide the cursed one with a secret passphrase. Unfortunately, I don't know that passphrase, but a special spell {book} might assist you.",
 			npc,
 			creature
 		)
-	elseif table.contains({ "ksiega", "book" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Mission04) == 2 then
+	elseif table.contains({ "ksiega", "book" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission04) == 2 then
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL" and "Ksiega jest schowana za magicznymi mechanizmami, gleboko w jaskiniach Stone Golemow na Hurghadzie. Mechanizm wymyslil ktos o nazwisku konczacym sie na -stein, wiec wez ze soba duzo gold coinow."
 				or "The book is hidden behind magical mechanisms, deep within the caverns of the Stone Golems on Hurghad Island. The machines inside were created by someone named -stein, so take lot of gold coins with you.",
 			npc,
 			creature
 		)
-	elseif table.contains({ "sygnet", "signet", "piescien", "seal" }, message) and player:getStorageValue(Storage.SciezkaNieumarlych.Mission03) == 1 then
+	elseif table.contains({ "sygnet", "signet", "piescien", "seal" }, message) and player:getStorageValue(Storage.PathOfTheUndead.Mission03) == 1 then
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL"
 					and "Nie wiem, skad wiesz o istnieniu tego sygnetu, ale jezeli chcesz go odnalezc, to sluchaj. Bylo to w jaskiniach Diremawow pod bagnem kultystow. Gdy zblizalem sie do jaskini Ognistego Skurwiwija, ten ryknal tak, ze obsralem sie i zaczalem jak najszybciej stamtad uciekac. Z tego pospiechu wypadla mi z plecaka jedna z atrap atefaktow, ktorych uzywalem do.. a z reszta, niewazne. W srodku tej atrapy, ktora mi wypadla, ukryty byl pierscien. Jezeli dobrze pamietam, to atrapa ta miala imitowac drogocenna miniaturke statku. Wracajac do tego jak ucieklem, pamietam tylko jak obudzilem sie w temple. Jesli chcesz, to mozesz poszukac tego pierscienia, mi on juz sie nie przyda."

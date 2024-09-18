@@ -1,12 +1,12 @@
 local updateStorages = {
-	[Storage.TeatrTaniejSensacji.Questline] = 30,
-	[Storage.TeatrTaniejSensacji.Mission10] = 3,
+	[Storage.TheaterOfCheapThrills.Questline] = 30,
+	[Storage.TheaterOfCheapThrills.Mission10] = 3,
 }
 
 local map = Action()
 
 function map.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TeatrTaniejSensacji.Mission10) ~= 2 then
+	if player:getStorageValue(Storage.TheaterOfCheapThrills.Mission10) ~= 2 then
 		return
 	end
 
@@ -14,5 +14,5 @@ function map.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return true
 end
 
-map:aid(Storage.TeatrTaniejSensacji.BrazilMap)
+map:aid(Storage.TheaterOfCheapThrills.BrazilMap)
 map:register()

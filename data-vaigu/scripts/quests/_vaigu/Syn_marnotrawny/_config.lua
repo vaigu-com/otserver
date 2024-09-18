@@ -1,47 +1,47 @@
 SYN_MARNOTRAWNY_KEY_ITEMS = {
 	payslip = {
 		id = 2818,
-		aid = Storage.SynMarnotrawny.Payslip,
+		aid = Storage.ProdigalSon.Payslip,
 		desc = "A payslip.",
 	},
 	bookOne = {
 		id = 2816,
-		aid = Storage.SynMarnotrawny.EristicsBooks.One,
+		aid = Storage.ProdigalSon.EristicsBooks.One,
 		desc = "Eristics for dummies\nPart 3",
 	},
 	bookTwo = {
 		id = 2821,
-		aid = Storage.SynMarnotrawny.EristicsBooks.Two,
+		aid = Storage.ProdigalSon.EristicsBooks.Two,
 		desc = "Eristics for dummies\nPart 5",
 	},
 	bookThree = {
 		id = 2828,
-		aid = Storage.SynMarnotrawny.EristicsBooks.Three,
+		aid = Storage.ProdigalSon.EristicsBooks.Three,
 		desc = "Eristics for dummies\nPart 8",
 	},
 	pot = {
 		id = 3465,
 		desc = "Every dish cooked in this pot can only make you more slim and fit.",
-		aid = Storage.SynMarnotrawny.EristicsItems.Pot,
+		aid = Storage.ProdigalSon.EristicsItems.Pot,
 	},
 	lovePotion = {
 		id = 9173,
 		desc = "This smart potion will make you a lovely person.",
-		aid = Storage.SynMarnotrawny.EristicsItems.LovePotion,
+		aid = Storage.ProdigalSon.EristicsItems.LovePotion,
 	},
 	herbs = {
 		id = 12671,
 		desc = "Assortment of herbs. They cure cancer within 24 hours.",
-		aid = Storage.SynMarnotrawny.EristicsItems.Herbs,
+		aid = Storage.ProdigalSon.EristicsItems.Herbs,
 	},
 	loanDocument = {
 		id = 2815,
 		desc = "Loan agreement",
-		aid = Storage.SynMarnotrawny.EristicsItems.LoanDocument,
+		aid = Storage.ProdigalSon.EristicsItems.LoanDocument,
 	},
 	diamondNecklace = {
 		id = 35607,
-		aid = Storage.SynMarnotrawny.DiamondNecklace,
+		aid = Storage.ProdigalSon.DiamondNecklace,
 	},
 	frediBeer = {
 		id = 6106,
@@ -89,7 +89,7 @@ SYN_MARNOTRAWNY_SPECIAL_CONDITIONS = {
 	end,
 	saidCorrectPassword = function(context)
 		local player = context.player
-		local correctPassword = tostring(player:getStorageValue(Storage.SynMarnotrawny.Blackboard))
+		local correctPassword = tostring(player:getStorageValue(Storage.ProdigalSon.Blackboard))
 		local saidPassword = context.msg
 		if MsgContains(saidPassword, correctPassword) then
 			return true
@@ -119,7 +119,7 @@ SYN_MARNOTRAWNY_SPECIAL_CONDITIONS = {
 SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
 	setPersonalBlackboardPassword = function(context)
 		local player = context.player
-		player:setStorageValue(Storage.SynMarnotrawny.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
+		player:setStorageValue(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
 	end,
 }
 

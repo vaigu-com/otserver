@@ -1,13 +1,13 @@
 local updateStorages = {
-	[Storage.TragedyaWCzterechAktach.Questline] = 10,
-	[Storage.TragedyaWCzterechAktach.Mission03] = 2,
+	[Storage.FourActTragedy.Questline] = 10,
+	[Storage.FourActTragedy.Mission03] = 2,
 }
 
 local theKraken = CreatureEvent("TheKrakenKill")
 
 function theKraken.onDeath(creature)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		local storage_val = player:getStorageValue(Storage.TragedyaWCzterechAktach.Questline)
+		local storage_val = player:getStorageValue(Storage.FourActTragedy.Questline)
 		if storage_val ~= 9 then
 			return true
 		end

@@ -6,13 +6,13 @@ function tile.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.CzeslawKrasnolud.Questline) >= 8 then
+	if player:getStorageValue(Storage.ChesterTheDwarf.Questline) >= 8 then
 		player:teleportTo(fromPosition, true)
-		player:say(player:Localizer(Storage.CzeslawKrasnolud.Questline):Get("Chester's house is vacant right now. Therefore it would be impolite to tresspass."), TALKTYPE_MONSTER_SAY)
+		player:say(player:Localizer(Storage.ChesterTheDwarf.Questline):Get("Chester's house is vacant right now. Therefore it would be impolite to tresspass."), TALKTYPE_MONSTER_SAY)
 	end
 	return true
 end
 
-tile:aid(Storage.CzeslawKrasnolud.CzeslawHouseStairs)
+tile:aid(Storage.ChesterTheDwarf.ChesterHouseStairs)
 tile:type("stepin")
 tile:register()

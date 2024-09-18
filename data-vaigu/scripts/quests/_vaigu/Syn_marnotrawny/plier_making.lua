@@ -11,7 +11,7 @@ function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotke
 
 	return true
 end
-metalPile:aid(Storage.SynMarnotrawny.PliersMaking.MetalPile)
+metalPile:aid(Storage.ProdigalSon.PliersMaking.MetalPile)
 metalPile:register()
 
 local lever = Action()
@@ -28,5 +28,5 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 	return true
 end
-lever:aid(Storage.SynMarnotrawny.PliersMaking.Lever)
+lever:aid(Storage.ProdigalSon.PliersMaking.Lever)
 lever:register()

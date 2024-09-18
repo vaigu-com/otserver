@@ -49,13 +49,13 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[14] = {
 			[{ "mission" }] = {
 				text = "I've been visited before by those who asked, 'spare any help, boss?' If you renovate my old town, we'll consider it. You can also bring me a crystal of the depths. Do one of these, and I'll surely reward you.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 15,
-					[Storage.TrzejSramaciISmok.Mission06] = 2,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 15,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission06] = 2,
 				},
 			},
 		},
@@ -65,8 +65,8 @@ local config = {
 				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.deepCrystal },
 				textNoRequiredItems = "If you don't know where to find the crystals, try diving into the sea east of here.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 16,
-					[Storage.TrzejSramaciISmok.Mission06] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 16,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission06] = 3,
 				},
 			},
 		},

@@ -12,7 +12,7 @@ local ritualPot = nil
 
 local function openPortal(pos)
 	local portal = Game.createItem(workingTeleportId, 1, pos)
-	portal:setActionId(Storage.SciezkaNieumarlych.RitualLocus)
+	portal:setActionId(Storage.PathOfTheUndead.RitualLocus)
 	ritualPot:remove()
 end
 
@@ -52,7 +52,7 @@ function ritualLocus.onAddItem(moveitem, tileitem, position)
 end
 
 ritualLocus:type("additem")
-ritualLocus:aid(Storage.SciezkaNieumarlych.RitualLocus)
+ritualLocus:aid(Storage.PathOfTheUndead.RitualLocus)
 ritualLocus:register()
 
 local step_tile = MoveEvent()
@@ -69,6 +69,6 @@ function step_tile.onStepIn(player, stepInItem, toPosition, fromPosition)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 end
 
-step_tile:aid(Storage.SciezkaNieumarlych.RitualLocus)
+step_tile:aid(Storage.PathOfTheUndead.RitualLocus)
 step_tile:type("stepin")
 step_tile:register()

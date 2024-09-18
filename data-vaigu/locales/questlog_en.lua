@@ -43,27 +43,31 @@ return {
 		local requiredKills = dailyTask.requiredKills
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Daily task for :name:!\n\n", { name = name })
-		dailyTaskDescription = dailyTaskDescription .. T("You have killed :currentKills:/:requiredKills: :name:.", {
-			name = name,
-			currentKills = currentKills,
-			requiredKills = requiredKills,
-		})
+		dailyTaskDescription = dailyTaskDescription
+			.. T("You have killed :currentKills:/:requiredKills: :name:.", {
+				name = name,
+				currentKills = currentKills,
+				requiredKills = requiredKills,
+			})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n"
+			dailyTaskDescription = dailyTaskDescription
+				.. "\n\nYou will also need to bring the following creature products to the Mayor:\n"
 			for _, item in pairs(requiredItems) do
 				local id = item.id
 				local itemName = ItemType(id):getName()
 				local count = item.count
-				dailyTaskDescription = dailyTaskDescription .. T(":count: :itemName:\n", {
-					count = count,
-					itemName = itemName,
-				})
+				dailyTaskDescription = dailyTaskDescription
+					.. T(":count: :itemName:\n", {
+						count = count,
+						itemName = itemName,
+					})
 			end
 		end
-		dailyTaskDescription = dailyTaskDescription .. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
-			money = dailyTask.money,
-			tibiaCoins = dailyTask.tibiaCoins,
-		})
+		dailyTaskDescription = dailyTaskDescription
+			.. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
+				money = dailyTask.money,
+				tibiaCoins = dailyTask.tibiaCoins,
+			})
 
 		return dailyTaskDescription
 	end,
@@ -281,23 +285,38 @@ return {
 	["Bigfoot's Burden"] = "Bigfoot's Burden",
 	["Reputation points"] = "Reputation points",
 	["Current reputation points"] = function(context)
-		return string.format("Currently You have %d reputation points.", math.max(context.player:getStorageValue(921), 0))
+		return string.format(
+			"Currently You have %d reputation points.",
+			math.max(context.player:getStorageValue(921), 0)
+		)
 	end,
 	["Daily Minor: Crystal Keeper"] = "Daily Minor: Crystal Keeper",
 	["Daily Minor: Crystal Keeper Status"] = function(context)
-		return string.format("Use the repair crystal to repair five damaged blue crystal in the crystal caves. Damaged crystals will not glow. %d/5", math.max(context.player:getStorageValue(932), 0))
+		return string.format(
+			"Use the repair crystal to repair five damaged blue crystal in the crystal caves. Damaged crystals will not glow. %d/5",
+			math.max(context.player:getStorageValue(932), 0)
+		)
 	end,
 	["Daily Minor: Raiders of the lost Spark"] = "Daily Minor: Raiders of the lost Spark",
 	["Daily Minor: Raiders of the lost Spark Status"] = function(context)
-		return string.format("Kill Crystal Crushers and use discharger item on the corpse to collect their charges. Gather 7 charges and report back. %d/7", math.max(context.player:getStorageValue(934), 0))
+		return string.format(
+			"Kill Crystal Crushers and use discharger item on the corpse to collect their charges. Gather 7 charges and report back. %d/7",
+			math.max(context.player:getStorageValue(934), 0)
+		)
 	end,
 	["Daily Minor Plus: Exterminators"] = "Daily Minor Plus: Exterminators",
 	["Daily Minor Plus: Exterminators Status"] = function(context)
-		return string.format("Kill 10 of the wigglers for the gnomes. Then report back to the gnomes. %d/10", math.max(context.player:getStorageValue(937), 0))
+		return string.format(
+			"Kill 10 of the wigglers for the gnomes. Then report back to the gnomes. %d/10",
+			math.max(context.player:getStorageValue(937), 0)
+		)
 	end,
 	["Daily Minor Plus: Mushroom Digger"] = "Daily Minor Plus: Mushroom Digger",
 	["Daily Minor Plus: Mushroom Digger Status"] = function(context)
-		return string.format("Find a truffle sniffing pig and lure it around. Occasionally it will unearth some truffles. Use the baby pig on the truffles to feed it 3 times. Then report back to the gnomes. %d/3", math.max(context.player:getStorageValue(940), 0))
+		return string.format(
+			"Find a truffle sniffing pig and lure it around. Occasionally it will unearth some truffles. Use the baby pig on the truffles to feed it 3 times. Then report back to the gnomes. %d/3",
+			math.max(context.player:getStorageValue(940), 0)
+		)
 	end,
 	["Daily Major Advanced: Spores"] = "Daily Major Advanced: Spores",
 	["Gather spores in the correct order. Your spore gathering list will display the next color you have to look for."] = "Gather spores in the correct order. Your spore gathering list will display the next color you have to look for.",
@@ -307,7 +326,10 @@ return {
 	["You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them."] = "You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them.",
 	["Daily Major: The Tinker's Bell"] = "Daily Major: The Tinker's Bell",
 	["Daily Major: The Tinker's Bell Status"] = function(context)
-		return string.format("Use the harmonic bell on the mad golems in the golem workshop so that they will automatically be teleported to the gnomish workshops. Then report back to the gnomes. %d/4.", math.max(context.player:getStorageValue(946), 0))
+		return string.format(
+			"Use the harmonic bell on the mad golems in the golem workshop so that they will automatically be teleported to the gnomish workshops. Then report back to the gnomes. %d/4.",
+			math.max(context.player:getStorageValue(946), 0)
+		)
 	end,
 	["The Ape City"] = "The Ape City",
 	["Hairycles Missions"] = "Hairycles Missions",
@@ -415,27 +437,39 @@ return {
 	["Sultan Prime"] = "Sultan Prime",
 	["What Is Mafia? Is It Good?"] = "What Is Mafia? Is It Good?",
 	["You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan."] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
+	["Sultan made you an offer. Give the neclace to him to begin your mission."] = "Sultan made you an offer. Give the neclace to him to begin your mission.",
 	["You returned the amulet to the Sultan and agreed to help him."] = "You returned the amulet to the Sultan and agreed to help him.",
 	["Unlucky Surveyors"] = "Unlucky Surveyors",
 	["Go to Sultan of Phantasms for another task."] = "Go to Sultan of Phantasms for another task.",
 	["Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask."] = "Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask.",
 	["You've successfully completed the first task for Sultan of Phantasms. Return to him now."] = "You've successfully completed the first task for Sultan of Phantasms. Return to him now.",
-	["Sultan of Phantasms has assigned you to kill camels."] = "Sultan of Phantasms has assigned you to kill camels.",
+	["CAMELS_KILLED_STATUS"] = function(context)
+		return string.format(
+			"Sultan of Phantasms ordered you to kill dromedary. So far you managed to kill %d of them.",
+			context.player:getStorageValue(Storage.SultanPrime.DromedaryCount)
+		)
+	end,
 	["You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it."] = "You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it.",
 	["Sultan will be pleased with your actions. Return to him for your reward."] = "Sultan will be pleased with your actions. Return to him for your reward.",
 	["Sultan rewarded you for your cooperation."] = "Sultan rewarded you for your cooperation.",
 	["Sultan's Last Plague"] = "Sultan's Last Plague",
-	["Hello, recipient. This is Sultan. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut."] = "Hello, recipient. This is Sultan. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut.",
-	["~Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!"] = "~Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
+	["~Sultan69: It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut."] = "~Sultan69:It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut.",
+	["~Sultan69: How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!"] = "~Sultan69: How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
 	["Sultan ordered you to.. You can go to Father Natanek and ask him for redemption."] = "Sultan ordered you to.. You can go to Father Natanek and ask him for redemption.",
 	["Father Natank gave you today's offering from today's Mass in exchange for your silence."] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
 	["Opened Coffins"] = "Opened Coffins",
 	["OPENED_COFFINS_STATUS"] = function(context)
-		return string.format("Hey there. This is Sultan of Phantasms. I'm communicating with you through 5GMO chemtrails waves. Start by desecrating a few graves. It will definitely weaken the morale of the people in the city. You have opened %d of 5 coffins.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0)))
+		return string.format(
+			"~Sultan69: I'm communicating with you through 5GMO chemtrails waves. Start by desecrating a few graves. It will definitely weaken the morale of the people in the city. You have opened %d of 5 coffins.",
+			(math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0))
+		)
 	end,
 	["Bodies Thrown"] = "Bodies Thrown",
 	["BODIES_THROWN_STATUS"] = function(context)
-		return string.format("Sultan here again. It's time for something more cruel. Kill the city's residents and throw their bodies into the jaws of the tentacle monster near the depot. You have thrown %d of 10 bodies.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0)))
+		return string.format(
+			"~Sultan69: It's time for something more cruel. Kill the city's residents and throw their bodies into the jaws of the tentacle monster near the depot. You have thrown %d of 10 bodies.",
+			(math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0))
+		)
 	end,
 	["Theater of Cheap Thrills"] = "Theater of Cheap Thrills",
 	["01. Vitat Iustitia"] = "01. Vitat Iustitia",
@@ -519,7 +553,7 @@ return {
 	["You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost."] = "You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost.",
 	["At the moment when the undead king of the crypt was about to finish you, an angel arrived who managed to avoid the traps and teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek."] = "At the moment when the undead king of the crypt was about to finish you, an angel arrived who managed to avoid the traps and teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek.",
 	["Father Natanek informed you about the adverse consequences of the victory of the king of the crypt."] = "Father Natanek informed you about the adverse consequences of the victory of the king of the crypt.",
-	["Resting Here"] = "Resting Here",
+	["Im Resting Here"] = "Im Resting Here",
 	["A Work to Screw up"] = "A Work to Screw up",
 	["Grave digger gave you a special crowbar. Try to find a use for it."] = "Grave digger gave you a special crowbar. Try to find a use for it.",
 	["You found some kind of last will. Try to find the item mentioned in it."] = "You found some kind of last will. Try to find the item mentioned in it.",
@@ -552,12 +586,9 @@ return {
 	["Gather the necessary items, summon, and ultimately defeat the Undead Crypt King."] = "Gather the necessary items, summon, and ultimately defeat the Undead Crypt King.",
 	["You have defeated the Undead Crypt King. Return to Gandalf for your reward."] = "You have defeated the Undead Crypt King. Return to Gandalf for your reward.",
 	["Gandalf misplaced a certain item intended as a reward, but you have received his other gifts."] = "Gandalf misplaced a certain item intended as a reward, but you have received his other gifts.",
-	["CAMELS_KILLED_STATUS"] = function(context)
-		return string.format("Sultan of Phantasms ordered you to kill dromedary. So far you managed to kil %d of them.", context.player:getStorageValue(Storage.SultanPrime.DromedaryCount))
-	end,
 	["King of Rats Headquarters Status"] = function(context)
 		local result = -1
-		for _, storage in pairs(Storage.KrolSzczurowHub.Portals) do
+		for _, storage in pairs(Storage.KingOfRatsHQ.Portals) do
 			local value = context.player:getStorageValue(storage)
 			if value == 1 then
 				result = result + 1
@@ -565,7 +596,7 @@ return {
 		end
 		return string.format("So far you have collected %d artifacts.", result)
 	end,
-	-- krolSzczurowHub
+	-- KingOfRatsHQ
 	["King of Rats Headquarters"] = "King of Rats Headquarters",
 	["CurentStatus"] = "Current status",
 	["01. to Ryan"] = "01. to Ryan",
@@ -577,7 +608,7 @@ return {
 	["07. to Asuras"] = "07. to Asuras",
 	["08. to East Hurgahada"] = "08. to East Hurgahada",
 	["You unlocked this teleport"] = "You unlocked this teleport",
-	-- bezpieczenstwoIHigienaPracy
+	-- SafetyAndOccupationalHygiene
 	["Safety and Occupational Hygiene"] = "Safety and Occupational Hygiene",
 	["01. Avast ye, scallywag!"] = "01. Avast ye, scallywag!",
 	["Find Turdstin - he might know where the Rat of Kings is."] = "Find Turdstin - he might know where the Rat of Kings is.",
@@ -587,7 +618,7 @@ return {
 	["02. Eww. Am I the only one there to hate the womyn?"] = "02. Eww. Am I the only one there to hate the womyn?",
 	["Turdstin thanked you for the information that the only way to find the Rat of Kings is by listening to the Januses' choir. Talk to him again for a new mission."] = "Turdstin thanked you for the information that the only way to find the Rat of Kings is by listening to the Januses' choir. Talk to him again for a new mission.",
 	["Turdstin asked for your help in collecting cans."] = "Turdstin asked for your help in collecting cans.",
-	["Chorus of Januses:\nWhen the evening stars extinguish,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!"] = "Chorus of Januses:\nWhen the evening stars extinguish,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!",
+	["Chorus of Januses:\nWhen the evening stars extinguish their flame,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!"] = "Chorus of Januses:\nWhen the evening stars extinguish their flame,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!",
 	["03. Vicinities Lost"] = "03. Vicinities Lost",
 	["Turdstin mentioned that he will need assistance."] = "Turdstin mentioned that he will need assistance.",
 	["Turdstin needs help with the Emperor's workers and hooligans."] = "Turdstin needs help with the Emperor's workers and hooligans.",
@@ -595,7 +626,7 @@ return {
 	["04. Very Important Posts"] = "04. Very Important Posts",
 	["Turdstin mentioned that he might have a new task for you."] = "Turdstin mentioned that he might have a new task for you.",
 	["Turdstin found a fake premium account on 4chan. Try to bribe Xe'na."] = "Turdstin found a fake premium account on 4chan. Try to bribe Xe'na.",
-	["Your mother, grandmother, and sister are insane\nOn the eastern borders, there's a path that's not cursed upon any name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket."] = "Your mother, grandmother, and sister are insane\nOn the eastern borders, there's a path that's not cursed upon any name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket.",
+	["Your mother, grandmother, and sister - they are all insane\nOn the eastern borders, there's a path cursed upon a name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket."] = "Your mother, grandmother, and sister - they are all insane\nOn the eastern borders, there's a path cursed upon a name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket.",
 	["05. Hydrofoils with Seasoning"] = "05. Hydrofoils with Seasoning",
 	["You handed over the premium account to Xe'na. And now..."] = "You handed over the premium account to Xe'na. And now...",
 	["You fed the exhausted Rat of Kings. Now ask him about the mission."] = "You fed the exhausted Rat of Kings. Now ask him about the mission.",
@@ -606,12 +637,12 @@ return {
 	["You found the Ytong of Power. Now, return to the Rat of Kings."] = "You found the Ytong of Power. Now, return to the Rat of Kings.",
 	["The Rat of Kings revealed information to you about the looming threat- HF-P/X. Go back to Romek and hear his opinion on the matter."] = "The Rat of Kings revealed information to you about the looming threat- HF-P/X. Go back to Romek and hear his opinion on the matter.",
 	["Chorus of Januses:\nI want to go to the only place on Earth,\nWhere the darkness no longer matters,\nTo the beings who accept my abilities as divinely,\nTo them I aspire, only to my justice.\nThere is one small place on Earth for me,\nWhere nothing else matters beyond the mushroom from the grout,\nI escape there with all my justice,\nI believe in you, I believe in my Brother-in-law."] = "Chorus of Januses:\nI want to go to the only place on Earth,\nWhere the darkness no longer matters,\nTo the beings who accept my abilities as divinely,\nTo them I aspire, only to my justice.\nThere is one small place on Earth for me,\nWhere nothing else matters beyond the mushroom from the grout,\nI escape there with all my justice,\nI believe in you, I believe in my Brother-in-law.",
-	-- trzejSramaciISmok
+	-- TheThreeSramatiansAndTheDragon
 	["The Three Sramatians and the Dragon"] = "The Three Sramatians and the Dragon",
 	["01. Hither and Thither"] = "01. Hither and Thither",
-	["And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the lower text here."] = "And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the lower text here.",
+	["And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the bottom text here."] = "And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the bottom text here.",
 	["02. Fungus Magnum"] = "02. Fungus Magnum",
-	["I think the company went east of the northern gate of Mirkotown. From there, they went into the forest of idiots. In the forest, there's a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek"] = "I think the company went east of the northern gate of Mirkotown. From there, they went into the forest of idiots. In the forest, there's a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek",
+	["I think the company went north through the gate of Mirkotown. From there, they went east, into the forest of cretin. In the forest, there is a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek"] = "I think the company went north through the gate of Mirkotown. From there, they went east, into the forest of cretin. In the forest, there is a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek",
 	["You correctly answered Goldblum's riddle. Now give him your best puzzle."] = "You correctly answered Goldblum's riddle. Now give him your best puzzle.",
 	["Respiciens post te, hominem\nmemento te; cave, ne cadas"] = "Respiciens post te, hominem\nmemento te; cave, ne cadas",
 	["03. Follow OSHA Standards"] = "03. Follow OSHA Standards",
@@ -619,7 +650,7 @@ return {
 	["Ask Bilbeus how you can join their company."] = "Ask Bilbeus how you can join their company.",
 	["Find a box of rum in the pirate village nearby."] = "Find a box of rum in the pirate village nearby.",
 	["You found rum for Bilbeus. Return to him and suggest that he indulge himself."] = "You found rum for Bilbeus. Return to him and suggest that he indulge himself.",
-	["An unworthy act for a Builder\nThe King will probably put his balls in blender"] = "An unworthy act for a Builder\nThe King will probably put his balls in blender",
+	["An unworthy act for a Welder\nThe King will probably put his balls in blender"] = "An unworthy act for a Welder\nThe King will probably put his balls in blender",
 	["04. Delirium Tremens"] = "04. Delirium Tremens",
 	["Find the company's camp in the western steppes."] = "Find the company's camp in the western steppes.",
 	["You found the camp, but the company has already moved on. They might have settled in the nearest human town."] = "You found the camp, but the company has already moved on. They might have settled in the nearest human town.",
@@ -630,7 +661,7 @@ return {
 	["Gertrude told you that the company went to the desert. The Djinn Lord - Jannah'ma might help you find them."] = "Gertrude told you that the company went to the desert. The Djinn Lord - Jannah'ma might help you find them.",
 	["Jannah'ma demanded dragon meat in exchange for information about your companions."] = "Jannah'ma demanded dragon meat in exchange for information about your companions.",
 	["Jannah'ma indicated that the company is by the old mine, where wyverns nest."] = "Jannah'ma indicated that the company is by the old mine, where wyverns nest.",
-	["An old unjust man again dragged me into trouble."] = "An old unjust man again dragged me into trouble.",
+	["An old unjust tyrant dragged me into trouble again."] = "An old unjust tyrant dragged me into trouble again.",
 	["06. Shepherd of Rats"] = "06. Shepherd of Rats",
 	["Bilbeus mentioned that you should head to the nomad's rock."] = "Bilbeus mentioned that you should head to the nomad's rock.",
 	["The Nomad asked for a favor - he wants a crystal from the depths."] = "The Nomad asked for a favor - he wants a crystal from the depths.",
@@ -650,7 +681,7 @@ return {
 	["Return to the Rat of Kings and tell him about the battle."] = "Return to the Rat of Kings and tell him about the battle.",
 	["The Rat of Kings had a heart attack upon hearing about so many wrecked Passats. Now, go back to Romek."] = "The Rat of Kings had a heart attack upon hearing about so many wrecked Passats. Now, go back to Romek.",
 	["Greed consumed you\nAbove creativity, attention-seeking\nAbove reason, fame\nProfit to the bottom, the worthy are hunted\nLack of a healthy foundation.\nYou killed my child in horror\nThe end of the world is coming.\nCanary, Russia, Bitcoins, Ameno."] = "Greed consumed you\nAbove creativity, attention-seeking\nAbove reason, fame\nProfit to the bottom, the worthy are hunted\nLack of a healthy foundation.\nYou killed my child in horror\nThe end of the world is coming.\nCanary, Russia, Bitcoins, Ameno.",
-	-- TragedyaWCzterechAktach
+	-- FourActTragedy
 	["Four Act Tragedy"] = "Four Act Tragedy",
 	["01. Dodge those compensation claims"] = "01. Dodge those compensation claims",
 	["Romek mentioned you should as him for mission."] = "Romek mentioned you should as him for mission.",
@@ -721,7 +752,7 @@ return {
 	["You killed the monster menacing the beach. Report to Hugo."] = "You killed the monster menacing the beach. Report to Hugo.",
 	["Hugo told you about ancient artifact buried somewhere in the northern dump."] = "Hugo told you about ancient artifact buried somewhere in the northern dump.",
 	["You found an ancient artifact. Report to Astral Janus."] = "You found an ancient artifact. Report to Astral Janus.",
-	-- synMarnotrawny
+	-- ProdigalSon
 	["Prodigal Son"] = "Prodigal Son",
 	["01. Work is da poop!"] = "01. Work is da poop!",
 	["Ask Chester for a new mission."] = "Ask Chester for a new mission.",

@@ -13,7 +13,7 @@ BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS = {
 		id = 2815,
 		text = "scp420text",
 		addToStore = false,
-		aid = Storage.BezpieczenstwoIHigienaPracy.Scp420Document,
+		aid = Storage.SafetyAndOccupationalHygiene.Scp420Document,
 	},
 }
 
@@ -35,8 +35,8 @@ BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS = {
 			local player = Player(playerId)
 			if player then
 				UpdateStorages(player, {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 7,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission03] = 2,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 8,
+					[Storage.SafetyAndOccupationalHygiene.Mission03] = 2,
 				})
 			end
 		end, 1000 * 15)
@@ -83,6 +83,6 @@ BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS = {
 }
 
 BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS = {
-	[Storage.BezpieczenstwoIHigienaPracy.Portals.ToMagicianTown] = MIRKO_MAGICIANS_ANCHOR:Moved(17, 12, -5),
-	[Storage.BezpieczenstwoIHigienaPracy.Portals.ToPetrus] = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 0, 0),
+	[Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown] = MIRKO_MAGICIANS_ANCHOR:Moved(17, 12, -5),
+	[Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus] = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 0, 0),
 }

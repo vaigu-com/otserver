@@ -29,5 +29,5 @@ function chest.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return true
 end
 
-chest:aid(Storage.SciezkaNieumarlych.CursedChest)
+chest:aid(Storage.PathOfTheUndead.CursedChest)
 chest:register()

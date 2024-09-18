@@ -4,7 +4,7 @@ function areczekEnraged.onDeath(creature)
 		return true
 	end
 	local corpse = Game.createItem(4240, 1, creature:getPosition())
-	corpse:setActionId(Storage.SynMarnotrawny.AreczekCorpse)
+	corpse:setActionId(Storage.ProdigalSon.AreczekCorpse)
 	return true
 end
 
@@ -21,5 +21,5 @@ function corpse.onUse(player, corpseItem, fromPosition, target, toPosition, isHo
 	fromPosition:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	return true
 end
-corpse:aid(Storage.SynMarnotrawny.AreczekCorpse)
+corpse:aid(Storage.ProdigalSon.AreczekCorpse)
 corpse:register()

@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[3] = {
 			[{ "mission" }] = {
 				text = "Look at him! He cant use a {toilet} properly.",
@@ -60,8 +60,8 @@ local config = {
 			[{ "neyghboor", "somsiedzie" }] = {
 				text = "...a specific scent not only woke up the companions of adventure but also woke up the vile neyghbor's cravings... Jan Kockodan gets annoyed when someone has it better than him. And he said this: 'This scent is everywhere. It's that dumbass Bilbo, a moron who can afford the hallway paneling. AFTER HIM!! Ugly mutts, run! Follow the scent of wealth!",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 4,
-					[Storage.TrzejSramaciISmok.Mission03] = 2,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 4,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission03] = 2,
 				},
 				monstersToSpawn = { ["Thornfire Wolf"] = 5 },
 			},
@@ -70,8 +70,8 @@ local config = {
 			[{ "mission" }] = {
 				text = "Those wolves were just spirits I summoned to better illustrate the story. The real Jan Kockodan is much more dangerous. If you want to join us, you must complete one challenge. Let's say you steal rum from these pirates here.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 5,
-					[Storage.TrzejSramaciISmok.Mission03] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 5,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission03] = 3,
 				},
 			},
 		},
@@ -86,9 +86,9 @@ local config = {
 				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rum },
 				textNoRequiredItems = "Come back with rum, or there's nothing to talk about.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 7,
-					[Storage.TrzejSramaciISmok.Mission03] = 5,
-					[Storage.TrzejSramaciISmok.Mission04] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 7,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission03] = 5,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission04] = 1,
 				},
 			},
 		},
@@ -107,9 +107,9 @@ local config = {
 					},
 				},
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 9,
-					[Storage.TrzejSramaciISmok.Mission04] = 3,
-					[Storage.TrzejSramaciISmok.Mission05] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 9,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission04] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission05] = 1,
 				},
 			},
 		},
@@ -126,9 +126,9 @@ local config = {
 			[{ "mission" }] = {
 				text = "Good thing you found us. I was starting to worry. No time for chit-chat. We tried to extract information about HF-P/X from the desert nomads. One of them claims to know where to find one of the ancient artifacts. We couldn't negotiate with them - maybe you can. Their settlement is in the north of the desert.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 14,
-					[Storage.TrzejSramaciISmok.Mission05] = 6,
-					[Storage.TrzejSramaciISmok.Mission06] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 14,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission05] = 6,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission06] = 1,
 				},
 			},
 		},
@@ -146,9 +146,9 @@ local config = {
 			[{ "mission" }] = {
 				text = "I've heard of underground chocolate chip cookie deposits, but natural bud light formations, never. Are you sure about my truth? Well, okay. Go to the lizard village and try to find at least one bud light. In the meantime, we'll go to the Medusa Tower area. Zwalin wants to meet Marluk sister. Although now I come to think about it, we won't stay there long. Ultimately, we'll meet at Hairycles's.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 17,
-					[Storage.TrzejSramaciISmok.Mission06] = 4,
-					[Storage.TrzejSramaciISmok.Mission07] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 17,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission06] = 4,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission07] = 1,
 				},
 			},
 		},
@@ -156,8 +156,8 @@ local config = {
 			[{ "mission" }] = {
 				text = "Hairycles provided us with directions to HF-P/X's hideout. But first, we need to do him a favor. If possible, bring us about 2^log(10000) bananas.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 19,
-					[Storage.TrzejSramaciISmok.Mission07] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 19,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission07] = 3,
 				},
 			},
 		},
@@ -167,9 +167,9 @@ local config = {
 				requiredItems = { { id = 3587, count = 16 } },
 				textNoRequiredItems = "I need exactly 16 bananas to avoid embarassment in front of Hairycles.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 20,
-					[Storage.TrzejSramaciISmok.Mission07] = 4,
-					[Storage.TrzejSramaciISmok.Mission08] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 20,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission07] = 4,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission08] = 1,
 				},
 			},
 		},
@@ -177,8 +177,8 @@ local config = {
 			[{ "mission" }] = {
 				text = "I have a feeling that Jan Kockodan got ahead of us. Maybe he's hiding somewhere in this hellish cave. Watch out for him! From the notes given to me by Hairycles, it appears that somewhere in this temple are enchanted doors. The key to opening them is to collect three different magical runes. Fortunately, all the runes are in the temple... if no one has stolen them.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 21,
-					[Storage.TrzejSramaciISmok.Mission08] = 2,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 21,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission08] = 2,
 				},
 			},
 		},

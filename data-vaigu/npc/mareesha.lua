@@ -79,7 +79,7 @@ local config = {
 			},
 		},
 	},
-	[Storage.AssassinsCreedSkurwoala.Questline] = {
+	[Storage.AssassinsCreedSquurvaali.Questline] = {
 		[4] = {
 			[{ "mission" }] = {
 				text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
@@ -87,8 +87,8 @@ local config = {
 			[{ "tailor", "uszyc", "sew" }] = {
 				text = "I will need the following: 5 spider silk, 1 red pillow, 1 {artist palette}.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 5,
-					[Storage.AssassinsCreedSkurwoala.Mission02] = 2,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 5,
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 2,
 				},
 			},
 		},
@@ -112,9 +112,9 @@ local config = {
 					ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette,
 				},
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 8,
-					[Storage.AssassinsCreedSkurwoala.Mission02] = 5,
-					[Storage.AssassinsCreedSkurwoala.Mission03] = 1,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 8,
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 5,
+					[Storage.AssassinsCreedSquurvaali.Mission03] = 1,
 				},
 				specialActionsOnSuccess = {
 					{

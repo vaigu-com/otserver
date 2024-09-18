@@ -102,7 +102,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.DemonOak.Done, 2)
 			player:addOutfitAddon(542, 2)
 			player:addOutfitAddon(541, 2)
-		elseif player:getStorageValue(Storage.AssassinsCreedSkurwoala.Mission01) == 2 then
+		elseif player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission01) == 2 then
 			npcHandler:say(
 				getPlayerLanguage(player) == "PL" and "Rozumiem. Musisz udac sie na karaiby, a stamtad, z najwyzszej gory, {poleciec} prosto na zachod. Jezeli nie zwatpisz, to dolecisz do Skurva'ali. Tam powiniennes spotkac Aunora, on na pewno ci pomoze."
 					or "I understand. You need to go to the Caribbean Island, and from there, from the highest mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
@@ -162,7 +162,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie to nie." or "No, then.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "poleciec", "fly" }, message) then
-		if player:getStorageValue(Storage.AssassinsCreedSkurwoala.Mission01) == 2 then
+		if player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission01) == 2 then
 			npcHandler:say(
 				getPlayerLanguage(player) == "PL" and "Jako zwykly smiertelnik, bedziesz potrzebowal do tego magicznego dywanu. Musi to byc koniecznie dywan, ktory potrafi unosic sie bardzo wysoko nad ziemia. Ludzie potrafia produkowac tylko jeden dywan {zdolny} do takich lotow: Zielony Zaczarowany Kobiezec."
 					or "As a mere mortal, you will need a magical carpet for this. It must be a carpet that can float very high above the ground. Humans can produce only one carpet {capable} of such flights: the enchanted carpet of the green one.",
@@ -173,15 +173,15 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Co ty bredzisz." or "What? Go away.", npc, creature)
 		end
 	elseif table.contains({ "zdolny", "capable" }, message) then
-		if player:getStorageValue(Storage.AssassinsCreedSkurwoala.Mission01) == 2 then
+		if player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission01) == 2 then
 			npcHandler:say(
 				getPlayerLanguage(player) == "PL" and "Zwykle dywany za 900 rubli potrafia unosic sie tylko pare metrow nad ziemia. Zielony dywan potrafi uniesc sie znacznie wyzej, gdy jest na specjalnej sciezce. Ja nie potrafie wytworzyc takiego dywanu, i niestety nie wiem czy na tym swiecie zyje ktos kto moze ci pomoc."
 					or "Ordinary carpets for 900 rubles can only lift a few meters above the ground. The green carpet, however, can lift itself much higher when it's on a special path. I am unable to create such a carpet, and unfortunately, I don't know if there's anyone in this world who can help you with that.",
 				npc,
 				creature
 			)
-			player:setStorageValue(Storage.AssassinsCreedSkurwoala.Questline, 3)
-			player:setStorageValue(Storage.AssassinsCreedSkurwoala.Mission01, 3)
+			player:setStorageValue(Storage.AssassinsCreedSquurvaali.Questline, 3)
+			player:setStorageValue(Storage.AssassinsCreedSquurvaali.Mission01, 3)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Co ty bredzisz." or "What? Go away.", npc, creature)
 		end

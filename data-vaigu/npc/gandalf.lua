@@ -50,19 +50,19 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.SciezkaNieumarlych.Questline] = {
+	[Storage.PathOfTheUndead.Questline] = {
 		[-1] = {
 			[{ GREET }] = { text = "Hello. What brings you here?" },
 			[{ "oprocz tego ludzie", "aside from that people" }] = {
-				text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without waiting, all defenders seized the opportunity and gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don'\t know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
+				text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without a second thought, all defenders gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don't know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
 				nextState = {
-					[Storage.SciezkaNieumarlych.Questline] = 1,
-					[Storage.SciezkaNieumarlych.Mission01] = 1,
+					[Storage.PathOfTheUndead.Questline] = 1,
+					[Storage.PathOfTheUndead.Mission01] = 1,
 				},
 				requiredState = {
-					[Storage.CzeslawKrasnolud.Questline] = 8,
-					[Storage.SpoczywajacyTutaj.Mission01] = 2,
-					[Storage.AssassinsCreedSkurwoala.Questline] = 16,
+					[Storage.ChesterTheDwarf.Questline] = 8,
+					[Storage.ImRestingHere.Mission01] = 2,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 16,
 					[Storage.SultanPrime.Questline] = 13,
 				},
 				textNoRequiredState = "It's interesting that you know our password. Nevertheless, I have no task for you or anything to interest you with.",
@@ -78,10 +78,10 @@ local config = {
 			[{ "conditions", "warunki" }] = {
 				text = "Allakhazam!!!1. Oh, wait, that's not all. I forgot that you also need to visit the magic circles. Each circle consists of 6 stones in 3 different colors, with a special grid in the middle. Stand on all five grids, and I will be able to bless you. I won't tell you where the circles are because you can ask the owners of magic shops in towns about it. Talk to them, and they will guide you to the circles. Just write 'circle' to them, and they will explain everything to you.",
 				nextState = {
-					[Storage.SciezkaNieumarlych.Questline] = 2,
-					[Storage.SciezkaNieumarlych.Mission01] = 2,
-					[Storage.SciezkaNieumarlych.Mission02] = 1,
-					[Storage.SciezkaNieumarlych.Circles] = 0,
+					[Storage.PathOfTheUndead.Questline] = 2,
+					[Storage.PathOfTheUndead.Mission01] = 2,
+					[Storage.PathOfTheUndead.Mission02] = 1,
+					[Storage.PathOfTheUndead.Circles] = 0,
 				},
 				requiredState = {
 					[Storage.PitsOfInferno.OneThrone] = 1,
@@ -95,11 +95,11 @@ local config = {
 			[{ "mission" }] = {
 				text = "Hokus Pokus! Teraz juz wszystko powinno grac. W podziemiach piramidy czai sie cos bardzo mrocznego. Zapytaj Konmulda o porade, a byc moze ujdziesz stamtad z zyciem. Bym zapomnial: od teraz mozesz uzywac zapieczetowanych drzwi w piramidzie.",
 				nextState = {
-					[Storage.SciezkaNieumarlych.Questline] = 3,
-					[Storage.SciezkaNieumarlych.Mission02] = 2,
-					[Storage.SciezkaNieumarlych.Mission03] = 1,
+					[Storage.PathOfTheUndead.Questline] = 3,
+					[Storage.PathOfTheUndead.Mission02] = 2,
+					[Storage.PathOfTheUndead.Mission03] = 1,
 				},
-				requiredState = { [Storage.SciezkaNieumarlych.Circles] = 31 },
+				requiredState = { [Storage.PathOfTheUndead.Circles] = 31 },
 				textNoRequiredState = "Ask the individual owners of magic shops about the locations of the circles.",
 			},
 		},
@@ -107,17 +107,17 @@ local config = {
 			[{ "mission" }] = {
 				text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
 				nextState = {
-					[Storage.SciezkaNieumarlych.Questline] = 5,
-					[Storage.SciezkaNieumarlych.Mission03] = 3,
-					[Storage.Finished.SciezkaNieumarlych] = 1,
-					[Storage.CzeslawKrasnolud.Mission04] = 1,
-					[Storage.CzeslawKrasnolud.Questline] = 9,
+					[Storage.PathOfTheUndead.Questline] = 5,
+					[Storage.PathOfTheUndead.Mission03] = 3,
+					[Storage.Finished.PathOfTheUndead] = 1,
+					[Storage.ChesterTheDwarf.Mission04] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 9,
 				},
 				expReward = 25000000,
 			},
 		},
 	},
-	[Storage.CzeslawKrasnolud.Questline] = {
+	[Storage.ChesterTheDwarf.Questline] = {
 		[10] = {
 			[{ "mission" }] = {
 				text = "In this bag i kept an item from the WotE quest. I completed it on the *REDACTED* server. Do you remember was item it was?",
@@ -126,9 +126,9 @@ local config = {
 				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
 				text = "Right, it was the Elite Draken Helmet. Here's your reward.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 11,
-					[Storage.CzeslawKrasnolud.Mission04] = 3,
-					[Storage.Finished.Czeslaw] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 11,
+					[Storage.ChesterTheDwarf.Mission04] = 3,
+					[Storage.Finished.ChesterTheDwarf] = 1,
 				},
 				rewards = { { id = 11689 } },
 				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
@@ -137,8 +137,8 @@ local config = {
 				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
 				text = "Right, it was the Royal Draken Mail. Here's your reward.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 11,
-					[Storage.Finished.Czeslaw] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 11,
+					[Storage.Finished.ChesterTheDwarf] = 1,
 				},
 				rewards = { { id = 11686 } },
 				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
@@ -147,8 +147,8 @@ local config = {
 				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
 				text = "Right, it was the Royal Scale Robe. Here's your reward.",
 				nextState = {
-					[Storage.CzeslawKrasnolud.Questline] = 11,
-					[Storage.Finished.Czeslaw] = 1,
+					[Storage.ChesterTheDwarf.Questline] = 11,
+					[Storage.Finished.ChesterTheDwarf] = 1,
 				},
 				rewards = { { id = 11687 } },
 				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",

@@ -49,8 +49,8 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.BezpieczenstwoIHigienaPracy.Questline] = {
-		[10] = {
+	[Storage.SafetyAndOccupationalHygiene.Questline] = {
+		[11] = {
 			[{ GREET }] = {
 				text = "Eeeuuu... eating... even... hydrofoils with sauce...",
 			},
@@ -59,38 +59,37 @@ local config = {
 				requiredItems = { { id = 3579, count = 1 } },
 				textNoRequiredItems = "Uhh....",
 				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 11,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission05] = 2,
-				},
-			},
-		},
-		[11] = {
-			[{ "mission", "misje" }] = {
-				text = "I think I know why Tomek sent you here. He wants you to defeat the menacing wizard who threatens the lives of Mirkotown's residents. It's a noble and just cause. I'm talking, of course, about Petrus The Tyrant, who wields the Ytong of Power forged in the shadows of the darkest asshole. You'll find his hideout at the top of the magician's tower northeast of Mirkotown.",
-				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 12,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission05] = 3,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission06] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 12,
+					[Storage.SafetyAndOccupationalHygiene.Mission05] = 2,
 				},
 			},
 		},
 		[12] = {
+			[{ "mission", "misje" }] = {
+				text = "I think I know why Tomek sent you here. He wants you to defeat the menacing wizard who threatens the lives of Mirkotown's residents. It's a noble and just cause. I'm talking, of course, about Petrus The Tyrant, who wields the Ytong of Power forged in the shadows of the darkest asshole. You'll find his hideout at the top of the magician's tower northeast of Mirkotown.",
+				nextState = {
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 13,
+					[Storage.SafetyAndOccupationalHygiene.Mission05] = 3,
+					[Storage.SafetyAndOccupationalHygiene.Mission06] = 1,
+				},
+			},
+		},
+		[13] = {
 			[{ "mission", "petrus" }] = {
 				text = "Petrus has his hideout at the top of the eastern tower on the magician's rock.",
 			},
 		},
-		[14] = {
+		[15] = {
 			[{ "mission" }] = {
 				text = "So, this is the end of Petrus' reign. Let me now tell you about another threat that slumbers deep in the underground of Kongo. It's an ancient creature sent by aliens to enslave humanity by undermining the authority of the King of Rats. Its name is HF-P/X. You shouldn't go on this journey alone. Ask Tom if he knows anyone who would like to accompany you.",
 				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 15,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission06] = 4,
-					[Storage.Finished.BHP] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 16,
+					[Storage.SafetyAndOccupationalHygiene.Mission06] = 4,
 				},
 			},
 		},
 	},
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[21] = {
 			[{ "mission" }] = {
 				text = "Don't wait for the sramatians. They're slacking on purpose to avoid having to fight {HF-P/X}. Besides, do you have all the {runes}?",
@@ -112,10 +111,10 @@ local config = {
 					},
 				},
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 22,
-					[Storage.TrzejSramaciISmok.Mission08] = 3,
-					[Storage.TrzejSramaciISmok.Mission09] = 1,
-					[Storage.TrzejSramaciISmok.HfpxAccess] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 22,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission08] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission09] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.HfpxAccess] = 1,
 				},
 			},
 		},
@@ -126,8 +125,8 @@ local config = {
 			[{ "mission" }] = {
 				text = "WHAAAAAT??? How many Passats were lost there? I'm about to faint...",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 24,
-					[Storage.TrzejSramaciISmok.Mission09] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 24,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission09] = 3,
 				},
 			},
 		},

@@ -17,7 +17,7 @@ function panpipeLever.onUse(player, item, fromPosition, target, toPosition, isHo
 	if not fanfare then
 		return false
 	end
-	if player:getStorageValue(Storage.TragedyaWCzterechAktach.Questline) ~= 5 then
+	if player:getStorageValue(Storage.FourActTragedy.Questline) ~= 5 then
 		return false
 	end
 
@@ -26,5 +26,5 @@ function panpipeLever.onUse(player, item, fromPosition, target, toPosition, isHo
 	return true
 end
 
-panpipeLever:aid(Storage.TragedyaWCzterechAktach.FanfareLever)
+panpipeLever:aid(Storage.FourActTragedy.FanfareLever)
 panpipeLever:register()

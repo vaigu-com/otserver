@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.SynMarnotrawny.Questline] = {
+	[Storage.ProdigalSon.Questline] = {
 		[{ min = 22 }] = {
 			[{ GREET }] = { text = "Password:" },
 			[{ "mission" }] = { text = "Password:" },

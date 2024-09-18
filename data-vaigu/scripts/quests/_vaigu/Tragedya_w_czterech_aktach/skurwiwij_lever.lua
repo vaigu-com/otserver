@@ -17,7 +17,7 @@ local skurwiwijLever = {
 	-- ToDo: hp and (slight) damage scaling
 	-- scalingConfig = { hpPerPlayer = 1 },
 
-	requiredState = { [Storage.TragedyaWCzterechAktach.SkurwiwijAccess] = 1 },
+	requiredState = { [Storage.FourActTragedy.SkurwiwijAccess] = 1 },
 }
 
 EncounterLever(skurwiwijLever):position(Position(6576, 557, 9)):register()

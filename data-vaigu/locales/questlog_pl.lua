@@ -43,27 +43,31 @@ return {
 		local requiredKills = dailyTask.requiredKills
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Dzisiejsze zadanie na :name:!\n\n", { name = name })
-		dailyTaskDescription = dailyTaskDescription .. T("Zabiles :currentKills:/:requiredKills: :name:.", {
-			name = name,
-			currentKills = currentKills,
-			requiredKills = requiredKills,
-		})
+		dailyTaskDescription = dailyTaskDescription
+			.. T("Zabiles :currentKills:/:requiredKills: :name:.", {
+				name = name,
+				currentKills = currentKills,
+				requiredKills = requiredKills,
+			})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przemdioty do Pani Burmistrz:\n"
+			dailyTaskDescription = dailyTaskDescription
+				.. "\n\nBedziesz rowniez musial przyniesc nastepujace przemdioty do Pani Burmistrz:\n"
 			for _, item in pairs(requiredItems) do
 				local id = item.id
 				local itemName = ItemType(id):getName()
 				local count = item.count
-				dailyTaskDescription = dailyTaskDescription .. T(":count: :itemName:\n", {
-					count = count,
-					itemName = itemName,
-				})
+				dailyTaskDescription = dailyTaskDescription
+					.. T(":count: :itemName:\n", {
+						count = count,
+						itemName = itemName,
+					})
 			end
 		end
-		dailyTaskDescription = dailyTaskDescription .. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
-			money = dailyTask.money,
-			tibiaCoins = dailyTask.tibiaCoins,
-		})
+		dailyTaskDescription = dailyTaskDescription
+			.. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
+				money = dailyTask.money,
+				tibiaCoins = dailyTask.tibiaCoins,
+			})
 
 		return dailyTaskDescription
 	end,
@@ -285,19 +289,31 @@ return {
 	end,
 	["Daily Minor: Crystal Keeper"] = "Dzienne: Naprawca Krysztalow",
 	["Daily Minor: Crystal Keeper Status"] = function(context)
-		return string.format("Uzyj krysztalu naprawczego, aby naprawic piec uszkodzonych niebieskich krysztalow w jaskiniach krysztalowych. Uszkodzone krysztaly nie beda swiecic. %d/5", math.max(context.player:getStorageValue(932), 0))
+		return string.format(
+			"Uzyj krysztalu naprawczego, aby naprawic piec uszkodzonych niebieskich krysztalow w jaskiniach krysztalowych. Uszkodzone krysztaly nie beda swiecic. %d/5",
+			math.max(context.player:getStorageValue(932), 0)
+		)
 	end,
 	["Daily Minor: Raiders of the lost Spark"] = "Dzienne: Lowcy Krysztalow",
 	["Daily Minor: Raiders of the lost Spark Status"] = function(context)
-		return string.format("Zabij Crystal Crushery i uzyj urzadzenia rozladowujacego na ich cialach, aby zebrac ich ladunki. Zbierz 7 ladunkow i zglos sie z nimi. %d/7", math.max(context.player:getStorageValue(934), 0))
+		return string.format(
+			"Zabij Crystal Crushery i uzyj urzadzenia rozladowujacego na ich cialach, aby zebrac ich ladunki. Zbierz 7 ladunkow i zglos sie z nimi. %d/7",
+			math.max(context.player:getStorageValue(934), 0)
+		)
 	end,
 	["Daily Minor Plus: Exterminators"] = "Dzienne Plus: Eksterminacje",
 	["Daily Minor Plus: Exterminators Status"] = function(context)
-		return string.format("Zabij 10 Wigglerow na pomoc gnomom. Nastepnie zglos sie z powrotem. %d/10", math.max(context.player:getStorageValue(937), 0))
+		return string.format(
+			"Zabij 10 Wigglerow na pomoc gnomom. Nastepnie zglos sie z powrotem. %d/10",
+			math.max(context.player:getStorageValue(937), 0)
+		)
 	end,
 	["Daily Minor Plus: Mushroom Digger"] = "Dzienne Plus: Niuchacz Grzybow",
 	["Daily Minor Plus: Mushroom Digger Status"] = function(context)
-		return string.format("Znajdz i zwab swinie truflowa. Czasem wywachuja swieze trufle. Uzyj mlodego prosiaka na truflach, nakarm go 3 razy. Nastepnie zglos sie do gnomow. %d/3", math.max(context.player:getStorageValue(940), 0))
+		return string.format(
+			"Znajdz i zwab swinie truflowa. Czasem wywachuja swieze trufle. Uzyj mlodego prosiaka na truflach, nakarm go 3 razy. Nastepnie zglos sie do gnomow. %d/3",
+			math.max(context.player:getStorageValue(940), 0)
+		)
 	end,
 	["Daily Major Advanced: Spores"] = "Dzienne Zaawansowane: Zarodniki",
 	["Gather spores in the correct order. Your spore gathering list will display the next color you have to look for."] = "Zbieraj zarodniki we wlasciwej kolejnosci. Twoj spis zbierania zarodnikow bedzie wyswietlac nastepny kolor, ktory musisz szukac.",
@@ -307,7 +323,10 @@ return {
 	["You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them."] = "Musisz wejsc do jaskin krysztalowych i znalezc krysztal, ktory pasuje do tego, ktory otrzymales od gnomow. Uzyj go na jednym z wiekszych czerwonych krysztalow w jaskiniach, aby je polaczyc.",
 	["Daily Major: The Tinker's Bell"] = "Dzienne Glowne: Dzwonek Wynalazcy",
 	["Daily Major: The Tinker's Bell Status"] = function(context)
-		return string.format("Uzyj harmonicznego dzwonka na oszlalych golemach w warsztacie golemow, dzieki czemu zostana przetransportowani do warsztatow gnomow. Nastepnie zglos sie z powrotem. %d/4.", math.max(context.player:getStorageValue(946), 0))
+		return string.format(
+			"Uzyj harmonicznego dzwonka na oszlalych golemach w warsztacie golemow, dzieki czemu zostana przetransportowani do warsztatow gnomow. Nastepnie zglos sie z powrotem. %d/4.",
+			math.max(context.player:getStorageValue(946), 0)
+		)
 	end,
 	["The Ape City"] = "Miasto Malp",
 	["Hairycles Missions"] = "Misje Hairyclesa",
@@ -389,6 +408,7 @@ return {
 	["You have defeated the Lumberjack Domino, look around his hiding place."] = "Pokonales Drwala Domino, rozejrzyj sie po jego kryjowce.",
 	["From now on, you can use his boat. Report to Commissioner Fisher."] = "Od teraz mozesz uzywac jego lodki. Zglos sie do Komisarza Ryby po nagrode za pomoc.",
 	["You finished the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes."] = "Zakonczyles watek poczynan Drwala Domino, od teraz mozesz plywac jego lodzia z obozowiska bandytow na poludnie stepow.",
+	-- Settled down Fishmonger
 	["Settled down Fishmonger"] = "Ustatkowany Fanatyk Wedkarstwa",
 	["Stagnation"] = "Zastoj",
 	["Anon's Father is waiting for his order."] = "Stary Anona czeka na swoje zamowienie.",
@@ -401,6 +421,7 @@ return {
 	["Anon's Father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's Father mentioned that he loves Rotworm Stew."] = "Stary Anona ostro zareagowal na fakt, iz ktos zniszczyl mu jego stolek. Przynies ktores z jego ulubionych dan, to moze sie nie zesra. Stary Anona wspominal, ze przepada za zupa rotwormowa.",
 	["You helped Anon's Father with all the troubles. Now, go to his son for your reward."] = "Pomogles Staremu Anona ze wszystkimi klopotami. Udaj sie teraz do jego syna po nagrode.",
 	["You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer."] = "Odebrales nagrode od Syna Wedkarza. Zyskales mozliwosc zakupu Shimmer Swimmer.",
+	-- Cave Explorer
 	["Cave Explorer on Shield"] = "Grotolaz na Tarczy",
 	["First Mission"] = "Misja pierwsza",
 	["Find the page."] = "Znajdz strone.",
@@ -412,31 +433,45 @@ return {
 	["Mission completed."] = "Misja zakonczona.",
 	["Notes from the Conversation"] = "Notatki z rozmowy",
 	["cyk dwojeczka"] = "cyk dwojeczka",
+	-- Sultan Prime
 	["Sultan Prime"] = "Sultan Prime",
 	["What Is Mafia? Is It Good?"] = "Co to mafia? Dobre to?",
 	["You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan."] = "Znalazles przeklety naszyjnik wladzy. Oddaj go Krolowi Phantasmow, aby mogl rozpoczac swoje dzielo unicestwienia swiata.",
+	["Sultan made you an offer. Give the neclace to him to begin your mission."] = "Sultan zlozyl Ci oferte. Mozesz mu teraz dac pozadany przez niego amulet.",
 	["You returned the amulet to the Sultan and agreed to help him."] = "Oddales amulet Sultanowi i zgodziles sie mu pomoc.",
 	["Unlucky Surveyors"] = "Pechowi ankieterzy",
 	["Go to Sultan of Phantasms for another task."] = "Udaj sie do Sultana Phantasmow po kolejne zadanie.",
 	["Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask."] = "Sultan Phantasmow wyznaczyl ci zadanie godne poczatkujacego zloczyncy. Zatruj fontanne w miasteczku Magicianow, uzywajac zatrutej flaszki.",
 	["You've successfully completed the first task for Sultan of Phantasms. Return to him now."] = "Udalo ci sie wykonac pierwsze zadanie dla Sultana Phantasmow. Wroc teraz do niego.",
-	["Sultan of Phantasms has assigned you to kill camels."] = "Sultan Phantasmow zlecil ci zabicie wielbladow.",
+	["CAMELS_KILLED_STATUS"] = function(context)
+		return string.format(
+			"Sultan Phantasmow zlecil Ci zabicie wielbladow. Poki co zabiles %d z 6 wielbladow.",
+			context.player:getStorageValue(Storage.SultanPrime.DromedaryCount)
+		)
+	end,
 	["You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it."] = "Wyrznales smierdzichwastowi farme wielbladow. Zostaw line na stolku - on bedzie wiedzial co z nia zrobic.",
 	["Sultan will be pleased with your actions. Return to him for your reward."] = "Sultan bedzie zadowolony z twoich poczynan. Wroc do niego po nagrode.",
 	["Sultan rewarded you for your cooperation."] = "Sultan nagrodzil cie za twoja wspolprace.",
 	["Sultan's Last Plague"] = "Ostatnia plaga Sultana",
-	["Hello, recipient. This is Sultan. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut."] = "Halo odbior. Tutaj Sultan. Pora odjebac Aspiranta Rybe. Po robocie mozesz wyjsc z koszarow polnocnymi drzwiami i uzyc skrotu.",
-	["~Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!"] = "Sultan. Jak to ryba uciekl? Krol Krypty tez polegl w walce. Wracaj tu natychmiast, zebym mogl cie zjebac!",
+	["~Sultan69:. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut."] = "~Sultan69: Pora odjebac Aspiranta Rybe. Po robocie mozesz wyjsc z koszarow polnocnymi drzwiami i uzyc skrotu.",
+	["~Sultan69: How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!"] = "~Sultan69: Jak to ryba uciekl? Krol Krypty tez polegl w walce. Wracaj tu natychmiast, zebym mogl cie zjebac!",
 	["Sultan ordered you to.. You can go to Father Natanek and ask him for redemption."] = "Sultan kazal ci wy... Mozesz udac sie do Natanka, i poprosic go o odkupienie.",
 	["Father Natank gave you today's offering from today's Mass in exchange for your silence."] = "Ks. Natanek dal ci dziesiejsza ofiare z mszy w zamian za twoje milczenie.",
 	["Opened Coffins"] = "Otwarte trumny",
 	["OPENED_COFFINS_STATUS"] = function(context)
-		return string.format("Siema. Tu Sultan Phantasmow. Komunikuje sie z toba przez fale 5GMO chemtrails. Zacznij od zbezczeszczenia kilku grobow. To na pewno oslabi morale ludzi w miescie. Poki co otworzyles %d z 5 trumien w Retro Mirko.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0)))
+		return string.format(
+			"~Sultan69: Komunikuje sie z toba przez fale 5GMO chemtrails. Zacznij od zbezczeszczenia kilku grobow. To na pewno oslabi morale ludzi w miescie. Poki co otworzyles %d z 5 trumien w Retro Mirko.",
+			(math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0))
+		)
 	end,
 	["Bodies Thrown"] = "Wrzucone ciala",
 	["BODIES_THROWN_STATUS"] = function(context)
-		return string.format("Tu znowu Sultan. Pora na cos bardziej okrutnego. Zabijaj mieszkancow miasta, i wrzucaj ich ciala do paszczy mackopotwora w okolicy depo. Poki co wrzuciles %d z 10 cial w Retro Mirko.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0)))
+		return string.format(
+			"~Sultan69: Pora na cos bardziej okrutnego. Zabijaj mieszkancow miasta, i wrzucaj ich ciala do paszczy mackopotwora w okolicy depo. Poki co wrzuciles %d z 10 cial w Retro Mirko.",
+			(math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0))
+		)
 	end,
+	-- Theater of Cheap Thrills
 	["Theater of Cheap Thrills"] = "Teatr Taniej Sensacji",
 	["01. Vitat Iustitia"] = "01. Vitat Iustitia",
 	["Many people ask: Who is this King of Rats and what's the deal? That's when I tell them, 'You stinker, go to Ratland and see for yourself. The King of Rats! Lets go! Yeehaw!"] = "Wiele osob na tagu pyta: A kto to ten krol szczurow o co w tym chodzi? Ja im wtedy mowie wir smierdzielu won do szczurolandii to zobaczysz. Krol szczurow jazda! Jaaaadoooom!",
@@ -490,6 +525,7 @@ return {
 	["The lives of the rats are in danger! Hurry to Romek."] = "Zycie szczurow jest zagrozone! Niezwlocznie udaj sie do Romka.",
 	["Romek has ordered you to commit ratocide. Carry out his will and don't ask questions."] = "Romek nakazal ci wykonanie lodobojstwa na szczurach. Wykonaj jego wole i nie zadawaj pytan.",
 	["Chorus of Januses: We won't leave the land where we were born! It's written in our atlases! Justice will come in a stench! Do you know who ran over whom on the zebra crossing? Three Januses sing soprano: The time for trials has come! Give us a knife! Give us a knife! Our rich neighbor won't be! Go on, cut! Go on, cut! fat Janus the baritone: LET'S KILL THEM!"] = "Chor januszy: Nie rzucim ziemi skad nad rod! Pisane nam to w atlasach! Sprawiedliosci nadjedzie smrod! Wiesz kto kogo rozjechal na pasach! Trzech januszy spiewa sopranem: Proby czas nadszedl juz!! Dajcie noz!! Dajcie noz!! Nie bedzie bogaty sasiad moj!! Dalej, kroj!! Dalej, kroj!! Gruby janusz basista: ZAJEBAC ICH!",
+	-- Assassin's Creed: Squurva'ali
 	["Assassins's Creed: Squurva'ali"] = "Assassin's Creed: Skurwoala",
 	["The First Step to Heaven"] = "Pierwszy krok do nieba",
 	["You agreed to help the ghost of the princess. Maybe some clergyman in town can help you."] = "Zgodziles sie pomoc duchowi krolewny. Byc moze jakichs duchowny w miescie moze ci pomoc.",
@@ -519,12 +555,14 @@ return {
 	["You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost."] = "Odpaliles flare przed jaskinia ducha. Porozmawiaj w miedzyczasie z duchem dupy.",
 	["At the moment when the undead king of the crypt was about to finish you, an angel arrived who managed to avoid the traps and teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek."] = "W momencie, gdy nieumarly krol krypty mial cie wykonczyc, przybyl aniol, ktory zdolal uniknac zastawionych pulapek, i przeteleportowac cie w bezpieczne miejsce. Nie wiesz jaki byl los ani jego, ani krola krypty. Udaj sie do ks. Natanka po porade.",
 	["Father Natanek informed you about the adverse consequences of the victory of the king of the crypt."] = "Ks. Natanek poinformowal cie o niekorzystnych skutkach zwyciestwa krola krypty.",
-	["Resting Here"] = "Spoczywajacy Tutaj",
+	-- Im Resting Here
+	["Im Resting Here"] = "Spoczywajacy Tutaj",
 	["A Work to Screw up"] = "Robotka do spierdolenia",
 	["Grave digger gave you a special crowbar. Try to find a use for it."] = "Grave digger dal ci specjalny lom. Sproboj znalezc dla niego zastosowanie.",
 	["You found some kind of last will. Try to find the item mentioned in it."] = "Znalazles cos, co wyglada na testament, a w nim opis drogi do mitycznego labiryntu downa. Udaj sie w miejsce opisane w dokumencie..",
 	["You found a document that indicates that four people broke into the labyrinth. At least two of them are no longer alive. Try to find one of the survivors."] = "Znalazles dokument, ktory wskazuje, iz cztery osoby wlamaly sie do labiryntu. Co najmniej dwoje z nich nie zyje. Sprobuj znalezc ktoregos z ocalalych.",
-	["Chester the Dwarf"] = "Czesław Krasnolud",
+	-- Chester the Dwarf
+	["Chester the Dwarf"] = "Czeslaw Krasnolud",
 	["Fortune Teller 3000"] = "Wrozbita 3000",
 	["You agreed to help Chester become a TV fortune teller. He will need the following items for his profession: Magic Light Wand, Empty Goldfish Bowl, Magician's Robe, Life Crystal."] = "Zgodziles sie pomoc Czeslawowi w zostaniu telewizyjnym wrozbita. Do swojego zawodu bedzie potrzebowac: Magic Light Wand, Empty Goldfish Bowl i Magician's Robe, Life Crystal.",
 	["Chester the Dwarf has become a fortune teller, and you received his pickaxe as a reward."] = "Czeslaw krasnolud zostal wrozbita, a ty dostales w nagrode jego kilof.",
@@ -542,6 +580,7 @@ return {
 	["Chester the Dwarf has disappeared from the continent. Or has he? Maybe he hasn't managed to start the steamship underground yet. If possible, catch up to him and stop him."] = "Czeslaw Krasnolud spierdolil z kontynentu. Czyzby? Moze jeszcze nie udalo mu sie odpalic parostatku w podziemiach. Jezeli to mozliwe, to go dogon i zatrzymaj.",
 	["Chester gave you Gandalf's lost item. Now, return to the mighty wizard and return his property."] = "Czeslaw oddal ci zgube Gandalfa. Wroc teraz do poteznego maga i zwroc mu jego wlasnosc.",
 	["Gandalf rewarded you for recovering his bag."] = "Gandalf nagrodzil cie za odzyskanie jego worka.",
+	-- Path of the Undead
 	["Path of the Undead"] = "Sciezka Nieumarlych",
 	["Test of Strength"] = "Proba sily",
 	["Gandalf told you about the history of Mirkotown. Now, ask him what conditions you need to fulfill to get his help."] = "Gandalf opowiedzial Ci dawne dzieje Mirkotown. Zapytaj go teraz jakie warunki musisz spelnic, zeby uzyskac jego pomoc.",
@@ -552,12 +591,9 @@ return {
 	["Gather the necessary items, summon, and ultimately defeat the Undead Crypt King."] = "Zbierz potrzebne przedmioty, przywolaj i ostatecznie pokonaj Nieumarlego Krola Krypty.",
 	["You have defeated the Undead Crypt King. Return to Gandalf for your reward."] = "Pokonales Nieumarlego Krola Krypty. Wroc do Gandalfa po nagrode.",
 	["Gandalf misplaced a certain item intended as a reward, but you have received his other gifts."] = "Gandalf zgubil pewien przedmiot, ktory przeznaczyl na nagrode, ale otrzymales od niego pozostale podarunki.",
-	["CAMELS_KILLED_STATUS"] = function(context)
-		return string.format("Sultan Phantasmow zlecil Ci zabicie wielbladow. Poki co zabiles %d z 6 wielbladow.", context.player:getStorageValue(Storage.SultanPrime.DromedaryCount))
-	end,
 	["King of Rats Headquarters Status"] = function(context)
 		local result = -1
-		for _, storage in pairs(Storage.KrolSzczurowHub.Portals) do
+		for _, storage in pairs(Storage.KingOfRatsHQ.Portals) do
 			local value = context.player:getStorageValue(storage)
 			if value == 1 then
 				result = result + 1
@@ -565,19 +601,19 @@ return {
 		end
 		return string.format("Aktualnie udalo ci sie zebrac %d artefaktow.", result)
 	end,
-	-- krolSzczurowHub
+	-- King of Rats Headquarters
 	["King of Rats Headquarters"] = "Loza Krola Szczurow",
 	["CurentStatus"] = "Status lozy",
 	["01. to Ryan"] = "01. do Ryana",
-	["02. to Sweaty Cyclops"] = "02. do Sweaty Cyclopsa",
-	["03. to Djinns"] = "03. do djinnow",
+	["02. to Sweaty Cyclops"] = "02. do Spoconego Cyklopa",
+	["03. to Djinns"] = "03. do Djinnow",
 	["04. to North Kongo"] = "04. do polnocnego Kongo",
-	["05. to Werebadgers"] = "05. do Werebadgerow",
-	["06. to Vampire city"] = "06. do miasta wampirow",
+	["05. to Werebadgers"] = "05. do Borsukolakow",
+	["06. to Vampire city"] = "06. do Miasta Wampirow",
 	["07. to Asuras"] = "07. do Asur",
 	["08. to East Hurgahada"] = "08. do wschodniej Hurghady",
 	["You unlocked this teleport"] = "Odblokowales ten teleport.",
-	-- bezpieczenstwoIHigienaPracy
+	-- Safety and Occupational Hygiene
 	["Safety and Occupational Hygiene"] = "Bezpieczenstwo i higiena pracy",
 	["01. Avast ye, scallywag!"] = "01. Draze sebiarze",
 	["Find Turdstin - he might know where the Rat of Kings is."] = "Odnajdz sebixa - mozliwe, ze wie gdzie jest szczur krolow.",
@@ -587,7 +623,7 @@ return {
 	["02. Eww. Am I the only one there to hate the womyn?"] = "02. Fuj. Czy tylko Ja tu nienawidze kobiet?",
 	["Turdstin thanked you for the information that the only way to find the Rat of Kings is by listening to the Januses' choir. Talk to him again for a new mission."] = "Seba odwdzieczyl Ci sie informacja, ze jedynym sposobem na znalezienei krola szczurow jest sluchanie choru januszy. Zapytaj go teraz o nowa misje.",
 	["Turdstin asked for your help in collecting cans."] = "Seba poprosil cie o pomoc ze zbieraniem puszek.",
-	["Chorus of Januses:\nWhen the evening stars extinguish,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!"] = "Chor januszy:\nGdy wieczorem zgasna zorze,\nzanim wykrywacz metalu do skrzynki odloze,\nmodliwe moja zanosze,\nBogu ojcu i synowi.\nDopierdolcie somsiadowi!",
+	["Chorus of Januses:\nWhen the evening stars extinguish their flame,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!"] = "Chor januszy:\nGdy wieczorem zgasna zorze,\nzanim wykrywacz metalu do skrzynki odloze,\nmodliwe moja zanosze,\nBogu ojcu i synowi.\nDopierdolcie somsiadowi!",
 	["03. Vicinities Lost"] = "03. Ziemia utracona",
 	["Turdstin mentioned that he will need assistance."] = "Sebix wspomnial, ze bedzie potrzebowac pomocy.",
 	["Turdstin needs help with the Emperor's workers and hooligans."] = "Sebix potrzebuje pomocy z pracownikami imperatora i menelami.",
@@ -595,7 +631,7 @@ return {
 	["04. Very Important Posts"] = "04. Konto Premium Na Wykopie",
 	["Turdstin mentioned that he might have a new task for you."] = "Sebix wspomnial, ze moze miec dla ciebie nowe zadanie.",
 	["Turdstin found a fake premium account on 4chan. Try to bribe Xe'na."] = "Sebix znalazl fejkowe konto premium na wykopie. Sproboj przekupic Xe'ne.",
-	["Your mother, grandmother, and sister are insane\nOn the eastern borders, there's a path that's not cursed upon any name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket."] = "Chor januszy:\nTwoja matka, babka i siostrunia - pierdolnieta,\nNa wschodnich rubiezach jest sciezka wcale nie zakleta,\nSmoki i nie tylko sa tam zagubieni,\nZeby nie wyjsc na chama, lososia miej w kieszeni.",
+	["Your mother, grandmother, and sister - they are all insane\nOn the eastern borders, there's a path cursed upon a name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket."] = 'Chor januszy:\nTwoja matka, babka i siostrunia - pierdolnieta,\nNa wschodnich rubiezach jest sciezka "wcale" nie zakleta,\nSmoki i nie tylko sa tam zagubieni,\nZeby nie wyjsc na chama, lososia miej w kieszeni.',
 	["05. Hydrofoils with Seasoning"] = "05. Wodoloty z okrasa",
 	["You handed over the premium account to Xe'na. And now..."] = "Oddales konto premium w posiadanie Xe'ny. A teraz...",
 	["You fed the exhausted Rat of Kings. Now ask him about the mission."] = "Nakarmiles wycienczonego szczura krolow. Zapytaj go teraz o misje.",
@@ -606,12 +642,12 @@ return {
 	["You found the Ytong of Power. Now, return to the Rat of Kings."] = "Znalazales Ytong Mocy. Wroc teraz do szczura krolow.",
 	["The Rat of Kings revealed information to you about the looming threat- HF-P/X. Go back to Romek and hear his opinion on the matter."] = "Szczur krolow wyjawil Ci informacje o zagrozeniu czychajacym na krola szczurow - HF-P/X. Wroc do romka i poznaj jego zdanie na ten temat.",
 	["Chorus of Januses:\nI want to go to the only place on Earth,\nWhere the darkness no longer matters,\nTo the beings who accept my abilities as divinely,\nTo them I aspire, only to my justice.\nThere is one small place on Earth for me,\nWhere nothing else matters beyond the mushroom from the grout,\nI escape there with all my justice,\nI believe in you, I believe in my Brother-in-law."] = "Chor januszy:\nChce do jedynego miejsca na ziemii,\nGdzie ciemiestwo przestaje miec znaczenie,\nDo objec, ktore akceptuja me do ludobostwa zdolnosci,\nDo nich pragne, tylko do mej sprawiedliwosci.\nJest na ziemi jedno moje male miejsce,\nGdzie poza grzibem z fugi nie liczy sie nic wiecej,\nUciekam tam z moja cala sprawiedliwoscia,\nWierze w ciebie, wierze w moje Szwagrum.",
-	-- trzejSramaciISmok
+	-- The Three Sramatians and the Dragon
 	["The Three Sramatians and the Dragon"] = "Trzej Sramaci i Smok",
 	["01. Hither and Thither"] = "01. Wte i Wewte",
-	["And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the lower text here."] = "I poszli chlopy droga w las\nKrokiem srednio-wolnym\nPokory dla nich przyjdzie czas\nTutaj wpisz tekst dolny",
+	["And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the bottom text here."] = "I poszli chlopy droga w las\nKrokiem srednio-wolnym\nPokory dla nich przyjdzie czas\nTutaj wpisz tekst dolny",
 	["02. Fungus Magnum"] = "02. Fungus Magnum",
-	["I think the company went east of the northern gate of Mirkotown. From there, they went into the forest of idiots. In the forest, there's a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek"] = "Mysle, ze kompania udala sie na wschod od polnocnej bramy Mirkotown. Stamtad poszli do lasu zjebow. W lesie znajduje sie tajne przejscie prowadzace przez jaskinie ohydnych trolli. Mozliwe, ze z niego skorzystali. ~GM Romek",
+	["I think the company went north through the gate of Mirkotown. From there, they went east, into the forest of cretin. In the forest, there is a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek"] = "Mysle, ze kompania udala sie na wschod od polnocnej bramy Mirkotown. Stamtad poszli do lasu zjebow. W lesie znajduje sie tajne przejscie prowadzace przez jaskinie ohydnych trolli. Mozliwe, ze z niego skorzystali. ~GM Romek",
 	["You correctly answered Goldblum's riddle. Now give him your best puzzle."] = "Odpowiedziales poprawnie na zagadke Goldbluma. Zadaj mu teraz swoja zagadke.",
 	["Respiciens post te, hominem\nmemento te; cave, ne cadas"] = "Respiciens post te, hominem\nmemento te; cave, ne cadas",
 	["03. Follow OSHA Standards"] = "03. Przestrzegaj zasad BHP",
@@ -619,7 +655,7 @@ return {
 	["Ask Bilbeus how you can join their company."] = "Zapytaj Bilbeusza jak mozesz dolaczyc do ich kompanii.",
 	["Find a box of rum in the pirate village nearby."] = "Znajdz pudlo z rumem w wiosce piratow nieopodal.",
 	["You found rum for Bilbeus. Return to him and suggest that he indulge himself."] = "Znalazles rum dla Bilbeusza. Wroc do niego i zaproponuj mu, zeby sie poczestowal.",
-	["An unworthy act for a Builder\nThe King will probably put his balls in blender"] = "Czyn niegodny Budowlanca\nKrol im chyba urwie jajca",
+	["An unworthy act for a Welder\nThe King will probably put his balls in blender"] = "Czyn niegodny Budowlanca\nKrol im chyba urwie jajca",
 	["04. Delirium Tremens"] = "04. Delirium tremens",
 	["Find the company's camp in the western steppes."] = "Znajdz oboz kompanii na zachodnich stepach.",
 	["You found the camp, but the company has already moved on. They might have settled in the nearest human town."] = "Znalazles oboz, ale kompania zdazyla juz pojsc dalej. Mozliwe, ze rozbili sie w najblizszym miescie ludzi.",
@@ -630,7 +666,7 @@ return {
 	["Gertrude told you that the company went to the desert. The Djinn Lord - Jannah'ma might help you find them."] = "Gertruda powiedziala Ci, ze kompania udala sie na pustynie. Wladca djinnow - Jannah'ma moze Ci pomoc ich odszukac.",
 	["Jannah'ma demanded dragon meat in exchange for information about your companions."] = "Jannah'ma zazadal smoczego miesa w zamian za informacje o twoich kompanach.",
 	["Jannah'ma indicated that the company is by the old mine, where wyverns nest."] = "Jannah'ma wskazal, ze kompania znajduje sie przy starej ruderze, przy ktorej zalegly sie wyverny.",
-	["An old unjust man again dragged me into trouble."] = "Stary niesprawiedliwy na szabry znowu mnie wpakowal co za los zly",
+	["An old unjust tyrant dragged me into trouble again."] = "Stary niesprawiedliwy na szabry znowu mnie wpakowal co za los zly",
 	["06. Shepherd of Rats"] = "06. Baca Szczurow",
 	["Bilbeus mentioned that you should head to the nomad's rock."] = "Bilbeusz wspomnial, ze powiniennes udac sie na skalke nomadow.",
 	["The Nomad asked for a favor - he wants a crystal from the depths."] = "Nomad poprosil o przysluge - chce dostac krysztal glebinowy.",
@@ -650,7 +686,7 @@ return {
 	["Return to the Rat of Kings and tell him about the battle."] = "Wroc do szczura krolow i opowiedz mu o walce.",
 	["The Rat of Kings had a heart attack upon hearing about so many wrecked Passats. Now, go back to Romek."] = "Szczur krolow dostal zawalu na wiesc o tylu znisczonych passatach. Wroc teraz do romka.",
 	["Greed consumed you\nAbove creativity, attention-seeking\nAbove reason, fame\nProfit to the bottom, the worthy are hunted\nLack of a healthy foundation.\nYou killed my child in horror\nThe end of the world is coming.\nCanary, Russia, Bitcoins, Ameno."] = "chciwosc was zzarla\nponad kreatywnosc atencyjnosc\nponad rozsadek slawa\nzysk na dno, na godnych oblawa\nbrak zdrowego osadu.\nzgroza zabiliscie moje dziecko \nNadchodzi koniec swiata.\nStachursky, Rosja, Bitcoiny, Ameno.",
-	-- TragedyaWCzterechAktach
+	-- Four Act Tregedy
 	["Four Act Tragedy"] = "Tragedya w Czterech Aktach",
 	["01. Dodge those compensation claims"] = "01. Chron sie przed roszczeniami odszkodowawczymi",
 	["Romek mentioned you should as him for mission."] = "Zapytaj romka o nowa misje.",
@@ -681,7 +717,7 @@ return {
 	["Rat Bum ran away to his cave. Chase him!"] = "Zul szczurow uciekl do swojej jaskini. Gon go!",
 	["You defeated the Rat Bum. Go back to Romek."] = "Pokonales zula szczurow. Wroc teraz do romka.",
 	["You helped Romek in dealing with Rat Bum. He rewarded you for your effort."] = "Pomogles romkowi uporac sie z zulem szczurow, za co cie zagrodzil.",
-	-- perIustitiaAdAstra
+	-- Per Iustitia Ad Astra
 	["Per Iustitia Ad Astra"] = "Per Iustitia Ad Astra",
 	["01. Beyond the Justice"] = "01. Tekst gwiezdny",
 	["Go to the highest mountain in the Kraiby and look for someone Romek mentioned."] = "Udaj sie na szczyt najwyzszej gory na karaibach. Znajdziesz tam kogos, kogo niegdys znales.",
@@ -721,7 +757,7 @@ return {
 	["You killed the monster menacing the beach. Report to Hugo."] = "Zabiles kreature, ktora rzucala zle swiatlo na jakosc plazy. Wroc do Hugona.",
 	["Hugo told you about ancient artifact buried somewhere in the northern dump."] = "Hugo powiedzial ci, ze wie o pewnym artefakcie zagrzebanym na polnocnym wysypisku.",
 	["You found an ancient artifact. Report to Astral Janus."] = "Znalazles pradawny artefakt. Wroc teraz do janusza gwiezdnego.",
-	-- synMarnotrawny
+	-- Prodigal Son
 	["Prodigal Son"] = "Syn marnotrawny",
 	["01. Work is da poop!"] = "01. Za robote sie wez!",
 	["Ask Chester for a new mission."] = "Zapytaj Czeslawa o nowa misje.",

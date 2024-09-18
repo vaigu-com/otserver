@@ -1,14 +1,14 @@
 local startupItemsPetrus = {
-	{ pos = { 0, 2, 0 }, id = 1949, aid = Storage.BezpieczenstwoIHigienaPracy.Portals.ToMagicianTown },
-	{ pos = { 0, 3, 4 }, id = 7348, aid = Storage.BezpieczenstwoIHigienaPracy.Spawns.Petrus },
+	{ pos = { 0, 2, 0 }, id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
+	{ pos = { 0, 3, 4 }, id = 7348, aid = Storage.SafetyAndOccupationalHygiene.Spawns.Petrus },
 }
 
 local startupItemsStatic = {
-	{ pos = { 6121, 1488, 5 }, id = 4399, aid = Storage.BezpieczenstwoIHigienaPracy.KrolTile },
+	{ pos = { 6121, 1488, 5 }, id = 4399, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
 }
 
 local startupItemsMagicians = {
-	{ pos = { 22, 11, -5 }, id = 1949, aid = Storage.BezpieczenstwoIHigienaPracy.Portals.ToPetrus },
+	{ pos = { 22, 11, -5 }, id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus },
 }
 
 local npcs = {
@@ -18,7 +18,7 @@ local npcs = {
 }
 
 local function resetSpawnLocks()
-	for _, spawnLock in pairs(Storage.BezpieczenstwoIHigienaPracy.Spawns) do
+	for _, spawnLock in pairs(Storage.SafetyAndOccupationalHygiene.Spawns) do
 		Game.setStorageValue(spawnLock, 0)
 	end
 end

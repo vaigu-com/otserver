@@ -10,24 +10,24 @@ function path.onStepIn(player, item, toPosition, fromPosition)
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.AssassinsCreedSkurwoala.Questline)
+	local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Questline)
 	local playerMount = player:getOutfit().lookMount
 	if storageVal < 14 or playerMount ~= 689 then
 		player:teleportTo(fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
-		player:say(player:Localizer(Storage.AssassinsCreedSkurwoala.Questline):Get(config["ground"]), TALKTYPE_MONSTER_SAY)
+		player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Questline):Get(config["ground"]), TALKTYPE_MONSTER_SAY)
 		return false
 	end
 	if storageVal > 14 then
 		player:teleportTo(fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
-		player:say(player:Localizer(Storage.AssassinsCreedSkurwoala.Questline):Get(config["closed"]), TALKTYPE_MONSTER_SAY)
+		player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Questline):Get(config["closed"]), TALKTYPE_MONSTER_SAY)
 		return false
 	end
 	return true
 end
 
-path:aid(Storage.AssassinsCreedSkurwoala.HeavenPath)
+path:aid(Storage.AssassinsCreedSquurvaali.HeavenPath)
 path:register()
 
 local lastTile = MoveEvent()
@@ -38,5 +38,5 @@ function lastTile.onStepIn(player, item, toPosition, fromPosition)
 	player:teleportTo(Position(5745, 801, 4), true)
 	return true
 end
-lastTile:aid(Storage.AssassinsCreedSkurwoala.HeavenLastTile)
+lastTile:aid(Storage.AssassinsCreedSquurvaali.HeavenLastTile)
 lastTile:register()

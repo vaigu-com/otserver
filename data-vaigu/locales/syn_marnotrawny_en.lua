@@ -48,7 +48,7 @@ return {
 	["I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Areczek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it."] = "I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Areczek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it.",
 	["BLACKBOARD_DESC"] = function(context)
 		local player = context.player
-		local password = player:getStorageValue(Storage.SynMarnotrawny.Blackboard)
+		local password = player:getStorageValue(Storage.ProdigalSon.Blackboard)
 		return password
 	end,
 	["No. Im sure its not the password. Try looking behind the waterfall."] = "No. Im sure its not the password. Try looking behind the waterfall.",

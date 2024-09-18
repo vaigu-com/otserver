@@ -1,6 +1,6 @@
 local updateStorages = {
-	Storage.TrzejSramaciISmok.Questline,
-	Storage.TrzejSramaciISmok.Mission05,
+	Storage.TheThreeSramatiansAndTheDragon.Questline,
+	Storage.TheThreeSramatiansAndTheDragon.Mission05,
 }
 
 local cagePos = Position(6206, 918, 9)
@@ -12,7 +12,7 @@ function vampireKidnapping.onStepIn(player, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TrzejSramaciISmok.Questline) ~= 9 then
+	if player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline) ~= 9 then
 		return false
 	end
 	player:teleportTo(cagePos)
@@ -22,5 +22,5 @@ function vampireKidnapping.onStepIn(player, item, position, fromPosition)
 end
 
 vampireKidnapping:type("stepin")
-vampireKidnapping:aid(Storage.TrzejSramaciISmok.VampireCityTrap)
+vampireKidnapping:aid(Storage.TheThreeSramatiansAndTheDragon.VampireCityTrap)
 vampireKidnapping:register()

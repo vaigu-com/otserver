@@ -8,7 +8,7 @@ function bush.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	local storageval = player:getStorageValue(Storage.SciezkaNieumarlych.Questline)
+	local storageval = player:getStorageValue(Storage.PathOfTheUndead.Questline)
 	if storageval < 3 then
 		return false
 	end
@@ -26,5 +26,5 @@ function bush.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return true
 end
 
-bush:aid(Storage.SciezkaNieumarlych.KonmuldBush)
+bush:aid(Storage.PathOfTheUndead.KonmuldBush)
 bush:register()

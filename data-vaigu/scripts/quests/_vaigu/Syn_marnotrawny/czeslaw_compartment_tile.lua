@@ -1,23 +1,23 @@
 local nextState = {
-	[Storage.SynMarnotrawny.Questline] = 1,
-	[Storage.SynMarnotrawny.Mission01] = 1,
+	[Storage.ProdigalSon.Questline] = 1,
+	[Storage.ProdigalSon.Mission01] = 1,
 }
 
 local requiredCzeslawQuestState = 8
 
 local mainGateTile = MoveEvent()
 function mainGateTile.onStepIn(player, item, toPosition, fromPosition)
-	local czeslawQuestState = player:getStorageValue(Storage.CzeslawKrasnolud.Questline)
+	local czeslawQuestState = player:getStorageValue(Storage.ChesterTheDwarf.Questline)
 	if czeslawQuestState < requiredCzeslawQuestState then
 		return
 	end
 
-	local synMarnotrawnyState = player:getStorageValue(Storage.SynMarnotrawny.Questline)
+	local synMarnotrawnyState = player:getStorageValue(Storage.ProdigalSon.Questline)
 	if synMarnotrawnyState > 0 then
 		return
 	end
 
 	player:UpdateStorages(nextState)
 end
-mainGateTile:aid(Storage.SynMarnotrawny.TileBeforeCzeslawCompartment)
+mainGateTile:aid(Storage.ProdigalSon.TileBeforeChesterCompartment)
 mainGateTile:register()

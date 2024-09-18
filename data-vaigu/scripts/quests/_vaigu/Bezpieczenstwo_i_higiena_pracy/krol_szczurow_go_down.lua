@@ -5,13 +5,13 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.BezpieczenstwoIHigienaPracy.Questline)
+	local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Questline)
 
-	if storageVal < 10 then
+	if storageVal < 11 then
 		return false
 	end
 
-	if storageVal > 14 then
+	if storageVal > 15 then
 		return false
 	end
 
@@ -19,5 +19,5 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 	player:teleportTo(toPos)
 end
 
-tileIn:aid(Storage.BezpieczenstwoIHigienaPracy.KrolTile)
+tileIn:aid(Storage.SafetyAndOccupationalHygiene.KrolTile)
 tileIn:register()

@@ -21,5 +21,5 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	newPos:sendMagicEffect(CONST_ME_WATERSPLASH)
 	return true
 end
-lever:aid(Storage.SynMarnotrawny.SewersLever)
+lever:aid(Storage.ProdigalSon.SewersLever)
 lever:register()

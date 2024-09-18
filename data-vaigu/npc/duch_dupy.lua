@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.AssassinsCreedSkurwoala.Questline] = {
+	[Storage.AssassinsCreedSquurvaali.Questline] = {
 		[-1] = {
 			[{ GREET }] = {
 				text = "Hello, traveler. I am the Ghasstly Princess. Do you want to hear my {story}?",
@@ -72,8 +72,8 @@ local config = {
 			[{ "heaven", "nieba" }] = {
 				text = "Thank you, finally someone who wanted to listen to me.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 1,
-					[Storage.AssassinsCreedSkurwoala.Mission01] = 1,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 1,
+					[Storage.AssassinsCreedSquurvaali.Mission01] = 1,
 				},
 			},
 		},
@@ -81,9 +81,9 @@ local config = {
 			[{ "mission", "carpet", "dywan" }] = {
 				text = "Magic carpets? Who could have knowledge of something like magical carpets? Although... maybe some desert dwellers might know something about it. I don't know what to do myself, maybe the nomads can help you, although they are not experts in magic.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 4,
-					[Storage.AssassinsCreedSkurwoala.Mission01] = 4,
-					[Storage.AssassinsCreedSkurwoala.Mission02] = 1,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 4,
+					[Storage.AssassinsCreedSquurvaali.Mission01] = 4,
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 1,
 				},
 				expReward = 20000,
 			},
@@ -92,8 +92,8 @@ local config = {
 			[{ "mission" }] = {
 				text = "It's wonderful that you managed to get so far. Please, here is my staff. Wilson Tag manifested itself in my dreams yesterday. He told me to go to... I don't remember who. Maybe it's silly, but you have to ask him about enchanting the carpet.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 9,
-					[Storage.AssassinsCreedSkurwoala.Mission03] = 2,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 9,
+					[Storage.AssassinsCreedSquurvaali.Mission03] = 2,
 				},
 				expReward = 150000,
 				rewards = { ExerciseWeaponBox(30) },
@@ -121,8 +121,8 @@ local config = {
 			[{ "anything", "nic" }] = {
 				text = "",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 17,
-					[Storage.AssassinsCreedSkurwoala.Mission05] = 4,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 17,
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 4,
 				},
 				specialActionsOnSuccess = {
 					{

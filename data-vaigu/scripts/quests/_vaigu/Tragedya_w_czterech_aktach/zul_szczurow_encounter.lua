@@ -1,7 +1,7 @@
 local zulSzczurowEncounter = {
-	actionid = Storage.TragedyaWCzterechAktach.ZulSzczurowAccess,
+	actionid = Storage.FourActTragedy.ZulSzczurowAccess,
 	bossName = "Zul Szczurow",
-	timerStorage = Storage.TragedyaWCzterechAktach.ZulSzczurowAccess,
+	timerStorage = Storage.FourActTragedy.ZulSzczurowAccess,
 	cooldown = "weekly",
 
 	leverPosition = ZUL_SZCZUROW_ANCHOR:Moved(0, -7, 0),
@@ -12,13 +12,13 @@ local zulSzczurowEncounter = {
 	durationMinutes = 10,
 	exitTeleportDestination = ZUL_SZCZUROW_ANCHOR:Moved(0, 0, 0),
 	exitTeleportPosition = ZUL_SZCZUROW_ANCHOR:Moved(-8, 8, 1),
-	exitTeleportActionid = Storage.TragedyaWCzterechAktach.Portals.AfterZulSzczurow,
+	exitTeleportActionid = Storage.FourActTragedy.Portals.AfterZulSzczurow,
 	corner1 = ZUL_SZCZUROW_ANCHOR:Moved(-13, 12, 1),
 	corner2 = ZUL_SZCZUROW_ANCHOR:Moved(16, -17, 1),
 
 	scalingConfig = { hpPerPlayer = 1 },
 
-	requiredStorages = { [Storage.TragedyaWCzterechAktach.ZulSzczurowAccess] = 1 },
+	requiredStorages = { [Storage.FourActTragedy.ZulSzczurowAccess] = 1 },
 }
 RegisterEncounter(zulSzczurowEncounter)
 

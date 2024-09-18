@@ -8,12 +8,12 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return
 	end
 	local saw = Game.createItem(SYN_MARNOTRAWNY_NORMAL_ITEMS.rawHammer, 1, sawPos)
-	saw:setActionId(Storage.SynMarnotrawny.HammerMaking.Lever)
+	saw:setActionId(Storage.ProdigalSon.HammerMaking.Lever)
 	saw:setUniqueId(1000)
 
 	return true
 end
-lever:aid(Storage.SynMarnotrawny.HammerMaking.Lever)
+lever:aid(Storage.ProdigalSon.HammerMaking.Lever)
 lever:register()
 
 local paint = Action()
@@ -28,5 +28,5 @@ function paint.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 	return true
 end
-paint:aid(Storage.SynMarnotrawny.HammerMaking.Paint)
+paint:aid(Storage.ProdigalSon.HammerMaking.Paint)
 paint:register()

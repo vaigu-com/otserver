@@ -16,13 +16,13 @@ local langToConfig = {
 	},
 }
 
-local updateStorages = { [Storage.SpoczywajacyTutaj.Questline] = 5, [Storage.SpoczywajacyTutaj.Mission01] = 2 }
+local updateStorages = { [Storage.ImRestingHere.Questline] = 5, [Storage.ImRestingHere.Mission01] = 2 }
 
 local coffin = Action()
 function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	config = GetConfigByPlayer(player, langToConfig)
 
-	local storageVal = player:getStorageValue(Storage.SpoczywajacyTutaj.Questline)
+	local storageVal = player:getStorageValue(Storage.ImRestingHere.Questline)
 	local message = config[storageVal]
 	player:say(message, TALKTYPE_MONSTER_SAY)
 	if storageVal <= 0 then
@@ -30,7 +30,7 @@ function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	if storageVal < 4 then
-		player:IncrementStorages({ Storage.SpoczywajacyTutaj.Questline }, 1)
+		player:IncrementStorages({ Storage.ImRestingHere.Questline }, 1)
 	elseif storageVal == 4 then
 		if player:RemoveItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar }) then
 			if player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill }) then
@@ -43,5 +43,5 @@ function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return false
 end
 
-coffin:aid(Storage.SpoczywajacyTutaj.Coffin)
+coffin:aid(Storage.ImRestingHere.Coffin)
 coffin:register()

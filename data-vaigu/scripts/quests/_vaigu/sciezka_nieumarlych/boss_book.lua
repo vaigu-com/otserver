@@ -9,5 +9,5 @@ function book.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return true
 end
 
-book:aid(Storage.SciezkaNieumarlych.BossBook)
+book:aid(Storage.PathOfTheUndead.BossBook)
 book:register()

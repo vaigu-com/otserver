@@ -94,14 +94,14 @@ local dialogs = {
 			text = "Well, go away.",
 		},
 	},
-	[Storage.AssassinsCreedSkurwoala.Questline] = {
+	[Storage.AssassinsCreedSquurvaali.Questline] = {
 		[9] = {
 			[{ "mission", "dywan", "carpet", "misja", "zaczarowany dywan" }] = {
 				text = "Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 10,
-					[Storage.AssassinsCreedSkurwoala.Mission04] = 1,
-					[Storage.AssassinsCreedSkurwoala.Mission03] = 3,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 10,
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 1,
+					[Storage.AssassinsCreedSquurvaali.Mission03] = 3,
 				},
 			},
 		},
@@ -114,7 +114,7 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.TeatrTaniejSensacji.Questline] = {
+	[Storage.TheaterOfCheapThrills.Questline] = {
 		[26] = {
 			[{
 				"bone sword",
@@ -126,8 +126,8 @@ local dialogs = {
 			}] = {
 				text = "What!? That's corruption in a broad daylight! I'm not down for that. I'm going to investigate this case.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 27,
-					[Storage.TeatrTaniejSensacji.Mission09] = 3,
+					[Storage.TheaterOfCheapThrills.Questline] = 27,
+					[Storage.TheaterOfCheapThrills.Mission09] = 3,
 				},
 			},
 		},

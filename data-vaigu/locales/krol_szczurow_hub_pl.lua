@@ -8,7 +8,7 @@ return {
 	["Do you think your Wu-Dka sword can defeat me?"] = "Gdyby istnialo wiecej takich, to nastalby pokoj na swiecie. Nikt nie musialby wiecej innych lac.",
 	["Now that i see them myself, they remind me of some other slippers... can't really put my finger on it though."] = "Zobaczywszy je na wlasne oczy stwierdzam, iz przypominaja pewne inne kapcie...",
 	["A reliable source of good ol' knowledge on justice."] = "Zrodlo wiedzy o pradawnych tajnikach sprawiedliwosci.",
-	["Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead games. It isn't very useful, is it?"] = "Jak przywiazesz go do pasa, to bedziesz mogl wyfarmic nawet 1000 tysiecy golda na godzine, ale tylko w martwych grach. Niezbyt to ustrojstwo uzyteczne.",
+	["Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead MMORPGs. It isn't very useful, is it?"] = "Jak przywiazesz go do pasa, to bedziesz mogl wyfarmic nawet 1000 tysiecy golda na godzine, ale tylko w martwych grach mmorpg. Niezbyt to ustrojstwo uzyteczne.",
 	-- opis na samym itemie
 	["Librum Vortex. Romek, the King of Rats might be interested in it."] = "Librum Vortex. Krol szczurow moze byc nim zainteresowany.",
 	["Vestments of Wifebeaterous Regent. Romek, the King of Rats might be interested in it."] = "Zonobijka wladzy. Krol szczurow moze byc nim zainteresowany.",

@@ -49,14 +49,14 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.TragedyaWCzterechAktach.Questline] = {
+	[Storage.FourActTragedy.Questline] = {
 		[4] = {
 			[{ "mission" }] = {
 				text = "It seems I got lost in the corridors of time. I have vague memories from the future that I am a bouncer in my hometown. I think I could help you with the immigrant influx, but first, I need to reconcile with my present self. Find my equipment stolen by bandits, and I will help you.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 5,
-					[Storage.TragedyaWCzterechAktach.Mission02] = 2,
-					[Storage.TragedyaWCzterechAktach.WawelDragonAccess] = 1,
+					[Storage.FourActTragedy.Questline] = 5,
+					[Storage.FourActTragedy.Mission02] = 2,
+					[Storage.FourActTragedy.WawelDragonAccess] = 1,
 				},
 			},
 		},
@@ -73,8 +73,8 @@ local config = {
 				},
 				textNoRequiredItems = "Are you sure you didn't lose any of my stuff along the way?",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 7,
-					[Storage.TragedyaWCzterechAktach.Mission02] = 4,
+					[Storage.FourActTragedy.Questline] = 7,
+					[Storage.FourActTragedy.Mission02] = 4,
 				},
 			},
 		},
@@ -86,8 +86,8 @@ local config = {
 				},
 				textNoRequiredItems = "My magic doesn't seem to work. We'll need elven spells. Go to the elves' rock and get some magical powder that I can use for the ritual. Watch out for the dormant Soros foundations. I've seen that they too got lost in this world.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 8,
-					[Storage.TragedyaWCzterechAktach.Mission02] = 5,
+					[Storage.FourActTragedy.Questline] = 8,
+					[Storage.FourActTragedy.Mission02] = 5,
 				},
 			},
 		},

@@ -7,7 +7,7 @@ function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotke
 	Game.createItem(SYN_MARNOTRAWNY_NORMAL_ITEMS.stoneTrash, 1, player:getPosition())
 	return true
 end
-metalPile:aid(Storage.SynMarnotrawny.CalculatorMaking.MetalPile)
+metalPile:aid(Storage.ProdigalSon.CalculatorMaking.MetalPile)
 metalPile:register()
 
 local woodPile = Action()
@@ -19,7 +19,7 @@ function woodPile.onUse(player, item, fromPosition, target, toPosition, isHotkey
 	Game.createItem(SYN_MARNOTRAWNY_NORMAL_ITEMS.woodTrash, 1, player:getPosition())
 	return true
 end
-woodPile:aid(Storage.SynMarnotrawny.CalculatorMaking.WoodPile)
+woodPile:aid(Storage.ProdigalSon.CalculatorMaking.WoodPile)
 woodPile:register()
 
 local lever = Action()
@@ -40,5 +40,5 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 	return true
 end
-lever:aid(Storage.SynMarnotrawny.CalculatorMaking.Lever)
+lever:aid(Storage.ProdigalSon.CalculatorMaking.Lever)
 lever:register()

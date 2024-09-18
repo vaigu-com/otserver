@@ -50,26 +50,26 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.BezpieczenstwoIHigienaPracy.Questline] = {
-		[2] = {
+	[Storage.SafetyAndOccupationalHygiene.Questline] = {
+		[3] = {
 			[{ "cuckurse", "cucklatwa" }] = {
 				text = "Hmm... no. I won't remove the curse from him. Tell him that he would first have to stop being such a misogynist and a white capitalist.",
 				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 3,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission01] = 3,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 4,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 4,
 				},
 			},
 		},
-		[9] = {
+		[10] = {
 			[{ "mission", "cucklatwa", "cuckurse", "curse", "klatwa" }] = {
 				text = "Your offer sounds reasonable. After all, I won't have to watch those cursed ads anymore. I hope you have an offering in the form of cake for the mighty Miroslawa. If not, better have it with you. Nevertheless, I'm ready for the {exchange}.",
 			},
 			[{ "exchange", "wymiane" }] = {
 				text = "Actually, such a curse doesn't exist. But don't tell him that, or he'll get upset. But to avoid being a total fraud, I'll give you this scroll of feminazi knowledge instead.",
 				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 10,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission04] = 3,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission05] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 11,
+					[Storage.SafetyAndOccupationalHygiene.Mission04] = 3,
+					[Storage.SafetyAndOccupationalHygiene.Mission05] = 1,
 				},
 				rewards = {
 					BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS.grazynaDocument,
@@ -82,7 +82,7 @@ local config = {
 			},
 		},
 	},
-	[Storage.TragedyaWCzterechAktach.Questline] = {
+	[Storage.FourActTragedy.Questline] = {
 		[15] = {
 			[{ "mission", "grazhenacore", "grazynacore", "grazyna", "grazhena" }] = {
 				requiredItems = {
@@ -91,9 +91,9 @@ local config = {
 				textNoRequiredItems = "Come back when you have Grazhenacore with you.",
 				text = "The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 16,
-					[Storage.TragedyaWCzterechAktach.Mission06] = 2,
-					[Storage.TragedyaWCzterechAktach.GrazhenaDoor] = 1,
+					[Storage.FourActTragedy.Questline] = 16,
+					[Storage.FourActTragedy.Mission06] = 2,
+					[Storage.FourActTragedy.GrazhenaDoor] = 1,
 				},
 			},
 		},

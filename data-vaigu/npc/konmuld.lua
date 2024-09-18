@@ -116,7 +116,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Juz odebrales nagrode!" or "You get your reward already.", npc, creature)
 		end
-	elseif table.contains({ "mission", "misja", "dusza", "gertruda", "yalahari" }, message) and player:getStorageValue(Storage.SciezkaNieumarlych.Mission03) ~= 1 then
+	elseif table.contains({ "mission", "misja", "dusza", "gertruda", "yalahari" }, message) and player:getStorageValue(Storage.PathOfTheUndead.Mission03) ~= 1 then
 		if player:getStorageValue(Storage.Yalahar.WstepDoCzarnejMagii) == 3 then
 			if player:getLevel() >= 60 then
 				npcHandler:say(config[1], npc, creature)
@@ -143,7 +143,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		"the king of the crypt",
 		"king",
 		"krol",
-	}, message) and player:getStorageValue(Storage.SciezkaNieumarlych.Mission03) == 1 then
+	}, message) and player:getStorageValue(Storage.PathOfTheUndead.Mission03) == 1 then
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL"
 					and "Przyslal cie Gandalf, tak? Jesli chcesz udac sie do piramidy downa, to musisz wiedziec, ze na jej koncu czeka Nieumarly Krol krypty, oraz, ze {walka} z nim nie bedzie w zadnym wypadku latwa. Aby go przywolac, bedziesz potrzebowac kilku skladnikow. Zabierz ze soba najpotrzebniejsze rzeczy: drewno, kociol, fiolke oraz zapalniczke. Do rytualu bedziesz potrzebowac {kosci} tak plugawych, ze obnizaja dlugosc fal swiatla wokol. Do tego {sygnet} nieumarlego lorda, i {plaszcz} ze skory nieochrzczonych dzieci. Jesli zamierzasz zebrac te przedmioty, to spytaj mnie o {rytual}."

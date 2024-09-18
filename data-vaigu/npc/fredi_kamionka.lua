@@ -52,11 +52,11 @@ local escortContext = {
 	timeLimitSeconds = 600,
 	startAfterSeconds = 2,
 	escorteeName = "Fredi Kamionka Escort",
-	questlineAid = Storage.SynMarnotrawny.Questline,
+	questlineAid = Storage.ProdigalSon.Questline,
 }
 
 local config = {
-	[Storage.SynMarnotrawny.Questline] = {
+	[Storage.ProdigalSon.Questline] = {
 		[20] = {
 			[{ "mission" }] = {
 				text = "Alrigth, lets go.",

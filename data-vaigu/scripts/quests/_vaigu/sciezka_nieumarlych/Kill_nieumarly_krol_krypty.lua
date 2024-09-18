@@ -8,7 +8,7 @@ function krolKrypty.onDeath(creature)
 
 	local pos = targetMonster:getPosition()
 	local portal = Game.createItem(27590, 1, pos)
-	portal:setActionId(Storage.SciezkaNieumarlych.BossRoomExit)
+	portal:setActionId(Storage.PathOfTheUndead.BossRoomExit)
 end
 
 krolKrypty:register()

@@ -14,7 +14,7 @@ function gateLever.onUse(player, item, fromPosition, target, toPosition, isHotke
 	fromPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	return true
 end
-gateLever:aid(Storage.SynMarnotrawny.BlackBoardLever1)
+gateLever:aid(Storage.ProdigalSon.BlackBoardLever1)
 gateLever:register()
 
 local waterfallLever = Action()
@@ -34,5 +34,5 @@ function waterfallLever.onUse(player, item, fromPosition, target, toPosition, is
 	end
 	return true
 end
-waterfallLever:aid(Storage.SynMarnotrawny.BlackBoardLever2)
+waterfallLever:aid(Storage.ProdigalSon.BlackBoardLever2)
 waterfallLever:register()

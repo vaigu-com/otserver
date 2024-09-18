@@ -1,9 +1,9 @@
-local hive = Storage.TrzejSramaciISmok.Fireplaces.Hive
-local lagoon = Storage.TrzejSramaciISmok.Fireplaces.Lagoon
-local souleater = Storage.TrzejSramaciISmok.Fireplaces.Souleater
-local waterWell = Storage.TrzejSramaciISmok.Fireplaces.WaterWell
-local hairycles = Storage.TrzejSramaciISmok.Fireplaces.Hairycles
-local hellspawns = Storage.TrzejSramaciISmok.Fireplaces.Hellspawns
+local hive = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hive
+local lagoon = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Lagoon
+local souleater = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Souleater
+local waterWell = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.WaterWell
+local hairycles = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hairycles
+local hellspawns = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hellspawns
 
 local spawnTimer = 1000 * 2 * 60
 
@@ -28,7 +28,7 @@ local litFireplaceId = 2000
 local unlitFireplaceId = 1997
 
 local function hasRequiredState(player, aid)
-	local questState = player:getStorageValue(Storage.TrzejSramaciISmok.Questline)
+	local questState = player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline)
 
 	local states = aidToRequiredState[aid]
 	local min = states.min
@@ -78,7 +78,7 @@ function fire.onUse(player, fireplace, fromPosition, target, toPosition, isHotke
 	return true
 end
 
-for _, storage in pairs(Storage.TrzejSramaciISmok.Fireplaces) do
+for _, storage in pairs(Storage.TheThreeSramatiansAndTheDragon.Fireplaces) do
 	fire:aid(storage)
 end
 fire:register()

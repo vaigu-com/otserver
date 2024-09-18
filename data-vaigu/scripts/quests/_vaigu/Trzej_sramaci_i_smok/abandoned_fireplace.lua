@@ -1,4 +1,4 @@
-local updateStorages = { [Storage.TrzejSramaciISmok.Questline] = 8, [Storage.TrzejSramaciISmok.Mission04] = 2 }
+local updateStorages = { [Storage.TheThreeSramatiansAndTheDragon.Questline] = 8, [Storage.TheThreeSramatiansAndTheDragon.Mission04] = 2 }
 
 local FirePlace = Action()
 function FirePlace.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -6,12 +6,12 @@ function FirePlace.onUse(player, item, fromPosition, target, toPosition, isHotke
 		return false
 	end
 
-	if player:getStorageValue(Storage.TrzejSramaciISmok.Questline) ~= 7 then
+	if player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline) ~= 7 then
 		return false
 	end
 	player:UpdateStorages(updateStorages)
 	return true
 end
 
-FirePlace:aid(Storage.TrzejSramaciISmok.AbandonedFireplace)
+FirePlace:aid(Storage.TheThreeSramatiansAndTheDragon.AbandonedFireplace)
 FirePlace:register()

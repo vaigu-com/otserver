@@ -1,5 +1,5 @@
 local dialogs = {
-	[Storage.SciezkaNieumarlych.Questline] = {
+	[Storage.PathOfTheUndead.Questline] = {
 		[2] = {
 			[{ "krag", "kregi", "circles", "cromlech" }] = {
 				text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is in the Misguided Thief village south of Knurow.",

@@ -8,7 +8,7 @@ return {
 	["Do you think your Wu-Dka sword can defeat me?"] = "Do you think your Wu-Dka sword can defeat me?",
 	["Now that i see them myself, they remind me of some other slippers... can't really put my finger on it though."] = "Now that i see them myself, they remind me of some other slippers... can't really put my finger on it though.",
 	["A reliable source of good ol' knowledge on justice."] = "A reliable source of good ol' knowledge on justice.",
-	["Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead games. It isn't very useful, is it?"] = "Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead games. It isn't very useful, is it?",
+	["Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead MMORPGs. It isn't very useful, is it?"] = "Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead MMORPGs. It isn't very useful, is it?",
 	-- opis na samym itemie
 	["Librum Vortex. Romek, the King of Rats might be interested in it."] = "Librum Vortex. Romek, the King of Rats might be interested in it.",
 	["Vestments of Wifebeaterous Regent. Romek, the King of Rats might be interested in it."] = "Vestments of Wifebeaterous Regent. Romek, the King of Rats might be interested in it.",

@@ -88,7 +88,7 @@ local defaultWeapon = 7774
 local confirmStarterWeaponChoice = function(player, button, choice)
 	if not choice then
 		choice = { weaponType = defaultWeapon }
-		player:sendTextMessage(32, player:Localizer(Storage.SynMarnotrawny.Questline):Get("Fine, i will choose your weapon then..."))
+		player:sendTextMessage(32, player:Localizer(LOCALIZER_UNIVERSAL):Get("Fine, i will choose your starter weapon then..."))
 	end
 
 	player:AddCustomItem({ id = choice.id })

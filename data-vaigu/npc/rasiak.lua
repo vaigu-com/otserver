@@ -85,7 +85,7 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.TragedyaWCzterechAktach.Questline] = {
+	[Storage.FourActTragedy.Questline] = {
 		[{ min = 4, max = 7 }] = { [{ "portal", "teleport", "retro" }] = { text = "" } },
 	},
 }

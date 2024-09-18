@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.AssassinsCreedSkurwoala.Questline] = {
+	[Storage.AssassinsCreedSquurvaali.Questline] = {
 		[5] = {
 			[{ "mission" }] = {
 				text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
@@ -70,12 +70,12 @@ local config = {
 			[{ "away to the Ratlands", "won do szczurolandii" }] = {
 				text = "TO THE RATS! SWIRL OF STENCH! It was all {his fault}.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 6,
-					[Storage.AssassinsCreedSkurwoala.Mission02] = 3,
-					[Storage.TeatrTaniejSensacji.Mission01] = 1,
-					[Storage.TeatrTaniejSensacji.Questline] = 1,
-					[Storage.KrolSzczurowHub.Portals.Ryan] = 1,
-					[Storage.KrolSzczurowHub.Questline] = 0,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 6,
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 3,
+					[Storage.TheaterOfCheapThrills.Mission01] = 1,
+					[Storage.TheaterOfCheapThrills.Questline] = 1,
+					[Storage.KingOfRatsHQ.Portals.Ryan] = 1,
+					[Storage.KingOfRatsHQ.Questline] = 0,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -88,8 +88,8 @@ local config = {
 			[{ "his fault", "jego wina", "mission" }] = {
 				text = "And there he goes, sucked and swirled away. Here you go, the palette you were looking for.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 7,
-					[Storage.AssassinsCreedSkurwoala.Mission02] = 4,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 7,
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 4,
 				},
 				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette },
 			},

@@ -10,7 +10,7 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.TrzejSramaciISmok.Questline)
+	local storageVal = player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline)
 
 	if storageVal < 21 or storageVal > 23 then
 		return false
@@ -30,7 +30,7 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 	end
 end
 
-tileIn:aid(Storage.TrzejSramaciISmok.SzczurKrolowTile)
+tileIn:aid(Storage.TheThreeSramatiansAndTheDragon.RatOfKingsTile)
 tileIn:register()
 
 local tileOut = MoveEvent()
@@ -51,5 +51,5 @@ function tileOut.onStepOut(player, item, fromPosition, target, toPosition, isHot
 	end
 end
 
-tileOut:aid(Storage.TrzejSramaciISmok.SzczurKrolowTile)
+tileOut:aid(Storage.TheThreeSramatiansAndTheDragon.RatOfKingsTile)
 tileOut:register()

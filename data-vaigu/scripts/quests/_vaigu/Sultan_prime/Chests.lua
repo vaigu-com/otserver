@@ -1,8 +1,8 @@
 local corpse = Action()
 
 local neckUpdateStorages = {
-	[Storage.SultanPrime.Questline] = 2,
-	[Storage.SultanPrime.Mission01] = 2,
+	[Storage.SultanPrime.Questline] = 1,
+	[Storage.SultanPrime.Mission01] = 1,
 	[Storage.SultanPrime.RewardsScripted.Necklace] = 2,
 }
 

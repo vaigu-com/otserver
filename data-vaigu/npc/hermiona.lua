@@ -65,7 +65,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		return false
 	end
 
-	if table.contains({ "krag", "kregi", "circles", "cromlech" }, message) and player:getStorageValue(Storage.SciezkaNieumarlych.Questline) == 2 then
+	if table.contains({ "krag", "kregi", "circles", "cromlech" }, message) and player:getStorageValue(Storage.PathOfTheUndead.Questline) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Ach tak, wiedzialam, ze ten moment nadejdzie. Krag znajduje sie na samym zachodzie wyspy. Bronia go Feral Sphinxy i Crypt Wardeny." or "I knew this moment would come. Cromlech is located in the very west of the island. It's defended by Feral Sphinxes and Crypt Wardens.", npc, creature)
 	end
 end

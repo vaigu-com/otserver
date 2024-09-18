@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.AssassinsCreedSkurwoala.Questline] = {
+	[Storage.AssassinsCreedSquurvaali.Questline] = {
 		[10] = {
 			[{ "mission", "carpet", "dywan" }] = {
 				text = "Yes, I can perform such a service. If you want me to help you, first you {help} me.",
@@ -57,8 +57,8 @@ local config = {
 			[{ "pomozesz", "help", "ok", "okay", "sure" }] = {
 				text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 11,
-					[Storage.AssassinsCreedSkurwoala.Mission04] = 2,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 11,
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 2,
 				},
 			},
 		},
@@ -73,8 +73,8 @@ local config = {
 				requiredItems = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
 				textNoRequiredItems = "Did you lose a bag somewhere? Well...",
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 13,
-					[Storage.AssassinsCreedSkurwoala.Mission04] = 4,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 13,
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 4,
 				},
 			},
 		},
@@ -83,22 +83,22 @@ local config = {
 				text = "Please take this carpet. Remember that the flying function only works in specific places, namely on the peaks of the highest mountains. One of these peaks is surely in the Caribbean.",
 				requiredItems = { { id = 20202, count = 5 } },
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 14,
-					[Storage.AssassinsCreedSkurwoala.Mission04] = 5,
-					[Storage.AssassinsCreedSkurwoala.Mission05] = 1,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 14,
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 5,
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 1,
 				},
 				expReward = 500000,
 				textNoRequiredItems = "Return when you have exactly 5 dead weight.",
 			},
 		},
 	},
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[11] = {
 			[{ "mission" }] = {
 				text = "I know where you can find your friends. But first, I expect something in return. Bring me two dragon porkcuts, and I'll help you.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 12,
-					[Storage.TrzejSramaciISmok.Mission05] = 4,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 12,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission05] = 4,
 				},
 			},
 		},
@@ -108,8 +108,8 @@ local config = {
 				requiredItems = { { id = 3583, count = 2 } },
 				textNoRequiredItems = "Come back with two dragon porkcuts, and I promise I'll help you.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 13,
-					[Storage.TrzejSramaciISmok.Mission05] = 5,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 13,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission05] = 5,
 				},
 			},
 		},

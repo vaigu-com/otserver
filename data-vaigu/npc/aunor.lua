@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.AssassinsCreedSkurwoala.Questline] = {
+	[Storage.AssassinsCreedSquurvaali.Questline] = {
 		[14] = {
 			[{ "mission" }] = {
 				text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
@@ -63,8 +63,8 @@ local config = {
 					},
 				},
 				nextState = {
-					[Storage.AssassinsCreedSkurwoala.Questline] = 15,
-					[Storage.AssassinsCreedSkurwoala.Mission05] = 2,
+					[Storage.AssassinsCreedSquurvaali.Questline] = 15,
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 2,
 				},
 			},
 		},

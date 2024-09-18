@@ -11,7 +11,7 @@ function portal.onStepIn(creature, item, position, fromPosition)
 	return true
 end
 
-for _, actionId in pairs(Storage.BezpieczenstwoIHigienaPracy.Portals) do
+for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
 	portal:aid(actionId)
 end
 portal:type("stepin")
@@ -30,7 +30,7 @@ function portalUse.onUse(creature, item, fromPosition, target, toPosition, isHot
 	return true
 end
 
-for _, actionId in pairs(Storage.BezpieczenstwoIHigienaPracy.Portals) do
+for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
 	portalUse:aid(actionId)
 end
 portalUse:register()

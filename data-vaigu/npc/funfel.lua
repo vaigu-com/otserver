@@ -108,7 +108,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "O co ci chodzi?" or "What do you want?", npc, creature)
 		end
 		npcHandler:setTopic(playerId, 0)
-	elseif table.contains({ "krag", "kregi", "circles", "cromlech" }, message) and player:getStorageValue(Storage.SciezkaNieumarlych.Questline) == 2 then
+	elseif table.contains({ "krag", "kregi", "circles", "cromlech" }, message) and player:getStorageValue(Storage.PathOfTheUndead.Questline) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Krag ten znajduje sie za wzgorzem orkow na zachodzie miasta. W okolicy kreca sie tez szczuroludzie." or "This cromlech is located behind the orc hill in the west of the city. There's also corym village nearby.", npc, creature)
 	end
 end

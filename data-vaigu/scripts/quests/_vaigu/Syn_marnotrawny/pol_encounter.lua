@@ -1,7 +1,7 @@
 local polEncounterConfig = {
-	actionid = Storage.SynMarnotrawny.PolAccess,
+	actionid = Storage.ProdigalSon.PolAccess,
 	bossName = "Pol",
-	timerStorage = Storage.SynMarnotrawny.PolAccess,
+	timerStorage = Storage.ProdigalSon.PolAccess,
 	cooldown = "weekly",
 
 	leverPosition = JANUSZEX_ANCHOR:Moved(54, 9, -1),
@@ -12,13 +12,13 @@ local polEncounterConfig = {
 	durationMinutes = 10,
 	exitTeleportDestination = JANUSZEX_ANCHOR:Moved(45, 9, 1),
 	exitTeleportPosition = JANUSZEX_ANCHOR:Moved(51, -5, -1),
-	exitTeleportActionid = Storage.SynMarnotrawny.PortalAfterPol,
+	exitTeleportActionid = Storage.ProdigalSon.PortalAfterPol,
 	corner1 = JANUSZEX_ANCHOR:Moved(51, -15, -1),
 	corner2 = JANUSZEX_ANCHOR:Moved(59, -4, -1),
 
 	scalingConfig = { hpPerPlayer = 1 },
 
-	requiredStorages = { [Storage.SynMarnotrawny.PolAccess] = 1 },
+	requiredStorages = { [Storage.ProdigalSon.PolAccess] = 1 },
 }
 RegisterEncounter(polEncounterConfig)
 

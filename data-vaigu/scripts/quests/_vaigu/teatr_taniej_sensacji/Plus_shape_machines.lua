@@ -49,7 +49,7 @@ function device.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return true
 end
 
-device:aid(Storage.TeatrTaniejSensacji.PlusShapePuzzle.MachineNorth)
-device:aid(Storage.TeatrTaniejSensacji.PlusShapePuzzle.MachineWest)
-device:aid(Storage.TeatrTaniejSensacji.PlusShapePuzzle.MachineCenter)
+device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineNorth)
+device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineWest)
+device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineCenter)
 device:register()

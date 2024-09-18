@@ -67,7 +67,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		return false
 	end
 
-	if table.contains({ "krag", "kregi", "circles", "cromlech" }, msg) and player:getStorageValue(Storage.SciezkaNieumarlych.Questline) == 2 then
+	if table.contains({ "krag", "kregi", "circles", "cromlech" }, msg) and player:getStorageValue(Storage.PathOfTheUndead.Questline) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Rozumiem, kamienny krag znajduje sie na wysunietym polwyspie, na poludniowy zachod stad." or "I understand, the stone cromlech is located on a peninsula to the southwest of here.", npc, creature)
 	end
 end

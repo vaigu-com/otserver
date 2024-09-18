@@ -1,7 +1,7 @@
 local hfpxConfig = {
-	actionid = Storage.TrzejSramaciISmok.HfpxAccess,
+	actionid = Storage.TheThreeSramatiansAndTheDragon.HfpxAccess,
 	bossName = "Operator HF-P/X",
-	timerStorage = Storage.TrzejSramaciISmok.HfpxAccess,
+	timerStorage = Storage.TheThreeSramatiansAndTheDragon.HfpxAccess,
 	cooldown = "weekly",
 
 	leverPosition = Position(6799, 552, 12),
@@ -11,7 +11,7 @@ local hfpxConfig = {
 	},
 	exitTeleportDestination = Position(6796, 554, 12),
 	exitTeleportPosition = Position(6789, 548, 13),
-	exitTeleportActionid = Storage.TrzejSramaciISmok.Portals.AfterHfpx,
+	exitTeleportActionid = Storage.TheThreeSramatiansAndTheDragon.Portals.AfterHfpx,
 
 	bossPos = Position(6791, 550, 13),
 	enterPos = Position(6801, 556, 13),
@@ -20,7 +20,7 @@ local hfpxConfig = {
 	corner2 = ANCHOR:Moved(15, 11, 0),
 
 	requiredStorages = {
-		[Storage.TrzejSramaciISmok.HfpxAccess] = 1,
+		[Storage.TheThreeSramatiansAndTheDragon.HfpxAccess] = 1,
 	},
 }
 RegisterEncounter(hfpxConfig)

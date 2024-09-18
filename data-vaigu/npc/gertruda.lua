@@ -129,13 +129,13 @@ local config = {
 			},
 		},
 	},
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[10] = {
 			[{ "mission" }] = {
 				text = "Your team left me a note stating they headed to the desert. You can ask Jannah'ma for help finding them.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 11,
-					[Storage.TrzejSramaciISmok.Mission05] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 11,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission05] = 3,
 				},
 			},
 		},

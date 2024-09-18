@@ -1,6 +1,6 @@
 local updateStorages = {
-	[Storage.CzeslawKrasnolud.Questline] = 7,
-	[Storage.CzeslawKrasnolud.Mission03] = 3,
+	[Storage.ChesterTheDwarf.Questline] = 7,
+	[Storage.ChesterTheDwarf.Mission03] = 3,
 }
 
 local tile = MoveEvent()
@@ -11,14 +11,14 @@ function tile.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	local storageVal = player:getStorageValue(Storage.CzeslawKrasnolud.Questline)
+	local storageVal = player:getStorageValue(Storage.ChesterTheDwarf.Questline)
 	if storageVal == 6 then
 		player:UpdateStorages(updateStorages)
-		player:say(player:Localizer(Storage.CzeslawKrasnolud.Questline):Get("This just might be the place Chester was talking about"), TALKTYPE_MONSTER_SAY)
+		player:say(player:Localizer(Storage.ChesterTheDwarf.Questline):Get("This just might be the place Chester was talking about"), TALKTYPE_MONSTER_SAY)
 	end
 	return true
 end
 
-tile:aid(Storage.CzeslawKrasnolud.CaveTile)
+tile:aid(Storage.ChesterTheDwarf.CaveTile)
 tile:type("stepin")
 tile:register()

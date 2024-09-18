@@ -5,7 +5,7 @@ local function tryEnterAccessTile(actionid, player, fromPosition)
 	end
 
 	if player:getStorageValue(actionid) == -1 then
-		local transaltedMessage = player:Localizer(Storage.SynMarnotrawny.Questline):Get(errorMessage)
+		local transaltedMessage = player:Localizer(Storage.ProdigalSon.Questline):Get(errorMessage)
 		player:sendTextMessage(MESSAGE_INFO_DESCR, transaltedMessage)
 		player:teleportTo(fromPosition, true)
 	end
@@ -15,14 +15,14 @@ end
 
 local mainGateTile = MoveEvent()
 function mainGateTile.onStepIn(player, item, toPosition, fromPosition)
-	tryEnterAccessTile(Storage.SynMarnotrawny.MainGateAccess, player, fromPosition)
+	tryEnterAccessTile(Storage.ProdigalSon.MainGateAccess, player, fromPosition)
 end
-mainGateTile:aid(Storage.SynMarnotrawny.MainGateAccess)
+mainGateTile:aid(Storage.ProdigalSon.MainGateAccess)
 mainGateTile:register()
 
 local northMinesTile = MoveEvent()
 function northMinesTile.onStepIn(player, item, toPosition, fromPosition)
-	tryEnterAccessTile(Storage.SynMarnotrawny.NorthMinesAccess, player, fromPosition)
+	tryEnterAccessTile(Storage.ProdigalSon.NorthMinesAccess, player, fromPosition)
 end
-northMinesTile:aid(Storage.SynMarnotrawny.NorthMinesAccess)
+northMinesTile:aid(Storage.ProdigalSon.NorthMinesAccess)
 northMinesTile:register()

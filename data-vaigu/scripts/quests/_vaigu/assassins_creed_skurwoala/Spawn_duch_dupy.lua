@@ -7,7 +7,7 @@ function chairIn.onStepIn(player, item, fromPosition, target, toPosition, isHotk
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.AssassinsCreedSkurwoala.Questline)
+	local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Questline)
 
 	if storageVal >= 17 then
 		return false
@@ -20,7 +20,7 @@ function chairIn.onStepIn(player, item, fromPosition, target, toPosition, isHotk
 	end
 end
 
-chairIn:aid(Storage.AssassinsCreedSkurwoala.GhostChair)
+chairIn:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
 chairIn:register()
 
 local chairOut = MoveEvent()
@@ -37,5 +37,5 @@ function chairOut.onStepOut(player, item, fromPosition, target, toPosition, isHo
 	end
 end
 
-chairOut:aid(Storage.AssassinsCreedSkurwoala.GhostChair)
+chairOut:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
 chairOut:register()

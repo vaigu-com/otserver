@@ -1,7 +1,7 @@
 KRAKEN_ENCOUNTER_DATA = {
-	actionid = Storage.TragedyaWCzterechAktach.KrakenAccess,
+	actionid = Storage.FourActTragedy.KrakenAccess,
 	bossName = "The Kraken",
-	timerStorage = Storage.TragedyaWCzterechAktach.KrakenAccess,
+	timerStorage = Storage.FourActTragedy.KrakenAccess,
 	cooldown = "weekly",
 
 	leverPosition = KRAKEN_ANCHOR:Moved(-5, 0, 0),
@@ -13,13 +13,13 @@ KRAKEN_ENCOUNTER_DATA = {
 	durationMinutes = 10,
 	exitTeleportDestination = KRAKEN_ANCHOR:Moved(-297, -51, 2),
 	exitTeleportPosition = KRAKEN_ANCHOR:Moved(-53, -23, 0),
-	exitTeleportActionid = Storage.TragedyaWCzterechAktach.Portals.AfterKraken,
+	exitTeleportActionid = Storage.FourActTragedy.Portals.AfterKraken,
 	corner1 = KRAKEN_ANCHOR:Moved(-58, -30, 0),
 	corner2 = KRAKEN_ANCHOR:Moved(-33, 3, 0),
 
 	scalingConfig = { hpPerPlayer = 1 },
 
-	requiredStorages = { [Storage.TragedyaWCzterechAktach.KrakenAccess] = 1 },
+	requiredStorages = { [Storage.FourActTragedy.KrakenAccess] = 1 },
 
 	fightningPlatformPositions = {
 		topLeft = KRAKEN_ANCHOR:Moved(-58, -30, 0),

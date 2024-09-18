@@ -1,13 +1,13 @@
 local storages = {
-	[Storage.TrzejSramaciISmok.Questline] = 23,
-	[Storage.TrzejSramaciISmok.Mission09] = 2,
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = 23,
+	[Storage.TheThreeSramatiansAndTheDragon.Mission09] = 2,
 }
 
 local hfpx = CreatureEvent("HfpxKill")
 
 function hfpx.onDeath(creature)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		local storageVal = player:getStorageValue(Storage.TrzejSramaciISmok.Questline)
+		local storageVal = player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline)
 		if storageVal ~= 22 then
 			return true
 		end

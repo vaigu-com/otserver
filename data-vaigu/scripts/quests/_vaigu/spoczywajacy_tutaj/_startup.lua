@@ -1,19 +1,19 @@
 local startupItemsStatic = {
-	{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.SpoczywajacyTutaj.Coffin },
-	{ pos = { 5938, 1779, 7 }, id = 2476, aid = Storage.SpoczywajacyTutaj.Coffin },
+	{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.ImRestingHere.Coffin },
+	{ pos = { 5938, 1779, 7 }, id = 2476, aid = Storage.ImRestingHere.Coffin },
 	{ pos = { 5939, 1779, 7 }, id = 3522, aid = 0 },
 	{ pos = { 5938, 1779, 7 }, id = 3526, aid = 0 },
 
-	{ pos = { 6712, 1408, 13 }, id = 3204, aid = Storage.SpoczywajacyTutaj.Corpse },
+	{ pos = { 6712, 1408, 13 }, id = 3204, aid = Storage.ImRestingHere.Corpse },
 }
 
 local function resetSpawnLocks()
-	for _, spawnLock in pairs(Storage.BezpieczenstwoIHigienaPracy.Spawns) do
+	for _, spawnLock in pairs(Storage.SafetyAndOccupationalHygiene.Spawns) do
 		Game.setStorageValue(spawnLock, 0)
 	end
 end
 
-local bhpInit = GlobalEvent("spoczywajacyTutajInit")
+local bhpInit = GlobalEvent("ImRestingHereInit")
 function bhpInit.onStartup()
 	LoadStartupItems(startupItemsStatic)
 	resetSpawnLocks()

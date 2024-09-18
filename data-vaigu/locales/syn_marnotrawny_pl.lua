@@ -48,7 +48,7 @@ return {
 	["I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Areczek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it."] = "Fredi powiedzial mi, ze ten ZLODZIEJ imperator jedzi NOWIUTKIM BMW. Udowodniles swoja niezawodnosc. Pora go wykonczyc i odebrac mu wladze nad Januszexepolem. Aby dostac sie do jego komnat, musisz znac specjalne haslo. W poludniowo zachodnich jaskiniach znajdziesz wodospad. Areczki sa zbyt glupie, zeby odnalezc klucz do mechanizmu, ktory odsloni tablice z haslem. Ja musze tu zostac. Wroc do mnie, jak wejdziesz w posiadanie hasla.",
 	["BLACKBOARD_DESC"] = function(context)
 		local player = context.player
-		local password = player:getStorageValue(Storage.SynMarnotrawny.Blackboard)
+		local password = player:getStorageValue(Storage.ProdigalSon.Blackboard)
 		return password
 	end,
 	["No. Im sure its not the password. Try looking behind the waterfall."] = "Nie, to na pewno nie jest dobre haslo. Sproboj poszukac za wodospadem.",

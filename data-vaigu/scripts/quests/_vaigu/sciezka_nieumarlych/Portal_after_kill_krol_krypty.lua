@@ -1,6 +1,6 @@
 local updateStorages = {
-	[Storage.SciezkaNieumarlych.Questline] = 4,
-	[Storage.SciezkaNieumarlych.Mission03] = 2,
+	[Storage.PathOfTheUndead.Questline] = 4,
+	[Storage.PathOfTheUndead.Mission03] = 2,
 }
 
 local exitPos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = 4, y = -32, z = -2 })
@@ -11,7 +11,7 @@ function portal.onStepIn(player, item, toPosition, fromPosition)
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.SciezkaNieumarlych.Questline)
+	local storageVal = player:getStorageValue(Storage.PathOfTheUndead.Questline)
 	if storageVal == 3 then
 		player:UpdateStorages(updateStorages)
 	end
@@ -20,6 +20,6 @@ function portal.onStepIn(player, item, toPosition, fromPosition)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 end
 
-portal:aid(Storage.SciezkaNieumarlych.BossRoomExit)
+portal:aid(Storage.PathOfTheUndead.BossRoomExit)
 portal:type("stepin")
 portal:register()

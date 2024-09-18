@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.TragedyaWCzterechAktach.Questline] = {
+	[Storage.FourActTragedy.Questline] = {
 		[16] = {
 			[{ GREET }] = {
 				text = "They locked me in here and blocked the exit with magical doors that I can't pass in my current state. You know what? Something is {itching} me here.",
@@ -60,9 +60,9 @@ local config = {
 			[{ "help", "pomoz" }] = {
 				text = "He jumped out! You must have scared him! He jumped into that hole, which is too small for a human. There's some hole in front of my cell. Perhaps it leads to the same cave where that rascal fled!",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 17,
-					[Storage.TragedyaWCzterechAktach.Mission06] = 3,
-					[Storage.TragedyaWCzterechAktach.ZulSzczurowAccess] = 1,
+					[Storage.FourActTragedy.Questline] = 17,
+					[Storage.FourActTragedy.Mission06] = 3,
+					[Storage.FourActTragedy.ZulSzczurowAccess] = 1,
 				},
 			},
 		},

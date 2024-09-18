@@ -22,16 +22,16 @@ function bed.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
 		return false
 	end
-	if player:getStorageValue(Storage.SynMarnotrawny.Questline) == 11 then
+	if player:getStorageValue(Storage.ProdigalSon.Questline) == 11 then
 		local spectators = Game.getSpectators(fromPosition, true, true, 7, 7, 5, 5)
 		for i = 1, #spectators do
-			local translatedMessage = spectators[i]:Localizer(Storage.SynMarnotrawny.Questline):Get("Alright! I YIELD! We will disband our union. Now give me some peace, im sick.")
+			local translatedMessage = spectators[i]:Localizer(Storage.ProdigalSon.Questline):Get("Alright! I YIELD! We will disband our union. Now give me some peace, im sick.")
 			spectators[i]:say(translatedMessage, TALKTYPE_MONSTER_SAY, true, spectators[i], fromPosition)
 		end
 		return true
 	end
 
-	if player:getStorageValue(Storage.SynMarnotrawny.Questline) == 10 then
+	if player:getStorageValue(Storage.ProdigalSon.Questline) == 10 then
 		local aid = item:getActionId()
 		if Game.getStorageValue(aid) == 1 then
 			return true
@@ -45,5 +45,5 @@ function bed.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	return true
 end
-bed:aid(Storage.SynMarnotrawny.AreczekLeaderBed)
+bed:aid(Storage.ProdigalSon.AreczekLeaderBed)
 bed:register()

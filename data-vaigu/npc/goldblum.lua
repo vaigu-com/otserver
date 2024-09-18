@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[1] = {
 			[{ GREET }] = {
 				text = "What are you doing in my kosher cave? And you know what, I only have two entrances here: one normal and one through the toilet. I can smell which one you used, you pig.",
@@ -78,8 +78,8 @@ local config = {
 			}] = {
 				text = "CUT THE CRAP! HOW DID YOU KNOW, YOU STUPID IDIOT!! Never mind. Ask your question - there's no question that will surprise my devious, vile mind.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 2,
-					[Storage.TrzejSramaciISmok.Mission02] = 2,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 2,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission02] = 2,
 				},
 				requiredTopic = { min = 1, max = 1 },
 			},
@@ -89,9 +89,9 @@ local config = {
 			[{ ANY_MESSAGE }] = {
 				text = "SHIT, because YOU'RE BROKE! No? How can that be? You're not welcome here anymore. Others like you went through that wire, and I showed them the way to the hive. Farewell, scoundrel.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 3,
-					[Storage.TrzejSramaciISmok.Mission02] = 3,
-					[Storage.TrzejSramaciISmok.Mission03] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission02] = 3,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission03] = 1,
 				},
 			},
 		},

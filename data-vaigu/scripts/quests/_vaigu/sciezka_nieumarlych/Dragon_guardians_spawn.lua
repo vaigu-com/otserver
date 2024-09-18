@@ -67,5 +67,5 @@ function skull.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	return false
 end
 
-skull:aid(Storage.SciezkaNieumarlych.GuardianSkull)
+skull:aid(Storage.PathOfTheUndead.GuardianSkull)
 skull:register()

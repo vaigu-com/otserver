@@ -982,7 +982,8 @@ if not Quests then
 					startValue = 0,
 					endValue = 3,
 					states = {
-						[2] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
+						[1] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
+						[2] = "Sultan made you an offer. Give the neclace to him to begin your mission.",
 						[3] = "You returned the amulet to the Sultan and agreed to help him.",
 					},
 				},
@@ -1011,8 +1012,8 @@ if not Quests then
 					states = {
 						[1] = "OPENED_COFFINS_STATUS",
 						[2] = "BODIES_THROWN_STATUS",
-						[3] = "Hello, recipient. This is Sultan. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut.",
-						[4] = "~Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
+						[3] = "~Sultan69: It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut.",
+						[4] = "~Sultan69: How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
 						[5] = "Sultan ordered you to.. You can go to Father Natanek and ask him for redemption.",
 						[6] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
 					},
@@ -1021,12 +1022,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Assassins's Creed: Squurva'ali",
-			startStorageId = Storage.AssassinsCreedSkurwoala.Questline,
+			startStorageId = Storage.AssassinsCreedSquurvaali.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "The First Step to Heaven",
-					storageId = Storage.AssassinsCreedSkurwoala.Mission01,
+					storageId = Storage.AssassinsCreedSquurvaali.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1039,7 +1040,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "The Tailor's Touch",
-					storageId = Storage.AssassinsCreedSkurwoala.Mission02,
+					storageId = Storage.AssassinsCreedSquurvaali.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1053,7 +1054,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Distant Calling",
-					storageId = Storage.AssassinsCreedSkurwoala.Mission03,
+					storageId = Storage.AssassinsCreedSquurvaali.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1065,7 +1066,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "Djinn's Ordeal",
-					storageId = Storage.AssassinsCreedSkurwoala.Mission04,
+					storageId = Storage.AssassinsCreedSquurvaali.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1079,7 +1080,7 @@ if not Quests then
 				},
 				[5] = {
 					name = "The Final Stretch",
-					storageId = Storage.AssassinsCreedSkurwoala.Mission05,
+					storageId = Storage.AssassinsCreedSquurvaali.Mission05,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1094,13 +1095,13 @@ if not Quests then
 			},
 		},
 		[NextQuestId()] = {
-			name = "Resting Here",
-			startStorageId = Storage.SpoczywajacyTutaj.Questline,
+			name = "Im Resting Here",
+			startStorageId = Storage.ImRestingHere.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "A Work to Screw up",
-					storageId = Storage.SpoczywajacyTutaj.Mission01,
+					storageId = Storage.ImRestingHere.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1114,12 +1115,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Chester the Dwarf",
-			startStorageId = Storage.CzeslawKrasnolud.Questline,
+			startStorageId = Storage.ChesterTheDwarf.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Fortune Teller 3000",
-					storageId = Storage.CzeslawKrasnolud.Mission01,
+					storageId = Storage.ChesterTheDwarf.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 2,
@@ -1130,7 +1131,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Chester the Turf Accountant",
-					storageId = Storage.CzeslawKrasnolud.Mission02,
+					storageId = Storage.ChesterTheDwarf.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1143,7 +1144,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Mirko Train Simulator",
-					storageId = Storage.CzeslawKrasnolud.Mission03,
+					storageId = Storage.ChesterTheDwarf.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1156,7 +1157,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "Business Class to the Labour Exchange",
-					storageId = Storage.CzeslawKrasnolud.Mission04,
+					storageId = Storage.ChesterTheDwarf.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1170,12 +1171,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Path of the Undead",
-			startStorageId = Storage.SciezkaNieumarlych.Questline,
+			startStorageId = Storage.PathOfTheUndead.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Test of Strength",
-					storageId = Storage.SciezkaNieumarlych.Mission01,
+					storageId = Storage.PathOfTheUndead.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 2,
@@ -1186,7 +1187,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Endurance Test",
-					storageId = Storage.SciezkaNieumarlych.Mission02,
+					storageId = Storage.PathOfTheUndead.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 2,
@@ -1197,7 +1198,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "The Final Battle",
-					storageId = Storage.SciezkaNieumarlych.Mission03,
+					storageId = Storage.PathOfTheUndead.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1211,20 +1212,20 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "King of Rats Headquarters",
-			startStorageId = Storage.KrolSzczurowHub.Questline,
+			startStorageId = Storage.KingOfRatsHQ.Questline,
 			startStorageValue = 0,
 			missions = {
 				[1] = {
 					name = "CurentStatus",
-					storageId = Storage.KrolSzczurowHub.Questline,
+					storageId = Storage.KingOfRatsHQ.Questline,
 					missionId = NextMissionId(),
 					startValue = 0,
-					endValue = TableSize(Storage.KrolSzczurowHub.Items),
+					endValue = TableSize(Storage.KingOfRatsHQ.Items),
 					description = "King of Rats Headquarters Status",
 				},
 				[2] = {
 					name = "01. to Ryan",
-					storageId = Storage.KrolSzczurowHub.Portals.Ryan,
+					storageId = Storage.KingOfRatsHQ.Portals.Ryan,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1232,7 +1233,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "02. to Sweaty Cyclops",
-					storageId = Storage.KrolSzczurowHub.Portals.SweatyCyclops,
+					storageId = Storage.KingOfRatsHQ.Portals.SweatyCyclops,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1240,7 +1241,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "03. to Djinns",
-					storageId = Storage.KrolSzczurowHub.Portals.Djinns,
+					storageId = Storage.KingOfRatsHQ.Portals.Djinns,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1248,7 +1249,7 @@ if not Quests then
 				},
 				[5] = {
 					name = "04. to North Kongo",
-					storageId = Storage.KrolSzczurowHub.Portals.NorthKongo,
+					storageId = Storage.KingOfRatsHQ.Portals.NorthKongo,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1256,7 +1257,7 @@ if not Quests then
 				},
 				[6] = {
 					name = "05. to Werebadgers",
-					storageId = Storage.KrolSzczurowHub.Portals.Werebadgers,
+					storageId = Storage.KingOfRatsHQ.Portals.Werebadgers,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1264,7 +1265,7 @@ if not Quests then
 				},
 				[7] = {
 					name = "06. to Vampire city",
-					storageId = Storage.KrolSzczurowHub.Portals.VampireCity,
+					storageId = Storage.KingOfRatsHQ.Portals.VampireCity,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1272,7 +1273,7 @@ if not Quests then
 				},
 				[8] = {
 					name = "07. to Asuras",
-					storageId = Storage.KrolSzczurowHub.Portals.Asuras,
+					storageId = Storage.KingOfRatsHQ.Portals.Asuras,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1280,7 +1281,7 @@ if not Quests then
 				},
 				[9] = {
 					name = "08. to East Hurgahada",
-					storageId = Storage.KrolSzczurowHub.Portals.HurghadaEast,
+					storageId = Storage.KingOfRatsHQ.Portals.HurghadaEast,
 					missionId = NextMissionId(),
 					startValue = -1,
 					endValue = 1,
@@ -1290,17 +1291,16 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Theater of Cheap Thrills",
-			startStorageId = Storage.TeatrTaniejSensacji.Questline,
+			startStorageId = Storage.TheaterOfCheapThrills.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Vitat Iustitia",
-					storageId = Storage.TeatrTaniejSensacji.Mission01,
+					storageId = Storage.TheaterOfCheapThrills.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
-						[0] = "State 0",
 						[1] = "Many people ask: Who is this King of Rats and what's the deal? That's when I tell them, 'You stinker, go to Ratland and see for yourself. The King of Rats! Lets go! Yeehaw!",
 						[2] = "Romek assigned you the task of finding mature cheese in the pirates' hideout.",
 						[3] = "Chorus of Januses: A strange trumpet will spread a sound, fire will coagulate, the light will dim, and the world's history will turn to dust. From the trees of eternity, leaves will fall on the Judge's dreadful coming to bear witness to the Psalmist.",
@@ -1308,12 +1308,11 @@ if not Quests then
 				},
 				[2] = {
 					name = "02. I'm Not a Rat's Fugue",
-					storageId = Storage.TeatrTaniejSensacji.Mission02,
+					storageId = Storage.TheaterOfCheapThrills.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
-						[0] = "State 0",
 						[1] = "Romek has offered you a position as his assistant. However, you must first pass a fair test.",
 						[2] = "Pass the fair test to become the King of Rats assistant.",
 						[3] = "Chorus of Januses: My radiance will pierce the Darkness, My brilliance will scatter the Shadows, ~Your father drunkard after a case of beers.",
@@ -1321,12 +1320,11 @@ if not Quests then
 				},
 				[3] = {
 					name = "03. Good Day, Mrs. Pitca",
-					storageId = Storage.TeatrTaniejSensacji.Mission03,
+					storageId = Storage.TheaterOfCheapThrills.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
 					states = {
-						[0] = "State 0",
 						[1] = "Romek needs help with a new task. Go to him.",
 						[2] = "Defeat Romek's supposed enemy, Mrs. Pitca.",
 						[3] = "You defeated Mrs. Pitca, now return to Romek.",
@@ -1335,12 +1333,11 @@ if not Quests then
 				},
 				[4] = {
 					name = "04. Vanitas vanitatum et omnia vanitas",
-					storageId = Storage.TeatrTaniejSensacji.Mission04,
+					storageId = Storage.TheaterOfCheapThrills.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
 					states = {
-						[0] = "State 0",
 						[1] = "Romek needs help with a new task. Go to him.",
 						[2] = "Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him.",
 						[3] = "You found a book that can help Romek. Return to him and give it to him.",
@@ -1349,7 +1346,7 @@ if not Quests then
 				},
 				[5] = {
 					name = "05. Ham from under the Rug",
-					storageId = Storage.TeatrTaniejSensacji.Mission05,
+					storageId = Storage.TheaterOfCheapThrills.Mission05,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1363,12 +1360,11 @@ if not Quests then
 				},
 				[6] = {
 					name = "06. Holiday Camp, you know where",
-					storageId = Storage.TeatrTaniejSensacji.Mission06,
+					storageId = Storage.TheaterOfCheapThrills.Mission06,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
 					states = {
-						[0] = "State 0",
 						[1] = "GM Romek needs help with a new problem, go to him.",
 						[2] = "Organize a camp for Romek's son, Kitz. Arni will assist you with this task.",
 						[3] = "Inform Kitz that his trip is ready.",
@@ -1378,12 +1374,11 @@ if not Quests then
 				},
 				[7] = {
 					name = "07. King of Rats' Gambit",
-					storageId = Storage.TeatrTaniejSensacji.Mission07,
+					storageId = Storage.TheaterOfCheapThrills.Mission07,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
 					states = {
-						[0] = "State 0",
 						[1] = "GM Romek needs help with a new problem, go to him.",
 						[2] = "GM Romek is afraid for his life. Try to find Robercik before he finds Romek.",
 						[3] = "You defeated the cunning Robercik. Return to Romk for your reward.",
@@ -1392,7 +1387,7 @@ if not Quests then
 				},
 				[8] = {
 					name = "08. The Art That of Just",
-					storageId = Storage.TeatrTaniejSensacji.Mission08,
+					storageId = Storage.TheaterOfCheapThrills.Mission08,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1405,7 +1400,7 @@ if not Quests then
 				},
 				[9] = {
 					name = "09. Abyssal Chasms of Decadence",
-					storageId = Storage.TeatrTaniejSensacji.Mission09,
+					storageId = Storage.TheaterOfCheapThrills.Mission09,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1418,7 +1413,7 @@ if not Quests then
 				},
 				[10] = {
 					name = "10. Cocoa Intruder",
-					storageId = Storage.TeatrTaniejSensacji.Mission10,
+					storageId = Storage.TheaterOfCheapThrills.Mission10,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1431,12 +1426,11 @@ if not Quests then
 				},
 				[11] = {
 					name = "11. The Work of Destruction",
-					storageId = Storage.TeatrTaniejSensacji.Mission11,
+					storageId = Storage.TheaterOfCheapThrills.Mission11,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
 					states = {
-						[0] = "State 0",
 						[1] = "GM Romek needs help with a new problem, go to him.",
 						[2] = "You learned that King Juerdo Titsgo is ddosing Romek's server. He should be hiding in the vicinity of Brazilian Rats' Land. Knock him out so that Romek can run the server peacefully.",
 						[3] = "You gave Juerdo a beating. Return to Romek for your reward.",
@@ -1445,12 +1439,11 @@ if not Quests then
 				},
 				[12] = {
 					name = "12. Forever and Ever Ytong",
-					storageId = Storage.TeatrTaniejSensacji.Mission12,
+					storageId = Storage.TheaterOfCheapThrills.Mission12,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
-						[0] = "State 0",
 						[1] = "The lives of the rats are in danger! Hurry to Romek.",
 						[2] = "Romek has ordered you to commit ratocide. Carry out his will and don't ask questions.",
 						[3] = "Chorus of Januses: We won't leave the land where we were born! It's written in our atlases! Justice will come in a stench! Do you know who ran over whom on the zebra crossing? Three Januses sing soprano: The time for trials has come! Give us a knife! Give us a knife! Our rich neighbor won't be! Go on, cut! Go on, cut! fat Janus the baritone: LET'S KILL THEM!",
@@ -1460,38 +1453,38 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Safety and Occupational Hygiene",
-			startStorageId = Storage.BezpieczenstwoIHigienaPracy.Questline,
+			startStorageId = Storage.SafetyAndOccupationalHygiene.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Avast ye, scallywag!",
-					storageId = Storage.BezpieczenstwoIHigienaPracy.Mission01,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
-					endValue = 4,
+					endValue = 5,
 					states = {
-						[0] = "GM Romek needs help with a new problem, go to him.",
-						[1] = "Find Turdstin - he might know where the Rat of Kings is.",
-						[2] = "Try to convince Xe'na to remove the cuckcurse from Turdstin.",
-						[3] = "Xe'na refused to help Turdstin. Go back to him and deliver the news.",
-						[4] = "Chorus of Januses:\nIn our homeland, injustices abound,\nNo one will erase them with a hand,\nBut no one is a blood relative here:\nWe'll drain it from our chests and mold it.",
+						[1] = "GM Romek needs help with a new problem, go to him.",
+						[2] = "Find Turdstin - he might know where the Rat of Kings is.",
+						[3] = "Try to convince Xe'na to remove the cuckcurse from Turdstin.",
+						[4] = "Xe'na refused to help Turdstin. Go back to him and deliver the news.",
+						[5] = "Chorus of Januses:\nIn our homeland, injustices abound,\nNo one will erase them with a hand,\nBut no one is a blood relative here:\nWe'll drain it from our chests and mold it.",
 					},
 				},
 				[2] = {
 					name = "02. Eww. Am I the only one there to hate the womyn?",
-					storageId = Storage.BezpieczenstwoIHigienaPracy.Mission02,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
 						[1] = "Turdstin thanked you for the information that the only way to find the Rat of Kings is by listening to the Januses' choir. Talk to him again for a new mission.",
 						[2] = "Turdstin asked for your help in collecting cans.",
-						[3] = "Chorus of Januses:\nWhen the evening stars extinguish,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!",
+						[3] = "Chorus of Januses:\nWhen the evening stars extinguish their flame,\nBefore I put the metal detector in the box,\nI offer my prayers,\nTo God the Father and the Son.\nLet's screw over the neighbor!",
 					},
 				},
 				[3] = {
 					name = "03. Vicinities Lost",
-					storageId = Storage.BezpieczenstwoIHigienaPracy.Mission03,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1503,19 +1496,19 @@ if not Quests then
 				},
 				[4] = {
 					name = "04. Very Important Posts",
-					storageId = Storage.BezpieczenstwoIHigienaPracy.Mission04,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
 						[1] = "Turdstin mentioned that he might have a new task for you.",
 						[2] = "Turdstin found a fake premium account on 4chan. Try to bribe Xe'na.",
-						[3] = "Your mother, grandmother, and sister are insane\nOn the eastern borders, there's a path that's not cursed upon any name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket.",
+						[3] = "Your mother, grandmother, and sister - they are all insane\nOn the eastern borders, there's a path cursed upon a name\nDragons and others were brought there by a rocket\nTo avoid looking like a fool, keep a salmon in your pocket.",
 					},
 				},
 				[5] = {
 					name = "05. Hydrofoils with Seasoning",
-					storageId = Storage.BezpieczenstwoIHigienaPracy.Mission05,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission05,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1527,7 +1520,7 @@ if not Quests then
 				},
 				[6] = {
 					name = "06. Crinjeux",
-					storageId = Storage.BezpieczenstwoIHigienaPracy.Mission06,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission06,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1543,34 +1536,34 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "The Three Sramatians and the Dragon",
-			startStorageId = Storage.TrzejSramaciISmok.Questline,
+			startStorageId = Storage.TheThreeSramatiansAndTheDragon.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Hither and Thither",
-					storageId = Storage.TrzejSramaciISmok.Mission01,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 1,
 					states = {
-						[1] = "And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the lower text here.",
+						[1] = "And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the bottom text here.",
 					},
 				},
 				[2] = {
 					name = "02. Fungus Magnum",
-					storageId = Storage.TrzejSramaciISmok.Mission02,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
-						[1] = "I think the company went east of the northern gate of Mirkotown. From there, they went into the forest of idiots. In the forest, there's a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek",
+						[1] = "I think the company went north through the gate of Mirkotown. From there, they went east, into the forest of cretin. In the forest, there is a secret passage through the caves of disgusting trolls. They might have used it. ~GM Romek",
 						[2] = "You correctly answered Goldblum's riddle. Now give him your best puzzle.",
 						[3] = "Respiciens post te, hominem\nmemento te; cave, ne cadas",
 					},
 				},
 				[3] = {
 					name = "03. Follow OSHA Standards",
-					storageId = Storage.TrzejSramaciISmok.Mission03,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1579,12 +1572,12 @@ if not Quests then
 						[2] = "Ask Bilbeus how you can join their company.",
 						[3] = "Find a box of rum in the pirate village nearby.",
 						[4] = "You found rum for Bilbeus. Return to him and suggest that he indulge himself.",
-						[5] = "An unworthy act for a Builder\nThe King will probably put his balls in blender",
+						[5] = "An unworthy act for a Welder\nThe King will probably put his balls in blender",
 					},
 				},
 				[4] = {
 					name = "04. Delirium Tremens",
-					storageId = Storage.TrzejSramaciISmok.Mission04,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1596,7 +1589,7 @@ if not Quests then
 				},
 				[5] = {
 					name = "05. Aqua Inaestimabilis",
-					storageId = Storage.TrzejSramaciISmok.Mission05,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission05,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 6,
@@ -1606,12 +1599,12 @@ if not Quests then
 						[3] = "Gertrude told you that the company went to the desert. The Djinn Lord - Jannah'ma might help you find them.",
 						[4] = "Jannah'ma demanded dragon meat in exchange for information about your companions.",
 						[5] = "Jannah'ma indicated that the company is by the old mine, where wyverns nest.",
-						[6] = "An old unjust man again dragged me into trouble.",
+						[6] = "An old unjust tyrant dragged me into trouble again.",
 					},
 				},
 				[6] = {
 					name = "06. Shepherd of Rats",
-					storageId = Storage.TrzejSramaciISmok.Mission06,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission06,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1624,7 +1617,7 @@ if not Quests then
 				},
 				[7] = {
 					name = "07. Nasty Neighbor Abominable Cravings",
-					storageId = Storage.TrzejSramaciISmok.Mission07,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission07,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1637,7 +1630,7 @@ if not Quests then
 				},
 				[8] = {
 					name = "08. Follow the Odor of Opulence",
-					storageId = Storage.TrzejSramaciISmok.Mission08,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission08,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1649,7 +1642,7 @@ if not Quests then
 				},
 				[9] = {
 					name = "09. Artificial Intelligence and Euthanasia",
-					storageId = Storage.TrzejSramaciISmok.Mission09,
+					storageId = Storage.TheThreeSramatiansAndTheDragon.Mission09,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1664,12 +1657,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Four Act Tragedy",
-			startStorageId = Storage.TragedyaWCzterechAktach.Questline,
+			startStorageId = Storage.FourActTragedy.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Dodge those compensation claims",
-					storageId = Storage.TragedyaWCzterechAktach.Mission01,
+					storageId = Storage.FourActTragedy.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1682,7 +1675,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "02. Bottom tex_L",
-					storageId = Storage.TragedyaWCzterechAktach.Mission02,
+					storageId = Storage.FourActTragedy.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 6,
@@ -1697,7 +1690,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "03. Master Baitor",
-					storageId = Storage.TragedyaWCzterechAktach.Mission03,
+					storageId = Storage.FourActTragedy.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1709,7 +1702,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "04. Non omnis moriar",
-					storageId = Storage.TragedyaWCzterechAktach.Mission04,
+					storageId = Storage.FourActTragedy.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1721,7 +1714,7 @@ if not Quests then
 				},
 				[5] = {
 					name = "05. Enqueued for a Genocide",
-					storageId = Storage.TragedyaWCzterechAktach.Mission05,
+					storageId = Storage.FourActTragedy.Mission05,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1733,7 +1726,7 @@ if not Quests then
 				},
 				[6] = {
 					name = "06. Sic transit gloria mundi",
-					storageId = Storage.TragedyaWCzterechAktach.Mission06,
+					storageId = Storage.FourActTragedy.Mission06,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1843,12 +1836,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Prodigal Son",
-			startStorageId = Storage.SynMarnotrawny.Questline,
+			startStorageId = Storage.ProdigalSon.Questline,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Work is da poop!",
-					storageId = Storage.SynMarnotrawny.Mission01,
+					storageId = Storage.ProdigalSon.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -1860,7 +1853,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "02. Artisan Baker",
-					storageId = Storage.SynMarnotrawny.Mission02,
+					storageId = Storage.ProdigalSon.Mission02,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -1874,7 +1867,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "03. Cheetos Prank Acedemy",
-					storageId = Storage.SynMarnotrawny.Mission03,
+					storageId = Storage.ProdigalSon.Mission03,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 6,
@@ -1889,7 +1882,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "04. Serious business",
-					storageId = Storage.SynMarnotrawny.Mission04,
+					storageId = Storage.ProdigalSon.Mission04,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1902,7 +1895,7 @@ if not Quests then
 				},
 				[5] = {
 					name = "05. SUPREME",
-					storageId = Storage.SynMarnotrawny.Mission05,
+					storageId = Storage.ProdigalSon.Mission05,
 					missionId = NextMissionId(),
 					startValue = 0,
 					states = {
@@ -1918,7 +1911,7 @@ if not Quests then
 				},
 				[6] = {
 					name = "06. Coup d'Passat",
-					storageId = Storage.SynMarnotrawny.Mission06,
+					storageId = Storage.ProdigalSon.Mission06,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -1937,6 +1930,7 @@ end
 local function normalizeQuestData()
 	for questId, quest in pairs(Quests) do
 		for missionNumber, mission in pairs(quest.missions) do
+			mission.startValue = mission.startValue or 0
 			mission.endValue = mission.endValue or #mission.states
 		end
 	end

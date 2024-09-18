@@ -115,15 +115,15 @@ local function creatureSayCallback(npc, creature, type, message)
 		"identity",
 		"czeslaw",
 		"chester",
-	}, message) and player:getStorageValue(Storage.CzeslawKrasnolud.Mission02) == 2 then
+	}, message) and player:getStorageValue(Storage.ChesterTheDwarf.Mission02) == 2 then
 		npcHandler:say(config[5], npc, creature)
-	elseif table.contains({ "yes", "tak", "materials", "skladniki" }, message) and player:getStorageValue(Storage.CzeslawKrasnolud.Mission02) == 2 then
+	elseif table.contains({ "yes", "tak", "materials", "skladniki" }, message) and player:getStorageValue(Storage.ChesterTheDwarf.Mission02) == 2 then
 		if player:HasItems(czeslawCosts) and player:getMoney() > 10000 then
 			if player:TryAddItems(czeslawRewards) then
 				player:removeMoney(10000)
 				npcHandler:say(config[6], npc, creature)
-				player:setStorageValue(Storage.CzeslawKrasnolud.Questline, 4)
-				player:setStorageValue(Storage.CzeslawKrasnolud.Mission02, 3)
+				player:setStorageValue(Storage.ChesterTheDwarf.Questline, 4)
+				player:setStorageValue(Storage.ChesterTheDwarf.Mission02, 3)
 			end
 		else
 			npcHandler:say(config[7], npc, creature)

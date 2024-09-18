@@ -6,5 +6,5 @@ function document.onUse(player, item, fromPosition, target, toPosition, isHotkey
 	return true
 end
 
-document:aid(Storage.BezpieczenstwoIHigienaPracy.Scp420Document)
+document:aid(Storage.SafetyAndOccupationalHygiene.Scp420Document)
 document:register()

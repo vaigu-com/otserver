@@ -27,6 +27,6 @@ function plus.onAddItem(moveitem, tileitem, toPosition)
 	swapNearby(toPosition)
 end
 
-plus:aid(Storage.TeatrTaniejSensacji.PlusShapePuzzle.Tile)
+plus:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.Tile)
 plus:type("additem")
 plus:register()

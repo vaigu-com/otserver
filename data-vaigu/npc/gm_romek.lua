@@ -52,51 +52,49 @@ local dialogs = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ "exercise" }] = { text = "Ok", rewards = { ExerciseWeaponBox(50) } },
 	},
-	[Storage.KrolSzczurowHub.Questline] = {
-		[{ min = 0, max = TableSize(Storage.KrolSzczurowHub.Items) }] = {
-			[{ "artifact", "artefakt" }] = {
+	[Storage.KingOfRatsHQ.Questline] = {
+		[{ min = 0, max = TableSize(Storage.KingOfRatsHQ.Items) }] = {
+			[{ "artifact", "artifacts", "artefakt", "artefakty" }] = {
 				text = "Ancient artifacts of the first King of Rats. I'll keep them for the darkest hour. If you've found any artifact, just tell me which one. If it's legit, I'll unlock one of the pipes for you.",
 			},
 			[{ "librum vortex" }] = {
 				text = "Book of rat spells. It will surely come in handy.",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.librumvortex },
-				nextState = {
-					[Storage.KrolSzczurowHub.Portals.SweatyCyclops] = 1,
-				},
+				nextState = { [Storage.KingOfRatsHQ.Portals.SweatyCyclops] = 1 },
 			},
-			[{ "zonobijka", "wifebeater", "vestments" }] = {
+			[{ "zonobijka", "wifebeater", "vestments", "zonobijka wladzy", "vestments of wifebeaterous regent" }] = {
 				text = "It looks like an ordinary shirt, but it provides the bearer with immunity to mail from the Domestic Violence Monitoring Center.",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.wifebeater },
-				nextState = { [Storage.KrolSzczurowHub.Portals.Djinns] = 1 },
+				nextState = { [Storage.KingOfRatsHQ.Portals.Djinns] = 1 },
 			},
 			[{ "ytong" }] = {
 				text = "It is said that this item can bend time itself. Metal part can bend itself, so there is only time missing.",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.ytong },
-				nextState = { [Storage.KrolSzczurowHub.Portals.NorthKongo] = 1 },
+				nextState = { [Storage.KingOfRatsHQ.Portals.NorthKongo] = 1 },
 			},
 			[{ "bottomless", "bud light", "bezdenny", "harnas" }] = {
 				text = "Do you think your Wu-Dka sword can defeat me?",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.bottomless },
-				nextState = { [Storage.KrolSzczurowHub.Portals.Werebadgers] = 1 },
+				nextState = { [Storage.KingOfRatsHQ.Portals.Werebadgers] = 1 },
 			},
 			[{ "bribeslippers", "kapcie", "kapcie przekupstwa" }] = {
 				text = "Now that i see them myself, they remind me of some other slippers... can't really put my finger on it though.",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.bribeslippers },
-				nextState = { [Storage.KrolSzczurowHub.Portals.VampireCity] = 1 },
+				nextState = { [Storage.KingOfRatsHQ.Portals.VampireCity] = 1 },
 			},
 			[{ "antigone", "antygona" }] = {
 				text = "A reliable source of good ol' knowledge on justice.",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.antigone },
-				nextState = { [Storage.KrolSzczurowHub.Portals.Asuras] = 1 },
+				nextState = { [Storage.KingOfRatsHQ.Portals.Asuras] = 1 },
 			},
 			[{ "cultivator", "kultywator" }] = {
-				text = "Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead games. It isn't very useful, is it?",
+				text = "Strapping this to your belt will allow you to farm up to 1000 thousands of gold per hour, but only in dead MMORPGs. It isn't very useful, is it?",
 				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.cultivator },
-				nextState = { [Storage.KrolSzczurowHub.Portals.HurghadaEast] = 1 },
+				nextState = { [Storage.KingOfRatsHQ.Portals.HurghadaEast] = 1 },
 			},
 		},
 	},
-	[Storage.TeatrTaniejSensacji.Questline] = {
+	[Storage.TheaterOfCheapThrills.Questline] = {
 		[1] = {
 			[{ GREET }] = { text = "*Muttering*" },
 			[{ ANY_MESSAGE }] = {
@@ -108,8 +106,8 @@ local dialogs = {
 			[{ "yes", "tak" }] = {
 				text = "This will be your first task: find something that rats crave the most - cheese. But it can't be just any cheese from under someone's foreskin or parmesan growing under fingernails. These rats have access to the latest cheeses, and they won't be impressed. To satisfy them, you'll have to find the legendary matured cheese with flowers. It's possible that the pirates have such cheese. It's probably well hidden. Their hideout is on the southern shore of Hurghada.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 2,
-					[Storage.TeatrTaniejSensacji.Mission01] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 2,
+					[Storage.TheaterOfCheapThrills.Mission01] = 2,
 				},
 			},
 		},
@@ -119,9 +117,9 @@ local dialogs = {
 				requiredItems = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS.cheese },
 				textNoRequiredItems = "Return when you've obtained the special cheese.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 3,
-					[Storage.TeatrTaniejSensacji.Mission02] = 1,
-					[Storage.TeatrTaniejSensacji.Mission01] = 3,
+					[Storage.TheaterOfCheapThrills.Questline] = 3,
+					[Storage.TheaterOfCheapThrills.Mission02] = 1,
+					[Storage.TheaterOfCheapThrills.Mission01] = 3,
 				},
 			},
 			[{ "no", "nie" }] = { text = "Return when you've obtained the special cheese." },
@@ -136,8 +134,8 @@ local dialogs = {
 			[{ "yes", "tak", "pomocnika", "assistant" }] = {
 				text = "Who is the King of Rats, and what is his power?",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 4,
-					[Storage.TeatrTaniejSensacji.Mission02] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 4,
+					[Storage.TheaterOfCheapThrills.Mission02] = 2,
 				},
 			},
 		},
@@ -145,9 +143,9 @@ local dialogs = {
 			[{ "kurator", "kustosz", "custodian", "curator" }] = {
 				text = "I appoint you as a rat that there are many! Come back in some time, and I'll surely find a responsible task for you.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 5,
-					[Storage.TeatrTaniejSensacji.Mission03] = 1,
-					[Storage.TeatrTaniejSensacji.Mission02] = 3,
+					[Storage.TheaterOfCheapThrills.Questline] = 5,
+					[Storage.TheaterOfCheapThrills.Mission03] = 1,
+					[Storage.TheaterOfCheapThrills.Mission02] = 3,
 				},
 			},
 			[{ GREET }] = {
@@ -166,8 +164,8 @@ local dialogs = {
 				text = "Find my eternal enemy, tormentor, and oppressor, even though children in Africa are starving: Ms. Pitca, and arrange a Brazilian elevator for her. From the latest memes I read, she was heading towards Siberia. She seems to have her mother's intelligence, so you shouldn't have trouble dealing with her.",
 
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 6,
-					[Storage.TeatrTaniejSensacji.Mission03] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 6,
+					[Storage.TheaterOfCheapThrills.Mission03] = 2,
 				},
 			},
 		},
@@ -181,9 +179,9 @@ local dialogs = {
 			[{ "yes", "tak" }] = {
 				text = "Ignavia corpus habetat labor firmat.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 8,
-					[Storage.TeatrTaniejSensacji.Mission04] = 1,
-					[Storage.TeatrTaniejSensacji.Mission03] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 8,
+					[Storage.TheaterOfCheapThrills.Mission04] = 1,
+					[Storage.TheaterOfCheapThrills.Mission03] = 4,
 				},
 				rewards = { ExerciseWeaponBox(200) },
 			},
@@ -193,8 +191,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "What have you done? Brain-dead oppressor, tyrant, penguin of Madagascar, smarty pants, brainless killer, scoundrel. Oh no, it's me. I made a magical vow with Ms. Pitca. If I ever mention Ms. Pitca to anyone, I'll age a hundred times faster than a regular person. I think I have no more than a few months left to live. Here's the battle mission: I want you to try to remove this curse from me. Maybe the grave digger can help me at a costly but fair price.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 9,
-					[Storage.TeatrTaniejSensacji.Mission04] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 9,
+					[Storage.TheaterOfCheapThrills.Mission04] = 2,
 				},
 			},
 		},
@@ -210,9 +208,9 @@ local dialogs = {
 			[{ "mission", "misja", "yes", "tak" }] = {
 				text = "Thanks, I'll check the effect of this book right away. Here's your reward.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 11,
-					[Storage.TeatrTaniejSensacji.Mission05] = 1,
-					[Storage.TeatrTaniejSensacji.Mission04] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 11,
+					[Storage.TheaterOfCheapThrills.Mission05] = 1,
+					[Storage.TheaterOfCheapThrills.Mission04] = 4,
 				},
 				rewards = { ExerciseWeaponBox(200) },
 			},
@@ -221,8 +219,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "I'm planning a party soon, and I need some catering. We can't rely on Ms. Pitca's services anymore, so I thought about ordering kebabs. Go to Shivganesh and ask him about the possibility of organizing a kebab set.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 12,
-					[Storage.TeatrTaniejSensacji.Mission05] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 12,
+					[Storage.TheaterOfCheapThrills.Mission05] = 2,
 				},
 			},
 		},
@@ -240,9 +238,9 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "Thanks for your help. Here's your reward.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 15,
-					[Storage.TeatrTaniejSensacji.Mission06] = 1,
-					[Storage.TeatrTaniejSensacji.Mission05] = 5,
+					[Storage.TheaterOfCheapThrills.Questline] = 15,
+					[Storage.TheaterOfCheapThrills.Mission06] = 1,
+					[Storage.TheaterOfCheapThrills.Mission05] = 5,
 				},
 				rewards = { ExerciseWeaponBox(200) },
 			},
@@ -251,8 +249,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "My missing son Kitz is trying to reconnect. Unfortunately, it wasn't easy to shoo him off. The ingrate has been taking alimony all his life, and now that he's of age, he has to earn his own living. A thief will steal anything that's not nailed to the ground. He's trying to find me to leech off me. No way. You need to get him involved in a camp, preferably a concentration camp. First, go to Arni, who deals with organizing trips.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 16,
-					[Storage.TeatrTaniejSensacji.Mission06] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 16,
+					[Storage.TheaterOfCheapThrills.Mission06] = 2,
 				},
 			},
 		},
@@ -271,9 +269,9 @@ local dialogs = {
 			[{ "mission", "misja", "misje" }] = {
 				text = "Thanks, finally, that scoundrel got what he deserved.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 19,
-					[Storage.TeatrTaniejSensacji.Mission07] = 1,
-					[Storage.TeatrTaniejSensacji.Mission06] = 5,
+					[Storage.TheaterOfCheapThrills.Questline] = 19,
+					[Storage.TheaterOfCheapThrills.Mission07] = 1,
+					[Storage.TheaterOfCheapThrills.Mission06] = 5,
 				},
 			},
 		},
@@ -281,8 +279,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "Listen, lad. I heard that the previous King of Rats, Robercik, has returned from his delegation. The stupid rats forgot that he used to be king, and when he tried to enter my kingdom, they kicked him out. I think he might have sneaked in somewhere, and now he's waiting for an opportunity to harm me. Injustice comes back like a boomerang.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 20,
-					[Storage.TeatrTaniejSensacji.Mission07] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 20,
+					[Storage.TheaterOfCheapThrills.Mission07] = 2,
 				},
 			},
 		},
@@ -291,9 +289,9 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "Thanks, here's your reward. Robercik won't cause any more trouble.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 22,
-					[Storage.TeatrTaniejSensacji.Mission08] = 1,
-					[Storage.TeatrTaniejSensacji.Mission07] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 22,
+					[Storage.TheaterOfCheapThrills.Mission08] = 1,
+					[Storage.TheaterOfCheapThrills.Mission07] = 4,
 				},
 				rewards = { ExerciseWeaponBox(200) },
 			},
@@ -302,8 +300,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 platinum coins?",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 23,
-					[Storage.TeatrTaniejSensacji.Mission08] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 23,
+					[Storage.TheaterOfCheapThrills.Mission08] = 2,
 				},
 			},
 		},
@@ -316,8 +314,8 @@ local dialogs = {
 				requiredItems = { { id = 3035, count = 100 } },
 				textNoRequiredItems = "Then come back when I finish the fundraiser. The organization of the festival alone was worth at least 8 coronas extra.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 24,
-					[Storage.TeatrTaniejSensacji.Mission08] = 3,
+					[Storage.TheaterOfCheapThrills.Questline] = 24,
+					[Storage.TheaterOfCheapThrills.Mission08] = 3,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -334,9 +332,9 @@ local dialogs = {
 				text = "I'll be closing soon. Come back for another mission later.",
 				rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.wifebeater },
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 25,
-					[Storage.TeatrTaniejSensacji.Mission09] = 1,
-					[Storage.TeatrTaniejSensacji.Mission08] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 25,
+					[Storage.TheaterOfCheapThrills.Mission09] = 1,
+					[Storage.TheaterOfCheapThrills.Mission08] = 4,
 				},
 			},
 		},
@@ -344,8 +342,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "I'm setting up a new minecraft server shortly. We're starting on Friday.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 26,
-					[Storage.TeatrTaniejSensacji.Mission09] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 26,
+					[Storage.TheaterOfCheapThrills.Mission09] = 2,
 				},
 			},
 		},
@@ -358,9 +356,9 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "That damn bald drunkard again. He's ruining my reputation.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 28,
-					[Storage.TeatrTaniejSensacji.Mission10] = 1,
-					[Storage.TeatrTaniejSensacji.Mission09] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 28,
+					[Storage.TheaterOfCheapThrills.Mission10] = 1,
+					[Storage.TheaterOfCheapThrills.Mission09] = 4,
 				},
 			},
 		},
@@ -368,8 +366,8 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "I have a simple job for you. Go to the southern Orc Fortess and read the map of their leader to find out where Brazil is located.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 29,
-					[Storage.TeatrTaniejSensacji.Mission10] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 29,
+					[Storage.TheaterOfCheapThrills.Mission10] = 2,
 				},
 			},
 		},
@@ -382,9 +380,9 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "Haha, yes! Finally, I know where that emigrant is. Are you ready for a new mission?",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 31,
-					[Storage.TeatrTaniejSensacji.Mission11] = 1,
-					[Storage.TeatrTaniejSensacji.Mission10] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 31,
+					[Storage.TheaterOfCheapThrills.Mission11] = 1,
+					[Storage.TheaterOfCheapThrills.Mission10] = 4,
 				},
 			},
 		},
@@ -392,8 +390,8 @@ local dialogs = {
 			[{ "mission", "misja", "yes", "tak" }] = {
 				text = "Pack your stuff in the car - we're going on a trip. You need to go to the Brazilian Ratland and defeat their king. Juerdo Titsgo is DDoSing my server, so players can't donate NFTs for an unjust but lucrative cause.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 32,
-					[Storage.TeatrTaniejSensacji.Mission11] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 32,
+					[Storage.TheaterOfCheapThrills.Mission11] = 2,
 				},
 			},
 		},
@@ -409,9 +407,9 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "Thanks for your help. The DDoS attacks have stopped. Here's your reward.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 34,
-					[Storage.TeatrTaniejSensacji.Mission12] = 1,
-					[Storage.TeatrTaniejSensacji.Mission11] = 4,
+					[Storage.TheaterOfCheapThrills.Questline] = 34,
+					[Storage.TheaterOfCheapThrills.Mission12] = 1,
+					[Storage.TheaterOfCheapThrills.Mission11] = 4,
 				},
 				rewards = { ExerciseWeaponBox(400) },
 			},
@@ -420,8 +418,8 @@ local dialogs = {
 			[{ "trial", "probe" }] = {
 				text = "",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 35,
-					[Storage.TeatrTaniejSensacji.Mission12] = 2,
+					[Storage.TheaterOfCheapThrills.Questline] = 35,
+					[Storage.TheaterOfCheapThrills.Mission12] = 2,
 				},
 				spawnMonstersOnSuccess = {
 					["Corym Charlatan"] = 2,
@@ -441,45 +439,46 @@ local dialogs = {
 			[{ "mission", "misja" }] = {
 				text = "Here's your reward. Come back to me sometime. For now, I think I'll take a break.",
 				nextState = {
-					[Storage.TeatrTaniejSensacji.Questline] = 36,
-					[Storage.TeatrTaniejSensacji.Mission12] = 3,
-					[Storage.Finished.TeatrTaniejSensacji] = 1,
-					[Storage.KrolSzczurowHub.Portals.SweatyCyclops] = 1,
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 0,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission01] = 0,
+					[Storage.TheaterOfCheapThrills.Questline] = 36,
+					[Storage.TheaterOfCheapThrills.Mission12] = 3,
+					[Storage.Finished.TheaterOfCheapThrills] = 1,
+					[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 1,
 				},
 				rewards = { ExerciseWeaponBox(400) },
 			},
 		},
 	},
-	[Storage.BezpieczenstwoIHigienaPracy.Questline] = {
-		[0] = {
+	[Storage.SafetyAndOccupationalHygiene.Questline] = {
+		[1] = {
 			[{ "mission" }] = {
 				text = "Thank you for your help with the last task. I have now achieved justice on the level of a true Rat King. Therefore, I think I am worthy of entrusting you with a new task. Go to Turdstin, a member of the MGTOW clan. Anticipating your question: yes, he is disabled. However, it's possible that he knows how to locate the Rat of Kings.",
 				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 1,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission01] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 2,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 2,
 				},
 			},
 		},
-		[1] = {
+		[2] = {
 			[{ "mission" }] = {
-				text = "Turdstin znajduje sie na poludniowej plazy Mirkotown.",
+				text = "Turdstin lives on the southern beach of Mirkotown.",
 			},
 		},
-		[15] = {
+		[16] = {
 			[{ "mission" }] = {
 				text = "Thank you for your help with the task and for the information from the Rat of Kings. Come back to me after some time, and I will tell you about the fate of someone close to me who wanted to defeat HF-P/X. Although his motivations were somewhat unusual.",
 				nextState = {
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = 16,
-					[Storage.BezpieczenstwoIHigienaPracy.Mission06] = 5,
-					[Storage.TrzejSramaciISmok.Questline] = 0,
+					[Storage.SafetyAndOccupationalHygiene.Questline] = 17,
+					[Storage.SafetyAndOccupationalHygiene.Mission06] = 5,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 0,
+					[Storage.Finished.SafetyAndOccupationalHygiene] = 1,
 				},
 				rewards = { ExerciseWeaponBox(1337) },
 			},
 		},
 	},
-	[Storage.TrzejSramaciISmok.Questline] = {
+	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
 		[0] = {
 			[{ "mission" }] = {
 				text = "Shireajevo, year two thousand fifteen. Or was it {sixteenth}? Hmm, not sure...",
@@ -502,9 +501,9 @@ local dialogs = {
 			[{ "ready", "gotowy" }] = {
 				text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 1,
-					[Storage.TrzejSramaciISmok.Mission01] = 1,
-					[Storage.TrzejSramaciISmok.Mission02] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission01] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission02] = 1,
 				},
 			},
 		},
@@ -517,16 +516,16 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "I have bad news. The stress level of the Rat of Kings reached the maximum possible value upon hearing about the Passat wreckage. Rats, unlike humans, react differently to such circumstances. Their reaction is self-destruction of the organism and tearing the soul into billions of smaller rat souls and Schrodinger's souls, each existing and not existing at the same time. The only way to bring him back to life is to find all the Schrödinger's souls and separate them from the real rat ones. Leave this problem to me, as I need you for another {task}.",
 				nextState = {
-					[Storage.TrzejSramaciISmok.Questline] = 25,
-					[Storage.TrzejSramaciISmok.Mission09] = 4,
-					[Storage.Finished.Sramaci] = 1,
-					[Storage.TragedyaWCzterechAktach.Questline] = 1,
-					[Storage.TragedyaWCzterechAktach.Mission01] = 1,
+					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 25,
+					[Storage.TheThreeSramatiansAndTheDragon.Mission09] = 4,
+					[Storage.Finished.TheThreeSramatiansAndTheDragon] = 1,
+					[Storage.FourActTragedy.Questline] = 1,
+					[Storage.FourActTragedy.Mission01] = 1,
 				},
 			},
 		},
 	},
-	[Storage.TragedyaWCzterechAktach.Questline] = {
+	[Storage.FourActTragedy.Questline] = {
 		[1] = {
 			[{ "mission", "zadanie" }] = {
 				text = "Before I forget - the reward for the previous task: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
@@ -534,8 +533,8 @@ local dialogs = {
 			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
 				text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 2,
-					[Storage.TragedyaWCzterechAktach.Mission01] = 2,
+					[Storage.FourActTragedy.Questline] = 2,
+					[Storage.FourActTragedy.Mission01] = 2,
 				},
 				rewards = { ExerciseWeaponBox(3000) },
 			},
@@ -549,10 +548,10 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "Well, hes just the smartest person in the world. Okay, let's not waste any more time. After HF-P/X's death, a time-delayed mechanism was activated, which opened a portal to the past. Now immigrants are flooding in from everywhere. Go to the portal in Knurow and head to the Knurow of the past. Find someone there who will help you with the task of stopping the influx of immigrants.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 4,
-					[Storage.TragedyaWCzterechAktach.Mission01] = 4,
-					[Storage.TragedyaWCzterechAktach.Mission02] = 1,
-					[Storage.TragedyaWCzterechAktach.RetroKnurowoAccess] = 1,
+					[Storage.FourActTragedy.Questline] = 4,
+					[Storage.FourActTragedy.Mission01] = 4,
+					[Storage.FourActTragedy.Mission02] = 1,
+					[Storage.FourActTragedy.RetroKnurowoAccess] = 1,
 				},
 			},
 		},
@@ -565,10 +564,10 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "So, it's Rat Bum. Hmm, but in the memes, it said that Rat Bum can't do anything. I know his origin. I would like to tell you where to find him, but currently, he is protected by a narrative armor. So, I suggest you go get some beer at Lewiatan now.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 9,
-					[Storage.TragedyaWCzterechAktach.Mission02] = 6,
-					[Storage.TragedyaWCzterechAktach.Mission03] = 1,
-					[Storage.TragedyaWCzterechAktach.KrakenAccess] = 1,
+					[Storage.FourActTragedy.Questline] = 9,
+					[Storage.FourActTragedy.Mission02] = 6,
+					[Storage.FourActTragedy.Mission03] = 1,
+					[Storage.FourActTragedy.KrakenAccess] = 1,
 				},
 			},
 		},
@@ -584,9 +583,9 @@ local dialogs = {
 			[{ "slippers", "kapciach" }] = {
 				text = "Rumors have it that after the death of the aforementioned ruler, the slippers were buried with him. However, it is unknown where this burial place is. As I mentioned, all rumors about the origin of the slippers started with the inhabitants of the northern lands. I think it could be Rats collaborating with banshees. Search the corridors of their base. If you manage to find these slippers, based on the tooth pattern that bit the front part of the boot, we will find a matching profile on onlyfangs.com.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 11,
-					[Storage.TragedyaWCzterechAktach.Mission03] = 3,
-					[Storage.TragedyaWCzterechAktach.Mission04] = 1,
+					[Storage.FourActTragedy.Questline] = 11,
+					[Storage.FourActTragedy.Mission03] = 3,
+					[Storage.FourActTragedy.Mission04] = 1,
 				},
 			},
 		},
@@ -606,11 +605,11 @@ local dialogs = {
 			}] = {
 				text = "Try to search in the underground ruins in the Kongo. This place was inhabited long ago by medusas, hydras, and other writhing creatures, and it is overgrown with foul flora. An ideal place for an altar for serpentine gods.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 13,
-					[Storage.TragedyaWCzterechAktach.Mission04] = 3,
-					[Storage.TragedyaWCzterechAktach.Mission05] = 1,
-					[Storage.TragedyaWCzterechAktach.SkurwiwijAccess] = 1,
-					[Storage.TragedyaWCzterechAktach.SkurwiwijDoor] = 1,
+					[Storage.FourActTragedy.Questline] = 13,
+					[Storage.FourActTragedy.Mission04] = 3,
+					[Storage.FourActTragedy.Mission05] = 1,
+					[Storage.FourActTragedy.SkurwiwijAccess] = 1,
+					[Storage.FourActTragedy.SkurwiwijDoor] = 1,
 				},
 			},
 			[{ ANY_MESSAGE }] = {
@@ -631,9 +630,9 @@ local dialogs = {
 				removeRequiredItems = false,
 				textNoRequiredItems = "Skurwiwij had Grazhenacore, and you lost it? Come back when you find your lost item.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 15,
-					[Storage.TragedyaWCzterechAktach.Mission05] = 3,
-					[Storage.TragedyaWCzterechAktach.Mission06] = 1,
+					[Storage.FourActTragedy.Questline] = 15,
+					[Storage.FourActTragedy.Mission05] = 3,
+					[Storage.FourActTragedy.Mission06] = 1,
 				},
 			},
 		},
@@ -644,12 +643,12 @@ local dialogs = {
 			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
 				text = "If you have a moment, go to the summit of the highest mountain in the Caribbean. You might find someone there whom you once knew.",
 				nextState = {
-					[Storage.TragedyaWCzterechAktach.Questline] = 19,
-					[Storage.TragedyaWCzterechAktach.Mission06] = 5,
-					[Storage.Finished.Tragedya] = 1,
+					[Storage.FourActTragedy.Questline] = 19,
+					[Storage.FourActTragedy.Mission06] = 5,
+					[Storage.Finished.FourActTragedy] = 1,
 					[Storage.PerIustitiaAdAstra.Questline] = 1,
 					[Storage.PerIustitiaAdAstra.Mission01] = 1,
-					[Storage.TragedyaWCzterechAktach.GrazhenaDoor] = -1,
+					[Storage.FourActTragedy.GrazhenaDoor] = -1,
 				},
 				rewards = { ExerciseWeaponBox(3500) },
 			},

@@ -1,6 +1,6 @@
 local updateStorages = {
-	[Storage.TragedyaWCzterechAktach.Questline] = 14,
-	[Storage.TragedyaWCzterechAktach.Mission05] = 2,
+	[Storage.FourActTragedy.Questline] = 14,
+	[Storage.FourActTragedy.Mission05] = 2,
 }
 
 local skurwiwijDeath = CreatureEvent("SkurwiwijDeath")
@@ -9,7 +9,7 @@ function skurwiwijDeath.onDeath(creature)
 		return true
 	end
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		local storage_val = player:getStorageValue(Storage.TragedyaWCzterechAktach.Questline)
+		local storage_val = player:getStorageValue(Storage.FourActTragedy.Questline)
 		if storage_val ~= 13 then
 			return true
 		end
@@ -19,7 +19,7 @@ function skurwiwijDeath.onDeath(creature)
 	local deathPos = creature:getPosition()
 
 	local corpse = Game.createItem(18021, 1, deathPos)
-	corpse:setActionId(Storage.TragedyaWCzterechAktach.Rewards.GrazynaCore)
+	corpse:setActionId(Storage.FourActTragedy.Rewards.GrazynaCore)
 	corpse:setUniqueId(1000)
 	return true
 end

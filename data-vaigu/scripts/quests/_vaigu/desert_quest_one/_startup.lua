@@ -765,7 +765,7 @@ local startupItems = {
 			actionid = Storage.DesertQuestOne.Rewards.FinalExpBox,
 			expReward = 1000 * 1000 * 1,
 			rewards = {},
-			nextState = { [Storage.Finished.DesertQuest] = 1 },
+			nextState = { [Storage.Finished.CaveExplorerOnShield] = 1 },
 		},
 	},
 }

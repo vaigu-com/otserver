@@ -4,7 +4,7 @@ function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotk
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.TragedyaWCzterechAktach.Questline)
+	local storageVal = player:getStorageValue(Storage.FourActTragedy.Questline)
 	if storageVal < 11 or 12 < storageVal then
 		return false
 	end
@@ -19,5 +19,5 @@ function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotk
 	return true
 end
 
-slippersTp:aid(Storage.TragedyaWCzterechAktach.SlippersTorch)
+slippersTp:aid(Storage.FourActTragedy.SlippersTorch)
 slippersTp:register()

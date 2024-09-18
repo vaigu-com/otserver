@@ -3,7 +3,7 @@ SPOCZYWAJACY_TUTAJ_KEY_ITEMS = {
 		id = 637,
 		desc = "Bildo's last will",
 		text = "[...]this is the part of the will concerning my grandson. Back in 2014 me and my company broke our way into the down syndrome pyramid. When we were deep down there, something grabbed onto Gwindel. In no time, he already fell to his death and was lying in the corner of the pyramid. Unfortunately, he was descending first, thus he was the one using the magical torch. This is the heirloom 'Im entrusting to you. Entrance to the pyramid is located in fuck fuck fuckity fuck. You should remember things like this. The only requirement for you to be able to acquire this part of heritage is being at least 32 years old.\n\nSigned by Bildo\n\nP.S. Chester is a mountebank and swindler",
-		aid = Storage.SpoczywajacyTutaj.LastWill,
+		aid = Storage.ImRestingHere.LastWill,
 	},
 	torch = {
 		id = 9042,
@@ -14,6 +14,6 @@ SPOCZYWAJACY_TUTAJ_KEY_ITEMS = {
 	},
 	crowbar = {
 		id = 3304,
-		aid = Storage.SpoczywajacyTutaj.Coffin,
+		aid = Storage.ImRestingHere.Coffin,
 	},
 }

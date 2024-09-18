@@ -8,7 +8,7 @@ function tpToRetro.onStepIn(player, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TragedyaWCzterechAktach.RetroKnurowoAccess) ~= 1 then
+	if player:getStorageValue(Storage.FourActTragedy.RetroKnurowoAccess) ~= 1 then
 		return false
 	end
 	player:teleportTo(toRetro)
@@ -17,7 +17,7 @@ function tpToRetro.onStepIn(player, item, position, fromPosition)
 end
 
 tpToRetro:type("stepin")
-tpToRetro:aid(Storage.TragedyaWCzterechAktach.Portals.ToRetro)
+tpToRetro:aid(Storage.FourActTragedy.Portals.ToRetro)
 tpToRetro:register()
 
 local tpToModern = MoveEvent()
@@ -26,7 +26,7 @@ function tpToModern.onStepIn(player, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TragedyaWCzterechAktach.RetroKnurowoAccess) ~= 1 then
+	if player:getStorageValue(Storage.FourActTragedy.RetroKnurowoAccess) ~= 1 then
 		return false
 	end
 	player:teleportTo(toModern)
@@ -35,7 +35,7 @@ function tpToModern.onStepIn(player, item, position, fromPosition)
 end
 
 tpToModern:type("stepin")
-tpToModern:aid(Storage.TragedyaWCzterechAktach.Portals.ToPresent)
+tpToModern:aid(Storage.FourActTragedy.Portals.ToPresent)
 tpToModern:register()
 
 local tpToKolumb = MoveEvent()
@@ -50,5 +50,5 @@ function tpToKolumb.onStepIn(player, item, position, fromPosition)
 end
 
 tpToKolumb:type("stepin")
-tpToKolumb:aid(Storage.TragedyaWCzterechAktach.Portals.ToKolumb)
+tpToKolumb:aid(Storage.FourActTragedy.Portals.ToKolumb)
 tpToKolumb:register()

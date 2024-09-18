@@ -9,8 +9,8 @@ local function IsFactor(number, factor)
 	return false
 end
 
-local questlineStorage = Storage.SciezkaNieumarlych.Questline
-local circleStorage = Storage.SciezkaNieumarlych.Circles
+local questlineStorage = Storage.PathOfTheUndead.Questline
+local circleStorage = Storage.PathOfTheUndead.Circles
 
 local function GetUncompletedCirclesCount(player)
 	local storageVal = player:getStorageValue(circleStorage)
@@ -43,19 +43,19 @@ function step_tile.onStepIn(player, item, toPosition, fromPosition)
 	if not IsFactor(storageVal, addend) then
 		player:setStorageValue(circleStorage, player:getStorageValue(circleStorage) + addend)
 		player:getPosition():sendMagicEffect(CONST_ME_THUNDER)
-		local firstStepMessage = player:Localizer(Storage.SciezkaNieumarlych.Questline):Get("You step on circle number ")
+		local firstStepMessage = player:Localizer(Storage.PathOfTheUndead.Questline):Get("You step on circle number ")
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, firstStepMessage .. math.floor(math.log(addend, 2) + 1))
 	end
 
 	local circlesCount = GetUncompletedCirclesCount(player)
 	if circlesCount ~= 0 then
-		local standOn = player:Localizer(Storage.SciezkaNieumarlych.Questline):Get("To fulfill Gandalf's task you need to stand on ")
-		local remaining = player:Localizer(Storage.SciezkaNieumarlych.Questline):Get(" remaining circles.")
+		local standOn = player:Localizer(Storage.PathOfTheUndead.Questline):Get("To fulfill Gandalf's task you need to stand on ")
+		local remaining = player:Localizer(Storage.PathOfTheUndead.Questline):Get(" remaining circles.")
 
 		player:sendTextMessage(MESSAGE_FAILURE, standOn .. circlesCount .. remaining)
 	end
 end
 
-step_tile:aid(Storage.SciezkaNieumarlych.Circles)
+step_tile:aid(Storage.PathOfTheUndead.Circles)
 step_tile:type("stepin")
 step_tile:register()

@@ -121,7 +121,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		"identity",
 		"czeslaw",
 		"chester",
-	}, message) and player:getStorageValue(Storage.CzeslawKrasnolud.Mission02) == 2 then
+	}, message) and player:getStorageValue(Storage.ChesterTheDwarf.Mission02) == 2 then
 		npcHandler:say(config[5], npc, creature)
 	else
 		npcHandler:say(config[6], npc, creature)

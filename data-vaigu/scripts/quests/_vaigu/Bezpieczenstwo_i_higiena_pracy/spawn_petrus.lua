@@ -4,7 +4,7 @@ function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
 		return false
 	end
-	if player:getStorageValue(Storage.BezpieczenstwoIHigienaPracy.Questline) ~= 12 then
+	if player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Questline) ~= 13 then
 		return
 	end
 
@@ -18,5 +18,5 @@ function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 end
 
-tile:aid(Storage.BezpieczenstwoIHigienaPracy.Spawns.Petrus)
+tile:aid(Storage.SafetyAndOccupationalHygiene.Spawns.Petrus)
 tile:register()

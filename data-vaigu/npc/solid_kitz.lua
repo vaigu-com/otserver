@@ -97,17 +97,17 @@ local function creatureSayCallback(npc, creature, type, message)
 		"wycieczka",
 		"camp",
 		"oboz",
-	}, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Questline) == 17 then
+	}, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 17 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmm, to na pewno zwykly oboz?" or "Hmm, are you sure it's just a regular camp?", npc, creature)
 		npcHandler:setTopic(playerId, 1)
-	elseif table.contains({ "yes", "tak" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Questline) == 17 and npcHandler:getTopic(playerId) == 1 then
-		player:setStorageValue(Storage.TeatrTaniejSensacji.Questline, 18)
-		player:setStorageValue(Storage.TeatrTaniejSensacji.Mission06, 4)
+	elseif table.contains({ "yes", "tak" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 17 and npcHandler:getTopic(playerId) == 1 then
+		player:setStorageValue(Storage.TheaterOfCheapThrills.Questline, 18)
+		player:setStorageValue(Storage.TheaterOfCheapThrills.Mission06, 4)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Okej, w takim razie przekaz staremu, ze chetnie sie tam udam." or "Okay, then tell Arni I'd love to go there.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
-	elseif table.contains({ "no", "nie" }, message) and player:getStorageValue(Storage.TeatrTaniejSensacji.Questline) == 17 and npcHandler:getTopic(playerId) == 1 then
-		player:setStorageValue(Storage.TeatrTaniejSensacji.Questline, 18)
-		player:setStorageValue(Storage.TeatrTaniejSensacji.Mission06, 4)
+	elseif table.contains({ "no", "nie" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 17 and npcHandler:getTopic(playerId) == 1 then
+		player:setStorageValue(Storage.TheaterOfCheapThrills.Questline, 18)
+		player:setStorageValue(Storage.TheaterOfCheapThrills.Mission06, 4)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Coo? To oboz koncentracyjny? Co ty odbialczasz? Skoro chcial tak mnie urzadzic, to bede sie trzymac z daleka od starego." or "What? Is it a concentration camp? Are you crazy? If that's what he wanted to do to me, I'll stay away from him.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "informacja", "informacje", "informations" }, message) then

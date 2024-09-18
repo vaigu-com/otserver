@@ -1,29 +1,29 @@
 local startupItemsStatic = {
-	{ pos = { 5950, 1415, 10 }, id = 1020, aid = Storage.TrzejSramaciISmok.GoldblumTrap },
+	{ pos = { 5950, 1415, 10 }, id = 1020, aid = Storage.TheThreeSramatiansAndTheDragon.GoldblumTrap },
 
-	{ pos = { 6147, 1310, 4 }, id = 1997, aid = Storage.TrzejSramaciISmok.Fireplaces.Hive },
-	{ pos = { 6199, 1025, 7 }, id = 1997, aid = Storage.TrzejSramaciISmok.Fireplaces.Lagoon },
-	{ pos = { 6206, 919, 9 }, id = 1997, aid = Storage.TrzejSramaciISmok.Fireplaces.Souleater },
-	{ pos = { 6756, 1169, 6 }, id = 1997, aid = Storage.TrzejSramaciISmok.Fireplaces.WaterWell },
-	{ pos = { 6569, 605, 6 }, id = 1997, aid = Storage.TrzejSramaciISmok.Fireplaces.Hairycles },
-	{ pos = { 6710, 651, 12 }, id = 1997, aid = Storage.TrzejSramaciISmok.Fireplaces.Hellspawns },
+	{ pos = { 6147, 1310, 4 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hive },
+	{ pos = { 6199, 1025, 7 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Lagoon },
+	{ pos = { 6206, 919, 9 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Souleater },
+	{ pos = { 6756, 1169, 6 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.WaterWell },
+	{ pos = { 6569, 605, 6 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hairycles },
+	{ pos = { 6710, 651, 12 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hellspawns },
 
-	{ pos = { 5951, 1113, 7 }, id = 1997, aid = Storage.TrzejSramaciISmok.AbandonedFireplace },
+	{ pos = { 5951, 1113, 7 }, id = 1997, aid = Storage.TheThreeSramatiansAndTheDragon.AbandonedFireplace },
 
-	{ pos = { 6157, 842, 6 }, id = 4406, aid = Storage.TrzejSramaciISmok.VampireCityTrap },
+	{ pos = { 6157, 842, 6 }, id = 4406, aid = Storage.TheThreeSramatiansAndTheDragon.VampireCityTrap },
 
-	{ pos = { 6793, 560, 11 }, id = 4396, aid = Storage.TrzejSramaciISmok.SzczurKrolowTile },
+	{ pos = { 6793, 560, 11 }, id = 4396, aid = Storage.TheThreeSramatiansAndTheDragon.RatOfKingsTile },
 }
 
 local startupRewardsStatic = {
 	{
 		pos = { 6180, 1265, 7 },
 		id = 2484,
-		aid = Storage.TrzejSramaciISmok.Rewards.Rum,
+		aid = Storage.TheThreeSramatiansAndTheDragon.Rewards.Rum,
 		rewards = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rum },
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Questline] = 5 },
-		nextState = { [Storage.TrzejSramaciISmok.Questline] = 6, [Storage.TrzejSramaciISmok.Mission03] = 4 },
+		requiredState = { [Storage.TheThreeSramatiansAndTheDragon.Questline] = 5 },
+		nextState = { [Storage.TheThreeSramatiansAndTheDragon.Questline] = 6, [Storage.TheThreeSramatiansAndTheDragon.Mission03] = 4 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -35,17 +35,17 @@ local startupRewardsStatic = {
 		pos = { 6707, 1068, 9 },
 		id = 7805,
 		uid = 1000,
-		aid = Storage.TrzejSramaciISmok.Rewards.DeepCrystal,
+		aid = Storage.TheThreeSramatiansAndTheDragon.Rewards.DeepCrystal,
 		rewards = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.deepCrystal },
-		requiredState = { [Storage.TrzejSramaciISmok.Questline] = 15 },
+		requiredState = { [Storage.TheThreeSramatiansAndTheDragon.Questline] = 15 },
 	},
 	{
 		pos = { 6814, 600, 12 },
 		id = 11809,
-		aid = Storage.TrzejSramaciISmok.Rewards.rune1,
+		aid = Storage.TheThreeSramatiansAndTheDragon.Rewards.rune1,
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Rewards.rune1] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
-		nextState = { [Storage.TrzejSramaciISmok.Rewards.rune1] = 1 },
+		requiredState = { [Storage.TheThreeSramatiansAndTheDragon.Rewards.rune1] = -1, [Storage.TheThreeSramatiansAndTheDragon.Questline] = 21 },
+		nextState = { [Storage.TheThreeSramatiansAndTheDragon.Rewards.rune1] = 1 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -59,10 +59,10 @@ local startupRewardsStatic = {
 	{
 		pos = { 6775, 623, 12 },
 		id = 11809,
-		aid = Storage.TrzejSramaciISmok.Rewards.rune2,
+		aid = Storage.TheThreeSramatiansAndTheDragon.Rewards.rune2,
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Rewards.rune2] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
-		nextState = { [Storage.TrzejSramaciISmok.Rewards.rune2] = 1 },
+		requiredState = { [Storage.TheThreeSramatiansAndTheDragon.Rewards.rune2] = -1, [Storage.TheThreeSramatiansAndTheDragon.Questline] = 21 },
+		nextState = { [Storage.TheThreeSramatiansAndTheDragon.Rewards.rune2] = 1 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -76,10 +76,10 @@ local startupRewardsStatic = {
 	{
 		pos = { 6809, 634, 13 },
 		id = 11809,
-		aid = Storage.TrzejSramaciISmok.Rewards.rune3,
+		aid = Storage.TheThreeSramatiansAndTheDragon.Rewards.rune3,
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Rewards.rune3] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
-		nextState = { [Storage.TrzejSramaciISmok.Rewards.rune3] = 1 },
+		requiredState = { [Storage.TheThreeSramatiansAndTheDragon.Rewards.rune3] = -1, [Storage.TheThreeSramatiansAndTheDragon.Questline] = 21 },
+		nextState = { [Storage.TheThreeSramatiansAndTheDragon.Rewards.rune3] = 1 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -98,7 +98,7 @@ local npcs = {
 	{ name = "polychek", pos = { 6620, 1085, 5 } },
 }
 local function resetSpawnLocks()
-	for _, spawnLock in pairs(Storage.BezpieczenstwoIHigienaPracy.Spawns) do
+	for _, spawnLock in pairs(Storage.SafetyAndOccupationalHygiene.Spawns) do
 		Game.setStorageValue(spawnLock, 0)
 	end
 end

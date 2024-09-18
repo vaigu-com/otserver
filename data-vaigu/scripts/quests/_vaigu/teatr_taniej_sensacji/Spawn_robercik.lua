@@ -6,7 +6,7 @@ function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if not (player:getStorageValue(Storage.TeatrTaniejSensacji.Mission07) == 2) then
+	if not (player:getStorageValue(Storage.TheaterOfCheapThrills.Mission07) == 2) then
 		return
 	end
 
@@ -19,5 +19,5 @@ function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 end
 
-tile:aid(Storage.TeatrTaniejSensacji.Spawns.Robercik)
+tile:aid(Storage.TheaterOfCheapThrills.Spawns.Robercik)
 tile:register()
