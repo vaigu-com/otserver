@@ -26,7 +26,6 @@ struct BasicItem {
 	uint16_t id { 0 };
 
 	uint16_t charges { 0 }; // Runecharges and Count Too
-	std::string kv; // Vaigu custom
 	uint16_t actionId { 0 };
 	uint16_t uniqueId { 0 };
 	uint16_t destX { 0 }, destY { 0 };

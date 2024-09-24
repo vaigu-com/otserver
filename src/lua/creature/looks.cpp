@@ -9,7 +9,7 @@
 
 #include "pch.hpp"
 
-#include "lua/creature/Looks.hpp"
+#include "lua/creature/looks.hpp"
 #include "items/bed.hpp"
 #include "items/containers/container.hpp"
 #include "game/game.hpp"

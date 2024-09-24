@@ -47,7 +47,6 @@ enum OTBM_AttrTypes_t {
 	OTBM_ATTR_CHARGES = 22,
 	OTBM_ATTR_EXT_SPAWN_NPC_FILE = 23,
 	OTBM_ATTR_EXT_ZONE_FILE = 24,
-	OTBM_ATTR_KV = 25, // Vaigu custom
 };
 
 enum OTBM_NodeTypes_t {

@@ -435,16 +435,6 @@ Attr_ReadValue Item::readAttr(AttrTypes_t attr, PropStream &propStream) {
 			break;
 		}
 
-		case ATTR_KV: {
-			std::string kv;
-			if (!propStream.readString(kv)) {
-				return ATTR_READ_ERROR;
-			}
-
-			setAttribute(ItemAttribute_t::KV, kv);
-			break;
-		}
-
 		case ATTR_ACTION_ID: {
 			uint16_t actionId;
 			if (!propStream.read<uint16_t>(actionId)) {
@@ -884,13 +874,7 @@ void Item::serializeAttr(PropWriteStream &propWriteStream) const {
 		propWriteStream.write<uint8_t>(ATTR_CHARGES);
 		propWriteStream.write<uint16_t>(charges);
 	}
-
-	if (const std::string &kv = getString(ItemAttribute_t::KV);
-	    !kv.empty()) {
-		propWriteStream.write<uint8_t>(ATTR_KV);
-		propWriteStream.writeString(kv);
-	}
-
+	
 	if (it.movable) {
 		if (auto actionId = getAttribute<uint16_t>(ItemAttribute_t::ACTIONID)) {
 			propWriteStream.write<uint8_t>(ATTR_ACTION_ID);
