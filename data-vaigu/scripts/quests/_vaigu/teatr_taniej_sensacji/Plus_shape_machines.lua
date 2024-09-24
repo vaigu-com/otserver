@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function getConfigByAid(aid)
 	return TEATR_TANIEJ_SENSACJI_PLUS_SHAPE.aidToMachineConfig[aid]
 end
@@ -53,3 +54,4 @@ device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineNorth)
 device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineWest)
 device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineCenter)
 device:register()
+end)

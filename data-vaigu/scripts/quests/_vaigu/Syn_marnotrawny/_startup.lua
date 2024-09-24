@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupStatic = {
 	{ position = Position(7541, 960, 13), id = 2598, aid = Storage.ProdigalSon.Train.SelectDestination },
 	{ position = Position(7555, 960, 13), id = 2598, aid = Storage.ProdigalSon.Train.SelectDestination },
@@ -50,8 +51,6 @@ local startupJanuszex = {
 	{ pos = { -61, 27, 5 }, id = 9125, aid = Storage.ProdigalSon.SewersLever },
 	--necklace corpse
 	{ pos = { -40, -270, 5 }, id = 4169, aid = Storage.ProdigalSon.DiamondNecklace, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.diamondNecklace } },
-	--silo machine
-	{ pos = { 74, -82, 2 }, id = 843, aid = Storage.ProdigalSon.LavaSiloMachine, requiredState = { [Storage.ProdigalSon.Questline] = 18 }, nextState = { [Storage.ProdigalSon.Questline] = 19, [Storage.ProdigalSon.Mission05] = 5 }, rewards = {} },
 	--fredi
 	{ pos = { 104, -150, 4 }, id = 5468, aid = Storage.ProdigalSon.FrediBeer, nextState = { [Storage.ProdigalSon.FrediBeer] = -1 }, requiredState = { [Storage.ProdigalSon.Questline] = { min = 20, max = 20 } }, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.frediBeer } },
 	--blackboards
@@ -67,7 +66,7 @@ local startupNpcJanuszex = {
 	{ pos = { 22, 20, 1 }, name = "Conference Dwight" },
 	{ pos = { 31, 19, 1 }, name = "Conference Triss" },
 	{ pos = { 108, -148, 5 }, name = "Fredi kamionka" },
-	{ pos = { 63, 14, 1 }, name = "Access-o-bot" },
+	{ pos = { 63, 14, 1 }, name = "Access-O-Bot" },
 }
 
 local desertQuestInit = GlobalEvent("synMarnotrawnyInit")
@@ -75,7 +74,8 @@ function desertQuestInit.onStartup()
 	LoadStartupItems(startupStatic)
 	LoadStartupItems(startupJanuszex, JANUSZEX_ANCHOR)
 
-	LoadStartupNpc(startupNpcTrain, JANUSZEX_MOVING_TRAIN_ANCHOR)
-	LoadStartupNpc(startupNpcJanuszex, JANUSZEX_ANCHOR)
+	LoadStartupNpcs(startupNpcTrain, JANUSZEX_MOVING_TRAIN_ANCHOR)
+	LoadStartupNpcs(startupNpcJanuszex, JANUSZEX_ANCHOR)
 end
 desertQuestInit:register()
+end)

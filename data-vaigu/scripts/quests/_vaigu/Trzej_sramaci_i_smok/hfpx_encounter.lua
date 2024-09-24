@@ -1,7 +1,8 @@
+	:Script(function(storageToRequiredState)
 local hfpxConfig = {
-	actionid = Storage.TheThreeSramatiansAndTheDragon.HfpxAccess,
+	actionid = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
 	bossName = "Operator HF-P/X",
-	timerStorage = Storage.TheThreeSramatiansAndTheDragon.HfpxAccess,
+	timerStorage = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
 	cooldown = "weekly",
 
 	leverPosition = Position(6799, 552, 12),
@@ -11,7 +12,7 @@ local hfpxConfig = {
 	},
 	exitTeleportDestination = Position(6796, 554, 12),
 	exitTeleportPosition = Position(6789, 548, 13),
-	exitTeleportActionid = Storage.TheThreeSramatiansAndTheDragon.Portals.AfterHfpx,
+	exitTeleportActionid = Storage.ThreeSramatiansAndTheDragon.Portals.AfterHfpx,
 
 	bossPos = Position(6791, 550, 13),
 	enterPos = Position(6801, 556, 13),
@@ -20,7 +21,7 @@ local hfpxConfig = {
 	corner2 = ANCHOR:Moved(15, 11, 0),
 
 	requiredStorages = {
-		[Storage.TheThreeSramatiansAndTheDragon.HfpxAccess] = 1,
+		[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = 1,
 	},
 }
 RegisterEncounter(hfpxConfig)
@@ -33,3 +34,4 @@ end
 
 lever:aid(hfpxConfig.actionid)
 lever:register()
+end)

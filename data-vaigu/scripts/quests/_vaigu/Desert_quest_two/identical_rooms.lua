@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(-118, -54, 0)
 local downRight = DESERT_QUEST_TWO_ANCHOR:Moved(-51, 13, 0)
 
@@ -122,3 +123,4 @@ end
 classTile:type("stepin")
 classTile:aid(Storage.DesertQuestTwo.Puzzles.IdenticalRoomsClassTeleport)
 classTile:register()
+end)

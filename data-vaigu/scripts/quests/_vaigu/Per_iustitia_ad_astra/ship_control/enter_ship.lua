@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local shipPos = STARSHIP_ANCHOR:Moved(15, 6, -1)
 
 local blockage = {}
@@ -55,3 +56,4 @@ end
 
 enterShipTile:aid(Storage.PerIustitiaAdAstra.ShipControl.Enter)
 enterShipTile:register()
+end)

@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupStatic = {
 	{ pos = { 5514, 1555, 7 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToRetro },
 	{ pos = { 5977, 1178, 6 }, id = 1949, aid = Storage.FourActTragedy.Portals.ToKolumb },
@@ -67,7 +68,8 @@ function desertQuestInit.onStartup()
 	LoadStartupItems(startupStatic)
 	LoadStartupItems(startupRetro, RETRO_KNUROWO_ANCHOR)
 	LoadStartupItems(startUpCorpse)
-	LoadStartupNpc(npcsKnurowo, RETRO_KNUROWO_ANCHOR)
-	LoadStartupNpc(npcs)
+	LoadStartupNpcs(npcsKnurowo, RETRO_KNUROWO_ANCHOR)
+	LoadStartupNpcs(npcs)
 end
 desertQuestInit:register()
+end)

@@ -61,7 +61,7 @@ npcConfig.voices = {
 -- ToDo: add encounters descriptions
 GRUBY_MIREK_ENCOUNTERS = { { name = "KRAKEN" } }
 
-local config = {
+local dialog = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ GREET }] = {
 			text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
@@ -102,12 +102,12 @@ local config = {
 			},
 		},
 	},
-	[Storage.NaPomocBagietom.DietaGrubegoMirka] = {
+	[Storage.NaPomocBagietom.FatMyrrusDiet] = {
 		[-1] = {
 			[{ "mission", "misja", "zadanie" }] = {
 				text = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
 				nextState = {
-					[Storage.NaPomocBagietom.DietaGrubegoMirka] = 1,
+					[Storage.NaPomocBagietom.FatMyrrusDiet] = 1,
 					[Storage.NaPomocBagietom.Main] = 1,
 					[Storage.GrubyMirekEncounters] = 1,
 				},
@@ -119,7 +119,7 @@ local config = {
 			[{ "mission", "misja", "zadanie" }] = {
 				text = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
 				nextState = {
-					[Storage.NaPomocBagietom.DietaGrubegoMirka] = 1,
+					[Storage.NaPomocBagietom.FatMyrrusDiet] = 1,
 					[Storage.GrubyMirekEncounters] = 1,
 				},
 				requiredState = {
@@ -145,8 +145,8 @@ local config = {
 				rewards = { { id = 8018 }, { id = 3371 } },
 				expReward = 30000,
 				requiredItems = { { id = 3250 } },
-				nextState = { [Storage.NaPomocBagietom.DietaGrubegoMirka] = 2 },
-				requiredState = { [Storage.NaPomocBagietom.Marchewka] = 1 },
+				nextState = { [Storage.NaPomocBagietom.FatMyrrusDiet] = 2 },
+				requiredState = { [Storage.NaPomocBagietom.Carrot] = 1 },
 				textNoRequiredState = "Thats some fake one.",
 				textNoRequiredItems = "Come back with eco carrot.",
 			},
@@ -155,7 +155,7 @@ local config = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -163,7 +163,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

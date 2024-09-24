@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local config = {
 	["youHearStones"] = "You hear stones rumbling nearby",
 }
@@ -37,3 +38,4 @@ end
 
 gravestone:aid(Storage.DesertQuestOne.Puzzles.CastlePuzzle.Gravestone)
 gravestone:register()
+end)

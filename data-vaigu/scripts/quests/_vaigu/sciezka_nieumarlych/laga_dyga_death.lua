@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local smallArea = createCombatArea(AREA_PLUS3)
 local exori = Combat()
 exori:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
@@ -15,3 +17,5 @@ function lagaDyga.onDeath(creature)
 end
 
 lagaDyga:register()
+end)
+end)

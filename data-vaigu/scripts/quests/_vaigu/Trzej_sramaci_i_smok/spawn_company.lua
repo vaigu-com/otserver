@@ -1,16 +1,17 @@
-local hive = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hive
-local lagoon = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Lagoon
-local souleater = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Souleater
-local waterWell = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.WaterWell
-local hairycles = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hairycles
-local hellspawns = Storage.TheThreeSramatiansAndTheDragon.Fireplaces.Hellspawns
+	:Script(function(storageToRequiredState)
+local hive = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive
+local lagoon = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Lagoon
+local souleater = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Souleater
+local waterWell = Storage.ThreeSramatiansAndTheDragon.Fireplaces.WaterWell
+local hairycles = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hairycles
+local hellspawns = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hellspawns
 
 local spawnTimer = 1000 * 2 * 60
 
 local companyMembersNames = {
 	"Moorin the second of the copper cowbell",
 	"Brallin of the beech wall unit",
-	"Giuseppe Four Cheeses",
+	"Guseppe Four Cheeses",
 	"Bilbeus",
 }
 local aidToCompany = { [hive] = nil, [lagoon] = nil, [souleater] = nil, [waterWell] = nil }
@@ -28,7 +29,7 @@ local litFireplaceId = 2000
 local unlitFireplaceId = 1997
 
 local function hasRequiredState(player, aid)
-	local questState = player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline)
+	local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
 
 	local states = aidToRequiredState[aid]
 	local min = states.min
@@ -78,7 +79,8 @@ function fire.onUse(player, fireplace, fromPosition, target, toPosition, isHotke
 	return true
 end
 
-for _, storage in pairs(Storage.TheThreeSramatiansAndTheDragon.Fireplaces) do
+for _, storage in pairs(Storage.ThreeSramatiansAndTheDragon.Fireplaces) do
 	fire:aid(storage)
 end
 fire:register()
+end)

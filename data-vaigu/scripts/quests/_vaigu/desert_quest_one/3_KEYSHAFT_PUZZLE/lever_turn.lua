@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local config = {
 	["youHaveSeconds"] = "You have 60 seconds to walk though the gate",
 }
@@ -32,3 +33,4 @@ end
 
 lever:aid(Storage.DesertQuestOne.Puzzles.KeyshaftPuzzle.LeverTurn)
 lever:register()
+end)

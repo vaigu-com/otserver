@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local conditions = {
 	CONDITION_POISON, --utori pox
 	CONDITION_FIRE, --utori flam
@@ -69,3 +70,4 @@ end
 
 skull:aid(Storage.PathOfTheUndead.GuardianSkull)
 skull:register()
+end)

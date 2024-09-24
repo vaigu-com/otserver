@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function movePlayersFromArea(topLeft, downRight, safePos)
 	CreatureList():Area(topLeft, downRight):FilteredByPlayer():MovedToPos(safePos)
 end
@@ -57,7 +58,7 @@ local function tryUseGermiFireplace(fireplace)
 		npc:remove()
 		floorEffectItem:remove()
 		fireplace:transform(unlit)
-		fireplace:setActionId(Storage.DesertQuestGhosts.Misc.FirebugFireplace)
+		fireplace:setActionId(Storage.CaveExplorerOnShield.Misc.FirebugFireplace)
 	end, 1000 * 120 * 2)
 
 	return true
@@ -71,7 +72,7 @@ local function playerIsUsingBugOnFireplace(item, fireplace)
 	if item:getId() ~= fireBugId then
 		return false
 	end
-	if fireplace:getActionId() ~= Storage.DesertQuestGhosts.Misc.FirebugFireplace then
+	if fireplace:getActionId() ~= Storage.CaveExplorerOnShield.Misc.FirebugFireplace then
 		return false
 	end
 	return true
@@ -91,5 +92,6 @@ function firebug.onUse(player, item, fromPosition, fireplace, toPosition, isHotk
 	return true
 end
 
-firebug:aid(Storage.DesertQuestGhosts.Misc.FirebugFireplace)
+firebug:aid(Storage.CaveExplorerOnShield.Misc.FirebugFireplace)
 firebug:register()
+end)

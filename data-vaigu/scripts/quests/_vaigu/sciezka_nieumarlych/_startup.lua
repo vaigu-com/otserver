@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupItemsStatic = {
 	{ pos = { 5642, 1755, 6 }, id = 596, aid = Storage.PathOfTheUndead.Circles },
 	{ pos = { 6528, 1396, 5 }, id = 597, aid = Storage.PathOfTheUndead.Circles },
@@ -41,8 +42,9 @@ local sciezkaInit = GlobalEvent("sciezkaNieumarlychInit")
 function sciezkaInit.onStartup()
 	LoadStartupItems(startupItemsStatic)
 	LoadStartupItems(startupRewardsStatic)
-	LoadStartupNpc(npcs)
+	LoadStartupNpcs(npcs)
 	LoadStartupItems(startUpItemsSciezka, SCIEZKA_NIEUMARLYCH_ANCHOR)
 	resetSpawnLocks()
 end
 sciezkaInit:register()
+end)

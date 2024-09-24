@@ -48,14 +48,14 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
-	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
+local dialog = {
+	[Storage.ThreeSramatiansAndTheDragon.Questline] = {
 		[14] = {
 			[{ "mission" }] = {
 				text = "I've been visited before by those who asked, 'spare any help, boss?' If you renovate my old town, we'll consider it. You can also bring me a crystal of the depths. Do one of these, and I'll surely reward you.",
 				nextState = {
-					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 15,
-					[Storage.TheThreeSramatiansAndTheDragon.Mission06] = 2,
+					[Storage.ThreeSramatiansAndTheDragon.Questline] = 15,
+					[Storage.ThreeSramatiansAndTheDragon.Mission06] = 2,
 				},
 			},
 		},
@@ -65,15 +65,15 @@ local config = {
 				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.deepCrystal },
 				textNoRequiredItems = "If you don't know where to find the crystals, try diving into the sea east of here.",
 				nextState = {
-					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 16,
-					[Storage.TheThreeSramatiansAndTheDragon.Mission06] = 3,
+					[Storage.ThreeSramatiansAndTheDragon.Questline] = 16,
+					[Storage.ThreeSramatiansAndTheDragon.Mission06] = 3,
 				},
 			},
 		},
 	},
 }
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -81,7 +81,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

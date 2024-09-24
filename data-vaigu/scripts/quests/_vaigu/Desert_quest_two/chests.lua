@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local chests = {
 	["FirstHouse"] = { id = 2478, pos = DESERT_QUEST_TWO_ANCHOR:Moved(0, 25, -2), bitProgress = 2 ^ 0, permanent = true },
 	["FifteenPuzzle"] = { id = 11520, pos = DESERT_QUEST_TWO_ANCHOR:Moved(6, 7, 0), bitProgress = 2 ^ 1 },
@@ -82,3 +83,4 @@ end
 
 chestItem:aid(Storage.DesertQuestTwo.ProgressChests)
 chestItem:register()
+end)

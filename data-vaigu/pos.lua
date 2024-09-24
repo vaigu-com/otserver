@@ -561,11 +561,16 @@ function IterateBetweenPositions(pos1, pos2, callback, context)
 	return lastResult, context
 end
 
-function Position:DistanceTo(dest, sum)
+function Position:EuclideanDistance(dest)
+	local x2 = (self.x - dest.x) ^ 2
+	local y2 = (self.y - dest.y) ^ 2
+	local z2 = (self.z - dest.z) ^ 2
+	local distance = math.sqrt(x2 + y2 + z2)
+	return distance
+end
+
+function Position:Distance(dest)
 	local vector = self:VectorTo(dest):Abs()
-	if sum then
-		return vector.x + vector.y + vector.z
-	end
 	return vector.x, vector.y, vector.z
 end
 
@@ -796,7 +801,7 @@ KRAKEN_ANCHOR = Position(5974, 1177, 6)
 SKURWIWIJ_ANCHOR = Position(6534, 536, 9)
 ZUL_SZCZUROW_ANCHOR = Position(6006, 1382, 13)
 
-KUZNIA_YAANUSHA_ANCHOR = Position(6657, 1066, 15)
+USHAYAAN_FORGE_ANCHOR = Position(6657, 1066, 15)
 STARSHIP_ANCHOR = Position(7356, 789, 7)
 DEEPLING_TEMPLE_ANCHOR = Position(6788, 994, 14)
 FUEL_SHOP_ANCHOR = Position(7369, 671, 6)

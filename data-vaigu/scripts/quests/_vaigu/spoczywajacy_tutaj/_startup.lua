@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupItemsStatic = {
 	{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.ImRestingHere.Coffin },
 	{ pos = { 5938, 1779, 7 }, id = 2476, aid = Storage.ImRestingHere.Coffin },
@@ -19,3 +20,4 @@ function bhpInit.onStartup()
 	resetSpawnLocks()
 end
 bhpInit:register()
+end)

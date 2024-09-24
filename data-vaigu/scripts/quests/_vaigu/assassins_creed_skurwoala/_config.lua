@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS = {
 	despawnGmTomek = function(context)
 		local pos = Position(5564, 1575, 8)
@@ -71,3 +72,4 @@ ASSASSINS_CREED_SKURWOALA_KEY_ITEMS = {
 		desc = "Flare from Aunor. Use it before Ghasstly Princess's cave entrance",
 	},
 }
+end)

@@ -31,15 +31,15 @@ function CreateNpcDefinition(context)
 	local onlookName = context.npcDescription or context.onlookname or ("a " .. name)
 
 	local greetJob = context.greetJob
-	local jobs = context.jobs
+	local jobs = context.jobs or {}
 	local outfit = context.outfit
-	local userDialogs = context.dialogs
+	local npcSpecificDialogs = context.dialogs
 	local customShop = context.shop
 	local voices = context.voices
 
 	local shop, jobDialogsUniversal = getJobConfigs(jobs)
 	--ToDo: check if this should be removed
-	--jobDialogs = MergedTable(jobDialogs, userDialogs)
+	--jobDialogs = MergedTable(jobDialogs, npcSpecificDialogs)
 	shop = MergedTable(shop, customShop)
 
 	local jobStateDialogs = getJobStateDialogs(jobs)
@@ -48,7 +48,7 @@ function CreateNpcDefinition(context)
 	allDialogs[LOCALIZER_UNIVERSAL] = jobDialogsUniversal
 	allDialogs[LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
-	allDialogs = MergedTable(allDialogs, userDialogs)
+	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 
 	local npcConfig = {}
 	npcConfig.shop = shop
@@ -59,14 +59,14 @@ function CreateNpcDefinition(context)
 
 	npcConfig.health = 100
 	npcConfig.maxHealth = npcConfig.health
-	npcConfig.walkInterval = 2000
-	npcConfig.walkRadius = 2
+	npcConfig.walkInterval = context.walkInterval or 2000
+	npcConfig.walkRadius = context.walkInterval or 2
 
 	npcConfig.outfit = outfit
 
 	npcConfig.voices = voices
 
-	npcConfig.flags = { floorchange = 0 }
+	npcConfig.flags = { floorchange = context.floorchange or 0 }
 
 	local keywordHandler = KeywordHandler:new()
 	local npcHandler = NpcHandler:new(keywordHandler)
@@ -96,15 +96,21 @@ function CreateNpcDefinition(context)
 	npcType.onCloseChannel = function(npc, creature)
 		npcHandler:onCloseChannel(npc, creature)
 	end
+
 	-- On buy npc shop message
 	npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
 		npc:sellItem(player, itemId, amount, subType, 0, ignore, inBackpacks)
 	end
+	
 	-- On sell npc shop message
 	npcType.onSellItem = function(npc, player, itemId, subtype, amount, ignore, itemName, totalCost)
-		player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("Sold %ix %s for %i gold.", amount, itemName, totalCost))
+		player:sendTextMessage(
+		MESSAGE_INFO_DESCR,
+			string.format("Sold %ix %s for %i gold.", amount, itemName, totalCost)
+		)
 	end
-	-- On check npc shop message (look item)
+	
+	-- On look at npc shop item
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
 	local function greetCallback(npc, creature, type, message)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local bossRoomPos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = -60, y = -14, z = 0 })
 
 local workingTeleportId = 23483
@@ -72,3 +73,4 @@ end
 step_tile:aid(Storage.PathOfTheUndead.RitualLocus)
 step_tile:type("stepin")
 step_tile:register()
+end)

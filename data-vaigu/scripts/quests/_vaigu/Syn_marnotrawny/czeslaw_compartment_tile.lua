@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local nextState = {
 	[Storage.ProdigalSon.Questline] = 1,
 	[Storage.ProdigalSon.Mission01] = 1,
@@ -21,3 +22,4 @@ function mainGateTile.onStepIn(player, item, toPosition, fromPosition)
 end
 mainGateTile:aid(Storage.ProdigalSon.TileBeforeChesterCompartment)
 mainGateTile:register()
+end)

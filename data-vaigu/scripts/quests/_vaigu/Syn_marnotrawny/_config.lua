@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 SYN_MARNOTRAWNY_KEY_ITEMS = {
 	payslip = {
 		id = 2818,
@@ -157,3 +158,4 @@ function testMagic()
 		end
 	end
 end
+end)

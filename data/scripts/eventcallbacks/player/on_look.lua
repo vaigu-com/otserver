@@ -1,7 +1,7 @@
 DONT_SHOW_ONLOOK = "DONT_SHOW_ONLOOK"
 
-local OnLookMessage = {}
-function OnLookMessage:new(player, inspectedThing, inspectedPosition, lookDistance)
+local OnLookMessageBuilder = {}
+function OnLookMessageBuilder:new(player, inspectedThing, inspectedPosition, lookDistance)
 	local newObj = {}
 	self.player = player
 	self.inspectedThing = inspectedThing
@@ -11,7 +11,7 @@ function OnLookMessage:new(player, inspectedThing, inspectedPosition, lookDistan
 	setmetatable(newObj, self)
 	return newObj
 end
-setmetatable(OnLookMessage, {
+setmetatable(OnLookMessageBuilder, {
 	__call = function(class, ...)
 		return class:new(...)
 	end,
@@ -115,7 +115,7 @@ local function getPositionDescription(position)
 	end
 end
 
-function OnLookMessage:ParseCustomOnLook()
+function OnLookMessageBuilder:ParseCustomOnLook()
 	local inspectedThing = self.inspectedThing
 	local player = self.player
 	local aid = inspectedThing:getActionId()
@@ -146,14 +146,14 @@ function OnLookMessage:ParseCustomOnLook()
 	return finalDescription
 end
 
-function OnLookMessage:ParseCustomDescription(customDescription)
+function OnLookMessageBuilder:ParseCustomDescription(customDescription)
 	if shouldDisplayReadableContent(self.inspectedThing) then
 		return T("You see :name:. You read: :customDescription:", { name = self.inspectedThing:getNameDescription(), customDescription = customDescription })
 	end
 	return T("You see :name:.", { name = self.inspectedThing:getNameDescription() })
 end
 
-function OnLookMessage:ParseItemDescription()
+function OnLookMessageBuilder:ParseItemDescription()
 	local inspectedThing = self.inspectedThing
 	local lookDistance = self.lookDistance
 	local customDescription = self:ParseCustomOnLook()
@@ -179,7 +179,7 @@ function OnLookMessage:ParseItemDescription()
 	return descriptionText
 end
 
-function OnLookMessage:ParseCreatureDescription()
+function OnLookMessageBuilder:ParseCreatureDescription()
 	local inspectedThing = self.inspectedThing
 	local lookDistance = self.lookDistance
 	local descriptionText = inspectedThing:getDescription(lookDistance)
@@ -195,7 +195,7 @@ function OnLookMessage:ParseCreatureDescription()
 	return "You see " .. descriptionText
 end
 
-function OnLookMessage:ParseAdminDetails()
+function OnLookMessageBuilder:ParseAdminDetails()
 	local descriptionText = ""
 	local inspectedThing = self.inspectedThing
 	local inspectedPosition = self.inspectedPosition
@@ -256,7 +256,7 @@ function OnLookMessage:ParseAdminDetails()
 	return descriptionText
 end
 
-function OnLookMessage:Build()
+function OnLookMessageBuilder:Build()
 	if self.inspectedThing:isItem() then
 		self.normalDescription = self:ParseItemDescription()
 	elseif self.inspectedThing:isCreature() then
@@ -269,7 +269,7 @@ function OnLookMessage:Build()
 	return self
 end
 
-function OnLookMessage:Get()
+function OnLookMessageBuilder:Get()
 	local finalMessage = ""
 	if self.normalDescription and self.dontShowOnLook ~= true then
 		finalMessage = finalMessage .. self.normalDescription
@@ -280,9 +280,12 @@ function OnLookMessage:Get()
 	return finalMessage
 end
 
+-- Item description is always treated as potential string identifier
+-- If no matching translation is found, then the description is shown normally
+-- Else the translation is put in description place
 local callback = EventCallback()
 function callback.playerOnLook(player, inspectedThing, inspectedPosition, lookDistance)
-	local onLookDescriptionBuilder = OnLookMessage(player, inspectedThing, inspectedPosition, lookDistance)
+	local onLookDescriptionBuilder = OnLookMessageBuilder(player, inspectedThing, inspectedPosition, lookDistance)
 	local message = onLookDescriptionBuilder:Build():Get()
 
 	if message and message ~= "" then

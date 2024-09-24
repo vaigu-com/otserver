@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local portal = MoveEvent()
 
 function portal.onStepIn(creature, item, position, fromPosition)
@@ -23,3 +24,4 @@ end
 portal:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.PortalIdenticalRooms)
 portal:type("stepin")
 portal:register()
+end)

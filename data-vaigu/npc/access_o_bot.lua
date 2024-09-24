@@ -48,24 +48,30 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
-	[Storage.ProdigalSon.Questline] = {
-		[{ min = 22 }] = {
-			[{ GREET }] = { text = "Password:" },
-			[{ "mission" }] = { text = "Password:" },
-			[{ ANY_MESSAGE }] = {
-				text = "Correct password. Come in.",
-				specialConditions = {
-					{
-						condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword,
-						requiredOutcome = true,
-						textNoRequiredCondition = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
-					},
+local dialog = {
+	[Storage.ProdigalSon.Localizer] = {
+		[Storage.ProdigalSon.Mission06] = {
+			[1] = {
+				[{ GREET }] = {
+					text = "Password:",
 				},
-				specialActionsOnSuccess = {
-					{
-						action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
-						pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
+				[{ "mission" }] = {
+					text = "Password:",
+				},
+				[{ ANY_MESSAGE }] = {
+					text = "Correct password. Come in.",
+					specialConditions = {
+						{
+							condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword,
+							requiredOutcome = true,
+							textNoRequiredCondition = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
+						},
+					},
+					specialActionsOnSuccess = {
+						{
+							action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
+							pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
+						},
 					},
 				},
 			},
@@ -74,7 +80,7 @@ local config = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -82,7 +88,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local goodNames = { "Eustachy Wiertara", "Fifonz Kuciapa", "Sierotka Marysia", "Miroslaw z Ankharu" }
 local badNames = { "Wojciech Szpara", "Edward Tatarata", "Bogdan Boner", "Anna Niewypchnieta", "Jan Pawel Drugi" }
 
@@ -17,3 +18,4 @@ DesertQuestOneVocGoodSign = function(context)
 	local randomHelper = goodNames[randIndex]
 	return translatedMessage .. randomHelper
 end
+end)

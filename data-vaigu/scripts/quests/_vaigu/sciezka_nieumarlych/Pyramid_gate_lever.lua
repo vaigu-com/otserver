@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local gatePositions = {
 	{ x = -12, y = 37, z = -2 },
 	{ x = -11, y = 37, z = -2 },
@@ -23,3 +24,4 @@ end
 
 lever:aid(Storage.PathOfTheUndead.UpperLever)
 lever:register()
+end)

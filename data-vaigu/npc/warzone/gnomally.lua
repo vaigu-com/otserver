@@ -72,7 +72,7 @@ end
 local topic = {}
 local renown = {}
 
-local config = {
+local dialog = {
 	["supply"] = { itemid = 15698, token = { type = "minor", id = 16128, count = 2 } },
 	["muck"] = { itemid = 16101, token = { type = "minor", id = 16128, count = 2 } },
 	["mission"] = { itemid = 16242, token = { type = "minor", id = 16128, count = 10 } },

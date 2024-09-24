@@ -130,7 +130,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeMoney(10) then
 				player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar })
 				player:setStorageValue(Storage.CrowbarBought, 1)
-				player:setStorageValue(Storage.ImRestingHere.Questline, 1)
+				player:setStorageValue(Storage.ImRestingHere.Coffin, 0)
 				player:setStorageValue(Storage.ImRestingHere.Mission01, 1)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo, oto twoj lom." or "Here you are.", npc, creature)
 			else

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local zulSzczurowEncounter = {
 	actionid = Storage.FourActTragedy.ZulSzczurowAccess,
 	bossName = "Zul Szczurow",
@@ -34,3 +35,4 @@ function zulLever.onUse(player, item, fromPosition, target, toPosition, isHotkey
 end
 zulLever:aid(zulSzczurowEncounter.actionid)
 zulLever:register()
+end)

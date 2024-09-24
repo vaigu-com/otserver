@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local stairTimer = 15
 
 local config = {
@@ -53,3 +54,4 @@ end
 
 lever:aid(Storage.DesertQuestOne.Puzzles.BasinPuzzle.Lever)
 lever:register()
+end)

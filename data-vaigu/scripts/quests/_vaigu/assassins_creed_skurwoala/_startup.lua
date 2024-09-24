@@ -1,11 +1,12 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local rewardChests = {
 	{
 		pos = { 6051, 1503, 9 },
 		id = 2484,
 		actionid = Storage.AssassinsCreedSquurvaali.Rewards.CartSilicon,
 		rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
-		requiredState = { [Storage.AssassinsCreedSquurvaali.Questline] = 11 },
-		nextState = { [Storage.AssassinsCreedSquurvaali.Questline] = 12, [Storage.AssassinsCreedSquurvaali.Mission04] = 3 },
+		requiredState = { [Storage.AssassinsCreedSquurvaali.Mission04] = 2 },
+		nextState = {  [Storage.AssassinsCreedSquurvaali.Mission04] = 3 },
 	},
 }
 local startupItems = {
@@ -33,6 +34,7 @@ function desertQuestInit.onStartup()
 	LoadStartupItems(rewardChests)
 	LoadStartupItems(startupItems)
 
-	LoadStartupNpc(npcs)
+	LoadStartupNpcs(npcs)
 end
 desertQuestInit:register()
+end)

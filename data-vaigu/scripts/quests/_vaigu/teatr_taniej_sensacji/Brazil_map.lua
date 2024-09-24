@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local updateStorages = {
 	[Storage.TheaterOfCheapThrills.Questline] = 30,
 	[Storage.TheaterOfCheapThrills.Mission10] = 3,
@@ -16,3 +17,4 @@ end
 
 map:aid(Storage.TheaterOfCheapThrills.BrazilMap)
 map:register()
+end)

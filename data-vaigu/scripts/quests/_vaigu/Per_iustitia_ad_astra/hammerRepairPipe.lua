@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local updateStorages = {
 	[Storage.PerIustitiaAdAstra.Questline] = 21,
 	[Storage.PerIustitiaAdAstra.Mission05] = 6,
@@ -35,3 +36,4 @@ end
 
 item:aid(Storage.PerIustitiaAdAstra.HammerUse)
 item:register()
+end)

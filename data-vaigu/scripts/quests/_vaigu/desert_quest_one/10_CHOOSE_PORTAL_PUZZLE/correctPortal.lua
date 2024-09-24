@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local correctPortal = MoveEvent()
 
 function correctPortal.onStepIn(creature, item, toPosition, fromPosition)
@@ -13,3 +14,4 @@ end
 correctPortal:aid(Storage.DesertQuestOne.Puzzles.ChoosePortalPuzzle.CorrectPortal)
 correctPortal:type("stepin")
 correctPortal:register()
+end)

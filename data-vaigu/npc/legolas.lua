@@ -57,9 +57,9 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "luk") or MsgContains(message, "bow") then
-		if player:getStorageValue(Storage.NaPomocBagietom.DominandoKitza) == 1 then
+		if player:getStorageValue(Storage.NaPomocBagietom.KitzDominando) == 1 then
 			if player:getItemCount(2949) > 0 and player:getItemCount(5922) > 2 and player:getItemCount(3658) > 0 and player:getItemCount(7290) > 0 then
-				player:setStorageValue(Storage.NaPomocBagietom.DominandoKitza, 2)
+				player:setStorageValue(Storage.NaPomocBagietom.KitzDominando, 2)
 				player:addItem(9378, 1) -- dostaje musicion bow ( do zamiany u kitza za icycle bow )
 				player:removeItem(2949, 1) -- zabieram lire
 				player:removeItem(5922, 3) -- zabieram 3 holyorchidy
@@ -69,7 +69,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Aby wytworzyc luk potrzebuje liry, 3 holy orchidow, czerwonej rozy oraz shardu." or "To craft this bow I'll need one lyre, 3 holy orchids, red rose and one shard.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.NaPomocBagietom.DominandoKitza) == 2 then
+		elseif player:getStorageValue(Storage.NaPomocBagietom.KitzDominando) == 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Juz go dla ciebie wykonalem..." or "I did that already..", npc, creature)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Co? Jaki niby luk..." or "What?!", npc, creature)

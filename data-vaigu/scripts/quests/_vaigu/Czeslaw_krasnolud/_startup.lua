@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupItemsStatic = {
 	{ pos = { 7049, 826, 7 }, id = 5258, aid = Storage.ChesterTheDwarf.ChesterHouseStairs },
 
@@ -23,7 +24,8 @@ local bhpInit = GlobalEvent("czeslawKrasnoludInit")
 function bhpInit.onStartup()
 	LoadStartupItems(startupItemsStatic)
 	LoadStartupItems(startupRewardsStatic)
-	LoadStartupNpc(npcs)
+	LoadStartupNpcs(npcs)
 	resetSpawnLocks()
 end
 bhpInit:register()
+end)

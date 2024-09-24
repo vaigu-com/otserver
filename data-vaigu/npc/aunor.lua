@@ -48,30 +48,31 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
-	[Storage.AssassinsCreedSquurvaali.Questline] = {
-		[14] = {
-			[{ "mission" }] = {
-				text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
-			},
-			[{ "seeing", "zegnaj" }] = {
-				text = "",
-				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare },
-				specialActionsOnSuccess = {
-					{
-						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.aunorTeleportOut,
-					},
+local dialog = {
+	[Storage.AssassinsCreedSquurvaali.Localizer] = {
+		[Storage.AssassinsCreedSquurvaali.Mission05] = {
+			[1] = {
+				[{ "mission" }] = {
+					text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
 				},
-				nextState = {
-					[Storage.AssassinsCreedSquurvaali.Questline] = 15,
-					[Storage.AssassinsCreedSquurvaali.Mission05] = 2,
+				[{ "seeing", "zegnaj" }] = {
+					text = "",
+					rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare },
+					specialActionsOnSuccess = {
+						{
+							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.aunorTeleportOut,
+						},
+					},
+					nextState = {
+						[Storage.AssassinsCreedSquurvaali.Mission05] = 2,
+					},
 				},
 			},
 		},
 	},
 }
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -79,7 +80,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, message, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

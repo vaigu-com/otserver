@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local storages = {
 	[Storage.SafetyAndOccupationalHygiene.Questline] = 14,
 	[Storage.SafetyAndOccupationalHygiene.Mission06] = 2,
@@ -20,3 +22,5 @@ function petrusDeath.onDeath(creature)
 end
 
 petrusDeath:register()
+end)
+end)

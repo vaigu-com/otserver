@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local updateStorages = {
 	[Storage.FourActTragedy.Questline] = 14,
 	[Storage.FourActTragedy.Mission05] = 2,
@@ -25,3 +27,5 @@ function skurwiwijDeath.onDeath(creature)
 end
 
 skurwiwijDeath:register()
+end)
+end)

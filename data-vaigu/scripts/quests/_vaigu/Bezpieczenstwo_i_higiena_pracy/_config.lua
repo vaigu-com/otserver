@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_CONDITIONS = {
 	timeIsNight = function(context)
 		local timeOfDay = getTibiaTimerDayOrNight()
@@ -86,3 +87,4 @@ BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS = {
 	[Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown] = MIRKO_MAGICIANS_ANCHOR:Moved(17, 12, -5),
 	[Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus] = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 0, 0),
 }
+end)

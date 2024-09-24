@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 --[[
 	local player1centerPos = Position(1434, 1319, 8)
 local player2centerPos = Position(1443, 1319, 8)
@@ -217,3 +218,4 @@ lever:aid(8727)
 lever:register()
 
 ]]
+end)

@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local wawelDragon = CreatureEvent("WawelDragonDeath")
 
 function wawelDragon.onDeath(creature)
@@ -8,3 +10,5 @@ function wawelDragon.onDeath(creature)
 end
 
 wawelDragon:register()
+end)
+end)

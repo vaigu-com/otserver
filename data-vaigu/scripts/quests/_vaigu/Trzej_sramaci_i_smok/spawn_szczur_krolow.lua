@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local szczurKrolowConfig = {
 	name = "rat of kings",
 	pos = Position(6792, 558, 11),
@@ -10,7 +11,7 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline)
+	local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
 
 	if storageVal < 21 or storageVal > 23 then
 		return false
@@ -30,7 +31,7 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 	end
 end
 
-tileIn:aid(Storage.TheThreeSramatiansAndTheDragon.RatOfKingsTile)
+tileIn:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
 tileIn:register()
 
 local tileOut = MoveEvent()
@@ -51,5 +52,6 @@ function tileOut.onStepOut(player, item, fromPosition, target, toPosition, isHot
 	end
 end
 
-tileOut:aid(Storage.TheThreeSramatiansAndTheDragon.RatOfKingsTile)
+tileOut:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
 tileOut:register()
+end)

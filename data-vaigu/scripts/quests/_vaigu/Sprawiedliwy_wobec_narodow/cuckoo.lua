@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local combination = {
 	"even",
 	"even",
@@ -70,3 +71,4 @@ end
 
 lamp:aid(Storage.SprawiedliwyWobecNarodow.Lamp)
 lamp:register()
+end)

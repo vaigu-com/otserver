@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local book = Action()
 
 function book.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -11,3 +12,4 @@ end
 
 book:aid(Storage.PathOfTheUndead.BossBook)
 book:register()
+end)

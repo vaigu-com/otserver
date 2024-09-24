@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 TEATR_TANIEJ_SENSACJI_KEY_ITEMS = {
 	cheese = { aid = Storage.TheaterOfCheapThrills.Rewards.Cheese, id = 3607, desc = "100 Year Old Aged Cheese" },
 }
@@ -24,3 +25,4 @@ TEATR_TANIEJ_SENSACJI_PLUS_SHAPE = {
 	},
 	book = { lit = 28139, unlit = 28888, pos = { x = -3, y = -12, z = 0 } },
 }
+end)

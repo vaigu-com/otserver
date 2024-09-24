@@ -49,116 +49,122 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
+local dialog = {
 	[Storage.PathOfTheUndead.Questline] = {
-		[-1] = {
-			[{ GREET }] = { text = "Hello. What brings you here?" },
-			[{ "oprocz tego ludzie", "aside from that people" }] = {
-				text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without a second thought, all defenders gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don't know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
-				nextState = {
-					[Storage.PathOfTheUndead.Questline] = 1,
-					[Storage.PathOfTheUndead.Mission01] = 1,
+		[Storage.PathOfTheUndead.Mission01] = {
+			[QUEST_NOT_STARTED] = {
+				[{ GREET }] = {
+					text = "Hello. What brings you here?",
 				},
-				requiredState = {
-					[Storage.ChesterTheDwarf.Questline] = 8,
-					[Storage.ImRestingHere.Mission01] = 2,
-					[Storage.AssassinsCreedSquurvaali.Questline] = 16,
-					[Storage.SultanPrime.Questline] = 13,
+				[{ "oprocz tego ludzie", "aside from that people" }] = {
+					text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without a second thought, all defenders gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don't know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission01] = 1,
+					},
+					requiredState = {
+						[Storage.Finished.AssassinsCreedSquurvaali] = 1,
+						[Storage.Finished.ImRestingHere] = 1,
+						[Storage.Finished.SultanPrime] = 1,
+						[Storage.ChesterTheDwarf.Mission03] = State.ChesterTheDwarf.Mission03.Finished,
+					},
+					textNoRequiredState = "It's interesting that you know our password. Nevertheless, I have no task for you or anything to interest you with.",
 				},
-				textNoRequiredState = "It's interesting that you know our password. Nevertheless, I have no task for you or anything to interest you with.",
+				[{ "king", "crypt king", "king of the crypt", "krol krypty", "krol" }] = {
+					text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth.",
+				},
 			},
-			[{ "king", "crypt king", "king of the crypt", "krol krypty", "krol" }] = {
-				text = "If you really know what danger he is, deal with his ally first - the Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth.",
-			},
-		},
-		[1] = {
-			[{ GREET }] = {
-				text = "Welcome again. Are you ready to accept my {conditions}?",
-			},
-			[{ "conditions", "warunki" }] = {
-				text = "Allakhazam!!!1. Oh, wait, that's not all. I forgot that you also need to visit the magic circles. Each circle consists of 6 stones in 3 different colors, with a special grid in the middle. Stand on all five grids, and I will be able to bless you. I won't tell you where the circles are because you can ask the owners of magic shops in towns about it. Talk to them, and they will guide you to the circles. Just write 'circle' to them, and they will explain everything to you.",
-				nextState = {
-					[Storage.PathOfTheUndead.Questline] = 2,
-					[Storage.PathOfTheUndead.Mission01] = 2,
-					[Storage.PathOfTheUndead.Mission02] = 1,
-					[Storage.PathOfTheUndead.Circles] = 0,
+			[1] = {
+				[{ GREET }] = {
+					text = "Welcome again. Are you ready to accept my {conditions}?",
 				},
-				requiredState = {
-					[Storage.PitsOfInferno.OneThrone] = 1,
-					[Storage.Finished.YalahariQuest] = 1,
-					[Storage.SciezkaDruida.KragDruidow] = 7,
+				[{ "conditions", "warunki" }] = {
+					text = "Allakhazam!!!1. Oh, wait, that's not all. I forgot that you also need to visit the magic circles. Each circle consists of 6 stones in 3 different colors, with a special grid in the middle. Stand on all five grids, and I will be able to bless you. I won't tell you where the circles are because you can ask the owners of magic shops in towns about it. Talk to them, and they will guide you to the circles. Just write 'circle' to them, and they will explain everything to you.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission01] = 2,
+						[Storage.PathOfTheUndead.Mission02] = 1,
+						[Storage.PathOfTheUndead.Circles] = 0,
+					},
+					requiredState = {
+						[Storage.PitsOfInferno.OneThrone] = { min = 1 },
+						[Storage.Finished.YalahariQuest] = { min = 1 },
+						[Storage.SciezkaDruida.KragDruidow] = { min = 7 },
+					},
+					textNoRequiredState = "My conditions are to complete the following tasks: Druid Path, Yalahar Quest. While you know the secret password, I also want other druids and elves to vouch for you. Additionally, you must visit at least one poi throne. If you are ready, ask me again about {conditions}.",
 				},
-				textNoRequiredState = "My conditions are to complete the following tasks: Druid Path, Yalahar Quest. While you know the secret password, I also want other druids and elves to vouch for you. Additionally, you must visit at least one poi throne. If you are ready, ask me again about {conditions}.",
-			},
-		},
-		[2] = {
-			[{ "mission" }] = {
-				text = "Hokus Pokus! Teraz juz wszystko powinno grac. W podziemiach piramidy czai sie cos bardzo mrocznego. Zapytaj Konmulda o porade, a byc moze ujdziesz stamtad z zyciem. Bym zapomnial: od teraz mozesz uzywac zapieczetowanych drzwi w piramidzie.",
-				nextState = {
-					[Storage.PathOfTheUndead.Questline] = 3,
-					[Storage.PathOfTheUndead.Mission02] = 2,
-					[Storage.PathOfTheUndead.Mission03] = 1,
-				},
-				requiredState = { [Storage.PathOfTheUndead.Circles] = 31 },
-				textNoRequiredState = "Ask the individual owners of magic shops about the locations of the circles.",
 			},
 		},
-		[4] = {
-			[{ "mission" }] = {
-				text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
-				nextState = {
-					[Storage.PathOfTheUndead.Questline] = 5,
-					[Storage.PathOfTheUndead.Mission03] = 3,
-					[Storage.Finished.PathOfTheUndead] = 1,
-					[Storage.ChesterTheDwarf.Mission04] = 1,
-					[Storage.ChesterTheDwarf.Questline] = 9,
+		[Storage.PathOfTheUndead.Mission02] = {
+			[2] = {
+				[{ "mission" }] = {
+					text = "Hocus Pocus! Now everything should work. Something very dark lurks in the pyramid's underground. Ask Konmuld for advice, and maybe you will escape from there alive. Oh, I almost forgot: from now on, you can now use the sealed doors in the pyramid.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission02] = 2,
+						[Storage.PathOfTheUndead.Mission03] = 1,
+					},
+					requiredState = {
+						[Storage.PathOfTheUndead.Circles] = 31,
+					},
+					textNoRequiredState = "Ask the individual owners of magic shops about the locations of the circles.",
 				},
-				expReward = 25000000,
+			},
+		},
+		[Storage.PathOfTheUndead.Mission03] = {
+			[4] = {
+				[{ "mission" }] = {
+					text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission03] = 3,
+						[Storage.Finished.PathOfTheUndead] = 1,
+						[Storage.ChesterTheDwarf.Mission04] = 1,
+					},
+					expReward = 25000000,
+				},
 			},
 		},
 	},
 	[Storage.ChesterTheDwarf.Questline] = {
-		[10] = {
-			[{ "mission" }] = {
-				text = "In this bag i kept an item from the WotE quest. I completed it on the *REDACTED* server. Do you remember was item it was?",
-			},
-			[{ "Elite Draken Helmet" }] = {
-				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
-				text = "Right, it was the Elite Draken Helmet. Here's your reward.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 11,
-					[Storage.ChesterTheDwarf.Mission04] = 3,
-					[Storage.Finished.ChesterTheDwarf] = 1,
+		[Storage.ChesterTheDwarf.Mission04] = {
+			[2] = {
+				[{ "mission" }] = {
+					text = "In this bag i kept an item from the WotE quest. I completed it on the *REDACTED* server. Do you remember was item it was?",
 				},
-				rewards = { { id = 11689 } },
-				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
-			},
-			[{ "Royal Draken Mail" }] = {
-				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
-				text = "Right, it was the Royal Draken Mail. Here's your reward.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 11,
-					[Storage.Finished.ChesterTheDwarf] = 1,
+				[{ "Royal Draken Mail" }] = {
+					requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
+					text = "Right, it was the Royal Draken Mail. Here's your reward.",
+					nextState = {
+						[Storage.ChesterTheDwarf.Mission04] = 3,
+						[Storage.Finished.ChesterTheDwarf] = 1,
+					},
+					rewards = { { id = 11686 } },
+					textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
 				},
-				rewards = { { id = 11686 } },
-				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
-			},
-			[{ "Royal Scale Robe" }] = {
-				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
-				text = "Right, it was the Royal Scale Robe. Here's your reward.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 11,
-					[Storage.Finished.ChesterTheDwarf] = 1,
+				[{ "Royal Scale Robe" }] = {
+					requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
+					text = "Right, it was the Royal Scale Robe. Here's your reward.",
+					nextState = {
+						[Storage.ChesterTheDwarf.Mission04] = 3,
+						[Storage.Finished.ChesterTheDwarf] = 1,
+					},
+					rewards = { { id = 11687 } },
+					textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
 				},
-				rewards = { { id = 11687 } },
-				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
+				[{ "Elite Draken Helmet" }] = {
+					requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
+					text = "Right, it was the Elite Draken Helmet. Here's your reward.",
+					nextState = {
+						[Storage.ChesterTheDwarf.Mission04] = 3,
+						[Storage.Finished.ChesterTheDwarf] = 1,
+					},
+					rewards = { { id = 11689 } },
+					textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
+				},
 			},
 		},
 	},
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -166,7 +172,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

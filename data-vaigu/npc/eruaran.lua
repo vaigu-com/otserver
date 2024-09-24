@@ -59,7 +59,7 @@ local newAddon = "Here you are, enjoy your brand new addon!"
 local noItems = "You do not have all the required items."
 local alreadyHaveAddon = "It seems you already have this addon, don't you try to mock me son!"
 
-local Config = {
+local dialog = {
 	Create = {
 		Clusters = 20,
 		DreamMatter = 1,

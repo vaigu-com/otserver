@@ -10,7 +10,6 @@ dofile(DATA_DIRECTORY .. "/luaraids.lua")
 dofile(DATA_DIRECTORY .. "/arena.lua")
 dofile(DATA_DIRECTORY .. "/imbuproducts.lua")
 dofile(DATA_DIRECTORY .. "/demonOakQuest.lua")
-dofile(DATA_DIRECTORY .. "/load_configs.lua")
 dofile(DATA_DIRECTORY .. "/locales/_locales_lib.lua")
 
 local startupFile=io.open(DATA_DIRECTORY.. "/startup/startup.lua", "r")

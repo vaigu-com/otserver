@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Runic Hellspawn")
 local monster = {}
 
@@ -101,3 +103,5 @@ monster.immunities = {
 }
 
 mType:register(monster)
+end)
+end)

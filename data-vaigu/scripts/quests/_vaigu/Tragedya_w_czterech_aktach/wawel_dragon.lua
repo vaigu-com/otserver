@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Wawel Dragon")
 local monster = {}
 
@@ -103,3 +105,5 @@ monster.immunities = {
 }
 
 mType:register(monster)
+end)
+end)

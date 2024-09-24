@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local conditions = {}
 
 do
@@ -31,3 +32,4 @@ end
 
 chest:aid(Storage.PathOfTheUndead.CursedChest)
 chest:register()
+end)

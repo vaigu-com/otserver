@@ -52,10 +52,10 @@ local escortContext = {
 	timeLimitSeconds = 600,
 	startAfterSeconds = 2,
 	escorteeName = "Fredi Kamionka Escort",
-	questlineAid = Storage.ProdigalSon.Questline,
+	localizerName = Storage.ProdigalSon.Questline,
 }
 
-local config = {
+local dialog = {
 	[Storage.ProdigalSon.Questline] = {
 		[20] = {
 			[{ "mission" }] = {
@@ -71,7 +71,7 @@ local config = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -79,7 +79,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

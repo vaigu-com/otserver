@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Enchanted Hellspawn")
 local monster = {}
 
@@ -102,3 +104,5 @@ monster.immunities = {
 }
 
 mType:register(monster)
+end)
+end)

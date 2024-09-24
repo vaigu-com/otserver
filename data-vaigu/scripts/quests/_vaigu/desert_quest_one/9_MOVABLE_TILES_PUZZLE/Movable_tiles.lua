@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local item = Action()
 
 local function moveGround(from_pos, to_pos)
@@ -68,3 +69,4 @@ end
 
 item:aid(Storage.DesertQuestOne.Puzzles.MovableTilesPuzzle.Lever)
 item:register()
+end)

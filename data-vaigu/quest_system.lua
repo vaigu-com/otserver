@@ -13,7 +13,7 @@ ALL_CONDITIONS = {
 	CONDITION_DAZZLED,
 	CONDITION_CURSED,
 }
--- Todo: make "data\npclib\npc_system\npc_handler.lua" load from lua; fix npc's after server reload
+-- ToDo: make "data\npclib\npc_system\npc_handler.lua" load from lua; fix npc's after server reload
 TOPIC_DEFAULT = 0
 
 MESSAGE_GREET = 1
@@ -149,28 +149,34 @@ local function parseRequiredState(requiredState)
 	return min, max, neq, errorMessage
 end
 
+function Player:HasCorrectStorageValue(storage, requiredState)
+	local min, max, neq = parseRequiredState(requiredState)
+
+	local currentState = self:getStorageValue(storage)
+	if currentState < min then
+		return false
+	end
+	if currentState > max then
+		return false
+	end
+	if neq ~= nil and neq == currentState then
+		return false
+	end
+end
+
 function Player:HasCorrectStorageValues(storages)
 	if not storages then
 		return true
 	end
 	for storage, requiredState in pairs(storages) do
-		local min, max, neq = parseRequiredState(requiredState)
-
-		local currentState = self:getStorageValue(storage)
-		if currentState < min then
-			return false
-		end
-		if currentState > max then
-			return false
-		end
-		if neq ~= nil and neq == currentState then
+		if not self:HasCorrectStorageValue(storage, requiredState) then
 			return false
 		end
 	end
 	return true
 end
 
--- First matched incorrect value returns error
+-- First matched incorrect value returns an error
 function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
 	if not storages then
 		return true
@@ -236,7 +242,7 @@ function Player:AddMounts(mounts)
 end
 
 function AddExperienceWithAnnouncement(player, exp)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You received :exp: experience!", { exp = exp }))
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained :exp: experience!", { exp = exp }))
 	player:addExperience(exp)
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
 end
@@ -249,7 +255,7 @@ end
 ---@field npcHandler table
 ---@field npc userdata npc object
 ---@field specialMessageType string
----@field questlineAid number
+---@field localizerName number
 ---@field dialogs table
 ---@field requirements table
 ---@alias Player table
@@ -306,7 +312,7 @@ local actionsWhitelist = {
 ---@field cid integer?
 ---@field npc Npc?
 ---@field specialMessageType string?
----@field questlineAid integer
+---@field localizerName integer
 ---@field npcHandler NpcHandler?
 ---@field topic integer?
 ---@field extractedParams table
@@ -356,7 +362,7 @@ function ResolutionContext.FromEncounter(encounterData, player)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
 	newObj:ParseRequirementsActionsOther(encounterData)
-	newObj.questlineAid = encounterData.questlineAid
+	newObj.localizerName = encounterData.localizerName
 	newObj.player = player
 	newObj.__index = ResolutionContext
 	return newObj
@@ -365,7 +371,7 @@ end
 function ResolutionContext.FromCustomItemState(item, player)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
-	newObj.questlineAid = item.questlineAid
+	newObj.localizerName = item.localizerName
 	newObj.player = player
 	newObj.__index = ResolutionContext
 	newObj:ParseRequirementsActionsOther(item)
@@ -377,7 +383,7 @@ function DialogContext:SendIncomprehensibleError()
 	local npc = self.npc
 	local npcHandler = self.npcHandler
 	local npcDialogData = self.npcDialogData
-	local errorMessageIdentifier = npcDialogData[{ INCOMPREHENSIBLE }] or INCOMPREHENSIBLE
+	local errorMessageIdentifier = npcDialogData[LOCALIZER_UNIVERSAL][{ INCOMPREHENSIBLE }] or INCOMPREHENSIBLE
 	local errorMessage = player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
 	npcHandler:say(errorMessage, npc, player)
 	return true
@@ -508,25 +514,26 @@ function DialogContext:ResolveUniversalQuest()
 	if not universalKeywordToDialog then
 		return
 	end
-	self.questlineAid = nil
+	self.localizerName = nil
 	self.keywordToDialog = universalKeywordToDialog
-	self:ResolveQuestState()
+	self:ResolveKeyword()
 	if self:IsResolved() then
 		return
 	end
 end
 
-function DialogContext:ResolveQuests()
-	for questlineAid, stateToKeywords in pairs(self.npcDialogData) do
-		if questlineAid == LOCALIZER_UNIVERSAL then
+function DialogContext:ResolveDialogDefault()
+	for localizer, storageToRequiredState in pairs(self.npcDialogData) do
+		if localizer == LOCALIZER_UNIVERSAL then
 			goto continue
 		end
-		if type(stateToKeywords) ~= "table" then
+		if type(storageToRequiredState) ~= "table" then
+			logger.error("storages arent table!")
 			return
 		end
-		self.questlineAid = questlineAid
-		self.stateToKeywords = stateToKeywords
-		self:ResolveQuest()
+		self.localizerName = localizer
+		self.storageToRequiredState = storageToRequiredState
+		self:ResolveStorage()
 		if self:IsResolved() then
 			return
 		end
@@ -535,9 +542,9 @@ function DialogContext:ResolveQuests()
 	self:ResolveUniversalQuest()
 end
 
-function DialogContext:ResolveQuestsAnyMsg()
+function DialogContext:ResolveDialogAnyMsg()
 	self.msg = ANY_MESSAGE
-	self:ResolveQuests()
+	self:ResolveDialogDefault()
 end
 
 function DialogContext:SetDefaultGreetFarewellWalkaway()
@@ -550,9 +557,9 @@ function DialogContext:SetDefaultGreetFarewellWalkaway()
 end
 
 local dialogResolvers = {
-	DialogContext.ResolveQuests,
+	DialogContext.ResolveDialogDefault,
 	DialogContext.SetDefaultGreetFarewellWalkaway,
-	DialogContext.ResolveQuestsAnyMsg,
+	DialogContext.ResolveDialogAnyMsg,
 }
 
 function DialogContext:TryResolveDialog()
@@ -570,16 +577,36 @@ function DialogContext:TryResolveDialog()
 	return self
 end
 
-function DialogContext:ResolveQuest()
-	local state = self.player:getStorageValue(self.questlineAid)
+function DialogContext:ResolveStorage()
+	for storage, requiredStatetoKeywords in pairs(self.storageToRequiredState) do
+		if storage == LOCALIZER_UNIVERSAL then
+			goto continue
+		end
+		if type(requiredStatetoKeywords) ~= "table" then
+			logger.error("keywords arent table!")
+			return
+		end
+		self.storage = storage
+		self.requiredStatetoKeywords = requiredStatetoKeywords
+		self:ResolveState()
+		if self:IsResolved() then
+			return
+		end
+		::continue::
+	end
+	self:ResolveUniversalQuest()
+end
+
+function DialogContext:ResolveState()
+	local state = self.player:getStorageValue(self.storage)
 	self.state = state
-	for requiredState, keywordToDialog in pairs(self.stateToKeywords) do
+	for requiredState, keywordToDialog in pairs(self.requiredStatetoKeywords) do
 		local canProceed = hasRequiredQuestlineState(state, requiredState)
 		if not canProceed then
 			goto continue
 		end
 		self.keywordToDialog = keywordToDialog
-		self:ResolveQuestState()
+		self:ResolveKeyword()
 		if self:IsResolved() then
 			return
 		end
@@ -587,7 +614,7 @@ function DialogContext:ResolveQuest()
 	end
 end
 
-function DialogContext:ResolveQuestState()
+function DialogContext:ResolveKeyword()
 	if not self.keywordToDialog then
 		return
 	end
@@ -690,7 +717,7 @@ function ResolutionContext:CheckCanAddRewards()
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
 
-	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.questlineAid)
+	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizerName)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
 		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
@@ -861,7 +888,7 @@ function ResolutionContext:TrySendTranslateSuccessMessage()
 		return
 	end
 
-	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.actionsOnSuccess.text)
+	local translatedMessage = self.player:Localizer(self.localizerName):Context(self):Get(self.actionsOnSuccess.text)
 	if not translatedMessage then
 		return
 	end
@@ -878,7 +905,7 @@ function ResolutionContext:TrySendTranslateFailMessage()
 		return
 	end
 
-	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.errorMessage)
+	local translatedMessage = self.player:Localizer(self.localizerName):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
 		return
 	end
@@ -968,7 +995,8 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
+			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType])
+				or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end

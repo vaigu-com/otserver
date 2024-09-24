@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local polEncounterConfig = {
 	actionid = Storage.ProdigalSon.PolAccess,
 	bossName = "Pol",
@@ -29,3 +30,4 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 lever:aid(polEncounterConfig.actionid)
 lever:register()
+end)

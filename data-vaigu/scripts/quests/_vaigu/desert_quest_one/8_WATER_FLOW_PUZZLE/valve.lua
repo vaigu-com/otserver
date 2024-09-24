@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local config = { ["waterPumpNotReady"] = "Water pump is not ready yet" }
 
 local function drenchNearbyTiles(pos)
@@ -91,3 +92,4 @@ end
 
 valve:aid(Storage.DesertQuestOne.Puzzles.WaterFlowPuzzle.PipeValve)
 valve:register()
+end)

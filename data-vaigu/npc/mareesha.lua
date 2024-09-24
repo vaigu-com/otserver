@@ -48,77 +48,67 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
-	[Storage.PerIustitiaAdAstra.Questline] = {
-		[{ min = 14 }] = {
-			[{ "czek", "token", "bon", "nagroda", "reward" }] = {
-				text = "I can pay you any amount admitted in a token, effectively charging the party that signed it.",
-				requiredState = {
-					[Storage.PerIustitiaAdAstra.HelpedRubelstein] = {
-						min = 2,
-						max = 2,
-					},
+local dialog = {
+	[Storage.PerIustitiaAdAstra.Localizer] = {
+		[Storage.PerIustitiaAdAstra.HelpedRubelstein] = {
+			[2] = {
+				[{ "czek", "token", "bon", "nagroda", "reward" }] = {
+					text = "I can pay you any amount admitted in a token, effectively charging the party that signed it.",
 				},
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "Here, take your money.",
-				requiredState = {
-					[Storage.PerIustitiaAdAstra.HelpedRubelstein] = {
-						min = 2,
-						max = 2,
-					},
-				},
-				nextState = { [Storage.PerIustitiaAdAstra.HelpedRubelstein] = 3 },
-				rewards = { { id = 3043, count = 10 } },
-				specialConditions = {
-					{
-						condition = PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS.saidRubelsteinsChecksum,
-						requiredOutcome = true,
+				[{ ANY_MESSAGE }] = {
+					text = "Here, take your money.",
+					nextState = { [Storage.PerIustitiaAdAstra.HelpedRubelstein] = 3 },
+					rewards = { { id = 3043, count = 10 } },
+					specialConditions = {
+						{
+							condition = PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS.saidRubelsteinsChecksum,
+							requiredOutcome = true,
+						},
 					},
 				},
 			},
 		},
 	},
-	[Storage.AssassinsCreedSquurvaali.Questline] = {
-		[4] = {
-			[{ "mission" }] = {
-				text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
-			},
-			[{ "tailor", "uszyc", "sew" }] = {
-				text = "I will need the following: 5 spider silk, 1 red pillow, 1 {artist palette}.",
-				nextState = {
-					[Storage.AssassinsCreedSquurvaali.Questline] = 5,
-					[Storage.AssassinsCreedSquurvaali.Mission02] = 2,
+	[Storage.AssassinsCreedSquurvaali.Localizer] = {
+		[Storage.AssassinsCreedSquurvaali.Mission02] = {
+			[1] = {
+				[{ "mission" }] = {
+					text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
+				},
+				[{ "tailor", "uszyc", "sew" }] = {
+					text = "I will need the following: 5 spider silk, 1 red pillow, 1 {artist palette}.",
+					nextState = {
+						[Storage.AssassinsCreedSquurvaali.Mission02] = 2,
+					},
 				},
 			},
-		},
-		[5] = {
-			[{ "artist palette", "mission" }] = {
-				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
-			},
-		},
-		[6] = {
-			[{ "artist palette", "mission" }] = {
-				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
-			},
-		},
-		[7] = {
-			[{ "mission", "tailor", "uszyc", "sew" }] = {
-				text = "Here is your carpet.",
-				textNoRequiredItems = "Return when you have all the items.",
-				requiredItems = {
-					{ id = 2395, count = 1 },
-					{ id = 5879, count = 5 },
-					ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette,
+			[2] = {
+				[{ "artist palette", "mission" }] = {
+					text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
 				},
-				nextState = {
-					[Storage.AssassinsCreedSquurvaali.Questline] = 8,
-					[Storage.AssassinsCreedSquurvaali.Mission02] = 5,
-					[Storage.AssassinsCreedSquurvaali.Mission03] = 1,
+			},
+			[3] = {
+				[{ "artist palette", "mission" }] = {
+					text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
 				},
-				specialActionsOnSuccess = {
-					{
-						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount,
+			},
+			[4] = {
+				[{ "mission", "tailor", "uszyc", "sew" }] = {
+					text = "Here is your carpet.",
+					textNoRequiredItems = "Return when you have all the items.",
+					requiredItems = {
+						{ id = 2395, count = 1 },
+						{ id = 5879, count = 5 },
+						ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette,
+					},
+					nextState = {
+						[Storage.AssassinsCreedSquurvaali.Mission02] = 5,
+						[Storage.AssassinsCreedSquurvaali.Mission03] = 1,
+					},
+					specialActionsOnSuccess = {
+						{
+							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount,
+						},
 					},
 				},
 			},
@@ -127,7 +117,7 @@ local config = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -135,7 +125,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

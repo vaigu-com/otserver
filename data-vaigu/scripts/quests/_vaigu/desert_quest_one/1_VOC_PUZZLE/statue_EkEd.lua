@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local config = {
 	["disappeared"] = "The magic walls disappeared for one minute",
 }
@@ -31,3 +32,4 @@ end
 
 statue:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.EkEdStatue)
 statue:register()
+end)

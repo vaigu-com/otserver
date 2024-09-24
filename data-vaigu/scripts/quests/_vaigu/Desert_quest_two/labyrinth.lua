@@ -1,7 +1,8 @@
+	:Script(function(storageToRequiredState)
 local topLeftGenerate = DESERT_QUEST_TWO_ANCHOR:Moved(-3, -2, 2)
 local downRightGenerate = DESERT_QUEST_TWO_ANCHOR:Moved(31, 32, 2)
 
-local dx, dy = topLeftGenerate:DistanceTo(downRightGenerate)
+local dx, dy = topLeftGenerate:Distance(downRightGenerate)
 local width = dx + 1
 local height = dy + 1
 
@@ -215,3 +216,4 @@ end
 stoneRemove:type("stepin")
 stoneRemove:aid(Storage.DesertQuestTwo.Puzzles.MazeStoneRemove)
 stoneRemove:register()
+end)

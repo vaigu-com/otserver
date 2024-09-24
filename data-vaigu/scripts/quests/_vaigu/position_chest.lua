@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 CHEST_NEVER_OPENED = -1
 local forceUntradeability = {
 	[43946] = true,
@@ -138,3 +139,4 @@ function positionChest.onUse(player, chest, fromPosition, target, toPosition, is
 end
 positionChest:aid(Storage.PositionChest)
 positionChest:register()
+end)

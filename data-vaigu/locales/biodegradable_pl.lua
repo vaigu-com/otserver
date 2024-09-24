@@ -1,0 +1,10 @@
+return {
+	["There's something I need help with. One of the recent packages from the monks has gone missing. It probably got stuck while flowing along the {route} waterway."] = "Jest cos, z czym potrzebuje pomocy. Jedna z ostatnich paczek od mnichow gdzies zaginela. Prawdopodobnie utknela, plynac {szlakiem} wodnym.",
+	["The waterway begins at their rock to the west. Then it flows under the bridge, passes by the orc fortress, and enters a larger lake. From that lake, it flows to the Syn Anona. Somewhere along this waterway, my shipment got stuck."] = "Szlak wodny zaczyna sie od ich skalki na zachodzie. Potem plynie pod mostem, przechodzi obok foretecy orkow, i wpada do wiekszego jeziora. Z tego jeziora plynie do Syna Wedkarza. Gdzies na tej drodze wodnej utknela moja przesylka.",
+	["Come back when you find my shipment."] = "Wroc, gdy znajdziesz moja przesylke.",
+	["Were you able to find my {shipment}?"] = "Czy udalo ci sie znalezc moja {przesylke}?",
+	["This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you."] = "Ten parcel spoznial sie juz kilka tygodni i juz sie obawialem, ze alibaba probowal mnie wydymac. Oto twoja nagroda za pomoc. W srodku znalazlem cos, co zamawial Stary Anona, to chyba {zaneta} dla ryb. Jezeli masz po drodze, to mu ja zanies. Na pewno sie odwdzieczy.",
+	["Could you take this package to Anon's Father? He's surely getting impatient, so he'll reward you for your help."] = "Czy moglbys zaniesc ten pakunek do Starego Anona? Na pewno sie niecierpliwi, wiec nagrodzi cie za twoja pomoc.",
+	["Here, please, this box. Anon's father hangs around a pond near the {barracks}."] = "Prosze, oto ta puszka. Stary anona kreci sie przy oczku wodnym obok {koszarow}",
+	["Commissioner Fisher's barracks are in the southwest part of the city. He sent you here himself, are you drunk?"] = "Koszary Komisarza Ryby znajduja sie w poludniowo-zachodniej czesci miasta. Sam Cie tu przyslal, pijany jestes?",
+}

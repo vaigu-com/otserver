@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local portal = MoveEvent()
 
 function portal.onStepIn(creature, item, position, fromPosition)
@@ -34,3 +35,4 @@ for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
 	portalUse:aid(actionId)
 end
 portalUse:register()
+end)

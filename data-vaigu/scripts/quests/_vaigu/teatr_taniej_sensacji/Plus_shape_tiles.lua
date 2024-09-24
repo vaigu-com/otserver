@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function swapTile(pos)
 	local tile = Tile(pos):getGround()
 	local anyid = tile.itemid
@@ -30,3 +31,4 @@ end
 plus:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.Tile)
 plus:type("additem")
 plus:register()
+end)

@@ -1,13 +1,15 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local storages = {
-	[Storage.TheThreeSramatiansAndTheDragon.Questline] = 23,
-	[Storage.TheThreeSramatiansAndTheDragon.Mission09] = 2,
+	[Storage.ThreeSramatiansAndTheDragon.Questline] = 23,
+	[Storage.ThreeSramatiansAndTheDragon.Mission09] = 2,
 }
 
 local hfpx = CreatureEvent("HfpxKill")
 
 function hfpx.onDeath(creature)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		local storageVal = player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline)
+		local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
 		if storageVal ~= 22 then
 			return true
 		end
@@ -17,3 +19,5 @@ function hfpx.onDeath(creature)
 end
 
 hfpx:register()
+end)
+end)

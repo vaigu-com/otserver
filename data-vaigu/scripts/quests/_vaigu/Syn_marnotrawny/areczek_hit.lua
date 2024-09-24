@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local areczek = CreatureEvent("HitAreczek")
 function areczek.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin)
 	if not creature:isMonster() then
@@ -23,3 +25,5 @@ function areczek.onHealthChange(creature, attacker, primaryDamage, primaryType, 
 end
 
 areczek:register()
+end)
+end)

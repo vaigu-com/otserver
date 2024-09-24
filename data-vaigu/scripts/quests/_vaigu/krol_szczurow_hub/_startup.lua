@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupLeversToHub = {
 	{ pos = { 5563, 1577, 8 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.Ryan },
 	{ pos = { 5971, 1482, 7 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.SweatyCyclops },
@@ -45,15 +46,15 @@ local artifactsStartup = {
 		},
 	},
 	{
-		pos = { 6783, 817, 4 },
+		pos = { 6696, 825, 4 },
 		id = 3064,
 		uid = 1000,
 		aid = Storage.KingOfRatsHQ.Items.Bottomless,
 		rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.bottomless },
-		requiredState = { [Storage.TheThreeSramatiansAndTheDragon.Questline] = 17 },
+		requiredState = { [Storage.ThreeSramatiansAndTheDragon.Questline] = 17 },
 		nextState = {
-			[Storage.TheThreeSramatiansAndTheDragon.Questline] = 18,
-			[Storage.TheThreeSramatiansAndTheDragon.Mission07] = 2,
+			[Storage.ThreeSramatiansAndTheDragon.Questline] = 18,
+			[Storage.ThreeSramatiansAndTheDragon.Mission07] = 2,
 		},
 	},
 	{
@@ -91,6 +92,7 @@ function desertQuestInit.onStartup()
 	LoadStartupItems(startupPortalsToOut, KROL_SZCZUROW_HUB_ANCHOR)
 	LoadStartupItems(artifactsStartup)
 
-	LoadStartupNpc(npcs, KROL_SZCZUROW_HUB_ANCHOR)
+	LoadStartupNpcs(npcs, KROL_SZCZUROW_HUB_ANCHOR)
 end
 desertQuestInit:register()
+end)

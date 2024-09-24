@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Ship health")
 local monster = {}
 
@@ -98,3 +100,5 @@ mType.onAppear = function(monster, creature)
 end
 
 mType:register(monster)
+end)
+end)

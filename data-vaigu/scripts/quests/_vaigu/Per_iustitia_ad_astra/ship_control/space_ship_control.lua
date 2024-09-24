@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local aidToDestName = {
 	[Storage.PerIustitiaAdAstra.ShipDestinations.FuelShop] = "ShipDestCpn",
 	[Storage.PerIustitiaAdAstra.ShipDestinations.Deeplings] = "ShipDestDeepling",
@@ -248,3 +249,4 @@ end
 
 shipWheel:aid(Storage.PerIustitiaAdAstra.ShipControl.StartTravelWheel)
 shipWheel:register()
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local updateStorages = {
 	[Storage.PathOfTheUndead.Questline] = 4,
 	[Storage.PathOfTheUndead.Mission03] = 2,
@@ -23,3 +24,4 @@ end
 portal:aid(Storage.PathOfTheUndead.BossRoomExit)
 portal:type("stepin")
 portal:register()
+end)

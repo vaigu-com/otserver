@@ -50,7 +50,7 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
+local dialog = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ "konmuld" }] = {
 			text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
@@ -129,13 +129,13 @@ local config = {
 			},
 		},
 	},
-	[Storage.TheThreeSramatiansAndTheDragon.Questline] = {
+	[Storage.ThreeSramatiansAndTheDragon.Questline] = {
 		[10] = {
 			[{ "mission" }] = {
 				text = "Your team left me a note stating they headed to the desert. You can ask Jannah'ma for help finding them.",
 				nextState = {
-					[Storage.TheThreeSramatiansAndTheDragon.Questline] = 11,
-					[Storage.TheThreeSramatiansAndTheDragon.Mission05] = 3,
+					[Storage.ThreeSramatiansAndTheDragon.Questline] = 11,
+					[Storage.ThreeSramatiansAndTheDragon.Mission05] = 3,
 				},
 			},
 		},
@@ -143,7 +143,7 @@ local config = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -151,7 +151,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

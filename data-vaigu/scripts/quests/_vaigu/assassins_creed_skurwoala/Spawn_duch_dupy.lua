@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local princess = { name = "Ghasstly Princess", pos = { x = 5682, y = 1408, z = 7 } }
 
 local chairIn = MoveEvent()
@@ -7,9 +8,9 @@ function chairIn.onStepIn(player, item, fromPosition, target, toPosition, isHotk
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Questline)
+	local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission05)
 
-	if storageVal >= 17 then
+	if storageVal >= 5 then
 		return false
 	end
 	local monster = Tile(princess.pos):getTopCreature()
@@ -39,3 +40,4 @@ end
 
 chairOut:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
 chairOut:register()
+end)

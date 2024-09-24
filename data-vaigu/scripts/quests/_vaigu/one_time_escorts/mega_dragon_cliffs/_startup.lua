@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Script(function(storageToRequiredState)
 local escortContext = {
 	timeLimitSeconds = 600,
 	startAfterSeconds = 2,
@@ -11,7 +13,7 @@ local escortContext = {
 	},
 	npcName = "FiuFiu",
 	escorteeName = "FiuFiu Escort",
-	questlineAid = Storage.OneTimeEscorts.MegaDragonCliffs,
+	localizerName = Storage.OneTimeEscorts.MegaDragonCliffs,
 	finishMessage = "Thanks",
 	rewards = nil,
 	expReward = 1000 * 10,
@@ -49,3 +51,5 @@ function megaDragonCliffsEscort.onStartup()
 	Game.createNpc(escortContext.npcName, escortContext.npcRespawnPos)
 end
 megaDragonCliffsEscort:register()
+end)
+end)

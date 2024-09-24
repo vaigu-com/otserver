@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local stonePos = DESERT_QUEST_TWO_ANCHOR:Moved(41, -6, 0)
 local moaPos = DESERT_QUEST_TWO_ANCHOR:Moved(45, -17, 0)
 
@@ -46,3 +47,4 @@ end
 look:aid(6969)
 look:position({ x = 6585, y = 557, z = 9 })
 look:register()
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local surfaceZ = JANUSZEX_ANCHOR:Moved(0, 0, 2).z
 local function isOnSurface(pos)
 	return pos.z == surfaceZ
@@ -23,3 +24,4 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 lever:aid(Storage.ProdigalSon.SewersLever)
 lever:register()
+end)

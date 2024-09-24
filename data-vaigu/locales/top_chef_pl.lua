@@ -16,6 +16,7 @@ local numberStrings = {
 }
 
 return {
+	["Top Chef"] = "Mistrz Kuchni",
 	["DESCRIBE_CURRENT_DISH"] = function(context)
 		local player = context.player
 		local state = player:getStorageValue(Storage.TopChef.Questline)
@@ -23,10 +24,13 @@ return {
 		local dishName = dishData.dishName
 		local currentDishNumber = numberStrings[state]
 
-		local translatedMessage = T(":currentDishNumber: danie, ktore wspolnie przyzadzimy, nazywa sie {:dishName:}. Przynies mi nastepujace skladniki, a pokaze ci jak je przyzadzic.", {
-			dishName = dishName,
-			currentDishNumber = currentDishNumber,
-		})
+		local translatedMessage = T(
+			":currentDishNumber: danie, ktore wspolnie przyzadzimy, nazywa sie {:dishName:}. Przynies mi nastepujace skladniki, a pokaze ci jak je przyzadzic.",
+			{
+				dishName = dishName,
+				currentDishNumber = currentDishNumber,
+			}
+		)
 		translatedMessage = translatedMessage .. IngredientsToString(dishData)
 		return translatedMessage
 	end,
@@ -46,17 +50,24 @@ return {
 
 		local translatedMessage = ""
 		if state == 1 then
-			translatedMessage = T("Zostales mlodszym asystentem kucharza Piotrka. Nauczy on cie jak gotowac jak Top Chef. Pierwsze danie, jakie masz przygotowac, to ':dishName:'.", { dishName = dishName })
+			translatedMessage = T(
+				"Zostales mlodszym asystentem kucharza Piotrka. Nauczy on cie jak gotowac jak Top Chef. Pierwsze danie, jakie masz przygotowac, to ':dishName:'.",
+				{ dishName = dishName }
+			)
 		else
 			local finishedDishNumber = numberStrings[state - 1]
 			local currentDishNumber = numberStrings[state]
-			translatedMessage = T("Udalo ci sie przyzadzic :finishedDishNumber:. :currentDishNumber: danie, ktore masz przygotowac to ':dishName:'", {
-				dishName = dishName,
-				finishedDishNumber = finishedDishNumber,
-				currentDishNumber = currentDishNumber,
-			})
+			translatedMessage = T(
+			"Udalo ci sie przyrzadzic :finishedDishNumber: danie. :currentDishNumber: danie, ktore masz przygotowac to ':dishName:'",
+				{
+					dishName = dishName,
+					finishedDishNumber = finishedDishNumber:lower(),
+					currentDishNumber = currentDishNumber,
+				}
+			)
 		end
-		translatedMessage = translatedMessage .. T(" Przynies nastepujace skladniki::ingredientsString:", { ingredientsString = ingredientsString })
+		translatedMessage = translatedMessage
+			.. T(" Przynies nastepujace skladniki::ingredientsString:", { ingredientsString = ingredientsString })
 		return translatedMessage
 	end,
 	["HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH"] = function(context)

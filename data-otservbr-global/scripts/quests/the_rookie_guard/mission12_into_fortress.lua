@@ -324,7 +324,7 @@ local taranturaTrap = Action()
 
 function taranturaTrap.onUse(player, item, frompos, itemEx, topos)
 	local missionState = player:getStorageValue(Storage.Quest.U9_1.TheRookieGuard.Mission12)
-	target = Tile(topos):getTopCreature()
+	local target = Tile(topos):getTopCreature()
 	if missionState >= 8 and target:getName() == "Furious Orc Berserker" then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The berserker can't catch you anymore - but only for 20 seconds. You need to lure him away from the teleporter!")
 		if missionState == 8 then

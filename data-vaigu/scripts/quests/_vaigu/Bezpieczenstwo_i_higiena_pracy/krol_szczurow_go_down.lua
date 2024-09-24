@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local tileIn = MoveEvent()
 
 function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
@@ -21,3 +22,4 @@ end
 
 tileIn:aid(Storage.SafetyAndOccupationalHygiene.KrolTile)
 tileIn:register()
+end)

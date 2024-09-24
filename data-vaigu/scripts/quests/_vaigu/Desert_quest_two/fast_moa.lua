@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Fast Moa")
 local monster = {}
 
@@ -91,3 +93,5 @@ monster.immunities = {
 }
 
 mType:register(monster)
+end)
+end)

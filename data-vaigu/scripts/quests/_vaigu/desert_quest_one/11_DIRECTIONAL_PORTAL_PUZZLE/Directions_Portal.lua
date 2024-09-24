@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local N = NORTH
 local W = WEST
 local E = EAST
@@ -63,3 +64,4 @@ end
 tile:aid(Storage.DesertQuestOne.Puzzles.DirectionalPortalPuzzle.Tile)
 tile:type("stepin")
 tile:register()
+end)

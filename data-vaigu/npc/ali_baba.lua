@@ -48,7 +48,7 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
+local dialog = {
 	[LOCALIZER_UNIVERSAL] = {
 		[{ "fly", "poleciec", "yes", "tak" }] = {
 			text = "",
@@ -70,17 +70,40 @@ local config = {
 		[GREET] = {
 			text = "Hello, traveler. Would you like me to {fly} you somewhere?",
 		},
-		[{ "Qasim", "Cassim" }] = { text = "He is my brother, nothing more to it." },
+	},
+	[Storage.ThreeSramatiansAndTheDragon.Localizer] = {
+		[Storage.ThreeSramatiansAndTheDragon.Mission01] = {
+			[3] = {
+				[{ "qasim", "cassim", "mission", "misja", "password", "haslo" }] = {
+					text = "So you would like to know the password? I can {reveal} it for a small fee of 15 coins. I really need that gold converter..",
+					nextTopic = 1,
+				},
+				[{ "reveal", "sprzedac" }] = {
+					text = "The password is 'Ali Baba', same as my name. Hope this helps.",
+					specialConditions = {
+						{
+							condition = SPECIAL_CONDITIONS_UNIVERSAL.hasTransferableCoins,
+							requiredOutcome = true,
+							coins = 15,
+							textNoRequiredCondition = "Come back with 15 coins.",
+						},
+					},
+					specialActionsOnSuccess = {
+						{ action = SPECIAL_ACTIONS_UNIVERSAL.removeTransferableCoins, coins = 15 },
+					},
+				},
+			},
+		},
 	},
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return false
 end
 
 local function creatureSayCallback(npc, creature, type, msg)
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

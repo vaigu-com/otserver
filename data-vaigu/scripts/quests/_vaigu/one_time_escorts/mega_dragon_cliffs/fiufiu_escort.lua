@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Fiufiu Escort")
 local monster = {}
 
@@ -93,3 +95,5 @@ monster.immunities = {
 }
 
 mType:register(monster)
+end)
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function areAllMachinePillarsLit(machineConfigs)
 	for _, machineConfig in pairs(machineConfigs) do
 		local pos = machineConfig.pillar.pos
@@ -46,3 +47,4 @@ tileBeforeBook:type("stepin")
 tileBeforeBook:register()
 
 --book reward is defined in krol_szczurow_hub/_startup.luaa
+end)

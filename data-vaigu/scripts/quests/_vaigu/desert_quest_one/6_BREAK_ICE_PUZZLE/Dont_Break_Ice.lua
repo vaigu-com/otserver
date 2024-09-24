@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local corner1 = DESERT_QUEST_ONE_ANCHOR:Moved(2, 42, 2)
 local corner2 = DESERT_QUEST_ONE_ANCHOR:Moved(-8, 8, 2)
 
@@ -107,3 +108,4 @@ end
 iceTile:aid(Storage.DesertQuestOne.Puzzles.BreakIcePuzzle.IceTile)
 iceTile:type("stepin")
 iceTile:register()
+end)

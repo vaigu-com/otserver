@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local cubeMapPositions = {
 	top = {
 		[1] = RUBIKS_CUBE_ANCHOR:Moved(0, 0, 0),
@@ -556,3 +557,4 @@ for _, value in pairs(Storage.DesertQuestTwo.Puzzles.RubiksCube) do
 	lever:aid(value)
 end
 lever:register()
+end)

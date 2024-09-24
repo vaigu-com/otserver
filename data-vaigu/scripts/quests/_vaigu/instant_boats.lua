@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local boatRoutes = {
 	["Boat behind house, Island trolls archipelago"] = {
 		positions = { Position(7143, 944, 7), Position(7014, 906, 7) },
@@ -79,3 +80,4 @@ end
 boat:aid(Storage.InstantBoat)
 boat:blockWalls()
 boat:register()
+end)

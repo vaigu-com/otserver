@@ -57,9 +57,9 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	-- ============= Fan Arnolda =================
-	if table.contains({ "mission", "misja", "pomoc", "help" }, message) and player:getStorageValue(Storage.NaPomocBagietom.DominandoKitza) == 2 and player:getItemCount(9378) > 0 then
+	if table.contains({ "mission", "misja", "pomoc", "help" }, message) and player:getStorageValue(Storage.NaPomocBagietom.KitzDominando) == 2 and player:getItemCount(9378) > 0 then
 		if player:getLevel() >= 20 then
-			player:setStorageValue(Storage.NaPomocBagietom.DominandoKitza, 3) -- wykonana misja
+			player:setStorageValue(Storage.NaPomocBagietom.KitzDominando, 3) -- wykonana misja
 			player:removeItem(9378, 1) -- zabieramy musician's bow
 			player:addItem(19362, 1) -- icicle bow
 			player:addExperience(50000, true) -- 50k expa
@@ -74,12 +74,12 @@ local function creatureSayCallback(npc, creature, type, message)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Zglos sie po nagrode po zdobyciu 20 poziomu!" or "Come back when you reach 20 level!", npc, creature)
 		end
-	elseif table.contains({ "mission", "misja", "pomoc", "help" }, message) and player:getStorageValue(Storage.NaPomocBagietom.DominandoKitza) < 1 then
+	elseif table.contains({ "mission", "misja", "pomoc", "help" }, message) and player:getStorageValue(Storage.NaPomocBagietom.KitzDominando) < 1 then
 		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 6 then
 			if player:getStorageValue(Storage.NaPomocBagietom.Main) < 1 then
 				player:setStorageValue(Storage.NaPomocBagietom.Main, 1) -- ustawienie glownego questa
 			end
-			player:setStorageValue(Storage.NaPomocBagietom.DominandoKitza, 1)
+			player:setStorageValue(Storage.NaPomocBagietom.KitzDominando, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Zamowilem u elfow specjalny luk, zebym mogl robic swoje Dominando. ...",
 				"Nie moge sie tam jednak wybrac. Postaraj sie prosze samemu go zalatwic, i mi przekazac.",

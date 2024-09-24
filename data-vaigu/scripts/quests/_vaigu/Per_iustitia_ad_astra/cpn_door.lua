@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local leftDoorPos = FUEL_SHOP_ANCHOR:Moved(-1, -19, 0)
 
 local closedDoor = { [14159] = { 0, 0, 0 }, [20435] = { 0, 0, 0 }, [1612] = { 0, 0, 0 }, [20429] = { 0, 1, 0 } }
@@ -49,3 +50,4 @@ end
 
 beforeCpnDoor:aid(Storage.PerIustitiaAdAstra.CpnDoor)
 beforeCpnDoor:register()
+end)

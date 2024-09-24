@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local occupiedToEmpty = {
 	[710] = 738,
 	[711] = 739,
@@ -47,3 +48,4 @@ function bed.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 bed:aid(Storage.ProdigalSon.AreczekLeaderBed)
 bed:register()
+end)

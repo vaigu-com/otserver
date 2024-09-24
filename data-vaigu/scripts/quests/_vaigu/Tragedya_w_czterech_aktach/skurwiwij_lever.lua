@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:EncounterLever(function()
 local skurwiwijLever = {
 	encounterName = "skurwiwij-lair",
 
@@ -21,3 +23,5 @@ local skurwiwijLever = {
 }
 
 EncounterLever(skurwiwijLever):position(Position(6576, 557, 9)):register()
+end)
+end)

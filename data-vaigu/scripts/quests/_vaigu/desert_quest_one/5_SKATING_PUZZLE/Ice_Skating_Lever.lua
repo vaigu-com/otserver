@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local skating_id = DESERT_QUEST_ONE_ICE_SKATING.skating_floor.id
 local black_marble_id = DESERT_QUEST_ONE_ICE_SKATING.black_marble.id
 
@@ -34,3 +35,4 @@ end
 
 lever:aid(Storage.DesertQuestOne.Puzzles.SkatingPuzzle.Lever)
 lever:register()
+end)

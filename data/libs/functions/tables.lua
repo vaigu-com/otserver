@@ -129,6 +129,7 @@ function pairsByKeys(t, f)
 end
 
 -- Each next table key-values will override previous table key-values in case of conflicts
+---@param ... any
 function MergedTable(...)
 	local result = {}
 	for _, maybeTable in pairs({ ... }) do

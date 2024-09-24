@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local fromHubToQuestPortal = MoveEvent()
 function fromHubToQuestPortal.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
@@ -22,3 +23,4 @@ end
 fromHubToQuestPortal:aid(Storage.DesertQuestTwo.RewardRoomTp)
 fromHubToQuestPortal:type("stepin")
 fromHubToQuestPortal:register()
+end)

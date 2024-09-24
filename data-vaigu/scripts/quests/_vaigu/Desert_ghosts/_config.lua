@@ -1,7 +1,8 @@
-DESERT_QUEST_GHOSTS_KEY_ITEMS = {
+BANJO_KROLA_SZCZUROW:Constant(function()
+CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS = {
 	firebug = {
 		id = 5467,
-		aid = Storage.DesertQuestGhosts.Misc.FirebugFireplace,
+		aid = Storage.CaveExplorerOnShield.Misc.FirebugFireplace,
 		desc = "Desert ruins dead adventurer's firebug",
 	},
 	germiDocument = {
@@ -11,7 +12,8 @@ DESERT_QUEST_GHOSTS_KEY_ITEMS = {
 	},
 	punchcard = {
 		id = 4842,
-		aid = Storage.DesertQuestGhosts.Misc.Punchcard,
+		aid = Storage.CaveExplorerOnShield.Misc.Punchcard,
 		desc = "A punchcard for opening mechanical doors",
 	},
 }
+end)

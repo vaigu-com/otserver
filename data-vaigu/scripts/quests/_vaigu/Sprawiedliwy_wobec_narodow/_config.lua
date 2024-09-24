@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 SPRAWIEDLIWY_WOBEC_NARODOW_MONSTER_NAMES = {
 	[0] = "Zbrodniarz",
 	[1] = "Oprawca",
@@ -20,3 +21,4 @@ SPRAWIEDLIWY_WOBEC_NARODOW_MONSTER_NAMES = {
 	[18] = "Szubrawiec",
 	[19] = "Morderca",
 }
+end)

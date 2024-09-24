@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local runeId = 3164
 local failDmg = 500
 
@@ -42,3 +43,4 @@ end
 
 mysteriousChest:aid(Storage.PerIustitiaAdAstra.MysteriousChest)
 mysteriousChest:register()
+end)

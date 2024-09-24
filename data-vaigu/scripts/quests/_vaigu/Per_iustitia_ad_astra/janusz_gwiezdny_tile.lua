@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local szczurKrolowConfig = { name = "Astral Janus", pos = Position(5839, 790, 0) }
 
 local tileIn = MoveEvent()
@@ -52,3 +53,4 @@ end
 
 tileOut:aid(Storage.PerIustitiaAdAstra.JanuszTile)
 tileOut:register()
+end)

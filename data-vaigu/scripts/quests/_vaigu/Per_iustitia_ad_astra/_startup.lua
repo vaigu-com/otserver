@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupStatic = {
 	{ pos = { 5839, 792, 0 }, id = 2000, aid = Storage.PerIustitiaAdAstra.JanuszTile },
 	{
@@ -219,7 +220,7 @@ local desertQuestInit = GlobalEvent("perIustitiaAdAstraInit")
 function desertQuestInit.onStartup()
 	LoadStartupItems(startupStatic)
 	LoadStartupItems(startupShipEntrances)
-	LoadStartupItems(startupKuznia, KUZNIA_YAANUSHA_ANCHOR)
+	LoadStartupItems(startupKuznia, USHAYAAN_FORGE_ANCHOR)
 	LoadStartupItems(startupShip, STARSHIP_ANCHOR)
 	LoadStartupItems(startupFuelShop, FUEL_SHOP_ANCHOR)
 	LoadStartupItems(startupGanymede, GANYMEDE_ANCHOR)
@@ -227,15 +228,16 @@ function desertQuestInit.onStartup()
 	LoadStartupItems(startupItemsHugoBeachPlanet, HUGO_BEACH_PLANET_ANCHOR)
 	LoadStartupItems(startupRukca, RUKCA_ANCHOR)
 
-	LoadStartupNpc(npcsKuznia, KUZNIA_YAANUSHA_ANCHOR)
-	LoadStartupNpc(npcsFuelShop, FUEL_SHOP_ANCHOR)
-	LoadStartupNpc(npcHugoTarPlanet, HUGO_TAR_PLANET_ANCHOR)
-	LoadStartupNpc(npcHugoBeachPlanet, HUGO_BEACH_PLANET_ANCHOR)
+	LoadStartupNpcs(npcsKuznia, USHAYAAN_FORGE_ANCHOR)
+	LoadStartupNpcs(npcsFuelShop, FUEL_SHOP_ANCHOR)
+	LoadStartupNpcs(npcHugoTarPlanet, HUGO_TAR_PLANET_ANCHOR)
+	LoadStartupNpcs(npcHugoBeachPlanet, HUGO_BEACH_PLANET_ANCHOR)
 
-	LoadStartupMonsters(monstersKuznia, KUZNIA_YAANUSHA_ANCHOR)
+	LoadStartupMonsters(monstersKuznia, USHAYAAN_FORGE_ANCHOR)
 	LoadStartupMonsters(monstersHugoTarPlanet, HUGO_TAR_PLANET_ANCHOR)
 
 	loadMovingStarTiles()
 	loadFuelShopDoorFloor()
 end
 desertQuestInit:register()
+end)

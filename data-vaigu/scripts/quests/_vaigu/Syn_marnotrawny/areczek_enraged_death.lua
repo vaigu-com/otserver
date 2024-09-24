@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local areczekEnraged = CreatureEvent("AreczekEnragedDeath")
 function areczekEnraged.onDeath(creature)
 	if not creature or not creature:isMonster() then
@@ -23,3 +25,5 @@ function corpse.onUse(player, corpseItem, fromPosition, target, toPosition, isHo
 end
 corpse:aid(Storage.ProdigalSon.AreczekCorpse)
 corpse:register()
+end)
+end)

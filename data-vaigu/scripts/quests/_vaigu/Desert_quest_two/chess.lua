@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local identifierToConfig = {}
 
 local defaultCurrentColor = "White"
@@ -687,3 +688,4 @@ end
 
 promote:aid(Storage.DesertQuestTwo.Puzzles.Chess.PromoteLever)
 promote:register()
+end)

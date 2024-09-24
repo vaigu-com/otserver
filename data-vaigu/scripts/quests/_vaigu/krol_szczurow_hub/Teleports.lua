@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 KROL_SZCZUROW_TELEPORT_HUB_DESINATIONS_IN = {
 	[Storage.KingOfRatsHQ.Portals.Ryan] = { -1, 3, 0 },
 	[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = { -2, -2, 0 },
@@ -96,3 +97,4 @@ for _, portalStorage in pairs(Storage.KingOfRatsHQ.Portals) do
 end
 portal:type("stepin")
 portal:register()
+end)

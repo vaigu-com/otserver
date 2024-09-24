@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function createSubstituteMonster(top_left, down_right, spawn_pos, name)
 	local z = top_left.z
 	for x = top_left.x, down_right.x do
@@ -57,3 +58,4 @@ end
 wispAltar:aid(Storage.DesertQuestOne.Puzzles.GuidingPuzzle.SacrificeWisp)
 wispAltar:type("stepin")
 wispAltar:register()
+end)

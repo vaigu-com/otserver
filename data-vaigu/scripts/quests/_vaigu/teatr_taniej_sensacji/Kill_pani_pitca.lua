@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local storages = {
 	Storage.TheaterOfCheapThrills.Questline,
 	Storage.TheaterOfCheapThrills.Mission03,
@@ -20,3 +22,5 @@ function pitcaDeath.onDeath(creature)
 end
 
 pitcaDeath:register()
+end)
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local doors = {
 	{ pos = Position(SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = -8, y = 12, z = 1 })), id = 1564 },
 	{ pos = Position(SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = -9, y = 12, z = 1 })), id = 1563 },
@@ -44,3 +45,4 @@ end
 beforeGate:aid(Storage.PathOfTheUndead.GuardianGateTile)
 beforeGate:type("stepin")
 beforeGate:register()
+end)

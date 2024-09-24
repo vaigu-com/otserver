@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local updateStorages = {
 	[Storage.PerIustitiaAdAstra.Questline] = 7,
 	[Storage.PerIustitiaAdAstra.Mission03] = 2,
@@ -18,3 +19,4 @@ end
 
 deeplingTile:aid(Storage.PerIustitiaAdAstra.DeeplingTile)
 deeplingTile:register()
+end)

@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Fredi kamionka Escort")
 local monster = {}
 
@@ -103,3 +105,5 @@ mType.onMove = function(monster, _, _, toPosition)
 end
 
 mType:register(monster)
+end)
+end)

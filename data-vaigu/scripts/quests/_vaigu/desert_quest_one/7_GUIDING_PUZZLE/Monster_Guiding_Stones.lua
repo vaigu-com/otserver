@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function moveStone(creature, dir, item, pos)
 	local player = creature:getPlayer()
 	if not player then
@@ -34,3 +35,4 @@ end
 exit:aid(Storage.DesertQuestOne.Puzzles.GuidingPuzzle.ManipulateStone)
 exit:type("stepout")
 exit:register()
+end)

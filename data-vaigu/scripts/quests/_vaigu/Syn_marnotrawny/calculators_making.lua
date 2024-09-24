@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local metalPile = Action()
 function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
@@ -42,3 +43,4 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 lever:aid(Storage.ProdigalSon.CalculatorMaking.Lever)
 lever:register()
+end)

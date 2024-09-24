@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local pressure_plate_enter = MoveEvent()
 
 function pressure_plate_enter.onStepIn(creature, item, position, fromPosition)
@@ -69,3 +70,4 @@ end
 pressure_plate_exit:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.MsRpPressure)
 pressure_plate_exit:type("stepout")
 pressure_plate_exit:register()
+end)

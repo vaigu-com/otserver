@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local sparksNumber = 3
 
 local passableId = 5062
@@ -59,3 +60,4 @@ end
 beforeSparks:aid(Storage.DesertQuestTwo.Puzzles.FireBlockageTile)
 beforeSparks:type("stepin")
 beforeSparks:register()
+end)

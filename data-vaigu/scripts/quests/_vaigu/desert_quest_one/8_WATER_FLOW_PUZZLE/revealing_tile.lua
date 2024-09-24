@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function tryPunishCheeser(pos, cheeser)
 	local playersPositions = { pos:Moved(0, 2, 0), pos:Moved(0, -2, 0) }
 	local penaltyRoomPos = DESERT_QUEST_ONE_ANCHOR:Moved(DESERT_QUEST_ONE_PORTALS[Storage.DesertQuestOne.Portals.PenaltyRoom3])
@@ -88,3 +89,4 @@ vanisherOut:type("stepout")
 vanisherOut:register()
 
 FixRevealingTileArrays()
+end)

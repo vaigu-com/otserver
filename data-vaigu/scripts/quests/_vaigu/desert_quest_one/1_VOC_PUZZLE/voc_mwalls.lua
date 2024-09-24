@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local config = { ["SUCCESS"] = "One of the magic walls disappeared", ["FAIL"] = "You cannot use this yet" }
 
 local lever = Action()
@@ -29,3 +30,4 @@ lever:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.EdLever)
 lever:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.MsLever)
 lever:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.RpLever)
 lever:register()
+end)

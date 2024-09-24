@@ -70,6 +70,10 @@ void MapCache::parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, std::s
 		item->setAttribute(ItemAttribute_t::TEXT, BasicItem->text);
 	}
 
+	if (!BasicItem->kv.empty()){
+		item->setAttribute(ItemAttribute_t::KV, BasicItem->kv);
+	}
+
 	/* if (BasicItem.description != 0)
 	    item->setAttribute(ItemAttribute_t::DESCRIPTION, STRING_CACHE[BasicItem.description]);*/
 }
@@ -308,6 +312,13 @@ void BasicItem::readAttr(FileStream &stream) {
 			case ATTR_CHARGES: {
 				charges = stream.getU16();
 			} break;
+
+			case ATTR_KV: {
+				const auto str = stream.getString();
+				if (!str.empty()) {
+					kv = str;
+				}
+			}
 
 			case ATTR_ACTION_ID: {
 				actionId = stream.getU16();

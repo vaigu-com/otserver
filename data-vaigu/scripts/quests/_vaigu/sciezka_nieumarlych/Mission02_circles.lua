@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local idToStorageVal = { [596] = 1, [597] = 2, [598] = 4, [599] = 8, [924] = 16 }
 
 local step_tile = MoveEvent()
@@ -59,3 +60,4 @@ end
 step_tile:aid(Storage.PathOfTheUndead.Circles)
 step_tile:type("stepin")
 step_tile:register()
+end)

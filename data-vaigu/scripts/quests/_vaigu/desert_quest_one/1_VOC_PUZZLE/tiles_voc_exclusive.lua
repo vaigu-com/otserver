@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local step_tile = MoveEvent()
 
 function step_tile.onStepIn(player, item, toPosition, fromPosition)
@@ -26,3 +27,4 @@ for _, value in pairs(Storage.DesertQuestOne.VocTiles) do
 end
 step_tile:type("stepin")
 step_tile:register()
+end)

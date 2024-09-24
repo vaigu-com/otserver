@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local slippersTp = Action()
 function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
@@ -21,3 +22,4 @@ end
 
 slippersTp:aid(Storage.FourActTragedy.SlippersTorch)
 slippersTp:register()
+end)

@@ -67,19 +67,19 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if table.contains({ "yes", "tak", "naszyjnik", "necklace" }, message) then
-		if player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) < 1 and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 6 then
+		if player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) < 1 and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 6 then
 			if player:getStorageValue(Storage.NaPomocBagietom.Main) < 1 then
 				player:setStorageValue(Storage.NaPomocBagietom.Main, 1) -- ustawienie glownego questa
 			end
-			player:setStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger, 1)
+			player:setStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Super." or "Great.", npc, creature)
 		end
 	elseif table.contains({ "mission", "misja", "pomoc", "help" }, message) then
-		if player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) == 3 then
+		if player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) == 3 then
 			if player:getItemCount(7754) > 0 then
 				if player:getLevel() >= 25 then
 					player:removeItem(7754, 1) -- zabieramy naszyjnik
-					player:setStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger, 4) -- konczymy klesta
+					player:setStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger, 4) -- konczymy klesta
 					player:addItem(3370, 1) -- knight armor
 					player:addItem(3382, 1) -- crown legs
 					player:addItem(3098, 1) -- ring of healing
@@ -94,19 +94,19 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc z gotowym naszyjnikiem." or "Come back with finished necklace.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) == 1 then
+		elseif player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) == 1 then
 			if player:getItemCount(10196) >= 5 and player:getItemCount(9685) >= 1 and player:getItemCount(10275) >= 5 then
-				player:setStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger, 2) -- wykonana misja
+				player:setStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger, 2) -- wykonana misja
 				-- player:removeItem(10196,10) -- zabieramy zeby -- trzeba isc do madame
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Wooow, swietne. Tylko jak ja teraz to zszyje w naszyjnik.. Znajdz prosze osobe, ktora z tych zebow uplecie naszyjnik. Bede bardzo wdzieczny." or "Thats awesome! Only if I knew how to make a necklace of that.. Please, find someone that will be able  to weave one of those teeths. I would be really greateful.", npc, creature)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc z tym o co prosilem." or "Come back with what I asked for.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 16 and player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) == 4 then
+		elseif player:getStorageValue(Storage.TheaterOfCheapThrills.Questline) == 16 and player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) == 4 then
 			player:setStorageValue(Storage.TheaterOfCheapThrills.Questline, 17)
 			player:setStorageValue(Storage.TheaterOfCheapThrills.Mission06, 3)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Okej, zaltawione. Przekaz Kitzowi, zeby nie bral ze soba nic poza pizama." or "Okay, done. Tell Kitz not to bring anything but pajamas.", npc, creature)
-		elseif player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) < 1 then
+		elseif player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) < 1 then
 			if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 6 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Misja? Sam bym pojechal na jakas misje, jak Schwarzenegger. On to byl gosc, wygladam tez tak pakersko jak on? ...",

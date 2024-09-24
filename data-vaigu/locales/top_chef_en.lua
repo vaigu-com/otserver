@@ -16,6 +16,7 @@ local numberStrings = {
 }
 
 return {
+	["Top Chef"] = "Top Chef",
 	["DESCRIBE_CURRENT_DISH"] = function(context)
 		local player = context.player
 		local state = player:getStorageValue(Storage.TopChef.Questline)

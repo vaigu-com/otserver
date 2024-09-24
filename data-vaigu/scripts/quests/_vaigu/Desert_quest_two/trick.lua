@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function killingCurse(player)
 	if player:hasCondition(CONDITION_DAZZLED) then
 		return
@@ -63,3 +64,4 @@ local desertQuestTwoTrickGrave = function(context)
 	return finalString
 end
 RegisterOnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", Storage.DesertQuestTwo.Questline)
+end)

@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 CZESLAW_KRANSOLUD_KEY_ITEMS = {
 	identityDocument = {
 		id = 19074,
@@ -11,3 +12,4 @@ CZESLAW_KRANSOLUD_KEY_ITEMS = {
 		desc = "This bag is sealed with the power of light. Gandalf is the only one who can reach into it.",
 	},
 }
+end)

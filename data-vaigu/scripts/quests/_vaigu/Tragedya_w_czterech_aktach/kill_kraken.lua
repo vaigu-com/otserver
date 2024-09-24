@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local updateStorages = {
 	[Storage.FourActTragedy.Questline] = 10,
 	[Storage.FourActTragedy.Mission03] = 2,
@@ -17,3 +19,5 @@ function theKraken.onDeath(creature)
 end
 
 theKraken:register()
+end)
+end)

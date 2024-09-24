@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local beastId = nil
 
 local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6) -- 38f85df67705e9e59ab4b44bc8590644
@@ -28,3 +29,4 @@ end
 
 panpipeLever:aid(Storage.FourActTragedy.FanfareLever)
 panpipeLever:register()
+end)

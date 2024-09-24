@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local lever = Action()
 
 function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -18,3 +19,4 @@ end
 
 lever:aid(Storage.DesertQuestOne.Puzzles.KeyshaftPuzzle.LeverPutIn)
 lever:register()
+end)

@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local storages = { Storage.TheaterOfCheapThrills.Questline, Storage.TheaterOfCheapThrills.Mission11 }
 
 local juerdoDeath = CreatureEvent("JuerdoDeath")
@@ -17,3 +19,5 @@ function juerdoDeath.onDeath(creature)
 end
 
 juerdoDeath:register()
+end)
+end)

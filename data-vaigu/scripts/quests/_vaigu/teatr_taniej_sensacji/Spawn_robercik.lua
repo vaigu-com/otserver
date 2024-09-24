@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local tile = MoveEvent()
 
 function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
@@ -21,3 +22,4 @@ end
 
 tile:aid(Storage.TheaterOfCheapThrills.Spawns.Robercik)
 tile:register()
+end)

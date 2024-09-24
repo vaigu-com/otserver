@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function getDestination(aid)
 	local toPos = SPACESHIP_AID_TO_POS[aid]
 	if not toPos then
@@ -25,3 +26,4 @@ end
 
 exitDevice:aid(Storage.PerIustitiaAdAstra.ShipControl.Exit)
 exitDevice:register()
+end)

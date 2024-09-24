@@ -1,7 +1,7 @@
 local customItemRegistrySingleton = nil
 ---@class CustomItemRegistry
 ---@field player Player
----@field questlineAid integer
+---@field localizerName integer
 ---@field requirements table
 CustomItemRegistry = {}
 function CustomItemRegistry:New()

@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local updateStorages = {
 	[Storage.ProdigalSon.Questline] = 11,
 	[Storage.ProdigalSon.Mission03] = 5,
@@ -22,3 +24,5 @@ function notoriousAreczekDeath.onDeath(creature)
 end
 
 notoriousAreczekDeath:register()
+end)
+end)

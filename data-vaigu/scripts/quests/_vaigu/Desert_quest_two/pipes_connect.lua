@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local currentlyVerifying = false
 
 local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(17, -52, 1)
@@ -185,3 +186,4 @@ end
 playerRotatePipe:type("stepin")
 playerRotatePipe:aid(Storage.DesertQuestTwo.Puzzles.WaterPipeStepIn)
 playerRotatePipe:register()
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local travelTimeSeconds = 20
 local aidToDest = {
 	[Storage.ProdigalSon.TrainDestinations.ToHurghada] = Position(6461, 1125, 14),
@@ -12,7 +13,7 @@ local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
-	if player:getPosition():DistanceTo(aidToDest[choice.aid], true) < 100 then
+	if player:getPosition():EuclideanDistance(aidToDest[choice.aid]) < 100 then
 		return true
 	end
 
@@ -71,3 +72,4 @@ end
 
 trainTravel:aid(Storage.ProdigalSon.Train.SelectDestination)
 trainTravel:register()
+end)

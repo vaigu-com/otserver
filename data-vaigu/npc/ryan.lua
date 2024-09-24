@@ -48,57 +48,56 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local config = {
-	[Storage.AssassinsCreedSquurvaali.Questline] = {
-		[5] = {
-			[{ "mission" }] = {
-				text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
-				specialActionsOnSuccess = {
-					{
-						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+local dialog = {
+	[Storage.AssassinsCreedSquurvaali.Localizer] = {
+		[Storage.AssassinsCreedSquurvaali.Mission02] = {
+			[2] = {
+				[{ "mission" }] = {
+					text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
+					specialActionsOnSuccess = {
+						{
+							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+						},
+					},
+				},
+				[{ "Rat King", "Krol Szczurow", "King of Rats" }] = {
+					text = "Rat King! Psst, now say: {away to the Ratlands}.",
+					specialActionsOnSuccess = {
+						{
+							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+						},
+					},
+				},
+				[{ "away to the Ratlands", "won do szczurolandii" }] = {
+					text = "TO THE RATS! SWIRL OF STENCH! It was all {his fault}.",
+					nextState = {
+						[Storage.AssassinsCreedSquurvaali.Mission02] = 3,
+						[Storage.TheaterOfCheapThrills.Mission01] = 1,
+						[Storage.KingOfRatsHQ.Portals.Ryan] = 1,
+						[Storage.KingOfRatsHQ.State] = 0,
+					},
+					specialActionsOnSuccess = {
+						{
+							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.despawnGmTomek,
+						},
 					},
 				},
 			},
-			[{ "Rat King", "Krol Szczurow", "King of Rats" }] = {
-				text = "Rat King! Psst, now say: {away to the Ratlands}.",
-				specialActionsOnSuccess = {
-					{
-						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+			[3] = {
+				[{ "his fault", "jego wina", "mission" }] = {
+					text = "And there he goes, sucked and swirled away. Here you go, the palette you were looking for.",
+					nextState = {
+						[Storage.AssassinsCreedSquurvaali.Mission02] = 4,
 					},
+					rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette },
 				},
-			},
-			[{ "away to the Ratlands", "won do szczurolandii" }] = {
-				text = "TO THE RATS! SWIRL OF STENCH! It was all {his fault}.",
-				nextState = {
-					[Storage.AssassinsCreedSquurvaali.Questline] = 6,
-					[Storage.AssassinsCreedSquurvaali.Mission02] = 3,
-					[Storage.TheaterOfCheapThrills.Mission01] = 1,
-					[Storage.TheaterOfCheapThrills.Questline] = 1,
-					[Storage.KingOfRatsHQ.Portals.Ryan] = 1,
-					[Storage.KingOfRatsHQ.Questline] = 0,
-				},
-				specialActionsOnSuccess = {
-					{
-						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.despawnGmTomek,
-					},
-				},
-			},
-		},
-		[6] = {
-			[{ "his fault", "jego wina", "mission" }] = {
-				text = "And there he goes, sucked and swirled away. Here you go, the palette you were looking for.",
-				nextState = {
-					[Storage.AssassinsCreedSquurvaali.Questline] = 7,
-					[Storage.AssassinsCreedSquurvaali.Mission02] = 4,
-				},
-				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette },
 			},
 		},
 	},
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, config, npcHandler, npc)
+	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
@@ -106,7 +105,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, msg, config, npcHandler, npc)
+	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

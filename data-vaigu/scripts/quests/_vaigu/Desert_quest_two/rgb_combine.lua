@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(13, -22, 1)
 local downRight = DESERT_QUEST_TWO_ANCHOR:Moved(21, -22, 1)
 local countdownRunning = false
@@ -95,3 +96,4 @@ end
 
 lever:aid(Storage.DesertQuestTwo.Puzzles.RgbColors)
 lever:register()
+end)

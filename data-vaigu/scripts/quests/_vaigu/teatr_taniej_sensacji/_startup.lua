@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local startupItemsStatic = {
 	{ pos = { 6516, 1840, 6 }, id = 4401, aid = Storage.TheaterOfCheapThrills.Spawns.MissPizza },
 
@@ -62,3 +63,4 @@ function desertQuestInit.onStartup()
 	resetSpawnLocks()
 end
 desertQuestInit:register()
+end)

@@ -56,8 +56,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		return false
 	end
 
-	if table.contains({ "walker", "jezyk", "papier", "list" }, message) and player:getStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu) == 2 and player:getItemCount(22160) > 0 then
-		player:setStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu, 3)
+	if table.contains({ "walker", "jezyk", "papier", "list" }, message) and player:getStorageValue(Storage.NaPomocBagietom.HalfTurnKick) == 2 and player:getItemCount(22160) > 0 then
+		player:setStorageValue(Storage.NaPomocBagietom.HalfTurnKick, 3)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "A to bardzo proste, zapisze ci na tym skrawku tlumaczenie i pozdrow odemnie Walkera." or "Ah that's really simple. I will describe a translation on this piece of paper. Say hi to Walker from me.", npc, creature)
 	elseif table.contains({ "mission", "misja", "kebab" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission05) == 2 then
 		npcHandler:say(

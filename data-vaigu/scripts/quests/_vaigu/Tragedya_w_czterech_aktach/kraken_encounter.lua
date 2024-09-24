@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 KRAKEN_ENCOUNTER_DATA = {
 	actionid = Storage.FourActTragedy.KrakenAccess,
 	bossName = "The Kraken",
@@ -47,3 +48,4 @@ function krakenLever.onUse(player, item, fromPosition, target, toPosition, isHot
 end
 krakenLever:aid(KRAKEN_ENCOUNTER_DATA.actionid)
 krakenLever:register()
+end)

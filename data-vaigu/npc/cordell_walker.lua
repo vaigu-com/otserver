@@ -66,11 +66,11 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if table.contains({ "mission", "misja", "misje" }, message) then
-		if player:getStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu) == 3 then
+		if player:getStorageValue(Storage.NaPomocBagietom.HalfTurnKick) == 3 then
 			if player:getItemCount(22160) > 0 then
 				if player:getLevel() >= 40 then
 					player:removeItem(22160, 1) -- zabieramy Liste
-					player:setStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu, 4) -- konczymy klesta
+					player:setStorageValue(Storage.NaPomocBagietom.HalfTurnKick, 4) -- konczymy klesta
 					player:addItem(9103, 1) -- Batwing Hat
 					player:addItem(6299, 1) -- Death ring
 					-- Q5.1
@@ -84,10 +84,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Chyba zapomniales listu." or "I think you may forgot about waybill.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu) == 1 then
+		elseif player:getStorageValue(Storage.NaPomocBagietom.HalfTurnKick) == 1 then
 			if player:getItemCount(22160) > 0 then
-				if player:getStorageValue(Storage.NaPomocBagietom.ListaWzieta) == 1 then
-					player:setStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu, 2)
+				if player:getStorageValue(Storage.NaPomocBagietom.ListTaken) == 1 then
+					player:setStorageValue(Storage.NaPomocBagietom.HalfTurnKick, 2)
 					npcHandler:say(getPlayerLanguage(player) == "PL" and {
 						"Udalo ci sie wtargnac tam, niezle. Ale co to za jezyk? Wydaje mi sie znajomy i wiem kto bedzie umial go przetlumaczyc. ...",
 						"Podpytaj mojego znajomego, ktory pracuje w Prince Kebab w Hurghadzie.",
@@ -101,12 +101,12 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Przynies do mnie list przewozowy." or "I think you may forgot about waybill.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu) < 1 then
+		elseif player:getStorageValue(Storage.NaPomocBagietom.HalfTurnKick) < 1 then
 			if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 6 then
 				if player:getStorageValue(Storage.NaPomocBagietom.Main) < 1 then
 					player:setStorageValue(Storage.NaPomocBagietom.Main, 1) -- ustawienie glownego questa
 				end
-				player:setStorageValue(Storage.NaPomocBagietom.KopniakZPolobrotu, 1)
+				player:setStorageValue(Storage.NaPomocBagietom.HalfTurnKick, 1)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Oczywiscie, ze mam dla ciebie misje. Zostaniesz straznikiem z MirkoTown, tak jak ja. ...",
 					"Ostatnio dochodza mnie sluchy o jakichs nielegalnych interesach w wiosce bandytow. Ktos chyba dawno nie dostal z polobrotu. ...",

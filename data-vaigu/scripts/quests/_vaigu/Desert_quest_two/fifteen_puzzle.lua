@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local puzzleTopLeft = DESERT_QUEST_TWO_ANCHOR:Moved(1, 0, 0)
 local puzzleDownRight = puzzleTopLeft:Moved(3, 3, 0)
 local emptySpacePos = Position(puzzleTopLeft)
@@ -100,3 +101,4 @@ end
 
 resetLever:aid(Storage.DesertQuestTwo.Puzzles.FiftenPuzzleLever)
 resetLever:register()
+end)

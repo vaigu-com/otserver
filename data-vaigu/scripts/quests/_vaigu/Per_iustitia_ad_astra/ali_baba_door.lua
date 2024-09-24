@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:Monster(function()
 local mType = Game.createMonsterType("Ali baba door")
 local monster = {}
 
@@ -65,8 +67,8 @@ monster.immunities = {
 	{ type = "bleed", condition = false },
 }
 
-local toInside = KUZNIA_YAANUSHA_ANCHOR:Moved(0, 18, -1)
-local toOutside = KUZNIA_YAANUSHA_ANCHOR:Moved(0, 20, -1)
+local toInside = USHAYAAN_FORGE_ANCHOR:Moved(0, 18, -1)
+local toOutside = USHAYAAN_FORGE_ANCHOR:Moved(0, 20, -1)
 
 local function isPlayerOnTeleportableTile(playerPos)
 	return playerPos == toInside or playerPos == toOutside
@@ -95,3 +97,5 @@ mType.onAppear = function(monster, creature)
 	monster:setOutfit({ lookTypeEx = 470 })
 end
 mType:register(monster)
+end)
+end)

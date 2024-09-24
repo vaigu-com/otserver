@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local updateStorages = {
 	[Storage.ChesterTheDwarf.Questline] = 7,
 	[Storage.ChesterTheDwarf.Mission03] = 3,
@@ -22,3 +23,4 @@ end
 tile:aid(Storage.ChesterTheDwarf.CaveTile)
 tile:type("stepin")
 tile:register()
+end)

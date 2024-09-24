@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local errorMessage = "You don't have permission to go there. Talk to Overseer Henry of Januszex to be granted an entry."
 local function tryEnterAccessTile(actionid, player, fromPosition)
 	if not player:isPlayer() then
@@ -26,3 +27,4 @@ function northMinesTile.onStepIn(player, item, toPosition, fromPosition)
 end
 northMinesTile:aid(Storage.ProdigalSon.NorthMinesAccess)
 northMinesTile:register()
+end)

@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local guardian = CreatureEvent("PatriotaPLKill")
 
 function guardian.onDeath(creature)
@@ -6,3 +8,5 @@ function guardian.onDeath(creature)
 end
 
 guardian:register()
+end)
+end)

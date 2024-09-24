@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
 local static = {
 	{ position = Position(5899, 1573, 9), id = 2772, aid = Storage.DesertQuestTwo.Puzzles.Chess.ClearLever },
 }
@@ -82,3 +83,4 @@ function desertQuestTwoInit.onStartup()
 	InitializeDQ2orbs()
 end
 desertQuestTwoInit:register()
+end)

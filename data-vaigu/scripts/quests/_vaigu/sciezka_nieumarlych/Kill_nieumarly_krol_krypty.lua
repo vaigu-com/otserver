@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local krolKrypty = CreatureEvent("NieumarlyKrolKryptyKill")
 
 function krolKrypty.onDeath(creature)
@@ -12,3 +14,5 @@ function krolKrypty.onDeath(creature)
 end
 
 krolKrypty:register()
+end)
+end)

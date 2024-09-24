@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local config = {
 	["saplingsNotWatered"] = "If you wanna proceed further, you need to water every sapling.",
 	["youHaveOneMinute"] = "You have one minute to go through portal.",
@@ -67,3 +68,4 @@ end
 
 tree_branch:aid(Storage.DesertQuestOne.Puzzles.WaterFlowPuzzle.TreeLever)
 tree_branch:register()
+end)

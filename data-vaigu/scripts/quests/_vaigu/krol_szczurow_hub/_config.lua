@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 KROL_SZCZUROW_HUB_KEY_ITEMS = {
 	librumVortex = { -- TheaterOfCheapThrills
 		aid = Storage.KingOfRatsHQ.Items.LibrumVortex,
@@ -14,7 +15,7 @@ KROL_SZCZUROW_HUB_KEY_ITEMS = {
 		id = 3461,
 		desc = "The Ytong of The Fittest. Romek, the King of Rats might be interested in it.",
 	},
-	bottomless = { -- TheThreeSramatiansAndTheDragon
+	bottomless = { -- ThreeSramatiansAndTheDragon
 		aid = Storage.KingOfRatsHQ.Items.Bottomless,
 		id = 650,
 		desc = "The Bottomless Bud Light. Romek, the King of Rats might be interested in it.",
@@ -45,3 +46,4 @@ KROL_SZCZUROW_HUB_KEY_ITEMS = {
 		desc = "The Hammer of Epiphany. Romek, the King of Rats might be interested in it.",
 	},
 }
+end)

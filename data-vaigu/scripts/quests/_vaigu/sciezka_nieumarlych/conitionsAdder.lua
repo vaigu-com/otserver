@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local conditions = {
 	CONDITION_POISON, -- utori pox
 	CONDITION_FIRE, -- utori flam
@@ -29,3 +30,4 @@ end
 
 lever:aid(44433)
 lever:register()
+end)

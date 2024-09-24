@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local starLeftStepIn = MoveEvent()
 
 function starLeftStepIn.onStepIn(creature, _, _, _)
@@ -9,3 +10,4 @@ end
 
 starLeftStepIn:aid(Storage.PerIustitiaAdAstra.MovingStarTile)
 starLeftStepIn:register()
+end)

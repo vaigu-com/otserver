@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 local penatlyRoomPos = HUGO_TAR_PLANET_ANCHOR:Moved(-12, 5, 1)
 
 PER_IUSTITIA_AD_ASTRA_SPECIAL_ACTIONS = {
@@ -69,6 +70,7 @@ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS = {
 	lecinaHammer = {
 		id = 3460,
 		aid = Storage.PerIustitiaAdAstra.HammerUse,
-		desc = "Power Hammer MK3. Collectible - not for professional use",
+		desc = "P0W3R H4MM3R MK3. Collectible - not for professional use",
 	},
 }
+end)

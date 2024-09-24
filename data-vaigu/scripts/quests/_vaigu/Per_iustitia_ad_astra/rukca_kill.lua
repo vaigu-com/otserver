@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local updateStorages = {
 	[Storage.PerIustitiaAdAstra.Questline] = 26,
 	[Storage.PerIustitiaAdAstra.Mission06] = 2,
@@ -17,3 +19,5 @@ function rukca.onDeath(creature)
 end
 
 rukca:register()
+end)
+end)

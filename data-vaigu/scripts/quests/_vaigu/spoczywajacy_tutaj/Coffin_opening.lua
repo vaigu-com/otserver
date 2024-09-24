@@ -1,47 +1,42 @@
-local config = nil
-local langToConfig = {
-	["PL"] = {
-		[-1] = "Bez specjalnego lomu nic tu nie zdzialam.",
-		[1] = "Wieko trumny ani drgnie.",
-		[2] = "Uzywajac zdwojonej sily udalo Ci sie lekko poruszyc wiekiem trumny.",
-		[3] = "Zapierajac pobliski lom o szczeline podpierasz wieko, ale kawalek drewna, ktory podwazales, odlamal sie.",
-		[4] = "Ustawiles lom w innym miejscu, i uzywajac calej swojej sily, udalo Ci sie podwazyc i zsunac wieko.",
-	},
-	["EN"] = {
-		[-1] = "It wont move without special crowbar.",
-		[1] = "The lid of this coffin won't move at all.",
-		[2] = "Doubling your efforts, you managed to move the lid a bit.",
-		[3] = "Having noticed nearby crobar, you put it in cracks in the wood and try to pry it, but the very fragment of wood was rotten and broke off.",
-		[4] = "You relocate crowbar to another crevice nad using all you strength, you broke off the lid.",
-	},
+	:Script(function(storageToRequiredState)
+local coffinMessages = {
+	[0] = "The lid of this coffin won't move at all.",
+	[1] = "Doubling your efforts, you managed to move the lid a bit.",
+	[2] = "Having noticed nearby crobar, you put it in cracks in the wood and try to pry it, but the very fragment of wood was rotten and broke off.",
+	[3] = "You relocate crowbar to another crevice nad using all you strength, you broke off the lid.",
 }
 
-local updateStorages = { [Storage.ImRestingHere.Questline] = 5, [Storage.ImRestingHere.Mission01] = 2 }
+local updateStorages = {
+	[Storage.ImRestingHere.Mission01] = 2,
+}
 
-local coffin = Action()
-function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	config = GetConfigByPlayer(player, langToConfig)
-
-	local storageVal = player:getStorageValue(Storage.ImRestingHere.Questline)
-	local message = config[storageVal]
-	player:say(message, TALKTYPE_MONSTER_SAY)
-	if storageVal <= 0 then
+local crowbar = Action()
+function crowbar.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	local missionState = player:getStorageValue(Storage.ImRestingHere.Mission01)
+	if missionState < 1 then
+		local translatedError =
+			player:Localizer(Storage.ImRestingHere.Localizer):Get("It wont move without special crowbar.")
+		player:say(translatedError, TALKTYPE_MONSTER_SAY)
 		return false
 	end
 
-	if storageVal < 4 then
-		player:IncrementStorages({ Storage.ImRestingHere.Questline }, 1)
-	elseif storageVal == 4 then
-		if player:RemoveItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar }) then
-			if player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill }) then
-				player:UpdateStorages(updateStorages)
-				return true
-			end
-		end
+	if missionState > 1 then
+		return false
 	end
 
-	return false
+	local coffinState = player:getStorageValue(Storage.ImRestingHere.Coffin)
+	local message = coffinMessages[coffinState]
+	if message then
+		local translatedMessage = player:Localizer(Storage.ImRestingHere.Localizer):Get(message)
+		player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
+		return true
+	end
+
+	if player:TryTradeInItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar }, { SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill }) then
+		player:UpdateStorages(updateStorages)
+	end
 end
 
-coffin:aid(Storage.ImRestingHere.Coffin)
-coffin:register()
+crowbar:aid(Storage.ImRestingHere.Coffin)
+crowbar:register()
+end)

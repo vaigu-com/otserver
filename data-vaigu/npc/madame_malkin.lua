@@ -241,9 +241,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie potrzebuje pomocy." or "I dont need your help.", npc, creature)
 		end
 		-- ============ DO MISJI TRUDNE POCZATKI ============= 24/04/17
-	elseif table.contains({ "naszyjnik", "necklace" }, message) and player:getStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger) == 2 then
+	elseif table.contains({ "naszyjnik", "necklace" }, message) and player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) == 2 then
 		if player:getItemCount(10196) >= 5 and player:getItemCount(9685) >= 1 and player:getItemCount(10275) >= 5 then
-			player:setStorageValue(Storage.NaPomocBagietom.BycJakSchwarzenegger, 3)
+			player:setStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger, 3)
 			player:removeItem(10196, 5) -- zabieramy 5 zembuf ork
 			player:removeItem(9685, 1) -- zabieramy 1 zembuf vamp
 			player:removeItem(10275, 5) -- zabieramy 5 zembuf rot

@@ -1,4 +1,4 @@
-function LoadStartupNpc(npcs, anchor)
+function LoadStartupNpcs(npcs, anchor)
 	for _, npcData in pairs(npcs) do
 		local pos = npcData.pos or npcData.position or npcData.offset
 		if anchor then

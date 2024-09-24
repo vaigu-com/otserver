@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local lever = Action()
 
 function lever.onUse(cid, item, fromPosition, itemEx, toPosition)
@@ -37,3 +38,4 @@ lever:aid(Storage.DesertQuestOne.Puzzles.CastlePuzzle.Lever7)
 lever:register()
 
 -- crateitem(id, count, pos)
+end)

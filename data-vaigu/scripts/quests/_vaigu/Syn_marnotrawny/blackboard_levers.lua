@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local gateLever = Action()
 function gateLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
@@ -36,3 +37,4 @@ function waterfallLever.onUse(player, item, fromPosition, target, toPosition, is
 end
 waterfallLever:aid(Storage.ProdigalSon.BlackBoardLever2)
 waterfallLever:register()
+end)

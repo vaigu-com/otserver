@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local lever = Action()
 function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
@@ -30,3 +31,4 @@ function paint.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 paint:aid(Storage.ProdigalSon.HammerMaking.Paint)
 paint:register()
+end)

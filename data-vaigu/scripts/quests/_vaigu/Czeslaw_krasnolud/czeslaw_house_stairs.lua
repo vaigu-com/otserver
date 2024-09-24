@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local tile = MoveEvent()
 
 function tile.onStepIn(creature, item, toPosition, fromPosition)
@@ -16,3 +17,4 @@ end
 tile:aid(Storage.ChesterTheDwarf.ChesterHouseStairs)
 tile:type("stepin")
 tile:register()
+end)

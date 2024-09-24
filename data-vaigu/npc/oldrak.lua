@@ -180,7 +180,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				npc,
 				creature
 			)
-			player:setStorageValue(Storage.AssassinsCreedSquurvaali.Questline, 3)
 			player:setStorageValue(Storage.AssassinsCreedSquurvaali.Mission01, 3)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Co ty bredzisz." or "What? Go away.", npc, creature)

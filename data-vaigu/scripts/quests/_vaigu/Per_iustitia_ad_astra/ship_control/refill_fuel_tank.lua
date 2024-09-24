@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local function refillFuel(player)
 	local fuelStorage = Storage.PerIustitiaAdAstra.ShipControl.FuelLevel
 	player:IncrementStorage(fuelStorage)
@@ -42,3 +43,4 @@ end
 
 fuel:aid(Storage.PerIustitiaAdAstra.Rewards.RocketFuel)
 fuel:register()
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local stopid = { [6594] = true, [799] = true, [431] = true, [430] = true }
 
 local corner1 = DESERT_QUEST_ONE_ANCHOR:Moved(-42, 46, 2)
@@ -92,3 +93,4 @@ end
 iceTile:aid(Storage.DesertQuestOne.Puzzles.SkatingPuzzle.IceTile)
 iceTile:type("stepin")
 iceTile:register()
+end)

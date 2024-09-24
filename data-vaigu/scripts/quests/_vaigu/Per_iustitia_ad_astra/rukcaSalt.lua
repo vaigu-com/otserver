@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local dmg = 20000
 
 local saltyTile = MoveEvent()
@@ -10,3 +11,4 @@ end
 
 saltyTile:aid(Storage.PerIustitiaAdAstra.SaltyTile)
 saltyTile:register()
+end)

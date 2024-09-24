@@ -39,7 +39,9 @@ local function confirmDestination(player, _, choice)
 
 	local minLevel = choice.minLevel or 0
 	if player:getLevel() < minLevel then
-		player:sendCancelMessage(player:Localizer(LOCALIZER_UNIVERSAL):Context({ minLevel = minLevel }):Get("MINIMUM_LEVEL_TO_TRAVEL"))
+		player:sendCancelMessage(
+		player:Localizer(LOCALIZER_UNIVERSAL):Context({ minLevel = minLevel }):Get("MINIMUM_LEVEL_TO_TRAVEL")
+		)
 		return
 	end
 
@@ -51,12 +53,12 @@ local function confirmDestination(player, _, choice)
 	teleportToDestination(player, choice)
 end
 
-local transportNameToWindowTitle = {
+local transportTypeToWindowTitle = {
 	[TRANSPORT_TYPE.SHIP] = "ShipWindowTitle",
 	[TRANSPORT_TYPE.CARPET] = "CarpetWindowTitle",
 }
 
-local transportnameToWindowMessage = {
+local transportTypeToWindowMessage = {
 	[TRANSPORT_TYPE.SHIP] = "ShipWindowMessage",
 	[TRANSPORT_TYPE.CARPET] = "CarpetWindowMessage",
 }
@@ -65,18 +67,22 @@ local transportnameToWindowMessage = {
 function CreateTransportWindow(context)
 	local player = context.player
 	local transports = context.transports
-	local transportName = context.transportName
+	local transportType = context.transportType
 
-	local title = player:Localizer(LOCALIZER_UNIVERSAL):Get(transportNameToWindowTitle[transportName])
-	local message = player:Localizer("UNIVRESAL"):Get(transportnameToWindowMessage[transportName])
+	local title = player:Localizer(LOCALIZER_UNIVERSAL):Get(transportTypeToWindowTitle[transportType])
+	local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(transportTypeToWindowMessage[transportType])
 	local window = ModalWindow({ title = title, message = message })
 
 	for _, transportConfig in pairs(transports) do
+		--[[ ToDo: add name translations
+		local translatedName = player:Localier(LOCALIZER_UNIVERSAL):Get(transportConfig.name)
+		local choice = window:addChoice(translatedName)
+		]]
 		local choice = window:addChoice(transportConfig.name)
 		choice.minLevel = transportConfig.minLevel
 		choice.toPos = transportConfig.toPos
 		choice.price = transportConfig.price
-		choice.transportName = transportName
+		choice.transportType = transportType
 	end
 
 	window:addButton(player:Localizer(LOCALIZER_UNIVERSAL):Get("Select"), confirmDestination)

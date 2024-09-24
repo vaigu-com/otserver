@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local elevatorToUp = Action()
 
 function elevatorToUp.onUse(creature, item, fromPosition, itemEx, toPosition)
@@ -35,3 +36,4 @@ end
 
 elevatorToDown:aid(Storage.DesertQuestOne.Puzzles.CastlePuzzle.ElevatorToDown)
 elevatorToDown:register()
+end)

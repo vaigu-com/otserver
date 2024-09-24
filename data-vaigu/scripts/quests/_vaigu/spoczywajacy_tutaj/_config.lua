@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 SPOCZYWAJACY_TUTAJ_KEY_ITEMS = {
 	lastWill = {
 		id = 637,
@@ -17,3 +18,4 @@ SPOCZYWAJACY_TUTAJ_KEY_ITEMS = {
 		aid = Storage.ImRestingHere.Coffin,
 	},
 }
+end)

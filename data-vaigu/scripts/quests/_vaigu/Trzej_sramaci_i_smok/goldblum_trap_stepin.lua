@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local goldBlumTrap = MoveEvent()
 
 function goldBlumTrap.onStepIn(player, item, position, fromPosition)
@@ -5,7 +6,7 @@ function goldBlumTrap.onStepIn(player, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TheThreeSramatiansAndTheDragon.Questline) < 1 then
+	if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline) < 1 then
 		return false
 	end
 	player:teleportTo(player:getPosition():Moved(0, 0, 1))
@@ -14,5 +15,6 @@ function goldBlumTrap.onStepIn(player, item, position, fromPosition)
 end
 
 goldBlumTrap:type("stepin")
-goldBlumTrap:aid(Storage.TheThreeSramatiansAndTheDragon.GoldblumTrap)
+goldBlumTrap:aid(Storage.ThreeSramatiansAndTheDragon.GoldblumTrap)
 goldBlumTrap:register()
+end)

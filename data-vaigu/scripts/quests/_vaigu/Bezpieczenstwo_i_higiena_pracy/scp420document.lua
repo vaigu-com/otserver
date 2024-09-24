@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local document = Action()
 function document.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local aid = item:getActionId()
@@ -8,3 +9,4 @@ end
 
 document:aid(Storage.SafetyAndOccupationalHygiene.Scp420Document)
 document:register()
+end)

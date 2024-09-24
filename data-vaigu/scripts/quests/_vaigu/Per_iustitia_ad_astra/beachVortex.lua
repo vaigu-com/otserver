@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local vortex = MoveEvent()
 
 function vortex.onStepIn(player, _, toPosition, fromPosition)
@@ -17,3 +18,4 @@ end
 
 vortex:aid(Storage.PerIustitiaAdAstra.RukcaAccess)
 vortex:register()
+end)

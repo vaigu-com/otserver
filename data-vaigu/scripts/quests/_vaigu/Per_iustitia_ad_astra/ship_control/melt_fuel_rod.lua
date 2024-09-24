@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local Monitor = Action()
 function Monitor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
@@ -16,3 +17,4 @@ end
 
 Monitor:aid(Storage.PerIustitiaAdAstra.ShipControl.RodMelter)
 Monitor:register()
+end)

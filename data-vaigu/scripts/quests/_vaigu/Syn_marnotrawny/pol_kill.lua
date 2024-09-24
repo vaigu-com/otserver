@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local storages = {
 	[Storage.ProdigalSon.Questline] = 23,
 	[Storage.ProdigalSon.Mission06] = 2,
@@ -15,3 +17,5 @@ function pol.onDeath(creature)
 	return true
 end
 pol:register()
+end)
+end)

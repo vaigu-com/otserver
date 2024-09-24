@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:MonsterEvent(function()
 local zulZulowDeath = CreatureEvent("ZulZulowDeath")
 function zulZulowDeath.onDeath(creature)
 	if not creature or not creature:isMonster() then
@@ -15,3 +17,5 @@ function zulZulowDeath.onDeath(creature)
 end
 
 zulZulowDeath:register()
+end)
+end)

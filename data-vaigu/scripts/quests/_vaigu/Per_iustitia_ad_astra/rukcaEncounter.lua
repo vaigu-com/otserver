@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local rukcaConfig = {
 	actionid = Storage.PerIustitiaAdAstra.RukcaAccess,
 	bossName = "Ruk'ca Maw",
@@ -70,3 +71,4 @@ function rukcaEncounterInit.onStartup()
 	originalSealCage = ItemExList():Area(RUKCA_ANCHOR:Moved(-1, 26, 0), RUKCA_ANCHOR:Moved(0, 27, 0))
 end
 rukcaEncounterInit:register()
+end)

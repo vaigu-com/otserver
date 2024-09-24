@@ -1,3 +1,5 @@
+	:Script(function(storageToRequiredState)
+	:EncounterFight(function()
 local pylonFlam = "pylonFlam"
 local pylonVis = "pylonVis"
 local pylons = {
@@ -50,8 +52,6 @@ encounter:addRemoveMonsters()
 encounter:startOnEnter()
 encounter:register()
 
--- EncounterDefinitionRegistry():Register(encounter)
-
 local channelPowerInterval = 400
 local empowerPylons = GlobalEvent("encounter.skurwiwij-lair.empower-pylons")
 function empowerPylons.onThink()
@@ -66,7 +66,7 @@ function empowerPylons.onThink()
 	local closestPylon = {}
 	local closestPylonDistance = 999
 	for pylonName, pylonData in pairs(pylons) do
-		local distance = pylonData.pos:DistanceTo(skurwiwijPos, true)
+		local distance = pylonData.pos:EuclideanDistance(skurwiwijPos)
 		if distance <= closestPylonDistance then
 			closestPylonDistance = distance
 			closestPylon = pylonData
@@ -154,3 +154,5 @@ function TriggerPylonExplosion(pylon)
 	drawPylonExplosion(0, pylon.pos, damage, pylon.magicEffect)
 	encounter.explosionsCount = encounter.explosionsCount + 1
 end
+end)
+end)

@@ -1,3 +1,4 @@
+	:Script(function(storageToRequiredState)
 local orbId = 3064
 
 local function canMoveOrb(pos)
@@ -88,3 +89,4 @@ function resetOrbs.onUse(creature, item, fromPosition, target, toPosition, isHot
 end
 resetOrbs:aid(Storage.DesertQuestTwo.Puzzles.OrbsReset)
 resetOrbs:register()
+end)

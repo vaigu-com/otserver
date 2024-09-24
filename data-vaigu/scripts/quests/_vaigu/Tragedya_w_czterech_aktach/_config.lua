@@ -1,3 +1,4 @@
+BANJO_KROLA_SZCZUROW:Constant(function()
 TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS = {
 	timmyPowder = {
 		id = 6548,
@@ -15,3 +16,4 @@ TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS = {
 	},
 	grazynaCore = { id = 20342, aid = Storage.FourActTragedy.Rewards.GrazynaCore, desc = "Grazhena Core i7" },
 }
+end)
