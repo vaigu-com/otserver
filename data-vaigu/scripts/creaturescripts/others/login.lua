@@ -2,6 +2,7 @@ local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
 	local afterLoginStr = ""
+	--[[
 	if player:getLastLoginSaved() <= 0 then
 		afterLoginStr = "Please choose your outfit."
 		player:sendOutfitWindow()
@@ -19,6 +20,7 @@ function playerLogin.onLogin(player)
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, bugStr)
+	]]
 
 	if isPremium(player) then
 		player:setStorageValue(Storage.PremiumAccount, 1)

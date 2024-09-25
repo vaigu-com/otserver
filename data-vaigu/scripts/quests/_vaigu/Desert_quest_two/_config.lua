@@ -1,2 +1,0 @@
-	:Script(function(storageToRequiredState)
-end)

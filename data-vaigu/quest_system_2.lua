@@ -1,22 +1,31 @@
 ---@class Quest
+---@field name string
+---@field missions table
+---@field monsterEvents table
+---@field encounterLevers table
+---@field encounterFights table
+---@field monsters table
+---@field scrpts table
+---@field npcs table
+---@field startupItems table
+---@field startupNpcs table
+---@field questlog table
 Quest = {}
+Quest.__index = Quest
 function Quest:New(name)
 	local newObj = {}
-	self.name = name
-	self.missions = {}
-	self.constants = {}
-	self.monsterEvents = {}
-	self.encounterLevers = {}
-	self.encounterFights = {}
-	self.monsters = {}
-	self.scripts = {}
-	self.npcs = {}
-	self.startupItems = {}
-	self.startupNpcs = {}
-	self.storages = function() end
-	self.questlog = function() end
+	newObj.name = name
+	newObj.missions = {}
+	newObj.monsterEvents = {}
+	newObj.encounterLevers = {}
+	newObj.encounterFights = {}
+	newObj.monsters = {}
+	newObj.scripts = {}
+	newObj.npcs = {}
+	newObj.startupItems = {}
+	newObj.startupNpcs = {}
+	newObj.questlog = function() end
 
-	self.__index = self
 	setmetatable(newObj, self)
 	return newObj
 end
@@ -44,14 +53,16 @@ function Quest:Dialog(npcName, dialog)
 	return self
 end
 function Quest:Storage(storages)
-	self.storages = storages
+	storages()
+	return self
 end
 function Quest:Constant(constant)
-	table.insert(self.constants, constant)
+	constant()
 	return self
 end
 function Quest:Questlog(questlog)
 	self.questlog = questlog
+	return self
 end
 function Quest:MonsterEvent(MonsterEvent)
 	table.insert(self.monsterEvents, MonsterEvent)
@@ -59,9 +70,11 @@ function Quest:MonsterEvent(MonsterEvent)
 end
 function Quest:EncounterLever(lever)
 	table.insert(self.encounterLevers, lever)
+	return self
 end
 function Quest:EncounterFight(fight)
 	table.insert(self.encounterFights, fight)
+	return self
 end
 function Quest:Monster(monster)
 	table.insert(self.monsters, monster)
@@ -77,11 +90,12 @@ function Quest:StartupItems(items, anchor)
 	end
 	]]
 
-
 	self.startupItems[items] = anchor
+	return self
 end
 function Quest:StartupNpcs(npcs, anchor)
 	self.startupNpcs[npcs] = anchor
+	return self
 end
 
 --[[
@@ -96,10 +110,11 @@ end
 
 function Quest:Script(script)
 	table.insert(self.scripts, script)
+	return self
 end
 
 function Quest:Register()
-	QuestRegistry:Register(self)
+	QuestRegistry():Register(self)
 end
 
 --
@@ -112,18 +127,26 @@ local function normalizeQuestData()
 	end
 end
 
-function QuestRegistry:CreateConstants()
-	for _, quest in pairs(self.registry) do
-		for _, constants in pairs(quest.constants) do
-			constants()
-		end
+---@class QuestRegistry
+---@field private registry table
+QuestRegistry = {}
+QuestRegistry.__index = QuestRegistry
+local QuestRegistrySingleton = nil
+function QuestRegistry:New(...)
+	if QuestRegistrySingleton then
+		return QuestRegistrySingleton
 	end
+	QuestRegistrySingleton = {}
+	QuestRegistrySingleton.__index = self
+	self.registry = {}
+	setmetatable(QuestRegistrySingleton, self)
+	return QuestRegistrySingleton
 end
-function QuestRegistry:CreateStorages()
-	for _, quest in pairs(self.registry) do
-		quest.storages()
-	end
-end
+setmetatable(QuestRegistry, {
+	__call = function(class, ...)
+		return QuestRegistry:New(...)
+	end,
+})
 
 function QuestRegistry:CreateQuestlog()
 	for _, quest in pairs(self.registry) do
@@ -196,71 +219,38 @@ function QuestRegistry:RunScripts()
 	end
 end
 
----@class QuestRegistry
----@field private registry table
-QuestRegistry = {}
-local QuestRegistrySingleton = nil
-function QuestRegistry:New(...)
-	if QuestRegistrySingleton then
-		return QuestRegistrySingleton
-	end
-	QuestRegistrySingleton = {}
-	self.__index = self
-	self.registry = {}
-	setmetatable(QuestRegistrySingleton, self)
-	self:CreateQuests()
-	return QuestRegistrySingleton
-end
-setmetatable(QuestRegistry, {
-	__call = function(class, ...)
-		return QuestRegistry:New(...)
-	end,
-})
-
-print(Storage.Exercisedummy	)
 function QuestRegistry:CreateQuests()
-	local questSystemNpcDefinitions = GlobalEvent("QuestSystemQuestDefinitions")
-	function questSystemNpcDefinitions.onStartup()
-		self:CreateConstants()
-		self:CreateStorages()
-		self:CreateQuestlog()
-		self:CreateMonsterEvent()
-		self:CreateEncounterLevers()
-		self:CreateEncounterFight()
-		self:CreateMonster()
-		self:RegisterNpcData()
-		NpcRegistry:CreateNpcs()
-		self:RunScripts()
-	end
-	questSystemNpcDefinitions:register()
+	self:CreateQuestlog()
+	self:CreateMonsterEvent()
+	self:CreateEncounterLevers()
+	self:CreateEncounterFight()
+	self:CreateMonster()
+	self:RegisterNpcData()
+	NpcRegistry():CreateNpcs()
+	self:RunScripts()
 end
 
 function QuestRegistry:Register(quest)
 	self.registry[quest.name] = quest
-	return self[quest.name]
+	return self.registry[quest.name]
 end
 
 function QuestRegistry:Get(name)
 	return self.registry[name]
 end
 
-function NpcRegistry:CreateNpcs()
-	for _, npc in pairs(self.registry) do
-		CreateNpcDefinition(npc)
-	end
-end
-
 ---@class NpcRegistry
 ---@field private registry table
 ---@field private CreateNpcDefinitions function
 NpcRegistry = {}
+NpcRegistry.__index = NpcRegistry
 local npcRegistrySingleton = nil
 function NpcRegistry:New(...)
 	if npcRegistrySingleton then
 		return npcRegistrySingleton
 	end
 	npcRegistrySingleton = {}
-	self.__index = self
+	npcRegistrySingleton.__index = self
 	self.registry = {}
 	setmetatable(npcRegistrySingleton, self)
 	return npcRegistrySingleton
@@ -272,7 +262,7 @@ setmetatable(NpcRegistry, {
 })
 
 function NpcRegistry:Register(name)
-	self.registry[name] = {}
+	self.registry[name] = { name = name }
 	return self.registry[name]
 end
 
@@ -284,4 +274,10 @@ function NpcRegistry:AddNpcData(name, newData)
 	local npcData = self:Get(name)
 	npcData = MergedTable(npcData, newData)
 	self.registry[name] = npcData
+end
+
+function NpcRegistry:CreateNpcs()
+	for _, npc in pairs(self.registry) do
+		CreateNpcDefinition(npc)
+	end
 end

@@ -1,16 +1,19 @@
-local AccForIp = 6
+local maxClientsPerIp = 6
 
 local playerLogin = CreatureEvent("AntiMc")
 
 function playerLogin.onLogin(player)
-	local mc = 0
-	for _, check in ipairs(Game.getPlayers()) do
-		if player:getIp() == check:getIp() then
-			mc = mc + 1
-			if mc > AccForIp then
-				return false
-			end
+	if maxClientsPerIp <= 0 then
+		return true
+	end
+	local ipClients = 0
+	for _, client in ipairs(Game.getPlayers()) do
+		if player:getIp() == client:getIp() then
+			ipClients = ipClients + 1
 		end
+	end
+	if ipClients > maxClientsPerIp then
+		return false
 	end
 
 	return true
