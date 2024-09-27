@@ -26,7 +26,7 @@ monster.Bestiary = {
 	Locations = "Warzone 3.",
 }
 
-monster.health = 9400
+monster.health = 8400
 monster.maxHealth = 9400
 monster.race = "undead"
 monster.corpse = 16075
