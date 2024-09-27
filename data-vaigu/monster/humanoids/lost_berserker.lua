@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lost Berserker")
 local monster = {}
 
 monster.description = "a lost berserker"
-monster.experience = 4800
+monster.experience = 5450
 monster.outfit = {
 	lookType = 496,
 	lookHead = 0,
