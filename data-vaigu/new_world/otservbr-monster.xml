@@ -10371,6 +10371,9 @@
 	<monster centerx="6251" centery="852" centerz="6" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="6537" centery="852" centerz="6" radius="1">
+		<monster name="Giant Spider" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6783" centery="852" centerz="6" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -10415,6 +10418,9 @@
 	</monster>
 	<monster centerx="6990" centery="857" centerz="6" radius="1">
 		<monster name="Insect Swarm" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="6522" centery="859" centerz="6" radius="1">
+		<monster name="Giant Spider" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6772" centery="859" centerz="6" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="6" spawntime="60" />
@@ -10468,6 +10474,9 @@
 	<monster centerx="6827" centery="864" centerz="6" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="6550" centery="865" centerz="6" radius="1">
+		<monster name="Giant Spider" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6811" centery="865" centerz="6" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -10486,6 +10495,9 @@
 	<monster centerx="6239" centery="868" centerz="6" radius="6">
 		<monster name="Mutated Bat" x="1" y="-4" z="6" spawntime="60" />
 		<monster name="Mutated Rat" x="6" y="5" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="6518" centery="869" centerz="6" radius="1">
+		<monster name="Giant Spider" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6159" centery="870" centerz="6" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="6" spawntime="60" />
@@ -20431,6 +20443,9 @@
 	<monster centerx="6881" centery="773" centerz="7" radius="1">
 		<monster name="Salamander" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6598" centery="774" centerz="7" radius="1">
+		<monster name="Panda" x="0" y="0" z="7" spawntime="3600" />
+	</monster>
 	<monster centerx="7044" centery="774" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Tortoise" x="1" y="1" z="7" spawntime="60" />
@@ -20819,6 +20834,9 @@
 	<monster centerx="7062" centery="816" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6729" centery="817" centerz="7" radius="1">
+		<monster name="Hydra" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7056" centery="817" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -20998,6 +21016,9 @@
 		<monster name="Vampire Bride" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Vampire Bride" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6538" centery="850" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6769" centery="850" centerz="7" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -21009,6 +21030,13 @@
 	</monster>
 	<monster centerx="6171" centery="851" centerz="7" radius="1">
 		<monster name="Vampire Viscount" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6528" centery="851" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6549" centery="851" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Tarantula" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6773" centery="851" centerz="7" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="7" spawntime="60" />
@@ -21040,11 +21068,21 @@
 	<monster centerx="6967" centery="857" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6538" centery="859" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6542" centery="859" centerz="7" radius="1">
+		<monster name="Tarantula" x="1" y="-1" z="7" spawntime="791996672" />
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6981" centery="859" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6903" centery="860" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6524" centery="861" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6969" centery="861" centerz="7" radius="1">
 		<monster name="Slime" x="-1" y="-1" z="7" spawntime="60" />
@@ -21077,11 +21115,17 @@
 	<monster centerx="6223" centery="864" centerz="7" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6538" centery="864" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6791" centery="864" centerz="7" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6971" centery="864" centerz="7" radius="1">
 		<monster name="Centipede" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6550" centery="866" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6824" centery="866" centerz="7" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="7" spawntime="60" />
@@ -21105,6 +21149,9 @@
 	<monster centerx="6176" centery="869" centerz="7" radius="1">
 		<monster name="Vampire" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6525" centery="869" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6848" centery="869" centerz="7" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -21122,6 +21169,11 @@
 	</monster>
 	<monster centerx="6945" centery="870" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6531" centery="871" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="-1" z="7" spawntime="60" />
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Tarantula" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6212" centery="872" centerz="7" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="7" spawntime="60" />
@@ -21188,8 +21240,15 @@
 	<monster centerx="6176" centery="878" centerz="7" radius="1">
 		<monster name="Vampire" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6518" centery="878" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6186" centery="879" centerz="7" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6547" centery="879" centerz="7" radius="1">
+		<monster name="Tarantula" x="-1" y="0" z="7" spawntime="60" />
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6841" centery="880" centerz="7" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="7" spawntime="60" />
@@ -21205,6 +21264,9 @@
 	</monster>
 	<monster centerx="6388" centery="881" centerz="7" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6533" centery="881" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6933" centery="881" centerz="7" radius="1">
 		<monster name="Spider" x="0" y="0" z="7" spawntime="60" />
@@ -21291,6 +21353,10 @@
 	<monster centerx="6374" centery="892" centerz="7" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6528" centery="892" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Tarantula" x="0" y="1" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6896" centery="893" centerz="7" radius="1">
 		<monster name="Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -21322,6 +21388,9 @@
 	<monster centerx="6238" centery="897" centerz="7" radius="1">
 		<monster name="Mutated Tiger" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6539" centery="897" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6854" centery="897" centerz="7" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -21341,14 +21410,27 @@
 		<monster name="Mutated Tiger" x="4" y="-5" z="7" spawntime="60" />
 		<monster name="Mutated Tiger" x="-1" y="2" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6537" centery="899" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7011" centery="899" centerz="7" radius="1">
 		<monster name="Crimson Frog" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6386" centery="900" centerz="7" radius="1">
 		<monster name="Carniphila" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6530" centery="900" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6534" centery="900" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Tarantula" x="0" y="1" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6354" centery="901" centerz="7" radius="1">
 		<monster name="Cobra" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6524" centery="901" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6994" centery="901" centerz="7" radius="1">
 		<monster name="Bog Frog" x="0" y="0" z="7" spawntime="60" />
@@ -21368,6 +21450,9 @@
 	</monster>
 	<monster centerx="6294" centery="902" centerz="7" radius="1">
 		<monster name="Mutated Tiger" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6531" centery="902" centerz="7" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7009" centery="902" centerz="7" radius="1">
 		<monster name="Crimson Frog" x="0" y="-1" z="7" spawntime="60" />
