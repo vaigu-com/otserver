@@ -4,6 +4,7 @@ target_sources(${PROJECT_NAME}_lib PRIVATE
     event_callback_functions.cpp
     events_scheduler_functions.cpp
     global_event_functions.cpp
+    look_functions.cpp
     move_event_functions.cpp
     talk_action_functions.cpp
 )
