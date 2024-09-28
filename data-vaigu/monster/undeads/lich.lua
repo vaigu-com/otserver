@@ -17,9 +17,9 @@ monster.raceId = 99
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -74,7 +74,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 4,
 	summons = {
-		{ name = "Bonebeast", chance = 10, interval = 2000, count = 4 },
+		{ name = "Bonebeast", chance = 10, interval = 2000, count = 3 },
 	},
 }
 
@@ -93,23 +93,21 @@ monster.voices = {
 monster.loot = {
 	{ name = "white pearl", chance = 5000 },
 	{ name = "black pearl", chance = 5960, maxCount = 3 },
-	{ name = "gold coin", chance = 100000, maxCount = 139 },
 	{ name = "small emerald", chance = 2230, maxCount = 3 },
-	{ name = "platinum coin", chance = 19720 },
 	{ name = "yellow gem", chance = 690 },
 	{ name = "platinum amulet", chance = 450 },
 	{ id = 3059, chance = 10000 }, -- spellbook
-	{ name = "mind stone", chance = 350 },
+	{ name = "mind stone", chance = 1350 },
 	{ id = 3098, chance = 1540 }, -- ring of healing
 	{ name = "skull staff", chance = 550 },
 	{ name = "strange helmet", chance = 740 },
 	{ name = "ancient shield", chance = 2422 },
-	{ name = "castle shield", chance = 350 },
-	{ name = "blue robe", chance = 150 },
+	{ name = "castle shield", chance = 750 },
+	{ name = "blue robe", chance = 250 },
 	{ name = "strong mana potion", chance = 7500 },
-	{ name = "lightning boots", chance = 200 },
-	{ name = "small topaz", chance = 2430, maxCount = 3 },
-	{ name = "maxilla maximus", chance = 100 },
+	{ name = "lightning boots", chance = 400 },
+	{ name = "small topaz", chance = 4430, maxCount = 3 },
+	{ name = "maxilla maximus", chance = 200 },
 }
 
 monster.attacks = {

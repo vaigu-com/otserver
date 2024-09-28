@@ -17,9 +17,9 @@ monster.raceId = 70
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -79,16 +79,15 @@ monster.voices = {
 monster.loot = {
 	{ name = "gold coin", chance = 40000, maxCount = 30 },
 	{ name = "small amethyst", chance = 140 },
-	{ id = 3092, chance = 190 }, -- axe ring
+	{ id = 3092, chance = 1190 }, -- axe ring
 	{ name = "double axe", chance = 600 },
 	{ name = "battle hammer", chance = 4000 },
 	{ name = "steel helmet", chance = 1600 },
 	{ name = "scale armor", chance = 9200 },
 	{ name = "battle shield", chance = 6000 },
-	{ name = "leather boots", chance = 40000 },
 	{ name = "white mushroom", chance = 55000, maxCount = 2 },
-	{ name = "iron ore", chance = 510 },
-	{ name = "health potion", chance = 380 },
+	{ name = "iron ore", chance = 1510 },
+	{ name = "health potion", chance = 1380 },
 	{ id = 12600, chance = 280 }, -- coal
 }
 

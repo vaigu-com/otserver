@@ -17,9 +17,9 @@ monster.raceId = 36
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 250,
+	toKill = 50,
 	FirstUnlock = 10,
-	SecondUnlock = 100,
+	SecondUnlock = 25,
 	CharmsPoints = 5,
 	Stars = 1,
 	Occurrence = 0,
@@ -73,8 +73,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 75000, maxCount = 4 },
-	{ name = "poison spider shell", chance = 1140 },
+	{ name = "poison spider shell", chance = 21140 },
 }
 
 monster.attacks = {

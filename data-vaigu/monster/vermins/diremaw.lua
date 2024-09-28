@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Diremaw")
 local monster = {}
 
 monster.description = "a diremaw"
-monster.experience = 2770
+monster.experience = 3200
 monster.outfit = {
 	lookType = 1034,
 	lookHead = 0,
@@ -21,9 +21,9 @@ monster.raceId = 1532
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -82,19 +82,19 @@ monster.voices = {
 monster.loot = {
 	{ name = "ham", chance = 40080, maxCount = 4 },
 	{ name = "diremaw brainpan", chance = 24120 },
-	{ name = "poisonous slime", chance = 11930, maxCount = 5 },
+	{ name = "poisonous slime", chance = 21930, maxCount = 2 },
 	{ name = "blue crystal shard", chance = 9660 },
 	{ name = "violet crystal shard", chance = 8180 },
 	{ name = "green crystal shard", chance = 8030 },
-	{ name = "onyx chip", chance = 8560, maxCount = 4 },
+	{ name = "onyx chip", chance = 18560, maxCount = 2 },
 	{ name = "diremaw legs", chance = 9650, maxCount = 2 },
 	{ name = "small enchanted emerald", chance = 2940, maxCount = 2 },
 	{ name = "small emerald", chance = 5080, maxCount = 2 },
-	{ name = "gold ingot", chance = 2970 },
-	{ id = 281, chance = 3100 }, -- giant shimmering pearl (green)
-	{ name = "suspicious device", chance = 600 },
-	{ name = "mycological bow", chance = 200 },
-	{ name = "mushroom backpack", chance = 1500 },
+	{ name = "gold ingot", chance = 5970 },
+	{ id = 281, chance = 8100 }, -- giant shimmering pearl (green)
+	{ name = "suspicious device", chance = 1600 },
+	{ name = "mycological bow", chance = 800 },
+	{ name = "mushroom backpack", chance = 2500 },
 }
 
 monster.attacks = {

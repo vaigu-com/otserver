@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Larva")
 local monster = {}
 
 monster.description = "a larva"
-monster.experience = 44
+monster.experience = 55
 monster.outfit = {
 	lookType = 82,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 82
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -73,7 +73,6 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 63000, maxCount = 15 },
 	{ name = "meat", chance = 14666 },
 }
 

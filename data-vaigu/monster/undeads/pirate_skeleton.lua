@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Pirate Skeleton")
 local monster = {}
 
 monster.description = "a pirate skeleton"
-monster.experience = 85
+monster.experience = 185
 monster.outfit = {
 	lookType = 195,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 256
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,15 +76,12 @@ monster.loot = {
 	{ name = "gold coin", chance = 48000, maxCount = 25 },
 	{ id = 3114, chance = 4460 }, -- skull
 	{ id = 3115, chance = 4250 }, -- bone
-	{ id = 3116, chance = 5140 }, -- big bone
 	{ id = 3264, chance = 550 }, -- sword
-	{ name = "short sword", chance = 1003 },
-	{ name = "bone club", chance = 960 },
-	{ name = "spooky blue eye", chance = 4730 },
+	{ name = "spooky blue eye", chance = 14730 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -80 },
 }
 
 monster.defenses = {

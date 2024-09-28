@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lizard Sentinel")
 local monster = {}
 
 monster.description = "a lizard sentinel"
-monster.experience = 110
+monster.experience = 180
 monster.outfit = {
 	lookType = 114,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 114
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -74,18 +74,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small diamond", chance = 190 },
+	{ name = "small diamond", chance = 1190 },
 	{ name = "gold coin", chance = 89000, maxCount = 80 },
 	{ name = "halberd", chance = 510 },
 	{ name = "spear", chance = 8750, maxCount = 3 },
 	{ name = "obsidian lance", chance = 1120 },
-	{ name = "chain armor", chance = 8560 },
 	{ name = "scale armor", chance = 7730 },
 	{ name = "hunting spear", chance = 4700 },
-	{ name = "sentinel shield", chance = 320 },
+	{ name = "sentinel shield", chance = 1320 },
 	{ name = "lizard leather", chance = 990 },
 	{ name = "lizard scale", chance = 960 },
-	{ name = "health potion", chance = 590 },
+	{ name = "health potion", chance = 1590 },
 }
 
 monster.attacks = {

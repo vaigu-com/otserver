@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Zombie")
 local monster = {}
 
 monster.description = "a zombie"
-monster.experience = 280
+monster.experience = 380
 monster.outfit = {
 	lookType = 311,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 512
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,16 +79,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 82000, maxCount = 65 },
+	{ name = "gold coin", chance = 82000, maxCount = 45 },
 	{ name = "halberd", chance = 3750 },
-	{ name = "mace", chance = 7250 },
+	{ name = "mace", chance = 5250 },
 	{ name = "battle hammer", chance = 7000 },
 	{ name = "steel helmet", chance = 4600 },
-	{ name = "brass helmet", chance = 9400 },
 	{ name = "simple dress", chance = 560 },
-	{ name = "mana potion", chance = 740 },
-	{ id = 8894, chance = 5680 }, -- heavily rusted armor
-	{ name = "half-eaten brain", chance = 10000 },
+	{ name = "mana potion", chance = 1740 },
+	{ name = "half-eaten brain", chance = 20000 },
 }
 
 monster.attacks = {

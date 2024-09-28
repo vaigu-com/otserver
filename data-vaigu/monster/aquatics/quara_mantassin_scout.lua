@@ -17,9 +17,9 @@ monster.raceId = 242
 monster.Bestiary = {
 	class = "Aquatic",
 	race = BESTY_RACE_AQUATIC,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -75,18 +75,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 94000, maxCount = 30 },
-	{ name = "mantassin tail", chance = 7780 },
-	{ name = "chain armor", chance = 5061 },
+	{ name = "mantassin tail", chance = 17780 },
 	{ id = 3114, chance = 990 }, -- skull
-	{ name = "small sapphire", chance = 990 },
-	{ name = "two handed sword", chance = 810 },
-	{ id = 3049, chance = 710 }, -- stealth ring
-	{ name = "fish fin", chance = 360 },
+	{ name = "small sapphire", chance = 1990 },
+	{ name = "two handed sword", chance = 1810 },
+	{ id = 3049, chance = 1710 }, -- stealth ring
+	{ name = "fish fin", chance = 1360 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -110, effect = CONST_ME_DRAWBLOOD },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -130, effect = CONST_ME_DRAWBLOOD },
 }
 
 monster.defenses = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ogre Brute")
 local monster = {}
 
 monster.description = "an ogre brute"
-monster.experience = 800
+monster.experience = 900
 monster.outfit = {
 	lookType = 857,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1161
 monster.Bestiary = {
 	class = "Giant",
 	race = BESTY_RACE_GIANT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -95,7 +95,7 @@ monster.loot = {
 	{ id = 7428, chance = 500 }, -- bonebreaker
 	{ id = 22171, chance = 800 }, -- ogre klubba
 	{ id = 3465, chance = 500 }, -- pot
-	{ name = "rusted helmet", chance = 220 },
+	{ name = "rusted helmet", chance = 1220 },
 	{ id = 22192, chance = 300 }, -- shamanic mask
 }
 

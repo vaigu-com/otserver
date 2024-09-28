@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Vexclaw")
 local monster = {}
 
 monster.description = "a vexclaw"
-monster.experience = 6248
+monster.experience = 7248
 monster.outfit = {
 	lookType = 854,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1197
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 2500,
+	toKill = 1000,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -78,12 +78,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 200 },
-	{ name = "platinum coin", chance = 100000, maxCount = 6 },
 	{ name = "great spirit potion", chance = 26010, maxCount = 5 },
 	{ name = "great mana potion", chance = 25210, maxCount = 5 },
-	{ name = "vexclaw talon", chance = 21500 },
-	{ name = "demonic essence", chance = 20730 },
+	{ name = "vexclaw talon", chance = 28500 },
+	{ name = "demonic essence", chance = 28730 },
 	{ name = "ultimate health potion", chance = 19960, maxCount = 5 },
 	{ name = "fire mushroom", chance = 19940, maxCount = 6 },
 	{ name = "golden sickle", chance = 18940 },
@@ -94,25 +92,20 @@ monster.loot = {
 	{ name = "small ruby", chance = 9590, maxCount = 5 },
 	{ name = "talon", chance = 5400 },
 	{ name = "yellow gem", chance = 5090 },
-	{ name = "wand of voodoo", chance = 4940 },
 	{ id = 3039, chance = 4730 }, -- red gem
-	{ name = "ice rapier", chance = 4730 },
 	{ name = "fire axe", chance = 3520 },
-	{ name = "might ring", chance = 2250 },
+	{ name = "might ring", chance = 4250 },
 	{ name = "giant sword", chance = 1880 },
-	{ id = 3049, chance = 1790 }, -- stealth ring
 	{ id = 3051, chance = 1790 }, -- energy ring
 	{ name = "rift lance", chance = 1360 },
-	{ id = 3098, chance = 1320 }, -- ring of healing
-	{ name = "platinum amulet", chance = 940 },
-	{ name = "devil helmet", chance = 520 },
-	{ name = "rift crossbow", chance = 370 },
-	{ name = "rift bow", chance = 370 },
-	{ name = "rift shield", chance = 370 },
-	{ name = "demon shield", chance = 370 },
-	{ name = "magic plate armor", chance = 70 },
-	{ name = "golden legs", chance = 50 },
-	{ name = "demonrage sword", chance = 30 },
+	{ id = 3098, chance = 4320 }, -- ring of healing
+	{ name = "rift crossbow", chance = 570 },
+	{ name = "rift bow", chance = 570 },
+	{ name = "rift shield", chance = 570 },
+	{ name = "demon shield", chance = 570 },
+	{ name = "magic plate armor", chance = 170 },
+	{ name = "golden legs", chance = 150 },
+	{ name = "demonrage sword", chance = 130 },
 }
 
 monster.attacks = {

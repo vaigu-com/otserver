@@ -17,9 +17,9 @@ monster.raceId = 115
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -68,9 +68,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 6,
+	maxSummons = 3,
 	summons = {
-		{ name = "cobra", chance = 20, interval = 2000, count = 6 },
+		{ name = "cobra", chance = 20, interval = 2000, count = 3 },
 	},
 }
 
@@ -82,22 +82,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 83740, maxCount = 55 },
 	{ name = "small amethyst", chance = 520 },
 	{ name = "yellow gem", chance = 150 },
-	{ id = 3052, chance = 340 }, -- life ring
-	{ name = "life crystal", chance = 1430 },
+	{ id = 3052, chance = 1340 }, -- life ring
+	{ name = "life crystal", chance = 2430 },
 	{ name = "terra rod", chance = 920 },
-	{ name = "snakebite rod", chance = 230 },
-	{ name = "cape", chance = 8640 },
-	{ name = "charmer's tiara", chance = 230 },
+	{ name = "charmer's tiara", chance = 1230 },
 	{ name = "lizard leather", chance = 1320 },
 	{ name = "lizard scale", chance = 860 },
-	{ name = "mana potion", chance = 860 },
+	{ name = "mana potion", chance = 2860 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -30 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
 	-- poison
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -100, maxDamage = -200, range = 7, shootEffect = CONST_ANI_POISON, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -50, maxDamage = -110, range = 7, radius = 1, shootEffect = CONST_ANI_POISON, effect = CONST_ME_GREEN_RINGS, target = true },

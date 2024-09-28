@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lava Golem")
 local monster = {}
 
 monster.description = "a lava golem"
-monster.experience = 7900
+monster.experience = 8400
 monster.outfit = {
 	lookType = 491,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 884
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 1,
@@ -75,8 +75,6 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 199 },
-	{ name = "platinum coin", chance = 100000, maxCount = 11 },
 	{ name = "yellow gem", chance = 6480 },
 	{ id = 3039, chance = 1180 }, -- red gem
 	{ name = "wand of inferno", chance = 2950 },
@@ -84,10 +82,9 @@ monster.loot = {
 	{ name = "fire axe", chance = 1560 },
 	{ name = "crown shield", chance = 1180 },
 	{ name = "iron ore", chance = 11570 },
-	{ name = "white piece of cloth", chance = 4810 },
+	{ name = "white piece of cloth", chance = 8810 },
 	{ name = "red piece of cloth", chance = 3530 },
 	{ name = "yellow piece of cloth", chance = 7230 },
-	{ name = "strong health potion", chance = 18830, maxCount = 2 },
 	{ name = "strong mana potion", chance = 18150, maxCount = 2 },
 	{ name = "great mana potion", chance = 16030, maxCount = 2 },
 	{ name = "mana potion", chance = 20720, maxCount = 2 },
@@ -97,13 +94,13 @@ monster.loot = {
 	{ name = "ultimate health potion", chance = 15390 },
 	{ name = "spellbook of mind control", chance = 450 },
 	{ name = "fiery heart", chance = 13510 },
-	{ name = "wand of everblazing", chance = 1390 },
+	{ name = "wand of everblazing", chance = 2390 },
 	{ name = "violet crystal shard", chance = 6200 },
 	{ name = "green crystal splinter", chance = 13990, maxCount = 2 },
 	{ name = "red crystal fragment", chance = 10990 },
 	{ name = "magma clump", chance = 15370, maxCount = 2 },
-	{ name = "blazing bone", chance = 15200 },
-	{ name = "prismatic bolt", chance = 12580, maxCount = 5 },
+	{ name = "blazing bone", chance = 19200 },
+	{ name = "prismatic bolt", chance = 12580, maxCount = 15 },
 }
 
 monster.attacks = {

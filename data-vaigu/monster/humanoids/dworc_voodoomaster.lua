@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dworc Voodoomaster")
 local monster = {}
 
 monster.description = "a dworc voodoomaster"
-monster.experience = 55
+monster.experience = 65
 monster.outfit = {
 	lookType = 214,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 214
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -77,17 +77,12 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2920, chance = 6000 }, -- torch
-	{ name = "gold coin", chance = 75000, maxCount = 17 },
-	{ name = "strange symbol", chance = 500 },
-	{ id = 3114, chance = 1950, maxCount = 3 }, -- skull
-	{ id = 3115, chance = 5800 }, -- bone
-	{ id = 3116, chance = 3000 }, -- big bone
+	{ name = "gold coin", chance = 75000, maxCount = 47 },
+	{ name = "strange symbol", chance = 1500 },
 	{ name = "poison dagger", chance = 1000 },
-	{ name = "leather armor", chance = 10000 },
-	{ id = 3002, chance = 130 }, -- voodoo doll
-	{ name = "tribal mask", chance = 500 },
-	{ name = "health potion", chance = 600 },
+	{ id = 3002, chance = 830 }, -- voodoo doll
+	{ name = "tribal mask", chance = 1500 },
+	{ name = "health potion", chance = 2600 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ogre Shaman")
 local monster = {}
 
 monster.description = "an ogre shaman"
-monster.experience = 625
+monster.experience = 725
 monster.outfit = {
 	lookType = 859,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1163
 monster.Bestiary = {
 	class = "Giant",
 	race = BESTY_RACE_GIANT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -90,11 +90,11 @@ monster.voices = {
 monster.loot = {
 	{ id = 3031, chance = 92000, maxCount = 130 }, -- gold coin
 	{ id = 22194, chance = 1200, maxCount = 3 }, -- opal
-	{ id = 22185, chance = 6200, maxCount = 2 }, -- prickly pear
-	{ id = 3030, chance = 2200, maxCount = 2 }, -- small ruby
+	{ id = 22185, chance = 8200, maxCount = 2 }, -- prickly pear
+	{ id = 3030, chance = 4200, maxCount = 2 }, -- small ruby
 	{ id = 3027, chance = 1200, maxCount = 2 }, -- black pearl
 	{ id = 17831, chance = 3200 }, -- bone fetish
-	{ id = 11452, chance = 1200 }, -- broken shamanic staff
+	{ id = 11452, chance = 2200 }, -- broken shamanic staff
 	{ id = 3069, chance = 800 }, -- necrotic rod
 	{ id = 22188, chance = 3200 }, -- ogre ear stud
 	{ id = 22189, chance = 2200 }, -- ogre nose ring
@@ -103,8 +103,7 @@ monster.loot = {
 	{ id = 22191, chance = 1200 }, -- skull fetish
 	{ id = 237, chance = 1000, maxCount = 3 }, -- strong mana potion
 	{ id = 3072, chance = 600 }, -- wand of decay
-	{ id = 2901, chance = 500 }, -- waterskin
-	{ id = 22183, chance = 300 }, -- ogre scepta
+	{ id = 22183, chance = 1300 }, -- ogre scepta
 	{ id = 22192, chance = 300 }, -- shamanic mask
 	{ id = 3002, chance = 100 }, -- voodoo doll
 	{ id = 2965, chance = 100, maxCount = 2 }, -- didgeridoo

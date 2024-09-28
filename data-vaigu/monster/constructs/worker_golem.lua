@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Worker Golem")
 local monster = {}
 
 monster.description = "a worker golem"
-monster.experience = 1250
+monster.experience = 1550
 monster.outfit = {
 	lookType = 304,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 503
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -82,23 +82,21 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small diamond", chance = 1000, maxCount = 2 },
-	{ name = "gold coin", chance = 43000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 40 },
-	{ name = "might ring", chance = 370 },
+	{ name = "might ring", chance = 1370 },
 	{ name = "life crystal", chance = 890 },
 	{ name = "war hammer", chance = 920 },
-	{ name = "iron ore", chance = 1001 },
+	{ name = "iron ore", chance = 3001 },
 	{ name = "bonebreaker", chance = 130 },
 	{ name = "berserk potion", chance = 820 },
 	{ name = "spiked squelcher", chance = 1003 },
 	{ name = "great mana potion", chance = 1470 },
 	{ name = "great health potion", chance = 2100 },
 	{ name = "nail", chance = 5000, maxCount = 5 },
-	{ name = "great spirit potion", chance = 830 },
+	{ name = "great spirit potion", chance = 1830 },
 	{ name = "gear wheel", chance = 1007 },
 	{ id = 8895, chance = 200 }, -- rusted armor
-	{ id = 8898, chance = 50 }, -- rusted legs
-	{ id = 9066, chance = 2270 }, -- crystal pedestal
+	{ id = 8898, chance = 850 }, -- rusted legs
+	{ id = 9066, chance = 270 }, -- crystal pedestal
 	{ name = "gear crystal", chance = 2270 },
 }
 

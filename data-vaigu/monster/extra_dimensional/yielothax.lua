@@ -21,9 +21,9 @@ monster.raceId = 717
 monster.Bestiary = {
 	class = "Extra Dimensional",
 	race = BESTY_RACE_EXTRA_DIMENSIONAL,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -82,10 +82,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small diamond", chance = 4761, maxCount = 5 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 27 },
+	{ name = "small diamond", chance = 8761, maxCount = 5 },
 	{ name = "talon", chance = 917 },
 	{ name = "might ring", chance = 3846 },
 	{ name = "wand of cosmic energy", chance = 523 },
@@ -94,12 +91,12 @@ monster.loot = {
 	{ name = "mastermind potion", chance = 490 },
 	{ name = "strong health potion", chance = 20000 },
 	{ name = "strong mana potion", chance = 20000 },
-	{ name = "lightning pendant", chance = 862 },
-	{ name = "lightning legs", chance = 480 },
-	{ name = "shockwave amulet", chance = 571 },
-	{ name = "broken ring of ending", chance = 261 },
-	{ name = "yielowax", chance = 300 },
-	{ name = "yielocks", chance = 320 },
+	{ name = "lightning pendant", chance = 1862 },
+	{ name = "lightning legs", chance = 1480 },
+	{ name = "shockwave amulet", chance = 1571 },
+	{ name = "broken ring of ending", chance = 1261 },
+	{ name = "yielowax", chance = 2300 },
+	{ name = "yielocks", chance = 2320 },
 }
 
 monster.attacks = {

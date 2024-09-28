@@ -17,9 +17,9 @@ monster.raceId = 295
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 2500,
+	toKill = 1000,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -77,22 +77,18 @@ monster.loot = {
 	{ name = "emerald bangle", chance = 2200 },
 	{ id = 3019, chance = 190 }, -- demonbone amulet
 	{ name = "small diamond", chance = 1400 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 40000, maxCount = 100 },
-	{ name = "gold coin", chance = 10000, maxCount = 46 },
-	{ name = "wand of inferno", chance = 9450 },
+	{ name = "wand of inferno", chance = 4450 },
 	{ name = "burnt scroll", chance = 50000 },
-	{ name = "blank rune", chance = 30000, maxCount = 2 },
 	{ name = "fire sword", chance = 4140 },
 	{ name = "fire axe", chance = 440 },
-	{ name = "soul orb", chance = 12150 },
-	{ name = "demonic essence", chance = 14500 },
+	{ name = "soul orb", chance = 32150 },
+	{ name = "demonic essence", chance = 34500 },
 	{ name = "magma legs", chance = 682 },
 	{ name = "magma coat", chance = 380 },
-	{ name = "fiery heart", chance = 9570 },
-	{ name = "piece of hellfire armor", chance = 5060 },
+	{ name = "fiery heart", chance = 19570 },
+	{ name = "piece of hellfire armor", chance = 15060 },
 	{ id = 12600, chance = 670 }, -- coal
-	{ name = "eternal flames", chance = 380 },
+	{ name = "eternal flames", chance = 1380 },
 }
 
 monster.attacks = {

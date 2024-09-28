@@ -17,9 +17,9 @@ monster.raceId = 734
 monster.Bestiary = {
 	class = "Aquatic",
 	race = BESTY_RACE_AQUATIC,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -83,15 +83,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 75000, maxCount = 50 },
 	{ name = "hunting spear", chance = 15185, maxCount = 3 },
 	{ id = 3052, chance = 2127 }, -- life ring
 	{ name = "rusted armor", chance = 925 },
 	{ name = "heavy trident", chance = 505 },
 	{ name = "eye of a deepling", chance = 310 },
-	{ name = "fish fin", chance = 310 },
+	{ name = "fish fin", chance = 1310 },
 	{ name = "small emerald", chance = 121 },
-	{ name = "flask of rust remover", chance = 111 },
+	{ name = "flask of rust remover", chance = 1111 },
 }
 
 monster.attacks = {

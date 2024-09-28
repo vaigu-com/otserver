@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Shaburak Demon")
 local monster = {}
 
 monster.description = "a shaburak demon"
-monster.experience = 900
+monster.experience = 1200
 monster.outfit = {
 	lookType = 417,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 724
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -83,14 +83,12 @@ monster.loot = {
 	{ name = "piggy bank", chance = 1030 },
 	{ name = "small ruby", chance = 4761, maxCount = 5 },
 	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "gold coin", chance = 50000, maxCount = 50 },
-	{ id = 3051, chance = 1052 }, -- energy ring
+	{ id = 3051, chance = 152 }, -- energy ring
 	{ name = "wand of inferno", chance = 564 },
 	{ name = "brown mushroom", chance = 3846 },
-	{ name = "magic sulphur", chance = 81 },
-	{ name = "royal spear", chance = 10000, maxCount = 6 },
-	{ name = "bullseye potion", chance = 628 },
+	{ name = "magic sulphur", chance = 810 },
+	{ name = "bullseye potion", chance = 3628 },
 	{ name = "strong health potion", chance = 4761 },
 	{ name = "strong mana potion", chance = 5000 },
 	{ name = "magma legs", chance = 155 },

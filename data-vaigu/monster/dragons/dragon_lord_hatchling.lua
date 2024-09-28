@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dragon Lord Hatchling")
 local monster = {}
 
 monster.description = "a dragon lord hatchling"
-monster.experience = 645
+monster.experience = 745
 monster.outfit = {
 	lookType = 272,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 386
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,14 +80,13 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "dragon ham", chance = 77910 },
-	{ name = "gold coin", chance = 72690, maxCount = 121 },
-	{ name = "mana potion", chance = 1200 },
-	{ name = "green mushroom", chance = 490 },
-	{ name = "magma boots", chance = 100 },
+	{ name = "mana potion", chance = 11200 },
+	{ name = "green mushroom", chance = 1490 },
+	{ name = "magma boots", chance = 1100 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -90 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -190 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_FIREDAMAGE, minDamage = -90, maxDamage = -125, length = 5, spread = 2, effect = CONST_ME_FIREAREA, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -55, maxDamage = -105, range = 7, radius = 4, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA, target = true },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 3, shootEffect = CONST_ANI_FIRE, target = true },

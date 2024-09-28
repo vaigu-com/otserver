@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ogre Savage")
 local monster = {}
 
 monster.description = "an ogre savage"
-monster.experience = 950
+monster.experience = 1200
 monster.outfit = {
 	lookType = 858,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1162
 monster.Bestiary = {
 	class = "Giant",
 	race = BESTY_RACE_GIANT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -83,7 +83,7 @@ monster.loot = {
 	{ id = 22193, chance = 3200, maxCount = 2 }, -- onyx chip
 	{ id = 22194, chance = 3200, maxCount = 3 }, -- opal
 	{ id = 3598, chance = 2200, maxCount = 7 }, -- cookie
-	{ id = 8016, chance = 1200, maxCount = 2 }, -- jalapeno pepper
+	{ id = 8016, chance = 5200, maxCount = 2 }, -- jalapeno pepper
 	{ id = 9057, chance = 1200, maxCount = 2 }, -- small topaz
 	{ id = 3030, chance = 1200, maxCount = 2 }, -- small ruby
 	{ id = 7439, chance = 1200 }, -- berserk potion

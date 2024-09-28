@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Defiler")
 local monster = {}
 
 monster.description = "a defiler"
-monster.experience = 3700
+monster.experience = 4500
 monster.outfit = {
 	lookType = 238,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 289
 monster.Bestiary = {
 	class = "Slime",
 	race = BESTY_RACE_SLIME,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -80,21 +80,17 @@ monster.voices = {
 monster.loot = {
 	{ name = "small diamond", chance = 2439, maxCount = 2 },
 	{ name = "small ruby", chance = 3000, maxCount = 2 },
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "gold coin", chance = 100000, maxCount = 72 },
 	{ name = "small emerald", chance = 5366, maxCount = 3 },
 	{ name = "talon", chance = 5710 },
-	{ name = "platinum coin", chance = 95000, maxCount = 6 },
-	{ name = "yellow gem", chance = 1219 },
-	{ name = "green gem", chance = 613 },
+	{ name = "yellow gem", chance = 5219 },
+	{ name = "green gem", chance = 5613 },
 	{ id = 3039, chance = 1538 }, -- red gem
-	{ name = "blue gem", chance = 300 },
-	{ name = "soul orb", chance = 20000 },
+	{ name = "blue gem", chance = 5300 },
+	{ name = "soul orb", chance = 40000 },
 	{ id = 6299, chance = 3030 }, -- death ring
-	{ name = "demonic essence", chance = 20320 },
-	{ name = "glob of acid slime", chance = 14210 },
-	{ name = "glob of tar", chance = 12000 },
+	{ name = "demonic essence", chance = 40320 },
+	{ name = "glob of acid slime", chance = 44210 },
+	{ name = "glob of tar", chance = 42000 },
 }
 
 monster.attacks = {

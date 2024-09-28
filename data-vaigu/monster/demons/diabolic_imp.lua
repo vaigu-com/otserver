@@ -17,9 +17,9 @@ monster.raceId = 288
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,28 +79,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 40000, maxCount = 97 },
-	{ name = "gold coin", chance = 3390, maxCount = 7 },
-	{ name = "small amethyst", chance = 2250, maxCount = 3 },
+	{ name = "small amethyst", chance = 12250, maxCount = 3 },
 	{ id = 3049, chance = 2702 }, -- stealth ring
-	{ name = "necrotic rod", chance = 830 },
-	{ name = "blank rune", chance = 16666, maxCount = 2 },
+	{ name = "necrotic rod", chance = 1830 },
 	{ name = "double axe", chance = 1994 },
 	{ id = 3307, chance = 5660 }, -- scimitar
 	{ name = "guardian shield", chance = 8130 },
 	{ name = "pitchfork", chance = 50000 },
 	{ name = "cleaver", chance = 8830 },
-	{ name = "soul orb", chance = 7230 },
+	{ name = "soul orb", chance = 17230 },
 	{ id = 6299, chance = 120 }, -- death ring
-	{ name = "demonic essence", chance = 8000 },
+	{ name = "demonic essence", chance = 18000 },
 	{ name = "flask of demonic blood", chance = 25000, maxCount = 2 },
-	{ name = "magma coat", chance = 250 },
-	{ name = "magma monocle", chance = 430 },
+	{ name = "magma coat", chance = 1250 },
+	{ name = "magma monocle", chance = 1430 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -240, condition = { type = CONDITION_POISON, totalDamage = 160, interval = 4000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -340, condition = { type = CONDITION_POISON, totalDamage = 160, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -100, maxDamage = -240, range = 7, radius = 4, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA, target = true },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_FIREDAMAGE, minDamage = -300, maxDamage = -430, range = 7, radius = 2, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREATTACK, target = true },
 	{ name = "diabolic imp skill reducer", interval = 2000, chance = 5, range = 5, target = false },

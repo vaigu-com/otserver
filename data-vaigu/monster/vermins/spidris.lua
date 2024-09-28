@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Spidris")
 local monster = {}
 
 monster.description = "a spidris"
-monster.experience = 2600
+monster.experience = 2800
 monster.outfit = {
 	lookType = 457,
 	lookHead = 0,
@@ -77,19 +77,18 @@ monster.voices = {
 monster.loot = {
 	{ name = "small ruby", chance = 11900, maxCount = 5 },
 	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "platinum coin", chance = 45000, maxCount = 4 },
 	{ name = "violet gem", chance = 770 },
 	{ id = 6299, chance = 2700 }, -- death ring
-	{ name = "titan axe", chance = 920 },
+	{ name = "titan axe", chance = 1920 },
 	{ name = "great mana potion", chance = 11500, maxCount = 2 },
-	{ id = 281, chance = 1700 }, -- giant shimmering pearl (green)
+	{ id = 281, chance = 2700 }, -- giant shimmering pearl (green)
 	{ name = "ultimate health potion", chance = 6250, maxCount = 2 },
 	{ name = "spidris mandible", chance = 14960 },
 	{ name = "compound eye", chance = 12500 },
-	{ name = "calopteryx cape", chance = 370 },
+	{ name = "calopteryx cape", chance = 870 },
 	{ name = "carapace shield", chance = 720 },
-	{ name = "hive scythe", chance = 690 },
+	{ name = "hive scythe", chance = 990 },
 }
 
 monster.attacks = {

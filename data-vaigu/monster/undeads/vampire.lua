@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Vampire")
 local monster = {}
 
 monster.description = "a vampire"
-monster.experience = 305
+monster.experience = 355
 monster.outfit = {
 	lookType = 68,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 68
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -81,20 +81,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "emerald bangle", chance = 230 },
-	{ name = "black pearl", chance = 1800 },
-	{ name = "gold coin", chance = 90230, maxCount = 60 },
-	{ name = "bronze amulet", chance = 220 },
+	{ name = "emerald bangle", chance = 1230 },
+	{ name = "black pearl", chance = 7800 },
+	{ name = "bronze amulet", chance = 1220 },
 	{ id = 3114, chance = 1000 }, -- skull
 	{ name = "spike sword", chance = 1000 },
 	{ name = "ice rapier", chance = 420 },
 	{ name = "katana", chance = 1560 },
-	{ name = "strange helmet", chance = 420 },
-	{ name = "vampire shield", chance = 230 },
+	{ name = "strange helmet", chance = 1420 },
+	{ name = "vampire shield", chance = 430 },
 	{ name = "grave flower", chance = 1910 },
 	{ name = "strong health potion", chance = 1500 },
-	{ name = "vampire teeth", chance = 7600 },
-	{ name = "blood preservation", chance = 5100 },
+	{ name = "vampire teeth", chance = 12600 },
+	{ name = "blood preservation", chance = 15100 },
 }
 
 monster.attacks = {

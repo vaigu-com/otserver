@@ -17,9 +17,9 @@ monster.raceId = 285
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 2500,
+	toKill = 1000,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -82,26 +82,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 40000, maxCount = 99 },
 	{ name = "platinum coin", chance = 55000, maxCount = 8 },
 	{ name = "golden legs", chance = 30 },
 	{ id = 3461, chance = 5250 }, -- saw
-	{ name = "steel boots", chance = 5050 },
+	{ name = "steel boots", chance = 4050 },
 	{ name = "ham", chance = 60000, maxCount = 2 },
 	{ name = "orichalcum pearl", chance = 2760, maxCount = 2 },
 	{ name = "cat's paw", chance = 2222 },
-	{ name = "jewelled backpack", chance = 1192 },
-	{ name = "soul orb", chance = 23000 },
+	{ name = "jewelled backpack", chance = 2192 },
+	{ name = "soul orb", chance = 33000 },
 	{ id = 6299, chance = 2008 }, -- death ring
-	{ name = "demonic essence", chance = 8520 },
+	{ name = "demonic essence", chance = 12520 },
 	{ name = "flask of demonic blood", chance = 33333, maxCount = 3 },
 	{ name = "assassin star", chance = 2222, maxCount = 5 },
-	{ name = "vile axe", chance = 480 },
-	{ name = "butcher's axe", chance = 850 },
-	{ name = "great mana potion", chance = 14830, maxCount = 2 },
-	{ name = "great health potion", chance = 10000, maxCount = 2 },
-	{ name = "gold ingot", chance = 3140 },
+	{ name = "vile axe", chance = 1480 },
+	{ name = "butcher's axe", chance = 1850 },
+	{ name = "great mana potion", chance = 14830, maxCount = 3 },
+	{ name = "great health potion", chance = 10000, maxCount = 3 },
+	{ name = "gold ingot", chance = 4140 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Brimstone Bug")
 local monster = {}
 
 monster.description = "a brimstone bug"
-monster.experience = 900
+monster.experience = 1100
 monster.outfit = {
 	lookType = 352,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 674
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -74,7 +74,6 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 200 },
 	{ name = "small emerald", chance = 2702, maxCount = 4 },
 	{ id = 3049, chance = 892 }, -- stealth ring
 	{ name = "platinum amulet", chance = 110 },
@@ -82,10 +81,10 @@ monster.loot = {
 	{ name = "strong health potion", chance = 9003 },
 	{ name = "strong mana potion", chance = 9025 },
 	{ name = "poisonous slime", chance = 50000 },
-	{ name = "lump of earth", chance = 20000 },
-	{ name = "sulphurous stone", chance = 14970 },
-	{ name = "brimstone fangs", chance = 5710 },
-	{ name = "brimstone shell", chance = 10000 },
+	{ name = "lump of earth", chance = 25000 },
+	{ name = "sulphurous stone", chance = 18970 },
+	{ name = "brimstone fangs", chance = 15710 },
+	{ name = "brimstone shell", chance = 19000 },
 }
 
 monster.attacks = {

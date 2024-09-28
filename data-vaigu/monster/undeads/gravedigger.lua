@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Gravedigger")
 local monster = {}
 
 monster.description = "a gravedigger"
-monster.experience = 950
+monster.experience = 1950
 monster.outfit = {
 	lookType = 558,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 975
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 100,
+	FirstUnlock = 25,
+	SecondUnlock = 50,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -84,13 +84,13 @@ monster.loot = {
 	{ name = "platinum coin", chance = 24470 },
 	{ name = "yellow gem", chance = 800 },
 	{ name = "wand of inferno", chance = 5590 },
-	{ name = "sudden death rune", chance = 7300 },
+	{ name = "sudden death rune", chance = 27300 },
 	{ name = "skull staff", chance = 130 },
 	{ name = "mysterious voodoo skull", chance = 100 },
 	{ id = 6299, chance = 800 }, -- death ring
 	{ name = "strong health potion", chance = 2260, maxCount = 2 },
-	{ name = "strong mana potion", chance = 3600, maxCount = 2 },
-	{ name = "unholy bone", chance = 9570 },
+	{ name = "strong mana potion", chance = 13600, maxCount = 2 },
+	{ name = "unholy bone", chance = 19570 },
 	{ name = "pile of grave earth", chance = 6650 },
 	{ name = "safety pin", chance = 6000 },
 }

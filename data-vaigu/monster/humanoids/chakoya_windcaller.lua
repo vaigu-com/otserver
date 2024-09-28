@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Chakoya Windcaller")
 local monster = {}
 
 monster.description = "a chakoya windcaller"
-monster.experience = 48
+monster.experience = 78
 monster.outfit = {
 	lookType = 260,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 329
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -77,18 +77,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 71170, maxCount = 27 },
-	{ name = "brass helmet", chance = 4390 },
-	{ name = "bone shield", chance = 960 },
 	{ id = 3578, chance = 30790, maxCount = 3 }, -- fish
-	{ name = "northern pike", chance = 40 },
-	{ name = "rainbow trout", chance = 40 },
-	{ name = "green perch", chance = 110 },
-	{ name = "fireproof horn", chance = 410 },
+	{ name = "northern pike", chance = 840 },
+	{ name = "rainbow trout", chance = 740 },
+	{ name = "green perch", chance = 1110 },
+	{ name = "fireproof horn", chance = 910 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -22 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -62 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ICEDAMAGE, minDamage = -16, maxDamage = -32, range = 7, shootEffect = CONST_ANI_ICE, target = false },
 	-- freeze
 	{ name = "condition", type = CONDITION_FREEZING, interval = 2000, chance = 10, minDamage = -130, maxDamage = -160, radius = 3, effect = CONST_ME_ICEAREA, target = false },

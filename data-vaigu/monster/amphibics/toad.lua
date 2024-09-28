@@ -17,9 +17,9 @@ monster.raceId = 262
 monster.Bestiary = {
 	class = "Amphibic",
 	race = BESTY_RACE_AMPHIBIC,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -75,15 +75,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 80000, maxCount = 20 },
-	{ name = "war hammer", chance = 148 },
-	{ name = "mace", chance = 2854 },
+	{ name = "war hammer", chance = 1148 },
+	{ name = "mace", chance = 12854 },
 	{ id = 3578, chance = 20000 }, -- fish
-	{ name = "poisonous slime", chance = 4761 },
+	{ name = "poisonous slime", chance = 14761 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -30, effect = CONST_ME_DRAWBLOOD, condition = { type = CONDITION_POISON, totalDamage = 20, interval = 4000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50, effect = CONST_ME_DRAWBLOOD, condition = { type = CONDITION_POISON, totalDamage = 20, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_EARTHDAMAGE, minDamage = -8, maxDamage = -17, range = 7, shootEffect = CONST_ANI_POISON, effect = CONST_ME_GREEN_RINGS, target = false },
 }
 

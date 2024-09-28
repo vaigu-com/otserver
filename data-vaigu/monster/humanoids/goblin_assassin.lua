@@ -17,9 +17,9 @@ monster.raceId = 463
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,17 +78,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small stone", chance = 9900, maxCount = 3 },
-	{ name = "gold coin", chance = 50000, maxCount = 9 },
-	{ id = 3115, chance = 13000 }, -- bone
+	{ name = "small stone", chance = 9900, maxCount = 5 },
+	{ name = "gold coin", chance = 50000, maxCount = 19 },
+	{ id = 3115, chance = 3000 }, -- bone
 	{ name = "mouldy cheese", chance = 6610 },
-	{ name = "dagger", chance = 17000 },
-	{ name = "short sword", chance = 8820 },
-	{ name = "bone club", chance = 4770 },
-	{ name = "leather helmet", chance = 13000 },
-	{ name = "leather armor", chance = 7240 },
-	{ name = "small axe", chance = 9800 },
-	{ id = 3578, chance = 12400 }, -- fish
+	{ id = 3578, chance = 22400 }, -- fish
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Elder Bonelord")
 local monster = {}
 
 monster.description = "an elder bonelord"
-monster.experience = 280
+monster.experience = 480
 monster.outfit = {
 	lookType = 108,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 108
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -75,8 +75,8 @@ monster.light = {
 monster.summon = {
 	maxSummons = 6,
 	summons = {
-		{ name = "Gazer", chance = 10, interval = 2000, count = 6 },
-		{ name = "Crypt Shambler", chance = 15, interval = 2000, count = 6 },
+		{ name = "Gazer", chance = 10, interval = 2000, count = 4 },
+		{ name = "Crypt Shambler", chance = 15, interval = 2000, count = 3 },
 	},
 }
 
@@ -90,18 +90,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 99290, maxCount = 86 },
 	{ name = "elder bonelord tentacle", chance = 20040 },
 	{ name = "small flask of eyedrops", chance = 9720 },
-	{ name = "sniper arrow", chance = 8780, maxCount = 5 },
 	{ name = "two handed sword", chance = 2980 },
-	{ name = "steel shield", chance = 2040 },
 	{ id = 3059, chance = 1030 }, -- spellbook
 	{ name = "strong mana potion", chance = 830 },
-	{ name = "giant eye", chance = 460 },
-	{ name = "bonelord shield", chance = 90 },
-	{ name = "bonelord helmet", chance = 90 },
-	{ name = "bonelord eye", chance = 1920 },
+	{ name = "giant eye", chance = 1460 },
+	{ name = "bonelord shield", chance = 190 },
+	{ name = "bonelord helmet", chance = 190 },
+	{ name = "bonelord eye", chance = 2920 },
 }
 
 monster.attacks = {

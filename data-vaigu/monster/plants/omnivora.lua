@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Omnivora")
 local monster = {}
 
 monster.description = "an omnivora"
-monster.experience = 750
+monster.experience = 850
 monster.outfit = {
 	lookType = 717,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1141
 monster.Bestiary = {
 	class = "Plant",
 	race = BESTY_RACE_PLANT,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -85,11 +85,11 @@ monster.loot = {
 	{ id = 3723, chance = 1900 }, -- white mushroom
 	{ id = 3052, chance = 950 }, -- life ring
 	{ id = 3297, chance = 780 }, -- serpent sword
-	{ id = 814, chance = 700 }, -- terra amulet
+	{ id = 814, chance = 4000 }, -- terra amulet
 	{ id = 813, chance = 560 }, -- terra boots
 	{ id = 3069, chance = 430 }, -- necrotic rod
-	{ id = 8072, chance = 320 }, -- spellbook of enlightenment
-	{ id = 12311, chance = 100 }, -- carrot on a stick
+	{ id = 8072, chance = 3200 }, -- spellbook of enlightenment
+	{ id = 12311, chance = 1000 }, -- carrot on a stick
 }
 
 monster.attacks = {

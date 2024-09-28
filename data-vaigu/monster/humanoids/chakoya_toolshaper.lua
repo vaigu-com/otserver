@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Chakoya Toolshaper")
 local monster = {}
 
 monster.description = "a chakoya toolshaper"
-monster.experience = 40
+monster.experience = 70
 monster.outfit = {
 	lookType = 259,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 328
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -77,21 +77,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 77810, maxCount = 20 },
 	{ name = "mace", chance = 5300 },
-	{ name = "bone shield", chance = 720 },
 	{ id = 3456, chance = 1100 }, -- pick
 	{ id = 3578, chance = 25060, maxCount = 2 }, -- fish
-	{ name = "northern pike", chance = 70 },
-	{ name = "rainbow trout", chance = 140 },
-	{ name = "green perch", chance = 70 },
+	{ name = "northern pike", chance = 170 },
+	{ name = "rainbow trout", chance = 1140 },
+	{ name = "green perch", chance = 170 },
 	{ name = "mammoth whopper", chance = 160 },
 	{ id = 7441, chance = 450 }, -- ice cube
-	{ name = "fireproof horn", chance = 390 },
+	{ name = "fireproof horn", chance = 1390 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -35 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -55 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -45, range = 7, radius = 1, shootEffect = CONST_ANI_SMALLSTONE, target = true },
 }
 

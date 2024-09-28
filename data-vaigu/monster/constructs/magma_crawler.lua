@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Magma Crawler")
 local monster = {}
 
 monster.description = "a magma crawler"
-monster.experience = 3900
+monster.experience = 4390
 monster.outfit = {
 	lookType = 492,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 885
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -76,9 +76,6 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small diamond", chance = 8800, maxCount = 3 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 99 },
-	{ name = "platinum coin", chance = 100000, maxCount = 5 },
 	{ name = "yellow gem", chance = 1030 },
 	{ id = 3051, chance = 1650 }, -- energy ring
 	{ name = "fire sword", chance = 1680 },

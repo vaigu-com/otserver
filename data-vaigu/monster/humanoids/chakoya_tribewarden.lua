@@ -17,9 +17,9 @@ monster.raceId = 319
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -77,15 +77,12 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 79590, maxCount = 20 },
-	{ name = "short sword", chance = 4810 },
-	{ name = "bone shield", chance = 1030 },
 	{ id = 3578, chance = 19370 }, -- fish
-	{ name = "northern pike", chance = 60 },
-	{ name = "rainbow trout", chance = 50 },
-	{ name = "green perch", chance = 100 },
-	{ name = "mammoth whopper", chance = 130 },
-	{ name = "fireproof horn", chance = 350 },
+	{ name = "northern pike", chance = 2260 },
+	{ name = "rainbow trout", chance = 550 },
+	{ name = "green perch", chance = 1100 },
+	{ name = "mammoth whopper", chance = 1130 },
+	{ name = "fireproof horn", chance = 1350 },
 }
 
 monster.attacks = {

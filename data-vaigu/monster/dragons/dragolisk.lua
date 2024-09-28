@@ -17,9 +17,9 @@ monster.raceId = 2456
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 2500,
-	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	toKill = 50,
+	FirstUnlock = 10,
+	SecondUnlock = 25,
 	CharmsPoints = 50,
 	Stars = 5,
 	Occurrence = 0,
@@ -76,14 +76,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "Platinum Coin", chance = 52610, minCount = 1, maxCount = 46 },
 	{ name = "Dragolisk Poison Gland", chance = 12600 },
-	{ name = "Nimmersatt's Seal", chance = 8320 },
+	{ name = "Nimmersatt's Seal", chance = 18320 },
 	{ id = 282, chance = 7580 },
-	{ name = "Dragolisk Eye", chance = 5510 },
+	{ name = "Dragolisk Eye", chance = 15510 },
 	{ name = "Green Gem", chance = 8260 },
-	{ name = "Dragon's Tail", chance = 1003 },
-	{ name = "Dragon Shield", chance = 400 },
+	{ name = "Dragon's Tail", chance = 31003 },
+	{ name = "Dragon Shield", chance = 4400 },
 }
 
 monster.attacks = {

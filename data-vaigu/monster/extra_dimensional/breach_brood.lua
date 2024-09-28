@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Breach Brood")
 local monster = {}
 
 monster.description = "a breach brood"
-monster.experience = 1760
+monster.experience = 2760
 monster.outfit = {
 	lookType = 878,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1235
 monster.Bestiary = {
 	class = "Extra Dimensional",
 	race = BESTY_RACE_EXTRA_DIMENSIONAL,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -77,8 +77,6 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 100000, maxCount = 5 }, -- platinum coin
 	{ id = 23535, chance = 15000 }, -- energy bar
 	{ id = 23545, chance = 15000 }, -- energy drink
 	{ id = 23516, chance = 15000 }, -- instable proto matter
@@ -93,8 +91,8 @@ monster.loot = {
 	{ id = 16125, chance = 6500 }, -- cyan crystal fragment
 	{ id = 16119, chance = 4400 }, -- blue crystal shard
 	{ id = 16121, chance = 4100 }, -- green crystal shard
-	{ id = 23544, chance = 470 }, -- collar of red plasma
-	{ id = 23542, chance = 470 }, -- collar of blue plasma
+	{ id = 23544, chance = 1470 }, -- collar of red plasma
+	{ id = 23542, chance = 1470 }, -- collar of blue plasma
 	{ name = "spark sphere", chance = 14870 },
 }
 

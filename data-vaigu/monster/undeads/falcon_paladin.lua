@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Falcon Paladin")
 local monster = {}
 
 monster.description = "a falcon paladin"
-monster.experience = 6900
+monster.experience = 8900
 monster.outfit = {
 	lookType = 1071,
 	lookHead = 57,
@@ -17,9 +17,9 @@ monster.raceId = 1647
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 2500,
-	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	toKill = 1000,
+	FirstUnlock = 250,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -74,28 +74,27 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 90000, maxCount = 5 },
+	{ name = "platinum coin", chance = 90000, maxCount = 2 },
 	{ name = "small diamond", chance = 41000, maxCount = 2 },
-	{ name = "great spirit potion", chance = 41000, maxCount = 2 },
+	{ name = "great spirit potion", chance = 41000, maxCount = 5 },
 	{ name = "small emerald", chance = 40000, maxCount = 2 },
 	{ name = "small amethyst", chance = 40000, maxCount = 3 },
-	{ name = "assassin star", chance = 25700, maxCount = 10 },
+	{ name = "assassin star", chance = 25700, maxCount = 15 },
 	{ name = "small ruby", chance = 20700, maxCount = 2 },
 	{ name = "small topaz", chance = 20100, maxCount = 2 },
-	{ name = "onyx arrow", chance = 14000, maxCount = 15 },
 	{ id = 3039, chance = 7500, maxCount = 3 }, -- red gem
 	{ name = "green gem", chance = 4880 },
 	{ name = "violet gem", chance = 4180 },
 	{ id = 282, chance = 2260 }, -- giant shimmering pearl (brown)
-	{ name = "damaged armor plates", chance = 1120 },
-	{ name = "falcon crest", chance = 730 },
+	{ name = "damaged armor plates", chance = 3120 },
+	{ name = "falcon crest", chance = 1730 },
 	{ name = "golden armor", chance = 310 },
 	{ name = "mastermind shield", chance = 310 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -250 },
-	{ name = "combat", interval = 2000, chance = 50, type = COMBAT_PHYSICALDAMAGE, minDamage = -400, maxDamage = -550, range = 5, shootEffect = CONST_ANI_ROYALSPEAR, target = true },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -350 },
+	{ name = "combat", interval = 2000, chance = 50, type = COMBAT_PHYSICALDAMAGE, minDamage = -400, maxDamage = -650, range = 6, shootEffect = CONST_ANI_ROYALSPEAR, target = true },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = -200, maxDamage = 500, range = 5, shootEffect = CONST_ANI_BOLT, target = true },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -350, maxDamage = -450, range = 7, radius = 2, shootEffect = CONST_ANI_POWERBOLT, effect = CONST_ME_ENERGYHIT, target = true },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ENERGYDAMAGE, minDamage = -250, maxDamage = -350, length = 5, spread = 0, effect = CONST_ME_PURPLEENERGY, target = false },

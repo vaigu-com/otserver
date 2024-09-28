@@ -17,9 +17,9 @@ monster.raceId = 18
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -80,17 +80,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2920, chance = 5000 }, -- torch
-	{ name = "gold coin", chance = 68000, maxCount = 30 },
-	{ id = 3052, chance = 180 }, -- life ring
+	{ id = 3052, chance = 880 }, -- life ring
 	{ id = 3114, chance = 240 }, -- skull
-	{ name = "viking helmet", chance = 990 },
+	{ name = "viking helmet", chance = 2990 },
 	{ name = "scale armor", chance = 1000 },
-	{ name = "worm", chance = 9600, maxCount = 2 },
-	{ name = "brown piece of cloth", chance = 1000 },
+	{ name = "brown piece of cloth", chance = 3000 },
 	{ name = "rotten piece of cloth", chance = 14470 },
-	{ name = "ghoul snack", chance = 5130 },
-	{ name = "pile of grave earth", chance = 950 },
+	{ name = "ghoul snack", chance = 15130 },
+	{ name = "pile of grave earth", chance = 7950 },
 	{ id = 23986, chance = 1000 }, -- heavy old tome
 }
 

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Midnight Asura")
 local monster = {}
 
 monster.description = "a midnight asura"
-monster.experience = 4100
+monster.experience = 4000
 monster.outfit = {
 	lookType = 150,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1135
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 2500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 1000,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,13 +79,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 70980, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 80500, maxCount = 6 }, -- platinum coin
 	{ id = 7368, chance = 6640, maxCount = 5 }, -- assassin star
 	{ id = 3027, chance = 3670, maxCount = 2 }, -- black pearl
 	{ id = 3007, chance = 440 }, -- crystal ring
-	{ id = 6558, chance = 14110 }, -- flask of demonic blood
-	{ id = 6499, chance = 9950 }, -- demonic essence
+	{ id = 6499, chance = 19950 }, -- demonic essence
 	{ id = 3028, chance = 5680, maxCount = 3 }, -- small diamond
 	{ id = 3032, chance = 3240, maxCount = 1 }, -- small emerald
 	{ id = 3030, chance = 3090, maxCount = 1 }, -- small ruby
@@ -98,17 +95,15 @@ monster.loot = {
 	{ id = 3567, chance = 530 }, -- blue robe
 	{ id = 9058, chance = 140 }, -- gold ingot
 	{ id = 21974, chance = 12700 }, -- golden lotus brooch
-	{ id = 3069, chance = 2460 }, -- necrotic rod
 	{ id = 21981, chance = 390 }, -- oriental shoes
 	{ id = 21975, chance = 10740 }, -- peacock feather fan
 	{ id = 8061, chance = 180 }, -- skullcracker armor
-	{ id = 3017, chance = 3650 }, -- silver brooch
 	{ id = 3054, chance = 1050 }, -- silver amulet
-	{ id = 5944, chance = 14580 }, -- soul orb
+	{ id = 5944, chance = 18580 }, -- soul orb
 	{ id = 8074, chance = 150 }, -- spellbook of mind control
 	{ id = 3403, chance = 2030 }, -- tribal mask
 	{ id = 8082, chance = 760 }, -- underworld rod
-	{ id = 3037, chance = 870 }, -- yellow gem
+	{ id = 3037, chance = 2870 }, -- yellow gem
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dragon Hatchling")
 local monster = {}
 
 monster.description = "a dragon hatchling"
-monster.experience = 185
+monster.experience = 285
 monster.outfit = {
 	lookType = 271,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 385
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,14 +79,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 95540, maxCount = 50 },
-	{ name = "dragon ham", chance = 83040 },
-	{ name = "dragon's tail", chance = 3570 },
-	{ name = "health potion", chance = 470 },
+	{ name = "dragon ham", chance = 73040 },
+	{ name = "dragon's tail", chance = 8570 },
+	{ name = "health potion", chance = 2470 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -55 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -85 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_FIREDAMAGE, minDamage = -60, maxDamage = -90, length = 5, spread = 2, effect = CONST_ME_FIREAREA, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -30, maxDamage = -55, range = 7, radius = 4, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA, target = true },
 }

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Carrion Worm")
 local monster = {}
 
 monster.description = "a carrion worm"
-monster.experience = 70
+monster.experience = 85
 monster.outfit = {
 	lookType = 192,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 251
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,12 +78,12 @@ monster.loot = {
 	{ name = "gold coin", chance = 50000, maxCount = 45 },
 	{ name = "meat", chance = 9460, maxCount = 2 },
 	{ name = "worm", chance = 2100, maxCount = 2 },
-	{ name = "carrion worm fang", chance = 10000 },
+	{ name = "carrion worm fang", chance = 20000 },
 	{ id = 12600, chance = 210 }, -- coal
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -45 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -55 },
 }
 
 monster.defenses = {

@@ -22,9 +22,9 @@ monster.raceId = 34
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -88,27 +88,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 89920, maxCount = 102 },
 	{ name = "dragon ham", chance = 66270, maxCount = 2 },
-	{ name = "steel shield", chance = 15650 },
-	{ name = "dragon's tail", chance = 9680 },
+	{ name = "dragon's tail", chance = 13680 },
 	{ name = "crossbow", chance = 9120 },
-	{ id = 3449, chance = 8060, maxCount = 10 }, -- burst arrow
-	{ name = "longsword", chance = 3830 },
-	{ name = "steel helmet", chance = 3490 },
-	{ name = "broadsword", chance = 2700 },
+	{ id = 3449, chance = 18060, maxCount = 10 }, -- burst arrow
+	{ name = "steel helmet", chance = 5490 },
+	{ name = "broadsword", chance = 3700 },
 	{ name = "plate legs", chance = 2029 },
 	{ name = "double axe", chance = 1580 },
-	{ name = "strong health potion", chance = 1130 },
-	{ name = "green dragon leather", chance = 1070 },
-	{ name = "green dragon scale", chance = 1010 },
+	{ name = "strong health potion", chance = 2130 },
+	{ name = "green dragon leather", chance = 3070 },
+	{ name = "green dragon scale", chance = 4010 },
 	{ name = "wand of inferno", chance = 560 },
-	{ name = "small diamond", chance = 450 },
+	{ name = "small diamond", chance = 1450 },
 	{ name = "serpent sword", chance = 230 },
 	{ name = "dragon hammer", chance = 230 },
 	{ name = "dragonbone staff", chance = 170 },
 	{ name = "life crystal", chance = 170 },
-	{ name = "dragon shield", chance = 110 },
+	{ name = "dragon shield", chance = 210 },
 }
 
 monster.attacks = {

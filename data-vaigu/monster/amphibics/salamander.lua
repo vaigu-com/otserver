@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Salamander")
 local monster = {}
 
 monster.description = "a salamander"
-monster.experience = 25
+monster.experience = 55
 monster.outfit = {
 	lookType = 529,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 913
 monster.Bestiary = {
 	class = "Amphibic",
 	race = BESTY_RACE_AMPHIBIC,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -74,19 +74,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 72000, maxCount = 15 },
-	{ name = "gold coin", chance = 72000, maxCount = 15 },
-	{ name = "mace", chance = 3780 },
-	{ id = 3003, chance = 5190 }, -- rope
-	{ name = "bow", chance = 740 },
-	{ name = "brass helmet", chance = 2180 },
-	{ name = "arrow", chance = 7890, maxCount = 3 },
-	{ name = "health potion", chance = 1480 },
-	{ id = 3307, chance = 490 }, -- scimitar
+	{ name = "brass helmet", chance = 4180 },
+	{ name = "arrow", chance = 7890, maxCount = 5 },
+	{ name = "health potion", chance = 11480 },
+	{ id = 3307, chance = 1490 }, -- scimitar
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -60, effect = CONST_ME_DRAWBLOOD, condition = { type = CONDITION_POISON, totalDamage = 10, interval = 4000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -80, effect = CONST_ME_DRAWBLOOD, condition = { type = CONDITION_POISON, totalDamage = 10, interval = 4000 } },
 }
 
 monster.defenses = {

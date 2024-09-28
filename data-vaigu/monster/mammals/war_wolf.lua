@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("War Wolf")
 local monster = {}
 
 monster.description = "a war wolf"
-monster.experience = 55
+monster.experience = 155
 monster.outfit = {
 	lookType = 3,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 3
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,12 +76,12 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "ham", chance = 35000, maxCount = 2 },
-	{ name = "wolf paw", chance = 710 },
-	{ name = "warwolf fur", chance = 5230 },
+	{ name = "wolf paw", chance = 1710 },
+	{ name = "warwolf fur", chance = 8230 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -70 },
 }
 
 monster.defenses = {

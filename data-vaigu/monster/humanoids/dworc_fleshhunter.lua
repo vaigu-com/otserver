@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dworc Fleshhunter")
 local monster = {}
 
 monster.description = "a dworc fleshhunter"
-monster.experience = 40
+monster.experience = 70
 monster.outfit = {
 	lookType = 215,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 215
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,11 +76,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2920, chance = 4750 }, -- torch
 	{ name = "gold coin", chance = 69000, maxCount = 13 },
-	{ id = 3114, chance = 3300, maxCount = 3 }, -- skull
 	{ name = "poison dagger", chance = 2250 },
-	{ name = "bone shield", chance = 1000 },
 	{ name = "cleaver", chance = 9750 },
 	{ name = "ripper lance", chance = 90 },
 	{ name = "hunting spear", chance = 2000 },

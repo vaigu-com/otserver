@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Plaguesmith")
 local monster = {}
 
 monster.description = "a plaguesmith"
-monster.experience = 3800
+monster.experience = 5800
 monster.outfit = {
 	lookType = 247,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 314
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -82,33 +82,25 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "emerald bangle", chance = 341 },
-	{ name = "silver brooch", chance = 2000 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 40000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 65 },
 	{ name = "small amethyst", chance = 5000, maxCount = 3 },
-	{ name = "platinum coin", chance = 7142, maxCount = 2 },
 	{ id = 3092, chance = 4347 }, -- axe ring
 	{ id = 3093, chance = 4761 }, -- club ring
 	{ name = "piece of iron", chance = 20000 },
-	{ name = "mouldy cheese", chance = 50000 },
+	{ name = "mouldy cheese", chance = 5000 },
 	{ id = 3122, chance = 60000 }, -- dirty cape
 	{ name = "two handed sword", chance = 20000 },
 	{ name = "war hammer", chance = 2127 },
-	{ name = "morning star", chance = 29000 },
 	{ name = "battle hammer", chance = 20000 },
 	{ name = "hammer of wrath", chance = 952 },
 	{ name = "knight legs", chance = 6250 },
-	{ name = "steel shield", chance = 20000 },
 	{ name = "steel boots", chance = 1123 },
-	{ name = "piece of royal steel", chance = 1234 },
-	{ name = "piece of hell steel", chance = 1010 },
-	{ name = "piece of draconian steel", chance = 1030 },
-	{ name = "soul orb", chance = 11111 },
-	{ name = "demonic essence", chance = 9033 },
-	{ name = "onyx arrow", chance = 7692, maxCount = 4 },
-	{ name = "great health potion", chance = 10000 },
-	{ id = 8896, chance = 540 }, -- slightly rusted armor
+	{ name = "piece of royal steel", chance = 4234 },
+	{ name = "piece of hell steel", chance = 4010 },
+	{ name = "piece of draconian steel", chance = 4030 },
+	{ name = "soul orb", chance = 21111 },
+	{ name = "demonic essence", chance = 11033 },
+	{ name = "great health potion", chance = 20000 },
+	{ id = 8896, chance = 3540 }, -- slightly rusted armor
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Cyclops Drone")
 local monster = {}
 
 monster.description = "a cyclops drone"
-monster.experience = 200
+monster.experience = 220
 monster.outfit = {
 	lookType = 280,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 391
 monster.Bestiary = {
 	class = "Giant",
 	race = BESTY_RACE_GIANT,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -31,7 +31,7 @@ monster.maxHealth = 325
 monster.race = "blood"
 monster.corpse = 771
 monster.speed = 99
-monster.manaCost = 525
+monster.manaCost = 1525
 
 monster.changeTarget = {
 	interval = 4000,
@@ -44,7 +44,7 @@ monster.strategiesTarget = {
 }
 
 monster.flags = {
-	summonable = false,
+	summonable = true,
 	attackable = true,
 	hostile = true,
 	convinceable = true,
@@ -78,17 +78,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 82000, maxCount = 30 },
-	{ id = 3093, chance = 90 }, -- club ring
+	{ id = 3093, chance = 490 }, -- club ring
 	{ name = "halberd", chance = 680 },
-	{ name = "short sword", chance = 8000 },
 	{ name = "dark helmet", chance = 190 },
-	{ name = "plate shield", chance = 2000 },
 	{ name = "battle shield", chance = 1600 },
 	{ name = "meat", chance = 50430, maxCount = 2 },
-	{ id = 7398, chance = 120 }, -- cyclops trophy
-	{ name = "strong health potion", chance = 520 },
-	{ name = "cyclops toe", chance = 6750 },
+	{ id = 7398, chance = 520 }, -- cyclops trophy
+	{ name = "strong health potion", chance = 1520 },
+	{ name = "cyclops toe", chance = 16750 },
 }
 
 monster.attacks = {

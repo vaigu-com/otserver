@@ -17,9 +17,9 @@ monster.raceId = 219
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,13 +78,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 79000, maxCount = 40 },
-	{ id = 3053, chance = 120 }, -- time ring
-	{ name = "steel helmet", chance = 990 },
-	{ name = "brass legs", chance = 3050 },
-	{ name = "plate shield", chance = 2000 },
-	{ name = "spider fangs", chance = 4820 },
-	{ name = "tarantula egg", chance = 10000 },
+	{ id = 3053, chance = 1120 }, -- time ring
+	{ name = "steel helmet", chance = 1990 },
+	{ name = "brass legs", chance = 13050 },
+	{ name = "spider fangs", chance = 24820 },
+	{ name = "tarantula egg", chance = 20000 },
 }
 
 monster.attacks = {

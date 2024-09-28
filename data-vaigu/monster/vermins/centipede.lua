@@ -17,9 +17,9 @@ monster.raceId = 124
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -75,8 +75,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 80000, maxCount = 15 },
-	{ name = "centipede leg", chance = 10300 },
+	{ name = "centipede leg", chance = 20300 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Bog Raider")
 local monster = {}
 
 monster.description = "a bog raider"
-monster.experience = 800
+monster.experience = 950
 monster.outfit = {
 	lookType = 299,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 460
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 500,
+	FirstUnlock = 100,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,15 +79,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 92090, maxCount = 105 },
 	{ name = "plate legs", chance = 200 },
-	{ name = "great health potion", chance = 2030 },
-	{ name = "great spirit potion", chance = 2010 },
-	{ name = "ultimate health potion", chance = 750 },
-	{ name = "belted cape", chance = 580 },
-	{ name = "paladin armor", chance = 140 },
-	{ name = "springsprout rod", chance = 1020 },
-	{ name = "boggy dreads", chance = 9870 },
+	{ name = "great health potion", chance = 5030 },
+	{ name = "great spirit potion", chance = 5010 },
+	{ name = "ultimate health potion", chance = 1750 },
+	{ name = "belted cape", chance = 880 },
+	{ name = "paladin armor", chance = 240 },
+	{ name = "springsprout rod", chance = 1820 },
+	{ name = "boggy dreads", chance = 11870 },
 }
 
 monster.attacks = {
@@ -95,7 +94,7 @@ monster.attacks = {
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -90, maxDamage = -140, range = 7, effect = CONST_ME_MAGIC_RED, target = true },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_EARTHDAMAGE, minDamage = -100, maxDamage = -175, radius = 3, effect = CONST_ME_BUBBLES, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -96, maxDamage = -110, range = 7, shootEffect = CONST_ANI_SMALLEARTH, target = true },
-	{ name = "speed", interval = 2000, chance = 15, speedChange = -600, range = 7, effect = CONST_ME_SMALLPLANTS, target = true, duration = 15000 },
+	{ name = "speed", interval = 2000, chance = 10, speedChange = -400, range = 5, effect = CONST_ME_SMALLPLANTS, target = true, duration = 15000 },
 }
 
 monster.defenses = {

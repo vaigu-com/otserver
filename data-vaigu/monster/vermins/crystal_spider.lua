@@ -17,9 +17,9 @@ monster.raceId = 330
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,8 +79,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3007, chance = 1560 }, -- crystal ring
-	{ name = "crystal necklace", chance = 1640 },
-	{ name = "gold coin", chance = 100000, maxCount = 197 },
+	{ name = "crystal necklace", chance = 4640 },
 	{ id = 3053, chance = 1480 }, -- time ring
 	{ name = "platinum amulet", chance = 130 },
 	{ name = "steel helmet", chance = 5200 },
@@ -88,13 +87,12 @@ monster.loot = {
 	{ name = "plate armor", chance = 9993 },
 	{ name = "knight armor", chance = 560 },
 	{ name = "knight legs", chance = 760 },
-	{ name = "jewelled backpack", chance = 80 },
+	{ name = "jewelled backpack", chance = 280 },
 	{ name = "spider silk", chance = 2010 },
-	{ name = "shard", chance = 740 },
-	{ name = "sniper arrow", chance = 5840, maxCount = 6 },
-	{ name = "sapphire hammer", chance = 140 },
+	{ name = "shard", chance = 1740 },
+	{ name = "sapphire hammer", chance = 240 },
 	{ name = "crystal sword", chance = 2490 },
-	{ name = "strong mana potion", chance = 14950 },
+	{ name = "strong mana potion", chance = 18950 },
 	{ name = "glacier mask", chance = 670 },
 }
 

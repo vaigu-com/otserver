@@ -17,9 +17,9 @@ monster.raceId = 17
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,7 +78,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 6,
 	summons = {
-		{ name = "Skeleton", chance = 20, interval = 2000, count = 6 },
+		{ name = "Skeleton", chance = 20, interval = 2000, count = 4 },
 	},
 }
 

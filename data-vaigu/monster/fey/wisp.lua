@@ -17,9 +17,9 @@ monster.raceId = 462
 monster.Bestiary = {
 	class = "Fey",
 	race = BESTY_RACE_FEY,
-	toKill = 250,
+	toKill = 50,
 	FirstUnlock = 10,
-	SecondUnlock = 100,
+	SecondUnlock = 25,
 	CharmsPoints = 5,
 	Stars = 1,
 	Occurrence = 0,
@@ -78,11 +78,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "moon backpack", chance = 220 },
+	{ name = "moon backpack", chance = 2220 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -10 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -30 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -3, maxDamage = -7, range = 1, effect = CONST_ME_MAGIC_RED, target = true },
 }
 

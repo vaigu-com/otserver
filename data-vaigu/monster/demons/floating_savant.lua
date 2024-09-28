@@ -17,9 +17,9 @@ monster.raceId = 1637
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -70,7 +70,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 1,
 	summons = {
-		{ name = "Lava Lurker Attendant", chance = 70, interval = 2000, count = 1 },
+		{ name = "Lava Lurker Attendant", chance = 50, interval = 2000, count = 1 },
 	},
 }
 
@@ -85,10 +85,9 @@ monster.loot = {
 	{ name = "small enchanted ruby", chance = 10000, maxCount = 5 },
 	{ name = "red crystal fragment", chance = 10000, maxCount = 2 },
 	{ id = 3039, chance = 10000, maxCount = 3 }, -- red gem
-	{ name = "red piece of cloth", chance = 10000, maxCount = 3 },
+	{ name = "red piece of cloth", chance = 20000, maxCount = 3 },
 	{ name = "flask of demonic blood", chance = 12000, maxCount = 5 },
-	{ name = "demonic essence", chance = 10000, maxCount = 5 },
-	{ id = 3456, chance = 10000 }, -- pick
+	{ name = "demonic essence", chance = 30000, maxCount = 5 },
 	{ name = "sample of monster blood", chance = 10000, maxCount = 5 },
 }
 

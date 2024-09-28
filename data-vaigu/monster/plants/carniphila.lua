@@ -17,9 +17,9 @@ monster.raceId = 120
 monster.Bestiary = {
 	class = "Plant",
 	race = BESTY_RACE_PLANT,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -78,9 +78,9 @@ monster.loot = {
 	{ name = "gold coin", chance = 90000, maxCount = 40 },
 	{ name = "corncob", chance = 890 },
 	{ name = "dark mushroom", chance = 7692 },
-	{ name = "sling herb", chance = 446, maxCount = 2 },
+	{ name = "sling herb", chance = 4460, maxCount = 2 },
 	{ name = "shadow herb", chance = 880 },
-	{ name = "seeds", chance = 490 },
+	{ name = "seeds", chance = 4900 },
 	{ name = "carniphila seeds", chance = 4166 },
 	{ name = "carrot on a stick", chance = 170 },
 }

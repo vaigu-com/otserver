@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Tomb Servant")
 local monster = {}
 
 monster.description = "a tomb servant"
-monster.experience = 215
+monster.experience = 315
 monster.outfit = {
 	lookType = 100,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 708
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 2,
@@ -77,15 +77,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 82350, maxCount = 108 },
 	{ name = "scarab coin", chance = 8210 },
-	{ name = "rotten meat", chance = 2000 },
-	{ id = 3115, chance = 49000 }, -- bone
-	{ name = "longsword", chance = 6560 },
-	{ name = "bone shield", chance = 5300 },
-	{ name = "worm", chance = 25325, maxCount = 12 },
-	{ name = "half-digested piece of meat", chance = 1000 },
-	{ name = "fist on a stick", chance = 230 },
+	{ id = 3115, chance = 9000 }, -- bone
+	{ name = "worm", chance = 25325, maxCount = 2 },
+	{ name = "half-digested piece of meat", chance = 10000 },
+	{ name = "fist on a stick", chance = 730 },
 }
 
 monster.attacks = {

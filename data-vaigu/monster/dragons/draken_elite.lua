@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Draken Elite")
 local monster = {}
 
 monster.description = "a draken elite"
-monster.experience = 4200
+monster.experience = 4700
 monster.outfit = {
 	lookType = 362,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 672
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -75,11 +75,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 97220, maxCount = 187 },
-	{ name = "platinum coin", chance = 49070, maxCount = 8 },
-	{ name = "meat", chance = 34260, maxCount = 4 },
-	{ name = "broken draken mail", chance = 25000 },
-	{ name = "broken slicer", chance = 25000 },
+	{ name = "meat", chance = 34260, maxCount = 2 },
+	{ name = "broken draken mail", chance = 29000 },
+	{ name = "broken slicer", chance = 28000 },
 	{ name = "ultimate health potion", chance = 12040, maxCount = 3 },
 	{ name = "great mana potion", chance = 9260, maxCount = 3 },
 	{ name = "draken sulphur", chance = 6480 },
@@ -87,16 +85,16 @@ monster.loot = {
 	{ name = "small diamond", chance = 1850, maxCount = 2 },
 	{ name = "zaoan legs", chance = 1850 },
 	{ name = "magic sulphur", chance = 1850 },
-	{ name = "draken boots", chance = 930 },
+	{ name = "draken boots", chance = 1030 },
 	{ name = "assassin dagger", chance = 930 },
 	{ name = "twiceslicer", chance = 930 },
-	{ name = "zaoan armor", chance = 650 },
+	{ name = "zaoan armor", chance = 450 },
 	{ name = "zaoan sword", chance = 550 },
-	{ name = "zaoan helmet", chance = 220 },
-	{ name = "elite draken mail", chance = 110 },
-	{ name = "blade of corruption", chance = 60 },
-	{ name = "snake god's wristguard", chance = 40 },
-	{ name = "cobra crown", chance = 0 },
+	{ name = "zaoan helmet", chance = 620 },
+	{ name = "elite draken mail", chance = 310 },
+	{ name = "blade of corruption", chance = 160 },
+	{ name = "snake god's wristguard", chance = 140 },
+	{ name = "cobra crown", chance = 10 },
 }
 
 monster.attacks = {

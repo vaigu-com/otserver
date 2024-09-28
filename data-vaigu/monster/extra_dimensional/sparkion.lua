@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Sparkion")
 local monster = {}
 
 monster.description = "a sparkion"
-monster.experience = 1520
+monster.experience = 2520
 monster.outfit = {
 	lookType = 877,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1234
 monster.Bestiary = {
 	class = "Extra Dimensional",
 	race = BESTY_RACE_EXTRA_DIMENSIONAL,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -78,16 +78,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 20000, maxCount = 3 }, -- platinum coin
 	{ id = 23502, chance = 15000 }, -- sparkion claw
 	{ id = 23545, chance = 15000 }, -- energy drink
 	{ id = 23535, chance = 14600 }, -- energy bar
 	{ id = 23505, chance = 14100 }, -- sparkion stings
 	{ id = 23504, chance = 11100 }, -- sparkion legs
-	{ id = 238, chance = 10100, maxCount = 2 }, -- great mana potion
-	{ id = 7642, chance = 9700, maxCount = 2 }, -- great spirit potion
-	{ id = 239, chance = 9500, maxCount = 2 }, -- great health potion
+	{ id = 238, chance = 10100, maxCount = 4 }, -- great mana potion
+	{ id = 7642, chance = 9700, maxCount = 4 }, -- great spirit potion
+	{ id = 239, chance = 9500, maxCount = 4 }, -- great health potion
 	{ id = 23503, chance = 9100 }, -- sparkion tail
 	{ id = 16124, chance = 8600 }, -- blue crystal splinter
 	{ id = 16125, chance = 6000 }, -- cyan crystal fragment
@@ -95,12 +93,12 @@ monster.loot = {
 	{ id = 16119, chance = 4200 }, -- blue crystal shard
 	{ id = 3041, chance = 1000 }, -- blue gem
 	{ id = 3073, chance = 920 }, -- wand of cosmic energy
-	{ id = 23531, chance = 370 }, -- ring of green plasma
-	{ id = 23533, chance = 370 }, -- ring of red plasma
-	{ id = 23529, chance = 240 }, -- ring of blue plasma
-	{ id = 23543, chance = 240 }, -- collar of green plasma
-	{ id = 23542, chance = 240 }, -- collar of blue plasma
-	{ id = 23544, chance = 200 }, -- collar of red plasma
+	{ id = 23531, chance = 2370 }, -- ring of green plasma
+	{ id = 23533, chance = 2370 }, -- ring of red plasma
+	{ id = 23529, chance = 2240 }, -- ring of blue plasma
+	{ id = 23543, chance = 2240 }, -- collar of green plasma
+	{ id = 23542, chance = 2240 }, -- collar of blue plasma
+	{ id = 23544, chance = 2200 }, -- collar of red plasma
 }
 
 monster.attacks = {

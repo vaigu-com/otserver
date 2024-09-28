@@ -17,9 +17,9 @@ monster.raceId = 109
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,8 +76,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 99350, maxCount = 16 },
-	{ name = "small flask of eyedrops", chance = 3200 },
+	{ name = "small flask of eyedrops", chance = 18200 },
 }
 
 monster.attacks = {

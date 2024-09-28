@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lizard Zaogun")
 local monster = {}
 
 monster.description = "a lizard zaogun"
-monster.experience = 1700
+monster.experience = 1900
 monster.outfit = {
 	lookType = 343,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 616
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 100,
+	FirstUnlock = 20,
+	SecondUnlock = 50,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,18 +79,17 @@ monster.voices = {
 monster.loot = {
 	{ name = "gold coin", chance = 31500, maxCount = 100 },
 	{ name = "gold coin", chance = 31500, maxCount = 100 },
-	{ name = "gold coin", chance = 31000, maxCount = 68 },
 	{ name = "small emerald", chance = 4830, maxCount = 5 },
 	{ name = "platinum coin", chance = 48900, maxCount = 2 },
 	{ name = "tower shield", chance = 1000 },
 	{ name = "lizard leather", chance = 14360 },
-	{ name = "lizard scale", chance = 12520 },
+	{ name = "lizard scale", chance = 18520 },
 	{ name = "strong health potion", chance = 1900 },
 	{ name = "great health potion", chance = 7000, maxCount = 3 },
 	{ name = "red lantern", chance = 2170 },
 	{ name = "zaoan armor", chance = 530 },
-	{ name = "zaoan shoes", chance = 1000 },
-	{ name = "zaoan legs", chance = 1001 },
+	{ name = "zaoan shoes", chance = 3000 },
+	{ name = "zaoan legs", chance = 2001 },
 	{ name = "zaogun flag", chance = 8280 },
 	{ name = "zaogun shoulderplates", chance = 14980 },
 }

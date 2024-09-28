@@ -21,9 +21,9 @@ monster.raceId = 39
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -88,26 +88,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 95300, maxCount = 237 },
-	{ name = "dragon ham", chance = 79790, maxCount = 2 },
-	{ name = "green mushroom", chance = 12030 },
+	{ name = "dragon ham", chance = 59790, maxCount = 2 },
+	{ name = "green mushroom", chance = 22030 },
 	{ id = 2842, chance = 9590 }, -- gemmed book
-	{ name = "royal spear", chance = 9380, maxCount = 3 },
 	{ name = "power bolt", chance = 5920, maxCount = 7 },
 	{ name = "small sapphire", chance = 5590 },
 	{ id = 3051, chance = 4550 }, -- energy ring
 	{ name = "golden mug", chance = 3310 },
-	{ name = "red dragon scale", chance = 1940 },
-	{ name = "red dragon leather", chance = 1150 },
-	{ name = "strong health potion", chance = 800 },
+	{ name = "red dragon scale", chance = 2940 },
+	{ name = "red dragon leather", chance = 3150 },
+	{ name = "strong health potion", chance = 1800 },
 	{ name = "life crystal", chance = 650 },
-	{ name = "strange helmet", chance = 520 },
+	{ name = "strange helmet", chance = 1520 },
 	{ name = "tower shield", chance = 410 },
 	{ name = "fire sword", chance = 350 },
 	{ name = "royal helmet", chance = 260 },
 	{ name = "dragon slayer", chance = 220 },
-	{ name = "dragon lord trophy", chance = 130 },
-	{ name = "dragon scale mail", chance = 90 },
+	{ name = "dragon lord trophy", chance = 230 },
+	{ name = "dragon scale mail", chance = 190 },
 }
 
 monster.attacks = {

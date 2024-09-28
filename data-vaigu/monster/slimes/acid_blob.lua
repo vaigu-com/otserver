@@ -17,9 +17,9 @@ monster.raceId = 513
 monster.Bestiary = {
 	class = "Slime",
 	race = BESTY_RACE_SLIME,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -71,9 +71,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 3,
+	maxSummons = 2,
 	summons = {
-		{ name = "Acid Blob", chance = 10, interval = 2000, count = 3 },
+		{ name = "Acid Blob", chance = 10, interval = 2000, count = 2 },
 	},
 }
 
@@ -84,7 +84,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "glob of acid slime", chance = 18520 },
+	{ name = "glob of acid slime", chance = 38520 },
 }
 
 monster.attacks = {

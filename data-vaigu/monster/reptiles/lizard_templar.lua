@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lizard Templar")
 local monster = {}
 
 monster.description = "a lizard templar"
-monster.experience = 155
+monster.experience = 255
 monster.outfit = {
 	lookType = 113,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 113
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -79,14 +79,13 @@ monster.loot = {
 	{ name = "small emerald", chance = 250 },
 	{ id = 3264, chance = 4000 }, -- sword
 	{ name = "morning star", chance = 1990 },
-	{ name = "short sword", chance = 9500 },
 	{ name = "steel helmet", chance = 2000 },
 	{ name = "plate armor", chance = 1000 },
-	{ name = "templar scytheblade", chance = 500 },
-	{ name = "salamander shield", chance = 110 },
-	{ name = "lizard leather", chance = 880 },
-	{ name = "lizard scale", chance = 990 },
-	{ name = "health potion", chance = 890 },
+	{ name = "templar scytheblade", chance = 1500 },
+	{ name = "salamander shield", chance = 1110 },
+	{ name = "lizard leather", chance = 1880 },
+	{ name = "lizard scale", chance = 1990 },
+	{ name = "health potion", chance = 2890 },
 }
 
 monster.attacks = {

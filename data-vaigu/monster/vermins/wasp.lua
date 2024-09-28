@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Wasp")
 local monster = {}
 
 monster.description = "a wasp"
-monster.experience = 24
+monster.experience = 29
 monster.outfit = {
 	lookType = 44,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 44
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 250,
+	toKill = 100,
 	FirstUnlock = 10,
-	SecondUnlock = 100,
+	SecondUnlock = 50,
 	CharmsPoints = 5,
 	Stars = 1,
 	Occurrence = 0,
@@ -77,7 +77,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "honeycomb", chance = 3000 },
+	{ name = "honeycomb", chance = 8000 },
 }
 
 monster.attacks = {

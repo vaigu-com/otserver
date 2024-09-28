@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Wiggler")
 local monster = {}
 
 monster.description = "a wiggler"
-monster.experience = 900
+monster.experience = 1100
 monster.outfit = {
 	lookType = 510,
 	lookHead = 0,
@@ -21,9 +21,9 @@ monster.raceId = 899
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 100,
+	FirstUnlock = 25,
+	SecondUnlock = 50,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,16 +80,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "platinum coin", chance = 14790 },
 	{ name = "terra rod", chance = 850 },
 	{ name = "serpent sword", chance = 1360 },
 	{ name = "black shield", chance = 1320 },
 	{ name = "white mushroom", chance = 7142, maxCount = 5 },
-	{ name = "blue piece of cloth", chance = 2080 },
-	{ name = "yellow piece of cloth", chance = 2160 },
+	{ name = "blue piece of cloth", chance = 6080 },
+	{ name = "yellow piece of cloth", chance = 7160 },
 	{ name = "strong health potion", chance = 4930 },
-	{ name = "strong mana potion", chance = 5250 },
+	{ name = "strong mana potion", chance = 9250 },
 	{ name = "crystalline arrow", chance = 15540, maxCount = 5 },
 	{ name = "green crystal splinter", chance = 3600 },
 	{ name = "green crystal fragment", chance = 2070 },

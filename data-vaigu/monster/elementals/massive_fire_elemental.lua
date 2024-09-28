@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Massive Fire Elemental")
 local monster = {}
 
 monster.description = "a massive fire elemental"
-monster.experience = 1400
+monster.experience = 1700
 monster.outfit = {
 	lookType = 242,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 313
 monster.Bestiary = {
 	class = "Elemental",
 	race = BESTY_RACE_ELEMENTAL,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -76,18 +76,16 @@ monster.voices = {
 monster.loot = {
 	{ name = "small ruby", chance = 6100, maxCount = 2 },
 	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 25000, maxCount = 100 },
-	{ name = "gold coin", chance = 25000, maxCount = 12 },
-	{ name = "wand of inferno", chance = 2240 },
-	{ name = "fire sword", chance = 530 },
+	{ name = "wand of inferno", chance = 4240 },
+	{ name = "fire sword", chance = 1530 },
 	{ name = "magma amulet", chance = 1300 },
-	{ name = "magma boots", chance = 560 },
-	{ name = "magma legs", chance = 210 },
+	{ name = "magma boots", chance = 1560 },
+	{ name = "magma legs", chance = 710 },
 	{ id = 8895, chance = 1330 }, -- rusted armor
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -300 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -400 },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 3, shootEffect = CONST_ANI_FIRE, target = false },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 3, shootEffect = CONST_ANI_FIRE, target = true },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_FIREDAMAGE, minDamage = -200, maxDamage = -700, length = 7, spread = 0, effect = CONST_ME_FIREAREA, target = false },

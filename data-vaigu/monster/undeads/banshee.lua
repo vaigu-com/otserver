@@ -17,9 +17,9 @@ monster.raceId = 78
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -85,28 +85,25 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "candlestick", chance = 70000 },
 	{ name = "wedding ring", chance = 460 },
-	{ id = 3007, chance = 60 }, -- crystal ring
+	{ id = 3007, chance = 160 }, -- crystal ring
 	{ name = "silver brooch", chance = 1250 },
 	{ name = "white pearl", chance = 1010 },
 	{ name = "black pearl", chance = 2030 },
-	{ name = "gold coin", chance = 30000, maxCount = 80 },
+	{ name = "gold coin", chance = 30000, maxCount = 50 },
 	{ name = "silver amulet", chance = 8700 },
-	{ id = 3059, chance = 520 }, -- spellbook
 	{ name = "life crystal", chance = 70 },
-	{ name = "stone skin amulet", chance = 820 },
-	{ id = 3098, chance = 730 }, -- ring of healing
+	{ name = "stone skin amulet", chance = 1820 },
+	{ id = 3098, chance = 1730 }, -- ring of healing
 	{ id = 2949, chance = 910 }, -- lyre
-	{ name = "poison dagger", chance = 1350 },
 	{ name = "red robe", chance = 150 },
-	{ name = "blue robe", chance = 700 },
+	{ name = "blue robe", chance = 1700 },
 	{ name = "simple dress", chance = 6050 },
 	{ name = "strong mana potion", chance = 680 },
 	{ name = "terra mantle", chance = 340 },
-	{ name = "petrified scream", chance = 4150 },
-	{ name = "hair of a banshee", chance = 4810 },
-	{ name = "sweet smelling bait", chance = 40 },
+	{ name = "petrified scream", chance = 8150 },
+	{ name = "hair of a banshee", chance = 8810 },
+	{ name = "sweet smelling bait", chance = 140 },
 }
 
 monster.attacks = {

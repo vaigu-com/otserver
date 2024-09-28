@@ -17,9 +17,9 @@ monster.raceId = 918
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,16 +80,16 @@ monster.voices = {
 monster.loot = {
 	{ name = "gold coin", chance = 100000, maxCount = 120 },
 	{ id = 3607, chance = 20000 }, -- cheese
-	{ name = "bola", chance = 10000 },
+	{ name = "bola", chance = 1000 },
 	{ name = "spike shield", chance = 4761 },
 	{ name = "ratana", chance = 5000 },
 	{ name = "life preserver", chance = 5000 },
 	{ name = "cheese cutter", chance = 16666 },
 	{ name = "cheesy figurine", chance = 3846 },
 	{ name = "earflap", chance = 11111 },
-	{ name = "soft cheese", chance = 14285 },
-	{ name = "rat cheese", chance = 14285 },
-	{ name = "rat god doll", chance = 14 },
+	{ name = "soft cheese", chance = 1285 },
+	{ name = "rat cheese", chance = 1485 },
+	{ name = "rat god doll", chance = 114 },
 	{ name = "leather harness", chance = 1612 },
 	{ name = "spiky club", chance = 3225 },
 }

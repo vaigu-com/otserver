@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Elf Scout")
 local monster = {}
 
 monster.description = "an elf scout"
-monster.experience = 75
+monster.experience = 95
 monster.outfit = {
 	lookType = 64,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 64
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -45,7 +45,7 @@ monster.strategiesTarget = {
 }
 
 monster.flags = {
-	summonable = false,
+	summonable = true,
 	attackable = true,
 	hostile = true,
 	convinceable = true,
@@ -88,9 +88,9 @@ monster.loot = {
 	{ name = "sandals", chance = 1180 },
 	{ name = "grapes", chance = 17750 },
 	{ id = 5921, chance = 1130 }, -- heaven blossom
-	{ name = "elvish bow", chance = 140 },
-	{ name = "elvish talisman", chance = 5200 },
-	{ name = "elven scouting glass", chance = 9750 },
+	{ name = "elvish bow", chance = 240 },
+	{ name = "elvish talisman", chance = 7200 },
+	{ name = "elven scouting glass", chance = 14750 },
 }
 
 monster.attacks = {

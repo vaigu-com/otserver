@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Pirate Corsair")
 local monster = {}
 
 monster.description = "a pirate corsair"
-monster.experience = 350
+monster.experience = 450
 monster.outfit = {
 	lookType = 98,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 250
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -87,9 +87,9 @@ monster.loot = {
 	{ id = 5813, chance = 130 }, -- skull candle
 	{ name = "pirate backpack", chance = 930 },
 	{ name = "pirate hat", chance = 1150 },
-	{ name = "hook", chance = 600 },
-	{ name = "eye patch", chance = 500 },
-	{ name = "peg leg", chance = 600 },
+	{ name = "hook", chance = 2600 },
+	{ name = "eye patch", chance = 3500 },
+	{ name = "peg leg", chance = 4600 },
 	{ name = "strong health potion", chance = 820 },
 	{ name = "compass", chance = 11050 },
 	{ name = "compass", chance = 11020 },

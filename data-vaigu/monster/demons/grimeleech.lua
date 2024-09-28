@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Grimeleech")
 local monster = {}
 
 monster.description = "a grimeleech"
-monster.experience = 7216
+monster.experience = 8216
 monster.outfit = {
 	lookType = 855,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1196
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 2500,
+	toKill = 1000,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -77,13 +77,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 197 },
-	{ name = "platinum coin", chance = 100000, maxCount = 8 },
-	{ name = "great mana potion", chance = 34850, maxCount = 3 },
-	{ name = "great health potion", chance = 34290, maxCount = 3 },
-	{ name = "great spirit potion", chance = 30860, maxCount = 3 },
-	{ name = "flask of demonic blood", chance = 23400, maxCount = 3 },
-	{ name = "demonic essence", chance = 19240 },
+	{ name = "great mana potion", chance = 34850, maxCount = 5 },
+	{ name = "great health potion", chance = 34290, maxCount = 5 },
+	{ name = "great spirit potion", chance = 30860, maxCount = 5 },
+	{ name = "demonic essence", chance = 29240 },
 	{ name = "some grimeleech wings", chance = 19080 },
 	{ name = "fire mushroom", chance = 15360, maxCount = 5 },
 	{ name = "green mushroom", chance = 14800, maxCount = 5 },
@@ -102,12 +99,12 @@ monster.loot = {
 	{ name = "blue gem", chance = 780 },
 	{ name = "rift crossbow", chance = 720 },
 	{ name = "steel boots", chance = 640 },
-	{ name = "rift shield", chance = 620 },
+	{ name = "rift shield", chance = 820 },
 	{ name = "rift lance", chance = 580 },
-	{ name = "rift bow", chance = 370 },
+	{ name = "rift bow", chance = 570 },
 	{ name = "abyss hammer", chance = 210 },
-	{ name = "vile axe", chance = 180 },
-	{ name = "magic plate armor", chance = 60 },
+	{ name = "vile axe", chance = 380 },
+	{ name = "magic plate armor", chance = 160 },
 }
 
 monster.attacks = {

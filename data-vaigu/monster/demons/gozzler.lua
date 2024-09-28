@@ -17,9 +17,9 @@ monster.raceId = 523
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -81,16 +81,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "brown flask", chance = 8750 },
-	{ name = "small sapphire", chance = 360 },
-	{ name = "gold coin", chance = 52500, maxCount = 70 },
-	{ id = 3097, chance = 190 }, -- dwarven ring
+	{ name = "brown flask", chance = 2750 },
+	{ name = "small sapphire", chance = 3360 },
+	{ id = 3097, chance = 1290 }, -- dwarven ring
 	{ name = "battle axe", chance = 3100 },
-	{ name = "sabre", chance = 8250 },
 	{ name = "morning star", chance = 5000 },
-	{ name = "serpent sword", chance = 250 },
+	{ name = "serpent sword", chance = 1250 },
 	{ name = "clerical mace", chance = 900 },
-	{ name = "plate shield", chance = 10000 },
 }
 
 monster.attacks = {

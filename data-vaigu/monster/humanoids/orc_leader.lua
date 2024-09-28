@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Orc Leader")
 local monster = {}
 
 monster.description = "an orc leader"
-monster.experience = 270
+monster.experience = 320
 monster.outfit = {
 	lookType = 59,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 59
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -78,22 +78,19 @@ monster.voices = {
 monster.loot = {
 	{ name = "gold coin", chance = 28000, maxCount = 35 },
 	{ id = 3091, chance = 3920 }, -- sword ring
-	{ name = "longsword", chance = 2800 },
 	{ name = "throwing knife", chance = 9950, maxCount = 4 },
 	{ name = "broadsword", chance = 610 },
 	{ id = 3307, chance = 1860 }, -- scimitar
 	{ name = "plate armor", chance = 1650 },
 	{ name = "warrior helmet", chance = 180 },
-	{ name = "brass legs", chance = 3100 },
-	{ name = "plate shield", chance = 1650 },
 	{ name = "plate legs", chance = 440 },
 	{ id = 3578, chance = 29400 }, -- fish
 	{ name = "brown mushroom", chance = 9650 },
 	{ name = "royal spear", chance = 2400 },
-	{ name = "health potion", chance = 550 },
-	{ name = "orc tooth", chance = 1030 },
+	{ name = "health potion", chance = 1550 },
+	{ name = "orc tooth", chance = 11030 },
 	{ name = "orc leather", chance = 19510 },
-	{ name = "skull belt", chance = 2008 },
+	{ name = "skull belt", chance = 12008 },
 }
 
 monster.attacks = {

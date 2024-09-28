@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ladybug")
 local monster = {}
 
 monster.description = "a ladybug"
-monster.experience = 70
+monster.experience = 170
 monster.outfit = {
 	lookType = 448,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 778
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 2,
@@ -78,7 +78,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -4 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -20 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = 0, maxDamage = -20, range = 1, shootEffect = CONST_ANI_POISON, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = 0, maxDamage = -20, range = 7, shootEffect = CONST_ANI_POISON, target = false },
 }

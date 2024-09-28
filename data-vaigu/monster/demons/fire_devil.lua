@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Fire Devil")
 local monster = {}
 
 monster.description = "a fire devil"
-monster.experience = 145
+monster.experience = 185
 monster.outfit = {
 	lookType = 40,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 40
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,15 +76,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2920, chance = 10000 }, -- torch
-	{ id = 2920, chance = 1420, maxCount = 2 }, -- torch
-	{ name = "small amethyst", chance = 300 },
-	{ name = "necrotic rod", chance = 460 },
-	{ name = "blank rune", chance = 10950 },
+	{ name = "small amethyst", chance = 4300 },
+	{ name = "necrotic rod", chance = 1460 },
 	{ name = "double axe", chance = 1500 },
 	{ id = 3307, chance = 3000 }, -- scimitar
-	{ name = "guardian shield", chance = 210 },
-	{ name = "cleaver", chance = 1100 },
+	{ name = "guardian shield", chance = 2210 },
 	{ name = "small pitchfork", chance = 19770 },
 }
 

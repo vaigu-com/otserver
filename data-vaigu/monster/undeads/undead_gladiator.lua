@@ -17,9 +17,9 @@ monster.raceId = 508
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -85,18 +85,16 @@ monster.loot = {
 	{ name = "two handed sword", chance = 1900 },
 	{ name = "throwing star", chance = 15700, maxCount = 18 },
 	{ id = 3307, chance = 11280 }, -- scimitar
-	{ name = "knight axe", chance = 280 },
+	{ name = "knight axe", chance = 1280 },
 	{ name = "plate armor", chance = 1700 },
 	{ name = "brass armor", chance = 4700 },
-	{ name = "brass legs", chance = 5500 },
 	{ name = "dark helmet", chance = 1460 },
 	{ name = "crusader helmet", chance = 100 },
 	{ name = "plate legs", chance = 2444 },
-	{ name = "hunting spear", chance = 4200 },
-	{ name = "flask of warrior's sweat", chance = 210 },
+	{ name = "flask of warrior's sweat", chance = 2210 },
 	{ name = "health potion", chance = 350 },
 	{ name = "belted cape", chance = 5000 },
-	{ name = "broken gladiator shield", chance = 5200 },
+	{ name = "broken gladiator shield", chance = 15200 },
 }
 
 monster.attacks = {

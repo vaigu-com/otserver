@@ -17,9 +17,9 @@ monster.raceId = 45
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 250,
+	toKill = 50,
 	FirstUnlock = 10,
-	SecondUnlock = 100,
+	SecondUnlock = 25,
 	CharmsPoints = 5,
 	Stars = 1,
 	Occurrence = 0,
@@ -73,8 +73,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 51170, maxCount = 6 },
-	{ name = "cherry", chance = 2590, maxCount = 3 },
+	{ name = "cherry", chance = 4590, maxCount = 5 },
 }
 
 monster.attacks = {

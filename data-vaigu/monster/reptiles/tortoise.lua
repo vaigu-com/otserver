@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Tortoise")
 local monster = {}
 
 monster.description = "a tortoise"
-monster.experience = 90
+monster.experience = 110
 monster.outfit = {
 	lookType = 197,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 258
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -73,17 +73,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 59000, maxCount = 30 },
-	{ name = "battle hammer", chance = 730 },
-	{ name = "plate shield", chance = 2850 },
-	{ id = 3578, chance = 4600 }, -- fish
-	{ name = "tortoise egg", chance = 770, maxCount = 2 },
+	{ name = "battle hammer", chance = 1730 },
+	{ id = 3578, chance = 8600 }, -- fish
+	{ name = "tortoise egg", chance = 1770, maxCount = 2 },
 	{ id = 5899, chance = 1300 }, -- turtle shell
-	{ name = "tortoise shield", chance = 200 },
+	{ name = "tortoise shield", chance = 2200 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -40 },
 }
 
 monster.defenses = {

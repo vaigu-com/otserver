@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Shaburak Prince")
 local monster = {}
 
 monster.description = "a shaburak prince"
-monster.experience = 1700
+monster.experience = 2100
 monster.outfit = {
 	lookType = 418,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 726
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 2,
@@ -82,20 +82,19 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small ruby", chance = 12500, maxCount = 5 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "gold coin", chance = 50000, maxCount = 78 },
 	{ name = "platinum coin", chance = 33333, maxCount = 4 },
 	{ id = 3049, chance = 5000 }, -- stealth ring
 	{ name = "wand of inferno", chance = 892 },
 	{ name = "steel boots", chance = 89 },
 	{ name = "brown mushroom", chance = 4545 },
-	{ name = "magic sulphur", chance = 534 },
-	{ name = "butcher's axe", chance = 357 },
-	{ name = "bullseye potion", chance = 714 },
+	{ name = "magic sulphur", chance = 1534 },
+	{ name = "butcher's axe", chance = 1357 },
+	{ name = "bullseye potion", chance = 4714 },
 	{ name = "strong health potion", chance = 14285 },
 	{ name = "strong mana potion", chance = 14285 },
-	{ name = "magma coat", chance = 714 },
-	{ name = "demonic finger", chance = 178 },
+	{ name = "magma coat", chance = 1714 },
+	{ name = "demonic finger", chance = 2178 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Vulcongra")
 local monster = {}
 
 monster.description = "a vulcongra"
-monster.experience = 1100
+monster.experience = 1800
 monster.outfit = {
 	lookType = 509,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 898
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -79,27 +79,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 7 },
-	{ name = "platinum coin", chance = 14780 },
 	{ name = "wand of inferno", chance = 1000 },
 	{ id = 3091, chance = 2920 }, -- sword ring
-	{ name = "fire sword", chance = 260 },
+	{ name = "fire sword", chance = 2160 },
 	{ name = "banana", chance = 10420, maxCount = 10 },
 	{ name = "strong health potion", chance = 7100 },
 	{ name = "strong mana potion", chance = 7100 },
-	{ name = "magma amulet", chance = 970 },
-	{ name = "magma coat", chance = 140 },
-	{ name = "fiery heart", chance = 9380 },
+	{ name = "magma amulet", chance = 1970 },
+	{ name = "magma coat", chance = 1140 },
+	{ name = "fiery heart", chance = 19380 },
 	{ id = 12600, chance = 940 }, -- coal
 	{ name = "brown crystal splinter", chance = 4850 },
 	{ name = "red crystal fragment", chance = 2280 },
 	{ name = "magma clump", chance = 12440 },
-	{ name = "blazing bone", chance = 8030 },
+	{ name = "blazing bone", chance = 18030 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -235 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -275 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_FIREDAMAGE, minDamage = -195, maxDamage = -340, length = 8, spread = 0, effect = CONST_ME_EXPLOSIONHIT, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -100, maxDamage = -200, range = 7, shootEffect = CONST_ANI_FIRE, target = true },
 	{ name = "vulcongra soulfire", interval = 3000, chance = 100, target = false },

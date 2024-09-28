@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Grave Robber")
 local monster = {}
 
 monster.description = "a grave robber"
-monster.experience = 65
+monster.experience = 95
 monster.outfit = {
 	lookType = 146,
 	lookHead = 57,
@@ -17,9 +17,9 @@ monster.raceId = 867
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 2,
@@ -74,19 +74,17 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 54260, maxCount = 38 },
-	{ name = "axe", chance = 2500 },
 	{ name = "mace", chance = 1700 },
-	{ name = "iron helmet", chance = 500 },
+	{ name = "iron helmet", chance = 1500 },
 	{ name = "brass armor", chance = 1700 },
-	{ name = "steel shield", chance = 500 },
 	{ name = "nomad parchment", chance = 170 },
 	{ name = "potato", chance = 5680, maxCount = 3 },
-	{ name = "dirty turban", chance = 1700 },
-	{ name = "rope belt", chance = 7510 },
+	{ name = "dirty turban", chance = 11700 },
+	{ name = "rope belt", chance = 11510 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -90 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -120 },
 	-- poison
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -100, maxDamage = -160, range = 7, radius = 1, shootEffect = CONST_ANI_POISON, target = true },
 }

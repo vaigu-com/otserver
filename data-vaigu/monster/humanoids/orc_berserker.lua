@@ -17,9 +17,9 @@ monster.raceId = 8
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -75,16 +75,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2914, chance = 830 }, -- lamp
-	{ name = "gold coin", chance = 54000, maxCount = 12 },
+	{ name = "gold coin", chance = 54000, maxCount = 22 },
 	{ name = "battle axe", chance = 6110 },
 	{ name = "halberd", chance = 7280 },
-	{ name = "chain armor", chance = 890 },
 	{ name = "ham", chance = 10400 },
 	{ name = "hunting spear", chance = 5000 },
-	{ name = "orc tooth", chance = 3000 },
+	{ name = "orc tooth", chance = 4000 },
 	{ name = "orcish gear", chance = 9400 },
-	{ name = "orc leather", chance = 4000 },
+	{ name = "orc leather", chance = 8000 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Betrayed Wraith")
 local monster = {}
 
 monster.description = "a betrayed wraith"
-monster.experience = 3500
+monster.experience = 3900
 monster.outfit = {
 	lookType = 233,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 284
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -77,13 +77,11 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small diamond", chance = 11800, maxCount = 4 },
-	{ name = "gold coin", chance = 100000, maxCount = 200 },
 	{ name = "platinum coin", chance = 100000, maxCount = 8 },
-	{ name = "power bolt", chance = 50000, maxCount = 5 },
 	{ name = "orichalcum pearl", chance = 8000, maxCount = 2 },
-	{ name = "skull helmet", chance = 390 },
-	{ name = "golden figurine", chance = 160 },
-	{ name = "soul orb", chance = 10000 },
+	{ name = "skull helmet", chance = 1390 },
+	{ name = "golden figurine", chance = 1160 },
+	{ name = "soul orb", chance = 20000 },
 	{ id = 6299, chance = 390 }, -- death ring
 	{ name = "demonic essence", chance = 19430 },
 	{ name = "flask of demonic blood", chance = 65250 },
@@ -92,7 +90,7 @@ monster.loot = {
 	{ name = "bloody edge", chance = 80 },
 	{ name = "great mana potion", chance = 15000, maxCount = 3 },
 	{ name = "ultimate health potion", chance = 15410 },
-	{ name = "unholy bone", chance = 18410 },
+	{ name = "unholy bone", chance = 28410 },
 }
 
 monster.attacks = {
