@@ -20,7 +20,7 @@ local startupRewardsStatic = {
 		pos = { 6180, 1265, 7 },
 		id = 2484,
 		aid = Storage.TrzejSramaciISmok.Rewards.Rum,
-		rewards = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUM"] },
+		rewards = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rum },
 		uid = 1000,
 		requiredState = { [Storage.TrzejSramaciISmok.Questline] = 5 },
 		nextState = { [Storage.TrzejSramaciISmok.Questline] = 6, [Storage.TrzejSramaciISmok.Mission03] = 4 },
@@ -36,16 +36,16 @@ local startupRewardsStatic = {
 		id = 7805,
 		uid = 1000,
 		aid = Storage.TrzejSramaciISmok.Rewards.DeepCrystal,
-		rewards = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["DEEP_CRYSTAL"] },
+		rewards = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.deepCrystal },
 		requiredState = { [Storage.TrzejSramaciISmok.Questline] = 15 },
 	},
 	{
 		pos = { 6814, 600, 12 },
 		id = 11809,
-		aid = Storage.TrzejSramaciISmok.Rewards.Rune1,
+		aid = Storage.TrzejSramaciISmok.Rewards.rune1,
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Rewards.Rune1] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
-		nextState = { [Storage.TrzejSramaciISmok.Rewards.Rune1] = 1 },
+		requiredState = { [Storage.TrzejSramaciISmok.Rewards.rune1] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
+		nextState = { [Storage.TrzejSramaciISmok.Rewards.rune1] = 1 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -53,16 +53,16 @@ local startupRewardsStatic = {
 			},
 		},
 		rewards = {
-			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE1"],
+			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune1,
 		},
 	},
 	{
 		pos = { 6775, 623, 12 },
 		id = 11809,
-		aid = Storage.TrzejSramaciISmok.Rewards.Rune2,
+		aid = Storage.TrzejSramaciISmok.Rewards.rune2,
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Rewards.Rune2] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
-		nextState = { [Storage.TrzejSramaciISmok.Rewards.Rune2] = 1 },
+		requiredState = { [Storage.TrzejSramaciISmok.Rewards.rune2] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
+		nextState = { [Storage.TrzejSramaciISmok.Rewards.rune2] = 1 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -70,16 +70,16 @@ local startupRewardsStatic = {
 			},
 		},
 		rewards = {
-			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE2"],
+			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune2,
 		},
 	},
 	{
 		pos = { 6809, 634, 13 },
 		id = 11809,
-		aid = Storage.TrzejSramaciISmok.Rewards.Rune3,
+		aid = Storage.TrzejSramaciISmok.Rewards.rune3,
 		uid = 1000,
-		requiredState = { [Storage.TrzejSramaciISmok.Rewards.Rune3] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
-		nextState = { [Storage.TrzejSramaciISmok.Rewards.Rune3] = 1 },
+		requiredState = { [Storage.TrzejSramaciISmok.Rewards.rune3] = -1, [Storage.TrzejSramaciISmok.Questline] = 21 },
+		nextState = { [Storage.TrzejSramaciISmok.Rewards.rune3] = 1 },
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
@@ -87,7 +87,7 @@ local startupRewardsStatic = {
 			},
 		},
 		rewards = {
-			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE3"],
+			TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune3,
 		},
 	},
 }

@@ -17,7 +17,6 @@ function skurwiwijDeath.onDeath(creature)
 	end)
 
 	local deathPos = creature:getPosition()
-	DeactivateSkurwiwijEncounter()
 
 	local corpse = Game.createItem(18021, 1, deathPos)
 	corpse:setActionId(Storage.TragedyaWCzterechAktach.Rewards.GrazynaCore)

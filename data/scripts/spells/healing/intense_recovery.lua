@@ -6,7 +6,7 @@ combat:setParameter(COMBAT_PARAM_AGGRESSIVE, false)
 
 local condition = Condition(CONDITION_REGENERATION)
 condition:setParameter(CONDITION_PARAM_TICKS, cooldown)
-condition:setParameter(CONDITION_PARAM_HEALTHGAIN, 40)
+condition:setParameter(CONDITION_PARAM_HEALTHGAIN, 105)
 condition:setParameter(CONDITION_PARAM_HEALTHTICKS, 3000) -- 3sec
 condition:setParameter(CONDITION_PARAM_BUFF_SPELL, true)
 combat:addCondition(condition)

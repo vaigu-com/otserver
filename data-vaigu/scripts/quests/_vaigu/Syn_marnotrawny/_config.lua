@@ -1,50 +1,49 @@
 SYN_MARNOTRAWNY_KEY_ITEMS = {
-	["PAYSLIP"] = {
+	payslip = {
 		id = 2818,
 		aid = Storage.SynMarnotrawny.Payslip,
 		desc = "A payslip.",
 	},
-	["COMPANY_SHOP_VOUCHER"] = {},
-	["BOOK_ONE"] = {
+	bookOne = {
 		id = 2816,
 		aid = Storage.SynMarnotrawny.EristicsBooks.One,
 		desc = "Eristics for dummies\nPart 3",
 	},
-	["BOOK_TWO"] = {
+	bookTwo = {
 		id = 2821,
 		aid = Storage.SynMarnotrawny.EristicsBooks.Two,
 		desc = "Eristics for dummies\nPart 5",
 	},
-	["BOOK_THREE"] = {
+	bookThree = {
 		id = 2828,
 		aid = Storage.SynMarnotrawny.EristicsBooks.Three,
 		desc = "Eristics for dummies\nPart 8",
 	},
-	["POT"] = {
+	pot = {
 		id = 3465,
 		desc = "Every dish cooked in this pot can only make you more slim and fit.",
 		aid = Storage.SynMarnotrawny.EristicsItems.Pot,
 	},
-	["LOVE_POTION"] = {
+	lovePotion = {
 		id = 9173,
 		desc = "This smart potion will make you a lovely person.",
 		aid = Storage.SynMarnotrawny.EristicsItems.LovePotion,
 	},
-	["HERBS"] = {
+	herbs = {
 		id = 12671,
 		desc = "Assortment of herbs. They cure cancer within 24 hours.",
 		aid = Storage.SynMarnotrawny.EristicsItems.Herbs,
 	},
-	["LOAN_DOCUMENT"] = {
+	loanDocument = {
 		id = 2815,
 		desc = "Loan agreement",
 		aid = Storage.SynMarnotrawny.EristicsItems.LoanDocument,
 	},
-	["DIAMOND_NECKLACE"] = {
+	diamondNecklace = {
 		id = 35607,
 		aid = Storage.SynMarnotrawny.DiamondNecklace,
 	},
-	["FREDI_BEER"] = {
+	frediBeer = {
 		id = 6106,
 	},
 }
@@ -102,7 +101,14 @@ SYN_MARNOTRAWNY_SPECIAL_CONDITIONS = {
 		end
 		npc:setOutfit({ lookType = 875, lookHead = 94, lookBody = 38, lookLegs = 114, lookFeet = 114, lookAddons = 2 })
 		addEvent(function()
-			npc:setOutfit({ lookType = 875, lookHead = 83, lookBody = 38, lookLegs = 114, lookFeet = 114, lookAddons = 2 })
+			npc:setOutfit({
+				lookType = 875,
+				lookHead = 83,
+				lookBody = 38,
+				lookLegs = 114,
+				lookFeet = 114,
+				lookAddons = 2,
+			})
 		end, 7000)
 
 		addEvent(function()

@@ -3,7 +3,7 @@ local updateStorages = {
 	[Storage.PerIustitiaAdAstra.Mission05] = 6,
 }
 
-local hammerId = PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["LECINA_HAMMER"].id
+local hammerId = PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.lecinaHammer.id
 local pipeId = 20787
 
 local item = Action()

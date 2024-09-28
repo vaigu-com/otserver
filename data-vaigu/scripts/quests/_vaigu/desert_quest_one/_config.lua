@@ -238,7 +238,7 @@ DESERT_QUEST_ONE_MONSTER_GUIDING = {
 	fence = { pos = Vector(-24, 91, 2), id = 2182 },
 
 	stonesAnchor = DESERT_QUEST_ONE_ANCHOR:Moved({ x = -22, y = 98, z = 1 }),
-	stones_pos = {
+	stonesPos = {
 		origin = {
 			[8] = { offPos = Vector(-23, 98, 1), id = 1841 },
 			-- [2] = nil,
@@ -314,10 +314,10 @@ DESERT_QUEST_ONE_DONT_BREAK_ICE = {
 }
 
 DESERT_QUEST_ONE_ICE_SKATING = {
-	players_pos = { Vector(-17, 61, 2), Vector(-22, 54, 2), { x = -29, y = 46, z = 2 } },
+	playersPos = { Vector(-17, 61, 2), Vector(-22, 54, 2), { x = -29, y = 46, z = 2 } },
 	stone = { pos = Vector(-21, 57, 2), id = 6720 },
-	skating_floor = { id = 6967 },
-	black_marble = { id = 410 },
+	skatingFloor = { id = 6967 },
+	blackMarble = { id = 410 },
 }
 
 DESERT_QUEST_ONE_WATER_FLOW = {
@@ -337,7 +337,7 @@ DESERT_QUEST_ONE_WATER_FLOW = {
 		{ offPos = Vector(0, 152, 2), id = 3699 },
 		{ offPos = Vector(22, 152, 2), id = 3699 },
 	},
-	final_gate = {
+	finalGate = {
 		{ offPos = { x = 17, y = 158, z = 1, stackpos = 0 }, id = 18580 },
 		{ offPos = { x = 17, y = 158, z = 1, stackpos = 0 }, id = 18587 },
 	},
@@ -380,13 +380,4 @@ DESERT_QUEST_ONE_CASTLE_SWAP_LIST = {
 	[2773] = 2772,
 	[1971] = 1972,
 	[1972] = 1971,
-}
-
-DESERT_QUEST_ONE_SPECIAL_ACTIONS = {
-	sendMagicEffect = function(context)
-		local player = context.player
-		if player then
-			player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-		end
-	end,
 }

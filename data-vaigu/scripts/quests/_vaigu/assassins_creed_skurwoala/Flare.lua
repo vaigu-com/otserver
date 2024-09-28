@@ -8,7 +8,7 @@ local config = { ["stand"] = "You have to be standing just before Ghasstly Princ
 local flare = Action()
 
 function flare.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if item:getId() ~= ASSASSINS_CREED_SKURWOALA_KEY_ITEMS["flare"].id then
+	if item:getId() ~= ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare.id then
 		return false
 	end
 

@@ -166,9 +166,9 @@ local config = {
 			text = "It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative.",
 		},
 	},
-	[Storage.UstatkowanyFanatyk.Bigos] = {
-		[{ max = 3 }] = { [{ "shimmer swimmer" }] = { text = "Yeah, they're pretty." } },
-		[3] = {
+	[Storage.UstatkowanyFanatyk.Questline] = {
+		[{ max = 4 }] = { [{ "shimmer swimmer" }] = { text = "Yeah, they're pretty." } },
+		[5] = {
 			[{ "mission", "misja", "nagroda", "reward" }] = {
 				text = "Here's your reward. If you'd like to buy more {shimmer swimmer}s just ask me.",
 				rewards = {
@@ -182,12 +182,13 @@ local config = {
 				},
 				expReward = 80000,
 				nextState = {
-					[Storage.UstatkowanyFanatyk.Bigos] = 4,
+					[Storage.UstatkowanyFanatyk.Mission03] = 4,
+					[Storage.UstatkowanyFanatyk.Questline] = 6,
 					[Storage.Finished.Fanatyk] = 1,
 				},
 			},
 		},
-		[{ min = 4 }] = {
+		[{ min = 5 }] = {
 			[{ "shimmer swimmer" }] = {
 				text = "Do you want to buy one shimmer swimmer for 1000gp?",
 				nextTopic = 10,
@@ -212,18 +213,18 @@ local config = {
 			},
 		},
 	},
-	-- ToDo: change to reference
-	[2050] = {
+	[Storage.TwoMarlinQuest] = {
 		[-1] = {
 			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
 				text = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
 				requiredItems = { { id = 901, remove = false } },
-				removeRequiredItems = false,
 				nextTopic = 1,
 			},
 			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
 				text = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
-				nextState = { [2050] = 1 },
+				nextState = {
+					[Storage.TwoMarlinQuest] = 1,
+				},
 				rewards = { { id = 902 } },
 				expReward = 5000,
 				requiredItems = { { id = 901, count = 2 } },

@@ -1,7 +1,7 @@
 local function targetFunction(creature, target)
 	local player = creature:getPlayer()
-	local min = ((player:getLevel() / 5) + (player:getMagicLevel() * 5.7) + 26)
-	local max = ((player:getLevel() / 5) + (player:getMagicLevel() * 10.43) + 62)
+	local min = ((player:getLevel() / 5) + (player:getMagicLevel() * 5.7) + 100)
+	local max = ((player:getLevel() / 5) + (player:getMagicLevel() * 10.43) + 125)
 
 	local bosses = { "leiden", "ravennous hunger", "dorokoll the mystic", "eshtaba the conjurer", "eliz the unyielding", "mezlon the defiler", "malkhar deathbringer", "containment crystal" }
 	local master = target:getMaster()

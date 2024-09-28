@@ -16,8 +16,8 @@ local hfpxConfig = {
 	bossPos = Position(6791, 550, 13),
 	enterPos = Position(6801, 556, 13),
 	durationMinutes = 10,
-	corner1 = HFPX_ANCHOR:Moved(0, 0, 0),
-	corner2 = HFPX_ANCHOR:Moved(15, 11, 0),
+	corner1 = ANCHOR:Moved(0, 0, 0),
+	corner2 = ANCHOR:Moved(15, 11, 0),
 
 	requiredStorages = {
 		[Storage.TrzejSramaciISmok.HfpxAccess] = 1,

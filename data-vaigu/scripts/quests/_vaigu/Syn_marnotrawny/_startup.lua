@@ -43,17 +43,17 @@ local startupJanuszex = {
 	{ pos = { -87, -52, -1 }, id = 710, aid = Storage.SynMarnotrawny.AreczekLeaderBed },
 	{ pos = { -87, -51, -1 }, id = 711, aid = Storage.SynMarnotrawny.AreczekLeaderBed },
 	--eristics
-	{ pos = { -50, -5, 1 }, id = 2438, aid = Storage.SynMarnotrawny.EristicsBooks.One, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["BOOK_ONE"] } },
-	{ pos = { -69, 17, 5 }, id = 27314, aid = Storage.SynMarnotrawny.EristicsBooks.Two, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["BOOK_TWO"] } },
-	{ pos = { -47, 166, 4 }, id = 2473, aid = Storage.SynMarnotrawny.EristicsBooks.Three, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["BOOK_THREE"] } },
+	{ pos = { -50, -5, 1 }, id = 2438, aid = Storage.SynMarnotrawny.EristicsBooks.One, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.bookOne } },
+	{ pos = { -69, 17, 5 }, id = 27314, aid = Storage.SynMarnotrawny.EristicsBooks.Two, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.bookTwo } },
+	{ pos = { -47, 166, 4 }, id = 2473, aid = Storage.SynMarnotrawny.EristicsBooks.Three, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.bookThree } },
 	{ pos = { -61, 27, 2 }, id = 9125, aid = Storage.SynMarnotrawny.SewersLever },
 	{ pos = { -61, 27, 5 }, id = 9125, aid = Storage.SynMarnotrawny.SewersLever },
 	--necklace corpse
-	{ pos = { -40, -270, 5 }, id = 4169, aid = Storage.SynMarnotrawny.DiamondNecklace, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["DIAMOND_NECKLACE"] } },
+	{ pos = { -40, -270, 5 }, id = 4169, aid = Storage.SynMarnotrawny.DiamondNecklace, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.diamondNecklace } },
 	--silo machine
 	{ pos = { 74, -82, 2 }, id = 843, aid = Storage.SynMarnotrawny.LavaSiloMachine, requiredState = { [Storage.SynMarnotrawny.Questline] = 18 }, nextState = { [Storage.SynMarnotrawny.Questline] = 19, [Storage.SynMarnotrawny.Mission05] = 5 }, rewards = {} },
 	--fredi
-	{ pos = { 104, -150, 4 }, id = 5468, aid = Storage.SynMarnotrawny.FrediBeer, nextState = { [Storage.SynMarnotrawny.FrediBeer] = -1 }, requiredState = { [Storage.SynMarnotrawny.Questline] = { min = 20, max = 20 } }, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS["FREDI_BEER"] } },
+	{ pos = { 104, -150, 4 }, id = 5468, aid = Storage.SynMarnotrawny.FrediBeer, nextState = { [Storage.SynMarnotrawny.FrediBeer] = -1 }, requiredState = { [Storage.SynMarnotrawny.Questline] = { min = 20, max = 20 } }, rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.frediBeer } },
 	--blackboards
 	{ pos = { -174, 5, 5 }, id = 2602, aid = Storage.SynMarnotrawny.Blackboard, desc = "BLACKBOARD_DESC" },
 	{ pos = { -174, 5, 5 }, id = 1717, actionid = 0 }, --waterfall

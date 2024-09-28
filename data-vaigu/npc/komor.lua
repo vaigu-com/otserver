@@ -12,7 +12,7 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.IKEAdlazuchwalych.RemanentMain] = {
+	[Storage.IKEAdlazuchwalych.Questline] = {
 		[-1] = {
 			[{ "misja", "mission" }] = {
 				text = "There is one problem with which you could help me. Some furnitures started to disappear from my storages.\nI know for sure that it wasnt Waski's mafia, because they are using wood for different purposes, they are not interested in my furnitures.\nDo you want to find for me who is responsible for stealing my furnitures?",
@@ -21,13 +21,13 @@ local dialogs = {
 			[{ "yes", "tak" }] = {
 				text = "Thanks that you agreed to {help}. I hope that its not another mafia.",
 				requiredState = { [Storage.TrudnePoczatki.DostawaDrewna] = 4 },
-				nextState = { [Storage.IKEAdlazuchwalych.RemanentMain] = 1 },
+				nextState = { [Storage.IKEAdlazuchwalych.Questline] = 1 },
 			},
 		},
 		[1] = {
 			[{ "misja", "mission" }] = {
 				text = "Maybe Gypsy knows something about furnitures thief, people like him sticks together...",
-				nextState = { [Storage.IKEAdlazuchwalych.RemanentMain] = 2 },
+				nextState = { [Storage.IKEAdlazuchwalych.Questline] = 2 },
 			},
 		},
 		[2] = {
@@ -38,7 +38,7 @@ local dialogs = {
 		[5] = {
 			[{ "misja", "mission" }] = {
 				text = "Thank you for finding perpetrator. Your reward is upstairs, here is the key to the door.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds",
-				nextState = { [Storage.IKEAdlazuchwalych.RemanentMain] = 6 },
+				nextState = { [Storage.IKEAdlazuchwalych.Questline] = 6 },
 				rewards = {
 					{ id = 2972, actionid = 5008 }, -- ehhhhhhh
 				},

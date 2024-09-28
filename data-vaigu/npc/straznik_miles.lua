@@ -64,17 +64,17 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 		end
 	elseif table.contains({ "zlodziej", "thief" }, message) then
-		if player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) == 8 then
+		if player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 8 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Widzialem jak ktos pobiegl za brame miasta, a nastepnie na wschod. Moze udal sie w kierunku {obozu} bandytow?" or "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?", npc, creature)
 			if player:getStorageValue(Storage.IKEAdlazuchwalych.MilesAsked) <= 0 then
 				player:setStorageValue(Storage.IKEAdlazuchwalych.ZlodziejAsked, player:getStorageValue(Storage.IKEAdlazuchwalych.ZlodziejAsked) + 1)
 				player:setStorageValue(Storage.IKEAdlazuchwalych.MilesAsked, 1)
 			end
 			if player:getStorageValue(Storage.IKEAdlazuchwalych.ZlodziejAsked) >= 2 then
-				player:setStorageValue(Storage.IKEAdlazuchwalych.RemanentMain, 9)
+				player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 9)
 			end
 			npcHandler:setTopic(playerId, 2)
-		elseif player:getStorageValue(Storage.IKEAdlazuchwalych.RemanentMain) >= 9 then
+		elseif player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) >= 9 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Mam nadzieje ze go zlapiesz." or "I hope that youll catch him.", npc, creature)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie widzialem zadnego zlodzieja." or "I dint see anything suspicious.", npc, creature)

@@ -123,7 +123,7 @@ local config = {
 				text = "In this bag i kept an item from the WotE quest. I completed it on the *REDACTED* server. Do you remember was item it was?",
 			},
 			[{ "Elite Draken Helmet" }] = {
-				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS["gandalf_bag"] },
+				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
 				text = "Right, it was the Elite Draken Helmet. Here's your reward.",
 				nextState = {
 					[Storage.CzeslawKrasnolud.Questline] = 11,
@@ -134,7 +134,7 @@ local config = {
 				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
 			},
 			[{ "Royal Draken Mail" }] = {
-				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS["gandalf_bag"] },
+				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
 				text = "Right, it was the Royal Draken Mail. Here's your reward.",
 				nextState = {
 					[Storage.CzeslawKrasnolud.Questline] = 11,
@@ -144,7 +144,7 @@ local config = {
 				textNoRequiredItems = "Lost the bag? Come back when you retrieve it.",
 			},
 			[{ "Royal Scale Robe" }] = {
-				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS["gandalf_bag"] },
+				requiredItems = { CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag },
 				text = "Right, it was the Royal Scale Robe. Here's your reward.",
 				nextState = {
 					[Storage.CzeslawKrasnolud.Questline] = 11,

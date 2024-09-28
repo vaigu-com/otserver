@@ -101,9 +101,9 @@ local config = {
 			[{ "runy", "runes" }] = {
 				text = "Yes, those are all the needed runes. You can now try to use the enchanted lever. Maybe we'll find HF-P/X here.",
 				requiredItems = {
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE1"],
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE2"],
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE3"],
+					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune1,
+					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune2,
+					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune3,
 				},
 				textNoRequiredItems = "I see you don't have all the runes yet.",
 				specialActionsOnSuccess = {

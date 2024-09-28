@@ -49,10 +49,12 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local config = {
-	[WALKAWAY] = "Lebewohl.",
-	[FAREWELL] = "Auf wiedersehen.",
-	[GREET] = "Strammstehen!",
-	["INCOMPREHENSIBLE"] = "Ich verstehe kein einziges wort.",
+	[LOCALIZER_UNIVERSAL] = {
+		[{ WALKAWAY }] = { text = "Lebewohl." },
+		[{ FAREWELL }] = { text = "Auf wiedersehen." },
+		[{ GREET }] = { text = "Strammstehen!" },
+		[{ INCOMPREHENSIBLE }] = { text = "Ich verstehe kein einziges wort." },
+	},
 	[Storage.PerIustitiaAdAstra.Questline] = {
 		[13] = {
 			[{ GREET }] = { text = "Identifiziere dich, Soldat!" },

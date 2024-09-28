@@ -62,22 +62,22 @@ SPECIAL_CONDITIONS_IMBUING = {
 	saidImbuingName = function(context)
 		local bundleData = GetImbuingBundleByName(context.msg)
 		if type(bundleData) == "table" then
-			PlayerCustomDialogDataRegistry:Get(context.player).bundleData = bundleData
+			PlayerCustomDialogDataRegistry():Get(context.player).bundleData = bundleData
 			return true
 		end
 		return false
 	end,
 	saidImbuingLevel = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 		local bundleLevelData = bundleData[context.msg]
 		if type(bundleLevelData) == "table" then
-			PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData = bundleLevelData
+			PlayerCustomDialogDataRegistry():Get(context.player).bundleLevelData = bundleLevelData
 			return true
 		end
 		return false
 	end,
 	canPurchaseThisImbuingLevel = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 		local level = bundleData.levelName
 		if level ~= IMBUING_LEVELS.powerful then
 			return true
@@ -85,23 +85,23 @@ SPECIAL_CONDITIONS_IMBUING = {
 		return context.player:getStorageValue(Storage.powerfulImbue) >= 1
 	end,
 	hasEnoughTaskPoints = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 		local requiredTaskPoints = bundleData.taskPointsCost
 		local playerTaskPoints = context.player:getStorageValue(Storage.taskPoints)
 		local playerHasPoints = playerTaskPoints >= requiredTaskPoints
 		if not playerHasPoints then
-			PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints = requiredTaskPoints
+			PlayerCustomDialogDataRegistry():Get(context.player).requiredTaskPoints = requiredTaskPoints
 		end
 		return playerHasPoints
 	end,
 	hasEnoughMoney = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 		local requiredMoney = bundleData.moneyCost
 		local playerMoney = context.player:GetTotalMoney()
 		return playerMoney >= requiredMoney
 	end,
 	hasEnoughCapSlots = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 		return context.player:CanAddItems(bundleData.items)
 	end,
 }
@@ -109,7 +109,7 @@ SPECIAL_CONDITIONS_IMBUING = {
 SPECIAL_CONDITIONS_WILDCARD = {
 	hasMoneyForWildcards = function(context)
 		local player = context.player
-		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
+		local orderedCards = PlayerCustomDialogDataRegistry():Get(context.player).orderedCards
 		local requiredMoney = player:GetWildcardPrice() * orderedCards
 		local playerMoney = player:GetTotalMoney()
 		return playerMoney >= requiredMoney
@@ -132,8 +132,59 @@ SPECIAL_CONDITIONS_TASKS = {
 }
 
 SPECIAL_CONDITIONS_DAILY_TASK = {
-    hasAnyOngoingDailyTask = function(context)
-        local player = context.player
-        return player:HasAnyOngoingDailyTask()
-    end
+	hasAnyOngoingDailyTask = function(context)
+		local player = context.player
+		return player:HasAnyOngoingDailyTask()
+	end,
+}
+
+SPECIAL_CONDITIONS_BANK = {
+	hasMoneyininventory = function(context)
+		local moneyInInventory = context.player:getMoney()
+		if type(context.amount) == "string" and context.amount == "all" then
+			return moneyInInventory > 0
+		end
+
+		local declaredMoney = tonumber(context.amount) or PlayerCustomDialogDataRegistry():Get(context.player).amount
+		return declaredMoney <= moneyInInventory
+	end,
+	hasMoneyinbank = function(context)
+		if type(context.amount) == "string" and context.amount == "all" then
+			return Bank.balance(context.player) > 0
+		end
+		local amount = tonumber(context.amount) or PlayerCustomDialogDataRegistry():Get(context.player).amount
+		return amount <= context.player:getBankBalance()
+	end,
+	canCarryWithdrawnMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local crystalCoins = math.floor(amount / 10000)
+		amount = amount % 10000
+		local platinumCoins = math.floor(amount / 100)
+		amount = amount % 100
+		local goldCoins = math.floor(amount / 1)
+		local crystalPiles = math.floor((crystalCoins + 99) / 100)
+		local platinumPiles = math.floor((platinumCoins + 99) / 100)
+		local goldPiles = math.floor((goldCoins + 99) / 100)
+		local pilesCount = crystalPiles + platinumPiles + goldPiles
+
+		local player = context.player
+		local hasCap, noCapMessage = player:HasEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
+		if not hasCap then
+			player:sendTextMessage(MESSAGE_FAILURE, noCapMessage)
+		end
+		local hasSlots, noSlotsMessage = player:HasEnoughSlots({ requiredSlots = pilesCount })
+		if not hasSlots then
+			player:sendTextMessage(MESSAGE_FAILURE, noSlotsMessage)
+		end
+
+		return true
+	end,
+	recipientIsnotself = function(context)
+		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		return context.player:getName() ~= recipient
+	end,
+	recipientExists = function(context)
+		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		return type(Bank.balance(recipient)) == "number"
+	end,
 }

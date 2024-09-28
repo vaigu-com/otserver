@@ -10,7 +10,7 @@ local necklaceStorage = Storage.SultanPrime.RewardsScripted.Necklace
 
 function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getStorageValue(necklaceStorage) < 1 then
-		player:AddItems({ SULTAN_PRIME_KEY_ITEMS["amulet"] })
+		player:AddItems({ SULTAN_PRIME_KEY_ITEMS.amulet })
 		player:UpdateStorages(neckUpdateStorages)
 		return true
 	end

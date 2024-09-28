@@ -83,7 +83,7 @@ local config = {
 		[6] = {
 			[{ "mission", "rum" }] = {
 				text = "Mmm, delicious. Alright, comrades, it's time to move. See you on the coast at the western steppes.",
-				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUM"] },
+				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rum },
 				textNoRequiredItems = "Come back with rum, or there's nothing to talk about.",
 				nextState = {
 					[Storage.TrzejSramaciISmok.Questline] = 7,
@@ -186,9 +186,9 @@ local config = {
 			[{ "mission" }] = {
 				text = "Yes, those are all the needed runes. You can now try to find the enchanted doors I mentioned. Maybe we'll find HF-P/X here.",
 				requiredItems = {
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE1"],
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE2"],
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS["RUNE3"],
+					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune1,
+					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune2,
+					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune3,
 				},
 				removeRequiredItems = false,
 				textNoRequiredItems = "Unfortunately, I don't know the exact location of the runes.",

@@ -3683,15 +3683,19 @@ end
 
 local function delayedBroadcast(message, broadcastType, translate)
 	if broadcastType == nil then
-		broadcastMessage(message, MESSAGE_STATUS_WARNING, translate)
+		Game.broadcastMessage(message, MESSAGE_STATUS_WARNING, translate)
 	else
-		broadcastMessage(message, broadcastType, translate)
+		Game.broadcastMessage(message, broadcastType, translate)
 	end
 end
 
 local function delayedRaidDespawn(raidIndex)
 	if ranLuaRaids[raidIndex] == nil then
-		print("delayedRaidDespawn() Error: raidIndex of " .. raidIndex .. " in ranLuaRaids is nil. If you reloaded global ignore this.")
+		print(
+			"delayedRaidDespawn() Error: raidIndex of "
+				.. raidIndex
+				.. " in ranLuaRaids is nil. If you reloaded global ignore this."
+		)
 		return false
 	end
 	for creaturesIndex = 1, #ranLuaRaids[raidIndex].creatures do
@@ -3708,11 +3712,22 @@ local function spawnCreatureInArea(creatureArr)
 	local forcingSpawnEnabled = false
 	local resultCreature = nil
 	for findTileTries = 1, luaRaidsAttemptsToFindValidTileToSpawnCreature * 2 do
-		foundTile = Tile(math.random(creatureArr.from.x, creatureArr.to.x), math.random(creatureArr.from.y, creatureArr.to.y), math.random(creatureArr.from.z, creatureArr.to.z))
+		foundTile = Tile(
+			math.random(creatureArr.from.x, creatureArr.to.x),
+			math.random(creatureArr.from.y, creatureArr.to.y),
+			math.random(creatureArr.from.z, creatureArr.to.z)
+		)
 
-		if foundTile ~= nil and foundTile:getGround() ~= nil and not foundTile:hasProperty(TILESTATE_NONE) and not foundTile:hasProperty(TILESTATE_PROTECTIONZONE) and (foundTile:getCreatureCount() == 0 or forcingSpawnEnabled) then
+		if
+			foundTile ~= nil
+			and foundTile:getGround() ~= nil
+			and not foundTile:hasProperty(TILESTATE_NONE)
+			and not foundTile:hasProperty(TILESTATE_PROTECTIONZONE)
+			and (foundTile:getCreatureCount() == 0 or forcingSpawnEnabled)
+		then
 			if creatureArr.npc == nil or creatureArr.npc == false then
-				resultCreature = Game.createMonster(creatureArr.name, foundTile:getPosition(), false, forcingSpawnEnabled)
+				resultCreature =
+					Game.createMonster(creatureArr.name, foundTile:getPosition(), false, forcingSpawnEnabled)
 			else
 				resultCreature = Game.createNpc(creatureArr.name, foundTile:getPosition(), false, forcingSpawnEnabled)
 			end
@@ -3732,13 +3747,20 @@ end
 
 local function spawnRaidGroup(raidName, raidIndex, delayGroup)
 	if ranLuaRaids[raidIndex] == nil then
-		print("spawnRaidGroup() Error: raidIndex of " .. raidIndex .. " in ranLuaRaids is nil. If you reloaded global ignore this.")
+		print(
+			"spawnRaidGroup() Error: raidIndex of "
+				.. raidIndex
+				.. " in ranLuaRaids is nil. If you reloaded global ignore this."
+		)
 		return false
 	end
 	for creaturesIndex = 1, #LUA_RAID_CONFIG[raidName].creatures do
 		if LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].delayGroup == delayGroup then
 			-- Monster
-			if LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].npc == nil or LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].npc == false then
+			if
+				LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].npc == nil
+				or LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].npc == false
+			then
 				if LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].spawnAmount == nil then
 					LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].spawnAmount = 1
 				end
@@ -3748,9 +3770,18 @@ local function spawnRaidGroup(raidName, raidIndex, delayGroup)
 					if LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].from ~= nil then
 						monster = spawnCreatureInArea(LUA_RAID_CONFIG[raidName].creatures[creaturesIndex])
 					else
-						local position = Position(LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.x, LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.y, LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.z)
+						local position = Position(
+							LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.x,
+							LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.y,
+							LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.z
+						)
 						if position then
-							monster = Game.createMonster(LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].name, position, false, LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].force)
+							monster = Game.createMonster(
+								LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].name,
+								position,
+								false,
+								LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].force
+							)
 						end
 					end
 
@@ -3767,9 +3798,18 @@ local function spawnRaidGroup(raidName, raidIndex, delayGroup)
 				if LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].from ~= nil then
 					npc = spawnCreatureInArea(LUA_RAID_CONFIG[raidName].creatures[creaturesIndex])
 				else
-					local position = Position(LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.x, LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.y, LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.z)
+					local position = Position(
+						LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.x,
+						LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.y,
+						LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].position.z
+					)
 					if position then
-						npc = Game.createNpc(LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].name, position, false, forceSpawn)
+						npc = Game.createNpc(
+							LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].name,
+							position,
+							false,
+							forceSpawn
+						)
 					end
 				end
 
@@ -3778,7 +3818,14 @@ local function spawnRaidGroup(raidName, raidIndex, delayGroup)
 					npc:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					ranLuaRaids[raidIndex].creatures[#ranLuaRaids[raidIndex].creatures + 1] = npc:getId()
 				else
-					print("spawnRaidGroup() Error: Could not spawn NPC " .. LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].name .. " for raid " .. raidName .. " at creatureIndex " .. creaturesIndex)
+					print(
+						"spawnRaidGroup() Error: Could not spawn NPC "
+							.. LUA_RAID_CONFIG[raidName].creatures[creaturesIndex].name
+							.. " for raid "
+							.. raidName
+							.. " at creatureIndex "
+							.. creaturesIndex
+					)
 				end
 			end
 		end
@@ -3803,7 +3850,8 @@ function StartRaid(raidName)
 
 	-- despawn
 	if LUA_RAID_CONFIG[raidName].msDespawnDelay ~= nil then
-		ranLuaRaids[newRaidIndex].despawnEvent = addEvent(delayedRaidDespawn, LUA_RAID_CONFIG[raidName].msDespawnDelay, newRaidIndex)
+		ranLuaRaids[newRaidIndex].despawnEvent =
+			addEvent(delayedRaidDespawn, LUA_RAID_CONFIG[raidName].msDespawnDelay, newRaidIndex)
 	end
 
 	-- announcements

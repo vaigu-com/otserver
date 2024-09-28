@@ -24,6 +24,8 @@ public:
 
 	bool saveAll() override;
 
+	bool savePlayer(uint32_t playerId) override;
+
 private:
 	std::vector<std::string> loadPrefix(const std::string &prefix = "") override;
 	std::optional<ValueWrapper> load(const std::string &key) override;

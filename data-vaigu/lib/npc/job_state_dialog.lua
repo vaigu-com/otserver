@@ -12,7 +12,7 @@ local antelopeMountId = 163
 local powerfulImbueUnlockCost = 15
 local function buyTrophy(context)
 	local player = context.player
-	local trophyName = PlayerDialogDataRegistry:Get(player):Latest().msg
+	local trophyName = PlayerDialogDataRegistry():Get(player):Latest().msg
 	local trophyId = trophyNameToId[trophyName]
 	local decoKitName = ItemType(trophyId):getName()
 

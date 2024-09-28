@@ -7,7 +7,7 @@ function taint.onUse(player, bottle, fromPosition, target, toPosition, isHotkey)
 		return
 	end
 
-	if target:getId() == SULTAN_PRIME_KEY_ITEMS["bottle"].id then
+	if target:getId() == SULTAN_PRIME_KEY_ITEMS.bottle.id then
 		return -- using one player bottle on another
 	end
 
@@ -16,7 +16,7 @@ function taint.onUse(player, bottle, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if not player:RemoveItems({ SULTAN_PRIME_KEY_ITEMS["bottle"] }) then
+	if not player:RemoveItems({ SULTAN_PRIME_KEY_ITEMS.bottle }) then
 		return
 	end
 

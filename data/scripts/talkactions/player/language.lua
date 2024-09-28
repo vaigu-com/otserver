@@ -160,7 +160,7 @@ local langToMarksConfig = {
 
 local choseSameLanguage = {
 	["PL"] = "Polski jest twoim aktualnym jezykiem.",
-	["EN"] = "Your language is english already.",
+	["EN"] = "Your current chosen language is english.",
 }
 
 local choseNewLanguage = {

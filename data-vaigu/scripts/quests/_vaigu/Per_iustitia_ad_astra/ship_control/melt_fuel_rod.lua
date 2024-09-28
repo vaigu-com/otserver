@@ -4,7 +4,7 @@ function Monitor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if not player:TryTradeInItems({ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["FUEL_ROD"] }, { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS["ROCKET_FUEL"] }) then
+	if not player:TryTradeInItems({ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.fuelRod }, { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.rocketFuel }) then
 		player:say(player:Localizer(Storage.PerIustitiaAdAstra.Questline):Get("You don't have any fuel rods."), TALKTYPE_MONSTER_SAY)
 		return
 	end

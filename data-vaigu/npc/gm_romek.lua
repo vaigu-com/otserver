@@ -59,7 +59,7 @@ local dialogs = {
 			},
 			[{ "librum vortex" }] = {
 				text = "Book of rat spells. It will surely come in handy.",
-				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.librumVortex },
+				requiredItems = { KROL_SZCZUROW_HUB_KEY_ITEMS.librumvortex },
 				nextState = {
 					[Storage.KrolSzczurowHub.Portals.SweatyCyclops] = 1,
 				},
@@ -116,7 +116,7 @@ local dialogs = {
 		[2] = {
 			[{ "yes", "tak" }] = {
 				text = "Thanks for the cheese. Your further help might be... helpful in my future reign. If you want, I can appoint you as my {assistant}.",
-				requiredItems = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS["cheese"] },
+				requiredItems = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS.cheese },
 				textNoRequiredItems = "Return when you've obtained the special cheese.",
 				nextState = {
 					[Storage.TeatrTaniejSensacji.Questline] = 3,
@@ -124,7 +124,7 @@ local dialogs = {
 					[Storage.TeatrTaniejSensacji.Mission01] = 3,
 				},
 			},
-			[{ "no", "nie" }] = "Return when you've obtained the special cheese.",
+			[{ "no", "nie" }] = { text = "Return when you've obtained the special cheese." },
 			[{ GREET }] = {
 				text = "Hello, |PLAYERNAME|. Do you have the special cheese I asked for?",
 			},
@@ -153,9 +153,13 @@ local dialogs = {
 			[{ GREET }] = {
 				text = "If you want to become my assistant, you must pass the ratometer test. Are you ready?",
 			},
-			[{ "yes", "tak" }] = "Who is the King of Rats, and what is his power?",
-			[{ "vortex stinker", "wir smierdzielu" }] = "Now, the next question: The King of Rats is a ruler who is aggressive but ...?",
-			[{ "just", "sprawiedliwym" }] = "You're doing well. Now it's time for the third and final task. Translate 'Custodian' to Polish.",
+			[{ "yes", "tak" }] = { text = "Who is the King of Rats, and what is his power?" },
+			[{ "vortex stinker", "wir smierdzielu" }] = {
+				text = "Now, the next question: The King of Rats is a ruler who is aggressive but ...?",
+			},
+			[{ "just", "sprawiedliwym" }] = {
+				text = "You're doing well. Now it's time for the third and final task. Translate 'Custodian' to Polish.",
+			},
 		},
 		[5] = {
 			[{ "mission", "misja" }] = {
@@ -622,7 +626,7 @@ local dialogs = {
 			[{ "mission" }] = {
 				text = "Grazhena Core? Hmm... My mother Xena once belonged to a rural housewives club. Ask her if she knows more about this object. She is the leader of the feminists. Maybe you've already met her.",
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS["GRAZYNA_CORE"],
+					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore,
 				},
 				removeRequiredItems = false,
 				textNoRequiredItems = "Skurwiwij had Grazhenacore, and you lost it? Come back when you find your lost item.",

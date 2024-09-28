@@ -1,5 +1,5 @@
 TEATR_TANIEJ_SENSACJI_KEY_ITEMS = {
-	["cheese"] = { aid = Storage.TeatrTaniejSensacji.Rewards.Cheese, id = 3607, desc = "100 Year Old Aged Cheese" },
+	cheese = { aid = Storage.TeatrTaniejSensacji.Rewards.Cheese, id = 3607, desc = "100 Year Old Aged Cheese" },
 }
 
 TEATR_TANIEJ_SENSACJI_PLUS_SHAPE = {
