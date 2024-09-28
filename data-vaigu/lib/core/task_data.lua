@@ -850,22 +850,6 @@ local taskData = {
 		clearRadiusY = 11,
 		bossPortalUid = 10050,
 	},
-	{
-		name = "Barbarians",
-		requiredKills = 250,
-		creatures = { "barbarian brutetamer", "barbarian bloodwalker", "barbarian headsplitter", "barbarian skullhunter" },
-		exp = 25000,
-		money = 3000,
-		tibiaCoins = 2,
-		min = 0,
-		max = 45,
-		bossName = "Barbaria",
-		bossPosition = Position(),
-		bossRoomCenter = Position(),
-		clearRadiusX = 11,
-		clearRadiusY = 11,
-		bossPortalUid = 10051,
-	},
 }
 
 local portalUidToTask = {}
