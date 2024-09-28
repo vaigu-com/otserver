@@ -14943,6 +14943,9 @@
 	<monster centerx="7209" centery="1271" centerz="7" radius="1">
 		<monster name="Valkyrie" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="7225" centery="1271" centerz="7" radius="1">
+		<monster name="Valkyrie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7256" centery="1271" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -23422,10 +23425,6 @@
 	<monster centerx="7464" centery="1138" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="7250" centery="1139" centerz="8" radius="1">
-		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Gazer" x="-1" y="1" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7261" centery="1139" centerz="8" radius="1">
 		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -23450,10 +23449,6 @@
 	<monster centerx="7460" centery="1141" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="7249" centery="1142" centerz="8" radius="1">
-		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Gazer" x="0" y="1" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7406" centery="1142" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -23469,24 +23464,17 @@
 	<monster centerx="7240" centery="1144" centerz="8" radius="1">
 		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="7249" centery="1144" centerz="8" radius="1">
-		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7400" centery="1144" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7251" centery="1145" centerz="8" radius="1">
 		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Gazer" x="1" y="1" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7285" centery="1145" centerz="8" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7403" centery="1145" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="7253" centery="1146" centerz="8" radius="1">
-		<monster name="Gazer" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7471" centery="1146" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
