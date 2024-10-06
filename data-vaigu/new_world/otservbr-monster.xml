@@ -67399,7 +67399,7 @@
 		<monster name="Dark Magician" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="5809" centery="1606" centerz="10" radius="1">
-		<monster name="Crypt Shambler" x="0" y="0" z="10" spawntime="60" />
+		<monster name="Bonelord" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="7677" centery="1606" centerz="10" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="10" spawntime="60" />
