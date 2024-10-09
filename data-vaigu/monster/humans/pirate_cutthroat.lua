@@ -17,9 +17,9 @@ monster.raceId = 248
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -77,17 +77,15 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 78000, maxCount = 50 },
-	{ name = "scale armor", chance = 3000 },
-	{ name = "steel shield", chance = 2800 },
 	{ id = 5090, chance = 1000 }, -- treasure map
 	{ name = "rum flask", chance = 90 },
 	{ name = "light shovel", chance = 2000 },
 	{ id = 5792, chance = 110 }, -- die
 	{ name = "pirate knee breeches", chance = 980 },
 	{ name = "pirate bag", chance = 1000 },
-	{ name = "hook", chance = 550 },
-	{ name = "eye patch", chance = 450 },
-	{ name = "peg leg", chance = 500 },
+	{ name = "hook", chance = 2550 },
+	{ name = "eye patch", chance = 2450 },
+	{ name = "peg leg", chance = 3500 },
 	{ name = "compass", chance = 10120 },
 }
 

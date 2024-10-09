@@ -17,9 +17,9 @@ monster.raceId = 963
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 2500,
+	toKill = 1000,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -78,30 +78,28 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 161 },
-	{ name = "platinum coin", chance = 52380, maxCount = 3 },
+	{ name = "platinum coin", chance = 52380, maxCount = 4 },
 	{ name = "wyrm scale", chance = 33330 },
 	{ name = "dragon ham", chance = 23810, maxCount = 2 },
 	{ name = "strong health potion", chance = 23810 },
 	{ name = "strong mana potion", chance = 19050 },
 	{ name = "crossbow", chance = 14290 },
 	{ name = "small diamond", chance = 4760 },
-	{ name = "soul orb", chance = 4760 },
+	{ name = "soul orb", chance = 14760 },
 	{ name = "wand of draconia", chance = 1510 },
-	{ name = "power bolt", chance = 1030, maxCount = 10 },
 	{ name = "wand of starstorm", chance = 830 },
 	{ name = "lightning pendant", chance = 750 },
 	{ name = "lightning legs", chance = 600 },
 	{ name = "lightning robe", chance = 290 },
 	{ name = "dragonbone staff", chance = 240 },
-	{ name = "composite hornbow", chance = 220 },
+	{ name = "composite hornbow", chance = 420 },
 	{ name = "shadow sceptre", chance = 170 },
-	{ name = "lightning boots", chance = 150 },
-	{ name = "shockwave amulet", chance = 120 },
+	{ name = "lightning boots", chance = 1150 },
+	{ name = "shockwave amulet", chance = 1120 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -360 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -430 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -90, maxDamage = -150, radius = 4, effect = CONST_ME_TELEPORT, target = true },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -140, maxDamage = -250, radius = 5, effect = CONST_ME_PURPLEENERGY, target = false },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -180, length = 8, spread = 3, effect = CONST_ME_BLOCKHIT, target = false },

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Novice of the Cult")
 local monster = {}
 
 monster.description = "a novice of the cult"
-monster.experience = 100
+monster.experience = 150
 monster.outfit = {
 	lookType = 133,
 	lookHead = 114,
@@ -17,9 +17,9 @@ monster.raceId = 255
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -90,14 +90,12 @@ monster.loot = {
 	{ id = 2828, chance = 700 }, -- book
 	{ name = "small diamond", chance = 210 },
 	{ name = "gold coin", chance = 43380, maxCount = 40 },
-	{ name = "wand of vortex", chance = 450 },
 	{ name = "garlic necklace", chance = 420 },
 	{ id = 3097, chance = 500 }, -- dwarven ring
-	{ name = "scarf", chance = 2900 },
 	{ name = "pirate voodoo doll", chance = 520 },
 	{ id = 6087, chance = 970 }, -- music sheet
 	{ name = "cultish robe", chance = 1030 },
-	{ name = "rope belt", chance = 5910 },
+	{ name = "rope belt", chance = 8910 },
 }
 
 monster.attacks = {

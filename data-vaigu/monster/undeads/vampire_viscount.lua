@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Vampire Viscount")
 local monster = {}
 
 monster.description = "a vampire viscount"
-monster.experience = 800
+monster.experience = 980
 monster.outfit = {
 	lookType = 555,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 958
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -81,16 +81,15 @@ monster.voices = {
 monster.loot = {
 	{ name = "black pearl", chance = 2500 },
 	{ name = "small ruby", chance = 3040, maxCount = 2 },
-	{ name = "gold coin", chance = 83000, maxCount = 50 },
 	{ id = 3039, chance = 540 }, -- red gem
 	{ name = "ice rapier", chance = 810 },
-	{ name = "vampire shield", chance = 200 },
+	{ name = "vampire shield", chance = 400 },
 	{ name = "red piece of cloth", chance = 70 },
 	{ name = "strong health potion", chance = 7100 },
 	{ name = "strong mana potion", chance = 8180 },
-	{ name = "vampire teeth", chance = 7200 },
-	{ name = "blood preservation", chance = 2910 },
-	{ name = "tooth file", chance = 6560 },
+	{ name = "vampire teeth", chance = 13200 },
+	{ name = "blood preservation", chance = 8910 },
+	{ name = "tooth file", chance = 16560 },
 	{ name = "vampire's cape chain", chance = 4460 },
 }
 

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lancer Beetle")
 local monster = {}
 
 monster.description = "a lancer beetle"
-monster.experience = 275
+monster.experience = 350
 monster.outfit = {
 	lookType = 348,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 633
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -75,13 +75,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 60000, maxCount = 61 },
-	{ name = "gold coin", chance = 60000, maxCount = 79 },
-	{ name = "small amethyst", chance = 247 },
-	{ name = "poisonous slime", chance = 8333 },
-	{ name = "lump of dirt", chance = 4166 },
-	{ name = "lancer beetle shell", chance = 16666 },
-	{ name = "beetle necklace", chance = 1123 },
+	{ name = "small amethyst", chance = 4247 },
+	{ name = "poisonous slime", chance = 18333 },
+	{ name = "lump of dirt", chance = 14166 },
+	{ name = "lancer beetle shell", chance = 26666 },
+	{ name = "beetle necklace", chance = 3123 },
 }
 
 monster.attacks = {
@@ -97,7 +95,7 @@ monster.defenses = {
 	defense = 20,
 	armor = 35,
 	mitigation = 0.70,
-	{ name = "invisible", interval = 2000, chance = 10, effect = CONST_ME_GROUNDSHAKER },
+	{ name = "invisible", interval = 2000, chance = 5, effect = CONST_ME_GROUNDSHAKER },
 }
 
 monster.elements = {

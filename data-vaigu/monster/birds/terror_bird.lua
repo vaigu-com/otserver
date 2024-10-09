@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Terror Bird")
 local monster = {}
 
 monster.description = "a terror bird"
-monster.experience = 150
+monster.experience = 200
 monster.outfit = {
 	lookType = 218,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 218
 monster.Bestiary = {
 	class = "Bird",
 	race = BESTY_RACE_BIRD,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -77,14 +77,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 82430, maxCount = 30 },
 	{ name = "meat", chance = 48550, maxCount = 3 },
-	{ name = "terrorbird beak", chance = 10310 },
+	{ name = "terrorbird beak", chance = 20310 },
 	{ name = "worm", chance = 9540, maxCount = 3 },
-	{ name = "colourful feather", chance = 3090 },
-	{ name = "health potion", chance = 690 },
-	{ name = "seeds", chance = 280 },
-	{ name = "feather headdress", chance = 100 },
+	{ name = "colourful feather", chance = 13090 },
+	{ name = "health potion", chance = 1690 },
+	{ name = "seeds", chance = 1280 },
+	{ name = "feather headdress", chance = 1100 },
 }
 
 monster.attacks = {

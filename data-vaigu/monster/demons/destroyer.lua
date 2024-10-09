@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Destroyer")
 local monster = {}
 
 monster.description = "a destroyer"
-monster.experience = 2500
+monster.experience = 2850
 monster.outfit = {
 	lookType = 236,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 287
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,9 +80,7 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "crystal necklace", chance = 500 },
-	{ name = "gold coin", chance = 92500, maxCount = 341 },
 	{ name = "small amethyst", chance = 5850, maxCount = 2 },
-	{ name = "platinum coin", chance = 2250, maxCount = 3 },
 	{ name = "mind stone", chance = 70 },
 	{ name = "giant sword", chance = 1250 },
 	{ name = "crowbar", chance = 10500 },
@@ -93,12 +91,12 @@ monster.loot = {
 	{ name = "steel boots", chance = 300 },
 	{ name = "meat", chance = 40000, maxCount = 6 },
 	{ name = "skull helmet", chance = 10 },
-	{ name = "soul orb", chance = 5350 },
+	{ name = "soul orb", chance = 25350 },
 	{ id = 6299, chance = 250 }, -- death ring
-	{ name = "demonic essence", chance = 13850 },
-	{ name = "dreaded cleaver", chance = 400 },
-	{ name = "chaos mace", chance = 800 },
-	{ name = "great health potion", chance = 1000 },
+	{ name = "demonic essence", chance = 18850 },
+	{ name = "dreaded cleaver", chance = 1400 },
+	{ name = "chaos mace", chance = 1800 },
+	{ name = "great health potion", chance = 10000 },
 	{ name = "metal spike", chance = 4850 },
 }
 

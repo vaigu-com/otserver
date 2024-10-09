@@ -17,9 +17,9 @@ monster.raceId = 376
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,12 +78,10 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 2920, chance = 4180 }, -- torch
-	{ name = "bow", chance = 14930 },
-	{ name = "leather helmet", chance = 30600 },
-	{ name = "arrow", chance = 49500, maxCount = 17 },
-	{ name = "poison arrow", chance = 2930, maxCount = 3 },
+	{ name = "bow", chance = 19930 },
+	{ name = "arrow", chance = 49500, maxCount = 19 },
+	{ name = "poison arrow", chance = 2930, maxCount = 5 },
 	{ id = 3481, chance = 710 }, -- closed trap
-	{ name = "leather legs", chance = 26740 },
 	{ name = "roll", chance = 11110, maxCount = 2 },
 }
 

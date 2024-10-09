@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Enraged Crystal Golem")
 local monster = {}
 
 monster.description = "an enraged crystal golem"
-monster.experience = 550
+monster.experience = 800
 monster.outfit = {
 	lookType = 508,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 873
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 50,
+	FirstUnlock = 10,
+	SecondUnlock = 25,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -77,9 +77,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
 	{ name = "crystal sword", chance = 4710 },
-	{ name = "glorious axe", chance = 360 },
+	{ name = "glorious axe", chance = 1360 },
 	{ name = "strong health potion", chance = 7140 },
 	{ name = "strong mana potion", chance = 8270 },
 	{ name = "blue crystal splinter", chance = 4120 },
@@ -88,7 +87,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -150 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -250 },
 }
 
 monster.defenses = {

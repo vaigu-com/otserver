@@ -17,9 +17,9 @@ monster.raceId = 326
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,15 +80,14 @@ monster.loot = {
 	{ name = "black pearl", chance = 1500 },
 	{ name = "small diamond", chance = 750 },
 	{ name = "small sapphire", chance = 578 },
-	{ name = "gold coin", chance = 100000, maxCount = 111 },
-	{ name = "ice rapier", chance = 350 },
-	{ name = "strange helmet", chance = 350 },
-	{ name = "shard", chance = 200 },
+	{ name = "ice rapier", chance = 1350 },
+	{ name = "strange helmet", chance = 1350 },
+	{ name = "shard", chance = 1200 },
 	{ id = 7441, chance = 5000 }, -- ice cube
 	{ name = "crystal sword", chance = 600 },
-	{ name = "strong health potion", chance = 2500 },
-	{ name = "strong mana potion", chance = 3000 },
-	{ name = "glacier mask", chance = 200 },
+	{ name = "strong health potion", chance = 12500 },
+	{ name = "strong mana potion", chance = 13000 },
+	{ name = "glacier mask", chance = 1200 },
 	{ name = "frosty heart", chance = 14500 },
 }
 

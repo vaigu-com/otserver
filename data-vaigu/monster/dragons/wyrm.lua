@@ -17,9 +17,9 @@ monster.raceId = 461
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,21 +79,20 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 95730, maxCount = 192 },
-	{ name = "dragon ham", chance = 43130 },
-	{ name = "strong health potion", chance = 19910 },
-	{ name = "wyrm scale", chance = 17540 },
-	{ name = "strong mana potion", chance = 15170 },
+	{ name = "dragon ham", chance = 23130 },
+	{ name = "strong health potion", chance = 29910 },
+	{ name = "wyrm scale", chance = 27540 },
+	{ name = "strong mana potion", chance = 25170 },
 	{ id = 3449, chance = 5690, maxCount = 10 }, -- burst arrow
 	{ name = "crossbow", chance = 5690 },
 	{ name = "focus cape", chance = 2370 },
 	{ name = "small diamond", chance = 1420, maxCount = 3 },
-	{ name = "wand of starstorm", chance = 1420 },
+	{ name = "wand of starstorm", chance = 3420 },
 	{ name = "wand of draconia", chance = 1420 },
-	{ name = "composite hornbow", chance = 950 },
+	{ name = "composite hornbow", chance = 990 },
 	{ name = "dragonbone staff", chance = 470 },
-	{ name = "lightning pendant", chance = 470 },
-	{ name = "shockwave amulet", chance = 470 },
+	{ name = "lightning pendant", chance = 1470 },
+	{ name = "shockwave amulet", chance = 1470 },
 	{ name = "hibiscus dress", chance = 470 },
 }
 

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("War Golem")
 local monster = {}
 
 monster.description = "a war golem"
-monster.experience = 2310
+monster.experience = 3710
 monster.outfit = {
 	lookType = 326,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 533
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -86,30 +86,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 37500, maxCount = 90 }, -- gold coin
-	{ id = 3031, chance = 375000, maxCount = 80 }, -- gold coin
 	{ id = 953, chance = 5260, maxCount = 5 }, -- nail
 	{ id = 3265, chance = 5500 }, -- two handed sword
-	{ id = 3410, chance = 9000 }, -- plate shield
-	{ id = 3282, chance = 7000 }, -- morning star
-	{ id = 3413, chance = 6500 }, -- battle shield
 	{ id = 7643, chance = 10080 }, -- ultimate health potion
 	{ id = 238, chance = 8860 }, -- great mana potion
 	{ id = 5880, chance = 1920 }, -- iron ore
 	{ id = 7439, chance = 900 }, -- berserk potion
 	{ id = 3326, chance = 6400 }, -- epee
-	{ id = 8895, chance = 260 }, -- rusted armor
 	{ id = 3093, chance = 810 }, -- club ring
 	{ id = 3097, chance = 1210 }, -- dwarven ring
 	{ id = 9067, chance = 130 }, -- crystal of power
 	{ id = 9065, chance = 1080 }, -- crystal pedestal
-	{ id = 820, chance = 90 }, -- lightning boots
+	{ id = 820, chance = 190 }, -- lightning boots
 	{ id = 3554, chance = 620 }, -- steel boots
 	{ id = 7403, chance = 50 }, -- berserker
-	{ id = 7422, chance = 120 }, -- jade hammer
-	{ id = 7428, chance = 770 }, -- bonebreaker
+	{ id = 7422, chance = 220 }, -- jade hammer
+	{ id = 7428, chance = 1770 }, -- bonebreaker
 	{ id = 3061, chance = 1000 }, -- life crystal
-	{ id = 12305, chance = 100 }, -- tin key
+	{ id = 12305, chance = 300 }, -- tin key
 }
 
 monster.attacks = {

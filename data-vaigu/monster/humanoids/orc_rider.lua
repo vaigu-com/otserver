@@ -17,9 +17,9 @@ monster.raceId = 4
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,13 +76,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2920, chance = 980 }, -- torch
 	{ id = 3012, chance = 10210 }, -- wolf tooth chain
 	{ name = "gold coin", chance = 46000, maxCount = 81 },
 	{ name = "obsidian lance", chance = 1100 },
 	{ name = "orcish axe", chance = 6880 },
 	{ name = "scale armor", chance = 610 },
-	{ name = "battle shield", chance = 9900 },
 	{ name = "meat", chance = 24000, maxCount = 3 },
 	{ name = "orc tooth", chance = 2000 },
 	{ name = "warwolf fur", chance = 9410 },

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Thornback Tortoise")
 local monster = {}
 
 monster.description = "a thornback tortoise"
-monster.experience = 150
+monster.experience = 185
 monster.outfit = {
 	lookType = 198,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 259
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -74,16 +74,15 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "white pearl", chance = 1600 },
-	{ name = "black pearl", chance = 800 },
-	{ name = "gold coin", chance = 89500, maxCount = 48 },
-	{ name = "war hammer", chance = 260 },
+	{ name = "black pearl", chance = 1800 },
+	{ name = "war hammer", chance = 1260 },
 	{ id = 3578, chance = 10800, maxCount = 2 }, -- fish
 	{ name = "white mushroom", chance = 1200 },
-	{ name = "brown mushroom", chance = 700 },
+	{ name = "brown mushroom", chance = 1700 },
 	{ name = "tortoise egg", chance = 790, maxCount = 3 },
-	{ id = 5899, chance = 800 }, -- turtle shell
-	{ name = "health potion", chance = 1600 },
-	{ name = "thorn", chance = 15980 },
+	{ id = 5899, chance = 1800 }, -- turtle shell
+	{ name = "health potion", chance = 11600 },
+	{ name = "thorn", chance = 25980 },
 }
 
 monster.attacks = {

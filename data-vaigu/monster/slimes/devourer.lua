@@ -17,9 +17,9 @@ monster.raceId = 1056
 monster.Bestiary = {
 	class = "Slime",
 	race = BESTY_RACE_SLIME,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,10 +80,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 165 }, -- gold coin
-	{ id = 3035, chance = 9100, maxCount = 2 }, -- platinum coin
-	{ id = 21182, chance = 1670 }, -- glob of glooth
-	{ id = 3034, chance = 940 }, -- talon
+	{ id = 21182, chance = 21670 }, -- glob of glooth
+	{ id = 3034, chance = 1940 }, -- talon
 	{ id = 3029, chance = 1170, maxCount = 3 }, -- small sapphire
 	{ id = 3033, chance = 1030, maxCount = 3 }, -- small amethyst
 	{ id = 9057, chance = 1030, maxCount = 3 }, -- small topaz
@@ -91,7 +89,7 @@ monster.loot = {
 	{ id = 3030, chance = 1190, maxCount = 3 }, -- small ruby
 	{ id = 3028, chance = 1050, maxCount = 3 }, -- small diamond
 	{ id = 3037, chance = 1090 }, -- yellow gem
-	{ id = 3038, chance = 100 }, -- green gem
+	{ id = 3038, chance = 1100 }, -- green gem
 	{ id = 21164, chance = 210 }, -- glooth cape
 	{ id = 21183, chance = 130 }, -- glooth amulet
 	{ id = 21179, chance = 350 }, -- glooth blade

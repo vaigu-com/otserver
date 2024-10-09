@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Frost Giantess")
 local monster = {}
 
 monster.description = "a frost giantess"
-monster.experience = 150
+monster.experience = 240
 monster.outfit = {
 	lookType = 265,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 334
 monster.Bestiary = {
 	class = "Giant",
 	race = BESTY_RACE_GIANT,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -83,15 +83,14 @@ monster.loot = {
 	{ name = "small stone", chance = 10360, maxCount = 3 },
 	{ name = "gold coin", chance = 80000, maxCount = 40 },
 	{ id = 3093, chance = 70 }, -- club ring
-	{ name = "short sword", chance = 7960 },
 	{ name = "dark helmet", chance = 170 },
 	{ name = "battle shield", chance = 1490 },
 	{ name = "ham", chance = 20990, maxCount = 2 },
-	{ name = "shard", chance = 100 },
+	{ name = "shard", chance = 1100 },
 	{ id = 7441, chance = 2008 }, -- ice cube
-	{ name = "norse shield", chance = 320 },
-	{ name = "mana potion", chance = 950 },
-	{ name = "frost giant pelt", chance = 4800 },
+	{ name = "norse shield", chance = 2320 },
+	{ name = "mana potion", chance = 5950 },
+	{ name = "frost giant pelt", chance = 14800 },
 }
 
 monster.attacks = {

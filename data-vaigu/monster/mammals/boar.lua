@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Boar")
 local monster = {}
 
 monster.description = "a boar"
-monster.experience = 60
+monster.experience = 160
 monster.outfit = {
 	lookType = 380,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 693
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -75,12 +75,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 25000, maxCount = 20 },
-	{ name = "haunch of boar", chance = 20000, maxCount = 2 },
+	{ name = "haunch of boar", chance = 30000, maxCount = 3 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -70 },
 }
 
 monster.defenses = {

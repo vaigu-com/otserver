@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Falcon Knight")
 local monster = {}
 
 monster.description = "a falcon knight"
-monster.experience = 6300
+monster.experience = 8300
 monster.outfit = {
 	lookType = 1071,
 	lookHead = 57,
@@ -17,9 +17,9 @@ monster.raceId = 1646
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 2500,
-	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	toKill = 1000,
+	FirstUnlock = 250,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -74,26 +74,23 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3582, chance = 70080, maxCount = 8 }, -- ham
+	{ id = 3582, chance = 50080, maxCount = 2 }, -- ham
 	{ name = "soul orb", chance = 35000 },
-	{ name = "great mana potion", chance = 33000, maxCount = 3 },
-	{ name = "great health potion", chance = 33000, maxCount = 3 },
+	{ name = "great mana potion", chance = 33000, maxCount = 5 },
+	{ name = "great health potion", chance = 33000, maxCount = 5 },
 	{ name = "flask of demonic blood", chance = 30000, maxCount = 4 },
 	{ name = "small amethyst", chance = 24950, maxCount = 3 },
 	{ name = "assassin star", chance = 24670, maxCount = 10 },
 	{ name = "small diamond", chance = 15700, maxCount = 3 },
 	{ name = "small ruby", chance = 15333, maxCount = 3 },
 	{ name = "small emerald", chance = 15110, maxCount = 3 },
-	{ name = "onyx arrow", chance = 14480, maxCount = 15 },
 	{ name = "small topaz", chance = 4580, maxCount = 3 },
 	{ name = "titan axe", chance = 3000 },
-	{ id = 282, chance = 3000 }, -- giant shimmering pearl (brown)
-	{ name = "spiked squelcher", chance = 2200 },
-	{ name = "knight armor", chance = 1980 },
+	{ id = 282, chance = 13000 }, -- giant shimmering pearl (brown)
 	{ name = "falcon crest", chance = 1250 },
 	{ name = "war axe", chance = 1230 },
 	{ name = "violet gem", chance = 1060 },
-	{ name = "damaged armor plates", chance = 990 },
+	{ name = "damaged armor plates", chance = 1990 },
 	{ name = "green gem", chance = 880 },
 	{ name = "golden armor", chance = 840 },
 	{ name = "mastermind shield", chance = 620 },
@@ -103,7 +100,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -400 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -500 },
 	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_EARTHDAMAGE, minDamage = -400, maxDamage = -500, radius = 2, effect = CONST_ME_GROUNDSHAKER, target = false },
 	{ name = "combat", interval = 2000, chance = 14, type = COMBAT_HOLYDAMAGE, minDamage = -290, maxDamage = -360, length = 5, spread = 0, effect = CONST_ME_BLOCKHIT, target = false },
 }
@@ -122,7 +119,7 @@ monster.elements = {
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -15 },
 	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 50 },
 }

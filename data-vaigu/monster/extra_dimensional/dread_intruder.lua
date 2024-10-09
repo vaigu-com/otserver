@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dread Intruder")
 local monster = {}
 
 monster.description = "a dread intruder"
-monster.experience = 2400
+monster.experience = 2900
 monster.outfit = {
 	lookType = 882,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1260
 monster.Bestiary = {
 	class = "Extra Dimensional",
 	race = BESTY_RACE_EXTRA_DIMENSIONAL,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -77,9 +77,6 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 100 }, -- gold coin
-	{ id = 3031, chance = 100000, maxCount = 89 }, -- gold coin
-	{ id = 3035, chance = 100000, maxCount = 8 }, -- platinum coin
 	{ id = 23545, chance = 15000 }, -- energy drink
 	{ id = 23535, chance = 15000 }, -- energy bar
 	{ id = 23519, chance = 15000 }, -- frozen lightning
@@ -96,10 +93,10 @@ monster.loot = {
 	{ id = 3033, chance = 5000, maxCount = 2 }, -- small amethyst
 	{ id = 16120, chance = 4500 }, -- violet crystal shard
 	{ id = 3036, chance = 1000 }, -- violet gem
-	{ id = 23533, chance = 450 }, -- ring of red plasma
-	{ id = 23542, chance = 230 }, -- collar of blue plasma
-	{ id = 23543, chance = 230 }, -- collar of green plasma
-	{ id = 23529, chance = 230 }, -- ring of blue plasma
+	{ id = 23533, chance = 1450 }, -- ring of red plasma
+	{ id = 23542, chance = 1230 }, -- collar of blue plasma
+	{ id = 23543, chance = 1230 }, -- collar of green plasma
+	{ id = 23529, chance = 1230 }, -- ring of blue plasma
 }
 
 monster.attacks = {

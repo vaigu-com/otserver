@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Damaged Worker Golem")
 local monster = {}
 
 monster.description = "a damaged worker golem"
-monster.experience = 95
+monster.experience = 195
 monster.outfit = {
 	lookType = 304,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 524
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -82,15 +82,14 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 68810, maxCount = 88 },
-	{ id = 3091, chance = 570 }, -- sword ring
-	{ name = "iron ore", chance = 400 },
+	{ id = 3091, chance = 1570 }, -- sword ring
+	{ name = "iron ore", chance = 1400 },
 	{ name = "nail", chance = 1460 },
-	{ name = "heavily rusted armor", chance = 790 },
 	{ name = "gear crystal", chance = 200 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -45 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -65 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -45, range = 7, shootEffect = CONST_ANI_SMALLSTONE, target = false },
 }
 

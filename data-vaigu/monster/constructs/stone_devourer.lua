@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Stone Devourer")
 local monster = {}
 
 monster.description = "a stone devourer"
-monster.experience = 2900
+monster.experience = 3540
 monster.outfit = {
 	lookType = 486,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 879
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 1,
@@ -77,27 +77,22 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "platinum coin", chance = 92000, maxCount = 7 },
-	{ name = "stone skin amulet", chance = 2270 },
-	{ id = 3097, chance = 2840 }, -- dwarven ring
+	{ name = "stone skin amulet", chance = 3270 },
+	{ id = 3097, chance = 4840 }, -- dwarven ring
 	{ name = "giant sword", chance = 570 },
 	{ name = "crystal mace", chance = 850 },
 	{ name = "war axe", chance = 920 },
 	{ name = "sapphire hammer", chance = 1490 },
-	{ name = "spiked squelcher", chance = 1490 },
-	{ name = "glorious axe", chance = 3340 },
 	{ name = "strong health potion", chance = 13840, maxCount = 2 },
 	{ name = "strong mana potion", chance = 14900, maxCount = 2 },
 	{ name = "great mana potion", chance = 15610, maxCount = 2 },
-	{ name = "mana potion", chance = 15050, maxCount = 2 },
 	{ name = "ultimate health potion", chance = 14410 },
 	{ id = 12600, chance = 11360 }, -- coal
 	{ name = "ancient stone", chance = 12850 },
 	{ name = "crystalline arrow", chance = 9940, maxCount = 10 },
 	{ name = "green crystal splinter", chance = 6960 },
 	{ name = "cyan crystal fragment", chance = 6810 },
-	{ name = "stone nose", chance = 18679 },
+	{ name = "stone nose", chance = 38679 },
 	{ name = "crystalline spikes", chance = 16320 },
 }
 

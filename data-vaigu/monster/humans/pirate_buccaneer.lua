@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Pirate Buccaneer")
 local monster = {}
 
 monster.description = "a pirate buccaneer"
-monster.experience = 250
+monster.experience = 350
 monster.outfit = {
 	lookType = 97,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 249
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -78,20 +78,17 @@ monster.voices = {
 monster.loot = {
 	{ id = 2920, chance = 10190 }, -- torch
 	{ name = "gold coin", chance = 67740, maxCount = 59 },
-	{ name = "worn leather boots", chance = 9900 },
-	{ name = "sabre", chance = 10100 },
 	{ name = "throwing knife", chance = 9000, maxCount = 5 },
 	{ name = "plate armor", chance = 1130 },
-	{ name = "battle shield", chance = 3850 },
 	{ id = 5090, chance = 1000 }, -- treasure map
 	{ name = "rum flask", chance = 120 },
 	{ id = 5792, chance = 40 }, -- die
-	{ name = "pirate backpack", chance = 430 },
+	{ name = "pirate backpack", chance = 1430 },
 	{ name = "pirate shirt", chance = 1200 },
-	{ name = "hook", chance = 450 },
-	{ name = "eye patch", chance = 420 },
-	{ name = "peg leg", chance = 510 },
-	{ name = "strong health potion", chance = 670 },
+	{ name = "hook", chance = 1450 },
+	{ name = "eye patch", chance = 1420 },
+	{ name = "peg leg", chance = 1510 },
+	{ name = "strong health potion", chance = 1670 },
 	{ name = "compass", chance = 9780 },
 }
 

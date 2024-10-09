@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Drillworm")
 local monster = {}
 
 monster.description = "a drillworm"
-monster.experience = 1200
+monster.experience = 1500
 monster.outfit = {
 	lookType = 527,
 	lookHead = 0,
@@ -21,9 +21,9 @@ monster.raceId = 878
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 100,
+	FirstUnlock = 25,
+	SecondUnlock = 50,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -82,19 +82,18 @@ monster.loot = {
 	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "gold coin", chance = 50000, maxCount = 50 },
 	{ id = 3456, chance = 5280 }, -- pick
-	{ name = "worm", chance = 4580, maxCount = 5 },
-	{ name = "iron ore", chance = 1750 },
+	{ name = "iron ore", chance = 2750 },
 	{ name = "spiked squelcher", chance = 540 },
 	{ name = "terra amulet", chance = 2360 },
 	{ name = "lump of earth", chance = 15000 },
-	{ name = "clay lump", chance = 700 },
+	{ name = "clay lump", chance = 1700 },
 	{ id = 12600, chance = 12130 }, -- coal
 	{ name = "green crystal splinter", chance = 9780 },
 	{ name = "brown crystal splinter", chance = 9260 },
 	{ name = "blue crystal splinter", chance = 9610 },
-	{ name = "pulverized ore", chance = 5400 },
+	{ name = "pulverized ore", chance = 7400 },
 	{ name = "vein of ore", chance = 7280 },
-	{ name = "drill bolt", chance = 4870, maxCount = 2 },
+	{ name = "drill bolt", chance = 4870, maxCount = 12 },
 }
 
 monster.attacks = {

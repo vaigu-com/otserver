@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ironblight")
 local monster = {}
 
 monster.description = "an ironblight"
-monster.experience = 5400
+monster.experience = 6650
 monster.outfit = {
 	lookType = 498,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 890
 monster.Bestiary = {
 	class = "Elemental",
 	race = BESTY_RACE_ELEMENTAL,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 1,
@@ -78,10 +78,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 199 },
 	{ name = "small emerald", chance = 10890, maxCount = 3 },
 	{ name = "small amethyst", chance = 15020, maxCount = 3 },
-	{ name = "platinum coin", chance = 100000, maxCount = 8 },
 	{ id = 3039, chance = 3510 }, -- red gem
 	{ name = "blue gem", chance = 480 },
 	{ name = "epee", chance = 480 },
@@ -90,18 +88,18 @@ monster.loot = {
 	{ name = "great mana potion", chance = 17640 },
 	{ name = "terra legs", chance = 1110 },
 	{ name = "ultimate health potion", chance = 18330 },
-	{ name = "composite hornbow", chance = 210 },
+	{ name = "composite hornbow", chance = 810 },
 	{ name = "springsprout rod", chance = 1720 },
 	{ name = "crystal of balance", chance = 4480 },
 	{ name = "crystal of power", chance = 2480 },
 	{ name = "war crystal", chance = 21230 },
 	{ name = "shiny stone", chance = 15230 },
-	{ name = "jade hat", chance = 210 },
-	{ name = "glacial rod", chance = 960 },
+	{ name = "jade hat", chance = 610 },
+	{ name = "glacial rod", chance = 1960 },
 	{ name = "green crystal shard", chance = 5720 },
 	{ name = "brown crystal splinter", chance = 12610, maxCount = 2 },
 	{ name = "red crystal fragment", chance = 10540 },
-	{ name = "crystalline spikes", chance = 18400 },
+	{ name = "crystalline spikes", chance = 28400 },
 }
 
 monster.attacks = {

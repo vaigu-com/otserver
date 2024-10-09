@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Braindeath")
 local monster = {}
 
 monster.description = "a braindeath"
-monster.experience = 985
+monster.experience = 995
 monster.outfit = {
 	lookType = 256,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 321
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -88,18 +88,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 99470, maxCount = 89 },
-	{ name = "bone sword", chance = 15130 },
-	{ name = "sniper arrow", chance = 9560, maxCount = 4 },
-	{ name = "steel shield", chance = 5940 },
-	{ name = "piece of dead brain", chance = 5030 },
-	{ name = "bonelord eye", chance = 2960 },
+	{ name = "gold coin", chance = 95000, maxCount = 89 },
+	{ name = "piece of dead brain", chance = 15030 },
+	{ name = "bonelord eye", chance = 12960 },
 	{ name = "clerical mace", chance = 1970 },
 	{ name = "haunted blade", chance = 1440 },
 	{ id = 3059, chance = 930 }, -- spellbook
 	{ name = "spiked squelcher", chance = 180 },
-	{ name = "bonelord shield", chance = 100 },
-	{ name = "bonelord helmet", chance = 100 },
+	{ name = "bonelord shield", chance = 500 },
+	{ name = "bonelord helmet", chance = 800 },
 }
 
 monster.attacks = {

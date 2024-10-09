@@ -17,9 +17,9 @@ monster.raceId = 72
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -77,13 +77,10 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 13000, maxCount = 8 },
-	{ name = "blank rune", chance = 8670 },
 	{ name = "throwing knife", chance = 11170, maxCount = 2 },
-	{ name = "katana", chance = 530 },
 	{ name = "obsidian lance", chance = 1210 },
 	{ name = "brass legs", chance = 3500 },
-	{ name = "brass shield", chance = 5510 },
-	{ name = "miraculum", chance = 1550 },
+	{ name = "miraculum", chance = 11550 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Stone Golem")
 local monster = {}
 
 monster.description = "a stone golem"
-monster.experience = 160
+monster.experience = 190
 monster.outfit = {
 	lookType = 67,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 67
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,15 +76,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small stone", chance = 13890, maxCount = 4 },
-	{ id = 3007, chance = 120 }, -- crystal ring
-	{ name = "gold coin", chance = 90000, maxCount = 40 },
-	{ id = 3039, chance = 30 }, -- red gem
+	{ name = "small stone", chance = 18890, maxCount = 54 },
+	{ id = 3007, chance = 1200 }, -- crystal ring
+	{ id = 3039, chance = 300 }, -- red gem
 	{ id = 3050, chance = 5070 }, -- power ring
 	{ name = "carlin sword", chance = 2500 },
 	{ name = "iron ore", chance = 1980 },
 	{ name = "ancient stone", chance = 1020 },
-	{ name = "shiny stone", chance = 760 },
+	{ name = "shiny stone", chance = 1760 },
 	{ name = "sulphurous stone", chance = 10370 },
 	{ name = "piece of marble rock", chance = 380 },
 	{ id = 12600, chance = 550 }, -- coal

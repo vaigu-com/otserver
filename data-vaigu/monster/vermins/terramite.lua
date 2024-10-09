@@ -17,9 +17,9 @@ monster.raceId = 631
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
+	toKill = 2500,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 150,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -75,10 +75,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 97520, maxCount = 45 },
-	{ name = "terramite shell", chance = 7730 },
-	{ name = "terramite eggs", chance = 4680, maxCount = 3 },
-	{ name = "terramite legs", chance = 14880 },
+	{ name = "terramite shell", chance = 9730 },
+	{ name = "terramite eggs", chance = 8680, maxCount = 2 },
+	{ name = "terramite legs", chance = 17880 },
 }
 
 monster.attacks = {

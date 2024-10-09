@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Rustheap Golem")
 local monster = {}
 
 monster.description = "a rustheap golem"
-monster.experience = 2100
+monster.experience = 2200
 monster.outfit = {
 	lookType = 603,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1041
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -81,22 +81,21 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 953, chance = 1950 }, -- nail
-	{ id = 9016, chance = 5860 }, -- flask of rust remover
+	{ id = 9016, chance = 8860 }, -- flask of rust remover
 	{ id = 21196, chance = 14980 }, -- necromantic rust
-	{ id = 3031, chance = 100000, maxCount = 290 }, -- gold coin
 	{ id = 5880, chance = 330 }, -- iron ore
 	{ id = 21755, chance = 1950 }, -- bronze gear wheel
 	{ id = 3035, chance = 58310, maxCount = 3 }, -- platinum coin
 	{ id = 3026, chance = 1300 }, -- white pearl
 	{ id = 3027, chance = 1630 }, -- black pearl
 	{ id = 236, chance = 10100, maxCount = 2 }, -- strong health potion
-	{ id = 237, chance = 7170, maxCount = 2 }, -- strong mana potion
+	{ id = 237, chance = 7170, maxCount = 3 }, -- strong mana potion
 	{ id = 3279, chance = 3580 }, -- war hammer
 	{ id = 7452, chance = 330 }, -- spiked squelcher
 	{ id = 21171, chance = 330 }, -- metal bat
-	{ id = 21170, chance = 2930 }, -- gearwheel chain
+	{ id = 21170, chance = 1930 }, -- gearwheel chain
 	{ id = 8896, chance = 5860 }, -- slightly rusted armor
-	{ id = 8899, chance = 4230 }, -- slightly rusted legs
+	{ id = 8899, chance = 8230 }, -- slightly rusted legs
 }
 
 monster.attacks = {

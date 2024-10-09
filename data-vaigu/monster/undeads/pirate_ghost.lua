@@ -17,9 +17,9 @@ monster.raceId = 257
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -81,10 +81,10 @@ monster.voices = {
 monster.loot = {
 	{ id = 2817, chance = 910 }, -- blank parchment
 	{ name = "gold coin", chance = 48000, maxCount = 67 },
-	{ id = 3049, chance = 650 }, -- stealth ring
-	{ name = "spike sword", chance = 130 },
-	{ name = "red robe", chance = 130 },
-	{ name = "tattered piece of robe", chance = 4300 },
+	{ id = 3049, chance = 1650 }, -- stealth ring
+	{ name = "spike sword", chance = 1130 },
+	{ name = "red robe", chance = 1130 },
+	{ name = "tattered piece of robe", chance = 14300 },
 }
 
 monster.attacks = {

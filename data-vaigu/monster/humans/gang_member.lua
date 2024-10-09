@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Gang Member")
 local monster = {}
 
 monster.description = "a gang member"
-monster.experience = 70
+monster.experience = 170
 monster.outfit = {
 	lookType = 151,
 	lookHead = 114,
@@ -17,9 +17,9 @@ monster.raceId = 526
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
+	toKill = 50,
+	FirstUnlock = 5,
+	SecondUnlock = 25,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,10 +78,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50110, maxCount = 30 },
-	{ id = 3093, chance = 740 }, -- club ring
-	{ name = "studded legs", chance = 5220 },
-	{ name = "leather legs", chance = 15330 },
+	{ name = "gold coin", chance = 70110, maxCount = 70 },
+	{ id = 3093, chance = 1740 }, -- club ring
+	{ name = "studded legs", chance = 520 },
+	{ name = "leather legs", chance = 1330 },
 }
 
 monster.attacks = {

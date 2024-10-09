@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Son of Verminor")
 local monster = {}
 
 monster.description = "a son of verminor"
-monster.experience = 5900
+monster.experience = 9900
 monster.outfit = {
 	lookType = 19,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 265
 monster.Bestiary = {
 	class = "Slime",
 	race = BESTY_RACE_SLIME,
-	toKill = 2500,
-	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	toKill = 50,
+	FirstUnlock = 10,
+	SecondUnlock = 25,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -79,7 +79,7 @@ monster.voices = {
 monster.loot = {}
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -473, condition = { type = CONDITION_POISON, totalDamage = 450, interval = 4000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -673, condition = { type = CONDITION_POISON, totalDamage = 450, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_EARTHDAMAGE, minDamage = -150, maxDamage = -200, range = 7, shootEffect = CONST_ANI_POISON, target = true },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -350, maxDamage = -390, radius = 3, effect = CONST_ME_POISONAREA, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_DEATHDAMAGE, minDamage = -220, maxDamage = -270, radius = 3, effect = CONST_ME_SMALLCLOUDS, target = false },

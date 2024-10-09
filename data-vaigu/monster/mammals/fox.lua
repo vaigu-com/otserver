@@ -17,9 +17,9 @@ monster.raceId = 1548
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 250,
+	toKill = 50,
 	FirstUnlock = 10,
-	SecondUnlock = 100,
+	SecondUnlock = 25,
 	CharmsPoints = 5,
 	Stars = 1,
 	Occurrence = 0,
@@ -79,7 +79,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3577, chance = 49320 }, -- meat
-	{ name = "fox paw", chance = 1350 },
+	{ name = "fox paw", chance = 2880 },
 }
 
 monster.attacks = {

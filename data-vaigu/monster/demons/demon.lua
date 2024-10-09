@@ -17,9 +17,9 @@ monster.raceId = 35
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 2500,
+	toKill = 1000,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 500,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -89,8 +89,6 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "purple tome", chance = 1180 },
-	{ name = "gold coin", chance = 60000, maxCount = 100 },
-	{ name = "gold coin", chance = 60000, maxCount = 100 },
 	{ name = "small emerald", chance = 9690, maxCount = 5 },
 	{ name = "small amethyst", chance = 7250, maxCount = 5 },
 	{ name = "small ruby", chance = 7430, maxCount = 5 },
@@ -103,29 +101,29 @@ monster.loot = {
 	{ id = 3049, chance = 2170 }, -- stealth ring
 	{ name = "platinum amulet", chance = 680 },
 	{ name = "orb", chance = 2854 },
-	{ name = "gold ring", chance = 1050 },
+	{ name = "gold ring", chance = 4050 },
 	{ id = 3098, chance = 1990 }, -- ring of healing
 	{ name = "giant sword", chance = 1980 },
 	{ name = "ice rapier", chance = 1550 },
 	{ name = "golden sickle", chance = 1440 },
-	{ name = "fire axe", chance = 4030 },
+	{ name = "fire axe", chance = 3030 },
 	{ name = "devil helmet", chance = 1180 },
 	{ name = "golden legs", chance = 440 },
 	{ name = "magic plate armor", chance = 130 },
 	{ name = "mastermind shield", chance = 480 },
 	{ name = "demon shield", chance = 740 },
 	{ name = "fire mushroom", chance = 19660, maxCount = 6 },
-	{ name = "demon horn", chance = 14920 },
-	{ name = "assassin star", chance = 12550, maxCount = 10 },
-	{ name = "demonrage sword", chance = 70 },
+	{ name = "demon horn", chance = 19920 },
+	{ name = "assassin star", chance = 18550, maxCount = 10 },
+	{ name = "demonrage sword", chance = 170 },
 	{ id = 7393, chance = 90 }, -- demon trophy
-	{ name = "great mana potion", chance = 22220, maxCount = 3 },
-	{ name = "ultimate health potion", chance = 19540, maxCount = 3 },
-	{ name = "great spirit potion", chance = 18510, maxCount = 3 },
+	{ name = "great mana potion", chance = 29220, maxCount = 3 },
+	{ name = "ultimate health potion", chance = 29540, maxCount = 3 },
+	{ name = "great spirit potion", chance = 28510, maxCount = 3 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -520 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -720 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = 0, maxDamage = -120, range = 7, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -150, maxDamage = -250, range = 7, radius = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA, target = true },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 1, shootEffect = CONST_ANI_FIRE, target = true },

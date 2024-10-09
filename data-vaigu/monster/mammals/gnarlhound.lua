@@ -17,9 +17,9 @@ monster.raceId = 630
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -76,10 +76,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 48000, maxCount = 30 },
 	{ name = "meat", chance = 39075, maxCount = 3 },
 	{ name = "worm", chance = 33300, maxCount = 3 },
-	{ name = "shaggy tail", chance = 25550 },
+	{ name = "shaggy tail", chance = 35550 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Walker")
 local monster = {}
 
 monster.description = "a walker"
-monster.experience = 2200
+monster.experience = 2800
 monster.outfit = {
 	lookType = 605,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1043
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 50,
+	FirstUnlock = 10,
+	SecondUnlock = 25,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 1,
@@ -78,17 +78,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 21198, chance = 3548 }, -- metal toe
+	{ id = 21198, chance = 8548 }, -- metal toe
 	{ id = 21170, chance = 1490 }, -- gearwheel chain
-	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
-	{ id = 3035, chance = 51610, maxCount = 3 }, -- platinum coin
 	{ id = 9057, chance = 16130, maxCount = 3 }, -- small topaz
 	{ id = 3032, chance = 6450, maxCount = 2 }, -- small emerald
 	{ id = 7642, chance = 3230 }, -- great spirit potion
 	{ id = 239, chance = 3230 }, -- great health potion
 	{ id = 238, chance = 2300 }, -- great mana potion
-	{ id = 21169, chance = 1780 }, -- metal spats
-	{ id = 3554, chance = 450 }, -- steel boots
+	{ id = 21169, chance = 3780 }, -- metal spats
+	{ id = 3554, chance = 1450 }, -- steel boots
 }
 
 monster.attacks = {

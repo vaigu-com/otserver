@@ -17,9 +17,9 @@ monster.raceId = 402
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -78,15 +78,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 91430, maxCount = 47 },
 	{ name = "dragon ham", chance = 82860 },
-	{ name = "frosty heart", chance = 8570 },
+	{ name = "frosty heart", chance = 18570 },
 	{ name = "health potion", chance = 510 },
 	{ name = "spellbook of enlightenment", chance = 430 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -160 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -180 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = -60, maxDamage = -110, length = 5, spread = 2, effect = CONST_ME_ICEATTACK, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ICEDAMAGE, minDamage = -60, maxDamage = -110, radius = 4, effect = CONST_ME_ICEAREA, target = true },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = -600, radius = 4, shootEffect = CONST_ANI_ICE, effect = CONST_ME_ICEAREA, target = true, duration = 12000 },

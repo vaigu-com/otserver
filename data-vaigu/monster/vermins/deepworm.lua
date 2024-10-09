@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Deepworm")
 local monster = {}
 
 monster.description = "a deepworm"
-monster.experience = 2520
+monster.experience = 2920
 monster.outfit = {
 	lookType = 1033,
 	lookHead = 0,
@@ -21,9 +21,9 @@ monster.raceId = 1531
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -83,19 +83,18 @@ monster.loot = {
 	{ name = "deepworm jaws", chance = 24010 },
 	{ id = 3052, chance = 7320 }, -- life ring
 	{ name = "meat", chance = 19660, maxCount = 4 },
-	{ name = "ham", chance = 19660, maxCount = 4 },
 	{ name = "wood mushroom", chance = 22280 },
 	{ name = "dark mushroom", chance = 14960 },
 	{ name = "green mushroom", chance = 18520 },
 	{ name = "green crystal shard", chance = 5360 },
 	{ id = 27593, chance = 13210, maxCount = 2 }, -- deepworm spike roots
-	{ name = "deepworm spikes", chance = 9880 },
-	{ name = "small enchanted amethyst", chance = 3430, maxCount = 2 },
+	{ name = "deepworm spikes", chance = 19880 },
+	{ name = "small enchanted amethyst", chance = 3430, maxCount = 3 },
 	{ name = "terra amulet", chance = 5060 },
 	{ name = "springsprout rod", chance = 1120 },
 	{ name = "sacred tree amulet", chance = 2390 },
-	{ id = 281, chance = 860 }, -- giant shimmering pearl (green)
-	{ name = "suspicious device", chance = 530 },
+	{ id = 281, chance = 1860 }, -- giant shimmering pearl (green)
+	{ name = "suspicious device", chance = 1530 },
 }
 
 monster.attacks = {

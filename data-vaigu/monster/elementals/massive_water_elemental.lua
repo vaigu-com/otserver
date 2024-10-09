@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Massive Water Elemental")
 local monster = {}
 
 monster.description = "a massive water elemental"
-monster.experience = 1100
+monster.experience = 1500
 monster.outfit = {
 	lookType = 11,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 279
 monster.Bestiary = {
 	class = "Elemental",
 	race = BESTY_RACE_ELEMENTAL,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 100,
+	FirstUnlock = 25,
+	SecondUnlock = 50,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -77,14 +77,13 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small diamond", chance = 1900, maxCount = 2 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "small emerald", chance = 1000, maxCount = 2 },
 	{ name = "platinum coin", chance = 20000, maxCount = 2 },
 	{ id = 3051, chance = 910 }, -- energy ring
-	{ id = 3052, chance = 1000 }, -- life ring
+	{ id = 3052, chance = 10000 }, -- life ring
 	{ id = 3578, chance = 40000, maxCount = 2 }, -- fish
-	{ name = "rainbow trout", chance = 1340 },
-	{ name = "green perch", chance = 1590 },
+	{ name = "rainbow trout", chance = 2340 },
+	{ name = "green perch", chance = 3590 },
 	{ name = "great mana potion", chance = 10400 },
 	{ name = "great health potion", chance = 10000 },
 }

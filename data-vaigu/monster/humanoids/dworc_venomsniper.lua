@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dworc Venomsniper")
 local monster = {}
 
 monster.description = "a dworc venomsniper"
-monster.experience = 35
+monster.experience = 65
 monster.outfit = {
 	lookType = 216,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 216
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -81,15 +81,13 @@ monster.loot = {
 	{ name = "bronze amulet", chance = 110 },
 	{ id = 3114, chance = 1000, maxCount = 2 }, -- skull
 	{ name = "poison dagger", chance = 1500 },
-	{ name = "leather armor", chance = 10000 },
-	{ name = "poison arrow", chance = 5000, maxCount = 3 },
-	{ name = "tribal mask", chance = 510 },
-	{ name = "bast skirt", chance = 100 },
+	{ name = "tribal mask", chance = 1510 },
+	{ name = "bast skirt", chance = 1100 },
 	{ name = "seeds", chance = 200 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -15 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -35 },
 	-- poison
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -20, maxDamage = -40, range = 5, shootEffect = CONST_ANI_POISON, target = false },
 }

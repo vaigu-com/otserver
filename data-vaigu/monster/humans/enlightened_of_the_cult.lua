@@ -17,9 +17,9 @@ monster.raceId = 252
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -89,7 +89,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 2828, chance = 910 }, -- book
-	{ name = "piggy bank", chance = 130 },
+	{ name = "piggy bank", chance = 530 },
 	{ name = "small sapphire", chance = 550 },
 	{ name = "gold coin", chance = 64550, maxCount = 70 },
 	{ id = 3051, chance = 450 }, -- energy ring
@@ -98,14 +98,14 @@ monster.loot = {
 	{ name = "protection amulet", chance = 790 },
 	{ name = "skull staff", chance = 350 },
 	{ name = "blue robe", chance = 40 },
-	{ name = "jewelled backpack", chance = 100 },
-	{ name = "pirate voodoo doll", chance = 430 },
+	{ name = "jewelled backpack", chance = 500 },
+	{ name = "pirate voodoo doll", chance = 830 },
 	{ id = 6090, chance = 490 }, -- music sheet
 	{ name = "amber staff", chance = 100 },
-	{ name = "strong mana potion", chance = 740 },
+	{ name = "strong mana potion", chance = 1740 },
 	{ name = "cultish mask", chance = 10250 },
 	{ name = "cultish symbol", chance = 890 },
-	{ name = "broken key ring", chance = 100 },
+	{ name = "broken key ring", chance = 500 },
 }
 
 monster.attacks = {

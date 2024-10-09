@@ -17,9 +17,9 @@ monster.raceId = 483
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -83,20 +83,18 @@ monster.voices = {
 monster.loot = {
 	{ name = "emerald bangle", chance = 1100 },
 	{ name = "small diamond", chance = 1020, maxCount = 2 },
-	{ name = "gold coin", chance = 90000, maxCount = 149 },
-	{ name = "platinum coin", chance = 9910 },
-	{ name = "moonlight rod", chance = 5500 },
-	{ name = "boots of haste", chance = 220 },
+	{ name = "moonlight rod", chance = 500 },
+	{ name = "boots of haste", chance = 420 },
 	{ name = "strong health potion", chance = 5000 },
-	{ name = "strong mana potion", chance = 10210 },
+	{ name = "strong mana potion", chance = 15210 },
 	{ id = 649, chance = 200 }, -- flower bouquet
-	{ name = "hibiscus dress", chance = 1030 },
-	{ name = "blood goblet", chance = 60 },
+	{ name = "hibiscus dress", chance = 2030 },
+	{ name = "blood goblet", chance = 160 },
 	{ id = 8895, chance = 1010 }, -- rusted armor
-	{ id = 8923, chance = 970 }, -- velvet tapestry
-	{ name = "vampire teeth", chance = 10000 },
-	{ name = "blood preservation", chance = 4950 },
-	{ name = "leather whip", chance = 20 },
+	{ id = 8923, chance = 1970 }, -- velvet tapestry
+	{ name = "vampire teeth", chance = 20000 },
+	{ name = "blood preservation", chance = 14950 },
+	{ name = "leather whip", chance = 120 },
 }
 
 monster.attacks = {

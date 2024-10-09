@@ -17,9 +17,9 @@ monster.raceId = 520
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -84,22 +84,21 @@ monster.voices = {
 monster.loot = {
 	{ id = 3007, chance = 1030 }, -- crystal ring
 	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 10 },
-	{ name = "platinum amulet", chance = 121 },
+	{ name = "platinum amulet", chance = 321 },
 	{ name = "boots of haste", chance = 121 },
-	{ name = "protection amulet", chance = 847 },
+	{ name = "protection amulet", chance = 247 },
 	{ name = "shadow herb", chance = 4761 },
 	{ name = "haunted blade", chance = 318 },
 	{ name = "chaos mace", chance = 121 },
-	{ name = "strong mana potion", chance = 1612 },
-	{ name = "spirit cloak", chance = 520 },
+	{ name = "strong mana potion", chance = 2612 },
+	{ name = "spirit cloak", chance = 1520 },
 	{ name = "crystal of balance", chance = 127 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -90, condition = { type = CONDITION_POISON, totalDamage = 80, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_LIFEDRAIN, minDamage = -60, maxDamage = -170, range = 7, effect = CONST_ME_HOLYAREA, target = true },
-	{ name = "nightstalker paralyze", interval = 2000, chance = 15, range = 7, target = true },
+	{ name = "nightstalker paralyze", interval = 2000, chance = 10, range = 4, target = true },
 }
 
 monster.defenses = {

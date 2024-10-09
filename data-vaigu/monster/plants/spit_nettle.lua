@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Spit Nettle")
 local monster = {}
 
 monster.description = "a spit nettle"
-monster.experience = 20
+monster.experience = 80
 monster.outfit = {
 	lookType = 221,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 221
 monster.Bestiary = {
 	class = "Plant",
 	race = BESTY_RACE_PLANT,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -74,11 +74,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 10750, maxCount = 5 },
 	{ name = "shadow herb", chance = 11080 },
 	{ name = "nettle spit", chance = 9620 },
 	{ name = "sling herb", chance = 5680, maxCount = 2 },
-	{ name = "nettle blossom", chance = 970 },
+	{ name = "nettle blossom", chance = 1970 },
 }
 
 monster.attacks = {

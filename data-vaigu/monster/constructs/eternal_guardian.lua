@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Eternal Guardian")
 local monster = {}
 
 monster.description = "an eternal guardian"
-monster.experience = 1800
+monster.experience = 1900
 monster.outfit = {
 	lookType = 345,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 615
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,14 +79,13 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small stone", chance = 30230, maxCount = 10 },
-	{ name = "gold coin", chance = 99930, maxCount = 100 },
 	{ name = "platinum coin", chance = 99540, maxCount = 4 },
-	{ name = "guardian halberd", chance = 560 },
+	{ name = "guardian halberd", chance = 1560 },
 	{ name = "tower shield", chance = 820 },
-	{ name = "iron ore", chance = 1700 },
+	{ name = "iron ore", chance = 2700 },
 	{ name = "ancient stone", chance = 20020 },
-	{ name = "shiny stone", chance = 800 },
-	{ name = "zaoan sword", chance = 100 },
+	{ name = "shiny stone", chance = 1800 },
+	{ name = "zaoan sword", chance = 300 },
 	{ name = "zaoan halberd", chance = 1860 },
 	{ name = "spiked iron ball", chance = 9960 },
 	{ name = "clay lump", chance = 720 },
@@ -95,7 +94,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -300 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -350 },
 }
 
 monster.defenses = {

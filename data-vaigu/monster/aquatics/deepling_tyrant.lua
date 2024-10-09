@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Deepling Tyrant")
 local monster = {}
 
 monster.description = "a deepling tyrant"
-monster.experience = 4200
+monster.experience = 4800
 monster.outfit = {
 	lookType = 442,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 861
 monster.Bestiary = {
 	class = "Aquatic",
 	race = BESTY_RACE_AQUATIC,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 2,
@@ -80,22 +80,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "platinum coin", chance = 70000, maxCount = 4 },
 	{ name = "deepling breaktime snack", chance = 35520 },
-	{ name = "great mana potion", chance = 32640, maxCount = 3 },
-	{ name = "great health potion", chance = 33430, maxCount = 3 },
+	{ name = "great mana potion", chance = 32640, maxCount = 4 },
+	{ name = "great health potion", chance = 33430, maxCount = 4 },
 	{ name = "deepling claw", chance = 29960 },
 	{ name = "eye of a deepling", chance = 29610 },
 	{ name = "deepling guard belt buckle", chance = 23700 },
-	{ name = "small sapphire", chance = 9410, maxCount = 5 },
-	{ name = "heavy trident", chance = 3530 },
-	{ name = "deepling squelcher", chance = 1440 },
-	{ name = "guardian axe", chance = 1340 },
-	{ name = "ornate crossbow", chance = 1190 },
-	{ name = "deepling backpack", chance = 410 },
-	{ name = "foxtail", chance = 30 },
+	{ name = "small sapphire", chance = 19410, maxCount = 5 },
+	{ name = "heavy trident", chance = 1530 },
+	{ name = "deepling squelcher", chance = 2440 },
+	{ name = "guardian axe", chance = 2340 },
+	{ name = "ornate crossbow", chance = 3190 },
+	{ name = "deepling backpack", chance = 1410 },
+	{ name = "foxtail", chance = 300 },
 }
 
 monster.attacks = {

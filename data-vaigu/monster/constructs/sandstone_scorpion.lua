@@ -17,9 +17,9 @@ monster.raceId = 705
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 2,
@@ -77,13 +77,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 92590, maxCount = 128 },
-	{ name = "small emerald", chance = 1100, maxCount = 2 },
-	{ name = "platinum coin", chance = 10750, maxCount = 2 },
-	{ name = "daramian mace", chance = 5100 },
-	{ name = "steel helmet", chance = 4620 },
-	{ name = "black shield", chance = 1820 },
-	{ name = "fist on a stick", chance = 220 },
+	{ name = "small emerald", chance = 8100, maxCount = 2 },
+	{ name = "steel helmet", chance = 9620 },
+	{ name = "black shield", chance = 3820 },
+	{ name = "fist on a stick", chance = 420 },
 }
 
 monster.attacks = {

@@ -17,9 +17,9 @@ monster.raceId = 521
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -85,12 +85,10 @@ monster.loot = {
 	{ name = "silver amulet", chance = 70 },
 	{ name = "fishbone", chance = 10050 },
 	{ id = 3264, chance = 5030 }, -- sword
-	{ name = "scale armor", chance = 8080 },
+	{ name = "scale armor", chance = 7080 },
 	{ id = 3607, chance = 8000 }, -- cheese
 	{ name = "fern", chance = 420 },
-	{ name = "worm", chance = 7110, maxCount = 2 },
 	{ name = "peanut", chance = 580 },
-	{ id = 8894, chance = 190 }, -- heavily rusted armor
 	{ name = "mutated flesh", chance = 19940 },
 }
 

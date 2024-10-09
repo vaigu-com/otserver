@@ -17,9 +17,9 @@ monster.raceId = 515
 monster.Bestiary = {
 	class = "Slime",
 	race = BESTY_RACE_SLIME,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -71,9 +71,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 3,
+	maxSummons = 2,
 	summons = {
-		{ name = "Mercury Blob", chance = 10, interval = 2000, count = 3 },
+		{ name = "Mercury Blob", chance = 10, interval = 2000, count = 2 },
 	},
 }
 
@@ -84,12 +84,12 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "glob of mercury", chance = 18750 },
+	{ name = "glob of mercury", chance = 28750 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -75 },
-	{ name = "drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_HOLY, effect = CONST_ME_STUN, target = true, duration = 3000 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -95 },
+	{ name = "drunk", interval = 2000, chance = 5, range = 4, shootEffect = CONST_ANI_HOLY, effect = CONST_ME_STUN, target = true, duration = 3000 },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -10, maxDamage = -30, range = 7, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = true },
 }
 

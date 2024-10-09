@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Scarab")
 local monster = {}
 
 monster.description = "a scarab"
-monster.experience = 120
+monster.experience = 240
 monster.outfit = {
 	lookType = 83,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 83
 monster.Bestiary = {
 	class = "Vermin",
 	race = BESTY_RACE_VERMIN,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -74,13 +74,12 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 86800, maxCount = 52 },
-	{ name = "small emerald", chance = 413 },
-	{ name = "small amethyst", chance = 540 },
-	{ name = "scarab coin", chance = 1098 },
+	{ name = "small emerald", chance = 2413 },
+	{ name = "small amethyst", chance = 3540 },
+	{ name = "scarab coin", chance = 4098 },
 	{ name = "daramian mace", chance = 245 },
 	{ name = "meat", chance = 40000, maxCount = 2 },
-	{ name = "piece of scarab shell", chance = 4950 },
+	{ name = "piece of scarab shell", chance = 14950 },
 }
 
 monster.attacks = {

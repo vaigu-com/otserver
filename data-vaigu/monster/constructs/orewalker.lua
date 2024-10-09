@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Orewalker")
 local monster = {}
 
 monster.description = "an orewalker"
-monster.experience = 5900
+monster.experience = 6980
 monster.outfit = {
 	lookType = 490,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 883
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 1,
@@ -75,35 +75,30 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 98 },
-	{ name = "platinum coin", chance = 100000, maxCount = 10 },
 	{ name = "yellow gem", chance = 1030 },
 	{ id = 3097, chance = 4660 }, -- dwarven ring
-	{ name = "knight legs", chance = 1910 },
 	{ name = "crown armor", chance = 370 },
 	{ name = "crown helmet", chance = 890 },
 	{ name = "iron ore", chance = 15000 },
 	{ name = "magic sulphur", chance = 3000 },
-	{ name = "titan axe", chance = 2600 },
 	{ name = "glorious axe", chance = 1870 },
 	{ name = "strong health potion", chance = 15600, maxCount = 2 },
 	{ name = "strong mana potion", chance = 14000, maxCount = 2 },
 	{ name = "great mana potion", chance = 14000, maxCount = 2 },
 	{ name = "mana potion", chance = 14000, maxCount = 4 },
 	{ name = "ultimate health potion", chance = 9500, maxCount = 2 },
-	{ name = "crystalline armor", chance = 560 },
+	{ name = "crystalline armor", chance = 1560 },
 	{ name = "small topaz", chance = 16500, maxCount = 3 },
-	{ name = "shiny stone", chance = 13700 },
+	{ name = "shiny stone", chance = 19700 },
 	{ name = "sulphurous stone", chance = 20700 },
-	{ name = "wand of defiance", chance = 1300 },
+	{ name = "wand of defiance", chance = 4300 },
 	{ name = "green crystal shard", chance = 8000 },
 	{ name = "blue crystal splinter", chance = 16000, maxCount = 2 },
 	{ name = "cyan crystal fragment", chance = 13000 },
-	{ name = "pulverized ore", chance = 20500 },
-	{ name = "vein of ore", chance = 15000 },
-	{ name = "prismatic bolt", chance = 15500, maxCount = 5 },
-	{ name = "crystal crossbow", chance = 300 },
+	{ name = "pulverized ore", chance = 30500 },
+	{ name = "vein of ore", chance = 25000 },
+	{ name = "prismatic bolt", chance = 15500, maxCount = 15 },
+	{ name = "crystal crossbow", chance = 1300 },
 }
 
 monster.attacks = {

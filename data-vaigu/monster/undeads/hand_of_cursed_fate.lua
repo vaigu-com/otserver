@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Hand of Cursed Fate")
 local monster = {}
 
 monster.description = "a hand of cursed fate"
-monster.experience = 5000
+monster.experience = 7000
 monster.outfit = {
 	lookType = 230,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 281
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 2500,
-	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	toKill = 250,
+	FirstUnlock = 50,
+	SecondUnlock = 100,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -57,7 +57,7 @@ monster.flags = {
 	canPushCreatures = true,
 	staticAttackChance = 20,
 	targetDistance = 1,
-	runHealth = 3500,
+	runHealth = 2500,
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = true,
@@ -78,32 +78,26 @@ monster.voices = {
 monster.loot = {
 	{ name = "emerald bangle", chance = 3500 },
 	{ name = "small sapphire", chance = 11000, maxCount = 4 },
-	{ name = "gold coin", chance = 60000, maxCount = 100 },
-	{ name = "gold coin", chance = 60000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 67 },
-	{ name = "platinum coin", chance = 100000, maxCount = 7 },
 	{ name = "violet gem", chance = 700 },
 	{ name = "yellow gem", chance = 5940 },
-	{ id = 3051, chance = 3150 }, -- energy ring
+	{ id = 3051, chance = 2150 }, -- energy ring
 	{ name = "platinum amulet", chance = 1005 },
 	{ name = "mind stone", chance = 9090 },
 	{ name = "wand of inferno", chance = 5590 },
-	{ name = "boots of haste", chance = 540 },
-	{ name = "protection amulet", chance = 8740 },
-	{ name = "sudden death rune", chance = 4200, maxCount = 8 },
+	{ name = "boots of haste", chance = 2540 },
+	{ name = "sudden death rune", chance = 14200, maxCount = 8 },
 	{ name = "skull staff", chance = 700 },
-	{ name = "knight armor", chance = 4550 },
 	{ name = "crown armor", chance = 1400 },
-	{ name = "mysterious voodoo skull", chance = 247 },
-	{ name = "soul orb", chance = 31111 },
+	{ name = "mysterious voodoo skull", chance = 1247 },
+	{ name = "soul orb", chance = 41111 },
 	{ id = 6299, chance = 1750 }, -- death ring
 	{ name = "demonic essence", chance = 12000 },
 	{ name = "flask of demonic blood", chance = 30000, maxCount = 4 },
-	{ name = "assassin star", chance = 7692, maxCount = 5 },
-	{ name = "abyss hammer", chance = 495 },
+	{ name = "assassin star", chance = 7692, maxCount = 15 },
+	{ name = "abyss hammer", chance = 1495 },
 	{ name = "great mana potion", chance = 19990, maxCount = 2 },
-	{ name = "ultimate health potion", chance = 18000 },
-	{ name = "gold ingot", chance = 700 },
+	{ name = "ultimate health potion", chance = 38000 },
+	{ name = "gold ingot", chance = 1700 },
 }
 
 monster.attacks = {

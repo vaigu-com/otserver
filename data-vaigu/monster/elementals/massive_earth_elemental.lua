@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Massive Earth Elemental")
 local monster = {}
 
 monster.description = "a massive earth elemental"
-monster.experience = 1100
+monster.experience = 1300
 monster.outfit = {
 	lookType = 285,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 455
 monster.Bestiary = {
 	class = "Elemental",
 	race = BESTY_RACE_ELEMENTAL,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -80,11 +80,10 @@ monster.loot = {
 	{ name = "small stone", chance = 25280, maxCount = 10 },
 	{ name = "gold coin", chance = 32000, maxCount = 100 },
 	{ name = "gold coin", chance = 32000, maxCount = 100 },
-	{ name = "gold coin", chance = 32000, maxCount = 41 },
-	{ name = "stone skin amulet", chance = 980 },
+	{ name = "stone skin amulet", chance = 1980 },
 	{ name = "protection amulet", chance = 1580 },
 	{ id = 3097, chance = 2790 }, -- dwarven ring
-	{ name = "diamond sceptre", chance = 150 },
+	{ name = "diamond sceptre", chance = 1150 },
 	{ name = "terra amulet", chance = 500 },
 	{ id = 8895, chance = 3300 }, -- rusted armor
 	{ name = "small topaz", chance = 5280, maxCount = 2 },

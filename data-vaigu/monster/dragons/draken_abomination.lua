@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Draken Abomination")
 local monster = {}
 
 monster.description = "a draken abomination"
-monster.experience = 3800
+monster.experience = 4800
 monster.outfit = {
 	lookType = 357,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 673
 monster.Bestiary = {
 	class = "Dragon",
 	race = BESTY_RACE_DRAGON,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -70,7 +70,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{ name = "Death Blob", chance = 10, interval = 2000, count = 2 },
+		{ name = "Death Blob", chance = 5, interval = 2000, count = 2 },
 	},
 }
 
@@ -84,26 +84,23 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 47000, maxCount = 98 },
-	{ name = "platinum coin", chance = 50590, maxCount = 8 },
-	{ name = "meat", chance = 50450, maxCount = 4 },
-	{ name = "great mana potion", chance = 9950, maxCount = 3 },
-	{ name = "terra hood", chance = 8730 },
-	{ name = "great spirit potion", chance = 4905, maxCount = 3 },
-	{ name = "ultimate health potion", chance = 9400, maxCount = 3 },
+	{ name = "meat", chance = 50450, maxCount = 2 },
+	{ name = "great mana potion", chance = 9950, maxCount = 4 },
+	{ name = "terra hood", chance = 4730 },
+	{ name = "great spirit potion", chance = 4905, maxCount = 4 },
+	{ name = "ultimate health potion", chance = 9400, maxCount = 5 },
 	{ name = "wand of voodoo", chance = 1020 },
 	{ name = "small topaz", chance = 2900, maxCount = 4 },
-	{ name = "zaoan armor", chance = 470 },
-	{ name = "zaoan helmet", chance = 560 },
-	{ name = "zaoan legs", chance = 780 },
-	{ name = "eye of corruption", chance = 12110 },
+	{ name = "zaoan armor", chance = 270 },
+	{ name = "zaoan helmet", chance = 860 },
+	{ name = "zaoan legs", chance = 380 },
+	{ name = "eye of corruption", chance = 18110 },
 	{ name = "tail of corruption", chance = 6240 },
-	{ name = "scale of corruption", chance = 10940 },
-	{ name = "shield of corruption", chance = 10 },
-	{ name = "draken boots", chance = 540 },
-	{ name = "snake god's wristguard", chance = 10 },
-	{ name = "bamboo leaves", chance = 360 },
+	{ name = "scale of corruption", chance = 18940 },
+	{ name = "shield of corruption", chance = 100 },
+	{ name = "draken boots", chance = 1040 },
+	{ name = "snake god's wristguard", chance = 50 },
+	{ name = "bamboo leaves", chance = 560 },
 }
 
 monster.attacks = {
@@ -124,14 +121,14 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = -5 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
 	{ type = COMBAT_FIREDAMAGE, percent = 100 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 5 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -5 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -15 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }
 

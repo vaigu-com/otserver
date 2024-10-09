@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Hellspawn")
 local monster = {}
 
 monster.description = "a hellspawn"
-monster.experience = 2550
+monster.experience = 2950
 monster.outfit = {
 	lookType = 322,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 519
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -81,25 +81,21 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 93000, maxCount = 236 },
-	{ name = "morning star", chance = 10000 },
 	{ name = "warrior helmet", chance = 1886 },
 	{ name = "knight legs", chance = 3030 },
-	{ name = "red mushroom", chance = 7692, maxCount = 2 },
+	{ name = "red mushroom", chance = 17692, maxCount = 2 },
 	{ name = "demonic essence", chance = 9090 },
-	{ name = "battle shield", chance = 7500 },
 	{ name = "assassin star", chance = 9090, maxCount = 2 },
-	{ name = "onyx flail", chance = 103 },
+	{ name = "onyx flail", chance = 503 },
 	{ name = "berserk potion", chance = 934 },
 	{ name = "spiked squelcher", chance = 970 },
 	{ name = "great health potion", chance = 40333 },
-	{ name = "ultimate health potion", chance = 9090 },
-	{ id = 8895, chance = 3125 }, -- rusted armor
-	{ id = 8896, chance = 3125 }, -- slightly rusted armor
+	{ name = "ultimate health potion", chance = 19090 },
+	{ id = 8896, chance = 5125 }, -- slightly rusted armor
 	{ id = 9034, chance = 140 }, -- dracoyle statue
 	{ id = 9056, chance = 151 }, -- black skull
-	{ name = "small topaz", chance = 5882, maxCount = 3 },
-	{ name = "hellspawn tail", chance = 20000 },
+	{ name = "small topaz", chance = 15882, maxCount = 3 },
+	{ name = "hellspawn tail", chance = 25000 },
 }
 
 monster.attacks = {

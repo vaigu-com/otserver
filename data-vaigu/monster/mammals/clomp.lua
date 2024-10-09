@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Clomp")
 local monster = {}
 
 monster.description = "a clomp"
-monster.experience = 475
+monster.experience = 800
 monster.outfit = {
 	lookType = 860,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1174
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,12 +79,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 92000, maxCount = 130 }, -- gold coin
 	{ id = 22186, chance = 2200 }, -- raw meat
-	{ id = 5925, chance = 1200, maxCount = 2 }, -- hardened bone
-	{ id = 10307, chance = 900 }, -- thick fur
-	{ id = 3443, chance = 400 }, -- tusk shield
-	{ id = 7432, chance = 200 }, -- furry club
+	{ id = 5925, chance = 11200, maxCount = 2 }, -- hardened bone
+	{ id = 10307, chance = 1900 }, -- thick fur
+	{ id = 3443, chance = 1400 }, -- tusk shield
+	{ id = 7432, chance = 1200 }, -- furry club
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Lost Basher")
 local monster = {}
 
 monster.description = "a lost basher"
-monster.experience = 2300
+monster.experience = 2550
 monster.outfit = {
 	lookType = 538,
 	lookHead = 0,
@@ -17,7 +17,7 @@ monster.raceId = 925
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
 	SecondUnlock = 500,
 	CharmsPoints = 25,

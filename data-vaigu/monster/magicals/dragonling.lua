@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dragonling")
 local monster = {}
 
 monster.description = "a dragonling"
-monster.experience = 2200
+monster.experience = 2500
 monster.outfit = {
 	lookType = 505,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 894
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 1000,
-	FirstUnlock = 50,
-	SecondUnlock = 500,
+	toKill = 100,
+	FirstUnlock = 10,
+	SecondUnlock = 50,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 1,
@@ -81,17 +81,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 37500, maxCount = 100 },
-	{ name = "gold coin", chance = 37500, maxCount = 100 },
-	{ name = "gold coin", chance = 37500, maxCount = 27 },
 	{ name = "strong health potion", chance = 24480, maxCount = 2 },
-	{ name = "strong mana potion", chance = 16900, maxCount = 2 },
-	{ name = "blazing bone", chance = 12410 },
+	{ name = "strong mana potion", chance = 36900, maxCount = 2 },
+	{ name = "blazing bone", chance = 32410 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -210 },
-	{ name = "dragonling wave", interval = 2000, chance = 10, minDamage = -120, maxDamage = -250, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -310 },
+	{ name = "dragonling wave", interval = 2000, chance = 10, minDamage = -120, maxDamage = -280, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -115, maxDamage = -180, radius = 3, effect = CONST_ME_PURPLEENERGY, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -95, maxDamage = -150, radius = 3, effect = CONST_ME_EXPLOSIONHIT, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = -700, radius = 1, shootEffect = CONST_ANI_EXPLOSION, effect = CONST_ME_STUN, target = true, duration = 16000 },

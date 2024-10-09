@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Stampor")
 local monster = {}
 
 monster.description = "a stampor"
-monster.experience = 780
+monster.experience = 1170
 monster.outfit = {
 	lookType = 381,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 694
 monster.Bestiary = {
 	class = "Reptile",
 	race = BESTY_RACE_REPTILE,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -74,17 +74,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 30000, maxCount = 242 },
-	{ name = "platinum coin", chance = 9920, maxCount = 2 },
-	{ name = "war hammer", chance = 1010 },
-	{ name = "knight armor", chance = 870 },
-	{ name = "spiked squelcher", chance = 160 },
-	{ name = "strong health potion", chance = 5000, maxCount = 2 },
-	{ name = "strong mana potion", chance = 5000, maxCount = 2 },
-	{ name = "small topaz", chance = 7940, maxCount = 2 },
-	{ name = "stampor horn", chance = 4920 },
-	{ name = "stampor talons", chance = 9950, maxCount = 2 },
-	{ name = "hollow stampor hoof", chance = 3020 },
+	{ name = "war hammer", chance = 2010 },
+	{ name = "knight armor", chance = 2870 },
+	{ name = "spiked squelcher", chance = 2160 },
+	{ name = "strong health potion", chance = 15000, maxCount = 2 },
+	{ name = "strong mana potion", chance = 15000, maxCount = 2 },
+	{ name = "small topaz", chance = 17940, maxCount = 2 },
+	{ name = "stampor horn", chance = 24920 },
+	{ name = "stampor talons", chance = 29950, maxCount = 2 },
+	{ name = "hollow stampor hoof", chance = 23020 },
 }
 
 monster.attacks = {

@@ -17,9 +17,9 @@ monster.raceId = 16
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 500,
+	toKill = 250,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 100,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -78,10 +78,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "meat", chance = 39750, maxCount = 4 },
-	{ name = "ham", chance = 20000, maxCount = 3 },
-	{ name = "bear paw", chance = 2000 },
-	{ name = "honeycomb", chance = 460 },
+	{ name = "meat", chance = 39750, maxCount = 3 },
+	{ name = "ham", chance = 20000, maxCount = 2 },
+	{ name = "bear paw", chance = 3000 },
+	{ name = "honeycomb", chance = 1460 },
 }
 
 monster.attacks = {

@@ -17,9 +17,9 @@ monster.raceId = 1144
 monster.Bestiary = {
 	class = "Lycanthrope",
 	race = BESTY_RACE_LYCANTHROPE,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -79,18 +79,18 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 97000, maxCount = 242 }, -- gold coin
-	{ id = 3035, chance = 18200, maxCount = 5 }, -- platinum coin
+	{ id = 3031, chance = 97000, maxCount = 142 }, -- gold coin
+	{ id = 3035, chance = 18200, maxCount = 4 }, -- platinum coin
 	{ id = 8017, chance = 2000 }, -- beetroot
 	{ id = 3725, chance = 2000 }, -- brown mushroom
-	{ id = 268, chance = 2210 }, -- mana potion
+	{ id = 268, chance = 22210 }, -- mana potion
 	{ id = 237, chance = 1200 }, -- strong mana potion
-	{ id = 3741, chance = 1900 }, -- troll green
+	{ id = 3741, chance = 11900 }, -- troll green
 	{ id = 22051, chance = 950 }, -- werebadger claws
 	{ id = 22055, chance = 780 }, -- werebadger skull
 	{ id = 22086, chance = 200 }, -- badger boots
 	{ id = 3055, chance = 160 }, -- platinum amulet
-	{ id = 3098, chance = 430 }, -- ring of healing
+	{ id = 3098, chance = 1430 }, -- ring of healing
 	{ id = 8082, chance = 220 }, -- underworld rod
 	{ id = 8094, chance = 200 }, -- wand of voodoo
 	{ id = 22083, chance = 150 }, -- moonlight crystals

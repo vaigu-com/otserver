@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Polar Bear")
 local monster = {}
 
 monster.description = "a polar bear"
-monster.experience = 28
+monster.experience = 50
 monster.outfit = {
 	lookType = 42,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 42
 monster.Bestiary = {
 	class = "Mammal",
 	race = BESTY_RACE_MAMMAL,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 0,
@@ -74,13 +74,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "meat", chance = 50500, maxCount = 4 },
+	{ name = "meat", chance = 50500, maxCount = 3 },
 	{ name = "ham", chance = 50320, maxCount = 2 },
-	{ name = "polar bear paw", chance = 980 },
+	{ name = "polar bear paw", chance = 1980 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -30 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
 }
 
 monster.defenses = {

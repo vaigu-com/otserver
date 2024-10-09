@@ -17,9 +17,9 @@ monster.raceId = 286
 monster.Bestiary = {
 	class = "Undead",
 	race = BESTY_RACE_UNDEAD,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -78,24 +78,20 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2949, chance = 9620 }, -- lyre
+	{ id = 2949, chance = 1620 }, -- lyre
 	{ name = "silver brooch", chance = 850 },
 	{ name = "silver brooch", chance = 110 },
 	{ id = 3019, chance = 110 }, -- demonbone amulet
-	{ name = "gold coin", chance = 33000, maxCount = 100 },
-	{ name = "gold coin", chance = 33000, maxCount = 100 },
-	{ name = "gold coin", chance = 33000, maxCount = 97 },
 	{ name = "platinum coin", chance = 3850, maxCount = 7 },
 	{ id = 3049, chance = 190 }, -- stealth ring
 	{ name = "wand of cosmic energy", chance = 9800 },
-	{ name = "blank rune", chance = 30310, maxCount = 2 },
 	{ name = "white piece of cloth", chance = 3800 },
 	{ name = "soul orb", chance = 6005 },
 	{ id = 6299, chance = 280 }, -- death ring
 	{ name = "demonic essence", chance = 6270 },
-	{ name = "relic sword", chance = 700 },
-	{ name = "great mana potion", chance = 920 },
-	{ name = "shiny stone", chance = 1000 },
+	{ name = "relic sword", chance = 1700 },
+	{ name = "great mana potion", chance = 1920 },
+	{ name = "shiny stone", chance = 10000 },
 }
 
 monster.attacks = {

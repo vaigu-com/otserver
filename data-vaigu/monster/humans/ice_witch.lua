@@ -17,9 +17,9 @@ monster.raceId = 331
 monster.Bestiary = {
 	class = "Human",
 	race = BESTY_RACE_HUMAN,
-	toKill = 1000,
+	toKill = 250,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 100,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -81,12 +81,12 @@ monster.loot = {
 	{ name = "clerical mace", chance = 920 },
 	{ name = "mystic turban", chance = 430 },
 	{ name = "green mushroom", chance = 1310 },
-	{ name = "shard", chance = 530 },
-	{ name = "diamond sceptre", chance = 330 },
+	{ name = "shard", chance = 1530 },
+	{ name = "diamond sceptre", chance = 1330 },
 	{ id = 7441, chance = 10000 }, -- ice cube
 	{ name = "crystal sword", chance = 400 },
-	{ name = "pair of earmuffs", chance = 90 },
-	{ name = "strong mana potion", chance = 820 },
+	{ name = "pair of earmuffs", chance = 290 },
+	{ name = "strong mana potion", chance = 1820 },
 	{ name = "glacier shoes", chance = 280 },
 }
 

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Firestarter")
 local monster = {}
 
 monster.description = "a firestarter"
-monster.experience = 80
+monster.experience = 120
 monster.outfit = {
 	lookType = 159,
 	lookHead = 94,
@@ -17,9 +17,9 @@ monster.raceId = 737
 monster.Bestiary = {
 	class = "Humanoid",
 	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
+	toKill = 100,
 	FirstUnlock = 25,
-	SecondUnlock = 250,
+	SecondUnlock = 50,
 	CharmsPoints = 15,
 	Stars = 2,
 	Occurrence = 2,
@@ -80,16 +80,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 79000, maxCount = 35 },
 	{ name = "longsword", chance = 6000 },
-	{ name = "bow", chance = 4000 },
+	{ name = "bow", chance = 14000 },
 	{ name = "grapes", chance = 20000 },
-	{ id = 5921, chance = 930 }, -- heaven blossom
-	{ name = "elvish bow", chance = 100 },
+	{ id = 5921, chance = 2930 }, -- heaven blossom
+	{ name = "elvish bow", chance = 700 },
 	{ name = "flaming arrow", chance = 30000, maxCount = 12 },
-	{ name = "elvish talisman", chance = 5000 },
+	{ name = "elvish talisman", chance = 15000 },
 	{ id = 12600, chance = 15280 }, -- coal
-	{ name = "flintstone", chance = 340 },
+	{ name = "flintstone", chance = 1340 },
 }
 
 monster.attacks = {

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Shaburak Lord")
 local monster = {}
 
 monster.description = "a shaburak lord"
-monster.experience = 1200
+monster.experience = 1750
 monster.outfit = {
 	lookType = 409,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 725
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 2,
@@ -89,8 +89,8 @@ monster.loot = {
 	{ name = "wand of inferno", chance = 800 },
 	{ name = "steel boots", chance = 160 },
 	{ name = "brown mushroom", chance = 5346 },
-	{ name = "magic sulphur", chance = 620 },
-	{ name = "bullseye potion", chance = 400 },
+	{ name = "magic sulphur", chance = 1620 },
+	{ name = "bullseye potion", chance = 3400 },
 	{ name = "strong health potion", chance = 7000 },
 	{ name = "strong mana potion", chance = 7000 },
 	{ name = "magma coat", chance = 100 },

@@ -17,9 +17,9 @@ monster.raceId = 882
 monster.Bestiary = {
 	class = "Construct",
 	race = BESTY_RACE_CONSTRUCT,
-	toKill = 2500,
+	toKill = 500,
 	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	SecondUnlock = 250,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 1,
@@ -76,9 +76,6 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small ruby", chance = 15690, maxCount = 3 },
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
-	{ name = "gold coin", chance = 50000, maxCount = 99 },
-	{ id = 3035, chance = 100000, maxCount = 7 }, -- platinum coin
 	{ name = "fire sword", chance = 3280 },
 	{ name = "fire axe", chance = 2150 },
 	{ name = "great mana potion", chance = 14800, maxCount = 2 },
@@ -94,7 +91,6 @@ monster.loot = {
 	{ name = "magma clump", chance = 13240 },
 	{ name = "blazing bone", chance = 14890 },
 	{ name = "eye of a weeper", chance = 15870 },
-	{ name = "prismatic bolt", chance = 10900, maxCount = 5 },
 }
 
 monster.attacks = {

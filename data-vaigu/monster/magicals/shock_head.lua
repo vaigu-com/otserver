@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Shock Head")
 local monster = {}
 
 monster.description = "a shock head"
-monster.experience = 2300
+monster.experience = 5700
 monster.outfit = {
 	lookType = 579,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 1004
 monster.Bestiary = {
 	class = "Magical",
 	race = BESTY_RACE_MAGICAL,
-	toKill = 2500,
-	FirstUnlock = 100,
-	SecondUnlock = 1000,
+	toKill = 50,
+	FirstUnlock = 10,
+	SecondUnlock = 25,
 	CharmsPoints = 50,
 	Stars = 4,
 	Occurrence = 0,
@@ -78,9 +78,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small sapphire", chance = 5000 },
-	{ id = 3031, chance = 92000, maxCount = 200 }, -- gold coin
-	{ name = "royal helmet", chance = 270 },
+	{ name = "small sapphire", chance = 15000 },
+	{ name = "royal helmet", chance = 3270 },
 }
 
 monster.attacks = {

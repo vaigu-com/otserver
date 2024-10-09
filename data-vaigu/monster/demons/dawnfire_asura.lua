@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dawnfire Asura")
 local monster = {}
 
 monster.description = "a dawnfire asura"
-monster.experience = 4100
+monster.experience = 3900
 monster.outfit = {
 	lookType = 150,
 	lookHead = 114,
@@ -79,10 +79,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 69190, maxCount = 100 }, -- gold coin
 	{ id = 3035, chance = 84140, maxCount = 9 }, -- platinum coin
-	{ id = 6558, chance = 20910, maxCount = 2 }, -- flask of demonic blood
-	{ id = 238, chance = 8590, maxCount = 2 }, -- great mana potion
+	{ id = 238, chance = 8590, maxCount = 4 }, -- great mana potion
 	{ id = 3033, chance = 3140, maxCount = 1 }, -- small amethyst
 	{ id = 3028, chance = 2930, maxCount = 1 }, -- small diamond
 	{ id = 3032, chance = 3530, maxCount = 1 }, -- small emerald
@@ -106,7 +104,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -269 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -349 },
 	{ name = "combat", interval = 3700, chance = 17, type = COMBAT_LIFEDRAIN, minDamage = -100, maxDamage = -300, length = 8, spread = 0, effect = CONST_ME_PURPLEENERGY, target = false },
 	{ name = "combat", interval = 3200, chance = 25, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -350, radius = 4, range = 5, target = true, effect = CONST_ME_MORTAREA },
 	{ name = "combat", interval = 2700, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -95, maxDamage = -180, range = 3, shootEffect = CONST_ANI_FIRE, target = true },

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Askarak Demon")
 local monster = {}
 
 monster.description = "an askarak demon"
-monster.experience = 900
+monster.experience = 1200
 monster.outfit = {
 	lookType = 420,
 	lookHead = 0,
@@ -17,9 +17,9 @@ monster.raceId = 727
 monster.Bestiary = {
 	class = "Demon",
 	race = BESTY_RACE_DEMON,
-	toKill = 1000,
+	toKill = 500,
 	FirstUnlock = 50,
-	SecondUnlock = 500,
+	SecondUnlock = 250,
 	CharmsPoints = 25,
 	Stars = 3,
 	Occurrence = 0,
@@ -86,9 +86,9 @@ monster.loot = {
 	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "gold coin", chance = 40000, maxCount = 35 },
 	{ name = "small emerald", chance = 6250, maxCount = 4 },
-	{ id = 3051, chance = 961 }, -- energy ring
+	{ id = 3051, chance = 461 }, -- energy ring
 	{ name = "brown mushroom", chance = 3846, maxCount = 5 },
-	{ name = "magic sulphur", chance = 102 },
+	{ name = "magic sulphur", chance = 1102 },
 	{ name = "assassin star", chance = 4761, maxCount = 5 },
 	{ name = "mastermind potion", chance = 431 },
 	{ name = "strong health potion", chance = 5263 },
