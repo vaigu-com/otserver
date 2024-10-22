@@ -1738,14 +1738,14 @@
 	<monster centerx="7804" centery="1195" centerz="3" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="3" spawntime="60" />
 	</monster>
-	<monster centerx="6831" centery="1196" centerz="3" radius="1">
-		<monster name="Massive Energy Elemental" x="0" y="0" z="3" spawntime="60" />
-	</monster>
 	<monster centerx="7806" centery="1196" centerz="3" radius="1">
 		<monster name="Orc Warlord" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="6456" centery="1197" centerz="3" radius="1">
 		<monster name="Efreet" x="0" y="0" z="3" spawntime="60" />
+	</monster>
+	<monster centerx="6835" centery="1197" centerz="3" radius="1">
+		<monster name="Massive Energy Elemental" x="1" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="7429" centery="1197" centerz="3" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="3" spawntime="60" />
@@ -13474,6 +13474,12 @@
 	<monster centerx="6732" centery="1245" centerz="6" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="6974" centery="1245" centerz="6" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="6979" centery="1245" centerz="6" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="7052" centery="1245" centerz="6" radius="1">
 		<monster name="Assassin" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -13504,6 +13510,9 @@
 	</monster>
 	<monster centerx="6913" centery="1248" centerz="6" radius="1">
 		<monster name="Wyrm" x="1" y="-1" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="6969" centery="1248" centerz="6" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7354" centery="1248" centerz="6" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="6" spawntime="60" />
@@ -50761,9 +50770,6 @@
 	<monster centerx="6225" centery="1243" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="6786" centery="1243" centerz="8" radius="1">
-		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="8102" centery="1243" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -60993,6 +60999,11 @@
 	<monster centerx="5830" centery="1346" centerz="9" radius="1">
 		<monster name="Dwarf" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="6586" centery="1346" centerz="9" radius="1">
+		<monster name="Scarab" x="-1" y="-1" z="9" spawntime="60" />
+		<monster name="Bonebeast" x="0" y="-1" z="9" spawntime="60" />
+		<monster name="Ancient Scarab" x="1" y="-1" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7815" centery="1346" centerz="9" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -61371,9 +61382,7 @@
 		<monster name="Ancient Scarab" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7683" centery="1377" centerz="9" radius="1">
-		<monster name="Stone Golem" x="-1" y="0" z="9" spawntime="60" />
 		<monster name="Stone Golem" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Stone Golem" x="-1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7754" centery="1377" centerz="9" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="9" spawntime="60" />
@@ -61388,9 +61397,6 @@
 	</monster>
 	<monster centerx="6792" centery="1378" centerz="9" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="7681" centery="1378" centerz="9" radius="1">
-		<monster name="Stone Golem" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="5843" centery="1379" centerz="9" radius="1">
 		<monster name="Dwarf Soldier" x="0" y="0" z="9" spawntime="60" />
@@ -61432,10 +61438,8 @@
 	<monster centerx="5765" centery="1381" centerz="9" radius="1">
 		<monster name="Elder Bonelord" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="6607" centery="1381" centerz="9" radius="1">
-		<monster name="Scarab" x="-1" y="-1" z="9" spawntime="60" />
-		<monster name="Bonebeast" x="0" y="-1" z="9" spawntime="60" />
-		<monster name="Ancient Scarab" x="1" y="-1" z="9" spawntime="60" />
+	<monster centerx="7666" centery="1381" centerz="9" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7775" centery="1381" centerz="9" radius="1">
 		<monster name="Orc Berserker" x="0" y="0" z="9" spawntime="60" />
@@ -61475,11 +61479,6 @@
 	</monster>
 	<monster centerx="5852" centery="1384" centerz="9" radius="1">
 		<monster name="Dwarf" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="7674" centery="1384" centerz="9" radius="1">
-		<monster name="Stone Golem" x="0" y="-1" z="9" spawntime="60" />
-		<monster name="Stone Golem" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Stone Golem" x="0" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="5739" centery="1385" centerz="9" radius="1">
 		<monster name="Elder Bonelord" x="0" y="0" z="9" spawntime="60" />
@@ -61557,6 +61556,9 @@
 	<monster centerx="6013" centery="1389" centerz="9" radius="1">
 		<monster name="Vicious Squire" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="7688" centery="1389" centerz="9" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7779" centery="1389" centerz="9" radius="1">
 		<monster name="Orc Berserker" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -61583,6 +61585,9 @@
 	</monster>
 	<monster centerx="5866" centery="1391" centerz="9" radius="1">
 		<monster name="Dwarf" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="7671" centery="1391" centerz="9" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6634" centery="1392" centerz="9" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="9" spawntime="60" />
@@ -67823,7 +67828,6 @@
 	</monster>
 	<monster centerx="7682" centery="1348" centerz="10" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="10" spawntime="60" />
-		<monster name="Stone Golem" x="0" y="1" z="10" spawntime="60" />
 		<monster name="Stone Golem" x="1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="5866" centery="1350" centerz="10" radius="1">
@@ -67897,6 +67901,9 @@
 	<monster centerx="5845" centery="1371" centerz="10" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="7661" centery="1372" centerz="10" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="5859" centery="1374" centerz="10" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -67912,7 +67919,6 @@
 	<monster centerx="7678" centery="1376" centerz="10" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="10" spawntime="60" />
 		<monster name="Stone Golem" x="1" y="0" z="10" spawntime="60" />
-		<monster name="Stone Golem" x="1" y="1" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="7683" centery="1376" centerz="10" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="10" spawntime="60" />
@@ -67925,6 +67931,9 @@
 	</monster>
 	<monster centerx="5855" centery="1379" centerz="10" radius="1">
 		<monster name="Dwarf Soldier" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="7657" centery="1379" centerz="10" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="5850" centery="1380" centerz="10" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="10" spawntime="60" />
@@ -68008,9 +68017,6 @@
 		<monster name="Stone Golem" x="0" y="0" z="10" spawntime="60" />
 		<monster name="Stone Golem" x="0" y="1" z="10" spawntime="60" />
 		<monster name="Stone Golem" x="1" y="1" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="7691" centery="1394" centerz="10" radius="1">
-		<monster name="Behemoth" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6085" centery="1395" centerz="10" radius="1">
 		<monster name="Lost Soul" x="0" y="0" z="10" spawntime="60" />
@@ -72891,6 +72897,14 @@
 		<monster name="Stone Golem" x="0" y="-1" z="11" spawntime="60" />
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="7677" centery="1359" centerz="11" radius="1">
+		<monster name="Stone Golem" x="1" y="-1" z="11" spawntime="-591794688" />
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+		<monster name="Stone Golem" x="1" y="0" z="11" spawntime="-591794688" />
+	</monster>
+	<monster centerx="7679" centery="1359" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6953" centery="1360" centerz="11" radius="1">
 		<monster name="Plaguesmith" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -72906,11 +72920,17 @@
 	<monster centerx="7674" centery="1362" centerz="11" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="7704" centery="1362" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6972" centery="1364" centerz="11" radius="1">
 		<monster name="Dark Torturer" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6975" centery="1364" centerz="11" radius="1">
 		<monster name="Warlock" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7708" centery="1364" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6931" centery="1366" centerz="11" radius="1">
 		<monster name="Plaguesmith" x="0" y="0" z="11" spawntime="60" />
@@ -72920,6 +72940,14 @@
 	</monster>
 	<monster centerx="7688" centery="1366" centerz="11" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7704" centery="1366" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+		<monster name="Stone Golem" x="1" y="0" z="11" spawntime="-591794688" />
+	</monster>
+	<monster centerx="7709" centery="1366" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+		<monster name="Stone Golem" x="0" y="1" z="11" spawntime="-591794688" />
 	</monster>
 	<monster centerx="7655" centery="1367" centerz="11" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="11" spawntime="60" />
@@ -72935,6 +72963,10 @@
 	</monster>
 	<monster centerx="7691" centery="1369" centerz="11" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7708" centery="1369" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+		<monster name="Stone Golem" x="1" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6065" centery="1370" centerz="11" radius="1">
 		<monster name="Hero" x="0" y="0" z="11" spawntime="60" />
@@ -72968,18 +73000,12 @@
 		<monster name="Stone Golem" x="0" y="-1" z="11" spawntime="60" />
 		<monster name="Stone Golem" x="1" y="-1" z="11" spawntime="60" />
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Stone Golem" x="-1" y="1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6035" centery="1372" centerz="11" radius="1">
 		<monster name="Vicious Squire" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6030" centery="1373" centerz="11" radius="1">
 		<monster name="Vile Grandmaster" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="7651" centery="1373" centerz="11" radius="1">
-		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Stone Golem" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Stone Golem" x="0" y="1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7670" centery="1373" centerz="11" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="11" spawntime="60" />
@@ -73013,6 +73039,7 @@
 		<monster name="Banshee" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7651" centery="1375" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="-1" z="11" spawntime="60" />
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6029" centery="1376" centerz="11" radius="1">
@@ -73054,6 +73081,12 @@
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
 		<monster name="Stone Golem" x="0" y="1" z="11" spawntime="60" />
 		<monster name="Stone Golem" x="1" y="1" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7699" centery="1385" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7701" centery="1385" centerz="11" radius="1">
+		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7672" centery="1386" centerz="11" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="60" />
