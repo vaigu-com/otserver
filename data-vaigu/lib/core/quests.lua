@@ -943,3 +943,15 @@ if not Quests then
 		},
 	}
 end
+
+local function appendQuestData()
+	for questId, questData in pairs(Quests) do
+		for missionNumber, missionData in pairs(questData.missions) do
+			missionData.missionId = missionData.missionId or NextMissionId()
+			missionData.startValue = missionData.startValue or MISSION_START_VALUE
+			missionData.endValue = missionData.endValue or #missionData.states
+		end
+	end
+end
+
+--startup appendQuestData() --38f

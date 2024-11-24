@@ -17,28 +17,28 @@ local function getJobConfigs(jobs)
 	return totalShop, totalDialogs
 end
 
----@param internalNpcName string string required
+---@param internalNpcName string string REQUIRED
 ---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
 ---@param npcDescription string? optional - greentext when using look on npc, Default: "a " + internalNpcName
 ---@param greetJob string? sets default greet message based on this job
 ---@param jobs table? jobs that will determine dialogs and shop content
----@param outfit table outfit required
+---@param outfit table outfit
 ---@param dialogs table? custom dialogs that can override job dialogs
 ---@param voices table? orange color text that npc may or may not say from time to time
-function CreateNpcDefinition(context)
+function RegisterNpcDefinition(context)
 	local name = context.internalNpcName or context.name
 	local displayName = context.npcName or context.displayname or name
 	local onlookName = context.npcDescription or context.onlookname or ("a " .. name)
 
 	local greetJob = context.greetJob
 	local jobs = context.jobs or {}
-	local outfit = context.outfit
+	local outfit = context.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
 	local npcSpecificDialogs = context.dialogs
 	local customShop = context.shop
 	local voices = context.voices
 
 	local shop, jobDialogsUniversal = getJobConfigs(jobs)
-	--ToDo: check if this should be removed
+	--ToDo: check if this should be indeed removed
 	--jobDialogs = MergedTable(jobDialogs, npcSpecificDialogs)
 	shop = MergedTable(shop, customShop)
 
@@ -101,15 +101,12 @@ function CreateNpcDefinition(context)
 	npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
 		npc:sellItem(player, itemId, amount, subType, 0, ignore, inBackpacks)
 	end
-	
+
 	-- On sell npc shop message
 	npcType.onSellItem = function(npc, player, itemId, subtype, amount, ignore, itemName, totalCost)
-		player:sendTextMessage(
-		MESSAGE_INFO_DESCR,
-			string.format("Sold %ix %s for %i gold.", amount, itemName, totalCost)
-		)
+		player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("Sold %ix %s for %i gold.", amount, itemName, totalCost))
 	end
-	
+
 	-- On look at npc shop item
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
@@ -130,5 +127,5 @@ function CreateNpcDefinition(context)
 
 	npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
-	return npcType, npcConfig
+	npcType:register(npcConfig)
 end

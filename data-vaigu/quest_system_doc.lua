@@ -605,8 +605,7 @@ local function exampleNpcFromGenerator()
 		voices = voices,
 	}
 
-	local npcType, npcConfig = CreateNpcDefinition(context)
-	npcType:register(npcConfig)
+	RegisterNpcDefinition(context)
 end
 
 exampleDialog()

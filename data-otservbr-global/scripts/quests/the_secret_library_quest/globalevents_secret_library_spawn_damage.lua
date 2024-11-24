@@ -52,8 +52,8 @@ function spawnDamage.onThink(interval)
 	local jolf
 	for i = 1, #effects do
 		local settings = effects[i]
-		fromPosition = settings.fromPosition
-		toPosition = settings.toPosition
+		local fromPosition = settings.fromPosition
+		local toPosition = settings.toPosition
 		local spectators = Game.getSpectators(settings.fromPosition, false, true, 7, 7, 5, 5)
 		if #spectators > 0 then
 			if settings.effect then

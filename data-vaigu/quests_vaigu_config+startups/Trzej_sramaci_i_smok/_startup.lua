@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupItemsStatic = {
 	{ pos = { 5950, 1415, 10 }, id = 1020, aid = Storage.ThreeSramatiansAndTheDragon.GoldblumTrap },
 

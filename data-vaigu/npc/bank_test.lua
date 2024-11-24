@@ -9,14 +9,13 @@ local outfit = {
 	lookFeet = 99,
 	lookAddons = 3,
 }
-local context = {
+local context = NpcContext({
 	name = "Bank Test",
 	greetJob = JOB_BANK,
 	jobs = { JOB_BANK },
 	outfit = outfit,
 	dialogues = dialogues,
 	voices = voices,
-}
+})
 
-local npcType, npcConfig = CreateNpcDefinition(context)
-npcType:register(npcConfig)
+NpcRegistry:AppendNpcData(context)

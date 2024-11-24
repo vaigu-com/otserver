@@ -21,6 +21,9 @@ return {
 	["This bag is sealed with the power of light. Gandalf is the only one who can reach into it."] = "This bag is sealed with the power of light. Gandalf is the only one who can reach into it.",
 	["This just might be the place Chester was talking about"] = "This just might be the place Chester was talking about",
 	["Chester's house is vacant right now. Therefore it would be impolite to tresspass."] = "Chester's house is vacant right now. Therefore it would be impolite to tresspass.",
+	["As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 10,000 gp. Do you already have all {materials} and the payment?"] = "As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 10,000 gp. Do you already have all {materials} and the payment?",
+	["Here's the document for you."] = "Here's the document for you.",
+	["Get back when you get all the items."] = "Get back when you get all the items.",
 	-- Chester the Dwarf
 	["Chester the Dwarf"] = "Chester the Dwarf",
 	["Fortune Teller 3000"] = "Fortune Teller 3000",

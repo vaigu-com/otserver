@@ -676,7 +676,6 @@ Storage = {
 	GetBless = 17102,
 	Rekompensata = 17103,
 	Shipmodel = 17104,
-	CrowbarBought = 17105,
 	-- 20000 ~ 20100 achievements
 	IzcandarTimer = 25585,
 	BrokulTimer = 25586,

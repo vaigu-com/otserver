@@ -1,5 +1,5 @@
-	:Script(function(storageToRequiredState)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
+	:Script(function(missionState)
 local escortContext = {
 	timeLimitSeconds = 600,
 	startAfterSeconds = 2,

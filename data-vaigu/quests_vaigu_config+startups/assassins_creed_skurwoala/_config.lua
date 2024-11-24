@@ -64,7 +64,7 @@ ASSASSINS_CREED_SKURWOALA_KEY_ITEMS = {
 	silicon = {
 		aid = Storage.AssassinsCreedSquurvaali.KeyItems.Silicon,
 		id = 2469,
-		desc = "Box of sillicon wafers. Jannah'ma might be interested in it",
+		desc = "Box of sillicon wafers. Lambor might be interested in it",
 	},
 	flare = {
 		aid = Storage.AssassinsCreedSquurvaali.KeyItems.Flare,

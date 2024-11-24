@@ -72,15 +72,7 @@ local dialog = {
 	[Storage.AssassinsCreedSquurvaali.Localizer] = {
 		[Storage.AssassinsCreedSquurvaali.Mission02] = {
 			[1] = {
-				[{ "mission" }] = {
-					text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
-				},
-				[{ "tailor", "uszyc", "sew" }] = {
-					text = "I will need the following: 5 spider silk, 1 red pillow, 1 {artist palette}.",
-					nextState = {
-						[Storage.AssassinsCreedSquurvaali.Mission02] = 2,
-					},
-				},
+			
 			},
 			[2] = {
 				[{ "artist palette", "mission" }] = {
@@ -93,24 +85,7 @@ local dialog = {
 				},
 			},
 			[4] = {
-				[{ "mission", "tailor", "uszyc", "sew" }] = {
-					text = "Here is your carpet.",
-					textNoRequiredItems = "Return when you have all the items.",
-					requiredItems = {
-						{ id = 2395, count = 1 },
-						{ id = 5879, count = 5 },
-						ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette,
-					},
-					nextState = {
-						[Storage.AssassinsCreedSquurvaali.Mission02] = 5,
-						[Storage.AssassinsCreedSquurvaali.Mission03] = 1,
-					},
-					specialActionsOnSuccess = {
-						{
-							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount,
-						},
-					},
-				},
+				
 			},
 		},
 	},

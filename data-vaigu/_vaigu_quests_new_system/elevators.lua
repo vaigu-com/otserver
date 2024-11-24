@@ -1,5 +1,5 @@
 local quest = Quest("elevators")
-quest:Script(function(storageToRequiredState)
+quest:Script(function(missionState)
 	local hoist1 = Action()
 
 	function hoist1.onUse(creature, item, fromPosition, itemEx, toPosition)
@@ -25,7 +25,7 @@ quest:Script(function(storageToRequiredState)
 		return true
 	end
 
-	hoist1:aid(11052, 11053)
+	hoist1:aid(11052, 11053) --38f
 	hoist1:register()
 
 	local hoist2 = Action()
@@ -53,6 +53,6 @@ quest:Script(function(storageToRequiredState)
 		return true
 	end
 
-	hoist2:aid(11054, 11055)
+	hoist2:aid(11054, 11055) --38f
 	hoist2:register()
 end)

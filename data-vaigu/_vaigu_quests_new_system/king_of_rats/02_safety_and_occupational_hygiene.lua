@@ -101,7 +101,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local tileIn = MoveEvent()
 
 		function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
@@ -333,7 +333,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local portal = MoveEvent()
 
 		function portal.onStepIn(creature, item, position, fromPosition)
@@ -371,7 +371,7 @@ quest
 		end
 		portalUse:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local document = Action()
 		function document.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			local aid = item:getActionId()
@@ -384,7 +384,7 @@ quest
 		document:aid(Storage.SafetyAndOccupationalHygiene.Scp420Document)
 		document:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local tile = MoveEvent()
 
 		function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)

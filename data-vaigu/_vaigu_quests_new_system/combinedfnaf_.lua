@@ -1,5 +1,5 @@
 --[[
-:Script(function(storageToRequiredState)
+:Script(function(missionState)
 local aidConfig = {
 	missingEnergy = 13526,
 	leftLight = 13527,

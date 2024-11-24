@@ -10,7 +10,7 @@ quest
 	:Questlog(function()
 		--None
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local teleportId = 775
 
 		local teleportToQuests = {
@@ -37,7 +37,7 @@ quest
 
 		desertQuestInit:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local aidToRequiredStorages = {
 			[Storage.DesertQuestHub.ToDesertQuestOne] = nil,
 			[Storage.DesertQuestHub.ToDesertQuestTwo] = nil,
@@ -68,7 +68,7 @@ quest
 			local aid = item:getActionId()
 			local checkStorages = aidToRequiredStorages[aid]
 			local destination = aidToDestination[aid]
-			if checkStorages and (not player:HasCorrectStorageValues(checkStorages)) then
+			if checkStorages and (not player:HasExactMissionState(checkStorages)) then
 				onCannotEnter(player, fromPosition)
 				return
 			end
@@ -96,7 +96,7 @@ quest
 		outfit = { lookType = 360, lookHead = 0, lookBody = 0, lookLegs = 0, lookFeet = 0, lookAddons = 0 },
 	})
 	:Mission(Storage.DesertQuestOne)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local neckUpdateStorages = {
 			[Storage.SultanPrime.Mission01] = 1,
 		}

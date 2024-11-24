@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupStatic = {
 	{ pos = { 5514, 1555, 7 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToRetro },
 	{ pos = { 5977, 1178, 6 }, id = 1949, aid = Storage.FourActTragedy.Portals.ToKolumb },

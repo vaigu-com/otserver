@@ -120,8 +120,8 @@ local dialog = {
 			},
 		},
 		-- gadamy z gertuda 10->11
-		-- gadamy z jannah'ma  11->12
-		-- dajemy dragon ham dla jannah'ma 12->13
+		-- gadamy z Lambor  11->12
+		-- dajemy dragon ham dla Lambor 12->13
 		[13] = {
 			[{ "mission" }] = {
 				text = "Good thing you found us. I was starting to worry. No time for chit-chat. We tried to extract information about HF-P/X from the desert nomads. One of them claims to know where to find one of the ancient artifacts. We couldn't negotiate with them - maybe you can. Their settlement is in the north of the desert.",

@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupJanuszex = {
 	{ pos = { -1, 0, 0 }, id = 431, aid = Storage.Fnaf.LeftDoor },
 	{ pos = { 1, 0, 0 }, id = 431, aid = Storage.Fnaf.RightDoor },

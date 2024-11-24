@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupItemsPetrus = {
 	{ pos = { 0, 2, 0 }, id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
 	{ pos = { 0, 3, 4 }, id = 7348, aid = Storage.SafetyAndOccupationalHygiene.Spawns.Petrus },

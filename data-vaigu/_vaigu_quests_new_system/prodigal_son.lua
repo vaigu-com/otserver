@@ -353,9 +353,8 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
-		local errorMessage =
-			"You don't have permission to go there. Talk to Overseer Henry of Januszex to be granted an entry."
+	:Script(function(missionState)
+		local errorMessage = "You don't have permission to go there. Talk to Overseer Henry of Januszex to be granted an entry."
 		local function tryEnterAccessTile(actionid, player, fromPosition)
 			if not player:isPlayer() then
 				return
@@ -386,15 +385,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local areczek = CreatureEvent("HitAreczek")
-		function areczek.onHealthChange(
-			creature,
-			attacker,
-			primaryDamage,
-			primaryType,
-			secondaryDamage,
-			secondaryType,
-			origin
-		)
+		function areczek.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin)
 			if not creature:isMonster() then
 				return primaryDamage, primaryType, secondaryDamage, secondaryType
 			end
@@ -561,7 +552,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local nextState = {
 			[Storage.ProdigalSon.Mission01] = 1,
 		}
@@ -611,7 +602,7 @@ quest
 		{ pos = { -46, -5, 1 }, name = "Henry the Foreman" },
 	}, JANUSZEX_ANCHOR)
 	--ToDo: add as encounter
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local polEncounterConfig = {
 			actionid = Storage.ProdigalSon.PolAccess,
 			bossName = "Pol",
@@ -672,7 +663,7 @@ quest
 			text = "Just use the blackboard here to see the schedules of the train.",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local travelTimeSeconds = 20
 		local aidToDest = {
 			[Storage.ProdigalSon.TrainDestinations.ToHurghada] = Position(6461, 1125, 14),
@@ -692,10 +683,7 @@ quest
 			end
 
 			player:teleportTo(JANUSZEX_MOVING_TRAIN_ANCHOR)
-			player:say(
-				player:Localizer(Storage.ProdigalSon.Localizer):Get("TrainMovingTo") .. choice.text,
-				TALKTYPE_MONSTER_SAY
-			)
+			player:say(player:Localizer(Storage.ProdigalSon.Localizer):Get("TrainMovingTo") .. choice.text, TALKTYPE_MONSTER_SAY)
 			addEvent(function()
 				if player then
 					player:teleportTo(aidToDest[choice.aid])
@@ -722,7 +710,7 @@ quest
 				return true
 			end
 
-			if player:HasCorrectStorageValue(storageToRequiredState) then
+			if player:HasExactMissionState(missionState) then
 				player:UpdateStorages(updateStorages)
 			end
 
@@ -778,17 +766,14 @@ quest
 			aid = Storage.ProdigalSon.HammerMaking.Paint,
 		},
 	}, JANUSZEX_ANCHOR)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local lever = Action()
 		function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then
 				return false
 			end
 			local sawPos = JANUSZEX_ANCHOR:Moved(-90, -69, 2)
-			if
-				Tile(sawPos):getItemById(SYN_MARNOTRAWNY_NORMAL_ITEMS.rawHammer)
-				or Tile(sawPos):getItemById(SYN_MARNOTRAWNY_NORMAL_ITEMS.doneHammer)
-			then
+			if Tile(sawPos):getItemById(SYN_MARNOTRAWNY_NORMAL_ITEMS.rawHammer) or Tile(sawPos):getItemById(SYN_MARNOTRAWNY_NORMAL_ITEMS.doneHammer) then
 				return
 			end
 			local saw = Game.createItem(SYN_MARNOTRAWNY_NORMAL_ITEMS.rawHammer, 1, sawPos)
@@ -865,7 +850,7 @@ quest
 			aid = Storage.ProdigalSon.CalculatorMaking.Lever,
 		},
 	}, JANUSZEX_ANCHOR)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local metalPile = Action()
 		function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then
@@ -944,7 +929,7 @@ quest
 			aid = Storage.ProdigalSon.PliersMaking.Lever,
 		},
 	}, JANUSZEX_ANCHOR)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local metalPile = Action()
 		function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then
@@ -1006,7 +991,7 @@ quest
 		},
 	})
 	:State(QuestState.ProdigalSon.Mission03.KillAreczekForSoap)
-	:MonsterEvent(function(storageToRequiredState)
+	:MonsterEvent(function(missionState)
 		local areczekEnraged = CreatureEvent("AreczekEnragedDeath")
 		function areczekEnraged.onDeath(creature)
 			if not creature or not creature:isMonster() then
@@ -1016,7 +1001,6 @@ quest
 			corpse:setActionId(Storage.ProdigalSon.AreczekCorpse)
 			return true
 		end
-
 		areczekEnraged:register()
 
 		local corpse = Action()
@@ -1024,12 +1008,13 @@ quest
 			if not player:isPlayer() then
 				return false
 			end
-			if not player:HasCorrectStorageValue(storageToRequiredState) then
+
+			if not player:HasExactMissionState(missionState) then
 				return false
 			end
 
 			corpseItem:remove()
-			player:AddItems({ { id = SYN_MARNOTRAWNY_NORMAL_ITEMS.toiletSoap } })
+			player:AddCustomItem({ id = SYN_MARNOTRAWNY_NORMAL_ITEMS.toiletSoap })
 			fromPosition:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 			return true
 		end
@@ -1049,7 +1034,7 @@ quest
 		{ pos = { -87, -52, -1 }, id = 710, aid = Storage.ProdigalSon.AreczekLeaderBed },
 		{ pos = { -87, -51, -1 }, id = 711, aid = Storage.ProdigalSon.AreczekLeaderBed },
 	}, JANUSZEX_ANCHOR)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local occupiedToEmpty = {
 			[710] = 738,
 			[711] = 739,
@@ -1069,30 +1054,38 @@ quest
 			end
 		end
 
+		local function trySpawnAreczek(player)
+			if Game.getStorageValue(Storage.ProdigalSon.AreczekLeaderBed) == 1 then
+				return false
+			end
+
+			if Game.createMonster("Notorious Areczek", player:getPosition()) then
+				Game.setStorageValue(Storage.ProdigalSon.AreczekLeaderBed, 1)
+				SwapNotoriousAreczekBed()
+			end
+		end
+
+		local function announceLeaderYielded(fromPosition)
+			local spectators = Game.getSpectators(fromPosition, true, true, 7, 7, 5, 5)
+			for i = 1, #spectators do
+				local translatedMessage = spectators[i]:Localizer(Storage.ProdigalSon.Localizer):Get("Alright! I YIELD! We will disband our union. Now give me some peace, im sick.")
+				spectators[i]:say(translatedMessage, TALKTYPE_MONSTER_SAY, true, spectators[i], fromPosition)
+			end
+		end
+
 		local bed = Action()
 		function bed.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then
 				return false
 			end
-			if player:HasCorrectStorageValue(storageToRequiredState) then
-				local spectators = Game.getSpectators(fromPosition, true, true, 7, 7, 5, 5)
-				for i = 1, #spectators do
-					local translatedMessage = spectators[i]:Localizer(Storage.ProdigalSon.Localizer):Get(
-						"Alright! I YIELD! We will disband our union. Now give me some peace, im sick."
-					)
-					spectators[i]:say(translatedMessage, TALKTYPE_MONSTER_SAY, true, spectators[i], fromPosition)
-				end
+
+			if player:HasHigherMissionState(missionState) then
+				announceLeaderYielded(fromPosition)
 				return true
 			end
 
-			if player:HasCorrectStorageValue(storageToRequiredState) then
-				if Game.getStorageValue(Storage.ProdigalSon.AreczekLeaderBed) == 1 then
-					return true
-				end
-				if Game.createMonster("Notorious Areczek", player:getPosition()) then
-					Game.setStorageValue(Storage.ProdigalSon.AreczekLeaderBed, 1)
-					SwapNotoriousAreczekBed()
-				end
+			if player:HasExactMissionState(missionState) then
+				trySpawnAreczek(player)
 				return true
 			end
 
@@ -1101,7 +1094,7 @@ quest
 		bed:aid(Storage.ProdigalSon.AreczekLeaderBed)
 		bed:register()
 	end)
-	:MonsterEvent(function(storageToRequiredState)
+	:MonsterEvent(function(missionState)
 		local updateStorages = {
 			[Storage.ProdigalSon.Mission03] = 5,
 		}
@@ -1113,7 +1106,7 @@ quest
 			end
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				if not player:HasCorrectStorageValue(storageToRequiredState) then
+				if not player:HasExactMissionState(missionState) then
 					return true
 				end
 				player:UpdateStorages(updateStorages)
@@ -1305,7 +1298,7 @@ quest
 		{ pos = { -61, 27, 2 }, id = 9125, aid = Storage.ProdigalSon.SewersLever },
 		{ pos = { -61, 27, 5 }, id = 9125, aid = Storage.ProdigalSon.SewersLever },
 	}, JANUSZEX_ANCHOR)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local surfaceZ = JANUSZEX_ANCHOR:Moved(0, 0, 2).z
 		local function isOnSurface(pos)
 			return pos.z == surfaceZ
@@ -1445,7 +1438,7 @@ quest
 			nextState = {
 				[Storage.ProdigalSon.Mission05] = 5,
 			},
-			rewards = {},
+			--rewards = {}, --38f
 		},
 	}, JANUSZEX_ANCHOR)
 	:State(QuestState.ProdigalSon.Mission05.CheckedOnSilo)
@@ -1487,8 +1480,7 @@ quest
 		monster.name = "Fredi kamionka"
 		monster.description = "a Fredi kamionka"
 		monster.experience = 1000
-		monster.outfit =
-			{ lookType = 1136, lookHead = 95, lookBody = 100, lookLegs = 60, lookFeet = 58, lookAddons = 0 }
+		monster.outfit = { lookType = 1136, lookHead = 95, lookBody = 100, lookLegs = 60, lookFeet = 58, lookAddons = 0 }
 
 		monster.health = 9000
 		monster.maxHealth = 9000
@@ -1651,7 +1643,7 @@ quest
 		},
 	})
 	:State(QuestState.ProdigalSon.Mission06.FindPasswordAndKillImperator)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local gateLever = Action()
 		function gateLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then

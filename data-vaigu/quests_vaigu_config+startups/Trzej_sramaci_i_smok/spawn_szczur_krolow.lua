@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 local szczurKrolowConfig = {
 	name = "rat of kings",
 	pos = Position(6792, 558, 11),

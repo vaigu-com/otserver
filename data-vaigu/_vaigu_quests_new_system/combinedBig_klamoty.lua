@@ -1,4 +1,4 @@
 --[[
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 end)
 ]]

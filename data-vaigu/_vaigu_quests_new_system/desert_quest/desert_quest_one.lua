@@ -1409,7 +1409,7 @@ quest
 		portal:type("stepin")
 		portal:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local vectorToMessage = {
 			["90, 66, -1"] = "I just discovered a pattern that will help me identify correct hints. Phantasms can use our human language, but they aren't fluent at it. Phantasms' hints can be identified by many linguistic errors  more or less obvious. Therefore if you encounter a message with a lot of errors, you can be sure it was forged by a phantasm. However, if you find a message with no mistakes at all, you can't be sure about its genuinity. It only works one way. \n\n~Page 57 of Germi Journal.",
 			["71, 54, -1"] = "I tested the information left by Fifonz Kuciapa with my dog companion's assistance, and thanks to it we made it out alive with no problem at all. \n\n~Patrycja Suchodolska",
@@ -1505,7 +1505,7 @@ quest
 		book:aid(Storage.DesertQuestOne.Readable.FloorBooks)
 		book:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = { ["mysteriando"] = "Desert Quest: credit for puzzle ", ["granted"] = " - granted." }
 
 		local questline = Storage.DesertQuestOne.Questline
@@ -1594,7 +1594,7 @@ quest
 		skipDoor:type("stepin")
 		skipDoor:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local correctPortal = MoveEvent()
 
 		function correctPortal.onStepIn(creature, item, toPosition, fromPosition)
@@ -1612,7 +1612,7 @@ quest
 		correctPortal:type("stepin")
 		correctPortal:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local N = NORTH
 		local W = WEST
 		local E = EAST
@@ -1681,7 +1681,7 @@ quest
 		tile:type("stepin")
 		tile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local portal = MoveEvent()
 
 		function portal.onStepIn(creature, item, position, fromPosition)
@@ -1708,7 +1708,7 @@ quest
 		portal:type("stepin")
 		portal:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local pressure_plate_enter = MoveEvent()
 
 		function pressure_plate_enter.onStepIn(creature, item, position, fromPosition)
@@ -1781,7 +1781,7 @@ quest
 		pressure_plate_exit:type("stepout")
 		pressure_plate_exit:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = {
 			["disappeared"] = "The magic walls disappeared for one minute",
 		}
@@ -1816,7 +1816,7 @@ quest
 		statue:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.EkEdStatue)
 		statue:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local step_tile = MoveEvent()
 
 		local msAid = DESERT_QUEST_ONE_VOC_DOORS["ms"]
@@ -1851,7 +1851,7 @@ quest
 		step_tile:type("stepin")
 		step_tile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local goodNames = { "Eustachy Wiertara", "Fifonz Kuciapa", "Sierotka Marysia", "Miroslaw z Ankharu" }
 		local badNames =
 			{ "Wojciech Szpara", "Edward Tatarata", "Bogdan Boner", "Anna Niewypchnieta", "Jan Pawel Drugi" }
@@ -1875,7 +1875,7 @@ quest
 			return translatedMessage .. randomHelper
 		end
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = { ["SUCCESS"] = "One of the magic walls disappeared", ["FAIL"] = "You cannot use this yet" }
 
 		local lever = Action()
@@ -1908,7 +1908,7 @@ quest
 		lever:aid(Storage.DesertQuestOne.Puzzles.VocPuzzle.RpLever)
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local stairTimer = 15
 
 		local config = {
@@ -1967,7 +1967,7 @@ quest
 		lever:aid(Storage.DesertQuestOne.Puzzles.BasinPuzzle.Lever)
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local lever = Action()
 
 		function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -1989,7 +1989,7 @@ quest
 		lever:aid(Storage.DesertQuestOne.Puzzles.KeyshaftPuzzle.LeverPutIn)
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = {
 			["youHaveSeconds"] = "You have 60 seconds to walk though the gate",
 		}
@@ -2028,7 +2028,7 @@ quest
 		lever:aid(Storage.DesertQuestOne.Puzzles.KeyshaftPuzzle.LeverTurn)
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = {
 			["youHearStones"] = "You hear stones rumbling nearby",
 		}
@@ -2070,7 +2070,7 @@ quest
 		gravestone:aid(Storage.DesertQuestOne.Puzzles.CastlePuzzle.Gravestone)
 		gravestone:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local elevatorToUp = Action()
 
 		function elevatorToUp.onUse(creature, item, fromPosition, itemEx, toPosition)
@@ -2109,7 +2109,7 @@ quest
 		elevatorToDown:aid(Storage.DesertQuestOne.Puzzles.CastlePuzzle.ElevatorToDown)
 		elevatorToDown:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local lever = Action()
 
 		function lever.onUse(cid, item, fromPosition, itemEx, toPosition)
@@ -2150,7 +2150,7 @@ quest
 
 		-- crateitem(id, count, pos)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local skating_id = DESERT_QUEST_ONE_ICE_SKATING.skating_floor.id
 		local black_marble_id = DESERT_QUEST_ONE_ICE_SKATING.black_marble.id
 
@@ -2188,7 +2188,7 @@ quest
 		lever:aid(Storage.DesertQuestOne.Puzzles.SkatingPuzzle.Lever)
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local stopid = { [6594] = true, [799] = true, [431] = true, [430] = true }
 
 		local corner1 = DESERT_QUEST_ONE_ANCHOR:Moved(-42, 46, 2)
@@ -2284,7 +2284,7 @@ quest
 		iceTile:type("stepin")
 		iceTile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local corner1 = DESERT_QUEST_ONE_ANCHOR:Moved(2, 42, 2)
 		local corner2 = DESERT_QUEST_ONE_ANCHOR:Moved(-8, 8, 2)
 
@@ -2395,7 +2395,7 @@ quest
 		iceTile:type("stepin")
 		iceTile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function moveStone(creature, dir, item, pos)
 			local player = creature:getPlayer()
 			if not player then
@@ -2433,7 +2433,7 @@ quest
 		exit:type("stepout")
 		exit:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function createSubstituteMonster(top_left, down_right, spawn_pos, name)
 			local z = top_left.z
 			for x = top_left.x, down_right.x do
@@ -2500,7 +2500,7 @@ quest
 		wispAltar:type("stepin")
 		wispAltar:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function tryPunishCheeser(pos, cheeser)
 			local playersPositions = { pos:Moved(0, 2, 0), pos:Moved(0, -2, 0) }
 			local penaltyRoomPos =
@@ -2597,7 +2597,7 @@ quest
 
 		FixRevealingTileArrays()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = {
 			["saplingsNotWatered"] = "If you wanna proceed further, you need to water every sapling.",
 			["youHaveOneMinute"] = "You have one minute to go through portal.",
@@ -2673,7 +2673,7 @@ quest
 		tree_branch:aid(Storage.DesertQuestOne.Puzzles.WaterFlowPuzzle.TreeLever)
 		tree_branch:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = { ["waterPumpNotReady"] = "Water pump is not ready yet" }
 
 		local function drenchNearbyTiles(pos)
@@ -2768,7 +2768,7 @@ quest
 		valve:aid(Storage.DesertQuestOne.Puzzles.WaterFlowPuzzle.PipeValve)
 		valve:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local item = Action()
 
 		local function moveGround(from_pos, to_pos)

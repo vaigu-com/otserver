@@ -150,8 +150,8 @@ quest
 					endValue = 4,
 					states = {
 						[1] = "GM Romek needs help with a new problem, go to him.",
-						[2] = "GM Romek is starting a new minecraft server. Tell Wilson, a frequent visitor to old school servers, about Romek's known scams and acts of corruption.",
-						[3] = "You tipped off Wilson. Now return to Romek and observe his reaction.",
+						[2] = "GM Romek is starting a new minecraft server. Tell Vislav, a frequent visitor to old school servers, about Romek's known scams and acts of corruption.",
+						[3] = "You tipped off Vislav. Now return to Romek and observe his reaction.",
 						[4] = "Chorus of Januses: The human form is above spider filth. Cunning is a virtue; the king of rats is a coward.",
 					},
 				},
@@ -196,7 +196,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local updateStorages = {
 			[Storage.TheaterOfCheapThrills.Questline] = 30,
 			[Storage.TheaterOfCheapThrills.Mission10] = 3,
@@ -522,7 +522,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function areAllMachinePillarsLit(machineConfigs)
 			for _, machineConfig in pairs(machineConfigs) do
 				local pos = machineConfig.pillar.pos
@@ -577,7 +577,7 @@ quest
 
 		--book reward is defined in krol_szczurow_hub/_startup.luaa
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function getConfigByAid(aid)
 			return TEATR_TANIEJ_SENSACJI_PLUS_SHAPE.aidToMachineConfig[aid]
 		end
@@ -634,7 +634,7 @@ quest
 		device:aid(Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineCenter)
 		device:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function swapTile(pos)
 			local tile = Tile(pos):getGround()
 			local anyid = tile.itemid
@@ -783,7 +783,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local tile = MoveEvent()
 
 		function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
@@ -808,7 +808,7 @@ quest
 		tile:aid(Storage.TheaterOfCheapThrills.Spawns.JuerdoTitsgo)
 		tile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local tile = MoveEvent()
 
 		function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
@@ -832,7 +832,7 @@ quest
 		tile:aid(Storage.TheaterOfCheapThrills.Spawns.MissPizza)
 		tile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local tile = MoveEvent()
 
 		function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)

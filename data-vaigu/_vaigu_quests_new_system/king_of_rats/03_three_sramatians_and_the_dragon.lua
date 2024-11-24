@@ -99,9 +99,9 @@ quest
 					states = {
 						[1] = "Bilbeus came up with the idea to steal wine from the vampires. New wine deliveries appear at the docks not only on Sundays at noon.",
 						[2] = "Find a way to escape the dungeons, then locate Gertrude.",
-						[3] = "Gertrude told you that the company went to the desert. The Djinn Lord - Jannah'ma might help you find them.",
-						[4] = "Jannah'ma demanded dragon meat in exchange for information about your companions.",
-						[5] = "Jannah'ma indicated that the company is by the old mine, where wyverns nest.",
+						[3] = "Gertrude told you that the company went to the desert. The Djinn Lord - Lambor might help you find them.",
+						[4] = "Lambor demanded dragon meat in exchange for information about your companions.",
+						[5] = "Lambor indicated that the company is by the old mine, where wyverns nest.",
 						[6] = "An old unjust tyrant dragged me into trouble again.",
 					},
 				},
@@ -159,7 +159,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local updateStorages = {
 			[Storage.ThreeSramatiansAndTheDragon.Questline] = 8,
 			[Storage.ThreeSramatiansAndTheDragon.Mission04] = 2,
@@ -288,7 +288,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local goldBlumTrap = MoveEvent()
 
 		function goldBlumTrap.onStepIn(player, item, position, fromPosition)
@@ -308,7 +308,7 @@ quest
 		goldBlumTrap:aid(Storage.ThreeSramatiansAndTheDragon.GoldblumTrap)
 		goldBlumTrap:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local hfpxConfig = {
 			actionid = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
 			bossName = "Operator HF-P/X",
@@ -576,7 +576,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local hive = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive
 		local lagoon = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Lagoon
 		local souleater = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Souleater
@@ -662,7 +662,7 @@ quest
 		end
 		fire:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local szczurKrolowConfig = {
 			name = "rat of kings",
 			pos = Position(6792, 558, 11),
@@ -723,7 +723,7 @@ quest
 		tileOut:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
 		tileOut:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local updateStorages = {
 			Storage.ThreeSramatiansAndTheDragon.Questline,
 			Storage.ThreeSramatiansAndTheDragon.Mission05,

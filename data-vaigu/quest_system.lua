@@ -36,6 +36,8 @@ WALKAWAY = "DIALOG_MESSAGE_WALKAWAY"
 INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
 QUEST_NOT_STARTED = -1
+QUEST_STARTED = 1
+MISSION_START_VALUE = 1
 
 CONDITION_STATUS = {
 	CONDITION_PASSED = "CONDITION_PASSED",
@@ -132,36 +134,78 @@ local function parseRequiredState(requiredState)
 	local min
 	local max
 	local neq
+	local excludeMin
+	local excludeMax
 	local errorMessage
 
 	if type(requiredState) == "number" then
 		min = requiredState
 		max = defaultMaxState
 		neq = nil
+		excludeMin = false
+		excludeMax = false
 		errorMessage = ""
 	elseif type(requiredState) == "table" then
 		min = requiredState.min or QUEST_NOT_STARTED
 		max = requiredState.max or defaultMaxState
 		neq = requiredState.neq
+		excludeMin = requiredState.excludeMin
+		excludeMax = requiredState.excludeMax
 		errorMessage = requiredState.errorMessage or ""
 	end
 
-	return min, max, neq, errorMessage
+	return {
+		min = min,
+		max = max,
+		neq = neq,
+		excludeMin = excludeMin,
+		excludeMax = excludeMax,
+		errorMessage = errorMessage,
+	}
+end
+
+function Player:HasExactMissionState(missionState)
+	return self:HasCorrectStorageValue(missionState.mission, missionState.state)
+end
+
+function Player:HasAtLeastMissionState(missionState)
+	return self:HasCorrectStorageValue(missionState.mission, { min = missionState.state })
+end
+
+function Player:HasHigherMissionState(missionState)
+	return self:HasCorrectStorageValue(missionState.mission, { min = missionState.state, excludeMin = true })
 end
 
 function Player:HasCorrectStorageValue(storage, requiredState)
-	local min, max, neq = parseRequiredState(requiredState)
-
 	local currentState = self:getStorageValue(storage)
-	if currentState < min then
+
+	local requirements = parseRequiredState(requiredState)
+
+	if requirements.excludeMin then
+		if currentState <= requirements.min then
+			return false
+		end
+	else
+		if currentState < requirements.min then
+			return false
+		end
+	end
+
+	if requirements.excludeMin then
+		if currentState >= requirements.max then
+			return false
+		end
+	else
+		if currentState > requirements.max then
+			return false
+		end
+	end
+
+	if requirements.neq ~= nil and requirements.neq == currentState then
 		return false
 	end
-	if currentState > max then
-		return false
-	end
-	if neq ~= nil and neq == currentState then
-		return false
-	end
+
+	return true
 end
 
 function Player:HasCorrectStorageValues(storages)
@@ -182,17 +226,9 @@ function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
 		return true
 	end
 	for storage, requiredState in pairs(storages) do
-		local min, max, neq, errorMessage = parseRequiredState(requiredState)
-
-		local currentState = self:getStorageValue(storage)
-		if currentState < min then
-			return errorMessage
-		end
-		if currentState > max then
-			return errorMessage
-		end
-		if neq ~= nil and neq == currentState then
-			return errorMessage
+		local requirements = parseRequiredState(requiredState)
+		if not self:HasCorrectStorageValue(storage, requiredState) then
+			return requirements.errorMessage
 		end
 	end
 	return nil
@@ -995,8 +1031,7 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType])
-				or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
+			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end

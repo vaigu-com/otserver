@@ -121,7 +121,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local internalNpcName = "Fiufiu"
 		local npcType = Game.createNpcType(internalNpcName)
 		local npcConfig = {}
@@ -235,7 +235,7 @@ quest
 		npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 		npcType:register(npcConfig)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local escortContext = {
 			timeLimitSeconds = 600,
 			startAfterSeconds = 2,

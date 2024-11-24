@@ -1,28 +1,11 @@
 local dialogs = {
 	[Storage.AssassinsCreedSquurvaali.Localizer] = {
 		[Storage.AssassinsCreedSquurvaali.Mission01] = {
-			[1] = {
-				[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess" }] = {
-					text = "If what you're saying is true - and I have no reason to doubt the words of my faithful |PLAYERNAME| - go to {Oldrak}. He will surely know how to help you.",
-					nextState = {
-						[Storage.AssassinsCreedSquurvaali.Mission01] = 2,
-					},
-				},
-			},
-			[{ min = 2 }] = {
-				[{ "oldrak" }] = {
-					text = "Oldrak has currently gone to the steppes. He is teaching the villagers there.",
-				},
-			},
+
 		},
 		[Storage.AssassinsCreedSquurvaali.Mission05] = {
 			[4] = {
-				[{ "krol krypty", "crypt king", "king of the crypt", "king", "krol" }] = {
-					text = "I will be the harbinger of bad news. The Crypt King has managed to regain a portion of power by consuming the essence of a defeated angel. The Crypt King may attempt to regain strength in the Down's Labyrinth. To prevent this, you will need the assistance of Gandalf.",
-					nextState = {
-						[Storage.AssassinsCreedSquurvaali.Mission05] = 5,
-					},
-				},
+
 			},
 		},
 	},
@@ -57,5 +40,4 @@ local context = {
 	voices = voices,
 }
 
-local npcType, npcConfig = CreateNpcDefinition(context)
-npcType:register(npcConfig)
+NpcRegistry:AppendNpcData(context)

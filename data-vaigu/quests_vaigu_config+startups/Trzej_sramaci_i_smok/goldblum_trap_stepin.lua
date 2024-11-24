@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 local goldBlumTrap = MoveEvent()
 
 function goldBlumTrap.onStepIn(player, item, position, fromPosition)

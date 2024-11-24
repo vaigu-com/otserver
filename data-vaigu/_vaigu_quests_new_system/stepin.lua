@@ -1,5 +1,5 @@
 local quest = Quest("stepin")
-quest:Script(function(storageToRequiredState)
+quest:Script(function(missionState)
 	local noDiagonal = MoveEvent()
 	function noDiagonal.onStepIn(creature, item, toPosition, fromPosition)
 		local player = creature:getPlayer()

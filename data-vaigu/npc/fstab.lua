@@ -80,5 +80,4 @@ local context = {
 	dialogs = dialogs,
 	voices = voices,
 }
-local npcType, npcConfig = CreateNpcDefinition(context)
-npcType:register(npcConfig)
+NpcRegistry:AppendNpcData(context)

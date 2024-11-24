@@ -1,10 +1,8 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupItemsStatic = {
 	{ pos = { 7049, 826, 7 }, id = 5258, aid = Storage.ChesterTheDwarf.ChesterHouseStairs },
 
-	{ pos = { 6660, 1139, 7 }, id = 231, aid = Storage.ChesterTheDwarf.CaveTile },
-	{ pos = { 6661, 1139, 7 }, id = 231, aid = Storage.ChesterTheDwarf.CaveTile },	
-	{ pos = { 6662, 1139, 7 }, id = 231, aid = Storage.ChesterTheDwarf.CaveTile },
+
 
 	{ pos = { 6438, 1125, 14 }, id = 9567, aid = Storage.ChesterTheDwarf.DoorToChesterCompartment },
 }

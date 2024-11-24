@@ -110,36 +110,6 @@ local function creatureSayCallback(npc, creature, type, message)
 		player:addItem(5710, 1) -- dostaje light shovela
 		player:setStorageValue(Storage.Yalahar.WstepDoCzarnejMagii, 2) -- idziemy dalej z questem
 		player:setStorageValue(Storage.Yalahar.Groby, 8) -- do szansy na powodzenie ( kazdy grob daje 10% wiecej szansy
-	elseif table.contains({ "mission", "misja" }, message) and player:getStorageValue(Storage.CrowbarBought) <= 0 then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL" and "Ostatnio znany biznesmen Bildo Debicki zostal pochowany na poludniowym cmentarzu. Aby uhonorowac jego smierc postanowilem, ze zrobie cos dobrego dla mieszkancow tego miasta, i wprowadze promocje na {lomy}. Ta konwersacja nie stanowi podzegania do przestepstwa w rozumieniu kodeksu karnego. Cena jednego takiego przedmiotu to 10 gp."
-				or "Lately, the well-known businessman Bildo Debicki was buried in the southern cemetery. To honor his passing, I've decided to do something good for the residents of this city and introduce a promotion on {crowbars}. This conversation does not constitute incitement to a crime under the criminal code. The price of one such item is 10 gold pieces.",
-			npc,
-			creature
-		)
-	elseif table.contains({ "lom", "lomy", "crowbar", "crowbars" }, message) then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL" and "Chcesz zakupic specjalny lom? Bedzie cie to kosztowac 10gp. Jezeli chcialbys podwazyc jakies wieko (np od dzemu) to wystarczy ze klikniesz na nie. Nie musisz uzywac lomu - stad nazywam go specjalnym."
-				or "You want to buy special crowbar? It will cost you 10gp. If you were to pry open a lid (like the lid of a can), just click on it. No need to use crowbar - hence its called special.",
-			npc,
-			creature
-		)
-		npcHandler:setTopic(playerId, 1)
-	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 then
-		if player:getStorageValue(Storage.CrowbarBought) <= 0 then
-			if player:removeMoney(10) then
-				player:AddItems({ SPOCZYWAJACY_TUTAJ_KEY_ITEMS.crowbar })
-				player:setStorageValue(Storage.CrowbarBought, 1)
-				player:setStorageValue(Storage.ImRestingHere.Coffin, 0)
-				player:setStorageValue(Storage.ImRestingHere.Mission01, 1)
-				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo, oto twoj lom." or "Here you are.", npc, creature)
-			else
-				npcHandler:say(getPlayerLanguage(player) == "PL" and "No co ty, 10gp nie masz?!" or "What?! Its only 10gps.", npc, creature)
-			end
-		else
-			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wiecej ci nie sprzedam, musi cos starczyc dla innych!" or "I won't sell you more than one of these.", npc, creature)
-		end
-		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "mission", "misja", "klatwa", "curse" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission04) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Tak, troche sie znam na zdejmowaniu klatw, ale o jaka dokladnie chodzi?" or "Yes, I'm somewhat knowledgeable about lifting curses, but which curse are you specifically referring to?", npc, creature)
 	elseif table.contains({ "ytong" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission04) == 2 then
@@ -153,14 +123,6 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL" and "Ksiega jest schowana za magicznymi mechanizmami, gleboko w jaskiniach Stone Golemow na Hurghadzie. Mechanizm wymyslil ktos o nazwisku konczacym sie na -stein, wiec wez ze soba duzo gold coinow."
 				or "The book is hidden behind magical mechanisms, deep within the caverns of the Stone Golems on Hurghad Island. The machines inside were created by someone named -stein, so take lot of gold coins with you.",
-			npc,
-			creature
-		)
-	elseif table.contains({ "sygnet", "signet", "piescien", "seal" }, message) and player:getStorageValue(Storage.PathOfTheUndead.Mission03) == 1 then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL"
-					and "Nie wiem, skad wiesz o istnieniu tego sygnetu, ale jezeli chcesz go odnalezc, to sluchaj. Bylo to w jaskiniach Diremawow pod bagnem kultystow. Gdy zblizalem sie do jaskini Ognistego Skurwiwija, ten ryknal tak, ze obsralem sie i zaczalem jak najszybciej stamtad uciekac. Z tego pospiechu wypadla mi z plecaka jedna z atrap atefaktow, ktorych uzywalem do.. a z reszta, niewazne. W srodku tej atrapy, ktora mi wypadla, ukryty byl pierscien. Jezeli dobrze pamietam, to atrapa ta miala imitowac drogocenna miniaturke statku. Wracajac do tego jak ucieklem, pamietam tylko jak obudzilem sie w temple. Jesli chcesz, to mozesz poszukac tego pierscienia, mi on juz sie nie przyda."
-				or "I don't know how you know about this ring, but if you want to find it, listen. It was in the Diremaw caves under the cultist swamp. As I approached the Fire Fucker's cave, he roared so hard that I shit myself and started running away as fast as I could. In this haste, one of the dummy atifacts I used for... never mind, fell out of my backpack. Inside the dummy I had dropped there was a ring. If I remember correctly, this dummy was supposed to imitate a precious miniature of the ship. Coming back to how I escaped, all I remember is waking up in the temple. If you want, you can look for that ring, I don't need it anymore.",
 			npc,
 			creature
 		)

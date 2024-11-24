@@ -68,64 +68,10 @@ local dialogs = {
 		},
 	},
 	[Storage.ChesterTheDwarf.Questline] = {
-		[1] = {
-			[{ GREET }] = {
-				text = "Hello, hello. Have you already acquired all the items I requested?",
-			},
-			[{ "mission", "yes", "tak" }] = {
-				text = "Thanks. I'm heading for the casting soon. Here's your reward, my pickaxe.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 2,
-					[Storage.ChesterTheDwarf.Mission01] = 2,
-					[Storage.ChesterTheDwarf.Mission02] = 1,
-				},
-				requiredItems = {
-					{ id = 3046 },
-					{ id = 7991 },
-					{ id = 5928 },
-					{ id = 3061 },
-				},
-				textNoRequiredItems = "Come back when you've collected all the items.",
-				expReward = 60000,
-				outfitRewards = {
-					{ outfitId = 574, addon = 1 },
-					{ outfitId = 575, addon = 1 },
-				},
-			},
-		},
-		[2] = {
-			[{ "mission" }] = {
-				text = "My career as a TV fortune teller was going well. Some time ago, I took out a loan to start my own business, which turned out to be a scam, of course. I went to the turf accountant and bet on RKS Huwdu winning. Those failures of a human decided to lose, and I ended up with a payday loan with 69% interest! The deadline for the first loan installment is approaching. I don't want the bailiff to seize my house. Try asking Moustachilles about my problem. They always manage to avoid the law and responsibility.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 3,
-					[Storage.ChesterTheDwarf.Mission02] = 2,
-				},
-			},
-		},
+
+
 		[3] = {
-			[{ "mission" }] = {
-				text = "Moustachilles has its bandit shithole located on east of mirkotown.",
-			},
-		},
-		[4] = {
-			[{ "mission" }] = {
-				text = "Thanks for your help. Now I'll be able to set up my office properly. Please take my mining helmet as a reward. As for the costs, I didn't expect such a high amount. I only have 70 platinum with me. I'll try to cover the rest in the future.",
-				requiredItems = {
-					CZESLAW_KRANSOLUD_KEY_ITEMS.identityDocument,
-				},
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 5,
-					[Storage.ChesterTheDwarf.Mission02] = 4,
-					[Storage.ChesterTheDwarf.Mission03] = 1,
-				},
-				outfitRewards = {
-					{ outfitId = 574, addon = 3 },
-					{ outfitId = 575, addon = 3 },
-				},
-				rewards = { { id = 3035, count = 70 } },
-				expReward = 250000,
-				textNoRequiredItems = "Don't you have a new document for me yet? I'll wait then.",
-			},
+			
 		},
 		[5] = {
 			[{ "mission" }] = {

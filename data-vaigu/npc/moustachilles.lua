@@ -87,9 +87,7 @@ local dialog = {
 	},
 	[Storage.ChesterTheDwarf.Localizer] = {
 		[Storage.ChesterTheDwarf.Mission01] = {
-			[{ "tozsamosc", "dokument", "document", "identity", "czeslaw", "chester" }] = {
-				"So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have a crystal coin with you.",
-			},
+	
 		},
 	},
 }

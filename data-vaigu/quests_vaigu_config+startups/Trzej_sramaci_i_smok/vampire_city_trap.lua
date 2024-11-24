@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 local updateStorages = {
 	Storage.ThreeSramatiansAndTheDragon.Questline,
 	Storage.ThreeSramatiansAndTheDragon.Mission05,

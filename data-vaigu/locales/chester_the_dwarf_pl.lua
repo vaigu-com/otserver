@@ -21,6 +21,9 @@ return {
 	["This bag is sealed with the power of light. Gandalf is the only one who can reach into it."] = "Torba Gandalfa zapieczetowana magia swiatlosci. Tylko gandalf moze do niej siegnac.",
 	["This just might be the place Chester was talking about"] = "To chyba jest miejsce, o ktorym mowil Czeslaw",
 	["Chester's house is vacant right now. Therefore it would be impolite to tresspass."] = "Mieszkanie Czeslawa jest puste, a niekulturalne jest krecenie sie tutaj pod nieobecnosc wlasciciela.",
+	["As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 10,000 gp. Do you already have all {materials} and the payment?"] = "Standardowo: Papier w miare dobrej jakosci, moze byc spellbook. Do tego inkwell oraz oplata 10000 gp. Czy masz juz wszystkie {skladniki} i payment?",
+	["Here's the document for you."] = "Masz, oto twoj dokument.",
+	["Get back when you get all the items."] = "Wroc ze wszystkimi przedmiotami.",
 	-- Chester the Dwarf
 	["Chester the Dwarf"] = "Czeslaw Krasnolud",
 	["Fortune Teller 3000"] = "Wrozbita 3000",

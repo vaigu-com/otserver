@@ -1,4 +1,4 @@
-local internalNpcName = "Wilson Tag"
+local internalNpcName = "Vislav Shivka"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
 
@@ -97,13 +97,7 @@ local dialogs = {
 	[Storage.AssassinsCreedSquurvaali.Localizer] = {
 		[Storage.AssassinsCreedSquurvaali.Mission03] = {
 			[2] = {
-				[{ "mission", "dywan", "carpet", "misja", "zaczarowany dywan" }] = {
-					text = "Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}.",
-					nextState = {
-						[Storage.AssassinsCreedSquurvaali.Mission04] = 1,
-						[Storage.AssassinsCreedSquurvaali.Mission03] = 3,
-					},
-				},
+
 			},
 		},
 		[Storage.AssassinsCreedSquurvaali.Mission04] = {

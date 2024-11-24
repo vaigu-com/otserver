@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 local hive = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive
 local lagoon = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Lagoon
 local souleater = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Souleater

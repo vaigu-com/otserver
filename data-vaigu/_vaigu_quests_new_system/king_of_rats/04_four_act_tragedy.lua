@@ -125,7 +125,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local beastId = nil
 
 		local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6) -- 38f85df67705e9e59ab4b44bc8590644
@@ -245,7 +245,7 @@ quest
 
 		zulSzczurowDeath:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		KRAKEN_ENCOUNTER_DATA = {
 			actionid = Storage.FourActTragedy.KrakenAccess,
 			bossName = "The Kraken",
@@ -296,7 +296,7 @@ quest
 		krakenLever:aid(KRAKEN_ENCOUNTER_DATA.actionid)
 		krakenLever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local toModern = Position(5513, 1554, 7)
 		local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0) -- 38f85df67705e9e59ab4b44bc8590644
 		local toKolumb = Position(5909, 1233, 6)
@@ -655,7 +655,7 @@ quest
 
 		EncounterLever(skurwiwijLever):position(Position(6576, 557, 9)):register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local slippersTp = Action()
 		function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then
@@ -850,7 +850,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local zulSzczurowEncounter = {
 			actionid = Storage.FourActTragedy.ZulSzczurowAccess,
 			bossName = "Zul Szczurow",

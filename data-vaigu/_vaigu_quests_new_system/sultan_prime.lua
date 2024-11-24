@@ -94,7 +94,7 @@ sultanPrime
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local startupItemsMagicians = {
 			{ pos = { -7, -3, 0 }, id = 1936, aid = Storage.SultanPrime.MagicianFountain },
 			{ pos = { -6, -3, 0 }, id = 1937, aid = Storage.SultanPrime.MagicianFountain },
@@ -414,7 +414,7 @@ sultanPrime
 	end)
 	:Mission(Storage.SultanPrime.Mission01)
 	:State(QUEST_NOT_STARTED)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local neckUpdateStorages = {
 			[Storage.SultanPrime.Mission01] = 1,
 		}
@@ -478,7 +478,7 @@ sultanPrime
 			text = "Hi again, |PLAYERNAME|. Did you complete the mission?",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function isUsingBottleOnFountain(target)
 			if not target then
 				return false
@@ -554,7 +554,7 @@ sultanPrime
 			text = "If i recall correctly, Date was the fastest dromedary i ever saw. I think that i was to compete in equestrian competition, i would pick him.",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local updateStorages = {
 			[Storage.SultanPrime.Mission02] = 5,
 		}
@@ -606,7 +606,7 @@ sultanPrime
 			text = "Dampreefer farm is located near pirates' yard on the steppes.",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local chair = MoveEvent()
 		function chair.onAddItem(moveitem, tileitem, position)
 			if not moveitem then
@@ -652,7 +652,7 @@ sultanPrime
 		},
 	})
 	:Mission(Storage.SultanPrime.Mission03)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local retroMirkoPos = RETRO_MIRKO_ANCHOR:Moved({ x = -46, y = -68, z = -2 })
 
 		local lever = Action()
@@ -678,7 +678,7 @@ sultanPrime
 			text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local coffin = Action()
 		function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not target then
@@ -714,7 +714,7 @@ sultanPrime
 			text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local successMessages = {
 			"Om nom nom",
 			"Smack smack",
@@ -785,7 +785,7 @@ sultanPrime
 			text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
 		},
 	})
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local ryba = CreatureEvent("RybaKill")
 
 		function ryba.onDeath(creature)

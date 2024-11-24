@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupStatic = {
 	{ pos = { 5839, 792, 0 }, id = 2000, aid = Storage.PerIustitiaAdAstra.JanuszTile },
 	{

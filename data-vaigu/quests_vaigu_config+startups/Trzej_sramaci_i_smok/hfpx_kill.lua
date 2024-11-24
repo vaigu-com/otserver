@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 	:MonsterEvent(function()
 local storages = {
 	[Storage.ThreeSramatiansAndTheDragon.Questline] = 23,

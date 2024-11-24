@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 local updateStorages = { [Storage.ThreeSramatiansAndTheDragon.Questline] = 8, [Storage.ThreeSramatiansAndTheDragon.Mission04] = 2 }
 
 local FirePlace = Action()

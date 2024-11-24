@@ -1,5 +1,5 @@
 local quest = Quest("three_sramatians_and_the_dragon")
-quest:Script(function(storageToRequiredState)
+quest:Script(function(missionState)
 local combination = {
 	"even",
 	"even",

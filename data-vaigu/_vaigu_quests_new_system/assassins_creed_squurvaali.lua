@@ -1,4 +1,5 @@
 local quest = Quest("assassins_creed_squurvaali")
+
 quest
 	:Storage(function()
 		Storage.AssassinsCreedSquurvaali = {
@@ -17,6 +18,13 @@ quest
 				Flare = NextStorage(),
 				Silicon = NextStorage(),
 			},
+		}
+		QuestState.AssassinsCreedSquurvaali = {
+			Mission01 = {
+				FindFatherNatanek = 1,
+				FindOldrak = 2,
+			},
+			Mission02 = {},
 		}
 	end)
 	:Questlog(function()
@@ -60,8 +68,8 @@ quest
 					endValue = 3,
 					states = {
 						[1] = "You acquired a carpet that doesn't have any special abilities. You can return to the Ghasstly Princess.",
-						[2] = "Ghasstly Princess insisted that you go to Wilson Tag for help.",
-						[3] = "Wilson Tag said that Djinn can definitely perform miracles like enchanting a carpet.",
+						[2] = "Ghasstly Princess insisted that you go to Vislav Shivka for help.",
+						[3] = "Vislav Shivka said that Djinn can definitely perform miracles like enchanting a carpet.",
 					},
 				},
 				[4] = {
@@ -71,7 +79,7 @@ quest
 					startValue = 0,
 					endValue = 5,
 					states = {
-						[1] = "Wilson Tag directed you to the Djinn, who is located somewhere at the desert.",
+						[1] = "Vislav Shivka directed you to the Djinn, who is located somewhere at the desert.",
 						[2] = "The Djinn instructed you on where to find the smugglers' base. Try to find something there that might interest him.",
 						[3] = "You found a box of wafers that Djinn mentioned. Return to him and ask for his help with your task.",
 						[4] = "Djinn agreed to help with 'enchanting' the carpet. Now find the missing dead weight, and Djinn will do his job.",
@@ -95,124 +103,457 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
-		local path = MoveEvent()
-		function path.onStepIn(player, item, toPosition, fromPosition)
-			if not player:isPlayer() then
+	:StartupItems({
+		{ pos = { 5685, 1408, 7 }, id = 2355, aid = Storage.AssassinsCreedSquurvaali.GhostChair },
+	})
+	:Mission(Storage.AssassinsCreedSquurvaali.Mission01)
+	:State(
+		QUEST_NOT_STARTED,
+		Quest.Dialog("Ghasstly Princess", {
+			[{ GREET }] = {
+				text = "Hello, traveler. I am the Ghasstly Princess. Do you want to hear my {story}?",
+			},
+			[{ "story", "historie", "yes", "tak" }] = {
+				text = "Once upon a time, I was a beautiful princess. One day, I heard from my brother about approaching armies from the north. I had never heard that our kingdom lost a war, so I didn't {worry} about it.",
+			},
+			[{ "worry", "przejelam" }] = {
+				text = "Yes, this time the day turned out differently for me. That day, while performing my daily routine, I suddenly heard the sound of many trumpets in the distance. I happened to be on one of the higher {towers} at the time.",
+			},
+			[{ "towers", "tower", "wiezy" }] = {
+				text = "When, worried about the sounds from outside, I approached the window, I saw a great barrage of spears and rocks hitting the very center of the tower from which I was looking out. In a moment, the entire floor began to collapse, and I started {falling} with it.",
+			},
+			[{ "falling", "spadac" }] = {
+				text = "That's all I remember. Then I woke up here as a specter. I didn't know that the spirits whose bodies were once mistreated would be unable to move. I've been {waiting} here for a long time for someone to take me to the other side...",
+			},
+			[{ "waiting", "czekam" }] = {
+				text = "But no one comes. Please, will you help me find peace and find someone who will send me to {heaven}?",
+			},
+			[{ "heaven", "nieba" }] = {
+				text = "Thank you, finally someone who wanted to listen to me.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission01] = 1,
+				},
+			},
+		}),
+		Quest.Script(function(missionState)
+			local princess = { name = "Ghasstly Princess", pos = { x = 5682, y = 1408, z = 7 } }
+
+			local chairIn = MoveEvent()
+
+			function chairIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:isPlayer() then
+					return false
+				end
+
+				local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission05)
+
+				if storageVal >= 5 then
+					return false
+				end
+				local monster = Tile(princess.pos):getTopCreature()
+				if monster then
+					return false
+				else
+					Game.createNpc(princess.name, princess.pos)
+				end
+			end
+
+			chairIn:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
+			chairIn:register()
+
+			local chairOut = MoveEvent()
+
+			function chairOut.onStepOut(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:isPlayer() then
+					return false
+				end
+
+				local monster = Tile(princess.pos):getTopCreature()
+				if monster and not Tile(fromPosition):getTopCreature() then
+					monster:remove()
+					Position(princess.pos):sendMagicEffect(CONST_ME_TELEPORT)
+				end
+			end
+
+			chairOut:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
+			chairOut:register()
+		end)
+	)
+	:State(
+		QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek,
+		Quest.Dialog("Father Natanek", {
+			[1] = {
+				[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess" }] = {
+					text = "If what you're saying is true - and I have no reason to doubt the words of my faithful |PLAYERNAME| - go to {Oldrak}. He will surely know how to help you.",
+					nextState = {
+						[Storage.AssassinsCreedSquurvaali.Mission01] = 2,
+					},
+				},
+			},
+			[{ min = 2 }] = {
+				[{ "oldrak" }] = {
+					text = "Oldrak has currently gone to the steppes. He is teaching the villagers there.",
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
+		Quest.Dialog("Oldrak", {
+			--38f
+		})
+	)
+	:State(
+		QuestState.AssassinsCreedSquurvaali.Mission01.ReportToGhasstlyPrincess,
+		Quest.Dialog("Ghasstly Princess", {
+			[{ "mission", "carpet", "dywan" }] = {
+				text = "Magic carpets? Who could have knowledge of something like magical carpets? Although... maybe some desert dwellers might know something about it. I don't know what to do myself, maybe the nomads can help you, although they are not experts in magic.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission01] = 4,
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 1,
+				},
+				expReward = 20000,
+			},
+		})
+	)
+	:Mission()
+	:Mission(Storage.AssassinsCreedSquurvaali.Mission02)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Mareesha", {
+			[{ "mission" }] = {
+				text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
+			},
+			[{ "tailor", "uszyc", "sew" }] = {
+				text = "I will need the following: 5 spider silk, 1 red pillow, 1 {artist palette}.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 2,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Mareesha", {
+			[{ "artist palette", "mission" }] = {
+				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
+			},
+		}),
+		Dialog("Ryan", {
+			[{ "mission" }] = {
+				text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
+				specialActionsOnSuccess = {
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+					},
+				},
+			},
+			[{ "Rat King", "Krol Szczurow", "King of Rats" }] = {
+				text = "Rat King! Psst, now say: {away to the Ratlands}.",
+				specialActionsOnSuccess = {
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.spawnGmTomek,
+					},
+				},
+			},
+			[{ "away to the Ratlands", "won do szczurolandii" }] = {
+				text = "TO THE RATS! SWIRL OF STENCH! It was all {his fault}.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 3,
+					[Storage.TheaterOfCheapThrills.Mission01] = 1,
+					[Storage.KingOfRatsHQ.Portals.Ryan] = 1,
+					[Storage.KingOfRatsHQ.State] = 0,
+				},
+				specialActionsOnSuccess = {
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.despawnGmTomek,
+					},
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Mareesha", {
+			[{ "artist palette", "mission" }] = {
+				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
+			},
+		}),
+		Dialog("Ryan", {
+			[{ "his fault", "jego wina", "mission" }] = {
+				text = "And there he goes, sucked and swirled away. Here you go, the palette you were looking for.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 4,
+				},
+				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette },
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Mareesha", {
+			[{ "mission", "tailor", "uszyc", "sew" }] = {
+				text = "Here is your carpet.",
+				textNoRequiredItems = "Return when you have all the items.",
+				requiredItems = {
+					{ id = 2395, count = 1 },
+					{ id = 5879, count = 5 },
+					ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.palette,
+				},
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission02] = 5,
+					[Storage.AssassinsCreedSquurvaali.Mission03] = 1,
+				},
+				specialActionsOnSuccess = {
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount,
+					},
+				},
+			},
+		})
+	)
+	:Mission(Storage.AssassinsCreedSquurvaali.Mission03)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Ghasstly Princess", {
+			[{ "mission" }] = {
+				text = "It's wonderful that you managed to get so far. Please, here is my staff. Vislav Shivka manifested itself in my dreams yesterday. He told me to go to... I don't remember who. Maybe it's silly, but you have to ask him about enchanting the carpet.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission03] = 2,
+				},
+				expReward = 150000,
+				rewards = { ExerciseWeaponBox(30) },
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Vislav Shivka", {
+			[{ "mission", "dywan", "carpet", "misja", "zaczarowany dywan" }] = {
+				text = "Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 1,
+					[Storage.AssassinsCreedSquurvaali.Mission03] = 3,
+				},
+			},
+		})
+	)
+	:Mission(Storage.AssassinsCreedSquurvaali.Mission04)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Lambor", {
+			[{ "mission", "carpet", "dywan" }] = {
+				text = "Yes, I can perform such a service. If you want me to help you, first you {help} me.",
+			},
+			[{ "pomozesz", "help", "ok", "okay", "sure" }] = {
+				text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 2,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Lambor", {
+			[{ "mission" }] = {
+				text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
+			},
+		})
+	)
+	:StartupItems({
+		{
+			pos = { 6051, 1503, 9 },
+			id = 2484,
+			actionid = Storage.AssassinsCreedSquurvaali.Rewards.CartSilicon,
+			rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
+			requiredState = { [Storage.AssassinsCreedSquurvaali.Mission04] = 2 },
+			nextState = { [Storage.AssassinsCreedSquurvaali.Mission04] = 3 },
+		},
+	})
+	:State(
+		PH_STATE,
+		Quest.Dialog("Lambor", {
+			[{ "mission" }] = {
+				text = "Thanks for your help. Now I will handle your request. I will need 5 dead weights to enchant your carpet. I will place them all on the carpet, which should result in overflow, and the carpet's weight should become negative. Return when you have 5 pieces of dead weight.",
+				requiredItems = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
+				textNoRequiredItems = "Did you lose a bag somewhere? Well...",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 4,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Lambor", {
+			[{ "mission" }] = {
+				text = "Please take this carpet. Remember that the flying function only works in specific places, namely on the peaks of the highest mountains. One of these peaks is surely in the Caribbean.",
+				requiredItems = { { id = 20202, count = 5 } },
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission04] = 5,
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 1,
+				},
+				expReward = 500000,
+				textNoRequiredItems = "Return when you have exactly 5 dead weight.",
+			},
+		})
+	)
+	:Mission(Storage.AssassinsCreedSquurvaali.Mission05)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Ghastly Princess", {
+			[{ "mission" }] = {
+				text = "You managed to get the carpet! Now try to go to the top of the mountain that the djinn mentioned. It's my only hope.",
+			},
+		})
+	)
+	:StartupItems({
+		{ pos = { 5810, 804, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
+		{ pos = { 5811, 804, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
+		{ pos = { 5810, 805, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
+		{ pos = { 5810, 806, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
+		{ pos = { 5811, 806, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
+		{ pos = { 5749, 805, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenLastTile },
+	})
+	:State(
+		PH_STATE,
+		Quest.Script(function(missionState)
+			local function canEnterPath(player)
+				if player:HasExactMissionState(missionState) then
+					return true
+				end
+
+				if player:getOutfit().lookMount == 689 then
+					return true
+				end
+
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission05)
-			local playerMount = player:getOutfit().lookMount
-			if storageVal == 1 and playerMount == 689 then
+			local path = MoveEvent()
+			function path.onStepIn(player, item, toPosition, fromPosition)
+				if not player:isPlayer() then
+					return false
+				end
+
+				if canEnterPath(player) then
+					return
+				end
+
+				player:teleportTo(fromPosition)
+				player:getPosition():sendMagicEffect(CONST_ME_STUN)
+				player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Localizer):Get("A magical force brought you back to the solid ground."), TALKTYPE_MONSTER_SAY)
+				return false
+			end
+			path:aid(Storage.AssassinsCreedSquurvaali.HeavenPath)
+			path:register()
+
+			local lastTile = MoveEvent()
+			function lastTile.onStepIn(player, item, toPosition, fromPosition)
+				if not player:isPlayer() then
+					return false
+				end
+				-- ToDo: fix position after new map is added
+				player:teleportTo(Position(5745, 801, 4), true)
+				return true
+			end
+			lastTile:aid(Storage.AssassinsCreedSquurvaali.HeavenLastTile)
+			lastTile:register()
+		end),
+		Quest.Dialog("Aunor", {
+			[{ "mission" }] = {
+				text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
+			},
+			[{ "seeing", "zegnaj" }] = {
+				text = "",
+				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare },
+				specialActionsOnSuccess = {
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.aunorTeleportOut,
+					},
+				},
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 2,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Ghasstly Princess", {
+			[{ "mission" }] = {
+				text = "You should fire the flare outside, not inside, silly.",
+			},
+		}),
+		Quest.StartupItems({
+			{ pos = { 5688, 1413, 7 }, id = 15047, aid = Storage.AssassinsCreedSquurvaali.KeyItems.Flare },
+		}),
+		Quest.Script(function(missionState)
+			local updateStorages = {
+				[Storage.AssassinsCreedSquurvaali.Mission05] = 3,
+			}
+
+			local flare = Action()
+			function flare.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:HasExactMissionState(missionState) then
+					return
+				end
+
+				if item:getId() ~= ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare.id then
+					return false
+				end
+
+				local groundAid = Tile(player:getPosition()):getGround():getActionId()
+				local itemAid = item:getActionId()
+				if groundAid ~= itemAid then
+					player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Localizer):Get("You have to be standing just outside the Ghasstly Princess's cave in order to use this flare."), TALKTYPE_MONSTER_SAY)
+					return false
+				end
+
+				player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_RED)
+				player:UpdateStorages(updateStorages)
+				item:remove()
 				return true
 			end
 
-			player:teleportTo(fromPosition)
-			player:getPosition():sendMagicEffect(CONST_ME_STUN)
-			player:say(
-				player
-					:Localizer(Storage.AssassinsCreedSquurvaali.Localizer)
-					:Get("A magical force brought you back to the solid ground."),
-				TALKTYPE_MONSTER_SAY
-			)
-			return false
-		end
-		path:aid(Storage.AssassinsCreedSquurvaali.HeavenPath)
-		path:register()
-
-		local lastTile = MoveEvent()
-		function lastTile.onStepIn(player, item, toPosition, fromPosition)
-			if not player:isPlayer() then
-				return false
-			end
-			-- ToDo: fix position after new map is added
-			player:teleportTo(Position(5745, 801, 4), true)
-			return true
-		end
-		lastTile:aid(Storage.AssassinsCreedSquurvaali.HeavenLastTile)
-		lastTile:register()
-	end)
-	:Script(function(storageToRequiredState)
-		local updateStorages = {
-			[Storage.AssassinsCreedSquurvaali.Mission05] = 3,
-		}
-
-		local config = {
-			["stand"] = "You have to be standing just outside the Ghasstly Princess's cave in order to use this flare.",
-		}
-
-		local flare = Action()
-
-		function flare.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-			if item:getId() ~= ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.flare.id then
-				return false
-			end
-
-			local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission05)
-			if storageVal ~= 2 then
-				return false
-			end
-
-			local groundAid = Tile(player:getPosition()):getGround():getActionId()
-			local itemAid = item:getActionId()
-			if groundAid ~= itemAid then
-				player:say(
-					player:Localizer(Storage.AssassinsCreedSquurvaali.Localizer):Get(config["stand"]),
-					TALKTYPE_MONSTER_SAY
-				)
-				return false
-			end
-
-			player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_RED)
-			player:UpdateStorages(updateStorages)
-			item:remove()
-			return true
-		end
-
-		flare:aid(Storage.AssassinsCreedSquurvaali.KeyItems.Flare)
-		flare:register()
-	end)
-	:Script(function(storageToRequiredState)
-		local princess = { name = "Ghasstly Princess", pos = { x = 5682, y = 1408, z = 7 } }
-
-		local chairIn = MoveEvent()
-
-		function chairIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-			if not player:isPlayer() then
-				return false
-			end
-
-			local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission05)
-
-			if storageVal >= 5 then
-				return false
-			end
-			local monster = Tile(princess.pos):getTopCreature()
-			if monster then
-				return false
-			else
-				Game.createNpc(princess.name, princess.pos)
-			end
-		end
-
-		chairIn:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
-		chairIn:register()
-
-		local chairOut = MoveEvent()
-
-		function chairOut.onStepOut(player, item, fromPosition, target, toPosition, isHotkey)
-			if not player:isPlayer() then
-				return false
-			end
-
-			local monster = Tile(princess.pos):getTopCreature()
-			if monster and not Tile(fromPosition):getTopCreature() then
-				monster:remove()
-				Position(princess.pos):sendMagicEffect(CONST_ME_TELEPORT)
-			end
-		end
-
-		chairOut:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
-		chairOut:register()
-	end)
+			flare:aid(Storage.AssassinsCreedSquurvaali.KeyItems.Flare)
+			flare:register()
+		end)
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Ghasstly Princess", {
+			[{ GREET }] = {
+				text = "Finally, I can end this charade. You, sucker. I'm not a princess, I'm THE undead king your mother warned you about. An angel will arrive shortly, whom I can easily defeat and drain of all his power. You can't do {anything} about it.",
+				specialActionsOnSuccess = {
+					{
+						action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.transformNpcToCryptKingLook,
+					},
+				},
+			},
+			[{ "anything", "nic" }] = {
+				text = "",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 4,
+				},
+				specialActionsOnSuccess = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.teleportToTemple,
+					},
+				},
+				expReward = 500000,
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		Quest.Dialog("Father Natanek", {
+			[{ "krol krypty", "crypt king", "king of the crypt", "king", "krol" }] = {
+				text = "I will be the harbinger of bad news. The Crypt King has managed to regain a portion of power by consuming the essence of a defeated angel. The Crypt King may attempt to regain strength in the Down's Labyrinth. To prevent this, you will need the assistance of Gandalf.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission05] = 5,
+				},
+			},
+		})
+	)

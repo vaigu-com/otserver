@@ -107,7 +107,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		KROL_SZCZUROW_TELEPORT_HUB_DESINATIONS_IN = {
 			[Storage.KingOfRatsHQ.Portals.Ryan] = { -1, 3, 0 },
 			[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = { -2, -2, 0 },

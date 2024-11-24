@@ -5,11 +5,13 @@
 ---@field encounterLevers table
 ---@field encounterFights table
 ---@field monsters table
----@field scrpts table
+---@field scripts table
 ---@field npcs table
 ---@field startupItems table
 ---@field startupNpcs table
 ---@field questlog table
+---@field mission integer
+---@field state integer
 Quest = {}
 Quest.__index = Quest
 function Quest:New(name)
@@ -35,23 +37,35 @@ setmetatable(Quest, {
 	end,
 })
 
+QUEST_SCRIPT_TYPE = {
+	DIALOG = "DIALOG",
+	CUSTOM_SCRIPT = "CUSTOM_SCRIPT",
+	STARTUP_ITEMS = "STARTUP_ITEMS",
+}
+
+local scriptTypeToCallback = {
+	[QUEST_SCRIPT_TYPE.DIALOG] = Quest.AddDialog,
+	[QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT] = Quest.AddScript,
+	[QUEST_SCRIPT_TYPE.STARTUP_ITEMS] = Quest.AddStartupItems,
+}
+
 function Quest:Mission(mission)
 	self.mission = mission
 	return self
 end
-function Quest:State(state)
+
+function Quest:State(state, ...)
 	self.state = state
+	for _, context in pairs({ ... }) do
+		local callback = scriptTypeToCallback[context.scriptType]
+		context.mission = self.mission
+		context.state = state
+		callback(self, context)
+	end
 	return self
 end
 
-function Quest:Dialog(npcName, dialog)
-	self.npcs[npcName] = self.npcs[npcName] or {}
-	self.npcs[npcName].missions = self.npcs[npcName].missions or {}
-	self.npcs[npcName].missions[self.mission] = self.npcs[npcName].missions[self.mission] or {}
-	self.npcs[npcName].missions[self.mission].states = self.npcs[npcName].missions[self.mission].states or {}
-	self.npcs[npcName].missions[self.mission].states[self.state] = dialog
-	return self
-end
+--#region Immediate execution
 function Quest:Storage(storages)
 	storages()
 	return self
@@ -60,10 +74,16 @@ function Quest:Constant(constant)
 	constant()
 	return self
 end
+--#endregion
+
+--#region Not quest state dependant
 function Quest:Questlog(questlog)
 	self.questlog = questlog
 	return self
 end
+--#endregion
+
+--#region Not quest state dependant, but related to quest state
 function Quest:MonsterEvent(MonsterEvent)
 	table.insert(self.monsterEvents, MonsterEvent)
 	return self
@@ -80,19 +100,55 @@ function Quest:Monster(monster)
 	table.insert(self.monsters, monster)
 	return self
 end
-function Quest:StartupItems(items, anchor)
-	--[[
-	ToDo: check all quests if this is necessary
+--#endregion
+
+--#reqion Quest state dependant
+function Quest.Dialog(npcName, dialogs)
+	return { npcName = npcName, dialogs = dialogs, scriptType = QUEST_SCRIPT_TYPE.DIALOG }
+end
+function Quest.Script(func)
+	return { func = func, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
+end
+function Quest.StartupItems(items, anchor)
+	return { items = items, anchor = anchor, scriptType = QUEST_SCRIPT_TYPE.STARTUP_ITEMS }
+end
+---@private
+function Quest:AddDialog(context)
+	local npcName, dialog = context.npcName, context.dialog
+	local mission, state = context.mission, context.state
+
+	self.npcs[npcName] = self.npcs[npcName] or {}
+	self.npcs[npcName].missions = self.npcs[npcName].missions or {}
+	self.npcs[npcName].missions[mission] = self.npcs[npcName].missions[mission] or {}
+	self.npcs[npcName].missions[mission].states = self.npcs[npcName].missions[mission].states or {}
+	self.npcs[npcName].missions[mission].states[state] = dialog
+	return self
+end
+---@private
+function Quest:AddScript(context)
+	local script = context.script
+	local mission, state = context.mission, context.state
+
+	table.insert(self.scripts, { script = script, mission = mission, state = state })
+	return self
+end
+---@private
+function Quest:AddStartupItems(context)
+	local items, anchor = context.items, context.achor
+	local mission, state = context.mission, context.state
+	--This addition might prove to be breaking change
 	for key, item in pairs(items) do
-		if item.rewards then
-			item.requiredState = { [self.mission] = self.state }
+		if item.nextState or item.content then
+			item.requiredState = item.requiredState or { [self.mission] = self.state }
 		end
 	end
-	]]
 
 	self.startupItems[items] = anchor
 	return self
 end
+--#endregion
+
+--38f
 function Quest:StartupNpcs(npcs, anchor)
 	self.startupNpcs[npcs] = anchor
 	return self
@@ -108,16 +164,10 @@ function Quest:Npc(name, context)
 end
 ]]
 
-function Quest:Script(script)
-	table.insert(self.scripts, script)
-	return self
-end
-
 function Quest:Register()
 	QuestRegistry():Register(self)
 end
 
---
 local function normalizeQuestData()
 	for questId, quest in pairs(Quests) do
 		for missionNumber, mission in pairs(quest.missions) do
@@ -185,7 +235,7 @@ end
 function QuestRegistry:RegisterNpcData()
 	for _, quest in pairs(self.registry) do
 		for npcName, data in pairs(quest.npcs) do
-			NpcRegistry():AddNpcData(npcName, data)
+			NpcRegistry:AppendNpcData(data)
 		end
 	end
 end
@@ -213,8 +263,9 @@ function QuestRegistry:CreateStartupNpcs()
 end
 function QuestRegistry:RunScripts()
 	for _, quest in pairs(self.registry) do
-		for _, script in pairs(quest.scripts) do
-			script()
+		for _, scriptData in pairs(quest.scripts) do
+			local script = scriptData.script
+			script({ mission = scriptData.mission, state = scriptData.state })
 		end
 	end
 end
@@ -226,7 +277,8 @@ function QuestRegistry:CreateQuests()
 	self:CreateEncounterFight()
 	self:CreateMonster()
 	self:RegisterNpcData()
-	NpcRegistry():CreateNpcs()
+	NpcRegistry:RegisterNpcDefinitions()
+	self:CreateStartupItems()
 	self:RunScripts()
 end
 
@@ -238,6 +290,31 @@ end
 function QuestRegistry:Get(name)
 	return self.registry[name]
 end
+
+---@class NpcContext
+---@field public name string
+---@field public greetJob string
+---@field public jobs string[]
+---@field public outfit number[]
+---@field public dialogues table
+---@field public voices string[]
+---@field public pos Position
+NpcContext = {}
+NpcContext.__index = NpcContext
+function NpcContext:New(...)
+	local newObj = {}
+	for key, value in pairs({ ... }) do
+		newObj[key] = value
+	end
+	self.__index = self
+	setmetatable(newObj, self)
+	return newObj
+end
+setmetatable(NpcContext, {
+	__call = function(class, ...)
+		return NpcContext:New(...)
+	end,
+})
 
 ---@class NpcRegistry
 ---@field private registry table
@@ -261,23 +338,27 @@ setmetatable(NpcRegistry, {
 	end,
 })
 
+---@package
 function NpcRegistry:Register(name)
 	self.registry[name] = { name = name }
 	return self.registry[name]
 end
 
+---@package
 function NpcRegistry:Get(name)
 	return self.registry[name] or self:Register(name)
 end
 
-function NpcRegistry:AddNpcData(name, newData)
+---@param newData NpcContext
+function NpcRegistry:AppendNpcData(newData)
+	local name = newData.name
 	local npcData = self:Get(name)
 	npcData = MergedTable(npcData, newData)
 	self.registry[name] = npcData
 end
 
-function NpcRegistry:CreateNpcs()
+function NpcRegistry:RegisterNpcDefinitions()
 	for _, npc in pairs(self.registry) do
-		CreateNpcDefinition(npc)
+		RegisterNpcDefinition(npc)
 	end
 end

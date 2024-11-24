@@ -1,4 +1,4 @@
-local internalNpcName = "Aunor"
+local internalNpcName = "Lambor"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
 
@@ -11,7 +11,7 @@ npcConfig.walkInterval = 3000
 npcConfig.walkRadius = 2
 
 npcConfig.outfit = {
-	lookType = 266,
+	lookType = 104,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,
@@ -49,20 +49,41 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.AssassinsCreedSquurvaali.Localizer] = {
-		[Storage.AssassinsCreedSquurvaali.Mission05] = {
-			[1] = {
-			
+	[Storage.ThreeSramatiansAndTheDragon.Localizer] = {
+		[Storage.ThreeSramatiansAndTheDragon.Mission05] = {
+			[3] = {
+				[{ "mission" }] = {
+					text = "I know where you can find your friends. But first, I expect something in return. Bring me two dragon beefbottoms, and I'll help you.",
+					nextState = {
+						[Storage.ThreeSramatiansAndTheDragon.Mission05] = 4,
+					},
+				},
+			},
+			[4] = {
+				[{ "mission" }] = {
+					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
+					requiredItems = { { id = 3583, count = 2 } },
+					textNoRequiredItems = "Come back with two dragon beefbottoms, and I promise I'll help you.",
+					nextState = {
+						[Storage.ThreeSramatiansAndTheDragon.Mission05] = 5,
+					},
+				},
+			},
+			[5] = {
+				[{ ANY_MESSAGE }] = {
+					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
+				},
 			},
 		},
 	},
 }
+
 local function greetCallback(npc, creature, type, message)
 	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
-local function creatureSayCallback(npc, creature, type, message)
+local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end

@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local npc = { { name = "Ghost of Anthony the Engineer", pos = { 3, -3, 1 } } }
 
 local items = {

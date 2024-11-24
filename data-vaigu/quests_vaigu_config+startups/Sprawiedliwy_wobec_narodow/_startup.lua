@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local static = {
 	{ position = Position(4702, 785, 7), id = 2660, aid = Storage.SprawiedliwyWobecNarodow.Cuckoo },
 	{ position = Position(4695, 790, 7), id = 2915, aid = Storage.SprawiedliwyWobecNarodow.Lamp },

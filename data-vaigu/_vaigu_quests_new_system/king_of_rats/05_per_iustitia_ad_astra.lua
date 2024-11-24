@@ -253,7 +253,7 @@ quest
 		end
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local vortex = MoveEvent()
 
 		function vortex.onStepIn(player, _, toPosition, fromPosition)
@@ -274,7 +274,7 @@ quest
 		vortex:aid(Storage.PerIustitiaAdAstra.RukcaAccess)
 		vortex:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local leftDoorPos = FUEL_SHOP_ANCHOR:Moved(-1, -19, 0)
 
 		local closedDoor = { [14159] = { 0, 0, 0 }, [20435] = { 0, 0, 0 }, [1612] = { 0, 0, 0 }, [20429] = { 0, 1, 0 } }
@@ -327,7 +327,7 @@ quest
 		beforeCpnDoor:aid(Storage.PerIustitiaAdAstra.CpnDoor)
 		beforeCpnDoor:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local updateStorages = {
 			[Storage.PerIustitiaAdAstra.Questline] = 21,
 			[Storage.PerIustitiaAdAstra.Mission05] = 6,
@@ -366,7 +366,7 @@ quest
 		item:aid(Storage.PerIustitiaAdAstra.HammerUse)
 		item:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local szczurKrolowConfig = { name = "Astral Janus", pos = Position(5839, 790, 0) }
 
 		local tileIn = MoveEvent()
@@ -426,7 +426,7 @@ quest
 		tileOut:aid(Storage.PerIustitiaAdAstra.JanuszTile)
 		tileOut:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local starLeftStepIn = MoveEvent()
 
 		function starLeftStepIn.onStepIn(creature, _, _, _)
@@ -439,7 +439,7 @@ quest
 		starLeftStepIn:aid(Storage.PerIustitiaAdAstra.MovingStarTile)
 		starLeftStepIn:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local runeId = 3164
 		local failDmg = 500
 
@@ -485,7 +485,7 @@ quest
 		mysteriousChest:aid(Storage.PerIustitiaAdAstra.MysteriousChest)
 		mysteriousChest:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local rukcaConfig = {
 			actionid = Storage.PerIustitiaAdAstra.RukcaAccess,
 			bossName = "Ruk'ca Maw",
@@ -580,7 +580,7 @@ quest
 
 		rukca:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local dmg = 20000
 
 		local saltyTile = MoveEvent()
@@ -594,7 +594,7 @@ quest
 		saltyTile:aid(Storage.PerIustitiaAdAstra.SaltyTile)
 		saltyTile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local updateStorages = {
 			[Storage.PerIustitiaAdAstra.Questline] = 7,
 			[Storage.PerIustitiaAdAstra.Mission03] = 2,
@@ -616,7 +616,7 @@ quest
 		deeplingTile:aid(Storage.PerIustitiaAdAstra.DeeplingTile)
 		deeplingTile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local shipPos = STARSHIP_ANCHOR:Moved(15, 6, -1)
 
 		local blockage = {}
@@ -675,7 +675,7 @@ quest
 		enterShipTile:aid(Storage.PerIustitiaAdAstra.ShipControl.Enter)
 		enterShipTile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function getDestination(aid)
 			local toPos = SPACESHIP_AID_TO_POS[aid]
 			if not toPos then
@@ -704,7 +704,7 @@ quest
 		exitDevice:aid(Storage.PerIustitiaAdAstra.ShipControl.Exit)
 		exitDevice:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local Monitor = Action()
 		function Monitor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			if not player:isPlayer() then
@@ -735,7 +735,7 @@ quest
 		Monitor:aid(Storage.PerIustitiaAdAstra.ShipControl.RodMelter)
 		Monitor:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function refillFuel(player)
 			local fuelStorage = Storage.PerIustitiaAdAstra.ShipControl.FuelLevel
 			player:IncrementStorage(fuelStorage)
@@ -790,7 +790,7 @@ quest
 		fuel:aid(Storage.PerIustitiaAdAstra.Rewards.RocketFuel)
 		fuel:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local aidToDestName = {
 			[Storage.PerIustitiaAdAstra.ShipDestinations.FuelShop] = "ShipDestCpn",
 			[Storage.PerIustitiaAdAstra.ShipDestinations.Deeplings] = "ShipDestDeepling",

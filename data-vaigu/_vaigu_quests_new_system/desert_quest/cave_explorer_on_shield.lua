@@ -45,7 +45,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local config = {
 			["success"] = "You succeeded in opening the gate! Talk back to engineer ghost and tell him about your success. Dont worry about closing gates - you can use shortcut door.",
 		}
@@ -74,7 +74,7 @@ quest
 		anthonyGate:type("stepin")
 		anthonyGate:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function movePlayersFromArea(topLeft, downRight, safePos)
 			CreatureList():Area(topLeft, downRight):FilteredByPlayer():MovedToPos(safePos)
 		end
@@ -172,7 +172,7 @@ quest
 		firebug:aid(Storage.CaveExplorerOnShield.Misc.FirebugFireplace)
 		firebug:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local punchcard = Action()
 
 		function punchcard.onUse(player, item, fromPosition, target, toPosition, isHotkey)

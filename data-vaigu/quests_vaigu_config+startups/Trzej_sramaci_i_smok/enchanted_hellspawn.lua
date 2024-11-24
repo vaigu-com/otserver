@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 	:Monster(function()
 local mType = Game.createMonsterType("Enchanted Hellspawn")
 local monster = {}

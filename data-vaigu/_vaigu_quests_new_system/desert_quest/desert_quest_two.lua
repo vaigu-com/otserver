@@ -55,7 +55,7 @@ quest
 			},
 		}
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local chests = {
 			["FirstHouse"] = {
 				id = 2478,
@@ -181,7 +181,7 @@ quest
 		chestItem:aid(Storage.DesertQuestTwo.ProgressChests)
 		chestItem:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local stonePos = DESERT_QUEST_TWO_ANCHOR:Moved(41, -6, 0)
 		local moaPos = DESERT_QUEST_TWO_ANCHOR:Moved(45, -17, 0)
 
@@ -326,7 +326,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local puzzleTopLeft = DESERT_QUEST_TWO_ANCHOR:Moved(1, 0, 0)
 		local puzzleDownRight = puzzleTopLeft:Moved(3, 3, 0)
 		local emptySpacePos = Position(puzzleTopLeft)
@@ -430,7 +430,7 @@ quest
 		resetLever:aid(Storage.DesertQuestTwo.Puzzles.FiftenPuzzleLever)
 		resetLever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(-118, -54, 0)
 		local downRight = DESERT_QUEST_TWO_ANCHOR:Moved(-51, 13, 0)
 
@@ -556,7 +556,7 @@ quest
 		classTile:aid(Storage.DesertQuestTwo.Puzzles.IdenticalRoomsClassTeleport)
 		classTile:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local topLeftGenerate = DESERT_QUEST_TWO_ANCHOR:Moved(-3, -2, 2)
 		local downRightGenerate = DESERT_QUEST_TWO_ANCHOR:Moved(31, 32, 2)
 
@@ -775,7 +775,7 @@ quest
 		stoneRemove:aid(Storage.DesertQuestTwo.Puzzles.MazeStoneRemove)
 		stoneRemove:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local orbId = 3064
 
 		local function canMoveOrb(pos)
@@ -867,7 +867,7 @@ quest
 		resetOrbs:aid(Storage.DesertQuestTwo.Puzzles.OrbsReset)
 		resetOrbs:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local currentlyVerifying = false
 
 		local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(17, -52, 1)
@@ -1056,7 +1056,7 @@ quest
 		playerRotatePipe:aid(Storage.DesertQuestTwo.Puzzles.WaterPipeStepIn)
 		playerRotatePipe:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(13, -22, 1)
 		local downRight = DESERT_QUEST_TWO_ANCHOR:Moved(21, -22, 1)
 		local countdownRunning = false
@@ -1155,7 +1155,7 @@ quest
 		lever:aid(Storage.DesertQuestTwo.Puzzles.RgbColors)
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local cubeMapPositions = {
 			top = {
 				[1] = RUBIKS_CUBE_ANCHOR:Moved(0, 0, 0),
@@ -1715,7 +1715,7 @@ quest
 		end
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local aidToDestination = {
 			[Storage.DesertQuestTwo.Teleports.ToIdenticalRoom] = DESERT_QUEST_TWO_ANCHOR:Moved(-85, -21, 0),
 			[Storage.DesertQuestTwo.Teleports.FromIdenticalRoom] = DESERT_QUEST_TWO_ANCHOR:Moved(6, -32, -5),
@@ -1735,7 +1735,7 @@ quest
 		end
 		lever:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local fromHubToQuestPortal = MoveEvent()
 		function fromHubToQuestPortal.onStepIn(creature, item, position, fromPosition)
 			local player = creature:getPlayer()
@@ -1763,7 +1763,7 @@ quest
 		fromHubToQuestPortal:type("stepin")
 		fromHubToQuestPortal:register()
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local function killingCurse(player)
 			if player:hasCondition(CONDITION_DAZZLED) then
 				return
@@ -1837,7 +1837,7 @@ quest
 		end
 		RegisterOnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", Storage.DesertQuestTwo.Questline)
 	end)
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 		local sparksNumber = 3
 
 		local passableId = 5062

@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local startupItemsStatic = {
 	{ pos = { 5642, 1755, 6 }, id = 596, aid = Storage.PathOfTheUndead.Circles },
 	{ pos = { 6528, 1396, 5 }, id = 597, aid = Storage.PathOfTheUndead.Circles },

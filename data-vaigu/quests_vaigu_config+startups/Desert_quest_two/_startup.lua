@@ -1,4 +1,4 @@
-BANJO_KROLA_SZCZUROW:Script(function(storageToRequiredState)
+BANJO_KROLA_SZCZUROW:Script(function(missionState)
 local static = {
 	{ position = Position(5899, 1573, 9), id = 2772, aid = Storage.DesertQuestTwo.Puzzles.Chess.ClearLever },
 }

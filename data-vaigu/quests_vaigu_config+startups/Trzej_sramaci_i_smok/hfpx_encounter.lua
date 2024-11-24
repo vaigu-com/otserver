@@ -1,4 +1,4 @@
-	:Script(function(storageToRequiredState)
+	:Script(function(missionState)
 local hfpxConfig = {
 	actionid = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
 	bossName = "Operator HF-P/X",

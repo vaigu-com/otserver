@@ -135,55 +135,6 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Yalahar.WstepDoCzarnejMagii, 1) -- zaczynamy questa
 			npcHandler:say(config[2], npc, creature)
 		end
-	elseif table.contains({
-		"mission",
-		"misja",
-		"krol krypty",
-		"crypt king",
-		"the king of the crypt",
-		"king",
-		"krol",
-	}, message) and player:getStorageValue(Storage.PathOfTheUndead.Mission03) == 1 then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL"
-					and "Przyslal cie Gandalf, tak? Jesli chcesz udac sie do piramidy downa, to musisz wiedziec, ze na jej koncu czeka Nieumarly Krol krypty, oraz, ze {walka} z nim nie bedzie w zadnym wypadku latwa. Aby go przywolac, bedziesz potrzebowac kilku skladnikow. Zabierz ze soba najpotrzebniejsze rzeczy: drewno, kociol, fiolke oraz zapalniczke. Do rytualu bedziesz potrzebowac {kosci} tak plugawych, ze obnizaja dlugosc fal swiatla wokol. Do tego {sygnet} nieumarlego lorda, i {plaszcz} ze skory nieochrzczonych dzieci. Jesli zamierzasz zebrac te przedmioty, to spytaj mnie o {rytual}."
-				or "Gandalf sent you hete, right? If you want to go to the down pyramid, you need to know that there is an Undead Crypt King waiting, and that {encounter} him will not be easy by any means. To summon him, you will need a few ingredients. Take the most necessary things: wood, cauldron, vial and lighter. For the ritual you will need {bones} so foul that they lower the wavelength of the light around. Plus the {signet ring} of an undead lord, and a {cloak} made of the skin of unbaptized children. If you're going to collect these items, ask me about the {ritual}.",
-			npc,
-			creature
-		)
-		npcHandler:setTopic(playerId, 3)
-	elseif table.contains({ "walka", "encounter", "fight" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL"
-					and 'Krol Krypty posiadl umiejetnosci z wielu dziedzin, nie tylko magii. Oprocz standardowego zestawu czarow generycznego zlodupca, takich jak przywolywanie nieumarlych i strzelanie z laserkow, potrafi on uzywac czarow z innych uniwersum. Widocznie matka nie zabraniala mu grac w WoWa jak byl maly, i teraz opanowal niektore z dostepych tam umiejetnosci. Studiowal on "nauki" goblinow, wiec potrafi napredce konstruowac bomby. Jesli dobrze kojarze, to pewnie bedziecie musieli zaslaniac te bomby swoim cialem, zeby nie wysadzily calej platformy. Ostatnia rzecz, o ktorej musisz wiedziec, to fakt, ze Krol Krypty nieustannie zwieksza zadawane przez siebie obrazenia, w zwiazku z tym niechetnie zmienia swoj aktualny cel.'
-				or "The Crypt King is skilled in many areas, not just magic. In addition to the standard set of spells of a generic villain, such as summoning the undead and shooting lasers, he can use spells from other universes. Apparently his mother had allowed him to play WoW when he was little, and now he has mastered some of the skills available there. He studied the 'sciences' of goblins, so he can quickly construct bombs. If I remember correctly, you'll probably have to cover the bombs with your body so they don't blow up the entire platform. The last thing you need to know is that the Vault King is constantly increasing his damage, so he is unwilling to change his current target.",
-			npc,
-			creature
-		)
-	elseif table.contains({ "kosci", "bone", "bones" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(getPlayerLanguage(player) == "PL" and "Na zachodzie mowia na nie Unholy Bone." or "It's called exactly as Unholy Bone.", npc, creature)
-	elseif table.contains({ "sygnet", "signet", "pierscien", "seal" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(getPlayerLanguage(player) == "PL" and "Pierscien ten przepadl gdzies, nie wiadomo gdzie. Mozliwe, ze {Grave Digger} powie ci cos wiecej o sygnecie." or "This ring has vanished somewhere, maybe {Grave Digger} will tell you more about it.", npc, creature)
-	elseif table.contains({ "grave digger" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(getPlayerLanguage(player) == "PL" and "Sprzedaje lopaty w Mirko, pewnie go kojarzysz." or "He sells equipment in Mirko, I think you know him.", npc, creature)
-	elseif table.contains({ "plaszcz", "cape" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(getPlayerLanguage(player) == "PL" and "Tylko jedna grupa zawodowa mogla sie dopuscic stworzenia czegos takiego - kultysci PiS z Sybiru." or "Only the one group could create such a thing - PiS cultists from Sybir.", npc, creature)
-	elseif table.contains({ "rytual", "ritual" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL"
-					and "Przed rozpoczeciem musisz wywolac trzech straznikow, ktorych szkielety blokuja dostep do miejsca rytualu. Prawdopodobnie bedziesz zmuszony ich pokonac, zeby dostac sie dalej. Aby przywolac kazdego z nich, wykazesz sie wytrwaloscia nieznanom ludziom tego swiata. Bedzie to od ciebie wymagalo posiadania czternastu roznych {efektow}. Gdzies w glebi lochow znajdziesz krag ulozony z kamieni. To wlasnie na nim odbedzie sie rytual przywolania Krola Krypty."
-				or "Before you start, you must summon three guards whose skeletons are blocking access to the ritual site. You'll probably have to defeat them to get further. To summon each of them, you will show perseverance to people unknown to this world. This will require you to have fourteen different {effects}. Somewhere in the depths of the dungeons you will find a circle made of stones. It is where the ritual of summoning the Crypt King will take place.",
-			npc,
-			creature
-		)
-	elseif table.contains({ "effects", "efektow", "efekty" }, message) and npcHandler:getTopic(playerId) == 3 then
-		npcHandler:say(
-			getPlayerLanguage(player) == "PL" and "Te wiedze zdolalem wydobyc z pradawnych zbiorow w bibliotece Lubuskiej Uczelni Arcymagow. Jezeli uwazasz, ze zdolasz odczytac te zapiski - zwoj schowalem pod krzakiem obok. Aha, nie wszystkie z wymienionych tam efektow sa prawdziwe - widocznie dokument ten spisywano na kolanie."
-				or "I managed to extract this knowledge from the ancient collections in the library of the Lubuska Academy of Archmages. If you think you can read these notes - I hid the scroll under the bush to the right. And remember, not all of the effects listed there are real - apparently this document was written on the knee.",
-			npc,
-			creature
-		)
-		npcHandler:setTopic(playerId, 0)
 	elseif (table.contains({ "wodka", "trunek", "vodka" }, message) and player:getStorageValue(Storage.Yalahar.MiloscAriela) == 9 and player:getItemCount(6106) > 0) and player:getStorageValue(Storage.Yalahar.ZabojczyTrunek) == 2 then
 		player:removeItem(6106, 1) -- zabieramy 1 wodke leszke
 		player:setStorageValue(Storage.Yalahar.ZabojczyTrunek, 3)
