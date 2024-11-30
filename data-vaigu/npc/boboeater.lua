@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ ANY_MESSAGE }] = {
 			text = "They call me reborn eater, because i have a meat mortar in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go.",
 		},

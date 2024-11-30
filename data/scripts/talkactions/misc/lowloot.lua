@@ -12,7 +12,7 @@ function talkaction.onSay(player, words, param)
 		rate = configManager.getNumber(configKeys.RATE_LOOT) * BONUS_LOOT
 	end
 
-	local translatedMessage = player:Localizer(LOCALIZER_UNIVERSAL):Context({ rate = rate }):Get("YOU_CHANGED_YOUR_LOOTRATE")
+	local translatedMessage = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context({ rate = rate }):Get("YOU_CHANGED_YOUR_LOOTRATE")
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 	return false
 end

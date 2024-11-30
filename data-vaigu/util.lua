@@ -54,7 +54,7 @@ function T(template, variables)
 end
 
 function RegisterOnLook(callback, stringIdentifier, questId)
-	questId = questId or LOCALIZER_UNIVERSAL
+	questId = questId or LOCALIZERS.LOCALIZER_UNIVERSAL
 	for language, quests in pairs(TRANSLATION_TABLES) do
 		quests[questId][stringIdentifier] = callback
 	end

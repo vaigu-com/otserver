@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "exercise" }] = {
 			text = "Ok",
 			rewards = { ExerciseWeaponBox(50) },

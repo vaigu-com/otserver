@@ -53,7 +53,7 @@ local topics = {
 }
 
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "sprzet", "sprzet wedkarski", "oferta", "ofert" }] = {
 			text = "Say {trade} if you want to see my offer.",
 		},

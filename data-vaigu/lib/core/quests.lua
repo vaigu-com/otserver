@@ -20,84 +20,59 @@ if not Quests then
 	Quests = {
 		[TASKS_QUEST_STORAGE] = {
 			name = "Tasks",
-			startStorageId = Storage.Tasks.TaskInfo,
-			startStorageValue = 0,
 			missions = {
-				[1] = {
+				[Storage.Tasks.TaskInfo] = {
 					name = "Task informations",
-					storageId = Storage.Tasks.TaskInfo,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 1,
 					description = "TASKS_HELP_WINDOW_INFO",
 				},
 			},
 		},
 		[DAILY_TASK_STORAGE] = {
 			name = "Daily task",
-			startStorageId = Storage.DailyTasks.DailyTaskInfo,
-			startStorageValue = 0,
 			missions = {
-				[1] = {
+				[Storage.DailyTasks.DailyTaskInfo] = {
 					name = "Daily tasks information",
-					storageId = Storage.DailyTasks.DailyTaskInfo,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 1,
 					description = "DAILY_TASKS_HELP_WINDOW_INFO",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "Arena",
-			startStorageId = 300,
-			startStorageValue = 1,
 			missions = {
-				[1] = {
+				[301] = {
 					name = "First arena",
-					storageId = 301,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					minState = 1,
+					maxState = 2,
 					description = "Kill:\nFrostfur\nBloodpaw\nBovinus\nAchad\nColerian the Barbarian\nThe Hairy One\nAxeitus Headbanger\nRocky\nCursed Gladiator\nOrcus the Cruel",
 				},
-				[2] = {
+				[302] = {
 					name = "Second arena",
-					storageId = 302,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					minState = 1,
+					maxState = 2,
 					description = "Kill:\nAvalanche\nKreebosh the Exile\nThe Dark Dancer\nThe Hag\nSlim\nGrimgor Guteater\nDrasilla\nSpirit of Earth\nSpirit of Water\nSpirit of Fire",
 				},
-				[3] = {
+				[303] = {
 					name = "Third arena",
-					storageId = 303,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					minState = 1,
+					maxState = 2,
 					description = "Kill:\nWebster\nDarakan the Executioner\nNorgle Glacierbeard\nThe Pit Lord\nSvoren the Mad\nThe Masked Marauder\nGnorre Chyllson\nFallen Mooh'Tah Master Ghar\nDeathbringer\nThe Obliverator",
 				},
-				[4] = {
+				[304] = {
 					name = "Fourth arena",
-					storageId = 304,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					minState = 1,
+					maxState = 2,
 					description = "Arena, extreme level.",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "Firestarter",
-			startStorageId = 11009,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Mission 1: Fiery Beginnings",
-					storageId = 11009,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11009,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Hymel asked you to burn down the herbs he left on his house on north side of MikroTown.",
 						[2] = "You burnt the herbs, now talk again with Hymel.",
@@ -106,10 +81,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Mission 2: Little Treat",
-					storageId = 11010,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11010,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Hymel want to mischief the local guards, by setting an old tree on fire. You can find it near their resting camp.",
 						[2] = "You did it, the guards didn't even notice, go back and see Hymel.",
@@ -118,10 +92,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Mission 3: How High",
-					storageId = 11011,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11011,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug.",
 						[2] = "The smell of weed is now around the whole city, you managed to burn all the flowers.",
@@ -132,15 +105,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "The Way of a Druid",
-			startStorageId = 11007,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "The Council of Druids",
-					storageId = 11007,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 7,
+					storage = 11007,
+					minState = 1,
+					maxState = 7,
 					states = {
 						[1] = "You met one of the druids, if you helped him, he would tell you about the Council.",
 						[2] = "You helped the first druid. This is the beginning of your journey to become one of them. Find the remaining druid, and provide them with your help.",
@@ -153,10 +123,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Deer Season",
-					storageId = 11008,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11008,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Radaghast asked you to burn down the hunters' stock of wood. This should prove to help a lot of animals to survive during the hunting season.",
 						[2] = "You managed to burn down the stock of wood in the hunters' village. Make haste and tell about this to Radaghast.",
@@ -165,10 +134,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Taken: Benek",
-					storageId = 11017,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11017,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Estep is Wailing since orcs taken his Wolf companion.",
 						[2] = "The wolf has been freed, deliver a good message to Estep.",
@@ -177,10 +145,9 @@ if not Quests then
 				},
 				[4] = {
 					name = "Rude eviction",
-					storageId = 11061,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11061,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "SandNigger asked you to help him reclaim his secret spell.",
 						[2] = "You managed to find and combust the spell, come back to Sandnigger.",
@@ -189,10 +156,9 @@ if not Quests then
 				},
 				[5] = {
 					name = "The secret ingredient",
-					storageId = 11067,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 11067,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Mundral asked you to get the medicine for his sick pet. You can ask Ornuld for it.",
 						[2] = "Turn out that Mundral belongs to the Druid Council. He put in a good word to his druid friends and he gifted you with bamboo leaves.",
@@ -200,10 +166,9 @@ if not Quests then
 				},
 				[6] = {
 					name = "The Ornuld's medicine",
-					storageId = 11068,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11068,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Ornuld wishes to have a one wyrm egg. If you manage to do this favor, he will reward you with the medicine.",
 						[2] = "You found the wyrm's egg, hand it to Ornuld.",
@@ -212,10 +177,9 @@ if not Quests then
 				},
 				[7] = {
 					name = "The Singing Crystal",
-					storageId = 11069,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11069,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Malfurion is in need of an ice crystal fragment for his experiment.",
 						[2] = "You managed to gather a bunch of crystal, go back to Malfurion.",
@@ -226,15 +190,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Ariel's Friend",
-			startStorageId = 11000,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Helping the Ariel",
-					storageId = 11000,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = 11000,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "Ariel asked you to bring him his friend's favorite flower. Namely it is the Heaven Blossom. Some elves keep it in their pouch.",
 						[2] = "Ariel asked you to pay respect to his friend by laying these flowers on his grave. It is located on a nearby hill. If you do that, he will tell you his story.",
@@ -246,15 +207,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Yalahari Quest",
-			startStorageId = 11002,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Mission 1: Love is in the air",
-					storageId = 11002,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 9,
+					storage = 11002,
+					minState = 1,
+					maxState = 9,
 					states = {
 						[1] = "Ariel asked you to hand over a party invitation to Madame Malkin.",
 						[2] = "Madame refused Ariel's request to go out with him. Tell him this bad news.",
@@ -268,10 +226,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Mission 2: A morbid Liquor",
-					storageId = 11044,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11044,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda.",
 						[2] = "In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides.",
@@ -280,10 +237,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Mission 3: Prelude to Thaumaturgy",
-					storageId = 11047,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 5,
+					storage = 11047,
+					minState = 1,
+					maxState = 5,
 					states = {
 						[1] = "Konmuld asked you to bring him a virgin's soul. You can ask Grave Digger for help with your mission.",
 						[2] = "Grave Digger said that there are no remaining virgins left, however, you can dig up a virgin's soul from a grave.",
@@ -296,15 +252,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "The First Steps",
-			startStorageId = 11019,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Research",
-					storageId = 11019,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 12,
+					storage = 11019,
+					minState = 1,
+					maxState = 12,
 					states = {
 						[1] = "Find Commissioner Fisher and ask for a mission.",
 						[2] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 0/10.",
@@ -322,10 +275,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Wood Delivery",
-					storageId = 11030,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 6,
+					storage = 11030,
+					minState = 1,
+					maxState = 6,
 					states = {
 						[1] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 						[2] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
@@ -339,15 +291,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "To Carry the Pigs",
-			startStorageId = 11034,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "To be like the Schwarzenegger",
-					storageId = 11033,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = 11033,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "Collect these items for me: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
 						[2] = "Arni glanced at these teeth, and asked you to find someone who can make them into necklace.",
@@ -357,10 +306,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Half turn Kick",
-					storageId = 11035,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = 11035,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment.",
 						[2] = "He was right. Now go to the Price Kebab and ask Shivganesh for translation.",
@@ -370,10 +318,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "A Balanced Diet",
-					storageId = 11037,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 11037,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Collect 1 slimming carrot for fat Mirek.",
 						[2] = "The carrot was dogshit, and u received chocolate slush in for your effort.",
@@ -381,10 +328,9 @@ if not Quests then
 				},
 				[4] = {
 					name = "Kitz's Dominando",
-					storageId = 11039,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 11039,
+					minState = 1,
+					maxState = 3,
 					states = {
 						[1] = "Arrange a special bow from elf adobe.",
 						[2] = "You have received the item from Legolas. Go give it to Kitz.",
@@ -395,15 +341,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Ocellatus Xddd",
-			startStorageId = 11041,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Tickets",
-					storageId = 11041,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 5,
+					storage = 11041,
+					minState = 1,
+					maxState = 5,
 					states = {
 						[1] = "Recover the match tickets whose have been stolen from Ocellatus.",
 						[2] = "You found the Tickets in a bandits tent.",
@@ -416,15 +359,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Demon Oak",
-			startStorageId = 1013,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Demon Oak",
-					storageId = 1013,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = 1013,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
 						[2] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",
@@ -436,15 +376,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Local Support",
-			startStorageId = Storage.TrudnePoczatki.Rozeznanie,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Freaking Rats",
-					storageId = Storage.PomocMiejscowym.PrzekleteSzczury,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = Storage.PomocMiejscowym.PrzekleteSzczury,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "Walmart wishes she knew how to repel rats. Find out where Gertruda lives. She should know how to craft a rat poison.",
 						[2] = "Gertruda asked you to bring her one mouldy cheese.",
@@ -454,10 +391,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Cheap Recycling",
-					storageId = Storage.PomocMiejscowym.TaniRecykling,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = Storage.PomocMiejscowym.TaniRecykling,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Malkin asked you to bring her 1 piece of cloth of every color.",
 						[2] = "Madame Malkin is grateful for your effort, and since now you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
@@ -465,10 +401,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Broken Orb",
-					storageId = Storage.PomocMiejscowym.ZniszczonaKula,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = Storage.PomocMiejscowym.ZniszczonaKula,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly.",
 						[2] = "The crystal ball wasn't perfect, but Gypsy is fine with it. Since now he will also let you exchange red gem to ring of healing.",
@@ -476,10 +411,9 @@ if not Quests then
 				},
 				[4] = {
 					name = "Biodegradable",
-					storageId = Storage.Biodegradowalny.Questline,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = Storage.Biodegradowalny.Questline,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
 						[2] = "You found the package for Old Postman. Return to him and give it to him.",
@@ -491,15 +425,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "The Silence of the Lambs",
-			startStorageId = 11065,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "The test of Strength",
-					storageId = 11065,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 11065,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Lecter asked you for 5 vampire teeth.",
 						[2] = "In exchange for your help, Lecter bestowed you with his old soul-extraction tool.",
@@ -507,10 +438,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Fashionista clothes",
-					storageId = 11066,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 11066,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Lecter asked you to bring him 20 leathers of every kind.",
 						[2] = "For your help you have been taught how to skin human carcass.",
@@ -518,10 +448,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Lecter's recipe",
-					storageId = 11073,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 11073,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party.",
 						[2] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
@@ -529,48 +458,40 @@ if not Quests then
 				},
 				[4] = {
 					name = "Hearts collected",
-					storageId = 11074,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 15,
+					storage = 11074,
+					minState = 0,
+					maxState = 15,
 					description = "Hearts collected",
 				},
 				[5] = {
 					name = "Livers collected",
-					storageId = 11075,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 20,
+					storage = 11075,
+					minState = 0,
+					maxState = 20,
 					description = "Livers collected Status",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "Unwanted Guests",
-			startStorageId = 11076,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Damned Barbarians",
-					storageId = 11076,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 11076,
+					minState = 1,
+					maxState = 2,
 					description = "Bring Brutetamers Staff and Fur Boots to Dziadek Mroz.",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "The Inquisition",
-			startStorageId = 12160,
-			startStorageValue = 2,
 			missions = {
 				[1] = {
 					name = "Mission 1: Interrogation",
-					storageId = 12161,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 7,
+					storage = 12161,
+					minState = 1,
+					maxState = 7,
 					description = "Your mission is to investigate the 5 guards regarding the Heretic behavior. Tim, Kulag, Grof, Miles and Walter are their names. If you do well you see a holy sprite on you.",
 					states = {
 						[1] = "You investigated 1 of 5 guards.",
@@ -583,10 +504,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Mission 2: Eclipse",
-					storageId = 12162,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 12162,
+					minState = 1,
+					maxState = 3,
 					description = "Henricus tells you to get The Witches' Grimoire, he sends you to Mirko Town where you can find to the witches' swamps. Use the vial of holy water that he gives you on the big cauldron and open the chest hidden in some witch hut, then bring the witches' grimoire to Henricus.",
 					states = {
 						[1] = "Find The Witches' Grimoire and bring it to Henricus.",
@@ -595,10 +515,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Mission 3: Vampire Hunt",
-					storageId = 12163,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 6,
+					storage = 12163,
+					minState = 1,
+					maxState = 6,
 					description = "Henricus wants you to find the Dwarfish Vampire Hunter, Storkus, located deep in dwarven mines. It's a good idea to bring your 20 Vampire Dusts with you to save some time.",
 					states = {
 						[1] = "Go back to Storkus and ask for a mission.",
@@ -610,10 +529,9 @@ if not Quests then
 				},
 				[4] = {
 					name = "Mission 4: The Haunted Ruin",
-					storageId = 12164,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 12164,
+					minState = 1,
+					maxState = 3,
 					description = "Henricus will give you a Special Flask (vial of holy water). You can find some abandoned pirate ruins near hero village in the jungle. Use this vial of holy water on some spot in the haunted ruin to drive out the evil being.",
 					states = {
 						[1] = "Kill the Pirate Ghost and get back to Sybir and report your mission to Henricus.",
@@ -622,10 +540,9 @@ if not Quests then
 				},
 				[5] = {
 					name = "Mission 5: Essential Gathering",
-					storageId = 12165,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 12165,
+					minState = 1,
+					maxState = 3,
 					description = "Henricus wants 20 Demonic Essences as proof of your accomplishments.",
 					states = {
 						[1] = "Now ask Henricus for an outfit to get the Demon Hunter Outfit.",
@@ -634,10 +551,9 @@ if not Quests then
 				},
 				[6] = {
 					name = "Mission 6: The Demon Ungreez",
-					storageId = 12166,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 3,
+					storage = 12166,
+					minState = 1,
+					maxState = 3,
 					description = "Henricus wants you to kill a demon called Ungreez. Head to the desert demon lair and go down a few levels.",
 					states = {
 						[1] = "You killed Ungreez, report your mission to Henricus.",
@@ -646,10 +562,9 @@ if not Quests then
 				},
 				[7] = {
 					name = "Mission 7: The Shadow Nexus",
-					storageId = 12167,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 5,
+					storage = 12167,
+					minState = 1,
+					maxState = 5,
 					description = "Your mission is to go to the Demon Forge and slay seven of The Ruthless Seven Minions. The Demon Forge is located in the Sybir, somewhere in hidden cultist ruins.",
 					states = {
 						[1] = "You destroyed the shadow nexus! Get back to Henricus and report your mission.",
@@ -662,94 +577,80 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Bigfoot's Burden",
-			startStorageId = 900,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Reputation points",
-					storageId = 921,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 1000,
+					storage = 921,
+					minState = 0,
+					maxState = 1000,
 					description = "Current reputation points",
 				},
 				[2] = {
 					name = "Daily Minor: Crystal Keeper",
-					storageId = 932,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 5,
+					storage = 932,
+					minState = 0,
+					maxState = 5,
 					description = "Daily Minor: Crystal Keeper Status",
 				},
 				[3] = {
 					name = "Daily Minor: Raiders of the lost Spark",
-					storageId = 934,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 7,
+					storage = 934,
+					minState = 0,
+					maxState = 7,
 					description = "Daily Minor: Raiders of the lost Spark Status",
 				},
 				[4] = {
 					name = "Daily Minor Plus: Exterminators",
-					storageId = 937,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 10,
+					storage = 937,
+					minState = 0,
+					maxState = 10,
 					description = "Daily Minor Plus: Exterminators Status",
 				},
 				[5] = {
 					name = "Daily Minor Plus: Mushroom Digger",
-					storageId = 940,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 3,
+					storage = 940,
+					minState = 0,
+					maxState = 3,
 					description = "Daily Minor Plus: Mushroom Digger Status",
 				},
 				[6] = {
 					name = "Daily Major Advanced: Spores",
-					storageId = 948,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 4,
+					storage = 948,
+					minState = 0,
+					maxState = 4,
 					description = "Gather spores in the correct order. Your spore gathering list will display the next color you have to look for.",
 				},
 				[7] = {
 					name = "Daily Major Advanced: Yet Another Grinding",
-					storageId = 952,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 1,
+					storage = 952,
+					minState = 0,
+					maxState = 1,
 					description = "Gather a grindstone from the lava area and report back.",
 				},
 				[8] = {
 					name = "Daily Major: Matchmaker",
-					storageId = 943,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = 943,
+					minState = 1,
+					maxState = 2,
 					description = "You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them.",
 				},
 				[9] = {
 					name = "Daily Major: The Tinker's Bell",
-					storageId = 946,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 4,
+					storage = 946,
+					minState = 0,
+					maxState = 4,
 					description = "Daily Major: The Tinker's Bell Status",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "The Ape City",
-			startStorageId = 11101,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Hairycles Missions",
-					storageId = 11102,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 18,
+					storage = 11102,
+					minState = 1,
+					maxState = 18,
 					states = {
 						[1] = "Find whisper moss in the dworc settlement and bring it back to Hairycles.",
 						[2] = "You have completed the first mission. Hairycles was happy about the whisper moss you gave to him. He might have another mission for you.",
@@ -775,30 +676,24 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Top Chef",
-			startStorageId = Storage.TopChef.Questline,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Top Chef",
-					storageId = Storage.TopChef.Questline,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 16,
+					storage = Storage.TopChef.Questline,
+					minState = 1,
+					maxState = 16,
 					description = "TOP_CHEF_MISSION_DESCRIPTION",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "The Dream Courts",
-			startStorageId = 12200,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "The Dream Courts",
-					storageId = 12200,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 5,
+					storage = 12200,
+					minState = 1,
+					maxState = 5,
 					description = "Find and talk to Vanys in order to help him. He stays in Summer Court in the huge forest located far south from Mirko Town.",
 					states = {
 						[1] = "Vanys gave you a dream talisman that you'll need to empower eight ward stones located around the world. Ward stone locations you were told about are: mountains of Pirate Island, bonebast coast in the desert, water elemental cave beneath Kongo, depths of Seacrest Serpent lair, west coast of Sybir and Barbarian camp, Nightmare Island, Buried Cathedral beneath Karaiby.",
@@ -809,10 +704,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Helping of Stricken Soul",
-					storageId = 12232,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = 12232,
+					minState = 1,
+					maxState = 4,
 					description = "Restore connection and open this nexus to access the buried cathedral. You need to find a way to pass the entrance in the cellar.",
 					states = {
 						[1] = "You successfully passed the cellar entrance. Find a way to restore the portal to the buried cathedral.",
@@ -822,33 +716,28 @@ if not Quests then
 				},
 				[3] = {
 					name = "Empowered Wardstones",
-					storageId = 12209,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 8,
+					storage = 12209,
+					minState = 0,
+					maxState = 8,
 					description = "Empowered Wardstones",
 				},
 				[4] = {
 					name = "Readed documents",
-					storageId = 12214,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 4,
+					storage = 12214,
+					minState = 0,
+					maxState = 4,
 					description = "Readed documents",
 				},
 			},
 		},
 		[NextQuestId()] = {
 			name = "Liquid Black",
-			startStorageId = 24001,
-			startStorageValue = 2,
 			missions = {
 				[1] = {
 					name = "Visitor",
-					storageId = 24001,
-					missionId = NextMissionId(),
-					startValue = 2,
-					endValue = 5,
+					storage = 24001,
+					minState = 2,
+					maxState = 5,
 					states = {
 						[2] = "You have found notes and coordinates. Try to find out what they are for.",
 						[3] = "You got teleported to Mezamir by a strange teleporter. Ask him about this machine.",
@@ -860,15 +749,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "IKEA for the BOLD",
-			startStorageId = 11077,
-			startStorageValue = 0,
 			missions = {
 				[1] = {
 					name = "The Stocktaking",
-					storageId = 11077,
-					missionId = NextMissionId(),
-					startValue = 0,
-					endValue = 6,
+					storage = 11077,
+					minState = 0,
+					maxState = 6,
 					states = {
 						[0] = "Commissioner Fisher has mentioned that Komor needs help.",
 						[1] = "Komor needs help dealing with the disappearing furniture from his warehouse.",
@@ -881,10 +767,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Needle in a Haystack",
-					storageId = 11077,
-					missionId = NextMissionId(),
-					startValue = 6,
-					endValue = 14,
+					storage = 11077,
+					minState = 6,
+					maxState = 14,
 					states = {
 						[6] = "You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he found on the list.",
 						[7] = "Komor asked you to consult Commissioner Fisher about the thief.",
@@ -901,15 +786,12 @@ if not Quests then
 		},
 		[NextQuestId()] = {
 			name = "Settled down Fishmonger",
-			startStorageId = Storage.UstatkowanyFanatyk.Questline,
-			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Stagnation",
-					storageId = Storage.UstatkowanyFanatyk.Mission01,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = Storage.UstatkowanyFanatyk.Mission01,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Anon's father is waiting for his order.",
 						[2] = "You helped Anon's father recover his long-awaited package. Ask him for new mission now.",
@@ -917,10 +799,9 @@ if not Quests then
 				},
 				[2] = {
 					name = "Milksop",
-					storageId = Storage.UstatkowanyFanatyk.Mission02,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 2,
+					storage = Storage.UstatkowanyFanatyk.Mission02,
+					minState = 1,
+					maxState = 2,
 					states = {
 						[1] = "Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items.",
 						[2] = "You helped Anon's father collect his lost tools.",
@@ -928,10 +809,9 @@ if not Quests then
 				},
 				[3] = {
 					name = "Stew for Trouble",
-					storageId = Storage.UstatkowanyFanatyk.Mission03,
-					missionId = NextMissionId(),
-					startValue = 1,
-					endValue = 4,
+					storage = Storage.UstatkowanyFanatyk.Mission03,
+					minState = 1,
+					maxState = 4,
 					states = {
 						[1] = "Anon's father received his table in a deplorable state, ask how you can improve his mood.",
 						[2] = "Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew.",
@@ -948,8 +828,8 @@ local function appendQuestData()
 	for questId, questData in pairs(Quests) do
 		for missionNumber, missionData in pairs(questData.missions) do
 			missionData.missionId = missionData.missionId or NextMissionId()
-			missionData.startValue = missionData.startValue or MISSION_START_VALUE
-			missionData.endValue = missionData.endValue or #missionData.states
+			missionData.minState = missionData.minState or MISSION_START_VALUE
+			missionData.maxState = missionData.maxState or #missionData.states
 		end
 	end
 end

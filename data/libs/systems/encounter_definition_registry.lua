@@ -1,21 +1,22 @@
-local singleton = nil
+local singleton
 EncounterDefinitionRegistry = {}
-function EncounterDefinitionRegistry:new()
+function EncounterDefinitionRegistry:New()
 	if singleton then
 		return singleton
 	end
-	local newObj = {}
-	self.__index = self
-	setmetatable(newObj, self)
-	return newObj
+	singleton = {}
+	singleton.__index = self
+	self.states = {}
+	setmetatable(singleton, self)
+	return singleton
 end
 setmetatable(EncounterDefinitionRegistry, {
 	__call = function(class, ...)
-		return class:new(...)
+		return class:New(...)
 	end,
 })
-singleton = EncounterDefinitionRegistry()
-EncounterDefinitionRegistry.states = {}
+EncounterDefinitionRegistry()
+
 function EncounterDefinitionRegistry:Register(encounter)
 	self.states[encounter.name] = encounter
     return self

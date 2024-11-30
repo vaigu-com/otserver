@@ -71,7 +71,7 @@ return {
 
 		return dailyTaskDescription
 	end,
-	["QUEST_MISION_COMPLETE_SUFFIX"] = " (complete)",
+	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (complete)",
 	["Daily task"] = "Daily task",
 	["Daily tasks information"] = "Daily tasks information",
 	["Arena"] = "Arena",

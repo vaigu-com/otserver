@@ -95,7 +95,7 @@ local function tryTeleportToOtherSide(player)
 end
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "sail", "plynac" }] = {
 			text = "",
 			specialActionsOnSuccess = {

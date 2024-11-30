@@ -152,7 +152,7 @@ local dialog = {
 			},
 		},
 	},
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "hitler", "auschwitz", "holocaust" }] = {
 			text = "I know nothing about it.",
 		},

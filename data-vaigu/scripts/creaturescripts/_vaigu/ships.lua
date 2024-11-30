@@ -7,7 +7,7 @@ TRANSPORT_TYPE = {
 DEFAULT_TRANSPORT_COST = 200
 
 local function createHelpDialog(player, _, _)
-	player:showTextDialog(2994, player:Localizer(LOCALIZER_UNIVERSAL):Get("TravelHelpDialog"))
+	player:showTextDialog(2994, player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("TravelHelpDialog"))
 end
 
 local function chargeForTravel(player, price)
@@ -40,13 +40,13 @@ local function confirmDestination(player, _, choice)
 	local minLevel = choice.minLevel or 0
 	if player:getLevel() < minLevel then
 		player:sendCancelMessage(
-		player:Localizer(LOCALIZER_UNIVERSAL):Context({ minLevel = minLevel }):Get("MINIMUM_LEVEL_TO_TRAVEL")
+		player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context({ minLevel = minLevel }):Get("MINIMUM_LEVEL_TO_TRAVEL")
 		)
 		return
 	end
 
 	if not chargeForTravel(player, choice.price or DEFAULT_TRANSPORT_COST) then
-		player:sendCancelMessage(player:Localizer(LOCALIZER_UNIVERSAL):Get("You dont have enough money."))
+		player:sendCancelMessage(player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("You dont have enough money."))
 		return
 	end
 
@@ -69,13 +69,13 @@ function CreateTransportWindow(context)
 	local transports = context.transports
 	local transportType = context.transportType
 
-	local title = player:Localizer(LOCALIZER_UNIVERSAL):Get(transportTypeToWindowTitle[transportType])
-	local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(transportTypeToWindowMessage[transportType])
+	local title = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(transportTypeToWindowTitle[transportType])
+	local message = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(transportTypeToWindowMessage[transportType])
 	local window = ModalWindow({ title = title, message = message })
 
 	for _, transportConfig in pairs(transports) do
 		--[[ ToDo: add name translations
-		local translatedName = player:Localier(LOCALIZER_UNIVERSAL):Get(transportConfig.name)
+		local translatedName = player:Localier(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(transportConfig.name)
 		local choice = window:addChoice(translatedName)
 		]]
 		local choice = window:addChoice(transportConfig.name)
@@ -85,9 +85,9 @@ function CreateTransportWindow(context)
 		choice.transportType = transportType
 	end
 
-	window:addButton(player:Localizer(LOCALIZER_UNIVERSAL):Get("Select"), confirmDestination)
-	window:addButton(player:Localizer(LOCALIZER_UNIVERSAL):Get("Cancel"))
-	window:addButton(player:Localizer(LOCALIZER_UNIVERSAL):Get("Help"), createHelpDialog)
+	window:addButton(player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("Select"), confirmDestination)
+	window:addButton(player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("Cancel"))
+	window:addButton(player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("Help"), createHelpDialog)
 	window:sendToPlayer(player)
 end
 

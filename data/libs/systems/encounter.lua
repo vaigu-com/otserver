@@ -507,7 +507,7 @@ end
 --@param self Encounter The encounter to register
 ---@return boolean True if the encounter is registered successfully, false otherwise
 function Encounter:register()
-	EncounterDefinitionRegistry():Register(self)
+	EncounterDefinitionRegistry:Register(self)
 	Encounter.registry[self.name] = self
 	self.registered = true
 	return true

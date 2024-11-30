@@ -1,5 +1,5 @@
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "backpack", "plecak" }] = {
 			text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
 			nextTopic = 2,

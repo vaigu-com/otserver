@@ -237,7 +237,7 @@ end
 
 function CreateChooseLanguageWindow(player)
 	local window = ModalWindow({ title = "Language", message = "Set your default language: " })
-	local localizer = player:Localizer(LOCALIZER_UNIVERSAL)
+	local localizer = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL)
 	window:addButton(localizer:Get("Select"), onAcceptLanguage)
 	window:addButton(localizer:Get("Cancel"))
 

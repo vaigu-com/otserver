@@ -1,3 +1,4 @@
+print("SKURWOALANSKA")
 local quest = Quest("assassins_creed_squurvaali")
 
 quest
@@ -103,6 +104,82 @@ quest
 			},
 		}
 	end)
+	:Constant(function()
+		ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS = {
+			despawnGmTomek = function(context)
+				local pos = Position(5564, 1575, 8)
+				local tile = Tile(pos)
+				local monster = tile:getTopCreature()
+
+				local vortex = nil
+				if monster then
+					vortex = Game.createItem(7804, 1, pos)
+				end
+				addEvent(function()
+					if monster then
+						monster:remove()
+						pos:sendMagicEffect(CONST_ME_WATERSPLASH)
+					end
+				end, 1500)
+				addEvent(function()
+					if vortex then
+						vortex:remove()
+					end
+				end, 3000)
+			end,
+			spawnGmTomek = function(context)
+				local pos = Position(5564, 1575, 8)
+				local tile = Tile(pos)
+				local monster = tile:getTopCreature()
+				if not monster then
+					Game.createNpc("gm tomek", pos, false, false)
+				end
+			end,
+			addCarpetMount = function(context)
+				local player = context.player
+				player:addMount(66)
+			end,
+			aunorTeleportOut = function(context)
+				local player = context.player
+				if player then
+					player:teleportTo(Position(5811, 805, 0))
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+				end
+			end,
+			transformNpcToCryptKingLook = function(context)
+				local npc = context.npc
+				npc:setOutfit({
+					lookType = 12,
+					lookHead = 1,
+					lookBody = 95,
+					lookLegs = 90,
+					lookFeet = 90,
+					lookAddons = 3,
+					lookMount = 0,
+				})
+				npc:setName("King of The Crypt")
+			end,
+		}
+
+		ASSASSINS_CREED_SKURWOALA_KEY_ITEMS = {
+			palette = {
+				aid = Storage.AssassinsCreedSquurvaali.KeyItems.Palette,
+				id = 14684,
+				desc = "Assortment of paints. Can be used to paint any surface",
+			},
+			silicon = {
+				aid = Storage.AssassinsCreedSquurvaali.KeyItems.Silicon,
+				id = 2469,
+				desc = "Box of sillicon wafers. Lambor might be interested in it",
+			},
+			flare = {
+				aid = Storage.AssassinsCreedSquurvaali.KeyItems.Flare,
+				id = 30209,
+				desc = "Flare from Aunor. Use it before Ghasstly Princess's cave entrance",
+			},
+		}
+	end)
+	:Localizer(LOCALIZERS.AssassinsCreedSquurvaali)
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission01)
 	:State(
 		QUEST_NOT_STARTED,
@@ -239,7 +316,7 @@ quest
 				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
 			},
 		}),
-		Dialog("Ryan", {
+		Quest.Dialog("Ryan", {
 			[{ "mission" }] = {
 				text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
 				specialActionsOnSuccess = {
@@ -260,9 +337,9 @@ quest
 				text = "TO THE RATS! SWIRL OF STENCH! It was all {his fault}.",
 				nextState = {
 					[Storage.AssassinsCreedSquurvaali.Mission02] = 3,
-					[Storage.TheaterOfCheapThrills.Mission01] = 1,
-					[Storage.KingOfRatsHQ.Portals.Ryan] = 1,
-					[Storage.KingOfRatsHQ.State] = 0,
+					--					[Storage.TheaterOfCheapThrills.Mission01] = 1,
+					--					[Storage.KingOfRatsHQ.Portals.Ryan] = 1,
+					--					[Storage.KingOfRatsHQ.State] = 0,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -279,7 +356,7 @@ quest
 				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
 			},
 		}),
-		Dialog("Ryan", {
+		Quest.Dialog("Ryan", {
 			[{ "his fault", "jego wina", "mission" }] = {
 				text = "And there he goes, sucked and swirled away. Here you go, the palette you were looking for.",
 				nextState = {
@@ -316,7 +393,7 @@ quest
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission03.ReportToGhasstlyPrincess,
 		Quest.Dialog("Ghasstly Princess", {
-			[{ "mission" }] = {
+			[{ "mission", "misja" }] = {
 				text = "It's wonderful that you managed to get so far. Please, here is my staff. Vislav Shivka manifested itself in my dreams yesterday. He told me to go to... I don't remember who. Maybe it's silly, but you have to ask him about enchanting the carpet.",
 				nextState = {
 					[Storage.AssassinsCreedSquurvaali.Mission03] = 2,
@@ -367,18 +444,17 @@ quest
 			[{ "mission" }] = {
 				text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
 			},
+		}),
+		Quest.StartupItems({
+			{
+				pos = { 6051, 1503, 9 },
+				id = 2484,
+				actionid = Storage.AssassinsCreedSquurvaali.Rewards.CartSilicon,
+				rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
+				nextState = { [Storage.AssassinsCreedSquurvaali.Mission04] = 3 },
+			},
 		})
 	)
-	:StartupItems({
-		{
-			pos = { 6051, 1503, 9 },
-			id = 2484,
-			actionid = Storage.AssassinsCreedSquurvaali.Rewards.CartSilicon,
-			rewards = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
-			requiredState = { [Storage.AssassinsCreedSquurvaali.Mission04] = 2 },
-			nextState = { [Storage.AssassinsCreedSquurvaali.Mission04] = 3 },
-		},
-	})
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission04.ReturnWafersToLambor,
 		Quest.Dialog("Lambor", {
@@ -562,3 +638,4 @@ quest
 			},
 		})
 	)
+	:Register()

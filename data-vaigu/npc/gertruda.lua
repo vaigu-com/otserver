@@ -51,7 +51,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "konmuld" }] = {
 			text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
 		},

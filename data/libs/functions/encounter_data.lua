@@ -424,6 +424,6 @@ function EncounterLever:register()
 
 	self:registerLeverTp()
 
-	EncounterDataRegistry():register(self)
+	EncounterDataRegistry:register(self)
 	return true
 end

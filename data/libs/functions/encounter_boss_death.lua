@@ -5,7 +5,7 @@ function onBossDeath.onDeath(creature)
 		return true
 	end
 
-	local encounterData = EncounterDataRegistry():getStateByCreature(creature)
+	local encounterData = EncounterDataRegistry:getStateByCreature(creature)
 	if not encounterData then
 		return true
 	end

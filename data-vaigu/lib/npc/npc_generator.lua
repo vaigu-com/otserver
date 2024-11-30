@@ -45,8 +45,8 @@ function RegisterNpcDefinition(context)
 	local jobStateDialogs = getJobStateDialogs(jobs)
 
 	local allDialogs = {}
-	allDialogs[LOCALIZER_UNIVERSAL] = jobDialogsUniversal
-	allDialogs[LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
+	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL] = jobDialogsUniversal
+	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 

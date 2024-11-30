@@ -23,7 +23,6 @@ MESSAGE_WALKAWAY = 16
 ANY_MESSAGE = "ANY_MESSAGE"
 NOT_ENOUGH_CAP_OR_SLOTS = "NOT_ENOUGH_CAP_OR_SLOTS"
 
-LOCALIZER_UNIVERSAL = "LOCALIZER_UNIVERSAL"
 LOCALIZER_PRIEST = "LOCALIZER_PRIEST"
 LOCALIZER_LUA_RAIDS = "LOCALIZER_LUA_RAIDS"
 LOCALIZER_TASK_BOSS_LOCATIONS = "LOCALIZER_TASK_BOSS_LOCATIONS"
@@ -292,7 +291,6 @@ end
 ---@field npc userdata npc object
 ---@field specialMessageType string
 ---@field localizerName number
----@field dialogs table
 ---@field requirements table
 ---@alias Player table
 DialogContext = {}
@@ -419,8 +417,14 @@ function DialogContext:SendIncomprehensibleError()
 	local npc = self.npc
 	local npcHandler = self.npcHandler
 	local npcDialogData = self.npcDialogData
-	local errorMessageIdentifier = npcDialogData[LOCALIZER_UNIVERSAL][{ INCOMPREHENSIBLE }] or INCOMPREHENSIBLE
-	local errorMessage = player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
+
+	local errorMessageIdentifier = INCOMPREHENSIBLE
+	if npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL] and npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL][INCOMPREHENSIBLE] then
+		errorMessageIdentifier = npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL][INCOMPREHENSIBLE]
+	end
+
+	local errorMessage = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
+	print("DialogContext::SendIncomprehensibleError", errorMessage)
 	npcHandler:say(errorMessage, npc, player)
 	return true
 end
@@ -444,7 +448,9 @@ local function hasRequiredQuestlineState(state, requiredState)
 end
 
 local function isPattern(pattern)
+	print("pattern?")
 	for _, value in pairs(pattern) do
+		print("value", value)
 		if value:gmatch("<[^%s]->")() then
 			return true
 		end
@@ -546,7 +552,7 @@ function TryResolveDialog(player, msg, npcDialogData, npcHandler, npc, messageTy
 end
 
 function DialogContext:ResolveUniversalQuest()
-	local universalKeywordToDialog = self.npcDialogData[LOCALIZER_UNIVERSAL]
+	local universalKeywordToDialog = self.npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL]
 	if not universalKeywordToDialog then
 		return
 	end
@@ -560,7 +566,7 @@ end
 
 function DialogContext:ResolveDialogDefault()
 	for localizer, storageToRequiredState in pairs(self.npcDialogData) do
-		if localizer == LOCALIZER_UNIVERSAL then
+		if localizer == LOCALIZERS.LOCALIZER_UNIVERSAL then
 			goto continue
 		end
 		if type(storageToRequiredState) ~= "table" then
@@ -587,7 +593,7 @@ function DialogContext:SetDefaultGreetFarewellWalkaway()
 	if not self.specialMessageType then
 		return
 	end
-	local translatedMessage = self.player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(self.msg)
+	local translatedMessage = self.player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context(self):Get(self.msg)
 	self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	self.resolvedStatus = SUCCESS_RESOLVE
 end
@@ -615,7 +621,7 @@ end
 
 function DialogContext:ResolveStorage()
 	for storage, requiredStatetoKeywords in pairs(self.storageToRequiredState) do
-		if storage == LOCALIZER_UNIVERSAL then
+		if storage == LOCALIZERS.LOCALIZER_UNIVERSAL then
 			goto continue
 		end
 		if type(requiredStatetoKeywords) ~= "table" then
@@ -929,9 +935,12 @@ function ResolutionContext:TrySendTranslateSuccessMessage()
 		return
 	end
 
+	print("ResolutionContext::TrySendTranslateSuccessMessage", translatedMessage)
 	if self.specialMessageType then
+		print("set")
 		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	else
+		print("say")
 		self.npcHandler:say(translatedMessage, self.npc, self.player)
 	end
 end
@@ -946,9 +955,12 @@ function ResolutionContext:TrySendTranslateFailMessage()
 		return
 	end
 
+	print("ResolutionContext::TrySendTranslateFailMessage", translatedMessage)
 	if self.specialMessageType then
+		print("set")
 		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	else
+		print("say")
 		self.npcHandler:say(translatedMessage, self.npc, self.player)
 	end
 end
@@ -1031,7 +1043,7 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
+			local message = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end

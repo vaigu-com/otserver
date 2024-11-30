@@ -43,35 +43,31 @@ return {
 		local requiredKills = dailyTask.requiredKills
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Dzisiejsze zadanie na :name:!\n\n", { name = name })
-		dailyTaskDescription = dailyTaskDescription
-			.. T("Zabiles :currentKills:/:requiredKills: :name:.", {
-				name = name,
-				currentKills = currentKills,
-				requiredKills = requiredKills,
-			})
+		dailyTaskDescription = dailyTaskDescription .. T("Zabiles :currentKills:/:requiredKills: :name:.", {
+			name = name,
+			currentKills = currentKills,
+			requiredKills = requiredKills,
+		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription
-				.. "\n\nBedziesz rowniez musial przyniesc nastepujace przemdioty do Pani Burmistrz:\n"
+			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przemdioty do Pani Burmistrz:\n"
 			for _, item in pairs(requiredItems) do
 				local id = item.id
 				local itemName = ItemType(id):getName()
 				local count = item.count
-				dailyTaskDescription = dailyTaskDescription
-					.. T(":count: :itemName:\n", {
-						count = count,
-						itemName = itemName,
-					})
+				dailyTaskDescription = dailyTaskDescription .. T(":count: :itemName:\n", {
+					count = count,
+					itemName = itemName,
+				})
 			end
 		end
-		dailyTaskDescription = dailyTaskDescription
-			.. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
-				money = dailyTask.money,
-				tibiaCoins = dailyTask.tibiaCoins,
-			})
+		dailyTaskDescription = dailyTaskDescription .. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
+			money = dailyTask.money,
+			tibiaCoins = dailyTask.tibiaCoins,
+		})
 
 		return dailyTaskDescription
 	end,
-	["QUEST_MISION_COMPLETE_SUFFIX"] = " (ukonczone)",
+	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (ukonczone)",
 	["Daily task"] = "Dzisiejsze zadanie",
 	["Daily tasks information"] = "Informacje o dzisiejszch zadaniach",
 	["Arena"] = "Arena",
@@ -289,31 +285,19 @@ return {
 	end,
 	["Daily Minor: Crystal Keeper"] = "Dzienne: Naprawca Krysztalow",
 	["Daily Minor: Crystal Keeper Status"] = function(context)
-		return string.format(
-			"Uzyj krysztalu naprawczego, aby naprawic piec uszkodzonych niebieskich krysztalow w jaskiniach krysztalowych. Uszkodzone krysztaly nie beda swiecic. %d/5",
-			math.max(context.player:getStorageValue(932), 0)
-		)
+		return string.format("Uzyj krysztalu naprawczego, aby naprawic piec uszkodzonych niebieskich krysztalow w jaskiniach krysztalowych. Uszkodzone krysztaly nie beda swiecic. %d/5", math.max(context.player:getStorageValue(932), 0))
 	end,
 	["Daily Minor: Raiders of the lost Spark"] = "Dzienne: Lowcy Krysztalow",
 	["Daily Minor: Raiders of the lost Spark Status"] = function(context)
-		return string.format(
-			"Zabij Crystal Crushery i uzyj urzadzenia rozladowujacego na ich cialach, aby zebrac ich ladunki. Zbierz 7 ladunkow i zglos sie z nimi. %d/7",
-			math.max(context.player:getStorageValue(934), 0)
-		)
+		return string.format("Zabij Crystal Crushery i uzyj urzadzenia rozladowujacego na ich cialach, aby zebrac ich ladunki. Zbierz 7 ladunkow i zglos sie z nimi. %d/7", math.max(context.player:getStorageValue(934), 0))
 	end,
 	["Daily Minor Plus: Exterminators"] = "Dzienne Plus: Eksterminacje",
 	["Daily Minor Plus: Exterminators Status"] = function(context)
-		return string.format(
-			"Zabij 10 Wigglerow na pomoc gnomom. Nastepnie zglos sie z powrotem. %d/10",
-			math.max(context.player:getStorageValue(937), 0)
-		)
+		return string.format("Zabij 10 Wigglerow na pomoc gnomom. Nastepnie zglos sie z powrotem. %d/10", math.max(context.player:getStorageValue(937), 0))
 	end,
 	["Daily Minor Plus: Mushroom Digger"] = "Dzienne Plus: Niuchacz Grzybow",
 	["Daily Minor Plus: Mushroom Digger Status"] = function(context)
-		return string.format(
-			"Znajdz i zwab swinie truflowa. Czasem wywachuja swieze trufle. Uzyj mlodego prosiaka na truflach, nakarm go 3 razy. Nastepnie zglos sie do gnomow. %d/3",
-			math.max(context.player:getStorageValue(940), 0)
-		)
+		return string.format("Znajdz i zwab swinie truflowa. Czasem wywachuja swieze trufle. Uzyj mlodego prosiaka na truflach, nakarm go 3 razy. Nastepnie zglos sie do gnomow. %d/3", math.max(context.player:getStorageValue(940), 0))
 	end,
 	["Daily Major Advanced: Spores"] = "Dzienne Zaawansowane: Zarodniki",
 	["Gather spores in the correct order. Your spore gathering list will display the next color you have to look for."] = "Zbieraj zarodniki we wlasciwej kolejnosci. Twoj spis zbierania zarodnikow bedzie wyswietlac nastepny kolor, ktory musisz szukac.",
@@ -323,10 +307,7 @@ return {
 	["You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them."] = "Musisz wejsc do jaskin krysztalowych i znalezc krysztal, ktory pasuje do tego, ktory otrzymales od gnomow. Uzyj go na jednym z wiekszych czerwonych krysztalow w jaskiniach, aby je polaczyc.",
 	["Daily Major: The Tinker's Bell"] = "Dzienne Glowne: Dzwonek Wynalazcy",
 	["Daily Major: The Tinker's Bell Status"] = function(context)
-		return string.format(
-			"Uzyj harmonicznego dzwonka na oszlalych golemach w warsztacie golemow, dzieki czemu zostana przetransportowani do warsztatow gnomow. Nastepnie zglos sie z powrotem. %d/4.",
-			math.max(context.player:getStorageValue(946), 0)
-		)
+		return string.format("Uzyj harmonicznego dzwonka na oszlalych golemach w warsztacie golemow, dzieki czemu zostana przetransportowani do warsztatow gnomow. Nastepnie zglos sie z powrotem. %d/4.", math.max(context.player:getStorageValue(946), 0))
 	end,
 	["The Ape City"] = "Miasto Malp",
 	["Hairycles Missions"] = "Misje Hairyclesa",

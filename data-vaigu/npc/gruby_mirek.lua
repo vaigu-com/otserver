@@ -62,7 +62,7 @@ npcConfig.voices = {
 GRUBY_MIREK_ENCOUNTERS = { { name = "KRAKEN" } }
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ GREET }] = {
 			text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
 		},

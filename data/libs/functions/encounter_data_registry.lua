@@ -1,20 +1,21 @@
-local singleton = nil
+local singleton
 EncounterDataRegistry = {}
 function EncounterDataRegistry:New()
 	if singleton then
 		return singleton
 	end
-	local newObj = {}
-	self.__index = self
-	setmetatable(newObj, self)
-	return newObj
+	singleton = {}
+	singleton.__index = self
+	setmetatable(singleton, self)
+	return singleton
 end
 setmetatable(EncounterDataRegistry, {
 	__call = function(class, ...)
 		return class:New(...)
 	end,
 })
-singleton = EncounterDataRegistry()
+EncounterDataRegistry()
+
 EncounterDataRegistry.states = {}
 ---@param encounterData EncounterLever
 function EncounterDataRegistry:register(encounterData)

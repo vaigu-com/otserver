@@ -821,7 +821,7 @@ int GameFunctions::luaGameGetEventCallbacks(lua_State* L) {
 
 // Vaigu custom
 int GameFunctions::luaInitializeTranslationTable(lua_State* L) {
-	lua_getglobal(L, "STRINGS_TABLES");
+	lua_getglobal(L, "TRANSLATION_TABLES");
 	if (!lua_istable(L, -1)) {
 		lua_pop(L, 1);
 		return 1;

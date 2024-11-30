@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "thief", "zlodziej" }] = {
 			text = "I dint see anything suspicious.",
 		},

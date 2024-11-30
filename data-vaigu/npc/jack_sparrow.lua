@@ -58,7 +58,7 @@ npcConfig.voices = {
 }
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "sail", "plynac" }] = {
 			text = "",
 			specialActionsOnSuccess = {

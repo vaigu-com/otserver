@@ -50,7 +50,7 @@ end
 
 -- ToDo: localization tables missing the sentences below
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[INCOMPREHENSIBLE] = {
 			text = "Go away, or even better: flip off.",
 		},

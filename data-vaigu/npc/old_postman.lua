@@ -53,7 +53,7 @@ local topics = {
 }
 
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {},
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {},
 	[Storage.Yalahar.MiloscAriela] = {
 		[3] = {
 			[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {

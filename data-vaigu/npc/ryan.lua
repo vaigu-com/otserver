@@ -48,29 +48,16 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local dialog = {
-	[Storage.AssassinsCreedSquurvaali.Localizer] = {
-		[Storage.AssassinsCreedSquurvaali.Mission02] = {
-			[2] = {
-				
-			},
-			[3] = {
-				
-			},
-		},
-	},
-}
-
+--38f
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialog, npcHandler, npc)
 	return true
 end
 
+--38f
 local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, dialog, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

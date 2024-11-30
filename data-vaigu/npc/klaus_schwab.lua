@@ -49,7 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ WALKAWAY }] = { text = "Lebewohl." },
 		[{ FAREWELL }] = { text = "Auf wiedersehen." },
 		[{ GREET }] = { text = "Strammstehen!" },
@@ -107,7 +107,7 @@ local dialog = {
 			},
 		},
 	},
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "hitler", "auschwitz", "holocaust" }] = {
 			text = "Ich weiss nichts daruber.",
 		},

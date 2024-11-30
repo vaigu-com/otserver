@@ -12,7 +12,7 @@ local dialogs = {
 			},
 		},
 	},
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ GREET }] = {
 			text = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 		},

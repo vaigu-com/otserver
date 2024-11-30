@@ -62,7 +62,7 @@ npcConfig.voices = {
 }
 
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{
 			"butelki",
 			"vials",
@@ -94,23 +94,6 @@ local dialogs = {
 			text = "Well, go away.",
 		},
 	},
-	[Storage.AssassinsCreedSquurvaali.Localizer] = {
-		[Storage.AssassinsCreedSquurvaali.Mission03] = {
-			[2] = {
-
-			},
-		},
-		[Storage.AssassinsCreedSquurvaali.Mission04] = {
-			[{ min = 1, max = 2 }] = {
-				[{ "istoty", "creatures" }] = {
-					text = "Im talking about the {djinn} of course. They will get you drunk, free of charge. And the best thing is you dont have to pay.",
-				},
-				[{ "djinnach", "djinn" }] = {
-					text = "You will find them in Hurghada desert. Can't say i recall anything more because last time i was here they had to tow me back to my home, if you know what i mean..",
-				},
-			},
-		},
-	},
 	[Storage.TheaterOfCheapThrills.Questline] = {
 		[Storage.TheaterOfCheapThrills.Mission09] = {
 			[2] = {
@@ -134,7 +117,7 @@ local dialogs = {
 }
 
 local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialog, npcHandler, npc)
+	InitializeResponses(creature, dialogs, npcHandler, npc)
 	return true
 end
 
@@ -142,7 +125,7 @@ local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-	return TryResolveDialog(creature, dialog, npcHandler, npc)
+	return TryResolveDialog(creature, dialogs, npcHandler, npc)
 end
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)

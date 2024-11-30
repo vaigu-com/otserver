@@ -1,15 +1,3 @@
-local dialogs = {
-	[Storage.AssassinsCreedSquurvaali.Localizer] = {
-		[Storage.AssassinsCreedSquurvaali.Mission01] = {
-
-		},
-		[Storage.AssassinsCreedSquurvaali.Mission05] = {
-			[4] = {
-
-			},
-		},
-	},
-}
 local voices = {
 	interval = 15000,
 	chance = 50,
@@ -36,7 +24,7 @@ local context = {
 	greetJob = JOB_MARRIAGE_BLESS,
 	jobs = { JOB_MARRIAGE, JOB_BLESS },
 	outfit = outfit,
-	dialogs = dialogs,
+	dialogs = nil,
 	voices = voices,
 }
 

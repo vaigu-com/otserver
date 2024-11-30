@@ -10,13 +10,13 @@ function playerLogin.onLogin(player)
 		player:setStorageValue(Storage.EmoteSpells, 1) -- emote on first login
 		player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, 1) -- initial quest
 	else
-		local welcomeStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("WELCOME_TO_SERVER")
+		local welcomeStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("WELCOME_TO_SERVER")
 		player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
-		afterLoginStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
+		afterLoginStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
 	end
 
-	local commandStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
-	local bugStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("You can report ingame bugs using ctrl+z.")
+	local commandStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
+	local bugStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("You can report ingame bugs using ctrl+z.")
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, bugStr)
