@@ -66,7 +66,7 @@ local dialog = {
 			},
 			specialActionsOnSuccess = {
 				{
-					action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffect,
+					action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer,
 				},
 			},
 		},

@@ -115,7 +115,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "ytong" }, message) and player:getStorageValue(Storage.TheaterOfCheapThrills.Mission04) == 2 then
 		npcHandler:say(
 			getPlayerLanguage(player) == "PL" and "Wyjatkowo paskudna. Bede musial cie prosic o udanie sie w pewne miejsce. Aby zdjac klatwe, bedziesz musial podac tajne haslo przekletemu. Niestety, ja tego hasla nie znam, ale pomoc ci moze specjalna {ksiega} zaklec."
-				or "Particularly nasty, indeed. I'll have to ask you to go to a certain place. To lift the curse, you'll need to provide the cursed one with a secret passphrase. Unfortunately, I don't know that passphrase, but a special spell {book} might assist you.",
+					or "Particularly nasty, indeed. I'll have to ask you to go to a certain place. To lift the curse, you'll need to provide the cursed one with a secret passphrase. Unfortunately, I don't know that passphrase, but a special spell {book} might assist you.",
 			npc,
 			creature
 		)

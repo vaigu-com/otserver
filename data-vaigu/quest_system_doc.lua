@@ -524,7 +524,7 @@ local function exampleNpcFromGenerator()
 				},
 			},
 		},
-		[Storage.PomocMiejscowym.PrzekleteSzczury] = {
+		[Storage.HelpingLocals.PrzekleteSzczury] = {
 			[-1] = {
 				[{ "help", "pomoc" }] = {
 					text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
@@ -537,7 +537,7 @@ local function exampleNpcFromGenerator()
 					requiredState = {
 						[Storage.TrudnePoczatki.BiedronkaAsked] = 1,
 					},
-					nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 1 },
+					nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 1 },
 				},
 			},
 			[{ min = 1, max = 3 }] = {
@@ -564,7 +564,7 @@ local function exampleNpcFromGenerator()
 					},
 					experienceReward = 50000,
 					requiredItems = { { id = 3120 } },
-					nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 4 },
+					nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 4 },
 				},
 			},
 			[{ min = 4 }] = {

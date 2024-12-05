@@ -1,98 +1,47 @@
-print("LOCALES_LIB")
 local mainDir = DATA_DIRECTORY .. "/locales"
 
-LOCALIZERS = {
+LOCALIZERS = { --38f add desert quest/king of rats
+	--Various quests
 	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
+	ChesterTheDwarf = "chester_the_dwarf",
+	DemonOak = "demon_oak",
+	ImRestingHere = "im_resting_here",
+	PathOfTheUndead = "path_of_the_undead",
+	ProdigalSon = "prodigal_son",
+	--King of Rats main quests
+	KingOfRatsHQ = "kings_of_rats_hq",
+	TheaterOfCheapThrills = "theater_of_cheap_thrills",
+	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
+	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
+	FourActTragedy = "four_act_tragedy",
+	PerIustitiaAdAstra = "per_iustitia_ad_astra",
+	--Kins of rats side quests
+	RubelsteinLegacy = "rubelstein_legacy",
+	--Desert quest
+	DesertQuestOne = "desert_quest_one",
+	DesertQuestTwo = "desert_quest_two",
+	CaveExplorerOnShield = "cave_explorer_on_shield",
+	SultanPrime = "sultan_prime",
+	DesertQuestHub = "desert_quest_hub",
+	--Misc
 	LOCALIZER_UNIVERSAL = "_universal",
+	NONE = "",
 }
 TRANSLATION_TABLES = {}
 
 for _, language in pairs(LANGUAGES) do
 	TRANSLATION_TABLES[language] = {}
 	for _, localizer in pairs(LOCALIZERS) do
-		local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
-		TRANSLATION_TABLES[language][localizer] = require(filePath)
+		if localizer ~= LOCALIZERS.NONE then
+			local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
+			local success, fileContent = pcall(require, filePath)
+			TRANSLATION_TABLES[language][localizer] = fileContent
+			if not success then
+				logger.warn(T("File :filePath: does not exist", { filePath = filePath }))
+			end
+		end
 	end
 end
-
---[[
-Quest("LocalesInitialization")
-	:Mission("NONE")
-	:State(
-		"NONE",
-		Quest.Script(function()
-			-- keep global for cpp side access
-			TRANSLATION_TABLES = {
-				["PL"] = {
-					[LOCALIZER_UNIVERSAL] = loadStrings("_universal_pl.lua"),
-					[LOCALIZERS.assassins_creed_squurvaali_en] = loadStrings("assassins_creed_skurwoala_pl.lua"),
-					[Storage.ProdigalSon.Localizer] = loadStrings("prodigal_son_pl.lua"),
-					[Storage.TrzejSramaciISmok.Questline] = loadStrings("trzej_sramaci_i_smok_pl.lua"),
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = loadStrings("bezpieczenstwo_i_higiena_pracy_pl.lua"),
-					[Storage.CzeslawKrasnolud.Questline] = loadStrings("czeslaw_krasnolud_pl.lua"),
-					[Storage.DesertQuestGhosts.Questline] = loadStrings("desert_quest_ghosts_pl.lua"),
-					[Storage.KrolSzczurowHub.Questline] = loadStrings("krol_szczurow_hub_pl.lua"),
-					[Storage.PerIustitiaAdAstra.Questline] = loadStrings("per_iustitia_ad_astra_pl.lua"),
-					[Storage.SciezkaNieumarlych.Questline] = loadStrings("sciezka_nieumarlych_pl.lua"),
-					[Storage.SpoczywajacyTutaj.Questline] = loadStrings("spoczywajacy_tutaj_pl.lua"),
-					[Storage.SultanPrime.Questline] = loadStrings("sultan_prime_pl.lua"),
-					[Storage.TeatrTaniejSensacji.Questline] = loadStrings("teatr_taniej_sensacji_pl.lua"),
-					[Storage.TragedyaWCzterechAktach.Questline] = loadStrings("tragedya_w_czterech_aktach_pl.lua"),
-					[Storage.NaPomocBagietom.FatMyrrusDiet] = loadStrings("dieta_grubego_mirka_pl.lua"),
-					[Storage.DesertQuestOne.Questline] = loadStrings("desert_quest_one_pl.lua"),
-					[Storage.DesertQuestTwo.Questline] = loadStrings("desert_quest_two_pl.lua"),
-					[LOCALIZER_PRIEST] = loadStrings("priest_pl.lua"),
-					[Storage.GrubyMirekEncounters] = loadStrings("gruby_mirek_encounters_pl.lua"),
-					[LOCALIZER_LUA_RAIDS] = loadStrings("lua_raids_pl.lua"),
-					[LOCALIZER_NPC_NAME] = loadStrings("npc_name_pl.lua"),
-					[LOCALIZER_TASK_BOSS_LOCATIONS] = loadStrings("task_boss_locations_pl.lua"),
-					[LOCALIZER_QUESTLOG] = loadStrings("_questlog_pl.lua"),
-					[Storage.Tasks.TaskInfo] = loadStrings("task_info_pl.lua"),
-					[Storage.DailyTasks.DailyTaskInfo] = loadStrings("daily_tasks_info_pl.lua"),
-					[Storage.taskPoints] = loadStrings("task_points_pl.lua"),
-					[Storage.GoldenOutfit] = loadStrings("golden_outfit_pl.lua"),
-					[Storage.TopChef.Questline] = loadStrings("top_chef_pl.lua"),
-					[LOCALIZER_BANK_SYSTEM] = loadStrings("bank_system_pl.lua"),
-				},
-				["EN"] = {
-					[LOCALIZER_UNIVERSAL] = loadStrings("_universal_en.lua"),
-					[LOCALIZERS.AssassinsCreedSquurvaali] = loadStrings("assassins_creed_skurwoala_en.lua"),
-					--[[
-					[Storage.ProdigalSon.Localizer] = loadStrings("prodigal_son_en.lua"),
-					[Storage.TrzejSramaciISmok.Questline] = loadStrings("trzej_sramaci_i_smok_en.lua"),
-					[Storage.BezpieczenstwoIHigienaPracy.Questline] = loadStrings("bezpieczenstwo_i_higiena_pracy_en.lua"),
-					[Storage.CzeslawKrasnolud.Questline] = loadStrings("czeslaw_krasnolud_en.lua"),
-					[Storage.DesertQuestGhosts.Questline] = loadStrings("desert_quest_ghosts_en.lua"),
-					[Storage.KrolSzczurowHub.Questline] = loadStrings("krol_szczurow_hub_en.lua"),
-					[Storage.PerIustitiaAdAstra.Questline] = loadStrings("per_iustitia_ad_astra_en.lua"),
-					[Storage.SciezkaNieumarlych.Questline] = loadStrings("sciezka_nieumarlych_en.lua"),
-					[Storage.SpoczywajacyTutaj.Questline] = loadStrings("spoczywajacy_tutaj_en.lua"),
-					[Storage.SultanPrime.Questline] = loadStrings("sultan_prime_en.lua"),
-					[Storage.TeatrTaniejSensacji.Questline] = loadStrings("teatr_taniej_sensacji_en.lua"),
-					[Storage.TragedyaWCzterechAktach.Questline] = loadStrings("tragedya_w_czterech_aktach_en.lua"),
-					[Storage.NaPomocBagietom.FatMyrrusDiet] = loadStrings("dieta_grubego_mirka_en.lua"),
-					[Storage.DesertQuestOne.Questline] = loadStrings("desert_quest_one_en.lua"),
-					[Storage.DesertQuestTwo.Questline] = loadStrings("desert_quest_two_en.lua"),
-					[LOCALIZER_PRIEST] = loadStrings("priest_en.lua"),
-					[Storage.GrubyMirekEncounters] = loadStrings("gruby_mirek_encounters_en.lua"),
-					[LOCALIZER_LUA_RAIDS] = loadStrings("lua_raids_en.lua"),
-					[LOCALIZER_NPC_NAME] = loadStrings("npc_name_en.lua"),
-					[LOCALIZER_TASK_BOSS_LOCATIONS] = loadStrings("task_boss_locations_en.lua"),
-					[LOCALIZER_QUESTLOG] = loadStrings("_questlog_en.lua"),
-					[Storage.Tasks.TaskInfo] = loadStrings("task_info_en.lua"),
-					[Storage.DailyTasks.DailyTaskInfo] = loadStrings("daily_tasks_info_en.lua"),
-					[Storage.taskPoints] = loadStrings("task_points_en.lua"),
-					[Storage.GoldenOutfit] = loadStrings("golden_outfit_en.lua"),
-					[Storage.TopChef.Questline] = loadStrings("top_chef_en.lua"),
-					[LOCALIZER_BANK_SYSTEM] = loadStrings("bank_system_en.lua"),
-				},
-			}
-			Game.initializeTranslationTable() -- cpp side
-		end)
-	)
-	:Register()
-]]
---
 
 Localizer = {}
 Localizer.__index = Localizer

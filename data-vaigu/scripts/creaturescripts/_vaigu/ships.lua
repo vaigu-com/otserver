@@ -74,7 +74,7 @@ function CreateTransportWindow(context)
 	local window = ModalWindow({ title = title, message = message })
 
 	for _, transportConfig in pairs(transports) do
-		--[[ ToDo: add name translations
+		--[[ 38f: add name translations, add required storage access
 		local translatedName = player:Localier(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(transportConfig.name)
 		local choice = window:addChoice(translatedName)
 		]]

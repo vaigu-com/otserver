@@ -103,18 +103,20 @@ local dialog = {
 			},
 		},
 	},
-	[Storage.PomocMiejscowym.PrzekleteSzczury] = {
+	[Storage.HelpingLocals.PrzekleteSzczury] = {
 		[1] = {
 			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
 				text = "Do you need a rat killer? We don't have any left. I will make you a special remedy, but you must bring me one ingredient: moldy cheese\nPerfectly lures rats, I will season it with a special substance that will make them all die in one night.",
-				nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 2 },
+				nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 2 },
 			},
 		},
 		[2] = {
 			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
 				text = "What a smell, perfect. In the meantime, I have prepared a decoction. Now we'll inject and it's ready.\nPut it somewhere in the cellar overnight, and in the morning you will see a graveyard.",
 				requiredItems = { { id = 3120, remove = false } },
-				nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 3 },
+				nextState = {
+					[Storage.HelpingLocals.PrzekleteSzczury] = 3,
+				},
 				textNoRequiredItems = "Bring me some mouldy cheese.",
 			},
 		},
@@ -126,17 +128,6 @@ local dialog = {
 		[{ max = 0 }] = {
 			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
 				text = "I dont get it.",
-			},
-		},
-	},
-	[Storage.ThreeSramatiansAndTheDragon.Questline] = {
-		[10] = {
-			[{ "mission" }] = {
-				text = "Your team left me a note stating they headed to the desert. You can ask Lambor for help finding them.",
-				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.Questline] = 11,
-					[Storage.ThreeSramatiansAndTheDragon.Mission05] = 3,
-				},
 			},
 		},
 	},

@@ -2,7 +2,7 @@ local quest = Quest("path_of_the_undead")
 quest
 	:Storage(function()
 		Storage.PathOfTheUndead = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
@@ -21,7 +21,7 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Path of the Undead",
-			startStorageId = Storage.PathOfTheUndead.Questline,
+			startStorageId = Storage.PathOfTheUndead.State,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
@@ -218,20 +218,20 @@ quest
 		skull:register()
 	end)
 	:MonsterEvent(function()
-		local guardian = CreatureEvent("CalaNapszutKill")
+		local guardian = CreatureEvent("CalaNapszutDeath")
 
 		function guardian.onDeath(creature)
-			local pos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved(GUARDIAN_SKULLS_APPEAR_SPOTS_POOL["CalaNapszut"])
+			local pos = PATH_OF_THE_UNDEAD_ANCHOR:Moved(GUARDIAN_SKULLS_APPEAR_SPOTS_POOL["CalaNapszut"])
 			Game.createItem(11965, 1, pos)
 		end
 
 		guardian:register()
 	end)
 	:MonsterEvent(function()
-		local guardian = CreatureEvent("CipociamkaczKill")
+		local guardian = CreatureEvent("CipociamkaczDeath")
 
 		function guardian.onDeath(creature)
-			local pos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved(GUARDIAN_SKULLS_APPEAR_SPOTS_POOL["Cipociamkacz"])
+			local pos = PATH_OF_THE_UNDEAD_ANCHOR:Moved(GUARDIAN_SKULLS_APPEAR_SPOTS_POOL["Cipociamkacz"])
 			Game.createItem(11965, 1, pos)
 		end
 
@@ -254,10 +254,10 @@ quest
 		krolKrypty:register()
 	end)
 	:MonsterEvent(function()
-		local guardian = CreatureEvent("PatriotaPLKill")
+		local guardian = CreatureEvent("PatriotaPLDeath")
 
 		function guardian.onDeath(creature)
-			local pos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved(GUARDIAN_SKULLS_APPEAR_SPOTS_POOL["PatriotaPL"])
+			local pos = PATH_OF_THE_UNDEAD_ANCHOR:Moved(GUARDIAN_SKULLS_APPEAR_SPOTS_POOL["PatriotaPL"])
 			Game.createItem(11965, 1, pos)
 		end
 
@@ -274,7 +274,7 @@ quest
 				return true
 			end
 
-			local storageval = player:getStorageValue(Storage.PathOfTheUndead.Questline)
+			local storageval = player:getStorageValue(Storage.PathOfTheUndead.State)
 			if storageval < 3 then
 				return false
 			end
@@ -326,7 +326,7 @@ quest
 			return false
 		end
 
-		local questlineStorage = Storage.PathOfTheUndead.Questline
+		local questlineStorage = Storage.PathOfTheUndead.State
 		local circleStorage = Storage.PathOfTheUndead.Circles
 
 		local function GetUncompletedCirclesCount(player)
@@ -360,14 +360,14 @@ quest
 			if not IsFactor(storageVal, addend) then
 				player:setStorageValue(circleStorage, player:getStorageValue(circleStorage) + addend)
 				player:getPosition():sendMagicEffect(CONST_ME_THUNDER)
-				local firstStepMessage = player:Localizer(Storage.PathOfTheUndead.Questline):Get("You step on circle number ")
+				local firstStepMessage = player:Localizer(Storage.PathOfTheUndead.State):Get("You step on circle number ")
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, firstStepMessage .. math.floor(math.log(addend, 2) + 1))
 			end
 
 			local circlesCount = GetUncompletedCirclesCount(player)
 			if circlesCount ~= 0 then
-				local standOn = player:Localizer(Storage.PathOfTheUndead.Questline):Get("To fulfill Gandalf's task you need to stand on ")
-				local remaining = player:Localizer(Storage.PathOfTheUndead.Questline):Get(" remaining circles.")
+				local standOn = player:Localizer(Storage.PathOfTheUndead.State):Get("To fulfill Gandalf's task you need to stand on ")
+				local remaining = player:Localizer(Storage.PathOfTheUndead.State):Get(" remaining circles.")
 
 				player:sendTextMessage(MESSAGE_FAILURE, standOn .. circlesCount .. remaining)
 			end
@@ -379,8 +379,8 @@ quest
 	end)
 	:Script(function(missionState)
 		local doors = {
-			{ pos = Position(SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = -8, y = 12, z = 1 })), id = 1564 },
-			{ pos = Position(SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = -9, y = 12, z = 1 })), id = 1563 },
+			{ pos = Position(PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = -8, y = 12, z = 1 })), id = 1564 },
+			{ pos = Position(PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = -9, y = 12, z = 1 })), id = 1563 },
 		}
 
 		local function eachTileHasItem(top_left, down_right, id, anchor)
@@ -406,7 +406,7 @@ quest
 			if not player:isPlayer() then
 				return false
 			end
-			if not eachTileHasItem(Vector(-12, 15, 1), Vector(-10, 15, 1), 12952, SCIEZKA_NIEUMARLYCH_ANCHOR) then
+			if not eachTileHasItem(Vector(-12, 15, 1), Vector(-10, 15, 1), 12952, PATH_OF_THE_UNDEAD_ANCHOR) then
 				return false
 			end
 			for _, door in pairs(doors) do
@@ -426,7 +426,7 @@ quest
 		beforeGate:register()
 	end)
 	:Script(function(missionState)
-		local bossRoomPos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = -60, y = -14, z = 0 })
+		local bossRoomPos = PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = -60, y = -14, z = 0 })
 
 		local workingTeleportId = 23483
 
@@ -460,7 +460,7 @@ quest
 			end
 
 			if ritualPot == nil then
-				ritualPot = Tile(SCIEZKA_NIEUMARLYCH_ANCHOR:Moved(1, -35, -1)):getItemById(1996)
+				ritualPot = Tile(PATH_OF_THE_UNDEAD_ANCHOR:Moved(1, -35, -1)):getItemById(1996)
 			end
 
 			local nextThrowId = nextRequiredThrowId[ritualState]
@@ -512,7 +512,7 @@ quest
 
 		function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			for _, relativePos in pairs(gatePositions) do
-				local pos = Position(SCIEZKA_NIEUMARLYCH_ANCHOR:Moved(relativePos))
+				local pos = Position(PATH_OF_THE_UNDEAD_ANCHOR:Moved(relativePos))
 				local tile = Tile(pos)
 				local gate = tile:getItemById(gateId)
 				if gate then
@@ -622,11 +622,11 @@ quest
 	})
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.PathOfTheUndead.Questline] = 4,
+			[Storage.PathOfTheUndead.State] = 4,
 			[Storage.PathOfTheUndead.Mission03] = 2,
 		}
 
-		local exitPos = SCIEZKA_NIEUMARLYCH_ANCHOR:Moved({ x = 4, y = -32, z = -2 })
+		local exitPos = PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = 4, y = -32, z = -2 })
 		local portal = MoveEvent()
 
 		function portal.onStepIn(player, item, toPosition, fromPosition)

@@ -122,7 +122,9 @@ std::vector<std::filesystem::path> processFiles(
 
 // Function to sort files alphabetically
 void sortFilesAlphabetically(std::vector<std::filesystem::path>& files) {
-    std::sort(files.begin(), files.end());
+        std::sort(files.begin(), files.end(), [](const std::filesystem::path& a, const std::filesystem::path& b) {
+        return a.filename().string() < b.filename().string();
+    });
 }
 
 // Function to run all loadable files

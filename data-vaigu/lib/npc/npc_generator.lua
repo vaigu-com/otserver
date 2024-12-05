@@ -25,33 +25,33 @@ end
 ---@param outfit table outfit
 ---@param dialogs table? custom dialogs that can override job dialogs
 ---@param voices table? orange color text that npc may or may not say from time to time
-function RegisterNpcDefinition(context)
-	local name = context.internalNpcName or context.name
-	local displayName = context.npcName or context.displayname or name
-	local onlookName = context.npcDescription or context.onlookname or ("a " .. name)
+function RegisterNpcDefinition(npc)
+	local name = npc.internalNpcName or npc.name
+	local displayName = npc.npcName or npc.displayname or name
+	local onlookName = npc.npcDescription or npc.onlookname or ("a " .. name)
 
-	local greetJob = context.greetJob
-	local jobs = context.jobs or {}
-	local outfit = context.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
-	local npcSpecificDialogs = context.dialogs
-	local customShop = context.shop
-	local voices = context.voices
+	local greetJob = npc.greetJob
+	local jobs = npc.jobs or {}
+	local outfit = npc.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
+	local npcSpecificDialogs = npc.dialogs
+	local customShop = npc.shop
+	local voices = npc.voices
 
-	local shop, jobDialogsUniversal = getJobConfigs(jobs)
+	local jobShop, jobUniversalDialogs = getJobConfigs(jobs)
 	--ToDo: check if this should be indeed removed
 	--jobDialogs = MergedTable(jobDialogs, npcSpecificDialogs)
-	shop = MergedTable(shop, customShop)
+	local totalShop = MergedTable(jobShop, customShop)
 
 	local jobStateDialogs = getJobStateDialogs(jobs)
 
 	local allDialogs = {}
-	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL] = jobDialogsUniversal
+	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL] = jobUniversalDialogs
 	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 
 	local npcConfig = {}
-	npcConfig.shop = shop
+	npcConfig.shop = totalShop
 	npcConfig.dialogs = allDialogs
 
 	npcConfig.name = displayName or name
@@ -59,14 +59,14 @@ function RegisterNpcDefinition(context)
 
 	npcConfig.health = 100
 	npcConfig.maxHealth = npcConfig.health
-	npcConfig.walkInterval = context.walkInterval or 2000
-	npcConfig.walkRadius = context.walkInterval or 2
+	npcConfig.walkInterval = npc.walkInterval or 2000
+	npcConfig.walkRadius = npc.walkInterval or 2
 
 	npcConfig.outfit = outfit
 
 	npcConfig.voices = voices
 
-	npcConfig.flags = { floorchange = context.floorchange or 0 }
+	npcConfig.flags = { floorchange = npc.floorchange or 0 }
 
 	local keywordHandler = KeywordHandler:new()
 	local npcHandler = NpcHandler:new(keywordHandler)

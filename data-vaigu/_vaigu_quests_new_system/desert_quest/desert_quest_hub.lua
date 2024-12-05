@@ -109,7 +109,7 @@ quest
 				return
 			end
 
-			player:AddItems({ SULTAN_PRIME_KEY_ITEMS.amulet })
+			player:AddItems({ QuestKeyItems.SultanPrime.amulet })
 			player:UpdateStorages(neckUpdateStorages)
 			return true
 		end

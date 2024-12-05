@@ -42,7 +42,7 @@ local entrancesTiles = {
 }
 
 local zone = Zone("boss." .. toKey(config.bossName))
-local encounter = Encounter("Brain Head", {
+local encounter = EncounterData("Brain Head", {
 	zone = zone,
 	timeToSpawnMonsters = "50ms",
 })

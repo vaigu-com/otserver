@@ -1,9 +1,12 @@
+do
+	return
+end --38f
 local bossZone = Zone("boss.the-monster")
 
 local puddleId = 42075
 local jailBarsId = 2184
 
-local encounter = Encounter("The Monster", {
+local encounter = EncounterData("The Monster", {
 	zone = bossZone,
 	timeToSpawnMonsters = "10ms",
 	zoneArea = {

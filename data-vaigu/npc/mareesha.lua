@@ -48,6 +48,9 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
+do
+	return
+end --38f change to RubelsteinLegacy
 local dialog = {
 	[Storage.PerIustitiaAdAstra.Localizer] = {
 		[Storage.PerIustitiaAdAstra.HelpedRubelstein] = {
@@ -66,26 +69,6 @@ local dialog = {
 						},
 					},
 				},
-			},
-		},
-	},
-	[Storage.AssassinsCreedSquurvaali.Localizer] = {
-		[Storage.AssassinsCreedSquurvaali.Mission02] = {
-			[1] = {
-			
-			},
-			[2] = {
-				[{ "artist palette", "mission" }] = {
-					text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
-				},
-			},
-			[3] = {
-				[{ "artist palette", "mission" }] = {
-					text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
-				},
-			},
-			[4] = {
-				
 			},
 		},
 	},

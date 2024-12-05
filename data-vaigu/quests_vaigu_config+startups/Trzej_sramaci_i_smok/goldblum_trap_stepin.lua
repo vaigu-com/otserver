@@ -6,7 +6,7 @@ function goldBlumTrap.onStepIn(player, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline) < 1 then
+	if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) < 1 then
 		return false
 	end
 	player:teleportTo(player:getPosition():Moved(0, 0, 1))

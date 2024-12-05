@@ -1,4 +1,3 @@
-print("EXERCISE_WEAPON_BOX")
 local boxId = 906
 local boxAid = Storage.ExerciseWeaponBox
 

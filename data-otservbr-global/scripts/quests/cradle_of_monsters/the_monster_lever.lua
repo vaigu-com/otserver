@@ -19,7 +19,7 @@ local config = {
 	exitTpDestination = { x = 33810, y = 32587, z = 12 },
 }
 
-local encounterData = EncounterLever(config)
+local encounterData = EncounterData(config)
 encounterData:position({ x = 33813, y = 32584, z = 12 })
 encounterData:register()
 

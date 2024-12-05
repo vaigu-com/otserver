@@ -1,10 +1,9 @@
-print("SKURWOALANSKA")
 local quest = Quest("assassins_creed_squurvaali")
 
 quest
 	:Storage(function()
 		Storage.AssassinsCreedSquurvaali = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
@@ -25,28 +24,33 @@ quest
 				FindFatherNatanek = 1,
 				FindOldrak = 2,
 				ReportToGhasstlyPrincess = 3,
+				Finished = 4,
 			},
 			Mission02 = {
 				FindMareesha = 1,
 				FindArtistPaletteForMareesha = 2,
 				CompleteExorcismOnTomek = 3,
 				ReturnPaletteToMareesha = 4,
+				Finished = 5,
 			},
 			Mission03 = {
 				ReportToGhasstlyPrincess = 1,
 				FindVislavShivka = 2,
+				Finished = 3,
 			},
 			Mission04 = {
 				FindLambor = 1,
 				FindWafers = 2,
 				ReturnWafersToLambor = 3,
 				BringDeadweights = 4,
+				Finished = 5,
 			},
 			Mission05 = {
 				GoToHighestMountain = 1,
 				FireFlare = 2,
 				ReportToGhasstlyPrincess = 3,
 				ReportToFatherNatanek = 4,
+				Finished = 5,
 			},
 		}
 	end)
@@ -57,48 +61,48 @@ quest
 				[Storage.AssassinsCreedSquurvaali.Mission01] = {
 					name = "The First Step to Heaven",
 					states = {
-						[1] = "You agreed to help the ghost of the princess. Maybe some clergyman in town can help you.",
-						[2] = "Father Natanek told you where to find Oldrak. Maybe he can help you.",
-						[3] = "Oldrak didn't provide you with a solution, but he mentioned a magical carpet. Return to the princess now.",
-						[4] = "You consulted with the ghost of the princess, who suggested you find the nomads' camp.",
+						[QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek] = "You agreed to help the ghost of the princess. Maybe some clergyman in town can help you.",
+						[QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak] = "Father Natanek told you where to find Oldrak. Maybe he can help you.",
+						[QuestState.AssassinsCreedSquurvaali.Mission01.ReportToGhasstlyPrincess] = "Oldrak didn't provide you with a solution, but he mentioned a magical carpet. Return to the princess now.",
+						[QuestState.AssassinsCreedSquurvaali.Mission01.Finished] = "You consulted with the ghost of the princess, who suggested you find the nomads' camp.",
 					},
 				},
 				[Storage.AssassinsCreedSquurvaali.Mission02] = {
 					name = "The Tailor's Touch",
 					states = {
-						[1] = "The ghost of the princess suggested asking the nomads for help - after all, the Aladdin stereotype didn't come out of nowhere.",
-						[2] = "The nomad craftsman agreed to make a carpet for you. You will need 5 spider silk, a red pillow, and the artist palette that GM Tomek stole.",
-						[3] = "Complete the exorcism ritual with Ryan - blame it on Tomek.",
-						[4] = "Ryan gave you the palette stolen by Tomek. Now take it to Mareesha and create the carpet. You will need 5 spider silk, a red pillow, and the artist palette that GM Tomek stole.",
-						[5] = "You've crafted the carpet with Mareesha. Now return to the ghost and make further plans.",
+						[QuestState.AssassinsCreedSquurvaali.Mission02.FindMareesha] = "The ghost of the princess suggested asking the nomads for help - after all, the Aladdin stereotype didn't come out of nowhere.",
+						[QuestState.AssassinsCreedSquurvaali.Mission02.FindArtistPaletteForMareesha] = "The nomad craftsman agreed to make a carpet for you. You will need 5 spider silk, a red pillow, and the artist palette that GM Tomek stole.",
+						[QuestState.AssassinsCreedSquurvaali.Mission02.CompleteExorcismOnTomek] = "Complete the exorcism ritual with Ryan - blame it on Tomek.",
+						[QuestState.AssassinsCreedSquurvaali.Mission02.ReturnPaletteToMareesha] = "Ryan gave you the palette stolen by Tomek. Now take it to Mareesha and create the carpet. You will need 5 spider silk, a red pillow, and the artist palette that GM Tomek stole.",
+						[QuestState.AssassinsCreedSquurvaali.Mission02.Finished] = "You've crafted the carpet with Mareesha. Now return to the ghost and make further plans.",
 					},
 				},
 				[Storage.AssassinsCreedSquurvaali.Mission03] = {
 					name = "Distant Calling",
 					states = {
-						[1] = "You acquired a carpet that doesn't have any special abilities. You can return to the Ghasstly Princess.",
-						[2] = "Ghasstly Princess insisted that you go to Vislav Shivka for help.",
-						[3] = "Vislav Shivka said that Djinn can definitely perform miracles like enchanting a carpet.",
+						[QuestState.AssassinsCreedSquurvaali.Mission03.ReportToGhasstlyPrincess] = "You acquired a carpet that doesn't have any special abilities. You can return to the Ghasstly Princess.",
+						[QuestState.AssassinsCreedSquurvaali.Mission03.FindVislavShivka] = "Ghasstly Princess insisted that you go to Vislav Shivka for help.",
+						[QuestState.AssassinsCreedSquurvaali.Mission03.Finished] = "Vislav Shivka said that Djinn can definitely perform miracles like enchanting a carpet.",
 					},
 				},
 				[Storage.AssassinsCreedSquurvaali.Mission04] = {
 					name = "Djinn's Ordeal",
 					states = {
-						[1] = "Vislav Shivka directed you to the Djinn, who is located somewhere at the desert.",
-						[2] = "The Djinn instructed you on where to find the smugglers' base. Try to find something there that might interest him.",
-						[3] = "You found a box of wafers that Djinn mentioned. Return to him and ask for his help with your task.",
-						[4] = "Djinn agreed to help with 'enchanting' the carpet. Now find the missing dead weight, and Djinn will do his job.",
-						[5] = "You delivered the materials needed for 'enchanting' the carpet to Djinn. From now on, you will be able to fly from the highest mountain in the Caribbean.",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.FindLambor] = "Vislav Shivka directed you to the Djinn, who is located somewhere at the desert.",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.FindWafers] = "The Djinn instructed you on where to find the smugglers' base. Try to find something there that might interest him.",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.ReturnWafersToLambor] = "You found a box of wafers that Djinn mentioned. Return to him and ask for his help with your task.",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.BringDeadweights] = "Djinn agreed to help with 'enchanting' the carpet. Now find the missing dead weight, and Djinn will do his job.",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.Finished] = "You delivered the materials needed for 'enchanting' the carpet to Djinn. From now on, you will be able to fly from the highest mountain in the Caribbean.",
 					},
 				},
 				[Storage.AssassinsCreedSquurvaali.Mission05] = {
 					name = "The Final Stretch",
 					states = {
-						[1] = "Go to the top of the highest mountain in the Caribbean, get on the enchanted carpet, and...",
-						[2] = "Standing in front of the cave, ignite the flare given to you by the guardian to help the ghost.",
-						[3] = "You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost.",
-						[4] = "At the moment when the undead king of the crypt was about to finish you, an angel arrived who managed to avoid the traps and teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek.",
-						[5] = "Father Natanek informed you about the dire consequences of the King of the Crypt victory.",
+						[QuestState.AssassinsCreedSquurvaali.Mission05.GoToHighestMountain] = "Go to the top of the highest mountain in the Caribbean, get on the enchanted carpet, and...",
+						[QuestState.AssassinsCreedSquurvaali.Mission05.FireFlare] = "Standing in front of the cave, ignite the flare given to you by the guardian to help the ghost.",
+						[QuestState.AssassinsCreedSquurvaali.Mission05.ReportToGhasstlyPrincess] = "You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost.",
+						[QuestState.AssassinsCreedSquurvaali.Mission05.ReportToFatherNatanek] = "At the moment when the undead king of the crypt was about to finish you, an angel arrived who managed to avoid the traps and teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek.",
+						[QuestState.AssassinsCreedSquurvaali.Mission05.Finished] = "Father Natanek informed you about the dire consequences of the King of the Crypt victory.",
 					},
 				},
 			},
@@ -179,11 +183,10 @@ quest
 			},
 		}
 	end)
-	:Localizer(LOCALIZERS.AssassinsCreedSquurvaali)
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission01)
 	:State(
 		QUEST_NOT_STARTED,
-		Quest.Dialog("Ghasstly Princess", {
+		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ GREET }] = {
 				text = "Hello, traveler. I am the Ghasstly Princess. Do you want to hear my {story}?",
 			},
@@ -209,7 +212,7 @@ quest
 				},
 			},
 		}),
-		Quest.Script(function(missionState)
+		QuestFactory.Script(function(missionState)
 			local princess = { name = "Ghasstly Princess", pos = { x = 5682, y = 1408, z = 7 } }
 
 			local chairIn = MoveEvent()
@@ -252,37 +255,43 @@ quest
 			chairOut:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
 			chairOut:register()
 		end),
-		Quest.StartupItems({
+		QuestFactory.StartupItems({
 			{ pos = { 5685, 1408, 7 }, id = 2355, aid = Storage.AssassinsCreedSquurvaali.GhostChair },
 		})
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek,
-		Quest.Dialog("Father Natanek", {
-			[1] = {
-				[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess" }] = {
-					text = "If what you're saying is true - and I have no reason to doubt the words of my faithful |PLAYERNAME| - go to {Oldrak}. He will surely know how to help you.",
-					nextState = {
-						[Storage.AssassinsCreedSquurvaali.Mission01] = 2,
-					},
-				},
-			},
-			[{ min = 2 }] = {
-				[{ "oldrak" }] = {
-					text = "Oldrak has currently gone to the steppes. He is teaching the villagers there.",
+		QuestFactory.Dialog("Father Natanek", {
+			[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess" }] = {
+				text = "If what you're saying is true - and I have no reason to doubt the words of my faithful |PLAYERNAME| - go to {Oldrak}. He will surely know how to help you.",
+				nextState = {
+					[Storage.AssassinsCreedSquurvaali.Mission01] = 2,
 				},
 			},
 		})
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
-		Quest.Dialog("Oldrak", {
-			--38f
+		QuestFactory.Dialog("Oldrak", {
+			[{ "poleciec", "fly" }] = {
+				text = "As a mere mortal, you will need a magical carpet for this. It must be a carpet that can float very high above the ground. Humans can produce only one carpet {capable} of such flights: the enchanted carpet of the green one.",
+			},
+			[{ "zdolny", "capable" }] = {
+				text = "Ordinary carpets for 900 rubles can only lift a few meters above the ground. The green carpet, however, can lift itself much higher when it's on a special path. I am unable to create such a carpet, and unfortunately, I don't know if there's anyone in this world who can help you with that.",
+			},
+			[{ "mission" }] = {
+				text = "I understand. You need to go to the Caribbean Island, and from there, from the highest mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
+			},
+		}),
+		QuestFactory.Dialog("Father Natanek", {
+			[{ "oldrak" }] = {
+				text = "Oldrak has currently gone to the steppes. He is teaching the villagers there.",
+			},
 		})
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission01.ReportToGhasstlyPrincess,
-		Quest.Dialog("Ghasstly Princess", {
+		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission", "carpet", "dywan" }] = {
 				text = "Magic carpets? Who could have knowledge of something like magical carpets? Although... maybe some desert dwellers might know something about it. I don't know what to do myself, maybe the nomads can help you, although they are not experts in magic.",
 				nextState = {
@@ -297,7 +306,7 @@ quest
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission02)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission02.FindMareesha,
-		Quest.Dialog("Mareesha", {
+		QuestFactory.Dialog("Mareesha", {
 			[{ "mission" }] = {
 				text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
 			},
@@ -311,12 +320,12 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission02.FindArtistPaletteForMareesha,
-		Quest.Dialog("Mareesha", {
+		QuestFactory.Dialog("Mareesha", {
 			[{ "artist palette", "mission" }] = {
 				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
 			},
 		}),
-		Quest.Dialog("Ryan", {
+		QuestFactory.Dialog("Ryan", {
 			[{ "mission" }] = {
 				text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
 				specialActionsOnSuccess = {
@@ -351,12 +360,12 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission02.CompleteExorcismOnTomek,
-		Quest.Dialog("Mareesha", {
+		QuestFactory.Dialog("Mareesha", {
 			[{ "artist palette", "mission" }] = {
 				text = "GM Tomek stole the last palette from me. Now he's in Knurow.",
 			},
 		}),
-		Quest.Dialog("Ryan", {
+		QuestFactory.Dialog("Ryan", {
 			[{ "his fault", "jego wina", "mission" }] = {
 				text = "And there he goes, sucked and swirled away. Here you go, the palette you were looking for.",
 				nextState = {
@@ -368,7 +377,7 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission02.ReturnPaletteToMareesha,
-		Quest.Dialog("Mareesha", {
+		QuestFactory.Dialog("Mareesha", {
 			[{ "mission", "tailor", "uszyc", "sew" }] = {
 				text = "Here is your carpet.",
 				textNoRequiredItems = "Return when you have all the items.",
@@ -392,7 +401,7 @@ quest
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission03)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission03.ReportToGhasstlyPrincess,
-		Quest.Dialog("Ghasstly Princess", {
+		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission", "misja" }] = {
 				text = "It's wonderful that you managed to get so far. Please, here is my staff. Vislav Shivka manifested itself in my dreams yesterday. He told me to go to... I don't remember who. Maybe it's silly, but you have to ask him about enchanting the carpet.",
 				nextState = {
@@ -405,7 +414,7 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission03.FindVislavShivka,
-		Quest.Dialog("Vislav Shivka", {
+		QuestFactory.Dialog("Vislav Shivka", {
 			[{ "mission", "dywan", "carpet", "misja", "zaczarowany dywan" }] = {
 				text = "Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}.",
 				nextState = {
@@ -418,7 +427,7 @@ quest
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission04)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission04.FindLambor,
-		Quest.Dialog("Vislav Shivka", {
+		QuestFactory.Dialog("Vislav Shivka", {
 			[{ "istoty", "creatures" }] = {
 				text = "Im talking about the {djinn} of course. They will get you drunk, free of charge. And the best thing is you dont have to pay.",
 			},
@@ -426,7 +435,7 @@ quest
 				text = "You will find them in Hurghada desert. Can't say i recall anything more because last time i was here they had to tow me back to my home, if you know what i mean..",
 			},
 		}),
-		Quest.Dialog("Lambor", {
+		QuestFactory.Dialog("Lambor", {
 			[{ "mission", "carpet", "dywan" }] = {
 				text = "Yes, I can perform such a service. If you want me to help you, first you {help} me.",
 			},
@@ -440,12 +449,12 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission04.FindWafers,
-		Quest.Dialog("Lambor", {
+		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
 				text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
 			},
 		}),
-		Quest.StartupItems({
+		QuestFactory.StartupItems({
 			{
 				pos = { 6051, 1503, 9 },
 				id = 2484,
@@ -457,7 +466,7 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission04.ReturnWafersToLambor,
-		Quest.Dialog("Lambor", {
+		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
 				text = "Thanks for your help. Now I will handle your request. I will need 5 dead weights to enchant your carpet. I will place them all on the carpet, which should result in overflow, and the carpet's weight should become negative. Return when you have 5 pieces of dead weight.",
 				requiredItems = { ASSASSINS_CREED_SKURWOALA_KEY_ITEMS.silicon },
@@ -470,7 +479,7 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission04.BringDeadweights,
-		Quest.Dialog("Lambor", {
+		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
 				text = "Please take this carpet. Remember that the flying function only works in specific places, namely on the peaks of the highest mountains. One of these peaks is surely in the Caribbean.",
 				requiredItems = { { id = 20202, count = 5 } },
@@ -486,12 +495,12 @@ quest
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission05)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission05.GoToHighestMountain,
-		Quest.Dialog("Ghastly Princess", {
+		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission" }] = {
 				text = "You managed to get the carpet! Now try to go to the top of the mountain that the djinn mentioned. It's my only hope.",
 			},
 		}),
-		Quest.Script(function(missionState)
+		QuestFactory.Script(function(missionState)
 			local function canEnterPath(player)
 				if player:HasExactMissionState(missionState) then
 					return true
@@ -534,7 +543,7 @@ quest
 			lastTile:aid(Storage.AssassinsCreedSquurvaali.HeavenLastTile)
 			lastTile:register()
 		end),
-		Quest.Dialog("Aunor", {
+		QuestFactory.Dialog("Aunor", {
 			[{ "mission" }] = {
 				text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
 			},
@@ -551,7 +560,7 @@ quest
 				},
 			},
 		}),
-		Quest.StartupItems({
+		QuestFactory.StartupItems({
 			{ pos = { 5810, 804, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
 			{ pos = { 5811, 804, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
 			{ pos = { 5810, 805, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
@@ -562,15 +571,15 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission05.FireFlare,
-		Quest.Dialog("Ghasstly Princess", {
+		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission" }] = {
 				text = "You should fire the flare outside, not inside, silly.",
 			},
 		}),
-		Quest.StartupItems({
+		QuestFactory.StartupItems({
 			{ pos = { 5688, 1413, 7 }, id = 15047, aid = Storage.AssassinsCreedSquurvaali.KeyItems.Flare },
 		}),
-		Quest.Script(function(missionState)
+		QuestFactory.Script(function(missionState)
 			local updateStorages = {
 				[Storage.AssassinsCreedSquurvaali.Mission05] = 3,
 			}
@@ -604,7 +613,7 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission05.ReportToGhasstlyPrincess,
-		Quest.Dialog("Ghasstly Princess", {
+		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ GREET }] = {
 				text = "Finally, I can end this charade. You, sucker. I'm not a princess, I'm THE undead king your mother warned you about. An angel will arrive shortly, whom I can easily defeat and drain of all his power. You can't do {anything} about it.",
 				specialActionsOnSuccess = {
@@ -629,7 +638,7 @@ quest
 	)
 	:State(
 		QuestState.AssassinsCreedSquurvaali.Mission05.ReportToFatherNatanek,
-		Quest.Dialog("Father Natanek", {
+		QuestFactory.Dialog("Father Natanek", {
 			[{ "krol krypty", "crypt king", "king of the crypt", "king", "krol" }] = {
 				text = "I will be the harbinger of bad news. The Crypt King has managed to regain a portion of power by consuming the essence of a defeated angel. The Crypt King may attempt to regain strength in the Down's Labyrinth. To prevent this, you will need the assistance of Gandalf.",
 				nextState = {

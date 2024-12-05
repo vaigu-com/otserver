@@ -17,11 +17,11 @@ Raid = {
 
 -- Set the metatable so that Raid inherits from Encounter
 setmetatable(Raid, {
-	__index = Encounter,
+	__index = EncounterData,
 	---@param config { name: string, global: boolean, allowedDays: Weekday|Weekday[], minActivePlayers: number, targetChancePerDay: number, maxChancePerCheck: number, minGapBetween: string|number, initialChance: number, maxChecksPerDay: number }
 	__call = function(self, name, config)
 		config.global = true
-		local raid = setmetatable(Encounter(name, config), { __index = Raid })
+		local raid = setmetatable(EncounterData(name, config), { __index = Raid })
 		raid.allowedDays = config.allowedDays
 		raid.minActivePlayers = config.minActivePlayers
 		raid.targetChancePerDay = config.targetChancePerDay
@@ -38,7 +38,7 @@ setmetatable(Raid, {
 ---@param self Raid The raid to register
 ---@return boolean True if the raid is registered successfully, false otherwise
 function Raid:register()
-	Encounter.register(self)
+	EncounterData.register(self)
 	Raid.registry[self.name] = self
 	self.registered = true
 	return true
@@ -61,7 +61,7 @@ end
 ---@param self Raid The raid to check
 ---@return boolean True if the raid can be started, false otherwise
 function Raid:canStart()
-	if self.currentStage ~= Encounter.unstarted then
+	if self.currentStage ~= EncounterData.unstarted then
 		logger.debug("Raid {} is already running", self.name)
 		return false
 	end

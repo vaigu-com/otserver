@@ -51,7 +51,7 @@ local function createCustomItemOnMap(context)
 	local pos = context.pos
 	local item = Game.createItem(id, count, pos)
 	if not item then
-		print(debug.traceback(T("Cannot create item :id:, on position :pos:", { id = id, pos = pos:ToString() })))
+		logger.warn(T("Cannot create item :id:, on position { :x:, :y:, :z: }", { id = id, x = pos.x, y = pos.y, z = pos.z }))
 		return
 	end
 	if context.immovable == true then
@@ -97,7 +97,7 @@ local function normalizeItemData(itemData, anchor)
 			pos = ExtractCoords(pos)
 		end
 		if pos.x == 0 or pos.y == 0 then
-			pos = nil
+			logger.warn("[normalizeItemData] Resulting pos has x or y equal to 0")
 		end
 	end
 	context.pos = pos
@@ -124,7 +124,7 @@ local function loadStartupItem(itemConfig, anchor)
 		CustomItemRegistry():Register(context)
 	end
 	if itemWontBeCreatedOrRegistered(context) then
-		logger.debug(T("[loadStartupItem] Item declared wont be created of registered. This renders this item declaration useless."))
+		logger.debug("[loadStartupItem] Item declared wont be created or registered. This renders this item declaration useless." .. tostring(context))
 		logger.debug(debug.traceback())
 	end
 end

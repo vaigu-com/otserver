@@ -18,7 +18,7 @@ NUMBER_TO_ORDINAL_STRING = {
 
 ---@deprecated
 RegisterEncounter = function()
-	logger.error("[RegisterEncounter] is deprecated. Use EncounterLever and Encounter")
+	logger.error("[RegisterEncounter] is deprecated. Use EncounterData()")
 end
 
 function SendPlayerIsPzLocked(player)
@@ -36,16 +36,15 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 end
 
 function Player:isOnEvent()
-	if
-		self:getStorageValue(Storage.GrimEvent.Joined) >= 1
-		or self:getStorageValue(Storage.hasteLock) == 1
-		or self:getStorageValue(Storage.healLock) == 1
-	then
+	if self:getStorageValue(Storage.GrimEvent.Joined) >= 1 or self:getStorageValue(Storage.hasteLock) == 1 or self:getStorageValue(Storage.healLock) == 1 then
 		return true
 	end
 end
 
 function T(template, variables)
+	if not variables then
+		logger.warn("[T] no variables table provided")
+	end
 	local result = template
 	for key, value in pairs(variables) do
 		result = result:gsub(":" .. key .. ":", value)
@@ -140,11 +139,15 @@ function NextSpellId()
 	return nextAvailableSpellIdString
 end
 
-function SimpleTextDisplay(player, item, string)
+function SimpleTextDisplay(player, item, message)
 	local title = "You read the following."
-	local message = string or ("Report this bug to the gamemaster. Debug info: AID:" .. item:getActionId())
 	local close = "Close"
-	local aid = item:getActionId()
+	local aid = function()
+		if item then
+			return item:getActionId()
+		end
+		return NextStorage()
+	end
 
 	player:registerEvent("SimpleDisplayOnLook")
 

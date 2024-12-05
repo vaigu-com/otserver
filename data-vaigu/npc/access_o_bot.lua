@@ -48,6 +48,8 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
+
+do return end --38f
 local dialog = {
 	[Storage.ProdigalSon.Localizer] = {
 		[Storage.ProdigalSon.Mission06] = {

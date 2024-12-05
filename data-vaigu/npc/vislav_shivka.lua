@@ -94,23 +94,10 @@ local dialogs = {
 			text = "Well, go away.",
 		},
 	},
-	[Storage.TheaterOfCheapThrills.Questline] = {
+	[Storage.TheaterOfCheapThrills.State] = {
 		[Storage.TheaterOfCheapThrills.Mission09] = {
 			[2] = {
-				[{
-					"bone sword",
-					"burst arrow",
-					"crystal coin",
-					"przekret",
-					"korupcja",
-					"corruption",
-				}] = {
-					text = "What!? That's corruption in a broad daylight! I'm not down for that. I'm going to investigate this case.",
-					nextState = {
-						[Storage.TheaterOfCheapThrills.Questline] = 27,
-						[Storage.TheaterOfCheapThrills.Mission09] = 3,
-					},
-				},
+			
 			},
 		},
 	},

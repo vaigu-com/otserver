@@ -1,3 +1,6 @@
+do
+	return
+end --38f
 local internalNpcName = "Woody"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
@@ -85,7 +88,7 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.FourActTragedy.Questline] = {
+	[Storage.FourActTragedy.State] = {
 		[{ min = 4, max = 7 }] = { [{ "portal", "teleport", "retro" }] = { text = "" } },
 	},
 }

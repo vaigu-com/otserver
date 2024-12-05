@@ -122,7 +122,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "no", "nie" }, message) and npcHandler:getTopic(playerId) > 0 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie to nie, spadaj!" or "Well, better go away.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
-	elseif MsgContains(message, "red gem") and player:getStorageValue(Storage.PomocMiejscowym.ZniszczonaKula) == 2 then
+	elseif MsgContains(message, "red gem") and player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Potrafie z nich wykuc ring of healing, co ty na to?" or "I can exchange your red gems for a ring of healings. Confirm if youre interested in this.", npc, creature)
 		npcHandler:setTopic(playerId, 2)
 		-- ============ DO MISJI TRUDNE POCZATKI =============
@@ -132,9 +132,9 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.TrudnePoczatki.GypsyAsked, 1) -- lockujemy Gypsya jako wykonanego
 				player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) + 1) -- +1 zeby kolejnosc nie miala znaczenia
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Kula! Ukradli mi moja {kule} do wrozenia!" or "Ball! My fortune telling {ball} got broken.", npc, creature)
-			elseif player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 and player:getStorageValue(Storage.PomocMiejscowym.ZniszczonaKula) < 1 then
+			elseif player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 and player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) < 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Kula! Ukradli mi moja {kule} do wrozenia!" or "Ball! My fortune telling {ball} got broken.", npc, creature)
-			elseif player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 and player:getStorageValue(Storage.PomocMiejscowym.ZniszczonaKula) == 1 then
+			elseif player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 and player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Czekam az mi ogarniesz nowa kule do wrozenia." or "I hope you will find new {ball} for me.", npc, creature)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Jeszcze raz dzieki za te kule." or "Thank you again for this ball.", npc, creature)
@@ -144,15 +144,15 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		-- ============ DO MISJI TRUDNE POCZATKI =============
 	elseif table.contains({ "kula", "kule", "ball" }, message) and player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 then
-		if player:getStorageValue(Storage.PomocMiejscowym.ZniszczonaKula) < 1 then
+		if player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) < 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Moja kula wrozbiarska! Prawdopodobnie zostala skradziona, moze uda ci sie znalezc nowa aby ja zastapic, zglos sie wtedy do mnie!" or "My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any.", npc, creature)
-			player:setStorageValue(Storage.PomocMiejscowym.ZniszczonaKula, 1) -- zaczynamy questa
-		elseif player:getStorageValue(Storage.PomocMiejscowym.ZniszczonaKula) == 1 and player:getItemCount(3076) > 0 then
+			player:setStorageValue(Storage.HelpingLocals.ZniszczonaKula, 1) -- zaczynamy questa
+		elseif player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) == 1 and player:getItemCount(3076) > 0 then
 			-- Q5.1
 			player:addExperience(20000, true) -- 20k expa
 			player:getPosition():sendMagicEffect(CONST_ME_STUN)
 			-- Q5.1
-			player:setStorageValue(Storage.PomocMiejscowym.ZniszczonaKula, 2) -- koniec questa
+			player:setStorageValue(Storage.HelpingLocals.ZniszczonaKula, 2) -- koniec questa
 			player:removeItem(3076, 1) -- zabieramy kule
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmm, poprzednia byla lepsza, ale tez jest super. Dzieki wielkie!" or "Well, previous one was beeter, but this one if fine too. Thak you!", npc, creature)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "W podziece pozwole ci wymieniac u mnie Red Gem na Ring of Healing." or "I can take some time to exchange your red gems for a ring of healing from now on.", npc, creature)

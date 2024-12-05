@@ -11,7 +11,7 @@ function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotke
 		return false
 	end
 
-	local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
+	local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
 
 	if storageVal < 21 or storageVal > 23 then
 		return false

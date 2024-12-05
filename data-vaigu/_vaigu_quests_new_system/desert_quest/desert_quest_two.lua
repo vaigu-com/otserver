@@ -4,7 +4,7 @@ quest
 		Storage.DesertQuestHub = Storage.DesertQuestHub or {}
 		Storage.DesertQuestHub.ToDesertQuestTwo = NextStorage()
 		Storage.DesertQuestTwo = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			ProgressChests = NextStorage(),
 			FastMonster = NextStorage(),
@@ -1745,9 +1745,7 @@ quest
 			local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 			if puzzlesCompleted < puzzlesCount then
 				player:teleportTo(fromPosition)
-				local errorString = player:Localizer(Storage.DesertQuestTwo.Questline):Get(
-					"You need to complete all the puzzle challenges first. Your current progress: "
-				)
+				local errorString = player:Localizer(Storage.DesertQuestTwo.State):Get("You need to complete all the puzzle challenges first. Your current progress: ")
 				local finalString = errorString .. puzzlesCompleted .. "/" .. puzzlesCount
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, finalString)
 				return
@@ -1791,32 +1789,27 @@ quest
 		trickTeleport:aid(Storage.DesertQuestTwo.Puzzles.TrickTeleport)
 		trickTeleport:register()
 
-		local desertQuestTwoTrickSign = function(context)
-			local user = context.player
-			if not user:isPlayer() then
-				return false
-			end
-			local localizer = user:Localizer(Storage.DesertQuestTwo.Questline)
-			local resultReal = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
-			local resultTrick = localizer:Get("the sign says that knight and druid should use rope")
-			if not user:isPaladin() then
+		local trickSignLook = Look()
+		function trickSignLook.onLook(player, item)
+			local localizer = player:Localizer(LOCALIZERS.DesertQuestTwo)
+			local paladinDisplayedString = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
+			local paladinSaidString = localizer:Get("the sign says that knight and druid should use rope")
+			if not player:isPaladin() then
 				return localizer:Get("Only paladins can read the sacred texts.")
 			end
-			user:say(resultTrick, TALKTYPE_SAY)
+			player:say(paladinSaidString, TALKTYPE_SAY)
 
-			return resultReal
+			SimpleTextDisplay(player, item, paladinDisplayedString)
 		end
-		RegisterOnLook(desertQuestTwoTrickSign, "TRICK_SIGN", Storage.DesertQuestTwo.Questline)
+		trickSignLook:aid(Storage.DesertQuestOne.Readable.FloorBooks)
+		trickSignLook:regiser()
 
-		local desertQuestTwoTrickGrave = function(context)
-			local user = context.player
-			if not user:isPlayer() then
-				return false
-			end
-			local localizer = user:Localizer(Storage.DesertQuestTwo.Questline)
+		local trickGraveLook = Look()
+		function trickGraveLook.onLook(player, item)
+			local localizer = player:Localizer(LOCALIZERS.DesertQuestTwo)
 			local hereWillLie = localizer:Get("Here will lie ")
 			local dateOfDeath = localizer:Get("Date of death")
-			local name = user:getName()
+			local name = player:getName()
 
 			local now = os.time()
 			local dateTable = os.date("*t", now)
@@ -1832,14 +1825,13 @@ quest
 				month = month,
 				year = year,
 			})
-			killingCurse(user)
-			return finalString
+			killingCurse(player)
+			SimpleTextDisplay(player, item, finalString)
 		end
-		RegisterOnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", Storage.DesertQuestTwo.Questline)
+		trickGraveLook:aid(Storage.DesertQuestOne.Readable.FloorBooks)
+		trickGraveLook:regiser()
 	end)
 	:Script(function(missionState)
-		local sparksNumber = 3
-
 		local passableId = 5062
 		local unpassableId = 6288
 

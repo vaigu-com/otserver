@@ -49,33 +49,6 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.ThreeSramatiansAndTheDragon.Localizer] = {
-		[Storage.ThreeSramatiansAndTheDragon.Mission05] = {
-			[3] = {
-				[{ "mission" }] = {
-					text = "I know where you can find your friends. But first, I expect something in return. Bring me two dragon beefbottoms, and I'll help you.",
-					nextState = {
-						[Storage.ThreeSramatiansAndTheDragon.Mission05] = 4,
-					},
-				},
-			},
-			[4] = {
-				[{ "mission" }] = {
-					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
-					requiredItems = { { id = 3583, count = 2 } },
-					textNoRequiredItems = "Come back with two dragon beefbottoms, and I promise I'll help you.",
-					nextState = {
-						[Storage.ThreeSramatiansAndTheDragon.Mission05] = 5,
-					},
-				},
-			},
-			[5] = {
-				[{ ANY_MESSAGE }] = {
-					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
-				},
-			},
-		},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

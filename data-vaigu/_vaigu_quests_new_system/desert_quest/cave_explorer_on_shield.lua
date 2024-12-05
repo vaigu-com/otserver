@@ -76,7 +76,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local function movePlayersFromArea(topLeft, downRight, safePos)
-			CreatureList():Area(topLeft, downRight):FilteredByPlayer():MovedToPos(safePos)
+			CreatureList():Area(topLeft, downRight):FilterByPlayer():MovedToPos(safePos)
 		end
 
 		local topLeft = DESERT_QUEST_ONE_ANCHOR:Moved({ x = -42, y = 55, z = 3 })

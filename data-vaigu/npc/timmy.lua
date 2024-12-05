@@ -49,49 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.FourActTragedy.Questline] = {
-		[4] = {
-			[{ "mission" }] = {
-				text = "It seems I got lost in the corridors of time. I have vague memories from the future that I am a bouncer in my hometown. I think I could help you with the immigrant influx, but first, I need to reconcile with my present self. Find my equipment stolen by bandits, and I will help you.",
-				nextState = {
-					[Storage.FourActTragedy.Questline] = 5,
-					[Storage.FourActTragedy.Mission02] = 2,
-					[Storage.FourActTragedy.WawelDragonAccess] = 1,
-				},
-			},
-		},
-		[5] = {
-			[{ "mission" }] = {
-				text = "I don't know where they moved my stuff to.",
-			},
-		},
-		[6] = {
-			[{ "mission" }] = {
-				text = "Thank you, that's mine. Okay, now I'm going back to the {present}!",
-				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag,
-				},
-				textNoRequiredItems = "Are you sure you didn't lose any of my stuff along the way?",
-				nextState = {
-					[Storage.FourActTragedy.Questline] = 7,
-					[Storage.FourActTragedy.Mission02] = 4,
-				},
-			},
-		},
-		[7] = {
-			[{ "mission", "present", "terazniejszosci" }] = {
-				text = "Tell Tomek that I will deal with those refugees as soon as I can. Actually, I've already dealt with them. Yeah, the paradoxes of time travel. And one more thing: the person responsible for convincing immigrants to use the HF-P/X portal was none other than Rat Bum.",
-				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
-				},
-				textNoRequiredItems = "My magic doesn't seem to work. We'll need elven spells. Go to the elves' rock and get some magical powder that I can use for the ritual. Watch out for the dormant Soros foundations. I've seen that they too got lost in this world.",
-				nextState = {
-					[Storage.FourActTragedy.Questline] = 8,
-					[Storage.FourActTragedy.Mission02] = 5,
-				},
-			},
-		},
-	},
+
 }
 
 local function greetCallback(npc, creature, type, message)

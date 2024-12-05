@@ -2,7 +2,7 @@ local quest = Quest("theater_of_cheap_thrills")
 quest
 	:Storage(function()
 		Storage.TheaterOfCheapThrills = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
@@ -35,7 +35,7 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Theater of Cheap Thrills",
-			startStorageId = Storage.TheaterOfCheapThrills.Questline,
+			startStorageId = Storage.TheaterOfCheapThrills.State,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
@@ -198,7 +198,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.TheaterOfCheapThrills.Questline] = 30,
+			[Storage.TheaterOfCheapThrills.State] = 30,
 			[Storage.TheaterOfCheapThrills.Mission10] = 3,
 		}
 
@@ -361,7 +361,7 @@ quest
 		mType:register(monster)
 	end)
 	:MonsterEvent(function()
-		local storages = { Storage.TheaterOfCheapThrills.Questline, Storage.TheaterOfCheapThrills.Mission11 }
+		local storages = { Storage.TheaterOfCheapThrills.State, Storage.TheaterOfCheapThrills.Mission11 }
 
 		local juerdoDeath = CreatureEvent("JuerdoDeath")
 		function juerdoDeath.onDeath(creature)
@@ -383,7 +383,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			Storage.TheaterOfCheapThrills.Questline,
+			Storage.TheaterOfCheapThrills.State,
 			Storage.TheaterOfCheapThrills.Mission03,
 		}
 
@@ -406,7 +406,7 @@ quest
 		pitcaDeath:register()
 	end)
 	:MonsterEvent(function()
-		local storages = { Storage.TheaterOfCheapThrills.Questline, Storage.TheaterOfCheapThrills.Mission07 }
+		local storages = { Storage.TheaterOfCheapThrills.State, Storage.TheaterOfCheapThrills.Mission07 }
 
 		local robercikDeath = CreatureEvent("RobercikDeath")
 		function robercikDeath.onDeath(creature)
@@ -561,7 +561,7 @@ quest
 
 			player:say(
 				player
-					:Localizer(Storage.TheaterOfCheapThrills.Questline)
+					:Localizer(Storage.TheaterOfCheapThrills.State)
 					:Get("The book has been unsealed. You have one minute before its closed."),
 				TALKTYPE_MONSTER_SAY
 			)

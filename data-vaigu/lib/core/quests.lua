@@ -379,7 +379,7 @@ if not Quests then
 			missions = {
 				[1] = {
 					name = "Freaking Rats",
-					storage = Storage.PomocMiejscowym.PrzekleteSzczury,
+					storage = Storage.HelpingLocals.PrzekleteSzczury,
 					minState = 1,
 					maxState = 4,
 					states = {
@@ -391,7 +391,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Cheap Recycling",
-					storage = Storage.PomocMiejscowym.TaniRecykling,
+					storage = Storage.HelpingLocals.TaniRecykling,
 					minState = 1,
 					maxState = 2,
 					states = {
@@ -401,7 +401,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Broken Orb",
-					storage = Storage.PomocMiejscowym.ZniszczonaKula,
+					storage = Storage.HelpingLocals.ZniszczonaKula,
 					minState = 1,
 					maxState = 2,
 					states = {
@@ -679,7 +679,7 @@ if not Quests then
 			missions = {
 				[1] = {
 					name = "Top Chef",
-					storage = Storage.TopChef.Questline,
+					storage = Storage.TopChef.State,
 					minState = 1,
 					maxState = 16,
 					description = "TOP_CHEF_MISSION_DESCRIPTION",

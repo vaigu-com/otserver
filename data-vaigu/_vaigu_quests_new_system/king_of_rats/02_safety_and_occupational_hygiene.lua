@@ -2,7 +2,7 @@ local quest = Quest("safety_and_occupational_hygiene")
 quest
 	:Storage(function()
 		Storage.SafetyAndOccupationalHygiene = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
@@ -19,7 +19,7 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Safety and Occupational Hygiene",
-			startStorageId = Storage.SafetyAndOccupationalHygiene.Questline,
+			startStorageId = Storage.SafetyAndOccupationalHygiene.State,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
@@ -109,7 +109,7 @@ quest
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Questline)
+			local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State)
 
 			if storageVal < 11 then
 				return false
@@ -128,7 +128,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			[Storage.SafetyAndOccupationalHygiene.Questline] = 14,
+			[Storage.SafetyAndOccupationalHygiene.State] = 14,
 			[Storage.SafetyAndOccupationalHygiene.Mission06] = 2,
 		}
 
@@ -139,7 +139,7 @@ quest
 			end
 			Game.setStorageValue(Storage.SafetyAndOccupationalHygiene.Spawns.Petrus, 0)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Questline)
+				local storage_val = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State)
 				if storage_val ~= 13 then
 					return true
 				end
@@ -391,7 +391,7 @@ quest
 			if not player:isPlayer() then
 				return false
 			end
-			if player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Questline) ~= 13 then
+			if player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State) ~= 13 then
 				return
 			end
 

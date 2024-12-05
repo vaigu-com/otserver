@@ -36,30 +36,38 @@ INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
 QUEST_NOT_STARTED = -1
 QUEST_STARTED = 1
+ACCESS_GRANTED = 1
 MISSION_START_VALUE = 1
+DEFAULT_MAX_STATE = 999999
+DEFAULT_MIN_STATE = -999999
+ANY_STATE = { min = DEFAULT_MIN_STATE, max = DEFAULT_MAX_STATE }
 
 CONDITION_STATUS = {
+	--Single condition
 	CONDITION_PASSED = "CONDITION_PASSED",
 	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
+	--Multiple conditions
 	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
 	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
+
+	--Unused
+	--AT_LEAST_ONE_CONDITION_PASSED = "AT_LEAST_ONE_CONDITION_PASSED"
+	--NO_CONDITIONS_PASSED = "NO_CONDITIONS_PASSED"
 }
 
 DISCARD_DIALOG = "DISCARD_DIALOG"
 SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
 FAIL_RESOLVE = "FAIL_RESOLVE"
 
-local defaultMaxState = 99999
-
 local specialMessageTypes = { MESSAGE_GREET, MESSAGE_FAREWELL, MESSAGE_WALKAWAY }
 local specialMessageTypeToMessage = {
-	[MESSAGE_GREET] = "LOCALIZER_GREET",
-	[MESSAGE_FAREWELL] = "LOCALIZER_FAREWELL",
-	[MESSAGE_WALKAWAY] = "LOCALIZER_WALKAWAY",
+	[MESSAGE_GREET] = GREET,
+	[MESSAGE_FAREWELL] = FAREWELL,
+	[MESSAGE_WALKAWAY] = WALKAWAY,
 }
 
--- ToDo: create item kv field (string) in rme
--- ToDo: storage keys will be converted to kv, therefore this function will no longer be needed
+-- ToDo: create item kv field (string) in rme?
+-- ToDo: storage keys will be converted to kv? if so this function will no longer be needed
 local FIRST_AVAILABLE_STORAGE = 8100
 NEXT_STORAGE = NEXT_STORAGE or FIRST_AVAILABLE_STORAGE
 function NextStorage()
@@ -139,14 +147,14 @@ local function parseRequiredState(requiredState)
 
 	if type(requiredState) == "number" then
 		min = requiredState
-		max = defaultMaxState
+		max = DEFAULT_MAX_STATE
 		neq = nil
 		excludeMin = false
 		excludeMax = false
 		errorMessage = ""
 	elseif type(requiredState) == "table" then
 		min = requiredState.min or QUEST_NOT_STARTED
-		max = requiredState.max or defaultMaxState
+		max = requiredState.max or DEFAULT_MAX_STATE
 		neq = requiredState.neq
 		excludeMin = requiredState.excludeMin
 		excludeMax = requiredState.excludeMax
@@ -424,7 +432,6 @@ function DialogContext:SendIncomprehensibleError()
 	end
 
 	local errorMessage = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
-	print("DialogContext::SendIncomprehensibleError", errorMessage)
 	npcHandler:say(errorMessage, npc, player)
 	return true
 end
@@ -432,7 +439,7 @@ end
 local function hasRequiredQuestlineState(state, requiredState)
 	if type(requiredState) == "table" then
 		local min = requiredState.min or -1
-		local max = requiredState.max or defaultMaxState
+		local max = requiredState.max or DEFAULT_MAX_STATE
 		if state < min then
 			return false
 		end
@@ -448,9 +455,7 @@ local function hasRequiredQuestlineState(state, requiredState)
 end
 
 local function isPattern(pattern)
-	print("pattern?")
 	for _, value in pairs(pattern) do
-		print("value", value)
 		if value:gmatch("<[^%s]->")() then
 			return true
 		end
@@ -932,35 +937,31 @@ function ResolutionContext:TrySendTranslateSuccessMessage()
 
 	local translatedMessage = self.player:Localizer(self.localizerName):Context(self):Get(self.actionsOnSuccess.text)
 	if not translatedMessage then
+		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.actionsOnSuccess.text, lang = self.player:getLanguage() }))
 		return
 	end
 
-	print("ResolutionContext::TrySendTranslateSuccessMessage", translatedMessage)
 	if self.specialMessageType then
-		print("set")
 		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	else
-		print("say")
 		self.npcHandler:say(translatedMessage, self.npc, self.player)
 	end
 end
 
 function ResolutionContext:TrySendTranslateFailMessage()
-	if not self.actionsOnSuccess.text then
+	if not self.errorMessage then
 		return
 	end
 
 	local translatedMessage = self.player:Localizer(self.localizerName):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
+		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.errorMessage, lang = self.player:GetLanguage() }))
 		return
 	end
 
-	print("ResolutionContext::TrySendTranslateFailMessage", translatedMessage)
 	if self.specialMessageType then
-		print("set")
 		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	else
-		print("say")
 		self.npcHandler:say(translatedMessage, self.npc, self.player)
 	end
 end

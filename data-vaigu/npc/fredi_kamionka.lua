@@ -48,26 +48,8 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local escortContext = {
-	timeLimitSeconds = 600,
-	startAfterSeconds = 2,
-	escorteeName = "Fredi Kamionka Escort",
-	localizerName = Storage.ProdigalSon.Questline,
-}
-
 local dialog = {
-	[Storage.ProdigalSon.Questline] = {
-		[20] = {
-			[{ "mission" }] = {
-				text = "Alrigth, lets go.",
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.frediBeer },
-				specialActionsOnSuccess = {
-					{ action = StartEscortDialog, escortContext = escortContext },
-				},
-				textNoRequiredItems = "Give me the booze! Give me the booze!",
-			},
-		},
-	},
+
 }
 
 local function greetCallback(npc, creature, type, message)

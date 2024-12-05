@@ -1,51 +1,14 @@
-local singleton
 EncounterDataRegistry = {}
-function EncounterDataRegistry:New()
-	if singleton then
-		return singleton
-	end
-	singleton = {}
-	singleton.__index = self
-	setmetatable(singleton, self)
-	return singleton
-end
-setmetatable(EncounterDataRegistry, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
-EncounterDataRegistry()
+EncounterDataRegistry.__index = EncounterDataRegistry
+EncounterDataRegistry.registry = {}
 
 EncounterDataRegistry.states = {}
----@param encounterData EncounterLever
-function EncounterDataRegistry:register(encounterData)
-	self.states[encounterData.encounterName] = encounterData
+---@param encounter EncounterData
+function EncounterDataRegistry:Register(encounter)
+	self.states[encounter.encounterName] = encounter
 	return self
 end
 
-function EncounterDataRegistry:mapBossToEncounter(encounterName, bossName)
-	self.states[bossName] = self:getStateByEncounterName(encounterName)
-end
-
-function EncounterDataRegistry:getStateByCreature(creature)
-	local creatureName = creature:getName()
-	return self.states[creatureName]
-end
-
-function EncounterDataRegistry:getStateByCreatureName(creatureName)
-	return self.states[creatureName]
-end
-
-function EncounterDataRegistry:getStateByEncounterName(encounterName)
-	return self.states[encounterName]
-end
-
-function EncounterDataRegistry:unregister(name)
-	local encounterName = self.states[name].encounterName
-	for key, encounterLever in pairs(self.states) do
-		if encounterLever.encounterName == encounterName then
-			self.states[key] = nil
-		end
-	end
-	return self
+function EncounterDataRegistry:GetByEncounterName(encounterName)
+	return self.registry[encounterName]
 end

@@ -48,6 +48,9 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
+do
+	return
+end --38
 -- ToDo: localization tables missing the sentences below
 local dialog = {
 	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
@@ -86,9 +89,7 @@ local dialog = {
 		},
 	},
 	[Storage.ChesterTheDwarf.Localizer] = {
-		[Storage.ChesterTheDwarf.Mission01] = {
-	
-		},
+		[Storage.ChesterTheDwarf.Mission01] = {},
 	},
 }
 

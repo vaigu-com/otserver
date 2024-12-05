@@ -2,7 +2,7 @@ local quest = Quest("four_act_tragedy")
 quest
 	:Storage(function()
 		Storage.FourActTragedy = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
@@ -41,7 +41,7 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Four Act Tragedy",
-			startStorageId = Storage.FourActTragedy.Questline,
+			startStorageId = Storage.FourActTragedy.State,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
@@ -145,7 +145,7 @@ quest
 			if not fanfare then
 				return false
 			end
-			if player:getStorageValue(Storage.FourActTragedy.Questline) ~= 5 then
+			if player:getStorageValue(Storage.FourActTragedy.State) ~= 5 then
 				return false
 			end
 
@@ -159,7 +159,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local updateStorages = {
-			[Storage.FourActTragedy.Questline] = 10,
+			[Storage.FourActTragedy.State] = 10,
 			[Storage.FourActTragedy.Mission03] = 2,
 		}
 
@@ -167,7 +167,7 @@ quest
 
 		function theKraken.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.Questline)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
 				if storage_val ~= 9 then
 					return true
 				end
@@ -180,7 +180,6 @@ quest
 	end)
 	:MonsterEvent(function()
 		local updateStorages = {
-			[Storage.FourActTragedy.Questline] = 14,
 			[Storage.FourActTragedy.Mission05] = 2,
 		}
 
@@ -190,7 +189,7 @@ quest
 				return true
 			end
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.Questline)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
 				if storage_val ~= 13 then
 					return true
 				end
@@ -221,7 +220,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local updateStorages = {
-			[Storage.FourActTragedy.Questline] = 18,
+			[Storage.FourActTragedy.State] = 18,
 			[Storage.FourActTragedy.Mission06] = 4,
 		}
 
@@ -233,7 +232,7 @@ quest
 			end
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.Questline)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
 				if storage_val ~= 17 then
 					return true
 				end
@@ -454,7 +453,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:EncounterFight(function()
+	:EncounterData(function()
 		local pylonFlam = "pylonFlam"
 		local pylonVis = "pylonVis"
 		local pylons = {
@@ -482,7 +481,7 @@ quest
 			end
 		end
 
-		local encounter = Encounter("skurwiwij-lair", {
+		local encounter = EncounterData("skurwiwij-lair", {
 			timeToSpawnMonsters = "1000ms",
 			bossName = "Skurwiwij",
 			bossPosition = SKURWIWIJ_ANCHOR:Moved(6, 6, 0),
@@ -498,11 +497,8 @@ quest
 
 		function encounter:beforeStart()
 			resetPylons()
-			self.pylons = pylons
-			self.lastPylon = self.pylons[pylonFlam]
-			self.explosionsCount = 0
-			self.baseExplosionDamage = 200
-			self.damagePerConsecutiveExplosion = 50
+			self.bumOfBumsCurrentDamage = 0
+			self.intervals = 0
 		end
 
 		encounter:addSpawnMonsters({
@@ -521,43 +517,26 @@ quest
 		encounter:startOnEnter()
 		encounter:register()
 
-		local channelPowerInterval = 400
-		local empowerPylons = GlobalEvent("encounter.skurwiwij-lair.empower-pylons")
-		function empowerPylons.onThink()
-			if not encounter:isActive() then
-				return true
-			end
-			if not encounter.skurwiwij then
-				return true
+		local bumOfBumsDamageFormula = function(n)
+			return n * (n + 1) / 2
+		end
+
+		local empowerInterval = 2000
+		local empowerBumOfBums = GlobalEvent("encounter.zul-zulow-lair.empower-bum-of-bums")
+		function empowerBumOfBums.onThink()
+			local activeEncounter = ActiveEncounterRegistry:Get("zul-zulow-lair")
+			if not activeEncounter then
+				return
 			end
 
-			local skurwiwijPos = encounter.skurwiwij:getPosition()
-			local closestPylon = {}
-			local closestPylonDistance = 999
-			for pylonName, pylonData in pairs(pylons) do
-				local distance = pylonData.pos:EuclideanDistance(skurwiwijPos)
-				if distance <= closestPylonDistance then
-					closestPylonDistance = distance
-					closestPylon = pylonData
-				end
-			end
-
-			if encounter.lastPylon ~= closestPylon then
-				TriggerPylonExplosion(encounter.lastPylon)
-				encounter.lastPylon = closestPylon
-				closestPylon.power = closestPylon.power + 1
-			end
-			closestPylon.pos:DrawLine(
-				encounter.skurwiwij:getPosition(),
-				closestPylon.verticalTextureId,
-				closestPylon.horizontalTextureId,
-				channelPowerInterval
-			)
+			activeEncounter.intervals = activeEncounter.intervals + 1
+			local n = activeEncounter.intervals
+			activeEncounter.bumOfBumsCurrentDamage = bumOfBumsDamageFormula(n)
 
 			return true
 		end
-		empowerPylons:interval(channelPowerInterval)
-		empowerPylons:register()
+		empowerBumOfBums:interval(empowerInterval)
+		empowerBumOfBums:register()
 
 		local function tryDamagePlayer(pos, damage)
 			local tile = Tile(pos)
@@ -619,8 +598,7 @@ quest
 		end
 
 		function TriggerPylonExplosion(pylon)
-			local damage = encounter.baseExplosionDamage
-				+ encounter.damagePerConsecutiveExplosion * encounter.explosionsCount
+			local damage = encounter.baseExplosionDamage + encounter.damagePerConsecutiveExplosion * encounter.explosionsCount
 			if pylon.power < 25 then
 				damage = damage * 2
 			end
@@ -630,7 +608,7 @@ quest
 			encounter.explosionsCount = encounter.explosionsCount + 1
 		end
 	end)
-	:EncounterLever(function()
+	:EncounterData(function()
 		local skurwiwijLever = {
 			encounterName = "skurwiwij-lair",
 
@@ -653,7 +631,7 @@ quest
 			requiredState = { [Storage.FourActTragedy.SkurwiwijAccess] = 1 },
 		}
 
-		EncounterLever(skurwiwijLever):position(Position(6576, 557, 9)):register()
+		EncounterData(skurwiwijLever):position(Position(6576, 557, 9)):register()
 	end)
 	:Script(function(missionState)
 		local slippersTp = Action()
@@ -662,7 +640,7 @@ quest
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.FourActTragedy.Questline)
+			local storageVal = player:getStorageValue(Storage.FourActTragedy.State)
 			if storageVal < 11 or 12 < storageVal then
 				return false
 			end

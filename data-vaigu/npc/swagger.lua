@@ -49,54 +49,6 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.PerIustitiaAdAstra.Questline] = {
-		[Storage.PerIustitiaAdAstra.Mission03] = {
-			[2] = {
-				[{ "fuel", "paliwo", "mission" }] = {
-					text = "Do you need fuel? Of course - I sell ready-to-use rocket fuel. The current {exchange rate} is 50,000 crystal coins for 100 liters.",
-				},
-				[{ "rates", "przelicznik", "exchange rate" }] = {
-					text = "If my fuel prices don't suit you, I can sell you a {raw} fuel rod instead.",
-				},
-				[{ "raw", "surowy" }] = {
-					text = "Wait a moment, these rods were stolen from me recently by some clever thieves. I think they were flying towards Ganymede moon. That place is known for its numerous mountain peaks. Most of the mountains and rocks are too dangerous and steep to hide in. The bandits hide in the valleys of the Vaux Maich mountains. I've sent the moon's location to your ship.",
-					nextState = {
-						[Storage.PerIustitiaAdAstra.Mission03] = 3,
-						[Storage.PerIustitiaAdAstra.ShipDestinations.Ganymede] = 1,
-					},
-				},
-			},
-			[3] = {
-				[{ ANY_MESSAGE }] = {
-					text = "I don't know what kind of gigachads those thieves must have been to move a crate of that weight.",
-				},
-			},
-			[4] = {
-				[{ "mission" }] = {
-					text = "Thanks for your help. In return, I can give you one rod. Be careful; they're very heavy! I can sell you more rods for a small fee of 1000 gp each. One more thing: recently, Sad Gentlemen turned up at my station. From an overheard conversation, I learned that they're involved in transporting REDACTED to Hugo Boss's summer cottage.",
-					requiredItems = {
-						PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.swagierCrate,
-					},
-					rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.fuelRod },
-					nextState = {
-						[Storage.PerIustitiaAdAstra.Mission03] = 5,
-						[Storage.PerIustitiaAdAstra.Mission04] = 1,
-						[Storage.PerIustitiaAdAstra.BuyFuelRodAccess] = 1,
-						[Storage.PerIustitiaAdAstra.ShipDestinations.HugoTarPlanet] = 1,
-					},
-				},
-			},
-		},
-		[Storage.PerIustitiaAdAstra.BuyFuelRodAccess] = {
-			[1] = {
-				[{ "fuel", "rod", "paliwo", "pret" }] = {
-					specialActionsOnSuccess = {
-						{ action = SPECIAL_ACTIONS_UNIVERSAL.openTradeWindow },
-					},
-				},
-			},
-		},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

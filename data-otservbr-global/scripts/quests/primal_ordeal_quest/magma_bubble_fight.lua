@@ -26,7 +26,7 @@ overheatedZone:addArea({ x = 33644, y = 32921, z = 15 }, { x = 33647, y = 32928,
 -- central area where monsters/boss spawns
 spawnZone:addArea({ x = 33647, y = 32900, z = 15 }, { x = 33659, y = 32913, z = 15 })
 
-local encounter = Encounter("Magma Bubble", {
+local encounter = EncounterData("Magma Bubble", {
 	zone = bossZone,
 	spawnZone = spawnZone,
 	timeToSpawnMonsters = "2s",

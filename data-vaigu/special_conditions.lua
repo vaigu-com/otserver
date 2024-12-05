@@ -1,3 +1,4 @@
+--38f add ass Quest()
 SPECIAL_CONDITIONS_UNIVERSAL = {
 	playerHasLevel = function(context)
 		local player = context.player

@@ -25,10 +25,10 @@ BANJO_KROLA_SZCZUROW:Script(function(missionState)
 			--dont add pos!
 			id = TEATR_TANIEJ_SENSACJI_PLUS_SHAPE.book.lit, -- dont change
 			aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book, -- dont change
-			requiredState = { [Storage.TheaterOfCheapThrills.Questline] = 9 },
+			requiredState = { [Storage.TheaterOfCheapThrills.State] = 9 },
 			nextState = {
 				[Storage.KingOfRatsHQ.Items.LibrumVortex] = 1,
-				[Storage.TheaterOfCheapThrills.Questline] = 10,
+				[Storage.TheaterOfCheapThrills.State] = 10,
 				[Storage.TheaterOfCheapThrills.Mission04] = 3,
 			},
 			rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.librumvortex },
@@ -39,9 +39,9 @@ BANJO_KROLA_SZCZUROW:Script(function(missionState)
 			aid = Storage.KingOfRatsHQ.Items.Ytong,
 			uid = 1000,
 			rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.ytong },
-			requiredState = { [Storage.SafetyAndOccupationalHygiene.Questline] = 14 },
+			requiredState = { [Storage.SafetyAndOccupationalHygiene.State] = 14 },
 			nextState = {
-				[Storage.SafetyAndOccupationalHygiene.Questline] = 15,
+				[Storage.SafetyAndOccupationalHygiene.State] = 15,
 				[Storage.SafetyAndOccupationalHygiene.Mission06] = 3,
 			},
 		},
@@ -51,9 +51,9 @@ BANJO_KROLA_SZCZUROW:Script(function(missionState)
 			uid = 1000,
 			aid = Storage.KingOfRatsHQ.Items.Bottomless,
 			rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.bottomless },
-			requiredState = { [Storage.ThreeSramatiansAndTheDragon.Questline] = 17 },
+			requiredState = { [Storage.ThreeSramatiansAndTheDragon.State] = 17 },
 			nextState = {
-				[Storage.ThreeSramatiansAndTheDragon.Questline] = 18,
+				[Storage.ThreeSramatiansAndTheDragon.State] = 18,
 				[Storage.ThreeSramatiansAndTheDragon.Mission07] = 2,
 			},
 		},
@@ -63,9 +63,9 @@ BANJO_KROLA_SZCZUROW:Script(function(missionState)
 			uid = 1000,
 			aid = Storage.KingOfRatsHQ.Items.Antigone,
 			rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.antigone },
-			requiredState = { [Storage.PerIustitiaAdAstra.Questline] = 27 },
+			requiredState = { [Storage.PerIustitiaAdAstra.State] = 27 },
 			nextState = {
-				[Storage.PerIustitiaAdAstra.Questline] = 28,
+				[Storage.PerIustitiaAdAstra.State] = 28,
 				[Storage.PerIustitiaAdAstra.Mission06] = 4,
 				[Storage.Finished.PerIustitiaAdAstra] = 1,
 			},

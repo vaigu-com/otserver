@@ -49,53 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.ThreeSramatiansAndTheDragon.Questline] = {
-		[1] = {
-			[{ GREET }] = {
-				text = "What are you doing in my kosher cave? And you know what, I only have two entrances here: one normal and one through the toilet. I can smell which one you used, you pig.",
-			},
-			[{ "mission" }] = {
-				text = "I'm Goldblum, and I feel like you'll want something from me that I won't want to give. Like money, for example. Or maybe you need {help}?",
-			},
-			[{ "way", "wyjsc", "help" }] = {
-				text = "Alright, but you have to answer my {riddle}. Then I'll answer yours. If you lose, it's sex for money without money.",
-			},
-			[{ "riddle", "zagodke" }] = {
-				text = "What determines the valuation of structured bonds, index certificates, participation certificates, and other structured products, you school-less wretch?",
-				nextTopic = 1,
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "What are you trying? Answer immediately!",
-				requiredTopic = { min = 0, max = 0 },
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "No, no... now lets commence six for money. *licks his lips*",
-				requiredTopic = { min = 1, max = 1 },
-			},
-			[{
-				"Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy",
-				"It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate or other market indicator that serves as their underlying instrument",
-			}] = {
-				text = "CUT THE CRAP! HOW DID YOU KNOW, YOU STUPID IDIOT!! Never mind. Ask your question - there's no question that will surprise my devious, vile mind.",
-				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.Questline] = 2,
-					[Storage.ThreeSramatiansAndTheDragon.Mission02] = 2,
-				},
-				requiredTopic = { min = 1, max = 1 },
-			},
-		},
-		[2] = {
-			[{ GREET }] = { text = "So, give me the ryddle!" },
-			[{ ANY_MESSAGE }] = {
-				text = "SHIT, because YOU'RE BROKE! No? How can that be? You're not welcome here anymore. Others like you went through that wire, and I showed them the way to the hive. Farewell, scoundrel.",
-				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.Questline] = 3,
-					[Storage.ThreeSramatiansAndTheDragon.Mission02] = 3,
-					[Storage.ThreeSramatiansAndTheDragon.Mission03] = 1,
-				},
-			},
-		},
-	},
+
 }
 
 local function greetCallback(npc, creature, type, message)

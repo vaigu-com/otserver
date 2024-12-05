@@ -17,7 +17,7 @@ local startupStatic = {
 			PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.converter,
 		},
 		requiredState = {
-			[Storage.PerIustitiaAdAstra.Questline] = 4,
+			[Storage.PerIustitiaAdAstra.State] = 4,
 		},
 	},
 	{
@@ -26,7 +26,7 @@ local startupStatic = {
 		actionid = Storage.PerIustitiaAdAstra.Rewards.EngineBlueprint,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.engineBlueprint },
 		requiredState = {
-			[Storage.PerIustitiaAdAstra.Questline] = 5,
+			[Storage.PerIustitiaAdAstra.State] = 5,
 		},
 	},
 	{
@@ -35,7 +35,7 @@ local startupStatic = {
 		actionid = Storage.PerIustitiaAdAstra.Rewards.Map1,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.map1 },
 		requiredState = {
-			[Storage.PerIustitiaAdAstra.Questline] = 5,
+			[Storage.PerIustitiaAdAstra.State] = 5,
 		},
 	},
 	{
@@ -44,7 +44,7 @@ local startupStatic = {
 		actionid = Storage.PerIustitiaAdAstra.Rewards.Map2,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.map2 },
 		requiredState = {
-			[Storage.PerIustitiaAdAstra.Questline] = 5,
+			[Storage.PerIustitiaAdAstra.State] = 5,
 		},
 	},
 	{
@@ -53,7 +53,7 @@ local startupStatic = {
 		actionid = Storage.PerIustitiaAdAstra.Rewards.Map3,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.map3 },
 		requiredState = {
-			[Storage.PerIustitiaAdAstra.Questline] = 5,
+			[Storage.PerIustitiaAdAstra.State] = 5,
 		},
 	},
 	{ position = DEEPLING_TEMPLE_ANCHOR, id = 8279, aid = Storage.PerIustitiaAdAstra.DeeplingTile },
@@ -85,8 +85,8 @@ local startupGanymede = {
 		id = 11810,
 		actionid = Storage.PerIustitiaAdAstra.Rewards.SwagierCrate,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.swagierCrate },
-		requiredState = { [Storage.PerIustitiaAdAstra.Questline] = 8 },
-		nextState = { [Storage.PerIustitiaAdAstra.Questline] = 9, [Storage.PerIustitiaAdAstra.Mission03] = 4 },
+		requiredState = { [Storage.PerIustitiaAdAstra.State] = 8 },
+		nextState = { [Storage.PerIustitiaAdAstra.State] = 9, [Storage.PerIustitiaAdAstra.Mission03] = 4 },
 	},
 }
 
@@ -96,8 +96,8 @@ local startupHugoTarPlanet = {
 		id = 17355,
 		actionid = Storage.PerIustitiaAdAstra.Rewards.OfficerId,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.officerId },
-		requiredState = { [Storage.PerIustitiaAdAstra.Questline] = 11 },
-		nextState = { [Storage.PerIustitiaAdAstra.Questline] = 12, [Storage.PerIustitiaAdAstra.Mission05] = 3 },
+		requiredState = { [Storage.PerIustitiaAdAstra.State] = 11 },
+		nextState = { [Storage.PerIustitiaAdAstra.State] = 12, [Storage.PerIustitiaAdAstra.Mission05] = 3 },
 	},
 }
 
@@ -107,8 +107,8 @@ local startupItemsHugoBeachPlanet = {
 		id = 2482,
 		actionid = Storage.PerIustitiaAdAstra.Rewards.HugoRecipe,
 		rewards = { PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.hugoRecipe },
-		requiredState = { [Storage.PerIustitiaAdAstra.Questline] = 18 },
-		nextState = { [Storage.PerIustitiaAdAstra.Questline] = 19, [Storage.PerIustitiaAdAstra.Mission05] = 4 },
+		requiredState = { [Storage.PerIustitiaAdAstra.State] = 18 },
+		nextState = { [Storage.PerIustitiaAdAstra.State] = 19, [Storage.PerIustitiaAdAstra.Mission05] = 4 },
 	},
 	{ pos = { 16, -78, 2 }, id = 2472, aid = Storage.PerIustitiaAdAstra.MysteriousChest },
 	{

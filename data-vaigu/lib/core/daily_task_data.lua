@@ -804,7 +804,7 @@ local function setAuxillaryMaps(dailyTask, i)
 	end
 end
 
-function RegisterDailyTasksInQuestsList()
+function RegisterDailyTasksInQuestsTable()
 	for i, dailyTask in pairs(dailyTaskData) do
 		local missionId = NextMissionId()
 		local storage = NextStorage()

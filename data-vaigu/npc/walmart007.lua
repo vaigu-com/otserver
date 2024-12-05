@@ -12,7 +12,7 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.PomocMiejscowym.PrzekleteSzczury] = {
+	[Storage.HelpingLocals.PrzekleteSzczury] = {
 		[-1] = {
 			[{ "help", "pomoc" }] = {
 				text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
@@ -21,7 +21,7 @@ local dialogs = {
 			[{ "szczur", "szczurow", "rat", "rats" }] = {
 				text = "I still have rats in the warehouse. I need some poison to get rid of them.",
 				requiredState = { [Storage.TrudnePoczatki.BiedronkaAsked] = 1 },
-				nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 1 },
+				nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 1 },
 			},
 		},
 		[{ min = 1, max = 3 }] = {
@@ -44,7 +44,7 @@ local dialogs = {
 				rewards = { { id = 9087 }, { id = 25732 }, { id = 6392 } },
 				experienceReward = 50000,
 				requiredItems = { { id = 3120 } },
-				nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 4 },
+				nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 4 },
 			},
 		},
 		[{ min = 4 }] = {

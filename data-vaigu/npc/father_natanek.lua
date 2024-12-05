@@ -10,7 +10,6 @@ local voices = {
 	},
 	{ text = "Horoskopy, Magia, Numerologia, Okultyzm, Tarot, Techno..." },
 }
-
 local outfit = {
 	lookType = 432,
 	lookHead = 0,
@@ -19,6 +18,7 @@ local outfit = {
 	lookFeet = 38,
 	lookAddons = 0,
 }
+
 local context = {
 	name = "Father Natanek",
 	greetJob = JOB_MARRIAGE_BLESS,
@@ -27,5 +27,4 @@ local context = {
 	dialogs = nil,
 	voices = voices,
 }
-
 NpcRegistry:AppendNpcData(context)

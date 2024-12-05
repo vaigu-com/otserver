@@ -10,8 +10,8 @@ local startupStatic = {
 		actionid = Storage.FourActTragedy.Rewards.SlippersChest,
 		uid = 1000,
 		rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.bribeslippers },
-		requiredState = { [Storage.FourActTragedy.Questline] = 11 },
-		nextState = { [Storage.FourActTragedy.Questline] = 12, [Storage.FourActTragedy.Mission04] = 2 },
+		requiredState = { [Storage.FourActTragedy.State] = 11 },
+		nextState = { [Storage.FourActTragedy.State] = 12, [Storage.FourActTragedy.Mission04] = 2 },
 		desc = "Rest is peace\n~Followers of The Frog Cult",
 	},
 	{ pos = { 6581, 557, 9 }, id = 5131, aid = Storage.FourActTragedy.SkurwiwijDoor },
@@ -24,14 +24,14 @@ local startUpCorpse = {
 		id = 31649,
 		actionid = Storage.FourActTragedy.Rewards.TimmyBag,
 		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag },
-		requiredState = { [Storage.FourActTragedy.Questline] = 5 },
-		nextState = { [Storage.FourActTragedy.Questline] = 6, [Storage.FourActTragedy.Mission02] = 3 },
+		requiredState = { [Storage.FourActTragedy.State] = 5 },
+		nextState = { [Storage.FourActTragedy.State] = 6, [Storage.FourActTragedy.Mission02] = 3 },
 	},
 	{
 		id = 18021,
 		actionid = Storage.FourActTragedy.Rewards.GrazynaCore,
 		rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore },
-		requiredState = { [Storage.FourActTragedy.Questline] = 14 },
+		requiredState = { [Storage.FourActTragedy.State] = 14 },
 	},
 }
 
@@ -52,7 +52,7 @@ local startupRetro = {
 		rewards = {
 			TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
 		},
-		requiredState = { [Storage.FourActTragedy.Questline] = 7 },
+		requiredState = { [Storage.FourActTragedy.State] = 7 },
 	},
 	{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
 

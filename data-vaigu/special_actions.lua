@@ -130,12 +130,19 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 	openTradeWindow = function(context)
 		context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)
 	end,
-	sendMagicEffect = function(context)
+	sendMagicEffectPlayer = function(context)
 		local player = context.player
 		if player then
 			player:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
 		end
 	end,
+	sendMagicEffectNpc = function (context)
+		local npc = context.npc
+		if npc then
+			npc:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
+		end
+		
+	end
 }
 
 SPECIAL_ACTIONS_SOULORB = {

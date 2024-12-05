@@ -882,7 +882,7 @@ local function setAuxillaryMaps(i, task)
 	end
 end
 
-function RegisterTasksInQuestsList()
+function RegisterTasksInQuestsTable()
 	for i, task in pairs(taskData) do
 		local taskMissionId = NextMissionId()
 		local storage = NextStorage()

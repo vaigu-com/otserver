@@ -49,28 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.ThreeSramatiansAndTheDragon.Questline] = {
-		[14] = {
-			[{ "mission" }] = {
-				text = "I've been visited before by those who asked, 'spare any help, boss?' If you renovate my old town, we'll consider it. You can also bring me a crystal of the depths. Do one of these, and I'll surely reward you.",
-				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.Questline] = 15,
-					[Storage.ThreeSramatiansAndTheDragon.Mission06] = 2,
-				},
-			},
-		},
-		[15] = {
-			[{ "mission" }] = {
-				text = "What you're looking for is in the lizardmen village. The lizardmen stumbled upon underground bug light deposits, and now they're exploiting them to the max. However, they stumbled upon something much more powerful - an ancient artifact. My scouts told me they guard it like a treasure it is. They recently moved it to the highest tower.",
-				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.deepCrystal },
-				textNoRequiredItems = "If you don't know where to find the crystals, try diving into the sea east of here.",
-				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.Questline] = 16,
-					[Storage.ThreeSramatiansAndTheDragon.Mission06] = 3,
-				},
-			},
-		},
-	},
+
 }
 local function greetCallback(npc, creature, type, message)
 	InitializeResponses(creature, dialog, npcHandler, npc)

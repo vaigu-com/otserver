@@ -1,4 +1,3 @@
-print("ghasstly_princess.lua")
 local voices = {
 	interval = 15000,
 	chance = 50,
@@ -11,7 +10,6 @@ local voices = {
 	},
 	{ text = "Horoskopy, Magia, Numerologia, Okultyzm, Tarot, Techno..." },
 }
-
 local outfit = {
 	lookType = 1219,
 	lookHead = 0,
@@ -20,6 +18,7 @@ local outfit = {
 	lookFeet = 76,
 	lookAddons = 0,
 }
+
 local context = {
 	name = "Ghasstly Princess",
 	greetJob = nil,
@@ -28,5 +27,4 @@ local context = {
 	dialogs = nil,
 	voices = voices,
 }
-
 NpcRegistry:AppendNpcData(context)

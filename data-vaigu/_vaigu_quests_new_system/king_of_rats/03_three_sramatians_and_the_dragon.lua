@@ -2,7 +2,7 @@ local quest = Quest("three_sramatians_and_the_dragon")
 quest
 	:Storage(function()
 		Storage.ThreeSramatiansAndTheDragon = {
-			Questline = NextStorage(),
+			State = NextStorage(),
 			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
@@ -39,7 +39,7 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "The Three Sramatians and the Dragon",
-			startStorageId = Storage.ThreeSramatiansAndTheDragon.Questline,
+			startStorageId = Storage.ThreeSramatiansAndTheDragon.State,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
@@ -161,7 +161,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.ThreeSramatiansAndTheDragon.Questline] = 8,
+			[Storage.ThreeSramatiansAndTheDragon.State] = 8,
 			[Storage.ThreeSramatiansAndTheDragon.Mission04] = 2,
 		}
 
@@ -171,7 +171,7 @@ quest
 				return false
 			end
 
-			if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline) ~= 7 then
+			if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) ~= 7 then
 				return false
 			end
 			player:UpdateStorages(updateStorages)
@@ -296,7 +296,7 @@ quest
 				return true
 			end
 
-			if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline) < 1 then
+			if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) < 1 then
 				return false
 			end
 			player:teleportTo(player:getPosition():Moved(0, 0, 1))
@@ -327,8 +327,8 @@ quest
 			bossPos = Position(6791, 550, 13),
 			enterPos = Position(6801, 556, 13),
 			durationMinutes = 10,
-			corner1 = ANCHOR:Moved(0, 0, 0),
-			corner2 = ANCHOR:Moved(15, 11, 0),
+			corner1 = THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR:Moved(0, 0, 0),
+			corner2 = THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR:Moved(15, 11, 0),
 
 			requiredStorages = {
 				[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = 1,
@@ -347,7 +347,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			[Storage.ThreeSramatiansAndTheDragon.Questline] = 23,
+			[Storage.ThreeSramatiansAndTheDragon.State] = 23,
 			[Storage.ThreeSramatiansAndTheDragon.Mission09] = 2,
 		}
 
@@ -355,7 +355,7 @@ quest
 
 		function hfpx.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
+				local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
 				if storageVal ~= 22 then
 					return true
 				end
@@ -607,7 +607,7 @@ quest
 		local unlitFireplaceId = 1997
 
 		local function hasRequiredState(player, aid)
-			local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
+			local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
 
 			local states = aidToRequiredState[aid]
 			local min = states.min
@@ -675,7 +675,7 @@ quest
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline)
+			local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
 
 			if storageVal < 21 or storageVal > 23 then
 				return false
@@ -725,7 +725,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local updateStorages = {
-			Storage.ThreeSramatiansAndTheDragon.Questline,
+			Storage.ThreeSramatiansAndTheDragon.State,
 			Storage.ThreeSramatiansAndTheDragon.Mission05,
 		}
 
@@ -738,7 +738,7 @@ quest
 				return true
 			end
 
-			if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Questline) ~= 9 then
+			if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) ~= 9 then
 				return false
 			end
 			player:teleportTo(cagePos)

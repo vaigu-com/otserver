@@ -54,7 +54,7 @@ local function saidDishName(context)
 end
 
 local function getPlayerCurrentDish(player)
-	local state = player:getStorageValue(Storage.TopChef.Questline)
+	local state = player:getStorageValue(Storage.TopChef.State)
 	local dishData = COOKING_INGREDIENT_DATA[state] or PlayerCustomDialogDataRegistry():Get(player).dishData
 	return dishData
 end
@@ -127,7 +127,7 @@ local dialogs = {
 		},
 		["WALKAWAY"] = { text = "Hope you will come again, |PLAYERNAME|" },
 	},
-	[Storage.TopChef.Questline] = {
+	[Storage.TopChef.State] = {
 		[-1] = {
 			[{ GREET }] = {
 				text = "Hello and welcome to my {kitchen}. What are you looking for, |PLAYERNAME|? Perhaps this beautiful aroma lured you there?",
@@ -146,7 +146,7 @@ local dialogs = {
 			},
 			[{ "yes", "tak" }] = {
 				text = "Well, you look promising. Ask me for a {recipe}, and i will try to provide you with all necessary infomration. Some ingredients are tougher to find than others, so you might wanna ask me about where to find them.",
-				nextState = { [Storage.TopChef.Questline] = 1 },
+				nextState = { [Storage.TopChef.State] = 1 },
 				requiredTopic = {
 					min = topics.confirmingTrainingStart,
 					max = topics.confirmingTrainingStart,
@@ -189,7 +189,7 @@ local dialogs = {
 						action = addDish,
 					},
 				},
-				nextState = { [Storage.TopChef.Questline] = "+1" },
+				nextState = { [Storage.TopChef.State] = "+1" },
 			},
 			[{ "no", "nie" }] = {
 				text = "Come back when you are ready.",
@@ -204,7 +204,7 @@ local dialogs = {
 				text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
 				rewards = { { id = 11541 }, { id = 9093 } },
 				nextState = {
-					[Storage.TopChef.Questline] = "+1",
+					[Storage.TopChef.State] = "+1",
 					[Storage.TopChef.CanMakeAllDishes] = 1,
 					[Storage.Finished.MistrzKuchni] = 1,
 				},

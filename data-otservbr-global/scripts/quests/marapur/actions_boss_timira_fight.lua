@@ -170,7 +170,7 @@ local function activeZone()
 	return stageZones[activeStage]
 end
 
-local encounter = Encounter("Timira the Many-Headed", {
+local encounter = EncounterData("Timira the Many-Headed", {
 	zone = fightZone,
 	timeToSpawnMonsters = "10ms",
 })

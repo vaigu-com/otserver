@@ -48,6 +48,9 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
+do
+	return
+end --38f
 local dialog = {
 	[Storage.ProdigalSon.Questline] = {
 		[3] = {

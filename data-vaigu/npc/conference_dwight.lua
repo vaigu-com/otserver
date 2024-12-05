@@ -49,16 +49,7 @@ npcType.onCloseChannel = function(npc, creature)
 end
 
 local dialog = {
-	[Storage.ProdigalSon.Questline] = {
-		[14] = {
-			[{ GREET }] = { text = "Hello." },
-			[{ "potion", "mikstura" }] = {
-				text = "This is something i needed. Here is my singature.",
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.lovePotion },
-				rewards = { SYN_MARNOTRAWNY_KEY_ITEMS.loanDocument },
-			},
-		},
-	},
+
 }
 local function greetCallback(npc, creature, type, message)
 	InitializeResponses(creature, dialog, npcHandler, npc)

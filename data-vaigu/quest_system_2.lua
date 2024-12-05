@@ -2,8 +2,7 @@
 ---@field name string
 ---@field missions table
 ---@field monsterEvents table
----@field encounterLevers table
----@field encounterFights table
+---@field encounters table
 ---@field monsters table
 ---@field scripts table
 ---@field npcs table
@@ -18,10 +17,10 @@ Quest.__index = Quest
 function Quest:New(name)
 	local newObj = {
 		name = name,
+		localizer = name,
 		missions = {},
 		monsterEvents = {},
-		encounterLevers = {},
-		encounterFights = {},
+		encounters = {},
 		monsters = {},
 		scripts = {},
 		npcs = {},
@@ -61,10 +60,6 @@ function Quest:Questlog(questlog)
 	self.questlog = questlog
 	return self
 end
-function Quest:Localizer(localizer)
-	self.localizer = localizer
-	return self
-end
 --#endregion
 
 --#region Not quest state dependant, but related to quest state
@@ -72,12 +67,8 @@ function Quest:MonsterEvent(MonsterEvent)
 	table.insert(self.monsterEvents, MonsterEvent)
 	return self
 end
-function Quest:EncounterLever(lever)
-	table.insert(self.encounterLevers, lever)
-	return self
-end
-function Quest:EncounterFight(fight)
-	table.insert(self.encounterFights, fight)
+function Quest:EncounterData(data)
+	table.insert(self.encounters, data)
 	return self
 end
 function Quest:Monster(monster)
@@ -87,14 +78,24 @@ end
 --#endregion
 
 --#reqion Quest state dependant
-function Quest.Dialog(name, dialogs)
+QuestFactory = {}
+QuestFactory.__index = QuestFactory
+function QuestFactory.Dialog(name, dialogs)
 	return { name = name, dialogs = dialogs, scriptType = QUEST_SCRIPT_TYPE.DIALOG }
 end
-function Quest.Script(script)
+function QuestFactory.Script(script)
 	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
 end
-function Quest.StartupItems(items, anchor)
+function QuestFactory.StartupItems(items, anchor)
 	return { items = items, anchor = anchor, scriptType = QUEST_SCRIPT_TYPE.STARTUP_ITEMS }
+end
+function Quest:Script(script)
+	table.insert(self.scripts, { script = script })
+	return self
+end
+function Quest:StartupItems(items, anchor)
+	table.append(self.startupItems, { items = items, anchor = anchor })
+	return self
 end
 ---@private
 function Quest:AddDialog(context)
@@ -130,7 +131,7 @@ function Quest:AddScript(context)
 end
 ---@private
 function Quest:AddStartupItems(context)
-	local items, anchor = context.items, context.achor
+	local items, anchor = context.items, context.anchor
 	local mission, state = context.mission, context.state
 
 	--38f
@@ -183,8 +184,8 @@ end
 
 function Quest:Register()
 	for _, npc in pairs(self.npcs) do
-		for _, mission in pairs(npc.missions) do
-			mission.localizer = mission.localizer or self.localizer --or LOCALIZERS.LOCALIZER_UNIVERSAL --38f
+		for _, mission in pairs(npc.missions or {}) do
+			mission.localizer = mission.localizer or self.localizer
 		end
 	end
 	QuestRegistry:Register(self)
@@ -193,12 +194,26 @@ end
 local function normalizeQuestlogData()
 	for _, quest in pairs(Quests) do
 		for storage, mission in pairs(quest.missions) do
-			mission.minstate = mission.minstate or 1
+			mission.minState = mission.minState or 1
 			mission.maxState = mission.maxState or #(mission.states or {})
 			mission.completedState = mission.completedState or mission.maxState
 			mission.storage = storage
 		end
 	end
+end
+
+local storageToMaxState = {}
+local function extractExtraQuestlogData()
+	for _, quest in pairs(Quests) do
+		for storage, mission in pairs(quest.missions) do
+			storageToMaxState[storage] = mission.maxState
+		end
+	end
+end
+
+function Player:setMissionFinishedByStorage(storage)
+	local finishedState = storageToMaxState[storage]
+	self:setStorageValue(storage, finishedState)
 end
 
 ---@class QuestRegistry
@@ -212,6 +227,7 @@ function QuestRegistry:CreateQuestlog()
 		quest.questlog()
 	end
 	normalizeQuestlogData()
+	extractExtraQuestlogData()
 end
 function QuestRegistry:CreateMonsterEvent()
 	for _, quest in pairs(self.registry) do
@@ -220,17 +236,10 @@ function QuestRegistry:CreateMonsterEvent()
 		end
 	end
 end
-function QuestRegistry:CreateEncounterLevers()
+function QuestRegistry:CreateEncounters()
 	for _, quest in pairs(self.registry) do
-		for _, lever in pairs(quest.encounterLevers) do
-			lever()
-		end
-	end
-end
-function QuestRegistry:CreateEncounterFight()
-	for _, quest in pairs(self.registry) do
-		for _, fight in pairs(quest.encounterFights) do
-			fight()
+		for _, context in pairs(quest.encounters) do
+			EncounterData(context)
 		end
 	end
 end
@@ -253,10 +262,7 @@ end
 function QuestRegistry:CreateStartupItems()
 	local startupItems = GlobalEvent("QuestSystemCreateStartupItems")
 	function startupItems.onStartup()
-		print("startupItems::onStartup")
-		print(next(self.registry))
 		for _, quest in pairs(self.registry) do
-			print("questASD", quest.startupItems)
 			for _, itemsData in pairs(quest.startupItems) do
 				LoadStartupItems(itemsData.items, itemsData.anchor)
 			end
@@ -287,11 +293,9 @@ end
 function QuestRegistry:RegisterQuestData()
 	self:CreateQuestlog()
 	self:CreateMonsterEvent()
-	self:CreateEncounterLevers()
-	self:CreateEncounterFight()
+	self:CreateEncounters()
 	self:CreateMonster()
 	self:RegisterNpcData()
-	NpcRegistry:RegisterNpcDefinitions()
 	self:CreateStartupItems()
 	self:RunScripts()
 end
@@ -342,7 +346,7 @@ NpcRegistry.registry = {}
 
 ---@package
 function NpcRegistry:Register(name)
-	self.registry[name] = { name = name }
+	self.registry[name] = { name = name, missions = {} }
 	return self.registry[name]
 end
 
@@ -359,17 +363,15 @@ end
 
 function NpcRegistry:ExtractDialogs(npc)
 	local extractedDialogs = {}
-	print("NpcRegistry::ExtractDialogs")
-	for name, mission in pairs(npc.missions) do
-		print("missionData K V")
-		for key, value in pairs(mission) do
-			print(key, value)
-		end
-		extractedDialogs[mission.localizer] = {}
-		for requiredState, stateData in pairs(mission.states) do
-			extractedDialogs[mission.localizer][requiredState] = stateData
+
+	for missionStorage, mission in pairs(npc.missions) do
+		extractedDialogs[mission.localizer] = extractedDialogs[mission.localizer] or {}
+		extractedDialogs[mission.localizer][missionStorage] = mission.states or {}
+		for requiredState, stateData in pairs(mission.states or {}) do
+			extractedDialogs[mission.localizer][missionStorage][requiredState] = stateData
 		end
 	end
+
 	return extractedDialogs
 end
 

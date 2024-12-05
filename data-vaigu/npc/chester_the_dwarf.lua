@@ -48,88 +48,8 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
+do return end --38f
 local dialogs = {
-	[Storage.ImRestingHere.Localizer] = {
-		[Storage.ImRestingHere.Mission01] = {
-			[3] = {
-				[{ "mission" }] = {
-					text = "Listen, I've finished exploring holes, and now I have a different passion. If you want to help me, listen up. Some time ago, I got a job as a TV presenter, and I still have that job. Unfortunately, the salary is not entirely satisfactory. I found out that one of the fortune tellers hosting some show on the network where I work has been quarantined. The station is now looking for a replacement for his position, and I think I'm suited for it - I have a degree in quackery, but I'll need a few props. Are you ready to help me?",
-				},
-				[{ "yes", "tak" }] = {
-					text = "Great. I need a Magic Light Wand to blind viewers with false promises. A Magician's Robe to look like a magician. A crystal ball with a small hole... just find a round aquarium. Lastly, I need a life crystal. If you gather these items, come back to me.",
-					nextState = {
-						[Storage.ChesterTheDwarf.Mission01] = 1,
-						[Storage.ImRestingHere.Mission01] = 4,
-						[Storage.Finished.ImRestingHere] = 1,
-					},
-					requiredItems = { SPOCZYWAJACY_TUTAJ_KEY_ITEMS.lastWill },
-				},
-			},
-		},
-	},
-	[Storage.ChesterTheDwarf.Questline] = {
-
-
-		[3] = {
-			
-		},
-		[5] = {
-			[{ "mission" }] = {
-				text = "You still need to help me with one more thing. I accidentally burned my cover, and the officials will seize my house soon. For financial scams, evading the authorities and other frauds, I'll get at least 15 years. I'm too old for that. I won't even survive that long. I thought about escaping from this continent. Somewhere in the desert, deep underground, I parked my steamboat. It was a long time ago, so I don't remember where the entrance to the cave is where I keep the steam engine. All I remember is that the entrance is boarded up. Just find that place and come back to me to mark it on the map.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 6,
-					[Storage.ChesterTheDwarf.Mission03] = 2,
-				},
-			},
-		},
-		[6] = {
-			[{ "mission", "entrance", "wejscie" }] = {
-				text = '"Come to think of it, I might have encountered some gargoyles while exploring around the cave.',
-			},
-		},
-		[7] = {
-			[{ "mission" }] = {
-				text = "Are you sure that's the place? All right, here are the keys to my mole. I don't remember where I parked it, but actually, any mole will do. One more thing: I heard that my travel companion, Gandalf, is still alive. We used to steal from a certain library where we found a prophecy about the resurrection of the Crypt King. If that moment ever comes, I think Gandalf will count on the help of the bravest warriors like you. If you want to befriend him, it's worth remembering this secret passphrase: {aside from that people}. Meanwhile, I'm heading out of here. Goodbye.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 8,
-					[Storage.ChesterTheDwarf.Mission03] = 4,
-					[Storage.ChesterTheDwarf.DoorToChesterCompartment] = 1,
-				},
-				expReward = 30000,
-				rewards = { { id = 27605 } },
-			},
-		},
-		[8] = {
-			[{ "oprocz tego ludzie", "aside from that people" }] = {
-				text = "Yeah, its our key.",
-			},
-		},
-		[9] = {
-			[{ "mission" }] = {
-				text = "Found, not stolen. But due to our acquaintance, I can return what I took from Gandalf. Here's his camo backpack that I couldn't open. I won't lie, I'd like to know what's inside. Besides that, I have some stuff from WotE and this strange bag.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Questline] = 10,
-					[Storage.ChesterTheDwarf.Mission04] = 2,
-				},
-				rewards = {
-					[10326] = {
-						{ id = 10343 },
-						{ id = 11695 },
-						{ id = 3035, count = 100 },
-						{ id = 3043, count = 10 },
-						{ id = 5882, count = 10 },
-						{ id = 9058, count = 5 },
-						{ id = 3027, count = 10 },
-						{ id = 3041 },
-						{ id = 5801 },
-					},
-					CZESLAW_KRANSOLUD_KEY_ITEMS.gandalfBag,
-					{ id = 11698 },
-					{ id = 27565 },
-				},
-			},
-		},
-	},
 	[Storage.ProdigalSon.Questline] = {
 		[1] = {
 			[{ "mission" }] = {
