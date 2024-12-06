@@ -1,8 +1,8 @@
-local mType = Game.createMonsterType("Areczek")
+local mType = Game.createMonsterType("Arechek")
 local monster = {}
 
-monster.name = "Areczek"
-monster.description = "an Areczek"
+monster.name = "Arechek"
+monster.description = "an Arechek"
 monster.experience = 9900
 monster.outfit = {
 	lookType = 1042,
@@ -24,7 +24,7 @@ monster.Bestiary = {
 	CharmsPoints = 50,
 	Stars = 5,
 	Occurrence = 0,
-	Locations = "Areczek is your usual Januszex inhabitant.",
+	Locations = "Arechek is your usual Januszex inhabitant.",
 }
 
 monster.health = 7500

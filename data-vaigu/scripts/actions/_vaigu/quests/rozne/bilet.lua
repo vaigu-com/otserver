@@ -3,8 +3,8 @@ local item_id = 256 -- id namiotu
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if item_id == item.itemid and player:getStorageValue(Storage.OskareKXddd.Bilety) == 1 and item.uid == 11041 then
-		player:setStorageValue(Storage.OskareKXddd.Bilety, 2)
+	if item_id == item.itemid and player:getStorageValue(Storage.OcellatusXD.Tickets) == 1 and item.uid == 11041 then
+		player:setStorageValue(Storage.OcellatusXD.Tickets, 2)
 		player:say("Znalazles bilet na mecz.", TALKTYPE_MONSTER_SAY)
 		player:getPosition():sendMagicEffect(CONST_ME_BLOCKHIT)
 		Game.createMonster("Wild Warrior", fromPosition)

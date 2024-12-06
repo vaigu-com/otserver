@@ -3,10 +3,10 @@ local teleportplayer = { x = 6249, y = 1009, z = 6 } -- tp do magika npc {x = 62
 local chairteleport = Action()
 
 function chairteleport.onUse(player, item, frompos, item2, topos)
-	if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 2 then
+	if player:getStorageValue(Storage.LiquidBlack.Visitor) == 2 then
 		player:teleportTo(teleportplayer)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Teleport.")
-		player:setStorageValue(Storage.LiquidBlackQuest.Visitor, 3)
+		player:setStorageValue(Storage.LiquidBlack.Visitor, 3)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Empty.")
 	end

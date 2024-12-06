@@ -72,8 +72,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 	-- ============= MISJA 1 DRUID ADDON QUEST =================
 	if table.contains({ "drewno", "dostawa", "wood", "delivery" }, message) then
-		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 1 then
-			player:setStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 2)
+		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery) == 1 then
+			player:setStorageValue(Storage.StickyBeginning.WoodDelivery, 2)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Jak to drewno nie dotarlo? 3 dni temu wyslalem karawane. Musialo sie cos stac po drodze, zbadaj to jesli mozesz." or "", npc, creature)
 		end
 	end
@@ -81,7 +81,7 @@ local function creatureSayCallback(npc, creature, type, message)
 end
 
 local dialogs = {
-	[Storage.TrudnePoczatki.DostawaDrewna] = {
+	[Storage.StickyBeginning.WoodDelivery] = {
 		[1] = {
 			[{ "drewno", "dostawa", "wood", "delivery" }] = {
 				text = "What?! What do you mean the wood is missing? Three days ago I sent a caravan by myself... Something must have happened on its way, could you investigate that?",

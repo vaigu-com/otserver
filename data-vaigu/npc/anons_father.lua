@@ -58,20 +58,20 @@ local dialogs = {
 			text = "Say {trade} if you want to see my offer.",
 		},
 	},
-	[Storage.IKEAdlazuchwalych.Questline] = {
+	[Storage.IKEAForTheBold.State] = {
 		[8] = {
 			[{ "mission", "misja" }] = {
 				text = "",
 				nextState = {
-					[Storage.IKEAdlazuchwalych.StaryAsked] = 1,
+					[Storage.IKEAForTheBold.AnonsFatherAsked] = 1,
 				},
 				requiredState = {
-					[Storage.IKEAdlazuchwalych.StaryAsked] = { max = QUEST_NOT_STARTED },
+					[Storage.IKEAForTheBold.AnonsFatherAsked] = { max = QUEST_NOT_STARTED },
 				},
 			},
 		},
 	},
-	[Storage.UstatkowanyFanatyk.Questline] = {
+	[Storage.SettledDownFishmonger.Questline] = {
 		[1] = {
 			[{ "paczka", "paczke", "mission", "misja", "puszka" }] = {
 				text = "Did you bring my package with you?",
@@ -82,7 +82,7 @@ local dialogs = {
 				requiredTopic = topics.confirmHavingpackage,
 				textNoRequiredItems = "Come back to me once you've resolved the matter with the Old Postman.",
 				requiredItems = {
-					{ id = 15817, aid = Storage.UstatkowanyFanatyk.Mission01 },
+					{ id = 15817, aid = Storage.SettledDownFishmonger.Mission01 },
 				},
 				experienceReward = 10000,
 				rewards = {
@@ -93,9 +93,9 @@ local dialogs = {
 					{ outfit = 153, addons = 0 },
 				},
 				nextState = {
-					[Storage.UstatkowanyFanatyk.Questline] = 2,
-					[Storage.UstatkowanyFanatyk.Mission01] = 2,
-					[Storage.UstatkowanyFanatyk.Mission02] = 1,
+					[Storage.SettledDownFishmonger.Questline] = 2,
+					[Storage.SettledDownFishmonger.Mission01] = 2,
+					[Storage.SettledDownFishmonger.Mission02] = 1,
 				},
 			},
 			[{ "no", "nie" }] = {
@@ -107,14 +107,14 @@ local dialogs = {
 			[{ "mission", "misja", "problem" }] = {
 				text = "Thank you! Here's your reward. Wait a moment! Someone scribbled on my chair with a marker! Oh, {darn} it...",
 				requiredState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaFloat] = 1,
-					[Storage.UstatkowanyFanatyk.FajtlapaReel] = 1,
-					[Storage.UstatkowanyFanatyk.FajtlapaStool] = 1,
+					[Storage.SettledDownFishmonger.FajtlapaFloat] = 1,
+					[Storage.SettledDownFishmonger.FajtlapaReel] = 1,
+					[Storage.SettledDownFishmonger.FajtlapaStool] = 1,
 				},
 				nextState = {
-					[Storage.UstatkowanyFanatyk.Questline] = 3,
-					[Storage.UstatkowanyFanatyk.Mission02] = 2,
-					[Storage.UstatkowanyFanatyk.Mission03] = 1,
+					[Storage.SettledDownFishmonger.Questline] = 3,
+					[Storage.SettledDownFishmonger.Mission02] = 2,
+					[Storage.SettledDownFishmonger.Mission03] = 1,
 				},
 				rewards = {
 					{ id = 12735 },
@@ -130,43 +130,43 @@ local dialogs = {
 			[{ "float", "splawik" }] = {
 				text = "Great! I hope you have the rest as well.",
 				requiredItems = {
-					{ id = 6126, aid = Storage.UstatkowanyFanatyk.FajtlapaFloat },
+					{ id = 6126, aid = Storage.SettledDownFishmonger.FajtlapaFloat },
 				},
 				textNoRequiredItems = "It fell into the small pond nearby once. I hope you find it.",
 				requiredState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaFloat] = { neq = QUEST_NOT_STARTED },
+					[Storage.SettledDownFishmonger.FajtlapaFloat] = { neq = QUEST_NOT_STARTED },
 				},
 				textNoRequiredState = "You've already given it to me.",
 				nextState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaFloat] = 1,
+					[Storage.SettledDownFishmonger.FajtlapaFloat] = 1,
 				},
 			},
 			[{ "reel", "spinning" }] = {
 				text = "Great! I hope you have the rest as well.",
 				requiredItems = {
-					{ id = 3224, aid = Storage.UstatkowanyFanatyk.FajtlapaReel },
+					{ id = 3224, aid = Storage.SettledDownFishmonger.FajtlapaReel },
 				},
 				textNoRequiredItems = "I lost it while fishing by the western gate. I hope you can find it.",
 				requiredState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaReel] = { neq = QUEST_NOT_STARTED },
+					[Storage.SettledDownFishmonger.FajtlapaReel] = { neq = QUEST_NOT_STARTED },
 				},
 				textNoRequiredState = "You've already given it to me.",
 				nextState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaReel] = 1,
+					[Storage.SettledDownFishmonger.FajtlapaReel] = 1,
 				},
 			},
 			[{ "stool", "stolek" }] = {
 				text = "Great! I hope you have the rest as well.",
 				requiredItems = {
-					{ id = 3107, aid = Storage.UstatkowanyFanatyk.FajtlapaStool },
+					{ id = 3107, aid = Storage.SettledDownFishmonger.FajtlapaStool },
 				},
 				textNoRequiredItems = "It slipped into the water by the lake at the beach. I hope you find it.",
 				requiredState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaStool] = { neq = QUEST_NOT_STARTED },
+					[Storage.SettledDownFishmonger.FajtlapaStool] = { neq = QUEST_NOT_STARTED },
 				},
 				textNoRequiredState = "You've already given it to me.",
 				nextState = {
-					[Storage.UstatkowanyFanatyk.FajtlapaStool] = 1,
+					[Storage.SettledDownFishmonger.FajtlapaStool] = 1,
 				},
 			},
 		},
@@ -175,8 +175,8 @@ local dialogs = {
 				text = "For my current condition, only a stew with Chinese ping pong onion, meat from an under-milked centennial bull raised by wolves, all topped with wine stolen from the Kutonapleton winery, will help. Alternatively, a simple rotworm {stew} might do the trick.",
 			},
 			nextState = {
-				[Storage.UstatkowanyFanatyk.Questline] = 4,
-				[Storage.UstatkowanyFanatyk.Mission03] = 2,
+				[Storage.SettledDownFishmonger.Questline] = 4,
+				[Storage.SettledDownFishmonger.Mission03] = 2,
 			},
 		},
 		[4] = {
@@ -187,8 +187,8 @@ local dialogs = {
 				},
 				textNoRequiredItems = "Return with the stew, or I won't vouch for anything!",
 				nextState = {
-					[Storage.UstatkowanyFanatyk.Mission03] = 3,
-					[Storage.UstatkowanyFanatyk.Questline] = 5,
+					[Storage.SettledDownFishmonger.Mission03] = 3,
+					[Storage.SettledDownFishmonger.Questline] = 5,
 				},
 			},
 		},

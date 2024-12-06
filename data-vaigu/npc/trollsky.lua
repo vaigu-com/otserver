@@ -12,43 +12,43 @@ local dialogs = {
 			textNoRequiredItems = "Thats unfortunate.",
 		},
 	},
-	[Storage.TrudnePoczatki.TrollskyAsked] = {
+	[Storage.StickyBeginning.TrollskyAsked] = {
 		[{ max = 0 }] = {
 			[{ "help", "pomoc" }] = {
 				text = "Well I do need some help. Wood delivery from Knurow is already delayed for two days, and currently I can't check why..",
-				requiredState = { [Storage.TrudnePoczatki.Rozeznanie] = 2 },
+				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
 				nextState = {
-					[Storage.TrudnePoczatki.TrollskyAsked] = 1,
-					[Storage.TrudnePoczatki.Rozeznanie] = "+1",
+					[Storage.StickyBeginning.TrollskyAsked] = 1,
+					[Storage.StickyBeginning.Discernment] = "+1",
 				},
 				textNoRequiredState = "Better visit Commissioner Fisher first.",
 			},
 		},
 	},
-	[Storage.TrudnePoczatki.PoczatkiReward] = {
+	[Storage.StickyBeginning.RewardState] = {
 		[{ max = 0 }] = {
 			[{ "topor", "axe" }] = {
 				text = "Here is your axe. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
+				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
 				rewards = { { id = 3344 } },
 			},
 			[{ "miecz", "sword" }] = {
 				text = "Here is your sword. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
+				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
 				rewards = { { id = 2117 } },
 			},
 			[{ "obuch", "club" }] = {
 				text = "Here is your club. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
+				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
 				rewards = { { id = 7387 } },
 			},
 			[{ "spellbook", "ksiazka" }] = {
 				text = "Here is your spellbook. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
+				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
 				rewards = { { id = 7387 } },
 			},
 			[{ "belty" }] = {
@@ -56,13 +56,13 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.TrudnePoczatki.DostawaDrewna] = {
+	[Storage.StickyBeginning.WoodDelivery] = {
 		[6] = {
 			[{ "nagroda", "reward" }] = {
 				text = "You got your reward already, visit Fstab for a potion supply.",
 				nextTopic = 1,
 				requiredState = {
-					[Storage.TrudnePoczatki.PoczatkiReward] = { [">"] = 0 },
+					[Storage.StickyBeginning.RewardState] = { [">"] = 0 },
 				},
 				textNoRequiredState = "You got your reward already, visit Fstab for a potion supply.",
 			},

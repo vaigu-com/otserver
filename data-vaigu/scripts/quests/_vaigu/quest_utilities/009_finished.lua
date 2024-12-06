@@ -45,7 +45,7 @@ quest
 			AssassinsCreedSquurvaali = 15017,
 			ImRestingHere = 15018,
 			ChesterTheDwarf = 15019,
-			ProdigalSon = 15026,
+			ProdigalSon = 15031,
 
 			--King of Rats main
 			TheaterOfCheapThrills = 15021,

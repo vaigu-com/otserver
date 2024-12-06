@@ -4,12 +4,13 @@ LOCALIZERS = { --38f add desert quest/king of rats
 	--Various quests
 	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
 	ChesterTheDwarf = "chester_the_dwarf",
-	DemonOak = "demon_oak",
 	ImRestingHere = "im_resting_here",
 	PathOfTheUndead = "path_of_the_undead",
 	ProdigalSon = "prodigal_son",
+	FatMyrrusEncounters = "fat_myrrus_encounters",
+	IKEAForTheBold = "ikea_for_the_bold",
 	--King of Rats main quests
-	KingOfRatsHQ = "kings_of_rats_hq",
+	KingOfRatsHQ = "king_of_rats_hq",
 	TheaterOfCheapThrills = "theater_of_cheap_thrills",
 	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
 	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
@@ -23,6 +24,24 @@ LOCALIZERS = { --38f add desert quest/king of rats
 	CaveExplorerOnShield = "cave_explorer_on_shield",
 	SultanPrime = "sultan_prime",
 	DesertQuestHub = "desert_quest_hub",
+	--Task
+	Tasks = "tasks",
+	DailyTasks = "daily_tasks",
+	--Old quests
+	Firestarter = "firestarter",
+	WayOfTheDruid = "way_of_the_druid",
+	ArielsFriend = "ariels_friend",
+	StickyBeginning = "sticky_beginning",
+	SilenceOfTheLambs = "silence_of_the_lambs",
+	SettledDownFanatic = "settled_down_fanatic",
+	LocalSupport = "helping_the_locals",
+	ToCarryThePigs = "helping_the_officers",
+	OcellatusXD = "ocellatus_xd",
+	TopChef = "top_chef",
+	--Real tibia
+	TheInquisitionQuest = "the_inquisition_quest",
+	DemonOak = "demon_oak",
+
 	--Misc
 	LOCALIZER_UNIVERSAL = "_universal",
 	NONE = "",

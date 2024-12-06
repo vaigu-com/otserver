@@ -89,17 +89,17 @@ local function creatureSayCallback(npc, creature, type, message)
 		"lek",
 		"medicine",
 		"antidote",
-	}, message) and player:getStorageValue(Storage.SciezkaDruida.LekarstwoOdOrnulda) < 1 then
+	}, message) and player:getStorageValue(Storage.WayOfTheDruid.OrnuldMedicine) < 1 then
 		npcHandler:say(config[1], npc, creature)
 		npcHandler:setTopic(playerId, 1)
 	elseif table.contains({ "yes", "tak", "ok", "dobrze", "pewnie" }, message) and npcHandler:getTopic(playerId) == 1 then
 		npcHandler:say(config[2], npc, creature)
-		player:setStorageValue(Storage.SciezkaDruida.LekarstwoOdOrnulda, 1) -- zaczynamy klesta
-	elseif table.contains({ "jajko", "jajo", "egg", "wyrm" }, message) and player:getStorageValue(Storage.SciezkaDruida.LekarstwoOdOrnulda) == 2 and player:getItemCount(18996) > 0 then
+		player:setStorageValue(Storage.WayOfTheDruid.OrnuldMedicine, 1) -- zaczynamy klesta
+	elseif table.contains({ "jajko", "jajo", "egg", "wyrm" }, message) and player:getStorageValue(Storage.WayOfTheDruid.OrnuldMedicine) == 2 and player:getItemCount(18996) > 0 then
 		npcHandler:say(config[4], npc, creature)
 		player:AddCustomItem({ id = 8819, addToStore = true }) 
 		player:removeItem(18996, 1)
-		player:setStorageValue(Storage.SciezkaDruida.LekarstwoOdOrnulda, 3)
+		player:setStorageValue(Storage.WayOfTheDruid.OrnuldMedicine, 3)
 		player:addExperience(150000, true) -- 150k expa
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 	end

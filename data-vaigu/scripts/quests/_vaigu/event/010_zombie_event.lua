@@ -1,6 +1,14 @@
 local quest = Quest(LOCALIZERS.NONE)
 
 quest
+	:Storage(function()
+		Storage.Minigames.Minigames.ZombieMinigame = {
+			Wins = NextStorage(),
+			Matches = NextStorage(),
+			Points = NextStorage(),
+			LongestRecord = NextStorage(),
+		}
+	end)
 	:Script(function()
 		local encounter = EncounterData({
 			encounterName = "zombie-event",

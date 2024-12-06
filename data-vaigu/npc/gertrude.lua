@@ -1,4 +1,4 @@
-local internalNpcName = "Gertruda"
+local internalNpcName = "Gertrude"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
 
@@ -60,7 +60,7 @@ local dialog = {
 	[Storage.Yalahar.MiloscAriela] = {
 		[{ min = -1, max = 8 }] = {
 			[{ "aloha" }] = {
-				text = "I don't know who told you this password. Go away please.",
+				text = "",
 			},
 		},
 		[9] = {
@@ -73,7 +73,7 @@ local dialog = {
 	[Storage.Yalahar.ZabojczyTrunek] = {
 		[{ min = -1, max = 0 }] = {
 			[{ "yes", "tak" }] = {
-				text = "West of my hut, the lizards have a field of a strange plant. I don't know exactly what it is, but I know they make a potent vodka out of it\nOnce one of them blew a bottle, I drank 2 sips and slept for the next 2 days... I'm getting ready to go to my friend Konmuld, and if he doesn't drink, he's not very talkative.\nPlease steal from them some of this liquor. Hold this bottle, you can fill it.",
+				text = "Can you see the lizard village west to my hut? They have a strange plant that they use to produce vodka most potent. Once, i took two sips of this beverage... i dont remember much after, as i slept for next two days. \nIm now getting ready to visit my friend Konmuld. Hes not very talkative outside of the time he is drunk.\n\nPlease steal some of this liquor from lizards if you want to visit him too.",
 				requiredTopic = { min = 2, max = 2 },
 				rewards = { { id = 2875 } },
 				nextState = { [Storage.Yalahar.ZabojczyTrunek] = 1 },
@@ -103,11 +103,11 @@ local dialog = {
 			},
 		},
 	},
-	[Storage.HelpingLocals.PrzekleteSzczury] = {
+	[Storage.LocalSupport.DamnedRats] = {
 		[1] = {
 			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
 				text = "Do you need a rat killer? We don't have any left. I will make you a special remedy, but you must bring me one ingredient: moldy cheese\nPerfectly lures rats, I will season it with a special substance that will make them all die in one night.",
-				nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 2 },
+				nextState = { [Storage.LocalSupport.DamnedRats] = 2 },
 			},
 		},
 		[2] = {
@@ -115,7 +115,7 @@ local dialog = {
 				text = "What a smell, perfect. In the meantime, I have prepared a decoction. Now we'll inject and it's ready.\nPut it somewhere in the cellar overnight, and in the morning you will see a graveyard.",
 				requiredItems = { { id = 3120, remove = false } },
 				nextState = {
-					[Storage.HelpingLocals.PrzekleteSzczury] = 3,
+					[Storage.LocalSupport.DamnedRats] = 3,
 				},
 				textNoRequiredItems = "Bring me some mouldy cheese.",
 			},

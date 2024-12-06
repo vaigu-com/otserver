@@ -62,12 +62,12 @@ npcConfig.voices = {
 }
 
 local function spawnBandits(npc, player)
-	if player:getStorageValue(Storage.TrudnePoczatki.WaskiStages) == 3 then
-		player:setStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 5)
+	if player:getStorageValue(Storage.StickyBeginning.NarroStages) == 3 then
+		player:setStorageValue(Storage.StickyBeginning.WoodDelivery, 5)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Dobra dobra, nie bij juz. Powiedz komisarzowi Rybie ze moze przyjsc po drewno." or "Okay, stop! Tell Commissioner Fisher that he can get this wood back.", npc, player)
 	end
-	if player:getStorageValue(Storage.TrudnePoczatki.WaskiStages) == 2 then
-		player:setStorageValue(Storage.TrudnePoczatki.WaskiStages, 3)
+	if player:getStorageValue(Storage.StickyBeginning.NarroStages) == 2 then
+		player:setStorageValue(Storage.StickyBeginning.NarroStages, 3)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Sadziles ze mafie Narroego tak latwo pokonasz?" or "You thought thats gonna be this easy?!", npc, player)
 		Game.createMonster("Hunter", player:getPosition(), true, false)
 		Game.createMonster("Hunter", player:getPosition(), true, false)
@@ -77,8 +77,8 @@ local function spawnBandits(npc, player)
 		Game.createMonster("Bandit", player:getPosition(), true, false)
 		Game.createMonster("Bandit", player:getPosition(), true, false)
 	end
-	if player:getStorageValue(Storage.TrudnePoczatki.WaskiStages) == 1 then
-		player:setStorageValue(Storage.TrudnePoczatki.WaskiStages, 2)
+	if player:getStorageValue(Storage.StickyBeginning.NarroStages) == 1 then
+		player:setStorageValue(Storage.StickyBeginning.NarroStages, 2)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Tym razem nie dasz rady." or "Not this time.", npc, player)
 		Game.createMonster("Valkyrie", player:getPosition(), true, false)
 		Game.createMonster("Valkyrie", player:getPosition(), true, false)
@@ -88,8 +88,8 @@ local function spawnBandits(npc, player)
 		Game.createMonster("Hunter", player:getPosition(), true, false)
 		Game.createMonster("Hunter", player:getPosition(), true, false)
 	end
-	if player:getStorageValue(Storage.TrudnePoczatki.WaskiStages) < 1 then
-		player:setStorageValue(Storage.TrudnePoczatki.WaskiStages, 1)
+	if player:getStorageValue(Storage.StickyBeginning.NarroStages) < 1 then
+		player:setStorageValue(Storage.StickyBeginning.NarroStages, 1)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Zaraz sie przekonamy czy masz racje." or "We'll see who's right!", npc, player)
 		Game.createMonster("Bandit", player:getPosition(), true, false)
 		Game.createMonster("Bandit", player:getPosition(), true, false)
@@ -109,8 +109,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "no") or MsgContains(message, "nie") then
-		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 4) and npcHandler:getTopic(playerId) == 1 or npcHandler:getTopic(playerId) == 2 then
-			if player:getStorageValue(Storage.TrudnePoczatki.WaskiStages) < 3 then
+		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery, 4) and npcHandler:getTopic(playerId) == 1 or npcHandler:getTopic(playerId) == 2 then
+			if player:getStorageValue(Storage.StickyBeginning.NarroStages) < 3 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "CO NIE JEST DEBESCIAK?!" or "YOU SAID IM NOT BADASS?!", npc, creature)
 			end
 			spawnBandits(npc, player)
@@ -118,25 +118,25 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	end
 	if MsgContains(message, "yes") or MsgContains(message, "tak") then
-		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 4) and npcHandler:getTopic(playerId) == 2 then
+		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery, 4) and npcHandler:getTopic(playerId) == 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dokladnie tak, szybko sie uczysz mlody." or "Thats right.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		end
-		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 4) and npcHandler:getTopic(playerId) == 1 then
+		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery, 4) and npcHandler:getTopic(playerId) == 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Bardzo dobre, a jego mafia tez jest debesciak?" or "Thats right! And my mafia is badass too?", npc, creature)
 			npcHandler:setTopic(playerId, 2)
 		end
 	end
 	if table.contains({ "drewno", "dostawa", "misja", "mission", "wood" }, message) then
-		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 4 and npcHandler:getTopic(playerId) == 0 then
+		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery) == 4 and npcHandler:getTopic(playerId) == 0 then
 			player:getPosition():sendMagicEffect(49)
 			doCreatureSay(player:getPosition(), "*Pif paf*", TALKTYPE_ORANGE_1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "On jest debesciak? JA JESTEM DEBESCIAK." or "Huh, hes badass? I AM THE BADASS.", npc, creature)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Powiedz, Narro jest debesciak?" or "Please tell me, Narro is badass?", npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
-		if player:getStorageValue(Storage.TrudnePoczatki.DostawaDrewna) == 2 then
-			player:setStorageValue(Storage.TrudnePoczatki.DostawaDrewna, 3)
+		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery) == 2 then
+			player:setStorageValue(Storage.StickyBeginning.WoodDelivery, 3)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Drewno chcesz? To teraz jest drewno Narroego i jego mafii. Przekaz to komisarzowi Rybie." or "What? Are you looking for the wood? Now thats my wood. You can tell Commissioner Fisher that he'll never get it back.", npc, creature)
 		end
 	end

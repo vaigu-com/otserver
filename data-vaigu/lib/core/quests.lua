@@ -192,31 +192,26 @@ if not Quests then
 			name = "Ariel's Friend",
 			missions = {
 				[1] = {
-					name = "Helping the Ariel",
+					name = "Mission 1: Humble Request",
 					storage = 11000,
 					minState = 1,
 					maxState = 4,
 					states = {
 						[1] = "Ariel asked you to bring him his friend's favorite flower. Namely it is the Heaven Blossom. Some elves keep it in their pouch.",
-						[2] = "Ariel asked you to pay respect to his friend by laying these flowers on his grave. It is located on a nearby hill. If you do that, he will tell you his story.",
+						[2] = "Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story.",
 						[3] = "You put the flowers on Ariel's friend's grave, now come back to Ariel.",
 						[4] = "Ariel endowed you with a bow and a few minor gifts. He is now ready to tell you his story, whenever you ask him to do so.",
 					},
 				},
-			},
-		},
-		[NextQuestId()] = {
-			name = "Yalahari Quest",
-			missions = {
-				[1] = {
-					name = "Mission 1: Love is in the air",
+				[2] = {
+					name = "Mission 2: Love is in the air",
 					storage = 11002,
 					minState = 1,
 					maxState = 9,
 					states = {
 						[1] = "Ariel asked you to hand over a party invitation to Madame Malkin.",
-						[2] = "Madame refused Ariel's request to go out with him. Tell him this bad news.",
-						[3] = "Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin.",
+						[2] = "Madame Malkin refused Ariel's request to go out with him. Tell him this bad news.",
+						[3] = "Madame Malkin refused Ariel's request to go out with him. Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin.",
 						[4] = "Old Postman had a disgraceful idea to steal an elixir of love. He told you to fill this vial he gave you. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown.",
 						[5] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
 						[6] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
@@ -225,7 +220,7 @@ if not Quests then
 					},
 				},
 				[2] = {
-					name = "Mission 2: A morbid Liquor",
+					name = "Mission 3: A Killer Liquor",
 					storage = 11044,
 					minState = 1,
 					maxState = 3,
@@ -236,7 +231,7 @@ if not Quests then
 					},
 				},
 				[3] = {
-					name = "Mission 3: Prelude to Thaumaturgy",
+					name = "Mission 4: Prelude to Thaumaturgy",
 					storage = 11047,
 					minState = 1,
 					maxState = 5,
@@ -251,7 +246,7 @@ if not Quests then
 			},
 		},
 		[NextQuestId()] = {
-			name = "The First Steps",
+			name = "Sticky Beginning",
 			missions = {
 				[1] = {
 					name = "Research",
@@ -379,7 +374,7 @@ if not Quests then
 			missions = {
 				[1] = {
 					name = "Freaking Rats",
-					storage = Storage.HelpingLocals.PrzekleteSzczury,
+					storage = Storage.LocalSupport.DamnedRats,
 					minState = 1,
 					maxState = 4,
 					states = {
@@ -391,7 +386,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Cheap Recycling",
-					storage = Storage.HelpingLocals.TaniRecykling,
+					storage = Storage.LocalSupport.BudgetRecycling,
 					minState = 1,
 					maxState = 2,
 					states = {
@@ -401,7 +396,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Broken Orb",
-					storage = Storage.HelpingLocals.ZniszczonaKula,
+					storage = Storage.LocalSupport.LostCrystalBall,
 					minState = 1,
 					maxState = 2,
 					states = {
@@ -411,7 +406,7 @@ if not Quests then
 				},
 				[4] = {
 					name = "Biodegradable",
-					storage = Storage.Biodegradowalny.Questline,
+					storage = Storage.Biodegradable.State,
 					minState = 1,
 					maxState = 4,
 					states = {
@@ -452,7 +447,7 @@ if not Quests then
 					minState = 1,
 					maxState = 2,
 					states = {
-						[1] = "Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party.",
+						[1] = "LECTER_WANTS_HEARTS_AND_LIVERS_STATUS",
 						[2] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
 					},
 				},
@@ -476,11 +471,11 @@ if not Quests then
 			name = "Unwanted Guests",
 			missions = {
 				[1] = {
-					name = "Damned Barbarians",
+					name = "Unwanted Guests",
 					storage = 11076,
 					minState = 1,
 					maxState = 2,
-					description = "Bring Brutetamers Staff and Fur Boots to Dziadek Mroz.",
+					description = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
 				},
 			},
 		},
@@ -722,11 +717,11 @@ if not Quests then
 					description = "Empowered Wardstones",
 				},
 				[4] = {
-					name = "Readed documents",
+					name = "Documents Read",
 					storage = 12214,
 					minState = 0,
 					maxState = 4,
-					description = "Readed documents",
+					description = "Documents Read",
 				},
 			},
 		},
@@ -789,7 +784,7 @@ if not Quests then
 			missions = {
 				[1] = {
 					name = "Stagnation",
-					storage = Storage.UstatkowanyFanatyk.Mission01,
+					storage = Storage.SettledDownFishmonger.Mission01,
 					minState = 1,
 					maxState = 2,
 					states = {
@@ -799,7 +794,7 @@ if not Quests then
 				},
 				[2] = {
 					name = "Milksop",
-					storage = Storage.UstatkowanyFanatyk.Mission02,
+					storage = Storage.SettledDownFishmonger.Mission02,
 					minState = 1,
 					maxState = 2,
 					states = {
@@ -809,7 +804,7 @@ if not Quests then
 				},
 				[3] = {
 					name = "Stew for Trouble",
-					storage = Storage.UstatkowanyFanatyk.Mission03,
+					storage = Storage.SettledDownFishmonger.Mission03,
 					minState = 1,
 					maxState = 4,
 					states = {

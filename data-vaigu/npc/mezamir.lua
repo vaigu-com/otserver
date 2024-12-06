@@ -227,7 +227,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:setTopic(playerId, 0)
 	end
 
-	if (MsgContains(message, "machine") or MsgContains(message, "maszyna")) and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
+	if (MsgContains(message, "machine") or MsgContains(message, "maszyna")) and player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
 			"Ah, maszyna, ktora znalazles na tej wyspie. Coz, zbudowalem to urzadzenie, aby zapuscic sie daleko pod sama ziemie, po ktorej chodzimy. Podejrzewalem cos tam. Cos gleboko pod nami. Cos zlego. Nawet bardziej niz przeklete owady, ktore pelzaly po moim gabinecie. ...",
 			"Wiercilem otwor za otworem, tylko po to, by ponownie utknac w twardym, nie do przebicia osadzie, raz po raz. Bylem gotow zrezygnowac z tego bezsensownego przedsiewziecia. ...",
@@ -240,8 +240,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			"I am well aware that this may sound laughable now - at this part all of my colleagues burst into laughter anyway - but suddenly there were stairs. Incredibly large stairs that led to the underworld. A world deep under the sea - can you believe this?",
 		}, npc, creature)
 		npcHandler:setTopic(playerId, 21)
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 21 and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-		if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 21 and player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
+		if player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Rozumiesz? Coz, koniec tej historii byl taki, ze musialem opuscic to miejsce. ...",
 				"Nie moglem zbadac tego, co lezy pod schodami, poniewaz byl tam nieprzewidywalny prad. Zanurzenie sie w tych wodach byloby niekontrolowanym ryzykiem, nawet majac srodki do przezycia bez powietrza. ...",
@@ -259,8 +259,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 22)
 		end
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 22 and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-		if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 22 and player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
+		if player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Coz, jesli naprawde chcesz zglebic te sprawe - moglbym przyjac troche pomocy. Zatem znalazles moja maszyne na tej wyspie? I znalazles notatki z koordynatami? W takim razie mozesz odnalezc wejscie! ...",
 				"Po prostu szukaj wielkiej klatki schodowej z rozleglymi stopniami. Tam jest potezny strumien, ktory uniemozliwi ci dalsze penetrowanie. Ale nie boj sie, faktycznie mozesz tam sie udac - z tymi malymi ulepszeniami, ktore stworzylem. ...",
@@ -274,14 +274,14 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 23)
 		end
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 23 and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-		if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 23 and player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
+		if player:getStorageValue(Storage.LiquidBlack.Visitor) == 3 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"No to ruszaj! Przykro mi, ze nie moge zaoferowac ci wiecej pomocy, ale jestem pewien, ze znajdziesz wsparcie w drodze. I - badz ostrozny. Morze bedzie sie czarne jak smola tam na dole.",
 			} or {
 				"Then off you go! Im sorry that I cannot offer you any further help but Im sure you will find support along your way. And - be careful. The sea can appear pitch black down there.",
 			}, npc, creature)
-			player:setStorageValue(Storage.LiquidBlackQuest.Visitor, 4)
+			player:setStorageValue(Storage.LiquidBlack.Visitor, 4)
 			npcHandler:setTopic(playerId, 24)
 		end
 	end

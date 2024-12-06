@@ -83,21 +83,21 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 	config = GetConfigByPlayer(creature, lang_to_config)
 
-	if table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) == 1 then
-		player:setStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela, 2)
-		player:setStorageValue(Storage.PrzyjacielAriela.Blossoms, 2)
+	if table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) == 1 then
+		player:setStorageValue(Storage.ArielsFriend.HumbleRequest, 2)
+		player:setStorageValue(Storage.ArielsFriend.Blossoms, 2)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Bede ci bardzo wdzieczny i opowiem ci pewna {historie} jak mnie poprosisz! Jego grob znajduje sie na pobliskim wzgorzu." or "I would be very grateful and tell you a {story} if you ask. His grave is located on the hill nearby.", npc, creature)
 	end
 
-	if table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) < 1 then
-		player:setStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela, 1)
+	if table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) < 1 then
+		player:setStorageValue(Storage.ArielsFriend.HumbleRequest, 1)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Ulubionym kwiatem mojego przyjaciela byl {heaven blossom}. Przynies mi prosze jedna sztuke." or "My friend's favorite flower was {heaven blossom}. Please, bring me one.", npc, creature)
 		npcHandler:setTopic(playerId, 1)
 	end
-	if table.contains({ "mission", "misja" }, message) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) == 3 then
+	if table.contains({ "mission", "misja" }, message) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) == 3 then
 		if player:getLevel() >= 18 then
-			player:setStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela, 4)
-			player:setStorageValue(Storage.PrzyjacielAriela.Finished, 1) -- quest done (website)
+			player:setStorageValue(Storage.ArielsFriend.HumbleRequest, 4)
+			player:setStorageValue(Storage.ArielsFriend.Finished, 1) -- quest done (website)
 			player:addItem(7438, 1) -- dostaje Elvish Bow
 			player:addItem(3061, 1) -- dostaje life crystal
 			player:addItem(3048, 20) -- dostaje might ring
@@ -117,15 +117,15 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	end
 
-	if MsgContains(message, "heaven blossom") and player:getStorageValue(Storage.PrzyjacielAriela.Blossoms) == 1 then
+	if MsgContains(message, "heaven blossom") and player:getStorageValue(Storage.ArielsFriend.Blossoms) == 1 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Sa sliczne, jeszcze przed zlozeniem musze je poswiecic. Zrobisz dla mnie jeszcze jedna przysluge, i zaniesiesz je na grob mojego przyjaciela?" or "They are gorgeous. I need to bless them before putting them on a grave. Would you make me one more favour and put them on my friend's grave?", npc, creature)
 		npcHandler:setTopic(playerId, 1)
 	end
-	if table.contains({ "heaven blossom", "misja" }, message) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) == 1 then
-		if player:getStorageValue(Storage.PrzyjacielAriela.Blossoms) <= 0 then
+	if table.contains({ "heaven blossom", "misja" }, message) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) == 1 then
+		if player:getStorageValue(Storage.ArielsFriend.Blossoms) <= 0 then
 			if player:getItemCount(5921) > 0 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Sa sliczne, jeszcze przed zlozeniem musze je poswiecic. Zrobisz dla mnie jeszcze jedna przysluge, i zaniesiesz je na grob mojego przyjaciela?" or "They are gorgeous. I need to bless them before putting them on a grave. Would you make me one more favour and put them on my friend's grave?", npc, creature)
-				player:setStorageValue(Storage.PrzyjacielAriela.Blossoms, 1)
+				player:setStorageValue(Storage.ArielsFriend.Blossoms, 1)
 				npcHandler:setTopic(playerId, 1)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz zadnego przy sobie. Elfy czesto nosza jakies przy sobie. Jak nie beda chcialy oddac po dobroci, no to wiesz.." or "You dont have any. Elves often carry them. Should they not give you that voluntarily, then.. you know what to do..", npc, creature)
@@ -133,36 +133,36 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 		end
 	end
-	if table.contains({ "missison", "misja", "pomoc", "help" }, message) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) < 1 then
+	if table.contains({ "mission", "misja", "pomoc", "help" }, message) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) < 1 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Od tygodnia mialem isc zerwac ulubione kwiaty przyjaciela i zlozyc na jego grobie, ale nie moge znalezc czasu. Pomozesz mi?" or "I've wanted to pick my friend's favourite flowers to put them on his grave for a week now, but I am too busy. Would you help me?", npc, creature)
 		npcHandler:setTopic(playerId, 1)
 	end
 
 	-- =========== KONIEC CZESCI QUESTA "POMOC ARIELA" =============
 	-- ========== TU ZACZYNA SIE CZEsC DO 1 MISJI YALAHARI QUESTA ============
-	if table.contains({ "historia", "historie", "story" }, message) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) <= 3 then
+	if table.contains({ "historia", "historie", "story" }, message) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) <= 3 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Najpierw zrob to, o co cie poprosilem." or "Do what I asked for first.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	end
-	if table.contains({ "gertruda", "gertrude" }, message) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) >= 4 then
+	if table.contains({ "gertruda", "gertrude" }, message) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) >= 4 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Zamieszkala w poblizu wioski jaszczurow. Jednak nie wchodza sobie w droge." or "She moved near the lizards' village. They stay out of each other's way though.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	end
-	if (MsgContains(message, "konmuld")) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) >= 4 then
+	if (MsgContains(message, "konmuld")) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) >= 4 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Zaszyl sie w opustoszalej wiosce na stepie. Raczej nikt go tam nie odwiedza.." or "He holed up in an abandoned village on steppes. I don't think anyone visits him there.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	end
-	if table.contains({ "historia", "historie", "story" }, message) and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) == 4 then
+	if table.contains({ "historia", "historie", "story" }, message) and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) == 4 then
 		npcHandler:say(config[1], npc, creature)
 		npcHandler:setTopic(playerId, 1)
 	end
-	if table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.PrzyjacielAriela.PomocDlaAriela) == 4 then
+	if table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.ArielsFriend.HumbleRequest) == 4 then
 		if player:getStorageValue(Storage.Yalahar.MiloscAriela) <= 0 then
 			player:setStorageValue(Storage.Yalahar.MiloscAriela, 1) -- zaczynamy nowe id do questa
-			player:AddCustomItem({ id = 4846, addToStore = true }) 
+			player:AddCustomItem({ id = 4846, addToStore = true })
 			npcHandler:say(
 				getPlayerLanguage(player) == "PL" and "Wiedzialem, ze moge liczyc na twoja pomoc, ma na imie Madame Malkin, zajmuje sie sprzedaza oraz skupem tkanin. Przekaz prosze jej to zaproszenie na impreze i wroc do mnie z odpowiedzia."
-					or "I knew, that I can rely on you. Her name is Madame Malkin, she deals with clothes and fabrics. Please, bring her this invitation and visit me back with the answer.",
+					or "",
 				npc,
 				creature
 			)

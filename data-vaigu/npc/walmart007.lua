@@ -1,27 +1,27 @@
 local dialogs = {
-	[Storage.TrudnePoczatki.BiedronkaAsked] = {
+	[Storage.StickyBeginning.WalmartAsked] = {
 		[-1] = {
 			[{ "help", "pomoc" }] = {
 				text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-				requiredState = { [Storage.TrudnePoczatki.Rozeznanie] = 2 },
+				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
 				nextState = {
-					[Storage.TrudnePoczatki.BiedronkaAsked] = 1,
-					[Storage.TrudnePoczatki.Rozeznanie] = "+1",
+					[Storage.StickyBeginning.WalmartAsked] = 1,
+					[Storage.StickyBeginning.Discernment] = "+1",
 				},
 				textNoRequiredState = "It's alright, I don't need any help.",
 			},
 		},
 	},
-	[Storage.HelpingLocals.PrzekleteSzczury] = {
+	[Storage.LocalSupport.DamnedRats] = {
 		[-1] = {
 			[{ "help", "pomoc" }] = {
 				text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-				requiredState = { [Storage.TrudnePoczatki.BiedronkaAsked] = 1 },
+				requiredState = { [Storage.StickyBeginning.WalmartAsked] = 1 },
 			},
 			[{ "szczur", "szczurow", "rat", "rats" }] = {
 				text = "I still have rats in the warehouse. I need some poison to get rid of them.",
-				requiredState = { [Storage.TrudnePoczatki.BiedronkaAsked] = 1 },
-				nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 1 },
+				requiredState = { [Storage.StickyBeginning.WalmartAsked] = 1 },
+				nextState = { [Storage.LocalSupport.DamnedRats] = 1 },
 			},
 		},
 		[{ min = 1, max = 3 }] = {
@@ -44,7 +44,7 @@ local dialogs = {
 				rewards = { { id = 9087 }, { id = 25732 }, { id = 6392 } },
 				experienceReward = 50000,
 				requiredItems = { { id = 3120 } },
-				nextState = { [Storage.HelpingLocals.PrzekleteSzczury] = 4 },
+				nextState = { [Storage.LocalSupport.DamnedRats] = 4 },
 			},
 		},
 		[{ min = 4 }] = {

@@ -5,7 +5,7 @@ local function checkFlowers(player)
 			return false
 		end
 	end
-	player:setStorageValue(Storage.Firestarter.Mission3, 2)
+	player:setStorageValue(Storage.Firestarter.Mission03, 2)
 	return true
 end
 
@@ -35,27 +35,27 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		addEvent(revertCampfire, 1000 * 60, campfirePosition)
 	end
 	-- Sezon na Jelenie
-	if target.itemid == 2742 and player:getStorageValue(Storage.SciezkaDruida.SezonNaJelenie) == 1 then
+	if target.itemid == 2742 and player:getStorageValue(Storage.WayOfTheDruid.DeerSeason) == 1 then
 		if target.uid == 11008 or target.uid == 11009 then
 			toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-			player:setStorageValue(Storage.SciezkaDruida.SezonNaJelenie, 2)
+			player:setStorageValue(Storage.WayOfTheDruid.DeerSeason, 2)
 		else
 			removeItem = false
 			player:say("To nie te.", TALKTYPE_MONSTER_SAY)
 		end
 	end
 	-- Firestarter
-	if target.itemid == 5546 and player:getStorageValue(Storage.Firestarter.Mission1) == 1 and target.uid == 11010 then
+	if target.itemid == 5546 and player:getStorageValue(Storage.Firestarter.Mission01) == 1 and target.uid == 11010 then
 		removeItem = false
 		toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-		player:setStorageValue(Storage.Firestarter.Mission1, 2)
+		player:setStorageValue(Storage.Firestarter.Mission01, 2)
 	end
-	if target.itemid == 3954 and player:getStorageValue(Storage.Firestarter.Mission2) == 1 and target.uid == 11011 then
+	if target.itemid == 3954 and player:getStorageValue(Storage.Firestarter.Mission02) == 1 and target.uid == 11011 then
 		removeItem = false
 		toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-		player:setStorageValue(Storage.Firestarter.Mission2, 2)
+		player:setStorageValue(Storage.Firestarter.Mission02, 2)
 	end
-	if target.itemid == 3657 and player:getStorageValue(Storage.Firestarter.Mission3) == 1 then
+	if target.itemid == 3657 and player:getStorageValue(Storage.Firestarter.Mission03) == 1 then
 		removeItem = false
 		if target.uid >= 11012 and target.uid <= 11016 then
 			if player:getStorageValue(target.uid) < 1 then

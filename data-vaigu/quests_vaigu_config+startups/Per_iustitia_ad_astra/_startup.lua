@@ -4,7 +4,7 @@ local startupStatic = {
 	{
 		position = Position(7508, 292, 7),
 		id = 7176,
-		aid = Storage.DziadekMrozMammooth,
+		aid = Storage.OldManFrostMammoth,
 		onLook = function(context)
 			context.player:removeMoneyBank(50)
 		end,

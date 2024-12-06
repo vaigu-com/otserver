@@ -1,3 +1,4 @@
+print("000_encounter_boss_death.lua")
 local bossDeath = CreatureEvent("EncounterOnSuccessfulCompletion")
 
 function bossDeath.onDeath(creature)

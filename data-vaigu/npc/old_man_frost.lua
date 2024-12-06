@@ -56,7 +56,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		return false
 	end
 	-- ============= Do questa na pick Axe =================
-	if table.contains({ "misja", "pomoc", "mission" }, message) and player:getStorageValue(Storage.NieproszeniGoscie.ZasraniBarbarzyncy) < 1 then
+	if table.contains({ "misja", "pomoc", "mission" }, message) and player:getStorageValue(Storage.UnwantedGuests.ShitfacedBarbarians) < 1 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
 			"Ciagle panosza sie tu barbarzyncy. Jeszcze pare lat temu byl tutaj spokoj, jednak teraz ciezko sie z nimi zyje. ...",
 			"Sprobuj sie nimi zajac. Wiem, ze trudno bedzie wykurzyc wszystkich, ale nawet kilku mniej bedzie sukcesem. ...",
@@ -69,11 +69,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			"So, you're down for that?",
 		}, npc, creature)
 		npcHandler:setTopic(playerId, 1)
-	elseif table.contains({ "tak", "yes", "ok", "pewnie" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.NieproszeniGoscie.ZasraniBarbarzyncy) < 1 then
-		player:setStorageValue(Storage.NieproszeniGoscie.ZasraniBarbarzyncy, 1) -- zaczynamy questa
+	elseif table.contains({ "tak", "yes", "ok", "pewnie" }, message) and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.UnwantedGuests.ShitfacedBarbarians) < 1 then
+		player:setStorageValue(Storage.UnwantedGuests.ShitfacedBarbarians, 1) -- zaczynamy questa
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Swietnie, w nagrode dostaniesz ode mnie specjalny kilof. Podpowiem ci pozniej, do czego mozna go wykorzystac." or "Great, I'll give you a special pickaxe as a reward. I'll tell you what to use it for later.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
-	elseif table.contains({ "misja", "pomoc", "mission", "help" }, message) and player:getStorageValue(Storage.NieproszeniGoscie.ZasraniBarbarzyncy) == 1 then
+	elseif table.contains({ "misja", "pomoc", "mission", "help" }, message) and player:getStorageValue(Storage.UnwantedGuests.ShitfacedBarbarians) == 1 then
 		if player:getItemCount(7379) > 0 and player:getItemCount(7457) > 0 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Bardzo dobrze, niech gina. Laska mi sie przyda, ale buty mozesz sobie zatrzymac. Trzymaj nagrode, tak jak sie umowilismy. ...",
@@ -82,7 +82,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Very well, let them die. I could use the cane, but you can keep the shoes. Keep the prize, just like we agreed. ...",
 				"Oh, yeah, the pickaxe. You can use it to smash icicles, for example, or some of the crystals on the island. Sometimes you can get pieces of them.",
 			}, npc, creature)
-			player:setStorageValue(Storage.NieproszeniGoscie.ZasraniBarbarzyncy, 2) -- koniec questa
+			player:setStorageValue(Storage.UnwantedGuests.ShitfacedBarbarians, 2) -- koniec questa
 			player:removeItem(7379, 1) -- zabieramy staff
 			player:addItem(4872, 1) -- dostaje ice pickaxe
 			-- Q5.1

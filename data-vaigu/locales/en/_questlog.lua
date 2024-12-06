@@ -43,31 +43,27 @@ return {
 		local requiredKills = dailyTask.requiredKills
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Daily task for :name:!\n\n", { name = name })
-		dailyTaskDescription = dailyTaskDescription
-			.. T("You have killed :currentKills:/:requiredKills: :name:.", {
-				name = name,
-				currentKills = currentKills,
-				requiredKills = requiredKills,
-			})
+		dailyTaskDescription = dailyTaskDescription .. T("You have killed :currentKills:/:requiredKills: :name:.", {
+			name = name,
+			currentKills = currentKills,
+			requiredKills = requiredKills,
+		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription
-				.. "\n\nYou will also need to bring the following creature products to the Mayor:\n"
+			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n"
 			for _, item in pairs(requiredItems) do
 				local id = item.id
 				local itemName = ItemType(id):getName()
 				local count = item.count
-				dailyTaskDescription = dailyTaskDescription
-					.. T(":count: :itemName:\n", {
-						count = count,
-						itemName = itemName,
-					})
+				dailyTaskDescription = dailyTaskDescription .. T(":count: :itemName:\n", {
+					count = count,
+					itemName = itemName,
+				})
 			end
 		end
-		dailyTaskDescription = dailyTaskDescription
-			.. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
-				money = dailyTask.money,
-				tibiaCoins = dailyTask.tibiaCoins,
-			})
+		dailyTaskDescription = dailyTaskDescription .. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
+			money = dailyTask.money,
+			tibiaCoins = dailyTask.tibiaCoins,
+		})
 
 		return dailyTaskDescription
 	end,
@@ -95,7 +91,7 @@ return {
 	["Mission 3: How High"] = "Mission 3: How High",
 	["Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug."] = "Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug.",
 	["The smell of weed is now around the whole city, you managed to burn all the flowers."] = "The smell of weed is now around the whole city, you managed to burn all the flowers.",
-	["Hymel made you a true pyromaniac and gave you his arsonist weapon."] = "Hymel made you a true pyromaniac and gave you his arsonist weapon.",
+	["Hymel declared you a true pyromaniac and gave you his arsonist weapon."] = "Hymel declared you a true pyromaniac and gave you his arsonist weapon.",
 	["The Way of a Druid"] = "The Way of a Druid",
 	["The Council of Druids"] = "The Council of Druids",
 	["You met one of the druids, if you helped him, he would tell you about the Council."] = "You met one of the druids, if you helped him, he would tell you about the Council.",
@@ -129,34 +125,34 @@ return {
 	["You managed to gather a bunch of crystal, go back to Malfurion."] = "You managed to gather a bunch of crystal, go back to Malfurion.",
 	["For your help, Malfurion gave you a gift."] = "For your help, Malfurion gave you a gift.",
 	["Ariel's Friend"] = "Ariel's Friend",
-	["Helping the Ariel"] = "Helping the Ariel",
+	["Mission 1: Humble Request"] = "Mission 1: Humble Request",
 	["Ariel asked you to bring him his friend's favorite flower. Namely it is the Heaven Blossom. Some elves keep it in their pouch."] = "Ariel asked you to bring him his friend's favorite flower. Namely it is the Heaven Blossom. Some elves keep it in their pouch.",
-	["Ariel asked you to pay respect to his friend by laying these flowers on his grave. It is located on a nearby hill. If you do that, he will tell you his story."] = "Ariel asked you to pay respect to his friend by laying these flowers on his grave. It is located on a nearby hill. If you do that, he will tell you his story.",
+	["Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story."] = "Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story.",
 	["You put the flowers on Ariel's friend's grave, now come back to Ariel."] = "You put the flowers on Ariel's friend's grave, now come back to Ariel.",
 	["Ariel endowed you with a bow and a few minor gifts. He is now ready to tell you his story, whenever you ask him to do so."] = "Ariel endowed you with a bow and a few minor gifts. He is now ready to tell you his story, whenever you ask him to do so.",
 	["Yalahari Quest"] = "Yalahari Quest",
-	["Mission 1: Love is in the air"] = "Mission 1: Love is in the air",
+	["Mission 2: Love is in the air"] = "Mission 2: Love is in the air",
 	["Ariel asked you to hand over a party invitation to Madame Malkin."] = "Ariel asked you to hand over a party invitation to Madame Malkin.",
-	["Madame refused Ariel's request to go out with him. Tell him this bad news."] = "Madame refused Ariel's request to go out with him. Tell him this bad news.",
-	["Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin."] = "Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin.",
+	["Madame Malkin refused Ariel's request to go out with him. Tell him this bad news."] = "Madame Malkin refused Ariel's request to go out with him. Tell him this bad news.",
+	["Madame Malkin refused Ariel's request to go out with him. Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin."] = "Madame Malkin refused Ariel's request to go out with him. Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin.",
 	["Old Postman had a disgraceful idea to steal an elixir of love. He told you to fill this vial he gave you. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown."] = "Old Postman had a disgraceful idea to steal an elixir of love. He told you to fill this vial he gave you. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown.",
 	["Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions."] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
 	["Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin."] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
 	["Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel's."] = "Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel's.",
 	["Turns out that the “wine” worked as intended. Tell Ariel about it."] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
 	["Ariel rejoices to know about Madame's feelings. He also revealed the secret Yalaharian greeting to you: Aloha. You can visit Gertrdue or Konmuld now."] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Yalaharian greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
-	["Mission 2: A morbid Liquor"] = "Mission 2: A morbid Liquor",
+	["Mission 3: A Killer Liquor"] = "Mission 3: A Killer Liquor",
 	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda."] = "Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda.",
 	["In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides."] = "In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides.",
 	["After treating Konmuld with vodka, he agreed to talk with you."] = "After treating Konmuld with vodka, he agreed to talk with you.",
-	["Mission 3: Prelude to Thaumaturgy"] = "Mission 3: Prelude to Thaumaturgy",
+	["Mission 4: Prelude to Thaumaturgy"] = "Mission 4: Prelude to Thaumaturgy",
 	["Konmuld asked you to bring him a virgin's soul. You can ask Grave Digger for help with your mission."] = "Konmuld asked you to bring him a virgin's soul. You can ask Grave Digger for help with your mission.",
 	["Grave Digger said that there are no remaining virgins left, however, you can dig up a virgin's soul from a grave."] = "Grave Digger said that there are no remaining virgins left, however, you can dig up a virgin's soul from a grave.",
 	["You managed to get a virgin's soul. Now go see Konmuld."] = "You managed to get a virgin's soul. Now go see Konmuld.",
 	["Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself."] = "Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself.",
 	["In his gratitude, Konmuld gave you one of his old Yalahari set pieces."] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
-	["The First Steps"] = "The First Steps",
-	["Research"] = "Research",
+	["Sticky Beginning"] = "Sticky Beginning",
+	["Discernment"] = "Research",
 	["Find Commissioner Fisher and ask for a mission."] = "Find Commissioner Fisher and ask for a mission.",
 	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 0/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 0/10.",
 	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 1/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 1/10.",
@@ -231,7 +227,9 @@ return {
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter asked you to bring him 20 leathers of every kind.",
 	["For your help you have been taught how to skin human carcass."] = "For your help you have been taught how to skin human carcass.",
 	["Lecter's recipe"] = "Lecter's recipe",
-	["Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party."] = "Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party.",
+	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
+		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
+	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
 	["Hearts collected"] = "Hearts collected",
 	["Hearts collected Status"] = function(context)
@@ -242,8 +240,9 @@ return {
 		return string.format("Amount of livers collected: %d / 20", context.player:getStorageValue(11075))
 	end,
 	["Unwanted Guests"] = "Unwanted Guests",
-	["Damned Barbarians"] = "Damned Barbarians",
-	["Bring Brutetamers Staff and Fur Boots to Dziadek Mroz."] = "Bring Brutetamers Staff and Fur Boots to Dziadek Mroz.",
+	["Unwanted Guests"] = "Unwanted Guests",
+	["Bring Brutetamers Staff and Fur Boots to Old Man Frost."] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
+	["You completed Old Man Frosts's request."] = "You completed Old Man Frosts's request.",
 	["The Inquisition"] = "The Inquisition",
 	["Mission 1: Interrogation"] = "Mission 1: Interrogation",
 	["Your mission is to investigate the 5 guards regarding the Heretic behavior. Tim, Kulag, Grof, Miles and Walter are their names. If you do well you see a holy sprite on you."] = "Your mission is to investigate the 5 guards regarding the Heretic behavior. Tim, Kulag, Grof, Miles and Walter are their names. If you do well you see a holy sprite on you.",
@@ -285,38 +284,23 @@ return {
 	["Bigfoot's Burden"] = "Bigfoot's Burden",
 	["Reputation points"] = "Reputation points",
 	["Current reputation points"] = function(context)
-		return string.format(
-			"Currently You have %d reputation points.",
-			math.max(context.player:getStorageValue(921), 0)
-		)
+		return string.format("Currently You have %d reputation points.", math.max(context.player:getStorageValue(921), 0))
 	end,
 	["Daily Minor: Crystal Keeper"] = "Daily Minor: Crystal Keeper",
 	["Daily Minor: Crystal Keeper Status"] = function(context)
-		return string.format(
-			"Use the repair crystal to repair five damaged blue crystal in the crystal caves. Damaged crystals will not glow. %d/5",
-			math.max(context.player:getStorageValue(932), 0)
-		)
+		return string.format("Use the repair crystal to repair five damaged blue crystal in the crystal caves. Damaged crystals will not glow. %d/5", math.max(context.player:getStorageValue(932), 0))
 	end,
 	["Daily Minor: Raiders of the lost Spark"] = "Daily Minor: Raiders of the lost Spark",
 	["Daily Minor: Raiders of the lost Spark Status"] = function(context)
-		return string.format(
-			"Kill Crystal Crushers and use discharger item on the corpse to collect their charges. Gather 7 charges and report back. %d/7",
-			math.max(context.player:getStorageValue(934), 0)
-		)
+		return string.format("Kill Crystal Crushers and use discharger item on the corpse to collect their charges. Gather 7 charges and report back. %d/7", math.max(context.player:getStorageValue(934), 0))
 	end,
 	["Daily Minor Plus: Exterminators"] = "Daily Minor Plus: Exterminators",
 	["Daily Minor Plus: Exterminators Status"] = function(context)
-		return string.format(
-			"Kill 10 of the wigglers for the gnomes. Then report back to the gnomes. %d/10",
-			math.max(context.player:getStorageValue(937), 0)
-		)
+		return string.format("Kill 10 of the wigglers for the gnomes. Then report back to the gnomes. %d/10", math.max(context.player:getStorageValue(937), 0))
 	end,
 	["Daily Minor Plus: Mushroom Digger"] = "Daily Minor Plus: Mushroom Digger",
 	["Daily Minor Plus: Mushroom Digger Status"] = function(context)
-		return string.format(
-			"Find a truffle sniffing pig and lure it around. Occasionally it will unearth some truffles. Use the baby pig on the truffles to feed it 3 times. Then report back to the gnomes. %d/3",
-			math.max(context.player:getStorageValue(940), 0)
-		)
+		return string.format("Find a truffle sniffing pig and lure it around. Occasionally it will unearth some truffles. Use the baby pig on the truffles to feed it 3 times. Then report back to the gnomes. %d/3", math.max(context.player:getStorageValue(940), 0))
 	end,
 	["Daily Major Advanced: Spores"] = "Daily Major Advanced: Spores",
 	["Gather spores in the correct order. Your spore gathering list will display the next color you have to look for."] = "Gather spores in the correct order. Your spore gathering list will display the next color you have to look for.",
@@ -326,10 +310,7 @@ return {
 	["You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them."] = "You have to enter the crystal caves and find a crystal that is fitting the crystal you got from the gnomes. Use the crystal on one of the bigger red crystal in the caves to bond them.",
 	["Daily Major: The Tinker's Bell"] = "Daily Major: The Tinker's Bell",
 	["Daily Major: The Tinker's Bell Status"] = function(context)
-		return string.format(
-			"Use the harmonic bell on the mad golems in the golem workshop so that they will automatically be teleported to the gnomish workshops. Then report back to the gnomes. %d/4.",
-			math.max(context.player:getStorageValue(946), 0)
-		)
+		return string.format("Use the harmonic bell on the mad golems in the golem workshop so that they will automatically be teleported to the gnomish workshops. Then report back to the gnomes. %d/4.", math.max(context.player:getStorageValue(946), 0))
 	end,
 	["The Ape City"] = "The Ape City",
 	["Hairycles Missions"] = "Hairycles Missions",
@@ -366,9 +347,9 @@ return {
 	["Empowered Wardstones Status"] = function(context)
 		return string.format("Empowered Wardstones: %d / 8.", (math.max(context.player:getStorageValue(12209), 0)))
 	end,
-	["Readed documents"] = "Readed documents",
-	["Readed documents Status"] = function(context)
-		return string.format("Readed documents: %d / 4", (math.max(context.player:getStorageValue(12214), 0)))
+	["Documents Read"] = "Documents Read",
+	["Documents Read Status"] = function(context)
+		return string.format("Documents Read: %d / 4", (math.max(context.player:getStorageValue(12214), 0)))
 	end,
 	["Liquid Black"] = "Liquid Black",
 	["Visitor"] = "Visitor",

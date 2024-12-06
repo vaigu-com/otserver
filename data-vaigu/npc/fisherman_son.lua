@@ -166,7 +166,7 @@ local dialog = {
 			text = "It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative.",
 		},
 	},
-	[Storage.UstatkowanyFanatyk.Questline] = {
+	[Storage.SettledDownFishmonger.Questline] = {
 		[{ max = 4 }] = { [{ "shimmer swimmer" }] = { text = "Yeah, they're pretty." } },
 		[5] = {
 			[{ "mission", "misja", "nagroda", "reward" }] = {
@@ -182,8 +182,8 @@ local dialog = {
 				},
 				expReward = 80000,
 				nextState = {
-					[Storage.UstatkowanyFanatyk.Mission03] = 4,
-					[Storage.UstatkowanyFanatyk.Questline] = 6,
+					[Storage.SettledDownFishmonger.Mission03] = 4,
+					[Storage.SettledDownFishmonger.Questline] = 6,
 					[Storage.Finished.Fanatyk] = 1,
 				},
 			},

@@ -180,24 +180,24 @@ local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- Q3
-	if (target.itemid == 4240 or target.itemid == 4247) and player:getStorageValue(Storage.MilczenieOwiec.ModneUbrania) < 2 then
+	if (target.itemid == 4240 or target.itemid == 4247) and player:getStorageValue(Storage.SilenceOfTheLambs.FashionistaClothes) < 2 then
 		return true
 	end
 	-- Q3
 	-- Q4
-	if (target.itemid == 4240 or target.itemid == 4247) and player:getStorageValue(Storage.MilczenieOwiec.GotujZLecterem) == 1 then
+	if (target.itemid == 4240 or target.itemid == 4247) and player:getStorageValue(Storage.SilenceOfTheLambs.RubMeatWithLecter) == 1 then
 		local radn = math.random(10)
 		if radn >= 4 and radn <= 7 then
-			if player:getStorageValue(Storage.MilczenieOwiec.LudzkieWatroby) <= 19 then
-				player:setStorageValue(Storage.MilczenieOwiec.LudzkieWatroby, player:getStorageValue(Storage.MilczenieOwiec.LudzkieWatroby) + 1) -- dodaje 1 watrobke
+			if player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) <= 19 then
+				player:setStorageValue(Storage.SilenceOfTheLambs.HumanLivers, player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) + 1) -- dodaje 1 watrobke
 				player:say("Udalo ci sie wyciac watrobe.", TALKTYPE_MONSTER_SAY)
 				toPosition:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 			else
 				player:say("Dobra, kolejnej watroby nie potrzebuje.", TALKTYPE_MONSTER_SAY)
 			end
 		elseif radn >= 8 then
-			if player:getStorageValue(Storage.MilczenieOwiec.LudzkieSerca) <= 14 then
-				player:setStorageValue(Storage.MilczenieOwiec.LudzkieSerca, player:getStorageValue(Storage.MilczenieOwiec.LudzkieSerca) + 1) -- dodaje 1 serce
+			if player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts) <= 14 then
+				player:setStorageValue(Storage.SilenceOfTheLambs.HumanHearts, player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts) + 1) -- dodaje 1 serce
 				player:say("Udalo ci sie wyciac serce.", TALKTYPE_MONSTER_SAY)
 				toPosition:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 			else
@@ -211,10 +211,10 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- Q4
 	local skin = config[item.itemid][target.itemid]
 	if item.itemid == 5908 and target.itemid == 12369 and target.uid == 11018 then
-		if player:getStorageValue(Storage.SciezkaDruida.PorwanyBenek) == 1 then
+		if player:getStorageValue(Storage.WayOfTheDruid.TakenBenek) == 1 then
 			doSendMagicEffect(toPosition, 49)
 			doCreatureSay(toPosition, "Wuf wuf", TALKTYPE_ORANGE_1)
-			player:setStorageValue(Storage.SciezkaDruida.PorwanyBenek, 2)
+			player:setStorageValue(Storage.WayOfTheDruid.TakenBenek, 2)
 		end
 		return true
 	end

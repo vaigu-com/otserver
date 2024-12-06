@@ -28,11 +28,17 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Demon Oak",
-			missions  = {
+			missions = {
 				[Storage.DemonOak.Mission] = {
-					
-				}
-			}
+					name = "Demon Oak",
+					states = {
+						[1] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
+						[2] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",
+						[3] = "You defeated the Demon Oak! Report to Oldrak.",
+						[4] = "You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury.",
+					},
+				},
+			},
 		}
 	end)
 	:Mission(Storage.DemonOak.Mission)

@@ -1,18 +1,18 @@
 local fajtlapaItems = {
-	[Storage.UstatkowanyFanatyk.FajtlapaFloat] = { id = 6126, aid = 11088, addToStore = true },
-	[Storage.UstatkowanyFanatyk.FajtlapaReel] = { id = 3224, aid = 11090, addToStore = true },
-	[Storage.UstatkowanyFanatyk.FajtlapaStool] = { id = 3107, aid = 11092, addToStore = true },
+	[Storage.SettledDownFishmonger.FajtlapaFloat] = { id = 6126, aid = 11088, addToStore = true },
+	[Storage.SettledDownFishmonger.FajtlapaReel] = { id = 3224, aid = 11090, addToStore = true },
+	[Storage.SettledDownFishmonger.FajtlapaStool] = { id = 3107, aid = 11092, addToStore = true },
 }
 
 local fajtlapaDescriptions = {
-	[Storage.UstatkowanyFanatyk.FajtlapaFloat] = "You have found fishing float!",
-	[Storage.UstatkowanyFanatyk.FajtlapaReel] = "You have found fishing reel!",
-	[Storage.UstatkowanyFanatyk.FajtlapaStool] = "You have found fishing stool!",
+	[Storage.SettledDownFishmonger.FajtlapaFloat] = "You have found fishing float!",
+	[Storage.SettledDownFishmonger.FajtlapaReel] = "You have found fishing reel!",
+	[Storage.SettledDownFishmonger.FajtlapaStool] = "You have found fishing stool!",
 }
 
 local fajtlapaContainers = Action()
 function fajtlapaContainers.onUse(player, item, _, _, toPosition, _)
-	if player:getStorageValue(Storage.UstatkowanyFanatyk.Fajtlapa) ~= 1 then
+	if player:getStorageValue(Storage.SettledDownFishmonger.Fajtlapa) ~= 1 then
 		return
 	end
 
@@ -32,8 +32,8 @@ function fajtlapaContainers.onUse(player, item, _, _, toPosition, _)
 end
 
 fajtlapaContainers:aid(
-	Storage.UstatkowanyFanatyk.FajtlapaFloat,
-	Storage.UstatkowanyFanatyk.FajtlapaReel,
-	Storage.UstatkowanyFanatyk.FajtlapaStool
+	Storage.SettledDownFishmonger.FajtlapaFloat,
+	Storage.SettledDownFishmonger.FajtlapaReel,
+	Storage.SettledDownFishmonger.FajtlapaStool
 )
 fajtlapaContainers:register()

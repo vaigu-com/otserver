@@ -10,7 +10,7 @@ return {
 		local finalString = ""
 		finalString = finalString .. "Just ask me about specific encounter and i will give you tips to best of my ability. These are the bosses i know:"
 		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.GrubyMirekEncounters]) do
+		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
 			if type(desc) == "string" then
 				finalString = finalString .. "\n{" .. name .. "}"
 			end
@@ -20,7 +20,7 @@ return {
 	["ENCOUNTER_DESCRIPTION"] = function(context)
 		local message = context.msg
 		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.GrubyMirekEncounters]) do
+		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
 			if type(desc) == "string" and name:lower() == message:lower() then
 				return desc
 			end

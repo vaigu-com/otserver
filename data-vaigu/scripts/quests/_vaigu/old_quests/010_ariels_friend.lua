@@ -1,0 +1,419 @@
+local quest = Quest(LOCALIZERS.ArielsFriend)
+
+local topics = {
+	confirmAcceptFlowerQuest = NextTopic(),
+	confirmAcceptLoveQuest = NextTopic(),
+	confirmVodkaQuest = NextTopic(),
+	confirmReward = NextTopic(),
+}
+quest
+	:Storage(function()
+		Storage.ArielsFriend = {
+			HumbleRequest = 11000,
+			Blossoms = 11005,
+			LoveIsInTheAir = 11002,
+			Haybed = 11004,
+			KillerLiquor = 11044,
+			PreludeToThaumaturgy = 11047,
+			VodkaChest = 11048,
+			GravesSoulChance = 11049,
+		}
+		QuestState.ArielsFriend = {
+			HumbleRequest = {
+				PutFlowerOnGrave = 1,
+				ReportToAriel = 2,
+				Finished = 3,
+			},
+			LoveIsInTheAir = {
+				HandInvitationToMadame = 1,
+				AskPostmanForHelp = 2,
+				StealElixir = 3,
+				ReportToPostman = 4,
+				EnchantElixirWithHair_DrugMadame = 5,
+				AskMadameAboutAriel = 6,
+				ReportToAriel = 7,
+				Finished = 8,
+			},
+			KillerLiquor = {
+				FindVodkaForGertrude = 1,
+				BringVodkaToKonmuld = 2,
+				AskKonmuldForMission = 3,
+				Finished = 4,
+			},
+			PreludeToThaumaturgy = {
+				AskGraveDiggerForhelp = 1,
+				DigUpVirginSoul = 2,
+				ReportToKonmuld = 3,
+				ChooseYalahariPiece = 4,
+				Finished = 5,
+			},
+		}
+	end)
+	:Constant(function() end)
+	:Questlog(function()
+		Quests[NextQuestId()] = {
+			name = "Ariel's Friend",
+			missions = {
+				[Storage.ArielsFriend.HumbleRequest] = {
+					name = "Mission 1: Humble Request",
+					states = {
+						[1] = "Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story.",
+						[2] = "You put the flowers on Ariel's friend's grave, now come back to Ariel.",
+						[3] = "Ariel endowed you with a bow and a few minor gifts. He is now ready to tell you his story, whenever you ask him to do so.",
+					},
+				},
+				[Storage.ArielsFriend.LoveIsInTheAir] = {
+					name = "Mission 2: Love is in the air",
+					states = {
+						[1] = "Ariel asked you to hand over a party invitation to Madame Malkin.",
+						[2] = "Madame Malkin refused Ariel's request to go out with him. Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin.",
+						[3] = "Old Postman had a disgraceful idea to steal an elixir of love. He told you to fill this vial he gave you. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown.",
+						[4] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
+						[5] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
+						[6] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
+						[7] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Yalaharian greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
+					},
+				},
+				[Storage.ArielsFriend.KillerLiquor] = {
+					name = "Mission 3: A Killer Liquor",
+					states = {
+						[1] = "Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda.",
+						[2] = "In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides.",
+						[3] = "After treating Konmuld with vodka, he agreed to talk with you.",
+					},
+				},
+				[Storage.ArielsFriend.PreludeToThaumaturgy] = {
+					name = "Mission 4: Prelude to Thaumaturgy",
+					states = {
+						[1] = "Konmuld asked you to bring him a virgin's soul. You can ask Grave Digger for help with your mission.",
+						[2] = "Grave Digger said that there are no remaining virgins left, however, you can dig up a virgin's soul from a grave.",
+						[3] = "You managed to get a virgin's soul. Now go see Konmuld.",
+						[4] = "Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself.",
+						[5] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
+					},
+				},
+			},
+		}
+	end)
+	:Mission(Storage.ArielsFriend.HumbleRequest)
+	:State(
+		QUEST_NOT_STARTED,
+		QuestFactory.Dialog("Ariel", {
+			[{ "mission", "misja" }] = {
+				text = "I've wanted to pick my friend's favourite flowers to put them on his grave for a week now, but I am too busy. Would you help me?",
+				nextTopic = topics.confirmAcceptFlowerQuest,
+			},
+			[{ "yes", "tak" }] = {
+				text = "My friend's favorite flower was {heaven blossom}. Please, find one and put it on his grave. I would be very grateful and tell you a {story} if you succeed.",
+				requiredTopic = topics.confirmAcceptFlowerQuest,
+				nextState = {
+					[Storage.ArielsFriend.HumbleRequest] = QuestState.ArielsFriend.HumbleRequest.PutFlowerOnGrave,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.HumbleRequest.PutFlowerOnGrave,
+		QuestFactory.Dialog("Ariel", {
+			[{ "mission", "misja", "heaven blossom" }] = {
+				text = "Heaven blossom is a rare commodity amongst elves. Please find it and place it on my friend grave that is on top of the hill, northwest from here.",
+			},
+		}),
+		QuestFactory.StartupItems({
+			
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.HumbleRequest.ReportToAriel,
+		QuestFactory.Dialog("Ariel", {
+			[{ "mission" }] = {
+				text = "Wow! I can feel the flow of positive energy. Even the flowers started to sing from happiness. Thank you for your help, my friend. Here, keep your reward. I can tell you my {story}, if you want.",
+				nextState = {
+					[Storage.ArielsFriend.HumbleRequest] = QuestState.ArielsFriend.HumbleRequest.Finished,
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
+				},
+				rewards = {
+					{ id = 7438 },
+					{ id = 3061 },
+					{ id = 3047, count = 20 },
+					{ id = 3728, count = 5 },
+				},
+				experienceReward = 20000,
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
+		QuestFactory.Dialog("Ariel", {
+			[{ "story", "historia", "historie", "mission" }] = {
+				text = "Oh, yes. I promised to tell you my story. Well, I come from the legendary town of Yalahar, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist. ...\nI survived because I left there as soon as the riots broke out, unfortunately all my family died. Besides me, a few more inhabitants fled. At first we stuck together, but eventually we parted ways. Last time I saw {Gertrude} in the jungle. {Konmuld} on the other hand, he went the wrong way, and decided to devote himself to black magic. I did not know the other survivors, but maybe Gertrude or Konmuld will know where they are. ...\nHowever, I don't know if they will want to talk to you, Yalaharians are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
+				nextTopic = topics.confirmAcceptLoveQuest,
+			},
+			[{ "yes", "tak" }] = {
+				text = "I knew that I can rely on you. Her name is Madame Malkin, she deals with clothes and fabrics. Please, deliver this invitation.. If by any chance she accepts, come back to me. In other case i would like you to visit my friend Old Postman he might have idea better than party invitation.",
+				nextState = {
+					[Storage.ArielsFriend.HumbleRequest] = QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel,
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
+				},
+			},
+		})
+	)
+	:Mission(Storage.ArielsFriend.LoveIsInTheAir)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
+		QuestFactory.Dialog("Madame Malkin", {
+			[{ "mission", "ariel", "misja" }] = {
+				text = "Ariel? The one who lives in this funny hut in the west? He sent you this time? \nTell him that I'm not going to any party with him.",
+				nextState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp,
+		QuestFactory.Dialog("Ariel", {
+			text = "I expected that she wouldn't want to go.. I have to convince her in some other way, but I'm out of ideas. Please, visit my friend Old Postman, he's really wise and always have some good ideas.",
+		}),
+		QuestFactory.Dialog("Old Postman", {
+			[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {
+				text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
+				rewards = {
+					{ id = 2874, fluidType = 0 },
+				},
+				nextState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
+				},
+			},
+		})
+	)
+	:State(QuestState.ArielsFriend.LoveIsInTheAir.StealElixir)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman,
+		QuestFactory.Dialog("Old Postman", {
+			[{ "eliksir", "madame", "mission", "misja", "mikstura", "elixir" }] = {
+				text = "If we have an elixir, we don't need to get Ariel's hair to dissolve it in it...\nGo to him and look for his hair in his bed, there must be something. Next, give Madame the love elixir as wine from me.",
+			},
+			nextState = {
+				[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
+		QuestFactory.Dialog("Madame Malkin", {
+			[{ "mission", "misja", "wino", "wine", "ariel" }] = {
+				text = "Ahh, I love these exotic ones from Old Postman, I'll taste them immediately at the spot.\nArrrgh, disgusting. Tell him that he should never order this one again.",
+				nextState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel,
+		QuestFactory.Dialog("Madame Malkin", {
+			[{ "mission", "misja", "ariel" }] = {
+				text = "Party invitation from my lovely Ariel? Of course I will go. Tell him to pick me up at 6pm.",
+			},
+			nextState = {
+				[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel,
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel,
+		QuestFactory.Dialog("Ariel", {
+			[{ "madame", "malkin", "mission", "misja" }] = {
+				text = "She agreed? How did you do that? Well, that doesn't matter now, thank you from the bottom of my heart. Here is small gift for you, and as I promissed, our secrest password: Aloha.\nI hope that you'll visit me someday.",
+				nextState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.Finished,
+				},
+			},
+		})
+	)
+	:State(
+		{ min = QuestState.ArielsFriend.LoveIsInTheAir.Finished },
+		QuestFactory.Dialog("Ariel", {
+			[{ "gertrude" }] = {
+				text = "She moved near the lizards' village. They stay out of each other's way though.",
+			},
+			[{ "konmuld" }] = {
+				text = "He holed up in an abandoned village on steppes. I don't think anyone visits him there.",
+			},
+		})
+	)
+	:Mission(Storage.ArielsFriend.KillerLiquor)
+	:State(
+		QUEST_NOT_STARTED,
+		QuestFactory.Dialog("Gertrude", {
+			[{ "aloha" }] = {
+				text = "I see you have met one of our brothers. Welcome to our family then, there are not many of us left in this world.\nIf you want, I can tell you a part of our {story}.",
+				nextTopic = topics.confirmVodkaQuest,
+				requiredState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = { min = QuestState.ArielsFriend.LoveIsInTheAir.Finished },
+				},
+				textNoRequiredState = "I don't know who told you this password. Go away please.",
+			},
+			[{ "yes", "tak", "story", "mission", "misja", "historii", "historie", "historia" }] = {
+				text = "Can you see the lizard village west to my hut? They have a strange plant that they use to produce vodka most potent. Once, i took two sips of this beverage... i dont remember much after, as i slept for next two days. \nIm now getting ready to visit my friend Konmuld. Hes not very talkative outside of the time he is drunk.\n\nPlease steal some of this liquor from lizards if you want me to continue out story.",
+				requiredTopic = topics.confirmVodkaQuest,
+				nextState = {
+					[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude,
+		QuestFactory.Dialog("Gertrude", {
+			[{
+				"misja",
+				"mission",
+				"historia",
+				"story",
+				"historii",
+				"butelka",
+				"wodka",
+			}] = {
+				text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Yalahar.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
+				requiredItems = { { id = 6106, remove = false } },
+				nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
+				expReward = 150 * 1000,
+			},
+		}),
+		QuestFactory.StartupItems({
+			--38f
+			{ id = 2520, pos = {}, aid = Storage.ArielsFriend.VodkaChest, rewards = { { id = 6106, addToStore = true } } },
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld,
+		QuestFactory.Dialog("Konmuld", {
+			[{ "aloha" }] = {
+				text = "Im not in the mood to talk with you.",
+			},
+			[{ "wodka", "trunek", "vodka", "liquor" }] = {
+				text = "Now we can talk! Who bring you there?",
+				requiredItems = {
+					{ id = 6106 },
+				},
+				nextState = {
+					[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.AskKonmuldForMission,
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.KillerLiquor.AskKonmuldForMission,
+		QuestFactory.Dialog("Konmuld", {
+			[{ "aloha" }] = {
+				text = "Im not in the mood to talk with you.",
+			},
+			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
+				text = "I'll tell you what we will do. For a few years I have been studying the art of secret black magic. Still the soul of the virgin is missing.\nI don't know how to get it, but {someone} will know for sure. Try to find out and bring me at least one soul. I'll give you one piece of my old set.",
+				nextState = {
+					[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.Finished,
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
+				},
+			},
+		})
+	)
+	:Mission(Storage.ArielsFriend.PreludeToThaumaturgy)
+	:State(
+		QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
+		QuestFactory.Dialog("Grave Digger", {
+			[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "mission" }] = {
+				text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is a shovel in my hand and digging {graves}, which is what I like best!\nIf you don't have anything to dig with, keep my old shovel.",
+				nextState = {
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
+		QuestFactory.Dialog("Grave Digger", {
+			[{}] = "You can surely find graves on cemetery in Mirkotown and also in Knurow. I heard that there is one somewhere to the north of here.",
+		}),
+		QuestFactory.Script(function(missionState)
+			local grave = Action()
+
+			function grave.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:HasExactMissionState(missionState) then
+					return false
+				end
+
+				local requiredRoll = 100 - player:getStorageValue(Storage.ArielsFriend.GravesSoulChance)
+				local roll = math.random(1, 100)
+				if roll >= requiredRoll then
+					Game.createMonster("Ghost", player:getPosition())
+					player:setStorageValue(Storage.ArielsFriend.PreludeToThaumaturgy, QuestState.ArielsFriend.PreludeToThaumaturgy.ReportToKonmuld)
+				else
+					Game.createMonster("Ghoul", player:getPosition())
+					player:incrementStorage(Storage.ArielsFriend.GravesSoulChance, 10)
+				end
+				return true
+			end
+
+			grave:aid(Storage.PathOfTheUndead.KonmuldBush)
+			grave:register()
+		end)
+	)
+	:State(
+		QuestState.ArielsFriend.PreludeToThaumaturgy.ReportToKonmuld,
+		QuestFactory.Dialog("Konmuld", {
+			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
+				text = "GREAT! I will create a virgin from that soul just for myself!\nAs promissed. You can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
+				expReward = 750000,
+				outfitRewards = {
+					{ outfit = 324, addons = 3 },
+					{ outfit = 325, addons = 3 },
+				},
+				nextState = {
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
+				},
+			},
+		})
+	)
+	:State(
+		QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
+		QuestFactory.Dialog("Konmuld", {
+			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
+				text = "As promissed. You can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
+				nextTopic = topics.confirmReward,
+			},
+			[{ "mask", "maska" }] = {
+				text = "Heres your reward!",
+				rewards = {
+					{ id = 8864 },
+				},
+				nextState = {
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.Finished,
+					[Storage.Finished.ArielsFriend] = 1,
+				},
+			},
+			[{ "legs", "spodnie" }] = {
+				text = "Heres your reward!",
+				rewards = {
+					{ id = 8863 },
+				},
+				nextState = {
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.Finished,
+					[Storage.Finished.ArielsFriend] = 1,
+				},
+			},
+			[{ "armor" }] = {
+				text = "Heres your reward!",
+				rewards = {
+					{ id = 8862 },
+				},
+				nextState = {
+					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.Finished,
+					[Storage.Finished.ArielsFriend] = 1,
+				},
+			},
+		})
+	)
+	:Register()

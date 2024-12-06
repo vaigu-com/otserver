@@ -1,4 +1,3 @@
-print("011_sultan_prime.lua")
 local sultanPrime = Quest("sultan_prime")
 sultanPrime
 	:Storage(function()
@@ -535,7 +534,6 @@ sultanPrime
 			},
 		}),
 		QuestFactory.Script(function(missionState)
-			print("before registering camel death")
 			local updateStorages = {
 				[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope,
 			}
@@ -572,7 +570,6 @@ sultanPrime
 				return true
 			end
 			dromedaryDeath:register()
-			print("registered dromedary death")
 		end)
 	)
 	:State(

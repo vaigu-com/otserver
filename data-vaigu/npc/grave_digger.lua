@@ -71,10 +71,10 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	-- ============ DO MISJI TRUDNE POCZATKI =============
-	if table.contains({ "pomoc", "help" }, message) and player:getStorageValue(Storage.TrudnePoczatki.DiggerAsked) < 1 then
-		if player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) >= 2 then
-			player:setStorageValue(Storage.TrudnePoczatki.DiggerAsked, 1) -- lockujemy grave diggera jako wykonanego
-			player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) + 1) -- +1 zeby kolejnosc nie miala znaczenia
+	if table.contains({ "pomoc", "help" }, message) and player:getStorageValue(Storage.StickyBeginning.DiggerAsked) < 1 then
+		if player:getStorageValue(Storage.StickyBeginning.Discernment) >= 2 then
+			player:setStorageValue(Storage.StickyBeginning.DiggerAsked, 1) -- lockujemy grave diggera jako wykonanego
+			player:setStorageValue(Storage.StickyBeginning.Discernment, player:getStorageValue(Storage.StickyBeginning.Discernment) + 1) -- +1 zeby kolejnosc nie miala znaczenia
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Potrzebuje pomocy, ale pewnie nie taka o jaka chodzi Rybie, natomiast jakbys chcial sie przydac to sie zglos do mnie." or "I need help, but probably not close to what Ryba want, but if you want to be useful, please contact me.", npc, creature)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Czego ty ode mnie chcesz? Lepiej zamelduj sie u Komisarza Ryby.." or "What do you want? Better visit Commissioner Fisher first.", npc, creature)

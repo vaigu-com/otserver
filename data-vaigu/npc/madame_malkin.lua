@@ -112,21 +112,21 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 	config = GetConfigByPlayer(creature, lang_to_config)
 	-- wymiana turbanow, red robe i green tunicow == 29/04/17
-	if MsgContains(message, "mystic turban") and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) == 2 then
+	if MsgContains(message, "mystic turban") and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) == 2 then
 		if player:getItemCount(3574) > 0 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Chcesz zamienic wszystkie mystic turbany na niebieskie szmatki?" or "Would you like to exchange all of your mystic turbans to blue pieces of cloth?", npc, creature)
 			npcHandler:setTopic(playerId, 3)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie posiadasz turbanu." or "You didnt bring any mystic turban with you.", npc, creature)
 		end
-	elseif MsgContains(message, "red robe") and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) == 2 then
+	elseif MsgContains(message, "red robe") and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) == 2 then
 		if player:getItemCount(3566) > 0 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Chcesz zamienic wszystkie red roby na czerwone szmatki?" or "Would you like to exchange all of your red robes to red pieces of cloth?", npc, creature)
 			npcHandler:setTopic(playerId, 4)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie posiadasz red robe." or "You didnt bring any red robe with you.", npc, creature)
 		end
-	elseif MsgContains(message, "green tunic") and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) == 2 then
+	elseif MsgContains(message, "green tunic") and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) == 2 then
 		if player:getItemCount(3563) >= 10 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Green tunic to slaby material, ale za 10 z nich dam ci 1 zielona szmatke. Pasuje?" or "Green tunics are such weak fabric. I can exchange 10 of them for one green piece of cloth. Are you down for that?", npc, creature)
 			npcHandler:setTopic(playerId, 5)
@@ -225,14 +225,14 @@ local function creatureSayCallback(npc, creature, type, message)
 	-- ============ DO 1 MISJI YALAHARI QUESTA =============
 	-- ============ DO MISJI TRUDNE POCZATKI =============
 	if table.contains({ "pomoc", "help" }, message) then
-		if player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) >= 2 then
-			if player:getStorageValue(Storage.TrudnePoczatki.MadameAsked) < 1 then
-				player:setStorageValue(Storage.TrudnePoczatki.MadameAsked, 1) -- lockujemy Malkin jako wykonanego
-				player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) + 1) -- +1 zeby kolejnosc nie miala znaczenia
+		if player:getStorageValue(Storage.StickyBeginning.Discernment) >= 2 then
+			if player:getStorageValue(Storage.StickyBeginning.MadameAsked) < 1 then
+				player:setStorageValue(Storage.StickyBeginning.MadameAsked, 1) -- lockujemy Malkin jako wykonanego
+				player:setStorageValue(Storage.StickyBeginning.Discernment, player:getStorageValue(Storage.StickyBeginning.Discernment) + 1) -- +1 zeby kolejnosc nie miala znaczenia
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie potrzebuje pomocy, ale gdybys przyniosl mi po 1 {tkaninie} kazdego koloru to sie na pewno odwdziecze." or "I dont need any help, but I would be glad if you bring me one piece of {cloth} of each color. I will definitely pay back for that.", npc, creature)
-			elseif player:getStorageValue(Storage.TrudnePoczatki.MadameAsked) >= 1 and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) < 1 then
+			elseif player:getStorageValue(Storage.StickyBeginning.MadameAsked) >= 1 and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) < 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie potrzebuje pomocy, ale gdybys przyniosl mi po 1 {tkaninie} kazdego koloru to sie na pewno odwdziecze." or "I dont need any help, but I would be glad if you bring me one piece of {cloth} of each color. I will definitely pay back for that.", npc, creature)
-			elseif player:getStorageValue(Storage.TrudnePoczatki.MadameAsked) >= 1 and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) == 1 then
+			elseif player:getStorageValue(Storage.StickyBeginning.MadameAsked) >= 1 and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Czekam, az przyniesiesz mi po kawalku tkaniny z kazdego koloru." or "Im waiting for you to bring me piece of cloth of each color.", npc, creature)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "No dzieki za te szmatki, co mi przyniosles. Nic wiecej mi nie potrzeba." or "Thank you for those pieces of cloth.", npc, creature)
@@ -241,9 +241,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie potrzebuje pomocy." or "I dont need your help.", npc, creature)
 		end
 		-- ============ DO MISJI TRUDNE POCZATKI ============= 24/04/17
-	elseif table.contains({ "naszyjnik", "necklace" }, message) and player:getStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger) == 2 then
+	elseif table.contains({ "naszyjnik", "necklace" }, message) and player:getStorageValue(Storage.ToCarryThePigs.BeLikeSchwarzenegger) == 2 then
 		if player:getItemCount(10196) >= 5 and player:getItemCount(9685) >= 1 and player:getItemCount(10275) >= 5 then
-			player:setStorageValue(Storage.NaPomocBagietom.BeLikeSchwarzenegger, 3)
+			player:setStorageValue(Storage.ToCarryThePigs.BeLikeSchwarzenegger, 3)
 			player:removeItem(10196, 5) -- zabieramy 5 zembuf ork
 			player:removeItem(9685, 1) -- zabieramy 1 zembuf vamp
 			player:removeItem(10275, 5) -- zabieramy 5 zembuf rot
@@ -254,8 +254,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		-- ============ DO MISJI TRUDNE POCZATKI ============= 24/04/17
 		-- ============ MISJA ZE SZMATKAMI ============= 29/04/17
-	elseif table.contains({ "tkaninie", "cloth" }, message) and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) < 1 and player:getStorageValue(Storage.TrudnePoczatki.MadameAsked) >= 1 then
-		player:setStorageValue(Storage.HelpingLocals.TaniRecykling, 1)
+	elseif table.contains({ "tkaninie", "cloth" }, message) and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) < 1 and player:getStorageValue(Storage.StickyBeginning.MadameAsked) >= 1 then
+		player:setStorageValue(Storage.LocalSupport.BudgetRecycling, 1)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Lubie cos uszyc w wolnym czasie, ale powoli brakuje mi kolorowych tkanin. Przynies mi po jednej z kazdego koloru, a na pewno ci sie odwdziecze." or "I like to sew something when I am bored but slowly I am lack of colorful fabrics", npc, creature)
 	end
 	if table.contains({ "mission", "misja", "tkaniny", "tkanina", "cloth" }, message) then
@@ -263,7 +263,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		--	player:setStorageValue(Storage.HelpingLocals.TaniRecykling, 1)
 		--	npcHandler:say('Lubie cos uszyc w wolnym czasie, ale powoli brakuje mi kolorowych tkanin. Przynies mi po jednej z kazdego koloru, a na pewno ci sie odwdziecze.', npc, creature)
 		-- end
-		if player:getStorageValue(Storage.HelpingLocals.TaniRecykling) == 1 then
+		if player:getStorageValue(Storage.LocalSupport.BudgetRecycling) == 1 then
 			if
 				player:getItemCount(5909) > 0 -- white
 				and player:getItemCount(5910) > 0 -- green
@@ -277,7 +277,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					npc,
 					creature
 				)
-				player:setStorageValue(Storage.HelpingLocals.TaniRecykling, 2) -- konczymy questa
+				player:setStorageValue(Storage.LocalSupport.BudgetRecycling, 2) -- konczymy questa
 				-- Q5.1
 				player:addExperience(30000, true) -- 30k expa
 				player:getPosition():sendMagicEffect(CONST_ME_STUN)
@@ -292,9 +292,9 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Mysle ze pominales jakis kolor, przynies wszystkie 6 za jednym razem." or "I think you missed some colour, bring me all 6 at once.", npc, creature)
 			end
 		end
-	elseif (MsgContains(message, "mystic turban") or MsgContains(message, "red robe") or MsgContains(message, "green tunic")) and player:getStorageValue(Storage.HelpingLocals.TaniRecykling) < 1 then
+	elseif (MsgContains(message, "mystic turban") or MsgContains(message, "red robe") or MsgContains(message, "green tunic")) and player:getStorageValue(Storage.LocalSupport.BudgetRecycling) < 1 then
 		npcHandler:say(config[3], npc, creature)
-		player:setStorageValue(Storage.HelpingLocals.TaniRecykling, 1)
+		player:setStorageValue(Storage.LocalSupport.BudgetRecycling, 1)
 	end
 	if MsgContains(message, "belongings") or MsgContains(message, "medicine") then
 		if player:getItemCount(12517) > 0 then

@@ -66,6 +66,13 @@ local specialMessageTypeToMessage = {
 	[MESSAGE_WALKAWAY] = WALKAWAY,
 }
 
+local FIRST_AVAILABLE_TOPIC = 100000
+NEXT_TOPIC = NEXT_TOPIC or FIRST_AVAILABLE_TOPIC
+function NextTopic()
+	NEXT_TOPIC = NEXT_TOPIC + 1
+	return NEXT_TOPIC
+end
+
 -- ToDo: create item kv field (string) in rme?
 -- ToDo: storage keys will be converted to kv? if so this function will no longer be needed
 local FIRST_AVAILABLE_STORAGE = 8100
@@ -267,7 +274,7 @@ end
 
 function Player:AddOutfitsAndAddons(outfitsAndAddons)
 	for _, data in pairs(outfitsAndAddons) do
-		local outfit = data.outfitId or data.outfit
+		local outfit = data.outfitId or data.outfit or data.id
 		local addon = data.addon
 
 		self:addOutfit(outfit)
@@ -407,6 +414,9 @@ function ResolutionContext.FromEncounter(encounterData, player)
 	newObj.localizerName = encounterData.localizerName
 	newObj.player = player
 	newObj.__index = ResolutionContext
+	if newObj.requirements then
+		newObj.requirements.requiredState = nil
+	end
 	return newObj
 end
 
@@ -916,6 +926,9 @@ function ResolutionContext:SetNextTopic()
 	if actions.preserveTopic == true then
 		return
 	end
+	if not self.npcHandler then
+		return
+	end
 
 	self.npcHandler.topic[self.cid] = actions.nextTopic or 0
 	addEvent(function()
@@ -923,10 +936,10 @@ function ResolutionContext:SetNextTopic()
 	end, 5)
 end
 
-function ResolutionContext:AddDialogData()
+function ResolutionContext:AppendLastDialogToRegistry()
 	local actions = self.actionsOnSuccess
 	if actions.addDialogData ~= false then
-		PlayerDialogDataRegistry():Get(self.player):Add(self)
+		PlayerDialogDataRegistry:Get(self.player):Add(self)
 	end
 end
 
@@ -994,7 +1007,7 @@ local actionsOnSuccessfulResolution = {
 	ResolutionContext.UpdatePlayerState,
 	ResolutionContext.UpdateGlobalState,
 	ResolutionContext.SetNextTopic,
-	ResolutionContext.AddDialogData,
+	ResolutionContext.AppendLastDialogToRegistry,
 	ResolutionContext.TrySendTranslateSuccessMessage,
 }
 
@@ -1026,7 +1039,7 @@ function ResolutionContext:Resolve()
 	end
 
 	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
-		self.lastDialogData = PlayerDialogDataRegistry():Get(self.player):Latest()
+		self.lastDialogData = PlayerDialogDataRegistry:Get(self.player):Latest()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
 	end
@@ -1035,7 +1048,7 @@ end
 function InitializeResponses(player, config, npcHandler, npc, msg)
 	player = Player(player)
 
-	PlayerDialogDataRegistry():Register(player)
+	PlayerDialogDataRegistry:Register(player)
 	local cid = player:getId()
 
 	--ToDo: does it work? or should it be done with addEvent?
@@ -1050,18 +1063,15 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	end
 end
 
-PlayerDialogData = {}
 PlayerDialogDataRegistry = {}
 PlayerDialogDataRegistry.__index = PlayerDialogDataRegistry
+PlayerDialogDataRegistry.registry = {}
+
 PlayerCustomDialogDataRegistry = {}
 PlayerCustomDialogDataRegistry.__index = PlayerCustomDialogDataRegistry
-local playerDialogDataRegistrySingleton = nil
-local playerCustomnDialogDataRegistrySingleton = nil
-setmetatable(PlayerDialogData, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
+PlayerCustomDialogDataRegistry.registry = {}
+
+PlayerDialogData = {}
 function PlayerDialogData:New()
 	local newObj = {}
 	setmetatable(newObj, PlayerDialogData)
@@ -1069,36 +1079,11 @@ function PlayerDialogData:New()
 	self.__index = self
 	return newObj
 end
-setmetatable(PlayerDialogDataRegistry, {
+setmetatable(PlayerDialogData, {
 	__call = function(class, ...)
 		return class:New(...)
 	end,
 })
-function PlayerDialogDataRegistry:New()
-	if playerDialogDataRegistrySingleton then
-		return playerDialogDataRegistrySingleton
-	end
-	playerDialogDataRegistrySingleton = {}
-	setmetatable(playerDialogDataRegistrySingleton, PlayerDialogDataRegistry)
-	self.__index = self
-	playerDialogDataRegistrySingleton.registry = {}
-	return playerDialogDataRegistrySingleton
-end
-setmetatable(PlayerCustomDialogDataRegistry, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
-function PlayerCustomDialogDataRegistry:New()
-	if playerCustomnDialogDataRegistrySingleton then
-		return playerCustomnDialogDataRegistrySingleton
-	end
-	playerCustomnDialogDataRegistrySingleton = {}
-	setmetatable(playerCustomnDialogDataRegistrySingleton, PlayerCustomDialogDataRegistry)
-	self.__index = self
-	playerCustomnDialogDataRegistrySingleton.registry = {}
-	return playerCustomnDialogDataRegistrySingleton
-end
 
 function PlayerDialogData:Add(data)
 	table.insert(self.data, data)
@@ -1116,7 +1101,9 @@ function PlayerDialogDataRegistry:Register(player)
 	return self.registry[player:getId()]
 end
 function PlayerDialogDataRegistry:Get(player)
-	return self.registry[player:getId()]
+	local playerId = player:getId()
+	self.registry[playerId] = self.registry[playerId] or self:Register(player)
+	return self.registry[playerId]
 end
 
 function PlayerCustomDialogDataRegistry:Register(player)
@@ -1126,7 +1113,7 @@ end
 
 function PlayerCustomDialogDataRegistry:Get(player)
 	local playerId = player:getId()
-	self.registry[playerId] = self.registry[playerId] or PlayerDialogData()
+	self.registry[playerId] = self.registry[playerId] or self:Register(player)
 	return self.registry[player:getId()]
 end
 

@@ -79,14 +79,14 @@ local dialog = {
 			"Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy",
 		}] = { text = "Yeah, you got it!" },
 	},
-	[Storage.GrubyMirekEncounters] = {
+	[Storage.FatMyrrusEncounters] = {
 		[1] = {
 			[{ "encounters", "bosses", "boss", "bossami" }] = {
 				text = "I didnt throw my life away for video games just to give away those informations for free. Bring me a {cake} and i will tell you all you need to know about any encounter.",
 			},
 			[{ "cake", "ciasto" }] = {
 				text = "Alright, i can help you with your {encounter} now.",
-				nextState = { [Storage.GrubyMirekEncounters] = 2 },
+				nextState = { [Storage.FatMyrrusEncounters] = 2 },
 				requiredItems = { { id = 6277 } },
 				textNoRequiredItems = "Come back with a cake. Also, i dont want any toppings on it.",
 			},
@@ -103,29 +103,29 @@ local dialog = {
 			},
 		},
 	},
-	[Storage.NaPomocBagietom.FatMyrrusDiet] = {
+	[Storage.ToCarryThePigs.FatMyrrusDiet] = {
 		[-1] = {
 			[{ "mission", "misja", "zadanie" }] = {
 				text = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
 				nextState = {
-					[Storage.NaPomocBagietom.FatMyrrusDiet] = 1,
-					[Storage.NaPomocBagietom.Main] = 1,
-					[Storage.GrubyMirekEncounters] = 1, --38f change to two storages: quest and access
+					[Storage.ToCarryThePigs.FatMyrrusDiet] = 1,
+					[Storage.ToCarryThePigs.Main] = 1,
+					[Storage.FatMyrrusEncounters] = 1, --38f change to two storages: quest and access
 				},
 				requiredState = {
-					[Storage.TrudnePoczatki.DostawaDrewna] = 6,
-					[Storage.NaPomocBagietom.Main] = { min = -1, max = -1 },
+					[Storage.StickyBeginning.WoodDelivery] = 6,
+					[Storage.ToCarryThePigs.Main] = { min = -1, max = -1 },
 				},
 			},
 			[{ "mission", "misja", "zadanie" }] = {
 				text = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
 				nextState = {
-					[Storage.NaPomocBagietom.FatMyrrusDiet] = 1,
-					[Storage.GrubyMirekEncounters] = 1,
+					[Storage.ToCarryThePigs.FatMyrrusDiet] = 1,
+					[Storage.FatMyrrusEncounters] = 1,
 				},
 				requiredState = {
-					[Storage.TrudnePoczatki.DostawaDrewna] = 6,
-					[Storage.NaPomocBagietom.Main] = { neq = -1 },
+					[Storage.StickyBeginning.WoodDelivery] = 6,
+					[Storage.ToCarryThePigs.Main] = { neq = -1 },
 				},
 			},
 			[{ ANY_MESSAGE }] = {
@@ -146,8 +146,8 @@ local dialog = {
 				rewards = { { id = 8018 }, { id = 3371 } },
 				expReward = 30000,
 				requiredItems = { { id = 3250 } },
-				nextState = { [Storage.NaPomocBagietom.FatMyrrusDiet] = 2 },
-				requiredState = { [Storage.NaPomocBagietom.Carrot] = 1 },
+				nextState = { [Storage.ToCarryThePigs.FatMyrrusDiet] = 2 },
+				requiredState = { [Storage.ToCarryThePigs.Carrot] = 1 },
 				textNoRequiredState = "Thats some fake one.",
 				textNoRequiredItems = "Come back with eco carrot.",
 			},

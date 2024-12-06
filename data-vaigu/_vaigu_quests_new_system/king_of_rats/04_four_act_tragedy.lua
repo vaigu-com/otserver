@@ -220,8 +220,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local updateStorages = {
-			[Storage.FourActTragedy.State] = 18,
-			[Storage.FourActTragedy.Mission06] = 4,
+			[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.ReportToRomek,
 		}
 
 		local zulSzczurowDeath = CreatureEvent("ZulSzczurowDeath")
@@ -232,8 +231,8 @@ quest
 			end
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
-				if storage_val ~= 17 then
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.Mission05)
+				if storage_val ~= QuestState.FourActTragedy.Mission05.KillRatBum then
 					return true
 				end
 				player:UpdateStorages(updateStorages)

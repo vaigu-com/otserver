@@ -4,9 +4,9 @@ function dominoDeath.onDeath(creature)
 	setGlobalStorageValue(GlobalStorage.DominoAlive, 0)
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 3 then
-			player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 4)
-			player:setStorageValue(Storage.IKEAdlazuchwalych.TakeBall, 1)
+		if player:getStorageValue(Storage.IKEAForTheBold.State) == 3 then
+			player:setStorageValue(Storage.IKEAForTheBold.State, 4)
+			player:setStorageValue(Storage.IKEAForTheBold.TakeBall, 1)
 		end
 	end)
 	return true
@@ -17,9 +17,9 @@ local dominoDeath2 = CreatureEvent("Domino2Death")
 function dominoDeath2.onDeath(creature)
 	setGlobalStorageValue(GlobalStorage.Domino2Alive, 0)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 11 then
-			player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 12)
-			player:setStorageValue(Storage.IKEAdlazuchwalych.TakeKey, 1)
+		if player:getStorageValue(Storage.IKEAForTheBold.State) == 11 then
+			player:setStorageValue(Storage.IKEAForTheBold.State, 12)
+			player:setStorageValue(Storage.IKEAForTheBold.TakeKey, 1)
 		end
 	end)
 	return true

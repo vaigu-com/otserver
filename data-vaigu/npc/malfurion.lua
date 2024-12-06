@@ -50,7 +50,7 @@ end
 
 function checkDruidsStatus(creature)
 	local player = Player(creature)
-	if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 4 then
+	if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 4 then
 		player:addExperience(300000, true) -- 300k expa
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
@@ -61,7 +61,7 @@ function checkDruidsStatus(creature)
 			"Our sacred tree is located in the heart of the jungle.",
 		}, npc, creature)
 	end
-	if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 7 then
+	if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 7 then
 		player:addExperience(500000, true) -- 500k expa
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
@@ -86,16 +86,16 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 	-- ============= MISJA 1 DRUID ADDON QUEST =================
 	if table.contains({ "yes", "tak" }, message) then
-		if player:getStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal) < 1 and npcHandler:getTopic(playerId) == 1 then
-			player:setStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal, 1)
+		if player:getStorageValue(Storage.WayOfTheDruid.SingingCrystal) < 1 and npcHandler:getTopic(playerId) == 1 then
+			player:setStorageValue(Storage.WayOfTheDruid.SingingCrystal, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "No to super, jak znajdziesz to wroc do mnie." or "Great! Come back if you find one.", npc, creature)
-			if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) <= 0 then
-				player:setStorageValue(Storage.SciezkaDruida.KragDruidow, 1)
+			if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) <= 0 then
+				player:setStorageValue(Storage.WayOfTheDruid.CouncilOfDruids, 1)
 			end
 		end
 	elseif table.contains({ "mission", "misja", "pomoc", "help" }, message) then
-		if player:getStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal) == 1 then
-			if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 4 then
+		if player:getStorageValue(Storage.WayOfTheDruid.SingingCrystal) == 1 then
+			if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 4 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Najpierw udaj sie do naszego swietego drzewa i pobierz buklak wody ze zrodla. ...",
 					"Swiete drzewo znajduje sie w samym sercu dzungli.",
@@ -109,8 +109,8 @@ local function creatureSayCallback(npc, creature, type, message)
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Ale blyszczacy, tak sadzilem ze dasz rade. Dziekuje ci w imieniu {druidow}. Trzymaj w zamian taki drobiazg." or "So shiny, I thought you could do it. Thank you on behalf of {druids}. And keep this in return.", npc, creature)
 					player:addItem(16100, 1) -- dostaje plecak
 					player:addItem(7250, 1) -- hydra tongue
-					player:setStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal, 3) -- skonczona misja
-					player:setStorageValue(Storage.SciezkaDruida.KragDruidow, player:getStorageValue(Storage.SciezkaDruida.KragDruidow) + 1) -- zwiekszamy licznik misji
+					player:setStorageValue(Storage.WayOfTheDruid.SingingCrystal, 3) -- skonczona misja
+					player:setStorageValue(Storage.WayOfTheDruid.CouncilOfDruids, player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) + 1) -- zwiekszamy licznik misji
 					--  Q5.1
 					player:addExperience(45000, true) -- 45k expa
 					player:getPosition():sendMagicEffect(CONST_ME_STUN)
@@ -120,7 +120,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc jak zdobedziesz lodowy krysztal." or "Come back when you find a shard.", npc, creature)
 				end
 			end
-		elseif player:getStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal) < 1 then
+		elseif player:getStorageValue(Storage.WayOfTheDruid.SingingCrystal) < 1 then
 			npcHandler:setTopic(playerId, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Chcesz zebym ci zlecil zadanie? Ostatnio mam wiele na glowie, a potrzebuje kawalki lodowego krysztalu do eksperymentu. ...",
@@ -131,8 +131,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 		end
 	end
-	if table.contains({ "druidow", "druid", "druids" }, message) and player:getStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal) >= 3 then
-		if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 2 then
+	if table.contains({ "druidow", "druid", "druids" }, message) and player:getStorageValue(Storage.WayOfTheDruid.SingingCrystal) >= 3 then
+		if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"No tak, powinienem Ci wytlumaczyc. Otoz na swiecie dawniej byl pokoj i my druidzi zylismy w dzungli, niestety nastaly zle czasy i musilismy uciec z naszej wioski, kazdy poszedl w inna strone. ...",
 				"Zostalo nas pieciu, raz do roku spotykamy sie w wielkim drzewie. Jesli wykazesz sie wystarczajaca pomoca wobec nas, to rozwazymy twoje dolaczenie do naszej spolecznosci. ...",
@@ -142,9 +142,9 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Only five of us remain, we meet once a year in a big tree in the jungle. If you prove yourself to be trustworthy, we might let you join us. ...",
 				"I don't know where the others are now, do your best to find and help them if needed.",
 			}, npc, creature)
-		elseif player:getStorageValue(Storage.SciezkaDruida.KragDruidow) >= 3 and player:getStorageValue(Storage.SciezkaDruida.KragDruidow) < 7 then
+		elseif player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) >= 3 and player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) < 7 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Mam nadzieje, ze zdolasz odnalezc pozostalych druidow, oraz okazac im nalezyta pomoc." or "I trust that you can find the remaining druids and help them.", npc, creature)
-		elseif player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 7 then
+		elseif player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 7 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dziekuje za pomoc mi oraz pozostalym druidom. Od teraz jestes jednym z nas." or "Thank you for helping me and the rest of the druids. Now you became one of us.", npc, creature)
 		end
 	end

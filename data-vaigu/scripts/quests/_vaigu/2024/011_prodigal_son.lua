@@ -1,4 +1,3 @@
-print("BANJO_PRODIGAL_SON")
 local frediEscort = {
 	timeLimitSeconds = 600,
 	startAfterSeconds = 2,
@@ -304,7 +303,7 @@ quest
 						[2] = "Henry asked you to investigate the ever-shrinking number of towels and soaps in toilets.",
 						[3] = "You handed the missing soaps to Henry. Ask him for a new mission.",
 						[4] = "Areczeks are trying to unionize. Defeat their leader and the union may dissolve.",
-						[5] = "Areczek union leader promised to dissolve their union. Report back to Henry.",
+						[5] = "Arechek union leader promised to dissolve their union. Report back to Henry.",
 						[6] = "Henry is content that you busted the union.",
 					},
 				},
@@ -354,7 +353,7 @@ quest
 		}
 	end)
 	:MonsterEvent(function()
-		local areczek = CreatureEvent("HitAreczek")
+		local areczek = CreatureEvent("HitArechek")
 		function areczek.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin)
 			if not creature:isMonster() then
 				return primaryDamage, primaryType, secondaryDamage, secondaryType
@@ -372,7 +371,7 @@ quest
 				if primaryDamage > 0 or secondaryDamage > 0 then
 					local pos = creature:getPosition()
 					creature:remove()
-					Game.createMonster("Areczek", pos)
+					Game.createMonster("Arechek", pos)
 				end
 			end
 			return primaryDamage, primaryType, secondaryDamage, secondaryType
@@ -381,11 +380,11 @@ quest
 		areczek:register()
 	end)
 	:Monster(function()
-		local mType = Game.createMonsterType("Areczek calm")
+		local mType = Game.createMonsterType("Arechek calm")
 		local monster = {}
 
-		monster.name = "Areczek"
-		monster.description = "an Areczek"
+		monster.name = "Arechek"
+		monster.description = "an Arechek"
 		monster.experience = 12000
 		monster.outfit = {
 			lookType = 1042,
@@ -434,7 +433,7 @@ quest
 		}
 
 		monster.events = {
-			"HitAreczek",
+			"HitArechek",
 		}
 
 		monster.light = {
@@ -1102,7 +1101,7 @@ quest
 				text = "Are you ready to hear about your new {duties}?",
 			},
 			[{ "duties", "obowiazki", "yes", "tak" }] = {
-				text = "I have a hunch that the quantity of our soaps and towels is shrinking at above-average rate. Find out more about this, and remember: not every Areczek is a thief, but every thief is Areczek. Bring be about four of each towel and soap.",
+				text = "I have a hunch that the quantity of our soaps and towels is shrinking at above-average rate. Find out more about this, and remember: not every Arechek is a thief, but every thief is Arechek. Bring be about four of each towel and soap.",
 				nextState = {
 					[Storage.ProdigalSon.Mission03] = 2,
 				},
@@ -1181,7 +1180,7 @@ quest
 					return false
 				end
 
-				if Game.createMonster("Notorious Areczek", player:getPosition()) then
+				if Game.createMonster("Notorious Arechek", player:getPosition()) then
 					Game.setStorageValue(Storage.ProdigalSon.AreczekLeaderBed, 1)
 					SwapNotoriousAreczekBed()
 				end
@@ -1248,10 +1247,10 @@ quest
 		notoriousAreczekDeath:register()
 	end)
 	:Monster(function()
-		local mType = Game.createMonsterType("Notorious Areczek")
+		local mType = Game.createMonsterType("Notorious Arechek")
 		local monster = {}
 
-		monster.description = "a Notorious Areczek"
+		monster.description = "a Notorious Arechek"
 		monster.experience = 70000
 		monster.outfit = {
 			lookType = 1042,
@@ -1520,7 +1519,7 @@ quest
 		QuestState.ProdigalSon.Mission05.YouHaveAccessToNorthMines,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
-				text = "I have a new mission for you. Do you remember when i mentioned that northern caves are now flooded? Officially, everyone was out when the flooding occured, but acutally it was swarming with miners there. It were rush hours when it happened. Areczek lives dont matter, so noone ever investigated it. Later, cave has been ravaged by hostile water-shaped creatures. One of the dwarfs here had something i need now. Try to find his corpse. You can identify him by his gray Beard.",
+				text = "I have a new mission for you. Do you remember when i mentioned that northern caves are now flooded? Officially, everyone was out when the flooding occured, but acutally it was swarming with miners there. It were rush hours when it happened. Arechek lives dont matter, so noone ever investigated it. Later, cave has been ravaged by hostile water-shaped creatures. One of the dwarfs here had something i need now. Try to find his corpse. You can identify him by his gray Beard.",
 				nextState = {
 					[Storage.ProdigalSon.Mission05] = 2,
 				},
@@ -1552,7 +1551,7 @@ quest
 		QuestState.ProdigalSon.Mission05.FoundNecklaceAskForNewMission,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
-				text = "What else could you help me with... hmmm. Well, you check can the lava mines for new finds. Reach the top of one of the silos, and check its state by using the special machine. Also some Areczek reported that he found an abandoned cultivator there. Romek, the King of Rats might be interested in it, so give it a try and find it.",
+				text = "What else could you help me with... hmmm. Well, you check can the lava mines for new finds. Reach the top of one of the silos, and check its state by using the special machine. Also some Arechek reported that he found an abandoned cultivator there. Romek, the King of Rats might be interested in it, so give it a try and find it.",
 				nextState = {
 					[Storage.ProdigalSon.Mission05] = 4,
 				},
@@ -1761,7 +1760,7 @@ quest
 		QuestState.ProdigalSon.Mission06.HenryJustTalkedWithFredi,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
-				text = "I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Areczek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it.",
+				text = "I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Arechek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it.",
 				nextState = {
 					[Storage.ProdigalSon.Mission05] = 8,
 					[Storage.ProdigalSon.Mission06] = 1,

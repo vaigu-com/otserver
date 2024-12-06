@@ -31,6 +31,8 @@ local function playerIsCheesing(player, fromPosition, toPosition)
 	return false
 end
 
+local defaultTimeLimitMinutes = 5
+
 local movement = MoveEvent()
 function movement.onStepIn(creature, item, toPosition, fromPosition)
 	local player = creature:getPlayer()
@@ -68,31 +70,21 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		end
 	end
 
-	if task.bossName == "Pirate Lord" then
-		local rand = math.random(1, 4)
-		if rand == 1 then
-			local monster = Game.createMonster("Brutus Bloodbeard", task.bossPosition, true, true)
-		elseif rand == 2 then
-			local monster = Game.createMonster("Deadeye Devious", task.bossPosition, true, true)
-		elseif rand == 3 then
-			local monster = Game.createMonster("Lethal Lissy", task.bossPosition, true, true)
-		elseif rand == 4 then
-			local monster = Game.createMonster("Ron the Ripper", task.bossPosition, true, true)
-		end
-		if not monster then
-			return true
-		end
-
-		addEvent(clearBossRoom, 60 * 5 * 1000, player.uid, monster.uid, task.bossRoomCenter, task.clearRadiusX, task.clearRadiusY, fromPosition) --5 min
-		player:say("Masz 5 minut na pokonanie bossa piratow.", TALKTYPE_MONSTER_SAY)
+	local bossName = ""
+	if type(task.bossName) == "table" then
+		bossName = task.bossName[math.random(1, #task.bossName)]
 	else
-		local monster = Game.createMonster(task.bossName, task.bossPosition, true, true)
-		if not monster then
-			return true
-		end
-		addEvent(clearBossRoom, 60 * 5 * 1000, player.uid, monster.uid, task.bossRoomCenter, task.clearRadiusX, task.clearRadiusY, fromPosition) --5 min
-		player:say("Masz 5 minut na pokonanie " .. task.bossName .. ".", TALKTYPE_MONSTER_SAY)
+		bossName = task.bossName
 	end
+
+	local monster = Game.createMonster(bossName, task.bossPosition, true, true)
+	if not monster then
+		return true
+	end
+	local timeLimitMinutes = task.bossTimeLimit or defaultTimeLimitMinutes
+
+	addEvent(clearBossRoom, 60 * timeLimitMinutes * 1000, player.uid, monster.uid, task.bossRoomCenter, task.clearRadiusX, task.clearRadiusY, fromPosition) --5 min
+	player:say(T("You have :time: minutes to defeat :bossName:.", { time = timeLimitMinutes, bossName = bossName }), TALKTYPE_MONSTER_SAY)
 	return true
 end
 

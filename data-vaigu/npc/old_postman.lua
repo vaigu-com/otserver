@@ -56,40 +56,24 @@ local dialogs = {
 	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {},
 	[Storage.Yalahar.MiloscAriela] = {
 		[3] = {
-			[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {
-				text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
-				rewards = {
-					{ id = 2874, fluidType = 0 },
-				},
-				nextState = {
-					[Storage.Yalahar.MiloscAriela] = 4,
-				},
-			},
-		},
-		[5] = {
-			[{ "eliksir", "madame", "mission", "mikstura", "elixir" }] = {
-				text = "If we have an elixir, we don't need to get Ariel's hair to dissolve it in it...\nGo to him and look for his hair in his bed, there must be something. Next, give Madame the love elixir as wine from me.",
-			},
-			nextState = {
-				[Storage.Yalahar.MiloscAriela] = 6,
-			},
+			
 		},
 	},
-	[Storage.TrudnePoczatki.PostmanAsked] = {
+	[Storage.StickyBeginning.PostmanAsked] = {
 		[QUEST_NOT_STARTED] = {
 			[{ "help", "pomoc" }] = {
 				text = "There's something I need help with. One of the recent packages from the monks has gone missing. It probably got stuck while flowing along the {route} waterway.",
-				requiredState = { [Storage.TrudnePoczatki.Rozeznanie] = 2 },
+				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
 				nextState = {
-					[Storage.TrudnePoczatki.PostmanAsked] = 1,
-					[Storage.TrudnePoczatki.Rozeznanie] = "+1",
-					[Storage.Biodegradowalny.Questline] = 1,
+					[Storage.StickyBeginning.PostmanAsked] = 1,
+					[Storage.StickyBeginning.Discernment] = "+1",
+					[Storage.Biodegradable.State] = 1,
 				},
 				textNoRequiredState = "It's alright, I don't need any help.",
 			},
 		},
 	},
-	[Storage.Biodegradowalny.Questline] = {
+	[Storage.Biodegradable.State] = {
 		[1] = {
 			[{ "szlakiem", "pass", "route" }] = {
 				text = "The waterway begins at their rock to the west. Then it flows under the bridge, passes by the orc fortress, and enters a larger lake. From that lake, it flows to the Syn Anona. Somewhere along this waterway, my shipment got stuck.",
@@ -105,14 +89,14 @@ local dialogs = {
 			[{ "przesylke", "parcel", "shipment", "paczka", "yes", "tak" }] = {
 				text = "This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you.",
 				requiredItems = {
-					{ id = 3504, aid = Storage.Biodegradowalny.Parcel },
+					{ id = 3504, aid = Storage.Biodegradable.Parcel },
 				},
 				experienceReward = 15000,
 				rewards = {
 					{ id = 7290 },
 				},
 				nextState = {
-					[Storage.Biodegradowalny.Questline] = 3,
+					[Storage.Biodegradable.State] = 3,
 				},
 			},
 		},
@@ -123,9 +107,9 @@ local dialogs = {
 			[{ "zaneta", "bait", "yes", "tak" }] = {
 				text = "Here, please, this box. Anon's father hangs around a pond near the {barracks}.",
 				nextState = {
-					[Storage.Biodegradowalny.Questline] = 4,
-					[Storage.UstatkowanyFanatyk.Questline] = 1,
-					[Storage.UstatkowanyFanatyk.Mission01] = 1,
+					[Storage.Biodegradable.State] = 4,
+					[Storage.SettledDownFishmonger.Questline] = 1,
+					[Storage.SettledDownFishmonger.Mission01] = 1,
 				},
 			},
 		},

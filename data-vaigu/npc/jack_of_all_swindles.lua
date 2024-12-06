@@ -1,12 +1,12 @@
 local dialogs = {
-	[Storage.TrudnePoczatki.JanuszAsked] = {
+	[Storage.StickyBeginning.JackAsked] = {
 		[{ max = 0 }] = {
 			[{ "help", "pomoc" }] = {
 				text = "I dont need any help, thanks. But you can always check my offer.",
-				requiredState = { [Storage.TrudnePoczatki.Rozeznanie] = 2 },
+				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
 				nextState = {
-					[Storage.TrudnePoczatki.JanuszAsked] = 1,
-					[Storage.TrudnePoczatki.Rozeznanie] = "+1",
+					[Storage.StickyBeginning.JackAsked] = 1,
+					[Storage.StickyBeginning.Discernment] = "+1",
 				},
 				textNoRequiredState = "What do you want? Better meet Commissioner Fisher first..",
 			},

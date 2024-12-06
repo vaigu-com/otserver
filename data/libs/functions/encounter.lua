@@ -111,7 +111,7 @@ end
 ---@field private requiredPlayers integer?
 ---@field private onUseExtra function
 ---@field private leverId integer?
----@field private _position Position registers action on position
+---@field private leverPosition Position registers action on position
 ---@field private _uid number registers action on uid
 ---@field private _aid number registers action on aid
 ---@field private entranceTiles {pos: Position, destination: Position}[]
@@ -149,7 +149,6 @@ setmetatable(EncounterData, {
 
 function EncounterData:Data(context)
 	self.encounterName = context.encounterName
-	print(self.encounterName)
 	--Fight
 	local newZone = Zone("encounter." .. toKey(context.encounterName))
 	newZone:addArea(context.zoneArea[1], context.zoneArea[2])
@@ -166,6 +165,10 @@ function EncounterData:Data(context)
 	self.global = context.global or false
 	self.timeToSpawnMonsters = ParseDuration(context.timeToSpawnMonsters or "3s")
 	self.events = Set()
+	self.bossName = context.bossName
+	if context.bossName then
+		MonsterType(context.bossName):registerEvent("EncounterOnSuccessfulCompletion")
+	end
 
 	--Entrance
 	self.encounterName = context.encounterName
@@ -193,7 +196,7 @@ function EncounterData:Data(context)
 	self.monsters = context.monsters or {}
 	self.disableLockout = context.disableLockout
 	self.leverId = context.leverId or DEFAULT_LEVER_ID
-	self._position = nil
+	self.leverPosition = context.leverPosition
 	self._uid = nil
 	self._aid = nil
 
@@ -205,7 +208,7 @@ end
 ---@param position Position
 ---@return EncounterData
 function EncounterData:position(position)
-	self._position = position
+	self.leverPosition = position
 	return self
 end
 
@@ -272,7 +275,7 @@ function Player:lockoutStatus(encounter)
 		return LOCKOUT_STATUS.ACTIVE
 	end
 
-	local lockoutExpiry = self:getEncounterLockout(encounter.encounterName)
+	local lockoutExpiry = self:getEncounterLockout(encounter)
 	local currentTime = os.time()
 	if not lockoutExpiry then
 		return LOCKOUT_STATUS.INACTIVE
@@ -364,13 +367,16 @@ end
 
 function EncounterData:checkEncounterActive()
 	local activeEncounter = ActiveEncounterRegistry:GetByEncounterData(self)
-	return activeEncounter ~= nil
+	if activeEncounter == nil then
+		return ENCOUNTER_ERROR_CODES.NO_ERROR
+	end
+	return ENCOUNTER_ERROR_CODES.ENCOUNTER_ACTIVE
 end
 
 function EncounterData:setLockouts(players)
 	local expiry = self:calculateLockoutExpiry()
 	for _, player in pairs(players) do
-		player:setEncounterLockout(self.encounterName, expiry)
+		player:setEncounterLockout(self, expiry)
 	end
 end
 
@@ -381,7 +387,9 @@ function EncounterData:handleTimeEvent(zone)
 	end
 	self.timeoutEvent = addEvent(function(zn)
 		zn:refresh()
-		zn:removePlayers()
+		for _, player in pairs(zone:getPlayers()) do
+			player:teleportTo(self.exitTpDestination)
+		end
 		ActiveEncounterRegistry:Unregister(self)
 	end, self.timeToDefeat * 1000, zone)
 end
@@ -396,6 +404,20 @@ local leverUseConditions = {
 	EncounterData.checkEncounterActive,
 	EncounterData.checkCustom,
 }
+
+local function formatEncounterName(name)
+	local cleaned = name:gsub("[^%w]", " ")
+
+	local formatted = cleaned:gsub("(%S+)", function(word)
+		if word:match("^%a") then
+			return word:sub(1, 1):upper() .. word:sub(2):lower()
+		else
+			return word
+		end
+	end)
+
+	return formatted
+end
 
 function EncounterData:onSuccessfulCompletion()
 	local zone = self:getZone()
@@ -419,12 +441,13 @@ function EncounterData:onSuccessfulCompletion()
 	end
 
 	if self.ejectAfterCompletionSeconds > 0 then
-		zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":encounterName: is finished. You have :ejectAfterCompletionSeconds: seconds to leave the room.", { encounterName = self.encounterName, ejectAfterCompletionSeconds = self.ejectAfterCompletionSeconds }))
+		zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":formattedName: is finished. You have :time: seconds to leave the room.", { formattedName = formatEncounterName(self.encounterName), time = self.ejectAfterCompletionSeconds }))
 
-		--38f what if same player reenters before event?
 		self.timeoutEvent = addEvent(function(zn)
 			zn:refresh()
-			zn:removePlayers()
+			for _, player in pairs(zone:getPlayers()) do
+				player:teleportTo(self.exitTpDestination)
+			end
 			ActiveEncounterRegistry:Unregister(self)
 		end, self.ejectAfterCompletionSeconds * 1000, zone)
 	end
@@ -498,8 +521,8 @@ function EncounterData:registerLeverTp()
 	leverUse.onUse = function(player)
 		self:tryEnter(player)
 	end
-	if self._position then
-		leverUse:position(self._position)
+	if self.leverPosition then
+		leverUse:position(self.leverPosition)
 	end
 	if self._uid then
 		leverUse:uid(self._uid)
@@ -509,12 +532,16 @@ function EncounterData:registerLeverTp()
 	end
 	leverUse:register()
 
-	if self._position then
+	if self.leverPosition then
 		local encounterLeverInit = GlobalEvent("EncounterData.CreateLever." .. self.encounterName)
 		function encounterLeverInit.onStartup()
-			local lever = Game.createItem(self.leverId, 1, self._position)
-			lever:setActionId(self._aid)
-			lever:setUniqueId(self._uid)
+			local lever = Game.createItem(self.leverId, 1, self.leverPosition)
+			if self._uid then
+				lever:setUniqueId(self._uid)
+			end
+			if self._aid then
+				lever:setActionId(self._aid)
+			end
 		end
 		encounterLeverInit:register()
 	end
@@ -524,8 +551,12 @@ function EncounterData:registerLeverTp()
 		local encounterLeverInit = GlobalEvent("EncounterData.CreateTp." .. self.encounterName)
 		function encounterLeverInit.onStartup()
 			local tp = Game.createItem(1949 or self.exitTpId, 1, self.exitTpPosition)
-			tp:setActionId(self._aid)
-			tp:setUniqueId(self._uid)
+			if self._uid then
+				tp:setUniqueId(self._uid)
+			end
+			if self._aid then
+				tp:setActionId(self._aid)
+			end
 		end
 		encounterLeverInit:register()
 	end
@@ -544,7 +575,7 @@ function EncounterData:register()
 	if not self.exitTpDestination then
 		table.insert(missingParams, "exitTpDestination")
 	end
-	if not self._position and not self._uid and not self._aid then
+	if not self.leverPosition and not self._uid and not self._aid then
 		table.insert(missingParams, "position or uid or aid")
 	end
 	if #missingParams > 0 then
@@ -861,13 +892,25 @@ function EncounterData:addRemovePlayers()
 	})
 end
 
+LOCK_ACTIVE = 1
+LOCK_INACTIVE = -1
+
+function SetMinigameLock(player)
+	player:setStorageValue(Storage.Minigames.IsOnMinigame, 1)
+end
+
+function ResetMinigameLock(player)
+	player:setStorageValue(Storage.Minigames.IsOnMinigame, -1)
+end
+
 function EncounterData:afterEnterMinigame(player)
 	player:addHealth(player:getMaxHealth())
 	player:addHealth(-(player:getMaxHealth() - player:getMaxBaseHealth()), COMBAT_UNDEFINEDDAMAGE)
 	local maxMana = player:getMaxMana()
 	player:addMana(-maxMana)
-	player:registerEvent("MinigamePlayerDeath")
+	SetMinigameLock(player)
 
+	player:registerEvent("MinigamePlayerDeath")
 	player:kv():scoped("minigames"):scoped("current"):set(self.encounterName)
 	player:kv():scoped("minigames"):scoped(self.encounterName):scoped("matches"):incrementOrSet()
 	player:kv():scoped("minigames"):scoped("total"):scoped("matches"):incrementOrSet()

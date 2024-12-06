@@ -1,3 +1,4 @@
+Storage.ExerciseWeaponBox = NextStorage()
 local boxId = 906
 local boxAid = Storage.ExerciseWeaponBox
 

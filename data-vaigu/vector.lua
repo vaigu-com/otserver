@@ -59,6 +59,12 @@ function Vector:Scale(factor)
 	return self
 end
 
+---@return Vector self copy of original vector with each axis multiplied by factor
+function Vector:Scaled(factor)
+	local result = Vector(self.x * factor, self.y * factor, self.z * factor)
+	return result
+end
+
 ---@return Vector self original vector with each axis value changed to abs of itself
 function Vector:Abs()
 	self.x = math.abs(self.x)

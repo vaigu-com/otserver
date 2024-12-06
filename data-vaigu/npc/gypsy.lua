@@ -122,19 +122,19 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "no", "nie" }, message) and npcHandler:getTopic(playerId) > 0 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie to nie, spadaj!" or "Well, better go away.", npc, creature)
 		npcHandler:setTopic(playerId, 0)
-	elseif MsgContains(message, "red gem") and player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) == 2 then
+	elseif MsgContains(message, "red gem") and player:getStorageValue(Storage.LocalSupport.LostCrystalBall) == 2 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Potrafie z nich wykuc ring of healing, co ty na to?" or "I can exchange your red gems for a ring of healings. Confirm if youre interested in this.", npc, creature)
 		npcHandler:setTopic(playerId, 2)
 		-- ============ DO MISJI TRUDNE POCZATKI =============
 	elseif table.contains({ "pomoc", "help" }, message) then
-		if player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) >= 2 then
-			if player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) < 1 then
-				player:setStorageValue(Storage.TrudnePoczatki.GypsyAsked, 1) -- lockujemy Gypsya jako wykonanego
-				player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, player:getStorageValue(Storage.TrudnePoczatki.Rozeznanie) + 1) -- +1 zeby kolejnosc nie miala znaczenia
+		if player:getStorageValue(Storage.StickyBeginning.Discernment) >= 2 then
+			if player:getStorageValue(Storage.StickyBeginning.GypsyAsked) < 1 then
+				player:setStorageValue(Storage.StickyBeginning.GypsyAsked, 1) -- lockujemy Gypsya jako wykonanego
+				player:setStorageValue(Storage.StickyBeginning.Discernment, player:getStorageValue(Storage.StickyBeginning.Discernment) + 1) -- +1 zeby kolejnosc nie miala znaczenia
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Kula! Ukradli mi moja {kule} do wrozenia!" or "Ball! My fortune telling {ball} got broken.", npc, creature)
-			elseif player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 and player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) < 1 then
+			elseif player:getStorageValue(Storage.StickyBeginning.GypsyAsked) >= 1 and player:getStorageValue(Storage.LocalSupport.LostCrystalBall) < 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Kula! Ukradli mi moja {kule} do wrozenia!" or "Ball! My fortune telling {ball} got broken.", npc, creature)
-			elseif player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 and player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) == 1 then
+			elseif player:getStorageValue(Storage.StickyBeginning.GypsyAsked) >= 1 and player:getStorageValue(Storage.LocalSupport.LostCrystalBall) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Czekam az mi ogarniesz nowa kule do wrozenia." or "I hope you will find new {ball} for me.", npc, creature)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Jeszcze raz dzieki za te kule." or "Thank you again for this ball.", npc, creature)
@@ -143,16 +143,16 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Eee.. wszystko u mnie w porzadku." or "Well.. everything is fine.", npc, creature)
 		end
 		-- ============ DO MISJI TRUDNE POCZATKI =============
-	elseif table.contains({ "kula", "kule", "ball" }, message) and player:getStorageValue(Storage.TrudnePoczatki.GypsyAsked) >= 1 then
-		if player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) < 1 then
+	elseif table.contains({ "kula", "kule", "ball" }, message) and player:getStorageValue(Storage.StickyBeginning.GypsyAsked) >= 1 then
+		if player:getStorageValue(Storage.LocalSupport.LostCrystalBall) < 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Moja kula wrozbiarska! Prawdopodobnie zostala skradziona, moze uda ci sie znalezc nowa aby ja zastapic, zglos sie wtedy do mnie!" or "My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any.", npc, creature)
-			player:setStorageValue(Storage.HelpingLocals.ZniszczonaKula, 1) -- zaczynamy questa
-		elseif player:getStorageValue(Storage.HelpingLocals.ZniszczonaKula) == 1 and player:getItemCount(3076) > 0 then
+			player:setStorageValue(Storage.LocalSupport.LostCrystalBall, 1) -- zaczynamy questa
+		elseif player:getStorageValue(Storage.LocalSupport.LostCrystalBall) == 1 and player:getItemCount(3076) > 0 then
 			-- Q5.1
 			player:addExperience(20000, true) -- 20k expa
 			player:getPosition():sendMagicEffect(CONST_ME_STUN)
 			-- Q5.1
-			player:setStorageValue(Storage.HelpingLocals.ZniszczonaKula, 2) -- koniec questa
+			player:setStorageValue(Storage.LocalSupport.LostCrystalBall, 2) -- koniec questa
 			player:removeItem(3076, 1) -- zabieramy kule
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmm, poprzednia byla lepsza, ale tez jest super. Dzieki wielkie!" or "Well, previous one was beeter, but this one if fine too. Thak you!", npc, creature)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "W podziece pozwole ci wymieniac u mnie Red Gem na Ring of Healing." or "I can take some time to exchange your red gems for a ring of healing from now on.", npc, creature)
@@ -163,14 +163,14 @@ local function creatureSayCallback(npc, creature, type, message)
 		"meble",
 		"zlodziej",
 		"kradziez",
-	}, message) and player:getStorageValue(Storage.IKEAdlazuchwalych.Questline) == 2 and npcHandler:getTopic(playerId) == 0 then
+	}, message) and player:getStorageValue(Storage.IKEAForTheBold.State) == 2 and npcHandler:getTopic(playerId) == 0 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Po pierwsze: nic nie widzialem, po drugie: .. czekaj, powiedziales {meble}?" or "First: I didnt see anything, Second: ... wait, did you say {furniture}?", npc, creature)
 		npcHandler:setTopic(playerId, 3)
 	elseif table.contains({ "furniture", "meble", "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 3 then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie znam nikogo kto chcialby {krasc} te rupiecie od Komora." or "I don't know of anyone who would like to {steal} this junk from Komor.", npc, creature)
 		npcHandler:setTopic(playerId, 4)
 	elseif table.contains({ "krasc", "steal" }, message) and npcHandler:getTopic(playerId) == 4 then
-		player:setStorageValue(Storage.IKEAdlazuchwalych.Questline, 3)
+		player:setStorageValue(Storage.IKEAForTheBold.State, 3)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Ta rozmowa przypomniala mi o mojej kuli do wrozenia, ktora takze zostala skradziona." or "This conversation reminded me of my fortune telling ball, which was also stolen.", npc, creature)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Byc moze zlodziej ukrywa sie w podziemiach MirkoTown, raczej nie jest to nikt z zewnatrz. Nikt jednak nie ma odwagi tego sprawdzic." or "Maybe the thief is hiding beneath the MirkoTown, I doubt its anyone from outside of town. However, no one has the courage to check it out.", npc, creature)
 		npcHandler:setTopic(playerId, 0)

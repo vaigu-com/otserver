@@ -5,6 +5,7 @@
 ---@field encounters table
 ---@field monsters table
 ---@field scripts table
+---@field startupScripts table
 ---@field npcs table
 ---@field startupItems table
 ---@field startupNpcs table
@@ -23,9 +24,9 @@ function Quest:New(name)
 		encounters = {},
 		monsters = {},
 		scripts = {},
+		startupScripts = {},
 		npcs = {},
 		startupItems = {},
-		startupNpcs = {},
 		questlog = function() end,
 	}
 
@@ -42,6 +43,7 @@ QUEST_SCRIPT_TYPE = {
 	DIALOG = "DIALOG",
 	CUSTOM_SCRIPT = "CUSTOM_SCRIPT",
 	STARTUP_ITEMS = "STARTUP_ITEMS",
+	STARTUP_SCRIPT = "STARTUP_SCRIPT",
 }
 
 --#region Immediate execution
@@ -88,6 +90,9 @@ function QuestFactory.Script(script)
 end
 function QuestFactory.StartupItems(items, anchor)
 	return { items = items, anchor = anchor, scriptType = QUEST_SCRIPT_TYPE.STARTUP_ITEMS }
+end
+function QuestFactory.StartupScript(script)
+	return { script = script, scriptType = QUEST_SCRIPT_TYPE.STARTUP_SCRIPT }
 end
 function Quest:Script(script)
 	table.insert(self.scripts, { script = script })
@@ -144,6 +149,14 @@ function Quest:AddStartupItems(context)
 	table.append(self.startupItems, { items = items, anchor = anchor })
 	return self
 end
+---@private
+function Quest:AddStartupScript(context)
+	local script = context.script
+	local mission, state = context.mission, context.state
+
+	table.insert(self.startupScripts, { script = script, mission = mission, state = state })
+	return self
+end
 --#endregion
 
 --38f
@@ -170,6 +183,7 @@ local scriptTypeToCallback = {
 	[QUEST_SCRIPT_TYPE.DIALOG] = Quest.AddDialog,
 	[QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT] = Quest.AddScript,
 	[QUEST_SCRIPT_TYPE.STARTUP_ITEMS] = Quest.AddStartupItems,
+	[QUEST_SCRIPT_TYPE.STARTUP_SCRIPT] = Quest.AddStartupScript,
 }
 function Quest:State(state, ...)
 	self.state = state
@@ -238,8 +252,8 @@ function QuestRegistry:CreateMonsterEvent()
 end
 function QuestRegistry:CreateEncounters()
 	for _, quest in pairs(self.registry) do
-		for _, context in pairs(quest.encounters) do
-			EncounterData(context)
+		for _, encounter in pairs(quest.encounters) do
+			encounter()
 		end
 	end
 end
@@ -289,15 +303,28 @@ function QuestRegistry:RunScripts()
 		end
 	end
 end
+function QuestRegistry:RegisterStartupScripts()
+	local startupScripts = GlobalEvent("QuestSystemRegisterStartupScripts")
+	function startupScripts.onStartup()
+		for _, quest in pairs(self.registry) do
+			for _, scriptData in pairs(quest.startupScripts) do
+				local script = scriptData.script
+				script({ mission = scriptData.mission, state = scriptData.state })
+			end
+		end
+	end
+	startupScripts:register()
+end
 
 function QuestRegistry:RegisterQuestData()
 	self:CreateQuestlog()
 	self:CreateMonsterEvent()
-	self:CreateEncounters()
 	self:CreateMonster()
+	self:CreateEncounters()
 	self:RegisterNpcData()
 	self:CreateStartupItems()
 	self:RunScripts()
+	self:RegisterStartupScripts()
 end
 
 function QuestRegistry:Register(quest)

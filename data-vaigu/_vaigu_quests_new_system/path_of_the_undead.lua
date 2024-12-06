@@ -566,7 +566,7 @@ quest
 			requiredState = {
 				[Storage.PitsOfInferno.OneThrone] = { min = 1 },
 				[Storage.Finished.YalahariQuest] = { min = 1 },
-				[Storage.SciezkaDruida.KragDruidow] = { min = 7 },
+				[Storage.WayOfTheDruid.CouncilOfDruids] = { min = 7 },
 			},
 			textNoRequiredState = "My conditions are to complete the following tasks: Druid Path, Yalahar Quest. While you know the secret password, I also want other druids and elves to vouch for you. Additionally, you must visit at least one poi throne. If you are ready, ask me again about {conditions}.",
 		},

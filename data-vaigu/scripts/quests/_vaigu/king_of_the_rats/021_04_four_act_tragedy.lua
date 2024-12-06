@@ -333,7 +333,105 @@ quest
 
 		mType:register(monster)
 	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Skurwiwij")
+		local monster = {}
+
+		monster.description = "a Skurwiwij"
+		monster.experience = 50000
+		monster.outfit = {
+			lookType = 544,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 10000
+		monster.maxHealth = 10000
+		monster.race = "undead"
+		monster.speed = 400
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 4000,
+			chance = 0,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 100,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = true,
+			canPushCreatures = true,
+			staticAttackChance = 90,
+			targetDistance = 1,
+			runHealth = 100,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = true,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.events = {
+			"SkurwiwijDeath",
+		}
+
+		monster.voices = {}
+
+		monster.loot = {}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -700 },
+			{ name = "skurwiwij energy missile", interval = 2100, chance = 100, minDamage = 0, maxDamage = 0, target = true },
+			{ name = "skurwiwij fire missile", interval = 2000, chance = 100, minDamage = 0, maxDamage = 0, target = true },
+		}
+
+		monster.defenses = {
+			defense = 5,
+			armor = 5,
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 0 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = true },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = true },
+		}
+
+		mType:register(monster)
+	end)
 	:EncounterData(function()
+		print("Quest:EncounterData", "skurwiwij")
 		local pylonFlam = "pylonFlam"
 		local pylonVis = "pylonVis"
 		local pylons = {
@@ -374,6 +472,7 @@ quest
 			lockoutTime = LOCKOUT_TIME.WEEKLY,
 			lockoutType = LOCKOUT_TYPE.ON_KILL,
 
+			leverPosition = Position(6576, 557, 9),
 			entranceTiles = {
 				{ pos = Position(6577, 557, 9), destination = Position(6546, 543, 9) },
 				{ pos = Position(6578, 557, 9), destination = Position(6547, 543, 9) },
@@ -518,31 +617,6 @@ quest
 			drawPylonExplosion(0, pylon.pos, damage, pylon.magicEffect)
 			skurwiwijEncounter.explosionsCount = skurwiwijEncounter.explosionsCount + 1
 		end
-	end)
-	:EncounterData(function()
-		local skurwiwijLever = {
-			encounterName = "skurwiwij-lair",
-
-			lockoutTime = LOCKOUT_TIME.WEEKLY,
-			lockoutType = LOCKOUT_TYPE.ON_KILL,
-
-			entranceTiles = {
-				{ pos = Position(6577, 557, 9), destination = Position(6546, 543, 9) },
-				{ pos = Position(6578, 557, 9), destination = Position(6547, 543, 9) },
-				{ pos = Position(6579, 557, 9), destination = Position(6548, 543, 9) },
-				{ pos = Position(6580, 557, 9), destination = Position(6549, 543, 9) },
-			},
-
-			exitTpDestination = Position(6582, 557, 9),
-			exitTpPosition = SKURWIWIJ_ANCHOR:Moved(19, 9, 0),
-
-			-- ToDo: hp and (slight) damage scaling
-			-- scalingConfig = { hpPerPlayer = 1 },
-
-			requiredState = { [Storage.FourActTragedy.SkurwiwijAccess] = 1 },
-		}
-
-		Encounter(skurwiwijLever):Register()
 	end)
 	:MonsterEvent(function()
 		local zulZulowDeath = CreatureEvent("ZulZulowDeath")
@@ -840,7 +914,13 @@ quest
 			tpToModern:type("stepin")
 			tpToModern:aid(Storage.FourActTragedy.Portals.ToPresent)
 			tpToModern:register()
-		end)
+		end),
+		QuestFactory.StartupItems({
+			{ pos = { 5514, 1555, 7 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToRetro },
+		}),
+		QuestFactory.StartupItems({
+			{ pos = { -62, -8, 0 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToPresent },
+		}, RETRO_KNUROWO_ANCHOR)
 	)
 	:State(
 		QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
@@ -880,7 +960,27 @@ quest
 
 			panpipeLever:aid(Storage.FourActTragedy.FanfareLever)
 			panpipeLever:register()
-		end)
+		end),
+		QuestFactory.StartupItems({
+			{
+				id = 31649,
+				actionid = Storage.FourActTragedy.Rewards.TimmyBag,
+				rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag },
+				requiredState = { [Storage.FourActTragedy.Mission02] = 5 },
+				nextState = {  [Storage.FourActTragedy.Mission02] = 3 },
+			},
+		}),
+		QuestFactory.StartupItems({
+			{
+				pos = { -8, -15, 6 },
+				id = 11809,
+				actionid = Storage.FourActTragedy.Rewards.Fanfare,
+				uid = 1000,
+				rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.fanfare },
+			},
+			{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
+			{ pos = { -24, -23, 6 }, id = 7723, aid = Storage.FourActTragedy.WawelDragonAccess },
+		}, RETRO_KNUROWO_ANCHOR)
 	)
 	:State(
 		QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
@@ -910,7 +1010,19 @@ quest
 					[Storage.FourActTragedy.Mission02] = 5,
 				},
 			},
-		})
+		}),
+		QuestFactory.StartupItems({
+			{
+				pos = { 61, 21, -1 },
+				id = 4073,
+				actionid = Storage.FourActTragedy.Rewards.Powder,
+				uid = 1000,
+				rewards = {
+					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
+				},
+				requiredState = { [Storage.FourActTragedy.Mission02] = 7 },
+			},
+		}, RETRO_KNUROWO_ANCHOR)
 	)
 	:State(
 		QuestState.FourActTragedy.Mission02.ReportToRomek,
@@ -951,7 +1063,9 @@ quest
 			tpToKolumb:aid(Storage.FourActTragedy.Portals.ToKolumb)
 			tpToKolumb:register()
 		end),
-		--38f
+		QuestFactory.StartupItems({
+			{ pos = { 5977, 1178, 6 }, id = 1949, aid = Storage.FourActTragedy.Portals.ToKolumb },
+		}),
 		QuestFactory.Script(function(missionState)
 			KRAKEN_ENCOUNTER_DATA = {
 				actionid = Storage.FourActTragedy.KrakenAccess,
@@ -1025,6 +1139,21 @@ quest
 		QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
 			text = "Ruins are located in the northern part of Kongo",
 		} }),
+		QuestFactory.StartupItems({
+			{ pos = { 6966, 664, 13 }, id = 2943, aid = Storage.FourActTragedy.SlippersTorch },
+		}),
+		QuestFactory.StartupItems({
+			{
+				pos = { 6962, 664, 14 },
+				id = 1983,
+				actionid = Storage.FourActTragedy.Rewards.SlippersChest,
+				uid = 1000,
+				rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.bribeslippers },
+				requiredState = { [Storage.FourActTragedy.Mission04] = 1 },
+				nextState = { [Storage.FourActTragedy.Mission04] = 2 },
+				desc = "Rest is peace\n~Followers of The Frog Cult",
+			},
+		}),
 		QuestFactory.Script(function(missionState)
 			local slippersTp = Action()
 			function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -1079,7 +1208,12 @@ quest
 			},
 		})
 	)
-	:State(QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij) --38f
+	:State(
+		QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij,
+		QuestFactory.StartupItems({
+			{ pos = { 6581, 557, 9 }, id = 5131, aid = Storage.FourActTragedy.SkurwiwijDoor },
+		})
+	)
 	:State(
 		QuestState.FourActTragedy.Mission04.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
@@ -1116,6 +1250,9 @@ quest
 	)
 	:State(
 		QuestState.FourActTragedy.Mission05.FindGrazhena,
+		QuestFactory.StartupItems({
+			{ pos = { 6005, 1386, 12 }, id = 5131, aid = Storage.FourActTragedy.GrazhenaDoor },
+		}),
 		QuestFactory.Dialog("Grazhena", {
 			[{ GREET }] = {
 				text = "They locked me in here and blocked the exit with magical doors that I can't pass in my current state. You know what? Something is {itching} me here.",
@@ -1136,7 +1273,15 @@ quest
 		QuestState.FourActTragedy.Mission05.KillRatBum,
 		QuestFactory.Dialog("Grazhena", { [{ "mission" }] = {
 			text = "Cave entrance is just before the cell. Im gonna wait here.",
-		} })
+		} }),
+		QuestFactory.StartupItems({
+			{
+				id = 18021,
+				actionid = Storage.FourActTragedy.Rewards.GrazynaCore,
+				rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore },
+				requiredState = { [Storage.FourActTragedy.Mission05] = 14 },
+			},
+		})
 	)
 	:EncounterData(function()
 		local ratbumLever = {
@@ -1161,7 +1306,8 @@ quest
 			requiredState = { [Storage.FourActTragedy.ZulSzczurowAccess] = 1 },
 		}
 
-		Encounter(ratbumLever):Register()
+		--38f
+		--Encounter(ratbumLever):Register()
 	end)
 	:State(
 		QuestState.FourActTragedy.Mission05.ReportToRomek,
@@ -1186,3 +1332,4 @@ quest
 			},
 		})
 	)
+	:Register()

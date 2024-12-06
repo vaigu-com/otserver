@@ -615,7 +615,7 @@ keywordHandler:addKeyword({ "jungle" }, StdModule.say, {
 })
 
 local function onTradeRequest(npc, creature)
-	if Player(creature):getStorageValue(Storage.TheApeCity.Questline) < 18 then
+	if Player(creature):getStorageValue(Storage.TheApeCity.Mission01) < 18 then
 		return false
 	end
 

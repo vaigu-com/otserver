@@ -2,6 +2,7 @@ local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
 	local afterLoginStr = ""
+	--38f
 	--[[
 	if player:getLastLoginSaved() <= 0 then
 		afterLoginStr = "Please choose your outfit."
@@ -178,22 +179,12 @@ function playerLogin.onLogin(player)
 	player:openChannel(7) -- Help
 	player:openChannel(4) -- English
 
-	if player:getStorageValue(Storage.hasteLock) >= 1 then
-		player:setStorageValue(Storage.hasteLock, 0)
-	end
-	if player:getStorageValue(Storage.healLock) == 1 then
-		player:setStorageValue(Storage.healLock, 0)
-	end
+	ResetMinigameLock(player)
 
 	player:TryResetDailyTaskCounter()
+
 	-- Legacy
 	--player:loadSpecialStorage()
-
-	--[[ Obnoxious
-	if player:getGroup():getId() >= GROUP_TYPE_GAMEMASTER then
-		player:setGhostMode(true)
-	end
-	]]
 
 	return true
 end

@@ -71,13 +71,13 @@ local dialog = {
 			},
 		},
 	},
-	[Storage.IKEAdlazuchwalych.Questline] = {
+	[Storage.IKEAForTheBold.State] = {
 		[8] = {
 			[{ "thief", "zlodziej" }] = {
 				text = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",
 				nextState = {
-					[Storage.IKEAdlazuchwalych.StaryAsked] = 1,
-					[Storage.IKEAdlazuchwalych.Questline] = 9,
+					[Storage.IKEAForTheBold.AnonsFatherAsked] = 1,
+					[Storage.IKEAForTheBold.State] = 9,
 				},
 			},
 		},
@@ -87,7 +87,7 @@ local dialog = {
 			},
 			[{ "thief", "zlodziej" }] = {
 				text = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",
-				[Storage.IKEAdlazuchwalych.Questline] = 9,
+				[Storage.IKEAForTheBold.State] = 9,
 			},
 		},
 	},

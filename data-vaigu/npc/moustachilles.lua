@@ -58,8 +58,8 @@ local dialog = {
 			text = "Go away, or even better: flip off.",
 		},
 	},
-	[Storage.IKEAdlazuchwalych.Localizer] = {
-		[Storage.IKEAdlazuchwalych.Mission01] = {
+	[Storage.IKEAForTheBold.Localizer] = {
+		[Storage.IKEAForTheBold.Mission01] = {
 			[9] = {
 				[{ "thief", "zlodziej" }] = {
 					text = "Please, you don't think that I am giving any {information} about my - ekhem - contractors just like that.",
@@ -71,7 +71,7 @@ local dialog = {
 						["smuggler"] = 3,
 					},
 					nextState = {
-						[Storage.IKEAdlazuchwalych.Mission01] = 10,
+						[Storage.IKEAForTheBold.Mission01] = 10,
 					},
 				},
 			},
@@ -82,7 +82,7 @@ local dialog = {
 				[{ "meble", "drewno", "furniture", "wood" }] = {
 					text = "Ohh, that dude ... he left on a boat recently. He was asking me for some good place to hide. ...\nI told him to look around at the south of the steppes. That's all I know.",
 					nextState = {
-						[Storage.IKEAdlazuchwalych.Mission01] = 11,
+						[Storage.IKEAForTheBold.Mission01] = 11,
 					},
 				},
 			},

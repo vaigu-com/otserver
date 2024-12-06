@@ -67,7 +67,7 @@ Storage = {
 		OnlineTokensGain = 150003,
 	},
 
-	-- ====== VAIGU =====
+	-- Vaigu custom
 	Exercisedummy = { exaust = 98231521 },
 	VampireHunter = { -- Reserved 402
 		Rank = 402,
@@ -410,114 +410,6 @@ Storage = {
 	-- 60835
 	-- }
 	-- ====== CUSTOM ======--
-	Firestarter = {
-		Mission1 = 11009,
-		Mission2 = 11010,
-		Mission3 = 11011,
-		-- 11012-11016 kwiatki
-	},
-	SciezkaDruida = {
-		KragDruidow = 11007,
-		SezonNaJelenie = 11008,
-		PorwanyBenek = 11017,
-		NaglaEksmisja = 11061,
-		SandLock = 11062,
-		WaterLock = 11063,
-		FlowerLock = 11064,
-		TajnySkladnik = 11067,
-		LekarstwoOdOrnulda = 11068,
-		BlyszczacyKrysztal = 11069,
-	},
-	PrzyjacielAriela = { PomocDlaAriela = 11000, Blossoms = 11005 },
-	Yalahar = {
-		MiloscAriela = 11002,
-		Haybed = 11004,
-		ZabojczyTrunek = 11044,
-		WstepDoCzarnejMagii = 11047,
-		-- Groby 11048 - 11059
-		Groby = 11059,
-	},
-	TrudnePoczatki = {
-		Rozeznanie = 11019,
-		TrollskyAsked = 11020,
-		FstabAsked = 11021,
-		CalkaAsked = 11022,
-		PostmanAsked = 11023,
-		MadameAsked = 11024,
-		BiedronkaAsked = 11025,
-		KomorAsked = 11026,
-		DiggerAsked = 11027,
-		JanuszAsked = 11028,
-		CyganAsked = 11029,
-		DostawaDrewna = 11030,
-		WaskiStages = 11031,
-		PoczatkiReward = 11032,
-	},
-	HelpingLocals = {
-		PrzekleteSzczury = 11046,
-		TaniRecykling = 11045,
-		ZniszczonaKula = 11072,
-	},
-	NaPomocBagietom = {
-		BeLikeSchwarzenegger = 11033,
-		Main = 11034,
-		HalfTurnKick = 11035,
-		ListTaken = 11036,
-		FatMyrrusDiet = 11037,
-		Carrot = 11038,
-		KitzDominando = 11039,
-		Promotion = 11040,
-	},
-	OskareKXddd = { Bilety = 11041 },
-	MilczenieOwiec = {
-		ProbaSily = 11065,
-		ModneUbrania = 11066,
-		GotujZLecterem = 11073,
-		LudzkieSerca = 11074,
-		LudzkieWatroby = 11075,
-	},
-	NieproszeniGoscie = { ZasraniBarbarzyncy = 11076 },
-	IKEAdlazuchwalych = {
-		Questline = 11077,
-		StaryAsked = 11081,
-		MilesAsked = 11082,
-	},
-	Biodegradowalny = { Questline = 11084, Parcel = 11085 },
-	UstatkowanyFanatyk = {
-		Questline = 11085,
-		Mission01 = 11086,
-		Mission02 = 11087,
-		Mission03 = 11088,
-		FajtlapaFloat = 11087,
-		FajtlapaReel = 11088,
-		FajtlapaStool = 11089,
-		FajtlapaItems = 11090,
-		Bigos = 11091,
-	},
-	TwoMarlinQuest = 2050,
-	PositionChest = POSITIONCHEST_ACTION_ID,
-	SpecialStepins = { DontAllowDiagonal = NextStorage() },
-	MiscellaneousStoreInboxItem = NextStorage(),
-	Tasks = {
-		TaskInfo = NextStorage(),
-		taskPoints = NextStorage(),
-		PlayerOngoingTasks = {
-			[1] = NextStorage(),
-			[2] = NextStorage(),
-			[3] = NextStorage(),
-		},
-	},
-	DailyTasks = {
-		DailyTaskInfo = NextStorage(),
-		DailyLimit = NextStorage(),
-		DailyBoardSlots = {
-			[1] = NextStorage(),
-			[2] = NextStorage(),
-			[3] = NextStorage(),
-		},
-		LastResetTimestamp = NextStorage(),
-	},
-	TopChef = { State = NextStorage(), CanMakeAllDishes = NextStorage() },
 	-- Krol szczurow
 	BigKlamoty = {
 		State = NextStorage(),
@@ -548,10 +440,12 @@ Storage = {
 		Cuckoo = NextStorage(),
 		Lamp = NextStorage(),
 	},
-	GrubyMirekEncounters = NextStorage(),
+
+	PositionChest = POSITIONCHEST_ACTION_ID,
+	--38f
 	FreeTravels = NextStorage(),
 	InstantBoat = NextStorage(),
-	DziadekMrozMammooth = NextStorage(),
+	OldManFrostMammoth = NextStorage(),
 	Fnaf = {
 		LeftDoor = NextStorage(),
 		RightDoor = NextStorage(),
@@ -622,30 +516,7 @@ Storage = {
 	-- arena = 26100
 	-- arena = 26101
 	-- arena = 26102
-	Minigames = {
-		Locks = {
-			MwLock = 30014,
-			HasteLock = 30059,
-			HealLock = 30016,
-		},
-		Total = {
-			Wins = NextStorage(),
-			Matches = NextStorage(),
-			Points = NextStorage(),
-		},
-		CurrentEvent = NextStorage(),
-		Events = {
-			ZombieMinigame = {
-				Wins = NextStorage(),
-				Matches = NextStorage(),
-				Points = NextStorage(),
-				LongestRecord = NextStorage(),
-			},
-		},
-	},
-	mwLock = 30014,
 	allowWTstorage = 30015,
-	healLock = 30016,
 	destroLock = 30017,
 	Promotion = 30018,
 	EmoteSpell = 30019,
@@ -659,7 +530,6 @@ Storage = {
 	StartManapot = 30056,
 	FreeQuests = 30057,
 	PremiumAccount = 30058,
-	hasteLock = 30059,
 	ShrineEntrance = 30060,
 
 	-- events
@@ -2642,34 +2512,3 @@ GlobalStorage = {
 }
 
 startupGlobalStorages = {}
-
-local storageIdToCountName = {}
-local function findDuplicates(value, ret, key)
-	if type(value) == "number" then
-		local entry = storageIdToCountName[value] or {}
-		entry.count = (entry.count or 0) + 1
-		entry.keys = entry.keys or {}
-		table.insert(entry.keys, key)
-		storageIdToCountName[value] = entry
-	else
-		for k, v in pairs(value) do
-			findDuplicates(v, ret, k)
-		end
-	end
-end
-
-local extraction = {}
-findDuplicates(Storage, extraction)
-table.sort(extraction, function(a, b)
-	return a.value >= b.value
-end)
-
-for storageId, entry in pairs(extraction) do
-	local count = entry.count
-	if count > 1 then
-		logger.warn(T("Duplicate storage found. Id: :storageId:, names:", { storageId = storageId }))
-		for _, key in pairs(entry.keys) do
-			logger.warn(T("\t:key:", { key = key }))
-		end
-	end
-end

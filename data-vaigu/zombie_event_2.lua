@@ -1,5 +1,4 @@
 local config = {
-	bossName = "zombie",
 	encounterName = "zombie",
 	requiredLevel = 250,
 

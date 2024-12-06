@@ -1,4 +1,3 @@
-print("dromedary.lua")
 local mType = Game.createMonsterType("Dromedary")
 local monster = {}
 
@@ -64,7 +63,8 @@ monster.flags = {
 }
 
 monster.events = {
-	"DromedaryDeath" --38f change monster files to be intermediate definitions (same as npcs)
+	"DromedaryDeath" 
+	--38f change monster files to be intermediate definitions (same as npcs)
 }
 
 monster.light = {

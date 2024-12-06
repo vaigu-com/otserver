@@ -5,7 +5,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		if player:getStorageValue(Storage.IcePickIcicle) >= os.time() then
 			return player:say("Na dzis juz wystarczy..", TALKTYPE_MONSTER_SAY)
 		end
-		if player:getStorageValue(Storage.NieproszeniGoscie.ZasraniBarbarzyncy) == 2 then
+		if player:getStorageValue(Storage.UnwantedGuests.ShitfacedBarbarians) == 2 then
 			local roll = math.random(100)
 			if roll <= 60 then
 				toPosition:sendMagicEffect(38)

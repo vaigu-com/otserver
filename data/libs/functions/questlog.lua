@@ -53,7 +53,7 @@ function Player.resetTrackedMissions(self, missionStorages)
 	PlayerTrackedMissionsData[self:getId()] = {}
 	for _, storage in pairs(missionStorages) do
 		local mission = Game.getMissionByStorage(storage)
-		local quest = Game:getQuestByMission(mission)
+		local quest = Game.getQuestByMission(mission)
 		if Game.isQuestStorage(storage) and self:isMissionOngoing(mission) then
 			local data = {
 				storage = storage,
@@ -216,7 +216,7 @@ function Player.getTranslatedQuestName(self, quest)
 
 	local context = { player = self }
 	result = result .. self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(quest.name)
-	if self:QuestIsCompleted(quest) then
+	if self:questIsCompleted(quest) then
 		local completedSuffix = self:Localizer(LOCALIZER_QUESTLOG):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end

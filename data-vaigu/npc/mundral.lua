@@ -50,7 +50,7 @@ end
 
 function checkDruidsStatus(creature)
 	local player = Player(creature)
-	if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 4 then
+	if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 4 then
 		player:addExperience(300000, true) -- 300k expa
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
@@ -61,7 +61,7 @@ function checkDruidsStatus(creature)
 			"Our sacred tree is located in the heart of the jungle.",
 		}, npc, creature)
 	end
-	if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 7 then
+	if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 7 then
 		player:addExperience(500000, true) -- 500k expa
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
@@ -86,8 +86,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 	-- ============= DRUID ADDON QUEST =================
 	if table.contains({ "mission", "misja", "pomoc", "lekarstwo" }, message) then
-		if player:getStorageValue(Storage.SciezkaDruida.TajnySkladnik) == 1 then
-			if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 4 then
+		if player:getStorageValue(Storage.WayOfTheDruid.SecretIngredient) == 1 then
+			if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 4 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Najpierw udaj sie do naszego swietego drzewa i pobierz buklak wody ze zrodla. ...",
 					"Swiete drzewo znajduje sie w samym sercu dzungli.",
@@ -97,11 +97,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 			else
 				if player:getItemCount(8819) > 0 then
-					if player:getStorageValue(Storage.SciezkaDruida.LekarstwoOdOrnulda) == 3 then
-						player:setStorageValue(Storage.SciezkaDruida.TajnySkladnik, 2) -- koniec questa
+					if player:getStorageValue(Storage.WayOfTheDruid.OrnuldMedicine) == 3 then
+						player:setStorageValue(Storage.WayOfTheDruid.SecretIngredient, 2) -- koniec questa
 						player:removeItem(8819, 1) -- zabiera itemek
 						player:addItem(12549, 1) -- bamboo leaves
-						player:setStorageValue(Storage.SciezkaDruida.KragDruidow, player:getStorageValue(Storage.SciezkaDruida.KragDruidow) + 1) -- zwiekszamy licznik misji
+						player:setStorageValue(Storage.WayOfTheDruid.CouncilOfDruids, player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) + 1) -- zwiekszamy licznik misji
 						player:addExperience(50000, true) -- 50k expa
 						player:getPosition():sendMagicEffect(CONST_ME_STUN)
 						npcHandler:say(getPlayerLanguage(player) == "PL" and "Dziekuje ci z calego serca, w koncu moj Leon wyzdrowieje. Jako jeden z {druidow} dziekuje ci takze w imieniu Lasu." or "Thank you from the bottom of my heart. My Leon finally will cure up. As one of the {druids} I thank you also of behalf of the forest.", npc, creature)
@@ -113,7 +113,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Jeszcze nie zdobyles lekarstwa? Poczekam wiec.." or "You still didnt get this cure? Well I'll wait then..", npc, creature)
 				end
 			end
-		elseif player:getStorageValue(Storage.SciezkaDruida.TajnySkladnik) < 1 then
+		elseif player:getStorageValue(Storage.WayOfTheDruid.SecretIngredient) < 1 then
 			npcHandler:setTopic(playerId, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Przychodzisz, zeby mi pomoc, naprawde? ...",
@@ -126,14 +126,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				"And the only medicine I know that could help him, is what Ornuld developed. But he doesn't want to help me, seems like he wamt to see this innocent animal die. ...",
 				"Maybe you can get this from him, just don't say that I sent you. You can find him in the western part of the jungle, he has his little camp there.",
 			}, npc, creature)
-			if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) <= 0 then
-				player:setStorageValue(Storage.SciezkaDruida.KragDruidow, 1)
+			if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) <= 0 then
+				player:setStorageValue(Storage.WayOfTheDruid.CouncilOfDruids, 1)
 			end
-			player:setStorageValue(Storage.SciezkaDruida.TajnySkladnik, 1) -- zaczynamy questa
+			player:setStorageValue(Storage.WayOfTheDruid.SecretIngredient, 1) -- zaczynamy questa
 		end
 	end
-	if table.contains({ "druidow", "druid", "druids" }, message) and player:getStorageValue(Storage.SciezkaDruida.BlyszczacyKrysztal) >= 3 then
-		if player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 2 then
+	if table.contains({ "druidow", "druid", "druids" }, message) and player:getStorageValue(Storage.WayOfTheDruid.SingingCrystal) >= 3 then
+		if player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"No tak, powinienem Ci wytlumaczyc. Otoz na swiecie dawniej byl pokoj i my druidzi zylismy w dzungli, niestety nastaly zle czasy i musilismy uciec z naszej wioski, kazdy poszedl w inna strone. ...",
 				"Zostalo nas pieciu, raz do roku spotykamy sie w wielkim drzewie. Jesli wykazesz sie wystarczajaca pomoca wobec nas, to rozwazymy twoje dolaczenie do naszej spolecznosci. ...",
@@ -143,9 +143,9 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Only five of us remain, we meet once a year in a big tree in the jungle. If you prove yourself to be trustworthy, we might let you join us. ...",
 				"I don't know where the others are now, do your best to find and help them if needed.",
 			}, npc, creature)
-		elseif player:getStorageValue(Storage.SciezkaDruida.KragDruidow) >= 3 and player:getStorageValue(Storage.SciezkaDruida.KragDruidow) < 7 then
+		elseif player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) >= 3 and player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) < 7 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Mam nadzieje, ze zdolasz odnalezc pozostalych druidow, oraz okazac im nalezyta pomoc." or "I trust that you can find the remaining druids and help them.", npc, creature)
-		elseif player:getStorageValue(Storage.SciezkaDruida.KragDruidow) == 7 then
+		elseif player:getStorageValue(Storage.WayOfTheDruid.CouncilOfDruids) == 7 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dziekuje za pomoc mi oraz pozostalym druidom. Od teraz jestes jednym z nas." or "Thank you for helping me and the rest of the druids. Now you became one of us.", npc, creature)
 		end
 	end

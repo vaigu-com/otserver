@@ -123,7 +123,7 @@ questChests = {
 	-- ToDo: remake to questChest (same as in _startup.lua)
 	[5020] = {
 		minLevel = 12,
-		storageId = Storage.IKEAdlazuchwalych.TakeBall,
+		storageId = Storage.IKEAForTheBold.TakeBall,
 		items = {
 			[1] = { type = "item", item = 3076, count = 1 }, -- crystal ball
 			[2] = { type = "experience", amount = 3000 },
@@ -132,7 +132,7 @@ questChests = {
 	-- ToDo: remake to questChest (same as in _startup.lua)
 	[5021] = {
 		minLevel = 30,
-		storageId = Storage.IKEAdlazuchwalych.TakeReward,
+		storageId = Storage.IKEAForTheBold.TakeReward,
 		items = {
 			[1] = { type = "item", item = 16251, count = 1 }, -- golem wrench
 			[2] = { type = "item", item = 3010, count = 1 }, -- emerald
@@ -143,7 +143,7 @@ questChests = {
 	-- ToDo: remake to questChest (same as in _startup.lua)
 	[5022] = {
 		minLevel = 15,
-		storageId = Storage.IKEAdlazuchwalych.TakeKey,
+		storageId = Storage.IKEAForTheBold.TakeKey,
 		items = {
 			[1] = { type = "item", item = 7934, count = 1 }, -- key
 			[2] = { type = "item", item = 3055, count = 1 }, -- plat amulet

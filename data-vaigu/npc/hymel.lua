@@ -112,10 +112,8 @@ local lang_to_config = {
 			"It burns so nice dude, I'm hoping that guards won't get too high xD ...",
 			"I see that you liked it, if you want to burn some more just ask, you can keep the {lighter} if it hasn't exploded yet.",
 		},
-		[8] = {
-			"Ohh Yes, I would burn something, maybe those rats from Mirkotown? They evicted me for my pyrotechnic tendencies. ...",
-			"Wanna set somethin' on fire?",
-		},
+		[8] = ""
+			,
 		[9] = {
 			"If you want to play a little bit, go and burn some weed which I left in my house. Better for me if guards won't find it otherwise I'll have to run away. ...",
 			"I can't show myself in the city, my cottage is located in the north of the city, you will recognize it immediately. ...",
@@ -141,13 +139,13 @@ local function creatureSayCallback(npc, creature, type, message)
 		"podpalic",
 		"fire",
 		"lighter",
-	}, message) and player:getStorageValue(Storage.Firestarter.Mission1) > 0 then
+	}, message) and player:getStorageValue(Storage.Firestarter.Mission01) > 0 then
 		npcHandler:say(config[1], npc, creature)
 	end
 	if MsgContains(message, "zajarac") or MsgContains(message, "mission") or MsgContains(message, "misja") then
-		if player:getStorageValue(Storage.Firestarter.Mission3) == 2 then
+		if player:getStorageValue(Storage.Firestarter.Mission03) == 2 then
 			if player:getLevel() >= 20 then
-				player:setStorageValue(Storage.Firestarter.Mission3, 3)
+				player:setStorageValue(Storage.Firestarter.Mission03, 3)
 				player:setStorageValue(Storage.Finished.Firestarter, 1) -- quest done (website)
 				player:addItem(3280) -- fire sword
 				player:addItem(3731, 5) -- 5 fire mushroom
@@ -162,13 +160,13 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:setTopic(playerId, 0)
 			end
 		end
-		if player:getStorageValue(Storage.Firestarter.Mission2) == 3 and player:getStorageValue(Storage.Firestarter.Mission3) < 1 then
+		if player:getStorageValue(Storage.Firestarter.Mission02) == 3 and player:getStorageValue(Storage.Firestarter.Mission03) < 1 then
 			npcHandler:say(config[4], npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
-		if player:getStorageValue(Storage.Firestarter.Mission2) == 2 then
+		if player:getStorageValue(Storage.Firestarter.Mission02) == 2 then
 			if player:getLevel() >= 20 then
-				player:setStorageValue(Storage.Firestarter.Mission2, 3)
+				player:setStorageValue(Storage.Firestarter.Mission02, 3)
 				player:addItem(7430, 1) -- dragonbone staff
 				player:addItem(3731, 5) -- 5 fire mushroom
 				-- Q5.1
@@ -182,13 +180,13 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:setTopic(playerId, 0)
 			end
 		end
-		if player:getStorageValue(Storage.Firestarter.Mission1) == 3 and player:getStorageValue(Storage.Firestarter.Mission2) < 1 then
+		if player:getStorageValue(Storage.Firestarter.Mission01) == 3 and player:getStorageValue(Storage.Firestarter.Mission02) < 1 then
 			npcHandler:say(config[6], npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
-		if player:getStorageValue(Storage.Firestarter.Mission1) == 2 then
+		if player:getStorageValue(Storage.Firestarter.Mission01) == 2 then
 			if player:getLevel() >= 20 then
-				player:setStorageValue(Storage.Firestarter.Mission1, 3)
+				player:setStorageValue(Storage.Firestarter.Mission01, 3)
 				-- Q5.1
 				player:addItem(3731, 5) -- 5 fire mushroom
 				player:addExperience(20000, true) -- 20k expa
@@ -201,22 +199,22 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:setTopic(playerId, 0)
 			end
 		end
-		if player:getStorageValue(Storage.Firestarter.Mission1) < 1 then
+		if player:getStorageValue(Storage.Firestarter.Mission01) < 1 then
 			npcHandler:say(config[8], npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
 	end
 	if MsgContains(message, "yes") or MsgContains(message, "tak") then
-		if npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Firestarter.Mission2) == 3 and player:getStorageValue(Storage.Firestarter.Mission3) < 1 then
-			player:setStorageValue(Storage.Firestarter.Mission3, 1)
+		if npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Firestarter.Mission02) == 3 and player:getStorageValue(Storage.Firestarter.Mission03) < 1 then
+			player:setStorageValue(Storage.Firestarter.Mission03, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wiedzialem ze moge na ciebie liczyc, uwazaj tylko na ten stuff." or "I wanted to know if you are reliable, just be careful with that stuff.", npc, creature)
 		end
-		if npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Firestarter.Mission1) == 3 and player:getStorageValue(Storage.Firestarter.Mission2) < 1 then
-			player:setStorageValue(Storage.Firestarter.Mission2, 1)
+		if npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Firestarter.Mission01) == 3 and player:getStorageValue(Storage.Firestarter.Mission02) < 1 then
+			player:setStorageValue(Storage.Firestarter.Mission02, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Tylko nie traf na ich przerwe, bo nie mam dodatkowego lozka xD." or "Just don't go there on their brake, I don't have more beds xD.", npc, creature)
 		end
-		if npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Firestarter.Mission1) < 1 then
-			player:setStorageValue(Storage.Firestarter.Mission1, 1)
+		if npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Firestarter.Mission01) < 1 then
+			player:setStorageValue(Storage.Firestarter.Mission01, 1)
 			player:addItem(5467, 1) -- dostaje firebuga
 			npcHandler:say(config[9], npc, creature)
 		end

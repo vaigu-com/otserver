@@ -6,7 +6,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if player:getStorageValue(Storage.SciezkaDruida.SezonNaJelenie) >= 3 then
+	if player:getStorageValue(Storage.WayOfTheDruid.DeerSeason) >= 3 then
 		if item.uid == 11044 then
 			toPosition.x = 6123
 			toPosition.y = 1781
