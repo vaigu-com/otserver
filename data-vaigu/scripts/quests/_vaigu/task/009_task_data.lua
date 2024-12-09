@@ -917,3 +917,10 @@ function RegisterTasksInQuestsTable()
 		table.insert(Quests[TASKS_QUEST_STORAGE].missions, bossMission)
 	end
 end
+
+local quest = Quest(LOCALIZERS.NONE)
+
+quest:Script(function()
+	RegisterTasksInQuestsTable()
+	RegisterDailyTasksInQuestsTable()
+end)

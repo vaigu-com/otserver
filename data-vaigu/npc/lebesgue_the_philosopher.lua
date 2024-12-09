@@ -1,43 +1,4 @@
 local dialogs = {
-	[Storage.StickyBeginning.LebesgueAsked] = {
-		[{ max = 0 }] = {
-			[{ "help", "pomoc" }] = {
-				text = "Everything is in perfect order, only if you could check what is going on with this wood delivery.. I'm almost out of my stock, I don't want to disappoint my customers.",
-				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
-				nextState = {
-					[Storage.StickyBeginning.LebesgueAsked] = 1,
-					[Storage.StickyBeginning.Discernment] = "+1",
-				},
-				textNoRequiredState = {
-					"What do you want? Better visit Commissioner Fisher first.",
-				},
-			},
-		},
-	},
-	[Storage.StickyBeginning.RewardState] = {
-		[{ max = 0 }] = {
-			[{ "belty", "bolts" }] = {
-				text = "Here are bolts for you. You should visit Fstab for a potion supply.",
-				nextState = { [Storage.StickyBeginning.RewardState] = 3 },
-				rewards = { { id = 7364, count = 300 } },
-			},
-			[{ "strzaly", "arrows" }] = {
-				text = "Here are arrows for you. You should visit Fstab for a potion supply.",
-				nextState = { [Storage.StickyBeginning.RewardState] = 3 },
-				rewards = { { id = 7364, count = 300 } },
-			},
-		},
-	},
-	[Storage.StickyBeginning.WoodDelivery] = {
-		[6] = {
-			[{ "nagroda", "reward" }] = {
-				text = "Trollsky sent you there? What you prefer to get, {bolts} or {arrows}?",
-				nextTopic = 1,
-				requiredState = { [Storage.StickyBeginning.RewardState] = -1 },
-				textNoRequiredState = "You got your reward already, visit Fstab for a potion supply.",
-			},
-		},
-	},
 }
 local voices = {
 	interval = 15000,

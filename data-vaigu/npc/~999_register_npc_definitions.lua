@@ -1,1 +1,0 @@
-NpcRegistry:RegisterNpcDefinitions()

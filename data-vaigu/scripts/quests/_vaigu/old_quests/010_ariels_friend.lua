@@ -6,16 +6,27 @@ local topics = {
 	confirmVodkaQuest = NextTopic(),
 	confirmReward = NextTopic(),
 }
+
+local elixirId = 33892
+
 quest
 	:Storage(function()
 		Storage.ArielsFriend = {
 			HumbleRequest = 11000,
-			Blossoms = 11005,
+			FriendGrave = 11001,
+
 			LoveIsInTheAir = 11002,
+			HairStrand = 11003,
 			Haybed = 11004,
+			ElixirStand = 10050,
+			LoveElixirRaw = 10051,
+			LoveElixirEnchanted = 10052,
+
 			KillerLiquor = 11044,
+			LiquorChest = 11005,
+			LiquorItem = 11006,
+
 			PreludeToThaumaturgy = 11047,
-			VodkaChest = 11048,
 			GravesSoulChance = 11049,
 		}
 		QuestState.ArielsFriend = {
@@ -97,7 +108,7 @@ quest
 	end)
 	:Mission(Storage.ArielsFriend.HumbleRequest)
 	:State(
-		QUEST_NOT_STARTED,
+		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Ariel", {
 			[{ "mission", "misja" }] = {
 				text = "I've wanted to pick my friend's favourite flowers to put them on his grave for a week now, but I am too busy. Would you help me?",
@@ -119,8 +130,25 @@ quest
 				text = "Heaven blossom is a rare commodity amongst elves. Please find it and place it on my friend grave that is on top of the hill, northwest from here.",
 			},
 		}),
+		QuestFactory.Script(function(missionState)
+			local friendGrave = Action()
+
+			function friendGrave.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:HasExactMissionState(missionState) then
+					return false
+				end
+
+				if player:TryRemoveItems({ { id = 5921 } }) then
+					player:setStorageValue(Storage.ArielsFriend.HumbleRequest, QuestState.ArielsFriend.HumbleRequest.ReportToAriel)
+				end
+				return true
+			end
+
+			friendGrave:aid(Storage.ArielsFriend.HairStrand)
+			friendGrave:register()
+		end),
 		QuestFactory.StartupItems({
-			
+			{ id = 3734, pos = { 5609, 1566, 2 }, aid = Storage.ArielsFriend.FriendGrave },
 		})
 	)
 	:State(
@@ -138,7 +166,7 @@ quest
 					{ id = 3047, count = 20 },
 					{ id = 3728, count = 5 },
 				},
-				experienceReward = 20000,
+				expReward = 20000,
 			},
 		})
 	)
@@ -168,6 +196,9 @@ quest
 					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp,
 				},
 			},
+		}),
+		QuestFactory.StartupItems({
+			{ id = 5499, pos = { 5686, 1600, 5 }, aid = Storage.ArielsFriend.Haybed, rewards = { id = 36809, aid = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." } },
 		})
 	)
 	:State(
@@ -178,21 +209,23 @@ quest
 		QuestFactory.Dialog("Old Postman", {
 			[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {
 				text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
-				rewards = {
-					{ id = 2874, fluidType = 0 },
-				},
 				nextState = {
 					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
 				},
 			},
 		})
 	)
-	:State(QuestState.ArielsFriend.LoveIsInTheAir.StealElixir)
+	:State(
+		QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
+		QuestFactory.StartupItems({
+			{ id = 8998, pos = { 6041, 1324, 8 }, aid = Storage.ArielsFriend.ElixirStand, rewards = { { id = elixirId, aid = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" } } },
+		})
+	)
 	:State(
 		QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman,
 		QuestFactory.Dialog("Old Postman", {
 			[{ "eliksir", "madame", "mission", "misja", "mikstura", "elixir" }] = {
-				text = "If we have an elixir, we don't need to get Ariel's hair to dissolve it in it...\nGo to him and look for his hair in his bed, there must be something. Next, give Madame the love elixir as wine from me.",
+				text = "If we have an elixir, we do need to get Ariel's hair to dissolve it in it...\nGo to him and look for his hair in his bed, there must be something. Next, give Madame the love elixir as wine from me.",
 			},
 			nextState = {
 				[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
@@ -201,9 +234,40 @@ quest
 	)
 	:State(
 		QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
+		QuestFactory.Script(function(missionState)
+			local hair = Action()
+
+			function hair.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:HasExactMissionState(missionState) then
+					return false
+				end
+
+				if not target then
+					return
+				end
+
+				if target:getId() ~= elixirId then
+					return
+				end
+				if target:getActionId() ~= Storage.ArielsFriend.LoveElixirRaw then
+					return
+				end
+
+				target:remove()
+				item:setDescription("Enchanted magical elixir.")
+				item:setActionId(Storage.ArielsFriend.LoveElixirEnchanted)
+				return true
+			end
+
+			hair:aid(Storage.ArielsFriend.HairStrand)
+			hair:register()
+		end),
 		QuestFactory.Dialog("Madame Malkin", {
 			[{ "mission", "misja", "wino", "wine", "ariel" }] = {
 				text = "Ahh, I love these exotic ones from Old Postman, I'll taste them immediately at the spot.\nArrrgh, disgusting. Tell him that he should never order this one again.",
+				requiredItems = {
+					{ id = elixirId, aid = Storage.ArielsFriend.LoveElixirEnchanted },
+				},
 				nextState = {
 					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel,
 				},
@@ -226,6 +290,11 @@ quest
 		QuestFactory.Dialog("Ariel", {
 			[{ "madame", "malkin", "mission", "misja" }] = {
 				text = "She agreed? How did you do that? Well, that doesn't matter now, thank you from the bottom of my heart. Here is small gift for you, and as I promissed, our secrest password: Aloha.\nI hope that you'll visit me someday.",
+				rewards = {
+					{ id = 5922, count = 5 },
+					{ id = 3082, count = 50 },
+				},
+				expReward = 70000,
 				nextState = {
 					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.Finished,
 				},
@@ -245,7 +314,7 @@ quest
 	)
 	:Mission(Storage.ArielsFriend.KillerLiquor)
 	:State(
-		QUEST_NOT_STARTED,
+		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Gertrude", {
 			[{ "aloha" }] = {
 				text = "I see you have met one of our brothers. Welcome to our family then, there are not many of us left in this world.\nIf you want, I can tell you a part of our {story}.",
@@ -279,12 +348,11 @@ quest
 				text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Yalahar.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
 				requiredItems = { { id = 6106, remove = false } },
 				nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
-				expReward = 150 * 1000,
+				expReward = 150000,
 			},
 		}),
 		QuestFactory.StartupItems({
-			--38f
-			{ id = 2520, pos = {}, aid = Storage.ArielsFriend.VodkaChest, rewards = { { id = 6106, addToStore = true } } },
+			{ id = 137, pos = { 6448, 913, 3 }, aid = Storage.ArielsFriend.LiquorChest, rewards = { { id = 6106, aid = Storage.ArielsFriend.LiquorItem } } },
 		})
 	)
 	:State(
@@ -296,7 +364,7 @@ quest
 			[{ "wodka", "trunek", "vodka", "liquor" }] = {
 				text = "Now we can talk! Who bring you there?",
 				requiredItems = {
-					{ id = 6106 },
+					{ id = 6106, aid = Storage.ArielsFriend.LiquorItem },
 				},
 				nextState = {
 					[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.AskKonmuldForMission,
@@ -357,7 +425,7 @@ quest
 				return true
 			end
 
-			grave:aid(Storage.PathOfTheUndead.KonmuldBush)
+			grave:aid(Storage.ArielsFriend.FriendGrave)
 			grave:register()
 		end)
 	)

@@ -1,17 +1,4 @@
 local dialogs = {
-	[Storage.StickyBeginning.KomorAsked] = {
-		[{ max = 0 }] = {
-			[{ "help", "pomoc" }] = {
-				text = "Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road.",
-				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
-				nextState = {
-					[Storage.StickyBeginning.KomorAsked] = 1,
-					[Storage.StickyBeginning.Discernment] = "+1",
-				},
-				textNoRequiredState = "Better visit Commissioner Fisher first, I cant trust you now.",
-			},
-		},
-	},
 	[Storage.IKEAForTheBold.State] = {
 		[-1] = {
 			[{ "misja", "mission" }] = {
@@ -42,7 +29,7 @@ local dialogs = {
 				rewards = {
 					{ id = 2972, actionid = 5008 }, -- ehhhhhhh
 				},
-				experienceReward = 30000,
+				expReward = 30000,
 			},
 		},
 		[6] = {

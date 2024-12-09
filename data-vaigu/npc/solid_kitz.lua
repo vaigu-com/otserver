@@ -2,6 +2,8 @@ local internalNpcName = "[SOLID] Kitz"
 local npcType = Game.createNpcType("Solid Kitz")
 local npcConfig = {}
 
+--displayname = "Solid Kitz"
+
 npcConfig.name = internalNpcName
 npcConfig.description = internalNpcName
 

@@ -82,8 +82,8 @@ end
 --#reqion Quest state dependant
 QuestFactory = {}
 QuestFactory.__index = QuestFactory
-function QuestFactory.Dialog(name, dialogs)
-	return { name = name, dialogs = dialogs, scriptType = QUEST_SCRIPT_TYPE.DIALOG }
+function QuestFactory.Dialog(names, dialogs)
+	return { names = names, dialogs = dialogs, scriptType = QUEST_SCRIPT_TYPE.DIALOG }
 end
 function QuestFactory.Script(script)
 	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
@@ -104,7 +104,7 @@ function Quest:StartupItems(items, anchor)
 end
 ---@private
 function Quest:AddDialog(context)
-	local name, dialogs = context.name, context.dialogs
+	local names, dialogs = context.names, context.dialogs
 	local mission, state = context.mission, context.state
 	if not mission then
 		logger.debug(T(":quest: missing mission for dialog", { quest = self.name }))
@@ -119,11 +119,18 @@ function Quest:AddDialog(context)
 		logger.debug(T(":quest: missing name for dialog", { quest = self.name }))
 	end
 
-	self.npcs[name] = self.npcs[name] or {}
-	self.npcs[name].missions = self.npcs[name].missions or {}
-	self.npcs[name].missions[mission] = self.npcs[name].missions[mission] or {}
-	self.npcs[name].missions[mission].states = self.npcs[name].missions[mission].states or {}
-	self.npcs[name].missions[mission].states[state] = dialogs
+	if type(names) ~= "table" then
+		names = { names }
+	end
+
+	for _, name in pairs(names) do
+		self.npcs[name] = self.npcs[name] or {}
+		self.npcs[name].missions = self.npcs[name].missions or {}
+		self.npcs[name].missions[mission] = self.npcs[name].missions[mission] or {}
+		self.npcs[name].missions[mission].states = self.npcs[name].missions[mission].states or {}
+		self.npcs[name].missions[mission].states[state] = dialogs
+	end
+
 	return self
 end
 ---@private
@@ -210,7 +217,7 @@ local function normalizeQuestlogData()
 		for storage, mission in pairs(quest.missions) do
 			mission.minState = mission.minState or 1
 			mission.maxState = mission.maxState or #(mission.states or {})
-			mission.completedState = mission.completedState or mission.maxState
+			mission.finishedState = mission.finishedState or mission.maxState
 			mission.storage = storage
 		end
 	end

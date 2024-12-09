@@ -73,7 +73,7 @@ return {
 	["Chorus of Januses: MU-MU-MURDERER! MU-MU-UUUU-MURDERER! MU-murderer! MUU-MURDERER!"] = "Chor januszy: MO-MO-RDERCA! MO-mo-OOOO-RDERCAAA! MO-ooorderca! MOOORDERCAAAA!",
 	["04. Vanitas vanitatum et omnia vanitas"] = "04. Vanitas vanitatum et omnia vanitas",
 	["Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him."] = "Romek wspomnial, ze Grave Digger moze znac sie na zdejmowaniu klatw. Sproboj zaczerpnac od niego potrzebne informacje.",
-	["You found a book that can help Romek. Return to him and give it to him."] = "Znalazles ksiege, ktora moze pomoc Romkowi. Wroc do niego i mu ja przekaz.",
+	["You found a book that can help Romek. Return to him now."] = "Znalazles ksiege, ktora moze pomoc Romkowi. Wroc do niego i mu ja przekaz.",
 	["Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!"] = "Chor januszy: Radujmy sie, bracia! Dosyc lez! Zwyciestwo nasze dokonalo sie! Walczacym hold, poleglym czesc! Niech ziemia niesie pochwalna piesn! Przelalismy i pot i krew Lecz nasza gloria wrogowi wbrew! Choc stracil wiele kazdy z nas Radujmy sie bracia! Zwyciestwa czas!",
 	["05. Ham from under the Rug"] = "05. Szynka spod dywanu",
 	["Romek has assigned you the task of catering his kebab party."] = "Romek zlecil ci zaopatrzenie jego imprezy w katering kebabowy.",

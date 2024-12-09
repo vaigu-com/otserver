@@ -73,7 +73,7 @@ return {
 	["Father Natanek"] = "Father Natanek",
 	["Lecter"] = "Lecter",
 	["Legolas"] = "Legolas",
-	["Leon"] = "Leon",
+	["Leonel"] = "Leonel",
 	["Madame Malkin"] = "Madame Malkin",
 	["Malfurion"] = "Malfurion",
 	["Marrow"] = "Marrow",

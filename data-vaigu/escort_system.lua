@@ -18,7 +18,7 @@ function Escort:New(context, player)
 	newObj.requiredState = context.requiredState or {}
 	newObj.nextState = context.nextState or {}
 	newObj.rewards = context.rewards or {}
-	newObj.expReward = context.expReward or 0
+	newObj.expReward = context.expReward or context.experienceReward or 0
 	newObj.distanceToSucceed = context.distanceToSucceed or 5
 	newObj.grantQuestCreditRadius = context.grantQuestCreditRadius or 10
 

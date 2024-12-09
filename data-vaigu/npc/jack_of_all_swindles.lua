@@ -1,17 +1,4 @@
 local dialogs = {
-	[Storage.StickyBeginning.JackAsked] = {
-		[{ max = 0 }] = {
-			[{ "help", "pomoc" }] = {
-				text = "I dont need any help, thanks. But you can always check my offer.",
-				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
-				nextState = {
-					[Storage.StickyBeginning.JackAsked] = 1,
-					[Storage.StickyBeginning.Discernment] = "+1",
-				},
-				textNoRequiredState = "What do you want? Better meet Commissioner Fisher first..",
-			},
-		},
-	},
 	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ GREET }] = {
 			text = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",

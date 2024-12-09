@@ -188,16 +188,16 @@ function Player:RemoveItems(items)
 	return true
 end
 
-function Player:TryTradeInItems(givenUpItems, newItems)
+function Player:TryTradeInItems(givenUpItems, addedItems)
 	if not self:HasItems(givenUpItems) then
 		return false
 	end
-	if not self:CanAddItems(newItems) then
+	if not self:CanAddItems(addedItems) then
 		return false
 	end
 	-- success
 	self:RemoveItems(givenUpItems)
-	self:AddItems(newItems)
+	self:AddItems(addedItems)
 	return true
 end
 
@@ -304,8 +304,16 @@ local nonCustomAttributes = {
 	text = true,
 	uid = true,
 }
+
+local setableAtribute = {
+	name = true,
+}
 local function isCustomAttribute(key)
 	return nonCustomAttributes[key] ~= true
+end
+
+local function isSetableAttribute(key)
+	return setableAtribute[key]
 end
 
 DONT_CONTINUE_ON_ADD = "DONT_CONTINUE_ON_ADD"
@@ -388,6 +396,9 @@ function Player:AddCustomItem(item, container)
 	for key, value in pairs(item) do
 		if isCustomAttribute(key) then
 			addItem:setCustomAttribute(key, value)
+		end
+		if isSetableAttribute(key) then
+			addItem:setAttribute(key, value)
 		end
 	end
 

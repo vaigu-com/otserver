@@ -1,9 +1,5 @@
 dofile(DATA_DIRECTORY .. "/lib/core/quests.lua")
 
--- Vaigu custom
-RegisterTasksInQuestsTable()
-RegisterDailyTasksInQuestsTable()
-
 if not LastQuestlogUpdate then
 	LastQuestlogUpdate = {}
 end
@@ -139,15 +135,6 @@ end
 
 --#region Player functions
 function Player.isQuestOngoing(self, quest)
-	for _, mission in pairs(quest.missions) do
-		if self:isMissionOngoing(mission) then
-			return true
-		end
-	end
-	return false
-end
-
-function Player.isQuestOngoing(self, quest)
 	if not quest then
 		return false
 	end
@@ -169,7 +156,7 @@ function Player.isMissionOngoing(self, mission)
 	end
 
 	local state = self:getStorageValue(mission.storage)
-	if state == QUEST_NOT_STARTED then
+	if state == MISSION_NOT_STARTED then
 		return false
 	end
 	if state < mission.minState then
@@ -182,30 +169,34 @@ function Player.isMissionOngoing(self, mission)
 	return true
 end
 
-function Player.questIsCompleted(self, quest)
+function Player.isQuestCompleted(self, quest)
 	if not quest then
 		return false
 	end
 
 	local missions = quest.missions
 	for _, mission in pairs(missions) do
-		if not self:missionIsCompleted(mission) then
+		if not self:isMissionCompleted(mission) then
 			return false
 		end
 	end
 	return true
 end
 
-function Player.missionIsCompleted(self, mission)
+function Player.isMissionCompleted(self, mission)
 	if not mission then
 		return false
 	end
 
 	local state = self:getStorageValue(mission.storage)
-	if state == QUEST_NOT_STARTED then
-		return false
+	if state == mission.finishedState then
+		return true
 	end
-	return state == mission.completedState
+	if state == MISSION_FINISHED then
+		return true
+	end
+
+	return false
 end
 
 function Player.getTranslatedQuestName(self, quest)
@@ -216,7 +207,7 @@ function Player.getTranslatedQuestName(self, quest)
 
 	local context = { player = self }
 	result = result .. self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(quest.name)
-	if self:questIsCompleted(quest) then
+	if self:isQuestCompleted(quest) then
 		local completedSuffix = self:Localizer(LOCALIZER_QUESTLOG):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end
@@ -231,7 +222,7 @@ function Player.getTranslatedMissionName(self, mission)
 
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
 	result = result .. self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(mission.name)
-	if self:missionIsCompleted(mission) then
+	if self:isMissionCompleted(mission) then
 		local completedSuffix = self:Localizer(LOCALIZER_QUESTLOG):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end
@@ -257,11 +248,11 @@ function Player.sendQuestLogMainPage(self)
 		if self:isQuestOngoing(quest) then
 			msg:addU16(questId)
 			local translatedQuestName = self:Localizer(LOCALIZER_QUESTLOG):Get(quest.name)
-			if self:questIsCompleted(quest) then
+			if self:isQuestCompleted(quest) then
 				translatedQuestName = translatedQuestName .. " (completed)"
 			end
 			msg:addString(translatedQuestName)
-			msg:addByte(self:questIsCompleted(quest))
+			msg:addByte(self:isQuestCompleted(quest))
 		end
 	end
 	msg:sendToPlayer(self)

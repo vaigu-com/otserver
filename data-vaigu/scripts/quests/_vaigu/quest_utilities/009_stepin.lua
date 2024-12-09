@@ -1,4 +1,4 @@
-local quest = Quest("stepin")
+local quest = Quest(LOCALIZERS.NONE)
 quest
 	:Storage(function()
 		Storage.SpecialStepins = {

@@ -21,6 +21,9 @@ return {
 		local player = context.player
 		local state = player:getStorageValue(Storage.TopChef.State)
 		local dishData = COOKING_INGREDIENT_DATA[state]
+		if not dishData then
+			return
+		end
 		local dishName = dishData.dishName
 		local currentDishNumber = numberStrings[state]
 
@@ -31,39 +34,44 @@ return {
 		translatedMessage = translatedMessage .. IngredientsToString(dishData)
 		return translatedMessage
 	end,
-	["TOP_CHEF_MISSION_DESCRIPTION"] = function(context)
+	["TOP_CHEF_COURSE_DESCRIPTION"] = function(context)
 		local player = context.player
 		local state = player:getStorageValue(Storage.TopChef.State)
-		if state == 15 then
-			return "You finished all dish recipes suggested by Pewter. Ask him for the next steps."
-		end
-		if state == 16 then
-			return "Pewter gave you a copy of his two cookbooks. You can make any recipe now."
-		end
 
 		local dishData = COOKING_INGREDIENT_DATA[state]
+		if not dishData then
+			return
+		end
+
 		local ingredientsString = IngredientsToString(dishData)
 		local dishName = dishData.dishName
 
-		local translatedMessage = ""
+		local firstPart = ""
 		if state == 1 then
-			translatedMessage = T("You became Pewter assistant. He will teach you to cook like a Top Chef. First dish is gonna be ':dishName:'.", { dishName = dishName })
+			firstPart = T("You became Pewter assistant. He will teach you to cook like a Top Chef.", { dishName = dishName })
 		else
 			local finishedDishNumber = numberStrings[state - 1]
-			local currentDishNumber = numberStrings[state]
-			translatedMessage = T("You have finished the :finishedDishNumber: dish. The :currentDishNumber: dish you will cook is ':dishName:'", {
-				dishName = dishName,
+			firstPart = T("You have finished the :finishedDishNumber: dish.", {
 				finishedDishNumber = finishedDishNumber,
-				currentDishNumber = currentDishNumber,
 			})
 		end
-		translatedMessage = translatedMessage .. T(" Bring the following ingredients::ingredientsString:", { ingredientsString = ingredientsString })
+
+		local currentDishNumber = numberStrings[state]
+		local translatedMessage = T(":firstPart: The :currentDishNumber: dish you are going to cook is ':dishName:'. Bring the following ingredients::ingredientsString:", {
+			firstPart = firstPart,
+			currentDishNumber = currentDishNumber,
+			dishName = dishName,
+			ingredientsString = ingredientsString,
+		})
 		return translatedMessage
 	end,
 	["HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH"] = function(context)
 		local player = context.player
 		local state = player:getStorageValue(Storage.TopChef.State)
 		local dishData = COOKING_INGREDIENT_DATA[state]
+		if not dishData then
+			return
+		end
 		local dishName = dishData.dishName
 		return T("Have you prepared the ingredients for the :dishName:?", { dishName = dishName })
 	end,

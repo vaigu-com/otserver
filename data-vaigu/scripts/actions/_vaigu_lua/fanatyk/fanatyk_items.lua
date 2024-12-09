@@ -17,7 +17,7 @@ function fajtlapaContainers.onUse(player, item, _, _, toPosition, _)
 	end
 
 	local itemAid = item:getActionId()
-	if player:getStorageValue(itemAid) ~= QUEST_NOT_STARTED then
+	if player:getStorageValue(itemAid) ~= MISSION_NOT_STARTED then
 		local translatedMessage = player:Localizer():Get("I got it already.")
 		player:sendTextMessage(MESSAGE_STATUS_SMALL, translatedMessage)
 	end

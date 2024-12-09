@@ -34,12 +34,16 @@ FAREWELL = "DIALOG_MESSAGE_FAREWELL"
 WALKAWAY = "DIALOG_MESSAGE_WALKAWAY"
 INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
-QUEST_NOT_STARTED = -1
-QUEST_STARTED = 1
+DEFAULT_MAX_STATE = 800000
+DEFAULT_MIN_STATE = -800000
+
+MISSION_NOT_STARTED = -1
+MISSION_STARTED = 1
+MISSION_FINISHED = 2 ^ 50 + 1 --38f 
+
 ACCESS_GRANTED = 1
 MISSION_START_VALUE = 1
-DEFAULT_MAX_STATE = 999999
-DEFAULT_MIN_STATE = -999999
+
 ANY_STATE = { min = DEFAULT_MIN_STATE, max = DEFAULT_MAX_STATE }
 
 CONDITION_STATUS = {
@@ -160,7 +164,7 @@ local function parseRequiredState(requiredState)
 		excludeMax = false
 		errorMessage = ""
 	elseif type(requiredState) == "table" then
-		min = requiredState.min or QUEST_NOT_STARTED
+		min = requiredState.min or MISSION_NOT_STARTED
 		max = requiredState.max or DEFAULT_MAX_STATE
 		neq = requiredState.neq
 		excludeMin = requiredState.excludeMin

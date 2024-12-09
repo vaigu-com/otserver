@@ -129,11 +129,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Aaa tak, cos do roboty? Wybieram sie na coroczne zebranie Kanibali i musze przygotowac jakies jedzonka, zeby nie pokazywac sie z pustymi rekami." or "Ahh yes, something to do? I'm going for annual meeting for cannibals and I need to prepare some meals, so I won't be empty handed.", npc, creature)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Skoro znasz juz tajna sztuke skorowania ludzi, to pomozesz mi zebrac skladniki. Zbierz dla mnie 15 serc i 20 watrob ludzkich." or "So If you know secret skinning techniques already you can help me to gather ingredients, Bring me 15 human hearts and 20 human livers.", npc, creature)
 			player:setStorageValue(Storage.SilenceOfTheLambs.RubMeatWithLecter, 1) -- zaczynamy questa
-			player:setStorageValue(Storage.SilenceOfTheLambs.HumanHearts, 0) -- 0 serc
+			player:setStorageValue(Storage.SilenceOfTheLambs.HumanHeart, 0) -- 0 serc
 			player:setStorageValue(Storage.SilenceOfTheLambs.HumanLivers, 0) -- 0 watrob
 		end
 		if player:getStorageValue(Storage.SilenceOfTheLambs.RubMeatWithLecter) == 1 then
-			if player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts) > 14 and player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) > 19 then
+			if player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart) > 14 and player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) > 19 then
 				if player:getLevel() >= 50 then
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Musisz bardziej uwazac wyciagajac je, bo niektore niezle pogniecione." or "You need to be more careful, some of them are really creased..", npc, creature)
 					npcHandler:say(
@@ -146,7 +146,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					player:addOutfitAddon(366, 0) -- wayfarer outfit
 					player:addOutfitAddon(367, 0) -- wayfarer outfit
 					player:setStorageValue(Storage.SilenceOfTheLambs.RubMeatWithLecter, 2) -- koniec questa
-					player:setStorageValue(Storage.Finished.MilczenieOwiec, 1) -- quest done (website)
+					player:setStorageValue(Storage.Finished.SilenceOfTheLambs, 1) -- quest done (website)
 					player:addItem(17829, 1) -- daje buckle
 					player:addExperience(500000, true) -- 500k expa
 					player:getPosition():sendMagicEffect(CONST_ME_STUN)

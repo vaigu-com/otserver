@@ -154,17 +154,15 @@ return {
 	["Sticky Beginning"] = "Trudne Poczatki",
 	["Discernment"] = "Rozeznanie",
 	["Find Commissioner Fisher and ask for a mission."] = "Idz do komisarza Ryby i zapytaj o misje.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 0/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 0/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 1/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 1/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 2/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 2/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 3/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 3/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 4/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 4/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 5/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 5/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 6/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 6/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 7/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 7/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 8/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 8/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 9/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 9/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 10/10."] = "Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: 10/10.",
+		["VISIT_DEALERS_STATUS"] = function(context)
+			local visitedDealers = 0
+			for _, vendor in pairs(Storage.StickyBeginning.VendorsAsked) do
+				if context.player:getStorageValue(vendor) ~= MISSION_NOT_STARTED then
+					visitedDealers = visitedDealers + 1
+				end
+			end
+			return T("Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: :visitedDealers:/10.", { visitedDealers = visitedDealers })
+		end,
 	["Wood Delivery"] = "Dostawa Drewna",
 	["Go to Knurowo's port and find out what happened to the wood delivery."] = "Idz do knurowskiego portu dowiedziec sie co z dostawa drewna.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Rasiak jest pewny, ze drewno zostalo wyslane karawana, poprosil cie o zbadanie sprawy.",
@@ -204,21 +202,21 @@ return {
 	["You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury."] = "Przekazales Oldrakowi wiesc o pokonaniu Debu. W zamian wyjawil ci sekret dotyczacy Elfickiego skarbca.",
 	["Local Support"] = "Pomoc Miejscowym",
 	["Freaking Rats"] = "Przeklete Szczury",
-	["Walmart wishes she knew how to repel rats. Find out where Gertruda lives. She should know how to craft a rat poison."] = "Biedronka pragnie przepedzic szczury. Odnajdz Gertrude, ktora potrafi przyzadzac skuteczna trutke.",
-	["Gertruda asked you to bring her one mouldy cheese."] = "Gertruda poprosila cie o dostarczenie splesnialego sera, na ktory zaaplikuje trucizne.",
-	["Cheese is now poisonous. Bring it to Walmart, so she can repel the rats."] = "Ser jest juz zatruty, zanies go Biedronce, by mogla przepedzic szczury.",
+	["Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison."] = "Biedronka pragnie przepedzic szczury. Odnajdz Gertrude, ktora potrafi przyzadzac skuteczna trutke.",
+	["Gertrude asked you to bring her one mouldy cheese."] = "Gertruda poprosila cie o dostarczenie splesnialego sera, na ktory zaaplikuje trucizne.",
+	["The cheese has been poisoned. Bring it to Walmart, so she can repel the rats."] = "Ser jest juz zatruty, zanies go Biedronce, by mogla przepedzic szczury.",
 	["Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift."] = "Biedronka jeszcze nie przetestowala trutki, jednak w zamian dostales ciato marchewkowe oraz upominek.",
 	["Cheap Recycling"] = "Tani Recykling",
 	["Malkin asked you to bring her 1 piece of cloth of every color."] = "Malkin poprosila cie o przyniesienie jej po 1 kawalku tkaniny z kazdego koloru.",
-	["Madame Malkin is grateful for your effort, and since now you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth."] = "W podziece mozesz wymieniac u Madame Malkin mystic turbany, red robe oraz green tunic na kolorowe tkaniny.",
+	["Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth."] = "W podziece mozesz wymieniac u Madame Malkin mystic turbany, red robe oraz green tunic na kolorowe tkaniny.",
 	["Broken Orb"] = "Zniszczona Kula",
 	["Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly."] = "Cygan pragnie aby przyniesc mu kule wrozbiarska, ktora godnie zastapi poprzednia.",
 	["The crystal ball wasn't perfect, but Gypsy is fine with it. Since now he will also let you exchange red gem to ring of healing."] = "Choc kula nie byla idealna, Cygan jest zadowolony i pozwoli ci wymieniac red gem na ring of healing.",
 	["Biodegradable"] = "Biodegradowalny",
 	["Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west."] = "Old postman poprosil Cie o znalezienie paczki. Wiesz, ze ten ladunek mial otrzymac droga wodna ze strony zachodniej.",
-	["You found the package for Old Postman. Return to him and give it to him."] = "Znalazles paczke Old Postamana. Wroc teraz do niego i mu ja wrecz.",
-	["You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also deliver Zanet's Box to Old Anon."] = "Otrzymales nagrode od Old Postmana w zamian za pomoc z odnalezieniem zaleglej przesylki. Wspomnial, ze mozesz odniesc Puszke z Zaneta do Starego Anona.",
-	["You took the box from Old Postman, which you should deliver to Old Anon."] = "Wziales od Old Postmana puszke, ktora powiniennes odniesc do Starego Anona.",
+	["You found the package for Old Postman. Return to him now."] = "Znalazles paczke Old Postamana. Wroc teraz do niego i mu ja wrecz.",
+	["You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father."] = "Otrzymales nagrode od Old Postmana w zamian za pomoc z odnalezieniem zaleglej przesylki. Wspomnial, ze mozesz odniesc Puszke z Zaneta do Starego Anona.",
+	["You took the box from Old Postman, which you should deliver to Anon's father."] = "Wziales od Old Postmana puszke, ktora powiniennes odniesc do Starego Anona.",
 	["The Silence of the Lambs"] = "Milczenie Owiec",
 	["The test of Strength"] = "Proba sily",
 	["Lecter asked you for 5 vampire teeth."] = "Lecter poprosil cie o 5 wampirzych zebow.",
@@ -228,7 +226,7 @@ return {
 	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
 	["Lecter's recipe"] = "Gotuj z Lecterem",
 	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
-		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
+		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "W zamian za przysluge, zostales przyjety do klubu kanibali, i zyskales ich stroj.",
 	["Hearts collected"] = "Ludzkie serca",
@@ -379,14 +377,14 @@ return {
 	-- Settled down Fishmonger
 	["Settled down Fishmonger"] = "Ustatkowany Fanatyk Wedkarstwa",
 	["Stagnation"] = "Zastoj",
-	["Anon's Father is waiting for his order."] = "Stary Anona czeka na swoje zamowienie.",
+	["Anon's father is waiting for his order."] = "Stary Anona czeka na swoje zamowienie.",
 	["You helped Anon's father recover his long-awaited package. Ask him for new mission now."] = "Pomogles Staremu Anona z odzyskaniem jego dawno zamowionej paczki. Zapytaj, czy nie ma dla Ciebie nowego zadania.",
 	["Milksop"] = "Fajtlapa",
-	["Anon's Father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items."] = "Stary Anona potrzebuje pomocy ze znalezieniem jakichs starych rupieci, ktore nosil ze soba na lowy. Przeszukaj wszelkie lodki, pomosty i szuwary w akwenach wokol Mirko, i zwroc znalezione przedmioty.",
-	["You helped Anon's Father collect his lost tools."] = "Pomogles Staremu Anona z zebraniem jego zgubionych narzedzi.",
+	["Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items."] = "Stary Anona potrzebuje pomocy ze znalezieniem jakichs starych rupieci, ktore nosil ze soba na lowy. Przeszukaj wszelkie lodki, pomosty i szuwary w akwenach wokol Mirko, i zwroc znalezione przedmioty.",
+	["You helped Anon's father collect his lost tools."] = "Pomogles Staremu Anona z zebraniem jego zgubionych narzedzi.",
 	["Stew for Trouble"] = "Na klopoty Bigos",
-	["Anon's Father received his table in a deplorable state, ask how you can improve his mood."] = "Stary Anona dostal swoj stolik w nagannym stanie, zapytaj jak mozesz zlagodzic jego nastroj.",
-	["Anon's Father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's Father mentioned that he loves Rotworm Stew."] = "Stary Anona ostro zareagowal na fakt, iz ktos zniszczyl mu jego stolek. Przynies ktores z jego ulubionych dan, to moze sie nie zesra. Stary Anona wspominal, ze przepada za zupa rotwormowa.",
-	["You helped Anon's Father with all the troubles. Now, go to his son for your reward."] = "Pomogles Staremu Anona ze wszystkimi klopotami. Udaj sie teraz do jego syna po nagrode.",
+	["Anon's father received his table in a deplorable state, ask how you can improve his mood."] = "Stary Anona dostal swoj stolik w nagannym stanie, zapytaj jak mozesz zlagodzic jego nastroj.",
+	["Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew."] = "Stary Anona ostro zareagowal na fakt, iz ktos zniszczyl mu jego stolek. Przynies ktores z jego ulubionych dan, to moze sie nie zesra. Stary Anona wspominal, ze przepada za zupa rotwormowa.",
+	["You helped Anon's father with all the troubles. Now, go to his son for your reward."] = "Pomogles Staremu Anona ze wszystkimi klopotami. Udaj sie teraz do jego syna po nagrode.",
 	["You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer."] = "Odebrales nagrode od Syna Wedkarza. Zyskales mozliwosc zakupu Shimmer Swimmer.",
 }

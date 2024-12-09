@@ -388,7 +388,7 @@ local function exampleNpc()
 		[Storage.CatBranchman.Questline] = {
 			-- Main questline requirements are different to the ones in requiredState table - player state has to be exactly the key
 			-- This requires player storage: Storage.CatBranchman.Questline to be exacly QUEST_NOT_STARTED (-1)
-			[QUEST_NOT_STARTED] = {
+			[MISSION_NOT_STARTED] = {
 				-- This is possible candidate dialog to be resolved when a player says "hi" if player hadnt started the quest
 				-- WARNING: if player has multiple matching states (from other quests) then its undeterministic which one will be chosen. This is true only for greet message, as other messages can be deterministically reached using topics
 				[{ GREET }] = { text = "*Muttering* i dont know you, meow!" },
@@ -524,7 +524,7 @@ local function exampleNpcFromGenerator()
 				},
 			},
 		},
-		[Storage.LocalSupport.DamnedRats] = {
+		[Storage.LocalSupport.FreakingRats] = {
 			[-1] = {
 				[{ "help", "pomoc" }] = {
 					text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
@@ -537,7 +537,7 @@ local function exampleNpcFromGenerator()
 					requiredState = {
 						[Storage.StickyBeginning.WalmartAsked] = 1,
 					},
-					nextState = { [Storage.LocalSupport.DamnedRats] = 1 },
+					nextState = { [Storage.LocalSupport.FreakingRats] = 1 },
 				},
 			},
 			[{ min = 1, max = 3 }] = {
@@ -556,15 +556,15 @@ local function exampleNpcFromGenerator()
 					"trucizna",
 					"trutka",
 				}] = {
-					text = "Are you sure if it works? Thanks for the memory, though. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
+					text = "Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
 					rewards = {
 						{ id = 9087 },
 						{ id = 25732 },
 						{ id = 6392 },
 					},
-					experienceReward = 50000,
+					expReward = 50000,
 					requiredItems = { { id = 3120 } },
-					nextState = { [Storage.LocalSupport.DamnedRats] = 4 },
+					nextState = { [Storage.LocalSupport.FreakingRats] = 4 },
 				},
 			},
 			[{ min = 4 }] = {

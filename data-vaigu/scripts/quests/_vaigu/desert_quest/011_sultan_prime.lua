@@ -371,9 +371,9 @@ sultanPrime
 	end)
 	:Mission(Storage.SultanPrime.Mission01)
 	:State(
-		QUEST_NOT_STARTED,
+		MISSION_NOT_STARTED,
 		QuestFactory.StartupItems({
-			{ id = QuestKeyItems.SultanPrime.cezaryCorpse.id, aid = Storage.SultanPrime.RewardsScripted.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.amulet }, requiredState = { [Storage.SultanPrime.Mission01] = QUEST_NOT_STARTED } },
+			{ id = QuestKeyItems.SultanPrime.cezaryCorpse.id, aid = Storage.SultanPrime.RewardsScripted.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
 		}),
 		QuestFactory.Script(function(missionState)
 			local neckUpdateStorages = {
@@ -383,7 +383,7 @@ sultanPrime
 
 			local corpse = Action()
 			function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if player:getStorageValue(questStorage) ~= QUEST_NOT_STARTED then
+				if player:getStorageValue(questStorage) ~= MISSION_NOT_STARTED then
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is empty.")
 					return
 				end
@@ -668,7 +668,7 @@ sultanPrime
 				if not player:isPlayer() then
 					return false
 				end
-				if player:getStorageValue(Storage.SultanPrime.Mission03) == QUEST_NOT_STARTED then
+				if player:getStorageValue(Storage.SultanPrime.Mission03) == MISSION_NOT_STARTED then
 					return true
 				end
 

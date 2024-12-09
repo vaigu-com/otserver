@@ -97,7 +97,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		player:setStorageValue(Storage.WayOfTheDruid.OrnuldMedicine, 1) -- zaczynamy klesta
 	elseif table.contains({ "jajko", "jajo", "egg", "wyrm" }, message) and player:getStorageValue(Storage.WayOfTheDruid.OrnuldMedicine) == 2 and player:getItemCount(18996) > 0 then
 		npcHandler:say(config[4], npc, creature)
-		player:AddCustomItem({ id = 8819, addToStore = true }) 
+		player:AddCustomItem({ id = 8819, addToStore = true })
 		player:removeItem(18996, 1)
 		player:setStorageValue(Storage.WayOfTheDruid.OrnuldMedicine, 3)
 		player:addExperience(150000, true) -- 150k expa

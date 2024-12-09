@@ -84,7 +84,7 @@ quest
 					states = {
 						[1] = "Romek needs help with a new task. Go to him.",
 						[2] = "Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him.",
-						[3] = "You found a book that can help Romek. Return to him and give it to him.",
+						[3] = "You found a book that can help Romek. Return to him now.",
 						[4] = "Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!",
 					},
 				},

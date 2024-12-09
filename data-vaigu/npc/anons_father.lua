@@ -66,7 +66,7 @@ local dialogs = {
 					[Storage.IKEAForTheBold.AnonsFatherAsked] = 1,
 				},
 				requiredState = {
-					[Storage.IKEAForTheBold.AnonsFatherAsked] = { max = QUEST_NOT_STARTED },
+					[Storage.IKEAForTheBold.AnonsFatherAsked] = { max = MISSION_NOT_STARTED },
 				},
 			},
 		},
@@ -84,7 +84,7 @@ local dialogs = {
 				requiredItems = {
 					{ id = 15817, aid = Storage.SettledDownFishmonger.Mission01 },
 				},
-				experienceReward = 10000,
+				expReward = 10000,
 				rewards = {
 					{ id = 12807 },
 				},
@@ -120,7 +120,7 @@ local dialogs = {
 					{ id = 12735 },
 					{ id = 7457 },
 				},
-				experienceReward = 40000,
+				expReward = 40000,
 				outfitRewards = {
 					{ outfit = 157, addons = 1 },
 					{ outfit = 153, addons = 1 },
@@ -134,7 +134,7 @@ local dialogs = {
 				},
 				textNoRequiredItems = "It fell into the small pond nearby once. I hope you find it.",
 				requiredState = {
-					[Storage.SettledDownFishmonger.FajtlapaFloat] = { neq = QUEST_NOT_STARTED },
+					[Storage.SettledDownFishmonger.FajtlapaFloat] = { neq = MISSION_NOT_STARTED },
 				},
 				textNoRequiredState = "You've already given it to me.",
 				nextState = {
@@ -148,7 +148,7 @@ local dialogs = {
 				},
 				textNoRequiredItems = "I lost it while fishing by the western gate. I hope you can find it.",
 				requiredState = {
-					[Storage.SettledDownFishmonger.FajtlapaReel] = { neq = QUEST_NOT_STARTED },
+					[Storage.SettledDownFishmonger.FajtlapaReel] = { neq = MISSION_NOT_STARTED },
 				},
 				textNoRequiredState = "You've already given it to me.",
 				nextState = {
@@ -162,7 +162,7 @@ local dialogs = {
 				},
 				textNoRequiredItems = "It slipped into the water by the lake at the beach. I hope you find it.",
 				requiredState = {
-					[Storage.SettledDownFishmonger.FajtlapaStool] = { neq = QUEST_NOT_STARTED },
+					[Storage.SettledDownFishmonger.FajtlapaStool] = { neq = MISSION_NOT_STARTED },
 				},
 				textNoRequiredState = "You've already given it to me.",
 				nextState = {

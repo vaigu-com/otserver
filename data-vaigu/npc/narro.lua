@@ -132,7 +132,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:getPosition():sendMagicEffect(49)
 			doCreatureSay(player:getPosition(), "*Pif paf*", TALKTYPE_ORANGE_1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "On jest debesciak? JA JESTEM DEBESCIAK." or "Huh, hes badass? I AM THE BADASS.", npc, creature)
-			npcHandler:say(getPlayerLanguage(player) == "PL" and "Powiedz, Narro jest debesciak?" or "Please tell me, Narro is badass?", npc, creature)
+			npcHandler:say(getPlayerLanguage(player) == "PL" and "Powiedz, kto jest debesciak?" or "Please tell me, Narro is badass?", npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
 		if player:getStorageValue(Storage.StickyBeginning.WoodDelivery) == 2 then

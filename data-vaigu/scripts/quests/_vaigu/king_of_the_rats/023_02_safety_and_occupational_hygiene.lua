@@ -410,7 +410,7 @@ quest
 	end)
 	:Mission(Storage.SafetyAndOccupationalHygiene.Mission01)
 	:State(
-		QUEST_NOT_STARTED,
+		MISSION_NOT_STARTED,
 		QuestFactory.Script(function(missionState)
 			local portal = MoveEvent()
 

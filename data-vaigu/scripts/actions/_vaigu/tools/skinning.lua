@@ -196,8 +196,8 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				player:say("Dobra, kolejnej watroby nie potrzebuje.", TALKTYPE_MONSTER_SAY)
 			end
 		elseif radn >= 8 then
-			if player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts) <= 14 then
-				player:setStorageValue(Storage.SilenceOfTheLambs.HumanHearts, player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts) + 1) -- dodaje 1 serce
+			if player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart) <= 14 then
+				player:setStorageValue(Storage.SilenceOfTheLambs.HumanHeart, player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart) + 1) -- dodaje 1 serce
 				player:say("Udalo ci sie wyciac serce.", TALKTYPE_MONSTER_SAY)
 				toPosition:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 			else

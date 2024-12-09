@@ -21,6 +21,11 @@ RegisterEncounter = function()
 	logger.error("[RegisterEncounter] is deprecated. Use EncounterData()")
 end
 
+function Player:ExpForNextlevel()
+	local nextLevel = self:getLevel() + 1
+	return Game.getExperienceForLevel(nextLevel) - self:getExperience()
+end
+
 function SendPlayerIsPzLocked(player)
 	player:sendTextMessage(MESSAGE_FAILURE, "You can not use this after attacking another player.")
 end

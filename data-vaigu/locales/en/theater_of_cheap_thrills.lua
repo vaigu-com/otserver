@@ -71,7 +71,7 @@ return {
 	["Chorus of Januses: MU-MU-MURDERER! MU-MU-UUUU-MURDERER! MU-murderer! MUU-MURDERER!"] = "Chorus of Januses: MU-MU-MURDERER! MU-MU-UUUU-MURDERER! MU-murderer! MUU-MURDERER!",
 	["04. Vanitas vanitatum et omnia vanitas"] = "04. Vanitas vanitatum et omnia vanitas",
 	["Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him."] = "Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him.",
-	["You found a book that can help Romek. Return to him and give it to him."] = "You found a book that can help Romek. Return to him and give it to him.",
+	["You found a book that can help Romek. Return to him now."] = "You found a book that can help Romek. Return to him now.",
 	["Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!"] = "Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!",
 	["05. Ham from under the Rug"] = "05. Ham from under the Rug",
 	["Romek has assigned you the task of catering his kebab party."] = "Romek has assigned you the task of catering his kebab party.",

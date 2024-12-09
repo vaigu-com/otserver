@@ -1,4 +1,21 @@
+local directionToString = {
+	[DIRECTION_NORTH] = "polnoc",
+	[DIRECTION_NORTHEAST] = "wschod",
+	[DIRECTION_EAST] = "zachod",
+	[DIRECTION_SOUTHEAST] = "poludnie",
+	[DIRECTION_SOUTH] = "poludniowy zachod",
+	[DIRECTION_SOUTHWEST] = "poludniowy wschod",
+	[DIRECTION_WEST] = "polnocny zachod",
+	[DIRECTION_NORTHWEST] = "polnocny wschod",
+}
 return {
+	["GO_IN_DIRECTION"] = function(context)
+		local dir = context.direction
+		if dir == DIRECTION_NONE then
+			return "Jestes na miejscu!"
+		end
+		return T("Idz na :dir:.", { dir = directionToString[dir] })
+	end,
 	["Starter weapons"] = "Bron startowa",
 	["Choose your starter weapon:"] = "Wybierz swoja bron startowa:",
 	["Fine, i will choose your starter weapon then..."] = "Skoro nie chcesz broni, sam wybiore...",
@@ -216,7 +233,7 @@ return {
 	["Some time ago orcs stole my old red backpack. Maybe you have found it?"] = "Orki zawinely mi plecak, ale nie mam pojecia gdzie sie teraz podziewa. Byla na nim plakietka z moim imieniem, nie napotkales moze na niego?",
 	["Thank you very much! This brings back good old memories! Here is reward for you!"] = "Ahh, mialem do niego wielki sentyment. Nalezy ci sie za to porzadna nagroda, prosze, to dla ciebie.",
 	["Thats unfortunate."] = "No niestety..",
-	["Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is in the Misguided Thief village south of Knurow."] = "Spoko, kamienny krag jest na szczycie gory, w ktora wbija sie polnocna brama Mirko. Drugi krag znajduje sie na skalce w wiosce Misguided Thiefow na poludnie od Knurowa.",
+	["Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow."] = "Spoko, kamienny krag jest na szczycie gory, w ktora wbija sie polnocna brama Mirko. Drugi krag znajduje sie na skalce w wiosce Misguided Thiefow na poludnie od Knurowa.",
 	["WILDCARD_COST_QUESTION"] = function(context)
 		local preyWildcardPrice = context.player:GetWildcardPrice()
 		return T("Za wildcard zaplacic musisz :preyWildcardPrice: zlota. Dzieki niemu uzyskac mozesz korzystniejsze bonusy u wymodlonych kreatur. Ile wildcardow chcial bys zakupic?", { preyWildcardPrice = preyWildcardPrice })
@@ -263,7 +280,7 @@ return {
 	["No need, but if you know some way to get rid of {rats} once and for all, tell me."] = "Nie potrzeba, ale jakbys znal jakis sposob na pozbycie sie raz na zawsze {szczurow} to sie do mnie zglos.",
 	["I still have rats in the warehouse. I need some poison to get rid of them."] = "Ciagle w magazynie legna mi sie szczury. Potrzebuje jakiejs trutki aby sie ich pozbyc.",
 	["Well, I'm waiting for this poison that will help me exterminate the rats."] = "No czekam na te trutke do wytepienia szczurow.",
-	["Are you sure if it works? Thanks for the memory, though. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it."] = "Podobno przynosi szczescie, jesli zlapiesz do niej swietlika z magicznego drzewka.",
+	["Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it."] = "Podobno przynosi szczescie, jesli zlapiesz do niej swietlika z magicznego drzewka.",
 	["It's alright, I don't need any help."] = "Nie no wszystko w porzadeczku.",
 	["Rats are gone, thanks again."] = "Szczury przepedzone, jeszcze raz dzieki.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "Podobno przynosi szczescie, jesli zlapiesz do niej swietlika z magicznego drzewka.",

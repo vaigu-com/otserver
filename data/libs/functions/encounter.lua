@@ -232,7 +232,7 @@ local secondsInDay = 24 * 3600
 local secondsInHour = 3600
 local secondsInMinute = 60
 
-local function getNextDayEpochTime()
+function GetNextDayEpochTime()
 	local universalNow = os.time()
 	local timezoneNow = os.date("*t")
 	local secondsSoFarToday = timezoneNow.hour * secondsInHour + timezoneNow.min * secondsInMinute + timezoneNow.sec
@@ -242,8 +242,8 @@ local function getNextDayEpochTime()
 	return nextDay
 end
 
-local function getNextWednesdayEpochTime()
-	local nextWednesday = getNextDayEpochTime()
+function GetNextWednesdayEpochTime()
+	local nextWednesday = GetNextDayEpochTime()
 	for _ = 1, 7 do
 		if os.date("%a", nextWednesday) == "Wed" then
 			break
@@ -256,9 +256,9 @@ end
 function EncounterData:calculateLockoutExpiry()
 	local cooldownExpiry = 0
 	if self.lockoutTime == LOCKOUT_TIME.DAILY then
-		cooldownExpiry = getNextDayEpochTime()
+		cooldownExpiry = GetNextDayEpochTime()
 	elseif self.lockoutTime == LOCKOUT_TIME.WEEKLY then
-		cooldownExpiry = getNextWednesdayEpochTime()
+		cooldownExpiry = GetNextWednesdayEpochTime()
 	else
 		return self.lockoutTime
 	end

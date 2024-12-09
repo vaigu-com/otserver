@@ -2,43 +2,7 @@ local dialogs = {
 	[Storage.PathOfTheUndead.State] = {
 		[2] = {
 			[{ "krag", "kregi", "circles", "cromlech" }] = {
-				text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is in the Misguided Thief village south of Knurow.",
-			},
-		},
-	},
-	[Storage.StickyBeginning.FstabAsked] = {
-		[{ max = 0 }] = {
-			[{ "help", "pomoc" }] = {
-				text = "Everything is fine, but some journeyman could come in handy. Id say that you look promising.",
-				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
-				nextState = {
-					[Storage.StickyBeginning.FstabAsked] = 1,
-					[Storage.StickyBeginning.Discernment] = "+1",
-				},
-				textNoRequiredState = "What do you want? Better meet Commissioner Fisher first..",
-			},
-		},
-	},
-	[Storage.StickyBeginning.RewardState] = {
-		[1] = {
-			[{ "nagroda", "reward" }] = {
-				text = "Well, thank you on behalf of our City for your help, get some of these potions.",
-				nextState = { [Storage.StickyBeginning.RewardState] = 4 },
-				rewards = { { id = 266, count = 20 }, { id = 268, count = 15 } },
-			},
-		},
-		[2] = {
-			[{ "nagroda", "reward" }] = {
-				text = "Well, thank you on behalf of our City for your help, get some of these potions.",
-				nextState = { [Storage.StickyBeginning.RewardState] = 4 },
-				rewards = { { id = 268, count = 40 } },
-			},
-		},
-		[3] = {
-			[{ "nagroda", "reward" }] = {
-				text = "Well, thank you on behalf of our City for your help, get some of these potions.",
-				nextState = { [Storage.StickyBeginning.RewardState] = 4 },
-				rewards = { { id = 266, count = 30 }, { id = 268, count = 25 } },
+				text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow.",
 			},
 		},
 	},

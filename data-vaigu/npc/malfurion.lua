@@ -71,7 +71,7 @@ function checkDruidsStatus(creature)
 			"For your service among the druids, you may go to our sacred tree and pick a sample of the Griffinclaw flower. ...",
 			"Our sacred tree is located in the heart of the jungle.",
 		}, npc, creature)
-		player:addItem(5940, 1) 
+		player:addItem(5940, 1)
 		player:setStorageValue(Storage.Finished.SciezkaDruida, 1)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Dodatkowo trzymaj ten oto naszyjnik i witaj w naszej spolecznosci." or "As a bonus, take this necklace. We welcome you in our community.", npc, creature)
 	end

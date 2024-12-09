@@ -89,7 +89,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getStorageValue(Storage.WayOfTheDruid.DeerSeason) == 3 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Sam plywam nia tylko na ryby, jednak mozliwe jest przeplyniecie na wyspe koszmarow." or "I use this boat for fishing only, however it is possible to sail to the Nightmare Island", npc, creature)
 		else
-			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie pozwole ci przeplynac na wyspe koszmarow, poki nie zdobedziesz mojego zaufania." or "I won't let you use my boat yet.", npc, creature)
+			npcHandler:say(getPlayerLanguage(player) == "PL" and "", npc, creature)
 		end
 	end
 	if table.contains({ "yes", "tak" }, message) then

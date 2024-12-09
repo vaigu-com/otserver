@@ -74,7 +74,7 @@ local lang_to_config = {
 		},
 		[7] = {
 			"Zajebiscie sie jara stary, mam nadzieje ze straznicy sie zbyt nie spala xD. ...",
-			"Widze ze ci sie to spodobalo, jak bedziesz miec ochote to pytaj, cos jeszcze podpalimy, a {zapalniczke} sobie zostaw, jesli ci nie wybuchla.",
+			"Widze ze ci sie to spodobalo, jak bedziesz miec ochote to {pytaj}, cos jeszcze podpalimy, a zapalniczke sobie zostaw, jesli ci nie wybuchla.",
 		},
 		[8] = {
 			"Oo tak, podpalil bym cos, moze te szczury z MirkoTown? Wyeksmitowali mnie przez moje zapedy pirotechniczne. ...",

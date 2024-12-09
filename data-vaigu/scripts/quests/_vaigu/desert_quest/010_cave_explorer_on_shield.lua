@@ -71,7 +71,7 @@ quest
 	end)
 	:Mission(Storage.CaveExplorerOnShield.Mission01)
 	:State(
-		QUEST_NOT_STARTED,
+		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", {
 			[{ GREET }] = { text = "Ouhhh..." },
 			[{ ANY_MESSAGE }] = {

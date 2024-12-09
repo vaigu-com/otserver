@@ -468,7 +468,6 @@ Storage = {
 	},
 	MeteorEvent = { Joined = 1025, meteorSpeedBoost = 1026, meteorTimer = 1027 },
 
-	-- Promotion Storage cannot be changed, it is set in source code
 	-- isTraining = 37,
 	OrcKingGreeting = 83,
 
@@ -518,7 +517,6 @@ Storage = {
 	-- arena = 26102
 	allowWTstorage = 30015,
 	destroLock = 30017,
-	Promotion = 30018,
 	EmoteSpell = 30019,
 	JumpExhaust = 30020,
 	StartHealpot = 30049,

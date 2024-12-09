@@ -103,56 +103,6 @@ local dialog = {
 			},
 		},
 	},
-	[Storage.ToCarryThePigs.FatMyrrusDiet] = {
-		[-1] = {
-			[{ "mission", "misja", "zadanie" }] = {
-				text = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
-				nextState = {
-					[Storage.ToCarryThePigs.FatMyrrusDiet] = 1,
-					[Storage.ToCarryThePigs.Main] = 1,
-					[Storage.FatMyrrusEncounters] = 1, --38f change to two storages: quest and access
-				},
-				requiredState = {
-					[Storage.StickyBeginning.WoodDelivery] = 6,
-					[Storage.ToCarryThePigs.Main] = { min = -1, max = -1 },
-				},
-			},
-			[{ "mission", "misja", "zadanie" }] = {
-				text = "I need to lose weight finally. I heard that somewhere to the south witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
-				nextState = {
-					[Storage.ToCarryThePigs.FatMyrrusDiet] = 1,
-					[Storage.FatMyrrusEncounters] = 1,
-				},
-				requiredState = {
-					[Storage.StickyBeginning.WoodDelivery] = 6,
-					[Storage.ToCarryThePigs.Main] = { neq = -1 },
-				},
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "Help Commissioner Fisher first. I cant trust you now.",
-			},
-		},
-		[1] = {
-			[{ "mission", "misja", "zadanie", "marchew", "marchewka", "carrot" }] = {
-				text = "Arrgh, that's gross! I definitely prefer hamburgers, but well, take this lump of chocolate dough. I tried to make a chocolate cake, but something went wrong. Also take my old knight legs, I don't fit in them anymore anyway.",
-				specialConditions = {
-					{
-						condition = SPECIAL_CONDITIONS_UNIVERSAL.playerHasLevel,
-						requiredOutcome = true,
-						textNoRequiredCondition = "Come back when you reach 20 level!",
-						minLevel = 20,
-					},
-				},
-				rewards = { { id = 8018 }, { id = 3371 } },
-				expReward = 30000,
-				requiredItems = { { id = 3250 } },
-				nextState = { [Storage.ToCarryThePigs.FatMyrrusDiet] = 2 },
-				requiredState = { [Storage.ToCarryThePigs.Carrot] = 1 },
-				textNoRequiredState = "Thats some fake one.",
-				textNoRequiredItems = "Come back with eco carrot.",
-			},
-		},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

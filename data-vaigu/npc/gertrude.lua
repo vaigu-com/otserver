@@ -103,34 +103,6 @@ local dialog = {
 			},
 		},
 	},
-	[Storage.LocalSupport.DamnedRats] = {
-		[1] = {
-			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
-				text = "Do you need a rat killer? We don't have any left. I will make you a special remedy, but you must bring me one ingredient: moldy cheese\nPerfectly lures rats, I will season it with a special substance that will make them all die in one night.",
-				nextState = { [Storage.LocalSupport.DamnedRats] = 2 },
-			},
-		},
-		[2] = {
-			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
-				text = "What a smell, perfect. In the meantime, I have prepared a decoction. Now we'll inject and it's ready.\nPut it somewhere in the cellar overnight, and in the morning you will see a graveyard.",
-				requiredItems = { { id = 3120, remove = false } },
-				nextState = {
-					[Storage.LocalSupport.DamnedRats] = 3,
-				},
-				textNoRequiredItems = "Bring me some mouldy cheese.",
-			},
-		},
-		[{ min = 3 }] = {
-			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
-				text = "I have already poisoned it for you.",
-			},
-		},
-		[{ max = 0 }] = {
-			[{ "szczur", "szczury", "trutka", "ser", "rat", "rats" }] = {
-				text = "I dont get it.",
-			},
-		},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

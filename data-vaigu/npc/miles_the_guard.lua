@@ -58,7 +58,7 @@ local dialog = {
 		[{ max = 0 }] = {
 			text = "I'm fine. There's no trouble at all.",
 			requiredState = {
-				[Storage.TheInquisition.Mission01] = { neq = QUEST_NOT_STARTED },
+				[Storage.TheInquisition.Mission01] = { neq = MISSION_NOT_STARTED },
 			},
 			nextState = {
 				[Storage.TheInquisition.MilesGuard] = 1,

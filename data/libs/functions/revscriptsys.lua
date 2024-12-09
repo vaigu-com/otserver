@@ -101,6 +101,19 @@ do
 	rawgetmetatable("Look").__newindex = LookNewIndex
 end
 
+--[[
+do
+	local function TargetNewIndex(self, key, value)
+		if key == "onTarget" then
+			self:onTarget(value)
+			return
+		end
+		rawset(self, key, value)
+	end
+	rawgetmetatable("Target").__newindex = TargetNewIndex
+end
+]]
+
 -- TalkAction revscriptsys
 do
 	local function TalkActionNewIndex(self, key, value)

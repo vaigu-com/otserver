@@ -37,5 +37,5 @@ end)
     }
 end)
 :Mission(PH_MISSION)
-:STATE(PH_STATE,
+:State(PH_STATE,
 QuestFactory.Dialog("PH_NAME", {}))

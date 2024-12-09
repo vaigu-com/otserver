@@ -1,4 +1,21 @@
+local directionToString = {
+	[DIRECTION_NORTH] = "North",
+	[DIRECTION_NORTHEAST] = "East",
+	[DIRECTION_EAST] = "West",
+	[DIRECTION_SOUTHEAST] = "South",
+	[DIRECTION_SOUTH] = "South-West",
+	[DIRECTION_SOUTHWEST] = "South-East",
+	[DIRECTION_WEST] = "North-West",
+	[DIRECTION_NORTHWEST] = "North-East",
+}
 return {
+	["GO_IN_DIRECTION"] = function(context)
+		local dir = context.direction
+		if dir == DIRECTION_NONE then
+			return "You are there!"
+		end
+		return T("Go :dir:.", { dir = directionToString[dir] })
+	end,
 	["Starter weapons"] = "Starter weapons",
 	["Choose your starter weapon:"] = "Choose your starter weapon:",
 	["Fine, i will choose your starter weapon then..."] = "Fine, i will choose your starter weapon then...",
@@ -216,7 +233,7 @@ return {
 	["Some time ago orcs stole my old red backpack. Maybe you have found it?"] = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
 	["Thank you very much! This brings back good old memories! Here is reward for you!"] = "Thank you very much! This brings back good old memories! Here is reward for you!",
 	["Thats unfortunate."] = "Thats unfortunate.",
-	["Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is in the Misguided Thief village south of Knurow."] = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is in the Misguided Thief village south of Knurow.",
+	["Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow."] = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow.",
 	["WILDCARD_COST_QUESTION"] = function(context)
 		local preyWildcardPrice = context.player:GetWildcardPrice()
 		return T("Wildcard will cost you :preyWildcardPrice: gold. You can get better bonuses in your prey creatures with it. How many wildcards would you like to buy?", { preyWildcardPrice = preyWildcardPrice })
@@ -264,7 +281,7 @@ return {
 	["No need, but if you know some way to get rid of {rats} once and for all, tell me."] = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
 	["I still have rats in the warehouse. I need some poison to get rid of them."] = "I still have rats in the warehouse. I need some poison to get rid of them.",
 	["Well, I'm waiting for this poison that will help me exterminate the rats."] = "Well, I'm waiting for this poison that will help me exterminate the rats.",
-	["Are you sure if it works? Thanks for the memory, though. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it."] = "Are you sure if it works? Thanks for the memory, though. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
+	["Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it."] = "Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
 	["It's alright, I don't need any help."] = "It's alright, I don't need any help.",
 	["Rats are gone, thanks again."] = "Rats are gone, thanks again.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",

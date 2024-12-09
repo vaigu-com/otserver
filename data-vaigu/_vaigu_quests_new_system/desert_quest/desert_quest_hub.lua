@@ -104,7 +104,7 @@ quest
 
 		local corpse = Action()
 		function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-			if player:getStorageValue(questStorage) ~= QUEST_NOT_STARTED then
+			if player:getStorageValue(questStorage) ~= MISSION_NOT_STARTED then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is empty.")
 				return
 			end

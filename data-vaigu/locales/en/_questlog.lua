@@ -1,3 +1,4 @@
+
 return {
 	["Tasks"] = "Tasks",
 	["Task informations"] = "Task informations",
@@ -154,17 +155,15 @@ return {
 	["Sticky Beginning"] = "Sticky Beginning",
 	["Discernment"] = "Research",
 	["Find Commissioner Fisher and ask for a mission."] = "Find Commissioner Fisher and ask for a mission.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 0/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 0/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 1/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 1/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 2/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 2/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 3/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 3/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 4/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 4/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 5/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 5/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 6/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 6/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 7/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 7/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 8/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 8/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 9/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 9/10.",
-	["Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 10/10."] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 10/10.",
+	["VISIT_DEALERS_STATUS"] = function(context)
+		local visitedDealers = 0
+		for _, vendor in pairs(Storage.StickyBeginning.VendorsAsked) do
+			if context.player:getStorageValue(vendor) ~= MISSION_NOT_STARTED then
+				visitedDealers = visitedDealers + 1
+			end
+		end
+		return T("Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: :visitedDealers:/10", { visitedDealers = visitedDealers })
+	end,
 	["Wood Delivery"] = "Wood Delivery",
 	["Go to Knurowo's port and find out what happened to the wood delivery."] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
@@ -204,21 +203,21 @@ return {
 	["You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury."] = "You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury.",
 	["Local Support"] = "Local Support",
 	["Freaking Rats"] = "Freaking Rats",
-	["Walmart wishes she knew how to repel rats. Find out where Gertruda lives. She should know how to craft a rat poison."] = "Walmart wishes she knew how to repel rats. Find out where Gertruda lives. She should know how to craft a rat poison.",
-	["Gertruda asked you to bring her one mouldy cheese."] = "Gertruda asked you to bring her one mouldy cheese.",
-	["Cheese is now poisonous. Bring it to Walmart, so she can repel the rats."] = "Cheese is now poisonous. Bring it to Walmart, so she can repel the rats.",
+	["Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison."] = "Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison.",
+	["Gertrude asked you to bring her one mouldy cheese."] = "Gertrude asked you to bring her one mouldy cheese.",
+	["The cheese has been poisoned. Bring it to Walmart, so she can repel the rats."] = "The cheese has been poisoned. Bring it to Walmart, so she can repel the rats.",
 	["Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift."] = "Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift.",
 	["Cheap Recycling"] = "Cheap Recycling",
 	["Malkin asked you to bring her 1 piece of cloth of every color."] = "Malkin asked you to bring her 1 piece of cloth of every color.",
-	["Madame Malkin is grateful for your effort, and since now you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth."] = "Madame Malkin is grateful for your effort, and since now you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
+	["Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth."] = "Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
 	["Broken Orb"] = "Broken Orb",
 	["Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly."] = "Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly.",
 	["The crystal ball wasn't perfect, but Gypsy is fine with it. Since now he will also let you exchange red gem to ring of healing."] = "The crystal ball wasn't perfect, but Gypsy is fine with it. Since now he will also let you exchange red gem to ring of healing.",
 	["Biodegradable"] = "Biodegradable",
 	["Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west."] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
-	["You found the package for Old Postman. Return to him and give it to him."] = "You found the package for Old Postman. Return to him and give it to him.",
-	["You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also deliver Zanet's Box to Old Anon."] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also deliver Zanet's Box to Old Anon.",
-	["You took the box from Old Postman, which you should deliver to Old Anon."] = "You took the box from Old Postman, which you should deliver to Old Anon.",
+	["You found the package for Old Postman. Return to him now."] = "You found the package for Old Postman. Return to him now.",
+	["You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father."] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father.",
+	["You took the box from Old Postman, which you should deliver to Anon's father."] = "You took the box from Old Postman, which you should deliver to Anon's father.",
 	["The Silence of the Lambs"] = "The Silence of the Lambs",
 	["The test of Strength"] = "The test of Strength",
 	["Lecter asked you for 5 vampire teeth."] = "Lecter asked you for 5 vampire teeth.",
@@ -228,7 +227,7 @@ return {
 	["For your help you have been taught how to skin human carcass."] = "For your help you have been taught how to skin human carcass.",
 	["Lecter's recipe"] = "Lecter's recipe",
 	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
-		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHearts), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
+		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
 	["Hearts collected"] = "Hearts collected",
@@ -379,14 +378,14 @@ return {
 	-- Settled down Fishmonger
 	["Settled down Fishmonger"] = "Settled down Fishmonger",
 	["Stagnation"] = "Stagnation",
-	["Anon's Father is waiting for his order."] = "Anon's Father is waiting for his order.",
+	["Anon's father is waiting for his order."] = "Anon's father is waiting for his order.",
 	["You helped Anon's father recover his long-awaited package. Ask him for new mission now."] = "You helped Anon's father recover his long-awaited package. Ask him for new mission now.",
 	["Milksop"] = "Milksop",
-	["Anon's Father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items."] = "Anon's Father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items.",
-	["You helped Anon's Father collect his lost tools."] = "You helped Anon's Father collect his lost tools.",
+	["Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items."] = "Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items.",
+	["You helped Anon's father collect his lost tools."] = "You helped Anon's father collect his lost tools.",
 	["Stew for Trouble"] = "Stew for Trouble",
-	["Anon's Father received his table in a deplorable state, ask how you can improve his mood."] = "Anon's Father received his table in a deplorable state, ask how you can improve his mood.",
-	["Anon's Father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's Father mentioned that he loves Rotworm Stew."] = "Anon's Father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's Father mentioned that he loves Rotworm Stew.",
-	["You helped Anon's Father with all the troubles. Now, go to his son for your reward."] = "You helped Anon's Father with all the troubles. Now, go to his son for your reward.",
+	["Anon's father received his table in a deplorable state, ask how you can improve his mood."] = "Anon's father received his table in a deplorable state, ask how you can improve his mood.",
+	["Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew."] = "Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew.",
+	["You helped Anon's father with all the troubles. Now, go to his son for your reward."] = "You helped Anon's father with all the troubles. Now, go to his son for your reward.",
 	["You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer."] = "You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer.",
 }

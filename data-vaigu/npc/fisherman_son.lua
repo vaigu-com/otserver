@@ -184,7 +184,7 @@ local dialog = {
 				nextState = {
 					[Storage.SettledDownFishmonger.Mission03] = 4,
 					[Storage.SettledDownFishmonger.Questline] = 6,
-					[Storage.Finished.Fanatyk] = 1,
+					[Storage.Finished.SettledDownFishmonger] = 1,
 				},
 			},
 		},
@@ -217,7 +217,9 @@ local dialog = {
 		[-1] = {
 			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
 				text = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
-				requiredItems = { { id = 901, remove = false } },
+				requiredItems = {
+					{ id = 901, remove = false },
+				},
 				nextTopic = 1,
 			},
 			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
@@ -227,6 +229,7 @@ local dialog = {
 				},
 				rewards = { { id = 902 } },
 				expReward = 5000,
+				requiredTopic = 1,
 				requiredItems = { { id = 901, count = 2 } },
 				requiredState = { min = 1, max = 1 },
 				textNoRequiredCondition = "Bring me exactly two marlins",

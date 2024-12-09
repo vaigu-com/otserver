@@ -111,7 +111,7 @@ quest
 				end
 
 				local missionState = player:getStorageValue(Storage.DemonOak.Mission)
-				if missionState == QUEST_NOT_STARTED then
+				if missionState == MISSION_NOT_STARTED then
 					if player:getItemCount(9388) > 0 and #Game.getSpectators(DEMON_OAK_POSITION, false, true, 9, 9, 6, 6) == 0 then
 						player:teleportTo(DEMON_OAK_ENTER_POSITION)
 						player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)

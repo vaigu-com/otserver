@@ -12,17 +12,9 @@ local dialogs = {
 			},
 		},
 	},
-	[Storage.LocalSupport.DamnedRats] = {
+	[Storage.LocalSupport.FreakingRats] = {
 		[-1] = {
-			[{ "help", "pomoc" }] = {
-				text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-				requiredState = { [Storage.StickyBeginning.WalmartAsked] = 1 },
-			},
-			[{ "szczur", "szczurow", "rat", "rats" }] = {
-				text = "I still have rats in the warehouse. I need some poison to get rid of them.",
-				requiredState = { [Storage.StickyBeginning.WalmartAsked] = 1 },
-				nextState = { [Storage.LocalSupport.DamnedRats] = 1 },
-			},
+			
 		},
 		[{ min = 1, max = 3 }] = {
 			[{ "help", "pomoc" }] = {
@@ -30,22 +22,7 @@ local dialogs = {
 			},
 		},
 		[3] = {
-			[{
-				"szczur",
-				"szczury",
-				"pomoc",
-				"rat",
-				"rats",
-				"help",
-				"trucizna",
-				"trutka",
-			}] = {
-				text = "Are you sure if it works? Thanks for the memory, though. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
-				rewards = { { id = 9087 }, { id = 25732 }, { id = 6392 } },
-				experienceReward = 50000,
-				requiredItems = { { id = 3120 } },
-				nextState = { [Storage.LocalSupport.DamnedRats] = 4 },
-			},
+
 		},
 		[{ min = 4 }] = {
 			[{ "help", "pomoc" }] = {

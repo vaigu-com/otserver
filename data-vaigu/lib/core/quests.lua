@@ -17,6 +17,9 @@ TASKS_QUEST_STORAGE = NextQuestId()
 DAILY_TASK_STORAGE = NextQuestId()
 
 if not Quests then
+	Quests = {}
+		--38f
+	--[[
 	Quests = {
 		[TASKS_QUEST_STORAGE] = {
 			name = "Tasks",
@@ -265,7 +268,7 @@ if not Quests then
 						[9] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 7/10.",
 						[10] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 8/10.",
 						[11] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 9/10.",
-						[12] = "Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: 10/10.",
+						[12] = "VISIT_DEALERS_STATUS",
 					},
 				},
 				[2] = {
@@ -378,9 +381,9 @@ if not Quests then
 					minState = 1,
 					maxState = 4,
 					states = {
-						[1] = "Walmart wishes she knew how to repel rats. Find out where Gertruda lives. She should know how to craft a rat poison.",
-						[2] = "Gertruda asked you to bring her one mouldy cheese.",
-						[3] = "Cheese is now poisonous. Bring it to Walmart, so she can repel the rats.",
+						[1] = "Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison.",
+						[2] = "Gertrude asked you to bring her one mouldy cheese.",
+						[3] = "The cheese has been poisoned. Bring it to Walmart, so she can repel the rats.",
 						[4] = "Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift.",
 					},
 				},
@@ -391,7 +394,7 @@ if not Quests then
 					maxState = 2,
 					states = {
 						[1] = "Malkin asked you to bring her 1 piece of cloth of every color.",
-						[2] = "Madame Malkin is grateful for your effort, and since now you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
+						[2] = "Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
 					},
 				},
 				[3] = {
@@ -411,9 +414,9 @@ if not Quests then
 					maxState = 4,
 					states = {
 						[1] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
-						[2] = "You found the package for Old Postman. Return to him and give it to him.",
-						[3] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also deliver Zanet's Box to Old Anon.",
-						[4] = "You took the box from Old Postman, which you should deliver to Old Anon.",
+						[2] = "You found the package for Old Postman. Return to him now.",
+						[3] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father.",
+						[4] = "You took the box from Old Postman, which you should deliver to Anon's father.",
 					},
 				},
 			},
@@ -817,6 +820,8 @@ if not Quests then
 			},
 		},
 	}
+	]]
+
 end
 
 local function appendQuestData()

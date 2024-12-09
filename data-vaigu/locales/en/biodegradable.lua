@@ -4,7 +4,7 @@ return {
 	["Come back when you find my shipment."] = "Come back when you find my shipment.",
 	["Were you able to find my {shipment}?"] = "Were you able to find my {shipment}?",
 	["This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you."] = "This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you.",
-	["Could you take this package to Anon's Father? He's surely getting impatient, so he'll reward you for your help."] = "Could you take this package to Anon's Father? He's surely getting impatient, so he'll reward you for your help.",
+	["Could you take this package to Anon's father? He's surely getting impatient, so he'll reward you for your help."] = "Could you take this package to Anon's father? He's surely getting impatient, so he'll reward you for your help.",
 	["Here, please, this box. Anon's father hangs around a pond near the {barracks}."] = "Here, please, this box. Anon's father hangs around a pond near the {barracks}.",
 	["Commissioner Fisher's barracks are in the southwest part of the city. He sent you here himself, are you drunk?"] = "Commissioner Fisher's barracks are in the southwest part of the city. He sent you here himself, are you drunk?",
 }

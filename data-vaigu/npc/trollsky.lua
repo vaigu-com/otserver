@@ -30,25 +30,25 @@ local dialogs = {
 			[{ "topor", "axe" }] = {
 				text = "Here is your axe. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
+				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
 				rewards = { { id = 3344 } },
 			},
 			[{ "miecz", "sword" }] = {
 				text = "Here is your sword. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
+				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
 				rewards = { { id = 2117 } },
 			},
 			[{ "obuch", "club" }] = {
 				text = "Here is your club. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
+				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
 				rewards = { { id = 7387 } },
 			},
 			[{ "spellbook", "ksiazka" }] = {
 				text = "Here is your spellbook. You should also visit Fstab, he should provide you some supplies.",
 				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.StickyBeginning.RewardState] = 1 },
+				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
 				rewards = { { id = 7387 } },
 			},
 			[{ "belty" }] = {
@@ -69,6 +69,9 @@ local dialogs = {
 		},
 	},
 }
+
+
+
 local voices = {
 	interval = 15000,
 	chance = 50,

@@ -161,7 +161,7 @@ quest
 						[QuestState.ThreaterOfCheapThrills.Mission03.DefeatMissPitca] = "Defeat Romek's supposed enemy, Mrs. Pitca.",
 						[QuestState.ThreaterOfCheapThrills.Mission03.ReportKillToRomek] = "You defeated Mrs. Pitca, now return to Romek.",
 						[QuestState.ThreaterOfCheapThrills.Mission03.AskGravedigger_FindBook] = "Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him.",
-						[QuestState.ThreaterOfCheapThrills.Mission03.ReportToRomek] = "You found a book that can help Romek. Return to him and give it to him.",
+						[QuestState.ThreaterOfCheapThrills.Mission03.ReportToRomek] = "You found a book that can help Romek. Return to him now.",
 						[QuestState.ThreaterOfCheapThrills.Mission03.Finished] = "Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!",
 					},
 				},

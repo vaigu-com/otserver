@@ -13,7 +13,7 @@ quest
 	end)
 	:Mission("NONE")
 	:State(
-		{ min = QUEST_NOT_STARTED, max = DEFAULT_MAX_STATE },
+		{ min = MISSION_NOT_STARTED, max = DEFAULT_MAX_STATE },
 		QuestFactory.StartupItems({
 			{ pos = { -2, 0, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToDesertQuestOne },
 			{ pos = { 2, 0, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToDesertQuestTwo },

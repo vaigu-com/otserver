@@ -50,4 +50,4 @@ quest
 		}
 	end)
 	:Mission(PH_MISSION)
-	:STATE(PH_STATE, QuestFactory.Dialog("PH_NAME", {}))
+	:State(PH_STATE, QuestFactory.Dialog("PH_NAME", {}))

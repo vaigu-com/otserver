@@ -647,7 +647,7 @@ quest
 			end
 
 			local questState = player:getStorageValue(Storage.ProdigalSon.Mission01)
-			if questState > QUEST_NOT_STARTED then
+			if questState > MISSION_NOT_STARTED then
 				return
 			end
 
@@ -682,7 +682,7 @@ quest
 				return
 			end
 
-			if player:getStorageValue(actionid) == QUEST_NOT_STARTED then
+			if player:getStorageValue(actionid) == MISSION_NOT_STARTED then
 				local transaltedMessage = player:Localizer(Storage.ProdigalSon.Localizer):Get(errorMessage)
 				player:sendTextMessage(MESSAGE_INFO_DESCR, transaltedMessage)
 				player:teleportTo(fromPosition, true)
