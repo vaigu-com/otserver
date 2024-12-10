@@ -2310,11 +2310,11 @@ std::string Item::parseShowAttributesDescription(std::shared_ptr<Item> item, con
 	return itemDescription.str();
 }
 
-std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
+std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player,  std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
 	std::string text = "";
 
 	std::ostringstream s;
-	s << getNameDescription(it, item, subType, addArticle);
+	s << getNameDescription(it, player, item, subType, addArticle);
 
 	if (item) {
 		subType = item->getSubType();
@@ -2986,7 +2986,7 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 
 	if (!it.allowDistRead || (it.id >= 7369 && it.id <= 7371)) {
 		s << '.';
-	} else {
+	} else { 
 		if (text.empty() && item) {
 			text = item->getAttribute<std::string>(ItemAttribute_t::TEXT);
 		}
@@ -3047,7 +3047,7 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 	}
 
 	if (item) {
-		const std::string &specialDescription = item->getAttribute<std::string>(ItemAttribute_t::DESCRIPTION);
+		const std::string &specialDescription = ProtocolGame::TryTranslate(item->getAttribute<std::string>(ItemAttribute_t::DESCRIPTION), item, player);
 		if (!specialDescription.empty()) {
 			s << std::endl
 			  << specialDescription;
@@ -3062,7 +3062,7 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 
 	if (it.allowDistRead && it.id >= 7369 && it.id <= 7371) {
 		if (text.empty() && item) {
-			text = item->getAttribute<std::string>(ItemAttribute_t::TEXT);
+			text = ProtocolGame::TryTranslate(item->getAttribute<std::string>(ItemAttribute_t::TEXT), item, player);
 		}
 
 		if (!text.empty()) {
@@ -3073,19 +3073,24 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 	return s.str();
 }
 
-std::string Item::getDescription(int32_t lookDistance) {
+std::string Item::getDescription(int32_t lookDistance, std::shared_ptr<Player> player) {
 	const ItemType &it = items[id];
-	return getDescription(it, lookDistance, getItem());
+	return getDescription(it, lookDistance, player, getItem());
 }
 
-std::string Item::getNameDescription(const ItemType &it, std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
+std::string Item::getDescription(int32_t lookDistance) {
+	const ItemType &it = items[id];
+	return getDescription(it, lookDistance, nullptr, getItem());
+}
+
+std::string Item::getNameDescription(const ItemType &it, std::shared_ptr<Player> player, std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
 	if (item) {
 		subType = item->getSubType();
 	}
 
 	std::ostringstream s;
 
-	const std::string &name = (item ? item->getName() : it.name);
+	const std::string &name = ProtocolGame::TryTranslate((item ? item->getName() : it.name), item, player);
 	if (!name.empty()) {
 		if (it.stackable && subType > 1) {
 			if (it.showCount) {
@@ -3109,9 +3114,9 @@ std::string Item::getNameDescription(const ItemType &it, std::shared_ptr<Item> i
 	return s.str();
 }
 
-std::string Item::getNameDescription() {
+std::string Item::getNameDescription(std::shared_ptr<Player> player) {
 	const ItemType &it = items[id];
-	return getNameDescription(it, getItem());
+	return getNameDescription(it, player, getItem());
 }
 
 std::string Item::getWeightDescription(const ItemType &it, uint32_t weight, uint32_t count /*= 1*/) {

@@ -259,13 +259,13 @@ function Player:CanAddItems(items)
 	return true
 end
 
-function Player:AddItems(items, bag)
+function Player:AddItems(items, bag, localizer)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
 			local nextBag = (bag or self):addItem(containerId, 1)
-			self:AddItems(itemOrItems, nextBag)
+			self:AddItems(itemOrItems, nextBag, localizer)
 		else
-			self:AddCustomItem(itemOrItems, bag)
+			self:AddCustomItem(itemOrItems, bag, localizer)
 		end
 	end
 	return true
@@ -362,7 +362,7 @@ end
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param item table
 ---@param container Container|nil
-function Player:AddCustomItem(item, container)
+function Player:AddCustomItem(item, container, localizer)
 	item = normalizedItem(item)
 	local id = item.id
 	local count = item.count
@@ -414,13 +414,17 @@ function Player:AddCustomItem(item, container)
 		addItem:setUniqueId(uid)
 	end
 	if desc and count == 1 then
-		addItem:setDescription(desc)
+		addItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
 	end
 	if text and count == 1 then
-		addItem:setText(text)
+		addItem:setText(ITEM_ATTRIBUTE_TEXT, text)
 	end
 	if fluidType then
 		addItem:transform(id, fluidType)
+	end
+
+	if text or desc then
+		addItem:setCustomAttribute("localizer", localizer)
 	end
 
 	local name = addItem:getName()

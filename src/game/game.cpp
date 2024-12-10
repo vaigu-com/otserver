@@ -5295,7 +5295,7 @@ void Game::playerLookInShop(uint32_t playerId, uint16_t itemId, uint8_t count) {
 	}
 
 	std::ostringstream ss;
-	ss << "You see " << Item::getDescription(it, 1, nullptr, count);
+	ss << "You see " << Item::getDescription(it, 1, nullptr, nullptr, count);
 	player->sendTextMessage(MESSAGE_LOOK, ss.str());
 	merchant->onPlayerCheckItem(player, it.id, count);
 }

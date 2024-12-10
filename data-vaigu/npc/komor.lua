@@ -1,43 +1,12 @@
 local dialogs = {
 	[Storage.IKEAForTheBold.State] = {
-		[-1] = {
+		[1] = {
 			[{ "misja", "mission" }] = {
-				text = "There is one problem with which you could help me. Some furnitures started to disappear from my storages.\nI know for sure that it wasnt Waski's mafia, because they are using wood for different purposes, they are not interested in my furnitures.\nDo you want to find for me who is responsible for stealing my furnitures?",
-				requiredState = { [Storage.StickyBeginning.WoodDelivery] = 4 },
+				text = "There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to help me the one responsible for stealing my furniture?",
 			},
 			[{ "yes", "tak" }] = {
 				text = "Thanks that you agreed to {help}. I hope that its not another mafia.",
-				requiredState = { [Storage.StickyBeginning.WoodDelivery] = 4 },
-				nextState = { [Storage.IKEAForTheBold.State] = 1 },
-			},
-		},
-		[1] = {
-			[{ "misja", "mission" }] = {
-				text = "Maybe Gypsy knows something about furnitures thief, people like him sticks together...",
 				nextState = { [Storage.IKEAForTheBold.State] = 2 },
-			},
-		},
-		[2] = {
-			[{ "misja", "mission" }] = {
-				text = "Maybe Gypsy knows something about furnitures thief, people like him sticks together...",
-			},
-		},
-		[5] = {
-			[{ "misja", "mission" }] = {
-				text = "Thank you for finding perpetrator. Your reward is upstairs, here is the key to the door.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds",
-				nextState = { [Storage.IKEAForTheBold.State] = 6 },
-				rewards = {
-					{ id = 2972, actionid = 5008 }, -- ehhhhhhh
-				},
-				expReward = 30000,
-			},
-		},
-		[6] = {
-			[{ "list", "lista" }] = {
-				text = "I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}.",
-			},
-			[{ "all", "wszystko" }] = {
-				text = "Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher please and tell him about it. Also ask him if he knows something about that thief.",
 			},
 		},
 	},

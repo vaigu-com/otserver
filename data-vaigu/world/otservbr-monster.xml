@@ -71593,6 +71593,9 @@
 	<monster centerx="5851" centery="1588" centerz="11" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="5841" centery="1589" centerz="11" radius="1">
+		<monster name="Rat" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="5853" centery="1589" centerz="11" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -71612,6 +71615,9 @@
 	</monster>
 	<monster centerx="5855" centery="1597" centerz="11" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="5836" centery="1598" centerz="11" radius="1">
+		<monster name="Rat" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="5963" centery="1601" centerz="11" radius="1">
 		<monster name="Dragon Lord" x="0" y="0" z="11" spawntime="60" />
@@ -71646,6 +71652,9 @@
 	</monster>
 	<monster centerx="5839" centery="1610" centerz="11" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="11" spawntime="60" direction="2" />
+	</monster>
+	<monster centerx="5853" centery="1610" centerz="11" radius="1">
+		<monster name="Rat" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7692" centery="1610" centerz="11" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="11" spawntime="60" />

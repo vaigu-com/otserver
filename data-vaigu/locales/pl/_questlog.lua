@@ -373,7 +373,7 @@ return {
 	["Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now."] = "Wszystko wskazuje na to, ze uciekinier probuje przeszmuglowac przedmioty, i ukryc sie na stepach. Dowodca bandytow zasugerowal, gdzie powinienes sie teraz udac.",
 	["You have defeated the Lumberjack Domino, look around his hiding place."] = "Pokonales Drwala Domino, rozejrzyj sie po jego kryjowce.",
 	["From now on, you can use his boat. Report to Commissioner Fisher."] = "Od teraz mozesz uzywac jego lodki. Zglos sie do Komisarza Ryby po nagrode za pomoc.",
-	["You finished the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes."] = "Zakonczyles watek poczynan Drwala Domino, od teraz mozesz plywac jego lodzia z obozowiska bandytow na poludnie stepow.",
+	["You prematurely ended the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes."] = "Zakonczyles watek poczynan Drwala Domino, od teraz mozesz plywac jego lodzia z obozowiska bandytow na poludnie stepow.",
 	-- Settled down Fishmonger
 	["Settled down Fishmonger"] = "Ustatkowany Fanatyk Wedkarstwa",
 	["Stagnation"] = "Zastoj",

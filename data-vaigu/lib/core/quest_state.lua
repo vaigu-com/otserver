@@ -1,2 +1,3 @@
 QuestState = {}
 QuestKeyItems = {}
+SpawnLocks = {}

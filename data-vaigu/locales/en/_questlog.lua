@@ -168,7 +168,7 @@ return {
 	["Go to Knurowo's port and find out what happened to the wood delivery."] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 	["Tell Ryba that Narro and his mafia stole all of the wood delivery."] = "Tell Ryba that Waski and his mafia stole all of the wood delivery.",
-	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Waski's mafia.",
+	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
 	["Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba."] = "Waski gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
 	["Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward."] = "Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward.",
 	["To Carry the Pigs"] = "To Carry the Pigs",
@@ -374,7 +374,7 @@ return {
 	["Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now."] = "Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now.",
 	["You have defeated the Lumberjack Domino, look around his hiding place."] = "You have defeated the Lumberjack Domino, look around his hiding place.",
 	["From now on, you can use his boat. Report to Commissioner Fisher."] = "From now on, you can use his boat. Report to Commissioner Fisher.",
-	["You finished the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes."] = "You finished the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes.",
+	["You prematurely ended the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes."] = "You prematurely ended the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes.",
 	-- Settled down Fishmonger
 	["Settled down Fishmonger"] = "Settled down Fishmonger",
 	["Stagnation"] = "Stagnation",

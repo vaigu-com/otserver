@@ -39,7 +39,7 @@ DEFAULT_MIN_STATE = -800000
 
 MISSION_NOT_STARTED = -1
 MISSION_STARTED = 1
-MISSION_FINISHED = 2 ^ 50 + 1 --38f 
+MISSION_FINISHED = 2 ^ 50 + 1 --38f
 
 ACCESS_GRANTED = 1
 MISSION_START_VALUE = 1
@@ -309,7 +309,7 @@ end
 ---@field npcHandler table
 ---@field npc userdata npc object
 ---@field specialMessageType string
----@field localizerName number
+---@field localizer number
 ---@field requirements table
 ---@alias Player table
 DialogContext = {}
@@ -365,7 +365,7 @@ local actionsWhitelist = {
 ---@field cid integer?
 ---@field npc Npc?
 ---@field specialMessageType string?
----@field localizerName integer
+---@field localizer integer
 ---@field npcHandler NpcHandler?
 ---@field topic integer?
 ---@field extractedParams table
@@ -399,9 +399,12 @@ function ResolutionContext:ParseRequirementsActionsOther(table)
 			self[key] = value
 		end
 	end
+
 	for key, value in pairs(self.patternFields or {}) do
 		self[key] = value
 	end
+
+	self.localizer = self.localizer or table.localizer
 end
 
 function ResolutionContext:New()
@@ -415,7 +418,7 @@ function ResolutionContext.FromEncounter(encounterData, player)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
 	newObj:ParseRequirementsActionsOther(encounterData)
-	newObj.localizerName = encounterData.localizerName
+	newObj.localizer = encounterData.localizer
 	newObj.player = player
 	newObj.__index = ResolutionContext
 	if newObj.requirements then
@@ -427,7 +430,7 @@ end
 function ResolutionContext.FromCustomItemState(item, player)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
-	newObj.localizerName = item.localizerName
+	newObj.localizer = item.localizer
 	newObj.player = player
 	newObj.__index = ResolutionContext
 	newObj:ParseRequirementsActionsOther(item)
@@ -575,7 +578,7 @@ function DialogContext:ResolveUniversalQuest()
 	if not universalKeywordToDialog then
 		return
 	end
-	self.localizerName = nil
+	self.localizer = nil
 	self.keywordToDialog = universalKeywordToDialog
 	self:ResolveKeyword()
 	if self:IsResolved() then
@@ -592,7 +595,7 @@ function DialogContext:ResolveDialogDefault()
 			logger.error("storages arent table!")
 			return
 		end
-		self.localizerName = localizer
+		self.localizer = localizer
 		self.storageToRequiredState = storageToRequiredState
 		self:ResolveStorage()
 		if self:IsResolved() then
@@ -778,7 +781,7 @@ function ResolutionContext:CheckCanAddRewards()
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
 
-	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizerName)
+	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizer)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
 		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
@@ -855,7 +858,7 @@ function ResolutionContext:AddRewards()
 		return
 	end
 
-	self.player:AddItems(actions.rewards)
+	self.player:AddItems(actions.rewards, nil, self.localizer)
 end
 
 function ResolutionContext:RemoveRequiredMoney()
@@ -952,7 +955,7 @@ function ResolutionContext:TrySendTranslateSuccessMessage()
 		return
 	end
 
-	local translatedMessage = self.player:Localizer(self.localizerName):Context(self):Get(self.actionsOnSuccess.text)
+	local translatedMessage = self.player:Localizer(self.localizer):Context(self):Get(self.actionsOnSuccess.text)
 	if not translatedMessage then
 		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.actionsOnSuccess.text, lang = self.player:getLanguage() }))
 		return
@@ -970,7 +973,7 @@ function ResolutionContext:TrySendTranslateFailMessage()
 		return
 	end
 
-	local translatedMessage = self.player:Localizer(self.localizerName):Context(self):Get(self.errorMessage)
+	local translatedMessage = self.player:Localizer(self.localizer):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
 		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.errorMessage, lang = self.player:GetLanguage() }))
 		return

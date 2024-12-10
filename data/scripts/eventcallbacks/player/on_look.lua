@@ -54,51 +54,13 @@ local aidToCustomDesc = {
 	[11092] = "Anon's father's stool.",
 }
 
-local function tryFindAnyDescription(player, item)
-	local description = aidToCustomDesc[item:getActionId()] or item:getAttribute(ITEM_ATTRIBUTE_DESCRIPTION)
-	local translatedDescription = player:Localizer(nil):Context({ item = item }):Get(description)
-	if translatedDescription and translatedDescription ~= "" then
-		return translatedDescription
-	end
-	if description and description ~= "" then
-		return description
-	end
-end
-
--- This allows to display translated text on "look" for items with overriden onUse
-local function tryDisplayItemText(player, item)
-	local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
-	if text == nil or text == "" then
-		return
-	end
-
-	local translatedText = player:Localizer(nil):Context({ item = item }):Get(text)
-	if translatedText and translatedText ~= "" then
-		SimpleTextDisplay(player, item, translatedText)
-		return DONT_SHOW_ONLOOK
-	end
-	return text
-end
-
-local function shouldDisplayReadableContent(item)
-	local itemType = ItemType(item:getId())
-	if itemType:getAllowDistRead() then
-		return true
-	end
-	if itemType:isKey() then
-		return true
-	end
-
-	return false
-end
-
 local specialItemRanges = {
 	{ rangeStart = ITEM_HEALTH_CASK_START, rangeEnd = ITEM_HEALTH_CASK_END },
 	{ rangeStart = ITEM_MANA_CASK_START, rangeEnd = ITEM_MANA_CASK_END },
 	{ rangeStart = ITEM_SPIRIT_CASK_START, rangeEnd = ITEM_SPIRIT_CASK_END },
 	{ rangeStart = ITEM_KEG_START, rangeEnd = ITEM_KEG_END },
 }
-local function isSpecialItem(itemId)
+local function isRefiller(itemId)
 	for _, range in ipairs(specialItemRanges) do
 		if itemId >= range.rangeStart and itemId <= range.rangeEnd then
 			return true
@@ -115,68 +77,19 @@ local function getPositionDescription(position)
 	end
 end
 
-function OnLookMessageBuilder:ParseCustomOnLook()
-	local inspectedThing = self.inspectedThing
-	local player = self.player
-	local aid = inspectedThing:getActionId()
-	if not aid or aid <= 0 then
-		return nil
-	end
-
-	local itemConfig = CustomItemRegistry():GetState(aid)
-	if itemConfig and itemConfig.onLook then
-		local onLookFunc = itemConfig.onLook
-		local result = onLookFunc({ player = player, aid = aid, item = inspectedThing })
-		if result == DONT_SHOW_ONLOOK then
-			self.dontShowOnLook = true
-			return
-		end
-	end
-
-	if tryDisplayItemText(player, inspectedThing) == DONT_SHOW_ONLOOK then
-		self.dontShowOnLook = true
-		return
-	end
-
-	local finalDescription = tryFindAnyDescription(player, inspectedThing)
-	if not finalDescription or finalDescription == "" then
-		return nil
-	end
-
-	return finalDescription
-end
-
-function OnLookMessageBuilder:ParseCustomDescription(customDescription)
-	if shouldDisplayReadableContent(self.inspectedThing) then
-		return T("You see :name:. You read: :customDescription:", { name = self.inspectedThing:getNameDescription(), customDescription = customDescription })
-	end
-	return T("You see :name:.", { name = self.inspectedThing:getNameDescription() })
-end
-
 function OnLookMessageBuilder:ParseItemDescription()
 	local inspectedThing = self.inspectedThing
 	local lookDistance = self.lookDistance
-	local customDescription = self:ParseCustomOnLook()
-	if self.dontShowOnLook then
-		return
-	end
+	local player = self.player
 
-	if customDescription then
-		return self:ParseCustomDescription(customDescription)
-	end
-
-	local descriptionText = inspectedThing:getDescription(lookDistance)
-
-	if isSpecialItem(inspectedThing.itemid) then
+	local descriptionText = inspectedThing:getDescription(lookDistance, player) --player for translation
+	if isRefiller(inspectedThing.itemid) then
 		local itemCharges = inspectedThing:getCharges()
 		if itemCharges > 0 then
-			return string.format("You see %s\nIt has %d refillings left.", descriptionText, itemCharges)
+			return T("You see :descriptionText:\nIt has :charges: refillings left.", { name = descriptionText, charges = itemCharges })
 		end
-	else
-		return "You see " .. descriptionText
 	end
-
-	return descriptionText
+	return "You see " .. descriptionText
 end
 
 function OnLookMessageBuilder:ParseCreatureDescription()

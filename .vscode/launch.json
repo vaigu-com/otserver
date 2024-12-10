@@ -8,7 +8,7 @@
             "name": "attach",
             "processId": "${command:pickProcess}",
             "request": "attach",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "type": "lua"
         }
     ]

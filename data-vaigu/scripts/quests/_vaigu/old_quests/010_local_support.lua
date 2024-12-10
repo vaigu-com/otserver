@@ -70,7 +70,7 @@ quest
 						[2] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 						[3] = "Woody asked you to investigate the bandit camp.",
 						[4] = "Tell Ryba that Waski and his mafia stole all of the wood delivery.",
-						[5] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Waski's mafia.",
+						[5] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
 						[6] = "Waski gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
 						[7] = "Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward.",
 					},

@@ -38,6 +38,7 @@ LOCALIZERS = { --38f add desert quest/king of rats
 	ToCarryThePigs = "helping_the_officers",
 	OcellatusXD = "ocellatus_xd",
 	TopChef = "top_chef",
+	TwoMarlins = "two_marlins",
 	--Real tibia
 	TheInquisitionQuest = "the_inquisition_quest",
 	DemonOak = "demon_oak",
@@ -46,8 +47,8 @@ LOCALIZERS = { --38f add desert quest/king of rats
 	LOCALIZER_UNIVERSAL = "_universal",
 	NONE = "",
 }
-TRANSLATION_TABLES = {}
 
+TRANSLATION_TABLES = {}
 for _, language in pairs(LANGUAGES) do
 	TRANSLATION_TABLES[language] = {}
 	for _, localizer in pairs(LOCALIZERS) do
@@ -61,6 +62,9 @@ for _, language in pairs(LANGUAGES) do
 		end
 	end
 end
+
+--register TRANSLATION_TABLES on cpp side
+Game.initializeTranslationTable()
 
 Localizer = {}
 Localizer.__index = Localizer

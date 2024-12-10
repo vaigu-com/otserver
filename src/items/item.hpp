@@ -304,12 +304,13 @@ public:
 	static std::string parseClassificationDescription(std::shared_ptr<Item> item);
 
 	static std::vector<std::pair<std::string, std::string>> getDescriptions(const ItemType &it, std::shared_ptr<Item> item = nullptr);
-	static std::string getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
-	static std::string getNameDescription(const ItemType &it, std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
+	static std::string getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player = nullptr, std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
+	static std::string getNameDescription(const ItemType &it, std::shared_ptr<Player> player = nullptr, std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
 	static std::string getWeightDescription(const ItemType &it, uint32_t weight, uint32_t count = 1);
 
 	std::string getDescription(int32_t lookDistance) override final;
-	std::string getNameDescription();
+	std::string getDescription(int32_t lookDistance, std::shared_ptr<Player> player);
+	std::string getNameDescription(std::shared_ptr<Player> player = nullptr);
 	std::string getWeightDescription() const;
 
 	// serialization

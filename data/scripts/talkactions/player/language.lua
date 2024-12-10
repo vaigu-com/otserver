@@ -194,13 +194,13 @@ local langToMarksConfig = {
 }
 
 local choseSameLanguage = {
-	["PL"] = "Polski jest twoim aktualnym jezykiem.",
-	["EN"] = "Your current chosen language is english.",
+	["PL"] = "Polski jest juz twoim jezykiem.",
+	["EN"] = "English is already your chosen language.",
 }
 
 local choseNewLanguage = {
 	["PL"] = "Zmieniles jezyk na polski",
-	["EN"] = "Your new language has been set to english.",
+	["EN"] = "You have changed your language to english.",
 }
 
 local function trySetMarks(player)
@@ -248,10 +248,20 @@ function CreateChooseLanguageWindow(player)
 	return false
 end
 
-local changeLanguage = TalkAction("!language", "/language")
+local changeLanguage = TalkAction("!language", "/language", "!lang", "/lang", "!jezyk", "/jezyk")
 function changeLanguage.onSay(player, words, param)
 	CreateChooseLanguageWindow(player)
 end
 changeLanguage:separator(" ")
 changeLanguage:groupType("normal")
 changeLanguage:register()
+
+for abbreviation, full in pairs(LANG_ABBREVIATION_TO_FULL_NAME) do
+	local setLanguage = TalkAction("!" .. full, "!" .. abbreviation, "!", "!" .. full:lower(), "!" .. abbreviation:lower(), "!" .. full:upper(), "!" .. abbreviation:upper())
+	function setLanguage.onSay(player, words, param)
+		onAcceptLanguage(player, nil, { text = abbreviation })
+	end
+	setLanguage:separator(" ")
+	setLanguage:groupType("normal")
+	setLanguage:register()
+end

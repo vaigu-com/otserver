@@ -737,12 +737,14 @@ int ItemFunctions::luaItemMoveToSlot(lua_State* L) {
 	return 1;
 }
 
+//Vaigu custom
 int ItemFunctions::luaItemGetDescription(lua_State* L) {
-	// item:getDescription(distance)
+	// item:getDescription(distance, [player])
 	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);
 	if (item) {
 		int32_t distance = getNumber<int32_t>(L, 2);
-		pushString(L, item->getDescription(distance));
+		std::shared_ptr<Player> player = getUserdataShared<Player>(L, 3);
+		pushString(L, item->getDescription(distance, player));
 	} else {
 		lua_pushnil(L);
 	}

@@ -72,7 +72,7 @@ public:
 		registerMethod(L, "Item", "serializeAttributes", ItemFunctions::luaItemSerializeAttributes);
 		registerMethod(L, "Item", "moveToSlot", ItemFunctions::luaItemMoveToSlot);
 
-		registerMethod(L, "Item", "getDescription", ItemFunctions::luaItemGetDescription);
+		registerMethod(L, "Item", "getDescription", ItemFunctions::luaItemGetDescription); // Vaigu custom
 		registerMethod(L, "Item", "getNameDescription", ItemFunctions::luaItemGetNameDescription); // Vaigu custom
 
 		registerMethod(L, "Item", "hasProperty", ItemFunctions::luaItemHasProperty);
