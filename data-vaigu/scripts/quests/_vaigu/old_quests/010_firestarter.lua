@@ -44,7 +44,6 @@ quest
 			},
 		}
 	end)
-	:Constant(function() end)
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Firestarter",
@@ -52,25 +51,26 @@ quest
 				[Storage.Firestarter.Mission01] = {
 					name = "Mission 1: Fiery Beginnings",
 					states = {
-						[1] = "Hymel asked you to burn down the herbs he left on his house on north side of MikroTown.",
-						[2] = "You burnt the herbs, now talk again with Hymel.",
-						[3] = "Hymel gave you an incendiary firebug. From now on you can buy more firebugs from him.",
+						[QuestState.Firestarter.Mission01.BurnHayStack] = "Hymel asked you to burn down the herbs he left on his house on north side of MikroTown.",
+						[QuestState.Firestarter.Mission01.ReportToHymel] = "You burnt the herbs, now talk again with Hymel.",
+						[QuestState.Firestarter.Mission01.AskForNewMission] = "Hymel gave you an incendiary firebug. Ask him for a new mission.",
+						[MISSION_FINISHED] = "Hymel gave you an incendiary firebug.",
 					},
 				},
 				[Storage.Firestarter.Mission02] = {
 					name = "Mission 2: Little Treat",
 					states = {
-						[1] = "Hymel want to mischief the local guards, by setting an old tree on fire. You can find it near their resting camp.",
-						[2] = "You did it, the guards didn't even notice, go back and see Hymel.",
-						[3] = "In return for your help, Hymel gave you the staff of a real reefer.",
+						[QuestState.Firestarter.Mission02.SetGuardTreeOnFire] = "Hymel want to mischief the local guards, by setting an old tree on fire. You can find it near their resting camp.",
+						[QuestState.Firestarter.Mission02.ReportToHymel] = "You did it, the guards didn't even notice, go back and see Hymel.",
+						[MISSION_FINISHED] = "In return for your help, Hymel gave you the staff of a real reefer.",
 					},
 				},
 				[Storage.Firestarter.Mission03] = {
 					name = "Mission 3: How High",
 					states = {
-						[1] = "Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug.",
-						[2] = "The smell of weed is now around the whole city, you managed to burn all the flowers.",
-						[3] = "Hymel declared you a true pyromaniac and gave you his arsonist weapon.",
+						[QuestState.Firestarter.Mission03.FindAndIgniteFlowers] = "Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug.",
+						[QuestState.Firestarter.Mission03.ReportToHymel] = "The smell of weed is now around the whole city, you managed to burn all the flowers.",
+						[MISSION_FINISHED] = "Hymel declared you a true pyromaniac and gave you his arsonist weapon.",
 					},
 				},
 			},
