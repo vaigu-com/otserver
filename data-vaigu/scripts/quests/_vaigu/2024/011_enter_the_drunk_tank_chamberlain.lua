@@ -1,33 +1,23 @@
-local quest = Quest(LOCALIZERS)
-
-local vocationToMission = {
-	[VOCATION.BASE_ID.DRUID] = Storage.EnterTheDrunkTankChamberlain.UltimateManaPotion,
-	[VOCATION.BASE_ID.KNIGHT] = Storage.EnterTheDrunkTankChamberlain.MediumManaPotion,
-	[VOCATION.BASE_ID.SORCERER] = Storage.EnterTheDrunkTankChamberlain.UltimateManaPotion,
-	[VOCATION.BASE_ID.PALADIN] = Storage.EnterTheDrunkTankChamberlain.GreatManaPotion,
-}
-
-local function grantVocationPotionAccess(context)
-	local missionStorage = vocationToMission[context.player:getVocation():getBase():getId()]
-	context.player:setStorageValue(missionStorage, ACCESS_GRANTED)
-end
+local quest = Quest(LOCALIZERS.EnterTheDrunkTankChamberlain)
 
 local localSupportFinished = {
-	[Storage.LocalSupport.Biodegradable] = MISSION_FINISHED,
-	[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
 	[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
-	[Storage.LocalSupport.FreakingRats] = MISSION_FINISHED,
-	[Storage.LocalSupport.LostCrystalBall] = MISSION_FINISHED,
-	[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
-	[Storage.LocalSupport.TwoMarlinQuest] = MISSION_FINISHED,
-	[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
 	[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
+	[Storage.LocalSupport.FreakingRats] = MISSION_FINISHED,
+	[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
+	[Storage.LocalSupport.LostCrystalBall] = MISSION_FINISHED,
+	[Storage.LocalSupport.Biodegradable] = MISSION_FINISHED,
+	[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
+	[Storage.LocalSupport.TwoMarlinQuest] = MISSION_FINISHED,
+	[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
+	[Storage.LocalSupport.IKEAForTheBold] = MISSION_FINISHED,
+	[Storage.LocalSupport.SettledDownFishmonger] = MISSION_FINISHED,
 }
 
 quest
 	:Storage(function()
 		Storage.EnterTheDrunkTankChamberlain = {
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			GlowingWaterVial = NextStorage(),
 			FilledVial = NextStorage(),
 			BullSpoogeChurn = NextStorage(),
@@ -39,8 +29,34 @@ quest
 			GreatManaPotion = NextStorage(),
 			UltimateManaPotion = NextStorage(),
 		}
+		QuestState.EnterTheDrunkTankChamberlain = {
+			Mission01 = {
+				AskVislavAboutTask = 1,
+				CollectWaterAndMilk = 2,
+				UseHallucinogenInCatacombs = 3,
+				ReportToVislav = 4,
+			},
+		}
+		QuestTopics.EnterTheDrunkTankChamberlain = {
+			AcceptTacticalTask = NextTopic(),
+		}
 	end)
-	:Constant(function() end)
+	:Constant(function()
+		QuestGlobalData.EnterTheDrunkTankChamberlain = {
+			vocationToMission = {
+				[VOCATION.BASE_ID.DRUID] = Storage.EnterTheDrunkTankChamberlain.UltimateManaPotion,
+				[VOCATION.BASE_ID.KNIGHT] = Storage.EnterTheDrunkTankChamberlain.MediumManaPotion,
+				[VOCATION.BASE_ID.SORCERER] = Storage.EnterTheDrunkTankChamberlain.UltimateManaPotion,
+				[VOCATION.BASE_ID.PALADIN] = Storage.EnterTheDrunkTankChamberlain.GreatManaPotion,
+			},
+		}
+		QuestFunctions.EnterTheDrunkTankChamberlain = {
+			grantVocationPotionAccess = function(context)
+				local missionStorage = QuestGlobalData.EnterTheDrunkTankChamberlain.vocationToMission[context.player:getVocation():getBase():getId()]
+				context.player:setStorageValue(missionStorage, ACCESS_GRANTED)
+			end,
+		}
+	end)
 	:Questlog(function()
 		Quests[NextQuestId] = {
 			name = "Enter the Drunk Tank Chamberlain",
@@ -51,27 +67,28 @@ quest
 						[1] = "Comissioner Fisher told you to ask Vislav Shivka about a tactical task.",
 						[2] = "Collect glowing naga water and bull spooge then report to Vislav.",
 						[3] = "Take hallucinogen and step through the sealed doors in Orshaawa catacombs.",
-						[4] = "You learned how to drink even stronger potions than before. Report to Vislaw.",
-						[5] = "Vislaw commended you for a job well-done.",
+						[4] = "You learned how to drink even stronger potions than before. Report to Vislav.",
+						[MISSION_FINISHED] = "Vislav commended you for a job well-done.",
 					},
 				},
 			},
 		}
 	end)
-	:Mission(Storage.EnterTheDrunkTankChamberlain.Mission01)
+	:Mission(Storage.EnterTheDrunkTankChamberlain.PuzzlesDoneStateBinary)
 	:State(
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Commissioner Fisher", {
 			[{ GREET }] = {
 				text = "I see you have made a great effort to help our city people. For that I would like to thank you personally. Please visit Vislav Shivka, he has a {tactical task} for you, if you know what i mean.",
 				requiredState = localSupportFinished,
+				nextTopic = QuestTopics.EnterTheDrunkTankChamberlain.AcceptTacticalTask,
 			},
 			[{ "tactical task", "zadanie bojowe" }] = {
 				text = "If you would like to expand your vocation expertise, you should meet Vislav Shivka. While he is a master imbiber of magical elixirs himself, he is also capable of teaching his 'craft' to others. Ask him about tactical task and he will surely guide you. Tell him that i sent u there or he might not want to share this knowledge with you.",
+				requiredTopic = QuestTopics.EnterTheDrunkTankChamberlain.AcceptTacticalTask,
 				nextState = {
-					[Storage.EnterTheDrunkTankChamberlain.Mission01] = _38f,
+					[Storage.EnterTheDrunkTankChamberlain.PuzzlesDoneStateBinary] = _38f,
 				},
-				requiredState = localSupportFinished,
 			},
 		})
 	)
@@ -91,7 +108,7 @@ quest
 					{ id = 32011, aid = Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn },
 				},
 				nextState = {
-					[Storage.EnterTheDrunkTankChamberlain.Mission01] = _38f,
+					[Storage.EnterTheDrunkTankChamberlain.PuzzlesDoneStateBinary] = _38f,
 				},
 			},
 		})
@@ -109,7 +126,7 @@ quest
 					{ id = 31350, aid = Storage.EnterTheDrunkTankChamberlain.Hallucinogen },
 				},
 				nextState = {
-					[Storage.EnterTheDrunkTankChamberlain.Mission01] = _38f,
+					[Storage.EnterTheDrunkTankChamberlain.PuzzlesDoneStateBinary] = _38f,
 				},
 			},
 		}),
@@ -191,10 +208,10 @@ quest
 					{ id = 31350, aid = Storage.EnterTheDrunkTankChamberlain.Hallucinogen },
 				},
 				actionsOnSuccess = {
-					{ action = grantVocationPotionAccess },
+					{ action = QuestFunctions.EnterTheDrunkTankChamberlain.grantVocationPotionAccess },
 				},
 				nextState = {
-					[Storage.EnterTheDrunkTankChamberlain.Mission01] = PH_STATE,
+					[Storage.EnterTheDrunkTankChamberlain.PuzzlesDoneStateBinary] = PH_STATE,
 				},
 			},
 		})
@@ -206,7 +223,7 @@ quest
 				text = "Good job! Hope you find your new drinking skills useful.",
 				expReward = 100000,
 				nextState = {
-					[Storage.EnterTheDrunkTankChamberlain.Mission01] = MISSION_FINISHED,
+					[Storage.EnterTheDrunkTankChamberlain.PuzzlesDoneStateBinary] = MISSION_FINISHED,
 				},
 			},
 		})

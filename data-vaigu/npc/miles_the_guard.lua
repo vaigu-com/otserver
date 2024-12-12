@@ -56,17 +56,19 @@ local dialog = {
 	},
 	[Storage.TheInquisition.MilesGuard] = {
 		[{ max = 0 }] = {
-			text = "I'm fine. There's no trouble at all.",
-			requiredState = {
-				[Storage.TheInquisition.Mission01] = { neq = MISSION_NOT_STARTED },
-			},
-			nextState = {
-				[Storage.TheInquisition.MilesGuard] = 1,
-				[Storage.TheInquisition.Mission01] = "+1",
-			},
-			specialActionsOnSuccess = {
-				{
-					action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer,
+			[{ "trouble", "problemy" }] = {
+				text = "I'm fine. There's no trouble at all.",
+				requiredState = {
+					[Storage.TheInquisition.Mission01] = { neq = MISSION_NOT_STARTED },
+				},
+				nextState = {
+					[Storage.TheInquisition.MilesGuard] = 1,
+					[Storage.TheInquisition.Mission01] = "+1",
+				},
+				specialActionsOnSuccess = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer,
+					},
 				},
 			},
 		},

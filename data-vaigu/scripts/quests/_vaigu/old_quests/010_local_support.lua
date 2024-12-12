@@ -1,4 +1,4 @@
-local quest = Quest(LOCALIZERS)
+local quest = Quest(LOCALIZERS.LocalSupport)
 
 quest
 	:Storage(function()
@@ -19,7 +19,7 @@ quest
 
 			WoodDelivery = 11030,
 			NarroStages = 11031,
-			
+
 			FreakingRats = 11046,
 			PoisonedCheese = 11047,
 
@@ -37,8 +37,58 @@ quest
 
 			OcellatusXD = 11041,
 			Ticket = 11042,
+
+			IKEAForTheBold = 11073,
+			SpawnDominoUndergroundChest = 11077,
+			BookChest = 11078,
+			BookOfContraband = 11079,
+			AnonsFatherAsked = 11075,
+			MilesAsked = 11076,
+			TileBeforeHawser = 11079,
+			ShoreCaveChest = 11080,
+			LumberjackBoatAccess = 11081,
+
+			SettledDownFishmonger = 11086,
+			FishmongerFloat = 11087,
+			FishmongerReel = 11088,
+			FishmongerStool = 11089,
+			FajtlapaItems = 11090,
+			Bigos = 11091,
 		}
 		QuestState.LocalSupport = {
+			Discernment = {
+				FindCommissioner = 1,
+				VisitDealers = 2,
+			},
+			WoodDelivery = {
+				TalkWithWoody = 1,
+				InvestigateCamp = 2,
+				TellCommissionerAboutMafia = 3,
+				DealWithNarroMafia = 4,
+				ReportToCommissioner = 5,
+			},
+			FreakingRats = {
+				AskGertrudeForRepellant = 1,
+				BringMouldyCheeseToGertrude = 2,
+				BringPoisonedChesseToWalmart = 3,
+			},
+			BudgetRecycling = {
+				BringPieceOfEachClothToMadame = 1,
+			},
+			LostCrystalBall = {
+				FindBallForGypsy = 1,
+			},
+			Biodegradable = {
+				FindPostmanPackage = 1,
+				ReturnPackageToPostman = 2,
+				AskForNewMission = 3,
+			},
+			UnwantedGuests = {
+				BringOldManFrostItems = 1,
+			},
+			TwoMarlinQuest = {
+				--none
+			},
 			OcellatusXD = {
 				Mission01 = {
 					FindTicket = 1,
@@ -48,6 +98,40 @@ quest
 					Finished = 5,
 				},
 			},
+			IKEAForTheBold = {
+				OfferHelpToKomor = 1,
+				AskCygan = 2,
+				FindThiefInSewers = 3,
+				LookAroundThiefHideout = 4,
+				BringStolenItemListToKomor = 5,
+				ConsultCommissioner = 6,
+				AskNearbyPeople_FindMoustachilles = 7,
+				FindAndKillDomino = 8,
+				SearchDominoPlace = 9,
+				ReportToCommissioner = 10,
+			},
+			SettledDownFishmonger = {
+				DeliverAnonFatherOrder = 1,
+				FinAndDevilerAnonFatherMissingItems = 2,
+				BringSoupToAnonFather = 3,
+				AskAnglerSonForReward = 4,
+			},
+		}
+		SpawnLocks.LocalSupport = {
+			IKEAForTheBold = {
+				DominoUnderground = SpawnLock(),
+				DominoShore = SpawnLock(),
+			},
+		}
+		QuestTopics.LocalSupport = {
+			AcceptBringTicketQuest = NextTopic(),
+			acceptBringFoodQuest = NextTopic(),
+			ConfirmUnwatedGuestsQuest = NextTopic(),
+			ConfirmNarroIsBadass = NextTopic(),
+			ConfirmMafiaIsBadass = NextTopic(),
+			ConfirmHavingpackage = NextTopic(),
+			ConfirmBuyingShimmerSwimmer = NextTopic(),
+			ConfirmTradeInTwomarlins = NextTopic(),
 		}
 	end)
 	:Constant(function() end)
@@ -58,7 +142,7 @@ quest
 				[Storage.StickyBeginning.Discernment] = {
 					name = "Discernment",
 					states = {
-						[1] = "Find Commissioner Fisher and ask for a mission.",
+						[1] = "Find Commissioner Fisher and ask him for a mission.",
 						[2] = "VISIT_DEALERS_STATUS",
 						[3] = "You visited all dealers in mirkotown and got rewarded by the Commissioner.",
 					},
@@ -68,11 +152,10 @@ quest
 					states = {
 						[1] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 						[2] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
-						[3] = "Woody asked you to investigate the bandit camp.",
-						[4] = "Tell Ryba that Waski and his mafia stole all of the wood delivery.",
-						[5] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
-						[6] = "Waski gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
-						[7] = "Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward.",
+						[3] = "Tell Ryba that Narro and his mafia stole all of the wood delivery.",
+						[4] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
+						[5] = "Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
+						[6] = "Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward.",
 					},
 				},
 				[Storage.LocalSupport.FreakingRats] = {
@@ -111,7 +194,7 @@ quest
 					name = "Unwanted Guests",
 					states = {
 						[1] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
-						[2] = "You completed Old Man Frosts's request.",
+						[2] = "You completed Old Man Frost's request.",
 					},
 				},
 				[Storage.LocalSupport.TwoMarlinQuest] = {
@@ -120,7 +203,7 @@ quest
 						[1] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 					},
 				},
-				[Storage.OcellatusXD] = {
+				[Storage.LocalSupport.OcellatusXD] = {
 					name = "Ocellatus Xddd",
 					states = {
 						[1] = "Recover the match tickets that have been stolen from Ocellatus.",
@@ -128,6 +211,32 @@ quest
 						[3] = "You gave tickets back to Ocellatus. Ask him for new mission.",
 						[4] = "Ocellatus asks you to bring him soup and wings. Ask Pewter for help.",
 						[5] = "You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
+					},
+				},
+				[Storage.LocalSupport.IKEAForTheBold] = {
+					name = "IKEA for the BOLD",
+					states = {
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.OfferHelpToKomor] = "Commissioner Fisher has mentioned that Komor needs help.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.AskCygan] = "Komor suggested you to Gypsy whether he knows anything about the theft of the furniture.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.FindThiefInSewers] = "Try to find the thief; he's possibly hiding in the sewers.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.LookAroundThiefHideout] = "You found the thief, but he managed to get away. Try to look around his hideout.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.BringStolenItemListToKomor] = "You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.ConsultCommissioner] = "Komor asked you to consult Commissioner Fisher about the thief.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.AskNearbyPeople_FindMoustachilles] = "Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.FindAndKillDomino] = "The thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.SearchDominoPlace] = "You have defeated the Lumberjack Domino, look around his hiding place.",
+						[QuestState.LocalSupport.IKEAForTheBold.Mission01.ReportToCommissioner] = "From now on, you can use Domino's boat. Report to Commissioner Fisher.",
+						[MISSION_FINISHED] = "You prematurely ended the efforts of Lumberjack Domino. From now on you can sail his boat from the bandit camp to the south of the steppes.",
+					},
+				},
+				[Storage.LocalSupport.SettledDownFishmonger] = {
+					name = "Settled down Fishmonger",
+					states = {
+						[1] = "Anon's father is waiting for his order.",
+						[1] = "Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items.",
+						[1] = "Anon's father received his table in a deplorable state, ask how you can improve his mood.",
+						[3] = "You helped Anon's father with all the troubles. Now, go to his son for your reward.",
+						[4] = "You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer.",
 					},
 				},
 			},
@@ -322,17 +431,16 @@ quest
 				specialActionsOnSuccess = {
 					{ action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer, effect = CONST_ME_YELLOWENERGY },
 				},
-				nextTopic = topics.confirmNarroIsBadass,
+				nextTopic = QuestTopics.LocalSupport.ConfirmNarroIsBadass,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Thats right! And my mafia is badass too?",
-				requiredTopic = topics.confirmNarroIsBadass,
-				nextTopic = topics.confirmMafiaIsBadass,
+				requiredTopic = QuestTopics.LocalSupport.ConfirmNarroIsBadass,
+				nextTopic = QuestTopics.LocalSupport.ConfirmMafiaIsBadass,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Thats right, you are catching up quickly.",
-				requiredTopic = topics.confirmNarroIsBadass,
-				nextTopic = topics.confirmMafiaIsBadass,
+				requiredTopic = QuestTopics.LocalSupport.ConfirmNarroIsBadass,
 			},
 			[{ "no", "nie" }] = {
 				text = "We'll see who's right soon enough!",
@@ -623,15 +731,15 @@ quest
 	)
 	:State(
 		PH_STATE,
-		QuestFactory.Dialog("", {
+		QuestFactory.Dialog("Old Postman", {
 			[{ "mission", "misja" }] = {
 				text = "Could you take this package to Anon's father? He's surely getting impatient, so he'll reward you for your help.",
 			},
 			[{ "zaneta", "bait", "yes", "tak" }] = {
 				text = "Here, please, this box. Anon's father hangs around a pond near the {barracks}.",
 				nextState = {
-					[Storage.Biodegradable.State] = 4,
-					[Storage.SettledDownFishmonger.Mission01] = 1,
+					[Storage.Biodegradable.State] = MISSION_FINISHED,
+					[Storage.LocalSupport.SettledDownFishmonger] = PH_STATE,
 				},
 			},
 		})
@@ -649,11 +757,11 @@ quest
 		QuestFactory.Dialog("Old Man Frost", {
 			[{ "mission", "misja" }] = {
 				text = "Few years ago it was peaceful here, but now it is difficult to live with barbarians roaming around.\nTry to take care of them. I know it's going to be hard to get everyone out, but even a few less of their kind will be a success.\nFor proof of defeating a few of them, bring me Brutetamers Staff and Fur Boots, this is their basic equipment.\nSo, would you like to help me?",
-				nextTopic = topics.confirmBarbarianQuest,
+				nextTopic = QuestTopics.LocalSupport.ConfirmUnwatedGuestsQuest,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Great, I'll give you a special pickaxe as a reward. I'll tell you what to do with it for later.",
-				requiredTopic = topics.confirmBarbarianQuest,
+				requiredTopic = QuestTopics.LocalSupport.ConfirmUnwatedGuestsQuest,
 				nextState = {
 					[Storage.LocalSupport.UnwantedGuests] = _38f,
 				},
@@ -721,7 +829,7 @@ quest
 				requiredItems = {
 					{ id = 901, remove = false },
 				},
-				nextTopic = 1,
+				nextTopic = QuestTopics.LocalSupport.ConfirmTradeInTwomarlins,
 			},
 			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
 				text = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
@@ -732,7 +840,7 @@ quest
 					{ id = 902 },
 				},
 				expReward = 17000,
-				requiredTopic = 1,
+				requiredTopic = QuestTopics.LocalSupport.ConfirmTradeInTwomarlins,
 				requiredItems = {
 					{ id = 901, count = 2 },
 				},
@@ -752,11 +860,11 @@ quest
 		QuestFactory.Dialog("Ocellatus", {
 			[{ "mission", "misja" }] = {
 				text = "You are probably not a football devotee like me, but I wanted to go to the {match}. However, someone disrupted my plans.",
-				nextTopic = topics.acceptBringTicketQuest,
+				nextTopic = QuestTopics.LocalSupport.AcceptBringTicketQuest,
 			},
 			[{ "match", "mecz", "legia", "legii" }] = {
 				text = "Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Could you help me get it back?",
-				requiredTopic = topics.acceptBringTicketQuest,
+				requiredTopic = QuestTopics.LocalSupport.AcceptBringTicketQuest,
 			},
 		})
 	)
@@ -784,11 +892,11 @@ quest
 		QuestFactory.Dialog("Ocellatus", {
 			[{ "mission", "misja" }] = {
 				text = "I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?",
-				nextTopic = topics.acceptBringFood,
+				nextTopic = QuestTopics.LocalSupport.acceptBringFoodQuest,
 			},
 			[{ "yes", "tak" }] = {
 				text = "I love {rotworm stew} and {roasted dragon wings} from Mickey Dicks. If you make this for me, I will certainly pay you back.",
-				requiredTopic = topics.acceptBringFood,
+				requiredTopic = QuestTopics.LocalSupport.acceptBringFoodQuest,
 				nextState = {
 					[Storage.OcellatusXD.Mission01] = QuestState.OcellatusXD.Mission01._38f,
 				},
@@ -822,5 +930,596 @@ quest
 		QuestFactory.Dialog("Ocellatus", { [{ "mission", "misja" }] = {
 			text = "That's all, thanks for your help.",
 		} })
+	)
+	:MonsterEvent(function()
+		local dominoUnderground = CreatureEvent("LumberjackDominoUndergroundDeath")
+		function dominoUnderground.onDeath(creature)
+			creature:getPosition():sendMagicEffect(CONST_ME_POFF)
+			SpawnLocks.LocalSupport.DominoUnderground:Reset()
+
+			onDeathForDamagingPlayers(creature, function(creature, player)
+				if player:getStorageValue(Storage.LocalSupport.IKEAForTheBold) == PH_STATE then
+					player:setStorageValue(Storage.LocalSupport.IKEAForTheBold, PH_STATE)
+				end
+			end)
+			return true
+		end
+		dominoUnderground:register()
+
+		local dominoShore = CreatureEvent("LumberjackDominoShoreDeath")
+		function dominoShore.onDeath(creature)
+			SpawnLocks.LocalSupport.DominoShore:Reset()
+
+			onDeathForDamagingPlayers(creature, function(creature, player)
+				if player:getStorageValue(Storage.LocalSupport.IKEAForTheBold) == PH_STATE then
+					player:setStorageValue(Storage.LocalSupport.IKEAForTheBold, PH_STATE)
+				end
+			end)
+			return true
+		end
+		dominoShore:register()
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Lumberjack Domino Underground")
+		local monster = {}
+
+		monster.name = "Lumberjack Domino"
+		monster.description = "a lumberjack domino"
+		monster.experience = 1400
+		monster.outfit = {
+			lookType = 143,
+			lookHead = 114,
+			lookBody = 116,
+			lookLegs = 116,
+			lookFeet = 114,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 1000
+		monster.maxHealth = 1000
+		monster.race = "blood"
+		monster.corpse = 0
+		monster.speed = 60
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 5000,
+			chance = 0,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 70,
+			health = 10,
+			damage = 10,
+			random = 10,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = true,
+			canPushCreatures = true,
+			staticAttackChance = 90,
+			targetDistance = 1,
+			runHealth = 200,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = false,
+			canWalkOnFire = false,
+			canWalkOnPoison = false,
+			pet = false,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+		}
+
+		monster.loot = {}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, skill = 40, attack = 65 },
+		}
+
+		monster.defenses = {
+			defense = 9,
+			armor = 9,
+			{ name = "speed", interval = 2000, chance = 15, speedChange = 240, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 0 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		monster.events = {
+			"LumberjackDominoUndergroundDeath",
+		}
+
+		mType:register(monster)
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Lumberjack Domino Shore")
+		local monster = {}
+
+		monster.name = "Lumberjack Domino"
+		monster.description = "a lumberjack domino"
+		monster.experience = 21000
+		monster.outfit = {
+			lookType = 143,
+			lookHead = 114,
+			lookBody = 116,
+			lookLegs = 116,
+			lookFeet = 114,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 8000
+		monster.maxHealth = 8000
+		monster.race = "blood"
+		monster.corpse = 111
+		monster.speed = 90
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 5000,
+			chance = 0,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 70,
+			health = 10,
+			damage = 10,
+			random = 10,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = true,
+			canPushCreatures = true,
+			staticAttackChance = 90,
+			targetDistance = 1,
+			runHealth = 0,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = true,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+			pet = false,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+		}
+
+		monster.loot = {
+			{ name = "platinum coin", chance = 100000, minCount = 10, maxCount = 15 },
+			{ name = "knight axe", chance = 10000 },
+			{ name = "knight armor", chance = 5000 },
+			{ name = "knight legs", chance = 5000 },
+			{ name = "steel helmet", chance = 60000 },
+			{ name = "tower shield", chance = 5000 },
+		}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -150 },
+			{ name = "combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -100, range = 7, radius = 1, shootEffect = CONST_ANI_WHIRLWINDAXE, target = true },
+			{ name = "berserk", interval = 2000, chance = 13, minDamage = 0, maxDamage = -150, target = false },
+		}
+
+		monster.defenses = {
+			defense = 9,
+			armor = 9,
+			{ name = "speed", interval = 2000, chance = 15, speedChange = 240, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 0 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		monster.events = {
+			"LumberjackDominoShoreDeath",
+		}
+
+		mType:register(monster)
+	end)
+	:Mission(Storage.LocalSupport.IKEAForTheBold)
+	:State(
+		QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
+		QuestFactory.Dialog("Komor", {
+			[{ "misja", "mission" }] = {
+				text = "There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to help me the one responsible for stealing my furniture?",
+			},
+			[{ "yes", "tak" }] = {
+				text = "Thanks that you agreed to {help}. I hope that its not another mafia.",
+				nextState = { [Storage.LocalSupport.State] = 2 },
+			},
+		})
+	)
+	:State(
+		QuestState.LocalSupport.IKEAForTheBold.AskCygan,
+		QuestFactory.Dialog("Komor", { [{ "misja", "mission", "help", "pomoc" }] = {
+			text = "Maybe Gypsy knows something about furniture thief, people like him stick together...",
+		} })
+	)
+	:State(
+		QuestState.LocalSupport.IKEAForTheBold.FindThiefInSewers,
+		QuestFactory.StartupItems({
+			{
+				id = 11809,
+				pos = { 5832, 1597, 11 },
+				aid = Storage.LocalSupport.SpawnDominoUndergroundChest,
+			},
+		}),
+		QuestFactory.Script(function(missionState)
+			local undergroundChest = Action()
+			function undergroundChest.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:HasExactMissionState(missionState) then
+					return false
+				end
+
+				if SpawnLocks.LocalSupport.DominoUnderground:IsSet() then
+					return false
+				end
+
+				Game.createMonster("Lumberjack Domino Underground", toPosition)
+				SpawnLocks.LocalSupport.DominoUnderground:Set()
+			end
+			undergroundChest:aid(Storage.LocalSupport.SpawnDominoUndergroundChest)
+			undergroundChest:register()
+		end)
+	)
+	:State(
+		QuestState.LocalSupport.IKEAForTheBold.LookAroundThiefHideout,
+		QuestFactory.StartupItems({
+			{
+				id = 2471,
+				pos = { 5840, 1588, 11 },
+				aid = Storage.LocalSupport.BookChest,
+				rewards = {
+					{ id = 3076 },
+					{ id = 2816, aid = Storage.LocalSupport.BookOfContraband },
+				},
+				nextState = { [Storage.LocalSupport.IKEAForTheBold] = PH_STATE },
+			},
+		})
+	)
+	:State(
+		QuestState.LocalSupport.IKEAForTheBold.BringStolenItemListToKomor,
+		QuestFactory.Dialog("Komor", {
+			[{ "misja", "mission" }] = {
+				text = "Thank you for finding perpetrator. Your reward is upstairs, in my drawers.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds. [...] I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}.",
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = PH_STATE,
+					[Storage.LocalSupport.UpstairsRoom] = ACCESS_GRANTED,
+				},
+				requiredItems = {
+					{ id = 2816, aid = Storage.LocalSupport.BookOfContraband, text = "DOMINO_BOOK_OF_CONTRABAND_TEXT" },
+				},
+				rewards = {
+					{ id = 2972, actionid = 5008 }, -- ehhhhhhh
+				},
+				expReward = 30000,
+			},
+		}),
+		QuestFactory.StartupItems({
+			{ id = 9363, pos = { 5840, 1561, 6 }, aid = Storage.LocalSupport.UpstairsRoom },
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Komor", {
+			[{ "all", "wszystko" }] = {
+				text = "Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief.",
+			},
+		}),
+		QuestFactory.Dialog("Commissioner Fisher", {
+			[{ "mission", "misja" }] = {
+				text = "We must stop this thief as fast as possible. He might be scheming how to get back unnoticed and take back his loot. Ask people around, maybe someone saw where he ran to.",
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = _38f,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Anons Father", {
+			[{ "thief", "zlodziej" }] = {
+				text = "Mister, I'm just fishing here quietly, and all of the sudden I see a man emerging on the surface. You're saying that he is a thief? - he ran that way, to the east.",
+			},
+		}),
+		QuestFactory.Dialog("Miles the Guard", {
+			[{ "thief", "zlodziej" }] = {
+				text = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",
+			},
+		}),
+		QuestFactory.Dialog("xXxTurdstinxXx", {
+			[{ "thief", "zlodziej" }] = {
+				text = "I don't go running up on rn snitching like that. This ain't the opp block, pipe down.",
+			},
+		}),
+		QuestFactory.Dialog("Moustachilles", {
+			[{ "thief", "zlodziej" }] = {
+				text = "Please, you don't think that I am giving any {information} about my - ekhem - contractors just like that.",
+			},
+			[{ "informacje", "info", "information", "informations" }] = {
+				text = "Guards! This man got to go, show him where we throw out carcasses.",
+				spawnMonstersOnSuccess = {
+					{ name = "bandit", count = 2 },
+					{ name = "smuggler", count = 3 },
+				},
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = _38f,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Moustachilles", {
+			[{ "informacje", "info", "information", "informations", "thief", "zlodziej" }] = {
+				text = "Fine! - calm down, we will get along somehow. What has been stolen from you?",
+			},
+			[{ "meble", "drewno", "furniture", "wood" }] = {
+				text = "Ohh, that dude ... he left on a boat recently. He was asking me for some good place to hide. ...\nI told him to look around at the south of the steppes. That's all I know.",
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = _38f,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Script(function()
+			local tileBeforeHawser = MoveEvent()
+			function tileBeforeHawser.onStepIn(creature, item, toPosition, fromPosition)
+				if not player:HasExactMissionState(missionState) then
+					return false
+				end
+
+				if SpawnLocks.LocalSupport.DominoShore:IsSet() then
+					return false
+				end
+
+				Game.createMonster("Lumberjack Domino Shore", toPosition)
+				SpawnLocks.LocalSupport.DominoShore:Set()
+			end
+			tileBeforeHawser:aid(Storage.LocalSupport.TileBeforeHawser)
+			tileBeforeHawser:type("stepin")
+			tileBeforeHawser:register()
+		end),
+		QuestFactory.StartupItems({
+			{ id = 4407, pos = { 6198, 1206, 7 }, aid = Storage.LocalSupport.TileBeforeHawser },
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.StartupItems({
+			{
+				id = 2472,
+				pos = { 6206, 1208, 7 },
+				rewards = {
+					{ id = 7934 },
+					{ id = 3055 },
+					{ id = 3357 },
+					{ id = 3557 },
+				},
+				expReward = 2000,
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = _38f,
+					[Storage.LocalSupport.LumberjackBoatAccess] = ACCESS_GRANTED,
+				},
+			},
+		}),
+		QuestFactory.Script(function()
+			InstantTravel({
+				positions = { Position(6197, 1206, 7), Position(6058, 1651, 7) },
+				storage = Storage.LocalSupport.LumberjackBoatAccess,
+			})
+		end)
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Commissioner Fisher", {
+			[{ "mission", "misja" }] = {
+				text = "Well done soldier, here's your reward. I found these items among stolen goods which we found in this thug's den.",
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = MISSION_FINISHED,
+					[Storage.Finished.IkeaForTheBold] = MISSION_FINISHED,
+				},
+				rewards = {
+					{ id = 22195 },
+					{ id = 7457 },
+				},
+				expReward = 60000,
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Anon's Father", {
+			[{ "paczka", "paczke", "mission", "misja", "puszka" }] = {
+				text = "Did you bring my package with you?",
+				nextTopic = QuestTopics.LocalSupport.ConfirmHavingpackage,
+			},
+			[{ "yes", "tak" }] = {
+				text = "Thank you for dealing with this matter. Here's your reward. If you're willing, I have another {problem} that you could help me with.",
+				requiredTopic = QuestTopics.LocalSupport.ConfirmHavingpackage,
+				textNoRequiredItems = "Come back to me once you've resolved the matter with the Old Postman.",
+				requiredItems = {
+					{ id = 15817, aid = Storage.LocalSupport.SettledDownFishmonger },
+				},
+				expReward = 10000,
+				rewards = {
+					{ id = 12807 },
+				},
+				outfitRewards = {
+					{ outfit = 157, addons = 0 },
+					{ outfit = 153, addons = 0 },
+				},
+				nextState = {
+					[Storage.LocalSupport.SettledDownFishmonger] = PH_STATE,
+				},
+			},
+			[{ "no", "nie" }] = {
+				text = "Come back to me once you've resolved the matter with the Old Postman.",
+				requiredTopic = QuestTopics.LocalSupport.ConfirmHavingpackage,
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Anon's Father", {
+			[{ "problem" }] = {
+				text = "Listen, over the past few years, I've lost a few components of my fishing gear in various ponds and lakes around Mirko. Specifically, I lost my wooden {float}, {reel}, and my old {stool}. Find all these items and {return} to me.",
+			},
+			[{ "return", "odnies" }] = {
+				text = "Thank you! Here's your reward. Wait a moment! Someone scribbled on my chair with a marker! Oh, {darn} it... For my current condition, only a stew with Chinese ping pong onion, meat from an under-milked centennial bull raised by wolves, all topped with wine stolen from the Kutonapleton winery, will help. Alternatively, a simple rotworm {stew} might do the trick.",
+				textNoRequiredItems = "Come back with all the items i need: {float}, {reel}, and my old {stool}.",
+				nextState = {
+					[Storage.LocalSupport.SettledDownFishmonger] = PH_STATE,
+				},
+				requiredItems = {
+					{ id = 6126, aid = Storage.LocalSupport.FishmongerFloat },
+					{ id = 3224, aid = Storage.LocalSupport.FishmongerReel },
+					{ id = 3107, aid = Storage.LocalSupport.FishmongerStool },
+				},
+				rewards = {
+					{ id = 12735 },
+					{ id = 7457 },
+				},
+				expReward = 40000,
+				outfitRewards = {
+					{ outfit = 157, addons = 1 },
+					{ outfit = 153, addons = 1 },
+				},
+			},
+			[{ "float", "splawik" }] = {
+				text = "It fell into the small pond nearby once. I hope you find it.",
+			},
+			[{ "reel", "spinning" }] = {
+				text = "I lost it while fishing by the western gate. I hope you can find it.",
+			},
+			[{ "stool", "stolek" }] = {
+				text = "It slipped into the water by the lake at the beach. I hope you find it.",
+			},
+		}),
+		QuestFactory.StartupItems({
+			{ id = 3687, pos = { 5931, 1640, 7 }, aid = Storage.LocalSupport.FishmongerFloat, rewards = { id = 6126, aid = Storage.LocalSupport.FishmongerFloat } },
+			{ id = 3686, pos = { 5829, 1598, 7 }, aid = Storage.LocalSupport.FishmongerReel, rewards = { id = 3224, aid = Storage.LocalSupport.FishmongerReel } },
+			{ id = 1768, pos = { 5792, 1594, 7 }, aid = Storage.LocalSupport.FishmongerStool, rewards = { id = 3107, aid = Storage.LocalSupport.FishmongerStool } },
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Anon's Father", {
+			[{ "bigos", "zupa", "soup", "stew", "mission", "misja" }] = {
+				text = "Slurp slurp... I'm feeling better now. To be honest, I can't finish the rest. Either eat or give it to those in need. You can collect your reward from my {son}.",
+				textNoRequiredItems = "Return with the stew, or the things might become unpleasant!",
+				requiredItems = {
+					{ id = 9079 },
+				},
+				removeItems = false,
+				nextState = {
+					[Storage.LocalSupport.SettledDownFishmonger] = PH_STATE,
+				},
+			},
+		})
+	)
+	:State(
+		PH_STATE,
+		QuestFactory.Dialog("Anon's Father", { [{ "syn", "syna", "son", "mission", "misja" }] = {
+			text = "He's involved in maritime transport. You can find him in the western part of the suburbs of Mirkotown.",
+		} }),
+		QuestFactory.Dialog("Fisherman Son", {
+			[{ "mission", "misja", "nagroda", "reward" }] = {
+				text = "Here's your reward. If you'd like to buy more {shimmer swimmer}s just ask me.",
+				rewards = {
+					{ id = 12557 },
+					{ id = 7250, count = 2 },
+					{ id = 3033, count = 5 },
+				},
+				outfitRewards = {
+					{ outfitId = 157, addon = 3 },
+					{ outfitId = 153, addon = 3 },
+				},
+				expReward = 80000,
+				nextState = {
+					[Storage.LocalSupport.SettledDownFishmonger] = PH_STATE,
+					[Storage.Finished.SettledDownFishmonger] = 1,
+				},
+			},
+		})
+	)
+	:State(
+		{ neq = MISSION_FINISHED },
+		QuestFactory.Dialog("Fisherman Son", {
+			[{ "shimmer swimmer" }] = {
+				text = "Yeah, they're pretty.",
+			},
+		})
+	)
+	:State(
+		MISSION_FINISHED,
+		QuestFactory.Dialog("Fisherman Son", {
+			[{ "shimmer swimmer" }] = {
+				text = "Do you want to buy one shimmer swimmer for 1000gp?",
+				nextTopic = QuestTopics.LocalSupport.ConfirmBuyingShimmerSwimmer,
+			},
+			[{ "yes", "tak" }] = {
+				text = "Here you go.",
+				requiredTopic = QuestTopics.LocalSupport.ConfirmBuyingShimmerSwimmer,
+				requiredMoney = 1000,
+				rewards = {
+					{ id = 12557 },
+				},
+			},
+		})
 	)
 	:Register()

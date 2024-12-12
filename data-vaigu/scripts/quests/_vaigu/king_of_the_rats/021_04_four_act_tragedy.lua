@@ -1,8 +1,9 @@
 local quest = Quest(LOCALIZERS.FourActTragedy)
+
 quest
 	:Storage(function()
 		Storage.FourActTragedy = {
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -95,7 +96,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Four Act Tragedy",
 			missions = {
-				[Storage.FourActTragedy.Mission01] = {
+				[Storage.FourActTragedy.PuzzlesDoneStateBinary] = {
 					name = "01. Dodge those compensation claims",
 					states = {
 						[QuestState.FourActTragedy.Mission01.AskRomekForMission] = "Romek mentioned you should as him for mission.",
@@ -807,7 +808,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.FourActTragedy.Mission01)
+	:Mission(Storage.FourActTragedy.PuzzlesDoneStateBinary)
 	:State(
 		QuestState.FourActTragedy.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
@@ -817,7 +818,7 @@ quest
 			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
 				text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
 				nextState = {
-					[Storage.FourActTragedy.Mission01] = 2,
+					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 2,
 				},
 				rewards = { ExerciseWeaponBox(3000) },
 			},
@@ -840,7 +841,7 @@ quest
 			[{ "byl", "was" }] = {
 				text = "In that case, please send the documents, and our team of specialists shh butt butt butt kshhhh. Oh, damn, my throat recorder broke. Umm... okay, I was lying about the insurance. But understand me - ever since the emperor took my lands, I have to fight for them, which has made me even more homeless.",
 				nextState = {
-					[Storage.FourActTragedy.Mission01] = 3,
+					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 3,
 				},
 			},
 		})
@@ -851,7 +852,7 @@ quest
 			[{ "mission" }] = {
 				text = "Well, hes just the smartest person in the world. Okay, let's not waste any more time. After HF-P/X's death, a time-delayed mechanism was activated, which opened a portal to the past. Now immigrants are flooding in from everywhere. Go to the portal in Knurow and head to the Knurow of the past. Find someone there who will help you with the task of stopping the influx of immigrants.",
 				nextState = {
-					[Storage.FourActTragedy.Mission01] = 4,
+					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 4,
 					[Storage.FourActTragedy.Mission02] = 1,
 					[Storage.FourActTragedy.RetroKnurowoAccess] = 1,
 				},
@@ -1325,7 +1326,7 @@ quest
 				nextState = {
 					[Storage.FourActTragedy.Mission06] = 5,
 					[Storage.Finished.FourActTragedy] = 1,
-					[Storage.PerIustitiaAdAstra.Mission01] = 1,
+					[Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary] = 1,
 					[Storage.FourActTragedy.GrazhenaDoor] = -1,
 				},
 				rewards = { ExerciseWeaponBox(3500) },

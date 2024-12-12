@@ -1,4 +1,4 @@
-local quest = Quest(LOCALIZERS)
+local quest = Quest(LOCALIZERS.ToCarryThePigs)
 
 quest
 	:Storage(function()
@@ -15,6 +15,28 @@ quest
 
 			KitzDominando = 11039,
 		}
+		QuestState.ToCarryThePigs = {
+			BeLikeSchwarzenegger = {
+				CollectTeeth_CreateNecklace = 1,
+				BringNecklaceToArni = 2,
+			},
+			HalfTurnKick = {
+				InvestigateHeroCaves = 1,
+				BringDocumentToCordell = 2,
+				AskShivganeshForTranslation = 3,
+				BringTranslationToCordell = 4,
+			},
+			BalancedDiet = {
+				FindCarrot = 1,
+			},
+			KitzDominando = {
+				ArrangeBowFromLegolas = 1,
+				GiveBowToKitz = 2,
+			},
+		}
+		QuestTopics.ToCarryThePigs = {
+			AcceptTeethNecklaceQuest = NextTopic()
+		}
 	end)
 	:Constant(function() end)
 	:Questlog(function()
@@ -24,34 +46,36 @@ quest
 				[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = {
 					name = "To be like the Schwarzenegger",
 					states = {
-						[1] = "Collect these items for me: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
-						[2] = "Arni glanced at these teeth, and asked you to find someone who can make them into necklace.",
-						[3] = "Madame Malkin gladly made this necklace for Arni.",
-						[4] = "In exchange for the teeth necklace, Arni gave u his old armour and a ring.",
+						[1] = "Arni asks you to collect the following items: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
+						[2] = "Madame Malkin gladly made this necklace for Arni. Report to Arni.",
+						[MISSION_FINISHED] = "In exchange for the teeth necklace, Arni gave u his old armour and a ring.",
 					},
 				},
 				[Storage.ToCarryThePigs.HalfTurnKick] = {
 					name = "Half turn Kick",
 					states = {
 						[1] = "Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment.",
-						[2] = "He was right. Now go to the Price Kebab and ask Shivganesh for translation.",
-						[3] = "It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker.",
-						[4] = "You have received MirkoTown guard hat for your help.",
+						[2] = "You found a some weird document in Hero hideout. Report to Cordell.",
+						[3] = "He was right. Now go to the Price Kebab and ask Shivganesh for translation.",
+						[4] = "It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker.",
+						[5] = "Cordell asked you to investigate further. Look for the legendary dragon scale legs in lost caves.",
+						[6] = "You found disfigured legs. Report your finding to Cordell.",
+						[MISSION_FINISHED] = "Cordell rewarded you for your help.",
 					},
 				},
 				[Storage.ToCarryThePigs.BalancedDiet] = {
 					name = "A Balanced Diet",
 					states = {
-						[1] = "Collect 1 slimming carrot for fat Mirek.",
-						[2] = "The carrot was dogshit, and u received chocolate slush in for your effort.",
+						[1] = "Collect 1 slimming carrot for the Fat Myrrus.",
+						[MISSION_FINISHED] = "The carrot was dogshit, and u received chocolate slush in for your effort.",
 					},
 				},
 				[Storage.ToCarryThePigs.KitzDominando] = {
 					name = "Kitz's Dominando",
 					states = {
-						[1] = "Arrange a special bow from elf adobe.",
-						[2] = "You have received the item from Legolas. Go give it to Kitz.",
-						[3] = "Turns out elvish bow sucks. Kitz now wishes to rook the elves. In return for your efforts you received his old bow.",
+						[1] = "Arrange a special elvish bow for Kitz.",
+						[2] = "You have received the bow from Legolas. Go give it to Kitz.",
+						[MISSION_FINISHED] = "Turns out elvish bow sucks. Kitz now wishes to rook the elves. In return for your efforts you received his old bow.",
 					},
 				},
 			},
@@ -67,11 +91,11 @@ quest
 				requiredState = {
 					[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
 				},
-				nextTopic = topics.acceptTeethNecklaceQuest,
+				nextTopic = QuestTopics.ToCarryThePigs.AcceptTeethNecklaceQuest,
 			},
 			[{ "yes", "tak", "necklace", "naszyjnik" }] = {
 				text = "Great.",
-				requiredTopic = topics.acceptTeethNecklaceQuest,
+				requiredTopic = QuestTopics.ToCarryThePigs.AcceptTeethNecklaceQuest,
 				nextState = {
 					[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = _38,
 				},
@@ -82,7 +106,7 @@ quest
 		PH_STATE,
 		QuestFactory.Dialog("Arni", {
 			[{ "mission", "misja", "necklace", "naszyjnik" }] = {
-				text = "Thats awesome! Only if I knew how to make a necklace of that.. Please, find someone that will be able  to weave one of those teeths. I would be really greateful.",
+				text = "Thats awesome! Only if I knew how to make a necklace of that.. Please, find someone that will be able to weave one of those teeths. I would be really greateful.",
 				requiredItems = {
 					{ id = 10196, count = 5 },
 					{ id = 10275, count = 5 },
@@ -91,7 +115,7 @@ quest
 				requiredItemsRemove = false,
 			},
 		}),
-		QuestFactory.Dialog("Madaem Malkin", {
+		QuestFactory.Dialog("Madame Malkin", {
 			[{ "mission", "misja", "necklace", "naszyjnik" }] = {
 				text = "Oohh, from Arnie? For sure, he is so handsome. I will spray them with my perfumes. Greet him from me and take this necklace.",
 				textNoRequiredItems = "I'm not able to make any necklace out of that..",

@@ -2887,3 +2887,153 @@ INFO: LuaStateData schema not available with 0 successes and 1 failures and 0 op
 INFO: LuaDebugData schema available with 9 successes and 0 failures and 1 optional at 13062738.75ms
 INFO: LuajitStateData schema available with 6 successes and 0 failures and 0 optional at 13062764.734375ms
 INFO: IDkmCallStackFilter.FilterNextFrame Resolved new script @C:\developer\vaigu_com\data/scripts\eventcallbacks\player\on_look.lua to C:\developer\vaigu_com\data\scripts\eventcallbacks\player\on_look.lua at 13062850.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 346657.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 346658.5390625ms
+INFO: Check if Lua library is loaded at 346785.4765625ms
+ERROR: Failed to find lua_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 347015.3359375ms
+ERROR: Failed to find luaL_newstate with: TryGetDiaSymbols() enumSymbols.count 0 != 1 at 347016.3359375ms
+WARNING: Failed to find Lua library at 347017.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347017.3359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347287.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347288.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347338.1796875ms
+INFO: Found kernel32 library at 347339.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347355.1640625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347391.1484375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347392.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347407.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347408.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347412.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347416.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347422.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347423.1328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347434.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347435.125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347442.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347442.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347458.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347459.109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347468.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347468.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 347475.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 347476.1015625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348304.9609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 348305.9609375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348339.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad finished at 348339.9296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348359.9140625ms
+INFO: Check if Lua library is loaded at 348359.9140625ms
+INFO: Found Lua library (from a worker component) at 348375.9140625ms
+WARNING: Lua attach on launch is disabled, skip breakpoint setup at 348455.859375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348492.84375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348510.828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348536.8203125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348639.7578125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348657.7421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348671.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348677.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 348688.734375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 349203.4296875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 349370.328125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 349904.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 350012.0078125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 350093.953125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 350321.8359375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 350555.6875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 350744.59375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 350831.5390625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 351081.421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 351145.3828125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 351198.3515625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 351377.2421875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 351599.1171875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 352643.5234375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 352741.46875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 352832.4140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353054.2890625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353147.2265625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353188.2109375ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353239.1796875ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353315.140625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353443.0625ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353495.03125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 353633.9453125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 354364.53125ms
+INFO: IDkmModuleInstanceLoadNotification.OnModuleInstanceLoad begin at 354432.5ms
+INFO: Loading configuration data at 446827.4609375ms
+INFO: Failed to get offsetof 'contents' in 'TString' (optional, used in 5.4) at 446905.9765625ms
+INFO: LuaStringData schema available with 0 successes and 0 failures and 0 optional at 446906.96875ms
+INFO: Failed to get offsetof 'u.i.v__' in 'TValue' at 446939.9609375ms
+INFO: Failed to get offsetof 'u.i.tt__' in 'TValue' at 446944.953125ms
+INFO: Failed to get offsetof 'u.d__' in 'TValue' (optional, used in NAN trick) at 446948.953125ms
+INFO: LuaValueData schema not available with 0 successes and 2 failures and 0 optional at 446949.953125ms
+INFO: Failed to get offsetof 'varname' in 'LocVar' at 446953.9453125ms
+INFO: Failed to get offsetof 'startpc' in 'LocVar' at 446955.9453125ms
+INFO: Failed to get offsetof 'endpc' in 'LocVar' at 446956.9453125ms
+INFO: LuaLocalVariableData schema not available with 0 successes and 3 failures and 0 optional at 446957.9453125ms
+INFO: Failed to get offsetof 'name' in 'Upvaldesc' at 446961.9453125ms
+INFO: LuaUpvalueDescriptionData schema not available with 0 successes and 1 failures and 0 optional at 446962.9453125ms
+INFO: Failed to get offsetof 'v' in 'UpVal' at 446965.9453125ms
+INFO: LuaUpvalueData schema not available with 0 successes and 1 failures and 0 optional at 446966.9375ms
+INFO: Failed to get offsetof 'numparams' in 'Proto' at 446971.9296875ms
+INFO: Failed to get offsetof 'is_vararg' in 'Proto' at 446972.9296875ms
+INFO: Failed to get offsetof 'maxstacksize' in 'Proto' (optional, not used) at 446973.9453125ms
+INFO: Failed to get offsetof 'sizeupvalues' in 'Proto' at 446975.9375ms
+INFO: Failed to get offsetof 'sizek' in 'Proto' at 446977.9375ms
+INFO: Failed to get offsetof 'sizecode' in 'Proto' at 446978.9296875ms
+INFO: Failed to get offsetof 'sizelineinfo' in 'Proto' at 446980.9296875ms
+INFO: Failed to get offsetof 'sizeabslineinfo' in 'Proto' (optional, used in 5.4) at 446981.9296875ms
+INFO: Failed to get offsetof 'sizep' in 'Proto' at 446982.9296875ms
+INFO: Failed to get offsetof 'sizelocvars' in 'Proto' at 446984.9375ms
+INFO: Failed to get offsetof 'linedefined' in 'Proto' (optional, used to detect main function) at 446985.9375ms
+INFO: Failed to get offsetof 'lastlinedefined' in 'Proto' (optional, not used) at 446986.9296875ms
+INFO: Failed to get offsetof 'k' in 'Proto' at 446988.9296875ms
+INFO: Failed to get offsetof 'code' in 'Proto' at 446989.9296875ms
+INFO: Failed to get offsetof 'p' in 'Proto' at 446990.9296875ms
+INFO: Failed to get offsetof 'lineinfo' in 'Proto' at 446992.921875ms
+INFO: Failed to get offsetof 'abslineinfo' in 'Proto' (optional, used in 5.4) at 446995.921875ms
+INFO: Failed to get offsetof 'locvars' in 'Proto' at 446996.9140625ms
+INFO: Failed to get offsetof 'upvalues' in 'Proto' at 446998.9296875ms
+INFO: Failed to get offsetof 'source' in 'Proto' at 446999.921875ms
+INFO: Failed to get offsetof 'gclist' in 'Proto' at 447002.921875ms
+INFO: LuaFunctionData schema not available with 0 successes and 16 failures and 0 optional at 447002.921875ms
+INFO: Failed to get offsetof 'func' in 'CallInfo' at 447007.9140625ms
+INFO: Failed to get offsetof 'previous' in 'CallInfo' (optional, used in 5.2/5.3) at 447008.9140625ms
+INFO: Failed to get offsetof 'u.l.trap' in 'CallInfo' (optional, used to detect 5.4) at 447011.921875ms
+INFO: Failed to get offsetof 'u.l.base' in 'CallInfo' at 447013.9140625ms
+INFO: Failed to get offsetof 'u.l.savedpc' in 'CallInfo' at 447015.9140625ms
+INFO: Failed to get offsetof 'tailcalls' in 'CallInfo' (optional, used in 5.1) at 447017.90625ms
+INFO: Failed to get offsetof 'callstatus' in 'CallInfo' (optional, used in 5.2/5.3) at 447023.9140625ms
+INFO: LuaFunctionCallInfoData schema not available with 0 successes and 3 failures and 0 optional at 447023.9140625ms
+INFO: Failed to get offsetof 'i_val' in 'Node' at 447029.90625ms
+INFO: Failed to get offsetof 'u.key_tt' in 'Node' (optional, used in Lua 5.4) at 447031.8984375ms
+INFO: Failed to get offsetof 'u.key_val' in 'Node' (optional, used in Lua 5.4) at 447034.8984375ms
+INFO: Failed to get offsetof 'i_key' in 'Node' at 447037.90625ms
+INFO: LuaNodeData schema not available with 0 successes and 2 failures and 0 optional at 447038.8984375ms
+INFO: Failed to get offsetof 'flags' in 'Table' at 447045.890625ms
+INFO: Failed to get offsetof 'lsizenode' in 'Table' at 447046.890625ms
+INFO: Failed to get offsetof 'sizearray' in 'Table' at 447048.8984375ms
+INFO: Failed to get offsetof 'array' in 'Table' at 447050.8984375ms
+INFO: Failed to get offsetof 'node' in 'Table' at 447053.890625ms
+INFO: Failed to get offsetof 'lastfree' in 'Table' at 447054.890625ms
+INFO: Failed to get offsetof 'metatable' in 'Table' at 447057.8828125ms
+INFO: Failed to get offsetof 'gclist' in 'Table' at 447059.8828125ms
+INFO: LuaTableData schema not available with 0 successes and 8 failures and 0 optional at 447059.8828125ms
+INFO: Failed to get offsetof 'isC' in 'LClosure' (optional, used in 5.1) at 447062.890625ms
+INFO: Failed to get offsetof 'nupvalues' in 'LClosure' (optional, used if avaiable) at 447063.890625ms
+INFO: Failed to get offsetof 'env' in 'LClosure' (optional, used in 5.1) at 447065.8828125ms
+INFO: Failed to get offsetof 'p' in 'LClosure' at 447066.8828125ms
+INFO: Failed to get offsetof 'upvals' in 'LClosure' at 447068.8828125ms
+INFO: LuaClosureData schema not available with 0 successes and 2 failures and 0 optional at 447069.875ms
+INFO: Failed to get offsetof 'f' in 'CClosure' at 447074.8828125ms
+INFO: LuaExternalClosureData schema not available with 0 successes and 1 failures and 0 optional at 447075.8828125ms
+INFO: Failed to get offsetof 'uv.metatable' in 'Udata' at 447083.8671875ms
+INFO: LuaUserDataData schema not available with 0 successes and 1 failures and 0 optional at 447083.8671875ms
+INFO: Failed to get offsetof 'l_G' in 'lua_State' (optional, used in Locals Window) at 447090.8671875ms
+INFO: Failed to get offsetof 'ci' in 'lua_State' at 447095.859375ms
+INFO: Failed to get offsetof 'savedpc' in 'lua_State' (optional, used in 5.1 (*)) at 447096.859375ms
+INFO: Failed to get offsetof 'base_ci' in 'lua_State' (optional, used in 5.1) at 447098.8671875ms
+INFO: LuaStateData schema not available with 0 successes and 1 failures and 0 optional at 447098.8671875ms
+INFO: LuaDebugData schema available with 9 successes and 0 failures and 1 optional at 447119.8515625ms
+INFO: LuajitStateData schema available with 6 successes and 0 failures and 0 optional at 447155.828125ms
+INFO: IDkmCallStackFilter.FilterNextFrame Resolved new script @C:\developer\vaigu_com\data/scripts\eventcallbacks\player\on_look.lua to C:\developer\vaigu_com\data\scripts\eventcallbacks\player\on_look.lua at 447302.75ms

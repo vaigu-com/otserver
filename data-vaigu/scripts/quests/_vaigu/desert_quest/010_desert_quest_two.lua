@@ -1,13 +1,12 @@
---38f pz on stepins
-
 local quest = Quest(LOCALIZERS.DesertQuestTwo)
+
 quest
 	:Storage(function()
 		Storage.DesertQuestHub = Storage.DesertQuestHub or {}
 		Storage.DesertQuestHub.ToDesertQuestTwo = NextStorage()
 		Storage.DesertQuestTwo = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			ProgressChests = NextStorage(),
 			FastMonster = NextStorage(),
 			RewardRoomTp = NextStorage(),
@@ -243,7 +242,7 @@ quest
 			end
 
 			function GetDQ2completedPuzzleCount(player)
-				local storageVal = player:getStorageValue(Storage.DesertQuestTwo.Mission01)
+				local storageVal = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary)
 				local result = 0
 				while storageVal > 0 do
 					result = result + (bit.band(storageVal, 1))
@@ -259,7 +258,7 @@ quest
 					return false
 				end
 
-				local oldValue = player:getStorageValue(Storage.DesertQuestTwo.Mission01)
+				local oldValue = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary)
 				if oldValue == -1 then
 					oldValue = 0
 				end
@@ -270,7 +269,7 @@ quest
 				end
 
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-				player:setStorageValue(Storage.DesertQuestTwo.Mission01, newValue)
+				player:setStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary, newValue)
 
 				local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 				local finalString = puzzlesCompleted .. "/" .. puzzlesCount
@@ -1063,7 +1062,6 @@ quest
 		QuestFactory.Script(function(missionState)
 			local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(13, -22, 1)
 			local downRight = DESERT_QUEST_TWO_ANCHOR:Moved(21, -22, 1)
-			local countdownRunning = false
 
 			local redPos = DESERT_QUEST_TWO_ANCHOR:Moved(12, -13, 1)
 			local yellowPos = DESERT_QUEST_TWO_ANCHOR:Moved(17, -8, 1)

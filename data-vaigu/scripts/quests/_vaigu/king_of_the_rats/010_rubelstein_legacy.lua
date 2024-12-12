@@ -3,7 +3,7 @@ local quest = Quest(LOCALIZERS.RubelsteinLegacy)
 quest
 	:Storage(function()
 		Storage.RubelsteinLegacy = {
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			RubelsteinScroll = NextStorage(),
 			RubelsteinChecksum = NextStorage()
 		}
@@ -24,7 +24,7 @@ quest
 			},
 		}
 	end)
-	:Mission(Storage.RubelsteinLegacy.Mission01)
+	:Mission(Storage.RubelsteinLegacy.PuzzlesDoneStateBinary)
 	:State(
 		QuestState.RubelsteinLegacy.Mission01.TalkToRubelstein,
 		QuestFactory.Dialog("Rubelstein", {
@@ -35,7 +35,7 @@ quest
 						QuestKeyItems.RubelsteinLegacy.rubelsteinScroll,
 					},
 				},
-				nextState = { [Storage.RubelsteinLegacy.Mission01] = QuestState.RubelsteinLegacy.Mission01.TalkToNomad },
+				nextState = { [Storage.RubelsteinLegacy.PuzzlesDoneStateBinary] = QuestState.RubelsteinLegacy.Mission01.TalkToNomad },
 				specialActionsOnSuccess = {
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.setStorageRandomNumber,

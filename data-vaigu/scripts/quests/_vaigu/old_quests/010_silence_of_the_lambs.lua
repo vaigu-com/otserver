@@ -1,4 +1,4 @@
-local quest = Quest(LOCALIZERS)
+local quest = Quest(LOCALIZERS.SilenceOfTheLambs)
 
 quest
 	:Storage(function()
@@ -8,8 +8,28 @@ quest
 			RubMeatWithLecter = 11073,
 			HumanHeart = 11074,
 		}
+		QuestState.SilenceOfTheLambs = {
+			TestOfStrength = {
+				BringTeethToLecter = 1,
+				AskLecterForNewMission = 2,
+			},
+			FashionistaClothes = {
+				BringLeatherToLecter = 1,
+				AskLecterForNewMission = 2,
+			},
+			RubMeatWithLecter = {
+				BringHeartsToLecter = 1,
+			},
+		}
 	end)
-	:Constant(function() end)
+	:Constant(function()
+		QuestKeyItems.SilenceOfTheLambs = {
+			HumanHeart = {
+				id = 5943,
+				aid = Storage.SilenceOfTheLambs.HumanHeart,
+			},
+		}
+	end)
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "The Silence of the Lambs",
@@ -30,8 +50,8 @@ quest
 						[3] = "For your help you have been taught how to skin human carcass.",
 					},
 				},
-				[Storage.SilenceOfTheLambs.LectersRecipe] = {
-					name = "Lecter's recipe",
+				[Storage.SilenceOfTheLambs.RubMeatWithLecter] = {
+					name = "Rub Meat With Lecter",
 					states = {
 						[1] = "LECTER_WANTS_HEARTS_AND_LIVERS_STATUS",
 						[2] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
@@ -74,7 +94,7 @@ quest
 			[{ "mission", "misja" }] = {
 				text = "So you want to help me again? Listen, recently I've been sewing a little bit, but human skin itself its not enough.\nI will need some different colours and materials. Bring me 20 pieces of {skin} of each type.\nIf you do that I will teach you everything about skinning.",
 				nextState = {
-					[Storage.SilenceOfTheLambs.TestOfStrength] = _38f,
+					[Storage.SilenceOfTheLambs.TestOfStrength] = MISSION_FINISHED,
 					[Storage.SilenceOfTheLambs.FashionistaClothes] = _38f,
 				},
 			},
@@ -96,6 +116,9 @@ quest
 					{ id = 10279, count = 2 },
 					{ id = 11479, count = 2 },
 				},
+				nextState = {
+					[Storage.SilenceOfTheLambs.FashionistaClothes] = _38f,
+				},
 			},
 		})
 	)
@@ -104,6 +127,9 @@ quest
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
 				text = "Ahh yes, something to do? I'm going for annual meeting for cannibals and I need to prepare some meals, so I won't come empty handed.\nSo If you know secret skinning techniques already you can help me to gather ingredients. Bring me 15 human hearts.",
+				nextState = {
+					[Storage.SilenceOfTheLambs.FashionistaClothes] = _38f,
+				},
 			},
 		})
 	)
@@ -113,10 +139,10 @@ quest
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
 				text = "You need to be more careful, some of them are really creased..\nWait, that one is a liver and it looks like it belonged to an alcoholic. Despite that I'm inviting you to the cannibals club. Take this uniform! Take also my vest in gratitude, I'm not using it anymore.",
-				textNoRequiredItems = "Come back when you get hearts ",
+				textNoRequiredItems = "Come back when you get 15 hearts",
 				expReward = 500000,
 				requiredItems = {
-					{ id = 5943, count = 15, aid = Storage.SilenceOfTheLambs.HumanHeart }, --38f add obtaining to skinning knife script
+					{ id = QuestKeyItems.SilenceOfTheLambs.HumanHeart.id, count = 15, aid = QuestKeyItems.SilenceOfTheLambs.HumanHeart.aid },
 				},
 				rewards = {
 					{ id = 17829 },
@@ -126,8 +152,8 @@ quest
 					{ outfit = 367, addons = 0 },
 				},
 				nextState = {
-					[Storage.SilenceOfTheLambs.RubMeatWithLecter] = _38f,
-					[Storage.Finished.SilenceOfTheLambs] = 1,
+					[Storage.SilenceOfTheLambs.RubMeatWithLecter] = MISSION_FINISHED,
+					[Storage.Finished.SilenceOfTheLambs] = MISSION_FINISHED,
 				},
 			},
 		})

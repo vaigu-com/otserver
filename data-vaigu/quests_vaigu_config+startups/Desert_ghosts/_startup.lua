@@ -30,7 +30,7 @@ local items = {
 		aid = Storage.CaveExplorerOnShield.Rewards.GermiChest,
 		uid = 1000,
 		pos = { 63, 35, 0 },
-		nextState = { [Storage.CaveExplorerOnShield.Questline] = 2, [Storage.CaveExplorerOnShield.Mission01] = 2 },
+		nextState = { [Storage.CaveExplorerOnShield.Questline] = 2, [Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary] = 2 },
 		rewards = { CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.germiDocument },
 	},
 	{ pos = { 5, -8, 1 }, id = 231, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },

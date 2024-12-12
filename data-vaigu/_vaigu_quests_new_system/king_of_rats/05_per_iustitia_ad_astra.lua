@@ -3,7 +3,7 @@ quest
 	:Storage(function()
 		Storage.PerIustitiaAdAstra = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -64,7 +64,7 @@ quest
 			missions = {
 				[1] = {
 					name = "01. Beyond the Justice",
-					storageId = Storage.PerIustitiaAdAstra.Mission01,
+					storageId = Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,

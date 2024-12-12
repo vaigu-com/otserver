@@ -3,7 +3,7 @@ quest
 	:Storage(function()
 		Storage.ThreeSramatiansAndTheDragon = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -44,7 +44,7 @@ quest
 			missions = {
 				[1] = {
 					name = "01. Hither and Thither",
-					storageId = Storage.ThreeSramatiansAndTheDragon.Mission01,
+					storageId = Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 1,

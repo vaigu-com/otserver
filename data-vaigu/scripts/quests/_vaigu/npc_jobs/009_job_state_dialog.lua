@@ -72,7 +72,7 @@ NPC_STATE_DIALOGS = {
 				[{ "trofeow", "trophies", "trofeum", "trophy" }] = {
 					text = "THIS_TROPHY_WILL_COST_YOU_N",
 					cost = trophyCost,
-					nextTopic = JOB_TOPICS.browsingTrophies,
+					nextTopic = QuestTopics.JOB_TOPICS.browsingTrophies,
 				},
 				[{
 					"bronze hunter trophy",
@@ -83,13 +83,13 @@ NPC_STATE_DIALOGS = {
 					"sea serpent doll",
 				}] = {
 					text = "YOU_WANT_TO_BUY_TROHPY_NAME",
-					requiredTopic = JOB_TOPICS.browsingTrophies,
-					nextTopic = JOB_TOPICS.confirmBuyTrophy,
+					requiredTopic = QuestTopics.JOB_TOPICS.browsingTrophies,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmBuyTrophy,
 					cost = trophyCost,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = JOB_TOPICS.confirmBuyTrophy,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyTrophy,
 					specialActionsOnSuccess = { { action = buyTrophy } },
 				},
 			},
@@ -97,11 +97,11 @@ NPC_STATE_DIALOGS = {
 				[{ "wierzchowca", "mount" }] = {
 					text = "YOU_WANT_TO_BUY_ANTELOPE",
 					cost = antelopeCost,
-					nextTopic = JOB_TOPICS.confirmBuyAntelope,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmBuyAntelope,
 				},
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = JOB_TOPICS.confirmBuyAntelope,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyAntelope,
 					mountRewards = { antelopeMountId },
 					nextState = {
 						[Storage.taskPoints] = T("-:cost:", { cost = antelopeCost }),
@@ -123,7 +123,7 @@ NPC_STATE_DIALOGS = {
 			[{ max = 0 }] = {
 				[{ "yes", "tak" }] = {
 					text = "Here you are.",
-					requiredTopic = JOB_TOPICS.confirmUnlockPowerfulimbue,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 					requiredState = {
 						[Storage.taskPoints] = powerfulImbueUnlockCost,
 					},
@@ -136,14 +136,14 @@ NPC_STATE_DIALOGS = {
 				},
 				[{ "mozliwosc", "ability" }] = {
 					text = "YOU_WANT_BUY_ABILITY_POWEFUL_IMBUEMENT",
-					nextTopic = JOB_TOPICS.confirmUnlockPowerfulimbue,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 					cost = powerfulImbueUnlockCost,
 				},
 			},
 			[{ min = 1 }] = {
 				[{ "yes", "tak" }] = {
 					text = "You already got it.",
-					requiredTopic = JOB_TOPICS.confirmUnlockPowerfulimbue,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 				},
 				[{ "mozliwosc", "ability" }] = { text = "You already got it." },
 			},
@@ -154,30 +154,30 @@ NPC_STATE_DIALOGS = {
 			[{ min = -1 }] = {
 				[{ "outfit", "addon", "stroj" }] = {
 					text = "In exchange for a truly generous donation, I will offer a special outfit. Do you want to make a donation?",
-					nextTopic = JOB_TOPICS.confirmExplaingoldenoutfit,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmExplaingoldenoutfit,
 				},
 			},
 			[1] = {
 				[{ "yes", "tak" }] = {
 					text = "You already have that outfit.",
-					requiredTopic = JOB_TOPICS.confirmExplaingoldenoutfit,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmExplaingoldenoutfit,
 				},
 			},
 			[-1] = {
 				[{ "yes", "tak" }] = {
 					text = "Excellent! Now, let me explain. If you donate 20.000.000 gold pieces, you will be entitled to wear a unique outfit.\nYou will be entitled to wear the {armor} for 10.000.000 gold pieces, {helmet} for an additional 5.000.000 and the {boots} for another 5.000.000 gold pieces.\nWhat will it be?",
-					requiredTopic = JOB_TOPICS.confirmExplaingoldenoutfit,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmExplaingoldenoutfit,
 				},
 				[{ "armor", "armour", "zbroje", "zbroje" }] = {
 					text = "So you would like to donate 10.000.000 gold pieces which in return will entitle you to wear a unique armor?",
-					nextTopic = JOB_TOPICS.confirmGoldenoutfitarmourBuy,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmGoldenoutfitarmourBuy,
 					requiredState = {
 						[Storage.GoldenOutfit.Chest] = { max = -1, errorMessage = "You already have that addon." },
 					},
 				},
 				[{ "helmet", "helm" }] = {
 					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique helmet?",
-					nextTopic = JOB_TOPICS.confirmBuyGoldenoutfithelmet,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmBuyGoldenoutfithelmet,
 					requiredState = {
 						[Storage.GoldenOutfit.Helmet] = { max = -1, errorMessage = "You already have that addon." },
 						[Storage.GoldenOutfit.Chest] = {
@@ -188,7 +188,7 @@ NPC_STATE_DIALOGS = {
 				},
 				[{ "boots", "buty" }] = {
 					text = "So you would like to donate 5.000.000 gold pieces which in return will entitle you to wear a unique pair of boots?",
-					nextTopic = JOB_TOPICS.confirmGoldenoutfitbootsBuy,
+					nextTopic = QuestTopics.JOB_TOPICS.confirmGoldenoutfitbootsBuy,
 					requiredState = {
 						[Storage.GoldenOutfit.Boots] = { max = -1, errorMessage = "You already have that addon." },
 						[Storage.GoldenOutfit.Chest] = {
@@ -205,7 +205,7 @@ NPC_STATE_DIALOGS = {
 					text = "Take this armor as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 10 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = JOB_TOPICS.confirmBuyGoldenoutfitbody,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyGoldenoutfitbody,
 					nextState = {
 						[Storage.GoldenOutfit.Chest] = 1,
 					},
@@ -214,10 +214,7 @@ NPC_STATE_DIALOGS = {
 							id = 23398,
 							addToStore = true,
 							unwrapId = 31510,
-							[ITEM_ATTRIBUTE_DESCRIPTION] = T(
-								"Unwrap it in your own house to create a :name:.",
-								{ name = ItemType(31510):getName() }
-							),
+							[ITEM_ATTRIBUTE_DESCRIPTION] = T("Unwrap it in your own house to create a :name:.", { name = ItemType(31510):getName() }),
 						},
 					},
 					outfitRewards = {
@@ -229,7 +226,7 @@ NPC_STATE_DIALOGS = {
 					text = "Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 5 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = JOB_TOPICS.confirmBuyGoldenoutfithelmet,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyGoldenoutfithelmet,
 					nextState = {
 						[Storage.GoldenOutfit.Helmet] = 1,
 					},
@@ -242,7 +239,7 @@ NPC_STATE_DIALOGS = {
 					text = "Take these boots as a token of great gratitude. Let us forever remember this day, my friend!",
 					requiredMoney = 5 * 10 ^ 6,
 					textNoRequiredMoney = "You dont have enough money.",
-					requiredTopic = JOB_TOPICS.confirmGoldenoutfitbootsBuy,
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmGoldenoutfitbootsBuy,
 					nextState = {
 						[Storage.GoldenOutfit.Boots] = 1,
 						[Storage.GoldenOutfit.Full] = 1,

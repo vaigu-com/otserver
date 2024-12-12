@@ -1,13 +1,10 @@
 local quest = Quest(LOCALIZERS.TheaterOfCheapThrills)
-local topics = {
-	confirmCamp = 1,
-}
 
 quest
 	:Storage(function()
 		Storage.TheaterOfCheapThrills = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -101,6 +98,9 @@ quest
 				Finished = 3,
 			},
 		}
+		QuestTopics.TheaterOfCheapThrills = {
+			ConfirmCampDestination = 1,
+		}
 	end)
 	:Constant(function()
 		TEATR_TANIEJ_SENSACJI_KEY_ITEMS = {
@@ -138,7 +138,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Theater of Cheap Thrills",
 			missions = {
-				[Storage.TheaterOfCheapThrills.Mission01] = {
+				[Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary] = {
 					name = "01. Vitat Iustitia",
 					states = {
 						[QuestState.ThreaterOfCheapThrills.Mission01.AskRomekForMission] = "Many people ask: Who is this King of Rats and what's the deal? That's when I tell them, 'You stinker, go to Ratland and see for yourself. The King of Rats! Lets go! Yeehaw!",
@@ -654,7 +654,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.TheaterOfCheapThrills.Mission01)
+	:Mission(Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary)
 	:State(
 		QuestState.ThreaterOfCheapThrills.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
@@ -670,7 +670,7 @@ quest
 			[{ "yes", "tak" }] = {
 				text = "This will be your first task: find something that rats crave the most - cheese. But it can't be just any cheese from under someone's foreskin or parmesan growing under fingernails. These rats have access to the latest cheeses, and they won't be impressed. To satisfy them, you'll have to find the legendary matured cheese with flowers. It's possible that the pirates have such cheese. It's probably well hidden. Their hideout is on the southern shore of Hurghada.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.Mission01] = 2,
+					[Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary] = 2,
 				},
 			},
 		})
@@ -683,7 +683,7 @@ quest
 				requiredItems = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS.cheese },
 				textNoRequiredItems = "Return when you've obtained the special cheese.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.Mission01] = 3,
+					[Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary] = 3,
 					[Storage.TheaterOfCheapThrills.Mission02] = 1,
 				},
 				[{ "no", "nie" }] = { text = "Return when you've obtained the special cheese." },
@@ -1089,19 +1089,21 @@ quest
 		QuestFactory.Dialog("[SOLID] Kitz", {
 			[{ "mission", "misja" }] = {
 				text = "Hmm, are you sure it's just a regular camp?",
-				nextTopic = topics.confirmCamp,
+				nextTopic = QuestTopics.TheaterOfCheapThrills.ConfirmCampDestination,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Okay, then tell Arni I'd love to go there.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.Mission05] = 333,
+					[Storage.TheaterOfCheapThrills.Mission05] = QuestState.ThreaterOfCheapThrills.Mission05.ReportToRomek,
 				},
+				requiredTopic = QuestTopics.TheaterOfCheapThrills.ConfirmCampDestination,
 			},
 			[{ "no", "nie" }] = {
 				text = "What? Is it a concentration camp? Are you crazy? If that's what he wanted to do to me, I'll stay away from him.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.Mission05] = 333,
+					[Storage.TheaterOfCheapThrills.Mission05] = QuestState.ThreaterOfCheapThrills.Mission05.ReportToRomek,
 				},
+				requiredTopic = QuestTopics.TheaterOfCheapThrills.ConfirmCampDestination,
 			},
 		})
 	)
@@ -1416,7 +1418,7 @@ quest
 					[Storage.TheaterOfCheapThrills.Mission12] = 3,
 					[Storage.Finished.TheaterOfCheapThrills] = 1,
 					[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = 1,
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = 1,
+					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 1,
 				},
 				rewards = { ExerciseWeaponBox(400) },
 			},

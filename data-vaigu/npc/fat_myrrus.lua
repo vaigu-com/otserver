@@ -79,30 +79,6 @@ local dialog = {
 			"Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy",
 		}] = { text = "Yeah, you got it!" },
 	},
-	[Storage.FatMyrrusEncounters] = {
-		[1] = {
-			[{ "encounters", "bosses", "boss", "bossami" }] = {
-				text = "I didnt throw my life away for video games just to give away those informations for free. Bring me a {cake} and i will tell you all you need to know about any encounter.",
-			},
-			[{ "cake", "ciasto" }] = {
-				text = "Alright, i can help you with your {encounter} now.",
-				nextState = { [Storage.FatMyrrusEncounters] = 2 },
-				requiredItems = { { id = 6277 } },
-				textNoRequiredItems = "Come back with a cake. Also, i dont want any toppings on it.",
-			},
-		},
-		[2] = {
-			[{ "encounters", "bosses", "boss", "bossami" }] = {
-				text = "LIST_ENCOUNTERS",
-				nextTopic = 1,
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "ENCOUNTER_DESCRIPTION",
-				requiredTopic = { min = 1, max = 1 },
-				nextTopic = 0,
-			},
-		},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

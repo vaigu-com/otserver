@@ -1,4 +1,5 @@
 local quest = Quest(LOCALIZERS.DesertQuestOne)
+
 quest
 	:Storage(function()
 		Storage.DesertQuestHub.ToDesertQuestOne = NextStorage()
@@ -51,6 +52,7 @@ quest
 				FinalChestChessbox = NextStorage(),
 				FinalChestCrystals = NextStorage(),
 				FinalExpBox = NextStorage(),
+				
 				HiddenLibraryBush = NextStorage(),
 				HiddenInBoxesRoom = NextStorage(),
 				HiddenLibraryFloor = NextStorage(),
@@ -1380,7 +1382,10 @@ quest
 						actionid = Storage.DesertQuestOne.Rewards.FinalExpBox,
 						expReward = 1000 * 1000 * 1,
 						rewards = {},
-						nextState = { [Storage.Finished.CaveExplorerOnShield] = 1 },
+						nextState = { [Storage.Finished.DesertQuestOne] = 1 },
+						requireditems = {
+							--38f keys and other trash
+						}
 					},
 				},
 			}

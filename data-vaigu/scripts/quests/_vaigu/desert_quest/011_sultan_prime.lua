@@ -1,10 +1,11 @@
-local sultanPrime = Quest("sultan_prime")
-sultanPrime
+local quest = Quest(LOCALIZERS.SultanPrime)
+
+quest
 	:Storage(function()
 		Storage.SultanPrime = {
 			State = NextStorage(),
 
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			MagicianFountain = NextStorage(),
 
 			Mission02 = NextStorage(),
@@ -69,7 +70,7 @@ sultanPrime
 			startStorageId = Storage.SultanPrime.Localizer,
 			startStorageValue = 1,
 			missions = {
-				[Storage.SultanPrime.Mission01] = {
+				[Storage.SultanPrime.PuzzlesDoneStateBinary] = {
 					name = "What Is Mafia? Is It Good?",
 					states = {
 						[QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
@@ -369,17 +370,17 @@ sultanPrime
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.SultanPrime.Mission01)
+	:Mission(Storage.SultanPrime.PuzzlesDoneStateBinary)
 	:State(
 		MISSION_NOT_STARTED,
 		QuestFactory.StartupItems({
-			{ id = QuestKeyItems.SultanPrime.cezaryCorpse.id, aid = Storage.SultanPrime.RewardsScripted.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
+			{ id = QuestKeyItems.SultanPrime.cezaryCorpse.id, aid = Storage.SultanPrime.RewardsScripted.Necklace, nextState = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = 1 }, rewards = { QuestKeyItems.SultanPrime.amulet }, requiredState = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = MISSION_NOT_STARTED } },
 		}),
 		QuestFactory.Script(function(missionState)
 			local neckUpdateStorages = {
-				[Storage.SultanPrime.Mission01] = 1,
+				[Storage.SultanPrime.PuzzlesDoneStateBinary] = 1,
 			}
-			local questStorage = Storage.SultanPrime.Mission01
+			local questStorage = Storage.SultanPrime.PuzzlesDoneStateBinary
 
 			local corpse = Action()
 			function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -402,7 +403,7 @@ sultanPrime
 			[{ GREET }] = {
 				text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
 				nextState = {
-					[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
+					[Storage.SultanPrime.PuzzlesDoneStateBinary] = QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
 				},
 			},
 		})
@@ -418,7 +419,7 @@ sultanPrime
 				requiredItems = { QuestKeyItems.SultanPrime.amulet },
 				textNoRequiredItems = "Ehh, you lost it? Guess Imma take over the world in next season.",
 				nextState = {
-					[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.Finished,
+					[Storage.SultanPrime.PuzzlesDoneStateBinary] = QuestState.SultanPrime.Mission01.Finished,
 					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
 				},
 			},

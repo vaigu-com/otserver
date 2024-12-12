@@ -6,7 +6,7 @@ local dialogs = {
 		},
 		[{ "yes", "tak", "napotkalem" }] = {
 			text = "Thank you very much! This brings back good old memories! Here is reward for you!",
-			requiredTopic = { min = 2, max = 2 },
+			requiredTopic = 2,
 			requiredItems = { { id = 3244 } },
 			rewards = { { id = 3397 } },
 			textNoRequiredItems = "Thats unfortunate.",

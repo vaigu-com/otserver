@@ -34,6 +34,7 @@ function Quest:New(name)
 	return newObj
 end
 setmetatable(Quest, {
+	---@return Quest Quest
 	__call = function(class, ...)
 		return class:New(...)
 	end,

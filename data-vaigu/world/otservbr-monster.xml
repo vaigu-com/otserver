@@ -5324,6 +5324,15 @@
 	<monster centerx="7060" centery="796" centerz="5" radius="1">
 		<monster name="Cave Rat" x="0" y="0" z="5" spawntime="60" />
 	</monster>
+	<monster centerx="4876" centery="809" centerz="5" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="4872" centery="812" centerz="5" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="4875" centery="813" centerz="5" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="6597" centery="814" centerz="5" radius="1">
 		<monster name="Hydra" x="0" y="0" z="5" spawntime="60" />
 	</monster>
@@ -5564,6 +5573,9 @@
 	</monster>
 	<monster centerx="6309" centery="895" centerz="5" radius="1">
 		<monster name="Crawler" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="4811" centery="896" centerz="5" radius="1">
+		<monster name="Goblin" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6300" centery="897" centerz="5" radius="1">
 		<monster name="Mutated Tiger" x="0" y="0" z="5" spawntime="60" />
@@ -10258,8 +10270,14 @@
 	<monster centerx="6786" centery="809" centerz="6" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="4875" centery="811" centerz="6" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6789" centery="811" centerz="6" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="4875" centery="813" centerz="6" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6785" centery="813" centerz="6" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="6" spawntime="60" />
@@ -10638,8 +10656,18 @@
 	<monster centerx="6867" centery="891" centerz="6" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="4815" centery="892" centerz="6" radius="1">
+		<monster name="Goblin Leader" x="0" y="0" z="6" spawntime="3600" />
+	</monster>
+	<monster centerx="4818" centery="895" centerz="6" radius="1">
+		<monster name="Goblin" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6212" centery="897" centerz="6" radius="1">
 		<monster name="Mutated Bat" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="4812" centery="898" centerz="6" radius="1">
+		<monster name="Goblin" x="0" y="0" z="6" spawntime="60" />
+		<monster name="Goblin" x="1" y="0" z="6" spawntime="-1139216128" />
 	</monster>
 	<monster centerx="6190" centery="899" centerz="6" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="6" spawntime="60" />
@@ -20588,6 +20616,9 @@
 	<monster centerx="7069" centery="809" centerz="7" radius="1">
 		<monster name="Seagull" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="4876" centery="810" centerz="7" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6162" centery="810" centerz="7" radius="1">
 		<monster name="Mercury Blob" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -20639,6 +20670,9 @@
 	</monster>
 	<monster centerx="6907" centery="815" centerz="7" radius="1">
 		<monster name="Salamander" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="4875" centery="816" centerz="7" radius="1">
+		<monster name="Old Wasp" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6806" centery="816" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
@@ -45555,6 +45589,9 @@
 	<monster centerx="6992" centery="814" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="5176" centery="815" centerz="8" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6996" centery="817" centerz="8" radius="1">
 		<monster name="Snake" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -48950,9 +48987,6 @@
 	<monster centerx="7511" centery="1211" centerz="8" radius="1">
 		<monster name="Shadow Pupil" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5615" centery="1212" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6232" centery="1212" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -48974,9 +49008,6 @@
 	<monster centerx="7517" centery="1212" centerz="8" radius="1">
 		<monster name="Blood Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5609" centery="1213" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="1" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6921" centery="1213" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -48989,23 +49020,14 @@
 	<monster centerx="7515" centery="1213" centerz="8" radius="1">
 		<monster name="Blood Priest" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5617" centery="1214" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7507" centery="1214" centerz="8" radius="1">
 		<monster name="Blood Priest" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5636" centery="1215" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6374" centery="1215" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6783" centery="1215" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5650" centery="1216" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6677" centery="1216" centerz="8" radius="5">
 		<monster name="Ghoul" x="-1" y="-5" z="8" spawntime="60" />
@@ -49016,9 +49038,6 @@
 	</monster>
 	<monster centerx="6914" centery="1216" centerz="8" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5638" centery="1217" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6235" centery="1217" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="60" />
@@ -49053,12 +49072,6 @@
 	<monster centerx="6918" centery="1222" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5622" centery="1223" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5658" centery="1223" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6258" centery="1223" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49068,23 +49081,14 @@
 	<monster centerx="6403" centery="1223" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5651" centery="1225" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6782" centery="1225" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5609" centery="1226" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6254" centery="1226" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6371" centery="1227" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5626" centery="1228" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6260" centery="1228" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="60" />
@@ -49098,23 +49102,11 @@
 	<monster centerx="6944" centery="1228" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5612" centery="1229" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6805" centery="1229" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5625" centery="1230" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5657" centery="1230" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6396" centery="1230" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5644" centery="1232" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6904" centery="1232" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="60" />
@@ -49122,17 +49114,11 @@
 	<monster centerx="6921" centery="1232" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5592" centery="1233" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6353" centery="1234" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6932" centery="1234" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5591" centery="1235" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7812" centery="1235" centerz="8" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="8" spawntime="60" />
@@ -49146,14 +49132,8 @@
 	<monster centerx="6948" centery="1236" centerz="8" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5662" centery="1237" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6388" centery="1237" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5601" centery="1238" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7808" centery="1238" centerz="8" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="8" spawntime="60" />
@@ -49178,9 +49158,6 @@
 	</monster>
 	<monster centerx="6809" centery="1240" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5657" centery="1241" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6394" centery="1241" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
@@ -49212,12 +49189,6 @@
 	<monster centerx="8102" centery="1243" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5643" centery="1244" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5657" centery="1244" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6237" centery="1244" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49228,9 +49199,6 @@
 	</monster>
 	<monster centerx="8156" centery="1244" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5641" centery="1245" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6230" centery="1245" centerz="8" radius="1">
 		<monster name="Adept Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49268,9 +49236,6 @@
 	<monster centerx="8155" centery="1246" centerz="8" radius="1">
 		<monster name="Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5601" centery="1247" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6358" centery="1247" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49295,12 +49260,6 @@
 	</monster>
 	<monster centerx="8158" centery="1248" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5591" centery="1249" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5597" centery="1249" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6208" centery="1249" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49338,9 +49297,6 @@
 	<monster centerx="8161" centery="1250" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5636" centery="1251" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6248" centery="1251" centerz="8" radius="1">
 		<monster name="Enlightened Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49355,9 +49311,6 @@
 	</monster>
 	<monster centerx="8164" centery="1252" centerz="8" radius="1">
 		<monster name="Centipede" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5635" centery="1253" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6223" centery="1253" centerz="8" radius="1">
 		<monster name="Adept Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49377,14 +49330,8 @@
 	<monster centerx="8139" centery="1253" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5658" centery="1254" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="8161" centery="1254" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5671" centery="1255" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6248" centery="1255" centerz="8" radius="1">
 		<monster name="Adept Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49397,9 +49344,6 @@
 	</monster>
 	<monster centerx="8158" centery="1255" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5594" centery="1256" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6234" centery="1256" centerz="8" radius="1">
 		<monster name="Enlightened Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49428,9 +49372,6 @@
 	<monster centerx="8141" centery="1257" centerz="8" radius="1">
 		<monster name="Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5660" centery="1258" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6644" centery="1258" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49443,9 +49384,6 @@
 	</monster>
 	<monster centerx="7592" centery="1258" centerz="8" radius="1">
 		<monster name="Vampire" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5664" centery="1259" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6225" centery="1259" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49554,9 +49492,6 @@
 	<monster centerx="8138" centery="1262" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5598" centery="1263" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6271" centery="1263" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49587,9 +49522,6 @@
 	<monster centerx="7595" centery="1264" centerz="8" radius="1">
 		<monster name="Vampire" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5629" centery="1265" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6231" centery="1265" centerz="8" radius="1">
 		<monster name="Adept Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49607,9 +49539,6 @@
 	</monster>
 	<monster centerx="7317" centery="1265" centerz="8" radius="1">
 		<monster name="Spider" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5608" centery="1266" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6211" centery="1266" centerz="8" radius="1">
 		<monster name="Enlightened Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49634,9 +49563,6 @@
 		<monster name="Rotworm" x="1" y="0" z="8" spawntime="60" />
 		<monster name="Rotworm" x="1" y="1" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5589" centery="1267" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6254" centery="1267" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49658,9 +49584,6 @@
 	<monster centerx="7108" centery="1267" centerz="8" radius="1">
 		<monster name="Slug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5662" centery="1268" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6698" centery="1268" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49681,9 +49604,6 @@
 	</monster>
 	<monster centerx="8125" centery="1268" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5652" centery="1269" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6213" centery="1269" centerz="8" radius="1">
 		<monster name="Enlightened Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49725,9 +49645,6 @@
 	<monster centerx="8125" centery="1270" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5587" centery="1271" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6270" centery="1271" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49764,12 +49681,6 @@
 	<monster centerx="7592" centery="1271" centerz="8" radius="1">
 		<monster name="Vampire" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5639" centery="1272" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5647" centery="1272" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7049" centery="1272" centerz="8" radius="1">
 		<monster name="Nomad" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49797,9 +49708,6 @@
 	<monster centerx="6886" centery="1274" centerz="8" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5579" centery="1275" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6227" centery="1275" centerz="8" radius="1">
 		<monster name="Acolyte Of The Cult" x="-1" y="0" z="8" spawntime="60" />
 		<monster name="Adept Of The Cult" x="0" y="0" z="8" spawntime="60" />
@@ -49810,9 +49718,6 @@
 	</monster>
 	<monster centerx="6689" centery="1275" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5614" centery="1276" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6387" centery="1276" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
@@ -49851,15 +49756,6 @@
 		<monster name="Slug" x="0" y="0" z="8" spawntime="60" />
 		<monster name="Slug" x="1" y="1" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5595" centery="1279" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5609" centery="1279" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5643" centery="1279" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6034" centery="1279" centerz="8" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49875,9 +49771,6 @@
 	<monster centerx="6376" centery="1279" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5630" centery="1280" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6055" centery="1280" centerz="8" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49890,20 +49783,11 @@
 	<monster centerx="6882" centery="1281" centerz="8" radius="1">
 		<monster name="Terramite" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5627" centery="1282" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6261" centery="1282" centerz="8" radius="1">
 		<monster name="Adept Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7098" centery="1282" centerz="8" radius="1">
 		<monster name="Snake" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5605" centery="1283" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5655" centery="1283" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6671" centery="1283" centerz="8" radius="1">
 		<monster name="Larva" x="-1" y="0" z="8" spawntime="60" />
@@ -49936,9 +49820,6 @@
 	<monster centerx="7148" centery="1285" centerz="8" radius="1">
 		<monster name="Witch" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="5591" centery="1286" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6262" centery="1286" centerz="8" radius="1">
 		<monster name="Enlightened Of The Cult" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -49970,12 +49851,6 @@
 	</monster>
 	<monster centerx="6665" centery="1288" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5583" centery="1289" centerz="8" radius="1">
-		<monster name="Glooth Bandit" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="5587" centery="1289" centerz="8" radius="1">
-		<monster name="Glooth Brigand" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7585" centery="1289" centerz="8" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="8" spawntime="60" />
@@ -54987,6 +54862,9 @@
 	<monster centerx="6737" centery="816" centerz="9" radius="1">
 		<monster name="Slime" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="5167" centery="817" centerz="9" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6724" centery="817" centerz="9" radius="1">
 		<monster name="Hydra" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -54995,6 +54873,9 @@
 	</monster>
 	<monster centerx="6586" centery="821" centerz="9" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="5181" centery="822" centerz="9" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6202" centery="824" centerz="9" radius="1">
 		<monster name="Mutated Rat" x="0" y="0" z="9" spawntime="60" />
@@ -79355,6 +79236,9 @@
 	<monster centerx="5693" centery="1201" centerz="13" radius="1">
 		<monster name="Glooth Blob" x="0" y="0" z="13" spawntime="60" />
 	</monster>
+	<monster centerx="5863" centery="1201" centerz="13" radius="1">
+		<monster name="Glooth Brigand" x="0" y="0" z="13" spawntime="60" />
+	</monster>
 	<monster centerx="5890" centery="1201" centerz="13" radius="1">
 		<monster name="Glooth Brigand" x="0" y="0" z="13" spawntime="60" />
 	</monster>
@@ -79531,6 +79415,9 @@
 	</monster>
 	<monster centerx="5651" centery="1213" centerz="13" radius="1">
 		<monster name="Devourer" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5867" centery="1213" centerz="13" radius="1">
+		<monster name="Glooth Bandit" x="0" y="0" z="13" spawntime="60" />
 	</monster>
 	<monster centerx="6013" centery="1213" centerz="13" radius="1">
 		<monster name="Worker Golem" x="0" y="0" z="13" spawntime="60" />

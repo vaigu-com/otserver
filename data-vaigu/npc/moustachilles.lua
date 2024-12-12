@@ -58,39 +58,6 @@ local dialog = {
 			text = "Go away, or even better: flip off.",
 		},
 	},
-	[Storage.IKEAForTheBold.Localizer] = {
-		[Storage.IKEAForTheBold.Mission01] = {
-			[9] = {
-				[{ "thief", "zlodziej" }] = {
-					text = "Please, you don't think that I am giving any {information} about my - ekhem - contractors just like that.",
-				},
-				[{ "informacje", "info", "information", "informations" }] = {
-					text = "Guards! This man got to go, show him where we throw out carcasses.",
-					spawnMonstersOnSuccess = {
-						["bandit"] = 2,
-						["smuggler"] = 3,
-					},
-					nextState = {
-						[Storage.IKEAForTheBold.Mission01] = 10,
-					},
-				},
-			},
-			[10] = {
-				[{ "informacje", "info", "information", "informations", "thief", "zlodziej" }] = {
-					text = "Fine! - calm down, we will get along somehow. What has been stolen from you?",
-				},
-				[{ "meble", "drewno", "furniture", "wood" }] = {
-					text = "Ohh, that dude ... he left on a boat recently. He was asking me for some good place to hide. ...\nI told him to look around at the south of the steppes. That's all I know.",
-					nextState = {
-						[Storage.IKEAForTheBold.Mission01] = 11,
-					},
-				},
-			},
-		},
-	},
-	[Storage.ChesterTheDwarf.Localizer] = {
-		[Storage.ChesterTheDwarf.Mission01] = {},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

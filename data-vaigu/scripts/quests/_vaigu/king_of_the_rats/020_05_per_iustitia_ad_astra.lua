@@ -1,8 +1,9 @@
 local quest = Quest(LOCALIZERS.PerIustitiaAdAstra)
+
 quest
 	:Storage(function()
 		Storage.PerIustitiaAdAstra = {
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -97,6 +98,10 @@ quest
 				Finished = 4,
 			},
 		}
+		QuestTopics.PerIustitiaAdAstra = {
+			AcceptJanusFirstMission = NextTopic(),
+			TalkAboutRubelstein = NextTopic(),
+		}
 	end)
 	:Constant(function()
 		local penatlyRoomPos = HUGO_TAR_PLANET_ANCHOR:Moved(-12, 5, 1)
@@ -172,7 +177,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Per Iustitia Ad Astra",
 			missions = {
-				[Storage.PerIustitiaAdAstra.Mission01] = {
+				[Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary] = {
 					name = "01. Beyond the Justice",
 					states = {
 						[QuestState.PerIustitiaAdAstra.Mission01.HeadToHighestMountain] = "Go to the highest mountain in the Kraiby and look for someone Romek mentioned.",
@@ -562,7 +567,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.PerIustitiaAdAstra.Mission01)
+	:Mission(Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary)
 	:State(
 		QuestState.PerIustitiaAdAstra.Mission01.HeadToHighestMountain,
 		QuestFactory.Dialog("GM Romek", { [{ ANY_MESSAGE }] = {
@@ -574,14 +579,14 @@ quest
 			},
 			[{ "szczur krolow", "rat of kings" }] = {
 				text = "Rat of Kings... Yes, I used to be called that. But I'm no longer the Rat of Kings. I am Astral Janus, and I have a {mission} for you!",
-				nextTopic = 1,
+				nextTopic = QuestTopics.PerIustitiaAdAstra.AcceptJanusFirstMission,
 			},
 			[{ "mission", "misje", "misja" }] = {
 				text = "Our latest target is a notorious businessman known for supporting literal fascists. He's hiding in one of his bases in space. You won't be able to reach him by conventional means, so you can start by going to the Usha'Yaan Forge. They specialize in manufacturing various spacecraft-like products.",
 				nextState = {
-					[Storage.PerIustitiaAdAstra.Mission01] = 2,
+					[Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary] = 2,
 				},
-				requiredTopic = { min = 1, max = 1 },
+				requiredTopic = QuestTopics.PerIustitiaAdAstra.AcceptJanusFirstMission,
 			},
 		}),
 		QuestFactory.Script(function(missionState)
@@ -650,7 +655,7 @@ quest
 			[{ "codeword", "haslo", "password" }] = {
 				text = "Qasim, also known to many as Cassim, once had a younger brother, who, against his wishes, tried to enter the Usha'Yaan Forge. He didn't know the password when he was near the sealed doors. Suddenly, an opportunity arose - he overheard his brother and a few accomplices heading for the forge. He hid behind nearby rocks, right by the lava lake. Everyone there is accustomed to high temperatures, so the position he found himself in wasn't too uncomfortable. Eventually, he managed to eavesdrop on the password. And the password is... Well, all I know is that his younger brother now was one of the only people who know this password.",
 				nextState = {
-					[Storage.PerIustitiaAdAstra.Mission01] = 3,
+					[Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary] = 3,
 					[Storage.PerIustitiaAdAstra.Mission02] = 1,
 				},
 			},
@@ -669,7 +674,6 @@ quest
 		QuestFactory.Dialog("Ali Baba", {
 			[{ "qasim", "cassim", "mission", "misja", "password", "haslo" }] = {
 				text = "So you would like to know the password? I can {reveal} it for a small fee of 15 coins. I really need that gold converter..",
-				nextTopic = 1,
 			},
 			[{ "reveal", "sprzedac" }] = {
 				text = "The password is 'Ali Baba', same as my name. Hope this helps.",
@@ -858,7 +862,7 @@ quest
 			[{ GREET }] = { text = "Identifiziere dich, Soldat!" },
 			[{ "Friedrich Knopf", "friedrich knopf" }] = {
 				text = "Lieutenant, warum ist deine Nase so klein? Dennoch. Haben wir einen Hinrichtungsbefehl auf Rubelstein bestatigt?",
-				nextTopic = 1,
+				nextTopic = QuestTopics.PerIustitiaAdAstra.TalkAboutRubelstein,
 			},
 			[{ "yes", "no", "tak", "nie", "mission" }] = {
 				text = "Eine kleine Betruger... Wachen, zu den Waffen!",
@@ -870,7 +874,7 @@ quest
 			},
 			[{ "ja", "jawohl", "doch" }] = {
 				text = "Wir werden ihn hinrichten lassen. Vielen Dank fur Ihre Zusammenarbeit. Ausserdem habe ich eine {Mission} fur Sie, Leutnant.",
-				requiredTopic = { min = 1, max = 1 },
+				requiredTopic = QuestTopics.PerIustitiaAdAstra.TalkAboutRubelstein,
 				expReward = 600 * 1000,
 				nextState = {
 					[Storage.PerIustitiaAdAstra.Mission04] = 6,
@@ -878,7 +882,7 @@ quest
 			},
 			[{ "nein", "kein", "nicht", "nee", "nich" }] = {
 				text = "Alles in Ordnung, obwohl wir vor einigen Tagen einen Sicherheitsverstoss hatten und den Fluchtigen immer noch nicht finden konnen. Ausserdem habe ich eine {Mission} fur Sie, Leutnant.",
-				requiredTopic = { min = 1, max = 1 },
+				requiredTopic = QuestTopics.PerIustitiaAdAstra.TalkAboutRubelstein,
 				nextState = {
 					[Storage.PerIustitiaAdAstra.Mission04] = 5,
 					[Storage.PerIustitiaAdAstra.HelpedRubelstein] = 1,
@@ -1030,7 +1034,7 @@ quest
 				text = "Good job. Thanks to you, there's more justice in this world. Here's your reward. Now go back to Tomek. He said he has a problem with his old hag.",
 				nextState = {
 					[Storage.PerIustitiaAdAstra.Mission07] = 5,
-					[Storage.BigKlamoty.Mission01] = 1,
+					[Storage.BigKlamoty.PuzzlesDoneStateBinary] = 1,
 				},
 				rewards = { ExerciseWeaponBox(5000) },
 			},

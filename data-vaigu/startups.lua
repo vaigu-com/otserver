@@ -121,7 +121,7 @@ local function loadStartupItem(itemConfig, anchor)
 		createCustomItemOnMap(context)
 	end
 	if context.aid and context.aid ~= 0 then
-		CustomItemRegistry():Register(context)
+		CustomItemRegistry:Register(context)
 	end
 	if itemWontBeCreatedOrRegistered(context) then
 		logger.debug("[loadStartupItem] Item declared wont be created or registered. This renders this item declaration useless." .. tostring(context))

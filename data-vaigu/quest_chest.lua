@@ -4,7 +4,7 @@ end
 
 function ChestQuestTryAddItems(player, rewardChest)
 	local aid = rewardChest:getActionId()
-	local state = CustomItemRegistry():GetState(aid)
+	local state = CustomItemRegistry:GetState(aid)
 	local context = ResolutionContext.FromCustomItemState(state, player)
 
 	if not context:Resolve() then

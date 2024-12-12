@@ -1,24 +1,9 @@
-local customItemRegistrySingleton = nil
 ---@class CustomItemRegistry
 ---@field player Player
 ---@field localizerName integer
 ---@field requirements table
 CustomItemRegistry = {}
-function CustomItemRegistry:New()
-	if customItemRegistrySingleton then
-		return customItemRegistrySingleton
-	end
-	local newObj = {}
-	self.__index = self
-	setmetatable(newObj, self)
-	return newObj
-end
-setmetatable(CustomItemRegistry, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
-customItemRegistrySingleton = CustomItemRegistry()
+CustomItemRegistry.__index = CustomItemRegistry
 CustomItemRegistry.states = {}
 
 local function shouldRegisterRevscript(item)

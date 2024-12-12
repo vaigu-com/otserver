@@ -41,7 +41,7 @@ quest
 		local aidToRequiredStorages = {
 			[Storage.DesertQuestHub.ToDesertQuestOne] = nil,
 			[Storage.DesertQuestHub.ToDesertQuestTwo] = nil,
-			[Storage.DesertQuestHub.ToSultanPrime] = { [Storage.SultanPrime.Mission01] = 1 },
+			[Storage.DesertQuestHub.ToSultanPrime] = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = 1 },
 			[Storage.DesertQuestHub.ToHub] = nil,
 		}
 
@@ -98,9 +98,9 @@ quest
 	:Mission(Storage.DesertQuestOne)
 	:Script(function(missionState)
 		local neckUpdateStorages = {
-			[Storage.SultanPrime.Mission01] = 1,
+			[Storage.SultanPrime.PuzzlesDoneStateBinary] = 1,
 		}
-		local questStorage = Storage.SultanPrime.Mission01
+		local questStorage = Storage.SultanPrime.PuzzlesDoneStateBinary
 
 		local corpse = Action()
 		function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)

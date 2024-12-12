@@ -1,11 +1,4 @@
-local quest = Quest(LOCALIZERS)
-
-local topics = {
-	askedForKitchen = 1,
-	confirmingTrainingStart = 2,
-	askedForRecipe = 3,
-	confirmMakingAnyDish = 4,
-}
+local quest = Quest(LOCALIZERS.TopChef)
 
 local function saidDishName(context)
 	local msg = context.msg
@@ -61,9 +54,15 @@ quest
 			CanMakeAllDishes = NextStorage(),
 		}
 		QuestState.TopChef = {
-			TakingCourse = NextStorage(),
-			FinishedCourse_AskForBook = NextStorage(),
-			CanMakeAllDishes = NextStorage(),
+			TakingCourse = 1,
+			FinishedCourse_AskForBook = 2,
+			CanMakeAllDishes = MISSION_FINISHED,
+		}
+		QuestTopics.TopChef = {
+			AskedForKitchen = NextTopic(),
+			AcceptStartOfYourTraining = NextTopic(),
+			AskedForRecipe = NextTopic(),
+			ConfirmMakingAnyDish = NextTopic(),
 		}
 	end)
 	:Constant(function() end)
@@ -91,24 +90,17 @@ quest
 			},
 			[{ "cook", "kuchnia", "kucharz", "kuchni", "kitchen" }] = {
 				text = "I cooking and experimenting with new dishes. I work at an Italian restaurant as a head chef, where i devote myself to this passion.\nI love sharing my {recipes}, so i invite you to experiment abit under my supervision. ",
-				nextTopic = topics.askedForKitchen,
+				nextTopic = QuestTopics.TopChef.AskedForKitchen,
 			},
 			[{ "recipe", "recipes", "menu", "przepis", "przepisami" }] = {
 				text = "Are you intereseted? Well, no doubt, you can't buy they anywhere. However I can guide you become a cooking pro. Do you sign up for this?",
-				requiredTopic = {
-					min = topics.askedForKitchen,
-					max = topics.askedForKitchen,
-				},
-				nextTopic = topics.confirmingTrainingStart,
+				requiredTopic = QuestTopics.TopChef.AskedForKitchen,
+				nextTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Well, you look promising. Ask me for a {recipe}, and i will try to provide you with all necessary infomration. Some ingredients are tougher to find than others, so you might wanna ask me about where to find them.",
 				nextState = { [Storage.TopChef.State] = 1 },
-				requiredTopic = {
-					min = topics.confirmingTrainingStart,
-					max = topics.confirmingTrainingStart,
-				},
-				nextTopic = 0,
+				requiredTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
 			},
 		})
 	)
@@ -117,18 +109,15 @@ quest
 		QuestFactory.Dialog("Pewter", {
 			[{ "recipe", "menu", "przepis", "przepisami", "mission" }] = {
 				text = "DESCRIBE_CURRENT_DISH",
-				nextTopic = topics.askedForRecipe,
+				nextTopic = QuestTopics.TopChef.AskedForRecipe,
 			},
-			[{ ANY_MESSAGE }] = {
+			[{ GREET }] = {
 				text = "HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH",
-				nextTopic = topics.askedForRecipe,
+				nextTopic = QuestTopics.TopChef.AskedForRecipe,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Lets begin then!\nA sprinkle of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish! Ask me for {recipe} if you are ready to prepare the next dish.",
-				requiredTopic = {
-					min = topics.askedForRecipe,
-					max = topics.askedForRecipe,
-				},
+				requiredTopic = QuestTopics.TopChef.AskedForRecipe,
 				specialConditions = {
 					{
 						condition = canRemoveIngredients,
@@ -153,26 +142,25 @@ quest
 			},
 			[{ "no", "nie" }] = {
 				text = "Come back when you are ready.",
-				requiredTopic = {
-					min = topics.askedForRecipe,
-					max = topics.askedForRecipe,
-				},
+				requiredTopic = QuestTopics.TopChef.AskedForRecipe,
 			},
 		})
 	)
 	:State(
 		PH_STATE,
-		QuestFactory.Dialog("Pewter", { [{ ANY_MESSAGE }] = {
-			text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
-			rewards = { { id = 11541 }, { id = 9093 } },
-			nextState = {
-				[Storage.TopChef.State] = Storage.TopChef.CanMakeAllDishes,
-				[Storage.Finished.MistrzKuchni] = 1,
+		QuestFactory.Dialog("Pewter", {
+			[{ ANY_MESSAGE }] = {
+				text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
+				rewards = { { id = 11541 }, { id = 9093 } },
+				nextState = {
+					[Storage.TopChef.State] = Storage.TopChef.CanMakeAllDishes,
+					[Storage.Finished.MistrzKuchni] = 1,
+				},
 			},
-		} })
+		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.TopChef.CanMakeAllDishes,
 		QuestFactory.Dialog("Pewter", {
 			[{ GREET }] = {
 				text = "Hello, welcome to my {kitchen} again, |PLAYERNAME|! Now that you are a professional chef, what dish would you like to prepare now?",
@@ -189,7 +177,7 @@ quest
 				specialActionsOnSuccess = {
 					{ action = SPECIAL_ACTIONS_COOK.setDishData },
 				},
-				nextTopic = topics.confirmMakingAnyDish,
+				nextTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!",
@@ -213,11 +201,7 @@ quest
 						action = addDish,
 					},
 				},
-				nextTopic = 0,
-				requiredTopic = {
-					min = topics.confirmMakingAnyDish,
-					max = topics.confirmMakingAnyDish,
-				},
+				requiredTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
 			},
 		})
 	)

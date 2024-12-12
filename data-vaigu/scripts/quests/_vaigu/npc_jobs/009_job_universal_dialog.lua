@@ -1,4 +1,7 @@
-local topicsWildcard = { sayingWildcardNumber = 1, confirmingNwildcards = 2 }
+QuestTopics.JOB_TOPICS = {
+	SayHowMuchWildcardsYouWant = NextTopic(),
+	ConfirmBuyingWildcards = NextTopic(),
+}
 
 local function getEngageError(context)
 	local player = context.player
@@ -142,11 +145,11 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_SOULORB] = {
 		[{ "soul orb", "soul orbs", "soul" }] = {
 			text = "I can craft infernal bolts out of {soul orb} for you. I learned that from the Devil himself. Do you want to exchange all of your soul orbs?",
-			nextTopic = JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt,
 		},
 		[{ "yes", "tak" }] = {
 			text = "You're welcome! Use them wisely.",
-			requiredTopic = JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt,
 			requiredItems = { { id = 5944, take = TAKE_ALL_AVAILABLE } },
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_SOULORB.soulOrbToInfernalBolt },
@@ -157,11 +160,11 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_WILDCARD] = {
 		[{ "wildcard", "card", "prey wildcard", "prey", "karta" }] = {
 			text = "WILDCARD_COST_QUESTION",
-			nextTopic = topicsWildcard.sayingWildcardNumber,
+			nextTopic = QuestTopics.JOB_TOPICS.SayHowMuchWildcardsYouWant,
 		},
 		[{ ANY_MESSAGE }] = {
-			text = "WILDCARD_CHOSEN_COUNT",
-			requiredTopic = topicsWildcard.sayingWildcardNumber,
+			text = "WILDCARD_COUNT_CHOSEN",
+			requiredTopic = QuestTopics.JOB_TOPICS.SayHowMuchWildcardsYouWant,
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_UNIVERSAL.SetCustomDialogDataAsNumber, key = "orderedCards" },
 			},
@@ -172,11 +175,11 @@ NPC_UNIVERSAL_DIALOGS = {
 					textNoRequiredCondition = "You need to tell me the number of wildcards you'd like to buy.",
 				},
 			},
-			nextTopic = topicsWildcard.confirmingNwildcards,
+			nextTopic = QuestTopics.JOB_TOPICS.ConfirmBuyingWildcards,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Here are your wildcards!",
-			requiredTopic = topicsWildcard.confirmingNwildcards,
+			requiredTopic = QuestTopics.JOB_TOPICS.ConfirmBuyingWildcards,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_WILDCARD.hasMoneyForWildcards,
@@ -193,11 +196,11 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_SOFT_BOOTS_RECHARGE] = {
 		[{ "soft boots" }] = {
 			text = "Would you like to exchange {worn soft boots}, or {charge} active ones? Cost of both services is 20k of gold.",
-			nextTopic = JOB_TOPICS.confirmBuySoftbootsrecharge,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmBuySoftbootsrecharge,
 		},
 		[{ "worn soft boots" }] = {
 			text = "Here you are. There are your soft boots.",
-			requiredTopic = JOB_TOPICS.confirmBuySoftbootsrecharge,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmBuySoftbootsrecharge,
 			rewards = { { id = 6529 } },
 			requiredItems = { { id = 6530 } },
 			requiredMoney = 20000,
@@ -206,7 +209,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "doladowac", "charge" }] = {
 			text = "Here are your soft boots.",
-			requiredTopic = JOB_TOPICS.confirmBuySoftbootsrecharge,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmBuySoftbootsrecharge,
 			rewards = { { id = 6529 } },
 			requiredItems = { { id = 6529 } },
 			requiredMoney = 20000,
@@ -215,7 +218,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "medicine", "belongings" }] = {
 			text = "You have medicine pouch for me?",
-			nextTopic = JOB_TOPICS.confirmMedicinepouchExchance,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmMedicinepouchExchance,
 			requiredItems = { { id = 12517, remove = false } },
 			textNoRequiredItems = "I can give you {belongings of deceased} for your {medicine puch}. Come back if you get one.",
 		},
@@ -223,11 +226,11 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_JEWELLER] = {
 		[{ "life crystal", "life ring", "life" }] = {
 			text = "I can exchange your life crystals for a life rings. Is that what youre interested in?",
-			nextTopic = JOB_TOPICS.confirmLifecrystalExchange,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmLifecrystalExchange,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Here you go.",
-			requiredTopic = JOB_TOPICS.confirmLifecrystalExchange,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmLifecrystalExchange,
 			requiredItems = { { id = 3061, min = 1 } },
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_JEWELER.exchangeLifeCrystal },
@@ -276,7 +279,7 @@ NPC_UNIVERSAL_DIALOGS = {
 	[JOB_IMBUING] = {
 		[{ "imbuing", "imbuings" }] = {
 			text = "LIST_IMBUING_NAMES",
-			nextTopic = JOB_TOPICS.chooseImbuingname,
+			nextTopic = QuestTopics.JOB_TOPICS.chooseImbuingname,
 		},
 		[{ ANY_MESSAGE }] = {
 			text = "YOU_SELECTED_IMBUING_NAME",
@@ -286,8 +289,8 @@ NPC_UNIVERSAL_DIALOGS = {
 					requiredOutcome = true,
 				},
 			},
-			requiredTopic = JOB_TOPICS.chooseImbuingname,
-			nextTopic = JOB_TOPICS.chooseImbuinglevel,
+			requiredTopic = QuestTopics.JOB_TOPICS.chooseImbuingname,
+			nextTopic = QuestTopics.JOB_TOPICS.chooseImbuinglevel,
 		},
 		[{ ANY_MESSAGE }] = {
 			text = "YOU_SELECTED_IMBUING_LEVEL",
@@ -297,13 +300,13 @@ NPC_UNIVERSAL_DIALOGS = {
 					requiredOutcome = true,
 				},
 			},
-			requiredTopic = JOB_TOPICS.chooseImbuinglevel,
-			nextTopic = JOB_TOPICS.confirmBuyImbuing,
+			requiredTopic = QuestTopics.JOB_TOPICS.chooseImbuinglevel,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmBuyImbuing,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Here you go.",
 			nextTopic = TOPIC_DEFAULT,
-			requiredTopic = JOB_TOPICS.confirmBuyImbuing,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyImbuing,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_IMBUING.canPurchaseThisImbuingLevel,
@@ -392,20 +395,20 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "marry", "poslubic" }] = {
 			text = "Would you like to get married? Make sure you have a {wedding ring} and the {wedding outfit box} with you.",
-			nextTopic = JOB_TOPICS.wouldYouLikeToGetMarried,
+			nextTopic = QuestTopics.JOB_TOPICS.wouldYouLikeToGetMarried,
 		},
 		[{ "no", "nie" }] = {
-			requiredTopic = JOB_TOPICS.wouldYouLikeToGetMarried,
+			requiredTopic = QuestTopics.JOB_TOPICS.wouldYouLikeToGetMarried,
 			text = "That's fine.",
 		},
 		[{ "yes", "tak" }] = {
-			requiredTopic = JOB_TOPICS.wouldYouLikeToGetMarried,
-			nextTopic = JOB_TOPICS.playerWouldLikeToGetMarried,
+			requiredTopic = QuestTopics.JOB_TOPICS.wouldYouLikeToGetMarried,
+			nextTopic = QuestTopics.JOB_TOPICS.playerWouldLikeToGetMarried,
 			text = "And who would you like to marry?",
 		},
 		[{ ANY_MESSAGE }] = {
 			text = "Since both young souls are willing to marry - get ready. Let me know if you are willing to start the {celebration}.",
-			requiredTopic = JOB_TOPICS.playerWouldLikeToGetMarried,
+			requiredTopic = QuestTopics.JOB_TOPICS.playerWouldLikeToGetMarried,
 			specialConditions = {
 				{
 					condition = canEngage,
@@ -420,16 +423,16 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "celebration", "ceremonia" }] = {
 			text = "Is your soulmate and friends here with you for the celebration?",
-			nextTopic = JOB_TOPICS.isYourSoulMateHere,
+			nextTopic = QuestTopics.JOB_TOPICS.isYourSoulMateHere,
 		},
 		[{ "no", "nie" }] = {
-			requiredTopic = JOB_TOPICS.isYourSoulMateHere,
-			nextTopic = JOB_TOPICS.isYourSoulMateHere,
+			requiredTopic = QuestTopics.JOB_TOPICS.isYourSoulMateHere,
+			nextTopic = QuestTopics.JOB_TOPICS.isYourSoulMateHere,
 			text = "Then go bring them here!",
 		},
 		[{ "yes" }] = {
-			requiredTopic = JOB_TOPICS.isYourSoulMateHere,
-			nextTopic = JOB_TOPICS.confirmBeginCelebration,
+			requiredTopic = QuestTopics.JOB_TOPICS.isYourSoulMateHere,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmBeginCelebration,
 			text = "Good, let's {begin} then!",
 			specialConditions = {
 				{
@@ -444,7 +447,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "begin", "rozpocznijmy" }] = {
 			text = "",
-			requiredTopic = JOB_TOPICS.confirmBeginCelebration,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmBeginCelebration,
 			specialActionsOnSuccess = {
 				{
 					action = SPECIAL_ACTIONS_UNIVERSAL.npcSay,
@@ -454,12 +457,12 @@ NPC_UNIVERSAL_DIALOGS = {
 			},
 		},
 		[{ "cancel", "anuluj", "anulowac" }] = {
-			nextTopic = JOB_TOPICS.confirmProposalCancel,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmProposalCancel,
 			text = "Are sure you want to cancel your proposal?",
 		},
 		[{ "yes", "tak" }] = {
 			text = "It's cancelled.",
-			requiredTopic = JOB_TOPICS.confirmProposalCancel,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmProposalCancel,
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_UNIVERSAL.cancelMarriage },
 			},
@@ -473,7 +476,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "no", "nie" }] = {
 			text = "I won't be doing anything about that then.",
-			requiredTopic = JOB_TOPICS.confirmProposalCancel,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmProposalCancel,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasProposedStatus,
@@ -483,12 +486,12 @@ NPC_UNIVERSAL_DIALOGS = {
 			},
 		},
 		[{ "divorce", "rozwod" }] = {
-			nextTopic = JOB_TOPICS.confirmDivorce,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmDivorce,
 			text = "CONFIRM_DIVORCE",
 		},
 		[{ "yes", "tak" }] = {
 			text = "Well. I hope you wont regret it.",
-			requiredTopic = JOB_TOPICS.confirmDivorce,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmDivorce,
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_UNIVERSAL.divorce },
 			},
@@ -502,7 +505,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "no", "nie" }] = {
 			text = "I'm very happy with your decision.",
-			requiredTopic = JOB_TOPICS.confirmDivorce,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmDivorce,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMarriedStatus,
@@ -537,11 +540,11 @@ NPC_UNIVERSAL_DIALOGS = {
 			"poblogoslaw",
 		}] = {
 			text = "BLESS_PRICE_TEXT",
-			nextTopic = JOB_TOPICS.confirmBuyAllregularblessings,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmBuyAllregularblessings,
 		},
 		[{ "yes", "tak" }] = {
 			text = "Thank you.",
-			requiredTopic = JOB_TOPICS.confirmBuyAllregularblessings,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyAllregularblessings,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.canBuyBless,
@@ -565,7 +568,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "promotion", "promocja", "promote", "awans", "awansowac" }] = {
 			text = "PROMOTION_TEXT",
-			nextTopic = JOB_TOPICS.confirmBuyPromotion,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmBuyPromotion,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.isPromoted,
@@ -576,7 +579,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "yes", "tak" }] = {
 			text = "Here is your promotion, good luck!",
-			requiredTopic = JOB_TOPICS.confirmBuyPromotion,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyPromotion,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMoney,
@@ -615,7 +618,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		--deposit
 		[{ "deposit <amount>" }] = {
 			text = "CONFIRM_DEPOSIT",
-			nextTopic = JOB_TOPICS.confirmDeposit,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
@@ -629,12 +632,12 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "deposit" }] = {
 			text = "DECLARE_DEPOSIT_AMOUNT",
-			nextTopic = JOB_TOPICS.declareAmountdeposit,
+			nextTopic = QuestTopics.JOB_TOPICS.declareAmountdeposit,
 		},
 		[{ "<amount>" }] = {
 			text = "CONFIRM_DEPOSIT",
-			nextTopic = JOB_TOPICS.confirmDeposit,
-			requiredTopic = JOB_TOPICS.declareAmountdeposit,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
+			requiredTopic = QuestTopics.JOB_TOPICS.declareAmountdeposit,
 			{
 				condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
 				requiredOutcome = true,
@@ -646,7 +649,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "yes" }] = {
 			text = "DEPOSIT_OK",
-			requiredTopic = JOB_TOPICS.confirmDeposit,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
@@ -660,12 +663,12 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "no" }] = {
 			text = "DEPOSIT_CANCEL",
-			requiredTopic = JOB_TOPICS.confirmDeposit,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
 		},
 		--withdraw
 		[{ "withdraw <amount>" }] = {
 			text = "CONFIRM_WITHDRAW",
-			nextTopic = JOB_TOPICS.confirmWithdraw,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
@@ -679,12 +682,12 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "withdraw" }] = {
 			text = "DECLARE_WITHDRAW_AMOUNT",
-			nextTopic = JOB_TOPICS.declareAmount,
+			nextTopic = QuestTopics.JOB_TOPICS.declareAmount,
 		},
 		[{ "<amount>" }] = {
 			text = "CONFIRM_WITHDRAW",
-			nextTopic = JOB_TOPICS.confirmWithdraw,
-			requiredTopic = JOB_TOPICS.declareAmountwithdraw,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
+			requiredTopic = QuestTopics.JOB_TOPICS.declareAmountwithdraw,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
@@ -698,7 +701,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "yes" }] = {
 			text = "WITHDRAW_OK",
-			requiredTopic = JOB_TOPICS.confirmWithdraw,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
@@ -717,12 +720,12 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "no" }] = {
 			text = "WITHDRAW_CANCEL",
-			requiredTopic = JOB_TOPICS.confirmWithdraw,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
 		},
 		--transfer
 		[{ "transfer <amount> to <recipient>", "transfer <amount> <recipient>" }] = {
 			text = "CONFIRM_TRANSFER",
-			nextTopic = JOB_TOPICS.confirmTransfer,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
@@ -747,12 +750,12 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "transfer" }] = {
 			text = "DECLARE_TRANSFER_AMOUNT",
-			nextTopic = JOB_TOPICS.declareAmounttransfer,
+			nextTopic = QuestTopics.JOB_TOPICS.declareAmounttransfer,
 		},
 		[{ "<amount>" }] = {
 			text = "CONFIRM_TRANFER_RECIPIENT",
-			nextTopic = JOB_TOPICS.confirmRecipient,
-			requiredTopic = JOB_TOPICS.declareAmounttransfer,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmRecipient,
+			requiredTopic = QuestTopics.JOB_TOPICS.declareAmounttransfer,
 			{
 				condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
 				requiredOutcome = true,
@@ -764,7 +767,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "<recipient>" }] = {
 			text = "CONFIRM_TRANSFER",
-			requiredTopic = JOB_TOPICS.confirmRecipient,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmRecipient,
 			{
 				condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
 				requiredOutcome = true,
@@ -781,7 +784,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "yes" }] = {
 			text = "TRANSFER_OK",
-			requiredTopic = JOB_TOPICS.confirmTransfer,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 			specialConditions = {
 				{
 					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
@@ -805,7 +808,7 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "no" }] = {
 			text = "TRANSFER_CANCEL",
-			requiredTopic = JOB_TOPICS.confirmTransfer,
+			requiredTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 		},
 		--change money
 		--guild balance

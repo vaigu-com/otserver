@@ -25,7 +25,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	-- lte
 	requiredTopic = { max = JOB_TOPICS.someTopic }
 	-- eq
-	requiredTopic = JOB_TOPICS.someTopic
+	requiredTopic = QuestTopics.JOB_TOPICS.someTopic
 	-- eq, alternative notation
 	requiredTopic = { min = JOB_TOPICS.someTopic, max = JOB_TOPICS.someTopic }
 	-- Only use them to differentiate dialog paths: if you have more than two dialogs that have "yes" as keyword, then you should differentiate them using requiredState (most cases) or requiredTopic
@@ -69,7 +69,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	local dialogs2 = {
 		[{ "withdraw <amount>" }] = {
 			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
-			nextTopic = JOB_TOPICS.confirmWithdrawing,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmWithdrawing,
 		},
 		[{"yes","tak"}] = {
 			text = "YOU_WITHDREW_MONEY",
@@ -85,7 +85,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	}
 
 	-- Specifies the topic to be set for this Dialog on success-resolve
-	nextTopic = JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt
+	nextTopic = QuestTopics.JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt
 
 	-- Specifies the required storage states for player to be able to success-resolve this dialog
 	-- Its worth noting that default behavior when the argument passed was int, is to allow storage values GREATER THAN or equal to argument. This differs from the topic default behavior

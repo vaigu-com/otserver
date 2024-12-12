@@ -154,7 +154,7 @@ return {
 	["In his gratitude, Konmuld gave you one of his old Yalahari set pieces."] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
 	["Sticky Beginning"] = "Sticky Beginning",
 	["Discernment"] = "Research",
-	["Find Commissioner Fisher and ask for a mission."] = "Find Commissioner Fisher and ask for a mission.",
+	["Find Commissioner Fisher and ask him for a mission."] = "Find Commissioner Fisher and ask him for a mission.",
 	["VISIT_DEALERS_STATUS"] = function(context)
 		local visitedDealers = 0
 		for _, vendor in pairs(Storage.StickyBeginning.VendorsAsked) do
@@ -167,9 +167,9 @@ return {
 	["Wood Delivery"] = "Wood Delivery",
 	["Go to Knurowo's port and find out what happened to the wood delivery."] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
-	["Tell Ryba that Narro and his mafia stole all of the wood delivery."] = "Tell Ryba that Waski and his mafia stole all of the wood delivery.",
+	["Tell Ryba that Narro and his mafia stole all of the wood delivery."] = "Tell Ryba that Narro and his mafia stole all of the wood delivery.",
 	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
-	["Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba."] = "Waski gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
+	["Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba."] = "Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
 	["Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward."] = "Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward.",
 	["To Carry the Pigs"] = "To Carry the Pigs",
 	["To be like the Schwarzenegger"] = "To be like the Schwarzenegger",
@@ -225,7 +225,7 @@ return {
 	["Fashionista clothes"] = "Fashionista clothes",
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter asked you to bring him 20 leathers of every kind.",
 	["For your help you have been taught how to skin human carcass."] = "For your help you have been taught how to skin human carcass.",
-	["Lecter's recipe"] = "Lecter's recipe",
+	["Rub Meat With Lecter"] = "Rub Meat With Lecter",
 	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
 		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
 	end,
@@ -366,7 +366,7 @@ return {
 	["You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list."] = "You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list.",
 	["You helped Komor and got rewarded for that. You have started the new mission 'Needle in a Haystack'."] = "You helped Komor and got rewarded for that. You have started the new mission 'Needle in a Haystack'.",
 	["Needle in a Haystack"] = "Needle in a Haystack",
-	["You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he found on the list."] = "You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he found on the list.",
+	["You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he has found on the list."] = "You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he has found on the list.",
 	["Komor asked you to consult Commissioner Fisher about the thief."] = "Komor asked you to consult Commissioner Fisher about the thief.",
 	["Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?"] = "Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?",
 	["Find the bandit camp and see if they have anything to do with it."] = "Find the bandit camp and see if they have anything to do with it.",
@@ -383,7 +383,7 @@ return {
 	["Milksop"] = "Milksop",
 	["Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items."] = "Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items.",
 	["You helped Anon's father collect his lost tools."] = "You helped Anon's father collect his lost tools.",
-	["Stew for Trouble"] = "Stew for Trouble",
+	["Stew for his Troubles"] = "Stew for his Troubles",
 	["Anon's father received his table in a deplorable state, ask how you can improve his mood."] = "Anon's father received his table in a deplorable state, ask how you can improve his mood.",
 	["Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew."] = "Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew.",
 	["You helped Anon's father with all the troubles. Now, go to his son for your reward."] = "You helped Anon's father with all the troubles. Now, go to his son for your reward.",

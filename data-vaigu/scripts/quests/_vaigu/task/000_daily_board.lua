@@ -21,6 +21,6 @@ function dailyBoard.onUse(player, item, fromPosition, target, toPosition, isHotk
 	return true
 end
 
---ToDo: add ref instead of hardcoded
+--38f: add ref instead of hardcoded
 dailyBoard:aid(12000)
 dailyBoard:register()

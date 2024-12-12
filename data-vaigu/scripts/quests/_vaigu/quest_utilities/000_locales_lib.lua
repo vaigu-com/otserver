@@ -1,44 +1,46 @@
 local mainDir = DATA_DIRECTORY .. "/locales"
 
 LOCALIZERS = { --38f add desert quest/king of rats
-	--Various quests
-	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
-	ChesterTheDwarf = "chester_the_dwarf",
-	ImRestingHere = "im_resting_here",
-	PathOfTheUndead = "path_of_the_undead",
-	ProdigalSon = "prodigal_son",
+	--#region 2024
+	DesertQuestHub = "desert_quest_hub",
 	FatMyrrusEncounters = "fat_myrrus_encounters",
-	IKEAForTheBold = "ikea_for_the_bold",
-	--King of Rats main quests
-	KingOfRatsHQ = "king_of_rats_hq",
-	TheaterOfCheapThrills = "theater_of_cheap_thrills",
+	DesertQuestTwo = "desert_quest_two",
+	EnterTheDrunkTankChamberlain = "enter_the_drunk_tank_chamberlain",
+	ProdigalSon = "prodigal_son",
+	--King of Rats II - V
 	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
 	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
 	FourActTragedy = "four_act_tragedy",
 	PerIustitiaAdAstra = "per_iustitia_ad_astra",
-	--Kins of rats side quests
+	--Kings of Rats miscellaneous
+	KingOfRatsHQ = "king_of_rats_hq",
 	RubelsteinLegacy = "rubelstein_legacy",
-	--Desert quest
+	--#endregion
+
+	--#region 2021
+	PathOfTheUndead = "path_of_the_undead",
+	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
+	ChesterTheDwarf = "chester_the_dwarf",
+	ImRestingHere = "im_resting_here",
+	TheaterOfCheapThrills = "theater_of_cheap_thrills",
 	DesertQuestOne = "desert_quest_one",
-	DesertQuestTwo = "desert_quest_two",
 	CaveExplorerOnShield = "cave_explorer_on_shield",
 	SultanPrime = "sultan_prime",
-	DesertQuestHub = "desert_quest_hub",
+	--#endregion
+
 	--Task
 	Tasks = "tasks",
 	DailyTasks = "daily_tasks",
+
 	--Old quests
 	Firestarter = "firestarter",
 	WayOfTheDruid = "way_of_the_druid",
 	ArielsFriend = "ariels_friend",
-	StickyBeginning = "sticky_beginning",
+	LocalSupport = "local_support",
 	SilenceOfTheLambs = "silence_of_the_lambs",
-	SettledDownFanatic = "settled_down_fanatic",
-	LocalSupport = "helping_the_locals",
-	ToCarryThePigs = "helping_the_officers",
-	OcellatusXD = "ocellatus_xd",
+	ToCarryThePigs = "to_carry_the_pigs",
 	TopChef = "top_chef",
-	TwoMarlins = "two_marlins",
+
 	--Real tibia
 	TheInquisitionQuest = "the_inquisition_quest",
 	DemonOak = "demon_oak",

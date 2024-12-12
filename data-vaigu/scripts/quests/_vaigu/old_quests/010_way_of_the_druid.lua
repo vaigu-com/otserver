@@ -1,6 +1,4 @@
-local quest = Quest(LOCALIZERS)
-
-local topics = {}
+local quest = Quest(LOCALIZERS.WayOfTheDruid)
 
 quest
 	:Storage(function()
@@ -16,6 +14,7 @@ quest
 
 			TakenBenek = 11017,
 			BenekKnife = 11018,
+			Benek = 11019,
 
 			RudeEviction = 11061,
 			SandniggerMap = 11018,
@@ -35,6 +34,33 @@ quest
 				HelpedFour = 4,
 				HelpedFive = 5,
 			},
+			DeerSeason = {
+				BurnHunterStock = 1,
+				ReportToRadaghast = 2,
+			},
+			TakenBenek = {
+				FreeBenek = 1,
+				ReportToEstep = 2,
+			},
+			RudeEviction = {
+				FindSandniggerSpell = 1,
+				ReportToSandnigger = 2,
+			},
+			SecretIngredient = {
+				AskOrnuldForMedicine = 1,
+				FindWyrmEgg = 2,
+				BringEggToOrnuld = 3,
+				BringMedicineToMundral = 4,
+			},
+			SingingCrystal = {
+				BringCrystalToMalfurion = 1,
+			},
+		}
+		QuestTopics.WayOfTheDruid = {
+			AcceptCrystalQuest = NextTopic(),
+			AcceptWyrmEggQuest = NextTopic(),
+			AcceptDeerSeason = NextTopic(),
+			AcceptBenekQuest = NextTopic(),
 		}
 	end)
 	:Constant(function() end)
@@ -90,8 +116,7 @@ quest
 					name = "The Singing Crystal",
 					states = {
 						[1] = "Malfurion is in need of an ice crystal fragment for his experiment.",
-						[2] = "You managed to gather a bunch of crystal, go back to Malfurion.",
-						[3] = "For your help, Malfurion gave you a gift.",
+						[2] = "For your help, Malfurion gave you a gift.",
 					},
 				},
 			},
@@ -161,11 +186,11 @@ quest
 		QuestFactory.Dialog("Radaghast the brown", {
 			[{ "mission", "misja" }] = {
 				text = "You want to help me? Soon the deer hunting season will start. Those poor animals are in danger! The poachers won't spare anyone.\nI know how we could help them a bit. So can I count on you?",
-				nextTopic = topics.acceptDeerSeason,
+				nextTopic = QuestTopics.WayOfTheDruid.AcceptDeerSeason,
 			},
 			[{ "yes", "tak" }] = {
 				text = "The best way would be to sneak up into their camp and set fire to wood storage. It should take them a bunch of time to extinguish it and could possibly save some animals.",
-				requiredTopic = topics.acceptDeerSeason,
+				requiredTopic = QuestTopics.WayOfTheDruid.AcceptDeerSeason,
 				nextState = {
 					[Storage.WayOfTheDruid.DeerSeason] = _38f,
 				},
@@ -281,11 +306,11 @@ quest
 			},
 			[{ "benek", "benka" }] = {
 				text = "Thats my wolf. Orcs stole him and hid somewhere. Would you help me to rescue him?",
-				nextTopic = topics.confirmBenekQuest,
+				nextTopic = QuestTopics.WayOfTheDruid.AcceptBenekQuest,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Take this knife, surely you will need it. Benek is most likely strangled, use it to free him.",
-				requiredTopic = topics.confirmBenekQuest,
+				requiredTopic = QuestTopics.WayOfTheDruid.AcceptBenekQuest,
 				rewards = {
 					{ id = 5908, aid = Storage.WayOfTheDruid.BenekKnife },
 				},
@@ -361,14 +386,14 @@ quest
 		QuestFactory.Dialog("Ornuld", {
 			[{ "medicine", "lekarstwo", "antidote", "lek", "leki" }] = {
 				text = "Medicine you said? It won't be as cheap as you think. Well, you can help me, and in return i could give you some. How about that?",
-				nextTopic = topics.confirmWyrmEggQuest,
+				nextTopic = QuestTopics.WayOfTheDruid.AcceptWyrmEggQuest,
 			},
 			[{ "yes", "tak", "sure", "pewnie" }] = {
 				text = "I somewhat and exotic animals collector. One of traders told me about Wyrm's egg.\nGet one for me, please. You can find Wyrm's lair on the mountain to the north from here. Be careful, they dont like anyone coming here let alone stealing one of their brood.",
 				nextState = {
 					[Storage.WayOfTheDruid.SecretIngredient] = _38f,
 				},
-				requiredTopic = topics.confirmWyrmEggQuest,
+				requiredTopic = QuestTopics.WayOfTheDruid.AcceptWyrmEggQuest,
 			},
 		})
 	)
@@ -436,14 +461,14 @@ quest
 		QuestFactory.Dialog("Malfurion", {
 			[{ "mission", "misja" }] = {
 				text = "I need a shard for my experiment, but I can't find the time to get one lately. I would be really grateful if you could bring me one.\nWill you find one for me? I will definitely pay back.",
-				nextTopic = topics.acceptCrystalQuest,
+				nextTopic = QuestTopics.WayOfTheDruid.AcceptCrystalQuest,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Great! Come back if you find one.",
 				nextState = {
 					[Storage.WayOfTheDruid.SingingCrystal] = _38f,
 				},
-				requiredTopic = topics.acceptCrystalQuest,
+				requiredTopic = QuestTopics.WayOfTheDruid.AcceptCrystalQuest,
 			},
 		})
 	)
@@ -454,7 +479,7 @@ quest
 				text = "So shiny, I knew you could do it. Thank you on behalf of {druids}. Please, keep this in return for your kindness.",
 				textNoRequiredItems = "Come back when you find a shard.",
 				nextState = {
-					[Storage.WayOfTheDruid.SingingCrystal] = _38f,
+					[Storage.WayOfTheDruid.SingingCrystal] = MISSION_FINISHED,
 					[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
 				},
 				expReward = 37000,

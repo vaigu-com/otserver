@@ -1,4 +1,5 @@
 local quest = Quest(LOCALIZERS.DesertQuestHub)
+
 quest
 	:Storage(function()
 		Storage.DesertQuestHub = {
@@ -33,7 +34,7 @@ quest
 			local aidToRequiredStorages = {
 				[Storage.DesertQuestHub.ToDesertQuestOne] = nil,
 				[Storage.DesertQuestHub.ToDesertQuestTwo] = nil,
-				[Storage.DesertQuestHub.ToSultanPrime] = { [Storage.SultanPrime.Mission01] = 1 },
+				[Storage.DesertQuestHub.ToSultanPrime] = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = 1 },
 				[Storage.DesertQuestHub.ToHub] = nil,
 			}
 

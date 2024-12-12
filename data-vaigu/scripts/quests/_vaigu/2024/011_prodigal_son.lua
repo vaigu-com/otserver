@@ -1,52 +1,16 @@
+local quest = Quest(LOCALIZERS.ProdigalSon)
+
 local frediEscort = {
 	timeLimitSeconds = 600,
 	startAfterSeconds = 2,
 	escorteeName = "Fredi Kamionka Escort",
 }
 
-local quest = Quest(LOCALIZERS.ProdigalSon)
 quest
 	:Storage(function()
-		QuestState.ProdigalSon = {
-			Mission01 = {
-				ChesterSpeakingAboutJanuszex = 1,
-				YouAreLookingForJanuszex = 2,
-			},
-			Mission02 = {
-				FindForeman = 1,
-				PaintHammers = 2,
-				MakingCalculators = 3,
-				MakingPliers = 4,
-			},
-			Mission03 = {
-				TalkToHearAboutDuties = 1,
-				KillAreczekForSoap = 2,
-				KillAreczekLeader = 3,
-				ReportKillngAreczekLeader = 4,
-			},
-			Mission04 = {
-				FindingEristicsBooks = 1,
-				DupingConferencePeople = 2,
-			},
-			Mission05 = {
-				YouHaveAccessToNorthMines = 1,
-				FindingDwarfNecklace = 2,
-				FoundNecklaceAskForNewMission = 3,
-				CheckingOnSilo = 4,
-				CheckedOnSilo = 5,
-				EscortingFredi = 6,
-			},
-			Mission06 = {
-				HenryJustTalkedWithFredi = 1,
-				FindPasswordAndKillImperator = 2,
-				KilledImperator = 3,
-				ReportToChester = 4,
-				Finished = 5,
-			},
-		}
 		Storage.ProdigalSon = {
 			Localizer = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -97,6 +61,43 @@ quest
 			},
 			Rewards = { ToiletSoap = NextStorage() },
 			PortalAfterPol = NextStorage(),
+		}
+		QuestState.ProdigalSon = {
+			Mission01 = {
+				ChesterSpeakingAboutJanuszex = 1,
+				YouAreLookingForJanuszex = 2,
+			},
+			Mission02 = {
+				FindForeman = 1,
+				PaintHammers = 2,
+				MakingCalculators = 3,
+				MakingPliers = 4,
+			},
+			Mission03 = {
+				TalkToHearAboutDuties = 1,
+				KillAreczekForSoap = 2,
+				KillAreczekLeader = 3,
+				ReportKillngAreczekLeader = 4,
+			},
+			Mission04 = {
+				FindingEristicsBooks = 1,
+				DupingConferencePeople = 2,
+			},
+			Mission05 = {
+				YouHaveAccessToNorthMines = 1,
+				FindingDwarfNecklace = 2,
+				FoundNecklaceAskForNewMission = 3,
+				CheckingOnSilo = 4,
+				CheckedOnSilo = 5,
+				EscortingFredi = 6,
+			},
+			Mission06 = {
+				HenryJustTalkedWithFredi = 1,
+				FindPasswordAndKillImperator = 2,
+				KilledImperator = 3,
+				ReportToChester = 4,
+				Finished = 5,
+			},
 		}
 	end)
 	:Constant(function()
@@ -268,14 +269,14 @@ quest
 			missions = {
 				[1] = {
 					name = "01. Work is da poop!",
-					storageId = Storage.ProdigalSon.Mission01,
+					storageId = Storage.ProdigalSon.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
 					states = {
 						[1] = "Ask Chester for a new mission.",
 						[2] = "Find the metro leading to workplace designated by Chester.",
-						[3] = "You found the metro Chester was talknig about. Try to find the work supervisor when you arrive at the next station.",
+						[3] = "You found the metro Chester was talking about. Try to find the work supervisor when you arrive at the next station.",
 					},
 				},
 				[2] = {
@@ -634,7 +635,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local nextState = {
-			[Storage.ProdigalSon.Mission01] = 1,
+			[Storage.ProdigalSon.PuzzlesDoneStateBinary] = 1,
 		}
 
 		local requiredChesterState = QuestState.ChesterTheDwarf.Mission04.Finished
@@ -646,7 +647,7 @@ quest
 				return
 			end
 
-			local questState = player:getStorageValue(Storage.ProdigalSon.Mission01)
+			local questState = player:getStorageValue(Storage.ProdigalSon.PuzzlesDoneStateBinary)
 			if questState > MISSION_NOT_STARTED then
 				return
 			end
@@ -742,7 +743,7 @@ quest
 		lever:aid(Storage.ProdigalSon.PolAccess)
 		lever:register()
 	end)
-	:Mission(Storage.ProdigalSon.Mission01)
+	:Mission(Storage.ProdigalSon.PuzzlesDoneStateBinary)
 	:State(
 		QuestState.ProdigalSon.Mission01.ChesterSpeakingAboutJanuszex,
 		QuestFactory.Dialog("Chester the Dwarf", {
@@ -750,7 +751,7 @@ quest
 				text = "I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside.",
 				nextState = {
 					[Storage.ProdigalSon.Localizer] = 2,
-					[Storage.ProdigalSon.Mission01] = 2,
+					[Storage.ProdigalSon.PuzzlesDoneStateBinary] = 2,
 					[Storage.ProdigalSon.MetroAccess] = 1,
 					[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = 1,
 					[Storage.ProdigalSon.TrainDestinations.ToHurghada] = 1,
@@ -803,7 +804,7 @@ quest
 			end
 
 			local updateStorages = {
-				[Storage.ProdigalSon.Mission01] = 3,
+				[Storage.ProdigalSon.PuzzlesDoneStateBinary] = MISSION_FINISHED,
 				[Storage.ProdigalSon.Mission02] = 1,
 			}
 

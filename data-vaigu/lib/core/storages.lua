@@ -413,7 +413,7 @@ Storage = {
 	-- Krol szczurow
 	BigKlamoty = {
 		State = NextStorage(),
-		Mission01 = NextStorage(),
+		PuzzlesDoneStateBinary = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
@@ -422,7 +422,7 @@ Storage = {
 	},
 	SpojrzenieTysiacaYtongow = {
 		State = NextStorage(),
-		Mission01 = NextStorage(),
+		PuzzlesDoneStateBinary = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
@@ -431,7 +431,7 @@ Storage = {
 	},
 	SprawiedliwyWobecNarodow = {
 		State = NextStorage(),
-		Mission01 = NextStorage(),
+		PuzzlesDoneStateBinary = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
@@ -444,7 +444,7 @@ Storage = {
 	PositionChest = POSITIONCHEST_ACTION_ID,
 	--38f
 	FreeTravels = NextStorage(),
-	InstantBoat = NextStorage(),
+	InstantTravel = NextStorage(),
 	OldManFrostMammoth = NextStorage(),
 	Fnaf = {
 		LeftDoor = NextStorage(),

@@ -54,7 +54,6 @@ local dialog = {
 		[{ FAREWELL }] = { text = "Seeee yaaa." },
 		[{ GREET }] = { text = "Waddup, G?" },
 	},
-	[Storage.SafetyAndOccupationalHygiene.State] = {},
 }
 
 local function greetCallback(npc, creature, type, message)

@@ -3,7 +3,7 @@ quest
 	:Storage(function()
 		Storage.SafetyAndOccupationalHygiene = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -24,7 +24,7 @@ quest
 			missions = {
 				[1] = {
 					name = "01. Avast ye, scallywag!",
-					storageId = Storage.SafetyAndOccupationalHygiene.Mission01,
+					storageId = Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,

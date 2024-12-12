@@ -2934,7 +2934,7 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 
 				if (lookDistance <= 4) {
 					if (item) {
-						text = item->getAttribute<std::string>(ItemAttribute_t::TEXT);
+						text = ProtocolGame::TryTranslate(item->getAttribute<std::string>(ItemAttribute_t::TEXT), item, player);
 						if (!text.empty()) {
 							const std::string &writer = item->getAttribute<std::string>(ItemAttribute_t::WRITER);
 							if (!writer.empty()) {
@@ -2988,7 +2988,7 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 		s << '.';
 	} else { 
 		if (text.empty() && item) {
-			text = item->getAttribute<std::string>(ItemAttribute_t::TEXT);
+			text = ProtocolGame::TryTranslate(item->getAttribute<std::string>(ItemAttribute_t::TEXT), item, player);
 		}
 
 		if (text.empty()) {

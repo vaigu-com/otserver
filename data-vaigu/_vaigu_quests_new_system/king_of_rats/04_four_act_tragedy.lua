@@ -3,7 +3,7 @@ quest
 	:Storage(function()
 		Storage.FourActTragedy = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -46,7 +46,7 @@ quest
 			missions = {
 				[1] = {
 					name = "01. Dodge those compensation claims",
-					storageId = Storage.FourActTragedy.Mission01,
+					storageId = Storage.FourActTragedy.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,

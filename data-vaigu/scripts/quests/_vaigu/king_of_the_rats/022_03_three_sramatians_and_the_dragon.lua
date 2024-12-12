@@ -1,8 +1,9 @@
 local quest = Quest(LOCALIZERS.ThreeSramatiansAndTheDragon)
+
 quest
 	:Storage(function()
 		Storage.ThreeSramatiansAndTheDragon = {
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -88,6 +89,9 @@ quest
 				Finished = 4,
 			},
 		}
+		QuestTopics.ThreeSramatiansAndTheDragon = {
+			AnswerGoldblum = NextTopic(),
+		}
 	end)
 	:Constant(function()
 		TRZEJ_SRAMACI_I_SMOK_SPECIAL_CONDITIONS = {
@@ -120,7 +124,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "The Three Sramatians and the Dragon",
 			missions = {
-				[Storage.ThreeSramatiansAndTheDragon.Mission01] = {
+				[Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary] = {
 					name = "01. Hither and Thither",
 					states = {
 						[QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek] = "GM Romek needs help with a new problem, go to him.",
@@ -538,7 +542,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission01)
+	:Mission(Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary)
 	:State(
 		ANY_STATE,
 		QuestFactory.Script(function(missionState)
@@ -652,7 +656,7 @@ quest
 			[{ "ready", "gotowy" }] = {
 				text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus.",
 				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.Mission01] = 2,
+					[Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary] = 2,
 					[Storage.ThreeSramatiansAndTheDragon.Mission02] = 1,
 				},
 			},
@@ -678,15 +682,15 @@ quest
 			},
 			[{ "riddle", "zagodke" }] = {
 				text = "What determines the valuation of structured bonds, index certificates, participation certificates, and other structured products, you school-less wretch?",
-				nextTopic = 1,
+				nextTopic = QuestTopics.ThreeSramatiansAndTheDragon.AnswerGoldblum,
 			},
 			[{ ANY_MESSAGE }] = {
 				text = "What are you trying? Answer immediately!",
-				requiredTopic = 0,
+				requiredTopic = TOPIC_DEFAULT,
 			},
 			[{ ANY_MESSAGE }] = {
 				text = "No, no... now lets commence six for money. *licks his lips*",
-				requiredTopic = 1,
+				requiredTopic = QuestTopics.ThreeSramatiansAndTheDragon.AnswerGoldblum,
 			},
 			[{
 				"Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy",
@@ -696,7 +700,7 @@ quest
 				nextState = {
 					[Storage.ThreeSramatiansAndTheDragon.Mission02] = 2,
 				},
-				requiredTopic = 1,
+				requiredTopic = QuestTopics.ThreeSramatiansAndTheDragon.AnswerGoldblum,
 			},
 		}),
 		QuestFactory.Script(function(missionState)
@@ -1116,7 +1120,7 @@ quest
 				nextState = {
 					[Storage.ThreeSramatiansAndTheDragon.Mission09] = 4,
 					[Storage.Finished.ThreeSramatiansAndTheDragon] = 1,
-					[Storage.FourActTragedy.Mission01] = 1,
+					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 1,
 				},
 			},
 		})

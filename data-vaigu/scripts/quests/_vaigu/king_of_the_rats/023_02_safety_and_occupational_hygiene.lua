@@ -1,9 +1,10 @@
 local quest = Quest(LOCALIZERS.SafetyAndOccupationalHygiene)
+
 quest
 	:Storage(function()
 		Storage.SafetyAndOccupationalHygiene = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -146,7 +147,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Safety and Occupational Hygiene",
 			missions = {
-				[Storage.SafetyAndOccupationalHygiene.Mission01] = {
+				[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = {
 					name = "01. Avast ye, scallywag!",
 					states = {
 						[QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
@@ -408,7 +409,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.SafetyAndOccupationalHygiene.Mission01)
+	:Mission(Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary)
 	:State(
 		MISSION_NOT_STARTED,
 		QuestFactory.Script(function(missionState)
@@ -456,7 +457,7 @@ quest
 			[{ "mission" }] = {
 				text = "Thank you for your help with the last task. I have now achieved justice on the level of a true Rat King. Therefore, I think I am worthy of entrusting you with a new task. Go to Turdstin, a member of the MGTOW clan. Anticipating your question: yes, he is disabled. However, it's possible that he knows how to locate the Rat of Kings.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = 2,
+					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 2,
 				},
 			},
 		})
@@ -472,7 +473,7 @@ quest
 			[{ "mission" }] = {
 				text = "Maybe I have some information about this Rat, but it certainly won't be free. I am the most important person in the world because I belong to the MGTOW order, and of all people, I loathe women the most, as they ruin this world. Go to their village and convince them to acknowledge our superiority and remove their cuckurse.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = 3,
+					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 3,
 				},
 			},
 		})
@@ -488,7 +489,7 @@ quest
 			[{ "cuckurse", "cucklatwa" }] = {
 				text = "Hmm... no. I won't remove the curse from him. Tell him that he would first have to stop being such a misogynist and a white capitalist.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = 4,
+					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 4,
 				},
 			},
 		})
@@ -499,7 +500,7 @@ quest
 			[{ "mission", "cuckurse", "cucklatwa" }] = {
 				text = "Oh god, what a foolish woman. Objectively and impartially, I conclude that I belong to the most repressed social group. Be that as it may, let's leave it for now. You mentioned the Rat of Kings earlier. The only way to find him is to listen carefully to the chorus of januses. They rarely say anything sensible, so you'll have to decide for yourself what is nonsense and what will lead you to the Rat.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = 5,
+					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 5,
 					[Storage.SafetyAndOccupationalHygiene.Mission02] = 1,
 				},
 			},
@@ -718,7 +719,7 @@ quest
 				text = "Thank you for your help with the task and for the information from the Rat of Kings. Come back to me after some time, and I will tell you about the fate of someone close to me who wanted to defeat HF-P/X. Although his motivations were somewhat unusual.",
 				nextState = {
 					[Storage.SafetyAndOccupationalHygiene.Mission06] = 5,
-					[Storage.ThreeSramatiansAndTheDragon.Mission01] = 1,
+					[Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary] = 1,
 					[Storage.Finished.SafetyAndOccupationalHygiene] = 1,
 				},
 				rewards = { ExerciseWeaponBox(1337) },

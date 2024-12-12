@@ -46,6 +46,8 @@ MISSION_START_VALUE = 1
 
 ANY_STATE = { min = DEFAULT_MIN_STATE, max = DEFAULT_MAX_STATE }
 
+TOPIC_DEFAULT = 0
+
 CONDITION_STATUS = {
 	--Single condition
 	CONDITION_PASSED = "CONDITION_PASSED",
@@ -87,7 +89,7 @@ function NextStorage()
 end
 
 function GrantPlayerExpByAid(player, actionId)
-	local expValue = CustomItemRegistry():GetState(actionId).expReward
+	local expValue = CustomItemRegistry:GetState(actionId).expReward
 	if not expValue then
 		return
 	end

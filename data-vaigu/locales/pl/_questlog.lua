@@ -153,7 +153,7 @@ return {
 	["In his gratitude, Konmuld gave you one of his old Yalahari set pieces."] = "Konmuld w podziece przekazal ci jedna czesc ze swojego dawnego stroju Yalahari.",
 	["Sticky Beginning"] = "Trudne Poczatki",
 	["Discernment"] = "Rozeznanie",
-	["Find Commissioner Fisher and ask for a mission."] = "Idz do komisarza Ryby i zapytaj o misje.",
+	["Find Commissioner Fisher and ask him for a mission."] = "Idz do komisarza Ryby i zapytaj o misje.",
 		["VISIT_DEALERS_STATUS"] = function(context)
 			local visitedDealers = 0
 			for _, vendor in pairs(Storage.StickyBeginning.VendorsAsked) do
@@ -224,7 +224,7 @@ return {
 	["Fashionista clothes"] = "Modne ubrania",
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter poprosil cie o przyniesienie po 20 skor kazdego rodzaju.",
 	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
-	["Lecter's recipe"] = "Gotuj z Lecterem",
+	["Rub Meat With Lecter"] = "Gotuj z Lecterem",
 	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
 		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
 	end,
@@ -365,7 +365,7 @@ return {
 	["You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list."] = "Znalazles dziennik skradzionych przedmiotow, zlodziej widocznie poszerzyl swoje horyzonty poza same umeblowanie. Udaj sie do Komora, i przekaz mu liste.",
 	["You helped Komor and got rewarded for that. You have started the new mission 'Needle in a Haystack'."] = "Pomogles Komorowi uporac sie z problemem znikajacych mebli, za co cie wynagrodzil. Rozpoczales nowa misje 'Igla w stogu siana'",
 	["Needle in a Haystack"] = "Igla w stogu siana",
-	["You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he found on the list."] = "Pomogles Komorowi w odnalezieniu jego wlasnosci. Udaj sie na pietro jego sklepu, aby otrzymac nagrode, jesli jeszcze tego nie zrobiles. Wroc do Komora by dowiedziec sie, co znalazl na liscie.",
+	["You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he has found on the list."] = "Pomogles Komorowi w odnalezieniu jego wlasnosci. Udaj sie na pietro jego sklepu, aby otrzymac nagrode, jesli jeszcze tego nie zrobiles. Wroc do Komora by dowiedziec sie, co znalazl na liscie.",
 	["Komor asked you to consult Commissioner Fisher about the thief."] = "Komor poprosil cie, abys poradzil sie komisarza Ryby w sprawie zlodzieja.",
 	["Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?"] = "Ryba polecil ci wytropic zlodzieja, zanim zaszyje sie gdzies na dobre. Byc moze ktos z okolicy widzial, gdzie uciekl?",
 	["Find the bandit camp and see if they have anything to do with it."] = "Odszukaj oboz bandytow i sprawdz, czy maja z tym cos wspolnego.",
@@ -382,7 +382,7 @@ return {
 	["Milksop"] = "Fajtlapa",
 	["Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items."] = "Stary Anona potrzebuje pomocy ze znalezieniem jakichs starych rupieci, ktore nosil ze soba na lowy. Przeszukaj wszelkie lodki, pomosty i szuwary w akwenach wokol Mirko, i zwroc znalezione przedmioty.",
 	["You helped Anon's father collect his lost tools."] = "Pomogles Staremu Anona z zebraniem jego zgubionych narzedzi.",
-	["Stew for Trouble"] = "Na klopoty Bigos",
+	["Stew for his Troubles"] = "Na klopoty Bigos",
 	["Anon's father received his table in a deplorable state, ask how you can improve his mood."] = "Stary Anona dostal swoj stolik w nagannym stanie, zapytaj jak mozesz zlagodzic jego nastroj.",
 	["Anon's father reacted strongly to the fact that someone destroyed his little table. Bring some of his favorite dishes, and he might calm down. Anon's father mentioned that he loves Rotworm Stew."] = "Stary Anona ostro zareagowal na fakt, iz ktos zniszczyl mu jego stolek. Przynies ktores z jego ulubionych dan, to moze sie nie zesra. Stary Anona wspominal, ze przepada za zupa rotwormowa.",
 	["You helped Anon's father with all the troubles. Now, go to his son for your reward."] = "Pomogles Staremu Anona ze wszystkimi klopotami. Udaj sie teraz do jego syna po nagrode.",

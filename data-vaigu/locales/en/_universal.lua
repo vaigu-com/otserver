@@ -238,7 +238,7 @@ return {
 		local preyWildcardPrice = context.player:GetWildcardPrice()
 		return T("Wildcard will cost you :preyWildcardPrice: gold. You can get better bonuses in your prey creatures with it. How many wildcards would you like to buy?", { preyWildcardPrice = preyWildcardPrice })
 	end,
-	["WILDCARD_CHOSEN_COUNT"] = function(context)
+	["WILDCARD_COUNT_CHOSEN"] = function(context)
 		local preyWildcardPrice = context.player:GetWildcardPrice()
 		local orderedWildcardsCount = context.npcHandler.topic[context.player:getId()] - 100
 		local orderedCardsPrice = preyWildcardPrice * orderedWildcardsCount

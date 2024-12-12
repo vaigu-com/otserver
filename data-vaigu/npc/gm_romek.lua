@@ -53,7 +53,7 @@ do
 end --38f
 local dialogs = {
 	[Storage.BigKlamoty.Localizer] = {
-		[Storage.BigKlamoty.Mission01] = {
+		[Storage.BigKlamoty.PuzzlesDoneStateBinary] = {
 			[1] = { [{ "mission" }] = { text = "To be continued..." } },
 		},
 	},
@@ -81,7 +81,7 @@ local dialogs = {
 				text = "Cholera, dlaczego powiedzialem to ostatnie... Smrod jego kontrolujacej mozgi prezencji rozsiewa sie az tutaj. Dodatkowo, jego siedziby broni cala flota kosmicznych statkow, wiec zeby go pokonac bedziesz potrzebowac co najmniej legionu zgranych mysliwcow.",
 				nextState = {
 					[Storage.SpojrzenieTysiacaYtongow.State] = 2,
-					[Storage.SpojrzenieTysiacaYtongow.Mission01] = 2,
+					[Storage.SpojrzenieTysiacaYtongow.PuzzlesDoneStateBinary] = 2,
 				},
 			},
 		},
@@ -93,7 +93,7 @@ local dialogs = {
 				text = 'Od niedawna jedna rzecz nie daje mi spokoju. Gdy szczur Krolow przeobrazil sie w Janusza Gwiezdnego, to zaczal od slow "Halo, Pjoter, slychac mnie?". Czy pomylilo mu sie cos i myslal, ze rozmawia z Petrusem Gnebicielem? Ta sprawa bardzo mnie dziwi. Udaj sie do wiezy petrusa gnebiciela i sproboj znalezc cos wiecej na ten temat.',
 				nextState = {
 					[Storage.SprawiedliwyWobecNarodow.State] = 2,
-					[Storage.SprawiedliwyWobecNarodow.Mission01] = 2,
+					[Storage.SprawiedliwyWobecNarodow.PuzzlesDoneStateBinary] = 2,
 				},
 			},
 		},
@@ -107,7 +107,7 @@ local dialogs = {
 				text = 'Dlaczego to sa zawsze ci czerwoni.. Wyglada na to, ze to nie jest prawdziwy szczur krolow. Wyslal cie zabic petrusa gnebiciela, gdyz ten wiedzial zbyt duzo. Potem pomogl ci zniszczyc HF-P/X, aby otworzyc portal do przeszlosci. Mam nadzieje ze te runy ze swiatyni nie sluzyly do odpieczerowywania czegos innego.. Mysle, ze "szczur krolow" wiedzial gdzie otworzy sie portal, i tylko czekal az HF-P/X umrze. Wtedy tez wskoczyl do srodka i cofnal sie w przeszlosc, gdzie sprzedawal ludziom ccki na allegro. Po jakims czasie wrocil do terazniejszosci, a my nie odczulismy tego, gdyz nasz czas plynie tysiace razy krocej, niz u kogos, kto cofnal sie w czasie. Udaj sie teraz do retro Knurowa i sproboj znalezc kogos, kto kupowal od niego ccki. Byc moze dowiemy sie kim byl ten oszust.',
 				nextState = {
 					[Storage.SprawiedliwyWobecNarodow.State] = 4,
-					[Storage.SprawiedliwyWobecNarodow.Mission01] = 4,
+					[Storage.SprawiedliwyWobecNarodow.PuzzlesDoneStateBinary] = 4,
 				},
 			},
 		},

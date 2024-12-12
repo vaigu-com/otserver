@@ -2,7 +2,7 @@ local quest = Quest("cave_explorer_on_shield")
 quest
 	:Storage(function()
 		Storage.CaveExplorerOnShield = {
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Rewards = { Firebug = NextStorage(), GermiChest = NextStorage() },
 			Misc = {
@@ -20,7 +20,7 @@ quest
 			missions = {
 				[1] = {
 					name = "First Mission",
-					storageId = Storage.CaveExplorerOnShield.Mission01,
+					storageId = Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 7,
@@ -36,7 +36,7 @@ quest
 				},
 				[2] = {
 					name = "Notes from the Conversation",
-					storageId = Storage.CaveExplorerOnShield.Mission01,
+					storageId = Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 1,

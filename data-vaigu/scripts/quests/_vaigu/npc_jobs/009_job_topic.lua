@@ -1,48 +1,42 @@
-FIRST_AVAILABLE_JOB_TOPIC = 100000
-function NextJobTopic()
-	FIRST_AVAILABLE_JOB_TOPIC = FIRST_AVAILABLE_JOB_TOPIC + 1
-	return FIRST_AVAILABLE_JOB_TOPIC
-end
-
-JOB_TOPICS = {
+QuestTopics.JOB_TOPICS = {
 	-- JOB_TASKS_IMBUING
-	chooseImbuingname = NextJobTopic(),
-	chooseImbuinglevel = NextJobTopic(),
-	confirmBuyImbuing = NextJobTopic(),
-	confirmUnlockPowerfulimbue = NextJobTopic(),
-	confirmBuyAntelope = NextJobTopic(),
-	browsingTrophies = NextJobTopic(),
-	confirmBuyTrophy = NextJobTopic(),
+	chooseImbuingname = NextTopic(),
+	chooseImbuinglevel = NextTopic(),
+	confirmBuyImbuing = NextTopic(),
+	confirmUnlockPowerfulimbue = NextTopic(),
+	confirmBuyAntelope = NextTopic(),
+	browsingTrophies = NextTopic(),
+	confirmBuyTrophy = NextTopic(),
 	-- JOB_WILDCARD
-	sayingWildcardNumber = NextJobTopic(),
-	confirmingNwildcards = NextJobTopic(),
+	sayingWildcardNumber = NextTopic(),
+	confirmingNwildcards = NextTopic(),
 	-- JOB_SOFT_BOOTS
-	confirmBuySoftbootsrecharge = NextJobTopic(),
-	confirmMedicinepouchExchance = NextJobTopic(),
+	confirmBuySoftbootsrecharge = NextTopic(),
+	confirmMedicinepouchExchance = NextTopic(),
 	-- JOB_JEWELLER
-	confirmLifecrystalExchange = NextJobTopic(),
+	confirmLifecrystalExchange = NextTopic(),
 	-- JOB_SOULORB
-	confirmExchangeSoulorbToInfernalbolt = NextJobTopic(),
+	confirmExchangeSoulorbToInfernalbolt = NextTopic(),
 	-- JOB_GOLDENOUTFIT
-	confirmExplaingoldenoutfit = NextJobTopic(),
-	confirmBuyGoldenoutfitbody = NextJobTopic(),
-	confirmBuyGoldenoutfithelmet = NextJobTopic(),
-	confirmGoldenoutfitbootsBuy = NextJobTopic(),
+	confirmExplaingoldenoutfit = NextTopic(),
+	confirmBuyGoldenoutfitbody = NextTopic(),
+	confirmBuyGoldenoutfithelmet = NextTopic(),
+	confirmGoldenoutfitbootsBuy = NextTopic(),
 	-- JOB_MARRIAGE
-	wouldYouLikeToGetMarried = NextJobTopic(),
-	playerWouldLikeToGetMarried = NextJobTopic(),
-	isYourSoulMateHere = NextJobTopic(),
-	confirmProposalCancel = NextJobTopic(),
-	confirmDivorce = NextJobTopic(),
+	wouldYouLikeToGetMarried = NextTopic(),
+	playerWouldLikeToGetMarried = NextTopic(),
+	isYourSoulMateHere = NextTopic(),
+	confirmProposalCancel = NextTopic(),
+	confirmDivorce = NextTopic(),
 	-- JOB_BLESS
-	confirmBuyAllregularblessings = NextJobTopic(),
-	confirmBuyPromotion = NextJobTopic(),
+	confirmBuyAllregularblessings = NextTopic(),
+	confirmBuyPromotion = NextTopic(),
 	-- JOB_BANK
-	confirmDeposit = NextJobTopic(),
-	declareAmountdeposit = NextJobTopic(),
-	confirmWithdraw = NextJobTopic(),
-	declareAmountwithdraw = NextJobTopic(),
-	confirmTransfer = NextJobTopic(),
-	declareAmounttransfer = NextJobTopic(),
-	confirmRecipient = NextJobTopic(),
+	confirmDeposit = NextTopic(),
+	declareAmountdeposit = NextTopic(),
+	confirmWithdraw = NextTopic(),
+	declareAmountwithdraw = NextTopic(),
+	confirmTransfer = NextTopic(),
+	declareAmounttransfer = NextTopic(),
+	confirmRecipient = NextTopic(),
 }

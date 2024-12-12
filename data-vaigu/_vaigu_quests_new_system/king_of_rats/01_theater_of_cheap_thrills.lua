@@ -3,7 +3,7 @@ quest
 	:Storage(function()
 		Storage.TheaterOfCheapThrills = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -40,7 +40,7 @@ quest
 			missions = {
 				[1] = {
 					name = "01. Vitat Iustitia",
-					storageId = Storage.TheaterOfCheapThrills.Mission01,
+					storageId = Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,

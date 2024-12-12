@@ -1,9 +1,5 @@
 local quest = Quest(LOCALIZERS.Firestarter)
 
-local topics = {
-	acceptGuardTreeQuest = NextTopic(),
-	acceptFlowerIgnitionQuest = NextTopic(),
-}
 quest
 	:Storage(function()
 		Storage.Firestarter = {
@@ -42,6 +38,10 @@ quest
 				ReportToHymel = 2,
 				Finished = 3,
 			},
+		}
+		QuestTopics.Firestarter = {
+			AcceptGuardTreeQuest = NextTopic(),
+			AcceptFlowerIgnitionQuest = NextTopic(),
 		}
 	end)
 	:Questlog(function()
@@ -150,11 +150,11 @@ quest
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "mission", "ask", "pytaj" }] = {
 				text = "When I was still living in MirkoTown I've seen place where guards are going for a brake, they are sitting around campfire and rest there.\nSet the tree on fire near them, they will get mad for sure.\nAre you down for that?",
-				nextTopic = topics.acceptGuardTreeQuest,
+				nextTopic = QuestTopics.Firestarter.AcceptGuardTreeQuest,
 			},
 			[{ "yes", "tak" }] = {
 				text = "Just don't go there during their lunch break, I don't have more beds xD.",
-				requiredTopic = topics.acceptGuardTreeQuest,
+				requiredTopic = QuestTopics.Firestarter.AcceptGuardTreeQuest,
 				nextState = {
 					[Storage.Firestarter.Mission01] = QuestState.Firestarter.Mission01.Finished,
 					[Storage.Firestarter.Mission02] = QuestState.Firestarter.Mission02.SetGuardTreeOnFire,
@@ -217,11 +217,11 @@ quest
 		QuestFactory.Dialog("Hymel", {
 			[{ "mision", "misja" }] = {
 				text = "Once e and my fellas we were having fun and we planted some toxic flowers in Mirkotown, some of them were beyond city walls.\nSadly I am not able to tell you which ones exactly because they look like normal red flowers. \nIf you burn them the whole city will be high, would you do that?",
-				nextTopic = topics.acceptFlowerIgnitionQuest,
+				nextTopic = QuestTopics.Firestarter.AcceptFlowerIgnitionQuest,
 			},
 			[{ "yes", "tak" }] = {
 				text = "I knew i can count on you. Just be careful with that stuff!",
-				requiredTopic = topics.acceptFlowerIgnitionQuest,
+				requiredTopic = QuestTopics.Firestarter.AcceptFlowerIgnitionQuest,
 				nextState = {
 					[Storage.Firestarter.Mission02] = QuestState.Firestarter.Mission02.Finished,
 					[Storage.Firestarter.Mission03] = QuestState.Firestarter.Mission03.FindAndIgniteFlowers,

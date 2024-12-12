@@ -86,7 +86,7 @@ local function getDestinationText(context)
 	return locationGreet[closest]
 end
 
-local function tryTeleportToOtherSide(player)
+local function teleportToOtherSide(player)
 	player:removeMoney(100)
 	local furthest = getFurthestDestination(player)
 	local toPos = locationToPos[furthest]
@@ -100,7 +100,7 @@ local dialog = {
 			text = "",
 			specialActionsOnSuccess = {
 				{
-					action = tryTeleportToOtherSide,
+					action = teleportToOtherSide,
 				},
 			},
 			specialConditions = {
@@ -117,7 +117,7 @@ local dialog = {
 				},
 			},
 		},
-		[GREET] = { text = getDestinationText },
+		[{ GREET }] = { text = getDestinationText },
 		[{ "story", "stories", "historia", "historie" }] = {
 			text = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
 		},
@@ -164,81 +164,6 @@ local dialog = {
 		[{ "domku", "house" }] = { text = "I live just in next house." },
 		[{ "santa maria" }] = {
 			text = "It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative.",
-		},
-	},
-	[Storage.SettledDownFishmonger.Questline] = {
-		[{ max = 4 }] = { [{ "shimmer swimmer" }] = { text = "Yeah, they're pretty." } },
-		[5] = {
-			[{ "mission", "misja", "nagroda", "reward" }] = {
-				text = "Here's your reward. If you'd like to buy more {shimmer swimmer}s just ask me.",
-				rewards = {
-					{ id = 12557 },
-					{ id = 7250, count = 2 },
-					{ id = 3033, count = 5 },
-				},
-				outfitRewards = {
-					{ outfitId = 157, addon = 3 },
-					{ outfitId = 153, addon = 3 },
-				},
-				expReward = 80000,
-				nextState = {
-					[Storage.SettledDownFishmonger.Mission03] = 4,
-					[Storage.SettledDownFishmonger.Questline] = 6,
-					[Storage.Finished.SettledDownFishmonger] = 1,
-				},
-			},
-		},
-		[{ min = 5 }] = {
-			[{ "shimmer swimmer" }] = {
-				text = "Do you want to buy one shimmer swimmer for 1000gp?",
-				nextTopic = 10,
-			},
-			[{ "yes", "tak" }] = {
-				text = "Here you go.",
-				requiredTopic = { min = 10, max = 10 },
-				specialConditions = {
-					{
-						condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMoney,
-						requiredOutcome = true,
-						textNoRequiredCondition = "You dont have enough money.",
-						price = 1000,
-					},
-				},
-				specialActionsOnSuccess = {
-					{
-						action = SPECIAL_ACTIONS_UNIVERSAL.removeMoneyBank,
-						price = 1000,
-					},
-				},
-			},
-		},
-	},
-	[Storage.TwoMarlinQuest] = {
-		[-1] = {
-			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
-				text = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
-				requiredItems = {
-					{ id = 901, remove = false },
-				},
-				nextTopic = 1,
-			},
-			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
-				text = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
-				nextState = {
-					[Storage.TwoMarlinQuest] = 1,
-				},
-				rewards = { { id = 902 } },
-				expReward = 5000,
-				requiredTopic = 1,
-				requiredItems = { { id = 901, count = 2 } },
-				requiredState = { min = 1, max = 1 },
-				textNoRequiredCondition = "Bring me exactly two marlins",
-			},
-		},
-		[1] = {
-			[{ "marlin", "ryba", "rybka", "fish", "merlin" }] = {
-				text = "Thank you for that marlin. It looks great by the fireplace.",
-			},
 		},
 	},
 }

@@ -227,7 +227,7 @@ function ParseCustomOnLook(item, player)
 		return nil
 	end
 
-	local itemConfig = CustomItemRegistry():GetState(aid)
+	local itemConfig = CustomItemRegistry:GetState(aid)
 	local onLookContext = { player = player, aid = aid, item = item, onLook = itemConfig.onLook }
 	for _, check in pairs(displayFuctions) do
 		local status, description = check(onLookContext)

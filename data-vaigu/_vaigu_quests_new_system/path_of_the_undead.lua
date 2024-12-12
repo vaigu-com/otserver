@@ -3,7 +3,7 @@ quest
 	:Storage(function()
 		Storage.PathOfTheUndead = {
 			State = NextStorage(),
-			Mission01 = NextStorage(),
+			PuzzlesDoneStateBinary = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Circles = NextStorage(),
@@ -26,7 +26,7 @@ quest
 			missions = {
 				[1] = {
 					name = "Test of Strength",
-					storageId = Storage.PathOfTheUndead.Mission01,
+					storageId = Storage.PathOfTheUndead.PuzzlesDoneStateBinary,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 2,
@@ -537,7 +537,7 @@ quest
 		[{ "oprocz tego ludzie", "aside from that people" }] = {
 			text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without a second thought, all defenders gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don't know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
 			nextState = {
-				[Storage.PathOfTheUndead.Mission01] = 1,
+				[Storage.PathOfTheUndead.PuzzlesDoneStateBinary] = 1,
 			},
 			requiredState = {
 				[Storage.Finished.AssassinsCreedSquurvaali] = 1,
@@ -559,7 +559,7 @@ quest
 		[{ "conditions", "warunki" }] = {
 			text = "Allakhazam!!!1. Oh, wait, that's not all. I forgot that you also need to visit the magic circles. Each circle consists of 6 stones in 3 different colors, with a special grid in the middle. Stand on all five grids, and I will be able to bless you. I won't tell you where the circles are because you can ask the owners of magic shops in towns about it. Talk to them, and they will guide you to the circles. Just write 'circle' to them, and they will explain everything to you.",
 			nextState = {
-				[Storage.PathOfTheUndead.Mission01] = 2,
+				[Storage.PathOfTheUndead.PuzzlesDoneStateBinary] = 2,
 				[Storage.PathOfTheUndead.Mission02] = 1,
 				[Storage.PathOfTheUndead.Circles] = 0,
 			},
