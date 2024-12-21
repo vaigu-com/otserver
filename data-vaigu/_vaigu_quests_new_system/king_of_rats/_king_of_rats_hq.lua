@@ -2,7 +2,7 @@ local quest = Quest("kings_of_rats_hq")
 quest
 	:Storage(function()
 		Storage.KingOfRatsHQ = {
-			State = NextStorage(),
+			Mission01 = NextStorage(),
 			Portals = {
 				Ryan = NextStorage(),
 				SweatyCyclops = NextStorage(),
@@ -15,7 +15,7 @@ quest
 			},
 			Items = {
 				LibrumVortex = NextStorage(),
-				WifeBeater = NextStorage(),
+				Wifebeater = NextStorage(),
 				Ytong = NextStorage(),
 				Bottomless = NextStorage(),
 				Bribeslippers = NextStorage(),
@@ -171,7 +171,7 @@ quest
 				return
 			end
 
-			local toPos = KROL_SZCZUROW_HUB_ANCHOR:Moved(KROL_SZCZUROW_TELEPORT_HUB_DESINATIONS_IN[aid])
+			local toPos = KING_OF_RATS_HQ_ANCHOR:Moved(KROL_SZCZUROW_TELEPORT_HUB_DESINATIONS_IN[aid])
 			player:teleportTo(toPos)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			return false

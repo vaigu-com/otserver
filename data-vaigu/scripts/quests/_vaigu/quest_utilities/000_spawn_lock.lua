@@ -10,6 +10,9 @@ function SpawnLock:New(name)
 	local newObj = {}
 	name = name or nextSpawnLockName()
 	newObj.name = name
+	newObj.refreshed = 0
+	newObj.onSet = function() end
+	newObj.onReset = function() end
 	setmetatable(newObj, self)
 	return newObj
 end
@@ -24,12 +27,36 @@ SPAWN_LOCK_STATE = {
 	NOT_SET = "NOT_SET",
 }
 
-function SpawnLock:Set()
+function SpawnLock:Set(npc)
 	self.set = SPAWN_LOCK_STATE.SET
+	self.created = os.time()
+	self.refreshed = self.created
+	self.npc = npc
+	self.onSet()
+	return self
 end
 
 function SpawnLock:Reset()
 	self.set = SPAWN_LOCK_STATE.NOT_SET
+
+	self.onReset()
+	return self
+end
+
+function SpawnLock:Refresh()
+	self.refreshed = os.time()
+	return self
+end
+
+function SpawnLock:Context(context)
+	for key, value in pairs(context) do
+		self[key] = value
+	end
+	return self
+end
+
+function SpawnLock:SecondsSinceRefresh()
+	return os.time() - self.refreshed
 end
 
 function SpawnLock:IsSet()

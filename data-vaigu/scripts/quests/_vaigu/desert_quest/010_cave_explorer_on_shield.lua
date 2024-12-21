@@ -3,14 +3,13 @@ local quest = Quest(LOCALIZERS.CaveExplorerOnShield)
 quest
 	:Storage(function()
 		Storage.CaveExplorerOnShield = {
-			PuzzlesDoneStateBinary = NextStorage(),
-			Mission02 = NextStorage(),
-			Rewards = { Firebug = NextStorage(), GermiChest = NextStorage() },
-			Misc = {
-				AnthonyGate = NextStorage(),
-				Punchcard = NextStorage(),
-				FirebugFireplace = NextStorage(),
-			},
+			Mission01 = NextStorage(),
+			Firebug = NextStorage(),
+			GermiChest = NextStorage(),
+			AnthonyGate = NextStorage(),
+			Punchcard = NextStorage(),
+			FirebugFireplace = NextStorage(),
+			GermiCorpse = NextStorage(),
 		}
 		QuestState.CaveExplorerOnShield = {
 			Mission01 = {
@@ -22,9 +21,6 @@ quest
 				ReportToGermi = 6,
 				Finished = 7,
 			},
-			Mission02 = {
-				Finished = 1,
-			},
 		}
 		QuestTopics.CaveExplorerOnShield = {
 			ConfirmAnthonyIsAlive = NextTopic(),
@@ -32,20 +28,20 @@ quest
 		}
 	end)
 	:Constant(function()
-		CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS = {
-			firebug = {
+		QuestKeyItems.CaveExplorerOnShield = {
+			Firebug = {
 				id = 5467,
-				aid = Storage.CaveExplorerOnShield.Misc.FirebugFireplace,
+				aid = Storage.CaveExplorerOnShield.FirebugFireplace,
 				desc = "Desert ruins dead adventurer's firebug",
 			},
-			germiDocument = {
+			GermiDocument = {
 				id = 2815,
 				aid = 1000,
 				text = "(Torn page fragment) This damned place is overflowing with traps. Some devilish forces wish my life to meet a demise! Today I nearly slipped into a pit of fire. But there are also a lot of hints placed all over in the strangest of places. Looks like those are addressed to other adventurers like me and Anthony. Some of them don't seem to be created by humans. Don't trust them.",
 			},
-			punchcard = {
+			Punchcard = {
 				id = 4842,
-				aid = Storage.CaveExplorerOnShield.Misc.Punchcard,
+				aid = Storage.CaveExplorerOnShield.Punchcard,
 				desc = "A punchcard for opening mechanical doors",
 			},
 		}
@@ -54,7 +50,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Cave Explorer on Shield",
 			missions = {
-				[Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary] = {
+				[Storage.CaveExplorerOnShield.Mission01] = {
 					name = "First Mission",
 					states = {
 						[QuestState.CaveExplorerOnShield.Mission01.FindThePage] = "Find the page.",
@@ -69,9 +65,14 @@ quest
 			},
 		}
 	end)
-	:Mission(Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary)
+	:Mission(Storage.CaveExplorerOnShield.Mission01)
 	:State(
 		MISSION_NOT_STARTED,
+		QuestFactory.StartupItems({
+			{ id = 4241, aid = Storage.CaveExplorerOnShield.GermiCorpse, pos = { 82, 53, -2 }, rewards = { QuestKeyItems.CaveExplorerOnShield.Firebug } },
+			{ id = 2001, aid = Storage.CaveExplorerOnShield.FirebugFireplace, pos = { 77, 53, -2 } },
+			{ id = 1997, aid = Storage.CaveExplorerOnShield.FirebugFireplace, pos = { -25, 66, 3 } },
+		}, DESERT_QUEST_ONE_ANCHOR),
 		QuestFactory.Script(function(missionState)
 			local function movePlayersFromArea(topLeft, downRight, safePos)
 				CreatureList():Area(topLeft, downRight):FilterByPlayer():MovedToPos(safePos)
@@ -115,7 +116,7 @@ quest
 				return true
 			end
 
-			local ghost_name = "Ghost of Germi the Journeyman"
+			local ghostName = "Ghost of Germi the Journeyman"
 			local ghostPos = DESERT_QUEST_ONE_ANCHOR:Moved({ x = 82, y = 52, z = -2 })
 			local floorEffect = 8827
 			local unlit = 2001
@@ -123,7 +124,7 @@ quest
 			local function tryUseGermiFireplace(fireplace)
 				fireplace:transform(lit)
 
-				local npc = Game.createNpc(ghost_name, ghostPos)
+				local npc = Game.createNpc(ghostName, ghostPos)
 
 				local floorEffectItem = Game.createItem(floorEffect, 1, ghostPos)
 				floorEffectItem:setUniqueId(1000)
@@ -132,7 +133,7 @@ quest
 					npc:remove()
 					floorEffectItem:remove()
 					fireplace:transform(unlit)
-					fireplace:setActionId(Storage.CaveExplorerOnShield.Misc.FirebugFireplace)
+					fireplace:setActionId(Storage.CaveExplorerOnShield.FirebugFireplace)
 				end, 1000 * 120 * 2)
 
 				return true
@@ -146,7 +147,7 @@ quest
 				if item:getId() ~= fireBugId then
 					return false
 				end
-				if fireplace:getActionId() ~= Storage.CaveExplorerOnShield.Misc.FirebugFireplace then
+				if fireplace:getActionId() ~= Storage.CaveExplorerOnShield.FirebugFireplace then
 					return false
 				end
 				return true
@@ -166,7 +167,7 @@ quest
 				return true
 			end
 
-			firebug:aid(Storage.CaveExplorerOnShield.Misc.FirebugFireplace)
+			firebug:aid(Storage.CaveExplorerOnShield.Firebug)
 			firebug:register()
 		end),
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", {
@@ -205,7 +206,7 @@ quest
 				text = "Thank you.. thanks...",
 				requiredTopic = 5,
 				nextState = {
-					[Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary] = 1,
+					[Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.FindThePage,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -219,7 +220,10 @@ quest
 		QuestState.CaveExplorerOnShield.Mission01.FindThePage,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", { [{ GREET }] = {
 			text = "Please come back with something of mine.",
-		} })
+		} }),
+		QuestFactory.StartupItems({
+			{ id = 2484, aid = Storage.CaveExplorerOnShield.Rewards.GermiChest, pos = { 63, 35, 0 }, nextState = { [Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi }, rewards = { QuestKeyItems.CaveExplorerOnShield.GermiDocument } },
+		}, DESERT_QUEST_ONE_ANCHOR)
 	)
 	:State(
 		QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi,
@@ -231,14 +235,14 @@ quest
 			},
 			[{ "yes", "tak" }] = {
 				text = "What is that... That looks like my writing... I am remembering now... Yes, I remember! I was an adventurer, and our camp was built there. My memories... They are coming back! Do you... also are up to something in this place? You are the first living human being that I encountered after my... death. I have so much to say. Do you want to listen to my {story}?",
-				requiredItems = { CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.germiDocument },
+				requiredItems = { QuestKeyItems.CaveExplorerOnShield.GermiDocument },
 				removeRequiredItems = false,
 				textNoRequiredItems = "Please come back with something of mine.",
 			},
 			[{ "story", "historie" }] = {
 				text = "In the past I was an adventurer, down for treasure and fame. Over the years of exploring caves I gained ground in my profession, until.... I and my {team} encountered this dungeon. I would try to talk you out of delving here, but alas I already know you won't listen. At least to listen to what I have for you. I might give you few {directions}.",
 				nextState = {
-					[Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary] = 3,
+					[Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.TalkToGermiAboutDoor,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -290,17 +294,27 @@ quest
 			},
 			[{ "otwarcie", "open", "opening" }] = {
 				text = "Here you go - this is a punchcard that will start the door mechanism and open them. Be wary! Doors will automatically close if you pass through them. Take your steps cautiously - every step can be your last!",
-				rewards = { CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.punchcard },
+				rewards = { QuestKeyItems.CaveExplorerOnShield.Punchcard },
 				specialActionsOnSuccess = {
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffect,
 					},
+				},
+				nextState = {
+					[Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer,
 				},
 			},
 		})
 	)
 	:State(
 		QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer,
+		QuestFactory.StartupItems({
+			{ id = 8342, aid = Storage.CaveExplorerOnShield.Misc.Punchcard, pos = { 86, 61, -2 } },
+			{ id = 355, aid = Storage.CaveExplorerOnShield.Misc.Punchcard, pos = { 87, 61, -2 } },
+			{ id = 231, pos = { 5, -8, 1 }, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },
+			{ id = 231, pos = { 6, -8, 1 }, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },
+			{ id = 231, pos = { 7, -8, 1 }, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },
+		}, DESERT_QUEST_ONE_ANCHOR),
 		QuestFactory.Script(function(missionState)
 			local punchcard = Action()
 
@@ -308,10 +322,10 @@ quest
 				if not target then
 					return false
 				end
-				if item:getActionId() and not (item:getActionId() == Storage.CaveExplorerOnShield.Misc.Punchcard) then
+				if item:getActionId() and not (item:getActionId() == Storage.CaveExplorerOnShield.Punchcard) then
 					return false
 				end
-				if target:getActionId() and not (target:getActionId() == Storage.CaveExplorerOnShield.Misc.Punchcard) then
+				if target:getActionId() and not (target:getActionId() == Storage.CaveExplorerOnShield.Punchcard) then
 					return false
 				end
 				if not (target:getId() == 8342) then
@@ -340,7 +354,7 @@ quest
 				return true
 			end
 
-			punchcard:aid(Storage.CaveExplorerOnShield.Misc.Punchcard)
+			punchcard:aid(Storage.CaveExplorerOnShield.Punchcard)
 			punchcard:register()
 
 			local doorPos = DESERT_QUEST_ONE_ANCHOR:Moved(DESERT_QUEST_ONE_PUNCHCARD_DOOR_CLOSED[1].offPos)
@@ -354,7 +368,7 @@ quest
 				if not player:isPlayer() then
 					return false
 				end
-				if item.itemid == CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.punchcard.id then
+				if item.itemid == QuestKeyItems.CaveExplorerOnShield.Punchcard.id then
 					return false
 				end
 				if not Tile(toPosition):getItemById(355) then
@@ -371,20 +385,15 @@ quest
 					RemoveItems(DESERT_QUEST_ONE_PUNCHCARD_DOOR_CLOSED, DESERT_QUEST_ONE_ANCHOR)
 					RemoveItems(DESERT_QUEST_ONE_PUNCHCARD_DOOR_OPEN, DESERT_QUEST_ONE_ANCHOR)
 					CreateItems(DESERT_QUEST_ONE_PUNCHCARD_DOOR_CLOSED, DESERT_QUEST_ONE_ANCHOR)
-					ChangeItemsActionId(DESERT_QUEST_ONE_PUNCHCARD_DOOR_CLOSED, Storage.CaveExplorerOnShield.Misc.Punchcard, DESERT_QUEST_ONE_ANCHOR)
+					ChangeItemsActionId(DESERT_QUEST_ONE_PUNCHCARD_DOOR_CLOSED, Storage.CaveExplorerOnShield.Punchcard, DESERT_QUEST_ONE_ANCHOR)
 				end, 1000 * 1)
 			end
 
-			tile:aid(Storage.CaveExplorerOnShield.Misc.Punchcard)
+			tile:aid(Storage.CaveExplorerOnShield.Punchcard)
 			tile:type("stepin")
 			tile:register()
 		end),
 		QuestFactory.Script(function(missionState)
-			local config = {
-				["success"] = "You succeeded in opening the gate! Talk back to engineer ghost and tell him about your success. Dont worry about closing gates - you can use shortcut door.",
-			}
-			local questStorage = Storage.CaveExplorerOnShield.Questline
-
 			local anthonyGate = MoveEvent()
 
 			function anthonyGate.onStepIn(creature, item, position, fromPosition)
@@ -392,16 +401,17 @@ quest
 				if not player then
 					return true
 				end
-
-				if player:getStorageValue(questStorage) == 4 then
-					player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-					player:setStorageValue(questStorage, 5)
-					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(Storage.CaveExplorerOnShield.Questline):Get(config["success"]))
+				if not player:HasExactMissionState(missionState) then
+					return
 				end
+
+				player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
+				player:setStorageValue(Storage.CaveExplorerOnShield.Questline, QuestState.CaveExplorerOnShield.Mission01.ReportToEngineer)
+				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(Storage.CaveExplorerOnShield.Questline):Get("You succeeded in opening the gate! Talk back to engineer ghost and tell him about your success. Dont worry about closing gates - you can use shortcut door."))
 				return true
 			end
 
-			anthonyGate:aid(Storage.CaveExplorerOnShield.Misc.AnthonyGate)
+			anthonyGate:aid(Storage.CaveExplorerOnShield.AnthonyGate)
 			anthonyGate:type("stepin")
 			anthonyGate:register()
 		end),
@@ -448,7 +458,7 @@ quest
 			[{ "pozdrow", "pozdrowienia", "regards", "mission" }] = {
 				text = "What? You encountered Germi and he told you to send his salutations? I understand... he didn't make it either... Please, return to him and tell him about my fate. Tell him that I'm sorry that I left him alone...",
 				nextState = {
-					[Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary] = 6,
+					[Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.ReportToGermi,
 				},
 			},
 		})
@@ -464,8 +474,11 @@ quest
 				rewards = { { id = 3035, count = 100 } },
 				expReward = 50000,
 				requiredItems = {
-					CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.firebug,
-					CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.germiDocument,
+					QuestKeyItems.CaveExplorerOnShield.Firebug,
+					QuestKeyItems.CaveExplorerOnShield.GermiDocument,
+				},
+				nextState = {
+					[Storage.CaveExplorerOnShield.Mission01] = MISSION_FINISHED,
 				},
 			},
 		})

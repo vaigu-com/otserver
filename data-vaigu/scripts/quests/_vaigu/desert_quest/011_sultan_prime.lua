@@ -3,9 +3,9 @@ local quest = Quest(LOCALIZERS.SultanPrime)
 quest
 	:Storage(function()
 		Storage.SultanPrime = {
-			State = NextStorage(),
+			Necklace = NextStorage(),
 
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
 			MagicianFountain = NextStorage(),
 
 			Mission02 = NextStorage(),
@@ -49,9 +49,9 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.SultanPrime = {
-			bottle = { id = 10183, aid = Storage.SultanPrime.MagicianFountain },
-			amulet = { id = 3015, aid = Storage.SultanPrime.RewardsScripted.Necklace },
-			cezaryCorpse = { id = 4240 },
+			Bottle = { id = 10183, aid = Storage.SultanPrime.MagicianFountain },
+			Amulet = { id = 3015, aid = Storage.SultanPrime.Necklace },
+			CezaryCorpse = { id = 4240 },
 		}
 		SULTAN_PRIME_CAMEL_FARM = { topLeft = { -37, -25, 0 }, downRight = { 12, 22, 0 }, requiredDromedaryCount = 6 }
 		SULTAN_PRIME_RETRO_MIRKO = {
@@ -70,7 +70,7 @@ quest
 			startStorageId = Storage.SultanPrime.Localizer,
 			startStorageValue = 1,
 			missions = {
-				[Storage.SultanPrime.PuzzlesDoneStateBinary] = {
+				[Storage.SultanPrime.Mission01] = {
 					name = "What Is Mafia? Is It Good?",
 					states = {
 						[QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
@@ -109,8 +109,8 @@ quest
 
 		function cezary.onDeath(creature)
 			local deathPos = creature:getPosition()
-			local corpse = Game.createItem(QuestKeyItems.SultanPrime.cezaryCorpse.id, 1, deathPos)
-			corpse:setActionId(Storage.SultanPrime.RewardsScripted.Necklace)
+			local corpse = Game.createItem(QuestKeyItems.SultanPrime.CezaryCorpse.id, 1, deathPos)
+			corpse:setActionId(Storage.SultanPrime.Necklace)
 
 			addEvent(function()
 				Game.createMonster("Cezary Baryka", deathPos)
@@ -370,17 +370,17 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.SultanPrime.PuzzlesDoneStateBinary)
+	:Mission(Storage.SultanPrime.Mission01)
 	:State(
 		MISSION_NOT_STARTED,
 		QuestFactory.StartupItems({
-			{ id = QuestKeyItems.SultanPrime.cezaryCorpse.id, aid = Storage.SultanPrime.RewardsScripted.Necklace, nextState = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = 1 }, rewards = { QuestKeyItems.SultanPrime.amulet }, requiredState = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = MISSION_NOT_STARTED } },
+			{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, aid = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
 		}),
 		QuestFactory.Script(function(missionState)
 			local neckUpdateStorages = {
-				[Storage.SultanPrime.PuzzlesDoneStateBinary] = 1,
+				[Storage.SultanPrime.Mission01] = 1,
 			}
-			local questStorage = Storage.SultanPrime.PuzzlesDoneStateBinary
+			local questStorage = Storage.SultanPrime.Mission01
 
 			local corpse = Action()
 			function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -389,11 +389,11 @@ quest
 					return
 				end
 
-				player:AddItems({ QuestKeyItems.SultanPrime.amulet })
+				player:AddItems({ QuestKeyItems.SultanPrime.Amulet })
 				player:UpdateStorages(neckUpdateStorages)
 				return true
 			end
-			corpse:aid(Storage.SultanPrime.RewardsScripted.Necklace)
+			corpse:aid(Storage.SultanPrime.Necklace)
 			corpse:register()
 		end)
 	)
@@ -403,7 +403,7 @@ quest
 			[{ GREET }] = {
 				text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
 				nextState = {
-					[Storage.SultanPrime.PuzzlesDoneStateBinary] = QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
+					[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
 				},
 			},
 		})
@@ -416,10 +416,10 @@ quest
 			},
 			[{ "mission", "amulet", "naszyjnik" }] = {
 				text = "Thanks for your cooperation. Now if you don't mind, i have a {mission} for you.",
-				requiredItems = { QuestKeyItems.SultanPrime.amulet },
+				requiredItems = { QuestKeyItems.SultanPrime.Amulet },
 				textNoRequiredItems = "Ehh, you lost it? Guess Imma take over the world in next season.",
 				nextState = {
-					[Storage.SultanPrime.PuzzlesDoneStateBinary] = QuestState.SultanPrime.Mission01.Finished,
+					[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.Finished,
 					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
 				},
 			},
@@ -437,7 +437,7 @@ quest
 				nextState = {
 					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
 				},
-				rewards = { QuestKeyItems.SultanPrime.bottle },
+				rewards = { QuestKeyItems.SultanPrime.Bottle },
 			},
 		})
 	)
@@ -462,7 +462,7 @@ quest
 				if not (target:getActionId() == Storage.SultanPrime.MagicianFountain) then
 					return
 				end
-				if target:getId() == QuestKeyItems.SultanPrime.bottle.id then
+				if target:getId() == QuestKeyItems.SultanPrime.Bottle.id then
 					return
 				end
 			end
@@ -478,7 +478,7 @@ quest
 					return false
 				end
 
-				player:RemoveItems({ QuestKeyItems.SultanPrime.bottle })
+				player:RemoveItems({ QuestKeyItems.SultanPrime.Bottle })
 				player:setStorageValue(Storage.SultanPrime.Mission02, QuestState.SultanPrime.Mission02.AskSultanForCamelTask)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				target:getPosition():sendMagicEffect(CONST_ME_PLANTATTACK)
@@ -504,6 +504,125 @@ quest
 			},
 		})
 	)
+	--39f dodac na mapie
+	:Monster(function()
+		local mType = Game.createMonsterType("Dampreefer Dromedary")
+		local monster = {}
+
+		monster.description = "a dromedary"
+		monster.experience = 0
+		monster.outfit = {
+			lookType = 404,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.raceId = 733
+		monster.Bestiary = {
+			class = "Mammal",
+			race = BESTY_RACE_MAMMAL,
+			toKill = 250,
+			FirstUnlock = 10,
+			SecondUnlock = 100,
+			CharmsPoints = 5,
+			Stars = 1,
+			Occurrence = 0,
+			Locations = "Ankrahmun near the way to Darashia, Ankrahmun near sea, around Darashia, Issavi.",
+		}
+
+		monster.health = 45
+		monster.maxHealth = 45
+		monster.race = "blood"
+		monster.corpse = 12539
+		monster.speed = 57
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 4000,
+			chance = 20,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 100,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = false,
+			convinceable = false,
+			pushable = true,
+			rewardBoss = false,
+			illusionable = true,
+			canPushItems = false,
+			canPushCreatures = false,
+			staticAttackChance = 90,
+			targetDistance = 4,
+			runHealth = 45,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = false,
+			canWalkOnFire = false,
+			canWalkOnPoison = false,
+		}
+
+		monster.events = {
+			"DampreeferDromedaryDeath",
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+			{ text = "Snort", yell = false },
+			{ text = "Grunt!", yell = false },
+		}
+
+		monster.loot = {
+			{ name = "meat", chance = 36000, maxCount = 2 },
+		}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -8 },
+			{ name = "drunk", interval = 4000, chance = 5, range = 1, shootEffect = CONST_ANI_EXPLOSION, effect = CONST_ME_STUN, target = true, duration = 6000 },
+		}
+
+		monster.defenses = {
+			defense = 5,
+			armor = 4,
+			mitigation = 0.15,
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 0 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = false },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = false },
+			{ type = "bleed", condition = false },
+		}
+
+		mType:register(monster)
+	end)
 	:State(
 		QuestState.SultanPrime.Mission02.KillCamels,
 		QuestFactory.Dialog("Sultan of Phantasms", {
@@ -540,12 +659,8 @@ quest
 			}
 			local requiredCamelKills = 6
 
-			local function isOnFarm(player)
-				return player:getPosition():EuclideanDistance(SULTAN_PRIME_CAMEL_FARM.topLeft) < 100
-			end
-
-			local dromedaryDeath = CreatureEvent("DromedaryDeath")
-			function dromedaryDeath.onDeath(creature)
+			local DampreeferDromedaryDeath = CreatureEvent("DampreeferDromedaryDeath")
+			function DampreeferDromedaryDeath.onDeath(creature)
 				local targetMonster = creature:getMonster()
 				if not targetMonster or targetMonster:getMaster() then
 					return true
@@ -554,10 +669,6 @@ quest
 				onDeathForDamagingPlayers(creature, function(creature, player)
 					local storage_val = player:getStorageValue(Storage.SultanPrime.Mission02)
 					if storage_val ~= QuestState.SultanPrime.Mission02.KillCamels then
-						return true
-					end
-
-					if not isOnFarm(player) then
 						return true
 					end
 
@@ -570,7 +681,7 @@ quest
 				end)
 				return true
 			end
-			dromedaryDeath:register()
+			DampreeferDromedaryDeath:register()
 		end)
 	)
 	:State(
@@ -778,7 +889,7 @@ quest
 
 			local tentacleSpawn = GlobalEvent("SultanPrimeTentacle")
 			function tentacleSpawn.onStartup()
-				--38f check if pos is correct
+				--39f add Tentacly Jaw monster
 				tentacleMonster = Game.createMonster("Tentacly Jaw", RETRO_MIRKO_ANCHOR:Moved({ -9, -11, 0 }))
 				tentacleMonster:setInvulnerable()
 			end
@@ -821,7 +932,7 @@ quest
 				nextState = {
 					[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,
 				},
-				rewards = { QuestKeyItems.SultanPrime.amulet },
+				rewards = { QuestKeyItems.SultanPrime.Amulet },
 			},
 		}),
 		QuestFactory.StartupItems({

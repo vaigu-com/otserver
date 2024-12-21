@@ -2,8 +2,8 @@ local quest = Quest("four_act_tragedy")
 quest
 	:Storage(function()
 		Storage.FourActTragedy = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -41,12 +41,12 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Four Act Tragedy",
-			startStorageId = Storage.FourActTragedy.State,
+			startStorageId = Storage.FourActTragedy.Mission01,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Dodge those compensation claims",
-					storageId = Storage.FourActTragedy.PuzzlesDoneStateBinary,
+					storageId = Storage.FourActTragedy.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 4,
@@ -128,7 +128,7 @@ quest
 	:Script(function(missionState)
 		local beastId = nil
 
-		local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6) -- 38f85df67705e9e59ab4b44bc8590644
+		local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6)
 		local fanfareSacrificePos = RETRO_KNUROWO_ANCHOR:Moved(-29, -34, 6):Moved(-2, 0, 0)
 
 		local panpipeLever = Action()
@@ -140,12 +140,12 @@ quest
 				return
 			end
 
-			local fanfare = Tile(fanfareSacrificePos):getItemById(TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.fanfare.id)
+			local fanfare = Tile(fanfareSacrificePos):getItemById(QuestKeyItems.FourActTragedy.Fanfare.id)
 
 			if not fanfare then
 				return false
 			end
-			if player:getStorageValue(Storage.FourActTragedy.State) ~= 5 then
+			if player:getStorageValue(Storage.FourActTragedy.Mission01) ~= 5 then
 				return false
 			end
 
@@ -159,7 +159,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local updateStorages = {
-			[Storage.FourActTragedy.State] = 10,
+			[Storage.FourActTragedy.Mission01] = 10,
 			[Storage.FourActTragedy.Mission03] = 2,
 		}
 
@@ -167,7 +167,7 @@ quest
 
 		function theKraken.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.Mission01)
 				if storage_val ~= 9 then
 					return true
 				end
@@ -189,7 +189,7 @@ quest
 				return true
 			end
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.Mission01)
 				if storage_val ~= 13 then
 					return true
 				end
@@ -296,7 +296,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local toModern = Position(5513, 1554, 7)
-		local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0) -- 38f85df67705e9e59ab4b44bc8590644
+		local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0)
 		local toKolumb = Position(5909, 1233, 6)
 
 		local tpToRetro = MoveEvent()
@@ -639,7 +639,7 @@ quest
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.FourActTragedy.State)
+			local storageVal = player:getStorageValue(Storage.FourActTragedy.Mission01)
 			if storageVal < 11 or 12 < storageVal then
 				return false
 			end

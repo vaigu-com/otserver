@@ -1,6 +1,6 @@
 return {
 	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValue(Storage.taskPoints)
+		local points = context.player:getStorageValue(Storage.Tasks.TaskPoints)
 		return T("Currently you have :points: task points. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -10,7 +10,7 @@ return {
 		return T("Would you like to buy :name: for :cost: Task Poins?", { name = context.msg:lower(), cost = context.keywordConfig.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValue(Storage.taskPoints)
+		local current = context.player:getStorageValue(Storage.Tasks.TaskPoints)
 		local required = context.keywordConfig.cost or PlayerCustomDialogDataRegistry():Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("You dont have enough points. You need :required: points to buy that. You currently have :current: points meaning you need to accumulate :diff: more points.", { current = current, required = required, diff = diff })

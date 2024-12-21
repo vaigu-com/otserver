@@ -20,6 +20,9 @@ quest
 
 			PreludeToThaumaturgy = 11047,
 			GravesSoulChance = 11049,
+
+			RadioFreeHirschberg = 11050,
+			OldRadio = 11051,
 		}
 		QuestState.ArielsFriend = {
 			HumbleRequest = {
@@ -58,7 +61,15 @@ quest
 			AcceptReward = NextTopic(),
 		}
 	end)
-	:Constant(function() end)
+	:Constant(function()
+		QuestKeyItems.ArielsFriend = {
+			HairStrand = { id = 36809, aid = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." },
+			LoveElixirRaw = { id = elixirId, aid = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" },
+			LoveElixirEnchanted = { id = elixirId, aid = Storage.ArielsFriend.LoveElixirEnchanted },
+			LiquorItem = { id = 6106, aid = Storage.ArielsFriend.LiquorItem },
+			OldRadio = { id = 12813, aid = Storage.ArielsFriend.OldRadio, desc = "made in Hirschberg Manufacture LLC" },
+		}
+	end)
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Ariel's Friend",
@@ -80,7 +91,7 @@ quest
 						[4] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
 						[5] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
 						[6] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
-						[7] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Yalaharian greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
+						[7] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
 					},
 				},
 				[Storage.ArielsFriend.KillerLiquor] = {
@@ -99,6 +110,12 @@ quest
 						[3] = "You managed to get a virgin's soul. Now go see Konmuld.",
 						[4] = "Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself.",
 						[5] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
+					},
+				},
+				[Storage.ArielsFriend.RadioFreeHirschberg] = {
+					name = "Old radio",
+					state = {
+						[MISSION_FINISHED] = "Ariel rewarded you for finding his grandgrandfather's radio.",
 					},
 				},
 			},
@@ -172,7 +189,7 @@ quest
 		QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
 		QuestFactory.Dialog("Ariel", {
 			[{ "story", "historia", "historie", "mission" }] = {
-				text = "Oh, yes. I promised to tell you my story. Well, I come from the legendary town of Yalahar, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist. ...\nI survived because I left there as soon as the riots broke out, unfortunately all my family died. Besides me, a few more inhabitants fled. At first we stuck together, but eventually we parted ways. Last time I saw {Gertrude} in the jungle. {Konmuld} on the other hand, he went the wrong way, and decided to devote himself to black magic. I did not know the other survivors, but maybe Gertrude or Konmuld will know where they are. ...\nHowever, I don't know if they will want to talk to you, Yalaharians are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
+				text = "Oh, yes. I promised to tell you my story. Well, I come from the legendary town of Hirschberg, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist. ...\nI survived because I left there as soon as the riots broke out, unfortunately all my family died. Besides me, a few more inhabitants fled. At first we stuck together, but eventually we parted ways. Last time I saw {Gertrude} in the jungle. {Konmuld} on the other hand, he went the wrong way, and decided to devote himself to black magic. I did not know the other survivors, but maybe Gertrude or Konmuld will know where they are. ...\nHowever, I don't know if they will want to talk to you, peopel of Hirschberg are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
 				nextTopic = QuestTopics.ArielsFriend.AcceptLoveQuest,
 			},
 			[{ "yes", "tak" }] = {
@@ -207,7 +224,7 @@ quest
 			},
 		}),
 		QuestFactory.StartupItems({
-			{ id = 5499, pos = { 5686, 1600, 5 }, aid = Storage.ArielsFriend.Haybed, rewards = { id = 36809, aid = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." } },
+			{ id = 5499, pos = { 5686, 1600, 5 }, aid = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
 		})
 	)
 	:State(
@@ -227,7 +244,7 @@ quest
 	:State(
 		QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
 		QuestFactory.StartupItems({
-			{ id = 8998, pos = { 6041, 1324, 8 }, aid = Storage.ArielsFriend.ElixirStand, rewards = { { id = elixirId, aid = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" } } },
+			{ id = 8998, pos = { 6041, 1324, 8 }, aid = Storage.ArielsFriend.ElixirStand, rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw } },
 		})
 	)
 	:State(
@@ -275,7 +292,7 @@ quest
 			[{ "mission", "misja", "wino", "wine", "ariel" }] = {
 				text = "Ahh, I love these exotic ones from Old Postman, I'll taste them immediately at the spot.\nArrrgh, disgusting. Tell him that he should never order this one again.",
 				requiredItems = {
-					{ id = elixirId, aid = Storage.ArielsFriend.LoveElixirEnchanted },
+					QuestKeyItems.ArielsFriend.LoveElixirEnchanted,
 				},
 				nextState = {
 					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel,
@@ -343,14 +360,14 @@ quest
 				"butelka",
 				"wodka",
 			}] = {
-				text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Yalahar.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
+				text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Hirschberg.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
 				requiredItems = { { id = 6106, remove = false } },
 				nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
 				expReward = 150000,
 			},
 		}),
 		QuestFactory.StartupItems({
-			{ id = 137, pos = { 6448, 913, 3 }, aid = Storage.ArielsFriend.LiquorChest, rewards = { { id = 6106, aid = Storage.ArielsFriend.LiquorItem } } },
+			{ id = 137, pos = { 6448, 913, 3 }, aid = Storage.ArielsFriend.LiquorChest, rewards = { QuestKeyItems.ArielsFriend.LiquorItem } },
 		})
 	)
 	:State(
@@ -362,7 +379,7 @@ quest
 			[{ "wodka", "trunek", "vodka", "liquor" }] = {
 				text = "Now we can talk! Who bring you there?",
 				requiredItems = {
-					{ id = 6106, aid = Storage.ArielsFriend.LiquorItem },
+					QuestKeyItems.ArielsFriend.LiquorItem,
 				},
 				nextState = {
 					[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.AskKonmuldForMission,
@@ -377,7 +394,7 @@ quest
 			[{ "aloha" }] = {
 				text = "Im not in the mood to talk with you.",
 			},
-			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
+			[{ "mission", "misja", "dusza", "gertruda" }] = {
 				text = "I'll tell you what we will do. For a few years I have been studying the art of secret black magic. Still the soul of the virgin is missing.\nI don't know how to get it, but {someone} will know for sure. Try to find out and bring me at least one soul. I'll give you one piece of my old set.",
 				nextState = {
 					[Storage.ArielsFriend.KillerLiquor] = MISSION_FINISHED,
@@ -390,7 +407,7 @@ quest
 	:State(
 		QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
 		QuestFactory.Dialog("Grave Digger", {
-			[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "mission" }] = {
+			[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "mission", "misja", "someone" }] = {
 				text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is a shovel in my hand and digging {graves}, which is what I like best!\nIf you don't have anything to dig with, keep my old shovel.",
 				nextState = {
 					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
@@ -401,7 +418,9 @@ quest
 	:State(
 		QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
 		QuestFactory.Dialog("Grave Digger", {
-			[{}] = "You can surely find graves on cemetery in Mirkotown and also in Knurow. I heard that there is one somewhere to the north of here.",
+			[{ "dusza", "soul", "graves", "groby" }] = {
+				text = "You can surely find graves on cemetery in Mirkotown and also in Knurow. I heard that there is one somewhere to the north of here.",
+			},
 		}),
 		QuestFactory.Script(function(missionState)
 			local grave = Action()
@@ -430,8 +449,8 @@ quest
 	:State(
 		QuestState.ArielsFriend.PreludeToThaumaturgy.ReportToKonmuld,
 		QuestFactory.Dialog("Konmuld", {
-			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
-				text = "GREAT! I will create a virgin from that soul just for myself!\nAs promissed. You can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
+			[{ "mission", "misja", "dusza", "gertruda" }] = {
+				text = "GREAT! I will create a virgin from that soul just for myself!\nAs I promised, you can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
 				expReward = 750000,
 				outfitRewards = {
 					{ outfit = 324, addons = 3 },
@@ -447,7 +466,7 @@ quest
 		QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
 		QuestFactory.Dialog("Konmuld", {
 			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
-				text = "As promissed. You can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
+				text = "As I promised, you can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
 				nextTopic = QuestTopics.ArielsFriend.AcceptReward,
 			},
 			[{ "mask", "maska" }] = {
@@ -478,6 +497,20 @@ quest
 				nextState = {
 					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.Finished,
 					[Storage.Finished.ArielsFriend] = 1,
+				},
+			},
+		})
+	)
+	--41f ToDo: new quest
+	:Mission(Storage.ArielsFriend.RadioFreeHirschberg)
+	:State(
+		MISSION_NOT_STARTED,
+		QuestFactory.Dialog("Ariel", {
+			[{ "radio", "old radio" }] = {
+				text = "This radio looks very similar to ones we had back in Hirschberg. I cannot make it {work} again, its just some buzzing.",
+				textNoRequiredItems = "Back in the times we lived in Hirschberg, we had those things called radio. It allowed us to communicate on great distances. I haven't met anyone using it ever since.",
+				requiredItems = {
+					{ QuestKeyItems.ArielsFriend.OldRadio, remove = false },
 				},
 			},
 		})

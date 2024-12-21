@@ -48,12 +48,10 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
---38f
 local function greetCallback(npc, creature, type, message)
 	return true
 end
 
---38f
 local function creatureSayCallback(npc, creature, type, msg)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false

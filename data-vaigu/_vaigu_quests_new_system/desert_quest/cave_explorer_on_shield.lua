@@ -2,7 +2,7 @@ local quest = Quest("cave_explorer_on_shield")
 quest
 	:Storage(function()
 		Storage.CaveExplorerOnShield = {
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Rewards = { Firebug = NextStorage(), GermiChest = NextStorage() },
 			Misc = {
@@ -20,7 +20,7 @@ quest
 			missions = {
 				[1] = {
 					name = "First Mission",
-					storageId = Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary,
+					storageId = Storage.CaveExplorerOnShield.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 7,
@@ -36,7 +36,7 @@ quest
 				},
 				[2] = {
 					name = "Notes from the Conversation",
-					storageId = Storage.CaveExplorerOnShield.PuzzlesDoneStateBinary,
+					storageId = Storage.CaveExplorerOnShield.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 1,
@@ -225,7 +225,7 @@ quest
 			if not player:isPlayer() then
 				return false
 			end
-			if item.itemid == CAVE_EXPLORER_ON_SHIELD_KEY_ITEMS.punchcard.id then
+			if item.itemid == QuestKeyItems.CaveExplorerOnShield.Punchcard.id then
 				return false
 			end
 			if not Tile(toPosition):getItemById(355) then

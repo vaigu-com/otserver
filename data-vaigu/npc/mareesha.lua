@@ -48,30 +48,7 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-do
-	return
-end --38f change to RubelsteinLegacy
 local dialog = {
-	[Storage.PerIustitiaAdAstra.Localizer] = {
-		[Storage.PerIustitiaAdAstra.HelpedRubelstein] = {
-			[2] = {
-				[{ "czek", "token", "bon", "nagroda", "reward" }] = {
-					text = "I can pay you any amount admitted in a token, effectively charging the party that signed it.",
-				},
-				[{ ANY_MESSAGE }] = {
-					text = "Here, take your money.",
-					nextState = { [Storage.PerIustitiaAdAstra.HelpedRubelstein] = 3 },
-					rewards = { { id = 3043, count = 10 } },
-					specialConditions = {
-						{
-							condition = PER_IUSTITIA_AD_ASTRA_SPECIAL_CONDITIONS.saidRubelsteinsChecksum,
-							requiredOutcome = true,
-						},
-					},
-				},
-			},
-		},
-	},
 }
 
 local function greetCallback(npc, creature, type, message)

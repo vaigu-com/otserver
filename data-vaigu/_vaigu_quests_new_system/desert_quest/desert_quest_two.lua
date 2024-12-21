@@ -4,8 +4,8 @@ quest
 		Storage.DesertQuestHub = Storage.DesertQuestHub or {}
 		Storage.DesertQuestHub.ToDesertQuestTwo = NextStorage()
 		Storage.DesertQuestTwo = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			ProgressChests = NextStorage(),
 			FastMonster = NextStorage(),
 			RewardRoomTp = NextStorage(),
@@ -143,7 +143,7 @@ quest
 		end
 
 		function GetDQ2completedPuzzleCount(player)
-			local storageVal = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary)
+			local storageVal = player:getStorageValue(Storage.DesertQuestTwo.Mission01)
 			local result = 0
 			while storageVal > 0 do
 				result = result + (bit.band(storageVal, 1))
@@ -159,7 +159,7 @@ quest
 				return false
 			end
 
-			local oldValue = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary)
+			local oldValue = player:getStorageValue(Storage.DesertQuestTwo.Mission01)
 			if oldValue == -1 then
 				oldValue = 0
 			end
@@ -170,7 +170,7 @@ quest
 			end
 
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-			player:setStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary, newValue)
+			player:setStorageValue(Storage.DesertQuestTwo.Mission01, newValue)
 
 			local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 			local finalString = puzzlesCompleted .. "/" .. puzzlesCount
@@ -1745,7 +1745,7 @@ quest
 			local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 			if puzzlesCompleted < puzzlesCount then
 				player:teleportTo(fromPosition)
-				local errorString = player:Localizer(Storage.DesertQuestTwo.State):Get("You need to complete all the puzzle challenges first. Your current progress: ")
+				local errorString = player:Localizer(Storage.DesertQuestTwo.Mission01):Get("You need to complete all the puzzle challenges first. Your current progress: ")
 				local finalString = errorString .. puzzlesCompleted .. "/" .. puzzlesCount
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, finalString)
 				return
@@ -1802,7 +1802,7 @@ quest
 			SimpleTextDisplay(player, item, paladinDisplayedString)
 		end
 		trickSignLook:aid(Storage.DesertQuestOne.Readable.FloorBooks)
-		trickSignLook:regiser()
+		trickSignLook:register()
 
 		local trickGraveLook = Look()
 		function trickGraveLook.onLook(player, item)
@@ -1829,7 +1829,7 @@ quest
 			SimpleTextDisplay(player, item, finalString)
 		end
 		trickGraveLook:aid(Storage.DesertQuestOne.Readable.FloorBooks)
-		trickGraveLook:regiser()
+		trickGraveLook:register()
 	end)
 	:Script(function(missionState)
 		local passableId = 5062

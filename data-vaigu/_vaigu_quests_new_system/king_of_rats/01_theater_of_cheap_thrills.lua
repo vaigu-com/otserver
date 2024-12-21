@@ -2,8 +2,8 @@ local quest = Quest("theater_of_cheap_thrills")
 quest
 	:Storage(function()
 		Storage.TheaterOfCheapThrills = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -35,12 +35,12 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Theater of Cheap Thrills",
-			startStorageId = Storage.TheaterOfCheapThrills.State,
+			startStorageId = Storage.TheaterOfCheapThrills.Mission01,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Vitat Iustitia",
-					storageId = Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary,
+					storageId = Storage.TheaterOfCheapThrills.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -125,7 +125,7 @@ quest
 					states = {
 						[1] = "GM Romek needs help with a new problem, go to him.",
 						[2] = "GM Romek is afraid for his life. Try to find Robercik before he finds Romek.",
-						[3] = "You defeated the cunning Robercik. Return to Romk for your reward.",
+						[3] = "You defeated the cunning Robercik. Return to Romek for your reward.",
 						[4] = "Chorus of Januses: I was sent to break the chains of justice. This time, he will perish along with his soul.",
 					},
 				},
@@ -198,7 +198,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.TheaterOfCheapThrills.State] = 30,
+			[Storage.TheaterOfCheapThrills.Mission01] = 30,
 			[Storage.TheaterOfCheapThrills.Mission10] = 3,
 		}
 
@@ -361,7 +361,7 @@ quest
 		mType:register(monster)
 	end)
 	:MonsterEvent(function()
-		local storages = { Storage.TheaterOfCheapThrills.State, Storage.TheaterOfCheapThrills.Mission11 }
+		local storages = { Storage.TheaterOfCheapThrills.Mission01, Storage.TheaterOfCheapThrills.Mission11 }
 
 		local juerdoDeath = CreatureEvent("JuerdoDeath")
 		function juerdoDeath.onDeath(creature)
@@ -383,7 +383,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			Storage.TheaterOfCheapThrills.State,
+			Storage.TheaterOfCheapThrills.Mission01,
 			Storage.TheaterOfCheapThrills.Mission03,
 		}
 
@@ -406,7 +406,7 @@ quest
 		pitcaDeath:register()
 	end)
 	:MonsterEvent(function()
-		local storages = { Storage.TheaterOfCheapThrills.State, Storage.TheaterOfCheapThrills.Mission07 }
+		local storages = { Storage.TheaterOfCheapThrills.Mission01, Storage.TheaterOfCheapThrills.Mission07 }
 
 		local robercikDeath = CreatureEvent("RobercikDeath")
 		function robercikDeath.onDeath(creature)
@@ -561,7 +561,7 @@ quest
 
 			player:say(
 				player
-					:Localizer(Storage.TheaterOfCheapThrills.State)
+					:Localizer(Storage.TheaterOfCheapThrills.Mission01)
 					:Get("The book has been unsealed. You have one minute before its closed."),
 				TALKTYPE_MONSTER_SAY
 			)

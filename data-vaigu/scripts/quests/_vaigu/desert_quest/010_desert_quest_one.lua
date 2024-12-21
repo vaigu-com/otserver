@@ -5,7 +5,7 @@ quest
 		Storage.DesertQuestHub.ToDesertQuestOne = NextStorage()
 		Storage.Finished.DesertQuestOne = NextStorage()
 		Storage.DesertQuestOne = {
-			State = NextStorage(),
+			Mission01 = NextStorage(),
 			QuestState = {
 				q1 = NextStorage(),
 				q2 = NextStorage(),
@@ -52,7 +52,7 @@ quest
 				FinalChestChessbox = NextStorage(),
 				FinalChestCrystals = NextStorage(),
 				FinalExpBox = NextStorage(),
-				
+
 				HiddenLibraryBush = NextStorage(),
 				HiddenInBoxesRoom = NextStorage(),
 				HiddenLibraryFloor = NextStorage(),
@@ -120,9 +120,11 @@ quest
 		}
 	end)
 	:Constant(function()
-		DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED = 8261 --38f move to desert quest file
-		DESERT_QUEST_ONE_KEY_ITEMS = {}
-
+		QuestKeyItems.DesertQuestOne = {
+			VocKey1 = { id = 2969, aid = Storage.DesertQuestOne.DoorKeys.VocKey1 },
+			VocKey2 = { id = 2968, aid = Storage.DesertQuestOne.DoorKeys.VocKey2 },
+			LibraryKey = { id = 2970, aid = Storage.DesertQuestOne.DoorKeys.Library },
+		}
 		-- #region tables format: [actionid] = {pos}
 
 		DESERT_QUEST_ONE_SKIPS = {
@@ -509,59 +511,59 @@ quest
 			[1972] = 1971,
 		}
 	end)
-	:Questlog(function()
-		-- None
-	end)
-	:Mission(Storage.DesertQuestOne.State)
+	:Questlog(function() end)
+	:Mission(Storage.DesertQuestOne.Mission01)
 	:State(
 		ANY_STATE,
 		QuestFactory.Script(function()
+			local doorId = 8261
+
 			local startupItems = {
 				questDoors = {
 					{
 						pos = { 68, 81, 0 },
 						aid = Storage.DesertQuestOne.QuestState.q2,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { 73, 121, 1 },
 						aid = Storage.DesertQuestOne.QuestState.q3,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { 14, -3, 1 },
 						aid = Storage.DesertQuestOne.QuestState.q4,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { 5, -36, -2 },
 						aid = Storage.DesertQuestOne.QuestState.q5,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { -13, 67, 2 },
 						aid = Storage.DesertQuestOne.QuestState.q6,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { 3, 44, 2 },
 						aid = Storage.DesertQuestOne.QuestState.q7,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { -36, 96, 2 },
 						aid = Storage.DesertQuestOne.QuestState.q8,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { 15, 154, 2 },
 						aid = Storage.DesertQuestOne.QuestState.q9,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 					{
 						pos = { -59, 139, 2 },
 						aid = Storage.DesertQuestOne.QuestState.q10,
-						id = DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED,
+						id = doorId,
 					},
 				},
 
@@ -1298,21 +1300,27 @@ quest
 						id = 2472,
 						actionid = Storage.DesertQuestOne.Rewards.VocRoomsKey1,
 						uid = 1000,
-						rewards = { { id = 2969, aid = Storage.DesertQuestOne.DoorKeys.VocKey1 } },
+						rewards = {
+							QuestKeyItems.DesertQuestOne.VocKey1,
+						},
 					},
 					{
 						pos = { 43, 59, -1 },
 						id = 2472,
 						actionid = Storage.DesertQuestOne.Rewards.VocRoomsKey2,
 						uid = 1000,
-						rewards = { { id = 2968, aid = Storage.DesertQuestOne.DoorKeys.VocKey2 } },
+						rewards = {
+							QuestKeyItems.DesertQuestOne.VocKey2,
+						},
 					},
 					{
 						pos = { 57, 81, 1 },
 						id = 2472,
 						actionid = Storage.DesertQuestOne.Rewards.LibraryKey,
 						uid = 1000,
-						rewards = { { id = 2970, aid = Storage.DesertQuestOne.DoorKeys.Library } },
+						rewards = {
+							QuestKeyItems.DesertQuestOne.LibraryKey,
+						},
 					},
 					{
 						pos = { -125, 131, 4 },
@@ -1383,9 +1391,6 @@ quest
 						expReward = 1000 * 1000 * 1,
 						rewards = {},
 						nextState = { [Storage.Finished.DesertQuestOne] = 1 },
-						requireditems = {
-							--38f keys and other trash
-						}
 					},
 				},
 			}
@@ -1492,7 +1497,7 @@ quest
 						end
 					end
 				end)()
-				local translatedMessage = player:Localizer(Storage.DesertQuestOne.State):Get(message)
+				local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get(message)
 				local title = "You read the following."
 
 				local window = ModalWindow(book:getActionId(), title, translatedMessage)
@@ -1527,7 +1532,7 @@ quest
 		QuestFactory.Script(function(missionState)
 			local config = { ["mysteriando"] = "Desert Quest: credit for puzzle ", ["granted"] = " - granted." }
 
-			local questline = Storage.DesertQuestOne.State
+			local questline = Storage.DesertQuestOne.Mission01
 
 			local function playerCompletedCurrentMysteriando(player, currentActionid)
 				return player:getStorageValue(currentActionid) == 1
@@ -1540,7 +1545,7 @@ quest
 			local function giveMysteriandoCredit(player, aid, nextQuestlineValue)
 				player:setStorageValue(questline, nextQuestlineValue)
 				player:setStorageValue(aid, 1)
-				local localizer = player:Localizer(Storage.DesertQuestOne.State)
+				local localizer = player:Localizer(Storage.DesertQuestOne.Mission01)
 				local mysteriandoString = localizer:Get(config["mysteriando"])
 				local grantedString = localizer:Get(config["granted"])
 
@@ -1589,6 +1594,12 @@ quest
 				local player = creature:getPlayer()
 				if not player then
 					return true
+				end
+
+				for _, keyItem in pairs(QuestKeyItems.DesertQuestOne) do
+					if player:HasItem(keyItem) then
+						player:RemoveItem(keyItem)
+					end
 				end
 
 				if not isPortal(item) then
@@ -1657,7 +1668,7 @@ quest
 			end
 
 			local function playerCompletedQuest(player)
-				if player:getStorageValue(Storage.DesertQuestOne.State) > TableSize(Storage.DesertQuestOne.QuestState) then
+				if player:getStorageValue(Storage.DesertQuestOne.Mission01) > TableSize(Storage.DesertQuestOne.QuestState) then
 					return true
 				end
 			end
@@ -1869,7 +1880,7 @@ quest
 			DesertQuestOneVocTrickSign = function(context)
 				local player = context.player
 
-				local translatedMessage = player:Localizer(Storage.DesertQuestOne.State):Get("You can safely exit to the surface. \n\n~")
+				local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
 				local randIndex = math.random(1, #badNames)
 				local randomTrickster = badNames[randIndex]
 				return translatedMessage .. randomTrickster
@@ -1877,7 +1888,7 @@ quest
 			DesertQuestOneVocGoodSign = function(context)
 				local player = context.player
 
-				local translatedMessage = player:Localizer(Storage.DesertQuestOne.State):Get("You can safely exit to the surface. \n\n~")
+				local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
 				local randIndex = math.random(1, #goodNames)
 				local randomHelper = goodNames[randIndex]
 				return translatedMessage .. randomHelper
@@ -1960,8 +1971,8 @@ quest
 				end
 				stairs:transform(DESERT_QUEST_ONE_BASIN_OPENING.stairsId)
 
-				local stairsMessage = player:Localizer(Storage.DesertQuestOne.State):Get(config["stairsAreGonna"]) .. stairTimer .. player:Localizer(Storage.DesertQuestOne.State):Get(config["stairsSeconds"])
-				player:say(player:Localizer(Storage.DesertQuestOne.State):Get(stairsMessage), TALKTYPE_MONSTER_SAY)
+				local stairsMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["stairsAreGonna"]) .. stairTimer .. player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["stairsSeconds"])
+				player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(stairsMessage), TALKTYPE_MONSTER_SAY)
 				addEvent(function()
 					stairs = Tile(pos):getItemById(DESERT_QUEST_ONE_BASIN_OPENING.stairsId)
 					stairs:transform(DESERT_QUEST_ONE_BASIN_OPENING.sealedId)
@@ -2013,7 +2024,7 @@ quest
 				RemoveItems(DESERT_QUEST_ONE_IRON_WALL, DESERT_QUEST_ONE_ANCHOR)
 				CreateItems(DESERT_QUEST_ONE_KEY_BOW_HORIZONTAL, DESERT_QUEST_ONE_ANCHOR)
 
-				player:say(player:Localizer(Storage.DesertQuestOne.State):Get(config["youHaveSeconds"]), TALKTYPE_MONSTER_SAY)
+				player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["youHaveSeconds"]), TALKTYPE_MONSTER_SAY)
 
 				addEvent(function()
 					RemoveItems(DESERT_QUEST_ONE_KEY_BOW_HORIZONTAL, DESERT_QUEST_ONE_ANCHOR)
@@ -2652,7 +2663,7 @@ quest
 					openGateTemporarily()
 				end
 
-				player:say(player:Localizer(Storage.DesertQuestOne.State):Get(config[message]), TALKTYPE_MONSTER_SAY)
+				player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config[message]), TALKTYPE_MONSTER_SAY)
 				return false
 			end
 
@@ -2732,7 +2743,7 @@ quest
 				local cooldown = DESERT_QUEST_ONE_WATER_FLOW.pipe_cooldown
 
 				if Tile(pipe_pos):getItemById(cooldown) then
-					player:say(player:Localizer(Storage.DesertQuestOne.State):Get(config.text), TALKTYPE_MONSTER_SAY)
+					player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config.text), TALKTYPE_MONSTER_SAY)
 					return false
 				end
 

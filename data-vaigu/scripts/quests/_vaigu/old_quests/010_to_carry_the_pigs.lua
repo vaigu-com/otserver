@@ -25,9 +25,12 @@ quest
 				BringDocumentToCordell = 2,
 				AskShivganeshForTranslation = 3,
 				BringTranslationToCordell = 4,
+				InvestigateDwarfs = 5,
+				ReportFounterfeitLegs = 6,
 			},
 			BalancedDiet = {
 				FindCarrot = 1,
+				BringCarrot = 2,
 			},
 			KitzDominando = {
 				ArrangeBowFromLegolas = 1,
@@ -35,10 +38,18 @@ quest
 			},
 		}
 		QuestTopics.ToCarryThePigs = {
-			AcceptTeethNecklaceQuest = NextTopic()
+			AcceptTeethNecklaceQuest = NextTopic(),
 		}
 	end)
-	:Constant(function() end)
+	:Constant(function()
+		QuestKeyItems.ToCarryThePigs = {
+			ArniNecklace = { id = 7754, aid = Storage.ToCarryThePigs.ArniNecklace },
+			SmugglingList = { id = 22160, aid = Storage.ToCarryThePigs.SmugglingList },
+			SmuggledLegs = { id = 24404, aid = Storage.ToCarryThePigs.SmuggledLegs },
+			EcoCarrot = { id = 3250, aid = Storage.ToCarryThePigs.EcoCarrot },
+			NewBow = { id = 9378, aid = Storage.ToCarryThePigs.NewBow },
+		}
+	end)
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "To Carry the Pigs",
@@ -97,13 +108,13 @@ quest
 				text = "Great.",
 				requiredTopic = QuestTopics.ToCarryThePigs.AcceptTeethNecklaceQuest,
 				nextState = {
-					[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = _38,
+					[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace,
 		QuestFactory.Dialog("Arni", {
 			[{ "mission", "misja", "necklace", "naszyjnik" }] = {
 				text = "Thats awesome! Only if I knew how to make a necklace of that.. Please, find someone that will be able to weave one of those teeths. I would be really greateful.",
@@ -125,22 +136,22 @@ quest
 					{ id = 9685, count = 1 },
 				},
 				rewards = {
-					{ id = 7754, aid = Storage.ToCarryThePigs.ArniNecklace },
+					QuestKeyItems.ToCarryThePigs.ArniNecklace,
 				},
 				nextState = {
-					[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = _38,
+					[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = QuestState.ToCarryThePigs.BeLikeSchwarzenegger.BringNecklaceToArni,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.BeLikeSchwarzenegger.BringNecklaceToArni,
 		QuestFactory.Dialog("Arni", {
 			[{ "mission", "misja" }] = {
 				text = "Thank you! Wooah, and it even smells nice. Madame Malkin did a great job. Take this as your reward.",
 				expReward = 30000,
 				requiredItems = {
-					{ id = 7754, aid = Storage.ToCarryThePigs.ArniNecklace },
+					QuestKeyItems.ToCarryThePigs.ArniNecklace,
 				},
 				rewards = {
 					[9605] = {
@@ -165,72 +176,72 @@ quest
 					[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
 				},
 				nextState = {
-					[Storage.ToCarryThePigs.HalfTurnKick] = _38f,
+					[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves,
 		QuestFactory.StartupItems({
 			{
 				id = 405,
 				pos = { 6014, 1455, 10 },
 				rewards = {
-					{ id = 22160, aid = Storage.ToCarryThePigs.SmugglingList },
+					QuestKeyItems.ToCarryThePigs.SmugglingList,
 				},
 				nextState = {
-					[Storage.ToCarryThePigs.HalfTurnKick] = _38f,
+					[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.BringDocumentToCordell,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.HalfTurnKick.BringDocumentToCordell,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
 				text = "You managed to get in there, great. Hmm, but what's this language? I think that I know someone that will be able to translate it.\nYou should ask my close friend Shivganesh, who works in Prince Kebab in Hurghada.",
 				nextState = {
-					[Storage.ToCarryThePigs.HalfTurnKick] = _38f,
+					[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation,
 		QuestFactory.Dialog("Shivganesh", { [{ "mission", "misja" }] = {
 			text = "Ah that's really simple. I will write down the translation on this piece of paper. Say hi to Walker from me.",
 			nextState = {
-				[Storage.ToCarryThePigs.HalfTurnKick] = _38f,
+				[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.BringTranslationToCordell,
 			},
 		} })
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.HalfTurnKick.BringTranslationToCordell,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
 				text = "Thats very intereseting. From what Shivganesh wrote here, it would seem that they made some deal with the dwarves from the lignite mines. Hmm.. looks like they they sold them the legendary dragon scale legs. Investigate this, but be careful, as dwarves are much stronger than humans.",
 				expReward = 130000,
 				nextState = {
-					[Storage.ToCarryThePigs.HalfTurnKick] = _38f,
+					[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs,
 				},
 				requiredItems = {
-					{ id = 22160, aid = Storage.ToCarryThePigs.SmugglingList, remove = false },
+					QuestKeyItems.ToCarryThePigs.SmugglingList,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs,
 		QuestFactory.StartupItems({
 			{
 				id = 28462,
 				pos = { 6088, 1215, 9 },
 				rewards = {
-					{ id = 24404, aid = Storage.ToCarryThePigs.SmuggledLegs },
+					QuestKeyItems.ToCarryThePigs.SmuggledLegs,
 				},
 				nextState = {
-					[Storage.ToCarryThePigs.HalfTurnKick] = _38f,
+					[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.ReportFounterfeitLegs,
 				},
 				spawnMonstersOnSuccess = {
 					{ name = "Lost Basher" },
@@ -240,7 +251,7 @@ quest
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.HalfTurnKick.ReportFounterfeitLegs,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
 				text = "Looks like they have been scammed. You can keep those legs, and please this hat as your reward. I'll whisper a word about you to the Commissioner.",
@@ -254,7 +265,7 @@ quest
 					[Storage.ToCarryThePigs.HalfTurnKick] = MISSION_FINISHED,
 				},
 				requiredItems = {
-					{ id = 24404, aid = Storage.ToCarryThePigs.SmuggledLegs },
+					QuestKeyItems.ToCarryThePigs.SmuggledLegs,
 				},
 			},
 		})
@@ -270,42 +281,42 @@ quest
 					[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
 				},
 				nextState = {
-					[Storage.ToCarryThePigs.BalancedDiet] = _38f,
+					[Storage.ToCarryThePigs.BalancedDiet] = QuestState.ToCarryThePigs.BalancedDiet.FindCarrot,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.BalancedDiet.FindCarrot,
 		QuestFactory.StartupItems({
 			{
 				id = 15639,
 				pos = { 5917, 1811, 8 },
 				rewards = {
-					{ id = 3250, aid = Storage.ToCarryThePigs.EcoCarrot },
+					QuestKeyItems.ToCarryThePigs.EcoCarrot,
 				},
 				nextState = {
-					[Storage.ToCarryThePigs.BalancedDiet] = _38f,
+					[Storage.ToCarryThePigs.BalancedDiet] = QuestState.ToCarryThePigs.BalancedDiet.BringCarrot,
 				},
 				requiredState = {},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.BalancedDiet.BringCarrot,
 		QuestFactory.Dialog("Fat Myrrus", {
 			[{ "mission", "misja" }] = {
 				text = "Arrgh, that's gross! I definitely prefer hamburgers, but well, take this lump of chocolate dough. I tried to make a chocolate cake, but something went wrong. Also take my old knight legs, I don't fit in them anymore anyway.",
 				textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 				nextState = {
-					[Storage.ToCarryThePigs.BalancedDiet] = _38f,
+					[Storage.ToCarryThePigs.BalancedDiet] = MISSION_FINISHED,
 				},
 				rewards = {
 					{ id = 8018 },
 					{ id = 3371 },
 				},
 				requiredItems = {
-					{ id = 3250, aid = Storage.ToCarryThePigs.EcoCarrot },
+					QuestKeyItems.ToCarryThePigs.EcoCarrot,
 				},
 				expReward = 30000,
 				requiredState = {
@@ -322,7 +333,7 @@ quest
 				text = "I have ordered a special bow from the Elves to make my dominando.\nHowever, I could not go there. Could you please get it and bring it to me?",
 				textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 				nextState = {
-					[Storage.ToCarryThePigs.BalancedDiet] = _38f,
+					[Storage.ToCarryThePigs.KitzDominando] = QuestState.ToCarryThePigs.KitzDominando.ArrangeBowFromLegolas,
 				},
 				requiredState = {
 					[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
@@ -331,13 +342,13 @@ quest
 		})
 	)
 	:State(
-		PH_STATE,
+		QuestState.ToCarryThePigs.KitzDominando.ArrangeBowFromLegolas,
 		QuestFactory.Dialog("Legolas", {
 			[{ "mission", "misja" }] = {
 				text = "Keep this special bow created with my elvish magic",
 				textNoRequiredItems = "To craft this bow I'll need a lyre, 3 holy orchids, a red rose and a rope.",
 				nextState = {
-					[Storage.ToCarryThePigs.BalancedDiet] = _38f,
+					[Storage.ToCarryThePigs.KitzDominando] = QuestState.ToCarryThePigs.KitzDominando.GiveBowToKitz,
 				},
 				requiredItems = {
 					{ id = 2949 },
@@ -346,23 +357,21 @@ quest
 					{ id = 3003 },
 				},
 				rewards = {
-					{ id = 9378, aid = Storage.ToCarryThePigs.NewBow },
+					QuestKeyItems.ToCarryThePigs.NewBow,
 				},
 			},
 		})
 	)
 	:State(
-		PH_STATE,
-		QuestFactory.Dialog(
-			"[SOLID] Kitz",
-			{ [{ "mission", "misja" }] = {
-				text = "Is that THIS bow? Guess I got played by the elves. I will make them regret..\nBut thanks, you finished your mission. Here, keep my old bow in return.",
-				nextState = {
-					[Storage.ToCarryThePigs.BalancedDiet] = MISSION_FINISHED,
-				},
-				requiredItems = {
-					{ id = 9378, aid = Storage.ToCarryThePigs.NewBow },
-				},
-			} }
-		)
+		QuestState.ToCarryThePigs.KitzDominando.GiveBowToKitz,
+		QuestFactory.Dialog("[SOLID] Kitz", { [{ "mission", "misja" }] = {
+			text = "Is that THIS bow? Guess I got played by the elves. I will make them regret..\nBut thanks, you finished your mission. Here, keep my old bow in return.",
+			nextState = {
+				[Storage.ToCarryThePigs.KitzDominando] = MISSION_FINISHED,
+			},
+			requiredItems = {
+				QuestKeyItems.ToCarryThePigs.NewBow,
+			},
+		} })
 	)
+	:Register()

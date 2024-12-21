@@ -48,16 +48,13 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-do
-	return
-end --38f
-local dialogs = {
+local unusedDialogs = {
 	[Storage.BigKlamoty.Localizer] = {
-		[Storage.BigKlamoty.PuzzlesDoneStateBinary] = {
+		[Storage.BigKlamoty.Mission01] = {
 			[1] = { [{ "mission" }] = { text = "To be continued..." } },
 		},
 	},
-	[Storage.SpojrzenieTysiacaYtongow.State] = {
+	[Storage.SpojrzenieTysiacaYtongow.Mission01] = {
 		[1] = {
 			[{ "mission" }] = {
 				text = "Pozwol ze przedstawie Ci pewna opowiesc. O tym nie bylo na historii w podstawowce ani w gimbazie. Kondominium rosyjsko-niemieckie pod zydowsko-amerykanskim zarzadem powierniczym. Wigilia, rok 1980 - po obiedzie. Mlody Marceliusz czekal, az mikolaj przybedzie z prezentami. Wlasciwie to Marceliusz mial juz wtedy 14 lat, wiec wiedzial, ze mikolaj nie {istnieje}.",
@@ -80,20 +77,20 @@ local dialogs = {
 			[{ "just", "jedyne" }] = {
 				text = "Cholera, dlaczego powiedzialem to ostatnie... Smrod jego kontrolujacej mozgi prezencji rozsiewa sie az tutaj. Dodatkowo, jego siedziby broni cala flota kosmicznych statkow, wiec zeby go pokonac bedziesz potrzebowac co najmniej legionu zgranych mysliwcow.",
 				nextState = {
-					[Storage.SpojrzenieTysiacaYtongow.State] = 2,
-					[Storage.SpojrzenieTysiacaYtongow.PuzzlesDoneStateBinary] = 2,
+					[Storage.SpojrzenieTysiacaYtongow.Mission01] = 2,
+					[Storage.SpojrzenieTysiacaYtongow.Mission01] = 2,
 				},
 			},
 		},
 		[2] = { [{ "mission" }] = {} },
 	},
-	[Storage.SprawiedliwyWobecNarodow.State] = {
+	[Storage.SprawiedliwyWobecNarodow.Mission01] = {
 		[1] = {
 			[{ "mission" }] = {
 				text = 'Od niedawna jedna rzecz nie daje mi spokoju. Gdy szczur Krolow przeobrazil sie w Janusza Gwiezdnego, to zaczal od slow "Halo, Pjoter, slychac mnie?". Czy pomylilo mu sie cos i myslal, ze rozmawia z Petrusem Gnebicielem? Ta sprawa bardzo mnie dziwi. Udaj sie do wiezy petrusa gnebiciela i sproboj znalezc cos wiecej na ten temat.',
 				nextState = {
-					[Storage.SprawiedliwyWobecNarodow.State] = 2,
-					[Storage.SprawiedliwyWobecNarodow.PuzzlesDoneStateBinary] = 2,
+					[Storage.SprawiedliwyWobecNarodow.Mission01] = 2,
+					[Storage.SprawiedliwyWobecNarodow.Mission01] = 2,
 				},
 			},
 		},
@@ -106,12 +103,12 @@ local dialogs = {
 			[{ "red", "czerwony" }] = {
 				text = 'Dlaczego to sa zawsze ci czerwoni.. Wyglada na to, ze to nie jest prawdziwy szczur krolow. Wyslal cie zabic petrusa gnebiciela, gdyz ten wiedzial zbyt duzo. Potem pomogl ci zniszczyc HF-P/X, aby otworzyc portal do przeszlosci. Mam nadzieje ze te runy ze swiatyni nie sluzyly do odpieczerowywania czegos innego.. Mysle, ze "szczur krolow" wiedzial gdzie otworzy sie portal, i tylko czekal az HF-P/X umrze. Wtedy tez wskoczyl do srodka i cofnal sie w przeszlosc, gdzie sprzedawal ludziom ccki na allegro. Po jakims czasie wrocil do terazniejszosci, a my nie odczulismy tego, gdyz nasz czas plynie tysiace razy krocej, niz u kogos, kto cofnal sie w czasie. Udaj sie teraz do retro Knurowa i sproboj znalezc kogos, kto kupowal od niego ccki. Byc moze dowiemy sie kim byl ten oszust.',
 				nextState = {
-					[Storage.SprawiedliwyWobecNarodow.State] = 4,
-					[Storage.SprawiedliwyWobecNarodow.PuzzlesDoneStateBinary] = 4,
+					[Storage.SprawiedliwyWobecNarodow.Mission01] = 4,
+					[Storage.SprawiedliwyWobecNarodow.Mission01] = 4,
 				},
 			},
 		},
-		-- [4] gadamy z X w retro mirko (domek na zachodzie). X mowi, ze jezeli chcemy wiecej informacji o Marahinie, to mamy poszukac w bibliotece pod temple. X przekupil kiedys natanka, aby ten wyjawil mu sposob wejscia do katakumb. Musimy uzyc mechanizmu w zagarku z kukulka, w bardzo konkretny sposob. Musisz wciskac kukulke w odpowiednich momentach: najpierw wcisnij dwa razy, gdy jest godzina parzysta, nastepnie raz, gdy jest nieparzysta, nastepnie znow dwa razy gdy jest parzysta. Na koniec wez aktualna minute, podnies do kwadratu, podziel przez liczbe o jeden wieksza od aktualnej minuty. Jesli reszta z tego dzielenia jest rowna 1, wcisnij przycisk. Jesli to wykonasz, to przejdz w lewy dolny rog pokoju, i sproboj zgasic lampe. Wtedy mechanizm otworzy pod toba dziure i wpadniesz do katkumb.
+		-- [4] gadamy z X w retro mirko (domek na zachodzie). X mowi, ze jezeli chcemy wiecej informacji o oszuscie, to mamy poszukac w bibliotece pod temple. X przekupil kiedys natanka, aby ten wyjawil mu sposob wejscia do katakumb. Musimy uzyc mechanizmu w zagarku z kukulka, w bardzo konkretny sposob. Musisz wciskac kukulke w odpowiednich momentach: najpierw wcisnij dwa razy, gdy jest godzina parzysta, nastepnie raz, gdy jest nieparzysta, nastepnie znow dwa razy gdy jest parzysta. Na koniec wez aktualna minute, podnies do kwadratu, podziel przez liczbe o jeden wieksza od aktualnej minuty. Jesli reszta z tego dzielenia jest rowna 1, wcisnij przycisk. Jesli to wykonasz, to przejdz w lewy dolny rog pokoju, i sproboj zgasic lampe. Wtedy mechanizm otworzy pod toba dziure i wpadniesz do katkumb.
 		-- [5] znajdujemy archiwum z X, a w nim dokument w jezyku jaszczuroludzi
 		-- [6] rozmawiamy z gerturda, ktora tlumaczy nam dokument. Dokument mowi o pol-bogu ktory stworzyl niegdys 7 hoecruxow. Musimy je wszystkie zniszczyc
 		--[[
@@ -126,7 +123,7 @@ local dialogs = {
 
 		-- UNUSED: Tak, to ostatecznie potwierdza, ze ktos podszywal sie pod Szczura Krolow, a pozniej udawal, ze zmienil sie w Janusza Gwiezdnego. Pamietasz jak wyslal cie na planete Hugo Bossa? Mysle, ze robil wtedy cos wymagajacego dyskrecji, dlatego wyslal cie tak daleko. Chwila.. przeciez Krol Jaszczurow wspominal cos o Hoecruxach. Byc moze zajmowal sie tworzeniem ich w tym czasie?
 		[7] = {
-			[{ "marahin" }] = {
+			[{ "" }] = {
 				text = "",
 			},
 		},

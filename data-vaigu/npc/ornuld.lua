@@ -68,7 +68,7 @@ local lang_to_config = {
 	},
 }
 
-local czeslawRewards = { QuestKeyItems.ChesterTheDwarf.identityDocument }
+local czeslawRewards = { QuestKeyItems.ChesterTheDwarf.IdentityDocument }
 
 local czeslawCosts = { { id = 3059 }, { id = 3509 } }
 

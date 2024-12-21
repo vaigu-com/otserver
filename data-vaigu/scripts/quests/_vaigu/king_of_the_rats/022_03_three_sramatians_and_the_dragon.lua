@@ -3,7 +3,7 @@ local quest = Quest(LOCALIZERS.ThreeSramatiansAndTheDragon)
 quest
 	:Storage(function()
 		Storage.ThreeSramatiansAndTheDragon = {
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -23,7 +23,7 @@ quest
 				Hairycles = NextStorage(),
 				Hellspawns = NextStorage(),
 			},
-			Rewards = {
+			KeyItems = {
 				Rum = NextStorage(),
 				DeepCrystal = NextStorage(),
 				Rune1 = NextStorage(),
@@ -104,17 +104,17 @@ quest
 			end,
 		}
 
-		TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS = {
-			rum = {
-				aid = Storage.ThreeSramatiansAndTheDragon.Rewards.Rum,
+		QuestKeyItems.ThreeSramatiansAndTheDragon = {
+			Rum = {
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
 				id = 2875,
 				desc = "Pirate rum. Bilbeus might be interested in this one",
 			},
-			rune1 = { aid = Storage.ThreeSramatiansAndTheDragon.Rewards.Rune1, id = 3181, desc = "Unsealing rune" },
-			rune2 = { aid = Storage.ThreeSramatiansAndTheDragon.Rewards.Rune2, id = 3183, desc = "Unsealing rune" },
-			rune3 = { aid = Storage.ThreeSramatiansAndTheDragon.Rewards.Rune3, id = 3184, desc = "Unsealing rune" },
-			deepCrystal = {
-				aid = Storage.ThreeSramatiansAndTheDragon.Rewards.DeepCrystal,
+			Rune1 = { aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune1, id = 3181, desc = "Unsealing rune" },
+			Rune2 = { aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune2, id = 3183, desc = "Unsealing rune" },
+			Rune3 = { aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune3, id = 3184, desc = "Unsealing rune" },
+			DeepCrystal = {
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
 				id = 7281,
 				desc = "Deep sea crystal",
 			},
@@ -124,7 +124,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "The Three Sramatians and the Dragon",
 			missions = {
-				[Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary] = {
+				[Storage.ThreeSramatiansAndTheDragon.Mission01] = {
 					name = "01. Hither and Thither",
 					states = {
 						[QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek] = "GM Romek needs help with a new problem, go to him.",
@@ -208,7 +208,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			[Storage.ThreeSramatiansAndTheDragon.State] = 23,
+			[Storage.ThreeSramatiansAndTheDragon.Mission01] = 23,
 			[Storage.ThreeSramatiansAndTheDragon.Mission09] = 2,
 		}
 
@@ -216,7 +216,7 @@ quest
 
 		function hfpx.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
+				local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01)
 				if storageVal ~= 22 then
 					return true
 				end
@@ -542,7 +542,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary)
+	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission01)
 	:State(
 		ANY_STATE,
 		QuestFactory.Script(function(missionState)
@@ -576,7 +576,7 @@ quest
 			local unlitFireplaceId = 1997
 
 			local function hasRequiredState(player, aid)
-				local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
+				local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01)
 
 				local states = aidToRequiredState[aid]
 				local min = states.min
@@ -656,7 +656,7 @@ quest
 			[{ "ready", "gotowy" }] = {
 				text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus.",
 				nextState = {
-					[Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary] = 2,
+					[Storage.ThreeSramatiansAndTheDragon.Mission01] = 2,
 					[Storage.ThreeSramatiansAndTheDragon.Mission02] = 1,
 				},
 			},
@@ -703,6 +703,9 @@ quest
 				requiredTopic = QuestTopics.ThreeSramatiansAndTheDragon.AnswerGoldblum,
 			},
 		}),
+		QuestFactory.StartupItems({
+			{ pos = { 5950, 1415, 10 }, id = 1020, aid = Storage.ThreeSramatiansAndTheDragon.GoldblumTrap },
+		}),
 		QuestFactory.Script(function(missionState)
 			local goldBlumTrap = MoveEvent()
 
@@ -711,7 +714,7 @@ quest
 					return true
 				end
 
-				if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) < 1 then
+				if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01) < 1 then
 					return false
 				end
 				player:teleportTo(player:getPosition():Moved(0, 0, 1))
@@ -740,6 +743,9 @@ quest
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission03)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission03.FindCompanyAtHive,
+		QuestFactory.StartupItems({
+			{ pos = { 6147, 1310, 4 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive },
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
 				text = "Look at him! He cant use a {toilet} properly.",
@@ -773,6 +779,23 @@ quest
 			[{ "mission" }] = {
 				text = "You can see them from our current location. Be careful; spirited water is only ordinary pastime, but rum on the other hand... It's their holy grail.",
 			},
+		}),
+		QuestFactory.StartupItems({
+			{
+				pos = { 6180, 1265, 7 },
+				id = 2484,
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
+				rewards = { QuestKeyItems.ThreeSramatiansAndTheDragon.Rum },
+				uid = 1000,
+				requiredState = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 5 },
+				nextState = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 6, [Storage.ThreeSramatiansAndTheDragon.Mission03] = 4 },
+				specialActionsOnSuccess = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.createMonstersAtPlayer,
+						monsters = { { name = "Pirate Corsair", count = 2 } },
+					},
+				},
+			},
 		})
 	)
 	:State(
@@ -780,7 +803,7 @@ quest
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission", "rum" }] = {
 				text = "Mmm, delicious. Alright, comrades, it's time to move. See you on the coast at the western steppes.",
-				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rum },
+				requiredItems = { QuestKeyItems.ThreeSramatiansAndTheDragon.Rum },
 				textNoRequiredItems = "Come back with rum, or there's nothing to talk about.",
 				nextState = {
 					[Storage.ThreeSramatiansAndTheDragon.Mission03] = 5,
@@ -803,7 +826,7 @@ quest
 					return false
 				end
 
-				if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) ~= 7 then
+				if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01) ~= 7 then
 					return false
 				end
 				player:UpdateStorages(updateStorages)
@@ -812,10 +835,16 @@ quest
 
 			FirePlace:aid(Storage.ThreeSramatiansAndTheDragon.AbandonedFireplace)
 			FirePlace:register()
-		end)
+		end),
+		QuestFactory.StartupItems({
+			{ pos = { 5951, 1113, 7 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.AbandonedFireplace },
+		})
 	)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.FindCompanyAtHumanTown,
+		QuestFactory.StartupItems({
+			{ pos = { 6199, 1025, 7 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Lagoon },
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ GREET }] = {
 				text = "Sorry we went ahead, but we were bored in that wilderness.",
@@ -839,65 +868,41 @@ quest
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.StealWineFromVampires,
 		QuestFactory.Script(function(missionState)
-			local szczurKrolowConfig = {
-				name = "rat of kings",
-				pos = Position(6792, 558, 11),
+			local updateStorages = {
+				[Storage.ThreeSramatiansAndTheDragon.Mission05] = QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
 			}
 
-			local tileIn = MoveEvent()
+			local cagePos = Position(6206, 918, 9)
 
-			function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
+			local vampireKidnapping = MoveEvent()
+
+			function vampireKidnapping.onStepIn(player, item, position, fromPosition)
 				if not player:isPlayer() then
-					return false
+					return true
 				end
 
-				local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
-
-				if storageVal < 21 or storageVal > 23 then
+				if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01) ~= 9 then
 					return false
 				end
-
-				local pos = szczurKrolowConfig.pos
-				local tile = Tile(pos)
-				if not tile then
-					return false
-				end
-				local monster = tile:getTopCreature()
-				if monster then
-					return false
-				else
-					Game.createNpc(szczurKrolowConfig.name, pos, false, false)
-					pos:sendMagicEffect(CONST_ME_TELEPORT)
-				end
+				player:teleportTo(cagePos)
+				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+				player:UpdateStorages(updateStorages)
+				return true
 			end
 
-			tileIn:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
-			tileIn:register()
-
-			local tileOut = MoveEvent()
-
-			function tileOut.onStepOut(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:isPlayer() then
-					return false
-				end
-				local pos = szczurKrolowConfig.pos
-				local tile = Tile(pos)
-				if not tile then
-					return false
-				end
-				local monster = tile:getTopCreature()
-				if monster and not Tile(fromPosition):getTopCreature() and string.lower(monster:getName()) == "rat of kings" then
-					monster:remove()
-					pos:sendMagicEffect(CONST_ME_TELEPORT)
-				end
-			end
-
-			tileOut:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
-			tileOut:register()
-		end)
+			vampireKidnapping:type("stepin")
+			vampireKidnapping:aid(Storage.ThreeSramatiansAndTheDragon.VampireCityTrap)
+			vampireKidnapping:register()
+		end),
+		QuestFactory.StartupItems({
+			{ pos = { 6157, 842, 6 }, id = 4406, aid = Storage.ThreeSramatiansAndTheDragon.VampireCityTrap },
+		})
 	)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
+		QuestFactory.StartupItems({
+			{ pos = { 6206, 919, 9 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Souleater },
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
 				text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were tio separate, seek help from her.",
@@ -944,6 +949,9 @@ quest
 				text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
 			},
 		}),
+		QuestFactory.StartupItems({
+			{ pos = { 6756, 1169, 6 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.WaterWell },
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
 				text = "Good thing you found us. I was starting to worry. No time for chit-chat. We tried to extract information about HF-P/X from the desert nomads. One of them claims to know where to find one of the ancient artifacts. We couldn't negotiate with them - maybe you can. Their settlement is in the north of the desert.",
@@ -978,10 +986,19 @@ quest
 				text = "Tourists in such a place are an easy target. I told one of the nomads that we wouldn't renovate their old town. Maybe you can offer him something in exchange for information. Currently, they're camped on one of the rocks in the north.",
 			},
 		}),
+		QuestFactory.StartupItems({
+			{
+				pos = { 6707, 1068, 9 },
+				id = 7805,
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
+				rewards = { QuestKeyItems.ThreeSramatiansAndTheDragon.DeepCrystal },
+				requiredState = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 15 },
+			},
+		}),
 		QuestFactory.Dialog("Polychek", {
 			[{ "mission" }] = {
 				text = "What you're looking for is in the lizardmen village. The lizardmen stumbled upon underground bug light deposits, and now they're exploiting them to the max. However, they stumbled upon something much more powerful - an ancient artifact. My scouts told me they guard it like a treasure it is. They recently moved it to the highest tower.",
-				requiredItems = { TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.deepCrystal },
+				requiredItems = { QuestKeyItems.ThreeSramatiansAndTheDragon.DeepCrystal },
 				textNoRequiredItems = "If you don't know where to find the crystals, try diving into the sea east of here.",
 				nextState = {
 					[Storage.ThreeSramatiansAndTheDragon.Mission06] = 3,
@@ -1002,9 +1019,26 @@ quest
 		})
 	)
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission07)
-	:State(QuestState.ThreeSramatiansAndTheDragon.Mission07.FindArtifactAtVillage) --38f
+	:State(
+		QuestState.ThreeSramatiansAndTheDragon.Mission07.FindArtifactAtVillage,
+		QuestFactory.StartupItems({
+			{
+				id = 3064,
+				pos = { 6696, 825, 4 },
+				aid = Storage.KingOfRatsHQ.Items.Bottomless,
+				rewards = { QuestKeyItems.KingOfRatsHQ.Bottomless },
+				requiredState = { [Storage.ThreeSramatiansAndTheDragon.Mission07] = 1 },
+				nextState = {
+					[Storage.ThreeSramatiansAndTheDragon.Mission07] = 2,
+				},
+			},
+		})
+	)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles,
+		QuestFactory.StartupItems({
+			{ pos = { 6569, 605, 6 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hairycles },
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
 				text = "Hairycles provided us with directions to HF-P/X's hideout. But first, we need to do him a favor. If possible, bring us about 2^log(10000) bananas.",
@@ -1031,6 +1065,9 @@ quest
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission08)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission08.FindCompanyAtHellspawnTemple,
+		QuestFactory.StartupItems({
+			{ pos = { 6710, 651, 12 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hellspawns },
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
 				text = "I have a feeling that Jan Kockodan got ahead of us. Maybe he's hiding somewhere in this hellish cave. Watch out for him! From the notes given to me by Hairycles, it appears that somewhere in this temple are enchanted doors. The key to opening them is to collect three different magical runes. Fortunately, all the runes are in the temple... if no one has stolen them.",
@@ -1042,13 +1079,51 @@ quest
 	)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission08.FindThreeMagicRunes,
+		QuestFactory.StartupItems({
+			{
+				pos = { 6814, 600, 12 },
+				id = 11809,
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune1,
+				requiredState = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 21 },
+				spawnMonstersOnSuccess = {
+					{ name = "Jan Kockodan" },
+				},
+				rewards = {
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune1,
+				},
+			},
+			{
+				pos = { 6775, 623, 12 },
+				id = 11809,
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune2,
+				requiredState = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 21 },
+				spawnMonstersOnSuccess = {
+					{ name = "Enchanted Hellspawn", count = 2 },
+				},
+				rewards = {
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune2,
+				},
+			},
+			{
+				pos = { 6809, 634, 13 },
+				id = 11809,
+				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune3,
+				requiredState = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 21 },
+				spawnMonstersOnSuccess = {
+					{ name = "Runic Hellspawn", count = 2 },
+				},
+				rewards = {
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune3,
+				},
+			},
+		}),
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
 				text = "Yes, those are all the needed runes. You can now try to find the enchanted doors I mentioned. Maybe we'll find HF-P/X here.",
 				requiredItems = {
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune1,
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune2,
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune3,
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune1,
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune2,
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune3,
 				},
 				removeRequiredItems = false,
 				textNoRequiredItems = "Unfortunately, I don't know the exact location of the runes.",
@@ -1069,9 +1144,9 @@ quest
 			[{ "runy", "runes" }] = {
 				text = "Yes, those are all the needed runes. You can now try to use the enchanted lever. Maybe we'll find HF-P/X here.",
 				requiredItems = {
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune1,
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune2,
-					TRZEJ_SRAMACI_I_SMOK_KEY_ITEMS.rune3,
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune1,
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune2,
+					QuestKeyItems.ThreeSramatiansAndTheDragon.Rune3,
 				},
 				textNoRequiredItems = "I see you don't have all the runes yet.",
 				specialActionsOnSuccess = {
@@ -1099,7 +1174,105 @@ quest
 			[{ "mission" }] = {
 				text = "I'm gonna stay here and have your back.",
 			},
-		})
+		}),
+		QuestFactory.StartupItems({
+			{ pos = { 6793, 560, 11 }, id = 4396, aid = Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile },
+		}),
+		QuestFactory.Script(function(missionState)
+			local szczurKrolowConfig = {
+				name = "rat of kings",
+				pos = Position(6792, 558, 11),
+			}
+
+			local tileIn = MoveEvent()
+
+			function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:isPlayer() then
+					return false
+				end
+
+				local storageVal = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01)
+
+				if storageVal < 21 or storageVal > 23 then
+					return false
+				end
+
+				local pos = szczurKrolowConfig.pos
+				local tile = Tile(pos)
+				if not tile then
+					return false
+				end
+				local monster = tile:getTopCreature()
+				if monster then
+					return false
+				else
+					Game.createNpc(szczurKrolowConfig.name, pos, false, false)
+					pos:sendMagicEffect(CONST_ME_TELEPORT)
+				end
+			end
+
+			tileIn:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
+			tileIn:register()
+
+			local tileOut = MoveEvent()
+
+			function tileOut.onStepOut(player, item, fromPosition, target, toPosition, isHotkey)
+				if not player:isPlayer() then
+					return false
+				end
+				local pos = szczurKrolowConfig.pos
+				local tile = Tile(pos)
+				if not tile then
+					return false
+				end
+				local monster = tile:getTopCreature()
+				if monster and not Tile(fromPosition):getTopCreature() and string.lower(monster:getName()) == "rat of kings" then
+					monster:remove()
+					pos:sendMagicEffect(CONST_ME_TELEPORT)
+				end
+			end
+
+			tileOut:aid(Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile)
+			tileOut:register()
+		end),
+		--39f add hfpx encounter
+		QuestFactory.Script(function(missionState)
+			local hfpxConfig = {
+				actionid = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
+				bossName = "Operator HF-P/X",
+				timerStorage = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
+				cooldown = "weekly",
+
+				leverPosition = Position(6799, 552, 12),
+				entranceGrid = {
+					topLeft = Position(6795, 552, 12),
+					downRight = Position(6798, 552, 12),
+				},
+				exitTeleportDestination = Position(6796, 554, 12),
+				exitTeleportPosition = Position(6789, 548, 13),
+				exitTeleportActionid = Storage.ThreeSramatiansAndTheDragon.Portals.AfterHfpx,
+
+				bossPos = Position(6791, 550, 13),
+				enterPos = Position(6801, 556, 13),
+				durationMinutes = 10,
+				corner1 = THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR:Moved(0, 0, 0),
+				corner2 = THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR:Moved(15, 11, 0),
+
+				requiredStorages = {
+					[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = 1,
+				},
+			}
+			RegisterEncounter(hfpxConfig)
+
+			local lever = Action()
+
+			function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+				return UseEncounterLever(player, item, hfpxConfig)
+			end
+
+			lever:aid(hfpxConfig.actionid)
+			lever:register()
+		end)
 	)
 	:State(
 		QuestState.ThreeSramatiansAndTheDragon.Mission09.ReportToRatOfKings,
@@ -1120,73 +1293,9 @@ quest
 				nextState = {
 					[Storage.ThreeSramatiansAndTheDragon.Mission09] = 4,
 					[Storage.Finished.ThreeSramatiansAndTheDragon] = 1,
-					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 1,
+					[Storage.FourActTragedy.Mission01] = 1,
 				},
 			},
 		})
 	)
-QuestFactory.Script(function(missionState)
-	local hfpxConfig = {
-		actionid = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
-		bossName = "Operator HF-P/X",
-		timerStorage = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
-		cooldown = "weekly",
-
-		leverPosition = Position(6799, 552, 12),
-		entranceGrid = {
-			topLeft = Position(6795, 552, 12),
-			downRight = Position(6798, 552, 12),
-		},
-		exitTeleportDestination = Position(6796, 554, 12),
-		exitTeleportPosition = Position(6789, 548, 13),
-		exitTeleportActionid = Storage.ThreeSramatiansAndTheDragon.Portals.AfterHfpx,
-
-		bossPos = Position(6791, 550, 13),
-		enterPos = Position(6801, 556, 13),
-		durationMinutes = 10,
-		corner1 = THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR:Moved(0, 0, 0),
-		corner2 = THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR:Moved(15, 11, 0),
-
-		requiredStorages = {
-			[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = 1,
-		},
-	}
-	RegisterEncounter(hfpxConfig)
-
-	local lever = Action()
-
-	function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-		return UseEncounterLever(player, item, hfpxConfig)
-	end
-
-	lever:aid(hfpxConfig.actionid)
-	lever:register()
-end)
-QuestFactory.Script(function(missionState)
-	local updateStorages = {
-		Storage.ThreeSramatiansAndTheDragon.State,
-		Storage.ThreeSramatiansAndTheDragon.Mission05,
-	}
-
-	local cagePos = Position(6206, 918, 9)
-
-	local vampireKidnapping = MoveEvent()
-
-	function vampireKidnapping.onStepIn(player, item, position, fromPosition)
-		if not player:isPlayer() then
-			return true
-		end
-
-		if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) ~= 9 then
-			return false
-		end
-		player:teleportTo(cagePos)
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:IncrementStorages(updateStorages)
-		return true
-	end
-
-	vampireKidnapping:type("stepin")
-	vampireKidnapping:aid(Storage.ThreeSramatiansAndTheDragon.VampireCityTrap)
-	vampireKidnapping:register()
-end)
+	:Register()

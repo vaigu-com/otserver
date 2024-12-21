@@ -85,7 +85,7 @@ return {
 	["Chorus of Januses: Peace on all peaks. In leaves, in valleys Nothing."] = "Chorus of Januses: Peace on all peaks. In leaves, in valleys Nothing.",
 	["07. King of Rats' Gambit"] = "07. King of Rats' Gambit",
 	["GM Romek is afraid for his life. Try to find Robercik before he finds Romek."] = "GM Romek is afraid for his life. Try to find Robercik before he finds Romek.",
-	["You defeated the cunning Robercik. Return to Romk for your reward."] = "You defeated the cunning Robercik. Return to Romk for your reward.",
+	["You defeated the cunning Robercik. Return to Romek for your reward."] = "You defeated the cunning Robercik. Return to Romek for your reward.",
 	["Chorus of Januses: I was sent to break the chains of justice. This time, he will perish along with his soul."] = "Chorus of Januses: I was sent to break the chains of justice. This time, he will perish along with his soul.",
 	["08. The Art That of Just"] = "08. The Art That of Just",
 	["GM Romek will be waiting for donations until his death. It's better to support him."] = "GM Romek will be waiting for donations until his death. It's better to support him.",

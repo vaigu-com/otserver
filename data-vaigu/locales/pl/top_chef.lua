@@ -19,7 +19,7 @@ return {
 	["Top Chef"] = "Mistrz Kuchni",
 	["DESCRIBE_CURRENT_DISH"] = function(context)
 		local player = context.player
-		local state = player:getStorageValue(Storage.TopChef.State)
+		local state = player:getStorageValue(Storage.TopChef.Mission01)
 		local dishData = COOKING_INGREDIENT_DATA[state]
 		if not dishData then
 			return
@@ -36,7 +36,7 @@ return {
 	end,
 	["TOP_CHEF_MISSION_DESCRIPTION"] = function(context)
 		local player = context.player
-		local state = player:getStorageValue(Storage.TopChef.State)
+		local state = player:getStorageValue(Storage.TopChef.Mission01)
 
 		local dishData = COOKING_INGREDIENT_DATA[state]
 		if not dishData then
@@ -67,7 +67,7 @@ return {
 	end,
 	["HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH"] = function(context)
 		local player = context.player
-		local state = player:getStorageValue(Storage.TopChef.State)
+		local state = player:getStorageValue(Storage.TopChef.Mission01)
 		local dishData = COOKING_INGREDIENT_DATA[state]
 		if not dishData then
 			return

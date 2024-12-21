@@ -1,0 +1,42 @@
+local quest = Quest(LOCALIZERS.FatMyrrusEncounters)
+
+quest
+	:Storage(function()
+		Storage.FatMyrrusEncounters = {
+			Mission01 = NextStorage(),
+		}
+		QuestTopics.FatMyrrusEncounters = {
+			sayEncounterName = NextTopic(),
+		}
+	end)
+	:Mission(Storage.FatMyrrusEncounters.Mission01)
+	:State(
+		MISSION_NOT_STARTED,
+		QuestFactory.Dialog("Fat Myrrus", {
+			[{ "encounters", "bosses", "boss", "bossami" }] = {
+				text = "I didnt throw my life away for video games just to give away those informations for free. Bring me a {cake} and i will tell you all you need to know about any encounter.",
+			},
+			[{ "cake", "ciasto" }] = {
+				text = "Alright, i can help you with your {encounter} now.",
+				textNoRequiredItems = "Come back with a cake. Also, i dont want any toppings on it.",
+				nextState = {
+					[Storage.FatMyrrusEncounters.Mission01] = MISSION_FINISHED,
+				},
+				requiredItems = { { id = 6277 } },
+			},
+		})
+	)
+	:State(
+		MISSION_FINISHED,
+		QuestFactory.Dialog("Fat Myrrus", {
+			[{ "encounters", "bosses", "boss", "bossami" }] = {
+				text = "LIST_ENCOUNTERS",
+				nextTopic = QuestTopics.FatMyrrusEncounters.sayEncounterName,
+			},
+			[{ ANY_MESSAGE }] = {
+				text = "ENCOUNTER_DESCRIPTION",
+				requiredTopic = QuestTopics.FatMyrrusEncounters.sayEncounterName,
+			},
+		})
+	)
+	:Register()

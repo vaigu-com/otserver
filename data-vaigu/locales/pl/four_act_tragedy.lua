@@ -36,8 +36,8 @@ return {
 	["The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures."] = "Istnienie rakcontentu jest konieczne, jezeli dazymy do utrzymania rownowagi wszechswiata. Fabryka cringe gospodyn wiejskich trzymala nasz swiat w stanie spoczynku az do niedawna, gdy Garzyna Core zostal wykradziony. Wezme teraz od Ciebie grazynacore. Ty sproboj znalezc grazyne w wiezieniu. Samozwanczy bohaterowie z osady na wschodzie miasta zamkneli ja w glebiach swoich lochow. Teraz jest zmuszona do zycia wsrod bestii z koszmarow.",
 	["Elvish dust. Timmy might be needing this"] = "Elficki proszek magiczny. Timmy moze go potrzebowac",
 	["Timmy belongings. He might be needing them"] = "Rzeczy Timmyego. Moze ich teraz potrzebowac",
-	["Mysterius instrument. Most curious monsters can it allure"] = "Mistyczny instrument potrafiacy przywolac najdziwniejsze stworzenia",
-	["Grazhena Core i7"] = "Grazyna Core i7",
+	["Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play..."] = "Mistyczny instrument potrafiacy przywolac najdziwniejsze stworzenia. Poloz go na kamieniu i zagraj...",
+	["Grazhena Core i3"] = "Grazyna Core i3",
 	["As i said, go to the Caribbean."] = "Tak jak mowilem. Udaj sie na karaiby.",
 	-- Four Act Tregedy
 	["Four Act Tragedy"] = "Tragedya w Czterech Aktach",

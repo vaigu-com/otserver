@@ -1,6 +1,6 @@
 local storages = {
-	[2064] = Storage.PitsOfInferno.ShortcutHub,
-	[2065] = Storage.PitsOfInferno.ShortcutLevers,
+	[8816] = Storage.PitsOfInferno.ShortcutHub,
+	[8817] = Storage.PitsOfInferno.ShortcutLevers,
 }
 
 local movement = MoveEvent()
@@ -19,5 +19,5 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 end
 
 movement:type("stepin")
-movement:aid(2064, 2065)
+movement:aid(8816, 8817)
 movement:register()

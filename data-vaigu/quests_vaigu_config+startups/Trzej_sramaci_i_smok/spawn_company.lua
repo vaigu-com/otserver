@@ -29,7 +29,7 @@ local litFireplaceId = 2000
 local unlitFireplaceId = 1997
 
 local function hasRequiredState(player, aid)
-	local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State)
+	local questState = player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01)
 
 	local states = aidToRequiredState[aid]
 	local min = states.min

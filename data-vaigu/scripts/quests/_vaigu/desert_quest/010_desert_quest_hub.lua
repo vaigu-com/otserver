@@ -9,9 +9,7 @@ quest
 			ToSultanPrime = NextStorage(),
 		}
 	end)
-	:Questlog(function()
-		--38f
-	end)
+	:Questlog(function() end)
 	:Mission("NONE")
 	:State(
 		{ min = MISSION_NOT_STARTED, max = DEFAULT_MAX_STATE },
@@ -34,7 +32,7 @@ quest
 			local aidToRequiredStorages = {
 				[Storage.DesertQuestHub.ToDesertQuestOne] = nil,
 				[Storage.DesertQuestHub.ToDesertQuestTwo] = nil,
-				[Storage.DesertQuestHub.ToSultanPrime] = { [Storage.SultanPrime.PuzzlesDoneStateBinary] = 1 },
+				[Storage.DesertQuestHub.ToSultanPrime] = { [Storage.SultanPrime.Mission01] = 1 },
 				[Storage.DesertQuestHub.ToHub] = nil,
 			}
 

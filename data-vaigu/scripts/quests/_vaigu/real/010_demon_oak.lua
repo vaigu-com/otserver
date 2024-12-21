@@ -6,7 +6,7 @@ local topics = {
 quest
 	:Storage(function()
 		Storage.DemonOak = {
-			Mission = 1012,
+			Mission01 = 1012,
 			Squares = 1013,
 			KilledOak = 1014,
 
@@ -16,12 +16,11 @@ quest
 			AxeBlowsFace = 1018,
 		}
 		QuestState.DemonOak = {
-			Mission = {
+			Mission01 = {
 				EnteredOak_ReportToOldrak = 1,
 				EnchantAxeAtOldrak_KillOak = 2,
 				KilledOak_Report_ToOldrak = 3,
 				FindRewardChest = 4,
-				Finished = 5,
 			},
 		}
 	end)
@@ -29,21 +28,22 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Demon Oak",
 			missions = {
-				[Storage.DemonOak.Mission] = {
+				[Storage.DemonOak.Mission01] = {
 					name = "Demon Oak",
 					states = {
-						[1] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
-						[2] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",
-						[3] = "You defeated the Demon Oak! Report to Oldrak.",
-						[4] = "You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury.",
+						[QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
+						[QuestState.DemonOak.Mission01.EnchantAxeAtOldrak_KillOak] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",
+						[QuestState.DemonOak.Mission01.KilledOak_Report_ToOldrak] = "You defeated the Demon Oak! Report to Oldrak.",
+						[QuestState.DemonOak.Mission01.FindRewardChest] = "You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury.",
+						[MISSION_FINISHED] = "You found and took your reward for defeating The Demon Oak.",
 					},
 				},
 			},
 		}
 	end)
-	:Mission(Storage.DemonOak.Mission)
+	:Mission(Storage.DemonOak.Mission01)
 	:State(
-		QuestState.DemonOak.Mission.EnteredOak_ReportToOldrak,
+		QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
 				text = "How do you know? Did you go into the infested area?",
@@ -51,13 +51,13 @@ quest
 			[{ "yes", "tak" }] = {
 				text = "A demon oak?!? <mumbles some blessings> May the gods be on our side. You'll need a {hallowed axe} to harm that tree. Bring me a simple {axe} and I'll prepare it for you.",
 				nextState = {
-					[Storage.DemonOak.Mission] = QuestState.DemonOak.Mission.EnchantAxeAtOldrak_KillOak,
+					[Storage.DemonOak.Mission01] = QuestState.DemonOak.Mission01.EnchantAxeAtOldrak_KillOak,
 				},
 			},
 		})
 	)
 	:State(
-		QuestState.DemonOak.Mission.EnchantAxeAtOldrak_KillOak,
+		QuestState.DemonOak.Mission01.EnchantAxeAtOldrak_KillOak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
 				text = "You better don't return here until you've defeated the Demon Oak. Perhaps you lost your {axe}?",
@@ -110,19 +110,19 @@ quest
 					return true
 				end
 
-				local missionState = player:getStorageValue(Storage.DemonOak.Mission)
+				local missionState = player:getStorageValue(Storage.DemonOak.Mission01)
 				if missionState == MISSION_NOT_STARTED then
 					if player:getItemCount(9388) > 0 and #Game.getSpectators(DEMON_OAK_POSITION, false, true, 9, 9, 6, 6) == 0 then
 						player:teleportTo(DEMON_OAK_ENTER_POSITION)
 						player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-						player:setStorageValue(Storage.DemonOak.Mission, QuestState.DemonOak.Mission.EnteredOak_ReportToOldrak)
+						player:setStorageValue(Storage.DemonOak.Mission01, QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak)
 						player:removeItem(9388, 1)
 
 						player:say("OCZEKIWALEM CIE! CHODZ TU A DOSTANIESZ CZEGO CHCIALES!", TALKTYPE_MONSTER_YELL, false, player, DEMON_OAK_POSITION)
 					end
 					return true
 				end
-				if missionState == QuestState.DemonOak.Mission.EnchantAxeAtOldrak_KillOak then
+				if missionState == QuestState.DemonOak.Mission01.EnchantAxeAtOldrak_KillOak then
 					if #Game.getSpectators(DEMON_OAK_POSITION, false, true, 9, 9, 6, 6) == 0 then
 						player:teleportTo(DEMON_OAK_ENTER_POSITION)
 						player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -229,7 +229,7 @@ quest
 				if isDefeated then
 					player:teleportTo(DEMON_OAK_KICK_POSITION)
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Powiedz Oldrakowi o swoim wielkim zwyciestwie przeciw Debowi.")
-					player:setStorageValue(Storage.DemonOak.Mission, QuestState.DemonOak.KilledOak_Report_ToOldrak)
+					player:setStorageValue(Storage.DemonOak.Mission01, QuestState.DemonOak.KilledOak_Report_ToOldrak)
 					player:setStorageValue(Storage.DemonOak.KilledOak, 1)
 					return true
 				end
@@ -293,12 +293,12 @@ quest
 		end)
 	)
 	:State(
-		QuestState.DemonOak.Mission.KilledOak_Report_ToOldrak,
+		QuestState.DemonOak.Mission01.KilledOak_Report_ToOldrak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
 				text = "You chopped down the demon oak?!? Unbelievable!! Let's hope it doesn't come back. As long as evil is still existent in the soil of the plains, it won't be over. Still, the demons suffered a setback, that's for sure. ...\n\nFor your brave action, I tell you a secret which has been kept for many many years. There is an old cemetery in the south east from elvish court, far south from Mirko Town. There should be a grave with the name 'Grdhor Faelyn' somewhere. ...\n\nSomeone can gain the treasure hidden in there. I'm sure this 'someone' is you. Good luck in finding it!",
 				nextState = {
-					[Storage.DemonOak.Mission] = QuestState.DemonOak.Mission.FindRewardChest,
+					[Storage.DemonOak.Mission01] = QuestState.DemonOak.Mission01.FindRewardChest,
 				},
 				outfitRewards = {
 					{ outfitId = 542, addon = 2 },
@@ -308,7 +308,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.DemonOak.Mission.FindRewardChest,
+		QuestState.DemonOak.Mission01.FindRewardChest,
 		QuestFactory.Script(function(missionState)
 			local chests = {
 				[9008] = { itemid = 3389, count = 1 },
@@ -321,7 +321,7 @@ quest
 
 			function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				if chests[item.uid] then
-					if player:getStorageValue(Storage.DemonOak.Mission) ~= QuestState.DemonOak.Mission.FindRewardChest then
+					if player:getStorageValue(Storage.DemonOak.Mission01) ~= QuestState.DemonOak.Mission01.FindRewardChest then
 						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It's empty.")
 						return true
 					end
@@ -334,27 +334,28 @@ quest
 					end
 
 					player:addItem(chest.itemid, chest.count)
-					player:setStorageValue(Storage.DemonOak.Mission, QuestState.DemonOak.Mission.Finished)
-					player:setStorageValue(Storage.Finished.DemonOak, 1) -- quest done (website)
+					player:setStorageValue(Storage.DemonOak.Mission01, MISSION_FINISHED)
+					player:setStorageValue(Storage.Finished.DemonOak, MISSION_FINISHED)
 				end
 
 				return true
 			end
 
-			action:uid(9008, 9009, 9010, 9011) --38f plop chests on map?
+			action:uid(9008, 9009, 9010, 9011)
 			action:register()
+			print("registered demon oak chest uid")
 		end),
 		QuestFactory.Script(function(missionState)
 			local action = Action()
 
 			function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if player:getStorageValue(Storage.DemonOak.Mission) == QuestState.DemonOak.Mission.FindRewardChest then
+				if player:getStorageValue(Storage.DemonOak.Mission01) == QuestState.DemonOak.Mission01.FindRewardChest then
 					player:teleportTo(DEMON_OAK_REWARDROOM_POSITION)
 					DEMON_OAK_REWARDROOM_POSITION:sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
 			end
-			action:uid(9007) --38f
+			action:uid(9007)
 			action:register()
 		end)
 	)

@@ -48,7 +48,7 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-do return end --38f
+--add magical torch to shop
 local dialogs = {
 	[Storage.ProdigalSon.Questline] = {
 		[1] = {
@@ -56,7 +56,7 @@ local dialogs = {
 				text = "I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside.",
 				nextState = {
 					[Storage.ProdigalSon.Questline] = 2,
-					[Storage.ProdigalSon.PuzzlesDoneStateBinary] = 2,
+					[Storage.ProdigalSon.Mission01] = 2,
 					[Storage.ProdigalSon.MetroAccess] = 1,
 					[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = 1,
 					[Storage.ProdigalSon.TrainDestinations.ToHurghada] = 1,
@@ -86,7 +86,7 @@ local dialogs = {
 				},
 				expReward = 2000000,
 				rewards = { ExerciseWeaponBox(6000) },
-				requiredItems = { SYN_MARNOTRAWNY_KEY_ITEMS.payslip },
+				requiredItems = { QuestKeyItems.ProdigalSon.Payslip },
 				textNoRequiredItems = "Come back when you have it.",
 			},
 		},

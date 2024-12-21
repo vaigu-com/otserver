@@ -337,7 +337,7 @@ local function grantTaskRewards(context)
 	player:addMoney(money)
 	player:addTibiaCoins(points)
 	player:addTransferableCoins(points)
-	player:IncrementStorage(Storage.taskPoints, points)
+	player:IncrementStorage(Storage.Tasks.TaskPoints, points)
 	player:addExperience(exp, true)
 	return false
 end

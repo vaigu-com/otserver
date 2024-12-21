@@ -1,6 +1,6 @@
 do
 	return
-end --38f
+end
 local bossZone = Zone("boss.the-monster")
 
 local puddleId = 42075

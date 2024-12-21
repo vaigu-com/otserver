@@ -55,7 +55,7 @@ local dialog = {
 			specialActionsOnSuccess = {
 				{
 					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.KRZYSZTOF_KOLUMB_SHIP,
+					transports = TRANSPORT_ROUTES.CRISTOPHER_COLUMBUS_SHIP,
 					transportType = TRANSPORT_TYPE.SHIP,
 				},
 			},

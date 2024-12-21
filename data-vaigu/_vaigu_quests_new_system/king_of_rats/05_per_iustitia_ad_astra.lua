@@ -2,28 +2,28 @@ local quest = Quest("desert_quest_one")
 quest
 	:Storage(function()
 		Storage.PerIustitiaAdAstra = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
 			Mission05 = NextStorage(),
 			Mission06 = NextStorage(),
 			Mission07 = NextStorage(),
-			Rewards = {
-				Converter = NextStorage(),
+			KeyItems = {
+				CatalyticConverter = NextStorage(),
 				EngineBlueprint = NextStorage(),
 				Map1 = NextStorage(),
 				Map2 = NextStorage(),
 				Map3 = NextStorage(),
 				FuelRod = NextStorage(),
 				RocketFuel = NextStorage(),
-				SwagierCrate = NextStorage(),
+				SwaggerCrate = NextStorage(),
 				OfficerId = NextStorage(),
 				HugoRecipe = NextStorage(),
 				LecinaHammer = NextStorage(),
 			},
-			JanuszTile = NextStorage(),
+			AstralJanusSpawnTile = NextStorage(),
 			KuzniaAccess = NextStorage(),
 			CpnDoor = NextStorage(),
 			BuyFuelRodAccess = NextStorage(),
@@ -59,12 +59,12 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Per Iustitia Ad Astra",
-			startStorageId = Storage.PerIustitiaAdAstra.State,
+			startStorageId = Storage.PerIustitiaAdAstra.Mission01,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Beyond the Justice",
-					storageId = Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary,
+					storageId = Storage.PerIustitiaAdAstra.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 3,
@@ -128,7 +128,7 @@ quest
 						[2] = "Hugo noticed that your accent is off, also he knew the person you are impersonating. Improvise.",
 						[3] = "Find Hugo recipe for his favourite drink.",
 						[4] = "You found Hugo's recipe. Report back to him.",
-						[5] = "Find hammer in Lecima shithole and repair pipe is castle sewers.",
+						[5] = "Find hammer in Lecina shithole and repair pipe is castle sewers.",
 						[6] = "You repaired the faulty sewer pipe. Report back to hugo",
 						[7] = "Hugo told you to search the basement of his castle and find and open special chest.",
 						[8] = "You opened the magic chest. Report back to Hugo.",
@@ -328,11 +328,11 @@ quest
 	end)
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.PerIustitiaAdAstra.State] = 21,
+			[Storage.PerIustitiaAdAstra.Mission01] = 21,
 			[Storage.PerIustitiaAdAstra.Mission05] = 6,
 		}
 
-		local hammerId = PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.lecinaHammer.id
+		local hammerId = QuestKeyItems.PerIustitiaAdAstra.LecinaHammer.id
 		local pipeId = 20787
 
 		local item = Action()
@@ -352,7 +352,7 @@ quest
 				return false
 			end
 
-			if player:getStorageValue(Storage.PerIustitiaAdAstra.State) ~= 20 then
+			if player:getStorageValue(Storage.PerIustitiaAdAstra.Mission01) ~= 20 then
 				return false
 			end
 
@@ -375,7 +375,7 @@ quest
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.PerIustitiaAdAstra.State)
+			local storageVal = player:getStorageValue(Storage.PerIustitiaAdAstra.Mission01)
 
 			if storageVal == -1 then
 				return false
@@ -397,7 +397,7 @@ quest
 			end
 		end
 
-		tileIn:aid(Storage.PerIustitiaAdAstra.JanuszTile)
+		tileIn:aid(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
 		tileIn:register()
 
 		local tileOut = MoveEvent()
@@ -422,7 +422,7 @@ quest
 			end
 		end
 
-		tileOut:aid(Storage.PerIustitiaAdAstra.JanuszTile)
+		tileOut:aid(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
 		tileOut:register()
 	end)
 	:Script(function(missionState)
@@ -443,7 +443,7 @@ quest
 		local failDmg = 500
 
 		local function canOpenChest(player, toPosition)
-			if player:getStorageValue(Storage.PerIustitiaAdAstra.State) ~= 22 then
+			if player:getStorageValue(Storage.PerIustitiaAdAstra.Mission01) ~= 22 then
 				return false
 			end
 
@@ -459,7 +459,7 @@ quest
 		end
 
 		local updateStorages = {
-			[Storage.PerIustitiaAdAstra.State] = 23,
+			[Storage.PerIustitiaAdAstra.Mission01] = 23,
 			[Storage.PerIustitiaAdAstra.Mission05] = 8,
 		}
 
@@ -560,7 +560,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local updateStorages = {
-			[Storage.PerIustitiaAdAstra.State] = 26,
+			[Storage.PerIustitiaAdAstra.Mission01] = 26,
 			[Storage.PerIustitiaAdAstra.Mission06] = 2,
 		}
 
@@ -568,7 +568,7 @@ quest
 
 		function rukca.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.PerIustitiaAdAstra.State)
+				local storage_val = player:getStorageValue(Storage.PerIustitiaAdAstra.Mission01)
 				if storage_val ~= 25 then
 					return true
 				end
@@ -595,7 +595,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.PerIustitiaAdAstra.State] = 7,
+			[Storage.PerIustitiaAdAstra.Mission01] = 7,
 			[Storage.PerIustitiaAdAstra.Mission03] = 2,
 			[Storage.PerIustitiaAdAstra.ShipDestinations.Deeplings] = 1,
 			[Storage.PerIustitiaAdAstra.ShipDestinations.FuelShop] = 1,
@@ -607,7 +607,7 @@ quest
 				return false
 			end
 
-			if player:getStorageValue(Storage.PerIustitiaAdAstra.State) == 6 then
+			if player:getStorageValue(Storage.PerIustitiaAdAstra.Mission01) == 6 then
 				player:UpdateStorages(updateStorages)
 			end
 		end
@@ -654,7 +654,7 @@ quest
 				return false
 			end
 
-			if player:getStorageValue(Storage.PerIustitiaAdAstra.State) < 7 then
+			if player:getStorageValue(Storage.PerIustitiaAdAstra.Mission01) < 7 then
 				return false
 			end
 
@@ -676,7 +676,7 @@ quest
 	end)
 	:Script(function(missionState)
 		local function getDestination(aid)
-			local toPos = SPACESHIP_AID_TO_POS[aid]
+			local toPos = destinationStorageToPosition[aid]
 			if not toPos then
 				return false
 			end
@@ -712,19 +712,19 @@ quest
 
 			if
 				not player:TryTradeInItems(
-					{ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.fuelRod },
-					{ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.rocketFuel }
+					{ QuestKeyItems.PerIustitiaAdAstra.FuelRod },
+					{ QuestKeyItems.PerIustitiaAdAstra.RocketFuel }
 				)
 			then
 				player:say(
-					player:Localizer(Storage.PerIustitiaAdAstra.State):Get("You don't have any fuel rods."),
+					player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("You don't have any fuel rods."),
 					TALKTYPE_MONSTER_SAY
 				)
 				return
 			end
 
 			player:say(
-				player:Localizer(Storage.PerIustitiaAdAstra.State):Get("Rod synthesis successful."),
+				player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("Rod synthesis successful."),
 				TALKTYPE_MONSTER_SAY
 			)
 
@@ -744,7 +744,7 @@ quest
 			local fuelStorage = Storage.PerIustitiaAdAstra.ShipControl.FuelLevel
 			local fuelLevel = player:getStorageValue(fuelStorage)
 			player:say(
-				player:Localizer(Storage.PerIustitiaAdAstra.State):Get("Current fuel tank status: ") .. fuelLevel,
+				player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("Current fuel tank status: ") .. fuelLevel,
 				TALKTYPE_MONSTER_SAY
 			)
 		end
@@ -755,9 +755,9 @@ quest
 				return false
 			end
 
-			if not player:TryRemoveItems({ PER_IUSTITIA_AD_ASTRA_KEY_ITEMS.rocketFuel }) then
+			if not player:TryRemoveItems({ QuestKeyItems.PerIustitiaAdAstra.RocketFuel }) then
 				player:say(
-					player:Localizer(Storage.PerIustitiaAdAstra.State):Get("You dont have any fuel."),
+					player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("You dont have any fuel."),
 					TALKTYPE_MONSTER_SAY
 				)
 				sendFuelStatus(player)
@@ -765,7 +765,7 @@ quest
 			end
 
 			player:say(
-				player:Localizer(Storage.PerIustitiaAdAstra.State):Get("You refilled the fuel tank."),
+				player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("You refilled the fuel tank."),
 				TALKTYPE_MONSTER_SAY
 			)
 			refillFuel(player)
@@ -786,7 +786,7 @@ quest
 			return false
 		end
 
-		fuel:aid(Storage.PerIustitiaAdAstra.Rewards.RocketFuel)
+		fuel:aid(Storage.PerIustitiaAdAstra.KeyItems.RocketFuel)
 		fuel:register()
 	end)
 	:Script(function(missionState)
@@ -798,7 +798,7 @@ quest
 			[Storage.PerIustitiaAdAstra.ShipDestinations.HugoBeachPlanet] = "ShipDestHugoBeachPlanet",
 		}
 
-		SPACESHIP_AID_TO_POS = {
+		destinationStorageToPosition = {
 			[Storage.PerIustitiaAdAstra.ShipDestinations.FuelShop] = FUEL_SHOP_ANCHOR:Moved(2, 0, 0),
 			[Storage.PerIustitiaAdAstra.ShipDestinations.Deeplings] = DEEPLING_TEMPLE_ANCHOR:Moved(0, 1, 0),
 			[Storage.PerIustitiaAdAstra.ShipDestinations.Ganymede] = GANYMEDE_ANCHOR:Moved(-3, 0, 0),
@@ -826,7 +826,7 @@ quest
 				end
 
 				if player:getMana() < manaCostFlat then
-					return false, player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipCantAffordMana")
+					return false, player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipCantAffordMana")
 				end
 				player:addMana(-manaCostFlat)
 				return true
@@ -834,7 +834,7 @@ quest
 
 			local fuelStorage = Storage.PerIustitiaAdAstra.ShipControl.FuelLevel
 			if player:getStorageValue(fuelStorage) < 1 then
-				return false, player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipCantAffordFuel")
+				return false, player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipCantAffordFuel")
 			end
 			player:IncrementStorage(fuelStorage, -1)
 			return true
@@ -846,7 +846,7 @@ quest
 			end
 			player:setStorageValue(Storage.PerIustitiaAdAstra.ShipControl.Next, choice.aid)
 			player:say(
-				player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipLocationLocked") .. choice.text,
+				player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipLocationLocked") .. choice.text,
 				TALKTYPE_MONSTER_SAY
 			)
 		end
@@ -857,16 +857,16 @@ quest
 				return false
 			end
 
-			local title = player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipTitle")
-			local message = player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipMessage")
+			local title = player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipTitle")
+			local message = player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipMessage")
 
 			local window = ModalWindow({ title = title, message = message })
 
 			local nextDestAid = player:getStorageValue(Storage.PerIustitiaAdAstra.ShipControl.Next)
-			for aid in pairs(SPACESHIP_AID_TO_POS) do
+			for aid in pairs(destinationStorageToPosition) do
 				if hasUnlockedDestination(player, aid) then
 					local transaltedText =
-						player:Localizer(Storage.PerIustitiaAdAstra.State):Get(aidToDestName[aid])
+						player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get(aidToDestName[aid])
 					if aid == nextDestAid then
 						transaltedText = "* " .. transaltedText .. " *"
 					end
@@ -875,7 +875,7 @@ quest
 				end
 			end
 
-			window:addButton(player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipOk"), confirmChoice)
+			window:addButton(player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipOk"), confirmChoice)
 
 			window:sendToPlayer(player)
 			return true
@@ -1026,7 +1026,7 @@ quest
 			local shipCurrentStorageValue = player:getStorageValue(Storage.PerIustitiaAdAstra.ShipControl.Current)
 			if shipNextStorageValue == shipCurrentStorageValue then
 				player:say(
-					player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipAlreadyAtDestination"),
+					player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipAlreadyAtDestination"),
 					TALKTYPE_MONSTER_SAY
 				)
 				return true
@@ -1047,9 +1047,9 @@ quest
 			tryStartFlightTimerLoop()
 			startTravel(player)
 
-			local transaltedString = player:Localizer(Storage.PerIustitiaAdAstra.State):Get("ShipJustStartedTravel")
+			local transaltedString = player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get("ShipJustStartedTravel")
 			local nextName = aidToDestName[nextDestAid]
-			local translatedName = player:Localizer(Storage.PerIustitiaAdAstra.State):Get(nextName)
+			local translatedName = player:Localizer(Storage.PerIustitiaAdAstra.Mission01):Get(nextName)
 			player:say(transaltedString .. translatedName, TALKTYPE_MONSTER_SAY)
 			return true
 		end

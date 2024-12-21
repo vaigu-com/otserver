@@ -94,7 +94,7 @@ local dialogs = {
 			text = "Well, go away.",
 		},
 	},
-	[Storage.TheaterOfCheapThrills.State] = {
+	[Storage.TheaterOfCheapThrills.Mission01] = {
 		[Storage.TheaterOfCheapThrills.Mission09] = {
 			[2] = {
 			

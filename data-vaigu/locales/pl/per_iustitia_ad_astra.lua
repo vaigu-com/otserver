@@ -122,7 +122,7 @@ return {
 	["Hugo noticed that your accent is off, also he knew the person you are impersonating. Improvise."] = "Hugo zauwazyl, ze twoj akcent nawet nie przypoomina niemieckiego. Improwizuj.",
 	["Find Hugo recipe for his favourite drink."] = "Znajdz przepis Hugona na jego ulubiony drink.",
 	["You found Hugo's recipe. Report back to him."] = "Znalazles przepis Hugona. Wroc teraz do niego.",
-	["Find hammer in Lecima shithole and repair pipe is castle sewers."] = "Znajdz mlotek w miejscu pracy lecina i napraw nim wodociagi.",
+	["Find hammer in Lecina shithole and repair pipe is castle sewers."] = "Znajdz mlotek w miejscu pracy lecina i napraw nim wodociagi.",
 	["You repaired the faulty sewer pipe. Report back to hugo"] = "Naprawiles wadliwa rure. Wroc do Hugo.",
 	["Hugo told you to search the basement of his castle and find and open special chest."] = "Hugo poprosil cie, abys przeszukal podziemia zamku i otworzyl pradawna, zapieczetowana skrzynie.",
 	["You opened the magic chest. Report back to Hugo."] = "Udalo ci sie otworzyc magiczna skrzynie. Wroc do Hugo.",

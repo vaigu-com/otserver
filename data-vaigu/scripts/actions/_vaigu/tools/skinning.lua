@@ -349,14 +349,7 @@ local toolToCorpseIdToSpecialAction = {
 	[10426] = onMarbleSculpting,
 }
 
-local corpseAidToSpecialAction = {
-	[Storage.WayOfTheDruid.Benek] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValue(Storage.WayOfTheDruid.TakenBenek) ~= QuestState.WayOfTheDruid.TakenBenek.FreeBenek then
-			return
-		end
-		player:setStorageValue(Storage.WayOfTheDruid.TakenBenek, QuestState.WayOfTheDruid.TakenBenek.ReportToEstep)
-	end,
-}
+local corpseAidToSpecialAction = {}
 
 local function isInBags(pos)
 	return pos.x == CONTAINER_POSITION

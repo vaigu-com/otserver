@@ -11,17 +11,16 @@ function dailyPamphletUse.onUse(player, item, fromPosition, target, toPosition, 
 	return true
 end
 
-local dailyPamphletLoot = Look()
-function dailyPamphletLoot.onLook(player, item)
+local dailyPamphletLook = Look()
+function dailyPamphletLook.onLook(player, item)
 	onPamphlet(player, item)
 	return true
 end
-dailyPamphletLoot:aid(Storage.DesertQuestOne.Readable.FloorBooks)
 
 for _, dailyTask in pairs(GetAllDailyTasks()) do
 	local aid = dailyTask.storage
 	dailyPamphletUse:aid(aid)
-	dailyPamphletLoot:aid(aid)
+	dailyPamphletLook:aid(aid)
 end
 dailyPamphletUse:register()
-dailyPamphletLoot:regiser()
+dailyPamphletLook:regiser()

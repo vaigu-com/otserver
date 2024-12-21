@@ -2,8 +2,8 @@ local quest = Quest("path_of_the_undead")
 quest
 	:Storage(function()
 		Storage.PathOfTheUndead = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Circles = NextStorage(),
@@ -21,12 +21,12 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Path of the Undead",
-			startStorageId = Storage.PathOfTheUndead.State,
+			startStorageId = Storage.PathOfTheUndead.Mission01,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "Test of Strength",
-					storageId = Storage.PathOfTheUndead.PuzzlesDoneStateBinary,
+					storageId = Storage.PathOfTheUndead.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 2,
@@ -274,7 +274,7 @@ quest
 				return true
 			end
 
-			local storageval = player:getStorageValue(Storage.PathOfTheUndead.State)
+			local storageval = player:getStorageValue(Storage.PathOfTheUndead.Mission01)
 			if storageval < 3 then
 				return false
 			end
@@ -326,7 +326,7 @@ quest
 			return false
 		end
 
-		local questlineStorage = Storage.PathOfTheUndead.State
+		local questlineStorage = Storage.PathOfTheUndead.Mission01
 		local circleStorage = Storage.PathOfTheUndead.Circles
 
 		local function GetUncompletedCirclesCount(player)
@@ -360,14 +360,14 @@ quest
 			if not IsFactor(storageVal, addend) then
 				player:setStorageValue(circleStorage, player:getStorageValue(circleStorage) + addend)
 				player:getPosition():sendMagicEffect(CONST_ME_THUNDER)
-				local firstStepMessage = player:Localizer(Storage.PathOfTheUndead.State):Get("You step on circle number ")
+				local firstStepMessage = player:Localizer(Storage.PathOfTheUndead.Mission01):Get("You step on circle number ")
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, firstStepMessage .. math.floor(math.log(addend, 2) + 1))
 			end
 
 			local circlesCount = GetUncompletedCirclesCount(player)
 			if circlesCount ~= 0 then
-				local standOn = player:Localizer(Storage.PathOfTheUndead.State):Get("To fulfill Gandalf's task you need to stand on ")
-				local remaining = player:Localizer(Storage.PathOfTheUndead.State):Get(" remaining circles.")
+				local standOn = player:Localizer(Storage.PathOfTheUndead.Mission01):Get("To fulfill Gandalf's task you need to stand on ")
+				local remaining = player:Localizer(Storage.PathOfTheUndead.Mission01):Get(" remaining circles.")
 
 				player:sendTextMessage(MESSAGE_FAILURE, standOn .. circlesCount .. remaining)
 			end
@@ -537,7 +537,7 @@ quest
 		[{ "oprocz tego ludzie", "aside from that people" }] = {
 			text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without a second thought, all defenders gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don't know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
 			nextState = {
-				[Storage.PathOfTheUndead.PuzzlesDoneStateBinary] = 1,
+				[Storage.PathOfTheUndead.Mission01] = 1,
 			},
 			requiredState = {
 				[Storage.Finished.AssassinsCreedSquurvaali] = 1,
@@ -559,7 +559,7 @@ quest
 		[{ "conditions", "warunki" }] = {
 			text = "Allakhazam!!!1. Oh, wait, that's not all. I forgot that you also need to visit the magic circles. Each circle consists of 6 stones in 3 different colors, with a special grid in the middle. Stand on all five grids, and I will be able to bless you. I won't tell you where the circles are because you can ask the owners of magic shops in towns about it. Talk to them, and they will guide you to the circles. Just write 'circle' to them, and they will explain everything to you.",
 			nextState = {
-				[Storage.PathOfTheUndead.PuzzlesDoneStateBinary] = 2,
+				[Storage.PathOfTheUndead.Mission01] = 2,
 				[Storage.PathOfTheUndead.Mission02] = 1,
 				[Storage.PathOfTheUndead.Circles] = 0,
 			},
@@ -622,7 +622,7 @@ quest
 	})
 	:Script(function(missionState)
 		local updateStorages = {
-			[Storage.PathOfTheUndead.State] = 4,
+			[Storage.PathOfTheUndead.Mission01] = 4,
 			[Storage.PathOfTheUndead.Mission03] = 2,
 		}
 

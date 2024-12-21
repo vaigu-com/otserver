@@ -87,7 +87,7 @@ return {
 	["Chorus of Januses: Peace on all peaks. In leaves, in valleys Nothing."] = "Chor januszy: Na wszystkich szczytach Pokoj. W lisciach, w dolinach Nic",
 	["07. King of Rats' Gambit"] = "07. Gambit Krola Szczurow",
 	["GM Romek is afraid for his life. Try to find Robercik before he finds Romek."] = "GM Romek boi sie o swoje zycie. Sprobuj znalezc Robercika, zanim robercik znajdzie Romka.",
-	["You defeated the cunning Robercik. Return to Romk for your reward."] = "Pokonales podstepnego Robercika. Wroc do Romka po nagrode.",
+	["You defeated the cunning Robercik. Return to Romek for your reward."] = "Pokonales podstepnego Robercika. Wroc do Romka po nagrode.",
 	["Chorus of Januses: I was sent to break the chains of justice. This time, he will perish along with his soul."] = "Chor januszy: Jam poslan, by sprawiedliwosci rwac kajdany. Tym razem sczeznie wraz z dusza jego.",
 	["08. The Art That of Just"] = "08. Sztuka Sprawiedliwa",
 	["GM Romek will be waiting for donations until his death. It's better to support him."] = "GM Romek bedzie czekac do usranej smierci na donacje. Lepiej go wspomoz.",

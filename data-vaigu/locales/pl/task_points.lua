@@ -1,6 +1,6 @@
 return {
 	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValue(Storage.taskPoints)
+		local points = context.player:getStorageValue(Storage.Tasks.TaskPoints)
 		return T("Aktualnie posiadasz :points: punktow taskow.  Mozesz wymienic je na kilka {trofeow}, {wierzchowca} oraz {mozliwosc} nasycania na najwyzszy poziom.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -10,7 +10,7 @@ return {
 		return T("Czy chcesz kupic :name: za :cost: punktow taskowych?", { name = context.msg:lower(), cost = context.keywordConfig.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValue(Storage.taskPoints)
+		local current = context.player:getStorageValue(Storage.Tasks.TaskPoints)
 		local required = context.keywordConfig.cost or PlayerCustomDialogDataRegistry():Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("Nie posiadasz odpowiedniej liczby punktow taskowych. Potrzebuejsz :required: punktow aby to kupic. Posiadasz :current: punktow, co oznacza, ze potrzebuejesz jeszcze :diff: punktow.", { current = current, required = required, diff = diff })

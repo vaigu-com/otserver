@@ -334,8 +334,8 @@ local taskData = {
 		min = 46,
 		max = 2000,
 		bossName = "The Old Widow",
-		bossPosition = Position(5700, 1782, 8),
-		bossRoomCenter = Position(5702, 1785, 8),
+		bossPosition = Position(6056, 1810, 9),
+		bossRoomCenter = Position(6056, 1813, 9),
 		clearRadiusX = 12,
 		clearRadiusY = 12,
 		bossPortalUid = 10020,
@@ -917,10 +917,3 @@ function RegisterTasksInQuestsTable()
 		table.insert(Quests[TASKS_QUEST_STORAGE].missions, bossMission)
 	end
 end
-
-local quest = Quest(LOCALIZERS.NONE)
-
-quest:Script(function()
-	RegisterTasksInQuestsTable()
-	RegisterDailyTasksInQuestsTable()
-end)

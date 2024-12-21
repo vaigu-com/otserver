@@ -1,7 +1,7 @@
 local quest = Quest("desert_quest_one")
 quest
 	:Constant(function()
-		DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED = 8261 --38f move to desert quest file
+		DESERT_QUEST_ONE_QUESTDOOR_ID_CLOSED = 8261
 		DESERT_QUEST_ONE_KEY_ITEMS = {}
 
 		-- #region tables format: [actionid] = {pos}
@@ -394,7 +394,7 @@ quest
 		Storage.DesertQuestHub.ToDesertQuestOne = NextStorage()
 		Storage.Finished.DesertQuestOne = NextStorage()
 		Storage.DesertQuestOne = {
-			State = NextStorage(),
+			Mission01 = NextStorage(),
 			QuestState = {
 				q1 = NextStorage(),
 				q2 = NextStorage(),
@@ -1491,7 +1491,7 @@ quest
 			player:registerEvent("DesertQuestBook_Modal_Window")
 
 			local message = vectorToMessage[toPosition:VectorBetween(DESERT_QUEST_ONE_ANCHOR):ToStringShort()]
-			local translatedMessage = player:Localizer(Storage.DesertQuestOne.State):Get(message)
+			local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get(message)
 			local title = "You read the following."
 
 			local window = ModalWindow(item.actionid, title, translatedMessage)
@@ -1508,7 +1508,7 @@ quest
 	:Script(function(missionState)
 		local config = { ["mysteriando"] = "Desert Quest: credit for puzzle ", ["granted"] = " - granted." }
 
-		local questline = Storage.DesertQuestOne.State
+		local questline = Storage.DesertQuestOne.Mission01
 
 		local function playerCompletedCurrentMysteriando(player, currentActionid)
 			return player:getStorageValue(currentActionid) == 1
@@ -1521,7 +1521,7 @@ quest
 		local function giveMysteriandoCredit(player, aid, nextQuestlineValue)
 			player:setStorageValue(questline, nextQuestlineValue)
 			player:setStorageValue(aid, 1)
-			local localizer = player:Localizer(Storage.DesertQuestOne.State)
+			local localizer = player:Localizer(Storage.DesertQuestOne.Mission01)
 			local mysteriandoString = localizer:Get(config["mysteriando"])
 			local grantedString = localizer:Get(config["granted"])
 
@@ -1640,7 +1640,7 @@ quest
 
 		local function playerCompletedQuest(player)
 			if
-				player:getStorageValue(Storage.DesertQuestOne.State) > TableSize(Storage.DesertQuestOne.QuestState)
+				player:getStorageValue(Storage.DesertQuestOne.Mission01) > TableSize(Storage.DesertQuestOne.QuestState)
 			then
 				return true
 			end
@@ -1860,7 +1860,7 @@ quest
 			local player = context.player
 
 			local translatedMessage =
-				player:Localizer(Storage.DesertQuestOne.State):Get("You can safely exit to the surface. \n\n~")
+				player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
 			local randIndex = math.random(1, #badNames)
 			local randomTrickster = badNames[randIndex]
 			return translatedMessage .. randomTrickster
@@ -1869,7 +1869,7 @@ quest
 			local player = context.player
 
 			local translatedMessage =
-				player:Localizer(Storage.DesertQuestOne.State):Get("You can safely exit to the surface. \n\n~")
+				player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
 			local randIndex = math.random(1, #goodNames)
 			local randomHelper = goodNames[randIndex]
 			return translatedMessage .. randomHelper
@@ -1952,10 +1952,10 @@ quest
 			end
 			stairs:transform(DESERT_QUEST_ONE_BASIN_OPENING.stairsId)
 
-			local stairsMessage = player:Localizer(Storage.DesertQuestOne.State):Get(config["stairsAreGonna"])
+			local stairsMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["stairsAreGonna"])
 				.. stairTimer
-				.. player:Localizer(Storage.DesertQuestOne.State):Get(config["stairsSeconds"])
-			player:say(player:Localizer(Storage.DesertQuestOne.State):Get(stairsMessage), TALKTYPE_MONSTER_SAY)
+				.. player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["stairsSeconds"])
+			player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(stairsMessage), TALKTYPE_MONSTER_SAY)
 			addEvent(function()
 				stairs = Tile(pos):getItemById(DESERT_QUEST_ONE_BASIN_OPENING.stairsId)
 				stairs:transform(DESERT_QUEST_ONE_BASIN_OPENING.sealedId)
@@ -2008,7 +2008,7 @@ quest
 			CreateItems(DESERT_QUEST_ONE_KEY_BOW_HORIZONTAL, DESERT_QUEST_ONE_ANCHOR)
 
 			player:say(
-				player:Localizer(Storage.DesertQuestOne.State):Get(config["youHaveSeconds"]),
+				player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["youHaveSeconds"]),
 				TALKTYPE_MONSTER_SAY
 			)
 
@@ -2666,7 +2666,7 @@ quest
 				openGateTemporarily()
 			end
 
-			player:say(player:Localizer(Storage.DesertQuestOne.State):Get(config[message]), TALKTYPE_MONSTER_SAY)
+			player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config[message]), TALKTYPE_MONSTER_SAY)
 			return false
 		end
 
@@ -2746,7 +2746,7 @@ quest
 			local cooldown = DESERT_QUEST_ONE_WATER_FLOW.pipe_cooldown
 
 			if Tile(pipe_pos):getItemById(cooldown) then
-				player:say(player:Localizer(Storage.DesertQuestOne.State):Get(config.text), TALKTYPE_MONSTER_SAY)
+				player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config.text), TALKTYPE_MONSTER_SAY)
 				return false
 			end
 

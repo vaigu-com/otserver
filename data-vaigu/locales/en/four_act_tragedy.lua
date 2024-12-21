@@ -36,8 +36,8 @@ return {
 	["The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures."] = "The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures.",
 	["Elvish dust. Timmy might be needing this"] = "Elvish dust. Timmy might be needing this",
 	["Timmy belongings. He might be needing them"] = "Timmy belongings. He might be needing them",
-	["Mysterius instrument. Most curious monsters can it allure"] = "Mysterius instrument. Most curious monsters can it allure",
-	["Grazhena Core i7"] = "Grazhena Core i7",
+	["Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play..."] = "Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play...",
+	["Grazhena Core i3"] = "Grazhena Core i3",
 	["As i said, go to the Caribbean."] = "As i said, go to the Caribbean.",
 	-- Four Act Tregedy
 	["Four Act Tragedy"] = "Four Act Tragedy",

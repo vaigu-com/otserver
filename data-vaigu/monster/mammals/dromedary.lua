@@ -62,10 +62,7 @@ monster.flags = {
 	canWalkOnPoison = false,
 }
 
-monster.events = {
-	"DromedaryDeath" 
-	--38f change monster files to be intermediate definitions (same as npcs)
-}
+monster.events = {}
 
 monster.light = {
 	level = 0,

@@ -64,7 +64,7 @@ local dialog = {
 			specialActionsOnSuccess = {
 				{
 					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.JACEK_WROBEL_SHIP,
+					transports = TRANSPORT_ROUTES.JACK_SPARROW_SHIP,
 					transportType = TRANSPORT_TYPE.SHIP,
 				},
 			},

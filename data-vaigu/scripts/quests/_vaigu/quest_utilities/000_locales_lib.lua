@@ -1,6 +1,6 @@
 local mainDir = DATA_DIRECTORY .. "/locales"
 
-LOCALIZERS = { --38f add desert quest/king of rats
+LOCALIZERS = {
 	--#region 2024
 	DesertQuestHub = "desert_quest_hub",
 	FatMyrrusEncounters = "fat_myrrus_encounters",
@@ -43,7 +43,11 @@ LOCALIZERS = { --38f add desert quest/king of rats
 
 	--Real tibia
 	TheInquisitionQuest = "the_inquisition_quest",
+	TheDreamCourts = "the_dream_courts",
+	BigfootBurden = "bifoot_burden",
 	DemonOak = "demon_oak",
+	LiquidBlack = "liquid_black",
+	TheApeCity = "the_ape_city",
 
 	--Misc
 	LOCALIZER_UNIVERSAL = "_universal",

@@ -5,8 +5,8 @@ quest
 		Storage.DesertQuestHub = Storage.DesertQuestHub or {}
 		Storage.DesertQuestHub.ToDesertQuestTwo = NextStorage()
 		Storage.DesertQuestTwo = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			PuzzlesCompletedBinary = NextStorage(),
 			ProgressChests = NextStorage(),
 			FastMonster = NextStorage(),
 			RewardRoomTp = NextStorage(),
@@ -151,7 +151,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.DesertQuestTwo.State)
+	:Mission(Storage.DesertQuestTwo.Mission01)
 	:State(
 		ANY_STATE,
 		QuestFactory.Script(function(missionState)
@@ -242,11 +242,11 @@ quest
 			end
 
 			function GetDQ2completedPuzzleCount(player)
-				local storageVal = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary)
+				local state = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesCompletedBinary)
 				local result = 0
-				while storageVal > 0 do
-					result = result + (bit.band(storageVal, 1))
-					storageVal = bit.rshift(storageVal, 1)
+				while state > 0 do
+					result = result + (bit.band(state, 1))
+					state = bit.rshift(state, 1)
 				end
 				return result, TableSize(chests)
 			end
@@ -258,7 +258,7 @@ quest
 					return false
 				end
 
-				local oldValue = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary)
+				local oldValue = player:getStorageValue(Storage.DesertQuestTwo.PuzzlesCompletedBinary)
 				if oldValue == -1 then
 					oldValue = 0
 				end
@@ -269,7 +269,7 @@ quest
 				end
 
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-				player:setStorageValue(Storage.DesertQuestTwo.PuzzlesDoneStateBinary, newValue)
+				player:setStorageValue(Storage.DesertQuestTwo.PuzzlesCompletedBinary, newValue)
 
 				local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 				local finalString = puzzlesCompleted .. "/" .. puzzlesCount
@@ -311,23 +311,6 @@ quest
 
 			lever:aid(Storage.DesertQuestTwo.Puzzles.FastMoaLever)
 			lever:register()
-
-			local action = Action()
-			function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				player:say("meow")
-				return true
-			end
-			action:aid(6969)
-			action:register()
-
-			local look = Look()
-			function look.onLook(player, item, fromPosition, target, toPosition)
-				player:say("meow")
-				return true
-			end
-			look:aid(6969)
-			look:position({ x = 6585, y = 557, z = 9 })
-			look:register()
 		end),
 		QuestFactory.Script(function(missionState)
 			local puzzleTopLeft = DESERT_QUEST_TWO_ANCHOR:Moved(1, 0, 0)
@@ -1747,7 +1730,7 @@ quest
 				local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 				if puzzlesCompleted < puzzlesCount then
 					player:teleportTo(fromPosition)
-					local errorString = player:Localizer(Storage.DesertQuestTwo.State):Get("You need to complete all the puzzle challenges first. Your current progress: ")
+					local errorString = player:Localizer(Storage.DesertQuestTwo.Mission01):Get("You need to complete all the puzzle challenges first. Your current progress: ")
 					local finalString = errorString .. puzzlesCompleted .. "/" .. puzzlesCount
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, finalString)
 					return
@@ -1796,7 +1779,7 @@ quest
 				if not user:isPlayer() then
 					return false
 				end
-				local localizer = user:Localizer(Storage.DesertQuestTwo.State)
+				local localizer = user:Localizer(Storage.DesertQuestTwo.Mission01)
 				local resultReal = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
 				local resultTrick = localizer:Get("the sign says that knight and druid should use rope")
 				if not user:isPaladin() then
@@ -1813,7 +1796,7 @@ quest
 				if not user:isPlayer() then
 					return false
 				end
-				local localizer = user:Localizer(Storage.DesertQuestTwo.State)
+				local localizer = user:Localizer(Storage.DesertQuestTwo.Mission01)
 				local hereWillLie = localizer:Get("Here will lie ")
 				local dateOfDeath = localizer:Get("Date of death")
 				local name = user:getName()

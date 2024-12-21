@@ -44,7 +44,6 @@ local config = {
 }
 
 local othersHolyWater = Action()
---38f dios mio
 function othersHolyWater.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- Antler Talisman Transformation
 	if target.itemid == config.antler_talisman then

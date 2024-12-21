@@ -1,27 +1,12 @@
 local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
-	local afterLoginStr = ""
-	--38f
-	--[[
-	if player:getLastLoginSaved() <= 0 then
-		afterLoginStr = "Please choose your outfit."
-		player:sendOutfitWindow()
-		player:sendTextMessage(MESSAGE_INFO_DESCR, "Premade action bars for every vocation are available in options.")
-		player:setStorageValue(Storage.EmoteSpells, 1) -- emote on first login
-		player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, 1) -- initial quest
-	else
-		local welcomeStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("WELCOME_TO_SERVER")
-		player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
-		afterLoginStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
-	end
-
+	local afterLoginStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
 	local commandStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
-	local bugStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("You can report ingame bugs using ctrl+z.")
+	local welcomeStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("WELCOME_TO_SERVER")
+	player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
-	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, bugStr)
-	]]
 
 	if isPremium(player) then
 		player:setStorageValue(Storage.PremiumAccount, 1)

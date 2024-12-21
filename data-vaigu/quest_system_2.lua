@@ -147,8 +147,7 @@ function Quest:AddStartupItems(context)
 	local items, anchor = context.items, context.anchor
 	local mission, state = context.mission, context.state
 
-	--38f
-	for key, item in pairs(items) do
+	for _, item in pairs(items) do
 		if item.nextState or item.content then
 			item.requiredState = item.requiredState or { [mission] = state }
 		end
@@ -167,13 +166,11 @@ function Quest:AddStartupScript(context)
 end
 --#endregion
 
---38f
+--[[
 function Quest:StartupNpcs(npcs, anchor)
 	self.startupNpcs[npcs] = anchor
 	return self
 end
-
---[[
 function Quest:Npc(name, context)
 	self.npcs[name].context = self.npcs[name].context or {}
 	for key, value in pairs(context) do

@@ -48,37 +48,8 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-
-do return end --38f
 local dialog = {
-	[Storage.ProdigalSon.Localizer] = {
-		[Storage.ProdigalSon.Mission06] = {
-			[1] = {
-				[{ GREET }] = {
-					text = "Password:",
-				},
-				[{ "mission" }] = {
-					text = "Password:",
-				},
-				[{ ANY_MESSAGE }] = {
-					text = "Correct password. Come in.",
-					specialConditions = {
-						{
-							condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.saidCorrectPassword,
-							requiredOutcome = true,
-							textNoRequiredCondition = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
-						},
-					},
-					specialActionsOnSuccess = {
-						{
-							action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
-							pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
-						},
-					},
-				},
-			},
-		},
-	},
+
 }
 
 local function greetCallback(npc, creature, type, message)

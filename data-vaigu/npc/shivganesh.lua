@@ -70,7 +70,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getItemCount(8197) >= 3 and player:removeMoney(800) then
 			player:removeItem(8197, 3)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dzieki za pomoc. Przekaz Tomkowi, ze dostarcze kebaby na czas." or "Thanks for the help. Let Tom know that I'll deliver the kebabs on time.", npc, creature)
-			player:setStorageValue(Storage.TheaterOfCheapThrills.State, 14)
+			player:setStorageValue(Storage.TheaterOfCheapThrills.Mission01, 14)
 			player:setStorageValue(Storage.TheaterOfCheapThrills.Mission05, 4)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc, gdy bedziesz miec trzy zabki czosnku. I nie zapomnij o oplacie 8 platynek." or "Return when you have three garlic cloves. And don't forget about the payment of 8 platinum coins.", npc, creature)

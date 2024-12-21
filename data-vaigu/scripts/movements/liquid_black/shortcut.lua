@@ -10,13 +10,13 @@ function shortcut.onStepIn(creature, item, toPosition, fromPosition)
 
 	if player:getStorageValue(Storage.LiquidBlack.Visitor) >= 4 then
 		player:setStorageValue(Storage.LiquidBlack.Visitor, 5)
-		player:setStorageValue(Storage.Finished.LiquidBlack, 1)
+		player:setStorageValue(Storage.Finished.LiquidBlack, MISSION_FINISHED)
 		player:teleportTo(enterPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:sendCancelMessage("Intruz nie zostanie wpuszczony.")
+		player:sendCancelMessage("Intruder will not be let it.")
 	end
 	return true
 end

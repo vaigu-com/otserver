@@ -129,7 +129,11 @@ function Player:HasItems(items, quantifier)
 		end
 
 		if hasItems then
-			takeableItems:AddMultipleElseSingle(candidateTakenitems, node)
+			if candidateTakenitems then
+				takeableItems:AddMultiple(candidateTakenitems)
+			else
+				takeableItems:Add(node)
+			end
 		end
 
 		if matchAnySucceeded(quantifier, hasItems) then

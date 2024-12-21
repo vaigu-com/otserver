@@ -55,7 +55,7 @@ local dialog = {
 			specialActionsOnSuccess = {
 				{
 					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.RUDOBRODY_SHIP,
+					transports = TRANSPORT_ROUTES.REDBEARD_SHIP,
 					transportType = TRANSPORT_TYPE.SHIP,
 				},
 			},
@@ -67,8 +67,17 @@ local dialog = {
 				},
 			},
 		},
-		[GREET] = { text = "Welcome to my ship. Where would you like to {sail}?" },
+		[{ GREET }] = { text = "Welcome to my ship. Where would you like to {sail}?" },
 	},
+	--39f
+	[{'mission',"misja"}] = {
+		text = "",
+		requiredItems = {
+			{id = 11457},
+			{id = 10282},
+			{id = 10449}
+		}
+	}
 }
 
 local function greetCallback(npc, creature, type, message)

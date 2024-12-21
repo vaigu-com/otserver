@@ -31,7 +31,7 @@ quest
 			Mission02 = {
 				SetGuardTreeOnFire = 1,
 				ReportToHymel = 2,
-				Finished = 3,
+				AskForNewMission = 3,
 			},
 			Mission03 = {
 				FindAndIgniteFlowers = 1,
@@ -42,6 +42,13 @@ quest
 		QuestTopics.Firestarter = {
 			AcceptGuardTreeQuest = NextTopic(),
 			AcceptFlowerIgnitionQuest = NextTopic(),
+		}
+	end)
+	:Constant(function()
+		QuestKeyItems.Firestarter = {
+			FirebugHaystack = { id = 5467, aid = Storage.Firestarter.FirebugHaystack, desc = "Hymel's lighter. Use it on a stack of weed in his old house." },
+			FirebugFlowers = { id = 5467, aid = Storage.Firestarter.FirebugFlowers, desc = "Hymel's lighter. Set the guard tree on fire." },
+			FirebugTree = { id = 5467, aid = Storage.Firestarter.FirebugTree, desc = "Hymel's lighter. Use it to lit red weed flowers." },
 		}
 	end)
 	:Questlog(function()
@@ -92,7 +99,7 @@ quest
 					[Storage.Firestarter.Mission01] = QuestState.Firestarter.Mission01.BurnHayStack,
 				},
 				rewards = {
-					{ id = 5467, aid = Storage.Firestarter.FirebugHaystack },
+					QuestKeyItems.Firestarter.FirebugHaystack,
 				},
 			},
 		})
@@ -136,10 +143,10 @@ quest
 				},
 				rewards = {
 					{ id = 3731, count = 5 },
-					{ id = 5467, aid = Storage.Firestarter.FirebugTree },
+					QuestKeyItems.Firestarter.FirebugTree,
 				},
 				requiredItems = {
-					{ id = 5467, aid = Storage.Firestarter.FirebugHaystack },
+					QuestKeyItems.Firestarter.FirebugHaystack,
 				},
 				expReward = 12000,
 			},
@@ -204,10 +211,10 @@ quest
 				rewards = {
 					{ id = 7430 },
 					{ id = 3731, count = 5 },
-					{ id = 5467, aid = Storage.Firestarter.FirebugFlowers },
+					QuestKeyItems.Firestarter.FirebugFlowers,
 				},
 				requiredItems = {
-					{ id = 5467, aid = Storage.Firestarter.FirebugTree },
+					QuestKeyItems.Firestarter.FirebugTree,
 				},
 			},
 		})
@@ -282,8 +289,10 @@ quest
 					[Storage.Firestarter.Mission03] = QuestState.Firestarter.Mission03.Finished,
 					[Storage.Finished.Firestarter] = 1,
 				},
+				requiredItems = {
+					QuestKeyItems.Firestarter.FirebugFlowers,
+				},
 			},
 		})
 	)
 	:Register()
---end of new definition for npc hymel

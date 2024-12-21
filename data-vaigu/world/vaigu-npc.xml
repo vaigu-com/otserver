@@ -1,2 +1,12 @@
 <?xml version="1.0"?>
-<npcs />
+<npcs>
+	<npc centerx="5728" centery="1642" centerz="4" radius="1">
+		<npc name="Legolas" x="0" y="0" z="4" spawntime="60" />
+	</npc>
+	<npc centerx="6905" centery="1331" centerz="7" radius="1">
+		<npc name="Mareesha" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="6728" centery="1347" centerz="7" radius="1">
+		<npc name="Shivganesh" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+</npcs>

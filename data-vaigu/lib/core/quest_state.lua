@@ -1,6 +1,7 @@
-QuestState = {}
-QuestKeyItems = {}
-SpawnLocks = {}
-QuestTopics = {}
-QuestGlobalData = {}
-QuestFunctions = {}
+QuestState = {} --Enum states of quests' missions
+QuestKeyItems = {} --Definitions of items. Usually with aid
+SpawnLocks = {} --Npc/monster locks to ensure only one can be alive at time
+QuestTopics = {} --Enum topics
+QuestActions = {} --Functions to perform. Usually on successful dialog, item use, encounter finish etc)
+QuestRequirements = {} --Functions to check if can proceed. Usually a dialog requirement.
+Quests = {} --Questlog

@@ -1,5 +1,5 @@
 	:Script(function(missionState)
-local updateStorages = { [Storage.ThreeSramatiansAndTheDragon.State] = 8, [Storage.ThreeSramatiansAndTheDragon.Mission04] = 2 }
+local updateStorages = { [Storage.ThreeSramatiansAndTheDragon.Mission01] = 8, [Storage.ThreeSramatiansAndTheDragon.Mission04] = 2 }
 
 local FirePlace = Action()
 function FirePlace.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -7,7 +7,7 @@ function FirePlace.onUse(player, item, fromPosition, target, toPosition, isHotke
 		return false
 	end
 
-	if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.State) ~= 7 then
+	if player:getStorageValue(Storage.ThreeSramatiansAndTheDragon.Mission01) ~= 7 then
 		return false
 	end
 	player:UpdateStorages(updateStorages)

@@ -122,7 +122,7 @@ return {
 	["Hugo noticed that your accent is off, also he knew the person you are impersonating. Improvise."] = "Hugo noticed that your accent is off, also he knew the person you are impersonating. Improvise.",
 	["Find Hugo recipe for his favourite drink."] = "Find Hugo recipe for his favourite drink.",
 	["You found Hugo's recipe. Report back to him."] = "You found Hugo's recipe. Report back to him.",
-	["Find hammer in Lecima shithole and repair pipe is castle sewers."] = "Find hammer in Lecima shithole and repair pipe is castle sewers.",
+	["Find hammer in Lecina shithole and repair pipe is castle sewers."] = "Find hammer in Lecina shithole and repair pipe is castle sewers.",
 	["You repaired the faulty sewer pipe. Report back to hugo"] = "You repaired the faulty sewer pipe. Report back to hugo",
 	["Hugo told you to search the basement of his castle and find and open special chest."] = "Hugo told you to search the basement of his castle and find and open special chest.",
 	["You opened the magic chest. Report back to Hugo."] = "You opened the magic chest. Report back to Hugo.",

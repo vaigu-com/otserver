@@ -41,7 +41,7 @@ quest
 			SilenceOfTheLambs = 15004,
 			TheDreamCourts = 15006,
 			FerumbrasAscendant = 15007,
-			MistrzKuchni = 15010,
+			TopChef = 15010,
 			SciezkaDruida = 15012,
 			--#endregion
 

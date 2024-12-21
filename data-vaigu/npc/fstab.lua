@@ -1,5 +1,5 @@
 local dialogs = {
-	[Storage.PathOfTheUndead.State] = {
+	[Storage.PathOfTheUndead.Mission01] = {
 		[2] = {
 			[{ "krag", "kregi", "circles", "cromlech" }] = {
 				text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow.",

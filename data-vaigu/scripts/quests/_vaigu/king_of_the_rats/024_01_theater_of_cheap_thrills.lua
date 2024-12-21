@@ -3,8 +3,8 @@ local quest = Quest(LOCALIZERS.TheaterOfCheapThrills)
 quest
 	:Storage(function()
 		Storage.TheaterOfCheapThrills = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -33,7 +33,7 @@ quest
 			},
 			BrazilMap = NextStorage(),
 		}
-		QuestState.ThreaterOfCheapThrills = {
+		QuestState.TheaterOfCheapThrills = {
 			Mission01 = {
 				AskRomekForMission = 1,
 				FindCheese = 2,
@@ -103,12 +103,13 @@ quest
 		}
 	end)
 	:Constant(function()
-		TEATR_TANIEJ_SENSACJI_KEY_ITEMS = {
-			cheese = {
-				aid = Storage.TheaterOfCheapThrills.Rewards.Cheese,
-				id = 3607,
-				desc = "100 Year Old Aged Cheese",
-			},
+		SpawnLocks.TheaterOfCheapThrills = {
+			Pitca = SpawnLock(),
+			Robercik = SpawnLock(),
+			Juerdo = SpawnLock(),
+		}
+		QuestKeyItems.TheaterOfCheapThrills = {
+			Cheese = { id = 3607, aid = Storage.TheaterOfCheapThrills.Rewards.Cheese, desc = "100 Year Old Aged Cheese" },
 		}
 
 		TEATR_TANIEJ_SENSACJI_PLUS_SHAPE = {
@@ -138,111 +139,111 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Theater of Cheap Thrills",
 			missions = {
-				[Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary] = {
+				[Storage.TheaterOfCheapThrills.Mission01] = {
 					name = "01. Vitat Iustitia",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission01.AskRomekForMission] = "Many people ask: Who is this King of Rats and what's the deal? That's when I tell them, 'You stinker, go to Ratland and see for yourself. The King of Rats! Lets go! Yeehaw!",
-						[QuestState.ThreaterOfCheapThrills.Mission01.FindCheese] = "Romek assigned you the task of finding mature cheese in the pirates' hideout.",
-						[QuestState.ThreaterOfCheapThrills.Mission01.Finished] = "Chorus of Januses: A strange trumpet will spread a sound, fire will coagulate, the light will dim, and the world's history will turn to dust. From the trees of eternity, leaves will fall on the Judge's dreadful coming to bear witness to the Psalmist.",
+						[QuestState.TheaterOfCheapThrills.Mission01.AskRomekForMission] = "Many people ask: Who is this King of Rats and what's the deal? That's when I tell them, 'You stinker, go to Ratland and see for yourself. The King of Rats! Lets go! Yeehaw!",
+						[QuestState.TheaterOfCheapThrills.Mission01.FindCheese] = "Romek assigned you the task of finding mature cheese in the pirates' hideout.",
+						[QuestState.TheaterOfCheapThrills.Mission01.Finished] = "Chorus of Januses: A strange trumpet will spread a sound, fire will coagulate, the light will dim, and the world's history will turn to dust. From the trees of eternity, leaves will fall on the Judge's dreadful coming to bear witness to the Psalmist.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission02] = {
 					name = "02. I'm Not a Rat's Fugue",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission02.StartTheTest] = "Romek has offered you a position as his assistant. However, you must first pass a fair test.",
-						[QuestState.ThreaterOfCheapThrills.Mission02.PassTheTest] = "Pass the fair test to become the King of Rats assistant.",
-						[QuestState.ThreaterOfCheapThrills.Mission02.Finished] = "Chorus of Januses: My radiance will pierce the Darkness, My brilliance will scatter the Shadows, ~Your father drunkard after a case of beers.",
+						[QuestState.TheaterOfCheapThrills.Mission02.StartTheTest] = "Romek has offered you a position as his assistant. However, you must first pass a fair test.",
+						[QuestState.TheaterOfCheapThrills.Mission02.PassTheTest] = "Pass the fair test to become the King of Rats assistant.",
+						[QuestState.TheaterOfCheapThrills.Mission02.Finished] = "Chorus of Januses: My radiance will pierce the Darkness, My brilliance will scatter the Shadows, ~Your father drunkard after a case of beers.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission03] = {
 					name = "03. Good Day, Mrs. Pitca",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission03.AskRomekForMission] = "Romek needs help with a new task. Go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission03.DefeatMissPitca] = "Defeat Romek's supposed enemy, Mrs. Pitca.",
-						[QuestState.ThreaterOfCheapThrills.Mission03.ReportKillToRomek] = "You defeated Mrs. Pitca, now return to Romek.",
-						[QuestState.ThreaterOfCheapThrills.Mission03.AskGravedigger_FindBook] = "Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him.",
-						[QuestState.ThreaterOfCheapThrills.Mission03.ReportToRomek] = "You found a book that can help Romek. Return to him now.",
-						[QuestState.ThreaterOfCheapThrills.Mission03.Finished] = "Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!",
+						[QuestState.TheaterOfCheapThrills.Mission03.AskRomekForMission] = "Romek needs help with a new task. Go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission03.DefeatMissPitca] = "Defeat Romek's supposed enemy, Mrs. Pitca.",
+						[QuestState.TheaterOfCheapThrills.Mission03.ReportKillToRomek] = "You defeated Mrs. Pitca, now return to Romek.",
+						[QuestState.TheaterOfCheapThrills.Mission03.AskGravedigger_FindBook] = "Romek mentioned that Grave Digger might know how to remove curses. Try to get the necessary information from him.",
+						[QuestState.TheaterOfCheapThrills.Mission03.ReportToRomek] = "You found a book that can help Romek. Return to him now.",
+						[QuestState.TheaterOfCheapThrills.Mission03.Finished] = "Chorus of Januses: Let us rejoice, brothers! Enough of tears! Our victory is complete! To the fighters, honor, to the fallen, respect! Let the earth carry a laudatory song! We poured sweat and blood But our glory is against the enemy! Although each of us has lost much, Let us rejoice, brothers! It's time for victory!",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission04] = {
 					name = "05. Ham from under the Rug",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission04.AskRomekForMission] = "Romek needs help with a new task. Go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission04.EstablishFoodProvision] = "Romek has assigned you the task of catering his kebab party.",
-						[QuestState.ThreaterOfCheapThrills.Mission04.BringGarlicToKebabMaster] = "Shivganesh needs three garlic heads and payment for making the kebabs.",
-						[QuestState.ThreaterOfCheapThrills.Mission04.ReportToRomek] = "Shivganesh has promised to deliver the kebabs on time. Deliver the good news to Romek.",
-						[QuestState.ThreaterOfCheapThrills.Mission04.Finished] = "Chorus of Januses: How great is the peace gained by one who does not heed what a neighbor says, does, or thinks, but only what they themselves do, to be just and godly.",
+						[QuestState.TheaterOfCheapThrills.Mission04.AskRomekForMission] = "Romek needs help with a new task. Go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission04.EstablishFoodProvision] = "Romek has assigned you the task of catering his kebab party.",
+						[QuestState.TheaterOfCheapThrills.Mission04.BringGarlicToKebabMaster] = "Shivganesh needs three garlic heads and payment for making the kebabs.",
+						[QuestState.TheaterOfCheapThrills.Mission04.ReportToRomek] = "Shivganesh has promised to deliver the kebabs on time. Deliver the good news to Romek.",
+						[QuestState.TheaterOfCheapThrills.Mission04.Finished] = "Chorus of Januses: How great is the peace gained by one who does not heed what a neighbor says, does, or thinks, but only what they themselves do, to be just and godly.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission05] = {
 					name = "06. Holiday Camp, you know where",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission05.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission05.AskArniForCamp] = "Organize a camp for Romek's son, Kitz. Arni will assist you with this task.",
-						[QuestState.ThreaterOfCheapThrills.Mission05.ReportToKitz] = "Inform Kitz that his trip is ready.",
-						[QuestState.ThreaterOfCheapThrills.Mission05.ReportToRomek] = "You have completed the task for Romek. Return to him now for your reward.",
-						[QuestState.ThreaterOfCheapThrills.Mission05.Finished] = "Chorus of Januses: Peace on all peaks. In leaves, in valleys Nothing.",
+						[QuestState.TheaterOfCheapThrills.Mission05.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission05.AskArniForCamp] = "Organize a camp for Romek's son, Kitz. Arni will assist you with this task.",
+						[QuestState.TheaterOfCheapThrills.Mission05.ReportToKitz] = "Inform Kitz that his trip is ready.",
+						[QuestState.TheaterOfCheapThrills.Mission05.ReportToRomek] = "You have completed the task for Romek. Return to him now for your reward.",
+						[QuestState.TheaterOfCheapThrills.Mission05.Finished] = "Chorus of Januses: Peace on all peaks. In leaves, in valleys Nothing.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission06] = {
 					name = "07. King of Rats' Gambit",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission06.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission06.FindRobercik] = "GM Romek is afraid for his life. Try to find Robercik before he finds Romek.",
-						[QuestState.ThreaterOfCheapThrills.Mission06.ReportToRomek] = "You defeated the cunning Robercik. Return to Romk for your reward.", --38f Romk
-						[QuestState.ThreaterOfCheapThrills.Mission06.Finished] = "Chorus of Januses: I was sent to break the chains of justice. This time, he will perish along with his soul.",
+						[QuestState.TheaterOfCheapThrills.Mission06.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission06.FindRobercik] = "GM Romek is afraid for his life. Try to find Robercik before he finds Romek.",
+						[QuestState.TheaterOfCheapThrills.Mission06.ReportToRomek] = "You defeated the cunning Robercik. Return to Romek for your reward.",
+						[QuestState.TheaterOfCheapThrills.Mission06.Finished] = "Chorus of Januses: I was sent to break the chains of justice. This time, he will perish along with his soul.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission07] = {
 					name = "08. The Art That of Just",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission07.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission07.DonateToRomek] = "GM Romek will be waiting for donations until his death. It's better to support him.",
-						[QuestState.ThreaterOfCheapThrills.Mission07.WaitForFestivalToEnd] = "GM Romek has accepted your donation. Return to him when the festival is over.",
-						[QuestState.ThreaterOfCheapThrills.Mission07.Finished] = "Chorus of Januses: Iuvenes inconsiderate patrum suorum errata repetunt. Canem me rape cum cacat.",
+						[QuestState.TheaterOfCheapThrills.Mission07.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission07.DonateToRomek] = "GM Romek will be waiting for donations until his death. It's better to support him.",
+						[QuestState.TheaterOfCheapThrills.Mission07.WaitForFestivalToEnd] = "GM Romek has accepted your donation. Return to him when the festival is over.",
+						[QuestState.TheaterOfCheapThrills.Mission07.Finished] = "Chorus of Januses: Iuvenes inconsiderate patrum suorum errata repetunt. Canem me rape cum cacat.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission08] = {
 					name = "09. Abyssal Chasms of Decadence",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission08.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission08.TipVislavToStayAwayFromRomekServer] = "GM Romek is starting a new minecraft server. Tell Vislav, a frequent visitor to old school servers, about Romek's known scams and acts of corruption.",
-						[QuestState.ThreaterOfCheapThrills.Mission08.ObserveRomekReaction] = "You tipped off Vislav. Now return to Romek and observe his reaction.",
-						[QuestState.ThreaterOfCheapThrills.Mission08.Finished] = "Chorus of Januses: The human form is above spider filth. Cunning is a virtue; the king of rats is a coward.",
+						[QuestState.TheaterOfCheapThrills.Mission08.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission08.TipVislavToStayAwayFromRomekServer] = "GM Romek is starting a new minecraft server. Tell Vislav, a frequent visitor to old school servers, about Romek's known scams and acts of corruption.",
+						[QuestState.TheaterOfCheapThrills.Mission08.ObserveRomekReaction] = "You tipped off Vislav. Now return to Romek and observe his reaction.",
+						[QuestState.TheaterOfCheapThrills.Mission08.Finished] = "Chorus of Januses: The human form is above spider filth. Cunning is a virtue; the king of rats is a coward.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission09] = {
 					name = "10. Cocoa Intruder",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission09.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
-						[QuestState.ThreaterOfCheapThrills.Mission09.FindBrazilMap] = "GM Romek instructed you to find the map of the leader of the southern Orcs.",
-						[QuestState.ThreaterOfCheapThrills.Mission09.PassMapToRomek] = "You obtained information about the location of Brazil. Pass the gathered information to Romek.",
-						[QuestState.ThreaterOfCheapThrills.Mission09.TrackAndKillJuerdo] = "You learned that King Juerdo Titsgo is ddosing Romek's server. He should be hiding in the vicinity of Brazilian Rats' Land. Knock him out so that Romek can run the server peacefully.",
-						[QuestState.ThreaterOfCheapThrills.Mission09.ReportToRomek] = "You gave Juerdo a beating. Return to Romek for your reward.",
-						[QuestState.ThreaterOfCheapThrills.Mission09.Finished] = "Chorus of Januses: He will be the patron of chances! For the work of destruction in a good cause is holy, like the work of creation. The king renounced his word - become a king and perish. When faith and freedom escape from people.",
+						[QuestState.TheaterOfCheapThrills.Mission09.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
+						[QuestState.TheaterOfCheapThrills.Mission09.FindBrazilMap] = "GM Romek instructed you to find the map of the leader of the southern Orcs.",
+						[QuestState.TheaterOfCheapThrills.Mission09.PassMapToRomek] = "You obtained information about the location of Brazil. Pass the gathered information to Romek.",
+						[QuestState.TheaterOfCheapThrills.Mission09.TrackAndKillJuerdo] = "You learned that King Juerdo Titsgo is ddosing Romek's server. He should be hiding in the vicinity of Brazilian Rats' Land. Knock him out so that Romek can run the server peacefully.",
+						[QuestState.TheaterOfCheapThrills.Mission09.ReportToRomek] = "You gave Juerdo a beating. Return to Romek for your reward.",
+						[QuestState.TheaterOfCheapThrills.Mission09.Finished] = "Chorus of Januses: He will be the patron of chances! For the work of destruction in a good cause is holy, like the work of creation. The king renounced his word - become a king and perish. When faith and freedom escape from people.",
 					},
 				},
 				[Storage.TheaterOfCheapThrills.Mission10] = {
 					name = "12. Forever and Ever Ytong",
 					states = {
-						[QuestState.ThreaterOfCheapThrills.Mission10.AskRomekForMission] = "The lives of the rats are in danger! Hurry to Romek.",
-						[QuestState.ThreaterOfCheapThrills.Mission10.CommitRatocide] = "Romek has ordered you to commit ratocide. Carry out his will and don't ask questions.",
-						[QuestState.ThreaterOfCheapThrills.Mission10.Finished] = "Chorus of Januses: We won't leave the land where we were born! It's written in our atlases! Justice will come in a stench! Do you know who ran over whom on the zebra crossing? Three Januses sing soprano: The time for trials has come! Give us a knife! Give us a knife! Our rich neighbor won't be! Go on, cut! Go on, cut! fat Janus the Baritone: LET'S KILL THEM!",
+						[QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission] = "The lives of the rats are in danger! Hurry to Romek.",
+						[QuestState.TheaterOfCheapThrills.Mission10.CommitRatocide] = "Romek has ordered you to commit ratocide. Carry out his will and don't ask questions.",
+						[QuestState.TheaterOfCheapThrills.Mission10.Finished] = "Chorus of Januses: We won't leave the land where we were born! It's written in our atlases! Justice will come in a stench! Do you know who ran over whom on the zebra crossing? Three Januses sing soprano: The time for trials has come! Give us a knife! Give us a knife! Our rich neighbor won't be! Go on, cut! Go on, cut! fat Janus the Baritone: LET'S KILL THEM!",
 					},
 				},
 			},
 		}
 	end)
 	:MonsterEvent(function()
-		local storages = { Storage.TheaterOfCheapThrills.State, Storage.TheaterOfCheapThrills.Mission11 }
+		local storages = { Storage.TheaterOfCheapThrills.Mission01, Storage.TheaterOfCheapThrills.Mission11 }
 
 		local juerdoDeath = CreatureEvent("JuerdoDeath")
 		function juerdoDeath.onDeath(creature)
 			if not creature or not creature:isMonster() then
 				return true
 			end
-			Game.setStorageValue(Storage.TheaterOfCheapThrills.Spawns.JuerdoTitsgo, 0)
+			SpawnLocks.TheaterOfCheapThrills.Juerdo:Reset()
 			onDeathForDamagingPlayers(creature, function(creature, player)
 				local storage_val = player:getStorageValue(Storage.TheaterOfCheapThrills.Mission11)
 				if storage_val ~= 2 then
@@ -257,7 +258,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			Storage.TheaterOfCheapThrills.State,
+			Storage.TheaterOfCheapThrills.Mission01,
 			Storage.TheaterOfCheapThrills.Mission03,
 		}
 
@@ -266,7 +267,8 @@ quest
 			if not creature or not creature:isMonster() then
 				return true
 			end
-			Game.setStorageValue(Storage.TheaterOfCheapThrills.Spawns.MissPizza, 0)
+
+			SpawnLocks.TheaterOfCheapThrills.Pitca:Reset()
 			onDeathForDamagingPlayers(creature, function(creature, player)
 				local storage_val = player:getStorageValue(Storage.TheaterOfCheapThrills.Mission03)
 				if storage_val ~= 2 then
@@ -280,14 +282,15 @@ quest
 		pitcaDeath:register()
 	end)
 	:MonsterEvent(function()
-		local storages = { Storage.TheaterOfCheapThrills.State, Storage.TheaterOfCheapThrills.Mission07 }
+		local storages = { Storage.TheaterOfCheapThrills.Mission01, Storage.TheaterOfCheapThrills.Mission07 }
 
 		local robercikDeath = CreatureEvent("RobercikDeath")
 		function robercikDeath.onDeath(creature)
 			if not creature or not creature:isMonster() then
 				return true
 			end
-			Game.setStorageValue(Storage.TheaterOfCheapThrills.Spawns.Robercik, 0)
+
+			SpawnLocks.TheaterOfCheapThrills:Reset()
 			onDeathForDamagingPlayers(creature, function(creature, player)
 				local storage_val = player:getStorageValue(Storage.TheaterOfCheapThrills.Mission07)
 				if storage_val ~= 2 then
@@ -654,9 +657,9 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary)
+	:Mission(Storage.TheaterOfCheapThrills.Mission01)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission01.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "*Muttering*",
@@ -670,20 +673,20 @@ quest
 			[{ "yes", "tak" }] = {
 				text = "This will be your first task: find something that rats crave the most - cheese. But it can't be just any cheese from under someone's foreskin or parmesan growing under fingernails. These rats have access to the latest cheeses, and they won't be impressed. To satisfy them, you'll have to find the legendary matured cheese with flowers. It's possible that the pirates have such cheese. It's probably well hidden. Their hideout is on the southern shore of Hurghada.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary] = 2,
+					[Storage.TheaterOfCheapThrills.Mission01] = 2,
 				},
 			},
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission01.FindCheese,
+		QuestState.TheaterOfCheapThrills.Mission01.FindCheese,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "yes", "tak" }] = {
 				text = "Thanks for the cheese. Your further help might be... helpful in my future reign. If you want, I can appoint you as my {assistant}.",
-				requiredItems = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS.cheese },
+				requiredItems = { QuestKeyItems.TheaterOfCheapThrills.Cheese },
 				textNoRequiredItems = "Return when you've obtained the special cheese.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.PuzzlesDoneStateBinary] = 3,
+					[Storage.TheaterOfCheapThrills.Mission01] = 3,
 					[Storage.TheaterOfCheapThrills.Mission02] = 1,
 				},
 				[{ "no", "nie" }] = { text = "Return when you've obtained the special cheese." },
@@ -694,18 +697,18 @@ quest
 		}),
 		QuestFactory.StartupItems({
 			{
-				pos = { 6812, 1414, 7 },
+				pos = { 6839, 1397, 6 },
 				id = 2472,
 				aid = Storage.TheaterOfCheapThrills.Rewards.Cheese,
 				uid = 1000,
-				rewards = { TEATR_TANIEJ_SENSACJI_KEY_ITEMS.cheese },
-				requiredState = { [Storage.TheaterOfCheapThrills.State] = 1 },
+				rewards = { QuestKeyItems.TheaterOfCheapThrills.Cheese },
+				requiredState = { [Storage.TheaterOfCheapThrills.Mission01] = 1 },
 			},
 		})
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission02)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission02.StartTheTest,
+		QuestState.TheaterOfCheapThrills.Mission02.StartTheTest,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "If you want to become my assistant, you must pass the ratometer test. Are you ready?",
@@ -719,7 +722,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission02.PassTheTest,
+		QuestState.TheaterOfCheapThrills.Mission02.PassTheTest,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "If you want to become my assistant, you must pass the ratometer test. Are you ready?",
@@ -742,7 +745,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission03)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission03.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission03.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Find my eternal enemy, tormentor, and oppressor, even though children in Africa are starving: Ms. Pitca, and arrange a Brazilian elevator for her. From the latest memes I read, she was heading towards Siberia. She seems to have her mother's intelligence, so you shouldn't have trouble dealing with her.",
@@ -753,7 +756,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission03.DefeatMissPitca,
+		QuestState.TheaterOfCheapThrills.Mission03.DefeatMissPitca,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "Ms. Pitca is somewhere in Siberia. She might have tried to schmooze with the Business Giants.",
@@ -765,22 +768,18 @@ quest
 		QuestFactory.Script(function(missionState)
 			local tile = MoveEvent()
 
+			local lock = SpawnLocks.TheaterOfCheapThrills.Pitca
 			function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:isPlayer() then
-					return false
-				end
-
-				if player:getStorageValue(Storage.TheaterOfCheapThrills.Mission03) ~= 2 then
+				if not player:HasExactMissionState(missionState) then
 					return
 				end
 
-				local aid = item:getActionId()
-				if Game.getStorageValue(aid) == 1 then
+				if lock:IsSet() then
 					return
 				end
-				if Game.createMonster("Miss Pitca", player:getPosition()) then
-					Game.setStorageValue(aid, 1)
-				end
+
+				lock:Set()
+				Game.createMonster("Miss Pitca", player:getPosition())
 			end
 
 			tile:aid(Storage.TheaterOfCheapThrills.Spawns.MissPizza)
@@ -788,7 +787,7 @@ quest
 		end)
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission03.ReportKillToRomek,
+		QuestState.TheaterOfCheapThrills.Mission03.ReportKillToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "Hello. Have you completed the task yet?" },
 			[{ "yes", "tak" }] = {
@@ -803,7 +802,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission03.AskGravedigger_FindBook,
+		QuestState.TheaterOfCheapThrills.Mission03.AskGravedigger_FindBook,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "Aaaaa!!!" },
 			[{ "mission", "misja" }] = {
@@ -831,6 +830,19 @@ quest
 
 			{ pos = { -5, -1, -2 }, id = 6260, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.AccessDoor },
 		}, LIBRUM_VORTEX_ANCHOR),
+		QuestFactory.StartupItems({
+			{
+				id = TEATR_TANIEJ_SENSACJI_PLUS_SHAPE.book.lit, -- dont change
+				aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book, -- dont change
+				requiredState = { [Storage.TheaterOfCheapThrills.Mission01] = 9 },
+				nextState = {
+					[Storage.KingOfRatsHQ.Items.LibrumVortex] = 1,
+					[Storage.TheaterOfCheapThrills.Mission01] = 10,
+					[Storage.TheaterOfCheapThrills.Mission04] = 3,
+				},
+				rewards = { QuestKeyItems.KingOfRatsHQ.librumvortex },
+			},
+		}),
 		QuestFactory.Script(function(missionState)
 			local function areAllMachinePillarsLit(machineConfigs)
 				for _, machineConfig in pairs(machineConfigs) do
@@ -868,7 +880,7 @@ quest
 				local bookStand = Tile(pos):getItemById(unlitBookId)
 				bookStand:transform(litBookId)
 
-				player:say(player:Localizer(Storage.TheaterOfCheapThrills.State):Get("The book has been unsealed. You have one minute before its closed."), TALKTYPE_MONSTER_SAY)
+				player:say(player:Localizer(Storage.TheaterOfCheapThrills.Mission01):Get("The book has been unsealed. You have one minute before its closed."), TALKTYPE_MONSTER_SAY)
 				addEvent(function()
 					bookStand:transform(unlitBookId)
 				end, 60 * 1000)
@@ -974,7 +986,7 @@ quest
 		end)
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission03.ReportToRomek,
+		QuestState.TheaterOfCheapThrills.Mission03.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "So, do you have what Grave Digger talked about?",
@@ -991,7 +1003,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission04)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission04.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission04.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "I'm planning a party soon, and I need some catering. We can't rely on Ms. Pitca's services anymore, so I thought about ordering kebabs. Go to Shivganesh and ask him about the possibility of organizing a kebab set.",
@@ -1002,7 +1014,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission04.EstablishFoodProvision,
+		QuestState.TheaterOfCheapThrills.Mission04.EstablishFoodProvision,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "Shivganesh has his bar right by the docks of Hurghada. The town is tiny, so you should be able to find it easily.",
@@ -1018,7 +1030,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission04.BringGarlicToKebabMaster,
+		QuestState.TheaterOfCheapThrills.Mission04.BringGarlicToKebabMaster,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "Shivganesh has his bar right by the docks of Hurghada. The town is tiny, so you should be able to find it easily.",
@@ -1039,7 +1051,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission04.ReportToRomek,
+		QuestState.TheaterOfCheapThrills.Mission04.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Thanks for your help. Here's your reward.",
@@ -1053,7 +1065,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission05)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission05.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission05.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "My missing son Kitz is trying to reconnect. Unfortunately, it wasn't easy to shoo him off. The ingrate has been taking alimony all his life, and now that he's of age, he has to earn his own living. A thief will steal anything that's not nailed to the ground. He's trying to find me to leech off me. No way. You need to get him involved in a camp, preferably a concentration camp. First, go to Arni, who deals with organizing trips.",
@@ -1064,7 +1076,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission05.AskArniForCamp,
+		QuestState.TheaterOfCheapThrills.Mission05.AskArniForCamp,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Arni guards the south gate of the mirkocity.",
@@ -1080,7 +1092,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission05.ReportToKitz,
+		QuestState.TheaterOfCheapThrills.Mission05.ReportToKitz,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "My son is on the watch at the eastern gate.",
@@ -1094,21 +1106,21 @@ quest
 			[{ "yes", "tak" }] = {
 				text = "Okay, then tell Arni I'd love to go there.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.Mission05] = QuestState.ThreaterOfCheapThrills.Mission05.ReportToRomek,
+					[Storage.TheaterOfCheapThrills.Mission05] = QuestState.TheaterOfCheapThrills.Mission05.ReportToRomek,
 				},
 				requiredTopic = QuestTopics.TheaterOfCheapThrills.ConfirmCampDestination,
 			},
 			[{ "no", "nie" }] = {
 				text = "What? Is it a concentration camp? Are you crazy? If that's what he wanted to do to me, I'll stay away from him.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.Mission05] = QuestState.ThreaterOfCheapThrills.Mission05.ReportToRomek,
+					[Storage.TheaterOfCheapThrills.Mission05] = QuestState.TheaterOfCheapThrills.Mission05.ReportToRomek,
 				},
 				requiredTopic = QuestTopics.TheaterOfCheapThrills.ConfirmCampDestination,
 			},
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission05.ReportToRomek,
+		QuestState.TheaterOfCheapThrills.Mission05.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "So, did you manage to complete my {mission}?" },
 			[{ "mission", "misja", "misje" }] = {
@@ -1122,7 +1134,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission06)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission06.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission06.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Listen, lad. I heard that the previous King of Rats, Robercik, has returned from his delegation. The stupid rats forgot that he used to be king, and when he tried to enter my kingdom, they kicked him out. I think he might have sneaked in somewhere, and now he's waiting for an opportunity to harm me. Injustice comes back like a boomerang.",
@@ -1133,33 +1145,28 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission06.FindRobercik,
+		QuestState.TheaterOfCheapThrills.Mission06.FindRobercik,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "I don't know where he could be..." },
 		}),
 		QuestFactory.StartupItems({
 			{ pos = { -4, -2, -2 }, id = 16487, aid = Storage.TheaterOfCheapThrills.Spawns.Robercik },
-		}, KROL_SZCZUROW_HUB_ANCHOR),
+		}, KING_OF_RATS_HQ_ANCHOR),
 		QuestFactory.Script(function(missionState)
 			local tile = MoveEvent()
 
+			local lock = SpawnLocks.TheaterOfCheapThrills.Pitca
 			function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-				local aid = item:getActionId()
-				if not player:isPlayer() then
-					return false
-				end
-
-				if not (player:getStorageValue(Storage.TheaterOfCheapThrills.Mission07) == 2) then
+				if not player:HasExactMissionState(missionState) then
 					return
 				end
 
-				if Game.getStorageValue(aid) == 1 then
+				if lock:IsSet() then
 					return
 				end
 
-				if Game.createMonster("Robercik", player:getPosition()) then
-					Game.setStorageValue(aid, 1)
-				end
+				lock:Set()
+				Game.createMonster("Robercik", player:getPosition())
 			end
 
 			tile:aid(Storage.TheaterOfCheapThrills.Spawns.Robercik)
@@ -1167,7 +1174,7 @@ quest
 		end)
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission06.ReportToRomek,
+		QuestState.TheaterOfCheapThrills.Mission06.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Thanks, here's your reward. Robercik won't cause any more trouble.",
@@ -1181,7 +1188,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission07)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission07.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission07.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 platinum coins?",
@@ -1192,7 +1199,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission07.DonateToRomek,
+		QuestState.TheaterOfCheapThrills.Mission07.DonateToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 platinum coins?",
@@ -1213,14 +1220,14 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission07.WaitForFestivalToEnd,
+		QuestState.TheaterOfCheapThrills.Mission07.WaitForFestivalToEnd,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "After the festival, an Wolfy's old man came to me. Inspired by art, he decided to break free from family violence and handed me his {wifebeater}.",
 			},
 			[{ "mission", "misja", "zonobijke", "wifebeater" }] = {
 				text = "I'll be closing soon. Come back for another mission later.",
-				rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.wifebeater },
+				rewards = { QuestKeyItems.KingOfRatsHQ.Wifebeater },
 				nextState = {
 					[Storage.TheaterOfCheapThrills.Mission09] = 1,
 					[Storage.TheaterOfCheapThrills.Mission08] = 4,
@@ -1230,7 +1237,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission08)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission08.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission08.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "I'm setting up a new minecraft server shortly. We're starting on Friday.",
@@ -1241,7 +1248,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission08.TipVislavToStayAwayFromRomekServer,
+		QuestState.TheaterOfCheapThrills.Mission08.TipVislavToStayAwayFromRomekServer,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "The start is getting closer. I hope this time we can last more than a week.",
@@ -1258,14 +1265,14 @@ quest
 			}] = {
 				text = "What!? That's corruption in a broad daylight! I'm not down for that. I'm going to investigate this case.",
 				nextState = {
-					[Storage.TheaterOfCheapThrills.State] = 27,
+					[Storage.TheaterOfCheapThrills.Mission01] = 27,
 					[Storage.TheaterOfCheapThrills.Mission09] = 3,
 				},
 			},
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission08.ObserveRomekReaction,
+		QuestState.TheaterOfCheapThrills.Mission08.ObserveRomekReaction,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "That damn bald drunkard again. He's ruining my reputation.",
@@ -1278,7 +1285,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission09)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission09.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission09.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "I have a simple job for you. Go to the southern Orc Fortess and read the map of their leader to find out where Brazil is located.",
@@ -1289,7 +1296,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission09.FindBrazilMap,
+		QuestState.TheaterOfCheapThrills.Mission09.FindBrazilMap,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "These discussions will eventually drive me to the grave. The fortress is south of Mirkotown.",
@@ -1301,7 +1308,7 @@ quest
 		}),
 		QuestFactory.Script(function(missionState)
 			local updateStorages = {
-				[Storage.TheaterOfCheapThrills.State] = 30,
+				[Storage.TheaterOfCheapThrills.Mission01] = 30,
 				[Storage.TheaterOfCheapThrills.Mission10] = 3,
 			}
 
@@ -1321,10 +1328,9 @@ quest
 		end)
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission09.PassMapToRomek,
+		QuestState.TheaterOfCheapThrills.Mission09.PassMapToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
-				--38f locales file
 				text = "Haha, yes! Finally, I know where that emigrant is. Pack your stuff in the car - we're going on a trip. You need to go to the Brazilian Ratland and defeat their king. Juerdo Titsgo is DDoSing my server, so players can't donate NFTs for an unjust but lucrative cause.",
 				nextState = {
 					[Storage.TheaterOfCheapThrills.Mission11] = 1,
@@ -1334,7 +1340,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission09.TrackAndKillJuerdo,
+		QuestState.TheaterOfCheapThrills.Mission09.TrackAndKillJuerdo,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
 				text = "Juerdo Titsgo is very short. He might hide somewhere when he sees you. His children, on the other hand, are huge mutants.",
@@ -1349,23 +1355,18 @@ quest
 		QuestFactory.Script(function(missionState)
 			local tile = MoveEvent()
 
+			local lock = SpawnLocks.TheaterOfCheapThrills.Juerdo
 			function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-				local aid = item:getActionId()
-				if not player:isPlayer() then
-					return false
-				end
-
-				if not (player:getStorageValue(Storage.TheaterOfCheapThrills.Mission11) == 2) then
+				if not player:HasExactMissionState(missionState) then
 					return
 				end
 
-				if Game.getStorageValue(aid) == 1 then
+				if lock:IsSet() then
 					return
 				end
 
-				if Game.createMonster("juerdo titsgo", player:getPosition()) then
-					Game.setStorageValue(aid, 1)
-				end
+				lock:Set()
+				Game.createMonster("Juerdo Titsgo", player:getPosition())
 			end
 
 			tile:aid(Storage.TheaterOfCheapThrills.Spawns.JuerdoTitsgo)
@@ -1373,7 +1374,7 @@ quest
 		end)
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission09.ReportToRomek,
+		QuestState.TheaterOfCheapThrills.Mission09.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Thanks for your help. The DDoS attacks have stopped. Here's your reward.",
@@ -1387,7 +1388,7 @@ quest
 	)
 	:Mission(Storage.TheaterOfCheapThrills.Mission10)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission10.AskRomekForMission,
+		QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "trial", "probe" }] = {
 				text = "",
@@ -1410,7 +1411,7 @@ quest
 		})
 	)
 	:State(
-		QuestState.ThreaterOfCheapThrills.Mission10.CommitRatocide,
+		QuestState.TheaterOfCheapThrills.Mission10.CommitRatocide,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
 				text = "Here's your reward. Come back to me sometime. For now, I think I'll take a break.",
@@ -1418,7 +1419,7 @@ quest
 					[Storage.TheaterOfCheapThrills.Mission12] = 3,
 					[Storage.Finished.TheaterOfCheapThrills] = 1,
 					[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = 1,
-					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 1,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 1,
 				},
 				rewards = { ExerciseWeaponBox(400) },
 			},

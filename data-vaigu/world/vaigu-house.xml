@@ -13,10 +13,10 @@
 	<house name="" houseid="160" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="76" clientid="0" beds="0" />
 	<house name="" houseid="161" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="79" clientid="0" beds="0" />
 	<house name="" houseid="162" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="82" clientid="0" beds="0" />
-	<house name="" houseid="163" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="92" clientid="0" beds="0" />
+	<house name="" houseid="163" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="98" clientid="0" beds="0" />
 	<house name="" houseid="164" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="43" clientid="0" beds="0" />
 	<house name="" houseid="165" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="41" clientid="0" beds="0" />
-	<house name="" houseid="166" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="17" clientid="0" beds="0" />
+	<house name="" houseid="166" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="33" clientid="0" beds="0" />
 	<house name="" houseid="167" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="56" clientid="0" beds="0" />
 	<house name="" houseid="168" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="53" clientid="0" beds="0" />
 	<house name="" houseid="169" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="57" clientid="0" beds="0" />
@@ -125,7 +125,7 @@
 	<house name="" houseid="275" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="8" clientid="0" beds="0" />
 	<house name="" houseid="276" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="21" clientid="0" beds="0" />
 	<house name="" houseid="277" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="28" clientid="0" beds="0" />
-	<house name="" houseid="278" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="22" clientid="0" beds="0" />
+	<house name="" houseid="278" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="58" clientid="0" beds="0" />
 	<house name="" houseid="279" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="61" clientid="0" beds="0" />
 	<house name="" houseid="280" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="70" clientid="0" beds="0" />
 	<house name="" houseid="281" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="71" clientid="0" beds="0" />
@@ -290,9 +290,9 @@
 	<house name="" houseid="444" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="27" clientid="0" beds="0" />
 	<house name="" houseid="445" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="26" clientid="0" beds="0" />
 	<house name="" houseid="446" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="29" clientid="0" beds="0" />
-	<house name="" houseid="448" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="0" clientid="0" beds="0" />
-	<house name="" houseid="449" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="3" clientid="0" beds="0" />
-	<house name="" houseid="450" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="3" clientid="0" beds="0" />
+	<house name="" houseid="448" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="5" clientid="0" beds="0" />
+	<house name="" houseid="449" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="5" clientid="0" beds="0" />
+	<house name="" houseid="450" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="5" clientid="0" beds="0" />
 	<house name="" houseid="451" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="5" clientid="0" beds="0" />
 	<house name="" houseid="452" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="5" clientid="0" beds="0" />
 	<house name="" houseid="453" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="5" clientid="0" beds="0" />

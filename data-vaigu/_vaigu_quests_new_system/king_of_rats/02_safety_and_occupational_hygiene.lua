@@ -2,8 +2,8 @@ local quest = Quest("safety_and_occupational_hygiene")
 quest
 	:Storage(function()
 		Storage.SafetyAndOccupationalHygiene = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -19,12 +19,12 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Safety and Occupational Hygiene",
-			startStorageId = Storage.SafetyAndOccupationalHygiene.State,
+			startStorageId = Storage.SafetyAndOccupationalHygiene.Mission01,
 			startStorageValue = 1,
 			missions = {
 				[1] = {
 					name = "01. Avast ye, scallywag!",
-					storageId = Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary,
+					storageId = Storage.SafetyAndOccupationalHygiene.Mission01,
 					missionId = NextMissionId(),
 					startValue = 0,
 					endValue = 5,
@@ -109,7 +109,7 @@ quest
 				return false
 			end
 
-			local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State)
+			local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission01)
 
 			if storageVal < 11 then
 				return false
@@ -128,7 +128,7 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			[Storage.SafetyAndOccupationalHygiene.State] = 14,
+			[Storage.SafetyAndOccupationalHygiene.Mission01] = 14,
 			[Storage.SafetyAndOccupationalHygiene.Mission06] = 2,
 		}
 
@@ -139,7 +139,7 @@ quest
 			end
 			Game.setStorageValue(Storage.SafetyAndOccupationalHygiene.Spawns.Petrus, 0)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State)
+				local storage_val = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission01)
 				if storage_val ~= 13 then
 					return true
 				end
@@ -391,7 +391,7 @@ quest
 			if not player:isPlayer() then
 				return false
 			end
-			if player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State) ~= 13 then
+			if player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission01) ~= 13 then
 				return
 			end
 

@@ -412,8 +412,8 @@ Storage = {
 	-- ====== CUSTOM ======--
 	-- Krol szczurow
 	BigKlamoty = {
-		State = NextStorage(),
-		PuzzlesDoneStateBinary = NextStorage(),
+		Mission01 = NextStorage(),
+		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
@@ -421,8 +421,8 @@ Storage = {
 		Mission06 = NextStorage(),
 	},
 	SpojrzenieTysiacaYtongow = {
-		State = NextStorage(),
-		PuzzlesDoneStateBinary = NextStorage(),
+		Mission01 = NextStorage(),
+		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
@@ -430,8 +430,8 @@ Storage = {
 		Mission06 = NextStorage(),
 	},
 	SprawiedliwyWobecNarodow = {
-		State = NextStorage(),
-		PuzzlesDoneStateBinary = NextStorage(),
+		Mission01 = NextStorage(),
+		Mission01 = NextStorage(),
 		Mission02 = NextStorage(),
 		Mission03 = NextStorage(),
 		Mission04 = NextStorage(),
@@ -442,7 +442,6 @@ Storage = {
 	},
 
 	PositionChest = POSITIONCHEST_ACTION_ID,
-	--38f
 	FreeTravels = NextStorage(),
 	InstantTravel = NextStorage(),
 	OldManFrostMammoth = NextStorage(),
@@ -598,7 +597,6 @@ Storage = {
 	BloodHerbQuest = 50032,
 	RentedHorseTimer = 50561,
 	firstMageWeapon = 50079,
-	taskPoints = 50805,
 	powerfulImbue = 50806,
 	DeeperBanutaShortcut = 50095,
 	KawillBlessing = 50139,

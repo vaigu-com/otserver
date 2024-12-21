@@ -3,18 +3,17 @@ local quest = Quest(LOCALIZERS.SafetyAndOccupationalHygiene)
 quest
 	:Storage(function()
 		Storage.SafetyAndOccupationalHygiene = {
-			State = NextStorage(),
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
 			Mission05 = NextStorage(),
 			Mission06 = NextStorage(),
-			Spawns = { Petrus = NextStorage() },
 			KrolTile = NextStorage(),
 			Portals = { ToMagicianTown = NextStorage(), ToPetrus = NextStorage() },
 			Ytong = NextStorage(),
 			Scp420Document = NextStorage(),
+			PetrusSpawn,
 		}
 		QuestState.SafetyAndOccupationalHygiene = {
 			Mission01 = {
@@ -54,6 +53,9 @@ quest
 		}
 	end)
 	:Constant(function()
+		SpawnLocks.SafetyAndOccupationalHygiene = {
+			Petrus = SpawnLock(),
+		}
 		BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_CONDITIONS = {
 			timeIsNight = function(context)
 				local timeOfDay = getTibiaTimerDayOrNight()
@@ -64,12 +66,11 @@ quest
 			end,
 		}
 
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS = {
-			grazynaDocument = {
+		QuestKeyItems.SafetyAndOccupationalHygiene = {
+			GrazhenaDocument = {
 				id = 2815,
 				text = "scp420text",
 				addToStore = false,
-				aid = Storage.SafetyAndOccupationalHygiene.Scp420Document,
 			},
 		}
 
@@ -91,7 +92,7 @@ quest
 					local player = Player(playerId)
 					if player then
 						UpdateStorages(player, {
-							[Storage.SafetyAndOccupationalHygiene.State] = 8,
+							[Storage.SafetyAndOccupationalHygiene.Mission01] = 8,
 							[Storage.SafetyAndOccupationalHygiene.Mission03] = 2,
 						})
 					end
@@ -147,7 +148,7 @@ quest
 		Quests[NextQuestId()] = {
 			name = "Safety and Occupational Hygiene",
 			missions = {
-				[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = {
+				[Storage.SafetyAndOccupationalHygiene.Mission01] = {
 					name = "01. Avast ye, scallywag!",
 					states = {
 						[QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
@@ -204,18 +205,19 @@ quest
 	end)
 	:MonsterEvent(function()
 		local storages = {
-			[Storage.SafetyAndOccupationalHygiene.State] = 14,
 			[Storage.SafetyAndOccupationalHygiene.Mission06] = 2,
 		}
 
 		local petrusDeath = CreatureEvent("petrusDeath")
+		local lock = SpawnLocks.SafetyAndOccupationalHygiene.Petrus
 		function petrusDeath.onDeath(creature)
 			if not creature or not creature:isMonster() then
 				return true
 			end
-			Game.setStorageValue(Storage.SafetyAndOccupationalHygiene.Spawns.Petrus, 0)
+
+			lock:Reset()
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State)
+				local storage_val = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission01)
 				if storage_val ~= 13 then
 					return true
 				end
@@ -409,9 +411,13 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary)
+	:Mission(Storage.SafetyAndOccupationalHygiene.Mission01)
 	:State(
 		MISSION_NOT_STARTED,
+		QuestFactory.StartupItems({
+			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 2, 0), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
+			{ pos = MIRKO_MAGICIANS_ANCHOR:Moved(22, 11, -5), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus },
+		}),
 		QuestFactory.Script(function(missionState)
 			local portal = MoveEvent()
 
@@ -457,7 +463,7 @@ quest
 			[{ "mission" }] = {
 				text = "Thank you for your help with the last task. I have now achieved justice on the level of a true Rat King. Therefore, I think I am worthy of entrusting you with a new task. Go to Turdstin, a member of the MGTOW clan. Anticipating your question: yes, he is disabled. However, it's possible that he knows how to locate the Rat of Kings.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 2,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 2,
 				},
 			},
 		})
@@ -473,7 +479,7 @@ quest
 			[{ "mission" }] = {
 				text = "Maybe I have some information about this Rat, but it certainly won't be free. I am the most important person in the world because I belong to the MGTOW order, and of all people, I loathe women the most, as they ruin this world. Go to their village and convince them to acknowledge our superiority and remove their cuckurse.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 3,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 3,
 				},
 			},
 		})
@@ -489,7 +495,7 @@ quest
 			[{ "cuckurse", "cucklatwa" }] = {
 				text = "Hmm... no. I won't remove the curse from him. Tell him that he would first have to stop being such a misogynist and a white capitalist.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 4,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 4,
 				},
 			},
 		})
@@ -500,7 +506,7 @@ quest
 			[{ "mission", "cuckurse", "cucklatwa" }] = {
 				text = "Oh god, what a foolish woman. Objectively and impartially, I conclude that I belong to the most repressed social group. Be that as it may, let's leave it for now. You mentioned the Rat of Kings earlier. The only way to find him is to listen carefully to the chorus of januses. They rarely say anything sensible, so you'll have to decide for yourself what is nonsense and what will lead you to the Rat.",
 				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.PuzzlesDoneStateBinary] = 5,
+					[Storage.SafetyAndOccupationalHygiene.Mission01] = 5,
 					[Storage.SafetyAndOccupationalHygiene.Mission02] = 1,
 				},
 			},
@@ -592,7 +598,7 @@ quest
 					[Storage.SafetyAndOccupationalHygiene.Mission05] = 1,
 				},
 				rewards = {
-					BEZPIECZENSTWO_I_HIEGIENA_PRACY_KEY_ITEMS.grazynaDocument,
+					QuestKeyItems.SafetyAndOccupationalHygiene.GrazhenaDocument,
 				},
 				specialActionsOnSuccess = {
 					{
@@ -630,6 +636,9 @@ quest
 				},
 			},
 		}),
+		QuestFactory.StartupItems({
+			{ id = 4399, pos = { 6121, 1488, 5 }, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
+		}),
 		QuestFactory.Script(function(missionState)
 			local tileIn = MoveEvent()
 
@@ -638,7 +647,7 @@ quest
 					return false
 				end
 
-				local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State)
+				local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission01)
 
 				if storageVal < 11 then
 					return false
@@ -676,30 +685,35 @@ quest
 				text = "Petrus has his hideout at the top of the eastern tower on the magician's rock.",
 			},
 		}),
+		QuestFactory.StartupItems({
+			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 3, 4), id = 7348, aid = Storage.SafetyAndOccupationalHygiene.PetrusSpawn },
+		}),
 		QuestFactory.Script(function(missionState)
 			local tile = MoveEvent()
 
+			local lock = SpawnLocks.SafetyAndOccupationalHygiene.Petrus
 			function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:isPlayer() then
-					return false
-				end
-				if player:getStorageValue(Storage.SafetyAndOccupationalHygiene.State) ~= 13 then
+				if not player:HasExactMissionState(missionState) then
 					return
 				end
 
-				local aid = item:getActionId()
-				if Game.getStorageValue(aid) == 1 then
+				if lock:IsSet() then
 					return
 				end
-				if Game.createMonster("petrus ciemiezca", player:getPosition()) then
-					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-					Game.setStorageValue(aid, 1)
-				end
+
+				Game.createMonster("petrus ciemiezca", player:getPosition())
+				lock:Set()
 			end
 
-			tile:aid(Storage.SafetyAndOccupationalHygiene.Spawns.Petrus)
+			tile:aid(Storage.SafetyAndOccupationalHygiene.PetrusSpawn)
 			tile:register()
 		end)
+	)
+	:State(
+		{ min = QuestState.SafetyAndOccupationalHygiene.Mission06.ReportToRatOfKings },
+		QuestFactory.StartupItems({
+			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(-3, 2, 1), id = 2471, aid = Storage.KingOfRatsHQ.Items.Ytong, rewards = { QuestKeyItems.KingOfRatsHQ.Ytong } },
+		})
 	)
 	:State(
 		QuestState.SafetyAndOccupationalHygiene.Mission06.ReportToRatOfKings,
@@ -719,7 +733,7 @@ quest
 				text = "Thank you for your help with the task and for the information from the Rat of Kings. Come back to me after some time, and I will tell you about the fate of someone close to me who wanted to defeat HF-P/X. Although his motivations were somewhat unusual.",
 				nextState = {
 					[Storage.SafetyAndOccupationalHygiene.Mission06] = 5,
-					[Storage.ThreeSramatiansAndTheDragon.PuzzlesDoneStateBinary] = 1,
+					[Storage.ThreeSramatiansAndTheDragon.Mission01] = 1,
 					[Storage.Finished.SafetyAndOccupationalHygiene] = 1,
 				},
 				rewards = { ExerciseWeaponBox(1337) },

@@ -3,7 +3,7 @@ local quest = Quest(LOCALIZERS.FourActTragedy)
 quest
 	:Storage(function()
 		Storage.FourActTragedy = {
-			PuzzlesDoneStateBinary = NextStorage(),
+			Mission01 = NextStorage(),
 			Mission02 = NextStorage(),
 			Mission03 = NextStorage(),
 			Mission04 = NextStorage(),
@@ -74,29 +74,33 @@ quest
 		}
 	end)
 	:Constant(function()
-		TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS = {
-			timmyPowder = {
+		QuestKeyItems.FourActTragedy = {
+			TimmyPowder = {
 				id = 6548,
 				aid = Storage.FourActTragedy.Rewards.Powder,
 				desc = "Elvish dust. Timmy might be needing this",
 			},
-			timmyBag = {
+			TimmyBag = {
 				id = 3141,
 				aid = Storage.FourActTragedy.Rewards.TimmyBag,
 				desc = "Timmy belongings. He might be needing them",
 			},
-			fanfare = {
+			Fanfare = {
 				id = 2954,
-				desc = "Mysterius instrument. Most curious monsters can it allure",
+				desc = "Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play...",
 			},
-			grazynaCore = { id = 20342, aid = Storage.FourActTragedy.Rewards.GrazynaCore, desc = "Grazhena Core i7" },
+			GrazynaCore = {
+				id = 20342,
+				aid = Storage.FourActTragedy.Rewards.GrazynaCore,
+				desc = "Grazhena Core i3",
+			},
 		}
 	end)
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Four Act Tragedy",
 			missions = {
-				[Storage.FourActTragedy.PuzzlesDoneStateBinary] = {
+				[Storage.FourActTragedy.Mission01] = {
 					name = "01. Dodge those compensation claims",
 					states = {
 						[QuestState.FourActTragedy.Mission01.AskRomekForMission] = "Romek mentioned you should as him for mission.",
@@ -156,7 +160,7 @@ quest
 
 		function theKraken.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.Mission01)
 				if storage_val ~= 9 then
 					return true
 				end
@@ -178,7 +182,7 @@ quest
 				return true
 			end
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.Mission01)
 				if storage_val ~= 13 then
 					return true
 				end
@@ -220,7 +224,7 @@ quest
 			end
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.FourActTragedy.State)
+				local storage_val = player:getStorageValue(Storage.FourActTragedy.Mission01)
 				if storage_val ~= 17 then
 					return true
 				end
@@ -808,7 +812,7 @@ quest
 
 		mType:register(monster)
 	end)
-	:Mission(Storage.FourActTragedy.PuzzlesDoneStateBinary)
+	:Mission(Storage.FourActTragedy.Mission01)
 	:State(
 		QuestState.FourActTragedy.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
@@ -818,7 +822,7 @@ quest
 			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
 				text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
 				nextState = {
-					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 2,
+					[Storage.FourActTragedy.Mission01] = 2,
 				},
 				rewards = { ExerciseWeaponBox(3000) },
 			},
@@ -841,7 +845,7 @@ quest
 			[{ "byl", "was" }] = {
 				text = "In that case, please send the documents, and our team of specialists shh butt butt butt kshhhh. Oh, damn, my throat recorder broke. Umm... okay, I was lying about the insurance. But understand me - ever since the emperor took my lands, I have to fight for them, which has made me even more homeless.",
 				nextState = {
-					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 3,
+					[Storage.FourActTragedy.Mission01] = 3,
 				},
 			},
 		})
@@ -852,7 +856,7 @@ quest
 			[{ "mission" }] = {
 				text = "Well, hes just the smartest person in the world. Okay, let's not waste any more time. After HF-P/X's death, a time-delayed mechanism was activated, which opened a portal to the past. Now immigrants are flooding in from everywhere. Go to the portal in Knurow and head to the Knurow of the past. Find someone there who will help you with the task of stopping the influx of immigrants.",
 				nextState = {
-					[Storage.FourActTragedy.PuzzlesDoneStateBinary] = 4,
+					[Storage.FourActTragedy.Mission01] = 4,
 					[Storage.FourActTragedy.Mission02] = 1,
 					[Storage.FourActTragedy.RetroKnurowoAccess] = 1,
 				},
@@ -867,6 +871,11 @@ quest
 				text = "I told you to use the portal in Knurow, although I don't remember exactly where it was located. Something tells me it was somewhere along the shore...",
 			},
 		}),
+		QuestFactory.Dialog("Woody", {
+			[{ "portal", "teleport", "retro", "past", "przeszlosc" }] = {
+				text = "Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination.",
+			},
+		}),
 		QuestFactory.Dialog("Timmy", {
 			[{ "mission" }] = {
 				text = "It seems I got lost in the corridors of time. I have vague memories from the future that I am a bouncer in my hometown. I think I could help you with the immigrant influx, but first, I need to reconcile with my present self. Find my equipment stolen by bandits, and I will help you.",
@@ -878,7 +887,7 @@ quest
 		}),
 		QuestFactory.Script(function(missionState)
 			local toModern = Position(5513, 1554, 7)
-			local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0) -- 38f85df67705e9e59ab4b44bc8590644
+			local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0)
 
 			local tpToRetro = MoveEvent()
 			function tpToRetro.onStepIn(player, item, position, fromPosition)
@@ -933,7 +942,7 @@ quest
 		QuestFactory.Script(function(missionState)
 			local beastId = nil
 
-			local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6) -- 38f85df67705e9e59ab4b44bc8590644
+			local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6)
 			local fanfareSacrificePos = RETRO_KNUROWO_ANCHOR:Moved(-29, -34, 6):Moved(-2, 0, 0)
 
 			local panpipeLever = Action()
@@ -945,12 +954,12 @@ quest
 					return
 				end
 
-				local fanfare = Tile(fanfareSacrificePos):getItemById(TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.fanfare.id)
+				local fanfare = Tile(fanfareSacrificePos):getItemById(QuestKeyItems.FourActTragedy.Fanfare.id)
 
 				if not fanfare then
 					return false
 				end
-				if player:getStorageValue(Storage.FourActTragedy.State) ~= 5 then
+				if player:getStorageValue(Storage.FourActTragedy.Mission01) ~= 5 then
 					return false
 				end
 
@@ -966,9 +975,9 @@ quest
 			{
 				id = 31649,
 				actionid = Storage.FourActTragedy.Rewards.TimmyBag,
-				rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag },
+				rewards = { QuestKeyItems.FourActTragedy.TimmyBag },
 				requiredState = { [Storage.FourActTragedy.Mission02] = 5 },
-				nextState = {  [Storage.FourActTragedy.Mission02] = 3 },
+				nextState = { [Storage.FourActTragedy.Mission02] = 3 },
 			},
 		}),
 		QuestFactory.StartupItems({
@@ -977,7 +986,7 @@ quest
 				id = 11809,
 				actionid = Storage.FourActTragedy.Rewards.Fanfare,
 				uid = 1000,
-				rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.fanfare },
+				rewards = { QuestKeyItems.FourActTragedy.Fanfare },
 			},
 			{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
 			{ pos = { -24, -23, 6 }, id = 7723, aid = Storage.FourActTragedy.WawelDragonAccess },
@@ -989,7 +998,7 @@ quest
 			[{ "mission" }] = {
 				text = "Thank you, that's mine. Okay, now I'm going back to the {present}!",
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyBag,
+					QuestKeyItems.FourActTragedy.TimmyBag,
 				},
 				textNoRequiredItems = "Are you sure you didn't lose any of my stuff along the way?",
 				nextState = {
@@ -1004,7 +1013,7 @@ quest
 			[{ "mission", "present", "terazniejszosci" }] = {
 				text = "Tell Tomek that I will deal with those refugees as soon as I can. Actually, I've already dealt with them. Yeah, the paradoxes of time travel. And one more thing: the person responsible for convincing immigrants to use the HF-P/X portal was none other than Rat Bum.",
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
+					QuestKeyItems.FourActTragedy.TimmyPowder,
 				},
 				textNoRequiredItems = "My magic doesn't seem to work. We'll need elven spells. Go to the elves' rock and get some magical powder that I can use for the ritual. Watch out for the dormant Soros foundations. I've seen that they too got lost in this world.",
 				nextState = {
@@ -1019,7 +1028,7 @@ quest
 				actionid = Storage.FourActTragedy.Rewards.Powder,
 				uid = 1000,
 				rewards = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.timmyPowder,
+					QuestKeyItems.FourActTragedy.TimmyPowder,
 				},
 				requiredState = { [Storage.FourActTragedy.Mission02] = 7 },
 			},
@@ -1149,7 +1158,7 @@ quest
 				id = 1983,
 				actionid = Storage.FourActTragedy.Rewards.SlippersChest,
 				uid = 1000,
-				rewards = { KROL_SZCZUROW_HUB_KEY_ITEMS.bribeslippers },
+				rewards = { QuestKeyItems.KingOfRatsHQ.Bribeslippers },
 				requiredState = { [Storage.FourActTragedy.Mission04] = 1 },
 				nextState = { [Storage.FourActTragedy.Mission04] = 2 },
 				desc = "Rest is peace\n~Followers of The Frog Cult",
@@ -1162,7 +1171,7 @@ quest
 					return false
 				end
 
-				local storageVal = player:getStorageValue(Storage.FourActTragedy.State)
+				local storageVal = player:getStorageValue(Storage.FourActTragedy.Mission01)
 				if storageVal < 11 or 12 < storageVal then
 					return false
 				end
@@ -1221,7 +1230,7 @@ quest
 			[{ "mission" }] = {
 				text = "Grazhena Core? Hmm... My mother Xena once belonged to a rural housewives club. Ask her if she knows more about this object. She is the leader of the feminists. Maybe you've already met her.",
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore,
+					QuestKeyItems.FourActTragedy.GrazynaCore,
 				},
 				removeRequiredItems = false,
 				textNoRequiredItems = "Skurwiwij had Grazhenacore, and you lost it? Come back when you find your lost item.",
@@ -1238,7 +1247,7 @@ quest
 		QuestFactory.Dialog("Xe'na", {
 			[{ "mission", "grazhenacore", "grazynacore", "grazyna", "grazhena" }] = {
 				requiredItems = {
-					TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore,
+					QuestKeyItems.FourActTragedy.GrazynaCore,
 				},
 				textNoRequiredItems = "Come back when you have Grazhenacore with you.",
 				text = "The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures.",
@@ -1279,7 +1288,7 @@ quest
 			{
 				id = 18021,
 				actionid = Storage.FourActTragedy.Rewards.GrazynaCore,
-				rewards = { TRAGEDYA_W_CZTERECH_AKTACH_KEY_ITEMS.grazynaCore },
+				rewards = { QuestKeyItems.FourActTragedy.GrazynaCore },
 				requiredState = { [Storage.FourActTragedy.Mission05] = 14 },
 			},
 		})
@@ -1307,7 +1316,7 @@ quest
 			requiredState = { [Storage.FourActTragedy.ZulSzczurowAccess] = 1 },
 		}
 
-		--38f
+		--39f
 		--Encounter(ratbumLever):Register()
 	end)
 	:State(
@@ -1326,7 +1335,7 @@ quest
 				nextState = {
 					[Storage.FourActTragedy.Mission06] = 5,
 					[Storage.Finished.FourActTragedy] = 1,
-					[Storage.PerIustitiaAdAstra.PuzzlesDoneStateBinary] = 1,
+					[Storage.PerIustitiaAdAstra.Mission01] = 1,
 					[Storage.FourActTragedy.GrazhenaDoor] = -1,
 				},
 				rewards = { ExerciseWeaponBox(3500) },

@@ -63,9 +63,9 @@ local lang_to_config = {
 	},
 	["EN"] = {
 		[1] = {
-			"Oh, yes. I promised you to tell my story. Well, I come from the legendary town of Yalahar, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist. ...",
+			"Oh, yes. I promised you to tell my story. Well, I come from the legendary town of Hirschberg, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist. ...",
 			"I survived because I left there as soon as the riots broke out, unfortunately all my family died. Besides me, a few more inhabitants fled. At first we stuck together, but eventually broke up. Last time I saw {Gertruda} in the jungle. {Konmuld} on the other hand, he went the wrong way, and decided to devote himself to black magic. I did not know the other survivors, but maybe Gertrude or Konmuld will know where they are. ...",
-			"However, I don't know if they will want to talk to you, Yalaharians are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
+			"However, I don't know if they will want to talk to you, peopel of Hirschberg are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
 		},
 		[2] = {
 			"She agreed? How did you do that? Well, that doesn't matter now, thank you from the bottom of my heart. Here is small gift for you, and as I promissed, our secrest password: Aloha. ...",
