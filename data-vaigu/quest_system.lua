@@ -120,13 +120,13 @@ function Player:IncrementStorage(storage, addend)
 	return self:getStorageValue(storage)
 end
 
-function UpdateStorages(player, storages)
+function NextState(player, storages)
 	for storage, newValue in pairs(storages) do
 		player:setStorageValue(storage, newValue)
 	end
 end
 
-function Player:UpdateStorages(storages)
+function Player:NextState(storages)
 	if not storages then
 		return false
 	end
@@ -918,7 +918,7 @@ function ResolutionContext:UpdatePlayerState()
 		return
 	end
 
-	self.player:UpdateStorages(actions.nextState)
+	self.player:NextState(actions.nextState)
 end
 
 function ResolutionContext:UpdateGlobalState()

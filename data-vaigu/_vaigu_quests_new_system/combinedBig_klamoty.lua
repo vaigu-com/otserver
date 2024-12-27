@@ -1,4 +1,0 @@
---[[
-	:Script(function(missionState)
-end)
-]]

@@ -5,11 +5,7 @@ quest
 		Storage.DailyTasks = {
 			DailyTaskInfo = NextStorage(),
 			DailyLimit = NextStorage(),
-			DailyBoardSlots = {
-				[1] = NextStorage(),
-				[2] = NextStorage(),
-				[3] = NextStorage(),
-			},
+			DailyTasksNumber = 3,
 			LastResetTimestamp = NextStorage(),
 			Board = NextStorage(),
 		}
@@ -30,9 +26,8 @@ quest
 	})
 	:Script(function()
 		local function playerCanTakeAnyDailyTask(player)
-			for _, taskSlot in pairs(Storage.DailyTasks.DailyBoardSlots) do
-				local storage = KV.get(taskSlot)
-				local dailyTask = GetDailyTaskByStorage(storage)
+			for i = 1, DAILY_TASKS_LEVEL_BRACKETS_COUNT do
+				local dailyTask = GetDailyTaskByIndex(i)
 				if player:CanTakeDailyTask(dailyTask) then
 					return true
 				end
@@ -69,5 +64,33 @@ quest
 	end)
 	:Script(function()
 		RegisterDailyTasksInQuestsTable()
+	end)
+	:Script(function()
+		local function onPamphlet(player, item)
+			local aid = item:getActionId()
+			local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
+			local translatedText = player:Localizer(nil):Context({ aid = aid }):Get(text)
+			SimpleTextDisplay(player, item, translatedText)
+		end
+
+		local dailyPamphletUse = Action()
+		function dailyPamphletUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+			onPamphlet(player, item)
+			return true
+		end
+
+		local dailyPamphletLook = Look()
+		function dailyPamphletLook.onLook(player, item)
+			onPamphlet(player, item)
+			return true
+		end
+
+		for _, dailyTask in pairs(GetAllDailyTasks()) do
+			local aid = dailyTask.storage
+			dailyPamphletUse:aid(aid)
+			dailyPamphletLook:aid(aid)
+		end
+		dailyPamphletUse:register()
+		dailyPamphletLook:register()
 	end)
 	:Register()

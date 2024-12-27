@@ -133,7 +133,7 @@ function Escort:TryGrantCredit(player)
 	end
 
 	if self.nextState then
-		player:UpdateStorages(self.nextState)
+		player:NextState(self.nextState)
 	end
 	if self.rewards then
 		player:AddItems(self.rewards)

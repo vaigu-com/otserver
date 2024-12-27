@@ -8,6 +8,42 @@ local directionToString = {
 	[DIRECTION_WEST] = "North-West",
 	[DIRECTION_NORTHWEST] = "North-East",
 }
+
+local function getFurthestDestinations(player, travelLocations)
+	local closestDistance = 65336 * 3
+	local closestLocationName = ""
+
+	for _, location in pairs(travelLocations) do
+		local distance = location.destination:EuclideanDistance(player:getPosition())
+		if distance < closestDistance then
+			closestDistance = distance
+			closestLocationName = location.name
+		end
+	end
+
+	local possibleDestinations = {}
+	for _, location in pairs(travelLocations) do
+		if location.name ~= closestLocationName then
+			table.insert(possibleDestinations, location)
+		end
+	end
+
+	return possibleDestinations
+end
+
+local travelLocationsFisherman = {
+	{
+		name = "fortress",
+		destination = Position(6029, 1945, 7),
+		greet = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to The Mirko City or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
+	},
+	{
+		name = "city",
+		destination = Position(5800, 1649, 7),
+		greet = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to elf court or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
+	},
+}
+
 return {
 	["GO_IN_DIRECTION"] = function(context)
 		local dir = context.direction
@@ -190,8 +226,15 @@ return {
 	["Ask Woody about the wood supply."] = "Ask Woody about the wood supply.",
 	["Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?"] = "Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?",
 	["Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?"] = "Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?",
-	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to The Mirko City or sell some of those {rods}.. If you are interested in some {stories}, ask me for one."] = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to The Mirko City or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
-	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to elf court or sell some of those {rods}.. If you are interested in some {stories}, ask me for one."] = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to elf court or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
+	["FISHERMAN_GREET"] = function(context)
+		local possibleDestinations = getFurthestDestinations(context.player, travelLocationsFisherman)
+		local possibleDestinationsNames = ""
+		for key, value in pairs(possibleDestinations) do
+			possibleDestinationsNames = possibleDestinationsNames .. value.name .. ", "
+		end
+		possibleDestinationsNames = string.gsub(possibleDestinationsNames, 1, -2)
+		return T("My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to :possibleDestinations: or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.", { possibleDestinations = possibleDestinationsNames })
+	end,
 	["When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day.."] = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
 	["There is lot of creatures that came from the great unknown. My father friend, Christopher, talked about fish with human-like features or even whole bodies. {Quara}s inhabit the very deeps of the {ocean} near the island where he likes to party while his {red wife} is oblivious.\n Hehe, his ship is visibly damaged by sea serpents. This is his second ship already. {Santa Maria} Mark I was utterly demolished by a giant {Sea Serpent}\nUncle says, that is was Leviathan itself that made attempt on his life, but it was probably just the rum-incuced delirium. Haha, Leviathan, good one. When the end of times come, perhaps he will come."] = "There is lot of creatures that came from the great unknown. My father friend, Christopher, talked about fish with human-like features or even whole bodies. {Quara}s inhabit the very deeps of the {ocean} near the island where he likes to party while his {red wife} is oblivious.\n Hehe, his ship is visibly damaged by sea serpents. This is his second ship already. {Santa Maria} Mark I was utterly demolished by a giant {Sea Serpent}\nUncle says, that is was Leviathan itself that made attempt on his life, but it was probably just the rum-incuced delirium. Haha, Leviathan, good one. When the end of times come, perhaps he will come.",
 	["Giant creatures that look similar to snakes. Their breath can put a sizeable fire away. Lot of wenches in our city love hearing stories about those. Perhaps if i could put my hands on a proof of their demise, i would get laid? Who knows.."] = "Giant creatures that look similar to snakes. Their breath can put a sizeable fire away. Lot of wenches in our city love hearing stories about those. Perhaps if i could put my hands on a proof of their demise, i would get laid? Who knows..",

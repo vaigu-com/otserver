@@ -143,7 +143,7 @@ return {
 	["Turns out that the “wine” worked as intended. Tell Ariel about it."] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
 	["Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now."] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
 	["Mission 3: A Killer Liquor"] = "Mission 3: A Killer Liquor",
-	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda."] = "Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda.",
+	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertrude."] = "Find an immensely strong vodka in the lizard headquarters, and bring it to Gertrude.",
 	["In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides."] = "In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides.",
 	["After treating Konmuld with vodka, he agreed to talk with you."] = "After treating Konmuld with vodka, he agreed to talk with you.",
 	["Mission 4: Prelude to Thaumaturgy"] = "Mission 4: Prelude to Thaumaturgy",
@@ -157,7 +157,7 @@ return {
 	["Find Commissioner Fisher and ask him for a mission."] = "Find Commissioner Fisher and ask him for a mission.",
 	["VISIT_DEALERS_STATUS"] = function(context)
 		local visitedDealers = 0
-		for _, vendor in pairs(Storage.StickyBeginning.VendorsAsked) do
+		for _, vendor in pairs(Storage.LocalSupport.VendorsAsked) do
 			if context.player:getStorageValue(vendor) ~= MISSION_NOT_STARTED then
 				visitedDealers = visitedDealers + 1
 			end
@@ -169,8 +169,8 @@ return {
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 	["Tell Ryba that Narro and his mafia stole all of the wood delivery."] = "Tell Ryba that Narro and his mafia stole all of the wood delivery.",
 	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
-	["Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba."] = "Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba.",
-	["Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward."] = "Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward.",
+	["Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner."] = "Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner.",
+	["Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward."] = "Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward.",
 	["To Carry the Pigs"] = "To Carry the Pigs",
 	["To be like the Schwarzenegger"] = "To be like the Schwarzenegger",
 	["Collect these items for me: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth."] = "Collect these items for me: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
@@ -368,7 +368,7 @@ return {
 	["Needle in a Haystack"] = "Needle in a Haystack",
 	["You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he has found on the list."] = "You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he has found on the list.",
 	["Komor asked you to consult Commissioner Fisher about the thief."] = "Komor asked you to consult Commissioner Fisher about the thief.",
-	["Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?"] = "Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?",
+	["Fisher asked you to track down the thief. Perhaps someone from nearby saw where he ran away?"] = "Fisher asked you to track down the thief. Perhaps someone from nearby saw where he ran away?",
 	["Find the bandit camp and see if they have anything to do with it."] = "Find the bandit camp and see if they have anything to do with it.",
 	["Ask the bandit leader about the furniture thief."] = "Ask the bandit leader about the furniture thief.",
 	["Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now."] = "Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now.",

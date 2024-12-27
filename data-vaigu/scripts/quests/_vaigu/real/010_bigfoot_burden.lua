@@ -1,7 +1,4 @@
 --dialogs are in old system
-do
-	return
-end
 local quest = Quest(LOCALIZERS.BigfootBurden)
 
 quest

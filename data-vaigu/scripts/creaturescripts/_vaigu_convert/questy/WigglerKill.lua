@@ -1,4 +1,4 @@
-local creatureevent = CreatureEvent("BigfootBurdenWigglerDeath")
+local creatureevent = CreatureEvent("WigglerDeath")
 
 function creatureevent.onDeath(creature)
 	onDeathForDamagingPlayers(creature, function(creature, player)

@@ -142,7 +142,7 @@ return {
 	["Turns out that the “wine” worked as intended. Tell Ariel about it."] = "Wino najwidoczniej zadzialalo, przekaz wiesci Arielowi.",
 	["Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now."] = "Ariel ucieszyl sie, i podal ci tajemne haslo powitalne Yalaharian: Aloha. Mozesz teraz odwiedzic Gertrude lub Konmulda.",
 	["Mission 3: A Killer Liquor"] = "Misja 2: Zabojczy trunek",
-	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertruda."] = "Znajdz mega mocna wodke w siedzibie jaszczurow i przynies butelke do Gertrudy.",
+	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertrude."] = "Znajdz mega mocna wodke w siedzibie jaszczurow i przynies butelke do Gertrudy.",
 	["In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides."] = "W zamian za trunek Gertruda zaoferowala ci pomoc w przyrzadzaniu wywarow i specjalnych srodkow. Mozesz taksze sam odwiedzic Konmulda, i poczestowac go wodka.",
 	["After treating Konmuld with vodka, he agreed to talk with you."] = "Po poczestowaniu wodka Konmuld zgodzil sie z toba porozmawiac.",
 	["Mission 4: Prelude to Thaumaturgy"] = "Misja 3: Wstep do czarnej magii",
@@ -156,7 +156,7 @@ return {
 	["Find Commissioner Fisher and ask him for a mission."] = "Idz do komisarza Ryby i zapytaj o misje.",
 		["VISIT_DEALERS_STATUS"] = function(context)
 			local visitedDealers = 0
-			for _, vendor in pairs(Storage.StickyBeginning.VendorsAsked) do
+			for _, vendor in pairs(Storage.LocalSupport.VendorsAsked) do
 				if context.player:getStorageValue(vendor) ~= MISSION_NOT_STARTED then
 					visitedDealers = visitedDealers + 1
 				end
@@ -168,8 +168,8 @@ return {
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Rasiak jest pewny, ze drewno zostalo wyslane karawana, poprosil cie o zbadanie sprawy.",
 	["Tell Ryba that Narro and his mafia stole all of the wood delivery."] = "Przekaz Komisarzowi Rybie, ze Waski i jego mafia zabrali drewno.",
 	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Komisarz nakazal ci odzyskanie drewna, lecz ostrzegal przed mafia Waskiego.",
-	["Narro gave up, and he is going to let Officer Ryba take the wood back. Report back to Ryba."] = "Waski sie poddal i pozwoli Komisarzowi zabrac drewno, przekaz mu te dobre wiesci.",
-	["Your merits earned you a special reward. Officer Ryba sent you to Trollsky, where you can receive your reward."] = "Komisarz za dobrze wykonane zadanie wyslal cie do trollskyiego po nagrode.",
+	["Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner."] = "Waski sie poddal i pozwoli Komisarzowi zabrac drewno, przekaz mu te dobre wiesci.",
+	["Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward."] = "Komisarz za dobrze wykonane zadanie wyslal cie do trollskyiego po nagrode.",
 	["To Carry the Pigs"] = "Na pomoc Bagietom",
 	["To be like the Schwarzenegger"] = "Byc jak Schwarzenegger",
 	["Collect these items for me: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth."] = "Zbierz dla arniego 5 zebow orka, 5 zebow rotworma oraz zab wampira.",
@@ -367,8 +367,7 @@ return {
 	["Needle in a Haystack"] = "Igla w stogu siana",
 	["You helped Komor find his stolen furniture. Get your reward from the floor above if you haven't already. Visit Komor again to find out what he has found on the list."] = "Pomogles Komorowi w odnalezieniu jego wlasnosci. Udaj sie na pietro jego sklepu, aby otrzymac nagrode, jesli jeszcze tego nie zrobiles. Wroc do Komora by dowiedziec sie, co znalazl na liscie.",
 	["Komor asked you to consult Commissioner Fisher about the thief."] = "Komor poprosil cie, abys poradzil sie komisarza Ryby w sprawie zlodzieja.",
-	["Fish asked you to track down the thief. Perhaps someone from nearby saw where he ran away?"] = "Ryba polecil ci wytropic zlodzieja, zanim zaszyje sie gdzies na dobre. Byc moze ktos z okolicy widzial, gdzie uciekl?",
-	["Find the bandit camp and see if they have anything to do with it."] = "Odszukaj oboz bandytow i sprawdz, czy maja z tym cos wspolnego.",
+	["Fisher asked you to track down the thief. Perhaps someone from nearby saw where he ran away?"] = "Ryba polecil ci wytropic zlodzieja, zanim zaszyje sie gdzies na dobre. Byc moze ktos z okolicy widzial, gdzie uciekl?",
 	["Ask the bandit leader about the furniture thief."] = "Przepytaj dowodce bandytow w sprawie zlodzieja mebli.",
 	["Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now."] = "Wszystko wskazuje na to, ze uciekinier probuje przeszmuglowac przedmioty, i ukryc sie na stepach. Dowodca bandytow zasugerowal, gdzie powinienes sie teraz udac.",
 	["You have defeated the Lumberjack Domino, look around his hiding place."] = "Pokonales Drwala Domino, rozejrzyj sie po jego kryjowce.",

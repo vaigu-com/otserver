@@ -19,7 +19,6 @@ quest
 				FindAndHelpEngineer = 4,
 				ReportToEngineer = 5,
 				ReportToGermi = 6,
-				Finished = 7,
 			},
 		}
 		QuestTopics.CaveExplorerOnShield = {
@@ -59,7 +58,7 @@ quest
 						[QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer] = "Find the Engineer's Ghost and help him.",
 						[QuestState.CaveExplorerOnShield.Mission01.ReportToEngineer] = "You've opened the gate, return to the Engineer.",
 						[QuestState.CaveExplorerOnShield.Mission01.ReportToGermi] = "You greeted the Engineer, return to Germi.",
-						[QuestState.CaveExplorerOnShield.Mission01.Finished] = "Mission completed.",
+						[MISSION_FINISHED] = "Mission completed.",
 					},
 				},
 			},
@@ -222,7 +221,13 @@ quest
 			text = "Please come back with something of mine.",
 		} }),
 		QuestFactory.StartupItems({
-			{ id = 2484, aid = Storage.CaveExplorerOnShield.Rewards.GermiChest, pos = { 63, 35, 0 }, nextState = { [Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi }, rewards = { QuestKeyItems.CaveExplorerOnShield.GermiDocument } },
+			{
+				id = 2484,
+				aid = Storage.CaveExplorerOnShield.GermiChest,
+				pos = { 63, 35, 0 },
+				nextState = { [Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi },
+				rewards = { QuestKeyItems.CaveExplorerOnShield.GermiDocument },
+			},
 		}, DESERT_QUEST_ONE_ANCHOR)
 	)
 	:State(
@@ -309,11 +314,11 @@ quest
 	:State(
 		QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer,
 		QuestFactory.StartupItems({
-			{ id = 8342, aid = Storage.CaveExplorerOnShield.Misc.Punchcard, pos = { 86, 61, -2 } },
-			{ id = 355, aid = Storage.CaveExplorerOnShield.Misc.Punchcard, pos = { 87, 61, -2 } },
-			{ id = 231, pos = { 5, -8, 1 }, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },
-			{ id = 231, pos = { 6, -8, 1 }, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },
-			{ id = 231, pos = { 7, -8, 1 }, aid = Storage.CaveExplorerOnShield.Misc.AnthonyGate },
+			{ id = 8342, aid = Storage.CaveExplorerOnShield.Punchcard, pos = { 86, 61, -2 } },
+			{ id = 355, aid = Storage.CaveExplorerOnShield.Punchcard, pos = { 87, 61, -2 } },
+			{ id = 231, pos = { 5, -8, 1 }, aid = Storage.CaveExplorerOnShield.AnthonyGate },
+			{ id = 231, pos = { 6, -8, 1 }, aid = Storage.CaveExplorerOnShield.AnthonyGate },
+			{ id = 231, pos = { 7, -8, 1 }, aid = Storage.CaveExplorerOnShield.AnthonyGate },
 		}, DESERT_QUEST_ONE_ANCHOR),
 		QuestFactory.Script(function(missionState)
 			local punchcard = Action()

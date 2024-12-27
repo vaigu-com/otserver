@@ -82,9 +82,9 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Congratulations on finding your soul melody. And a pretty one as far as I can tell. Now you are a true recruit of the Bigfoot company! Commander Stone might have some tasks for you to do! ...",
 				"Look for him in the central chamber.",
 			}, npc, creature)
-			player:setStorageValue(Storage.BigfootBurden.QuestLine, 14)
-			player:setStorageValue(Storage.BigfootBurden.Rank)
+			player:setStorageValue(Storage.BigfootBurden.Rank, 1440)
 			player:addAchievement("Becoming a Bigfoot")
+			player:checkGnomeRank()
 		end
 		npcHandler:setTopic(playerId, 0)
 	end

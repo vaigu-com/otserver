@@ -77,7 +77,7 @@ return {
 	["Find a way to escape the dungeons, then locate Gertrude."] = "Znajdz sposob na wydostanie sie z lochow, a nastepnie odnajdz Gertrude.",
 	["Gertrude told you that the company went to the desert. The Djinn Lord - Lambor might help you find them."] = "Gertruda powiedziala Ci, ze kompania udala sie na pustynie. Wladca djinnow - Lambor moze Ci pomoc ich odszukac.",
 	["Lambor demanded dragon meat in exchange for information about your companions."] = "Lambor zazadal smoczego miesa w zamian za informacje o twoich kompanach.",
-	["Lambor indicated that the company is by the old mine, where wyverns nest."] = "Lambor wskazal, ze kompania znajduje sie przy starej ruderze, przy ktorej zalegly sie wyverny.",
+	["Lambor indicated that the company is by the old mine, where wyverns rest."] = "Lambor wskazal, ze kompania znajduje sie przy starej ruderze, przy ktorej zalegly sie wyverny.",
 	["An old unjust tyrant dragged me into trouble again."] = "Stary niesprawiedliwy na szabry znowu mnie wpakowal co za los zly",
 	["06. Shepherd of Rats"] = "06. Baca Szczurow",
 	["Bilbeus mentioned that you should head to the nomad's rock."] = "Bilbeusz wspomnial, ze powiniennes udac sie na skalke nomadow.",

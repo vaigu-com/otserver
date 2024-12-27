@@ -1,16 +1,5 @@
-local internalNpcName = "Leon"
-local npcType = Game.createNpcType(internalNpcName)
-local npcConfig = {}
-
-npcConfig.name = internalNpcName
-npcConfig.description = internalNpcName
-
-npcConfig.health = 100
-npcConfig.maxHealth = npcConfig.health
-npcConfig.walkInterval = 2000
-npcConfig.walkRadius = 2
-
-npcConfig.outfit = {
+local name = "Leon"
+local outfit = {
 	lookType = 41,
 	lookHead = 0,
 	lookBody = 0,
@@ -19,34 +8,11 @@ npcConfig.outfit = {
 	lookAddons = 0,
 	lookMount = 0,
 }
-
-npcConfig.flags = { floorchange = 0 }
-
-local keywordHandler = KeywordHandler:new()
-local npcHandler = NpcHandler:new(keywordHandler)
-
-npcType.onThink = function(npc, interval)
-	npcHandler:onThink(npc, interval)
-end
-
-npcType.onAppear = function(npc, creature)
-	npcHandler:onAppear(npc, creature)
-end
-
-npcType.onDisappear = function(npc, creature)
-	npcHandler:onDisappear(npc, creature)
-end
-
-npcType.onMove = function(npc, creature, fromPosition, toPosition)
-	npcHandler:onMove(npc, creature, fromPosition, toPosition)
-end
-
-npcType.onSay = function(npc, creature, type, message)
-	npcHandler:onSay(npc, creature, type, message)
-end
-
-npcType.onCloseChannel = function(npc, creature)
-	npcHandler:onCloseChannel(npc, creature)
-end
-
-npcType:register(npcConfig)
+local context = {
+	name = name,
+	outfit = outfit,
+	dialogs = dialogs,
+	voices = voices,
+	greetCallback = function() end,
+}
+NpcRegistry:AppendNpcData(context)

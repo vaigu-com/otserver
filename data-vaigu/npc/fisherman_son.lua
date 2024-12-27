@@ -1,16 +1,5 @@
-local internalNpcName = "Fisherman Son"
-local npcType = Game.createNpcType(internalNpcName)
-local npcConfig = {}
-
-npcConfig.name = internalNpcName
-npcConfig.description = internalNpcName
-
-npcConfig.health = 100
-npcConfig.maxHealth = npcConfig.health
-npcConfig.walkInterval = 2000
-npcConfig.walkRadius = 2
-
-npcConfig.outfit = {
+local name = "Fisherman Son"
+local outfit = {
 	lookType = 132,
 	lookHead = 19,
 	lookBody = 10,
@@ -18,89 +7,15 @@ npcConfig.outfit = {
 	lookFeet = 95,
 	lookAddons = 0,
 }
-
-npcConfig.flags = { floorchange = 0 }
-
-local keywordHandler = KeywordHandler:new()
-local npcHandler = NpcHandler:new(keywordHandler)
-
-npcType.onThink = function(npc, interval)
-	npcHandler:onThink(npc, interval)
-end
-
-npcType.onAppear = function(npc, creature)
-	npcHandler:onAppear(npc, creature)
-end
-
-npcType.onDisappear = function(npc, creature)
-	npcHandler:onDisappear(npc, creature)
-end
-
-npcType.onMove = function(npc, creature, fromPosition, toPosition)
-	npcHandler:onMove(npc, creature, fromPosition, toPosition)
-end
-
-npcType.onSay = function(npc, creature, type, message)
-	npcHandler:onSay(npc, creature, type, message)
-end
-
-npcType.onCloseChannel = function(npc, creature)
-	npcHandler:onCloseChannel(npc, creature)
-end
-
-local locationToPos = {
-	fortress = Position(6029, 1945, 7),
-	city = Position(5800, 1649, 7),
-}
-
-local locationGreet = {
-	fortress = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to The Mirko City or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
-	city = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to elf court or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
-}
-
-local function getFurthestDestination(player)
-	local distanceFortress = locationToPos.fortress:Distance(player:getPosition())
-	local distanceCity = locationToPos.city:Distance(player:getPosition())
-
-	local furthestDestination = "city"
-	if distanceFortress > distanceCity then
-		furthestDestination = "fortress"
-	end
-	return furthestDestination
-end
-
-local function getClosestDestination(player)
-	local distanceFortress = locationToPos.fortress:Distance(player:getPosition())
-	local distanceCity = locationToPos.city:Distance(player:getPosition())
-
-	local furthestDestination = "city"
-	if distanceFortress < distanceCity then
-		furthestDestination = "fortress"
-	end
-	return furthestDestination
-end
-
-local function getDestinationText(context)
-	local player = context.player
-	local closest = getClosestDestination(player)
-	return locationGreet[closest]
-end
-
-local function teleportToOtherSide(player)
-	player:removeMoney(100)
-	local furthest = getFurthestDestination(player)
-	local toPos = locationToPos[furthest]
-	player:teleportTo(toPos)
-	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-end
-
-local dialog = {
+local dialogs = {
 	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
 		[{ "sail", "plynac" }] = {
 			text = "",
 			specialActionsOnSuccess = {
 				{
-					action = teleportToOtherSide,
+					action = CreateTransportWindow,
+					transports = TRANSPORT_ROUTES.FISHERMAN_SHIP,
+					transportType = TRANSPORT_TYPE.SHIP,
 				},
 			},
 			specialConditions = {
@@ -109,15 +24,9 @@ local dialog = {
 					requiredOutcome = false,
 					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
 				},
-				{
-					conditions = SPECIAL_CONDITIONS_UNIVERSAL.hasMoney,
-					requiredOutcome = true,
-					textNoRequiredCondition = "You dont have enough money.",
-					price = 100,
-				},
 			},
 		},
-		[{ GREET }] = { text = getDestinationText },
+		[ GREET ] = { "FISHERMAN_GREET" },
 		[{ "story", "stories", "historia", "historie" }] = {
 			text = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
 		},
@@ -167,36 +76,10 @@ local dialog = {
 		},
 	},
 }
-
-local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialog, npcHandler, npc)
-	return false
-end
-
-local function creatureSayCallback(npc, creature, type, msg)
-	return TryResolveDialog(creature, dialog, npcHandler, npc)
-end
-
-npcHandler:setCallback(CALLBACK_GREET, greetCallback)
-npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
-
-npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
-npcType:register(npcConfig)
-
---[[
-keywordHandler:addKeyword({ "rodzaje" }, StdModule.say, { npcHandler = npcHandler, text = "No wiec jest 5 rodzajow. Quara {Constrictor}, {Mantassin}, {Hydromancer}, {Pincher}, {Predator}! Ha, wszystkie znam." })
-keywordHandler:addKeyword(
-	{ "constrictor" },
-	StdModule.say,
-	{
-		npcHandler = npcHandler,
-		text = "Dziwaczne stwory, mieszanki Krakena i kalamarnic. Jak slyszalem sa nawet inteligentne i chyba sa przywodcami, chociaz sa najslabsze.",
-		"Chodza sluchy, ze podobno jeszcze zyje jeden z zalozycieli podwodnego miasta i jest wlasnie tego rodzaju. Mowia na niego gul, to znaczy {Thul}. W ich krwi plynie krew wegorza, wiec sa w stanie oszolomic swoich wrogow na chwile.",
-	}
-)
-keywordHandler:addKeyword({ "mantassin" }, StdModule.say, { npcHandler = npcHandler, text = "Sa czesto nie dostrzegane, az do chwili gdy jest juz za pozno <lenny>. Ta tez wyewoulowala, ale z osmiornicy i plaszczki, czyniac swoja rase mistrzami kamuflazu. Ja tam sie nie znam na nauce. Moze magowie wytlumacza ci o co chodzi z wzajemna mimikra." })
-keywordHandler:addKeyword({ "hydromancer" }, StdModule.say, { npcHandler = npcHandler, text = "Czesto niedoceniani przez obwisle brzuchy. Tymczasem najbardziej wkurwiaja. Ich dziedzictwem jest czarna magia, dawnych wymarlych mistrzow." })
-keywordHandler:addKeyword({ "pincher" }, StdModule.say, { npcHandler = npcHandler, text = "Zywe i chodzace fortece, wygladajace na niemozliwe do zatrzyania, atakuja ze stoickim spokojem, bez wahania i litosci. Nie jednemu swoim usciskiem szczypiec polamaly dobry miecz na kawalki. Przewage uzyskasz w walce z nimi jesli ci powiem, ze sa cokolwiek niezdarne i naiwne." })
-keywordHandler:addKeyword({ "predator" }, StdModule.say, { npcHandler = npcHandler, text = "Najbrdziej krwiozerce ze wszystkiech Quar. Ich morderczego szalu obawia sie wlasna rasa. Zmutowany rekin wypelniony magia wzmacniajaca jego kosci i sk�re. Bezwgledny i okrutny. Lepiej unikac." })
-]]
---
+local context = {
+	name = name,
+	outfit = outfit,
+	dialogs = dialogs,
+	voices = voices,
+}
+NpcRegistry:AppendNpcData(context)

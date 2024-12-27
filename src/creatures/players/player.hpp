@@ -2664,7 +2664,7 @@ public:
 	void setLanguage(std::string language);
 
 	bool isOnMinigame(){
-		return this->getStorageValue(STORAGEVALUE_ISONMINIGAME);
+		return this->getStorageValue(STORAGEVALUE_ISONMINIGAME) != -1;
 	}
 
 private:

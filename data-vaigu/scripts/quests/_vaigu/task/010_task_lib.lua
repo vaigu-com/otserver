@@ -244,9 +244,8 @@ function OpenDailyTaskWindow(context)
 	local title = localizerDailyTasks:Get("Daily tasks")
 	local modalWindow = ModalWindow({ title = title, message = message })
 
-	for _, taskSlot in pairs(Storage.DailyTasks.DailyBoardSlots) do
-		local storage = KV.get(taskSlot)
-		local dailyTask = GetDailyTaskByStorage(storage)
+	for i = 1, DAILY_TASKS_LEVEL_BRACKETS_COUNT do
+		local dailyTask = GetDailyTaskByIndex(i)
 		if player:CanTakeDailyTask(dailyTask) then
 			local choiceText = localizerDailyTasks:Context({ dailyTask = dailyTask }):Get("DAILY_TASK_FOR_X")
 			local choice = modalWindow:addChoice(choiceText)

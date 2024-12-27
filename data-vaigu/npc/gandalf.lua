@@ -10,7 +10,7 @@ local outfit = {
 }
 local dialogs = {
 	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
-		[{ GREET }] = {
+		[GREET] = {
 			text = "Hello. What brings you here?",
 		},
 	},

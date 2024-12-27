@@ -21,7 +21,7 @@ return {
 	["Cultivator of ULTIMATENESS. The King of Rats might be intersted in it."] = "Kultywator OSTATECZNOSCI. Krol szczurow moze byc nim zainteresowany.",
 	-- King of Rats Headquarters
 	["King of Rats Headquarters"] = "Loza Krola Szczurow",
-	["CurentStatus"] = "Status lozy",
+	["Current HeadQuarters status"] = "Status lozy",
 	["01. to Ryan"] = "01. do Ryana",
 	["02. to Sweaty Cyclops"] = "02. do Spoconego Cyklopa",
 	["03. to Djinns"] = "03. do Djinnow",

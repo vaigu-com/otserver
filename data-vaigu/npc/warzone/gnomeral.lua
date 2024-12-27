@@ -95,7 +95,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.MatchmakerStatus, -1)
 				player:setStorageValue(Storage.BigfootBurden.MatchmakerTimeout, os.time() + 72000)
 				--player:addAchievement('Crystals in Love')
-				--player:checkGnomeRank()
 				player:addExperience(30000, true) -- 20k expa
 				npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
@@ -128,7 +127,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.TinkerBellTimeout, os.time() + 72000)
 				player:addExperience(30000, true) -- 20k expa
 				--player:addAchievement('Substitute Tinker')
-				--player:checkGnomeRank()
 				npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
 			end
@@ -158,7 +156,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.SporeCount, -1)
 				player:setStorageValue(Storage.BigfootBurden.SporeGatheringTimeout, os.time() + 72000)
 				--player:addAchievement('Spore Hunter')
-				--player:checkGnomeRank()
 				player:addExperience(30000, true) -- 20k expa
 				npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
@@ -188,7 +185,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.GrindstoneTimeout, os.time() + 72000)
 				player:addExperience(30000, true) -- 20k expa
 				--player:addAchievement('Grinding Again')
-				--player:checkGnomeRank()
 				npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
 			end

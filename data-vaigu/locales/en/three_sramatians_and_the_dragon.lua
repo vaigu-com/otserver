@@ -77,7 +77,7 @@ return {
 	["Find a way to escape the dungeons, then locate Gertrude."] = "Find a way to escape the dungeons, then locate Gertrude.",
 	["Gertrude told you that the company went to the desert. The Djinn Lord - Lambor might help you find them."] = "Gertrude told you that the company went to the desert. The Djinn Lord - Lambor might help you find them.",
 	["Lambor demanded dragon meat in exchange for information about your companions."] = "Lambor demanded dragon meat in exchange for information about your companions.",
-	["Lambor indicated that the company is by the old mine, where wyverns nest."] = "Lambor indicated that the company is by the old mine, where wyverns nest.",
+	["Lambor indicated that the company is by the old mine, where wyverns rest."] = "Lambor indicated that the company is by the old mine, where wyverns rest.",
 	["An old unjust tyrant dragged me into trouble again."] = "An old unjust tyrant dragged me into trouble again.",
 	["06. Shepherd of Rats"] = "06. Shepherd of Rats",
 	["Bilbeus mentioned that you should head to the nomad's rock."] = "Bilbeus mentioned that you should head to the nomad's rock.",

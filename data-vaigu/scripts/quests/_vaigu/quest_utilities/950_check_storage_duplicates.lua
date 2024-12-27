@@ -18,7 +18,7 @@ function checkDuplicateStoragesStartup.onStartup()
 	print("CheckDuplicateStoragesStartup")
 	findDuplicates(Storage)
 	table.sort(storageIdToCountName, function(a, b)
-		return a.count >= b.couny
+		return a.count >= b.count
 	end)
 
 	print(TableSize(storageIdToCountName))

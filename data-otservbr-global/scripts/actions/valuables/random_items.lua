@@ -61,7 +61,7 @@ local config = {
 			{ from = 7560, to = 7963, itemId = 239 },
 			{ from = 7964, to = 8317, itemId = 7443 },
 			{ from = 8318, to = 8628, itemId = 7439 },
-			{ from = 8629, to = 8932, itemId = 3035, count = 5 },
+			{ from = 8629, to = 8932, itemId = 3035, count = 5 },	
 			{ from = 8933, to = 9232, itemId = 5911 },
 			{ from = 9233, to = 9511, itemId = 7440 },
 			{ from = 9512, to = 9636, itemId = 16165 },

@@ -26,7 +26,6 @@ quest
 			Mission01 = {
 				ConsultSultanAboutAmulet = 1,
 				TradeAmuletWithSultan = 2,
-				Finished = 3,
 			},
 			Mission02 = {
 				AskSultanForFirstTask = 1,
@@ -35,7 +34,6 @@ quest
 				KillCamels = 4,
 				ProvideDampreeferWithRope = 5,
 				ReportToSultan = 6,
-				Finished = 7,
 			},
 			Mission03 = {
 				OpenCoffins = 1,
@@ -43,7 +41,6 @@ quest
 				GetRidOfAspirantRyba = 3,
 				ReportToSultan = 4,
 				AskNatanekForHelp = 5,
-				Finished = 6,
 			},
 		}
 	end)
@@ -67,15 +64,13 @@ quest
 	:Questlog(function()
 		Quests[NextQuestId()] = {
 			name = "Sultan Prime",
-			startStorageId = Storage.SultanPrime.Localizer,
-			startStorageValue = 1,
 			missions = {
 				[Storage.SultanPrime.Mission01] = {
 					name = "What Is Mafia? Is It Good?",
 					states = {
 						[QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
 						[QuestState.SultanPrime.Mission01.TradeAmuletWithSultan] = "Sultan made you an offer. Give the neclace to him to begin your mission.",
-						[QuestState.SultanPrime.Mission01.Finished] = "You returned the amulet to the Sultan and agreed to help him.",
+						[MISSION_FINISHED] = "You returned the amulet to the Sultan and agreed to help him.",
 					},
 				},
 				[Storage.SultanPrime.Mission02] = {
@@ -87,7 +82,7 @@ quest
 						[QuestState.SultanPrime.Mission02.KillCamels] = "CAMELS_KILLED_STATUS",
 						[QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope] = "You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it.",
 						[QuestState.SultanPrime.Mission02.ReportToSultan] = "Sultan will be pleased with your actions. Return to him for your reward.",
-						[QuestState.SultanPrime.Mission02.Finished] = "Sultan rewarded you for your cooperation.",
+						[MISSION_FINISHED] = "Sultan rewarded you for your cooperation.",
 					},
 				},
 				[Storage.SultanPrime.Mission03] = {
@@ -98,7 +93,7 @@ quest
 						[QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba] = "~Sultan69: It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut.",
 						[QuestState.SultanPrime.Mission03.ReportToSultan] = "~Sultan69: How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!",
 						[QuestState.SultanPrime.Mission03.AskNatanekForHelp] = "Sultan ordered you to.. You can go to Father Natanek and ask him for redemption.",
-						[QuestState.SultanPrime.Mission03.Finished] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
+						[MISSION_FINISHED] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
 					},
 				},
 			},
@@ -390,7 +385,7 @@ quest
 				end
 
 				player:AddItems({ QuestKeyItems.SultanPrime.Amulet })
-				player:UpdateStorages(neckUpdateStorages)
+				player:NextState(neckUpdateStorages)
 				return true
 			end
 			corpse:aid(Storage.SultanPrime.Necklace)
@@ -676,7 +671,7 @@ quest
 					player:RefreshStorage(Storage.SultanPrime.Mission02)
 
 					if player:getStorageValue(Storage.SultanPrime.DromedaryCount) >= requiredCamelKills then
-						player:UpdateStorages(updateStorages)
+						player:NextState(updateStorages)
 					end
 				end)
 				return true
@@ -951,7 +946,7 @@ quest
 				text = "Here, this is your reward.",
 				nextState = {
 					[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,
-					[Storage.Finished.SultanPrime] = 1,
+					[Storage.Finished.SultanPrime] = MISSION_FINISHED,
 				},
 				rewards = { { id = 3043, count = 2 } },
 				expReward = 800000,

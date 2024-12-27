@@ -12,66 +12,7 @@ local dialogs = {
 			textNoRequiredItems = "Thats unfortunate.",
 		},
 	},
-	[Storage.StickyBeginning.TrollskyAsked] = {
-		[{ max = 0 }] = {
-			[{ "help", "pomoc" }] = {
-				text = "Well I do need some help. Wood delivery from Knurow is already delayed for two days, and currently I can't check why..",
-				requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
-				nextState = {
-					[Storage.StickyBeginning.TrollskyAsked] = 1,
-					[Storage.StickyBeginning.Discernment] = "+1",
-				},
-				textNoRequiredState = "Better visit Commissioner Fisher first.",
-			},
-		},
-	},
-	[Storage.StickyBeginning.RewardState] = {
-		[{ max = 0 }] = {
-			[{ "topor", "axe" }] = {
-				text = "Here is your axe. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
-				rewards = { { id = 3344 } },
-			},
-			[{ "miecz", "sword" }] = {
-				text = "Here is your sword. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
-				rewards = { { id = 2117 } },
-			},
-			[{ "obuch", "club" }] = {
-				text = "Here is your club. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
-				rewards = { { id = 7387 } },
-			},
-			[{ "spellbook", "ksiazka" }] = {
-				text = "Here is your spellbook. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.LocalSupport.WoodDelivery] = _38f },
-				rewards = { { id = 7387 } },
-			},
-			[{ "belty" }] = {
-				text = "Visit Lebesgue for this reward, and then meet Fstab. He should provide you some supplies.",
-			},
-		},
-	},
-	[Storage.StickyBeginning.WoodDelivery] = {
-		[6] = {
-			[{ "nagroda", "reward" }] = {
-				text = "You got your reward already, visit Fstab for a potion supply.",
-				nextTopic = 1,
-				requiredState = {
-					[Storage.StickyBeginning.RewardState] = { [">"] = 0 },
-				},
-				textNoRequiredState = "You got your reward already, visit Fstab for a potion supply.",
-			},
-		},
-	},
 }
-
-
-
 local voices = {
 	interval = 15000,
 	chance = 50,

@@ -64,7 +64,7 @@ return {
 	["05. Enqueued for a Genocide"] = "05. Enqueued for a Genocide",
 	["Romek told you where to start looking for frog cult altar."] = "Romek told you where to start looking for frog cult altar.",
 	["You defeated the Skurwiwij. Report back to Romek."] = "You defeated the Skurwiwij. Report back to Romek.",
-	["Ask Xena for possible usage for Grazhenacore."] = "Ask Xena for possible usage for Grazhenacore.",
+	["Ask Xena for possible usage of Grazhenacore."] = "Ask Xena for possible usage of Grazhenacore.",
 	["06. Sic transit gloria mundi"] = "06. Sic transit gloria mundi",
 	["Try to find Grazhena deep under Hero caves."] = "Try to find Grazhena deep under Hero caves.",
 	["Rat Bum ran away to his cave. Chase him!"] = "Rat Bum ran away to his cave. Chase him!",

@@ -1390,7 +1390,8 @@ quest
 						actionid = Storage.DesertQuestOne.Rewards.FinalExpBox,
 						expReward = 1000 * 1000 * 1,
 						rewards = {},
-						nextState = { [Storage.Finished.DesertQuestOne] = 1 },
+						nextState = { 
+							[Storage.Finished.DesertQuestOne] = MISSION_FINISHED },
 					},
 				},
 			}

@@ -64,7 +64,7 @@ return {
 	["05. Enqueued for a Genocide"] = "05. W kolejce po ludobojstwo",
 	["Romek told you where to start looking for frog cult altar."] = "Romek powiedzial ci gdzie zaczac poszukiwania oltarzu weza.",
 	["You defeated the Skurwiwij. Report back to Romek."] = "Pokonales skurwiwija. Wroc do romka, aby omowic dotychczasowy postep.",
-	["Ask Xena for possible usage for Grazhenacore."] = "Zapytaj Xene o mozliwe zastosowanie grazynacore.",
+	["Ask Xena for possible usage of Grazhenacore."] = "Zapytaj Xene o mozliwe zastosowanie grazynacore.",
 	["06. Sic transit gloria mundi"] = "06. Sic transit gloria mundi",
 	["Try to find Grazhena deep under Hero caves."] = "Znajdz grazyne. Moze byc uwieziona pod lochami bohatyrow.",
 	["Rat Bum ran away to his cave. Chase him!"] = "Zul szczurow uciekl do swojej jaskini. Gon go!",

@@ -90,11 +90,17 @@ setmetatable(Localizer, {
 	end,
 })
 
-function Localizer:Get(str)
-	if not str then
+---@param translateMe string|table
+function Localizer:Get(translateMe)
+	if not translateMe then
+		logger.warn(debug.traceback("[Localizer::Get] Trying to translate nil"))
 		return nil
 	end
-	local translated = Translated(str, self.player, self.questId)
+	if type(translateMe) == "table" then
+		translateMe = translateMe[math.random(1, #translateMe)]
+	end
+
+	local translated = Translated(translateMe, self.player, self.questId)
 	self.translated = Evaluate(translated, self.context)
 	return self.translated
 end

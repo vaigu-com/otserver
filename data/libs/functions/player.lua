@@ -129,6 +129,23 @@ function Player.hasAllowMovement(self)
 	return blockMovement ~= 1
 end
 
+--Vaigu custom
+function Player.checkGnomeRank(self)
+	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
+	if questProgress >= 30 then
+		return
+	end
+
+	self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+	self:addAchievement("Gnome Little Helper")
+	self:addAchievement("Gnome Friend")
+	self:addAchievement("Gnomelike")
+	self:addAchievement("Honorary Gnome")
+	self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
+	return true
+end
+
+--[[
 function Player.checkGnomeRank(self)
 	if not IsRunningGlobalDatapack() then
 		return true
@@ -169,6 +186,7 @@ function Player.checkGnomeRank(self)
 	end
 	return true
 end
+]]
 
 function Player.addFamePoint(self)
 	local points = self:getStorageValue(SPIKE_FAME_POINTS)

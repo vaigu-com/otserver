@@ -109,7 +109,7 @@ TRANSPORT_ROUTES = {
 		{ toPos = Position(6044, 1282, 3), name = "Zasrane" },
 	},
 	REDBEARD_SHIP = {
-		{ toPos = Position(6288, 1320, 6), name = "Wyrm Cliffs" },
+		{ toPos = Position(6335, 1357, 6), name = "Wyrm Cliffs" },
 		{ toPos = Position(), name = "Pirate Island" },
 		{ toPos = Position(5689, 1465, 6), name = "Phantom Port" },
 		{ toPos = Position(5701, 1832, 7), name = "South knurow 39f"},

@@ -810,6 +810,7 @@ NPC_UNIVERSAL_DIALOGS = {
 			text = "TRANSFER_CANCEL",
 			requiredTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 		},
+		--3af
 		--change money
 		--guild balance
 		--guild deposit

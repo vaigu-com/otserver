@@ -72,7 +72,7 @@ end
 local topic = {}
 local renown = {}
 
-local dialog = {
+local config = {
 	["supply"] = { itemid = 15698, token = { type = "minor", id = 16128, count = 2 } },
 	["muck"] = { itemid = 16101, token = { type = "minor", id = 16128, count = 2 } },
 	["mission"] = { itemid = 16242, token = { type = "minor", id = 16128, count = 10 } },
@@ -181,7 +181,6 @@ local function creatureSayCallback(npc, creature, type, message)
 			local player = Player(creature)
 			if player:removeItem(16128, renown[playerId]) then
 				player:setStorageValue(Storage.BigfootBurden.Rank, math.max(0, player:getStorageValue(Storage.BigfootBurden.Rank)) + renown[playerId] * 5)
-				player:checkGnomeRank()
 				npcHandler:say("As you wish! Your new renown is {" .. player:getStorageValue(Storage.BigfootBurden.Rank) .. "}.", npc, creature)
 			else
 				npcHandler:say("You don't have these many tokens.", npc, creature)

@@ -269,7 +269,7 @@ local toolToCorpseIdToSpecialAction = {
 	[18034] = onHumanSkinning,
 	[18037] = onHumanSkinning,
 	--#endregion
-	[CONST_FIREWORK_ITEMID_DISASSEMBLE] = function(player, corpse, corpseId, corpseData, roll)
+	[30329] = function(player, corpse, corpseId, corpseData, roll)
 		stopEvent(corpse:getCustomAttribute("event"))
 		player:addItem(corpse:getCustomAttribute("id"), 1)
 		corpse:remove()

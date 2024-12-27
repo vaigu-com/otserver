@@ -1,16 +1,5 @@
-local internalNpcName = "GM Romek"
-local npcType = Game.createNpcType(internalNpcName)
-local npcConfig = {}
-
-npcConfig.name = internalNpcName
-npcConfig.description = internalNpcName
-
-npcConfig.health = 100
-npcConfig.maxHealth = npcConfig.health
-npcConfig.walkInterval = 3000
-npcConfig.walkRadius = 2
-
-npcConfig.outfit = {
+local name = "GM Romek"
+local outfit = {
 	lookType = 144,
 	lookHead = 59,
 	lookBody = 115,
@@ -18,36 +7,7 @@ npcConfig.outfit = {
 	lookFeet = 97,
 	lookAddons = 0,
 }
-
-npcConfig.flags = { floorchange = false }
-
-local keywordHandler = KeywordHandler:new()
-local npcHandler = NpcHandler:new(keywordHandler)
-
-npcType.onThink = function(npc, interval)
-	npcHandler:onThink(npc, interval)
-end
-
-npcType.onAppear = function(npc, creature)
-	npcHandler:onAppear(npc, creature)
-end
-
-npcType.onDisappear = function(npc, creature)
-	npcHandler:onDisappear(npc, creature)
-end
-
-npcType.onMove = function(npc, creature, fromPosition, toPosition)
-	npcHandler:onMove(npc, creature, fromPosition, toPosition)
-end
-
-npcType.onSay = function(npc, creature, type, message)
-	npcHandler:onSay(npc, creature, type, message)
-end
-
-npcType.onCloseChannel = function(npc, creature)
-	npcHandler:onCloseChannel(npc, creature)
-end
-
+--[[
 local unusedDialogs = {
 	[Storage.BigKlamoty.Localizer] = {
 		[Storage.BigKlamoty.Mission01] = {
@@ -111,16 +71,15 @@ local unusedDialogs = {
 		-- [4] gadamy z X w retro mirko (domek na zachodzie). X mowi, ze jezeli chcemy wiecej informacji o oszuscie, to mamy poszukac w bibliotece pod temple. X przekupil kiedys natanka, aby ten wyjawil mu sposob wejscia do katakumb. Musimy uzyc mechanizmu w zagarku z kukulka, w bardzo konkretny sposob. Musisz wciskac kukulke w odpowiednich momentach: najpierw wcisnij dwa razy, gdy jest godzina parzysta, nastepnie raz, gdy jest nieparzysta, nastepnie znow dwa razy gdy jest parzysta. Na koniec wez aktualna minute, podnies do kwadratu, podziel przez liczbe o jeden wieksza od aktualnej minuty. Jesli reszta z tego dzielenia jest rowna 1, wcisnij przycisk. Jesli to wykonasz, to przejdz w lewy dolny rog pokoju, i sproboj zgasic lampe. Wtedy mechanizm otworzy pod toba dziure i wpadniesz do katkumb.
 		-- [5] znajdujemy archiwum z X, a w nim dokument w jezyku jaszczuroludzi
 		-- [6] rozmawiamy z gerturda, ktora tlumaczy nam dokument. Dokument mowi o pol-bogu ktory stworzyl niegdys 7 hoecruxow. Musimy je wszystkie zniszczyc
-		--[[
-			Marmelade jar of strawberries / Marmolada truskawkowa
+		
+		Marmelade jar of strawberries / Marmolada truskawkowa
 			Allergen of the Titans / Alergen Tytanow
 			Rose of Winds / Roza wiatrow
 			Article of times / Artykul czasu
 			Hemoglobin of last mohican / Hemoglobina ostatniego Mohikanina
 			Instrument of havoc / Instrument spustoszenia
 			Number of madness / Numer do diabla
-		]]
-
+			
 		-- UNUSED: Tak, to ostatecznie potwierdza, ze ktos podszywal sie pod Szczura Krolow, a pozniej udawal, ze zmienil sie w Janusza Gwiezdnego. Pamietasz jak wyslal cie na planete Hugo Bossa? Mysle, ze robil wtedy cos wymagajacego dyskrecji, dlatego wyslal cie tak daleko. Chwila.. przeciez Krol Jaszczurow wspominal cos o Hoecruxach. Byc moze zajmowal sie tworzeniem ich w tym czasie?
 		[7] = {
 			[{ "" }] = {
@@ -129,21 +88,12 @@ local unusedDialogs = {
 		},
 	},
 }
+]]
 
-local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialog, npcHandler, npc)
-	return true
-end
-
-local function creatureSayCallback(npc, creature, type, msg)
-	if not npcHandler:checkInteraction(npc, creature) then
-		return false
-	end
-	return TryResolveDialog(creature, dialog, npcHandler, npc)
-end
-
-npcHandler:setCallback(CALLBACK_GREET, greetCallback)
-npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
-
-npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
-npcType:register(npcConfig)
+local context = {
+	name = name,
+	outfit = outfit,
+	dialogs = dialogs,
+	voices = voices,
+}
+NpcRegistry:AppendNpcData(context)

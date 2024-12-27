@@ -27,7 +27,7 @@ end
 ---@param voices table? orange color text that npc may or may not say from time to time
 function RegisterNpcDefinition(npc)
 	local name = npc.internalNpcName or npc.name
-	local displayName = npc.npcName or npc.displayname or name
+	local displayName = npc.npcName or npc.displayname or npc.displayName or name
 	local onlookName = npc.npcDescription or npc.onlookname or ("a " .. name)
 
 	local greetJob = npc.greetJob
@@ -36,6 +36,7 @@ function RegisterNpcDefinition(npc)
 	local npcSpecificDialogs = npc.dialogs
 	local customShop = npc.shop
 	local voices = npc.voices
+	local currency = npc.currency or npc.shopCurrency
 
 	local jobShop, jobUniversalDialogs = getJobConfigs(jobs)
 	--ToDo: check if this should be indeed removed
@@ -52,6 +53,8 @@ function RegisterNpcDefinition(npc)
 
 	local npcConfig = {}
 	npcConfig.shop = totalShop
+	npcConfig.currency = currency
+
 	npcConfig.dialogs = allDialogs
 
 	npcConfig.name = displayName or name
@@ -110,12 +113,12 @@ function RegisterNpcDefinition(npc)
 	-- On look at npc shop item
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
-	local function greetCallback(npc, creature, type, message)
+	local greetCallback = npc.greetCallback or function(npc, creature, type, message)
 		InitializeResponses(creature, npcConfig.dialogs, npcHandler, npc)
 		return true
 	end
 
-	local function creatureSayCallback(npc, creature, type, msg)
+	local creatureSayCallback = npc.creatureSayCallback or function(npc, creature, type, msg)
 		if not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end

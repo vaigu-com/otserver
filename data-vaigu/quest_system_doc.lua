@@ -1,4 +1,6 @@
-do return end
+do
+	return
+end
 -- Terminology:
 --  processing: The npc system is going through all npc dialogs and determines if player meets the requirement for the dialogs
 --  discarded: A dialog processing has been cancelled and another dialog will be processed
@@ -71,17 +73,17 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
 			nextTopic = QuestTopics.JOB_TOPICS.confirmWithdrawing,
 		},
-		[{"yes","tak"}] = {
+		[{ "yes", "tak" }] = {
 			text = "YOU_WITHDREW_MONEY",
-		}
+		},
 	}
 	translationTable = { -- locales
 		["WOULD_YOU_LIKE_TO_WITHDRAW"] = function(context)
 			return T("Would you like to withdraw :amount:?", { amount = context.amount })
 		end,
-		["YOU_WITHDREW_MONEY"] = function (context)
+		["YOU_WITHDREW_MONEY"] = function(context)
 			return T("Would you like to withdraw :amount:?", { amount = context.lastMessageData.amount })
-		end
+		end,
 	}
 
 	-- Specifies the topic to be set for this Dialog on success-resolve
@@ -382,7 +384,7 @@ local function exampleNpc()
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate
 			[{ "secret code" }] = { text = "okkk" },
-			[{GREET}] = {text = "Hello."}
+			[ GREET ] = { text = "Hello." },
 		},
 		-- Quest dialogs main storage that determines required state
 		[Storage.CatBranchman.Questline] = {
@@ -499,86 +501,16 @@ local function exampleNpc()
 	npcType:register(npcConfig)
 end
 
--- Example of npc that is generated using this npc-specific dialogs (quests etc.) combined with template job
--- In this example the JOB_FOOD is used, so npc will have all dialgues and shop offer defined in JOB_FOOD template
--- Dialogs defined in "local dialogs" can override the template dialogs in case of conflicts. Example of overriding a greet message below
+-- Example of npc that is generated using this npc-specific dialogs (quests etc.) combined with job from a template
+-- In this example the JOB_FOOD is used, so npc will have all dialogs and shop offer defined in JOB_FOOD template
+-- Dialogs defined in "local dialogs = {" can override the template dialogs in case of conflicts. Example of overriding a greet message below
 local function exampleNpcFromGenerator()
 	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
 			-- Warning! This wont override the greet dialog from template
 			-- Set "context.greetJob" below to nil if you dont want that job greet and define it yourself like below
-			[{ GREET }] = {
-				text = "Hello, my name is walmart007",
-			},
-		},
-		[Storage.StickyBeginning.WalmartAsked] = {
-			[-1] = {
-				[{ "help", "pomoc" }] = {
-					text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-					requiredState = { [Storage.StickyBeginning.Discernment] = 2 },
-					nextState = {
-						[Storage.StickyBeginning.WalmartAsked] = 1,
-						[Storage.StickyBeginning.Discernment] = "+1",
-					},
-					textNoRequiredState = "It's alright, I don't need any help.",
-				},
-			},
-		},
-		[Storage.LocalSupport.FreakingRats] = {
-			[-1] = {
-				[{ "help", "pomoc" }] = {
-					text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-					requiredState = {
-						[Storage.StickyBeginning.WalmartAsked] = 1,
-					},
-				},
-				[{ "szczur", "szczurow", "rat", "rats" }] = {
-					text = "I still have rats in the warehouse. I need some poison to get rid of them.",
-					requiredState = {
-						[Storage.StickyBeginning.WalmartAsked] = 1,
-					},
-					nextState = { [Storage.LocalSupport.FreakingRats] = 1 },
-				},
-			},
-			[{ min = 1, max = 3 }] = {
-				[{ "help", "pomoc" }] = {
-					text = "Well, I'm waiting for this poison that will help me exterminate the rats.",
-				},
-			},
-			[3] = {
-				[{
-					"szczur",
-					"szczury",
-					"pomoc",
-					"rat",
-					"rats",
-					"help",
-					"trucizna",
-					"trutka",
-				}] = {
-					text = "Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
-					rewards = {
-						{ id = 9087 },
-						{ id = 25732 },
-						{ id = 6392 },
-					},
-					expReward = 50000,
-					requiredItems = { { id = 3120 } },
-					nextState = { [Storage.LocalSupport.FreakingRats] = 4 },
-				},
-			},
-			[{ min = 4 }] = {
-				[{ "help", "pomoc" }] = {
-					text = "It's alright, I don't need any help.",
-				},
-			},
-			[4] = {
-				[{ "szczur", "szczurow", "rat", "rats" }] = {
-					text = "Rats are gone, thanks again.",
-				},
-				[{ "flaszke", "flaszka", "flask" }] = {
-					text = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",
-				},
+			[GREET] = {
+				text = "Hello, my name is walmart007", --Default job greeting can be something like "Hello, would you like to nab some groceries?"
 			},
 		},
 	}

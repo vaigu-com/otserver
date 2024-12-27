@@ -1,16 +1,5 @@
-local internalNpcName = "Fat Myrrus"
-local npcType = Game.createNpcType(internalNpcName)
-local npcConfig = {}
-
-npcConfig.name = internalNpcName
-npcConfig.description = internalNpcName
-
-npcConfig.health = 100
-npcConfig.maxHealth = npcConfig.health
-npcConfig.walkInterval = 2000
-npcConfig.walkRadius = 2
-
-npcConfig.outfit = {
+local name = "Fat Myrrus"
+local outfit = {
 	lookType = 251,
 	lookHead = 114,
 	lookBody = 88,
@@ -18,37 +7,7 @@ npcConfig.outfit = {
 	lookFeet = 88,
 	lookAddons = 0,
 }
-
-npcConfig.flags = { floorchange = 0 }
-
-local keywordHandler = KeywordHandler:new()
-local npcHandler = NpcHandler:new(keywordHandler)
-
-npcType.onThink = function(npc, interval)
-	npcHandler:onThink(npc, interval)
-end
-
-npcType.onAppear = function(npc, creature)
-	npcHandler:onAppear(npc, creature)
-end
-
-npcType.onDisappear = function(npc, creature)
-	npcHandler:onDisappear(npc, creature)
-end
-
-npcType.onMove = function(npc, creature, fromPosition, toPosition)
-	npcHandler:onMove(npc, creature, fromPosition, toPosition)
-end
-
-npcType.onSay = function(npc, creature, type, message)
-	npcHandler:onSay(npc, creature, type, message)
-end
-
-npcType.onCloseChannel = function(npc, creature)
-	npcHandler:onCloseChannel(npc, creature)
-end
-
-npcConfig.voices = {
+local voices = {
 	interval = 15000,
 	chance = 50,
 	{ text = "Haha tak na prawde nie jestem gruby!" },
@@ -57,18 +16,13 @@ npcConfig.voices = {
 	{ text = "Jak mnie denerwuja te limity na wpisy ehh" },
 	{ text = "W moim sercu tylko guwnowpis!" },
 }
-
--- ToDo: add encounters descriptions
-GRUBY_MIREK_ENCOUNTERS = { { name = "KRAKEN" } }
-
-
-local dialog = {
+local dialogs = {
 	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
-		[{ GREET }] = {
+		[GREET] = {
 			text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
 		},
-		[{ WALKAWAY }] = { text = "SoldierWalkaway" },
-		[{ "informacja", "information" }] = {
+		[WALKAWAY] = { text = "SoldierWalkaway" },
+		[{ "informacja", "information", "informations" }] = {
 			text = "Far to the west there is small village called Knurowo. You need to be aware of elves and bandits if you want to go there. To the south west there is main farm of our town, and some hills inhabited by amazons and goblins to the north.",
 		},
 		[{ "goldblum" }] = {
@@ -80,21 +34,10 @@ local dialog = {
 		}] = { text = "Yeah, you got it!" },
 	},
 }
-
-local function greetCallback(npc, creature, type, message)
-	InitializeResponses(creature, dialog, npcHandler, npc)
-	return true
-end
-
-local function creatureSayCallback(npc, creature, type, msg)
-	if not npcHandler:checkInteraction(npc, creature) then
-		return false
-	end
-	return TryResolveDialog(creature, dialog, npcHandler, npc)
-end
-
-npcHandler:setCallback(CALLBACK_GREET, greetCallback)
-npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
-
-npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
-npcType:register(npcConfig)
+local context = {
+	name = name,
+	outfit = outfit,
+	dialogs = dialogs,
+	voices = voices,
+}
+NpcRegistry:AppendNpcData(context)

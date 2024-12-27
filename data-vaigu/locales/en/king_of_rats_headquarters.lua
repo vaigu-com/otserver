@@ -21,7 +21,7 @@ return {
 	["Cultivator of ULTIMATENESS. The King of Rats might be intersted in it."] = "Cultivator of ULTIMATENESS. The King of Rats might be intersted in it.",
 	-- King of Rats Headquarters
 	["King of Rats Headquarters"] = "King of Rats Headquarters",
-	["CurentStatus"] = "Current status",
+	["Current HeadQuarters status"] = "Current status",
 	["01. to Ryan"] = "01. to Ryan",
 	["02. to Sweaty Cyclops"] = "02. to Sweaty Cyclops",
 	["03. to Djinns"] = "03. to Djinns",

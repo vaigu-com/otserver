@@ -52,8 +52,8 @@ InstantTravel({ positions = { Position(6233, 1034, 7), Position(6382, 914, 7) } 
 InstantTravel({ positions = { Position(6668, 1123, 8), Position(6560, 1082, 9) } }):Register()
 --Chester caves 2
 InstantTravel({ positions = { Position(6606, 1079, 12), Position(6649, 1108, 10) } }):Register()
---Knurowo south bandits, giant spiders
-InstantTravel({ positions = { Position(5670, 1726, 7), Position(5708, 1752, 7) } }):Register()
+--Wyvern cliffs, Killer bunny peninsula
+InstantTravel({positions = { Position(6308, 1464, 7),Position(6259, 1396, 7)}}):Register()
 
 local posToData = {}
 
