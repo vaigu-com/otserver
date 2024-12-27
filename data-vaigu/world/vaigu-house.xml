@@ -290,6 +290,7 @@
 	<house name="Jaszczurza 1/7" houseid="444" entryx="7034" entryy="766" entryz="5" rent="2300" townid="3" size="27" clientid="0" beds="0" />
 	<house name="Jaszczurza 1/8" houseid="445" entryx="7034" entryy="767" entryz="5" rent="2300" townid="3" size="26" clientid="0" beds="0" />
 	<house name="Sklepowa 4" houseid="446" entryx="5848" entryy="1574" entryz="6" rent="2000" townid="1" size="29" clientid="0" beds="0" />
+	<house name="Cela wiezienna 1" houseid="447" entryx="5809" entryy="1510" entryz="6" rent="600" townid="1" size="5" clientid="0" beds="0" />
 	<house name="Cela wiezienna 2" houseid="448" entryx="5809" entryy="1510" entryz="6" rent="600" townid="1" size="5" clientid="0" beds="0" />
 	<house name="Cela wiezienna 3" houseid="449" entryx="5812" entryy="1510" entryz="6" rent="600" townid="1" size="5" clientid="0" beds="0" />
 	<house name="Cela wiezienna 4" houseid="450" entryx="5812" entryy="1510" entryz="6" rent="600" townid="1" size="5" clientid="0" beds="0" />
@@ -312,5 +313,4 @@
 	<house name="Palac 7" houseid="467" entryx="6707" entryy="1345" entryz="6" rent="2400" townid="2" size="47" clientid="0" beds="0" />
 	<house name="Palac 8" houseid="468" entryx="6707" entryy="1348" entryz="6" rent="2400" townid="2" size="48" clientid="0" beds="0" />
 	<house name="Palac" houseid="469" entryx="6691" entryy="1250" entryz="6" rent="20000" guildhall="true" townid="2" size="412" clientid="0" beds="0" />
-	<house name="Cela wiezienna 1" houseid="471" entryx="5809" entryy="1510" entryz="6" rent="0" townid="1" size="2" clientid="0" beds="0" />
 </houses>
