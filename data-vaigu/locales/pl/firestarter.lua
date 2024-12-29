@@ -12,4 +12,18 @@ return {
 	["It was great! I already can see that smoke I'll be breathing in.\nTake this weapon for your achievements, you will be able to burn more stuff with it.\nThat was fun! See you!"] = "Eeeekstra to bylo, z daleka widze ten dym ktory zaraz bede wdychac.\nTrzymaj za swoje zaslugi bron, ktora bedziesz mogl wszystko zawsze podpalac.\nDzieki za zabawe, do zobaczenia!",
 	["It burns so nice, word. I'm hoping that guards won't get too high xD\nI see that you liked it, if you want to burn some more just {ask}. You can keep the lighter if it hasn't exploded yet."] = "Zajebiscie sie jara stary, mam nadzieje ze straznicy sie zbyt nie spala xD.\nWidze ze ci sie to spodobalo, jak bedziesz miec ochote to pytaj, cos jeszcze podpalimy.",
 	["I knew i can count on you. Just be careful with that stuff!"] = "Wiedzialem ze moge na ciebie liczyc, uwazaj tylko na ten stuff.",
+	--Questlog
+	["Firestarter"] = "Firestarter",
+	["Mission 1: Fiery Beginnings"] = "Misja 1: Ogniste Poczatki",
+	["Hymel asked you to burn down the herbs he left on his house on north side of MikroTown."] = "Hymel poprosil cie o spalenie ziola, ktore zostalo w jego chacie na polnocy miasta.",
+	["You burnt the herbs, now talk again with Hymel."] = "Ziolo poszlo z dymem, powiedz to Hymelowi.",
+	["Hymel gave you an incendiary firebug. From now on you can buy more firebugs from him."] = "Hymel zostawil Ci zapalniczke, ktora od teraz mozesz od niego kupic.",
+	["Mission 2: Little Treat"] = "Misja 2: Maly Psikus",
+	["Hymel want to mischief the local guards, by setting an old tree on fire. You can find it near their resting camp."] = "Hymel pomyslal, ze straznicy sie wkurza jak podpalisz konar drzewa w ich miejscowce.",
+	["You did it, the guards didn't even notice, go back and see Hymel."] = "Udalo sie, straznicy cie nie pojmali, zamelduj o tym.",
+	["In return for your help, Hymel gave you the staff of a real reefer."] = "W zamian za pomoc, Hymel wreczyl ci laske prawdziwego jaracza.",
+	["Mission 3: How High"] = "Misja 3: Najarane miasto",
+	["Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug."] = "Hymel opowiedzial ci o tym, jak kiedys z ziomkami zasiali 5 mocnych ziol, niestety nie pamieta gdzie, a wygladaja jak zwykle czerwone kwiatki. Odnajdz je i spal.",
+	["The smell of weed is now around the whole city, you managed to burn all the flowers."] = "Cale miasto jest na haju, udalo ci sie spalic wszystkie kwiaty.",
+	["Hymel declared you a true pyromaniac and gave you his arsonist weapon."] = "Hymel zrobil z ciebie prawdziwego piromana oraz dal Ci swoja bron podpalacza.",
 }

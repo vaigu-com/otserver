@@ -5,7 +5,6 @@ quest
 		Storage.DailyTasks = {
 			DailyTaskInfo = NextStorage(),
 			DailyLimit = NextStorage(),
-			DailyTasksNumber = 3,
 			LastResetTimestamp = NextStorage(),
 			Board = NextStorage(),
 		}

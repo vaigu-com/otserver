@@ -40,7 +40,7 @@ function LoadStartupMonsters(monsters, anchor)
 	end
 end
 
-local function createCustomItemOnMap(context)
+local function createCustomItemOnMap(context, anchor)
 	local id = context.id
 	local count = context.count
 	local aid = context.aid
@@ -51,7 +51,7 @@ local function createCustomItemOnMap(context)
 	local pos = context.pos
 	local item = Game.createItem(id, count, pos)
 	if not item then
-		logger.warn(T("Cannot create item :id:, on position (:x:, :y:, :z:)", { id = id, x = pos.x, y = pos.y, z = pos.z }))
+		logger.warn(T("Cannot create item :id:, on position (:x:, :y:, :z:), anchor: :anchor:", { id = id, x = pos.x, y = pos.y, z = pos.z, anchor = (anchor or Position(0, 0, 0)):ToString() }))
 		return
 	end
 	if context.immovable == true then
@@ -118,7 +118,7 @@ local function loadStartupItem(itemConfig, anchor)
 	local context = normalizeItemData(itemConfig, anchor)
 
 	if context.pos then
-		createCustomItemOnMap(context)
+		createCustomItemOnMap(context, anchor)
 	end
 	if context.aid and context.aid ~= 0 then
 		CustomItemRegistry:Register(context)

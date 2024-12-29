@@ -8,4 +8,25 @@ return {
 	["Ahh yes, something to do? I'm going for annual meeting for cannibals and I need to prepare some meals, so I won't come empty handed.\nSo If you know secret skinning techniques already you can help me to gather ingredients. Bring me 15 human hearts."] = "Aaa tak, cos do roboty? Wybieram sie na coroczne zebranie Kanibali i musze przygotowac jakies jedzonka, zeby nie pokazywac sie z pustymi rekami.",
 	["You need to be more careful, some of them are really creased..\nWait, that one is a liver and it looks like it belonged to an alcoholic. Despite that I'm inviting you to the cannibals club. Take this uniform! Take also my vest in gratitude, I'm not using it anymore."] = "Musisz bardziej uwazac wyciagajac je, bo niektore niezle pogniecione.",
 	["Come back when you get 15 hearts"] = "Wroc, gdy zdobedziesz 15 serc.",
+	--Questlog
+	["The Silence of the Lambs"] = "Milczenie Owiec",
+	["The test of Strength"] = "Proba sily",
+	["Lecter asked you for 5 vampire teeth."] = "Lecter poprosil cie o 5 wampirzych zebow.",
+	["In exchange for your help, Lecter bestowed you with his old soul-extraction tool."] = "W zamian za wykazanie sie, Lecter podarowal ci stary przyrzad do wyciagania dusz.",
+	["Fashionista clothes"] = "Modne ubrania",
+	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter poprosil cie o przyniesienie po 20 skor kazdego rodzaju.",
+	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
+	["Rub Meat With Lecter"] = "Gotuj z Lecterem",
+	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
+		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
+	end,
+	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "W zamian za przysluge, zostales przyjety do klubu kanibali, i zyskales ich stroj.",
+	["Hearts collected"] = "Ludzkie serca",
+	["Hearts collected Status"] = function(context)
+		return string.format("Liczba uzbieranych serc: %d / 15", context.player:getStorageValue(11074))
+	end,
+	["Livers collected"] = "Ludzkie watroby",
+	["Livers collected Status"] = function(context)
+		return string.format("Liczba uzbieranych watrob: %d / 20", context.player:getStorageValue(11075))
+	end,
 }

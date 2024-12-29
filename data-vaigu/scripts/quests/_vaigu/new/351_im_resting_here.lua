@@ -130,7 +130,7 @@ quest
 	:State(
 		QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
 		QuestFactory.StartupItems({
-			{ pos = { 6712, 1408, 13 }, id = 3204, aid = Storage.ImRestingHere.Corpse },
+			{ pos = { 6644, 1212, 13}, id = 3204, aid = Storage.ImRestingHere.Corpse },
 		}),
 		QuestFactory.Script(function(missionState)
 			local updateStorages = {

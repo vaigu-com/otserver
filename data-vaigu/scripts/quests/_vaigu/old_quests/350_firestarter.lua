@@ -3,16 +3,16 @@ local quest = Quest(LOCALIZERS.Firestarter)
 quest
 	:Storage(function()
 		Storage.Firestarter = {
-			Mission01 = 11009,
-			FirebugHaystack = 11010,
-			HayStack = 11013,
+			Mission01 = NextStorage(),
+			FirebugHaystack = NextStorage(),
+			HayStack = NextStorage(),
 
-			Mission02 = 11011,
-			FirebugTree = 11012,
-			Tree = 11013,
+			Mission02 = NextStorage(),
+			FirebugTree = NextStorage(),
+			Tree = NextStorage(),
 
-			Mission03 = 11014,
-			FirebugFlowers = 11015,
+			Mission03 = NextStorage(),
+			FirebugFlowers = NextStorage(),
 			Flowers = {
 				Flower01 = 11016,
 				Flower02 = 11017,
@@ -26,7 +26,7 @@ quest
 				BurnHayStack = 1,
 				ReportToHymel = 2,
 				AskForNewMission = 3,
-							},
+			},
 			Mission02 = {
 				SetGuardTreeOnFire = 1,
 				ReportToHymel = 2,
@@ -35,7 +35,7 @@ quest
 			Mission03 = {
 				FindAndIgniteFlowers = 1,
 				ReportToHymel = 2,
-							},
+			},
 		}
 		QuestTopics.Firestarter = {
 			AcceptGuardTreeQuest = NextTopic(),

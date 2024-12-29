@@ -225,6 +225,12 @@ local function normalizeQuestlogData()
 			mission.maxState = mission.maxState or #(mission.states or {})
 			mission.finishedState = mission.finishedState or mission.maxState
 			mission.storage = storage
+			for _, desc in pairs(mission.states or {}) do
+				if type(desc) == "string" then
+					translatedFromAnyQuest(desc,"EN", quest.localizer)
+					translatedFromAnyQuest(desc,"PL", quest.localizer)
+				end
+			end
 		end
 	end
 end

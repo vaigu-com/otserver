@@ -9,6 +9,7 @@ local directionToString = {
 	[DIRECTION_NORTHWEST] = "polnocny wschod",
 }
 return {
+	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (ukonczone)",
 	["GO_IN_DIRECTION"] = function(context)
 		local dir = context.direction
 		if dir == DIRECTION_NONE then
@@ -253,10 +254,8 @@ return {
 	["Here are your wildcards!"] = "Prosze, oto twoje wildcardy!",
 	["Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}."] = "Witam witam 100% pozytywnych transakcji, zapraszam do zakupow!",
 	["Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road."] = "Drewno, drewno, mialo byc juz 2 dni temu, znowu pewnie jakas afera w Knurowie ze nie da sie przejechac.",
-	["There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to find for me who is responsible for stealing my furnitures?"] = "Jest problem, z ktorym moglbys mi pomoc. Z moich magazynow zaczely znikac gotowe meble.\nWiem, ze to nie sprawka mafii Waskiego, bo oni drewno wykorzystuja do innych celow, i nie interesuja ich moje meble.\nCzy podejmiesz sie odnalezienia delikwenta, ktory kradnie moje meble?",
 	["Thanks that you agreed to {help}. I hope that its not another mafia."] = "Dziekuje, ze zgodziles sie mi {pomoc}. Mam nadzieje, ze to nie sprawka kolejnej mafii.",
 	["Maybe Gypsy knows something about furniture thief, people like him stick together..."] = "Moze Cygan cos wie o zlodzieju mebli, tacy jak on trzymaja sie razem...",
-	["Thank you for finding perpetrator. Your reward is upstairs, here is the key to the door.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds"] = "Dziekuje za wykrycie sprawcy. Twoja nagroda jest na pietrze, a oto klucz do drzwi na gorze.\nJa tymczasem zadzwonie do dwoch poteznych Mirkow, zeby wyniesli moje skradzione rzeczy z tych podziemi.",
 	["I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}."] = "Przejrzalem liste skradzionych rzeczy, i widze, ze gdzies trzymal kule, ktorej szuka cygan. Czekaj, to nie {wszystko}.",
 	["Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief."] = "Ostatnie wpisy na liscie sugeruja, ze nasz zlodziej wykradal wikt i oporzadzenie orkom z poludnia.\nProsze, idz do komisarza Ryby, i opowiedz mu o tym. Spytaj go tez, czy wie cos o tym zlodzieju.",
 	["Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}"] = "Jako wlasciciel sklepu z bizuteria moge sporzadzic ladne blyskotki albo kupic od ciebie bizuterie. ktorej juz nie potrzebujesz.",

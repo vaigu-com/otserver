@@ -583,7 +583,7 @@ quest
 			},
 		}),
 		QuestFactory.StartupItems({
-			{ id = 4399, pos = { 6121, 1488, 5 }, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
+			{ id = 4399, pos = { 6170, 1517, 5 }, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
 		}),
 		QuestFactory.Script(function(missionState)
 			local tileIn = MoveEvent()
@@ -593,13 +593,13 @@ quest
 					return false
 				end
 
-				local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission01)
+				local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission03)
 
-				if storageVal < 11 then
+				if storageVal < QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings then
 					return false
 				end
 
-				if storageVal > 15 then
+				if storageVal > QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings then
 					return false
 				end
 

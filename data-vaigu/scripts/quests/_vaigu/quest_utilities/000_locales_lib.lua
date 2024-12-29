@@ -1,56 +1,49 @@
 local mainDir = DATA_DIRECTORY .. "/locales"
 
 LOCALIZERS = {
-	--#region 2024
+	LOCALIZER_UNIVERSAL = "_universal",
+	Arena = "arena",
+	ArielsFriend = "ariels_friend",
+	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
+	BankSystem = "bank_system",
+	BigfootBurden = "bifoot_burden",
+	CaveExplorerOnShield = "cave_explorer_on_shield",
+	ChesterTheDwarf = "chester_the_dwarf",
+	DailyTasks = "daily_tasks",
+	DemonOak = "demon_oak",
 	DesertQuestHub = "desert_quest_hub",
-	FatMyrrusEncounters = "fat_myrrus_encounters",
+	DesertQuestOne = "desert_quest_one",
 	DesertQuestTwo = "desert_quest_two",
 	EnterTheDrunkTank = "enter_the_drunk_tank",
-	ProdigalSon = "prodigal_son",
-	--King of Rats II - V
-	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
-	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
-	FourActTragedy = "four_act_tragedy",
-	PerIustitiaAdAstra = "per_iustitia_ad_astra",
-	--Kings of Rats miscellaneous
-	KingOfRatsHQ = "king_of_rats_hq",
-	RubelsteinLegacy = "rubelstein_legacy",
-	--#endregion
-
-	--#region 2021
-	PathOfTheUndead = "path_of_the_undead",
-	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
-	ChesterTheDwarf = "chester_the_dwarf",
-	ImRestingHere = "im_resting_here",
-	TheaterOfCheapThrills = "theater_of_cheap_thrills",
-	DesertQuestOne = "desert_quest_one",
-	CaveExplorerOnShield = "cave_explorer_on_shield",
-	SultanPrime = "sultan_prime",
-	--#endregion
-
-	--Task
-	Tasks = "tasks",
-	DailyTasks = "daily_tasks",
-
-	--Old quests
+	FatMyrrusEncounters = "fat_myrrus_encounters",
 	Firestarter = "firestarter",
-	WayOfTheDruid = "way_of_the_druid",
-	ArielsFriend = "ariels_friend",
+	FourActTragedy = "four_act_tragedy",
+	GoldenOutfit = "golden_outfit",
+	ImRestingHere = "im_resting_here",
+	KingOfRatsHQ = "king_of_rats_hq",
+	LiquidBlack = "liquid_black",
 	LocalSupport = "local_support",
+	LuaRaids = "lua_raids",
+	Minigames = "minigames",
+	NpcName = "npc_name",
+	PathOfTheUndead = "path_of_the_undead",
+	PerIustitiaAdAstra = "per_iustitia_ad_astra",
+	Priest = "priest",
+	ProdigalSon = "prodigal_son",
+	RubelsteinLegacy = "rubelstein_legacy",
+	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
 	SilenceOfTheLambs = "silence_of_the_lambs",
+	SultanPrime = "sultan_prime",
+	Tasks = "tasks",
+	TheApeCity = "the_ape_city",
+	TheaterOfCheapThrills = "theater_of_cheap_thrills",
+	TheDreamCourts = "the_dream_courts",
+	TheInquisitionQuest = "the_inquisition_quest",
+	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
 	ToCarryThePigs = "to_carry_the_pigs",
 	TopChef = "top_chef",
+	WayOfTheDruid = "way_of_the_druid",
 
-	--Real tibia
-	TheInquisitionQuest = "the_inquisition_quest",
-	TheDreamCourts = "the_dream_courts",
-	BigfootBurden = "bifoot_burden",
-	DemonOak = "demon_oak",
-	LiquidBlack = "liquid_black",
-	TheApeCity = "the_ape_city",
-
-	--Misc
-	LOCALIZER_UNIVERSAL = "_universal",
 	NONE = "",
 }
 
@@ -143,7 +136,7 @@ function missingStringsToFile()
 					print("Error opening file: " .. err)
 					return false
 				end
-				
+
 				str = string.gsub(str, "\n", "\\n")
 				-- Write the content to the file
 				file:write(str .. "\n")
@@ -155,7 +148,7 @@ function missingStringsToFile()
 	end
 end
 
-function translatedFromAnyQuest(string, language, questId)
+function translatedFromAnyQuest(string, language, localizer)
 	local allStrings = TRANSLATION_TABLES[language]
 	if allStrings[LOCALIZERS.LOCALIZER_UNIVERSAL][string] then
 		return allStrings[LOCALIZERS.LOCALIZER_UNIVERSAL][string]
@@ -166,12 +159,12 @@ function translatedFromAnyQuest(string, language, questId)
 		end
 	end
 
-	questId = questId or LOCALIZERS.LOCALIZER_UNIVERSAL
-	MissingStrings[language][questId] = MissingStrings[language][questId] or {}
-	MissingStrings[language][questId][string] = true
+	localizer = localizer or LOCALIZERS.LOCALIZER_UNIVERSAL
+	MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
+	MissingStrings[language][localizer][string] = true
 end
 
-function Translated(str, player, questId)
+function Translated(str, player, localizer)
 	local targetLanguage = player:getLanguage()
-	return translatedFromSpecificQuest(str, questId, targetLanguage) or translatedFromAnyQuest(str, targetLanguage)
+	return translatedFromSpecificQuest(str, localizer, targetLanguage) or translatedFromAnyQuest(str, targetLanguage)
 end

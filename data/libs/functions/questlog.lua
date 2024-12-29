@@ -206,9 +206,9 @@ function Player.getTranslatedQuestName(self, quest)
 	local result = ""
 
 	local context = { player = self }
-	result = result .. self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(quest.name)
+	result = result .. self:Localizer(quest.localizer):Context(context):Get(quest.name)
 	if self:isQuestCompleted(quest) then
-		local completedSuffix = self:Localizer(LOCALIZER_QUESTLOG):Get("QUEST_MISSION_COMPLETE_SUFFIX")
+		local completedSuffix = self:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end
 	return result
@@ -221,9 +221,9 @@ function Player.getTranslatedMissionName(self, mission)
 	local result = ""
 
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
-	result = result .. self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(mission.name)
+	result = result .. self:Localizer(mission.localizer):Context(context):Get(mission.name)
 	if self:isMissionCompleted(mission) then
-		local completedSuffix = self:Localizer(LOCALIZER_QUESTLOG):Get("QUEST_MISSION_COMPLETE_SUFFIX")
+		local completedSuffix = self:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end
 	return result
@@ -236,8 +236,12 @@ function Player.getTranslatedMissionDescription(self, mission)
 
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
 	local state = self:getStorageValue(mission.storage)
-	local description = self:Localizer(LOCALIZER_QUESTLOG):Context(context):Get(mission.description or mission.states[state])
-	return description
+	local description = mission.description
+	if mission.states and mission.states[state] then
+		description = mission.states[state]
+	end
+	local translatedDescription = self:Localizer(mission.localizer):Context(context):Get(description)
+	return translatedDescription
 end
 
 function Player.sendQuestLogMainPage(self)
@@ -247,7 +251,7 @@ function Player.sendQuestLogMainPage(self)
 	for questId, quest in pairs(Quests) do
 		if self:isQuestOngoing(quest) then
 			msg:addU16(questId)
-			local translatedQuestName = self:Localizer(LOCALIZER_QUESTLOG):Get(quest.name)
+			local translatedQuestName = self:Localizer(quest.localizer):Get(quest.name)
 			if self:isQuestCompleted(quest) then
 				translatedQuestName = translatedQuestName .. " (completed)"
 			end

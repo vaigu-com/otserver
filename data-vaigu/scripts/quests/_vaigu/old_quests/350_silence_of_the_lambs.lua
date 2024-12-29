@@ -3,10 +3,10 @@ local quest = Quest(LOCALIZERS.SilenceOfTheLambs)
 quest
 	:Storage(function()
 		Storage.SilenceOfTheLambs = {
-			TestOfStrength = 11065,
-			FashionistaClothes = 11066,
-			RubMeatWithLecter = 11073,
-			HumanHeart = 11074,
+			TestOfStrength = NextStorage(),
+			FashionistaClothes = NextStorage(),
+			RubMeatWithLecter = NextStorage(),
+			HumanHeart = NextStorage(),
 		}
 		QuestState.SilenceOfTheLambs = {
 			TestOfStrength = {

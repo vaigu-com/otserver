@@ -4,25 +4,25 @@ local elixirId = 33892
 quest
 	:Storage(function()
 		Storage.ArielsFriend = {
-			HumbleRequest = 11000,
-			FriendGrave = 11001,
+			HumbleRequest = NextStorage(),
+FriendGrave = NextStorage(),
 
-			LoveIsInTheAir = 11002,
-			HairStrand = 11003,
-			Haybed = 11004,
-			ElixirStand = 10050,
-			LoveElixirRaw = 10051,
-			LoveElixirEnchanted = 10052,
+LoveIsInTheAir = NextStorage(),
+HairStrand = NextStorage(),
+Haybed = NextStorage(),
+ElixirStand = NextStorage(),
+LoveElixirRaw = NextStorage(),
+LoveElixirEnchanted = NextStorage(),
 
-			KillerLiquor = 11044,
-			LiquorChest = 11005,
-			LiquorItem = 11006,
+KillerLiquor = NextStorage(),
+LiquorChest = NextStorage(),
+LiquorItem = NextStorage(),
 
-			PreludeToThaumaturgy = 11047,
-			GravesSoulChance = 11049,
+PreludeToThaumaturgy = NextStorage(),
+GravesSoulChance = NextStorage(),
 
-			RadioFreeHirschberg = 11050,
-			OldRadio = 11051,
+RadioFreeHirschberg = NextStorage(),
+OldRadio = NextStorage(),
 		}
 		QuestState.ArielsFriend = {
 			HumbleRequest = {

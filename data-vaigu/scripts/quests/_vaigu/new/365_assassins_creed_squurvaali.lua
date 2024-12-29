@@ -547,12 +547,7 @@ quest
 			},
 		}),
 		QuestFactory.StartupItems({
-			{ pos = { 5810, 804, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
-			{ pos = { 5811, 804, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
-			{ pos = { 5810, 805, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
-			{ pos = { 5810, 806, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
-			{ pos = { 5811, 806, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
-			{ pos = { 5749, 805, 0 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenLastTile },
+			{ pos = { 7223, 1532, 4}, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },6712, 1408, 13
 		})
 	)
 	:State(

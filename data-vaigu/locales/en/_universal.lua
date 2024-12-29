@@ -9,42 +9,8 @@ local directionToString = {
 	[DIRECTION_NORTHWEST] = "North-East",
 }
 
-local function getFurthestDestinations(player, travelLocations)
-	local closestDistance = 65336 * 3
-	local closestLocationName = ""
-
-	for _, location in pairs(travelLocations) do
-		local distance = location.destination:EuclideanDistance(player:getPosition())
-		if distance < closestDistance then
-			closestDistance = distance
-			closestLocationName = location.name
-		end
-	end
-
-	local possibleDestinations = {}
-	for _, location in pairs(travelLocations) do
-		if location.name ~= closestLocationName then
-			table.insert(possibleDestinations, location)
-		end
-	end
-
-	return possibleDestinations
-end
-
-local travelLocationsFisherman = {
-	{
-		name = "fortress",
-		destination = Position(6029, 1945, 7),
-		greet = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to The Mirko City or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
-	},
-	{
-		name = "city",
-		destination = Position(5800, 1649, 7),
-		greet = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to elf court or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.",
-	},
-}
-
 return {
+	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (complete)",
 	["GO_IN_DIRECTION"] = function(context)
 		local dir = context.direction
 		if dir == DIRECTION_NONE then
@@ -297,10 +263,8 @@ return {
 	["Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 	["Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}."] = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 	["Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road."] = "Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road.",
-	["There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to find for me who is responsible for stealing my furnitures?"] = "There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to help me the one responsible for stealing my furniture?",
 	["Thanks that you agreed to {help}. I hope that its not another mafia."] = "Thanks that you agreed to {help}. I hope that its not another mafia.",
 	["Maybe Gypsy knows something about furniture thief, people like him stick together..."] = "Maybe Gypsy knows something about furniture thief, people like him stick together...",
-	["Thank you for finding perpetrator. Your reward is upstairs, here is the key to the door.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds"] = "Thank you for finding perpetrator. Your reward is upstairs, here is the key to the door.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds",
 	["I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}."] = "I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}.",
 	["Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief."] = "Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief.",
 	["Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}"] = "Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}",

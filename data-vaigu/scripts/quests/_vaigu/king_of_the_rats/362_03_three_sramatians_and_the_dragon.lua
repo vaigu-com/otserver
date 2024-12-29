@@ -1005,7 +1005,7 @@ quest
 		QuestFactory.StartupItems({
 			{
 				id = 3064,
-				pos = { 6696, 825, 4 },
+				pos = { 6783, 817, 4 },
 				aid = Storage.KingOfRatsHQ.Items.Bottomless,
 				rewards = { QuestKeyItems.KingOfRatsHQ.Bottomless },
 				nextState = {

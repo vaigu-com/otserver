@@ -196,7 +196,7 @@ quest
 				[Storage.LocalSupport.BudgetRecycling] = {
 					name = "Cheap Recycling",
 					states = {
-						[QuestState.LocalSupport.FreakingRats.BringPieceOfEachClothToMadame] = "Malkin asked you to bring her 1 piece of cloth of every color.",
+						[QuestState.LocalSupport.BudgetRecycling.BringPieceOfEachClothToMadame] = "Malkin asked you to bring her 1 piece of cloth of every color.",
 						[MISSION_FINISHED] = "Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
 					},
 				},
@@ -250,8 +250,8 @@ quest
 						[QuestState.LocalSupport.IKEAForTheBold.ConsultCommissioner] = "Komor asked you to consult Commissioner Fisher about the thief.",
 						[QuestState.LocalSupport.IKEAForTheBold.AskNearbyPeople_FindMoustachilles] = "Fisher asked you to track down the thief. Perhaps someone from nearby saw where he ran away?",
 						[QuestState.LocalSupport.IKEAForTheBold.AskMoustachillesAboutDomino] = "Ask the bandit leader about the furniture thief.",
-						[QuestState.LocalSupport.IKEAForTheBold.FindAndKillDomino] = "The thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now.",
-						[QuestState.LocalSupport.IKEAForTheBold.SearchDominoPlace] = "You have defeated the Lumberjack Domino, look around his hiding place.",
+						[QuestState.LocalSupport.IKEAForTheBold.FindAndKillDominoShore] = "The thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now.",
+						[QuestState.LocalSupport.IKEAForTheBold.SearchDominoShoreHideout] = "You have defeated the Lumberjack Domino, look around his hiding place.",
 						[QuestState.LocalSupport.IKEAForTheBold.ReportToCommissioner] = "From now on, you can use Domino's boat. Report to Commissioner Fisher.",
 						[MISSION_FINISHED] = "You prematurely ended the efforts of Lumberjack Domino. From now on you can sail his boat from the bandit camp to the south of the steppes.",
 					},
@@ -939,7 +939,7 @@ quest
 		QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus,
 		QuestFactory.Dialog("Ocellatus", {
 			[{ "mission", "misja" }] = {
-				text = "Thanks a lot! Can't wait to see the match. But there's something more, I'm stuck on this shithole and running low on food. Would you take care of some food order that I would request?\nWould you mind fixing some food for me?",
+				text = "Thanks a lot! Can't wait to see the match. But there's something more, I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?",
 				expReward = 15000,
 				requiredItems = {
 					QuestKeyItems.LocalSupport.Ticket,

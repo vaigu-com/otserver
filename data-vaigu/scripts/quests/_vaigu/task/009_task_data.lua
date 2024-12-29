@@ -908,7 +908,6 @@ function RegisterTasksInQuestsTable()
 			storageId = bossStorage,
 			missionId = bossMissionId,
 			startValue = 0,
-			endValue = 9999,
 			description = "FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION",
 		}
 

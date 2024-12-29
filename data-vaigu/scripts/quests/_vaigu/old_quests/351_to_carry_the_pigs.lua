@@ -3,18 +3,18 @@ local quest = Quest(LOCALIZERS.ToCarryThePigs)
 quest
 	:Storage(function()
 		Storage.ToCarryThePigs = {
-			BeLikeSchwarzenegger = 11033,
-			ArniNecklace = 11034,
+			BeLikeSchwarzenegger = NextStorage(),
+			ArniNecklace = NextStorage(),
 
-			HalfTurnKick = 11035,
-			SmugglingList = 11036,
-			SmuggledLegs = 11037,
+			HalfTurnKick = NextStorage(),
+			SmugglingList = NextStorage(),
+			SmuggledLegs = NextStorage(),
 
-			BalancedDiet = 11037,
-			EcoCarrot = 11038,
-			CarrotChest= 11039,
+			BalancedDiet = NextStorage(),
+			EcoCarrot = NextStorage(),
+			CarrotChest = NextStorage(),
 
-			KitzDominando = 11049,
+			KitzDominando = NextStorage(),
 		}
 		QuestState.ToCarryThePigs = {
 			BeLikeSchwarzenegger = {

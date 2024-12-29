@@ -1138,8 +1138,11 @@ quest
 					return false
 				end
 
-				local storageVal = player:getStorageValue(Storage.FourActTragedy.Mission01)
-				if storageVal < 11 or 12 < storageVal then
+				local storageVal = player:getStorageValue(Storage.FourActTragedy.Mission04)
+				if storageVal < QuestState.FourActTragedy.Mission04.FindBribeslippers then
+					return false
+				end
+				if storageVal > QuestState.FourActTragedy.Mission04.BringSlippersToRomek then
 					return false
 				end
 

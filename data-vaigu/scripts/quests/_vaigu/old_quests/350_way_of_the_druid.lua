@@ -3,31 +3,31 @@ local quest = Quest(LOCALIZERS.WayOfTheDruid)
 quest
 	:Storage(function()
 		Storage.WayOfTheDruid = {
-			CouncilOfDruids = 11007,
-			CouncilThreeDruidsReward = 11008,
-			CouncilFiveDruidsReward = 11009,
-			SandLock = 11062,
-			LootedWater = 11063,
-			LootedFlower = 11064,
+			CouncilOfDruids = NextStorage(),
+			CouncilThreeDruidsReward = NextStorage(),
+			CouncilFiveDruidsReward = NextStorage(),
+			SandLock = NextStorage(),
+			LootedWater = NextStorage(),
+			LootedFlower = NextStorage(),
 
-			DeerSeason = 11010,
+			DeerSeason = NextStorage(),
 			HunterTreeStump = NextStorage(),
 			RadaghastFirebug = NextStorage(),
 			RadaghastBoat = NextStorage(),
 
-			TakenBenek = 11017,
-			BenekKnife = 11018,
-			BenekTheWolf = 11019,
+			TakenBenek = NextStorage(),
+			BenekKnife = NextStorage(),
+			BenekTheWolf = NextStorage(),
 
-			RudeEviction = 11061,
-			SandniggerMap = 11018,
-			BuriedIncantation = 11019,
+			RudeEviction = NextStorage(),
+			SandniggerMap = NextStorage(),
+			BuriedIncantation = NextStorage(),
 
-			SecretIngredient = 11067,
-			OrnuldMedicine = 11068,
-			WyrmEgg = 11069,
+			SecretIngredient = NextStorage(),
+			OrnuldMedicine = NextStorage(),
+			WyrmEgg = NextStorage(),
 
-			SingingCrystal = 11069,
+			SingingCrystal = NextStorage(),
 		}
 		QuestState.WayOfTheDruid = {
 			CouncilOfDruids = {

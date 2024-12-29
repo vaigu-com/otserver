@@ -558,11 +558,11 @@ quest
 			},
 		}),
 		QuestFactory.StartupItems({
-			{ pos = { 5839, 792, 0 }, id = 2000, aid = Storage.PerIustitiaAdAstra.AstralJanusSpawnTile },
+			{ pos = { 7320, 1477, 0 }, id = 2000, aid = Storage.PerIustitiaAdAstra.AstralJanusSpawnTile },
 		}),
 		QuestFactory.Script(function(missionState)
 			--local astralJanus = { name = "", pos = Position(5839, 790, 0) }
-			local astralJanusPos = Position(5839, 790, 0)
+			local astralJanusPos = Position(7320, 1475, 0)
 			local astralJanusLock = SpawnLocks.PerIustitiaAdAstra.AstralJanus
 
 			local astralJanus = {}
@@ -585,7 +585,11 @@ quest
 					return false
 				end
 
+				if astralJanusLock:IsSet() then
+					return
+				end
 				astralJanus = Game.createNpc("Astral Janus", astralJanusPos, false, false)
+				astralJanusLock:Set()
 			end
 
 			tileIn:aid(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
@@ -597,15 +601,9 @@ quest
 				if not player:isPlayer() then
 					return false
 				end
-				local pos = Position(astralJanus.pos)
-				local tile = Tile(pos)
-				if not tile then
-					return false
-				end
-				local monster = tile:getTopCreature()
-				if monster and not Tile(fromPosition):getTopCreature() and string.lower(monster:getName()) == "astral janus" then
-					monster:remove()
-					Position(pos):sendMagicEffect(CONST_ME_TELEPORT)
+				if astralJanusLock:IsSet() then
+					astralJanus:remove()
+					astralJanusLock:Reset()
 				end
 			end
 

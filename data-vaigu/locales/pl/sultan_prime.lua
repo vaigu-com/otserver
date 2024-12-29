@@ -36,7 +36,9 @@ return {
 	["Go to Sultan of Phantasms for another task."] = "Udaj sie do Sultana Phantasmow po kolejne zadanie.",
 	["Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask."] = "Sultan Phantasmow wyznaczyl ci zadanie godne poczatkujacego zloczyncy. Zatruj fontanne w miasteczku Magicianow, uzywajac zatrutej flaszki.",
 	["You've successfully completed the first task for Sultan of Phantasms. Return to him now."] = "Udalo ci sie wykonac pierwsze zadanie dla Sultana Phantasmow. Wroc teraz do niego.",
-	["Sultan of Phantasms has assigned you to kill camels."] = "Sultan Phantasmow zlecil ci zabicie wielbladow.",
+	["CAMELS_KILLED_STATUS"] = function(context)
+		return string.format("Sultan Phantasmow zlecil ci zabicie wielbladow smierdzichwasta. Poki co pozbyles sie %d z nich.", context.player:getStorageValue(Storage.SultanPrime.DromedaryCount))
+	end,
 	["You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it."] = "Wyrznales smierdzichwastowi farme wielbladow. Zostaw line na stolku - on bedzie wiedzial co z nia zrobic.",
 	["Sultan will be pleased with your actions. Return to him for your reward."] = "Sultan bedzie zadowolony z twoich poczynan. Wroc do niego po nagrode.",
 	["Sultan rewarded you for your cooperation."] = "Sultan nagrodzil cie za twoja wspolprace.",
@@ -46,11 +48,11 @@ return {
 	["Sultan ordered you to... You can go to Father Natank and ask him for redemption."] = "Sultan kazal ci wy... Mozesz udac sie do Natanka, i poprosic go o odkupienie.",
 	["Father Natank gave you today's offering from the Mass in exchange for your silence."] = "Ks. Natanek dal ci dziesiejsza ofiare z mszy w zamian za twoje milczenie.",
 	["Opened Coffins"] = "Otwarte trumny",
-	["Opened Coffins Status"] = function(context)
+	["OPENED_COFFINS_STATUS"] = function(context)
 		return string.format("Siema. Tu Sultan Phantasmow. Komunikuje sie z toba przez fale 5GMO chemtrails. Zacznij od zbezczeszczenia kilku grobow. To na pewno oslabi morale ludzi w miescie. Poki co otworzyles %d z 5 trumien w Retro Mirko.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0)))
 	end,
 	["Bodies Thrown"] = "Wrzucone ciala",
-	["Bodies Thrown Status"] = function(context)
+	["BODIES_THROWN_STATUS"] = function(context)
 		return string.format("Tu znowu Sultan. Pora na cos bardziej okrutnego. Zabijaj mieszkancow miasta, i wrzucaj ich ciala do paszczy mackopotwora w okolicy depo. Poki co wrzuciles %d z 10 cial w Retro Mirko.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0)))
 	end,
 }

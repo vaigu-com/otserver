@@ -1282,8 +1282,8 @@ quest
 
 			{ pos = { 2, -34, -2 }, id = 470, aid = Storage.PathOfTheUndead.RitualLocus },
 
-			{ pos = { -64, -20, 0 }, id = 11440, aid = Storage.PathOfTheUndead.BossBook },
-			{ pos = { 77, 186, -1 }, id = 410, aid = Storage.PathOfTheUndead.GrantSkipDoorAccess },
+			{ pos = { -68, 1, 0 }, id = 11440, aid = Storage.PathOfTheUndead.BossBook },
+			{ pos = { -9,	10,	1 }, id = 410, aid = Storage.PathOfTheUndead.GrantSkipDoorAccess },
 		}, PATH_OF_THE_UNDEAD_ANCHOR),
 		QuestFactory.Script(function(missionState)
 			local updateStorages = {
