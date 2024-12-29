@@ -22,5 +22,35 @@ return {
 	["If i recall correctly, Date was the fastest dromedary i ever saw. I think that i was to compete in equestrian competition, i would pick him."] = "Jezeli dobrze pamietam, to Daktyl byl najszybszym wielbladem, jakiego widzialem. Myslalem, ze gdybym startowal w wyscigach jezdzieckich, to wlasnie jego bym wybral do pomocy.",
 	["Cos Ty narobil! Oni byli mi jak rodzina. Co zes Ty uczynil. Nie {chce} mi sie."] = "Cos Ty narobil! Oni byli mi jak rodzina. Co zes Ty uczynil. Nie {chce} mi sie.",
 	["Just put the rope on the table. I will serve myself."] = "Po prostu poloz line na stolku. Ja juz sie zajme reszta.",
-	["I'd prefer this information to stay between us. Let's agree that you'll take what I received from the faithful today, and in exchange, you'll forget what Sultan showed you."] = "Wolalbym abys nie dzielic sie ta wiedza z nikim. Wez dziesiejsza ofiare, ktora zberalem na mszy. W zamian, mam nadzieje, bedziesz milczec."
+	["I'd prefer this information to stay between us. Let's agree that you'll take what I received from the faithful today, and in exchange, you'll forget what Sultan showed you."] = "Wolalbym abys nie dzielic sie ta wiedza z nikim. Wez dziesiejsza ofiare, ktora zberalem na mszy. W zamian, mam nadzieje, bedziesz milczec.",
+	["Gucci was my favorite one. He was exceptionally intelligenc and he was capable of painting with brush by holding between it's teeth. With his experience he could fill children coloring books."] = "Gucio to moj ulubieniec. Ze swoja inteligencja, potrafil malowac trzymajac pedzel swoimi zebami. Ze swoim doswiadcezniem potrafil nawet kolorowac dzieciece ksiazeczki.",
+	["What in damnation!? What did you do. I dont {feel} like."] = "Cos Ty narobil! Oni byli mi jak rodzina. Co zes Ty uczynil. Nie {chce} mi sie.",
+	["Here, this is your reward."] = "Prosze, oto twoja nagroda.",
+	["Now its just six of them. {Date} and {Guci} aren't there anymore. Long time ago, a wield creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply to his will and {join} his quest to take over the world."] = "Teraz jest ich tylko szescioro. {Daktyla} i {Gucia} juz nie ma z nami. Dawno temu na moja farme przybyla dziwna istota. Wygladala jak pomieszanie roznych kwiatow i winorosli, ktore sie unosilo w powietrzu. To cos zadalo ode mnie, abym sie do niego przylaczyl, i {pomogl} mu zawladnac swiatem.",
+	--Questlog
+	["Sultan Prime"] = "Sultan Prime",
+	["What Is Mafia? Is It Good?"] = "Co to mafia? Dobre to?",
+	["You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan."] = "Znalazles przeklety naszyjnik wladzy. Oddaj go Krolowi Phantasmow, aby mogl rozpoczac swoje dzielo unicestwienia swiata.",
+	["You returned the amulet to the Sultan and agreed to help him."] = "Oddales amulet Sultanowi i zgodziles sie mu pomoc.",
+	["Unlucky Surveyors"] = "Pechowi ankieterzy",
+	["Go to Sultan of Phantasms for another task."] = "Udaj sie do Sultana Phantasmow po kolejne zadanie.",
+	["Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask."] = "Sultan Phantasmow wyznaczyl ci zadanie godne poczatkujacego zloczyncy. Zatruj fontanne w miasteczku Magicianow, uzywajac zatrutej flaszki.",
+	["You've successfully completed the first task for Sultan of Phantasms. Return to him now."] = "Udalo ci sie wykonac pierwsze zadanie dla Sultana Phantasmow. Wroc teraz do niego.",
+	["Sultan of Phantasms has assigned you to kill camels."] = "Sultan Phantasmow zlecil ci zabicie wielbladow.",
+	["You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it."] = "Wyrznales smierdzichwastowi farme wielbladow. Zostaw line na stolku - on bedzie wiedzial co z nia zrobic.",
+	["Sultan will be pleased with your actions. Return to him for your reward."] = "Sultan bedzie zadowolony z twoich poczynan. Wroc do niego po nagrode.",
+	["Sultan rewarded you for your cooperation."] = "Sultan nagrodzil cie za twoja wspolprace.",
+	["Sultan's Last Plague"] = "Ostatnia plaga Sultana",
+	["Hello, recipient. This is Sultan. It's time to get rid of Aspirant Ryba. After work, you can leave the barracks through the northern doors and use the shortcut."] = "Halo odbior. Tutaj Sultan. Pora odjebac Aspiranta Rybe. Po robocie mozesz wyjsc z koszarow polnocnymi drzwiami i uzyc skrotu.",
+	["Sultan. How did Ryba escape? The Crypt King also fell in battle. Come back immediately so I can chew you out!"] = "Sultan. Jak to ryba uciekl? Krol Krypty tez polegl w walce. Wracaj tu natychmiast, zebym mogl cie zjebac!",
+	["Sultan ordered you to... You can go to Father Natank and ask him for redemption."] = "Sultan kazal ci wy... Mozesz udac sie do Natanka, i poprosic go o odkupienie.",
+	["Father Natank gave you today's offering from the Mass in exchange for your silence."] = "Ks. Natanek dal ci dziesiejsza ofiare z mszy w zamian za twoje milczenie.",
+	["Opened Coffins"] = "Otwarte trumny",
+	["Opened Coffins Status"] = function(context)
+		return string.format("Siema. Tu Sultan Phantasmow. Komunikuje sie z toba przez fale 5GMO chemtrails. Zacznij od zbezczeszczenia kilku grobow. To na pewno oslabi morale ludzi w miescie. Poki co otworzyles %d z 5 trumien w Retro Mirko.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0)))
+	end,
+	["Bodies Thrown"] = "Wrzucone ciala",
+	["Bodies Thrown Status"] = function(context)
+		return string.format("Tu znowu Sultan. Pora na cos bardziej okrutnego. Zabijaj mieszkancow miasta, i wrzucaj ich ciala do paszczy mackopotwora w okolicy depo. Poki co wrzuciles %d z 10 cial w Retro Mirko.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0)))
+	end,
 }

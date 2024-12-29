@@ -39,6 +39,7 @@ return {
 	["Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play..."] = "Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play...",
 	["Grazhena Core i3"] = "Grazhena Core i3",
 	["As i said, go to the Caribbean."] = "As i said, go to the Caribbean.",
+	["Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination."] = "Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination.",
 	-- Four Act Tregedy
 	["Four Act Tragedy"] = "Four Act Tragedy",
 	["01. Dodge those compensation claims"] = "01. Dodge those compensation claims",

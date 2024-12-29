@@ -40,7 +40,7 @@ return {
 	["You have to be standing just outside the Ghasstly Princess's cave in order to use this flare."] = "You have to be standing just outside the Ghasstly Princess's cave in order to use this flare.",
 	["Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}."] = "Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}.",
 	["Im talking about the {djinn} of course. They will get you drunk, free of charge. And the best thing is you dont have to pay."] = "Im talking about the {djinn} of course. They will get you drunk, free of charge. And the best thing is you dont have to pay.",
-	["You will find them in Hurghada desert. Can't say i recall anything more because last time i was there.. i dont recall being there, if you know what i mean."] = "You will find them in Hurghada desert. Can't say i recall anything more because last time i was there.. i dont recall being there, if you know what i mean.",
+	["You will find them in Hurghada desert. Can't say i recall anything more because last time i was here they had to tow me back to my home, if you know what i mean.."] = "You will find them in Hurghada desert. Can't say i recall anything more because last time i was here they had to tow me back to my home, if you know what i mean..",
 	-- Assassin's Creed: Squurva'ali
 	["Assassins's Creed: Squurva'ali"] = "Assassin's Creed: Squurva'ali",
 	["The First Step to Heaven"] = "The First Step to Heaven",

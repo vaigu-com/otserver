@@ -7,6 +7,7 @@ quest
 			Coffin = NextStorage(),
 			LastWill = NextStorage(),
 			Corpse = NextStorage(),
+			Crowbar = NextStorage(),
 		}
 		QuestState.ImRestingHere = {
 			Mission01 = {
@@ -49,7 +50,7 @@ quest
 			},
 			Crowbar = {
 				id = 3304,
-				aid = Storage.ImRestingHere.Coffin,
+				aid = Storage.ImRestingHere.Crowbar,
 			},
 		}
 	end)
@@ -68,6 +69,9 @@ quest
 				nextState = {
 					[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
 					[Storage.ImRestingHere.Coffin] = 1,
+				},
+				rewards = {
+					QuestKeyItems.ImRestingHere.Crowbar,
 				},
 				requiredMoney = 10,
 				textNoRequiredMoney = "What?! Its only 10gps.",
@@ -100,10 +104,8 @@ quest
 					return true
 				end
 
-				local useItemId = item:getId()
-				if useItemId == 2476 or useItemId == 2477 then
-					local translatedError = player:Localizer(Storage.ImRestingHere.Localizer):Get("It wont move without special crowbar.")
-					player:say(translatedError, TALKTYPE_MONSTER_SAY)
+				if target:getActionId() ~= Storage.ImRestingHere.Coffin then
+					return true
 				end
 
 				local coffinState = player:getStorageValue(Storage.ImRestingHere.Coffin)
@@ -121,7 +123,7 @@ quest
 				return true
 			end
 
-			crowbar:aid(Storage.ImRestingHere.Coffin)
+			crowbar:aid(Storage.ImRestingHere.Crowbar)
 			crowbar:register()
 		end)
 	)

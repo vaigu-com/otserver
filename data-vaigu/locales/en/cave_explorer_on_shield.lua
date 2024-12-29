@@ -41,6 +41,7 @@ return {
 	["Desert ruins dead adventurer's firebug"] = "Desert ruins dead adventurer's firebug",
 	["A punchcard for opening mechanical doors"] = "A punchcard for opening mechanical doors",
 	["GERMI_NOTES"] = "find germi journal pages\nonly trust those mentioned in the pages\n",
+	["Did you read it? What was written there?"] = "Did you read it? What was written there?",
 	-- Cave Explorer
 	["Cave Explorer on Shield"] = "Cave Explorer on Shield",
 	["First Mission"] = "First Mission",

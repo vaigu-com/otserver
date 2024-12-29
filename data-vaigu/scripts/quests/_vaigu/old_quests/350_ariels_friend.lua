@@ -189,7 +189,7 @@ quest
 		QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
 		QuestFactory.Dialog("Ariel", {
 			[{ "story", "historia", "historie", "mission" }] = {
-				text = "Oh, yes. I promised to tell you my story. Well, I come from the legendary town of Hirschberg, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist. ...\nI survived because I left there as soon as the riots broke out, unfortunately all my family died. Besides me, a few more inhabitants fled. At first we stuck together, but eventually we parted ways. Last time I saw {Gertrude} in the jungle. {Konmuld} on the other hand, he went the wrong way, and decided to devote himself to black magic. I did not know the other survivors, but maybe Gertrude or Konmuld will know where they are. ...\nHowever, I don't know if they will want to talk to you, peopel of Hirschberg are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
+				text = "Oh, yes. I promised to tell you my story. Well, I come from the legendary town of Hirschberg, which was located on an island. However, the rulers of this town were too greedy and eventually all of our districts rebelled. There was a huge battle that was topped off by an enormous explosion of the bomb invented by the crazy alchemist.\nI survived because I left there as soon as the riots broke out, unfortunately all my family died. Besides me, a few more inhabitants fled. At first we stuck together, but eventually we parted ways. Last time I saw {Gertrude} in the jungle. {Konmuld} on the other hand, he went the wrong way, and decided to devote himself to black magic. I did not know the other survivors, but maybe Gertrude or Konmuld will know where they are. ...\nHowever, I don't know if they will want to talk to you, peopel of Hirschberg are very distrustful of strangers, but I can reveal to you our greeting with which you will surely gain their trust. But first, please help me win my love's heart, will you do it for me?",
 				nextTopic = QuestTopics.ArielsFriend.AcceptLoveQuest,
 			},
 			[{ "yes", "tak" }] = {
@@ -230,8 +230,10 @@ quest
 	:State(
 		QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp,
 		QuestFactory.Dialog("Ariel", {
-			text = "I expected that she wouldn't want to go.. I have to convince her in some other way, but I'm out of ideas. Please, visit my friend Old Postman, he's really wise and always have some good ideas.",
-		}),
+			[{ "mission", "misja" }] = {
+				text = "I expected that she wouldn't want to go.. I have to convince her in some other way, but I'm out of ideas. Please, visit my friend Old Postman, he's really wise and always have some good ideas.",
+			},
+			}),
 		QuestFactory.Dialog("Old Postman", {
 			[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {
 				text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
@@ -408,7 +410,7 @@ quest
 		QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
 		QuestFactory.Dialog("Grave Digger", {
 			[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "mission", "misja", "someone" }] = {
-				text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is a shovel in my hand and digging {graves}, which is what I like best!\nIf you don't have anything to dig with, keep my old shovel.",
+				text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is a shovel in my hand and digging {graves}, which is what I like best!",
 				nextState = {
 					[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
 				},

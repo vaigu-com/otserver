@@ -54,7 +54,8 @@ return {
 	["Unsealing rune"] = "Runa odpieczetowujaca",
 	["Deep sea crystal"] = "Krysztal glebinowy",
 	["Your team left me a note stating they headed to the desert. You can ask Lambor for help finding them."] = "Twoja druzyna udala sie w strone pustyni. Sproboj spytac Lambor, byc moze bedzie we stanie ci pomoc.",
-	-- The Three Sramatians and the Dragon
+	["I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus."] =  "Zamiescilem ich mozliwa lokacje w twoim quest logu. Powodzenia. A co do choru januszy... oprocz tego ludzie. Moge Ci uzyczyc mojego kajetu z roznymi poematami. Aha, i jeszce jedna rzecz. Z moich szacowan wynika, ze kompania mogla przechodzic niedaleko nory {Goldbluma}. Jest on znany z zadawania bardzo trudnych zagadek, ktorych nierozwiazanie konczy sie lepiej nie mowic czym. Mozesz udac sie najpierw do kogos, kto juz raz ponoc wydostal sie z jego szponow - Gruby Mirek.",
+		-- The Three Sramatians and the Dragon
 	["The Three Sramatians and the Dragon"] = "Trzej Sramaci i Smok",
 	["01. Hither and Thither"] = "01. Wte i Wewte",
 	["And the men went along the road into the woods,\nWith an average pace,\nHumility will come for them in due time,\nEnter the bottom text here."] = "I poszli chlopy droga w las\nKrokiem srednio-wolnym\nPokory dla nich przyjdzie czas\nTutaj wpisz tekst dolny",

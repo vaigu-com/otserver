@@ -338,7 +338,6 @@ quest
 					[Storage.Finished.ChesterTheDwarf] = MISSION_FINISHED,
 				},
 				rewards = { { id = 11689 } },
-				textNoRequiredItems = "Lost the bag? Come back when you  it.",
 			},
 		})
 	)

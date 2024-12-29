@@ -1780,23 +1780,21 @@ quest
 	:State(
 		QuestState.ProdigalSon.Mission05.AwaitHenryFinishedTalking,
 		QuestFactory.Dialog("Henry the Foreman", {
-			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission", "misja" }] = {
-					text = "I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Arechek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it.",
-					nextState = {
-						[Storage.ProdigalSon.Mission05] = MISSION_FINISHED,
-						[Storage.ProdigalSon.Mission06] = QuestState.ProdigalSon.Mission06.HenryJustTalkedWithFredi,
-						[Storage.ProdigalSon.PolAccess] = ACCESS_GRANTED,
-					},
-					specialConditions = {
-						{
-							condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.frediIsNearby,
-							requiredOutcome = false,
-							textNoRequiredCondition = "Give us a moment.",
-						},
+			[{ "mission", "misja" }] = {
+				text = "I had a word with my friend Fredi. HE TOLD ME ABOUT HE NEW BMW OUR IMPERATOR IS DRIVING. This goddamn ostentatious thief. You proven yourself reliable. Its time to end him now. To be granted an audience with him, you need to know the password. The password is written on the blackboard, along the cobblestone trail. Not one Arechek is smart enough to figure the workings of the mechanism that reveals it. I cannot leave my position, but you can go and read it. Came back to me when you find it.",
+				nextState = {
+					[Storage.ProdigalSon.Mission05] = MISSION_FINISHED,
+					[Storage.ProdigalSon.Mission06] = QuestState.ProdigalSon.Mission06.HenryJustTalkedWithFredi,
+					[Storage.ProdigalSon.PolAccess] = ACCESS_GRANTED,
+				},
+				specialConditions = {
+					{
+						condition = SYN_MARNOTRAWNY_SPECIAL_CONDITIONS.frediIsNearby,
+						requiredOutcome = false,
+						textNoRequiredCondition = "Give us a moment.",
 					},
 				},
-			}),
+			},
 		})
 	)
 	:Mission(Storage.ProdigalSon.Mission06)

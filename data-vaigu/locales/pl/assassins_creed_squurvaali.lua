@@ -40,7 +40,7 @@ return {
 	["You have to be standing just outside the Ghasstly Princess's cave in order to use this flare."] = "Musisz stac przed jaskinia ducha dupy, aby moc uzyc flary.",
 	["Flying rats? Carpets? I see you that you have imbibed a FoV potion. You can ask about those things in the vilage of the most generous {creatures}."] = "Latajace szczury? Dywany? Rozumie sie ze pan juz po napoju na FoV. Takimi rzeczami palaja sie tylko najbardziej szczodre {istoty}.",
 	["Im talking about the {djinn} of course. They will get you drunk, free of charge. And the best thing is you dont have to pay."] = "Mowie oczywiscie o {Djinnach}. To oni upijaja czlowieka za darmo, i nawet nie trzeba placic.",
-	["You will find them in Hurghada desert. Can't say i recall anything more because last time i was there.. i dont recall being there, if you know what i mean."] = "Znajdziesz ich na Hurghadzie. Dokladniej nie pamietam, bo ostatnio mnie stamtad odholowywali, jezeli wiesz o czym mowie.",
+	["You will find them in Hurghada desert. Can't say i recall anything more because last time i was here they had to tow me back to my home, if you know what i mean.."] = "Znajdziesz ich na Hurghadzie. Szczerze, to wiecej nie pamietam, bo ostatni razem gdy ich odwiedzalem, to wracalem na tarczy.",
 	-- Assassin's Creed: Squurva'ali
 	["Assassins's Creed: Squurva'ali"] = "Assassin's Creed: Skurwoala",
 	["The First Step to Heaven"] = "Pierwszy krok do nieba",

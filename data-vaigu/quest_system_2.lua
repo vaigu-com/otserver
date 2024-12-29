@@ -120,6 +120,14 @@ function Quest:AddDialog(context)
 		logger.debug(T(":quest: missing name for dialog", { quest = self.name }))
 	end
 
+	for requredKeywords, actionsAndRequirements in pairs(dialogs) do
+		for key, value in pairs(actionsAndRequirements) do
+			if type(value) == "string" then
+				translatedFromAnyQuest(value, LANGUAGES.EN, self.localizer)
+				translatedFromAnyQuest(value, LANGUAGES.PL, self.localizer)
+			end
+ 		end
+	end
 	if type(names) ~= "table" then
 		names = { names }
 	end

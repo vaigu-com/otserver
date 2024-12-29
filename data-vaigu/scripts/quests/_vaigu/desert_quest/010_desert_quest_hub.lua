@@ -10,7 +10,7 @@ quest
 		}
 	end)
 	:Questlog(function() end)
-	:Mission("NONE")
+	:Mission(Storage.DesertQuestHub)
 	:State(
 		{ min = MISSION_NOT_STARTED, max = DEFAULT_MAX_STATE },
 		QuestFactory.StartupItems({

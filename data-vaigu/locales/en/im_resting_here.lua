@@ -10,6 +10,9 @@ return {
 	["Contract of service. Signed on the day of 20 IV 2014 in the free city of Hurghada. An agreement between Bildo, Chester the Dwarf, Gwindel and Gandalf. [...]"] = "Contract of service. Signed on the day of 20 IV 2014 in the free city of Hurghada. An agreement between Bildo, Chester the Dwarf, Gwindel and Gandalf. [...]",
 	["Grave Digger's crowbar for special usage."] = "Grave Digger's crowbar for special usage.",
 	["You found out what happened to one of the survivors."] = "You found out what happened to one of the survivors.",
+	["Lately, the well-known businessman Bildo Debicki was buried in the southern cemetery. To honor his passing, I've decided to do something good for the residents of this city and introduce a promotion on {crowbars}. This conversation does not constitute incitement to a crime under the criminal code. The price of one such item is 10 gold pieces."] = "Lately, the well-known businessman Bildo Debicki was buried in the southern cemetery. To honor his passing, I've decided to do something good for the residents of this city and introduce a promotion on {crowbars}. This conversation does not constitute incitement to a crime under the criminal code. The price of one such item is 10 gold pieces.",
+	["You want to buy special crowbar? It will cost you 10gp. If you were to pry open a lid (like the lid of a can), just click on it. No need to use crowbar - hence its called special."] = "You want to buy special crowbar? It will cost you 10gp. If you were to pry open a lid (like the lid of a can), just click on it. No need to use crowbar - hence its called special.",
+	["What?! Its only 10gps."] = "What?! Its only 10gps.",
 	-- Im Resting Here
 	["Im Resting Here"] = "Im Resting Here",
 	["A Work to Screw up"] = "A Work to Screw up",

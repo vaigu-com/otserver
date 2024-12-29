@@ -13,7 +13,6 @@ return {
 	["Right, it was the Elite Draken Helmet. Here's your reward."] = "Racja, to byl Elite Draken Helmet. Prosze, oto twoja nagroda",
 	["Right, it was the Royal Draken Mail. Here's your reward."] = "Racja, to byl Royal Draken Mail. Prosze, oto twoja nagroda",
 	["Right, it was the Royal Scale Robe. Here's your reward."] = "Racja, to byl Royal Scale Robe. Prosze, oto twoja nagroda",
-	["Lost the bag? Come back when you retrieve it."] = "Zgubiles worek? Wroc jak go odzyskasz.",
 	["Moustachilles has its bandit shithole located on east of mirkotown."] = "Andrzej Wasacz ma swoja meline na wschod od mirkotown.",
 	["Yeah, its our key."] = "Tak wlasnie brzmi nasze haslo.",
 	["Identity Document"] = "Dokument tozsamosci",
@@ -24,6 +23,7 @@ return {
 	["As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 10,000 gp. Do you already have all {materials} and the payment?"] = "Standardowo: Papier w miare dobrej jakosci, moze byc spellbook. Do tego inkwell oraz oplata 10000 gp. Czy masz juz wszystkie {skladniki} i payment?",
 	["Here's the document for you."] = "Masz, oto twoj dokument.",
 	["Get back when you get all the items."] = "Wroc ze wszystkimi przedmiotami.",
+	["So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have a crystal coin with you."] = "A wiec chcesz wiedziec jak zdobyc nowa tozsamosc? Aha, pytasz dla przyjaciela? Pogadaj z Ornuldem w dzungli, on zajmuje sie takimi interesami.\nMozliwe, ze bedziesz potrzebowac czegos do pisania i papieru, najlepiej z bardzo pospolitej ksiegi, oraz oczywiscie slona zaplata.\nJezeli milczenie jest zlotem, to wyrabianie dokumentow jest krysztalem. Co ja pierdole - od wody mieszaja mi sie zmysly. Tak czy siak miej ze soba crystal coina.",
 	-- Chester the Dwarf
 	["Chester the Dwarf"] = "Czeslaw Krasnolud",
 	["Fortune Teller 3000"] = "Wrozbita 3000",

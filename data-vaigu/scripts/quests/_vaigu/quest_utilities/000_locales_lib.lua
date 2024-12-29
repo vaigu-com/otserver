@@ -5,7 +5,7 @@ LOCALIZERS = {
 	DesertQuestHub = "desert_quest_hub",
 	FatMyrrusEncounters = "fat_myrrus_encounters",
 	DesertQuestTwo = "desert_quest_two",
-	EnterTheDrunkTankChamberlain = "enter_the_drunk_tank_chamberlain",
+	EnterTheDrunkTank = "enter_the_drunk_tank",
 	ProdigalSon = "prodigal_son",
 	--King of Rats II - V
 	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
@@ -124,7 +124,38 @@ local function translatedFromSpecificQuest(str, questId, targetLanguage)
 	end
 end
 
-local function translatedFromAnyQuest(string, language)
+MissingStrings = {}
+for key, value in pairs(LANGUAGES) do
+	MissingStrings[value] = {}
+end
+
+function missingStringsToFile()
+	for language, questIdToStr in pairs(MissingStrings) do
+		for questId, strToPesence in pairs(questIdToStr) do
+			for str in pairs(strToPesence) do
+				-- Construct the file path
+				local dirPath = ".\\missingStrings\\" .. language
+				local filePath = dirPath .. "\\" .. questId .. ".lua"
+
+				-- Open the file in append mode
+				local file, err = io.open(filePath, "a+")
+				if not file then
+					print("Error opening file: " .. err)
+					return false
+				end
+				
+				str = string.gsub(str, "\n", "\\n")
+				-- Write the content to the file
+				file:write(str .. "\n")
+
+				-- Close the file
+				file:close()
+			end
+		end
+	end
+end
+
+function translatedFromAnyQuest(string, language, questId)
 	local allStrings = TRANSLATION_TABLES[language]
 	if allStrings[LOCALIZERS.LOCALIZER_UNIVERSAL][string] then
 		return allStrings[LOCALIZERS.LOCALIZER_UNIVERSAL][string]
@@ -135,7 +166,9 @@ local function translatedFromAnyQuest(string, language)
 		end
 	end
 
-	logger.debug(T('[translatedFromAnyQuest] The string ":string:" is not available in any of the Translation Tables.', { string = string }))
+	questId = questId or LOCALIZERS.LOCALIZER_UNIVERSAL
+	MissingStrings[language][questId] = MissingStrings[language][questId] or {}
+	MissingStrings[language][questId][string] = true
 end
 
 function Translated(str, player, questId)

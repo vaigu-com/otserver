@@ -54,6 +54,7 @@ return {
 	["Unsealing rune"] = "Unsealing rune",
 	["Deep sea crystal"] = "Deep sea crystal",
 	["Your team left me a note stating they headed to the desert. You can ask Lambor for help finding them."] = "Your team left me a note stating they headed to the desert. You can ask Lambor for help finding them.",
+	["I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus."] = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus.",
 	-- The Three Sramatians and the Dragon
 	["The Three Sramatians and the Dragon"] = "The Three Sramatians and the Dragon",
 	["01. Hither and Thither"] = "01. Hither and Thither",

@@ -1,4 +1,4 @@
-local quest = Quest(LOCALIZERS.EnterTheDrunkTankChamberlain)
+local quest = Quest(LOCALIZERS.EnterTheDrunkTank)
 
 local localSupportFinished = {
 	[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
@@ -106,7 +106,7 @@ quest
 			[{ "teach", "nauczyc" }] = {
 				text = "I learned how to safely drink potions thanks to my excessive drinking habits. You can probably reach same results in 10-15 years. But i suppose you are looking for a faster {method}.",
 			},
-			[{ "method", "sposob" }] = {
+			[{ "method", "sposobu" }] = {
 				text = "This metod was devised by my mentor, sensei Sy-Fu. You have visit the floating naga temple. Its rumored that they keep their special glowing water there. The temple is located halfway between our city and Hurgaha. You will also need churn of bull's spooge. You can find it at bulltaur canteen. Take this vial and churn, you will need it to store those liquids. Both of those ingredients will be needed for the next step. Come back when you are done with your task.",
 				rewards = {
 					QuestKeyItems.EnterTheDrunkTankChamberlain.GlowingWaterVial,

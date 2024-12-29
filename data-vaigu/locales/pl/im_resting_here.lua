@@ -10,11 +10,13 @@ return {
 	["Contract of service. Signed on the day of 20 IV 2014 in the free city of Hurghada. An agreement between Bildo, Chester the Dwarf, Gwindel and Gandalf. [...]"] = "Umowa o dzielo. Kontrakt zawarty w dniu 20 IV 2014 w Orshaawa, pomiedzy Bildo a Czeslaw Krasnolud, Gwindel i Gandalf. [...]",
 	["Grave Digger's crowbar for special usage."] = "Specjalny lom od Grave Diggera.",
 	["You found out what happened to one of the survivors."] = "Doweidziales sie co sie stalo ze wszystkimi ocalalymi.",
+	["Lately, the well-known businessman Bildo Debicki was buried in the southern cemetery. To honor his passing, I've decided to do something good for the residents of this city and introduce a promotion on {crowbars}. This conversation does not constitute incitement to a crime under the criminal code. The price of one such item is 10 gold pieces."] = "Ostatnio znany biznesmen Bildo Debicki zostal pochowany na poludniowym cmentarzu. Aby uhonorowac jego smierc postanowilem, ze zrobie cos dobrego dla mieszkancow tego miasta, i wprowadze promocje na {lomy}. Ta konwersacja nie stanowi podzegania do przestepstwa w rozumieniu kodeksu karnego. Cena jednego takiego przedmiotu to 10 gp.",
+	["You want to buy special crowbar? It will cost you 10gp. If you were to pry open a lid (like the lid of a can), just click on it. No need to use crowbar - hence its called special."] = "Chcesz zakupic specjalny lom? Bedzie cie to kosztowac 10gp. Jezeli chcialbys podwazyc jakies wieko (np od dzemu) to wystarczy ze klikniesz na nie. Nie musisz uzywac lomu - stad nazywam go specjalnym.",
+	["What?! Its only 10gps."] = "No co ty, 10gp nie masz?!",
 	-- Im Resting Herea
 	["Im Resting Here"] = "Spoczywajacy Tutaj",
 	["A Work to Screw up"] = "Robotka do spierdolenia",
 	["Grave digger gave you a special crowbar. Try to find a use for it."] = "Grave digger dal ci specjalny lom. Sproboj znalezc dla niego zastosowanie.",
 	["You found some kind of last will. Try to find the item mentioned in it."] = "Znalazles cos, co wyglada na testament, a w nim opis drogi do mitycznego labiryntu downa. Udaj sie w miejsce opisane w dokumencie..",
 	["You found a document that indicates that four people broke into the labyrinth. At least two of them are no longer alive. Try to find one of the survivors."] = "Znalazles dokument, ktory wskazuje, iz cztery osoby wlamaly sie do labiryntu. Co najmniej dwoje z nich nie zyje. Sprobuj znalezc ktoregos z ocalalych.",
-	
 }

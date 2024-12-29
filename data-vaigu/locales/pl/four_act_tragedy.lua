@@ -39,6 +39,7 @@ return {
 	["Mysterius instrument. Most curious monsters can it allure. Put it down on the stone and play..."] = "Mistyczny instrument potrafiacy przywolac najdziwniejsze stworzenia. Poloz go na kamieniu i zagraj...",
 	["Grazhena Core i3"] = "Grazyna Core i3",
 	["As i said, go to the Caribbean."] = "Tak jak mowilem. Udaj sie na karaiby.",
+	["Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination."] = "Gdy bylem maly, zbieralismy sie przy ognisku. Nasza wyobraznia pozwalala nam przenosic sie gdziekolwiek chcielismy.",
 	-- Four Act Tregedy
 	["Four Act Tragedy"] = "Tragedya w Czterech Aktach",
 	["01. Dodge those compensation claims"] = "01. Chron sie przed roszczeniami odszkodowawczymi",
@@ -70,5 +71,4 @@ return {
 	["Rat Bum ran away to his cave. Chase him!"] = "Zul szczurow uciekl do swojej jaskini. Gon go!",
 	["You defeated the Rat Bum. Go back to Romek."] = "Pokonales zula szczurow. Wroc teraz do romka.",
 	["You helped Romek in dealing with Rat Bum. He rewarded you for your effort."] = "Pomogles romkowi uporac sie z zulem szczurow, za co cie zagrodzil.",
-
 }

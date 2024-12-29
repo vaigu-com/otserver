@@ -1,5 +1,4 @@
 return {
-	--Npc/Scripts
 	["Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka."] = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
 	["Thanks for your cooperation. Now if you don't mind, i have a {mission} for you."] = "Thanks for your cooperation. Now if you don't mind, i have a {mission} for you.",
 	["Ehh, you lost it? Guess Imma take over the world in next season."] = "Ehh, you lost it? Guess Imma take over the world in next season.",
@@ -24,6 +23,10 @@ return {
 	["What in damnation!? What did you do. I dont {feel}."] = "What in damnation!? What did you do. I dont {feel}.",
 	["Just put the rope on the table. I will serve myself."] = "Just put the rope on the table. I will serve myself.",
 	["I'd prefer this information to stay between us. Let's agree that you'll take what I received from the faithful today, and in exchange, you'll forget what Sultan showed you."] = "I'd prefer this information to stay between us. Let's agree that you'll take what I received from the faithful today, and in exchange, you'll forget what Sultan showed you.",
+	["Gucci was my favorite one. He was exceptionally intelligenc and he was capable of painting with brush by holding between it's teeth. With his experience he could fill children coloring books."] = "Gucci was my favorite one. He was exceptionally intelligenc and he was capable of painting with brush by holding between it's teeth. With his experience he could fill children coloring books.",
+	["What in damnation!? What did you do. I dont {feel} like."] = "What in damnation!? What did you do. I dont {feel} like.",
+	["Here, this is your reward."] = "Here, this is your reward.",
+	["Now its just six of them. {Date} and {Guci} aren't there anymore. Long time ago, a wield creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply to his will and {join} his quest to take over the world."] = "Now its just six of them. {Date} and {Guci} aren't there anymore. Long time ago, a wield creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply to his will and {join} his quest to take over the world.",
 	--Questlog
 	["Sultan Prime"] = "Sultan Prime",
 	["What Is Mafia? Is It Good?"] = "What Is Mafia? Is It Good?",
@@ -35,10 +38,7 @@ return {
 	["Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask."] = "Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask.",
 	["You've successfully completed the first task for Sultan of Phantasms. Return to him now."] = "You've successfully completed the first task for Sultan of Phantasms. Return to him now.",
 	["CAMELS_KILLED_STATUS"] = function(context)
-		return string.format(
-			"Sultan of Phantasms ordered you to kill dromedary. So far you managed to kill %d of them.",
-			context.player:getStorageValue(Storage.SultanPrime.DromedaryCount)
-		)
+		return string.format("Sultan of Phantasms ordered you to kill dromedary. So far you managed to kill %d of them.", context.player:getStorageValue(Storage.SultanPrime.DromedaryCount))
 	end,
 	["You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it."] = "You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it.",
 	["Sultan will be pleased with your actions. Return to him for your reward."] = "Sultan will be pleased with your actions. Return to him for your reward.",
@@ -50,16 +50,10 @@ return {
 	["Father Natank gave you today's offering from today's Mass in exchange for your silence."] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
 	["Opened Coffins"] = "Opened Coffins",
 	["OPENED_COFFINS_STATUS"] = function(context)
-		return string.format(
-			"~Sultan69: I'm communicating with you through 5GMO chemtrails waves. Start by desecrating a few graves. It will definitely weaken the morale of the people in the city. You have opened %d of 5 coffins.",
-			(math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0))
-		)
+		return string.format("~Sultan69: I'm communicating with you through 5GMO chemtrails waves. Start by desecrating a few graves. It will definitely weaken the morale of the people in the city. You have opened %d of 5 coffins.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0)))
 	end,
 	["Bodies Thrown"] = "Bodies Thrown",
 	["BODIES_THROWN_STATUS"] = function(context)
-		return string.format(
-			"~Sultan69: It's time for something more cruel. Kill the city's residents and throw their bodies into the jaws of the tentacle monster near the depot. You have thrown %d of 10 bodies.",
-			(math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0))
-		)
+		return string.format("~Sultan69: It's time for something more cruel. Kill the city's residents and throw their bodies into the jaws of the tentacle monster near the depot. You have thrown %d of 10 bodies.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0)))
 	end,
 }

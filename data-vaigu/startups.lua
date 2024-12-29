@@ -51,7 +51,7 @@ local function createCustomItemOnMap(context)
 	local pos = context.pos
 	local item = Game.createItem(id, count, pos)
 	if not item then
-		logger.warn(T("Cannot create item :id:, on position { :x:, :y:, :z: }", { id = id, x = pos.x, y = pos.y, z = pos.z }))
+		logger.warn(T("Cannot create item :id:, on position (:x:, :y:, :z:)", { id = id, x = pos.x, y = pos.y, z = pos.z }))
 		return
 	end
 	if context.immovable == true then

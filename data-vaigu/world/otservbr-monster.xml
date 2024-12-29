@@ -38012,9 +38012,6 @@
 	<monster centerx="7828" centery="1501" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7874" centery="1501" centerz="7" radius="1">
-		<monster name="Wild Horse" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5794" centery="1502" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -38063,9 +38060,6 @@
 	</monster>
 	<monster centerx="7571" centery="1503" centerz="7" radius="1">
 		<monster name="Elf Scout" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7873" centery="1503" centerz="7" radius="1">
-		<monster name="Horse" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5806" centery="1504" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />

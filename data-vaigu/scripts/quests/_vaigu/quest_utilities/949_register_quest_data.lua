@@ -1,2 +1,1 @@
 QuestRegistry:RegisterQuestData()
-

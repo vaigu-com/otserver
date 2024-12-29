@@ -174,52 +174,52 @@ quest
 				[Storage.LocalSupport.WoodDelivery] = {
 					name = "Wood Delivery",
 					states = {
-						[QuestState.LocalSupport.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery.",
-						[QuestState.LocalSupport.InvestigateCamp] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
-						[QuestState.LocalSupport.TellCommissionerAboutMafia] = "Tell Ryba that Narro and his mafia stole all of the wood delivery.",
-						[QuestState.LocalSupport.DealWithNarroMafia] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
-						[QuestState.LocalSupport.ReportToCommissioner] = "Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner.",
-						[QuestState.LocalSupport.TakeTrollskyReward] = "Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward.",
-						[QuestState.LocalSupport.TakeFstabReward] = "3af",
+						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery.",
+						[QuestState.LocalSupport.WoodDelivery.InvestigateCamp] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
+						[QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia] = "Tell Ryba that Narro and his mafia stole all of the wood delivery.",
+						[QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
+						[QuestState.LocalSupport.WoodDelivery.ReportToCommissioner] = "Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner.",
+						[QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward] = "Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward.",
+						[QuestState.LocalSupport.WoodDelivery.TakeFstabReward] = "3af",
 						[MISSION_FINISHED] = "3af",
 					},
 				},
 				[Storage.LocalSupport.FreakingRats] = {
 					name = "Freaking Rats",
 					states = {
-						[QuestState.LocalSupport.AskGertrudeForRepellant] = "Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison.",
-						[QuestState.LocalSupport.BringMouldyCheeseToGertrude] = "Gertrude asked you to bring her one mouldy cheese.",
-						[QuestState.LocalSupport.BringPoisonedChesseToWalmart] = "The cheese has been poisoned. Bring it to Walmart, so she can repel the rats.",
+						[QuestState.LocalSupport.FreakingRats.AskGertrudeForRepellant] = "Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison.",
+						[QuestState.LocalSupport.FreakingRats.BringMouldyCheeseToGertrude] = "Gertrude asked you to bring her one mouldy cheese.",
+						[QuestState.LocalSupport.FreakingRats.BringPoisonedChesseToWalmart] = "The cheese has been poisoned. Bring it to Walmart, so she can repel the rats.",
 						[MISSION_FINISHED] = "Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift.",
 					},
 				},
 				[Storage.LocalSupport.BudgetRecycling] = {
 					name = "Cheap Recycling",
 					states = {
-						[QuestState.LocalSupport.BringPieceOfEachClothToMadame] = "Malkin asked you to bring her 1 piece of cloth of every color.",
+						[QuestState.LocalSupport.FreakingRats.BringPieceOfEachClothToMadame] = "Malkin asked you to bring her 1 piece of cloth of every color.",
 						[MISSION_FINISHED] = "Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
 					},
 				},
 				[Storage.LocalSupport.LostCrystalBall] = {
 					name = "Broken Orb",
 					states = {
-						[QuestState.LocalSupport.FindBallForGypsy] = "Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly.",
+						[QuestState.LocalSupport.LostCrystalBall.FindBallForGypsy] = "Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly.",
 						[MISSION_FINISHED] = "The crystal ball wasn't perfect, but Gypsy is fine with it. Since now he will also let you exchange red gem to ring of healing.",
 					},
 				},
 				[Storage.LocalSupport.Biodegradable] = {
 					name = "Biodegradable",
 					states = {
-						[QuestState.LocalSupport.FindPostmanPackage] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
-						[QuestState.LocalSupport.ReturnPackageToPostman] = "You found the package for Old Postman. Return to him now.",
-						[QuestState.LocalSupport.AskForNewMission] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father.",
+						[QuestState.LocalSupport.Biodegradable.FindPostmanPackage] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
+						[QuestState.LocalSupport.Biodegradable.ReturnPackageToPostman] = "You found the package for Old Postman. Return to him now.",
+						[QuestState.LocalSupport.Biodegradable.AskForNewMission] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father.",
 						[MISSION_FINISHED] = "You took the box from Old Postman, which you should deliver to Anon's father.",
 					},
 				},
 				[Storage.LocalSupport.UnwantedGuests] = {
 					name = "Unwanted Guests",
 					states = {
-						[QuestState.LocalSupport.BringOldManFrostItems] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
+						[QuestState.LocalSupport.UnwantedGuests.BringOldManFrostItems] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
 						[MISSION_FINISHED] = "You completed Old Man Frost's request.",
 					},
 				},
@@ -232,10 +232,10 @@ quest
 				[Storage.LocalSupport.OcellatusXD] = {
 					name = "Ocellatus Xddd",
 					states = {
-						[QuestState.LocalSupport.FindTicket] = "Recover the match tickets that have been stolen from Ocellatus.",
-						[QuestState.LocalSupport.BringTicketToOcellatus] = "You found the Tickets in a bandit tent.",
-						[QuestState.LocalSupport.AskOcellatusForNewMission] = "You gave tickets back to Ocellatus. Ask him for new mission.",
-						[QuestState.LocalSupport.BringFoodToOcellatus] = "Ocellatus asks you to bring him soup and wings. Ask Pewter for help.",
+						[QuestState.LocalSupport.OcellatusXD.FindTicket] = "Recover the match tickets that have been stolen from Ocellatus.",
+						[QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus] = "You found the Tickets in a bandit tent.",
+						[QuestState.LocalSupport.OcellatusXD.AskOcellatusForNewMission] = "You gave tickets back to Ocellatus. Ask him for new mission.",
+						[QuestState.LocalSupport.OcellatusXD.BringFoodToOcellatus] = "Ocellatus asks you to bring him soup and wings. Ask Pewter for help.",
 						[MISSION_FINISHED] = "You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
 					},
 				},
@@ -446,10 +446,12 @@ quest
 	:State(
 		QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia,
 		QuestFactory.Dialog("Commissioner Fisher", {
-			text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
-			nextState = {
-				[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
-				[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+			[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
+				text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+				nextState = {
+					[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
+					[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+				},
 			},
 		})
 	)
@@ -536,10 +538,12 @@ quest
 	:State(
 		QuestState.LocalSupport.WoodDelivery.ReportToCommissioner,
 		QuestFactory.Dialog("Commissioner Fisher", {
-			text = "Very good, go speak with Trollsky about your reward, from now on you are a certified warrior of MirkoTown.",
-			expReward = 55000,
-			nextState = {
-				[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward,
+			[{ "mission", "misja" }] = {
+				text = "Very good, go speak with Trollsky about your reward, from now on you are a certified warrior of MirkoTown.",
+				expReward = 55000,
+				nextState = {
+					[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward,
+				},
 			},
 		})
 	)
@@ -677,8 +681,10 @@ quest
 		QuestFactory.Dialog("Madame Malkin", {
 			[{ "mission", "misja", "tkaninie", "cloth", "tailor" }] = {
 				text = "I like to sew something when I am bored but slowly I am lack of colorful fabrics.",
+				nextState = {
+					[Storage.LocalSupport.BudgetRecycling] = QuestState.LocalSupport.BudgetRecycling.BringPieceOfEachClothToMadame,
+				},
 			},
-			[Storage.LocalSupport.BudgetRecycling] = QuestState.LocalSupport.BudgetRecycling.BringPieceOfEachClothToMadame,
 		})
 	)
 	:State(
@@ -933,7 +939,7 @@ quest
 		QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus,
 		QuestFactory.Dialog("Ocellatus", {
 			[{ "mission", "misja" }] = {
-				text = "Thanks a lot! Can't wait to see the match. But there's something more, I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?",
+				text = "Thanks a lot! Can't wait to see the match. But there's something more, I'm stuck on this shithole and running low on food. Would you take care of some food order that I would request?\nWould you mind fixing some food for me?",
 				expReward = 15000,
 				requiredItems = {
 					QuestKeyItems.LocalSupport.Ticket,
@@ -1221,7 +1227,7 @@ quest
 		}),
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "thief", "zlodziej" }] = {
-				text = "I don't go running up on rn snitching like that. This ain't the opp block, pipe down.",
+				text = "This ain't the opp block, pipe down.",
 			},
 		}),
 		QuestFactory.Dialog("Moustachilles", {

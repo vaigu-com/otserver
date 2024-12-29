@@ -106,7 +106,7 @@ quest
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
 				text = "Yes! Now I have a proper assortment. Maybe I will sew something for you.\nAbout skinning... it didn't go very well. I assume it was your first time skinning.\nRemember, you must start cutting from armpit and cut straight down.\nSo if you know now how to skin people, go and train a little bit. If you want anything else just come back to me for different task.",
-				textNoRequiredItems = "You don't have all of the skins. I need 20 skins from green and red dragon, lizard, minotaur, orc and crocodile.",
+				textNoRequiredItems = "You don't have all of the skins. I need 2 skins from green and red dragon, lizard, minotaur, orc and crocodile.",
 				expReward = 300000,
 				reqiredItems = {
 					{ id = 5876, count = 2 },
