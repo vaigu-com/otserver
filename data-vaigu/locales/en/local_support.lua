@@ -79,8 +79,8 @@ return {
 	["DOMINO_BOOK_OF_CONTRABAND_TEXT"] = "Page 7\n\nTaking: Rotten artificial beech leg, crystal ball with mahogany stand, oaken stool.",
 	--Questlog
 	["Local Support"] = "Local Support",
-	["Discernment"] = "Research",
-	["Find Commissioner Fisher and ask him for a mission."] = "Find Commissioner Fisher and ask him for a mission.",
+	["Discernment"] = "Discernment",
+	["Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown."] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 	["VISIT_DEALERS_STATUS"] = function(context)
 		local visitedDealers = 0
 		for _, vendor in pairs(Storage.LocalSupport.VendorsAsked) do

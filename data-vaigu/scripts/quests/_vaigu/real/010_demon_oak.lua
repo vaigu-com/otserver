@@ -343,7 +343,6 @@ quest
 
 			action:uid(9008, 9009, 9010, 9011)
 			action:register()
-			print("registered demon oak chest uid")
 		end),
 		QuestFactory.Script(function(missionState)
 			local action = Action()

@@ -8,7 +8,7 @@ local outfit = {
 }
 
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[GREET] = {
 			text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 		},

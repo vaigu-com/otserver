@@ -18,7 +18,7 @@ local voices = {
 	{ text = "Byla sakwa z hajsem, nie ma sakwy" },
 }
 local dialogs  = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{GREET}] = {
 			text = "NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!"
 		},

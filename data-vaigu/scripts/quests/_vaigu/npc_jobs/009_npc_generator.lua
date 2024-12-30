@@ -46,8 +46,8 @@ function RegisterNpcDefinition(npc)
 	local jobStateDialogs = getJobStateDialogs(jobs)
 
 	local allDialogs = {}
-	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL] = jobUniversalDialogs
-	allDialogs[LOCALIZERS.LOCALIZER_UNIVERSAL][{ GREET }] = JOBS_GREETINGS[greetJob]
+	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
+	allDialogs[LOCALIZERS.Universal][{ GREET }] = JOBS_GREETINGS[greetJob]
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 
@@ -66,7 +66,9 @@ function RegisterNpcDefinition(npc)
 	npcConfig.walkRadius = npc.walkInterval or 2
 
 	npcConfig.outfit = outfit
-
+	if name == "Commissioner Fisher" then
+		PrintTableRecursive(outfit)
+	end
 	npcConfig.voices = voices
 
 	npcConfig.flags = { floorchange = npc.floorchange or 0 }

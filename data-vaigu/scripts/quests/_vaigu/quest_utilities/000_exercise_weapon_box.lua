@@ -53,10 +53,10 @@ function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition,
 	end
 
 	local charges = item:getCustomAttribute("charges")
-	local title = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("ExerciseWeaponBoxTitle")
-	local message = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context({ charges = charges }):Get("ExerciseWeaponBoxMessage")
+	local title = player:Localizer(LOCALIZERS.Universal):Get("ExerciseWeaponBoxTitle")
+	local message = player:Localizer(LOCALIZERS.Universal):Context({ charges = charges }):Get("ExerciseWeaponBoxMessage")
 	local window = ModalWindow({ title = title, message = message })
-	window:addButton(player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("ModalWindowOk"), confirmChoice)
+	window:addButton(player:Localizer(LOCALIZERS.Universal):Get("ModalWindowOk"), confirmChoice)
 
 	for name, id in pairs(exerciseWeaponChoice) do
 		local choice = window:addChoice(name)

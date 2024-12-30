@@ -126,7 +126,7 @@ function Quest:AddDialog(context)
 				translatedFromAnyQuest(value, LANGUAGES.EN, self.localizer)
 				translatedFromAnyQuest(value, LANGUAGES.PL, self.localizer)
 			end
- 		end
+		end
 	end
 	if type(names) ~= "table" then
 		names = { names }
@@ -221,14 +221,18 @@ end
 local function normalizeQuestlogData()
 	for _, quest in pairs(Quests) do
 		for storage, mission in pairs(quest.missions) do
-			mission.minState = mission.minState or 1
-			mission.maxState = mission.maxState or #(mission.states or {})
-			mission.finishedState = mission.finishedState or mission.maxState
+			local min, max
+			if mission.states then
+				min, max = FindMinMaxValue(mission.states)
+			end
+			mission.minState = mission.minState or min or DEFAULT_MIN_STATE
+			mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
+			mission.finishedState = mission.finishedState or MISSION_FINISHED
 			mission.storage = storage
 			for _, desc in pairs(mission.states or {}) do
 				if type(desc) == "string" then
-					translatedFromAnyQuest(desc,"EN", quest.localizer)
-					translatedFromAnyQuest(desc,"PL", quest.localizer)
+					translatedFromAnyQuest(desc, "EN", quest.localizer)
+					translatedFromAnyQuest(desc, "PL", quest.localizer)
 				end
 			end
 		end

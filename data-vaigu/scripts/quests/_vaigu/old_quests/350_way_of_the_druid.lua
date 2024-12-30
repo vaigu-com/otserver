@@ -341,7 +341,7 @@ quest
 			function map.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				local vectorBetween = Vector.BetweenPositions(fromPosition, destination)
 				local dir = vectorBetween:ToDirection()
-				local announcement = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context({ dir = dir }):Get("GO_IN_DIRECTION")
+				local announcement = player:Localizer(LOCALIZERS.Universal):Context({ dir = dir }):Get("GO_IN_DIRECTION")
 
 				doCreatureSay(player, announcement, TALKTYPE_ORANGE_1)
 			end

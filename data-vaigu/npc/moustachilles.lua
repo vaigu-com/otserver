@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[INCOMPREHENSIBLE] = {
 			text = "Go away, or even better: flip off.",
 		},

@@ -446,11 +446,11 @@ function DialogContext:SendIncomprehensibleError()
 	local npcDialogData = self.npcDialogData
 
 	local errorMessageIdentifier = INCOMPREHENSIBLE
-	if npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL] and npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL][INCOMPREHENSIBLE] then
-		errorMessageIdentifier = npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL][INCOMPREHENSIBLE]
+	if npcDialogData[LOCALIZERS.Universal] and npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE] then
+		errorMessageIdentifier = npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE]
 	end
 
-	local errorMessage = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
+	local errorMessage = player:Localizer(LOCALIZERS.Universal):Context(self):Get(errorMessageIdentifier)
 	npcHandler:say(errorMessage, npc, player)
 	return true
 end
@@ -576,7 +576,7 @@ function TryResolveDialog(player, msg, npcDialogData, npcHandler, npc, messageTy
 end
 
 function DialogContext:ResolveUniversalQuest()
-	local universalKeywordToDialog = self.npcDialogData[LOCALIZERS.LOCALIZER_UNIVERSAL]
+	local universalKeywordToDialog = self.npcDialogData[LOCALIZERS.Universal]
 	if not universalKeywordToDialog then
 		return
 	end
@@ -590,7 +590,7 @@ end
 
 function DialogContext:ResolveDialogDefault()
 	for localizer, storageToRequiredState in pairs(self.npcDialogData) do
-		if localizer == LOCALIZERS.LOCALIZER_UNIVERSAL then
+		if localizer == LOCALIZERS.Universal then
 			goto continue
 		end
 		if type(storageToRequiredState) ~= "table" then
@@ -617,7 +617,7 @@ function DialogContext:SetDefaultGreetFarewellWalkaway()
 	if not self.specialMessageType then
 		return
 	end
-	local translatedMessage = self.player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Context(self):Get(self.msg)
+	local translatedMessage = self.player:Localizer(LOCALIZERS.Universal):Context(self):Get(self.msg)
 	self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	self.resolvedStatus = SUCCESS_RESOLVE
 end
@@ -645,7 +645,7 @@ end
 
 function DialogContext:ResolveStorage()
 	for storage, requiredStatetoKeywords in pairs(self.storageToRequiredState) do
-		if storage == LOCALIZERS.LOCALIZER_UNIVERSAL then
+		if storage == LOCALIZERS.Universal then
 			goto continue
 		end
 		if type(requiredStatetoKeywords) ~= "table" then
@@ -1066,7 +1066,7 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 	for _, specialMessageType in pairs(specialMessageTypes) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get(specialMessageType)
+			local message = player:Localizer(LOCALIZERS.Universal):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.Universal):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
 	end

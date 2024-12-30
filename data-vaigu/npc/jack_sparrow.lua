@@ -16,7 +16,7 @@ local voices = {
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{ "sail", "plynac" }] = {
 			text = "",
 			specialActionsOnSuccess = {

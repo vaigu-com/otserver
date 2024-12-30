@@ -1,4 +1,4 @@
-local name = "commissioner Fisher"
+local name = "Commissioner Fisher"
 local outfit = {
 	lookType = 268,
 	lookHead = 114,

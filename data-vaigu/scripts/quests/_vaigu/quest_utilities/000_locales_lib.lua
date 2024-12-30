@@ -1,7 +1,7 @@
 local mainDir = DATA_DIRECTORY .. "/locales"
 
 LOCALIZERS = {
-	LOCALIZER_UNIVERSAL = "_universal",
+	Universal = "_universal",
 	Arena = "arena",
 	ArielsFriend = "ariels_friend",
 	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
@@ -150,8 +150,8 @@ end
 
 function translatedFromAnyQuest(string, language, localizer)
 	local allStrings = TRANSLATION_TABLES[language]
-	if allStrings[LOCALIZERS.LOCALIZER_UNIVERSAL][string] then
-		return allStrings[LOCALIZERS.LOCALIZER_UNIVERSAL][string]
+	if allStrings[LOCALIZERS.Universal][string] then
+		return allStrings[LOCALIZERS.Universal][string]
 	end
 	for _, questStrings in pairs(allStrings) do
 		if questStrings[string] then
@@ -159,7 +159,7 @@ function translatedFromAnyQuest(string, language, localizer)
 		end
 	end
 
-	localizer = localizer or LOCALIZERS.LOCALIZER_UNIVERSAL
+	localizer = localizer or LOCALIZERS.Universal
 	MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
 	MissingStrings[language][localizer][string] = true
 end

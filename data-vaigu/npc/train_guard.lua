@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 2,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{ ANY_MESSAGE }] = {
 			specialActionsOnSuccess = {
 				{

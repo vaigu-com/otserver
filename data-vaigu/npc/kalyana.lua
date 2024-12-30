@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 2,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[GREET] = {
 			text = "As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 		},

@@ -158,10 +158,11 @@ quest
 				[Storage.LocalSupport.Discernment] = {
 					name = "Discernment",
 					states = {
+						[MISSION_NOT_STARTED] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 						[1] = "VISIT_DEALERS_STATUS",
 						[2] = "VISIT_DEALERS_STATUS",
 						[3] = "VISIT_DEALERS_STATUS",
-						[4] = "VISIT_DEALERS_STATUS",
+						[4] = "VISIT_DEALERS_ST	ATUS",
 						[5] = "VISIT_DEALERS_STATUS",
 						[6] = "VISIT_DEALERS_STATUS",
 						[7] = "VISIT_DEALERS_STATUS",

@@ -88,7 +88,7 @@ local defaultWeapon = 7774
 local confirmStarterWeaponChoice = function(player, button, choice)
 	if not choice then
 		choice = { weaponType = defaultWeapon }
-		player:sendTextMessage(32, player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("Fine, i will choose your starter weapon then..."))
+		player:sendTextMessage(32, player:Localizer(LOCALIZERS.Universal):Get("Fine, i will choose your starter weapon then..."))
 	end
 
 	player:AddCustomItem({ id = choice.id })
@@ -97,8 +97,8 @@ local confirmStarterWeaponChoice = function(player, button, choice)
 end
 
 local function sendKnightStarterWeaponChoice(player)
-	local title = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("Starter weapons")
-	local message = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("Choose your starter weapon:")
+	local title = player:Localizer(LOCALIZERS.Universal):Get("Starter weapons")
+	local message = player:Localizer(LOCALIZERS.Universal):Get("Choose your starter weapon:")
 	local window = ModalWindow({ title = title, message = message })
 
 	for weaponType, id in pairs(knightWeaponChoices) do
@@ -107,7 +107,7 @@ local function sendKnightStarterWeaponChoice(player)
 		choice.id = id
 	end
 
-	window:addButton(player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("ModalWindowOk"), confirmStarterWeaponChoice)
+	window:addButton(player:Localizer(LOCALIZERS.Universal):Get("ModalWindowOk"), confirmStarterWeaponChoice)
 	window:sendToPlayer(player)
 end
 

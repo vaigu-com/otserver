@@ -156,6 +156,9 @@ function Player.isMissionOngoing(self, mission)
 	end
 
 	local state = self:getStorageValue(mission.storage)
+	if state == MISSION_NOT_STARTED and mission.states and mission.states[MISSION_NOT_STARTED] then
+		return true
+	end
 	if state == MISSION_NOT_STARTED then
 		return false
 	end
@@ -208,7 +211,7 @@ function Player.getTranslatedQuestName(self, quest)
 	local context = { player = self }
 	result = result .. self:Localizer(quest.localizer):Context(context):Get(quest.name)
 	if self:isQuestCompleted(quest) then
-		local completedSuffix = self:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("QUEST_MISSION_COMPLETE_SUFFIX")
+		local completedSuffix = self:Localizer(LOCALIZERS.Universal):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end
 	return result
@@ -223,7 +226,7 @@ function Player.getTranslatedMissionName(self, mission)
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
 	result = result .. self:Localizer(mission.localizer):Context(context):Get(mission.name)
 	if self:isMissionCompleted(mission) then
-		local completedSuffix = self:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("QUEST_MISSION_COMPLETE_SUFFIX")
+		local completedSuffix = self:Localizer(LOCALIZERS.Universal):Get("QUEST_MISSION_COMPLETE_SUFFIX")
 		result = result .. completedSuffix
 	end
 	return result

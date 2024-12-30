@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialog = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[WALKAWAY] = { text = "Lebewohl." },
 		[FAREWELL] = { text = "Auf wiedersehen." },
 		[GREET] = { text = "Strammstehen!" },

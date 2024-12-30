@@ -58,7 +58,7 @@ function T(template, variables)
 end
 
 function RegisterOnLook(callback, stringIdentifier, questId)
-	questId = questId or LOCALIZERS.LOCALIZER_UNIVERSAL
+	questId = questId or LOCALIZERS.Universal
 	for language, quests in pairs(TRANSLATION_TABLES) do
 		quests[questId][stringIdentifier] = callback
 	end
@@ -291,6 +291,24 @@ function FindMinMaxKey(table)
 		end
 		if key < min then
 			min = key
+		end
+		::continue::
+	end
+	return min, max
+end
+
+function FindMinMaxValue(table)
+	local max = -2e+300
+	local min = 2e+300
+	for _, value in pairs(table) do
+		if type(value) ~= "number" then
+			goto continue
+		end
+		if value > max then
+			max = value
+		end
+		if value < min then
+			min = value
 		end
 		::continue::
 	end

@@ -134,7 +134,6 @@ Storage = {
 		GnomevilTimer = 966,
 		AbyssadorTimer = 967,
 	},
-	--[[
 	TibiaTales = {
 		RestInHallowedGround = { -- Reserved 3940 - 3957
 			Questline = 3940,
@@ -199,7 +198,6 @@ Storage = {
 		BabyDragon = 10168,
 		SpiderWeb = 10169,
 	},
-	]]
 	ElementalSphere = { -- Reserved 10200 - 10203
 		QuestLine = 10200,
 		BossStorage = 10201,

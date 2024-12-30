@@ -9,7 +9,7 @@ local outfit = {
 	lookMount = 438,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[GREET] = {
 			text = "Hello. What brings you here?",
 		},

@@ -20,7 +20,7 @@ local voices = {
 	{ text = "Wymiana pustych fiolek- butelek po miksturach!" },
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{
 			"butelki",
 			"vials",

@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{ "hitler", "auschwitz", "holocaust" }] = {
 			text = "I know nothing about it.",
 		},

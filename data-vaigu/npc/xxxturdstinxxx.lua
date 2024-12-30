@@ -8,7 +8,7 @@ local outfit = {
 	addons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[WALKAWAY] = { text = "Peace God." },
 		[FAREWELL] = { text = "Seeee yaaa." },
 		[GREET] = { text = "Waddup, G?" },

@@ -69,7 +69,7 @@ quest
 				[Storage.EnterTheDrunkTankChamberlain] = {
 					name = "Iron Stomach",
 					states = {
-						[QuestState.EnterTheDrunkTankChamberlain.Mission01.AskVislavAboutTask] = "Comissioner Fisher told you to ask Vislav Shivka about a tactical task.",
+						[QuestState.EnterTheDrunkTankChamberlain.Mission01.AskVislavAboutTask] = "Commissioner Fisher told you to ask Vislav Shivka about a tactical task.",
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.CollectWaterAndMilk] = "Collect glowing naga water and bull spooge then report to Vislav.",
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.UseHallucinogenInCatacombs] = "Take hallucinogen and step through the sealed doors in Orshaawa catacombs.",
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.ReportToVislav] = "You learned how to drink even stronger potions than before. Report to Vislav.",
@@ -138,7 +138,7 @@ quest
 			glowingVial:register()
 		end),
 		QuestFactory.StartupItems({
-			{ id = 38526, pos = { 6284, 1420, 1 }, aid = Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial },
+			{ id = 38526, pos = { 7056, 1437, 1 }, aid = Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial },
 		}),
 		QuestFactory.Script(function(missionState)
 			local spoogeChurn = Action()

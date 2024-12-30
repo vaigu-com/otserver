@@ -141,7 +141,7 @@ return {
 		return T("Fight with :bossName:", { bossName = context.task.bossName })
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION"] = function(context)
-		local bossLocationDescription = context.player:Localizer(LOCALIZER_TASK_BOSS_LOCATIONS):Get(context.task.name)
+		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Tasks):Get(context.task.name)
 		return bossLocationDescription
 	end,
 	["Apes"] = "The Gorilla lives in monkey camp on eastern side of the mountain range in the jungle.",

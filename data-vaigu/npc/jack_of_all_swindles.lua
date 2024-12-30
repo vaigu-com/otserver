@@ -1,5 +1,5 @@
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[GREET] = {
 			text = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 		},

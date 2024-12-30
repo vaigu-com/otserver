@@ -547,7 +547,7 @@ quest
 			},
 		}),
 		QuestFactory.StartupItems({
-			{ pos = { 7223, 1532, 4}, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },6712, 1408, 13
+			{ pos = { 7223, 1532, 4}, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
 		})
 	)
 	:State(

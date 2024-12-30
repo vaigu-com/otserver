@@ -1,9 +1,9 @@
 local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
-	local afterLoginStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
-	local commandStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
-	local welcomeStr = player:Localizer(LOCALIZERS.LOCALIZER_UNIVERSAL):Get("WELCOME_TO_SERVER")
+	local afterLoginStr = player:Localizer(LOCALIZERS.Universal):Get("YOUR_LAST_VISIT")
+	local commandStr = player:Localizer(LOCALIZERS.Universal):Get("LIST_AVAILABLE_COMMANDS")
+	local welcomeStr = player:Localizer(LOCALIZERS.Universal):Get("WELCOME_TO_SERVER")
 	player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)

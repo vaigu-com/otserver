@@ -340,10 +340,8 @@ quest
 		}
 
 		DESERT_QUEST_ONE_PUNCHCARD_DOOR_OPEN = {
-
 			{ offPos = Vector(87, 60, -2), id = 5262 },
 			{ offPos = Vector(87, 60, -2), id = 1611 },
-
 			{ offPos = Vector(87, 60, -2), id = 8349 },
 		}
 

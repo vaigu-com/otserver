@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 1,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{ "bug milk" }] = {
 			text = "My friend from this village can provide you wih it.",
 		},

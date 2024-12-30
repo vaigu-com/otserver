@@ -5,24 +5,25 @@ quest
 	:Storage(function()
 		Storage.ArielsFriend = {
 			HumbleRequest = NextStorage(),
-FriendGrave = NextStorage(),
+			FriendGrave = NextStorage(),
 
-LoveIsInTheAir = NextStorage(),
-HairStrand = NextStorage(),
-Haybed = NextStorage(),
-ElixirStand = NextStorage(),
-LoveElixirRaw = NextStorage(),
-LoveElixirEnchanted = NextStorage(),
+			LoveIsInTheAir = NextStorage(),
+			HairStrand = NextStorage(),
+			Haybed = NextStorage(),
+			ElixirStand = NextStorage(),
+			LoveElixirRaw = NextStorage(),
+			LoveElixirEnchanted = NextStorage(),
 
-KillerLiquor = NextStorage(),
-LiquorChest = NextStorage(),
-LiquorItem = NextStorage(),
+			KillerLiquor = NextStorage(),
+			LiquorChest = NextStorage(),
+			LiquorItem = NextStorage(),
 
-PreludeToThaumaturgy = NextStorage(),
-GravesSoulChance = NextStorage(),
+			PreludeToThaumaturgy = NextStorage(),
+			GravesSoulChance = NextStorage(),
+			VirginGrave = NextStorage(),
 
-RadioFreeHirschberg = NextStorage(),
-OldRadio = NextStorage(),
+			RadioFreeHirschberg = NextStorage(),
+			OldRadio = NextStorage(),
 		}
 		QuestState.ArielsFriend = {
 			HumbleRequest = {
@@ -159,7 +160,7 @@ OldRadio = NextStorage(),
 				return true
 			end
 
-			friendGrave:aid(Storage.ArielsFriend.HairStrand)
+			friendGrave:aid(Storage.ArielsFriend.FriendGrave)
 			friendGrave:register()
 		end),
 		QuestFactory.StartupItems({
@@ -233,7 +234,7 @@ OldRadio = NextStorage(),
 			[{ "mission", "misja" }] = {
 				text = "I expected that she wouldn't want to go.. I have to convince her in some other way, but I'm out of ideas. Please, visit my friend Old Postman, he's really wise and always have some good ideas.",
 			},
-			}),
+		}),
 		QuestFactory.Dialog("Old Postman", {
 			[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {
 				text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
@@ -444,7 +445,7 @@ OldRadio = NextStorage(),
 				return true
 			end
 
-			grave:aid(Storage.ArielsFriend.FriendGrave)
+			grave:aid(Storage.ArielsFriend.VirginGrave)
 			grave:register()
 		end)
 	)

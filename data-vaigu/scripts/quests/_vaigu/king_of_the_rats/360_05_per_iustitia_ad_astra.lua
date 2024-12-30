@@ -439,6 +439,74 @@ quest
 		end
 		mType:register(monster)
 	end)
+	:MonsterEvent(function()
+		local combat = Combat()
+		combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
+		combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_ENERGYBALL)
+		local function tryCatchPlayers(creature)
+			local currentDirection = creature:getDirection()
+			local nextDirection = currentDirection
+			nextDirection = nextDirection + (-1) ^ math.random(0, 1)
+			nextDirection = nextDirection % 4
+
+			creature:setDirection(nextDirection)
+		end
+
+		local spell = Spell("instant")
+		function spell.onCastSpell(creature, var, isHotkey)
+			tryCatchPlayers(creature)
+			return combat:execute(creature, var)
+		end
+
+		spell:name("hugo house guard turn")
+		spell:words(NextSpellId())
+		spell:needTarget(true)
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(false)
+		spell:needDirection(true)
+		spell:register()
+
+		local combat = Combat()
+		combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
+		combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_ENERGYBALL)
+
+		local seeingRange = 2
+		local seeingRadius = 1
+
+		local function tryCatchPlayers(guard)
+			local lookingDirection = guard:getDirection()
+			local lookingVector = Vector.FromDirection(lookingDirection, seeingRange)
+
+			local guardPos = guard:getPosition()
+			local gazeCenter = guardPos:Moved(lookingVector)
+			local gazeCorner1, gazeCorner2 = gazeCenter:GetBoundariesByRadius(seeingRadius)
+
+			IterateBetweenPositions(gazeCorner1, gazeCorner2, function(context)
+				local playerPos = context.pos
+				local player = playerPos:GetTopCreature()
+				if not (player and player:isPlayer()) then
+					return
+				end
+				PER_IUSTITIA_AD_ASTRA_SPECIAL_ACTIONS.officerCaughtYou({ player = player })
+			end)
+		end
+
+		local spell = Spell("instant")
+		function spell.onCastSpell(creature, var, isHotkey)
+			tryCatchPlayers(creature)
+			return combat:execute(creature, var)
+		end
+
+		spell:name("hugo house guard scan")
+		spell:words(NextSpellId())
+		spell:needTarget(true)
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(false)
+		spell:needDirection(true)
+		spell:register()
+	end)
 	:Monster(function()
 		local mType = Game.createMonsterType("Hugo House Guard")
 		local monster = {}
@@ -1681,6 +1749,85 @@ quest
 		end
 
 		rukca:register()
+	end)
+	:MonsterEvent(function()
+		local combat = Combat()
+		combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
+		combat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_GROUNDSHAKER)
+		combat:setArea(createCombatArea(AREA_CIRCLE5X5V2))
+
+		local rageBaseDamage = 100
+		local rageCurrentDamage = 100
+
+		local spell = Spell("instant")
+		function spell.onCastSpell(creature, var)
+			local rukcaState = CreatureStateRegistry:getState(creature)
+			if rukcaState.rukcaIsHungry then
+				rageCurrentDamage = rageCurrentDamage + 70
+				combat:setFormula(COMBAT_FORMULA_DAMAGE, -rageCurrentDamage, 0, -rageCurrentDamage, 0)
+				return combat:execute(creature, var)
+			end
+
+			rageCurrentDamage = rageBaseDamage
+		end
+
+		spell:name("rukca hunger rage")
+		spell:words(NextSpellId())
+		spell:needTarget(false)
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(false)
+		spell:needDirection(false)
+		spell:register()
+
+		local combat = Combat()
+		combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
+
+		local function tryEatBabySeal(centerPos)
+			local eatenBaby = IterateBetweenPositions(centerPos:Moved(-2, -2, 0), centerPos:Moved(2, 2, 0), function(context)
+				local pos = context.pos
+				local babySeal = Tile(pos):getItemById(7178)
+				if babySeal then
+					pos:sendMagicEffect(CONST_ME_DRAWBLOOD)
+					babySeal:remove()
+					return true
+				end
+			end, { stopCondition = STOP_CONDITIONS.isTrue })
+			return eatenBaby
+		end
+
+		local function canEat(rukcaState)
+			if os.time() > rukcaState.nextMealTime then
+				return true
+			else
+				return false
+			end
+		end
+
+		local spell = Spell("instant")
+		function spell.onCastSpell(creature, var, isHotkey)
+			local rukcaState = CreatureStateRegistry:getState(creature)
+			if not canEat(rukcaState) then
+				return
+			end
+
+			if not tryEatBabySeal(creature:getPosition()) then
+				rukcaState.rukcaIsHungry = true
+			else
+				rukcaState.rukcaIsHungry = false
+				rukcaState.nextMealTime = os.time() + 10
+			end
+			return combat:execute(creature, var)
+		end
+
+		spell:name("rukca eating")
+		spell:words(NextSpellId())
+		spell:needTarget(true)
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(false)
+		spell:needDirection(true)
+		spell:register()
 	end)
 	:State(
 		QuestState.PerIustitiaAdAstra.Mission05.ReportToHugo,

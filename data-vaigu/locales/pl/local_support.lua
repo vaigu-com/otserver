@@ -88,7 +88,7 @@ return {
 	--Questlog
 	["Local Support"] = "Pomoc Miejscowym",
 	["Discernment"] = "Rozeznanie",
-	["Find Commissioner Fisher and ask him for a mission."] = "Idz do komisarza Ryby i zapytaj o misje.",
+	["Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown."] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 	["VISIT_DEALERS_STATUS"] = function(context)
 		local visitedDealers = 0
 		for _, vendor in pairs(Storage.LocalSupport.VendorsAsked) do

@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.LOCALIZER_UNIVERSAL] = {
+	[LOCALIZERS.Universal] = {
 		[{ "konmuld" }] = {
 			text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
 		},
