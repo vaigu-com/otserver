@@ -34,7 +34,9 @@ quest
 	end)
 	--39f add questlog
 	:Mission(Storage.RubelsteinLegacy.Mission01)
-	:State(
+:State(
+function()
+return 
 		QuestState.RubelsteinLegacy.Mission01.TalkToRubelstein,
 		QuestFactory.Dialog("Rubelstein", {
 			[{ "mission" }] = {
@@ -55,8 +57,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.RubelsteinLegacy.Mission01.TalkToMareesha,
 		QuestFactory.Dialog("Mareesha", {
 			[{ "czek", "token", "bon", "nagroda", "reward" }] = {
@@ -74,5 +79,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

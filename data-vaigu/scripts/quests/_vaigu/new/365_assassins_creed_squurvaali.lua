@@ -170,7 +170,9 @@ quest
 		}
 	end)
 	:Mission(Storage.AssassinsCreedSquurvaali.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ GREET }] = {
@@ -244,8 +246,11 @@ quest
 		QuestFactory.StartupItems({
 			{ pos = { 5685, 1408, 7 }, id = 2355, aid = Storage.AssassinsCreedSquurvaali.GhostChair },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek,
 		QuestFactory.Dialog("Father Natanek", {
 			[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess" }] = {
@@ -255,8 +260,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "poleciec", "fly" }] = {
@@ -274,8 +282,11 @@ quest
 				text = "Oldrak has currently gone to the steppes. He is teaching the villagers there.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission01.ReportToGhasstlyPrincess,
 		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission", "carpet", "dywan" }] = {
@@ -287,9 +298,12 @@ quest
 				expReward = 20000,
 			},
 		})
-	)
-	:Mission(Storage.AssassinsCreedSquurvaali.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.AssassinsCreedSquurvaali.Mission02)
+:State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission02.FindMareesha,
 		QuestFactory.Dialog("Mareesha", {
 			[{ "mission" }] = {
@@ -302,8 +316,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission02.FindArtistPalette,
 		QuestFactory.Dialog("Mareesha", {
 			[{ "artist palette", "mission" }] = {
@@ -342,8 +359,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission02.CompleteExorcismOnTomek,
 		QuestFactory.Dialog("Mareesha", {
 			[{ "artist palette", "mission" }] = {
@@ -359,8 +379,11 @@ quest
 				rewards = { QuestKeyItems.AssassinsCreedSquurvaali.MarishaArtistPalette },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission02.ReturnPaletteToMareesha,
 		QuestFactory.Dialog("Mareesha", {
 			[{ "mission", "tailor", "uszyc", "sew" }] = {
@@ -382,9 +405,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.AssassinsCreedSquurvaali.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.AssassinsCreedSquurvaali.Mission03)
+:State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission03.ReportToGhasstlyPrincess,
 		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission", "misja" }] = {
@@ -396,8 +422,11 @@ quest
 				rewards = { ExerciseWeaponBox(30) },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission03.FindVislavShivka,
 		QuestFactory.Dialog("Vislav Shivka", {
 			[{ "mission", "dywan", "carpet", "misja", "zaczarowany dywan" }] = {
@@ -407,9 +436,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.AssassinsCreedSquurvaali.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.AssassinsCreedSquurvaali.Mission03)
+:State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission03.FindLambor,
 		QuestFactory.Dialog("Vislav Shivka", {
 			[{ "istoty", "creatures" }] = {
@@ -430,8 +462,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission03.FindWafers,
 		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
@@ -449,8 +484,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission03.ReturnWafersToLambor,
 		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
@@ -462,8 +500,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission03.BringDeadweightsToLambor,
 		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
@@ -477,9 +518,12 @@ quest
 				textNoRequiredItems = "Return when you have exactly 5 dead weight.",
 			},
 		})
-	)
-	:Mission(Storage.AssassinsCreedSquurvaali.Mission04)
-	:State(
+
+end
+)	:Mission(Storage.AssassinsCreedSquurvaali.Mission04)
+:State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission04.GoToHighestMountain,
 		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission" }] = {
@@ -549,8 +593,11 @@ quest
 		QuestFactory.StartupItems({
 			{ pos = { 7223, 1532, 4}, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare,
 		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ "mission" }] = {
@@ -591,8 +638,11 @@ quest
 			flare:aid(Storage.AssassinsCreedSquurvaali.KeyItems.Flare)
 			flare:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission04.ReportToGhasstlyPrincess,
 		QuestFactory.Dialog("Ghasstly Princess", {
 			[{ GREET }] = {
@@ -616,8 +666,11 @@ quest
 				expReward = 500000,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.AssassinsCreedSquurvaali.Mission04.ReportToFatherNatanek,
 		QuestFactory.Dialog("Father Natanek", {
 			[{ "krol krypty", "crypt king", "king of the crypt", "king", "krol" }] = {
@@ -627,5 +680,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

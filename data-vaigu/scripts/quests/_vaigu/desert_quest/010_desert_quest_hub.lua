@@ -11,7 +11,9 @@ quest
 	end)
 	:Questlog(function() end)
 	:Mission(Storage.DesertQuestHub)
-	:State(
+:State(
+function()
+return 
 		{ min = MISSION_NOT_STARTED, max = DEFAULT_MAX_STATE },
 		QuestFactory.StartupItems({
 			{ pos = { -2, 0, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToDesertQuestOne },
@@ -81,5 +83,6 @@ quest
 			fromHubToQuestPortal:type("stepin")
 			fromHubToQuestPortal:register()
 		end)
-	)
-	:Register()
+
+end
+)	:Register()

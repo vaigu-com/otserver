@@ -755,7 +755,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.FourActTragedy.Mission01)
-	:State(
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "zadanie" }] = {
@@ -769,8 +771,11 @@ quest
 				rewards = { ExerciseWeaponBox(3000) },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -791,8 +796,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission01.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -804,9 +812,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.FourActTragedy.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.FourActTragedy.Mission02)
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -873,8 +884,11 @@ quest
 		QuestFactory.StartupItems({
 			{ pos = { -62, -8, 0 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToPresent },
 		}, RETRO_KNUROWO_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
 		QuestFactory.Dialog("Timmy", {
 			[{ "mission" }] = {
@@ -933,8 +947,11 @@ quest
 			{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
 			{ pos = { -24, -23, 6 }, id = 7723, aid = Storage.FourActTragedy.WawelDragonAccess },
 		}, RETRO_KNUROWO_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
 		QuestFactory.Dialog("Timmy", {
 			[{ "mission" }] = {
@@ -948,8 +965,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission02.FindMagicDust,
 		QuestFactory.Dialog("Timmy", {
 			[{ "mission", "present", "terazniejszosci" }] = {
@@ -973,8 +993,11 @@ quest
 				},
 			},
 		}, RETRO_KNUROWO_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission02.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -986,9 +1009,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.FourActTragedy.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.FourActTragedy.Mission03)
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -1067,8 +1093,9 @@ quest
 			krakenLever:aid(KRAKEN_ENCOUNTER_DATA.actionid)
 			krakenLever:register()
 		end)
-	)
-	:MonsterEvent(function()
+
+end
+)	:MonsterEvent(function()
 		local nextState = {
 			[Storage.FourActTragedy.Mission03] = QuestState.FourActTragedy.Mission03.ReportToRomek,
 		}
@@ -1096,7 +1123,9 @@ quest
 
 		skurwiwijDeath:register()
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission03.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -1110,9 +1139,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.FourActTragedy.Mission04)
-	:State(
+
+end
+)	:Mission(Storage.FourActTragedy.Mission04)
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission04.FindBribeslippers,
 		QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
 			text = "Ruins are located in the northern part of Kongo",
@@ -1159,8 +1191,11 @@ quest
 			slippersTp:aid(Storage.FourActTragedy.SlippersTorch)
 			slippersTp:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission04.BringSlippersToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -1186,14 +1221,20 @@ quest
 				text = "Your eyes will open when mine are long closed",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij,
 		QuestFactory.StartupItems({
 			{ pos = { 6581, 557, 9 }, id = 5131, aid = Storage.FourActTragedy.SkurwiwijDoor },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission04.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -1209,9 +1250,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.FourActTragedy.Mission05)
-	:State(
+
+end
+)	:Mission(Storage.FourActTragedy.Mission05)
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission05.FindXena,
 		QuestFactory.Dialog("Xe'na", {
 			[{ "mission", "grazhenacore", "grazynacore", "grazyna", "grazhena" }] = {
@@ -1226,8 +1270,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission05.FindGrazhena,
 		QuestFactory.StartupItems({
 			{ pos = { 6005, 1386, 12 }, id = 5131, aid = Storage.FourActTragedy.GrazhenaDoor },
@@ -1247,8 +1294,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.FourActTragedy.Mission05.KillRatBum,
 		QuestFactory.Dialog("Grazhena", { [{ "mission" }] = {
 			text = "Cave entrance is just before the cell. Im gonna wait here.",
@@ -1260,8 +1310,9 @@ quest
 				rewards = { QuestKeyItems.FourActTragedy.GrazynaCore },
 			},
 		})
-	)
-	:EncounterData(function()
+
+end
+)	:EncounterData(function()
 		local ratbumLever = {
 			encounterName = "zul-szczurow-lair",
 
@@ -1311,7 +1362,9 @@ quest
 
 		zulSzczurowDeath:register()
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.FourActTragedy.Mission05.ReportToRomek,
 		QuestFactory.Dialog("Grazhena", {
 			[{ "mission" }] = {
@@ -1333,5 +1386,6 @@ quest
 				rewards = { ExerciseWeaponBox(3500) },
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

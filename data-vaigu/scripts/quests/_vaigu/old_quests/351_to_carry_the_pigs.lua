@@ -93,7 +93,9 @@ quest
 		}
 	end)
 	:Mission(Storage.ToCarryThePigs.BeLikeSchwarzenegger)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Arni", {
 			[{ "mission", "misja" }] = {
@@ -112,8 +114,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace,
 		QuestFactory.Dialog("Arni", {
 			[{ "mission", "misja", "necklace", "naszyjnik" }] = {
@@ -143,8 +148,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.BeLikeSchwarzenegger.BringNecklaceToArni,
 		QuestFactory.Dialog("Arni", {
 			[{ "mission", "misja" }] = {
@@ -164,9 +172,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ToCarryThePigs.HalfTurnKick)
-	:State(
+
+end
+)	:Mission(Storage.ToCarryThePigs.HalfTurnKick)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
@@ -180,8 +191,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves,
 		QuestFactory.StartupItems({
 			{
@@ -195,8 +209,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.HalfTurnKick.BringDocumentToCordell,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
@@ -206,8 +223,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation,
 		QuestFactory.Dialog("Shivganesh", { [{ "mission", "misja" }] = {
 			text = "Ah that's really simple. I will write down the translation on this piece of paper. Say hi to Walker from me.",
@@ -215,8 +235,11 @@ quest
 				[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.BringTranslationToCordell,
 			},
 		} })
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.HalfTurnKick.BringTranslationToCordell,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
@@ -230,8 +253,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs,
 		QuestFactory.StartupItems({
 			{
@@ -249,8 +275,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.HalfTurnKick.ReportFounterfeitLegs,
 		QuestFactory.Dialog("Cordell Walker", {
 			[{ "mission", "misja" }] = {
@@ -269,9 +298,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ToCarryThePigs.BalancedDiet)
-	:State(
+
+end
+)	:Mission(Storage.ToCarryThePigs.BalancedDiet)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Fat Myrrus", {
 			[{ "mission", "misja" }] = {
@@ -285,8 +317,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus,
 		QuestFactory.StartupItems({
 			{
@@ -302,8 +337,11 @@ quest
 				requiredState = {},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus,
 		QuestFactory.Dialog("Fat Myrrus", {
 			[{ "mission", "misja" }] = {
@@ -325,9 +363,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ToCarryThePigs.KitzDominando)
-	:State(
+
+end
+)	:Mission(Storage.ToCarryThePigs.KitzDominando)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("[SOLID] Kitz", {
 			[{ "mission", "misja" }] = {
@@ -341,8 +382,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.KitzDominando.ArrangeBowFromLegolas,
 		QuestFactory.Dialog("Legolas", {
 			[{ "mission", "misja" }] = {
@@ -362,8 +406,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ToCarryThePigs.KitzDominando.GiveBowToKitz,
 		QuestFactory.Dialog("[SOLID] Kitz", { [{ "mission", "misja" }] = {
 			text = "Is that THIS bow? Guess I got played by the elves. I will make them regret..\nBut thanks, you finished your mission. Here, keep my old bow in return.",
@@ -374,5 +421,6 @@ quest
 				QuestKeyItems.ToCarryThePigs.NewBow,
 			},
 		} })
-	)
-	:Register()
+
+end
+)	:Register()

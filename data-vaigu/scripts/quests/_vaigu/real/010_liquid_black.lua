@@ -29,5 +29,4 @@ quest
 			},
 		}
 	end)
-	:Mission(PH_MISSION)
 	:Register()

@@ -215,7 +215,9 @@ quest
 		}
 	end)
 	:Mission(Storage.TopChef.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Script(function()
 			local cooldownSeconds = 22 * 3600
@@ -256,8 +258,11 @@ quest
 				requiredTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.TopChef.RotwormStew, max = QuestState.TopChef.SweetMangonaiseElixir },
 		QuestFactory.Dialog("Pewter", {
 			[{ "recipe", "menu", "przepis", "przepisami", "mission" }] = {
@@ -294,8 +299,11 @@ quest
 				text = "Come back when you are ready.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TopChef.FinishedCourse_AskForBook,
 		QuestFactory.Dialog("Pewter", {
 			[{ ANY_MESSAGE }] = {
@@ -307,8 +315,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TopChef.CanMakeAllDishes,
 		QuestFactory.Dialog("Pewter", {
 			[{ GREET }] = {
@@ -353,5 +364,6 @@ quest
 				requiredTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

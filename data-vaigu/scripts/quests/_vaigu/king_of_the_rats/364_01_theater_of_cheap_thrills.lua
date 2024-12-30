@@ -627,7 +627,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.TheaterOfCheapThrills.Mission01)
-	:State(
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -646,8 +648,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission01.FindCheese,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "yes", "tak" }] = {
@@ -673,9 +678,12 @@ quest
 				rewards = { QuestKeyItems.TheaterOfCheapThrills.Cheese },
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission02)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission02.StartTheTest,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -688,8 +696,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission02.PassTheTest,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -710,9 +721,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission03)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission03.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -722,8 +736,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission03.DefeatMissPitca,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -753,8 +770,11 @@ quest
 			tile:aid(Storage.TheaterOfCheapThrills.Spawns.MissPizza)
 			tile:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission03.ReportKillToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "Hello. Have you completed the task yet?" },
@@ -767,8 +787,11 @@ quest
 				rewards = { ExerciseWeaponBox(200) },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission03.AskGravedigger_FindBook,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "Aaaaa!!!" },
@@ -952,8 +975,11 @@ quest
 			plus:type("additem")
 			plus:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission03.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -968,9 +994,12 @@ quest
 				rewards = { ExerciseWeaponBox(200) },
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission04)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission04)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission04.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -980,8 +1009,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission04.EstablishFoodProvision,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -996,8 +1028,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission04.BringGarlicToKebabMaster,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -1017,8 +1052,11 @@ quest
 				textNoRequiredItems = "Return when you have three garlic cloves. And don't forget about the payment of 8 platinum coins.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission04.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1030,9 +1068,12 @@ quest
 				rewards = { ExerciseWeaponBox(200) },
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission05)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission05)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission05.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1042,8 +1083,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission05.AskArniForCamp,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1058,8 +1102,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission05.ReportToKitz,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1086,8 +1133,11 @@ quest
 				requiredTopic = QuestTopics.TheaterOfCheapThrills.ConfirmCampDestination,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission05.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "So, did you manage to complete my {mission}?" },
@@ -1099,9 +1149,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission06)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission06)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission06.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1111,8 +1164,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission06.FindRobercik,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = { text = "I don't know where he could be..." },
@@ -1140,8 +1196,11 @@ quest
 			tile:aid(Storage.TheaterOfCheapThrills.Spawns.Robercik)
 			tile:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission06.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1153,9 +1212,12 @@ quest
 				rewards = { ExerciseWeaponBox(200) },
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission07)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission07)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission07.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1165,8 +1227,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission07.DonateToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -1186,8 +1251,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission07.WaitForFestivalToEnd,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -1202,9 +1270,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission08)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission08)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission08.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1214,8 +1285,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission08.TipVislavToStayAwayFromRomekServer,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -1237,8 +1311,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission08.ObserveRomekReaction,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1249,9 +1326,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission09)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission09)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission09.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1261,8 +1341,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission09.FindBrazilMap,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -1292,8 +1375,11 @@ quest
 			map:aid(Storage.TheaterOfCheapThrills.BrazilMap)
 			map:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission09.PassMapToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1303,8 +1389,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission09.TrackAndKillJuerdo,
 		QuestFactory.Dialog("GM Romek", {
 			[{ GREET }] = {
@@ -1337,8 +1426,9 @@ quest
 			tile:aid(Storage.TheaterOfCheapThrills.Spawns.JuerdoTitsgo)
 			tile:register()
 		end)
-	)
-	:MonsterEvent(function()
+
+end
+)	:MonsterEvent(function()
 		local nextState = { [Storage.TheaterOfCheapThrills.Mission09] = QuestState.TheaterOfCheapThrills.Mission09.ReportToRomek }
 
 		local juerdoDeath = CreatureEvent("JuerdoDeath")
@@ -1359,7 +1449,9 @@ quest
 
 		juerdoDeath:register()
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission09.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1371,9 +1463,12 @@ quest
 				rewards = { ExerciseWeaponBox(400) },
 			},
 		})
-	)
-	:Mission(Storage.TheaterOfCheapThrills.Mission10)
-	:State(
+
+end
+)	:Mission(Storage.TheaterOfCheapThrills.Mission10)
+:State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "trial", "probe" }] = {
@@ -1395,8 +1490,11 @@ quest
 				text = "Here's the final stage of the initiation. If The chorus of januses is to judge our justice, then who judged them? Or is it just an illusion to cut us off from our human form and commit the ultimate embarrassment? I have to prove my loyalty to justice and commit genocide. You must help me commit genocide on my own faithful. It's fair and just. Ask about the {trial} if you're ready.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.TheaterOfCheapThrills.Mission10.CommitRatocide,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission", "misja" }] = {
@@ -1410,5 +1508,6 @@ quest
 				rewards = { ExerciseWeaponBox(400) },
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

@@ -373,7 +373,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.SafetyAndOccupationalHygiene.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.StartupItems({
 			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 2, 0), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
@@ -417,8 +419,11 @@ quest
 			end
 			portalUse:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -428,8 +433,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -444,8 +452,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "mission" }] = {
@@ -460,8 +471,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission01.ReportToTurdstin,
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "mission", "cuckurse", "cucklatwa" }] = {
@@ -472,9 +486,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.SafetyAndOccupationalHygiene.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.SafetyAndOccupationalHygiene.Mission02)
+:State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "mission" }] = {
@@ -484,8 +501,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "mission" }] = {
@@ -499,8 +519,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "mission" }] = {
@@ -515,8 +538,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
 		QuestFactory.Dialog("xXxTurdstinxXx", {
 			[{ "mission" }] = {
@@ -530,8 +556,11 @@ quest
 				rewards = { ExerciseWeaponBox(400) },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
 		QuestFactory.Dialog("Xe'na", {
 			[{ "mission", "cucklatwa", "cuckurse", "curse", "klatwa" }] = {
@@ -565,9 +594,12 @@ quest
 			document:aid(Storage.SafetyAndOccupationalHygiene.Scp420Document)
 			document:register()
 		end)
-	)
-	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
+:State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings,
 		QuestFactory.Dialog("Rat of Kings", {
 			[{ GREET }] = {
@@ -610,8 +642,11 @@ quest
 			tileIn:aid(Storage.SafetyAndOccupationalHygiene.KrolTile)
 			tileIn:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission03.AskRatOfKingsForMission,
 		QuestFactory.Dialog("Rat of Kings", {
 			[{ "mission", "misje" }] = {
@@ -621,9 +656,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
+:State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus,
 		QuestFactory.Dialog("Rat of Kings", {
 			[{ "mission", "petrus" }] = {
@@ -653,14 +691,20 @@ quest
 			tile:aid(Storage.SafetyAndOccupationalHygiene.PetrusSpawn)
 			tile:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings },
 		QuestFactory.StartupItems({
 			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(-3, 2, 1), id = 2471, aid = Storage.KingOfRatsHQ.Items.Ytong, rewards = { QuestKeyItems.KingOfRatsHQ.Ytong } },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings,
 		QuestFactory.Dialog("Rat of Kings", {
 			[{ "mission" }] = {
@@ -670,8 +714,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -684,5 +731,6 @@ quest
 				rewards = { ExerciseWeaponBox(1337) },
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

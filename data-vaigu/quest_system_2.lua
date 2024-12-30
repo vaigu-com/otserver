@@ -1,6 +1,5 @@
 ---@class Quest
 ---@field name string
----@field missions table
 ---@field monsterEvents table
 ---@field encounters table
 ---@field monsters table
@@ -10,7 +9,8 @@
 ---@field startupItems table
 ---@field startupNpcs table
 ---@field questlog table
----@field mission integer
+---@field currentMission integer
+---@field missions table
 ---@field state integer
 ---@field localizer string
 Quest = {}
@@ -20,6 +20,7 @@ function Quest:New(name)
 		name = name,
 		localizer = name,
 		missions = {},
+		currentMission = 0,
 		monsterEvents = {},
 		encounters = {},
 		monsters = {},
@@ -138,6 +139,7 @@ function Quest:AddDialog(context)
 		self.npcs[name].missions[mission] = self.npcs[name].missions[mission] or {}
 		self.npcs[name].missions[mission].states = self.npcs[name].missions[mission].states or {}
 		self.npcs[name].missions[mission].states[state] = dialogs
+		self.npcs[name].missions[mission].localizer = self.localizer
 	end
 
 	return self
@@ -189,7 +191,8 @@ end
 ]]
 
 function Quest:Mission(mission)
-	self.mission = mission
+	self.currentMission = mission
+	self.missions[self.currentMission] = {}
 	return self
 end
 local scriptTypeToCallback = {
@@ -198,23 +201,13 @@ local scriptTypeToCallback = {
 	[QUEST_SCRIPT_TYPE.STARTUP_ITEMS] = Quest.AddStartupItems,
 	[QUEST_SCRIPT_TYPE.STARTUP_SCRIPT] = Quest.AddStartupScript,
 }
-function Quest:State(state, ...)
-	self.state = state
-	for _, context in pairs({ ... }) do
-		local callback = scriptTypeToCallback[context.scriptType]
-		context.mission = self.mission
-		context.state = state
-		callback(self, context)
-	end
+--Just lua things
+function Quest:State(stateDataCallback)
+	table.append(self.missions[self.currentMission], stateDataCallback)
 	return self
 end
 
 function Quest:Register()
-	for _, npc in pairs(self.npcs) do
-		for _, mission in pairs(npc.missions or {}) do
-			mission.localizer = mission.localizer or self.localizer
-		end
-	end
 	QuestRegistry:Register(self)
 end
 
@@ -258,6 +251,26 @@ end
 QuestRegistry = {}
 QuestRegistry.__index = QuestRegistry
 QuestRegistry.registry = {}
+
+function QuestRegistry:UnpackStateData()
+	for _, quest in pairs(self.registry) do
+		for missionStorage, states in pairs(quest.missions) do
+			for _, stateData in pairs(states) do
+				local context = { stateData() }
+				local state = context[1]
+
+				for i, data in ipairs(context) do
+					if i ~= 1 then
+						local callback = scriptTypeToCallback[data.scriptType]
+						data.mission = missionStorage
+						data.state = state
+						callback(quest, data)
+					end
+				end
+			end
+		end
+	end
+end
 
 function QuestRegistry:CreateQuestlog()
 	for _, quest in pairs(self.registry) do
@@ -340,6 +353,7 @@ function QuestRegistry:RegisterStartupScripts()
 end
 
 function QuestRegistry:RegisterQuestData()
+	self:UnpackStateData()
 	self:CreateQuestlog()
 	self:CreateMonsterEvent()
 	self:CreateMonster()
@@ -414,11 +428,11 @@ end
 function NpcRegistry:ExtractDialogs(npc)
 	local extractedDialogs = {}
 
-	for missionStorage, mission in pairs(npc.missions) do
+	for missionState, mission in pairs(npc.missions) do
 		extractedDialogs[mission.localizer] = extractedDialogs[mission.localizer] or {}
-		extractedDialogs[mission.localizer][missionStorage] = mission.states or {}
+		extractedDialogs[mission.localizer][missionState] = mission.states or {}
 		for requiredState, stateData in pairs(mission.states or {}) do
-			extractedDialogs[mission.localizer][missionStorage][requiredState] = stateData
+			extractedDialogs[mission.localizer][missionState][requiredState] = stateData
 		end
 	end
 

@@ -42,7 +42,9 @@ quest
 		}
 	end)
 	:Mission(Storage.DemonOak.Mission01)
-	:State(
+:State(
+function()
+return 
 		QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
@@ -55,8 +57,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.DemonOak.Mission01.EnchantAxeAtOldrak_KillOak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
@@ -291,8 +296,11 @@ quest
 			movement:id(918)
 			movement:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.DemonOak.Mission01.KilledOak_Report_ToOldrak,
 		QuestFactory.Dialog("Oldrak", {
 			[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
@@ -306,8 +314,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.DemonOak.Mission01.FindRewardChest,
 		QuestFactory.Script(function(missionState)
 			local chests = {
@@ -357,5 +368,6 @@ quest
 			action:uid(9007)
 			action:register()
 		end)
-	)
-	:Register()
+
+end
+)	:Register()

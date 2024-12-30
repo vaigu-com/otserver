@@ -474,7 +474,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.SultanPrime.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.StartupItems({
 			{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, aid = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
@@ -499,8 +501,11 @@ quest
 			corpse:aid(Storage.SultanPrime.Necklace)
 			corpse:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -510,8 +515,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -527,9 +535,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.SultanPrime.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.SultanPrime.Mission02)
+:State(
+function()
+return 
 		QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -543,8 +554,11 @@ quest
 				rewards = { QuestKeyItems.SultanPrime.Bottle },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -591,8 +605,11 @@ quest
 			taintBottle:aid(Storage.SultanPrime.MagicianFountain)
 			taintBottle:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission02.AskSultanForCamelTask,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -606,8 +623,9 @@ quest
 				},
 			},
 		})
-	)
-	--39f dodac na mapie
+
+end
+)	--39f dodac na mapie
 	:Monster(function()
 		local mType = Game.createMonsterType("Dampreefer Dromedary")
 		local monster = {}
@@ -726,7 +744,9 @@ quest
 
 		mType:register(monster)
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.SultanPrime.Mission02.KillCamels,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -786,8 +806,11 @@ quest
 			end
 			DampreeferDromedaryDeath:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope,
 
 		QuestFactory.Dialog("Dampreefer", {
@@ -833,8 +856,11 @@ quest
 			chair:aid(Storage.SultanPrime.FarmerChair)
 			chair:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission02.ReportToSultan,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -849,9 +875,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.SultanPrime.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.SultanPrime.Mission03)
+:State(
+function()
+return 
 		QuestState.SultanPrime.Mission03.OpenCoffins,
 		QuestFactory.StartupItems({
 			{ pos = { 34, 1, 2 }, id = 2772, aid = Storage.SultanPrime.RetroLever },
@@ -918,8 +947,11 @@ quest
 			coffin:aid(Storage.SultanPrime.Coffin)
 			coffin:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission03.ThrowBodies,
 
 		QuestFactory.Dialog("Sultan of Phantasms", {
@@ -993,8 +1025,11 @@ quest
 			end
 			tentacleSpawn:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -1018,8 +1053,11 @@ quest
 
 			ryba:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission03.ReportToSultan,
 		QuestFactory.Dialog("Sultan of Phantasms", {
 			[{ GREET }] = {
@@ -1038,8 +1076,11 @@ quest
 
 			{ pos = { -35, 31, 0 }, id = 23483, aid = Storage.DesertQuestHub.ToSultanPrime },
 		}, RETRO_MIRKO_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SultanPrime.Mission03.AskNatanekForHelp,
 		QuestFactory.Dialog("Father Natanek", {
 			[{ "mission", "misja", "naszyjnik", "amulet", "necklace" }] = {
@@ -1055,5 +1096,6 @@ quest
 				expReward = 800000,
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

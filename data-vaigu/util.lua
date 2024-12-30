@@ -279,13 +279,18 @@ function Player:ClearConditions(conditions)
 	end
 end
 
+local safeLowValue = -2e+300
+local safeHighValue = 2e+300
+
 function FindMinMaxKey(table)
-	local max = -1
-	local min = 2e+300
+	local max = nil
+	local min = nil
 	for key, _ in pairs(table) do
 		if type(key) ~= "number" then
 			goto continue
 		end
+		max = max or key
+		min = min or key
 		if key > max then
 			max = key
 		end
@@ -298,12 +303,14 @@ function FindMinMaxKey(table)
 end
 
 function FindMinMaxValue(table)
-	local max = -2e+300
-	local min = 2e+300
+	local max = nil
+	local min = nil
 	for _, value in pairs(table) do
 		if type(value) ~= "number" then
 			goto continue
 		end
+		max = max or value
+		min = min or value
 		if value > max then
 			max = value
 		end

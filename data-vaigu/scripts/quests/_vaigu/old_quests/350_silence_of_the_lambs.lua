@@ -61,7 +61,9 @@ quest
 		}
 	end)
 	:Mission(Storage.SilenceOfTheLambs.TestOfStrength)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
@@ -71,8 +73,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SilenceOfTheLambs.TestOfStrength.BringTeethToLecter,
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
@@ -87,8 +92,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SilenceOfTheLambs.TestOfStrength.AskLecterForNewMission,
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
@@ -99,9 +107,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.SilenceOfTheLambs.FashionistaClothes)
-	:State(
+
+end
+)	:Mission(Storage.SilenceOfTheLambs.FashionistaClothes)
+:State(
+function()
+return 
 		QuestState.SilenceOfTheLambs.FashionistaClothes.BringLeatherToLecter,
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
@@ -121,8 +132,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.SilenceOfTheLambs.FashionistaClothes.AskLecterForNewMission,
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
@@ -132,9 +146,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.SilenceOfTheLambs.RubMeatWithLecter)
-	:State(
+
+end
+)	:Mission(Storage.SilenceOfTheLambs.RubMeatWithLecter)
+:State(
+function()
+return 
 		QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter,
 		QuestFactory.Dialog("Lecter", {
 			[{ "mission", "misja" }] = {
@@ -157,5 +174,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

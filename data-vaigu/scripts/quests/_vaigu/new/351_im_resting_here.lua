@@ -55,7 +55,9 @@ quest
 		}
 	end)
 	:Mission(Storage.ImRestingHere.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Grave Digger", {
 			[{ "mission", "misja" }] = {
@@ -77,8 +79,11 @@ quest
 				textNoRequiredMoney = "What?! Its only 10gps.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
 		QuestFactory.StartupItems({
 			{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.ImRestingHere.Coffin },
@@ -126,8 +131,11 @@ quest
 			crowbar:aid(Storage.ImRestingHere.Crowbar)
 			crowbar:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
 		QuestFactory.StartupItems({
 			{ pos = { 6644, 1212, 13}, id = 3204, aid = Storage.ImRestingHere.Corpse },
@@ -157,8 +165,11 @@ quest
 			coffin:aid(Storage.ImRestingHere.Corpse)
 			coffin:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ImRestingHere.Mission01.FindOneOfTheSurvivors,
 		QuestFactory.Dialog("Chester the Dwarf", {
 			[{ "mission" }] = {
@@ -174,5 +185,6 @@ quest
 				requiredItems = { QuestKeyItems.ImRestingHere.LastWill },
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

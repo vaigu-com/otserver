@@ -725,7 +725,9 @@ quest
 		lever:register()
 	end)
 	:Mission(Storage.ProdigalSon.Mission01)
-	:State(
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission01.ChesterSpeakingAboutJanuszex,
 		QuestFactory.Dialog("Chester the Dwarf", {
 			[{ "mission" }] = {
@@ -743,8 +745,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex,
 		QuestFactory.Dialog("Chester the Dwarf", {
 			[{ "train", "pociagiem" }] = {
@@ -827,9 +832,12 @@ quest
 			trainTravel:aid(Storage.ProdigalSon.Train.SelectDestination)
 			trainTravel:register()
 		end)
-	)
-	:Mission(Storage.ProdigalSon.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.ProdigalSon.Mission02)
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission02.FindForeman,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -839,8 +847,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission02.PaintHammers,
 		QuestFactory.StartupItems({
 			{
@@ -906,8 +917,11 @@ quest
 				textNoRequiredItems = "Bring me five hammers painted metallic.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission02.MakingCalculators,
 		QuestFactory.StartupItems({
 			{
@@ -1007,8 +1021,11 @@ quest
 				textNoRequiredItems = "Should be five calculators! Im still waiting.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission02.MakingPliers,
 		QuestFactory.StartupItems({
 			{
@@ -1075,9 +1092,12 @@ quest
 				textNoRequiredItems = "Im still waiting for those pliers.",
 			},
 		})
-	)
-	:Mission(Storage.ProdigalSon.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.ProdigalSon.Mission03)
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission03.TalkToHearAboutDuties,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ GREET }] = {
@@ -1090,8 +1110,9 @@ quest
 				},
 			},
 		})
-	)
-	:MonsterEvent(function(missionState)
+
+end
+)	:MonsterEvent(function(missionState)
 		local areczekEnraged = CreatureEvent("AreczekEnragedDeath")
 		function areczekEnraged.onDeath(creature)
 			if not creature or not creature:isMonster() then
@@ -1121,7 +1142,9 @@ quest
 		corpse:aid(Storage.ProdigalSon.AreczekCorpse)
 		corpse:register()
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission03.KillAreczekForSoap,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1135,8 +1158,11 @@ quest
 				textNoRequiredItems = "Actually, bring me just four soaps. I just recalled that there was towel shortage at local walmart when we tried to order them.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission03.AskForNewMission,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1146,8 +1172,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission03.KillAreczekLeader,
 		QuestFactory.StartupItems({
 			{ pos = { -87, -52, -1 }, id = 710, aid = Storage.ProdigalSon.AreczekLeaderBed },
@@ -1218,8 +1247,9 @@ quest
 				text = "If i recall correctly, their leader won a cozy bed at a poker table. Its located between A and S buildings.",
 			},
 		})
-	)
-	:MonsterEvent(function(missionState)
+
+end
+)	:MonsterEvent(function(missionState)
 		local nextState = {
 			[Storage.ProdigalSon.Mission03] = QuestState.ProdigalSon.Mission03.ReportKillngAreczekLeader,
 		}
@@ -1386,7 +1416,9 @@ quest
 
 		mType:register(monster)
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission03.ReportKillngAreczekLeader,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1397,9 +1429,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ProdigalSon.Mission04)
-	:State(
+
+end
+)	:Mission(Storage.ProdigalSon.Mission04)
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission04.DupingConferencePeople,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission", "misja" }] = {
@@ -1410,8 +1445,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission04.FindingEristicsBooks,
 		QuestFactory.StartupItems({
 			{
@@ -1481,8 +1519,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission04.DupingConferencePeople,
 		QuestFactory.Dialog("Conference Dorothy", {
 			[{ GREET }] = { text = "Hello." },
@@ -1526,8 +1567,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.AskForNewMission,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1537,8 +1581,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.FindingDwarfNecklace,
 		QuestFactory.StartupItems({
 			{
@@ -1558,8 +1605,11 @@ quest
 				textNoRequiredItems = "Grab necklace from that corpse first. Be careful, those monsters are aggressive!",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.FoundNecklace_AskForNewMission,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1569,8 +1619,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.CheckingOnSilo,
 		QuestFactory.StartupItems({
 			{
@@ -1582,8 +1635,11 @@ quest
 				},
 			},
 		}, JANUSZEX_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.CheckedOnSilo,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1593,8 +1649,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.ProdigalSon.Mission05.CheckedOnSilo },
 		QuestFactory.StartupItems({
 			{
@@ -1604,8 +1663,11 @@ quest
 				rewards = { QuestKeyItems.KingOfRatsHQ.Cultivator },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.EscortingFredi,
 		QuestFactory.StartupItems({
 			{
@@ -1648,8 +1710,9 @@ quest
 				},
 			},
 		})
-	)
-	:Monster(function()
+
+end
+)	:Monster(function()
 		local mType = Game.createMonsterType("Fredi kamionka Escort")
 		local monster = {}
 
@@ -1777,7 +1840,9 @@ quest
 
 		mType:register(monster)
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission05.AwaitHenryFinishedTalking,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission", "misja" }] = {
@@ -1796,9 +1861,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ProdigalSon.Mission06)
-	:State(
+
+end
+)	:Mission(Storage.ProdigalSon.Mission06)
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission06.FindPasswordAndKillImperator,
 		QuestFactory.Script(function(missionState)
 			local gateLever = Action()
@@ -1889,8 +1957,9 @@ quest
 			},
 		})
 		-- ToDo: add pol monster
-	)
-	:MonsterEvent(function()
+
+end
+)	:MonsterEvent(function()
 		local nextState = {
 			[Storage.ProdigalSon.Mission06] = QuestState.ProdigalSon.Mission06.KilledImperator,
 		}
@@ -1908,7 +1977,9 @@ quest
 		end
 		polDeath:register()
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.ProdigalSon.Mission06.KilledImperator,
 		QuestFactory.Dialog("Henry the Foreman", {
 			[{ "mission" }] = {
@@ -1919,8 +1990,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ProdigalSon.Mission06.ReportToChester,
 		QuestFactory.Dialog("Chester the Dwarf", {
 			[{ GREET }] = { text = "Did you manage to get the payslip?" },
@@ -1936,5 +2010,6 @@ quest
 				textNoRequiredItems = "Come back when you have it.",
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

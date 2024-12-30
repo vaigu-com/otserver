@@ -10,7 +10,9 @@ quest
 		}
 	end)
 	:Mission(Storage.FatMyrrusEncounters.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Fat Myrrus", {
 			[{ "encounters", "bosses", "boss", "bossami" }] = {
@@ -25,8 +27,11 @@ quest
 				requiredItems = { { id = 6277 } },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		MISSION_FINISHED,
 		QuestFactory.Dialog("Fat Myrrus", {
 			[{ "encounters", "bosses", "boss", "bossami" }] = {
@@ -38,5 +43,6 @@ quest
 				requiredTopic = QuestTopics.FatMyrrusEncounters.SayEncounterName,
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

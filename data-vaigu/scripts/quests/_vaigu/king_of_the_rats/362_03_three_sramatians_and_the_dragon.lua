@@ -525,7 +525,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission01)
-	:State(
+:State(
+function()
+return 
 		ANY_STATE,
 		QuestFactory.Script(function(missionState)
 			local hive = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive
@@ -613,8 +615,11 @@ quest
 			end
 			fire:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -643,9 +648,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission02)
+:State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission02.FollowCompany,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "goldbluma", "goldblum", "mission" }] = {
@@ -708,8 +716,11 @@ quest
 			goldBlumTrap:aid(Storage.ThreeSramatiansAndTheDragon.GoldblumTrap)
 			goldBlumTrap:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission02.SolvedGoldblumRiddle,
 		QuestFactory.Dialog("Goldblum", {
 			[{ GREET }] = { text = "So, give me the ryddle!" },
@@ -721,9 +732,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission03)
+:State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission03.FindCompanyAtHive,
 		QuestFactory.StartupItems({
 			{ pos = { 6147, 1310, 4 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive },
@@ -743,8 +757,11 @@ quest
 				monstersToSpawn = { ["Thornfire Wolf"] = 5 },
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission03.AskBilbeusToJoin,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -754,8 +771,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission03.FindRum,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -779,8 +799,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission03.BringRumToBilbeus,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission", "rum" }] = {
@@ -793,9 +816,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission04)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission04)
+:State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.FindCompanyAtSteppes,
 		QuestFactory.Script(function(missionState)
 			local nextState = {
@@ -821,8 +847,11 @@ quest
 		QuestFactory.StartupItems({
 			{ pos = { 5951, 1113, 7 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.AbandonedFireplace },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.FindCompanyAtHumanTown,
 		QuestFactory.StartupItems({
 			{ pos = { 6199, 1025, 7 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Lagoon },
@@ -846,8 +875,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.StealWineFromVampires,
 		QuestFactory.Script(function(missionState)
 			local updateStorages = {
@@ -879,8 +911,11 @@ quest
 		QuestFactory.StartupItems({
 			{ pos = { 6157, 842, 6 }, id = 4406, aid = Storage.ThreeSramatiansAndTheDragon.VampireCityTrap },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
 		QuestFactory.StartupItems({
 			{ pos = { 6206, 919, 9 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Souleater },
@@ -898,9 +933,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission05)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission05)
+:State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission05.AskLamborForHelp,
 		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
@@ -910,8 +948,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission05.BringMeatToLambor,
 		QuestFactory.Dialog("Lambor", {
 			[{ "mission" }] = {
@@ -923,8 +964,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission05.FindCompanyAtWyverns,
 		QuestFactory.Dialog("Lambor", {
 			[{ ANY_MESSAGE }] = {
@@ -943,9 +987,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission05)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission05)
+:State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission06.TalkToNomad,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -960,8 +1007,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission06.BringDepthsCrystal,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -986,8 +1036,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission06.ReportToBilbeus,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -998,9 +1051,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission07)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission07)
+:State(
+function()
+return 
 		{ min = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles },
 		QuestFactory.StartupItems({
 			{
@@ -1013,8 +1069,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles,
 		QuestFactory.StartupItems({
 			{ pos = { 6569, 605, 6 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hairycles },
@@ -1027,8 +1086,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission07.BringBananasToBilbeus,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -1040,8 +1102,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHellspawnTemple,
 		QuestFactory.StartupItems({
 			{ pos = { 6710, 651, 12 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hellspawns },
@@ -1054,8 +1119,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission07.FindThreeMagicRunes,
 		QuestFactory.StartupItems({
 			{
@@ -1136,9 +1204,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission08)
-	:State(
+
+end
+)	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission08)
+:State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission08.FindAndDefeatHfpx,
 		QuestFactory.Dialog("Bilbeus", {
 			[{ "mission" }] = {
@@ -1243,8 +1314,11 @@ quest
 			lever:aid(hfpxConfig.actionid)
 			lever:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission08.ReportToRatOfKings,
 		QuestFactory.Dialog("Rat of Kings", {
 			[{ "mission" }] = {
@@ -1254,8 +1328,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ThreeSramatiansAndTheDragon.Mission08.ReportToRomek,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "mission" }] = {
@@ -1267,5 +1344,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

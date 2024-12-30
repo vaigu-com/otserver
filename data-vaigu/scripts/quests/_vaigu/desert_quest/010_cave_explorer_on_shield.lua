@@ -65,7 +65,9 @@ quest
 		}
 	end)
 	:Mission(Storage.CaveExplorerOnShield.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.StartupItems({
 			{ id = 4241, aid = Storage.CaveExplorerOnShield.GermiCorpse, pos = { 82, 53, -2 }, rewards = { QuestKeyItems.CaveExplorerOnShield.Firebug } },
@@ -214,8 +216,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.CaveExplorerOnShield.Mission01.FindThePage,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", { [{ GREET }] = {
 			text = "Please come back with something of mine.",
@@ -229,8 +234,11 @@ quest
 				rewards = { QuestKeyItems.CaveExplorerOnShield.GermiDocument },
 			},
 		}, DESERT_QUEST_ONE_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", {
 			[{ GREET }] = { text = "Have you found anything yet?" },
@@ -259,8 +267,11 @@ quest
 				text = "Please come back with something of mine.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.CaveExplorerOnShield.Mission01.TalkToGermiAboutDoor,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", {
 			[{ GREET }] = {
@@ -310,8 +321,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer,
 		QuestFactory.StartupItems({
 			{ id = 8342, aid = Storage.CaveExplorerOnShield.Punchcard, pos = { 86, 61, -2 } },
@@ -450,8 +464,11 @@ quest
 				text = "Hm... this looks like a hexadecimal code. If you convert it to binary, you should end up with 12 characters - the exact same number as the count of key cuts above. What a coincidence... Try to change it to binary and set cuts in the key shaft accordingly. Also, I saw a lever on the upper floor. Check if there are any mechanisms they trigger. If this thing above is a key, then it ought to open something! Should you succeed opening this gate, come back and tell me about it!",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.CaveExplorerOnShield.Mission01.ReportToEngineer,
 		QuestFactory.Dialog("Ghost of Anthony the Engineer", {
 			[{ GREET }] = {
@@ -467,8 +484,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.CaveExplorerOnShield.Mission01.ReportToGermi,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", {
 			[{ GREET }] = {
@@ -487,8 +507,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		MISSION_FINISHED,
 		QuestFactory.Dialog("Ghost of Germi the Journeyman", {
 			[{ GREET }] = {
@@ -501,5 +524,6 @@ quest
 				text = "That morning our camp was instantly overrun by a horde of deadly arachnids. Yes, I remember now... This is how I died... I was bitten to death by dumb maggots! I'm a joke of an adventurer, to die from insects?! They had to be influenced by phantasms. They were the ones to play with Anthony's mind, for sure! They needed us to part ways, so they could deal with us separately. They startled many creatures from nearby caves and hiding places and guided them to our camp. This cave is cursed! Please, don't go further! I already gave you all my gold - you can take all you can find here, but please don't tread further into this dungeon! This place... it does not belong to this world. Phantasms... they are guarding something, I fear that a greater evil lies beyond where you delve so far. Stay here, only death awaits you beyond.",
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

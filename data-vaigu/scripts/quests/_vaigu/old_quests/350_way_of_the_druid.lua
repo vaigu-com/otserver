@@ -134,15 +134,20 @@ quest
 		}
 	end)
 	:Mission(Storage.WayOfTheDruid.CouncilOfDruids)
-	:State(
+:State(
+function()
+return 
 		QuestState.WayOfTheDruid.CouncilOfDruids.HelpedOne,
 		QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 			[{ "druid", "druids", "krag", "circle", "druidow", "druidzi" }] = {
 				text = "Right, I should explain the context first. The thing is, the world was at peace in the past and we lived together in the jungle as a druid would do, but the times have changed for worse and we were forced to leave our village. Everyone went their own way.\nOnly five of us remain, we meet once a year in a big tree in the jungle. If you prove yourself to be trustworthy, we might let you join us.\nI don't know where the others are now, do your best to find and help them if needed.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.WayOfTheDruid.CouncilOfDruids.HelpedThree },
 		QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 			[{ "mission", "misja" }] = {
@@ -180,16 +185,22 @@ quest
 			waterWell:aid(Storage.WayOfTheDruid.LootedWater)
 			waterWell:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.WayOfTheDruid.CouncilOfDruids.HelpedTwo, max = QuestState.WayOfTheDruid.CouncilOfDruids.HelpedFour },
 		QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 			[{ "druid", "druids", "krag", "circle", "druidow", "druidzi" }] = {
 				text = "I trust that you can find the remaining druids and help them.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.WayOfTheDruid.CouncilOfDruids.HelpedFive },
 		QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 			[{ "mission", "misja" }] = {
@@ -227,17 +238,23 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 5658, pos = { 6550, 655, 2 }, aid = Storage.WayOfTheDruid.LootedWater },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		MISSION_FINISHED,
 		QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 			[{ "druid", "druids", "krag", "circle", "druidow", "druidzi" }] = {
 				text = "Thank you for helping me and the rest of the druids. Now you became one of us.",
 			},
 		})
-	)
-	:Mission(Storage.WayOfTheDruid.DeerSeason)
-	:State(
+
+end
+)	:Mission(Storage.WayOfTheDruid.DeerSeason)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Radaghast the brown", {
 			[{ "mission", "misja" }] = {
@@ -255,8 +272,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.DeerSeason.BurnHunterStock,
 		QuestFactory.StartupItems({
 			{ id = 2742, pos = { 6038, 1726, 7 }, aid = Storage.WayOfTheDruid.HunterTreeStump },
@@ -274,8 +294,11 @@ quest
 			firebug:aid(Storage.WayOfTheDruid.RadaghastFirebug)
 			firebug:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.DeerSeason.ReportToRadaghast,
 		QuestFactory.Dialog("Radaghast the brown", {
 			[{ "mission", "misja" }] = {
@@ -295,8 +318,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		MISSION_FINISHED,
 		QuestFactory.Dialog("Radaghast the brown", {
 			[{ "lodka", "lodz", "boat" }] = {
@@ -306,17 +332,23 @@ quest
 		QuestFactory.Script(function()
 			InstantTravel({ positions = { Position(6109, 1688, 7), Position(6122, 1780, 7) }, requiredState = { [Storage.WayOfTheDruid.RadaghastBoat] = ACCESS_GRANTED } }):Register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ neq = MISSION_FINISHED },
 		QuestFactory.Dialog("Radaghast the brown", {
 			[{ "lodka", "lodz", "boat" }] = {
 				text = "I won't let you use my boat yet. Not until i see a friend in you.",
 			},
 		})
-	)
-	:Mission(Storage.WayOfTheDruid.RudeEviction)
-	:State(
+
+end
+)	:Mission(Storage.WayOfTheDruid.RudeEviction)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Sand Nigger", {
 			[{ "mission", "misja" }] = {
@@ -332,8 +364,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.RudeEviction.FindSandniggerSpell,
 		QuestFactory.Script(function()
 			local destination = Position(7123, 1254, 7)
@@ -358,8 +393,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.RudeEviction.ReportToSandnigger,
 		QuestFactory.Dialog("Sand Nigger", {
 			[{ "mission", "misja" }] = {
@@ -380,9 +418,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.WayOfTheDruid.TakenBenek)
-	:State(
+
+end
+)	:Mission(Storage.WayOfTheDruid.TakenBenek)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Estep", {
 			[{ "mission", "misja" }] = {
@@ -403,8 +444,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.TakenBenek.FreeBenek,
 		QuestFactory.Dialog("Estep", {
 			[{ "benek", "benka" }] = {
@@ -427,8 +471,11 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 12369, pos = { 5810, 1292, 7 }, aid = Storage.WayOfTheDruid.BenekTheWolf },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.TakenBenek.ReportToEstep,
 		QuestFactory.Dialog("Estep", {
 			[{ "mission", "misja", "benek", "benka" }] = {
@@ -450,9 +497,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.WayOfTheDruid.SecretIngredient)
-	:State(
+
+end
+)	:Mission(Storage.WayOfTheDruid.SecretIngredient)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Mundral", {
 			[{ "mission", "misja" }] = {
@@ -462,8 +512,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.SecretIngredient.AskOrnuldForMedicine,
 		QuestFactory.Dialog("Ornuld", {
 			[{ "medicine", "lekarstwo", "antidote", "lek", "leki" }] = {
@@ -478,8 +531,11 @@ quest
 				requiredTopic = QuestTopics.WayOfTheDruid.AcceptWyrmEggQuest,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.SecretIngredient.FindWyrmEgg,
 		QuestFactory.StartupItems({
 			{ id = 14098, pos = { 6636, 599, 4 }, aid = Storage.WayOfTheDruid.WyrmEgg },
@@ -499,8 +555,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.SecretIngredient.BringEggToOrnuld,
 		QuestFactory.Dialog("Ornuld", {
 			[{ "mission", "misja" }] = {
@@ -517,8 +576,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.SecretIngredient.BringMedicineToMundral,
 		QuestFactory.Dialog("Mundral", {
 			[{ "mission", "misja" }] = {
@@ -536,9 +598,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.WayOfTheDruid.SingingCrystal)
-	:State(
+
+end
+)	:Mission(Storage.WayOfTheDruid.SingingCrystal)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Malfurion", {
 			[{ "mission", "misja" }] = {
@@ -553,8 +618,11 @@ quest
 				requiredTopic = QuestTopics.WayOfTheDruid.AcceptCrystalQuest,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.WayOfTheDruid.SingingCrystal.BringCrystalToMalfurion,
 		QuestFactory.Dialog("Malfurion", {
 			[{ "mission", "misja" }] = {
@@ -575,5 +643,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

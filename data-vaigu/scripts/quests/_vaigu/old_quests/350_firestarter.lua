@@ -82,7 +82,9 @@ quest
 		}
 	end)
 	:Mission(Storage.Firestarter.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Hymel", {
 			[{ GREET }] = {
@@ -101,8 +103,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.Firestarter.Mission01.BurnHayStack,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "misja" }] = {
@@ -130,8 +135,11 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 5546, pos = { 5916, 1483, 7 }, aid = Storage.Firestarter.HayStack },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.Firestarter.Mission01.ReportToHymel,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "misja" }] = {
@@ -149,8 +157,11 @@ quest
 				expReward = 12000,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.Firestarter.Mission01.AskForNewMission,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "mission", "ask", "pytaj" }] = {
@@ -166,9 +177,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.Firestarter.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.Firestarter.Mission02)
+:State(
+function()
+return 
 		QuestState.Firestarter.Mission02.SetGuardTreeOnFire,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "misja" }] = {
@@ -196,8 +210,11 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 3954, pos = { 5817, 1537, 7 }, aid = Storage.Firestarter.Tree },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.Firestarter.Mission02.ReportToHymel,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mision", "misja" }] = {
@@ -216,8 +233,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.Firestarter.Mission02.AskForNewMission,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mision", "misja" }] = {
@@ -233,9 +253,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.Firestarter.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.Firestarter.Mission03)
+:State(
+function()
+return 
 		QuestState.Firestarter.Mission03.FindAndIgniteFlowers,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "misja" }] = {
@@ -276,8 +299,11 @@ quest
 			flowerFirebug:aid(Storage.Firestarter.FirebugFlowers)
 			flowerFirebug:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.Firestarter.Mission03.ReportToHymel,
 		QuestFactory.Dialog("Hymel", {
 			[{ "mission", "misja" }] = {
@@ -292,5 +318,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

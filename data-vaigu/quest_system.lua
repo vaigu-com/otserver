@@ -160,18 +160,18 @@ local function parseRequiredState(requiredState)
 
 	if type(requiredState) == "number" then
 		min = requiredState
-		max = DEFAULT_MAX_STATE
+		max = requiredState
 		neq = nil
 		excludeMin = false
 		excludeMax = false
-		errorMessage = ""
+		errorMessage = nil
 	elseif type(requiredState) == "table" then
 		min = requiredState.min or MISSION_NOT_STARTED
 		max = requiredState.max or DEFAULT_MAX_STATE
 		neq = requiredState.neq
 		excludeMin = requiredState.excludeMin
 		excludeMax = requiredState.excludeMax
-		errorMessage = requiredState.errorMessage or ""
+		errorMessage = requiredState.errorMessage or nil
 	end
 
 	return {
@@ -246,12 +246,14 @@ function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
 		return true
 	end
 	for storage, requiredState in pairs(storages) do
-		local requirements = parseRequiredState(requiredState)
 		if not self:HasCorrectStorageValue(storage, requiredState) then
-			return requirements.errorMessage
+			if type(requiredState) == "table" then
+				return requiredState.errorMessage, false
+			end
+			return nil, false
 		end
 	end
-	return nil
+	return nil, true
 end
 
 function UpdateGlobalStorages(storages)
@@ -754,11 +756,12 @@ function ResolutionContext:CheckRequiredState()
 		return CONDITION_STATUS.CONDITION_PASSED
 	end
 
-	local errorMessage = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
-	if errorMessage then
+	local errorMessage, canProceed = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
+	if not canProceed then
 		self.errorMessage = errorMessage or requirements.textNoRequiredState
 		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
+
 	return CONDITION_STATUS.CONDITION_PASSED
 end
 

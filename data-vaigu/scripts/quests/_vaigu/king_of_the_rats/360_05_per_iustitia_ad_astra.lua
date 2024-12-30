@@ -602,7 +602,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.PerIustitiaAdAstra.Mission01)
-	:State(
+:State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission01.HeadToHighestMountain,
 		QuestFactory.Dialog("GM Romek", {
 			[{ ANY_MESSAGE }] = {
@@ -678,8 +680,11 @@ quest
 			tileOut:aid(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
 			tileOut:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission01.TalkWithAstralJanus,
 		QuestFactory.Dialog("Astral Janus", {
 			[{ "mission", "misja" }] = {
@@ -692,8 +697,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission01.FindUshaaYanForge,
 		QuestFactory.Dialog("Astral Janus", {
 			[{ "name", "imie", "mission", "misja" }] = {
@@ -733,8 +741,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission01.CollectShipParts,
 		QuestFactory.StartupItems({
 			{
@@ -767,8 +778,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission01.FindEnginePlansAndMaps,
 		QuestFactory.StartupItems({
 			{
@@ -816,9 +830,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.PerIustitiaAdAstra.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.PerIustitiaAdAstra.Mission02)
+:State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission02.BoardShipInDeeplingTemple,
 		QuestFactory.Dialog("Qasim", {
 			[{ "mission" }] = {
@@ -1274,8 +1291,11 @@ quest
 			shipWheel:aid(Storage.PerIustitiaAdAstra.ShipControl.StartTravelWheel)
 			shipWheel:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission02.LookAroundYourShip_FindSwagger,
 		QuestFactory.Dialog("Swagger", {
 			[{ "fuel", "paliwo", "mission" }] = {
@@ -1345,8 +1365,11 @@ quest
 			beforeCpnDoor:aid(Storage.PerIustitiaAdAstra.CpnDoor)
 			beforeCpnDoor:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission02.FindSwaggerCrate,
 		QuestFactory.Dialog("Swagger", {
 			[{ ANY_MESSAGE }] = {
@@ -1362,8 +1385,11 @@ quest
 				nextState = { [Storage.PerIustitiaAdAstra.Mission02] = QuestState.PerIustitiaAdAstra.Mission02.ReturnCrateToSwagger },
 			},
 		}, GANYMEDE_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission02.ReturnCrateToSwagger,
 		QuestFactory.Dialog("Swagger", {
 			[{ "mission" }] = {
@@ -1380,9 +1406,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.PerIustitiaAdAstra.BuyFuelRodAccess)
-	:State(
+
+end
+)	:Mission(Storage.PerIustitiaAdAstra.BuyFuelRodAccess)
+:State(
+function()
+return 
 		ACCESS_GRANTED,
 		QuestFactory.Dialog("Swagger", {
 			[{ "fuel", "rod", "paliwo", "pret" }] = {
@@ -1391,9 +1420,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.PerIustitiaAdAstra.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.PerIustitiaAdAstra.Mission03)
+:State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission03.InvestigateNewPlanet,
 		QuestFactory.Dialog("Rubelstein", {
 			[{ GREET }] = {
@@ -1406,8 +1438,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission03.GrabKeysFromUpperRoomLocker,
 		QuestFactory.Dialog("Rubelstein", {
 			[{ "mission" }] = {
@@ -1423,8 +1458,11 @@ quest
 				nextState = { [Storage.PerIustitiaAdAstra.Mission05] = QuestState.PerIustitiaAdAstra.Mission03.BringDocumentsToRubelstein },
 			},
 		}, HUGO_TAR_PLANET_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission03.BringDocumentsToRubelstein,
 		QuestFactory.Dialog("Rubelstein", {
 			[{ "mission" }] = {
@@ -1434,8 +1472,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission03.TalkToOfficerOnTop,
 		QuestFactory.Dialog("Rubelstein", {
 			[{ "straznika", "guard", "mission" }] = {
@@ -1473,8 +1514,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{
 			min = QuestState.PerIustitiaAdAstra.Mission03.YouSavedRubelstein,
 			max = QuestState.PerIustitiaAdAstra.Mission03.YouBetrayedRubelstein,
@@ -1495,9 +1539,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.PerIustitiaAdAstra.Mission04)
-	:State(
+
+end
+)	:Mission(Storage.PerIustitiaAdAstra.Mission04)
+:State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.FindHugo,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ GREET }] = { text = "Guten tag. Was hast du zu sagen?" },
@@ -1514,8 +1561,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.FindHugoDrinkRecipe,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "mission" }] = {
@@ -1533,8 +1583,11 @@ quest
 				},
 			},
 		}, HUGO_BEACH_PLANET_ANCHOR)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.BringRecipeToHugo,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "przepis", "recipe", "mission" }] = {
@@ -1546,8 +1599,11 @@ quest
 				textNoRequiredItems = "Come back when you've obtained the recipe for my favorite drink.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.FindHammer_RepairPipes,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "mission" }] = {
@@ -1596,8 +1652,11 @@ quest
 			item:aid(Storage.PerIustitiaAdAstra.HammerUse)
 			item:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.ReportRepairToHugo,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ GREET }] = {
@@ -1607,8 +1666,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.FindOldChest,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "mission" }] = {
@@ -1663,8 +1725,11 @@ quest
 			mysteriousChest:aid(Storage.PerIustitiaAdAstra.MysteriousChest)
 			mysteriousChest:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.ReportChestToHugo,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ GREET }] = { text = "So, did you manage to find anything?" },
@@ -1675,8 +1740,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission04.AskHugoForMission,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "mission" }] = {
@@ -1688,9 +1756,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.PerIustitiaAdAstra.Mission05)
-	:State(
+
+end
+)	:Mission(Storage.PerIustitiaAdAstra.Mission05)
+:State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission05.FindBeachLurker,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "mission" }] = {
@@ -1730,8 +1801,9 @@ quest
 			vortex:aid(Storage.PerIustitiaAdAstra.RukcaAccess)
 			vortex:register()
 		end)
-	)
-	:MonsterEvent(function()
+
+end
+)	:MonsterEvent(function()
 		local updateStorages = {
 			[Storage.PerIustitiaAdAstra.Mission05] = QuestState.PerIustitiaAdAstra.Mission05.ReportToHugo,
 		}
@@ -1829,7 +1901,9 @@ quest
 		spell:needDirection(true)
 		spell:register()
 	end)
-	:State(
+:State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission05.ReportToHugo,
 		QuestFactory.Dialog("Hugo BoSS", {
 			[{ "mission" }] = {
@@ -1839,8 +1913,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.PerIustitiaAdAstra.Mission05.ReportToAstralJanus },
 		QuestFactory.StartupItems({
 			{
@@ -1857,8 +1934,11 @@ quest
 				uid = 0,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PerIustitiaAdAstra.Mission05.ReportToAstralJanus,
 		QuestFactory.Dialog("Astral Janus", {
 			[{ "mission", "misja" }] = {
@@ -1870,8 +1950,9 @@ quest
 				rewards = { ExerciseWeaponBox(5000) },
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()
 
 ---39f add rukca encounter
 do

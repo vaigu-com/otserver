@@ -66,9 +66,7 @@ function RegisterNpcDefinition(npc)
 	npcConfig.walkRadius = npc.walkInterval or 2
 
 	npcConfig.outfit = outfit
-	if name == "Commissioner Fisher" then
-		PrintTableRecursive(outfit)
-	end
+
 	npcConfig.voices = voices
 
 	npcConfig.flags = { floorchange = npc.floorchange or 0 }

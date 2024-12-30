@@ -123,7 +123,9 @@ quest
 		}
 	end)
 	:Mission(Storage.ArielsFriend.HumbleRequest)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Ariel", {
 			[{ "mission", "misja" }] = {
@@ -138,8 +140,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.HumbleRequest.PutFlowerOnGrave,
 		QuestFactory.Dialog("Ariel", {
 			[{ "mission", "misja", "heaven blossom" }] = {
@@ -166,8 +171,11 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 3734, pos = { 5609, 1566, 2 }, aid = Storage.ArielsFriend.FriendGrave },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.HumbleRequest.ReportToAriel,
 		QuestFactory.Dialog("Ariel", {
 			[{ "mission" }] = {
@@ -185,8 +193,11 @@ quest
 				expReward = 20000,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
 		QuestFactory.Dialog("Ariel", {
 			[{ "story", "historia", "historie", "mission" }] = {
@@ -201,8 +212,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		{ min = QuestState.ArielsFriend.HumbleRequest.AskForNewMission },
 		QuestFactory.Dialog("Ariel", {
 			[{ "gertrude" }] = {
@@ -212,9 +226,12 @@ quest
 				text = "He holed up in an abandoned village on steppes. I don't think anyone visits him there.",
 			},
 		})
-	)
-	:Mission(Storage.ArielsFriend.LoveIsInTheAir)
-	:State(
+
+end
+)	:Mission(Storage.ArielsFriend.LoveIsInTheAir)
+:State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
 		QuestFactory.Dialog("Madame Malkin", {
 			[{ "mission", "ariel", "misja" }] = {
@@ -227,8 +244,11 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 5499, pos = { 5686, 1600, 5 }, aid = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp,
 		QuestFactory.Dialog("Ariel", {
 			[{ "mission", "misja" }] = {
@@ -243,14 +263,20 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
 		QuestFactory.StartupItems({
 			{ id = 8998, pos = { 6041, 1324, 8 }, aid = Storage.ArielsFriend.ElixirStand, rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw } },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman,
 		QuestFactory.Dialog("Old Postman", {
 			[{ "eliksir", "madame", "mission", "misja", "mikstura", "elixir" }] = {
@@ -260,8 +286,11 @@ quest
 				[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
 		QuestFactory.Script(function(missionState)
 			local hair = Action()
@@ -302,8 +331,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel,
 		QuestFactory.Dialog("Madame Malkin", {
 			[{ "mission", "misja", "ariel" }] = {
@@ -313,8 +345,11 @@ quest
 				[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel,
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel,
 		QuestFactory.Dialog("Ariel", {
 			[{ "madame", "malkin", "mission", "misja" }] = {
@@ -329,9 +364,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ArielsFriend.KillerLiquor)
-	:State(
+
+end
+)	:Mission(Storage.ArielsFriend.KillerLiquor)
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Gertrude", {
 			[{ "aloha" }] = {
@@ -350,8 +388,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude,
 		QuestFactory.Dialog("Gertrude", {
 			[{
@@ -372,8 +413,11 @@ quest
 		QuestFactory.StartupItems({
 			{ id = 137, pos = { 6448, 913, 3 }, aid = Storage.ArielsFriend.LiquorChest, rewards = { QuestKeyItems.ArielsFriend.LiquorItem } },
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld,
 		QuestFactory.Dialog("Konmuld", {
 			[{ "aloha" }] = {
@@ -390,8 +434,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.KillerLiquor.AskKonmuldForMission,
 		QuestFactory.Dialog("Konmuld", {
 			[{ "aloha" }] = {
@@ -405,9 +452,12 @@ quest
 				},
 			},
 		})
-	)
-	:Mission(Storage.ArielsFriend.PreludeToThaumaturgy)
-	:State(
+
+end
+)	:Mission(Storage.ArielsFriend.PreludeToThaumaturgy)
+:State(
+function()
+return 
 		QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
 		QuestFactory.Dialog("Grave Digger", {
 			[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "mission", "misja", "someone" }] = {
@@ -417,8 +467,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
 		QuestFactory.Dialog("Grave Digger", {
 			[{ "dusza", "soul", "graves", "groby" }] = {
@@ -448,8 +501,11 @@ quest
 			grave:aid(Storage.ArielsFriend.VirginGrave)
 			grave:register()
 		end)
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.PreludeToThaumaturgy.ReportToKonmuld,
 		QuestFactory.Dialog("Konmuld", {
 			[{ "mission", "misja", "dusza", "gertruda" }] = {
@@ -464,8 +520,11 @@ quest
 				},
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
 		QuestFactory.Dialog("Konmuld", {
 			[{ "mission", "misja", "dusza", "gertruda", "yalahari" }] = {
@@ -503,10 +562,13 @@ quest
 				},
 			},
 		})
-	)
-	--41f ToDo: finish new quest
+
+end
+)	--41f ToDo: finish new quest
 	:Mission(Storage.ArielsFriend.RadioFreeHirschberg)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Ariel", {
 			[{ "radio", "old radio" }] = {
@@ -517,5 +579,6 @@ quest
 				},
 			},
 		})
-	)
-	:Register()
+
+end
+)	:Register()

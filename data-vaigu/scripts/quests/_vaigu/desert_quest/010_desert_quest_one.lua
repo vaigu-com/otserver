@@ -511,7 +511,9 @@ quest
 	end)
 	:Questlog(function() end)
 	:Mission(Storage.DesertQuestOne.Mission01)
-	:State(
+:State(
+function()
+return 
 		ANY_STATE,
 		QuestFactory.Script(function()
 			local doorId = 8261
@@ -2836,5 +2838,6 @@ quest
 			item:aid(Storage.DesertQuestOne.Puzzles.MovableTilesPuzzle.Lever)
 			item:register()
 		end)
-	)
-	:Register()
+
+end
+)	:Register()

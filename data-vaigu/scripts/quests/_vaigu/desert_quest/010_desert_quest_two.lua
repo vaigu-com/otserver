@@ -152,7 +152,9 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.DesertQuestTwo.Mission01)
-	:State(
+:State(
+function()
+return 
 		ANY_STATE,
 		QuestFactory.Script(function(missionState)
 			local chests = {
@@ -1948,5 +1950,6 @@ quest
 			InitializeDQ2RubiksCube()
 			InitializeDQ2orbs()
 		end)
-	)
-	:Register()
+
+end
+)	:Register()

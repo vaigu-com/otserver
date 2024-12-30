@@ -1063,7 +1063,9 @@ quest
 		spell:register()
 	end)
 	:Mission(Storage.PathOfTheUndead.Mission01)
-	:State(
+:State(
+function()
+return 
 		MISSION_NOT_STARTED,
 		QuestFactory.Dialog("Gandalf", {
 			[{ "oprocz tego ludzie", "aside from that people" }] = {
@@ -1083,8 +1085,11 @@ quest
 				text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth.",
 			},
 		})
-	)
-	:State(
+
+end
+):State(
+function()
+return 
 		QuestState.PathOfTheUndead.Mission01.ConsultGandalf,
 		QuestFactory.Dialog("Gandalf", {
 			[{ GREET }] = {
@@ -1105,9 +1110,12 @@ quest
 				textNoRequiredState = "My conditions are to complete the following tasks: Druid Path, Yalahar Quest. While you know the secret password, I also want other druids and elves to vouch for you. Additionally, you must visit at least one poi throne. If you are ready, ask me again about {conditions}.",
 			},
 		})
-	)
-	:Mission(Storage.PathOfTheUndead.Mission02)
-	:State(
+
+end
+)	:Mission(Storage.PathOfTheUndead.Mission02)
+:State(
+function()
+return 
 		QuestState.PathOfTheUndead.Mission02.VisitMagicalCircles,
 		QuestFactory.Dialog("Gandalf", {
 			[{ "mission" }] = {
@@ -1213,9 +1221,12 @@ quest
 				text = "I understand, the stone cromlech is located on a peninsula to the southwest of here.",
 			},
 		})
-	)
-	:Mission(Storage.PathOfTheUndead.Mission03)
-	:State(
+
+end
+)	:Mission(Storage.PathOfTheUndead.Mission03)
+:State(
+function()
+return 
 		QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing,
 		QuestFactory.Dialog("Konmuld", {
 			{
@@ -1660,5 +1671,6 @@ quest
 			skull:aid(Storage.PathOfTheUndead.GuardianSkull)
 			skull:register()
 		end)
-	)
-	:Register()
+
+end
+)	:Register()

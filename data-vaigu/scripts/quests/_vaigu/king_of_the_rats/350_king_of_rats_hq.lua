@@ -120,7 +120,9 @@ quest
 		}
 	end)
 	:Mission(Storage.KingOfRatsHQ.Mission01)
-	:State(
+:State(
+function()
+return 
 		ANY_STATE,
 		QuestFactory.Dialog("GM Romek", {
 			[{ "artifact", "artifacts", "artefakt", "artefakty" }] = {
@@ -282,5 +284,6 @@ quest
 			{ pos = { 2, 11, -1 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.Asuras },
 			{ position = { -3, -7, -2 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.HurghadaEast },
 		}, KING_OF_RATS_HQ_ANCHOR)
-	)
-	:Register()
+
+end
+)	:Register()
