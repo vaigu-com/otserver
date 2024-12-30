@@ -79,6 +79,7 @@ local vocationCountToBonus = {
 	]]
 }
 
+--3af needs fix	
 function Party:onShareExperience(exp)
 	local distinctVocationsTable = {}
 	local partyPlayers = self:getPlayers()
@@ -88,12 +89,12 @@ function Party:onShareExperience(exp)
 		distinctVocationsTable[vocationId] = true
 	end
 
-	local distintVocationsCount = TableSize(distinctVocationsTable)
-	if distintVocationsCount > 4 then
-		distintVocationsCount = 4
+	local distinctVocationsCount = TableSize(distinctVocationsTable)
+	if distinctVocationsCount > 4 then
+		distinctVocationsCount = 4
 	end
 
-	local partyBonusMultiplier = vocationCountToBonus[distintVocationsCount]
+	local partyBonusMultiplier = vocationCountToBonus[distinctVocationsCount]
 	local bonusPerMember = math.ceil(partyBonusMultiplier / (#self:getMembers() + 1))
-	return bonusPerMember
+	return bonusPerMember * exp
 end

@@ -25,18 +25,18 @@ end
 ---@param outfit table outfit
 ---@param dialogs table? custom dialogs that can override job dialogs
 ---@param voices table? orange color text that npc may or may not say from time to time
-function RegisterNpcDefinition(npc)
-	local name = npc.internalNpcName or npc.name
-	local displayName = npc.npcName or npc.displayname or npc.displayName or name
-	local onlookName = npc.npcDescription or npc.onlookname or ("a " .. name)
+function RegisterNpcDefinition(npcData)
+	local name = npcData.internalNpcName or npcData.name
+	local displayName = npcData.npcName or npcData.displayname or npcData.displayName or name
+	local onlookName = npcData.npcDescription or npcData.onlookname or ("a " .. name)
 
-	local greetJob = npc.greetJob
-	local jobs = npc.jobs or {}
-	local outfit = npc.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
-	local npcSpecificDialogs = npc.dialogs
-	local customShop = npc.shop
-	local voices = npc.voices
-	local currency = npc.currency or npc.shopCurrency
+	local greetJob = npcData.greetJob
+	local jobs = npcData.jobs or {}
+	local outfit = npcData.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
+	local npcSpecificDialogs = npcData.dialogs
+	local customShop = npcData.shop
+	local voices = npcData.voices
+	local currency = npcData.currency or npcData.shopCurrency
 
 	local jobShop, jobUniversalDialogs = getJobConfigs(jobs)
 	--ToDo: check if this should be indeed removed
@@ -47,7 +47,7 @@ function RegisterNpcDefinition(npc)
 
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
-	allDialogs[LOCALIZERS.Universal][{ GREET }] = JOBS_GREETINGS[greetJob]
+	allDialogs[LOCALIZERS.Universal][{ GREET }] = { text = JOBS_GREETINGS[greetJob] }
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 
@@ -62,14 +62,14 @@ function RegisterNpcDefinition(npc)
 
 	npcConfig.health = 100
 	npcConfig.maxHealth = npcConfig.health
-	npcConfig.walkInterval = npc.walkInterval or 2000
-	npcConfig.walkRadius = npc.walkInterval or 2
+	npcConfig.walkInterval = npcData.walkInterval or 2000
+	npcConfig.walkRadius = npcData.walkInterval or 2
 
 	npcConfig.outfit = outfit
 
 	npcConfig.voices = voices
 
-	npcConfig.flags = { floorchange = npc.floorchange or 0 }
+	npcConfig.flags = { floorchange = npcData.floorchange or 0 }
 
 	local keywordHandler = KeywordHandler:new()
 	local npcHandler = NpcHandler:new(keywordHandler)
@@ -113,13 +113,16 @@ function RegisterNpcDefinition(npc)
 	-- On look at npc shop item
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
-	local greetCallback = npc.greetCallback or function(npc, creature, type, message)
+	local greetCallback = npcData.greetCallback or function(npc, creature, type, message)
+		if npcData.ignoreGreet then
+			return IGNORE_GREET
+		end
 		InitializeResponses(creature, npcConfig.dialogs, npcHandler, npc)
 		return true
 	end
 
-	local creatureSayCallback = npc.creatureSayCallback or function(npc, creature, type, msg)
-		if not npcHandler:checkInteraction(npc, creature) then
+	local creatureSayCallback = npcData.creatureSayCallback or function(npc, creature, type, msg)
+		if npcData.checkInteraction ~= false and not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end
 		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc)

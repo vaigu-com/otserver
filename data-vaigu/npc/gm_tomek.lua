@@ -12,6 +12,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	greetCallback = function() end,
+ignoreGreet = true
 }
 NpcRegistry:AppendNpcData(context)

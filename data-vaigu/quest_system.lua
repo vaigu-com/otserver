@@ -662,7 +662,6 @@ function DialogContext:ResolveStorage()
 		end
 		::continue::
 	end
-	self:ResolveUniversalQuest()
 end
 
 function DialogContext:ResolveState()

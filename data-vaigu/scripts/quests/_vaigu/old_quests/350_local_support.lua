@@ -813,6 +813,16 @@ quest
 						[Storage.LocalSupport.UnwantedGuests] = QuestState.LocalSupport.UnwantedGuests.BringOldManFrostItems,
 					},
 				},
+			}),
+			QuestFactory.StartupItems({
+				{
+					position = Position(7508, 292, 7),
+					id = 7176,
+					aid = Storage.OldManFrostMammoth,
+					onLook = function(context)
+						context.player:removeMoneyBank(50)
+					end,
+				},
 			})
 	end)
 	:State(function()
@@ -856,7 +866,7 @@ quest
 						return false
 					end
 
-					local nextCooldownExpiry = GetNextWednesdayEpochTime()
+					local nextCooldownExpiry = NextWednesdayEpochTime()
 					player:setStorageValue(nextCooldownExpiry)
 					player:addCharmPoints(charmPoints)
 					local bonusExp = player:ExpForNextlevel() * 0.15 + 50000
@@ -867,16 +877,6 @@ quest
 				oldManFrostPickaxe:register()
 			end)
 	end)
-	:StartupItems({
-		{
-			position = Position(7508, 292, 7),
-			id = 7176,
-			aid = Storage.OldManFrostMammoth,
-			onLook = function(context)
-				context.player:removeMoneyBank(50)
-			end,
-		},
-	})
 	:Mission(Storage.LocalSupport.TwoMarlinQuest)
 	:State(function()
 		return MISSION_NOT_STARTED,

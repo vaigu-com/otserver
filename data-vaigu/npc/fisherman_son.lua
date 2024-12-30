@@ -26,7 +26,7 @@ local dialogs = {
 				},
 			},
 		},
-		[ GREET ] = { "FISHERMAN_GREET" },
+		[GREET] = { text = "FISHERMAN_GREET" },
 		[{ "story", "stories", "historia", "historie" }] = {
 			text = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
 		},

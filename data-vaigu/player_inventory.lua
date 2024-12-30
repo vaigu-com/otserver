@@ -294,9 +294,9 @@ end
 
 local function normalizedItem(item)
 	item.count = item.count or 1
-	item.aid = item.aid or item.actionid
+	item.aid = item.aid or item.actionid or 0
 	item.desc = item.desc or item.description
-	item.uid = item.uid or item.uniqueid
+	item.uid = item.uid or item.uniqueid or 0
 	return item
 end
 
@@ -323,6 +323,7 @@ end
 DONT_CONTINUE_ON_ADD = "DONT_CONTINUE_ON_ADD"
 
 local explodingCookie = 130
+--3af add bestiary charms, etc.
 local explodingCookieCounts = {
 	grantExpDefaultFormula = 1,
 	grantBoostMinutesEqualToActionId = 2,
