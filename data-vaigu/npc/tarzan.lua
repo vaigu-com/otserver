@@ -8,26 +8,24 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "sail", "plynac" }] = {
-			text = "",
-			specialActionsOnSuccess = {
-				{
-					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.TARZAN_SHIP, --39f
-					transportType = TRANSPORT_TYPE.SHIP,
-				},
-			},
-			specialConditions = {
-				{
-					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
-					requiredOutcome = false,
-					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
-				},
+	[{ "sail", "plynac" }] = {
+		text = "",
+		specialActionsOnSuccess = {
+			{
+				action = CreateTransportWindow,
+				transports = TRANSPORT_ROUTES.TARZAN_SHIP, --39f
+				transportType = TRANSPORT_TYPE.SHIP,
 			},
 		},
-		[GREET] = { "You you like me to sail you anywhere?" },
+		specialConditions = {
+			{
+				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requiredOutcome = false,
+				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+			},
+		},
 	},
+	[GREET] = { "You you like me to sail you anywhere?" },
 }
 local context = {
 	name = name,

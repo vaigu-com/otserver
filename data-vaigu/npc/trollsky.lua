@@ -1,16 +1,14 @@
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "backpack", "plecak" }] = {
-			text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
-			nextTopic = 2,
-		},
-		[{ "yes", "tak", "napotkalem" }] = {
-			text = "Thank you very much! This brings back good old memories! Here is reward for you!",
-			requiredTopic = 2,
-			requiredItems = { { id = 3244 } },
-			rewards = { { id = 3397 } },
-			textNoRequiredItems = "Thats unfortunate.",
-		},
+	[{ "backpack", "plecak" }] = {
+		text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
+		nextTopic = 2,
+	},
+	[{ "yes", "tak", "napotkalem" }] = {
+		text = "Thank you very much! This brings back good old memories! Here is reward for you!",
+		requiredTopic = 2,
+		requiredItems = { { id = 3244 } },
+		rewards = { { id = 3397 } },
+		textNoRequiredItems = "Thats unfortunate.",
 	},
 }
 local voices = {

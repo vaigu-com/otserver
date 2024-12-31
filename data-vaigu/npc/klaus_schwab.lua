@@ -7,15 +7,13 @@ local outfit = {
 	lookFeet = 114,
 	lookAddons = 0,
 }
-local dialog = {
-	[LOCALIZERS.Universal] = {
-		[WALKAWAY] = { text = "Lebewohl." },
-		[FAREWELL] = { text = "Auf wiedersehen." },
-		[GREET] = { text = "Strammstehen!" },
-		[INCOMPREHENSIBLE] = { text = "Ich verstehe kein einziges wort." },
-		[{ "hitler", "auschwitz", "holocaust" }] = {
-			text = "Ich weiss nichts daruber.",
-		},
+local dialogs = {
+	[WALKAWAY] = { text = "Lebewohl." },
+	[FAREWELL] = { text = "Auf wiedersehen." },
+	[GREET] = { text = "Strammstehen!" },
+	[INCOMPREHENSIBLE] = { text = "Ich verstehe kein einziges wort." },
+	[{ "hitler", "auschwitz", "holocaust" }] = {
+		text = "Ich weiss nichts daruber.",
 	},
 }
 local context = {

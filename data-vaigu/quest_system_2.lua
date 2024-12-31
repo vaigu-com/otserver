@@ -101,7 +101,7 @@ function Quest:Script(script)
 	return self
 end
 function Quest:StartupItems(items, anchor)
-	table.append(self.startupItems, { items = items, anchor = anchor })
+	table.insert(self.startupItems, { items = items, anchor = anchor })
 	return self
 end
 ---@private
@@ -163,7 +163,7 @@ function Quest:AddStartupItems(context)
 		end
 	end
 
-	table.append(self.startupItems, { items = items, anchor = anchor })
+	table.insert(self.startupItems, { items = items, anchor = anchor })
 	return self
 end
 ---@private
@@ -203,7 +203,7 @@ local scriptTypeToCallback = {
 }
 --Just lua things
 function Quest:State(stateDataCallback)
-	table.append(self.missions[self.currentMission], stateDataCallback)
+	table.insert(self.missions[self.currentMission], stateDataCallback)
 	return self
 end
 
@@ -228,6 +228,9 @@ local function normalizeQuestlogData()
 					translatedFromAnyQuest(desc, "PL", quest.localizer)
 				end
 			end
+
+			StorageToMission[storage] = mission
+			Game.linkMissionToStorages(storage, mission.linkedStorages or {})
 		end
 	end
 end
@@ -435,6 +438,7 @@ function NpcRegistry:ExtractDialogs(npc)
 			extractedDialogs[mission.localizer][missionState][requiredState] = stateData
 		end
 	end
+	extractedDialogs[LOCALIZERS.Universal] = npc.dialogs
 
 	return extractedDialogs
 end

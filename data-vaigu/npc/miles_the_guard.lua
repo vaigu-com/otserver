@@ -8,29 +8,8 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "thief", "zlodziej" }] = {
-			text = "I dint see anything suspicious.",
-		},
-	},
-	[Storage.TheInquisition.MilesGuard] = {
-		[{ max = 0 }] = {
-			[{ "trouble", "problemy" }] = {
-				text = "I'm fine. There's no trouble at all.",
-				requiredState = {
-					[Storage.TheInquisition.Mission01] = { neq = MISSION_NOT_STARTED },
-				},
-				nextState = {
-					[Storage.TheInquisition.MilesGuard] = 1,
-					[Storage.TheInquisition.Mission01] = "+1",
-				},
-				specialActionsOnSuccess = {
-					{
-						action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer,
-					},
-				},
-			},
-		},
+	[{ "thief", "zlodziej" }] = {
+		text = "I dint see anything suspicious.",
 	},
 }
 local context = {

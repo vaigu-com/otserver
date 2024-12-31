@@ -8,10 +8,8 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "hitler", "auschwitz", "holocaust" }] = {
-			text = "I know nothing about it.",
-		},
+	[{ "hitler", "auschwitz", "holocaust" }] = {
+		text = "I know nothing about it.",
 	},
 }
 local context = {

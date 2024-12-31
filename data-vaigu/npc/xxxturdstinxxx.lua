@@ -8,11 +8,9 @@ local outfit = {
 	addons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[WALKAWAY] = { text = "Peace God." },
-		[FAREWELL] = { text = "Seeee yaaa." },
-		[GREET] = { text = "Waddup, G?" },
-	},
+	[WALKAWAY] = { text = "Peace God." },
+	[FAREWELL] = { text = "Seeee yaaa." },
+	[GREET] = { text = "Waddup, G?" },
 }
 local context = {
 	name = name,

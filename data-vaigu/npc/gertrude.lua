@@ -8,12 +8,10 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "konmuld" }] = {
-			text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
-		},
-		[GREET] = { text = "Hi |PLAYERNAME|. You can check my offer, say {trade} if you're down for garden work." },
+	[{ "konmuld" }] = {
+		text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
 	},
+	[GREET] = { text = "Hi |PLAYERNAME|. You can check my offer, say {trade} if you're down for garden work." },
 }
 local shop = {
 	{ itemName = "empty flower pot", clientId = 306, buy = 250 },

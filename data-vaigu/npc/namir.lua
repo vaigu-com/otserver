@@ -28,10 +28,8 @@ local shop = {
 	{ itemName = "Empty mead horn", clientId = 7140, buy = 320 },
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[GREET] = {
-			text = "Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some {rice}.",
-		},
+	[GREET] = {
+		text = "Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some {rice}.",
 	},
 }
 local context = {

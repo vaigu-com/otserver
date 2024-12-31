@@ -9,10 +9,8 @@ local outfit = {
 	lookMount = 438,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[GREET] = {
-			text = "Hello. What brings you here?",
-		},
+	[GREET] = {
+		text = "Hello. What brings you here?",
 	},
 }
 

@@ -8,10 +8,8 @@ local outfit = {
 	lookAddons = 2,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ ANY_MESSAGE }] = {
-			text = "They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go.",
-		},
+	[{ ANY_MESSAGE }] = {
+		text = "They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go.",
 	},
 }
 local context = {

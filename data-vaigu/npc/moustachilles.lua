@@ -8,10 +8,8 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[INCOMPREHENSIBLE] = {
-			text = "Go away, or even better: flip off.",
-		},
+	[INCOMPREHENSIBLE] = {
+		text = "Go away, or even better: flip off.",
 	},
 }
 local context = {

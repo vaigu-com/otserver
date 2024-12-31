@@ -1,13 +1,10 @@
-do
-	return
-end
 -- Terminology:
---  processing: The npc system is going through all npc dialogs and determines if player meets the requirement for the dialogs
+--  processing: The npc system is going through the npc dialogs and determines if player meets the requirement for a dialog
 --  discarded: A dialog processing has been cancelled and another dialog will be processed
 --  resolved: A dialog has been processed and no other dialog will be processed. This means the npc will say some text corresponding to this dialog (fail or success dialog)
 --   success-resolved: Npc will say text that is supposed to be shown on success for this dialog. Actions on success (eg. rewards, special effects) will all be perfomed for this dialog
 --   fail-resolved: Npc will say text that corresponds to the reason of this dialog fail. Actions on success wont be performed for this dialog
-
+---@Deprecated
 local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogData)
 	-- Important note: all text in dialogues (text on no required items, text on success, text on no required state etc.) is not conidered final text, but an identifier for the localizer.
 	-- This means that all text will be translated based on player language and other context.

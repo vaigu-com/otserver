@@ -8,10 +8,8 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "sprzet", "sprzet wedkarski", "oferta", "ofert" }] = {
-			text = "Say {trade} if you want to see my offer.",
-		},
+	[{ "sprzet", "sprzet wedkarski", "oferta", "ofert" }] = {
+		text = "Say {trade} if you want to see my offer.",
 	},
 }
 local context = {

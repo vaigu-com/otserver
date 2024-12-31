@@ -4188,9 +4188,6 @@
 	<monster centerx="7604" centery="1478" centerz="4" radius="1">
 		<monster name="Elf" x="0" y="0" z="4" spawntime="60" />
 	</monster>
-	<monster centerx="5744" centery="1479" centerz="4" radius="1">
-		<monster name="Valkyrie" x="0" y="0" z="4" spawntime="60" />
-	</monster>
 	<monster centerx="7602" centery="1479" centerz="4" radius="1">
 		<monster name="Elf" x="0" y="0" z="4" spawntime="60" />
 	</monster>
@@ -4203,10 +4200,10 @@
 	<monster centerx="7600" centery="1480" centerz="4" radius="1">
 		<monster name="Elf" x="0" y="0" z="4" spawntime="60" />
 	</monster>
-	<monster centerx="5733" centery="1483" centerz="4" radius="1">
-		<monster name="Amazon" x="0" y="0" z="4" spawntime="60" />
+	<monster centerx="5743" centery="1482" centerz="4" radius="1">
+		<monster name="Valkyrie" x="0" y="0" z="4" spawntime="60" />
 	</monster>
-	<monster centerx="5745" centery="1483" centerz="4" radius="1">
+	<monster centerx="5733" centery="1483" centerz="4" radius="1">
 		<monster name="Amazon" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="7594" centery="1485" centerz="4" radius="1">

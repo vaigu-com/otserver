@@ -47,7 +47,9 @@ function RegisterNpcDefinition(npcData)
 
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
-	allDialogs[LOCALIZERS.Universal][{ GREET }] = { text = JOBS_GREETINGS[greetJob] }
+	if JOBS_GREETINGS[greetJob] then
+		allDialogs[LOCALIZERS.Universal][GREET] = { text = JOBS_GREETINGS[greetJob] }
+	end
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 

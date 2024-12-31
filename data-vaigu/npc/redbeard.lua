@@ -8,26 +8,24 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "sail", "playnac" }] = {
-			text = "",
-			specialActionsOnSuccess = {
-				{
-					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.REDBEARD_SHIP,
-					transportType = TRANSPORT_TYPE.SHIP,
-				},
-			},
-			specialConditions = {
-				{
-					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
-					requiredOutcome = false,
-					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
-				},
+	[{ "sail", "playnac" }] = {
+		text = "",
+		specialActionsOnSuccess = {
+			{
+				action = CreateTransportWindow,
+				transports = TRANSPORT_ROUTES.REDBEARD_SHIP,
+				transportType = TRANSPORT_TYPE.SHIP,
 			},
 		},
-		[GREET] = { text = "Welcome to my ship. Where would you like to {sail}?" },
+		specialConditions = {
+			{
+				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requiredOutcome = false,
+				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+			},
+		},
 	},
+	[GREET] = { text = "Welcome to my ship. Where would you like to {sail}?" },
 	--3af
 	[{ "mission", "misja" }] = {
 		text = "",
@@ -38,6 +36,7 @@ local dialogs = {
 		},
 	},
 }
+
 local context = {
 	name = name,
 	outfit = outfit,

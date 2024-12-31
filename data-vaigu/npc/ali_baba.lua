@@ -8,27 +8,25 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "fly", "poleciec", "yes", "tak" }] = {
-			text = "",
-			specialActionsOnSuccess = {
-				{
-					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.ALI_BABA_CARPET,
-					transportType = TRANSPORT_TYPE.CARPET,
-				},
-			},
-			specialConditions = {
-				{
-					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
-					requiredOutcome = false,
-					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
-				},
+	[{ "fly", "poleciec", "yes", "tak" }] = {
+		text = "",
+		specialActionsOnSuccess = {
+			{
+				action = CreateTransportWindow,
+				transports = TRANSPORT_ROUTES.ALI_BABA_CARPET,
+				transportType = TRANSPORT_TYPE.CARPET,
 			},
 		},
-		[ GREET ] = {
-			text = "Hello, traveler. Would you like me to {fly} you somewhere?",
+		specialConditions = {
+			{
+				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requiredOutcome = false,
+				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+			},
 		},
+	},
+	[GREET] = {
+		text = "Hello, traveler. Would you like me to {fly} you somewhere?",
 	},
 }
 local context = {

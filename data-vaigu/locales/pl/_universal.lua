@@ -9,6 +9,7 @@ local directionToString = {
 	[DIRECTION_NORTHWEST] = "polnocny wschod",
 }
 return {
+	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Witaj, |PLAYERNAME|! Ostatnio rzadko ktos mnie odwiedza.",
 	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (ukonczone)",
 	["GO_IN_DIRECTION"] = function(context)
 		local dir = context.direction

@@ -16,30 +16,28 @@ local voices = {
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
 local dialogs = {
-	[LOCALIZERS.Universal] = {
-		[{ "sail", "plynac" }] = {
-			text = "",
-			specialActionsOnSuccess = {
-				{
-					action = CreateTransportWindow,
-					transports = TRANSPORT_ROUTES.JACK_SPARROW_SHIP,
-					transportType = TRANSPORT_TYPE.SHIP,
-				},
-			},
-			specialConditions = {
-				{
-					condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
-					requiredOutcome = false,
-					textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
-				},
+	[{ "sail", "plynac" }] = {
+		text = "",
+		specialActionsOnSuccess = {
+			{
+				action = CreateTransportWindow,
+				transports = TRANSPORT_ROUTES.JACK_SPARROW_SHIP,
+				transportType = TRANSPORT_TYPE.SHIP,
 			},
 		},
-		[GREET] = {
-			text = "Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?",
+		specialConditions = {
+			{
+				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requiredOutcome = false,
+				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+			},
 		},
-		[{ "wood", "drewno", "supply", "dostawa" }] = {
-			text = "Ask Woody about the wood supply.",
-		},
+	},
+	[GREET] = {
+		text = "Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?",
+	},
+	[{ "wood", "drewno", "supply", "dostawa" }] = {
+		text = "Ask Woody about the wood supply.",
 	},
 }
 local context = {

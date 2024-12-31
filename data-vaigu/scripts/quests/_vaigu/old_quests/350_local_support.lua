@@ -171,6 +171,7 @@ quest
 						[10] = "VISIT_DEALERS_STATUS",
 						[MISSION_FINISHED] = "You visited all dealers in mirkotown and got rewarded by the Commissioner.",
 					},
+					linkedStorages = Storage.LocalSupport.VendorsAsked,
 				},
 				[Storage.LocalSupport.WoodDelivery] = {
 					name = "Wood Delivery",
@@ -298,6 +299,7 @@ quest
 					},
 					nextState = {
 						[Storage.LocalSupport.VendorsAsked.TrollskyAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.Discernment] = "+0",
 					},
 				},
 			}),
