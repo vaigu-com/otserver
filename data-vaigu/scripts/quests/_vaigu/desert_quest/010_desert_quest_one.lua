@@ -1599,7 +1599,7 @@ return
 
 				for _, keyItem in pairs(QuestKeyItems.DesertQuestOne) do
 					if player:HasItem(keyItem) then
-						player:RemoveItem(keyItem)
+						player:RemoveEquippedItemByCriteria(keyItem)
 					end
 				end
 

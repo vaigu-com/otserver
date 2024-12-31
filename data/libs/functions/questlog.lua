@@ -361,3 +361,18 @@ function Player.updateStorage(self, storage, value, oldValue, currentFrameTime)
 		end
 	end
 end
+
+function Player.sendTrackedMissions(self)
+	for _, quest in pairs(Quests) do
+		for _, mission in pairs(quest.missions) do
+			if self:isTrackingMission(mission) then
+				local translatedMission = {
+					storage = mission.storage,
+					missionName = self:getTranslatedMissionName(mission),
+					missionDesc = self:getTranslatedMissionDescription(mission),
+				}
+				self:sendTrackedMission(translatedMission)
+			end
+		end
+	end
+end

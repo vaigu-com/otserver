@@ -28,7 +28,7 @@ function Player:GetAllItems()
 			goto continue
 		end
 		if item.uid > 0 then
-			if isContainer(item.uid) then
+			if Container(item.uid) then
 				table.insert(containers, item)
 			end
 			items:Add(item)
@@ -39,7 +39,7 @@ function Player:GetAllItems()
 	while #containers > 0 do
 		local containerItems = containers[1]:getItems()
 		for _, item in pairs(containerItems) do
-			if isContainer(item.uid) then
+			if Container(item.uid) then
 				table.insert(containers, item)
 			end
 			items:Add(item)
@@ -112,10 +112,11 @@ local function matchAllSucceeded(quantfier, hasItems)
 end
 
 ---@param items table item list
----@param quantifier string? Default: false
+---@param quantifier string? Default: REQUIRE_ALL
 ---@return boolean hasItems
 ---@return ItemExList|nil takenItems
 function Player:HasItems(items, quantifier)
+	quantifier = quantifier or REQUIRE_ALL
 	local hasItems = false
 	local takeableItems = ItemExList()
 	for subgroupQuantifier, node in pairs(items) do
@@ -144,7 +145,12 @@ function Player:HasItems(items, quantifier)
 			return false, nil
 		end
 	end
-	return hasItems, takeableItems
+	return hasItems, takeableItems:Get()
+end
+
+function Player:ParseRemovalCriteria(items)
+	local _, removalCriteria = self:HasItems(items)
+	return removalCriteria
 end
 
 function Player:TryRemoveItems(items)
@@ -161,11 +167,16 @@ local function parseItemCountToRemove(player, item)
 	return item.count or 1
 end
 
-function Player:RemoveItem(item)
-	local id = item.id
-	local itemCountToRemove = parseItemCountToRemove(self, item)
-	local aid = item.actionid or item.aid or 0
-	local fluidType = item.fluidType
+function Player:RemoveEquippedItemByCriteria(removalCriteria)
+	local id = removalCriteria.id
+	local itemCountToRemove = parseItemCountToRemove(self, removalCriteria)
+	local aid = removalCriteria.actionid or removalCriteria.aid or 0
+	local fluidType = removalCriteria.fluidType
+
+	if not (id or aid or fluidType) then
+		logger.error(debug.traceback("[Player::RemoveEquippedItemByCriteria] Trying to remove item with null id, aid and fluidtype. This would remove player's whole inventory!"))
+		return
+	end
 
 	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType):Get()
 
@@ -182,11 +193,11 @@ function Player:RemoveItem(item)
 	end
 end
 
-function Player:RemoveItems(items)
-	local _, chosenItems = self:HasItems(items)
-	for _, item in pairs(chosenItems) do
-		if item.remove then
-			self:RemoveItem(item)
+function Player:RemoveItems(itemData)
+	local removalCriteria = self:ParseRemovalCriteria(itemData)
+	for _, removalCriterion in pairs(removalCriteria) do
+		if removalCriterion.remove ~= false then
+			self:RemoveEquippedItemByCriteria(removalCriterion)
 		end
 	end
 	return true

@@ -259,14 +259,14 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
 			QuestFactory.Dialog("Oldrak", {
+				[{ "mission" }] = {
+					text = "I understand. You need to go to the Caribbean Island, and from there, from the highest mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
+				},
 				[{ "poleciec", "fly" }] = {
 					text = "As a mere mortal, you will need a magical carpet for this. It must be a carpet that can float very high above the ground. Humans can produce only one carpet {capable} of such flights: the enchanted carpet of the green one.",
 				},
 				[{ "zdolny", "capable" }] = {
 					text = "Ordinary carpets for 900 rubles can only lift a few meters above the ground. The green carpet, however, can lift itself much higher when it's on a special path. I am unable to create such a carpet, and unfortunately, I don't know if there's anyone in this world who can help you with that.",
-				},
-				[{ "mission" }] = {
-					text = "I understand. You need to go to the Caribbean Island, and from there, from the highest mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission01] = QuestState.AssassinsCreedSquurvaali.Mission01.ReportToGhasstlyPrincess,
 					},
@@ -322,7 +322,7 @@ quest
 						},
 					},
 				},
-				[{ "Rat King", "Krol Szczurow", "King of Rats" }] = {
+				[{ "Rat King", "Krol Szczurow" }] = {
 					text = "Rat King! Psst, now say: {away to the Ratlands}.",
 					specialActionsOnSuccess = {
 						{

@@ -34,12 +34,12 @@ FAREWELL = "DIALOG_MESSAGE_FAREWELL"
 WALKAWAY = "DIALOG_MESSAGE_WALKAWAY"
 INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
-DEFAULT_MAX_STATE = 800000
-DEFAULT_MIN_STATE = -800000
+DEFAULT_MAX_STATE = 2 ^ 31 - 1
+DEFAULT_MIN_STATE = -2 ^ 31 - 1
 
 MISSION_NOT_STARTED = -1
 MISSION_STARTED = 1
-MISSION_FINISHED = 2 ^ 50 + 1
+MISSION_FINISHED = 2 ^ 31 - 1
 
 ACCESS_GRANTED = 1
 MISSION_START_VALUE = 1
@@ -743,7 +743,7 @@ function ResolutionContext:CheckRequiredItems()
 	end
 
 	if not self.player:HasItems(requirements.requiredItems) then
-		self.errorMessage = requirements.textNoRequiredItems
+		self.errorMessage = self.textNoRequiredItems
 		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
 	return CONDITION_STATUS.CONDITION_PASSED
@@ -757,7 +757,7 @@ function ResolutionContext:CheckRequiredState()
 
 	local errorMessage, canProceed = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
 	if not canProceed then
-		self.errorMessage = errorMessage or requirements.textNoRequiredState
+		self.errorMessage = errorMessage or self.textNoRequiredState
 		return CONDITION_STATUS.CONDITION_NOT_PASSED
 	end
 
@@ -772,7 +772,7 @@ function ResolutionContext:CheckGlobalState()
 
 	for key, value in pairs(requirements.requiredGlobalState) do
 		if Game.getStorageValue(key) ~= value then
-			self.errorMessage = requirements.textNoRequiredGlobalState
+			self.errorMessage = self.textNoRequiredGlobalState
 			return CONDITION_STATUS.CONDITION_NOT_PASSED
 		end
 	end

@@ -12,5 +12,7 @@ function ChestQuestTryAddItems(player, rewardChest)
 			SendChestIsEmpty(player, rewardChest:getId())
 		end
 	end
+
+	player:getPosition():sendMagicEffect(CONST_ME_STUN)
 	return true
 end
