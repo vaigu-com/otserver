@@ -1,7 +1,7 @@
 local function shuffleTable(t)
 	local newTable = {}
 	for i = 1, #t do
-		local randomId = math.random(1, #t)
+		randomId = math.random(1, #t)
 		newTable[#newTable + 1] = t[randomId]
 		table.remove(t, randomId)
 	end

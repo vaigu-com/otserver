@@ -23,8 +23,8 @@ local area = createCombatArea(arr)
 combat2:setArea(area)
 
 function onGetFormulaValues(player, level, maglevel)
-	local min = -1500
-	local max = -1500
+	min = -1500
+	max = -1500
 	return min, max
 end
 

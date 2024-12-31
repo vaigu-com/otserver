@@ -15,6 +15,6 @@ local config = {
 	exitTpDestination = Position(33364, 31341, 9),
 }
 
-local lever = EncounterData(config)
+local lever = EncounterLever(config)
 lever:aid(57605)
 lever:register()
