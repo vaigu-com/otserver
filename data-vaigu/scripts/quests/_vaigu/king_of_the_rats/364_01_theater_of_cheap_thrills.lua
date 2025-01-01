@@ -101,7 +101,6 @@ quest
 		QuestKeyItems.TheaterOfCheapThrills = {
 			Cheese = { id = 3607, aid = Storage.TheaterOfCheapThrills.Rewards.Cheese, desc = "100 Year Old Aged Cheese" },
 		}
-
 		TEATR_TANIEJ_SENSACJI_PLUS_SHAPE = {
 			unlitToLit = { [28458] = 28459, [28452] = 28453, [28454] = 28455, [28456] = 28457 },
 			litToUnlit = { [28459] = 28458, [28453] = 28452, [28455] = 28454, [28457] = 28456 },
