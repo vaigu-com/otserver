@@ -59,73 +59,112 @@ bool Scripts::loadEventSchedulerScripts(const std::string &fileName) {
 	return false;
 }
 
-bool Scripts::loadScripts(std::string loadPath, bool isLib, bool reload) {
-	const auto dir = std::filesystem::current_path() / loadPath;
-	// Checks if the folder exists and is really a folder
-	if (!std::filesystem::exists(dir) || !std::filesystem::is_directory(dir)) {
-		g_logger().error("Can not load folder {}", loadPath);
-		return false;
-	}
+// Function to validate the directory path
+bool validateDirectory(const std::filesystem::path& dir, const std::string loadPath) {
+    if (!std::filesystem::exists(dir) || !std::filesystem::is_directory(dir)) {
+        g_logger().error("Cannot load folder {}", loadPath);
+        return false;
+    }
+    return true;
+}
 
-	// Declare a string variable to store the last directory
-	std::string lastDirectory;
-	// Recursive iterate through all entries in the directory
-	for (const auto &entry : std::filesystem::recursive_directory_iterator(dir)) {
-		// Get the filename of the entry as a string
-		const auto realPath = entry.path();
-		std::string fileFolder = realPath.parent_path().filename().string();
-		// Script folder, example: "actions"
-		std::string scriptFolder = realPath.parent_path().string();
-		// Create a string_view for the fileFolder and scriptFolder strings
-		std::string_view fileFolderView(fileFolder);
-		std::string_view scriptFolderView(scriptFolder);
-		// Filename, example: "demon.lua"
-		std::string file(realPath.filename().string());
-		if (!std::filesystem::is_regular_file(entry) || realPath.extension() != ".lua") {
-			// Skip this entry if it is not a regular file or does not have a .lua extension
-			continue;
-		}
+// Function to collect Lua files in a directory
+std::vector<std::filesystem::path> collectLuaFiles(const std::filesystem::path& dir) {
+    std::vector<std::filesystem::path> luaFiles;
+    for (const auto& entry : std::filesystem::recursive_directory_iterator(dir)) {
+        const auto& path = entry.path();
+        if (std::filesystem::is_regular_file(path) && path.extension() == ".lua") {
+            luaFiles.push_back(path);
+        }
+    }
+    return luaFiles;
+}
 
-		// Check if file start with "#"
-		if (std::string disable("#");
-		    file.front() == disable.front()) {
-			// Send log of disabled script
-			if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
-				g_logger().info("[script]: {} [disabled]", realPath.filename().string());
-			}
-			// Skip for next loop and ignore disabled file
-			continue;
-		}
+// Function to process files and return a vector of successfully loadable files
+std::vector<std::filesystem::path> processFiles(
+    const std::vector<std::filesystem::path>& files,
+    bool isLib,
+    bool isReload,
+    LuaScriptInterface& scriptInterface
+) {
+    std::vector<std::filesystem::path> successfullyLoadedFiles;
+    std::string lastDirectory;
 
-		// If the file is a library file or if the file's parent directory is not "lib" or "events"
-		if (isLib || (fileFolderView != "lib" && fileFolderView != "events")) {
-			// If console logs are enabled and the file is not a library file
-			if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
-				// If the current directory is different from the last directory that was logged
-				if (lastDirectory.empty() || lastDirectory != scriptFolderView) {
-					// Update the last directory variable and log the directory name
-					g_logger().info("Loading folder: [{}]", realPath.parent_path().filename().string());
-				}
-				lastDirectory = realPath.parent_path().string();
-			}
+    for (const auto& file : files) {
+        const auto realPath = file;
+        std::string fileFolder = realPath.parent_path().filename().string();
+        std::string scriptFolder = realPath.parent_path().string();
 
-			// If the function 'loadFile' returns -1, then there was an error loading the file
-			if (scriptInterface.loadFile(realPath.string(), realPath.filename().string()) == -1) {
-				// Log the error and the file path, and skip to the next iteration of the loop.
-				g_logger().error(realPath.string());
-				g_logger().error(scriptInterface.getLastLuaError());
-				continue;
-			}
-		}
+        // Skip files starting with "#"
+        if (file.filename().string().front() == '#') {
+            if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
+                g_logger().info("[script]: {} [disabled]", realPath.filename().string());
+            }
+            continue;
+        }
 
-		if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
-			if (!reload) {
-				g_logger().info("[script loaded]: {}", realPath.filename().string());
-			} else {
-				g_logger().info("[script reloaded]: {}", realPath.filename().string());
-			}
-		}
-	}
+        // Log folder and attempt to load file
+        if (isLib || (fileFolder != "lib" && fileFolder != "events")) {
+            if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
+                if (lastDirectory.empty() || lastDirectory != scriptFolder) {
+                    lastDirectory = scriptFolder;
+                    g_logger().info("Loading folder: [{}]", realPath.parent_path().filename().string());
+                }
+            }
 
-	return true;
+            // Add successfully loaded file to the list
+            successfullyLoadedFiles.push_back(realPath);
+        }
+    }
+
+    return successfullyLoadedFiles;
+}
+
+// Function to sort files alphabetically
+void sortFilesAlphabetically(std::vector<std::filesystem::path>& files) {
+        std::sort(files.begin(), files.end(), [](const std::filesystem::path& a, const std::filesystem::path& b) {
+        return a.filename().string() < b.filename().string();
+    });
+}
+
+// Function to run all loadable files
+void runFiles(const std::vector<std::filesystem::path>& files, bool isReload, LuaScriptInterface& scriptInterface) {
+    for (const auto& file : files) {
+		const auto realPath = file;
+		// Try to load file
+        if (scriptInterface.loadFile(realPath.string(), realPath.filename().string()) == -1) {
+            g_logger().error(realPath.string());
+            g_logger().error(scriptInterface.getLastLuaError());
+            continue;
+        }
+
+	    // Log successful load or reload
+        if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
+            g_logger().info("[script {}]: {}", isReload ? "reloaded" : "loaded", realPath.filename().string());
+        }
+    }
+}
+
+// Main function
+bool Scripts::loadScripts(const std::string loadPath, bool isLib, bool isReload) {
+    const auto dir = std::filesystem::current_path() / loadPath;
+
+    // Validate directory
+    if (!validateDirectory(dir, loadPath)) {
+        return false;
+    }
+
+    // Step 1: Collect Lua files
+    auto luaFiles = collectLuaFiles(dir);
+
+    // Step 2: Process files to determine which are loadable
+    auto successfullyLoadedFiles = processFiles(luaFiles, isLib, isReload, scriptInterface);
+
+    // Step 3: Sort successfully loaded files alphabetically
+    sortFilesAlphabetically(successfullyLoadedFiles);
+
+    // Step 4: Run sorted files
+    runFiles(successfullyLoadedFiles, isReload, scriptInterface);
+
+    return true;
 }

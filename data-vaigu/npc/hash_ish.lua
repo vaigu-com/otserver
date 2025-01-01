@@ -12,5 +12,5 @@ local context = {
 	jobs = { JOB_CREATURE_PRODUCT },
 	outfit = outfit,
 }
-local npcType, npcConfig = CreateNpcDefinition(context)
-npcType:register(npcConfig)
+
+NpcRegistry:AppendNpcData(context)

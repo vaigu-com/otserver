@@ -86,7 +86,12 @@ local langToMarksConfig = {
 		{ mark = "food", position = Position(6726, 1345, 7), markId = MAPMARK_TICK, description = "Prince kebab" },
 		{ mark = "food", position = Position(7006, 765, 6), markId = MAPMARK_TICK, description = "Sklep z jedzeniem" },
 		{ mark = "komisarz", position = Position(5849, 1609, 7), markId = MAPMARK_TICK, description = "Komisarz Ryba" },
-		{ mark = "statue", position = Position(5824, 1514, 7), markId = MAPMARK_SWORD, description = "Trening offline" },
+		{
+			mark = "statue",
+			position = Position(5824, 1514, 7),
+			markId = MAPMARK_SWORD,
+			description = "Trening offline",
+		},
 		{ mark = "temple", position = Position(5836, 1502, 7), markId = MAPMARK_TICK, description = "Swiatynia" },
 		{ mark = "temple", position = Position(6726, 1248, 4), markId = MAPMARK_TICK, description = "Swiatynia" },
 		{ mark = "temple", position = Position(7034, 734, 3), markId = MAPMARK_TICK, description = "Swiatynia" },
@@ -122,7 +127,12 @@ local langToMarksConfig = {
 		{ mark = "arm", position = Position(5854, 1560, 7), markId = MAPMARK_SWORD, description = "Equipment" },
 		{ mark = "arm", position = Position(6700, 1318, 7), markId = MAPMARK_SWORD, description = "Equipment" },
 		{ mark = "arm", position = Position(7053, 776, 5), markId = MAPMARK_SWORD, description = "Equipment" },
-		{ mark = "jewelry", position = Position(5850, 1574, 7), markId = MAPMARK_KISS, description = "Rings & Amulets" },
+		{
+			mark = "jewelry",
+			position = Position(5850, 1574, 7),
+			markId = MAPMARK_KISS,
+			description = "Rings & Amulets",
+		},
 		{
 			mark = "creatureproducts",
 			position = Position(5840, 1575, 7),
@@ -135,9 +145,24 @@ local langToMarksConfig = {
 			markId = MAPMARK_BAG,
 			description = "Creature Products",
 		},
-		{ mark = "paladinshop", position = Position(5864, 1575, 7), markId = MAPMARK_BAG, description = "Distance Shop" },
-		{ mark = "paladinshop", position = Position(6727, 1344, 6), markId = MAPMARK_BAG, description = "Distance Shop" },
-		{ mark = "paladinshop", position = Position(6996, 767, 6), markId = MAPMARK_BAG, description = "Distance Shop" },
+		{
+			mark = "paladinshop",
+			position = Position(5864, 1575, 7),
+			markId = MAPMARK_BAG,
+			description = "Distance Shop",
+		},
+		{
+			mark = "paladinshop",
+			position = Position(6727, 1344, 6),
+			markId = MAPMARK_BAG,
+			description = "Distance Shop",
+		},
+		{
+			mark = "paladinshop",
+			position = Position(6996, 767, 6),
+			markId = MAPMARK_BAG,
+			description = "Distance Shop",
+		},
 		{ mark = "bank", position = Position(5893, 1558, 9), markId = MAPMARK_DOLLAR, description = "Bank" },
 		{
 			mark = "shophouse",
@@ -148,8 +173,18 @@ local langToMarksConfig = {
 		{ mark = "food", position = Position(5874, 1574, 7), markId = MAPMARK_TICK, description = "Food shop" },
 		{ mark = "food", position = Position(6726, 1345, 7), markId = MAPMARK_TICK, description = "Prince kebab" },
 		{ mark = "food", position = Position(7006, 765, 6), markId = MAPMARK_TICK, description = "Food shop" },
-		{ mark = "komisarz", position = Position(5849, 1609, 7), markId = MAPMARK_TICK, description = "Commissioner Fisher" },
-		{ mark = "statue", position = Position(5824, 1514, 7), markId = MAPMARK_SWORD, description = "Offline Training" },
+		{
+			mark = "komisarz",
+			position = Position(5849, 1609, 7),
+			markId = MAPMARK_TICK,
+			description = "Commissioner Fisher",
+		},
+		{
+			mark = "statue",
+			position = Position(5824, 1514, 7),
+			markId = MAPMARK_SWORD,
+			description = "Offline Training",
+		},
 		{ mark = "temple", position = Position(5836, 1502, 7), markId = MAPMARK_TICK, description = "Temple" },
 		{ mark = "temple", position = Position(6726, 1248, 4), markId = MAPMARK_TICK, description = "Temple" },
 		{ mark = "temple", position = Position(7034, 734, 3), markId = MAPMARK_TICK, description = "Temple" },
@@ -159,13 +194,13 @@ local langToMarksConfig = {
 }
 
 local choseSameLanguage = {
-	["PL"] = "Polski jest twoim aktualnym jezykiem.",
-	["EN"] = "Your current chosen language is english.",
+	["PL"] = "Polski jest juz twoim jezykiem.",
+	["EN"] = "English is already your chosen language.",
 }
 
 local choseNewLanguage = {
 	["PL"] = "Zmieniles jezyk na polski",
-	["EN"] = "Your new language has been set to english.",
+	["EN"] = "You have changed your language to english.",
 }
 
 local function trySetMarks(player)
@@ -202,7 +237,7 @@ end
 
 function CreateChooseLanguageWindow(player)
 	local window = ModalWindow({ title = "Language", message = "Set your default language: " })
-	local localizer = player:Localizer(LOCALIZER_UNIVERSAL)
+	local localizer = player:Localizer(LOCALIZERS.Universal)
 	window:addButton(localizer:Get("Select"), onAcceptLanguage)
 	window:addButton(localizer:Get("Cancel"))
 
@@ -213,10 +248,20 @@ function CreateChooseLanguageWindow(player)
 	return false
 end
 
-local changeLanguage = TalkAction("!language", "/language")
+local changeLanguage = TalkAction("!language", "/language", "!lang", "/lang", "!jezyk", "/jezyk")
 function changeLanguage.onSay(player, words, param)
 	CreateChooseLanguageWindow(player)
 end
 changeLanguage:separator(" ")
 changeLanguage:groupType("normal")
 changeLanguage:register()
+
+for abbreviation, full in pairs(LANG_ABBREVIATION_TO_FULL_NAME) do
+	local setLanguage = TalkAction("!" .. full, "!" .. abbreviation, "!", "!" .. full:lower(), "!" .. abbreviation:lower(), "!" .. full:upper(), "!" .. abbreviation:upper())
+	function setLanguage.onSay(player, words, param)
+		onAcceptLanguage(player, nil, { text = abbreviation })
+	end
+	setLanguage:separator(" ")
+	setLanguage:groupType("normal")
+	setLanguage:register()
+end

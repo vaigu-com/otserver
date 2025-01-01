@@ -1,25 +1,45 @@
-local enterPosition = { x = 6848, y = 1043, z = 4 } --{x = 6848, y = 1043, z = 4}
+local surface = Position(6777, 2548, 4)
 
 local shortcut = MoveEvent()
-
 function shortcut.onStepIn(creature, item, toPosition, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
 		return true
 	end
 
-	if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) >= 4 then
-		player:setStorageValue(Storage.LiquidBlackQuest.Visitor, 5)
-		player:setStorageValue(Storage.Finished.LiquidBlack, 1)
-		player:teleportTo(enterPosition)
+	if player:getStorageValue(Storage.LiquidBlack.Visitor) >= 4 then
+		player:setStorageValue(Storage.LiquidBlack.Visitor, 5)
+		player:setStorageValue(Storage.Finished.LiquidBlack, MISSION_FINISHED)
+		player:teleportTo(surface)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:sendCancelMessage("Intruz nie zostanie wpuszczony.")
+		player:sendCancelMessage("Intruder will not be let it.")
 	end
 	return true
 end
-
 shortcut:aid(57746)
 shortcut:register()
+
+local fiehonja = Position(6711, 2512, 14)
+
+local quickAccess = MoveEvent()
+function quickAccess.onStepIn(creature, item, toPosition, fromPosition)
+	local player = creature:getPlayer()
+	if not player then
+		return true
+	end
+
+	if player:getStorageValue(Storage.LiquidBlack.Visitor) >= 5 then
+		player:teleportTo(fiehonja)
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+	else
+		player:teleportTo(fromPosition, true)
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+		player:sendCancelMessage("Nic tu po tobie...")
+	end
+	return true
+end
+quickAccess:aid(57747)
+quickAccess:register()

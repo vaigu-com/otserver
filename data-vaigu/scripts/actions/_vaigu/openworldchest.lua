@@ -21,7 +21,7 @@ function Container:clear()
 end
 
 local interval = math.random(5400, 10800) -- pomiedzy 1,5 a 3h
-local actionid = 7895 -- actionid to assign in RME
+local chestAid = 7895 -- actionid to assign in RME
 local allowDuplicates = false -- for default setting
 
 -- uid will serve as chest identificator. It will prevent moving the chest and will allow to make every chest script unique.
@@ -147,7 +147,7 @@ local lizardrewards = {
 		{ 3314, 500, 1 }, -- naginata
 		{ 3377, 12000, 1 }, -- scale armor
 		{ 3269, 3000, 1 }, -- halberd
-		{ 3444, 4300, 1 }, -- sentinel shield
+		{ 3444, 4300, 1 }, -- sentinel shields
 		{ 266, 12000, 2 }, -- health potion
 		{ 3032, 2000, 2 }, -- small emerald
 		{ 10418, 3000, 1 }, -- broken halberd
@@ -454,140 +454,94 @@ local smiecirewards = {
 	},
 }
 
-local action = Action()
+local rewards = {
+	--trash
+	[2014] = {
+		{ id = 3031, chance = 15000, count = 50 }, -- gold coin
+		{ id = 2894, chance = 5000, count = 1 }, -- broken flask
+		{ id = 3118, chance = 5000, count = 1 }, -- broken green glass
+		{ id = 3112, chance = 5000, count = 1 }, -- rotten meatz
+		{ id = 3104, chance = 5000, count = 1 }, -- banana skin
+		{ id = 3113, chance = 5000, count = 1 }, -- broken pottery
+		{ id = 3117, chance = 5000, count = 1 }, -- broken brown glass
+		{ id = 2892, chance = 5000, count = 1 }, -- broken bottle
+		{ id = 3111, chance = 5000, count = 1 }, -- fishbone
+		{ id = 3120, chance = 5000, count = 1 }, -- mouldy cheese
+		{ id = 8275, chance = 5000, count = 1 }, -- torn book
+		{ id = 2875, chance = 5000, count = 1 }, -- bottle
+		{ id = 2885, chance = 5000, count = 1 }, -- brown flask
+		{ id = 268, chance = 20000, count = 5 }, -- mana potion
+		{ id = 266, chance = 20000, count = 5 }, -- health potion
+		{ id = 3124, chance = 5000, count = 1 }, -- burnt scroll
+		{ id = 2877, chance = 5000, count = 1 }, -- green flask
+		{ id = 285, chance = 5000, count = 1 }, -- empty potion flask
+		{ id = 19148, chance = 5000, count = 1 }, -- torn magic cape
+		{ id = 3119, chance = 5000, count = 1 }, -- broken sword
+		{ id = 3123, chance = 5000, count = 1 }, -- worn leather boots
+		{ id = 2876, chance = 5000, count = 1 }, -- vase
+		{ id = 283, chance = 5000, count = 1 }, -- empty potion flask
+		{ id = 3577, chance = 10000, count = 4 }, -- meat
+		{ id = 3578, chance = 10000, count = 4 }, -- fish
+		{ id = 3723, chance = 10000, count = 4 }, -- white mushroom
+		{ id = 3582, chance = 10000, count = 4 }, -- ham
+		{ id = 3583, chance = 10000, count = 4 }, -- dragon ham
+		{ id = 3725, chance = 10000, count = 4 }, -- brown mushroom
+		{ id = 2880, chance = 5000, count = 1 }, -- mug
+		{ id = 3466, chance = 5000, count = 1 }, -- pan
+		{ id = 3467, chance = 5000, count = 1 }, -- fork
+		{ id = 3473, chance = 5000, count = 1 }, -- rolling pin
+		{ id = 2905, chance = 5000, count = 1 }, -- plate
+	},
+}
 
-function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if item.actionid ~= actionid then
+local function worldChestIndetifier(worldChest)
+	return worldChest:getPosition():ToString()
+end
+
+local function wasGeneratedRecently(worldChest)
+	return (worldchests[worldChestIndetifier(worldChest)] or 0) > os.time()
+end
+
+local function setGeneratedRecently(worldChest)
+	worldchests[worldChestIndetifier(worldChest)] = os.time() + interval
+end
+
+local function worldChestRewardType(worldChest)
+	return worldChest:getActionId()
+end
+
+local function generateChestRewards(worldChest)
+	local selectedItems = {}
+	local maxSelectedItems = worldChest:getCapacity()
+	local selectThisManyItems = math.random(1, math.ceil(maxSelectedItems / 2))
+
+	local possibleRewards = rewards[worldChestRewardType(worldChest)]
+	for _, rewardItem in pairs(possibleRewards) do
+		local roll = math.random(1, 10000)
+		if roll < rewardItem.chance then
+			local rolledCound = math.random(1, rewardItem.count)
+			table.insert(selectedItems, { id = rewardItem.id, count = rolledCound })
+		end
+		if #selectedItems >= selectThisManyItems then
+			break
+		end
+	end
+
+	for _, rewardItem in pairs(selectedItems) do
+		worldChest:addItem(rewardItem.id, rewardItem.count)
+	end
+end
+
+local rewardChestClick = Action()
+function rewardChestClick.onUse(player, worldchest, fromPosition, target, toPosition, isHotkey)
+	if wasGeneratedRecently(worldchest) then
 		return false
 	end
 
-	if not worldchests[item.uid] then
-		worldchests[item.uid] = 0
-	end
-
-	if os.time() < worldchests[item.uid] then
-		return false
-	end
-
-	worldchests[item.uid] = os.time() + interval
-	local c = Container(item.uid)
-
-	local clear = true -- put "clear = false" in your unique chest "if" statement if you plan to not use "return false"
-
-	local function registerChest(uid, rewardsTable, clear, allowDuplicates)
-		for _, rewardRange in ipairs(rewardsTable) do
-			local minUid, maxUid = rewardRange.minUid, rewardRange.maxUid
-
-			if minUid and maxUid and uid >= minUid and uid <= maxUid then
-				local items = 0
-				local maxItems = math.random(0, rewardRange.maxItems)
-				local attempts = 0
-				local dupcheck = {}
-
-				if clear then
-					c:clear()
-				end
-
-				while (items < maxItems) and (items <= #rewardRange.itemList) and (attempts < 1000) do
-					local nid = math.random(1, #rewardRange.itemList)
-					local newitem = rewardRange.itemList[nid]
-					if allowDuplicates or not table.find(dupcheck, nid) then
-						if math.random(1, 100000) < newitem[2] then
-							local count = 1
-							if newitem[3] then
-								count = math.random(1, newitem[3])
-							end
-
-							c:addItem(newitem[1], count)
-
-							if not allowduplicates then
-								table.insert(dupcheck, nid)
-							end
-							items = items + 1
-						end
-					end
-					attempts = attempts + 1
-				end
-				return false
-			end
-		end
-	end
-
-	-- ELF CHEST
-	registerChest(item.uid, { elfrewards }, clear, false) -- Use 'false' for allowDuplicates
-	-- ORC CHEST
-	registerChest(item.uid, { orcrewards }, clear, false)
-	-- DWARF CHEST
-	registerChest(item.uid, { dwarfrewards }, clear, false)
-	-- CYCLOP CHEST
-	registerChest(item.uid, { cycrewards }, clear, false)
-	-- LIZARD CHEST
-	registerChest(item.uid, { lizardrewards }, clear, false)
-	-- MAGE CHEST
-	registerChest(item.uid, { magerewards }, clear, false)
-	-- CORYM CHEST
-	registerChest(item.uid, { corymrewards }, clear, false)
-	-- NOMAD CHEST
-	registerChest(item.uid, { nomadrewards }, clear, false)
-	-- TRUMNA CHEST
-	registerChest(item.uid, { trumnarewards }, clear, false)
-	-- SARKOFAG CHEST
-	registerChest(item.uid, { sarcophagusrewards }, clear, false)
-	-- TOOLS CHEST
-	registerChest(item.uid, { toolsrewards }, clear, false)
-	registerChest(item.uid, { toolsrewards2 }, clear, false)
-	-- WEAPONS CHEST
-	registerChest(item.uid, { weaponsrewards }, clear, false)
-	-- TREASURE CHEST
-	registerChest(item.uid, { treasurerewards }, clear, false)
-
-	-- RANDOM CHEST tools/weapons/smieci
-	if item.uid >= 28400 and item.uid <= 28750 then
-		local items = 0
-		local maxItems = math.random(0, 4)
-		local randomizedTable
-		local attempts = 0
-		local dupcheck = {}
-
-		local rand = math.random(1, 4)
-		if rand == 1 then
-			randomizedTable = weaponsrewards
-		elseif rand == 2 then
-			randomizedTable = toolsrewards
-		else
-			randomizedTable = smiecirewards
-		end
-
-		if clear then
-			c:clear()
-		end
-
-		while (items <= maxItems) and (items <= #randomizedTable.itemList) and (attempts < 1000) do
-			local nid = math.random(1, #randomizedTable.itemList)
-			local newitem = randomizedTable.itemList[nid]
-			if allowDuplicates or not table.find(dupcheck, nid) then
-				if math.random(1, 100000) < newitem[2] then
-					local count = 1
-					if newitem[3] then
-						count = math.random(1, newitem[3])
-					end
-
-					c:addItem(newitem[1], count)
-
-					if not allowduplicates then
-						table.insert(dupcheck, nid)
-					end
-					items = items + 1
-				end
-			end
-			attempts = attempts + 1
-		end
-		-- clear = false -- see local clear
-		return false -- if you put return here, default action below won't be executed
-	end
-
+	generateChestRewards(worldchest)
+	setGeneratedRecently(worldchest)
 	return false
 end
 
-action:aid(7895)
-action:register()
+rewardChestClick:aid(2014)
+rewardChestClick:register()

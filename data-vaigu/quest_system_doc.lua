@@ -1,11 +1,10 @@
-do return end
 -- Terminology:
---  processing: The npc system is going through all npc dialogs and determines if player meets the requirement for the dialogs
+--  processing: The npc system is going through the npc dialogs and determines if player meets the requirement for a dialog
 --  discarded: A dialog processing has been cancelled and another dialog will be processed
 --  resolved: A dialog has been processed and no other dialog will be processed. This means the npc will say some text corresponding to this dialog (fail or success dialog)
 --   success-resolved: Npc will say text that is supposed to be shown on success for this dialog. Actions on success (eg. rewards, special effects) will all be perfomed for this dialog
 --   fail-resolved: Npc will say text that corresponds to the reason of this dialog fail. Actions on success wont be performed for this dialog
-
+---@Deprecated
 local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogData)
 	-- Important note: all text in dialogues (text on no required items, text on success, text on no required state etc.) is not conidered final text, but an identifier for the localizer.
 	-- This means that all text will be translated based on player language and other context.
@@ -25,7 +24,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	-- lte
 	requiredTopic = { max = JOB_TOPICS.someTopic }
 	-- eq
-	requiredTopic = JOB_TOPICS.someTopic
+	requiredTopic = QuestTopics.JOB_TOPICS.someTopic
 	-- eq, alternative notation
 	requiredTopic = { min = JOB_TOPICS.someTopic, max = JOB_TOPICS.someTopic }
 	-- Only use them to differentiate dialog paths: if you have more than two dialogs that have "yes" as keyword, then you should differentiate them using requiredState (most cases) or requiredTopic
@@ -69,23 +68,23 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	local dialogs2 = {
 		[{ "withdraw <amount>" }] = {
 			text = "WOULD_YOU_LIKE_TO_WITHDRAW",
-			nextTopic = JOB_TOPICS.confirmWithdrawing,
+			nextTopic = QuestTopics.JOB_TOPICS.confirmWithdrawing,
 		},
-		[{"yes","tak"}] = {
+		[{ "yes", "tak" }] = {
 			text = "YOU_WITHDREW_MONEY",
-		}
+		},
 	}
 	translationTable = { -- locales
 		["WOULD_YOU_LIKE_TO_WITHDRAW"] = function(context)
 			return T("Would you like to withdraw :amount:?", { amount = context.amount })
 		end,
-		["YOU_WITHDREW_MONEY"] = function (context)
+		["YOU_WITHDREW_MONEY"] = function(context)
 			return T("Would you like to withdraw :amount:?", { amount = context.lastMessageData.amount })
-		end
+		end,
 	}
 
 	-- Specifies the topic to be set for this Dialog on success-resolve
-	nextTopic = JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt
+	nextTopic = QuestTopics.JOB_TOPICS.confirmExchangeSoulorbToInfernalbolt
 
 	-- Specifies the required storage states for player to be able to success-resolve this dialog
 	-- Its worth noting that default behavior when the argument passed was int, is to allow storage values GREATER THAN or equal to argument. This differs from the topic default behavior
@@ -382,13 +381,13 @@ local function exampleNpc()
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate
 			[{ "secret code" }] = { text = "okkk" },
-			[{GREET}] = {text = "Hello."}
+			[ GREET ] = { text = "Hello." },
 		},
 		-- Quest dialogs main storage that determines required state
 		[Storage.CatBranchman.Questline] = {
 			-- Main questline requirements are different to the ones in requiredState table - player state has to be exactly the key
 			-- This requires player storage: Storage.CatBranchman.Questline to be exacly QUEST_NOT_STARTED (-1)
-			[QUEST_NOT_STARTED] = {
+			[MISSION_NOT_STARTED] = {
 				-- This is possible candidate dialog to be resolved when a player says "hi" if player hadnt started the quest
 				-- WARNING: if player has multiple matching states (from other quests) then its undeterministic which one will be chosen. This is true only for greet message, as other messages can be deterministically reached using topics
 				[{ GREET }] = { text = "*Muttering* i dont know you, meow!" },
@@ -499,86 +498,16 @@ local function exampleNpc()
 	npcType:register(npcConfig)
 end
 
--- Example of npc that is generated using this npc-specific dialogs (quests etc.) combined with template job
--- In this example the JOB_FOOD is used, so npc will have all dialgues and shop offer defined in JOB_FOOD template
--- Dialogs defined in "local dialogs" can override the template dialogs in case of conflicts. Example of overriding a greet message below
+-- Example of npc that is generated using this npc-specific dialogs (quests etc.) combined with job from a template
+-- In this example the JOB_FOOD is used, so npc will have all dialogs and shop offer defined in JOB_FOOD template
+-- Dialogs defined in "local dialogs = {" can override the template dialogs in case of conflicts. Example of overriding a greet message below
 local function exampleNpcFromGenerator()
 	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
 			-- Warning! This wont override the greet dialog from template
 			-- Set "context.greetJob" below to nil if you dont want that job greet and define it yourself like below
-			[{ GREET }] = {
-				text = "Hello, my name is walmart007",
-			},
-		},
-		[Storage.TrudnePoczatki.BiedronkaAsked] = {
-			[-1] = {
-				[{ "help", "pomoc" }] = {
-					text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-					requiredState = { [Storage.TrudnePoczatki.Rozeznanie] = 2 },
-					nextState = {
-						[Storage.TrudnePoczatki.BiedronkaAsked] = 1,
-						[Storage.TrudnePoczatki.Rozeznanie] = "+1",
-					},
-					textNoRequiredState = "It's alright, I don't need any help.",
-				},
-			},
-		},
-		[Storage.PomocMiejscowym.PrzekleteSzczury] = {
-			[-1] = {
-				[{ "help", "pomoc" }] = {
-					text = "No need, but if you know some way to get rid of {rats} once and for all, tell me.",
-					requiredState = {
-						[Storage.TrudnePoczatki.BiedronkaAsked] = 1,
-					},
-				},
-				[{ "szczur", "szczurow", "rat", "rats" }] = {
-					text = "I still have rats in the warehouse. I need some poison to get rid of them.",
-					requiredState = {
-						[Storage.TrudnePoczatki.BiedronkaAsked] = 1,
-					},
-					nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 1 },
-				},
-			},
-			[{ min = 1, max = 3 }] = {
-				[{ "help", "pomoc" }] = {
-					text = "Well, I'm waiting for this poison that will help me exterminate the rats.",
-				},
-			},
-			[3] = {
-				[{
-					"szczur",
-					"szczury",
-					"pomoc",
-					"rat",
-					"rats",
-					"help",
-					"trucizna",
-					"trutka",
-				}] = {
-					text = "Are you sure if it works? Thanks for the memory, though. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
-					rewards = {
-						{ id = 9087 },
-						{ id = 25732 },
-						{ id = 6392 },
-					},
-					experienceReward = 50000,
-					requiredItems = { { id = 3120 } },
-					nextState = { [Storage.PomocMiejscowym.PrzekleteSzczury] = 4 },
-				},
-			},
-			[{ min = 4 }] = {
-				[{ "help", "pomoc" }] = {
-					text = "It's alright, I don't need any help.",
-				},
-			},
-			[4] = {
-				[{ "szczur", "szczurow", "rat", "rats" }] = {
-					text = "Rats are gone, thanks again.",
-				},
-				[{ "flaszke", "flaszka", "flask" }] = {
-					text = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",
-				},
+			[GREET] = {
+				text = "Hello, my name is walmart007", --Default job greeting can be something like "Hello, would you like to nab some groceries?"
 			},
 		},
 	}
@@ -605,8 +534,7 @@ local function exampleNpcFromGenerator()
 		voices = voices,
 	}
 
-	local npcType, npcConfig = CreateNpcDefinition(context)
-	npcType:register(npcConfig)
+	RegisterNpcDefinition(context)
 end
 
 exampleDialog()

@@ -252,6 +252,83 @@ ProtocolGame::ProtocolGame(Connection_ptr initConnection) :
 	version = CLIENT_VERSION;
 }
 
+// Vaigu custom
+std::string FindValueByKey(const std::vector<Game::LuaElement> elements, const std::vector<std::string> keys) {
+	for (const auto &element : elements) {
+		if (element.key == keys[0]) {
+			if (keys.size() == 1) {
+				return element.value;
+			} else {
+				return FindValueByKey(element.subtable, std::vector<std::string>(keys.begin() + 1, keys.end()));
+			}
+		}
+	}
+	// Key not found
+	return "";
+}
+
+// Vaigu custom
+const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_ptr<Item> item, std::shared_ptr<Player> player) {
+	std::string defaultLocalizer = "_universal";
+	try {
+		std::string targetLocalizer; 
+		if (item != nullptr) {
+			auto attribute = item->getCustomAttribute("localizer");
+			if (attribute) {
+				targetLocalizer = attribute->getString();
+			}
+		}
+
+		auto usedLocalizer = [&]() -> std::string {
+			if (!targetLocalizer.empty()) {
+				return targetLocalizer;
+			}
+			return defaultLocalizer;
+		};
+
+		const std::vector<std::string> keys = {
+			player ? player->getLanguage() : "EN",
+			usedLocalizer(), str
+		};
+
+		std::string translated = FindValueByKey(g_game().translationMap, keys);	
+		if (!translated.empty()){
+			return translated;
+		}
+		return str;
+	} catch (...) {
+		return str; 
+	}
+}
+
+// Vaigu custom
+const std::string ProtocolGame::TryTranslate(const std::string str, const std::string targetLocalizer, std::shared_ptr<Player> player) {
+	std::string defaultLocalizer = "_universal";
+	try {
+		std::string itemLocalizer;
+
+		auto usedLocalizer = [&]() -> std::string {
+			if (!targetLocalizer.empty()) {
+				return targetLocalizer;
+			}
+			return defaultLocalizer;
+		};
+
+		const std::vector<std::string> keys = {
+			player ? player->getLanguage() : "EN",
+			usedLocalizer(), str
+		};
+
+		std::string translated = FindValueByKey(g_game().translationMap, keys);
+		if (!translated.empty()){
+			return translated;
+		}
+		return str;
+	} catch (...) {
+		return str; 
+	}
+}
+
 void ProtocolGame::AddItem(NetworkMessage &msg, uint16_t id, uint8_t count, uint8_t tier) {
 	const ItemType &it = Item::items[id];
 
@@ -7608,20 +7685,6 @@ void ProtocolGame::sendModalWindow(const ModalWindow &modalWindow) {
 }
 
 // Vaigu custom
-std::string findValueByKey(const std::vector<Game::LuaElement> &elements, const std::vector<std::string> &keys) {
-	for (const auto &element : elements) {
-		if (element.key == keys[0]) {
-			if (keys.size() == 1) {
-				return element.value;
-			} else {
-				return findValueByKey(element.subtable, std::vector<std::string>(keys.begin() + 1, keys.end()));
-			}
-		}
-	}
-	// Key not found
-	return "";
-}
-
 ////////////// Add common messages
 void ProtocolGame::AddCreature(NetworkMessage &msg, std::shared_ptr<Creature> creature, bool known, uint32_t remove) {
 	CreatureType_t creatureType = creature->getType();
@@ -7652,18 +7715,9 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, std::shared_ptr<Creature> cr
 			msg.addString("", "ProtocolGame::AddCreature - empty");
 		} else {
 
-			const std::string creatureName = creature->getName();
-			std::string displayName = creatureName;
-			try {
-				std::string playerLang = player->language;
-				std::vector<std::string> keys = { playerLang, "LOCALIZER_NPC_NAME", creatureName };
-				std::string translatedName = findValueByKey(g_game().translationMap, keys);
-				if (!translatedName.empty()) {
-					displayName = translatedName;
-				}
-			} catch (...) { }
+			const std::string creatureName = TryTranslate(creature->getName(), "npc_names", player);
 
-			msg.addString(displayName, "ProtocolGame::AddCreature - creature->getName()");
+			msg.addString(creatureName, "ProtocolGame::AddCreature - creature->getName()");
 		}
 	}
 

@@ -8,10 +8,8 @@ local outfit = {
 }
 
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {
-		[{ GREET }] = {
-			text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
-		},
+	[GREET] = {
+		text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 	},
 }
 local voices = {
@@ -33,5 +31,5 @@ local context = {
 	dialogs = dialogs,
 	voices = voices,
 }
-local npcType, npcConfig = CreateNpcDefinition(context)
-npcType:register(npcConfig)
+
+NpcRegistry:AppendNpcData(context)

@@ -60,10 +60,15 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if MsgContains(message, "recruitment") then
 		if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 1 then
-			npcHandler:say("We are hiring people to fight in our so called Bigfoot company against the foes of gnomekind. Are you interested in joining?", npc, creature)
+			npcHandler:say("We are hiring people to fight in our so called Bigfoot company against the foes of gnomekind. Are you interested in joining? Or perhaps, you have {heard this before}?", npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
-
+	elseif MsgContains(message, "heard this before") then
+		if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 1 then
+			player:setStorageValue(Storage.BigfootBurden.Rank, 1440	)
+			player:addAchievement("Becoming a Bigfoot")
+			player:checkGnomeRank()
+		end
 	-- TEST
 	elseif MsgContains(message, "test") then
 		if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 2 then
@@ -248,8 +253,6 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.BigfootBurden.QuestLine, 2)
 			npcHandler:setTopic(playerId, 0)
 		end
-	elseif MsgContains(message, "skrot") then --asdgergq
-		player:setStorageValue(Storage.BigfootBurden.QuestLine, 3)
 	end
 	return true
 end

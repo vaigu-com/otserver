@@ -1,4 +1,4 @@
-function LoadStartupNpc(npcs, anchor)
+function LoadStartupNpcs(npcs, anchor)
 	for _, npcData in pairs(npcs) do
 		local pos = npcData.pos or npcData.position or npcData.offset
 		if anchor then
@@ -40,7 +40,7 @@ function LoadStartupMonsters(monsters, anchor)
 	end
 end
 
-local function createCustomItemOnMap(context)
+local function createCustomItemOnMap(context, anchor)
 	local id = context.id
 	local count = context.count
 	local aid = context.aid
@@ -51,7 +51,7 @@ local function createCustomItemOnMap(context)
 	local pos = context.pos
 	local item = Game.createItem(id, count, pos)
 	if not item then
-		print(debug.traceback(T("Cannot create item :id:, on position :pos:", { id = id, pos = pos:ToString() })))
+		logger.warn(T("Cannot create item :id:, on position (:x:, :y:, :z:), anchor: :anchor:", { id = id, x = pos.x, y = pos.y, z = pos.z, anchor = (anchor or Position(0, 0, 0)):ToString() }))
 		return
 	end
 	if context.immovable == true then
@@ -97,7 +97,7 @@ local function normalizeItemData(itemData, anchor)
 			pos = ExtractCoords(pos)
 		end
 		if pos.x == 0 or pos.y == 0 then
-			pos = nil
+			logger.warn("[normalizeItemData] Resulting pos has x or y equal to 0")
 		end
 	end
 	context.pos = pos
@@ -118,13 +118,13 @@ local function loadStartupItem(itemConfig, anchor)
 	local context = normalizeItemData(itemConfig, anchor)
 
 	if context.pos then
-		createCustomItemOnMap(context)
+		createCustomItemOnMap(context, anchor)
 	end
 	if context.aid and context.aid ~= 0 then
-		CustomItemRegistry():Register(context)
+		CustomItemRegistry:Register(context)
 	end
 	if itemWontBeCreatedOrRegistered(context) then
-		logger.debug(T("[loadStartupItem] Item declared wont be created of registered. This renders this item declaration useless."))
+		logger.debug("[loadStartupItem] Item declared wont be created or registered. This renders this item declaration useless." .. tostring(context))
 		logger.debug(debug.traceback())
 	end
 end

@@ -1610,7 +1610,7 @@ end
 
 function GetNpcOriginalName(translatedName)
 	for _, lang in pairs(LANGUAGE_NAMES) do
-		for englishName, translation in pairs(TRANSLATION_TABLES[lang][LOCALIZER_NPC_NAME]) do
+		for englishName, translation in pairs(TRANSLATION_TABLES[lang][LOCALIZERS.NpcName]) do
 			if string.lower(translation) == string.lower(translatedName) then
 				return englishName
 			end

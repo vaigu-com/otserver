@@ -1,4 +1,6 @@
 -- Advanced NPC System by Jiddo
+IGNORE_GREET = "IGNORE_GREET"
+DEFAULT_TOPIC = 0
 
 if NpcHandler == nil then
 	-- Constant talkdelay behaviors.
@@ -207,7 +209,7 @@ if NpcHandler == nil then
 			return false
 		end
 
-		self:setTopic(playerId, 0)
+		self:setTopic(playerId, DEFAULT_TOPIC)
 		local callback = self:getCallback(CALLBACK_SET_INTERACTION)
 		if callback == nil or callback(npc, player) then
 			self:processModuleCallback(CALLBACK_SET_INTERACTION, npc, player)
@@ -401,7 +403,12 @@ if NpcHandler == nil then
 		end
 
 		local callback = self:getCallback(CALLBACK_GREET)
-		if callback == nil or callback(npc, player, message) then
+		local result = nil
+		if callback ~= nil then
+			result = callback(npc, player, message)
+		end
+
+		if result ~= false and result ~= IGNORE_GREET then
 			if self:processModuleCallback(CALLBACK_GREET, npc, player) then
 				local msg = self:getMessage(MESSAGE_GREET)
 				local playerName = player:getName() or -1
@@ -410,7 +417,10 @@ if NpcHandler == nil then
 				self:say(msg, npc, player)
 			end
 		end
-		self:setInteraction(npc, player)
+
+		if result ~= IGNORE_GREET then
+			self:setInteraction(npc, player)
+		end
 	end
 
 	-- Handles onAppear events. If you with to handle this yourself, please use the CALLBACK_ON_APPEAR callback.

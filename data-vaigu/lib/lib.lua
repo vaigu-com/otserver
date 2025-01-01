@@ -17,6 +17,3 @@ dofile(DATA_DIRECTORY .. "/lib/quests/the_primal_ordeal.lua")
 
 -- Vip System library
 dofile(DATA_DIRECTORY .. "/lib/vip/vip_system.lua")
-
--- Npc generator library
-dofile(DATA_DIRECTORY .. "/lib/npc/load.lua")

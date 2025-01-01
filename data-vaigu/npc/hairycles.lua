@@ -241,7 +241,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Let us hope one day whole Banuta will greet you as a friend. Perhaps you want to check me offers for special friends... or shamanic powers.",
 				}, npc, creature)
 				player:setStorageValue(Storage.TheApeCity.QuestProgress, 18)
-				player:setStorageValue(Storage.Finished.MiastoMalp, 1) -- quest done (website)
+				player:setStorageValue(Storage.Finished.TheApeCity, 1) -- quest done (website)
 				player:addItem(3002, 1)
 				player:addAchievement("Friend of the Apes")
 			else
@@ -615,7 +615,7 @@ keywordHandler:addKeyword({ "jungle" }, StdModule.say, {
 })
 
 local function onTradeRequest(npc, creature)
-	if Player(creature):getStorageValue(Storage.TheApeCity.Questline) < 18 then
+	if Player(creature):getStorageValue(Storage.TheApeCity.Mission01) < 18 then
 		return false
 	end
 

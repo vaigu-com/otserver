@@ -1,7 +1,7 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.OskareKXddd.Bilety) == 5 then
+	if player:getStorageValue(Storage.OcellatusXD.Mission01) == 5 then
 		if item.uid == 11042 then
 			toPosition.x = 5639
 			toPosition.y = 1423

@@ -74,6 +74,9 @@ public:
 	void AddItem(NetworkMessage &msg, std::shared_ptr<Item> item);
 	void AddItem(NetworkMessage &msg, uint16_t id, uint8_t count, uint8_t tier);
 
+	static const std::string TryTranslate(const std::string str, std::shared_ptr<Item> item, std::shared_ptr<Player> player = nullptr);
+	static const std::string TryTranslate(const std::string str, const std::string targetLocalizer, std::shared_ptr<Player> player = nullptr);
+
 	uint16_t getVersion() const {
 		return version;
 	}

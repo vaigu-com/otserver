@@ -1,7 +1,7 @@
 local callback = EventCallback()
 
 function callback.playerOnRequestQuestLine(player, questId)
-	player:sendQuestLine(questId)
+	player:sendQuestline(questId)
 end
 
 callback:register()

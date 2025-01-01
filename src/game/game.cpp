@@ -5295,7 +5295,7 @@ void Game::playerLookInShop(uint32_t playerId, uint16_t itemId, uint8_t count) {
 	}
 
 	std::ostringstream ss;
-	ss << "You see " << Item::getDescription(it, 1, nullptr, count);
+	ss << "You see " << Item::getDescription(it, 1, nullptr, nullptr, count);
 	player->sendTextMessage(MESSAGE_LOOK, ss.str());
 	merchant->onPlayerCheckItem(player, it.id, count);
 }
@@ -6372,14 +6372,12 @@ void Game::changeSpeed(std::shared_ptr<Creature> creature, int32_t varSpeedDelta
 
 	creature->setSpeed(varSpeed);
 
-	// Events equalized movement speed
+	// Vaigu custom
 	int32_t stepSpeed = creature->getStepSpeed();
-	int32_t HasteStorageValue = 0;
 	std::shared_ptr<Player> player = creature->getPlayer();
 	if (player) {
-		HasteStorageValue = player->getStorageValue(STORAGEVALUE_HASTELOCK);
-		if (HasteStorageValue >= 1) {
-			stepSpeed = HasteStorageValue;
+		if (player->getStorageValue(STORAGEVALUE_ISONMINIGAME) >= 1) {
+			stepSpeed = 1;
 		}
 	}
 
@@ -6406,10 +6404,8 @@ void Game::changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varS
 
 	// Vaigu custom
 	int32_t stepSpeed = player->getStepSpeed();
-	int32_t HasteStorageValue = 0;
-	HasteStorageValue = player->getStorageValue(STORAGEVALUE_HASTELOCK);
-	if (HasteStorageValue >= 1) {
-		stepSpeed = HasteStorageValue;
+	if (player->getStorageValue(STORAGEVALUE_ISONMINIGAME) >= 1) {
+		stepSpeed = 1;
 	}
 
 	// Send new player speed to the spectators

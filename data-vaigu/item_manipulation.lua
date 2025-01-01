@@ -15,6 +15,11 @@ setmetatable(ItemExList, {
 	end,
 })
 
+
+function ItemExList:Get()
+	return self.items
+end
+
 function ItemExList:Area(pos1, pos2)
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
@@ -38,16 +43,6 @@ function ItemExList:AddMultiple(itemsEx)
 	return self
 end
 
-function ItemExList:AddMultipleElseSingle(multipleItems, item)
-	if multipleItems then
-		self:AddMultiple(multipleItems)
-		return self
-	end
-
-	self:Add(item)
-	return self
-end
-
 function ItemExList:Count()
 	local count = 0
 	for _ in pairs(self.items) do
@@ -61,9 +56,9 @@ function ItemExList:FilteredByAid(aid)
 		return self
 	end
 	local result = ItemExList()
-	for _, item in pairs(self) do
+	for _, item in pairs(self.items) do
 		if item:getActionId() == aid then
-			table.insert(result, item)
+			result:Add(item)
 		end
 	end
 	return result
@@ -74,9 +69,9 @@ function ItemExList:FilteredByFluidtype(fluidtype)
 		return self
 	end
 	local result = ItemExList()
-	for _, item in pairs(self) do
+	for _, item in pairs(self.items) do
 		if item:getFluidType() == fluidtype then
-			table.insert(result, item)
+			result:Add(item)
 		end
 	end
 	return result
@@ -86,10 +81,11 @@ function ItemExList:FilteredById(id)
 	if not id then
 		return self
 	end
+
 	local result = ItemExList()
-	for _, item in pairs(self) do
+	for _, item in pairs(self.items) do
 		if item:getId() == id then
-			table.insert(result, item)
+			result:Add(item)
 		end
 	end
 	return result

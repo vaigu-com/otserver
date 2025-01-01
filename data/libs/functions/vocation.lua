@@ -30,6 +30,21 @@ VOCATION = {
 	},
 }
 
+VOCATION_TO_CHECK = {
+	[VOCATION.ID.DRUID] = Player.isDruid,
+	[VOCATION.ID.ELDER_DRUID] = Player.isDruid,
+	[VOCATION.ID.KNIGHT] = Player.isKnight,
+	[VOCATION.ID.ELITE_KNIGHT] = Player.isKnight,
+	[VOCATION.ID.SORCERER] = Player.isSorcerer,
+	[VOCATION.ID.MASTER_SORCERER] = Player.isSorcerer,
+	[VOCATION.ID.PALADIN] = Player.isPaladin,
+	[VOCATION.ID.ROYAL_PALADIN] = Player.isPaladin,
+}
+
+function Player:isVocation(vocation)
+	return VOCATION_TO_CHECK[vocation](self)
+end
+
 function Vocation.getBase(self)
 	local base = self
 	while base:getDemotion() do

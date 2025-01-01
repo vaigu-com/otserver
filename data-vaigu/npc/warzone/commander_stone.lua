@@ -103,7 +103,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.RepairedCrystalCount, -1)
 				player:addExperience(20000, true) -- 20k expa
 				--player:addAchievement('Crystal Keeper')
-				--player:checkGnomeRank()
 				npcHandler:say("You did well. That will help us a lot. Take your token and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
 			end
@@ -130,7 +129,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.RaidersOfTheLostSparkTimeout, os.time() + 72000)
 				player:addExperience(20000, true) -- 20k expa
 				--player:addAchievement('Call Me Sparky')
-				--player:checkGnomeRank()
 				npcHandler:say("You did well. That will help us a lot. Take your token and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
 			end
@@ -154,9 +152,8 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.MissionExterminators, 0)
 				player:setStorageValue(Storage.BigfootBurden.ExterminatedCount, -1)
 				player:setStorageValue(Storage.BigfootBurden.ExterminatorsTimeout, os.time() + 72000)
-				player:addExperience(20000, true) -- 20k expa
+				player:addExperience(20000, true)
 				--player:addAchievement('One Foot Vs. Many')
-				--player:checkGnomeRank()
 				npcHandler:say("You did well. That will help us a lot. Take your token and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
 			end
@@ -188,7 +185,6 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.BigfootBurden.MushroomDiggerTimeout, os.time() + 72000)
 				player:addExperience(20000, true) -- 20k expa
 				--player:addAchievement('The Picky Pig')
-				--player:checkGnomeRank()
 				npcHandler:say("You did well. That will help us a lot. Take your token and this gnomish supply package as a reward. ", npc, creature)
 				--npcHandler:setTopic(playerId, 0)
 			end

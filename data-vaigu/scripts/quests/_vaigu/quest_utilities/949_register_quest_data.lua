@@ -1,0 +1,1 @@
+QuestRegistry:RegisterQuestData()

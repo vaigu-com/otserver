@@ -1,72 +1,14 @@
 local dialogs = {
-	[LOCALIZER_UNIVERSAL] = {
-		[{ "backpack", "plecak" }] = {
-			text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
-			nextTopic = 2,
-		},
-		[{ "yes", "tak", "napotkalem" }] = {
-			text = "Thank you very much! This brings back good old memories! Here is reward for you!",
-			requiredTopic = { min = 2, max = 2 },
-			requiredItems = { { id = 3244 } },
-			rewards = { { id = 3397 } },
-			textNoRequiredItems = "Thats unfortunate.",
-		},
+	[{ "backpack", "plecak" }] = {
+		text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
+		nextTopic = 2,
 	},
-	[Storage.TrudnePoczatki.TrollskyAsked] = {
-		[{ max = 0 }] = {
-			[{ "help", "pomoc" }] = {
-				text = "Well I do need some help. Wood delivery from Knurow is already delayed for two days, and currently I can't check why..",
-				requiredState = { [Storage.TrudnePoczatki.Rozeznanie] = 2 },
-				nextState = {
-					[Storage.TrudnePoczatki.TrollskyAsked] = 1,
-					[Storage.TrudnePoczatki.Rozeznanie] = "+1",
-				},
-				textNoRequiredState = "Better visit Commissioner Fisher first.",
-			},
-		},
-	},
-	[Storage.TrudnePoczatki.PoczatkiReward] = {
-		[{ max = 0 }] = {
-			[{ "topor", "axe" }] = {
-				text = "Here is your axe. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
-				rewards = { { id = 3344 } },
-			},
-			[{ "miecz", "sword" }] = {
-				text = "Here is your sword. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
-				rewards = { { id = 2117 } },
-			},
-			[{ "obuch", "club" }] = {
-				text = "Here is your club. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
-				rewards = { { id = 7387 } },
-			},
-			[{ "spellbook", "ksiazka" }] = {
-				text = "Here is your spellbook. You should also visit Fstab, he should provide you some supplies.",
-				requiredTopic = { min = 1, max = 1 },
-				nextState = { [Storage.TrudnePoczatki.PoczatkiReward] = 1 },
-				rewards = { { id = 7387 } },
-			},
-			[{ "belty" }] = {
-				text = "Visit Lebesgue for this reward, and then meet Fstab. He should provide you some supplies.",
-			},
-		},
-	},
-	[Storage.TrudnePoczatki.DostawaDrewna] = {
-		[6] = {
-			[{ "nagroda", "reward" }] = {
-				text = "You got your reward already, visit Fstab for a potion supply.",
-				nextTopic = 1,
-				requiredState = {
-					[Storage.TrudnePoczatki.PoczatkiReward] = { [">"] = 0 },
-				},
-				textNoRequiredState = "You got your reward already, visit Fstab for a potion supply.",
-			},
-		},
+	[{ "yes", "tak", "napotkalem" }] = {
+		text = "Thank you very much! This brings back good old memories! Here is reward for you!",
+		requiredTopic = 2,
+		requiredItems = { { id = 3244 } },
+		rewards = { { id = 3397 } },
+		textNoRequiredItems = "Thats unfortunate.",
 	},
 }
 local voices = {
@@ -102,5 +44,5 @@ local context = {
 	dialogs = dialogs,
 	voices = voices,
 }
-local npcType, npcConfig = CreateNpcDefinition(context)
-npcType:register(npcConfig)
+
+NpcRegistry:AppendNpcData(context)

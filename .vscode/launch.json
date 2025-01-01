@@ -5,27 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "lua",
-            "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/data-vaigu/lib/npc/npc_generator.lua"
-        },
-        {
-            "address": "127.0.0.1:4278",
-            "name": "attach",
-            "request": "attach",
-            "stopOnEntry": true,
-            "type": "lua"
-        },
-        {
-            "name": "attach",
+            "name": "Lua attach",
             "processId": "${command:pickProcess}",
             "request": "attach",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "type": "lua"
         },
         {
-            "name": "(Windows) Attach",
+            "name": "C++ attach",
             "type": "cppvsdbg",
             "request": "attach",
         }

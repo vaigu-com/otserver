@@ -29,6 +29,10 @@ function CreatureList:Get()
 	return self.creatures
 end
 
+function CreatureList:GetRandom()
+	return table.random(self.creatures)
+end
+
 function CreatureList:Count()
 	return TableSize(self.creatures)
 end
@@ -65,6 +69,14 @@ function CreatureList:Area(pos1, pos2, customData)
 	return self
 end
 
+function CreatureList:RadiusSquare(pos, radiusX, radiusY, customData)
+	radiusY = radiusY or radiusX
+	local pos1 = pos:Moved(radiusX, radiusY)
+	local pos2 = pos:Moved(-radiusX, -radiusY)
+	self:Area(pos1, pos2, customData)
+	return self
+end
+
 function CreatureList:MovedToPos(destination)
 	for _, creature in pairs(self.creatures) do
 		creature:teleportTo(destination)
@@ -98,7 +110,7 @@ function CreatureList:First()
 	return result
 end
 
-function CreatureList:FilteredByPlayer()
+function CreatureList:FilterByPlayer()
 	for key, creature in pairs(self.creatures) do
 		if not creature:isPlayer() then
 			self.creatures[key] = nil
@@ -125,13 +137,21 @@ function CreatureList:FilterByNpc()
 	return self
 end
 
+function CreatureList:FilterByVocation(class)
+	for key, value in pairs(self.creatures) do
+		if not value:isVocation(class) then
+			self.creatures[key] = nil
+		end
+	end
+end
+
 function Position:CreaturesBetween(destination, name)
 	local creatures = CreatureList():Area(self, destination):FilterByName(name)
 	return creatures:Get()
 end
 
 function Position:PlayersBetween(destination, name)
-	local players = CreatureList():Area(self, destination):FilterByName(name):FilteredByPlayer()
+	local players = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer()
 	return players:Get()
 end
 
@@ -151,7 +171,7 @@ function Position:FirstCreatureBetween(destination, name)
 end
 
 function Position:FirstPlayerBetween(destination, name)
-	local player = CreatureList():Area(self, destination):FilterByName(name):FilteredByPlayer():First()
+	local player = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer():First()
 	return player
 end
 
@@ -179,7 +199,7 @@ function Position:MoveCreatures(destination, name)
 end
 
 function Position:MovePlayers(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilteredByPlayer():MovedToPos(destination)
+	CreatureList():Area(self, self):FilterByName(name):FilterByPlayer():MovedToPos(destination)
 end
 
 function Position:MoveMonsters(destination, name)
@@ -474,11 +494,11 @@ function Position:VectorBetween(destination)
 	return vector
 end
 
-function PosToOffset(pos, anchor)
+function Position:ToOffset(anchor)
 	local offset = {}
-	offset.x = pos.x - anchor.x
-	offset.y = pos.y - anchor.y
-	offset.z = pos.z - anchor.z
+	offset.x = self.x - anchor.x
+	offset.y = self.y - anchor.y
+	offset.z = self.z - anchor.z
 	return offset
 end
 
@@ -561,11 +581,16 @@ function IterateBetweenPositions(pos1, pos2, callback, context)
 	return lastResult, context
 end
 
-function Position:DistanceTo(dest, sum)
+function Position:EuclideanDistance(dest)
+	local x2 = (self.x - dest.x) ^ 2
+	local y2 = (self.y - dest.y) ^ 2
+	local z2 = (self.z - dest.z) ^ 2
+	local distance = math.sqrt(x2 + y2 + z2)
+	return distance
+end
+
+function Position:Distance(dest)
 	local vector = self:VectorTo(dest):Abs()
-	if sum then
-		return vector.x + vector.y + vector.z
-	end
 	return vector.x, vector.y, vector.z
 end
 
@@ -680,7 +705,7 @@ function PlayersPresentAtAllPositions(positions, anchor)
 		if anchor then
 			pos = anchor:Moved(pos)
 		end
-		local player = CreatureList():Pos(pos):FilteredByPlayer():First()
+		local player = CreatureList():Pos(pos):FilterByPlayer():First()
 		if not player then
 			return
 		end
@@ -782,23 +807,22 @@ DESERT_QUEST_TWO_ANCHOR = Position(5051, 646, 7)
 RUBIKS_CUBE_ANCHOR = DESERT_QUEST_TWO_ANCHOR:Moved(-20, -39, -3)
 
 RETRO_MIRKO_ANCHOR = Position(4750, 856, 7)
-CAMEL_FARM_ANCHOR = Position(6095, 1256, 4)
 MIRKO_MAGICIANS_ANCHOR = Position(6029, 1338, 6)
 
-KROL_SZCZUROW_HUB_ANCHOR = Position(6142, 1423, 10)
+KING_OF_RATS_HQ_ANCHOR = Position(5465, 1546, 10)
 LIBRUM_VORTEX_ANCHOR = Position(6802, 1224, 10)
-SCIEZKA_NIEUMARLYCH_ANCHOR = Position(6713, 1373, 14)
+PATH_OF_THE_UNDEAD_ANCHOR = Position(6645, 1177, 14)
 
 PETRUS_CIEMIEZCA_ANCHOR = Position(6078, 1349, 2)
-ANCHOR = Position(6788, 547, 13)
+THREE_SRAMATIANS_AND_THE_DRAGON_ANCHOR = Position(6788, 547, 13)
 RETRO_KNUROWO_ANCHOR = Position(4445, 859, 7)
 KRAKEN_ANCHOR = Position(5974, 1177, 6)
 SKURWIWIJ_ANCHOR = Position(6534, 536, 9)
 ZUL_SZCZUROW_ANCHOR = Position(6006, 1382, 13)
 
-KUZNIA_YAANUSHA_ANCHOR = Position(6657, 1066, 15)
+USHAYAAN_FORGE_ANCHOR = Position(6657, 1066, 15)
 STARSHIP_ANCHOR = Position(7356, 789, 7)
-DEEPLING_TEMPLE_ANCHOR = Position(6788, 994, 14)
+DEEPLING_TEMPLE_ANCHOR = Position(6717, 2417, 14)
 FUEL_SHOP_ANCHOR = Position(7369, 671, 6)
 GANYMEDE_ANCHOR = Position(7910, 295, 6)
 HUGO_TAR_PLANET_ANCHOR = Position(7717, 244, 7)
@@ -808,6 +832,6 @@ RUKCA_ANCHOR = Position(7594, 114, 8)
 JANUSZEX_MOVING_TRAIN_ANCHOR = Position(6400, 1126, 13)
 JANUSZEX_ANCHOR = Position(7687, 1025, 10)
 
--- 38f85df67705e9e59ab4b44bc8590644
+-- 39f
 CHESS_ANCHOR = Position(1428, 1302, 8)
 FNAF_ANCHOR = Position(5227, 1035, 8)

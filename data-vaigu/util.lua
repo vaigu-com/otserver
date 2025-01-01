@@ -18,7 +18,12 @@ NUMBER_TO_ORDINAL_STRING = {
 
 ---@deprecated
 RegisterEncounter = function()
-	logger.error("[RegisterEncounter] is deprecated. Use EncounterLever and Encounter")
+	logger.error("[RegisterEncounter] is deprecated. Use EncounterData()")
+end
+
+function Player:ExpForNextlevel()
+	local nextLevel = self:getLevel() + 1
+	return Game.getExperienceForLevel(nextLevel) - self:getExperience()
 end
 
 function SendPlayerIsPzLocked(player)
@@ -36,16 +41,15 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 end
 
 function Player:isOnEvent()
-	if
-		self:getStorageValue(Storage.GrimEvent.Joined) >= 1
-		or self:getStorageValue(Storage.hasteLock) == 1
-		or self:getStorageValue(Storage.healLock) == 1
-	then
+	if self:getStorageValue(Storage.GrimEvent.Joined) >= 1 or self:getStorageValue(Storage.hasteLock) == 1 or self:getStorageValue(Storage.healLock) == 1 then
 		return true
 	end
 end
 
 function T(template, variables)
+	if not variables then
+		logger.warn("[T] no variables table provided")
+	end
 	local result = template
 	for key, value in pairs(variables) do
 		result = result:gsub(":" .. key .. ":", value)
@@ -54,7 +58,7 @@ function T(template, variables)
 end
 
 function RegisterOnLook(callback, stringIdentifier, questId)
-	questId = questId or LOCALIZER_UNIVERSAL
+	questId = questId or LOCALIZERS.Universal
 	for language, quests in pairs(TRANSLATION_TABLES) do
 		quests[questId][stringIdentifier] = callback
 	end
@@ -140,11 +144,15 @@ function NextSpellId()
 	return nextAvailableSpellIdString
 end
 
-function SimpleTextDisplay(player, item, string)
+function SimpleTextDisplay(player, item, message)
 	local title = "You read the following."
-	local message = string or ("Report this bug to the gamemaster. Debug info: AID:" .. item:getActionId())
 	local close = "Close"
-	local aid = item:getActionId()
+	local aid = function()
+		if item then
+			return item:getActionId()
+		end
+		return NextStorage()
+	end
 
 	player:registerEvent("SimpleDisplayOnLook")
 
@@ -219,7 +227,7 @@ function ParseCustomOnLook(item, player)
 		return nil
 	end
 
-	local itemConfig = CustomItemRegistry():GetState(aid)
+	local itemConfig = CustomItemRegistry:GetState(aid)
 	local onLookContext = { player = player, aid = aid, item = item, onLook = itemConfig.onLook }
 	for _, check in pairs(displayFuctions) do
 		local status, description = check(onLookContext)
@@ -271,18 +279,43 @@ function Player:ClearConditions(conditions)
 	end
 end
 
+local safeLowValue = -2e+300
+local safeHighValue = 2e+300
+
 function FindMinMaxKey(table)
-	local max = -1
-	local min = 2e+300
+	local max = nil
+	local min = nil
 	for key, _ in pairs(table) do
 		if type(key) ~= "number" then
 			goto continue
 		end
+		max = max or key
+		min = min or key
 		if key > max then
 			max = key
 		end
 		if key < min then
 			min = key
+		end
+		::continue::
+	end
+	return min, max
+end
+
+function FindMinMaxValue(table)
+	local max = nil
+	local min = nil
+	for _, value in pairs(table) do
+		if type(value) ~= "number" then
+			goto continue
+		end
+		max = max or value
+		min = min or value
+		if value > max then
+			max = value
+		end
+		if value < min then
+			min = value
 		end
 		::continue::
 	end

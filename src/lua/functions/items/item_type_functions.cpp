@@ -275,7 +275,7 @@ int ItemTypeFunctions::luaItemTypeGetDescription(lua_State* L) {
 	auto itemType = getUserdata<ItemType>(L, 1);
 	if (itemType) {
 		auto count = getNumber<uint16_t>(L, 2, -1);
-		auto description = Item::getDescription(*itemType, 1, nullptr, count);
+		auto description = Item::getDescription(*itemType, 1, nullptr,nullptr, count);
 		pushString(L, description);
 	} else {
 		lua_pushnil(L);

@@ -404,6 +404,11 @@ bool Spell::playerSpellCheck(std::shared_ptr<Player> player) const {
 		return false;
 	}
 
+	if (player->isOnMinigame()){
+		player->sendCancelMessage(RETURNVALUE_PLAYERISONMINIGAME);
+		return false;
+	}
+
 	/*if (aggressive && player->hasCondition(CONDITION_PACIFIED)) {
 		player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
 		g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);

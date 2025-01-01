@@ -1,24 +1,12 @@
 local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
-	local afterLoginStr = ""
-	if player:getLastLoginSaved() <= 0 then
-		afterLoginStr = "Please choose your outfit."
-		player:sendOutfitWindow()
-		player:sendTextMessage(MESSAGE_INFO_DESCR, "Premade action bars for every vocation are available in options.")
-		player:setStorageValue(Storage.EmoteSpells, 1) -- emote on first login
-		player:setStorageValue(Storage.TrudnePoczatki.Rozeznanie, 1) -- initial quest
-	else
-		local welcomeStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("WELCOME_TO_SERVER")
-		player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
-		afterLoginStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("YOUR_LAST_VISIT")
-	end
-
-	local commandStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("LIST_AVAILABLE_COMMANDS")
-	local bugStr = player:Localizer(LOCALIZER_UNIVERSAL):Get("You can report ingame bugs using ctrl+z.")
+	local afterLoginStr = player:Localizer(LOCALIZERS.Universal):Get("YOUR_LAST_VISIT")
+	local commandStr = player:Localizer(LOCALIZERS.Universal):Get("LIST_AVAILABLE_COMMANDS")
+	local welcomeStr = player:Localizer(LOCALIZERS.Universal):Get("WELCOME_TO_SERVER")
+	player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
-	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, bugStr)
 
 	if isPremium(player) then
 		player:setStorageValue(Storage.PremiumAccount, 1)
@@ -176,22 +164,12 @@ function playerLogin.onLogin(player)
 	player:openChannel(7) -- Help
 	player:openChannel(4) -- English
 
-	if player:getStorageValue(Storage.hasteLock) >= 1 then
-		player:setStorageValue(Storage.hasteLock, 0)
-	end
-	if player:getStorageValue(Storage.healLock) == 1 then
-		player:setStorageValue(Storage.healLock, 0)
-	end
+	ResetMinigameLock(player)
 
 	player:TryResetDailyTaskCounter()
+
 	-- Legacy
 	--player:loadSpecialStorage()
-
-	--[[ Obnoxious
-	if player:getGroup():getId() >= GROUP_TYPE_GAMEMASTER then
-		player:setGhostMode(true)
-	end
-	]]
 
 	return true
 end

@@ -3,6 +3,7 @@ function loginEvents.onLogin(player)
 	local events = {
 		--Events
 		"ZombieLifeSteal",
+		"MinigamesLeave",
 		--Modal
 		"language",
 		"addon",

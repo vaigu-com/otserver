@@ -1,10 +1,10 @@
 function onRecvbyte(player, msg, byte)
 	if byte == 0xD0 then
-		local quests = {}
-		local missions = msg:getByte()
-		for i = 1, missions do
-			quests[#quests + 1] = msg:getU16()
+		local missionStorages = {}
+		local missionsCount = msg:getByte()
+		for i = 1, missionsCount do
+			missionStorages[#missionStorages + 1] = msg:getU16()
 		end
-		player:resetTrackedMissions(quests)
+		player:resetTrackedMissions(missionStorages)
 	end
 end

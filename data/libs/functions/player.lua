@@ -129,6 +129,23 @@ function Player.hasAllowMovement(self)
 	return blockMovement ~= 1
 end
 
+--Vaigu custom
+function Player.checkGnomeRank(self)
+	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
+	if questProgress >= 30 then
+		return
+	end
+
+	self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+	self:addAchievement("Gnome Little Helper")
+	self:addAchievement("Gnome Friend")
+	self:addAchievement("Gnomelike")
+	self:addAchievement("Honorary Gnome")
+	self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
+	return true
+end
+
+--[[
 function Player.checkGnomeRank(self)
 	if not IsRunningGlobalDatapack() then
 		return true
@@ -169,6 +186,7 @@ function Player.checkGnomeRank(self)
 	end
 	return true
 end
+]]
 
 function Player.addFamePoint(self)
 	local points = self:getStorageValue(SPIKE_FAME_POINTS)
@@ -721,25 +739,21 @@ function Player:removeAll(itemId)
 	return count
 end
 
-local function encounterKVscope(bossNameOrId)
-	local mType = MonsterType(bossNameOrId)
-	if not mType then
-		logger.error("[encounterKVscope] Invalid boss name/id:  " .. bossNameOrId)
-		return false
-	end
-	return "encounter.cooldown." .. toKey(tostring(mType:raceId()))
+local function encounterKVscope(encounter)
+	return "encounter.cooldown." .. encounter.encounterName
 end
 
-function Player:getEncounterLockout(bossNameOrId)
-	local scope = encounterKVscope(bossNameOrId)
+function Player:getEncounterLockout(encounter)
+	local scope = encounterKVscope(encounter)
 	if not scope then
+		logger.warn("")
 		return false
 	end
 	return self:kv():get(scope) or 0
 end
 
-function Player:setEncounterLockout(identifier, time)
-	local scope = encounterKVscope(identifier)
+function Player:setEncounterLockout(encounter, time)
+	local scope = encounterKVscope(encounter)
 	if not scope then
 		return false
 	end

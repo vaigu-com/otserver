@@ -2650,17 +2650,22 @@ public:
 	std::shared_ptr<Container> getLootPouch();
 
 	bool hasPermittedConditionInPZ() const;
-
-	// i18n
-	std::string language = "EN"; // ISO-639-1
-	const std::string &getLanguage();
-	void setLanguage(std::string language);
 	
 	std::shared_ptr<Container> getStoreInbox() const;
 
 	bool canSpeakWithHireling(uint8_t speechbubble);
 
 	uint16_t getPlayerVocationEnum() const;
+
+	// Vaigu custom
+	// i18n
+	std::string language = "EN"; // ISO-639-1
+	const std::string &getLanguage();
+	void setLanguage(std::string language);
+
+	bool isOnMinigame(){
+		return this->getStorageValue(STORAGEVALUE_ISONMINIGAME) != -1;
+	}
 
 private:
 	friend class PlayerLock;

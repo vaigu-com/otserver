@@ -14,11 +14,11 @@ function Escort:New(context, player)
 	newObj.deadline = os.time() + context.timeLimitSeconds + context.startAfterSeconds
 	newObj.destinationPos = context.destinationPos
 	newObj.finishMessage = context.finishMessage
-	newObj.questlineAid = context.questlineAid or -1
+	newObj.localizerName = context.localizerName or -1
 	newObj.requiredState = context.requiredState or {}
 	newObj.nextState = context.nextState or {}
 	newObj.rewards = context.rewards or {}
-	newObj.expReward = context.expReward or 0
+	newObj.expReward = context.expReward or context.experienceReward or 0
 	newObj.distanceToSucceed = context.distanceToSucceed or 5
 	newObj.grantQuestCreditRadius = context.grantQuestCreditRadius or 10
 
@@ -82,7 +82,7 @@ local function monsterIsOnDifferentLevel(escorteePos, playerPos)
 end
 
 local function MonsterIsTooFar(escorteePos, playerPos)
-	if escorteePos:DistanceTo(playerPos, true) > 5 then
+	if escorteePos:EuclideanDistance(playerPos) > 5 then
 		return true
 	end
 	return false
@@ -119,7 +119,7 @@ function Escort:EscorteeIsAtDestination()
 	end
 
 	local escorteePos = self.escortee:getPosition()
-	local distanceToDestination = escorteePos:DistanceTo(self.destinationPos, true)
+	local distanceToDestination = escorteePos:Distance(self.destinationPos, true)
 	if distanceToDestination > self.distanceToSucceed then
 		return false
 	end
@@ -133,7 +133,7 @@ function Escort:TryGrantCredit(player)
 	end
 
 	if self.nextState then
-		player:UpdateStorages(self.nextState)
+		player:NextState(self.nextState)
 	end
 	if self.rewards then
 		player:AddItems(self.rewards)
@@ -141,7 +141,7 @@ function Escort:TryGrantCredit(player)
 	if self.expReward then
 		AddExperienceWithAnnouncement(player, self.expReward)
 	end
-	local translatedThanksmessage = player:Localizer(self.questlineAid):Get(self.finishMessage)
+	local translatedThanksmessage = player:Localizer(self.localizerName):Get(self.finishMessage)
 	player:say(translatedThanksmessage, TALKTYPE_MONSTER_SAY, true, player, self.escorteePos)
 end
 

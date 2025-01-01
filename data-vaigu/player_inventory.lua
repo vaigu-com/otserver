@@ -28,7 +28,7 @@ function Player:GetAllItems()
 			goto continue
 		end
 		if item.uid > 0 then
-			if isContainer(item.uid) then
+			if Container(item.uid) then
 				table.insert(containers, item)
 			end
 			items:Add(item)
@@ -39,7 +39,7 @@ function Player:GetAllItems()
 	while #containers > 0 do
 		local containerItems = containers[1]:getItems()
 		for _, item in pairs(containerItems) do
-			if isContainer(item.uid) then
+			if Container(item.uid) then
 				table.insert(containers, item)
 			end
 			items:Add(item)
@@ -112,10 +112,11 @@ local function matchAllSucceeded(quantfier, hasItems)
 end
 
 ---@param items table item list
----@param quantifier string? Default: false
+---@param quantifier string? Default: REQUIRE_ALL
 ---@return boolean hasItems
 ---@return ItemExList|nil takenItems
 function Player:HasItems(items, quantifier)
+	quantifier = quantifier or REQUIRE_ALL
 	local hasItems = false
 	local takeableItems = ItemExList()
 	for subgroupQuantifier, node in pairs(items) do
@@ -129,7 +130,11 @@ function Player:HasItems(items, quantifier)
 		end
 
 		if hasItems then
-			takeableItems:AddMultipleElseSingle(candidateTakenitems, node)
+			if candidateTakenitems then
+				takeableItems:AddMultiple(candidateTakenitems)
+			else
+				takeableItems:Add(node)
+			end
 		end
 
 		if matchAnySucceeded(quantifier, hasItems) then
@@ -140,7 +145,12 @@ function Player:HasItems(items, quantifier)
 			return false, nil
 		end
 	end
-	return hasItems, takeableItems
+	return hasItems, takeableItems:Get()
+end
+
+function Player:ParseRemovalCriteria(items)
+	local _, removalCriteria = self:HasItems(items)
+	return removalCriteria
 end
 
 function Player:TryRemoveItems(items)
@@ -157,11 +167,16 @@ local function parseItemCountToRemove(player, item)
 	return item.count or 1
 end
 
-function Player:RemoveItem(item)
-	local id = item.id
-	local itemCountToRemove = parseItemCountToRemove(self, item)
-	local aid = item.actionid or item.aid or 0
-	local fluidType = item.fluidType
+function Player:RemoveEquippedItemByCriteria(removalCriteria)
+	local id = removalCriteria.id
+	local itemCountToRemove = parseItemCountToRemove(self, removalCriteria)
+	local aid = removalCriteria.actionid or removalCriteria.aid or 0
+	local fluidType = removalCriteria.fluidType
+
+	if not (id or aid or fluidType) then
+		logger.error(debug.traceback("[Player::RemoveEquippedItemByCriteria] Trying to remove item with null id, aid and fluidtype. This would remove player's whole inventory!"))
+		return
+	end
 
 	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType):Get()
 
@@ -178,26 +193,26 @@ function Player:RemoveItem(item)
 	end
 end
 
-function Player:RemoveItems(items)
-	local _, chosenItems = self:HasItems(items)
-	for _, item in pairs(chosenItems) do
-		if item.remove then
-			self:RemoveItem(item)
+function Player:RemoveItems(itemData)
+	local removalCriteria = self:ParseRemovalCriteria(itemData)
+	for _, removalCriterion in pairs(removalCriteria) do
+		if removalCriterion.remove ~= false then
+			self:RemoveEquippedItemByCriteria(removalCriterion)
 		end
 	end
 	return true
 end
 
-function Player:TryTradeInItems(givenUpItems, newItems)
+function Player:TryTradeInItems(givenUpItems, addedItems)
 	if not self:HasItems(givenUpItems) then
 		return false
 	end
-	if not self:CanAddItems(newItems) then
+	if not self:CanAddItems(addedItems) then
 		return false
 	end
 	-- success
 	self:RemoveItems(givenUpItems)
-	self:AddItems(newItems)
+	self:AddItems(addedItems)
 	return true
 end
 
@@ -259,13 +274,13 @@ function Player:CanAddItems(items)
 	return true
 end
 
-function Player:AddItems(items, bag)
+function Player:AddItems(items, bag, localizer)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
 			local nextBag = (bag or self):addItem(containerId, 1)
-			self:AddItems(itemOrItems, nextBag)
+			self:AddItems(itemOrItems, nextBag, localizer)
 		else
-			self:AddCustomItem(itemOrItems, bag)
+			self:AddCustomItem(itemOrItems, bag, localizer)
 		end
 	end
 	return true
@@ -290,9 +305,9 @@ end
 
 local function normalizedItem(item)
 	item.count = item.count or 1
-	item.aid = item.aid or item.actionid
+	item.aid = item.aid or item.actionid or 0
 	item.desc = item.desc or item.description
-	item.uid = item.uid or item.uniqueid
+	item.uid = item.uid or item.uniqueid or 0
 	return item
 end
 
@@ -304,13 +319,22 @@ local nonCustomAttributes = {
 	text = true,
 	uid = true,
 }
+
+local setableAtribute = {
+	name = true,
+}
 local function isCustomAttribute(key)
 	return nonCustomAttributes[key] ~= true
+end
+
+local function isSetableAttribute(key)
+	return setableAtribute[key]
 end
 
 DONT_CONTINUE_ON_ADD = "DONT_CONTINUE_ON_ADD"
 
 local explodingCookie = 130
+--3af add bestiary charms, etc.
 local explodingCookieCounts = {
 	grantExpDefaultFormula = 1,
 	grantBoostMinutesEqualToActionId = 2,
@@ -354,7 +378,7 @@ end
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param item table
 ---@param container Container|nil
-function Player:AddCustomItem(item, container)
+function Player:AddCustomItem(item, container, localizer)
 	item = normalizedItem(item)
 	local id = item.id
 	local count = item.count
@@ -389,6 +413,9 @@ function Player:AddCustomItem(item, container)
 		if isCustomAttribute(key) then
 			addItem:setCustomAttribute(key, value)
 		end
+		if isSetableAttribute(key) then
+			addItem:setAttribute(key, value)
+		end
 	end
 
 	local iType = ItemType(id)
@@ -403,13 +430,17 @@ function Player:AddCustomItem(item, container)
 		addItem:setUniqueId(uid)
 	end
 	if desc and count == 1 then
-		addItem:setDescription(desc)
+		addItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
 	end
 	if text and count == 1 then
-		addItem:setText(text)
+		addItem:setText(ITEM_ATTRIBUTE_TEXT, text)
 	end
 	if fluidType then
 		addItem:transform(id, fluidType)
+	end
+
+	if text or desc then
+		addItem:setCustomAttribute("localizer", localizer)
 	end
 
 	local name = addItem:getName()
