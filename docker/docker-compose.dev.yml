@@ -1,0 +1,40 @@
+name: otbr
+services:
+  database:
+    image: mariadb:lts
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: vaigu
+      MYSQL_USER: canary
+      MYSQL_PASSWORD: canary
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_HOST: database
+    ports:
+      - '3306:3306'
+    networks:
+      - canary-net
+    volumes:
+      - db-volume:/var/lib/mysql
+      - ../schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  login:
+    image: opentibiabr/login-server:latest
+    restart: unless-stopped
+    environment:
+      LOGIN_HTTP_PORT: 8080
+      LOGIN_GRPC_PORT: 9090
+    ports:
+      - '8080:8080'
+      - '9090:9090'
+    networks:
+      - canary-net
+    depends_on:
+      - database
+
+volumes:
+  db-volume:
+
+
+networks:
+  canary-net:
+    driver: bridge
