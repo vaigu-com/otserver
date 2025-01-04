@@ -194,7 +194,7 @@ void IOBosstiary::addBosstiaryKill(std::shared_ptr<Player> player, const std::sh
 	auto pointsForCurrentLevel = infoForCurrentRace[newBossLevel - 1].points;
 	player->addBossPoints(pointsForCurrentLevel);
 
-	int32_t value = player->getStorageValue(STORAGEVALUE_PODIUM);
+	int32_t value = player->getStorageValueByKey(STORAGEVALUE_PODIUM);
 	if (value != 1 && newBossLevel == 2) {
 		auto returnValue = g_game().addItemStoreInbox(player, ITEM_PODIUM_OF_VIGOUR);
 		if (!returnValue) {
@@ -207,7 +207,7 @@ void IOBosstiary::addBosstiaryKill(std::shared_ptr<Player> player, const std::sh
 									"Use it to display bosses for which you have reached at least the Expertise level.";
 		player->sendTextMessage(MESSAGE_GAME_HIGHLIGHT, podiumMessage);
 
-		player->addStorageValue(STORAGEVALUE_PODIUM, 1);
+		player->setStorageValueByKey(STORAGEVALUE_PODIUM, 1);
 	}
 }
 

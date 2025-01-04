@@ -79,11 +79,22 @@ public:
 			!= positions.end();
 	}
 
-	std::vector<Position> getPositions() const {
-		return positions;
+	std::vector<std::string> getKeysVector() const {
+		return keys;
 	}
-	void setPositions(Position pos) {
-		positions.emplace_back(pos);
+
+	void setKeysVector(std::string key) {
+		keys.emplace_back(key);
+	}
+
+	bool hasKey(std::string key) {
+		return std::ranges::find_if(keys.begin(), keys.end(), [key](std::string storedKey) {
+			if (storedKey == key) {
+				return true;
+			}
+			return false;
+			})
+			!= keys.end();
 	}
 
 	std::shared_ptr<Thing> getTarget(std::shared_ptr<Player> player, std::shared_ptr<Creature> targetCreature, const Position &toPosition, uint8_t toStackPos) const;
@@ -117,6 +128,7 @@ private:
 	std::vector<uint16_t> uniqueIds;
 	std::vector<uint16_t> actionIds;
 	std::vector<Position> positions;
+	std::vector<std::string> keys;
 
 	friend class Looks;
 };
@@ -144,25 +156,26 @@ public:
 	bool registerLuaUniqueEvent(const std::shared_ptr<Look> look);
 	bool registerLuaActionEvent(const std::shared_ptr<Look> look);
 	bool registerLuaPositionEvent(const std::shared_ptr<Look> look);
+	bool registerLuaKeyEvent(const std::shared_ptr<Look> look);
 	bool registerLuaEvent(const std::shared_ptr<Look> look);
 	// Clear maps for reloading
 	void clear();
 
 private:
 	bool hasPosition(Position position) const {
-		if (auto it = actionPositionMap.find(position);
-		    it != actionPositionMap.end()) {
+		if (auto it = positionItemMap.find(position);
+		    it != positionItemMap.end()) {
 			return true;
 		}
 		return false;
 	}
 
 	[[nodiscard]] std::map<Position, std::shared_ptr<Look>> getPositionsMap() const {
-		return actionPositionMap;
+		return positionItemMap;
 	}
 
-	void setPosition(Position position, std::shared_ptr<Look> action) {
-		actionPositionMap.try_emplace(position, action);
+	void setPosition(Position position, std::shared_ptr<Look> look) {
+		positionItemMap.try_emplace(position, look);
 	}
 
 	bool hasItemId(uint16_t itemId) const {
@@ -201,13 +214,26 @@ private:
 		actionItemMap.try_emplace(actionId, action);
 	}
 
+	void setKey(std::string key, const std::shared_ptr<Look> action) {
+		keyItemMap.try_emplace(key, action);
+	}
+
+	bool hasKey(std::string key) const {
+		if (auto it = keyItemMap.find(key);
+			it != keyItemMap.end()) {
+			return true;
+		}
+		return false;
+	}
+
 	// ReturnValue internalLookItem(std::shared_ptr<Player> player, const Position &fromPos, uint8_t stackPos, std::shared_ptr<Item> item, const Position &toPos);
 
 	using LookMap = std::map<uint16_t, std::shared_ptr<Look>>;
 	LookMap useItemMap;
 	LookMap uniqueItemMap;
 	LookMap actionItemMap;
-	std::map<Position, std::shared_ptr<Look>> actionPositionMap;
+	std::map<Position, std::shared_ptr<Look>> positionItemMap;
+	std::map<std::string, std::shared_ptr<Look>> keyItemMap;
 };
 
 constexpr auto g_looks = Looks::getInstance;

@@ -24,7 +24,8 @@ void Actions::clear() {
 	useItemMap.clear();
 	uniqueItemMap.clear();
 	actionItemMap.clear();
-	actionPositionMap.clear();
+	positionItemMap.clear();
+	keyItemMap.clear();
 }
 
 bool Actions::registerLuaItemEvent(const std::shared_ptr<Action> action) {
@@ -147,16 +148,46 @@ bool Actions::registerLuaPositionEvent(const std::shared_ptr<Action> action) {
 		}
 	}
 
-	positionVector = std::move(tmpVector);
+		positionVector = std::move(tmpVector);
 	return !positionVector.empty();
+}
+
+bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> action) {
+	auto keysVector = action->getKeysVector();
+	if (keysVector.empty()) {
+		return false;
+	}
+
+	std::vector<std::string> tmpVector;
+	tmpVector.reserve(keysVector.size());
+
+	for (const auto &key : keysVector) {
+		// Check if the key is already registered and prevent it from being registered again
+		if (!hasKey(key)) {
+			// Register key in the action key map
+			setKey(key, action);
+			tmpVector.emplace_back(key);
+		} else {
+			g_logger().warn(
+				"[{}] duplicate registered script with range key: {}, for script: {}",
+				__FUNCTION__,
+				key,
+				action->getScriptInterface()->getLoadingScriptName()
+			);
+		}
+	}
+
+	keysVector = std::move(tmpVector);
+	return !keysVector	.empty();
 }
 
 bool Actions::registerLuaEvent(const std::shared_ptr<Action> action) {
 	std::vector<std::function<bool(const std::shared_ptr<Action> &)>> luaEventCallbacks = {
-		[this](const std::shared_ptr<Action> &look) { return registerLuaItemEvent(look); },
-		[this](const std::shared_ptr<Action> &look) { return registerLuaUniqueEvent(look); },
-		[this](const std::shared_ptr<Action> &look) { return registerLuaActionEvent(look); },
-		[this](const std::shared_ptr<Action> &look) { return registerLuaPositionEvent(look); }
+		[this](const std::shared_ptr<Action> &action) { return registerLuaItemEvent(action); },
+		[this](const std::shared_ptr<Action> &action) { return registerLuaUniqueEvent(action); },
+		[this](const std::shared_ptr<Action> &action) { return registerLuaActionEvent(action); },
+		[this](const std::shared_ptr<Action> &action) { return registerLuaPositionEvent(action); },
+		[this](const std::shared_ptr<Action> &action) { return registerLuaKeyEvent(action); },
 	};
 	// Call all register lua events
 	bool registeredAny = false;
@@ -226,6 +257,13 @@ ReturnValue Actions::canUseFar(std::shared_ptr<Creature> creature, const Positio
 }
 
 std::shared_ptr<Action> Actions::getAction(std::shared_ptr<Item> item) {
+	if (item->hasAttribute(ItemAttribute_t::KEY)) {
+		auto it = keyItemMap.find(item->getAttribute<std::string>(ItemAttribute_t::KEY));
+		if (it != keyItemMap.end()) {
+			return it->second;
+		}
+	}
+
 	if (item->hasAttribute(ItemAttribute_t::UNIQUEID)) {
 		auto it = uniqueItemMap.find(item->getAttribute<uint16_t>(ItemAttribute_t::UNIQUEID));
 		if (it != uniqueItemMap.end()) {
@@ -245,8 +283,8 @@ std::shared_ptr<Action> Actions::getAction(std::shared_ptr<Item> item) {
 		return it->second;
 	}
 
-	if (auto iteratePositions = actionPositionMap.find(item->getPosition());
-	    iteratePositions != actionPositionMap.end()) {
+	if (auto iteratePositions = positionItemMap.find(item->getPosition());
+	    iteratePositions != positionItemMap.end()) {
 		if (std::shared_ptr<Tile> tile = item->getTile();
 		    tile) {
 			if (std::shared_ptr<Player> player = item->getHoldingPlayer();

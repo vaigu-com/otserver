@@ -290,3 +290,22 @@ int MoveEventFunctions::luaMoveEventPosition(lua_State* L) {
 	}
 	return 1;
 }
+
+int MoveEventFunctions::luaMoveEventKey(lua_State* L) {
+	// moveevent:key(keys)
+	const auto moveevent = getUserdataShared<MoveEvent>(L, 1);
+	if (moveevent) {
+		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
+		if (parameters > 1) {
+			for (int i = 0; i < parameters; ++i) {
+				moveevent->setKeys(getString(L, 2 + i));
+			}
+		} else {
+			moveevent->setKeys(getString(L, 2));
+		}
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}

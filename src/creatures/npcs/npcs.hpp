@@ -21,6 +21,10 @@ public:
 	Shop &operator=(const Shop &) = delete;
 
 	ShopBlock shopBlock;
+
+	std::shared_ptr<KV> kv() const {
+		return g_kv().scoped("shop");
+	}
 };
 
 class NpcType : public SharedObject {

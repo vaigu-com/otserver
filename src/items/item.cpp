@@ -835,6 +835,17 @@ Attr_ReadValue Item::readAttr(AttrTypes_t attr, PropStream &propStream) {
 			setAttribute(ItemAttribute_t::OBTAINCONTAINER, flags);
 			break;
 		}
+
+		case ATTR_KEY: {
+			std::string key;
+			if (!propStream.readString(key)) {
+				return ATTR_READ_ERROR;
+			}
+
+			setAttribute(ItemAttribute_t::KEY, key);
+			break;
+		}
+
 		default:
 			return ATTR_READ_ERROR;
 	}
@@ -1024,6 +1035,12 @@ void Item::serializeAttr(PropWriteStream &propWriteStream) const {
 		auto flags = getAttribute<uint32_t>(ItemAttribute_t::OBTAINCONTAINER);
 		g_logger().debug("Reading flag {}, to item id {}", flags, getID());
 		propWriteStream.write<uint32_t>(flags);
+	}
+
+	if (const std::string &key = getString(ItemAttribute_t::KEY);
+	    !key.empty()) {
+		propWriteStream.write<uint8_t>(ATTR_KEY);
+		propWriteStream.writeString(key);
 	}
 }
 

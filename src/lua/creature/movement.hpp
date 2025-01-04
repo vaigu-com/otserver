@@ -111,7 +111,9 @@ public:
 	bool registerLuaActionEvent(const std::shared_ptr<MoveEvent> moveEvent);
 	bool registerLuaUniqueEvent(const std::shared_ptr<MoveEvent> moveEvent);
 	bool registerLuaPositionEvent(const std::shared_ptr<MoveEvent> moveEvent);
+	bool registerLuaKeyEvent(const std::shared_ptr<MoveEvent> moveEvent);
 	bool registerLuaEvent(const std::shared_ptr<MoveEvent> event);
+	bool registerEvent(const std::shared_ptr<MoveEvent> moveEvent, std::string key, std::map<std::string, MoveEventList>& moveListMap) const;
 	void clear(bool isFromXML = false);
 
 private:
@@ -128,6 +130,7 @@ private:
 	std::map<int32_t, MoveEventList> actionIdMap;
 	std::map<int32_t, MoveEventList> itemIdMap;
 	std::map<Position, MoveEventList> positionsMap;
+	std::map<std::string, MoveEventList> keysMap;
 };
 
 constexpr auto g_moveEvents = MoveEvents::getInstance;
@@ -213,6 +216,12 @@ public:
 	}
 	void setPosition(Position pos) {
 		positionVector.emplace_back(pos);
+	}
+	std::vector<std::string> getKeysVector() const {
+		return keysVector;
+	}
+	void setKeys(std::string key) {
+		keysVector.emplace_back(key);
 	}
 	void setSlot(uint32_t s) {
 		slot = s;
@@ -304,6 +313,7 @@ private:
 	std::vector<uint32_t> actionIdVector;
 	std::vector<uint32_t> uniqueIdVector;
 	std::vector<Position> positionVector;
+	std::vector<std::string> keysVector;
 
 	friend class MoveEventFunctions;
 	friend class ItemParse;

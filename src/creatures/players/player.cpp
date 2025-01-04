@@ -900,7 +900,7 @@ void Player::addStorageValue(const uint32_t key, const int32_t value, const bool
 	}
 
 	if (value != -1) {
-		int32_t oldValue = getStorageValue(key);
+		int32_t oldValue = getStorageValueByKey(key);
 		storageMap[key] = value;
 
 		if (!isLogin) {
@@ -913,15 +913,22 @@ void Player::addStorageValue(const uint32_t key, const int32_t value, const bool
 	}
 }
 
-int32_t Player::getStorageValue(const uint32_t key) const {
-	int32_t value = -1;
-	auto it = storageMap.find(key);
-	if (it == storageMap.end()) {
-		return value;
-	}
+int32_t Player::setStorageValueByKey(const std::string key, const int32_t nextValue) const {
+	kv()->set(key, nextValue);
+}
 
-	value = it->second;
-	return value;
+int32_t Player::setStorageValueByKey(const uint32_t key, const int32_t nextValue) const {
+	kv()->set(std::to_string(key), nextValue);
+}
+
+int32_t Player::getStorageValueByKey(const std::string key) const {
+	auto storage = kv()->get(key);
+	return storage.has_value() ? storage->getNumber() : -1;
+}
+
+int32_t Player::getStorageValueByKey(const uint32_t key) const {
+	auto storage = kv()->get(std::to_string(key));
+	return storage.has_value() ? storage->getNumber() : -1;
 }
 
 int32_t Player::getStorageValueByName(const std::string &storageName) const {
@@ -931,7 +938,7 @@ int32_t Player::getStorageValueByName(const std::string &storageName) const {
 	}
 	uint32_t key = it->second;
 
-	return getStorageValue(key);
+	return getStorageValueByKey(key);
 }
 
 void Player::addStorageValueByName(const std::string &storageName, const int32_t value, const bool isLogin /* = false*/) {
@@ -5797,7 +5804,7 @@ void Player::sendUnjustifiedPoints() {
 }
 
 uint8_t Player::getLastMount() const {
-	int32_t value = getStorageValue(PSTRG_MOUNTS_CURRENTMOUNT);
+	int32_t value = getStorageValueByKey(PSTRG_MOUNTS_CURRENTMOUNT);
 	if (value > 0) {
 		return value;
 	}
@@ -5805,7 +5812,7 @@ uint8_t Player::getLastMount() const {
 }
 
 uint8_t Player::getCurrentMount() const {
-	int32_t value = getStorageValue(PSTRG_MOUNTS_CURRENTMOUNT);
+	int32_t value = getStorageValueByKey(PSTRG_MOUNTS_CURRENTMOUNT);
 	if (value > 0) {
 		return value;
 	}
@@ -5926,7 +5933,7 @@ bool Player::tameMount(uint8_t mountId) {
 	const uint8_t tmpMountId = mountId - 1;
 	const uint32_t key = PSTRG_MOUNTS_RANGE_START + (tmpMountId / 31);
 
-	int32_t value = getStorageValue(key);
+	int32_t value = getStorageValueByKey(key);
 	if (value != -1) {
 		value |= (1 << (tmpMountId % 31));
 	} else {
@@ -5945,7 +5952,7 @@ bool Player::untameMount(uint8_t mountId) {
 	const uint8_t tmpMountId = mountId - 1;
 	const uint32_t key = PSTRG_MOUNTS_RANGE_START + (tmpMountId / 31);
 
-	int32_t value = getStorageValue(key);
+	int32_t value = getStorageValueByKey(key);
 	if (value == -1) {
 		return true;
 	}
@@ -5977,7 +5984,7 @@ bool Player::hasMount(const std::shared_ptr<Mount> mount) const {
 
 	const uint8_t tmpMountId = mount->id - 1;
 
-	int32_t value = getStorageValue(PSTRG_MOUNTS_RANGE_START + (tmpMountId / 31));
+	int32_t value = getStorageValueByKey(PSTRG_MOUNTS_RANGE_START + (tmpMountId / 31));
 	if (value == -1) {
 		return false;
 	}
@@ -7125,7 +7132,7 @@ bool Player::saySpell(
 	for (const std::shared_ptr<Creature> &spectator : spectators) {
 		if (std::shared_ptr<Player> tmpPlayer = spectator->getPlayer()) {
 			if (g_configManager().getBoolean(EMOTE_SPELLS, __FUNCTION__)) {
-				valueEmote = tmpPlayer->getStorageValue(STORAGEVALUE_EMOTE);
+				valueEmote = tmpPlayer->getStorageValueByKey(STORAGEVALUE_EMOTE);
 			}
 			if (!ghostMode || tmpPlayer->canSeeCreature(static_self_cast<Player>())) {
 				if (valueEmote == 1) {

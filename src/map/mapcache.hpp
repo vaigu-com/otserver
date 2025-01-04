@@ -21,6 +21,7 @@ class FileStream;
 #pragma pack(1)
 struct BasicItem {
 	std::string text;
+	std::string key;
 	// size_t description { 0 };
 
 	uint16_t id { 0 };
@@ -36,6 +37,7 @@ struct BasicItem {
 	std::vector<std::shared_ptr<BasicItem>> items;
 
 	bool unserializeItemNode(FileStream &propStream, uint16_t x, uint16_t y, uint8_t z);
+	void readVaiguAttr(FileStream& stream);
 	void readAttr(FileStream &propStream);
 
 	size_t hash() const {
