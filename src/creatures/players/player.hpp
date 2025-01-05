@@ -527,9 +527,9 @@ public:
 	
 	// Vaigu Custom
 	int32_t getStorageValueByKey(const std::string key) const;
+	void setStorageValueByKey(const std::string key, const int32_t nextValue) const;
 	int32_t getStorageValueByKey(const uint32_t key) const;
-	int32_t setStorageValueByKey(const std::string key, const int32_t nextValue) const;
-	int32_t setStorageValueByKey(const uint32_t key, const int32_t nextValue) const;
+	void setStorageValueByKey(const uint32_t key, const int32_t nextValue) const;
 	
 	int32_t getStorageValueByName(const std::string &storageName) const;
 	void addStorageValueByName(const std::string &storageName, const int32_t value, const bool isLogin = false);

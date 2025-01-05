@@ -913,17 +913,28 @@ void Player::addStorageValue(const uint32_t key, const int32_t value, const bool
 	}
 }
 
-int32_t Player::setStorageValueByKey(const std::string key, const int32_t nextValue) const {
-	kv()->set(key, nextValue);
+int32_t Player::getStorageValue(const uint32_t key) const {
+	int32_t value = -1;
+	const auto it = storageMap.find(key);
+	if (it == storageMap.end()) {
+		return value;
+	}
+
+	value = it->second;
+	return value;
 }
 
-int32_t Player::setStorageValueByKey(const uint32_t key, const int32_t nextValue) const {
-	kv()->set(std::to_string(key), nextValue);
+void Player::setStorageValueByKey(const std::string key, const int32_t nextValue) const {
+	kv()->set(key, nextValue);
 }
 
 int32_t Player::getStorageValueByKey(const std::string key) const {
 	auto storage = kv()->get(key);
 	return storage.has_value() ? storage->getNumber() : -1;
+}
+
+void Player::setStorageValueByKey(const uint32_t key, const int32_t nextValue) const {
+	kv()->set(std::to_string(key), nextValue);
 }
 
 int32_t Player::getStorageValueByKey(const uint32_t key) const {

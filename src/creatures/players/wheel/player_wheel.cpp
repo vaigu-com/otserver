@@ -2987,7 +2987,7 @@ int32_t PlayerWheel::getGiftOfCooldown() const {
 }
 
 void PlayerWheel::setGiftOfCooldown(int32_t value, bool isOnThink) {
-	m_player.setStorageValue(STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD, value);
+	m_player.setStorageValueByKey(STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD, value);
 	if (!isOnThink) {
 		setOnThinkTimer(WheelOnThink_t::GIFT_OF_LIFE, OTSYS_TIME() + 1000);
 	}
