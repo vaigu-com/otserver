@@ -885,7 +885,7 @@ void Item::serializeAttr(PropWriteStream &propWriteStream) const {
 		propWriteStream.write<uint8_t>(ATTR_CHARGES);
 		propWriteStream.write<uint16_t>(charges);
 	}
-	
+
 	if (it.movable) {
 		if (auto actionId = getAttribute<uint16_t>(ItemAttribute_t::ACTIONID)) {
 			propWriteStream.write<uint8_t>(ATTR_ACTION_ID);
@@ -1124,10 +1124,17 @@ bool Item::canBeMoved() const {
 	static std::unordered_set<int32_t> immovableActionIds = {
 		IMMOVABLE_ACTION_ID,
 	};
+	static std::unordered_set<std::string> immovableKeys = {
+		IMMOVABLE_KEY,
+	};
+
 	if (hasAttribute(ItemAttribute_t::UNIQUEID)) {
 		return false;
 	}
 	if (hasAttribute(ItemAttribute_t::ACTIONID) && immovableActionIds.contains(static_cast<int32_t>(getAttribute<uint16_t>(ItemAttribute_t::ACTIONID)))) {
+		return false;
+	}
+	if (hasAttribute(ItemAttribute_t::KEY) && immovableKeys.contains(static_cast<std::string>(getAttribute<std::string>(ItemAttribute_t::KEY)))) {
 		return false;
 	}
 	return isMovable();
@@ -2327,7 +2334,7 @@ std::string Item::parseShowAttributesDescription(std::shared_ptr<Item> item, con
 	return itemDescription.str();
 }
 
-std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player,  std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
+std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player, std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
 	std::string text = "";
 
 	std::ostringstream s;
@@ -3003,7 +3010,7 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, std::
 
 	if (!it.allowDistRead || (it.id >= 7369 && it.id <= 7371)) {
 		s << '.';
-	} else { 
+	} else {
 		if (text.empty() && item) {
 			text = ProtocolGame::TryTranslate(item->getAttribute<std::string>(ItemAttribute_t::TEXT), item, player);
 		}

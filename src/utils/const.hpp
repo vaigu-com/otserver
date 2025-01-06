@@ -54,5 +54,8 @@ static constexpr int32_t PSTRG_FAMILIARS_RANGE_SIZE = 500;
 static constexpr int32_t STORAGEVALUE_ISONMINIGAME = 30060;
 static constexpr int32_t IMMOVABLE_ACTION_ID = 100;
 
+static const std::string IMMOVABLE_KEY = "IMMOVABLE";
+static const std::string PERMANENTLY_CLOSED = "PERMANENTLY_CLOSED";
+
 #define IS_IN_KEYRANGE(key, range) \
 	(key >= PSTRG_##range##_START && ((key - PSTRG_##range##_START) <= PSTRG_##range##_SIZE))

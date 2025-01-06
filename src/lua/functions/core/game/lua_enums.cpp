@@ -157,6 +157,9 @@ void LuaEnums::initOthersEnums(lua_State* L) {
 
 	registerEnum(L, IMMOVABLE_ACTION_ID);
 
+	registerGlobalString(L, "IMMOVABLE_KEY", IMMOVABLE_KEY);
+	registerGlobalString(L, "PERMANENTLY_CLOSED", PERMANENTLY_CLOSED);
+
 	registerEnum(L, MAX_LOOTCHANCE);
 
 	registerEnum(L, ORIGIN_NONE);
