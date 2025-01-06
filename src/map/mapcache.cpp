@@ -27,11 +27,11 @@
 static phmap::flat_hash_map<size_t, std::shared_ptr<BasicItem>> items;
 static phmap::flat_hash_map<size_t, std::shared_ptr<BasicTile>> tiles;
 
-std::shared_ptr<BasicItem> static_tryGetItemFromCache(const std::shared_ptr<BasicItem>& ref) {
+std::shared_ptr<BasicItem> static_tryGetItemFromCache(const std::shared_ptr<BasicItem> &ref) {
 	return ref ? items.try_emplace(ref->hash(), ref).first->second : nullptr;
 }
 
-std::shared_ptr<BasicTile> static_tryGetTileFromCache(const std::shared_ptr<BasicTile>& ref) {
+std::shared_ptr<BasicTile> static_tryGetTileFromCache(const std::shared_ptr<BasicTile> &ref) {
 	return ref ? tiles.try_emplace(ref->hash(), ref).first->second : nullptr;
 }
 
@@ -40,7 +40,11 @@ void MapCache::flush() {
 	tiles.clear();
 }
 
-void MapCache::parseItemAttr(const std::shared_ptr<BasicItem>& BasicItem, std::shared_ptr<Item> item) {
+void MapCache::parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, std::shared_ptr<Item> item) {
+	if (!BasicItem->key.empty()) {
+		item->setAttribute(ItemAttribute_t::KEY, BasicItem->key);
+	}
+
 	if (BasicItem->charges > 0) {
 		item->setSubType(BasicItem->charges);
 	}
@@ -51,10 +55,6 @@ void MapCache::parseItemAttr(const std::shared_ptr<BasicItem>& BasicItem, std::s
 
 	if (BasicItem->uniqueId > 0) {
 		item->addUniqueId(BasicItem->uniqueId);
-	}
-
-	if (!BasicItem->key.empty()) {
-		item->setAttribute(ItemAttribute_t::KEY, BasicItem->key);
 	}
 
 	if (item->getTeleport() && (BasicItem->destX != 0 || BasicItem->destY != 0 || BasicItem->destZ != 0)) {
@@ -75,10 +75,10 @@ void MapCache::parseItemAttr(const std::shared_ptr<BasicItem>& BasicItem, std::s
 	}
 
 	/* if (BasicItem.description != 0)
-			item->setAttribute(ItemAttribute_t::DESCRIPTION, STRING_CACHE[BasicItem.description]);*/
+	        item->setAttribute(ItemAttribute_t::DESCRIPTION, STRING_CACHE[BasicItem.description]);*/
 }
 
-std::shared_ptr<Item> MapCache::createItem(const std::shared_ptr<BasicItem>& BasicItem, Position position) {
+std::shared_ptr<Item> MapCache::createItem(const std::shared_ptr<BasicItem> &BasicItem, Position position) {
 	auto item = Item::CreateItem(BasicItem->id, position);
 	if (!item) {
 		return nullptr;
@@ -87,7 +87,7 @@ std::shared_ptr<Item> MapCache::createItem(const std::shared_ptr<BasicItem>& Bas
 	parseItemAttr(BasicItem, item);
 
 	if (item->getContainer() && !BasicItem->items.empty()) {
-		for (const auto& BasicItemInside : BasicItem->items) {
+		for (const auto &BasicItemInside : BasicItem->items) {
 			if (auto itemInsede = createItem(BasicItemInside, position)) {
 				item->getContainer()->addItem(itemInsede);
 				item->getContainer()->updateItemWeight(itemInsede->getWeight());
@@ -106,7 +106,7 @@ std::shared_ptr<Item> MapCache::createItem(const std::shared_ptr<BasicItem>& Bas
 	return item;
 }
 
-std::shared_ptr<Tile> MapCache::getOrCreateTileFromCache(const std::unique_ptr<Floor>& floor, uint16_t x, uint16_t y) {
+std::shared_ptr<Tile> MapCache::getOrCreateTileFromCache(const std::unique_ptr<Floor> &floor, uint16_t x, uint16_t y) {
 	const auto cachedTile = floor->getTileCache(x, y);
 	if (!cachedTile) {
 		return floor->getTile(x, y);
@@ -123,11 +123,9 @@ std::shared_ptr<Tile> MapCache::getOrCreateTileFromCache(const std::unique_ptr<F
 		const auto house = map->houses.getHouse(cachedTile->houseId);
 		tile = std::make_shared<HouseTile>(x, y, z, house);
 		house->addTile(std::static_pointer_cast<HouseTile>(tile));
-	}
-	else if (cachedTile->isStatic) {
+	} else if (cachedTile->isStatic) {
 		tile = std::make_shared<StaticTile>(x, y, z);
-	}
-	else {
+	} else {
 		tile = std::make_shared<DynamicTile>(x, y, z);
 	}
 
@@ -137,7 +135,7 @@ std::shared_ptr<Tile> MapCache::getOrCreateTileFromCache(const std::unique_ptr<F
 		tile->internalAddThing(createItem(cachedTile->ground, pos));
 	}
 
-	for (const auto& BasicItemd : cachedTile->items) {
+	for (const auto &BasicItemd : cachedTile->items) {
 		tile->internalAddThing(createItem(BasicItemd, pos));
 	}
 
@@ -145,10 +143,10 @@ std::shared_ptr<Tile> MapCache::getOrCreateTileFromCache(const std::unique_ptr<F
 
 	// add zone synchronously
 	g_dispatcher().context().tryAddEvent([tile, pos] {
-		for (const auto& zone : Zone::getZones(pos)) {
+		for (const auto &zone : Zone::getZones(pos)) {
 			tile->addZone(zone);
 		}
-		});
+	});
 
 	floor->setTile(x, y, tile);
 
@@ -158,7 +156,7 @@ std::shared_ptr<Tile> MapCache::getOrCreateTileFromCache(const std::unique_ptr<F
 	return tile;
 }
 
-void MapCache::setBasicTile(uint16_t x, uint16_t y, uint8_t z, const std::shared_ptr<BasicTile>& newTile) {
+void MapCache::setBasicTile(uint16_t x, uint16_t y, uint8_t z, const std::shared_ptr<BasicTile> &newTile) {
 	if (z >= MAP_MAX_LAYERS) {
 		g_logger().error("Attempt to set tile on invalid coordinate: {}", Position(x, y, z).toString());
 		return;
@@ -167,13 +165,12 @@ void MapCache::setBasicTile(uint16_t x, uint16_t y, uint8_t z, const std::shared
 	const auto tile = static_tryGetTileFromCache(newTile);
 	if (const auto sector = getMapSector(x, y)) {
 		sector->createFloor(z)->setTileCache(x, y, tile);
-	}
-	else {
+	} else {
 		getBestMapSector(x, y)->createFloor(z)->setTileCache(x, y, tile);
 	}
 }
 
-std::shared_ptr<BasicItem> MapCache::tryReplaceItemFromCache(const std::shared_ptr<BasicItem>& ref) {
+std::shared_ptr<BasicItem> MapCache::tryReplaceItemFromCache(const std::shared_ptr<BasicItem> &ref) {
 	return static_tryGetItemFromCache(ref);
 }
 
@@ -217,7 +214,7 @@ MapSector* MapCache::getBestMapSector(uint32_t x, uint32_t y) {
 	return sector;
 }
 
-void BasicTile::hash(size_t& h) const {
+void BasicTile::hash(size_t &h) const {
 	std::array<uint32_t, 4> arr = { flags, houseId, type, isStatic };
 	for (const auto v : arr) {
 		if (v > 0) {
@@ -231,13 +228,13 @@ void BasicTile::hash(size_t& h) const {
 
 	if (!items.empty()) {
 		stdext::hash_combine(h, items.size());
-		for (const auto& item : items) {
+		for (const auto &item : items) {
 			item->hash(h);
 		}
 	}
 }
 
-void BasicItem::hash(size_t& h) const {
+void BasicItem::hash(size_t &h) const {
 	const std::array<uint32_t, 8> arr = { id, charges, actionId, uniqueId, destX, destY, destZ, doorOrDepotId };
 	for (const auto v : arr) {
 		if (v > 0) {
@@ -249,13 +246,13 @@ void BasicItem::hash(size_t& h) const {
 		stdext::hash_combine(h, text);
 	}
 
-	if (!key.empty()){
+	if (!key.empty()) {
 		stdext::hash_combine(h, key);
 	}
 
 	if (!items.empty()) {
 		stdext::hash_combine(h, items.size());
-		for (const auto& item : items) {
+		for (const auto &item : items) {
 			item->hash(h);
 		}
 	}
@@ -293,65 +290,65 @@ bool BasicItem::unserializeItemNode(FileStream &stream, uint16_t x, uint16_t y, 
 	return true;
 }
 
-void BasicItem::readAttr(FileStream& stream) {
+void BasicItem::readAttr(FileStream &stream) {
 	bool end = false;
 	while (!end) {
 		const uint8_t attr = stream.getU8();
 		switch (attr) {
-		case ATTR_KEY: {
-			const auto str = stream.getString();
-			if (!str.empty()) {
-				key = str;
-			}
-		} break;
+			case ATTR_KEY: {
+				const auto str = stream.getString();
+				if (!str.empty()) {
+					key = str;
+				}
+			} break;
 
-		case ATTR_DEPOT_ID: {
-			doorOrDepotId = stream.getU16();
-		} break;
+			case ATTR_DEPOT_ID: {
+				doorOrDepotId = stream.getU16();
+			} break;
 
-		case ATTR_HOUSEDOORID: {
-			doorOrDepotId = stream.getU8();
-		} break;
+			case ATTR_HOUSEDOORID: {
+				doorOrDepotId = stream.getU8();
+			} break;
 
-		case ATTR_TELE_DEST: {
-			destX = stream.getU16();
-			destY = stream.getU16();
-			destZ = stream.getU8();
-		} break;
+			case ATTR_TELE_DEST: {
+				destX = stream.getU16();
+				destY = stream.getU16();
+				destZ = stream.getU8();
+			} break;
 
-		case ATTR_COUNT: {
-			charges = stream.getU8();
-		} break;
+			case ATTR_COUNT: {
+				charges = stream.getU8();
+			} break;
 
-		case ATTR_CHARGES: {
-			charges = stream.getU16();
-		} break;
+			case ATTR_CHARGES: {
+				charges = stream.getU16();
+			} break;
 
-		case ATTR_ACTION_ID: {
-			actionId = stream.getU16();
-		} break;
+			case ATTR_ACTION_ID: {
+				actionId = stream.getU16();
+			} break;
 
-		case ATTR_UNIQUE_ID: {
-			uniqueId = stream.getU16();
-		} break;
+			case ATTR_UNIQUE_ID: {
+				uniqueId = stream.getU16();
+			} break;
 
-		case ATTR_TEXT: {
-			const auto str = stream.getString();
-			if (!str.empty()) {
-				text = str;
-			}
-		} break;
+			case ATTR_TEXT: {
+				const auto str = stream.getString();
+				if (!str.empty()) {
+					text = str;
+				}
+			} break;
 
-		case ATTR_DESC: {
-			const auto str = stream.getString();
-			// if (!str.empty())
-			//	text = str;
-		} break;
+			case ATTR_DESC: {
+				const auto str = stream.getString();
+				// if (!str.empty())
+				//	text = str;
+			} break;
 
-		default:
-			stream.back();
-			end = true;
-			break;
+			default:
+				stream.back();
+				end = true;
+				break;
 		}
 	}
 }
