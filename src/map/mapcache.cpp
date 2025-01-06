@@ -261,47 +261,40 @@ void BasicItem::hash(size_t& h) const {
 	}
 }
 
-bool BasicItem::unserializeItemNode(FileStream& stream, uint16_t x, uint16_t y, uint8_t z) {
+bool BasicItem::unserializeItemNode(FileStream &stream, uint16_t x, uint16_t y, uint8_t z) {
 	if (stream.isProp(OTB::Node::END)) {
 		stream.back();
 		return true;
 	}
 
 	readAttr(stream);
+
 	while (stream.startNode()) {
-		const auto nodeType = stream.getU8();
-		switch (nodeType) {
-		case OTBM_ITEM: {
-			const uint16_t streamId = stream.getU16();
-
-			const auto item = std::make_shared<BasicItem>();
-			item->id = streamId;
-
-			if (!item->unserializeItemNode(stream, x, y, z)) {
-				throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Failed to load item.", x, y, z));
-			}
-
-			items.emplace_back(static_tryGetItemFromCache(item));
-
-			if (!stream.endNode()) {
-				throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Could not end node.", x, y, z));
-			}
-			break;
+		if (stream.getU8() != OTBM_ITEM) {
+			throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Could not read item node.", x, y, z));
 		}
-		case OTBM_VAIGU_ITEM: {
-			readVaiguAttr(stream);
-			if (!stream.endNode()) {
-				throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Could not end node.", x, y, z));
-			}
-			break;
+
+		const uint16_t streamId = stream.getU16();
+
+		const auto item = std::make_shared<BasicItem>();
+		item->id = streamId;
+
+		if (!item->unserializeItemNode(stream, x, y, z)) {
+			throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Failed to load item.", x, y, z));
 		}
+
+		items.emplace_back(static_tryGetItemFromCache(item));
+
+		if (!stream.endNode()) {
+			throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Could not end node.", x, y, z));
 		}
 	}
+
 	return true;
 }
 
-void BasicItem::readVaiguAttr(FileStream& stream){
-bool end = false;
+void BasicItem::readAttr(FileStream& stream) {
+	bool end = false;
 	while (!end) {
 		const uint8_t attr = stream.getU8();
 		switch (attr) {
@@ -312,19 +305,6 @@ bool end = false;
 			}
 		} break;
 
-		default:
-			stream.back();
-			end = true;
-			break;
-		}
-	}
-}
-
-void BasicItem::readAttr(FileStream& stream) {
-	bool end = false;
-	while (!end) {
-		const uint8_t attr = stream.getU8();
-		switch (attr) {
 		case ATTR_DEPOT_ID: {
 			doorOrDepotId = stream.getU16();
 		} break;

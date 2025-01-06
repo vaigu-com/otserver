@@ -67,7 +67,6 @@ enum OTBM_NodeTypes_t {
 	OTBM_WAYPOINTS = 15,
 	OTBM_WAYPOINT = 16,
 	OTBM_TILE_ZONE = 19,
-	OTBM_VAIGU_ITEM = 125
 };
 
 enum OTBM_TileFlag_t : uint32_t {
