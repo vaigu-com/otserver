@@ -639,10 +639,10 @@
 		<monster name="Stone Golem" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="6676" centery="1125" centerz="2" radius="1">
-		<monster name="Stone Golem" x="0" y="0" z="2" spawntime="60" />
+		<monster name="Gargoyle" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="6697" centery="1128" centerz="2" radius="1">
-		<monster name="Stone Golem" x="0" y="0" z="2" spawntime="60" />
+		<monster name="Gargoyle" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="6689" centery="1133" centerz="2" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="2" spawntime="60" />
