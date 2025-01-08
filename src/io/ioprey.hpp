@@ -248,9 +248,11 @@ public:
 	}
 
 	void rerollBonusType() {
-		bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
-
-		bonus = static_cast<PreyBonus_t>((bonus + 1) % static_cast<int>(PreyBonus_Last));
+		if (bonusRarity >= PreyStars_Max){
+			bonus = static_cast<PreyBonus_t>((bonus + 1) % static_cast<int>(PreyBonus_Last + 1));
+		} else {
+			bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+		}
 	}
 
 	void removeMonsterType(uint16_t raceId) {
