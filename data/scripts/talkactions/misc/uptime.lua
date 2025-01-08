@@ -1,7 +1,7 @@
 local talkaction = TalkAction("!uptime")
 
 function talkaction.onSay(player, words, param)
-	local uptime = (os.time() - Game.getStorageValue(GlobalStorage.ServerStartStorage))
+	local uptime = (os.time() - Game.getStorageValueByKey(Storage.ServerStartStorage))
 
 	local hours = math.floor(uptime / 3600)
 	local minutes = math.floor((uptime - (3600 * hours)) / 60)

@@ -204,14 +204,16 @@ public:
 			client->BestiarysendCharms();
 		}
 	}
+
 	void addBestiaryKillCount(uint16_t raceid, uint32_t amount) {
 		uint32_t oldCount = getBestiaryKillCount(raceid);
-		uint32_t key = STORAGEVALUE_BESTIARYKILLCOUNT + raceid;
-		addStorageValue(key, static_cast<int32_t>(oldCount + amount), true);
+		std::string key = "BestiaryKillCount-" + std::to_string(raceid);
+		setStorageValueByKey(key, oldCount + amount);
 	}
+	
 	uint32_t getBestiaryKillCount(uint16_t raceid) const {
-		uint32_t key = STORAGEVALUE_BESTIARYKILLCOUNT + raceid;
-		auto value = getStorageValue(key);
+		std::string key = "BestiaryKillCount-" + std::to_string(raceid);
+		auto value = getStorageValueByKey(key);
 		return value > 0 ? static_cast<uint32_t>(value) : 0;
 	}
 
@@ -522,7 +524,13 @@ public:
 
 	void addStorageValue(const uint32_t key, const int32_t value, const bool isLogin = false);
 	int32_t getStorageValue(const uint32_t key) const;
-
+	
+	// Vaigu Custom
+	int32_t getStorageValueByKey(const std::string key) const;
+	void setStorageValueByKey(const std::string key, const int32_t nextValue) const;
+	int32_t getStorageValueByKey(const uint32_t key) const;
+	void setStorageValueByKey(const uint32_t key, const int32_t nextValue) const;
+	
 	int32_t getStorageValueByName(const std::string &storageName) const;
 	void addStorageValueByName(const std::string &storageName, const int32_t value, const bool isLogin = false);
 
@@ -2541,7 +2549,7 @@ public:
 	// Points get:
 	uint16_t getHazardSystemPoints() const {
 		int32_t points = 0;
-		points = getStorageValue(STORAGEVALUE_HAZARDCOUNT);
+		points = getStorageValueByKey(STORAGEVALUE_HAZARDCOUNT);
 		if (points <= 0) {
 			return 0;
 		}
@@ -2662,9 +2670,8 @@ public:
 	std::string language = "EN"; // ISO-639-1
 	const std::string &getLanguage();
 	void setLanguage(std::string language);
-
 	bool isOnMinigame(){
-		return this->getStorageValue(STORAGEVALUE_ISONMINIGAME) != -1;
+		return this->getStorageValueByKey(STORAGEVALUE_ISONMINIGAME) != -1;
 	}
 
 private:

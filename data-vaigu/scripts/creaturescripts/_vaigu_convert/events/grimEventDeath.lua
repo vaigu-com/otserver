@@ -6,7 +6,7 @@ function grimOnDeath.onDeath(creature, corpse, killer, mostDamageKiller, lastHit
 	monster:getPosition():sendMagicEffect(CONST_ME_MORTAREA)
 
 	-- Remove grim count, when it dies
-	Game.setStorageValue(ge_grimCountGlobalStorage, getGrimEventGrimCount() - 1)
+	Game.setStorageValueByKey(ge_grimCountStorage, getGrimEventGrimCount() - 1)
 
 	-- Store player kills
 	local killerId = killer:getId()
@@ -28,13 +28,13 @@ function grimPrepareDeath.onPrepareDeath(creature, killer)
 
 	-- Remove player from count
 	local count = getGrimEventJoinedCount()
-	Game.setStorageValue(ge_joinCountGlobalStorage, count - 1)
+	Game.setStorageValueByKey(ge_joinCountStorage, count - 1)
 
 	-- Reset player after death
 	local depo = Position(5893, 1544, 9)
 	player:teleportTo(depo)
 	depo:sendMagicEffect(CONST_ME_TELEPORT) -- efekt
-	player:setStorageValue(ge_joinStorage, 0)
+	player:setStorageValueByKey(ge_joinStorage, 0)
 	player:addHealth(player:getMaxHealth())
 	player:addMana(player:getMaxMana())
 	player:unregisterEvent("GrimPlayerDeath")
@@ -87,15 +87,15 @@ function grimPrepareDeath.onPrepareDeath(creature, killer)
 		Game.broadcastMessage(string.format("%d miejsce zdobywa %s zmierzajac sie z %d Grimow oraz pokonujac %d Grimow.", count, playerName, getGrimEventGrimCount(), killCount))
 
 		-- Broadcast
-		local timeAlive = os.time() - Game.getStorageValue(GlobalStorage.GrimTimer)
+		local timeAlive = os.time() - Game.getStorageValueByKey(Storage.GrimTimer)
 		--winnerGlobalMessage(count, playerName, getZombieEventZombieCount(), timeAlive)]]
 
 		-- Add event points & record
 		incrementStorage(player:getId(), Storage.overallPoints, trophy.points)
 		incrementStorage(player:getId(), Storage.grimPoints, trophy.points)
 
-		if timeAlive > player:getStorageValue(Storage.grimRecord) then
-			player:setStorageValue(Storage.grimRecord, timeAlive) -- set player record
+		if timeAlive > player:getStorageValueByKey(Storage.grimRecord) then
+			player:setStorageValueByKey(Storage.grimRecord, timeAlive) -- set player record
 		end
 
 		if count == 1 then -- add "win"

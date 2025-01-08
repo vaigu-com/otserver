@@ -36,9 +36,9 @@ local function setStorageDevourer()
 					if creatures and #creatures > 0 then
 						for _, creature in pairs(creatures) do
 							if creature:isPlayer() then -- éPlayer
-								creature:setStorageValue(60835, 1)
-								creature:setStorageValue(60814, 1)
-								creature:setStorageValue(60828, 1)
+								creature:setStorageValueByKey(60835, 1)
+								creature:setStorageValueByKey(60814, 1)
+								creature:setStorageValueByKey(60828, 1)
 							end
 						end
 					end
@@ -61,8 +61,8 @@ local function setStorage(fromPos, toPos, storage)
 					local creatures = tile:getCreatures()
 					if creatures and #creatures > 0 then
 						for _, creature in pairs(creatures) do
-							if creature:isPlayer() and creature:getStorageValue(storage) < 1 then
-								creature:setStorageValue(storage, 1) -- Access to boss Anomaly
+							if creature:isPlayer() and creature:getStorageValueByKey(storage) < 1 then
+								creature:setStorageValueByKey(storage, 1) -- Access to boss Anomaly
 							end
 						end
 					end

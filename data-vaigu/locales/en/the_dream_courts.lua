@@ -13,10 +13,10 @@ return {
 	["You successfully defeated the Faceless Bane."] = "You successfully defeated the Faceless Bane.",
 	["Empowered Wardstones"] = "Empowered Wardstones",
 	["Empowered Wardstones Status"] = function(context)
-		return string.format("Empowered Wardstones: %d / 8.", (math.max(context.player:getStorageValue(12209), 0)))
+		return string.format("Empowered Wardstones: %d / 8.", (math.max(context.player:getStorageValueByKey(12209), 0)))
 	end,
 	["Documents Read"] = "Documents Read",
 	["Documents Read Status"] = function(context)
-		return string.format("Documents Read: %d / 4", (math.max(context.player:getStorageValue(12214), 0)))
+		return string.format("Documents Read: %d / 4", (math.max(context.player:getStorageValueByKey(12214), 0)))
 	end,
 }

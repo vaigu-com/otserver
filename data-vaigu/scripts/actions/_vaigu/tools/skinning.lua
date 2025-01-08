@@ -243,7 +243,7 @@ local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 	end
 end
 local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
-	if player:getStorageValue(Storage.SilenceOfTheLambs.RubMeatWithLecter) ~= QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter then
+	if player:getStorageValueByKey(Storage.SilenceOfTheLambs.RubMeatWithLecter) ~= QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter then
 		if roll <= 50000 then
 			player:say("Ehh, I still need to pracise.", TALKTYPE_MONSTER_SAY)
 			corpse:getPosition():sendMagicEffect(CONST_ME_POFF)
@@ -292,32 +292,32 @@ local toolToCorpseIdToSpecialAction = {
 		return true
 	end,
 	[10735] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getItemCount(11699) > 0 and player:getStorageValue(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 1 then
+		if player:getItemCount(11699) > 0 and player:getStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 1 then
 			player:say("The plant feels cold but dry and very soft. You streak the plant gently with your knife and put a fragment in the almanach.", TALKTYPE_MONSTER_SAY)
-			player:setStorageValue(Storage.Quest.U8_6.AnInterestInBotany.Questline, 2)
+			player:setStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline, 2)
 			return true
 		end
 	end,
 	[10697] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getItemCount(11699) > 0 and player:getStorageValue(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 2 then
+		if player:getItemCount(11699) > 0 and player:getStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 2 then
 			player:say("You cut a leaf from a branch and put it in the almanach. It smells strangely sweet and awfully bitter at the same time.", TALKTYPE_MONSTER_SAY)
-			player:setStorageValue(Storage.Quest.U8_6.AnInterestInBotany.Questline, 3)
+			player:setStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline, 3)
 			return true
 		end
 	end,
 	[8181] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValue(789100) <= 1 then
+		if player:getStorageValueByKey(789100) <= 1 then
 			player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
 			player:addItem(954, 1)
-			player:setStorageValue(789100, 1)
+			player:setStorageValueByKey(789100, 1)
 			return true
 		end
 	end,
 	[8182] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValue(789100) <= 1 then
+		if player:getStorageValueByKey(789100) <= 1 then
 			player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
 			player:addItem(954, 1)
-			player:setStorageValue(789100, 2)
+			player:setStorageValueByKey(789100, 2)
 			return true
 		end
 	end,
@@ -327,12 +327,12 @@ local toolToCorpseIdToSpecialAction = {
 		return true
 	end,
 	[12816] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValue(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned) > os.time() then
+		if player:getStorageValueByKey(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned) > os.time() then
 			player:sendCancelMessage("You already used your knife on the corpse.")
 			return true
 		end
 
-		player:setStorageValue(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned, os.time() + 4 * 60 * 60)
+		player:setStorageValueByKey(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned, os.time() + 4 * 60 * 60)
 		player:say("Happy Halloween!", TALKTYPE_MONSTER_SAY)
 		player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
 		player:addAchievement("Mutated Presents")

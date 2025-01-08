@@ -15,7 +15,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if creature:getStorageValue(cStorages[item.uid]) ~= 1 then
+	if creature:getStorageValueByKey(cStorages[item.uid]) ~= 1 then
 		creature:teleportTo(Position(6126, 1797, 12))
 		creature:say("A ty dokad?", TALKTYPE_MONSTER_SAY)
 	end
@@ -25,7 +25,8 @@ end
 movement:type("stepin")
 
 for i, v in pairs(cStorages) do
-	movement:uid(i)
+	movement:key(i)
 end
 
 movement:register()
+

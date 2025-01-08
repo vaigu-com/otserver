@@ -21,10 +21,10 @@ local rewards = {
 local outfits = { 1322, 1323 }
 
 local function addOutfits(player)
-	if player:getStorageValue(Storage.Quest.U12_40.SoulWar.OutfitReward) < 0 then
+	if player:getStorageValueByKey(Storage.Quest.U12_40.SoulWar.OutfitReward) < 0 then
 		player:addOutfit(outfits[1], 0)
 		player:addOutfit(outfits[2], 0)
-		player:setStorageValue(Storage.Quest.U12_40.SoulWar.OutfitReward, 1)
+		player:setStorageValueByKey(Storage.Quest.U12_40.SoulWar.OutfitReward, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations you received the Revenant Outfit.")
 	end
 end
@@ -37,10 +37,10 @@ function rewardSoulWar.onUse(creature, item, fromPosition, target, toPosition, i
 	if not player then
 		return false
 	end
-	if player:getStorageValue(Storage.Quest.U12_40.SoulWar.QuestReward) < 0 then
+	if player:getStorageValueByKey(Storage.Quest.U12_40.SoulWar.QuestReward) < 0 then
 		player:addItem(rewardItem.id, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. rewardItem.name .. ".")
-		player:setStorageValue(Storage.Quest.U12_40.SoulWar.QuestReward, 1)
+		player:setStorageValueByKey(Storage.Quest.U12_40.SoulWar.QuestReward, 1)
 		addOutfits(player)
 		return true
 	else
@@ -59,7 +59,7 @@ rewardSoulWar:register()
 local phantasmalJadeMount = Action()
 function phantasmalJadeMount.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local storage = Storage.Quest.U12_40.SoulWar.MountReward
-	if player:getStorageValue(storage) == 1 then
+	if player:getStorageValueByKey(storage) == 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already have Phantasmal Jade mount!")
 		return false
 	end
@@ -71,7 +71,7 @@ function phantasmalJadeMount.onUse(player, item, fromPosition, target, toPositio
 			player:removeItem(34073, 1)
 			player:removeItem(34074, 1)
 			player:addMount(167)
-			player:setStorageValue(storage, 1)
+			player:setStorageValueByKey(storage, 1)
 			player:addAchievement("You got Horse Power")
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations! You won Phantasmal Jade mount.")
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations! You won You got Horse Power achievement.")

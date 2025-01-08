@@ -88,6 +88,8 @@ std::string LuaFunctionsLoader::getErrorDesc(ErrorCode_t code) {
 			return "TalkAction not found";
 		case LUA_ERROR_ZONE_NOT_FOUND:
 			return "Zone not found";
+		case LUA_ERROR_SHOP_NOT_FOUND:
+			return "Shop not found";
 		default:
 			return "Bad error code";
 	}

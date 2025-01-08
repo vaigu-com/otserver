@@ -98,7 +98,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say(config[1], npc, creature)
 	elseif MsgContains(message, "help") or MsgContains(message, "pomoc") then
 		if player:getLevel() >= 60 then
-			if player:getStorageValue(Storage.TheDreamCourts.QuestLine) < 1 then
+			if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) < 1 then
 				npcHandler:say(config[2], npc, creature)
 				npcHandler:setTopic(playerId, 1)
 			else
@@ -119,8 +119,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:setTopic(playerId, 4)
 	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 4 then
 		npcHandler:say(config[8], npc, creature)
-		if player:getStorageValue(Storage.TheDreamCourts.QuestLine) < 1 then
-			player:setStorageValue(Storage.TheDreamCourts.QuestLine, 1)
+		if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) < 1 then
+			player:setStorageValueByKey(Storage.TheDreamCourts.QuestLine, 1)
 		end
 		npcHandler:setTopic(playerId, 0)
 	end

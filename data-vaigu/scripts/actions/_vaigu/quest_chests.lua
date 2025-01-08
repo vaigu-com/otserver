@@ -42,7 +42,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- Local Variables --
 	local questChest = item:getUniqueId()
 	-- Check if player has already opened box --
-	if player:getStorageValue(questChest) == 1 then
+	if player:getStorageValueByKey(questChest) == 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, config["ALREADY_OPENED"])
 		return true
 	end
@@ -56,7 +56,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- storages
 	local storageId = questChests[questChest].storageId
 	if questChests[questChest].storageId then
-		if player:getStorageValue(questChests[questChest].storageId) <= 0 then
+		if player:getStorageValueByKey(questChests[questChest].storageId) <= 0 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, config["STORAGE_WRONG"])
 			return true
 		end
@@ -147,11 +147,12 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 	end
 	-- Add in any cooldowns/storages --
-	player:setStorageValue(questChest, 1)
+	player:setStorageValueByKey(questChest, 1)
 	return true
 end
 
 for uniqueRange = 5000, 5100 do
-	action:uid(uniqueRange)
+	action:key(uniqueRange)
 end
 action:register()
+

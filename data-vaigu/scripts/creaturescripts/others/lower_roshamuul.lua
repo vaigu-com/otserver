@@ -11,7 +11,7 @@ function lowerRoshamuul.onDeath(creature, _corpse, _lastHitKiller, mostDamageKil
 	end
 
 	onDeathForParty(creature, mostDamageKiller, function(creature, player)
-		player:setStorageValue(monster, math.max(0, player:getStorageValue(monster)) + 1)
+		player:setStorageValueByKey(monster, math.max(0, player:getStorageValueByKey(monster)) + 1)
 	end)
 	return true
 end

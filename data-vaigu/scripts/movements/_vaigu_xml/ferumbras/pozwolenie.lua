@@ -5,7 +5,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	if not player then
 		return true
 	end
-	if player:getStorageValue(Storage.ElementalSphere.QuestLine) == 3 then
+	if player:getStorageValueByKey(Storage.ElementalSphere.QuestLine) == 3 then
 		player:teleportTo(Position(6219, 985, 8)) --{x = 7107, y = 1657, z = 13}
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

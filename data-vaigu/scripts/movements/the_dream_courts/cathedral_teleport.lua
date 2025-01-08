@@ -18,11 +18,11 @@ function greenteleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if (player:getStorageValue(Storage.TheDreamCourts.Tukh1)) == 1 and (player:getStorageValue(Storage.TheDreamCourts.Tukh2) == 1) then
+	if (player:getStorageValueByKey(Storage.TheDreamCourts.Tukh1)) == 1 and (player:getStorageValueByKey(Storage.TheDreamCourts.Tukh2) == 1) then
 		player:teleportTo(targetPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		if player:getStorageValue(Storage.TheDreamCourts.StrickenMission) == 2 then
-			player:setStorageValue(Storage.TheDreamCourts.StrickenMission, 3)
+		if player:getStorageValueByKey(Storage.TheDreamCourts.StrickenMission) == 2 then
+			player:setStorageValueByKey(Storage.TheDreamCourts.StrickenMission, 3)
 		end
 	else
 		player:teleportTo(fromPosition)
@@ -34,7 +34,7 @@ end
 greenteleport:type("stepin")
 
 for index, value in pairs(setting) do
-	greenteleport:aid(index)
+	greenteleport:key(index)
 end
 
 greenteleport:register()

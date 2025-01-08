@@ -3,19 +3,19 @@ local bosses = {
 		status = 2,
 		rewardStorage = Storage.BigfootBurden.Warzone1Reward,
 		timerStorage = Storage.BigfootBurden.DeathstrikeTimer,
-		SpawnedStorage = GlobalStorage.DeathstrikeSpawned,
+		SpawnedStorage = Storage.DeathstrikeSpawned,
 	},
 	["gnomevil"] = {
 		status = 3,
 		rewardStorage = Storage.BigfootBurden.Warzone2Reward,
 		timerStorage = Storage.BigfootBurden.GnomevilTimer,
-		SpawnedStorage = GlobalStorage.GnomevilSpawned,
+		SpawnedStorage = Storage.GnomevilSpawned,
 	},
 	["abyssador"] = {
 		status = 4,
 		rewardStorage = Storage.BigfootBurden.Warzone3Reward,
 		timerStorage = Storage.BigfootBurden.AbyssadorTimer,
-		SpawnedStorage = GlobalStorage.AbyssadorSpawned,
+		SpawnedStorage = Storage.AbyssadorSpawned,
 	},
 }
 
@@ -33,14 +33,14 @@ function creatureevent.onDeath(creature)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValue(Storage.BigfootBurden.WarzoneStatus) < bossConfig.status then
-			player:setStorageValue(Storage.BigfootBurden.WarzoneStatus, bossConfig.status)
+		if player:getStorageValueByKey(Storage.BigfootBurden.WarzoneStatus) < bossConfig.status then
+			player:setStorageValueByKey(Storage.BigfootBurden.WarzoneStatus, bossConfig.status)
 		end
-		player:setStorageValue(bossConfig.timerStorage, os.time() + 20 * 3600)
-		player:setStorageValue(bossConfig.rewardStorage, 1)
+		player:setStorageValueByKey(bossConfig.timerStorage, os.time() + 20 * 3600)
+		player:setStorageValueByKey(bossConfig.rewardStorage, 1)
 	end)
 
-	Game.setStorageValue(bossConfig.SpawnedStorage, 0)
+	Game.setStorageValueByKey(bossConfig.SpawnedStorage, 0)
 end
 
 creatureevent:register()

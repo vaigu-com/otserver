@@ -2,7 +2,7 @@ local quest = Quest(LOCALIZERS.NONE)
 quest
 	:Storage(function()
 		Storage.SpecialStepins = {
-			DontAllowDiagonal = NextStorage(),
+			DontAllowDiagonal = {},
 		}
 	end)
 	:Script(function(missionState)
@@ -21,7 +21,7 @@ quest
 			return true
 		end
 		noDiagonal:type("stepin")
-		noDiagonal:aid(Storage.SpecialStepins.DontAllowDiagonal)
+		noDiagonal:key(Storage.SpecialStepins.DontAllowDiagonal)
 		noDiagonal:register()
 	end)
 	:Register()

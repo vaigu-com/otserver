@@ -1,8 +1,8 @@
 local creatureevent = CreatureEvent("PlagirathDeath")
 
 function creatureevent.onDeath(creature)
-	if Game.getStorageValue(GlobalStorage.Ferumbras.PlagirathTp) < os.time() then
-		Game.setStorageValue(GlobalStorage.Ferumbras.PlagirathTp, os.time() + 3 * 60)
+	if Game.getStorageValueByKey(Storage.Ferumbras.PlagirathTp) < os.time() then
+		Game.setStorageValueByKey(Storage.Ferumbras.PlagirathTp, os.time() + 3 * 60)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)

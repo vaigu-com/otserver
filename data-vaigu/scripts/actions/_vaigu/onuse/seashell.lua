@@ -10,7 +10,7 @@ local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getLevel() >= 1 then
-		if player:getStorageValue(Storage.Seashell) >= os.time() then
+		if player:getStorageValueByKey(Storage.Seashell) >= os.time() then
 			return player:say("Dzis juz ja sprawdzilem..", TALKTYPE_MONSTER_SAY)
 		end
 		local szansa = math.random(100)
@@ -36,7 +36,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		fromPosition:sendMagicEffect(CONST_ME_POFF)
 		item:transform(21799)
 		addEvent(revertCask, 1 * 60 * 1000, toPosition)
-		player:setStorageValue(Storage.Seashell, os.time() + 20 * 3600)
+		player:setStorageValueByKey(Storage.Seashell, os.time() + 20 * 3600)
 		return true
 	else
 		player:sendCancelMessage("Musisz posiadac 30 poziom, by uzyc muszli.")

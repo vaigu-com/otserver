@@ -57,7 +57,7 @@ function getTitle(uid)
 	end
 
 	for i = #titles, 1, -1 do
-		if player:getStorageValue(titles[i].storageID) == 1 then
+		if player:getStorageValueByKey(titles[i].storageID) == 1 then
 			return titles[i].title
 		end
 	end
@@ -91,14 +91,8 @@ function getTimeInWords(secsParam)
 	return timeStr
 end
 
-function getLootRandom(modifier)
-	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * BONUS_LOOT) * (modifier or 1)
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
-end
-
-function getLootRandom13(modifier)
-	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * 1.3) * (modifier or 1)
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
+function getLootRandom(lootMultiplier)
+	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, lootMultiplier)
 end
 
 local start = os.time()
@@ -121,12 +115,10 @@ function getJackLastMissionState(player)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TibiaTales.JackFutureQuest.LastMissionState) == 1 then
-		return "You told Jack the truth about his personality. You also explained that you and Spectulus \z
-		made a mistake by assuming him as the real Jack."
+	if player:getStorageValueByKey(Storage.TibiaTales.JackFutureQuest.LastMissionState) == 1 then
+		return "You told Jack the truth about his personality. You also explained that you and Spectulus made a mistake by assuming him as the real Jack."
 	else
-		return "You lied to the confused Jack about his true personality. You and Spectulus made him \z
-		believe that he is in fact a completely different person. Now he will never be able to find out the truth."
+		return "You lied to the confused Jack about his true personality. You and Spectulus made him believe that he is in fact a completely different person. Now he will never be able to find out the truth."
 	end
 end
 
@@ -284,7 +276,7 @@ function clearBossRoom(playerId, centerPosition, onlyPlayers, rangeX, rangeY, ex
 	end
 end
 
-function clearRoom(centerPosition, rangeX, rangeY, resetGlobalStorage)
+function clearRoom(centerPosition, rangeX, rangeY, resetStorage)
 	local spectators, spectator = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
 	for i = 1, #spectators do
 		spectator = spectators[i]
@@ -292,8 +284,8 @@ function clearRoom(centerPosition, rangeX, rangeY, resetGlobalStorage)
 			spectator:remove()
 		end
 	end
-	if resetGlobalStorage ~= nil and Game.getStorageValue(resetGlobalStorage) == 1 then
-		Game.setStorageValue(resetGlobalStorage, -1)
+	if resetStorage ~= nil and Game.getStorageValueByKey(resetStorage) == 1 then
+		Game.setStorageValueByKey(resetStorage, -1)
 	end
 end
 
@@ -324,7 +316,7 @@ function clearForgotten(fromPosition, toPosition, exitPosition, storage)
 			end
 		end
 	end
-	Game.setStorageValue(storage, 0)
+	Game.setStorageValueByKey(storage, 0)
 end
 
 function isValidMoney(money)
@@ -342,15 +334,15 @@ function iterateArea(func, from, to)
 end
 
 function resetFerumbrasAscendantHabitats()
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Corrupted, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Desert, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Dimension, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Grass, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Ice, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Mushroom, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Roshamuul, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Venom, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.AllHabitats, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Corrupted, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Desert, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Dimension, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Grass, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Ice, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Mushroom, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Roshamuul, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Venom, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.AllHabitats, 0)
 
 	for _, spec in pairs(Game.getSpectators(Position(33629, 32693, 12), false, false, 25, 25, 85, 85)) do
 		if spec:isPlayer() then
@@ -455,7 +447,7 @@ function placeSpawnRandom(fromPositon, toPosition, monsterName, ammount, hasCall
 						tile:getTopCreature():remove()
 					end
 				else
-					if tile and tile:getTopCreature() and tile:getTopCreature():isMonster() and tile:getTopCreature():getStorageValue(storage) == value then
+					if tile and tile:getTopCreature() and tile:getTopCreature():isMonster() and tile:getTopCreature():getStorageValueByKey(storage) == value then
 						tile:getTopCreature():remove()
 					end
 				end
@@ -616,7 +608,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 			if monsterName ~= "" then
 				for _, pid in pairs(monster) do
 					if pid:isMonster() then
-						if pid:getStorageValue("playername") == playername then
+						if pid:getStorageValueByKey("playername") == playername then
 							pid:remove()
 						end
 					end
@@ -639,7 +631,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 			if monsterName ~= "" then
 				for _, pid in pairs(monster) do
 					if pid:isMonster() then
-						if pid:getStorageValue("playername") == playername then
+						if pid:getStorageValueByKey("playername") == playername then
 							pid:remove()
 						end
 					end

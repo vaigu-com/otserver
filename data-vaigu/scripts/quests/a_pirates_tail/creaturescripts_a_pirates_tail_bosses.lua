@@ -5,8 +5,8 @@ function tentuglysHeadDeath.onDeath(creature, corpse, killer, mostDamage, unjust
 
 	for key, value in pairs(damageMap) do
 		local player = Player(key)
-		if player and player:getStorageValue(Storage.Quest.U12_60.APiratesTail.TentuglyKilled) < 1 then
-			player:setStorageValue(Storage.Quest.U12_60.APiratesTail.TentuglyKilled, 1) -- Access to wreckoning
+		if player and player:getStorageValueByKey(Storage.Quest.U12_60.APiratesTail.TentuglyKilled) < 1 then
+			player:setStorageValueByKey(Storage.Quest.U12_60.APiratesTail.TentuglyKilled, 1) -- Access to wreckoning
 			player:addMount(175)
 		end
 	end

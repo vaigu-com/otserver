@@ -41,7 +41,7 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 end
 
 function Player:isOnEvent()
-	if self:getStorageValue(Storage.GrimEvent.Joined) >= 1 or self:getStorageValue(Storage.hasteLock) == 1 or self:getStorageValue(Storage.healLock) == 1 then
+	if self:getStorageValueByKey(Storage.GrimEvent.Joined) >= 1 or self:getStorageValueByKey(Storage.hasteLock) == 1 or self:getStorageValueByKey(Storage.healLock) == 1 then
 		return true
 	end
 end
@@ -151,7 +151,7 @@ function SimpleTextDisplay(player, item, message)
 		if item then
 			return item:getActionId()
 		end
-		return NextStorage()
+		return {}
 	end
 
 	player:registerEvent("SimpleDisplayOnLook")

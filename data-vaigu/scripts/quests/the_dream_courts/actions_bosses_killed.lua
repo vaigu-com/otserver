@@ -15,7 +15,7 @@ function bossesDreamCourts.onDeath(creature)
 	end
 	onDeathForDamagingPlayers(creature, function(creature, player)
 		if bossConfig.storage then
-			player:setStorageValue(bossConfig.storage, 1)
+			player:setStorageValueByKey(bossConfig.storage, 1)
 		end
 	end)
 	return true

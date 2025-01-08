@@ -15,13 +15,13 @@ int LookFunctions::luaCreateLook(lua_State* L) {
 
 int LookFunctions::luaLookOnLook(lua_State* L) {
 	// look:onLook(callback)
-	const auto action = getUserdataShared<Look>(L, 1);
-	if (action) {
-		if (!action->loadCallback()) {
+	const auto look = getUserdataShared<Look>(L, 1);
+	if (look) {
+		if (!look->loadCallback()) {
 			pushBoolean(L, false);
 			return 1;
 		}
-		action->setLoadedCallback(true);
+		look->setLoadedCallback(true);
 		pushBoolean(L, true);
 	} else {
 		reportErrorFunc(getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
@@ -32,13 +32,13 @@ int LookFunctions::luaLookOnLook(lua_State* L) {
 
 int LookFunctions::luaLookRegister(lua_State* L) {
 	// look:register()
-	const auto action = getUserdataShared<Look>(L, 1);
-	if (action) {
-		if (!action->isLoadedCallback()) {
+	const auto look = getUserdataShared<Look>(L, 1);
+	if (look) {
+		if (!look->isLoadedCallback()) {
 			pushBoolean(L, false);
 			return 1;
 		}
-		pushBoolean(L, g_looks().registerLuaEvent(action));
+		pushBoolean(L, g_looks().registerLuaEvent(look));
 		pushBoolean(L, true);
 	} else {
 		reportErrorFunc(getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
@@ -49,15 +49,15 @@ int LookFunctions::luaLookRegister(lua_State* L) {
 
 int LookFunctions::luaLookItemId(lua_State* L) {
 	// look:id(ids)
-	const auto action = getUserdataShared<Look>(L, 1);
-	if (action) {
+	const auto look = getUserdataShared<Look>(L, 1);
+	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
 			for (int i = 0; i < parameters; ++i) {
-				action->setItemIdsVector(getNumber<uint16_t>(L, 2 + i));
+				look->setItemIdsVector(getNumber<uint16_t>(L, 2 + i));
 			}
 		} else {
-			action->setItemIdsVector(getNumber<uint16_t>(L, 2));
+			look->setItemIdsVector(getNumber<uint16_t>(L, 2));
 		}
 		pushBoolean(L, true);
 	} else {
@@ -69,15 +69,15 @@ int LookFunctions::luaLookItemId(lua_State* L) {
 
 int LookFunctions::luaLookActionId(lua_State* L) {
 	// look:aid(aids)
-	const auto action = getUserdataShared<Look>(L, 1);
-	if (action) {
+	const auto look = getUserdataShared<Look>(L, 1);
+	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
 			for (int i = 0; i < parameters; ++i) {
-				action->setActionIdsVector(getNumber<uint16_t>(L, 2 + i));
+				look->setActionIdsVector(getNumber<uint16_t>(L, 2 + i));
 			}
 		} else {
-			action->setActionIdsVector(getNumber<uint16_t>(L, 2));
+			look->setActionIdsVector(getNumber<uint16_t>(L, 2));
 		}
 		pushBoolean(L, true);
 	} else {
@@ -89,15 +89,15 @@ int LookFunctions::luaLookActionId(lua_State* L) {
 
 int LookFunctions::luaLookUniqueId(lua_State* L) {
 	// look:uid(uids)
-	const auto action = getUserdataShared<Look>(L, 1);
-	if (action) {
+	const auto look = getUserdataShared<Look>(L, 1);
+	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
 			for (int i = 0; i < parameters; ++i) {
-				action->setUniqueIdsVector(getNumber<uint16_t>(L, 2 + i));
+				look->setUniqueIdsVector(getNumber<uint16_t>(L, 2 + i));
 			}
 		} else {
-			action->setUniqueIdsVector(getNumber<uint16_t>(L, 2));
+			look->setUniqueIdsVector(getNumber<uint16_t>(L, 2));
 		}
 		pushBoolean(L, true);
 	} else {
@@ -165,6 +165,26 @@ int LookFunctions::luaLookPosition(lua_State* L) {
 	}
 
 	pushBoolean(L, true);
+	return 1;
+}
+
+int LookFunctions::luaLookKey(lua_State* L) {
+	// look:key(keys)
+	const auto look = getUserdataShared<Look>(L, 1);
+	if (look) {
+		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
+		if (parameters > 1) {
+			for (int i = 0; i < parameters; ++i) {
+				look->setKeysVector(getString(L, 2 + i));
+			}
+		} else {
+			look->setKeysVector(getString(L, 2));
+		}
+		pushBoolean(L, true);
+	} else {
+		reportErrorFunc(getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
+		pushBoolean(L, false);
+	}
 	return 1;
 }
 

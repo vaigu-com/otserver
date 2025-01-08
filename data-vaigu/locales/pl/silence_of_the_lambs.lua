@@ -18,15 +18,15 @@ return {
 	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
 	["Rub Meat With Lecter"] = "Gotuj z Lecterem",
 	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
-		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
+		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanLivers) })
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "W zamian za przysluge, zostales przyjety do klubu kanibali, i zyskales ich stroj.",
 	["Hearts collected"] = "Ludzkie serca",
 	["Hearts collected Status"] = function(context)
-		return string.format("Liczba uzbieranych serc: %d / 15", context.player:getStorageValue(11074))
+		return string.format("Liczba uzbieranych serc: %d / 15", context.player:getStorageValueByKey(11074))
 	end,
 	["Livers collected"] = "Ludzkie watroby",
 	["Livers collected Status"] = function(context)
-		return string.format("Liczba uzbieranych watrob: %d / 20", context.player:getStorageValue(11075))
+		return string.format("Liczba uzbieranych watrob: %d / 20", context.player:getStorageValueByKey(11075))
 	end,
 }

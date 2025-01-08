@@ -4,16 +4,14 @@ if not LastQuestlogUpdate then
 	LastQuestlogUpdate = {}
 end
 
-if not PlayerTrackedMissionsData then
-	PlayerTrackedMissionsData = {}
-end
+PlayerTrackedMissionsData = {}
 
 -- Game functions
 function Player.isTrackingMissionState(self, mission)
 	local trackedQuests = PlayerTrackedMissionsData[self:getId()]
 	if trackedQuests then
 		for _, otherMission in pairs(trackedQuests) do
-			if otherMission.storage == mission.storage then
+			if otherMission.missionId == mission.missionId then
 				return true
 			end
 		end
@@ -27,17 +25,30 @@ function Game.getQuestByMission(mission)
 	end
 	for _, quest in pairs(Quests) do
 		for _, otherMission in pairs(quest.missions) do
-			if otherMission.storage == mission.storage then
+			if otherMission.missionId == mission.missionId then
 				return quest
 			end
 		end
 	end
 end
 
+IdToQuest = {}
+function Game.getQuestById(id)
+	return IdToQuest[id]
+end
+IdToMission = {}
+function Game.getMissionById(id)
+	return IdToMission[id]
+end
+StorageToMission = {}
+function Game.getMissionByStorage(storage)
+	return StorageToMission[storage]
+end
 local storageToLinkedMission = {}
 function Game.getLinkedMissions(storage)
 	return storageToLinkedMission[storage] or {}
 end
+
 --Associates each storage with mission that has missionStorage
 --This allows to update this mission text when updating those other storage values
 function Game.linkMissionToStorages(missionStorage, storages)
@@ -53,34 +64,34 @@ function Game.linkMissionToStorages(missionStorage, storages)
 	end
 end
 
-StorageToMission = {}
-function Game.getMissionByStorage(storage)
-	return StorageToMission[storage]
-end
-
-function Player.resetTrackedMissions(self, missionStorages)
+Storage.TrackedQuestIds = {}
+function Player.resetTrackedMissions(self, missionIds)
+	local trackedQuests = {}
 	local maxAllowed = self:getAllowedTrackedQuestCount()
-	PlayerTrackedMissionsData[self:getId()] = {}
-	for _, storage in pairs(missionStorages) do
-		local mission = Game.getMissionByStorage(storage)
+	for _, missionId in pairs(missionIds) do
+		local mission = Game.getMissionById(missionId)
 		local quest = Game.getQuestByMission(mission)
-		if Game.isQuestStorage(storage) and self:isMissionOngoing(mission) then
+		if not mission then
+			logger.warn(T("[Player::resetTrackedMissions] Player :name: is sending missionId of non-existant mission"))
+		end
+		if Game.isQuestStorage(mission.storage) and self:isMissionOngoing(mission) then
 			local data = {
-				storage = storage,
+				missionId = mission.missionId,
 				questName = self:getTranslatedQuestName(quest),
 				missionName = self:getTranslatedMissionName(mission),
 				missionDesc = self:getTranslatedMissionDescription(mission),
 			}
-			table.insert(PlayerTrackedMissionsData[self:getId()], data)
-			if #PlayerTrackedMissionsData[self:getId()] >= maxAllowed then
+			table.insert(trackedQuests, data)
+			if #trackedQuests >= maxAllowed then
 				break
 			end
 		end
 	end
 
-	local selfTrackedQuests = PlayerTrackedMissionsData[self:getId()]
-	local remainingSlots = maxAllowed - #selfTrackedQuests
-	self:sendTrackedQuests(remainingSlots, selfTrackedQuests)
+	PlayerTrackedMissionsData[self:getId()] = trackedQuests
+	self:kv():set(Storage.TrackedQuestIds, missionIds)
+	local remainingSlots = maxAllowed - #trackedQuests
+	self:sendTrackedQuests(remainingSlots, trackedQuests)
 end
 
 function Player.getAllowedTrackedQuestCount(self)
@@ -91,17 +102,7 @@ function Player.getAllowedTrackedQuestCount(self)
 end
 
 function Game.isQuestStorage(storage)
-	for _, quest in pairs(Quests) do
-		if not quest.missions then
-			goto continue
-		end
-
-		if quest.missions[storage] then
-			return true
-		end
-		::continue::
-	end
-	return false
+	return Game.getMissionByStorage(storage)
 end
 
 function Game.calculateOngoingQuestsCount(player)
@@ -154,7 +155,7 @@ function Player.isMissionOngoing(self, mission)
 		return false
 	end
 
-	local state = self:getStorageValue(mission.storage)
+	local state = self:kv():get(mission.storage) or -1
 	if state == MISSION_NOT_STARTED and mission.states and mission.states[MISSION_NOT_STARTED] then
 		return true
 	end
@@ -190,7 +191,7 @@ function Player.isMissionCompleted(self, mission)
 		return false
 	end
 
-	local state = self:getStorageValue(mission.storage)
+	local state = self:kv():get(mission.storage) or -1
 	if state == mission.finishedState then
 		return true
 	end
@@ -237,7 +238,7 @@ function Player.getTranslatedMissionDescription(self, mission)
 	end
 
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
-	local state = self:getStorageValue(mission.storage)
+	local state = self:kv():get(mission.storage) or -1
 	local description = mission.description
 	if mission.states and mission.states[state] then
 		description = mission.states[state]
@@ -250,9 +251,9 @@ function Player.sendQuestLogMainPage(self)
 	local msg = NetworkMessage()
 	msg:addByte(0xF0)
 	msg:addU16(Game.calculateOngoingQuestsCount(self))
-	for questId, quest in pairs(Quests) do
+	for _, quest in pairs(Quests) do
 		if self:isQuestOngoing(quest) then
-			msg:addU16(questId)
+			msg:addU16(quest.questId)
 			local translatedQuestName = self:Localizer(quest.localizer):Get(quest.name)
 			if self:isQuestCompleted(quest) then
 				translatedQuestName = translatedQuestName .. " (completed)"
@@ -266,7 +267,7 @@ function Player.sendQuestLogMainPage(self)
 end
 
 function Player.sendQuestline(self, questId)
-	local quest = Quests[questId]
+	local quest = Game.getQuestById(questId)
 	if not quest then
 		return
 	end
@@ -279,7 +280,7 @@ function Player.sendQuestline(self, questId)
 	for _, mission in pairs(missions) do
 		if self:isMissionOngoing(mission) then
 			if self:getClient().version >= 1200 then
-				msg:addU16(mission.storage)
+				msg:addU16(mission.missionId)
 			end
 			msg:addString(self:getTranslatedMissionName(mission), "Player.sendQuestline - self:getMissionName(questId, missionId)")
 			msg:addString(self:getTranslatedMissionDescription(mission), "Player.sendQuestline - self:getMissionDescription(questId, missionId)")
@@ -290,14 +291,14 @@ function Player.sendQuestline(self, questId)
 	msg:delete()
 end
 
-function Player.sendTrackedQuests(self, remainingQuests, missions)
+function Player.sendTrackedQuests(self, remainingTrackingSlots, missions)
 	local msg = NetworkMessage()
 	msg:addByte(0xD0)
 	msg:addByte(0x01)
-	msg:addByte(remainingQuests)
+	msg:addByte(remainingTrackingSlots)
 	msg:addByte(#missions)
 	for _, mission in ipairs(missions) do
-		msg:addU16(mission.storage)
+		msg:addU16(mission.missionId)
 		msg:addString(mission.questName, "Player.sendTrackedQuests - mission.questName")
 		msg:addString(mission.missionName, "Player.sendTrackedQuests - mission.missionName")
 		msg:addString(mission.missionDesc, "Player.sendTrackedQuests - mission.missionDesc")
@@ -310,7 +311,7 @@ function Player.sendTrackedMission(self, mission)
 	local msg = NetworkMessage()
 	msg:addByte(0xD0)
 	msg:addByte(0x00)
-	msg:addU16(mission.storage)
+	msg:addU16(mission.missionId)
 	msg:addString(mission.missionName, "Player.sendTrackedMission - mission.missionName")
 	msg:addString(mission.missionDesc, "Player.sendTrackedMission - mission.missionDesc")
 	msg:sendToPlayer(self)
@@ -330,11 +331,11 @@ local function questUpdateIsAnnouncable(key, value, oldValue)
 	return true
 end
 
-function Player.updateStorage(self, storage, value, oldValue, currentFrameTime)
+function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTime)
 	local playerId = self:getId()
 	if LastQuestlogUpdate[playerId] ~= currentFrameTime and Game.isQuestStorage(storage) then
 		LastQuestlogUpdate[playerId] = currentFrameTime
-		if questUpdateIsAnnouncable(storage, value, oldValue) then
+		if questUpdateIsAnnouncable(storage, nextValue, oldValue) then
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your questlog has been updated.")
 		end
 	end
@@ -342,7 +343,7 @@ function Player.updateStorage(self, storage, value, oldValue, currentFrameTime)
 	local mission = Game.getMissionByStorage(storage)
 	if mission and self:isTrackingMissionState(mission) then
 		local translatedMission = {
-			storage = mission.storage,
+			missionId = mission.missionId,
 			missionName = self:getTranslatedMissionName(mission),
 			missionDesc = self:getTranslatedMissionDescription(mission),
 		}
@@ -353,7 +354,7 @@ function Player.updateStorage(self, storage, value, oldValue, currentFrameTime)
 	for _, linkedMission in pairs(linkedMissions) do
 		if self:isTrackingMissionState(linkedMission) then
 			local translatedMission = {
-				storage = linkedMission.storage,
+				missionId = linkedMission.missionId,
 				missionName = self:getTranslatedMissionName(linkedMission),
 				missionDesc = self:getTranslatedMissionDescription(linkedMission),
 			}
@@ -365,9 +366,9 @@ end
 function Player.sendTrackedMissions(self)
 	for _, quest in pairs(Quests) do
 		for _, mission in pairs(quest.missions) do
-			if self:isTrackingMission(mission) then
+			if self:isTrackingMissionState(mission) then
 				local translatedMission = {
-					storage = mission.storage,
+					missionId = mission.missionId,
 					missionName = self:getTranslatedMissionName(mission),
 					missionDesc = self:getTranslatedMissionDescription(mission),
 				}

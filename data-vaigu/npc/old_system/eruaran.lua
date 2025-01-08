@@ -188,11 +188,11 @@ local function greetCallback(npc, creature)
 	local player = Player(creature)
 	local playerId = player:getId()
 
-	if player:getStorageValue(Storage.EruaranGreeting) > 0 then
+	if player:getStorageValueByKey(Storage.EruaranGreeting) > 0 then
 		npcHandler:setMessage(MESSAGE_GREET, "Ashari Lillithy, so we meet {again}! What brings you here this time, general {information}, {transform}, {improve}, {create}, {outfit}, or {talk}?")
 	else
 		npcHandler:setMessage(MESSAGE_GREET, "Welcome |PLAYERNAME|.")
-		player:setStorageValue(Storage.EruaranGreeting, 1)
+		player:setStorageValueByKey(Storage.EruaranGreeting, 1)
 	end
 	return true
 end

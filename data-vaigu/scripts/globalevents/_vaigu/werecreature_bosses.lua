@@ -12,7 +12,7 @@ local config = {
 local werebosses = GlobalEvent("were boss creatures")
 function werebosses.onStartup()
 	local rand = math.random(1, 5)
-	Game.setStorageValue(GlobalStorage.WereBoss, rand)
+	Game.setStorageValueByKey(Storage.WereBoss, rand)
 	local bossNames = {
 		[1] = "black vixen",
 		[2] = "sharpclaw",

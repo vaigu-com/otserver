@@ -37,7 +37,7 @@ function deeplingRewards.onUse(player, item, fromPosition, target, toPosition, i
 			return false
 		end
 
-		if player:getStorageValue(reward.storage) ~= 1 then
+		if player:getStorageValueByKey(reward.storage) ~= 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, reward.bossName .. " defends his belongings and will not let you open his chest.")
 			return true
 		end
@@ -59,10 +59,11 @@ function deeplingRewards.onUse(player, item, fromPosition, target, toPosition, i
 			end
 		end
 
-		player:setStorageValue(reward.storage, 0)
+		player:setStorageValueByKey(reward.storage, 0)
 	end
 	return true
 end
 
 deeplingRewards:uid(25610, 25611, 25612)
 deeplingRewards:register()
+

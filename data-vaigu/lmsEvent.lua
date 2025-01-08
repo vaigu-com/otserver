@@ -44,17 +44,17 @@ lmsTeleportTable = {
 }
 
 function getLmsCount()
-	return Game.getStorageValue(lmsConfigTable.joinedCountStorage)
+	return Game.getStorageValueByKey(lmsConfigTable.joinedCountStorage)
 end
 
 function startLMSEvent()
-	local joinedCount = Game.getStorageValue(lmsConfigTable.joinedCountStorage)
+	local joinedCount = Game.getStorageValueByKey(lmsConfigTable.joinedCountStorage)
 	if not joinedCount or (joinedCount < lmsConfigTable.minPlayers) then
 		local specs = Game.getSpectators(lmsConfigTable.waitingRoomPosition.centerPos, false, true, 10, 10, 10, 10)
 		for i = 1, #specs do
-			if specs[i]:getStorageValue(lmsConfigTable.joinedStorage) == 1 then
+			if specs[i]:getStorageValueByKey(lmsConfigTable.joinedStorage) == 1 then
 				specs[i]:teleportTo(specs[i]:getTown():getTemplePosition())
-				specs[i]:setStorageValue(lmsConfigTable.joinedStorage, 0)
+				specs[i]:setStorageValueByKey(lmsConfigTable.joinedStorage, 0)
 			end
 		end
 		-- Remove Teleport
@@ -75,7 +75,7 @@ function startLMSEvent()
 		randZ = math.random(lmsConfigTable.lmsRandArenaPostions[1].z, lmsConfigTable.lmsRandArenaPostions[2].z)
 
 		player = players[i]
-		if player:getStorageValue(lmsConfigTable.joinedStorage) == 1 then
+		if player:getStorageValueByKey(lmsConfigTable.joinedStorage) == 1 then
 			player:teleportTo(Position(randX, randY, randZ))
 			player:registerEvent("LMSOnDeath")
 			print(randX, randY, randZ)
@@ -86,11 +86,11 @@ function startLMSEvent()
 	if item then
 		item:remove()
 	end
-	Game.setStorageValue(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_STARTED)
-	Game.broadcastMessage("Last Man Standing wystartowal! " .. Game.getStorageValue(lmsConfigTable.joinedCountStorage) .. " graczy bierze udzial.", MESSAGE_STATUS_WARNING)
+	Game.setStorageValueByKey(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_STARTED)
+	Game.broadcastMessage("Last Man Standing wystartowal! " .. Game.getStorageValueByKey(lmsConfigTable.joinedCountStorage) .. " graczy bierze udzial.", MESSAGE_STATUS_WARNING)
 end
 
 function resetLMSEvent()
-	Game.setStorageValue(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_CLOSED)
-	Game.setStorageValue(lmsConfigTable.joinedCountStorage, 0)
+	Game.setStorageValueByKey(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_CLOSED)
+	Game.setStorageValueByKey(lmsConfigTable.joinedCountStorage, 0)
 end

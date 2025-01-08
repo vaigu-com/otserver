@@ -2,7 +2,7 @@ local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getLevel() >= 30 then
-		if player:getStorageValue(Storage.HydraNest2) >= os.time() then
+		if player:getStorageValueByKey(Storage.HydraNest2) >= os.time() then
 			return player:say("Dzis juz je sprawdzilem..", TALKTYPE_MONSTER_SAY)
 		end
 		local szansa = math.random(100)
@@ -18,7 +18,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		elseif szansa >= 80 then
 			player:addItem(7250, 1) --hydra tongue
 		end
-		player:setStorageValue(Storage.HydraNest2, os.time() + 20 * 3600) --20h
+		player:setStorageValueByKey(Storage.HydraNest2, os.time() + 20 * 3600) --20h
 		fromPosition:sendMagicEffect(CONST_ME_POFF)
 		return true
 	else
@@ -26,5 +26,5 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 end
-action:uid(9031)
+action:aid(9031)
 action:register()

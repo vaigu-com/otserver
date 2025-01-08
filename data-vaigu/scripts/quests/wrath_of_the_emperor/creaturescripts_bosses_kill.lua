@@ -24,7 +24,7 @@ function bossesKill.onDeath(creature)
 		return true
 	end
 
-	Game.setStorageValue(bossConfig.storage, 0)
+	Game.setStorageValueByKey(bossConfig.storage, 0)
 	local tile = Tile(bossConfig.position)
 	if tile then
 		local thing = tile:getItemById(10797)

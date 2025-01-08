@@ -21,6 +21,7 @@ class FileStream;
 #pragma pack(1)
 struct BasicItem {
 	std::string text;
+	std::string key;
 	// size_t description { 0 };
 
 	uint16_t id { 0 };

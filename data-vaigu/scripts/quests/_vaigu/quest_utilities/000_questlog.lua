@@ -10,5 +10,5 @@ function NextMissionId()
 	return NEXT_MISSION_ID
 end
 
-TASKS_QUEST_STORAGE = NextQuestId()
-DAILY_TASK_STORAGE = NextQuestId()
+TASK_QUEST_ID = NextMissionId()
+DAILY_TASK_QUEST_ID = NextMissionId()

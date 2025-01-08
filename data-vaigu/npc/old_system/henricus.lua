@@ -68,12 +68,12 @@ local function creatureSayCallback(npc, creature, type, message)
 			creature
 		)
 	elseif MsgContains(message, "join") or MsgContains(message, "dolacz") then
-		if player:getStorageValue(Storage.TheInquisition.Questline) < 1 then
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) < 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Chcesz dolaczyc do inkwizycji?" or "Do you want to join the inquisition?", npc, creature)
 			npcHandler:setTopic(playerId, 2)
 		end
 	elseif MsgContains(message, "blessing") or MsgContains(message, "bless") or MsgContains(message, "blogoslawienstwo") then
-		if player:getStorageValue(Storage.TheInquisition.Questline) == 25 then -- if quest is done
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 25 then -- if quest is done
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Chcesz otrzymac blogoslawienstwa za " .. totalBlessPrice .. " zlota?" or "Do you want to receive the blessing of the inquisition for " .. totalBlessPrice .. " gold?", npc, creature)
 			npcHandler:setTopic(playerId, 7)
 		else
@@ -81,7 +81,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "flask") or MsgContains(message, "special flask") or MsgContains(message, "flaszka") then
-		if player:getStorageValue(Storage.TheInquisition.Questline) >= 12 then -- give player the ability to purchase the flask.
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) >= 12 then -- give player the ability to purchase the flask.
 			npcHandler:say("Do you want to buy the special flask of holy water for " .. flaskCost .. " gold?", npc, creature)
 			npcHandler:setTopic(playerId, 8)
 		else
@@ -89,10 +89,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "mission") or MsgContains(message, "misje") or MsgContains(message, "misja") then
-		if player:getStorageValue(Storage.TheInquisition.Questline) < 1 then
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) < 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Chcesz dolaczyc do inkwizycji?" or "Do you want to join the inquisition?", npc, creature)
 			npcHandler:setTopic(playerId, 2)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 1 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Zobaczmy wiec, czy jestes tego wart. ...",
 				"Przepytaj straznikow poszczegolnych miast, aby zbadac ich wiernosc i oddanie. Pozniej zdaj mi raport.",
@@ -100,13 +100,13 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Let's see if you are worthy. Take an inquisitor's field guide from the box in the back room. ...",
 				"Follow the instructions in the guide to talk to the Thaian guards that protect the walls and gates of the city and test their loyalty. Then report to me about your {mission}.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 2)
-			player:setStorageValue(Storage.TheInquisition.Mission01, 1) -- The Inquisition Questlog- "Mission 1: Interrogation"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 2)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission01, 1) -- The Inquisition Questlog- "Mission 1: Interrogation"
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 2 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Przepytaj straznikow poszczegolnych miast, aby zdobyc zaufanie. Ukonczyles te misje?" or "Your current mission is to investigate the reliability of certain guards. Are you done with that mission?", npc, creature)
 			npcHandler:setTopic(playerId, 3)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 3 then -- jak ukonczona 2 misja
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 3 then -- jak ukonczona 2 misja
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Mam informacje o dziwnych obrzedach czarownic, ktore przesiaduja gdzies na bagnie, na poludnie od Mirko Town. Przelaza tam podziemnym przejsciem, i mysla ze sa bezpieczne.. ...",
 				"Uzyj fiolki swietej wody, aby zniszczyc ich kociol. Ukradnij tez ich magiczna ksiege i mi przynies.",
@@ -115,11 +115,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Maybe theres another way to enter their hideout. At their meeting place, you'll find a cauldron in which they cook some forbidden brew ...",
 				"Use this vial of holy water to destroy the brew. Also steal their grimoire and bring it to me.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 4) -- to zaczyna trzecia
-			player:setStorageValue(Storage.TheInquisition.Mission02, 1) -- The Inquisition Questlog- "Mission 2: Eclipse"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 4) -- to zaczyna trzecia
+			player:setStorageValueByKey(Storage.TheInquisition.Mission02, 1) -- The Inquisition Questlog- "Mission 2: Eclipse"
 			player:addItem(133, 1)
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 5 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 5 then
 			if player:removeItem(7874, 1) then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Pora sprawdzic twoje mozliwosci. Jeden z naszych sojusznikow potrzebuje wsparcia. Mysle, ze jestes odpowiednia osoba aby mu pomoc ...",
@@ -132,17 +132,17 @@ local function creatureSayCallback(npc, creature, type, message)
 					"So occasionally, we send him help. In return he trains and tests our recruits. It's an advantageous agreement for both sides ...",
 					"You'll find him in dwarven mines north of Mirko Town. He'll tell you about your next mission.",
 				}, npc, creature)
-				player:setStorageValue(Storage.TheInquisition.Questline, 6)
-				player:setStorageValue(Storage.TheInquisition.Mission02, 3) -- The Inquisition Questlog- "Mission 2: Eclipse"
-				player:setStorageValue(Storage.TheInquisition.Mission03, 1) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 6)
+				player:setStorageValueByKey(Storage.TheInquisition.Mission02, 3) -- The Inquisition Questlog- "Mission 2: Eclipse"
+				player:setStorageValueByKey(Storage.TheInquisition.Mission03, 1) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Musisz mi przyniesc 'the witches' grimoire'." or "You need bring me the witches' grimoire.", npc, creature)
 			end
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) > 5 and player:getStorageValue(Storage.TheInquisition.Questline) < 11 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) > 5 and player:getStorageValueByKey(Storage.TheInquisition.Questline) < 11 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Twoim zadaniem jest pomoc pogromcy wampirow, Storkusowi. Ukonczyles te misje?" or "Your current mission is to help the vampire hunter Storkus. Are you done with that mission?", npc, creature)
 			npcHandler:setTopic(playerId, 4)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 11 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 11 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Mam informacje o opuszczonej koloni pirackiej w dzunglii. Znajduja sie tam ruiny, i chcialbym, abys je przebadal. ...",
 				"Przebywaja tam jakies zle moce.. Mysle, ze lepiej wybrac sie tam w nocy, to pomoze je zlokalizowac. Jesli juz je znajdziesz, to uzyj tam fiolki wody swieconej, na pewno je wypedzi.",
@@ -150,14 +150,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				"We've got a report about an abandoned and haunted ruin in north west of jungle. I want you to examine this house. There are some earth elementals around, Im sure youll find it. ...",
 				"There's an evil being somewhere. Use this vial of holy water on that spot to drive out the evil being.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 12)
-			player:setStorageValue(Storage.TheInquisition.Mission04, 1) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 12)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission04, 1) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
 			player:addItem(133, 1)
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 12 or player:getStorageValue(Storage.TheInquisition.Questline) == 13 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 12 or player:getStorageValueByKey(Storage.TheInquisition.Questline) == 13 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Musisz wypedzic zle moce z pirackich ruin. Ukonczyles to zadanie?" or "Your current mission is to exorcise an evil being from a ruin in jungle. Are you done with that mission?", npc, creature)
 			npcHandler:setTopic(playerId, 5)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 14 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 14 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Poradziles sobie z roznymi stworami krazacymi po naszym swiecie. Teraz musisz przygotowac sie do walki z istota zagrazajaca wszelkiemu istnieniu.. Twoje kolejne zadanie nie bedzie proste. ...",
 				"Postaraj sie pokonac troche demonicznych istot, gdziekolwiek je znajdziesz. Przynies mi 20 esencji ich dusz, jako dowod swojego poswiecenia.",
@@ -165,10 +165,10 @@ local function creatureSayCallback(npc, creature, type, message)
 				"You've handled heretics, witches, vampires and ghosts. Now be prepared to face the most evil creatures we are fighting - demons. Your new task is extremely simple, though far from easy. ...",
 				"Go and slay demonic creatures wherever you find them. Bring me 20 of their essences as a proof of your accomplishments.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 15)
-			player:setStorageValue(Storage.TheInquisition.Mission05, 1) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 15)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission05, 1) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 15 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 15 then
 			if player:removeItem(6499, 20) then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Jestes prawdziwym zbawieniem dla wiernych.. Musisz kontynuowac swoja misje. ...",
@@ -177,13 +177,13 @@ local function creatureSayCallback(npc, creature, type, message)
 					"You're indeed a dedicated protector of the true believers. Don't stop now. Kill as many of these creatures as you can. ...",
 					"I also have a reward for your great efforts. Talk to me about your {demon hunter outfit} anytime from now on. Afterwards, let's talk about the next mission that's awaiting you.",
 				}, npc, creature)
-				player:setStorageValue(Storage.TheInquisition.Questline, 16)
-				player:setStorageValue(Storage.TheInquisition.Mission05, 2) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 16)
+				player:setStorageValueByKey(Storage.TheInquisition.Mission05, 2) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Potrzebujesz ich 20." or "You need 20 of them.", npc, creature)
 			end
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 17 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 17 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Mam informacje o czyms bardzo niebezpiecznym, co ma wydarzyc sie na pustyni. Demony cos tam przygotowuja ...",
 				"Cos, co jest zagrozeniem dla nas wszystkich. Naszym sledczym udalo sie ustalic troche informacji, jednak kilku z nich pojmal demon zwany Ungreez. ...",
@@ -193,10 +193,10 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Something that is a threat to all of us. Our investigators were able to acquire vital information before some of them were slain by a demon named Ungreez. ...",
 				"It'll be your task to take revenge and to kill that demon. You'll find him in the depths of volcano in desert. Good luck.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 18)
-			player:setStorageValue(Storage.TheInquisition.Mission06, 1) -- The Inquisition Questlog- "Mission 6: The Demon Ungreez"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 18)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission06, 1) -- The Inquisition Questlog- "Mission 6: The Demon Ungreez"
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 19 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 19 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Wiec bestia jest w koncu martwa! Dzieki Bogu. Przynajmniej cos poszlo po naszej mysli ...",
 				"Poprzednikom sie tak nie poszczescilo. Ale zobaczymy jak pojdzie tobie w kolejnej misji.",
@@ -204,29 +204,29 @@ local function creatureSayCallback(npc, creature, type, message)
 				"So the beast is finally dead! Thank the gods. At least some things work out in our favour ...",
 				"Our other operatives were not that lucky, though. But you will learn more about that in your next {mission}.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 20)
-			player:setStorageValue(Storage.TheInquisition.Mission06, 3) -- The Inquisition Questlog- "Mission 6: The Demon Ungreez"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 20)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission06, 3) -- The Inquisition Questlog- "Mission 6: The Demon Ungreez"
 			player:addOutfitAddon(288, 1)
 			player:addOutfitAddon(289, 1)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 20 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 20 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Zniszcz shadow nexus uzywajac na nim wody swieconej, oraz pokonaj wszystkich demonicznych wladcow." or "Destroy the shadow nexus using this vial of holy water and kill all demon lords.", npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 21)
-			player:setStorageValue(Storage.TheInquisition.Mission07, 1) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 21)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission07, 1) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
 			player:addItem(133, 1)
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 21 or player:getStorageValue(Storage.TheInquisition.Questline) == 22 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 21 or player:getStorageValueByKey(Storage.TheInquisition.Questline) == 22 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Zniszcz shadow nexus zlokalizowany w Demon Forge. Ukonczyles te misje?" or "Your current mission is to destroy the shadow nexus in the Demon Forge. Are you done with that mission?", npc, creature)
 			npcHandler:setTopic(playerId, 6)
 		end
 	elseif MsgContains(message, "yes") or MsgContains(message, "tak") then
 		if npcHandler:getTopic(playerId) == 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wiec stalo sie. Zostales czlonkiem inkwizycji. Mozesz mnie spytac o {misje} aby wzbudzic moj szacunek." or "So be it. Now you are a member of the inquisition. You might ask me for a {mission} to raise in my esteem.", npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 1)
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 3 then
-			if player:getStorageValue(Storage.TheInquisition.WalterGuard) == 1 and player:getStorageValue(Storage.TheInquisition.KulagGuard) == 1 and player:getStorageValue(Storage.TheInquisition.GrofGuard) == 1 and player:getStorageValue(Storage.TheInquisition.MilesGuard) == 1 and player:getStorageValue(Storage.TheInquisition.TimGuard) == 1 then
+			if player:getStorageValueByKey(Storage.TheInquisition.WalterGuard) == 1 and player:getStorageValueByKey(Storage.TheInquisition.KulagGuard) == 1 and player:getStorageValueByKey(Storage.TheInquisition.GrofGuard) == 1 and player:getStorageValueByKey(Storage.TheInquisition.MilesGuard) == 1 and player:getStorageValueByKey(Storage.TheInquisition.TimGuard) == 1 then
 				npcHandler:say({
 					"Wiedzialem jakich odpowiedzi mozna sie spodziewac, wiec na pewno nie zmyslasz. Jednak to byl tylko test odpowiedzialnosci. ...",
 					"Zobaczmy, czy podolasz kolejnemu zadaniu.",
@@ -234,32 +234,32 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Indeed, this is exactly what my other sources told me. Of course I knew the outcome of this investigation in advance. This was just a test. ...",
 					"Well, now that you've proven yourself as useful, you can ask me for another mission. Let's see if you can handle some field duty, too.",
 				}, npc, creature)
-				player:setStorageValue(Storage.TheInquisition.Questline, 3)
-				player:setStorageValue(Storage.TheInquisition.Mission01, 7) -- The Inquisition Questlog- "Mission 1: Interrogation"
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 3)
+				player:setStorageValueByKey(Storage.TheInquisition.Mission01, 7) -- The Inquisition Questlog- "Mission 1: Interrogation"
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie ukonczyles swojego zadania." or "You haven't done your mission yet.", npc, creature)
 			end
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 4 then
-			if player:getStorageValue(Storage.TheInquisition.Questline) == 10 then
+			if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 10 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Dobrze, ze wrociles. Twoje umiejetnosci wydaja sie byc przydatne. Jesli jestes gotow, aby wykonac kolejne zadanie, to spytaj o nie." or "Good, you've returned. Your skill in practical matters seems to be useful. If you're ready for a further mission, just ask.", npc, creature)
-				player:setStorageValue(Storage.TheInquisition.Questline, 11)
-				player:setStorageValue(Storage.TheInquisition.Mission03, 6) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 11)
+				player:setStorageValueByKey(Storage.TheInquisition.Mission03, 6) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie ukonczyles swojego zadania u Storkusa." or "You haven't done your mission with Storkus yet.", npc, creature)
 			end
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 5 then
-			if player:getStorageValue(Storage.TheInquisition.Questline) == 13 then
+			if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 13 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "To bylo bardzo proste zadanie, kolejne bedzie duzo bardziej wymagajace." or "Well, this was an easy task, but your next mission will be much more challenging.", npc, creature)
-				player:setStorageValue(Storage.TheInquisition.Questline, 14)
-				player:setStorageValue(Storage.TheInquisition.Mission04, 3) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 14)
+				player:setStorageValueByKey(Storage.TheInquisition.Mission04, 3) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie ukonczyles swojego zadania u Storkusa." or "You haven't done your mission with Storkus yet.", npc, creature)
 			end
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 6 then
-			if player:getStorageValue(Storage.TheInquisition.Questline) == 22 then
+			if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 22 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Niesamowite! Prawdziwy wybawca wiernych! Mianuje cie zasluzonym inkwizytorem. Jesli zechcesz, to moge udzielic ci blogoslawienstw ...",
 					"Nie zapomnij tez zapytac mnie o {outfit}, aby otrzymac nowe dodatki.",
@@ -267,9 +267,9 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Incredible! You're a true defender of faith! I grant you the title of a High Inquisitor for your noble deeds. From now on you can obtain the blessing of the inquisition which makes the pilgrimage of ashes obsolete ...",
 					"Also, don't forget to ask me about your {outfit} to receive the final addon as demon hunter.",
 				}, npc, creature)
-				player:setStorageValue(Storage.TheInquisition.Questline, 23)
-				player:setStorageValue(Storage.TheInquisition.Mission07, 3) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
-				player:setStorageValue(Storage.Finished.TheInquisition, 1)
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 23)
+				player:setStorageValueByKey(Storage.TheInquisition.Mission07, 3) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
+				player:setStorageValueByKey(Storage.Finished.TheInquisition, 1)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Wroc jesli zniszczysz shadow nexus." or "Come back when you have destroyed the shadow nexus.", npc, creature)
 			end
@@ -302,18 +302,18 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "outfit") then
-		if player:getStorageValue(Storage.TheInquisition.Questline) == 16 then
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 16 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oto twoj demon hunter outfit. Zasluzyles na niego." or "Here is your demon hunter outfit. You deserve it. Unlock more addons by completing more missions.", npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 17)
-			player:setStorageValue(Storage.TheInquisition.Mission05, 3) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 17)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission05, 3) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
 			player:addOutfit(288, 0)
 			player:addOutfit(289, 0)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 23 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 23 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oto twoj ostatni dodatek, gratulacje!" or "Here is the final addon for your demon hunter outfit. Congratulations!", npc, creature)
-			player:setStorageValue(Storage.TheInquisition.Questline, 24)
-			player:setStorageValue(Storage.TheInquisition.Mission07, 4) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 24)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission07, 4) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
 			player:addOutfitAddon(288, 2)
 			player:addOutfitAddon(289, 2)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)

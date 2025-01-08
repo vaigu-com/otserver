@@ -39,8 +39,6 @@ function RegisterNpcDefinition(npcData)
 	local currency = npcData.currency or npcData.shopCurrency
 
 	local jobShop, jobUniversalDialogs = getJobConfigs(jobs)
-	--ToDo: check if this should be indeed removed
-	--jobDialogs = MergedTable(jobDialogs, npcSpecificDialogs)
 	local totalShop = MergedTable(jobShop, customShop)
 
 	local jobStateDialogs = getJobStateDialogs(jobs)
@@ -48,7 +46,7 @@ function RegisterNpcDefinition(npcData)
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
 	if JOBS_GREETINGS[greetJob] then
-		allDialogs[LOCALIZERS.Universal][GREET] = { text = JOBS_GREETINGS[greetJob] }
+		allDialogs[LOCALIZERS.Universal][GREET] = JOBS_GREETINGS[greetJob]
 	end
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)

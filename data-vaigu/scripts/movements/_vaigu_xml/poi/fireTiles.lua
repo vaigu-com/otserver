@@ -56,7 +56,7 @@ end
 movement:type("stepin")
 
 for i, v in pairs(fires) do
-	movement:aid(i)
+	movement:key(i)
 end
 
 movement:register()

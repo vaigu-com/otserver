@@ -1,4 +1,4 @@
-function Player.getStorageValueTalkaction(self, param)
+function Player.getStorageValueByKeyTalkaction(self, param)
 	-- Sanity check for parameters
 	-- Example: /getstorage god, wheel.scroll.abridged
 	-- Example: /getstorage god, 10000
@@ -25,10 +25,10 @@ function Player.getStorageValueTalkaction(self, param)
 	if storageKey == nil then
 		-- Get the key for this storage name
 		local storageName = tostring(split[2])
-		local storageValue = target:getStorageValueByName(storageName)
+		local storageValue = target:getStorageValueByKey(storageName)
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The storage with id: " .. storageName .. " from player " .. split[1] .. " is: " .. storageValue .. ".")
 	else
-		local storageValue = target:getStorageValue(storageKey)
+		local storageValue = target:getStorageValueByKey(storageKey)
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The storage with id: " .. storageKey .. " from player " .. split[1] .. " is: " .. storageValue .. ".")
 	end
 
@@ -38,7 +38,7 @@ end
 local storageGet = TalkAction("/getstorage")
 
 function storageGet.onSay(player, words, param)
-	return player:getStorageValueTalkaction(param)
+	return player:getStorageValueByKeyTalkaction(param)
 end
 
 storageGet:separator(" ")
@@ -65,7 +65,7 @@ function Player.setStorageValueTalkaction(self, param)
 	local storageKey = tonumber(split[1])
 	if storageKey == nil then
 		storageKey = split[1]
-		-- The key is a name, so call setStorageValueByName instead of setStorageValue
+		-- The key is a name, so call setStorageValueByName instead of setStorageValueByKey
 		if split[3] then
 			local targetPlayer = Player(string.trim(split[3]))
 			if not targetPlayer then
@@ -85,7 +85,7 @@ function Player.setStorageValueTalkaction(self, param)
 			self:save()
 		end
 	else
-		-- The key is a number, so call setStorageValue as before
+		-- The key is a number, so call setStorageValueByKey as before
 		if split[3] then
 			local targetPlayer = Player(string.trim(split[3]))
 			if not targetPlayer then
@@ -94,14 +94,14 @@ function Player.setStorageValueTalkaction(self, param)
 			else
 				local message = "Set storage: " .. storageKey .. " to player " .. split[3] .. " newValue: " .. value .. "."
 				self:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-				targetPlayer:setStorageValue(storageKey, value)
+				targetPlayer:setStorageValueByKey(storageKey, value)
 				targetPlayer:save()
 				return true
 			end
 		else
 			local message = "Set storage: " .. storageKey .. " to player " .. self:getName() .. ", newValue: " .. value .. "."
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
-			self:setStorageValue(storageKey, value)
+			self:setStorageValueByKey(storageKey, value)
 			self:save()
 		end
 	end

@@ -1,12 +1,12 @@
 local globalevent = GlobalEvent("FlamingOrchid")
 
 function globalevent.onThink(...)
-	if getGlobalStorageValue(GlobalStorage.FlamingOrchid) >= 1 then
+	if getStorageValueByKey(Storage.FlamingOrchid) >= 1 then
 		return false
 	end
 
 	Game.createMonster("The Flaming Orchid", Position(6615, 997, 3))
-	setGlobalStorageValue(GlobalStorage.FlamingOrchid, 1)
+	setStorageValueByKey(Storage.FlamingOrchid, 1)
 	return true
 end
 

@@ -52,8 +52,8 @@ function serverstartup.onStartup()
 	logger.debug("Loaded all actions in the map")
 	logger.debug("Loaded all uniques in the map")
 
-	for i = 1, #startupGlobalStorages do
-		Game.setStorageValue(startupGlobalStorages[i], 0)
+	for i = 1, #startupStorages do
+		Game.setStorageValueByKey(startupStorages[i], 0)
 	end
 
 	local time = os.time()
@@ -71,19 +71,6 @@ function serverstartup.onStartup()
 	-- reset Daily Reward status
 	db.query("UPDATE `players` SET `isreward` = " .. DAILY_REWARD_NOTCOLLECTED)
 
-	-- reset storages and allow purchase of boost in the store
-	db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = 51052")
-	
-	--reset zabicia deeplinga bosa
-	db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = "..Storage.DeeplingBosses.DailyDeeplingKill)
-	
-	--reset zabicia were bosa
-	db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = "..Storage.WereBossKill)
-	
-	-- reset familiars message storage
-	db.query("DELETE FROM `player_storage` WHERE `key` = " .. Global.Storage.FamiliarSummonEvent10)
-	db.query("DELETE FROM `player_storage` WHERE `key` = " .. Global.Storage.FamiliarSummonEvent60)
-
 	-- delete canceled and rejected guilds
 	db.asyncQuery("DELETE FROM `guild_wars` WHERE `status` = 2")
 	db.asyncQuery("DELETE FROM `guild_wars` WHERE `status` = 3")
@@ -93,28 +80,21 @@ function serverstartup.onStartup()
 
 	db.asyncQuery("DELETE FROM `players` WHERE `deletion` != 0 AND `deletion` < " .. time)
 	db.asyncQuery("DELETE FROM `ip_bans` WHERE `expires_at` != 0 AND `expires_at` <= " .. time)
-	db.asyncQuery("DELETE FROM `market_history` WHERE `inserted` <= \z
-	" .. (time - configManager.getNumber(configKeys.MARKET_OFFER_DURATION)))
+	db.asyncQuery("DELETE FROM `market_history` WHERE `inserted` <= " .. (time - configManager.getNumber(configKeys.MARKET_OFFER_DURATION)))
 
 	-- Move expired bans to ban history
 	local banResultId = db.storeQuery("SELECT * FROM `account_bans` WHERE `expires_at` != 0 AND `expires_at` <= " .. time)
 	if banResultId ~= false then
 		repeat
 			local accountId = Result.getNumber(banResultId, "account_id")
-			db.asyncQuery("INSERT INTO `account_ban_history` (`account_id`, `reason`, `banned_at`, \z
-			`expired_at`, `banned_by`) VALUES (" .. accountId .. ", \z
-			" .. db.escapeString(Result.getString(banResultId, "reason")) .. ", \z
-			" .. Result.getNumber(banResultId, "banned_at") .. ", " .. Result.getNumber(banResultId, "expires_at") .. ", \z
-			" .. Result.getNumber(banResultId, "banned_by") .. ")")
+			db.asyncQuery("INSERT INTO `account_ban_history` (`account_id`, `reason`, `banned_at`, `expired_at`, `banned_by`) VALUES (" .. accountId .. ", " .. db.escapeString(Result.getString(banResultId, "reason")) .. ", " .. Result.getNumber(banResultId, "banned_at") .. ", " .. Result.getNumber(banResultId, "expires_at") .. ", " .. Result.getNumber(banResultId, "banned_by") .. ")")
 			db.asyncQuery("DELETE FROM `account_bans` WHERE `account_id` = " .. accountId)
 		until not Result.next(banResultId)
 		Result.free(banResultId)
 	end
 
 	-- Check house auctions
-	local resultId = db.storeQuery("SELECT `id`, `highest_bidder`, `last_bid`, (SELECT `balance` FROM \z
-	`players` WHERE `players`.`id` = `highest_bidder`) AS `balance` FROM `houses` WHERE `owner` = 0 AND \z
-	`bid_end` != 0 AND `bid_end` < " .. time)
+	local resultId = db.storeQuery("SELECT `id`, `highest_bidder`, `last_bid`, (SELECT `balance` FROM 	`players` WHERE `players`.`id` = `highest_bidder`) AS `balance` FROM `houses` WHERE `owner` = 0 AND 	`bid_end` != 0 AND `bid_end` < " .. time)
 	if resultId ~= false then
 		repeat
 			local house = House(Result.getNumber(resultId, "id"))
@@ -126,8 +106,7 @@ function serverstartup.onStartup()
 					db.query("UPDATE `players` SET `balance` = " .. (balance - lastBid) .. " WHERE `id` = " .. highestBidder)
 					house:setOwnerGuid(highestBidder)
 				end
-				db.asyncQuery("UPDATE `houses` SET `last_bid` = 0, `bid_end` = 0, `highest_bidder` = 0, \z
-				`bid` = 0 WHERE `id` = " .. house:getId())
+				db.asyncQuery("UPDATE `houses` SET `last_bid` = 0, `bid_end` = 0, `highest_bidder` = 0, 	`bid` = 0 WHERE `id` = " .. house:getId())
 			end
 		until not Result.next(resultId)
 		Result.free(resultId)
@@ -169,13 +148,13 @@ function serverstartup.onStartup()
 
 	-- Hireling System
 	HirelingsInit()
-	
+
 	-- Footbal setup
-	Game.setStorageValue(GlobalStorage.Football.Timer, 1)
-	Game.setStorageValue(GlobalStorage.Football.Field, 0)
-	
+	Game.setStorageValueByKey(Storage.Football.Timer, 1)
+	Game.setStorageValueByKey(Storage.Football.Field, 0)
+
 	-- Startup time used for !uptime
-	Game.setStorageValue(GlobalStorage.ServerStartStorage, os.time())
+	Game.setStorageValueByKey(Storage.ServerStartStorage, os.time())
 end
 
 serverstartup:register()

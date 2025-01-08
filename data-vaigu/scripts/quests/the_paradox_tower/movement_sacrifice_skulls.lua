@@ -20,9 +20,9 @@ function sacrificeSkulls.onStepIn(creature, item, position, fromPosition)
 		end
 	end
 
-	if player:getStorageValue(FirstParadoxAcess) < 1 then
+	if player:getStorageValueByKey(FirstParadoxAcess) < 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "One of the toxic salt seas in Krailos carries fresh and clean water again. The ogres' water supply is ensured for now")
-		player:setStorageValue(FirstParadoxAcess, 1)
+		player:setStorageValueByKey(FirstParadoxAcess, 1)
 	end
 
 	for i = 1, #positions do
@@ -39,3 +39,4 @@ end
 
 sacrificeSkulls:uid(25012)
 sacrificeSkulls:register()
+

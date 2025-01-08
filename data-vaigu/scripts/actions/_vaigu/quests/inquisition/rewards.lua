@@ -17,10 +17,10 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getFreeCapacity() < weight then
 		player:sendCancelMessage(string.format("Nagroda wazy %.2f oz. Nie zdolasz jej udzwignac.", (weight / 100)))
 	else
-		if player:getStorageValue(Storage.TheInquisition.Reward) < 1 then
-			player:setStorageValue(Storage.TheInquisition.Reward, 1)
-			player:setStorageValue(Storage.TheInquisition.Questline, 25)
-			player:setStorageValue(Storage.TheInquisition.Mission07, 5) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
+		if player:getStorageValueByKey(Storage.TheInquisition.Reward) < 1 then
+			player:setStorageValueByKey(Storage.TheInquisition.Reward, 1)
+			player:setStorageValueByKey(Storage.TheInquisition.Questline, 25)
+			player:setStorageValueByKey(Storage.TheInquisition.Mission07, 5) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
 			player:addItem(rewards[item.uid], 1)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. ItemType(rewards[item.uid]):getName() .. ".")
 			--player:addAchievement('Master of the Nexus')
@@ -32,6 +32,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 
 for i, _ in pairs(rewards) do
-	action:uid(i)
+	action:key(i)
 end
 action:register()
+

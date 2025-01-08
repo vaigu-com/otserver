@@ -7,7 +7,7 @@ function creatureevent.onDeath(creature)
 		if spec:isPlayer() then
 			spec:teleportTo(Position(7186, 1742, 15))
 			spec:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-			spec:setStorageValue(Storage.Ferumbras.ShattererEntry, 1)
+			spec:setStorageValueByKey(Storage.Ferumbras.ShattererEntry, 1)
 		end
 	end
 	return true

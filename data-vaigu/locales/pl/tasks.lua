@@ -30,9 +30,10 @@ return {
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
 		local task = context.task
-		local currentKills = context.player:getStorageValue(task.storage)
+		local currentKills = context.player:getStorageValueByKey(task.storage)
 		local name = task.name
 		local requiredKills = task.requiredKills
+		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		return T("Task na :name:: :currentKills:/:requiredKills: ", {
 			name = name,
 			currentKills = currentKills,
@@ -42,7 +43,7 @@ return {
 	["YOU_DONT_HAVE_REQUIRED_TASK_KILLS"] = function(context)
 		local task = context.task
 		local player = context.player
-		local currentKills = player:getStorageValue(task.storage)
+		local currentKills = player:getStorageValueByKey(task.storage)
 		local requiredKills = task.requiredKills
 		local name = task.name
 		return T("Nie zabiles wystarczajacej ilosci stworow do taska na :name:. Twoj aktualny postep to: :currentKills:/:requiredKills: ", {
@@ -53,7 +54,7 @@ return {
 	end,
 	--Task Points
 	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValue(Storage.Tasks.TaskPoints)
+		local points = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		return T("Aktualnie posiadasz :points: punktow taskow.  Mozesz wymienic je na kilka {trofeow}, {wierzchowca} oraz {mozliwosc} nasycania na najwyzszy poziom.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -63,7 +64,7 @@ return {
 		return T("Czy chcesz kupic :name: za :cost: punktow taskowych?", { name = context.msg:lower(), cost = context.keywordConfig.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValue(Storage.Tasks.TaskPoints)
+		local current = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		local required = context.keywordConfig.cost or PlayerCustomDialogDataRegistry():Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("Nie posiadasz odpowiedniej liczby punktow taskowych. Potrzebuejsz :required: punktow aby to kupic. Posiadasz :current: punktow, co oznacza, ze potrzebuejesz jeszcze :diff: punktow.", { current = current, required = required, diff = diff })
@@ -131,7 +132,8 @@ return {
 		local storage = task.storage
 		local name = task.name
 		local requiredKills = task.requiredKills
-		local currentKills = player:getStorageValue(storage)
+		local currentKills = player:getStorageValueByKey(storage)
+		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		return T("Zabitych :name:: :currentKills:/:requiredKills:.", {
 			name = name,
 			currentKills = currentKills,
@@ -162,7 +164,7 @@ return {
 	["Tortoises"] = "Thorner swoja kryjowke posiada w polnocno zachodniej czesci dzunglii.",
 	["Weak undeads"] = "Cmentarz na wschodzie Mirko Town jest czasem nawiedzany przez Rippera. Pewnie gdzies tam sie ukrywa.",
 	["Ancient Scarabs"] = "Najgrozniejszy z skarabeuszy swoje legowisko posiada pod wysuszonymi polami na poludniu stepow.",
-	["Bone Beasts"] = "Podobno wejscia do jego kryjowki strzega pustynne Wyrmy, jednak zdaje sie, ze to tylko pogloski.",
+	["Bonebeasts"] = "Podobno wejscia do jego kryjowki strzega pustynne Wyrmy, jednak zdaje sie, ze to tylko pogloski.",
 	["Crystal Spiders"] = "Legowisko Bloodweba znajduje sie na pewnych skalach lezacych na polnocy Sybiru.",
 	["Giant Spiders"] = "Na poludnie od Knurowa zaleglo sie sporo pajakow, byc moze tam znajduje sie najgrozniejszy z nich.",
 	["Ice Golems"] = "Teleport do komnaty Shardheada znajduje sie na polnocy Sybiru, w okolicy kreca sie Crystal Spidery oraz Ice Golemy.",

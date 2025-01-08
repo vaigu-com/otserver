@@ -6,10 +6,10 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nie wejdziesz tu podczas walki.")
 			return false
 		end
-		if player:getStorageValue(Storage.TheInquisition.Questline) == 23 then
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 23 then
 			return (player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Zapomniales poprosic Henryka o outfit."))
 		end
-		if player:getStorageValue(Storage.TheInquisition.Questline) >= 24 then
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) >= 24 then
 			if item.itemid == 5103 then
 				player:teleportTo(toPosition, true)
 				item:transform(item.itemid + 1)
@@ -23,3 +23,4 @@ end
 
 action:uid(9021)
 action:register()
+

@@ -67,36 +67,36 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if table.contains({ "awans", "awansowac", "advance" }, message) then
-		if player:getStorageValue(Storage.BigfootBurden.Rank) >= 30 and player:getStorageValue(Storage.BigfootBurden.Rank) < 80 then -- 30-90
-			if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 14 then
-				player:setStorageValue(Storage.BigfootBurden.QuestLine, 15)
+		if player:getStorageValueByKey(Storage.BigfootBurden.Rank) >= 30 and player:getStorageValueByKey(Storage.BigfootBurden.Rank) < 80 then -- 30-90
+			if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 14 then
+				player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 15)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				npcHandler:say("Otrzymujesz range Pomocnik Gnomow.", npc, creature)
 				player:addAchievement("Pomocnik Gnomow")
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Posiadasz odpowiednia range." or "You have appropriate rank.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.BigfootBurden.Rank) >= 80 and player:getStorageValue(Storage.BigfootBurden.Rank) < 160 then --90-240
-			if player:getStorageValue(Storage.BigfootBurden.QuestLine) <= 15 then
-				player:setStorageValue(Storage.BigfootBurden.QuestLine, 16)
+		elseif player:getStorageValueByKey(Storage.BigfootBurden.Rank) >= 80 and player:getStorageValueByKey(Storage.BigfootBurden.Rank) < 160 then --90-240
+			if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) <= 15 then
+				player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 16)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				npcHandler:say("Otrzymujesz range Przyjaciel Gnomow.", npc, creature)
 				player:addAchievement("Przyjaciel Gnomow")
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Posiadasz odpowiednia range." or "You have appropriate rank.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.BigfootBurden.Rank) >= 160 and player:getStorageValue(Storage.BigfootBurden.Rank) < 320 then --240-430
-			if player:getStorageValue(Storage.BigfootBurden.QuestLine) <= 16 then
-				player:setStorageValue(Storage.BigfootBurden.QuestLine, 17)
+		elseif player:getStorageValueByKey(Storage.BigfootBurden.Rank) >= 160 and player:getStorageValueByKey(Storage.BigfootBurden.Rank) < 320 then --240-430
+			if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) <= 16 then
+				player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 17)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				npcHandler:say('Otrzymujesz range "Niczym Gnom".', npc, creature)
 				player:addAchievement("Niczym Gnom")
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Posiadasz odpowiednia range." or "You have appropriate rank.", npc, creature)
 			end
-		elseif player:getStorageValue(Storage.BigfootBurden.Rank) >= 320 then -- 430
-			if player:getStorageValue(Storage.BigfootBurden.QuestLine) <= 17 then
-				player:setStorageValue(Storage.BigfootBurden.QuestLine, 18)
+		elseif player:getStorageValueByKey(Storage.BigfootBurden.Rank) >= 320 then -- 430
+			if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) <= 17 then
+				player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 18)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				npcHandler:say("Otrzymujesz range Honorowy Gnom.", npc, creature)
 				player:addAchievement("Honorowy Gnom")

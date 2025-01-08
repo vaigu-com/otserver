@@ -50,10 +50,10 @@ function questSystem1.onUse(player, item, fromPosition, target, toPosition, isHo
 	end
 
 	if storage == 23644 or storage == 24632 or storage == 14338 then
-		player:setStorageValue(Storage.SvargrondArena.PitDoor, -1)
+		player:setStorageValueByKey(Storage.SvargrondArena.PitDoor, -1)
 	end
 
-	if player:getStorageValue(storage) > 0 and player:getGroup():getId() < GROUP_TYPE_GAMEMASTER then
+	if player:getStorageValueByKey(storage) > 0 and player:getGroup():getId() < GROUP_TYPE_GAMEMASTER then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The " .. ItemType(item.itemid):getName() .. " is empty.")
 		return true
 	end
@@ -154,29 +154,29 @@ function questSystem1.onUse(player, item, fromPosition, target, toPosition, isHo
 	end
 
 	if questLog[storage] then
-		player:setStorageValue(questLog[storage], 1)
+		player:setStorageValueByKey(questLog[storage], 1)
 	end
 
 	if tutorialIds[storage] then
 		player:sendTutorial(tutorialIds[storage])
 		if item.uid == 50080 then
-			player:setStorageValue(Storage.RookgaardTutorialIsland.SantiagoNpcGreetStorage, 3)
+			player:setStorageValueByKey(Storage.RookgaardTutorialIsland.SantiagoNpcGreetStorage, 3)
 		end
 	end
 
 	if table.contains(hotaQuest, item.uid) then
-		if player:getStorageValue(Storage.TheAncientTombs.DefaultStart) ~= 1 then
-			player:setStorageValue(Storage.TheAncientTombs.DefaultStart, 1)
+		if player:getStorageValueByKey(Storage.TheAncientTombs.DefaultStart) ~= 1 then
+			player:setStorageValueByKey(Storage.TheAncientTombs.DefaultStart, 1)
 		end
 	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. result .. ".")
-	player:setStorageValue(storage, 1)
+	player:setStorageValueByKey(storage, 1)
 	return true
 end
 
 for index, value in pairs(specialQuests) do
-	questSystem1:aid(index)
+	questSystem1:key(index)
 end
 
 --questSystem1:aid(2000)

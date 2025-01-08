@@ -201,7 +201,7 @@ local scriptTypeToCallback = {
 	[QUEST_SCRIPT_TYPE.STARTUP_ITEMS] = Quest.AddStartupItems,
 	[QUEST_SCRIPT_TYPE.STARTUP_SCRIPT] = Quest.AddStartupScript,
 }
---Just lua things
+
 function Quest:State(stateDataCallback)
 	table.insert(self.missions[self.currentMission], stateDataCallback)
 	return self
@@ -213,7 +213,9 @@ end
 
 local function normalizeQuestlogData()
 	for _, quest in pairs(Quests) do
-		for storage, mission in pairs(quest.missions) do
+		quest.questId = NextQuestId()
+		IdToQuest[quest.questId] = quest
+		for _, mission in pairs(quest.missions) do
 			local min, max
 			if mission.states then
 				min, max = FindMinMaxValue(mission.states)
@@ -221,7 +223,7 @@ local function normalizeQuestlogData()
 			mission.minState = mission.minState or min or DEFAULT_MIN_STATE
 			mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
 			mission.finishedState = mission.finishedState or MISSION_FINISHED
-			mission.storage = storage
+			mission.missionId = NextMissionId()
 			for _, desc in pairs(mission.states or {}) do
 				if type(desc) == "string" then
 					translatedFromAnyQuest(desc, "EN", quest.localizer)
@@ -229,8 +231,9 @@ local function normalizeQuestlogData()
 				end
 			end
 
-			StorageToMission[storage] = mission
-			Game.linkMissionToStorages(storage, mission.linkedStorages or {})
+			StorageToMission[mission.storage] = mission
+			IdToMission[mission.missionId] = mission
+			Game.linkMissionToStorages(mission.storage, mission.linkedStorages or {})
 		end
 	end
 end
@@ -238,15 +241,15 @@ end
 local storageToMaxState = {}
 local function extractExtraQuestlogData()
 	for _, quest in pairs(Quests) do
-		for storage, mission in pairs(quest.missions) do
-			storageToMaxState[storage] = mission.maxState
+		for _, mission in pairs(quest.missions) do
+			storageToMaxState[mission.storage] = mission.maxState
 		end
 	end
 end
 
 function Player:setMissionFinishedByStorage(storage)
 	local finishedState = storageToMaxState[storage]
-	self:setStorageValue(storage, finishedState)
+	self:setStorageValueByKey(storage, finishedState)
 end
 
 ---@class QuestRegistry
@@ -279,8 +282,6 @@ function QuestRegistry:CreateQuestlog()
 	for _, quest in pairs(self.registry) do
 		quest.questlog()
 	end
-	normalizeQuestlogData()
-	extractExtraQuestlogData()
 end
 function QuestRegistry:CreateMonsterEvent()
 	for _, quest in pairs(self.registry) do
@@ -365,15 +366,13 @@ function QuestRegistry:RegisterQuestData()
 	self:CreateStartupItems()
 	self:RunScripts()
 	self:RegisterStartupScripts()
+	normalizeQuestlogData()
+	extractExtraQuestlogData()
 end
 
 function QuestRegistry:Register(quest)
-	self.registry[quest.name] = quest
-	return self.registry[quest.name]
-end
-
-function QuestRegistry:Get(name)
-	return self.registry[name]
+	table.insert(self.registry, quest)
+	return self
 end
 
 --[[

@@ -68,8 +68,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	if normalVortex then
 		player:teleportTo(normalVortex)
 	elseif bossVortex then
-		if player:getStorageValue(bossVortex.storage) >= 1 then
-			if player:getStorageValue(bossVortex.storageTime) < os.time() then
+		if player:getStorageValueByKey(bossVortex.storage) >= 1 then
+			if player:getStorageValueByKey(bossVortex.storageTime) < os.time() then
 				player:teleportTo(bossVortex.position)
 			else
 				player:teleportTo(fromPosition)
@@ -80,8 +80,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 			player:sendTextMessage(19, "You don't have access to this portal.")
 		end
 	elseif uBosses then
-		if player:getStorageValue(uBosses.storage1) >= 1 and player:getStorageValue(uBosses.storage2) >= 1 and player:getStorageValue(uBosses.storage3) >= 1 then
-			if player:getStorageValue(uBosses.storageTime) < os.time() then
+		if player:getStorageValueByKey(uBosses.storage1) >= 1 and player:getStorageValueByKey(uBosses.storage2) >= 1 and player:getStorageValueByKey(uBosses.storage3) >= 1 then
+			if player:getStorageValueByKey(uBosses.storageTime) < os.time() then
 				player:teleportTo(uBosses.position)
 			else
 				player:teleportTo(fromPosition)
@@ -92,8 +92,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 			player:sendTextMessage(19, "You don't have access to this portal.")
 		end
 	elseif item.actionid == 14351 then
-		if player:getStorageValue(14330) >= 1 and player:getStorageValue(14332) >= 1 then
-			if player:getStorageValue(14333) < os.time() then
+		if player:getStorageValueByKey(14330) >= 1 and player:getStorageValueByKey(14332) >= 1 then
+			if player:getStorageValueByKey(14333) < os.time() then
 				player:teleportTo(Position(5505, 1512, 14)) --{x = 5505, y = 1512, z = 14}
 			else
 				player:teleportTo(fromPosition)
@@ -105,9 +105,9 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		end
 	elseif item.actionid == 14353 then -- Remove storages from mini bosses
 		player:teleportTo(Position(5447, 1504, 14)) --{x = 5447, y = 1504, z = 14}
-		player:setStorageValue(14334, -1)
-		player:setStorageValue(14335, -1)
-		player:setStorageValue(14336, -1)
+		player:setStorageValueByKey(14334, -1)
+		player:setStorageValueByKey(14335, -1)
+		player:setStorageValueByKey(14336, -1)
 		player:unregisterEvent("DevourerStorage")
 	end
 	return true
@@ -116,10 +116,11 @@ end
 movement:type("stepin")
 
 for actionRange = 14321, 14325 do
-	movement:uid(actionRange)
+	movement:key(actionRange)
 end
 for actionRange = 14340, 14354 do
-	movement:uid(actionRange)
+	movement:key(actionRange)
 end
 
 movement:register()
+

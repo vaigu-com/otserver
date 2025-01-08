@@ -32,12 +32,12 @@ function dreamTalisman.onUse(player, item, fromPosition, target, toPosition, isH
 		return true
 	end
 
-	if player:getStorageValue(Storage.TheDreamCourts.QuestLine) > 0 then
-		if target.uid == 7906 and player:getStorageValue(Storage.TheDreamCourts.FacelessKilled) <= 0 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) > 0 then
+		if target.uid == 7906 and player:getStorageValueByKey(Storage.TheDreamCourts.FacelessKilled) <= 0 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Faceless Bane wont let you empower this stone..")
 			return true
 		end
-		if player:getStorageValue(targetItem.storage) <= 0 then
+		if player:getStorageValueByKey(targetItem.storage) <= 0 then
 			if target.itemid == 29334 then
 				target:transform(29335)
 				toPosition:sendMagicEffect(CONST_ME_THUNDER)
@@ -47,12 +47,12 @@ function dreamTalisman.onUse(player, item, fromPosition, target, toPosition, isH
 				toPosition:sendMagicEffect(12)
 				addEvent(revertBlue, 30 * 60 * 1000, toPosition) --10min
 			end
-			if player:getStorageValue(Storage.TheDreamCourts.WardStones.WardStones) <= 0 then
-				player:setStorageValue(Storage.TheDreamCourts.WardStones.WardStones, 1)
+			if player:getStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones) <= 0 then
+				player:setStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones, 1)
 			else
-				player:setStorageValue(Storage.TheDreamCourts.WardStones.WardStones, (player:getStorageValue(Storage.TheDreamCourts.WardStones.WardStones) + 1))
+				player:setStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones, (player:getStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones) + 1))
 			end
-			player:setStorageValue(targetItem.storage, 1)
+			player:setStorageValueByKey(targetItem.storage, 1)
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Tego juz uzylem..")
 		end

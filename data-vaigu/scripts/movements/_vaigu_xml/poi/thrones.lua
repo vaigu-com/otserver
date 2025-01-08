@@ -21,7 +21,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	end
 
 	local cStorage = throne.storage
-	if creature:getStorageValue(cStorage) ~= 1 then
+	if creature:getStorageValueByKey(cStorage) ~= 1 then
 		local chance = math.random(50)
 		if chance < 2 then
 			local position = creature:getPosition()
@@ -32,11 +32,11 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 			end
 			--return true
 		end
-		creature:setStorageValue(cStorage, 1)
+		creature:setStorageValueByKey(cStorage, 1)
 		creature:getPosition():sendMagicEffect(throne.effect)
 		creature:say("Tron zaliczony!", TALKTYPE_MONSTER_SAY)
-		if creature:getStorageValue(Storage.PitsOfInferno.OneThrone) <= 0 then
-			creature:setStorageValue(Storage.PitsOfInferno.OneThrone, 1)
+		if creature:getStorageValueByKey(Storage.PitsOfInferno.OneThrone) <= 0 then
+			creature:setStorageValueByKey(Storage.PitsOfInferno.OneThrone, 1)
 		end
 	else
 		creature:teleportTo(throne.toPosition)
@@ -49,7 +49,8 @@ end
 movement:type("stepin")
 
 for i, v in pairs(config) do
-	movement:uid(i)
+	movement:key(i)
 end
 
 movement:register()
+

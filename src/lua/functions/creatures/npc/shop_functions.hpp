@@ -24,6 +24,7 @@ public:
 		registerMethod(L, "Shop", "setStorageKey", ShopFunctions::luaShopSetStorageKey);
 		registerMethod(L, "Shop", "setStorageValue", ShopFunctions::luaShopSetStorageValue);
 		registerMethod(L, "Shop", "addChildShop", ShopFunctions::luaShopAddChildShop);
+		registerMethod(L, "Shop", "kv", ShopFunctions::luaShopKV);
 	}
 
 private:
@@ -37,4 +38,5 @@ private:
 	static int luaShopSetStorageKey(lua_State* L);
 	static int luaShopSetStorageValue(lua_State* L);
 	static int luaShopAddChildShop(lua_State* L);
+	static int luaShopKV(lua_State* L);
 };

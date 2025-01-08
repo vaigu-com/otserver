@@ -11,11 +11,11 @@ function lmsEvent.onTime(interval)
 	-- if #Game.getPlayers() < lmsConfigTable.minPlayers then --Min players is not online, we stop event from executing
 	--     return true
 	-- end
-	if not Game.getStorageValue(lmsStatesTable.EVENT_STATE_STORAGE) then
-		Game.setStorageValue(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_CLOSED)
+	if not Game.getStorageValueByKey(lmsStatesTable.EVENT_STATE_STORAGE) then
+		Game.setStorageValueByKey(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_CLOSED)
 	end
 
-	-- if Game.getStorageValue(lmsStatesTable.EVENT_STATE_STORAGE) ~= lmsStatesTable.EVENT_STATE_CLOSED then
+	-- if Game.getStorageValueByKey(lmsStatesTable.EVENT_STATE_STORAGE) ~= lmsStatesTable.EVENT_STATE_CLOSED then
 	--     return true
 	-- end
 
@@ -27,8 +27,8 @@ function lmsEvent.onTime(interval)
 		end
 	end
 
-	Game.setStorageValue(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_INIT)
-	Game.setStorageValue(lmsConfigTable.joinedCountStorage, 0)
+	Game.setStorageValueByKey(lmsStatesTable.EVENT_STATE_STORAGE, lmsStatesTable.EVENT_STATE_INIT)
+	Game.setStorageValueByKey(lmsConfigTable.joinedCountStorage, 0)
 	Game.broadcastMessage(string.format("Last Man Standing rozpocznie sie za 10 minut! Portal znajduje sie pod depozytem w Mirko Town. Minimum to %s graczy.", lmsConfigTable.minPlayers), MESSAGE_STATUS_WARNING)
 	addEvent(startLMSEvent, lmsConfigTable.waitingMinutes * 60 * 1000)
 	addEvent(sendReminderLMSEvent, 5 * 60 * 1000)

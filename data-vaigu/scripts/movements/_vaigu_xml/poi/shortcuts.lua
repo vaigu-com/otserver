@@ -12,8 +12,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	end
 
 	local cutoffStorage = storages[item.actionid]
-	if player:getStorageValue(cutoffStorage) ~= 1 then
-		player:setStorageValue(cutoffStorage, 1)
+	if player:getStorageValueByKey(cutoffStorage) ~= 1 then
+		player:setStorageValueByKey(cutoffStorage, 1)
 	end
 	return true
 end

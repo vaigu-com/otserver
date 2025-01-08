@@ -38,7 +38,7 @@ return {
 	["Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask."] = "Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask.",
 	["You've successfully completed the first task for Sultan of Phantasms. Return to him now."] = "You've successfully completed the first task for Sultan of Phantasms. Return to him now.",
 	["CAMELS_KILLED_STATUS"] = function(context)
-		return string.format("Sultan of Phantasms ordered you to kill dromedary. So far you managed to kill %d of them.", context.player:getStorageValue(Storage.SultanPrime.DromedaryCount))
+		return string.format("Sultan of Phantasms ordered you to kill dromedary. So far you managed to kill %d of them.", context.player:getStorageValueByKey(Storage.SultanPrime.DromedaryCount))
 	end,
 	["You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it."] = "You wiped out the camel farm. Leave the rope on the table - he'll know what to do with it.",
 	["Sultan will be pleased with your actions. Return to him for your reward."] = "Sultan will be pleased with your actions. Return to him for your reward.",
@@ -50,10 +50,10 @@ return {
 	["Father Natank gave you today's offering from today's Mass in exchange for your silence."] = "Father Natank gave you today's offering from today's Mass in exchange for your silence.",
 	["Opened Coffins"] = "Opened Coffins",
 	["OPENED_COFFINS_STATUS"] = function(context)
-		return string.format("~Sultan69: I'm communicating with you through 5GMO chemtrails waves. Start by desecrating a few graves. It will definitely weaken the morale of the people in the city. You have opened %d of 5 coffins.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CoffinCount), 0)))
+		return string.format("~Sultan69: I'm communicating with you through 5GMO chemtrails waves. Start by desecrating a few graves. It will definitely weaken the morale of the people in the city. You have opened %d of 5 coffins.", (math.max(context.player:getStorageValueByKey(Storage.SultanPrime.CoffinCount), 0)))
 	end,
 	["Bodies Thrown"] = "Bodies Thrown",
 	["BODIES_THROWN_STATUS"] = function(context)
-		return string.format("~Sultan69: It's time for something more cruel. Kill the city's residents and throw their bodies into the jaws of the tentacle monster near the depot. You have thrown %d of 10 bodies.", (math.max(context.player:getStorageValue(Storage.SultanPrime.CorpseCount), 0)))
+		return string.format("~Sultan69: It's time for something more cruel. Kill the city's residents and throw their bodies into the jaws of the tentacle monster near the depot. You have thrown %d of 10 bodies.", (math.max(context.player:getStorageValueByKey(Storage.SultanPrime.CorpseCount), 0)))
 	end,
 }

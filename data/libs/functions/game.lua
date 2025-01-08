@@ -1,4 +1,4 @@
-function getGlobalStorage(key)
+function getStorage(key)
 	local keyNumber = tonumber(key)
 	if not keyNumber then
 		key = "'" .. key .. "'"
@@ -19,7 +19,7 @@ function getGlobalStorage(key)
 	return -1
 end
 
-function setGlobalStorage(key, value)
+function setStorage(key, value)
 	local keyNumber = tonumber(key)
 	if not keyNumber then
 		key = "'" .. key .. "'"
@@ -115,26 +115,6 @@ function Game.getSkillType(weaponType)
 	return SKILL_FIST
 end
 
-if not globalStorageTable then
-	globalStorageTable = {}
-end
-
-function Game.getStorageValue(key)
-	return globalStorageTable[key] or -1
-end
-
-function Game.setStorageValue(key, value)
-	if key == nil then
-		logger.error("[Game.setStorageValue] Key is nil")
-		return
-	end
-
-	if value == -1 then
-		if globalStorageTable[key] then
-			globalStorageTable[key] = nil
-		end
-		return
-	end
-
-	globalStorageTable[key] = value
+if not StorageTable then
+	StorageTable = {}
 end

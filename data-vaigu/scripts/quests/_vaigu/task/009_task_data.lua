@@ -293,8 +293,8 @@ local taskData = {
 		bossPortalUid = 10017,
 	},
 	{
-		name = "Bone Beasts",
-		requiredKills = 300,
+		name = "Bonebeasts",
+		requiredKills = 3,
 		creatures = { "bonebeast" },
 		exp = 130500,
 		money = 7000,
@@ -304,13 +304,14 @@ local taskData = {
 		bossName = "Ribstride",
 		bossPosition = Position(6985, 1289, 7),
 		bossRoomCenter = Position(6983, 1292, 7),
+		bossRoomPlayerEnterPosition = Position(6975, 1295, 7),
 		clearRadiusX = 12,
 		clearRadiusY = 12,
 		bossPortalUid = 10018,
 	},
 	{
 		name = "Crystal Spiders",
-		requiredKills = 300,
+		requiredKills = 3,
 		creatures = { "crystal spider" },
 		exp = 202500,
 		money = 7000,
@@ -853,6 +854,7 @@ local taskData = {
 }
 
 local portalUidToTask = {}
+local portalKeyToTask = {}
 local creatureNameToTask = {}
 local bossNameToTask = {}
 local storageToTask = {}
@@ -866,6 +868,9 @@ end
 function GetTaskByPortalUid(uid)
 	return portalUidToTask[uid]
 end
+function GetTaskByPortalKey(uid)
+	return portalKeyToTask[uid]
+end
 function GetTaskByStorage(storage)
 	return storageToTask[storage]
 end
@@ -875,6 +880,7 @@ end
 
 local function setAuxillaryMaps(i, task)
 	portalUidToTask[task.bossPortalUid] = taskData[i]
+	portalKeyToTask[task.bossPortalKey] = taskData[i]
 	bossNameToTask[task.bossName] = taskData[i]
 	storageToTask[task.storage] = taskData[i]
 	for _, creatureName in pairs(task.creatures) do
@@ -882,37 +888,34 @@ local function setAuxillaryMaps(i, task)
 	end
 end
 
+TaskBossPortalKeyScope = Scope("Storage", "Task", "BossRoomPortal")
 function RegisterTasksInQuestsTable()
 	for i, task in pairs(taskData) do
-		local taskMissionId = NextMissionId()
-		local storage = NextStorage()
-		local bossMissionId = NextMissionId()
-		local bossStorage = NextStorage()
+		local storage = Scope("Storage", "Task", "TaskNames"):Get(task.name)
+		local bossStorage = Scope("Storage", "Task", "TaskBosses"):Get(task.name)
 
 		task.storage = storage
 		task.bossStorage = bossStorage
 		taskData[i].storage = storage
 
+		task.bossPortalKey = TaskBossPortalKeyScope:Get(task.name)
 		local killsMission = {
 			name = "TASK_MISSION_NAME",
 			task = taskData[i],
-			storageId = storage,
-			missionId = taskMissionId,
-			startValue = 0,
-			endValue = task.requiredKills,
+			storage = storage,
+			minState = 0,
 			description = "TASK_MISSION_DESCRIPTION",
 		}
 		local bossMission = {
 			name = "FIGHT_WITH_TASK_BOSS_MISSION_NAME",
 			task = taskData[i],
-			storageId = bossStorage,
-			missionId = bossMissionId,
-			startValue = 0,
+			storage = bossStorage,
+			minState = 0,
 			description = "FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION",
 		}
 
 		setAuxillaryMaps(i, task)
-		table.insert(Quests[TASKS_QUEST_STORAGE].missions, killsMission)
-		table.insert(Quests[TASKS_QUEST_STORAGE].missions, bossMission)
+		table.insert(TaskQuestlog.missions, killsMission)
+		table.insert(TaskQuestlog.missions, bossMission)
 	end
 end

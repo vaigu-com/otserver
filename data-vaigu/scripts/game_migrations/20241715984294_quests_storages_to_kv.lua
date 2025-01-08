@@ -64,10 +64,10 @@ local migrationStoragetokv = {
 
 local function migrate(player)
 	for _, scrollTable in ipairs(migrationStoragetokv) do
-		local oldStorage = player:getStorageValue(scrollTable.storageOld)
+		local oldStorage = player:getStorageValueByKey(scrollTable.storageOld)
 		if oldStorage > 0 then
 			player:questKV(scrollTable.questName):set("completed", true)
-			player:setStorageValue(scrollTable.storageOld, -1)
+			player:setStorageValueByKey(scrollTable.storageOld, -1)
 		end
 	end
 end

@@ -9,7 +9,7 @@ function playerLogin.onLogin(player)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 
 	if isPremium(player) then
-		player:setStorageValue(Storage.PremiumAccount, 1)
+		player:setStorageValueByKey(Storage.PremiumAccount, 1)
 	end
 
 	-- Promotion

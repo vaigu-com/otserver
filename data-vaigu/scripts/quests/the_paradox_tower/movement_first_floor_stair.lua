@@ -40,3 +40,4 @@ end
 
 firstFloorStair:uid(25013, 25014, 25015)
 firstFloorStair:register()
+

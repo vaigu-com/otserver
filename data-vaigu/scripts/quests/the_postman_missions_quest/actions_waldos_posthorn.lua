@@ -1,7 +1,7 @@
 local postmanWaldos = Action()
 function postmanWaldos.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.Postman.Mission08) == 1 then
-		player:setStorageValue(Storage.Postman.Mission08, 2)
+	if player:getStorageValueByKey(Storage.Postman.Mission08) == 1 then
+		player:setStorageValueByKey(Storage.Postman.Mission08, 2)
 		player:addItem(3219, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found Waldo's posthorn.")
 	else
@@ -12,3 +12,4 @@ end
 
 postmanWaldos:uid(3118)
 postmanWaldos:register()
+

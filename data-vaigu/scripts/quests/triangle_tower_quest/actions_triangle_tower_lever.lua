@@ -17,3 +17,4 @@ end
 
 othersTriangle:uid(30034)
 othersTriangle:register()
+

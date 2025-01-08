@@ -9,10 +9,10 @@ local function completeTest(cid)
 	if not player then
 		return false
 	end
-	if player:getStorageValue(TheNewFrontier.Questline) == 17 then
+	if player:getStorageValueByKey(TheNewFrontier.Questline) == 17 then
 		player:teleportTo(setting.successPosition)
-		player:setStorageValue(TheNewFrontier.Questline, 18)
-		player:setStorageValue(TheNewFrontier.Mission06, 3) --Questlog, The New Frontier Quest "Mission 06: Days Of Doom"
+		player:setStorageValueByKey(TheNewFrontier.Questline, 18)
+		player:setStorageValueByKey(TheNewFrontier.Mission06, 3) --Questlog, The New Frontier Quest "Mission 06: Days Of Doom"
 		player:say("You have braved the tiral of the Mooh'tah master.", TALKTYPE_MONSTER_SAY)
 	end
 end
@@ -25,7 +25,7 @@ function minotaurBoss.onStepIn(creature, item, position, fromPosition)
 		return false
 	end
 
-	if roomIsOccupied(setting.arenaPosition, true, 6, 6) or player:getStorageValue(TheNewFrontier.Questline) ~= 17 then
+	if roomIsOccupied(setting.arenaPosition, true, 6, 6) or player:getStorageValueByKey(TheNewFrontier.Questline) ~= 17 then
 		player:teleportTo(fromPosition)
 		fromPosition:sendMagicEffect(CONST_ME_TELEPORT)
 		return player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You don't have access to this area.")

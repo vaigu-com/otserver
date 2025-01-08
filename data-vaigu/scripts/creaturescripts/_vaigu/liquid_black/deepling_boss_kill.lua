@@ -9,7 +9,7 @@ function clearDeeplingBossRoom(centerPosition, rangeX, rangeY, exitPosition)
 	for i = 1, #spectators do
 		spectator = spectators[i]
 		if spectator:isPlayer() then
-			if spectator:getStorageValue(Storage.DeeplingBosses.DailyDeeplingKill) == 1 then
+			if os.time() < spectator:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill)  then
 				spectator:teleportTo(exitPosition)
 				exitPosition:sendMagicEffect(CONST_ME_TELEPORT)
 			end
@@ -31,11 +31,11 @@ function deeplingBosses.onDeath(creature)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValue(Storage.DeeplingBosses.DeeplingStatus) < bossConfig.status then
-			player:setStorageValue(Storage.DeeplingBosses.DeeplingStatus, bossConfig.status)
+		if player:getStorageValueByKey(Storage.DeeplingBosses.DeeplingStatus) < bossConfig.status then
+			player:setStorageValueByKey(Storage.DeeplingBosses.DeeplingStatus, bossConfig.status)
 		end
-		player:setStorageValue(bossConfig.storage, 1)
-		player:setStorageValue(Storage.DeeplingBosses.DailyDeeplingKill, 1)
+		player:setStorageValueByKey(bossConfig.storage, 1)
+		player:setStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill, NextDayEpochTime())
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Masz 5 minut na opuszczenie pokoju.")
 	end)
 	addEvent(clearDeeplingBossRoom, 60 * 5 * 1000, bossConfig.centerPosition, 15, 15, bossConfig.fromPosition) --1 min

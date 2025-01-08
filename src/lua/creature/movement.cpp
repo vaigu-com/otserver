@@ -130,20 +130,69 @@ bool MoveEvents::registerLuaPositionEvent(const std::shared_ptr<MoveEvent> moveE
 	return !positionVector.empty();
 }
 
+bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> moveEvent) {
+	auto keyVector = moveEvent->getKeysVector();
+	if (keyVector.empty()) {
+		return false;
+	}
+
+	std::vector<std::string> tmpVector;
+	tmpVector.reserve(keyVector.size());
+
+	for (const auto &key : keyVector) {
+		if (registerEvent(moveEvent, key, keysMap)) {
+			tmpVector.emplace_back(key);
+		}
+	}
+
+	keyVector = std::move(tmpVector);
+	return !keyVector.empty();
+}
+
 bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> moveEvent) {
-	// Check if event is correct
-	if (registerLuaItemEvent(moveEvent)
-	    || registerLuaUniqueEvent(moveEvent)
-	    || registerLuaActionEvent(moveEvent)
-	    || registerLuaPositionEvent(moveEvent)) {
+		std::vector<std::function<bool(const std::shared_ptr<MoveEvent> &)>> luaEventCallbacks = {
+		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaItemEvent(moveEvent); },
+		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaUniqueEvent(moveEvent); },
+		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaActionEvent(moveEvent); },
+		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaPositionEvent(moveEvent); },
+		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaKeyEvent(moveEvent); },
+	};
+	// Call all register lua events
+	bool registeredAny = false;
+	for (const auto &callback : luaEventCallbacks) {
+		if (callback(moveEvent)) {
+			registeredAny = true;
+		}
+	}
+
+	if (registeredAny) {
+		return true;
+	}
+	return false;
+}
+
+bool MoveEvents::registerEvent(const std::shared_ptr<MoveEvent> moveEvent, std::string key, std::map<std::string, MoveEventList> &moveListMap) const {
+	auto it = moveListMap.find(key);
+	if (it == moveListMap.end()) {
+		MoveEventList moveEventList;
+		moveEventList.moveEvent[moveEvent->getEventType()].push_back(moveEvent);
+		moveListMap[key] = moveEventList;
 		return true;
 	} else {
-		g_logger().warn(
-			"[{}] missing id, aid, uid or position for script: {}",
-			__FUNCTION__,
-			moveEvent->getScriptInterface()->getLoadingScriptName()
-		);
-		return false;
+		std::list<std::shared_ptr<MoveEvent>> &moveEventList = it->second.moveEvent[moveEvent->getEventType()];
+		for (const auto &existingMoveEvent : moveEventList) {
+			if (existingMoveEvent->getSlot() == moveEvent->getSlot()) {
+				g_logger().warn(
+					"[{}] duplicate move event found: {}, for script: {}",
+					__FUNCTION__,
+					key,
+					moveEvent->getScriptInterface()->getLoadingScriptName()
+				);
+				return false;
+			}
+		}
+		moveEventList.push_back(moveEvent);
+		return true;
 	}
 }
 
@@ -210,6 +259,18 @@ std::shared_ptr<MoveEvent> MoveEvents::getEvent(const std::shared_ptr<Item> &ite
 			break;
 	}
 
+
+	if (item->hasAttribute(ItemAttribute_t::KEY)) {
+		std::map<std::string, MoveEventList>::iterator itk;
+		itk = keysMap.find(item->getAttribute<std::string>(ItemAttribute_t::KEY));
+		if (itk != keysMap.end()) {
+			std::list<std::shared_ptr<MoveEvent>> &moveEventList = itk->second.moveEvent[eventType];
+			if (!moveEventList.empty()) {
+				return *moveEventList.begin();
+			}
+		}
+	}
+
 	if (item->hasAttribute(ItemAttribute_t::ACTIONID)) {
 		std::map<int32_t, MoveEventList>::iterator it = actionIdMap.find(item->getAttribute<uint16_t>(ItemAttribute_t::ACTIONID));
 		if (it != actionIdMap.end()) {
@@ -235,7 +296,19 @@ std::shared_ptr<MoveEvent> MoveEvents::getEvent(const std::shared_ptr<Item> &ite
 }
 
 std::shared_ptr<MoveEvent> MoveEvents::getEvent(const std::shared_ptr<Item> &item, MoveEvent_t eventType) {
+	if (item->hasAttribute(ItemAttribute_t::KEY)) {
+		std::map<std::string, MoveEventList>::iterator itk;
+		itk = keysMap.find(item->getAttribute<std::string>(ItemAttribute_t::KEY));
+		if (itk != keysMap.end()) {
+			std::list<std::shared_ptr<MoveEvent>> &moveEventList = itk->second.moveEvent[eventType];
+			if (!moveEventList.empty()) {
+				return *moveEventList.begin();
+			}
+		}
+	}
+
 	std::map<int32_t, MoveEventList>::iterator it;
+
 	if (item->hasAttribute(ItemAttribute_t::UNIQUEID)) {
 		it = uniqueIdMap.find(item->getAttribute<uint16_t>(ItemAttribute_t::UNIQUEID));
 		if (it != uniqueIdMap.end()) {
@@ -255,6 +328,7 @@ std::shared_ptr<MoveEvent> MoveEvents::getEvent(const std::shared_ptr<Item> &ite
 			}
 		}
 	}
+
 
 	it = itemIdMap.find(item->getID());
 	if (it != itemIdMap.end()) {

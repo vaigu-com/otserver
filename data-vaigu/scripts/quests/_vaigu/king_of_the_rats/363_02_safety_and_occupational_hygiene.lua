@@ -3,14 +3,14 @@ local quest = Quest(LOCALIZERS.SafetyAndOccupationalHygiene)
 quest
 	:Storage(function()
 		Storage.SafetyAndOccupationalHygiene = {
-			Mission01 = NextStorage(),
-			Mission02 = NextStorage(),
-			Mission03 = NextStorage(),
-			KrolTile = NextStorage(),
-			Portals = { ToMagicianTown = NextStorage(), ToPetrus = NextStorage() },
-			Ytong = NextStorage(),
-			Scp420Document = NextStorage(),
-			PetrusSpawn = NextStorage(),
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			KrolTile = {},
+			Portals = { ToMagicianTown = {}, ToPetrus = {} },
+			Ytong = {},
+			Scp420Document = {},
+			PetrusSpawn = {},
 		}
 		QuestState.SafetyAndOccupationalHygiene = {
 			Mission01 = {
@@ -128,11 +128,12 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Safety and Occupational Hygiene",
 			missions = {
-				[Storage.SafetyAndOccupationalHygiene.Mission01] = {
+				{
 					name = "01. Avast ye, scallywag!",
+					storage = Storage.SafetyAndOccupationalHygiene.Mission01,
 					states = {
 						[QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",
 						[QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation] = "Find Turdstin - he might know where the Rat of Kings is.",
@@ -141,8 +142,9 @@ quest
 						[MISSION_FINISHED] = "Chorus of Januses:\nIn our homeland, injustices abound,\nNo one will erase them with a hand,\nBut no one is a blood relative here:\nWe'll drain it from our chests and mold it.",
 					},
 				},
-				[Storage.SafetyAndOccupationalHygiene.Mission02] = {
+				{
 					name = "02. Eww. Am I the only one there to hate the womyn?",
+					storage = Storage.SafetyAndOccupationalHygiene.Mission02,
 					states = {
 						[QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission] = "Turdstin thanked you for the information that the only way to find the Rat of Kings is by listening to the Januses' choir. Talk to him again for a new mission.",
 						[QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin] = "Turdstin asked for your help in collecting cans.",
@@ -151,8 +153,9 @@ quest
 						[MISSION_FINISHED] = "You handed over the premium account to Xe'na. And now...",
 					},
 				},
-				[Storage.SafetyAndOccupationalHygiene.Mission03] = {
+				{
 					name = "06. Crinjeux",
+					storage = Storage.SafetyAndOccupationalHygiene.Mission03,
 					states = {
 						[QuestState.SafetyAndOccupationalHygiene.Mission03.AskRatOfKingsForMission] = "You fed the exhausted Rat of Kings. Now ask him about the mission.",
 						[QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus] = "The Rat of Kings told you that Petrus Ciemiezca is on the peak of the magician's rocks to the northeast of Mirkotown.",
@@ -162,7 +165,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:MonsterEvent(function()
 		local nextState = {
@@ -178,7 +181,7 @@ quest
 
 			lock:Reset()
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local missionState = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission03)
+				local missionState = player:getStorageValueByKey(Storage.SafetyAndOccupationalHygiene.Mission03)
 				if missionState ~= QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus then
 					return true
 				end
@@ -373,364 +376,315 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.SafetyAndOccupationalHygiene.Mission01)
-:State(
-function()
-return 
-		MISSION_NOT_STARTED,
-		QuestFactory.StartupItems({
-			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 2, 0), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
-			{ pos = MIRKO_MAGICIANS_ANCHOR:Moved(22, 11, -5), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus },
-		}),
-		QuestFactory.Script(function(missionState)
-			local portal = MoveEvent()
+	:State(function()
+		return MISSION_NOT_STARTED,
+			QuestFactory.StartupItems({
+				{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 2, 0), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
+				{ pos = MIRKO_MAGICIANS_ANCHOR:Moved(22, 11, -5), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus },
+			}),
+			QuestFactory.Script(function(missionState)
+				local portal = MoveEvent()
 
-			function portal.onStepIn(creature, item, position, fromPosition)
-				local player = creature:getPlayer()
-				if not player then
+				function portal.onStepIn(creature, item, position, fromPosition)
+					local player = creature:getPlayer()
+					if not player then
+						return true
+					end
+
+					player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getActionId()])
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
 
-				player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getActionId()])
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
+				for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
+					portal:key(actionId)
+				end
+				portal:type("stepin")
+				portal:register()
 
-			for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
-				portal:aid(actionId)
-			end
-			portal:type("stepin")
-			portal:register()
+				local portalUse = Action()
 
-			local portalUse = Action()
+				function portalUse.onUse(creature, item, fromPosition, target, toPosition, isHotkey)
+					local player = creature:getPlayer()
+					if not player then
+						return true
+					end
 
-			function portalUse.onUse(creature, item, fromPosition, target, toPosition, isHotkey)
-				local player = creature:getPlayer()
-				if not player then
+					player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getActionId()])
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
 
-				player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getActionId()])
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
-
-			for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
-				portalUse:aid(actionId)
-			end
-			portalUse:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Thank you for your help with the last task. I have now achieved justice on the level of a true Rat King. Therefore, I think I am worthy of entrusting you with a new task. Go to Turdstin, a member of the MGTOW clan. Anticipating your question: yes, he is disabled. However, it's possible that he knows how to locate the Rat of Kings.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
-				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Turdstin lives on the southern beach of Mirkotown.",
-			},
-		}),
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "Maybe I have some information about this Rat, but it certainly won't be free. I am the most important person in the world because I belong to the MGTOW order, and of all people, I loathe women the most, as they ruin this world. Go to their village and convince them to acknowledge our superiority and remove their cuckurse.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
-				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "Amazon leader lives in the western mountains.",
-			},
-		}),
-		QuestFactory.Dialog("Xe'na", {
-			[{ "cuckurse", "cucklatwa" }] = {
-				text = "Hmm... no. I won't remove the curse from him. Tell him that he would first have to stop being such a misogynist and a white capitalist.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.ReportToTurdstin,
-				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission01.ReportToTurdstin,
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission", "cuckurse", "cucklatwa" }] = {
-				text = "Oh god, what a foolish woman. Objectively and impartially, I conclude that I belong to the most repressed social group. Be that as it may, let's leave it for now. You mentioned the Rat of Kings earlier. The only way to find him is to listen carefully to the chorus of januses. They rarely say anything sensible, so you'll have to decide for yourself what is nonsense and what will lead you to the Rat.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission01] = MISSION_FINISHED,
-					[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
-				},
-			},
-		})
-
-end
-)	:Mission(Storage.SafetyAndOccupationalHygiene.Mission02)
-:State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "I am currently collecting cans that may still contain a certain amount of volts. Bring me about 100 small used vials, and I will reward you.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
-				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "Here is your reward. Come back in some time, preferably in the evening.",
-				requiredItems = { { id = 285, count = 100 } },
-				textNoRequiredItems = "Come back when you have collected 100 small vials.",
-				expReward = 30000,
-				rewards = { ExerciseWeaponBox(500) },
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
-				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "That damn emperor took away my rights to the land where I collected cans. I won't let him get away with it, and I certainly won't let the new masters feel safe here. Come here at night because that's when the bums sleep. We'll ambush the invaders then, and maybe we won't wake up all the bums. Ask me about {attack} if you're ready.",
-			},
-			[{ "attack", "atak" }] = {
-				text = "Oh wow, they are swarming!",
-				specialActionsOnSuccess = {
-					{
-						action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.turdstinAttack,
+				for _, actionId in pairs(Storage.SafetyAndOccupationalHygiene.Portals) do
+					portalUse:key(actionId)
+				end
+				portalUse:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Thank you for your help with the last task. I have now achieved justice on the level of a true Rat King. Therefore, I think I am worthy of entrusting you with a new task. Go to Turdstin, a member of the MGTOW clan. Anticipating your question: yes, he is disabled. However, it's possible that he knows how to locate the Rat of Kings.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
 					},
 				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "I didn't expect this. The group of local bums from this beach, under the leadership of their chief, got upset, so someone else will now take their cans on a massive scale. Anyway, thanks for your help. Choose your reward: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
-			},
-			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
-				text = "Here is your reward. A while ago, I found a premium account on 4chan - all thanks to my metal detector. Someone must have thrown it away. And rightly so, because it doesn't work. But the Amazons probably don't know that. Try to bribe them with this account to get rid of my cuckurse.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Turdstin lives on the southern beach of Mirkotown.",
 				},
-				rewards = { ExerciseWeaponBox(400) },
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
-		QuestFactory.Dialog("Xe'na", {
-			[{ "mission", "cucklatwa", "cuckurse", "curse", "klatwa" }] = {
-				text = "Your offer sounds reasonable. After all, I won't have to watch those cursed ads anymore. I hope you have an offering in the form of cake for the mighty Miroslawa. If not, better have it with you. Nevertheless, I'm ready for the {exchange}.",
-			},
-			[{ "exchange", "wymiane" }] = {
-				text = "Actually, such a curse doesn't exist. But don't tell him that, or he'll get upset. But to avoid being a total fraud, I'll give you this scroll of feminazi knowledge instead.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission02] = MISSION_FINISHED,
-					[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings,
-				},
-				rewards = {
-					QuestKeyItems.SafetyAndOccupationalHygiene.GrazhenaDocument,
-				},
-				specialActionsOnSuccess = {
-					{
-						action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.feministCake,
+			}),
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "Maybe I have some information about this Rat, but it certainly won't be free. I am the most important person in the world because I belong to the MGTOW order, and of all people, I loathe women the most, as they ruin this world. Go to their village and convince them to acknowledge our superiority and remove their cuckurse.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
 					},
 				},
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local document = Action()
-			function document.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				local aid = item:getActionId()
-				local translatedText = player:Localizer(nil):Get(item:getAttribute(ITEM_ATTRIBUTE_TEXT), { player = player, aid = aid })
-				SimpleTextDisplay(player, item, translatedText)
-				return true
-			end
-
-			document:aid(Storage.SafetyAndOccupationalHygiene.Scp420Document)
-			document:register()
-		end)
-
-end
-)	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
-:State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings,
-		QuestFactory.Dialog("Rat of Kings", {
-			[{ GREET }] = {
-				text = "Eeeuuu... eating... even... hydrofoils with sauce...",
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "Thanks, I feel better now. So, did Tomek send you? Ask me about {mission}, and I'll guide you as soon as I regain my strength.",
-				requiredItems = { { id = 3579, count = 1 } },
-				textNoRequiredItems = "Uhh....",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission03] = 	QuestState.SafetyAndOccupationalHygiene.Mission03.AskRatOfKingsForMission,
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "Amazon leader lives in the western mountains.",
 				},
-			},
-		}),
-		QuestFactory.StartupItems({
-			{ id = 4399, pos = { 6170, 1517, 5 }, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
-		}),
-		QuestFactory.Script(function(missionState)
-			local tileIn = MoveEvent()
-
-			function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:isPlayer() then
-					return false
-				end
-
-				local storageVal = player:getStorageValue(Storage.SafetyAndOccupationalHygiene.Mission03)
-
-				if storageVal < QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings then
-					return false
-				end
-
-				if storageVal > QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings then
-					return false
-				end
-
-				local toPos = fromPosition:Moved(-1, -1, 1)
-				player:teleportTo(toPos)
-			end
-
-			tileIn:aid(Storage.SafetyAndOccupationalHygiene.KrolTile)
-			tileIn:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission03.AskRatOfKingsForMission,
-		QuestFactory.Dialog("Rat of Kings", {
-			[{ "mission", "misje" }] = {
-				text = "I think I know why Tomek sent you here. He wants you to defeat the menacing wizard who threatens the lives of Mirkotown's residents. It's a noble and just cause. I'm talking, of course, about Petrus The Tyrant, who wields the Ytong of Power forged in the shadows of the darkest asshole. You'll find his hideout at the top of the magician's tower northeast of Mirkotown.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission03] =		QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus,
+			}),
+			QuestFactory.Dialog("Xe'na", {
+				[{ "cuckurse", "cucklatwa" }] = {
+					text = "Hmm... no. I won't remove the curse from him. Tell him that he would first have to stop being such a misogynist and a white capitalist.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.ReportToTurdstin,
+					},
 				},
-			},
-		})
-
-end
-)	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
-:State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus,
-		QuestFactory.Dialog("Rat of Kings", {
-			[{ "mission", "petrus" }] = {
-				text = "Petrus has his hideout at the top of the eastern tower on the magician's rock.",
-			},
-		}),
-		QuestFactory.StartupItems({
-			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 3, 4), id = 7348, aid = Storage.SafetyAndOccupationalHygiene.PetrusSpawn },
-		}),
-		QuestFactory.Script(function(missionState)
-			local tile = MoveEvent()
-
-			local lock = SpawnLocks.SafetyAndOccupationalHygiene.Petrus
-			function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:HasExactMissionState(missionState) then
-					return
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission01.ReportToTurdstin,
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission", "cuckurse", "cucklatwa" }] = {
+					text = "Oh god, what a foolish woman. Objectively and impartially, I conclude that I belong to the most repressed social group. Be that as it may, let's leave it for now. You mentioned the Rat of Kings earlier. The only way to find him is to listen carefully to the chorus of januses. They rarely say anything sensible, so you'll have to decide for yourself what is nonsense and what will lead you to the Rat.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission01] = MISSION_FINISHED,
+						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
+					},
+				},
+			})
+	end)
+	:Mission(Storage.SafetyAndOccupationalHygiene.Mission02)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "I am currently collecting cans that may still contain a certain amount of volts. Bring me about 100 small used vials, and I will reward you.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "Here is your reward. Come back in some time, preferably in the evening.",
+					requiredItems = { { id = 285, count = 100 } },
+					textNoRequiredItems = "Come back when you have collected 100 small vials.",
+					expReward = 30000,
+					rewards = { ExerciseWeaponBox(500) },
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "That damn emperor took away my rights to the land where I collected cans. I won't let him get away with it, and I certainly won't let the new masters feel safe here. Come here at night because that's when the bums sleep. We'll ambush the invaders then, and maybe we won't wake up all the bums. Ask me about {attack} if you're ready.",
+				},
+				[{ "attack", "atak" }] = {
+					text = "Oh wow, they are swarming!",
+					specialActionsOnSuccess = {
+						{
+							action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.turdstinAttack,
+						},
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "I didn't expect this. The group of local bums from this beach, under the leadership of their chief, got upset, so someone else will now take their cans on a massive scale. Anyway, thanks for your help. Choose your reward: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
+				},
+				[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
+					text = "Here is your reward. A while ago, I found a premium account on 4chan - all thanks to my metal detector. Someone must have thrown it away. And rightly so, because it doesn't work. But the Amazons probably don't know that. Try to bribe them with this account to get rid of my cuckurse.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
+					},
+					rewards = { ExerciseWeaponBox(400) },
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
+			QuestFactory.Dialog("Xe'na", {
+				[{ "mission", "cucklatwa", "cuckurse", "curse", "klatwa" }] = {
+					text = "Your offer sounds reasonable. After all, I won't have to watch those cursed ads anymore. I hope you have an offering in the form of cake for the mighty Miroslawa. If not, better have it with you. Nevertheless, I'm ready for the {exchange}.",
+				},
+				[{ "exchange", "wymiane" }] = {
+					text = "Actually, such a curse doesn't exist. But don't tell him that, or he'll get upset. But to avoid being a total fraud, I'll give you this scroll of feminazi knowledge instead.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission02] = MISSION_FINISHED,
+						[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings,
+					},
+					rewards = {
+						QuestKeyItems.SafetyAndOccupationalHygiene.GrazhenaDocument,
+					},
+					specialActionsOnSuccess = {
+						{
+							action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.feministCake,
+						},
+					},
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local document = Action()
+				function document.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					local aid = item:getActionId()
+					local translatedText = player:Localizer(nil):Get(item:getAttribute(ITEM_ATTRIBUTE_TEXT), { player = player, aid = aid })
+					SimpleTextDisplay(player, item, translatedText)
+					return true
 				end
 
-				if lock:IsSet() then
-					return
+				document:key(Storage.SafetyAndOccupationalHygiene.Scp420Document)
+				document:register()
+			end)
+	end)
+	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings,
+			QuestFactory.Dialog("Rat of Kings", {
+				[{ GREET }] = {
+					text = "Eeeuuu... eating... even... hydrofoils with sauce...",
+				},
+				[{ ANY_MESSAGE }] = {
+					text = "Thanks, I feel better now. So, did Tomek send you? Ask me about {mission}, and I'll guide you as soon as I regain my strength.",
+					requiredItems = { { id = 3579, count = 1 } },
+					textNoRequiredItems = "Uhh....",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.AskRatOfKingsForMission,
+					},
+				},
+			}),
+			QuestFactory.StartupItems({
+				{ id = 4399, pos = { 6170, 1517, 5 }, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
+			}),
+			QuestFactory.Script(function(missionState)
+				local tileIn = MoveEvent()
+
+				function tileIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:isPlayer() then
+						return false
+					end
+
+					local storageVal = player:getStorageValueByKey(Storage.SafetyAndOccupationalHygiene.Mission03)
+
+					if storageVal < QuestState.SafetyAndOccupationalHygiene.Mission03.FindRatOfKings then
+						return false
+					end
+
+					if storageVal > QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings then
+						return false
+					end
+
+					local toPos = fromPosition:Moved(-1, -1, 1)
+					player:teleportTo(toPos)
 				end
 
-				Game.createMonster("petrus ciemiezca", player:getPosition())
-				lock:Set()
-			end
+				tileIn:key(Storage.SafetyAndOccupationalHygiene.KrolTile)
+				tileIn:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission03.AskRatOfKingsForMission,
+			QuestFactory.Dialog("Rat of Kings", {
+				[{ "mission", "misje" }] = {
+					text = "I think I know why Tomek sent you here. He wants you to defeat the menacing wizard who threatens the lives of Mirkotown's residents. It's a noble and just cause. I'm talking, of course, about Petrus The Tyrant, who wields the Ytong of Power forged in the shadows of the darkest asshole. You'll find his hideout at the top of the magician's tower northeast of Mirkotown.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus,
+					},
+				},
+			})
+	end)
+	:Mission(Storage.SafetyAndOccupationalHygiene.Mission03)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission03.KillPetrus,
+			QuestFactory.Dialog("Rat of Kings", {
+				[{ "mission", "petrus" }] = {
+					text = "Petrus has his hideout at the top of the eastern tower on the magician's rock.",
+				},
+			}),
+			QuestFactory.StartupItems({
+				{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 3, 4), id = 7348, aid = Storage.SafetyAndOccupationalHygiene.PetrusSpawn },
+			}),
+			QuestFactory.Script(function(missionState)
+				local tile = MoveEvent()
 
-			tile:aid(Storage.SafetyAndOccupationalHygiene.PetrusSpawn)
-			tile:register()
-		end)
+				local lock = SpawnLocks.SafetyAndOccupationalHygiene.Petrus
+				function tile.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:HasExactMissionState(missionState) then
+						return
+					end
 
-end
-):State(
-function()
-return 
-		{ min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings },
-		QuestFactory.StartupItems({
+					if lock:IsSet() then
+						return
+					end
+
+					Game.createMonster("petrus ciemiezca", player:getPosition())
+					lock:Set()
+				end
+
+				tile:key(Storage.SafetyAndOccupationalHygiene.PetrusSpawn)
+				tile:register()
+			end)
+	end)
+	:State(function()
+		return { min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings }, QuestFactory.StartupItems({
 			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(-3, 2, 1), id = 2471, aid = Storage.KingOfRatsHQ.Items.Ytong, rewards = { QuestKeyItems.KingOfRatsHQ.Ytong } },
 		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings,
-		QuestFactory.Dialog("Rat of Kings", {
-			[{ "mission" }] = {
-				text = "So, this is the end of Petrus' reign. Let me now tell you about another threat that slumbers deep in the underground of Kongo. It's an ancient creature sent by aliens to enslave humanity by undermining the authority of the King of Rats. Its name is HF-P/X. You shouldn't go on this journey alone. Ask Tom if he knows anyone who would like to accompany you.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings,
+			QuestFactory.Dialog("Rat of Kings", {
+				[{ "mission" }] = {
+					text = "So, this is the end of Petrus' reign. Let me now tell you about another threat that slumbers deep in the underground of Kongo. It's an ancient creature sent by aliens to enslave humanity by undermining the authority of the King of Rats. Its name is HF-P/X. You shouldn't go on this journey alone. Ask Tom if he knows anyone who would like to accompany you.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
+					},
 				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Thank you for your help with the task and for the information from the Rat of Kings. Come back to me after some time, and I will tell you about the fate of someone close to me who wanted to defeat HF-P/X. Although his motivations were somewhat unusual.",
-				nextState = {
-					[Storage.SafetyAndOccupationalHygiene.Mission03] = MISSION_FINISHED,
-					[Storage.ThreeSramatiansAndTheDragon.Mission01] = QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek,
-					[Storage.Finished.SafetyAndOccupationalHygiene] = MISSION_FINISHED,
+			})
+	end)
+	:State(function()
+		return QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Thank you for your help with the task and for the information from the Rat of Kings. Come back to me after some time, and I will tell you about the fate of someone close to me who wanted to defeat HF-P/X. Although his motivations were somewhat unusual.",
+					nextState = {
+						[Storage.SafetyAndOccupationalHygiene.Mission03] = MISSION_FINISHED,
+						[Storage.ThreeSramatiansAndTheDragon.Mission01] = QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek,
+						[Storage.Finished.SafetyAndOccupationalHygiene] = MISSION_FINISHED,
+					},
+					rewards = { ExerciseWeaponBox(1337) },
 				},
-				rewards = { ExerciseWeaponBox(1337) },
-			},
-		})
-
-end
-)	:Register()
+			})
+	end)
+	:Register()

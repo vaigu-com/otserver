@@ -10,7 +10,7 @@ local config = {
 local gray = GlobalEvent("gray island bosses")
 function gray.onStartup()
 	local rand = math.random(1, 3)
-	Game.setStorageValue(GlobalStorage.DeeplingBoss, rand)
+	Game.setStorageValueByKey(Storage.DeeplingBoss, rand)
 	local bossNames = {
 		[1] = "Tanjis",
 		[2] = "Jaul",

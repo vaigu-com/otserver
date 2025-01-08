@@ -41,6 +41,10 @@ void MapCache::flush() {
 }
 
 void MapCache::parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, std::shared_ptr<Item> item) {
+	if (!BasicItem->key.empty()) {
+		item->setAttribute(ItemAttribute_t::KEY, BasicItem->key);
+	}
+
 	if (BasicItem->charges > 0) {
 		item->setSubType(BasicItem->charges);
 	}
@@ -71,7 +75,7 @@ void MapCache::parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, std::s
 	}
 
 	/* if (BasicItem.description != 0)
-	    item->setAttribute(ItemAttribute_t::DESCRIPTION, STRING_CACHE[BasicItem.description]);*/
+	        item->setAttribute(ItemAttribute_t::DESCRIPTION, STRING_CACHE[BasicItem.description]);*/
 }
 
 std::shared_ptr<Item> MapCache::createItem(const std::shared_ptr<BasicItem> &BasicItem, Position position) {
@@ -242,6 +246,10 @@ void BasicItem::hash(size_t &h) const {
 		stdext::hash_combine(h, text);
 	}
 
+	if (!key.empty()) {
+		stdext::hash_combine(h, key);
+	}
+
 	if (!items.empty()) {
 		stdext::hash_combine(h, items.size());
 		for (const auto &item : items) {
@@ -287,6 +295,13 @@ void BasicItem::readAttr(FileStream &stream) {
 	while (!end) {
 		const uint8_t attr = stream.getU8();
 		switch (attr) {
+			case ATTR_KEY: {
+				const auto str = stream.getString();
+				if (!str.empty()) {
+					key = str;
+				}
+			} break;
+
 			case ATTR_DEPOT_ID: {
 				doorOrDepotId = stream.getU16();
 			} break;

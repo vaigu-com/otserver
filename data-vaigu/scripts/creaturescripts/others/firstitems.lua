@@ -75,7 +75,7 @@ local starterItems = {
 }
 
 local function setFreeTravels(player)
-	player:setStorageValue(Storage.FreeTravels, FREE_TRANSPORTS)
+	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRANSPORTS)
 end
 
 local knightWeaponChoices = {

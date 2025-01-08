@@ -16,7 +16,8 @@ function teleport.onStepIn(creature, item, position, fromPosition)
 end
 
 for uniqueRange = 38001, 40000 do
-	teleport:uid(uniqueRange)
+	teleport:key(uniqueRange)
 end
 
 teleport:register()
+

@@ -15,7 +15,7 @@ function teleports.onStepIn(creature, item, position, fromPosition)
 	for b = 1, #config do
 		if player:getPosition() == Position(config[b].teleportPos) then
 			if config[b].condition then
-				if player:getStorageValue(config[b].condition) == 2 then
+				if player:getStorageValueByKey(config[b].condition) == 2 then
 					if player:getSlotItem(CONST_SLOT_HEAD) then
 						if table.contains({ 5460, 11585, 13995 }, player:getSlotItem(CONST_SLOT_HEAD).itemid) then
 							player:teleportTo(config[b].destination)

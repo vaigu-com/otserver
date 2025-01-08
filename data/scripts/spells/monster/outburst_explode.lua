@@ -52,12 +52,12 @@ local spell = Spell("instant")
 function spell.onCastSpell(creature, var)
 	outExplode()
 	delayedCastSpell(creature, var)
-	Game.setStorageValue(GlobalStorage.HeartOfDestruction.OutburstChargingKilled, 1)
+	Game.setStorageValueByKey(Storage.HeartOfDestruction.OutburstChargingKilled, 1)
 	addEvent(removeOutburst, 1000, creature.uid)
 
 	local monster = Game.createMonster("Outburst", Position(32234, 31284, 14), false, true)
 	if monster then
-		local outburstHealth = Game.getStorageValue(GlobalStorage.HeartOfDestruction.OutburstHealth) > 0 and Game.getStorageValue(GlobalStorage.HeartOfDestruction.OutburstHealth) or 0
+		local outburstHealth = Game.getStorageValueByKey(Storage.HeartOfDestruction.OutburstHealth) > 0 and Game.getStorageValueByKey(Storage.HeartOfDestruction.OutburstHealth) or 0
 		monster:addHealth(-monster:getHealth() + outburstHealth, COMBAT_PHYSICALDAMAGE)
 	end
 	return true

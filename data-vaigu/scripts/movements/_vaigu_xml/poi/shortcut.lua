@@ -6,7 +6,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.PitsOfInferno.OneThrone) <= 0 or player:getLevel() < 80 then
+	if player:getStorageValueByKey(Storage.PitsOfInferno.OneThrone) <= 0 or player:getLevel() < 80 then
 		player:teleportTo(fromPosition)
 		toPosition:sendMagicEffect(CONST_ME_TELEPORT)
 		fromPosition:sendMagicEffect(CONST_ME_TELEPORT)

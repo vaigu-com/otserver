@@ -1,8 +1,8 @@
 local creatureevent = CreatureEvent("ZamuloshDeath")
 
 function creatureevent.onDeath(creature)
-	if Game.getStorageValue(GlobalStorage.Ferumbras.ZamuloshTp) < os.time() then
-		Game.setStorageValue(GlobalStorage.Ferumbras.ZamuloshTp, os.time() + 3 * 60)
+	if Game.getStorageValueByKey(Storage.Ferumbras.ZamuloshTp) < os.time() then
+		Game.setStorageValueByKey(Storage.Ferumbras.ZamuloshTp, os.time() + 3 * 60)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)

@@ -3,57 +3,57 @@ local quest = Quest(LOCALIZERS.LocalSupport)
 quest
 	:Storage(function()
 		Storage.LocalSupport = {
-			Discernment = NextStorage(),
+			Discernment = {},
 			VendorsAsked = {
-				TrollskyAsked = NextStorage(),
-				FstabAsked = NextStorage(),
-				LebesgueAsked = NextStorage(),
-				PostmanAsked = NextStorage(),
-				MadameAsked = NextStorage(),
-				WalmartAsked = NextStorage(),
-				KomorAsked = NextStorage(),
-				DiggerAsked = NextStorage(),
-				JackAsked = NextStorage(),
-				GypsyAsked = NextStorage(),
+				TrollskyAsked = {},
+				FstabAsked = {},
+				LebesgueAsked = {},
+				PostmanAsked = {},
+				MadameAsked = {},
+				WalmartAsked = {},
+				KomorAsked = {},
+				DiggerAsked = {},
+				JackAsked = {},
+				GypsyAsked = {},
 			},
 
-			WoodDelivery = NextStorage(),
-			NarroStages = NextStorage(),
+			WoodDelivery = {},
+			NarroStages = {},
 
-			FreakingRats = NextStorage(),
-			PoisonedCheese = NextStorage(),
+			FreakingRats = {},
+			PoisonedCheese = {},
 
-			BudgetRecycling = NextStorage(),
+			BudgetRecycling = {},
 
-			LostCrystalBall = NextStorage(),
+			LostCrystalBall = {},
 
-			Biodegradable = NextStorage(),
-			FishBait = NextStorage(),
-			Parcel = NextStorage(),
+			Biodegradable = {},
+			FishBait = {},
+			Parcel = {},
 
-			UnwantedGuests = NextStorage(),
-			OldManFrostPickaxe = NextStorage(),
+			UnwantedGuests = {},
+			OldManFrostPickaxe = {},
 
-			TwoMarlinQuest = NextStorage(),
+			TwoMarlinQuest = {},
 
-			OcellatusXD = NextStorage(),
-			Ticket = NextStorage(),
+			OcellatusXD = {},
+			Ticket = {},
 
-			IKEAForTheBold = NextStorage(),
-			SpawnDominoUndergroundChest = NextStorage(),
-			BookChest = NextStorage(),
-			BookOfContraband = NextStorage(),
-			UpstairsRoom = NextStorage(),
-			MilesAsked = NextStorage(),
-			TileBeforeHawser = NextStorage(),
-			ShoreCaveChest = NextStorage(),
-			LumberjackBoatAccess = NextStorage(),
+			IKEAForTheBold = {},
+			SpawnDominoUndergroundChest = {},
+			BookChest = {},
+			BookOfContraband = {},
+			UpstairsRoom = {},
+			MilesAsked = {},
+			TileBeforeHawser = {},
+			ShoreCaveChest = {},
+			LumberjackBoatAccess = {},
 
-			SettledDownFishmonger = NextStorage(),
-			FishmongerFloat = NextStorage(),
-			FishmongerReel = NextStorage(),
-			FishmongerStool = NextStorage(),
-			FishermanSonBoat = NextStorage(),
+			SettledDownFishmonger = {},
+			FishmongerFloat = {},
+			FishmongerReel = {},
+			FishmongerStool = {},
+			FishermanSonBoat = {},
 		}
 		QuestState.LocalSupport = {
 			Discernment = {
@@ -152,11 +152,12 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Local Support",
 			missions = {
-				[Storage.LocalSupport.Discernment] = {
+				{
 					name = "Discernment",
+					storage = Storage.LocalSupport.Discernment,
 					states = {
 						[MISSION_NOT_STARTED] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 						[1] = "VISIT_DEALERS_STATUS",
@@ -173,8 +174,9 @@ quest
 					},
 					linkedStorages = Storage.LocalSupport.VendorsAsked,
 				},
-				[Storage.LocalSupport.WoodDelivery] = {
+				{
 					name = "Wood Delivery",
+					storage = Storage.LocalSupport.WoodDelivery,
 					states = {
 						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 						[QuestState.LocalSupport.WoodDelivery.InvestigateCamp] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
@@ -186,8 +188,9 @@ quest
 						[MISSION_FINISHED] = "3af",
 					},
 				},
-				[Storage.LocalSupport.FreakingRats] = {
+				{
 					name = "Freaking Rats",
+					storage = Storage.LocalSupport.FreakingRats,
 					states = {
 						[QuestState.LocalSupport.FreakingRats.AskGertrudeForRepellant] = "Walmart wishes she knew how to repel rats. Find out where Gertrude lives. She should know how to craft a rat poison.",
 						[QuestState.LocalSupport.FreakingRats.BringMouldyCheeseToGertrude] = "Gertrude asked you to bring her one mouldy cheese.",
@@ -195,22 +198,25 @@ quest
 						[MISSION_FINISHED] = "Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift.",
 					},
 				},
-				[Storage.LocalSupport.BudgetRecycling] = {
+				{
 					name = "Cheap Recycling",
+					storage = Storage.LocalSupport.BudgetRecycling,
 					states = {
 						[QuestState.LocalSupport.BudgetRecycling.BringPieceOfEachClothToMadame] = "Malkin asked you to bring her 1 piece of cloth of every color.",
 						[MISSION_FINISHED] = "Madame Malkin is grateful for your effort, and from now on you can exchange mystic turbans, red robe, and green tunic for corresponding pieces of cloth.",
 					},
 				},
-				[Storage.LocalSupport.LostCrystalBall] = {
+				{
 					name = "Broken Orb",
+					storage = Storage.LocalSupport.LostCrystalBall,
 					states = {
 						[QuestState.LocalSupport.LostCrystalBall.FindBallForGypsy] = "Gypsy needs a new Crystal ball. Bring it to him, and he will reward you abundantly.",
 						[MISSION_FINISHED] = "The crystal ball wasn't perfect, but Gypsy is fine with it. Since now he will also let you exchange red gem to ring of healing.",
 					},
 				},
-				[Storage.LocalSupport.Biodegradable] = {
+				{
 					name = "Biodegradable",
+					storage = Storage.LocalSupport.Biodegradable,
 					states = {
 						[QuestState.LocalSupport.Biodegradable.FindPostmanPackage] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
 						[QuestState.LocalSupport.Biodegradable.ReturnPackageToPostman] = "You found the package for Old Postman. Return to him now.",
@@ -218,21 +224,24 @@ quest
 						[MISSION_FINISHED] = "You took the box from Old Postman, which you should deliver to Anon's father.",
 					},
 				},
-				[Storage.LocalSupport.UnwantedGuests] = {
+				{
 					name = "Unwanted Guests",
+					storage = Storage.LocalSupport.UnwantedGuests,
 					states = {
 						[QuestState.LocalSupport.UnwantedGuests.BringOldManFrostItems] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
 						[MISSION_FINISHED] = "You completed Old Man Frost's request.",
 					},
 				},
-				[Storage.LocalSupport.TwoMarlinQuest] = {
+				{
 					name = "Two Marlins",
+					storage = Storage.LocalSupport.TwoMarlinQuest,
 					states = {
 						[MISSION_FINISHED] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 					},
 				},
-				[Storage.LocalSupport.OcellatusXD] = {
+				{
 					name = "Ocellatus Xddd",
+					storage = Storage.LocalSupport.OcellatusXD,
 					states = {
 						[QuestState.LocalSupport.OcellatusXD.FindTicket] = "Recover the match tickets that have been stolen from Ocellatus.",
 						[QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus] = "You found the Tickets in a bandit tent.",
@@ -241,8 +250,9 @@ quest
 						[MISSION_FINISHED] = "You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
 					},
 				},
-				[Storage.LocalSupport.IKEAForTheBold] = {
+				{
 					name = "IKEA for the BOLD",
+					storage = Storage.LocalSupport.IKEAForTheBold,
 					states = {
 						[QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor] = "Commissioner Fisher has mentioned that Komor needs help.",
 						[QuestState.LocalSupport.IKEAForTheBold.AskGypsy] = "Komor suggested you to Gypsy whether he knows anything about the theft of the furniture.",
@@ -258,8 +268,9 @@ quest
 						[MISSION_FINISHED] = "You prematurely ended the efforts of Lumberjack Domino. From now on you can sail his boat from the bandit camp to the south of the steppes.",
 					},
 				},
-				[Storage.LocalSupport.SettledDownFishmonger] = {
+				{
 					name = "Settled down Fishmonger",
+					storage = Storage.LocalSupport.SettledDownFishmonger,
 					states = {
 						[QuestState.LocalSupport.SettledDownFishmonger.DeliverAnonFatherPackage] = "Anon's father is waiting for his order.",
 						[QuestState.LocalSupport.SettledDownFishmonger.FindAndDevilerAnonFatherMissingItems] = "Anon's father needs help finding some old junk he carried with him for fishing. Search all boats, piers, and swamps around Mirko Town for any found items.",
@@ -269,7 +280,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Mission(Storage.LocalSupport.Discernment)
 	:State(function()
@@ -861,7 +872,7 @@ quest
 						return false
 					end
 
-					local cooldownExpiry = player:getStorageValue(Storage.LocalSupport.OldManFrostPickaxe)
+					local cooldownExpiry = player:getStorageValueByKey(Storage.LocalSupport.OldManFrostPickaxe)
 					local now = os.time()
 					if cooldownExpiry > now then
 						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Magic effects of this pickaxe have dissipated. It should be ready to use in few days.")
@@ -869,13 +880,13 @@ quest
 					end
 
 					local nextCooldownExpiry = NextWednesdayEpochTime()
-					player:setStorageValue(nextCooldownExpiry)
+					player:setStorageValueByKey(nextCooldownExpiry)
 					player:addCharmPoints(charmPoints)
 					local bonusExp = player:ExpForNextlevel() * 0.15 + 50000
 					AddExperienceWithAnnouncement(player, bonusExp)
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You received :points: charm points.", { points = charmPoints }))
 				end
-				oldManFrostPickaxe:aid(Storage.LocalSupport.OldManFrostPickaxe)
+				oldManFrostPickaxe:key(Storage.LocalSupport.OldManFrostPickaxe)
 				oldManFrostPickaxe:register()
 			end)
 	end)
@@ -1042,7 +1053,7 @@ quest
 					Game.createMonster("Lumberjack Domino Underground", toPosition)
 					SpawnLocks.LocalSupport.DominoUnderground:Set()
 				end
-				undergroundChest:aid(Storage.LocalSupport.SpawnDominoUndergroundChest)
+				undergroundChest:key(Storage.LocalSupport.SpawnDominoUndergroundChest)
 				undergroundChest:register()
 			end)
 	end)
@@ -1053,8 +1064,8 @@ quest
 			SpawnLocks.LocalSupport.DominoUnderground:Reset()
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				if player:getStorageValue(Storage.LocalSupport.IKEAForTheBold) == QuestState.LocalSupport.IKEAForTheBold.FindThiefInSewers then
-					player:setStorageValue(Storage.LocalSupport.IKEAForTheBold, QuestState.LocalSupport.IKEAForTheBold.SearchDominoUndergroundHideout)
+				if player:getStorageValueByKey(Storage.LocalSupport.IKEAForTheBold) == QuestState.LocalSupport.IKEAForTheBold.FindThiefInSewers then
+					player:setStorageValueByKey(Storage.LocalSupport.IKEAForTheBold, QuestState.LocalSupport.IKEAForTheBold.SearchDominoUndergroundHideout)
 				end
 			end)
 			return true
@@ -1280,7 +1291,7 @@ quest
 					Game.createMonster("Lumberjack Domino Shore", toPosition)
 					SpawnLocks.LocalSupport.DominoShore:Set()
 				end
-				tileBeforeHawser:aid(Storage.LocalSupport.TileBeforeHawser)
+				tileBeforeHawser:key(Storage.LocalSupport.TileBeforeHawser)
 				tileBeforeHawser:type("stepin")
 				tileBeforeHawser:register()
 			end),
@@ -1294,8 +1305,8 @@ quest
 			SpawnLocks.LocalSupport.DominoShore:Reset()
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				if player:getStorageValue(Storage.LocalSupport.IKEAForTheBold) == QuestState.LocalSupport.IKEAForTheBold.FindAndKillDominoShore then
-					player:setStorageValue(Storage.LocalSupport.IKEAForTheBold, QuestState.LocalSupport.IKEAForTheBold.SearchDominoShoreHideout)
+				if player:getStorageValueByKey(Storage.LocalSupport.IKEAForTheBold) == QuestState.LocalSupport.IKEAForTheBold.FindAndKillDominoShore then
+					player:setStorageValueByKey(Storage.LocalSupport.IKEAForTheBold, QuestState.LocalSupport.IKEAForTheBold.SearchDominoShoreHideout)
 				end
 			end)
 			return true

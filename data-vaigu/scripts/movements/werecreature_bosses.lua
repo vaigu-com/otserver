@@ -29,7 +29,7 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.WereBossKill) == 1 then
+	if os.time() < player:getStorageValueByKey(Storage.WereBossKill) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		player:sendCancelMessage("Try another day.")
@@ -59,7 +59,7 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(config) do
-	wereBosses:aid(index)
+	wereBosses:key(index)
 end
 
 wereBosses:register()

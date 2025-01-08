@@ -24,6 +24,7 @@ public:
 		registerMethod(L, "MoveEvent", "aid", MoveEventFunctions::luaMoveEventActionId);
 		registerMethod(L, "MoveEvent", "uid", MoveEventFunctions::luaMoveEventUniqueId);
 		registerMethod(L, "MoveEvent", "position", MoveEventFunctions::luaMoveEventPosition);
+		registerMethod(L, "MoveEvent", "key", MoveEventFunctions::luaMoveEventKey);
 		registerMethod(L, "MoveEvent", "premium", MoveEventFunctions::luaMoveEventPremium);
 		registerMethod(L, "MoveEvent", "vocation", MoveEventFunctions::luaMoveEventVocation);
 		registerMethod(L, "MoveEvent", "onEquip", MoveEventFunctions::luaMoveEventOnCallback);
@@ -48,4 +49,5 @@ private:
 	static int luaMoveEventActionId(lua_State* L);
 	static int luaMoveEventUniqueId(lua_State* L);
 	static int luaMoveEventPosition(lua_State* L);
+	static int luaMoveEventKey(lua_State* L);
 };

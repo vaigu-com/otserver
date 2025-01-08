@@ -3,22 +3,24 @@ local quest = Quest(LOCALIZERS.DailyTasks)
 quest
 	:Storage(function()
 		Storage.DailyTasks = {
-			DailyTaskInfo = NextStorage(),
-			DailyLimit = NextStorage(),
-			LastResetTimestamp = NextStorage(),
-			Board = NextStorage(),
+			DailyTaskInfo = {},
+			DailyLimit = {},
+			LastResetTimestamp = {},
+			Board = {},
 		}
 	end)
 	:Questlog(function()
-		Quests[DAILY_TASK_STORAGE] = {
+		DailyTaskQuestlog = {
 			name = "Daily task",
 			missions = {
-				[Storage.DailyTasks.DailyTaskInfo] = {
+				{
 					name = "Daily tasks information",
+					storage = Storage.DailyTasks.DailyTaskInfo,
 					description = "DAILY_TASKS_HELP_WINDOW_INFO",
 				},
 			},
 		}
+		table.insert(Quests, DailyTaskQuestlog)
 	end)
 	:StartupItems({
 		{ id = 19245, pos = Position(5845, 1529, 7), aid = Storage.DailyTasks.Board },
@@ -35,7 +37,7 @@ quest
 		end
 
 		local function onDailyTaskBoardUse(player)
-			player:setStorageValue(Storage.DailyTasks.DailyTaskInfo, 0)
+			player:setStorageValueByKey(Storage.DailyTasks.DailyTaskInfo, 0)
 			if not playerCanTakeAnyDailyTask(player) then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(Storage.DailyTasks.DailyTaskInfo):Get("YOU_TAKEN_ALL_AVAILABLE_DAILY_TASKS"))
 				return false
@@ -50,7 +52,7 @@ quest
 			return onDailyTaskBoardUse(player)
 		end
 
-		dailyBoard:aid(Storage.DailyTasks.Board)
+		dailyBoard:key(Storage.DailyTasks.Board)
 		dailyBoard:register()
 
 		local dailyBoardLook = Look()
@@ -58,7 +60,7 @@ quest
 			return onDailyTaskBoardUse(player)
 		end
 
-		dailyBoardLook:aid(Storage.DailyTasks.Board)
+		dailyBoardLook:key(Storage.DailyTasks.Board)
 		dailyBoardLook:register()
 	end)
 	:Script(function()
@@ -85,9 +87,9 @@ quest
 		end
 
 		for _, dailyTask in pairs(GetAllDailyTasks()) do
-			local aid = dailyTask.storage
-			dailyPamphletUse:aid(aid)
-			dailyPamphletLook:aid(aid)
+			local key = dailyTask.storage
+			dailyPamphletUse:key(key)
+			dailyPamphletLook:key(key)
 		end
 		dailyPamphletUse:register()
 		dailyPamphletLook:register()

@@ -207,6 +207,18 @@ int ItemFunctions::luaItemSetActionId(lua_State* L) {
 	return 1;
 }
 
+int ItemFunctions::luaItemGetKey(lua_State* L) {
+	// item:getKey()
+	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);
+	if (item) {
+		auto key = item->getAttribute<std::string>(ItemAttribute_t::KEY);
+		pushString(L, key);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int ItemFunctions::luaItemGetCount(lua_State* L) {
 	// item:getCount()
 	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);

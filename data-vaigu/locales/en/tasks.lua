@@ -30,9 +30,10 @@ return {
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
 		local task = context.task
-		local currentKills = context.player:getStorageValue(task.storage)
+		local currentKills = context.player:getStorageValueByKey(task.storage)
 		local name = task.name
 		local requiredKills = task.requiredKills
+		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		return T("Task for :name:: :currentKills:/:requiredKills: ", {
 			name = name,
 			currentKills = currentKills,
@@ -42,7 +43,7 @@ return {
 	["YOU_DONT_HAVE_REQUIRED_TASK_KILLS"] = function(context)
 		local task = context.task
 		local player = context.player
-		local currentKills = player:getStorageValue(task.storage)
+		local currentKills = player:getStorageValueByKey(task.storage)
 		local requiredKills = task.requiredKills
 		local name = task.name
 		return T("You didn't execute enough monsters for the :name: task. Your current progress: :currentKills:/:requiredKills: ", {
@@ -52,7 +53,7 @@ return {
 		})
 	end,
     ["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValue(Storage.Tasks.TaskPoints)
+		local points = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		return T("Currently you have :points: task points. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -62,7 +63,7 @@ return {
 		return T("Would you like to buy :name: for :cost: Task Poins?", { name = context.msg:lower(), cost = context.keywordConfig.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValue(Storage.Tasks.TaskPoints)
+		local current = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		local required = context.keywordConfig.cost or PlayerCustomDialogDataRegistry():Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("You dont have enough points. You need :required: points to buy that. You currently have :current: points meaning you need to accumulate :diff: more points.", { current = current, required = required, diff = diff })
@@ -130,7 +131,8 @@ return {
 		local storage = task.storage
 		local name = task.name
 		local requiredKills = task.requiredKills
-		local currentKills = player:getStorageValue(storage)
+		local currentKills = player:getStorageValueByKey(storage)
+		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		return T(":name: killed: :currentKills:/:requiredKills:.", {
 			name = name,
 			currentKills = currentKills,
@@ -161,7 +163,7 @@ return {
 	["Tortoises"] = "There is a hovel in the north-east of jungle, where Thorner resides.",
 	["Weak undeads"] = "The cemetery on east of Mirko Town is haunted by Ripper now and again. He is probably hiding there.",
 	["Ancient Scarabs"] = "The most vicious scarab has its lair located underneath dry plains in the south of steppes.",
-	["Bone Beasts"] = "Rumours mention that desert Wyrms are guarding entrance to his lair, but this time it would really seem it's just rumours",
+	["Bonebeasts"] = "Rumours mention that desert Wyrms are guarding entrance to his lair, but this time it would really seem it's just rumours",
 	["Crystal Spiders"] = "Bloodweb's hiding place is located underneath certain rocks, in the northern part of Sybir.",
 	["Giant Spiders"] = "South of Knurowo is a place swarming with spiders. Perhaps the most dangerous one is there as well.",
 	["Ice Golems"] = "The teleport to the Shardhead's chamber is in the north of Sybir. There are Crystal Spiders and Ice Golems hanging around in its vicinity",

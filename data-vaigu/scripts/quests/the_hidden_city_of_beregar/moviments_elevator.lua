@@ -16,7 +16,7 @@ function elevator.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U8_4.TheHiddenCityOfBeregar.GoingDown) == 2 then
+	if player:getStorageValueByKey(Storage.Quest.U8_4.TheHiddenCityOfBeregar.GoingDown) == 2 then
 		player:teleportTo(teleport)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
@@ -28,7 +28,7 @@ end
 elevator:type("stepin")
 
 for index, value in pairs(setting) do
-	elevator:aid(index)
+	elevator:key(index)
 end
 
 elevator:register()

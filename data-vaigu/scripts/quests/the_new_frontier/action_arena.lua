@@ -58,16 +58,16 @@ function theNewFrontierArena.onUse(player, item, fromPosition, target, toPositio
 			return false
 		end
 
-		if creature:getStorageValue(TheNewFrontier.Questline) >= 26 then
+		if creature:getStorageValueByKey(TheNewFrontier.Questline) >= 26 then
 			return player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already finished this battle.")
 		end
 	end
 
-	if Game.getStorageValue(TheNewFrontier.Mission09[1]) == 1 then
+	if Game.getStorageValueByKey(TheNewFrontier.Mission09[1]) == 1 then
 		return player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The arena is already in use.")
 	end
 
-	Game.setStorageValue(TheNewFrontier.Mission09[1], 1)
+	Game.setStorageValueByKey(TheNewFrontier.Mission09[1], 1)
 	addEvent(clearArena, 30 * 60 * 1000)
 
 	for b = 1, #config.playerPos do

@@ -57,8 +57,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 0 then
-		if player:getStorageValue(Storage.TheDreamCourts.QuestLine) == 2 then
-			if player:getStorageValue(Storage.TheDreamCourts.StrickenMission) < 1 then
+		if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) == 2 then
+			if player:getStorageValueByKey(Storage.TheDreamCourts.StrickenMission) < 1 then
 				npcHandler:say("Yeeeees... you need to help meeeeeee. I want those ghosts gone... this is my home and I need it to teach my students. Will you take care of the... ghosts?", npc, creature)
 				npcHandler:setTopic(playerId, 1)
 			else
@@ -83,7 +83,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"Find the passage... one is right here in the cellars. ...",
 			"Restore their connection and open this nexus to access the buried cathedral and find the cause to this... eliminate all remainders there if you must.",
 		}, npc, creature)
-		player:setStorageValue(Storage.TheDreamCourts.StrickenMission, 1)
+		player:setStorageValueByKey(Storage.TheDreamCourts.StrickenMission, 1)
 		npcHandler:setTopic(playerId, 0)
 	end
 	return true

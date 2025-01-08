@@ -18,7 +18,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	local spectators = Game.getSpectators(Position(6229, 1011, 11), false, true, 30, 30, 30, 30) --{x = 6229, y = 1011, z = 11}
-	if #spectators > 0 or Game.getStorageValue(GlobalStorage.ElementalSphere.BossRoom) > 0 then
+	if #spectators > 0 or Game.getStorageValueByKey(Storage.ElementalSphere.BossRoom) > 0 then
 		player:say("Poczekaj az zwolni sie miejsce.", TALKTYPE_MONSTER_SAY, false, 0, Position(6230, 1011, 10))
 		return true
 	end
@@ -32,7 +32,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 
 		local vocationId = creature:getVocation():getBase():getId()
-		if vocationId ~= config[i].vocationId or creature:getItemCount(config[i].itemid) < 1 or creature:getStorageValue(Storage.ElementalSphere.QuestLine) < 1 then --{x = 6230, y = 1011, z = 10}
+		if vocationId ~= config[i].vocationId or creature:getItemCount(config[i].itemid) < 1 or creature:getStorageValueByKey(Storage.ElementalSphere.QuestLine) < 1 then --{x = 6230, y = 1011, z = 10}
 			player:say("Potrzebujesz przedstawicieli wszystkich profesji, ktorzy posiadaja odpowiednia skoncentrowana czastke zywiolu.", TALKTYPE_MONSTER_SAY, false, 0, Position(6230, 1011, 10))
 			return true
 		end
@@ -72,3 +72,4 @@ end
 
 action:uid(9024)
 action:register()
+

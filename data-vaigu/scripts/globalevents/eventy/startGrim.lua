@@ -6,13 +6,13 @@ local function grim2min()
 end
 
 local function startGrimEvent()
-	if Game.getStorageValue(ge_stateGlobalStorage) < 1 then
+	if Game.getStorageValueByKey(ge_stateStorage) < 1 then
 		local teleport = Game.createItem(10840, 1, ge_createTeleportPosition)
 		if teleport then
 			teleport:setAttribute(ITEM_ATTRIBUTE_ACTIONID, 7001)
 		end
-		Game.setStorageValue(ge_stateGlobalStorage, 1)
-		Game.setStorageValue(ge_joinCountGlobalStorage, 0)
+		Game.setStorageValueByKey(ge_stateStorage, 1)
+		Game.setStorageValueByKey(ge_joinCountStorage, 0)
 		print("Grim Event has started & waiting for players to join! Min: 3/20.")
 		Game.broadcastMessage("Grim Event startuje! Pozostalo " .. ge_waitTime .. " minut aby dolaczyc. Portal znajduje sie pod depozytem w Mirko Town.", MESSAGE_STATUS_WARNING)
 		addEvent(startGrimEvent, ge_waitTime * 60 * 1000)

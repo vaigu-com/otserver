@@ -8,7 +8,7 @@ function questSystem2.onUse(player, item, fromPosition, target, toPosition, isHo
 		return true
 	end
 
-	if (useItem.time and player:getStorageValue(useItem.storage) > os.time()) or player:getStorageValue(useItem.storage) ~= (useItem.formerValue or -1) then
+	if (useItem.time and player:getStorageValueByKey(useItem.storage) > os.time()) or player:getStorageValueByKey(useItem.storage) ~= (useItem.formerValue or -1) then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The " .. ItemType(item.itemid):getName() .. " is empty.")
 		return true
 	end
@@ -109,14 +109,14 @@ function questSystem2.onUse(player, item, fromPosition, target, toPosition, isHo
 	end
 
 	if useItem.missionStorage then
-		player:setStorageValue(useItem.missionStorage.key, useItem.missionStorage.value)
+		player:setStorageValueByKey(useItem.missionStorage.key, useItem.missionStorage.value)
 	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. result .. ".")
 	if useItem.time then
-		player:setStorageValue(useItem.storage, os.time() + 86400)
+		player:setStorageValueByKey(useItem.storage, os.time() + 86400)
 	else
-		player:setStorageValue(useItem.storage, useItem.newValue or 1)
+		player:setStorageValueByKey(useItem.storage, useItem.newValue or 1)
 	end
 	return true
 end

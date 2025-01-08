@@ -3,8 +3,8 @@ function izcandarSummonDeath.onDeath(creature)
 	if not creature or not creature:isMonster() then
 		return true
 	end
-	if Game.getStorageValue(GlobalStorage.IzcandarTransforming) ~= 0 then
-		Game.setStorageValue(GlobalStorage.IzcandarTransforming, 0)
+	if Game.getStorageValueByKey(Storage.IzcandarTransforming) ~= 0 then
+		Game.setStorageValueByKey(Storage.IzcandarTransforming, 0)
 	end
 	return true
 end

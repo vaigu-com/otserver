@@ -23,7 +23,7 @@ function outlawQuest.onUse(player, item, fromPosition, target, toPosition, isHot
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a bag.")
 		player:questKV("outlaw"):set("completed", true)
-		player:setStorageValue(Storage.QuestChests.OutlawCamp, 1)
+		player:setStorageValueByKey(Storage.QuestChests.OutlawCamp, 1)
 	end
 
 	return true
@@ -31,3 +31,4 @@ end
 
 outlawQuest:uid(14091)
 outlawQuest:register()
+

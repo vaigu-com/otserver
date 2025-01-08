@@ -24,7 +24,7 @@ void Looks::clear() {
 	useItemMap.clear();
 	uniqueItemMap.clear();
 	actionItemMap.clear();
-	actionPositionMap.clear();
+	positionItemMap.clear();
 }
 
 bool Looks::registerLuaItemEvent(const std::shared_ptr<Look> look) {
@@ -151,12 +151,43 @@ bool Looks::registerLuaPositionEvent(const std::shared_ptr<Look> look) {
 	return !positionVector.empty();
 }
 
+
+bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> look) {
+	auto keysVector = look->getKeysVector();
+	if (keysVector.empty()) {
+		return false;
+	}
+
+	std::vector<std::string> tmpVector;
+	tmpVector.reserve(keysVector.size());
+
+	for (const auto &key : keysVector) {
+		// Check if the key is already registered and prevent it from being registered again
+		if (!hasKey(key)) {
+			// Register key in the look key map
+			setKey(key, look);
+			tmpVector.emplace_back(key);
+		} else {
+			g_logger().warn(
+				"[{}] duplicate registered script with range key: {}, for script: {}",
+				__FUNCTION__,
+				key,
+				look->getScriptInterface()->getLoadingScriptName()
+			);
+		}
+	}
+
+	keysVector = std::move(tmpVector);
+	return !keysVector	.empty();
+}
+
 bool Looks::registerLuaEvent(const std::shared_ptr<Look> look) {
 	std::vector<std::function<bool(const std::shared_ptr<Look> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<Look> &look) { return registerLuaItemEvent(look); },
 		[this](const std::shared_ptr<Look> &look) { return registerLuaUniqueEvent(look); },
 		[this](const std::shared_ptr<Look> &look) { return registerLuaActionEvent(look); },
-		[this](const std::shared_ptr<Look> &look) { return registerLuaPositionEvent(look); }
+		[this](const std::shared_ptr<Look> &look) { return registerLuaPositionEvent(look); },
+		[this](const std::shared_ptr<Look> &look) { return registerLuaKeyEvent(look); },
 	};
 	// Call all register lua events
 	bool registeredAny = false;
@@ -205,6 +236,13 @@ ReturnValue Looks::canLook(std::shared_ptr<Player> player, const Position &pos, 
 }
 
 std::shared_ptr<Look> Looks::getLook(std::shared_ptr<Item> item) {
+	if (item->hasAttribute(ItemAttribute_t::KEY)) {
+		auto it = keyItemMap.find(item->getAttribute<std::string>(ItemAttribute_t::KEY));
+		if (it != keyItemMap.end()) {
+			return it->second;
+		}
+	}
+
 	if (item->hasAttribute(ItemAttribute_t::UNIQUEID)) {
 		auto it = uniqueItemMap.find(item->getAttribute<uint16_t>(ItemAttribute_t::UNIQUEID));
 		if (it != uniqueItemMap.end()) {
@@ -224,8 +262,8 @@ std::shared_ptr<Look> Looks::getLook(std::shared_ptr<Item> item) {
 		return it->second;
 	}
 
-	if (auto iteratePositions = actionPositionMap.find(item->getPosition());
-	    iteratePositions != actionPositionMap.end()) {
+	if (auto iteratePositions = positionItemMap.find(item->getPosition());
+	    iteratePositions != positionItemMap.end()) {
 		if (std::shared_ptr<Tile> tile = item->getTile();
 		    tile) {
 			if (std::shared_ptr<Player> player = item->getHoldingPlayer();

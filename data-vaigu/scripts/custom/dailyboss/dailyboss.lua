@@ -149,10 +149,10 @@ end
 local DailyBossonDeath = CreatureEvent("DailyBossSystemDeath")
 function DailyBossonDeath.onDeath(creature)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValue(Storage.DailyBossReward) <= 0 then
-			player:setStorageValue(Storage.DailyBossReward, 1)
+		if player:getStorageValueByKey(Storage.DailyBossReward) <= 0 then
+			player:setStorageValueByKey(Storage.DailyBossReward, 1)
 		else
-			player:setStorageValue(Storage.DailyBossReward, player:getStorageValue(Storage.DailyBossReward) + 1)
+			player:setStorageValueByKey(Storage.DailyBossReward, player:getStorageValueByKey(Storage.DailyBossReward) + 1)
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations! You can get additional rewards from chest in depot.")
 	end)

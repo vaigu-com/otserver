@@ -32,7 +32,7 @@ return {
 	["YOU_DONT_HAVE_REQUIRED_DAILY_TASK_KILLS"] = function(context)
 		local dailyTask = context.dailyTask
 		local player = context.player
-		local currentKills = player:getStorageValue(dailyTask.storage)
+		local currentKills = player:getStorageValueByKey(dailyTask.storage)
 		local requiredKills = dailyTask.requiredKills
 		local name = dailyTask.name
 		return T("Nie zabiles wystarczajacej ilosci stworow do dzisiejszego ogloszenia na :name:. Twoj aktualny postep to: :currentKills:/:requiredKills: ", {
@@ -54,9 +54,10 @@ return {
 	["Daily tasks"] = "Ogloszenia",
 	["DAILY_TASK_CURRENT_KILLS"] = function(context)
 		local taskConfig = context.taskConfig
-		local currentKills = context.player:getStorageValue(taskConfig.storage)
+		local currentKills = context.player:getStorageValueByKey(taskConfig.storage)
 		local name = taskConfig.name
 		local requiredKills = taskConfig.requiredKills
+		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		return T("Dzisiejsze zadanie na :name:: :currentKills:/:requiredKills: ", {
 			name = name,
 			currentKills = currentKills,
@@ -78,8 +79,9 @@ return {
 		local player = context.player
 		local dailyTask = context.dailyTask
 		local name = dailyTask.name
-		local currentKills = player:getStorageValue(dailyTask.storage)
+		local currentKills = player:getStorageValueByKey(dailyTask.storage)
 		local requiredKills = dailyTask.requiredKills
+		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Dzisiejsze zadanie na :name:!\n\n", { name = name })
 		dailyTaskDescription = dailyTaskDescription .. T("Zabiles :currentKills:/:requiredKills: :name:.", {

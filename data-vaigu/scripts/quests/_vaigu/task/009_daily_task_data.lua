@@ -324,7 +324,7 @@ local dailyTaskData = {
 		max = 9999,
 	},
 	{
-		name = "Walilling Widows",
+		name = "Wailing Widows",
 		items = { { id = 10411, count = 15 } },
 		requiredKills = 70,
 		creatures = { "wailing widow" },
@@ -806,22 +806,19 @@ end
 
 function RegisterDailyTasksInQuestsTable()
 	for i, dailyTask in pairs(dailyTaskData) do
-		local missionId = NextMissionId()
-		local storage = NextStorage()
+		local storage = Scope("Storage", "DailyTask", "DailyTaskNames"):Get(dailyTask.name)
 
 		dailyTask.storage = storage
 		dailyTaskData[i].storage = storage
 		local dailyTaskMission = {
 			name = "DAILY_TASK_MISSION_NAME",
 			dailyTask = dailyTaskData[i],
-			storageId = storage,
-			missionId = missionId,
-			startValue = 0,
-			endValue = dailyTask.requiredKills,
+			storage = storage,
+			minValue = 0,
 			description = "DAILY_TASK_MISSION_DESCRIPTION",
 		}
 
 		setAuxillaryMaps(dailyTask, i)
-		table.insert(Quests[DAILY_TASK_STORAGE].missions, dailyTaskMission)
+		table.insert(DailyTaskQuestlog.missions, dailyTaskMission)
 	end
 end

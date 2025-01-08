@@ -122,10 +122,10 @@ mType.onAppear = function(monster, creature)
 		if sum then
 			monster:setSummon(sum)
 			sum:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-			sum:setStorageValue(Storage.TheOrderOfTheLion.Drume.Commander, 1)
+			sum:setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.Commander, 1)
 		end
 	end
-	monster:setStorageValue(Storage.TheOrderOfTheLion.Drume.Commander, 1)
+	monster:setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.Commander, 1)
 end
 
 mType:register(monster)

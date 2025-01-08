@@ -3,11 +3,12 @@ local quest = Quest(LOCALIZERS.TheApeCity)
 quest
 	:Storage(function() end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "The Ape City",
 			missions = {
-				[11102] = {
+				{
 					name = "Hairycles Missions",
+					storage = 11102,
 					states = {
 						[1] = "Find whisper moss in the dworc settlement and bring it back to Hairycles.",
 						[2] = "You have completed the first mission. Hairycles was happy about the whisper moss you gave to him. He might have another mission for you.",
@@ -30,6 +31,6 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Register()

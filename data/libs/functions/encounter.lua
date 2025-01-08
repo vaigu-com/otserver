@@ -20,7 +20,7 @@ LOCKOUT_STATUS = {
 DEFAULT_LEVER_ID = 2772
 
 -- Daily/Weekly encounters will reset at this hour local server time
-ENCOUNTER_RESET_TIME_LOCAL = 5
+DAY_RESET_TIME_LOCAL = 5
 
 ENCOUNTER_STAGE = {
 	UNSTARTED = 0,
@@ -263,7 +263,7 @@ function EncounterData:calculateLockoutExpiry()
 		return self.lockoutTime
 	end
 
-	return cooldownExpiry + ENCOUNTER_RESET_TIME_LOCAL * 3600
+	return cooldownExpiry + DAY_RESET_TIME_LOCAL * 3600
 end
 
 ---@param self Player
@@ -525,10 +525,10 @@ function EncounterData:registerLeverTp()
 		leverUse:position(self.leverPosition)
 	end
 	if self._uid then
-		leverUse:uid(self._uid)
+		leverUse:key(self._uid)
 	end
 	if self._aid then
-		leverUse:aid(self._aid)
+		leverUse:key(self._aid)
 	end
 	leverUse:register()
 
@@ -896,11 +896,11 @@ LOCK_ACTIVE = 1
 LOCK_INACTIVE = -1
 
 function SetMinigameLock(player)
-	player:setStorageValue(Storage.Minigames.IsOnMinigame, 1)
+	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, 1)
 end
 
 function ResetMinigameLock(player)
-	player:setStorageValue(Storage.Minigames.IsOnMinigame, -1)
+	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, -1)
 end
 
 function EncounterData:afterEnterMinigame(player)
@@ -953,7 +953,6 @@ function EncounterData:startOnEnter()
 		if player:hasGroupFlag(IgnoredByMonsters) then
 			return
 		end
-		--ToDo: check if its actually just after leave (after event death event) or just before it
 
 		-- last player left; reset encounter
 		if self:countPlayers() == 1 then
@@ -1001,3 +1000,4 @@ function ActiveEncounterRegistry:MapCreature(encounter, creature)
 	self.creatureToEncounter[creature:getId()] = self.registry[encounter.encounterName]
 	return self
 end
+

@@ -21,6 +21,7 @@ public:
 		registerMethod(L, "Action", "aid", ActionFunctions::luaActionActionId);
 		registerMethod(L, "Action", "uid", ActionFunctions::luaActionUniqueId);
 		registerMethod(L, "Action", "position", ActionFunctions::luaActionPosition);
+		registerMethod(L, "Action", "key", ActionFunctions::luaActionKey);
 		registerMethod(L, "Action", "allowFarUse", ActionFunctions::luaActionAllowFarUse);
 		registerMethod(L, "Action", "blockWalls", ActionFunctions::luaActionBlockWalls);
 		registerMethod(L, "Action", "checkFloor", ActionFunctions::luaActionCheckFloor);
@@ -35,6 +36,7 @@ private:
 	static int luaActionActionId(lua_State* L);
 	static int luaActionUniqueId(lua_State* L);
 	static int luaActionPosition(lua_State* L);
+	static int luaActionKey(lua_State* L);
 	static int luaActionAllowFarUse(lua_State* L);
 	static int luaActionBlockWalls(lua_State* L);
 	static int luaActionCheckFloor(lua_State* L);

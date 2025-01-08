@@ -27,7 +27,7 @@ function kroazurEntrance.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 	
-	if player:getStorageValue(teleport.timer) > os.time() then
+	if player:getStorageValueByKey(teleport.timer) > os.time() then
 		position:sendMagicEffect(CONST_ME_TELEPORT)
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -55,7 +55,7 @@ function kroazurEntrance.onStepIn(creature, item, position, fromPosition)
 		'You have ten minutes to kill and loot this boss. \z
 		Otherwise you will lose that chance and will be kicked out.', TALKTYPE_MONSTER_SAY)
 	addEvent(clearBossRoom, 60 * 10 * 1000, player.uid, monster.uid, teleport.bossPos, teleport.range, teleport.range, fromPosition)
-	player:setStorageValue(teleport.timer, os.time() + 4 * 3600)
+	player:setStorageValueByKey(teleport.timer, os.time() + 4 * 3600)
 	return true
 end
 

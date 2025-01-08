@@ -3,39 +3,39 @@ local quest = Quest(LOCALIZERS.FourActTragedy)
 quest
 	:Storage(function()
 		Storage.FourActTragedy = {
-			Mission01 = NextStorage(),
-			Mission02 = NextStorage(),
-			Mission03 = NextStorage(),
-			Mission04 = NextStorage(),
-			Mission05 = NextStorage(),
-			Mission06 = NextStorage(),
-			Mission07 = NextStorage(),
-			Mission08 = NextStorage(),
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			Mission04 = {},
+			Mission05 = {},
+			Mission06 = {},
+			Mission07 = {},
+			Mission08 = {},
 			Portals = {
-				ToRetro = NextStorage(),
-				ToPresent = NextStorage(),
-				AfterKraken = NextStorage(),
-				ToKolumb = NextStorage(),
-				AfterSkurwiwij = NextStorage(),
-				AfterZulSzczurow = NextStorage(),
+				ToRetro = {},
+				ToPresent = {},
+				AfterKraken = {},
+				ToKolumb = {},
+				AfterSkurwiwij = {},
+				AfterZulSzczurow = {},
 			},
 			Rewards = {
-				GrazynaCore = NextStorage(),
-				Fanfare = NextStorage(),
-				Powder = NextStorage(),
-				TimmyBag = NextStorage(),
-				SlippersChest = NextStorage(),
+				GrazynaCore = {},
+				Fanfare = {},
+				Powder = {},
+				TimmyBag = {},
+				SlippersChest = {},
 			},
-			RetroKnurowoAccess = NextStorage(),
-			FanfareLever = NextStorage(),
-			WawelDragonAccess = NextStorage(),
-			KrakenAccess = NextStorage(),
-			SlippersTorch = NextStorage(),
-			SkurwiwijAccess = NextStorage(),
-			SkurwiwijDoor = NextStorage(),
-			GrazhenaDoor = NextStorage(),
-			ZulSzczurowAccess = NextStorage(),
-			CultScroll = NextStorage(),
+			RetroKnurowoAccess = {},
+			FanfareLever = {},
+			WawelDragonAccess = {},
+			KrakenAccess = {},
+			SlippersTorch = {},
+			SkurwiwijAccess = {},
+			SkurwiwijDoor = {},
+			GrazhenaDoor = {},
+			ZulSzczurowAccess = {},
+			CultScroll = {},
 		}
 		QuestState.FourActTragedy = {
 			Mission01 = {
@@ -92,11 +92,12 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Four Act Tragedy",
 			missions = {
-				[Storage.FourActTragedy.Mission01] = {
+				{
 					name = "01. Dodge those compensation claims",
+					storage = Storage.FourActTragedy.Mission01,
 					states = {
 						[QuestState.FourActTragedy.Mission01.AskRomekForMission] = "Romek mentioned you should as him for mission.",
 						[QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin] = "Go to HF-P/X agent - turdstin.",
@@ -104,8 +105,9 @@ quest
 						[MISSION_FINISHED] = "Romek sent you to Knurow. Try to find a way to go back in time there.",
 					},
 				},
-				[Storage.FourActTragedy.Mission02] = {
+				{
 					name = "02. Bottom tex_L",
+					storage = Storage.FourActTragedy.Mission02,
 					states = {
 						[QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow] = "Find someone who can show you around.",
 						[QuestState.FourActTragedy.Mission02.FindTimmyEquipment] = "Timmy asked you to find his equipment that was stolen by bandits.",
@@ -115,16 +117,18 @@ quest
 						[MISSION_FINISHED] = "You told romek about Timmy work.",
 					},
 				},
-				[Storage.FourActTragedy.Mission03] = {
+				{
 					name = "03. Master Baitor",
+					storage = Storage.FourActTragedy.Mission03,
 					states = {
 						[QuestState.FourActTragedy.Mission03.FindAndKillLewiatan] = "Romek asked you to buy him a beer at nearby Lewiatan.",
 						[QuestState.FourActTragedy.Mission03.ReportToRomek] = "You defeated the kraken. Go back to Romek.",
 						[MISSION_FINISHED] = "Find slippers bitten by the Rat Bum. Romek mentioned northern rat collaborators as his allies.",
 					},
 				},
-				[Storage.FourActTragedy.Mission04] = {
+				{
 					name = "04. Non omnis moriar",
+					storage = Storage.FourActTragedy.Mission04,
 					states = {
 						[QuestState.FourActTragedy.Mission04.FindBribeslippers] = "Find slippers bitten by the Rat Bum. Romek mentioned northern rat collaborators as his allies.",
 						[QuestState.FourActTragedy.Mission04.BringSlippersToRomek] = "You found the Bribeslippers. Report back to Romek.",
@@ -133,8 +137,9 @@ quest
 						[MISSION_FINISHED] = "Ask Xena for possible usage of Grazhenacore.",
 					},
 				},
-				[Storage.FourActTragedy.Mission05] = {
+				{
 					name = "06. Sic transit gloria mundi",
+					storage = Storage.FourActTragedy.Mission05,
 					states = {
 						[QuestState.FourActTragedy.Mission05.FindXena] = "Ask Xena for possible usage of Grazhenacore.",
 						[QuestState.FourActTragedy.Mission05.FindGrazhena] = "Try to find Grazhena deep under Hero caves.",
@@ -144,7 +149,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:MonsterEvent(function()
 		local nextState = {
@@ -155,7 +160,7 @@ quest
 
 		function krakenDeath.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				if player:getStorageValue(Storage.FourActTragedy.Mission03) ~= QuestState.FourActTragedy.Mission03.FindAndKillLewiatan then
+				if player:getStorageValueByKey(Storage.FourActTragedy.Mission03) ~= QuestState.FourActTragedy.Mission03.FindAndKillLewiatan then
 					return true
 				end
 
@@ -378,7 +383,6 @@ quest
 		mType:register(monster)
 	end)
 	:EncounterData(function()
-		print("Quest:EncounterData", "skurwiwij")
 		local pylonFlam = "pylonFlam"
 		local pylonVis = "pylonVis"
 		local pylons = {
@@ -755,347 +759,320 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.FourActTragedy.Mission01)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission01.AskRomekForMission,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission", "zadanie" }] = {
-				text = "Before I forget - the reward for the previous task: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
-			},
-			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
-				text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
-				nextState = {
-					[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
+	:State(function()
+		return QuestState.FourActTragedy.Mission01.AskRomekForMission,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission", "zadanie" }] = {
+					text = "Before I forget - the reward for the previous task: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
 				},
-				rewards = { ExerciseWeaponBox(3000) },
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Turdstin lives in the slums, Mirko. His life professions include homelessness, MGTOW, collecting cans, and being an insurance agent.",
-			},
-		}),
-		QuestFactory.Dialog("xXxTurdstinxXx", {
-			[{ "mission" }] = {
-				text = "Good day person |PLAYERNAME|. We are here to {discuss} compensation claims related to the 'accident' in which Mr. HF-P/X was injured.",
-			},
-			[{ "omowic", "discuss" }] = {
-				text = "According to our information, you {was} the main cause of the accident that resulted in Mr. HF-P/X's injuries.",
-			},
-			[{ "byl", "was" }] = {
-				text = "In that case, please send the documents, and our team of specialists shh butt butt butt kshhhh. Oh, damn, my throat recorder broke. Umm... okay, I was lying about the insurance. But understand me - ever since the emperor took my lands, I have to fight for them, which has made me even more homeless.",
-				nextState = {
-					[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.ReportToRomek,
+				[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
+					text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
+					nextState = {
+						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
+					},
+					rewards = { ExerciseWeaponBox(3000) },
 				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission01.ReportToRomek,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Well, hes just the smartest person in the world. Okay, let's not waste any more time. After HF-P/X's death, a time-delayed mechanism was activated, which opened a portal to the past. Now immigrants are flooding in from everywhere. Go to the portal in Knurow and head to the Knurow of the past. Find someone there who will help you with the task of stopping the influx of immigrants.",
-				nextState = {
-					[Storage.FourActTragedy.Mission01] = MISSION_FINISHED,
-					[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow,
-					[Storage.FourActTragedy.RetroKnurowoAccess] = ACCESS_GRANTED,
+			})
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Turdstin lives in the slums, Mirko. His life professions include homelessness, MGTOW, collecting cans, and being an insurance agent.",
 				},
-			},
-		})
-
-end
-)	:Mission(Storage.FourActTragedy.Mission02)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "I told you to use the portal in Knurow, although I don't remember exactly where it was located. Something tells me it was somewhere along the shore...",
-			},
-		}),
-		QuestFactory.Dialog("Woody", {
-			[{ "portal", "teleport", "retro", "past", "przeszlosc" }] = {
-				text = "Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination.",
-			},
-		}),
-		QuestFactory.Dialog("Timmy", {
-			[{ "mission" }] = {
-				text = "It seems I got lost in the corridors of time. I have vague memories from the future that I am a bouncer in my hometown. I think I could help you with the immigrant influx, but first, I need to reconcile with my present self. Find my equipment stolen by bandits, and I will help you.",
-				nextState = {
-					[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
-					[Storage.FourActTragedy.WawelDragonAccess] = ACCESS_GRANTED,
+			}),
+			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{ "mission" }] = {
+					text = "Good day person |PLAYERNAME|. We are here to {discuss} compensation claims related to the 'accident' in which Mr. HF-P/X was injured.",
 				},
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local toModern = Position(5513, 1554, 7)
-			local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0)
+				[{ "omowic", "discuss" }] = {
+					text = "According to our information, you {was} the main cause of the accident that resulted in Mr. HF-P/X's injuries.",
+				},
+				[{ "byl", "was" }] = {
+					text = "In that case, please send the documents, and our team of specialists shh butt butt butt kshhhh. Oh, damn, my throat recorder broke. Umm... okay, I was lying about the insurance. But understand me - ever since the emperor took my lands, I have to fight for them, which has made me even more homeless.",
+					nextState = {
+						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.ReportToRomek,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission01.ReportToRomek,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Well, hes just the smartest person in the world. Okay, let's not waste any more time. After HF-P/X's death, a time-delayed mechanism was activated, which opened a portal to the past. Now immigrants are flooding in from everywhere. Go to the portal in Knurow and head to the Knurow of the past. Find someone there who will help you with the task of stopping the influx of immigrants.",
+					nextState = {
+						[Storage.FourActTragedy.Mission01] = MISSION_FINISHED,
+						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow,
+						[Storage.FourActTragedy.RetroKnurowoAccess] = ACCESS_GRANTED,
+					},
+				},
+			})
+	end)
+	:Mission(Storage.FourActTragedy.Mission02)
+	:State(function()
+		return QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "I told you to use the portal in Knurow, although I don't remember exactly where it was located. Something tells me it was somewhere along the shore...",
+				},
+			}),
+			QuestFactory.Dialog("Woody", {
+				[{ "portal", "teleport", "retro", "past", "przeszlosc" }] = {
+					text = "Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination.",
+				},
+			}),
+			QuestFactory.Dialog("Timmy", {
+				[{ "mission" }] = {
+					text = "It seems I got lost in the corridors of time. I have vague memories from the future that I am a bouncer in my hometown. I think I could help you with the immigrant influx, but first, I need to reconcile with my present self. Find my equipment stolen by bandits, and I will help you.",
+					nextState = {
+						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
+						[Storage.FourActTragedy.WawelDragonAccess] = ACCESS_GRANTED,
+					},
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local toModern = Position(5513, 1554, 7)
+				local toRetro = RETRO_KNUROWO_ANCHOR:Moved(-63, -9, 0)
 
-			local tpToRetro = MoveEvent()
-			function tpToRetro.onStepIn(player, item, position, fromPosition)
-				if not player:isPlayer() then
+				local tpToRetro = MoveEvent()
+				function tpToRetro.onStepIn(player, item, position, fromPosition)
+					if not player:isPlayer() then
+						return true
+					end
+
+					if player:getStorageValueByKey(Storage.FourActTragedy.RetroKnurowoAccess) ~= ACCESS_GRANTED then
+						return false
+					end
+					player:teleportTo(toRetro)
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
 
-				if player:getStorageValue(Storage.FourActTragedy.RetroKnurowoAccess) ~= ACCESS_GRANTED then
-					return false
-				end
-				player:teleportTo(toRetro)
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
+				tpToRetro:type("stepin")
+				tpToRetro:key(Storage.FourActTragedy.Portals.ToRetro)
+				tpToRetro:register()
 
-			tpToRetro:type("stepin")
-			tpToRetro:aid(Storage.FourActTragedy.Portals.ToRetro)
-			tpToRetro:register()
+				local tpToModern = MoveEvent()
+				function tpToModern.onStepIn(player, item, position, fromPosition)
+					if not player:isPlayer() then
+						return true
+					end
 
-			local tpToModern = MoveEvent()
-			function tpToModern.onStepIn(player, item, position, fromPosition)
-				if not player:isPlayer() then
+					if player:getStorageValueByKey(Storage.FourActTragedy.RetroKnurowoAccess) ~= ACCESS_GRANTED then
+						return false
+					end
+					player:teleportTo(toModern)
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
 
-				if player:getStorageValue(Storage.FourActTragedy.RetroKnurowoAccess) ~= ACCESS_GRANTED then
-					return false
-				end
-				player:teleportTo(toModern)
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
-
-			tpToModern:type("stepin")
-			tpToModern:aid(Storage.FourActTragedy.Portals.ToPresent)
-			tpToModern:register()
-		end),
-		QuestFactory.StartupItems({
-			{ pos = { 5514, 1555, 7 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToRetro },
-		}),
-		QuestFactory.StartupItems({
-			{ pos = { -62, -8, 0 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToPresent },
-		}, RETRO_KNUROWO_ANCHOR)
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
-		QuestFactory.Dialog("Timmy", {
-			[{ "mission" }] = {
-				text = "I don't know where they moved my stuff to.",
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local beastId = nil
-
-			local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6)
-			local fanfareSacrificePos = RETRO_KNUROWO_ANCHOR:Moved(-29, -34, 6):Moved(-2, 0, 0)
-
-			local panpipeLever = Action()
-			function panpipeLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:isPlayer() then
-					return false
-				end
-				if Creature(beastId) then
-					return
-				end
-
-				local fanfare = Tile(fanfareSacrificePos):getItemById(QuestKeyItems.FourActTragedy.Fanfare.id)
-
-				if not fanfare then
-					return false
-				end
-				if player:getStorageValue(Storage.FourActTragedy.Mission01) ~= 5 then
-					return false
-				end
-
-				beastId = Game.createMonster("Wawel Dragon", spawnPos):getId()
-				player:getPosition():sendMagicEffect(CONST_ME_SOUND_GREEN)
-				return true
-			end
-
-			panpipeLever:aid(Storage.FourActTragedy.FanfareLever)
-			panpipeLever:register()
-		end),
-		QuestFactory.StartupItems({
-			{
-				id = 31649,
-				actionid = Storage.FourActTragedy.Rewards.TimmyBag,
-				rewards = { QuestKeyItems.FourActTragedy.TimmyBag },
-				nextState = {
-					[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
+				tpToModern:type("stepin")
+				tpToModern:key(Storage.FourActTragedy.Portals.ToPresent)
+				tpToModern:register()
+			end),
+			QuestFactory.StartupItems({
+				{ pos = { 5514, 1555, 7 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToRetro },
+			}),
+			QuestFactory.StartupItems({
+				{ pos = { -62, -8, 0 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToPresent },
+			}, RETRO_KNUROWO_ANCHOR)
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
+			QuestFactory.Dialog("Timmy", {
+				[{ "mission" }] = {
+					text = "I don't know where they moved my stuff to.",
 				},
-			},
-		}),
-		QuestFactory.StartupItems({
-			{
-				pos = { -8, -15, 6 },
-				id = 11809,
-				actionid = Storage.FourActTragedy.Rewards.Fanfare,
-				rewards = { QuestKeyItems.FourActTragedy.Fanfare },
-			},
-			{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
-			{ pos = { -24, -23, 6 }, id = 7723, aid = Storage.FourActTragedy.WawelDragonAccess },
-		}, RETRO_KNUROWO_ANCHOR)
+			}),
+			QuestFactory.Script(function(missionState)
+				local beastId = nil
 
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
-		QuestFactory.Dialog("Timmy", {
-			[{ "mission" }] = {
-				text = "Thank you, that's mine. Okay, now I'm going back to the {present}!",
-				requiredItems = {
-					QuestKeyItems.FourActTragedy.TimmyBag,
-				},
-				textNoRequiredItems = "Are you sure you didn't lose any of my stuff along the way?",
-				nextState = {
-					[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindMagicDust,
-				},
-			},
-		})
+				local spawnPos = RETRO_KNUROWO_ANCHOR:Moved(-26, -28, 6)
+				local fanfareSacrificePos = RETRO_KNUROWO_ANCHOR:Moved(-29, -34, 6):Moved(-2, 0, 0)
 
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission02.FindMagicDust,
-		QuestFactory.Dialog("Timmy", {
-			[{ "mission", "present", "terazniejszosci" }] = {
-				text = "Tell Tomek that I will deal with those refugees as soon as I can. Actually, I've already dealt with them. Yeah, the paradoxes of time travel. And one more thing: the person responsible for convincing immigrants to use the HF-P/X portal was none other than Rat Bum.",
-				requiredItems = {
-					QuestKeyItems.FourActTragedy.TimmyPowder,
-				},
-				textNoRequiredItems = "My magic doesn't seem to work. We'll need elven spells. Go to the elves' rock and get some magical powder that I can use for the ritual. Watch out for the dormant Soros foundations. I've seen that they too got lost in this world.",
-				nextState = {
-					[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.ReportToRomek,
-				},
-			},
-		}),
-		QuestFactory.StartupItems({
-			{
-				pos = { 61, 21, -1 },
-				id = 4073,
-				actionid = Storage.FourActTragedy.Rewards.Powder,
-				rewards = {
-					QuestKeyItems.FourActTragedy.TimmyPowder,
-				},
-			},
-		}, RETRO_KNUROWO_ANCHOR)
+				local panpipeLever = Action()
+				function panpipeLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:isPlayer() then
+						return false
+					end
+					if Creature(beastId) then
+						return
+					end
 
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission02.ReportToRomek,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "So, it's Rat Bum. Hmm, but in the memes, it said that Rat Bum can't do anything. I know his origin. I would like to tell you where to find him, but currently, he is protected by a narrative armor. So, I suggest you go get some beer at Lewiatan now.",
-				nextState = {
-					[Storage.FourActTragedy.Mission02] = MISSION_FINISHED,
-					[Storage.FourActTragedy.Mission03] = QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
-					[Storage.FourActTragedy.KrakenAccess] = ACCESS_GRANTED,
-				},
-			},
-		})
+					local fanfare = Tile(fanfareSacrificePos):getItemById(QuestKeyItems.FourActTragedy.Fanfare.id)
 
-end
-)	:Mission(Storage.FourActTragedy.Mission03)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "If you don't know where to find the nearest Lewiatan, ask Christopher Columbus.",
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local toKolumb = Position(5909, 1233, 6)
+					if not fanfare then
+						return false
+					end
+					if player:getStorageValueByKey(Storage.FourActTragedy.Mission01) ~= 5 then
+						return false
+					end
 
-			local tpToKolumb = MoveEvent()
-			function tpToKolumb.onStepIn(player, item, position, fromPosition)
-				if not player:isPlayer() then
+					beastId = Game.createMonster("Wawel Dragon", spawnPos):getId()
+					player:getPosition():sendMagicEffect(CONST_ME_SOUND_GREEN)
 					return true
 				end
 
-				player:teleportTo(toKolumb)
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
-
-			tpToKolumb:type("stepin")
-			tpToKolumb:aid(Storage.FourActTragedy.Portals.ToKolumb)
-			tpToKolumb:register()
-		end),
-		QuestFactory.StartupItems({
-			{ pos = { 5977, 1178, 6 }, id = 1949, aid = Storage.FourActTragedy.Portals.ToKolumb },
-		}),
-		QuestFactory.Script(function(missionState)
-			KRAKEN_ENCOUNTER_DATA = {
-				actionid = Storage.FourActTragedy.KrakenAccess,
-				bossName = "The Kraken",
-				timerStorage = Storage.FourActTragedy.KrakenAccess,
-				cooldown = "weekly",
-
-				leverPosition = KRAKEN_ANCHOR:Moved(-5, 0, 0),
-				leverId = 938,
-				entranceGrid = { topLeft = KRAKEN_ANCHOR:Moved(-4, -1, 0), downRight = KRAKEN_ANCHOR:Moved(-3, 1, 0) },
-
-				bossPos = KRAKEN_ANCHOR:Moved(-47, -19, 0),
-				enterPos = KRAKEN_ANCHOR:Moved(-46, 0, 0),
-				durationMinutes = 10,
-				exitTeleportDestination = KRAKEN_ANCHOR:Moved(-297, -51, 2),
-				exitTeleportPosition = KRAKEN_ANCHOR:Moved(-53, -23, 0),
-				exitTeleportActionid = Storage.FourActTragedy.Portals.AfterKraken,
-				corner1 = KRAKEN_ANCHOR:Moved(-58, -30, 0),
-				corner2 = KRAKEN_ANCHOR:Moved(-33, 3, 0),
-
-				scalingConfig = { hpPerPlayer = 1 },
-
-				requiredStorages = { [Storage.FourActTragedy.KrakenAccess] = { min = ACCESS_GRANTED } },
-
-				fightningPlatformPositions = {
-					topLeft = KRAKEN_ANCHOR:Moved(-58, -30, 0),
-					downRight = KRAKEN_ANCHOR:Moved(-33, -8, 0),
-					entrance = KRAKEN_ANCHOR:Moved(-47, -15, 0),
+				panpipeLever:key(Storage.FourActTragedy.FanfareLever)
+				panpipeLever:register()
+			end),
+			QuestFactory.StartupItems({
+				{
+					id = 31649,
+					actionid = Storage.FourActTragedy.Rewards.TimmyBag,
+					rewards = { QuestKeyItems.FourActTragedy.TimmyBag },
+					nextState = {
+						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
+					},
 				},
-				fightingShipPositions = {
-					topLeft = KRAKEN_ANCHOR:Moved(-52, -1, 0),
-					downRight = KRAKEN_ANCHOR:Moved(-45, 1, 0),
+			}),
+			QuestFactory.StartupItems({
+				{
+					pos = { -8, -15, 6 },
+					id = 11809,
+					actionid = Storage.FourActTragedy.Rewards.Fanfare,
+					rewards = { QuestKeyItems.FourActTragedy.Fanfare },
 				},
-			}
-			RegisterEncounter(KRAKEN_ENCOUNTER_DATA)
+				{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
+				{ pos = { -24, -23, 6 }, id = 7723, aid = Storage.FourActTragedy.WawelDragonAccess },
+			}, RETRO_KNUROWO_ANCHOR)
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
+			QuestFactory.Dialog("Timmy", {
+				[{ "mission" }] = {
+					text = "Thank you, that's mine. Okay, now I'm going back to the {present}!",
+					requiredItems = {
+						QuestKeyItems.FourActTragedy.TimmyBag,
+					},
+					textNoRequiredItems = "Are you sure you didn't lose any of my stuff along the way?",
+					nextState = {
+						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindMagicDust,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission02.FindMagicDust,
+			QuestFactory.Dialog("Timmy", {
+				[{ "mission", "present", "terazniejszosci" }] = {
+					text = "Tell Tomek that I will deal with those refugees as soon as I can. Actually, I've already dealt with them. Yeah, the paradoxes of time travel. And one more thing: the person responsible for convincing immigrants to use the HF-P/X portal was none other than Rat Bum.",
+					requiredItems = {
+						QuestKeyItems.FourActTragedy.TimmyPowder,
+					},
+					textNoRequiredItems = "My magic doesn't seem to work. We'll need elven spells. Go to the elves' rock and get some magical powder that I can use for the ritual. Watch out for the dormant Soros foundations. I've seen that they too got lost in this world.",
+					nextState = {
+						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.ReportToRomek,
+					},
+				},
+			}),
+			QuestFactory.StartupItems({
+				{
+					pos = { 61, 21, -1 },
+					id = 4073,
+					actionid = Storage.FourActTragedy.Rewards.Powder,
+					rewards = {
+						QuestKeyItems.FourActTragedy.TimmyPowder,
+					},
+				},
+			}, RETRO_KNUROWO_ANCHOR)
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission02.ReportToRomek,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "So, it's Rat Bum. Hmm, but in the memes, it said that Rat Bum can't do anything. I know his origin. I would like to tell you where to find him, but currently, he is protected by a narrative armor. So, I suggest you go get some beer at Lewiatan now.",
+					nextState = {
+						[Storage.FourActTragedy.Mission02] = MISSION_FINISHED,
+						[Storage.FourActTragedy.Mission03] = QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
+						[Storage.FourActTragedy.KrakenAccess] = ACCESS_GRANTED,
+					},
+				},
+			})
+	end)
+	:Mission(Storage.FourActTragedy.Mission03)
+	:State(function()
+		return QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "If you don't know where to find the nearest Lewiatan, ask Christopher Columbus.",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local toKolumb = Position(5909, 1233, 6)
 
-			local function startEncounter()
-				Game.createMonster("Ship health", KRAKEN_ANCHOR:Moved(-49, 0, 0))
-				Game.createMonster("Kraken tentacles", KRAKEN_ANCHOR:Moved(-52, -1, 0))
-				Game.createMonster("Kraken tentacles", KRAKEN_ANCHOR:Moved(-44, 0, 0))
-			end
+				local tpToKolumb = MoveEvent()
+				function tpToKolumb.onStepIn(player, item, position, fromPosition)
+					if not player:isPlayer() then
+						return true
+					end
 
-			local krakenLever = Action()
-			function krakenLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if UseEncounterLever(player, item, KRAKEN_ENCOUNTER_DATA) then
-					startEncounter()
+					player:teleportTo(toKolumb)
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+					return true
 				end
-			end
-			krakenLever:aid(KRAKEN_ENCOUNTER_DATA.actionid)
-			krakenLever:register()
-		end)
 
-end
-)	:MonsterEvent(function()
+				tpToKolumb:type("stepin")
+				tpToKolumb:key(Storage.FourActTragedy.Portals.ToKolumb)
+				tpToKolumb:register()
+			end),
+			QuestFactory.StartupItems({
+				{ pos = { 5977, 1178, 6 }, id = 1949, aid = Storage.FourActTragedy.Portals.ToKolumb },
+			}),
+			QuestFactory.Script(function(missionState)
+				KRAKEN_ENCOUNTER_DATA = {
+					actionid = Storage.FourActTragedy.KrakenAccess,
+					bossName = "The Kraken",
+					timerStorage = Storage.FourActTragedy.KrakenAccess,
+					cooldown = "weekly",
+
+					leverPosition = KRAKEN_ANCHOR:Moved(-5, 0, 0),
+					leverId = 938,
+					entranceGrid = { topLeft = KRAKEN_ANCHOR:Moved(-4, -1, 0), downRight = KRAKEN_ANCHOR:Moved(-3, 1, 0) },
+
+					bossPos = KRAKEN_ANCHOR:Moved(-47, -19, 0),
+					enterPos = KRAKEN_ANCHOR:Moved(-46, 0, 0),
+					durationMinutes = 10,
+					exitTeleportDestination = KRAKEN_ANCHOR:Moved(-297, -51, 2),
+					exitTeleportPosition = KRAKEN_ANCHOR:Moved(-53, -23, 0),
+					exitTeleportActionid = Storage.FourActTragedy.Portals.AfterKraken,
+					corner1 = KRAKEN_ANCHOR:Moved(-58, -30, 0),
+					corner2 = KRAKEN_ANCHOR:Moved(-33, 3, 0),
+
+					scalingConfig = { hpPerPlayer = 1 },
+
+					requiredStorages = { [Storage.FourActTragedy.KrakenAccess] = { min = ACCESS_GRANTED } },
+
+					fightningPlatformPositions = {
+						topLeft = KRAKEN_ANCHOR:Moved(-58, -30, 0),
+						downRight = KRAKEN_ANCHOR:Moved(-33, -8, 0),
+						entrance = KRAKEN_ANCHOR:Moved(-47, -15, 0),
+					},
+					fightingShipPositions = {
+						topLeft = KRAKEN_ANCHOR:Moved(-52, -1, 0),
+						downRight = KRAKEN_ANCHOR:Moved(-45, 1, 0),
+					},
+				}
+				RegisterEncounter(KRAKEN_ENCOUNTER_DATA)
+
+				local function startEncounter()
+					Game.createMonster("Ship health", KRAKEN_ANCHOR:Moved(-49, 0, 0))
+					Game.createMonster("Kraken tentacles", KRAKEN_ANCHOR:Moved(-52, -1, 0))
+					Game.createMonster("Kraken tentacles", KRAKEN_ANCHOR:Moved(-44, 0, 0))
+				end
+
+				local krakenLever = Action()
+				function krakenLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if UseEncounterLever(player, item, KRAKEN_ENCOUNTER_DATA) then
+						startEncounter()
+					end
+				end
+				krakenLever:key(KRAKEN_ENCOUNTER_DATA.actionid)
+				krakenLever:register()
+			end)
+	end)
+	:MonsterEvent(function()
 		local nextState = {
 			[Storage.FourActTragedy.Mission03] = QuestState.FourActTragedy.Mission03.ReportToRomek,
 		}
@@ -1106,7 +1083,7 @@ end
 				return true
 			end
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				if player:getStorageValue(Storage.FourActTragedy.Mission01) ~= QuestState.FourActTragedy.Mission03.FindAndKillLewiatan then
+				if player:getStorageValueByKey(Storage.FourActTragedy.Mission01) ~= QuestState.FourActTragedy.Mission03.FindAndKillLewiatan then
 					return true
 				end
 
@@ -1123,196 +1100,168 @@ end
 
 		skurwiwijDeath:register()
 	end)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission03.ReportToRomek,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "But I wasn't talking about some monster, just that shop on the corner. During that time, I went to Walmart to get heineken because I couldn't wait for you. Now, back to the point. I recalled this old story: people from the northeast whisper about certain {slippers} that Rat Bum nibbled on. They say he tried to steal them from his Master, who, under the influence of slippers, descended into the abyss of corruption. The prophecy was funded by the Ministry of State Security of the People's Republic of China.",
-			},
-			[{ "slippers", "kapciach" }] = {
-				text = "Rumors have it that after the death of the aforementioned ruler, the slippers were buried with him. However, it is unknown where this burial place is. As I mentioned, all rumors about the origin of the slippers started with the inhabitants of the northern lands. I think it could be Rats collaborating with banshees. Search the corridors of their base. If you manage to find these slippers, based on the tooth pattern that bit the front part of the boot, we will find a matching profile on onlyfangs.com.",
-				nextState = {
-					[Storage.FourActTragedy.Mission03] = MISSION_FINISHED,
-					[Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.FindBribeslippers,
+	:State(function()
+		return QuestState.FourActTragedy.Mission03.ReportToRomek,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "But I wasn't talking about some monster, just that shop on the corner. During that time, I went to Walmart to get heineken because I couldn't wait for you. Now, back to the point. I recalled this old story: people from the northeast whisper about certain {slippers} that Rat Bum nibbled on. They say he tried to steal them from his Master, who, under the influence of slippers, descended into the abyss of corruption. The prophecy was funded by the Ministry of State Security of the People's Republic of China.",
 				},
-			},
-		})
-
-end
-)	:Mission(Storage.FourActTragedy.Mission04)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission04.FindBribeslippers,
-		QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
-			text = "Ruins are located in the northern part of Kongo",
-		} }),
-		QuestFactory.StartupItems({
-			{ pos = { 6966, 664, 13 }, id = 2943, aid = Storage.FourActTragedy.SlippersTorch },
-		}),
-		QuestFactory.StartupItems({
-			{
-				pos = { 6962, 664, 14 },
-				id = 1983,
-				actionid = Storage.FourActTragedy.Rewards.SlippersChest,
-				uid = 1000,
-				rewards = { QuestKeyItems.KingOfRatsHQ.Bribeslippers },
-				nextState = { [Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.BringSlippersToRomek },
-				desc = "Rest is peace\n~Followers of The Frog Cult",
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local slippersTp = Action()
-			function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:isPlayer() then
-					return false
-				end
-
-				local storageVal = player:getStorageValue(Storage.FourActTragedy.Mission04)
-				if storageVal < QuestState.FourActTragedy.Mission04.FindBribeslippers then
-					return false
-				end
-				if storageVal > QuestState.FourActTragedy.Mission04.BringSlippersToRomek then
-					return false
-				end
-
-				local playerPos = player:getPosition()
-				if playerPos.x > item:getPosition().x then
-					player:teleportTo(playerPos:Moved(-2, 0, 0))
-				elseif playerPos.x < item:getPosition().x then
-					player:teleportTo(playerPos:Moved(2, 0, 0))
-				end
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
-
-			slippersTp:aid(Storage.FourActTragedy.SlippersTorch)
-			slippersTp:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission04.BringSlippersToRomek,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Did you find anything about slippers owner?",
-			},
-			[{
-				"oltarz weza",
-				"oltarz",
-				"waz",
-				"weza",
-				"frog cult",
-				"frog",
-				"cult",
-			}] = {
-				text = "Try to search in the underground ruins in the Kongo. This place was inhabited long ago by medusas, hydras, and other writhing creatures, and it is overgrown with foul flora. An ideal place for an altar for serpentine gods.",
-				nextState = {
-					[Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij,
-					[Storage.FourActTragedy.SkurwiwijAccess] = ACCESS_GRANTED,
-					[Storage.FourActTragedy.SkurwiwijDoor] = ACCESS_GRANTED,
+				[{ "slippers", "kapciach" }] = {
+					text = "Rumors have it that after the death of the aforementioned ruler, the slippers were buried with him. However, it is unknown where this burial place is. As I mentioned, all rumors about the origin of the slippers started with the inhabitants of the northern lands. I think it could be Rats collaborating with banshees. Search the corridors of their base. If you manage to find these slippers, based on the tooth pattern that bit the front part of the boot, we will find a matching profile on onlyfangs.com.",
+					nextState = {
+						[Storage.FourActTragedy.Mission03] = MISSION_FINISHED,
+						[Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.FindBribeslippers,
+					},
 				},
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "Your eyes will open when mine are long closed",
-			},
-		})
+			})
+	end)
+	:Mission(Storage.FourActTragedy.Mission04)
+	:State(function()
+		return QuestState.FourActTragedy.Mission04.FindBribeslippers,
+			QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
+				text = "Ruins are located in the northern part of Kongo",
+			} }),
+			QuestFactory.StartupItems({
+				{ pos = { 6966, 664, 13 }, id = 2943, aid = Storage.FourActTragedy.SlippersTorch },
+			}),
+			QuestFactory.StartupItems({
+				{
+					pos = { 6962, 664, 14 },
+					id = 1983,
+					actionid = Storage.FourActTragedy.Rewards.SlippersChest,
+					rewards = { QuestKeyItems.KingOfRatsHQ.Bribeslippers },
+					nextState = { [Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.BringSlippersToRomek },
+					desc = "Rest is peace\n~Followers of The Frog Cult",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local slippersTp = Action()
+				function slippersTp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:isPlayer() then
+						return false
+					end
 
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij,
-		QuestFactory.StartupItems({
+					local storageVal = player:getStorageValueByKey(Storage.FourActTragedy.Mission04)
+					if storageVal < QuestState.FourActTragedy.Mission04.FindBribeslippers then
+						return false
+					end
+					if storageVal > QuestState.FourActTragedy.Mission04.BringSlippersToRomek then
+						return false
+					end
+
+					local playerPos = player:getPosition()
+					if playerPos.x > item:getPosition().x then
+						player:teleportTo(playerPos:Moved(-2, 0, 0))
+					elseif playerPos.x < item:getPosition().x then
+						player:teleportTo(playerPos:Moved(2, 0, 0))
+					end
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+					return true
+				end
+
+				slippersTp:key(Storage.FourActTragedy.SlippersTorch)
+				slippersTp:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission04.BringSlippersToRomek,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Did you find anything about slippers owner?",
+				},
+				[{
+					"oltarz weza",
+					"oltarz",
+					"waz",
+					"weza",
+					"frog cult",
+					"frog",
+					"cult",
+				}] = {
+					text = "Try to search in the underground ruins in the Kongo. This place was inhabited long ago by medusas, hydras, and other writhing creatures, and it is overgrown with foul flora. An ideal place for an altar for serpentine gods.",
+					nextState = {
+						[Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij,
+						[Storage.FourActTragedy.SkurwiwijAccess] = ACCESS_GRANTED,
+						[Storage.FourActTragedy.SkurwiwijDoor] = ACCESS_GRANTED,
+					},
+				},
+				[{ ANY_MESSAGE }] = {
+					text = "Your eyes will open when mine are long closed",
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij, QuestFactory.StartupItems({
 			{ pos = { 6581, 557, 9 }, id = 5131, aid = Storage.FourActTragedy.SkurwiwijDoor },
 		})
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission04.ReportToRomek,
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Grazhena Core? Hmm... My mother Xena once belonged to a rural housewives club. Ask her if she knows more about this object. She is the leader of the feminists. Maybe you've already met her.",
-				requiredItems = {
-					QuestKeyItems.FourActTragedy.GrazynaCore,
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission04.ReportToRomek,
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Grazhena Core? Hmm... My mother Xena once belonged to a rural housewives club. Ask her if she knows more about this object. She is the leader of the feminists. Maybe you've already met her.",
+					requiredItems = {
+						QuestKeyItems.FourActTragedy.GrazynaCore,
+					},
+					removeRequiredItems = false,
+					textNoRequiredItems = "Skurwiwij had Grazhenacore, and you lost it? Come back when you find your lost item.",
+					nextState = {
+						[Storage.FourActTragedy.Mission04] = MISSION_FINISHED,
+						[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.FindXena,
+					},
 				},
-				removeRequiredItems = false,
-				textNoRequiredItems = "Skurwiwij had Grazhenacore, and you lost it? Come back when you find your lost item.",
-				nextState = {
-					[Storage.FourActTragedy.Mission04] = MISSION_FINISHED,
-					[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.FindXena,
+			})
+	end)
+	:Mission(Storage.FourActTragedy.Mission05)
+	:State(function()
+		return QuestState.FourActTragedy.Mission05.FindXena,
+			QuestFactory.Dialog("Xe'na", {
+				[{ "mission", "grazhenacore", "grazynacore", "grazyna", "grazhena" }] = {
+					requiredItems = {
+						QuestKeyItems.FourActTragedy.GrazynaCore,
+					},
+					textNoRequiredItems = "Come back when you have Grazhenacore with you.",
+					text = "The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures.",
+					nextState = {
+						[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.FindGrazhena,
+						[Storage.FourActTragedy.GrazhenaDoor] = ACCESS_GRANTED,
+					},
 				},
-			},
-		})
-
-end
-)	:Mission(Storage.FourActTragedy.Mission05)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission05.FindXena,
-		QuestFactory.Dialog("Xe'na", {
-			[{ "mission", "grazhenacore", "grazynacore", "grazyna", "grazhena" }] = {
-				requiredItems = {
-					QuestKeyItems.FourActTragedy.GrazynaCore,
+			})
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission05.FindGrazhena,
+			QuestFactory.StartupItems({
+				{ pos = { 6005, 1386, 12 }, id = 5131, aid = Storage.FourActTragedy.GrazhenaDoor },
+			}),
+			QuestFactory.Dialog("Grazhena", {
+				[{ GREET }] = {
+					text = "They locked me in here and blocked the exit with magical doors that I can't pass in my current state. You know what? Something is {itching} me here.",
 				},
-				textNoRequiredItems = "Come back when you have Grazhenacore with you.",
-				text = "The existence of cancercontent is necessary if we want to maintain the balance of the universe. The cringe factory of rural housewives' kept our world at rest until recently when Grazhena Core was stolen. I will now take Grazhenacore from you. Try to find Grazhena in the prison. Self-proclaimed heroes from the eastern part of the city have locked her in the depths of their dungeons. Now she is forced to live among nightmare creatures.",
-				nextState = {
-					[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.FindGrazhena,
-					[Storage.FourActTragedy.GrazhenaDoor] = ACCESS_GRANTED,
+				[{ "itchy", "swedzi", "itching" }] = {
+					text = "It's Rat Bum! I have Rat Bum in my pants! When I pull him out, he jumps back in. {Help} me deal with him!",
 				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission05.FindGrazhena,
-		QuestFactory.StartupItems({
-			{ pos = { 6005, 1386, 12 }, id = 5131, aid = Storage.FourActTragedy.GrazhenaDoor },
-		}),
-		QuestFactory.Dialog("Grazhena", {
-			[{ GREET }] = {
-				text = "They locked me in here and blocked the exit with magical doors that I can't pass in my current state. You know what? Something is {itching} me here.",
-			},
-			[{ "itchy", "swedzi", "itching" }] = {
-				text = "It's Rat Bum! I have Rat Bum in my pants! When I pull him out, he jumps back in. {Help} me deal with him!",
-			},
-			[{ "help", "pomoz" }] = {
-				text = "He jumped out! You must have scared him! He jumped into that hole, which is too small for a human. There's some hole in front of my cell. Perhaps it leads to the same cave where that rascal fled!",
-				nextState = {
-					[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.KillRatBum,
-					[Storage.FourActTragedy.ZulSzczurowAccess] = ACCESS_GRANTED,
+				[{ "help", "pomoz" }] = {
+					text = "He jumped out! You must have scared him! He jumped into that hole, which is too small for a human. There's some hole in front of my cell. Perhaps it leads to the same cave where that rascal fled!",
+					nextState = {
+						[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.KillRatBum,
+						[Storage.FourActTragedy.ZulSzczurowAccess] = ACCESS_GRANTED,
+					},
 				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.FourActTragedy.Mission05.KillRatBum,
-		QuestFactory.Dialog("Grazhena", { [{ "mission" }] = {
+			})
+	end)
+	:State(function()
+		return QuestState.FourActTragedy.Mission05.KillRatBum, QuestFactory.Dialog("Grazhena", { [{ "mission" }] = {
 			text = "Cave entrance is just before the cell. Im gonna wait here.",
-		} }),
-		QuestFactory.StartupItems({
+		} }), QuestFactory.StartupItems({
 			{
 				id = 18021,
 				actionid = Storage.FourActTragedy.Rewards.GrazynaCore,
 				rewards = { QuestKeyItems.FourActTragedy.GrazynaCore },
 			},
 		})
-
-end
-)	:EncounterData(function()
+	end)
+	:EncounterData(function()
 		local ratbumLever = {
 			encounterName = "zul-szczurow-lair",
 
@@ -1329,8 +1278,7 @@ end
 			exitTpDestination = ZUL_SZCZUROW_ANCHOR:Moved(0, 0, 0),
 			exitTpPosition = ZUL_SZCZUROW_ANCHOR:Moved(-8, 8, 1),
 
-			-- ToDo: hp and (slight) damage scaling
-			-- scalingConfig = { hpPerPlayer = 1 },
+			scalingConfig = { hpPerPlayer = 1 },
 
 			requiredState = { [Storage.FourActTragedy.ZulSzczurowAccess] = ACCESS_GRANTED },
 		}
@@ -1351,7 +1299,7 @@ end
 			end
 
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				if player:getStorageValue(Storage.FourActTragedy.Mission05) ~= QuestState.FourActTragedy.Mission05.KillRatBum then
+				if player:getStorageValueByKey(Storage.FourActTragedy.Mission05) ~= QuestState.FourActTragedy.Mission05.KillRatBum then
 					return true
 				end
 				player:NextState(updateStorages)
@@ -1362,30 +1310,27 @@ end
 
 		zulSzczurowDeath:register()
 	end)
-:State(
-function()
-return 
-		QuestState.FourActTragedy.Mission05.ReportToRomek,
-		QuestFactory.Dialog("Grazhena", {
-			[{ "mission" }] = {
-				text = "I'll now return to the village and meet my friends from my club. Thank you for your help.",
-			},
-		}),
-		QuestFactory.Dialog("GM Romek", {
-			[{ "mission" }] = {
-				text = "Thanks for your help. Here's your reward for completing the task: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
-			},
-			[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
-				text = "If you have a moment, go to the summit of the highest mountain in the Caribbean. You might find someone there whom you once knew.",
-				nextState = {
-					[Storage.FourActTragedy.Mission06] = MISSION_FINISHED,
-					[Storage.Finished.FourActTragedy] = MISSION_FINISHED,
-					[Storage.PerIustitiaAdAstra.Mission01] = QuestState.PerIustitiaAdAstra.Mission01.HeadToHighestMountain,
-					[Storage.FourActTragedy.GrazhenaDoor] = MISSION_NOT_STARTED,
+	:State(function()
+		return QuestState.FourActTragedy.Mission05.ReportToRomek,
+			QuestFactory.Dialog("Grazhena", {
+				[{ "mission" }] = {
+					text = "I'll now return to the village and meet my friends from my club. Thank you for your help.",
 				},
-				rewards = { ExerciseWeaponBox(3500) },
-			},
-		})
-
-end
-)	:Register()
+			}),
+			QuestFactory.Dialog("GM Romek", {
+				[{ "mission" }] = {
+					text = "Thanks for your help. Here's your reward for completing the task: {axe}, {sword}, {mace}, {bow}, {rod}, {wand} (exercise weapon).",
+				},
+				[{ "axe", "sword", "mace", "bow", "rod", "wand" }] = {
+					text = "If you have a moment, go to the summit of the highest mountain in the Caribbean. You might find someone there whom you once knew.",
+					nextState = {
+						[Storage.FourActTragedy.Mission06] = MISSION_FINISHED,
+						[Storage.Finished.FourActTragedy] = MISSION_FINISHED,
+						[Storage.PerIustitiaAdAstra.Mission01] = QuestState.PerIustitiaAdAstra.Mission01.HeadToHighestMountain,
+						[Storage.FourActTragedy.GrazhenaDoor] = MISSION_NOT_STARTED,
+					},
+					rewards = { ExerciseWeaponBox(3500) },
+				},
+			})
+	end)
+	:Register()

@@ -8,7 +8,7 @@ local function resetWalkedPositions(checkLastResetTime)
 	end
 
 	walkedPositions = {}
-	Game.setStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.StepsOn, 0)
+	Game.setStorageValueByKey(Storage.TheDreamCourts.FacelessBane.StepsOn, 0)
 	lastResetTime = os.time() + (1 * 60)
 end
 
@@ -58,8 +58,8 @@ function facelessBaneStepPositions.onStepIn(creature, item, position, fromPositi
 		return true
 	end
 
-	if Game.getStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.ResetSteps) == 1 then
-		Game.setStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.ResetSteps, 0)
+	if Game.getStorageValueByKey(Storage.TheDreamCourts.FacelessBane.ResetSteps) == 1 then
+		Game.setStorageValueByKey(Storage.TheDreamCourts.FacelessBane.ResetSteps, 0)
 		lastResetTime = os.time()
 		resetWalkedPositions(true)
 	end
@@ -68,7 +68,7 @@ function facelessBaneStepPositions.onStepIn(creature, item, position, fromPositi
 		checkTime = addEvent(resetWalkedPositions, 15 * 1000, false)
 	end
 
-	if Game.getStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.StepsOn) < 1 then
+	if Game.getStorageValueByKey(Storage.TheDreamCourts.FacelessBane.StepsOn) < 1 then
 		if #walkedPositions > 0 then
 			for _, walkedPos in ipairs(walkedPositions) do
 				if walkedPos == position then
@@ -82,7 +82,7 @@ function facelessBaneStepPositions.onStepIn(creature, item, position, fromPositi
 		table.insert(walkedPositions, position)
 
 		if #walkedPositions == 13 then
-			Game.setStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.StepsOn, 1)
+			Game.setStorageValueByKey(Storage.TheDreamCourts.FacelessBane.StepsOn, 1)
 			addEvent(resetWalkedPositions, 60 * 1000, true)
 			sendEnergyEffect()
 			checkTime = nil

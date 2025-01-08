@@ -6,8 +6,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.PitsOfInferno.OneThrone) <= 0 or player:getLevel() < 100 or player:getStorageValue(Storage.TheInquisition.Questline) < 20 then
-		--if player:getLevel() < 100 or player:getStorageValue(Storage.TheInquisition.Questline) < 20 then -- test
+	if player:getStorageValueByKey(Storage.PitsOfInferno.OneThrone) <= 0 or player:getLevel() < 100 or player:getStorageValueByKey(Storage.TheInquisition.Questline) < 20 then
+		--if player:getLevel() < 100 or player:getStorageValueByKey(Storage.TheInquisition.Questline) < 20 then -- test
 		player:teleportTo(fromPosition)
 		toPosition:sendMagicEffect(CONST_ME_TELEPORT)
 		fromPosition:sendMagicEffect(CONST_ME_TELEPORT)
@@ -24,3 +24,4 @@ end
 movement:type("stepin")
 movement:uid(9014)
 movement:register()
+

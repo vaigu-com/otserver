@@ -30,8 +30,8 @@ end
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if getGlobalStorageValue(GlobalStorage.Warzone1Global) < 1 then
-		setGlobalStorageValue(GlobalStorage.Warzone1Global, 1)
+	if getStorageValueByKey(Storage.Warzone1Global) < 1 then
+		setStorageValueByKey(Storage.Warzone1Global, 1)
 		for i = 1, 6 do
 			for k = 1, 10 do
 				local creatures = {
@@ -49,7 +49,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		addEvent(onTimer6, 100 + 6 * 20 * 1000) -- Warzone TP
 		addEvent(removerTp, 60000 + 5 * 60 * 1000)
 		addEvent(onTimer5, 61000 + 5 * 60 * 1000) --5minutes
-		addEvent(setGlobalStorageValue, 6 * 20 * 1000 + 30 * 60 * 1000, GlobalStorage.Warzone1Global, 0)
+		addEvent(setStorageValueByKey, 6 * 20 * 1000 + 30 * 60 * 1000, Storage.Warzone1Global, 0)
 	else
 		doPlayerSendCancel(cid, "Musisz zaczekac 30 minut.")
 	end
@@ -57,3 +57,4 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 action:uid(3143)
 action:register()
+

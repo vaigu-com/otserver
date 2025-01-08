@@ -40,7 +40,7 @@ end
 whitePearl:type("stepin")
 
 for index, value in pairs(setting) do
-	whitePearl:aid(index)
+	whitePearl:key(index)
 end
 
 whitePearl:register()

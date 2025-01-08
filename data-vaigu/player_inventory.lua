@@ -69,9 +69,8 @@ function Player:HasItem(item)
 	return count >= requiredCount
 end
 
-local function normalizeItemData(item)
-	local requiredCount = item.count or 1
-	item.count = requiredCount
+local function normalizeItemCount(item)
+	item.count = item.count or 1
 	return item
 end
 
@@ -122,7 +121,7 @@ function Player:HasItems(items, quantifier)
 	for subgroupQuantifier, node in pairs(items) do
 		local candidateTakenitems
 		if nodeIsItem(node) then
-			node = normalizeItemData(node)
+			node = normalizeItemCount(node)
 			hasItems = self:HasItem(node)
 		else
 			subgroupQuantifier = parseGroupQuantifier(subgroupQuantifier)
@@ -286,21 +285,28 @@ function Player:AddItems(items, bag, localizer)
 	return true
 end
 
+---@nodiscard
+local function hasAnyStoreAttribute(item)
+	local aid = item.aid
+	if aid and aid > 0 then
+		return true
+	end
+	local key = item.key
+	if key and key ~= "" then
+		return true
+	end
+	return false
+end
+
 local function shouldAddToStore(item)
 	if item.addToStore == false then
 		return false
-	end
-	if item.addToStore == true then
+	elseif item.addToStore == true then
 		return true
+	elseif item.addToStore == nil then
+		return hasAnyStoreAttribute(item)
 	end
-	local aid = item.aid
-	if aid == nil then
-		return false
-	end
-	if aid <= 0 then
-		return false
-	end
-	return true
+	return false
 end
 
 local function normalizedItem(item)
@@ -308,67 +314,30 @@ local function normalizedItem(item)
 	item.aid = item.aid or item.actionid or 0
 	item.desc = item.desc or item.description
 	item.uid = item.uid or item.uniqueid or 0
+	item.key = item.key or ""
 	return item
 end
 
-local nonCustomAttributes = {
-	id = true,
-	count = true,
-	aid = true,
-	description = true,
-	text = true,
-	uid = true,
-}
-
-local setableAtribute = {
-	name = true,
-}
-local function isCustomAttribute(key)
-	return nonCustomAttributes[key] ~= true
-end
-
-local function isSetableAttribute(key)
-	return setableAtribute[key]
-end
-
-DONT_CONTINUE_ON_ADD = "DONT_CONTINUE_ON_ADD"
+DONT_ADD_ITEM_TO_INVENTORY = "DONT_ADD_ITEM_TO_INVENTORY"
 
 local explodingCookie = 130
---3af add bestiary charms, etc.
-local explodingCookieCounts = {
-	grantExpDefaultFormula = 1,
-	grantBoostMinutesEqualToActionId = 2,
-}
-local explodingCookieCountToAction = {
-	[explodingCookieCounts.grantExpDefaultFormula] = function(context)
-		local aid = context.item.aid
-		local uid = context.item.uid
-		local expAmount = aid * 10 ^ uid
-		AddExperienceWithAnnouncement(context.player, expAmount)
-	end,
-	[explodingCookieCounts.grantBoostMinutesEqualToActionId] = function(context)
-		local aid = context.item.aid
-		local boostMinutes = aid * 60
-		context.player:addXpBoostTime(boostMinutes)
-	end,
-}
 local function onAddExplodingcookie(context)
-	local count = context.item.count
-	local action = explodingCookieCountToAction[count]
-	action(context)
+	local exp = tonumber(context.item:getKey())
+	if not exp then
+		logger.error(T("[onAddExplodingcookie] Exp cookie key (:key:) cannot be converted to number. Item position :pos:", { key = context.item:getKey(), pos = context.item:getPosition():ToString() }))
+	end
+	AddExperienceWithAnnouncement(context.player, exp)
+	return DONT_ADD_ITEM_TO_INVENTORY
 end
 
-local itemIdToActionOnAdd = {
-	[explodingCookie] = function(context)
-		onAddExplodingcookie(context)
-		return DONT_CONTINUE_ON_ADD
-	end,
+local customItemActionContainer = {
+	[explodingCookie] = onAddExplodingcookie,
 }
 
 function CountNotAddableItems(items)
 	local count = 0
 	for _, item in pairs(items) do
-		if itemIdToActionOnAdd[item.id] then
+		if customItemActionContainer[item.id] then
 			count = count + 1
 		end
 	end
@@ -383,67 +352,76 @@ function Player:AddCustomItem(item, container, localizer)
 	local id = item.id
 	local count = item.count
 	local aid = item.aid
+	local key = item.key
 	local showCustomDescOnAcquire = item.showCustomDescOnAcquire
 	local desc = item.desc
 	local text = item.text
 	local uid = item.uid
 	local fluidType = item.fluidType
 
-	local actionOnAdd = itemIdToActionOnAdd[id]
+	local actionOnAdd = customItemActionContainer[id]
 	if actionOnAdd then
 		local context = { player = self, item = item }
-		if actionOnAdd(context) == DONT_CONTINUE_ON_ADD then
+		if actionOnAdd(context) == DONT_ADD_ITEM_TO_INVENTORY then
 			return
 		end
 	end
 
-	local addItem = nil
-	if shouldAddToStore(item) then
-		container = nil
-		local inbox = self:getStoreInbox()
-		addItem = inbox:addItem(id, count)
-		addItem:setOwner(self)
-		addItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
-	else
-		container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
-		addItem = container:addItem(id, count)
-	end
+	local addedItem = Game.createItem(id, count)
 
 	for key, value in pairs(item) do
-		if isCustomAttribute(key) then
-			addItem:setCustomAttribute(key, value)
+		if IsCustomAttribute(key) then
+			addedItem:setCustomAttribute(key, value)
 		end
-		if isSetableAttribute(key) then
-			addItem:setAttribute(key, value)
+		if IsSetableAttribute(key) then
+			addedItem:setAttribute(key, value)
 		end
 	end
 
 	local iType = ItemType(id)
 	if iType and iType:isFluidContainer() then
-		addItem:transform(id, 0)
+		addedItem:transform(id, 0)
 	end
 
-	if aid then
-		addItem:setActionId(aid)
-	end
-	if uid then
-		addItem:setUniqueId(uid)
+	addedItem:setActionId(aid)
+	if uid ~= 0 then
+		addedItem:setUniqueId(uid)
 	end
 	if desc and count == 1 then
-		addItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
+		addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
 	end
 	if text and count == 1 then
-		addItem:setText(ITEM_ATTRIBUTE_TEXT, text)
+		addedItem:setText(ITEM_ATTRIBUTE_TEXT, text)
+	end
+	if key and count == 1 then
+		addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
 	end
 	if fluidType then
-		addItem:transform(id, fluidType)
+		addedItem:transform(id, fluidType)
 	end
 
 	if text or desc then
-		addItem:setCustomAttribute("localizer", localizer)
+		addedItem:setCustomAttribute("localizer", localizer)
 	end
 
-	local name = addItem:getName()
+	if shouldAddToStore(item) then
+		addedItem:setOwner(self)
+		addedItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
+		local inbox = self:getStoreInbox()
+		inbox:addItemEx(addedItem)
+	else
+		container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
+		container:addItemEx(addedItem)
+	end
+
+	if aid == 0 then
+		addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
+	end
+	if key == "" then
+		addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
+	end
+
+	local name = addedItem:getName()
 	if showCustomDescOnAcquire then
 		name = desc
 	end

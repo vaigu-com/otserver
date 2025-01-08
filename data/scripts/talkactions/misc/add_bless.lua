@@ -13,9 +13,9 @@ function talkaction.onSay(player, words, param)
 		return false
 	end
 
-	if target:getStorageValue(Storage.GetBless) <= 0 then
+	if target:getStorageValueByKey(Storage.GetBless) <= 0 then
 		target:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
-		target:setStorageValue(Storage.GetBless, 1)
+		target:setStorageValueByKey(Storage.GetBless, 1)
 		for i = 2, 6 do
 			target:addBlessing(i, 1)
 		end

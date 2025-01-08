@@ -92,12 +92,12 @@ local function creatureSayCallback(npc, creature, type, message)
 		"demoniczne esencje",
 		"demonicznych esencji",
 	}, message) then
-		if player:getStorageValue(Storage.Ferumbras.EssencesBringed) <= 0 then
+		if player:getStorageValueByKey(Storage.Ferumbras.EssencesBringed) <= 0 then
 			if getPlayerItemCount(creature, items.item1[1]) >= counts.count1[1] then
 				doPlayerRemoveItem(creature, items.item1[1], counts.count1[1])
 				doPlayerAddItem(creature, items.item1[2], counts.count1[2])
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Swietnie! Mozesz teraz uzyc mojego teleportu." or "Great, you can use teleport now!", npc, creature)
-				player:setStorageValue(Storage.Ferumbras.EssencesBringed, 1)
+				player:setStorageValueByKey(Storage.Ferumbras.EssencesBringed, 1)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Potrzebujesz " .. counts.count1[1] .. " " .. getItemName(items.item1[1]) .. ", aby uzyskac dostep." or "You still need to bring me " .. counts.count1[1] .. " " .. getItemName(items.item1[1]) .. " to let me pass you there.", npc, creature)
 			end

@@ -13,7 +13,7 @@ ALL_CONDITIONS = {
 	CONDITION_DAZZLED,
 	CONDITION_CURSED,
 }
--- ToDo: make "data\npclib\npc_system\npc_handler.lua" load from lua; fix npc's after server reload
+
 TOPIC_DEFAULT = 0
 
 MESSAGE_GREET = 1
@@ -79,13 +79,27 @@ function NextTopic()
 	return NEXT_TOPIC
 end
 
--- ToDo: create item kv field (string) in rme?
--- ToDo: storage keys will be converted to kv? if so this function will no longer be needed
-local FIRST_AVAILABLE_STORAGE = 8100
-NEXT_STORAGE = NEXT_STORAGE or FIRST_AVAILABLE_STORAGE
-function NextStorage()
-	NEXT_STORAGE = NEXT_STORAGE + 1
-	return NEXT_STORAGE
+function Player:getStorageValueByKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+function Player:setStorageValueByKey(key, nextValue)
+	local previousValue = self:getStorageValueByKey(key)
+	self:kv():set(key, nextValue)
+	self:updateStorage(key, nextValue, previousValue, os.time())
+end
+
+function Game.getStorageValueByKey(key)
+	return kv.get(key) or MISSION_NOT_STARTED
+end
+function Game.setStorageValueByKey(key, value)
+	return kv.set(key, value)
+end
+
+function Shop:getStorageValueByKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+function Shop:setStorageValueByKey(key, value)
+	return self:kv():set(key, value)
 end
 
 function GrantPlayerExpByAid(player, actionId)
@@ -116,13 +130,13 @@ function Player:IncrementStorages(storages, addend)
 end
 
 function Player:IncrementStorage(storage, addend)
-	self:setStorageValue(storage, self:getStorageValue(storage) + (addend or 1))
-	return self:getStorageValue(storage)
+	self:setStorageValueByKey(storage, self:getStorageValueByKey(storage) + (addend or 1))
+	return self:getStorageValueByKey(storage)
 end
 
 function NextState(player, storages)
 	for storage, newValue in pairs(storages) do
-		player:setStorageValue(storage, newValue)
+		player:setStorageValueByKey(storage, newValue)
 	end
 end
 
@@ -130,18 +144,18 @@ function Player:NextState(storages)
 	if not storages then
 		return false
 	end
-	for storage, newValue in pairs(storages) do
-		if type(newValue) == "string" then
-			self:IncrementStorage(storage, tonumber(newValue))
+	for storage, nextValue in pairs(storages) do
+		if type(nextValue) == "string" then
+			self:IncrementStorage(storage, tonumber(nextValue))
 		else
-			self:setStorageValue(storage, newValue)
+			self:setStorageValueByKey(storage, nextValue)
 		end
 	end
 end
 
 function Player:RefreshStorage(storage)
-	local currentValue = self:getStorageValue(storage)
-	self:setStorageValue(storage, currentValue)
+	local currentValue = self:kv():get(storage)
+	self:setStorageValueByKey(storage):set(currentValue)
 end
 
 function Player:RefreshStorages(storages)
@@ -197,7 +211,7 @@ function Player:HasHigherMissionState(missionState)
 end
 
 function Player:HasCorrectStorageValue(storage, requiredState)
-	local currentState = self:getStorageValue(storage)
+	local currentState = self:kv():get(storage)
 
 	local requirements = parseRequiredState(requiredState)
 
@@ -256,9 +270,9 @@ function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
 	return nil, true
 end
 
-function UpdateGlobalStorages(storages)
+function UpdateStorages(storages)
 	for storage, newValue in pairs(storages) do
-		Game.setStorageValue(storage, newValue)
+		Game.setStorageValueByKey(storage, newValue)
 	end
 end
 
@@ -665,7 +679,7 @@ function DialogContext:ResolveStorage()
 end
 
 function DialogContext:ResolveState()
-	local state = self.player:getStorageValue(self.storage)
+	local state = self.player:getStorageValueByKey(self.storage)
 	self.state = state
 	for requiredState, keywordToDialog in pairs(self.requiredStatetoKeywords) do
 		local canProceed = hasRequiredQuestlineState(state, requiredState)
@@ -721,14 +735,12 @@ function ParseTopicMinMax(config)
 	return min, max
 end
 
-
 function InitializeResponses(player, config, npcHandler, npc, msg)
 	player = Player(player)
 
 	PlayerDialogDataRegistry:Register(player)
 	local cid = player:getId()
 
-	--ToDo: does it work? or should it be done with addEvent?
 	npcHandler.topic[cid] = TOPIC_DEFAULT
 
 	for _, specialMessageType in pairs(specialMessageTypes) do

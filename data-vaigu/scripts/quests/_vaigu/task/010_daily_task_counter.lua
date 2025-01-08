@@ -1,5 +1,5 @@
 local function playerStaredThisTask(player, storage)
-	local dailyTaskProgress = player:getStorageValue(storage)
+	local dailyTaskProgress = player:getStorageValueByKey(storage)
 	if dailyTaskProgress ~= DAILY_TASK_NOT_STARTED then
 		return true
 	end
@@ -7,7 +7,7 @@ local function playerStaredThisTask(player, storage)
 end
 
 local function isDailyTaskFinished(player, dailyTask)
-	local currentKills = player:getStorageValue(dailyTask.storage)
+	local currentKills = player:getStorageValueByKey(dailyTask.storage)
 	local requiredKills = dailyTask.requiredKills
 	return currentKills >= requiredKills
 end

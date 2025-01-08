@@ -9,7 +9,7 @@ local function removeMinion(mid)
 end
 
 local function executeVersperothBattle(mid)
-	if Game.getStorageValue(GlobalStorage.Versperoth.Battle) ~= 1 then
+	if Game.getStorageValueByKey(Storage.Versperoth.Battle) ~= 1 then
 		return
 	end
 
@@ -19,7 +19,7 @@ local function executeVersperothBattle(mid)
 			return
 		end
 
-		Game.setStorageValue(GlobalStorage.Versperoth.Health, monster:getMaxHealth() - monster:getHealth())
+		Game.setStorageValueByKey(Storage.Versperoth.Health, monster:getMaxHealth() - monster:getHealth())
 		monster:remove()
 		versperothPosition:sendMagicEffect(CONST_ME_POFF)
 		local hole = Game.createItem(16172, 1, versperothPosition)
@@ -40,7 +40,7 @@ local function executeVersperothBattle(mid)
 	local monster = Game.createMonster("Versperoth", versperothPosition, false, true)
 	if monster then
 		versperothPosition:sendMagicEffect(CONST_ME_GROUNDSHAKER)
-		monster:addHealth(-Game.getStorageValue(GlobalStorage.Versperoth.Health))
+		monster:addHealth(-Game.getStorageValueByKey(Storage.Versperoth.Health))
 		local hole = Tile(versperothPosition):getItemById(16172)
 		if hole then
 			hole:remove()
@@ -57,13 +57,13 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if false and Game.getStorageValue(GlobalStorage.Versperoth.Battle) >= 1 then
+	if false and Game.getStorageValueByKey(Storage.Versperoth.Battle) >= 1 then
 		return true
 	end
 
 	player:teleportTo(Position(7485, 1377, 11)) --{x = 7485, y = 1377, z = 11}
-	Game.setStorageValue(GlobalStorage.Versperoth.Battle, 1)
-	Game.setStorageValue(GlobalStorage.Versperoth.Health, 0)
+	Game.setStorageValueByKey(Storage.Versperoth.Battle, 1)
+	Game.setStorageValueByKey(Storage.Versperoth.Health, 0)
 	executeVersperothBattle()
 	if item then
 		item:remove()

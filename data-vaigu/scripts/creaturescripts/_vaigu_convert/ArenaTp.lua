@@ -47,13 +47,13 @@ function creatureevent.onDeath(creature)
 		if isInArray(arena_bosses, targetName) then
 			for i = 1, 30 do
 				if arena_bosses[i] == targetName then
-					local event_id = player:getStorageValue(299)
+					local event_id = player:getStorageValueByKey(299)
 					stopEvent(event_id)
-					local arenaroom = player:getStorageValue(300)
+					local arenaroom = player:getStorageValueByKey(300)
 					if i == 10 or i == 20 or i == 30 then
 						i = i / 10
-						player:setStorageValue(300 + i, 2)
-						player:setStorageValue(26099 + i, 1)
+						player:setStorageValueByKey(300 + i, 2)
+						player:setStorageValueByKey(26099 + i, 1)
 						player:teleportTo(Position(6918, 630, 7))
 						player:say("Wrogowie zostali pokonani!", TALKTYPE_MONSTER_SAY)
 						clearFields(arenaroom)
@@ -73,7 +73,7 @@ function creatureevent.onDeath(creature)
 						player:say("Kolejny przeciwnik pojawi sie w ciagu 10sek. Masz 7min na jego pokonanie.", TALKTYPE_MONSTER_SAY)
 					end
 					event_id = addEvent(clearArena, 7 * 60 * 1000, player.uid, monster.uid, arenaroom)
-					player:setStorageValue(299, event_id)
+					player:setStorageValueByKey(299, event_id)
 					return true
 				end
 			end

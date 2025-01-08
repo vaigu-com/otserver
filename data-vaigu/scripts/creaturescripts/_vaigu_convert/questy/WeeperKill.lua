@@ -39,7 +39,7 @@ function creatureevent.onDeath(creature)
 		return true
 	end
 
-	if Game.getStorageValue(GlobalStorage.Weeper) >= 1 then
+	if Game.getStorageValueByKey(Storage.Weeper) >= 1 then
 		return true
 	end
 
@@ -67,8 +67,8 @@ function creatureevent.onDeath(creature)
 		end
 	end
 
-	Game.setStorageValue(GlobalStorage.Weeper, 1)
-	addEvent(Game.setStorageValue, 30 * 60 * 1000, GlobalStorage.Weeper, 0)
+	Game.setStorageValueByKey(Storage.Weeper, 1)
+	addEvent(Game.setStorageValueByKey, 30 * 60 * 1000, Storage.Weeper, 0)
 	addEvent(clearArena, 30 * 60 * 1000)
 	return true
 end

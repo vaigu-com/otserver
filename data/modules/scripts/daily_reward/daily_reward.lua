@@ -269,7 +269,7 @@ DailyReward.pickedReward = function(playerId)
 	end
 
 	player:setStreakLevel(player:getStreakLevel() + 1)
-	player:setStorageValue(DailyReward.storages.avoidDouble, GetDailyRewardLastServerSave())
+	player:setStorageValueByKey(DailyReward.storages.avoidDouble, GetDailyRewardLastServerSave())
 	player:setDailyReward(DAILY_REWARD_COLLECTED)
 	player:setNextRewardTime(GetDailyRewardLastServerSave() + DailyReward.serverTimeThreshold)
 	player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_YELLOW)
@@ -288,7 +288,7 @@ DailyReward.isRewardTaken = function(playerId)
 	if not player then
 		return false
 	end
-	local playerStorage = player:getStorageValue(DailyReward.storages.avoidDouble)
+	local playerStorage = player:getStorageValueByKey(DailyReward.storages.avoidDouble)
 	if playerStorage == GetDailyRewardLastServerSave() then
 		return true
 	end
@@ -302,15 +302,15 @@ DailyReward.init = function(playerId)
 		return false
 	end
 
-	if player:getJokerTokens() < 3 and tonumber(os.date("%m")) ~= player:getStorageValue(DailyReward.storages.avoidDoubleJoker) then
-		player:setStorageValue(DailyReward.storages.avoidDoubleJoker, tonumber(os.date("%m")))
+	if player:getJokerTokens() < 3 and tonumber(os.date("%m")) ~= player:getStorageValueByKey(DailyReward.storages.avoidDoubleJoker) then
+		player:setStorageValueByKey(DailyReward.storages.avoidDoubleJoker, tonumber(os.date("%m")))
 		player:setJokerTokens(player:getJokerTokens() + 1)
 	end
 
 	local timeMath = GetDailyRewardLastServerSave() - player:getNextRewardTime()
 	if player:getNextRewardTime() < GetDailyRewardLastServerSave() then
-		if player:getStorageValue(DailyReward.storages.notifyReset) ~= GetDailyRewardLastServerSave() then
-			player:setStorageValue(DailyReward.storages.notifyReset, GetDailyRewardLastServerSave())
+		if player:getStorageValueByKey(DailyReward.storages.notifyReset) ~= GetDailyRewardLastServerSave() then
+			player:setStorageValueByKey(DailyReward.storages.notifyReset, GetDailyRewardLastServerSave())
 			timeMath = math.ceil(timeMath / DailyReward.serverTimeThreshold)
 			if player:getJokerTokens() >= timeMath then
 				player:setJokerTokens(player:getJokerTokens() - timeMath)

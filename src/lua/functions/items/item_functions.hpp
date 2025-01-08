@@ -35,6 +35,7 @@ public:
 		registerMethod(L, "Item", "getUniqueId", ItemFunctions::luaItemGetUniqueId);
 		registerMethod(L, "Item", "getActionId", ItemFunctions::luaItemGetActionId);
 		registerMethod(L, "Item", "setActionId", ItemFunctions::luaItemSetActionId);
+		registerMethod(L, "Item", "getKey", ItemFunctions::luaItemGetKey);
 
 		registerMethod(L, "Item", "getCount", ItemFunctions::luaItemGetCount);
 		registerMethod(L, "Item", "getCharges", ItemFunctions::luaItemGetCharges);
@@ -114,6 +115,7 @@ private:
 	static int luaItemGetUniqueId(lua_State* L);
 	static int luaItemGetActionId(lua_State* L);
 	static int luaItemSetActionId(lua_State* L);
+	static int luaItemGetKey(lua_State* L);
 
 	static int luaItemGetCount(lua_State* L);
 	static int luaItemGetCharges(lua_State* L);

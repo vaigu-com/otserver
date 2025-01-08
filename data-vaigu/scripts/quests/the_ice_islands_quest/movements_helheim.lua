@@ -6,13 +6,13 @@ function helheim.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline) ~= 30 then
+	if player:getStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Questline) ~= 30 then
 		return true
 	end
 
 	-- Questlog The Ice Islands Quest, The Secret of Helheim
-	player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission07, 3)
-	player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline, 31)
+	player:setStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Mission07, 3)
+	player:setStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Questline, 31)
 	player:say("You discovered the necromantic altar and should report about it.", TALKTYPE_MONSTER_SAY)
 	position:sendMagicEffect(CONST_ME_MAGIC_RED)
 
@@ -31,3 +31,4 @@ end
 helheim:type("stepin")
 helheim:uid(1061)
 helheim:register()
+

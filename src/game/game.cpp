@@ -6376,7 +6376,7 @@ void Game::changeSpeed(std::shared_ptr<Creature> creature, int32_t varSpeedDelta
 	int32_t stepSpeed = creature->getStepSpeed();
 	std::shared_ptr<Player> player = creature->getPlayer();
 	if (player) {
-		if (player->getStorageValue(STORAGEVALUE_ISONMINIGAME) >= 1) {
+		if (player->getStorageValueByKey(STORAGEVALUE_ISONMINIGAME) >= 1) {
 			stepSpeed = 1;
 		}
 	}
@@ -6404,7 +6404,7 @@ void Game::changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varS
 
 	// Vaigu custom
 	int32_t stepSpeed = player->getStepSpeed();
-	if (player->getStorageValue(STORAGEVALUE_ISONMINIGAME) >= 1) {
+	if (player->getStorageValueByKey(STORAGEVALUE_ISONMINIGAME) >= 1) {
 		stepSpeed = 1;
 	}
 

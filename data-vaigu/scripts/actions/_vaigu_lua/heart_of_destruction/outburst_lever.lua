@@ -88,7 +88,7 @@ function heartDestructionOutburst.onUse(player, item, fromPosition, itemEx, toPo
 						players = storePlayers[i]
 						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
-						players:setStorageValue(14331, os.time() + 20 * 60 * 60)
+						players:setStorageValueByKey(14331, os.time() + 20 * 60 * 60)
 					end
 					Position(config.newPos):sendMagicEffect(11)
 

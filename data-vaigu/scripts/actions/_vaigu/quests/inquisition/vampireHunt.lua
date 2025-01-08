@@ -7,9 +7,9 @@ local altars = {
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheInquisition.Questline) == 8 then
-		player:setStorageValue(Storage.TheInquisition.Questline, 9)
-		player:setStorageValue(Storage.TheInquisition.Mission03, 4) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
+	if player:getStorageValueByKey(Storage.TheInquisition.Questline) == 8 then
+		player:setStorageValueByKey(Storage.TheInquisition.Questline, 9)
+		player:setStorageValueByKey(Storage.TheInquisition.Mission03, 4) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
 		local k = {}
 		for i = 1, #altars do
 			local tmp = Tile(altars[i]):getItemById(3083)

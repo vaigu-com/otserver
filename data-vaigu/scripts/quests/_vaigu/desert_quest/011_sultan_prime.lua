@@ -3,24 +3,24 @@ local quest = Quest(LOCALIZERS.SultanPrime)
 quest
 	:Storage(function()
 		Storage.SultanPrime = {
-			Necklace = NextStorage(),
+			Necklace = {},
 
-			Mission01 = NextStorage(),
-			MagicianFountain = NextStorage(),
+			Mission01 = {},
+			MagicianFountain = {},
 
-			Mission02 = NextStorage(),
-			FarmerChair = NextStorage(),
-			DromedaryCount = NextStorage(),
+			Mission02 = {},
+			FarmerChair = {},
+			DromedaryCount = {},
 
-			Mission03 = NextStorage(),
-			Coffin = NextStorage(),
-			CoffinCount = NextStorage(),
-			CorpseCount = NextStorage(),
-			Jaw = NextStorage(),
-			DoorAfterRyba = NextStorage(),
-			RetroLever = NextStorage(),
+			Mission03 = {},
+			Coffin = {},
+			CoffinCount = {},
+			CorpseCount = {},
+			Jaw = {},
+			DoorAfterRyba = {},
+			RetroLever = {},
 
-			RewardsScripted = { Necklace = NextStorage() },
+			RewardsScripted = { Necklace = {} },
 		}
 		QuestState.SultanPrime = {
 			Mission01 = {
@@ -62,19 +62,21 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Sultan Prime",
 			missions = {
-				[Storage.SultanPrime.Mission01] = {
+				{
 					name = "What Is Mafia? Is It Good?",
+					storage = Storage.SultanPrime.Mission01,
 					states = {
 						[QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
 						[QuestState.SultanPrime.Mission01.TradeAmuletWithSultan] = "Sultan made you an offer. Give the neclace to him to begin your mission.",
 						[MISSION_FINISHED] = "You returned the amulet to the Sultan and agreed to help him.",
 					},
 				},
-				[Storage.SultanPrime.Mission02] = {
+				{
 					name = "Unlucky Surveyors",
+					storage = Storage.SultanPrime.Mission02,
 					states = {
 						[QuestState.SultanPrime.Mission02.AskSultanForFirstTask] = "Go to Sultan of Phantasms for another task.",
 						[QuestState.SultanPrime.Mission02.PoisonMagiciansWell] = "Sultan of Phantasms assigned you a task worthy of a novice villain. Poison the fountain in the town of Magicians using the poisoned flask.",
@@ -85,8 +87,9 @@ quest
 						[MISSION_FINISHED] = "Sultan rewarded you for your cooperation.",
 					},
 				},
-				[Storage.SultanPrime.Mission03] = {
+				{
 					name = "Sultan's Last Plague",
+					storage = Storage.SultanPrime.Mission03,
 					states = {
 						[QuestState.SultanPrime.Mission03.OpenCoffins] = "OPENED_COFFINS_STATUS",
 						[QuestState.SultanPrime.Mission03.ThrowBodies] = "BODIES_THROWN_STATUS",
@@ -97,7 +100,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:MonsterEvent(function()
 		local cezary = CreatureEvent("CezaryBarykaDeath")
@@ -330,36 +333,11 @@ quest
 			{ type = "bleed", condition = false },
 		}
 
-		local insidePos = USHAYAAN_FORGE_ANCHOR:Moved(0, 18, -1)
-		local outsidePos = USHAYAAN_FORGE_ANCHOR:Moved(0, 20, -1)
-
-		local function isPlayerOnTeleportableTile(playerPos)
-			return playerPos == insidePos or playerPos == outsidePos
-		end
-
-		mType.onSay = function(listener, talker, type, message)
-			if message:lower() == "ali baba" then
-				local listenerPos = listener:getPosition()
-				local talkerPos = talker:getPosition()
-
-				if not isPlayerOnTeleportableTile(talkerPos) then
-					return
-				end
-
-				if talkerPos.y < listenerPos.y then
-					talker:teleportTo(outsidePos)
-					outsidePos:sendMagicEffect(CONST_ME_TELEPORT)
-				elseif talkerPos.y > listenerPos.y then
-					talker:teleportTo(insidePos)
-					insidePos:sendMagicEffect(CONST_ME_TELEPORT)
-				end
-			end
-		end
+		mType.onSay = function(listener, talker, type, message) end
 
 		mType.onAppear = function(monster, creature)
-			-- ToDo: change to correct sprite
-			monster:setOutfit({ lookTypeEx = 470 })
 		end
+		
 		mType:register(monster)
 	end)
 	:Monster(function()
@@ -474,158 +452,139 @@ quest
 		mType:register(monster)
 	end)
 	:Mission(Storage.SultanPrime.Mission01)
-:State(
-function()
-return 
-		MISSION_NOT_STARTED,
-		QuestFactory.StartupItems({
-			{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, aid = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
-		}),
-		QuestFactory.Script(function(missionState)
-			local neckUpdateStorages = {
-				[Storage.SultanPrime.Mission01] = 1,
-			}
-			local questStorage = Storage.SultanPrime.Mission01
+	:State(function()
+		return MISSION_NOT_STARTED,
+			QuestFactory.StartupItems({
+				{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, aid = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
+			}),
+			QuestFactory.Script(function(missionState)
+				local neckUpdateStorages = {
+					[Storage.SultanPrime.Mission01] = 1,
+				}
+				local questStorage = Storage.SultanPrime.Mission01
 
-			local corpse = Action()
-			function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if player:getStorageValue(questStorage) ~= MISSION_NOT_STARTED then
-					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is empty.")
-					return
+				local corpse = Action()
+				function corpse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if player:getStorageValueByKey(questStorage) ~= MISSION_NOT_STARTED then
+						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is empty.")
+						return
+					end
+
+					player:AddItems({ QuestKeyItems.SultanPrime.Amulet })
+					player:NextState(neckUpdateStorages)
+					return true
 				end
-
-				player:AddItems({ QuestKeyItems.SultanPrime.Amulet })
-				player:NextState(neckUpdateStorages)
-				return true
-			end
-			corpse:aid(Storage.SultanPrime.Necklace)
-			corpse:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
-				nextState = {
-					[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
+				corpse:key(Storage.SultanPrime.Necklace)
+				corpse:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission01.ConsultSultanAboutAmulet,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
+					nextState = {
+						[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
+					},
 				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
-			},
-			[{ "mission", "amulet", "naszyjnik" }] = {
-				text = "Thanks for your cooperation. Now if you don't mind, i have a {mission} for you.",
-				requiredItems = { QuestKeyItems.SultanPrime.Amulet },
-				textNoRequiredItems = "Ehh, you lost it? Guess Imma take over the world in next season.",
-				nextState = {
-					[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.Finished,
-					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
+			})
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission01.TradeAmuletWithSultan,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Adventurer |PLAYERNAME|... I was watching you proceed through that dungeon and beat all the deadly traps. You might have something that I value. Precisely that {amulet} that u took from Cezary Baryka.",
 				},
-			},
-		})
-
-end
-)	:Mission(Storage.SultanPrime.Mission02)
-:State(
-function()
-return 
-		QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "My favorite follower, |PLAYERNAME|. You came for new {mission}?",
-			},
-			[{ "mission", "yes", "tak" }] = {
-				text = "I don't think I told you about this, but I have a plan to take over and rule the world. That amulet will surely help me, but I still would not mind gaining new allies. I'm currently trying to convince mages, warriors, animals and other inferior beings. Your first task will be to poison magicians' water source. They rejected my will and ridiculed my proposal for an alliance.",
-				nextState = {
-					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
+				[{ "mission", "amulet", "naszyjnik" }] = {
+					text = "Thanks for your cooperation. Now if you don't mind, i have a {mission} for you.",
+					requiredItems = { QuestKeyItems.SultanPrime.Amulet },
+					textNoRequiredItems = "Ehh, you lost it? Guess Imma take over the world in next season.",
+					nextState = {
+						[Storage.SultanPrime.Mission01] = QuestState.SultanPrime.Mission01.Finished,
+						[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
+					},
 				},
-				rewards = { QuestKeyItems.SultanPrime.Bottle },
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Hi again, |PLAYERNAME|. Did you complete the mission?",
-			},
-		}),
-		QuestFactory.StartupItems({
-			{ pos = { -7, -3, 0 }, id = 1936, aid = Storage.SultanPrime.MagicianFountain },
-			{ pos = { -6, -3, 0 }, id = 1937, aid = Storage.SultanPrime.MagicianFountain },
-			{ pos = { -7, -2, 0 }, id = 1938, aid = Storage.SultanPrime.MagicianFountain },
-			{ pos = { -6, -2, 0 }, id = 1939, aid = Storage.SultanPrime.MagicianFountain },
-		}, MIRKO_MAGICIANS_ANCHOR),
-		QuestFactory.Script(function(missionState)
-			local function isUsingBottleOnFountain(target)
-				if not target then
-					return false
-				end
-				if not (target:getActionId() == Storage.SultanPrime.MagicianFountain) then
-					return
-				end
-				if target:getId() == QuestKeyItems.SultanPrime.Bottle.id then
-					return
-				end
-			end
-
-			local taintBottle = Action()
-			function taintBottle.onUse(player, bottle, fromPosition, target, toPosition, isHotkey)
-				local storage_val = player:getStorageValue(Storage.SultanPrime.Mission02)
-				if storage_val ~= 2 then
-					return false
-				end
-
-				if not isUsingBottleOnFountain(target) then
-					return false
-				end
-
-				player:RemoveItems({ QuestKeyItems.SultanPrime.Bottle })
-				player:setStorageValue(Storage.SultanPrime.Mission02, QuestState.SultanPrime.Mission02.AskSultanForCamelTask)
-				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
-				target:getPosition():sendMagicEffect(CONST_ME_PLANTATTACK)
-				return true
-			end
-
-			taintBottle:aid(Storage.SultanPrime.MagicianFountain)
-			taintBottle:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission02.AskSultanForCamelTask,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Hi, |PLAYERNAME|. Did you manage to compelte your first task?",
-			},
-			[{ "mission", "yes", "tak" }] = {
-				text = "Good job. Now we will take care of a certain farmer from the steppes. Dampreefer is a hermit. I offered for him to join me, but he refused. Go to his farm and cull his farm animals. This should make him commit a suicide. Dampreefer is very poor, so you might need to help him with that. Maybe Leroy Merlin rope $6.99/meter?",
-				nextState = {
-					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.KillCamels,
-					[Storage.SultanPrime.DromedaryCount] = 0,
+			})
+	end)
+	:Mission(Storage.SultanPrime.Mission02)
+	:State(function()
+		return QuestState.SultanPrime.Mission02.AskSultanForFirstTask,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "My favorite follower, |PLAYERNAME|. You came for new {mission}?",
 				},
-			},
-		})
+				[{ "mission", "yes", "tak" }] = {
+					text = "I don't think I told you about this, but I have a plan to take over and rule the world. That amulet will surely help me, but I still would not mind gaining new allies. I'm currently trying to convince mages, warriors, animals and other inferior beings. Your first task will be to poison magicians' water source. They rejected my will and ridiculed my proposal for an alliance.",
+					nextState = {
+						[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
+					},
+					rewards = { QuestKeyItems.SultanPrime.Bottle },
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Hi again, |PLAYERNAME|. Did you complete the mission?",
+				},
+			}),
+			QuestFactory.StartupItems({
+				{ pos = { -7, -3, 0 }, id = 1936, aid = Storage.SultanPrime.MagicianFountain },
+				{ pos = { -6, -3, 0 }, id = 1937, aid = Storage.SultanPrime.MagicianFountain },
+				{ pos = { -7, -2, 0 }, id = 1938, aid = Storage.SultanPrime.MagicianFountain },
+				{ pos = { -6, -2, 0 }, id = 1939, aid = Storage.SultanPrime.MagicianFountain },
+			}, MIRKO_MAGICIANS_ANCHOR),
+			QuestFactory.Script(function(missionState)
+				local function isUsingBottleOnFountain(target)
+					if not target then
+						return false
+					end
+					if not (target:getActionId() == Storage.SultanPrime.MagicianFountain) then
+						return
+					end
+					if target:getId() == QuestKeyItems.SultanPrime.Bottle.id then
+						return
+					end
+				end
 
-end
-)	--39f dodac na mapie
+				local taintBottle = Action()
+				function taintBottle.onUse(player, bottle, fromPosition, target, toPosition, isHotkey)
+					local storage_val = player:getStorageValueByKey(Storage.SultanPrime.Mission02)
+					if storage_val ~= 2 then
+						return false
+					end
+
+					if not isUsingBottleOnFountain(target) then
+						return false
+					end
+
+					player:RemoveItems({ QuestKeyItems.SultanPrime.Bottle })
+					player:setStorageValueByKey(Storage.SultanPrime.Mission02, QuestState.SultanPrime.Mission02.AskSultanForCamelTask)
+					player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+					target:getPosition():sendMagicEffect(CONST_ME_PLANTATTACK)
+					return true
+				end
+
+				taintBottle:key(Storage.SultanPrime.MagicianFountain)
+				taintBottle:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission02.AskSultanForCamelTask,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Hi, |PLAYERNAME|. Did you manage to compelte your first task?",
+				},
+				[{ "mission", "yes", "tak" }] = {
+					text = "Good job. Now we will take care of a certain farmer from the steppes. Dampreefer is a hermit. I offered for him to join me, but he refused. Go to his farm and cull his farm animals. This should make him commit a suicide. Dampreefer is very poor, so you might need to help him with that. Maybe Leroy Merlin rope $6.99/meter?",
+					nextState = {
+						[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.KillCamels,
+						[Storage.SultanPrime.DromedaryCount] = 0,
+					},
+				},
+			})
+	end) --39f dodac na mapie
 	:Monster(function()
 		local mType = Game.createMonsterType("Dampreefer Dromedary")
 		local monster = {}
@@ -744,358 +703,332 @@ end
 
 		mType:register(monster)
 	end)
-:State(
-function()
-return 
-		QuestState.SultanPrime.Mission02.KillCamels,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Dampreefer farm is located near pirates' yard on the steppes.",
-			},
-		}),
-		QuestFactory.Dialog("Dampreefer", {
-			[{ GREET }] = {
-				text = "Hello stranger. Its been a moment since the last time i had a visitors. My farm is self-sufficient, so i cant complain about food shortage. Thanks to my {dromedaries}, i dont lack entertainment either.",
-			},
-			[{ "wielbladom", "dromedaries" }] = {
-				text = "I found them when i was on a espionage in Kansas. When i was diving through one of the local villages, i saw a {herd} of eight dromedaries being sold. I decreatureed to stop by and check on them. Without further hesitation i decreatureed to buy all of them when i'm done with my mission. Around that time i retired and settled {here}.",
-			},
-			[{ "miejscu", "here" }] = {
-				text = "Given my visa was temporary i didnt expect for it to be extended. I decreatureed to take it from there and live in this place, not Kansas.",
-			},
-			[{ "stado", "herd" }] = {
-				text = "Now its just six of them. {Date} and {Guci} aren't there anymore. Long time ago, a wield creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply to his will and {join} his quest to take over the world.",
-			},
-			[{ "pomogl", "join" }] = {
-				text = "He didnt tolerate my refusal and with one swing it killed {Date} and {Gucci}",
-			},
-			[{ "gucia", "gucci" }] = {
-				text = "Gucci was my favorite one. He was exceptionally intelligenc and he was capable of painting with brush by holding between it's teeth. With his experience he could fill children coloring books.",
-			},
-			[{ "daktyl", "date" }] = {
-				text = "If i recall correctly, Date was the fastest dromedary i ever saw. I think that i was to compete in equestrian competition, i would pick him.",
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local updateStorages = {
-				[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope,
-			}
-			local requiredCamelKills = 6
+	:State(function()
+		return QuestState.SultanPrime.Mission02.KillCamels,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Dampreefer farm is located near pirates' yard on the steppes.",
+				},
+			}),
+			QuestFactory.Dialog("Dampreefer", {
+				[{ GREET }] = {
+					text = "Hello stranger. Its been a moment since the last time i had a visitors. My farm is self-sufficient, so i cant complain about food shortage. Thanks to my {dromedaries}, i dont lack entertainment either.",
+				},
+				[{ "wielbladom", "dromedaries" }] = {
+					text = "I found them when i was on a espionage in Kansas. When i was diving through one of the local villages, i saw a {herd} of eight dromedaries being sold. I decreatureed to stop by and check on them. Without further hesitation i decreatureed to buy all of them when i'm done with my mission. Around that time i retired and settled {here}.",
+				},
+				[{ "miejscu", "here" }] = {
+					text = "Given my visa was temporary i didnt expect for it to be extended. I decreatureed to take it from there and live in this place, not Kansas.",
+				},
+				[{ "stado", "herd" }] = {
+					text = "Now its just six of them. {Date} and {Guci} aren't there anymore. Long time ago, a wield creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply to his will and {join} his quest to take over the world.",
+				},
+				[{ "pomogl", "join" }] = {
+					text = "He didnt tolerate my refusal and with one swing it killed {Date} and {Gucci}",
+				},
+				[{ "gucia", "gucci" }] = {
+					text = "Gucci was my favorite one. He was exceptionally intelligenc and he was capable of painting with brush by holding between it's teeth. With his experience he could fill children coloring books.",
+				},
+				[{ "daktyl", "date" }] = {
+					text = "If i recall correctly, Date was the fastest dromedary i ever saw. I think that i was to compete in equestrian competition, i would pick him.",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local updateStorages = {
+					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope,
+				}
+				local requiredCamelKills = 6
 
-			local DampreeferDromedaryDeath = CreatureEvent("DampreeferDromedaryDeath")
-			function DampreeferDromedaryDeath.onDeath(creature)
-				local targetMonster = creature:getMonster()
-				if not targetMonster or targetMonster:getMaster() then
-					return true
-				end
-
-				onDeathForDamagingPlayers(creature, function(creature, player)
-					local storage_val = player:getStorageValue(Storage.SultanPrime.Mission02)
-					if storage_val ~= QuestState.SultanPrime.Mission02.KillCamels then
+				local DampreeferDromedaryDeath = CreatureEvent("DampreeferDromedaryDeath")
+				function DampreeferDromedaryDeath.onDeath(creature)
+					local targetMonster = creature:getMonster()
+					if not targetMonster or targetMonster:getMaster() then
 						return true
 					end
 
-					player:IncrementStorage(Storage.SultanPrime.DromedaryCount, 1)
-					player:RefreshStorage(Storage.SultanPrime.Mission02)
+					onDeathForDamagingPlayers(creature, function(creature, player)
+						local storage_val = player:getStorageValueByKey(Storage.SultanPrime.Mission02)
+						if storage_val ~= QuestState.SultanPrime.Mission02.KillCamels then
+							return true
+						end
 
-					if player:getStorageValue(Storage.SultanPrime.DromedaryCount) >= requiredCamelKills then
-						player:NextState(updateStorages)
-					end
-				end)
-				return true
-			end
-			DampreeferDromedaryDeath:register()
-		end)
+						player:IncrementStorage(Storage.SultanPrime.DromedaryCount, 1)
+						player:RefreshStorage(Storage.SultanPrime.Mission02)
 
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope,
-
-		QuestFactory.Dialog("Dampreefer", {
-			[{ GREET }] = {
-				text = "What in damnation!? What did you do. I dont {feel} like.",
-			},
-			[{ "chce", "feel" }] = {
-				text = "Just put the rope on the table. I will serve myself.",
-			},
-		}),
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Dampreefer farm is located near pirates' yard on the steppes.",
-			},
-		}),
-		QuestFactory.StartupItems({
-			{ pos = { 6061, 1184, 5 }, id = 11802, aid = Storage.SultanPrime.FarmerChair },
-		}),
-		QuestFactory.Script(function(missionState)
-			local chair = MoveEvent()
-			function chair.onAddItem(maybeRope, tileitem, position)
-				if not maybeRope then
-					return false
+						if player:getStorageValueByKey(Storage.SultanPrime.DromedaryCount) >= requiredCamelKills then
+							player:NextState(updateStorages)
+						end
+					end)
+					return true
 				end
-				local id = maybeRope:getId()
-				if id ~= 3003 then
-					return false
-				end
-
-				maybeRope:remove()
-
-				local players = CreatureList():RadiusSquare(position, 5, 5):FilterByPlayer()
-				for _, player in pairs(players) do
-					if player:HasExactMissionState(missionState) then
-						player:setStorageValue(Storage.SultanPrime.Mission02, QuestState.SultanPrime.Mission02.ReportToSultan)
-					end
-				end
-
-				Game.createItem(18114, 1, position)
-				return true
-			end
-			chair:type("additem")
-			chair:aid(Storage.SultanPrime.FarmerChair)
-			chair:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission02.ReportToSultan,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Welcome again, |PLAYERNAME|. Have you succeeded in the last task I entrusted to you?",
-			},
-			[{ "mission", "yes", "tak" }] = {
-				text = "Great, he got exactly what he deserved. Now a new mission - go back in time to the mirkotown 20 years ago. In the meantime, I'm gonna do my business on the other battlefront, and I will leave my hologram here. I will provide details to your mission in your quest log.",
-				nextState = {
-					[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.Finished,
-					[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.OpenCoffins,
-					[Storage.SultanPrime.CoffinCount] = 0,
+				DampreeferDromedaryDeath:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission02.ProvideDampreeferWithRope,
+			QuestFactory.Dialog("Dampreefer", {
+				[{ GREET }] = {
+					text = "What in damnation!? What did you do. I dont {feel} like.",
 				},
-			},
-		})
+				[{ "chce", "feel" }] = {
+					text = "Just put the rope on the table. I will serve myself.",
+				},
+			}),
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Dampreefer farm is located near pirates' yard on the steppes.",
+				},
+			}),
+			QuestFactory.StartupItems({
+				{ pos = { 6061, 1184, 5 }, id = 11802, aid = Storage.SultanPrime.FarmerChair },
+			}),
+			QuestFactory.Script(function(missionState)
+				local chair = MoveEvent()
+				function chair.onAddItem(maybeRope, tileitem, position)
+					if not maybeRope then
+						return false
+					end
+					local id = maybeRope:getId()
+					if id ~= 3003 then
+						return false
+					end
 
-end
-)	:Mission(Storage.SultanPrime.Mission03)
-:State(
-function()
-return 
-		QuestState.SultanPrime.Mission03.OpenCoffins,
-		QuestFactory.StartupItems({
-			{ pos = { 34, 1, 2 }, id = 2772, aid = Storage.SultanPrime.RetroLever },
+					maybeRope:remove()
 
-			{ pos = { -48, -68, -2 }, id = 1949, aid = Storage.DesertQuestHub.ToSultanPrime },
+					local players = CreatureList():RadiusSquare(position, 5, 5):FilterByPlayer()
+					for _, player in pairs(players) do
+						if player:HasExactMissionState(missionState) then
+							player:setStorageValueByKey(Storage.SultanPrime.Mission02, QuestState.SultanPrime.Mission02.ReportToSultan)
+						end
+					end
 
-			{ pos = { -31, -72, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -4, -73, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -71, -63, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -64, -72, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -14, -80, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -23, -74, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -27, -85, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -28, -74, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -47, -85, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -52, -78, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			{ pos = { -68, -76, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-		}, RETRO_MIRKO_ANCHOR),
-		QuestFactory.Script(function(missionState)
-			local retroMirkoPos = RETRO_MIRKO_ANCHOR:Moved({ x = -46, y = -68, z = -2 })
-
-			local lever = Action()
-			function lever.onUse(creature, item, fromPosition, itemEx, toPosition)
-				local player = creature:getPlayer()
-				if not player:isPlayer() then
-					return false
+					Game.createItem(18114, 1, position)
+					return true
 				end
-				if player:getStorageValue(Storage.SultanPrime.Mission03) == MISSION_NOT_STARTED then
+				chair:type("additem")
+				chair:key(Storage.SultanPrime.FarmerChair)
+				chair:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission02.ReportToSultan,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Welcome again, |PLAYERNAME|. Have you succeeded in the last task I entrusted to you?",
+				},
+				[{ "mission", "yes", "tak" }] = {
+					text = "Great, he got exactly what he deserved. Now a new mission - go back in time to the mirkotown 20 years ago. In the meantime, I'm gonna do my business on the other battlefront, and I will leave my hologram here. I will provide details to your mission in your quest log.",
+					nextState = {
+						[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.Finished,
+						[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.OpenCoffins,
+						[Storage.SultanPrime.CoffinCount] = 0,
+					},
+				},
+			})
+	end)
+	:Mission(Storage.SultanPrime.Mission03)
+	:State(function()
+		return QuestState.SultanPrime.Mission03.OpenCoffins,
+			QuestFactory.StartupItems({
+				{ pos = { 34, 1, 2 }, id = 2772, aid = Storage.SultanPrime.RetroLever },
+
+				{ pos = { -48, -68, -2 }, id = 1949, aid = Storage.DesertQuestHub.ToSultanPrime },
+
+				{ pos = { -31, -72, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -4, -73, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -71, -63, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -64, -72, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -14, -80, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -23, -74, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -27, -85, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -28, -74, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -47, -85, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -52, -78, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+				{ pos = { -68, -76, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
+			}, RETRO_MIRKO_ANCHOR),
+			QuestFactory.Script(function(missionState)
+				local retroMirkoPos = RETRO_MIRKO_ANCHOR:Moved({ x = -46, y = -68, z = -2 })
+
+				local lever = Action()
+				function lever.onUse(creature, item, fromPosition, itemEx, toPosition)
+					local player = creature:getPlayer()
+					if not player:isPlayer() then
+						return false
+					end
+					if player:getStorageValueByKey(Storage.SultanPrime.Mission03) == MISSION_NOT_STARTED then
+						return true
+					end
+
+					player:teleportTo(retroMirkoPos)
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+					return true
+				end
+				lever:key(Storage.SultanPrime.RetroLever)
+				lever:register()
+			end),
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local coffin = Action()
+				function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not target then
+						return false
+					end
+					if not player:HasExactMissionState(missionState) then
+						return
+					end
+
+					Game.createItem(2121, 1, toPosition)
+					player:IncrementStorage(Storage.SultanPrime.CoffinCount, 1)
+					player:RefreshStorage(Storage.SultanPrime.Mission03)
+
+					if (player:getStorageValueByKey(Storage.SultanPrime.CoffinCount)) == SULTAN_PRIME_RETRO_MIRKO.requiredCoffinCount then
+						player:setStorageValueByKey(Storage.SultanPrime.CorpseCount, 0)
+						player:setStorageValueByKey(Storage.SultanPrime.Mission03, QuestState.SultanPrime.Mission03.ThrowBodies)
+					end
+					return true
+				end
+				coffin:key(Storage.SultanPrime.Coffin)
+				coffin:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission03.ThrowBodies,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
+				},
+			}),
+			QuestFactory.StartupItems({
+				{ pos = { -7, -10, 1 }, id = 10548, aid = Storage.SultanPrime.Jaw },
+			}, RETRO_MIRKO_ANCHOR),
+			QuestFactory.Script(function(missionState)
+				local successMessages = {
+					"Om nom nom",
+					"Smack smack",
+					"Mmmmm",
+				}
+				local failMessages = {
+					"Ewwww",
+					"Urgh",
+					"Nnghhhh",
+				}
+				local function randomMessageOnSuccess()
+					return successMessages[math.random(1, #successMessages)]
+				end
+				local function randomMessageOnFail()
+					return failMessages[math.random(1, #failMessages)]
+				end
+				local tentacleMonster = nil
+
+				local eatingJaw = MoveEvent()
+				function eatingJaw.onAddItem(corpse, tile, position)
+					if not corpse then
+						return
+					end
+
+					local threwBody = SULTAN_PRIME_RETRO_MIRKO.corpseId[corpse:getId()]
+					if not threwBody then
+						tentacleMonster:say(randomMessageOnFail())
+					end
+
+					tentacleMonster:say(randomMessageOnSuccess())
+
+					local playerPos = tile:getPosition():Moved(2, 0, -1)
+					local player = Tile(playerPos):getTopCreature()
+					if not player then
+						return
+					end
+
+					if not player:HasExactMissionState(missionState) then
+						return false
+					end
+
+					player:IncrementStorage(Storage.SultanPrime.CorpseCount)
+					player:RefreshStorage(Storage.SultanPrime.Mission03)
+
+					if player:getStorageValueByKey(Storage.SultanPrime.CorpseCount) >= SULTAN_PRIME_RETRO_MIRKO.requiredCorpseCount then
+						player:setStorageValueByKey(Storage.SultanPrime.Mission03, QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba)
+					end
 					return true
 				end
 
-				player:teleportTo(retroMirkoPos)
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				return true
-			end
-			lever:aid(Storage.SultanPrime.RetroLever)
-			lever:register()
-		end),
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local coffin = Action()
-			function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if not target then
-					return false
+				eatingJaw:type("additem")
+				eatingJaw:key(Storage.SultanPrime.Jaw)
+				eatingJaw:register()
+
+				local tentacleSpawn = GlobalEvent("SultanPrimeTentacle")
+				function tentacleSpawn.onStartup()
+					--39f add Tentacly Jaw monster
+					tentacleMonster = Game.createMonster("Tentacly Jaw", RETRO_MIRKO_ANCHOR:Moved({ -9, -11, 0 }))
+					tentacleMonster:setInvulnerable()
 				end
-				if not player:HasExactMissionState(missionState) then
-					return
-				end
-
-				Game.createItem(2121, 1, toPosition)
-				player:IncrementStorage(Storage.SultanPrime.CoffinCount, 1)
-				player:RefreshStorage(Storage.SultanPrime.Mission03)
-
-				if (player:getStorageValue(Storage.SultanPrime.CoffinCount)) == SULTAN_PRIME_RETRO_MIRKO.requiredCoffinCount then
-					player:setStorageValue(Storage.SultanPrime.CorpseCount, 0)
-					player:setStorageValue(Storage.SultanPrime.Mission03, QuestState.SultanPrime.Mission03.ThrowBodies)
-				end
-				return true
-			end
-			coffin:aid(Storage.SultanPrime.Coffin)
-			coffin:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission03.ThrowBodies,
-
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
-			},
-		}),
-		QuestFactory.StartupItems({
-			{ pos = { -7, -10, 1 }, id = 10548, aid = Storage.SultanPrime.Jaw },
-		}, RETRO_MIRKO_ANCHOR),
-		QuestFactory.Script(function(missionState)
-			local successMessages = {
-				"Om nom nom",
-				"Smack smack",
-				"Mmmmm",
-			}
-			local failMessages = {
-				"Ewwww",
-				"Urgh",
-				"Nnghhhh",
-			}
-			local function randomMessageOnSuccess()
-				return successMessages[math.random(1, #successMessages)]
-			end
-			local function randomMessageOnFail()
-				return failMessages[math.random(1, #failMessages)]
-			end
-			local tentacleMonster = nil
-
-			local eatingJaw = MoveEvent()
-			function eatingJaw.onAddItem(corpse, tile, position)
-				if not corpse then
-					return
-				end
-
-				local threwBody = SULTAN_PRIME_RETRO_MIRKO.corpseId[corpse:getId()]
-				if not threwBody then
-					tentacleMonster:say(randomMessageOnFail())
-				end
-
-				tentacleMonster:say(randomMessageOnSuccess())
-
-				local playerPos = tile:getPosition():Moved(2, 0, -1)
-				local player = Tile(playerPos):getTopCreature()
-				if not player then
-					return
-				end
-
-				if not player:HasExactMissionState(missionState) then
-					return false
-				end
-
-				player:IncrementStorage(Storage.SultanPrime.CorpseCount)
-				player:RefreshStorage(Storage.SultanPrime.Mission03)
-
-				if player:getStorageValue(Storage.SultanPrime.CorpseCount) >= SULTAN_PRIME_RETRO_MIRKO.requiredCorpseCount then
-					player:setStorageValue(Storage.SultanPrime.Mission03, QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba)
-				end
-				return true
-			end
-
-			eatingJaw:type("additem")
-			eatingJaw:aid(Storage.SultanPrime.Jaw)
-			eatingJaw:register()
-
-			local tentacleSpawn = GlobalEvent("SultanPrimeTentacle")
-			function tentacleSpawn.onStartup()
-				--39f add Tentacly Jaw monster
-				tentacleMonster = Game.createMonster("Tentacly Jaw", RETRO_MIRKO_ANCHOR:Moved({ -9, -11, 0 }))
-				tentacleMonster:setInvulnerable()
-			end
-			tentacleSpawn:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
-			},
-		}),
-		QuestFactory.Script(function(missionState)
-			local ryba = CreatureEvent("RybaKill")
-
-			function ryba.onDeath(creature)
-				onDeathForDamagingPlayers(creature, function(creature, player)
-					local storage_val = player:getStorageValue(Storage.SultanPrime.Mission03)
-					if storage_val ~= QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba then
-						return true
-					end
-					player:setStorageValue(Storage.SultanPrime.Mission03, QuestState.SultanPrime.Mission03.ReportToSultan)
-					player:setStorageValue(Storage.SultanPrime.DoorAfterRyba, ACCESS_GRANTED)
-				end)
-				return true
-			end
-
-			ryba:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission03.ReportToSultan,
-		QuestFactory.Dialog("Sultan of Phantasms", {
-			[{ GREET }] = {
-				text = "Whaaat, Ryba escaped? Undead king perished? What kind of villain are you?",
-			},
-			[{ "mission" }] = {
-				text = "What else? Take this amulet and stick it up in your ass.",
-				nextState = {
-					[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,
+				tentacleSpawn:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
 				},
-				rewards = { QuestKeyItems.SultanPrime.Amulet },
-			},
-		}),
-		QuestFactory.StartupItems({
-			{ pos = { -31, 43, 0 }, id = 6260, aid = Storage.SultanPrime.DoorAfterRyba },
+			}),
+			QuestFactory.Script(function(missionState)
+				local ryba = CreatureEvent("RybaKill")
 
-			{ pos = { -35, 31, 0 }, id = 23483, aid = Storage.DesertQuestHub.ToSultanPrime },
-		}, RETRO_MIRKO_ANCHOR)
+				function ryba.onDeath(creature)
+					onDeathForDamagingPlayers(creature, function(creature, player)
+						local storage_val = player:getStorageValueByKey(Storage.SultanPrime.Mission03)
+						if storage_val ~= QuestState.SultanPrime.Mission03.GetRidOfAspirantRyba then
+							return true
+						end
+						player:setStorageValueByKey(Storage.SultanPrime.Mission03, QuestState.SultanPrime.Mission03.ReportToSultan)
+						player:setStorageValueByKey(Storage.SultanPrime.DoorAfterRyba, ACCESS_GRANTED)
+					end)
+					return true
+				end
 
-end
-):State(
-function()
-return 
-		QuestState.SultanPrime.Mission03.AskNatanekForHelp,
-		QuestFactory.Dialog("Father Natanek", {
-			[{ "mission", "misja", "naszyjnik", "amulet", "necklace" }] = {
-				text = "I'd prefer this information to stay between us. Let's agree that you'll take what I received from the faithful today, and in exchange, you'll forget what Sultan showed you.",
-			},
-			[{ "dostalem", "donated" }] = {
-				text = "Here, this is your reward.",
-				nextState = {
-					[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,
-					[Storage.Finished.SultanPrime] = MISSION_FINISHED,
+				ryba:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission03.ReportToSultan,
+			QuestFactory.Dialog("Sultan of Phantasms", {
+				[{ GREET }] = {
+					text = "Whaaat, Ryba escaped? Undead king perished? What kind of villain are you?",
 				},
-				rewards = { { id = 3043, count = 2 } },
-				expReward = 800000,
-			},
-		})
+				[{ "mission" }] = {
+					text = "What else? Take this amulet and stick it up in your ass.",
+					nextState = {
+						[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,
+					},
+					rewards = { QuestKeyItems.SultanPrime.Amulet },
+				},
+			}),
+			QuestFactory.StartupItems({
+				{ pos = { -31, 43, 0 }, id = 6260, aid = Storage.SultanPrime.DoorAfterRyba },
 
-end
-)	:Register()
+				{ pos = { -35, 31, 0 }, id = 23483, aid = Storage.DesertQuestHub.ToSultanPrime },
+			}, RETRO_MIRKO_ANCHOR)
+	end)
+	:State(function()
+		return QuestState.SultanPrime.Mission03.AskNatanekForHelp,
+			QuestFactory.Dialog("Father Natanek", {
+				[{ "mission", "misja", "naszyjnik", "amulet", "necklace" }] = {
+					text = "I'd prefer this information to stay between us. Let's agree that you'll take what I received from the faithful today, and in exchange, you'll forget what Sultan showed you.",
+				},
+				[{ "dostalem", "donated" }] = {
+					text = "Here, this is your reward.",
+					nextState = {
+						[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,
+						[Storage.Finished.SultanPrime] = MISSION_FINISHED,
+					},
+					rewards = { { id = 3043, count = 2 } },
+					expReward = 800000,
+				},
+			})
+	end)
+	:Register()

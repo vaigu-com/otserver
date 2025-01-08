@@ -6,7 +6,7 @@ local warzoneConfig = {
 		boss = "Gnomevil",
 		teleportTo = Position(7519, 1455, 10),
 		timerStorage = Storage.BigfootBurden.GnomevilTimer,
-		globalStorage = GlobalStorage.GnomevilSpawned,
+		Storage = Storage.GnomevilSpawned,
 		interval = 10 * 60 * 60,
 	},
 	[45702] = { -- tp aid
@@ -16,7 +16,7 @@ local warzoneConfig = {
 		boss = "Deathstrike",
 		teleportTo = Position(7509, 1455, 9),
 		timerStorage = Storage.BigfootBurden.DeathstrikeTimer,
-		globalStorage = GlobalStorage.DeathstrikeSpawned,
+		Storage = Storage.DeathstrikeSpawned,
 		interval = 10 * 60 * 60,
 	},
 	[45701] = { -- tp aid
@@ -26,7 +26,7 @@ local warzoneConfig = {
 		boss = "Abyssador",
 		teleportTo = Position(7496, 1404, 11),
 		timerStorage = Storage.BigfootBurden.AbyssadorTimer,
-		globalStorage = GlobalStorage.AbyssadorSpawned,
+		Storage = Storage.AbyssadorSpawned,
 		interval = 10 * 60 * 60,
 	},
 }
@@ -44,7 +44,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return false
 	end
 
-	if creature:getStorageValue(config.timerStorage) >= os.time() then
+	if creature:getStorageValueByKey(config.timerStorage) >= os.time() then
 		creature:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Musisz odczekac 20 godzin po pokonaniu bossa.")
 		creature:teleportTo(fromPosition)
 		return false
@@ -55,8 +55,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	creature:teleportTo(destPos)
 	destPos:sendMagicEffect(CONST_ME_TELEPORT)
 
-	if Game.getStorageValue(config.globalStorage) <= 0 then
-		Game.setStorageValue(config.globalStorage, 1)
+	if Game.getStorageValueByKey(config.Storage) <= 0 then
+		Game.setStorageValueByKey(config.Storage, 1)
 		Game.createMonster(config.boss, config.center)
 	end
 	return true

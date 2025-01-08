@@ -82,12 +82,12 @@ SPECIAL_CONDITIONS_IMBUING = {
 		if level ~= IMBUING_LEVELS.powerful then
 			return true
 		end
-		return context.player:getStorageValue(Storage.powerfulImbue) >= 1
+		return context.player:getStorageValueByKey(Storage.powerfulImbue) >= 1
 	end,
 	hasEnoughTaskPoints = function(context)
 		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
 		local requiredTaskPoints = bundleData.taskPointsCost
-		local playerTaskPoints = context.player:getStorageValue(Storage.Tasks.TaskPoints)
+		local playerTaskPoints = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		local playerHasPoints = playerTaskPoints >= requiredTaskPoints
 		if not playerHasPoints then
 			PlayerCustomDialogDataRegistry():Get(context.player).requiredTaskPoints = requiredTaskPoints

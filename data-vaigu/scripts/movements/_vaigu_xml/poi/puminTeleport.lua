@@ -6,7 +6,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.PitsOfInferno.Pumin) > 8 then
+	if player:getStorageValueByKey(Storage.PitsOfInferno.Pumin) > 8 then
 		player:teleportTo(Position(32786, 32308, 15))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

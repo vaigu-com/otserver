@@ -71,7 +71,7 @@ return {
 	["RubelsteinScrollDesc"] = function(context)
 		local player = context.player
 		local result = "Token of gratitude for 100000. Realize at your nearby nomad empress. Control sum: "
-		local controlSum = player:getStorageValue(Storage.PerIustitiaAdAstra.RubelsteinChecksum)
+		local controlSum = player:getStorageValueByKey(Storage.PerIustitiaAdAstra.RubelsteinChecksum)
 		result = result .. tostring(tostring(controlSum))
 		return result
 	end,

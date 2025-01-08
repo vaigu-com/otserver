@@ -196,7 +196,7 @@ registerNpcType.shop = function(npcType, mask)
 				parent:setStorageKey(shopItems.storageKey or shopItems.storagekey)
 			end
 			if shopItems.storageValue or shopItems.storagevalue then
-				parent:setStorageValue(shopItems.storageValue or shopItems.storagevalue)
+				parent:setStorageValueByKey(tostring(parent), shopItems.storageValue or shopItems.storagevalue)
 			end
 			if shopItems.child then
 				for _, children in pairs(shopItems.child) do
@@ -220,7 +220,7 @@ registerNpcType.shop = function(npcType, mask)
 						child:setStorageKey(children.storageKey or children.storagekey)
 					end
 					if children.storageValue or children.storagevalue then
-						child:setStorageValue(children.storageValue or children.storagevalue)
+						child:setStorageValueByKey(tostring(child), children.storageValue or children.storagevalue)
 					end
 					parent:addChildShop(child)
 				end

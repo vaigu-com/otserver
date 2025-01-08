@@ -1,7 +1,7 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.BigfootBurden.GrindstoneStatus) == 1 or player:getStorageValue(Storage.BigfootBurden.MissionGrindstoneHunt) ~= 1 then
+	if player:getStorageValueByKey(Storage.BigfootBurden.GrindstoneStatus) == 1 or player:getStorageValueByKey(Storage.BigfootBurden.MissionGrindstoneHunt) ~= 1 then
 		return false
 	end
 
@@ -13,7 +13,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	player:setStorageValue(Storage.BigfootBurden.GrindstoneStatus, 1)
+	player:setStorageValueByKey(Storage.BigfootBurden.GrindstoneStatus, 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Twoja zwinnosc pozwolila zlapac kamien nim wpadl do lawy.")
 	player:addItem(15826, 1)
 	return true

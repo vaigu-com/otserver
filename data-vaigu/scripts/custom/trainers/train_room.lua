@@ -45,7 +45,7 @@ function trainEntrance.onStepIn(creature, item, position, fromPosition)
 		return
 	end
 
-	player:setStorageValue(Storage.TrainRoom, 1)
+	player:setStorageValueByKey(Storage.TrainRoom, 1)
 	player:setAttackSpeed(2500)
 	return true
 end
@@ -61,7 +61,7 @@ function trainOut.onStepIn(creature, item, position, fromPosition)
 		return
 	end
 
-	player:setStorageValue(Storage.TrainRoom, 0)
+	player:setStorageValueByKey(Storage.TrainRoom, 0)
 	player:setAttackSpeed(2000)
 	return true
 end

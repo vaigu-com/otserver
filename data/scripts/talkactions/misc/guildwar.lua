@@ -22,8 +22,8 @@ local talkaction = TalkAction("!war")
 function talkaction.onSay(player, words, param)
 	local cooldown = 1 -- seconds, prevent db overload
 
-	if player:getStorageValue(Storage.WarCooldown) <= os.time() then
-		player:setStorageValue(Storage.WarCooldown, os.time() + cooldown)
+	if player:getStorageValueByKey(Storage.WarCooldown) <= os.time() then
+		player:setStorageValueByKey(Storage.WarCooldown, os.time() + cooldown)
 
 		player:sendCancelMessage("Remember to open your guild chat.")
 
@@ -174,7 +174,7 @@ function talkaction.onSay(player, words, param)
 
 		player:sendChannelMessage("", "Currently there's no active war with " .. enemyName .. ".", TALKTYPE_CHANNEL_R1, CHANNEL_GUILD)
 	else
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Can only be executed once every " .. cooldown .. " seconds. Remaining cooldown: " .. player:getStorageValue(storage) - os.time())
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Can only be executed once every " .. cooldown .. " seconds. Remaining cooldown: " .. player:getStorageValueByKey(storage) - os.time())
 	end
 	return false
 end

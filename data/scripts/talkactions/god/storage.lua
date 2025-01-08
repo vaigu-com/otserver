@@ -18,10 +18,10 @@ function storage.onSay(caster, words, paramsString)
 	local storageId = parseStorageId(params[2])
 	local nextState = params[3]
 	if nextState then
-		player:setStorageValue(storageId, nextState)
+		player:setStorageValueByKey(storageId, nextState)
 		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: set to :nextState:", { playerName = player:getName(), storageId = storageId, nextState = nextState }))
 	else
-		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: value is :currentState:", { playerName = player:getName(), storageId = storageId, currentState = player:getStorageValue(storageId) }))
+		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: value is :currentState:", { playerName = player:getName(), storageId = storageId, currentState = player:getStorageValueByKey(storageId) }))
 	end
 
 	return false

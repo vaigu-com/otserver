@@ -60,9 +60,9 @@ local function playerAddItem(params, item)
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, params.message .. ".")
 	if params.timer then
-		player:setStorageValue(params.timer, os.time() + params.time * 3600)
+		player:setStorageValueByKey(params.timer, os.time() + params.time * 3600)
 	else
-		player:setStorageValue(params.storage, 1)
+		player:setStorageValueByKey(params.storage, 1)
 	end
 	return true
 end
@@ -92,7 +92,7 @@ local function playerAddContainerItem(params, item)
 	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. getItemName(params.itemBagName) .. ".")
-	player:setStorageValue(params.storage, 1)
+	player:setStorageValueByKey(params.storage, 1)
 	return true
 end
 
@@ -119,11 +119,11 @@ function questReward.onUse(player, item, fromPosition, itemEx, toPosition)
 	end
 
 	if setting.timerStorage then
-		if player:getStorageValue(setting.timerStorage) > os.time() then
+		if player:getStorageValueByKey(setting.timerStorage) > os.time() then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The " .. getItemName(setting.itemId) .. " is empty.")
 			return true
 		end
-	elseif player:getStorageValue(setting.storage) >= 0 then
+	elseif player:getStorageValueByKey(setting.storage) >= 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The " .. getItemName(setting.itemId) .. " is empty.")
 		return true
 	end
@@ -193,11 +193,12 @@ function questReward.onUse(player, item, fromPosition, itemEx, toPosition)
 end
 
 for uniqueRange = 6000, 6500 do
-	questReward:uid(uniqueRange)
+	questReward:key(uniqueRange)
 end
 
 for uniqueRange = 10000, 12000 do
-	questReward:uid(uniqueRange)
+	questReward:key(uniqueRange)
 end
 
 -- questReward:register()
+

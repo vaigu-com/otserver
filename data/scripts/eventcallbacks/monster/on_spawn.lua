@@ -55,7 +55,7 @@ local function handleCobra(monster)
 	if cobraNames[name] == nil then
 		return
 	end
-	if getGlobalStorageValue(GlobalStorage.CobraBastionFlask) >= os.time() then
+	if getStorageValueByKey(Storage.CobraBastionFlask) >= os.time() then
 		monster:setHealth(monster:getMaxHealth() * 0.75)
 	end
 end
@@ -66,7 +66,7 @@ local function handleIronServantReplica(monster)
 	end
 
 	local chance = math.random(100)
-	if Game.getStorageValue(GlobalStorage.ForgottenKnowledge.MechanismDiamond) >= 1 and Game.getStorageValue(GlobalStorage.ForgottenKnowledge.MechanismGolden) >= 1 then
+	if Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismDiamond) >= 1 and Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismGolden) >= 1 then
 		if chance > 30 then
 			local monsterType = math.random(2) == 1 and "diamond servant replica" or "golden servant replica"
 			Game.createMonster(monsterType, monster:getPosition(), false, true)
@@ -75,13 +75,13 @@ local function handleIronServantReplica(monster)
 		return
 	end
 
-	if Game.getStorageValue(GlobalStorage.ForgottenKnowledge.MechanismDiamond) >= 1 and chance > 30 then
+	if Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismDiamond) >= 1 and chance > 30 then
 		Game.createMonster("diamond servant replica", monster:getPosition(), false, true)
 		monster:remove()
 		return
 	end
 
-	if Game.getStorageValue(GlobalStorage.ForgottenKnowledge.MechanismGolden) >= 1 and chance > 30 then
+	if Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismGolden) >= 1 and chance > 30 then
 		Game.createMonster("golden servant replica", monster:getPosition(), false, true)
 		monster:remove()
 	end

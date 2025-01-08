@@ -57,7 +57,6 @@ DIRECTIONS_TABLE = {
 	DIRECTION_NORTHEAST,
 }
 
-BONUS_LOOT = 1.3 -- 30% increased loot
 STORAGEVALUE_PROMOTION = 30018
 DAY_SINCE_START = 0
 local resultId = db.storeQuery("SELECT `value` FROM `server_config` WHERE `config` = 'day_since_start'")

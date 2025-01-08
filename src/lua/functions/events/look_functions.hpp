@@ -21,6 +21,7 @@ public:
 		registerMethod(L, "Look", "aid", LookFunctions::luaLookActionId);
 		registerMethod(L, "Look", "uid", LookFunctions::luaLookUniqueId);
 		registerMethod(L, "Look", "position", LookFunctions::luaLookPosition);
+		registerMethod(L, "Look", "key", LookFunctions::luaLookKey);
 		registerMethod(L, "Look", "blockWalls", LookFunctions::luaLookBlockWalls);
 		registerMethod(L, "Look", "checkFloor", LookFunctions::luaLookCheckFloor);
 		registerMethod(L, "Look", "position", LookFunctions::luaLookPosition);
@@ -34,6 +35,7 @@ private:
 	static int luaLookActionId(lua_State* L);
 	static int luaLookUniqueId(lua_State* L);
 	static int luaLookPosition(lua_State* L);
+	static int luaLookKey(lua_State* L);
 	static int luaLookBlockWalls(lua_State* L);
 	static int luaLookCheckFloor(lua_State* L);
 };

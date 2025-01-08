@@ -46,14 +46,14 @@ function ModalWindow:addButton(name, callback)
 
 	if self.buttons[name] then
 		io.write("ModalWindow: Button with name '" .. name .. "' already exists.")
-		return false
+		return nil
 	end
 
 	local id = #self.buttons + 1
 	local button = { id = id, name = name, callback = callback }
 	self.buttons[id] = button
 	self.buttons[name] = button
-	return true
+	return button
 end
 
 function ModalWindow:removeButton(name)

@@ -9,7 +9,7 @@ function jump.onSay(player, words, param)
 		return false
 	end
 
-	--[[if player:getStorageValue(Storage.JumpExhaust) >= os.time() then
+	--[[if player:getStorageValueByKey(Storage.JumpExhaust) >= os.time() then
 		player:sendCancelMessage("You are exhausted.")
 		return false
 	end]]
@@ -29,7 +29,7 @@ function jump.onSay(player, words, param)
 				if destTile:isWalkable(false, true, true, true, true) then -- walkable destination
 					jumpFunc(player:getId(), jumpOverPos)
 					addEvent(jumpFunc, 100, player:getId(), destPos)
-					--player:setStorageValue(Storage.JumpExhaust, os.time() + 1)
+					--player:setStorageValueByKey(Storage.JumpExhaust, os.time() + 1)
 				else
 					player:sendCancelMessage("You cannot jump there.")
 				end

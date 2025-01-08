@@ -62,6 +62,14 @@ function Item.setUniqueId(self, uniqueId)
 	self:setAttribute(ITEM_ATTRIBUTE_UNIQUEID, uniqueId)
 end
 
+-- Vaigu Custom
+function Item.setKey(self, key)
+	local key = tostring(key)
+	if key and key ~= "" then
+		self:setAttribute("key", key)
+	end
+end
+
 function Item.getDuration(self)
 	return self:getAttribute(ITEM_ATTRIBUTE_DURATION)
 end

@@ -1,7 +1,7 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local test = getGlobalStorageValue(GlobalStorage.FlamingOrchid)
+	local test = getStorageValueByKey(Storage.FlamingOrchid)
 
 	if test <= 0 then -- jak nie ma asury
 		if item.itemid == 1674 then

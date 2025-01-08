@@ -1171,6 +1171,8 @@ ItemAttribute_t stringToItemAttribute(const std::string &str) {
 		return ItemAttribute_t::ACTIONID;
 	} else if (str == "uid") {
 		return ItemAttribute_t::UNIQUEID;
+	} else if (str == "key") {
+		return ItemAttribute_t::KEY;
 	} else if (str == "description") {
 		return ItemAttribute_t::DESCRIPTION;
 	} else if (str == "text") {

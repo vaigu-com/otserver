@@ -2,7 +2,7 @@
 -- Maxlevel is OPTIONAL, but is considered infinite by default
 -- Create a stage with minlevel 1 and no maxlevel to disable stages
 
--- Test Server
+-- 3af zmienic na zalezne od max lvla ~essa~ nolife pierdolone
 local expStagesConfigTable = {
     {
         name = "Day 1-3",

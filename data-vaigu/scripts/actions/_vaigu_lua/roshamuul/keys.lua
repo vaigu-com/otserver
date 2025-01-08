@@ -109,7 +109,7 @@ local setting = {
 	centerRoom = { x = 6127, y = 654, z = 12 },
 	range = 10,
 	storage = Storage.PrinceDrazzakTime,
-	clearRoomStorage = GlobalStorage.PrinceDrazzakEventTime,
+	clearRoomStorage = Storage.PrinceDrazzakEventTime,
 	bossName = "prince drazzak",
 	bossPosition = { x = 6121, y = 654, z = 12 },
 }
@@ -136,7 +136,7 @@ function golden.onUse(player, item, fromPosition, target, toPosition, monster, i
 	end
 
 	if toPosition == Position(6205, 682, 11) then
-		if roomIsOccupied(setting.centerRoom, setting.range, setting.range) or Game.getStorageValue(setting.clearRoomStorage) == 1 then
+		if roomIsOccupied(setting.centerRoom, setting.range, setting.range) or Game.getStorageValueByKey(setting.clearRoomStorage) == 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Someone is fighting against the boss! You need wait awhile.")
 			return true
 		end
@@ -144,12 +144,12 @@ function golden.onUse(player, item, fromPosition, target, toPosition, monster, i
 		for i = 1, #entranceTiles do
 			local creature = Tile(entranceTiles[i].fromPos):getTopCreature()
 			if creature and creature:isPlayer() then
-				if creature:getStorageValue(setting.storage) >= os.time() then
+				if creature:getStorageValueByKey(setting.storage) >= os.time() then
 					creature:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have faced this boss in the last " .. setting.timeToFightAgain .. " hours.")
 					return true
 				end
-				if creature:getStorageValue(setting.storage) < os.time() then
-					creature:setStorageValue(setting.storage, os.time() + setting.timeToFightAgain * 60 * 60)
+				if creature:getStorageValueByKey(setting.storage) < os.time() then
+					creature:setStorageValueByKey(setting.storage, os.time() + setting.timeToFightAgain * 60 * 60)
 					creature:teleportTo(entranceTiles[i].toPos)
 					creature:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				end
@@ -161,7 +161,7 @@ function golden.onUse(player, item, fromPosition, target, toPosition, monster, i
 		-- One hour for clean the room and other time goto again
 		addEvent(clearRoom, setting.clearRoomTime * 60 * 1000, setting.centerRoom, setting.range, setting.range, setting.clearRoomStorage)
 		Game.createMonster(setting.bossName, setting.bossPosition)
-		Game.setStorageValue(setting.clearRoomStorage, 1)
+		Game.setStorageValueByKey(setting.clearRoomStorage, 1)
 	end
 	return true
 end

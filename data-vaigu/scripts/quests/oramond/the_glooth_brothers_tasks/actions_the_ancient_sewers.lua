@@ -28,50 +28,50 @@ function theAncientSewers.onUse(player, item, fromPosition, target, toPosition, 
 		item:transform(gerator.itemGerator)
 		addEvent(revertItem, 2 * 60 * 1000, toPosition, gerator.itemGerator, gerator.itemTransform)
 		toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
-		if player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) <= 0 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 1)
-			player:setStorageValue(Storage.Oramond.MissionToTakeRoots1)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 1 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 2)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 2 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 3)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 3 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 4)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 4 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 5)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 5 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 6)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 6 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 7)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 7 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 8)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 8 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 9)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 9 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 10)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 10 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 11)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 11 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 12)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 12 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 13)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 13 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 14)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 14 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 15)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 15 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 16)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 16 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 17)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 17 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 18)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 18 then
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 19)
-		elseif player:getStorageValue(Storage.Oramond.MissionAbandonedSewer) == 19 then
-			if player:getStorageValue(Storage.DarkTrails.Mission03) < 1 then
-				player:setStorageValue(Storage.DarkTrails.Mission03, 1)
+		if player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) <= 0 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 1)
+			player:setStorageValueByKey(Storage.Oramond.MissionToTakeRoots1)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 1 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 2)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 2 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 3)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 3 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 4)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 4 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 5)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 5 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 6)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 6 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 7)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 7 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 8)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 8 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 9)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 9 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 10)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 10 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 11)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 11 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 12)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 12 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 13)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 13 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 14)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 14 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 15)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 15 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 16)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 16 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 17)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 17 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 18)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 18 then
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 19)
+		elseif player:getStorageValueByKey(Storage.Oramond.MissionAbandonedSewer) == 19 then
+			if player:getStorageValueByKey(Storage.DarkTrails.Mission03) < 1 then
+				player:setStorageValueByKey(Storage.DarkTrails.Mission03, 1)
 			end
-			player:setStorageValue(Storage.Oramond.MissionAbandonedSewer, 20)
+			player:setStorageValueByKey(Storage.Oramond.MissionAbandonedSewer, 20)
 		end
 	end
 	return true

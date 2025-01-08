@@ -150,9 +150,9 @@ mType.onThink = function(monster, interval) end
 mType.onAppear = function(monster, creature)
 	if monster:getType():isRewardBoss() then
 		-- reset global storage state to default / ensure sqm's reset for the next team
-		Game.setStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.Deaths, -1)
-		Game.setStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.StepsOn, -1)
-		Game.setStorageValue(GlobalStorage.TheDreamCourts.FacelessBane.ResetSteps, 1)
+		Game.setStorageValueByKey(Storage.TheDreamCourts.FacelessBane.Deaths, -1)
+		Game.setStorageValueByKey(Storage.TheDreamCourts.FacelessBane.StepsOn, -1)
+		Game.setStorageValueByKey(Storage.TheDreamCourts.FacelessBane.ResetSteps, 1)
 		monster:registerEvent("facelessBaneImmunity")
 		monster:setReward(true)
 	end

@@ -25,15 +25,15 @@ static constexpr int32_t CHANNEL_PRIVATE = 0xFFFF;
 static constexpr int32_t EVENT_IMBUEMENT_INTERVAL = 1000;
 static constexpr uint8_t IMBUEMENT_MAX_TIER = 3;
 
-static constexpr int32_t STORAGEVALUE_EMOTE = 30008;
-static constexpr int32_t STORAGEVALUE_PODIUM = 30020;
-static constexpr int32_t STORAGEVALUE_BESTIARYKILLCOUNT = 61305000; // Can get up to 2000 storages!
+static const std::string STORAGEVALUE_EMOTE = "Storage-Emote";
+static const std::string STORAGEVALUE_PODIUM = "Storage-Podium";
+static const std::string STORAGEVALUE_BESTIARYKILLCOUNT = "Storage-BestiaryKillCount";
 
 // Hazard system storage
 static constexpr int32_t STORAGEVALUE_HAZARDCOUNT = 112550;
 
 // Wheel of destiny
-static constexpr int32_t STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD = 43200;
+static const std::string STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD = "Storage-wheel-of-destiny-giftOfLifeCooldown";
 
 // Reserved player storage key ranges;
 // [10000000 - 20000000];
@@ -53,6 +53,9 @@ static constexpr int32_t PSTRG_FAMILIARS_RANGE_SIZE = 500;
 // Vaigu custom
 static constexpr int32_t STORAGEVALUE_ISONMINIGAME = 30060;
 static constexpr int32_t IMMOVABLE_ACTION_ID = 100;
+
+static const std::string IMMOVABLE_KEY = "IMMOVABLE";
+static const std::string PERMANENTLY_CLOSED = "PERMANENTLY_CLOSED";
 
 #define IS_IN_KEYRANGE(key, range) \
 	(key >= PSTRG_##range##_START && ((key - PSTRG_##range##_START) <= PSTRG_##range##_SIZE))

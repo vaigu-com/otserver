@@ -2,7 +2,7 @@ function Container.isContainer(self)
 	return true
 end
 
----@alias LootItems table<number, {count: number, subType?: number, text?: string, actionId?: number, gut?: boolean, childLoot: LootItems}>
+---@alias LootItems table<number, {count: number, subType?: number, key?: string, text?: string, actionId?: number, gut?: boolean, childLoot: LootItems}>
 
 ---@param loot LootItems
 function Container:addLoot(loot)
@@ -57,6 +57,10 @@ function Container:addLoot(loot)
 
 				if item.text and item.text ~= "" then
 					tmpItem:setText(item.text)
+				end
+
+				if item.key and item.key ~= "" then
+					tmpItem:setKey(item.key)
 				end
 			end
 		end

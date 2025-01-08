@@ -48,8 +48,8 @@ local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.uid == 3147 then
-		if player:getStorageValue(Storage.BigfootBurden.WarzoneStatus) == 4 then
-			player:setStorageValue(Storage.BigfootBurden.WarzoneStatus, 5)
+		if player:getStorageValueByKey(Storage.BigfootBurden.WarzoneStatus) == 4 then
+			player:setStorageValueByKey(Storage.BigfootBurden.WarzoneStatus, 5)
 			player:addItem(3020, 1)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Znalazles troche zlotych owocow.")
 		else
@@ -61,12 +61,12 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			return true
 		end
 
-		if player:getStorageValue(reward.storage) ~= 1 then
+		if player:getStorageValueByKey(reward.storage) ~= 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, reward.bossName .. " czuwa nad swoim skarbem i nie pozwoli ci go wykrasc.")
 			return true
 		end
 
-		if player:getStorageValue(reward.storaget) >= os.time() then
+		if player:getStorageValueByKey(reward.storaget) >= os.time() then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Musisz odczekac 20 godzin aby znow odebrac nagrode.")
 			return true
 		end
@@ -96,8 +96,8 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			end
 		end
 
-		player:setStorageValue(reward.storaget, os.time() + 20 * 3600)
-		player:setStorageValue(reward.storage, -1)
+		player:setStorageValueByKey(reward.storaget, os.time() + 20 * 3600)
+		player:setStorageValueByKey(reward.storage, -1)
 		--player:addAchievement(reward.achievement[1])
 		player:addAchievementProgress(reward.achievement[2], 50)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
@@ -107,3 +107,4 @@ end
 
 action:uid(3147, 3148, 3149, 3150)
 action:register()
+

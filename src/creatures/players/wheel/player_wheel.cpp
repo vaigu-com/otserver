@@ -2979,7 +2979,7 @@ uint8_t PlayerWheel::getGiftOfLifeValue() const {
 }
 
 int32_t PlayerWheel::getGiftOfCooldown() const {
-	int32_t value = m_player.getStorageValue(STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD);
+	int32_t value = m_player.getStorageValueByKey(STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD);
 	if (value <= 0) {
 		return 0;
 	}
@@ -2987,7 +2987,7 @@ int32_t PlayerWheel::getGiftOfCooldown() const {
 }
 
 void PlayerWheel::setGiftOfCooldown(int32_t value, bool isOnThink) {
-	m_player.addStorageValue(STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD, value, true);
+	m_player.setStorageValueByKey(STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD, value);
 	if (!isOnThink) {
 		setOnThinkTimer(WheelOnThink_t::GIFT_OF_LIFE, OTSYS_TIME() + 1000);
 	}

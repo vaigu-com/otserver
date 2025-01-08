@@ -37,7 +37,7 @@ return {
 	["King of Rats Headquarters Status"] = function(context)
 		local result = -1
 		for _, storage in pairs(Storage.KingOfRatsHQ.Portals) do
-			local portalState = context.player:getStorageValue(storage)
+			local portalState = context.player:getStorageValueByKey(storage)
 			if portalState == MISSION_FINISHED then
 				result = result + 1
 			end

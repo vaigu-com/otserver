@@ -41,19 +41,19 @@ local config = {
 }
 
 local function tpX(i, player, position)
-	if player:getStorageValue(config[i].Access) == 1 then
+	if player:getStorageValueByKey(config[i].Access) == 1 then
 		if position == config[i].teleportPos then
 			return config[i].destinationA
 		else
 			return config[i].destinationB
 		end
-	elseif player:getStorageValue(config[i].Access) == 2 then
+	elseif player:getStorageValueByKey(config[i].Access) == 2 then
 		if position == config[i].teleportPos then
 			return config[i].destinationC
 		else
 			return config[i].destinationB
 		end
-	elseif player:getStorageValue(config[i].Access) == 3 then
+	elseif player:getStorageValueByKey(config[i].Access) == 3 then
 		if position == config[i].teleportPos then
 			if Tile(config[i].itemPos):getItemById(11673) then
 				config[i].itemPos:removeItem(11673, 1)

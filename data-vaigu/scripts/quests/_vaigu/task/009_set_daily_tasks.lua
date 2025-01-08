@@ -34,11 +34,11 @@ end
 DAILY_TASKS_LEVEL_BRACKETS_COUNT = #getDailyTasksLevelBrackets()
 
 function SetDailyTaskByIndex(slotIndex, data)
-	KV.set("daily-task-slot-" .. slotIndex, data)
+	Game.setStorageValueByKey("daily-task-slot-" .. tostring(slotIndex), data)
 end
 
 function GetDailyTaskByIndex(slotIndex)
-	return KV.get("daily-task-slot-" .. slotIndex)
+	return Game.getStorageValueByKey("daily-task-slot-" .. tostring(slotIndex))
 end
 
 local function logDailyTasks()
@@ -50,7 +50,7 @@ local function logDailyTasks()
 end
 
 local function wereDailyTasksSetToday(currentTimestamp)
-	local lastResetTimestamp = KV.get(Storage.DailyTasks.LastResetTimestamp)
+	local lastResetTimestamp = Game.getStorageValueByKey(Storage.DailyTasks.LastResetTimestamp)
 	if not lastResetTimestamp then
 		return false
 	end
@@ -66,7 +66,7 @@ local function setTodayDailyTasks(currentTimestamp)
 	for i, task in ipairs(todayDailyTasks) do
 		SetDailyTaskByIndex(i, task)
 	end
-	KV.set(Storage.DailyTasks.LastResetTimestamp, currentTimestamp)
+	Game.setStorageValueByKey(Storage.DailyTasks.LastResetTimestamp, currentTimestamp)
 end
 
 local function calculateTodayDate()
@@ -80,7 +80,7 @@ end
 
 local dailyQuest = GlobalEvent("dailyQuest")
 function dailyQuest.onStartup()
-	Game.setStorageValue(GlobalStorage.FlamingOrchid, 0) --39f
+	Game.setStorageValueByKey(Storage.FlamingOrchid, 0) --39f
 
 	local todayDate = calculateTodayDate()
 	if not wereDailyTasksSetToday(todayDate) then

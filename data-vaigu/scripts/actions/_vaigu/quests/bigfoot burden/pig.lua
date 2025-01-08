@@ -5,12 +5,12 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	local mushroomCount = player:getStorageValue(Storage.BigfootBurden.MushroomCount)
-	if mushroomCount == 3 or player:getStorageValue(Storage.BigfootBurden.MissionMushroomDigger) ~= 1 then
+	local mushroomCount = player:getStorageValueByKey(Storage.BigfootBurden.MushroomCount)
+	if mushroomCount == 3 or player:getStorageValueByKey(Storage.BigfootBurden.MissionMushroomDigger) ~= 1 then
 		return false
 	end
 
-	player:setStorageValue(Storage.BigfootBurden.MushroomCount, mushroomCount + 1)
+	player:setStorageValueByKey(Storage.BigfootBurden.MushroomCount, mushroomCount + 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Swinka zjadla trufle.")
 	target:transform(15829)
 	toPosition:sendMagicEffect(CONST_ME_GROUNDSHAKER)

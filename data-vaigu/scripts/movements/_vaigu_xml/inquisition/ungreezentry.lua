@@ -7,7 +7,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	end
 
 	local destination = Position(6729, 1111, 11)
-	if player:getStorageValue(Storage.TheInquisition.Questline) >= 18 then
+	if player:getStorageValueByKey(Storage.TheInquisition.Questline) >= 18 then
 		if player:removeItem(6499, 1) then
 			player:teleportTo(destination) --{x = 7107, y = 1657, z = 13}
 			destination:sendMagicEffect(CONST_ME_PURPLEENERGY)
