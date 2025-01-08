@@ -36,7 +36,7 @@ function Monster.setStorageValueByKey(self, key, value)
 end
 
 function Monster.getStorage(self, key)
-	return self:getStorageValue(key)
+	return self:getStorageValueByKey(key)
 end
 
 function Monster.setStorage(self, key, value)
@@ -55,7 +55,7 @@ function Monster.beginSharedLife(self, hpid)
 		hpCompartilhada[hpid] = { hp = self:getMaxHealth(), monsters = {} }
 	end
 	table.insert(hpCompartilhada[hpid].monsters, self:getId())
-	self:setStorageValue("shared_storage", hpid)
+	self:setStorageValueByKey("shared_storage", hpid)
 end
 
 function Monster.inSharedLife(self)
@@ -209,18 +209,16 @@ do
 			return lootTable or {}
 		end
 
-		return self:generateLootRoll({
-			factor = lootFactor,
-			gut = false,
-			filter = function(itemType, unique)
-				if unique and not topScore then
-					return false
-				end
-				if equipmentOnly then
-					return not unique and isEquipment(itemType)
-				end
-				return true
-			end,
-		}, lootTable)
+		local filter = function(itemType, unique)
+			if unique and not topScore then
+				return false
+			end
+			if equipmentOnly then
+				return not unique and isEquipment(itemType)
+			end
+			return true
+		end
+
+		return GenerateLootRoll(MONSTER_LOOT_LAYER.bossReward, monster, player, lootFactor, applyGut, filter)
 	end
 end

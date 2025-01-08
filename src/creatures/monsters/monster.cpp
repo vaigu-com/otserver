@@ -2035,7 +2035,8 @@ void Monster::updateLookDirection() {
 	g_game().internalCreatureTurn(getMonster(), newDir);
 }
 
-void Monster::dropLoot(std::shared_ptr<Container> corpse, std::shared_ptr<Creature>) {
+const std::string Monster::dropLoot(std::shared_ptr<Container> corpse, bool shouldColor) {
+	std::string empty;
 	if (corpse && lootDrop) {
 		// Only fiendish drops sliver
 		if (ForgeClassifications_t classification = getMonsterForgeClassification();
@@ -2055,7 +2056,32 @@ void Monster::dropLoot(std::shared_ptr<Container> corpse, std::shared_ptr<Creatu
 			g_callbacks().executeCallback(EventCallback_t::monsterOnDropLoot, &EventCallback::monsterOnDropLoot, getMonster(), corpse);
 			g_callbacks().executeCallback(EventCallback_t::monsterPostDropLoot, &EventCallback::monsterPostDropLoot, getMonster(), corpse);
 		}
+
+		if (!LuaScriptInterface::reserveScriptEnv()) {
+			return empty;
+		}
+
+		lua_State* L = g_scripts().getScriptInterface().getLuaState();
+		lua_getglobal(L, "ContainerSetLootParseDesc");
+		LuaScriptInterface::pushUserdata<Creature>(L, getMonster());
+		LuaScriptInterface::setMetatable(L, -1, "Monster");
+		LuaScriptInterface::pushUserdata<Container>(L, corpse->getContainer());
+		LuaScriptInterface::setMetatable(L, -1, "Container");
+		LuaScriptInterface::pushBoolean(L, shouldColor);
+
+		if (lua_pcall(L, 3, 1, 0) != LUA_OK) {
+			LuaScriptInterface::resetScriptEnv();
+			g_logger().warn("[Monster::dropLoot - Monster name, position: {}, {}] {}", this->getName(), this->getPosition().toString(), lua_tostring(L, -1));
+			return empty;
+		}
+
+		const std::string contentDescription = lua_tostring(L, -1);
+		lua_pop(L, 1);
+
+		LuaScriptInterface::resetScriptEnv();
+		return contentDescription;
 	}
+	return empty;
 }
 
 void Monster::setNormalCreatureLight() {
@@ -2181,7 +2207,7 @@ void Monster::configureForgeSystem() {
 
 	// Set monster title based on influence
 	std::string title = influenceRankToTitle[getForgeStack()];
-	fullName = title + mType->name; 
+	fullName = title + mType->name;
 
 	healthMax = newHealth;
 	health = newHealth;
@@ -2201,7 +2227,7 @@ void Monster::clearFiendishStatus() {
 	health = mType->info.health * mType->getHealthMultiplier();
 	healthMax = mType->info.healthMax * mType->getHealthMultiplier();
 
-	fullName = mType->name; 
+	fullName = mType->name;
 	removeIcon("forge");
 	g_game().updateCreatureIcon(static_self_cast<Monster>());
 	g_game().sendUpdateCreature(static_self_cast<Monster>());

@@ -820,7 +820,9 @@ protected:
 	virtual uint64_t getLostExperience() const {
 		return 0;
 	}
-	virtual void dropLoot(std::shared_ptr<Container>, std::shared_ptr<Creature>) { }
+	virtual const std::string dropLoot(std::shared_ptr<Container>, bool color) {
+		return "";
+	};
 	virtual uint16_t getLookCorpse() const {
 		return 0;
 	}

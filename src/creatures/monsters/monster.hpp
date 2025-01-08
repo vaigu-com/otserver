@@ -420,6 +420,8 @@ private:
 
 	void updateLookDirection();
 
+	const std::string dropLoot(std::shared_ptr<Container> corpse, bool shouldColor) override;
+
 	void addFriend(const std::shared_ptr<Creature> &creature);
 	void removeFriend(const std::shared_ptr<Creature> &creature);
 	bool addTarget(const std::shared_ptr<Creature> &creature, bool pushFront = false);
@@ -464,7 +466,6 @@ private:
 	uint16_t getLookCorpse() const override {
 		return mType->info.lookcorpse;
 	}
-	void dropLoot(std::shared_ptr<Container> corpse, std::shared_ptr<Creature> lastHitCreature) override;
 	void getPathSearchParams(const std::shared_ptr<Creature> &creature, FindPathParams &fpp) override;
 	bool useCacheMap() const override {
 		// return !randomStepping;

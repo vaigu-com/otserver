@@ -15,6 +15,17 @@
             "name": "C++ attach",
             "type": "cppvsdbg",
             "request": "attach",
+        },
+        {
+            "name": "(Windows) Launch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}/../",
+            "environment": [],
+            "console": "externalTerminal"
         }
     ]
 }

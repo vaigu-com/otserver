@@ -79,6 +79,7 @@ public:
 		registerMethod(L, "Creature", "getSummons", CreatureFunctions::luaCreatureGetSummons);
 		registerMethod(L, "Creature", "hasBeenSummoned", CreatureFunctions::luaCreatureHasBeenSummoned);
 		registerMethod(L, "Creature", "getDescription", CreatureFunctions::luaCreatureGetDescription);
+		registerMethod(L, "Creature", "getNameDescription", CreatureFunctions::luaCreatureGetNameDescription); // Vaigu custom
 		registerMethod(L, "Creature", "getPathTo", CreatureFunctions::luaCreatureGetPathTo);
 		registerMethod(L, "Creature", "move", CreatureFunctions::luaCreatureMove);
 		registerMethod(L, "Creature", "getZoneType", CreatureFunctions::luaCreatureGetZoneType);
@@ -179,6 +180,7 @@ private:
 	static int luaCreatureHasBeenSummoned(lua_State* L);
 
 	static int luaCreatureGetDescription(lua_State* L);
+	static int luaCreatureGetNameDescription(lua_State* L);
 
 	static int luaCreatureGetPathTo(lua_State* L);
 	static int luaCreatureMove(lua_State* L);

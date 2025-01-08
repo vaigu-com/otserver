@@ -166,6 +166,7 @@ public:
 		bool maintainOption = true,
 		bool maintainState = true,
 		bool maintainMonster = true,
+		bool maintainTime = true,
 
 		PreyOption_t nextOption = PreyOption_None,
 		PreyDataState_t nextState = PreyDataState_Selection,
@@ -189,7 +190,7 @@ public:
 		}
 
 		if (rarityPenalty > 0) {
-			if (rarityPenalty > bonusRarity){
+			if (rarityPenalty > bonusRarity) {
 				rarityPenalty = bonusRarity;
 			}
 			bonusRarity = bonusRarity - rarityPenalty;
@@ -201,6 +202,8 @@ public:
 		}
 		if (refreshTime) {
 			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME, __FUNCTION__));
+		} else if (maintainTime) {
+			bonusTimeLeft = bonusTimeLeft;
 		} else {
 			bonusTimeLeft = 0;
 		}
@@ -222,9 +225,9 @@ public:
 		{ PreyStars_4, 70 },
 		{ PreyStars_5, 50 },
 		{ PreyStars_6, 50 },
-		{ PreyStars_7, 50 },
-		{ PreyStars_8, 50 },
-		{ PreyStars_9, 50 },
+		{ PreyStars_7, 40 },
+		{ PreyStars_8, 40 },
+		{ PreyStars_9, 40 },
 		{ PreyStars_Max, 100 },
 	};
 
@@ -232,7 +235,7 @@ public:
 	void rerollBonusRarity() {
 		const uint8_t roll = uniform_random(1, 100) + failstack.at(bonusRarity);
 		const uint8_t requiredRollForUpgrade = 100 - starsToUpgradeChance.at(bonusRarity);
-		if ((roll) >= requiredRollForUpgrade) {
+		if (roll >= requiredRollForUpgrade) {
 			failstack.at(bonusRarity) = 0;
 			bonusRarity++;
 		} else {
@@ -245,7 +248,11 @@ public:
 	}
 
 	void rerollBonusType() {
-		bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+		if (bonusRarity >= PreyStars_Max){
+			bonus = static_cast<PreyBonus_t>((bonus + 1) % static_cast<int>(PreyBonus_Last + 1));
+		} else {
+			bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+		}
 	}
 
 	void removeMonsterType(uint16_t raceId) {

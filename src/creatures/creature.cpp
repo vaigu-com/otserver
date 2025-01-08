@@ -796,21 +796,17 @@ bool Creature::dropCorpse(std::shared_ptr<Creature> lastHitCreature, std::shared
 		std::shared_ptr<Item> corpse = getCorpse(lastHitCreature, mostDamageCreature);
 		if (tile && corpse) {
 			g_game().internalAddItem(tile, corpse, INDEX_WHEREEVER, FLAG_NOLIMIT);
-			dropLoot(corpse->getContainer(), lastHitCreature);
+			const auto player = mostDamageCreature ? mostDamageCreature->getPlayer() : nullptr;
 			corpse->startDecaying();
 			bool disallowedCorpses = corpse->isRewardCorpse() || (corpse->getID() == ITEM_MALE_CORPSE || corpse->getID() == ITEM_FEMALE_CORPSE);
-			const auto player = mostDamageCreature ? mostDamageCreature->getPlayer() : nullptr;
 			auto corpseContainer = corpse->getContainer();
 			if (corpseContainer && player && !disallowedCorpses) {
 				auto monster = getMonster();
 				if (monster && !monster->isRewardBoss()) {
-					std::ostringstream lootMessage;
 					auto collorMessage = player->getProtocolVersion() > 1200 && player->getOperatingSystem() < CLIENTOS_OTCLIENT_LINUX;
-					lootMessage << "Loot of " << getNameDescription() << ": " << corpseContainer->getContentDescription(collorMessage) << ".";
-					auto suffix = corpseContainer->getAttribute<std::string>(ItemAttribute_t::LOOTMESSAGE_SUFFIX);
-					if (!suffix.empty()) {
-						lootMessage << suffix;
-					}
+					const std::string corpseDescription = dropLoot(corpse->getContainer(), collorMessage);
+					std::ostringstream lootMessage;
+					lootMessage << corpseDescription;
 					player->sendLootMessage(lootMessage.str());
 				}
 
