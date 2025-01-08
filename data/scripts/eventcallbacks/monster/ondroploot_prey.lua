@@ -1,8 +1,11 @@
+local lootFactor = 1.0
+local lootLayer = MONSTER_LOOT_LAYER.prey
+
 local callback = EventCallback()
 
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
-	if not player or not player:canReceiveLoot() then
+	if not player then
 		return
 	end
 	local mType = monster:getType()
@@ -10,8 +13,6 @@ function callback.monsterOnDropLoot(monster, corpse)
 		return
 	end
 
-	local factor = 1.0
-	local msgSuffix = ""
 	local participants = { player }
 	if configManager.getBoolean(configKeys.PARTY_SHARE_LOOT_BOOSTS) then
 		local party = player:getParty()
@@ -30,21 +31,15 @@ function callback.monsterOnDropLoot(monster, corpse)
 	end
 	if #preyActivators > 0 then
 		local numActivators = #preyActivators
-		preyChance = preyChance / numActivators ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR)
+		preyChance = (preyChance / numActivators) ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR)
 	end
 	if math.random(1, 100) > preyChance then
 		return
 	end
 
-	if configManager.getBoolean(configKeys.PARTY_SHARE_LOOT_BOOSTS) then
-		msgSuffix = msgSuffix .. " (active prey bonus for " .. table.concat(preyActivators, ", ") .. ")"
-	else
-		msgSuffix = msgSuffix .. " (active prey bonus)"
-	end
-
-	corpse:addLoot(mType:generateLootRoll({ factor = factor, gut = false }, {}, player))
-	local existingSuffix = corpse:getAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX) or ""
-	corpse:setAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX, existingSuffix .. msgSuffix)
+	local totalLoot = GenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter)
+	local monsterId = monster:getId()
+	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)
 end
 
 callback:register()

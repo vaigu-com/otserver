@@ -85,7 +85,6 @@ public:
 
 	Attr_ReadValue readAttr(AttrTypes_t attr, PropStream &propStream) override;
 	bool unserializeItemNode(OTB::Loader &loader, const OTB::Node &node, PropStream &propStream, Position &itemPosition) override;
-	std::string getContentDescription(bool oldProtocol);
 
 	uint32_t getMaxCapacity() const;
 
@@ -179,8 +178,6 @@ public:
 	bool isInsideContainerWithId(const uint16_t id);
 
 protected:
-	std::ostringstream &getContentDescription(std::ostringstream &os, bool oldProtocol);
-
 	uint32_t m_maxItems;
 	uint32_t maxSize;
 	uint32_t totalWeight = 0;

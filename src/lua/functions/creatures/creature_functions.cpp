@@ -933,6 +933,18 @@ int CreatureFunctions::luaCreatureGetDescription(lua_State* L) {
 	return 1;
 }
 
+int CreatureFunctions::luaCreatureGetNameDescription(lua_State* L) {
+	// creature:getNameDescription()
+	std::shared_ptr<Creature> creature = getUserdataShared<Creature>(L, 1);
+	if (creature) {
+		pushString(L, creature->getNameDescription());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+
 int CreatureFunctions::luaCreatureGetPathTo(lua_State* L) {
 	// creature:getPathTo(pos[, minTargetDist = 0[, maxTargetDist = 1[, fullPathSearch = true[, clearSight = true[, maxSearchDist = 0]]]]])
 	std::shared_ptr<Creature> creature = getUserdataShared<Creature>(L, 1);

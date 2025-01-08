@@ -236,17 +236,6 @@ int ContainerFunctions::luaContainerGetItemCountById(lua_State* L) {
 	return 1;
 }
 
-int ContainerFunctions::luaContainerGetContentDescription(lua_State* L) {
-	// container:getContentDescription([oldProtocol])
-	std::shared_ptr<Container> container = getUserdataShared<Container>(L, 1);
-	if (container) {
-		pushString(L, container->getContentDescription(getBoolean(L, 2, false)));
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
 int ContainerFunctions::luaContainerGetItems(lua_State* L) {
 	// container:getItems([recursive = false])
 	std::shared_ptr<Container> container = getUserdataShared<Container>(L, 1);

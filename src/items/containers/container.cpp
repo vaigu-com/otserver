@@ -217,40 +217,6 @@ uint32_t Container::getWeight() const {
 	return Item::getWeight() + totalWeight;
 }
 
-std::string Container::getContentDescription(bool oldProtocol) {
-	std::ostringstream os;
-	return getContentDescription(os, oldProtocol).str();
-}
-
-std::ostringstream &Container::getContentDescription(std::ostringstream &os, bool sendColoredMessage) {
-	bool firstitem = true;
-	for (ContainerIterator it = iterator(); it.hasNext(); it.advance()) {
-		std::shared_ptr<Item> item = *it;
-
-		std::shared_ptr<Container> container = item->getContainer();
-		if (container && !container->empty()) {
-			continue;
-		}
-
-		if (firstitem) {
-			firstitem = false;
-		} else {
-			os << ", ";
-		}
-
-		if (sendColoredMessage) {
-			os << "{" << item->getID() << "|" << item->getNameDescription() << "}";
-		} else {
-			os << item->getNameDescription();
-		}
-	}
-
-	if (firstitem) {
-		os << "nothing";
-	}
-	return os;
-}
-
 uint32_t Container::getMaxCapacity() const {
 	return m_maxItems;
 }

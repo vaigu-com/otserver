@@ -1,3 +1,6 @@
+local lootFactor = 1.0
+local lootLayer = MONSTER_LOOT_LAYER.atelier
+
 local callback = EventCallback()
 
 function callback.monsterOnDropLoot(monster, corpse)
@@ -5,10 +8,10 @@ function callback.monsterOnDropLoot(monster, corpse)
 		return
 	end
 	local player = Player(corpse:getCorpseOwner())
-	if not player or not player:canReceiveLoot() then
-		return
-	end
-	corpse:addLoot(monster:generateGemAtelierLoot())
+
+	local totalLoot = GenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter)
+	local monsterId = monster:getId()
+	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)
 end
 
 callback:register()
