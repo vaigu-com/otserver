@@ -29,7 +29,7 @@ dreamEgg:register()
 local magicalPaint = Action()
 function magicalPaint.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.itemid == 29997 or target.itemid == 29996 then
-		player:setStorageValue(Storage.TheDreamCourts.Painting, 1)
+		player:setStorageValueByKey(Storage.TheDreamCourts.Painting, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It looks now like a room you can enter.")
 		item:remove(1)
 		return true
@@ -41,7 +41,7 @@ magicalPaint:register()
 
 local paintingTp = Action()
 function paintingTp.onUse(player, item, fromPosition, itemEx, toPosition)
-	if player:getStorageValue(Storage.TheDreamCourts.Painting) == 1 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.Painting) == 1 then
 		player:teleportTo(Position(6371, 1809, 13)) --{x = 6371, y = 1809, z = 13}
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		return true
@@ -53,7 +53,7 @@ paintingTp:register()
 
 local paintingTp2 = Action()
 function paintingTp2.onUse(player, item, fromPosition, itemEx, toPosition)
-	if player:getStorageValue(Storage.TheDreamCourts.Painting) == 1 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.Painting) == 1 then
 		player:teleportTo(Position(6382, 1901, 13)) --{x = 6382, y = 1901, z = 13}
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		return true
@@ -65,10 +65,10 @@ paintingTp2:register()
 
 local lastDoor = Action()
 function lastDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheDreamCourts.AllSkullUsed) == 1 then
-		if player:getStorageValue(Storage.TheDreamCourts.LastDoor) < 1 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.AllSkullUsed) == 1 then
+		if player:getStorageValueByKey(Storage.TheDreamCourts.LastDoor) < 1 then
 			item:remove(1)
-			player:setStorageValue(Storage.TheDreamCourts.LastDoor, 1)
+			player:setStorageValueByKey(Storage.TheDreamCourts.LastDoor, 1)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Now you can enter.")
 			return true
 		end

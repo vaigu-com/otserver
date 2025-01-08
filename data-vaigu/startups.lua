@@ -45,6 +45,7 @@ local function createCustomItemOnMap(context, anchor)
 	local count = context.count
 	local aid = context.aid
 	local uid = context.uid
+	local key = context.key
 	local desc = context.desc
 	local text = context.text
 
@@ -71,6 +72,9 @@ local function createCustomItemOnMap(context, anchor)
 	if text and type(text) == "string" then
 		item:setAttribute(ITEM_ATTRIBUTE_TEXT, text)
 	end
+	if key and type(key) == "string" then
+		item:setAttribute(ITEM_ATTRIBUTE_KEY, key)
+	end
 end
 
 local function normalizeItemData(itemData, anchor)
@@ -79,6 +83,7 @@ local function normalizeItemData(itemData, anchor)
 	context.count = itemData.count or 1
 	context.aid = itemData.actionid or itemData.aid or itemData.actionId
 	context.uid = itemData.uniqueid or itemData.uid or itemData.uniqueId
+	context.key = itemData.key
 	context.desc = itemData.description or itemData.desc
 	context.text = itemData.text
 	context.rewards = itemData.rewards
@@ -120,7 +125,7 @@ local function loadStartupItem(itemConfig, anchor)
 	if context.pos then
 		createCustomItemOnMap(context, anchor)
 	end
-	if context.aid and context.aid ~= 0 then
+	if context.key and context.key ~= "" then
 		CustomItemRegistry:Register(context)
 	end
 	if itemWontBeCreatedOrRegistered(context) then

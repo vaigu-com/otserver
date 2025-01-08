@@ -1,6 +1,8 @@
-if not worldchests then
-	worldchests = {}
+if not openWorldChestCooldownExpiry then
+	openWorldChestCooldownExpiry = {}
 end
+
+local openWorldChestScope = Scope("OpenWorldChest")
 
 if not table.find then
 	table.find = function(table, value)
@@ -21,442 +23,292 @@ function Container:clear()
 end
 
 local interval = math.random(5400, 10800) -- pomiedzy 1,5 a 3h
-local chestAid = 7895 -- actionid to assign in RME
-local allowDuplicates = false -- for default setting
 
--- uid will serve as chest identificator. It will prevent moving the chest and will allow to make every chest script unique.
-
-local elfrewards = {
-	minUid = 27100,
-	maxUid = 27199,
-	maxItems = 6,
-	itemList = {
-		-- id, chance(100000 = 100.000%), countmax(default 1)
-		{ 3600, 26000, 2 }, -- bread
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3592, 25000, 3 }, -- grapes
-		{ 9635, 10000, 1 }, -- elvish talisman
-		{ 11464, 10000, 1 }, -- elven scouting glass
-		{ 3350, 10000, 1 }, -- bow
-		{ 7438, 500, 1 }, -- elvish bow
-		{ 3447, 15000, 20 }, -- arrow
-		{ 7364, 9000, 15 }, -- sniper arrow
-		{ 774, 9000, 15 }, -- earth arrow
-		{ 16142, 7000, 15 }, -- drill bolt
-		{ 268, 15000, 1 }, -- mana potion
-		{ 3061, 1000, 1 }, -- life crystal
-		{ 5921, 2500, 1 }, -- heaven blossom
-		{ 5922, 2500, 1 }, -- holy orchid
-		{ 3082, 3000, 50 }, -- elven amulet
-		{ 646, 600, 1 }, -- elvenhair rope
-		{ 3399, 300, 1 }, -- elven mail
-		{ 3401, 800, 1 }, -- elven legs
-		{ 3070, 600, 1 }, -- moonlight rod
-		{ 3075, 600, 1 }, -- wand of dragonbreath
+local openWorldChestRewardCategories = {
+	[openWorldChestScope:Get("Elf")] = {
+		{ id = 3600, chance = 26000, count = 2 }, -- bread
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3592, chance = 25000, count = 3 }, -- grapes
+		{ id = 9635, chance = 10000, count = 1 }, -- elvish talisman
+		{ id = 11464, chance = 10000, count = 1 }, -- elven scouting glass
+		{ id = 3350, chance = 10000, count = 1 }, -- bow
+		{ id = 7438, chance = 500, count = 1 }, -- elvish bow
+		{ id = 3447, chance = 15000, count = 20 }, -- arrow
+		{ id = 7364, chance = 9000, count = 15 }, -- sniper arrow
+		{ id = 774, chance = 9000, count = 15 }, -- earth arrow
+		{ id = 16142, chance = 7000, count = 15 }, -- drill bolt
+		{ id = 268, chance = 15000, count = 1 }, -- mana potion
+		{ id = 3061, chance = 1000, count = 1 }, -- life crystal
+		{ id = 5921, chance = 2500, count = 1 }, -- heaven blossom
+		{ id = 5922, chance = 2500, count = 1 }, -- holy orchid
+		{ id = 3082, chance = 3000, count = 50 }, -- elven amulet
+		{ id = 646, chance = 600, count = 1 }, -- elvenhair rope
+		{ id = 3399, chance = 300, count = 1 }, -- elven mail
+		{ id = 3401, chance = 800, count = 1 }, -- elven legs
+		{ id = 3070, chance = 600, count = 1 }, -- moonlight rod
+		{ id = 3075, chance = 600, count = 1 }, -- wand of dragonbreath
 	},
-}
-
-local orcrewards = {
-	minUid = 27200,
-	maxUid = 27299,
-	maxItems = 6,
-	itemList = {
-		{ 3112, 20000, 2 }, -- rotten meat
-		{ 3307, 700, 1 }, -- scimitar
-		{ 3552, 1000, 1 }, -- leather boots
-		{ 3391, 100, 1 }, -- crusader helmet
-		{ 3358, 2000, 1 }, -- chain armor
-		{ 3577, 20000, 2 }, -- meat
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3426, 10000, 1 }, -- studded shield
-		{ 3362, 10000, 1 }, -- studded legs
-		{ 3378, 10000, 1 }, -- studded armor
-		{ 11480, 15000, 1 }, -- skull belt
-		{ 3557, 1000, 1 }, -- plate legs
-		{ 2920, 14000, 1 }, -- torch
-		{ 7378, 6000, 3 }, -- royal spear
-		{ 3316, 2000, 1 }, -- orcish axe
-		{ 3322, 400, 1 }, -- dragon hammer
+	[openWorldChestScope:Get("Orc")] = {
+		{ id = 3112, chance = 20000, count = 2 }, -- rotten meat
+		{ id = 3307, chance = 700, count = 1 }, -- scimitar
+		{ id = 3552, chance = 1000, count = 1 }, -- leather boots
+		{ id = 3391, chance = 100, count = 1 }, -- crusader helmet
+		{ id = 3358, chance = 2000, count = 1 }, -- chain armor
+		{ id = 3577, chance = 20000, count = 2 }, -- meat
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3426, chance = 10000, count = 1 }, -- studded shield
+		{ id = 3362, chance = 10000, count = 1 }, -- studded legs
+		{ id = 3378, chance = 10000, count = 1 }, -- studded armor
+		{ id = 11480, chance = 15000, count = 1 }, -- skull belt
+		{ id = 3557, chance = 1000, count = 1 }, -- plate legs
+		{ id = 2920, chance = 14000, count = 1 }, -- torch
+		{ id = 7378, chance = 6000, count = 3 }, -- royal spear
+		{ id = 3316, chance = 2000, count = 1 }, -- orcish axe
+		{ id = 3322, chance = 400, count = 1 }, -- dragon hammer
 	},
-}
-
-local dwarfrewards = {
-	minUid = 27300,
-	maxUid = 27399,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3552, 1000, 1 }, -- leather boots
-		{ 3375, 4000, 1 }, -- soldier helmet
-		{ 3358, 2000, 1 }, -- chain armor
-		{ 3097, 4000, 1 }, -- dwarven ring
-		{ 3425, 4000, 1 }, -- dwarven shield
-		{ 3723, 20000, 3 }, -- white mushroom
-		{ 5880, 800, 1 }, -- iron ore
-		{ 3430, 4000, 1 }, -- copper shield
-		{ 3266, 4000, 1 }, -- battle axe
-		{ 3274, 10000, 1 }, -- axe
-		{ 3456, 15000, 1 }, -- pick
-		{ 953, 15000, 3 }, -- nail
-		{ 3351, 2000, 1 }, -- steel helmet
-		{ 12600, 4000, 2 }, -- coal
-		{ 3092, 2000, 1 }, -- axe ring
-		{ 266, 13000, 1 }, -- health potion
-		{ 3349, 3000, 1 }, -- crossbow
-		{ 7363, 13000, 10 }, -- piercing bolt
-		{ 2894, 16000, 1 }, -- broken flask
-		{ 2920, 30000, 1 }, -- torch
-		{ 3003, 30000, 1 }, -- rope
-		{ 3323, 400, 1 }, -- dwarven axe
+	[openWorldChestScope:Get("Dwarf")] = {
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3552, chance = 1000, count = 1 }, -- leather boots
+		{ id = 3375, chance = 4000, count = 1 }, -- soldier helmet
+		{ id = 3358, chance = 2000, count = 1 }, -- chain armor
+		{ id = 3097, chance = 4000, count = 1 }, -- dwarven ring
+		{ id = 3425, chance = 4000, count = 1 }, -- dwarven shield
+		{ id = 3723, chance = 20000, count = 3 }, -- white mushroom
+		{ id = 5880, chance = 800, count = 1 }, -- iron ore
+		{ id = 3430, chance = 4000, count = 1 }, -- copper shield
+		{ id = 3266, chance = 4000, count = 1 }, -- battle axe
+		{ id = 3274, chance = 10000, count = 1 }, -- axe
+		{ id = 3456, chance = 15000, count = 1 }, -- pick
+		{ id = 953, chance = 15000, count = 3 }, -- nail
+		{ id = 3351, chance = 2000, count = 1 }, -- steel helmet
+		{ id = 12600, chance = 4000, count = 2 }, -- coal
+		{ id = 3092, chance = 2000, count = 1 }, -- axe ring
+		{ id = 266, chance = 13000, count = 1 }, -- health potion
+		{ id = 3349, chance = 3000, count = 1 }, -- crossbow
+		{ id = 7363, chance = 13000, count = 10 }, -- piercing bolt
+		{ id = 2894, chance = 16000, count = 1 }, -- broken flask
+		{ id = 2920, chance = 30000, count = 1 }, -- torch
+		{ id = 3003, chance = 30000, count = 1 }, -- rope
+		{ id = 3323, chance = 400, count = 1 }, -- dwarven axe
 	},
-}
-
-local cycrewards = {
-	minUid = 27400,
-	maxUid = 27499,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3012, 4000, 1 }, -- wolf tooth chain
-		{ 3413, 3200, 1 }, -- battle shield
-		{ 3269, 3200, 1 }, -- halberd
-		{ 3093, 4000, 1 }, -- club ring
-		{ 3092, 4000, 1 }, -- axe ring
-		{ 236, 14000, 1 }, -- strong health potion
-		{ 3557, 1000, 1 }, -- plate legs
-		{ 2892, 13000, 1 }, -- broken bottle
-		{ 3115, 13000, 2 }, -- bone
-		{ 3112, 12000, 1 }, -- rotten meat
-		{ 3266, 4500, 1 }, -- battle axe
-		{ 3305, 2000, 1 }, -- battle hammer
-		{ 3577, 13000, 2 }, -- meat
-		{ 3124, 7000, 1 }, -- burnt scroll
-		{ 3409, 8000, 1 }, -- steel shield
-		{ 2894, 16000, 1 }, -- broken flask
-		{ 3113, 13000, 1 }, -- broken pottery
-		{ 3003, 15000, 1 }, -- rope
+	[openWorldChestScope:Get("Cyclops")] = {
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3012, chance = 4000, count = 1 }, -- wolf tooth chain
+		{ id = 3413, chance = 3200, count = 1 }, -- battle shield
+		{ id = 3269, chance = 3200, count = 1 }, -- halberd
+		{ id = 3093, chance = 4000, count = 1 }, -- club ring
+		{ id = 3092, chance = 4000, count = 1 }, -- axe ring
+		{ id = 236, chance = 14000, count = 1 }, -- strong health potion
+		{ id = 3557, chance = 1000, count = 1 }, -- plate legs
+		{ id = 2892, chance = 13000, count = 1 }, -- broken bottle
+		{ id = 3115, chance = 13000, count = 2 }, -- bone
+		{ id = 3112, chance = 12000, count = 1 }, -- rotten meat
+		{ id = 3266, chance = 4500, count = 1 }, -- battle axe
+		{ id = 3305, chance = 2000, count = 1 }, -- battle hammer
+		{ id = 3577, chance = 13000, count = 2 }, -- meat
+		{ id = 3124, chance = 7000, count = 1 }, -- burnt scroll
+		{ id = 3409, chance = 8000, count = 1 }, -- steel shield
+		{ id = 2894, chance = 16000, count = 1 }, -- broken flask
+		{ id = 3113, chance = 13000, count = 1 }, -- broken pottery
+		{ id = 3003, chance = 15000, count = 1 }, -- rope
 	},
-}
-
-local lizardrewards = {
-	minUid = 27500,
-	maxUid = 27599,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3314, 500, 1 }, -- naginata
-		{ 3377, 12000, 1 }, -- scale armor
-		{ 3269, 3000, 1 }, -- halberd
-		{ 3444, 4300, 1 }, -- sentinel shields
-		{ 266, 12000, 2 }, -- health potion
-		{ 3032, 2000, 2 }, -- small emerald
-		{ 10418, 3000, 1 }, -- broken halberd
-		{ 10328, 4000, 2 }, -- bunch of ripe rice
-		{ 10406, 3000, 1 }, -- Zaoan halberd
-		{ 10289, 3000, 1 }, -- red lantern
-		{ 10386, 300, 1 }, -- Zaoan shoes
-		{ 10386, 80, 1 }, -- Zaoan shoes
-		{ 18339, 200, 1 }, -- Zaoan chess box
-		{ 3035, 1000, 1 }, -- platinum coin
-		{ 3065, 500, 1 }, -- terra rod
-		{ 3052, 2000, 1 }, -- life ring
-		{ 3098, 700, 1 }, -- ring of healing
-		{ 10329, 700, 1 }, -- rice ball
-		{ 3061, 700, 1 }, -- life crystal
-		{ 3147, 13000, 1 }, -- blank rune
-		{ 7378, 10000, 3 }, -- royal spear
-		{ 3073, 300, 1 }, -- wand of cosmic energy
-		{ 3066, 7000, 1 }, -- snakebite rod
-		{ 12802, 2000, 1 }, -- sugar oat
+	[openWorldChestScope:Get("Lizard")] = {
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3314, chance = 500, count = 1 }, -- naginata
+		{ id = 3377, chance = 12000, count = 1 }, -- scale armor
+		{ id = 3269, chance = 3000, count = 1 }, -- halberd
+		{ id = 3444, chance = 4300, count = 1 }, -- sentinel shields
+		{ id = 266, chance = 12000, count = 2 }, -- health potion
+		{ id = 3032, chance = 2000, count = 2 }, -- small emerald
+		{ id = 10418, chance = 3000, count = 1 }, -- broken halberd
+		{ id = 10328, chance = 4000, count = 2 }, -- bunch of ripe rice
+		{ id = 10406, chance = 3000, count = 1 }, -- Zaoan halberd
+		{ id = 10289, chance = 3000, count = 1 }, -- red lantern
+		{ id = 10386, chance = 300, count = 1 }, -- Zaoan shoes
+		{ id = 10386, chance = 80, count = 1 }, -- Zaoan shoes
+		{ id = 18339, chance = 200, count = 1 }, -- Zaoan chess box
+		{ id = 3035, chance = 1000, count = 1 }, -- platinum coin
+		{ id = 3065, chance = 500, count = 1 }, -- terra rod
+		{ id = 3052, chance = 2000, count = 1 }, -- life ring
+		{ id = 3098, chance = 700, count = 1 }, -- ring of healing
+		{ id = 10329, chance = 700, count = 1 }, -- rice ball
+		{ id = 3061, chance = 700, count = 1 }, -- life crystal
+		{ id = 3147, chance = 13000, count = 1 }, -- blank rune
+		{ id = 7378, chance = 10000, count = 3 }, -- royal spear
+		{ id = 3073, chance = 300, count = 1 }, -- wand of cosmic energy
+		{ id = 3066, chance = 7000, count = 1 }, -- snakebite rod
+		{ id = 12802, chance = 2000, count = 1 }, -- sugar oat
 	},
-}
-
-local magerewards = {
-	minUid = 27600,
-	maxUid = 27699,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3054, 700, 200 }, -- silver amulet
-		{ 8042, 1000, 1 }, -- spirit cloak
-		{ 268, 15000, 3 }, -- mana potion
-		{ 237, 5000, 2 }, -- strong mana potion
-		{ 238, 1000, 1 }, -- great mana potion
-		{ 3059, 7000, 1 }, -- spellbook
-		{ 3147, 20000, 2 }, -- blank rune
-		{ 3148, 10000, 2 }, -- destroy field rune
-		{ 3149, 5000, 2 }, -- energy bomb rune
-		{ 3156, 5000, 2 }, -- wild growth rune
-		{ 3180, 5000, 2 }, -- magic wall rune
-		{ 3173, 5000, 2 }, -- poison bomb rune
-		{ 3192, 5000, 2 }, -- fire bomb rune
-		{ 3160, 7500, 2 }, -- ultimate healing rune
-		{ 3177, 7500, 2 }, -- convince creature rune
-		{ 3178, 7500, 2 }, -- chameleon rune
-		{ 3074, 3000, 1 }, -- wand of vortex
-		{ 3066, 3000, 1 }, -- snakebite rod
-		{ 3072, 500, 1 }, -- wand of decay
-		{ 3069, 500, 1 }, -- necrotic rod
-		{ 675, 500, 1 }, -- small enchanted sapphire
-		{ 676, 500, 1 }, -- small enchanted ruby
-		{ 677, 500, 1 }, -- small enchanted emerald
-		{ 678, 500, 1 }, -- small enchanted amethyst
-		{ 3600, 25000, 2 }, -- bread
-		{ 3592, 25000, 3 }, -- grapes
+	[openWorldChestScope:Get("Mage")] = {
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3054, chance = 700, count = 200 }, -- silver amulet
+		{ id = 8042, chance = 1000, count = 1 }, -- spirit cloak
+		{ id = 268, chance = 15000, count = 3 }, -- mana potion
+		{ id = 237, chance = 5000, count = 2 }, -- strong mana potion
+		{ id = 238, chance = 1000, count = 1 }, -- great mana potion
+		{ id = 3059, chance = 7000, count = 1 }, -- spellbook
+		{ id = 3147, chance = 20000, count = 2 }, -- blank rune
+		{ id = 3148, chance = 10000, count = 2 }, -- destroy field rune
+		{ id = 3149, chance = 5000, count = 2 }, -- energy bomb rune
+		{ id = 3156, chance = 5000, count = 2 }, -- wild growth rune
+		{ id = 3180, chance = 5000, count = 2 }, -- magic wall rune
+		{ id = 3173, chance = 5000, count = 2 }, -- poison bomb rune
+		{ id = 3192, chance = 5000, count = 2 }, -- fire bomb rune
+		{ id = 3160, chance = 7500, count = 2 }, -- ultimate healing rune
+		{ id = 3177, chance = 7500, count = 2 }, -- convince creature rune
+		{ id = 3178, chance = 7500, count = 2 }, -- chameleon rune
+		{ id = 3074, chance = 3000, count = 1 }, -- wand of vortex
+		{ id = 3066, chance = 3000, count = 1 }, -- snakebite rod
+		{ id = 3072, chance = 500, count = 1 }, -- wand of decay
+		{ id = 3069, chance = 500, count = 1 }, -- necrotic rod
+		{ id = 675, chance = 500, count = 1 }, -- small enchanted sapphire
+		{ id = 676, chance = 500, count = 1 }, -- small enchanted ruby
+		{ id = 677, chance = 500, count = 1 }, -- small enchanted emerald
+		{ id = 678, chance = 500, count = 1 }, -- small enchanted amethyst
+		{ id = 3600, chance = 25000, count = 2 }, -- bread
+		{ id = 3592, chance = 25000, count = 3 }, -- grapes
 	},
-}
-
-local corymrewards = {
-	minUid = 27700,
-	maxUid = 27799,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 17809, 6000, 1 }, -- bola
-		{ 17817, 6000, 1 }, -- cheese cutter
-		{ 17812, 600, 1 }, -- ratana
-		{ 17820, 6000, 1 }, -- soft cheese
-		{ 17846, 1000, 1 }, -- leather harness
-		{ 17813, 3500, 1 }, -- life preserver
-		{ 17819, 2700, 1 }, -- earflap
-		{ 17810, 1200, 1 }, -- spike shield
-		{ 3607, 18000, 1 }, -- cheese
-		{ 3112, 21000, 1 }, -- rotten meat
-		{ 17825, 200, 1 }, -- rat god doll
-		{ 17859, 1000, 1 }, -- spiky club
-		{ 2920, 24000, 1 }, -- torch
+	[openWorldChestScope:Get("Corym")] = {
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 17809, chance = 6000, count = 1 }, -- bola
+		{ id = 17817, chance = 6000, count = 1 }, -- cheese cutter
+		{ id = 17812, chance = 600, count = 1 }, -- ratana
+		{ id = 17820, chance = 6000, count = 1 }, -- soft cheese
+		{ id = 17846, chance = 1000, count = 1 }, -- leather harness
+		{ id = 17813, chance = 3500, count = 1 }, -- life preserver
+		{ id = 17819, chance = 2700, count = 1 }, -- earflap
+		{ id = 17810, chance = 1200, count = 1 }, -- spike shield
+		{ id = 3607, chance = 18000, count = 1 }, -- cheese
+		{ id = 3112, chance = 21000, count = 1 }, -- rotten meat
+		{ id = 17825, chance = 200, count = 1 }, -- rat god doll
+		{ id = 17859, chance = 1000, count = 1 }, -- spiky club
+		{ id = 2920, chance = 24000, count = 1 }, -- torch
 	},
-}
-
-local nomadrewards = {
-	minUid = 27800,
-	maxUid = 27899,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 80 }, -- gold coin
-		{ 3307, 700, 1 }, -- scimitar
-		{ 3432, 300, 1 }, -- ancient shield
-		{ 3025, 800, 1 }, -- ancient amulet
-		{ 3328, 300, 1 }, -- daramian waraxe
-		{ 3018, 900, 1 }, -- scarab amulet
-		{ 3042, 7800, 2 }, -- scarab coin
-		{ 3354, 12000, 1 }, -- brass helmet
-		{ 3359, 12000, 1 }, -- brass armor
-		{ 3372, 12000, 1 }, -- brass legs
-		{ 3411, 12000, 1 }, -- brass shield
-		{ 11456, 16000, 1 }, -- dirty turban
-		{ 3353, 10000, 1 }, -- iron helmet
-		{ 3286, 10000, 1 }, -- mace
-		{ 11492, 10000, 1 }, -- rope belt
-		{ 3003, 16000, 1 }, -- rope
-		{ 3274, 14000, 1 }, -- axe
-		{ 12802, 7000, 1 }, -- sugar oat
-		{ 3028, 600, 1 }, -- small diamond
-		{ 3026, 600, 1 }, -- white pearl
+	[openWorldChestScope:Get("Nomad")] = {
+		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
+		{ id = 3307, chance = 700, count = 1 }, -- scimitar
+		{ id = 3432, chance = 300, count = 1 }, -- ancient shield
+		{ id = 3025, chance = 800, count = 1 }, -- ancient amulet
+		{ id = 3328, chance = 300, count = 1 }, -- daramian waraxe
+		{ id = 3018, chance = 900, count = 1 }, -- scarab amulet
+		{ id = 3042, chance = 7800, count = 2 }, -- scarab coin
+		{ id = 3354, chance = 12000, count = 1 }, -- brass helmet
+		{ id = 3359, chance = 12000, count = 1 }, -- brass armor
+		{ id = 3372, chance = 12000, count = 1 }, -- brass legs
+		{ id = 3411, chance = 12000, count = 1 }, -- brass shield
+		{ id = 11456, chance = 16000, count = 1 }, -- dirty turban
+		{ id = 3353, chance = 10000, count = 1 }, -- iron helmet
+		{ id = 3286, chance = 10000, count = 1 }, -- mace
+		{ id = 11492, chance = 10000, count = 1 }, -- rope belt
+		{ id = 3003, chance = 16000, count = 1 }, -- rope
+		{ id = 3274, chance = 14000, count = 1 }, -- axe
+		{ id = 12802, chance = 7000, count = 1 }, -- sugar oat
+		{ id = 3028, chance = 600, count = 1 }, -- small diamond
+		{ id = 3026, chance = 600, count = 1 }, -- white pearl
 	},
-}
-
-local trumnarewards = {
-	minUid = 27900,
-	maxUid = 27949,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 60000, 55 }, -- gold coin
-		{ 3338, 400, 1 }, -- bone sword
-		{ 3441, 400, 1 }, -- bone shield
-		{ 3375, 2000, 1 }, -- soldier helmet
-		{ 3358, 2000, 1 }, -- chain armor
-		{ 3115, 13000, 2 }, -- bone
-		{ 3116, 10000, 1 }, -- big bone
-		{ 5925, 5000, 1 }, -- hardened bone
-		{ 3207, 3000, 1 }, -- skull of Ratha
-		{ 6525, 500, 1 }, -- skeleton decoration
-		{ 3119, 15000, 1 }, -- broken sword
-		{ 953, 5000, 2 }, -- nail
-		{ 3124, 17000, 1 }, -- burnt scroll
+	[openWorldChestScope:Get("Coffin")] = {
+		{ id = 3031, chance = 60000, count = 55 }, -- gold coin
+		{ id = 3338, chance = 400, count = 1 }, -- bone sword
+		{ id = 3441, chance = 400, count = 1 }, -- bone shield
+		{ id = 3375, chance = 2000, count = 1 }, -- soldier helmet
+		{ id = 3358, chance = 2000, count = 1 }, -- chain armor
+		{ id = 3115, chance = 13000, count = 2 }, -- bone
+		{ id = 3116, chance = 10000, count = 1 }, -- big bone
+		{ id = 5925, chance = 5000, count = 1 }, -- hardened bone
+		{ id = 3207, chance = 3000, count = 1 }, -- skull of Ratha
+		{ id = 6525, chance = 500, count = 1 }, -- skeleton decoration
+		{ id = 3119, chance = 15000, count = 1 }, -- broken sword
+		{ id = 953, chance = 5000, count = 2 }, -- nail
+		{ id = 3124, chance = 17000, count = 1 }, -- burnt scroll
 	},
-}
-
-local sarcophagusrewards = {
-	minUid = 27950,
-	maxUid = 27999,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 33000, 100 }, -- gold coin
-		{ 3048, 8000, 20 }, -- might ring
-		{ 3440, 200, 1 }, -- scarab shield
-		{ 3049, 1000, 1 }, -- stealth ring
-		{ 2933, 16000, 1 }, -- small oil lamp
-		{ 9057, 1000, 2 }, -- small topaz
-		{ 3037, 800, 1 }, -- yellow gem
-		{ 2903, 3000, 1 }, -- golden mug
-		{ 3042, 16000, 2 }, -- scarab coin
-		{ 3018, 20000, 1 }, -- scarab amulet
+	[openWorldChestScope:Get("Sarcophagus")] = {
+		{ id = 3031, chance = 33000, count = 100 }, -- gold coin
+		{ id = 3048, chance = 8000, count = 20 }, -- might ring
+		{ id = 3440, chance = 200, count = 1 }, -- scarab shield
+		{ id = 3049, chance = 1000, count = 1 }, -- stealth ring
+		{ id = 2933, chance = 16000, count = 1 }, -- small oil lamp
+		{ id = 9057, chance = 1000, count = 2 }, -- small topaz
+		{ id = 3037, chance = 800, count = 1 }, -- yellow gem
+		{ id = 2903, chance = 3000, count = 1 }, -- golden mug
+		{ id = 3042, chance = 16000, count = 2 }, -- scarab coin
+		{ id = 3018, chance = 20000, count = 1 }, -- scarab amulet
 	},
-}
-
-local toolsrewards = {
-	minUid = 28000,
-	maxUid = 28099,
-	maxItems = 6,
-	itemList = {
-		{ 3003, 6000, 1 }, -- rope
-		{ 3453, 1000, 1 }, -- scythe
-		{ 3293, 1000, 1 }, -- sickle
-		{ 3457, 3000, 1 }, -- shovel
-		{ 3461, 3000, 1 }, -- saw
-		{ 3291, 500, 1 }, -- knife
-		{ 3471, 6000, 1 }, -- cleaver
-		{ 3460, 10000, 1 }, -- hammer
-		{ 3456, 5000, 1 }, -- pick
-		{ 5908, 200, 1 }, -- obsidian knife
-		{ 2920, 25000, 1 }, -- torch
-		{ 5880, 200, 1 }, -- iron ore
-		{ 3446, 5000, 8 }, -- bolt
-		{ 7364, 5000, 10 }, -- sniper arrow
-		{ 7363, 3000, 8 }, -- piercing bolt
-		{ 953, 15000, 2 }, -- nail
+	[openWorldChestScope:Get("Tools")] = {
+		{ id = 3003, chance = 6000, count = 1 }, -- rope
+		{ id = 3453, chance = 1000, count = 1 }, -- scythe
+		{ id = 3293, chance = 1000, count = 1 }, -- sickle
+		{ id = 3457, chance = 3000, count = 1 }, -- shovel
+		{ id = 3461, chance = 3000, count = 1 }, -- saw
+		{ id = 3291, chance = 500, count = 1 }, -- knife
+		{ id = 3471, chance = 6000, count = 1 }, -- cleaver
+		{ id = 3460, chance = 10000, count = 1 }, -- hammer
+		{ id = 3456, chance = 5000, count = 1 }, -- pick
+		{ id = 5908, chance = 200, count = 1 }, -- obsidian knife
+		{ id = 2920, chance = 25000, count = 1 }, -- torch
+		{ id = 5880, chance = 200, count = 1 }, -- iron ore
+		{ id = 3446, chance = 5000, count = 8 }, -- bolt
+		{ id = 7364, chance = 5000, count = 10 }, -- sniper arrow
+		{ id = 7363, chance = 3000, count = 8 }, -- piercing bolt
+		{ id = 953, chance = 15000, count = 2 }, -- nail
 	},
-}
-
-local toolsrewards2 = {
-	minUid = 28300,
-	maxUid = 28399,
-	maxItems = 6,
-	itemList = {
-		{ 3003, 6000, 1 }, -- rope
-		{ 3453, 1000, 1 }, -- scythe
-		{ 3293, 1000, 1 }, -- sickle
-		{ 3457, 3000, 1 }, -- shovel
-		{ 3461, 3000, 1 }, -- saw
-		{ 3291, 500, 1 }, -- knife
-		{ 3471, 6000, 1 }, -- cleaver
-		{ 3460, 10000, 1 }, -- hammer
-		{ 3456, 5000, 1 }, -- pick
-		{ 5908, 200, 1 }, -- obsidian knife
-		{ 2920, 25000, 1 }, -- torch
-		{ 5880, 200, 1 }, -- iron ore
-		{ 3446, 5000, 8 }, -- bolt
-		{ 7364, 5000, 10 }, -- sniper arrow
-		{ 7363, 3000, 8 }, -- piercing bolt
-		{ 953, 15000, 2 }, -- nail
+	[openWorldChestScope:Get("Weapons")] = {
+		{ id = 3264, chance = 12000, count = 1 }, -- sword
+		{ id = 3552, chance = 1000, count = 1 }, -- leather boots
+		{ id = 3295, chance = 200, count = 1 }, -- bright sword
+		{ id = 3415, chance = 200, count = 1 }, -- guardian shield
+		{ id = 3370, chance = 80, count = 1 }, -- knight armor
+		{ id = 3371, chance = 80, count = 1 }, -- knight legs
+		{ id = 3318, chance = 80, count = 1 }, -- knight axe
+		{ id = 3377, chance = 2000, count = 1 }, -- scale armor
+		{ id = 3358, chance = 2000, count = 1 }, -- chain armor
+		{ id = 3375, chance = 2000, count = 1 }, -- soldier helmet
+		{ id = 3286, chance = 12000, count = 1 }, -- mace
+		{ id = 3305, chance = 2000, count = 1 }, -- battle hammer
+		{ id = 3322, chance = 150, count = 1 }, -- dragon hammer
+		{ id = 3271, chance = 2000, count = 1 }, -- spike sword
+		{ id = 3297, chance = 400, count = 1 }, -- serpent sword
+		{ id = 3031, chance = 18000, count = 36 }, -- gold coin
+		{ id = 3357, chance = 400, count = 1 }, -- plate armor
+		{ id = 3557, chance = 400, count = 1 }, -- plate legs
+		{ id = 3558, chance = 500, count = 1 }, -- chain legs
+		{ id = 3091, chance = 2000, count = 1 }, -- sword ring
+		{ id = 3092, chance = 2000, count = 1 }, -- axe ring
+		{ id = 3093, chance = 2000, count = 1 }, -- club ring
+		{ id = 3446, chance = 8000, count = 8 }, -- bolt
+		{ id = 3349, chance = 3000, count = 1 }, -- crossbow
+		{ id = 3350, chance = 2000, count = 1 }, -- bow
+		{ id = 7378, chance = 8000, count = 3 }, -- royal spear
+		{ id = 3084, chance = 2500, count = 250 }, -- protection amulet
+		{ id = 2894, chance = 15000, count = 1 }, -- broken flask
+		{ id = 2996, chance = 14000, count = 1 }, -- broken piggy bank
+		{ id = 3409, chance = 7000, count = 1 }, -- steel shield
+		{ id = 3351, chance = 2500, count = 1 }, -- steel helmet
+		{ id = 3431, chance = 200, count = 1 }, -- viking shield
 	},
-}
-
-local weaponsrewards = {
-	minUid = 28100,
-	maxUid = 28249,
-	maxItems = 6,
-	itemList = {
-		{ 3264, 12000, 1 }, -- sword
-		{ 3552, 1000, 1 }, -- leather boots
-		{ 3295, 200, 1 }, -- bright sword
-		{ 3415, 200, 1 }, -- guardian shield
-		{ 3370, 80, 1 }, -- knight armor
-		{ 3371, 80, 1 }, -- knight legs
-		{ 3318, 80, 1 }, -- knight axe
-		{ 3377, 2000, 1 }, -- scale armor
-		{ 3358, 2000, 1 }, -- chain armor
-		{ 3375, 2000, 1 }, -- soldier helmet
-		{ 3286, 12000, 1 }, -- mace
-		{ 3305, 2000, 1 }, -- battle hammer
-		{ 3322, 150, 1 }, -- dragon hammer
-		{ 3271, 2000, 1 }, -- spike sword
-		{ 3297, 400, 1 }, -- serpent sword
-		{ 3031, 18000, 36 }, -- gold coin
-		{ 3357, 400, 1 }, -- plate armor
-		{ 3557, 400, 1 }, -- plate legs
-		{ 3558, 500, 1 }, -- chain legs
-		{ 3091, 2000, 1 }, -- sword ring
-		{ 3092, 2000, 1 }, -- axe ring
-		{ 3093, 2000, 1 }, -- club ring
-		{ 3446, 8000, 8 }, -- bolt
-		{ 3349, 3000, 1 }, -- crossbow
-		{ 3350, 2000, 1 }, -- bow
-		{ 7378, 8000, 3 }, -- royal spear
-		{ 3084, 2500, 250 }, -- protection amulet
-		{ 2894, 15000, 1 }, -- broken flask
-		{ 2996, 14000, 1 }, -- broken piggy bank
-		{ 3409, 7000, 1 }, -- steel shield
-		{ 3351, 2500, 1 }, -- steel helmet
-		{ 3431, 200, 1 }, -- viking shield
+	[openWorldChestScope:Get("Treasure")] = {
+		{ id = 3031, chance = 85000, count = 100 }, -- gold coin
+		{ id = 3035, chance = 75000, count = 4 }, -- platinum coin
+		{ id = 5945, chance = 1000, count = 1 }, -- coral comb
+		{ id = 9205, chance = 12000, count = 1 }, -- pirate treasure map
+		{ id = 5926, chance = 5000, count = 1 }, -- pirate backpack
+		{ id = 5461, chance = 5000, count = 1 }, -- pirate boots
+		{ id = 6126, chance = 20000, count = 1 }, -- peg leg
+		{ id = 5792, chance = 5000, count = 1 }, -- die
+		{ id = 5552, chance = 17000, count = 1 }, -- rum flask
+		{ id = 12543, chance = 5000, count = 1 }, -- golden hyaena pendant
+		{ id = 3018, chance = 20000, count = 1 }, -- scarab amulet
+		{ id = 3056, chance = 35000, count = 200 }, -- bronze amulet
+		{ id = 3048, chance = 12000, count = 20 }, -- might ring
+		{ id = 3053, chance = 12000, count = 1 }, -- time ring
+		{ id = 16114, chance = 1500, count = 1 }, -- prismatic ring
+		{ id = 281, chance = 12000, count = 1 }, -- giant shimmering pearl
+		{ id = 282, chance = 12000, count = 1 }, -- giant shimmering pearl
+		{ id = 3026, chance = 25000, count = 1 }, -- white pearl
+		{ id = 3028, chance = 25000, count = 1 }, -- small diamond
+		{ id = 3032, chance = 25000, count = 1 }, -- small emerald
+		{ id = 3029, chance = 25000, count = 1 }, -- small sapphire
 	},
-}
-
-local treasurerewards = {
-	minUid = 27001,
-	maxUid = 27002,
-	maxItems = 6,
-	itemList = {
-		{ 3031, 85000, 100 }, -- gold coin
-		{ 3035, 75000, 4 }, -- platinum coin
-		{ 5945, 1000, 1 }, -- coral comb
-		{ 9205, 12000, 1 }, -- pirate treasure map
-		{ 5926, 5000, 1 }, -- pirate backpack
-		{ 5461, 5000, 1 }, -- pirate boots
-		{ 6126, 20000, 1 }, -- peg leg
-		{ 5792, 5000, 1 }, -- die
-		{ 5552, 17000, 1 }, -- rum flask
-		{ 12543, 5000, 1 }, -- golden hyaena pendant
-		{ 3018, 20000, 1 }, -- scarab amulet
-		{ 3056, 35000, 200 }, -- bronze amulet
-		{ 3048, 12000, 20 }, -- might ring
-		{ 3053, 12000, 1 }, -- time ring
-		{ 16114, 1500, 1 }, -- prismatic ring
-		{ 281, 12000, 1 }, -- giant shimmering pearl
-		{ 282, 12000, 1 }, -- giant shimmering pearl
-		{ 3026, 25000, 1 }, -- white pearl
-		{ 3028, 25000, 1 }, -- small diamond
-		{ 3032, 25000, 1 }, -- small emerald
-		{ 3029, 25000, 1 }, -- small sapphire
-	},
-}
-
-local smiecirewards = {
-	--minUid = 28400,
-	--maxUid = 28750, -- Replace with the appropriate maxUid if needed
-	--maxItems = 4,
-	itemList = {
-		{ 3031, 15000, 50 }, -- gold coin
-		{ 2894, 5000, 1 }, -- broken flask
-		{ 3118, 5000, 1 }, -- broken green glass
-		{ 3112, 5000, 1 }, -- rotten meat
-		{ 3104, 5000, 1 }, -- banana skin
-		{ 3113, 5000, 1 }, -- broken pottery
-		{ 3117, 5000, 1 }, -- broken brown glass
-		{ 2892, 5000, 1 }, -- broken bottle
-		{ 3111, 5000, 1 }, -- fishbone
-		{ 3120, 5000, 1 }, -- mouldy cheese
-		{ 8275, 5000, 1 }, -- torn book
-		{ 2875, 5000, 1 }, -- bottle
-		{ 2885, 5000, 1 }, -- brown flask
-		{ 268, 20000, 5 }, -- mana potion
-		{ 266, 20000, 5 }, -- health potion
-		{ 3124, 5000, 1 }, -- burnt scroll
-		{ 2877, 5000, 1 }, -- green flask
-		{ 285, 5000, 1 }, -- empty potion flask
-		{ 19148, 5000, 1 }, -- torn magic cape
-		{ 3119, 5000, 1 }, -- broken sword
-		{ 3123, 5000, 1 }, -- worn leather boots
-		{ 2876, 5000, 1 }, -- vase
-		{ 283, 5000, 1 }, -- empty potion flask
-		{ 3577, 10000, 4 }, -- meat
-		{ 3578, 10000, 4 }, -- fish
-		{ 3723, 10000, 4 }, -- white mushroom
-		{ 3582, 10000, 4 }, -- ham
-		{ 3583, 10000, 4 }, -- dragon ham
-		{ 3725, 10000, 4 }, -- brown mushroom
-		{ 2880, 5000, 1 }, -- mug
-		{ 3466, 5000, 1 }, -- pan
-		{ 3467, 5000, 1 }, -- fork
-		{ 3473, 5000, 1 }, -- rolling pin
-		{ 2905, 5000, 1 }, -- plate
-	},
-}
-
-local rewards = {
-	--trash
-	[2014] = {
+	[openWorldChestScope:Get("Trash")] = {
 		{ id = 3031, chance = 15000, count = 50 }, -- gold coin
 		{ id = 2894, chance = 5000, count = 1 }, -- broken flask
 		{ id = 3118, chance = 5000, count = 1 }, -- broken green glass
@@ -494,28 +346,25 @@ local rewards = {
 	},
 }
 
-local function worldChestIndetifier(worldChest)
-	return worldChest:getPosition():ToString()
+local function worldChestIdentifier(chest)
+	return openWorldChestScope:Get(chest:getPosition():ToString())
 end
 
-local function wasGeneratedRecently(worldChest)
-	return (worldchests[worldChestIndetifier(worldChest)] or 0) > os.time()
+local function wasGeneratedRecently(chest)
+	local cooldownExpiry = openWorldChestCooldownExpiry[worldChestIdentifier(chest)] or 0
+	return cooldownExpiry > os.time()
 end
 
-local function setGeneratedRecently(worldChest)
-	worldchests[worldChestIndetifier(worldChest)] = os.time() + interval
+local function setGeneratedRecently(chest)
+	openWorldChestCooldownExpiry[worldChestIdentifier(chest)] = os.time() + interval
 end
 
-local function worldChestRewardType(worldChest)
-	return worldChest:getActionId()
-end
-
-local function generateChestRewards(worldChest)
+local function generateChestRewards(chest)
 	local selectedItems = {}
-	local maxSelectedItems = worldChest:getCapacity()
+	local maxSelectedItems = chest:getCapacity()
 	local selectThisManyItems = math.random(1, math.ceil(maxSelectedItems / 2))
 
-	local possibleRewards = rewards[worldChestRewardType(worldChest)]
+	local possibleRewards = openWorldChestRewardCategories[chest:getKey()]
 	for _, rewardItem in pairs(possibleRewards) do
 		local roll = math.random(1, 10000)
 		if roll < rewardItem.chance then
@@ -528,7 +377,7 @@ local function generateChestRewards(worldChest)
 	end
 
 	for _, rewardItem in pairs(selectedItems) do
-		worldChest:addItem(rewardItem.id, rewardItem.count)
+		chest:addItem(rewardItem.id, rewardItem.count)
 	end
 end
 
@@ -543,5 +392,7 @@ function rewardChestClick.onUse(player, worldchest, fromPosition, target, toPosi
 	return false
 end
 
-rewardChestClick:aid(2014)
+for key in pairs(openWorldChestRewardCategories) do
+	rewardChestClick:key(key)
+end
 rewardChestClick:register()

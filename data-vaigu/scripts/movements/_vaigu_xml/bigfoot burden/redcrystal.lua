@@ -17,8 +17,8 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return
 	end
 
-	if player:getStorageValue(Storage.BigfootBurden.WarzoneStatus) >= teleportCrystal.storageValue then
-		if player:getStorageValue(teleportCrystal.access) == 1 then
+	if player:getStorageValueByKey(Storage.BigfootBurden.WarzoneStatus) >= teleportCrystal.storageValue then
+		if player:getStorageValueByKey(teleportCrystal.access) == 1 then
 			player:teleportTo(teleportCrystal.position)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		else

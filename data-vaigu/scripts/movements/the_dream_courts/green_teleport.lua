@@ -15,7 +15,7 @@ function greenteleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TheDreamCourts.RosebushPlant) == 1 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.RosebushPlant) == 1 then
 		player:teleportTo(targetPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
@@ -28,7 +28,7 @@ end
 greenteleport:type("stepin")
 
 for index, value in pairs(setting) do
-	greenteleport:aid(index)
+	greenteleport:key(index)
 end
 
 greenteleport:register()

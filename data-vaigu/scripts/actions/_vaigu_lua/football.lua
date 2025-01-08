@@ -41,9 +41,9 @@ local function timeReminder10small(cid)
 end
 
 local function clearAreaBig()
-	if Game.getStorageValue(GlobalStorage.Football.MatchGoing) == 1 then
-		local resultLeft = string.format(Game.getStorageValue(GlobalStorage.Football.LeftScore))
-		local resultRight = string.format(Game.getStorageValue(GlobalStorage.Football.RightScore))
+	if Game.getStorageValueByKey(Storage.Football.MatchGoing) == 1 then
+		local resultLeft = string.format(Game.getStorageValueByKey(Storage.Football.LeftScore))
+		local resultRight = string.format(Game.getStorageValueByKey(Storage.Football.RightScore))
 		local upConer = { x = 6269, y = 1498, z = 7 } -- upLeftCorner {x = 5491, y = 1432, z = 14}
 		local downConer = { x = 6303, y = 1516, z = 7 } -- downRightCorner {x = 5517, y = 1457, z = 14}
 		local centerPos = Position(6286, 1507, 7)
@@ -73,14 +73,14 @@ local function clearAreaBig()
 				end
 			end
 		end
-		Game.setStorageValue(GlobalStorage.Football.MatchGoing, 0)
+		Game.setStorageValueByKey(Storage.Football.MatchGoing, 0)
 	end
 end
 
 local function clearAreaSmall()
-	if Game.getStorageValue(GlobalStorage.Football.MatchGoing) == 1 then
-		local resultLeft = string.format(Game.getStorageValue(GlobalStorage.Football.LeftScore))
-		local resultRight = string.format(Game.getStorageValue(GlobalStorage.Football.RightScore))
+	if Game.getStorageValueByKey(Storage.Football.MatchGoing) == 1 then
+		local resultLeft = string.format(Game.getStorageValueByKey(Storage.Football.LeftScore))
+		local resultRight = string.format(Game.getStorageValueByKey(Storage.Football.RightScore))
 		local upConer = { x = 6279, y = 1502, z = 8 } -- upLeftCorner {x = 5491, y = 1432, z = 14}
 		local downConer = { x = 6293, y = 1512, z = 8 } -- downRightCorner {x = 5517, y = 1457, z = 14}
 		local centerPos = Position(6286, 1507, 8)
@@ -110,7 +110,7 @@ local function clearAreaSmall()
 				end
 			end
 		end
-		Game.setStorageValue(GlobalStorage.Football.MatchGoing, 0)
+		Game.setStorageValueByKey(Storage.Football.MatchGoing, 0)
 	end
 end
 
@@ -181,7 +181,7 @@ function footballLever.onUse(player, item, fromPosition, itemEx, toPosition)
 			if (player:getPosition() == pushPos1) or (player:getPosition() == pushPos2) then
 				local storeLeft, leftTile = {}
 				local storeRight, rightTile = {}
-				if Game.getStorageValue(GlobalStorage.Football.Field) == 1 then -- big field
+				if Game.getStorageValueByKey(Storage.Football.Field) == 1 then -- big field
 					print("big start")
 					for i = 1, #configBig.leftPositions do
 						leftTile = Tile(configBig.leftPositions[i]):getTopCreature()
@@ -202,7 +202,7 @@ function footballLever.onUse(player, item, fromPosition, itemEx, toPosition)
 						return true
 					end
 
-					if Game.getStorageValue(GlobalStorage.Football.MatchGoing) < 1 then
+					if Game.getStorageValueByKey(Storage.Football.MatchGoing) < 1 then
 						local teamLeft
 						local teamRight
 
@@ -220,13 +220,13 @@ function footballLever.onUse(player, item, fromPosition, itemEx, toPosition)
 
 						Position(configBig.leftNewPos):sendMagicEffect(11)
 						Position(configBig.rightNewPos):sendMagicEffect(11)
-						Game.setStorageValue(GlobalStorage.Football.MatchGoing, 1)
-						Game.setStorageValue(GlobalStorage.Football.LeftScore, 0)
-						Game.setStorageValue(GlobalStorage.Football.RightScore, 0)
-						Game.setStorageValue(GlobalStorage.Football.GoalTimeout, 0)
-						addEvent(clearAreaBig, Game.getStorageValue(GlobalStorage.Football.Timer) * 60 * 1000)
-						addEvent(timeReminder30big, (Game.getStorageValue(GlobalStorage.Football.Timer) * 60 * 1000) - (30 * 1000), player:getId())
-						addEvent(timeReminder10big, (Game.getStorageValue(GlobalStorage.Football.Timer) * 60 * 1000) - (10 * 1000), player:getId())
+						Game.setStorageValueByKey(Storage.Football.MatchGoing, 1)
+						Game.setStorageValueByKey(Storage.Football.LeftScore, 0)
+						Game.setStorageValueByKey(Storage.Football.RightScore, 0)
+						Game.setStorageValueByKey(Storage.Football.GoalTimeout, 0)
+						addEvent(clearAreaBig, Game.getStorageValueByKey(Storage.Football.Timer) * 60 * 1000)
+						addEvent(timeReminder30big, (Game.getStorageValueByKey(Storage.Football.Timer) * 60 * 1000) - (30 * 1000), player:getId())
+						addEvent(timeReminder10big, (Game.getStorageValueByKey(Storage.Football.Timer) * 60 * 1000) - (10 * 1000), player:getId())
 					else
 						player:sendTextMessage(19, "Match is already going.")
 					end
@@ -251,7 +251,7 @@ function footballLever.onUse(player, item, fromPosition, itemEx, toPosition)
 						return true
 					end
 
-					if Game.getStorageValue(GlobalStorage.Football.MatchGoing) < 1 then
+					if Game.getStorageValueByKey(Storage.Football.MatchGoing) < 1 then
 						local teamLeft
 						local teamRight
 
@@ -269,13 +269,13 @@ function footballLever.onUse(player, item, fromPosition, itemEx, toPosition)
 
 						Position(configSmall.leftNewPos):sendMagicEffect(11)
 						Position(configSmall.rightNewPos):sendMagicEffect(11)
-						Game.setStorageValue(GlobalStorage.Football.MatchGoing, 1)
-						Game.setStorageValue(GlobalStorage.Football.LeftScore, 0)
-						Game.setStorageValue(GlobalStorage.Football.RightScore, 0)
-						Game.setStorageValue(GlobalStorage.Football.GoalTimeout, 0)
-						addEvent(clearAreaSmall, Game.getStorageValue(GlobalStorage.Football.Timer) * 60 * 1000)
-						addEvent(timeReminder30small, (Game.getStorageValue(GlobalStorage.Football.Timer) * 60 * 1000) - (30 * 1000), player:getId())
-						addEvent(timeReminder10small, (Game.getStorageValue(GlobalStorage.Football.Timer) * 60 * 1000) - (10 * 1000), player:getId())
+						Game.setStorageValueByKey(Storage.Football.MatchGoing, 1)
+						Game.setStorageValueByKey(Storage.Football.LeftScore, 0)
+						Game.setStorageValueByKey(Storage.Football.RightScore, 0)
+						Game.setStorageValueByKey(Storage.Football.GoalTimeout, 0)
+						addEvent(clearAreaSmall, Game.getStorageValueByKey(Storage.Football.Timer) * 60 * 1000)
+						addEvent(timeReminder30small, (Game.getStorageValueByKey(Storage.Football.Timer) * 60 * 1000) - (30 * 1000), player:getId())
+						addEvent(timeReminder10small, (Game.getStorageValueByKey(Storage.Football.Timer) * 60 * 1000) - (10 * 1000), player:getId())
 					else
 						player:sendTextMessage(19, "Match is already going.")
 					end
@@ -300,12 +300,12 @@ function footballTime.onUse(player, item, frompos, item2, topos)
 		doTransformItem(item.uid, item.itemid - 1)
 	end
 
-	if Game.getStorageValue(GlobalStorage.Football.Timer) < 10 then
-		Game.setStorageValue(GlobalStorage.Football.Timer, Game.getStorageValue(GlobalStorage.Football.Timer) + 1)
-		local resultTime = string.format(Game.getStorageValue(GlobalStorage.Football.Timer))
+	if Game.getStorageValueByKey(Storage.Football.Timer) < 10 then
+		Game.setStorageValueByKey(Storage.Football.Timer, Game.getStorageValueByKey(Storage.Football.Timer) + 1)
+		local resultTime = string.format(Game.getStorageValueByKey(Storage.Football.Timer))
 		player:say("Czas meczu zmieniony na " .. resultTime .. " min.", TALKTYPE_MONSTER_SAY, false, nil, topos)
 	else
-		Game.setStorageValue(GlobalStorage.Football.Timer, 1)
+		Game.setStorageValueByKey(Storage.Football.Timer, 1)
 		player:say("Czas meczu zmieniony na 1 min.", TALKTYPE_MONSTER_SAY, false, nil, topos)
 	end
 	return true
@@ -323,11 +323,11 @@ function footballTime.onUse(player, item, frompos, item2, topos)
 		doTransformItem(item.uid, item.itemid - 1)
 	end
 
-	if Game.getStorageValue(GlobalStorage.Football.Field) == 0 then
-		Game.setStorageValue(GlobalStorage.Football.Field, 1)
+	if Game.getStorageValueByKey(Storage.Football.Field) == 0 then
+		Game.setStorageValueByKey(Storage.Football.Field, 1)
 		player:say("Ustawiono duze boisko.", TALKTYPE_MONSTER_SAY, false, nil, topos)
 	else
-		Game.setStorageValue(GlobalStorage.Football.Field, 0)
+		Game.setStorageValueByKey(Storage.Football.Field, 0)
 		player:say("Ustawiono male boisko.", TALKTYPE_MONSTER_SAY, false, nil, topos)
 	end
 	return true

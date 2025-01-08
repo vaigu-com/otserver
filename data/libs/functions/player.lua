@@ -113,7 +113,7 @@ function Player.getCookiesDelivered(self)
 			Storage.WhatAFoolish.CookieDelivery.Hjaern,
 		}, 0
 	for i = 1, #storage do
-		if self:getStorageValue(storage[i]) == 1 then
+		if self:getStorageValueByKey(storage[i]) == 1 then
 			amount = amount + 1
 		end
 	end
@@ -131,7 +131,7 @@ end
 
 --Vaigu custom
 function Player.checkGnomeRank(self)
-	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
+	local questProgress = self:getStorageValueByKey(Storage.BigfootBurden.QuestLine)
 	if questProgress >= 30 then
 		return
 	end
@@ -141,7 +141,7 @@ function Player.checkGnomeRank(self)
 	self:addAchievement("Gnome Friend")
 	self:addAchievement("Gnomelike")
 	self:addAchievement("Honorary Gnome")
-	self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
+	self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 30)
 	return true
 end
 
@@ -151,24 +151,24 @@ function Player.checkGnomeRank(self)
 		return true
 	end
 
-	local points = self:getStorageValue(Storage.BigfootBurden.Rank)
-	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
+	local points = self:getStorageValueByKey(Storage.BigfootBurden.Rank)
+	local questProgress = self:getStorageValueByKey(Storage.BigfootBurden.QuestLine)
 	if points >= 30 and points < 120 then
 		if questProgress <= 25 then
-			self:setStorageValue(Storage.BigfootBurden.QuestLine, 26)
+			self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 26)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 		end
 	elseif points >= 120 and points < 480 then
 		if questProgress <= 26 then
-			self:setStorageValue(Storage.BigfootBurden.QuestLine, 27)
+			self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 27)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
 		end
 	elseif points >= 480 and points < 1440 then
 		if questProgress <= 27 then
-			self:setStorageValue(Storage.BigfootBurden.QuestLine, 28)
+			self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 28)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
@@ -176,7 +176,7 @@ function Player.checkGnomeRank(self)
 		end
 	elseif points >= 1440 then
 		if questProgress <= 29 then
-			self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
+			self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 30)
 			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			self:addAchievement("Gnome Little Helper")
 			self:addAchievement("Gnome Friend")
@@ -189,21 +189,21 @@ end
 ]]
 
 function Player.addFamePoint(self)
-	local points = self:getStorageValue(SPIKE_FAME_POINTS)
+	local points = self:getStorageValueByKey(SPIKE_FAME_POINTS)
 	local current = math.max(0, points)
-	self:setStorageValue(SPIKE_FAME_POINTS, current + 1)
+	self:setStorageValueByKey(SPIKE_FAME_POINTS, current + 1)
 	self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have received a fame point.")
 end
 
 function Player.getFamePoints(self)
-	local points = self:getStorageValue(SPIKE_FAME_POINTS)
+	local points = self:getStorageValueByKey(SPIKE_FAME_POINTS)
 	return math.max(0, points)
 end
 
 function Player.removeFamePoints(self, amount)
-	local points = self:getStorageValue(SPIKE_FAME_POINTS)
+	local points = self:getStorageValueByKey(SPIKE_FAME_POINTS)
 	local current = math.max(0, points)
-	self:setStorageValue(SPIKE_FAME_POINTS, current - amount)
+	self:setStorageValueByKey(SPIKE_FAME_POINTS, current - amount)
 end
 
 function Player.depositMoney(self, amount)
@@ -328,7 +328,7 @@ function Player.getAccountStorage(self, key, forceUpdate)
 end
 
 function Player:getUpdatedAccountStorage(bucket)
-	local fromMemory = self:getStorageValue(bucket) > 0 and self:getStorageValue(bucket) or 0
+	local fromMemory = self:getStorageValueByKey(bucket) > 0 and self:getStorageValueByKey(bucket) or 0
 	local fromDB = self:getAccountStorage(bucket, true) and self:getAccountStorage(bucket, true) or 0
 	return bit.bor(fromDB, fromMemory)
 end
@@ -453,7 +453,7 @@ function Player:createFamiliar(familiarName, timeLeft)
 	self:kv():set("familiar-summon-time", os.time() + timeLeft)
 	addEvent(RemoveFamiliar, timeLeft * 1000, myFamiliar:getId(), self:getId())
 	for sendMessage = 1, #FAMILIAR_TIMER do
-		self:setStorageValue(
+		self:setStorageValueByKey(
 			FAMILIAR_TIMER[sendMessage].storage,
 			addEvent(
 				-- Calling function
@@ -606,52 +606,6 @@ function Player:addItemStoreInbox(itemId, amount, movable, setOwner)
 	return self:addItemStoreInboxEx(item, movable, setOwner)
 end
 
----@param monster Monster
----@return {factor: number, msgSuffix: string}
-function Player:calculateLootFactor(monster)
-	if self:getStamina() <= 840 then
-		return {
-			factor = 0.0,
-			msgSuffix = " (due to low stamina)",
-		}
-	end
-
-	local participants = { self }
-	local factor = 1
-	if configManager.getBoolean(configKeys.PARTY_SHARE_LOOT_BOOSTS) then
-		local party = self:getParty()
-		if party and party:isSharedExperienceEnabled() then
-			participants = party:getMembers()
-			table.insert(participants, party:getLeader())
-		end
-	end
-
-	local vipActivators = 0
-	local vipBoost = 0
-	local suffix = ""
-
-	for _, participant in ipairs(participants) do
-		if participant:isVip() then
-			local boost = configManager.getNumber(configKeys.VIP_BONUS_LOOT)
-			boost = ((boost > 100 and 100) or boost) / 100
-			vipBoost = vipBoost + boost
-			vipActivators = vipActivators + 1
-		end
-	end
-	if vipActivators > 0 then
-		vipBoost = vipBoost / (vipActivators ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR))
-		factor = factor * (1 + vipBoost)
-	end
-	if vipBoost > 0 then
-		suffix = suffix .. (" (vip bonus: %d%%)"):format(math.floor(vipBoost * 100 + 0.5))
-	end
-
-	return {
-		factor = factor,
-		msgSuffix = suffix,
-	}
-end
-
 function Player:setExhaustion(scope, seconds)
 	return self:kv():scoped("exhaustion"):set(scope, os.time() + seconds)
 end
@@ -758,7 +712,7 @@ function Player:setEncounterLockout(encounter, time)
 		return false
 	end
 	local result = self:kv():set(scope, time)
-	--ToDo: maybe not send?
+	--3bf: maybe not send?
 	self:sendBosstiaryCooldownTimer()
 	return result
 end
@@ -769,27 +723,27 @@ function Player:canFightBoss(bossNameOrId)
 end
 
 function Player.getCollectionTokens(self)
-	return math.max(self:getStorageValue(DailyReward.storages.collectionTokens), 0)
+	return math.max(self:getStorageValueByKey(DailyReward.storages.collectionTokens), 0)
 end
 
 function Player.getJokerTokens(self)
-	return math.max(self:getStorageValue(DailyReward.storages.jokerTokens), 0)
+	return math.max(self:getStorageValueByKey(DailyReward.storages.jokerTokens), 0)
 end
 
 function Player.setJokerTokens(self, value)
-	self:setStorageValue(DailyReward.storages.jokerTokens, value)
+	self:setStorageValueByKey(DailyReward.storages.jokerTokens, value)
 end
 
 function Player.setCollectionTokens(self, value)
-	self:setStorageValue(DailyReward.storages.collectionTokens, value)
+	self:setStorageValueByKey(DailyReward.storages.collectionTokens, value)
 end
 
 function Player.getDayStreak(self)
-	return math.max(self:getStorageValue(DailyReward.storages.currentDayStreak), 0)
+	return math.max(self:getStorageValueByKey(DailyReward.storages.currentDayStreak), 0)
 end
 
 function Player.setDayStreak(self, value)
-	self:setStorageValue(DailyReward.storages.currentDayStreak, value)
+	self:setStorageValueByKey(DailyReward.storages.currentDayStreak, value)
 end
 
 function Player.getStreakLevel(self)
@@ -801,11 +755,11 @@ function Player.setStreakLevel(self, value)
 end
 
 function Player.setNextRewardTime(self, value)
-	self:setStorageValue(DailyReward.storages.nextRewardTime, value)
+	self:setStorageValueByKey(DailyReward.storages.nextRewardTime, value)
 end
 
 function Player.getNextRewardTime(self)
-	return math.max(self:getStorageValue(DailyReward.storages.nextRewardTime), 0)
+	return math.max(self:getStorageValueByKey(DailyReward.storages.nextRewardTime), 0)
 end
 
 function Player.isRestingAreaBonusActive(self)

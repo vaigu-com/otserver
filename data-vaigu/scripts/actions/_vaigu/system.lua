@@ -6,7 +6,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if player:getStorageValue(storage) > 0 then
+	if player:getStorageValueByKey(storage) > 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nic tu dla ciebie nie ma.")
 		return true
 	end
@@ -75,7 +75,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(anni, storage) then
 		for i = 1, #anni do
-			player:setStorageValue(anni[i], 1)
+			player:setStorageValueByKey(anni[i], 1)
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Otrzymujesz dodatek do Demon Outfit!")
 		player:addOutfitAddon(542, 1)
@@ -86,7 +86,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(arena1, storage) then
 		for i = 1, #arena1 do
-			player:setStorageValue(arena1[i], 1)
+			player:setStorageValueByKey(arena1[i], 1)
 		end
 	end
 
@@ -94,7 +94,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(arena2, storage) then
 		for i = 1, #arena2 do
-			player:setStorageValue(arena2[i], 1)
+			player:setStorageValueByKey(arena2[i], 1)
 		end
 	end
 
@@ -102,7 +102,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(arena3, storage) then
 		for i = 1, #arena3 do
-			player:setStorageValue(arena3[i], 1)
+			player:setStorageValueByKey(arena3[i], 1)
 		end
 	end
 
@@ -110,7 +110,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(poi, storage) then
 		for i = 1, #poi do
-			player:setStorageValue(poi[i], 1)
+			player:setStorageValueByKey(poi[i], 1)
 		end
 	end
 
@@ -118,7 +118,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(dhq, storage) then
 		for i = 1, #dhq do
-			player:setStorageValue(dhq[i], 1)
+			player:setStorageValueByKey(dhq[i], 1)
 		end
 	end
 
@@ -126,7 +126,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(banshee, storage) then
 		for i = 1, #banshee do
-			player:setStorageValue(banshee[i], 1)
+			player:setStorageValueByKey(banshee[i], 1)
 		end
 	end
 
@@ -134,7 +134,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(dwarven, storage) then
 		for i = 1, #dwarven do
-			player:setStorageValue(dwarven[i], 1)
+			player:setStorageValueByKey(dwarven[i], 1)
 		end
 	end
 
@@ -142,7 +142,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(warlock, storage) then
 		for i = 1, #warlock do
-			player:setStorageValue(warlock[i], 1)
+			player:setStorageValueByKey(warlock[i], 1)
 		end
 	end
 
@@ -150,7 +150,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(blegs, storage) then
 		for i = 1, #blegs do
-			player:setStorageValue(blegs[i], 1)
+			player:setStorageValueByKey(blegs[i], 1)
 		end
 	end
 
@@ -158,11 +158,11 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	if isInArray(orcFortress, storage) then
 		for i = 1, #orcFortress do
-			player:setStorageValue(orcFortress[i], 1)
+			player:setStorageValueByKey(orcFortress[i], 1)
 		end
 	end
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, (player:getSex() == PLAYERSEX_MALE and "Znalales " or "Znalazlas ") .. result .. ".")
-	player:setStorageValue(storage, 1)
+	player:setStorageValueByKey(storage, 1)
 	return true
 end
 

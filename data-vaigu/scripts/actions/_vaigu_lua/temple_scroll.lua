@@ -6,7 +6,7 @@ function templeScroll.onUse(player, item, fromPosition, target, toPosition, isHo
 		return true
 	end
 
-	if player:getStorageValue(Storage.templeScroll) >= os.time() then
+	if player:getStorageValueByKey(Storage.templeScroll) >= os.time() then
 		player:sendCancelMessage("You already used temple scroll in last 5 minutes.")
 		return true
 	end
@@ -22,7 +22,7 @@ function templeScroll.onUse(player, item, fromPosition, target, toPosition, isHo
 	local templePos = town:getTemplePosition()
 	player:teleportTo(templePos)
 	templePos:sendMagicEffect(CONST_ME_TELEPORT)
-	player:setStorageValue(Storage.templeScroll, os.time() + 5 * 60)
+	player:setStorageValueByKey(Storage.templeScroll, os.time() + 5 * 60)
 end
 
 templeScroll:id(25718)

@@ -75,7 +75,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	if not config.scriptDebug and player:getStorageValue(reward.storage) <= 0 then
+	if not config.scriptDebug and player:getStorageValueByKey(reward.storage) <= 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, langConfig["NOREWARD"])
 		return true
 	end
@@ -110,8 +110,8 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 	end
 
-	player:setStorageValue(reward.storage, (player:getStorageValue(reward.storage) - 1))
-	if player:getStorageValue(reward.storage) >= 1 then
+	player:setStorageValueByKey(reward.storage, (player:getStorageValueByKey(reward.storage) - 1))
+	if player:getStorageValueByKey(reward.storage) >= 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, langConfig["NEXTREW"])
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, langConfig["TAKEN"])

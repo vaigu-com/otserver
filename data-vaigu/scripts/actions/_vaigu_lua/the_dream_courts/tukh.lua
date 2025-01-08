@@ -18,13 +18,13 @@ function goldenidol.onUse(player, item, fromPosition, target, toPosition, isHotk
 		return true
 	end
 
-	if player:getStorageValue(targetItem.storage) <= 0 then
+	if player:getStorageValueByKey(targetItem.storage) <= 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Zaladowales Golden idol of Tukh.")
 		toPosition:sendMagicEffect(CONST_ME_THUNDER)
 		item:remove()
 		Game.createItem(29300, 1, toPosition)
 		addEvent(revertIdol, 1 * 60 * 1000, toPosition) --2min
-		player:setStorageValue(targetItem.storage, 1)
+		player:setStorageValueByKey(targetItem.storage, 1)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Juz to zrobilem..")
 	end

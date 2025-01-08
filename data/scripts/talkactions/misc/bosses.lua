@@ -9,7 +9,7 @@ function talkaction.onSay(player, words, param)
 		[5] = "Malofur Mangrinder",
 	}
 
-	local dreamboss = bossNames[Game.getStorageValue(GlobalStorage.DreamBoss)] or "Unknown"
+	local dreamboss = bossNames[Game.getStorageValueByKey(Storage.DreamBoss)] or "Unknown"
 
 	local deeplingNames = {
 		[1] = "Tanjis",
@@ -17,7 +17,7 @@ function talkaction.onSay(player, words, param)
 		[3] = "Obujos",
 	}
 
-	local deeplingboss = deeplingNames[Game.getStorageValue(GlobalStorage.DeeplingBoss)] or "Unknown"
+	local deeplingboss = deeplingNames[Game.getStorageValueByKey(Storage.DeeplingBoss)] or "Unknown"
 
 	local werebossNames = {
 		[1] = "Black Vixen",
@@ -27,7 +27,7 @@ function talkaction.onSay(player, words, param)
 		[5] = "Shadowpelt",
 	}
 
-	local wereboss = werebossNames[Game.getStorageValue(GlobalStorage.WereBoss)] or "Unknown"
+	local wereboss = werebossNames[Game.getStorageValueByKey(Storage.WereBoss)] or "Unknown"
 
 	player:popupFYI("Daily bosses available:\n" .. "\nDeepling: " .. deeplingboss .. "\nWerecreature: " .. wereboss .. "\nDream Court: " .. dreamboss)
 	return false

@@ -33,3 +33,4 @@ end
 
 stair:uid(25010)
 stair:register()
+

@@ -3,11 +3,12 @@ local quest = Quest(LOCALIZERS.TheApeCity)
 quest
 	:Storage(function() end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "The Dream Courts",
 			missions = {
-				[12200] = {
+				{
 					name = "The Dream Courts",
+					storage = 12200,
 					description = "Find and talk to Vanys in order to help him. He stays in Summer Court in the huge forest located far south from Mirko Town.",
 					endValue = 5,
 					states = {
@@ -17,8 +18,9 @@ quest
 						[4] = "Vanys gifted you with a traditional dream warrior outfit.",
 					},
 				},
-				[12232] = {
+				{
 					name = "Helping of Stricken Soul",
+					storage = 12232,
 					description = "Restore connection and open this nexus to access the buried cathedral. You need to find a way to pass the entrance in the cellar.",
 					endValue = 4,
 					states = {
@@ -27,17 +29,19 @@ quest
 						[3] = "You successfully defeated the Faceless Bane.",
 					},
 				},
-				[12209] = {
+				{
 					name = "Empowered Wardstones",
+					storage = 12209,
 					endValue = 8,
 					description = "Empowered Wardstones",
 				},
-				[12214] = {
+				{
 					name = "Documents Read",
+					storage = 12214,
 					endValue = 4,
 					description = "Documents Read",
 				},
 			},
-		}
+		})
 	end)
 	:Register()

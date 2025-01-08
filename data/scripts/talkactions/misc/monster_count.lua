@@ -374,41 +374,24 @@ local MonsterNames = {
 
 local talk = TalkAction("/killed")
 
-function talk.onSay(player, words, param)
+function talk.onSay(player, words, raceidORname)
 	if not player:getGroup():getAccess() or player:getAccountType() < ACCOUNT_TYPE_GOD then
 		return true
 	end
 
-	if param == "" then
+	if raceidORname == "" then
 		player:sendCancelMessage("Command param required.")
 		return false
 	end
 
-	local raceId = ""
-	raceId = MonsterNames[param]
-	if raceId == nil or raceId == "" then
-		player:sendCancelMessage("No info available.")
+	local monsterType = MonsterType(raceidORname)
+	if not monsterType then
+		player:sendCancelMessage("Not an existing monster's raceid/name.")
 		return false
 	end
 
-	local storedRaceId = (61305000 + raceId)
-	local entries = {}
-	local addedAmount = 0
-	local resultId = db.storeQuery("SELECT `value` FROM `player_storage` WHERE `key` = " .. storedRaceId .. " ORDER BY `value` ASC")
-	if resultId ~= false then
-		repeat
-			local entry = {
-				amount = result.getNumber(resultId, "value"),
-			}
-			table.insert(entries, entry)
-		until not result.next(resultId)
-		result.free(resultId)
-	end
-
-	for k, entry in ipairs(entries) do
-		addedAmount = addedAmount + entry.amount
-	end
-	player:sendTextMessage(MESSAGE_INFO_DESCR, "Amount of killed " .. param .. "s: " .. addedAmount)
+	local killedCount = player:kv():scoped(STORAGEVALUE_BESTIARYKILLCOUNT):get(monsterType.raceId)
+	player:sendTextMessage(MESSAGE_INFO_DESCR, T("Amount of killed :raceidORname:s: :killedCount:", { raceidORname = raceidORname, killedCount = killedCount }))
 	return false
 end
 

@@ -3,19 +3,17 @@ local quest = Quest(LOCALIZERS.AssassinsCreedSquurvaali)
 quest
 	:Storage(function()
 		Storage.AssassinsCreedSquurvaali = {
-			Mission01 = NextStorage(),
-			Mission01 = NextStorage(),
-			Mission02 = NextStorage(),
-			Mission03 = NextStorage(),
-			Mission04 = NextStorage(),
-			GhostChair = NextStorage(),
-			HeavenPath = NextStorage(),
-			HeavenLastTile = NextStorage(),
-			Rewards = { CartSilicon = NextStorage() },
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			Mission04 = {},
+			GhostChair = {},
+			HeavenPath = {},
+			Rewards = { CartSilicon = {} },
 			KeyItems = {
-				Palette = NextStorage(),
-				Flare = NextStorage(),
-				Silicon = NextStorage(),
+				Palette = {},
+				Flare = {},
+				Silicon = {},
 			},
 		}
 		QuestState.AssassinsCreedSquurvaali = {
@@ -47,11 +45,12 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Assassins's Creed: Squurva'ali",
 			missions = {
-				[Storage.AssassinsCreedSquurvaali.Mission01] = {
+				{
 					name = "The First Step to Heaven",
+					storage = Storage.AssassinsCreedSquurvaali.Mission01,
 					states = {
 						[QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek] = "You agreed to help the ghost of the princess. Maybe some clergyman in town can help you.",
 						[QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak] = "Father Natanek told you where to find Oldrak. Maybe he can help you.",
@@ -59,8 +58,9 @@ quest
 						[MISSION_FINISHED] = "You consulted with the ghost of the princess, who suggested you find the nomads' camp.",
 					},
 				},
-				[Storage.AssassinsCreedSquurvaali.Mission02] = {
+				{
 					name = "The Tailor's Touch",
+					storage = Storage.AssassinsCreedSquurvaali.Mission02,
 					states = {
 						[QuestState.AssassinsCreedSquurvaali.Mission02.FindMareesha] = "The ghost of the princess suggested asking the nomads for help - after all, the Aladdin stereotype didn't come out of nowhere.",
 						[QuestState.AssassinsCreedSquurvaali.Mission02.FindArtistPalette] = "The nomad craftsman agreed to make a carpet for you. You will need 5 spider silk, a red pillow, and the artist palette that GM Tomek stole.",
@@ -69,8 +69,9 @@ quest
 						[MISSION_FINISHED] = "You've crafted the carpet with Mareesha. Now return to the ghost and make further plans.",
 					},
 				},
-				[Storage.AssassinsCreedSquurvaali.Mission03] = {
+				{
 					name = "Distant Calling",
+					storage = Storage.AssassinsCreedSquurvaali.Mission03,
 					states = {
 						[QuestState.AssassinsCreedSquurvaali.Mission03.ReportToGhasstlyPrincess] = "You acquired a carpet that doesn't have any special abilities. You can return to the Ghasstly Princess.",
 						[QuestState.AssassinsCreedSquurvaali.Mission03.FindVislavShivka] = "Ghasstly Princess insisted that you go to Vislav Shivka for help.",
@@ -81,8 +82,9 @@ quest
 						[MISSION_FINISHED] = "You delivered the materials needed for 'enchanting' the carpet to Djinn. From now on, you will be able to fly from the highest mountain in the Caribbean.",
 					},
 				},
-				[Storage.AssassinsCreedSquurvaali.Mission04] = {
+				{
 					name = "The Final Stretch",
+					storage = Storage.AssassinsCreedSquurvaali.Mission04,
 					states = {
 						[QuestState.AssassinsCreedSquurvaali.Mission04.GoToHighestMountain] = "Go to the top of the highest mountain in the Caribbean, get on the enchanted carpet, and...",
 						[QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare] = "Standing in front of the cave, ignite the flare given to you by the guardian to help the ghost.",
@@ -92,7 +94,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Constant(function()
 		ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS = {
@@ -208,7 +210,7 @@ quest
 						return false
 					end
 
-					local storageVal = player:getStorageValue(Storage.AssassinsCreedSquurvaali.Mission04)
+					local storageVal = player:kv():get(Storage.AssassinsCreedSquurvaali.Mission04) or -1
 
 					if storageVal >= QuestState.AssassinsCreedSquurvaali.Mission04.ReportToFatherNatanek then
 						return false
@@ -221,7 +223,7 @@ quest
 					end
 				end
 
-				chairIn:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
+				chairIn:key(Storage.AssassinsCreedSquurvaali.GhostChair)
 				chairIn:register()
 
 				local chairOut = MoveEvent()
@@ -238,11 +240,11 @@ quest
 					end
 				end
 
-				chairOut:aid(Storage.AssassinsCreedSquurvaali.GhostChair)
+				chairOut:key(Storage.AssassinsCreedSquurvaali.GhostChair)
 				chairOut:register()
 			end),
 			QuestFactory.StartupItems({
-				{ pos = { 5685, 1408, 7 }, id = 2355, aid = Storage.AssassinsCreedSquurvaali.GhostChair },
+				{ pos = { 5685, 1408, 7 }, id = 2355, key = Storage.AssassinsCreedSquurvaali.GhostChair },
 			})
 	end)
 	:State(function()
@@ -517,20 +519,8 @@ quest
 					player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Localizer):Get("A magical force brought you back to the solid ground."), TALKTYPE_MONSTER_SAY)
 					return false
 				end
-				path:aid(Storage.AssassinsCreedSquurvaali.HeavenPath)
+				path:key(Storage.AssassinsCreedSquurvaali.HeavenPath)
 				path:register()
-
-				local lastTile = MoveEvent()
-				function lastTile.onStepIn(player, item, toPosition, fromPosition)
-					if not player:isPlayer() then
-						return false
-					end
-					-- ToDo: fix position after new map is added
-					player:teleportTo(Position(5745, 801, 4), true)
-					return true
-				end
-				lastTile:aid(Storage.AssassinsCreedSquurvaali.HeavenLastTile)
-				lastTile:register()
 			end),
 			QuestFactory.Dialog("Aunor", {
 				[{ "mission" }] = {
@@ -591,7 +581,7 @@ quest
 					return true
 				end
 
-				flare:aid(Storage.AssassinsCreedSquurvaali.KeyItems.Flare)
+				flare:key(Storage.AssassinsCreedSquurvaali.KeyItems.Flare)
 				flare:register()
 			end)
 	end)

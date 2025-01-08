@@ -125,7 +125,7 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 	end,
 	setStorageRandomNumber = function(context)
 		local randomVal = math.random(context.min, context.max)
-		context.player:setStorageValue(context.storage, randomVal)
+		context.player:setStorageValueByKey(context.storage, randomVal)
 	end,
 	openTradeWindow = function(context)
 		context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)

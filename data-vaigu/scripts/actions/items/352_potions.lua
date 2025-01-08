@@ -81,7 +81,7 @@ local function errorMessageIfCannotUse(player, potion)
 		return nil
 	end
 	if potion.access then
-		if player:getStorageValue(potion.access) == ACCESS_GRANTED then
+		if player:getStorageValueByKey(potion.access) == ACCESS_GRANTED then
 			return nil
 		end
 	end

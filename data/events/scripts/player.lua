@@ -1,5 +1,5 @@
 --[[ 
-	Vaigu custom:
+	-- Vaigu custom:
 	- Store inbox items can be moved within inbox
 	- Prey monster timers only decay on killing that prey target
 	- Multiple immovable aid can exist
@@ -263,7 +263,16 @@ local immovableAid = {
 }
 
 local function isImmovable(item)
-	return immovableAid[item:getActionId()]
+	if immovableAid[item:getActionId()] then
+		return true
+	end
+		
+	local key = item:getKey()
+	if key and key ~= "" then
+		return true
+	end
+
+	return false
 end
 
 local exhaust = {}
@@ -427,12 +436,12 @@ function Player:onItemMoved(item, count, fromPosition, toPosition, fromCylinder,
 						end
 						removeItem = true
 						monster:registerEvent("CheckTile")
-						if Game.getStorageValue("healthSoul") > 0 then
-							monster:addHealth(-(monster:getHealth() - Game.getStorageValue("healthSoul")))
+						if Game.getStorageValueByKey("healthSoul") > 0 then
+							monster:addHealth(-(monster:getHealth() - Game.getStorageValueByKey("healthSoul")))
 						end
-						Game.setStorageValue("CheckTile", os.time() + 30)
+						Game.setStorageValueByKey("CheckTile", os.time() + 30)
 					elseif tileBoss:getName():lower() == "the corruptor of souls" then
-						Game.setStorageValue("CheckTile", os.time() + 30)
+						Game.setStorageValueByKey("CheckTile", os.time() + 30)
 						removeItem = true
 					end
 				end
@@ -613,7 +622,7 @@ function Player:onGainExperience(target, exp, rawExp)
 	local finalExp = exp * playerexpstageMultiplier * staminaMultiplier * (1 + boostedcreaturePercentage) * (1 + xpboostPercentage)
 
 	-- Server protection
-	if Game.getStorageValue(GlobalStorage.Protection) == 1 then
+	if Game.getStorageValueByKey(Storage.Protection) == 1 then
 		finalExp = finalExp / 2
 	end
 

@@ -125,6 +125,11 @@ function OnLookMessageBuilder:ParseAdminDetails()
 			descriptionText = string.format("%s, Unique ID: %d", descriptionText, itemUniqueId)
 		end
 
+		local itemKey = inspectedThing:getAttribute("key")
+		if itemKey and itemKey ~= "" then
+			descriptionText = string.format("%s, Key: %s", descriptionText, itemKey)
+		end
+
 		local itemType = inspectedThing:getType()
 		local transformOnEquipId = itemType:getTransformEquipId()
 		local transformOnDeEquipId = itemType:getTransformDeEquipId()

@@ -4,7 +4,7 @@ local quest = Quest(LOCALIZERS.LiquidBlack)
 quest
 	:Storage(function()
 		Storage.LiquidBlack = {
-			Visitor = NextStorage(),
+			Visitor = {},
 		}
 		QuestState.LiquidBlack = {
 			FindUseForCoordinates = 1,
@@ -14,11 +14,12 @@ quest
 	end)
 	:Constant(function() end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Liquid Black",
 			missions = {
-				[Storage.LiquidBlack.Visitor] = {
+				{
 					name = "Visitor",
+					storage = Storage.LiquidBlack.Visitor,
 					states = {
 						[QuestState.LiquidBlack.FindUseForCoordinates] = "You have found notes and coordinates. Try to find out what they are for.", --3af check if using chest put you in this state
 						[QuestState.LiquidBlack.TalkToMezamir] = "You got teleported to Mezamir by a strange teleporter. Ask him about this machine.",
@@ -27,6 +28,6 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Register()

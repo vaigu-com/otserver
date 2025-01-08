@@ -1,7 +1,7 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheApeCity.QuestProgress) > 16 then
+	if player:getStorageValueByKey(Storage.TheApeCity.QuestProgress) > 16 then
 		if item.itemid == 7721 then
 			player:teleportTo(toPosition, true)
 			item:transform(item.itemid + 1)

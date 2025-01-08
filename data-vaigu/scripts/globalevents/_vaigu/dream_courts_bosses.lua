@@ -13,9 +13,9 @@ function dreambosses.onStartup()
 	local day = setting[os.date("%A")]
 	if day == 0 then
 		local rand = math.random(1, 5)
-		Game.setStorageValue(GlobalStorage.DreamBoss, rand)
+		Game.setStorageValueByKey(Storage.DreamBoss, rand)
 	else
-		Game.setStorageValue(GlobalStorage.DreamBoss, day)
+		Game.setStorageValueByKey(Storage.DreamBoss, day)
 	end
 end
 

@@ -14,9 +14,9 @@ function spellwand.onUse(player, item, fromPosition, target, toPosition, isHotke
 	if math.random(100) <= 25 then
 		item:remove()
 		player:say("The spellwand broke.", TALKTYPE_MONSTER_SAY)
-		if math.random(100) <= 75 and player:getStorageValue(Storage.madSheepSummon) <= os.time() then
+		if math.random(100) <= 75 and player:getStorageValueByKey(Storage.madSheepSummon) <= os.time() then
 			Game.createMonster("Mad Sheep", fromPosition)
-			--player:setStorageValue(Storage.madSheepSummon, os.time() + 60 * 60)
+			--player:setStorageValueByKey(Storage.madSheepSummon, os.time() + 60 * 60)
 		end
 	else
 		target:setMonsterOutfit(monsters[math.random(#monsters)], 60 * 1000)

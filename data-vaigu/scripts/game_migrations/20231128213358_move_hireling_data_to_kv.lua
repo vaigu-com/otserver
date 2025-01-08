@@ -23,7 +23,7 @@ local old_hirelingStorage = {
 }
 
 local function getOutfits(player)
-	local flags = player:getStorageValue(old_hirelingStorage.OUTFIT)
+	local flags = player:getStorageValueByKey(old_hirelingStorage.OUTFIT)
 	local outfits = {}
 	if flags <= 0 then
 		return outfits
@@ -37,7 +37,7 @@ local function getOutfits(player)
 end
 
 local function getSkills(player)
-	local flags = player:getStorageValue(old_hirelingStorage.SKILL)
+	local flags = player:getStorageValueByKey(old_hirelingStorage.SKILL)
 	local skills = {}
 	if flags <= 0 then
 		return skills

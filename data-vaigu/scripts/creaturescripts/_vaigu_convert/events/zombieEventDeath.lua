@@ -6,7 +6,7 @@ function zombieOnDeath.onDeath(creature, corpse, killer, mostDamageKiller, lastH
 	monster:getPosition():sendMagicEffect(CONST_ME_MORTAREA)
 
 	-- Remove zombie count, when it dies
-	Game.setStorageValue(ze_zombieCountGlobalStorage, getZombieEventZombieCount() - 1)
+	Game.setStorageValueByKey(ze_zombieCountStorage, getZombieEventZombieCount() - 1)
 
 	-- Store player kills
 	local killerId = killer:getId()
@@ -50,7 +50,7 @@ function zombiePrepareDeath.onPrepareDeath(creature, killer)
 
 	-- Remove player from count
 	local count = getZombieEventJoinedCount()
-	Game.setStorageValue(ze_joinCountGlobalStorage, count - 1)
+	Game.setStorageValueByKey(ze_joinCountStorage, count - 1)
 
 	-- Reset player after death
 	-- Teleport player
@@ -58,15 +58,15 @@ function zombiePrepareDeath.onPrepareDeath(creature, killer)
 	player:teleportTo(depo)
 	depo:sendMagicEffect(CONST_ME_TELEPORT) -- efekt
 	-- Reset storages & events
-	player:setStorageValue(ze_joinStorage, 0)
-	player:setStorageValue(Storage.healLock, -1)
-	player:setStorageValue(Storage.mwLock, -1)
+	player:setStorageValueByKey(ze_joinStorage, 0)
+	player:setStorageValueByKey(Storage.healLock, -1)
+	player:setStorageValueByKey(Storage.mwLock, -1)
 	player:unregisterEvent("ZombiePlayerDeath")
 	-- Set normal hp&mana
 	player:addHealth(player:getMaxHealth())
 	player:addMana(player:getMaxMana())
 	-- Set normal speed
-	player:setStorageValue(Storage.hasteLock, -1)
+	player:setStorageValueByKey(Storage.hasteLock, -1)
 	player:changeSpeed()
 	-- Remove Conditions
 	local conditions = { CONDITION_POISON, CONDITION_FIRE, CONDITION_ENERGY, CONDITION_BLEEDING, CONDITION_PARALYZE, CONDITION_DROWN, CONDITION_FREEZING, CONDITION_DAZZLED, CONDITION_CURSED, CONDITION_INFIGHT }
@@ -114,15 +114,15 @@ function zombiePrepareDeath.onPrepareDeath(creature, killer)
 		end
 
 		-- Broadcast
-		local timeAlive = os.time() - Game.getStorageValue(GlobalStorage.ZombieTimer)
+		local timeAlive = os.time() - Game.getStorageValueByKey(Storage.ZombieTimer)
 		winnerGlobalMessage(count, playerName, getZombieEventZombieCount(), timeAlive)
 
 		-- Add event points & record
 		incrementStorage(player:getId(), Storage.overallPoints, trophy.points)
 		incrementStorage(player:getId(), Storage.zombiePoints, trophy.points)
 
-		if timeAlive > player:getStorageValue(Storage.zombieRecord) then
-			player:setStorageValue(Storage.zombieRecord, timeAlive) -- set player record
+		if timeAlive > player:getStorageValueByKey(Storage.zombieRecord) then
+			player:setStorageValueByKey(Storage.zombieRecord, timeAlive) -- set player record
 		end
 
 		if count == 1 then -- add "win"

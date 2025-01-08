@@ -10,15 +10,15 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	local leverCount = getGlobalStorageValue(GlobalStorage.PoiLeverCount)
+	local leverCount = getStorageValueByKey(Storage.PoiLeverCount)
 	if item.uid > 2049 and item.uid < 2065 then
 		local number = item.uid - 2049
 		if leverCount < 0 then
-			setGlobalStorageValue(GlobalStorage.PoiLeverCount, 1)
+			setStorageValueByKey(Storage.PoiLeverCount, 1)
 		else
-			setGlobalStorageValue(GlobalStorage.PoiLeverCount, leverCount + 1)
+			setStorageValueByKey(Storage.PoiLeverCount, leverCount + 1)
 		end
-		player:say(getGlobalStorageValue(GlobalStorage.PoiLeverCount) .. "/15", TALKTYPE_MONSTER_SAY)
+		player:say(getStorageValueByKey(Storage.PoiLeverCount) .. "/15", TALKTYPE_MONSTER_SAY)
 		player:addExperience(10000, true)
 	elseif item.uid == 2065 then
 		if leverCount ~= 15 then
@@ -40,6 +40,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 
 for uniqueRange = 2050, 2065 do
-	action:uid(uniqueRange)
+	action:key(uniqueRange)
 end
 action:register()
+

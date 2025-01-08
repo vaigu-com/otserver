@@ -30,7 +30,7 @@ function movement.onStepIn(creature, item, position, fromPosition)
 end
 
 for uniqueRange = 29001, 30000 do
-	movement:uid(uniqueRange)
+	movement:key(uniqueRange)
 end
 
 movement:register()
@@ -61,7 +61,8 @@ function movement.onStepOut(creature, item, position, fromPosition)
 end
 
 for uniqueRange = 29001, 30000 do
-	movement:uid(uniqueRange)
+	movement:key(uniqueRange)
 end
 
 movement:register()
+

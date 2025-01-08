@@ -20,9 +20,9 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	toPosition.y = toPosition.y + 1
 
 	if uId then
-		if player:getStorageValue(uId.storage) < 1 then --jak zabilismy bosa 1 raz
+		if player:getStorageValueByKey(uId.storage) < 1 then --jak zabilismy bosa 1 raz
 			player:teleportTo(toPosition)
-			player:setStorageValue(uId.storage, 1) --nadaje ze go zabilismy
+			player:setStorageValueByKey(uId.storage, 1) --nadaje ze go zabilismy
 			toPosition:sendMagicEffect(CONST_ME_TELEPORT)
 			player:say("Przeteleportowales artefakt.", TALKTYPE_MONSTER_SAY)
 		else
@@ -34,6 +34,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 
 for i, _ in pairs(config) do
-	action:uid(i)
+	action:key(i)
 end
 action:register()
+

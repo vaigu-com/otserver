@@ -15,7 +15,7 @@ function nightmarebeastteleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TheDreamCourts.KilledBosses) >= 5 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.KilledBosses) >= 5 then
 		player:teleportTo(targetPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
@@ -28,7 +28,7 @@ end
 nightmarebeastteleport:type("stepin")
 
 for index, value in pairs(setting) do
-	nightmarebeastteleport:aid(index)
+	nightmarebeastteleport:key(index)
 end
 
 nightmarebeastteleport:register()

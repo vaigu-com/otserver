@@ -92,7 +92,7 @@ return {
 	["VISIT_DEALERS_STATUS"] = function(context)
 		local visitedDealers = 0
 		for _, vendor in pairs(Storage.LocalSupport.VendorsAsked) do
-			if context.player:getStorageValue(vendor) ~= MISSION_NOT_STARTED then
+			if context.player:getStorageValueByKey(vendor) ~= MISSION_NOT_STARTED then
 				visitedDealers = visitedDealers + 1
 			end
 		end

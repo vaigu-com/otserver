@@ -32,19 +32,19 @@ function lastFloorReward.onStepIn(creature, item, position, fromPosition)
 	end
 
 	-- If already step in on the tile, nothing will happen
-	if player:getStorageValue(action.storage) == 1 then
+	if player:getStorageValueByKey(action.storage) == 1 then
 		return true
 	end
 
 	-- Sends the effect to the chest position
 	Position(action.position):sendMagicEffect(CONST_ME_FIREAREA)
 	-- Set the storage if reward, to "destroy" the chest
-	player:setStorageValue(action.storage, 1)
+	player:setStorageValueByKey(action.storage, 1)
 	return true
 end
 
 for action, value in pairs(setting) do
-	lastFloorReward:aid(action)
+	lastFloorReward:key(action)
 end
 
 lastFloorReward:register()

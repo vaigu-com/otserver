@@ -2,7 +2,7 @@ if not monsterStorage then
 	monsterStorage = { [0] = { [0] = 0 } }
 end
 
-function Monster.getStorageValue(self, key)
+function Monster.getStorageValueByKey(self, key)
 	if not self:isMonster() then
 		return -1
 	end
@@ -20,7 +20,7 @@ function Monster.getStorageValue(self, key)
 	return ret
 end
 
-function Monster.setStorageValue(self, key, value)
+function Monster.setStorageValueByKey(self, key, value)
 	if not self:isMonster() then
 		return false
 	end
@@ -40,7 +40,7 @@ function Monster.getStorage(self, key)
 end
 
 function Monster.setStorage(self, key, value)
-	return self:setStorageValue(key, value)
+	return self:setStorageValueByKey(key, value)
 end
 
 if not hpCompartilhada then
@@ -62,7 +62,7 @@ function Monster.inSharedLife(self)
 	if not self:isMonster() then
 		return false
 	end
-	local storage = self:getStorageValue("shared_storage")
+	local storage = self:getStorageValueByKey("shared_storage")
 	if storage < 1 then
 		return false
 	end
@@ -108,7 +108,7 @@ function Monster.onReceivDamageSL(self, damage, tp, killer)
 	if not self:inSharedLife() then
 		return true
 	end
-	local storage = self:getStorageValue("shared_storage")
+	local storage = self:getStorageValueByKey("shared_storage")
 	if storage < 1 then
 		return false
 	end

@@ -15,9 +15,9 @@ local randLoot = {
 local uglyMonster = CreatureEvent("UglyMonster")
 function uglyMonster.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType, origin)
 	local chance = math.random(100)
-	if chance == 100 and Game.getStorageValue(GlobalStorage.UglyMonster) ~= 1 then
+	if chance == 100 and Game.getStorageValueByKey(Storage.UglyMonster) ~= 1 then
 		Game.createMonster("Ugly Monster", creature:getPosition())
-		Game.setStorageValue(GlobalStorage.UglyMonster, 1)
+		Game.setStorageValueByKey(Storage.UglyMonster, 1)
 	end
 	return primaryDamage, primaryType, secondaryDamage, secondaryType
 end
@@ -25,7 +25,7 @@ uglyMonster:register()
 
 local uglyMonsterDeath = CreatureEvent("UglyMonsterDeath")
 function uglyMonsterDeath.onDeath(creature, corpse, killer, mostDamage, unjustified, mostDamage_unjustified)
-	Game.setStorageValue(GlobalStorage.UglyMonster, 0)
+	Game.setStorageValueByKey(Storage.UglyMonster, 0)
 end
 uglyMonsterDeath:register()
 

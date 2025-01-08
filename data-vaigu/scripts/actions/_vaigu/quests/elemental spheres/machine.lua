@@ -9,9 +9,9 @@ local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if isInArray({ 842, 843 }, item.itemid) then
-		local gemCount = player:getStorageValue(Storage.ElementalSphere.MachineGemCount)
+		local gemCount = player:getStorageValueByKey(Storage.ElementalSphere.MachineGemCount)
 		if isInArray({ 6230, 6231 }, toPosition.x) and toPosition.y == 1006 and toPosition.z == 10 and gemCount >= 20 then
-			player:setStorageValue(Storage.ElementalSphere.MachineGemCount, gemCount - 20)
+			player:setStorageValueByKey(Storage.ElementalSphere.MachineGemCount, gemCount - 20)
 			player:teleportTo(config[player:getVocation():getBase():getId()], false)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		end

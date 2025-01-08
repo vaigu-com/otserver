@@ -4,12 +4,12 @@ FORCED_BASE_LOOT = 1
 
 function talkaction.onSay(player, words, param)
 	local rate = 1
-	if player:getStorageValue(Storage.ForceBaseLoot) ~= FORCED_BASE_LOOT then
-		player:setStorageValue(Storage.ForceBaseLoot, FORCED_BASE_LOOT)
+	if player:getStorageValueByKey(Storage.ForceBaseLoot) ~= FORCED_BASE_LOOT then
+		player:setStorageValueByKey(Storage.ForceBaseLoot, FORCED_BASE_LOOT)
 		rate = configManager.getNumber(configKeys.RATE_LOOT)
-	elseif player:getStorageValue(Storage.ForceBaseLoot) == FORCED_BASE_LOOT then
-		player:setStorageValue(Storage.ForceBaseLoot, 0)
-		rate = configManager.getNumber(configKeys.RATE_LOOT) * BONUS_LOOT
+	elseif player:getStorageValueByKey(Storage.ForceBaseLoot) == FORCED_BASE_LOOT then
+		player:setStorageValueByKey(Storage.ForceBaseLoot, 0)
+		rate = configManager.getNumber(configKeys.RATE_LOOT)
 	end
 
 	local translatedMessage = player:Localizer(LOCALIZERS.Universal):Context({ rate = rate }):Get("YOU_CHANGED_YOUR_LOOTRATE")

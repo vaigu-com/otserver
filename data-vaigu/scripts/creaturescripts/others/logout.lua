@@ -7,7 +7,7 @@ function playerLogout.onLogout(player)
 	end
 
 	player:saveSpecialStorage()
-	player:setStorageValue(Storage.ExerciseDummyExhaust, 0)
+	player:setStorageValueByKey(Storage.ExerciseDummyExhaust, 0)
 
 	local stats = player:inBossFight()
 	if stats then
@@ -28,7 +28,7 @@ function playerLogout.onLogout(player)
 		player:setTraining(false)
 	end
 
-	player:setStorageValue(Storage.ShrimpScript, 0)
+	player:setStorageValueByKey(Storage.ShrimpScript, 0)
 	return true
 end
 playerLogout:register()

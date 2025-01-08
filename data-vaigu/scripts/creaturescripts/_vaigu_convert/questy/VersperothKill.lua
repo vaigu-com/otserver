@@ -27,8 +27,8 @@ end
 local creatureevent = CreatureEvent("BigfootBurdenVersperothDeath")
 
 function creatureevent.onDeath(creature)
-	Game.setStorageValue(GlobalStorage.Versperoth.Battle, 2)
-	addEvent(Game.setStorageValue, 30 * 60 * 1000, GlobalStorage.Versperoth.Battle, 0)
+	Game.setStorageValueByKey(Storage.Versperoth.Battle, 2)
+	addEvent(Game.setStorageValueByKey, 30 * 60 * 1000, Storage.Versperoth.Battle, 0)
 
 	local tp = Game.createItem(1949, 1, teleportPosition) --na koordach
 	tp:setActionId(45701) --zmienia aid

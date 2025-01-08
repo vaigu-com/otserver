@@ -7,33 +7,36 @@ DAILY_TASK_NOT_STARTED = -1
 DAILY_TASK_LIMIT = 3
 
 function Player:TryResetDailyTaskCounter()
-	local lastResetTimestamp = self:getStorageValue(Storage.DailyTasks.LastResetTimestamp)
-	local todayTimeStamp = KV.get(Storage.DailyTasks.LastResetTimestamp)
-	if lastResetTimestamp >= todayTimeStamp then
-		return
+	local lastResetTimestamp = self:getStorageValueByKey(Storage.DailyTasks.LastResetTimestamp)
+	if os.time() > lastResetTimestamp then
+		self:setStorageValueByKey(Storage.DailyTasks.LastResetTimestamp, NextDayEpochTime())
+		self:setStorageValueByKey(Storage.DailyTasks.DailyLimit, 0)
 	end
-	self:setStorageValue(Storage.DailyTasks.LastResetTimestamp, todayTimeStamp)
-	self:setStorageValue(Storage.DailyTasks.DailyLimit, 0)
 end
 
 local function resetTaskKillCounter(player, task)
-	player:setStorageValue(task.storage, TASK_FINISHED)
+	player:setStorageValueByKey(task.storage, TASK_FINISHED)
 end
 
 local function cancelTask(player, task)
-	player:setStorageValue(task.storage, TASK_CAN_START_DESPITE_HIGHER_LEVEL)
+	player:setStorageValueByKey(task.storage, TASK_CAN_START_DESPITE_HIGHER_LEVEL)
 end
 
 local function resetTaskSlot(player, taskSlot)
-	player:setStorageValue(taskSlot, TASK_SLOT_UNNOCUPIED)
+	player:setStorageValueByKey(taskSlot, TASK_SLOT_UNNOCUPIED)
 end
 
 function Player:DoneAnyTask()
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = self:getStorageValue(taskSlot)
+		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage ~= TASK_SLOT_UNNOCUPIED then
-			local currentKills = self:getStorageValue(ongoingTaskStorage)
-			local requiredKills = GetTaskByStorage(ongoingTaskStorage).requiredKills
+			local currentKills = self:getStorageValueByKey(ongoingTaskStorage)
+			local task = GetTaskByStorage(ongoingTaskStorage)
+			if not task then
+				self:setStorageValueByKey(taskSlot, -1)
+				return
+			end
+			local requiredKills = task.requiredKills
 			if currentKills >= requiredKills then
 				return true
 			end
@@ -46,7 +49,7 @@ function Player:CanTakeAnotherTask()
 	local activeTasks = 0
 	local maximumAllowedOngoingTasks = #Storage.Tasks.PlayerOngoingTasks
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = self:getStorageValue(taskSlot)
+		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage ~= TASK_SLOT_UNNOCUPIED then
 			activeTasks = activeTasks + 1
 		end
@@ -57,7 +60,7 @@ end
 
 function Player:HasAnyOngoingTask()
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = self:getStorageValue(taskSlot)
+		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage ~= TASK_SLOT_UNNOCUPIED then
 			return true
 		end
@@ -68,26 +71,26 @@ end
 
 function Player:HasAnyOngoingDailyTask()
 	for _, task in pairs(GetAllDailyTasks()) do
-		if self:getStorageValue(task.storage) ~= TASK_SLOT_UNNOCUPIED then
+		if self:getStorageValueByKey(task.storage) ~= TASK_SLOT_UNNOCUPIED then
 			return true
 		end
 	end
 	return false
 end
 
-function Player:AddOngoingTask(storage)
+function Player:AddOngoingTask(killCountStorage)
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = self:getStorageValue(taskSlot)
+		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage == TASK_SLOT_UNNOCUPIED then
-			self:setStorageValue(taskSlot, storage)
-			self:setStorageValue(storage, 0)
+			self:setStorageValueByKey(taskSlot, killCountStorage)
+			self:setStorageValueByKey(killCountStorage, 0)
 			return
 		end
 	end
 end
 
 function Player:AddOngoingDailyTask(storage)
-	self:setStorageValue(storage, 0)
+	self:setStorageValueByKey(storage, 0)
 end
 
 local function selectTaskFromList(player, button, choice)
@@ -147,12 +150,12 @@ local function playerHasMinimumLevel(player, task)
 end
 
 local function playerNeverFinishedTask(player, task)
-	return player:getStorageValue(task.storage) == TASK_CAN_START_DESPITE_HIGHER_LEVEL
+	return player:getStorageValueByKey(task.storage) == TASK_CAN_START_DESPITE_HIGHER_LEVEL
 end
 
 local function playerHasThisTaskTaken(player, task)
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = player:getStorageValue(taskSlot)
+		local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage == task.storage then
 			return true
 		end
@@ -185,7 +188,7 @@ function Player:CanTakeDailyTask(dailyTask)
 	end
 
 	local storage = dailyTask.storage
-	local dailyTaskProgress = self:getStorageValue(storage)
+	local dailyTaskProgress = self:getStorageValueByKey(storage)
 	if dailyTaskProgress ~= DAILY_TASK_NOT_STARTED then
 		return false
 	end
@@ -221,8 +224,9 @@ function OpenTaskWindow(context)
 		local choice = modalWindow:addChoice(T(":name: (:requiredKills:)", {
 			name = task.name,
 			requiredKills = task.requiredKills,
+			task = task.task,
 		}))
-		choice.task = task.task
+		choice.task = task
 	end
 
 	local select = modalWindow:addButton(localizer:Get("Select"), selectTaskFromList)
@@ -271,7 +275,7 @@ function OpenTaskCancelWindow(context)
 	local title = localizer:Get("Ongoing tasks list:")
 	local modalWindow = ModalWindow({ title = title, message = message })
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = player:getStorageValue(taskSlot)
+		local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 		local task = GetTaskByStorage(ongoingTaskStorage)
 		if task then
 			local choice = modalWindow:addChoice(T(":name:", { name = task.name }))
@@ -298,7 +302,7 @@ function OpenDailyTaskCancelWindow(context)
 	local title = localizer:Get("Ongoing tasks list:")
 	local modalWindow = ModalWindow({ title = title, message = message })
 	for _, dailyTask in pairs(GetAllDailyTasks()) do
-		if player:getStorageValue(dailyTask.storage) ~= DAILY_TASK_NOT_STARTED then
+		if player:getStorageValueByKey(dailyTask.storage) ~= DAILY_TASK_NOT_STARTED then
 			local choice = modalWindow:addChoice(T(":name:", { name = dailyTask.name }))
 			choice.dailyTask = dailyTask
 		end
@@ -313,7 +317,7 @@ function OpenDailyTaskCancelWindow(context)
 end
 
 function PlayerFinishedTaskAtLeastOnce(player, task)
-	return player:getStorageValue(task.storage) == TASK_FINISHED
+	return player:getStorageValueByKey(task.storage) == TASK_FINISHED
 end
 
 TRANSFERABLE_COINS_MULTIPLIER = 30
@@ -341,14 +345,9 @@ local function grantTaskRewards(context)
 	return false
 end
 
-local function allowBossAccess(player, task)
-	local bossAccessStorage = task.bossStorage
-	player:IncrementStorage(bossAccessStorage, 1)
-end
-
 function Player:TryAddTaskRewards(context, task)
 	local storage = task.storage
-	local currentKills = self:getStorageValue(storage)
+	local currentKills = self:getStorageValueByKey(storage)
 	local requiredKills = task.requiredKills
 	if currentKills < requiredKills then
 		return ""
@@ -356,7 +355,6 @@ function Player:TryAddTaskRewards(context, task)
 	if not grantTaskRewards(context) then
 		return ""
 	end
-	allowBossAccess(self, task)
 	resetTaskKillCounter(self, task)
 	resetTaskSlot(self, task.storage)
 
@@ -366,7 +364,7 @@ end
 function Player:GrantRewardsForAllTasks(context)
 	local translatedMessage = ""
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-		local ongoingTaskStorage = self:getStorageValue(taskSlot)
+		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		local task = GetTaskByStorage(ongoingTaskStorage)
 		local taskMessage = self:TryAddTaskRewards(context, task)
 		if taskMessage ~= "" then
@@ -380,7 +378,7 @@ end
 
 function Player:TryAddDailyTaskRewards(context, dailyTask)
 	local storage = dailyTask.storage
-	local currentKills = self:getStorageValue(storage)
+	local currentKills = self:getStorageValueByKey(storage)
 	if currentKills == TASK_SLOT_UNNOCUPIED then
 		logger.warn("[Player:TryAddDailyTaskRewards] currentKills == TASK_SLOT_UNNOCUPIED")
 		return ""
@@ -390,7 +388,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
 		dailyTask = dailyTask,
 	})
 
-	if self:getStorageValue(Storage.DailyTasks.DailyLimit) >= DAILY_TASK_LIMIT then
+	if self:getStorageValueByKey(Storage.DailyTasks.DailyLimit) >= DAILY_TASK_LIMIT then
 		return localizer:Get("YOU_EXCEEDED_DAILY_TASK_LIMIT")
 	end
 

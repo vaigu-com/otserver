@@ -9,7 +9,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	player:teleportTo(Position(6227, 1014, 10)) --{x = 6227, y = 1014, z = 10}
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	for i = 10005, 10008 do
-		player:setStorageValue(i, -1)
+		player:setStorageValueByKey(i, -1)
 	end
 	return true
 end

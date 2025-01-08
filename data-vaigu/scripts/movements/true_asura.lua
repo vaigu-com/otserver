@@ -8,7 +8,7 @@ function trueAsuraEntry.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.FlamingOrchidKilled) >= 1 then
+	if player:getStorageValueByKey(Storage.FlamingOrchidKilled) >= 1 then
 		player:teleportTo(enterPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

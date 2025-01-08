@@ -18,15 +18,15 @@ return {
 	["For your help you have been taught how to skin human carcass."] = "For your help you have been taught how to skin human carcass.",
 	["Rub Meat With Lecter"] = "Rub Meat With Lecter",
 	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
-		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValue(Storage.SilenceOfTheLambs.HumanLivers) })
+		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanLivers) })
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
 	["Hearts collected"] = "Hearts collected",
 	["Hearts collected Status"] = function(context)
-		return string.format("Amount of hearts collected: %d / 15", context.player:getStorageValue(11074))
+		return string.format("Amount of hearts collected: %d / 15", context.player:getStorageValueByKey(11074))
 	end,
 	["Livers collected"] = "Livers collected",
 	["Livers collected Status"] = function(context)
-		return string.format("Amount of livers collected: %d / 20", context.player:getStorageValue(11075))
+		return string.format("Amount of livers collected: %d / 20", context.player:getStorageValueByKey(11075))
 	end,
 }

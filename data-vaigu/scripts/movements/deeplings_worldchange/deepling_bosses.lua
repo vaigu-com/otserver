@@ -22,7 +22,7 @@ function deeplingBosses.onStepIn(creature, item, position, fromPosition)
 	end
 
 	local setting = config[item.actionid]
-	if player:getStorageValue(Storage.DeeplingBosses.DailyDeeplingKill) ~= 1 then
+	if os.time() > player:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill) then
 		if roomIsOccupied() then
 			player:teleportTo(setting.position)
 			player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
@@ -42,7 +42,7 @@ function deeplingBosses.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(config) do
-	deeplingBosses:aid(index)
+	deeplingBosses:key(index)
 end
 
 deeplingBosses:register()

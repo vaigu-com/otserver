@@ -26,7 +26,7 @@ local config = {
 		from = Position(6222, 1004, 11), --{x = 6222, y = 1004, z = 11}
 		to = Position(6235, 1017, 11), --{x = 6235, y = 1017, z = 11}
 	},
-	machineStorages = { GlobalStorage.ElementalSphere.Machine1, GlobalStorage.ElementalSphere.Machine2, GlobalStorage.ElementalSphere.Machine3, GlobalStorage.ElementalSphere.Machine4 },
+	machineStorages = { Storage.ElementalSphere.Machine1, Storage.ElementalSphere.Machine2, Storage.ElementalSphere.Machine3, Storage.ElementalSphere.Machine4 },
 	centerPosition = Position(6228, 1011, 11), --{x = 6228, y = 1011, z = 11}
 	effectPositions = {
 		Position(6222, 1004, 11),
@@ -93,9 +93,9 @@ local function resetRoom(players)
 		end
 	end
 
-	Game.setStorageValue(GlobalStorage.ElementalSphere.BossRoom, -1)
+	Game.setStorageValueByKey(Storage.ElementalSphere.BossRoom, -1)
 	for i = 1, #config.machineStorages do
-		Game.setStorageValue(config.machineStorages[i], -1)
+		Game.setStorageValueByKey(config.machineStorages[i], -1)
 	end
 	return true
 end
@@ -119,7 +119,7 @@ end
 
 local function areMachinesCharged()
 	for i = 1, #config.machineStorages do
-		if Game.getStorageValue(config.machineStorages[i]) <= 0 then
+		if Game.getStorageValueByKey(config.machineStorages[i]) <= 0 then
 			return false
 		end
 	end
@@ -134,7 +134,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	for i = 1, #config.machineStorages do
-		Game.setStorageValue(config.machineStorages[i], 1)
+		Game.setStorageValueByKey(config.machineStorages[i], 1)
 	end
 
 	if not areMachinesCharged() then
@@ -174,7 +174,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 	end
 
-	Game.setStorageValue(GlobalStorage.ElementalSphere.BossRoom, 1)
+	Game.setStorageValueByKey(Storage.ElementalSphere.BossRoom, 1)
 	Game.createMonster("Lord of the Elements", config.centerPosition)
 	player:say("Pozostalo ci 10 minut nim zostaniesz teleportowany na zewnatrz.", TALKTYPE_MONSTER_YELL, false, 0, config.centerPosition)
 	addEvent(warnPlayers, 5 * 60 * 1000, players)
@@ -188,3 +188,4 @@ end
 
 action:uid(9025, 9026, 9027, 9028)
 action:register()
+

@@ -24,10 +24,10 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.itemid == 2086 or target.itemid == 2087 then
 		local snakeAid = target.actionid
 		if snakeAid == 2158 then
-			if player:getStorageValue(Storage.TheApeCity.QuestProgress) ~= 17 or player:getStorageValue(Storage.TheApeCity.SnakeDestroyer) == 1 then
+			if player:getStorageValueByKey(Storage.TheApeCity.QuestProgress) ~= 17 or player:getStorageValueByKey(Storage.TheApeCity.SnakeDestroyer) == 1 then
 				return false
 			end
-			player:setStorageValue(Storage.TheApeCity.SnakeDestroyer, 1)
+			player:setStorageValueByKey(Storage.TheApeCity.SnakeDestroyer, 1)
 			target:transform(3141)
 			item:remove()
 			toPosition:sendMagicEffect(CONST_ME_FIREAREA)

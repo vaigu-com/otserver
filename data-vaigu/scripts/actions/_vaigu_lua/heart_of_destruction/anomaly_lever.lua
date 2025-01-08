@@ -87,13 +87,13 @@ function heartDestructionAnomaly.onUse(player, item, fromPosition, itemEx, toPos
 						players = storePlayers[i]
 						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
-						players:setStorageValue(14321, os.time() + 20 * 60 * 60)
+						players:setStorageValueByKey(14321, os.time() + 20 * 60 * 60)
 					end
 					Position(config.newPos):sendMagicEffect(11)
 
 					areaAnomaly1 = addEvent(clearArea, 15 * 60000)
 
-					Game.setStorageValue(14322, 0) -- Anomaly Stages
+					Game.setStorageValueByKey(14322, 0) -- Anomaly Stages
 
 					Game.createMonster("Spark of Destruction", { x = 5500, y = 1381, z = 14 }, false, true) --{x = 5500, y = 1381, z = 14}
 					Game.createMonster("Spark of Destruction", { x = 5507, y = 1383, z = 14 }, false, true) --{x = 5507, y = 1383, z = 14}

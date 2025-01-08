@@ -1,6 +1,6 @@
 local restoreIdol = Action()
 function restoreIdol.onUse(player, item, fromPosition, itemEx, toPosition)
-	if Game.getStorageValue(GlobalStorage.RestoredIdols) <= 8 then
+	if Game.getStorageValueByKey(Storage.RestoredIdols) <= 8 then
 		if item.itemid == 28738 then
 			item:transform(28740)
 			toPosition:sendMagicEffect(CONST_ME_THUNDER)
@@ -8,12 +8,12 @@ function restoreIdol.onUse(player, item, fromPosition, itemEx, toPosition)
 			item:transform(28741)
 			toPosition:sendMagicEffect(CONST_ME_THUNDER)
 		end
-		if Game.getStorageValue(GlobalStorage.RestoredIdols) < 1 then
-			Game.setStorageValue(GlobalStorage.RestoredIdols, 1)
+		if Game.getStorageValueByKey(Storage.RestoredIdols) < 1 then
+			Game.setStorageValueByKey(Storage.RestoredIdols, 1)
 		else
-			Game.setStorageValue(GlobalStorage.RestoredIdols, (Game.getStorageValue(GlobalStorage.RestoredIdols) + 1))
+			Game.setStorageValueByKey(Storage.RestoredIdols, (Game.getStorageValueByKey(Storage.RestoredIdols) + 1))
 		end
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have restored " .. Game.getStorageValue(GlobalStorage.RestoredIdols) .. " of 9 Broken Idols.")
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have restored " .. Game.getStorageValueByKey(Storage.RestoredIdols) .. " of 9 Broken Idols.")
 	end
 	return true
 end

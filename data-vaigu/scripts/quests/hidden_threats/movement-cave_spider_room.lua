@@ -28,7 +28,7 @@ function caveSpiderRoom.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(room.access) ~= 9 then
+	if player:getStorageValueByKey(room.access) ~= 9 then
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		player:teleportTo(room.exitPos)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -55,7 +55,7 @@ function caveSpiderRoom.onStepIn(creature, item, position, fromPosition)
 	player:teleportTo(room.newPos)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	addEvent(clearBossRoom, 60 * room.time * 1000, player.uid, room.centerPos, false, room.rangeX, room.rangeY, room.exitPos)
-	player:setStorageValue(room.access, 10)
+	player:setStorageValueByKey(room.access, 10)
 	return true
 end
 

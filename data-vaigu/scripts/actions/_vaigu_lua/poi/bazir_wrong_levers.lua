@@ -9,6 +9,7 @@ function pitsOfInfernoWrongLevers.onUse(player, item, fromPosition, target, toPo
 end
 
 for value = 50095, 50104 do
-	pitsOfInfernoWrongLevers:uid(value)
+	pitsOfInfernoWrongLevers:key(value)
 end
 pitsOfInfernoWrongLevers:register()
+

@@ -58,7 +58,7 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if MsgContains(message, "talk") or MsgContains(message, "porozmawiac") then
 		if player:getLevel() >= 60 then
-			if player:getStorageValue(Storage.TheDreamCourts.QuestLine) == 1 then
+			if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) == 1 then
 				npcHandler:say({
 					"You have to empower eight ward stones. Once charged with arcane energy, they will strengthen the Nightmare Beast's prison and at the same time weaken this terrible creature. We know about the specific location of sevem of those stones. ...",
 					"You can find them in the mountains of Pirate Island, on bonebast coast in desert, in a water elemental cave beneath Kongo, in the depths of Seacrest Serpent lair, on the surface of Sybir and on the Nightmare Island. ...",
@@ -67,15 +67,15 @@ local function creatureSayCallback(npc, creature, type, message)
 					"However, the empowering of the last stone could be a bit more complicated. But you have to find out yourself what to do..",
 				}, npc, creature)
 				player:addItem(30132)
-				player:setStorageValue(Storage.TheDreamCourts.QuestLine, 2)
-			elseif (player:getStorageValue(Storage.TheDreamCourts.QuestLine) == 2) and (player:getStorageValue(Storage.TheDreamCourts.WardStones.WardStones) < 8) then
+				player:setStorageValueByKey(Storage.TheDreamCourts.QuestLine, 2)
+			elseif (player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) == 2) and (player:getStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones) < 8) then
 				npcHandler:say({
 					"Come back when you empower all ward stones, good luck.",
 				}, npc, creature)
-			elseif (player:getStorageValue(Storage.TheDreamCourts.QuestLine) == 2) and (player:getStorageValue(Storage.TheDreamCourts.WardStones.WardStones) >= 8) then
+			elseif (player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) == 2) and (player:getStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones) >= 8) then
 				npcHandler:say({ "So do you want talk about the {task} at hand?" }, npc, creature)
 				npcHandler:setTopic(playerId, 1)
-			elseif player:getStorageValue(Storage.TheDreamCourts.QuestLine) == 4 then
+			elseif player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) == 4 then
 				npcHandler:say({ "So do you want talk about the {task} at hand?" }, npc, creature)
 				npcHandler:setTopic(playerId, 2)
 			else
@@ -89,7 +89,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"You empowered all eight ward stones. Well done! You may now enter the Dream Labyrinth via the portal here in the Court. Beneath it you will find the Nightmare Beast's lair. But the labyrinth is protected by couple so called Dream Doors. ...",
 			"You have to find the way to unlock the Dream Doors down there. Only then you will be able to enter the Nightmare Beast's lair.",
 		}, npc, creature)
-		player:setStorageValue(Storage.TheDreamCourts.QuestLine, 3)
+		player:setStorageValueByKey(Storage.TheDreamCourts.QuestLine, 3)
 		npcHandler:setTopic(playerId, 0)
 	elseif MsgContains(message, "task") and npcHandler:getTopic(playerId) == 2 then
 		npcHandler:say({
@@ -97,8 +97,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		}, npc, creature)
 		player:addOutfit(1146, 0)
 		player:addOutfit(1147, 0)
-		player:setStorageValue(Storage.TheDreamCourts.QuestLine, 5)
-		player:setStorageValue(Storage.Finished.TheDreamCourts, 1)
+		player:setStorageValueByKey(Storage.TheDreamCourts.QuestLine, 5)
+		player:setStorageValueByKey(Storage.Finished.TheDreamCourts, 1)
 		npcHandler:setTopic(playerId, 0)
 	elseif MsgContains(message, "addon") then
 		npcHandler:say({
@@ -106,7 +106,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		}, npc, creature)
 		npcHandler:setTopic(playerId, 3)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 3 then
-		if player:getStorageValue(Storage.TheDreamCourts.QuestLine) >= 5 then
+		if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) >= 5 then
 			npcHandler:say({
 				"What do you have for me: the {pomegranates} or the {ice shield}?",
 			}, npc, creature)

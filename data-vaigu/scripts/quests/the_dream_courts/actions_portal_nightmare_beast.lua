@@ -20,7 +20,7 @@ function portalNightmareBeast.onStepIn(creature, item, position, fromPosition)
 	end
 	local text = ""
 	for value in pairs(storagesTable) do
-		if player:getStorageValue(storagesTable[value].storage) < 0 then
+		if player:getStorageValueByKey(storagesTable[value].storage) < 0 then
 			text = text .. "\n" .. storagesTable[value].bossName
 		end
 	end

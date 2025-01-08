@@ -29,7 +29,7 @@ end
 teleport:type("stepin")
 
 for index, value in pairs(destination) do
-	teleport:aid(index)
+	teleport:key(index)
 end
 
 teleport:register()

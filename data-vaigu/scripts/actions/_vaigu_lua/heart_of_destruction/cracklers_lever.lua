@@ -180,7 +180,7 @@ function heartDestructionCracklers.onUse(player, item, fromPosition, itemEx, toP
 					Game.createMonster("Crackler", { x = 5444, y = 1462, z = 14 }, false, true) --{x = 5444, y = 1462, z = 14}
 					Game.createMonster("Crackler", { x = 5448, y = 1460, z = 14 }, false, true) --{x = 5448, y = 1460, z = 14}
 
-					Game.setStorageValue(14323, 0) -- Depolarized Cracklers Count
+					Game.setStorageValueByKey(14323, 0) -- Depolarized Cracklers Count
 					vortexPositions = 0
 					createVortex()
 				else

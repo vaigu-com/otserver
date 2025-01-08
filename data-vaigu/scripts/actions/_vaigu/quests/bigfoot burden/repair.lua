@@ -5,8 +5,8 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	if player:getStorageValue(Storage.BigfootBurden.GolemCount) < 4 and player:getStorageValue(Storage.BigfootBurden.MissionTinkersBell) == 1 and target:getName():lower() == "damaged crystal golem" then
-		player:setStorageValue(Storage.BigfootBurden.GolemCount, player:getStorageValue(Storage.BigfootBurden.GolemCount) + 1)
+	if player:getStorageValueByKey(Storage.BigfootBurden.GolemCount) < 4 and player:getStorageValueByKey(Storage.BigfootBurden.MissionTinkersBell) == 1 and target:getName():lower() == "damaged crystal golem" then
+		player:setStorageValueByKey(Storage.BigfootBurden.GolemCount, player:getStorageValueByKey(Storage.BigfootBurden.GolemCount) + 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Golem powraca do warsztatu.")
 		target:remove()
 		toPosition:sendMagicEffect(CONST_ME_POFF)

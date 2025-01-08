@@ -152,7 +152,7 @@ return {
 	["ShipWindowTitle"] = "Ship",
 	["ShipWindowMessage"] = function(context)
 		local finalString = ""
-		local freeTravels = context.player:getStorageValue(Storage.FreeTravels)
+		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
 			finalString = finalString .. T("You have :freeSails: free sail admits\n", { freeTravels = freeTravels })
 		end
@@ -162,7 +162,7 @@ return {
 	["CarpetWindowTitle"] = "Carpet",
 	["CarpetWindowMessage"] = function(context)
 		local finalString = ""
-		local freeTravels = context.player:getStorageValue(Storage.FreeTravels)
+		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
 			finalString = finalString .. T("You have :freeFlight: free flght admits\n", { freeTravels = freeTravels })
 		end

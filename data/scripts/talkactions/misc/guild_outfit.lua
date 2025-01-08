@@ -32,7 +32,7 @@ function talkaction.onSay(player, words, param)
 	local playerGuild = player:getGuild()
 	local creature = player
 
-	if (os.time() - player:getStorageValue(config.exhaustion)) < config.duration then
+	if (os.time() - player:getStorageValueByKey(config.exhaustion)) < config.duration then
 		player:sendTextMessage(MESSAGE_INFO_DESCR, "You have to wait 10 seconds before using this command again.")
 		return false
 	end
@@ -70,7 +70,7 @@ function talkaction.onSay(player, words, param)
 	end
 
 	player:sendTextMessage(MESSAGE_INFO_DESCR, "Guild members outfit has been changed. (Total: " .. count .. ")")
-	player:setStorageValue(config.exhaustion, os.time() + config.duration)
+	player:setStorageValueByKey(config.exhaustion, os.time() + config.duration)
 	return false
 end
 

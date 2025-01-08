@@ -5,7 +5,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	if not player then
 		return true
 	end
-	if player:getStorageValue(Storage.Ferumbras.ShattererEntry) >= 1 then
+	if player:getStorageValueByKey(Storage.Ferumbras.ShattererEntry) >= 1 then
 		player:teleportTo(Position(7186, 1742, 15)) --{x = 7186, y = 1742, z = 15}
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

@@ -1,3 +1,4 @@
+--[[
 local removePositions = {
 	fromPos = 32593,
 	toPos = 32601,
@@ -17,3 +18,4 @@ end
 
 devilHelmetLever:aid(30008)
 devilHelmetLever:register()
+]]

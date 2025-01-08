@@ -24,7 +24,7 @@ function speed.onSay(player, words, param)
 		return false
 	end
 
-	target:setStorageValue(Storage.hasteLock, -1)
+	target:setStorageValueByKey(Storage.hasteLock, -1)
 	target:changeSpeed()
 end
 speed:separator(" ")
@@ -49,7 +49,7 @@ function basespeed.onSay(player, words, param)
 		return false
 	end
 
-	target:setStorageValue(Storage.hasteLock, 230)
+	target:setStorageValueByKey(Storage.hasteLock, 230)
 	target:changeSpeed()
 end
 basespeed:separator(" ")

@@ -33,7 +33,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return
 	end
 
-	if player:getStorageValue(Storage.BigfootBurden.QuestLine) < teleporter.minState then
+	if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) < teleporter.minState then
 		return true
 	end
 
@@ -55,6 +55,6 @@ end
 
 movement:type("stepin")
 for index, value in pairs(teleporters) do
-	movement:aid(index)
+	movement:key(index)
 end
 movement:register()

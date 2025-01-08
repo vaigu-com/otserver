@@ -25,8 +25,8 @@ function ragingMage2.onDeath(creature, corpse, killer, mostDamageKiller, unjusti
 			MESSAGE_EVENT_ADVANCE
 		)
 	end, 5 * 60 * 1000)
-	mostDamageKiller:setStorageValue(673004, 0)
-	Game.setStorageValue(775559, 0)
+	mostDamageKiller:setStorageValueByKey(673004, 0)
+	Game.setStorageValueByKey(775559, 0)
 	return true
 end
 

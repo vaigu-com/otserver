@@ -17,17 +17,17 @@ local localSupportFinished = {
 quest
 	:Storage(function()
 		Storage.EnterTheDrunkTankChamberlain = {
-			Mission01 = NextStorage(),
-			GlowingWaterVial = NextStorage(),
-			FilledVial = NextStorage(),
-			BullSpoogeChurn = NextStorage(),
-			FilledChurn = NextStorage(),
-			Hallucinogen = NextStorage(),
-			Bookcase = NextStorage(),
+			Mission01 = {},
+			GlowingWaterVial = {},
+			FilledVial = {},
+			BullSpoogeChurn = {},
+			FilledChurn = {},
+			Hallucinogen = {},
+			Bookcase = {},
 
-			MediumManaPotion = NextStorage(),
-			GreatManaPotion = NextStorage(),
-			UltimateManaPotion = NextStorage(),
+			MediumManaPotion = {},
+			GreatManaPotion = {},
+			UltimateManaPotion = {},
 		}
 		QuestState.EnterTheDrunkTankChamberlain = {
 			Mission01 = {
@@ -58,16 +58,17 @@ quest
 		QuestActions.EnterTheDrunkTankChamberlain = {
 			grantVocationPotionAccess = function(context)
 				local missionStorage = vocationToMission[context.player:getVocation():getBase():getId()]
-				context.player:setStorageValue(missionStorage, ACCESS_GRANTED)
+				context.player:setStorageValueByKey(missionStorage, ACCESS_GRANTED)
 			end,
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId] = {
+		table.insert(Quests, {
 			name = "Enter the Drunk Tank Chamberlain",
 			missions = {
-				[Storage.EnterTheDrunkTankChamberlain] = {
+				{
 					name = "Iron Stomach",
+					storage = Storage.EnterTheDrunkTankChamberlain,
 					states = {
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.AskVislavAboutTask] = "Commissioner Fisher told you to ask Vislav Shivka about a tactical task.",
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.CollectWaterAndMilk] = "Collect glowing naga water and bull spooge then report to Vislav.",
@@ -77,7 +78,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Mission(Storage.EnterTheDrunkTankChamberlain.Mission01)
 	:State(function()
@@ -134,7 +135,7 @@ quest
 					item:remove()
 					player:AddCustomItem({ id = 2874, aid = Storage.EnterTheDrunkTankChamberlain.FilledVial })
 				end
-				glowingVial:aid(Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial)
+				glowingVial:key(Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial)
 				glowingVial:register()
 			end),
 			QuestFactory.StartupItems({
@@ -155,7 +156,7 @@ quest
 					item:remove()
 					player:AddCustomItem({ id = 32198, aid = Storage.EnterTheDrunkTankChamberlain.FilledChurn, name = "churn of bull's 'milk'" })
 				end
-				spoogeChurn:aid(Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn)
+				spoogeChurn:key(Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn)
 				spoogeChurn:register()
 			end),
 			QuestFactory.StartupItems({
@@ -201,7 +202,7 @@ quest
 					player:teleportTo(inside)
 					inside:sendMagicEffect(CONST_ME_TELEPORT)
 				end
-				hallucinogen:aid(Storage.EnterTheDrunkTankChamberlain.Hallucinogen)
+				hallucinogen:key(Storage.EnterTheDrunkTankChamberlain.Hallucinogen)
 				hallucinogen:register()
 			end),
 			QuestFactory.StartupItems({

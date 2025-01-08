@@ -113,7 +113,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 		[Storage.SomeQuest.AntelopeUnlocked] = { min = 9, max = 13 },
 	}
 
-	-- Default: Same as above, but for the global game storage (Game.getStorageValue vs player:getStorageValue())
+	-- Default: Same as above, but for the global game storage (Game.getStorageValueByKey vs player:getStorageValueByKey())
 	requiredGlobalState = {
 		-- gte
 		[Storage.SomeQuest.SomeStorage1] = 50,
@@ -287,7 +287,6 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	-- Updates player storages on sucess-resolve
 	-- Use integer to set storage value
 	-- Use String with +/- to increment/decrement current storage value, eg.: "+1"
-	-- ToDo: also allow change value based on function
 	nextState = {
 		[Storage.SomeQuest.Questline] = 1,
 		[Storage.SomeQuest.Mission01] = 1,
@@ -297,7 +296,6 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	-- Updates the declared storages for global Game state
 	-- Use integer to set to its value. eg.: 1
 	-- Use String with +/- to increment/decrement, eg.: "+1"
-	-- ToDo: also allow change value based on function
 	nextGlobalState = { [Storage.SomeQuest.MagicNumber] = 5 }
 
 	-- If dialog is success-resolved, sets dialog context in the global variable associated with player

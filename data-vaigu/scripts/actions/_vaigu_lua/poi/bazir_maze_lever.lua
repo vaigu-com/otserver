@@ -15,3 +15,4 @@ end
 
 pitsOfInfernoMazeLever:uid(50105)
 pitsOfInfernoMazeLever:register()
+

@@ -200,7 +200,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				local playerTile = Tile(Position(x, y, uid_act.positions.from.z)):getTopCreature()
 				if playerTile and playerTile:isPlayer() then
 					if uid_act.timerStorage then
-						if playerTile:getStorageValue(uid_act.timerStorage) > os.time() then
+						if playerTile:getStorageValueByKey(uid_act.timerStorage) > os.time() then
 							player:sendTextMessage(MESSAGE_STATUS_SMALL, "You or a member in your team have to wait " .. uid_act.timerHours .. " hours to challange " .. uid_act.bossName .. " again!")
 							return true
 						end
@@ -236,7 +236,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					playerTile:teleportTo(uid_act.enterPos)
 					playerTile:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					if uid_act.timerStorage then
-						playerTile:setStorageValue(uid_act.timerStorage, os.time() + uid_act.timerHours * 60 * 60) -- + 20 * 60 * 3600
+						playerTile:setStorageValueByKey(uid_act.timerStorage, os.time() + uid_act.timerHours * 60 * 60) -- + 20 * 60 * 3600
 					end
 					addEvent(clearBossRoom, 60 * uid_act.time * 1000, playerTile:getId(), uid_act.centerRoom, uid_act.range, uid_act.range, uid_act.exitPosition, uid_act.actionid)
 					playerTile:sendTextMessage(MESSAGE_STATUS_SMALL, "You have " .. uid_act.time .. " minutes to kill and loot this boss. Otherwise you will lose that chance and will be kicked out.")

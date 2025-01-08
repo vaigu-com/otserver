@@ -1,4 +1,4 @@
-Storage.ExerciseWeaponBox = NextStorage()
+Storage.ExerciseWeaponBox = {}
 local boxId = 906
 local boxAid = Storage.ExerciseWeaponBox
 
@@ -68,5 +68,5 @@ function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition,
 	return true
 end
 
-exerciseWeaponBox:aid(Storage.ExerciseWeaponBox)
+exerciseWeaponBox:key(Storage.ExerciseWeaponBox)
 exerciseWeaponBox:register()

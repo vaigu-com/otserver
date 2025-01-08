@@ -19,10 +19,10 @@ local function shouldRegisterRevscript(item)
 end
 
 function CustomItemRegistry:Register(item)
-	self.states[item.aid] = {}
+	self.states[item.key] = {}
 
-	for key, value in pairs(item) do
-		self.states[item.aid][key] = value
+	for field, value in pairs(item) do
+		self.states[item.key][field] = value
 	end
 
 	if not shouldRegisterRevscript(item) then
@@ -34,7 +34,7 @@ function CustomItemRegistry:Register(item)
 		ChestQuestTryAddItems(player, chest)
 		return true
 	end
-	chestAction:aid(item.aid)
+	chestAction:key(item.key)
 	chestAction:register()
 
 	return self

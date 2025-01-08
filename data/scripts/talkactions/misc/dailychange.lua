@@ -10,11 +10,11 @@ function talkaction.onSay(player, words, param)
 	end
 
 	if dailylevel == "low" then
-		Game.setStorageValue(GlobalStorage.DailyQuest.LLvl, value)
+		Game.setStorageValueByKey(Storage.DailyQuest.LLvl, value)
 	elseif dailylevel == "mid" then
-		Game.setStorageValue(GlobalStorage.DailyQuest.MLvl, value)
+		Game.setStorageValueByKey(Storage.DailyQuest.MLvl, value)
 	elseif dailylevel == "high" then
-		Game.setStorageValue(GlobalStorage.DailyQuest.HLvl, value)
+		Game.setStorageValueByKey(Storage.DailyQuest.HLvl, value)
 	end
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Storage set to " .. value .. "")
 	return false

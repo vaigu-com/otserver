@@ -5602,7 +5602,7 @@ GameStore.Categories = {
 				type = GameStore.OfferTypes.OFFER_TYPE_PREYSLOT,
 				coinType = GameStore.CoinType.Coin,
 			},
-			-- ToDo: revamp hunting tasks
+			-- 3bf: revamp hunting tasks
 			--[[
 			{
 				icons = { "Permanent_Hunting_Task_Slot.png" },

@@ -1,7 +1,7 @@
 local zombiehealthChange = CreatureEvent("ZombieLifeSteal")
 
 function zombiehealthChange.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType)
-	if creature:getStorageValue(ze_joinStorage) == 1 then
+	if creature:getStorageValueByKey(ze_joinStorage) == 1 then
 		if attacker and attacker:getName() == "Zombie" then
 			if creature and creature:isPlayer() then
 				local dmgPercent = 40

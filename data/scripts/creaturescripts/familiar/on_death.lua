@@ -11,8 +11,8 @@ function familiarOnDeath.onDeath(creature, corpse, lasthitkiller, mostdamagekill
 	if table.contains(vocation, creature:getName()) then
 		player:kv():set("familiar-summon-time", os.time())
 		for sendMessage = 1, #FAMILIAR_TIMER do
-			stopEvent(player:getStorageValue(FAMILIAR_TIMER[sendMessage].storage))
-			player:setStorageValue(FAMILIAR_TIMER[sendMessage].storage, -1)
+			stopEvent(player:getStorageValueByKey(FAMILIAR_TIMER[sendMessage].storage))
+			player:setStorageValueByKey(FAMILIAR_TIMER[sendMessage].storage, -1)
 		end
 	end
 	return true

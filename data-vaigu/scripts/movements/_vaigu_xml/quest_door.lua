@@ -6,7 +6,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return false
 	end
 
-	if player:getStorageValue(item.actionid) == -1 then
+	if player:getStorageValueByKey(item.actionid) == -1 then
 		player:sendTextMessage(MESSAGE_INFO_DESCR, "Nie mozesz przejsc przez te drzwi.")
 		player:teleportTo(fromPosition, true)
 		return false

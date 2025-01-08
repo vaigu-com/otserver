@@ -9,59 +9,59 @@ local frediEscort = {
 quest
 	:Storage(function()
 		Storage.ProdigalSon = {
-			Localizer = NextStorage(),
-			Mission01 = NextStorage(),
-			Mission02 = NextStorage(),
-			Mission03 = NextStorage(),
-			Mission04 = NextStorage(),
-			Mission05 = NextStorage(),
-			Mission06 = NextStorage(),
-			MetroAccess = NextStorage(),
-			MainGateAccess = NextStorage(),
-			NorthMinesAccess = NextStorage(),
-			TileBeforeChesterCompartment = NextStorage(),
-			HammerMaking = { Lever = NextStorage(), Paint = NextStorage() },
+			Localizer = {},
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			Mission04 = {},
+			Mission05 = {},
+			Mission06 = {},
+			MetroAccess = {},
+			MainGateAccess = {},
+			NorthMinesAccess = {},
+			TileBeforeChesterCompartment = {},
+			HammerMaking = { Lever = {}, Paint = {} },
 			CalculatorMaking = {
-				Lever = NextStorage(),
-				MetalPile = NextStorage(),
-				WoodPile = NextStorage(),
+				Lever = {},
+				MetalPile = {},
+				WoodPile = {},
 			},
-			PliersMaking = { Lever = NextStorage(), MetalPile = NextStorage() },
-			AreczekCorpse = NextStorage(),
-			AreczekLeaderBed = NextStorage(),
+			PliersMaking = { Lever = {}, MetalPile = {} },
+			AreczekCorpse = {},
+			AreczekLeaderBed = {},
 			EristicsBooks = {
-				One = NextStorage(),
-				Two = NextStorage(),
-				Three = NextStorage(),
+				One = {},
+				Two = {},
+				Three = {},
 			},
 			EristicsItems = {
-				LovePotion = NextStorage(),
-				Herbs = NextStorage(),
-				SlimmingPot = NextStorage(),
-				LoanDocument = NextStorage(),
+				LovePotion = {},
+				Herbs = {},
+				SlimmingPot = {},
+				LoanDocument = {},
 			},
-			SewersLever = NextStorage(),
-			DiamondNecklace = NextStorage(),
-			LavaSiloMachine = NextStorage(),
-			FrediBeer = NextStorage(),
-			Blackboard = NextStorage(),
-			BlackBoardLever1 = NextStorage(),
-			BlackBoardLever2 = NextStorage(),
-			PolAccess = NextStorage(),
-			Payslip = NextStorage(),
+			SewersLever = {},
+			DiamondNecklace = {},
+			LavaSiloMachine = {},
+			FrediBeer = {},
+			Blackboard = {},
+			BlackBoardLever1 = {},
+			BlackBoardLever2 = {},
+			PolAccess = {},
+			Payslip = {},
 			Train = {
-				SelectDestination = NextStorage(),
-				FakeMoveTeleport11 = NextStorage(),
-				FakeMoveTeleport12 = NextStorage(),
-				FakeMoveTeleport13 = NextStorage(),
+				SelectDestination = {},
+				FakeMoveTeleport11 = {},
+				FakeMoveTeleport12 = {},
+				FakeMoveTeleport13 = {},
 			},
 			TrainDestinations = {
-				ToHurghada = NextStorage(),
-				ToJanuszex = NextStorage(),
-				ToBydgoshch = NextStorage(),
+				ToHurghada = {},
+				ToJanuszex = {},
+				ToBydgoshch = {},
 			},
-			Rewards = { ToiletSoap = NextStorage() },
-			PortalAfterPol = NextStorage(),
+			Rewards = { ToiletSoap = {} },
+			PortalAfterPol = {},
 		}
 		QuestState.ProdigalSon = {
 			Mission01 = {
@@ -109,7 +109,7 @@ quest
 		SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
 			setPersonalBlackboardPassword = function(context)
 				local player = context.player
-				player:setStorageValue(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
+				player:setStorageValueByKey(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
 			end,
 		}
 
@@ -204,7 +204,7 @@ quest
 			end,
 			saidCorrectPassword = function(context)
 				local player = context.player
-				local correctPassword = tostring(player:getStorageValue(Storage.ProdigalSon.Blackboard))
+				local correctPassword = tostring(player:getStorageValueByKey(Storage.ProdigalSon.Blackboard))
 				local saidPassword = context.msg
 				if MsgContains(saidPassword, correctPassword) then
 					return true
@@ -241,7 +241,7 @@ quest
 		SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
 			setPersonalBlackboardPassword = function(context)
 				local player = context.player
-				player:setStorageValue(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
+				player:setStorageValueByKey(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
 			end,
 		}
 
@@ -268,19 +268,21 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Prodigal Son",
 			missions = {
-				[Storage.ProdigalSon.Mission01] = {
+				{
 					name = "01. Work is da poop!",
+					storage = Storage.ProdigalSon.Mission01,
 					states = {
 						[QuestState.ProdigalSon.Mission01.ChesterSpeakingAboutJanuszex] = "Ask Chester for a new mission.",
 						[QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex] = "Find the metro leading to workplace designated by Chester.",
 						[MISSION_FINISHED] = "You found the metro Chester was talking about. Try to find the work supervisor when you arrive at the next station.",
 					},
 				},
-				[Storage.ProdigalSon.Mission02] = {
+				{
 					name = "02. Artisan Baker",
+					storage = Storage.ProdigalSon.Mission02,
 					states = {
 						[QuestState.ProdigalSon.Mission02.FindForeman] = "Find the work supervisor.",
 						[QuestState.ProdigalSon.Mission02.PaintHammers] = "Henry commanded you to start your new job: painting wooden hammers. He asked for 5 pieces.",
@@ -289,8 +291,9 @@ quest
 						[MISSION_FINISHED] = "You completed all of Henry's orders.",
 					},
 				},
-				[Storage.ProdigalSon.Mission03] = {
+				{
 					name = "03. Cheetos Prank Acedemy",
+					storage = Storage.ProdigalSon.Mission03,
 					states = {
 						[QuestState.ProdigalSon.Mission03.TalkToHearAboutDuties] = "Henry promoted you to an assistant position. Ask for your new duties.",
 						[QuestState.ProdigalSon.Mission03.KillAreczekForSoap] = "Henry asked you to investigate the ever-shrinking number of towels and soaps in toilets.",
@@ -300,8 +303,9 @@ quest
 						[MISSION_FINISHED] = "Henry is content that you busted the union.",
 					},
 				},
-				[Storage.ProdigalSon.Mission04] = {
+				{
 					name = "04. Serious business",
+					storage = Storage.ProdigalSon.Mission04,
 					states = {
 						[QuestState.ProdigalSon.Mission04.AskForMission] = "Ask Henry for your next mission.",
 						[QuestState.ProdigalSon.Mission04.FindingEristicsBooks] = "Find the three books on eristics. Henry lost them allover the place.",
@@ -309,8 +313,9 @@ quest
 						[MISSION_FINISHED] = "Henry thanked you for doing your job.",
 					},
 				},
-				[Storage.ProdigalSon.Mission05] = {
+				{
 					name = "05. SUPREME",
+					storage = Storage.ProdigalSon.Mission05,
 					states = {
 						[QuestState.ProdigalSon.Mission05.AskForNewMission] = "Ask Henry for new mission.",
 						[QuestState.ProdigalSon.Mission05.FindingDwarfNecklace] = "Henry asked you to find a gray-haired dwarf corpse.",
@@ -322,8 +327,9 @@ quest
 						[MISSION_FINISHED] = "Henry thanked you for doing your job.",
 					},
 				},
-				[Storage.ProdigalSon.Mission06] = {
+				{
 					name = "06. Coup d'Passat",
+					storage = Storage.ProdigalSon.Mission06,
 					states = {
 						[QuestState.ProdigalSon.Mission06.FindPasswordAndKillImperator] = "Henry told you to find the password to the royal room.",
 						[QuestState.ProdigalSon.Mission06.KilledImperator] = "You defeated Pol, the boss-imperator of Januszex. Report to Henry.",
@@ -332,7 +338,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:MonsterEvent(function()
 		local areczek = CreatureEvent("HitArechek")
@@ -503,117 +509,6 @@ quest
 
 		mType:register(monster)
 	end)
-	:Monster(function()
-		local mType = Game.createMonsterType("Pol")
-		local monster = {}
-
-		monster.description = "the Pol"
-		monster.experience = 150000
-		monster.outfit = {
-			lookType = 1444,
-			lookHead = 0,
-			lookBody = 91,
-			lookLegs = 0,
-			lookFeet = 0,
-		}
-
-		monster.health = 30000
-		monster.maxHealth = 30000
-		monster.race = "blood"
-		monster.corpse = 4240
-		monster.speed = 250
-
-		monster.changeTarget = {
-			interval = 4000,
-			chance = 0,
-		}
-
-		monster.strategiesTarget = {
-			nearest = 100,
-		}
-
-		monster.flags = {
-			summonable = false,
-			attackable = true,
-			hostile = true,
-			convinceable = false,
-			pushable = false,
-			rewardBoss = false,
-			illusionable = false,
-			canPushItems = true,
-			canPushCreatures = true,
-			staticAttackChance = 90,
-			targetDistance = 1,
-			runHealth = 3,
-			healthHidden = false,
-			isBlockable = false,
-			canWalkOnEnergy = true,
-			canWalkOnFire = true,
-			canWalkOnPoison = true,
-			pet = false,
-		}
-
-		monster.events = {
-			"PolDeath",
-		}
-
-		monster.light = {
-			level = 0,
-			color = 0,
-		}
-
-		monster.voices = {
-			interval = 5000,
-			chance = 10,
-		}
-
-		monster.loot = {}
-
-		monster.attacks = {
-			{ name = "melee", interval = 2000, chance = 100, skill = 90, attack = 50 },
-			{ name = "pol plus beam", interval = 7000, chance = 100, target = false, range = 7 },
-			{ name = "pol white black switch", interval = 5000, chance = 100, target = false, range = 7 },
-		}
-
-		monster.defenses = {
-			defense = 4,
-			armor = 1,
-		}
-
-		monster.elements = {
-			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-			{ type = COMBAT_FIREDAMAGE, percent = 0 },
-			{ type = COMBAT_LIFEDRAIN, percent = 0 },
-			{ type = COMBAT_MANADRAIN, percent = 0 },
-			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-			{ type = COMBAT_ICEDAMAGE, percent = 0 },
-			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-			{ type = COMBAT_DEATHDAMAGE, percent = 0 },
-		}
-
-		monster.immunities = {
-			{ type = "paralyze", condition = true },
-			{ type = "outfit", condition = true },
-			{ type = "invisible", condition = true },
-			{ type = "bleed", condition = false },
-		}
-
-		mType.onAppear = function(monster, creature)
-			CreatureStateRegistry:register(monster) --39f change to encounter
-			local state = CreatureStateRegistry:getState(monster)
-			state.currentColor = 0
-			state.penaltyDamage = 0
-		end
-
-		mType.onDisappear = function(monster, creature)
-			if monster == creature then
-				CreatureStateRegistry:unregister(monster)
-			end
-		end
-		mType:register(monster)
-	end)
 	:Script(function(missionState)
 		local nextState = {
 			[Storage.ProdigalSon.Mission01] = QuestState.ProdigalSon.Mission01.ChesterSpeakingAboutJanuszex,
@@ -623,19 +518,19 @@ quest
 
 		local mainGateTile = MoveEvent()
 		function mainGateTile.onStepIn(player, item, toPosition, fromPosition)
-			local chesterState = player:getStorageValue(Storage.ChesterTheDwarf.Mission04)
+			local chesterState = player:getStorageValueByKey(Storage.ChesterTheDwarf.Mission04)
 			if chesterState < requiredChesterState then
 				return
 			end
 
-			local questState = player:getStorageValue(Storage.ProdigalSon.Mission01)
+			local questState = player:getStorageValueByKey(Storage.ProdigalSon.Mission01)
 			if questState > MISSION_NOT_STARTED then
 				return
 			end
 
 			player:NextState(nextState)
 		end
-		mainGateTile:aid(Storage.ProdigalSon.TileBeforeChesterCompartment)
+		mainGateTile:key(Storage.ProdigalSon.TileBeforeChesterCompartment)
 		mainGateTile:register()
 	end)
 	:Script(function(missionState)
@@ -645,7 +540,7 @@ quest
 				return
 			end
 
-			if player:getStorageValue(actionid) ~= ACCESS_GRANTED then
+			if player:getStorageValueByKey(actionid) ~= ACCESS_GRANTED then
 				local transaltedMessage = player:Localizer(Storage.ProdigalSon.Localizer):Get(errorMessage)
 				player:sendTextMessage(MESSAGE_INFO_DESCR, transaltedMessage)
 				player:teleportTo(fromPosition, true)
@@ -658,17 +553,17 @@ quest
 		function mainGateTile.onStepIn(player, item, toPosition, fromPosition)
 			tryEnterAccessTile(Storage.ProdigalSon.MainGateAccess, player, fromPosition)
 		end
-		mainGateTile:aid(Storage.ProdigalSon.MainGateAccess)
+		mainGateTile:key(Storage.ProdigalSon.MainGateAccess)
 		mainGateTile:register()
 
 		local northMinesTile = MoveEvent()
 		function northMinesTile.onStepIn(player, item, toPosition, fromPosition)
 			tryEnterAccessTile(Storage.ProdigalSon.NorthMinesAccess, player, fromPosition)
 		end
-		northMinesTile:aid(Storage.ProdigalSon.NorthMinesAccess)
+		northMinesTile:key(Storage.ProdigalSon.NorthMinesAccess)
 		northMinesTile:register()
 	end)
-	--ToDo: add as encounter
+	--3af: add as encounter
 	:Script(function(missionState)
 		local polEncounterConfig = {
 			actionid = Storage.ProdigalSon.PolAccess,
@@ -702,7 +597,7 @@ quest
 			if UseEncounterLever(player, item, polEncounterConfig) then
 			end
 		end
-		lever:aid(Storage.ProdigalSon.PolAccess)
+		lever:key(Storage.ProdigalSon.PolAccess)
 		lever:register()
 	end)
 	:Mission(Storage.ProdigalSon.Mission01)
@@ -780,7 +675,7 @@ quest
 				end
 
 				local function hasUnlockedDestination(player, aid)
-					return player:getStorageValue(aid) == ACCESS_GRANTED
+					return player:getStorageValueByKey(aid) == ACCESS_GRANTED
 				end
 
 				local nextState = {
@@ -794,7 +689,7 @@ quest
 						return false
 					end
 
-					if player:getStorageValue(Storage.ProdigalSon.MetroAccess) ~= ACCESS_GRANTED then
+					if player:getStorageValueByKey(Storage.ProdigalSon.MetroAccess) ~= ACCESS_GRANTED then
 						return true
 					end
 
@@ -822,7 +717,7 @@ quest
 					return true
 				end
 
-				trainTravel:aid(Storage.ProdigalSon.Train.SelectDestination)
+				trainTravel:key(Storage.ProdigalSon.Train.SelectDestination)
 				trainTravel:register()
 			end)
 	end)
@@ -848,7 +743,6 @@ quest
 				{
 					pos = { -90, -69, 2 },
 					id = PRODIGAL_SON_NORMAL_ITEMS.stoneTable,
-					uid = 1000,
 					aid = 0,
 				},
 				{
@@ -873,7 +767,7 @@ quest
 
 					return true
 				end
-				lever:aid(Storage.ProdigalSon.HammerMaking.Lever)
+				lever:key(Storage.ProdigalSon.HammerMaking.Lever)
 				lever:register()
 
 				local paint = Action()
@@ -888,7 +782,7 @@ quest
 					end
 					return true
 				end
-				paint:aid(Storage.ProdigalSon.HammerMaking.Paint)
+				paint:key(Storage.ProdigalSon.HammerMaking.Paint)
 				paint:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
@@ -953,7 +847,7 @@ quest
 					Game.createItem(PRODIGAL_SON_NORMAL_ITEMS.stoneTrash, 1, player:getPosition())
 					return true
 				end
-				metalPile:aid(Storage.ProdigalSon.CalculatorMaking.MetalPile)
+				metalPile:key(Storage.ProdigalSon.CalculatorMaking.MetalPile)
 				metalPile:register()
 
 				local woodPile = Action()
@@ -965,7 +859,7 @@ quest
 					Game.createItem(PRODIGAL_SON_NORMAL_ITEMS.woodTrash, 1, player:getPosition())
 					return true
 				end
-				woodPile:aid(Storage.ProdigalSon.CalculatorMaking.WoodPile)
+				woodPile:key(Storage.ProdigalSon.CalculatorMaking.WoodPile)
 				woodPile:register()
 
 				local lever = Action()
@@ -986,7 +880,7 @@ quest
 					end
 					return true
 				end
-				lever:aid(Storage.ProdigalSon.CalculatorMaking.Lever)
+				lever:key(Storage.ProdigalSon.CalculatorMaking.Lever)
 				lever:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
@@ -1038,7 +932,7 @@ quest
 
 					return true
 				end
-				metalPile:aid(Storage.ProdigalSon.PliersMaking.MetalPile)
+				metalPile:key(Storage.ProdigalSon.PliersMaking.MetalPile)
 				metalPile:register()
 
 				local lever = Action()
@@ -1055,7 +949,7 @@ quest
 					end
 					return true
 				end
-				lever:aid(Storage.ProdigalSon.PliersMaking.Lever)
+				lever:key(Storage.ProdigalSon.PliersMaking.Lever)
 				lever:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
@@ -1115,7 +1009,7 @@ quest
 			fromPosition:sendMagicEffect(CONST_ME_MAGIC_GREEN)
 			return true
 		end
-		corpse:aid(Storage.ProdigalSon.AreczekCorpse)
+		corpse:key(Storage.ProdigalSon.AreczekCorpse)
 		corpse:register()
 	end)
 	:State(function()
@@ -1206,7 +1100,7 @@ quest
 
 					return true
 				end
-				bed:aid(Storage.ProdigalSon.AreczekLeaderBed)
+				bed:key(Storage.ProdigalSon.AreczekLeaderBed)
 				bed:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
@@ -1455,7 +1349,7 @@ quest
 					newPos:sendMagicEffect(CONST_ME_WATERSPLASH)
 					return true
 				end
-				lever:aid(Storage.ProdigalSon.SewersLever)
+				lever:key(Storage.ProdigalSon.SewersLever)
 				lever:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
@@ -1811,7 +1705,7 @@ quest
 					fromPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 					return true
 				end
-				gateLever:aid(Storage.ProdigalSon.BlackBoardLever1)
+				gateLever:key(Storage.ProdigalSon.BlackBoardLever1)
 				gateLever:register()
 
 				local waterfallLever = Action()
@@ -1831,7 +1725,7 @@ quest
 					end
 					return true
 				end
-				waterfallLever:aid(Storage.ProdigalSon.BlackBoardLever2)
+				waterfallLever:key(Storage.ProdigalSon.BlackBoardLever2)
 				waterfallLever:register()
 			end),
 			QuestFactory.StartupItems({
@@ -1882,7 +1776,118 @@ quest
 					},
 				},
 			})
-		-- ToDo: add pol monster
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Pol")
+		local monster = {}
+
+		monster.description = "the Pol"
+		monster.experience = 150000
+		monster.outfit = {
+			lookType = 1444,
+			lookHead = 0,
+			lookBody = 91,
+			lookLegs = 0,
+			lookFeet = 0,
+		}
+
+		monster.health = 30000
+		monster.maxHealth = 30000
+		monster.race = "blood"
+		monster.corpse = 4240
+		monster.speed = 250
+
+		monster.changeTarget = {
+			interval = 4000,
+			chance = 0,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 100,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = true,
+			canPushCreatures = true,
+			staticAttackChance = 90,
+			targetDistance = 1,
+			runHealth = 3,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = true,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+			pet = false,
+		}
+
+		monster.events = {
+			"PolDeath",
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+		}
+
+		monster.loot = {}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, skill = 90, attack = 50 },
+			{ name = "pol plus beam", interval = 7000, chance = 100, target = false, range = 7 },
+			{ name = "pol white black switch", interval = 5000, chance = 100, target = false, range = 7 },
+		}
+
+		monster.defenses = {
+			defense = 4,
+			armor = 1,
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 0 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = true },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		mType.onAppear = function(monster, creature)
+			--39f convert to Encounter
+			CreatureStateRegistry:register(monster)
+			local state = CreatureStateRegistry:getState(monster)
+			state.currentColor = 0
+			state.penaltyDamage = 0
+		end
+
+		mType.onDisappear = function(monster, creature)
+			if monster == creature then
+				CreatureStateRegistry:unregister(monster)
+			end
+		end
+		mType:register(monster)
 	end)
 	:MonsterEvent(function()
 		local nextState = {
@@ -1892,7 +1897,7 @@ quest
 		local polDeath = CreatureEvent("PolDeath")
 		function polDeath.onDeath(creature)
 			onDeathForDamagingPlayers(creature, function(creature, player)
-				local storage_val = player:getStorageValue(Storage.ProdigalSon.Mission06)
+				local storage_val = player:getStorageValueByKey(Storage.ProdigalSon.Mission06)
 				if storage_val ~= 1 then
 					return true
 				end

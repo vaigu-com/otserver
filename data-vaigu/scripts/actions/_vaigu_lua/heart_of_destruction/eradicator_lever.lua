@@ -89,7 +89,7 @@ function heartDestructionEradicator.onUse(player, item, fromPosition, itemEx, to
 						players = storePlayers[i]
 						config.entranceTiles[i]:sendMagicEffect(CONST_ME_POFF)
 						players:teleportTo(config.newPos)
-						players:setStorageValue(14329, os.time() + 20 * 60 * 60)
+						players:setStorageValueByKey(14329, os.time() + 20 * 60 * 60)
 					end
 					Position(config.newPos):sendMagicEffect(11)
 

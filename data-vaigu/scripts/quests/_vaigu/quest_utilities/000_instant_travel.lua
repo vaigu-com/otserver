@@ -1,4 +1,4 @@
-Storage.InstantTravel = NextStorage()
+Storage.InstantTravel = {}
 
 local allRoutes = {}
 
@@ -103,7 +103,7 @@ local travelItemUse = Action()
 function travelItemUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	onTravelItemuse(player, fromPosition)
 end
-travelItemUse:aid(Storage.InstantTravel)
+travelItemUse:key(Storage.InstantTravel)
 travelItemUse:blockWalls()
 travelItemUse:register()
 
@@ -114,6 +114,6 @@ function travelItemLook.onLook(player, item, fromPosition, target, toPosition)
 	end
 	onTravelItemuse(player, toPosition)
 end
-travelItemLook:aid(Storage.InstantTravel)
+travelItemLook:key(Storage.InstantTravel)
 travelItemLook:blockWalls()
 travelItemLook:register()

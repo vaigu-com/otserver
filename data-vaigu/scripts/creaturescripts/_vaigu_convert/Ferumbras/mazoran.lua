@@ -1,8 +1,8 @@
 local creatureevent = CreatureEvent("MazoranDeath")
 
 function creatureevent.onDeath(creature)
-	if Game.getStorageValue(GlobalStorage.Ferumbras.MazoranTp) < os.time() then
-		Game.setStorageValue(GlobalStorage.Ferumbras.MazoranTp, os.time() + 3 * 60)
+	if Game.getStorageValueByKey(Storage.Ferumbras.MazoranTp) < os.time() then
+		Game.setStorageValueByKey(Storage.Ferumbras.MazoranTp, os.time() + 3 * 60)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)

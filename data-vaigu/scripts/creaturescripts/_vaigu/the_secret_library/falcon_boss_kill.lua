@@ -19,8 +19,8 @@ function falconBossDeath.onDeath(creature)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValue(bossConfig.storage) <= 0 then
-			player:setStorageValue(bossConfig.storage, 1)
+		if player:getStorageValueByKey(bossConfig.storage) <= 0 then
+			player:setStorageValueByKey(bossConfig.storage, 1)
 		end
 	end)
 end

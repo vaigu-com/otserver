@@ -17,7 +17,7 @@ function rosebushPlant.onUse(player, item, fromPosition, target, toPosition, isH
 		return true
 	end
 
-	if player:getStorageValue(targetItem.storage) <= 0 then
+	if player:getStorageValueByKey(targetItem.storage) <= 0 then
 		if target.itemid == 30001 then
 			target:transform(3677)
 			item:remove(1)
@@ -25,7 +25,7 @@ function rosebushPlant.onUse(player, item, fromPosition, target, toPosition, isH
 			addEvent(revertYellow, 5 * 60 * 1000, toPosition) --5min
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Zasadziles Rosebush.")
-		player:setStorageValue(targetItem.storage, 1)
+		player:setStorageValueByKey(targetItem.storage, 1)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Juz je posadzilem.")
 	end

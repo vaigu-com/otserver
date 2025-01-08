@@ -51,7 +51,7 @@ end
 local function greetCallback(npc, creature)
 	local playerId = creature:getId()
 	if player then
-		if player:getStorageValue(Storage.TheApeCity.Started) < 12 then
+		if player:getStorageValueByKey(Storage.TheApeCity.Started) < 12 then
 			if getPlayerLanguage(player) == "PL" then
 				npcHandler:setMessage(MESSAGE_GREET, "Oh! Witam, witam! Nie zauwazylem cie! Bardzo {zajety}.")
 			else
@@ -85,7 +85,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		return false
 	end
 
-	local questProgress = player:getStorageValue(Storage.TheApeCity.QuestProgress)
+	local questProgress = player:getStorageValueByKey(Storage.TheApeCity.QuestProgress)
 	if table.contains({ "mission", "misja", "missions" }, message) then
 		if questProgress < 1 then
 			npcHandler:say(
@@ -96,7 +96,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			)
 			npcHandler:setTopic(playerId, 1)
 		elseif questProgress == 1 then
-			if player:getStorageValue(Storage.TheApeCity.WhisperMoss) == 1 then
+			if player:getStorageValueByKey(Storage.TheApeCity.WhisperMoss) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Oh, przyniosles mi whisper moss? Dobra bezwlosia malpa z ciebie! Dasz mi je?" or "Oh, you brought me whisper moss? Good hairless ape you are! Can me take it?", npc, creature)
 				npcHandler:setTopic(playerId, 3)
 			else
@@ -115,7 +115,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Whisper moss strong is, but me need liquid that humans have to make it work ...",
 				"Our raiders brought it from human settlement, it's called cough syrup. Go ask healer there for it.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 3)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 3)
 		elseif questProgress == 3 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Przyniosles mi ten syrop na kaszel od ludzi, o ktory cie prosilem?" or "You brought me that cough syrup from human healer me asked for?", npc, creature)
 			npcHandler:setTopic(playerId, 4)
@@ -145,7 +145,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 8)
 		elseif questProgress == 7 then
-			if player:getStorageValue(Storage.TheApeCity.TombWall) == 1 then
+			if player:getStorageValueByKey(Storage.TheApeCity.TombWall) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Ah tak, przeczytales znaki w grobowcu? Dobrze! Pozwolisz, ze spojrze w twoj umysl i dowiem sie co przeczytales?" or "Ah yes, you read the signs in tomb? Good! May me look into your mind to see what you saw?", npc, creature)
 				npcHandler:setTopic(playerId, 9)
 			else
@@ -190,9 +190,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 14)
 		elseif questProgress == 13 then
-			if player:getStorageValue(Storage.TheApeCity.CampfireMission) == 2 then
+			if player:getStorageValueByKey(Storage.TheApeCity.CampfireMission) == 2 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Ratujesz nasza sytuacje, przyjacielu. Mam nadzieje, ze szalenstwo jeszcze nie rozprzestrzeni sie. Pewnie jest gotowy na kolejna misje." or "You do please Hairycles again, friend. Me hope madness will not spread further now. Perhaps you are ready for other mission.", npc, creature)
-				player:setStorageValue(Storage.TheApeCity.QuestProgress, 14)
+				player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 14)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze, przeszkodz im jakos w tych rytualach. Ja tam niczego szczegolnego nie widzialem." or "Please destroy their mystical campfire, so my people will come to senses again.", npc, creature)
 			end
@@ -210,7 +210,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 15)
 		elseif questProgress == 15 then
-			if player:getStorageValue(Storage.TheApeCity.HolyApeHair) == 1 then
+			if player:getStorageValueByKey(Storage.TheApeCity.HolyApeHair) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Przyniosles wlos swietej malpy?" or "You brought hair of holy ape?", npc, creature)
 				npcHandler:setTopic(playerId, 16)
 			else
@@ -230,7 +230,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 17)
 		elseif questProgress == 17 then
-			if player:getStorageValue(Storage.TheApeCity.SnakeDestroyer) == 1 then
+			if player:getStorageValueByKey(Storage.TheApeCity.SnakeDestroyer) == 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"W koncu moj lud jest bezpieczny! Uczyniliscie niewiarygodne dobro dla nas i pewnego dnia nawet moi bracia dostrzega to. ...",
 					"Chcialbym mowic za wszystkich, kiedy nazywam cie swoich przyjacielem, ale moi ludzie potrzebuja czasu na przyzwyczajenie sie do zmian. ...",
@@ -240,8 +240,8 @@ local function creatureSayCallback(npc, creature, type, message)
 					"I wish I could speak for all when me call you true friend but my people need time to get accustomed to change. ...",
 					"Let us hope one day whole Banuta will greet you as a friend. Perhaps you want to check me offers for special friends... or shamanic powers.",
 				}, npc, creature)
-				player:setStorageValue(Storage.TheApeCity.QuestProgress, 18)
-				player:setStorageValue(Storage.Finished.TheApeCity, 1) -- quest done (website)
+				player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 18)
+				player:setStorageValueByKey(Storage.Finished.TheApeCity, 1) -- quest done (website)
 				player:addItem(3002, 1)
 				player:addAchievement("Friend of the Apes")
 			else
@@ -251,7 +251,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie mam wiecej misji dla ciebie. Moze chcesz sprawdzic oferty dla specjalnych przyjaciol, albo pouczyc sie szamanskich mocy?" or "No more missions await you right now, friend. Perhaps you want to check me offers for special friends... or shamanic powers.", npc, creature)
 		end
 	elseif MsgContains(message, "historia") or MsgContains(message, "background") then
-		if questProgress == 1 and player:getStorageValue(Storage.TheApeCity.QuestProgress) ~= 2 then
+		if questProgress == 1 and player:getStorageValueByKey(Storage.TheApeCity.QuestProgress) ~= 2 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Posluchaj, ostatnio nasza mala malpke dotknal turek pustynny. Hairycles nie wie jaka chorobe mogl roznosic. Jest dziwna. Hairycles powinien wiedziec. Ale Hairycles uczyl sie i uczyl sie koranu ...",
 				"Moglbym chyba zrobic lekarstwo tak mocne, by zrobic Europe znowu biala. Ale do zrobienia lekarstwa wielkiego, potrzebuje poteznych rownie skladnikow ...",
@@ -268,7 +268,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "outfit") or MsgContains(message, "shamanic") then
 		if questProgress == 18 then
-			if player:getStorageValue(Storage.TheApeCity.ShamanOutfit) ~= 1 then
+			if player:getStorageValueByKey(Storage.TheApeCity.ShamanOutfit) ~= 1 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Ja dumny z ciebie, przyjacielu. Wiesz wiele o nas. Przekaze ci szamanskie moce. Jestes gotow?" or "Me truly proud of you, friend. You learn many about plants, charms and ape people. Me want grant you shamanic power now. You ready?", npc, creature)
 				npcHandler:setTopic(playerId, 18)
 			else
@@ -317,8 +317,8 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Me know they hoard some in their underground lair. My people raided dworcs often before humans came. So we know the moss is hidden in east of upper level of dworc lair ...",
 				"You go there and take good moss from evil dworcs. Talk with me about mission when having moss.",
 			}, npc, creature)
-			player:setStorageValue(Storage.TheApeCity.Started, 1)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 1)
+			player:setStorageValueByKey(Storage.TheApeCity.Started, 1)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 1)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hairycles mial lepsze zdanie o tobie leszczu." or "Hairycles thought better of you.", npc, creature)
 			addEvent(function()
@@ -330,7 +330,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if table.contains({ "yes", "tak" }, message) then
 			if not player:removeItem(4827, 1) then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Glupi, nie masz mchu mojego. Idz go odzyskac." or "Stupid, you no have the moss me need. Go get it. It's somewhere in dworc lair. If you lost it, they might restocked it meanwhile. If you need to hear background of all again, ask Hairycles for {background}.", npc, creature)
-				player:setStorageValue(Storage.TheApeCity.WhisperMoss, 0)
+				player:setStorageValueByKey(Storage.TheApeCity.WhisperMoss, 0)
 				return true
 			end
 			npcHandler:say(
@@ -339,7 +339,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npc,
 				creature
 			)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 2)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 2)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dziwaku! Nasz lud cie potrzebuje" or "Strange being you are! Our people need help!", npc, creature)
 		end
@@ -351,7 +351,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Jestes wielki! Przyniosles mi syrop! Dziekuje, juz sie biore za robienie lekarstwa. Spytaj mnie o {mission}, jesli znowu zechcesz mi pomoc." or "You so good! Brought syrup to me! Thank you, will prepare cure now. Just ask for {mission} if you want help again.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 4)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 4)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Szybko, pilne to jest!" or "Please hurry, urgent it is!", npc, creature)
 		end
@@ -378,8 +378,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 6 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dobrze slyszec! Czekam na report twoj o zdobyciu papieru z misji." or "Good thing that is! Report about your mission when have scroll.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 5)
-			player:setStorageValue(Storage.TheApeCity.ParchmentDecyphering, 0)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 5)
+			player:setStorageValueByKey(Storage.TheApeCity.ParchmentDecyphering, 0)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Smutno mi. Oczekiwalem wiecej po tobie!" or "Me sad. Me expected better from you!", npc, creature)
 			addEvent(function()
@@ -390,7 +390,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 7 then
 		if table.contains({ "yes", "tak" }, message) then
 			if not player:removeItem(4831, 1) then
-				if player:getStorageValue(Storage.QuestChests.OldParchment) == 1 then
+				if player:getStorageValueByKey(Storage.QuestChests.OldParchment) == 1 then
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "To zla wiadomosc. Jesli straciles papier, jedynie mozesz go odzyskac polujac na swiete serpenty." or "That's bad news. If you lost it, only way to get other is to kill holy serpents. But you can't go there so you must ask adventurers who can.", npc, creature)
 				else
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie! To nie tego potrzebuje. Glupia bezwlosia malpa. Idz do wioski lizardow i zdobadz ten magiczny papier!" or "No! That not scroll me looking for. Silly hairless ape you are. Go to village of lizards and get it there on your own!", npc, creature)
@@ -399,7 +399,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Przyniosles zapiski z jezykiem lizardow? Dobrze! Zobacze co ten tekst w sobie kryje! Wroc gdy bedziesz gotowy na kolejna misje." or "You brought scroll with lizard text? Good! I will see what text tells me! Come back when ready for other mission.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 6)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 6)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "To zla wiadomosc. Jesli straciles papier, jedynie mozesz go odzyskac polujac na swiete serpenty." or "That's bad news. If you lost it, only way to get other is to kill holy serpents. But you can't go there so you must ask adventurers who can.", npc, creature)
 		end
@@ -407,7 +407,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 8 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dobrze slyszec! Powiedz jak uda ci sie przeczytac te znaki." or "Good thing that is! Report about mission when you have read those signs.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 7)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 7)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Smutno mi. Oczekiwalem wiecej po tobie!" or "Me sad. Me expected better from you!", npc, creature)
 			addEvent(function()
@@ -418,7 +418,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 9 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oh, teraz wszystko jasne! Latwiejsze niz sie wydaje! Wkrotce dowiemy sie co robic! Dziekuje ci! Mam jeszcze misje dla ciebie, badz gotow." or "Oh, so clear is all now! Easy it will be to read the signs now! Soon we will know what to do! Thank you again! Ask for mission if you feel ready.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 8)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 8)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Musze spojrzec w twoj umysl, nie ma innego wyjscia." or "Me need to see it in your mind, other there is no way to proceed.", npc, creature)
@@ -427,7 +427,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 10 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Odwazna z ciebie bezwlosa malpa! Przynies jadro Hydry. Bedziesz musial wiele, wiele, tych trojglowych bestii zabic, by zdobyc jedno jajo!" or "You brave hairless ape! Get me hydra egg. If you lose egg, you probably have to fight many, many hydras to get another.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 9)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 9)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Smutno. Po takiej pomocy myslalem, ze tibijczyk z ciebie!" or "Me sad. Me expected better from you!", npc, creature)
 			addEvent(function()
@@ -443,7 +443,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Ah, jajo! Potezny wojownik z ciebie! Dziekuje. Hairycles zaraz odstawi je w bezpieczne miejsce." or "Ah, the egg! Mighty warrior you be! Thank you. Hairycles will put it at safe place immediately.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 10)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 10)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Pospiesz sie. Hairycles nie wie kiedy Lizardy uderza ponownie." or "Please hurry. Hairycles not knows when evil lizards strike again.", npc, creature)
 		end
@@ -451,8 +451,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 12 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Poszukaj zatem jakiegos duzego skupiska Bone Lordow i znajdz te grzyby." or "Long journey it will take, good luck to you.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 11)
-			player:setStorageValue(Storage.TheApeCity.WitchesCapStart, 1)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 11)
+			player:setStorageValueByKey(Storage.TheApeCity.WitchesCapStart, 1)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Smutno. Po takiej pomocy myslalem, ze tibijczyk z ciebie!" or "Me sad. Me expected better from you!", npc, creature)
 			addEvent(function()
@@ -467,7 +467,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Niemozliwe,  przyniosles mi witches' cap! Teraz mam juz wszystko do poteznego amuletu zycia. Ale jeszcze {misja} jest dla ciebie, przyjacielu." or "Incredible, you brought a witches' cap! Now me can prepare mighty charm of life. Yet still other {missions} will await you, friend.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 12)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 12)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze, sprobuj poszukac witches' cap." or "Please try to find me a witches' cap.", npc, creature)
 			addEvent(function()
@@ -478,8 +478,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 14 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dobrze. Ja nie wiem jak walczyc z ta magia. Idz do siebie. Pytaj magow, czarnoksieznikow, GMow, ksiezy, inkwizycje, ja nie wiedziec kogo. Ratuj nas i ludzi przed zaglada." or "Hairycles sure you will make it. Good luck, friend.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 13)
-			player:setStorageValue(Storage.TheApeCity.CampfireMission, 1)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 13)
+			player:setStorageValueByKey(Storage.TheApeCity.CampfireMission, 1)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Tak myslalem. To za duzo dla Ciebie." or "Me sad. Please reconsider.", npc, creature)
 		end
@@ -487,8 +487,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 15 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hairycles jest dumny z ciebie. Idz i znajdz swiete wlosie. Powodzenia, przyajcielu." or "Hairycles proud of you. Go and find holy hair. Good luck, friend.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 15)
-			player:setStorageValue(Storage.TheApeCity.HolyApeHair, 0)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 15)
+			player:setStorageValueByKey(Storage.TheApeCity.HolyApeHair, 0)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmmm. Rozwaz to jeszcze raz." or "Me sad. Please reconsider.", npc, creature)
 		end
@@ -497,20 +497,20 @@ local function creatureSayCallback(npc, creature, type, message)
 		if table.contains({ "yes", "tak" }, message) then
 			if not player:removeItem(4832, 1) then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz futra. Straciles je? Idz i sprawdz ponownie" or "You no have hair. You lost it? Go and look again.", npc, creature)
-				player:setStorageValue(Storage.TheApeCity.HolyApeHair, 0)
+				player:setStorageValueByKey(Storage.TheApeCity.HolyApeHair, 0)
 				return true
 			end
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Niemozliwe! Masz futro swietego Bonga! To podniesie morale mojej wioski. Jestes prawdziwym przyjacielem. Ale jeszcze jedna, ostatnia misja Cie czeka." or "Incredible! You got a hair of holy Bong! This will raise the spirit of my people. You are truly a friend. But one last mission awaits you.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 16)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 16)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz futra. Straciles je? Idz i sprawdz ponownie." or "You no have hair. You lost it? Go and look again.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.HolyApeHair, 0)
+			player:setStorageValueByKey(Storage.TheApeCity.HolyApeHair, 0)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif npcHandler:getTopic(playerId) == 17 then
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hairycles jest pewien, ze ci sie uda. Po prostu rozwal ta glowe tego jaszczuroludzia. Powiedz Hairyclesowi jesli uda ci sie ukonczyc misje." or "Hairycles sure you will make it. Just use hammer on all that looks like snake or lizard. Tell Hairycles if you succeed with mission.", npc, creature)
-			player:setStorageValue(Storage.TheApeCity.QuestProgress, 17)
+			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 17)
 			player:AddCustomItem({ id = 4835, addToStore = true }) 
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmmm. Rozwaz to jeszcze raz." or "Me sad. Please reconsider.", npc, creature)
@@ -521,7 +521,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Przyjaciel malpiego rodu! Bierz ta nagroda i upodabniaj sie do nas! Oto szamanski stroj dla ciebie!" or "Friend of the ape people! Take my gift and become me apprentice! Here is shaman clothing for you!", npc, creature)
 			player:addOutfit(154)
 			player:addOutfit(158)
-			player:setStorageValue(Storage.TheApeCity.ShamanOutfit, 1)
+			player:setStorageValueByKey(Storage.TheApeCity.ShamanOutfit, 1)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 		elseif MsgContains(message, "no") then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Wracaj jak zmienisz zdanie." or "Come back if change mind.", npc, creature)
@@ -534,7 +534,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 
-			player:setStorageValue(Storage.WhatAFoolishQuest.CookieDelivery.Hairycles, 1)
+			player:setStorageValueByKey(Storage.WhatAFoolishQuest.CookieDelivery.Hairycles, 1)
 			if player:getCookiesDelivered() == 10 then
 				player:addAchievement("Allow Cookies?")
 			end
@@ -615,7 +615,7 @@ keywordHandler:addKeyword({ "jungle" }, StdModule.say, {
 })
 
 local function onTradeRequest(npc, creature)
-	if Player(creature):getStorageValue(Storage.TheApeCity.Mission01) < 18 then
+	if Player(creature):getStorageValueByKey(Storage.TheApeCity.Mission01) < 18 then
 		return false
 	end
 

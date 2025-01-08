@@ -13,9 +13,7 @@ local function serverSave()
 		cleanMap()
 	end
 	-- Updating daily reward next server save.
-	UpdateDailyRewardGlobalStorage(DailyReward.storages.lastServerSave, os.time())
-	-- Reset gamestore exp boost count.
-	db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = 51052")
+	UpdateDailyRewardStorage(DailyReward.storages.lastServerSave, os.time())
 	-- Add +1 day since start
 	db.query("UPDATE `server_config` SET `value` = `value` + 1 WHERE `server_config`.`config` = 'day_since_start'")
 end

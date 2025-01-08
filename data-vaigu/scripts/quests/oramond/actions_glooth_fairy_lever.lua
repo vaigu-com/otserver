@@ -58,16 +58,17 @@ end
 local gloothFairyLever = Action()
 
 function gloothFairyLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if Game.getStorageValue(GlobalStorage.GloothFairyTimer) >= os.time() then
+	if Game.getStorageValueByKey(Storage.GloothFairyTimer) >= os.time() then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to wait 15 minutes to use again.")
 		return true
 	end
 
 	player:say("Everyone in this place will be teleported into Glooth Fairy's hideout in one minute. No way back!!!", TALKTYPE_MONSTER_SAY)
-	Game.setStorageValue(GlobalStorage.GloothFairyTimer, os.time() + 15 * 60)
+	Game.setStorageValueByKey(Storage.GloothFairyTimer, os.time() + 15 * 60)
 	addEvent(clearMonstersAndTeleportPlayers, 60 * 1000)
 	return true
 end
 
 gloothFairyLever:uid(1020)
 gloothFairyLever:register()
+

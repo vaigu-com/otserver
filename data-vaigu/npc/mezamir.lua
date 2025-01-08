@@ -114,7 +114,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "misja", "quest", "misje", "mission" }, message) then
-		local value = player:getStorageValue(Storage.ElementalSphere.QuestLine)
+		local value = player:getStorageValueByKey(Storage.ElementalSphere.QuestLine)
 		if value < 1 then -- poczatek questa
 			if player:getLevel() >= 80 then
 				if player:isSorcerer() then
@@ -174,7 +174,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 1)
 		elseif value == 1 then -- jak oddamy item z minibosa
 			if player:getItemCount(player:isSorcerer() and 946 or player:isDruid() and 947 or player:isPaladin() and 942 or player:isKnight() and 945) > 0 then
-				player:setStorageValue(Storage.ElementalSphere.QuestLine, 2)
+				player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 2)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Niesamowite! Niech spojrze.. Ach!, "
 						.. (
@@ -218,16 +218,16 @@ local function creatureSayCallback(npc, creature, type, message)
 					"There you will find my friend who has been guarding the passage to the {hellish abyss} for years. Perhaps he will let you get there and defeat the most powerful of the mages..",
 				}, npc, creature)
 				player:addItem(player:isSorcerer() and 8039 or player:isDruid() and 8041 or player:isPaladin() and 8025 or player:isKnight() and 8055, 1)
-				player:setStorageValue(Storage.ElementalSphere.QuestLine, 3)
+				player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 3)
 			end
 		end
 	elseif npcHandler:getTopic(playerId) == 1 and (MsgContains(message, "yes") or MsgContains(message, "tak")) then
-		player:setStorageValue(Storage.ElementalSphere.QuestLine, 1)
+		player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 1)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Swietnie, nie trac czasu! Wroc do mnie jesli zdobedziesz czastke zywiolu!" or "Good, don't waste time! Come back here when you have the elemental object!", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	end
 
-	if (MsgContains(message, "machine") or MsgContains(message, "maszyna")) and player:getStorageValue(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+	if (MsgContains(message, "machine") or MsgContains(message, "maszyna")) and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
 			"Ah, maszyna, ktora znalazles na tej wyspie. Coz, zbudowalem to urzadzenie, aby zapuscic sie daleko pod sama ziemie, po ktorej chodzimy. Podejrzewalem cos tam. Cos gleboko pod nami. Cos zlego. Nawet bardziej niz przeklete owady, ktore pelzaly po moim gabinecie. ...",
 			"Wiercilem otwor za otworem, tylko po to, by ponownie utknac w twardym, nie do przebicia osadzie, raz po raz. Bylem gotow zrezygnowac z tego bezsensownego przedsiewziecia. ...",
@@ -240,7 +240,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"I am well aware that this may sound laughable now - at this part all of my colleagues burst into laughter anyway - but suddenly there were stairs. Incredibly large stairs that led to the underworld. A world deep under the sea - can you believe this?",
 		}, npc, creature)
 		npcHandler:setTopic(playerId, 21)
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 21 and player:getStorageValue(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 21 and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Rozumiesz? Coz, koniec tej historii byl taki, ze musialem opuscic to miejsce. ...",
 				"Nie moglem zbadac tego, co lezy pod schodami, poniewaz byl tam nieprzewidywalny prad. Zanurzenie sie w tych wodach byloby niekontrolowanym ryzykiem, nawet majac srodki do przezycia bez powietrza. ...",
@@ -257,7 +257,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Oh and just in case you want to complete what I have started - feel free to do so. Up to it?",
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 22)
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 22 and player:getStorageValue(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 22 and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Coz, jesli naprawde chcesz zglebic te sprawe - moglbym przyjac troche pomocy. Zatem znalazles moja maszyne na tej wyspie? I znalazles notatki z koordynatami? W takim razie mozesz odnalezc wejscie! ...",
 				"Po prostu szukaj wielkiej klatki schodowej z rozleglymi stopniami. Tam jest potezny strumien, ktory uniemozliwi ci dalsze penetrowanie. Ale nie boj sie, faktycznie mozesz tam sie udac - z tymi malymi ulepszeniami, ktore stworzylem. ...",
@@ -270,13 +270,13 @@ local function creatureSayCallback(npc, creature, type, message)
 				"I will put this under your footgear. Here you go. And this in your nose. There. And there will be no further problems for you down there. Except- ah, well youll find out yourself soon enough, wont you?",
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 23)
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 23 and player:getStorageValue(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 23 and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"No to ruszaj! Przykro mi, ze nie moge zaoferowac ci wiecej pomocy, ale jestem pewien, ze znajdziesz wsparcie w drodze. I - badz ostrozny. Morze bedzie sie czarne jak smola tam na dole.",
 			} or {
 				"Then off you go! Im sorry that I cannot offer you any further help but Im sure you will find support along your way. And - be careful. The sea can appear pitch black down there.",
 			}, npc, creature)
-			player:setStorageValue(Storage.LiquidBlack.Visitor, QuestState.LiquidBlack.MezamirLetYouUseShortcut)
+			player:setStorageValueByKey(Storage.LiquidBlack.Visitor, QuestState.LiquidBlack.MezamirLetYouUseShortcut)
 			npcHandler:setTopic(playerId, 24)
 		end
 	

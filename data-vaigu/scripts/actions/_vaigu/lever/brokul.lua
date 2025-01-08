@@ -3,7 +3,7 @@ local config = {
 		actionid = 57609, -- lever aid & lock global storage
 		usePosition = Position(6874, 1191, 15), -- lever pos {x = 6874, y = 1191, z = 15}
 		bossName = "Brokul",
-		--lockStorage = 57605, -- globalstorage
+		--lockStorage = 57605, -- Storage
 		timerStorage = Storage.BrokulTimer, -- player timer 20h
 		timerHours = 20,
 		positions = { from = Position(6872, 1191, 15), to = Position(6876, 1191, 15) }, -- from to {x = 6876, y = 1191, z = 15}
@@ -17,7 +17,7 @@ local config = {
 }
 
 local function clearBossRoom(playerId, centerPosition, rangeX, rangeY, exitPosition, storageId)
-	if Game.getStorageValue(storageId) == 1 then
+	if Game.getStorageValueByKey(storageId) == 1 then
 		local spectators = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
 		for i = 1, #spectators do
 			local spectator = spectators[i]
@@ -29,7 +29,7 @@ local function clearBossRoom(playerId, centerPosition, rangeX, rangeY, exitPosit
 				spectator:remove()
 			end
 		end
-		Game.setStorageValue(storageId, 0)
+		Game.setStorageValueByKey(storageId, 0)
 	end
 end
 
@@ -51,7 +51,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				local playerTile = Tile(Position(x, y, uid_act.positions.from.z)):getTopCreature()
 				if playerTile and playerTile:isPlayer() then
 					if uid_act.timerStorage then
-						if playerTile:getStorageValue(uid_act.timerStorage) > os.time() then
+						if playerTile:getStorageValueByKey(uid_act.timerStorage) > os.time() then
 							player:sendTextMessage(MESSAGE_STATUS_SMALL, "You or a member in your team have to wait " .. uid_act.timerHours .. " hours to challange " .. uid_act.bossName .. " again!")
 							--item:transform(1946)
 							return true
@@ -61,7 +61,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			end
 		end
 
-		if Game.getStorageValue(GlobalStorage.RestoredIdols) < 9 then -- global storage posagi
+		if Game.getStorageValueByKey(Storage.RestoredIdols) < 9 then -- global storage posagi
 			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You need to restore broken idols before fighting Brokul!")
 			return true
 		end
@@ -76,7 +76,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			end
 		end
 
-		if Game.getStorageValue(uid_act.actionid) == 1 then
+		if Game.getStorageValueByKey(uid_act.actionid) == 1 then
 			player:sendTextMessage(MESSAGE_STATUS_SMALL, "Someone already used this lever in last " .. uid_act.time .. " minutes!")
 			return true
 		end
@@ -92,7 +92,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			Game.createMonster(monsters[n].pillar, monsters[n].pos, true, true)
 		end]]
 		Game.createMonster(uid_act.bossName, uid_act.bossPos, true, true)
-		Game.setStorageValue(uid_act.actionid, 1)
+		Game.setStorageValueByKey(uid_act.actionid, 1)
 		for x = uid_act.positions.from.x, uid_act.positions.to.x do
 			for y = uid_act.positions.from.y, uid_act.positions.to.y do
 				local playerTile = Tile(Position(x, y, uid_act.positions.from.z)):getTopCreature()
@@ -101,7 +101,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					playerTile:teleportTo(uid_act.enterPos)
 					playerTile:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					if uid_act.timerStorage then
-						playerTile:setStorageValue(uid_act.timerStorage, os.time() + uid_act.timerHours * 60 * 60) -- + 20 * 60 * 3600
+						playerTile:setStorageValueByKey(uid_act.timerStorage, os.time() + uid_act.timerHours * 60 * 60) -- + 20 * 60 * 3600
 					end
 					addEvent(clearBossRoom, 60 * uid_act.time * 1000, playerTile:getId(), uid_act.centerRoom, uid_act.range, uid_act.range, uid_act.exitPosition, uid_act.actionid)
 					playerTile:sendTextMessage(MESSAGE_STATUS_SMALL, "You have " .. uid_act.time .. " minutes to kill and loot this boss. Otherwise you will lose that chance and will be kicked out.")

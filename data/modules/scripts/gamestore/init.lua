@@ -71,7 +71,8 @@ GameStore.CoinType = {
 }
 
 GameStore.Storages = {
-	expBoostCount = 51052,
+	--deprecated
+	--expBoostCount = 51052,
 }
 
 GameStore.ConverType = {
@@ -447,7 +448,7 @@ function parseBuyStoreOffer(playerId, msg)
 	end
 
 	-- At this point the purchase is assumed to be formatted correctly
-	local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValue(GameStore.Storages.expBoostCount)] or offer.price
+	local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or offer.price
 	local offerCoinType = offer.coinType
 	if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
 		offerPrice = 0
@@ -751,7 +752,7 @@ function Player.canBuyOffer(self, offer)
 				disabledReason = "You already have 3 slots released."
 			end
 		elseif offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST then
-			if self:getStorageValue(GameStore.Storages.expBoostCount) == GameStore.ItemLimit.EXPBOOST then
+			if self:getStorageValueByKey(Storage.GameStore.ExpBoostCount) == GameStore.ItemLimit.EXPBOOST then
 				disabled = 1
 				disabledReason = "You can't buy XP Boost for today."
 			end
@@ -922,7 +923,7 @@ function sendShowStoreOffers(playerId, category, redirectId)
 			for _, off in ipairs(offer.offers) do
 				xpBoostPrice = nil
 				if offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST then
-					xpBoostPrice = GameStore.ExpBoostValues[player:getStorageValue(GameStore.Storages.expBoostCount)]
+					xpBoostPrice = GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)]
 				end
 
 				nameLockPrice = nil
@@ -1076,7 +1077,7 @@ function sendShowStoreOffersOnOldProtocol(playerId, category)
 			end
 
 			local disabled, disabledReason = player:canBuyOffer(offer).disabled, player:canBuyOffer(offer).disabledReason
-			local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValue(GameStore.Storages.expBoostCount)] or (newPrice or offer.price or 0xFFFF)
+			local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or (newPrice or offer.price or 0xFFFF)
 			msg:addU32(offer.id and offer.id or 0xFFFF)
 			msg:addString(name, "sendShowStoreOffersOnOldProtocol - name")
 			msg:addString(offer.description or GameStore.getDefaultDescription(offer.type, offer.count), "sendShowStoreOffersOnOldProtocol - offer.description or GameStore.getDefaultDescription(offer.type, offer.count)")
@@ -1766,7 +1767,7 @@ end
 
 function GameStore.processExpBoostPurchase(player)
 	local currentXpBoostTime = player:getXpBoostTime()
-	local expBoostCount = player:getStorageValue(GameStore.Storages.expBoostCount)
+	local expBoostCount = player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)
 
 	player:setXpBoostPercent(50)
 	player:setXpBoostTime(currentXpBoostTime + 3600)
@@ -1775,7 +1776,7 @@ function GameStore.processExpBoostPurchase(player)
 		expBoostCount = 1
 	end
 
-	player:setStorageValue(GameStore.Storages.expBoostCount, expBoostCount + 1)
+	player:setStorageValueByKey(Storage.GameStore.ExpBoostCount, expBoostCount + 1)
 end
 
 function GameStore.processPreyThirdSlot(player)
@@ -2178,7 +2179,7 @@ function sendHomePage(playerId)
 
 	msg:addU16(#homeOffers) -- offers
 	for p, offer in pairs(homeOffers) do
-		local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValue(GameStore.Storages.expBoostCount)] or offer.price
+		local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or offer.price
 		if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
 			offerPrice = 0
 		end

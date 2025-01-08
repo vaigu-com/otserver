@@ -8,7 +8,7 @@ local movement = MoveEvent()
 
 function movement.onStepIn(creature, item, toPosition, fromPosition)
 	local player = creature:getPlayer()
-	if player:getStorageValue(item.uid) > 0 then
+	if player:getStorageValueByKey(item.uid) > 0 then
 		return true
 	end
 	local rewardItem = Game.createItem(reward[item.uid].id_goblet, 1, reward[item.uid].rewardPosition)
@@ -17,7 +17,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		rewardItem:setText("No niezle, bedzie do CV!")
 	end
 	creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
-	player:setStorageValue(item.uid, 1)
+	player:setStorageValueByKey(item.uid, 1)
 
 	return true
 end
@@ -25,3 +25,4 @@ end
 movement:type("stepin")
 movement:uid(4043, 4044, 4045)
 movement:register()
+

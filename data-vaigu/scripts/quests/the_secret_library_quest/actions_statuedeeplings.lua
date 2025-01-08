@@ -15,10 +15,10 @@ local statuedeeplings = Action()
 function statuedeeplings.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local key = config[item.uid]
 	if key then
-		if player:getStorageValue(key.storage) == key.getValue then
+		if player:getStorageValueByKey(key.storage) == key.getValue then
 			if table.contains({ key.itemId }, item.itemid) then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, key.msg)
-				player:setStorageValue(key.storage, key.setValue)
+				player:setStorageValueByKey(key.storage, key.setValue)
 			end
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Empty.")
@@ -28,7 +28,8 @@ function statuedeeplings.onUse(player, item, fromPosition, target, toPosition, i
 end
 
 for index, value in pairs(config) do
-	statuedeeplings:uid(index)
+	statuedeeplings:key(index)
 end
 
 statuedeeplings:register()
+

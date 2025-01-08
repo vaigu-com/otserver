@@ -205,8 +205,8 @@ local choseNewLanguage = {
 
 local function trySetMarks(player)
 	local lang = player:getLanguage()
-	if player:getStorageValue(Storage.marksSet) <= 0 then
-		player:setStorageValue(Storage.marksSet, 1)
+	if player:getStorageValueByKey(Storage.marksSet) <= 0 then
+		player:setStorageValueByKey(Storage.marksSet, 1)
 		local marksConfig = langToMarksConfig[lang]
 		for _, mark in pairs(marksConfig) do
 			player:addMapMark(mark.position, mark.markId, mark.description)

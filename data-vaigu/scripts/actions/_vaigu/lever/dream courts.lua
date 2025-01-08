@@ -3,7 +3,7 @@ local config = {
 		actionid = 57607, -- lever aid & lock global storage
 		usePosition = Position(6323, 1953, 13), -- lever pos
 		bossName = "maxxenius",
-		--lockStorage = 57605, -- globalstorage
+		--lockStorage = 57605, -- Storage
 		timerStorage = Storage.TheDreamCourts.DreamBossTimer, -- player timer 20h
 		timerHours = 20,
 		positions = { from = Position(6323, 1953, 13), to = Position(6323, 1957, 13) }, -- from to {x = 6323, y = 1957, z = 13}
@@ -18,7 +18,7 @@ local config = {
 		actionid = 57607, -- lever aid & lock global storage
 		usePosition = Position(6323, 1953, 13), -- lever pos
 		bossName = "Alptramun",
-		--lockStorage = 57605, -- globalstorage
+		--lockStorage = 57605, -- Storage
 		timerStorage = Storage.TheDreamCourts.DreamBossTimer, -- player timer 20h
 		timerHours = 20,
 		positions = { from = Position(6323, 1953, 13), to = Position(6323, 1957, 13) }, -- from to {x = 6323, y = 1957, z = 13}
@@ -33,7 +33,7 @@ local config = {
 		actionid = 57607, -- lever aid & lock global storage
 		usePosition = Position(6323, 1953, 13), -- lever pos
 		bossName = "Izcandar the Banished",
-		--lockStorage = 57605, -- globalstorage
+		--lockStorage = 57605, -- Storage
 		timerStorage = Storage.TheDreamCourts.DreamBossTimer, -- player timer 20h
 		timerHours = 20,
 		positions = { from = Position(6323, 1953, 13), to = Position(6323, 1957, 13) }, -- from to {x = 6323, y = 1957, z = 13}
@@ -48,7 +48,7 @@ local config = {
 		actionid = 57607, -- lever aid & lock global storage
 		usePosition = Position(6323, 1953, 13), -- lever pos
 		bossName = "Plagueroot",
-		--lockStorage = 57605, -- globalstorage
+		--lockStorage = 57605, -- Storage
 		timerStorage = Storage.TheDreamCourts.DreamBossTimer, -- player timer 20h
 		timerHours = 20,
 		positions = { from = Position(6323, 1953, 13), to = Position(6323, 1957, 13) }, -- from to {x = 6323, y = 1957, z = 13}
@@ -63,7 +63,7 @@ local config = {
 		actionid = 57607, -- lever aid & lock global storage
 		usePosition = Position(6323, 1953, 13), -- lever pos
 		bossName = "Malofur Mangrinder",
-		--lockStorage = 57605, -- globalstorage
+		--lockStorage = 57605, -- Storage
 		timerStorage = Storage.TheDreamCourts.DreamBossTimer, -- player timer 20h
 		timerHours = 20,
 		positions = { from = Position(6323, 1953, 13), to = Position(6323, 1957, 13) }, -- from to {x = 6323, y = 1957, z = 13}
@@ -93,7 +93,7 @@ end
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local uid_act = config[Game.getStorageValue(GlobalStorage.DreamBoss)]
+	local uid_act = config[Game.getStorageValueByKey(Storage.DreamBoss)]
 	if not uid_act then
 		return true
 	end
@@ -107,7 +107,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				local playerTile = Tile(Position(x, y, uid_act.positions.from.z)):getTopCreature()
 				if playerTile and playerTile:isPlayer() then
 					if uid_act.timerStorage then
-						if playerTile:getStorageValue(uid_act.timerStorage) > os.time() then
+						if playerTile:getStorageValueByKey(uid_act.timerStorage) > os.time() then
 							player:sendTextMessage(MESSAGE_STATUS_SMALL, "You or a member in your team have to wait " .. uid_act.timerHours .. " hours to challange " .. uid_act.bossName .. " again!")
 							--item:transform(2773)
 							return true
@@ -136,7 +136,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 
 		Game.createMonster(uid_act.bossName, uid_act.bossPos, true, true)
-		if Game.getStorageValue(GlobalStorage.DreamBoss) == 3 then -- izcandar summon storage
+		if Game.getStorageValueByKey(Storage.DreamBoss) == 3 then -- izcandar summon storage
 			izcandarSummon = 0
 		end
 		for x = uid_act.positions.from.x, uid_act.positions.to.x do
@@ -147,7 +147,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					playerTile:teleportTo(uid_act.enterPos)
 					playerTile:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					if uid_act.timerStorage then
-						playerTile:setStorageValue(uid_act.timerStorage, os.time() + uid_act.timerHours * 60 * 60) -- + 20 * 60 * 3600
+						playerTile:setStorageValueByKey(uid_act.timerStorage, os.time() + uid_act.timerHours * 60 * 60) -- + 20 * 60 * 3600
 					end
 					addEvent(clearBossRoom, 60 * uid_act.time * 1000, playerTile:getId(), uid_act.centerRoom, uid_act.range, uid_act.range, uid_act.exitPosition, uid_act.actionid)
 					playerTile:sendTextMessage(MESSAGE_STATUS_SMALL, "You have " .. uid_act.time .. " minutes to kill and loot this boss. Otherwise you will lose that chance and will be kicked out.")

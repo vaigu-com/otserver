@@ -1,15 +1,15 @@
 Storage.Minigames = {
 	Locks = {
-		MwLock = 30014,
-		HasteLock = 30059,
-		HealLock = 30016,
+		MwLock = {},
+		HasteLock = {},
+		HealLock = {},
 	},
 	Total = {
-		Wins = NextStorage(),
-		Matches = NextStorage(),
-		Points = NextStorage(),
+		Wins = {},
+		Matches = {},
+		Points = {},
 	},
-	IsOnMinigame = 30059,
-	CurrentMinigames = NextStorage(),
+	IsOnMinigame = {},
+	CurrentMinigames = {},
 	Minigames = {},
 }

@@ -1,6 +1,6 @@
 local config = {
 	[7738] = {
-		storage = GlobalStorage.ElementalSphere.KnightBoss,
+		storage = Storage.ElementalSphere.KnightBoss,
 		corpse = 8139,
 		charged = 2126,
 		inactive = 0,
@@ -19,7 +19,7 @@ local config = {
 		},
 	},
 	[7739] = {
-		storage = GlobalStorage.ElementalSphere.SorcererBoss,
+		storage = Storage.ElementalSphere.SorcererBoss,
 		corpse = 8141,
 		charged = 7745,
 		inactive = 7743,
@@ -38,7 +38,7 @@ local config = {
 		},
 	},
 	[7740] = {
-		storage = GlobalStorage.ElementalSphere.PaladinBoss,
+		storage = Storage.ElementalSphere.PaladinBoss,
 		corpse = 8140,
 		charged = 7744,
 		inactive = 7741,
@@ -58,7 +58,7 @@ local config = {
 		},
 	},
 	[7748] = {
-		storage = GlobalStorage.ElementalSphere.DruidBoss,
+		storage = Storage.ElementalSphere.DruidBoss,
 		corpse = 8106,
 		charged = 7746,
 		inactive = 7742,
@@ -86,7 +86,7 @@ function movement:onAddItem(moveitem, tileitem, position)
 	end
 
 	local cStorage = target.storage
-	if target.corpse ~= moveitem.itemid or Game.getStorageValue(cStorage) == 1 then
+	if target.corpse ~= moveitem.itemid or Game.getStorageValueByKey(cStorage) == 1 then
 		return true
 	end
 
@@ -100,7 +100,7 @@ function movement:onAddItem(moveitem, tileitem, position)
 	position:sendMagicEffect(target.effect)
 	target.summonPos:sendMagicEffect(target.summonEffect or target.effect)
 	Game.createMonster(target.boss, target.summonPos)
-	Game.setStorageValue(cStorage, 1)
+	Game.setStorageValueByKey(cStorage, 1)
 	return true
 end
 

@@ -222,7 +222,7 @@ function heartDestructionCharges.onUse(player, item, fromPosition, itemEx, toPos
 					areaHeart1 = addEvent(clearArea, 15 * 60000)
 					areaHeart2 = addEvent(teleportToCrackler, 25000)
 
-					Game.setStorageValue(14321, 0) -- Overcharge Count
+					Game.setStorageValueByKey(14321, 0) -- Overcharge Count
 
 					spawningCharge = false
 

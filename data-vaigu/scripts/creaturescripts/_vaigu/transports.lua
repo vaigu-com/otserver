@@ -11,9 +11,9 @@ local function createHelpDialog(player, _, _)
 end
 
 local function chargeForTravel(player, price)
-	local freeSailsLeft = player:getStorageValue(Storage.FreeTravels)
+	local freeSailsLeft = player:getStorageValueByKey(Storage.FreeTravels)
 	if freeSailsLeft > 0 then
-		player:setStorageValue(Storage.FreeTravels, freeSailsLeft - 1)
+		player:setStorageValueByKey(Storage.FreeTravels, freeSailsLeft - 1)
 		return true
 	end
 
@@ -62,7 +62,7 @@ local transportTypeToWindowMessage = {
 }
 
 local function hasAccess(player, transport)
-	if transport.storage and player:getStorageValue(transport.storage) ~= ACCESS_GRANTED then
+	if transport.storage and player:getStorageValueByKey(transport.storage) ~= ACCESS_GRANTED then
 		return false
 	end
 

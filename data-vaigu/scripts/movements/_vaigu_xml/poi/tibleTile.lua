@@ -25,7 +25,8 @@ end
 movement:type("stepin")
 
 for i, v in pairs(destinations) do
-	movement:uid(i)
+	movement:key(i)
 end
 
 movement:register()
+

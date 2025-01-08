@@ -15,13 +15,11 @@ end
 
 local checkDuplicateStoragesStartup = GlobalEvent("CheckDuplicateStoragesStartup")
 function checkDuplicateStoragesStartup.onStartup()
-	print("CheckDuplicateStoragesStartup")
 	findDuplicates(Storage)
 	table.sort(storageIdToCountName, function(a, b)
 		return a.count >= b.count
 	end)
 
-	print(TableSize(storageIdToCountName))
 	for storageId, entry in pairs(storageIdToCountName) do
 		local count = entry.count
 		if count > 1 then

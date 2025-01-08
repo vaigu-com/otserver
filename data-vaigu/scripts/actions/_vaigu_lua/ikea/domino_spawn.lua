@@ -2,16 +2,16 @@ local dominoSpawn = Action()
 
 function dominoSpawn.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	--if target.actionid == 11077 then
-	if player:getStorageValue(Storage.IKEAForTheBold.State) == 3 then
-		if Game.getStorageValue(GlobalStorage.DominoAlive) <= 0 then
+	if player:getStorageValueByKey(Storage.IKEAForTheBold.State) == 3 then
+		if Game.getStorageValueByKey(Storage.DominoAlive) <= 0 then
 			local pos = Position(5833, 1595, 11)
 			Game.createMonster("drwal domino", pos)
 			player:say("Ja pierdole! Nie dadza czlowiekowi uczciwie zarobic?!", TALKTYPE_MONSTER_YELL, false, nil, pos)
 			pos:sendMagicEffect(CONST_ME_BLOCKHIT)
-			Game.setStorageValue(GlobalStorage.DominoAlive, 1)
+			Game.setStorageValueByKey(Storage.DominoAlive, 1)
 		end
-	elseif player:getStorageValue(Storage.IKEAForTheBold.State) == 4 then
-		player:setStorageValue(Storage.IKEAForTheBold.State, 5)
+	elseif player:getStorageValueByKey(Storage.IKEAForTheBold.State) == 4 then
+		player:setStorageValueByKey(Storage.IKEAForTheBold.State, 5)
 		local book = doPlayerAddItem(player, 2816, 1)
 		if item then
 			doSetItemText(book, "Strona 7\n\nUtarg: Sprochniala sztuczna bukowa noga, Krysztalowa kula z mahoniowa podstawka, Debowy stolek.")
@@ -31,17 +31,17 @@ local dominoSpawn2 = Action()
 function dominoSpawn2.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	print("1")
 	--if target.actionid == 11078 then
-	if player:getStorageValue(Storage.IKEAForTheBold.State) == 11 then
+	if player:getStorageValueByKey(Storage.IKEAForTheBold.State) == 11 then
 		print("2")
-		if Game.getStorageValue(GlobalStorage.Domino2Alive) <= 0 then
+		if Game.getStorageValueByKey(Storage.Domino2Alive) <= 0 then
 			print("3")
 			local pos = Position(6201, 1205, 7)
 			Game.createMonster("drwal domino2", pos)
 			player:say("Czego ty znowu chcesz?!", TALKTYPE_MONSTER_YELL, false, nil, pos)
 			pos:sendMagicEffect(CONST_ME_BLOCKHIT)
-			Game.setStorageValue(GlobalStorage.Domino2Alive, 1)
+			Game.setStorageValueByKey(Storage.Domino2Alive, 1)
 		end
-	elseif player:getStorageValue(Storage.IKEAForTheBold.State) >= 13 then
+	elseif player:getStorageValueByKey(Storage.IKEAForTheBold.State) >= 13 then
 		if isPlayerPzLocked(player) then
 			doCreatureSay(player, "Nie mozesz tedy uciec!", TALKTYPE_ORANGE_1)
 			return false
@@ -63,7 +63,7 @@ dominoSpawn2:register()
 local dominoMirkoBoat = Action()
 
 function dominoMirkoBoat.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.IKEAForTheBold.State) >= 13 then
+	if player:getStorageValueByKey(Storage.IKEAForTheBold.State) >= 13 then
 		if isPlayerPzLocked(player) then
 			doCreatureSay(player, "Nie mozesz tedy uciec!", TALKTYPE_ORANGE_1)
 			return false
@@ -85,8 +85,8 @@ local dominoBoatUnlock = Action()
 
 function dominoBoatUnlock.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.actionid == 11078 then
-		if player:getStorageValue(Storage.IKEAForTheBold.State) == 12 then
-			player:setStorageValue(Storage.IKEAForTheBold.State, 13)
+		if player:getStorageValueByKey(Storage.IKEAForTheBold.State) == 12 then
+			player:setStorageValueByKey(Storage.IKEAForTheBold.State, 13)
 			toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 			item:remove(1)
 		end

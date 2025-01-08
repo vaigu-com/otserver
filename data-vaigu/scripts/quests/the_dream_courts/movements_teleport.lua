@@ -20,7 +20,7 @@ function teleport.onStepIn(creature, item, position, fromPosition)
 
 	local teleportTo = fromPosition
 	for index, teleportItem in pairs(teleports) do
-		if creature:getStorageValue(teleportItem.access) == 1 then
+		if creature:getStorageValueByKey(teleportItem.access) == 1 then
 			if creature:getPosition() == Position(teleportItem.from) then
 				teleportTo = teleportItem.to
 				break

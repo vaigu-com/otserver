@@ -13,6 +13,11 @@ function playerLogin.onLogin(player)
 		end
 	end
 	if ipClients > maxClientsPerIp then
+		for _, client in ipairs(Game.getPlayers()) do
+			if player:getIp() == client:getIp() then
+				
+			end
+		end
 		return false
 	end
 

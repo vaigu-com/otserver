@@ -3,11 +3,11 @@ local quest = Quest(LOCALIZERS.ImRestingHere)
 quest
 	:Storage(function()
 		Storage.ImRestingHere = {
-			Mission01 = NextStorage(),
-			Coffin = NextStorage(),
-			LastWill = NextStorage(),
-			Corpse = NextStorage(),
-			Crowbar = NextStorage(),
+			Mission01 = {},
+			Coffin = {},
+			LastWill = {},
+			Corpse = {},
+			Crowbar = {},
 		}
 		QuestState.ImRestingHere = {
 			Mission01 = {
@@ -18,11 +18,12 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Im Resting Here",
 			missions = {
-				[Storage.ImRestingHere.Mission01] = {
+				{
 					name = "A Work to Screw up",
+					storage = Storage.ImRestingHere.Mission01,
 					states = {
 						[QuestState.ImRestingHere.Mission01.FindUseForCrowbar] = "Grave digger gave you a special crowbar. Try to find a use for it.",
 						[QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill] = "You found some kind of last will. Try to find the item mentioned in it.",
@@ -31,7 +32,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Constant(function()
 		QuestKeyItems.ImRestingHere = {
@@ -55,136 +56,124 @@ quest
 		}
 	end)
 	:Mission(Storage.ImRestingHere.Mission01)
-:State(
-function()
-return 
-		MISSION_NOT_STARTED,
-		QuestFactory.Dialog("Grave Digger", {
-			[{ "mission", "misja" }] = {
-				text = "Lately, the well-known businessman Bildo Debicki was buried in the southern cemetery. To honor his passing, I've decided to do something good for the residents of this city and introduce a promotion on {crowbars}. This conversation does not constitute incitement to a crime under the criminal code. The price of one such item is 10 gold pieces.",
-			},
-			[{ "lom", "lomy", "crowbar", "crowbars" }] = {
-				text = "You want to buy special crowbar? It will cost you 10gp. If you were to pry open a lid (like the lid of a can), just click on it. No need to use crowbar - hence its called special.",
-			},
-			[{ "yes", "tak" }] = {
-				text = "Here you are.",
-				nextState = {
-					[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
-					[Storage.ImRestingHere.Coffin] = 1,
+	:State(function()
+		return MISSION_NOT_STARTED,
+			QuestFactory.Dialog("Grave Digger", {
+				[{ "mission", "misja" }] = {
+					text = "Lately, the well-known businessman Bildo Debicki was buried in the southern cemetery. To honor his passing, I've decided to do something good for the residents of this city and introduce a promotion on {crowbars}. This conversation does not constitute incitement to a crime under the criminal code. The price of one such item is 10 gold pieces.",
 				},
-				rewards = {
-					QuestKeyItems.ImRestingHere.Crowbar,
+				[{ "lom", "lomy", "crowbar", "crowbars" }] = {
+					text = "You want to buy special crowbar? It will cost you 10gp. If you were to pry open a lid (like the lid of a can), just click on it. No need to use crowbar - hence its called special.",
 				},
-				requiredMoney = 10,
-				textNoRequiredMoney = "What?! Its only 10gps.",
-			},
-		})
+				[{ "yes", "tak" }] = {
+					text = "Here you are.",
+					nextState = {
+						[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
+						[Storage.ImRestingHere.Coffin] = 1,
+					},
+					rewards = {
+						QuestKeyItems.ImRestingHere.Crowbar,
+					},
+					requiredMoney = 10,
+					textNoRequiredMoney = "What?! Its only 10gps.",
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
+			QuestFactory.StartupItems({
+				{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.ImRestingHere.Coffin },
+				{ pos = { 5938, 1779, 7 }, id = 2476, aid = Storage.ImRestingHere.Coffin },
+				{ pos = { 5939, 1779, 7 }, id = 3522, aid = 0 },
+				{ pos = { 5938, 1779, 7 }, id = 3526, aid = 0 },
+			}),
+			QuestFactory.Script(function(missionState)
+				local coffinMessages = {
+					[1] = "The lid of this coffin won't move at all.",
+					[2] = "Doubling your efforts, you managed to move the lid a bit.",
+					[3] = "Having noticed nearby crobar, you put it in cracks in the wood and try to pry it, but the very fragment of wood was rotten and broke off.",
+					[4] = "You relocate crowbar to another crevice and, using all you strength, you broke off the lid.",
+				}
 
-end
-):State(
-function()
-return 
-		QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
-		QuestFactory.StartupItems({
-			{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.ImRestingHere.Coffin },
-			{ pos = { 5938, 1779, 7 }, id = 2476, aid = Storage.ImRestingHere.Coffin },
-			{ pos = { 5939, 1779, 7 }, id = 3522, aid = 0 },
-			{ pos = { 5938, 1779, 7 }, id = 3526, aid = 0 },
-		}),
-		QuestFactory.Script(function(missionState)
-			local coffinMessages = {
-				[1] = "The lid of this coffin won't move at all.",
-				[2] = "Doubling your efforts, you managed to move the lid a bit.",
-				[3] = "Having noticed nearby crobar, you put it in cracks in the wood and try to pry it, but the very fragment of wood was rotten and broke off.",
-				[4] = "You relocate crowbar to another crevice and, using all you strength, you broke off the lid.",
-			}
+				local updateStorages = {
+					[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
+				}
 
-			local updateStorages = {
-				[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
-			}
-
-			local crowbar = Action()
-			function crowbar.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:HasExactMissionState(missionState) then
-					return true
-				end
-
-				if target:getActionId() ~= Storage.ImRestingHere.Coffin then
-					return true
-				end
-
-				local coffinState = player:getStorageValue(Storage.ImRestingHere.Coffin)
-				if coffinState > #coffinMessages then
-					if player:TryTradeInItems({ QuestKeyItems.ImRestingHere.Crowbar }, { QuestKeyItems.ImRestingHere.LastWill }) then
-						player:NextState(updateStorages)
+				local crowbar = Action()
+				function crowbar.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:HasExactMissionState(missionState) then
+						return true
 					end
-					return
-				end
 
-				local message = coffinMessages[coffinState]
-				local translatedMessage = player:Localizer(Storage.ImRestingHere.Localizer):Get(message)
-				player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
-				player:setStorageValue(Storage.ImRestingHere.Coffin, coffinState + 1)
-				return true
-			end
+					if target:getActionId() ~= Storage.ImRestingHere.Coffin then
+						return true
+					end
 
-			crowbar:aid(Storage.ImRestingHere.Crowbar)
-			crowbar:register()
-		end)
+					local coffinState = player:getStorageValueByKey(Storage.ImRestingHere.Coffin)
+					if coffinState > #coffinMessages then
+						if player:TryTradeInItems({ QuestKeyItems.ImRestingHere.Crowbar }, { QuestKeyItems.ImRestingHere.LastWill }) then
+							player:NextState(updateStorages)
+						end
+						return
+					end
 
-end
-):State(
-function()
-return 
-		QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
-		QuestFactory.StartupItems({
-			{ pos = { 6644, 1212, 13}, id = 3204, aid = Storage.ImRestingHere.Corpse },
-		}),
-		QuestFactory.Script(function(missionState)
-			local updateStorages = {
-				[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindOneOfTheSurvivors,
-			}
-
-			local coffin = Action()
-
-			function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if not player:HasExactMissionState(missionState) then
+					local message = coffinMessages[coffinState]
+					local translatedMessage = player:Localizer(Storage.ImRestingHere.Localizer):Get(message)
+					player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
+					player:setStorageValueByKey(Storage.ImRestingHere.Coffin, coffinState + 1)
 					return true
 				end
 
-				if player:TryAddItems({ QuestKeyItems.ImRestingHere.MagicTorch, QuestKeyItems.ImRestingHere.Contract }) then
-					player:NextState(updateStorages)
-					player:addOutfit(574)
-					player:addOutfit(575)
-					player:AddExperienceWithAnnouncement(30000)
-					player:getPosition():sendMagicEffect(CONST_ME_STUN)
+				crowbar:key(Storage.ImRestingHere.Crowbar)
+				crowbar:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
+			QuestFactory.StartupItems({
+				{ pos = { 6644, 1212, 13 }, id = 3204, aid = Storage.ImRestingHere.Corpse },
+			}),
+			QuestFactory.Script(function(missionState)
+				local updateStorages = {
+					[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindOneOfTheSurvivors,
+				}
+
+				local coffin = Action()
+
+				function coffin.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:HasExactMissionState(missionState) then
+						return true
+					end
+
+					if player:TryAddItems({ QuestKeyItems.ImRestingHere.MagicTorch, QuestKeyItems.ImRestingHere.Contract }) then
+						player:NextState(updateStorages)
+						player:addOutfit(574)
+						player:addOutfit(575)
+						player:AddExperienceWithAnnouncement(30000)
+						player:getPosition():sendMagicEffect(CONST_ME_STUN)
+					end
+					return false
 				end
-				return false
-			end
 
-			coffin:aid(Storage.ImRestingHere.Corpse)
-			coffin:register()
-		end)
-
-end
-):State(
-function()
-return 
-		QuestState.ImRestingHere.Mission01.FindOneOfTheSurvivors,
-		QuestFactory.Dialog("Chester the Dwarf", {
-			[{ "mission" }] = {
-				text = "Listen, I've finished exploring holes, and now I have a different passion. If you want to help me, listen up. Some time ago, I got a job as a TV presenter, and I still have that job. Unfortunately, the salary is not entirely satisfactory. I found out that one of the fortune tellers hosting some show on the network where I work has been quarantined. The station is now looking for a replacement for his position, and I think I'm suited for it - I have a degree in quackery, but I'll need a few props. Are you ready to help me?",
-			},
-			[{ "yes", "tak" }] = {
-				text = "Great. I need a Magic Light Wand to blind viewers with false promises. A Magician's Robe to look like a magician. A crystal ball with a very small hole... just find a round aquarium. Lastly, I need a life crystal. If you gather these items, come back to me.",
-				nextState = {
-					[Storage.ChesterTheDwarf.Mission01] = QuestState.ChesterTheDwarf.Mission01.BringMagicItemsToChester,
-					[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.Finished,
-					[Storage.Finished.ImRestingHere] = MISSION_FINISHED,
+				coffin:key(Storage.ImRestingHere.Corpse)
+				coffin:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.ImRestingHere.Mission01.FindOneOfTheSurvivors,
+			QuestFactory.Dialog("Chester the Dwarf", {
+				[{ "mission" }] = {
+					text = "Listen, I've finished exploring holes, and now I have a different passion. If you want to help me, listen up. Some time ago, I got a job as a TV presenter, and I still have that job. Unfortunately, the salary is not entirely satisfactory. I found out that one of the fortune tellers hosting some show on the network where I work has been quarantined. The station is now looking for a replacement for his position, and I think I'm suited for it - I have a degree in quackery, but I'll need a few props. Are you ready to help me?",
 				},
-				requiredItems = { QuestKeyItems.ImRestingHere.LastWill },
-			},
-		})
-
-end
-)	:Register()
+				[{ "yes", "tak" }] = {
+					text = "Great. I need a Magic Light Wand to blind viewers with false promises. A Magician's Robe to look like a magician. A crystal ball with a very small hole... just find a round aquarium. Lastly, I need a life crystal. If you gather these items, come back to me.",
+					nextState = {
+						[Storage.ChesterTheDwarf.Mission01] = QuestState.ChesterTheDwarf.Mission01.BringMagicItemsToChester,
+						[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.Finished,
+						[Storage.Finished.ImRestingHere] = MISSION_FINISHED,
+					},
+					requiredItems = { QuestKeyItems.ImRestingHere.LastWill },
+				},
+			})
+	end)
+	:Register()

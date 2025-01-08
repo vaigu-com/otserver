@@ -87,9 +87,9 @@ end
 
 function Concoction:lastActivatedAt(player, value)
 	if value == nil then
-		return player:getStorageValue(self.lastActivatedAtStorage)
+		return player:getStorageValueByKey(self.lastActivatedAtStorage)
 	end
-	player:setStorageValue(self.lastActivatedAtStorage, value)
+	player:setStorageValueByKey(self.lastActivatedAtStorage, value)
 end
 
 function Concoction:timeLeft(player, value)
@@ -98,9 +98,9 @@ function Concoction:timeLeft(player, value)
 	end
 
 	if value == nil then
-		return player:getStorageValue(self.timeLeftStorage)
+		return player:getStorageValueByKey(self.timeLeftStorage)
 	end
-	player:setStorageValue(self.timeLeftStorage, value)
+	player:setStorageValueByKey(self.timeLeftStorage, value)
 end
 
 function Concoction:active(player)

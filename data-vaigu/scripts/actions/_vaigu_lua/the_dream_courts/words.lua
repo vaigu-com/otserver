@@ -12,14 +12,14 @@ function facelesswords.onUse(player, item, fromPosition, itemEx, toPosition)
 		return true
 	end
 
-	if player:getStorageValue(targetItem.storage) <= 0 then
-		if player:getStorageValue(Storage.TheDreamCourts.CathedralWords.CathedralWords) <= 0 then
-			player:setStorageValue(Storage.TheDreamCourts.CathedralWords.CathedralWords, 1)
+	if player:getStorageValueByKey(targetItem.storage) <= 0 then
+		if player:getStorageValueByKey(Storage.TheDreamCourts.CathedralWords.CathedralWords) <= 0 then
+			player:setStorageValueByKey(Storage.TheDreamCourts.CathedralWords.CathedralWords, 1)
 		else
-			player:setStorageValue(Storage.TheDreamCourts.CathedralWords.CathedralWords, (player:getStorageValue(Storage.TheDreamCourts.CathedralWords.CathedralWords) + 1))
+			player:setStorageValueByKey(Storage.TheDreamCourts.CathedralWords.CathedralWords, (player:getStorageValueByKey(Storage.TheDreamCourts.CathedralWords.CathedralWords) + 1))
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Odnalazles slowo.")
-		player:setStorageValue(targetItem.storage, 1)
+		player:setStorageValueByKey(targetItem.storage, 1)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "To juz wiem..")
 	end
@@ -30,9 +30,9 @@ facelesswords:register()
 
 local facelessbook = Action()
 function facelessbook.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheDreamCourts.CathedralWords.CathedralWords) <= 0 then
+	if player:getStorageValueByKey(Storage.TheDreamCourts.CathedralWords.CathedralWords) <= 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nic tu po mnie..")
-	elseif player:getStorageValue(Storage.TheDreamCourts.CathedralWords.CathedralWords) >= 4 then
+	elseif player:getStorageValueByKey(Storage.TheDreamCourts.CathedralWords.CathedralWords) >= 4 then
 		player:teleportTo(Position(5894, 778, 13))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	end
@@ -40,3 +40,4 @@ function facelessbook.onUse(player, item, fromPosition, target, toPosition, isHo
 end
 facelessbook:uid(7917)
 facelessbook:register()
+

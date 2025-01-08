@@ -35,3 +35,4 @@ end
 -- Registra o evento para os UIDs específicos
 teleportTileBack:uid(25034, 25035, 25036, 25037)
 teleportTileBack:register()
+

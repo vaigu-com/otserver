@@ -14,7 +14,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid ~= 4073 then
 		return false
 	end
-	if player:getStorageValue(Storage.Ferumbras.Reward) >= 1 then
+	if player:getStorageValueByKey(Storage.Ferumbras.Reward) >= 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The treasure chest is empty.")
 		return true
 	end
@@ -36,10 +36,11 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Otrzymujesz worek z nagroda, oraz Rift Warrior outfit!")
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
-	player:setStorageValue(Storage.Finished.FerumbrasAscendant, 1) -- quest done (website)
-	player:setStorageValue(Storage.Ferumbras.Reward, 1)
+	player:setStorageValueByKey(Storage.Finished.FerumbrasAscendant, 1) -- quest done (website)
+	player:setStorageValueByKey(Storage.Ferumbras.Reward, 1)
 	return true
 end
 
 action:uid(9529)
 action:register()
+

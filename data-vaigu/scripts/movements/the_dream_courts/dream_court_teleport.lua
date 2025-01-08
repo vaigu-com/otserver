@@ -16,7 +16,7 @@ function dreamcourtteleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TheDreamCourts.QuestLine) >= 3 then -- dream storage
+	if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) >= 3 then -- dream storage
 		player:teleportTo(targetPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
@@ -29,7 +29,7 @@ end
 dreamcourtteleport:type("stepin")
 
 for index, value in pairs(setting) do
-	dreamcourtteleport:aid(index)
+	dreamcourtteleport:key(index)
 end
 
 dreamcourtteleport:register()

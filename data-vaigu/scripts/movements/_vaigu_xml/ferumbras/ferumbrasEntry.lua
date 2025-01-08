@@ -6,7 +6,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 	local destination = Position(7107, 1657, 13)
-	if player:getStorageValue(Storage.Ferumbras.EssencesBringed) >= 1 and player:getLevel() >= 150 then
+	if player:getStorageValueByKey(Storage.Ferumbras.EssencesBringed) >= 1 and player:getLevel() >= 150 then
 		player:teleportTo(destination) --{x = 7107, y = 1657, z = 13}
 		destination:sendMagicEffect(CONST_ME_TELEPORT)
 	else

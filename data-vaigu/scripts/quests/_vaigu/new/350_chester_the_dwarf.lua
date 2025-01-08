@@ -3,15 +3,15 @@ local quest = Quest(LOCALIZERS.ChesterTheDwarf)
 quest
 	:Storage(function()
 		Storage.ChesterTheDwarf = {
-			Mission01 = NextStorage(),
-			Mission02 = NextStorage(),
-			Mission03 = NextStorage(),
-			Mission04 = NextStorage(),
-			ChesterHouseStairs = NextStorage(),
-			Document = NextStorage(),
-			CaveTile = NextStorage(),
-			GandalfBag = NextStorage(),
-			DoorToChesterCompartment = NextStorage(),
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			Mission04 = {},
+			ChesterHouseStairs = {},
+			Document = {},
+			CaveTile = {},
+			GandalfBag = {},
+			DoorToChesterCompartment = {},
 		}
 		QuestState.ChesterTheDwarf = {
 			Mission01 = {
@@ -49,18 +49,20 @@ quest
 		}
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Chester the Dwarf",
 			missions = {
-				[Storage.ChesterTheDwarf.Mission01] = {
+				{
 					name = "Fortune Teller 3000",
+					storage = Storage.ChesterTheDwarf.Mission01,
 					states = {
 						[QuestState.ChesterTheDwarf.Mission01.BringMagicItemsToChester] = "You agreed to help Chester become a TV fortune teller. He will need the following items for his profession: Magic Light Wand, Empty Goldfish Bowl, Magician's Robe, Life Crystal.",
 						[MISSION_FINISHED] = "Chester the Dwarf has become a fortune teller, and you received his pickaxe as a reward.",
 					},
 				},
-				[Storage.ChesterTheDwarf.Mission02] = {
+				{
 					name = "Chester the Turf Accountant",
+					storage = Storage.ChesterTheDwarf.Mission02,
 					states = {
 						[QuestState.ChesterTheDwarf.Mission02.AskChesterForMission] = "You helped Chester the Dwarf with his TV fortune teller career. Ask him later if he needs help in another field.",
 						[QuestState.ChesterTheDwarf.Mission02.ObtainDocuments] = "Chester the Dwarf entrusted you with a very discreet task. Obtain a new set of documents for him. He directed you to Moustachilles, the leader of the bandits at the camp near Mirkotown.",
@@ -68,8 +70,9 @@ quest
 						[MISSION_FINISHED] = "You acquired new documents for Chester the Dwarf, and he rewarded you for it.",
 					},
 				},
-				[Storage.ChesterTheDwarf.Mission03] = {
+				{
 					name = "Mirko Train Simulator",
+					storage = Storage.ChesterTheDwarf.Mission03,
 					states = {
 						[QuestState.ChesterTheDwarf.Mission03.AskChesterForMission] = "You helped Chester the Dwarf change his identity. Ask him later if he needs help in another field.",
 						[QuestState.ChesterTheDwarf.Mission03.FindCave] = "Chester the Dwarf wants to sail away from the continent on his steamship. Find the entrance to the shaft leading to his ship.",
@@ -77,8 +80,9 @@ quest
 						[MISSION_FINISHED] = "You helped Chester the Dwarf with his life problems. He has started packing to begin anew far, far away from here.",
 					},
 				},
-				[Storage.ChesterTheDwarf.Mission04] = {
+				{
 					name = "To the Labour Exchange in a Business Class",
+					storage = Storage.ChesterTheDwarf.Mission04,
 					states = {
 						[QuestState.ChesterTheDwarf.Mission04.FindChester] = "Chester the Dwarf has disappeared from the continent. Or has he? Maybe he hasn't managed to start the steamship underground yet. If possible, catch up to him and stop him.",
 						[QuestState.ChesterTheDwarf.Mission04.ReturnToGandalf] = "Chester gave you Gandalf's lost item. Now, return to the mighty wizard and return his property.",
@@ -86,7 +90,7 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Mission(Storage.ChesterTheDwarf.Mission01)
 	:State(function()
@@ -227,7 +231,7 @@ quest
 					return true
 				end
 
-				tile:aid(Storage.ChesterTheDwarf.CaveTile)
+				tile:key(Storage.ChesterTheDwarf.CaveTile)
 				tile:type("stepin")
 				tile:register()
 			end)
@@ -266,14 +270,14 @@ quest
 						return true
 					end
 
-					if player:getStorageValue(Storage.ChesterTheDwarf.Mission03) == MISSION_FINISHED then
+					if player:getStorageValueByKey(Storage.ChesterTheDwarf.Mission03) == MISSION_FINISHED then
 						player:teleportTo(fromPosition, true)
 						player:say(player:Localizer(Storage.ChesterTheDwarf.Questline):Get("Chester's house is vacant right now. Therefore it would be impolite to tresspass."), TALKTYPE_MONSTER_SAY)
 					end
 					return true
 				end
 
-				tile:aid(Storage.ChesterTheDwarf.ChesterHouseStairs)
+				tile:key(Storage.ChesterTheDwarf.ChesterHouseStairs)
 				tile:type("stepin")
 				tile:register()
 			end)

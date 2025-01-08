@@ -57,7 +57,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "adventures") or MsgContains(message, "przygoda") then
-		if player:getStorageValue(Storage.BigfootBurden.QuestLine) < 1 then
+		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) < 1 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and {
 				"Rasa gnomow potrzebuje wszelkiej pomocy. Jestem tutaj aby poszukiwac i rektutowac smialkow. Mysle ze sie nadasz. Jestes zainteresowany dolaczeniem?",
 			} or {
@@ -81,7 +81,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"There you will meet Gnomerik, the recruitment officer of the Gnomes. If you are lost, Gnomette in the teleport chamber might be able to help you with directions. ...",
 			"Good luck to you and don't embarrass your race down there! Keep in mind that you are a representative of the big people.",
 		}, npc, creature)
-		player:setStorageValue(Storage.BigfootBurden.QuestLine, 1)
+		player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 1)
 		player:addItem(16167, 4)
 		npcHandler:setTopic(playerId, 0)
 	end

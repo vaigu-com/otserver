@@ -48,7 +48,7 @@ function ResolutionContext:CheckGlobalState()
 	end
 
 	for key, value in pairs(requirements.requiredGlobalState) do
-		if Game.getStorageValue(key) ~= value then
+		if Game.getStorageValueByKey(key) ~= value then
 			self.errorMessage = self.textNoRequiredGlobalState
 			return CONDITION_STATUS.CONDITION_NOT_PASSED
 		end
@@ -206,7 +206,7 @@ function ResolutionContext:UpdateGlobalState()
 		return
 	end
 
-	UpdateGlobalStorages(actions.nextGlobalState)
+	UpdateStorages(actions.nextGlobalState)
 end
 
 function ResolutionContext:SetNextTopic()

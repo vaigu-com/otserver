@@ -25,11 +25,11 @@ function farmineElevatorLevers.onUse(player, item, fromPosition, target, toPosit
 		local teleportTo = player:getPosition()
 		if player:getPosition() == config.farmineElevator[1] or player:getPosition() == config.farmineElevator[2] or player:getPosition() == config.farmineElevator[3] then
 			teleportTo = config.farmineElevator[4]
-		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValue(TheNewFrontier.Questline) < 9 then
+		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValueByKey(TheNewFrontier.Questline) < 9 then
 			teleportTo = config.farmineElevator[1] -- if Farmine is on Stage 1
-		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValue(TheNewFrontier.Questline) >= 9 and player:getStorageValue(TheNewFrontier.Questline) < 19 then
+		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValueByKey(TheNewFrontier.Questline) >= 9 and player:getStorageValueByKey(TheNewFrontier.Questline) < 19 then
 			teleportTo = config.farmineElevator[2] -- if Farmine is on Stage 2
-		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValue(TheNewFrontier.Questline) >= 19 then
+		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValueByKey(TheNewFrontier.Questline) >= 19 then
 			teleportTo = config.farmineElevator[3] -- if Farmine is on Stage 3
 		elseif player:getPosition() == config.farmineElevator[5] then
 			teleportTo = config.farmineElevator[6] -- if going to flying carpet
@@ -37,9 +37,9 @@ function farmineElevatorLevers.onUse(player, item, fromPosition, target, toPosit
 			teleportTo = config.farmineElevator[5] -- if returning to flying carpet
 		elseif player:getPosition() == config.farmineElevator[7] or player:getPosition() == config.farmineElevator[8] then
 			teleportTo = config.farmineElevator[9] -- if going to the mines
-		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValue(TheNewFrontier.Questline) < 19 then
+		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValueByKey(TheNewFrontier.Questline) < 19 then
 			teleportTo = config.farmineElevator[7] -- if returning from mines to Farmine on Stage 2
-		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValue(TheNewFrontier.Questline) >= 19 then
+		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValueByKey(TheNewFrontier.Questline) >= 19 then
 			teleportTo = config.farmineElevator[8] -- if returning from mines to Farmine on Stage 3
 		end
 		if player:getPosition() ~= teleportTo then

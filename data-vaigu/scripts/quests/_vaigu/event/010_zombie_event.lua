@@ -1,12 +1,12 @@
-local quest = Quest(LOCALIZERS.NONE)
+	local quest = Quest(LOCALIZERS.NONE)
 
 quest
 	:Storage(function()
-		Storage.Minigames.Minigames.ZombieMinigame = {
-			Wins = NextStorage(),
-			Matches = NextStorage(),
-			Points = NextStorage(),
-			LongestRecord = NextStorage(),
+		Storage.Minigames.ZombieMinigame = {
+			Wins = {},
+			Matches = {},
+			Points = {},
+			LongestRecord = {},
 		}
 	end)
 	:Script(function()

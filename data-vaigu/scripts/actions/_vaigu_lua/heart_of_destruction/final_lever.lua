@@ -47,7 +47,7 @@ local function doCheckArea()
 
 	for _, online in ipairs(Game.getPlayers()) do
 		if online:isPlayer() then
-			if online:getStorageValue(14334) >= 1 or online:getStorageValue(14335) >= 1 or online:getStorageValue(14336) >= 1 then
+			if online:getStorageValueByKey(14334) >= 1 or online:getStorageValueByKey(14335) >= 1 or online:getStorageValueByKey(14336) >= 1 then
 				return true
 			end
 		end
@@ -145,23 +145,23 @@ local function changeArea()
 		for _, online in ipairs(Game.getPlayers()) do
 			if online:isPlayer() then
 				-- Teleport players from The Hunger to The Rage
-				if online:getStorageValue(14334) >= 1 then
-					online:setStorageValue(14334, -1)
-					online:setStorageValue(14336, 1)
+				if online:getStorageValueByKey(14334) >= 1 then
+					online:setStorageValueByKey(14334, -1)
+					online:setStorageValueByKey(14336, 1)
 					online:teleportTo({ x = 5532, y = 1500, z = 14 }) --{x = 5532, y = 1500, z = 14}
 					online:say("A polarity shift moves you into another part of the heart of destruction.", TALKTYPE_MONSTER_SAY)
 					Position({ x = 5532, y = 1500, z = 14 }):sendMagicEffect(11)
 				-- Teleport players from The Destruction to The Hunger
-				elseif online:getStorageValue(14335) >= 1 then
-					online:setStorageValue(14335, -1)
-					online:setStorageValue(14334, 1)
+				elseif online:getStorageValueByKey(14335) >= 1 then
+					online:setStorageValueByKey(14335, -1)
+					online:setStorageValueByKey(14334, 1)
 					online:teleportTo({ x = 5477, y = 1500, z = 14 }) --{x = 5477, y = 1500, z = 14}
 					online:say("A polarity shift moves you into another part of the heart of destruction.", TALKTYPE_MONSTER_SAY)
 					Position({ x = 5477, y = 1500, z = 14 }):sendMagicEffect(11)
 				-- Teleport players from The Rage to The Destruction
-				elseif online:getStorageValue(14336) >= 1 then
-					online:setStorageValue(14336, -1)
-					online:setStorageValue(14335, 1)
+				elseif online:getStorageValueByKey(14336) >= 1 then
+					online:setStorageValueByKey(14336, -1)
+					online:setStorageValueByKey(14335, 1)
 					online:teleportTo({ x = 5504, y = 1444, z = 14 }) --{x = 5504, y = 1444, z = 14}
 					online:say("A polarity shift moves you into another part of the heart of destruction.", TALKTYPE_MONSTER_SAY)
 					Position({ x = 5504, y = 1444, z = 14 }):sendMagicEffect(11)
@@ -179,18 +179,18 @@ local function changeArea()
 		stopEvent(areaDevourer4)
 		for _, online in ipairs(Game.getPlayers()) do
 			if online:isPlayer() then
-				if online:getStorageValue(14334) >= 1 then
-					online:setStorageValue(14334, -1)
+				if online:getStorageValueByKey(14334) >= 1 then
+					online:setStorageValueByKey(14334, -1)
 					online:unregisterEvent("DevourerStorage")
 					online:teleportTo({ x = 5504, y = 1485, z = 14 }) --{x = 5504, y = 1485, z = 14}
 					Position({ x = 5504, y = 1485, z = 14 }):sendMagicEffect(11)
-				elseif online:getStorageValue(14335) >= 1 then
-					online:setStorageValue(14335, -1)
+				elseif online:getStorageValueByKey(14335) >= 1 then
+					online:setStorageValueByKey(14335, -1)
 					online:unregisterEvent("DevourerStorage")
 					online:teleportTo({ x = 5505, y = 1485, z = 14 }) --{x = 5505, y = 1485, z = 14}
 					Position({ x = 5505, y = 1485, z = 14 }):sendMagicEffect(11)
-				elseif online:getStorageValue(14336) >= 1 then
-					online:setStorageValue(14336, -1)
+				elseif online:getStorageValueByKey(14336) >= 1 then
+					online:setStorageValueByKey(14336, -1)
 					online:unregisterEvent("DevourerStorage")
 					online:teleportTo({ x = 5506, y = 1485, z = 14 }) --{x = 5506, y = 1485, z = 14}
 					Position({ x = 5506, y = 1485, z = 14 }):sendMagicEffect(11)
@@ -404,8 +404,8 @@ function heartDestructionFinal.onUse(player, item, fromPosition, itemEx, toPosit
 						teamHunger = storeHunger[i]
 						config.hungerPositions[i]:sendMagicEffect(CONST_ME_POFF)
 						teamHunger:teleportTo(config.hungerNewPos)
-						teamHunger:setStorageValue(14333, os.time() + 7 * 24 * 60 * 60)
-						teamHunger:setStorageValue(14334, 1) --storage Hunger
+						teamHunger:setStorageValueByKey(14333, os.time() + 7 * 24 * 60 * 60)
+						teamHunger:setStorageValueByKey(14334, 1) --storage Hunger
 						teamHunger:registerEvent("DevourerStorage")
 					end
 
@@ -413,8 +413,8 @@ function heartDestructionFinal.onUse(player, item, fromPosition, itemEx, toPosit
 						teamDestruction = storeDestruction[i]
 						config.destructionPositions[i]:sendMagicEffect(CONST_ME_POFF)
 						teamDestruction:teleportTo(config.destructionNewPos)
-						teamDestruction:setStorageValue(14333, os.time() + 7 * 24 * 60 * 60)
-						teamDestruction:setStorageValue(14335, 1) --storage Destruction
+						teamDestruction:setStorageValueByKey(14333, os.time() + 7 * 24 * 60 * 60)
+						teamDestruction:setStorageValueByKey(14335, 1) --storage Destruction
 						teamDestruction:registerEvent("DevourerStorage")
 					end
 
@@ -422,8 +422,8 @@ function heartDestructionFinal.onUse(player, item, fromPosition, itemEx, toPosit
 						teamRage = storeRage[i]
 						config.ragePositions[i]:sendMagicEffect(CONST_ME_POFF)
 						teamRage:teleportTo(config.rageNewPos)
-						teamRage:setStorageValue(14333, os.time() + 7 * 24 * 60 * 60)
-						teamRage:setStorageValue(14336, 1) --storage Rage
+						teamRage:setStorageValueByKey(14333, os.time() + 7 * 24 * 60 * 60)
+						teamRage:setStorageValueByKey(14336, 1) --storage Rage
 						teamRage:registerEvent("DevourerStorage")
 					end
 

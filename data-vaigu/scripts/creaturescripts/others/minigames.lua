@@ -1,7 +1,7 @@
-local playerLogin = CreatureEvent("MinigamesLeave")
+local playerLogin = CreatureEvent("MinigamesResetFlag")
 
 function playerLogin.onLogin(player)
-    player:setStorageValue(Storage.Minigames.IsOnMinigame, -1)
+    player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, -1)
 	return true
 end
 

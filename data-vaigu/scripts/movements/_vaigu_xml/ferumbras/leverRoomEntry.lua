@@ -26,10 +26,10 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		player:teleportTo(targetPosition.pos) -- lever room
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 
-		--[[if player:getStorageValue(targetPosition.storage) > os.time() then -- jak zabilismy bosa w ciagu 48h
+		--[[if player:getStorageValueByKey(targetPosition.storage) > os.time() then -- jak zabilismy bosa w ciagu 48h
 			player:teleportTo(Position(7097, 1713, 12)) -- rozdroze
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-			--player:sendCancelMessage("Kolejny raz bosa pokonac mozesz za "..Game.getStorageValue(targetPosition.storage) - os.time()..".")
+			--player:sendCancelMessage("Kolejny raz bosa pokonac mozesz za "..Game.getStorageValueByKey(targetPosition.storage) - os.time()..".")
 			if targetPosition == 60015 then
 				player:say('Bosa pokonac mozesz raz na 5 dni.', TALKTYPE_MONSTER_SAY)
 			else

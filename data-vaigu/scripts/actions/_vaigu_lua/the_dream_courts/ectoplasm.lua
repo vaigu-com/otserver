@@ -48,11 +48,11 @@ ectoplasmBucket:register()
 local ectoplasmEntrance = Action()
 function ectoplasmEntrance.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.uid == 7932 then
-		if player:getStorageValue(Storage.TheDreamCourts.StrickenMission) >= 1 then
+		if player:getStorageValueByKey(Storage.TheDreamCourts.StrickenMission) >= 1 then
 			player:teleportTo(Position(5847, 873, 11))
 			item:transform(29310)
-			player:setStorageValue(Storage.TheDreamCourts.StrickenMission, 2)
-			player:setStorageValue(Storage.TheDreamCourts.StrickenDoor, 1)
+			player:setStorageValueByKey(Storage.TheDreamCourts.StrickenMission, 2)
+			player:setStorageValueByKey(Storage.TheDreamCourts.StrickenDoor, 1)
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have no business here..")
 		end
@@ -74,3 +74,4 @@ end
 
 ectoplasmEntranceBack:uid(9001)
 ectoplasmEntranceBack:register()
+

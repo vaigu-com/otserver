@@ -6,8 +6,8 @@ function corymChests.onStepOut(creature, item, position, fromPosition)
 	if not player then
 		return true
 	end
-	if player:getStorageValue(HiddenThreats.Rewards.keyFragment01) == 1 and player:getStorageValue(HiddenThreats.Rewards.keyFragment02) == 1 and player:getStorageValue(HiddenThreats.QuestLine) == 2 then
-		player:setStorageValue(HiddenThreats.QuestLine, 3)
+	if player:getStorageValueByKey(HiddenThreats.Rewards.keyFragment01) == 1 and player:getStorageValueByKey(HiddenThreats.Rewards.keyFragment02) == 1 and player:getStorageValueByKey(HiddenThreats.QuestLine) == 2 then
+		player:setStorageValueByKey(HiddenThreats.QuestLine, 3)
 	end
 	return true
 end

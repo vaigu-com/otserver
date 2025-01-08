@@ -18,3 +18,4 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 action:uid(2004)
 action:register()
+

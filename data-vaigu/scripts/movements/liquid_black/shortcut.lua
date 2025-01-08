@@ -7,9 +7,9 @@ function shortcut.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.LiquidBlack.Visitor) >= 4 then
-		player:setStorageValue(Storage.LiquidBlack.Visitor, 5)
-		player:setStorageValue(Storage.Finished.LiquidBlack, MISSION_FINISHED)
+	if player:getStorageValueByKey(Storage.LiquidBlack.Visitor) >= 4 then
+		player:setStorageValueByKey(Storage.LiquidBlack.Visitor, 5)
+		player:setStorageValueByKey(Storage.Finished.LiquidBlack, MISSION_FINISHED)
 		player:teleportTo(surface)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
@@ -31,7 +31,7 @@ function quickAccess.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.LiquidBlack.Visitor) >= 5 then
+	if player:getStorageValueByKey(Storage.LiquidBlack.Visitor) >= 5 then
 		player:teleportTo(fiehonja)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

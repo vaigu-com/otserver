@@ -1,24 +1,32 @@
+function ParseCurrentKills(currentKills, requiredKills)
+	if currentKills == MISSION_FINISHED then
+		return requiredKills
+	end
+	return currentKills
+end
+
 local function isTaskFinished(player, task)
-	local currentKills = player:getStorageValue(task.storage)
+	local currentKills = player:getStorageValueByKey(task.storage)
 	return currentKills == MISSION_FINISHED
 end
 
 function Player:AddTaskKill(task)
-	local currentKills = self:getStorageValue(task.storage)
+	local currentKills = self:getStorageValueByKey(task.storage)
 	if currentKills >= MISSION_FINISHED then
 		return true
 	end
 
 	local nextKills = currentKills + 1
-	self:setStorageValue(task.storage, nextKills)
+	self:setStorageValueByKey(task.storage, nextKills)
 
 	local currentKillsString = self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_CURRENT_KILLS")
 	self:sendTextMessage(MESSAGE_EXPERIENCE, currentKillsString)
 
 	if nextKills >= task.requiredKills then
-		self:setStorageValue(task.storage, MISSION_FINISHED)
+		self:setStorageValueByKey(task.storage, MISSION_FINISHED)
 		local translatedMessageWhenFinished = self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_READY_TO_TURN_IN")
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessageWhenFinished)
+		self:IncrementStorage(task.bossStorage, 1)
 	end
 end
 
@@ -26,7 +34,7 @@ function Player:CanAddTaskKill(task)
 	if not task then
 		return false
 	end
-	local state = self:getStorageValue(task.storage)
+	local state = self:getStorageValueByKey(task.storage)
 	if state == TASK_CAN_START_DESPITE_HIGHER_LEVEL then
 		return false
 	end

@@ -7,8 +7,8 @@ function lastFightTeleport.onStepIn(creature, item, position, fromPosition)
 	end
 
 	if item.uid == 7809 then
-		if player:getStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.Questline) == 51 then
-			if Game.getStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.LastFight) ~= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U8_4.InServiceOfYalahar.Questline) == 51 then
+			if Game.getStorageValueByKey(Storage.Quest.U8_4.InServiceOfYalahar.LastFight) ~= 1 then
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				player:teleportTo(Position(32783, 31174, 10))
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -18,7 +18,7 @@ function lastFightTeleport.onStepIn(creature, item, position, fromPosition)
 			player:teleportTo(fromPosition)
 		end
 	elseif item.uid == 7810 then
-		if Game.getStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.LastFight) ~= 1 then
+		if Game.getStorageValueByKey(Storage.Quest.U8_4.InServiceOfYalahar.LastFight) ~= 1 then
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			player:teleportTo(Position(32784, 31178, 9))
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -32,3 +32,4 @@ end
 lastFightTeleport:type("stepin")
 lastFightTeleport:uid(7809, 7810)
 lastFightTeleport:register()
+

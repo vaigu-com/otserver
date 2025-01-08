@@ -6,7 +6,7 @@ local function saidDishName(context)
 end
 
 local function getPlayerCurrentDish(player)
-	local state = player:getStorageValue(Storage.TopChef.Mission01)
+	local state = player:getStorageValueByKey(Storage.TopChef.Mission01)
 	local dishData = COOKING_INGREDIENT_DATA[state] or PlayerCustomDialogDataRegistry():Get(player).dishData
 	return dishData
 end
@@ -50,9 +50,9 @@ end
 quest
 	:Storage(function()
 		Storage.TopChef = {
-			Mission01 = NextStorage(),
-			CanMakeAllDishes = NextStorage(),
-			MeadVial = NextStorage(),
+			Mission01 = {},
+			CanMakeAllDishes = {},
+			MeadVial = {},
 		}
 		QuestState.TopChef = {
 			RotwormStew = 1,
@@ -187,11 +187,12 @@ quest
 		cooking:register()
 	end)
 	:Questlog(function()
-		Quests[NextQuestId()] = {
+		table.insert(Quests, {
 			name = "Top Chef",
 			missions = {
-				[Storage.TopChef.Mission01] = {
+				{
 					name = "Top Chef",
+					storage = Storage.TopChef.Mission01,
 					states = {
 						[QuestState.TopChef.RotwormStew] = "TOP_CHEF_COURSE_DESCRIPTION",
 						[QuestState.TopChef.HydraTongueSalad] = "TOP_CHEF_COURSE_DESCRIPTION",
@@ -212,158 +213,146 @@ quest
 					},
 				},
 			},
-		}
+		})
 	end)
 	:Mission(Storage.TopChef.Mission01)
-:State(
-function()
-return 
-		MISSION_NOT_STARTED,
-		QuestFactory.Script(function()
-			local cooldownSeconds = 22 * 3600
-			local meadHorn = Action()
-			function meadHorn.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-				if target.uid == 8000 and item.itemid == 7140 then
-					if player:getStorageValue(Storage.MeadVial) >= os.time() then
-						player:say("Ehh, its been emptied already.", TALKTYPE_MONSTER_SAY)
-						return false
+	:State(function()
+		return MISSION_NOT_STARTED,
+			QuestFactory.Script(function()
+				local cooldownSeconds = 22 * 3600
+				local meadHorn = Action()
+				function meadHorn.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if target.uid == 8000 and item.itemid == 7140 then
+						if player:getStorageValueByKey(Storage.MeadVial) >= os.time() then
+							player:say("Ehh, its been emptied already.", TALKTYPE_MONSTER_SAY)
+							return false
+						end
+
+						item:remove()
+						player:addItem(7141)
+						player:setStorageValueByKey(Storage.MeadVial, os.time() + cooldownSeconds)
+						toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 					end
-
-					item:remove()
-					player:addItem(7141)
-					player:setStorageValue(Storage.MeadVial, os.time() + cooldownSeconds)
-					toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
+					return true
 				end
-				return true
-			end
-			meadHorn:id(7140)
-			meadHorn:register()
-		end),
-		QuestFactory.Dialog("Pewter", {
-			[{ GREET }] = {
-				text = "Hello and welcome to my {kitchen}. What are you looking for, |PLAYERNAME|? Perhaps this beautiful aroma lured you there?",
-			},
-			[{ "cook", "kuchnia", "kucharz", "kuchni", "kitchen" }] = {
-				text = "I cooking and experimenting with new dishes. I work at an Italian restaurant as a head chef, where i devote myself to this passion.\nI love sharing my {recipes}, so i invite you to experiment abit under my supervision. ",
-				nextTopic = QuestTopics.TopChef.AskedForKitchen,
-			},
-			[{ "recipe", "recipes", "menu", "przepis", "przepisami" }] = {
-				text = "Are you intereseted? Well, no doubt, you can't buy they anywhere. However I can guide you become a cooking pro. Do you sign up for this?",
-				requiredTopic = QuestTopics.TopChef.AskedForKitchen,
-				nextTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
-			},
-			[{ "yes", "tak" }] = {
-				text = "Well, you look promising. Ask me for a {recipe}, and i will try to provide you with all necessary infomration. Some ingredients are tougher to find than others, so you might wanna ask me about where to find them.",
-				nextState = { [Storage.TopChef.Mission01] = QuestState.TopChef.RotwormStew },
-				requiredTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
-			},
-		})
-
-end
-):State(
-function()
-return 
-		{ min = QuestState.TopChef.RotwormStew, max = QuestState.TopChef.SweetMangonaiseElixir },
-		QuestFactory.Dialog("Pewter", {
-			[{ "recipe", "menu", "przepis", "przepisami", "mission" }] = {
-				text = "DESCRIBE_CURRENT_DISH",
-			},
-			[{ GREET }] = {
-				text = "HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH",
-			},
-			[{ "yes", "tak" }] = {
-				text = "Lets begin then!\nA sprinkle of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish! Ask me for {recipe} if you are ready to prepare the next dish.",
-				specialConditions = {
-					{
-						condition = canRemoveIngredients,
-						requiredOutcome = true,
-						textNoRequiredCondition = "Make sure you have all the required ingredients.",
+				meadHorn:id(7140)
+				meadHorn:register()
+			end),
+			QuestFactory.Dialog("Pewter", {
+				[{ GREET }] = {
+					text = "Hello and welcome to my {kitchen}. What are you looking for, |PLAYERNAME|? Perhaps this beautiful aroma lured you there?",
+				},
+				[{ "cook", "kuchnia", "kucharz", "kuchni", "kitchen" }] = {
+					text = "I cooking and experimenting with new dishes. I work at an Italian restaurant as a head chef, where i devote myself to this passion.\nI love sharing my {recipes}, so i invite you to experiment abit under my supervision. ",
+					nextTopic = QuestTopics.TopChef.AskedForKitchen,
+				},
+				[{ "recipe", "recipes", "menu", "przepis", "przepisami" }] = {
+					text = "Are you intereseted? Well, no doubt, you can't buy they anywhere. However I can guide you become a cooking pro. Do you sign up for this?",
+					requiredTopic = QuestTopics.TopChef.AskedForKitchen,
+					nextTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
+				},
+				[{ "yes", "tak" }] = {
+					text = "Well, you look promising. Ask me for a {recipe}, and i will try to provide you with all necessary infomration. Some ingredients are tougher to find than others, so you might wanna ask me about where to find them.",
+					nextState = { [Storage.TopChef.Mission01] = QuestState.TopChef.RotwormStew },
+					requiredTopic = QuestTopics.TopChef.AcceptStartOfYourTraining,
+				},
+			})
+	end)
+	:State(function()
+		return { min = QuestState.TopChef.RotwormStew, max = QuestState.TopChef.SweetMangonaiseElixir },
+			QuestFactory.Dialog("Pewter", {
+				[{ "recipe", "menu", "przepis", "przepisami", "mission" }] = {
+					text = "DESCRIBE_CURRENT_DISH",
+				},
+				[{ GREET }] = {
+					text = "HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH",
+				},
+				[{ "yes", "tak" }] = {
+					text = "Lets begin then!\nA sprinkle of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish! Ask me for {recipe} if you are ready to prepare the next dish.",
+					specialConditions = {
+						{
+							condition = canRemoveIngredients,
+							requiredOutcome = true,
+							textNoRequiredCondition = "Make sure you have all the required ingredients.",
+						},
+						{
+							condition = canAddDish,
+							requiredOutcome = true,
+							textNoRequiredCondition = "You dont have either cap or bags slots for this dish.",
+						},
 					},
-					{
-						condition = canAddDish,
-						requiredOutcome = true,
-						textNoRequiredCondition = "You dont have either cap or bags slots for this dish.",
+					specialActionsOnSuccess = {
+						{
+							action = removeIngredients,
+						},
+						{
+							action = addDish,
+						},
+					},
+					nextState = { [Storage.TopChef.Mission01] = "+1" },
+				},
+				[{ "no", "nie" }] = {
+					text = "Come back when you are ready.",
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.TopChef.FinishedCourse_AskForBook,
+			QuestFactory.Dialog("Pewter", {
+				[{ ANY_MESSAGE }] = {
+					text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
+					rewards = { { id = 11541 }, { id = 9093 } },
+					nextState = {
+						[Storage.TopChef.Mission01] = Storage.TopChef.CanMakeAllDishes,
+						[Storage.Finished.TopChef] = MISSION_FINISHED,
 					},
 				},
-				specialActionsOnSuccess = {
-					{
-						action = removeIngredients,
-					},
-					{
-						action = addDish,
-					},
+			})
+	end)
+	:State(function()
+		return QuestState.TopChef.CanMakeAllDishes,
+			QuestFactory.Dialog("Pewter", {
+				[{ GREET }] = {
+					text = "Hello, welcome to my {kitchen} again, |PLAYERNAME|! Now that you are a professional chef, what dish would you like to prepare now?",
 				},
-				nextState = { [Storage.TopChef.Mission01] = "+1" },
-			},
-			[{ "no", "nie" }] = {
-				text = "Come back when you are ready.",
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.TopChef.FinishedCourse_AskForBook,
-		QuestFactory.Dialog("Pewter", {
-			[{ ANY_MESSAGE }] = {
-				text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
-				rewards = { { id = 11541 }, { id = 9093 } },
-				nextState = {
-					[Storage.TopChef.Mission01] = Storage.TopChef.CanMakeAllDishes,
-					[Storage.Finished.TopChef] = MISSION_FINISHED,
-				},
-			},
-		})
-
-end
-):State(
-function()
-return 
-		QuestState.TopChef.CanMakeAllDishes,
-		QuestFactory.Dialog("Pewter", {
-			[{ GREET }] = {
-				text = "Hello, welcome to my {kitchen} again, |PLAYERNAME|! Now that you are a professional chef, what dish would you like to prepare now?",
-			},
-			[{ ANY_MESSAGE }] = {
-				text = "Do you have all the necessary ingredients?",
-				specialConditions = {
-					{
-						condition = saidDishName,
-						requiredOutcome = true,
-						textNoRequiredCondition = "Just tell me any dish name from the recipe books.",
+				[{ ANY_MESSAGE }] = {
+					text = "Do you have all the necessary ingredients?",
+					specialConditions = {
+						{
+							condition = saidDishName,
+							requiredOutcome = true,
+							textNoRequiredCondition = "Just tell me any dish name from the recipe books.",
+						},
 					},
-				},
-				specialActionsOnSuccess = {
-					{ action = SPECIAL_ACTIONS_COOK.setDishData },
-				},
-				nextTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
-			},
-			[{ "yes", "tak" }] = {
-				text = "Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!",
-				specialConditions = {
-					{
-						condition = canRemoveIngredients,
-						requiredOutcome = true,
-						textNoRequiredCondition = "Make sure you have all the required ingredients.",
+					specialActionsOnSuccess = {
+						{ action = SPECIAL_ACTIONS_COOK.setDishData },
 					},
-					{
-						condition = canAddDish,
-						requiredOutcome = true,
-						textNoRequiredCondition = "You dont have either cap or bags slots for this dish.",
-					},
+					nextTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
 				},
-				specialActionsOnSuccess = {
-					{
-						action = removeIngredients,
+				[{ "yes", "tak" }] = {
+					text = "Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!",
+					specialConditions = {
+						{
+							condition = canRemoveIngredients,
+							requiredOutcome = true,
+							textNoRequiredCondition = "Make sure you have all the required ingredients.",
+						},
+						{
+							condition = canAddDish,
+							requiredOutcome = true,
+							textNoRequiredCondition = "You dont have either cap or bags slots for this dish.",
+						},
 					},
-					{
-						action = addDish,
+					specialActionsOnSuccess = {
+						{
+							action = removeIngredients,
+						},
+						{
+							action = addDish,
+						},
 					},
+					requiredTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
 				},
-				requiredTopic = QuestTopics.TopChef.ConfirmMakingAnyDish,
-			},
-		})
-
-end
-)	:Register()
+			})
+	end)
+	:Register()
