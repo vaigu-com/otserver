@@ -285,6 +285,7 @@ void IOPrey::updatePlayerPreyStatus(std::shared_ptr<Player> player) const {
 		bool maintainOption = false;
 		bool maintainState = true;
 		bool maintainMonster = false;
+		bool maintainTime = true;
 
 		bool refreshTime = false;
 		bool rerollType = false;
@@ -325,6 +326,7 @@ void IOPrey::updatePlayerPreyStatus(std::shared_ptr<Player> player) const {
 			maintainMonster = false;
 			maintainOption = false;
 			refreshTime = false;
+			maintainTime = false;
 			rarityPenalty = 0;
 			rerollType = true;
 			message = "Your prey bonus has expired.";
@@ -335,6 +337,7 @@ void IOPrey::updatePlayerPreyStatus(std::shared_ptr<Player> player) const {
 			maintainOption,
 			maintainState,
 			maintainMonster,
+			maintainTime,
 
 			nextOption,
 			nextState,
@@ -361,6 +364,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 	bool maintainOption = true;
 	bool maintainState = true;
 	bool maintainMonster = true;
+	bool maintainTime = true;
 
 	bool refreshTime = false;
 	bool rerollType = false;
@@ -402,7 +406,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			player->sendMessageDialog("This creature is already selected on another slot.");
 			return;
 		}
-
+		
 		rarityPenalty = 1;
 		nextState = PreyDataState_Active;
 		maintainState = false;
@@ -414,6 +418,8 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			player->sendMessageDialog("You don't have enough prey cards to choose a monsters on the list.");
 			return;
 		}
+		
+		player->sendMessageDialog("Changing prey with this action will incur a 1 star decrease.");
 
 		maintainMonster = false;
 		nextState = PreyDataState_ListSelection;
@@ -455,11 +461,22 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			player->sendMessageDialog("You don't have enough prey cards to enable automatic reroll when your slot expire.");
 			return;
 		} else if (option == PreyOption_Locked && player->getPreyCards() < static_cast<uint64_t>(g_configManager().getNumber(PREY_SELECTION_LIST_PRICE, __FUNCTION__))) {
-			player->sendMessageDialog("You don't have enough prey cards to lock monster and bonus when the slot expire.");
+			player->sendMessageDialog("You don't have enough prey cards to lock the monster and the bonus when the slot expire.");
 			return;
 		}
 
+		if (option == PreyOption_AutomaticReroll) {
+			player->sendMessageDialog("Changing prey with this option checked will incur a 3 star decrease.");
+		}
+
+		if (option == PreyOption_AutomaticReroll) {
+			player->sendMessageDialog("Changing prey with this option checked will incur a 2 star decrease.");
+		}
+
+		rerollType = false;
 		maintainOption = false;
+		maintainTime = true;
+		refreshTime = false;
 		nextOption = option;
 	} else {
 		g_logger().warn("[IOPrey::parsePreyAction] - Unknown prey action: {}", fmt::underlying(action));
@@ -470,6 +487,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		maintainOption,
 		maintainState,
 		maintainMonster,
+		maintainTime,
 
 		nextOption,
 		nextState,
