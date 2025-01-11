@@ -1,4 +1,4 @@
-local lootLayerOrder = {
+LOOT_LAYER_ORDER = {
 	MONSTER_LOOT_LAYER.base,
 	MONSTER_LOOT_LAYER.charmPseudo,
 	MONSTER_LOOT_LAYER.boosted,
@@ -22,13 +22,17 @@ local lootLayerSuffix = {
 local lowStaminaWarning = " nothing (due to low stamina)"
 local isEmptyWarning = " nothing"
 
-local function parseItemDesc(itemEx, shouldColor)
+local function parseItemDesc(item, shouldColor)
+	local itemEx = Game.createItem(item.id, item.count)
 	local nameDesc = itemEx:getNameDescription()
+	local itemDesc = ""
 	if shouldColor then
-		local id = itemEx:getId()
-		return T("{:id:|:nameDesc:}", { id = id, nameDesc = nameDesc })
+		itemDesc = T("{:id:|:nameDesc:}", { id = item.id, nameDesc = nameDesc })
+	else
+		itemDesc = nameDesc
 	end
-	return nameDesc
+	itemEx:remove()
+	return itemDesc
 end
 
 local function parseLayerSuffix(lootTable, layerName)
@@ -42,21 +46,16 @@ local function parseLayerSuffix(lootTable, layerName)
 	return lootLayerSuffix[layerName]
 end
 
-local function parseLayerDesc(lootTable, loot, layerName, corpse, shouldColor)
-	local items = loot[layerName]
-	if not items then
-		return ""
-	end
-
-	local addedItems = corpse:AddItems(items)
-	if #addedItems == 0 then
+local function parseLayerDesc(lootTable, layerName, shouldColor)
+	local itemData = lootTable:Get()[layerName]
+	if not itemData or TableSize(itemData) == 0 then
 		return ""
 	end
 
 	local layerDesc = "	"
 	local itemsDesc = ""
-	for _, itemData in pairs(addedItems) do
-		itemsDesc = itemsDesc .. parseItemDesc(itemData, shouldColor) .. ", "
+	for _, item in pairs(itemData) do
+		itemsDesc = itemsDesc .. parseItemDesc(item, shouldColor) .. ", "
 	end
 	itemsDesc = string.sub(itemsDesc, 1, -3)
 	local layerSuffix = parseLayerSuffix(lootTable, layerName)
@@ -64,7 +63,9 @@ local function parseLayerDesc(lootTable, loot, layerName, corpse, shouldColor)
 	return layerDesc
 end
 
-local function parseLayersDesc(lootTable, corpse, shouldColor)
+function ParseLayersDesc(monster, shouldColor, lootTableRegistryIdentifier)
+	local lootTable = LootTableRegistry:Get(lootTableRegistryIdentifier or monster:getId())
+
 	local layersDesc = ""
 	if lootTable:IsLowStamina() then
 		return lowStaminaWarning
@@ -73,20 +74,24 @@ local function parseLayersDesc(lootTable, corpse, shouldColor)
 		return isEmptyWarning
 	end
 
-	local loot = lootTable:Get()
-	for _, layerName in pairs(lootLayerOrder) do
-		layersDesc = layersDesc .. parseLayerDesc(lootTable, loot, layerName, corpse, shouldColor)
+	for _, layerName in pairs(LOOT_LAYER_ORDER) do
+		layersDesc = layersDesc .. parseLayerDesc(lootTable, layerName, shouldColor)
 	end
 
 	return layersDesc
 end
 
-function ContainerSetLootParseDesc(monster, corpse, shouldColor)
-	local monsterDesc = monster:getNameDescription()
+function RewardbossLootParseDesc(monster, rewardChest, shouldColor, lootTableRegistryIdentifier)
+	local name = monster:getNameDescription()
+	local layersDesc = ParseLayersDesc(rewardChest, shouldColor, lootTableRegistryIdentifier)
 
-	local monsterId = monster:getId()
-	local lootTable = LootTableRegistry:Get(monsterId)
-	local layersDesc = parseLayersDesc(lootTable, corpse, shouldColor)
+	local message = T("The following items dropped by :name: are available in your reward chest: :layersDesc:.", { name = name, layersDesc = layersDesc })
+	return message
+end
+
+function MonsterLootParseDesc(monster, corpse, shouldColor)
+	local monsterDesc = monster:getNameDescription()
+	local layersDesc = ParseLayersDesc(monster, shouldColor)
 
 	local message = T("Loot of :monsterDesc:::layersDesc:.", { monsterDesc = monsterDesc, layersDesc = layersDesc })
 	return message
@@ -103,7 +108,7 @@ function callback.monsterPostDropLoot(monster, corpse)
 	end
 
 	local lootTable = LootTableRegistry:Get(monster:getId()):Get()
-	for _, lootLayer in pairs(lootLayerOrder) do
+	for _, lootLayer in pairs(LOOT_LAYER_ORDER) do
 		local items = lootTable[lootLayer]
 		if items then
 			corpse:addLoot(items)

@@ -375,7 +375,7 @@ function timiraChest.onUse(player, item, fromPosition, target, toPosition, isHot
 		return false
 	end
 	table.insert(rewards[toPosition.z], player:getGuid())
-	local randValue = getLootRandom(timiraFightConfig.getLootRandomModifier)
+	local randValue = randomLootRoll(timiraFightConfig.getLootRandomModifier)
 	local itemName = timiraFightConfig.chestPossibleValuables[math.random(1, #timiraFightConfig.chestPossibleValuables)]
 	if randValue <= timiraFightConfig.chestEquipmentChance then
 		itemName = timiraFightConfig.chestPossibleEquipment[math.random(1, #timiraFightConfig.chestPossibleEquipment)]

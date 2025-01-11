@@ -6,7 +6,6 @@ dofile(DATA_DIRECTORY .. "/lib/lib.lua")
 dofile(DATA_DIRECTORY .. "/zombieEvent.lua")
 dofile(DATA_DIRECTORY .. "/grimEvent.lua")
 dofile(DATA_DIRECTORY .. "/lmsEvent.lua")
-dofile(DATA_DIRECTORY .. "/luaraids.lua")
 dofile(DATA_DIRECTORY .. "/arena.lua")
 dofile(DATA_DIRECTORY .. "/imbuproducts.lua")
 dofile(DATA_DIRECTORY .. "/demonOakQuest.lua")
@@ -59,9 +58,9 @@ DIRECTIONS_TABLE = {
 
 STORAGEVALUE_PROMOTION = 30018
 DAY_SINCE_START = 0
-local resultId = db.storeQuery("SELECT `value` FROM `server_config` WHERE `config` = 'day_since_start'")
+local resultId = db.storeQuery("SELECT DATEDIFF( CURDATE(), DATE(`value`) ) - IF(TIME(NOW()) < '05:00:00', 1, 0) AS days_since_start FROM `server_config` WHERE `server_config`.`config` = 'server_start'")
 if resultId then
-	DAY_SINCE_START = Result.getNumber(resultId, "value")
+	DAY_SINCE_START = Result.getNumber(resultId, "days_since_start")
 	logger.info("Day since start: " .. DAY_SINCE_START)
 end
 
