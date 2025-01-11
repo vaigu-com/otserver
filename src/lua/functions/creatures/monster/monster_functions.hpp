@@ -65,6 +65,9 @@ private:
 		registerMethod(L, "Monster", "hazardDefenseBoost", MonsterFunctions::luaMonsterHazardDefenseBoost);
 
 		// Vaigu custom
+		registerMethod(L, "Monster", "getLoot", MonsterFunctions::luaMonsterGetLoot);
+		registerMethod(L, "Monster", "addLoot", MonsterFunctions::luaMonsterAddLoot);
+
 		registerMethod(L, "Monster", "isBoosted", MonsterFunctions::luaMonsterIsBoosted);
 
 		CharmFunctions::init(L);
@@ -72,6 +75,8 @@ private:
 		MonsterSpellFunctions::init(L);
 		MonsterTypeFunctions::init(L);
 	}
+
+	static void createMonsterLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList);
 
 	static int luaMonsterCreate(lua_State* L);
 
@@ -129,6 +134,9 @@ private:
 	static int luaMonsterHazardDefenseBoost(lua_State* L);
 
 	// Vaigu custom
+	static int luaMonsterGetLoot(lua_State* L);
+	static int luaMonsterAddLoot(lua_State* L);
+
 	static int luaMonsterIsBoosted(lua_State* L);
 
 	friend class CreatureFunctions;

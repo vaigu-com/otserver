@@ -359,6 +359,22 @@ public:
 		return multiplier * std::pow(1.02f, getForgeStack());
 	}
 
+	// Vaigu custom; Revert in Monster::configureForgeSystem and Monster::getName
+	std::string fullName;
+	std::map<uint16_t, std::string> influenceRankToTitle = {
+        {0, ""},
+		{1, "Potent "},
+        {2, "Sturdy "},
+        {3, "Veteran "},
+		{4, "Epic "}, 
+		{5, "Legendary "},
+		{15, "Fiendish "}
+    };
+
+	// Vaigu custom
+	void loadLoot(std::shared_ptr<Monster> monsterType, LootBlock lootblock);
+	std::vector<LootBlock> lootItems;
+
 private:
 	auto getTargetIterator(const std::shared_ptr<Creature> &creature) {
 		return std::ranges::find_if(targetList.begin(), targetList.end(), [id = creature->getID()](const std::weak_ptr<Creature> &ref) {

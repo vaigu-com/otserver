@@ -1597,6 +1597,7 @@ struct LootBlock {
 	int32_t subType;
 	int32_t actionId;
 	std::string text;
+	std::string key;
 	std::string name;
 	std::string article;
 	int32_t attack;
