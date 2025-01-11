@@ -2565,4 +2565,7 @@ Storage.NextDailyReset = {}
 Storage.NextWeeklyReset = {}
 Storage.FamiliarSummonEvent10 = {}
 Storage.FamiliarSummonEvent60 = {}
+
+Storage.FirstTrackerRequest = {}
+
 startupStorages = {}
