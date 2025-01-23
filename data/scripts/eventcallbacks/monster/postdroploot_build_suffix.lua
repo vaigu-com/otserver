@@ -81,7 +81,7 @@ local function parseLayersDesc(lootTable, corpse, shouldColor)
 	return layersDesc
 end
 
-function ContainerSetLootParseDesc(monster, corpse, shouldColor)
+function ContainerCorpseParseDesc(monster, corpse, shouldColor)
 	local monsterDesc = monster:getNameDescription()
 
 	local monsterId = monster:getId()

@@ -1,7 +1,7 @@
 local lootFactor = 1.0
 local lootLayer = MONSTER_LOOT_LAYER.boosted
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterOnDropLootBoosted")
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
 	if not player then

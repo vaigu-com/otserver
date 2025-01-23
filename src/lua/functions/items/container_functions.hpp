@@ -9,10 +9,7 @@
 
 #pragma once
 
-#include "lua/scripts/luascript.hpp"
-
-class ContainerFunctions final : LuaScriptInterface {
-public:
+class ContainerFunctions {
 private:
 	static void init(lua_State* L) {
 		registerSharedClass(L, "Container", "Item", ContainerFunctions::luaContainerCreate);

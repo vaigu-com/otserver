@@ -7,19 +7,27 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "pch.hpp"
-
-#include "creatures/players/imbuements/imbuements.hpp"
-#include "lua/global/globalevent.hpp"
-#include "items/weapons/weapons.hpp"
-#include "lua/creature/movement.hpp"
 #include "lua/scripts/scripts.hpp"
+
+#include "lib/di/container.hpp"
+#include "config/configmanager.hpp"
 #include "creatures/combat/spells.hpp"
+#include "creatures/monsters/monsters.hpp"
+#include "items/weapons/weapons.hpp"
 #include "lua/callbacks/events_callbacks.hpp"
+#include "lua/creature/creatureevent.hpp"
+#include "lua/creature/movement.hpp"
+#include "lua/creature/talkaction.hpp"
+#include "lua/global/globalevent.hpp"
 
 Scripts::Scripts() :
 	scriptInterface("Scripts Interface") {
 	scriptInterface.initState();
+}
+
+Scripts &Scripts::getInstance() {
+	static Scripts instance;
+	return instance;
 }
 
 void Scripts::clearAllScripts() const {
@@ -35,14 +43,14 @@ void Scripts::clearAllScripts() const {
 }
 
 bool Scripts::loadEventSchedulerScripts(const std::string &fileName) {
-	auto coreFolder = g_configManager().getString(CORE_DIRECTORY, __FUNCTION__);
+	auto coreFolder = g_configManager().getString(CORE_DIRECTORY);
 	const auto dir = std::filesystem::current_path() / coreFolder / "events" / "scripts" / "scheduler";
 	if (!std::filesystem::exists(dir) || !std::filesystem::is_directory(dir)) {
 		g_logger().warn("{} - Can not load folder 'scheduler' on {}/events/scripts'", __FUNCTION__, coreFolder);
 		return false;
 	}
 
-	std::filesystem::recursive_directory_iterator endit;
+	const std::filesystem::recursive_directory_iterator endit;
 	for (std::filesystem::recursive_directory_iterator it(dir); it != endit; ++it) {
 		if (std::filesystem::is_regular_file(*it) && it->path().extension() == ".lua") {
 			if (it->path().filename().string() == fileName) {

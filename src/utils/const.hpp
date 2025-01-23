@@ -35,6 +35,8 @@ static constexpr int32_t STORAGEVALUE_HAZARDCOUNT = 112550;
 // Wheel of destiny
 static const std::string STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD = "Storage-wheel-of-destiny-giftOfLifeCooldown";
 
+constexpr double SCALING_BASE = 10.0;
+
 // Reserved player storage key ranges;
 // [10000000 - 20000000];
 static constexpr int32_t PSTRG_RESERVED_RANGE_START = 10000000;
