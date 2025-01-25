@@ -68,7 +68,7 @@ quest
 			missions = {
 				{
 					name = "Iron Stomach",
-					storage = Storage.EnterTheDrunkTankChamberlain,
+					storage = Storage.EnterTheDrunkTankChamberlain.Mission01,
 					states = {
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.AskVislavAboutTask] = "Commissioner Fisher told you to ask Vislav Shivka about a tactical task.",
 						[QuestState.EnterTheDrunkTankChamberlain.Mission01.CollectWaterAndMilk] = "Collect glowing naga water and bull spooge then report to Vislav.",
