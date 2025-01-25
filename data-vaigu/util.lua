@@ -48,7 +48,7 @@ end
 
 function T(template, variables)
 	if not variables then
-		logger.warn("[T] no variables table provided")
+		logger.warn(debug.traceback("[T] no variables table provided"))
 	end
 	local result = template
 	for key, value in pairs(variables) do

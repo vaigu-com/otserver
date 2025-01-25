@@ -1,3 +1,4 @@
+--[[
 local startRaid = TalkAction("/raid")
 
 function startRaid.onSay(player, words, param)
@@ -102,3 +103,4 @@ end
 listRaid:separator(" ")
 listRaid:groupType("god")
 listRaid:register()
+]]

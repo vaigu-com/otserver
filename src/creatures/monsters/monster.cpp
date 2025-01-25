@@ -2679,3 +2679,18 @@ void Monster::onExecuteAsyncTasks() {
 		onThink_async();
 	}
 }
+
+// Vaigu custom
+void Monster::loadLoot(const std::shared_ptr<Monster> monster, LootBlock lootBlock) {
+	if (lootBlock.childLoot.empty()) {
+		bool isContainer = Item::items[lootBlock.id].isContainer();
+		if (isContainer) {
+			for (const LootBlock &child : lootBlock.childLoot) {
+				lootBlock.childLoot.push_back(child);
+			}
+		}
+		monster->lootItems.push_back(lootBlock);
+	} else {
+		monster->lootItems.push_back(lootBlock);
+	}
+}

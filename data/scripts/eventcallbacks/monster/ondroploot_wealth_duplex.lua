@@ -55,7 +55,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 
 	local totalLoot = {}
 	for _ = 1, rolls do
-		totalLoot = table.merged(totalLoot, GenerateLootRoll(MONSTER_LOOT_LAYER.wealthDuplex, monster, player, lootFactor, applyGut, filter))
+		totalLoot = table.merged(totalLoot, TryGenerateLootRoll(MONSTER_LOOT_LAYER.wealthDuplex, monster, player, lootFactor, applyGut, filter))
 	end
 
 	local monsterId = monster:getId()

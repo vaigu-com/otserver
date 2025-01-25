@@ -18,6 +18,8 @@ class MonsterFunctions {
 private:
 	static void init(lua_State* L);
 
+	static void createMonsterLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList);
+
 	static int luaMonsterCreate(lua_State* L);
 
 	static int luaMonsterIsMonster(lua_State* L);
@@ -80,6 +82,9 @@ private:
 	static int luaMonsterImmune(lua_State* L);
 
 	// Vaigu custom
+	static int luaMonsterGetLoot(lua_State* L);
+	static int luaMonsterAddLoot(lua_State* L);
+
 	static int luaMonsterIsBoosted(lua_State* L);
 
 	friend class CreatureFunctions;
