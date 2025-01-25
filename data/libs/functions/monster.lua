@@ -140,7 +140,7 @@ function Monster.setFiendish(self, position, player)
 	if fiendishMonster then
 		Game.removeFiendishMonster(fiendishMonster:getId())
 	end
-	if Game.makeFiendishMonster(self:getId(), true) ~= 0 then
+	if Game.makeFiendishMonster(self:getId(), false) ~= 0 then
 		success = "set sucessfully a new fiendish monster"
 	else
 		success = "have error to set fiendish monster"
@@ -204,6 +204,8 @@ do
 		return table.contains(equipmentTypes, t)
 	end
 
+
+	-- Vaigu custom; 3af; unused
 	function Monster:getBossReward(lootFactor, topScore, equipmentOnly, lootTable)
 		if configManager.getNumber(configKeys.RATE_LOOT) <= 0 then
 			return lootTable or {}

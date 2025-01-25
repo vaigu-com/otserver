@@ -1,7 +1,7 @@
 local lootFactor = 1.0
 local lootLayer = MONSTER_LOOT_LAYER.hazard
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterOnDropLootHazard")
 function callback.monsterOnDropLoot(monster, corpse)
 	if not monster:hazard() then
 		return

@@ -81,20 +81,14 @@ local vocationCountToBonus = {
 
 --3af needs fix	
 function Party:onShareExperience(exp)
-	local distinctVocationsTable = {}
-	local partyPlayers = self:getPlayers()
+	local uniqueVocationsCount = self:getUniqueVocationsCount()
+	local partySize = self:getMemberCount() + 1
 
-	for _, member in pairs(partyPlayers) do
-		local vocationId = member:getVocation():getBase():getId()
-		distinctVocationsTable[vocationId] = true
-	end
+	-- Formula to calculate the % based on the vocations amount
+	local sharedExperienceMultiplier = ((0.1 * (uniqueVocationsCount ^ 2)) - (0.2 * uniqueVocationsCount) + 1.3)
+	-- Since the formula its non linear, we need to subtract 0.1 if all vocations are present,
+	-- because on all vocations the multiplier is 2.1 and it should be 2.0
+	sharedExperienceMultiplier = partySize < 4 and sharedExperienceMultiplier or sharedExperienceMultiplier - 0.1
 
-	local distinctVocationsCount = TableSize(distinctVocationsTable)
-	if distinctVocationsCount > 4 then
-		distinctVocationsCount = 4
-	end
-
-	local partyBonusMultiplier = vocationCountToBonus[distinctVocationsCount]
-	local bonusPerMember = math.ceil(partyBonusMultiplier / (#self:getMembers() + 1))
-	return bonusPerMember * exp
+	return math.ceil((exp * sharedExperienceMultiplier) / partySize)
 end

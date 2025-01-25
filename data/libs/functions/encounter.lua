@@ -327,7 +327,7 @@ function EncounterData:checkLockout(players, leverUser)
 	for _, currentPlayer in pairs(players) do
 		local lockoutStatus, timeLeft = currentPlayer:lockoutStatus(self)
 		if lockoutStatus ~= LOCKOUT_STATUS.INACTIVE then
-			local timeLeftString = getTimeInWords(timeLeft)
+			local timeLeftString = Game.getTimeInWords(timeLeft)
 
 			local translatedMessage = currentPlayer:Localizer():Context({ encounterName = self.encounterName, timeLeftString = timeLeftString }):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT)
 			currentPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)

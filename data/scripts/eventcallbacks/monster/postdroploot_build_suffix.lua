@@ -89,7 +89,7 @@ function RewardbossLootParseDesc(monster, rewardChest, shouldColor, lootTableReg
 	return message
 end
 
-function MonsterLootParseDesc(monster, corpse, shouldColor)
+function ContainerCorpseParseDesc(monster, corpse, shouldColor)
 	local monsterDesc = monster:getNameDescription()
 	local layersDesc = ParseLayersDesc(monster, shouldColor)
 
