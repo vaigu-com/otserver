@@ -10,6 +10,37 @@ Position.__eq = function(pos1, pos2)
 	return xEq and yEq and zEq
 end
 
+---@class Area
+---@field positions Position[]
+---@field corner1 Position
+---@field corner2 Position
+Area = {}
+Area.__index = Area
+---comment
+---@param corner1 Position
+---@param corner2 Position
+---@return Area newObj
+function Area.New(corner1, corner2)
+	local newObj = {}
+	newObj.corner1 = corner1
+	newObj.corner2 = corner2
+	setmetatable(newObj, Area)
+	return newObj
+end
+setmetatable(Area, {
+	__call = function(t, ...)
+		return Area.New(...)
+	end,
+})
+
+function Area:Get()
+	return self.positions
+end
+
+function Area:RandomPosition()
+	return RandomPositionBetween(self.corner1, self.corner2)
+end
+
 ---@class CreatureList
 ---@field creatures table
 ---@field customData table
@@ -594,28 +625,13 @@ function Position:Distance(dest)
 	return vector.x, vector.y, vector.z
 end
 
+local function randomClamp(a, b)
+	local lower = math.min(a, b)
+	local upper = math.max(a, b)
+	return math.random(lower, upper)
+end
 function RandomPositionBetween(pos1, pos2)
-	math.randomseed(os.time())
-	local dx = pos1.x - pos2.x
-	local dy = pos1.y - pos2.y
-	local dz = pos1.z - pos2.z
-
-	local randX, randY, randZ = 0, 0, 0
-	randX = math.random(0, math.abs(dx))
-	randY = math.random(0, math.abs(dy))
-	randZ = math.random(0, math.abs(dz))
-	if dx >= 0 then
-		randX = -randX
-	end
-	if dy >= 0 then
-		randY = -randY
-	end
-	if dz >= 0 then
-		randZ = -randZ
-	end
-
-	local result = Position(pos1.x + randX, pos1.y + randY, pos1.z + randZ)
-	return result
+	return Position(randomClamp(pos1.x, pos2.x), randomClamp(pos1.y, pos2.y), randomClamp(pos1.z, pos2.z))
 end
 
 function IsPosition(obj)
@@ -774,7 +790,7 @@ function Position:Moved(vectorOrX, y, z)
 	return moved
 end
 
----@param inputSeparator string one character or many characters eg. ", "
+---@param inputSeparator string|nil one character or many characters eg. ", "
 function Position:ToString(inputSeparator)
 	local separator = inputSeparator or ", "
 	local x = string.format("%05d", self.x)

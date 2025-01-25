@@ -2062,7 +2062,7 @@ const std::string Monster::dropLoot(std::shared_ptr<Container> corpse, bool shou
 		}
 
 		lua_State* L = g_scripts().getScriptInterface().getLuaState();
-		lua_getglobal(L, "ContainerSetLootParseDesc");
+		lua_getglobal(L, "MonsterLootParseDesc");
 		LuaScriptInterface::pushUserdata<Creature>(L, getMonster());
 		LuaScriptInterface::setMetatable(L, -1, "Monster");
 		LuaScriptInterface::pushUserdata<Container>(L, corpse->getContainer());
@@ -2258,4 +2258,19 @@ std::vector<std::pair<int8_t, int8_t>> Monster::getPushItemLocationOptions(const
 	}
 
 	return {};
+}
+
+// Vaigu custom
+void Monster::loadLoot(const std::shared_ptr<Monster> monster, LootBlock lootBlock) {
+	if (lootBlock.childLoot.empty()) {
+		bool isContainer = Item::items[lootBlock.id].isContainer();
+		if (isContainer) {
+			for (const LootBlock &child : lootBlock.childLoot) {
+				lootBlock.childLoot.push_back(child);
+			}
+		}
+		monster->lootItems.push_back(lootBlock);
+	} else {
+		monster->lootItems.push_back(lootBlock);
+	}
 }

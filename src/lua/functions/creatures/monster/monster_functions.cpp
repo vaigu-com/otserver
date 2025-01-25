@@ -17,6 +17,31 @@
 #include "map/spectators.hpp"
 #include "game/scheduling/events_scheduler.hpp"
 
+void MonsterFunctions::createMonsterLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList) {
+	lua_createtable(L, lootList.size(), 0);
+
+	int index = 0;
+	for (const auto &lootBlock : lootList) {
+		lua_createtable(L, 0, 8);
+
+		setField(L, "itemId", lootBlock.id);
+		setField(L, "chance", lootBlock.chance);
+		setField(L, "subType", lootBlock.subType);
+		setField(L, "maxCount", lootBlock.countmax);
+		setField(L, "minCount", lootBlock.countmin);
+		setField(L, "actionId", lootBlock.actionId);
+		setField(L, "text", lootBlock.text);
+		setField(L, "key", lootBlock.key);
+		pushBoolean(L, lootBlock.unique);
+		lua_setfield(L, -2, "unique");
+
+		createMonsterLootLuaTable(L, lootBlock.childLoot);
+		lua_setfield(L, -2, "childLoot");
+
+		lua_rawseti(L, -2, ++index);
+	}
+}
+
 int MonsterFunctions::luaMonsterCreate(lua_State* L) {
 	// Monster(id or userdata)
 	std::shared_ptr<Monster> monster;
@@ -631,7 +656,38 @@ int MonsterFunctions::luaMonsterHazardDefenseBoost(lua_State* L) {
 	return 1;
 }
 
+// Vaigu custom
+int MonsterFunctions::luaMonsterGetLoot(lua_State* L) {
+	// monster:getLoot()
+	const auto monster = getUserdataShared<Monster>(L, 1);
+	if (!monster) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	createMonsterLootLuaTable(L, monster->lootItems);
+	return 1;
+}
+
+int MonsterFunctions::luaMonsterAddLoot(lua_State* L) {
+	// monster:addLoot(loot)
+	const auto monster = getUserdataShared<Monster>(L, 1);
+	if (monster) {
+		const auto loot = getUserdataShared<Loot>(L, 2);
+		if (loot) {
+			monster->loadLoot(monster, loot->lootBlock);
+			pushBoolean(L, true);
+		} else {
+			lua_pushnil(L);
+		}
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int MonsterFunctions::luaMonsterIsBoosted(lua_State* L) {
+	// monster:isBoosted()
 	std::shared_ptr<Monster> monster = getUserdataShared<Monster>(L, 1);
 	const std::string monsterName = monster->getName();
 	const auto boostedMonsters = g_game().getBoostedMonsterNames();

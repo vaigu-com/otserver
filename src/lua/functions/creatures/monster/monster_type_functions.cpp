@@ -31,6 +31,7 @@ void MonsterTypeFunctions::createMonsterTypeLootLuaTable(lua_State* L, const std
 		setField(L, "minCount", lootBlock.countmin);
 		setField(L, "actionId", lootBlock.actionId);
 		setField(L, "text", lootBlock.text);
+		setField(L, "key", lootBlock.key);
 		pushBoolean(L, lootBlock.unique);
 		lua_setfield(L, -2, "unique");
 

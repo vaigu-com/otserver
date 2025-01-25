@@ -91,8 +91,9 @@ function getTimeInWords(secsParam)
 	return timeStr
 end
 
-function getLootRandom(lootMultiplier)
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, lootMultiplier)
+local epsilon = 0.000001
+function randomLootRoll(lootMultiplier)
+	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(epsilon, lootMultiplier * 100)
 end
 
 local start = os.time()
