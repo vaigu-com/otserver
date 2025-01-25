@@ -84,26 +84,6 @@ function Player:getTrackedMissionIds()
 	return trackedMissionIds
 end
 
---[[
-function TestSendMetaEvent()
-	local previousTrackedMissionsStorages = { "Storage-LocalSupport-Discernment" }
-	local player = Player("GOD")
-	local data = {
-		missionId = 42069,
-		questName = "Meta Event Quest Name",
-		missionName = "Meta Event Mission Name",
-		missionDesc = "Meta Event Mission Desc",
-	}
-	player:sendTrackedQuests(0, { data })
-	player:setStorageValueByKey(Storage.TrackedMissionsStorages, previousTrackedMissionsStorages)
-end
-
-function TestRetractMetaEvent()
-	local player = Player("GOD")
-	player:resetTrackedMissions(player:getTrackedMissionIds())
-end
-]]
-
 Storage.TrackedMissionsStorages = {}
 function Player.resetTrackedMissions(self, missionIds)
 	local trackedMissions = {}
