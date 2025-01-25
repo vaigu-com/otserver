@@ -7,18 +7,27 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "pch.hpp"
-
 #include "lua/creature/looks.hpp"
+
+#include "config/configmanager.hpp"
+#include "creatures/combat/spells.hpp"
+#include "creatures/players/player.hpp"
+#include "enums/account_group_type.hpp"
+#include "game/game.hpp"
 #include "items/bed.hpp"
 #include "items/containers/container.hpp"
-#include "game/game.hpp"
-#include "creatures/combat/spells.hpp"
+#include "items/containers/depot/depotlocker.hpp"
+#include "items/containers/rewards/reward.hpp"
 #include "items/containers/rewards/rewardchest.hpp"
-#include "enums/account_group_type.hpp"
+#include "lua/scripts/scripts.hpp"
+#include "lib/di/container.hpp"
 
 Looks::Looks() = default;
 Looks::~Looks() = default;
+
+Looks &Looks::getInstance(){
+	return inject<Looks>();
+}
 
 void Looks::clear() {
 	useItemMap.clear();
@@ -27,7 +36,7 @@ void Looks::clear() {
 	positionItemMap.clear();
 }
 
-bool Looks::registerLuaItemEvent(const std::shared_ptr<Look> look) {
+bool Looks::registerLuaItemEvent(const std::shared_ptr<Look> &look) {
 	auto itemIdVector = look->getItemIdsVector();
 	if (itemIdVector.empty()) {
 		return false;
@@ -60,7 +69,7 @@ bool Looks::registerLuaItemEvent(const std::shared_ptr<Look> look) {
 	return !itemIdVector.empty();
 }
 
-bool Looks::registerLuaUniqueEvent(const std::shared_ptr<Look> look) {
+bool Looks::registerLuaUniqueEvent(const std::shared_ptr<Look> &look) {
 	auto uniqueIdVector = look->getUniqueIdsVector();
 	if (uniqueIdVector.empty()) {
 		return false;
@@ -91,7 +100,7 @@ bool Looks::registerLuaUniqueEvent(const std::shared_ptr<Look> look) {
 	return !uniqueIdVector.empty();
 }
 
-bool Looks::registerLuaActionEvent(const std::shared_ptr<Look> look) {
+bool Looks::registerLuaActionEvent(const std::shared_ptr<Look> &look) {
 	auto actionIdVector = look->getActionIdsVector();
 	if (actionIdVector.empty()) {
 		return false;
@@ -122,7 +131,7 @@ bool Looks::registerLuaActionEvent(const std::shared_ptr<Look> look) {
 	return !actionIdVector.empty();
 }
 
-bool Looks::registerLuaPositionEvent(const std::shared_ptr<Look> look) {
+bool Looks::registerLuaPositionEvent(const std::shared_ptr<Look> &look) {
 	auto positionVector = look->getPositionsVector();
 	if (positionVector.empty()) {
 		return false;
@@ -152,7 +161,7 @@ bool Looks::registerLuaPositionEvent(const std::shared_ptr<Look> look) {
 }
 
 
-bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> look) {
+bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> &look) {
 	auto keysVector = look->getKeysVector();
 	if (keysVector.empty()) {
 		return false;
@@ -181,7 +190,7 @@ bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> look) {
 	return !keysVector	.empty();
 }
 
-bool Looks::registerLuaEvent(const std::shared_ptr<Look> look) {
+bool Looks::registerLuaEvent(const std::shared_ptr<Look>  &look) {
 	std::vector<std::function<bool(const std::shared_ptr<Look> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<Look> &look) { return registerLuaItemEvent(look); },
 		[this](const std::shared_ptr<Look> &look) { return registerLuaUniqueEvent(look); },
@@ -235,7 +244,7 @@ ReturnValue Looks::canLook(std::shared_ptr<Player> player, const Position &pos, 
 	return RETURNVALUE_NOERROR;
 }
 
-std::shared_ptr<Look> Looks::getLook(std::shared_ptr<Item> item) {
+std::shared_ptr<Look> Looks::getLook(const std::shared_ptr<Item> &item) {
 	if (item->hasAttribute(ItemAttribute_t::KEY)) {
 		auto it = keyItemMap.find(item->getAttribute<std::string>(ItemAttribute_t::KEY));
 		if (it != keyItemMap.end()) {
@@ -335,14 +344,14 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 			return true;
 		}
 	}
-	if (look->isLoadedCallback()) {
-		if (look->executeLook(player, item, fromPos, creature, toPos)) {
-			return true;
+
+	if (look->executeLook(player, item, fromPos, creature, toPos)) {
+		if (!look->hasOwnErrorHandler()) {
+			player->sendCancelMessage(RETURNVALUE_CANNOTUSETHISOBJECT);
 		}
-		if (item->isRemoved()) {
-			return true;
-		}
+		return false;
 	}
+
 
 	return false;
 }
@@ -354,13 +363,40 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 */
 
 // Look constructor
-Look::Look(LuaScriptInterface* interface) :
-	Script(interface) { }
+Look::Look() = default; 
+
+LuaScriptInterface* Look::getScriptInterface() const {
+	return &g_scripts().getScriptInterface();
+}
+
+bool Look::loadScriptId() {
+	LuaScriptInterface &luaInterface = g_scripts().getScriptInterface();
+	m_scriptId = luaInterface.getEvent();
+	if (m_scriptId == -1) {
+		g_logger().error("[Look::loadScriptId] Failed to load event. Script name: '{}', Module: '{}'", luaInterface.getLoadingScriptName(), luaInterface.getInterfaceName());
+		return false;
+	}
+
+	return true;
+}
+
+int32_t Look::getScriptId() const {
+	return m_scriptId;
+}
+
+void Look::setScriptId(int32_t newScriptId) {
+	m_scriptId = newScriptId;
+}
+
+bool Look::isLoadedScriptId() const {
+	return m_scriptId != 0;
+}
 
 ReturnValue Look::canExecuteLook(std::shared_ptr<Player> player, const Position &toPos) {
 	if (!allowFarUse) {
 		return g_looks().canLook(player, toPos);
 	}
+
 	return RETURNVALUE_NOERROR;
 }
 

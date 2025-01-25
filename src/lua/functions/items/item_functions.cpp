@@ -309,12 +309,13 @@ int ItemFunctions::luaItemSetActionId(lua_State* L) {
 	return 1;
 }
 
+// Vaigu custom
 int ItemFunctions::luaItemGetKey(lua_State* L) {
 	// item:getKey()
-	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);
+	std::shared_ptr<Item> item = Lua::getUserdataShared<Item>(L, 1);
 	if (item) {
 		auto key = item->getAttribute<std::string>(ItemAttribute_t::KEY);
-		pushString(L, key);
+		Lua::pushString(L, key);
 	} else {
 		lua_pushnil(L);
 	}
@@ -850,11 +851,11 @@ int ItemFunctions::luaItemMoveToSlot(lua_State* L) {
 // Vaigu custom
 int ItemFunctions::luaItemGetDescription(lua_State* L) {
 	// item:getDescription(distance, [player])
-	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);
+	std::shared_ptr<Item> item = Lua::getUserdataShared<Item>(L, 1);
 	if (item) {
-		int32_t distance = getNumber<int32_t>(L, 2);
-		std::shared_ptr<Player> player = getUserdataShared<Player>(L, 3);
-		pushString(L, item->getDescription(distance, player));
+		int32_t distance = Lua::getNumber<int32_t>(L, 2);
+		std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 3);
+		Lua::pushString(L, item->getDescription(distance, player));
 	} else {
 		lua_pushnil(L);
 	}
@@ -864,7 +865,7 @@ int ItemFunctions::luaItemGetDescription(lua_State* L) {
 // Vaigu custom
 int ItemFunctions::luaItemGetNameDescription(lua_State* L) {
 	// item:getNameDescription(distance)
-	std::shared_ptr<Item> item = getUserdataShared<Item>(L, 1);
+	std::shared_ptr<Item> item = Lua::getUserdataShared<Item>(L, 1);
 	if (item) {
 		const int32_t distance = Lua::getNumber<int32_t>(L, 2);
 		Lua::pushString(L, item->getNameDescription());

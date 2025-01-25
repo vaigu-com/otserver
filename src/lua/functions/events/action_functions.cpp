@@ -190,22 +190,23 @@ int ActionFunctions::luaActionPosition(lua_State* L) {
 	return 1;
 }
 
+// Vaigu custom
 int ActionFunctions::luaActionKey(lua_State* L) {
 	// look:key(keys)
-	const auto action = getUserdataShared<Action>(L, 1);
+	const auto action = Lua::getUserdataShared<Action>(L, 1);
 	if (action) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
 			for (int i = 0; i < parameters; ++i) {
-				action->setKeysVector(getString(L, 2 + i));
+				action->setKeysVector(Lua::getString(L, 2 + i));
 			}
 		} else {
-			action->setKeysVector(getString(L, 2));
+			action->setKeysVector(Lua::getString(L, 2));
 		}
-		pushBoolean(L, true);
+		Lua::pushBoolean(L, true);
 	} else {
-		reportErrorFunc(getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
-		pushBoolean(L, false);
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
+		Lua::pushBoolean(L, false);
 	}
 	return 1;
 }

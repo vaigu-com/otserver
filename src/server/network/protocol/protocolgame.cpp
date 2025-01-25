@@ -7819,10 +7819,10 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 		}
 
 		if (!oldProtocol && creature->isHealthHidden()) {
-			msg.addString("", "ProtocolGame::AddCreature - empty");
+			msg.addString(""); // ProtocolGame::AddCreature - empty
 		} else {
 			const std::string creatureName = TryTranslate(creature->getName(), "npc_names", player);
-			msg.addString(creatureName, "ProtocolGame::AddCreature - creature->getName()");
+			msg.addString(creatureName); // ProtocolGame::AddCreature - creature->getName()
 		}
 	}
 

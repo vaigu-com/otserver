@@ -106,14 +106,14 @@ public:
 
 	std::shared_ptr<MoveEvent> getEvent(const std::shared_ptr<Item> &item, MoveEvent_t eventType);
 
-	bool registerLuaItemEvent(const std::shared_ptr<MoveEvent> moveEvent);
-	bool registerLuaActionEvent(const std::shared_ptr<MoveEvent> moveEvent);
-	bool registerLuaUniqueEvent(const std::shared_ptr<MoveEvent> moveEvent);
-	bool registerLuaPositionEvent(const std::shared_ptr<MoveEvent> moveEvent);
-	bool registerLuaKeyEvent(const std::shared_ptr<MoveEvent> moveEvent);
-	bool registerLuaEvent(const std::shared_ptr<MoveEvent> event);
-	bool registerEvent(const std::shared_ptr<MoveEvent> moveEvent, std::string key, std::map<std::string, MoveEventList>& moveListMap) const;
-	void clear(bool isFromXML = false);
+	bool registerLuaItemEvent(const std::shared_ptr<MoveEvent> &moveEvent);
+	bool registerLuaActionEvent(const std::shared_ptr<MoveEvent> &moveEvent);
+	bool registerLuaUniqueEvent(const std::shared_ptr<MoveEvent> &moveEvent);
+	bool registerLuaPositionEvent(const std::shared_ptr<MoveEvent> &moveEvent);
+	bool registerLuaKeyEvent(const std::shared_ptr<MoveEvent> &moveEvent);
+	bool registerLuaEvent(const std::shared_ptr<MoveEvent> &event);
+	bool registerEvent(const std::shared_ptr<MoveEvent> &moveEvent, std::string key, std::map<std::string, MoveEventList>& moveListMap) const;
+	void clear();
 
 private:
 	bool registerEvent(const std::shared_ptr<MoveEvent> &moveEvent, int32_t id, std::map<int32_t, MoveEventList> &moveListMap) const;

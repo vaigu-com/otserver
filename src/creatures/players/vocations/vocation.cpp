@@ -366,6 +366,10 @@ uint32_t Vocation::getAttackSpeed() const {
 	return attackSpeed / g_configManager().getFloat(RATE_ATTACK_SPEED);
 }
 
+void Vocation::setAttackSpeed(uint32_t speed) {
+		attackSpeed = speed;
+	}
+
 uint32_t Vocation::getBaseSpeed() const {
 	return baseSpeed;
 }

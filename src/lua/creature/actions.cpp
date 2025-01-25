@@ -161,7 +161,7 @@ bool Actions::registerLuaPositionEvent(const std::shared_ptr<Action> &action) {
 	return !positionVector.empty();
 }
 
-bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> action) {
+bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> &action) {
 	auto keysVector = action->getKeysVector();
 	if (keysVector.empty()) {
 		return false;
@@ -190,7 +190,7 @@ bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> action) {
 	return !keysVector	.empty();
 }
 
-bool Actions::registerLuaEvent(const std::shared_ptr<Action> action) {
+bool Actions::registerLuaEvent(const std::shared_ptr<Action> &action) {
 	std::vector<std::function<bool(const std::shared_ptr<Action> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<Action> &action) { return registerLuaItemEvent(action); },
 		[this](const std::shared_ptr<Action> &action) { return registerLuaUniqueEvent(action); },
@@ -265,7 +265,7 @@ ReturnValue Actions::canUseFar(const std::shared_ptr<Creature> &creature, const 
 	return RETURNVALUE_NOERROR;
 }
 
-std::shared_ptr<Action> Actions::getAction(std::shared_ptr<Item> item) {
+std::shared_ptr<Action> Actions::getAction(const std::shared_ptr<Item> &item) {
 	if (item->hasAttribute(ItemAttribute_t::KEY)) {
 		auto it = keyItemMap.find(item->getAttribute<std::string>(ItemAttribute_t::KEY));
 		if (it != keyItemMap.end()) {
@@ -565,7 +565,7 @@ bool Action::loadScriptId() {
 	LuaScriptInterface &luaInterface = g_scripts().getScriptInterface();
 	m_scriptId = luaInterface.getEvent();
 	if (m_scriptId == -1) {
-		g_logger().error("[MoveEvent::loadScriptId] Failed to load event. Script name: '{}', Module: '{}'", luaInterface.getLoadingScriptName(), luaInterface.getInterfaceName());
+		g_logger().error("[Action::loadScriptId] Failed to load event. Script name: '{}', Module: '{}'", luaInterface.getLoadingScriptName(), luaInterface.getInterfaceName());
 		return false;
 	}
 

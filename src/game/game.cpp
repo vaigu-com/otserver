@@ -49,6 +49,7 @@
 #include "lua/callbacks/event_callback.hpp"
 #include "lua/callbacks/events_callbacks.hpp"
 #include "lua/creature/actions.hpp"
+#include "lua/creature/looks.hpp"
 #include "lua/creature/creatureevent.hpp"
 #include "lua/creature/events.hpp"
 #include "lua/creature/talkaction.hpp"

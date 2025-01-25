@@ -162,16 +162,17 @@ int ShopFunctions::luaShopAddChildShop(lua_State* L) {
 	return 1;
 }
 
+//Vaigu custom
 int ShopFunctions::luaShopKV(lua_State* L) {
 	// shop:kv()
-	auto shop = getUserdataShared<Shop>(L, 1);
+	auto shop = Lua::getUserdataShared<Shop>(L, 1);
 	if (!shop) {
-		reportErrorFunc(getErrorDesc(LUA_ERROR_SHOP_NOT_FOUND));
-		pushBoolean(L, false);
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_SHOP_NOT_FOUND));
+		Lua::pushBoolean(L, false);
 		return 1;
 	}
 
-	pushUserdata<KV>(L, shop->kv());
-	setMetatable(L, -1, "KV");
+	Lua::pushUserdata<KV>(L, shop->kv());
+	Lua::setMetatable(L, -1, "KV");
 	return 1;
 }

@@ -602,7 +602,7 @@ int CreatureFunctions::luaCreatureAddHealth(lua_State* L) {
 // Vaigu custom
 int CreatureFunctions::luaCreatureGetMaxBaseHealth(lua_State* L) {
 	// creature:getMaxBaseHealth()
-	std::shared_ptr<Creature> creature = getUserdataShared<Creature>(L, 1);
+	std::shared_ptr<Creature> creature = Lua::getUserdataShared<Creature>(L, 1);
 	if (creature) {
 		lua_pushnumber(L, creature->getMaxBaseHealth());
 	} else {
@@ -1018,11 +1018,12 @@ int CreatureFunctions::luaCreatureGetDescription(lua_State* L) {
 	return 1;
 }
 
+// Vaigu custom
 int CreatureFunctions::luaCreatureGetNameDescription(lua_State* L) {
 	// creature:getNameDescription()
-	std::shared_ptr<Creature> creature = getUserdataShared<Creature>(L, 1);
+	std::shared_ptr<Creature> creature = Lua::getUserdataShared<Creature>(L, 1);
 	if (creature) {
-		pushString(L, creature->getNameDescription());
+		Lua::pushString(L, creature->getNameDescription());
 	} else {
 		lua_pushnil(L);
 	}

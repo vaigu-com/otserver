@@ -55,7 +55,6 @@ static constexpr int32_t PSTRG_FAMILIARS_RANGE_SIZE = 500;
 // Vaigu custom
 static constexpr int32_t STORAGEVALUE_ISONMINIGAME = 30060;
 static constexpr int32_t IMMOVABLE_ACTION_ID = 100;
-
 static const std::string IMMOVABLE_KEY = "IMMOVABLE";
 static const std::string PERMANENTLY_CLOSED = "PERMANENTLY_CLOSED";
 

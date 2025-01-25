@@ -9,23 +9,9 @@
 
 #pragma once
 
-#include "lua/scripts/luascript.hpp"
-
-class LookFunctions final : LuaScriptInterface {
+class LookFunctions {
 public:
-	static void init(lua_State* L) {
-		registerSharedClass(L, "Look", "", LookFunctions::luaCreateLook);
-		registerMethod(L, "Look", "onLook", LookFunctions::luaLookOnLook);
-		registerMethod(L, "Look", "register", LookFunctions::luaLookRegister);
-		registerMethod(L, "Look", "id", LookFunctions::luaLookItemId);
-		registerMethod(L, "Look", "aid", LookFunctions::luaLookActionId);
-		registerMethod(L, "Look", "uid", LookFunctions::luaLookUniqueId);
-		registerMethod(L, "Look", "position", LookFunctions::luaLookPosition);
-		registerMethod(L, "Look", "key", LookFunctions::luaLookKey);
-		registerMethod(L, "Look", "blockWalls", LookFunctions::luaLookBlockWalls);
-		registerMethod(L, "Look", "checkFloor", LookFunctions::luaLookCheckFloor);
-		registerMethod(L, "Look", "position", LookFunctions::luaLookPosition);
-	}
+	static void init(lua_State* L);
 
 private:
 	static int luaCreateLook(lua_State* L);

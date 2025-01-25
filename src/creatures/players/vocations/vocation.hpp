@@ -54,6 +54,8 @@ public:
 
 	uint32_t getAttackSpeed() const;
 
+	void setAttackSpeed(uint32_t speed);
+
 	uint32_t getBaseSpeed() const;
 
 	uint32_t getFromVocation() const;

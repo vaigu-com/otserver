@@ -288,7 +288,7 @@ public:
 	static std::string parseShowAttributesDescription(const std::shared_ptr<Item> &item, uint16_t itemId);
 	static std::string parseClassificationDescription(const std::shared_ptr<Item> &item);
 
-	static std::vector<std::pair<std::string, std::string>> getDescriptions(const ItemType &it, std::shared_ptr<Item> item = nullptr);
+	static std::vector<std::pair<std::string, std::string>> getDescriptions(const ItemType &it, const std::shared_ptr<Item> &item = nullptr);
 	static std::string getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player = nullptr, const std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
 	static std::string getNameDescription(const ItemType &it, const std::shared_ptr<Player> player = nullptr, const std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
 	static std::string getWeightDescription(const ItemType &it, uint32_t weight, uint32_t count = 1);

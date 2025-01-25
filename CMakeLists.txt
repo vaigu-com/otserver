@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.22 FATAL_ERROR)
-
 # CMAKE
 # apt install build-essential git
 # git clone https://github.com/Kitware/CMake/; cd CMake
@@ -19,8 +18,6 @@ if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
     set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
 endif()
 
-set(VCPKG_INSTALLED_DIR "$ENV{VCPKG_ROOT}/vcpkg_installed")
-set(VCPKG_DEFAULT_BINARY_CACHE "$ENV{VCPKG_ROOT}/cache")
 set(VCPKG_FEATURE_FLAGS "versions")
 set(VCPKG_BUILD_TYPE "release")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

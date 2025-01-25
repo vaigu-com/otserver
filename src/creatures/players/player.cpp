@@ -6423,6 +6423,10 @@ uint32_t Player::getAttackSpeed() const {
 	}
 }
 
+void Player::setAttackSpeed(uint32_t speed) {
+		attackSpeed = speed;
+	}
+
 double Player::getLostPercent() const {
 	int32_t blessingCount = 0;
 	const uint8_t maxBlessing = (operatingSystem == CLIENTOS_NEW_WINDOWS || operatingSystem == CLIENTOS_NEW_MAC) ? 8 : 6;

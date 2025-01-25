@@ -26,8 +26,6 @@ void MonsterTypeFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "MonsterType", "isAttackable", MonsterTypeFunctions::luaMonsterTypeIsAttackable);
 	Lua::registerMethod(L, "MonsterType", "isConvinceable", MonsterTypeFunctions::luaMonsterTypeIsConvinceable);
 	Lua::registerMethod(L, "MonsterType", "isSummonable", MonsterTypeFunctions::luaMonsterTypeIsSummonable);
-	Lua::registerMethod(L, "MonsterType", "isPreyable", MonsterTypeFunctions::luaMonsterTypeIsPreyable);
-	Lua::registerMethod(L, "MonsterType", "isPreyExclusive", MonsterTypeFunctions::luaMonsterTypeIsPreyExclusive);
 	Lua::registerMethod(L, "MonsterType", "isIllusionable", MonsterTypeFunctions::luaMonsterTypeIsIllusionable);
 	Lua::registerMethod(L, "MonsterType", "isHostile", MonsterTypeFunctions::luaMonsterTypeIsHostile);
 	Lua::registerMethod(L, "MonsterType", "isPushable", MonsterTypeFunctions::luaMonsterTypeIsPushable);

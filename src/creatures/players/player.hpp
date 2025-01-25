@@ -16,6 +16,7 @@
 #include "items/cylinder.hpp"
 #include "game/movement/position.hpp"
 #include "creatures/creatures_definitions.hpp"
+#include "utils/const.hpp"
 
 class House;
 class NetworkMessage;
@@ -1614,6 +1615,8 @@ private:
 	bool isPromoted() const;
 
 	uint32_t getAttackSpeed() const;
+
+	void setAttackSpeed(uint32_t speed);
 
 	static double_t getPercentLevel(uint64_t count, uint64_t nextLevelCount);
 	double getLostPercent() const;

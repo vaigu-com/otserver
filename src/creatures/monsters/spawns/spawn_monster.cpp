@@ -42,8 +42,6 @@ bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 	this->filemonstername = filemonstername;
 	loaded = true;
 
-	std::string boostedNameGet = g_game().getBoostedMonsterName();
-
 	spawnMonsterList.reserve(100000);
 	for (const auto &spawnMonsterNode : doc.child("monsters").children()) {
 		Position centerPos(

@@ -356,7 +356,7 @@ int ItemTypeFunctions::luaItemTypeGetDescription(lua_State* L) {
 	// itemType:getDescription([count])
 	const auto &itemType = Lua::getUserdata<ItemType>(L, 1);
 	if (itemType) {
-		const auto count = getNumber<uint16_t>(L, 2, -1);
+		const auto count = Lua::getNumber<uint16_t>(L, 2, -1);
 		const auto description = Item::getDescription(*itemType, 1, nullptr,nullptr, count);
 		Lua::pushString(L, description);
 	} else {
@@ -379,9 +379,9 @@ int ItemTypeFunctions::luaItemTypeGetSlotPosition(lua_State* L) {
 // Vaigu custom
 int ItemTypeFunctions::luaItemTypeGetAllowDistRead(lua_State* L) {
 	// itemType:getAllowDistRead()
-	const ItemType* itemType = getUserdata<const ItemType>(L, 1);
+	const ItemType* itemType = Lua::getUserdata<const ItemType>(L, 1);
 	if (itemType) {
-		lua_pushboolean(L, itemType->allowDistRead);
+		lua_pushnumber(L, itemType->allowDistRead);
 	} else {
 		lua_pushnil(L);
 	}

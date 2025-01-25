@@ -203,7 +203,7 @@ public:
 			bonus = PreyBonus_None;
 		}
 		if (refreshTime) {
-			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME, __FUNCTION__));
+			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME));
 		} else if (maintainTime) {
 			bonusTimeLeft = bonusTimeLeft;
 		} else {

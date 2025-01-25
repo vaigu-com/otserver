@@ -543,7 +543,7 @@ int PlayerFunctions::luaPlayerCreate(lua_State* L) {
 // Vaigu custom
 int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
 	// getLanguage()
-	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
 	if (player) {
 		lua_pushstring(L, player->getLanguage().c_str());
 	} else {
@@ -552,16 +552,17 @@ int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
 	return 1;
 }
 
+// Vaigu custom
 int PlayerFunctions::luaPlayerSetLanguage(lua_State* L) {
 	// setLanguage(language)
-	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
 	if (!player) {
 		lua_pushnil(L);
 		return 1;
 	}
 
-	player->setLanguage(getString(L, 2));
-	pushBoolean(L, true);
+	player->setLanguage(Lua::getString(L, 2));
+	Lua::pushBoolean(L, true);
 	return 1;
 }
 
@@ -782,13 +783,15 @@ int PlayerFunctions::luaPlayergetCharmMonsterType(lua_State* L) {
 	return 1;
 }
 
+
+// Vaigu custom
 int PlayerFunctions::luaPlayerRemovePreyStamina(lua_State* L) {
 	// player:removePreyStamina(amount, raceId)
-	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player =Lua:: getUserdataShared<Player>(L, 1);
 	if (player) {
-		g_ioprey().reducePlayerPreyTime(player, getNumber<uint8_t>(L, 2, 1), getNumber<uint16_t>(L, 3, -1));
+		g_ioprey().reducePlayerPreyTime(player, Lua::getNumber<uint8_t>(L, 2, 1),Lua:: getNumber<uint16_t>(L, 3, -1));
 		g_ioprey().updatePlayerPreyStatus(player);
-		pushBoolean(L, true);
+		Lua::pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
 	}
@@ -906,7 +909,7 @@ int PlayerFunctions::luaPlayerPreyThirdSlot(lua_State* L) {
 			Lua::pushBoolean(L, slot->state != PreyDataState_Locked);
 		} else {
 			if (Lua::getBoolean(L, 2, false)) {
-				slot->eraseBonus();
+				slot->refreshBonus();
 				slot->state = PreyDataState_Selection;
 				slot->reloadMonsterGrid(player->getPreyBlackList(), player->getLevel());
 				player->reloadPreySlot(PreySlot_Three);
@@ -3599,11 +3602,11 @@ int PlayerFunctions::luaPlayerGetFightMode(lua_State* L) {
 // Vaigu custom
 int PlayerFunctions::luaPlayerSetAttackSpeed(lua_State* L) {
 	// player:setAttackSpeed(ms)
-	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
-	uint32_t ms = getNumber<uint32_t>(L, 2);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	uint32_t ms = Lua::getNumber<uint32_t>(L, 2);
 	if (player) {
 		player->setAttackSpeed(ms);
-		pushBoolean(L, true);
+		Lua::pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
 	}
@@ -3612,7 +3615,7 @@ int PlayerFunctions::luaPlayerSetAttackSpeed(lua_State* L) {
 
 int PlayerFunctions::luaPlayerGetAttackSpeed(lua_State* L) {
 	// player:getAttackSpeed()
-	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
 	if (player) {
 		lua_pushnumber(L, player->getAttackSpeed());
 	} else {
@@ -3741,17 +3744,6 @@ int PlayerFunctions::luaPlayerSetStaminaXpBoost(lua_State* L) {
 	return 1;
 }
 
-int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
-	// player:getXpBoostTime()
-	std::shared_ptr<Player> player = getUserdataShared<Player>(L, 1);
-	if (player) {
-		lua_pushnumber(L, player->getXpBoostTime());
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
 int PlayerFunctions::luaPlayerSetXpBoostTime(lua_State* L) {
 	// player:setXpBoostTime(timeLeft)
 	const auto &player = Lua::getUserdataShared<Player>(L, 1);
@@ -3767,14 +3759,10 @@ int PlayerFunctions::luaPlayerSetXpBoostTime(lua_State* L) {
 }
 
 int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
-	// player:getXpBoostTime(time)
+	// player:getXpBoostTime()
 	const auto &player = Lua::getUserdataShared<Player>(L, 1);
 	if (player) {
-		uint16_t time = getNumber<uint16_t>(L, 2);
-		uint16_t timeLeft = player->getXpBoostTime();
-		player->setXpBoostTime(time + timeLeft);
-		player->sendStats();
-		pushBoolean(L, true);
+		lua_pushnumber(L, player->getXpBoostTime());
 	} else {
 		lua_pushnil(L);
 	}

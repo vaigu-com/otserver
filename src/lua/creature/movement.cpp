@@ -116,7 +116,7 @@ bool MoveEvents::registerLuaPositionEvent(const std::shared_ptr<MoveEvent> &move
 	return !positionVector.empty();
 }
 
-bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> moveEvent) {
+bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> &moveEvent) {
 	auto keyVector = moveEvent->getKeysVector();
 	if (keyVector.empty()) {
 		return false;
@@ -135,7 +135,7 @@ bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> moveEvent)
 	return !keyVector.empty();
 }
 
-bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> moveEvent) {
+bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> &moveEvent) {
 		std::vector<std::function<bool(const std::shared_ptr<MoveEvent> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaItemEvent(moveEvent); },
 		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaUniqueEvent(moveEvent); },
@@ -157,7 +157,7 @@ bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> moveEvent) {
 	return false;
 }
 
-bool MoveEvents::registerEvent(const std::shared_ptr<MoveEvent> moveEvent, std::string key, std::map<std::string, MoveEventList> &moveListMap) const {
+bool MoveEvents::registerEvent(const std::shared_ptr<MoveEvent> &moveEvent, std::string key, std::map<std::string, MoveEventList> &moveListMap) const {
 	auto it = moveListMap.find(key);
 	if (it == moveListMap.end()) {
 		MoveEventList moveEventList;
