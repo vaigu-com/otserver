@@ -26,6 +26,7 @@ void ShopFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Shop", "setStorageKey", ShopFunctions::luaShopSetStorageKey);
 	Lua::registerMethod(L, "Shop", "setStorageValue", ShopFunctions::luaShopSetStorageValue);
 	Lua::registerMethod(L, "Shop", "addChildShop", ShopFunctions::luaShopAddChildShop);
+	Lua::registerMethod(L, "Shop", "kv", ShopFunctions::luaShopKV);
 }
 
 int ShopFunctions::luaCreateShop(lua_State* L) {

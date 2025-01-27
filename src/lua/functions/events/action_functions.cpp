@@ -22,6 +22,7 @@ void ActionFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Action", "aid", ActionFunctions::luaActionActionId);
 	Lua::registerMethod(L, "Action", "uid", ActionFunctions::luaActionUniqueId);
 	Lua::registerMethod(L, "Action", "position", ActionFunctions::luaActionPosition);
+	Lua::registerMethod(L, "Action", "key", ActionFunctions::luaActionKey);
 	Lua::registerMethod(L, "Action", "allowFarUse", ActionFunctions::luaActionAllowFarUse);
 	Lua::registerMethod(L, "Action", "blockWalls", ActionFunctions::luaActionBlockWalls);
 	Lua::registerMethod(L, "Action", "checkFloor", ActionFunctions::luaActionCheckFloor);

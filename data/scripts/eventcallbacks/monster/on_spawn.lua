@@ -87,7 +87,7 @@ local function handleIronServantReplica(monster)
 	end
 end
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterOnSpawn")
 
 function callback.monsterOnSpawn(monster, position)
 	if not monster then

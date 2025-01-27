@@ -77,6 +77,7 @@ class Events {
 
 		// Monster
 		int32_t monsterOnDropLoot = -1;
+		int32_t monsterOnSpawn = -1;
 	};
 
 public:
@@ -129,6 +130,7 @@ public:
 
 	// Monster
 	void eventMonsterOnDropLoot(const std::shared_ptr<Monster> &monster, const std::shared_ptr<Container> &corpse);
+	void eventMonsterOnSpawn(const std::shared_ptr<Monster> &monster, const Position &position);
 
 private:
 	LuaScriptInterface scriptInterface;

@@ -107,6 +107,9 @@ void GameFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Game", "getSecretAchievements", GameFunctions::luaGameGetSecretAchievements);
 	Lua::registerMethod(L, "Game", "getPublicAchievements", GameFunctions::luaGameGetPublicAchievements);
 	Lua::registerMethod(L, "Game", "getAchievements", GameFunctions::luaGameGetAchievements);
+
+	// Vaigu custom
+	Lua::registerMethod(L, "Game", "initializeTranslationTable", GameFunctions::luaInitializeTranslationTable);
 }
 
 // Game
@@ -535,6 +538,7 @@ int GameFunctions::luaGameCreateMonster(lua_State* L) {
 	const bool force = Lua::getBoolean(L, 4, false);
 	if (g_game().placeCreature(monster, position, extended, force)) {
 		monster->onSpawn(position);
+		g_events().eventMonsterOnSpawn(monster, position);
 		const auto &mtype = monster->getMonsterType();
 		if (mtype && mtype->info.raceid > 0 && mtype->info.bosstiaryRace == BosstiaryRarity_t::RARITY_ARCHFOE) {
 			for (const auto &spectator : Spectators().find<Player>(monster->getPosition(), true)) {

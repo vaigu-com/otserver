@@ -201,7 +201,7 @@ end
 -- Item description is always treated as potential string identifier
 -- If no matching translation is found, then the description is shown normally
 -- Else the translation is put in description place
-local callback = EventCallback()
+local callback = EventCallback("playerOnLook")
 function callback.playerOnLook(player, inspectedThing, inspectedPosition, lookDistance)
 	local onLookDescriptionBuilder = OnLookMessageBuilder(player, inspectedThing, inspectedPosition, lookDistance)
 	local message = onLookDescriptionBuilder:Build():Get()
