@@ -1,3 +1,8 @@
 function onUpdateDatabase()
-	return false -- true = There are others migrations file | false = this is the last migration file
+	logger.info("Updating database to version 52 (add start date)")
+	
+	db.query([[
+			INSERT INTO `server_config` (`config`, `value`) VALUES ('start_date', '2025-06-01 20:00:01');
+		]])
+	return true
 end

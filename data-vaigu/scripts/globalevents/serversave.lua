@@ -14,8 +14,6 @@ local function serverSave()
 	end
 	-- Updating daily reward next server save.
 	UpdateDailyRewardStorage(DailyReward.storages.lastServerSave, os.time())
-	-- Add +1 day since start
-	db.query("UPDATE `server_config` SET `value` = `value` + 1 WHERE `server_config`.`config` = 'day_since_start'")
 end
 
 local function secondServerSaveWarning()
