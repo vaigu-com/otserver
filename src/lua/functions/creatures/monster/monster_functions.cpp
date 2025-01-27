@@ -94,15 +94,15 @@ void MonsterFunctions::createMonsterLootLuaTable(lua_State* L, const std::vector
 	for (const auto &lootBlock : lootList) {
 		lua_createtable(L, 0, 8);
 
-		setField(L, "itemId", lootBlock.id);
-		setField(L, "chance", lootBlock.chance);
-		setField(L, "subType", lootBlock.subType);
-		setField(L, "maxCount", lootBlock.countmax);
-		setField(L, "minCount", lootBlock.countmin);
-		setField(L, "actionId", lootBlock.actionId);
-		setField(L, "text", lootBlock.text);
-		setField(L, "key", lootBlock.key);
-		pushBoolean(L, lootBlock.unique);
+		Lua::setField(L, "itemId", lootBlock.id);
+		Lua::setField(L, "chance", lootBlock.chance);
+		Lua::setField(L, "subType", lootBlock.subType);
+		Lua::setField(L, "maxCount", lootBlock.countmax);
+		Lua::setField(L, "minCount", lootBlock.countmin);
+		Lua::setField(L, "actionId", lootBlock.actionId);
+		Lua::setField(L, "text", lootBlock.text);
+		Lua::setField(L, "key", lootBlock.key);
+		Lua::pushBoolean(L, lootBlock.unique);
 		lua_setfield(L, -2, "unique");
 
 		createMonsterLootLuaTable(L, lootBlock.childLoot);
@@ -773,6 +773,7 @@ int MonsterFunctions::luaMonsterIsBoosted(lua_State* L) {
 	} else {
 		Lua::pushBoolean(L, false);
 	}
+	return 1;
 }
 
 int MonsterFunctions::luaMonsterAddReflectElement(lua_State* L) {

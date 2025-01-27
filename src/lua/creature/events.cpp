@@ -1233,3 +1233,38 @@ void Events::eventMonsterOnDropLoot(const std::shared_ptr<Monster> &monster, con
 
 	return scriptInterface.callVoidFunction(2);
 }
+
+
+// Vaigu custom
+void Events::eventMonsterOnSpawn(const std::shared_ptr<Monster> &monster, const Position &position) {
+	// Monster:onSpawn(position) or Monster.onSpawn(self, position)
+	if (info.monsterOnSpawn == -1) {
+		return;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		g_logger().error("{} - "
+		                 "Position {}"
+		                 ". Call stack overflow. Too many lua script calls being nested.",
+		                 __FUNCTION__, position.toString());
+		return;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.monsterOnSpawn, &scriptInterface);
+
+	lua_State* L = scriptInterface.getLuaState();
+	scriptInterface.pushFunction(info.monsterOnSpawn);
+
+	LuaScriptInterface::pushUserdata<Monster>(L, monster);
+	LuaScriptInterface::setMetatable(L, -1, "Monster");
+	LuaScriptInterface::pushPosition(L, position);
+
+	if (scriptInterface.protectedCall(L, 2, 1) != 0) {
+		LuaScriptInterface::reportError(nullptr, LuaScriptInterface::popString(L));
+	} else {
+		lua_pop(L, 1);
+	}
+
+	scriptInterface.resetScriptEnv();
+}

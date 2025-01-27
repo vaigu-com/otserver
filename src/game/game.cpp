@@ -491,8 +491,6 @@ void Game::loadBoostedCreature() {
 	boostedMonsters.clear();
 	for (uint32_t i = 0; i < NUMBER_BOOSTED_MONSTERS; ++i) {
 		auto &selectedMonster = m_monsters[i];
-		boostedMonsters.push_back(selectedMonster.name);
-
 		const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
 		if (!monsterType) {
 			g_logger().warn("[Game::loadBoostedCreature] - "
@@ -518,6 +516,11 @@ void Game::loadBoostedCreature() {
 			                "Failed to store boosted creature in the database. (CODE 02)");
 		}
 	}
+	
+	auto resultNew = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayDate + "'");
+	do {
+			boostedMonsters.push_back(resultNew->getString("boostname"));
+	} while (resultNew->next());
 }
 
 void Game::start(ServiceManager* manager) {

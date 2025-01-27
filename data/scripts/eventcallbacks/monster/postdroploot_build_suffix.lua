@@ -97,7 +97,7 @@ function ContainerCorpseParseDesc(monster, corpse, shouldColor)
 	return message
 end
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterPostDropLootAddLootToCorpse")
 function callback.monsterPostDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
 	if not player then

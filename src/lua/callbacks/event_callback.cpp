@@ -1162,6 +1162,35 @@ void EventCallback::monsterPostDropLoot(const std::shared_ptr<Monster> &monster,
 	return getScriptInterface()->callVoidFunction(2);
 }
 
+// Vaigu custom
+void EventCallback::monsterOnSpawn(std::shared_ptr<Monster> &monster, const Position &position) const {
+	if (!LuaScriptInterface::reserveScriptEnv()) {
+		g_logger().error("{} - "
+		                 "Position {}"
+		                 ". Call stack overflow. Too many lua script calls being nested.",
+		                 __FUNCTION__, position.toString());
+		return;
+	}
+
+	ScriptEnvironment* scriptEnvironment = LuaScriptInterface::getScriptEnv();
+	scriptEnvironment->setScriptId(getScriptId(), getScriptInterface());
+
+	lua_State* L = getScriptInterface()->getLuaState();
+	getScriptInterface()->pushFunction(getScriptId());
+
+	LuaScriptInterface::pushUserdata<Monster>(L, monster);
+	LuaScriptInterface::setMetatable(L, -1, "Monster");
+	LuaScriptInterface::pushPosition(L, position);
+
+	if (getScriptInterface()->protectedCall(L, 2, 1) != 0) {
+		LuaScriptInterface::reportError(nullptr, LuaScriptInterface::popString(L));
+	} else {
+		lua_pop(L, 1);
+	}
+
+	getScriptInterface()->resetScriptEnv();
+}
+
 bool EventCallback::zoneBeforeCreatureEnter(const std::shared_ptr<Zone> &zone, const std::shared_ptr<Creature> &creature) const {
 	if (!LuaScriptInterface::reserveScriptEnv()) {
 		g_logger().error("[EventCallback::zoneBeforeCreatureEnter - "
