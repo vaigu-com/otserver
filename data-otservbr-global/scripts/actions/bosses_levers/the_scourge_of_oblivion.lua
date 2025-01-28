@@ -1,6 +1,8 @@
 local config = {
-	bossName = "The Scourge of Oblivion",
-	bossPosition = Position(32726, 32727, 11),
+	boss = {
+		name = "The Scourge of Oblivion",
+		position = Position(32726, 32727, 11),
+	},
 	requiredLevel = 250,
 	playerPositions = {
 		{ pos = Position(32676, 32743, 11), teleport = Position(32726, 32733, 11), effect = CONST_ME_TELEPORT },
@@ -14,11 +16,11 @@ local config = {
 		{ pos = Position(32677, 32744, 11), teleport = Position(32726, 32733, 11), effect = CONST_ME_TELEPORT },
 		{ pos = Position(32677, 32745, 11), teleport = Position(32726, 32733, 11), effect = CONST_ME_TELEPORT },
 	},
-	zoneArea = {
+	specPos = {
 		from = Position(32712, 32723, 11),
 		to = Position(32738, 32748, 11),
 	},
-	exitTpDestination = Position(32480, 32599, 15),
+	exit = Position(32480, 32599, 15),
 }
 
 local lever = BossLever(config)
