@@ -58,7 +58,7 @@ DIRECTIONS_TABLE = {
 
 STORAGEVALUE_PROMOTION = 30018
 DAY_SINCE_START = 0
-local resultId = db.storeQuery("SELECT DATEDIFF( CURDATE(), DATE(`value`) ) - IF(TIME(NOW()) < '05:00:00', 1, 0) AS days_since_start FROM `server_config` WHERE `server_config`.`config` = 'server_start'")
+local resultId = db.storeQuery("SELECT DATEDIFF( CURDATE(), DATE(`value`) ) - IF(TIME(NOW()) < '05:00:00', 1, 0) AS days_since_start FROM `server_config` WHERE `server_config`.`config` = 'start_date'")
 if resultId then
 	DAY_SINCE_START = Result.getNumber(resultId, "days_since_start")
 	logger.info("Day since start: " .. DAY_SINCE_START)
