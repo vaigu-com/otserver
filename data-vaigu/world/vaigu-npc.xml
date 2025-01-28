@@ -1,2 +1,307 @@
 <?xml version="1.0"?>
-<npcs />
+<npcs>
+	<npc centerx="7032" centery="732" centerz="3" radius="1">
+		<npc name="Father Natanek" x="0" y="0" z="3" spawntime="90" />
+	</npc>
+	<npc centerx="7040" centery="788" centerz="4" radius="3">
+		<npc name="Honkler" x="0" y="0" z="4" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6727" centery="1247" centerz="4" radius="1">
+		<npc name="Father Natanek" x="0" y="0" z="4" spawntime="90" />
+	</npc>
+	<npc centerx="7053" centery="768" centerz="5" radius="1">
+		<npc name="Funfel" x="0" y="0" z="5" spawntime="90" />
+	</npc>
+	<npc centerx="7054" centery="775" centerz="5" radius="3">
+		<npc name="Harambe" x="0" y="0" z="5" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6230" centery="1004" centerz="5" radius="1">
+		<npc name="Namir" x="0" y="0" z="5" spawntime="90" />
+	</npc>
+	<npc centerx="6246" centery="1006" centerz="5" radius="3">
+		<npc name="Oldrak" x="0" y="0" z="5" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6220" centery="1022" centerz="5" radius="1">
+		<npc name="Pewter" x="0" y="0" z="5" spawntime="90" />
+	</npc>
+	<npc centerx="5757" centery="1384" centerz="5" radius="1">
+		<npc name="Ocellatus" x="0" y="0" z="5" spawntime="90" />
+	</npc>
+	<npc centerx="5841" centery="1544" centerz="5" radius="3">
+		<npc name="Mayor" x="0" y="0" z="5" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6000" centery="1553" centerz="5" radius="3">
+		<npc name="[SOLID] Kitz" x="0" y="0" z="5" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5891" centery="1613" centerz="5" radius="3">
+		<npc name="Arni" x="0" y="0" z="5" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6569" centery="605" centerz="6" radius="1">
+		<npc name="Hairycles" x="0" y="0" z="6" spawntime="90" />
+	</npc>
+	<npc centerx="6551" centery="660" centerz="6" radius="1">
+		<npc name="Malfurion" x="0" y="0" z="6" spawntime="90" />
+	</npc>
+	<npc centerx="6932" centery="712" centerz="6" radius="1">
+		<npc name="Mundral" x="0" y="0" z="6" spawntime="90" />
+	</npc>
+	<npc centerx="6974" centery="759" centerz="6" radius="3">
+		<npc name="Grof, The Guard" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="7006" centery="763" centerz="6" radius="1">
+		<npc name="Walmart007" x="0" y="0" z="6" spawntime="90" />
+	</npc>
+	<npc centerx="6996" centery="766" centerz="6" radius="2">
+		<npc name="Lebesgue The Philosopher" x="-1" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="7046" centery="773" centerz="6" radius="3">
+		<npc name="Barrack" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="7076" centery="801" centerz="6" radius="3">
+		<npc name="Jack Sparrow" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6248" centery="1009" centerz="6" radius="3">
+		<npc name="Mezamir" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6248" centery="1024" centerz="6" radius="3">
+		<npc name="Christopher Columbus" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5745" centery="1217" centerz="6" radius="3">
+		<npc name="Christopher Columbus" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5910" centery="1233" centerz="6" radius="3">
+		<npc name="Christopher Columbus" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6702" centery="1318" centerz="6" radius="3">
+		<npc name="Tushar" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6712" centery="1318" centerz="6" radius="3">
+		<npc name="Nadia France" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6727" centery="1346" centerz="6" radius="2">
+		<npc name="Lebesgue The Philosopher" x="-1" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6742" centery="1357" centerz="6" radius="3">
+		<npc name="Jack Sparrow" x="-2" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6059" centery="1423" centerz="6" radius="3">
+		<npc name="Hymel" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5827" centery="1495" centerz="6" radius="3">
+		<npc name="Father Natanek" x="-1" y="-3" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5981" centery="1502" centerz="6" radius="3">
+		<npc name="Jack Sparrow" x="-1" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5539" centery="1509" centerz="6" radius="3">
+		<npc name="Jack Sparrow" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5801" centery="1550" centerz="6" radius="3">
+		<npc name="Fat Myrrus" x="0" y="0" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5898" centery="1556" centerz="6" radius="5">
+		<npc name="Old Postman" x="1" y="2" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5855" centery="1558" centerz="6" radius="3">
+		<npc name="Madame Malkin" x="-3" y="1" z="6" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6927" centery="641" centerz="7" radius="3">
+		<npc name="Arena" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6562" centery="697" centerz="7" radius="1">
+		<npc name="Ornuld" x="0" y="0" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="6562" centery="702" centerz="7" radius="3">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="7040" centery="837" centerz="7" radius="3">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6390" centery="912" centerz="7" radius="3">
+		<npc name="Gertrude" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6220" centery="1227" centerz="7" radius="1">
+		<npc name="Konmuld" x="0" y="0" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="6750" centery="1281" centerz="7" radius="1">
+		<npc name="San Mariano" x="0" y="0" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="6676" centery="1289" centerz="7" radius="3">
+		<npc name="Kulag, The Guard" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6711" centery="1326" centerz="7" radius="3">
+		<npc name="Kalyana" x="0" y="-1" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6691" centery="1341" centerz="7" radius="2">
+		<npc name="Hemant" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6727" centery="1346" centerz="7" radius="3">
+		<npc name="Shivganesh" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6226" centery="1392" centerz="7" radius="3">
+		<npc name="Christopher Columbus" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5786" centery="1434" centerz="7" radius="3">
+		<npc name="Estep" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5899" centery="1474" centerz="7" radius="3">
+		<npc name="Cordell Walker" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5966" centery="1481" centerz="7" radius="1">
+		<npc name="A Sweaty Cyclops" x="0" y="0" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="5841" centery="1495" centerz="7" radius="3">
+		<npc name="Owsiak" x="0" y="-3" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5967" centery="1495" centerz="7" radius="3">
+		<npc name="Janek Mela" x="2" y="1" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5514" centery="1531" centerz="7" radius="3">
+		<npc name="Woody" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5841" centery="1558" centerz="7" radius="3">
+		<npc name="Komor" x="1" y="2" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5855" centery="1558" centerz="7" radius="3">
+		<npc name="Trollsky" x="0" y="-1" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5862" centery="1558" centerz="7" radius="3">
+		<npc name="Grave Digger" x="3" y="1" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5869" centery="1558" centerz="7" radius="3">
+		<npc name="Fstab" x="1" y="-3" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5895" centery="1563" centerz="7" radius="3">
+		<npc name="Anon's father" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5876" centery="1565" centerz="7" radius="3">
+		<npc name="Vislav Shivka" x="-2" y="-2" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5841" centery="1572" centerz="7" radius="3">
+		<npc name="Jack Sparrow" x="-3" y="3" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5848" centery="1572" centerz="7" radius="3">
+		<npc name="Gypsy" x="0" y="2" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5875" centery="1575" centerz="7" radius="2">
+		<npc name="Walmart007" x="-1" y="2" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5549" centery="1577" centerz="7" radius="3">
+		<npc name="Jake Mooody" x="-1" y="-2" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="5864" centery="1578" centerz="7" radius="2">
+		<npc name="Lebesgue The Philosopher" x="-1" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5569" centery="1586" centerz="7" radius="3">
+		<npc name="Tim, The Guard" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5893" centery="1588" centerz="7" radius="3">
+		<npc name="Tarzan" x="0" y="-1" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5822" centery="1591" centerz="7" radius="1">
+		<npc name="Lecter" x="-1" y="1" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="5887" centery="1600" centerz="7" radius="3">
+		<npc name="Miles, The Guard" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5849" centery="1608" centerz="7" radius="3">
+		<npc name="Commissioner Fisher" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5621" centery="1644" centerz="7" radius="3">
+		<npc name="Narro" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5800" centery="1649" centerz="7" radius="3">
+		<npc name="Fisherman Son" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6105" centery="1689" centerz="7" radius="3">
+		<npc name="Qasim" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6560" centery="1826" centerz="7" radius="1">
+		<npc name="Old Man Frost" x="0" y="0" z="7" spawntime="90" />
+	</npc>
+	<npc centerx="6553" centery="1864" centerz="7" radius="3">
+		<npc name="Walter, The Guard" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6599" centery="1877" centerz="7" radius="3">
+		<npc name="Jack Sparrow" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6028" centery="1945" centerz="7" radius="3">
+		<npc name="Fisherman Son" x="0" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6222" centery="985" centerz="8" radius="3">
+		<npc name="Mazarius" x="0" y="2" z="8" spawntime="60" direction="2" />
+	</npc>
+	<npc centerx="5890" centery="1558" centerz="9" radius="3">
+		<npc name="Richard Petrol" x="3" y="1" z="9" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="5897" centery="1558" centerz="9" radius="3">
+		<npc name="Michael Dumpling" x="-3" y="-3" z="9" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6486" centery="1808" centerz="9" radius="3">
+		<npc name="Henricus" x="0" y="0" z="9" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6184" centery="2379" centerz="9" radius="1">
+		<npc name="Gnomette" x="0" y="0" z="9" spawntime="90" />
+	</npc>
+	<npc centerx="6350" centery="2491" centerz="9" radius="1">
+		<npc name="Gnomeral" x="0" y="0" z="9" spawntime="60" />
+	</npc>
+	<npc centerx="6393" centery="2505" centerz="9" radius="1">
+		<npc name="Gnomission" x="0" y="0" z="9" spawntime="60" />
+	</npc>
+	<npc centerx="5886" centery="1413" centerz="10" radius="3">
+		<npc name="Storkus" x="0" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6444" centery="1840" centerz="10" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="10" spawntime="90" />
+	</npc>
+	<npc centerx="6162" centery="2359" centerz="10" radius="1">
+		<npc name="Gnomerik" x="-1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6180" centery="2360" centerz="10" radius="1">
+		<npc name="Gnomally" x="1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6212" centery="2364" centerz="10" radius="1">
+		<npc name="Gnomillion" x="-1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6151" centery="2369" centerz="10" radius="1">
+		<npc name="Gnomespector" x="1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6191" centery="2372" centerz="10" radius="1">
+		<npc name="Gnominus" x="-1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6177" centery="2379" centerz="10" radius="1">
+		<npc name="Gnomerank" x="0" y="0" z="10" spawntime="90" />
+	</npc>
+	<npc centerx="6155" centery="2384" centerz="10" radius="1">
+		<npc name="Doctor Gnomedix" x="-1" y="1" z="10" spawntime="90" direction="2" />
+		<npc name="Gnomenursey" x="0" y="1" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6172" centery="2390" centerz="10" radius="1">
+		<npc name="Gnomejam" x="1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6191" centery="2395" centerz="10" radius="1">
+		<npc name="Gnomegica" x="0" y="1" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6149" centery="2400" centerz="10" radius="5">
+		<npc name="Gnomaticus" x="1" y="3" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6173" centery="2403" centerz="10" radius="1">
+		<npc name="Gnomerrow" x="0" y="-1" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6187" centery="2405" centerz="10" radius="1">
+		<npc name="Bigfoot Soldier" x="1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6181" centery="2409" centerz="10" radius="1">
+		<npc name="Gnomailion" x="1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6190" centery="2412" centerz="10" radius="1">
+		<npc name="Commander Stone" x="1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6145" centery="2422" centerz="10" radius="5">
+		<npc name="Gnomewart" x="0" y="-1" z="10" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="6161" centery="2422" centerz="10" radius="5">
+		<npc name="Gnomelvis" x="-1" y="0" z="10" spawntime="90" direction="2" />
+	</npc>
+</npcs>
