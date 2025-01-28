@@ -16,11 +16,13 @@
 class Look;
 class Position;
 
-class Look : public Script {
+class Look {
 public:
-	explicit Look(LuaScriptInterface* interface);
+	explicit Look();
 
 	// Scripting
+	bool executeLook(std::shared_ptr<Player> player, std::shared_ptr<Item> item, const Position &fromPosition, std::shared_ptr<Thing> target, const Position &toPosition);
+
 	bool getCheckLineOfSight() const {
 		return checkLineOfSight;
 	}
@@ -97,19 +99,23 @@ public:
 			!= keys.end();
 	}
 
-	std::shared_ptr<Thing> getTarget(std::shared_ptr<Player> player, std::shared_ptr<Creature> targetCreature, const Position &toPosition, uint8_t toStackPos) const;
-
 	virtual ReturnValue canExecuteLook(std::shared_ptr<Player> player, const Position &toPos);
-	bool executeLook(std::shared_ptr<Player> player, std::shared_ptr<Item> item, const Position &fromPosition, std::shared_ptr<Thing> target, const Position &toPosition);
 
 	virtual bool hasOwnErrorHandler() {
 		return false;
 	}
 
+	std::shared_ptr<Thing> getTarget(std::shared_ptr<Player> player, std::shared_ptr<Creature> targetCreature, const Position &toPosition, uint8_t toStackPos) const;
+
+	LuaScriptInterface* getScriptInterface() const;
+	bool loadScriptId();
+	int32_t getScriptId() const;
+	void setScriptId(int32_t newScriptId);
+	bool isLoadedScriptId() const;
+
+	
 private:
-	std::string getScriptTypeName() const override {
-		return "onLook";
-	}
+	int32_t m_scriptId {};
 
 	std::function<bool(
 		std::shared_ptr<Player> player, std::shared_ptr<Item> item,
@@ -133,7 +139,7 @@ private:
 	friend class Looks;
 };
 
-class Looks final : public Scripts {
+class Looks {
 public:
 	Looks();
 	~Looks();
@@ -142,22 +148,20 @@ public:
 	Looks(const Looks &) = delete;
 	Looks &operator=(const Looks &) = delete;
 
-	static Looks &getInstance() {
-		return inject<Looks>();
-	}
+	static Looks &getInstance();
 
 	bool lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, const Position &toPos, uint8_t stackPos, std::shared_ptr<Item> item, std::shared_ptr<Creature> creature = nullptr);
-	std::shared_ptr<Look> getLook(std::shared_ptr<Item> item);
 
 	ReturnValue canLook(std::shared_ptr<Player> player, const Position &pos);
 	ReturnValue canLook(std::shared_ptr<Player> player, const Position &pos, std::shared_ptr<Item> item);
+	// ReturnValue canLookFar(std::shared_ptr<Player> player, const Position &pos, std::shared_ptr<Item> item);
 
-	bool registerLuaItemEvent(const std::shared_ptr<Look> look);
-	bool registerLuaUniqueEvent(const std::shared_ptr<Look> look);
-	bool registerLuaActionEvent(const std::shared_ptr<Look> look);
-	bool registerLuaPositionEvent(const std::shared_ptr<Look> look);
-	bool registerLuaKeyEvent(const std::shared_ptr<Look> look);
-	bool registerLuaEvent(const std::shared_ptr<Look> look);
+	bool registerLuaItemEvent(const std::shared_ptr<Look> &look);
+	bool registerLuaUniqueEvent(const std::shared_ptr<Look> &look);
+	bool registerLuaActionEvent(const std::shared_ptr<Look> &look);
+	bool registerLuaPositionEvent(const std::shared_ptr<Look> &look);
+	bool registerLuaKeyEvent(const std::shared_ptr<Look> &look);
+	bool registerLuaEvent(const std::shared_ptr<Look> &look);
 	// Clear maps for reloading
 	void clear();
 
@@ -225,8 +229,8 @@ private:
 		}
 		return false;
 	}
-
 	// ReturnValue internalLookItem(std::shared_ptr<Player> player, const Position &fromPos, uint8_t stackPos, std::shared_ptr<Item> item, const Position &toPos);
+	// static void showUseHotkeyMessage(const std::shared_ptr<Player> &player, const std::shared_ptr<Item> &item, uint32_t count);
 
 	using LookMap = std::map<uint16_t, std::shared_ptr<Look>>;
 	LookMap useItemMap;
@@ -234,6 +238,8 @@ private:
 	LookMap actionItemMap;
 	std::map<Position, std::shared_ptr<Look>> positionItemMap;
 	std::map<std::string, std::shared_ptr<Look>> keyItemMap;
+
+	std::shared_ptr<Look> getLook(const std::shared_ptr<Item> &item);
 };
 
 constexpr auto g_looks = Looks::getInstance;

@@ -15,8 +15,8 @@ function Scope:New(...)
 	local newObj = {}
 	setmetatable(newObj, self)
 	newObj.keys = {}
-	for _, value in pairs({ ... }) do
-		newObj:Key(value)
+	for _, key in pairs({ ... }) do
+		newObj:Key(tostring(key))
 	end
 	return newObj
 end

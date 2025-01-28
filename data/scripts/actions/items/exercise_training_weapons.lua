@@ -136,7 +136,6 @@ local function findWeaponToMerge(player, addedWeaponSkill)
 		logger.error(T("[findWeaponToColaesce] Player :name: has no store inbox.", { name = player:getName() }))
 		return
 	end
-
 	local inboxItems = inbox:getItems(true)
 	for _, inboxItem in pairs(inboxItems) do
 		local exerciseWeaponData = exerciseWeaponsTable[inboxItem:getId()]
@@ -162,8 +161,8 @@ function TryMergeExerciseWeapons(player, addedWeapon, oldWeapon)
 end
 
 local exerciseTraining = Action()
-function exerciseTraining.onUse(player, exerciseWeapon, fromPosition, target, toPosition, isHotkey)
-	if not target or type(target) == "table" or not target:getId() then
+function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	if not target or type(target) ~= "userdata" or not target:isItem() then
 		return true
 	end
 

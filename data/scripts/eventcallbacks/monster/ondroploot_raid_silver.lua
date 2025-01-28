@@ -1,7 +1,7 @@
 local lootFactor = 1.0
 local lootLayer = MONSTER_LOOT_LAYER.raidSilver
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterOnDropLootRaidSilver")
 
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
@@ -13,7 +13,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 		return
 	end
 
-	local totalLoot = GenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter)
+	local totalLoot = TryGenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut)
 	local monsterId = monster:getId()
 	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)
 end

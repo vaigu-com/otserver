@@ -1,7 +1,7 @@
 local lootFactor = 1.0
 local lootLayer = MONSTER_LOOT_LAYER.hazard
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterOnDropLootHazard")
 function callback.monsterOnDropLoot(monster, corpse)
 	if not monster:hazard() then
 		return
@@ -25,7 +25,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 
 	local totalLoot = {}
 	for _ = 1, rolls do
-		totalLoot = table.merged(totalLoot, GenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter))
+		totalLoot = table.merged(totalLoot, TryGenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter))
 	end
 	local monsterId = monster:getId()
 	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)

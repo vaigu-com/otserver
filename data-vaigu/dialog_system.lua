@@ -79,6 +79,8 @@ function NextTopic()
 	return NEXT_TOPIC
 end
 
+---@param key any
+---@return any
 function Player:getStorageValueByKey(key)
 	return self:kv():get(key) or MISSION_NOT_STARTED
 end

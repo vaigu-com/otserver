@@ -17,6 +17,10 @@ end
 registerMonsterType.name = function(mtype, mask)
 	if mask.name then
 		mtype:name(mask.name)
+		-- Try register hazard monsters
+		mtype.onSpawn = function(monster, spawnPosition)
+			HazardMonster.onSpawn(monster, spawnPosition)
+		end
 	end
 end
 registerMonsterType.description = function(mtype, mask)
@@ -188,6 +192,9 @@ registerMonsterType.flags = function(mtype, mask)
 		end
 		if mask.flags.rewardBoss then
 			mtype:isRewardBoss(mask.flags.rewardBoss)
+			mtype.onSpawn = function(monster, spawnPosition)
+				monster:setReward(true)
+			end
 		end
 		if mask.flags.familiar then
 			mtype:familiar(mask.flags.familiar)
@@ -338,136 +345,145 @@ function SortLootByChance(loot)
 	end)
 end
 
+function Loot.fromItem(loot)
+	local lootError = false
+	local parent = Loot()
+	if loot.name then
+		if not parent:setIdFromName(loot.name) then
+			lootError = true
+		end
+	else
+		if not isInteger(loot.id) or loot.id < 1 then
+			lootError = true
+		end
+		parent:setId(loot.id)
+	end
+	if loot.subType or loot.charges then
+		parent:setSubType(loot.subType or loot.charges)
+	else
+		local lType = ItemType(loot.name and loot.name or loot.id)
+		if lType and lType:getCharges() > 1 then
+			parent:setSubType(lType:getCharges())
+		end
+	end
+	if loot.chance then
+		parent:setChance(loot.chance)
+	end
+	if loot.minCount then
+		parent:setMinCount(loot.minCount)
+	end
+	if loot.maxCount then
+		parent:setMaxCount(loot.maxCount)
+	end
+	if loot.aid or loot.actionId then
+		parent:setActionId(loot.aid or loot.actionId)
+	end
+	if loot.text or loot.description then
+		parent:setText(loot.text or loot.description)
+	end
+	if loot.name then
+		parent:setNameItem(loot.name)
+	end
+	if loot.article then
+		parent:setArticle(loot.article)
+	end
+	if loot.attack then
+		parent:setAttack(loot.attack)
+	end
+	if loot.defense then
+		parent:setDefense(loot.defense)
+	end
+	if loot.extraDefense or loot.extraDef then
+		parent:setExtraDefense(loot.extraDefense or loot.extraDef)
+	end
+	if loot.armor then
+		parent:setArmor(loot.armor)
+	end
+	if loot.shootRange or loot.range then
+		parent:setShootRange(loot.shootRange or loot.range)
+	end
+	if loot.unique then
+		parent:setUnique(loot.unique)
+	end
+	if loot.child then
+		SortLootByChance(loot.child)
+		for _, children in pairs(loot.child) do
+			local child = Loot()
+			if children.name then
+				if not child:setIdFromName(children.name) then
+					lootError = true
+				end
+			else
+				if not isInteger(children.id) or children.id < 1 then
+					lootError = true
+				end
+				child:setId(children.id)
+			end
+			if children.subType or children.charges then
+				child:setSubType(children.subType or children.charges)
+			else
+				local cType = ItemType(children.name and children.name or children.id)
+				if cType and cType:getCharges() > 1 then
+					child:setSubType(cType:getCharges())
+				end
+			end
+			if children.chance then
+				child:setChance(children.chance)
+			end
+			if children.minCount then
+				child:setMinCount(children.minCount)
+			end
+			if children.maxCount then
+				child:setMaxCount(children.maxCount)
+			end
+			if children.aid or children.actionId then
+				child:setActionId(children.aid or children.actionId)
+			end
+			if children.text or children.description then
+				child:setText(children.text or children.description)
+			end
+			if loot.name then
+				child:setNameItem(loot.name)
+			end
+			if children.article then
+				child:setArticle(children.article)
+			end
+			if children.attack then
+				child:setAttack(children.attack)
+			end
+			if children.defense then
+				child:setDefense(children.defense)
+			end
+			if children.extraDefense or children.extraDef then
+				child:setExtraDefense(children.extraDefense or children.extraDef)
+			end
+			if children.armor then
+				child:setArmor(children.armor)
+			end
+			if children.shootRange or children.range then
+				child:setShootRange(children.shootRange or children.range)
+			end
+			if children.unique then
+				child:setUnique(children.unique)
+			end
+			parent:addChildLoot(child)
+		end
+	end
+	return parent, lootError
+end
+
 registerMonsterType.loot = function(mtype, mask)
 	if type(mask.loot) == "table" then
 		SortLootByChance(mask.loot)
-		local lootError = false
-		for _, loot in pairs(mask.loot) do
-			local parent = Loot()
-			if loot.name then
-				if not parent:setIdFromName(loot.name) then
-					lootError = true
-				end
-			else
-				if not isInteger(loot.id) or loot.id < 1 then
-					lootError = true
-				end
-				parent:setId(loot.id)
-			end
-			if loot.subType or loot.charges then
-				parent:setSubType(loot.subType or loot.charges)
-			else
-				local lType = ItemType(loot.name and loot.name or loot.id)
-				if lType and lType:getCharges() > 1 then
-					parent:setSubType(lType:getCharges())
-				end
-			end
-			if loot.chance then
-				parent:setChance(loot.chance)
-			end
-			if loot.minCount then
-				parent:setMinCount(loot.minCount)
-			end
-			if loot.maxCount then
-				parent:setMaxCount(loot.maxCount)
-			end
-			if loot.aid or loot.actionId then
-				parent:setActionId(loot.aid or loot.actionId)
-			end
-			if loot.text or loot.description then
-				parent:setText(loot.text or loot.description)
-			end
-			if loot.name then
-				parent:setNameItem(loot.name)
-			end
-			if loot.article then
-				parent:setArticle(loot.article)
-			end
-			if loot.attack then
-				parent:setAttack(loot.attack)
-			end
-			if loot.defense then
-				parent:setDefense(loot.defense)
-			end
-			if loot.extraDefense or loot.extraDef then
-				parent:setExtraDefense(loot.extraDefense or loot.extraDef)
-			end
-			if loot.armor then
-				parent:setArmor(loot.armor)
-			end
-			if loot.shootRange or loot.range then
-				parent:setShootRange(loot.shootRange or loot.range)
-			end
-			if loot.unique then
-				parent:setUnique(loot.unique)
-			end
-			if loot.child then
-				SortLootByChance(loot.child)
-				for _, children in pairs(loot.child) do
-					local child = Loot()
-					if children.name then
-						if not child:setIdFromName(children.name) then
-							lootError = true
-						end
-					else
-						if not isInteger(children.id) or children.id < 1 then
-							lootError = true
-						end
-						child:setId(children.id)
-					end
-					if children.subType or children.charges then
-						child:setSubType(children.subType or children.charges)
-					else
-						local cType = ItemType(children.name and children.name or children.id)
-						if cType and cType:getCharges() > 1 then
-							child:setSubType(cType:getCharges())
-						end
-					end
-					if children.chance then
-						child:setChance(children.chance)
-					end
-					if children.minCount then
-						child:setMinCount(children.minCount)
-					end
-					if children.maxCount then
-						child:setMaxCount(children.maxCount)
-					end
-					if children.aid or children.actionId then
-						child:setActionId(children.aid or children.actionId)
-					end
-					if children.text or children.description then
-						child:setText(children.text or children.description)
-					end
-					if loot.name then
-						child:setNameItem(loot.name)
-					end
-					if children.article then
-						child:setArticle(children.article)
-					end
-					if children.attack then
-						child:setAttack(children.attack)
-					end
-					if children.defense then
-						child:setDefense(children.defense)
-					end
-					if children.extraDefense or children.extraDef then
-						child:setExtraDefense(children.extraDefense or children.extraDef)
-					end
-					if children.armor then
-						child:setArmor(children.armor)
-					end
-					if children.shootRange or children.range then
-						child:setShootRange(children.shootRange or children.range)
-					end
-					if children.unique then
-						child:setUnique(children.unique)
-					end
-					parent:addChildLoot(child)
-				end
-			end
+		local atLeastOneError = false
+		for _, item in pairs(mask.loot) do
+			local parent, lootError = Loot.fromItem(item)
 			mtype:addLoot(parent)
+			if lootError then
+				atLeastOneError = true
+			end
 		end
-		if lootError then
+		if atLeastOneError then
 			logger.warn("[registerMonsterType.loot] - Monster: {} loot could not correctly be load", mtype:name())
 		end
 	end
@@ -934,8 +950,8 @@ function readSpell(incomingLua, mtype)
 			if incomingLua.effect then
 				spell:setCombatEffect(incomingLua.effect)
 			end
-			if incomingLua.shootEffect then
-				spell:setCombatShootEffect(incomingLua.shootEffect)
+			if incomingLua.shootEffect or incomingLua.shooteffect then
+				spell:setCombatShootEffect(incomingLua.shootEffect or incomingLua.shooteffect)
 			end
 		end
 

@@ -7,19 +7,27 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "pch.hpp"
-
-#include "creatures/players/imbuements/imbuements.hpp"
-#include "lua/global/globalevent.hpp"
-#include "items/weapons/weapons.hpp"
-#include "lua/creature/movement.hpp"
 #include "lua/scripts/scripts.hpp"
+
+#include "lib/di/container.hpp"
+#include "config/configmanager.hpp"
 #include "creatures/combat/spells.hpp"
+#include "creatures/monsters/monsters.hpp"
+#include "items/weapons/weapons.hpp"
 #include "lua/callbacks/events_callbacks.hpp"
+#include "lua/creature/creatureevent.hpp"
+#include "lua/creature/movement.hpp"
+#include "lua/creature/talkaction.hpp"
+#include "lua/global/globalevent.hpp"
 
 Scripts::Scripts() :
 	scriptInterface("Scripts Interface") {
 	scriptInterface.initState();
+}
+
+Scripts &Scripts::getInstance() {
+	static Scripts instance;
+	return instance;
 }
 
 void Scripts::clearAllScripts() const {
@@ -35,14 +43,14 @@ void Scripts::clearAllScripts() const {
 }
 
 bool Scripts::loadEventSchedulerScripts(const std::string &fileName) {
-	auto coreFolder = g_configManager().getString(CORE_DIRECTORY, __FUNCTION__);
+	auto coreFolder = g_configManager().getString(CORE_DIRECTORY);
 	const auto dir = std::filesystem::current_path() / coreFolder / "events" / "scripts" / "scheduler";
 	if (!std::filesystem::exists(dir) || !std::filesystem::is_directory(dir)) {
 		g_logger().warn("{} - Can not load folder 'scheduler' on {}/events/scripts'", __FUNCTION__, coreFolder);
 		return false;
 	}
 
-	std::filesystem::recursive_directory_iterator endit;
+	const std::filesystem::recursive_directory_iterator endit;
 	for (std::filesystem::recursive_directory_iterator it(dir); it != endit; ++it) {
 		if (std::filesystem::is_regular_file(*it) && it->path().extension() == ".lua") {
 			if (it->path().filename().string() == fileName) {
@@ -60,7 +68,7 @@ bool Scripts::loadEventSchedulerScripts(const std::string &fileName) {
 }
 
 // Function to validate the directory path
-bool validateDirectory(const std::filesystem::path& dir, const std::string loadPath) {
+bool validateDirectory(const std::filesystem::path& dir, const std::string_view loadPath) {
     if (!std::filesystem::exists(dir) || !std::filesystem::is_directory(dir)) {
         g_logger().error("Cannot load folder {}", loadPath);
         return false;
@@ -97,7 +105,7 @@ std::vector<std::filesystem::path> processFiles(
 
         // Skip files starting with "#"
         if (file.filename().string().front() == '#') {
-            if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
+            if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS)) {
                 g_logger().info("[script]: {} [disabled]", realPath.filename().string());
             }
             continue;
@@ -105,7 +113,7 @@ std::vector<std::filesystem::path> processFiles(
 
         // Log folder and attempt to load file
         if (isLib || (fileFolder != "lib" && fileFolder != "events")) {
-            if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
+            if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS)) {
                 if (lastDirectory.empty() || lastDirectory != scriptFolder) {
                     lastDirectory = scriptFolder;
                     g_logger().info("Loading folder: [{}]", realPath.parent_path().filename().string());
@@ -139,14 +147,14 @@ void runFiles(const std::vector<std::filesystem::path>& files, bool isReload, Lu
         }
 
 	    // Log successful load or reload
-        if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS, __FUNCTION__)) {
+        if (g_configManager().getBoolean(SCRIPTS_CONSOLE_LOGS)) {
             g_logger().info("[script {}]: {}", isReload ? "reloaded" : "loaded", realPath.filename().string());
         }
     }
 }
 
 // Main function
-bool Scripts::loadScripts(const std::string loadPath, bool isLib, bool isReload) {
+bool Scripts::loadScripts(std::string_view loadPath, bool isLib, bool isReload) {
     const auto dir = std::filesystem::current_path() / loadPath;
 
     // Validate directory

@@ -64,34 +64,57 @@ function Game.linkMissionToStorages(missionStorage, storages)
 	end
 end
 
-Storage.TrackedQuestIds = {}
+function Player:receivedCachedTrackedMissions()
+	return true
+end
+
+function Player:getTrackedMissionIds()
+	local trackedMissionStorages = self:getStorageValueByKey(Storage.TrackedMissionsStorages)
+	local trackedMissionIds = {}
+	if type(trackedMissionStorages) ~= "table" then
+		return trackedMissionIds
+	end
+	for _, storage in pairs(trackedMissionStorages) do
+		local mission = Game.getMissionByStorage(storage)
+		if not mission then
+			logger.warn(T("[Player::getTrackedMissionIds] Trying to get nonexistant mission by	 storage :storage:", { storage = storage }))
+		end
+		table.insert(trackedMissionIds, mission.missionId)
+	end
+	return trackedMissionIds
+end
+
+Storage.TrackedMissionsStorages = {}
 function Player.resetTrackedMissions(self, missionIds)
-	local trackedQuests = {}
+	local trackedMissions = {}
+	local trackedMissionStorages = {}
 	local maxAllowed = self:getAllowedTrackedQuestCount()
 	for _, missionId in pairs(missionIds) do
 		local mission = Game.getMissionById(missionId)
 		local quest = Game.getQuestByMission(mission)
 		if not mission then
-			logger.warn(T("[Player::resetTrackedMissions] Player :name: is sending missionId of non-existant mission"))
+			logger.warn(T("[Player::resetTrackedMissions] Player :name: is sending missionId of non-existant missionId: :missionId:", { name = self:getName(), missionId = missionId }))
+			break
 		end
 		if Game.isQuestStorage(mission.storage) and self:isMissionOngoing(mission) then
+			table.insert(trackedMissionStorages, mission.storage)
 			local data = {
 				missionId = mission.missionId,
 				questName = self:getTranslatedQuestName(quest),
 				missionName = self:getTranslatedMissionName(mission),
 				missionDesc = self:getTranslatedMissionDescription(mission),
 			}
-			table.insert(trackedQuests, data)
-			if #trackedQuests >= maxAllowed then
+			table.insert(trackedMissions, data)
+			if #trackedMissions >= maxAllowed then
 				break
 			end
 		end
 	end
 
-	PlayerTrackedMissionsData[self:getId()] = trackedQuests
-	self:kv():set(Storage.TrackedQuestIds, missionIds)
-	local remainingSlots = maxAllowed - #trackedQuests
-	self:sendTrackedQuests(remainingSlots, trackedQuests)
+	PlayerTrackedMissionsData[self:getId()] = trackedMissions
+	self:setStorageValueByKey(Storage.TrackedMissionsStorages, trackedMissionStorages)
+	local remainingSlots = maxAllowed - #trackedMissions
+	self:sendTrackedQuests(remainingSlots, trackedMissions)
 end
 
 function Player.getAllowedTrackedQuestCount(self)
@@ -155,7 +178,7 @@ function Player.isMissionOngoing(self, mission)
 		return false
 	end
 
-	local state = self:kv():get(mission.storage) or -1
+	local state = self:getStorageValueByKey(mission.storage)
 	if state == MISSION_NOT_STARTED and mission.states and mission.states[MISSION_NOT_STARTED] then
 		return true
 	end
@@ -191,7 +214,7 @@ function Player.isMissionCompleted(self, mission)
 		return false
 	end
 
-	local state = self:kv():get(mission.storage) or -1
+	local state = self:getStorageValueByKey(mission.storage)
 	if state == mission.finishedState then
 		return true
 	end
@@ -238,7 +261,7 @@ function Player.getTranslatedMissionDescription(self, mission)
 	end
 
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
-	local state = self:kv():get(mission.storage) or -1
+	local state = self:getStorageValueByKey(mission.storage)
 	local description = mission.description
 	if mission.states and mission.states[state] then
 		description = mission.states[state]

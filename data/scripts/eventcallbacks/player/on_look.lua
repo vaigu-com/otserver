@@ -101,7 +101,7 @@ function OnLookMessageBuilder:ParseCreatureDescription()
 		local monsterMaster = inspectedThing:getMaster()
 		if monsterMaster and table.contains({ "sorcerer familiar", "knight familiar", "druid familiar", "paladin familiar" }, inspectedThing:getName():lower()) then
 			local summonTimeRemaining = monsterMaster:kv():get("familiar-summon-time") or 0
-			descriptionText = string.format("%s (Master: %s). It will disappear in %s", descriptionText, monsterMaster:getName(), getTimeInWords(summonTimeRemaining - os.time()))
+			descriptionText = string.format("%s (Master: %s). It will disappear in %s", descriptionText, monsterMaster:getName(), Game.getTimeInWords(summonTimeRemaining - os.time()))
 		end
 	end
 
@@ -201,7 +201,7 @@ end
 -- Item description is always treated as potential string identifier
 -- If no matching translation is found, then the description is shown normally
 -- Else the translation is put in description place
-local callback = EventCallback()
+local callback = EventCallback("playerOnLook")
 function callback.playerOnLook(player, inspectedThing, inspectedPosition, lookDistance)
 	local onLookDescriptionBuilder = OnLookMessageBuilder(player, inspectedThing, inspectedPosition, lookDistance)
 	local message = onLookDescriptionBuilder:Build():Get()

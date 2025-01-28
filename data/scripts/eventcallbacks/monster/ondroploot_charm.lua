@@ -1,7 +1,7 @@
 local lootFactor = 1.0
 local lootLayer = MONSTER_LOOT_LAYER.charmPseudo
 
-local callback = EventCallback()
+local callback = EventCallback("MonsterOnDropLootCharm")
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
 	if not player then
@@ -20,7 +20,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 		return
 	end
 
-	local totalLoot = GenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter)
+	local totalLoot = TryGenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter)
 	local monsterId = monster:getId()
 	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)
 end

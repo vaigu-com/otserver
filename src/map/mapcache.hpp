@@ -15,7 +15,7 @@
 class Map;
 class Tile;
 class Item;
-class Position;
+struct Position;
 class FileStream;
 
 #pragma pack(1)
@@ -48,7 +48,7 @@ struct BasicItem {
 private:
 	void hash(size_t &h) const;
 
-	friend class BasicTile;
+	friend struct BasicTile;
 };
 
 struct BasicTile {
@@ -86,9 +86,9 @@ public:
 
 	void setBasicTile(uint16_t x, uint16_t y, uint8_t z, const std::shared_ptr<BasicTile> &BasicTile);
 
-	std::shared_ptr<BasicItem> tryReplaceItemFromCache(const std::shared_ptr<BasicItem> &ref);
+	std::shared_ptr<BasicItem> tryReplaceItemFromCache(const std::shared_ptr<BasicItem> &ref) const;
 
-	void flush();
+	void flush() const;
 
 	/**
 	 * Creates a map sector.
@@ -112,11 +112,11 @@ public:
 	}
 
 protected:
-	std::shared_ptr<Tile> getOrCreateTileFromCache(const std::unique_ptr<Floor> &floor, uint16_t x, uint16_t y);
+	std::shared_ptr<Tile> getOrCreateTileFromCache(const std::shared_ptr<Floor> &floor, uint16_t x, uint16_t y);
 
 	std::unordered_map<uint32_t, MapSector> mapSectors;
 
 private:
-	void parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, std::shared_ptr<Item> item);
+	void parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, const std::shared_ptr<Item> &item) const;
 	std::shared_ptr<Item> createItem(const std::shared_ptr<BasicItem> &BasicItem, Position position);
 };
