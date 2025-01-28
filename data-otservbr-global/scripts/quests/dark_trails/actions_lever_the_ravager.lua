@@ -1,7 +1,7 @@
 local setting = {
 	centerRoom = { x = 33487, y = 32079, z = 8 },
 	range = 10,
-	entranceTiles = {
+	playerPositions = {
 		Position(33417, 32102, 10),
 		Position(33418, 32102, 10),
 		Position(33419, 32102, 10),

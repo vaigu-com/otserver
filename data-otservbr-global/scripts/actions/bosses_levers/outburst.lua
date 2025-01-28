@@ -1,14 +1,16 @@
 local config = {
-	bossName = "Outburst",
-	bossPosition = Position(32234, 31284, 14),
-	entranceTiles = {
-		{ pos = Position(32207, 31284, 14), destination = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32207, 31285, 14), destination = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32207, 31286, 14), destination = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32207, 31287, 14), destination = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
-		{ pos = Position(32207, 31288, 14), destination = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
+	boss = {
+		name = "Outburst",
+		position = Position(32234, 31284, 14),
 	},
-	zoneArea = {
+	playerPositions = {
+		{ pos = Position(32207, 31284, 14), teleport = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32207, 31285, 14), teleport = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32207, 31286, 14), teleport = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32207, 31287, 14), teleport = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
+		{ pos = Position(32207, 31288, 14), teleport = Position(32234, 31292, 14), effect = CONST_ME_TELEPORT },
+	},
+	specPos = {
 		from = Position(32223, 31273, 14),
 		to = Position(32246, 31297, 14),
 	},
@@ -31,7 +33,7 @@ local config = {
 			end
 		end
 	end,
-	exitTpDestination = Position(32208, 31372, 14),
+	exit = Position(32208, 31372, 14),
 }
 
 local lever = BossLever(config)
