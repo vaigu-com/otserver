@@ -7,8 +7,10 @@ local function cleanupDatabase()
 	db.asyncQuery("DELETE FROM `players` WHERE `deletion` != 0 AND `deletion` < " .. currentTime)
 	db.asyncQuery("DELETE FROM `ip_bans` WHERE `expires_at` != 0 AND `expires_at` <= " .. currentTime)
 	db.asyncQuery("DELETE FROM `market_history` WHERE `inserted` <= " .. (currentTime - configManager.getNumber(configKeys.MARKET_OFFER_DURATION)))
+	db.query("DELETE FROM `player_storage` WHERE `key` IN (" .. Global.Storage.FamiliarSummonEvent10 .. ", " .. Global.Storage.FamiliarSummonEvent60 .. ")")
 
 	db.query("UPDATE `players` SET `isreward` = " .. DAILY_REWARD_NOTCOLLECTED)
+	db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = 51052")
 end
 
 -- Function to move expired bans to ban history
@@ -126,7 +128,7 @@ function serverInitialization.onStartup()
 	cleanupDatabase()
 	moveExpiredBansToHistory()
 	storeTownsInDatabase()
-	checkAndLogDuplicateValues({ "Global", "Storage", "Storage" })
+	checkAndLogDuplicateValues({ "Global", "Storage" })
 	updateEventRates()
 	HirelingsInit()
 	resetAccountSessions()

@@ -83,14 +83,14 @@ function string.diff(self)
 end
 
 function GetDailyRewardLastServerSave()
-	return RetrieveGlobaltorage(DailyReward.storages.lastServerSave)
+	return RetrieveGlobalStorage(DailyReward.storages.lastServerSave)
 end
 
 function UpdateDailyRewardStorage(key, value)
 	db.query("INSERT INTO `global_storage` (`key`, `value`) VALUES (" .. key .. ", " .. value .. ") ON DUPLICATE KEY UPDATE `value` = " .. value)
 end
 
-function RetrieveGlobaltorage(key)
+function RetrieveGlobalStorage(key)
 	local resultId = db.storeQuery("SELECT `value` FROM `global_storage` WHERE `key` = " .. key)
 	if resultId ~= false then
 		local val = Result.getNumber(resultId, "value")

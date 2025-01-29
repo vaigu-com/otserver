@@ -115,8 +115,8 @@ function Game.getSkillType(weaponType)
 	return SKILL_FIST
 end
 
-if not StorageTable then
-	StorageTable = {}
+if not globalStorageTable then
+	globalStorageTable = {}
 end
 
 function Game.getTimeInWords(seconds)

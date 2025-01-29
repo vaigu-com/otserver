@@ -8,17 +8,13 @@ Blessings.Credits = {
 		"Insert & Select query in blessings_history",
 	},
 }
--- Vaigu custom
-DISABLE_TWIST_OF_FATE = true
+
 Blessings.Config = {
 	AdventurerBlessingLevel = configManager.getNumber(configKeys.ADVENTURERSBLESSING_LEVEL), -- Free full bless until level
 	HasToF = not configManager.getBoolean(configKeys.TOGGLE_SERVER_IS_RETRO), -- Enables/disables twist of fate
 	InquisitonBlessPriceMultiplier = 1.1, -- Bless price multiplier by henricus
 	SkulledDeathLoseStoreItem = configManager.getBoolean(configKeys.SKULLED_DEATH_LOSE_STORE_ITEM), -- Destroy all items on store when dying with red/blackskull
 }
-if DISABLE_TWIST_OF_FATE then
-	Blessings.Config.HasToF = false
-end
 
 Blessings.Types = {
 	REGULAR = 1,
