@@ -15,6 +15,11 @@ Blessings.Config = {
 	InquisitonBlessPriceMultiplier = 1.1, -- Bless price multiplier by henricus
 	SkulledDeathLoseStoreItem = configManager.getBoolean(configKeys.SKULLED_DEATH_LOSE_STORE_ITEM), -- Destroy all items on store when dying with red/blackskull
 }
+-- Vaigu custom
+-- Disable twist of fate
+do
+	Blessings.Config.HasToF = false
+end
 
 Blessings.Types = {
 	REGULAR = 1,

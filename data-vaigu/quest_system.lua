@@ -421,6 +421,10 @@ function NpcRegistry:Get(name)
 	return self.registry[name] or self:Register(name)
 end
 
+function NpcRegistry:GetAll()
+	return self.registry
+end
+
 function NpcRegistry:AppendNpcData(data)
 	local npc = self:Get(data.name)
 	npc = MergedTable(npc, data)

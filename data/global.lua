@@ -1,5 +1,6 @@
 math.randomseed(os.time())
 
+dofile(DATA_DIRECTORY .. "/load_miscellaneous.lua")
 dofile(DATA_DIRECTORY .. "/lib/lib.lua")
 local startupFile = io.open(DATA_DIRECTORY .. "/startup/startup.lua", "r")
 if startupFile ~= nil then
@@ -100,6 +101,12 @@ end
 
 if not _G.NextUseConcoctionTime then
 	_G.NextUseConcoctionTime = {}
+end
+
+-- Vaigu custom
+-- Prey stamina
+if not _G.NextUsePreysTime then
+	_G.NextUsePreysTime = {}
 end
 
 

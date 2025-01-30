@@ -229,6 +229,47 @@ function Creature.getKillers(self, onlyPlayers)
 	return killers
 end
 
+-- Vaigu custom
+local soulBonus = {
+	trainingDummyName = "Training Dummy",
+	interval = 1 * 75 * 1000,
+	eventsTrainer = {},
+}
+
+local function addSoulTrainingDummy(playerId, ...)
+	if not playerId then
+		return false
+	end
+
+	if not configManager.getBoolean(configKeys.STAMINA_TRAINER) then
+		return false
+	end
+
+	local player = Player(playerId)
+
+	if not player then
+		soulBonus.eventsTrainer[playerId] = nil
+		return true
+	end
+
+	local target = player:getTarget()
+
+	if not target or target:getName() ~= soulBonus.trainingDummyName then
+		soulBonus.eventsTrainer[playerId] = nil
+		return true
+	end
+
+	local maxsoul = player:isPremium() and 200 or 100
+
+	if player:getSoul() < maxsoul then
+		player:addSoul(1)
+		player:sendTextMessage(MESSAGE_FAILURE, "One soul point has been restored.")
+	end
+
+	soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.interval, playerId)
+	return true
+end
+
 function Creature:addEventStamina(target)
 	local player = self:getPlayer()
 	local monster = target:getMonster()
@@ -236,6 +277,10 @@ function Creature:addEventStamina(target)
 		local playerId = player:getId()
 		if not staminaBonus.eventsTrainer[playerId] then
 			staminaBonus.eventsTrainer[playerId] = addEvent(addStamina, staminaBonus.period, playerId)
+		end
+		-- Vaigu custom
+		if not soulBonus.eventsTrainer[playerId] then
+			soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.interval, playerId)
 		end
 	end
 end

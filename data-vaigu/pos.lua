@@ -168,9 +168,9 @@ function CreatureList:FilterByNpc()
 	return self
 end
 
-function CreatureList:FilterByVocation(class)
+function CreatureList:FilterByVocation(vocation)
 	for key, value in pairs(self.creatures) do
-		if not value:isVocation(class) then
+		if not value:isVocation(vocation) then
 			self.creatures[key] = nil
 		end
 	end
