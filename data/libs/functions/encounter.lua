@@ -127,7 +127,7 @@ end
 ---@field private events table
 ---@field private registered boolean
 ---@field private global boolean
----@field private timeToSpawnMonsters number|string
+---@field private timeToSpawnMonsters number|nil
 ---@field private onReset function?
 ---@field private beforeStart function?
 ---@field private active boolean

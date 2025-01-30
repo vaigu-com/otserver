@@ -2,6 +2,7 @@
 dofile(CORE_DIRECTORY .. "/libs/systems/blessing.lua")
 dofile(CORE_DIRECTORY .. "/libs/systems/concoctions.lua")
 dofile(CORE_DIRECTORY .. "/libs/systems/daily_reward.lua")
+dofile(CORE_DIRECTORY .. "/libs/systems/encounters.lua")
 dofile(CORE_DIRECTORY .. "/libs/systems/exaltation_forge.lua")
 dofile(CORE_DIRECTORY .. "/libs/systems/familiar.lua")
 dofile(CORE_DIRECTORY .. "/libs/systems/features.lua")

@@ -65,21 +65,6 @@ function Party:onDisband()
 	return true
 end
 
-local vocationCountToBonus = {
-	[1] = 1.25,
-	[2] = 1.35,
-	[3] = 1.65,
-	[4] = 1.8,
-	--[[
-	[5] = 2.0,
-	[6] = 2.1,
-	[7] = 2.2,
-	[8] = 2.3,
-	[9] = 2.4,
-	]]
-}
-
---3af needs fix	
 function Party:onShareExperience(exp)
 	local uniqueVocationsCount = self:getUniqueVocationsCount()
 	local partySize = self:getMemberCount() + 1

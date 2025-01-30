@@ -161,7 +161,7 @@ function TryMergeExerciseWeapons(player, addedWeapon, oldWeapon)
 end
 
 local exerciseTraining = Action()
-function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+function exerciseTraining.onUse(player, exerciseWeapon, fromPosition, target, toPosition, isHotkey)
 	if not target or type(target) ~= "userdata" or not target:isItem() then
 		return true
 	end
@@ -173,7 +173,7 @@ function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, 
 		return true
 	end
 
-	if player:TryMergeExerciseWeapons(exerciseWeapon, target) then
+	if TryMergeExerciseWeapons(exerciseWeapon, target) then
 		return
 	end
 
@@ -233,7 +233,7 @@ function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, 
 		player:setExhaustion("training-exhaustion", exhaustionTime)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have started training on an exercise dummy.")
 	end
-	return false
+	return true
 end
 
 for weaponId, weapon in pairs(exerciseWeaponsTable) do

@@ -71,8 +71,7 @@ GameStore.CoinType = {
 }
 
 GameStore.Storages = {
-	--deprecated
-	--expBoostCount = 51052,
+	expBoostCount = 51052,
 }
 
 GameStore.ConverType = {
@@ -921,7 +920,7 @@ function sendShowStoreOffers(playerId, category, redirectId)
 			msg:addByte(#offer.offers)
 			sendOfferDescription(player, offer.id and offer.id or 0xFFFF, offer.description)
 			for _, off in ipairs(offer.offers) do
-				xpBoostPrice = nil
+				local xpBoostPrice = nil
 				if offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST then
 					xpBoostPrice = GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)]
 				end
@@ -1132,6 +1131,7 @@ function sendStoreTransactionHistory(playerId, page, entriesPerPage)
 	if not player then
 		return false
 	end
+
 	local entries = GameStore.retrieveHistoryEntries(player:getAccountId(), page, entriesPerPage) -- this makes everything easy!
 	if #entries == 0 then
 		return addPlayerEvent(sendStoreError, 250, playerId, GameStore.StoreErrors.STORE_ERROR_HISTORY, "You don't have any entries yet.")
@@ -1602,7 +1602,7 @@ end
 
 function GameStore.processInstantRewardAccess(player, offerCount)
 	local limit = GameStore.ItemLimit.INSTANT_REWARD_ACCESS
-	if player:getCollectionTokens() + offerCount > limit then
+	if player:getCollectionTokens() + offerCount >= limit + 1 then
 		return error({ code = 1, message = "You cannot own more than " .. limit .. " reward tokens." })
 	end
 	player:setCollectionTokens(player:getCollectionTokens() + offerCount)

@@ -112,8 +112,8 @@ TRANSPORT_ROUTES = {
 		{ toPos = Position(6335, 1357, 6), name = "Wyrm Cliffs" },
 		{ toPos = Position(), name = "Pirate Island" },
 		{ toPos = Position(5689, 1465, 6), name = "Phantom Port" },
-		{ toPos = Position(5701, 1832, 7), name = "South knurow 39f"},
-		{toPos = Position(6846, 1425, 6), name = "Hurghada 39f"}
+		{ toPos = Position(5701, 1832, 7), name = "South knurow PLACEHOLDER_VAIGU"},
+		{ toPos = Position(6846, 1425, 6), name = "Hurghada PLACEHOLDER_VAIGU"}
 	},
 	CRISTOPHER_COLUMBUS_SHIP = {
 		{ toPos = Position(5909, 1233, 6), name = "North Mirko" },
@@ -134,6 +134,9 @@ TRANSPORT_ROUTES = {
 		{ toPos = Position(7311, 1082, 6), name = "Maioor'ka" },
 		{ toPos = Position(7933, 1546, 6), name = "Bydgoshch" },
 	},
+	TARZAN_SHIP = {
+		"PLACEHOLDER_VAIGU"
+	}
 }
 
 TRANSPORT_ROUTES_ALI_BABA = {}

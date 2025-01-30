@@ -168,9 +168,9 @@ function CreatureList:FilterByNpc()
 	return self
 end
 
-function CreatureList:FilterByVocation(class)
+function CreatureList:FilterByVocation(vocation)
 	for key, value in pairs(self.creatures) do
-		if not value:isVocation(class) then
+		if not value:isVocation(vocation) then
 			self.creatures[key] = nil
 		end
 	end
@@ -848,6 +848,5 @@ RUKCA_ANCHOR = Position(7594, 114, 8)
 JANUSZEX_MOVING_TRAIN_ANCHOR = Position(6400, 1126, 13)
 JANUSZEX_ANCHOR = Position(7687, 1025, 10)
 
--- 39f
 CHESS_ANCHOR = Position(1428, 1302, 8)
 FNAF_ANCHOR = Position(5227, 1035, 8)

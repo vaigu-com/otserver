@@ -15,7 +15,7 @@ local voices = {
 }
 
 local additionalJob = nil
-if DAY_SINCE_START >= 7 then
+if DAYS_SINCE_START >= 7 then
 	additionalJob = JOB_EXERCISE
 end
 

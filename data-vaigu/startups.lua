@@ -7,12 +7,12 @@ function LoadStartupNpcs(npcs, anchor)
 			pos = ExtractCoords(pos)
 		end
 		if not Tile(pos) then
-			print(T("TRYING TO CREATE NPC :name: ON NONEXISTANT TILE POSITION:", { name = npcData.name }))
+			logger.warn(T("TRYING TO CREATE NPC :name: ON NONEXISTANT TILE POSITION:", { name = npcData.name }))
 			PrintPosition(pos, true)
 		end
 		local npc = Game.createNpc(npcData.name, pos)
 		if not npc then
-			print(T("Could not create npc :name:", { name = npcData.name }))
+			logger.warn(T("Could not create npc :name:", { name = npcData.name }))
 			PrintPosition(pos, true)
 		end
 		npc:setMasterPos(pos)
@@ -30,11 +30,11 @@ function LoadStartupMonsters(monsters, anchor)
 
 		local monster = Game.createMonster(monsterData.name, pos)
 		if not Tile(pos) then
-			print(T("TRYING TO CREATE MONSTER :name: ON NONEXISTING TILE POSITION:", { name = monsterData.ame }))
+			logger.warn(T("TRYING TO CREATE MONSTER :name: ON NONEXISTING TILE POSITION:", { name = monsterData.ame }))
 			PrintPosition(pos, true)
 		end
 		if not monster then
-			print(T("Could not create monster :name:", { name = monsterData.name }))
+			logger.warn(T("Could not create monster :name:", { name = monsterData.name }))
 			PrintPosition(pos, true)
 		end
 	end

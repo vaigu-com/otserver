@@ -1,6 +1,10 @@
-local playerLogin = CreatureEvent("PlayerLogin")
+local function sendBoostMessage(player, category, isIncreased)
+	return player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Event! %s is %screased. Happy Hunting!", category, isIncreased and "in" or "de"))
+end
 
-function playerLogin.onLogin(player)
+local playerLoginVaigu = CreatureEvent("PlayerLoginVaigu")
+
+function playerLoginVaigu.onLogin(player)
 	local afterLoginStr = player:Localizer(LOCALIZERS.Universal):Get("YOUR_LAST_VISIT")
 	local commandStr = player:Localizer(LOCALIZERS.Universal):Get("LIST_AVAILABLE_COMMANDS")
 	local welcomeStr = player:Localizer(LOCALIZERS.Universal):Get("WELCOME_TO_SERVER")
@@ -8,9 +12,6 @@ function playerLogin.onLogin(player)
 	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 
-	if isPremium(player) then
-		player:setStorageValueByKey(Storage.PremiumAccount, 1)
-	end
 
 	-- Promotion
 	local vocation = player:getVocation()
@@ -34,6 +35,12 @@ function playerLogin.onLogin(player)
 	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, T("Today's boosted creatures: :names:.\nBoosted creatures yield more experience points, carry more loot than usual, and respawn at a faster rate.", { names = names }))
 	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Today's boosted boss: %s.\nBoosted bosses contain more loot and count more kills for your Bosstiary.", Game.getBoostedBoss()))
 
+	-- Rewards
+	local rewards = #player:getRewardList()
+	if rewards > 0 then
+		player:sendTextMessage(MESSAGE_LOGIN, string.format("You have %d reward%s in your reward chest.", rewards, rewards > 1 and "s" or ""))
+	end
+
 	-- Rate events:
 	if SCHEDULE_EXP_RATE ~= 100 then
 		sendBoostMessage(player, "Exp Rate", SCHEDULE_EXP_RATE > 100)
@@ -56,7 +63,7 @@ function playerLogin.onLogin(player)
 	end
 
 	-- Send Recruiter Outfit
-	local resultId = db.storeQuery("SELECT `recruiter` FROM `accounts` WHERE `id`= " .. getAccountNumberByPlayerName(getPlayerName(player)))
+	local resultId = db.storeQuery("SELECT `recruiter` FROM `accounts` WHERE `id`= " .. Game.getPlayerAccountId(getPlayerName(player)))
 	if resultId then
 		local recruiterStatus = Result.getNumber(resultId, "recruiter")
 		local sex = player:getSex()
@@ -92,23 +99,6 @@ function playerLogin.onLogin(player)
 	player:setStaminaXpBoost(player:getFinalBonusStamina() * 100)
 	player:getFinalLowLevelBonus()
 
-	-- Updates the player's VIP status and executes corresponding actions if applicable.
-	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
-		local isVipNow = player:isVip()
-		local wasVip = player:kv():scoped("account"):get("vip-system") or false
-
-		if wasVip ~= isVipNow then
-			if wasVip then
-				player:onRemoveVip()
-			else
-				player:onAddVip(player:getVipDays())
-			end
-		end
-
-		if isVipNow then
-			CheckPremiumAndPrint(player, MESSAGE_LOGIN)
-		end
-	end
 
 	-- Set Ghost Mode
 	if player:getGroup():getId() >= GROUP_TYPE_GAMEMASTER then
@@ -138,12 +128,6 @@ function playerLogin.onLogin(player)
 		player:setRemoveBossTime(1)
 	end
 
-	-- Remove combat protection
-	local isProtected = player:kv():get("combat-protection") or 0
-	if isProtected < 1 then
-		player:kv():set("combat-protection", 1)
-	end
-
 	-- Change support outfit to a normal outfit to open customize character without crashes
 	local playerOutfit = player:getOutfit()
 	if table.contains({ 75, 266, 302 }, playerOutfit.lookType) then
@@ -168,9 +152,7 @@ function playerLogin.onLogin(player)
 
 	player:TryResetDailyTaskCounter()
 
-	-- Legacy
-	--player:loadSpecialStorage()
-
 	return true
 end
-playerLogin:register()
+
+playerLoginVaigu:register()

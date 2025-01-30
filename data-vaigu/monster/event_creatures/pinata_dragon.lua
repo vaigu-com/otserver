@@ -1,4 +1,3 @@
---[[
 local mType = Game.createMonsterType("Pinata Dragon")
 local monster = {}
 
@@ -70,7 +69,28 @@ monster.voices = {
 	{ text = "Bring it on!", yell = false },
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "silver raid token", chance = 100000, maxCount = 5 },
+	{ name = "candy", chance = 100000, maxCount = 5 },
+	{ id = 6570, maxCount = 2, chance = 50000 }, -- surprise bag
+	{ name = "cookie", maxCount = 5, chance = 50000 },
+	{ name = "winterberry liquor", chance = 14000 },
+	{ name = "meringue cake", chance = 10000 },
+	{ name = "bar of chocolate", chance = 7000 },
+	{ name = "pinata", chance = 6000 },
+	{ id = 653, chance = 20000 },
+	{ id = 655, chance = 4000 },
+	{ id = 654, chance = 6000 },
+	{ id = 24949, chance = 5000 },
+	{ name = "festive backpack", chance = 5000 },
+	{ name = "party cake", chance = 5000 },
+	{ name = "chocolatey dragon scale legs", chance = 3000 },
+	{ name = "ferumbras' candy hat", chance = 2000 },
+	{ id = 2991, chance = 800 }, -- doll
+	{ name = "toy mouse", chance = 300 },
+	{ name = "ferumbras puppet", chance = 250 },
+	{ id = 5791, chance = 30 }, -- stuffed dragon
+}
 
 monster.attacks = {}
 
@@ -101,4 +121,3 @@ monster.immunities = {
 }
 
 mType:register(monster)
-]]

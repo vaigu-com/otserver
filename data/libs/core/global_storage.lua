@@ -23,6 +23,8 @@ Reserved player action storage key ranges (const.hpp)
 
 Global = {
 	Storage = {
+		FamiliarSummonEvent10 = 30054,
+		FamiliarSummonEvent60 = 30055,
 		CobraFlask = 30056,
 
 		-- Reserved storage from 64000 - 64099
@@ -111,34 +113,3 @@ Global = {
 		},
 	},
 }
-
-local storageIdToCountName = {}
-local function findDuplicates(value, ret, key)
-	if type(value) == "number" then
-		local entry = storageIdToCountName[value] or {}
-		entry.count = (entry.count or 0) + 1
-		entry.keys = entry.keys or {}
-		table.insert(entry.keys, key)
-		storageIdToCountName[value] = entry
-	else
-		for k, v in pairs(value) do
-			findDuplicates(v, ret, k)
-		end
-	end
-end
-
-local extraction = {}
-findDuplicates(Global, extraction)
-table.sort(extraction, function(a, b)
-	return a.value >= b.value
-end)
-
-for storageId, entry in pairs(extraction) do
-	local count = entry.count
-	if count > 1 then
-		logger.warn(T("Duplicate storage found. Id: :storageId:, names:", { storageId = storageId }))
-		for _, key in pairs(entry.keys) do
-			logger.warn(T("\t:key:", { key = key }))
-		end
-	end
-end

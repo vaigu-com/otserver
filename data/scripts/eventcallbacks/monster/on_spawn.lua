@@ -1,7 +1,7 @@
 local monsterIdToSpawnTimeSeconds = {}
 local multiplierPerTimeUnit = 0.5
 -- Total exp for kill is up to baseExp*(1 + maximumBonusMultiplier)
-local maximumBonusMultiplier = 1.5 
+local maximumBonusMultiplier = 1.5
 
 local function currentTimeSeconds()
 	return math.floor(tonumber(os.time()))
@@ -44,75 +44,13 @@ local function setMonsterSpawnHour(monster)
 	monsterIdToSpawnTimeSeconds[monsterId] = currentTime
 end
 
-local cobraNames = {
-	["cobra scout"] = "cobra scout",
-	["cobra vizier"] = "cobra vizier",
-	["cobra assassin"] = "cobra assassin",
-}
-
-local function handleCobra(monster)
-	local name = monster:getName():lower()
-	if cobraNames[name] == nil then
-		return
-	end
-	if getStorageValueByKey(Storage.CobraBastionFlask) >= os.time() then
-		monster:setHealth(monster:getMaxHealth() * 0.75)
-	end
-end
-
-local function handleIronServantReplica(monster)
-	if monster:getName():lower() ~= "iron servant replica" then
-		return
-	end
-
-	local chance = math.random(100)
-	if Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismDiamond) >= 1 and Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismGolden) >= 1 then
-		if chance > 30 then
-			local monsterType = math.random(2) == 1 and "diamond servant replica" or "golden servant replica"
-			Game.createMonster(monsterType, monster:getPosition(), false, true)
-			monster:remove()
-		end
-		return
-	end
-
-	if Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismDiamond) >= 1 and chance > 30 then
-		Game.createMonster("diamond servant replica", monster:getPosition(), false, true)
-		monster:remove()
-		return
-	end
-
-	if Game.getStorageValueByKey(Storage.ForgottenKnowledge.MechanismGolden) >= 1 and chance > 30 then
-		Game.createMonster("golden servant replica", monster:getPosition(), false, true)
-		monster:remove()
-	end
-end
-
-local callback = EventCallback("MonsterOnSpawn")
+local callback = EventCallback("MonsterOnSpawn/SetSpawnHour")
 
 function callback.monsterOnSpawn(monster, position)
 	if not monster then
 		return
 	end
-	HazardMonster.onSpawn(monster, position)
 
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-
-	--handleCobra(monster)
-	--handleIronServantReplica(monster)
-
-	if not monster:getType():canSpawn(position) then
-		monster:remove()
-	else
-		local spec = Game.getSpectators(position, false, false)
-		for _, creatureId in pairs(spec) do
-			local monster = Monster(creatureId)
-			if monster and not monster:getType():canSpawn(position) then
-				monster:remove()
-			end
-		end
-	end
 	setMonsterSpawnHour(monster)
 end
 
