@@ -91,9 +91,11 @@ function getJackLastMissionState(player)
 	end
 
 	if player:getStorageValueByKey(Storage.TibiaTales.JackFutureQuest.LastMissionState) == 1 then
-		return "You told Jack the truth about his personality. You also explained that you and Spectulus made a mistake by assuming him as the real Jack."
+		return "You told Jack the truth about his personality. You also explained that you and Spectulus \z
+		made a mistake by assuming him as the real Jack."
 	else
-		return "You lied to the confused Jack about his true personality. You and Spectulus made him believe that he is in fact a completely different person. Now he will never be able to find out the truth."
+		return "You lied to the confused Jack about his true personality. You and Spectulus made him \z
+		believe that he is in fact a completely different person. Now he will never be able to find out the truth."
 	end
 end
 
@@ -214,9 +216,7 @@ function checkBoss(centerPosition, rangeX, rangeY, bossName, bossPos)
 	end
 	if not found then
 		local boss = Game.createMonster(bossName, bossPos, true, true)
-		if boss then
-			boss:setReward(true)
-		end
+		boss:setReward(true)
 	end
 	return found
 end
@@ -236,7 +236,7 @@ function clearBossRoom(playerId, centerPosition, onlyPlayers, rangeX, rangeY, ex
 	end
 end
 
-function clearRoom(centerPosition, rangeX, rangeY, resetStorage)
+function clearRoom(centerPosition, rangeX, rangeY, resetGlobalStorage)
 	local spectators, spectator = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
 	for i = 1, #spectators do
 		spectator = spectators[i]
@@ -244,8 +244,8 @@ function clearRoom(centerPosition, rangeX, rangeY, resetStorage)
 			spectator:remove()
 		end
 	end
-	if resetStorage ~= nil and Game.getStorageValueByKey(resetStorage) == 1 then
-		Game.setStorageValueByKey(resetStorage, -1)
+	if resetGlobalStorage ~= nil and Game.getStorageValueByKey(resetGlobalStorage) == 1 then
+		Game.setStorageValueByKey(resetGlobalStorage, -1)
 	end
 end
 
@@ -547,7 +547,7 @@ function cleanAreaQuest(frompos, topos, itemtable, blockmonsters)
 	return true
 end
 
-function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, firstCall, itemtable, blockmonsters)
+function kickerPlayerRoomAfterMin(playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, firstCall, itemtable, blockmonsters)
 	local players = false
 	if type(playername) == table then
 		players = true
@@ -617,7 +617,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 	end
 	local min = 60 -- Use the 60 for 1 minute
 	if firstCall then
-		addEvent(kickerPlayerRoomAfferMin, 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, false, itemtable, blockmonsters)
+		addEvent(kickerPlayerRoomAfterMin, 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, false, itemtable, blockmonsters)
 	else
 		local subt = minutes - 1
 		if monsterName ~= "" then
@@ -625,7 +625,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 				subt = 2
 			end
 		end
-		addEvent(kickerPlayerRoomAfferMin, min * 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, subt, false, itemtable, blockmonsters)
+		addEvent(kickerPlayerRoomAfterMin, min * 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, subt, false, itemtable, blockmonsters)
 	end
 end
 
@@ -931,9 +931,8 @@ end
 ---@param timeStr string The time string in the format HH:MM:SS
 ---@return number|nil The timestamp of the next occurrence, or nil if the string is invalid
 function GetNextOccurrence(timeStr)
-	local hours, minutes, seconds = string.match(timeStr, "(%d%d):(%d%d):?(%d?%d?)")
-	seconds = seconds or "00"
-	if not hours or not minutes then
+	local hours, minutes, seconds = string.match(timeStr, "(%d+):(%d+):(%d+)")
+	if not hours or not minutes or not seconds then
 		error("Invalid time string format.")
 		return nil
 	end
@@ -960,7 +959,7 @@ end
 
 --- Parse a duration string into milliseconds
 ---@param duration string|number The duration string to parse or a number of milliseconds (for idempotency)
----@return number result The duration in milliseconds, or nil if the string is invalid
+---@return number|nil The duration in milliseconds, or nil if the string is invalid
 function ParseDuration(duration)
 	if not duration then
 		return nil

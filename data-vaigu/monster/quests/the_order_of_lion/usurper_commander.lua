@@ -112,20 +112,17 @@ monster.immunities = {
 	{ type = "bleed", condition = false },
 }
 
-mType.onAppear = function(monster, creature)
-	if monster ~= creature then
-		return true
-	end
+mType.onSpawn = function(monster, spawnPosition)
 	local sum
 	for i = 1, 5 do
 		sum = Game.createMonster(monster:getType():getSummonList()[math.random(1, #monster:getType():getSummonList())].name, monster:getPosition(), true)
 		if sum then
 			monster:setSummon(sum)
 			sum:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-			sum:setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.Commander, 1)
+			sum:setStorageValue(Storage.TheOrderOfTheLion.Drume.Commander, 1)
 		end
 	end
-	monster:setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.Commander, 1)
+	monster:setStorageValue(Storage.TheOrderOfTheLion.Drume.Commander, 1)
 end
 
 mType:register(monster)

@@ -231,46 +231,11 @@ function Player.getMarriageDescription(thing)
 		if self == thing then
 			descr = descr .. " You are "
 		else
-			descr = descr .. " " .. firstToUpper(thing:getSubjectPronoun()) .. " " .. thing:getSubjectVerb() .. " "
+			descr = descr .. " " .. thing:getSubjectPronoun():titleCase() .. " " .. thing:getSubjectVerb() .. " "
 		end
 		descr = descr .. "married to " .. getPlayerNameById(playerSpouse) .. "."
 	end
 	return descr
-end
-
-function Player.sendWeatherEffect(self, groundEffect, fallEffect, thunderEffect)
-	local position, random = self:getPosition(), math.random
-	position.x = position.x + random(-7, 7)
-	position.y = position.y + random(-5, 5)
-	local fromPosition = Position(position.x + 1, position.y, position.z)
-	fromPosition.x = position.x - 7
-	fromPosition.y = position.y - 5
-	local tile, getGround
-	for Z = 1, 7 do
-		fromPosition.z = Z
-		position.z = Z
-		tile = Tile(position)
-		if tile then
-			-- If there is a tile, stop checking floors
-			fromPosition:sendDistanceEffect(position, fallEffect)
-			position:sendMagicEffect(groundEffect, self)
-			getGround = tile:getGround()
-			if getGround and ItemType(getGround:getId()):getFluidSource() == 1 then
-				position:sendMagicEffect(CONST_ME_LOSEENERGY, self)
-			end
-			break
-		end
-	end
-	if thunderEffect and tile and not tile:hasFlag(TILESTATE_PROTECTIONZONE) then
-		if random(2) == 1 then
-			local topCreature = tile:getTopCreature()
-			if topCreature and topCreature:isPlayer() and topCreature:getAccountType() < ACCOUNT_TYPE_SENIORTUTOR then
-				position:sendMagicEffect(CONST_ME_BIGCLOUDS, self)
-				doTargetCombatHealth(0, self, COMBAT_ENERGYDAMAGE, -weatherConfig.minDMG, -weatherConfig.maxDMG, CONST_ME_NONE)
-				--self:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You were hit by lightning and lost some health.")
-			end
-		end
-	end
 end
 
 function Player:getFamiliarName()
@@ -436,25 +401,23 @@ function Player.updateHazard(self)
 		return true
 	end
 
+	self:setHazardSystemPoints(0)
 	for _, zone in pairs(zones) do
 		local hazard = Hazard.getByName(zone:getName())
-		if not hazard then
-			self:setHazardSystemPoints(0)
+		if hazard then
+			if self:getParty() then
+				self:getParty():refreshHazard()
+			else
+				self:setHazardSystemPoints(hazard:getPlayerCurrentLevel(self))
+			end
 			return true
 		end
-
-		if self:getParty() then
-			self:getParty():refreshHazard()
-		else
-			self:setHazardSystemPoints(hazard:getPlayerCurrentLevel(self))
-		end
-		return true
 	end
 	return true
 end
 
 function Player:addItemStoreInboxEx(item, movable, setOwner, actionId)
-	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
+	local inbox = self:getStoreInbox()
 	if not movable then
 		item:setOwner(self)
 		item:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
@@ -469,21 +432,86 @@ function Player:addItemStoreInboxEx(item, movable, setOwner, actionId)
 end
 
 function Player:addItemStoreInbox(itemId, amount, movable, setOwner)
+	if not amount then
+		logger.error("[Player:addItemStoreInbox] item '{}' amount is nil.", itemId)
+		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Item amount is wrong, please contact an administrator.")
+		return nil
+	end
+
 	local iType = ItemType(itemId)
 	if not iType then
 		return nil
 	end
+
 	if iType:isStackable() then
-		while amount > iType:getStackSize() do
-			self:addItemStoreInboxEx(Game.createItem(itemId, iType:getStackSize()), movable, setOwner)
-			amount = amount - iType:getStackSize()
+		local stackSize = iType:getStackSize()
+		while amount > stackSize do
+			self:addItemStoreInboxEx(Game.createItem(itemId, stackSize), movable, setOwner)
+			amount = amount - stackSize
 		end
 	end
-	local item = Game.createItem(itemId, amount)
+
+	local item
+	if iType:getCharges() > 0 then
+		item = Game.createItem(itemId, 1)
+		if item then
+			item:setAttribute(ITEM_ATTRIBUTE_CHARGES, amount)
+		end
+	else
+		item = Game.createItem(itemId, amount)
+	end
+
 	if not item then
 		return nil
 	end
+
 	return self:addItemStoreInboxEx(item, movable, setOwner)
+end
+
+---@param monster Monster
+---@return {factor: number, msgSuffix: string}
+function Player:calculateLootFactor(monster)
+	if self:getStamina() <= 840 then
+		return {
+			factor = 0.0,
+			msgSuffix = " (due to low stamina)",
+		}
+	end
+
+	local participants = { self }
+	local factor = 1
+	if configManager.getBoolean(configKeys.PARTY_SHARE_LOOT_BOOSTS) then
+		local party = self:getParty()
+		if party and party:isSharedExperienceEnabled() then
+			participants = party:getMembers()
+			table.insert(participants, party:getLeader())
+		end
+	end
+
+	local vipActivators = 0
+	local vipBoost = 0
+	local suffix = ""
+
+	for _, participant in ipairs(participants) do
+		if participant:isVip() then
+			local boost = configManager.getNumber(configKeys.VIP_BONUS_LOOT)
+			boost = ((boost > 100 and 100) or boost) / 100
+			vipBoost = vipBoost + boost
+			vipActivators = vipActivators + 1
+		end
+	end
+	if vipActivators > 0 then
+		vipBoost = vipBoost / (vipActivators ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR))
+		factor = factor * (1 + vipBoost)
+	end
+	if vipBoost > 0 then
+		suffix = suffix .. (" (vip bonus: %d%%)"):format(math.floor(vipBoost * 100 + 0.5))
+	end
+
+	return {
+		factor = factor,
+		msgSuffix = suffix,
+	}
 end
 
 function Player:setExhaustion(scope, seconds)
@@ -558,7 +586,7 @@ end
 function Player:getEncounterLockout(encounter)
 	local scope = encounterKVscope(encounter)
 	if not scope then
-		logger.warn("")
+		logger.warn("[Player::getEncounterLockout] error parsing scope")
 		return false
 	end
 	return self:kv():get(scope) or 0
@@ -570,7 +598,6 @@ function Player:setEncounterLockout(encounter, time)
 		return false
 	end
 	local result = self:kv():set(scope, time)
-	--3bf: maybe not send?
 	self:sendBosstiaryCooldownTimer()
 	return result
 end

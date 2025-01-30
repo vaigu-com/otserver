@@ -1,35 +1,26 @@
 local talkaction = TalkAction("/mccheck")
 
-function talkaction.onSay(player, words, param)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Multiclient Check List:")
+function talkaction.onSay(admin, words, param)
+	admin:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Multiclient Check List:")
 
-	local ipList = {}
+	local ipPlayers = {}
 	local players = Game.getPlayers()
-	for i = 1, #players do
-		local tmpPlayer = players[i]
-		local ip = tmpPlayer:getIp()
-		if ip ~= 0 then
-			local list = ipList[ip]
-			if not list then
-				ipList[ip] = {}
-				list = ipList[ip]
-			end
-			list[#list + 1] = tmpPlayer
-		end
+	for _, player in pairs(players) do
+		local ip = player:getIp() or ""
+		ipPlayers[ip] = ipPlayers[ip] or {}
+		table.insert(ipPlayers[ip], player)
 	end
 
-	for ip, list in pairs(ipList) do
-		local listLength = #list
-		if listLength > 1 then
-			local tmpPlayer = list[1]
-			local message = ("%s: %s [%d]"):format(Game.convertIpToString(ip), tmpPlayer:getName(), tmpPlayer:getLevel())
-			for i = 2, listLength do
-				tmpPlayer = list[i]
-				message = ("%s, %s [%d]"):format(message, tmpPlayer:getName(), tmpPlayer:getLevel())
+	for ip, players in pairs(ipPlayers) do
+		if TableSize(players) > 1 then
+			local message = "Ip: " .. Game.convertIpToString(ip)
+			for _, player in pairs(players) do
+				message = message .. T(":name:, :level:", { name = player:getName(), level = player:getLevel() })
 			end
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message .. ".")
+			admin:sendTextMessage(MESSAGE_EVENT_ADVANCE, message .. ".")
 		end
 	end
+	
 	return false
 end
 

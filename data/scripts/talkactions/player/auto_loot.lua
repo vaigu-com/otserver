@@ -6,28 +6,13 @@ local validValues = {
 	"off",
 }
 
-local function playerCanUseAutoloot(player)
-	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
-		return false
-	end
-	if configManager.getBoolean(configKeys.VIP_AUTOLOOT_VIP_ONLY) then
-		return false
-	end
-	if not player:isVip() then
-		return false
-	end
-
-	return true
-end
-
 function feature.onSay(player, words, param)
 	if not configManager.getBoolean(configKeys.AUTOLOOT) then
 		return true
 	end
-	
-	if not playerCanUseAutoloot(player) then
+	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) and configManager.getBoolean(configKeys.VIP_AUTOLOOT_VIP_ONLY) and not player:isVip() then
 		player:sendCancelMessage("You need to be VIP to use this command!")
-		return
+		return true
 	end
 
 	if not table.contains(validValues, param) then

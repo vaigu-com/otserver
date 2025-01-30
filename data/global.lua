@@ -1,16 +1,8 @@
 math.randomseed(os.time())
 
 dofile(DATA_DIRECTORY .. "/load_miscellaneous.lua")
-
 dofile(DATA_DIRECTORY .. "/lib/lib.lua")
-dofile(DATA_DIRECTORY .. "/zombieEvent.lua")
-dofile(DATA_DIRECTORY .. "/grimEvent.lua")
-dofile(DATA_DIRECTORY .. "/lmsEvent.lua")
-dofile(DATA_DIRECTORY .. "/arena.lua")
-dofile(DATA_DIRECTORY .. "/imbuproducts.lua")
-dofile(DATA_DIRECTORY .. "/demonOakQuest.lua")
-
-local startupFile=io.open(DATA_DIRECTORY.. "/startup/startup.lua", "r")
+local startupFile = io.open(DATA_DIRECTORY .. "/startup/startup.lua", "r")
 if startupFile ~= nil then
 	io.close(startupFile)
 	dofile(DATA_DIRECTORY .. "/startup/startup.lua")
@@ -56,13 +48,6 @@ DIRECTIONS_TABLE = {
 	DIRECTION_NORTHEAST,
 }
 
-STORAGEVALUE_PROMOTION = 30018
-DAY_SINCE_START = 0
-local resultId = db.storeQuery("SELECT DATEDIFF( CURDATE(), DATE(`value`) ) - IF(TIME(NOW()) < '05:00:00', 1, 0) AS days_since_start FROM `server_config` WHERE `server_config`.`config` = 'server_start'")
-if resultId then
-	DAY_SINCE_START = Result.getNumber(resultId, "days_since_start")
-	logger.info("Day since start: " .. DAY_SINCE_START)
-end
 
 SERVER_NAME = configManager.getString(configKeys.SERVER_NAME)
 SERVER_MOTD = configManager.getString(configKeys.SERVER_MOTD)
@@ -72,15 +57,6 @@ AUTH_TYPE = configManager.getString(configKeys.AUTH_TYPE)
 -- Bestiary charm
 GLOBAL_CHARM_GUT = 120 -- 20% more chance to get creature products from looting
 GLOBAL_CHARM_SCAVENGE = 125 -- 25% more chance to get creature products from skinning
-
---WEATHER
-weatherConfig = {
-	groundEffect = CONST_ME_LOSEENERGY,
-	fallEffect = CONST_ANI_SMALLICE,
-	thunderEffect = configManager.getBoolean(configKeys.WEATHER_THUNDER),
-	minDMG = 1,
-	maxDMG = 5,
-}
 
 -- Event Schedule
 SCHEDULE_LOOT_RATE = 100
@@ -119,17 +95,18 @@ if not _G.NextUseStaminaTime then
 	_G.NextUseStaminaTime = {}
 end
 
--- Prey stamina
-if not _G.NextUsePreysTime then
-	_G.NextUsePreysTime = {}
-end
-
 if not _G.NextUseXpStamina then
 	_G.NextUseXpStamina = {}
 end
 
 if not _G.NextUseConcoctionTime then
 	_G.NextUseConcoctionTime = {}
+end
+
+-- Vaigu custom
+-- Prey stamina
+if not _G.NextUsePreysTime then
+	_G.NextUsePreysTime = {}
 end
 
 
@@ -145,19 +122,13 @@ elseif SAVE_INTERVAL_TYPE == "hour" then
 	SAVE_INTERVAL_TIME = 60 * 60 * 1000
 end
 
--- Increase Stamina & Soul when Attacking Trainer
+-- Increase Stamina when Attacking Trainer
 staminaBonus = {
-	target = "Training Dummy",
+	target = "Training Machine",
 	period = configManager.getNumber(configKeys.STAMINA_TRAINER_DELAY) * 60 * 1000, -- time on miliseconds trainers
 	bonus = configManager.getNumber(configKeys.STAMINA_TRAINER_GAIN), -- gain stamina trainers
 	eventsTrainer = {}, -- stamina in trainers
 	eventsPz = {}, -- stamina in Pz
-}
-
-soulBonus = {
-	target = "Training Dummy",
-	period = 1 * 75 * 1000, -- time on miliseconds trainers
-	eventsTrainer = {}, -- stamina in trainers
 }
 
 FAMILIARSNAME = {
@@ -166,41 +137,6 @@ FAMILIARSNAME = {
 	"druid familiar",
 	"paladin familiar",
 }
-
-function addSoulTrainingDummy(playerId, ...)
-	if not playerId then
-		return false
-	end
-	
-	if not configManager.getBoolean(configKeys.STAMINA_TRAINER) then
-		return false
-	end
-	
-	local player = Player(playerId)
-	
-	if not player then
-		soulBonus.eventsTrainer[playerId] = nil
-		return true
-	end
-	
-	local target = player:getTarget()
-	
-	if not target or target:getName() ~= soulBonus.target then
-		soulBonus.eventsTrainer[playerId] = nil
-		return true
-	end
-	
-	local maxsoul = player:isPremium() and 200 or 100
-	
-	if player:getSoul() < maxsoul then
-		player:addSoul(1)
-		player:sendTextMessage(MESSAGE_FAILURE, "One soul point has been restored.")
-	end
-	
-	soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.period, playerId)
-	return true
-end
-
 
 function addStamina(playerId, ...)
 	-- Creature:onTargetCombat

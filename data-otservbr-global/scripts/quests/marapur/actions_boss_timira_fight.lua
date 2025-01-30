@@ -85,6 +85,8 @@ local firstStageConfig = {
 		Position(33785, 32676, 10),
 	},
 	shallowWaterBorderIds = {
+		1722,
+		1723,
 		38125,
 		38134,
 		38130,
@@ -332,6 +334,7 @@ function timiraBucket.onUse(player, item, fromPosition, target, toPosition, isHo
 	return false
 end
 timiraBucket:id(firstStageConfig.sparklingBucketId, firstStageConfig.emptyBucketId, firstStageConfig.badWaterBucketId)
+timiraBucket:allowFarUse(true)
 timiraBucket:register()
 
 local corruptedWater = Action()
@@ -375,7 +378,7 @@ function timiraChest.onUse(player, item, fromPosition, target, toPosition, isHot
 		return false
 	end
 	table.insert(rewards[toPosition.z], player:getGuid())
-	local randValue = randomLootRoll(timiraFightConfig.getLootRandomModifier)
+	local randValue = getLootRandom(timiraFightConfig.getLootRandomModifier)
 	local itemName = timiraFightConfig.chestPossibleValuables[math.random(1, #timiraFightConfig.chestPossibleValuables)]
 	if randValue <= timiraFightConfig.chestEquipmentChance then
 		itemName = timiraFightConfig.chestPossibleEquipment[math.random(1, #timiraFightConfig.chestPossibleEquipment)]

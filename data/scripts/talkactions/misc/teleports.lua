@@ -1,35 +1,18 @@
-local talk = TalkAction("/d")
-function talk.onSay(player, words, param)
-	player:teleportTo(Position(5889, 1558, 7))
-	return false
-end
-talk:separator(" ")
-talk:groupType("gamemaster")
-talk:register()
+local keywordToPos = {
+	d = Position(5889, 1558, 7),
+	dqmain = Position(5227, 928, 8),
+	dqstart = Position(5228, 929, 9),
+	retro = Position(4759, 854, 7),
+}
 
-local talk = TalkAction("/dqmain")
-function talk.onSay(player, words, param)
-	player:teleportTo(Position(5227, 928, 8))
-	return false
+for keyword, pos in pairs(keywordToPos) do
+	local command = "/" .. keyword
+	local talkAction = TalkAction(command)
+	function talkAction.onSay(player, words, param)
+		player:teleportTo(pos)
+		return false
+	end
+	talkAction:separator(" ")
+	talkAction:groupType("gamemaster")
+	talkAction:register()
 end
-talk:separator(" ")
-talk:groupType("gamemaster")
-talk:register()
-
-local talk = TalkAction("/retro")
-function talk.onSay(player, words, param)
-	player:teleportTo(Position(4759, 854, 7))
-	return false
-end
-talk:separator(" ")
-talk:groupType("gamemaster")
-talk:register()
-
-local talk = TalkAction("/dqstart")
-function talk.onSay(player, words, param)
-	player:teleportTo(Position(5228, 929, 9))
-	return false
-end
-talk:separator(" ")
-talk:groupType("gamemaster")
-talk:register()

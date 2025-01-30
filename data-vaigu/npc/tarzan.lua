@@ -13,7 +13,7 @@ local dialogs = {
 		specialActionsOnSuccess = {
 			{
 				action = CreateTransportWindow,
-				transports = TRANSPORT_ROUTES.TARZAN_SHIP, --39f
+				transports = TRANSPORT_ROUTES.TARZAN_SHIP,
 				transportType = TRANSPORT_TYPE.SHIP,
 			},
 		},

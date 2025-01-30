@@ -34,19 +34,22 @@ end
 
 local function startConverter(playerId, converterItemId)
 	local player = Player(playerId)
-	if player then
-		local converter = player:getItemById(converterItemId, true)
-		if converter and converter:hasAttribute(ITEM_ATTRIBUTE_CHARGES) then
-			local charges = converter:getAttribute(ITEM_ATTRIBUTE_CHARGES)
-			if charges >= 1 then
-				if player:getItemCount(ITEM_GOLD_COIN) >= 100 or player:getItemCount(ITEM_PLATINUM_COIN) >= 100 then
-					findAndConvertCoins(player, player:getStoreInbox(), converter)
-				end
-				addEvent(startConverter, 300, playerId, converterItemId)
-			else
-				converter:remove(1)
-			end
+	if not player then
+		return
+	end
+	local converter = player:getItemById(converterItemId, true)
+	if not (converter and converter:hasAttribute(ITEM_ATTRIBUTE_CHARGES)) then
+		return
+	end
+	
+	local charges = converter:getAttribute(ITEM_ATTRIBUTE_CHARGES)
+	if charges >= 1 then
+		if player:getItemCount(ITEM_GOLD_COIN) >= 100 or player:getItemCount(ITEM_PLATINUM_COIN) >= 100 then
+			findAndConvertCoins(player, player:getStoreInbox(), converter)
 		end
+		addEvent(startConverter, 300, playerId, converterItemId)
+	else
+		converter:remove(1)
 	end
 end
 

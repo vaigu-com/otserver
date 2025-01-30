@@ -1,14 +1,13 @@
 ---@class Zone
----@field getByEncounter function
----@field getName function
----@field addArea function
----@field getPositions function
----@field getTiles function
----@field getCreatures function
----@field getPlayers function
----@field getMonsters function
----@field getNpcs function
----@field getItems function
+---@method getName
+---@method addArea
+---@method getPositions
+---@method getTiles
+---@method getCreatures
+---@method getPlayers
+---@method getMonsters
+---@method getNpcs
+---@method getItems
 Zone = Zone
 
 ---@param encounterData EncounterData
@@ -17,15 +16,9 @@ function Zone.getByEncounter(encounterData)
 end
 
 function Zone:randomPosition()
-	local walkable = {}
-	for _, pos in pairs(self:getPositions()) do
-		if pos:IsWalkable(false, false, false, false, true) then
-			table.insert(walkable, pos)
-		end
-	end
-
-	if #walkable == 0 then
-		logger.error("Zone:randomPosition() - Zone {} has no walkable positions", self:getName())
+	local positions = self:getPositions()
+	if #positions == 0 then
+		logger.error("Zone:randomPosition() - Zone {} has no positions", self:getName())
 		return nil
 	end
 
@@ -132,6 +125,7 @@ function ZoneEvent:register()
 			end
 			return self.beforeEnter(zone, creature)
 		end
+
 		beforeEnter:register()
 	end
 
