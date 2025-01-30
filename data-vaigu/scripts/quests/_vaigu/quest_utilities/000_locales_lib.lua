@@ -123,10 +123,11 @@ for key, value in pairs(LANGUAGES) do
 	MissingStrings[value] = {}
 end
 
+-- usage in-game: /lua missingStringsToFile()
 function missingStringsToFile()
 	for language, questIdToStr in pairs(MissingStrings) do
-		for questId, strToPesence in pairs(questIdToStr) do
-			for str in pairs(strToPesence) do
+		for questId, strToPresence in pairs(questIdToStr) do
+			for str in pairs(strToPresence) do
 				-- Construct the file path
 				local dirPath = ".\\missingStrings\\" .. language
 				local filePath = dirPath .. "\\" .. questId .. ".lua"
@@ -134,7 +135,7 @@ function missingStringsToFile()
 				-- Open the file in append mode
 				local file, err = io.open(filePath, "a+")
 				if not file then
-					print("Error opening file: " .. err)
+					logger.warn("[missingStringsToFile] Error opening file: " .. err)
 					return false
 				end
 

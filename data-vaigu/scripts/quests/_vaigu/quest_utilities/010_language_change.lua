@@ -325,7 +325,6 @@ do
 		return npcs
 	end
 	local file = io.open(DATA_DIRECTORY .. "/world/vaigu-npc.xml", "r")
-	print("dupadupaxddupadupaxddupadupaxd")
 	assert(file)
 	local content = file:read("*a")
 	file:close()
