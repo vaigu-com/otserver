@@ -149,27 +149,21 @@ monster.immunities = {
 }
 
 local function initialize(monster)
-	if monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.Initialized) == true then
+	if monster:getStorageValue(thePrimalMenaceConfig.Storage.Initialized) == true then
 		return
 	end
 
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.SpawnPos, monster:getPosition())
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.NextPodSpawn, os.time() + 20)
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.NextMonsterSpawn, os.time() + 10)
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts, {})
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.SpawnPos, monster:getPosition())
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.NextPodSpawn, os.time() + 20)
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.NextMonsterSpawn, os.time() + 10)
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts, {})
 
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.Initialized, true)
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.Initialized, true)
 end
 
 -- Functions for the fight
-mType.onAppear = function(monster, creature)
-	if monster:getId() == creature:getId() then
-		initialize(monster)
-	end
-
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
+mType.onSpawn = function(monster, spawnPosition)
+	initialize(monster)
 end
 
 local function getHazardPoints(monster)
@@ -194,7 +188,7 @@ local function setNextTimeToSpawn(monster, spawnStorageValue, spawnConfig, hazar
 	local interval = intervalBase * (intervalReductionPer10PercentHp ^ count10PercentHpMissing) * (intervalReductionPerHazard ^ hazardPoints)
 
 	local nextTimeToSpawn = os.time() + interval
-	monster:setStorageValueByKey(spawnStorageValue, nextTimeToSpawn)
+	monster:setStorageValue(spawnStorageValue, nextTimeToSpawn)
 end
 
 local function spawnCount(spawnConfig, hazardPoints)
@@ -215,7 +209,7 @@ local function getSpawnPosition(monster)
 	local attempt = 0
 	local spawnPosition = nil
 	local radius = thePrimalMenaceConfig.SpawnRadius
-	local centerPos = monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.SpawnPos)
+	local centerPos = monster:getStorageValue(thePrimalMenaceConfig.Storage.SpawnPos)
 
 	while not spawnPosition and attempt < attempts do
 		local centerX = centerPos.x
@@ -266,7 +260,7 @@ local function spawnPods(monster, hazardPoints)
 end
 
 local function handlePodSpawn(monster, hazardPoints)
-	local nextSpawn = monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.NextPodSpawn)
+	local nextSpawn = monster:getStorageValue(thePrimalMenaceConfig.Storage.NextPodSpawn)
 	if nextSpawn - os.time() < 0 then
 		spawnPods(monster, hazardPoints)
 
@@ -291,9 +285,9 @@ local function spawnMonster(monsterId, spawnPosition)
 		Created = os.time(),
 	}
 
-	local primalBeasts = monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts)
+	local primalBeasts = monster:getStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts)
 	table.insert(primalBeasts, primalBeastEntry)
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
 end
 
 local function spawnMonsters(monster, hazardPoints)
@@ -305,7 +299,7 @@ local function spawnMonsters(monster, hazardPoints)
 end
 
 local function handleMonsterSpawn(monster, hazardPoints)
-	local nextSpawn = monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.NextMonsterSpawn)
+	local nextSpawn = monster:getStorageValue(thePrimalMenaceConfig.Storage.NextMonsterSpawn)
 	if nextSpawn - os.time() < 0 then
 		spawnMonsters(monster, hazardPoints)
 
@@ -314,7 +308,7 @@ local function handleMonsterSpawn(monster, hazardPoints)
 end
 
 local function handlePrimalBeasts(monster)
-	local primalBeasts = monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts)
+	local primalBeasts = monster:getStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts)
 	local indexesToRemove = {}
 
 	for index, beastData in pairs(primalBeasts) do
@@ -337,11 +331,11 @@ local function handlePrimalBeasts(monster)
 		table.remove(primalBeasts, indexToRemove)
 	end
 
-	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
+	monster:setStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
 end
 
 mType.onThink = function(monster, interval)
-	if monster:getStorageValueByKey(thePrimalMenaceConfig.Storage.Initialized) == -1 then
+	if monster:getStorageValue(thePrimalMenaceConfig.Storage.Initialized) == -1 then
 		initialize(monster)
 	end
 

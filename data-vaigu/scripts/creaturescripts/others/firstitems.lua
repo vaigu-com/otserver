@@ -63,6 +63,9 @@ local starterItems = {
 			{ id = 3372, count = 1, dontAnnounce = true },
 			{ id = 3552, count = 1, dontAnnounce = true },
 			{ id = 3572, count = 1, dontAnnounce = true },
+			{ id = 7774, count = 1 },
+			{ id = 3327, count = 1 },
+			{ id = 7773, count = 1 },
 		},
 		toBackpack = {
 			{ id = 3003, count = 1, dontAnnounce = true },
@@ -78,46 +81,18 @@ local function setFreeTravels(player)
 	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRANSPORTS)
 end
 
-local knightWeaponChoices = {
-	Club = 3327,
-	Sword = 7774,
-	Axe = 7773,
-}
-local defaultWeapon = 7774
-
-local confirmStarterWeaponChoice = function(player, button, choice)
-	if not choice then
-		choice = { weaponType = defaultWeapon }
-		player:sendTextMessage(32, player:Localizer(LOCALIZERS.Universal):Get("Fine, i will choose your starter weapon then..."))
-	end
-
-	player:AddCustomItem({ id = choice.id })
-
-	CreateChooseLanguageWindow(player)
-end
-
-local function sendKnightStarterWeaponChoice(player)
-	local title = player:Localizer(LOCALIZERS.Universal):Get("Starter weapons")
-	local message = player:Localizer(LOCALIZERS.Universal):Get("Choose your starter weapon:")
-	local window = ModalWindow({ title = title, message = message })
-
-	for weaponType, id in pairs(knightWeaponChoices) do
-		local choice = window:addChoice(weaponType)
-		choice.weaponType = weaponType
-		choice.id = id
-	end
-
-	window:addButton(player:Localizer(LOCALIZERS.Universal):Get("ModalWindowOk"), confirmStarterWeaponChoice)
-	window:sendToPlayer(player)
-end
-
-local firstLogin = CreatureEvent("FirstLogin")
+local firstLogin = CreatureEvent("SendFirstItems")
 function firstLogin.onLogin(player)
 	if player:getLastLoginSaved() ~= 0 then
 		return true
 	end
 
 	setFreeTravels(player)
+
+	local backpack = player:addItem(2854)
+	if not backpack then
+		return true
+	end
 
 	local playerVocation = player:getVocation():getId()
 	local items = starterItems[playerVocation]
@@ -129,18 +104,11 @@ function firstLogin.onLogin(player)
 		player:AddCustomItem(item, nil)
 	end
 
-	local backpack = player:addItem(2854)
 	for _, item in pairs(items.toBackpack) do
 		player:AddCustomItem(item, backpack)
 	end
 
-	if player:getVocation():getId() ~= VOCATION.ID.KNIGHT then
-		CreateChooseLanguageWindow(player)
-		return true
-	end
-
-	sendKnightStarterWeaponChoice(player)
-
+	CreateChooseLanguageWindow(player)
 	return true
 end
 

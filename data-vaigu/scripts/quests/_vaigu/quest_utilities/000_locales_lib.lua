@@ -24,6 +24,7 @@ LOCALIZERS = {
 	LiquidBlack = "liquid_black",
 	LocalSupport = "local_support",
 	LuaRaids = "lua_raids",
+	MapMark = "map_mark",
 	Minigames = "minigames",
 	NpcName = "npc_name",
 	PathOfTheUndead = "path_of_the_undead",

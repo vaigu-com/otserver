@@ -17,6 +17,7 @@ local function getJobConfigs(jobs)
 	return totalShop, totalDialogs
 end
 
+
 ---@param internalNpcName string string REQUIRED
 ---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
 ---@param npcDescription string? optional - greentext when using look on npc, Default: "a " + internalNpcName

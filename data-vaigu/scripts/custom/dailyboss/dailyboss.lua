@@ -164,7 +164,7 @@ DailyBossonDeath:register()
 local dailyBoss = GlobalEvent("daily boss")
 function dailyBoss.onTime(interval)
 	local playerCount = Game.getPlayerCount()
-	if playerCount >= config.minPlayers and DAY_SINCE_START >= 2 then
+	if playerCount >= config.minPlayers and DAYS_SINCE_START >= 2 then
 		runDailyBoss()
 	end
 end

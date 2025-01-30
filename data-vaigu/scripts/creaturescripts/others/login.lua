@@ -2,9 +2,9 @@ local function sendBoostMessage(player, category, isIncreased)
 	return player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Event! %s is %screased. Happy Hunting!", category, isIncreased and "in" or "de"))
 end
 
-local playerLoginGlobal = CreatureEvent("PlayerLogin")
+local playerLoginVaigu = CreatureEvent("PlayerLoginVaigu")
 
-function playerLogin.onLogin(player)
+function playerLoginVaigu.onLogin(player)
 	local afterLoginStr = player:Localizer(LOCALIZERS.Universal):Get("YOUR_LAST_VISIT")
 	local commandStr = player:Localizer(LOCALIZERS.Universal):Get("LIST_AVAILABLE_COMMANDS")
 	local welcomeStr = player:Localizer(LOCALIZERS.Universal):Get("WELCOME_TO_SERVER")
@@ -152,9 +152,7 @@ function playerLogin.onLogin(player)
 
 	player:TryResetDailyTaskCounter()
 
-	-- Legacy
-	--player:loadSpecialStorage()
-
 	return true
 end
-playerLogin:register()
+
+playerLoginVaigu:register()

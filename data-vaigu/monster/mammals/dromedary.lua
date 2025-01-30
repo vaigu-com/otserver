@@ -60,9 +60,8 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
+	isPreyExclusive = true,
 }
-
-monster.events = {}
 
 monster.light = {
 	level = 0,
