@@ -171,7 +171,7 @@
 	<npc centerx="5869" centery="1558" centerz="7" radius="3">
 		<npc name="Fstab" x="1" y="-3" z="7" spawntime="90" direction="2" />
 	</npc>
-	<npc centerx="5895" centery="1563" centerz="7" radius="3">
+	<npc centerx="5845" centery="1588" centerz="7" radius="3">
 		<npc name="Anon's father" x="0" y="0" z="7" spawntime="90" direction="2" />
 	</npc>
 	<npc centerx="5876" centery="1565" centerz="7" radius="3">
