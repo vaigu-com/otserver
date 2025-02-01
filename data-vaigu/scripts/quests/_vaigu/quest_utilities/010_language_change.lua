@@ -225,7 +225,7 @@ local jobToMarkId = {
 }
 
 local jobToDescription = {
-	[JOB_NONE] = nil,
+	--[JOB_NONE] = nil,
 	[JOB_DISTANCE_SOULORB] = "Distance shop",
 	[JOB_SOULORB] = "Distance shop",
 	[JOB_DISTANCE] = "Distance shop",
@@ -310,7 +310,8 @@ local choseNewLanguage = {
 
 local positionToMarkData = {}
 
-do
+local loadMarks = GlobalEvent("LoadPositionToMarkData")
+function loadMarks.onStartup()
 	local function parseNpcXML(xml)
 		local npcs = {}
 		for npcBlock in xml:gmatch("<npc(.-)</npc>") do
@@ -325,24 +326,33 @@ do
 		return npcs
 	end
 	local file = io.open(DATA_DIRECTORY .. "/world/vaigu-npc.xml", "r")
-	assert(file)
+	if not file then
+		logger.error("[LoadPositionToMarkData] error reading npc file. Marks were not loaded.")
+		return
+	end
 	local content = file:read("*a")
 	file:close()
-	local npcXml = parseNpcXML(content)
-	for _, npc in pairs(npcXml) do
+	local npcsOnMap = parseNpcXML(content)
+	for _, npc in pairs(npcsOnMap) do
 		local pos = Position(npc.x, npc.y, npc.z)
 
 		local markIcon = npcToMarkIcon[npc.name]
 		local markDescription = npcToMarkDescription[npc.name]
+
+		if not markIcon then
+			logger.warn(T("[LoadPositionToMarkData] Npc :name: is not registered or is in old system.",{name=npc.name}))
+			goto continue
+		end
 		positionToMarkData[pos] = { markIcon = markIcon, markDescription = markDescription }
+	    ::continue::
 	end
 end
+loadMarks:register()
 
 local function trySetMarks(player)
-	local lang = player:getLanguage()
-	for _, mark in pairs(positionToMarkData) do
-		local translatedDescription = Translated(mark.description, player, LOCALIZERS.MapMark)
-		player:addMapMark(mark.position, mark.markIcon, translatedDescription)
+	for pos, mark in pairs(positionToMarkData) do
+		local translatedDescription = Translated(mark.markDescription, player, LOCALIZERS.MapMark)
+		player:addMapMark(pos, mark.markIcon, translatedDescription)
 	end
 end
 
