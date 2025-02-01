@@ -167,6 +167,9 @@ function translatedFromAnyQuest(string, language, localizer)
 end
 
 function Translated(str, player, localizer)
+	if not str then
+		logger.error(debug.traceback("[Translated] no str provided"))
+	end
 	local targetLanguage = player:getLanguage()
 	return translatedFromSpecificQuest(str, localizer, targetLanguage) or translatedFromAnyQuest(str, targetLanguage)
 end
