@@ -115,7 +115,7 @@ function ResolutionContext:TriggerSpecialActions()
 
 	for _, context in pairs(actions.specialActionsOnSuccess) do
 		local action = context.action
-		local actionContext = MergedTable(action, self)
+		local actionContext = MergedTable(context, self)
 		action(actionContext)
 	end
 end
