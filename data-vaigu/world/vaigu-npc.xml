@@ -176,13 +176,16 @@
 	<npc centerx="6562" centery="697" centerz="7" radius="1">
 		<npc name="Ornuld" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="6562" centery="702" centerz="7" radius="3">
+	<npc centerx="6562" centery="702" centerz="7" radius="1">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="6731" centery="706" centerz="7" radius="1">
 		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6880" centery="764" centerz="7" radius="1">
 		<npc name="Mundral" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="7040" centery="837" centerz="7" radius="3">
+	<npc centerx="7040" centery="837" centerz="7" radius="1">
 		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="4400" centery="878" centerz="7" radius="1">
