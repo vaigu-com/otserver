@@ -135,10 +135,10 @@
 	<npc centerx="6006" centery="1278" centerz="6" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="6702" centery="1318" centerz="6" radius="3">
-		<npc name="Tushar" x="0" y="-1" z="6" spawntime="60" />
+	<npc centerx="6702" centery="1317" centerz="6" radius="1">
+		<npc name="Tushar" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="6712" centery="1318" centerz="6" radius="3">
+	<npc centerx="6712" centery="1318" centerz="6" radius="1">
 		<npc name="Nadia France" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="6335" centery="1357" centerz="6" radius="1">
