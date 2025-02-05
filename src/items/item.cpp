@@ -28,6 +28,8 @@
 #include "lua/creature/actions.hpp"
 #include "map/house/house.hpp"
 
+#include "server/network/protocol/protocolgame.hpp"
+
 #define ITEM_IMBUEMENT_SLOT 500
 
 Items Item::items;

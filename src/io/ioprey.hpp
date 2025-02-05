@@ -12,15 +12,15 @@
 // TODO: Remove circular includes (maybe shared_ptr?)
 #include "server/network/message/networkmessage.hpp"
 
+#include "config/configmanager.hpp"
+
+#include "utils/tools.hpp"
+
 class PreySlot;
 class TaskHuntingSlot;
 class TaskHuntingOption;
 class NetworkMessage;
 class Player;
-
-static const std::unique_ptr<PreySlot> &PreySlotNull {};
-static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
-static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
 
 static const uint8_t PreyGridSize = 9;
 
@@ -545,5 +545,9 @@ public:
 		"White Lion", "Werelion", "Werelioness"
 	};
 };
+
+static const std::unique_ptr<PreySlot> &PreySlotNull {};
+static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
+static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
 
 constexpr auto g_ioprey = IOPrey::getInstance;

@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include "pch.hpp"
 #include "utils/transparent_string_hash.hpp"
 
 namespace spdlog {
