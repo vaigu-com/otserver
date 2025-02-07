@@ -64,7 +64,7 @@ return {
 	["Honkler"] = "Kaczynski",
 	["Kalyana"] = "Kalyana",
 	["Klaus Schwab"] = "Klaus Schwab",
-	["commissioner Fisher"] = "Komisarz Ryba",
+	["Commissioner Fisher"] = "Komisarz Ryba",
 	["Komor"] = "Komor",
 	["Konmuld"] = "Konmuld",
 	["Constance"] = "Konstanty",
