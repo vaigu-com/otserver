@@ -399,6 +399,7 @@ setmetatable(ResolutionContext, {
 	end,
 })
 
+---@return ResolutionContext ResolutionContext
 function ResolutionContext.FromDialogContext(context, data)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
