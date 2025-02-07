@@ -37,6 +37,7 @@ void ItemFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Item", "getUniqueId", ItemFunctions::luaItemGetUniqueId);
 	Lua::registerMethod(L, "Item", "getActionId", ItemFunctions::luaItemGetActionId);
 	Lua::registerMethod(L, "Item", "setActionId", ItemFunctions::luaItemSetActionId);
+	Lua::registerMethod(L, "Item", "getKey", ItemFunctions::luaItemGetKey);
 
 	Lua::registerMethod(L, "Item", "getCount", ItemFunctions::luaItemGetCount);
 	Lua::registerMethod(L, "Item", "getCharges", ItemFunctions::luaItemGetCharges);
