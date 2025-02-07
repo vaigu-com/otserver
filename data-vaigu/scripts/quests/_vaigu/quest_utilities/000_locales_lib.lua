@@ -89,6 +89,11 @@ function translatedFromAnyQuest(string, language, localizer)
 end
 local function translate(str, player, localizer) end
 
+
+---@class Localizer
+---@field player Player
+---@field questId integer
+---@field context table?
 Localizer = {}
 Localizer.__index = Localizer
 function Localizer:New(player, questId)
@@ -117,7 +122,7 @@ function Localizer:Get(translateMe)
 		translateMe = translateMe[math.random(1, #translateMe)]
 	end
 
-	local targetLanguage = player:getLanguage()
+	local targetLanguage = self.player:getLanguage()
 	local translated = translatedFromSpecificQuest(translateMe, self.questId, targetLanguage) or translatedFromAnyQuest(translateMe, targetLanguage)
 	self.translated = Evaluate(translated, self.context)
 	return self.translated
