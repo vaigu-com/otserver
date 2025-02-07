@@ -73,33 +73,19 @@ local function normalizeItemData(itemData, anchor)
 	return context
 end
 
-local function hasId(context)
-	return context.id
-end
-
----@deprecated
 local function registerOnUseDeclaration(context, anchor)
 	context = normalizeItemData(context, anchor)
-	logger.warn("[loadStartupItem] is deprecated, item id: " .. context.id)
-	-- CustomItemRegistry:Register(context)
-
-	local itemHasId = false
-	if hasId(context) then
-		itemHasId = true
-	end
-
-	if itemHasId then
-		print("---------------------")
-		if itemHasId then
-			logger.warn("[loadStartupItem] item has id. Not registering.")
-		end
-		PrintAnything(context)
-		return
-	end
-
 	local action = Action()
 	function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-		ResolutionContext.FromCustomItemState(context):Resolve()
+		local resolutionContext = ResolutionContext.FromCustomItemState(context)
+		resolutionContext:SetPlayer(player)
+		resolutionContext:SetTargetItem(item)
+		resolutionContext:SetTargetCreature(target)
+		local status = resolutionContext:Resolve()
+		if status ~= SUCCESS_RESOLVE then
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("The :itemName: is empty.", { itemName = ItemType(item:getId()	):getName() }))
+			return OPEN_CONTAINER_ON_USE
+		end
 	end
 	action:key(context.key)
 	action:register()
