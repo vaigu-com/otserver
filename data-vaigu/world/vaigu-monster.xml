@@ -14498,6 +14498,9 @@
 	<monster centerx="5810" centery="1313" centerz="6" radius="1">
 		<monster name="Orc Rider" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="5935" centery="1313" centerz="6" radius="1">
+		<monster name="Minotaur" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6110" centery="1313" centerz="6" radius="1">
 		<monster name="Insect Swarm" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -14513,12 +14516,8 @@
 	<monster centerx="5839" centery="1314" centerz="6" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="5927" centery="1314" centerz="6" radius="1">
-		<monster name="Minotaur" x="0" y="0" z="6" spawntime="60" />
-		<monster name="Minotaur Guard" x="-1" y="1" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="5934" centery="1314" centerz="6" radius="1">
-		<monster name="Minotaur Guard" x="0" y="0" z="6" spawntime="60" />
+	<monster centerx="5928" centery="1314" centerz="6" radius="1">
+		<monster name="Minotaur" x="-1" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6117" centery="1314" centerz="6" radius="1">
 		<monster name="Swarmer" x="0" y="0" z="6" spawntime="60" />

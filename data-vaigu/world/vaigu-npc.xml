@@ -233,7 +233,9 @@
 	<npc centerx="5786" centery="1434" centerz="7" radius="3">
 		<npc name="Estep" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="5899" centery="1474" centerz="7" radius="3" />
+	<npc centerx="5899" centery="1474" centerz="7" radius="3">
+		<npc name="Cordell Walker" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5966" centery="1481" centerz="7" radius="1">
 		<npc name="A Sweaty Cyclops" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -290,7 +292,7 @@
 	</npc>
 	<npc centerx="5845" centery="1588" centerz="7" radius="3" />
 	<npc centerx="5893" centery="1588" centerz="7" radius="3">
-		<npc name="The Great Tracker" x="0" y="-1" z="7" spawntime="90" direction="2" />
+		<npc name="The Great Tracker" x="0" y="0" z="7" spawntime="90" direction="2" />
 	</npc>
 	<npc centerx="5822" centery="1591" centerz="7" radius="1" />
 	<npc centerx="5887" centery="1600" centerz="7" radius="3">
