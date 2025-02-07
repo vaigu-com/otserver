@@ -6,7 +6,6 @@
 ---@field scripts table
 ---@field npcs table
 ---@field onUseDeclarations table
----@field startupNpcs table
 ---@field questlog table
 ---@field currentMission integer
 ---@field missions table
@@ -43,7 +42,6 @@ QUEST_SCRIPT_TYPE = {
 	DIALOG = "DIALOG",
 	CUSTOM_SCRIPT = "CUSTOM_SCRIPT",
 	ON_USE_DECLARATION = "ON_USE_DECLARATION",
-	STARTUP_SCRIPT = "STARTUP_SCRIPT",
 }
 
 --#region Immediate execution
@@ -155,29 +153,13 @@ function Quest:AddOnUseDeclaration(context)
 	local mission, state = context.mission, context.state
 
 	for _, item in pairs(items) do
-		if item.nextState or item.content then
-			item.requiredState = item.requiredState or { [mission] = state }
-		end
+		item.requiredState = item.requiredState or { [mission] = state } -- default: onUse requiredState is exact mission state it was declared in
 	end
 
 	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
 	return self
 end
 --#endregion
-
---[[
-function Quest:StartupNpcs(npcs, anchor)
-	self.startupNpcs[npcs] = anchor
-	return self
-end
-function Quest:Npc(name, context)
-	self.npcs[name].context = self.npcs[name].context or {}
-	for key, value in pairs(context) do
-		self.npcs[name].context[key] = value
-	end
-	return self
-end
-]]
 
 function Quest:Mission(mission)
 	self.currentMission = mission
@@ -199,7 +181,7 @@ function Quest:Register()
 	QuestRegistry:Register(self)
 end
 
-local function normalizeQuestlogData()
+local function normalizeQuestlog()
 	for _, quest in pairs(Quests) do
 		quest.questId = NextQuestId()
 		IdToQuest[quest.questId] = quest
@@ -227,7 +209,7 @@ local function normalizeQuestlogData()
 end
 
 local storageToMaxState = {}
-local function extractExtraQuestlogData()
+local function questlogLookups()
 	for _, quest in pairs(Quests) do
 		for _, mission in pairs(quest.missions) do
 			storageToMaxState[mission.storage] = mission.maxState
@@ -271,7 +253,7 @@ function QuestRegistry:CreateQuestlog()
 		quest.questlog()
 	end
 end
-function QuestRegistry:CreateMonsterEvent()
+function QuestRegistry:CreateMonstersEvents()
 	for _, quest in pairs(self.registry) do
 		for _, monsterEvent in pairs(quest.monsterEvents) do
 			monsterEvent()
@@ -285,7 +267,7 @@ function QuestRegistry:CreateEncounters()
 		end
 	end
 end
-function QuestRegistry:CreateMonster()
+function QuestRegistry:CreateMonsters()
 	for _, quest in pairs(self.registry) do
 		for _, monster in pairs(quest.monsters) do
 			monster()
@@ -312,17 +294,6 @@ function QuestRegistry:RegisterOnUseDeclarations()
 	end
 	onUseDeclarations:register()
 end
-function QuestRegistry:CreateStartupNpcs()
-	local startupNpcs = GlobalEvent("QuestSystemCreateStartupNpcs")
-	function startupNpcs.onStartup()
-		for _, quest in pairs(self.registry) do
-			for npcs, anchor in pairs(quest.startupNpcs) do
-				LoadStartupNpcs(npcs, anchor)
-			end
-		end
-	end
-	startupNpcs:register()
-end
 function QuestRegistry:RunScripts()
 	for _, quest in pairs(self.registry) do
 		for _, scriptData in pairs(quest.scripts) do
@@ -331,31 +302,18 @@ function QuestRegistry:RunScripts()
 		end
 	end
 end
-function QuestRegistry:RegisterStartupScripts()
-	local startupScripts = GlobalEvent("QuestSystemRegisterStartupScripts")
-	function startupScripts.onStartup()
-		for _, quest in pairs(self.registry) do
-			for _, scriptData in pairs(quest.startupScripts) do
-				local script = scriptData.script
-				script({ mission = scriptData.mission, state = scriptData.state })
-			end
-		end
-	end
-	startupScripts:register()
-end
 
 function QuestRegistry:RegisterQuestData()
 	self:UnpackStateData()
 	self:CreateQuestlog()
-	self:CreateMonsterEvent()
-	self:CreateMonster()
+	self:CreateMonstersEvents()
+	self:CreateMonsters()
 	self:CreateEncounters()
 	self:RegisterNpcData()
 	self:RegisterOnUseDeclarations()
 	self:RunScripts()
-	self:RegisterStartupScripts()
-	normalizeQuestlogData()
-	extractExtraQuestlogData()
+	normalizeQuestlog()
+	questlogLookups()
 end
 
 function QuestRegistry:Register(quest)
