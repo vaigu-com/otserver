@@ -1727,6 +1727,13 @@ quest
 				end
 				waterfallLever:key(Storage.ProdigalSon.BlackBoardLever2)
 				waterfallLever:register()
+
+				local blackboardLook = Look()
+				function blackboardLook.onLook(player, item)
+					player:sendTextMessage(MESSAGE_LOOK, player:getStorageValue(Storage.ProdigalSon.Blackboard))
+				end
+				blackboardLook:key(Storage.ProdigalSon.Blackboard)
+				blackboardLook:register()
 			end),
 			QuestFactory.StartupItems({
 				{ pos = { -174, 5, 5 }, id = 1717, actionid = 0 },
