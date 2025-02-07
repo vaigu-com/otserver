@@ -21,6 +21,8 @@
 #include "lua/callbacks/events_callbacks.hpp"
 #include "map/spectators.hpp"
 
+#include "lua/scripts/scripts.hpp"
+
 int32_t Monster::despawnRange;
 int32_t Monster::despawnRadius;
 
