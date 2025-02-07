@@ -154,7 +154,7 @@ return {
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("You have :freeSails: free sail admits\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("You have :freeTravels: free sail admits\n", { freeTravels = freeTravels })
 		end
 		finalString = finalString .. "Where would you like to sail?"
 		return finalString
@@ -164,7 +164,7 @@ return {
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("You have :freeFlight: free flght admits\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("You have :freeTravels: free flght admits\n", { freeTravels = freeTravels })
 		end
 		finalString = finalString .. "Where would you like to fly?"
 		return finalString

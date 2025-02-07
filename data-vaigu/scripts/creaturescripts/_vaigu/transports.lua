@@ -1,4 +1,4 @@
-FREE_TRANSPORTS = 10
+FREE_TRAVELS_NUMBER = 10
 
 TRANSPORT_TYPE = {
 	SHIP = "TRANSPORT_TYPE.SHIP",
@@ -80,7 +80,10 @@ function CreateTransportWindow(context)
 
 	for _, transportConfig in pairs(transports) do
 		if hasAccess(player, transportConfig) then
-			local translatedName = player:Localier(LOCALIZERS.Universal):Get(transportConfig.name)
+			local translatedName = player:Localizer(LOCALIZERS.Universal):Get(transportConfig.name)
+			if not translatedName then
+				translatedName = transportConfig.name
+			end
 			local choice = window:addChoice(translatedName)
 			choice.minLevel = transportConfig.minLevel
 			choice.toPos = transportConfig.toPos
@@ -102,7 +105,7 @@ SHIP_ROUTES_RUDOBRODY = {
 TRANSPORT_ROUTES = {
 	ALI_BABA_CARPET = {
 		{ toPos = Position(7273, 1104, 3), name = "Maioor'ka" },
-		{ toPos = Position(7027, 1201, 2), name = "Yellow Hills" },
+		{ toPos = Position(7027, 1201, 2), name = "Cairo Fornia" },
 		{ toPos = Position(7477, 1775, 6), name = "Orshaawa" },
 		{ toPos = Position(6739, 1280, 4), name = "Hurghada" },
 		{ toPos = Position(6972, 784, 4), name = "Kongo" },
@@ -110,10 +113,11 @@ TRANSPORT_ROUTES = {
 	},
 	REDBEARD_SHIP = {
 		{ toPos = Position(6335, 1357, 6), name = "Wyrm Cliffs" },
-		{ toPos = Position(), name = "Pirate Island" },
+		{ toPos = Position(6750, 2584, 6), name = "Pirate Island" },
 		{ toPos = Position(5689, 1465, 6), name = "Phantom Port" },
-		{ toPos = Position(5701, 1832, 7), name = "South knurow PLACEHOLDER_VAIGU"},
-		{ toPos = Position(6846, 1425, 6), name = "Hurghada PLACEHOLDER_VAIGU"}
+		{ toPos = Position(5701, 1832, 7), name = "South knurow PLACEHOLDER_VAIGU" },
+		{ toPos = Position(6846, 1425, 6), name = "Hurghada PLACEHOLDER_VAIGU" },
+		{ toPos = Position(6336, 1358, 6), name = "Hello Kitty Island Vicinities PLACEHOLDER_VAIGU" },
 	},
 	CRISTOPHER_COLUMBUS_SHIP = {
 		{ toPos = Position(5909, 1233, 6), name = "North Mirko" },
@@ -135,8 +139,10 @@ TRANSPORT_ROUTES = {
 		{ toPos = Position(7933, 1546, 6), name = "Bydgoshch" },
 	},
 	TARZAN_SHIP = {
-		"PLACEHOLDER_VAIGU"
-	}
+		{ toPos = Position(7038, 837, 7), name = "Kongo" },
+		{ toPos = Position(6563, 701, 7), name = "Ornuld Camp" },
+		{ toPos = Position(6730, 705, 7), name = "Heart of the Jungle" },
+	},
 }
 
 TRANSPORT_ROUTES_ALI_BABA = {}
