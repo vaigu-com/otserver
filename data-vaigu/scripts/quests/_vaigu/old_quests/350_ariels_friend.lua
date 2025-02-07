@@ -225,7 +225,7 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = 5499,  key = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
 			})
 	end)
@@ -246,7 +246,7 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ArielsFriend.LoveIsInTheAir.StealElixir, QuestFactory.StartupItems({
+		return QuestState.ArielsFriend.LoveIsInTheAir.StealElixir, QuestFactory.OnUseDeclaration({
 			{ id = 8998,  key = Storage.ArielsFriend.ElixirStand, rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw } },
 		})
 	end)

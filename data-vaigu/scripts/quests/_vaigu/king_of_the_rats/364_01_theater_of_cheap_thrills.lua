@@ -670,7 +670,7 @@ quest
 					text = "Hello, |PLAYERNAME|. Do you have the special cheese I asked for?",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 2472,
@@ -791,7 +791,7 @@ quest
 					text = "The book is hidden behind magical mechanisms, deep within the caverns of the Stone Golems on Hurghad Island. The machines inside were created by someone named -stein, so take lot of gold coins with you.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = TEATR_TANIEJ_SENSACJI_PLUS_SHAPE.book.lit, -- dont change
 					key = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book, -- dont change

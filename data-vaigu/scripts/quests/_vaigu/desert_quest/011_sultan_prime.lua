@@ -453,7 +453,7 @@ quest
 	:Mission(Storage.SultanPrime.Mission01)
 	:State(function()
 		return MISSION_NOT_STARTED,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, key = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
 			}),
 			QuestFactory.Script(function(missionState)

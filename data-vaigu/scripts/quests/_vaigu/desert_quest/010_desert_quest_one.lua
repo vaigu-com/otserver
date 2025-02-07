@@ -609,7 +609,7 @@ quest
 				local desertQuestInit = GlobalEvent("desertQuestOneInit")
 				function desertQuestInit.onStartup()
 					for key, value in pairs(startupItems) do
-						LoadStartupItems(value, DESERT_QUEST_ONE_ANCHOR)
+						RegisterOnUseDeclaration(value, DESERT_QUEST_ONE_ANCHOR)
 					end
 
 					LoadDesertQuestBooks()

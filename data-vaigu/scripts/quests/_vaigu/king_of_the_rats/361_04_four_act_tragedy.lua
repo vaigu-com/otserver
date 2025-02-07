@@ -911,7 +911,7 @@ quest
 				panpipeLever:key(Storage.FourActTragedy.FanfareLever)
 				panpipeLever:register()
 			end),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 31649,
 					key = Storage.FourActTragedy.Rewards.TimmyBag,
@@ -921,7 +921,7 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 11809,
@@ -959,7 +959,7 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 4073,
@@ -1110,7 +1110,7 @@ quest
 			QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
 				text = "Ruins are located in the northern part of Kongo",
 			} }),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 1983,
@@ -1235,7 +1235,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission05.KillRatBum, QuestFactory.Dialog("Grazhena", { [{ "mission" }] = {
 			text = "Cave entrance is just before the cell. Im gonna wait here.",
-		} }), QuestFactory.StartupItems({
+		} }), QuestFactory.OnUseDeclaration({
 			{
 				id = 18021,
 				key = Storage.FourActTragedy.Rewards.GrazynaCore,

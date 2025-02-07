@@ -366,10 +366,10 @@ quest
 				map:key(Storage.WayOfTheDruid.SandniggerMap)
 				map:register()
 			end),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 213,
-					
+
 					key = Storage.WayOfTheDruid.BuriedIncantation,
 					nextState = {
 						[Storage.WayOfTheDruid.RudeEviction] = QuestState.WayOfTheDruid.RudeEviction.ReportToSandnigger,
@@ -442,7 +442,7 @@ quest
 				knife:key(Storage.WayOfTheDruid.BenekKnife)
 				knife:register()
 			end)
-end)
+	end)
 	:State(function()
 		return QuestState.WayOfTheDruid.TakenBenek.ReportToEstep,
 			QuestFactory.Dialog("Estep", {
@@ -496,7 +496,7 @@ end)
 	end)
 	:State(function()
 		return QuestState.WayOfTheDruid.SecretIngredient.FindWyrmEgg,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					key = Storage.WayOfTheDruid.WyrmEgg,
 					nextState = {

@@ -764,7 +764,7 @@ quest
 					text = "You can see them from our current location. Be careful; spirited water is only ordinary pastime, but rum on the other hand... It's their holy grail.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 2484,
 					key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
@@ -954,7 +954,7 @@ quest
 					text = "Tourists in such a place are an easy target. I told one of the nomads that we wouldn't renovate their old town. Maybe you can offer him something in exchange for information. Currently, they're camped on one of the rocks in the north.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 7805,
@@ -988,7 +988,7 @@ quest
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission07)
 	:State(function()
 		return { min = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles },
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 3064,
 					
@@ -1037,7 +1037,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindThreeMagicRunes,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 11809,

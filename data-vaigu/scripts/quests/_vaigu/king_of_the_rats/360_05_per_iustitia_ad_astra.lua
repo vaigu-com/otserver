@@ -746,7 +746,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission01.CollectShipParts,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 16182,
@@ -780,7 +780,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission01.FindEnginePlansAndMaps,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 853,
 					key = Storage.PerIustitiaAdAstra.KeyItems.EngineBlueprint,
@@ -1336,7 +1336,7 @@ quest
 					text = "I don't know what kind of gigachads those thieves must have been to move a crate of that weight.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 11810,
@@ -1396,7 +1396,7 @@ quest
 					text = "Go to the coachman's room now. There are probably various keys and uniforms stored there. It's on the upper floors of this building.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 17355,
@@ -1504,7 +1504,7 @@ quest
 					text = "Unfortunately, I lost the key to the library. I'm afraid you'll have to find another way to get upstairs and find that {recipe}. Maybe try being a Spider-Man.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 2482,
@@ -1536,7 +1536,7 @@ quest
 					text = "I have another task for you. You've probably noticed that the castle is overrun by partygoers. They're no nobles, so they don't know how to behave. They recently damaged part of the castle in the east wing. I hired no one other than Boguslaw Lecina to repair it. Now, not only do I have a damaged wall, but there are also grooves from the sanding. Or maybe it's just residue from his cigarettes that settled on the wall? It's not important. Find his toolbox and take one hammer from it. Then go to the waterworks and loosen the valve in the lower part. There's so much mess and I dont even know what else, that we can't flush corpses down the toilet anymore.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{  id = 30304, key = Storage.PerIustitiaAdAstra.KeyItems.LecinaHammer, rewards = { QuestKeyItems.PerIustitiaAdAstra.LecinaHammer } },
 			}, HUGO_BEACH_PLANET_ANCHOR),
 			QuestFactory.Script(function(missionState)
@@ -1808,7 +1808,7 @@ quest
 	end)
 	:State(function()
 		return { min = QuestState.PerIustitiaAdAstra.Mission05.ReportToAstralJanus },
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 3503,
 					key = Storage.KingOfRatsHQ.Items.Antigone,

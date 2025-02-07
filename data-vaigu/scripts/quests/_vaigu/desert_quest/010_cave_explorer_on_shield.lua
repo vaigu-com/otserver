@@ -69,7 +69,7 @@ quest
 	:Mission(Storage.CaveExplorerOnShield.Mission01)
 	:State(function()
 		return MISSION_NOT_STARTED,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = 4241, key = Storage.CaveExplorerOnShield.GermiCorpse, rewards = { QuestKeyItems.CaveExplorerOnShield.Firebug } },
 			}, DESERT_QUEST_ONE_ANCHOR),
 			QuestFactory.Script(function(missionState)
@@ -220,7 +220,7 @@ quest
 			QuestFactory.Dialog("Ghost of Germi the Journeyman", { [{ GREET }] = {
 				text = "Please come back with something of mine.",
 			} }),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 2484,
 					key = Storage.CaveExplorerOnShield.GermiChest,

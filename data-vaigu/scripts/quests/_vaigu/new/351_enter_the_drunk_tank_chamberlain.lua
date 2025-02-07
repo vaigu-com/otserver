@@ -197,7 +197,7 @@ quest
 				hallucinogen:key(Storage.EnterTheDrunkTankChamberlain.Hallucinogen)
 				hallucinogen:register()
 			end),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 2438,
 					key = Storage.EnterTheDrunkTankChamberlain.Bookcase,

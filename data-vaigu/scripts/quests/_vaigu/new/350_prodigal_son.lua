@@ -1211,7 +1211,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission04.FindingEristicsBooks,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 2438,
@@ -1336,7 +1336,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission05.FindingDwarfNecklace,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 4169,
@@ -1367,7 +1367,7 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ProdigalSon.Mission05.CheckingOnSilo, QuestFactory.StartupItems({
+		return QuestState.ProdigalSon.Mission05.CheckingOnSilo, QuestFactory.OnUseDeclaration({
 			{
 				
 				id = 843,
@@ -1390,7 +1390,7 @@ quest
 			})
 	end)
 	:State(function()
-		return { min = QuestState.ProdigalSon.Mission05.CheckedOnSilo }, QuestFactory.StartupItems({
+		return { min = QuestState.ProdigalSon.Mission05.CheckedOnSilo }, QuestFactory.OnUseDeclaration({
 			{
 				id = 11809,
 				key = Storage.KingOfRatsHQ.Items.Cultivator,
@@ -1400,7 +1400,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission05.EscortingFredi,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					
 					id = 5468,

@@ -188,7 +188,7 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves, QuestFactory.StartupItems({
+		return QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves, QuestFactory.OnUseDeclaration({
 			{
 				id = 405,
 				key = Storage.ToCarryThePigs.SmugglingListChest,
@@ -239,7 +239,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 28462,
 					key = Storage.ToCarryThePigs.SmuggledLegsChest,
@@ -294,7 +294,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 15639,
 					

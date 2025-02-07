@@ -1910,20 +1910,24 @@ quest
 				beforeSparks:type("stepin")
 				beforeSparks:register()
 			end),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = 28179, key = Storage.DesertQuestTwo.Rewards.ExpReward, expReward = 1000 * 500, rewards = {} },
 				{ id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestOne, expReward = 1000 * 500, rewards = { { id = 3029, count = 50 }, { id = 5785 }, { id = 3438 } } },
 				{ id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 3043, count = 4 } } },
 				--{  id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 2971, key = Storage.DesertQuestThree.AccessKey }, { id = 6118, key = Storage.DesertQuestThree.AccessMap } } },
 			}, DESERT_QUEST_TWO_ANCHOR),
-			QuestFactory.StartupScript(function()
-				InitializeDQ2chests()
-				InitializeDQ2Labryrinth()
-				InitializeDQ2FifteenPuzzle()
-				InitializeDQ2PipePuzzle()
-				InitializeDQ2IndeticalRooms()
-				InitializeDQ2RubiksCube()
-				InitializeDQ2orbs()
+			QuestFactory.Script(function()
+				local encounterLeverInit = GlobalEvent("DesertQuestTwo/InitializePuzzles")
+				function encounterLeverInit.onStartup()
+					InitializeDQ2chests()
+					InitializeDQ2Labryrinth()
+					InitializeDQ2FifteenPuzzle()
+					InitializeDQ2PipePuzzle()
+					InitializeDQ2IndeticalRooms()
+					InitializeDQ2RubiksCube()
+					InitializeDQ2orbs()
+				end
+				encounterLeverInit:register()
 			end)
 	end)
 	:Register()

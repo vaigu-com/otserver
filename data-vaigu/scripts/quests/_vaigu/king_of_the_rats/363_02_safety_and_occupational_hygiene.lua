@@ -648,7 +648,7 @@ quest
 			end)
 	end)
 	:State(function()
-		return { min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings }, QuestFactory.StartupItems({
+		return { min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings }, QuestFactory.OnUseDeclaration({
 			{ id = 2471, key = Storage.KingOfRatsHQ.Items.Ytong, rewards = { QuestKeyItems.KingOfRatsHQ.Ytong } },
 		})
 	end)

@@ -763,7 +763,7 @@ quest
 			QuestFactory.Dialog("Old Postman", { [{ "misja", "mission", "przesylka", "parcel" }] = {
 				text = "Come back when you find my shipment.",
 			} }),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = 11520,  key = Storage.LocalSupport.Parcel, rewards = { QuestKeyItems.LocalSupport.Parcel }, nextState = { [Storage.LocalSupport.Biodegradable] = QuestState.LocalSupport.Biodegradable.ReturnPackageToPostman } },
 			})
 	end)
@@ -944,7 +944,7 @@ quest
 			QuestFactory.Dialog("Ocellatus", { [{ "mission", "misja" }] = {
 				text = "I hope that you'll find this ticket.",
 			} }),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = 256,  key = Storage.LocalSupport.Ticket, rewards = { QuestKeyItems.LocalSupport.Ticket }, nextState = { [Storage.LocalSupport.OcellatusXD] = QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus } },
 			})
 	end)
@@ -1166,7 +1166,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.IKEAForTheBold.SearchDominoUndergroundHideout,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 2471,
 					
@@ -1410,7 +1410,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.IKEAForTheBold.SearchDominoShoreHideout,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 2472,
 					key = Storage.LocalSupport.ShoreCaveChest,
@@ -1524,7 +1524,7 @@ quest
 					text = "It slipped into the water by the lake at the beach. I hope you find it.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{ id = 3687,  key = Storage.LocalSupport.FishmongerFloat, rewards = { QuestKeyItems.LocalSupport.FishmongerFloat } },
 				{ id = 3686,  key = Storage.LocalSupport.FishmongerReel, rewards = { QuestKeyItems.LocalSupport.FishmongerReel } },
 				{ id = 1768,  key = Storage.LocalSupport.FishmongerStool, rewards = { QuestKeyItems.LocalSupport.FishmongerStool } },
