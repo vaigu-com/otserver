@@ -1,4 +1,109 @@
--- Requirements
+---@class ResolutionContext
+---@field requirements table
+---@field actionsOnSuccess table
+---@field player Player
+---@field cid integer?
+---@field npc Npc?
+---@field specialMessageType string?
+---@field localizer integer
+---@field npcHandler NpcHandler?
+---@field topic integer?
+---@field extractedParams table
+---@field patternFields table
+ResolutionContext = {}
+ResolutionContext.__index = ResolutionContext
+setmetatable(ResolutionContext, {
+	__call = function(class, ...)
+		return class:New(...)
+	end,
+})
+
+local goesToRequirements = {
+	requiredTopic = true,
+	requiredItems = true,
+	requiredState = true,
+	requiredGlobalState = true,
+	requiredMoney = true,
+	specialConditions = true,
+}
+local goesToActions = {
+	specialActionsOnSuccess = true,
+	removeRequiredItems = true,
+	rewards = true,
+	spawnMonstersOnSuccess = true,
+	outfitRewards = true,
+	mountRewards = true,
+	expReward = true,
+	nextState = true,
+	nextGlobalState = true,
+	nextTopic = true,
+	preserveTopic = true,
+	addDialogData = true,
+	text = true,
+}
+
+---@return ResolutionContext ResolutionContext
+function ResolutionContext.FromDialogContext(context, data)
+	local newObj = {}
+	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(context)
+	newObj:ParseRequirementsActionsOther(data)
+	newObj.__index = newObj
+	return newObj
+end
+
+---@private
+function ResolutionContext:ParseRequirementsActionsOther(table)
+	self.requirements = self.requirements or {}
+	self.actionsOnSuccess = self.requirements or {}
+	for key, value in pairs(table) do
+		if goesToRequirements[key] then
+			self.requirements[key] = value
+		elseif goesToActions[key] then
+			self.actionsOnSuccess[key] = value
+		else
+			self[key] = value
+		end
+	end
+
+	for key, value in pairs(self.patternFields or {}) do
+		self[key] = value
+	end
+
+	self.localizer = self.localizer or table.localizer
+end
+
+function ResolutionContext:New()
+	local newObj = {}
+	newObj.__index = ResolutionContext
+	setmetatable(newObj, ResolutionContext)
+	return newObj
+end
+
+function ResolutionContext.FromEncounter(encounterData, player)
+	local newObj = {}
+	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(encounterData)
+	newObj.localizer = encounterData.localizer
+	newObj.player = player
+	newObj.__index = ResolutionContext
+	if newObj.requirements then
+		newObj.requirements.requiredState = nil
+	end
+	return newObj
+end
+
+function ResolutionContext.FromCustomItemState(item, player)
+	local newObj = {}
+	setmetatable(newObj, ResolutionContext)
+	newObj.localizer = item.localizer
+	newObj.player = player
+	newObj.__index = ResolutionContext
+	newObj:ParseRequirementsActionsOther(item)
+	return newObj
+end
+
+--#region Requirements
 function ResolutionContext:CheckTopic()
 	local requirements = self.requirements
 	if not requirements.requiredTopic then
@@ -105,8 +210,9 @@ function ResolutionContext:CheckSpecialConditions()
 	end
 	return CONDITION_STATUS.CONDITION_PASSED
 end
+--#endregion Requirements
 
--- Actions on success
+--#region Actions on success
 function ResolutionContext:TriggerSpecialActions()
 	local actions = self.actionsOnSuccess
 	if not actions.specialActionsOnSuccess then
@@ -249,7 +355,7 @@ function ResolutionContext:TrySendTranslateSuccessMessage()
 	end
 end
 
-function ResolutionContext:TrySendTranslateFailMessage()
+function ResolutionContext:TrySendFailMessage()
 	if not self.errorMessage then
 		return
 	end
@@ -257,6 +363,11 @@ function ResolutionContext:TrySendTranslateFailMessage()
 	local translatedMessage = self.player:Localizer(self.localizer):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
 		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.errorMessage, lang = self.player:GetLanguage() }))
+		return
+	end
+
+	if not self.npcHandler then
+		self.player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 		return
 	end
 
@@ -272,6 +383,7 @@ function ResolutionContext:AppendExtractedParams()
 		self[key] = value
 	end
 end
+--#endregion Actions on success
 
 local resolutionConditions = {
 	ResolutionContext.CheckTopic,
@@ -320,7 +432,7 @@ function ResolutionContext:Resolve()
 	local status = self:ConditionsArePassable()
 	if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 		if self.errorMessage then
-			self:TrySendTranslateFailMessage()
+			self:TrySendFailMessage()
 			return FAIL_RESOLVE
 		end
 		return DISCARD_DIALOG
