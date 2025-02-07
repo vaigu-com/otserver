@@ -4,9 +4,8 @@
 ---@field encounters table
 ---@field monsters table
 ---@field scripts table
----@field startupScripts table
 ---@field npcs table
----@field startupItems table
+---@field onUseDeclarations table
 ---@field startupNpcs table
 ---@field questlog table
 ---@field currentMission integer
@@ -25,9 +24,8 @@ function Quest:New(name)
 		encounters = {},
 		monsters = {},
 		scripts = {},
-		startupScripts = {},
 		npcs = {},
-		startupItems = {},
+		onUseDeclarations = {},
 		questlog = function() end,
 	}
 
@@ -44,7 +42,7 @@ setmetatable(Quest, {
 QUEST_SCRIPT_TYPE = {
 	DIALOG = "DIALOG",
 	CUSTOM_SCRIPT = "CUSTOM_SCRIPT",
-	STARTUP_ITEMS = "STARTUP_ITEMS",
+	ON_USE_DECLARATION = "ON_USE_DECLARATION",
 	STARTUP_SCRIPT = "STARTUP_SCRIPT",
 }
 
@@ -90,18 +88,15 @@ end
 function QuestFactory.Script(script)
 	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
 end
-function QuestFactory.StartupItems(items, anchor)
-	return { items = items, anchor = anchor, scriptType = QUEST_SCRIPT_TYPE.STARTUP_ITEMS }
-end
-function QuestFactory.StartupScript(script)
-	return { script = script, scriptType = QUEST_SCRIPT_TYPE.STARTUP_SCRIPT }
+function QuestFactory.OnUseDeclaration(items, anchor)
+	return { items = items, anchor = anchor, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
 end
 function Quest:Script(script)
 	table.insert(self.scripts, { script = script })
 	return self
 end
-function Quest:StartupItems(items, anchor)
-	table.insert(self.startupItems, { items = items, anchor = anchor })
+function Quest:OnUseDeclaration(items, anchor) --Unused
+	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
 	return self
 end
 ---@private
@@ -117,10 +112,12 @@ function Quest:AddDialog(context)
 	if not dialogs then
 		logger.debug(T(":quest: missing dialog for dialog", { quest = self.name }))
 	end
-	if not name then
+	if not names then
 		logger.debug(T(":quest: missing name for dialog", { quest = self.name }))
 	end
 
+	--3af remove on prod
+	--3af search for missing translations
 	for requredKeywords, actionsAndRequirements in pairs(dialogs) do
 		for key, value in pairs(actionsAndRequirements) do
 			if type(value) == "string" then
@@ -153,7 +150,7 @@ function Quest:AddScript(context)
 	return self
 end
 ---@private
-function Quest:AddStartupItems(context)
+function Quest:AddOnUseDeclaration(context)
 	local items, anchor = context.items, context.anchor
 	local mission, state = context.mission, context.state
 
@@ -163,15 +160,7 @@ function Quest:AddStartupItems(context)
 		end
 	end
 
-	table.insert(self.startupItems, { items = items, anchor = anchor })
-	return self
-end
----@private
-function Quest:AddStartupScript(context)
-	local script = context.script
-	local mission, state = context.mission, context.state
-
-	table.insert(self.startupScripts, { script = script, mission = mission, state = state })
+	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
 	return self
 end
 --#endregion
@@ -198,8 +187,7 @@ end
 local scriptTypeToCallback = {
 	[QUEST_SCRIPT_TYPE.DIALOG] = Quest.AddDialog,
 	[QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT] = Quest.AddScript,
-	[QUEST_SCRIPT_TYPE.STARTUP_ITEMS] = Quest.AddStartupItems,
-	[QUEST_SCRIPT_TYPE.STARTUP_SCRIPT] = Quest.AddStartupScript,
+	[QUEST_SCRIPT_TYPE.ON_USE_DECLARATION] = Quest.AddOnUseDeclaration,
 }
 
 function Quest:State(stateDataCallback)
@@ -313,16 +301,16 @@ function QuestRegistry:RegisterNpcData()
 		end
 	end
 end
-function QuestRegistry:CreateStartupItems()
-	local startupItems = GlobalEvent("QuestSystemCreateStartupItems")
-	function startupItems.onStartup()
+function QuestRegistry:RegisterOnUseDeclarations()
+	local onUseDeclarations = GlobalEvent("QuestSystem/RegisterOnUseDeclarations")
+	function onUseDeclarations.onStartup()
 		for _, quest in pairs(self.registry) do
-			for _, itemsData in pairs(quest.startupItems) do
-				LoadStartupItems(itemsData.items, itemsData.anchor)
+			for _, itemsData in pairs(quest.onUseDeclarations) do
+				RegisterOnUseDeclaration(itemsData.items, itemsData.anchor)
 			end
 		end
 	end
-	startupItems:register()
+	onUseDeclarations:register()
 end
 function QuestRegistry:CreateStartupNpcs()
 	local startupNpcs = GlobalEvent("QuestSystemCreateStartupNpcs")
@@ -363,7 +351,7 @@ function QuestRegistry:RegisterQuestData()
 	self:CreateMonster()
 	self:CreateEncounters()
 	self:RegisterNpcData()
-	self:CreateStartupItems()
+	self:RegisterOnUseDeclarations()
 	self:RunScripts()
 	self:RegisterStartupScripts()
 	normalizeQuestlogData()
