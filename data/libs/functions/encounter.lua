@@ -465,7 +465,7 @@ function EncounterData:checkCustom(players, leverUser)
 	for _, player in pairs(players) do
 		local resolutionContext = ResolutionContext.FromEncounter(self, player)
 		local status = resolutionContext:ConditionsArePassable()
-		if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
+		if status == RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 			return resolutionContext.errorCode
 		end
 	end

@@ -107,79 +107,79 @@ end
 function ResolutionContext:CheckTopic()
 	local requirements = self.requirements
 	if not requirements.requiredTopic then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local topic = self.npcHandler.topic[self.cid]
 	local min, max = ParseTopicMinMax(requirements)
 	if topic < min or topic > max then
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckRequiredItems()
 	local requirements = self.requirements
 	if not requirements.requiredItems then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	if not self.player:HasItems(requirements.requiredItems) then
 		self.errorMessage = self.textNoRequiredItems
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckRequiredState()
 	local requirements = self.requirements
 	if not requirements.requiredState then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local errorMessage, canProceed = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
 	if not canProceed then
 		self.errorMessage = errorMessage or self.textNoRequiredState
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
 
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckGlobalState()
 	local requirements = self.requirements
 	if not requirements.requiredGlobalState then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	for key, value in pairs(requirements.requiredGlobalState) do
 		if Game.getStorageValueByKey(key) ~= value then
 			self.errorMessage = self.textNoRequiredGlobalState
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
+			return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 		end
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckCanAddRewards()
 	local actions = self.actionsOnSuccess
 	if not actions.rewards then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizer)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
 		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckRequiredMoney()
 	local requirements = self.requirements
 	if not requirements.requiredMoney then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local balance = Bank.balance(self.player)
@@ -187,15 +187,15 @@ function ResolutionContext:CheckRequiredMoney()
 	local totalPlayerMoney = balance + playerMoney
 	if totalPlayerMoney < requirements.requiredMoney then
 		self.errorMessage = requirements.textNoRequiredMoney
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckSpecialConditions()
 	local requirements = self.requirements
 	if not requirements.specialConditions then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	for _, context in pairs(requirements.specialConditions) do
@@ -205,10 +205,10 @@ function ResolutionContext:CheckSpecialConditions()
 		if outcome ~= conditionContext.requiredOutcome then
 			self.errorMessage = errorMessage or conditionContext.textNoRequiredCondition
 			self.npcHandler.topic[self.cid] = conditionContext.nextTopic or TOPIC_DEFAULT
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
+			return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 		end
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 --#endregion Requirements
 
@@ -414,11 +414,11 @@ local actionsOnSuccessfulResolution = {
 function ResolutionContext:ConditionsArePassable()
 	for _, condition in pairs(resolutionConditions) do
 		local status = condition(self)
-		if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
-			return CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED
+		if status == REQUIREMENT_STATUS.CONDITION_NOT_PASSED then
+			return RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED
 		end
 	end
-	return CONDITION_STATUS.ALL_CONDITIONS_PASSED
+	return RESOLVER_STATUS.ALL_CONDITIONS_PASSED
 end
 
 function ResolutionContext:ActionsOnSuccess()
@@ -429,16 +429,14 @@ end
 
 function ResolutionContext:Resolve()
 	self:AppendExtractedParams()
-	local status = self:ConditionsArePassable()
-	if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
+	local status = self:RequirementsPassabilityStatus()
+	if status == RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 		if self.errorMessage then
 			self:TrySendFailMessage()
 			return FAIL_RESOLVE
 		end
 		return DISCARD_DIALOG
-	end
-
-	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
+	else
 		self.lastDialogData = PlayerDialogDataRegistry:Get(self.player):Latest()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
