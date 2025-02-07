@@ -214,7 +214,7 @@ function Player:HasHigherMissionState(missionState)
 end
 
 function Player:HasCorrectStorageValue(storage, requiredState)
-	local currentState = self:kv():get(storage)
+	local currentState = self:getStorageValueByKey(storage)
 
 	local requirements = parseRequiredState(requiredState)
 

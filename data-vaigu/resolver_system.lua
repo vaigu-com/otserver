@@ -103,6 +103,24 @@ function ResolutionContext.FromCustomItemState(item, player)
 	return newObj
 end
 
+---@param player Player
+function ResolutionContext:SetPlayer(player)
+	self.player = player
+	return self
+end
+
+---@param creature Creature
+function ResolutionContext:SetTargetCreature(creature)
+	self.targetCreature = creature
+	return self
+end
+
+---@param item Item
+function ResolutionContext:SetTargetItem(item)
+	self.targetItem = item
+	return self
+end
+
 --#region Requirements
 function ResolutionContext:CheckTopic()
 	local requirements = self.requirements
@@ -411,7 +429,7 @@ local actionsOnSuccessfulResolution = {
 	ResolutionContext.TrySendTranslateSuccessMessage,
 }
 
-function ResolutionContext:ConditionsArePassable()
+function ResolutionContext:RequirementsPassabilityStatus()
 	for _, condition in pairs(resolutionConditions) do
 		local status = condition(self)
 		if status == REQUIREMENT_STATUS.CONDITION_NOT_PASSED then
