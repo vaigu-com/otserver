@@ -44,7 +44,6 @@ private:
 	static int luaItemTypeGetArticle(lua_State* L);
 	static int luaItemTypeGetDescription(lua_State* L);
 	static int luaItemTypeGetSlotPosition(lua_State* L);
-	static int luaItemTypeGetAllowDistRead(lua_State* L); // Vaigu custom
 
 	static int luaItemTypeGetCharges(lua_State* L);
 	static int luaItemTypeGetFluidSource(lua_State* L);
@@ -79,4 +78,7 @@ private:
 	static int luaItemTypeGetVocationString(lua_State* L);
 
 	static int luaItemTypeHasSubType(lua_State* L);
+
+	static int luaItemTypeGetAllowDistRead(lua_State* L); // Vaigu custom
+	static int luaItemTypeGetNameDescription(lua_State* L); // Vaigu custom
 };
