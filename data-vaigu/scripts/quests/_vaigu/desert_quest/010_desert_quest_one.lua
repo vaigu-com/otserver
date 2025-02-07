@@ -1876,22 +1876,30 @@ quest
 				local goodNames = { "Eustachy Wiertara", "Fifonz Kuciapa", "Sierotka Marysia", "Miroslaw z Ankharu" }
 				local badNames = { "Wojciech Szpara", "Edward Tatarata", "Bogdan Boner", "Anna Niewypchnieta", "Jan Pawel Drugi" }
 
-				DesertQuestOneVocTrickSign = function(context)
-					local player = context.player
-
+				local bagSignLook = Look()
+				function bagSignLook.onLook(player, item)
 					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
 					local randIndex = math.random(1, #badNames)
 					local randomTrickster = badNames[randIndex]
-					return translatedMessage .. randomTrickster
-				end
-				DesertQuestOneVocGoodSign = function(context)
-					local player = context.player
+					local finalMessage = translatedMessage .. randomTrickster
 
+					player:sendTextMessage(MESSAGE_LOOK, finalMessage)
+				end
+				bagSignLook:key(Storage.DesertQuestOne.Puzzles.VocPuzzle.BadSign)
+				bagSignLook:register()
+
+				local goodSignLook = Look()
+				function goodSignLook.onLook(player, item)
 					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
 					local randIndex = math.random(1, #goodNames)
 					local randomHelper = goodNames[randIndex]
 					return translatedMessage .. randomHelper
+					local finalMessage = translatedMessage .. randomHelper
+
+					player:sendTextMessage(MESSAGE_LOOK, finalMessage)
 				end
+				goodSignLook:key(Storage.DesertQuestOne.Puzzles.VocPuzzle.GoodSign)
+				goodSignLook:register()
 			end),
 			QuestFactory.Script(function(missionState)
 				local config = { ["SUCCESS"] = "One of the magic walls disappeared", ["FAIL"] = "You cannot use this yet" }

@@ -1783,32 +1783,33 @@ quest
 				trickTeleport:key(Storage.DesertQuestTwo.Puzzles.TrickTeleport)
 				trickTeleport:register()
 
-				local desertQuestTwoTrickSign = function(context)
-					local user = context.player
-					if not user:isPlayer() then
+				local trickSignLook = Look()
+				function trickSignLook.onLook(player, item)
+					if not player:isPlayer() then
 						return false
 					end
-					local localizer = user:Localizer(Storage.DesertQuestTwo.Mission01)
+					local localizer = player:Localizer(Storage.DesertQuestTwo.Mission01)
 					local resultReal = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
 					local resultTrick = localizer:Get("the sign says that knight and druid should use rope")
-					if not user:isPaladin() then
+					if not player:isPaladin() then
 						return localizer:Get("Only paladins can read the sacred texts.")
 					end
-					user:say(resultTrick, TALKTYPE_SAY)
+					player:say(resultTrick, TALKTYPE_SAY)
 
 					return resultReal
 				end
-				RegisterOnLook(desertQuestTwoTrickSign, "TRICK_SIGN", LOCALIZERS.DesertQuestTwo)
+				trickSignLook:key(Storage.DesertQuestTwo.Puzzles.TrickSign)
+				trickSignLook:register()
 
-				local desertQuestTwoTrickGrave = function(context)
-					local user = context.player
-					if not user:isPlayer() then
+				local trickGraveLook = Look()
+				function trickGraveLook.onLook(player, item)
+					if not player:isPlayer() then
 						return false
 					end
-					local localizer = user:Localizer(Storage.DesertQuestTwo.Mission01)
+					local localizer = player:Localizer(Storage.DesertQuestTwo.Mission01)
 					local hereWillLie = localizer:Get("Here will lie ")
 					local dateOfDeath = localizer:Get("Date of death")
-					local name = user:getName()
+					local name = player:getName()
 
 					local now = os.time()
 					local dateTable = os.date("*t", now)
@@ -1824,10 +1825,11 @@ quest
 						month = month,
 						year = year,
 					})
-					killingCurse(user)
+					killingCurse(player)
 					return finalString
 				end
-				RegisterOnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", LOCALIZERS.DesertQuestTwo)
+				trickGraveLook:key(Storage.DesertQuestTwo.Puzzles.TrickGrave)
+				trickGraveLook:register()
 			end),
 			QuestFactory.Script(function(missionState)
 				local sparksNumber = 3
