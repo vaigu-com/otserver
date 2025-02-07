@@ -18,7 +18,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local context = {
-	name = "Lebesgue The Philosopher",
+	name = "Lebesgue the Philosopher",
 	greetJob = JOB_DISTANCE_SOULORB,
 	jobs = { JOB_SOULORB, JOB_DISTANCE },
 	outfit = outfit,
