@@ -115,33 +115,33 @@ quest
 		QuestKeyItems.PerIustitiaAdAstra = {
 			CatalyticConverter = {
 				id = 21761,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.CatalyticConverter,
+				key = Storage.PerIustitiaAdAstra.KeyItems.CatalyticConverter,
 			},
 			EngineBlueprint = {
 				id = 2822,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.EngineBlueprint,
+				key = Storage.PerIustitiaAdAstra.KeyItems.EngineBlueprint,
 				desc = "Rocket engine blueprint. Qasim might have a use for it",
 			},
 			Map1 = {
 				id = 2823,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.Map1,
+				key = Storage.PerIustitiaAdAstra.KeyItems.Map1,
 				desc = "Galactic map fragment. Qasim requested three of those",
 			},
 			Map2 = {
 				id = 2823,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.Map2,
+				key = Storage.PerIustitiaAdAstra.KeyItems.Map2,
 				desc = "Galactic map fragment. Qasim requested three of those",
 			},
 			Map3 = {
 				id = 2823,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.Map3,
+				key = Storage.PerIustitiaAdAstra.KeyItems.Map3,
 				desc = "Galactic map fragment. Qasim requested three of those",
 			},
 			FuelRod = { id = 7752, desc = "Fissile fuel rod" },
-			RocketFuel = { id = 24948, aid = Storage.PerIustitiaAdAstra.KeyItems.RocketFuel, desc = "Rocket fuel" },
+			RocketFuel = { id = 24948, key = Storage.PerIustitiaAdAstra.KeyItems.RocketFuel, desc = "Rocket fuel" },
 			SwagierCrate = {
 				id = 2471,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.SwaggerCrate,
+				key = Storage.PerIustitiaAdAstra.KeyItems.SwaggerCrate,
 				desc = "Crate of rods. Recipient: Swagger",
 			},
 			OfficerId = {
@@ -150,12 +150,12 @@ quest
 			},
 			HugoRecipe = {
 				id = 2815,
-				aid = Storage.PerIustitiaAdAstra.KeyItems.HugoRecipe,
+				key = Storage.PerIustitiaAdAstra.KeyItems.HugoRecipe,
 				desc = "Booty Sweat Lean recipe",
 			},
 			LecinaHammer = {
 				id = 3460,
-				aid = Storage.PerIustitiaAdAstra.HammerUse,
+				key = Storage.PerIustitiaAdAstra.HammerUse,
 				desc = "P0W3R H4MM3R MK3. Collectible - not for professional use",
 			},
 		}
@@ -234,7 +234,15 @@ quest
 
 		monster.description = "a fire field"
 		monster.experience = 0
-		monster.outfit = { lookType = 305, lookHead = 0, lookBody = 0, lookLegs = 0, lookFeet = 0, lookAddons = 0, lookMount = 0 }
+		monster.outfit = {
+			lookType = 305,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
 
 		monster.health = 500
 		monster.maxHealth = 500
@@ -630,9 +638,6 @@ quest
 					requiredTopic = QuestTopics.PerIustitiaAdAstra.AcceptJanusFirstMission,
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 7320, 1477, 0 }, id = 2000, aid = Storage.PerIustitiaAdAstra.AstralJanusSpawnTile },
-			}),
 			QuestFactory.Script(function(missionState)
 				--local astralJanus = { name = "", pos = Position(5839, 790, 0) }
 				local astralJanusPos = Position(7320, 1475, 0)
@@ -743,9 +748,9 @@ quest
 		return QuestState.PerIustitiaAdAstra.Mission01.CollectShipParts,
 			QuestFactory.StartupItems({
 				{
-					pos = { 5650, 1165, 13 },
+					
 					id = 16182,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.CatalyticConverter,
+					key = Storage.PerIustitiaAdAstra.KeyItems.CatalyticConverter,
 					rewards = {
 						QuestKeyItems.PerIustitiaAdAstra.CatalyticConverter,
 					},
@@ -777,27 +782,23 @@ quest
 		return QuestState.PerIustitiaAdAstra.Mission01.FindEnginePlansAndMaps,
 			QuestFactory.StartupItems({
 				{
-					position = Position(7611, 1065, 6),
 					id = 853,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.EngineBlueprint,
+					key = Storage.PerIustitiaAdAstra.KeyItems.EngineBlueprint,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.EngineBlueprint },
 				},
 				{
-					position = Position(7957, 1517, 4),
 					id = 2438,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.Map1,
+					key = Storage.PerIustitiaAdAstra.KeyItems.Map1,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.Map1 },
 				},
 				{
-					position = Position(7321, 1269, 5),
 					id = 6367,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.Map2,
+					key = Storage.PerIustitiaAdAstra.KeyItems.Map2,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.Map2 },
 				},
 				{
-					position = Position(7302, 1086, 7),
 					id = 2435,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.Map3,
+					key = Storage.PerIustitiaAdAstra.KeyItems.Map3,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.Map3 },
 				},
 			}),
@@ -830,28 +831,6 @@ quest
 					text = "Flights within a given system require only the power of mana. For intergalactic travel, you'll need rocket fuel. Therefore, you'll need to find a refueling station that sells such fuel. I've included the coordinates of a CPN-sponsored one in the ship's navigation. Good luck!",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ position = DEEPLING_TEMPLE_ANCHOR, id = 8279, aid = Storage.PerIustitiaAdAstra.DeeplingTile },
-				{ position = DEEPLING_TEMPLE_ANCHOR:Moved(0, -1, 0), id = 8282, actionid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-				{ position = FUEL_SHOP_ANCHOR:Moved(-2, 0, 0), id = 8282, aid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-				{ position = GANYMEDE_ANCHOR:Moved(3, 2, 0), id = 8282, aid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-				{ position = HUGO_TAR_PLANET_ANCHOR:Moved(-27, -62, -2), id = 8282, actionid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-
-				{ position = HUGO_BEACH_PLANET_ANCHOR:Moved(0, -39, -5), id = 15469, aid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-				{ position = HUGO_BEACH_PLANET_ANCHOR:Moved(-4, -35, -5), id = 15469, aid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-				{ position = HUGO_BEACH_PLANET_ANCHOR:Moved(4, -35, -5), id = 15469, aid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-				{ position = HUGO_BEACH_PLANET_ANCHOR:Moved(0, -30, -5), id = 15469, aid = Storage.PerIustitiaAdAstra.ShipControl.Enter },
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { 17, 6, -1 }, id = 8282, aid = Storage.PerIustitiaAdAstra.ShipControl.Exit },
-				{ pos = { 23, 8, -1 }, id = 20788, aid = Storage.PerIustitiaAdAstra.ShipControl.StartTravelWheel },
-				{ pos = { 20, 6, -1 }, id = 752, actionid = Storage.PerIustitiaAdAstra.ShipControl.ChangeNextDestination },
-				{ pos = { 21, 6, -1 }, id = 753, actionid = Storage.PerIustitiaAdAstra.ShipControl.ChangeNextDestination },
-				{ pos = { 21, 6, -1 }, id = 752, actionid = Storage.PerIustitiaAdAstra.ShipControl.ChangeNextDestination },
-				{ pos = { 22, 6, -1 }, id = 753, actionid = Storage.PerIustitiaAdAstra.ShipControl.ChangeNextDestination },
-				{ pos = { 12, 5, -2 }, id = 21125, aid = Storage.PerIustitiaAdAstra.ShipControl.FuelRefillLever },
-				{ pos = { 16, 10, -1 }, id = 19389, aid = Storage.PerIustitiaAdAstra.ShipControl.RodMelter },
-			}, STARSHIP_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {
 					[Storage.PerIustitiaAdAstra.Mission02] = QuestState.PerIustitiaAdAstra.Mission02.LookAroundYourShip_FindSwagger,
@@ -1096,11 +1075,11 @@ quest
 					local nextDestAid = player:getStorageValueByKey(Storage.PerIustitiaAdAstra.ShipControl.Next)
 					for aid in pairs(destinationStorageToPosition) do
 						if hasUnlockedDestination(player, aid) then
-							local transaltedText = player:Localizer(LOCALIZERS.PerIustitiaAdAstra):Get(aidToDestName[aid])
+							local translatedText = player:Localizer(LOCALIZERS.PerIustitiaAdAstra):Get(aidToDestName[aid])
 							if aid == nextDestAid then
-								transaltedText = "* " .. transaltedText .. " *"
+								translatedText = "* " .. translatedText .. " *"
 							end
-							local choice = window:addChoice(transaltedText)
+							local choice = window:addChoice(translatedText)
 							choice.aid = aid
 						end
 					end
@@ -1359,9 +1338,9 @@ quest
 			}),
 			QuestFactory.StartupItems({
 				{
-					pos = { 6, 92, 0 },
+					
 					id = 11810,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.SwaggerCrate,
+					key = Storage.PerIustitiaAdAstra.KeyItems.SwaggerCrate,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.SwagierCrate },
 					nextState = { [Storage.PerIustitiaAdAstra.Mission02] = QuestState.PerIustitiaAdAstra.Mission02.ReturnCrateToSwagger },
 				},
@@ -1419,9 +1398,9 @@ quest
 			}),
 			QuestFactory.StartupItems({
 				{
-					pos = { -39, -17, -2 },
+					
 					id = 17355,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.OfficerId,
+					key = Storage.PerIustitiaAdAstra.KeyItems.OfficerId,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.OfficerId },
 					nextState = { [Storage.PerIustitiaAdAstra.Mission05] = QuestState.PerIustitiaAdAstra.Mission03.BringDocumentsToRubelstein },
 				},
@@ -1527,9 +1506,9 @@ quest
 			}),
 			QuestFactory.StartupItems({
 				{
-					pos = { 20, -84, -6 },
+					
 					id = 2482,
-					actionid = Storage.PerIustitiaAdAstra.KeyItems.HugoRecipe,
+					key = Storage.PerIustitiaAdAstra.KeyItems.HugoRecipe,
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.HugoRecipe },
 					nextState = {
 						[Storage.PerIustitiaAdAstra.Mission04] = QuestState.PerIustitiaAdAstra.Mission04.BringRecipeToHugo,
@@ -1558,8 +1537,7 @@ quest
 				},
 			}),
 			QuestFactory.StartupItems({
-				{ pos = { 17, -68, -5 }, id = 30304, actionid = Storage.PerIustitiaAdAstra.KeyItems.LecinaHammer, rewards = { QuestKeyItems.PerIustitiaAdAstra.LecinaHammer } },
-				{ pos = { -10, -133, 6 }, id = 20787, aid = Storage.PerIustitiaAdAstra.HammerUse },
+				{  id = 30304, key = Storage.PerIustitiaAdAstra.KeyItems.LecinaHammer, rewards = { QuestKeyItems.PerIustitiaAdAstra.LecinaHammer } },
 			}, HUGO_BEACH_PLANET_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {
@@ -1618,9 +1596,6 @@ quest
 					text = "My great-grandmother, a witch, once mentioned that to open the chest, I would need some runes. I don't know anything about magic, so I can't help you with that.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 16, -78, 2 }, id = 2472, aid = Storage.PerIustitiaAdAstra.MysteriousChest },
-			}, HUGO_BEACH_PLANET_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local runeId = 3164
 				local failDmg = 500
@@ -1700,18 +1675,6 @@ quest
 					text = "As I said, beachgoers have been disappearing in the southern archipelago. Try looking there.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = HUGO_BEACH_PLANET_ANCHOR:Moved(60, 81, 0), id = 7804, aid = Storage.PerIustitiaAdAstra.RukcaAccess },
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { -31, -1, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-				{ pos = { -30, 0, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-				{ pos = { -32, 1, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-				{ pos = { -29, 1, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-				{ pos = { -30, 2, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-				{ pos = { -32, 3, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-				{ pos = { -31, 3, 0 }, id = 22694, aid = Storage.PerIustitiaAdAstra.SaltyTile },
-			}, RUKCA_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local vortex = MoveEvent()
 
@@ -1847,16 +1810,9 @@ quest
 		return { min = QuestState.PerIustitiaAdAstra.Mission05.ReportToAstralJanus },
 			QuestFactory.StartupItems({
 				{
-					pos = HUGO_BEACH_PLANET_ANCHOR:Moved(67, -150, 0),
 					id = 3503,
-					aid = Storage.KingOfRatsHQ.Items.Antigone,
+					key = Storage.KingOfRatsHQ.Items.Antigone,
 					rewards = { QuestKeyItems.KingOfRatsHQ.Antigone },
-				},
-				{ --trick parcel
-					pos = HUGO_BEACH_PLANET_ANCHOR:Moved(67, -150, 0),
-					id = 3504,
-					aid = 0,
-					uid = 0,
 				},
 			})
 	end)
@@ -1894,7 +1850,7 @@ QuestFactory.Script(function(missionState)
 end)
 QuestFactory.Script(function(missionState)
 	local rukcaConfig = {
-		actionid = Storage.PerIustitiaAdAstra.RukcaAccess,
+		key = Storage.PerIustitiaAdAstra.RukcaAccess,
 		bossName = "Ruk'ca Maw",
 		timerStorage = Storage.PerIustitiaAdAstra.RukcaAccess,
 		cooldown = "weekly",

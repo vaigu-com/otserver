@@ -116,47 +116,47 @@ quest
 		QuestKeyItems.ProdigalSon = {
 			Payslip = {
 				id = 2818,
-				aid = Storage.ProdigalSon.Payslip,
+				key = Storage.ProdigalSon.Payslip,
 				desc = "A payslip.",
 			},
 			BookOne = {
 				id = 2816,
-				aid = Storage.ProdigalSon.EristicsBooks.One,
+				key = Storage.ProdigalSon.EristicsBooks.One,
 				desc = "Eristics for dummies\nPart 3",
 			},
 			BookTwo = {
 				id = 2821,
-				aid = Storage.ProdigalSon.EristicsBooks.Two,
+				key = Storage.ProdigalSon.EristicsBooks.Two,
 				desc = "Eristics for dummies\nPart 5",
 			},
 			BookThree = {
 				id = 2828,
-				aid = Storage.ProdigalSon.EristicsBooks.Three,
+				key = Storage.ProdigalSon.EristicsBooks.Three,
 				desc = "Eristics for dummies\nPart 8",
 			},
 			SlimmingPot = {
 				id = 3465,
 				desc = "Every dish cooked in this pot can only make you more slim and fit.",
-				aid = Storage.ProdigalSon.EristicsItems.SlimmingPot,
+				key = Storage.ProdigalSon.EristicsItems.SlimmingPot,
 			},
 			LovePotion = {
 				id = 9173,
 				desc = "This smart potion will make you a lovely person.",
-				aid = Storage.ProdigalSon.EristicsItems.LovePotion,
+				key = Storage.ProdigalSon.EristicsItems.LovePotion,
 			},
 			Herbs = {
 				id = 12671,
 				desc = "Assortment of herbs. They cure cancer within 24 hours.",
-				aid = Storage.ProdigalSon.EristicsItems.Herbs,
+				key = Storage.ProdigalSon.EristicsItems.Herbs,
 			},
 			LoanDocument = {
 				id = 2815,
 				desc = "Loan agreement",
-				aid = Storage.ProdigalSon.EristicsItems.LoanDocument,
+				key = Storage.ProdigalSon.EristicsItems.LoanDocument,
 			},
 			DiamondNecklace = {
 				id = 35607,
-				aid = Storage.ProdigalSon.DiamondNecklace,
+				key = Storage.ProdigalSon.DiamondNecklace,
 			},
 			FrediBeer = {
 				id = 6106,
@@ -566,7 +566,7 @@ quest
 	--3af: add as encounter
 	:Script(function(missionState)
 		local polEncounterConfig = {
-			actionid = Storage.ProdigalSon.PolAccess,
+			key = Storage.ProdigalSon.PolAccess,
 			bossName = "Pol",
 			timerStorage = Storage.ProdigalSon.PolAccess,
 			cooldown = "weekly",
@@ -582,7 +582,7 @@ quest
 			durationMinutes = 10,
 			exitTeleportDestination = JANUSZEX_ANCHOR:Moved(45, 9, 1),
 			exitTeleportPosition = JANUSZEX_ANCHOR:Moved(51, -5, -1),
-			exitTeleportActionid = Storage.ProdigalSon.PortalAfterPol,
+			exitTeleportkey = Storage.ProdigalSon.PortalAfterPol,
 			corner1 = JANUSZEX_ANCHOR:Moved(51, -15, -1),
 			corner2 = JANUSZEX_ANCHOR:Moved(59, -4, -1),
 
@@ -618,23 +618,6 @@ quest
 						},
 					},
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ position = Position(7555, 960, 13), id = 2598, aid = Storage.ProdigalSon.Train.SelectDestination }, --Januszex
-				{ position = Position(6465, 1123, 14), id = 2598, aid = Storage.ProdigalSon.Train.SelectDestination }, --Hurghada
-				{ position = Position(7881, 1432, 9), id = 2598, aid = Storage.ProdigalSon.Train.SelectDestination }, --Bydgoshch
-
-				{ position = Position(7637, 1126, 7), id = 436, aid = Storage.ProdigalSon.MainGateAccess },
-				{ position = Position(7638, 1126, 7), id = 436, aid = Storage.ProdigalSon.MainGateAccess },
-				{ position = Position(7620, 1067, 12), id = 7756, aid = Storage.ProdigalSon.MainGateAccess },
-				{ position = Position(7654, 1073, 12), id = 429, aid = Storage.ProdigalSon.MainGateAccess },
-				{ position = Position(7655, 1073, 12), id = 429, aid = Storage.ProdigalSon.MainGateAccess },
-				{ position = Position(7656, 1073, 12), id = 429, aid = Storage.ProdigalSon.MainGateAccess },
-				{ position = Position(7618, 950, 12), id = 352, aid = Storage.ProdigalSon.NorthMinesAccess },
-				{ position = Position(7619, 950, 12), id = 429, aid = Storage.ProdigalSon.NorthMinesAccess },
-				{ position = Position(7620, 950, 12), id = 429, aid = Storage.ProdigalSon.NorthMinesAccess },
-				{ position = Position(7621, 950, 12), id = 352, aid = Storage.ProdigalSon.NorthMinesAccess },
-				{ position = Position(6440, 1125, 14), id = 20712, aid = Storage.ProdigalSon.TileBeforeChesterCompartment },
 			})
 	end)
 	:State(function()
@@ -734,23 +717,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission02.PaintHammers,
-			QuestFactory.StartupItems({
-				{
-					pos = { -90, -68, 2 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.lever2,
-					aid = Storage.ProdigalSon.HammerMaking.Lever,
-				},
-				{
-					pos = { -90, -69, 2 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.stoneTable,
-					aid = 0,
-				},
-				{
-					pos = { -90, -70, 2 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.paint,
-					aid = Storage.ProdigalSon.HammerMaking.Paint,
-				},
-			}, JANUSZEX_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local lever = Action()
 				function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -800,43 +766,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission02.MakingCalculators,
-			QuestFactory.StartupItems({
-				{
-					pos = { -77, 3, -1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.stonePile,
-					aid = Storage.ProdigalSon.CalculatorMaking.MetalPile,
-				},
-				{
-					pos = { -75, 3, -1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.stonePile,
-					aid = Storage.ProdigalSon.CalculatorMaking.MetalPile,
-				},
-				{
-					pos = { -77, 5, -1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.woodPile,
-					aid = Storage.ProdigalSon.CalculatorMaking.WoodPile,
-				},
-				{
-					pos = { -76, 5, -1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.woodPile,
-					aid = Storage.ProdigalSon.CalculatorMaking.WoodPile,
-				},
-				{
-					pos = { -75, 5, -1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.woodPile,
-					aid = Storage.ProdigalSon.CalculatorMaking.WoodPile,
-				},
-				{
-					pos = { -74, 5, -1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.woodPile,
-					aid = Storage.ProdigalSon.CalculatorMaking.WoodPile,
-				},
-				{
-					pos = { -75, 4, 1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.westMachine,
-					aid = Storage.ProdigalSon.CalculatorMaking.Lever,
-				},
-			}, JANUSZEX_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local metalPile = Action()
 				function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -901,23 +830,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission02.MakingPliers,
-			QuestFactory.StartupItems({
-				{
-					pos = { -98, -36, 1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.stonePile,
-					aid = Storage.ProdigalSon.PliersMaking.MetalPile,
-				},
-				{
-					pos = { -97, -36, 1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.stonePile,
-					aid = Storage.ProdigalSon.PliersMaking.MetalPile,
-				},
-				{
-					pos = { -99, -42, 1 },
-					id = PRODIGAL_SON_NORMAL_ITEMS.southMachine,
-					aid = Storage.ProdigalSon.PliersMaking.Lever,
-				},
-			}, JANUSZEX_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local metalPile = Action()
 				function metalPile.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -1039,10 +951,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission03.KillAreczekLeader,
-			QuestFactory.StartupItems({
-				{ pos = { -87, -52, -1 }, id = 710, aid = Storage.ProdigalSon.AreczekLeaderBed },
-				{ pos = { -87, -51, -1 }, id = 711, aid = Storage.ProdigalSon.AreczekLeaderBed },
-			}, JANUSZEX_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local occupiedToEmpty = {
 					[710] = 738,
@@ -1305,25 +1213,23 @@ quest
 		return QuestState.ProdigalSon.Mission04.FindingEristicsBooks,
 			QuestFactory.StartupItems({
 				{
-					pos = { -50, -5, 1 },
+					
 					id = 2438,
-					aid = Storage.ProdigalSon.EristicsBooks.One,
+					key = Storage.ProdigalSon.EristicsBooks.One,
 					rewards = { QuestKeyItems.ProdigalSon.BookOne },
 				},
 				{
-					pos = { -69, 17, 5 },
+					
 					id = 27314,
-					aid = Storage.ProdigalSon.EristicsBooks.Two,
+					key = Storage.ProdigalSon.EristicsBooks.Two,
 					rewards = { QuestKeyItems.ProdigalSon.BookTwo },
 				},
 				{
-					pos = { -47, 166, 4 },
+					
 					id = 2473,
-					aid = Storage.ProdigalSon.EristicsBooks.Three,
+					key = Storage.ProdigalSon.EristicsBooks.Three,
 					rewards = { QuestKeyItems.ProdigalSon.BookThree },
 				},
-				{ pos = { -61, 27, 2 }, id = 9125, aid = Storage.ProdigalSon.SewersLever },
-				{ pos = { -61, 27, 5 }, id = 9125, aid = Storage.ProdigalSon.SewersLever },
 			}, JANUSZEX_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local surfaceZ = JANUSZEX_ANCHOR:Moved(0, 0, 2).z
@@ -1432,9 +1338,9 @@ quest
 		return QuestState.ProdigalSon.Mission05.FindingDwarfNecklace,
 			QuestFactory.StartupItems({
 				{
-					pos = { -40, -270, 5 },
+					
 					id = 4169,
-					aid = Storage.ProdigalSon.DiamondNecklace,
+					key = Storage.ProdigalSon.DiamondNecklace,
 					rewards = { QuestKeyItems.ProdigalSon.DiamondNecklace },
 				},
 			}, JANUSZEX_ANCHOR),
@@ -1463,9 +1369,9 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission05.CheckingOnSilo, QuestFactory.StartupItems({
 			{
-				pos = { 74, -82, 2 },
+				
 				id = 843,
-				aid = Storage.ProdigalSon.LavaSiloMachine,
+				key = Storage.ProdigalSon.LavaSiloMachine,
 				nextState = {
 					[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.CheckedOnSilo,
 				},
@@ -1486,9 +1392,8 @@ quest
 	:State(function()
 		return { min = QuestState.ProdigalSon.Mission05.CheckedOnSilo }, QuestFactory.StartupItems({
 			{
-				pos = JANUSZEX_ANCHOR:Moved(-16, -103, 4),
 				id = 11809,
-				actionid = Storage.KingOfRatsHQ.Items.Cultivator,
+				key = Storage.KingOfRatsHQ.Items.Cultivator,
 				rewards = { QuestKeyItems.KingOfRatsHQ.Cultivator },
 			},
 		})
@@ -1497,9 +1402,9 @@ quest
 		return QuestState.ProdigalSon.Mission05.EscortingFredi,
 			QuestFactory.StartupItems({
 				{
-					pos = { 104, -150, 4 },
+					
 					id = 5468,
-					aid = Storage.ProdigalSon.FrediBeer,
+					key = Storage.ProdigalSon.FrediBeer,
 					nextState = { [Storage.ProdigalSon.FrediBeer] = -1 },
 					rewards = { QuestKeyItems.ProdigalSon.FrediBeer },
 				},
@@ -1538,11 +1443,11 @@ quest
 			})
 	end)
 	:Monster(function()
-		local mType = Game.createMonsterType("Fredi kamionka Escort")
+		local mType = Game.createMonsterType("Fredi Kamionka Escort")
 		local monster = {}
 
-		monster.name = "Fredi kamionka"
-		monster.description = "a Fredi kamionka"
+		monster.name = "Fredi Kamionka"
+		monster.description = "a Fredi Kamionka"
 		monster.experience = 1000
 		monster.outfit = { lookType = 1136, lookHead = 95, lookBody = 100, lookLegs = 60, lookFeet = 58, lookAddons = 0 }
 
@@ -1735,12 +1640,6 @@ quest
 				blackboardLook:key(Storage.ProdigalSon.Blackboard)
 				blackboardLook:register()
 			end),
-			QuestFactory.StartupItems({
-				{ pos = { -174, 5, 5 }, id = 1717, actionid = 0 },
-				{ pos = { -193, 1, 3 }, id = 2773, aid = Storage.ProdigalSon.BlackBoardLever1 },
-				{ pos = { -182, 1, 3 }, id = 2773, aid = Storage.ProdigalSon.BlackBoardLever2 },
-				{ pos = { -174, 5, 5 }, id = 2602, aid = Storage.ProdigalSon.Blackboard, desc = "BLACKBOARD_DESC" },
-			}, JANUSZEX_ANCHOR),
 			QuestFactory.Dialog("Henry the Foreman", {
 				[{ "mission" }] = {
 					text = "Did you find out what is the password? What is it?",

@@ -37,13 +37,13 @@ quest
 		QuestKeyItems.ChesterTheDwarf = {
 			IdentityDocument = {
 				id = 19074,
-				aid = Storage.ChesterTheDwarf.Document,
+				key = Storage.ChesterTheDwarf.Document,
 				desc = "Identity Document",
 				text = "SURNAME\n\nBeefbottom\nNAME\nJohn\n\nCITIZENSHIP\nBoland\n\nFAMILY NAME\nAssman\n\nPARENTS NAMES\nAdam Eevee\n\nDate of Birth\n4.20.1969",
 			},
 			GandalfBag = {
 				id = 13429,
-				aid = Storage.ChesterTheDwarf.GandalfBag,
+				key = Storage.ChesterTheDwarf.GandalfBag,
 				desc = "This bag is sealed with the power of light. Gandalf is the only one who can reach into it.",
 			},
 		}
@@ -195,11 +195,6 @@ quest
 						[Storage.ChesterTheDwarf.Mission03] = QuestState.ChesterTheDwarf.Mission03.FindCave,
 					},
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6660, 1139, 7 }, id = 231, aid = Storage.ChesterTheDwarf.CaveTile },
-				{ pos = { 6661, 1139, 7 }, id = 231, aid = Storage.ChesterTheDwarf.CaveTile },
-				{ pos = { 6662, 1139, 7 }, id = 231, aid = Storage.ChesterTheDwarf.CaveTile },
 			})
 	end)
 	:State(function()
@@ -248,10 +243,6 @@ quest
 					expReward = 30000,
 					rewards = { { id = 27605 } },
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6438, 1125, 14 }, id = 9567, aid = Storage.ChesterTheDwarf.DoorToChesterCompartment },
-				{ pos = { 7049, 826, 7 }, id = 5258, aid = Storage.ChesterTheDwarf.ChesterHouseStairs },
 			})
 	end)
 	:State(function()

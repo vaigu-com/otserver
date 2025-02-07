@@ -12,21 +12,6 @@ quest
 	:Mission(Storage.DesertQuestHub)
 	:State(function()
 		return { min = MISSION_NOT_STARTED, max = DEFAULT_MAX_STATE },
-			QuestFactory.StartupItems({
-				{ pos = { -2, 0, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToDesertQuestOne },
-				{ pos = { 2, 0, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToDesertQuestTwo },
-				{ pos = { 0, -2, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToSultanPrime },
-				-- {position = {x = 0, y= 2, z= 0}, id = 1949, aid = Storage.DesertQuestHub}, -- unused
-			}, DESERT_QUEST_HUB_ANCHOR),
-			QuestFactory.StartupItems({
-				{ { pos = { 66, 64, -2 }, id = 1949, aid = Storage.DesertQuestHub.ToHub } },
-			}, DESERT_QUEST_ONE_ANCHOR),
-			QuestFactory.StartupItems({
-				{ pos = { 5, 20, 0 }, id = 1949, aid = Storage.DesertQuestHub.ToHub },
-			}, DESERT_QUEST_TWO_ANCHOR),
-			QuestFactory.StartupItems({
-				{ { pos = { 8, 4, 2 }, id = 1949, actionid = Storage.DesertQuestHub.ToHub } },
-			}, RETRO_MIRKO_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local aidToRequiredStorages = {
 					[Storage.DesertQuestHub.ToDesertQuestOne] = nil,

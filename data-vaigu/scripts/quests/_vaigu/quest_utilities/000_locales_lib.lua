@@ -66,6 +66,29 @@ end
 --register TRANSLATION_TABLES on cpp side
 Game.initializeTranslationTable()
 
+local function translatedFromSpecificQuest(str, questId, targetLanguage)
+	local questConf = TRANSLATION_TABLES[targetLanguage][questId]
+	if questConf then
+		return questConf[str]
+	end
+end
+function translatedFromAnyQuest(string, language, localizer)
+	local allStrings = TRANSLATION_TABLES[language]
+	if allStrings[LOCALIZERS.Universal][string] then
+		return allStrings[LOCALIZERS.Universal][string]
+	end
+	for _, questStrings in pairs(allStrings) do
+		if questStrings[string] then
+			return questStrings[string]
+		end
+	end
+
+	localizer = localizer or LOCALIZERS.Universal
+	MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
+	MissingStrings[language][localizer][string] = true
+end
+local function translate(str, player, localizer) end
+
 Localizer = {}
 Localizer.__index = Localizer
 function Localizer:New(player, questId)
@@ -94,7 +117,8 @@ function Localizer:Get(translateMe)
 		translateMe = translateMe[math.random(1, #translateMe)]
 	end
 
-	local translated = Translated(translateMe, self.player, self.questId)
+	local targetLanguage = player:getLanguage()
+	local translated = translatedFromSpecificQuest(translateMe, self.questId, targetLanguage) or translatedFromAnyQuest(translateMe, targetLanguage)
 	self.translated = Evaluate(translated, self.context)
 	return self.translated
 end
@@ -109,13 +133,6 @@ end
 
 function Player:Localizer(questId)
 	return Localizer(self, questId)
-end
-
-local function translatedFromSpecificQuest(str, questId, targetLanguage)
-	local questConf = TRANSLATION_TABLES[targetLanguage][questId]
-	if questConf then
-		return questConf[str]
-	end
 end
 
 MissingStrings = {}
@@ -148,25 +165,4 @@ function missingStringsToFile()
 			end
 		end
 	end
-end
-
-function translatedFromAnyQuest(string, language, localizer)
-	local allStrings = TRANSLATION_TABLES[language]
-	if allStrings[LOCALIZERS.Universal][string] then
-		return allStrings[LOCALIZERS.Universal][string]
-	end
-	for _, questStrings in pairs(allStrings) do
-		if questStrings[string] then
-			return questStrings[string]
-		end
-	end
-
-	localizer = localizer or LOCALIZERS.Universal
-	MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
-	MissingStrings[language][localizer][string] = true
-end
-
-function Translated(str, player, localizer)
-	local targetLanguage = player:getLanguage()
-	return translatedFromSpecificQuest(str, localizer, targetLanguage) or translatedFromAnyQuest(str, targetLanguage)
 end

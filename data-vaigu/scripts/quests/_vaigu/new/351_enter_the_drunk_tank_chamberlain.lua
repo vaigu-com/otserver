@@ -49,11 +49,11 @@ quest
 			[VOCATION.BASE_ID.PALADIN] = Storage.EnterTheDrunkTankChamberlain.GreatManaPotion,
 		}
 		QuestKeyItems.EnterTheDrunkTankChamberlain = {
-			GlowingWaterVial = { id = 21766, aid = Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial },
-			BullSpoogeChurn = { id = 32011, aid = Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn },
-			FilledVial = { id = 2874, aid = Storage.EnterTheDrunkTankChamberlain.FilledVial },
-			FilledChurn = { id = 32198, aid = Storage.EnterTheDrunkTankChamberlain.FilledChurn },
-			Hallucinogen = { id = 31350, aid = Storage.EnterTheDrunkTankChamberlain.Hallucinogen },
+			GlowingWaterVial = { id = 21766, key = Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial },
+			BullSpoogeChurn = { id = 32011, key = Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn },
+			FilledVial = { id = 2874, key = Storage.EnterTheDrunkTankChamberlain.FilledVial },
+			FilledChurn = { id = 32198, key = Storage.EnterTheDrunkTankChamberlain.FilledChurn },
+			Hallucinogen = { id = 31350, key = Storage.EnterTheDrunkTankChamberlain.Hallucinogen },
 		}
 		QuestActions.EnterTheDrunkTankChamberlain = {
 			grantVocationPotionAccess = function(context)
@@ -133,14 +133,11 @@ quest
 
 					toPosition:sendMagicEffect(CONST_ME_POFF)
 					item:remove()
-					player:AddCustomItem({ id = 2874, aid = Storage.EnterTheDrunkTankChamberlain.FilledVial })
+					player:AddCustomItem({ id = 2874, key = Storage.EnterTheDrunkTankChamberlain.FilledVial })
 				end
 				glowingVial:key(Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial)
 				glowingVial:register()
 			end),
-			QuestFactory.StartupItems({
-				{ id = 38526, pos = { 7056, 1437, 1 }, aid = Storage.EnterTheDrunkTankChamberlain.GlowingWaterVial },
-			}),
 			QuestFactory.Script(function(missionState)
 				local spoogeChurn = Action()
 				function spoogeChurn.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -154,16 +151,11 @@ quest
 
 					toPosition:sendMagicEffect(CONST_ME_POFF)
 					item:remove()
-					player:AddCustomItem({ id = 32198, aid = Storage.EnterTheDrunkTankChamberlain.FilledChurn, name = "churn of bull's 'milk'" })
+					player:AddCustomItem({ id = 32198, key = Storage.EnterTheDrunkTankChamberlain.FilledChurn, name = "churn of bull's 'milk'" })
 				end
 				spoogeChurn:key(Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn)
 				spoogeChurn:register()
 			end),
-			QuestFactory.StartupItems({
-				{ id = 2531, pos = { 7392, 1332, 7 }, aid = Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn },
-				{ id = 2533, pos = { 7392, 1333, 7 }, aid = Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn },
-				{ id = 2532, pos = { 7393, 1332, 7 }, aid = Storage.EnterTheDrunkTankChamberlain.BullSpoogeChurn },
-			}),
 			QuestFactory.Dialog("Vislav Shivka", {
 				[{ "mission", "misja" }] = {
 					text = "Yes, there are ingredients i was talking about. Now, let me use my ferment-o-matic to instantly create this concoction for you. Take it to the Orshaawa catacombs. When you are there, stand before the door, drink this potion, and the following delirium should allow you to hallucinate yourself going through that door. Inside you shall find what you need to complete your training.",
@@ -208,8 +200,7 @@ quest
 			QuestFactory.StartupItems({
 				{
 					id = 2438,
-					position = { 7642, 1832, 12 },
-					aid = Storage.EnterTheDrunkTankChamberlain.Bookcase,
+					key = Storage.EnterTheDrunkTankChamberlain.Bookcase,
 					requiredItems = {
 						QuestKeyItems.EnterTheDrunkTankChamberlain.Hallucinogen,
 					},

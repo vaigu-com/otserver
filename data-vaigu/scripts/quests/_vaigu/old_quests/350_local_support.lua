@@ -140,15 +140,15 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.LocalSupport = {
-			PoisonedCheese = { id = 3210, aid = Storage.LocalSupport.PoisonedCheese, desc = "A deadly gas can be sensed coming from inside the cheese." },
-			Parcel = { id = 3504, aid = Storage.LocalSupport.Parcel },
-			OldManFrostPickaxe = { id = 4872, aid = Storage.LocalSupport.OldManFrostPickaxe },
-			Ticket = { id = 28818, aid = Storage.LocalSupport.Ticket },
-			BookOfContraband = { id = 2816, aid = Storage.LocalSupport.BookOfContraband, text = "DOMINO_BOOK_OF_CONTRABAND_TEXT" },
-			FishBait = { id = 15817, aid = Storage.LocalSupport.FishBait },
-			FishmongerFloat = { id = 6126, aid = Storage.LocalSupport.FishmongerFloat },
-			FishmongerReel = { id = 3224, aid = Storage.LocalSupport.FishmongerReel },
-			FishmongerStool = { id = 3107, aid = Storage.LocalSupport.FishmongerStool },
+			PoisonedCheese = { id = 3210, key = Storage.LocalSupport.PoisonedCheese, desc = "A deadly gas can be sensed coming from inside the cheese." },
+			Parcel = { id = 3504, key = Storage.LocalSupport.Parcel },
+			OldManFrostPickaxe = { id = 4872, key = Storage.LocalSupport.OldManFrostPickaxe },
+			Ticket = { id = 28818, key = Storage.LocalSupport.Ticket },
+			BookOfContraband = { id = 2816, key = Storage.LocalSupport.BookOfContraband, text = "DOMINO_BOOK_OF_CONTRABAND_TEXT" },
+			FishBait = { id = 15817, key = Storage.LocalSupport.FishBait },
+			FishmongerFloat = { id = 6126, key = Storage.LocalSupport.FishmongerFloat },
+			FishmongerReel = { id = 3224, key = Storage.LocalSupport.FishmongerReel },
+			FishmongerStool = { id = 3107, key = Storage.LocalSupport.FishmongerStool },
 		}
 	end)
 	:Questlog(function()
@@ -764,7 +764,7 @@ quest
 				text = "Come back when you find my shipment.",
 			} }),
 			QuestFactory.StartupItems({
-				{ id = 11520, pos = { 5748, 1633, 7 }, aid = Storage.LocalSupport.Parcel, rewards = { QuestKeyItems.LocalSupport.Parcel }, nextState = { [Storage.LocalSupport.Biodegradable] = QuestState.LocalSupport.Biodegradable.ReturnPackageToPostman } },
+				{ id = 11520,  key = Storage.LocalSupport.Parcel, rewards = { QuestKeyItems.LocalSupport.Parcel }, nextState = { [Storage.LocalSupport.Biodegradable] = QuestState.LocalSupport.Biodegradable.ReturnPackageToPostman } },
 			})
 	end)
 	:State(function()
@@ -827,16 +827,15 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
-				{
-					position = Position(7508, 292, 7),
-					id = 7176,
-					aid = Storage.OldManFrostMammoth,
-					onLook = function(context)
-						context.player:removeMoneyBank(50)
-					end,
-				},
-			})
+			--3af
+			QuestFactory.Script(function()
+				local mammothLook = Look()
+				function mammothLook.onLook(player, item)
+					player:removeMoneyBank(50)
+				end
+				mammothLook:key(Storage.OldManFrostMammoth)
+				mammothLook:register()
+			end)
 	end)
 	:State(function()
 		return QuestState.LocalSupport.UnwantedGuests.BringOldManFrostItems,
@@ -946,7 +945,7 @@ quest
 				text = "I hope that you'll find this ticket.",
 			} }),
 			QuestFactory.StartupItems({
-				{ id = 256, pos = { 5993, 1420, 7 }, aid = Storage.LocalSupport.Ticket, rewards = { QuestKeyItems.LocalSupport.Ticket }, nextState = { [Storage.LocalSupport.OcellatusXD] = QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus } },
+				{ id = 256,  key = Storage.LocalSupport.Ticket, rewards = { QuestKeyItems.LocalSupport.Ticket }, nextState = { [Storage.LocalSupport.OcellatusXD] = QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus } },
 			})
 	end)
 	:State(function()
@@ -1032,13 +1031,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.IKEAForTheBold.FindThiefInSewers,
-			QuestFactory.StartupItems({
-				{
-					id = 11809,
-					pos = { 5832, 1597, 11 },
-					aid = Storage.LocalSupport.SpawnDominoUndergroundChest,
-				},
-			}),
 			QuestFactory.Script(function(missionState)
 				local undergroundChest = Action()
 				function undergroundChest.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -1177,8 +1169,8 @@ quest
 			QuestFactory.StartupItems({
 				{
 					id = 2471,
-					pos = { 5840, 1588, 11 },
-					aid = Storage.LocalSupport.BookChest,
+					
+					key = Storage.LocalSupport.BookChest,
 					rewards = {
 						{ id = 3076 },
 						QuestKeyItems.LocalSupport.BookOfContraband,
@@ -1204,9 +1196,6 @@ quest
 					},
 					expReward = 30000,
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ id = 9363, pos = { 5840, 1561, 6 }, aid = Storage.LocalSupport.UpstairsRoom },
 			})
 	end)
 	:State(function()
@@ -1294,10 +1283,7 @@ quest
 				tileBeforeHawser:key(Storage.LocalSupport.TileBeforeHawser)
 				tileBeforeHawser:type("stepin")
 				tileBeforeHawser:register()
-			end),
-			QuestFactory.StartupItems({
-				{ id = 4407, pos = { 6198, 1206, 7 }, aid = Storage.LocalSupport.TileBeforeHawser },
-			})
+			end)
 	end)
 	:MonsterEvent(function()
 		local dominoShore = CreatureEvent("LumberjackDominoShoreDeath")
@@ -1427,7 +1413,8 @@ quest
 			QuestFactory.StartupItems({
 				{
 					id = 2472,
-					pos = { 6206, 1208, 7 },
+					key = Storage.LocalSupport.ShoreCaveChest,
+					
 					rewards = {
 						{ id = 7934 },
 						{ id = 3055 },
@@ -1538,9 +1525,9 @@ quest
 				},
 			}),
 			QuestFactory.StartupItems({
-				{ id = 3687, pos = { 5931, 1640, 7 }, aid = Storage.LocalSupport.FishmongerFloat, rewards = { QuestKeyItems.LocalSupport.FishmongerFloat } },
-				{ id = 3686, pos = { 5829, 1598, 7 }, aid = Storage.LocalSupport.FishmongerReel, rewards = { QuestKeyItems.LocalSupport.FishmongerReel } },
-				{ id = 1768, pos = { 5792, 1594, 7 }, aid = Storage.LocalSupport.FishmongerStool, rewards = { QuestKeyItems.LocalSupport.FishmongerStool } },
+				{ id = 3687,  key = Storage.LocalSupport.FishmongerFloat, rewards = { QuestKeyItems.LocalSupport.FishmongerFloat } },
+				{ id = 3686,  key = Storage.LocalSupport.FishmongerReel, rewards = { QuestKeyItems.LocalSupport.FishmongerReel } },
+				{ id = 1768,  key = Storage.LocalSupport.FishmongerStool, rewards = { QuestKeyItems.LocalSupport.FishmongerStool } },
 			})
 	end)
 	:State(function()

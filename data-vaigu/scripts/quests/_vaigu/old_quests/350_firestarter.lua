@@ -44,9 +44,9 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.Firestarter = {
-			FirebugHaystack = { id = 5467, aid = Storage.Firestarter.FirebugHaystack, desc = "Hymel's lighter. Use it on a stack of weed in his old house." },
-			FirebugFlowers = { id = 5467, aid = Storage.Firestarter.FirebugFlowers, desc = "Hymel's lighter. Set the guard tree on fire." },
-			FirebugTree = { id = 5467, aid = Storage.Firestarter.FirebugTree, desc = "Hymel's lighter. Use it to lit red weed flowers." },
+			FirebugHaystack = { id = 5467, key = Storage.Firestarter.FirebugHaystack, desc = "Hymel's lighter. Use it on a stack of weed in his old house." },
+			FirebugFlowers = { id = 5467, key = Storage.Firestarter.FirebugFlowers, desc = "Hymel's lighter. Set the guard tree on fire." },
+			FirebugTree = { id = 5467, key = Storage.Firestarter.FirebugTree, desc = "Hymel's lighter. Use it to lit red weed flowers." },
 		}
 	end)
 	:Questlog(function()
@@ -129,10 +129,7 @@ quest
 
 				hayStack:key(Storage.Firestarter.FirebugHaystack)
 				hayStack:register()
-			end),
-			QuestFactory.StartupItems({
-				{ id = 5546, pos = { 5916, 1483, 7 }, aid = Storage.Firestarter.HayStack },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.Firestarter.Mission01.ReportToHymel,
@@ -195,10 +192,7 @@ quest
 
 				hayStack:key(Storage.Firestarter.FirebugTree)
 				hayStack:register()
-			end),
-			QuestFactory.StartupItems({
-				{ id = 3954, pos = { 5817, 1537, 7 }, aid = Storage.Firestarter.Tree },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.Firestarter.Mission02.ReportToHymel,
