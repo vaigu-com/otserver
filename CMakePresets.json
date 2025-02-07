@@ -11,21 +11,29 @@
       "inherits": "linux-debug-asan",
       "displayName": "Vaigu Debug (Linux)",
       "description": "Ebebebe",
-      "binaryDir": "/home/karol/developer/vaigu/build",
+      "binaryDir": "/home/karol/vaigu/build/ots-debug-clion",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "/home/karol/developer/vaigu/vcpkg/scripts/buildsystems/vcpkg.cmake",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_C_FLAGS": "-g",
-        "CMAKE_CXX_FLAGS": "-g",
-        "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
-        "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=lld",
-        "CMAKE_LINKER": "/bin/lld"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       },
       "environment": {
-        "CCACHE_DIR": "/home/karol/developer/vaigu/build/.cache/ccache",
-        "VCPKG_DEFAULT_BINARY_CACHE": "/home/karol/developer/vaigu/build/.cache/vcpkg",
-        "VCPKG_ROOT": "/home/karol/developer/vaigu/vcpkg"
+        "CCACHE_DIR": "/home/karol/vaigu/.cache/ccache",
+        "VCPKG_DEFAULT_BINARY_CACHE": "/home/karol/vaigu/.cache/vcpkg",
+        "VCPKG_ROOT": "/home/karol/vaigu/vcpkg"
+      }
+    },
+    {
+      "name": "vaigu-release",
+      "inherits": "linux-release",
+      "displayName": "Vaigu Release (Linux)",
+      "description": "Ebebebe",
+      "binaryDir": "/home/karol/vaigu/build/otserver-release-clion",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      },
+      "environment": {
+        "CCACHE_DIR": "/home/karol/vaigu/.cache/ccache",
+        "VCPKG_DEFAULT_BINARY_CACHE": "/home/karol/vaigu/.cache/vcpkg",
+        "VCPKG_ROOT": "/home/karol/vaigu/vcpkg"
       }
     },
     {
