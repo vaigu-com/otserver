@@ -1,23 +1,45 @@
-local movement = MoveEvent()
-
-function movement.onStepIn(creature, item, toPosition, fromPosition)
-	if (item.actionid > 6000 and item.actionid < 6004) or (item.actionid >= 6007 and item.actionid <= 6008) then
-		if not creature:isPlayer() then
-			return false
-		end
-		local town = Town(item.actionid - 6000)
+local function findNearestTown(pos)
+	local nearestDist = 65536
+	local nearestTown = nil
+	for id = 1, 100 do
+		local town = Town(id)
 		if not town then
-			return true
+			break
 		end
-		local player = creature:getPlayer()
-		player:setTown(town)
-		player:teleportTo(town:getTemplePosition())
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, (player:getSex() == PLAYERSEX_FEMALE and "Zostalas" or "Zostales") .. " obywatelem tej krainy.")
+
+		local distToTemple = pos:EuclideanDistance(town:getTemplePosition())
+		if distToTemple < nearestDist then
+			nearestDist = distToTemple
+			nearestTown = town
+		end
 	end
-	return true
+
+	return nearestTown
 end
 
-movement:type("stepin")
-movement:aid(6001, 6002, 6003, 6007, 6008)
-movement:register()
+local templeTeleport = MoveEvent()
+function templeTeleport.onStepIn(creature, item, toPosition, fromPosition)
+	if not creature:isPlayer() then
+		return false
+	end
+
+	local town = findNearestTown(toPosition)
+	if not town then
+		return true
+	end
+
+	local player = creature:getPlayer()
+	player:setTown(town)
+	player:teleportTo(town:getTemplePosition())
+	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+
+	local localizer = player:Localizer(LOCALIZERS.Universal)
+	local translatedTownName = localizer:Get(town:getName())
+	local translatedMessage = localizer:Context({ townName = translatedTownName }):Get("YOU_ARE_NOW_CITIZEN_OF")
+
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
+	return true
+end
+templeTeleport:type("stepin")
+templeTeleport:key(Storage.BecomeTownCitizen)
+templeTeleport:register()

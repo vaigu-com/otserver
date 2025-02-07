@@ -10,6 +10,10 @@ local directionToString = {
 }
 
 return {
+	["YOU_ARE_NOW_CITIZEN_OF"] = function (context)
+		local townName = context.townName
+		return T("You are now a citizen of :townName:.", {townName = townName})
+	end,
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Hello, |PLAYERNAME|! Lately hardly any people come to visit me",
 	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (complete)",
 	["GO_IN_DIRECTION"] = function(context)
