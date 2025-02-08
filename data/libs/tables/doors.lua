@@ -1,7 +1,17 @@
 -- Be careful, do not add quest door inside the level door table, this will lock the doors.
 
 -- ID of the keys. (Id 21392 is used only for dawnport quest)
-keysID = { 2967, 2968, 2969, 2970, 2971, 2972, 2973, 21392 }
+keysID = {
+	2967,
+	2968,
+	2969,
+	2970,
+	2971,
+	2972,
+	2973,
+	-- 21392,
+}
+
 
 -- The lockedDoor is the doors with the description "It is locked". Use this (with no action) to keep a door permanently isoled.
 -- The closedDoor is the doors that are unlocked, when using them open normally.
@@ -137,9 +147,9 @@ CustomDoorTable = {
 	{ closedDoor = 30052, openDoor = 30040 },
 	]]
 	{ closedDoor = 30833, openDoor = 30837 },
-	{ closedDoor = 30834, openDoor = 30837 },
+	--	{ closedDoor = 30834, openDoor = 30837 },
 	{ closedDoor = 30835, openDoor = 30838 },
-	{ closedDoor = 30836, openDoor = 30838 },
+	--{ closedDoor = 30836, openDoor = 30838 },
 	{ closedDoor = 30849, openDoor = 30853 },
 	{ closedDoor = 30850, openDoor = 30854 },
 	{ closedDoor = 30851, openDoor = 30855 },
@@ -165,9 +175,9 @@ CustomDoorTable = {
 	{ closedDoor = 39660, openDoor = 39666 },
 	{ closedDoor = 39661, openDoor = 39667 },
 	{ closedDoor = 44913, openDoor = 44917 },
-	{ closedDoor = 44914, openDoor = 44917 },
+	--{ closedDoor = 44914, openDoor = 44917 },
 	{ closedDoor = 44915, openDoor = 44918 },
-	{ closedDoor = 44916, openDoor = 44918 },
+	--{ closedDoor = 44916, openDoor = 44918 },
 	{ closedDoor = 48495, openDoor = 48497 },
 	{ closedDoor = 48496, openDoor = 48498 },
 	{ closedDoor = 48499, openDoor = 48501 },
@@ -243,10 +253,7 @@ QuestDoorTable = {
 }
 
 -- Level doors.
--- It's simple, just add a 1 followed by the amount of levels the player needs to be able to pass.
--- For example:
--- Level 10 put the action id: 1255 on the door.
--- Level 100 put the action id: 1345 on the door. And so on.
+-- Set 'key' field to value you want
 LevelDoorTable = {
 	{ closedDoor = 1646, openDoor = 1647 },
 	{ closedDoor = 1648, openDoor = 1649 },

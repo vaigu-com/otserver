@@ -82118,4 +82118,9 @@ Granted by TibiaGoals.com" />
 	<item id="47379" article="a" name="large obelisk">
 		<attribute key="primarytype" value="pillars" />
 	</item>
+		<item id="49279" article="a" name="key ring">
+		<attribute key="primarytype" value="containers" />
+		<attribute key="containersize" value="7" />
+		<attribute key="weight" value="0" />
+	</item>
 </items>

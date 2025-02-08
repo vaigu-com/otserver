@@ -1,37 +1,36 @@
---Lookup tables
 local closedToOpen = {}
 local openToClosed = {}
-for index, value in ipairs(LevelDoorTable) do
+for _, value in pairs(LevelDoorTable) do
 	closedToOpen[value.closedDoor] = value.openDoor
 	openToClosed[value.openDoor] = value.closedDoor
 end
 
-local function doorHasValidLevel(door)
+local function extractRequiredLevel(door)
 	local key = door:getKey()
 	if not key then
-		return false
+		return
 	end
 
 	local requiredLevel = tonumber(key)
 	if not requiredLevel then
-		return false
+		return
 	end
 
 	if requiredLevel <= 0 then
-		return false
+		return
 	end
 
-	return true
+	return requiredLevel
 end
 
 local function canPassDoor(player, door)
 	local playerLevel = player:getLevel()
 
-	if not doorHasValidLevel(door) then
+	local requiredLevel = extractRequiredLevel(door)
+	if not requiredLevel then
 		return true
 	end
 
-	local requiredLevel = tonumber()
 	if playerLevel >= requiredLevel then
 		return true
 	end
@@ -41,45 +40,46 @@ end
 local lookAtDoor = Look()
 function lookAtDoor.onLook(player, door)
 	local forLevel = ""
-	if doorHasValidLevel(door) then
-		forLevel = " for level " .. door:getKey()
+	local requiredLevel = extractRequiredLevel(door)
+	if requiredLevel then
+		forLevel = T(" for level dup[a] :level:", { level = requiredLevel })
 	end
 
-	player:sendTextMessage(MESSAGE_LOOK, T("You see :doorDesc::forLevel:.", {doorDesc = door:getNameDescription(), forLevel = forLevel}))
+	player:sendTextMessage(MESSAGE_LOOK, T("You see :doorDesc::forLevel:.", { doorDesc = door:getNameDescription(), forLevel = forLevel }))
+	return DONT_SHOW_playerOnLook
 end
+for closedId, openId in pairs(closedToOpen) do
+	lookAtDoor:id(closedId)
+	lookAtDoor:id(openId)
+end
+lookAtDoor:register()
 
-local openLevelDoor = Action()
-function openLevelDoor.onUse(player, door, fromPosition, target, toPosition, isHotkey)
+local closedDoor = Action()
+function closedDoor.onUse(player, door, fromPosition, target, toPosition, isHotkey)
 	if not canPassDoor(player, door) then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Only the worthy may pass.")
 		return false
 	end
 
-	local doorId = door:getId()
-	local openDoorId = closedToOpen[doorId]
-	if openDoorId then
-		door:transform(openDoorId)
-		door:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
-		player:teleportTo(toPosition, true)
-	else
-		Creature.checkCreatureInsideDoor(player, toPosition)
-	end
+	door:transform(closedToOpen[door:getId()])
+	door:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
+	player:teleportTo(toPosition, true)
 
 	return true
 end
 for closedId, openId in pairs(closedToOpen) do
-	openLevelDoor:id(closedId)
+	closedDoor:id(closedId)
 end
-openLevelDoor:register()
+closedDoor:register()
 
-local closingLevelDoor = MoveEvent()
-function closingLevelDoor.onStepIn(creature, item, position, fromPosition)
+local stepInOpenDoor = MoveEvent()
+function stepInOpenDoor.onStepIn(creature, door, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
 		return
 	end
 
-	local requiredLevel = tonumber(item:getKey())
+	local requiredLevel = tonumber(door:getKey())
 	local playerLevel = creature:getLevel()
 	if playerLevel >= requiredLevel then
 		return true
@@ -90,7 +90,7 @@ function closingLevelDoor.onStepIn(creature, item, position, fromPosition)
 	return false
 end
 for openId, closedId in pairs(openToClosed) do
-	closingLevelDoor:id(openId)
+	stepInOpenDoor:id(openId)
 end
-closingLevelDoor:type("stepin")
-closingLevelDoor:register()
+stepInOpenDoor:type("stepin")
+stepInOpenDoor:register()

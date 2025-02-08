@@ -1,4 +1,6 @@
+DONT_SHOW_playerOnLook = true
 OPEN_CONTAINER_ON_USE = true
+
 
 ENCOUNTER_ERROR_CODES = {
 	NO_ERROR = "NO_ERROR",
