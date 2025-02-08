@@ -1,17 +1,10 @@
--- Level and quests closing door (onStepIn).
--- This prevents a player who has not yet done the quest, from crossing the player who has already done so, skipping the entire quest and going straight to the final reward.
+
 local doorIds = {}
 
 local closingDoor = MoveEvent()
 closingDoor:type("stepin")
 
 for index, value in ipairs(QuestDoorTable) do
-	if not table.contains(doorIds, value.openDoor) then
-		table.insert(doorIds, value.openDoor)
-	end
-end
-
-for index, value in ipairs(LevelDoorTable) do
 	if not table.contains(doorIds, value.openDoor) then
 		table.insert(doorIds, value.openDoor)
 	end
@@ -29,18 +22,6 @@ function closingDoor.onStepIn(creature, item, position, fromPosition)
 				return true
 			else
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The door seems to be sealed against unwanted intruders.")
-				player:teleportTo(fromPosition, true)
-				return false
-			end
-		end
-	end
-
-	for index, value in ipairs(LevelDoorTable) do
-		if value.openDoor == item.itemid then
-			if item.actionid > 0 and player:getLevel() >= item.actionid - 1000 then
-				return true
-			else
-				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Only the worthy may pass.")
 				player:teleportTo(fromPosition, true)
 				return false
 			end

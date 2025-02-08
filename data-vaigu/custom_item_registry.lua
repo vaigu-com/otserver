@@ -26,6 +26,7 @@ function CustomItemRegistry:Register(item)
 	end
 
 	if not shouldRegisterRevscript(item) then
+		logger.warn("[CustomItemRegistry::Register] shouldRegisterRevscript returned false!")
 		return self
 	end
 

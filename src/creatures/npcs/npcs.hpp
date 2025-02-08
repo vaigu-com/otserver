@@ -12,6 +12,8 @@
 #include "creatures/creatures_definitions.hpp"
 #include "utils/utils_definitions.hpp"
 
+#include "kv/kv.hpp"
+
 class LuaScriptInterface;
 
 class Shop {

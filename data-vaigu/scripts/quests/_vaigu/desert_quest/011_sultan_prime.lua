@@ -46,8 +46,8 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.SultanPrime = {
-			Bottle = { id = 10183, aid = Storage.SultanPrime.MagicianFountain },
-			Amulet = { id = 3015, aid = Storage.SultanPrime.Necklace },
+			Bottle = { id = 10183, key = Storage.SultanPrime.MagicianFountain },
+			Amulet = { id = 3015, key = Storage.SultanPrime.Necklace },
 			CezaryCorpse = { id = 4240 },
 		}
 		SULTAN_PRIME_CAMEL_FARM = { topLeft = { -37, -25, 0 }, downRight = { 12, 22, 0 }, requiredDromedaryCount = 6 }
@@ -335,8 +335,7 @@ quest
 
 		mType.onSay = function(listener, talker, type, message) end
 
-		mType.onAppear = function(monster, creature)
-		end
+		mType.onAppear = function(monster, creature) end
 		
 		mType:register(monster)
 	end)
@@ -454,8 +453,8 @@ quest
 	:Mission(Storage.SultanPrime.Mission01)
 	:State(function()
 		return MISSION_NOT_STARTED,
-			QuestFactory.StartupItems({
-				{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, aid = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
+			QuestFactory.OnUseDeclaration({
+				{ id = QuestKeyItems.SultanPrime.CezaryCorpse.id, key = Storage.SultanPrime.Necklace, nextState = { [Storage.SultanPrime.Mission01] = 1 }, rewards = { QuestKeyItems.SultanPrime.Amulet }, requiredState = { [Storage.SultanPrime.Mission01] = MISSION_NOT_STARTED } },
 			}),
 			QuestFactory.Script(function(missionState)
 				local neckUpdateStorages = {
@@ -529,12 +528,6 @@ quest
 					text = "Hi again, |PLAYERNAME|. Did you complete the mission?",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { -7, -3, 0 }, id = 1936, aid = Storage.SultanPrime.MagicianFountain },
-				{ pos = { -6, -3, 0 }, id = 1937, aid = Storage.SultanPrime.MagicianFountain },
-				{ pos = { -7, -2, 0 }, id = 1938, aid = Storage.SultanPrime.MagicianFountain },
-				{ pos = { -6, -2, 0 }, id = 1939, aid = Storage.SultanPrime.MagicianFountain },
-			}, MIRKO_MAGICIANS_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local function isUsingBottleOnFountain(target)
 					if not target then
@@ -584,7 +577,7 @@ quest
 					},
 				},
 			})
-	end) --39f dodac na mapie
+	end)
 	:Monster(function()
 		local mType = Game.createMonsterType("Dampreefer Dromedary")
 		local monster = {}
@@ -779,9 +772,6 @@ quest
 					text = "Dampreefer farm is located near pirates' yard on the steppes.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6061, 1184, 5 }, id = 11802, aid = Storage.SultanPrime.FarmerChair },
-			}),
 			QuestFactory.Script(function(missionState)
 				local chair = MoveEvent()
 				function chair.onAddItem(maybeRope, tileitem, position)
@@ -829,23 +819,6 @@ quest
 	:Mission(Storage.SultanPrime.Mission03)
 	:State(function()
 		return QuestState.SultanPrime.Mission03.OpenCoffins,
-			QuestFactory.StartupItems({
-				{ pos = { 34, 1, 2 }, id = 2772, aid = Storage.SultanPrime.RetroLever },
-
-				{ pos = { -48, -68, -2 }, id = 1949, aid = Storage.DesertQuestHub.ToSultanPrime },
-
-				{ pos = { -31, -72, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -4, -73, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -71, -63, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -64, -72, 0 }, id = 2477, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -14, -80, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -23, -74, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -27, -85, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -28, -74, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -47, -85, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -52, -78, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-				{ pos = { -68, -76, 0 }, id = 1984, aid = Storage.SultanPrime.Coffin },
-			}, RETRO_MIRKO_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local retroMirkoPos = RETRO_MIRKO_ANCHOR:Moved({ x = -46, y = -68, z = -2 })
 
@@ -902,9 +875,6 @@ quest
 					text = "DETECTED |PLAYERNAME|. EXECUTE: GREET ON OBJECT $|PLAYERNAME|.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { -7, -10, 1 }, id = 10548, aid = Storage.SultanPrime.Jaw },
-			}, RETRO_MIRKO_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local successMessages = {
 					"Om nom nom",
@@ -960,10 +930,11 @@ quest
 				eatingJaw:key(Storage.SultanPrime.Jaw)
 				eatingJaw:register()
 
+				local tentaclyJawPos = RETRO_MIRKO_ANCHOR:Moved({ -9, -11, 0 })
+				
 				local tentacleSpawn = GlobalEvent("SultanPrimeTentacle")
 				function tentacleSpawn.onStartup()
-					--39f add Tentacly Jaw monster
-					tentacleMonster = Game.createMonster("Tentacly Jaw", RETRO_MIRKO_ANCHOR:Moved({ -9, -11, 0 }))
+					tentacleMonster = Tile(tentaclyJawPos):getTopCreature()
 					tentacleMonster:setInvulnerable()
 				end
 				tentacleSpawn:register()
@@ -1007,12 +978,7 @@ quest
 					},
 					rewards = { QuestKeyItems.SultanPrime.Amulet },
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { -31, 43, 0 }, id = 6260, aid = Storage.SultanPrime.DoorAfterRyba },
-
-				{ pos = { -35, 31, 0 }, id = 23483, aid = Storage.DesertQuestHub.ToSultanPrime },
-			}, RETRO_MIRKO_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.SultanPrime.Mission03.AskNatanekForHelp,

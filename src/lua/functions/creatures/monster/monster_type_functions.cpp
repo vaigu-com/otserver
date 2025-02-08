@@ -43,6 +43,8 @@ void MonsterTypeFunctions::init(lua_State* L) {
 
 	Lua::registerMethod(L, "MonsterType", "critChance", MonsterTypeFunctions::luaMonsterTypeCritChance);
 
+	Lua::registerMethod(L, "MonsterType", "uniqueName", MonsterTypeFunctions::luaMonsterTypeGetUniqueName);
+	
 	Lua::registerMethod(L, "MonsterType", "name", MonsterTypeFunctions::luaMonsterTypeName);
 
 	Lua::registerMethod(L, "MonsterType", "nameDescription", MonsterTypeFunctions::luaMonsterTypeNameDescription);
@@ -424,6 +426,17 @@ int MonsterTypeFunctions::luaMonsterTypeCritChance(lua_State* L) {
 			monsterType->info.critChance = Lua::getNumber<uint16_t>(L, 2);
 		}
 		lua_pushnumber(L, monsterType->info.critChance);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int32_t MonsterTypeFunctions::luaMonsterTypeGetUniqueName(lua_State* L) {
+	// monsterType:getUniqueName() 
+	const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
+	if (monsterType) {
+		Lua::pushString(L, monsterType->typeName);
 	} else {
 		lua_pushnil(L);
 	}

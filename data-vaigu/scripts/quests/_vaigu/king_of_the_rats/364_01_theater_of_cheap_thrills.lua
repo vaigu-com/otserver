@@ -94,7 +94,7 @@ quest
 			Juerdo = SpawnLock(),
 		}
 		QuestKeyItems.TheaterOfCheapThrills = {
-			Cheese = { id = 3607, aid = Storage.TheaterOfCheapThrills.Cheese, desc = "100 Year Old Aged Cheese" },
+			Cheese = { id = 3607, key = Storage.TheaterOfCheapThrills.Cheese, desc = "100 Year Old Aged Cheese" },
 		}
 		TEATR_TANIEJ_SENSACJI_PLUS_SHAPE = {
 			unlitToLit = { [28458] = 28459, [28452] = 28453, [28454] = 28455, [28456] = 28457 },
@@ -670,11 +670,11 @@ quest
 					text = "Hello, |PLAYERNAME|. Do you have the special cheese I asked for?",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 6839, 1397, 6 },
+					
 					id = 2472,
-					aid = Storage.TheaterOfCheapThrills.Cheese,
+					key = Storage.TheaterOfCheapThrills.Cheese,
 					rewards = { QuestKeyItems.TheaterOfCheapThrills.Cheese },
 				},
 			})
@@ -791,20 +791,10 @@ quest
 					text = "The book is hidden behind magical mechanisms, deep within the caverns of the Stone Golems on Hurghad Island. The machines inside were created by someone named -stein, so take lot of gold coins with you.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 7, -3, 0 }, id = 850, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineNorth },
-				{ pos = { 2, 10, 0 }, id = 850, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineCenter },
-				{ pos = { -10, 13, 0 }, id = 850, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.MachineWest },
-
-				{ pos = { -3, -12, 0 }, id = 28888, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book },
-				{ pos = { -3, -11, 0 }, id = 470, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book },
-
-				{ pos = { -5, -1, -2 }, id = 6260, aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.AccessDoor },
-			}, LIBRUM_VORTEX_ANCHOR),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = TEATR_TANIEJ_SENSACJI_PLUS_SHAPE.book.lit, -- dont change
-					aid = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book, -- dont change
+					key = Storage.TheaterOfCheapThrills.PlusShapePuzzle.Book, -- dont change
 					nextState = {
 						[Storage.KingOfRatsHQ.Items.LibrumVortex] = 1,
 						[Storage.TheaterOfCheapThrills.Mission03] = QuestState.TheaterOfCheapThrills.Mission03.ReportToRomek,
@@ -1121,9 +1111,6 @@ quest
 			QuestFactory.Dialog("GM Romek", {
 				[{ GREET }] = { text = "I don't know where he could be..." },
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { -4, -2, -2 }, id = 16487, aid = Storage.TheaterOfCheapThrills.RobercikSpawn },
-			}, KING_OF_RATS_HQ_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local tile = MoveEvent()
 
@@ -1272,10 +1259,6 @@ quest
 					text = "These discussions will eventually drive me to the grave. The fortress is south of Mirkotown.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 5888, 1896, 6 }, id = 5654, aid = Storage.TheaterOfCheapThrills.BrazilMap },
-				{ pos = { 5889, 1896, 6 }, id = 5655, aid = Storage.TheaterOfCheapThrills.BrazilMap },
-			}),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {
 					[Storage.TheaterOfCheapThrills.Mission09] = QuestState.TheaterOfCheapThrills.Mission09.PassMapToRomek,
@@ -1316,9 +1299,6 @@ quest
 				[{ "mission" }] = {
 					text = "Juerdo Titsgo is very short. He might hide somewhere when he sees you. His children, on the other hand, are huge mutants.",
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6184, 1019, 7 }, id = 1020, aid = Storage.TheaterOfCheapThrills.JuerdoTitsgoSpawn },
 			}),
 			QuestFactory.Script(function(missionState)
 				local tile = MoveEvent()

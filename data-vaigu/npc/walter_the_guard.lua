@@ -1,10 +1,10 @@
 local name = "Walter, The Guard"
 local outfit = {
 	lookType = 131,
-	lookHead = 19,
+	lookHead = 0,
 	lookBody = 19,
-	lookLegs = 38,
-	lookFeet = 38,
+	lookLegs = 19,
+	lookFeet = 19,
 	lookAddons = 0,
 }
 local context = {

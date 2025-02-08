@@ -1,5 +1,41 @@
-local smallAreaRadius = 3
-local superDrunkDuration = 4000
+MonsterTypeRepository = {}
+MonsterTypeRepository.__index = MonsterTypeRepository
+MonsterTypeRepository.registry = {}
+function MonsterTypeRepository:Add(name, data)
+	self.registry[name] = data
+end
+
+local rme_dir = "../rme/"
+local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
+
+function MonsterTypeRepository:SaveToXML()
+	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
+	for name, data in
+		pairssortedkey(self.registry, function(a, b)
+			return a:lower() < b:lower()
+		end)
+	do
+		xml = xml
+			.. T('\t<monster name=":name:" looktype=":looktype:" lookhead=":lookhead:" lookbody=":lookbody:" looklegs=":looklegs:" lookfeet=":lookfeet:" lookaddon=":lookaddon:" lookitem = ":lookitem:"/>\n', {
+				name = name,
+				looktype = data.outfit.lookType or 0,
+				lookhead = data.outfit.lookHead or 0,
+				lookbody = data.outfit.lookBody or 0,
+				looklegs = data.outfit.lookLegs or 0,
+				lookfeet = data.outfit.lookFeet or 0,
+				lookaddon = data.outfit.lookAddons or 0,
+				lookitem = data.outfit.lookTypeEx or 0,
+			})
+	end
+	xml = xml .. "</monsters>\n"
+	local file = io.open(monstersXmlPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SaveToXML] Cannt open file :path:. Monsters have NOT been saved.", { path = monstersXmlPath }))
+		return
+	end
+	file:write(xml)
+	file:close()
+end
 
 registerMonsterType = {}
 setmetatable(registerMonsterType, {
@@ -10,9 +46,14 @@ setmetatable(registerMonsterType, {
 	end,
 })
 
+
 MonsterType.register = function(self, mask)
-	return registerMonsterType(self, mask)
+	registerMonsterType(self, mask)
+	MonsterTypeRepository:Add(self:getUniqueName(), mask)
 end
+
+local smallAreaRadius = 3
+local superDrunkDuration = 4000
 
 registerMonsterType.name = function(mtype, mask)
 	if mask.name then

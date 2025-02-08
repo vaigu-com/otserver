@@ -1,3 +1,4 @@
+--[[
 local mType = Game.createMonsterType("Mushroom")
 local monster = {}
 
@@ -92,3 +93,4 @@ monster.immunities = {
 }
 
 mType:register(monster)
+]]

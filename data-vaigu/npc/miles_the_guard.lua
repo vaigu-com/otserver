@@ -1,10 +1,10 @@
 local name = "Miles, The Guard"
 local outfit = {
-	lookType = 132,
-	lookHead = 19,
-	lookBody = 10,
-	lookLegs = 38,
-	lookFeet = 95,
+	lookType = 131,
+	lookHead = 0,
+	lookBody = 19,
+	lookLegs = 19,
+	lookFeet = 19,
 	lookAddons = 0,
 }
 local dialogs = {

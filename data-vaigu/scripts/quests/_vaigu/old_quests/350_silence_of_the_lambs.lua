@@ -26,7 +26,7 @@ quest
 		QuestKeyItems.SilenceOfTheLambs = {
 			HumanHeart = {
 				id = 5943,
-				aid = Storage.SilenceOfTheLambs.HumanHeart,
+				key = Storage.SilenceOfTheLambs.HumanHeart,
 			},
 		}
 	end)

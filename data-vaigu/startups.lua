@@ -40,43 +40,6 @@ function LoadStartupMonsters(monsters, anchor)
 	end
 end
 
-local function createCustomItemOnMap(context, anchor)
-	local id = context.id
-	local count = context.count
-	local aid = context.aid
-	local uid = context.uid
-	local key = context.key
-	local desc = context.desc
-	local text = context.text
-
-	local pos = context.pos
-	local item = Game.createItem(id, count, pos)
-	if not item then
-		logger.warn(T("Cannot create item :id:, on position (:x:, :y:, :z:), anchor: :anchor:", { id = id, x = pos.x, y = pos.y, z = pos.z, anchor = (anchor or Position(0, 0, 0)):ToString() }))
-		return
-	end
-	if context.immovable == true then
-		item:setUniqueId(1000)
-	end
-	if aid and aid ~= 0 then
-		item:setActionId(aid)
-		item:setUniqueId(1000)
-	end
-	if uid and uid ~= 0 then
-		item:setUniqueId(uid)
-	end
-
-	if desc and type(desc) == "string" then
-		item:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
-	end
-	if text and type(text) == "string" then
-		item:setAttribute(ITEM_ATTRIBUTE_TEXT, text)
-	end
-	if key and type(key) == "string" then
-		item:setAttribute(ITEM_ATTRIBUTE_KEY, key)
-	end
-end
-
 local function normalizeItemData(itemData, anchor)
 	local context = {}
 	context.id = itemData.id
@@ -106,36 +69,30 @@ local function normalizeItemData(itemData, anchor)
 		end
 	end
 	context.pos = pos
+	context.source = itemData.source
 	return context
 end
 
-local function itemWontBeCreatedOrRegistered(context)
-	if context.pos then
-		return false
+local function registerOnUseDeclaration(context, anchor)
+	context = normalizeItemData(context, anchor)
+	local action = Action()
+	function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+		local resolutionContext = ResolutionContext.FromCustomItemState(context)
+		resolutionContext:SetPlayer(player)
+		resolutionContext:SetTargetItem(item)
+		resolutionContext:SetTargetCreature(target)
+		local status = resolutionContext:Resolve()
+		if status ~= SUCCESS_RESOLVE then
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("The :itemName: is empty.", { itemName = ItemType(item:getId()	):getName() }))
+			return OPEN_CONTAINER_ON_USE
+		end
 	end
-	if context.aid and context.aid ~= 0 then
-		return false
-	end
-	return true
+	action:key(context.key)
+	action:register()
 end
 
-local function loadStartupItem(itemConfig, anchor)
-	local context = normalizeItemData(itemConfig, anchor)
-
-	if context.pos then
-		createCustomItemOnMap(context, anchor)
-	end
-	if context.key and context.key ~= "" then
-		CustomItemRegistry:Register(context)
-	end
-	if itemWontBeCreatedOrRegistered(context) then
-		logger.debug("[loadStartupItem] Item declared wont be created or registered. This renders this item declaration useless." .. tostring(context))
-		logger.debug(debug.traceback())
-	end
-end
-
-function LoadStartupItems(items, anchor)
+function RegisterOnUseDeclaration(items, anchor)
 	for _, itemData in pairs(items) do
-		loadStartupItem(itemData, anchor)
+		registerOnUseDeclaration(itemData, anchor)
 	end
 end

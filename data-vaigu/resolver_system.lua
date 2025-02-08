@@ -1,80 +1,203 @@
--- Requirements
+---@class ResolutionContext
+---@field requirements table
+---@field actionsOnSuccess table
+---@field player Player
+---@field cid integer?
+---@field npc Npc?
+---@field specialMessageType string?
+---@field localizer integer
+---@field npcHandler NpcHandler?
+---@field topic integer?
+---@field extractedParams table
+---@field patternFields table
+ResolutionContext = {}
+ResolutionContext.__index = ResolutionContext
+setmetatable(ResolutionContext, {
+	__call = function(class, ...)
+		return class:New(...)
+	end,
+})
+
+local goesToRequirements = {
+	requiredTopic = true,
+	requiredItems = true,
+	requiredState = true,
+	requiredGlobalState = true,
+	requiredMoney = true,
+	specialConditions = true,
+}
+local goesToActions = {
+	specialActionsOnSuccess = true,
+	removeRequiredItems = true,
+	rewards = true,
+	spawnMonstersOnSuccess = true,
+	outfitRewards = true,
+	mountRewards = true,
+	expReward = true,
+	nextState = true,
+	nextGlobalState = true,
+	nextTopic = true,
+	preserveTopic = true,
+	addDialogData = true,
+	text = true,
+}
+
+---@return ResolutionContext ResolutionContext
+function ResolutionContext.FromDialogContext(context, data)
+	local newObj = {}
+	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(context)
+	newObj:ParseRequirementsActionsOther(data)
+	newObj.__index = newObj
+	return newObj
+end
+
+---@private
+function ResolutionContext:ParseRequirementsActionsOther(table)
+	self.requirements = self.requirements or {}
+	self.actionsOnSuccess = self.requirements or {}
+	for key, value in pairs(table) do
+		if goesToRequirements[key] then
+			self.requirements[key] = value
+		elseif goesToActions[key] then
+			self.actionsOnSuccess[key] = value
+		else
+			self[key] = value
+		end
+	end
+
+	for key, value in pairs(self.patternFields or {}) do
+		self[key] = value
+	end
+
+	self.localizer = self.localizer or table.localizer
+end
+
+function ResolutionContext:New()
+	local newObj = {}
+	newObj.__index = ResolutionContext
+	setmetatable(newObj, ResolutionContext)
+	return newObj
+end
+
+function ResolutionContext.FromEncounter(encounterData, player)
+	local newObj = {}
+	setmetatable(newObj, ResolutionContext)
+	newObj:ParseRequirementsActionsOther(encounterData)
+	newObj.localizer = encounterData.localizer
+	newObj.player = player
+	newObj.__index = ResolutionContext
+	if newObj.requirements then
+		newObj.requirements.requiredState = nil
+	end
+	return newObj
+end
+
+function ResolutionContext.FromCustomItemState(item, player)
+	local newObj = {}
+	setmetatable(newObj, ResolutionContext)
+	newObj.localizer = item.localizer
+	newObj.player = player
+	newObj.__index = ResolutionContext
+	newObj:ParseRequirementsActionsOther(item)
+	return newObj
+end
+
+---@param player Player
+function ResolutionContext:SetPlayer(player)
+	self.player = player
+	return self
+end
+
+---@param creature Creature
+function ResolutionContext:SetTargetCreature(creature)
+	self.targetCreature = creature
+	return self
+end
+
+---@param item Item
+function ResolutionContext:SetTargetItem(item)
+	self.targetItem = item
+	return self
+end
+
+--#region Requirements
 function ResolutionContext:CheckTopic()
 	local requirements = self.requirements
 	if not requirements.requiredTopic then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local topic = self.npcHandler.topic[self.cid]
 	local min, max = ParseTopicMinMax(requirements)
 	if topic < min or topic > max then
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckRequiredItems()
 	local requirements = self.requirements
 	if not requirements.requiredItems then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	if not self.player:HasItems(requirements.requiredItems) then
 		self.errorMessage = self.textNoRequiredItems
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckRequiredState()
 	local requirements = self.requirements
 	if not requirements.requiredState then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local errorMessage, canProceed = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
 	if not canProceed then
 		self.errorMessage = errorMessage or self.textNoRequiredState
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
 
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckGlobalState()
 	local requirements = self.requirements
 	if not requirements.requiredGlobalState then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	for key, value in pairs(requirements.requiredGlobalState) do
 		if Game.getStorageValueByKey(key) ~= value then
 			self.errorMessage = self.textNoRequiredGlobalState
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
+			return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 		end
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckCanAddRewards()
 	local actions = self.actionsOnSuccess
 	if not actions.rewards then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizer)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
 		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckRequiredMoney()
 	local requirements = self.requirements
 	if not requirements.requiredMoney then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	local balance = Bank.balance(self.player)
@@ -82,15 +205,15 @@ function ResolutionContext:CheckRequiredMoney()
 	local totalPlayerMoney = balance + playerMoney
 	if totalPlayerMoney < requirements.requiredMoney then
 		self.errorMessage = requirements.textNoRequiredMoney
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
+		return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
 
 function ResolutionContext:CheckSpecialConditions()
 	local requirements = self.requirements
 	if not requirements.specialConditions then
-		return CONDITION_STATUS.CONDITION_PASSED
+		return REQUIREMENT_STATUS.CONDITION_PASSED
 	end
 
 	for _, context in pairs(requirements.specialConditions) do
@@ -100,13 +223,14 @@ function ResolutionContext:CheckSpecialConditions()
 		if outcome ~= conditionContext.requiredOutcome then
 			self.errorMessage = errorMessage or conditionContext.textNoRequiredCondition
 			self.npcHandler.topic[self.cid] = conditionContext.nextTopic or TOPIC_DEFAULT
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
+			return REQUIREMENT_STATUS.CONDITION_NOT_PASSED
 		end
 	end
-	return CONDITION_STATUS.CONDITION_PASSED
+	return REQUIREMENT_STATUS.CONDITION_PASSED
 end
+--#endregion Requirements
 
--- Actions on success
+--#region Actions on success
 function ResolutionContext:TriggerSpecialActions()
 	local actions = self.actionsOnSuccess
 	if not actions.specialActionsOnSuccess then
@@ -249,7 +373,7 @@ function ResolutionContext:TrySendTranslateSuccessMessage()
 	end
 end
 
-function ResolutionContext:TrySendTranslateFailMessage()
+function ResolutionContext:TrySendFailMessage()
 	if not self.errorMessage then
 		return
 	end
@@ -257,6 +381,11 @@ function ResolutionContext:TrySendTranslateFailMessage()
 	local translatedMessage = self.player:Localizer(self.localizer):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
 		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.errorMessage, lang = self.player:GetLanguage() }))
+		return
+	end
+
+	if not self.npcHandler then
+		self.player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 		return
 	end
 
@@ -272,6 +401,7 @@ function ResolutionContext:AppendExtractedParams()
 		self[key] = value
 	end
 end
+--#endregion Actions on success
 
 local resolutionConditions = {
 	ResolutionContext.CheckTopic,
@@ -299,14 +429,14 @@ local actionsOnSuccessfulResolution = {
 	ResolutionContext.TrySendTranslateSuccessMessage,
 }
 
-function ResolutionContext:ConditionsArePassable()
+function ResolutionContext:RequirementsPassabilityStatus()
 	for _, condition in pairs(resolutionConditions) do
 		local status = condition(self)
-		if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
-			return CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED
+		if status == REQUIREMENT_STATUS.CONDITION_NOT_PASSED then
+			return RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED
 		end
 	end
-	return CONDITION_STATUS.ALL_CONDITIONS_PASSED
+	return RESOLVER_STATUS.ALL_CONDITIONS_PASSED
 end
 
 function ResolutionContext:ActionsOnSuccess()
@@ -317,16 +447,14 @@ end
 
 function ResolutionContext:Resolve()
 	self:AppendExtractedParams()
-	local status = self:ConditionsArePassable()
-	if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
+	local status = self:RequirementsPassabilityStatus()
+	if status == RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 		if self.errorMessage then
-			self:TrySendTranslateFailMessage()
+			self:TrySendFailMessage()
 			return FAIL_RESOLVE
 		end
 		return DISCARD_DIALOG
-	end
-
-	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
+	else
 		self.lastDialogData = PlayerDialogDataRegistry:Get(self.player):Latest()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE

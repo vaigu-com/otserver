@@ -94,6 +94,7 @@ Storage.Factions = {}
 -- unused TrainerRoom = {},
 -- unused NpcSpawn = {},
 Storage.ExerciseDummyExhaust = {}
+Storage.BecomeTownCitizen = {}
 
 Storage.TibiaDrome = {
 	-- General Upgrades

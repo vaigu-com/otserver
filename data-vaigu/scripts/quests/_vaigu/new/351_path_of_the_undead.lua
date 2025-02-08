@@ -1125,13 +1125,6 @@ quest
 					textNoRequiredState = "Ask the individual owners of magic shops about the locations of the circles.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 5625, 1765, 6 }, id = 596, aid = Storage.PathOfTheUndead.Circles }, --South knurowo
-				{ pos = { 6527, 1391, 6 }, id = 597, aid = Storage.PathOfTheUndead.Circles }, --Hurghada
-				{ pos = { 6951, 702, 7 }, id = 598, aid = Storage.PathOfTheUndead.Circles }, --Kongo
-				{ pos = { 5960, 1466, 4 }, id = 599, aid = Storage.PathOfTheUndead.Circles }, --Mirko north
-				{ pos = { 6727, 887, 7 }, id = 924, aid = Storage.PathOfTheUndead.Circles }, --Feral sphinx
-			}),
 			QuestFactory.Script(function(missionState)
 				local idToStorageVal = {
 					[596] = 1,
@@ -1264,30 +1257,6 @@ quest
 					expReward = 25000000,
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6221, 1238, 7 }, id = 3698, aid = Storage.PathOfTheUndead.KonmuldBush },
-				{ pos = { 6684, 1166, 11 }, id = 5113, aid = Storage.PathOfTheUndead.SkipDoor },
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { -6, 44, -3 }, id = 2773, aid = Storage.PathOfTheUndead.UpperLever },
-
-				{ pos = { -7, 33, -1 }, id = 1660, aid = Storage.PathOfTheUndead.Mission03 }, -- quest door
-				{ pos = { -22, 35, 1 }, id = 2472, aid = Storage.PathOfTheUndead.CursedChest },
-				{ pos = { -11, 27, 1 }, id = 2472, aid = Storage.PathOfTheUndead.CursedChest },
-				{ pos = { 3, 27, 1 }, id = 2472, aid = Storage.PathOfTheUndead.CursedChest },
-
-				{ pos = { -17, 21, 1 }, id = 7575, aid = Storage.PathOfTheUndead.GuardianSkull },
-				{ pos = { -11, 19, 1 }, id = 7568, aid = Storage.PathOfTheUndead.GuardianSkull },
-				{ pos = { 5, 15, 1 }, id = 7574, aid = Storage.PathOfTheUndead.GuardianSkull },
-
-				{ pos = { -9, 13, 1 }, id = 351, aid = Storage.PathOfTheUndead.GuardianGateTile },
-				{ pos = { -8, 13, 1 }, id = 351, aid = Storage.PathOfTheUndead.GuardianGateTile },
-
-				{ pos = { 2, -34, -2 }, id = 470, aid = Storage.PathOfTheUndead.RitualLocus },
-
-				{ pos = { -68, 1, 0 }, id = 11440, aid = Storage.PathOfTheUndead.BossBook },
-				{ pos = { -9, 10, 1 }, id = 410, aid = Storage.PathOfTheUndead.GrantSkipDoorAccess },
-			}, PATH_OF_THE_UNDEAD_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {
 					[Storage.PathOfTheUndead.Mission03] = QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
@@ -1347,8 +1316,8 @@ quest
 			end),
 			QuestFactory.Script(function(missionState)
 				local doors = {
-					{ pos = Position(PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = -8, y = 12, z = 1 })), id = 1564 },
-					{ pos = Position(PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = -9, y = 12, z = 1 })), id = 1563 },
+					{  id = 1564 },
+					{  id = 1563 },
 				}
 
 				local function eachTileHasItem(top_left, down_right, id, anchor)

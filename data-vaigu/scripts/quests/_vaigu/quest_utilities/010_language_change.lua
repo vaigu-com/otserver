@@ -350,8 +350,9 @@ end
 loadMarks:register()
 
 local function trySetMarks(player)
+	local playerLocalizer = player:Localizer(LOCALIZERS.MapMark)
 	for pos, mark in pairs(positionToMarkData) do
-		local translatedDescription = Translated(mark.markDescription, player, LOCALIZERS.MapMark)
+		local translatedDescription = playerLocalizer:Get(mark.markDescription)
 		player:addMapMark(pos, mark.markIcon, translatedDescription)
 	end
 end

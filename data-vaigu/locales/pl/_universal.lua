@@ -9,6 +9,14 @@ local directionToString = {
 	[DIRECTION_NORTHWEST] = "polnocny wschod",
 }
 return {
+	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
+		local townName = context.townName
+		local genderText = "Zostales"
+		if context.player:getSex() == PLAYERSEX_FEMALE then
+			genderText = "Zostalas"
+		end
+		return T(":genderText: obywatelem :townName:.", { genderText = genderText, townName = townName })
+	end,
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Witaj, |PLAYERNAME|! Ostatnio rzadko ktos mnie odwiedza.",
 	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (ukonczone)",
 	["GO_IN_DIRECTION"] = function(context)

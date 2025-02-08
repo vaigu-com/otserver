@@ -27,8 +27,8 @@ void NpcTypeFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "NpcType", "canPushItems", NpcTypeFunctions::luaNpcTypeCanPushItems);
 	Lua::registerMethod(L, "NpcType", "canPushCreatures", NpcTypeFunctions::luaNpcTypeCanPushCreatures);
 
+	Lua::registerMethod(L, "NpcType", "getUniqueName", NpcTypeFunctions::luaNpcTypeGetUniqueName);
 	Lua::registerMethod(L, "NpcType", "name", NpcTypeFunctions::luaNpcTypeName);
-
 	Lua::registerMethod(L, "NpcType", "nameDescription", NpcTypeFunctions::luaNpcTypeNameDescription);
 
 	Lua::registerMethod(L, "NpcType", "health", NpcTypeFunctions::luaNpcTypeHealth);
@@ -172,6 +172,17 @@ int NpcTypeFunctions::luaNpcTypeCanPushCreatures(lua_State* L) {
 			npcType->info.canPushCreatures = Lua::getBoolean(L, 2);
 			Lua::pushBoolean(L, true);
 		}
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int32_t NpcTypeFunctions::luaNpcTypeGetUniqueName(lua_State* L) {
+	// npcType:getUniqueName()
+	const auto &npcType = Lua::getUserdataShared<NpcType>(L, 1);
+	if (npcType) {
+		Lua::pushString(L, npcType->typeName);
 	} else {
 		lua_pushnil(L);
 	}

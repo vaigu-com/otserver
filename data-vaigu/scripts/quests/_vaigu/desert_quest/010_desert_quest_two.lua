@@ -160,8 +160,16 @@ quest
 						bitProgress = 2 ^ 0,
 						permanent = true,
 					},
-					["FifteenPuzzle"] = { id = 11520, pos = DESERT_QUEST_TWO_ANCHOR:Moved(6, 7, 0), bitProgress = 2 ^ 1 },
-					["RubiksCube"] = { id = 2471, pos = DESERT_QUEST_TWO_ANCHOR:Moved(-10, -38, -1), bitProgress = 2 ^ 2 },
+					["FifteenPuzzle"] = {
+						id = 11520,
+						pos = DESERT_QUEST_TWO_ANCHOR:Moved(6, 7, 0),
+						bitProgress = 2 ^ 1,
+					},
+					["RubiksCube"] = {
+						id = 2471,
+						pos = DESERT_QUEST_TWO_ANCHOR:Moved(-10, -38, -1),
+						bitProgress = 2 ^ 2,
+					},
 					["FireWall"] = {
 						id = 2459,
 						pos = DESERT_QUEST_TWO_ANCHOR:Moved(-41, 9, 2),
@@ -180,8 +188,16 @@ quest
 						bitProgress = 2 ^ 5,
 						permanent = true,
 					},
-					["RGB"] = { id = 14243, pos = DESERT_QUEST_TWO_ANCHOR:Moved(18, -12, 1), bitProgress = 2 ^ 6 },
-					["Pipes"] = { id = 14245, pos = DESERT_QUEST_TWO_ANCHOR:Moved(23, -55, 1), bitProgress = 2 ^ 7 },
+					["RGB"] = {
+						id = 14243,
+						pos = DESERT_QUEST_TWO_ANCHOR:Moved(18, -12, 1),
+						bitProgress = 2 ^ 6,
+					},
+					["Pipes"] = {
+						id = 14245,
+						pos = DESERT_QUEST_TWO_ANCHOR:Moved(23, -55, 1),
+						bitProgress = 2 ^ 7,
+					},
 					["Moa"] = {
 						id = 2481,
 						pos = DESERT_QUEST_TWO_ANCHOR:Moved(40, -5, 0),
@@ -1783,32 +1799,33 @@ quest
 				trickTeleport:key(Storage.DesertQuestTwo.Puzzles.TrickTeleport)
 				trickTeleport:register()
 
-				local desertQuestTwoTrickSign = function(context)
-					local user = context.player
-					if not user:isPlayer() then
+				local trickSignLook = Look()
+				function trickSignLook.onLook(player, item)
+					if not player:isPlayer() then
 						return false
 					end
-					local localizer = user:Localizer(Storage.DesertQuestTwo.Mission01)
+					local localizer = player:Localizer(Storage.DesertQuestTwo.Mission01)
 					local resultReal = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
 					local resultTrick = localizer:Get("the sign says that knight and druid should use rope")
-					if not user:isPaladin() then
+					if not player:isPaladin() then
 						return localizer:Get("Only paladins can read the sacred texts.")
 					end
-					user:say(resultTrick, TALKTYPE_SAY)
+					player:say(resultTrick, TALKTYPE_SAY)
 
 					return resultReal
 				end
-				RegisterOnLook(desertQuestTwoTrickSign, "TRICK_SIGN", LOCALIZERS.DesertQuestTwo)
+				trickSignLook:key(Storage.DesertQuestTwo.Puzzles.TrickSign)
+				trickSignLook:register()
 
-				local desertQuestTwoTrickGrave = function(context)
-					local user = context.player
-					if not user:isPlayer() then
+				local trickGraveLook = Look()
+				function trickGraveLook.onLook(player, item)
+					if not player:isPlayer() then
 						return false
 					end
-					local localizer = user:Localizer(Storage.DesertQuestTwo.Mission01)
+					local localizer = player:Localizer(Storage.DesertQuestTwo.Mission01)
 					local hereWillLie = localizer:Get("Here will lie ")
 					local dateOfDeath = localizer:Get("Date of death")
-					local name = user:getName()
+					local name = player:getName()
 
 					local now = os.time()
 					local dateTable = os.date("*t", now)
@@ -1824,10 +1841,11 @@ quest
 						month = month,
 						year = year,
 					})
-					killingCurse(user)
+					killingCurse(player)
 					return finalString
 				end
-				RegisterOnLook(desertQuestTwoTrickGrave, "TRICK_GRAVE", LOCALIZERS.DesertQuestTwo)
+				trickGraveLook:key(Storage.DesertQuestTwo.Puzzles.TrickGrave)
+				trickGraveLook:register()
 			end),
 			QuestFactory.Script(function(missionState)
 				local sparksNumber = 3
@@ -1892,69 +1910,24 @@ quest
 				beforeSparks:type("stepin")
 				beforeSparks:register()
 			end),
-			QuestFactory.StartupItems({
-				{ pos = { -13, 31, 0 }, id = 1757, aid = Storage.DesertQuestTwo.RewardRoomTp },
-				{ pos = { 16, -74, 0 }, id = 775, aid = Storage.DesertQuestHub.ToHub },
-				{ pos = { 13, -74, 2 }, id = 775, aid = Storage.DesertQuestHub.ToHub },
-				{ pos = { 43, -71, 0 }, id = 775, aid = Storage.DesertQuestHub.ToHub },
-
-				{ pos = { 0, -22, 0 }, id = 12782, aid = Storage.DesertQuestTwo.Puzzles.TrickSign, desc = "TRICK_SIGN" },
-				{ pos = { 34, -70, 0 }, id = 134, aid = Storage.DesertQuestTwo.Puzzles.TrickGrave, desc = "TRICK_GRAVE" },
-				{ pos = { 4, -16, -1 }, id = 4515, aid = Storage.DesertQuestTwo.Puzzles.TrickTeleport },
-
-				{ pos = { 26, -44, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.WaterPipesLever },
-
-				{ pos = { -25, 1, 1 }, id = 410, aid = Storage.DesertQuestTwo.Puzzles.FireBlockageTile },
-				{ pos = { -25, 2, 1 }, id = 410, aid = Storage.DesertQuestTwo.Puzzles.FireBlockageTile },
-				{ pos = { -25, 3, 1 }, id = 410, aid = Storage.DesertQuestTwo.Puzzles.FireBlockageTile },
-
-				{ pos = { -1, 0, 0 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.FiftenPuzzleLever },
-				{ pos = { 9, -7, 0 }, id = 20888, aid = Storage.DesertQuestTwo.Puzzles.FiftenPuzzleMove },
-
-				{ pos = { 42, -6, 0 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.FastMoaLever },
-
-				{ pos = { 17, -18, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RgbColors },
-
-				{ pos = { 7, -32, -5 }, id = 2772, aid = Storage.DesertQuestTwo.Teleports.ToIdenticalRoom },
-				{ pos = { -85, -21, 0 }, id = 5542, aid = Storage.DesertQuestTwo.Teleports.FromIdenticalRoom },
-
-				{ pos = { -109, 4, 1 }, id = 5542, aid = Storage.DesertQuestTwo.Teleports.FromIdenticalRoom },
-				{ pos = { -97, 12, 1 }, id = 5542, aid = Storage.DesertQuestTwo.Teleports.FromIdenticalRoom },
-				{ pos = { -73, -42, 1 }, id = 5542, aid = Storage.DesertQuestTwo.Teleports.FromIdenticalRoom },
-				{ pos = { -89, -54, 1 }, id = 5542, aid = Storage.DesertQuestTwo.Teleports.FromIdenticalRoom },
-
-				{ pos = { -2, -52, -1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.OrbsReset },
-				{ pos = { -9, -58, -2 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.OrbsReset },
-				{ pos = { -11, -54, -1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.OrbsReset },
-				{ pos = { -19, -58, -1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.OrbsReset },
+			QuestFactory.OnUseDeclaration({
+				{ id = 28179, key = Storage.DesertQuestTwo.Rewards.ExpReward, expReward = 1000 * 500, rewards = {} },
+				{ id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestOne, expReward = 1000 * 500, rewards = { { id = 3029, count = 50 }, { id = 5785 }, { id = 3438 } } },
+				{ id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 3043, count = 4 } } },
+				--{  id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 2971, key = Storage.DesertQuestThree.AccessKey }, { id = 6118, key = Storage.DesertQuestThree.AccessMap } } },
 			}, DESERT_QUEST_TWO_ANCHOR),
-			QuestFactory.StartupItems({
-				{ pos = { -3, 0, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Back },
-				{ pos = { -3, 1, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Xaxis },
-				{ pos = { -3, 2, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Front },
-
-				{ pos = { 2, 6, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Right },
-				{ pos = { 1, 6, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Yaxis },
-				{ pos = { 0, 6, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Left },
-
-				{ pos = { 4, -1, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Top },
-				{ pos = { 5, 0, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Zaxis },
-				{ pos = { 6, 1, 1 }, id = 2772, aid = Storage.DesertQuestTwo.Puzzles.RubiksCube.Bottom },
-			}, RUBIKS_CUBE_ANCHOR),
-			QuestFactory.StartupItems({
-				{ pos = { 11, -77, 2 }, id = 28179, aid = Storage.DesertQuestTwo.Rewards.ExpReward, expReward = 1000 * 500, rewards = {} },
-				{ pos = { 10, -76, 2 }, id = 5674, aid = Storage.DesertQuestTwo.Rewards.ChestOne, expReward = 1000 * 500, rewards = { { id = 3029, count = 50 }, { id = 5785 }, { id = 3438 } } },
-				{ pos = { 8, -73, 2 }, id = 5674, aid = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 3043, count = 4 } } },
-				--{ pos = { 8, -73, 2 }, id = 5674, aid = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 2971, aid = Storage.DesertQuestThree.AccessKey }, { id = 6118, aid = Storage.DesertQuestThree.AccessMap } } },
-			}, DESERT_QUEST_TWO_ANCHOR),
-			QuestFactory.StartupScript(function()
-				InitializeDQ2chests()
-				InitializeDQ2Labryrinth()
-				InitializeDQ2FifteenPuzzle()
-				InitializeDQ2PipePuzzle()
-				InitializeDQ2IndeticalRooms()
-				InitializeDQ2RubiksCube()
-				InitializeDQ2orbs()
+			QuestFactory.Script(function()
+				local encounterLeverInit = GlobalEvent("DesertQuestTwo/InitializePuzzles")
+				function encounterLeverInit.onStartup()
+					InitializeDQ2chests()
+					InitializeDQ2Labryrinth()
+					InitializeDQ2FifteenPuzzle()
+					InitializeDQ2PipePuzzle()
+					InitializeDQ2IndeticalRooms()
+					InitializeDQ2RubiksCube()
+					InitializeDQ2orbs()
+				end
+				encounterLeverInit:register()
 			end)
 	end)
 	:Register()
