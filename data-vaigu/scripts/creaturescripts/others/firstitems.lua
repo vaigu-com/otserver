@@ -78,7 +78,7 @@ local starterItems = {
 }
 
 local function setFreeTravels(player)
-	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRANSPORTS)
+	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRAVELS_NUMBER)
 end
 
 local firstLogin = CreatureEvent("SendFirstItems")

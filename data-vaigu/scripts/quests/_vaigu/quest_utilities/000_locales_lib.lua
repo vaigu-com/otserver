@@ -87,8 +87,6 @@ function translatedFromAnyQuest(string, language, localizer)
 	MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
 	MissingStrings[language][localizer][string] = true
 end
-local function translate(str, player, localizer) end
-
 
 ---@class Localizer
 ---@field player Player
