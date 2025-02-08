@@ -349,7 +349,7 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 		if (!look->hasOwnErrorHandler()) {
 			player->sendCancelMessage(RETURNVALUE_CANNOTUSETHISOBJECT);
 		}
-		return false;
+		return true;
 	}
 
 
