@@ -1,10 +1,16 @@
-
-local doorIds = {}
-
+local openToClosed = {}
+local closedToOpen = {}
+for _, doorData in pairs(LevelDoorTable) do
+	closedToOpen[doorData.closedDoor] = doorData.openDoor
+	openToClosed[doorData.openDoor] = doorData.closedDoor
+end
+for _, doorData in pairs(QuestDoorTable) do
+	closedToOpen[doorData.closedDoor] = doorData.openDoor
+	openToClosed[doorData.openDoor] = doorData.closedDoor
+end
+--[[
 local closingDoor = MoveEvent()
-closingDoor:type("stepin")
-
-for index, value in ipairs(QuestDoorTable) do
+for index, value in pairs(QuestDoorTable) do
 	if not table.contains(doorIds, value.openDoor) then
 		table.insert(doorIds, value.openDoor)
 	end
@@ -16,7 +22,7 @@ function closingDoor.onStepIn(creature, item, position, fromPosition)
 		return
 	end
 
-	for index, value in ipairs(QuestDoorTable) do
+	for index, value in pairs(QuestDoorTable) do
 		if value.openDoor == item.itemid then
 			if player:getStorageValueByKey(item.actionid) ~= -1 then
 				return true
@@ -29,34 +35,15 @@ function closingDoor.onStepIn(creature, item, position, fromPosition)
 	end
 	return true
 end
-
-for index, value in ipairs(doorIds) do
+closingDoor:type("stepin")
+for index, value in pairs(doorIds) do
 	closingDoor:id(value)
 end
-
 closingDoor:register()
+]]
 
--- Level and quests closing door (onStepOut).
--- This closes the door after the player passes through it.
-
-local doorIds = {}
-
-local closingDoor = MoveEvent()
-closingDoor:type("stepout")
-
-for index, value in ipairs(QuestDoorTable) do
-	if not table.contains(doorIds, value.openDoor) then
-		table.insert(doorIds, value.openDoor)
-	end
-end
-
-for index, value in ipairs(LevelDoorTable) do
-	if not table.contains(doorIds, value.openDoor) then
-		table.insert(doorIds, value.openDoor)
-	end
-end
-
-function closingDoor.onStepOut(creature, item, position, fromPosition)
+local stepOutOpenDoor = MoveEvent()
+function stepOutOpenDoor.onStepOut(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
 		return
@@ -92,22 +79,12 @@ function closingDoor.onStepOut(creature, item, position, fromPosition)
 		end
 	end
 
-	for index, value in ipairs(LevelDoorTable) do
-		if value.openDoor == item.itemid then
-			item:transform(value.closedDoor)
-		end
-	end
-
-	for index, value in ipairs(QuestDoorTable) do
-		if value.openDoor == item.itemid then
-			item:transform(value.closedDoor)
-		end
-	end
+	item:transform(openToClosed[item:getId()])
+	item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_CLOSE_DOOR)
 	return true
 end
-
-for index, value in ipairs(doorIds) do
-	closingDoor:id(value)
+stepOutOpenDoor:type("stepout")
+for openId in pairs(openToClosed) do
+	stepOutOpenDoor:id(openId)
 end
-
-closingDoor:register()
+stepOutOpenDoor:register()
