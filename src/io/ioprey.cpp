@@ -29,15 +29,19 @@ PreySlot::PreySlot(PreySlot_t id) :
 }
 
 void IOPrey::initializePreyMonsters() {
+	auto &monsterCounts = g_game().map.spawnsMonster.getMonsterCounts();
+
 	std::map<std::string, std::shared_ptr<MonsterType>> monsters = g_monsters().monsters;
 	for (std::pair<std::string, std::shared_ptr<MonsterType>> monster : monsters) {
 		MonsterType* monsterType = monster.second.get();
 		auto &monsterInfo = monsterType->info;
 		auto &name = monsterType->typeName;
+
 		if (monsterInfo.raceid <= 0) {
 			continue;
 		}
-		if (!whitelist.contains(name)) {
+		auto it = monsterCounts.find(name);
+		if (it == monsterCounts.end() || it->second <= 20) {
 			continue;
 		}
 
@@ -391,6 +395,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		}
 
 		rerollType = true;
+		rarityPenalty = 1;
 		maintainBonusType = true;
 		maintainMonster = false;
 		nextOption = PreyOption_None;
@@ -411,19 +416,21 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			player->sendMessageDialog("This creature is already selected on another slot.");
 			return;
 		}
-		
-		rarityPenalty = 1;
+
+		rarityPenalty = 0;
 		nextState = PreyDataState_Active;
 		maintainState = false;
+		maintainBonusType = false;
 		nextRaceId = slot->raceIdList[index];
 		maintainMonster = false;
 		refreshTime = true;
+		rerollType = true;
 	} else if (action == PreyAction_ListAll_Cards) {
 		if (!player->usePreyCards(static_cast<uint16_t>(g_configManager().getNumber(PREY_SELECTION_LIST_PRICE)))) {
 			player->sendMessageDialog("You don't have enough prey cards to choose a monsters on the list.");
 			return;
 		}
-		
+
 		maintainMonster = false;
 		nextState = PreyDataState_ListSelection;
 		maintainState = false;
@@ -440,7 +447,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			return;
 		}
 
-		player->sendMessageDialog("Changing prey with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star. Selecting from list reduces by 1 star.");
+		player->sendMessageDialog("Changing prey with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
 
 		rerollType = true;
 		nextRaceId = raceId;
@@ -471,9 +478,9 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		}
 
 		if (option == PreyOption_AutomaticReroll) {
-			player->sendMessageDialog("Changing prey with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star. Selecting from list reduces by 1 star.");
+			player->sendMessageDialog("Changing prey with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
 		} else if (option == PreyOption_Locked) {
-			player->sendMessageDialog("Changing prey with this option checked will reduce bonus by 2 stars. Rerolling with gold reduces by 1 star. Selecting from list reduces by 1 star.");
+			player->sendMessageDialog("Changing prey with this option checked will reduce bonus by 2 stars. Rerolling with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
 		}
 
 		rerollType = false;

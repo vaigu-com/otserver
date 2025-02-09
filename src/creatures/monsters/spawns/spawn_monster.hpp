@@ -77,6 +77,7 @@ private:
 	void scheduleSpawn(uint32_t spawnMonsterId, spawnBlock_t &sb, const std::shared_ptr<MonsterType> &monsterType, uint16_t interval, bool startup = false);
 };
 
+
 class SpawnsMonster {
 public:
 	static bool isInZone(const Position &centerPos, int32_t radius, const Position &pos);
@@ -89,11 +90,28 @@ public:
 	bool isLoaded() const;
 	std::vector<std::shared_ptr<SpawnMonster>> &getspawnMonsterList();
 
+	// Vaigu custom
+	struct MonsterCounter {
+		std::unordered_map<std::string, int> counts;
+
+		void increment(const std::string& monsterName) {
+			counts[monsterName]++;
+		}	
+	};
+	static std::unordered_map<std::string, int>&  getMonsterCounts(){
+		return monsterCounter.counts;
+	}
+	static void incrementMapMonsterCount(std::string name){
+			monsterCounter.increment(name);
+	}
+
 private:
 	std::vector<std::shared_ptr<SpawnMonster>> spawnMonsterList;
 	std::string filemonstername;
 	bool loaded = false;
 	bool started = false;
+
+	static MonsterCounter monsterCounter;
 };
 
 static constexpr int32_t NONBLOCKABLE_SPAWN_MONSTER_INTERVAL = 1400;
