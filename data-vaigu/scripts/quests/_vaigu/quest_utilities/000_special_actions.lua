@@ -108,7 +108,7 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 	end,
 	SetCustomDialogDataAsNumber = function(context)
-		PlayerCustomDialogDataRegistry():Get(context.player)[context.key] = tonumber(context.msg)
+		PlayerCustomDialogDataRegistry:Get(context.player)[context.key] = tonumber(context.msg)
 	end,
 	cancelMarriage = function(context)
 		local player = context.player
@@ -165,12 +165,12 @@ SPECIAL_ACTIONS_SOULORB = {
 SPECIAL_ACTIONS_WILDCARD = {
 	addWilcard = function(context)
 		local player = context.player
-		local orderedCards = PlayerCustomDialogDataRegistry():Get(context.player).orderedCards
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
 		player:addPreyCards(orderedCards)
 	end,
 	removeMoneyPreycards = function(context)
 		local player = context.player
-		local orderedCards = PlayerCustomDialogDataRegistry():Get(context.player).orderedCards
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
 		local requiredMoney = player:GetWildcardPrice() * orderedCards
 		player:removeMoney(requiredMoney)
 	end,
@@ -212,7 +212,7 @@ SPECIAL_ACTIONS_DAILY_TASK = {
 
 SPECIAL_ACTIONS_IMBUING = {
 	removeTaskPointsByImbuing = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry():Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
 
 		local player = context.player
 		player:AddItems(bundleData.items)
@@ -226,7 +226,7 @@ SPECIAL_ACTIONS_COOK = {
 		local dishName = context.msg
 		local dishStorage = COOKING_DISH_NAMES[dishName]
 		local dishData = COOKING_INGREDIENT_DATA[dishStorage]
-		PlayerCustomDialogDataRegistry():Get(context.player).dishData = dishData
+		PlayerCustomDialogDataRegistry:Get(context.player).dishData = dishData
 	end,
 }
 
@@ -238,7 +238,7 @@ SPECIAL_ACTIONS_BANK = {
 		else
 			amount = tonumber(context.amount)
 		end
-		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		local data = PlayerCustomDialogDataRegistry:Get(context.player)
 		data.amount = amount
 	end,
 	setAmountWithdrawTransfer = function(context)
@@ -248,25 +248,25 @@ SPECIAL_ACTIONS_BANK = {
 		else
 			amount = tonumber(context.amount)
 		end
-		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		local data = PlayerCustomDialogDataRegistry:Get(context.player)
 		data.amount = amount
 	end,
 	setRecipient = function(context)
 		local recipient = context.recipient
-		local data = PlayerCustomDialogDataRegistry():Get(context.player)
+		local data = PlayerCustomDialogDataRegistry:Get(context.player)
 		data.recipient = recipient
 	end,
 	depositMoney = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		context.player:depositMoney(amount)
 	end,
 	withdrawMoney = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		context.player:withdrawMoney(amount)
 	end,
 	transferMoney = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
-		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
+		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
 		context.player:transferMoneyTo(recipient, amount)
 	end,
 }
