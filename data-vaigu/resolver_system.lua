@@ -380,8 +380,8 @@ function ResolutionContext:TrySendFailMessage()
 
 	local translatedMessage = self.player:Localizer(self.localizer):Context(self):Get(self.errorMessage)
 	if not translatedMessage then
-		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.errorMessage, lang = self.player:GetLanguage() }))
-		return
+		logger.error(T('Translation of ":text:" is missing for language :lang:', { text = self.errorMessage, lang = self.player:getLanguage() }))
+		translatedMessage = self.errorMessage .. " //Missing translation"
 	end
 
 	if not self.npcHandler then

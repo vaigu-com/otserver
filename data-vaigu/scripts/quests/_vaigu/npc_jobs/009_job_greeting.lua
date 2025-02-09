@@ -24,9 +24,9 @@ JOBS_GREETINGS = {
 	[JOB_AOL] = nil, -- 3af: add greeting
 	[JOB_POST] = { --3af move table to translation. change each job greet to indentifier
 		text = {
-
 			"Hello, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 			"I am local postman, ask about {trade} if you want to buy some parcel or letter.",
 		},
 	},
+	[JOB_BANK] = { text = "Yes? What may I do for you, |PLAYERNAME|? Bank business, perhaps?" },
 }

@@ -1,8 +1,3 @@
-QuestTopics.JOB_TOPICS = {
-	SayHowMuchWildcardsYouWant = NextTopic(),
-	ConfirmBuyingWildcards = NextTopic(),
-}
-
 local function getEngageError(context)
 	local player = context.player
 	local playerId = getPlayerGUIDByName(player:getName())
@@ -638,10 +633,12 @@ NPC_UNIVERSAL_DIALOGS = {
 			text = "CONFIRM_DEPOSIT",
 			nextTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
 			requiredTopic = QuestTopics.JOB_TOPICS.declareAmountdeposit,
-			{
-				condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
-				requiredOutcome = true,
-				textNoRequiredCondition = "You do not have enough gold.",
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyininventory,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You do not have enough gold.",
+				},
 			},
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_BANK.setAmountDeposit },
@@ -753,13 +750,15 @@ NPC_UNIVERSAL_DIALOGS = {
 			nextTopic = QuestTopics.JOB_TOPICS.declareAmounttransfer,
 		},
 		[{ "<amount>" }] = {
-			text = "CONFIRM_TRANFER_RECIPIENT",
-			nextTopic = QuestTopics.JOB_TOPICS.confirmRecipient,
+			text = "DECLARE_TRANSFER_RECIPIENT",
+			nextTopic = QuestTopics.JOB_TOPICS.declareRecipient,
 			requiredTopic = QuestTopics.JOB_TOPICS.declareAmounttransfer,
-			{
-				condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
-				requiredOutcome = true,
-				textNoRequiredCondition = "There is not enough gold on your account.",
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.hasMoneyinbank,
+					requiredOutcome = true,
+					textNoRequiredCondition = "There is not enough gold on your account.",
+				},
 			},
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_BANK.setAmountWithdrawTransfer },
@@ -767,16 +766,18 @@ NPC_UNIVERSAL_DIALOGS = {
 		},
 		[{ "<recipient>" }] = {
 			text = "CONFIRM_TRANSFER",
-			requiredTopic = QuestTopics.JOB_TOPICS.confirmRecipient,
-			{
-				condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
-				requiredOutcome = true,
-				textNoRequiredCondition = "You can't do that.",
-			},
-			{
-				condition = SPECIAL_CONDITIONS_BANK.recipientExists,
-				requiredOutcome = true,
-				textNoRequiredCondition = "You cannot transfer money to this account.",
+			requiredTopic = QuestTopics.JOB_TOPICS.declareRecipient,
+			specialConditions = {
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientIsnotself,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You can't do that.",
+				},
+				{
+					condition = SPECIAL_CONDITIONS_BANK.recipientExists,
+					requiredOutcome = true,
+					textNoRequiredCondition = "You cannot transfer money to this account.",
+				},
 			},
 			specialActionsOnSuccess = {
 				{ action = SPECIAL_ACTIONS_BANK.setRecipient },

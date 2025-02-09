@@ -8,8 +8,8 @@ QuestTopics.JOB_TOPICS = {
 	browsingTrophies = NextTopic(),
 	confirmBuyTrophy = NextTopic(),
 	-- JOB_WILDCARD
-	sayingWildcardNumber = NextTopic(),
-	confirmingNwildcards = NextTopic(),
+	SayHowMuchWildcardsYouWant = NextTopic(),
+	ConfirmBuyingWildcards = NextTopic(),
 	-- JOB_SOFT_BOOTS
 	confirmBuySoftbootsrecharge = NextTopic(),
 	confirmMedicinepouchExchance = NextTopic(),
@@ -38,5 +38,5 @@ QuestTopics.JOB_TOPICS = {
 	declareAmountwithdraw = NextTopic(),
 	confirmTransfer = NextTopic(),
 	declareAmounttransfer = NextTopic(),
-	confirmRecipient = NextTopic(),
+	declareRecipient = NextTopic(),
 }
