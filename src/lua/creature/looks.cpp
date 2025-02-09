@@ -346,9 +346,11 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 	}
 
 	if (look->executeLook(player, item, fromPos, creature, toPos)) {
+		/*
 		if (!look->hasOwnErrorHandler()) {
 			player->sendCancelMessage(RETURNVALUE_CANNOTUSETHISOBJECT);
 		}
+		*/
 		return true;
 	}
 

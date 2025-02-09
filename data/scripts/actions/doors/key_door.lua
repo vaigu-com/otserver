@@ -44,22 +44,16 @@ for key, value in pairs(KeyDoorTable) do
 end
 openDoor:register()
 
-local keyScope = Scope("Storage", "DoorKeys", "UnlockedKeys")
-function GetDoorKeyStorage(doorKey)
-	return keyScope:Get(doorKey:getId())
-end
-
 local doorKeyIdToUnlockedKeys = (function()
 	local keyStorages = {}
 	for _, doorKeyId in pairs(keysID) do
-		keyStorages[keyScope:Get(doorKeyId)] = {}
+		keyStorages[tostring(doorKeyId)] = {}
 	end
 	return keyStorages
 end)()
-
 Storage.DoorKeys = {
 	KeyRing = {},
-	DoorKeyIdToUnlockedKeys = doorKeyIdToUnlockedKeys,
+	KeyCollections = doorKeyIdToUnlockedKeys,
 	BaseUnlockerKey = {},
 }
 
@@ -93,15 +87,15 @@ local function tryToggleLockUnlockDoor(door)
 end
 
 local function tryToggleCollectionKey(player, door, doorKey)
-	local unlockedKeys = player:getStorageValueByKey(GetDoorKeyStorage(doorKey))
+	local unlockedKeys = player:getStorageValueByKey(doorKey:getKey())
 	if not unlockedKeys[door:getKey()] then
-		return "You have not unlocked this door key yet."
+		return "This key collection cannot open this door yet."
 	end
 
 	tryToggleLockUnlockDoor(door)
 end
 
-local function tryToogleDoorKey(doorKey, door)
+local function tryToggleDoorKey(doorKey, door)
 	if not keyMatches(doorKey, door) then
 		return "The key does not match."
 	end
@@ -109,46 +103,52 @@ local function tryToogleDoorKey(doorKey, door)
 end
 
 ---#region permanent key unlock
-local function isUniversalKey(doorKey)
-	return doorKey:getKey() == Storage.DoorKeys.BaseUnlockerKey
+local function isCollectionKey(doorKey)
+	return table.contains(Storage.DoorKeys.KeyCollections, doorKey:getKey())
 end
 local function isAddingToCollection(doorKey, target)
 	if doorKey:getId() ~= target:getId() then
 		return false
 	end
-	if target:getKey() ~= Storage.DoorKeys.BaseUnlockerKey then
+	if not table.contains(Storage.DoorKeys.KeyCollections, target:getKey()) then
 		return false
 	end
-	if doorKey:getKey() == Storage.DoorKeys.BaseUnlockerKey then
+	if table.contains(Storage.DoorKeys.KeyCollections, doorKey:getKey()) then
 		return false
 	end
 
 	return true
 end
 local function hasInCollection(player, doorKey)
-	local unlockedKeys = player:getStorageValueByKey(GetDoorKeyStorage(doorKey))
-	return unlockedKeys[doorKey:getKey()]
+	for doorKeyId, collectionStorage in pairs(Storage.DoorKeys.KeyCollections) do
+		local unlockedKeys = player:getStorageValueByKey(collectionStorage)
+		if unlockedKeys[doorKey:getKey()] then
+			return true
+		end
+	end
+
+	return false
 end
 local function withoutStoragePrefix(str)
 	return str:gsub("^Storage%-", "")
 end
-local function addToCollection(player, doorKey)
-	local unlockedKeys = player:getStorageValueByKey(GetDoorKeyStorage(doorKey))
-	local desc = withoutStoragePrefix(doorKey:getKey())
-	unlockedKeys[doorKey:getKey()] = desc
-	player:setStorageValueByKey(GetDoorKeyStorage(doorKey), unlockedKeys)
+local function addToCollection(player, doorKeyStorage, collectionStorage)
+	local unlockedKeys = player:getStorageValueByKey(collectionStorage)
+	local desc = withoutStoragePrefix(doorKeyStorage)
+	unlockedKeys[doorKeyStorage] = desc
+	player:setStorageValueByKey(collectionStorage, unlockedKeys)
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
-	doorKey:remove()
 end
 local doorKeyUse = Action()
-function doorKeyUse.onUse(player, doorKey, fromPosition, door, toPosition, isHotkey)
+function doorKeyUse.onUse(player, doorKey, fromPosition, doorOrCollection, toPosition, isHotkey)
 	--Permanent add to collection
-	local _isAddingToCollection = isAddingToCollection(doorKey, door)
+	local _isAddingToCollection = isAddingToCollection(doorKey, doorOrCollection)
 	local _hasInCollection = hasInCollection(player, doorKey)
 
 	if _isAddingToCollection and not _hasInCollection then
-		addToCollection(player, doorKey)
+		addToCollection(player, doorKey:getKey(), doorOrCollection:getKey())
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have unlocked this key.")
+		doorKey:remove()
 		return
 	end
 
@@ -159,10 +159,10 @@ function doorKeyUse.onUse(player, doorKey, fromPosition, door, toPosition, isHot
 
 	--Toggle door locked/unlocked
 	local errorMessage = ""
-	if isUniversalKey(doorKey) then
-		errorMessage = tryToggleCollectionKey(player, door, doorKey)
+	if isCollectionKey(doorKey) then
+		errorMessage = tryToggleCollectionKey(player, doorOrCollection, doorKey)
 	else
-		errorMessage = tryToogleDoorKey(doorKey, door)
+		errorMessage = tryToggleDoorKey(doorKey, doorOrCollection)
 	end
 
 	if errorMessage then
@@ -176,20 +176,78 @@ for _, doorKeyId in pairs(keysID) do
 	doorKeyUse:id(doorKeyId)
 end
 doorKeyUse:register()
-local unlockerKeyLook = Look()
-function unlockerKeyLook.onLook(player, doorKey)
-	local message = T("You have unlocked the following :name:s:", { name = doorKey:getName() })
-	local unlockedKeys = player:getStorageValueByKey(GetDoorKeyStorage(doorKey))
+
+local function generateCollectionMessage(player, keyId, collectionStorage)
+	local message = T("You have unlocked the following :name:s:", { name = ItemType(keyId):getName() })
+	local unlockedKeys = player:getStorageValueByKey(collectionStorage)
 	if TableSize(unlockedKeys) == 0 then
 		unlockedKeys = { "---None---" }
 	end
 	for storage, desc in pairs(unlockedKeys) do
 		message = message .. "\n" .. desc
 	end
-
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
+	return message
+end
+local collectionLook = Look()
+function collectionLook.onLook(player, doorKey)
+	local message = generateCollectionMessage(player, doorKey:getId(), doorKey:getKey())
+	player:sendTextMessage(MESSAGE_LOGIN, message)
 	return DONT_SHOW_playerOnLook
 end
-unlockerKeyLook:key(Storage.DoorKeys.BaseUnlockerKey)
-unlockerKeyLook:register()
+for doorKeyId, collectionStorage in pairs(Storage.DoorKeys.KeyCollections) do
+	collectionLook:key(collectionStorage)
+end
+collectionLook:register()
+
+local keyRingLook = Look()
+function keyRingLook.onLook(player, doorKey)
+	local message = ""
+	for keyId, storage in pairs(Storage.DoorKeys.KeyCollections) do
+		message = message .. generateCollectionMessage(player, tonumber(keyId), storage) .. "\n"
+	end
+	player:sendTextMessage(MESSAGE_LOGIN, message)
+	return DONT_SHOW_playerOnLook
+end
+keyRingLook:id(KEY_RING_ID)
+keyRingLook:register()
+
+local function keyNameIfInCollection(player, door)
+	for doorKeyId, storage in pairs(Storage.DoorKeys.KeyCollections) do
+		local collectionState = player:getStorageValueByKey(storage)
+		local unlocked = collectionState[door:getKey()] ~= nil
+		if unlocked then
+			return ItemType(tonumber(doorKeyId)):getName()
+		end
+	end
+end
+local doorLook = Look()
+function doorLook.onLook(player, door)
+	local youSee = T("You see a :doorName:.", { doorName = door:getName() })
+
+	local locked = ""
+	local id = door:getId()
+	if lockedToUnlocked[id] and door:getPosition():EuclideanDistance(player:getPosition()) <= 1.42 then
+		locked = " It is locked."
+	end
+
+	local itRequires = ""
+	if door:getKey() then
+		itRequires = T(" It requires key :keyDesc:.", { keyDesc = withoutStoragePrefix(door:getKey()) })
+	end
+
+	local name = keyNameIfInCollection(player, door)
+	local youCanUnlock = ""
+	if name then
+		youCanUnlock = T(" You can unlock this door with your :name:.", { name = name })
+	end
+
+	player:sendTextMessage(MESSAGE_LOOK, T(":youSee::status::itRequires::youCanUnlock:", { youSee = youSee, status = locked, itRequires = itRequires, youCanUnlock = youCanUnlock }))
+	return DONT_SHOW_playerOnLook
+end
+for key, value in pairs(KeyDoorTable) do
+	doorLook:id(value.closedDoor)
+	doorLook:id(value.openDoor)
+	doorLook:id(value.lockedDoor)
+end
+doorLook:register()
 ---#endregion permanent key unlock

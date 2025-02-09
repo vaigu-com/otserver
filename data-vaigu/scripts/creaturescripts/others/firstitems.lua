@@ -81,14 +81,13 @@ local function setFreeTravels(player)
 	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRAVELS_NUMBER)
 end
 
-local keyRingId = 49279
 local function addKeyRing(player)
-	local keyRing = Game.createItem(keyRingId)
+	local keyRing = Game.createItem(KEY_RING_ID)
 	keyRing:setKey(Storage.DoorKeys.KeyRing)
-	for _, doorKeyId in pairs(keysID) do
-		local doorKey = keyRing:addItem(doorKeyId)
-		doorKey:setKey(Storage.DoorKeys.BaseUnlockerKey)
-		player:setStorageValueByKey(GetDoorKeyStorage(doorKey), {})
+	for doorKeyIdStr, collectionStorage in pairs(Storage.DoorKeys.KeyCollections) do
+		local doorKey = keyRing:addItem(tonumber(doorKeyIdStr))
+		doorKey:setKey(collectionStorage)
+		player:setStorageValueByKey(collectionStorage, {})
 	end
 	local inbox = player:getStoreInbox()
 	inbox:addItemEx(keyRing)
