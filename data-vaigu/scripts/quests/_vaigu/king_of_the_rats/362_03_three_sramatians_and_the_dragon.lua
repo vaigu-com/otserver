@@ -96,15 +96,15 @@ quest
 
 		QuestKeyItems.ThreeSramatiansAndTheDragon = {
 			Rum = {
-				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
+				key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
 				id = 2875,
 				desc = "Pirate rum. Bilbeus might be interested in this one",
 			},
-			Rune1 = { aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune1, id = 3181, desc = "Unsealing rune" },
-			Rune2 = { aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune2, id = 3183, desc = "Unsealing rune" },
-			Rune3 = { aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune3, id = 3184, desc = "Unsealing rune" },
+			Rune1 = { key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune1, id = 3181, desc = "Unsealing rune" },
+			Rune2 = { key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune2, id = 3183, desc = "Unsealing rune" },
+			Rune3 = { key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune3, id = 3184, desc = "Unsealing rune" },
 			DeepCrystal = {
-				aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
+				key = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
 				id = 7281,
 				desc = "Deep sea crystal",
 			},
@@ -693,9 +693,6 @@ quest
 					requiredTopic = QuestTopics.ThreeSramatiansAndTheDragon.AnswerGoldblum,
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 5950, 1415, 10 }, id = 1020, aid = Storage.ThreeSramatiansAndTheDragon.GoldblumTrap },
-			}),
 			QuestFactory.Script(function(missionState)
 				local goldBlumTrap = MoveEvent()
 
@@ -733,9 +730,6 @@ quest
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission03)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission03.FindCompanyAtHive,
-			QuestFactory.StartupItems({
-				{ pos = { 6147, 1310, 4 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hive },
-			}),
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
 					text = "Look at him! He cant use a {toilet} properly.",
@@ -770,11 +764,10 @@ quest
 					text = "You can see them from our current location. Be careful; spirited water is only ordinary pastime, but rum on the other hand... It's their holy grail.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 6180, 1265, 7 },
 					id = 2484,
-					aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
+					key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rum,
 					rewards = { QuestKeyItems.ThreeSramatiansAndTheDragon.Rum },
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission03] = QuestState.ThreeSramatiansAndTheDragon.Mission03.BringRumToBilbeus,
@@ -825,16 +818,10 @@ quest
 
 				FirePlace:key(Storage.ThreeSramatiansAndTheDragon.AbandonedFireplace)
 				FirePlace:register()
-			end),
-			QuestFactory.StartupItems({
-				{ pos = { 5951, 1113, 7 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.AbandonedFireplace },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission04.FindCompanyAtHumanTown,
-			QuestFactory.StartupItems({
-				{ pos = { 6199, 1025, 7 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Lagoon },
-			}),
 			QuestFactory.Dialog("Bilbeus", {
 				[{ GREET }] = {
 					text = "Sorry we went ahead, but we were bored in that wilderness.",
@@ -883,16 +870,10 @@ quest
 				vampireKidnapping:type("stepin")
 				vampireKidnapping:key(Storage.ThreeSramatiansAndTheDragon.VampireCityTrap)
 				vampireKidnapping:register()
-			end),
-			QuestFactory.StartupItems({
-				{ pos = { 6157, 842, 6 }, id = 4406, aid = Storage.ThreeSramatiansAndTheDragon.VampireCityTrap },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
-			QuestFactory.StartupItems({
-				{ pos = { 6206, 919, 9 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Souleater },
-			}),
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
 					text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were tio separate, seek help from her.",
@@ -939,9 +920,6 @@ quest
 					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6756, 1169, 6 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.WaterWell },
-			}),
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
 					text = "Good thing you found us. I was starting to worry. No time for chit-chat. We tried to extract information about HF-P/X from the desert nomads. One of them claims to know where to find one of the ancient artifacts. We couldn't negotiate with them - maybe you can. Their settlement is in the north of the desert.",
@@ -976,11 +954,11 @@ quest
 					text = "Tourists in such a place are an easy target. I told one of the nomads that we wouldn't renovate their old town. Maybe you can offer him something in exchange for information. Currently, they're camped on one of the rocks in the north.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 6707, 1068, 9 },
+					
 					id = 7805,
-					aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
+					key = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
 					rewards = { QuestKeyItems.ThreeSramatiansAndTheDragon.DeepCrystal },
 				},
 			}),
@@ -1010,11 +988,11 @@ quest
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission07)
 	:State(function()
 		return { min = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles },
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 3064,
-					pos = { 6783, 817, 4 },
-					aid = Storage.KingOfRatsHQ.Items.Bottomless,
+					
+					key = Storage.KingOfRatsHQ.Items.Bottomless,
 					rewards = { QuestKeyItems.KingOfRatsHQ.Bottomless },
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles,
@@ -1024,9 +1002,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles,
-			QuestFactory.StartupItems({
-				{ pos = { 6569, 605, 6 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hairycles },
-			}),
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
 					text = "Hairycles provided us with directions to HF-P/X's hideout. But first, we need to do him a favor. If possible, bring us about 2^log(10000) bananas.",
@@ -1051,9 +1026,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHellspawnTemple,
-			QuestFactory.StartupItems({
-				{ pos = { 6710, 651, 12 }, id = 1997, aid = Storage.ThreeSramatiansAndTheDragon.Fireplaces.Hellspawns },
-			}),
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
 					text = "I have a feeling that Jan Kockodan got ahead of us. Maybe he's hiding somewhere in this hellish cave. Watch out for him! From the notes given to me by Hairycles, it appears that somewhere in this temple are enchanted doors. The key to opening them is to collect three different magical runes. Fortunately, all the runes are in the temple... if no one has stolen them.",
@@ -1065,11 +1037,11 @@ quest
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindThreeMagicRunes,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 6814, 600, 12 },
+					
 					id = 11809,
-					aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune1,
+					key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune1,
 					spawnMonstersOnSuccess = {
 						{ name = "Jan Kockodan" },
 					},
@@ -1078,9 +1050,9 @@ quest
 					},
 				},
 				{
-					pos = { 6775, 623, 12 },
+					
 					id = 11809,
-					aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune2,
+					key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune2,
 					spawnMonstersOnSuccess = {
 						{ name = "Enchanted Hellspawn", count = 2 },
 					},
@@ -1089,9 +1061,9 @@ quest
 					},
 				},
 				{
-					pos = { 6809, 634, 13 },
+					
 					id = 11809,
-					aid = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune3,
+					key = Storage.ThreeSramatiansAndTheDragon.KeyItems.Rune3,
 					spawnMonstersOnSuccess = {
 						{ name = "Runic Hellspawn", count = 2 },
 					},
@@ -1158,9 +1130,6 @@ quest
 					text = "I'm gonna stay here and have your back.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = { 6793, 560, 11 }, id = 4396, aid = Storage.ThreeSramatiansAndTheDragon.RatOfKingsTile },
-			}),
 			QuestFactory.Script(function(missionState)
 				local ratOfKingsPos = Position(6792, 558, 11)
 				local ratOfKingsNpc = {}
@@ -1215,8 +1184,8 @@ quest
 			end),
 			--39f add hfpx encounter
 			QuestFactory.Script(function(missionState)
-				local hfpxConfig = {
-					actionid = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
+				local hfpxEncounter = {
+					key = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
 					bossName = "Operator HF-P/X",
 					timerStorage = Storage.ThreeSramatiansAndTheDragon.HfpxAccess,
 					cooldown = "weekly",
@@ -1228,7 +1197,7 @@ quest
 					},
 					exitTeleportDestination = Position(6796, 554, 12),
 					exitTeleportPosition = Position(6789, 548, 13),
-					exitTeleportActionid = Storage.ThreeSramatiansAndTheDragon.Portals.AfterHfpx,
+					exitTeleportkey = Storage.ThreeSramatiansAndTheDragon.Portals.AfterHfpx,
 
 					bossPos = Position(6791, 550, 13),
 					enterPos = Position(6801, 556, 13),
@@ -1240,15 +1209,15 @@ quest
 						[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = ACCESS_GRANTED,
 					},
 				}
-				RegisterEncounter(hfpxConfig)
+				RegisterEncounter(hfpxEncounter)
 
 				local lever = Action()
 
 				function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					return UseEncounterLever(player, item, hfpxConfig)
+					return UseEncounterLever(player, item, hfpxEncounter)
 				end
 
-				lever:key(hfpxConfig.actionid)
+				lever:key(hfpxEncounter.key)
 				lever:register()
 			end)
 	end)

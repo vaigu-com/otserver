@@ -1,11 +1,11 @@
-local name = "Anon's father"
+local name = "Anon's Father"
 local outfit = {
-	lookType = 132,
-	lookHead = 19,
-	lookBody = 10,
-	lookLegs = 38,
-	lookFeet = 95,
-	lookAddons = 0,
+	lookType = 129,
+	lookHead = 97,
+	lookBody = 79,
+	lookLegs = 87,
+	lookFeet = 115,
+	lookAddons = 1,
 }
 local dialogs = {
 	[{ "sprzet", "sprzet wedkarski", "oferta", "ofert" }] = {

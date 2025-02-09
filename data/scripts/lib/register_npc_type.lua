@@ -1,3 +1,42 @@
+NpcTypeRepository = {}
+NpcTypeRepository.__index = NpcTypeRepository
+NpcTypeRepository.registry = {}
+function NpcTypeRepository:Add(name, data)
+	self.registry[name] = data
+end
+
+local rme_dir = "../rme/"
+local npcXmlPath = rme_dir .. "data/creatures/npcs.xml"
+
+function NpcTypeRepository:SaveToXML()
+	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<npcs>\n'
+	for name, data in
+		pairssortedkey(self.registry, function(a, b)
+			return a:lower() < b:lower()
+		end)
+	do
+		xml = xml
+			.. T('\t<npc name=":name:" looktype=":looktype:" lookhead=":lookhead:" lookbody=":lookbody:" looklegs=":looklegs:" lookfeet=":lookfeet:" lookaddon=":lookaddon:" lookitem = ":lookitem:"/>\n', {
+				name = name,
+				looktype = data.outfit.lookType or 0,
+				lookhead = data.outfit.lookHead or 0,
+				lookbody = data.outfit.lookBody or 0,
+				looklegs = data.outfit.lookLegs or 0,
+				lookfeet = data.outfit.lookFeet or 0,
+				lookaddon = data.outfit.lookAddons or 0,
+				lookitem = data.outfit.lookTypeEx or 0,
+			})
+	end
+	xml = xml .. "</npcs>\n"
+	local file = io.open(npcXmlPath, "w+")
+	if not file then
+		logger.error(T("[NpcTypeRepository::SaveToXML] Cannt open file :path:. Npcs have NOT been saved.", { path = npcXmlPath }))
+		return
+	end
+	file:write(xml)
+	file:close()
+end
+
 registerNpcType = {}
 setmetatable(registerNpcType, {
 	__call = function(self, npcType, mask)
@@ -8,7 +47,8 @@ setmetatable(registerNpcType, {
 })
 
 NpcType.register = function(self, mask)
-	return registerNpcType(self, mask)
+	registerNpcType(self, mask)
+	NpcTypeRepository:Add(self:getUniqueName(), mask)
 end
 
 registerNpcType.name = function(npcType, mask)
@@ -85,7 +125,7 @@ end
 registerNpcType.light = function(npcType, mask)
 	if mask.light then
 		if mask.light.color then
-			local color = mask.light.color
+			local 	color = mask.light.color
 		end
 		if mask.light.level then
 			npcType:light(color, mask.light.level)

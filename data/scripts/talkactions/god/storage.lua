@@ -6,7 +6,7 @@ local function parseStorageId(input)
 	end
 
 	if type(input) == "string" then
-		return _G[input]
+		return input
 	end
 
 	logger.debug("[/storage] wrong storage id/name")

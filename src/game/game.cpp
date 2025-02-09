@@ -5508,10 +5508,11 @@ void Game::playerLookAt(uint32_t playerId, uint16_t itemId, const Position &pos,
 		lookDistance = -1;
 	}
 
-	// Parse onLook from event player
+	// If custom onLook is registered and returns true
 	if (g_looks().lookItemEx(player, player->getPosition(), pos, stackPos, item)) {
 		return;
 	}
+
 	g_events().eventPlayerOnLook(player, pos, thing, stackPos, lookDistance);
 	g_callbacks().executeCallback(EventCallback_t::playerOnLook, &EventCallback::playerOnLook, player, pos, thing, stackPos, lookDistance);
 }

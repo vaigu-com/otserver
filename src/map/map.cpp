@@ -20,6 +20,7 @@
 #include "lua/callbacks/events_callbacks.hpp"
 #include "map/spectators.hpp"
 #include "utils/astarnodes.hpp"
+#include "io/ioprey.hpp"
 
 void Map::load(const std::string &identifier, const Position &pos) {
 	try {
@@ -65,6 +66,7 @@ void Map::loadMap(const std::string &identifier, bool mainMap /*= false*/, bool 
 	if (loadMonsters) {
 		IOMap::loadMonsters(this);
 	}
+	g_ioprey().initializePreyMonsters(); // Vaigu custom
 
 	if (loadHouses) {
 		IOMap::loadHouses(this);

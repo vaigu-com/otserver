@@ -10,6 +10,10 @@ local directionToString = {
 }
 
 return {
+	["YOU_ARE_NOW_CITIZEN_OF"] = function (context)
+		local townName = context.townName
+		return T("You are now a citizen of :townName:.", {townName = townName})
+	end,
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Hello, |PLAYERNAME|! Lately hardly any people come to visit me",
 	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (complete)",
 	["GO_IN_DIRECTION"] = function(context)
@@ -154,7 +158,7 @@ return {
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("You have :freeSails: free sail admits\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("You have :freeTravels: free sail admits\n", { freeTravels = freeTravels })
 		end
 		finalString = finalString .. "Where would you like to sail?"
 		return finalString
@@ -164,7 +168,7 @@ return {
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("You have :freeFlight: free flght admits\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("You have :freeTravels: free flght admits\n", { freeTravels = freeTravels })
 		end
 		finalString = finalString .. "Where would you like to fly?"
 		return finalString

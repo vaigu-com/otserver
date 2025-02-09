@@ -70,7 +70,7 @@ function RegisterNpcDefinition(npcData)
 
 	npcConfig.voices = voices
 
-	npcConfig.flags = { floorchange = npcData.floorchange or 0 }
+	npcConfig.flags = { floorchange = npcData.floorchange or false }
 
 	local keywordHandler = KeywordHandler:new()
 	local npcHandler = NpcHandler:new(keywordHandler)

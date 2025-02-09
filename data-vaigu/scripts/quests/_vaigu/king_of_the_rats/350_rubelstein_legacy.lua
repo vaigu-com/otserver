@@ -18,7 +18,7 @@ quest
 		QuestKeyItems.RubelsteinLegacy = {
 			RubelsteinScroll = {
 				id = 2815,
-				aid = Storage.RubelsteinLegacy.RubelsteinScroll,
+				key = Storage.RubelsteinLegacy.RubelsteinScroll,
 				desc = "RubelsteinScrollDesc",
 				addToStore = false,
 			},

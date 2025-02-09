@@ -7,7 +7,9 @@ quest
 			ArniNecklace = {},
 
 			HalfTurnKick = {},
+			SmugglingListChest = {},
 			SmugglingList = {},
+			SmuggledLegsChest = {},
 			SmuggledLegs = {},
 
 			BalancedDiet = {},
@@ -43,11 +45,11 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.ToCarryThePigs = {
-			ArniNecklace = { id = 7754, aid = Storage.ToCarryThePigs.ArniNecklace },
-			SmugglingList = { id = 22160, aid = Storage.ToCarryThePigs.SmugglingList },
-			SmuggledLegs = { id = 24404, aid = Storage.ToCarryThePigs.SmuggledLegs },
-			EcoCarrot = { id = 3250, aid = Storage.ToCarryThePigs.EcoCarrot },
-			NewBow = { id = 9378, aid = Storage.ToCarryThePigs.NewBow },
+			ArniNecklace = { id = 7754, key = Storage.ToCarryThePigs.ArniNecklace },
+			SmugglingList = { id = 22160, key = Storage.ToCarryThePigs.SmugglingList },
+			SmuggledLegs = { id = 24404, key = Storage.ToCarryThePigs.SmuggledLegs },
+			EcoCarrot = { id = 3250, key = Storage.ToCarryThePigs.EcoCarrot },
+			NewBow = { id = 9378, key = Storage.ToCarryThePigs.NewBow },
 		}
 	end)
 	:Questlog(function()
@@ -186,10 +188,11 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves, QuestFactory.StartupItems({
+		return QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves, QuestFactory.OnUseDeclaration({
 			{
 				id = 405,
-				pos = { 6014, 1455, 10 },
+				key = Storage.ToCarryThePigs.SmugglingListChest,
+				
 				rewards = {
 					QuestKeyItems.ToCarryThePigs.SmugglingList,
 				},
@@ -236,10 +239,10 @@ quest
 	end)
 	:State(function()
 		return QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 28462,
-					pos = { 6088, 1215, 9 },
+					key = Storage.ToCarryThePigs.SmuggledLegsChest,
 					rewards = {
 						QuestKeyItems.ToCarryThePigs.SmuggledLegs,
 					},
@@ -291,11 +294,11 @@ quest
 	end)
 	:State(function()
 		return QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus,
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 15639,
-					pos = { 5917, 1811, 8 },
-					aid = Storage.ToCarryThePigs.CarrotChest,
+					
+					key = Storage.ToCarryThePigs.CarrotChest,
 					rewards = {
 						QuestKeyItems.ToCarryThePigs.EcoCarrot,
 					},

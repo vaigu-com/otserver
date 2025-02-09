@@ -49,17 +49,17 @@ ANY_STATE = { min = DEFAULT_MIN_STATE, max = DEFAULT_MAX_STATE }
 
 TOPIC_DEFAULT = 0
 
-CONDITION_STATUS = {
-	--Single condition
+REQUIREMENT_STATUS = {
 	CONDITION_PASSED = "CONDITION_PASSED",
 	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
-	--Multiple conditions
-	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
-	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
-
 	--Unused
 	--AT_LEAST_ONE_CONDITION_PASSED = "AT_LEAST_ONE_CONDITION_PASSED"
 	--NO_CONDITIONS_PASSED = "NO_CONDITIONS_PASSED"
+}
+
+RESOLVER_STATUS = {
+	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
+	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
 }
 
 DISCARD_DIALOG = "DISCARD_DIALOG"
@@ -214,7 +214,7 @@ function Player:HasHigherMissionState(missionState)
 end
 
 function Player:HasCorrectStorageValue(storage, requiredState)
-	local currentState = self:kv():get(storage)
+	local currentState = self:getStorageValueByKey(storage)
 
 	local requirements = parseRequiredState(requiredState)
 
@@ -354,109 +354,6 @@ setmetatable(DialogContext, {
 		return instance
 	end,
 })
-
-local requirementsWhitelist = {
-	requiredTopic = true,
-	requiredItems = true,
-	requiredState = true,
-	requiredGlobalState = true,
-	requiredMoney = true,
-	specialConditions = true,
-}
-local actionsWhitelist = {
-	specialActionsOnSuccess = true,
-	removeRequiredItems = true,
-	rewards = true,
-	spawnMonstersOnSuccess = true,
-	outfitRewards = true,
-	mountRewards = true,
-	expReward = true,
-	nextState = true,
-	nextGlobalState = true,
-	nextTopic = true,
-	preserveTopic = true,
-	addDialogData = true,
-	text = true,
-}
-
----@class ResolutionContext
----@field requirements table
----@field actionsOnSuccess table
----@field player Player
----@field cid integer?
----@field npc Npc?
----@field specialMessageType string?
----@field localizer integer
----@field npcHandler NpcHandler?
----@field topic integer?
----@field extractedParams table
----@field patternFields table
-ResolutionContext = {}
-ResolutionContext.__index = ResolutionContext
-setmetatable(ResolutionContext, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
-
-function ResolutionContext.FromDialogContext(context, data)
-	local newObj = {}
-	setmetatable(newObj, ResolutionContext)
-	newObj:ParseRequirementsActionsOther(context)
-	newObj:ParseRequirementsActionsOther(data)
-	newObj.__index = newObj
-	return newObj
-end
-
-function ResolutionContext:ParseRequirementsActionsOther(table)
-	self.requirements = self.requirements or {}
-	self.actionsOnSuccess = self.requirements or {}
-	for key, value in pairs(table) do
-		if requirementsWhitelist[key] then
-			self.requirements[key] = value
-		elseif actionsWhitelist[key] then
-			self.actionsOnSuccess[key] = value
-		else
-			self[key] = value
-		end
-	end
-
-	for key, value in pairs(self.patternFields or {}) do
-		self[key] = value
-	end
-
-	self.localizer = self.localizer or table.localizer
-end
-
-function ResolutionContext:New()
-	local newObj = {}
-	newObj.__index = ResolutionContext
-	setmetatable(newObj, ResolutionContext)
-	return newObj
-end
-
-function ResolutionContext.FromEncounter(encounterData, player)
-	local newObj = {}
-	setmetatable(newObj, ResolutionContext)
-	newObj:ParseRequirementsActionsOther(encounterData)
-	newObj.localizer = encounterData.localizer
-	newObj.player = player
-	newObj.__index = ResolutionContext
-	if newObj.requirements then
-		newObj.requirements.requiredState = nil
-	end
-	return newObj
-end
-
-function ResolutionContext.FromCustomItemState(item, player)
-	local newObj = {}
-	setmetatable(newObj, ResolutionContext)
-	newObj.localizer = item.localizer
-	newObj.player = player
-	newObj.__index = ResolutionContext
-	newObj:ParseRequirementsActionsOther(item)
-	return newObj
-end
 
 function DialogContext:SendIncomprehensibleError()
 	local player = self.player

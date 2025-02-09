@@ -31,17 +31,17 @@ quest
 		QuestKeyItems.CaveExplorerOnShield = {
 			Firebug = {
 				id = 5467,
-				aid = Storage.CaveExplorerOnShield.FirebugFireplace,
+				key = Storage.CaveExplorerOnShield.FirebugFireplace,
 				desc = "Desert ruins dead adventurer's firebug",
 			},
 			GermiDocument = {
 				id = 2815,
 				text = "(Torn page fragment) This damned place is overflowing with traps. Some devilish forces wish my life to meet a demise! Today I nearly slipped into a pit of fire. But there are also a lot of hints placed all over in the strangest of places. Looks like those are addressed to other adventurers like me and Anthony. Some of them don't seem to be created by humans. Don't trust them.",
-				aid = Storage.CaveExplorerOnShield.GermIDocument,
+				key = Storage.CaveExplorerOnShield.GermIDocument,
 			},
 			Punchcard = {
 				id = 4842,
-				aid = Storage.CaveExplorerOnShield.Punchcard,
+				key = Storage.CaveExplorerOnShield.Punchcard,
 				desc = "A punchcard for opening mechanical doors",
 			},
 		}
@@ -69,10 +69,8 @@ quest
 	:Mission(Storage.CaveExplorerOnShield.Mission01)
 	:State(function()
 		return MISSION_NOT_STARTED,
-			QuestFactory.StartupItems({
-				{ id = 4241, aid = Storage.CaveExplorerOnShield.GermiCorpse, pos = { 82, 53, -2 }, rewards = { QuestKeyItems.CaveExplorerOnShield.Firebug } },
-				{ id = 2001, aid = Storage.CaveExplorerOnShield.FirebugFireplace, pos = { 77, 53, -2 } },
-				{ id = 1997, aid = Storage.CaveExplorerOnShield.FirebugFireplace, pos = { -25, 66, 3 } },
+			QuestFactory.OnUseDeclaration({
+				{ id = 4241, key = Storage.CaveExplorerOnShield.GermiCorpse, rewards = { QuestKeyItems.CaveExplorerOnShield.Firebug } },
 			}, DESERT_QUEST_ONE_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local function movePlayersFromArea(topLeft, downRight, safePos)
@@ -222,11 +220,11 @@ quest
 			QuestFactory.Dialog("Ghost of Germi the Journeyman", { [{ GREET }] = {
 				text = "Please come back with something of mine.",
 			} }),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 2484,
-					aid = Storage.CaveExplorerOnShield.GermiChest,
-					pos = { 63, 35, 0 },
+					key = Storage.CaveExplorerOnShield.GermiChest,
+
 					nextState = { [Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi },
 					rewards = { QuestKeyItems.CaveExplorerOnShield.GermiDocument },
 				},
@@ -315,13 +313,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer,
-			QuestFactory.StartupItems({
-				{ id = 8342, aid = Storage.CaveExplorerOnShield.Punchcard, pos = { 86, 61, -2 } },
-				{ id = 355, aid = Storage.CaveExplorerOnShield.Punchcard, pos = { 87, 61, -2 } },
-				{ id = 231, pos = { 5, -8, 1 }, aid = Storage.CaveExplorerOnShield.AnthonyGate },
-				{ id = 231, pos = { 6, -8, 1 }, aid = Storage.CaveExplorerOnShield.AnthonyGate },
-				{ id = 231, pos = { 7, -8, 1 }, aid = Storage.CaveExplorerOnShield.AnthonyGate },
-			}, DESERT_QUEST_ONE_ANCHOR),
 			QuestFactory.Script(function(missionState)
 				local punchcard = Action()
 

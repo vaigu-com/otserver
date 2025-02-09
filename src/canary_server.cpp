@@ -380,7 +380,6 @@ void CanaryServer::loadModules() {
 
 	g_game().loadBoostedCreature();
 	g_ioBosstiary().loadBoostedBoss();
-	g_ioprey().initializePreyMonsters(); // Vaigu custom
 	g_ioprey().initializeTaskHuntOptions();
 	g_game().logCyclopediaStats();
 }

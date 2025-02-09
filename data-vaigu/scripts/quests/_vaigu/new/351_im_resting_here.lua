@@ -40,7 +40,7 @@ quest
 				id = 637,
 				desc = "Bildo's last will",
 				text = "[...]this is the part of the will concerning my grandson. Back in 2014 me and my company broke our way into the down syndrome pyramid. When we were deep down there, something grabbed onto Gwindel. In no time, he already fell to his death and was lying in the corner of the pyramid. Unfortunately, he was descending first, thus he was the one using the magical torch. This is the heirloom 'Im entrusting to you. Entrance to the pyramid is located in fuck fuck fuckity fuck. You should remember things like this. The only requirement for you to be able to acquire this part of heritage is being at least 32 years old.\n\nSigned by Bildo\n\nP.S. Chester is a mountebank and swindler",
-				aid = Storage.ImRestingHere.LastWill,
+				key = Storage.ImRestingHere.LastWill,
 			},
 			MagicTorch = {
 				id = 9042,
@@ -51,7 +51,7 @@ quest
 			},
 			Crowbar = {
 				id = 3304,
-				aid = Storage.ImRestingHere.Crowbar,
+				key = Storage.ImRestingHere.Crowbar,
 			},
 		}
 	end)
@@ -81,12 +81,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ImRestingHere.Mission01.FindUseForCrowbar,
-			QuestFactory.StartupItems({
-				{ pos = { 5939, 1779, 7 }, id = 2477, aid = Storage.ImRestingHere.Coffin },
-				{ pos = { 5938, 1779, 7 }, id = 2476, aid = Storage.ImRestingHere.Coffin },
-				{ pos = { 5939, 1779, 7 }, id = 3522, aid = 0 },
-				{ pos = { 5938, 1779, 7 }, id = 3526, aid = 0 },
-			}),
 			QuestFactory.Script(function(missionState)
 				local coffinMessages = {
 					[1] = "The lid of this coffin won't move at all.",
@@ -130,9 +124,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.ImRestingHere.Mission01.FindItemMentionedInLastWill,
-			QuestFactory.StartupItems({
-				{ pos = { 6644, 1212, 13 }, id = 3204, aid = Storage.ImRestingHere.Corpse },
-			}),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {
 					[Storage.ImRestingHere.Mission01] = QuestState.ImRestingHere.Mission01.FindOneOfTheSurvivors,

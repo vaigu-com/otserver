@@ -109,6 +109,7 @@ bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 				}
 
 				spawnMonster->addMonster(nameAttribute.as_string(), pos, dir, scheduleInterval * 1000, weight);
+				incrementMapMonsterCount(nameAttribute.as_string());
 			}
 		}
 	}
@@ -485,9 +486,11 @@ std::shared_ptr<MonsterType> spawnBlock_t::getMonsterType() const {
 	return nullptr;
 }
 
-bool spawnBlock_t::hasBoss() const {
+bool spawnBlock_t::hasBoss() const {	
 	return std::ranges::any_of(monsterTypes, [](const auto &pair) {
 		const auto &[monsterType, weight] = pair;
 		return monsterType->isBoss();
 	});
 }
+
+SpawnsMonster::MonsterCounter SpawnsMonster::monsterCounter;

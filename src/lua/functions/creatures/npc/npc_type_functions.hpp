@@ -26,6 +26,7 @@ private:
 	static int luaNpcTypeCanPushItems(lua_State* L);
 	static int luaNpcTypeCanPushCreatures(lua_State* L);
 
+	static int luaNpcTypeGetUniqueName(lua_State* L);
 	static int luaNpcTypeName(lua_State* L);
 	static int luaNpcTypeNameDescription(lua_State* L);
 

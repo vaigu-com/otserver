@@ -155,17 +155,17 @@ quest
 
 		QuestKeyItems.AssassinsCreedSquurvaali = {
 			MarishaArtistPalette = {
-				aid = Storage.AssassinsCreedSquurvaali.KeyItems.Palette,
+				key = Storage.AssassinsCreedSquurvaali.KeyItems.Palette,
 				id = 14684,
 				desc = "Assortment of paints. Can be used to paint any surface",
 			},
 			SiliconWafersForLambor = {
-				aid = Storage.AssassinsCreedSquurvaali.KeyItems.Silicon,
+				key = Storage.AssassinsCreedSquurvaali.KeyItems.Silicon,
 				id = 2469,
 				desc = "Box of sillicon wafers. Lambor might be interested in it",
 			},
 			AunorFlare = {
-				aid = Storage.AssassinsCreedSquurvaali.KeyItems.Flare,
+				key = Storage.AssassinsCreedSquurvaali.KeyItems.Flare,
 				id = 30209,
 				desc = "Flare from Aunor. Use it before Ghasstly Princess's cave entrance",
 			},
@@ -242,10 +242,7 @@ quest
 
 				chairOut:key(Storage.AssassinsCreedSquurvaali.GhostChair)
 				chairOut:register()
-			end),
-			QuestFactory.StartupItems({
-				{ pos = { 5685, 1408, 7 }, id = 2355, key = Storage.AssassinsCreedSquurvaali.GhostChair },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek,
@@ -443,11 +440,10 @@ quest
 					text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 6051, 1503, 9 },
 					id = 2484,
-					actionid = Storage.AssassinsCreedSquurvaali.Rewards.CartSilicon,
+					key = Storage.AssassinsCreedSquurvaali.Rewards.CartSilicon,
 					rewards = { QuestKeyItems.AssassinsCreedSquurvaali.SiliconWafersForLambor },
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission03] = QuestState.AssassinsCreedSquurvaali.Mission03.ReturnWafersToLambor,
@@ -538,9 +534,6 @@ quest
 						[Storage.AssassinsCreedSquurvaali.Mission04] = QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare,
 					},
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { 7223, 1532, 4 }, id = 470, aid = Storage.AssassinsCreedSquurvaali.HeavenPath },
 			})
 	end)
 	:State(function()
@@ -549,9 +542,6 @@ quest
 				[{ "mission" }] = {
 					text = "You should fire the flare outside, not inside, silly.",
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { 5688, 1413, 7 }, id = 15047, aid = Storage.AssassinsCreedSquurvaali.KeyItems.Flare },
 			}),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {

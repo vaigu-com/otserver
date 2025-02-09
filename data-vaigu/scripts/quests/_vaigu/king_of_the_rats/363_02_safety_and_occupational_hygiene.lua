@@ -378,10 +378,6 @@ quest
 	:Mission(Storage.SafetyAndOccupationalHygiene.Mission01)
 	:State(function()
 		return MISSION_NOT_STARTED,
-			QuestFactory.StartupItems({
-				{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 2, 0), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown },
-				{ pos = MIRKO_MAGICIANS_ANCHOR:Moved(22, 11, -5), id = 1949, aid = Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus },
-			}),
 			QuestFactory.Script(function(missionState)
 				local portal = MoveEvent()
 
@@ -585,9 +581,6 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ id = 4399, pos = { 6170, 1517, 5 }, aid = Storage.SafetyAndOccupationalHygiene.KrolTile },
-			}),
 			QuestFactory.Script(function(missionState)
 				local tileIn = MoveEvent()
 
@@ -633,9 +626,6 @@ quest
 					text = "Petrus has his hideout at the top of the eastern tower on the magician's rock.",
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 3, 4), id = 7348, aid = Storage.SafetyAndOccupationalHygiene.PetrusSpawn },
-			}),
 			QuestFactory.Script(function(missionState)
 				local tile = MoveEvent()
 
@@ -658,8 +648,8 @@ quest
 			end)
 	end)
 	:State(function()
-		return { min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings }, QuestFactory.StartupItems({
-			{ pos = PETRUS_CIEMIEZCA_ANCHOR:Moved(-3, 2, 1), id = 2471, aid = Storage.KingOfRatsHQ.Items.Ytong, rewards = { QuestKeyItems.KingOfRatsHQ.Ytong } },
+		return { min = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings }, QuestFactory.OnUseDeclaration({
+			{ id = 2471, key = Storage.KingOfRatsHQ.Items.Ytong, rewards = { QuestKeyItems.KingOfRatsHQ.Ytong } },
 		})
 	end)
 	:State(function()

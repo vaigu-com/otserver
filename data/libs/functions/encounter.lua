@@ -102,7 +102,7 @@ end
 ---@field public encounterName string used for storing encounter cooldown in KV storage
 ---@field public disableLockout boolean does not apply cooldown
 ---@field private requiredState table?
----@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY"/"WEEKLY" (resets at 5 AM daily or at wednesdays)
+---@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
 ---@field private lockoutType LOCKOUT_TYPE?
 ---@field private timeToDefeat number?
 ---@field private ejectAfterCompletionSeconds number?
@@ -465,7 +465,7 @@ function EncounterData:checkCustom(players, leverUser)
 	for _, player in pairs(players) do
 		local resolutionContext = ResolutionContext.FromEncounter(self, player)
 		local status = resolutionContext:ConditionsArePassable()
-		if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
+		if status == RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
 			return resolutionContext.errorCode
 		end
 	end

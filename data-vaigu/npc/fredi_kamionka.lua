@@ -1,4 +1,4 @@
-local name = "Fredi kamionka"
+local name = "Fredi Kamionka"
 local outfit = {
 	lookType = 1136,
 	lookHead = 95,

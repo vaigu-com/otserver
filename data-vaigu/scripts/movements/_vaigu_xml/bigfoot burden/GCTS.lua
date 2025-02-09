@@ -2,7 +2,7 @@ local teleporters = {
 	[3215] = { destination = Position(6218, 1048, 8), minState = 1, requiresCrystal = true }, --To Steppes
 	[3216] = { destination = Position(7018, 787, 7), minState = 1, requiresCrystal = true }, --To Kongo
 	[3217] = { destination = Position(5924, 1395, 9), minState = 1, requiresCrystal = true }, --To Mirkotown
-	[3218] = { destination = Position(7517, 1850, 12), minState = 1, requiresCrystal = true }, --To orshawa 39f
+	[3218] = { destination = Position(7517, 1850, 12), minState = 1, requiresCrystal = true }, --To Orshaawa
 	[3219] = { destination = Position(7209, 1048, 7), minState = 1, requiresCrystal = true }, --To Maioor'ka
 	[3220] = { destination = Position(6448, 1844, 10), minState = 1, requiresCrystal = true }, --To Syberia
 

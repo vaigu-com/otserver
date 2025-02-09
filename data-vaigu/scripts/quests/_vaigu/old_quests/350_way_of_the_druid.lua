@@ -68,11 +68,11 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.WayOfTheDruid = {
-			SandniggerMap = { id = 22107, aid = Storage.WayOfTheDruid.SandniggerMap },
-			BenekKnife = { id = 5908, aid = Storage.WayOfTheDruid.BenekKnife },
-			OrnuldWyrmEgg = { id = 18996, aid = Storage.WayOfTheDruid.WyrmEgg },
-			OrnuldMedicine = { id = 8819, aid = Storage.WayOfTheDruid.OrnuldMedicine },
-			RadaghastFirebug = { id = 5467, aid = Storage.WayOfTheDruid.RadaghastFirebug },
+			SandniggerMap = { id = 22107, key = Storage.WayOfTheDruid.SandniggerMap },
+			BenekKnife = { id = 5908, key = Storage.WayOfTheDruid.BenekKnife },
+			OrnuldWyrmEgg = { id = 18996, key = Storage.WayOfTheDruid.WyrmEgg },
+			OrnuldMedicine = { id = 8819, key = Storage.WayOfTheDruid.OrnuldMedicine },
+			RadaghastFirebug = { id = 5467, key = Storage.WayOfTheDruid.RadaghastFirebug },
 		}
 	end)
 	:Questlog(function()
@@ -189,12 +189,6 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ id = 5076, pos = { 6550, 656, 6 }, aid = Storage.WayOfTheDruid.LootedWater },
-				{ id = 5077, pos = { 6551, 656, 6 }, aid = Storage.WayOfTheDruid.LootedWater },
-				{ id = 5079, pos = { 6550, 657, 6 }, aid = Storage.WayOfTheDruid.LootedWater },
-				{ id = 5078, pos = { 6551, 657, 6 }, aid = Storage.WayOfTheDruid.LootedWater },
-			}),
 			QuestFactory.Script(function()
 				local waterWell = Action()
 				function waterWell.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -255,10 +249,7 @@ quest
 				end
 				flower:key(Storage.WayOfTheDruid.LootedFlower)
 				flower:register()
-			end),
-			QuestFactory.StartupItems({
-				{ id = 5658, pos = { 6550, 655, 2 }, aid = Storage.WayOfTheDruid.LootedWater },
-			})
+			end)
 	end)
 	:State(function()
 		return MISSION_FINISHED, QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
@@ -289,9 +280,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.WayOfTheDruid.DeerSeason.BurnHunterStock,
-			QuestFactory.StartupItems({
-				{ id = 2742, pos = { 6038, 1726, 7 }, aid = Storage.WayOfTheDruid.HunterTreeStump },
-			}),
 			QuestFactory.Script(function()
 				local firebug = Action()
 				function firebug.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -378,11 +366,11 @@ quest
 				map:key(Storage.WayOfTheDruid.SandniggerMap)
 				map:register()
 			end),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 213,
-					pos = { 7123, 1254, 7 },
-					aid = Storage.WayOfTheDruid.BuriedIncantation,
+
+					key = Storage.WayOfTheDruid.BuriedIncantation,
 					nextState = {
 						[Storage.WayOfTheDruid.RudeEviction] = QuestState.WayOfTheDruid.RudeEviction.ReportToSandnigger,
 					},
@@ -453,10 +441,7 @@ quest
 				end
 				knife:key(Storage.WayOfTheDruid.BenekKnife)
 				knife:register()
-			end),
-			QuestFactory.StartupItems({
-				{ id = 12369, pos = { 5810, 1292, 7 }, aid = Storage.WayOfTheDruid.BenekTheWolf },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.WayOfTheDruid.TakenBenek.ReportToEstep,
@@ -511,12 +496,9 @@ quest
 	end)
 	:State(function()
 		return QuestState.WayOfTheDruid.SecretIngredient.FindWyrmEgg,
-			QuestFactory.StartupItems({
-				{ id = 14098, pos = { 6636, 599, 4 }, aid = Storage.WayOfTheDruid.WyrmEgg },
-				{ id = 14098, pos = { 6656, 568, 3 }, aid = Storage.WayOfTheDruid.WyrmEgg },
-				{ id = 14098, pos = { 6622, 567, 3 }, aid = Storage.WayOfTheDruid.WyrmEgg },
+			QuestFactory.OnUseDeclaration({
 				{
-					aid = Storage.WayOfTheDruid.WyrmEgg,
+					key = Storage.WayOfTheDruid.WyrmEgg,
 					nextState = {
 						[Storage.WayOfTheDruid.SecretIngredient] = QuestState.WayOfTheDruid.SecretIngredient.BringEggToOrnuld,
 					},

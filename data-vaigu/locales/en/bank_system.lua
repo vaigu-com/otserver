@@ -22,7 +22,7 @@ return {
 	["DECLARE_WITHDRAW_AMOUNT"] = "Please tell me how much gold you would like to withdraw.",
 	["DECLARE_TRANSFER_AMOUNT"] = "Please tell me the amount of gold you would like to transfer.",
 	["DECLARE_TRANSFER_RECIPIENT"] = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		return T("Who would you like transfer :amount: gold to?", { amount = amount })
 	end,
 
@@ -34,26 +34,26 @@ return {
 		return T("Would you really like to deposit :amount: gold?", { amount = amount })
 	end,
 	["CONFIRM_WITHDRAW"] = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		return T("Are you sure you wish to withdraw :amount: gold from your bank account?", { amount = amount })
 	end,
 	["CONFIRM_TRANSFER"] = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
-		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
+		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
 		return T("So you would like to transfer :amount: gold to :recipient:?", { amount = amount, recipient = recipient })
 	end,
 
 	["DEPOSIT_OK"] = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		return T("Alright, we have added the amount of :amount: gold to your {balance}. You can {withdraw} your money anytime you want to.", { amount = amount })
 	end,
 	["WITHDRAW_OK"] = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		return T("Here you are, :amount: gold. Please let me know if there is something else I can do for you.", { amount = amount })
 	end,
 	["TRANSFER_OK"] = function(context)
-		local amount = PlayerCustomDialogDataRegistry():Get(context.player).amount
-		local recipient = PlayerCustomDialogDataRegistry():Get(context.player).recipient
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
+		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
 		return T("Very well. You have transferred :amount: gold to :recipient.", { amount = amount, recipient = recipient })
 	end,
 

@@ -78,7 +78,19 @@ local starterItems = {
 }
 
 local function setFreeTravels(player)
-	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRANSPORTS)
+	player:setStorageValueByKey(Storage.FreeTravels, FREE_TRAVELS_NUMBER)
+end
+
+local function addKeyRing(player)
+	local keyRing = Game.createItem(KEY_RING_ID)
+	keyRing:setKey(Storage.DoorKeys.KeyRing)
+	for doorKeyIdStr, collectionStorage in pairs(Storage.DoorKeys.KeyCollections) do
+		local doorKey = keyRing:addItem(tonumber(doorKeyIdStr))
+		doorKey:setKey(collectionStorage)
+		player:setStorageValueByKey(collectionStorage, {})
+	end
+	local inbox = player:getStoreInbox()
+	inbox:addItemEx(keyRing)
 end
 
 local firstLogin = CreatureEvent("SendFirstItems")
@@ -107,6 +119,8 @@ function firstLogin.onLogin(player)
 	for _, item in pairs(items.toBackpack) do
 		player:AddCustomItem(item, backpack)
 	end
+
+	addKeyRing(player)
 
 	CreateChooseLanguageWindow(player)
 	return true

@@ -1,12 +1,12 @@
 Storage.ExerciseWeaponBox = {}
 local boxId = 906
-local boxAid = Storage.ExerciseWeaponBox
+local boxKey = Storage.ExerciseWeaponBox
 
 local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
-	if not player:TryRemoveItems({ { id = boxId, aid = boxAid } }) then
+	if not player:TryRemoveItems({ { id = boxId, aid = boxKey } }) then
 		return
 	end
 
@@ -42,7 +42,7 @@ local exerciseWeaponChoice = {
 
 ---@param charges number
 function ExerciseWeaponBox(charges)
-	local exerciseWeaponBoxItem = { id = boxId, aid = boxAid, charges = charges }
+	local exerciseWeaponBoxItem = { id = boxId, aid = boxKey, charges = charges }
 	return exerciseWeaponBoxItem
 end
 

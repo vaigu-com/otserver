@@ -30,7 +30,7 @@ return {
 	["Eruaran"] = "Eruaran",
 	["Estep"] = "Estep",
 	["Lebesgue the Philosopher"] = "Filozofujaca Calka",
-	["Fredi kamionka"] = "Fredi Kamionka",
+	["Fredi Kamionka"] = "Fredi Kamionka",
 	["Fstab"] = "Fstab",
 	["Funfel"] = "Funfel",
 	["Gandalf"] = "Gandalf",

@@ -72,12 +72,12 @@ quest
 		QuestKeyItems.FourActTragedy = {
 			TimmyPowder = {
 				id = 6548,
-				aid = Storage.FourActTragedy.Rewards.Powder,
+				key = Storage.FourActTragedy.Rewards.Powder,
 				desc = "Elvish dust. Timmy might be needing this",
 			},
 			TimmyBag = {
 				id = 3141,
-				aid = Storage.FourActTragedy.Rewards.TimmyBag,
+				key = Storage.FourActTragedy.Rewards.TimmyBag,
 				desc = "Timmy belongings. He might be needing them",
 			},
 			Fanfare = {
@@ -86,7 +86,7 @@ quest
 			},
 			GrazynaCore = {
 				id = 20342,
-				aid = Storage.FourActTragedy.Rewards.GrazynaCore,
+				key = Storage.FourActTragedy.Rewards.GrazynaCore,
 				desc = "Grazhena Core i3",
 			},
 		}
@@ -870,13 +870,7 @@ quest
 				tpToModern:type("stepin")
 				tpToModern:key(Storage.FourActTragedy.Portals.ToPresent)
 				tpToModern:register()
-			end),
-			QuestFactory.StartupItems({
-				{ pos = { 5514, 1555, 7 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToRetro },
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { -62, -8, 0 }, id = 2000, aid = Storage.FourActTragedy.Portals.ToPresent },
-			}, RETRO_KNUROWO_ANCHOR)
+			end)
 	end)
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
@@ -917,25 +911,23 @@ quest
 				panpipeLever:key(Storage.FourActTragedy.FanfareLever)
 				panpipeLever:register()
 			end),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
 					id = 31649,
-					actionid = Storage.FourActTragedy.Rewards.TimmyBag,
+					key = Storage.FourActTragedy.Rewards.TimmyBag,
 					rewards = { QuestKeyItems.FourActTragedy.TimmyBag },
 					nextState = {
 						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { -8, -15, 6 },
+					
 					id = 11809,
-					actionid = Storage.FourActTragedy.Rewards.Fanfare,
+					key = Storage.FourActTragedy.Rewards.Fanfare,
 					rewards = { QuestKeyItems.FourActTragedy.Fanfare },
 				},
-				{ pos = { -29, -34, 6 }, id = 2773, aid = Storage.FourActTragedy.FanfareLever },
-				{ pos = { -24, -23, 6 }, id = 7723, aid = Storage.FourActTragedy.WawelDragonAccess },
 			}, RETRO_KNUROWO_ANCHOR)
 	end)
 	:State(function()
@@ -967,11 +959,11 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 61, 21, -1 },
+					
 					id = 4073,
-					actionid = Storage.FourActTragedy.Rewards.Powder,
+					key = Storage.FourActTragedy.Rewards.Powder,
 					rewards = {
 						QuestKeyItems.FourActTragedy.TimmyPowder,
 					},
@@ -1017,12 +1009,9 @@ quest
 				tpToKolumb:key(Storage.FourActTragedy.Portals.ToKolumb)
 				tpToKolumb:register()
 			end),
-			QuestFactory.StartupItems({
-				{ pos = { 5977, 1178, 6 }, id = 1949, aid = Storage.FourActTragedy.Portals.ToKolumb },
-			}),
 			QuestFactory.Script(function(missionState)
 				KRAKEN_ENCOUNTER_DATA = {
-					actionid = Storage.FourActTragedy.KrakenAccess,
+					key = Storage.FourActTragedy.KrakenAccess,
 					bossName = "The Kraken",
 					timerStorage = Storage.FourActTragedy.KrakenAccess,
 					cooldown = "weekly",
@@ -1036,7 +1025,7 @@ quest
 					durationMinutes = 10,
 					exitTeleportDestination = KRAKEN_ANCHOR:Moved(-297, -51, 2),
 					exitTeleportPosition = KRAKEN_ANCHOR:Moved(-53, -23, 0),
-					exitTeleportActionid = Storage.FourActTragedy.Portals.AfterKraken,
+					exitTeleportkey = Storage.FourActTragedy.Portals.AfterKraken,
 					corner1 = KRAKEN_ANCHOR:Moved(-58, -30, 0),
 					corner2 = KRAKEN_ANCHOR:Moved(-33, 3, 0),
 
@@ -1068,7 +1057,7 @@ quest
 						startEncounter()
 					end
 				end
-				krakenLever:key(KRAKEN_ENCOUNTER_DATA.actionid)
+				krakenLever:key(KRAKEN_ENCOUNTER_DATA.key)
 				krakenLever:register()
 			end)
 	end)
@@ -1121,14 +1110,11 @@ quest
 			QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
 				text = "Ruins are located in the northern part of Kongo",
 			} }),
-			QuestFactory.StartupItems({
-				{ pos = { 6966, 664, 13 }, id = 2943, aid = Storage.FourActTragedy.SlippersTorch },
-			}),
-			QuestFactory.StartupItems({
+			QuestFactory.OnUseDeclaration({
 				{
-					pos = { 6962, 664, 14 },
+					
 					id = 1983,
-					actionid = Storage.FourActTragedy.Rewards.SlippersChest,
+					key = Storage.FourActTragedy.Rewards.SlippersChest,
 					rewards = { QuestKeyItems.KingOfRatsHQ.Bribeslippers },
 					nextState = { [Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.BringSlippersToRomek },
 					desc = "Rest is peace\n~Followers of The Frog Cult",
@@ -1191,9 +1177,8 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij, QuestFactory.StartupItems({
-			{ pos = { 6581, 557, 9 }, id = 5131, aid = Storage.FourActTragedy.SkurwiwijDoor },
-		})
+		return QuestState.FourActTragedy.Mission04.FindAndKillSkurwiwij
+		--39f encounter
 	end)
 	:State(function()
 		return QuestState.FourActTragedy.Mission04.ReportToRomek,
@@ -1231,9 +1216,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.FourActTragedy.Mission05.FindGrazhena,
-			QuestFactory.StartupItems({
-				{ pos = { 6005, 1386, 12 }, id = 5131, aid = Storage.FourActTragedy.GrazhenaDoor },
-			}),
 			QuestFactory.Dialog("Grazhena", {
 				[{ GREET }] = {
 					text = "They locked me in here and blocked the exit with magical doors that I can't pass in my current state. You know what? Something is {itching} me here.",
@@ -1253,10 +1235,10 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission05.KillRatBum, QuestFactory.Dialog("Grazhena", { [{ "mission" }] = {
 			text = "Cave entrance is just before the cell. Im gonna wait here.",
-		} }), QuestFactory.StartupItems({
+		} }), QuestFactory.OnUseDeclaration({
 			{
 				id = 18021,
-				actionid = Storage.FourActTragedy.Rewards.GrazynaCore,
+				key = Storage.FourActTragedy.Rewards.GrazynaCore,
 				rewards = { QuestKeyItems.FourActTragedy.GrazynaCore },
 			},
 		})

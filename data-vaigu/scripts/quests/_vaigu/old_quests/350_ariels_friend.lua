@@ -61,11 +61,11 @@ quest
 	end)
 	:Constant(function()
 		QuestKeyItems.ArielsFriend = {
-			HairStrand = { id = 36809, aid = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." },
-			LoveElixirRaw = { id = elixirId, aid = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" },
-			LoveElixirEnchanted = { id = elixirId, aid = Storage.ArielsFriend.LoveElixirEnchanted },
-			LiquorItem = { id = 6106, aid = Storage.ArielsFriend.LiquorItem },
-			OldRadio = { id = 12813, aid = Storage.ArielsFriend.OldRadio, desc = "made in Hirschberg Manufacture LLC" },
+			HairStrand = { id = 36809, key = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." },
+			LoveElixirRaw = { id = elixirId, key = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" },
+			LoveElixirEnchanted = { id = elixirId, key = Storage.ArielsFriend.LoveElixirEnchanted },
+			LiquorItem = { id = 6106, key = Storage.ArielsFriend.LiquorItem },
+			OldRadio = { id = 12813, key = Storage.ArielsFriend.OldRadio, desc = "made in Hirschberg Manufacture LLC" },
 		}
 	end)
 	:Questlog(function()
@@ -167,10 +167,7 @@ quest
 
 				friendGrave:key(Storage.ArielsFriend.FriendGrave)
 				friendGrave:register()
-			end),
-			QuestFactory.StartupItems({
-				{ id = 3734, pos = { 5609, 1566, 2 }, aid = Storage.ArielsFriend.FriendGrave },
-			})
+			end)
 	end)
 	:State(function()
 		return QuestState.ArielsFriend.HumbleRequest.ReportToAriel,
@@ -228,8 +225,8 @@ quest
 					},
 				},
 			}),
-			QuestFactory.StartupItems({
-				{ id = 5499, pos = { 5686, 1600, 5 }, aid = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
+			QuestFactory.OnUseDeclaration({
+				{ id = 5499,  key = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
 			})
 	end)
 	:State(function()
@@ -249,8 +246,8 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ArielsFriend.LoveIsInTheAir.StealElixir, QuestFactory.StartupItems({
-			{ id = 8998, pos = { 6041, 1324, 8 }, aid = Storage.ArielsFriend.ElixirStand, rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw } },
+		return QuestState.ArielsFriend.LoveIsInTheAir.StealElixir, QuestFactory.OnUseDeclaration({
+			{ id = 8998,  key = Storage.ArielsFriend.ElixirStand, rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw } },
 		})
 	end)
 	:State(function()
@@ -370,9 +367,6 @@ quest
 					nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
 					expReward = 150000,
 				},
-			}),
-			QuestFactory.StartupItems({
-				{ id = 137, pos = { 6448, 913, 3 }, aid = Storage.ArielsFriend.LiquorChest, rewards = { QuestKeyItems.ArielsFriend.LiquorItem } },
 			})
 	end)
 	:State(function()

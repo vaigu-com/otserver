@@ -8,6 +8,7 @@
  */
 
 #pragma once
+#include "game/game.hpp"
 
 class GameFunctions {
 public:

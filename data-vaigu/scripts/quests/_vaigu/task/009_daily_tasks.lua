@@ -22,9 +22,6 @@ quest
 		}
 		table.insert(Quests, DailyTaskQuestlog)
 	end)
-	:StartupItems({
-		{ id = 19245, pos = Position(5845, 1529, 7), aid = Storage.DailyTasks.Board },
-	})
 	:Script(function()
 		local function playerCanTakeAnyDailyTask(player)
 			for i = 1, DAILY_TASKS_LEVEL_BRACKETS_COUNT do

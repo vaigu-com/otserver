@@ -30,47 +30,47 @@ quest
 	:Constant(function()
 		QuestKeyItems.KingOfRatsHQ = {
 			LibrumVortex = { -- TheaterOfCheapThrills
-				aid = Storage.KingOfRatsHQ.Items.LibrumVortex,
+				key = Storage.KingOfRatsHQ.Items.LibrumVortex,
 				id = 27931,
 				desc = "Librum Vortex. Romek, the King of Rats might be interested in it.",
 			},
 			Wifebeater = { -- TheaterOfCheapThrills
-				aid = Storage.KingOfRatsHQ.Items.Wifebeater,
+				key = Storage.KingOfRatsHQ.Items.Wifebeater,
 				id = 11546,
 				desc = "Vestments of Wifebeaterous Regent. Romek, the King of Rats might be interested in it.",
 			},
 			Ytong = { -- SafetyAndOccupationalHygiene
-				aid = Storage.KingOfRatsHQ.Items.Ytong,
+				key = Storage.KingOfRatsHQ.Items.Ytong,
 				id = 3461,
 				desc = "The Ytong of The Fittest. Romek, the King of Rats might be interested in it.",
 			},
 			Bottomless = { -- ThreeSramatiansAndTheDragon
-				aid = Storage.KingOfRatsHQ.Items.Bottomless,
+				key = Storage.KingOfRatsHQ.Items.Bottomless,
 				id = 650,
 				desc = "The Bottomless Bud Light. Romek, the King of Rats might be interested in it.",
 			},
 			Bribeslippers = { -- FourActTragedy
-				aid = Storage.KingOfRatsHQ.Items.Bribeslippers,
+				key = Storage.KingOfRatsHQ.Items.Bribeslippers,
 				id = 24409,
 				desc = "The Slippers of Bribery. Romek, the King of Rats might be interested in it.",
 			},
 			Antigone = { -- PerIustitiaAdAstra
-				aid = Storage.KingOfRatsHQ.Items.Antigone,
+				key = Storage.KingOfRatsHQ.Items.Antigone,
 				id = 4844,
 				desc = "Sophocles' Antigone. Better than just Antigone. The King of Rats might be intersted in it.",
 			},
 			Cultivator = { -- ProdigalSon
-				aid = Storage.KingOfRatsHQ.Items.Cultivator,
+				key = Storage.KingOfRatsHQ.Items.Cultivator,
 				id = 3452,
 				desc = "Cultivator of ULTIMATENESS. The King of Rats might be intersted in it.",
 			},
 			Sylykonrydel = { -- tbd
-				aid = Storage.KingOfRatsHQ.Items.Sylykonrydel,
+				key = Storage.KingOfRatsHQ.Items.Sylykonrydel,
 				id = 31334,
 				desc = "The Silcon Riddle. Romek, the King of Rats might be interested in it.",
 			},
 			Hammer = { -- tbd
-				aid = Storage.KingOfRatsHQ.Items.Hammer,
+				key = Storage.KingOfRatsHQ.Items.Hammer,
 				id = 3459,
 				desc = "The Hammer of Epiphany. Romek, the King of Rats might be interested in it.",
 			},
@@ -270,26 +270,6 @@ quest
 				end
 				portal:type("stepin")
 				portal:register()
-			end),
-			QuestFactory.StartupItems({
-				{ pos = { 5563, 1577, 8 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.Ryan },
-				{ pos = { 5971, 1482, 7 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.SweatyCyclops },
-				{ pos = { 6657, 1242, 6 }, id = 1931, aid = Storage.KingOfRatsHQ.Portals.Djinns },
-				{ pos = { 6692, 485, 7 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.NorthKongo },
-				{ pos = { 6279, 988, 7 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.Werebadgers },
-				{ pos = { 6138, 845, 7 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.VampireCity },
-				{ pos = { 6678, 993, 7 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.Asuras },
-				{ pos = { 6917, 1319, 5 }, id = 2773, aid = Storage.KingOfRatsHQ.Portals.HurghadaEast },
-			}),
-			QuestFactory.StartupItems({
-				{ pos = { -3, 3, 0 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.Ryan },
-				{ pos = { -4, -2, 0 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.SweatyCyclops },
-				{ pos = { 0, -4, 0 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.Djinns },
-				{ pos = { 4, -1, 0 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.NorthKongo },
-				{ pos = { 4, 2, 0 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.Werebadgers },
-				{ pos = { -5, 8, -1 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.VampireCity },
-				{ pos = { 2, 11, -1 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.Asuras },
-				{ position = { -3, -7, -2 }, id = 7804, aid = Storage.KingOfRatsHQ.Portals.HurghadaEast },
-			}, KING_OF_RATS_HQ_ANCHOR)
+			end)
 	end)
 	:Register()

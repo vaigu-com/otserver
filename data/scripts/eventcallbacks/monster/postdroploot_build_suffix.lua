@@ -23,16 +23,11 @@ local lowStaminaWarning = " nothing (due to low stamina)"
 local isEmptyWarning = " nothing"
 
 local function parseItemDesc(item, shouldColor)
-	local itemEx = Game.createItem(item.id, item.count)
-	local nameDesc = itemEx:getNameDescription()
-	local itemDesc = ""
+	local nameDesc = ItemType(item.id):getNameDescription(item.count)
 	if shouldColor then
-		itemDesc = T("{:id:|:nameDesc:}", { id = item.id, nameDesc = nameDesc })
-	else
-		itemDesc = nameDesc
+		return T("{:id:|:nameDesc:}", { id = item.id, nameDesc = nameDesc })
 	end
-	itemEx:remove()
-	return itemDesc
+	return nameDesc
 end
 
 local function parseLayerSuffix(lootTable, layerName)
@@ -94,6 +89,7 @@ function ContainerCorpseParseDesc(monster, corpse, shouldColor)
 	local layersDesc = ParseLayersDesc(monster, shouldColor)
 
 	local message = T("Loot of :monsterDesc:::layersDesc:.", { monsterDesc = monsterDesc, layersDesc = layersDesc })
+	print("message", message)
 	return message
 end
 
