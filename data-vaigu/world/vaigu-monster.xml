@@ -18267,12 +18267,39 @@
 	<monster centerx="7426" centery="257" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="7537" centery="268" centerz="7" radius="1">
+		<monster name="Sheep" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7527" centery="269" centerz="7" radius="1">
+		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7534" centery="269" centerz="7" radius="1">
+		<monster name="Sheep" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7525" centery="270" centerz="7" radius="1">
+		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7528" centery="271" centerz="7" radius="1">
+		<monster name="Silver Rabbit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7545" centery="271" centerz="7" radius="1">
+		<monster name="Water Buffalo" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7555" centery="272" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7418" centery="273" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="-1" y="0" z="7" spawntime="869264896" />
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7529" centery="273" centerz="7" radius="1">
+		<monster name="Silver Rabbit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7542" centery="273" centerz="7" radius="1">
+		<monster name="Water Buffalo" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7544" centery="277" centerz="7" radius="1">
+		<monster name="Water Buffalo" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7438" centery="278" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="60" />
