@@ -18,6 +18,9 @@
 	<npc centerx="7274" centery="1103" centerz="3" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="3" spawntime="60" />
 	</npc>
+	<npc centerx="6043" centery="1281" centerz="3" radius="1">
+		<npc name="Ali Baba" x="0" y="0" z="3" spawntime="60" />
+	</npc>
 	<npc centerx="7488" centery="255" centerz="4" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="4" spawntime="60" />
 	</npc>
@@ -219,7 +222,9 @@
 		<npc name="Mareesha" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5668" centery="1280" centerz="7" radius="1" />
-	<npc centerx="6750" centery="1282" centerz="7" radius="1" />
+	<npc centerx="6750" centery="1282" centerz="7" radius="1">
+		<npc name="Sand Nigger" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6676" centery="1289" centerz="7" radius="3">
 		<npc name="Kulag, The Guard" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -427,6 +432,15 @@
 	<npc centerx="7750" centery="1040" centerz="11" radius="1">
 		<npc name="Access-O-Bot" x="0" y="0" z="11" spawntime="60" />
 	</npc>
+	<npc centerx="7719" centery="1042" centerz="11" radius="1">
+		<npc name="Conference Triss" x="0" y="0" z="11" spawntime="60" />
+	</npc>
+	<npc centerx="7711" centery="1045" centerz="11" radius="1">
+		<npc name="Conference Dwight" x="0" y="0" z="11" spawntime="60" />
+	</npc>
+	<npc centerx="7707" centery="1049" centerz="11" radius="1">
+		<npc name="Conference Dorothy" x="0" y="0" z="11" spawntime="60" />
+	</npc>
 	<npc centerx="5949" centery="1417" centerz="11" radius="1">
 		<npc name="Goldblum" x="0" y="0" z="11" spawntime="60" />
 	</npc>
@@ -440,7 +454,7 @@
 		<npc name="Qasim" x="0" y="0" z="13" spawntime="60" />
 	</npc>
 	<npc centerx="6429" centery="1125" centerz="14" radius="1">
-		<npc name="Chester the Dwarf" x="0" y="0" z="14" spawntime="9432832" />
+		<npc name="Chester the Dwarf" x="0" y="0" z="14" spawntime="60" />
 	</npc>
 	<npc centerx="7795" centery="878" centerz="15" radius="1">
 		<npc name="Fredi Kamionka" x="0" y="0" z="15" spawntime="60" />
