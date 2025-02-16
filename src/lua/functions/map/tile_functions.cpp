@@ -12,6 +12,7 @@
 #include "creatures/combat/combat.hpp"
 #include "game/game.hpp"
 #include "lua/functions/lua_functions_loader.hpp"
+#include "creatures/creature.hpp"
 
 void TileFunctions::init(lua_State* L) {
 	Lua::registerSharedClass(L, "Tile", "", TileFunctions::luaTileCreate);
@@ -56,6 +57,8 @@ void TileFunctions::init(lua_State* L) {
 
 	Lua::registerMethod(L, "Tile", "getHouse", TileFunctions::luaTileGetHouse);
 	Lua::registerMethod(L, "Tile", "sweep", TileFunctions::luaTileSweep);
+
+	Lua::registerMethod(L, "Tile", "getPlayers", TileFunctions::luaTileGetPlayers);
 }
 
 int TileFunctions::luaTileCreate(lua_State* L) {
@@ -736,5 +739,39 @@ int TileFunctions::luaTileSweep(lua_State* L) {
 	}
 
 	Lua::pushBoolean(L, house->transferToDepot(actor, houseTile));
+	return 1;
+}
+
+// Vaigu custom
+int TileFunctions::luaTileGetPlayers(lua_State* L) {
+	// tile:getPlayers()
+	const auto &tile = Lua::getUserdataShared<Tile>(L, 1);
+	if (!tile) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	const auto creatureVector = tile->getCreatures();
+	if (!creatureVector) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	std::vector<std::shared_ptr<Player>> players;
+	for (const auto &creature : *creatureVector) {
+		auto player = creature->getPlayer();
+		if (player) {
+			players.push_back(player);
+		}
+	}
+
+	lua_createtable(L, players.size(), 0);
+
+	int index = 0;
+	for (auto &creature : players) {
+		Lua::pushUserdata<Player>(L, creature);
+		Lua::setMetatable(L, -1, "Player");
+		lua_rawseti(L, -2, ++index);
+	}
 	return 1;
 }

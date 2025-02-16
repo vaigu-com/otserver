@@ -151,6 +151,9 @@ void MonsterTypeFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "MonsterType", "deathSound", MonsterTypeFunctions::luaMonsterTypedeathSound);
 
 	Lua::registerMethod(L, "MonsterType", "variant", MonsterTypeFunctions::luaMonsterTypeVariant);
+
+	// Vaigu custom
+	Lua::registerMethod(L, "MonsterType", "ignoreCreatures", MonsterTypeFunctions::luaMonsterTypeIgnoreCreatures);
 }
 
 void MonsterTypeFunctions::createMonsterTypeLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList) {
@@ -433,7 +436,7 @@ int MonsterTypeFunctions::luaMonsterTypeCritChance(lua_State* L) {
 }
 
 int32_t MonsterTypeFunctions::luaMonsterTypeGetUniqueName(lua_State* L) {
-	// monsterType:getUniqueName() 
+	// monsterType:getUniqueName()
 	const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
 	if (monsterType) {
 		Lua::pushString(L, monsterType->typeName);
@@ -1835,5 +1838,22 @@ int MonsterTypeFunctions::luaMonsterTypeVariant(lua_State* L) {
 		Lua::pushBoolean(L, true);
 	}
 
+	return 1;
+}
+
+// Vaigu custom
+int MonsterTypeFunctions::luaMonsterTypeIgnoreCreatures(lua_State* L) {
+	// get: monsterType:ignoreCreatures() set: monsterType:ignoreCreatures(bool)
+	const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
+	if (monsterType) {
+		if (lua_gettop(L) == 1) {
+			Lua::pushBoolean(L, monsterType->info.ignoreCreatures);
+		} else {
+			monsterType->info.ignoreCreatures = Lua::getBoolean(L, 2);
+			Lua::pushBoolean(L, true);
+		}
+	} else {
+		lua_pushnil(L);
+	}
 	return 1;
 }

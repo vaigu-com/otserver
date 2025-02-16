@@ -283,6 +283,9 @@ void Monster::onAttackedCreatureDisappear(bool) {
 }
 
 void Monster::onCreatureAppear(const std::shared_ptr<Creature> &creature, bool isLogin) {
+	if(mType->info.ignoreCreatures){
+		return;
+	}
 	Creature::onCreatureAppear(creature, isLogin);
 
 	if (mType->info.creatureAppearEvent != -1) {
@@ -1023,6 +1026,9 @@ void Monster::onEndCondition(ConditionType_t type) {
 }
 
 void Monster::onThink(uint32_t interval) {
+	if(mType->info.ignoreCreatures){
+		return;
+	}
 	Creature::onThink(interval);
 
 	if (mType->info.thinkEvent != -1) {

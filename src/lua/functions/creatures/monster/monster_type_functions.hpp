@@ -138,4 +138,7 @@ private:
 	static int luaMonsterTypeCritChance(lua_State* L);
 
 	static int luaMonsterTypeVariant(lua_State* L);
+
+	// Vaigu custom
+	static int luaMonsterTypeIgnoreCreatures(lua_State* L);
 };
