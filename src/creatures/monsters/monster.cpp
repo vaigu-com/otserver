@@ -84,6 +84,12 @@ void Monster::removeList() {
 	g_game().removeMonster(static_self_cast<Monster>());
 }
 
+//Vaigu custom
+bool Monster::hasIgnoreCreatures() {
+	return mType->info.ignoreCreatures;
+}
+
+// Vaigu custom
 const std::string &Monster::getName() const {
 	if (name.empty()) {
 		return mType->name;

@@ -53,7 +53,8 @@ public:
 		{4, "Epic "}, 
 		{5, "Legendary "},
 		{15, "Fiendish "}
-    };
+	};
+	bool hasIgnoreCreatures();
 
 	// Real monster name, set on monster creation "createMonsterType(typeName)"
 	const std::string &getTypeName() const override;

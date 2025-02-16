@@ -161,6 +161,7 @@ class MonsterType {
 		bool canWalkOnFire = true;
 		bool canWalkOnPoison = true;
 		bool isForgeCreature = true;
+		bool ignoreCreatures = false;
 
 		MonstersEvent_t eventType = MONSTERS_EVENT_NONE;
 	};
