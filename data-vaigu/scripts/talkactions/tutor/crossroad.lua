@@ -3,248 +3,374 @@ local scopes = {
 	generateCrossroadMonsters = Scope("Crossroad", "GenerateCrossroadMonsters"),
 	teleportEastToWest = Scope("Crossroad", "TeleporWest"),
 	teleportWestToEast = Scope("Crossroad", "TeleporEast"),
+	edgePositions = Scope("Minigames", "Crossroad", "EdgePositions"),
+	initializeCrossroad = Scope("Minigames", "Crossroad", "InitializeCrossroad"),
+	initializeAnimations = Scope("Minigames", "Crossroad", "InitializeAnimations"),
 }
 
-CrossroadOrchestrator = {}
-CrossroadOrchestrator.__index = CrossroadOrchestrator
-function CrossroadOrchestrator.New(...)
-	local newObj = {}
-	setmetatable(newObj, CrossroadOrchestrator)
-end
-setmetatable(CrossroadOrchestrator, {
-	__call = function(_, ...)
-		return CrossroadOrchestrator.New(...)
-	end,
-})
-function CrossroadOrchestrator.GetMonsterNameBySpeed(speed)
-	return scopes.crossroadMonster:Get(speed)
-end
-
---TODO factor might be nonliear
-local disappearAtMovesCount = 30
-local function teleportToLoopCart(monster, delayBetweenMoving, dir, moves)
-	moves = moves or 1
-	addEvent(function()
-		monster:move(dir)
-		if moves >= disappearAtMovesCount then
-			monster:remove()
-			return
-		end
-		teleportToLoopCart(monster, delayBetweenMoving, dir, moves)
-	end, delayBetweenMoving)
-end
-
-local blockageId = 2187
-local elevationId = 25602
-local function tryUnlockEast(log)
-	local blockagePos = log:getPosition():Move(1, 1, -1)
-	blockagePos:sendMagicEffect(CONST_ME_STUN)
-
-	local blockage = blockagePos:GetItemById(blockageId)
-	if blockage then
-		blockage:transform(elevationId)
-	end
-end
-local function splashPlayers(pos)
-	local players = Tile(pos):getCreatures()
-	local penaltyPos = pos:Move(0, 1, 0)
-	for _, player in pairs(players) do
-		player:addHealth(-0.2 * player:getMaxHealth() + 1)
-		player:teleportTo(penaltyPos)
-	end
-	pos:sendMagicEffect(CONST_ME_WATERSPLASH)
-end
-local function tryLockEast(log)
-	local elevationPos = log:getPosition():Move(0, 1, -1)
-	elevationPos:sendMagicEffect(CONST_ME_POFF)
-	local elevation = elevationPos:GetItemById(elevationId)
-	if elevation then
-		elevation:transform(blockageId)
-		splashPlayers(elevationPos)
-	end
-end
-ACTIVE_CROSS = false
-local function logTeleportLoopEast(logs, delayBetweenMoving)
-	addEvent(function()
-		if not ACTIVE_CROSS then
-			return
-		end
-		for _, log in pairs(logs) do
-			for _, part in pairs(log.parts) do
-				part:move(DIRECTION_EAST)
-			end
-			tryUnlockEast(log)
-			tryLockEast(log)
-		end
-
-		logTeleportLoopEast(logs, delayBetweenMoving)
-	end, delayBetweenMoving)
-end
-
-local function tryUnlockWest(log)
-	local blockagePos = log:getPosition():Move(1, 1, -1)
-	blockagePos:sendMagicEffect(CONST_ME_STUN)
-
-	local blockage = blockagePos:GetItemById(blockageId)
-	if blockage then
-		blockage:transform(elevationId)
-	end
-end
-local function tryLockWest(log)
-	local elevationPos = log:getPosition():Move(2, 1, -1)
-	elevationPos:sendMagicEffect(CONST_ME_POFF)
-	local elevation = elevationPos:GetItemById(elevationId)
-	if elevation then
-		elevation:transform(blockageId)
-		splashPlayers(elevationPos)
-	end
-end
-local function logTeleportLoopWest(logs, delayBetweenMoving)
-	addEvent(function()
-		if not ACTIVE_CROSS then
-			return
-		end
-		for _, log in pairs(logs) do
-			for _, part in pairs(log.parts) do
-				part:move(DIRECTION_WEST)
-			end
-			tryUnlockWest(log)
-			tryLockWest(log)
-		end
-
-		logTeleportLoopWest(logs, delayBetweenMoving)
-	end, delayBetweenMoving)
-end
-
-local bufferPos = Position(6012, 2364, 7)
-
-local westId = 3922
-local centerId = 3923
-local eastId = 3929
-local function generateLogMovingEast(length, leftmostPosition, speed)
-	local log = { parts = {} }
-
-	local east = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, leftmostPosition:Moved(length - 1, 0, 0), false, true)
-	if not east then
-		PrintPosition(leftmostPosition:Moved(length - 1, 0, 0))
-	end
-	east:setOutfit({ lookTypeEx = eastId })
-	table.insert(log.parts, east)
-	for i = length - 1, 2, -1 do
-		local part = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, leftmostPosition:Moved(i - 1, 0, 0), false, true)
-		part:setOutfit({ lookTypeEx = centerId })
-		table.insert(log.parts, part)
-	end
-	local west = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, leftmostPosition:Moved(1 - 1, 0, 0), false, true)
-	west:setOutfit({ lookTypeEx = westId })
-	table.insert(log.parts, west)
-
-	for _, part in pairs(log.parts) do
-		part:changeSpeed(speed)
-	end
-	log.first = east
-	log.last = west
-	return log
-end
-local function generateLogMovingWest(length, rightmostPosition, speed)
-	local log = { parts = {} }
-
-	local west = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, rightmostPosition:Moved(-(length - 1), 0, 0), false, true)
-	west:setOutfit({ lookTypeEx = westId })
-	table.insert(log.parts, west)
-	for i = 2, length - 1 do
-		local part = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, rightmostPosition:Moved(-(i - 1), 0, 0), false, true)
-		part:setOutfit({ lookTypeEx = centerId })
-		table.insert(log.parts, part)
-	end
-	local east = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, rightmostPosition:Moved(-(1 - 1), 0, 0), false, true)
-	east:setOutfit({ lookTypeEx = eastId })
-	table.insert(log.parts, east)
-
-	for _, part in pairs(log.parts) do
-		part:changeSpeed(speed)
-	end
-	log.first = west
-	log.last = east
-	return log
-end
-
-local laneWidth = 107
-local maxLogLength = 8
-local minLogLength = 2
-local minGapLength = 2
-local maxGapLength = 6
-local dirToLogGenerator = {
-	[DIRECTION_WEST] = generateLogMovingWest,
-	[DIRECTION_EAST] = generateLogMovingEast,
-}
-local dirToSign = {
-	[DIRECTION_WEST] = -1,
-	[DIRECTION_EAST] = 1,
-}
-local function preSpawnLogs(edgePosition, dir, speed)
-	local allocableWidth = laneWidth - 1
-	edgePosition:Move(dirToSign[dir] * 1)
-	local logs = {}
-	while true do
-		local gapToNext = math.random(minGapLength, maxGapLength)
-		if allocableWidth < (minLogLength + gapToNext) then
-			break
-		end
-		local allocableLogWidth = allocableWidth - gapToNext
-		if allocableLogWidth < minLogLength then
-			break
-		end
-
-		local logLength = math.random(minLogLength, math.min(allocableLogWidth, maxLogLength))
-		if not Tile(edgePosition:Moved(logLength - 1, 0, 0)) then
-			_ = _
-		end
-		local log = dirToLogGenerator[dir](logLength, edgePosition, speed)
-		table.insert(logs, log)
-		edgePosition:Move(dirToSign[dir] * (logLength + gapToNext), 0, 0)
-		allocableWidth = allocableWidth - logLength - gapToNext
-	end
-	return logs
-end
-
-local dirToMinecartGenerator = {
-	[DIRECTION_WEST] = generateMinecartMovingWest,
-}
-local maxMinecartLength = 3
-local function preSpawnMinecarts(edgePosition, dir, speed)
-	--TODO
-	local allocableWidth = laneWidth - 1
-	edgePosition:Move(dirToSign[dir] * 1)
-	local minecarts = {}
-	while true do
-		local gapToNext = math.random(minGapLength, maxGapLength)
-		if allocableWidth < (minLogLength + gapToNext) then
-			break
-		end
-		local allocableLogWidth = allocableWidth - gapToNext
-		if allocableLogWidth < minLogLength then
-			break
-		end
-
-		local logLength = math.random(minLogLength, math.min(allocableLogWidth, maxMinecartLength))
-		if not Tile(edgePosition:Moved(logLength - 1, 0, 0)) then
-			_ = _
-		end
-		local log = dirToMinecartGenerator[dir](logLength, edgePosition, speed)
-		table.insert(logs, log)
-		edgePosition:Move(dirToSign[dir] * (logLength + gapToNext), 0, 0)
-		allocableWidth = allocableWidth - logLength - gapToNext
-	end
-end
-
----@class AnimationNames
-
+--#region EDITABLE
 local animationNames = {
 	minecart = "minecart",
 	horseWagon = "horseWagon",
 	log = "log",
 }
+local sharedLobbyAppearPositionStartup = GlobalEvent(scopes.initializeAnimations:Get())
+function sharedLobbyAppearPositionStartup.onStartup()
+	local horseWagonAnimation = Animation(animationNames.horseWagon)
+	horseWagonAnimation:AddWestStripes(AnimationStripe(434), AnimationStripe(435), AnimationStripe(436))
+	horseWagonAnimation:AddCenterStripes(AnimationStripeEx(7954, 7953), AnimationStripeEx(7901, 7900), AnimationStripeEx(7907, 7906))
+	horseWagonAnimation:AddEastStripes(AnimationStripe(434), AnimationStripe(435), AnimationStripe(436))
+	horseWagonAnimation:SetIsOneHeaded(true)
+	AnimationRegistry:Register(horseWagonAnimation)
+
+	local logAnimation = Animation(animationNames.log)
+	logAnimation:AddWestStripes(AnimationStripeEx(3922))
+	logAnimation:AddCenterStripes(AnimationStripeEx(3923), AnimationStripeEx(3924), AnimationStripeEx(3925), AnimationStripeEx(3926), AnimationStripeEx(3927))
+	logAnimation:AddEastStripes(AnimationStripeEx(3929))
+	logAnimation:SetIsOneHeaded(false)
+	AnimationRegistry:Register(logAnimation)
+
+	local minecartAnimation = Animation(animationNames.minecart)
+	minecartAnimation:AddWestStripes(AnimationStripeEx(7131))
+	minecartAnimation:AddCenterStripes(AnimationStripeEx(7131))
+	minecartAnimation:AddEastStripes(AnimationStripeEx(7131))
+	minecartAnimation:SetIsOneHeaded(true)
+	AnimationRegistry:Register(minecartAnimation)
+end
+sharedLobbyAppearPositionStartup:register()
+
+local speeds = {
+	150,
+	200,
+	350,
+	400,
+	500,
+	600,
+	700,
+}
+--Requies changes in otbm
+local topItems = {
+	log = 3922,
+	minecart = 7131,
+	horseWagon = 7906,
+}
+local topItemToMaxStripes = {
+	[topItems.log] = 4,
+	[topItems.minecart] = 2,
+	[topItems.horseWagon] = 2,
+}
+local minGapLength = 2
+local maxGapLength = 5
+
+--Requires changes in otbm
+local gameHeight = 260
+local laneWidth = 107
+
+local speedsPerDifficulty = 2
+--#endegion EDITABLE
+
+local difficultiesCount = math.floor(gameHeight / #speeds)
+
+local blockageId = 2187
+local elevationId = 25602
+
+local skipGap = 2
+local skipTeleportTile = 1
+
+---@param pos Position
+local function trySplashPlayers(pos, logSpeed)
+	addEvent(function()
+		local players = Tile(pos):getCreatures()
+		for _, player in ipairs(players) do
+			player:addHealth(-0.2 * player:getMaxHealth() + 1)
+			pos:sendMagicEffect(CONST_ME_WATERSPLASH)
+			player:move(DIRECTION_SOUTH)
+		end
+	end, logSpeed / 2)
+end
+
+local function tryUnlockEast(log)
+	local blockagePos = log:getPosition():Move(1, 1, -1)
+	local blockage = blockagePos:GetItemById(blockageId)
+	if blockage then
+		blockage:transform(elevationId)
+	end
+end
+local function tryLockEast(log, logSpeed)
+	local elevationPos = log:getPosition():Move(0, 1, -1)
+	local elevation = elevationPos:GetItemById(elevationId)
+	if elevation then
+		elevation:transform(blockageId)
+		trySplashPlayers(elevationPos, logSpeed)
+	end
+end
+local function tryUnlockWest(log)
+	local blockagePos = log:getPosition():Move(1, 1, -1)
+	local blockage = blockagePos:GetItemById(blockageId)
+	if blockage then
+		blockage:transform(elevationId)
+	end
+end
+local function tryLockWest(log, logSpeed)
+	local elevationPos = log:getPosition():Move(2, 1, -1)
+	local elevation = elevationPos:GetItemById(elevationId)
+	if elevation then
+		trySplashPlayers(elevationPos, logSpeed)
+		elevation:transform(blockageId)
+	end
+end
+
+---@param logStripes MonsterStripe
+local function logMoveEast(logStripes, logSpeed)
+	for _, logStripe in ipairs(logStripes) do
+		logStripe:Move()
+		local westMost = logStripe:GetWestmost()
+		local eastMost = logStripe:GetEastmost()
+		tryUnlockEast(eastMost)
+		tryLockEast(westMost, logSpeed)
+	end
+end
+---@param logStripes MonsterStripe
+local function logMoveWest(logStripes, logSpeed)
+	for _, logStripe in ipairs(logStripes) do
+		logStripe:Move()
+
+		local westMost = logStripe:GetWestmost()
+		local eastMost = logStripe:GetEastmost()
+		tryUnlockWest(westMost)
+		tryLockWest(eastMost, logSpeed)
+	end
+end
+
+local function runPlayersOverWest(pos)
+	for _, player in ipairs(pos:GetPlayers()) do
+		player:addHealth(-0.4 * player:getMaxHealth() + 1)
+	end
+	for _, player in ipairs(pos:Moved(1, 0, 0):GetPlayers()) do
+		player:addHealth(-0.4 * player:getMaxHealth() + 1)
+	end
+end
+
+local function runPlayersOverEast(pos)
+	for _, player in ipairs(pos:GetPlayers()) do
+		player:addHealth(-0.4 * player:getMaxHealth() + 1)
+	end
+	for _, player in ipairs(pos:Moved(-1, 0, 0):GetPlayers()) do
+		player:addHealth(-0.4 * player:getMaxHealth() + 1)
+	end
+end
+
+---@param monsterStripes MonsterStripe
+local function damagingMoveWest(monsterStripes)
+	for _, monsterStripe in ipairs(monsterStripes) do
+		monsterStripe:Move()
+		local westMost = monsterStripe:GetWestmost():getPosition()
+		runPlayersOverWest(westMost)
+	end
+end
+---@param monsterStripes MonsterStripe
+local function damagingLooperEast(monsterStripes)
+	for _, monsterStripe in ipairs(monsterStripes) do
+		monsterStripe:Move()
+		local eastMost = monsterStripe:GetEastmost():getPosition()
+		runPlayersOverEast(eastMost)
+	end
+end
+local animationNameToDirToCallback = {
+	[animationNames.log] = {
+		[DIRECTION_EAST] = logMoveEast,
+		[DIRECTION_WEST] = logMoveWest,
+	},
+	[animationNames.horseWagon] = {
+		[DIRECTION_EAST] = damagingLooperEast,
+		[DIRECTION_WEST] = damagingMoveWest,
+	},
+	[animationNames.minecart] = {
+		[DIRECTION_EAST] = damagingLooperEast,
+		[DIRECTION_WEST] = damagingMoveWest,
+	},
+}
+
+local animationToTileFriction = {
+	[870] = 100,
+	[4809] = 170,
+}
+
+CrossroadOrchestrator = {}
+CrossroadOrchestrator.__index = CrossroadOrchestrator
+CrossroadOrchestrator.edgePositions = {}
+CrossroadOrchestrator.moveLoopers = {}
+function CrossroadOrchestrator.InitializeCrossroadEdgePositions()
+	CrossroadOrchestrator.edgePositions = Zone(scopes.edgePositions:Get()):getPositions()
+end
+function CrossroadOrchestrator.IsMinigameOngoing()
+	return CrossroadOrchestrator.isMinigameOngoing
+end
+function CrossroadOrchestrator.SetIsMinigameOngoing(bool)
+	CrossroadOrchestrator.isMinigameOngoing = bool
+end
+function CrossroadOrchestrator.InitializeInstanceCreatureTeleport(edgePosition)
+	local lastPos = edgePosition:Moved(1, -gameHeight, -1)
+	IterateBetweenPositions(edgePosition, lastPos, function(context)
+		local currentPos = context.pos
+		local westToEastTpPos = currentPos:Moved(skipGap, 0, 0)
+		local eastToWestTpPos = currentPos:Moved(skipGap + laneWidth - 1, 0, 0)
+		local eastTile = Tile(eastToWestTpPos)
+		local westTile = Tile(westToEastTpPos)
+		if not (eastTile and westTile) then
+			return
+		end
+		eastTile:getGround():setKey(scopes.teleportEastToWest:Get())
+		westTile:getGround():setKey(scopes.teleportWestToEast:Get())
+	end)
+end
+function CrossroadOrchestrator.InitializeAllCreatureTeleports()
+	for _, edgePosition in ipairs(CrossroadOrchestrator.edgePositions) do
+		CrossroadOrchestrator.InitializeInstanceCreatureTeleport(edgePosition)
+	end
+end
+function CrossroadOrchestrator.GetMonsterName()
+	return scopes.crossroadMonster:Get()
+end
+function CrossroadOrchestrator.MoveLooperName(animationName, dir, speed)
+	return Scope(animationName, dir, speed):Get()
+end
+function CrossroadOrchestrator.MoveLooperByName(animationName, dir, speed)
+	return CrossroadOrchestrator.moveLoopers[CrossroadOrchestrator.MoveLooperName(animationName, dir, speed)]
+end
+function CrossroadOrchestrator.InitializeMoveLoopers()
+	for _, animationName in pairs(animationNames) do
+		for _, dir in ipairs({ DIRECTION_EAST, DIRECTION_WEST }) do
+			for _, speed in ipairs(speeds) do
+				local moveLooper = MoveLooper()
+				moveLooper:SetSpeed(speed)
+				moveLooper:SetCallback(animationNameToDirToCallback[animationName][dir])
+				CrossroadOrchestrator.moveLoopers[CrossroadOrchestrator.MoveLooperName(animationName, dir, speed)] = moveLooper
+			end
+		end
+	end
+	return CrossroadOrchestrator
+end
+
+local function getDifficulty(startY, currentY)
+	local distFromStart = math.abs(startY - currentY)
+	return math.floor(distFromStart / difficultiesCount) + 1
+end
+
+local function getTopItemId(pos)
+	local tile = Tile(pos)
+	if not tile then
+		return
+	end
+	local topItem = tile:getTopTopItem()
+	if not topItem then
+		return
+	end
+	local topItemId = topItem:getId()
+	return topItemId
+end
+
+local function getTileFriction(pos)
+	local tile = Tile(pos)
+	if not tile then
+		return
+	end
+	return animationToTileFriction[tile:getGround():getId()]
+end
+
+local dirs = { DIRECTION_EAST, DIRECTION_WEST }
+local function randomDir()
+	return table.random(dirs)
+end
+
+function CrossroadOrchestrator.PopulateMoveLooper(edgePosition, currentPos)
+	local topItemId = getTopItemId(currentPos)
+	local animation = AnimationRegistry:Get(topItemId)
+	local tileFriction = getTileFriction(currentPos)
+
+	if not (animation and tileFriction) then
+		return
+	end
+
+	currentPos:Move(skipGap, 0, 0)
+
+	local difficulty = getDifficulty(edgePosition.y, currentPos.y)
+
+	local randomSpeed = math.random(difficulty, difficulty + speedsPerDifficulty - 1)
+
+	local chosenSpeed = speeds[math.min(randomSpeed, #speeds)]
+	local monsterSpeed = chosenSpeed * tileFriction / 100 / 2.7
+	local dir = randomDir()
+	local reservableLength = laneWidth - 2
+	local reservedTilesCount = 0
+	local leftmostPosition = currentPos:Moved(skipTeleportTile)
+	local moveLooper = CrossroadOrchestrator.MoveLooperByName(animation:GetName(), dir, chosenSpeed)
+	while true do
+		local centerStripesCount = math.random(1, topItemToMaxStripes[topItemId])
+		local randomGapLength = math.random(minGapLength, maxGapLength)
+
+		local newReservedTilesCount = randomGapLength + animation:GetPredictedLength(centerStripesCount)
+		if (reservedTilesCount + newReservedTilesCount) > reservableLength then
+			break
+		end
+
+		local monsterStripe = MonsterStripeFactory.CreateMonsterStripe(animation, leftmostPosition:Moved(reservedTilesCount, 0, 0), monsterSpeed, dir, centerStripesCount)
+		moveLooper:AddStripe(monsterStripe)
+		reservedTilesCount = reservedTilesCount + newReservedTilesCount
+	end
+end
+
+function CrossroadOrchestrator.PopulateMoveLoopers()
+	local edgePosition = CrossroadOrchestrator.chosenEdgePosition
+	local lastPos = edgePosition:Moved(1, -gameHeight, -1)
+	-- TODO optimize and then use full height
+	-- local lastPos = edgePosition:Moved(1, -21, -1)
+	IterateBetweenPositions(edgePosition, lastPos, function(context)
+		CrossroadOrchestrator.PopulateMoveLooper(edgePosition, context.pos)
+	end)
+	return CrossroadOrchestrator
+end
+function CrossroadOrchestrator.StartMoveLoopers()
+	for _, moveLooper in pairs(CrossroadOrchestrator.moveLoopers) do
+		moveLooper:Start()
+	end
+end
+
+function CrossroadOrchestrator.StopMoveLoopers()
+	for _, moveLooper in pairs(CrossroadOrchestrator.moveLoopers) do
+		moveLooper:Stop()
+	end
+end
+function CrossroadOrchestrator.FlushMoveLoopersStripes()
+	for _, moveLooper in pairs(CrossroadOrchestrator.moveLoopers) do
+		moveLooper:FlushStripes()
+	end
+	return CrossroadOrchestrator
+end
+function CrossroadOrchestrator.BufferPosition()
+	return CrossroadOrchestrator.chosenEdgePosition
+end
+function CrossroadOrchestrator.SetEdgePosition(index)
+	index = index or math.random(1, #CrossroadOrchestrator.edgePositions)
+	CrossroadOrchestrator.chosenEdgePosition = CrossroadOrchestrator.edgePositions[index]
+	if not CrossroadOrchestrator.chosenEdgePosition then
+		logger.warn(T("[CrossroadOrchestrator.SetEdgePosition] No edge position on index :index:.", { index = index }))
+	end
+	return CrossroadOrchestrator
+end
+
+function CrossroadOrchestrator._10MinutesBeforeStart()
+	CrossroadOrchestrator.SetEdgePosition()
+	CrossroadOrchestrator.PopulateMoveLoopers()
+	CrossroadOrchestrator.SetIsMinigameOngoing(true)
+	CrossroadOrchestrator.StartMoveLoopers()
+end
+
+function CrossroadOrchestrator.AfterFinished()
+	CrossroadOrchestrator.SetIsMinigameOngoing(false)
+	CrossroadOrchestrator.StopMoveLoopers()
+	CrossroadOrchestrator.FlushMoveLoopersStripes()
+end
 
 ---@class MonsterStripe
 ---@field westSegment table
@@ -252,8 +378,9 @@ local animationNames = {
 ---@field centerSegments table[]
 ---@field dir number
 ---@field builtMonsters table
----@field westMostMonster Monster
----@field eastMostMonster Monster
+---@field westmostMonster Monster
+---@field eastmostMonster Monster
+---@field size number
 MonsterStripe = {}
 MonsterStripe.__index = MonsterStripe
 function MonsterStripe.New(...)
@@ -262,6 +389,7 @@ function MonsterStripe.New(...)
 	newObj.eastSegment = {}
 	newObj.centerSegments = {}
 	newObj.builtMonsters = {}
+	newObj.size = 0
 	setmetatable(newObj, MonsterStripe)
 	return newObj
 end
@@ -276,43 +404,44 @@ end
 function MonsterStripe:Build()
 	if self:GetDirection() == DIRECTION_EAST then
 		self:FlipSegmentsInsides()
-		self.eastMostMonster = self.eastSegment[1] or self.centerSegments[1]
-		for _, monster in pairs(self.eastSegment) do
+		self.eastmostMonster = self.eastSegment[1] or self.centerSegments[1]
+		for _, monster in ipairs(self.eastSegment) do
 			table.insert(self.builtMonsters, monster)
 		end
-		for _, monster in pairs(self.centerSegments) do
+		for _, monster in ipairs(self.centerSegments) do
 			table.insert(self.builtMonsters, monster)
 		end
-		for _, monster in pairs(self.westSegment) do
+		for _, monster in ipairs(self.westSegment) do
 			table.insert(self.builtMonsters, monster)
 		end
-		self.westMostMonster = self.westSegment[#self.westSegment] or self.centerSegments[#self.centerSegments]
+		self.westmostMonster = self.westSegment[#self.westSegment] or self.centerSegments[#self.centerSegments]
 	else
-		self.westMostMonster = self.westSegment[1] or self.centerSegments[1]
-		for _, monster in pairs(self.westSegment) do
+		self.westmostMonster = self.westSegment[1] or self.centerSegments[1]
+		for _, monster in ipairs(self.westSegment) do
 			table.insert(self.builtMonsters, monster)
 		end
-		for _, monster in pairs(self.centerSegments) do
+		for _, monster in ipairs(self.centerSegments) do
 			table.insert(self.builtMonsters, monster)
 		end
-		for _, monster in pairs(self.eastSegment) do
+		for _, monster in ipairs(self.eastSegment) do
 			table.insert(self.builtMonsters, monster)
 		end
-		self.eastMostMonster = self.eastSegment[#self.eastSegment] or self.centerSegments[#self.centerSegments]
+		self.eastmostMonster = self.eastSegment[#self.eastSegment] or self.centerSegments[#self.centerSegments]
 	end
 	self.size = #self.builtMonsters
 	self.built = true
 	return self
 end
-function MonsterStripe:GetWestMost()
-	return self.westMostMonster
+function MonsterStripe:GetWestmost()
+	return self.westmostMonster
 end
-function MonsterStripe:GetEastMost()
-	return self.eastMostMonster
+function MonsterStripe:GetEastmost()
+	return self.eastmostMonster
 end
 function MonsterStripe:Move()
-	for _, monster in pairs(self.builtMonsters) do
-		monster:move(self:GetDirection())
+	local dir = self:GetDirection()
+	for _, monster in ipairs(self.builtMonsters) do
+		monster:move(dir)
 	end
 end
 function MonsterStripe:FlipSegmentsInsides()
@@ -339,6 +468,13 @@ end
 function MonsterStripe:GetDirection()
 	return self.dir
 end
+function MonsterStripe:Flush()
+	for _, value in ipairs(self.builtMonsters) do
+		value:remove()
+	end
+	self.builtMonsters = {}
+	return self
+end
 MonsterStripeFactory = {}
 MonsterStripeFactory.__index = MonsterStripeFactory
 function MonsterStripeFactory.New(...)
@@ -357,12 +493,17 @@ AnimationRegistry.__index = AnimationRegistry
 AnimationRegistry.registry = {}
 function AnimationRegistry:Register(animation)
 	self.registry[animation:GetName()] = animation
+	self.registry[topItems[animation:GetName()]] = animation
 end
 function AnimationRegistry:Get(id)
 	return self.registry[id]
 end
 ---@class Animation
----@field name number
+---@field name number required
+---@field westStripes AnimationStripe
+---@field eastStripes AnimationStripe
+---@field centerStripes AnimationStripe
+---@field isOneHeaded bool required
 Animation = {}
 Animation.__index = Animation
 function Animation.New(name)
@@ -380,29 +521,43 @@ setmetatable(Animation, {
 		return Animation.New(...)
 	end,
 })
+function Animation:GetPredictedLength(centerStripesCount)
+	local length = 0
+	if self:IsOneHeaded() then
+		length = length + self:GetRandomWestStripe():GetSize()
+	else
+		length = length + self:GetRandomWestStripe():GetSize() * 2
+	end
+	length = length + self:GetRandomCenterStripe():GetSize() * centerStripesCount
+	return length
+end
 function Animation:GetName()
 	return self.name
 end
 ---@param ... AnimationStripe[]
 function Animation:AddWestStripes(...)
-	for _, animationStripe in pairs({ ... }) do
+	for _, animationStripe in ipairs({ ... }) do
 		table.insert(self.westStripes, animationStripe)
 	end
 end
 ---@param ... AnimationStripe[]
 function Animation:AddEastStripes(...)
-	for _, animationStripe in pairs({ ... }) do
+	for _, animationStripe in ipairs({ ... }) do
 		table.insert(self.eastStripes, animationStripe)
 	end
 end
 ---@param ... AnimationStripe[]
 function Animation:AddCenterStripes(...)
-	for _, animationStripe in pairs({ ... }) do
+	for _, animationStripe in ipairs({ ... }) do
 		table.insert(self.centerStripes, animationStripe)
 	end
 end
 function Animation:SetIsOneHeaded(isOneHeaded)
 	self.isOneHeaded = isOneHeaded
+	return self
+end
+function Animation:IsOneHeaded()
+	return self.isOneHeaded
 end
 function Animation:GetRandomWestStripe()
 	return table.random(self.westStripes)
@@ -424,7 +579,7 @@ function AnimationStripe.New(...)
 	local newObj = {}
 	newObj.textureIds = {}
 	newObj.isLookTypeEx = false
-	for _, textureId in pairs({ ... }) do
+	for _, textureId in ipairs({ ... }) do
 		table.insert(newObj.textureIds, textureId)
 	end
 	newObj.size = #newObj.textureIds
@@ -458,98 +613,83 @@ function AnimationStripe:IsLookTypeEx()
 	return self.isLookTypeEx
 end
 
---TODO add return newObj
+local monsterName = CrossroadOrchestrator.GetMonsterName()
+local function createMonsterBuffered(pos)
+	local bufferPos = CrossroadOrchestrator.BufferPosition()
+	local monster = Game.createMonster(monsterName, bufferPos)
+	monster:teleportTo(pos)
+	return monster
+end
 
-local horseWagonAnimation = Animation(animationNames.horseWagon)
-horseWagonAnimation:AddWestStripes(AnimationStripe(434), AnimationStripe(435), AnimationStripe(436))
-horseWagonAnimation:AddCenterStripes(AnimationStripeEx(7954, 7953), AnimationStripeEx(7901, 7900), AnimationStripeEx(7907, 7906))
-horseWagonAnimation:AddEastStripes(AnimationStripe(434), AnimationStripe(435), AnimationStripe(436))
-horseWagonAnimation:SetIsOneHeaded(true)
-AnimationRegistry:Register(horseWagonAnimation)
-
-local logAnimation = Animation(animationNames.log)
-logAnimation:AddWestStripes(AnimationStripeEx(3922))
-logAnimation:AddCenterStripes(AnimationStripeEx(3923), AnimationStripeEx(3924), AnimationStripeEx(3925), AnimationStripeEx(3926), AnimationStripeEx(3927))
-logAnimation:AddEastStripes(AnimationStripeEx(3929))
-logAnimation:SetIsOneHeaded(false)
-AnimationRegistry:Register(logAnimation)
-
-local minecartAnimation = Animation(animationNames.minecart)
-minecartAnimation:AddWestStripes(AnimationStripeEx(7131))
-minecartAnimation:AddCenterStripes(AnimationStripeEx(7131))
-minecartAnimation:AddEastStripes(AnimationStripeEx(7131))
-minecartAnimation:SetIsOneHeaded(true)
-AnimationRegistry:Register(minecartAnimation)
-
-function MonsterStripeFactory.CreateStripeSegments(animation, leftmostPosition, speed, centerSegmentsCount)
-	local westSegment = {}
-	local westAnimationStripe = animation:GetRandomWestStripe()
+function MonsterStripeFactory.CreateStripeSegments(animation, leftmostPosition, speed, centerSegmentsCount, dir)
 	local reservedTiles = 0
-	for _, id in pairs(westAnimationStripe:Get()) do
-		local monster = Game.createMonster(CrossroadOrchestrator.GetMonsterNameBySpeed(speed), leftmostPosition:Moved(reservedTiles, 0, 0))
-		if westAnimationStripe:IsLookTypeEx() then
-			monster:setOutfit({ lookTypeEx = id })
-		else
-			monster:setOutfit({ lookType = id })
-		end
-		table.insert(westSegment, monster)
-		reservedTiles = reservedTiles + 1
-	end
-	local centerSegments = {}
-	local cemterAnimationStripe = animation:GetRandomCenterStripe()
-	for _ = 1, centerSegmentsCount do
-		for _, id in pairs(cemterAnimationStripe:Get()) do
-			local monster = Game.createMonster(CrossroadOrchestrator.GetMonsterNameBySpeed(speed), leftmostPosition:Moved(reservedTiles, 0, 0))
-			if cemterAnimationStripe:IsLookTypeEx() then
+	local oneHeaded = animation:IsOneHeaded()
+
+	local westSegment = {}
+	if dir == DIRECTION_WEST or not oneHeaded then
+		local westAnimationStripe = animation:GetRandomWestStripe()
+		for _, id in ipairs(westAnimationStripe:Get()) do
+			local monster = createMonsterBuffered(leftmostPosition:Moved(reservedTiles, 0, 0))
+			if westAnimationStripe:IsLookTypeEx() then
 				monster:setOutfit({ lookTypeEx = id })
 			else
 				monster:setOutfit({ lookType = id })
 			end
+			monster:setSpeed(speed)
+			table.insert(westSegment, monster)
+			reservedTiles = reservedTiles + 1
+		end
+	end
+	local centerSegments = {}
+	for _ = 1, centerSegmentsCount do
+		local centerAnimationStripe = animation:GetRandomCenterStripe()
+		for _, id in ipairs(centerAnimationStripe:Get()) do
+			local monster = createMonsterBuffered(leftmostPosition:Moved(reservedTiles, 0, 0))
+			if centerAnimationStripe:IsLookTypeEx() then
+				monster:setOutfit({ lookTypeEx = id })
+			else
+				monster:setOutfit({ lookType = id })
+			end
+			monster:setSpeed(speed)
 			table.insert(centerSegments, monster)
 			reservedTiles = reservedTiles + 1
 		end
 	end
 	local eastSegment = {}
-	local eastAnimationStripe = animation:GetRandomEastStripe()
-	for _, id in pairs(eastAnimationStripe:Get()) do
-		local monster = Game.createMonster(CrossroadOrchestrator.GetMonsterNameBySpeed(speed), leftmostPosition:Moved(reservedTiles, 0, 0))
-		if eastAnimationStripe:IsLookTypeEx() then
-			monster:setOutfit({ lookTypeEx = id })
-		else
-			monster:setOutfit({ lookType = id })
+	if dir == DIRECTION_EAST or not oneHeaded then
+		local eastAnimationStripe = animation:GetRandomEastStripe()
+		for _, id in ipairs(eastAnimationStripe:Get()) do
+			local monster = createMonsterBuffered(leftmostPosition:Moved(reservedTiles, 0, 0))
+			if eastAnimationStripe:IsLookTypeEx() then
+				monster:setOutfit({ lookTypeEx = id })
+			else
+				monster:setOutfit({ lookType = id })
+			end
+			monster:setSpeed(speed)
+			table.insert(eastSegment, monster)
+			reservedTiles = reservedTiles + 1
 		end
-		table.insert(eastSegment, monster)
-		reservedTiles = reservedTiles + 1
 	end
 	return westSegment, centerSegments, eastSegment
 end
+---@return MonsterStripe monsterStripe
 function MonsterStripeFactory.CreateMonsterStripe(animation, leftmostPosition, speed, dir, centerStripesCount)
 	local monsterStripe = MonsterStripe()
 	monsterStripe:SetDirection(dir)
 
-	local westSegment, centerSegments, eastSegment = MonsterStripeFactory.CreateStripeSegments(animation, leftmostPosition, speed, centerStripesCount)
-	monsterStripe:SetWestSegment(westSegment)
-	monsterStripe:SetEastSegment(eastSegment)
-	for _, centerSegment in pairs(centerSegments) do
+	local westSegment, centerSegments, eastSegment = MonsterStripeFactory.CreateStripeSegments(animation, leftmostPosition, speed, centerStripesCount, dir)
+	local oneHeaded = animation:IsOneHeaded()
+	if not oneHeaded or dir == DIRECTION_WEST then
+		monsterStripe:SetWestSegment(westSegment)
+	end
+	if not oneHeaded or dir == DIRECTION_EAST then
+		monsterStripe:SetEastSegment(eastSegment)
+	end
+	for _, centerSegment in ipairs(centerSegments) do
 		monsterStripe:AddCenterSegment(centerSegment)
 	end
 	monsterStripe:Build()
 	return monsterStripe
-end
-
-local cobbledSpeedFactor = 1.5
-local function cartSpawner(position, dir, speed)
-	--local speed = 150 + math.random(-5, 5) * 10
-
-	local delayBetweenMoving = 100 / (speed * cobbledSpeedFactor) * 1000
-	local cart = Game.createMonster(CROSSROAD_MONSTER_BASE.NON_DAMAGING.ANY, bufferPos, false, true)
-	cart:teleportTo(position)
-	cart:setOutfit({ lookTypeEx = 7131 })
-	cart:changeSpeed(speed)
-	teleportToLoopCart(cart, delayBetweenMoving, dir)
-
-	local tillNextSpawn = math.random(1, 10) * speed + 10
-	addEvent(cartSpawner, tillNextSpawn, position, dir, speed)
 end
 
 local cross = MinigameData({
@@ -566,166 +706,87 @@ startEvent:separator(" ")
 startEvent:groupType("tutor")
 startEvent:register()
 
-local pos1 = Position(5998, 2359, 6)
-local pos2 = Position(5998, 2360, 6)
-local pos3 = Position(5998, 2361, 6)
-local talkactionCart = TalkAction("!cross_cart1")
-function talkactionCart.onSay(player, words, param)
-	local speed = 150
-	cartSpawner(pos1, DIRECTION_EAST, speed)
-	cartSpawner(pos2, DIRECTION_WEST, speed + 30)
-	cartSpawner(pos3, DIRECTION_EAST, speed)
+MoveLooper = {}
+MoveLooper.__index = MoveLooper
+function MoveLooper.New(...)
+	local newObj = {}
+	newObj.stripes = {}
+	setmetatable(newObj, MoveLooper)
+	return newObj
+end
+setmetatable(MoveLooper, {
+	__call = function(_, ...)
+		return MoveLooper.New(...)
+	end,
+})
+function MoveLooper:SetCallback(callback)
+	self.callback = callback
+	return self
+end
+function MoveLooper:SetContext(context)
+	self.context = context
+	return self
+end
+function MoveLooper:Start()
+	self.event = addEvent(function(callback, stripes)
+		callback(stripes, self.delay)
+		self:Start()
+	end, self.delay, self.callback, self.stripes)
+	return self
+end
+function MoveLooper:Stop()
+	stopEvent(self.event)
+	return self
+end
+function MoveLooper:UpdateDelay()
+	local speed = self:GetSpeed()
+	self.delay = 100 / speed * 1000
+	return self
+end
+function MoveLooper:SetTileFriction(tileFriction)
+	self.tileFriction = tileFriction
+	return self
+end
+function MoveLooper:SetSpeed(speed)
+	self.speed = speed
+	self:UpdateDelay()
+	return self
+end
+function MoveLooper:GetSpeed()
+	return self.speed
+end
+function MoveLooper:SetLooper(looper)
+	self.looper = looper
+	return self
+end
+function MoveLooper:AddStripe(stripe)
+	table.insert(self.stripes, stripe)
+	return self
+end
+function MoveLooper:FlushStripes()
+	for _, monsterStripe in ipairs(self.stripes) do
+		monsterStripe:Flush()
+	end
+	self.stripes = {}
+	return self
+end
+
+local crossroadStart = TalkAction("!cross_start")
+function crossroadStart.onSay(player, words, param)
+	CrossroadOrchestrator._10MinutesBeforeStart()
 	return false
 end
-talkactionCart:separator(" ")
-talkactionCart:groupType("tutor")
-talkactionCart:register()
+crossroadStart:separator(" ")
+crossroadStart:groupType("tutor")
+crossroadStart:register()
 
-local dirToLoop = {
-	[DIRECTION_WEST] = logTeleportLoopWest,
-	[DIRECTION_EAST] = logTeleportLoopEast,
-}
-
-local dirToNextDir = {
-	[DIRECTION_WEST] = DIRECTION_EAST,
-	[DIRECTION_EAST] = DIRECTION_WEST,
-}
-
-local topItems = {
-	log = 3922,
-	minecart = 7131,
-	horseWagon = 7906,
-}
-local topItemToAnimation = {
-	[topItems.log] = AnimationRegistry:Get(animationNames.log),
-	[topItems.minecart] = AnimationRegistry:Get(animationNames.minecart),
-	[topItems.horseWagon] = AnimationRegistry:Get(animationNames.horseWagon),
-}
-local topItemToMaxStripes = {
-	[topItems.log] = 6,
-	[topItems.minecart] = 2,
-	[topItems.horseWagon] = 2,
-}
-
----@param logStripe MonsterStripe
----@param delayBetweenMoving number
-local function logLooperEast(logStripe, delayBetweenMoving)
-	addEvent(function()
-		if not ACTIVE_CROSS then
-			return
-		end
-		logStripe:Move()
-		local westMost = logStripe:GetWestMost()
-		local eastMost = logStripe:GetEastMost()
-		tryUnlockEast(eastMost)
-		tryLockEast(westMost)
-		logLooperEast(logStripe, delayBetweenMoving)
-	end, delayBetweenMoving)
+local crossroadStop = TalkAction("!cross_stop")
+function crossroadStop.onSay(player, words, param)
+	CrossroadOrchestrator.AfterFinished()
 end
----@param logStripe MonsterStripe
----@param delayBetweenMoving number
-local function logLooperWest(logStripe, delayBetweenMoving)
-	addEvent(function()
-		if not ACTIVE_CROSS then
-			return
-		end
-		logStripe:Move()
-		local westMost = logStripe:GetWestMost()
-		local eastMost = logStripe:GetEastMost()
-		tryUnlockWest(westMost)
-		tryLockWest(eastMost)
-		logLooperWest(logStripe, delayBetweenMoving)
-	end, delayBetweenMoving)
-end
-
----@param monsterStripe MonsterStripe
----@param delayBetweenMoving number
-local function damagingLooperWest(monsterStripe, delayBetweenMoving)
-	addEvent(function()
-		if not ACTIVE_CROSS then
-			return
-		end
-		monsterStripe:Move()
-		logLooperWest(monsterStripe, delayBetweenMoving)
-	end, delayBetweenMoving)
-end
----@param monsterStripe MonsterStripe
----@param delayBetweenMoving number
-local function damagingLooperEast(monsterStripe, delayBetweenMoving)
-	addEvent(function()
-		if not ACTIVE_CROSS then
-			return
-		end
-		monsterStripe:Move()
-		logLooperEast(monsterStripe, delayBetweenMoving)
-	end, delayBetweenMoving)
-end
-local topItemToDirToLooper = {
-	[topItems.log] = {
-		[DIRECTION_WEST] = logLooperWest,
-		[DIRECTION_EAST] = logLooperEast,
-	},
-	[topItems.minecart] = {
-		[DIRECTION_WEST] = damagingLooperWest,
-		[DIRECTION_EAST] = damagingLooperEast,
-	},
-	[topItems.horseWagon] = {
-		[DIRECTION_WEST] = damagingLooperWest,
-		[DIRECTION_EAST] = damagingLooperEast,
-	},
-}
-
-local talkactionLog = TalkAction("!cross_log1")
-function talkactionLog.onSay(player, words, param)
-	ACTIVE_CROSS = true
-
-	local const_start_position = Position(5935, 2368, 7)
-	local lastPos = const_start_position:Moved(0, -250, -1)
-	local const_speed = 100
-	local nextDir = DIRECTION_EAST
-	local skipToLine = 2
-	local skipTeleport = 1
-	--TODO orchestrator
-    IterateBetweenPositions(const_start_position, lastPos, function(context)
-		local edgePos = context.pos
-		local tile = Tile(edgePos)
-		if not tile then
-			return
-		end
-		local topItem = tile:getTopTopItem()
-		if not topItem then
-			return
-		end
-		local topItemId = topItem:getId()
-
-		edgePos:Move(skipToLine, 0, 0)
-		--TODO create once, at server startup
-		local eastToWest = edgePos:Moved(laneWidth - 1, 0, 0)
-		Tile(eastToWest):getGround():setKey(scopes.teleportEastToWest:Get())
-		local westToEast = edgePos:Moved(0, 0, 0)
-		Tile(westToEast):getGround():setKey(scopes.teleportWestToEast:Get())
-
-		local animation = topItemToAnimation[topItemId]
-		local centerStripesCount = math.random(1, topItemToMaxStripes[topItemId])
-		local monsterStripe = MonsterStripeFactory.CreateMonsterStripe(animation, edgePos:Moved(skipTeleport, 0, 0), const_speed, nextDir, centerStripesCount)
-		local reservedTilesCount = monsterStripe:GetSize()
-		local looper = topItemToDirToLooper[topItemId][nextDir]
-		looper(monsterStripe, 100 / const_speed * 1000 / math.log(const_speed, 25)) --TODO
-		nextDir = dirToNextDir[nextDir]
-	end)
-	return false
-end
-talkactionLog:separator(" ")
-talkactionLog:groupType("tutor")
-talkactionLog:register()
-
-local talkactionStopCrossroad = TalkAction("!cross_stop")
-function talkactionStopCrossroad.onSay(player, words, param)
-	ACTIVE_CROSS = false
-end
-talkactionStopCrossroad:separator(" ")
-talkactionStopCrossroad:groupType("tutor")
-talkactionStopCrossroad:register()
+crossroadStop:separator(" ")
+crossroadStop:groupType("tutor")
+crossroadStop:register()
 
 local teleportWest = MoveEvent()
 function teleportWest.onStepIn(creature, item, toPosition, fromPosition)
@@ -742,8 +803,8 @@ end
 teleportEast:key(scopes.teleportWestToEast:Get())
 teleportEast:register()
 
-local function generateMonsterDefinition(speed)
-	local mType = Game.createMonsterType(CrossroadOrchestrator.GetMonsterNameBySpeed(speed))
+local function generateMonsterDefinition()
+	local mType = Game.createMonsterType(CrossroadOrchestrator.GetMonsterName())
 	local monster = {}
 
 	monster.description = "nothing special"
@@ -761,7 +822,7 @@ local function generateMonsterDefinition(speed)
 	monster.health = 100
 	monster.maxHealth = 100
 	monster.race = "undead"
-	monster.speed = speed
+	monster.speed = 100
 	monster.manaCost = 0
 
 	monster.flags = {
@@ -823,18 +884,12 @@ local function generateMonsterDefinition(speed)
 
 	mType:register(monster)
 end
-local speeds = {
-	75,
-	100,
-	175,
-	200,
-	250,
-	300,
-}
-local generateCrossroadMonsters = GlobalEvent(scopes.generateCrossroadMonsters:Get())
-function generateCrossroadMonsters.onStartup()
-	for _, speed in pairs(speeds) do
-		generateMonsterDefinition(speed)
-	end
+
+local initializeCrossroad = GlobalEvent(scopes.initializeCrossroad:Get())
+function initializeCrossroad.onStartup()
+	generateMonsterDefinition()
+	CrossroadOrchestrator.InitializeCrossroadEdgePositions()
+	CrossroadOrchestrator.InitializeAllCreatureTeleports()
+	CrossroadOrchestrator.InitializeMoveLoopers()
 end
-generateCrossroadMonsters:register()
+initializeCrossroad:register()
