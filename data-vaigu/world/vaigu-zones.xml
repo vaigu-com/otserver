@@ -6,8 +6,10 @@
 	<zone name="Encounter-Pol-ExitTeleportDestination" zoneid="3" />
 	<zone name="Encounter-Pol-MonsterSpawnPositions" zoneid="6" />
 	<zone name="Encounter-Pol-PlayerAppearPositions" zoneid="2" />
+	<zone name="Minigames-Crossroad-EdgePositions" zoneid="14" />
 	<zone name="Minigames-Crossroad-GameArea" zoneid="11" />
 	<zone name="Minigames-Crossroad-GamePlayerAppear" zoneid="10" />
+	<zone name="Minigames-Crossroad-InstancePositions" zoneid="13" />
 	<zone name="Minigames-Crossroad-LobbyArea" zoneid="9" />
 	<zone name="Minigames-Crossroad-LobbyEntrancePosition" zoneid="12" />
 	<zone name="Minigames-Crossroad-LobbyPlayerAppear" zoneid="8" />
