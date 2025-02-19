@@ -9183,6 +9183,9 @@
 	<monster centerx="5791" centery="1700" centerz="5" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="5" spawntime="60" />
 	</monster>
+	<monster centerx="5864" centery="1700" centerz="5" radius="1">
+		<monster name="Dog" x="0" y="0" z="5" spawntime="3600" />
+	</monster>
 	<monster centerx="5821" centery="1701" centerz="5" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="5" spawntime="60" />
 	</monster>
