@@ -1,11 +1,34 @@
 <?xml version="1.0"?>
 <zones>
+	<zone name="Encounter-HFPX-BossSpawnPosition" zoneid="19" />
+	<zone name="Encounter-HFPX-EastGates" zoneid="17" />
+	<zone name="Encounter-HFPX-EncounterAreaPositions" zoneid="20" />
+	<zone name="Encounter-HFPX-EntranceLeverPositions" zoneid="24" />
+	<zone name="Encounter-HFPX-ExitTeleportDestination" zoneid="21" />
+	<zone name="Encounter-HFPX-MonsterSpawnPositions" zoneid="23" />
+	<zone name="Encounter-HFPX-PlayerAppearPositions" zoneid="22" />
+	<zone name="Encounter-HFPX-SouthGates" zoneid="18" />
+	<zone name="Encounter-LEVIATHAN-BossSpawnPosition" zoneid="27" />
+	<zone name="Encounter-LEVIATHAN-EncounterAreaPositions" zoneid="32" />
+	<zone name="Encounter-LEVIATHAN-EntranceLeverPositions" zoneid="29" />
+	<zone name="Encounter-LEVIATHAN-ExitTeleportDestination" zoneid="28" />
+	<zone name="Encounter-LEVIATHAN-MonsterSpawnPositions" zoneid="31" />
+	<zone name="Encounter-LEVIATHAN-P1-DynamicTentanclePositionsLower" zoneid="26" />
+	<zone name="Encounter-LEVIATHAN-P1-DynamicTentanclePositionsUpper" zoneid="25" />
+	<zone name="Encounter-LEVIATHAN-P2-PlayerAppearPositions" zoneid="33" />
+	<zone name="Encounter-LEVIATHAN-PlayerAppearPositions" zoneid="30" />
 	<zone name="Encounter-Pol-BossSpawnPosition" zoneid="4" />
 	<zone name="Encounter-Pol-EncounterAreaPositions" zoneid="1" />
 	<zone name="Encounter-Pol-EntranceLeverPositions" zoneid="5" />
 	<zone name="Encounter-Pol-ExitTeleportDestination" zoneid="3" />
 	<zone name="Encounter-Pol-MonsterSpawnPositions" zoneid="6" />
 	<zone name="Encounter-Pol-PlayerAppearPositions" zoneid="2" />
+	<zone name="Encounter-SKURWIWIJ-BossSpawnPosition" zoneid="34" />
+	<zone name="Encounter-SKURWIWIJ-EncounterAreaPositions" zoneid="36" />
+	<zone name="Encounter-SKURWIWIJ-EntranceLeverPositions" zoneid="37" />
+	<zone name="Encounter-SKURWIWIJ-ExitTeleportDestination" zoneid="38" />
+	<zone name="Encounter-SKURWIWIJ-MonsterSpawnPositions" zoneid="39" />
+	<zone name="Encounter-SKURWIWIJ-PlayerAppearPositions" zoneid="35" />
 	<zone name="Minigames-Crossroad-EdgePositions" zoneid="14" />
 	<zone name="Minigames-Crossroad-GameArea" zoneid="11" />
 	<zone name="Minigames-Crossroad-GamePlayerAppear" zoneid="10" />
@@ -14,4 +37,6 @@
 	<zone name="Minigames-Crossroad-LobbyEntrancePosition" zoneid="12" />
 	<zone name="Minigames-Crossroad-LobbyPlayerAppear" zoneid="8" />
 	<zone name="Storage-Minigames-SharedLobbyPlayerAppear" zoneid="7" />
+	<zone name="Storage-PathOfTheUndead-BossArea" zoneid="16" />
+	<zone name="Storage-PathOfTheUndead-GuardianSkullsPositions" zoneid="15" />
 </zones>

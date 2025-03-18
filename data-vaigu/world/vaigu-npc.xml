@@ -168,10 +168,12 @@
 	<npc centerx="5539" centery="1509" centerz="6" radius="3">
 		<npc name="Jack Sparrow" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="6170" centery="1516" centerz="6" radius="1">
+	<npc centerx="6166" centery="1518" centerz="6" radius="1">
 		<npc name="Rat of Kings" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="7934" centery="1547" centerz="6" radius="1" />
+	<npc centerx="7934" centery="1547" centerz="6" radius="1">
+		<npc name="Jack Sparrow" x="0" y="0" z="6" spawntime="60" />
+	</npc>
 	<npc centerx="5801" centery="1550" centerz="6" radius="3">
 		<npc name="Fat Myrrus" x="0" y="0" z="6" spawntime="60" />
 	</npc>
@@ -184,8 +186,12 @@
 	<npc centerx="7477" centery="1775" centerz="6" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="6575" centery="1875" centerz="6" radius="1" />
-	<npc centerx="6749" centery="2586" centerz="6" radius="1" />
+	<npc centerx="6575" centery="1875" centerz="6" radius="1">
+		<npc name="Ruprecht" x="0" y="0" z="6" spawntime="60" />
+	</npc>
+	<npc centerx="6749" centery="2586" centerz="6" radius="1">
+		<npc name="Redbeard" x="0" y="0" z="6" spawntime="60" />
+	</npc>
 	<npc centerx="7501" centery="292" centerz="7" radius="1">
 		<npc name="Hugo BoSS" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -213,15 +219,18 @@
 	<npc centerx="6391" centery="912" centerz="7" radius="3">
 		<npc name="Gertrude" x="-1" y="0" z="7" spawntime="90" direction="2" />
 	</npc>
-	<npc centerx="7155" centery="975" centerz="7" radius="1" />
 	<npc centerx="5764" centery="1175" centerz="7" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="6218" centery="1236" centerz="7" radius="1" />
+	<npc centerx="6218" centery="1236" centerz="7" radius="1">
+		<npc name="Konmuld" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6470" centery="1275" centerz="7" radius="1">
 		<npc name="Mareesha" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="5668" centery="1280" centerz="7" radius="1" />
+	<npc centerx="5668" centery="1280" centerz="7" radius="1">
+		<npc name="Christopher Columbus" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6750" centery="1282" centerz="7" radius="1">
 		<npc name="Sand Nigger" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -297,11 +306,15 @@
 	<npc centerx="5569" centery="1586" centerz="7" radius="3">
 		<npc name="Tim, The Guard" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="5845" centery="1588" centerz="7" radius="3" />
+	<npc centerx="5845" centery="1588" centerz="7" radius="3">
+		<npc name="Anon's Father" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5893" centery="1588" centerz="7" radius="3">
 		<npc name="The Great Tracker" x="0" y="0" z="7" spawntime="90" direction="2" />
 	</npc>
-	<npc centerx="5822" centery="1591" centerz="7" radius="1" />
+	<npc centerx="5822" centery="1591" centerz="7" radius="1">
+		<npc name="Lecter" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5887" centery="1600" centerz="7" radius="3">
 		<npc name="Miles, The Guard" x="0" y="0" z="7" spawntime="60" />
 	</npc>
