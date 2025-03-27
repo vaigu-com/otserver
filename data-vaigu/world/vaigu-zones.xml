@@ -23,6 +23,12 @@
 	<zone name="Encounter-Pol-ExitTeleportDestination" zoneid="3" />
 	<zone name="Encounter-Pol-MonsterSpawnPositions" zoneid="6" />
 	<zone name="Encounter-Pol-PlayerAppearPositions" zoneid="2" />
+	<zone name="Encounter-RUKCA-BossSpawnPosition" zoneid="40" />
+	<zone name="Encounter-RUKCA-EncounterAreaPositions" zoneid="41" />
+	<zone name="Encounter-RUKCA-EntranceLeverPositions" zoneid="43" />
+	<zone name="Encounter-RUKCA-ExitTeleportDestination" zoneid="42" />
+	<zone name="Encounter-RUKCA-MonsterSpawnPositions" zoneid="45" />
+	<zone name="Encounter-RUKCA-PlayerAppearPositions" zoneid="44" />
 	<zone name="Encounter-SKURWIWIJ-BossSpawnPosition" zoneid="34" />
 	<zone name="Encounter-SKURWIWIJ-EncounterAreaPositions" zoneid="36" />
 	<zone name="Encounter-SKURWIWIJ-EntranceLeverPositions" zoneid="37" />

@@ -369,7 +369,7 @@
 	<npc centerx="5893" centery="1558" centerz="9" radius="1">
 		<npc name="Richard Petrol" x="0" y="0" z="9" spawntime="60" />
 	</npc>
-	<npc centerx="6486" centery="1808" centerz="9" radius="3">
+	<npc centerx="6474" centery="1798" centerz="9" radius="3">
 		<npc name="Henricus" x="0" y="0" z="9" spawntime="90" direction="2" />
 	</npc>
 	<npc centerx="6184" centery="2379" centerz="9" radius="1">
