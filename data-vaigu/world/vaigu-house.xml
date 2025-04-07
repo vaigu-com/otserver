@@ -551,4 +551,8 @@
 	<house name="Unnamed House #10381" houseid="10381" entryx="7260" entryy="1118" entryz="5" rent="0" townid="6" size="23" clientid="0" beds="0" />
 	<house name="Unnamed House #10382" houseid="10382" entryx="7658" entryy="1027" entryz="12" rent="0" townid="10" size="30" clientid="0" beds="0" />
 	<house name="Unnamed House #10383" houseid="10383" entryx="7850" entryy="1459" entryz="6" rent="0" townid="7" size="34" clientid="0" beds="0" />
+	<house name="Port Louse House 1 #10384" houseid="10384" entryx="6822" entryy="1438" entryz="7" rent="0" townid="1" size="41" clientid="0" beds="0" />
+	<house name="Port Louse House 2 #10385" houseid="10385" entryx="6826" entryy="1443" entryz="6" rent="0" townid="1" size="40" clientid="0" beds="0" />
+	<house name="Port Louse House 2 #10386" houseid="10386" entryx="6813" entryy="1453" entryz="7" rent="0" townid="1" size="79" clientid="0" beds="0" />
+	<house name="Port Louse House 4 #10387" houseid="10387" entryx="6818" entryy="1420" entryz="6" rent="0" townid="1" size="50" clientid="0" beds="0" />
 </houses>
