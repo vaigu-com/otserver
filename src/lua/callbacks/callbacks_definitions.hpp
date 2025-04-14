@@ -62,6 +62,8 @@ enum class EventCallback_t : uint16_t {
 	monsterOnDropLoot,
 	monsterPostDropLoot,
 	monsterOnSpawn,
+	// Npc,
+	npcOnSpawn,
 	// Zone
 	zoneBeforeCreatureEnter,
 	zoneBeforeCreatureLeave,

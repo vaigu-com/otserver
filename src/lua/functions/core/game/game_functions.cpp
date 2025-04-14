@@ -537,8 +537,9 @@ int GameFunctions::luaGameCreateMonster(lua_State* L) {
 	const bool extended = Lua::getBoolean(L, 3, false);
 	const bool force = Lua::getBoolean(L, 4, false);
 	if (g_game().placeCreature(monster, position, extended, force)) {
-		monster->onSpawn(position);
 		g_events().eventMonsterOnSpawn(monster, position);
+		g_callbacks().executeCallback(EventCallback_t::monsterOnSpawn, &EventCallback::monsterOnSpawn, monster, position);
+		monster->onSpawn(position);
 		const auto &mtype = monster->getMonsterType();
 		if (mtype && mtype->info.raceid > 0 && mtype->info.bosstiaryRace == BosstiaryRarity_t::RARITY_ARCHFOE) {
 			for (const auto &spectator : Spectators().find<Player>(monster->getPosition(), true)) {
