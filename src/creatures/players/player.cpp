@@ -6419,13 +6419,15 @@ uint32_t Player::getAttackSpeed() const {
 
 		return attackSpeed;
 	} else {
-		return vocation->getAttackSpeed();
+		// Vaigu custom
+		return attackSpeed;
+		// return vocation->getAttackSpeed();
 	}
 }
 
 void Player::setAttackSpeed(uint32_t speed) {
-		attackSpeed = speed;
-	}
+	attackSpeed = speed;
+}
 
 double Player::getLostPercent() const {
 	int32_t blessingCount = 0;

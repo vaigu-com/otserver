@@ -404,11 +404,12 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "removeIconBakragore", PlayerFunctions::luaPlayerRemoveIconBakragore);
 	Lua::registerMethod(L, "Player", "sendCreatureAppear", PlayerFunctions::luaPlayerSendCreatureAppear);
 
-		// Vaigu custom
-		Lua::registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerGetAttackSpeed);
-		Lua::registerMethod(L, "Player", "setAttackSpeed", PlayerFunctions::luaPlayerSetAttackSpeed);
-		Lua::registerMethod(L, "Player", "getLanguage", PlayerFunctions::luaPlayerGetLanguage);
-		Lua::registerMethod(L, "Player", "setLanguage", PlayerFunctions::luaPlayerSetLanguage);
+	// Vaigu custom
+	Lua::registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerGetAttackSpeed);
+	Lua::registerMethod(L, "Player", "setAttackSpeed", PlayerFunctions::luaPlayerSetAttackSpeed);
+	Lua::registerMethod(L, "Player", "getLanguage", PlayerFunctions::luaPlayerGetLanguage);
+	Lua::registerMethod(L, "Player", "setLanguage", PlayerFunctions::luaPlayerSetLanguage);
+	Lua::registerMethod(L, "Player", "isOnMinigame", PlayerFunctions::luaPlayerIsOnMinigame);
 
 	GroupFunctions::init(L);
 	GuildFunctions::init(L);
