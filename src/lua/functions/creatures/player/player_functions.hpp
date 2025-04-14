@@ -389,6 +389,7 @@ class PlayerFunctions {
 	static int luaPlayerGetAttackSpeed(lua_State* L);
 	
 	static int luaPlayerSendCreatureAppear(lua_State* L);
+	static int luaPlayerIsOnMinigame(lua_State* L);
 
 	friend class CreatureFunctions;
 };

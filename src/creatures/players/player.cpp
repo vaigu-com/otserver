@@ -1161,6 +1161,9 @@ bool Player::canWalkthrough(const std::shared_ptr<Creature> &creature) {
 	if (group->access || creature->isInGhostMode()) {
 		return true;
 	}
+	if (isOnMinigame() && creature->getPlayer()) {
+		return true;
+	}
 
 	const auto &player = creature->getPlayer();
 	const auto &monster = creature->getMonster();

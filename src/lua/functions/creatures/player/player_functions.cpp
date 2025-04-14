@@ -4931,3 +4931,21 @@ int PlayerFunctions::luaPlayerSendCreatureAppear(lua_State* L) {
 	Lua::pushBoolean(L, true);
 	return 1;
 }
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerIsOnMinigame(lua_State* L) {
+	// get: player:isOnMinigame() set: player:isOnMinigame(nextState)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1);
+	if (player) {
+		if (lua_gettop(L) == 1) {
+			Lua::pushBoolean(L, player->isOnMinigame());
+		} else {
+			auto nextState = Lua::getBoolean(L, 2, false);
+			player->isOnMinigame(nextState);
+			Lua::pushBoolean(L, nextState);
+		}
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}

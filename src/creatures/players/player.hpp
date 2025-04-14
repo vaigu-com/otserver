@@ -1297,8 +1297,14 @@ public:
 	std::string language = "EN"; // ISO-639-1
 	const std::string &getLanguage();
 	void setLanguage(std::string language);
+	
+	// Vaigu custom
 	bool isOnMinigame(){
-		return this->getStorageValueByKey(STORAGEVALUE_ISONMINIGAME) != -1;
+		return getStorageValueByKey(KEY_IS_ON_MINIGAME) == 1;
+	}
+	bool isOnMinigame(bool nextState) {
+		setStorageValueByKey(KEY_IS_ON_MINIGAME, nextState ? 1 : -1);
+		return nextState;
 	}
 
 private:
