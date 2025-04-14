@@ -17402,16 +17402,12 @@
 	</monster>
 	<monster centerx="7405" centery="1706" centerz="6" radius="1">
 		<monster name="Swampling" x="0" y="0" z="6" spawntime="60" />
-		<monster name="Emerald Damselfly" x="-1" y="1" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5819" centery="1707" centerz="6" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5996" centery="1707" centerz="6" radius="1">
 		<monster name="Poacher" x="0" y="0" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="7407" centery="1707" centerz="6" radius="1">
-		<monster name="Swampling" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7420" centery="1710" centerz="6" radius="1">
 		<monster name="Emerald Damselfly" x="0" y="0" z="6" spawntime="60" />
@@ -72165,11 +72161,9 @@
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7772" centery="1143" centerz="11" radius="1">
-		<monster name="Behemoth" x="-1" y="0" z="11" spawntime="60" />
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7774" centery="1143" centerz="11" radius="1">
-		<monster name="Behemoth" x="1" y="-1" z="11" spawntime="60" />
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6119" centery="1144" centerz="11" radius="1">
@@ -72261,7 +72255,6 @@
 	</monster>
 	<monster centerx="7747" centery="1154" centerz="11" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Behemoth" x="1" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7749" centery="1154" centerz="11" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
@@ -72374,7 +72367,6 @@
 	</monster>
 	<monster centerx="7749" centery="1171" centerz="11" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Behemoth" x="1" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6689" centery="1172" centerz="11" radius="1">
 		<monster name="Demon" x="0" y="0" z="11" spawntime="60" />
@@ -72383,7 +72375,6 @@
 		<monster name="Gozzler" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7747" centery="1172" centerz="11" radius="1">
-		<monster name="Behemoth" x="0" y="-1" z="11" spawntime="60" />
 		<monster name="Behemoth" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7087" centery="1174" centerz="11" radius="1">
@@ -74273,11 +74264,21 @@
 	<monster centerx="6975" centery="1709" centerz="11" radius="2">
 		<monster name="Betrayed Wraith" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="7406" centery="1711" centerz="11" radius="1">
+		<monster name="Little Corym Charlatan" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="7505" centery="1711" centerz="11" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="7404" centery="1712" centerz="11" radius="1">
+		<monster name="Little Corym Charlatan" x="0" y="0" z="11" spawntime="60" />
+		<monster name="Little Corym Charlatan" x="1" y="1" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6600" centery="1713" centerz="11" radius="1">
 		<monster name="Young Sea Serpent" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7406" centery="1713" centerz="11" radius="1">
+		<monster name="Little Corym Charlatan" x="0" y="0" z="11" spawntime="-1668288768" />
 	</monster>
 	<monster centerx="6606" centery="1715" centerz="11" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
@@ -74287,6 +74288,12 @@
 	</monster>
 	<monster centerx="6625" centery="1720" centerz="11" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7403" centery="1720" centerz="11" radius="1">
+		<monster name="Little Corym Charlatan" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="7405" centery="1720" centerz="11" radius="1">
+		<monster name="Little Corym Charlatan" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6585" centery="1724" centerz="11" radius="1">
 		<monster name="Young Sea Serpent" x="0" y="0" z="11" spawntime="60" />
