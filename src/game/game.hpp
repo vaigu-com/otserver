@@ -85,6 +85,11 @@ struct HighscoreCacheEntry {
 	std::chrono::time_point<std::chrono::system_clock> timestamp;
 };
 
+struct BoostedMonsterData {
+	uint16_t raceId { 0 };
+	std::string name;
+};
+
 class Game {
 public:
 	Game();
@@ -99,7 +104,10 @@ public:
 	void resetMonsters() const;
 	void resetNpcs() const;
 
-	void loadBoostedCreature();
+	static const uint16_t daysBeforeBoostedCanReappear = 5;
+	void updateDatabaseBoostedMonsters(std::vector<BoostedMonsterData> boostedMonsters);
+	std::vector<BoostedMonsterData> generateRandomBoostedMonsters(uint32_t count);
+	void initializeBoostedCreatures();
 	void start(ServiceManager* manager);
 
 	void forceRemoveCondition(uint32_t creatureId, ConditionType_t type, ConditionId_t conditionId);

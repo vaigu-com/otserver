@@ -439,69 +439,49 @@ void Game::resetNpcs() const {
 	}
 }
 
-// ToDo: 3af: check if working
-// Vaigu custom
-void Game::loadBoostedCreature() {
-	auto &db = Database::getInstance();
+std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t count) {
+	std::vector<std::string> monsterNames;
 
-	time_t now = time(0);
-	tm* ltm = localtime(&now);
-	std::string todayDate = std::to_string(ltm->tm_mday);
-
-	auto result = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayDate + "'");
-	std::vector<std::string> boostedMonsters;
-
-	if (!result) {
-		g_logger().warn("[Game::loadBoostedCreature] - No boosted creatures found for today. Generating new boosted monsters.");
-	} else {
-		do {
-			boostedMonsters.push_back(result->getString("boostname"));
-		} while (result->next());
-	}
-
-	if (boostedMonsters.size() >= NUMBER_BOOSTED_MONSTERS) {
-		setBoostedName(boostedMonsters);
-		return;
-	}
-
-	db.executeQuery(std::string("DELETE FROM `boosted_creature`"));
-
-	struct MonsterRace {
-		uint16_t raceId { 0 };
-		std::string name;
-	};
-
-	const auto monsterlist = getBestiaryList();
-	std::vector<MonsterRace> m_monsters;
+	std::vector<BoostedMonsterData> boostableMonsters;
 	for (const auto &[raceId, _name] : BestiaryList) {
-		if (std::find(boostedMonsters.begin(), boostedMonsters.end(), _name) == boostedMonsters.end()) {
-			m_monsters.emplace_back(MonsterRace { raceId, _name });
+		if (std::find(monsterNames.begin(), monsterNames.end(), _name) == monsterNames.end()) {
+			boostableMonsters.emplace_back(BoostedMonsterData { raceId, _name });
 		}
 	}
 
-	if (m_monsters.size() < NUMBER_BOOSTED_MONSTERS) {
-		g_logger().warn("[Game::loadBoostedCreature] - "
-		                "Not enough monsters available to boost.");
-		return;
+	if (boostableMonsters.size() < count) {
+		g_logger().warn("[Game::initializeBoostedCreatures] - Not enough monsters available to boost.");
 	}
 
 	std::random_device rd;
 	std::mt19937 g(rd());
-	std::shuffle(m_monsters.begin(), m_monsters.end(), g);
-	boostedMonsters.clear();
-	for (uint32_t i = 0; i < NUMBER_BOOSTED_MONSTERS; ++i) {
-		auto &selectedMonster = m_monsters[i];
+	std::shuffle(boostableMonsters.begin(), boostableMonsters.end(), g);
+	monsterNames.clear();
+
+	std::vector<BoostedMonsterData> randomBoostedMonsters;
+	for (uint32_t i = 1; i <= count; ++i) {
+		auto &selectedMonster = boostableMonsters[i];
 		const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
 		if (!monsterType) {
-			g_logger().warn("[Game::loadBoostedCreature] - "
-			                "Failed to get monster type for '{}'.",
-			                selectedMonster.name);
+			g_logger().warn("[Game::initializeBoostedCreatures] - Failed to get monster type for '{}'.", selectedMonster.name);
 			continue;
 		}
+		randomBoostedMonsters.emplace_back(selectedMonster);
+	}
+	return randomBoostedMonsters;
+}
 
+void Game::updateDatabaseBoostedMonsters(std::vector<BoostedMonsterData> boostedMonsterData) {
+	time_t now = time(0);
+	auto epoch_day = now / 86400;
+	std::string todayTimestamp = std::to_string(epoch_day);
+
+	auto &db = Database::getInstance();
+	for (const BoostedMonsterData &boostedMonster : boostedMonsterData) {
+		auto monsterType = g_monsters().getMonsterType(boostedMonster.name);
 		auto query = std::string("INSERT INTO `boosted_creature` (`date`, `boostname`, `looktype`, `lookfeet`, `looklegs`, `lookhead`, `lookbody`, `lookaddons`, `lookmount`, `raceid`) VALUES ")
-			+ "('" + todayDate + "', "
-			+ db.escapeString(selectedMonster.name) + ", "
+			+ "('" + todayTimestamp + "', "
+			+ db.escapeString(boostedMonster.name) + ", "
 			+ std::to_string(monsterType->info.outfit.lookType) + ", "
 			+ std::to_string(monsterType->info.outfit.lookFeet) + ", "
 			+ std::to_string(monsterType->info.outfit.lookLegs) + ", "
@@ -509,18 +489,37 @@ void Game::loadBoostedCreature() {
 			+ std::to_string(monsterType->info.outfit.lookBody) + ", "
 			+ std::to_string(monsterType->info.outfit.lookAddons) + ", "
 			+ std::to_string(monsterType->info.outfit.lookMount) + ", "
-			+ std::to_string(selectedMonster.raceId) + ")";
+			+ std::to_string(boostedMonster.raceId) + ")";
 
 		if (!db.executeQuery(query)) {
-			g_logger().warn("[Game::loadBoostedCreature] - "
-			                "Failed to store boosted creature in the database. (CODE 02)");
+			g_logger().warn("[Game::initializeBoostedCreatures] - Failed to store boosted creature in the database. (CODE 02)");
 		}
 	}
-	
-	auto resultNew = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayDate + "'");
+}
+
+// Vaigu custom
+void Game::initializeBoostedCreatures() {
+	time_t now = time(0);
+	auto epoch_day = now / 86400;
+	std::string todayTimestamp = std::to_string(epoch_day);
+
+	auto &db = Database::getInstance();
+	db.executeQuery(std::string("DELETE FROM `boosted_creature` WHERE `date` < '" + std::to_string(epoch_day - daysBeforeBoostedCanReappear) + "'"));
+	auto result = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayTimestamp + "'");
+
+	if (!result) {
+		g_logger().warn("[Game::initializeBoostedCreatures] - No boosted creatures found for today. Generating new boosted monsters.");
+		auto randomBoostedMonsters = generateRandomBoostedMonsters(NUMBER_BOOSTED_MONSTERS);
+		updateDatabaseBoostedMonsters(randomBoostedMonsters);
+		result = db.storeQuery("SELECT * FROM `boosted_creature` WHERE `date` = '" + todayTimestamp + "'");
+	}
+
+	std::vector<std::string> boostedMonsters;
 	do {
-			boostedMonsters.push_back(resultNew->getString("boostname"));
-	} while (resultNew->next());
+		boostedMonsters.push_back(result->getString("boostname"));
+	} while (result->next());
+
+	setBoostedName(boostedMonsters);
 }
 
 void Game::start(ServiceManager* manager) {
