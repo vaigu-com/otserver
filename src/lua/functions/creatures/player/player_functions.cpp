@@ -541,32 +541,6 @@ int PlayerFunctions::luaPlayerCreate(lua_State* L) {
 	return 1;
 }
 
-// Vaigu custom
-int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
-	// getLanguage()
-	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
-	if (player) {
-		lua_pushstring(L, player->getLanguage().c_str());
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
-// Vaigu custom
-int PlayerFunctions::luaPlayerSetLanguage(lua_State* L) {
-	// setLanguage(language)
-	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
-	if (!player) {
-		lua_pushnil(L);
-		return 1;
-	}
-
-	player->setLanguage(Lua::getString(L, 2));
-	Lua::pushBoolean(L, true);
-	return 1;
-}
-
 int PlayerFunctions::luaPlayerResetCharmsMonsters(lua_State* L) {
 	// player:resetCharmsBestiary()
 	const auto &player = Lua::getUserdataShared<Player>(L, 1);
@@ -783,7 +757,6 @@ int PlayerFunctions::luaPlayergetCharmMonsterType(lua_State* L) {
 	}
 	return 1;
 }
-
 
 // Vaigu custom
 int PlayerFunctions::luaPlayerRemovePreyStamina(lua_State* L) {
@@ -4947,5 +4920,31 @@ int PlayerFunctions::luaPlayerIsOnMinigame(lua_State* L) {
 	} else {
 		lua_pushnil(L);
 	}
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
+	// getLanguage()
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	if (player) {
+		lua_pushstring(L, player->getLanguage().c_str());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerSetLanguage(lua_State* L) {
+	// setLanguage(language)
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	player->setLanguage(Lua::getString(L, 2));
+	Lua::pushBoolean(L, true);
 	return 1;
 }
