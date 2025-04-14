@@ -668,6 +668,14 @@ void Combat::CombatHealthFunc(const std::shared_ptr<Creature> &caster, const std
 			damage.primary.value -= static_cast<int32_t>(std::ceil((damage.primary.value * slot->bonusPercentage) / 100));
 			damage.secondary.value -= static_cast<int32_t>(std::ceil((damage.secondary.value * slot->bonusPercentage) / 100));
 		}
+
+		// Vaigu custom
+		if(attackerMonster->isRewardBoss()){
+			auto encounterDifficulty = attackerMonster->getEncounterDifficulty();
+			auto encounterMultiplier = pow((1 + 0.2), encounterDifficulty);
+			damage.primary.value = damage.primary.value * encounterMultiplier;
+			damage.secondary.value = damage.secondary.value * encounterMultiplier;
+		}
 	}
 
 	if (g_game().combatChangeHealth(caster, target, damage)) {

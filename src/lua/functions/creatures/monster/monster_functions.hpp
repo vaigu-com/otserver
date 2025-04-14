@@ -86,6 +86,7 @@ private:
 	static int luaMonsterAddLoot(lua_State* L);
 
 	static int luaMonsterIsBoosted(lua_State* L);
+	static int luaMonsterSetEncounterDifficulty(lua_State* L);
 
 	friend class CreatureFunctions;
 };

@@ -238,6 +238,11 @@ public:
 
 	void setDead(bool isDead);
 
+	// Vaigu custom
+	uint32_t encounterDifficulty = 0;
+	uint32_t getEncounterDifficulty();
+	void setEncounterDifficulty(uint32_t newDifficuly);
+
 protected:
 	void onExecuteAsyncTasks() override;
 

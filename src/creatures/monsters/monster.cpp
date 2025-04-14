@@ -2709,3 +2709,13 @@ void Monster::loadLoot(const std::shared_ptr<Monster> monster, LootBlock lootBlo
 		monster->lootItems.push_back(lootBlock);
 	}
 }
+
+// Vaigu custom
+uint32_t Monster::getEncounterDifficulty() {
+	return encounterDifficulty;
+}
+
+// Vaigu custom
+void Monster::setEncounterDifficulty(uint32_t newDifficuly) {
+	encounterDifficulty = newDifficuly;
+}
