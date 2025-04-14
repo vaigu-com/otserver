@@ -703,6 +703,7 @@ public:
 	}
 
 	void updateTileFlags();
+	bool canBePushed() const; //Vaigu custom
 	bool canBeMoved() const;
 	void checkDecayMapItemOnMove();
 

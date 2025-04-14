@@ -1421,7 +1421,8 @@ void Monster::pushItems(const std::shared_ptr<Tile> &tile, const Direction &next
 		int32_t downItemSize = tile->getDownItemCount();
 		for (int32_t i = downItemSize; --i >= 0;) {
 			const auto &item = items->at(i);
-			if (item && item->hasProperty(CONST_PROP_MOVABLE) && (item->hasProperty(CONST_PROP_BLOCKPATH) || item->hasProperty(CONST_PROP_BLOCKSOLID)) && item->canBeMoved()) {
+			// Vaigu custom
+			if (item && item->hasProperty(CONST_PROP_MOVABLE) && (item->hasProperty(CONST_PROP_BLOCKPATH) || item->hasProperty(CONST_PROP_BLOCKSOLID)) && item->canBePushed()) {
 				if (moveCount < 20 && pushItem(item, nextDirection)) {
 					++moveCount;
 				} else if (!item->isCorpse() && g_game().internalRemoveItem(item) == RETURNVALUE_NOERROR) {
