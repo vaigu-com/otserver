@@ -6185,6 +6185,8 @@ void Game::playerChangeOutfit(uint32_t playerId, Outfit_t outfit, uint8_t isMoun
 				deltaSpeedChange -= prevMount->speed;
 			}
 		}
+		int32_t bonusMountedSpeed = player->getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
+		deltaSpeedChange += std::max(bonusMountedSpeed, 0);
 
 		player->setCurrentMount(mount->id);
 		changeSpeed(player, deltaSpeedChange);

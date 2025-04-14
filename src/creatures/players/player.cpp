@@ -7087,7 +7087,10 @@ bool Player::toggleMount(bool mount) {
 		kv()->set("last-mount", currentMount->id);
 
 		if (currentMount->speed != 0) {
-			g_game().changeSpeed(static_self_cast<Player>(), currentMount->speed);
+			auto deltaSpeedChange = currentMount->speed;
+			int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
+			deltaSpeedChange += std::max(bonusMountedSpeed, 0);
+			g_game().changeSpeed(static_self_cast<Player>(), deltaSpeedChange);
 		}
 	} else {
 		if (!isMounted()) {
@@ -7172,7 +7175,10 @@ bool Player::hasMount(const std::shared_ptr<Mount> &mount) const {
 void Player::dismount() {
 	const auto &mount = g_game().mounts->getMountByID(getCurrentMount());
 	if (mount && mount->speed > 0) {
-		g_game().changeSpeed(static_self_cast<Player>(), -mount->speed);
+		auto deltaSpeedChange = mount->speed;
+		int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
+		deltaSpeedChange += std::max(bonusMountedSpeed, 0);
+		g_game().changeSpeed(static_self_cast<Player>(), -deltaSpeedChange);
 	}
 
 	defaultOutfit.lookMount = 0;
