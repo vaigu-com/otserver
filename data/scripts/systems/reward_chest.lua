@@ -88,11 +88,16 @@ function bossDeath.onDeath(boss, corpse, killer, mostDamageKiller, lastHitUnjust
 
 		local rewardItem = player:getReward(rewardId, true)
 
-		-- Tone down the loot a notch if there are many participants
-		local playerLootFactor = baseLootFactor / (participantsCount ^ (1 / 3))
-		-- Increase the loot multiplicatively by how many times the player surpassed the expected score
-		playerLootFactor = playerLootFactor * (1 + playerLootFactor) ^ (playerScore.score / expectedScore)
-		-- Bosstiary Loot Bonus
+		
+		local encounter = ActiveEncounterRegistry:GetByCreature(boss)
+		local playerLootFactor = 1
+		if encounter then
+			playerLootFactor = encounter:GetLootMultiplier()
+		else
+			playerLootFactor = baseLootFactor / (participantsCount ^ (1 / 3))
+			playerLootFactor = playerLootFactor * (1 + playerLootFactor) ^ (playerScore.score / expectedScore)
+	
+		end
 
 		local rolls = 1
 		local raceId = monsterType:raceId()
