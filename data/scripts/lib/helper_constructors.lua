@@ -17,6 +17,7 @@ local checkClasses = {
 	TalkAction = true,
 	MoveEvent = true,
 	GlobalEvent = true,
+	Weapon = nil,
 }
 local nameToPresence = {}
 local function validateDuplicates(className, name)

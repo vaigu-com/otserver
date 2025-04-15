@@ -205,7 +205,9 @@ do
 	end
 
 
-	-- Vaigu custom; 3af; unused
+	-- Vaigu custom
+	-- Unused
+	--[[
 	function Monster:getBossReward(lootFactor, topScore, equipmentOnly, lootTable)
 		if configManager.getNumber(configKeys.RATE_LOOT) <= 0 then
 			return lootTable or {}
@@ -223,4 +225,5 @@ do
 
 		return TryGenerateLootRoll(MONSTER_LOOT_LAYER.bossReward, self, player, lootFactor, applyGut, filter)
 	end
+	]]
 end

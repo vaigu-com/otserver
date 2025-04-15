@@ -332,7 +332,9 @@ function Position:removeItem(itemId, effect)
 	local thing = tile:getItemById(itemId)
 	if thing then
 		thing:remove(1)
-		Position(self):sendMagicEffect(effect)
+		if effect then
+			Position(self):sendMagicEffect(effect)
+		end
 	end
 end
 

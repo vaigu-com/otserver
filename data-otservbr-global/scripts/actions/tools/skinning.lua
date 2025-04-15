@@ -188,7 +188,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 		player:addAchievement("Mutated Presents")
 		local reward = math.random(1, #skin)
 		player:addItem(skin[reward].newItem, skin[reward].amount or 1)
-		effect = CONST_ME_HITAREA
+		--effect = CONST_ME_HITAREA
 		return true
 	end
 
