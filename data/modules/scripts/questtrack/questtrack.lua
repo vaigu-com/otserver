@@ -1,12 +1,14 @@
-FIRST_REQUEST = "FIRST_REQUEST"
+local playerIdFirstLoginSinceStart = {}
+
 function onRecvbyte(player, msg, byte)
 	if byte == 0xD0 then
-		if player:getStorageValueByKey(Storage.FirstTrackerRequest) == FIRST_REQUEST then
-			player:setStorageValueByKey(Storage.FirstTrackerRequest, MISSION_NOT_STARTED)
+		if not playerIdFirstLoginSinceStart[player:getId()] then
+			playerIdFirstLoginSinceStart[player:getId()] = true
 			player:resetTrackedMissions(player:getTrackedMissionIds())
 			player:sendQuestLogMainPage()
 			return
 		end
+
 		local missionStorages = {}
 		local missionsCount = msg:getByte()
 		for _ = 1, missionsCount do

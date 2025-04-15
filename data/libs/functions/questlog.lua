@@ -1,10 +1,10 @@
-dofile(DATA_DIRECTORY .. "/lib/core/quests.lua")
-
 if not LastQuestlogUpdate then
 	LastQuestlogUpdate = {}
 end
 
 PlayerTrackedMissionsData = {}
+
+DONT_AUTOTRACK = false
 
 -- Game functions
 function Player.isTrackingMissionState(self, mission)
@@ -49,12 +49,14 @@ function Game.getLinkedMissions(storage)
 	return storageToLinkedMission[storage] or {}
 end
 
---Associates each storage with mission that has missionStorage
---This allows to update this mission text when updating those other storage values
+--This allows to update mission (identified by missionStorage) text (in questlog and tracked quests) when updating another storage
+-- Alternatively, you can do this when updating another storage
+-- player:RefreshStorage(missionStorage)
+-- player:IncrementStorage(anotherStorage, 1)
 function Game.linkMissionToStorages(missionStorage, storages)
 	local mission = Game.getMissionByStorage(missionStorage)
 	if not mission then
-		logger.error(T("[Game::LinkTrackingMission] storage :missionStorage: is not a mision!", { missionStorage = missionStorage }))
+		logger.error(T("[Game::linkMissionToStorages] storage :missionStorage: is not a mision!", { missionStorage = missionStorage }))
 		return
 	end
 
@@ -76,19 +78,42 @@ function Player:getTrackedMissionIds()
 	end
 	for _, storage in pairs(trackedMissionStorages) do
 		local mission = Game.getMissionByStorage(storage)
-		if not mission then
-			logger.warn(T("[Player::getTrackedMissionIds] Trying to get nonexistant mission by	 storage :storage:", { storage = storage }))
+		if mission then
+			table.insert(trackedMissionIds, mission.missionId)
+		else
+			logger.warn(T("[Player::getTrackedMissionIds] Trying to get nonexistant mission by storage :storage:", { storage = storage }))
 		end
-		table.insert(trackedMissionIds, mission.missionId)
 	end
 	return trackedMissionIds
+end
+
+function Player.sendQuestlogMainPage(self, mission)
+	local trackedMissionStorages = self:getStorageValueByKey(Storage.TrackedMissionsStorages)
+	local currentlyTrackedCount = TableSize(trackedMissionStorages)
+	if currentlyTrackedCount >= self:getAllowedTrackedQuestCount() then
+		return
+	end
+
+	trackedMissionStorages[mission.storage] = mission.storage
+	self:setStorageValueByKey(Storage.TrackedMissionsStorages, trackedMissionStorages)
+
+	local quest = Game.getQuestByMission(mission)
+
+	local missionData = {
+		missionId = mission.missionId,
+		questName = self:getTranslatedQuestName(quest),
+		missionName = self:getTranslatedMissionName(mission),
+		missionDesc = self:getTranslatedMissionDescription(mission),
+	}
+	PlayerTrackedMissionsData[self:getId()][mission.missionId] = missionData
 end
 
 Storage.TrackedMissionsStorages = {}
 function Player.resetTrackedMissions(self, missionIds)
 	local trackedMissions = {}
 	local trackedMissionStorages = {}
-	local maxAllowed = self:getAllowedTrackedQuestCount()
+	local maxAllowedTrackedCount = self:getAllowedTrackedQuestCount()
+
 	for _, missionId in pairs(missionIds) do
 		local mission = Game.getMissionById(missionId)
 		local quest = Game.getQuestByMission(mission)
@@ -105,7 +130,7 @@ function Player.resetTrackedMissions(self, missionIds)
 				missionDesc = self:getTranslatedMissionDescription(mission),
 			}
 			table.insert(trackedMissions, data)
-			if #trackedMissions >= maxAllowed then
+			if #trackedMissions >= maxAllowedTrackedCount then
 				break
 			end
 		end
@@ -113,7 +138,7 @@ function Player.resetTrackedMissions(self, missionIds)
 
 	PlayerTrackedMissionsData[self:getId()] = trackedMissions
 	self:setStorageValueByKey(Storage.TrackedMissionsStorages, trackedMissionStorages)
-	local remainingSlots = maxAllowed - #trackedMissions
+	local remainingSlots = maxAllowedTrackedCount - #trackedMissions
 	self:sendTrackedQuests(remainingSlots, trackedMissions)
 end
 
@@ -225,6 +250,11 @@ function Player.isMissionCompleted(self, mission)
 	return false
 end
 
+local function completedSuffix(player)
+	local suffix = player:Localizer(LOCALIZERS.Universal):Get("QUEST_MISSION_COMPLETE_SUFFIX")
+	return suffix
+end
+
 function Player.getTranslatedQuestName(self, quest)
 	if not quest then
 		return "[Player::getTranslatedQuestName] An error has occurred, please contact a gamemaster."
@@ -234,8 +264,7 @@ function Player.getTranslatedQuestName(self, quest)
 	local context = { player = self }
 	result = result .. self:Localizer(quest.localizer):Context(context):Get(quest.name)
 	if self:isQuestCompleted(quest) then
-		local completedSuffix = self:Localizer(LOCALIZERS.Universal):Get("QUEST_MISSION_COMPLETE_SUFFIX")
-		result = result .. completedSuffix
+		result = result .. completedSuffix(self)
 	end
 	return result
 end
@@ -279,7 +308,7 @@ function Player.sendQuestLogMainPage(self)
 			msg:addU16(quest.questId)
 			local translatedQuestName = self:Localizer(quest.localizer):Get(quest.name)
 			if self:isQuestCompleted(quest) then
-				translatedQuestName = translatedQuestName .. " (completed)"
+				translatedQuestName = translatedQuestName .. completedSuffix(self)
 			end
 			msg:addString(translatedQuestName)
 			msg:addByte(self:isQuestCompleted(quest))
@@ -345,13 +374,29 @@ local function questUpdateIsAnnouncable(key, value, oldValue)
 	if value == oldValue then
 		return false
 	end
-	if GetTaskByStorage(key) and oldValue ~= TASK_FINISHED and oldValue ~= TASK_CAN_START_DESPITE_HIGHER_LEVEL then
+	if GetTaskByStorage(key) and oldValue ~= TASK_CANT_START_BECAUSE_HIGHER_LEVEL and oldValue ~= TASK_CAN_START_DESPITE_HIGHER_LEVEL then
 		return false
 	end
 	if GetDailyTaskByStorage(key) and oldValue ~= DAILY_TASK_NOT_STARTED then
 		return false
 	end
 	return true
+end
+
+function Player.tryAutoTrackMission(self, mission, oldValue)
+	if not (self:isTrackingMissionState(mission) or oldValue == MISSION_NOT_STARTED) then
+		return
+	end
+
+	self:sendQuestlogMainPage(mission)
+
+	local translatedMission = {
+		missionId = mission.missionId,
+		missionName = self:getTranslatedMissionName(mission),
+		missionDesc = self:getTranslatedMissionDescription(mission),
+	}
+	self:sendTrackedMission(translatedMission)
+	self:sendQuestLogMainPage()
 end
 
 function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTime)
@@ -364,13 +409,8 @@ function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTi
 	end
 
 	local mission = Game.getMissionByStorage(storage)
-	if mission and self:isTrackingMissionState(mission) then
-		local translatedMission = {
-			missionId = mission.missionId,
-			missionName = self:getTranslatedMissionName(mission),
-			missionDesc = self:getTranslatedMissionDescription(mission),
-		}
-		self:sendTrackedMission(translatedMission)
+	if mission and mission.autoTrack ~= DONT_AUTOTRACK then
+		self:tryAutoTrackMission(mission, oldValue)
 	end
 
 	local linkedMissions = Game.getLinkedMissions(storage)
