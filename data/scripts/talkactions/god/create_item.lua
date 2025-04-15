@@ -79,7 +79,15 @@ function createItem.onSay(player, words, param)
 		count = 1
 	end
 
-	player:AddCustomItem({ id = itemType:getId(), fluidType = fluidType, count = count, tier = tier })
+	if player:AddCustomItem({ id = itemType:getId(), fluidType = fluidType, count = count, tier = tier }) ~= RETURNVALUE_NOERROR then
+		local item = Game.createItem(itemType:getId(), count, player:getPosition())
+		if tier then
+			item:setTier(tier)
+		end
+		if fluidType then
+			item:transform(itemType:getId(), fluidType)
+		end
+	end
 
 	if tier and (tier <= 0 or tier > 10) then
 		player:sendCancelMessage("Invalid tier count.")
