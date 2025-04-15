@@ -38,7 +38,7 @@ function energyBasin.onUse(player, item, fromPosition, target, toPosition, isHot
 end
 
 for index, value in pairs(config) do
-	energyBasin:key(index)
+	energyBasin:uid(index)
 end
 
 energyBasin:register()

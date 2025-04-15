@@ -177,7 +177,7 @@ quest
 						return
 					end
 
-					player:addItem(5938, 1)
+					player:AddCustomItem({id = 5938, count = 1})
 					toPosition:sendMagicEffect(CONST_ME_WATERCREATURE)
 					player:setStorageValueByKey(Storage.WayOfTheDruid.LootedWater, MISSION_FINISHED)
 				end
@@ -224,7 +224,7 @@ quest
 						return
 					end
 
-					player:addItem(5937, 1)
+					player:AddCustomItem({id = 5937, count = 1})
 					toPosition:sendMagicEffect(CONST_ME_CARNIPHILA)
 					player:setStorageValueByKey(Storage.WayOfTheDruid.LootedFlower, MISSION_FINISHED)
 				end

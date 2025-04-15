@@ -143,7 +143,7 @@ function missionGuide.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(missionTiles) do
-	missionGuide:key(index)
+	missionGuide:aid(index)
 end
 missionGuide:register()
 
@@ -430,7 +430,7 @@ function missionEnergyBarriers.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(energyBarriers) do
-	missionEnergyBarriers:key(index)
+	missionEnergyBarriers:uid(index)
 end
 missionEnergyBarriers:register()
 
@@ -494,7 +494,7 @@ function missionLevers.onUse(player, item, position, itemEx, toPosition)
 end
 
 for index, value in pairs(levers) do
-	missionLevers:key(index)
+	missionLevers:uid(index)
 end
 missionLevers:register()
 

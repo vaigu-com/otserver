@@ -15,7 +15,7 @@ function outlawQuest.onUse(player, item, fromPosition, target, toPosition, isHot
 		end
 	end
 
-	local bag = player:addItem(bagId, 1)
+	local bag = player:AddCustomItem({id = bagId, count = 1})
 	if bag then
 		for _, reward in ipairs(rewardIds) do
 			local rewardId, rewardCount = reward[1], reward[2]

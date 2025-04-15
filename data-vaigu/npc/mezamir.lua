@@ -217,7 +217,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"One more thing! I can tell you a secret after all of this.. Did you come across a hidden teleport in the underground? It was secured with a magic spell, but I can lat you pass there.",
 					"There you will find my friend who has been guarding the passage to the {hellish abyss} for years. Perhaps he will let you get there and defeat the most powerful of the mages..",
 				}, npc, creature)
-				player:addItem(player:isSorcerer() and 8039 or player:isDruid() and 8041 or player:isPaladin() and 8025 or player:isKnight() and 8055, 1)
+				player:AddCustomItem({id = player:isSorcerer() and 8039 or player:isDruid() and 8041 or player:isPaladin() and 8025 or player:isKnight() and 8055, count = 1})
 				player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 3)
 			end
 		end
@@ -277,9 +277,9 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Then off you go! Im sorry that I cannot offer you any further help but Im sure you will find support along your way. And - be careful. The sea can appear pitch black down there.",
 			}, npc, creature)
 			player:setStorageValueByKey(Storage.LiquidBlack.Visitor, QuestState.LiquidBlack.MezamirLetYouUseShortcut)
+			player:setStorageValueByKey(Storage.LiquidBlack.ShortcutAccess, ACCESS_GRANTED)
 			npcHandler:setTopic(playerId, 24)
 		end
-	
 	return true
 end
 

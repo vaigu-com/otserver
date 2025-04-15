@@ -197,7 +197,7 @@ SPECIAL_ACTIONS_JEWELER = {
 	end,
 	exchangeRedGems = function(context)
 		local player = context.player
-		local gemCount = player:CountItem({ id = 3051 })
+		local gemCount = player:CountItem({ id = 3039 })
 		player:AddCustomItem({ id = 3098, count = gemCount * 3 })
 	end,
 }

@@ -230,7 +230,7 @@ quest
 						end
 
 						item:remove()
-						player:addItem(7141)
+						player:AddCustomItem({id = 7141})
 						player:setStorageValueByKey(Storage.MeadVial, os.time() + cooldownSeconds)
 						toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 					end

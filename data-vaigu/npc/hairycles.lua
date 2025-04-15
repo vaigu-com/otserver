@@ -242,7 +242,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 				player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 18)
 				player:setStorageValueByKey(Storage.Finished.TheApeCity, 1) -- quest done (website)
-				player:addItem(3002, 1)
+				player:AddCustomItem({id = 3002, count = 1})
 				player:addAchievement("Friend of the Apes")
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Ja wiem, ze o wiele prosze, ale wejdz tam w podziemia i zniszcz pomnik boga wezy." or "Me know its much me asked for but go into the deepest catacombs under Banuta and destroy the monument of the serpent god.", npc, creature)

@@ -19,7 +19,7 @@ pseudoQuest
 			LastLobbyEnterFromPostion = {},
 		}
 	end)
-	:Script(function()
+	:Constant(function()
 		---@class MinigameDataContext:DataClass
 		---@field private disabled boolean?
 		---@field public disableLockout boolean does not apply cooldown on kill/entry

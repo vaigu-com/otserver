@@ -46,7 +46,7 @@ end
 demonTeleport:type("stepin")
 
 for index, value in pairs(teleports) do
-	demonTeleport:key(index)
+	demonTeleport:uid(index)
 end
 
 demonTeleport:register()

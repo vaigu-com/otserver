@@ -38,7 +38,7 @@ end
 spy:type("stepin")
 
 for index, value in pairs(config) do
-	spy:key(index)
+	spy:aid(index)
 end
 
 spy:register()

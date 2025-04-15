@@ -7,11 +7,6 @@ local outfit = {
 	lookFeet = 19,
 	lookAddons = 0,
 }
-local dialogs = {
-	[{ "thief", "zlodziej" }] = {
-		text = "I dint see anything suspicious.",
-	},
-}
 local context = {
 	name = name,
 	outfit = outfit,

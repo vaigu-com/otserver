@@ -38,7 +38,7 @@ end
 
 inServiceYalaharMechanism:uid(1018, 1019)
 for value = 3091, 3102 do
-	inServiceYalaharMechanism:key(value)
+	inServiceYalaharMechanism:uid(value)
 end
 inServiceYalaharMechanism:register()
 

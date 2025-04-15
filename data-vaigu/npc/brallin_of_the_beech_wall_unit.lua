@@ -12,6 +12,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-ignoreGreet = true
+	ignoreGreet = true,
 }
 NpcRegistry:AppendNpcData(context)

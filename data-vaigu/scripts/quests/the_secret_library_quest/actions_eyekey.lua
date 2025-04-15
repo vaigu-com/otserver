@@ -3,7 +3,7 @@ local eyeKey = Action()
 function eyeKey.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getStorageValueByKey(Storage.TheSecretLibrary.TheLament) == 4 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a eye key.")
-		player:addItem(28477, 1)
+		player:AddCustomItem({id = 28477, count = 1})
 		player:setStorageValueByKey(Storage.TheSecretLibrary.TheLament, 5)
 		return true
 	end

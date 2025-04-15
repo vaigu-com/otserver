@@ -54,7 +54,7 @@ function missionGuide.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(missionTiles) do
-	missionGuide:key(index)
+	missionGuide:uid(index)
 end
 missionGuide:register()
 
@@ -128,7 +128,7 @@ function warWolfDenTiles.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(specialMissionTiles) do
-	warWolfDenTiles:key(index)
+	warWolfDenTiles:uid(index)
 end
 warWolfDenTiles:register()
 

@@ -20,7 +20,7 @@ function adventurersTreasure.onUse(player, item, fromPosition, target, toPositio
 		local treasure = items[math.random(#items)]
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is impossible to take along all of the treasures here. Buy you pick out " .. treasure.description)
 		for _, item in ipairs(treasure.items) do
-			player:addItem(item.id, item.count)
+			player:AddCustomItem({id = item.id, count = item.count})
 		end
 
 		-- reset dragon counter

@@ -1,15 +1,3 @@
-local voices = {
-	interval = 15000,
-	chance = 50,
-	{
-		text = "Zaczal diabel jak wsciekniety atakowac, wiedz ze cos sie dzieje...",
-	},
-	{ text = "Lepiej dac na tace i kupic te blessy, licho nie spi..." },
-	{
-		text = "Harry Potter, Gwiezdne Wojny, akupunktura, astrologia, bioenergoterapia...",
-	},
-	{ text = "Horoskopy, Magia, Numerologia, Okultyzm, Tarot, Techno..." },
-}
 local outfit = {
 	lookType = 1219,
 	lookHead = 0,

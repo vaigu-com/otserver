@@ -44,7 +44,7 @@ function lastFloorReward.onStepIn(creature, item, position, fromPosition)
 end
 
 for action, value in pairs(setting) do
-	lastFloorReward:key(action)
+	lastFloorReward:aid(action)
 end
 
 lastFloorReward:register()

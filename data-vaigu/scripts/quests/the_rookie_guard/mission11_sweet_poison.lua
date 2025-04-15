@@ -45,7 +45,7 @@ function missionGuide.onStepIn(creature, item, position, fromPosition)
 end
 
 for index, value in pairs(missionTiles) do
-	missionGuide:key(index)
+	missionGuide:aid(index)
 end
 missionGuide:register()
 

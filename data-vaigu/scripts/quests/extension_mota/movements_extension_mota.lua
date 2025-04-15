@@ -23,7 +23,7 @@ end
 extensionMota:type("stepin")
 
 for index, value in pairs(destination) do
-	extensionMota:key(index)
+	extensionMota:aid(index)
 end
 
 extensionMota:register()

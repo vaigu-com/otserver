@@ -28,7 +28,7 @@ end
 elevator:type("stepin")
 
 for index, value in pairs(setting) do
-	elevator:key(index)
+	elevator:aid(index)
 end
 
 elevator:register()

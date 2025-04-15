@@ -52,7 +52,7 @@ end
 spikeTeleport:type("stepin")
 
 for index, value in pairs(config) do
-	spikeTeleport:key(index)
+	spikeTeleport:aid(index)
 end
 
 spikeTeleport:register()

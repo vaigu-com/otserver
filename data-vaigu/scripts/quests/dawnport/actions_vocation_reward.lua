@@ -62,7 +62,6 @@ local reward = {
 }
 
 local vocationReward = Action()
-
 function vocationReward.onUse(player, item, fromPosition, itemEx, toPosition)
 	local vocationItems = reward.vocationItems[item.uid]
 	-- Check there is items for item.uid
@@ -119,8 +118,7 @@ function vocationReward.onUse(player, item, fromPosition, itemEx, toPosition)
 end
 
 for index, value in pairs(reward.vocationItems) do
-	vocationReward:key(index)
+	vocationReward:uid(index)
 end
-
 vocationReward:register()
 
