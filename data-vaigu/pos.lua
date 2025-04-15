@@ -10,6 +10,10 @@ Position.__eq = function(pos1, pos2)
 	return xEq and yEq and zEq
 end
 
+function Position.isPosition(obj)
+	return getmetatable(obj) == getmetatable(Position)
+end
+
 ---@class Area
 ---@field positions Position[]
 ---@field corner1 Position
@@ -32,9 +36,20 @@ setmetatable(Area, {
 		return Area.New(...)
 	end,
 })
+function Area.FromSquareRadius(pos, radius)
+	radius = radius or 1
+	local corner1 = pos:Moved(-radius, -radius)
+	local corner2 = pos:Moved(radius, radius)
+	return Area(corner1, corner2)
+end
 
-function Area:Get()
-	return self.positions
+function Area:GetPositions()
+	local positions = {}
+	IterateBetweenPositions(self.corner1, self.corner2, function(context)
+		local pos = context.pos
+		table.append(positions, pos)
+	end)
+	return positions
 end
 
 function Area:RandomPosition()
@@ -43,7 +58,6 @@ end
 
 ---@class CreatureList
 ---@field creatures table
----@field customData table
 CreatureList = {}
 CreatureList.__index = CreatureList
 
@@ -51,7 +65,6 @@ setmetatable(CreatureList, {
 	__call = function(class, creatures)
 		local instance = setmetatable({}, class)
 		instance.creatures = creatures or {}
-		instance.customData = {}
 		return instance
 	end,
 })
@@ -68,25 +81,27 @@ function CreatureList:Count()
 	return TableSize(self.creatures)
 end
 
-function CreatureList:Add(creature, customData)
-	customData = customData or {}
-	self.creatures[customData] = creature
+function CreatureList:Add(creature)
+	if table.contains(self.creatures, creature) then
+		return self
+	end
+	table.insert(self.creatures, creature)
 	return self
 end
 
-function CreatureList:Pos(pos, customData)
+function CreatureList:Pos(pos)
 	local tile = Tile(pos)
 	if not tile then
 		return
 	end
 	local creatures = tile:getCreatures()
 	for _, creature in pairs(creatures) do
-		self:Add(creature, customData)
+		self:Add(creature)
 	end
 	return self
 end
 
-function CreatureList:Area(pos1, pos2, customData)
+function CreatureList:Area(pos1, pos2)
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then
@@ -94,17 +109,17 @@ function CreatureList:Area(pos1, pos2, customData)
 		end
 		local creatures = tile:getCreatures()
 		for _, creature in pairs(creatures) do
-			self:Add(creature, customData)
+			self:Add(creature)
 		end
 	end)
 	return self
 end
 
-function CreatureList:RadiusSquare(pos, radiusX, radiusY, customData)
+function CreatureList:RadiusSquare(pos, radiusX, radiusY)
 	radiusY = radiusY or radiusX
 	local pos1 = pos:Moved(radiusX, radiusY)
 	local pos2 = pos:Moved(-radiusX, -radiusY)
-	self:Area(pos1, pos2, customData)
+	self:Area(pos1, pos2)
 	return self
 end
 
@@ -174,26 +189,27 @@ function CreatureList:FilterByVocation(vocation)
 			self.creatures[key] = nil
 		end
 	end
+	return self
 end
 
 function Position:CreaturesBetween(destination, name)
 	local creatures = CreatureList():Area(self, destination):FilterByName(name)
-	return creatures:Get()
+	return creatures
 end
 
 function Position:PlayersBetween(destination, name)
 	local players = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer()
-	return players:Get()
+	return players
 end
 
 function Position:MonstersBetween(destination, name)
 	local monsters = CreatureList():Area(self, destination):FilterByName(name):FilterByMonster()
-	return monsters:Get()
+	return monsters
 end
 
 function Position:NpcsBetween(destination, name)
 	local npcs = CreatureList():Area(self, destination):FilterByName(name):FilterByNpc()
-	return npcs:Get()
+	return npcs
 end
 
 function Position:FirstCreatureBetween(destination, name)
@@ -247,6 +263,32 @@ function Position:MoveItems(destination)
 	for _, item in pairs(items) do
 		item:moveTo(destination)
 	end
+end
+
+function Position:MovedInDirection(direction, magnitude)
+	local vector = Vector.FromDirection(direction):Scaled(magnitude)
+	return self:Moved(vector)
+end
+local directionToReversed = {
+	[DIRECTION_NORTH] = DIRECTION_SOUTH,
+	[DIRECTION_NORTHEAST] = DIRECTION_SOUTHWEST,
+	[DIRECTION_EAST] = DIRECTION_WEST,
+	[DIRECTION_SOUTHEAST] = DIRECTION_NORTHWEST,
+	[DIRECTION_SOUTH] = DIRECTION_NORTH,
+	[DIRECTION_SOUTHWEST] = DIRECTION_NORTHEAST,
+	[DIRECTION_WEST] = DIRECTION_EAST,
+	[DIRECTION_NORTHWEST] = DIRECTION_SOUTHEAST,
+	[DIRECTION_NONE] = DIRECTION_NONE,
+}
+function Position:MovedInDirectionReversed(direction, magnitude)
+	local vector = Vector.FromDirection(directionToReversed[direction]):Scaled(magnitude)
+	return self:Moved(vector)
+end
+
+function Position:MoveInDirection(direction, magnitude)
+	local vector = Vector.FromDirection(direction):Scaled(magnitude)
+	self:Move(vector)
+	return self
 end
 
 function Position:CreateItem(id, count)
@@ -337,85 +379,35 @@ function Position:CalculatePositionsOnSlope(destination)
 	return positions, dx, dy, flipAxis
 end
 
-local function drawBackslashLine1(positions, verticalId, horizontalId)
-	local items = ItemExList()
-	for i = 1, #positions - 1 do
-		local currentPos = positions[i + 0]
-		local nextPos = positions[i + 1]
-
-		local item1 = Game.createItem(horizontalId, 1, currentPos:Moved(0, -1, 0))
-		items:Add(item1)
-		if nextPos.y ~= currentPos.y then
-			local item2 = Game.createItem(verticalId, 1, currentPos)
-			items:Add(item2)
-		end
+local function calculateIds(dx, dy, verticalId, horizontalId)
+	if dx >= dy then
+		return horizontalId, verticalId
+	else
+		return verticalId, horizontalId
 	end
-	return items
 end
 
-local function drawBackslashLine2(positions, verticalId, horizontalId)
+local function drawTest(positions, dx, dy, verticalId, horizontalId)
+	local firstId, secondId = calculateIds(dx, dy, verticalId, horizontalId)
 	local items = ItemExList()
+
 	for i = 1, #positions - 1 do
 		local currentPos = positions[i + 0]
 		local nextPos = positions[i + 1]
 
-		local item1 = Game.createItem(verticalId, 1, currentPos)
-		items:Add(item1)
-		if nextPos.x ~= currentPos.x then
-			local item2 = Game.createItem(horizontalId, 1, currentPos)
-			items:Add(item2)
-		end
-	end
-	return items
-end
+		local firstItem = Game.createItem(firstId, 1, currentPos)
+		local secondItem = Game.createItem(secondId, 1, nextPos)
 
-local function drawSlashLine1(positions, verticalId, horizontalId)
-	local items = ItemExList()
-	for i = 1, #positions - 1 do
-		local currentPos = positions[i + 0]
-		local nextPos = positions[i + 1]
-
-		local item1 = Game.createItem(horizontalId, 1, currentPos)
-		items:Add(item1)
-		if nextPos.y ~= currentPos.y then
-			local item2 = Game.createItem(verticalId, 1, currentPos)
-			items:Add(item2)
-		end
-	end
-	return items
-end
-
-local function drawSlashLine2(positions, verticalId, horizontalId)
-	local items = ItemExList()
-	for i = 1, #positions - 1 do
-		local currentPos = positions[i + 0]
-		local nextPos = positions[i + 1]
-
-		local item1 = Game.createItem(verticalId, 1, currentPos)
-		items:Add(item1)
-		if nextPos.x ~= currentPos.x then
-			local item2 = Game.createItem(horizontalId, 1, currentPos)
-			items:Add(item2)
-		end
+		items:Add(firstItem)
+		items:Add(secondItem)
 	end
 	return items
 end
 
 function Position:DrawLine(destination, verticalId, horizontalId, removeAfterSeconds)
-	local positions, dx, dy, flipAxis = self:CalculatePositionsOnSlope(destination)
+	local positions, dx, dy = self:CalculatePositionsOnSlope(destination)
 
-	local items = nil
-
-	if flipAxis and dx >= dy then
-		items = drawBackslashLine1(positions, verticalId, horizontalId)
-	elseif flipAxis and dx < dy then
-		items = drawBackslashLine2(positions, verticalId, horizontalId)
-	elseif dx >= dy then
-		items = drawSlashLine1(positions, verticalId, horizontalId)
-	elseif dx < dy then
-		items = drawSlashLine2(positions, verticalId, horizontalId)
-	end
-
+	local items = drawTest(positions, dx, dy, verticalId, horizontalId)
 	if removeAfterSeconds then
 		addEvent(function()
 			if items then
@@ -425,6 +417,10 @@ function Position:DrawLine(destination, verticalId, horizontalId, removeAfterSec
 	end
 end
 
+---comment
+---@param fromPos Position
+---@param toPos Position
+---@return boolean
 function IsMoveDiagonal(fromPos, toPos)
 	local dir = fromPos:DirectionTo(toPos)
 	if dir >= 4 and dir <= 7 then
@@ -497,6 +493,14 @@ function Position:GetTopCreature()
 	return tile:getTopCreature()
 end
 
+function Position:GetItemById(id)
+	local tile = Tile(self)
+	if not tile then
+		return
+	end
+	return tile:getItemById(id)
+end
+
 ---@param vectors Vector[]
 ---@param anchor Position
 ---@return Position[]
@@ -566,10 +570,6 @@ STOP_CONDITIONS = {
 }
 
 local function processPosition(context)
-	context.xi = context.pos.x - context.lowX
-	context.yi = context.pos.y - context.lowY
-	context.zi = context.pos.z - context.lowZ
-
 	local lastResult = context.callback(context)
 	if parseStopCondition(context.stopCondition, lastResult) then
 		return lastResult, true
@@ -578,6 +578,11 @@ local function processPosition(context)
 	return lastResult, false
 end
 
+---@param pos1 Position
+---@param pos2 Position
+---@param callback function
+---@param context table|nil
+---@return any, table|nil
 function IterateBetweenPositions(pos1, pos2, callback, context)
 	if not (IsPosition(pos1) and IsPosition(pos2) and callback) then
 		logger.debug("[IterateBetweenPositions] pos1 or pos2 is not a position or callback is nil")
@@ -620,7 +625,15 @@ function Position:EuclideanDistance(dest)
 	return distance
 end
 
-function Position:Distance(dest)
+function Position:ManhattanDistance(dest)
+	local x2 = math.abs(self.x - dest.x)
+	local y2 = math.abs(self.y - dest.y)
+	local z2 = math.abs(self.z - dest.z)
+	local distance = x2 + y2 + z2
+	return distance
+end
+
+function Position:GetDistances(dest)
 	local vector = self:VectorTo(dest):Abs()
 	return vector.x, vector.y, vector.z
 end
@@ -638,22 +651,42 @@ function IsPosition(obj)
 	return getmetatable(obj) == Position
 end
 
-function Position:GetTopItem(stackPos)
-	stackPos = stackPos or 0
+function Position:GetGroundId()
+	local ground = self:GetGround()
+	if ground then
+		return ground:getId()
+	end
+	return NO_GROUND_ID
+end
+
+function Position:GetGround()
+	local tile = Tile(self)
+	if not tile then
+		return
+	end
+	local ground = tile:getGround()
+	return ground
+end
+
+function Position:GetTopItem()
 	local tile = Tile(self)
 	if not tile then
 		return nil
 	end
-
-	local items = tile:getItems()
-	if not items or #items < 1 then
+	local topThing = tile:getTopVisibleThing()
+	if topThing:isItem() then
+		return topThing
+	else
 		return nil
 	end
+end
 
-	if not items[1 + stackPos] then
-		return nil
+function Position:GetPlayers()
+	local tile = Tile(self)
+	if not tile then
+		return {}
 	end
-	return items[1 + stackPos]
+	return tile:getPlayers()
 end
 
 function Signum(val)
@@ -764,9 +797,9 @@ function Position:IsBetween(corner1, corner2)
 	return true
 end
 
----@param vectorOrX Vector|number passing vector will ignore other params
----@param y number
----@param z number
+---@param vectorOrX number|Vector|Position passing vector will ignore other params
+---@param y number|nil
+---@param z number|nil
 ---@return Position self origial position moved by the vector or the x, y, z
 function Position:Move(vectorOrX, y, z)
 	local offset = ExtractCoords(vectorOrX, y, z)
@@ -776,9 +809,9 @@ function Position:Move(vectorOrX, y, z)
 	return self
 end
 
----@param vectorOrX Vector|number passing vector will ignore other params
----@param y number
----@param z number
+---@param vectorOrX number|Vector|Position passing vector/position will ignore other params
+---@param y number|nil
+---@param z number|nil
 ---@return Position moved deepcopy of origial position moved by the vector or the x, y, z
 function Position:Moved(vectorOrX, y, z)
 	local offset = ExtractCoords(vectorOrX, y, z)
