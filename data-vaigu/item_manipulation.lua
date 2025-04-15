@@ -1,4 +1,3 @@
-CHEST_NEVER_OPENED = -1
 local forceUntradeability = {
 	[43946] = true,
 	[43947] = true,
@@ -6,6 +5,26 @@ local forceUntradeability = {
 	[43949] = true,
 	[43950] = true,
 }
+
+local leverSwapMap = {
+	[ItemId.LEVER_LEFT] = ItemId.LEVER_RIGHT,
+	[ItemId.LEVER_RIGHT] = ItemId.LEVER_LEFT,
+}
+function FlipLever(item)
+	if not item then
+		logger.warn(debug.traceback("[FlipLever] not item provided"))
+		return
+	end
+
+	local id = item:getId()
+	if not leverSwapMap[id] then
+		logger.warn(debug.traceback("[FlipLever] lever has no other flip state"))
+		return
+	end
+
+	item:transform(leverSwapMap[id])
+end
+
 local function extractItemData(item)
 	local id = item:getId()
 	local count = item:getCount()
@@ -70,6 +89,21 @@ setmetatable(ItemExList, {
 function ItemExList:Get()
 	return self.items
 end
+function ItemExList:First()
+	return self.items[#self.items]
+end
+
+function ItemExList:RadiusSquare(pos, radius)
+	radius = radius or 1
+	IterateBetweenPositions(pos:Moved(radius, radius), pos:Moved(-radius, -radius), function(context)
+		local tile = Tile(context.pos)
+		if not tile then
+			return
+		end
+		self:AddMultiple(tile:getItems())
+	end)
+	return self
+end
 
 function ItemExList:Area(pos1, pos2)
 	IterateBetweenPositions(pos1, pos2, function(context)
@@ -111,7 +145,7 @@ function ItemExList:Count()
 	return count
 end
 
-function ItemExList:FilteredByAid(aid)
+function ItemExList:FilterByAid(aid)
 	if not aid then
 		return self
 	end
@@ -124,7 +158,20 @@ function ItemExList:FilteredByAid(aid)
 	return result
 end
 
-function ItemExList:FilteredByFluidtype(fluidtype)
+function ItemExList:FilterByKey(key)
+	if not key then
+		return self
+	end
+	local result = ItemExList()
+	for _, item in pairs(self.items) do
+		if item:getKey() == key then
+			result:Add(item)
+		end
+	end
+	return result
+end
+
+function ItemExList:FilterByFluidtype(fluidtype)
 	if not fluidtype then
 		return self
 	end
@@ -137,7 +184,7 @@ function ItemExList:FilteredByFluidtype(fluidtype)
 	return result
 end
 
-function ItemExList:FilteredById(id)
+function ItemExList:FilterById(id)
 	if not id then
 		return self
 	end
@@ -349,6 +396,27 @@ function ChangeItemsActionId(items, aid, anchor)
 		end
 		local changeMyAid = tile:getItemById(id)
 		changeMyAid:setActionId(aid)
+		::continue::
+	end
+end
+
+function ChangeItemsKey(items, key, anchor)
+	if not (items and key) then
+		return false
+	end
+
+	for _, item in pairs(items) do
+		local pos = item.offPos or item.pos
+		if anchor then
+			pos = anchor:Moved(pos)
+		end
+		local id = item.id
+		local tile = Tile(pos)
+		if not tile then
+			goto continue
+		end
+		local changeMyKey = tile:getItemById(id)
+		changeMyKey:setKey(key)
 		::continue::
 	end
 end
