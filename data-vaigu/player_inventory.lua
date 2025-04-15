@@ -54,7 +54,12 @@ function Player:CountItem(item)
 	local id = item.id
 	local aid = item.aid
 	local fluidType = item.fluidType
-	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType):Get()
+	local key = item.key
+	if not (id or aid or fluidType or key) then
+		logger.error(debug.traceback("[Player::CountItem] trying to count items by no search criteria!"))
+		return -1
+	end
+	local filteredItems = self:GetAllItems():FilterById(id):FilterByAid(aid):FilterByFluidtype(fluidType):FilterByKey(key):Get()
 	local count = 0
 	for _, fiteredItem in pairs(filteredItems) do
 		count = count + fiteredItem:getCount()
@@ -62,16 +67,17 @@ function Player:CountItem(item)
 	return count
 end
 
-function Player:HasItem(item)
-	local requiredCount = item.count
-
-	local count = self:CountItem(item)
-	return count >= requiredCount
-end
-
 local function normalizeItemCount(item)
 	item.count = item.count or 1
 	return item
+end
+
+function Player:HasItem(item)
+	item = normalizeItemCount(item)
+
+	local requiredCount = item.count
+	local count = self:CountItem(item)
+	return count >= requiredCount
 end
 
 local function nodeIsItem(node)
@@ -93,20 +99,14 @@ local function parseGroupQuantifier(quantfier)
 	return REQUIRE_ALL
 end
 
-local function matchAnySucceeded(requirement, hasItems)
-	if requirement ~= REQUIRE_ANY then
-		return false
-	end
+local function matchAnySucceeded(hasItems)
 	if hasItems then
 		return true
 	end
 	return false
 end
 
-local function matchAllSucceeded(quantfier, hasItems)
-	if quantfier ~= REQUIRE_ALL then
-		return false
-	end
+local function matchAllSucceeded(hasItems)
 	return hasItems
 end
 
@@ -136,11 +136,11 @@ function Player:HasItems(items, quantifier)
 			end
 		end
 
-		if matchAnySucceeded(quantifier, hasItems) then
-			return true, takeableItems
+		if quantifier == REQUIRE_ANY and matchAnySucceeded(hasItems) then
+			return true, takeableItems:Get()
 		end
 
-		if not matchAllSucceeded(quantifier, hasItems) then
+		if quantifier == REQUIRE_ALL and not matchAllSucceeded(hasItems) then
 			return false, nil
 		end
 	end
@@ -161,7 +161,7 @@ end
 
 local function parseItemCountToRemove(player, item)
 	if item.take == TAKE_ALL_AVAILABLE then
-		return player:CountItem(item.id, item.aid, item.fluidType)
+		return player:CountItem(item)
 	end
 	return item.count or 1
 end
@@ -169,15 +169,16 @@ end
 function Player:RemoveEquippedItemByCriteria(removalCriteria)
 	local id = removalCriteria.id
 	local itemCountToRemove = parseItemCountToRemove(self, removalCriteria)
-	local aid = removalCriteria.actionid or removalCriteria.aid or 0
+	local aid = removalCriteria.actionid or removalCriteria.aid
 	local fluidType = removalCriteria.fluidType
+	local key = removalCriteria.key
 
 	if not (id or aid or fluidType) then
 		logger.error(debug.traceback("[Player::RemoveEquippedItemByCriteria] Trying to remove item with null id, aid and fluidtype. This would remove player's whole inventory!"))
 		return
 	end
 
-	local filteredItems = self:GetAllItems():FilteredById(id):FilteredByAid(aid):FilteredByFluidtype(fluidType):Get()
+	local filteredItems = self:GetAllItems():FilterById(id):FilterByAid(aid):FilterByKey(key):FilterByFluidtype(fluidType):Get()
 
 	for _, removableItem in pairs(filteredItems) do
 		if itemCountToRemove <= 0 then
@@ -345,89 +346,94 @@ function CountNotAddableItems(items)
 end
 
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
----@param item table
+---@param itemData table
 ---@param container Container|nil
-function Player:AddCustomItem(item, container, localizer)
-	item = normalizedItem(item)
-	local id = item.id
-	local count = item.count
-	local aid = item.aid
-	local key = item.key
-	local showCustomDescOnAcquire = item.showCustomDescOnAcquire
-	local desc = item.desc
-	local text = item.text
-	local uid = item.uid
-	local fluidType = item.fluidType
+function Player:AddCustomItem(itemData, container, localizer)
+	itemData = normalizedItem(itemData)
+	local id = itemData.id
+	local count = itemData.count
+	local aid = itemData.aid
+	local key = itemData.key
+	local showCustomDescOnAcquire = itemData.showCustomDescOnAcquire
+	local desc = itemData.desc
+	local text = itemData.text
+	local uid = itemData.uid
+	local fluidType = itemData.fluidType
 
 	local actionOnAdd = customItemActionContainer[id]
 	if actionOnAdd then
-		local context = { player = self, item = item }
+		local context = { player = self, item = itemData }
 		if actionOnAdd(context) == DONT_ADD_ITEM_TO_INVENTORY then
 			return
 		end
 	end
 
-	local addedItem = Game.createItem(id, count)
+	local addedItems = Game.createItem(id, count)
+	if type(addedItems) ~= "table" then
+		addedItems = { addedItems }
+	end
 
-	for key, value in pairs(item) do
-		if IsCustomAttribute(key) then
-			addedItem:setCustomAttribute(key, value)
+	for _, addedItem in pairs(addedItems) do
+		for key, value in pairs(itemData) do
+			if IsCustomAttribute(key) then
+				addedItem:setCustomAttribute(key, value)
+			end
+			if IsSetableAttribute(key) then
+				addedItem:setAttribute(key, value)
+			end
 		end
-		if IsSetableAttribute(key) then
-			addedItem:setAttribute(key, value)
+
+		local iType = ItemType(id)
+		if iType and iType:isFluidContainer() then
+			addedItem:transform(id, 0)
 		end
-	end
 
-	local iType = ItemType(id)
-	if iType and iType:isFluidContainer() then
-		addedItem:transform(id, 0)
-	end
+		addedItem:setActionId(aid)
+		if uid ~= 0 then
+			addedItem:setUniqueId(uid)
+		end
+		if desc and count == 1 then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
+		end
+		if text and count == 1 then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_TEXT, text)
+		end
+		if key and count == 1 then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
+		end
+		if fluidType then
+			addedItem:transform(id, fluidType)
+		end
 
-	addedItem:setActionId(aid)
-	if uid ~= 0 then
-		addedItem:setUniqueId(uid)
-	end
-	if desc and count == 1 then
-		addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
-	end
-	if text and count == 1 then
-		addedItem:setText(ITEM_ATTRIBUTE_TEXT, text)
-	end
-	if key and count == 1 then
-		addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
-	end
-	if fluidType then
-		addedItem:transform(id, fluidType)
-	end
+		if text or desc then
+			addedItem:setCustomAttribute("localizer", localizer)
+		end
 
-	if text or desc then
-		addedItem:setCustomAttribute("localizer", localizer)
-	end
+		if shouldAddToStore(itemData) then
+			addedItem:setOwner(self)
+			addedItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
+			local inbox = self:getStoreInbox()
+			inbox:addItemEx(addedItem)
+		else
+			container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
+			container:addItemEx(addedItem, nil, FLAG_NOLIMIT)
+		end
 
-	if shouldAddToStore(item) then
-		addedItem:setOwner(self)
-		addedItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
-		local inbox = self:getStoreInbox()
-		inbox:addItemEx(addedItem)
-	else
-		container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
-		container:addItemEx(addedItem)
-	end
+		if aid == 0 then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
+		end
+		if key == "" then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
+		end
 
-	if aid == 0 then
-		addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
-	end
-	if key == "" then
-		addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
-	end
+		local name = addedItem:getName()
+		if showCustomDescOnAcquire then
+			name = desc
+		end
 
-	local name = addedItem:getName()
-	if showCustomDescOnAcquire then
-		name = desc
-	end
-
-	if name and item.dontAnnounce == false then
-		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. name .. ".")
+		if name and itemData.dontAnnounce ~= true then
+			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. name .. ".")
+		end
 	end
 end
 
