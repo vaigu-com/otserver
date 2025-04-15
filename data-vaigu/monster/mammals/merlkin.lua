@@ -86,6 +86,7 @@ monster.loot = {
 	{ name = "ape fur", chance = 1000 },
 	{ name = "mana potion", chance = 660 },
 	{ name = "banana sash", chance = 1800 },
+	{ id = 5785, chance = 2000}
 }
 
 monster.attacks = {
