@@ -912,6 +912,7 @@ int GameFunctions::luaInitializeTranslationTable(lua_State* L) {
 	return 1;
 }
 
+//Vaigu custom
 int GameFunctions::copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement> &destination) {
 	lua_pushnil(L);
 	while (lua_next(L, index)) {

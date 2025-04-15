@@ -761,9 +761,9 @@ int PlayerFunctions::luaPlayergetCharmMonsterType(lua_State* L) {
 // Vaigu custom
 int PlayerFunctions::luaPlayerRemovePreyStamina(lua_State* L) {
 	// player:removePreyStamina(amount, raceId)
-	std::shared_ptr<Player> player =Lua:: getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
 	if (player) {
-		g_ioprey().reducePlayerPreyTime(player, Lua::getNumber<uint8_t>(L, 2, 1),Lua:: getNumber<uint16_t>(L, 3, -1));
+		g_ioprey().reducePlayerPreyTime(player, Lua::getNumber<uint8_t>(L, 2, 1), Lua::getNumber<uint16_t>(L, 3, -1));
 		g_ioprey().updatePlayerPreyStatus(player);
 		Lua::pushBoolean(L, true);
 	} else {

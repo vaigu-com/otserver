@@ -91,7 +91,7 @@ bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 				pugi::xml_attribute weightAttribute = childMonsterNode.attribute("weight");
 				uint32_t weight = 1;
 				if (weightAttribute) {
-					weight = pugi::cast<uint32_t>(weightAttribute.value());
+					weight = pugi::cast<uint32_t>(weightAttribute.value());	
 				}
 
 				uint32_t scheduleInterval = g_configManager().getNumber(DEFAULT_RESPAWN_TIME);

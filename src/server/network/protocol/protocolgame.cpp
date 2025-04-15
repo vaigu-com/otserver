@@ -273,7 +273,7 @@ std::string FindValueByKey(const std::vector<Game::LuaElement> elements, const s
 const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_ptr<Item> item, std::shared_ptr<Player> player) {
 	std::string defaultLocalizer = "_universal";
 	try {
-		std::string targetLocalizer; 
+		std::string targetLocalizer;
 		if (item != nullptr) {
 			auto attribute = item->getCustomAttribute("localizer");
 			if (attribute) {
@@ -293,13 +293,13 @@ const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_
 			usedLocalizer(), str
 		};
 
-		std::string translated = FindValueByKey(g_game().translationMap, keys);	
-		if (!translated.empty()){
+		std::string translated = FindValueByKey(g_game().translationMap, keys);
+		if (!translated.empty()) {
 			return translated;
 		}
 		return str;
 	} catch (...) {
-		return str; 
+		return str;
 	}
 }
 
@@ -322,12 +322,12 @@ const std::string ProtocolGame::TryTranslate(const std::string str, const std::s
 		};
 
 		std::string translated = FindValueByKey(g_game().translationMap, keys);
-		if (!translated.empty()){
+		if (!translated.empty()) {
 			return translated;
 		}
 		return str;
 	} catch (...) {
-		return str; 
+		return str;
 	}
 }
 

@@ -675,7 +675,7 @@ void Player::updateInventoryWeight() {
 	inventoryWeight = 0;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
 		// Vaigu custom
-		if (i == CONST_SLOT_STORE_INBOX) { 
+		if (i == CONST_SLOT_STORE_INBOX) {
 			continue;
 		}
 		const auto &item = inventory[i];
@@ -3494,7 +3494,7 @@ void Player::doAttacking(uint32_t interval) {
 
 		const auto &task = createPlayerTask(
 			std::max<uint32_t>(SCHEDULER_MINTICKS, delay), [self = std::weak_ptr<Creature>(getCreature())] {
-				if (const auto &creature = self.lock()) {
+				if (const auto& creature = self.lock()) {
 					creature->checkCreatureAttack(true);
 				} }, __FUNCTION__
 		);
@@ -8823,13 +8823,13 @@ std::pair<std::vector<std::shared_ptr<Item>>, std::map<uint16_t, std::map<uint8_
 }
 
 /**
-    This function returns a pair of an array of items and a 16-bit integer from a DepotLocker instance, a 8-bit byte and a 16-bit integer.
-    @param depotLocker The instance of DepotLocker from which to retrieve items.
-    @param tier The 8-bit byte that specifies the level of the tier to search.
-    @param itemId The 16-bit integer that specifies the ID of the item to search for.
-    @return A pair of an array of items and a 16-bit integer, where the array of items is filled with all items from the
-    locker with the specified id and the 16-bit integer is the total items found.
-    */
+        This function returns a pair of an array of items and a 16-bit integer from a DepotLocker instance, a 8-bit byte and a 16-bit integer.
+        @param depotLocker The instance of DepotLocker from which to retrieve items.
+        @param tier The 8-bit byte that specifies the level of the tier to search.
+        @param itemId The 16-bit integer that specifies the ID of the item to search for.
+        @return A pair of an array of items and a 16-bit integer, where the array of items is filled with all items from the
+        locker with the specified id and the 16-bit integer is the total items found.
+        */
 
 std::pair<std::vector<std::shared_ptr<Item>>, uint16_t> Player::getLockerItemsAndCountById(const std::shared_ptr<DepotLocker> &depotLocker, uint8_t tier, uint16_t itemId) const {
 	std::vector<std::shared_ptr<Item>> lockerItems;
@@ -10532,15 +10532,15 @@ void Player::BestiarysendCharms() const {
 }
 
 void Player::addBestiaryKillCount(uint16_t raceid, uint32_t amount) {
-		uint32_t oldCount = getBestiaryKillCount(raceid);
-		std::string key = "BestiaryKillCount-" + std::to_string(raceid);
-		setStorageValueByKey(key, oldCount + amount);
+	uint32_t oldCount = getBestiaryKillCount(raceid);
+	std::string key = "BestiaryKillCount-" + std::to_string(raceid);
+	setStorageValueByKey(key, oldCount + amount);
 }
 
 uint32_t Player::getBestiaryKillCount(uint16_t raceid) const {
-		std::string key = "BestiaryKillCount-" + std::to_string(raceid);
-		auto value = getStorageValueByKey(key);
-		return value > 0 ? static_cast<uint32_t>(value) : 0;
+	std::string key = "BestiaryKillCount-" + std::to_string(raceid);
+	auto value = getStorageValueByKey(key);
+	return value > 0 ? static_cast<uint32_t>(value) : 0;
 }
 
 void Player::setGUID(uint32_t newGuid) {
