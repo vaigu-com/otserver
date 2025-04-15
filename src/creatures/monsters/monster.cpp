@@ -40,6 +40,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> &mType) :
 	m_lowerName(asLowerCaseString(mType->name)),
 	nameDescription(asLowerCaseString(mType->nameDescription)),
 	mType(mType) {
+	name = mType->name,
 	defaultOutfit = mType->info.outfit;
 	currentOutfit = mType->info.outfit;
 	skull = mType->info.skull;
@@ -59,7 +60,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> &mType) :
 			                scriptName);
 		}
 	}
-	fullName = mType->name; // Vaigu custom
+	updateFullName();
 }
 
 std::shared_ptr<Monster> Monster::getMonster() {
@@ -91,19 +92,21 @@ bool Monster::hasIgnoreCreatures() {
 
 // Vaigu custom
 const std::string &Monster::getName() const {
-	if (name.empty()) {
+	if (fullName.empty()) {
 		return mType->name;
 	}
-	//return name;
-	return fullName; // Vaigu custom
+	// return name;
+	return fullName;
 }
 
+// Vaigu custom
 void Monster::setName(const std::string &name) {
 	if (getName() == name) {
 		return;
 	}
 
 	this->name = name;
+	this->fullName = name;
 
 	// NOTE: Due to how client caches known creatures,
 	// it is not feasible to send creature update to everyone that has ever met it
@@ -2566,6 +2569,13 @@ void Monster::getPathSearchParams(const std::shared_ptr<Creature> &creature, Fin
 	}
 }
 
+// Vaigu custom
+void Monster::updateFullName() {
+	// Set monster title based on influence
+	std::string title = influenceRankToTitle[getForgeStack()];
+	fullName = title + name;
+}
+
 void Monster::configureForgeSystem() {
 	if (!canBeForgeMonster()) {
 		return;
@@ -2582,13 +2592,11 @@ void Monster::configureForgeSystem() {
 		g_game().updateCreatureIcon(static_self_cast<Monster>());
 	}
 
+	updateFullName();
+	
 	// Change health based in stacks
 	const auto percentToIncrement = 1 + (15 * forgeStack + 35) / 100.f;
 	auto newHealth = static_cast<int32_t>(std::ceil(static_cast<float>(healthMax) * percentToIncrement));
-
-	// Set monster title based on influence
-	std::string title = influenceRankToTitle[getForgeStack()];
-	fullName = title + mType->name;
 
 	healthMax = newHealth;
 	health = newHealth;
@@ -2648,7 +2656,7 @@ void Monster::clearFiendishStatus() {
 	health = mType->info.health * mType->getHealthMultiplier();
 	healthMax = mType->info.healthMax * mType->getHealthMultiplier();
 
-	fullName = mType->name;
+	updateFullName();
 	removeIcon("forge");
 	g_game().updateCreatureIcon(static_self_cast<Monster>());
 	g_game().sendUpdateCreature(static_self_cast<Monster>());

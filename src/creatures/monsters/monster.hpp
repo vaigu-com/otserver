@@ -200,6 +200,8 @@ public:
 
 	static uint32_t monsterAutoID;
 
+	void updateFullName();
+
 	void configureForgeSystem();
 
 	bool canBeForgeMonster() const;
