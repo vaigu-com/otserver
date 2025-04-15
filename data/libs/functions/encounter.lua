@@ -23,7 +23,8 @@ DEFAULT_LEVER_ID = 2772
 DAY_RESET_TIME_LOCAL = 5
 
 ENCOUNTER_STAGE = {
-	UNSTARTED = 0,
+	UNSTARTED = -100,
+	FIRST_STAGE = 1,
 }
 
 EncounterNames = {
@@ -98,34 +99,23 @@ function NextEncounterId()
 	FIRST_ENCOUNTER_ID = FIRST_ENCOUNTER_ID + 1
 	return FIRST_ENCOUNTER_ID
 end
----@class EncounterData
----@field public encounterName string used for storing encounter cooldown in KV storage
----@field public disableLockout boolean does not apply cooldown
+
+---@class EncounterDataContext
+---@field private disabled boolean?
+---@field public disableLockout boolean does not apply cooldown on kill/entry
 ---@field private requiredState table?
 ---@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
 ---@field private lockoutType LOCKOUT_TYPE?
 ---@field private timeToDefeat number?
 ---@field private ejectAfterCompletionSeconds number?
 ---@field private requiredLevel number?
----@field private disabled boolean?
----@field private requiredPlayers integer?
+---@field private requiredPlayers integer? -- size of entrance grid if nil
 ---@field private onUseExtra function
----@field private leverId integer?
----@field private leverPosition Position registers action on position
----@field private _uid number registers action on uid
----@field private _aid number registers action on aid
----@field private entranceTiles {pos: Position, destination: Position}[]
 ---@field private monsters {name: string, pos: Position}[]
----@field private exitTpPosition Position
----@field private exitTpDestination Position
----@field private exitTpId number
 ---@field private timeoutEvent Event
----@field private zone Zone
----@field private spawnZone Zone
 ---@field private stages EncounterStage[]
 ---@field private currentStage number
 ---@field private events table
----@field private registered boolean
 ---@field private global boolean
 ---@field private timeToSpawnMonsters number|nil
 ---@field private onReset function?
@@ -133,99 +123,403 @@ end
 ---@field private active boolean
 ---@field private isMinigame boolean?
 ---@field public bossName string?
+EncounterDataContext = EncounterDataContext
+
+---@class EncounterData
+---@field private disabled boolean?
+---@field public disableLockout boolean does not apply cooldown on kill/entry
+---@field private requiredState table?
+---@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
+---@field private lockoutType LOCKOUT_TYPE?
+---@field private timeToDefeat number?
+---@field private ejectAfterCompletionSeconds number?
+---@field private requiredLevel number?
+---@field private requiredPlayers integer?
+---@field private onUseExtra function
+---@field private monsters {name: string, pos: Position}[]
+---@field private timeoutEvent Event
+---@field private stages EncounterStage[]
+---@field private currentStage number
+---@field private events table
+---@field private global boolean
+---@field private timeToSpawnMonsters number|nil
+---@field private onReset function?
+---@field private beforeStart function?
+---@field private active boolean
+---@field private isMinigame boolean?
+---@field public bossName string?
+---@field public encounterId string
+---generated:
+---@field private registered boolean
+---@field private bossSpawnPosition Position
+---@field private exitTeleportDestination Position
+---@field private exitTeleportDestinationKey string
+---@field private entranceLeverZone Zone
+---@field private playerAppearZone Zone
+---@field private encounterAreaPositionsZone Zone
+---@field private monsterSpawnZone Zone
 EncounterData = {}
 EncounterData.__index = EncounterData
+---@param context EncounterDataContext
 function EncounterData.New(context)
-	local instance = {}
-	setmetatable(instance, EncounterData)
-	instance:Data(context)
-	return instance
+	local newObj = {}
+	setmetatable(newObj, EncounterData)
+	newObj:Data(context)
+	if not newObj:Validate() then
+		return nil
+	end
+	return newObj
 end
 setmetatable(EncounterData, {
-	__call = function(_, encounterName)
-		return EncounterData.New(encounterName)
+	__call = function(_, displayName)
+		return EncounterData.New(displayName)
 	end,
 })
 
-function EncounterData:Data(context)
-	self.encounterName = context.encounterName
-	--Fight
-	local newZone = Zone("encounter." .. toKey(context.encounterName))
-	newZone:addArea(context.zoneArea[1], context.zoneArea[2])
-	newZone:blockFamiliars()
-	self.zone = newZone:getName()
-	self.spawnZone = (function()
-		if context.spawnZone then
-			return context.spawnZone:getName()
-		end
-		return self.zone
-	end)()
-	self.stages = {}
-	self.currentStage = ENCOUNTER_STAGE.UNSTARTED
-	self.global = context.global or false
-	self.timeToSpawnMonsters = ParseDuration(context.timeToSpawnMonsters or "3s")
-	self.events = Set()
-	self.bossName = context.bossName
-	if context.bossName then
-		MonsterType(context.bossName):registerEvent("EncounterOnSuccessfulCompletion")
+function EncounterData:GetDisplayName()
+	return self.displayName
+end
+function EncounterData:GetParticipantsCount()
+	return self.participantsCount
+end
+function EncounterData:GetCurrentParticipantsCount()
+	return #self:GetCurrentParticipants()
+end
+function EncounterData:GetCurrentParticipants()
+	local zone = self:GetEncounterZone()
+	local players = zone:getPlayers()
+	return players
+end
+function EncounterData:GetCurrentPhase()
+	return self.stages[self.currentStage]
+end
+
+
+ENCOUNTER_SCOPE_NAME = {
+	BossSpawnPosition = "BossSpawnPosition",
+	ExitTeleportDestination = "ExitTeleportDestination",
+	ExitTeleport = "ExitTeleport",
+	EntranceLeverPositions = "EntranceLeverPositions",
+	EntranceLever = "EntranceLever",
+	PlayerAppearPositions = "PlayerAppearPositions",
+	MonsterSpawnPositions = "MonsterSpawnPositions",
+	EncounterAreaPositions = "EncounterAreaPositions",
+	EncounterOnComplete = "EncounterOnComplete",
+	HighestDifficultyCompleted = "HighestDifficultyCompleted",
+	ChosenDifficulty = "ChosenDifficulty",
+}
+
+local requiredZones = {
+	"entranceLeverZone",
+	"playerAppearZone",
+	"encounterAreaPositionsZone",
+	"monsterSpawnZone",
+}
+
+local requiredGeneratedFields = {
+	"entranceLeverZone",
+	"playerAppearZone",
+	"encounterAreaPositionsZone",
+	"monsterSpawnZone",
+	"bossSpawnPosition",
+	"exitTeleportDestination",
+}
+function EncounterData:Validate()
+	if not self.displayName then
+		logger.error(debug.traceback("[EncounterData:Validate] no displayName provided."))
+		return false
+	end
+	if not self.encounterId then
+		logger.error(debug.traceback("[EncounterData:Validate] no encounterId provided."))
+		return false
 	end
 
-	--Entrance
-	self.encounterName = context.encounterName
-	self.requiredState = context.requiredState or {}
-	self.nextState = context.nextState or {}
+	local missingFields = {}
+	for _, value in pairs(requiredGeneratedFields) do
+		if not self[value] then
+			table.insert(missingFields, value)
+		end
+	end
+	if #missingFields > 0 then
+		logger.error('[EncounterData:Validate] - encounter with displayName "{}" missing generated fields (zones might be missing in otbm): {}', (self.displayName or "Unknown"), table.concat(missingFields, ", "))
+		return false
+	end
+
+	local emptyZones = {}
+	for _, value in pairs(requiredZones) do
+		if not self[value] then
+			table.insert(emptyZones, value)
+		elseif #self[value]:getPositions() == 0 then
+			table.insert(emptyZones, value)
+		end
+	end
+	if #emptyZones > 0 then
+		logger.warn('[EncounterData:Validate] - encounter with displayName "{}" zones have no positions assigned (zones might be missing in otbm): {}', (self.displayName or "Unknown"), table.concat(emptyZones, ", "))
+		return false
+	end
+
+	local missingParams = {}
+	if not self.exitTeleportDestination then
+		table.insert(missingParams, "exitTeleportDestination")
+	end
+	if #missingParams > 0 then
+		logger.error('[EncounterData:Validate] - encounter with displayName "{}" missing parameters: {}', (self.displayName or "Unknown"), table.concat(missingParams, ", "))
+		return false
+	end
+
+	return true
+end
+
+Storage.FirstTimeEncounterLeverUse = {}
+local function isFirstLeverUse(player)
+	return player:getStorageValueByKey(Storage.FirstTimeEncounterLeverUse) == MISSION_NOT_STARTED
+end
+
+ENCOUNTER_LEVER_HELP_WINDOW_TEXT = "ENCOUNTER_LEVER_HELP_WINDOW_TEXT"
+local function showLeverHelpWindow(player)
+	player:setStorageValueByKey(Storage.FirstTimeEncounterLeverUse, MISSION_FINISHED)
+
+	local translatedMessage = player:Localizer(LOCALIZERS.Universal):Get(ENCOUNTER_LEVER_HELP_WINDOW_TEXT)
+	SimpleTextDisplay(player, translatedMessage)
+end
+
+ENCOUNTER_DIFFICULTY = {
+	[0] = "test0",
+	[1] = "test1",
+	[2] = "test2",
+	[3] = "test3",
+}
+
+local function confirmSelectEncounterDifficulty(player, button, choice)
+	player:setStorageValueByKey(choice.encounter.chosenDifficultyStorage, choice.difficulty)
+end
+
+local function showLeverDifficultySetting(player, encounter)
+	local localizer = player:Localizer(LOCALIZERS.Universal)
+	local message = localizer:Get("Select difficulty:")
+	local title = T(":displayName:", { displayName = encounter:GetDisplayName() })
+	local modalWindow = ModalWindow({ title = title, message = message })
+
+	local hardestDiffucultyCompleted = player:getStorageValueByKey(encounter.highestDifficultyCompletedStorage)
+	for difficulty = 0, hardestDiffucultyCompleted + 1 do
+		local choice = modalWindow:addChoice(T("+:difficulty:", { difficulty = difficulty }))
+		choice.difficulty = difficulty
+		choice.encounter = encounter
+	end
+
+	local select = modalWindow:addButton(localizer:Get("Select"), confirmSelectEncounterDifficulty)
+	local cancel = modalWindow:addButton(localizer:Get("Cancel"))
+
+	modalWindow:addButton(localizer:Get("Help"), showLeverHelpWindow)
+	modalWindow:setDefaultEnterButton(select.id - 1)
+	modalWindow:setDefaultEscapeButton(cancel.id - 1)
+
+	modalWindow:sendToPlayer(player)
+end
+
+function EncounterData:SetupExitTeleportStepin()
+	local teleport = MoveEvent()
+	function teleport.onStepIn(creature, item, position, fromPosition)
+		local player = creature:getPlayer()
+		if not player then
+			return false
+		end
+
+		player:teleportTo(self.exitTeleportDestination)
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+		return true
+	end
+	teleport:key(self.exitTeleportDestinationKey)
+	teleport:register()
+end
+
+function EncounterData:SetupEntranceLeverUse()
+	local leverUse = Action()
+	function leverUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+		if not player:isPlayer() then
+			return false
+		end
+
+		if isFirstLeverUse(player) then
+			showLeverHelpWindow(player)
+			return false
+		end
+
+		self:tryEnter(player)
+		return false
+	end
+	leverUse:key(self.entranceLeverKey)
+	leverUse:register()
+
+	local leverLook = Look()
+	function leverLook.onLook(player, item, fromPosition, target, toPosition, isHotkey)
+		if not player:isPlayer() then
+			return false
+		end
+
+		showLeverDifficultySetting(player, self)
+		return DONT_SHOW_ONLOOK
+	end
+	leverLook:key(self.entranceLeverKey)
+	leverLook:register()
+end
+
+function EncounterData:GetScope()
+	return self.scope
+end
+
+function EncounterData:GetEventScope()
+	return self.eventScope
+end
+
+function EncounterData:SetupScopes()
+	local encounterScope = Scope("Encounter", self.encounterId)
+	self.scope = encounterScope
+	self.eventScope = Scope("Encounter", self.encounterId, "GlobalEvent")
+
+	local lockoutScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.LockoutScope)
+	self.lockoutStorage = lockoutScope
+
+	local bossSpawnPositionScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.BossSpawnPosition)
+	self.bossSpawnPosition = Zone(bossSpawnPositionScope):randomPosition()
+
+	local exitTeleportDestinationScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.ExitTeleportDestination)
+	self.exitTeleportDestination = Zone(exitTeleportDestinationScope):randomPosition()
+	local exitTeleportItemScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.ExitTeleport)
+	self.exitTeleportDestinationKey = exitTeleportItemScope
+
+	local entranceLeverPositionsScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.EntranceLeverPositions)
+	self.entranceLeverZone = Zone(entranceLeverPositionsScope)
+	local entranceLeverItemScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.EntranceLever)
+	self.entranceLeverKey = entranceLeverItemScope
+
+	local playerAppearPositionsScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.PlayerAppearPositions)
+	self.playerAppearZone = Zone(playerAppearPositionsScope)
+
+	local encounterAreaPositionsScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.EncounterAreaPositions)
+	self.encounterAreaPositionsZone = Zone(encounterAreaPositionsScope)
+
+	local encounterOnCompleteScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.EncounterOnComplete)
+	self.encounterOnCompleteCreatureEventId = encounterOnCompleteScope
+
+	local monsterSpawnPositionsScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.MonsterSpawnPositions)
+	self.monsterSpawnZone = Zone(monsterSpawnPositionsScope)
+
+	local highestDifficultyCompletedScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.HighestDifficultyCompleted)
+	self.highestDifficultyCompletedStorage = highestDifficultyCompletedScope
+
+	local chosenDifficultyScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.ChosenDifficulty)
+	self.chosenDifficultyStorage = chosenDifficultyScope
+end
+
+function EncounterData:SetupScopesMinigame()
+	local minigameScope = Scope(Storage.Minigames.SpecificMinigameStatistics, self.displayName)
+
+	local winsScope = minigameScope:Get("Wins")
+	self.winsStorage = winsScope
+
+	local matchesScope = minigameScope:Get("Matches")
+	self.matchesStorage = matchesScope
+
+	local pointsScope = minigameScope:Get("Points")
+	self.pointsStorage = pointsScope
+
+	local shortestTimeScope = minigameScope:Get("ShortestTime")
+	self.shortestTimeStorage = shortestTimeScope
+
+	local longestTimeScope = minigameScope:Get("LongestTime")
+	self.longestTimeStorage = longestTimeScope
+end
+
+function EncounterData:SetupCompletion()
+	if not self.bossName then
+		return
+	end
+
+	local bossMonsterType = MonsterType(self.bossName)
+	if not bossMonsterType then
+		return
+	end
+
+	local bossDeath = CreatureEvent(self.encounterOnCompleteCreatureEventId)
+	function bossDeath.onDeath(creature)
+		if not creature then
+			return true
+		end
+
+		local participants = creature:getDamageMap()
+		self:OnSuccessfulCompletion(participants)
+		return true
+	end
+	bossDeath:register()
+	bossMonsterType:registerEvent("EncounterOnSuccessfulCompletion")
+
+	--[[
+	local function SomeOtherCondition()
+		local participants = self.encounterAreaPositionsZone:getPlayers()
+		self:OnSuccessfulCompletion(participants)
+	end
+	]]
+end
+
+function EncounterData:SetRequiredPlayers(context)
+	if context.requiredPlayers then
+		self.requiredPlayers = context.requiredPlayers
+	elseif self.entranceLeverZone then
+		self.requiredPlayers = #self.entranceLeverZone:getPositions()
+	else
+		self.requiredPlayers = 1
+	end
+end
+
+function EncounterData:Data(context)
+	self.displayName = context.displayName
+	self.encounterId = context.encounterId
+	self:SetupScopes()
+	self:SetupExitTeleportStepin()
+	self:SetupEntranceLeverUse()
+
+	self.bossName = context.bossName
+	self:SetupCompletion()
+
+	--Fight
+	self.stages = {}
+	self.currentStage = ENCOUNTER_STAGE.UNSTARTED
+
+	self.global = context.global or false
+	self.timeToSpawnMonsters = ParseDuration(context.timeToSpawnMonsters or "3s")
+	self.events = context.events or Set()
+
+	self.requiredState = context.requiredState or {} --Required quest state; Usually just one access storage
+	self.nextState = context.nextState or {} --Quest state udate
+
 	self.lockoutTime = context.lockoutTime or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN)
 	self.lockoutType = context.lockoutType or LOCKOUT_TYPE.ON_ENTER
+
 	self.timeToDefeat = context.timeToDefeat or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_DEFEAT)
 	self.ejectAfterCompletionSeconds = context.ejectAfterCompletionSeconds or 60
+
+	self.healthMultipliedPerDifficulty = context.healthMultipliedPerLevel or 0.2
+	self.damageMultipliedPerDifficulty = context.damageMultipliedPerLevel or 0.2
+	self.lootMultiplierPerDifficulty = context.lootMultiplierPerDifficulty or 0.2
+
 	self.requiredLevel = context.requiredLevel or 0
-	self.disabled = context.disabled
-	self.entranceTiles = context.entranceTiles
-	self.requiredPlayers = (function()
-		if context.requiredPlayers then
-			return context.requiredPlayers
-		end
-		if type(context.entranceTiles) == "table" then
-			return #context.entranceTiles
-		end
-		return 1
-	end)()
+	self:SetRequiredPlayers(context)
+
 	self.onUseExtra = context.onUseExtra or function() end
-	self.exitTpPosition = context.exitTpPosition
-	self.exitTpDestination = context.exitTpDestination
 	self.monsters = context.monsters or {}
+
 	self.disableLockout = context.disableLockout
-	self.leverId = context.leverId or DEFAULT_LEVER_ID
-	self.leverPosition = context.leverPosition
-	self._uid = nil
-	self._aid = nil
+	self.disabled = context.disabled
 
 	--Custom
-	self:registerCustomFields(context)
-end
+	self:AppendCustomFields(context)
+	if self.isMinigame then
+		self.fixedSpeed = context.fixedSpeed or 200
+		self:SetupScopesMinigame()
+	end
 
----@param self EncounterData
----@param position Position
----@return EncounterData
-function EncounterData:position(position)
-	self.leverPosition = position
-	return self
-end
-
----@param self EncounterData
----@param uid number
----@return EncounterData
-function EncounterData:uid(uid)
-	self._uid = uid
-	return self
-end
-
----@param self EncounterData
----@param aid number
----@return EncounterData
-function EncounterData:aid(aid)
-	self._aid = aid
-	return self
+	self:ConfigureOnEnterLeave()
 end
 
 local secondsInDay = 24 * 3600
@@ -248,7 +542,7 @@ function NextWednesdayEpochTime()
 		if os.date("%a", nextWednesday) == "Wed" then
 			break
 		end
-		nextWednesday = nextWednesday + 24 * 3600 
+		nextWednesday = nextWednesday + 24 * 3600
 	end
 	return nextWednesday
 end
@@ -270,7 +564,7 @@ end
 ---@param encounter EncounterData
 ---@return LOCKOUT_STATUS
 ---@return integer|nil timeLeft
-function Player:lockoutStatus(encounter)
+function Player:getLockoutStatus(encounter)
 	if not self or encounter.disableLockout then
 		return LOCKOUT_STATUS.ACTIVE
 	end
@@ -288,6 +582,19 @@ function Player:lockoutStatus(encounter)
 	return LOCKOUT_STATUS.ACTIVE, timeLeft
 end
 
+function EncounterData:checkEncounterDisabled(players, leverUser)
+	if self.disabled then
+		return ENCOUNTER_ERROR_CODES.ENCOUNTER_DISABLED
+	end
+	return ENCOUNTER_ERROR_CODES.NO_ERROR
+end
+function EncounterData:checkChosenDifficulty(players, leverUser)
+	local chosenDifficulty = leverUser:getStorageValueByKey(self.chosenDifficultyStorage)
+	if chosenDifficulty == DIFFICULTY_NONE then
+		return ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN
+	end
+	return ENCOUNTER_ERROR_CODES.NO_ERROR
+end
 function EncounterData:checkUserIsOnEntranceGrid(players, leverUser)
 	for _, player in pairs(players) do
 		if player == leverUser then
@@ -296,15 +603,7 @@ function EncounterData:checkUserIsOnEntranceGrid(players, leverUser)
 	end
 	return ENCOUNTER_ERROR_CODES.STAND_ON_ENTRANCE
 end
-
-function EncounterData:checkEncounterDisabled()
-	if self.disabled then
-		return ENCOUNTER_ERROR_CODES.ENCOUNTER_DISABLED
-	end
-	return ENCOUNTER_ERROR_CODES.NO_ERROR
-end
-
-function EncounterData:checkMinLevel(players)
+function EncounterData:checkMinLevel(players, leverUser)
 	if not self.requiredLevel then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
@@ -317,7 +616,6 @@ function EncounterData:checkMinLevel(players)
 	end
 	return ENCOUNTER_ERROR_CODES.NO_ERROR
 end
-
 function EncounterData:checkLockout(players, leverUser)
 	if leverUser:getGroup():getId() >= GROUP_TYPE_GOD then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
@@ -325,11 +623,11 @@ function EncounterData:checkLockout(players, leverUser)
 
 	local status = ENCOUNTER_ERROR_CODES.NO_ERROR
 	for _, currentPlayer in pairs(players) do
-		local lockoutStatus, timeLeft = currentPlayer:lockoutStatus(self)
-		if lockoutStatus ~= LOCKOUT_STATUS.INACTIVE then
+		local getLockoutStatus, timeLeft = currentPlayer:getLockoutStatus(self)
+		if getLockoutStatus ~= LOCKOUT_STATUS.INACTIVE then
 			local timeLeftString = Game.getTimeInWords(timeLeft)
 
-			local translatedMessage = currentPlayer:Localizer():Context({ encounterName = self.encounterName, timeLeftString = timeLeftString }):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT)
+			local translatedMessage = currentPlayer:Localizer():Context({ displayName = self.displayName, timeLeftString = timeLeftString }):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT)
 			currentPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 			currentPlayer:getPosition():sendMagicEffect(CONST_ME_POFF)
 			status = ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT
@@ -337,18 +635,16 @@ function EncounterData:checkLockout(players, leverUser)
 	end
 	return status
 end
-
 function EncounterData:checkAccess(players, leverUser)
 	if leverUser:getGroup():getId() >= GROUP_TYPE_GOD then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
 
 	local requiredState = self.requiredState
-
 	local status = ENCOUNTER_ERROR_CODES.NO_ERROR
 	for _, currentPlayer in pairs(players) do
-		if not currentPlayer:HasCorrectStorageValues(requiredState) then
-			local translatedMessage = currentPlayer:Localizer():Context(self):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS)
+		if not currentPlayer:HasRequiredStates(requiredState) then
+			local translatedMessage = currentPlayer:Localizer(LOCALIZERS.Universal):Context(self):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS)
 			currentPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 			currentPlayer:getPosition():sendMagicEffect(CONST_ME_POFF)
 			status = ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS
@@ -356,30 +652,19 @@ function EncounterData:checkAccess(players, leverUser)
 	end
 	return status
 end
-
-function EncounterData:checkZoneOccupied()
-	local zone = self:getZone()
+function EncounterData:checkZoneOccupied(players, leverUser)
+	local zone = self:GetEncounterZone()
 	if zone:countPlayers(IgnoredByMonsters) > 0 then
 		return ENCOUNTER_ERROR_CODES.SOMEONE_INSIDE_ALREADY
 	end
 	return ENCOUNTER_ERROR_CODES.NO_ERROR
 end
-
-function EncounterData:checkEncounterActive()
-	local activeEncounter = ActiveEncounterRegistry:GetByEncounterData(self)
-	if activeEncounter == nil then
+function EncounterData:checkEncounterActive(players, leverUser)
+	if not self:IsActive() then
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
 	return ENCOUNTER_ERROR_CODES.ENCOUNTER_ACTIVE
 end
-
-function EncounterData:setLockouts(players)
-	local expiry = self:calculateLockoutExpiry()
-	for _, player in pairs(players) do
-		player:setEncounterLockout(self, expiry)
-	end
-end
-
 function EncounterData:handleTimeEvent(zone)
 	if self.timeoutEvent then
 		stopEvent(self.timeoutEvent)
@@ -388,15 +673,25 @@ function EncounterData:handleTimeEvent(zone)
 	self.timeoutEvent = addEvent(function(zn)
 		zn:refresh()
 		for _, player in pairs(zone:getPlayers()) do
-			player:teleportTo(self.exitTpDestination)
+			player:teleportTo(self.exitTeleportDestination)
 		end
 		ActiveEncounterRegistry:Unregister(self)
 	end, self.timeToDefeat * 1000, zone)
 end
-
+function EncounterData:checkCustom(players, leverUser)
+	for _, player in pairs(players) do
+		local resolutionContext = ResolutionContext.FromActiveEncounter(self, player)
+		local status = resolutionContext:RequirementsPassabilityStatus()
+		if status == RESOLVER_STATUS.AT_LEAST_ONE_REQUIREMENT_NOT_PASSED then
+			return resolutionContext.errorCode
+		end
+	end
+	return ENCOUNTER_ERROR_CODES.NO_ERROR
+end
 local leverUseConditions = {
-	EncounterData.checkUserIsOnEntranceGrid,
 	EncounterData.checkEncounterDisabled,
+	EncounterData.checkChosenDifficulty,
+	EncounterData.checkUserIsOnEntranceGrid,
 	EncounterData.checkMinLevel,
 	EncounterData.checkAccess,
 	EncounterData.checkLockout,
@@ -419,55 +714,65 @@ local function formatEncounterName(name)
 	return formatted
 end
 
-function EncounterData:onSuccessfulCompletion()
-	local zone = self:getZone()
+function EncounterData:GetLockoutStorage()
+	return self.lockoutStorage
+end
+
+function EncounterData:SetAntiGriefLockout(player)
+	local currentExpiry = player:getStorageValueByKey(self:GetLockoutStorage())
+	local newExpiry = os.time() + 60
+	if currentExpiry > newExpiry then
+		return
+	end
+	player:setEncounterLockout(self, newExpiry)
+end
+
+function EncounterData:SetLockouts(players)
+	local newExpiry = self:calculateLockoutExpiry()
+	for _, player in pairs(players) do
+		player:setEncounterLockout(self, newExpiry)
+	end
+end
+
+function EncounterData:OnSuccessfulCompletion(participants)
+	local zone = self:GetEncounterZone()
 	if not zone then
 		return true
 	end
 
-	local players = zone:getPlayers()
 	if self.timeoutEvent then
 		stopEvent(self.timeoutEvent)
 		self.timeoutEvent = nil
 	end
 
-	for _, player in pairs(players) do
-		ResolutionContext.FromEncounter(self, player):Resolve()
+	for _, player in pairs(participants) do
+		ResolutionContext.FromActiveEncounter(self, player):Resolve()
 		player:takeScreenshot(SCREENSHOT_TYPE_BOSSDEFEATED)
 	end
 
 	if self.lockoutType == LOCKOUT_TYPE.ON_KILL then
-		self:setLockouts(players)
+		self:SetLockouts(participants)
 	end
 
 	if self.ejectAfterCompletionSeconds > 0 then
-		zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":formattedName: is finished. You have :time: seconds to leave the room.", { formattedName = formatEncounterName(self.encounterName), time = self.ejectAfterCompletionSeconds }))
+		zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":formattedName: is finished. You have :time: seconds to leave the room.", { formattedName = formatEncounterName(self.displayName), time = self.ejectAfterCompletionSeconds }))
 
 		self.timeoutEvent = addEvent(function(zn)
 			zn:refresh()
 			for _, player in pairs(zone:getPlayers()) do
-				player:teleportTo(self.exitTpDestination)
+				player:teleportTo(self.exitTeleportDestination)
 			end
 			ActiveEncounterRegistry:Unregister(self)
 		end, self.ejectAfterCompletionSeconds * 1000, zone)
 	end
 end
 
-function EncounterData:teleportPlayers(players)
-	for data, player in pairs(players) do
-		player:teleportTo(data.destination)
-		local effect = data.effect or CONST_ME_TELEPORT
-		Position(data.destination):sendMagicEffect(effect)
-	end
-end
-
-function EncounterData:checkCustom(players, leverUser)
-	for _, player in pairs(players) do
-		local resolutionContext = ResolutionContext.FromEncounter(self, player)
-		local status = resolutionContext:ConditionsArePassable()
-		if status == RESOLVER_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
-			return resolutionContext.errorCode
-		end
+function EncounterData:teleportPlayersToEncounterRoom(players)
+	local entranceDestinations = self.playerAppearZone:getPositions()
+	for index, player in ipairs(players) do
+		local destination = entranceDestinations[index]
+		player:teleportTo(destination)
+		destination:sendMagicEffect(CONST_ME_TELEPORT)
 	end
 end
 
@@ -480,119 +785,96 @@ function EncounterData:everyoneCanEnter(players, leverUser)
 			return false
 		end
 	end
+
 	return true
+end
+
+function EncounterData:SetDifficultyMultipliers()
+	self:SetHealthMultiplier()
+	self:SetDamageMultiplier()
+	self:SetLootMultiplier()
+end
+
+function EncounterData:SetHealthMultiplier()
+	self.healthMultiplier = (1 + self.healthMultipliedPerDifficulty) ^ self.difficulty
+end
+function EncounterData:SetDamageMultiplier()
+	self.damageMultiplier = (1 + self.healthMultipliedPerDifficulty) ^ self.difficulty
+end
+function EncounterData:SetLootMultiplier()
+	self.lootMultiplier = 1 + (self.lootMultiplierPerDifficulty * self.difficulty)
+end
+
+function EncounterData:GetHealthMultiplier()
+	return self.healthMultiplier
+end
+function EncounterData:GetDamageMultiplier()
+	return self.damageMultiplier
+end
+function EncounterData:GetLootMultiplier()
+	return self.lootMultiplier
+end
+
+function EncounterData:GetBossObject()
+	return self.bossObject
+end
+function EncounterData:SetBossObject(bossObject)
+	self.bossObject = bossObject
 end
 
 ---@param leverUser Player
 ---@return boolean
 function EncounterData:tryEnter(leverUser)
-	local players = CreatureList()
-	for _, entranceTile in pairs(self.entranceTiles) do
-		players:Pos(entranceTile.pos, { destination = entranceTile.destination })
-	end
-	players:FilterByPlayer()
+	local playersOnEntrance = self.entranceLeverZone:getPlayers()
 
-	if not self:everyoneCanEnter(players:Get(), leverUser) then
+	if not self:everyoneCanEnter(playersOnEntrance, leverUser) then
 		return false
 	end
 
-	local zone = self:getZone()
+	self.difficulty = leverUser:getStorageValueByKey(self.chosenDifficultyStorage)
+	self:SetDifficultyMultipliers()
+
+	local zone = self:GetEncounterZone()
 	zone:removeMonsters()
-	for _, monster in pairs(self.monsters) do
-		Game.createMonster(monster.name, monster.pos, true, true)
-	end
-
-	self:teleportPlayers(players:Get())
-
 	self:reset()
-	self:start()
+
+	local participantsCount = #playersOnEntrance
+	for _, monsterData in pairs(self.monsters) do
+		local monsterObject = Game.createMonster(monsterData.name, monsterData.pos, true, true)
+		monsterObject:setMaxHealth(monsterObject:getMaxHealth() * self:GetHealthMultiplier() * participantsCount)
+		monsterObject:setHealth(monsterObject:getMaxHealth())
+		monsterObject:setEncounterDifficulty(self.difficulty)
+	end
+	local bossObject = Game.createMonster(self.bossName, self.bossSpawnPosition)
+	bossObject:setMaxHealth(bossObject:getMaxHealth() * self:GetHealthMultiplier() * participantsCount)
+	bossObject:setHealth(bossObject:getMaxHealth())
+	bossObject:setEncounterDifficulty(self.difficulty)
+	self.bossObject = bossObject
+	self.participantsCount = participantsCount
+
+	self:teleportPlayersToEncounterRoom(playersOnEntrance)
 
 	if self.lockoutType == LOCKOUT_TYPE.ON_ENTER then
-		self:setLockouts(players:Get())
+		self:SetLockouts(playersOnEntrance)
 	end
+
+	self:start()
+	ActiveEncounterRegistry:Register(self)
 	self:handleTimeEvent(zone)
 
-	ActiveEncounterRegistry:Register(self)
 	return true
-end
-
-function EncounterData:registerLeverTp()
-	local leverUse = Action()
-	leverUse.onUse = function(player)
-		self:tryEnter(player)
-	end
-	if self.leverPosition then
-		leverUse:position(self.leverPosition)
-	end
-	if self._uid then
-		leverUse:key(self._uid)
-	end
-	if self._aid then
-		leverUse:key(self._aid)
-	end
-	leverUse:register()
-
-	if self.leverPosition then
-		local encounterLeverInit = GlobalEvent("EncounterData.CreateLever." .. self.encounterName)
-		function encounterLeverInit.onStartup()
-			local lever = Game.createItem(self.leverId, 1, self.leverPosition)
-			if self._uid then
-				lever:setUniqueId(self._uid)
-			end
-			if self._aid then
-				lever:setActionId(self._aid)
-			end
-		end
-		encounterLeverInit:register()
-	end
-
-	if self.exitTpPosition then
-		SimpleTeleport(self.exitTpPosition, self.exitTpDestination)
-		local encounterLeverInit = GlobalEvent("EncounterData.CreateTp." .. self.encounterName)
-		function encounterLeverInit.onStartup()
-			local tp = Game.createItem(1949 or self.exitTpId, 1, self.exitTpPosition)
-			if self._uid then
-				tp:setUniqueId(self._uid)
-			end
-			if self._aid then
-				tp:setActionId(self._aid)
-			end
-		end
-		encounterLeverInit:register()
-	end
 end
 
 ---@param self EncounterData
 ---@return boolean
 function EncounterData:register()
-	local missingParams = {}
-	if not self.encounterName then
-		table.insert(missingParams, "encounterName")
-	end
-	if not self.entranceTiles then
-		table.insert(missingParams, "entranceTiles")
-	end
-	if not self.exitTpDestination then
-		table.insert(missingParams, "exitTpDestination")
-	end
-	if not self.leverPosition and not self._uid and not self._aid then
-		table.insert(missingParams, "position or uid or aid")
-	end
-	if #missingParams > 0 then
-		logger.error("[EncounterData:register] - encounter with name {} missing parameters: {}", (self.encounterName or "Unknown"), table.concat(missingParams, ", "))
-		return false
-	end
-	self:registerLeverTp()
-
 	EncounterDataRegistry:Register(self)
 	return true
 end
 
-function EncounterData:registerCustomFields(context)
+function EncounterData:AppendCustomFields(context)
 	for key, value in pairs(context) do
-		if self[key] == nil then
-			self[key] = value
-		end
+		self[key] = self[key] or value
 	end
 end
 
@@ -606,7 +888,7 @@ function EncounterData:addEvent(callable, delay, ...)
 	self.events:insert(event)
 end
 
-function EncounterData:isActive()
+function EncounterData:IsActive()
 	return self.active
 end
 
@@ -630,7 +912,7 @@ end
 ---@param abort boolean? A flag to determine whether to abort the current stage without calling the finish function. Optional.
 ---@return boolean True if the stage is entered successfully, false otherwise
 function EncounterData:enterStage(stageNumber, abort)
-	self:debug("EncounterData[{}]:enterStage | stageNumber: {} | abort: {}", self.encounterName, stageNumber, abort)
+	self:debug("EncounterData[{}]:enterStage | stageNumber: {} | abort: {}", self.displayName, stageNumber, abort)
 	if not abort then
 		local currentStage = self:getStage(self.currentStage)
 		if currentStage and currentStage.finish then
@@ -678,7 +960,7 @@ function EncounterData:spawnMonsters(config)
 			if config.position then
 				table.insert(positions, config.position)
 			else
-				table.insert(positions, self:getSpawnZone():randomPosition())
+				table.insert(positions, self:GetMonsterSpawnZone():randomPosition())
 			end
 		end
 	end
@@ -723,12 +1005,12 @@ function EncounterData:spawnMonsters(config)
 	end
 end
 
-function EncounterData:getZone()
-	return Zone(self.zone)
+function EncounterData:GetEncounterZone()
+	return self.encounterAreaPositionsZone
 end
 
-function EncounterData:getSpawnZone()
-	return Zone(self.spawnZone)
+function EncounterData:GetMonsterSpawnZone()
+	return self.monsterSpawnZone
 end
 
 ---Broadcasts a message to all players
@@ -738,40 +1020,38 @@ function EncounterData:broadcast(...)
 			player:sendTextMessage(...)
 		end
 		return
+	else
+		self:GetEncounterZone():sendTextMessage(...)
 	end
-	self:getZone():sendTextMessage(...)
 end
 
 ---Counts the number of monsters with the given name in the encounter zone
 ---@param name string? The name of the monster to count
 ---@return number The number of monsters with the given name
 function EncounterData:countMonsters(name)
-	return self:getZone():countMonsters(name)
+	return self:GetEncounterZone():countMonsters(name)
 end
 
 ---Counts the number of players in the encounter zone
 ---@return number The number of players in the encounter zone
 function EncounterData:countPlayers()
-	return self:getZone():countPlayers(IgnoredByMonsters)
+	return self:GetEncounterZone():countPlayers(IgnoredByMonsters)
 end
 
 ---Removes all monsters from the encounter zone
 function EncounterData:removeMonsters()
-	self:getZone():removeMonsters()
+	self:GetEncounterZone():removeMonsters()
 end
 
 ---Removes all players from the encounter zone
 function EncounterData:removePlayers()
-	self:getZone():removePlayers()
+	self:GetEncounterZone():removePlayers()
 end
 
 ---Resets the encounter to its initial state
 ---@return boolean True if the encounter is reset successfully, false otherwise
 function EncounterData:reset()
-	if self.currentStage == ENCOUNTER_STAGE.UNSTARTED then
-		return true
-	end
-	self:debug("EncounterData[{}]:reset", self.encounterName)
+	self:debug("EncounterData[{}]:reset", self.displayName)
 	if self.onReset then
 		self:onReset()
 	end
@@ -783,7 +1063,7 @@ end
 ---@param position Position The position to check
 ---@return boolean True if the position is inside the encounter zone, false otherwise
 function EncounterData:isInZone(position)
-	return self:getZone():isInZone(position)
+	return self:GetEncounterZone():isInZone(position)
 end
 
 ---Enters the previous stage in the encounter
@@ -814,17 +1094,18 @@ function EncounterData:start()
 		self:beforeStart()
 	end
 	self.active = true
-	self:debug("EncounterData[{}]:start", self.encounterName)
-	return self:enterStage(1)
+	self:debug("EncounterData[{}]:start", self.displayName)
+	return self:enterStage(ENCOUNTER_STAGE.FIRST_STAGE)
 end
 
 ---Adds a new stage to the encounter
----@param config table The stage to add
+---@param context table The stage to add
 ---@return boolean True if the stage is added successfully, false otherwise
-function EncounterData:addStage(config)
-	local stage = EncounterStage(config)
+function EncounterData:addStage(context)
+	local stage = EncounterStage(context)
 	stage.encounter = self
 	table.insert(self.stages, stage)
+	stage.stageNumber = #self.stages
 	return stage
 end
 
@@ -892,41 +1173,35 @@ function EncounterData:addRemovePlayers()
 	})
 end
 
-LOCK_ACTIVE = 1
-LOCK_INACTIVE = -1
-
 function SetMinigameLock(player)
-	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, 1)
+	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, ACCESS_GRANTED)
 end
 
 function ResetMinigameLock(player)
-	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, -1)
+	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, ACCESS_NOT_GRANTED)
 end
 
-function EncounterData:afterEnterMinigame(player)
+function EncounterData:AfterEnterMinigame(player)
+	player:registerEvent("MinigamePlayerDeath")
+
+	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 	player:addHealth(player:getMaxHealth())
 	player:addHealth(-(player:getMaxHealth() - player:getMaxBaseHealth()), COMBAT_UNDEFINEDDAMAGE)
 	local maxMana = player:getMaxMana()
 	player:addMana(-maxMana)
+
+	player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.displayName)
+	player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Matches)
+	player:incrementStorageByKeyClampZero(self.matchesStorage)
+
 	SetMinigameLock(player)
-
-	player:registerEvent("MinigamePlayerDeath")
-	player:kv():scoped("minigames"):scoped("current"):set(self.encounterName)
-	player:kv():scoped("minigames"):scoped(self.encounterName):scoped("matches"):incrementOrSet()
-	player:kv():scoped("minigames"):scoped("total"):scoped("matches"):incrementOrSet()
-	player:kv():scoped("minigames"):scoped("locks"):scoped("magic-wall"):set(true)
-	player:kv():scoped("minigames"):scoped("locks"):scoped("healing"):set(true)
-	player:kv():scoped("minigames"):scoped("locks"):scoped("haste"):set(400)
-
+	player:setStorageValueByKey(Storage.Minigames.FixedSpeed, self.fixedSpeed)
 	player:changeSpeed()
-	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 end
 
-function EncounterData:afterLeaveMinigame(player) end
-
 ---Automatically starts the encounter when players enter the zone
-function EncounterData:startOnEnter()
-	local zoneEvents = ZoneEvent(self:getZone())
+function EncounterData:ConfigureOnEnterLeave()
+	local zoneEvents = ZoneEvent(self:GetEncounterZone())
 
 	function zoneEvents.afterEnter(zone, creature)
 		local player = creature:getPlayer()
@@ -940,8 +1215,8 @@ function EncounterData:startOnEnter()
 			self:start()
 		end
 		if self.isMinigame then
-			Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.encounterName })
-			self:afterEnterMinigame(player)
+			Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.displayName })
+			self:AfterEnterMinigame(player)
 		end
 	end
 
@@ -953,13 +1228,12 @@ function EncounterData:startOnEnter()
 		if player:hasGroupFlag(IgnoredByMonsters) then
 			return
 		end
+		self:SetAntiGriefLockout(player)
 
-		-- last player left; reset encounter
-		if self:countPlayers() == 1 then
+		if self:countPlayers() == 0 then
+			self:reset()
 			return
 		end
-		self:reset()
-		self:afterLeaveMinigame(player)
 	end
 
 	zoneEvents:register()
@@ -972,32 +1246,36 @@ function EncounterData:debug(...)
 	logger.debug(...)
 end
 
+-- Unused for now
 ActiveEncounterRegistry = {}
 ActiveEncounterRegistry.__index = ActiveEncounterRegistry
 ActiveEncounterRegistry.registry = {}
 ActiveEncounterRegistry.creatureToEncounter = {}
-function ActiveEncounterRegistry:Register(encounter)
-	if self.registry[encounter.encounterName] then
-		logger.error(T("EncounterData :name: already registered", { name = encounter.name }))
+---@param encounterData EncounterData
+function ActiveEncounterRegistry:Register(encounterData)
+	if self.registry[encounterData:GetDisplayName()] then
+		logger.error(T("EncounterData :name: already registered", { name = encounterData:GetDisplayName() }))
 	end
-	self.registry[encounter.encounterName] = encounter
+	self.registry[encounterData:GetDisplayName()] = encounterData
 	return self
 end
 
-function ActiveEncounterRegistry:Unregister(encounter)
-	self.registry[encounter.encounterName] = nil
+---@param encounterData EncounterData
+function ActiveEncounterRegistry:Unregister(encounterData)
+	self.registry[encounterData:GetDisplayName()] = nil
 end
 
+---@param encounterData EncounterData
 function ActiveEncounterRegistry:GetByEncounterData(encounterData)
-	return self.registry[encounterData.encounterName]
+	return self.registry[encounterData:GetDisplayName()]
 end
 
 function ActiveEncounterRegistry:GetByCreature(creature)
 	return self.creatureToEncounter[creature:getId()]
 end
 
-function ActiveEncounterRegistry:MapCreature(encounter, creature)
-	self.creatureToEncounter[creature:getId()] = self.registry[encounter.encounterName]
+---@param encounterData EncounterData
+function ActiveEncounterRegistry:MapCreature(encounterData, creature)
+	self.creatureToEncounter[creature:getId()] = self.registry[encounterData:GetDisplayName()]
 	return self
 end
-
