@@ -180,7 +180,7 @@ doorKeyUse:register()
 local function generateCollectionMessage(player, keyId, collectionStorage)
 	local message = T("You have unlocked the following :name:s:", { name = ItemType(keyId):getName() })
 	local unlockedKeys = player:getStorageValueByKey(collectionStorage)
-	if TableSize(unlockedKeys) == 0 then
+	if TableSize(unlockedKeys or {}) == 0 then
 		unlockedKeys = { "---None---" }
 	end
 	for storage, desc in pairs(unlockedKeys) do
@@ -192,7 +192,7 @@ local collectionLook = Look()
 function collectionLook.onLook(player, doorKey)
 	local message = generateCollectionMessage(player, doorKey:getId(), doorKey:getKey())
 	player:sendTextMessage(MESSAGE_LOGIN, message)
-	return DONT_SHOW_playerOnLook
+	return DONT_SHOW_ONLOOK
 end
 for doorKeyId, collectionStorage in pairs(Storage.DoorKeys.KeyCollections) do
 	collectionLook:key(collectionStorage)
@@ -206,7 +206,7 @@ function keyRingLook.onLook(player, doorKey)
 		message = message .. generateCollectionMessage(player, tonumber(keyId), storage) .. "\n"
 	end
 	player:sendTextMessage(MESSAGE_LOGIN, message)
-	return DONT_SHOW_playerOnLook
+	return DONT_SHOW_ONLOOK
 end
 keyRingLook:id(KEY_RING_ID)
 keyRingLook:register()
@@ -231,7 +231,8 @@ function doorLook.onLook(player, door)
 	end
 
 	local itRequires = ""
-	if door:getKey() then
+	local key = door:getKey()
+	if key and key ~= PERMANENTLY_CLOSED then
 		itRequires = T(" It requires key :keyDesc:.", { keyDesc = withoutStoragePrefix(door:getKey()) })
 	end
 
@@ -242,7 +243,7 @@ function doorLook.onLook(player, door)
 	end
 
 	player:sendTextMessage(MESSAGE_LOOK, T(":youSee::status::itRequires::youCanUnlock:", { youSee = youSee, status = locked, itRequires = itRequires, youCanUnlock = youCanUnlock }))
-	return DONT_SHOW_playerOnLook
+	return DONT_SHOW_ONLOOK
 end
 for key, value in pairs(KeyDoorTable) do
 	doorLook:id(value.closedDoor)
@@ -251,3 +252,23 @@ for key, value in pairs(KeyDoorTable) do
 end
 doorLook:register()
 ---#endregion permanent key unlock
+
+local doorKeyLook = Look()
+function doorKeyLook.onLook(player, doorKey)
+	local youSee = T("You see a :keyName:.", { keyName = doorKey:getName() })
+
+	local itUnlocks = ""
+	local key = doorKey:getKey()
+	if key and key ~= PERMANENTLY_CLOSED then
+		itUnlocks = T("It unlocks :keyDesc:.", { keyDesc = withoutStoragePrefix(key) })
+	end
+
+	local itWeights = "It weight 1.00 oz."
+
+	player:sendTextMessage(MESSAGE_LOOK, T(":youSee: :itUnlocks: :itWeights:", { youSee = youSee, itUnlocks = itUnlocks, itWeights = itWeights }))
+	return DONT_SHOW_ONLOOK
+end
+for _, id in pairs(keysID) do
+	doorKeyLook:id(id)
+end
+doorKeyLook:register()

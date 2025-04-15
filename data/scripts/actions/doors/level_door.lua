@@ -42,11 +42,11 @@ function lookAtDoor.onLook(player, door)
 	local forLevel = ""
 	local requiredLevel = extractRequiredLevel(door)
 	if requiredLevel then
-		forLevel = T(" for level dup[a] :level:", { level = requiredLevel })
+		forLevel = T(" for level :level:", { level = requiredLevel })
 	end
 
 	player:sendTextMessage(MESSAGE_LOOK, T("You see :doorDesc::forLevel:.", { doorDesc = door:getNameDescription(), forLevel = forLevel }))
-	return DONT_SHOW_playerOnLook
+	return DONT_SHOW_ONLOOK
 end
 for closedId, openId in pairs(closedToOpen) do
 	lookAtDoor:id(closedId)
