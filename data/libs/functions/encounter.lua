@@ -179,6 +179,9 @@ setmetatable(EncounterData, {
 function EncounterData:GetDisplayName()
 	return self.displayName
 end
+function EncounterData:GetId()
+	return self.encounterId
+end
 function EncounterData:GetParticipantsCount()
 	return self.participantsCount
 end

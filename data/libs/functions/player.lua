@@ -579,8 +579,10 @@ function Player:removeAll(itemId)
 	return count
 end
 
-local function encounterKVscope(encounter)
-	return "encounter.cooldown." .. encounter.encounterName
+---@param encounterData EncounterData
+---@return unknown
+local function encounterKVscope(encounterData)
+	return "encounter.cooldown." .. encounterData:GetId()
 end
 
 function Player:getEncounterLockout(encounter)
@@ -592,14 +594,17 @@ function Player:getEncounterLockout(encounter)
 	return self:kv():get(scope) or 0
 end
 
-function Player:setEncounterLockout(encounter, time)
-	local scope = encounterKVscope(encounter)
-	if not scope then
+---@param encounterData EncounterData
+---@return boolean
+function Player:setEncounterLockout(encounterData, expiry)
+	local storage = encounterData:GetLockoutStorage()
+	if not storage then
 		return false
 	end
-	local result = self:kv():set(scope, time)
+
+	self:setStorageValueByKey(storage, expiry)
 	self:sendBosstiaryCooldownTimer()
-	return result
+	return true
 end
 
 function Player:canFightBoss(bossNameOrId)
