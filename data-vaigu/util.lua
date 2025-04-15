@@ -1,3 +1,60 @@
+
+---using types other than string/number is not recommended
+---@param key string|number|any
+---@return any
+function Player:getStorageValueByKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+---using types other than string/number is not recommended
+---@param key string|number|any
+---@param nextValue any
+---@return any
+function Player:setStorageValueByKey(key, nextValue)
+	local previousValue = self:getStorageValueByKey(key)
+	self:kv():set(key, nextValue)
+	self:updateStorage(key, nextValue, previousValue, os.time())
+end
+function Player:incrementStorageByKey(key, addend)
+	addend = addend or 1
+	local currentValue = self:getStorageValueByKey(key)
+	local nextValue = currentValue + addend
+	self:setStorageValueByKey(key, nextValue)
+end
+function Player:incrementStorageByKeyClampZero(key, addend)
+	addend = addend or 1
+	local currentValue = self:getStorageValueByKey(key)
+	local nextValue = math.max(currentValue, 0) + addend
+	self:setStorageValueByKey(key, nextValue)
+end
+
+function Game.getStorageValueByKey(key)
+	return kv.get(key) or MISSION_NOT_STARTED
+end
+function Game.setStorageValueByKey(key, value)
+	return kv.set(key, value)
+end
+
+function Shop:getStorageValueByKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+function Shop:setStorageValueByKey(key, value)
+	return self:kv():set(key, value)
+end
+
+---@class DataClass
+DataClass = DataClass
+
+function T(template, variables)
+	if not variables then
+		logger.warn(debug.traceback("[T] no variables table provided"))
+	end
+	local result = template
+	for key, value in pairs(variables) do
+		result = result:gsub(":" .. key .. ":", value)
+	end
+	return result
+end
+
 NUMBER_TO_ORDINAL_STRING = {
 	[1] = "first",
 	[2] = "second",
@@ -31,30 +88,13 @@ function SendPlayerIsPzLocked(player)
 end
 
 function Player:errorIfCannotUseCooldownItem(cooldownKV)
-	if self:isOnEvent() then
+	if self:isOnMinigame() then
 		return "You cannot use this item on events."
 	end
 	if self:hasExhaustion(cooldownKV) then
 		return "You need to wait before using this again."
 	end
 	return true
-end
-
-function Player:isOnEvent()
-	if self:getStorageValueByKey(Storage.GrimEvent.Joined) >= 1 or self:getStorageValueByKey(Storage.hasteLock) == 1 or self:getStorageValueByKey(Storage.healLock) == 1 then
-		return true
-	end
-end
-
-function T(template, variables)
-	if not variables then
-		logger.warn(debug.traceback("[T] no variables table provided"))
-	end
-	local result = template
-	for key, value in pairs(variables) do
-		result = result:gsub(":" .. key .. ":", value)
-	end
-	return result
 end
 
 function RegisterOnLook(callback, stringIdentifier, questId)
@@ -134,7 +174,7 @@ function Game.startCountdown(position, totalSeconds)
 		spectator:say(output, TALKTYPE_MONSTER_SAY, true, spectator, position)
 	end
 
-	addEvent(Game.setCountdown, 1000, position, seconds - 1)
+	addEvent(Game.startCountdown, 1000, position, seconds - 1)
 end
 
 local nextAvailableSpellId = 40000
@@ -142,102 +182,6 @@ function NextSpellId()
 	nextAvailableSpellId = nextAvailableSpellId + 1
 	local nextAvailableSpellIdString = "###" .. nextAvailableSpellId
 	return nextAvailableSpellIdString
-end
-
-function SimpleTextDisplay(player, item, message)
-	local title = "You read the following."
-	local close = "Close"
-	local aid = function()
-		if item then
-			return item:getActionId()
-		end
-		return {}
-	end
-
-	player:registerEvent("SimpleDisplayOnLook")
-
-	local window = ModalWindow(aid, title, message)
-	window:addButton(101, close)
-	window:setDefaultEscapeButton(101)
-
-	window:sendToPlayer(player)
-	player:unregisterEvent("SimpleDisplayOnLook")
-	return DONT_SHOW_ONLOOK
-end
-
--- usage: [storage] = "english description",
-local aidToCustomDesc = {
-	-- keys
-	[5003] = "Don't let the skeletons out!",
-	-- misc
-	[5640] = "a honeyflower patch.",
-	[5641] = "a banana palm.",
-	[5642] = "a gargoyle statue.\n You read: \n\n Either loved or hated \n\nCitizen Honoris Causa\n\nPtaaq",
-	[11082] = "Map of burried spell.",
-	[11083] = "Map of brasilian Ratland.",
-	[11085] = "Overdue package.\nThis is a big parcel with lot of orders. The recipient is the Mirkotown depot, 2nd floor",
-	[11086] = "Bait in a can.",
-	[11088] = "Anon's father's float.",
-	[11090] = "Anon's father's fishing reel.",
-	[11092] = "Anon's father's stool.",
-}
-
-local function tryFindAnyDescription(onLookContext)
-	local player = onLookContext.player
-	local item = onLookContext.item
-	local description = aidToCustomDesc[item:getActionId()] or item:getAttribute(ITEM_ATTRIBUTE_DESCRIPTION)
-	local translatedDescription = player:Localizer(nil):Context({ item = item, player = player }):Get(description)
-	if translatedDescription and translatedDescription ~= "" then
-		return nil, translatedDescription
-	end
-	if description and description ~= "" then
-		return nil, description
-	end
-end
-
-local function tryDisplayItemText(onLookContext)
-	local player = onLookContext.player
-	local item = onLookContext.item
-	local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
-	if text == nil or text == "" then
-		return
-	end
-
-	local translatedText = player:Localizer(nil):Context({ item = item }):Get(text)
-	if translatedText and translatedText ~= "" then
-		SimpleTextDisplay(player, item, translatedText)
-		return DONT_SHOW_ONLOOK
-	end
-	return text
-end
-
-local function tryInvokeCustomFunction(onLookContext)
-	return onLookContext.onLook(onLookContext)
-end
-
-local displayFuctions = {
-	tryDisplayItemText,
-	tryInvokeCustomFunction,
-	tryFindAnyDescription,
-}
-
-function ParseCustomOnLook(item, player)
-	local aid = item:getActionId()
-	if not aid or aid <= 0 then
-		return nil
-	end
-
-	local itemConfig = CustomItemRegistry:GetState(aid)
-	local onLookContext = { player = player, aid = aid, item = item, onLook = itemConfig.onLook }
-	for _, check in pairs(displayFuctions) do
-		local status, description = check(onLookContext)
-		if status == DONT_SHOW_ONLOOK then
-			return DONT_SHOW_ONLOOK
-		end
-		if description then
-			return description
-		end
-	end
 end
 
 local maxSearchDepth = 10
@@ -382,4 +326,60 @@ function PrintAnything(thing)
 		return
 	end
 	PrintTableRecursive(thing)
+end
+
+function Player:AddOutfitsAndAddons(outfitsAndAddons)
+	for _, data in pairs(outfitsAndAddons) do
+		local outfit = data.outfitId or data.outfit or data.id
+		local addon = data.addon
+
+		self:addOutfit(outfit)
+		if addon then
+			self:addOutfitAddon(outfit, addon)
+		end
+	end
+	self:addOutfit()
+end
+
+function Player:AddMounts(mounts)
+	for _, mountId in pairs(mounts) do
+		self:addMount(mountId)
+	end
+end
+
+function AddExperienceWithAnnouncement(player, exp)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained :exp: experience!", { exp = exp }))
+	player:addExperience(exp)
+	player:getPosition():sendMagicEffect(CONST_ME_STUN)
+end
+
+function PredictNetHealthgain(primaryDamage, primaryType, secondaryDamage, secondaryType)
+	local primaryMultiplier = -1
+	if primaryType == COMBAT_HEALING then
+		primaryMultiplier = 1
+	end
+
+	local secondaryMultiplier = -1
+	if secondaryType == COMBAT_HEALING then
+		secondaryMultiplier = 1
+	end
+
+	return primaryDamage * primaryMultiplier + secondaryDamage * secondaryMultiplier
+end
+
+function TryReverseTable(tab)
+    if not tab then
+		return
+	end
+	local n = #tab
+    for i = 1, math.floor(n / 2) do
+        tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
+    end
+end
+
+function ReverseTable(tab)
+    local n = #tab
+    for i = 1, math.floor(n / 2) do
+        tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
+    end
 end

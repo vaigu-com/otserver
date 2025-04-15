@@ -42,6 +42,10 @@ end
 
 local function normalizeItemData(itemData, anchor)
 	local context = {}
+	for key, value in pairs(itemData) do
+		context[key] = value
+	end
+
 	context.id = itemData.id
 	context.count = itemData.count or 1
 	context.aid = itemData.actionid or itemData.aid or itemData.actionId
@@ -83,9 +87,9 @@ local function registerOnUseDeclaration(context, anchor)
 		resolutionContext:SetTargetCreature(target)
 		local status = resolutionContext:Resolve()
 		if status ~= SUCCESS_RESOLVE then
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("The :itemName: is empty.", { itemName = ItemType(item:getId()	):getName() }))
-			return OPEN_CONTAINER_ON_USE
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("The :itemName: is empty.", { itemName = ItemType(item:getId()):getName() }))
 		end
+		return DONT_OPEN_CONTAINER_ON_USE
 	end
 	action:key(context.key)
 	action:register()

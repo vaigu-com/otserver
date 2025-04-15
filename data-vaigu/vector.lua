@@ -3,6 +3,12 @@
 ---@field y integer
 ---@field z integer
 Vector = {}
+Vector.__eq = function(vec1, vec2)
+	local xEq = vec1.x == vec2.x
+	local yEq = vec1.y == vec2.y
+	local zEq = vec1.z == vec2.z
+	return xEq and yEq and zEq
+end
 function Vector:New(x, y, z)
 	local newObj = {}
 	newObj.x = x
@@ -98,14 +104,15 @@ local directions = {
 	DIRECTION_WEST,
 	DIRECTION_NORTHWEST,
 }
+local anglePerDir = 360 / #directions
 
 ---@return integer direction direction enum, based on vector x and y; eg. x = 1, y = 1 returns DIRECTION_SOUTHEAST
 function Vector:ToDirection()
 	if self.x == 0 and self.y == 0 then
 		return DIRECTION_NONE
 	end
-	local angle = math.atan2(self.x, self.y)
-	local dirId = (math.ceil((angle + 22.5) % 360 / 45))
+	local angle = math.deg(math.atan(self.x / -self.y))
+	local dirId = (math.ceil((angle + anglePerDir / 2) % 360 / anglePerDir))
 	local direction = directions[dirId]
 	return direction
 end
