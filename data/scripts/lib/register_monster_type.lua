@@ -8,10 +8,10 @@ end
 local rme_dir = "../rme/"
 local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
 
-function MonsterTypeRepository:SaveToXML()
+function MonsterTypeRepository:Serialize()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
 	for name, data in
-		pairssortedkey(self.registry, function(a, b)
+		sortedkeypairs(self.registry, function(a, b)
 			return a:lower() < b:lower()
 		end)
 	do
@@ -30,7 +30,7 @@ function MonsterTypeRepository:SaveToXML()
 	xml = xml .. "</monsters>\n"
 	local file = io.open(monstersXmlPath, "w+")
 	if not file then
-		logger.error(T("[MonsterTypeRepository::SaveToXML] Cannt open file :path:. Monsters have NOT been saved.", { path = monstersXmlPath }))
+		logger.error(T("[MonsterTypeRepository::Serialize] Cannot open file :path:. Monsters have NOT been serialized.", { path = monstersXmlPath }))
 		return
 	end
 	file:write(xml)
@@ -45,7 +45,6 @@ setmetatable(registerMonsterType, {
 		end
 	end,
 })
-
 
 MonsterType.register = function(self, mask)
 	registerMonsterType(self, mask)
@@ -272,6 +271,9 @@ registerMonsterType.flags = function(mtype, mask)
 		end
 		if mask.flags.isForgeCreature ~= nil then
 			mtype:isForgeCreature(mask.flags.isForgeCreature)
+		end
+		if mask.flags.ignoreCreatures ~= nil then
+			mtype:ignoreCreatures(mask.flags.ignoreCreatures)
 		end
 	end
 end

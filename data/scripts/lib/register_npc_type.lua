@@ -8,10 +8,10 @@ end
 local rme_dir = "../rme/"
 local npcXmlPath = rme_dir .. "data/creatures/npcs.xml"
 
-function NpcTypeRepository:SaveToXML()
+function NpcTypeRepository:Serialize()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<npcs>\n'
 	for name, data in
-		pairssortedkey(self.registry, function(a, b)
+		sortedkeypairs(self.registry, function(a, b)
 			return a:lower() < b:lower()
 		end)
 	do
@@ -30,7 +30,7 @@ function NpcTypeRepository:SaveToXML()
 	xml = xml .. "</npcs>\n"
 	local file = io.open(npcXmlPath, "w+")
 	if not file then
-		logger.error(T("[NpcTypeRepository::SaveToXML] Cannt open file :path:. Npcs have NOT been saved.", { path = npcXmlPath }))
+		logger.error(T("[NpcTypeRepository::Serialize] Cannot open file :path:. Npcs have NOT been serialized.", { path = npcXmlPath }))
 		return
 	end
 	file:write(xml)
