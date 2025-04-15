@@ -1,3 +1,4 @@
+--[[
 local config = {
 	{ chanceFrom = 0, chanceTo = 1875, itemId = 21158, count = 2 }, -- glooth spear
 	{ chanceFrom = 1876, chanceTo = 3418, itemId = 21183 }, -- glooth amulet
@@ -38,3 +39,4 @@ end
 
 gloothBag:id(21203)
 gloothBag:register()
+]]
