@@ -1,4 +1,4 @@
-local internalNpcName = "Nor"
+local internalNpcName = "Bigfoot Soldier"
 local npcType = Game.createNpcType(internalNpcName)
 local npcConfig = {}
 
@@ -11,12 +11,12 @@ npcConfig.walkInterval = 2000
 npcConfig.walkRadius = 2
 
 npcConfig.outfit = {
-	lookType = 143,
-	lookHead = 77,
-	lookBody = 113,
-	lookLegs = 19,
-	lookFeet = 116,
-	lookAddons = 0,
+	lookType = 514,
+	lookHead = 78,
+	lookBody = 120,
+	lookLegs = 58,
+	lookFeet = 15,
+	lookAddons = 3,
 }
 
 npcConfig.flags = {
@@ -50,27 +50,6 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
-local function creatureSayCallback(npc, creature, type, message)
-	local player = Player(creature)
-	local playerId = player:getId()
-
-	if not npcHandler:checkInteraction(npc, creature) then
-		return false
-	end
-
-	if MsgContains(message, "crystal") then
-		if player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission08) == 2 then
-			npcHandler:say("Here, take the memory crystal and leave immediately.", npc, creature)
-			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 7281, count = 1})
-			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission08, 3) -- Questlog The Ice Islands Quest, The Contact
-		end
-	end
-	return true
-end
-
-npcHandler:setMessage(MESSAGE_GREET, "Psst, not that {loud}.")
-npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
 -- npcType registering the npcConfig table

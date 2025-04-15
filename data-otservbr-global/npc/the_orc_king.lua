@@ -101,7 +101,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			player:setStorageValue(Storage.Quest.U7_4.DjinnWar.RecievedLamp, 1)
-			player:addItem(3231, 1)
+			player:AddCustomItem({id = 3231, count = 1})
 			npcHandler:say("I was waiting for this day! Take the lamp and let Malor feel my wrath!", npc, creature)
 		else
 			npcHandler:say("I don't know your enemy, paleskin! Begone!", npc, creature)

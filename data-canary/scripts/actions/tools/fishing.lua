@@ -26,13 +26,13 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 		local rareChance = math.random(1, 100)
 		if rareChance == 1 then
-			player:addItem(lootVeryRare[math.random(#lootVeryRare)], 1)
+			player:AddCustomItem({id = lootVeryRare[math.random(#lootVeryRare)], count = 1})
 		elseif rareChance <= 3 then
-			player:addItem(lootRare[math.random(#lootRare)], 1)
+			player:AddCustomItem({id = lootRare[math.random(#lootRare)], count = 1})
 		elseif rareChance <= 10 then
-			player:addItem(lootCommon[math.random(#lootCommon)], 1)
+			player:AddCustomItem({id = lootCommon[math.random(#lootCommon)], count = 1})
 		else
-			player:addItem(lootTrash[math.random(#lootTrash)], 1)
+			player:AddCustomItem({id = lootTrash[math.random(#lootTrash)], count = 1})
 		end
 		return true
 	end
@@ -59,7 +59,7 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			target:decay()
 
 			if math.random(1, 100) >= 97 then
-				player:addItem(13992, 1)
+				player:AddCustomItem({id = 13992, count = 1})
 				return true
 			end
 		elseif target.itemid == 7236 then
@@ -68,17 +68,17 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 			local rareChance = math.random(1, 100)
 			if rareChance == 1 then
-				player:addItem(7158, 1)
+				player:AddCustomItem({id = 7158, count = 1})
 				return true
 			elseif rareChance <= 4 then
-				player:addItem(3580, 1)
+				player:AddCustomItem({id = 3580, count = 1})
 				return true
 			elseif rareChance <= 10 then
-				player:addItem(7159, 1)
+				player:AddCustomItem({id = 7159, count = 1})
 				return true
 			end
 		end
-		player:addItem(3578, 1)
+		player:AddCustomItem({id = 3578, count = 1})
 	end
 	return true
 end

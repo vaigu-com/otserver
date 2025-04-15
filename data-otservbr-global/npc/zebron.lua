@@ -82,7 +82,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say("Ok, here we go ... " .. roll .. "! You have lost. Bad luck. One more game?", npc, creature)
 			else
 				npcHandler:say("Ok, here we go ... 6! You have won a dice, congratulations. One more game?", npc, creature)
-				player:addItem(5792, 1)
+				player:AddCustomItem({id = 5792, count = 1})
 			end
 			npcHandler:setTopic(playerId, 0)
 		end

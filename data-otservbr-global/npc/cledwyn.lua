@@ -154,7 +154,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				if (player:getItemCount(npc:getCurrency()) >= chargePrice) and (player:getItemCount(chargeItem[charge].noChargeID) >= 1) then
 					player:removeItem(npc:getCurrency(), chargePrice)
 					player:removeItem(chargeItem[charge].noChargeID, 1)
-					local itemAdd = player:addItem(chargeItem[charge].ChargeID, 1)
+					local itemAdd = player:AddCustomItem({id = chargeItem[charge].ChargeID, count = 1})
 					npcHandler:say("Ah, excellent. Here is your " .. itemAdd:getName():lower() .. ".", npc, creature)
 				else
 					npcHandler:say("Sorry, friend, but one good turn deserves another. Bring enough " .. ItemType(npc:getCurrency()):getPluralName():lower() .. " and it's a deal.", npc, creature)

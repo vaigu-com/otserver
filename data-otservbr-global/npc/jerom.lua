@@ -75,7 +75,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_2.TrollSabotageQuest.Questline) == 2 and player:removeItem(7754, 1) then
 			npcHandler:say("Thank you sooo much <sniffs>. Well, you know I lost everything, but recently I found this strange rope here. I don't need it, here take it!", npc, creature)
 			player:setStorageValue(Storage.Quest.U8_2.TrollSabotageQuest.Questline, 3)
-			player:addItem(646, 1)
+			player:AddCustomItem({id = 646, count = 1})
 		end
 	elseif MsgContains(message, "yes") then
 		if npcHandler:getTopic(playerId) == 1 then

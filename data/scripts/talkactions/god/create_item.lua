@@ -62,7 +62,7 @@ function createItem.onSay(player, words, param)
 	else
 		if not itemType:isFluidContainer() then
 			if charges > 0 then
-				player:addItem(itemType:getId(), 0)
+				player:AddCustomItem({ id = itemType:getId(), fluidType = 0 })
 				return true
 			else
 				count = 1
@@ -72,31 +72,21 @@ function createItem.onSay(player, words, param)
 		end
 	end
 
-	local result
 	local tier = tonumber(split[3])
-	if not tier then
-		result = player:addItem(itemType:getId(), count)
-	else
-		if tier <= 0 or tier > 10 then
-			player:sendCancelMessage("Invalid tier count.")
-			return true
-		else
-			result = player:addItem(itemType:getId(), count, true, 0, CONST_SLOT_WHEREEVER, tier)
-		end
+	local fluidType = nil
+	if itemType:isFluidContainer() then
+		fluidType = count
+		count = 1
 	end
 
-	if result then
-		if not itemType:isStackable() then
-			if type(result) == "table" then
-				for _, item in ipairs(result) do
-					item:decay()
-				end
-			else
-				result:decay()
-			end
-		end
-		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
+	player:AddCustomItem({ id = itemType:getId(), fluidType = fluidType, count = count, tier = tier })
+
+	if tier and (tier <= 0 or tier > 10) then
+		player:sendCancelMessage("Invalid tier count.")
+		return true
 	end
+
+	player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	return true
 end
 

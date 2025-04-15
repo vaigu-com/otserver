@@ -603,7 +603,7 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 		return false
 	end
 
-	local item = self:addItem(conjureId, conjureCount)
+	local item = self:AddCustomItem({ id = conjureId, count = conjureCount })
 	if not item then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)

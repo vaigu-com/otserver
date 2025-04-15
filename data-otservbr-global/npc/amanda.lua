@@ -68,8 +68,8 @@ local function addMissionKeyword(text, value, newValue, addItem)
 		end
 
 		if addItem then
-			player:addItem(268, 5)
-			player:addItem(266, 5)
+			player:AddCustomItem({id = 268, count = 5})
+			player:AddCustomItem({id = 266, count = 5})
 		end
 	end)
 end
@@ -103,7 +103,7 @@ local stoneKeyword = keywordHandler:addKeyword({ "adventurer stone" }, StdModule
 	return player:getStorageValue(Storage.Quest.U9_80.AdventurersGuild.FreeStone.Amanda) ~= 1
 end)
 stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Here you are. Take care.", reset = true }, nil, function(player)
-	player:addItem(16277, 1)
+	player:AddCustomItem({id = 16277, count = 1})
 	player:setStorageValue(Storage.Quest.U9_80.AdventurersGuild.FreeStone.Amanda, 1)
 end)
 
@@ -112,7 +112,7 @@ stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler
 	return player:getMoney() + player:getBankBalance() >= 30
 end, function(player)
 	if player:removeMoneyBank(30) then
-		player:addItem(16277, 1)
+		player:AddCustomItem({id = 16277, count = 1})
 	end
 end)
 stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Sorry, you don't have enough money.", reset = true })

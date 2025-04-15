@@ -11,7 +11,7 @@ function sugarOat.onUse(player, item, fromPosition, target, toPosition, isHotkey
 		if toPosition.x ~= CONTAINER_POSITION then
 			Game.createItem(12802, 1, toPosition)
 		else
-			player:addItem(12802, 1)
+			player:AddCustomItem({id = 12802, count = 1})
 			toPosition = player:getPosition()
 		end
 		toPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)

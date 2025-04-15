@@ -69,11 +69,11 @@ local function playerAddItem(params, item)
 		-- Because it generate bug in the item description
 		if itemType:isKey() or itemType:getId(21392) then
 			-- If is key not in container, uses the "isKey = true" variab
-			keyItem = player:addItem(params.itemid, params.count)
+			keyItem = player:AddCustomItem({id = params.itemid, count = params.count})
 			keyItem:setActionId(params.storage)
 		end
 	else
-		addItem = player:addItem(params.itemid, params.count)
+		addItem = player:AddCustomItem({id = params.itemid, count = params.count})
 		-- If the item is writeable, just put its unique and the text in the "AttributeTable"
 		local attribute = AttributeTable[item.uid]
 		if attribute then
@@ -186,7 +186,7 @@ function questReward.onUse(player, item, fromPosition, itemEx, toPosition)
 		setting.reward[1][2] = setting.randomReward[randomReward][2]
 	end
 
-	local container = player:addItem(setting.container)
+	local container = player:AddCustomItem({id = setting.container})
 	for i = 1, #setting.reward do
 		local itemid = setting.reward[i][1]
 		local count = setting.reward[i][2]

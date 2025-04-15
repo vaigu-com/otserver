@@ -67,13 +67,13 @@ local function greetCallback(npc, creature)
 
 	if player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Oneeyedjoe) == 3 and player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Questline) == 3 then
 		player:addAchievement("Wail of the Banshee")
-		player:addItem(16119, 1)
-		player:addItem(16120, 1)
-		player:addItem(16121, 1)
+		player:AddCustomItem({id = 16119, count = 1})
+		player:AddCustomItem({id = 16120, count = 1})
+		player:AddCustomItem({id = 16121, count = 1})
 
 		local chanceToPirate = math.random(1, 4)
 		local pirateItems = { [1] = 5926, [2] = 6098, [3] = 6097, [4] = 6126 }
-		player:addItem(pirateItems[chanceToPirate], 1)
+		player:AddCustomItem({id = pirateItems[chanceToPirate], count = 1})
 
 		player:setStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Oneeyedjoe, 4)
 		player:setStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Questline, 4)

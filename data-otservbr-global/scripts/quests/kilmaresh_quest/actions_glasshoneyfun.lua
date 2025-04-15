@@ -5,7 +5,7 @@ function glasshoneyfun.onUse(player, item, fromPosition, target, toPosition, isH
 		if table.contains({ 31376 }, target.itemid) then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are gently squishing some of the honey palm blossoms and golden honey is depping into the jug.")
 			player:removeItem(31331, 1)
-			player:addItem(31332, 1)
+			player:AddCustomItem({id = 31332, count = 1})
 		end
 	else
 		player:sendTextMessage(MESSAGE_FAILURE, "Sorry, not possible.")

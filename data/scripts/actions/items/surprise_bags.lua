@@ -22,7 +22,7 @@ function surpriseBag.onUse(player, item, fromPosition)
 		gift = gift[1]
 	end
 
-	player:addItem(gift, count)
+	player:AddCustomItem({id = gift, count = count})
 	fromPosition:sendMagicEffect(CONST_ME_GIFT_WRAPS)
 	item:remove(1)
 	return true

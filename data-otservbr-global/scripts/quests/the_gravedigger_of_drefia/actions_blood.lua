@@ -14,7 +14,7 @@ function gravediggerBlood.onUse(player, item, fromPosition, target, toPosition, 
 	if player:getStorageValue(cStorages[1]) == 1 and player:getStorageValue(cStorages[2]) < 1 then
 		player:setStorageValue(cStorages[2], 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, targetItem.message)
-		player:addItem(targetItem.itemId, 1)
+		player:AddCustomItem({id = targetItem.itemId, count = 1})
 		item:remove(1)
 	end
 	return true

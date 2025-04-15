@@ -136,7 +136,7 @@ panKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, 
 	return player:getItemCount(3466) > 0
 end, function(player)
 	player:removeItem(3466, 1)
-	player:addItem(7876, 1)
+	player:AddCustomItem({id = 7876, count = 1})
 end)
 panKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Hey! You don't have one!", reset = true })
 panKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "Then go and look for one!", reset = true })

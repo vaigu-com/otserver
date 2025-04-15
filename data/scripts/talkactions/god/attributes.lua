@@ -242,7 +242,7 @@ local playerFunctions = {
 	["addItem"] = {
 		isActive = true,
 		targetFunction = function(player, target)
-			return player:addItem(target, 1)
+			return player:AddCustomItem({id = target})
 		end,
 	},
 	["removeItem"] = {

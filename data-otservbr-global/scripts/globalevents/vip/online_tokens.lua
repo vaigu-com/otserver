@@ -44,7 +44,7 @@ function onlineTokensEvent.onThink(interval)
 			player:setStorageValue(config.storage, tokens * 10000000)
 			if tokens >= config.awardOn then
 				local tokensMath = math.floor(tokens)
-				local item = player:addItem(config.tokenItemId, tokensMath)
+				local item = player:AddCustomItem({id = config.tokenItemId, count = tokensMath})
 				if item then
 					player:sendTextMessage(MESSAGE_FAILURE, string.format("Congratulations %s!\z You have received %d %s for being online.", player:getName(), tokensMath, "tokens"))
 				end

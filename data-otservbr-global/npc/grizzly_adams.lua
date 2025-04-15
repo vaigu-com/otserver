@@ -504,7 +504,7 @@ local function creatureSayCallback(npc, creature, type, message)
 								player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry, player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry)) -- fake update
 							end
 						elseif table.contains({ REWARD_ITEM, "item", "items", "object" }, reward.type:lower()) and not deny then
-							player:addItem(reward.value[1], reward.value[2])
+							player:AddCustomItem({id = reward.value[1], count = reward.value[2]})
 						end
 
 						if reward.storage then

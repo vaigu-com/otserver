@@ -363,7 +363,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 		for index, value in ipairs(skin) do
 			if randomChance <= value.chance then
 				if target.itemid == 10426 then
-					local marble = player:addItem(value.newItem, value.amount or 1)
+					local marble = player:AddCustomItem({id = value.newItem, count = value.amount or 1})
 					if marble then
 						marble:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, value.desc:gsub("|PLAYERNAME|", player:getName()))
 					end
@@ -389,7 +389,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 			target:transform(skin.newItem, 1)
 			effect = CONST_ME_HITAREA
 		else
-			player:addItem(skin.newItem, skin.amount or 1)
+			player:AddCustomItem({id = skin.newItem, count = skin.amount or 1})
 		end
 	else
 		if table.contains({ 7441, 7442, 7444, 7445 }, target.itemid) then

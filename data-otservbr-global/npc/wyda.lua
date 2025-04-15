@@ -107,11 +107,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 				local TornTeddyRand = math.random(1, 100)
 				if TornTeddyRand <= 70 then
-					player:addItem(3454, 1) -- witchesbroom
+					player:AddCustomItem({id = 3454, count = 1}) -- witchesbroom
 					npcHandler:say("Thank you -SOOO- much! No, I really mean it! Really! Here, let me give you a reward...", npc, creature)
 					npcHandler:setTopic(playerId, 0)
 				else
-					player:addItem(12617, 1) -- torn teddy
+					player:AddCustomItem({id = 12617, count = 1}) -- torn teddy
 					npcHandler:say("Thank you -SOOO- much! No, I really mean it! Really! Ah, you know what, you can have this old thing...", npc, creature)
 					npcHandler:setTopic(playerId, 0)
 				end

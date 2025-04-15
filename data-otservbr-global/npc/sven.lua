@@ -88,7 +88,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		}, npc, creature)
 		player:setStorageValue(Storage.Quest.U8_0.BarbarianTest.Questline, 4)
 		player:setStorageValue(Storage.Quest.U8_0.BarbarianTest.Mission02, 1) -- Questlog Barbarian Test Quest Barbarian Test 2: The Bear Hugging
-		player:addItem(7140, 1)
+		player:AddCustomItem({id = 7140, count = 1})
 		npcHandler:setTopic(playerId, 0)
 	elseif MsgContains(message, "hug") then
 		if player:getStorageValue(Storage.Quest.U8_0.BarbarianTest.Questline) == 5 then

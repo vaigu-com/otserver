@@ -131,7 +131,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 1 then
 		if player:removeItem(3079, 1) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oby Ci sie przydalo... bo zwrotow nie ma!" or "Here you are.", npc, creature)
-			player:addItem(5891, 1)
+			player:AddCustomItem({id = 5891, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Najpierw musisz zalatwic sobie buty szybkosci. Wtedy mozemy porozmawiac." or "You didnt bring this item.", npc, creature)
 		end
@@ -139,7 +139,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 2 then
 		if player:removeItem(3392, 2) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze, oto Twoj {spirit container}." or "Here you are.", npc, creature)
-			player:addItem(5884, 1)
+			player:AddCustomItem({id = 5884, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hej, nie klam, nie masz wymaganych przedmiotow." or "You didnt bring this item.", npc, creature)
 		end
@@ -147,7 +147,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 3 then
 		if player:removeItem(3369, 4) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Blech... masz to ohydztwo, {flask of warrior's sweat}." or "Here you are.", npc, creature)
-			player:addItem(5885, 1)
+			player:AddCustomItem({id = 5885, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "E-e, to nie sa przedmioty ktore chce. Przyjdz z czterema {warrior helmet}." or "You didnt bring this item.", npc, creature)
 		end
@@ -155,7 +155,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 4 then
 		if player:removeItem(5879, 10) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Spoko, oto Twoj {spool of yarn}. A teraz spadaj, chce sie pobawic w spidermana." or "Here you are.", npc, creature)
-			player:addItem(5886, 1)
+			player:AddCustomItem({id = 5886, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Ej, chce 10 centymetrow {spider silk}, nie mniej, nie wiecej!" or "You didnt bring this item.", npc, creature)
 		end
@@ -163,7 +163,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 5 then
 		if player:removeItem(3281, 1) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Jeeej! Mam wielki miecz! Szkoda tylko, ze miecz... No coz, ale prosze, masz {Huge Chunk of Crude Iron}." or "Here you are.", npc, creature)
-			player:addItem(5892, 1)
+			player:AddCustomItem({id = 5892, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "*Mela chowa sie w transformatorze* nic o mnie nie wiesz! Nie pokazuj mi sie na oczy bez {Giant Sword}!" or "You didnt bring this item.", npc, creature)
 		end
@@ -171,7 +171,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 6 then
 		if player:removeItem(3381, 1) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Dzieki, to kawalek tej zbroi, nie bede go potrzebowal - {Piece of Royal Steel}." or "Here you are.", npc, creature)
-			player:addItem(5887, 1)
+			player:AddCustomItem({id = 5887, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz tej fajnej zbroi przy sobie. Przynies, to wtedy pogadamy." or "You didnt bring this item.", npc, creature)
 		end
@@ -179,7 +179,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 7 then
 		if player:removeItem(3356, 1) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oto Twoj {Piece of Hell Steel}." or "Here you are.", npc, creature)
-			player:addItem(5888, 1)
+			player:AddCustomItem({id = 5888, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz przy sobie {Devil Helmet}, sorry, nie moge Ci dac {Piece of Hell Steel} od tak." or "You didnt bring this item.", npc, creature)
 		end
@@ -187,7 +187,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 8 then
 		if player:removeItem(3416, 1) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oto Twoj {Piece of Draconian Steel}. Tylko uwazaj, wystaje z niego jeszcze zab smoka." or "Here you are.", npc, creature)
-			player:addItem(5889, 1)
+			player:AddCustomItem({id = 5889, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz ze soba {Dragon Shield}... Przyznaj sie po prostu, ze boisz sie tych jaszczurek." or "You didnt bring this item.", npc, creature)
 		end
@@ -195,7 +195,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 9 then
 		if player:removeItem(3280, 3) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "He, he, wiec tez wciagasz? No spoko, oto Twoja dzialka {Magic Sulphur}. Tylko uwazaj, bo kopie." or "Here you are.", npc, creature)
-			player:addItem(5904, 1)
+			player:AddCustomItem({id = 5904, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Co Ty, z bagiet jestes, czy jak? Nie masz trzech {Fire Sword}, spadaj, bo zaraz zawolam ziomeczka..." or "You didnt bring this item.", npc, creature)
 		end
@@ -203,7 +203,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak", "okej", "dobra" }, message) and npcHandler:getTopic(playerId) == 10 then
 		if player:removeMoney(100000) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Spoko. Masz. Tylko nie mow od kogo wziales." or "Here you are.", npc, creature)
-			player:addItem(5924, 1)
+			player:AddCustomItem({id = 5924, count = 1})
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz tyle kasy, ziomeczku." or "You dont have enough money.", npc, creature)
 		end
@@ -221,8 +221,6 @@ npcHandler:setMessage(MESSAGE_WALKAWAY, "A zeby Cie cos kopnelo...")
 -- npcHandler:setMessage(MESSAGE_FAREWELL_ENG, 'Good bye.')
 -- npcHandler:setMessage(MESSAGE_WALKAWAY_ENG, 'See you..')
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
-
-npcConfig.shop = { { itemName = "coral comb", clientId = 5945, buy = 10000 } }
 
 -- On buy npc shop message
 npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)

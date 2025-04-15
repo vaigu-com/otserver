@@ -83,7 +83,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") then
 		if npcHandler:getTopic(playerId) == 1 then
 			player:setStorageValue(Storage.Quest.U9_1.TheirMastersVoiceWorldChange.SlimeGobblerReceived, 1)
-			player:addItem(12077, 1)
+			player:AddCustomItem({id = 12077, count = 1})
 			npcHandler:say("Then. Take. This. Gobbler. Always. Hungry. Eats. Slime. Fungus. Go.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		end

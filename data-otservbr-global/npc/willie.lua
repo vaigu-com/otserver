@@ -267,7 +267,7 @@ bananaKeyword:addChildKeyword({ "yes" }, StdModule.say, {
 	return player:getItemCount(3587) > 0
 end, function(player)
 	player:removeItem(3587, 1)
-	player:addItem(3426, 1)
+	player:AddCustomItem({id = 3426, count = 1})
 end)
 bananaKeyword:addChildKeyword({ "yes" }, StdModule.say, {
 	npcHandler = npcHandler,

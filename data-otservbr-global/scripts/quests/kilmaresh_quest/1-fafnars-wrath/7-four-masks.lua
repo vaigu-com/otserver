@@ -36,7 +36,7 @@ function masksAction.onUse(player, item, fromPosition, target, toPosition, isHot
 	local mask = masks[maskDiscovered]
 
 	if player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor) >= 1 and not testFlag(player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.FourMasks), mask.storage) then
-		player:addItem(maskDiscovered, 1)
+		player:AddCustomItem({id = maskDiscovered, count = 1})
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, mask.successMessage)
 		player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor, player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor) + 1)
 		player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.FourMasks, player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.FourMasks) + mask.storage)

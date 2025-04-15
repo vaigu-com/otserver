@@ -132,7 +132,7 @@ footballKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHand
 	return player:getMoney() + player:getBankBalance() >= 111
 end, function(player)
 	if player:removeMoneyBank(111) then
-		player:addItem(2990, 1)
+		player:AddCustomItem({id = 2990, count = 1})
 	end
 end)
 footballKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "You don't have enough money.", reset = true })
@@ -143,7 +143,7 @@ keywordHandler:addKeyword({ "honey", "flower" }, StdModule.say, { npcHandler = n
 	return player:getItemCount(2984) > 0
 end, function(player)
 	player:removeItem(2984, 1)
-	player:addItem(3362, 1)
+	player:AddCustomItem({id = 3362, count = 1})
 end)
 keywordHandler:addKeyword({ "honey", "flower" }, StdModule.say, { npcHandler = npcHandler, text = "Honey flowers are my favourites <sighs>." })
 

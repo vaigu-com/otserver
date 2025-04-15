@@ -677,7 +677,7 @@ function Player.getDailyRewardBonusesCount(self)
 		if streakLevel > 7 then
 			streakLevel = 7
 		end
-		for i = DAILY_REWARD_FIRST, streakLevel do
+		for _ = DAILY_REWARD_FIRST, streakLevel do
 			count = count + 1
 		end
 	else

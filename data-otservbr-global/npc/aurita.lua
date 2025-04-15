@@ -85,7 +85,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Thank you, friend! Please take the starlight vial. It is made of a very rare kind of enchanted glass and magical metals, so it is able to preserve starlight. ...",
 					"A long time ago a pixie knight of Maelyrra carried it with her. But when she was flying above the waves she accidentally dropped it and it sunk. I found it but now you may take it and use it to help Feyrist.",
 				}, npc, creature)
-				player:addItem(25731, 1)
+				player:AddCustomItem({id = 25731, count = 1})
 				player:setStorageValue(ThreatenedDreams.Mission03.EmptyStarlightVial, 1)
 				npcHandler:setTopic(playerId, 0)
 			else

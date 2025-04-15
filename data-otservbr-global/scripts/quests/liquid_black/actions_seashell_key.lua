@@ -16,11 +16,11 @@ function seashellKey.onUse(player, item, fromPosition, target, toPosition, isHot
 
 	local bookColor = math.random(0, 1000)
 	if bookColor < 333 then
-		player:addItem(14173)
+		player:AddCustomItem({id = 14173})
 	elseif bookColor >= 667 then
-		player:addItem(14174)
+		player:AddCustomItem({id = 14174})
 	else
-		player:addItem(14175)
+		player:AddCustomItem({id = 14175})
 	end
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A hidden stash appears the very moment you turn the key. Unfortunately the key breaks as you attempt to remove it from the lock.")
 	item:remove(1)

@@ -90,7 +90,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				creature
 			)
 			player:removeItem(21402, 1)
-			local TheDormKey = player:addItem(21392, 1)
+			local TheDormKey = player:AddCustomItem({id = 21392, count = 1})
 			TheDormKey:setActionId(103)
 			player:setStorageValue(Storage.Quest.U10_55.Dawnport.TheDormKey, 4)
 			npcHandler:setTopic(playerId, 0)

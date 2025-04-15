@@ -158,7 +158,7 @@ SoulPit = {
 
 		if SoulPit.getSoulCoreMonster(itemName) and SoulPit.getSoulCoreMonster(targetItemName) then
 			local randomSoulCore = SoulPit.soulCores[math.random(#SoulPit.soulCores)]
-			player:addItem(randomSoulCore:getId(), 1)
+			player:AddCustomItem({id = randomSoulCore:getId(), count = 1})
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("You have received a %s soul core.", randomSoulCore:getName()))
 			item:remove(1)

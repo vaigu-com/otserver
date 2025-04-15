@@ -60,7 +60,7 @@ function cultsOfTibiaMisguided.onUse(player, item, position, target, targetPosit
 		end
 
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You paralyse the bully and the amulet reveals the true face of the creature behind the possession of this misguided creature.")
-		local it = player:addItem(25296, 1)
+		local it = player:AddCustomItem({id = 25296, count = 1})
 		if map == "illusion" then
 			changeMap("reality")
 		end

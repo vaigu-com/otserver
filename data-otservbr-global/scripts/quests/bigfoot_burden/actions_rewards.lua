@@ -46,7 +46,7 @@ function bigfootRewards.onUse(player, item, fromPosition, target, toPosition, is
 	if item.uid == 3147 then
 		if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.WarzoneStatus) == 4 then
 			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.WarzoneStatus, 5)
-			player:addItem(3020, 1)
+			player:AddCustomItem({id = 3020, count = 1})
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found some golden fruits.")
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The chest is empty.")
@@ -72,16 +72,16 @@ function bigfootRewards.onUse(player, item, fromPosition, target, toPosition, is
 			local items = reward.items[i]
 			if items.rand then
 				if math.random(10) == 1 then
-					player:addItem(items.itemId[math.random(#items.itemId)], 1)
+					player:AddCustomItem({id = items.itemId[math.random(#items.itemId)], count = 1})
 				end
 			else
-				player:addItem(items.itemId, items.count or 1)
+				player:AddCustomItem({id = items.itemId, count = items.count or 1})
 			end
 		end
 
 		if reward.miniatureHouse then
 			if math.random(25) == 1 then
-				player:addItem(15276, 1)
+				player:AddCustomItem({id = 15276, count = 1})
 			end
 		end
 

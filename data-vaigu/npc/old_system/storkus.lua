@@ -200,7 +200,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeItem(8192, 50) then
 				npcHandler:say("Ye' brought the fifty tokens needed to advance to the last vampire hunter rank. Now that's something. You're razing-amazing! Let me share some of my experience and a little something with ye'!", npc, creature)
 				player:setStorageValueByKey(Storage.VampireHunter.Rank, 6)
-				player:addItem(8191, 1)
+				player:AddCustomItem({id = 8191, count = 1})
 				player:addExperience(100 * 1000, true)
 			else
 				npcHandler:say("Ye' don't have enought tokens.", npc, creature)

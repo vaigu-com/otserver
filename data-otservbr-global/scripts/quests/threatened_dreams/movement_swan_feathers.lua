@@ -39,7 +39,7 @@ function swanFeathers.onStepIn(creature, item, position, fromPosition)
 
 	if player:getStorageValue(ThreatenedDreams.Mission01.FeathersCount) < 5 then
 		player:setStorageValue(ThreatenedDreams.Mission01.FeathersCount, player:getStorageValue(ThreatenedDreams.Mission01.FeathersCount) + 1)
-		player:addItem(25244, 1)
+		player:AddCustomItem({id = 25244, count = 1})
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, feathersFound.message)
 		player:setStorageValue(feathersFound.storage, 1)

@@ -359,6 +359,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 	local text = itemData.text
 	local uid = itemData.uid
 	local fluidType = itemData.fluidType
+	local tier = itemData.tier
 
 	local actionOnAdd = customItemActionContainer[id]
 	if actionOnAdd then
@@ -373,6 +374,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 		addedItems = { addedItems }
 	end
 
+	local lastErrorCode = 0
 	for _, addedItem in pairs(addedItems) do
 		for key, value in pairs(itemData) do
 			if IsCustomAttribute(key) then
@@ -409,14 +411,22 @@ function Player:AddCustomItem(itemData, container, localizer)
 			addedItem:setCustomAttribute("localizer", localizer)
 		end
 
+		if tier then
+			addedItem:setTier(tier)
+		end
+
 		if shouldAddToStore(itemData) then
 			addedItem:setOwner(self)
 			addedItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 			local inbox = self:getStoreInbox()
-			inbox:addItemEx(addedItem)
+			lastErrorCode = inbox:addItemEx(addedItem)
 		else
-			container = container or self:getSlotItem(CONST_SLOT_BACKPACK) or self
-			container:addItemEx(addedItem, nil, FLAG_NOLIMIT)
+			container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
+			if container then
+				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER, FLAG_NOLIMIT)
+			else
+				lastErrorCode = self:addItemEx(addedItem, false, CONST_SLOT_WHEREEVER, FLAG_NOLIMIT)
+			end
 		end
 
 		if aid == 0 then
@@ -435,6 +445,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. name .. ".")
 		end
 	end
+	return lastErrorCode
 end
 
 function CalculateItemsRequiredSlots(items)

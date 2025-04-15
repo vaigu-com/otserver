@@ -3,7 +3,7 @@ local rake = Action()
 function rake.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- Wrath of the Emperor Mission02
 	if target.itemid == 11366 then
-		player:addItem(11329, 1)
+		player:AddCustomItem({id = 11329, count = 1})
 		player:say("You dig out a handful of ordinary clay.", TALKTYPE_MONSTER_SAY)
 		-- The Shattered Isles Parrot ring
 	elseif target.itemid == 6094 then

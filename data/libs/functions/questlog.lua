@@ -164,14 +164,14 @@ function Game.calculateOngoingQuestsCount(player)
 end
 
 function Game.calculateOngoingMissionsByQuest(player, quest)
+	local count = 0
 	if not quest then
-		return 0
+		return count
 	end
 	if not quest.missions then
-		return 0
+		return count
 	end
 
-	local count = 0
 	local missions = quest.missions
 	for _, mission in pairs(missions) do
 		if player:isMissionOngoing(mission) then

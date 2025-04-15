@@ -9,42 +9,42 @@ function baking.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		if target.type == 1 then -- water / holy water
 			if target.itemid == 133 then
 				item:transform(item.itemid, item.type - 1)
-				player:addItem(8195, 1) -- lump of holy water dough
+				player:AddCustomItem({id = 8195, count = 1}) -- lump of holy water dough
 				target:transform(2874, 0)
 			else
 				item:transform(item.itemid, item.type - 1)
-				player:addItem(3604, 1) -- lump of dough
+				player:AddCustomItem({id = 3604, count = 1}) -- lump of dough
 				target:transform(target.itemid, 0)
 			end
 		elseif target.type == 9 then -- milk
 			item:transform(item.itemid, item.type - 1)
-			player:addItem(6276, 1) -- lump of cake dough
+			player:AddCustomItem({id = 6276, count = 1}) -- lump of cake dough
 			target:transform(target.itemid, 0)
 		end
 	elseif item.itemid == 6276 and target.itemid == 6574 then -- lump of cake dough / bar of chocolate
 		item:transform(item.itemid, item.type - 1)
 		target:transform(target.itemid, target.type - 1)
-		player:addItem(8018) -- lump of chocolate dough
+		player:AddCustomItem({id = 8018}) -- lump of chocolate dough
 	elseif item.itemid == 8195 and target.itemid == 8197 then -- bulb of garlic
 		item:transform(item.itemid, item.type - 1)
 		target:transform(target.itemid, target.type - 1)
-		player:addItem(8196) -- lump of garlic dough
+		player:AddCustomItem({id = 8196}) -- lump of garlic dough
 	elseif item.itemid == 8196 and target.itemid == 3464 then -- baking tray
 		item:transform(item.itemid, item.type - 1)
 		target:transform(8198) -- baking tray with garlic cookie dough on it
 	elseif table.contains(oven, target.itemid) then
 		if table.contains({ 6276, 8018 }, item.itemid) then
-			player:addItem(item.itemid + 1, 1) -- cake / chocolate cake
+			player:AddCustomItem({id = item.itemid + 1, count = 1}) -- cake / chocolate cake
 			item:transform(item.itemid, item.type - 1)
 		elseif item.itemid == 8196 then -- lump of garlic dough
-			player:addItem(8194) -- garlic bread
+			player:AddCustomItem({id = 8194}) -- garlic bread
 			item:transform(item.itemid, item.type - 1)
 		elseif item.itemid == 8198 then -- baking tray with garlic cookie dough on it
-			player:addItem(8199, 12) -- garlic cookies
+			player:AddCustomItem({id = 8199, count = 12}) -- garlic cookies
 			item:transform(3464)
 		else
 			item:transform(item.itemid, item.type - 1)
-			player:addItem(3600, 1) -- bread
+			player:AddCustomItem({id = 3600, count = 1}) -- bread
 		end
 	elseif item.itemid == 5466 and target.itemid == 3605 then -- bunch of sugar cane, bunch of wheat
 		item:transform(12802) -- sugar oat
@@ -52,10 +52,10 @@ function baking.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	elseif table.contains(millstones, target.itemid) then
 		if item.itemid == 3605 then -- bunch of wheat
 			item:transform(item.itemid, item.type - 1)
-			player:addItem(3603, 1) -- flour
+			player:AddCustomItem({id = 3603, count = 1}) -- flour
 		elseif item.itemid == 30975 then
 			item:transform(item.itemid, item.type - 1)
-			player:addItem(31686, 1) -- ground reed
+			player:AddCustomItem({id = 31686, count = 1}) -- ground reed
 		end
 	else
 		return false

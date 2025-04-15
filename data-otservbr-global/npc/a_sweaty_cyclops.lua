@@ -130,7 +130,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 5 then
 		if player:removeItem(3381, 1) then
 			npcHandler:say("Cling clang!", npc, creature)
-			player:addItem(5887, 1)
+			player:AddCustomItem({id = 5887, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end
@@ -142,7 +142,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 6 then
 		if player:removeItem(3416, 1) then
 			npcHandler:say("Cling clang!", npc, creature)
-			player:addItem(5889, 1)
+			player:AddCustomItem({id = 5889, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end
@@ -154,7 +154,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 7 then
 		if player:removeItem(3356, 1) then
 			npcHandler:say("Cling clang!", npc, creature)
-			player:addItem(5888, 1)
+			player:AddCustomItem({id = 5888, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end
@@ -166,7 +166,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 8 then
 		if player:removeItem(3281, 1) then
 			npcHandler:say("Cling clang!", npc, creature)
-			player:addItem(5892, 1)
+			player:AddCustomItem({id = 5892, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end
@@ -180,11 +180,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			local count = player:getItemCount(5944)
 			for i = 1, count do
 				if math.random(100) <= 1 then
-					player:addItem(6528, 6)
+					player:AddCustomItem({id = 6528, count = 6})
 					player:removeItem(5944, 1)
 					npcHandler:say("Cling clang! Me done good work today! Li'l one gets double bolts!", npc, creature)
 				else
-					player:addItem(6528, 3)
+					player:AddCustomItem({id = 6528, count = 3})
 					player:removeItem(5944, 1)
 					npcHandler:say("Cling clang!", npc, creature)
 				end

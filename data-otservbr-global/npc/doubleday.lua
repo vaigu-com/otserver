@@ -76,8 +76,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 2)
 		elseif npcHandler:getTopic(playerId) == 3 then
 			npcHandler:say("Very nice, there you go! Just bring me the printout from the probe after deploying it! You can request a new probing {device} or a new {detector} if you lose it - but it takes some time for me to get a new one ready so be careful with that stuff.", npc, creature)
-			player:addItem(21192, 1)
-			player:addItem(21208, 1)
+			player:AddCustomItem({id = 21192, count = 1})
+			player:AddCustomItem({id = 21208, count = 1})
 			player:setStorageValue(Storage.Quest.U10_50.OramondQuest.Probing.Mission, 1)
 			player:setStorageValue(Storage.Quest.U10_50.OramondQuest.Probing.MonoDetector, os.time() + 30 * 60)
 			if player:getStorageValue(Storage.Quest.U10_50.OramondQuest.QuestLine) < 1 then
@@ -99,8 +99,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 9 then
 			npcHandler:say("Alright, there you go - please, try to be more careful with my equipment next time!", npc, creature)
-			player:addItem(21192, 1)
-			player:addItem(21208, 1)
+			player:AddCustomItem({id = 21192, count = 1})
+			player:AddCustomItem({id = 21208, count = 1})
 			player:setStorageValue(Storage.Quest.U10_50.OramondQuest.Probing.MonoDetector, os.time() + 30 * 60)
 			npcHandler:setTopic(playerId, 0)
 		end

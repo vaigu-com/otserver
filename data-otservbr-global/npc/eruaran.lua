@@ -361,7 +361,7 @@ local function creatureSayCallback(npc, creature, type, message)
 						or false
 					)
 					if newItemId then
-						player:addItem(newItemId)
+						player:AddCustomItem({id = newItemId})
 						player:removeItem(IDS.DREAM_MATTER, Config.Create.DreamMatter)
 						player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Create.Clusters)
 						npcHandler:say("Your dreams are strong, the creation was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
@@ -391,7 +391,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					if player:getItemCount(oldItemId) > 0 then
 						if math.random(100) <= Config.Improve.Chance then
 							player:removeItem(oldItemId, 1)
-							player:addItem(newItemId)
+							player:AddCustomItem({id = newItemId})
 							player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Improve.Clusters)
 							npcHandler:say("Your dreams are strong, the improvement was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
 						else
@@ -422,7 +422,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					if player:getItemCount(oldItemId) > 0 then
 						if math.random(100) <= Config.Transform.Chance then
 							player:removeItem(oldItemId, 1)
-							player:addItem(newItemId)
+							player:AddCustomItem({id = newItemId})
 							player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Transform.Clusters)
 							npcHandler:say("Your dreams are strong, the transforming was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
 						else
@@ -432,7 +432,7 @@ local function creatureSayCallback(npc, creature, type, message)
 								player:removeItem(oldItemId, 1)
 							else
 								player:removeItem(oldItemId, 1)
-								player:addItem(oldItemId - 1, 1)
+								player:AddCustomItem({id = oldItemId - 1, count = 1})
 								player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Transform.Clusters / 2)
 							end
 						end

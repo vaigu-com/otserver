@@ -11,11 +11,11 @@ function changeGold.onUse(player, item, fromPosition, target, toPosition, isHotk
 	local coin = config[item:getId()]
 	if coin.changeTo and item.type == 100 then
 		item:remove()
-		player:addItem(coin.changeTo, 1)
+		player:AddCustomItem({id = coin.changeTo, count = 1})
 		return true
 	elseif coin.changeBack then
 		item:remove(1)
-		player:addItem(coin.changeBack, 100)
+		player:AddCustomItem({id = coin.changeBack, count = 100})
 		return true
 	end
 	return false

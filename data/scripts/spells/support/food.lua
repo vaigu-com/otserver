@@ -10,13 +10,13 @@ local foods = {
 
 local spell = Spell("instant")
 
-function spell.onCastSpell(creature, variant)
+function spell.onCastSpell(player, variant)
 	if math.random(0, 1) == 1 then
-		creature:addItem(foods[math.random(#foods)])
+		player:AddCustomItem({id = foods[math.random(#foods)]})
 	end
 
-	creature:addItem(foods[math.random(#foods)])
-	creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
+	player:AddCustomItem({id = foods[math.random(#foods)]})
+	player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	return true
 end
 

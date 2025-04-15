@@ -26,7 +26,7 @@ function gloothBag.onUse(player, item, fromPosition, target, toPosition, isHotke
 					count = math.random(count[1], count[2])
 				end
 
-				player:addItem(gift, count)
+				player:AddCustomItem({id = gift, count = count})
 			end
 
 			item:getPosition():sendMagicEffect(CONST_ME_HITBYPOISON)

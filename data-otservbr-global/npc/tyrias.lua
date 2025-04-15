@@ -72,7 +72,7 @@ local stoneKeyword = keywordHandler:addKeyword({ "adventurer stone" }, StdModule
 	return player:getStorageValue(Storage.Quest.U9_80.AdventurersGuild.FreeStone.Tyrias) ~= 1
 end)
 stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Here you are. Take care.", reset = true }, nil, function(player)
-	player:addItem(16277, 1)
+	player:AddCustomItem({id = 16277, count = 1})
 	player:setStorageValue(Storage.Quest.U9_80.AdventurersGuild.FreeStone.Tyrias, 1)
 end)
 stoneKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "No problem.", reset = true })
@@ -82,7 +82,7 @@ stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler
 	return player:getMoney() + player:getBankBalance() >= 30
 end, function(player)
 	if player:removeMoneyBank(30) then
-		player:addItem(16277, 1)
+		player:AddCustomItem({id = 16277, count = 1})
 	end
 end)
 stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Sorry, you don't have enough money.", reset = true })
@@ -101,7 +101,7 @@ stakeKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler
 end, function(player)
 	player:setStorageValue(Storage.Quest.U7_8.FriendsAndTraders.TheBlessedStake, 11)
 	player:removeItem(5941, 1)
-	player:addItem(5942, 1)
+	player:AddCustomItem({id = 5942, count = 1})
 end)
 stakeKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "You don't even have that strange stake with you.", reset = true })
 stakeKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "No problem, I have other things to do.", reset = true })

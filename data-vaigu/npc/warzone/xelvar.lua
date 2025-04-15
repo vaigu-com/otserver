@@ -82,7 +82,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"Good luck to you and don't embarrass your race down there! Keep in mind that you are a representative of the big people.",
 		}, npc, creature)
 		player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 1)
-		player:addItem(16167, 4)
+		player:AddCustomItem({id = 16167, count = 4})
 		npcHandler:setTopic(playerId, 0)
 	end
 	return true

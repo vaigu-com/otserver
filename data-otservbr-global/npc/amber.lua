@@ -408,7 +408,7 @@ bookKeyword:addChildKeyword({ "yes" }, StdModule.say, {
 }, function(player)
 	return player:getItemCount(2821) > 0
 end, function(player)
-	player:addItem(3294, 1)
+	player:AddCustomItem({id = 3294, count = 1})
 	player:removeItem(2821, 1)
 end)
 bookKeyword:addChildKeyword({ "yes" }, StdModule.say, {

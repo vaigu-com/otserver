@@ -112,7 +112,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 19)
 			player:setStorageValueByKey(Storage.BigfootBurden.WarzoneStatus, 1)
 			player:setStorageValueByKey(Storage.Finished.BigfootsBurden, 1)
-			player:addItem(16242, 3)
+			player:AddCustomItem({id = 16242, count = 3})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end

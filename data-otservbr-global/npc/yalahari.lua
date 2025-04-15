@@ -157,7 +157,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.Questline, 35)
 			player:setStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.Mission06, 1) -- StorageValue for Questlog "Mission 06: Frightening Fuel"
-			player:addItem(8822, 1)
+			player:AddCustomItem({id = 8822, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.Questline) == 38 then
 			npcHandler:say({

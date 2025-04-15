@@ -218,7 +218,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getFreeCapacity() > neededCap then
 				if player:getItemCount(npc:getCurrency()) >= products[answerType[playerId]][answerLevel[playerId]].value then
 					for i = 1, #products[answerType[playerId]][answerLevel[playerId]].itens do
-						player:addItem(products[answerType[playerId]][answerLevel[playerId]].itens[i].id, products[answerType[playerId]][answerLevel[playerId]].itens[i].amount)
+						player:AddCustomItem({id = products[answerType[playerId]][answerLevel[playerId]].itens[i].id, count = products[answerType[playerId]][answerLevel[playerId]].itens[i].amount})
 					end
 					player:removeItem(npc:getCurrency(), products[answerType[playerId]][answerLevel[playerId]].value)
 					npcHandler:say("There it is.", npc, creature)

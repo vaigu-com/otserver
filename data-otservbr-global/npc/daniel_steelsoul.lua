@@ -70,7 +70,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.TibiaTales.AgainstTheSpiderCult) == 5 then
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.AgainstTheSpiderCult, 6)
 			npcHandler:setTopic(playerId, 0)
-			player:addItem(814, 1)
+			player:AddCustomItem({id = 814, count = 1})
 			npcHandler:say("What? YOU DID IT?!?! That's...that's...er....<drops a piece of paper. You see the headline 'death certificate'> like I expected!! Here is your reward.", npc, creature)
 		end
 	elseif MsgContains(message, "task") then

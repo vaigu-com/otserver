@@ -134,7 +134,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if npcHandler:getTopic(playerId) == 2 then
 			if player:getStorageValue(Storage.Quest.U7_8.TheShatteredIsles.ReputationInSabrehaven) == 6 then
 				npcHandler:say("Alright, we will see. Here, take this letter and deliver it safely to old Eremo on Cormaya.", npc, creature)
-				player:addItem(3506, 1)
+				player:AddCustomItem({id = 3506, count = 1})
 				player:setStorageValue(Storage.Quest.U7_8.TheShatteredIsles.ReputationInSabrehaven, 7)
 				npcHandler:setTopic(playerId, 0)
 			end

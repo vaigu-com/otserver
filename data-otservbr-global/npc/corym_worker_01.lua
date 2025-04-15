@@ -60,7 +60,7 @@ local function greetCallback(npc, creature, message)
 		})
 		player:setStorageValue(HiddenThreats.CorymRescueMission, player:getStorageValue(HiddenThreats.CorymRescueMission) + 1)
 		player:setStorageValue(HiddenThreats.CorymRescued01, 1)
-		player:addItem(3030, 1)
+		player:AddCustomItem({id = 3030, count = 1})
 	else
 		npcHandler:setMessage(MESSAGE_GREET, "My hero! A friend of mine sent you to liberate me? A true friend!")
 	end

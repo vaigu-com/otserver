@@ -22,7 +22,7 @@ function surpriseBox.onUse(player, item, fromPosition, target, toPosition, isHot
 		cumulativeChance = cumulativeChance + prizeEntry.chance
 		if number <= cumulativeChance then
 			player:getPosition():sendMagicEffect(CONST_ME_POFF)
-			player:addItem(prizeEntry.id, prizeEntry.amount)
+			player:AddCustomItem({id = prizeEntry.id, count = prizeEntry.amount})
 			item:remove()
 			break
 		end

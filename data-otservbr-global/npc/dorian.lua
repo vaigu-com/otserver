@@ -134,7 +134,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 8)
 		elseif player:getStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Questline) == 8 and player:getStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission08) < 1 then
 			player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission08, 1)
-			player:addItem(7873, 1)
+			player:AddCustomItem({id = 7873, count = 1})
 			npcHandler:say({
 				"Competition might be an interesting challenge but our guild isn't really keen on competition. ...",
 				"Unfortunately, we are lacking some good fighters, which is quite a disadvantage against certain other organisations. However, I think you're a really good fighter ...",
