@@ -9,9 +9,10 @@ quest
 			Board = {},
 		}
 	end)
-	:Questlog(function()
+	:Questlog(function(localizer)
 		DailyTaskQuestlog = {
 			name = "Daily task",
+			localizer = localizer,
 			missions = {
 				{
 					name = "Daily tasks information",
@@ -33,7 +34,7 @@ quest
 			return false
 		end
 
-		local function onDailyTaskBoardUse(player)
+		local function onDailyTaskboardUse(player)
 			player:setStorageValueByKey(Storage.DailyTasks.DailyTaskInfo, 0)
 			if not playerCanTakeAnyDailyTask(player) then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(Storage.DailyTasks.DailyTaskInfo):Get("YOU_TAKEN_ALL_AVAILABLE_DAILY_TASKS"))
@@ -46,17 +47,16 @@ quest
 
 		local dailyBoard = Action()
 		function dailyBoard.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-			return onDailyTaskBoardUse(player)
+			return onDailyTaskboardUse(player)
 		end
-
 		dailyBoard:key(Storage.DailyTasks.Board)
 		dailyBoard:register()
 
 		local dailyBoardLook = Look()
 		function dailyBoardLook.onLook(player, item)
-			return onDailyTaskBoardUse(player)
+			onDailyTaskboardUse(player)
+			return DONT_SHOW_ONLOOK
 		end
-
 		dailyBoardLook:key(Storage.DailyTasks.Board)
 		dailyBoardLook:register()
 	end)
@@ -65,10 +65,10 @@ quest
 	end)
 	:Script(function()
 		local function onPamphlet(player, item)
-			local aid = item:getActionId()
+			local key = item:getKey()
 			local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
-			local translatedText = player:Localizer(nil):Context({ aid = aid }):Get(text)
-			SimpleTextDisplay(player, item, translatedText)
+			local translatedText = player:Localizer(nil):Context({ key = key }):Get(text)
+			SimpleTextDisplay(player, translatedText)
 		end
 
 		local dailyPamphletUse = Action()
@@ -80,7 +80,7 @@ quest
 		local dailyPamphletLook = Look()
 		function dailyPamphletLook.onLook(player, item)
 			onPamphlet(player, item)
-			return true
+			return DONT_SHOW_ONLOOK
 		end
 
 		for _, dailyTask in pairs(GetAllDailyTasks()) do

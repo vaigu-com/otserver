@@ -60,7 +60,7 @@ return {
 	["Vislav Shivka said that Djinn can definitely perform miracles like enchanting a carpet."] = "Wieslaw Wszywka powiedzial, ze Djinnowie na pewno potrafia dokonywac cudow takich jak zaczarowanie dywanu.",
 	["Djinn's Ordeal"] = "Proba djinna",
 	["Vislav Shivka directed you to the Djinn, who is located somewhere at the desert."] = "Wieslaw Wszywka skierowal cie do Djinna, ktory znajduje sie gdzies na hurghadzie.",
-	["The Djinn instructed you on where to find the smugglers' base. Try to find something there that might interest him."] = "Djinn poinstruowal cie, gdzie znajdziesz baze przemytnikow. Sproboj znalezc tam cos, co moze go zainteresowac.",
+	["The Djinn instructed you on where to find the smugglers' base. Try to find something there that might interest him."] = "Djinn poinstruowal cie gdzie znajdziesz baze przemytnikow. Sproboj znalezc tam cos, co moze go zainteresowac.",
 	["You found a box of wafers that Djinn mentioned. Return to him and ask for his help with your task."] = "Znalazles pudlo z goframi, o ktorych wspominal Djinn. Wroc do niego, i zapytaj go o pomoc z twoim zadaniem.",
 	["Djinn agreed to help with 'enchanting' the carpet. Now find the missing dead weight, and Djinn will do his job."] = "Djinn zgodzil sie pomoc z 'zaczarowaniem' dywanu. Znajdz teraz brakujace dead weight, a djinn wykona swoja robote.",
 	["You delivered the materials needed for 'enchanting' the carpet to Djinn. From now on, you will be able to fly from the highest mountain in the Caribbean."] = "Dostarczyles Djinnowi materialy potrzebne do 'zaczarowania' dywanu. Od teraz bedziesz mogl latac z najwyzszej gory na karaibach.",

@@ -21,14 +21,33 @@ return {
 	["Cultivator of ULTIMATENESS. The King of Rats might be intersted in it."] = "Cultivator of ULTIMATENESS. The King of Rats might be intersted in it.",
 	-- King of Rats Headquarters
 	["King of Rats Headquarters"] = "King of Rats Headquarters",
-	["Current HeadQuarters status"] = "Current status",
 	["01. to Ryan"] = "01. to Ryan",
 	["02. to Sweaty Cyclops"] = "02. to Sweaty Cyclops",
 	["03. to Djinns"] = "03. to Djinns",
 	["04. to North Kongo"] = "04. to North Kongo",
 	["05. to Werebadgers"] = "05. to Werebadgers",
 	["06. to Vampire city"] = "06. to Vampire city",
-	["07. to Asuras"] = "07. to Asuras",
-	["08. to East Hurgahada"] = "08. to East Hurgahada",
+	["08. to Asuras"] = "08. to Asuras",
+	["07. to East Hurgahada"] = "07. to East Hurgahada",
 	["You unlocked this teleport"] = "You unlocked this teleport",
+	["Current HeadQuarters status"] = "Current status",
+	["King of Rats Headquarters Status"] = function(context)
+		local unlockedCount = 0
+		local collectibleCount = 0
+		for _, storage in pairs(Storage.KingOfRatsHQ.CollectibleArtifacts) do
+			local portalState = context.player:getStorageValueByKey(storage)
+			if portalState == MISSION_FINISHED then
+				unlockedCount = unlockedCount + 1
+			end
+			collectibleCount = collectibleCount + 1
+		end
+
+		if unlockedCount == collectibleCount then
+			context.player:setStorageValueByKey(Storage.KingOfRatsHQ.Mission01, MISSION_FINISHED)
+		else
+			context.player:setStorageValueByKey(Storage.KingOfRatsHQ.Mission01, MISSION_STARTED)
+		end
+
+		return T("So far you have collected :unlockedCount: of :collectibleCount: artifacts.", { unlockedCount = unlockedCount, collectibleCount = collectibleCount })
+	end,
 }

@@ -85,7 +85,7 @@ return {
 	["I won't be doing anything about that then."] = "Okej, w takim razie nic nie zmieniamy.",
 	["It's cancelled."] = "OK. Twoje oswiadczyny zostaly anulowane.",
 	["Are sure you want to cancel your proposal?"] = "Czy na pewno chcesz zrezygnowac z oswiadczyn?",
-	["Your partner did not accept your proposal yet."] = "Twoj partner nie przyjal twojej propozycji oswiadczyn, przynajmniej narazie.",
+	["Your partner did not accept your proposal yet. You can {cancel} them if you like."] = "Twoj partner nie przyjal twojej propozycji oswiadczyn, przynajmniej narazie. Jesli chcesz, mozesz je {anulowac}.",
 	["MARRIAGE_TALKTYPE_SAY_TEXT"] = function(context)
 		return T(
 			"Kochane Mirki i Mirabelki, zebralismy sie dzis, aby uczcic zawarcie zwiazku malzenskiego pomiedzy :player: i :spouse:.\nPoprzez podroze, rozmowy i gre zrozumieli, ze czas wyjsc z #tfwnogf i #tfwnobf, najwyzsza pora odwinac stulejke i zaczac grac na powaznie.\nW zwiazku z tym dzisiaj zostana polaczeni wiezami malzenstwa, a wiec pozostana solidarni w huncie, w pekowaniu, w biedzie i w rollbackach serwera.\n*szepczac cos o #nocnazmiana i #neuropa, wyciaga dlon z pierscionkami ku\n:player:* Wez te grawerowane pierscienie, a jeden przekaz swojej drugiej, Mirkowej polowce.\nMozesz zaplusowac swojego oficjalnego, Mirkowego #rozowypasek.",

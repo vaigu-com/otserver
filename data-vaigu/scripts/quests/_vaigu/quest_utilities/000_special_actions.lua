@@ -4,6 +4,15 @@ local additionalBoltsNumber = 6
 local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
 
 SPECIAL_ACTIONS_UNIVERSAL = {
+	startEscort = function(context)
+		local activeEscort = ActiveEscort({
+			escortData = context.escortData or context.escort,
+			player = context.player,
+			npc = context.npc,
+		})
+		ActiveEscortRegistry:Register(activeEscort)
+		activeEscort:Start()
+	end,
 	clearConditions = function(context)
 		local player = context.player
 		local conditions = context.conditions or ALL_CONDITIONS
@@ -36,12 +45,12 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 	npcSay = function(context)
 		local talkType = context.talkType or context.npc
 		local player = context.player
-		local aid = context.localizerName
+		local key = context.localizerName
 		local text = context.text
 		local npc = context.npc
 		local npcHandler = context.npcHandler
 
-		local translatedMessage = player:Localizer(aid):Get(text)
+		local translatedMessage = player:Localizer(key):Get(text)
 
 		addEvent(function()
 			npcHandler:say(translatedMessage, npc, player, nil, talkType)
@@ -81,16 +90,21 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		local price = context.price
 		player:removeMoneyBank(price)
 	end,
+	freezeEscortee = function(context)
+		local activeEscort = ActiveEscortRegistry:GetByEscortData(context.escort)
+		if not activeEscort then
+			return
+		end
+		activeEscort:FreezeEscortee()
+	end,
 	despawnEscortee = function(context)
-		local escorteeName = context.escorteeName
 		local despawnAfterSeconds = context.despawnAfterSeconds
-
 		addEvent(function()
-			local creature = Creature(EscortRegistry():GetState(escorteeName).escortee)
-			if not creature then
+			local activeEscort = ActiveEscortRegistry:GetByEscortData(context.escort)
+			if not activeEscort then
 				return
 			end
-			creature:remove()
+			activeEscort:Reset()
 		end, despawnAfterSeconds * 1000)
 	end,
 	buyPromotion = function(context)
@@ -136,19 +150,18 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 			player:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
 		end
 	end,
-	sendMagicEffectNpc = function (context)
+	sendMagicEffectNpc = function(context)
 		local npc = context.npc
 		if npc then
 			npc:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
 		end
-		
-	end
+	end,
 }
 
 SPECIAL_ACTIONS_SOULORB = {
 	soulOrbToInfernalBolt = function(context)
 		local player = context.player
-		local count = player:CountItem(5944, 0)
+		local count = player:CountItem({ id = 5944 })
 		local totalBoltsGranted = (count - count % additionalBoltsNumber) * averageAdditionalBoltsMultiplier
 		local uncertainBolts = count - totalBoltsGranted
 		for _ = 1, uncertainBolts do
@@ -179,8 +192,13 @@ SPECIAL_ACTIONS_WILDCARD = {
 SPECIAL_ACTIONS_JEWELER = {
 	exchangeLifeCrystal = function(context)
 		local player = context.player
-		local crystalCount = player:CountItem(3051, 0)
+		local crystalCount = player:CountItem({ id = 3061 })
 		player:AddCustomItem({ id = 3052, count = crystalCount })
+	end,
+	exchangeRedGems = function(context)
+		local player = context.player
+		local gemCount = player:CountItem({ id = 3051 })
+		player:AddCustomItem({ id = 3098, count = gemCount * 3 })
 	end,
 }
 

@@ -30,10 +30,9 @@ return {
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
 		local task = context.task
-		local currentKills = context.player:getStorageValueByKey(task.storage)
 		local name = task.name
 		local requiredKills = task.requiredKills
-		currentKills = ParseCurrentKills(currentKills, requiredKills)
+		local currentKills = context.player:getStorageValueByKey(task.currentKills)
 		return T("Task for :name:: :currentKills:/:requiredKills: ", {
 			name = name,
 			currentKills = currentKills,
@@ -52,7 +51,7 @@ return {
 			requiredKills = requiredKills,
 		})
 	end,
-    ["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
+	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
 		local points = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		return T("Currently you have :points: task points. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.", { points = points })
 	end,
@@ -118,7 +117,7 @@ return {
 	["Do you want to buy ability to make powerful imbues?"] = "Do you want to buy ability to make powerful imbues?",
 	["You don't yet have the {ability} to buy this level of bundle yet."] = "You don't yet have the {ability} to buy this level of bundle yet.",
 	["You dont have enough cap or slots for these items."] = "You dont have enough cap or slots for these items.",
-    --Questlog
+	--Questlog
 	["Tasks"] = "Tasks",
 	["Task informations"] = "Task informations",
 	["TASK_MISSION_NAME"] = function(context)
@@ -127,16 +126,25 @@ return {
 	["TASK_MISSION_DESCRIPTION"] = function(context)
 		local player = context.player
 		local task = context.task
+		local taskState = player:getStorageValueByKey(task.storage)
 
-		local storage = task.storage
+		if taskState == MISSION_NOT_STARTED then
+			return "Empty task slot."
+		end
+
+		local currentKills = player:getStorageValueByKey(task.currentKills)
 		local name = task.name
 		local requiredKills = task.requiredKills
-		local currentKills = player:getStorageValueByKey(storage)
-		currentKills = ParseCurrentKills(currentKills, requiredKills)
-		return T(":name: killed: :currentKills:/:requiredKills:.", {
+
+		local finishedSuffix = ""
+		if taskState == REPORT_TASK_TO_NPC then
+			finishedSuffix = " You can go to npc and ask for your reward."
+		end
+		return T(":name: killed: :currentKills:/:requiredKills:.:finishedSuffix:", {
 			name = name,
 			currentKills = currentKills,
 			requiredKills = requiredKills,
+			finishedSuffix = finishedSuffix,
 		})
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_NAME"] = function(context)
@@ -144,16 +152,18 @@ return {
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION"] = function(context)
 		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Tasks):Get(context.task.name)
-		return bossLocationDescription
+		local bossAdmits = math.max(context.player:getStorageValueByKey(context.task.bossAdmitCounter), 0)
+		local admitsCountSuffix = T(" \nYou can fight with the boss :bossAdmits: times.", { bossAdmits = bossAdmits })
+		return bossLocationDescription .. admitsCountSuffix
 	end,
-	["Apes"] = "The Gorilla lives in monkey camp on eastern side of the mountain range in the jungle.",
+	["Apes"] = "The Golira lives in monkey camp on eastern side of the mountain range in the jungle.",
 	["Carniphilas"] = "Deathbine settled down somewhere near rocks on a bamboo clearing. The area is known from their crowdedness of Terror Birds and Carniphilas.",
 	["Crocodiles"] = "His lair is said to be under a waterfall teeming with crocodiles.",
 	["Cyclops"] = "The old cyclops was seen in the depths of a cave at the northern gate of MirkoTown.",
 	["Dragons"] = "The old dragon lives around the volcano to the north of Mirko Town.",
 	["Gargoyles"] = "The gargoyle cave is located at the top of the mountains inhabited by cyclops.",
 	["Mammoths"] = "The entrance to the Bloodtusk cave is somewhere on the Siberian surface.",
-	["Minos (Horned Fox)"] = "The rumors says that one of the minotaur leaders is hiding in their settlement north of MirkoTown.",
+	["Minotaurs"] = "The rumors says that one of the minotaur leaders is hiding in their settlement north of MirkoTown.",
 	["Mutated Humans"] = "His hideout is located under the cemetery in the village of mutants.",
 	["Orcs"] = "Bibby spent most of his time in the northern orc fortress, probably still there.",
 	["Rotworms"] = "The White Pale lair lays somewhere in eastern undergrounds of MirkoTown",

@@ -13,12 +13,12 @@ return {
 	["The test of Strength"] = "The test of Strength",
 	["Lecter asked you for 5 vampire teeth."] = "Lecter asked you for 5 vampire teeth.",
 	["In exchange for your help, Lecter bestowed you with his old soul-extraction tool."] = "In exchange for your help, Lecter bestowed you with his old soul-extraction tool.",
-	["Fashionista clothes"] = "Fashionista clothes",
+	["Fashionable clothes"] = "Fashionable clothes",
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter asked you to bring him 20 leathers of every kind.",
 	["For your help you have been taught how to skin human carcass."] = "For your help you have been taught how to skin human carcass.",
 	["Rub Meat With Lecter"] = "Rub Meat With Lecter",
-	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
-		return T("Lecter wants you to hoard 15 human hearts and 20 human livers. He needs them for his cannibals party. So far you have collected :hearts: hearts and :livers: livers.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanLivers) })
+	["LECTER_WANTS_HUMAN_HEARTS_STATUS"] = function(context)
+		return T("Lecter wants you to hoard 15 human hearts. He needs them for his cannibals party. So far you have collected :hearts: hearts..", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart) })
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
 	["Hearts collected"] = "Hearts collected",

@@ -10,10 +10,8 @@ function bossDeath.onDeath(creature)
 		return true
 	end
 
-	local encounterData = EncounterDataRegistry:GetByEncounterName(activeEncounter.encounterName)
-
+	local encounterData = EncounterDataRegistry:GetByEncounterName(activeEncounter.displayName)
 	encounterData:onSuccessfulCompletion()
-
 	return true
 end
 

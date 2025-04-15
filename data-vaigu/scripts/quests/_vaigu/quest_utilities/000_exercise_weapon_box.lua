@@ -6,7 +6,7 @@ local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
-	if not player:TryRemoveItems({ { id = boxId, aid = boxKey } }) then
+	if not player:TryRemoveItems({ { id = boxId, key = boxKey } }) then
 		return
 	end
 
@@ -42,7 +42,7 @@ local exerciseWeaponChoice = {
 
 ---@param charges number
 function ExerciseWeaponBox(charges)
-	local exerciseWeaponBoxItem = { id = boxId, aid = boxKey, charges = charges }
+	local exerciseWeaponBoxItem = { id = boxId, key = boxKey, charges = charges }
 	return exerciseWeaponBoxItem
 end
 

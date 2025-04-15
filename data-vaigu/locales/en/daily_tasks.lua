@@ -5,7 +5,7 @@ return {
 		return T("Hunting of :name:", { name = name })
 	end,
 	["DAILY_TASK_PAMPHLET_DESCRIPTION"] = function(context)
-		local dailyTask = GetDailyTaskByStorage(context.aid)
+		local dailyTask = GetDailyTaskByStorage(context.key)
 		context.dailyTask = dailyTask
 		return context.player:Localizer(context.questId):Context(context):Get("DAILY_TASK_MISSION_DESCRIPTION")
 	end,
@@ -13,9 +13,8 @@ return {
 		local player = context.player
 		local dailyTask = context.dailyTask
 		local name = dailyTask.name
-		local currentKills = player:getStorageValueByKey(dailyTask.storage)
+		local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
 		local requiredKills = dailyTask.requiredKills
-		currentKills = ParseCurrentKills(currentKills, requiredKills)
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Daily task for :name:!\n\n", { name = name })
 		dailyTaskDescription = dailyTaskDescription .. T("You have killed :currentKills:/:requiredKills: :name:.", {
@@ -50,12 +49,12 @@ return {
 		return T("For completing the daily tasks you'll get the following rewards: exp, gold and store coins.\n\nAfter finishing a task you can claim reward from the Mayor.\n\nYou can finish up to :maxTasks: tasks daily.\n\nYou can report a finished task the next day.", { maxTasks = DAILY_TASK_LIMIT })
 	end,
 	["DAILY_TASK_REWARDS_DIALOG"] = function(context)
-		local taskConfig = context.taskConfig
+		local dailyTask = context.dailyTask
 		return T("Your rewards for :name: daily task is: :exp: experience points, :money: gold.\n You received :points: store coins and task points", {
-			name = taskConfig.name,
-			exp = taskConfig.exp,
-			money = taskConfig.money,
-			points = taskConfig.tibiaCoins,
+			name = dailyTask.name,
+			exp = dailyTask.exp,
+			money = dailyTask.money,
+			points = dailyTask.tibiaCoins,
 		})
 	end,
 	["YOU_RECEIVED_DAILY_TASK"] = "You received a daily task!",
@@ -98,11 +97,10 @@ return {
 	end,
 	["Daily tasks"] = "Daily tasks",
 	["DAILY_TASK_CURRENT_KILLS"] = function(context)
-		local taskConfig = context.taskConfig
-		local currentKills = context.player:getStorageValueByKey(taskConfig.storage)
-		local name = taskConfig.name
-		local requiredKills = taskConfig.requiredKills
-		currentKills = ParseCurrentKills(currentKills, requiredKills)
+		local dailyTask = context.dailyTask
+		local currentKills = context.player:getStorageValueByKey(dailyTask.currentKills)
+		local name = dailyTask.name
+		local requiredKills = dailyTask.requiredKills
 		return T("Daily task for :name:: :currentKills:/:requiredKills: ", {
 			name = name,
 			currentKills = currentKills,

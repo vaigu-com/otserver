@@ -5,6 +5,9 @@ quest
 	:Storage(function()
 		Storage.LiquidBlack = {
 			Visitor = {},
+			ShortcutAccess = {},
+			ShortcutToOutside = {},
+			ShortcutToInside = {}
 		}
 		QuestState.LiquidBlack = {
 			FindUseForCoordinates = 1,
@@ -13,15 +16,16 @@ quest
 		}
 	end)
 	:Constant(function() end)
-	:Questlog(function()
+	:Questlog(function(localizer)
 		table.insert(Quests, {
 			name = "Liquid Black",
-			missions = {
+			localizer = localizer,
+			missions ={
 				{
 					name = "Visitor",
 					storage = Storage.LiquidBlack.Visitor,
 					states = {
-						[QuestState.LiquidBlack.FindUseForCoordinates] = "You have found notes and coordinates. Try to find out what they are for.", --3af check if using chest put you in this state
+						[QuestState.LiquidBlack.FindUseForCoordinates] = "You have found notes and coordinates. Try to find out what they are for.",
 						[QuestState.LiquidBlack.TalkToMezamir] = "You got teleported to Mezamir by a strange teleporter. Ask him about this machine.",
 						[QuestState.LiquidBlack.MezamirLetYouUseShortcut] = "Mezamir let you dive into the place he tried to discover years ago. Find a large staircase heading underwater on Pirate Island and find out what's below.",
 						[MISSION_FINISHED] = "You have found a shortcut to the deeplings' underwater base.",
@@ -29,5 +33,44 @@ quest
 				},
 			},
 		})
+	end)
+	:Script(function()
+		local insidePos = Position(6716, 2521, 14)
+		local shortcutToInside = MoveEvent()
+		function shortcutToInside.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
+			local player = creature:getPlayer()
+			if not player then
+				return true
+			end
+
+			if player:getStorageValueByKey(Storage.LiquidBlack.ShortcutAccess) ~= ACCESS_GRANTED then
+				return true
+			end
+
+			player:teleportTo(insidePos)
+			return true
+		end
+		shortcutToInside:type("stepin")
+		shortcutToInside:key(Storage.LiquidBlack.ShortcutToInside)
+		shortcutToInside:register()
+
+		local outsidePos = Position(6777, 2548, 4)
+		local shortcutToOutside = MoveEvent()
+		function shortcutToOutside.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
+			local player = creature:getPlayer()
+			if not player then
+				return true
+			end
+
+			if player:getStorageValueByKey(Storage.LiquidBlack.ShortcutAccess) ~= ACCESS_GRANTED then
+				return true
+			end
+
+			player:teleportTo(outsidePos)
+			return true
+		end
+		shortcutToOutside:type("stepin")
+		shortcutToOutside:key(Storage.LiquidBlack.ShortcutToOutside)
+		shortcutToOutside:register()
 	end)
 	:Register()

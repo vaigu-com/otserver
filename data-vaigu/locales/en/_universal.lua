@@ -1,27 +1,81 @@
 local directionToString = {
 	[DIRECTION_NORTH] = "North",
-	[DIRECTION_NORTHEAST] = "East",
-	[DIRECTION_EAST] = "West",
-	[DIRECTION_SOUTHEAST] = "South",
-	[DIRECTION_SOUTH] = "South-West",
-	[DIRECTION_SOUTHWEST] = "South-East",
-	[DIRECTION_WEST] = "North-West",
-	[DIRECTION_NORTHWEST] = "North-East",
+	[DIRECTION_NORTHEAST] = "North-East",
+	[DIRECTION_EAST] = "East",
+	[DIRECTION_SOUTHEAST] = "South-East",
+	[DIRECTION_SOUTH] = "South",
+	[DIRECTION_SOUTHWEST] = "South-West",
+	[DIRECTION_WEST] = "West",
+	[DIRECTION_NORTHWEST] = "North-West",
+}
+local incomprehensibleStringPool = {
+	"You have to speak more clearly.",
+	"I dont get it.",
+	"Can you repeat, please.",
+	"I dont get what you're talking about.",
+	"I didn't catch that.",
+	"What?!",
+}
+
+function SecondsToMinSec(seconds)
+	local minutes = math.floor(seconds / 60)
+	local remainingSeconds = seconds % 60
+	return minutes, remainingSeconds
+end
+
+local toOrdinal = {
+	[1] = "first",
+	[2] = "second",
+	[3] = "third",
 }
 
 return {
-	["YOU_ARE_NOW_CITIZEN_OF"] = function (context)
+	["Distance shop"] = "Distance shop",
+	["Smith shop"] = "Smith shop",
+	["Magic shop"] = "Magic shop",
+	["Creature product vendor"] = "Creature product vendor",
+	["Furniture"] = "Furniture",
+	["Tasks"] = "Tasks",
+	["Jeweller"] = "Jeweller",
+	["Utility shop"] = "Utility shop",
+	["Post Office"] = "Post Office",
+	["Food shop"] = "Food shop",
+	["Soft Boots Recharge"] = "Soft Boots Recharge",
+	["Ruler"] = "Ruler",
+	["Fisher"] = "Fisher",
+	["Aol"] = "Aol",
+	["Bank"] = "Bank",
+	["Temple"] = "Temple",
+	["NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!"] = "NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!",
+	["Bye, be aware of pickpockets!"] = "Bye, be aware of pickpockets!",
+	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one."] = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one.",
+	[MINIGAMES_BROADCAST_TOP_PARTICIPANTS] = function(context)
+		local min, sec = SecondsToMinSec(context.timeTakenSeconds)
+		context.min = min
+		context.sec = sec
+		context.ordinal = toOrdinal[context.grandPlace]
+		if context.competitionType == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
+			return T("Player :playerName: finished :minigameName: within :min:::sec: and took :ordinal:. Congratulations!", context)
+		else
+			return T("Player :playerName: finished :minigameName:, lasted :min:::sec: and took :ordinal:. Congratulations!", context)
+		end
+	end,
+	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "You didn't choose difficulty for this encounter!",
+	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "This is an encounter lever. You can unlock encounter difficulties by completing them. Looking at lever lets you choose difficulty.\n\nHigher difficulty gives you more loot, but also scales monster damage and healing, and might also add additional mechanics to the fight.\n\n20% additive loot per level\n\n20% multiplicative damage/health per level",
+	["Select difficulty:"] = "Select difficulty:",
+	["Go away, or even better: flip off."] = "Go away, or even better: flip off.",
+	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
 		local townName = context.townName
-		return T("You are now a citizen of :townName:.", {townName = townName})
+		return T("You are now a citizen of :townName:.", { townName = townName })
 	end,
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Hello, |PLAYERNAME|! Lately hardly any people come to visit me",
 	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (complete)",
 	["GO_IN_DIRECTION"] = function(context)
-		local dir = context.direction
-		if dir == DIRECTION_NONE then
+		local direction = context.direction
+		if direction == DIRECTION_NONE then
 			return "You are there!"
 		end
-		return T("Go :dir:.", { dir = directionToString[dir] })
+		return T("Go :direction:.", { direction = directionToString[direction] })
 	end,
 	["Starter weapons"] = "Starter weapons",
 	["Choose your starter weapon:"] = "Choose your starter weapon:",
@@ -37,22 +91,22 @@ return {
 	["LIST_AVAILABLE_COMMANDS"] = "List of available commands: !serverinfo - !language - !faq. Rest of commands is available under !commands",
 	["You can report ingame bugs using ctrl+z."] = "You can report ingame bugs using ctrl+z.",
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
-		return T("You or a member in your team still has a cooldown for the :encounterName: encounter.", { encounterName = context.encounterName })
+		return T("You or a member in your team still has a cooldown for the :displayName: encounter.", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT] = function(context)
-		return T("You still have to wait :timeLeftString: to enter the :encounterName: encounter.", { encounterName = context.encounterName, timeLeftString = context.timeLeftString })
+		return T("You still have to wait :timeLeftString: to enter the :displayName: encounter.", { displayName = context.displayName, timeLeftString = context.timeLeftString })
 	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
-		return T("You or a member in your team does not have the required access to enter :encounterName: encounter.", { encounterName = context.encounterName })
+		return T("You or a member in your team does not have the required access to enter :displayName: encounter.", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function(context)
-		return T("You dont have access to :encounterName: encounter.", { encounterName = context.encounterName })
+		return T("You dont have access to :displayName: encounter.", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.ONLY_PLAYERS] = function()
 		return "Only players can participate in the fight!"
 	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_INSIDE_ALREADY] = function(context)
-		return T("There's someone fighting :encounterName: already.", { encounterName = context.encounterName })
+		return T("There's someone fighting :displayName: already.", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.STAND_ON_ENTRANCE] = function()
 		return "You have to be standing on the entrance array to start the encounter."
@@ -110,16 +164,7 @@ return {
 	[FAREWELL] = "Farewell.",
 	["Thanks."] = "Thanks.",
 	[INCOMPREHENSIBLE] = function()
-		local stringPool = {
-			"You have to speak more clearly.",
-			"I dont get it.",
-			"Can you repeat, please.",
-			"I dont get what you're talking about.",
-			"I didn't catch that.",
-			"What?!",
-		}
-		local finalString = stringPool[math.random(1, #stringPool)]
-		return finalString
+		return table.random(incomprehensibleStringPool)
 	end,
 	[NOT_ENOUGH_CAP_OR_SLOTS] = "You dont have enough capacity or equipment slots.",
 	["You dont have enough money."] = function(context)
@@ -154,25 +199,27 @@ return {
 		})
 	end,
 	["ShipWindowTitle"] = "Ship",
+	["CarpetWindowTitle"] = "Carpet",
+	["TrainWindowTitle"] = "Train",
 	["ShipWindowMessage"] = function(context)
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("You have :freeTravels: free sail admits\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("As a novice, you are entitled to free Ship sailing. Remaining admits :freeTravels:.\n", { freeTravels = freeTravels })
 		end
 		finalString = finalString .. "Where would you like to sail?"
 		return finalString
 	end,
-	["CarpetWindowTitle"] = "Carpet",
 	["CarpetWindowMessage"] = function(context)
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("You have :freeTravels: free flght admits\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("As a novice, you are entitled to free Carpet flights. Remaining admits :freeTravels:.\n", { freeTravels = freeTravels })
 		end
 		finalString = finalString .. "Where would you like to fly?"
 		return finalString
 	end,
+	["TrainWindowMessage"] = "Where would you like to ride?",
 	["Looks like you have fought someone.. Better step away, I can't trust you."] = "Looks like you have fought someone.. Better step away, I can't trust you.",
 	["Welcome to my ship. Where would you like to {sail}?"] = "Welcome to my ship. Where would you like to {sail}?",
 	["Hello, traveler. Would you like me to {fly} you somewhere?"] = "Hello, traveler. Would you like me to {fly} you somewhere?",
@@ -197,15 +244,6 @@ return {
 	["Ask Woody about the wood supply."] = "Ask Woody about the wood supply.",
 	["Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?"] = "Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?",
 	["Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?"] = "Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?",
-	["FISHERMAN_GREET"] = function(context)
-		local possibleDestinations = getFurthestDestinations(context.player, travelLocationsFisherman)
-		local possibleDestinationsNames = ""
-		for key, value in pairs(possibleDestinations) do
-			possibleDestinationsNames = possibleDestinationsNames .. value.name .. ", "
-		end
-		possibleDestinationsNames = string.gsub(possibleDestinationsNames, 1, -2)
-		return T("My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to :possibleDestinations: or sell some of those {rods}.. If you are interested in some {stories}, ask me for one.", { possibleDestinations = possibleDestinationsNames })
-	end,
 	["When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day.."] = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
 	["There is lot of creatures that came from the great unknown. My father friend, Christopher, talked about fish with human-like features or even whole bodies. {Quara}s inhabit the very deeps of the {ocean} near the island where he likes to party while his {red wife} is oblivious.\n Hehe, his ship is visibly damaged by sea serpents. This is his second ship already. {Santa Maria} Mark I was utterly demolished by a giant {Sea Serpent}\nUncle says, that is was Leviathan itself that made attempt on his life, but it was probably just the rum-incuced delirium. Haha, Leviathan, good one. When the end of times come, perhaps he will come."] = "There is lot of creatures that came from the great unknown. My father friend, Christopher, talked about fish with human-like features or even whole bodies. {Quara}s inhabit the very deeps of the {ocean} near the island where he likes to party while his {red wife} is oblivious.\n Hehe, his ship is visibly damaged by sea serpents. This is his second ship already. {Santa Maria} Mark I was utterly demolished by a giant {Sea Serpent}\nUncle says, that is was Leviathan itself that made attempt on his life, but it was probably just the rum-incuced delirium. Haha, Leviathan, good one. When the end of times come, perhaps he will come.",
 	["Giant creatures that look similar to snakes. Their breath can put a sizeable fire away. Lot of wenches in our city love hearing stories about those. Perhaps if i could put my hands on a proof of their demise, i would get laid? Who knows.."] = "Giant creatures that look similar to snakes. Their breath can put a sizeable fire away. Lot of wenches in our city love hearing stories about those. Perhaps if i could put my hands on a proof of their demise, i would get laid? Who knows..",
@@ -218,7 +256,7 @@ return {
 	["You sometimes find them inside a gooey mass."] = "You sometimes find them inside a gooey mass.",
 	["Ask about {trade} if you want to see some. I also have special {mechanical} rod in my offer."] = "Ask about {trade} if you want to see some. I also have special {mechanical} rod in my offer.",
 	["Really strong designed to swamp use. Its recommeded to use {larvaes} instead of worms. Be aware of {leeches}!"] = "Really strong designed to swamp use. Its recommeded to use {larvaes} instead of worms. Be aware of {leeches}!",
-	["Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day."] = "Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day.",
+	["Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day. At least he has his {marlin} still."] = "Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day. At least he has his {marlin} still.",
 	["It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative."] = "It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative.",
 	["I live just in next house."] = "I live just in next house.",
 	-- shop npcs
@@ -261,19 +299,16 @@ return {
 			orderedCardsPrice = orderedCardsPrice,
 		})
 	end,
+	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages."] = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard}, which will increase your prey powers!"] = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard}, which will increase your prey powers!",
 	["Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer."] = "Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer.",
 	["You need to tell me the number of wildcards you'd like to buy."] = "You need to tell me the number of wildcards you'd like to buy.",
 	["Here are your wildcards!"] = "Here are your wildcards!",
 	["Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 	["Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}."] = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
-	["Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road."] = "Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road.",
-	["Thanks that you agreed to {help}. I hope that its not another mafia."] = "Thanks that you agreed to {help}. I hope that its not another mafia.",
-	["Maybe Gypsy knows something about furniture thief, people like him stick together..."] = "Maybe Gypsy knows something about furniture thief, people like him stick together...",
-	["I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}."] = "I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}.",
-	["Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief."] = "Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief.",
 	["Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}"] = "Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}",
 	["Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested."] = "Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested.",
+	["Hello, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "Hello, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 	["I am local postman, ask about {trade} if you want to buy some parcel or letter."] = "I am local postman, ask about {trade} if you want to buy some parcel or letter.",
 	["Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}.",
 	["Oh hello! Check out my new recipes, we can {trade} a little."] = "Oh hello! Check out my new recipes, we can {trade} a little.",

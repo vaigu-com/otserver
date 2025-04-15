@@ -38,10 +38,10 @@ return {
 	["Uberbringe diese Information an Hugo Boss in seiner Zentrale: 'Wir haben einen Bauplan fur eine experimentelle {Uberfabrik} entwickelt'."] = "Uberbringe diese Information an Hugo Boss in seiner Zentrale: 'Wir haben einen Bauplan fur eine experimentelle {Uberfabrik} entwickelt'.",
 	["Ich habe den Ort des Hugo Boss-Hauptquartiers an Ihr Schiff geschickt."] = "Ich habe den Ort des Hugo Boss-Hauptquartiers an Ihr Schiff geschickt.",
 	["This will be one of the largest {orders} I've ever received during my life. I'll be able to start working on this project right away."] = "This will be one of the largest {orders} I've ever received during my life. I'll be able to start working on this project right away.",
-	["Start by gathering the materials needed to build the spaceship: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 5 Gearwheel Chains."] = "Start by gathering the materials needed to build the spaceship: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 5 Gearwheel Chains.",
+	["Start by gathering the materials needed to build the spaceship: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 3 Gearwheel Chains."] = "Start by gathering the materials needed to build the spaceship: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 3 Gearwheel Chains.",
 	["Finding such a device won't be easy. It's possible it will be where Glooth creatures are created. Try your luck in the underground swamps."] = "Finding such a device won't be easy. It's possible it will be where Glooth creatures are created. Try your luck in the underground swamps.",
 	["Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Bydgoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle."] = "Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Bydgoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle.",
-	["As I said, I need: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 5 Gearwheel Chains."] = "As I said, I need: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 5 Gearwheel Chains.",
+	["As I said, I need: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 3 Gearwheel Chains."] = "As I said, I need: 20 Gear Wheels, 3 Huge Chunks of Crude Iron, 1 {Glooth Converter}, 3 Gold Ingots, 1 Spark Sphere, 50 Wood, 3 Gearwheel Chains.",
 	["Alright, that's everything I needed. I'll send your spaceship into orbit with a special catapult shortly. I'd have you sit inside it right now, but it's too dangerous. You'll be able to access it through the unlicensed teleporter in the deepling base. Besides, I found this item in my warehouse. If I remember correctly, it's one of the components of rocket fuel. You can produce the fuel by using an atomic splitter on the fuel rod. I've placed this device on your spaceship. You'll also find a remote depot there. I think it will come in handy."] = "Alright, that's everything I needed. I'll send your spaceship into orbit with a special catapult shortly. I'd have you sit inside it right now, but it's too dangerous. You'll be able to access it through the unlicensed teleporter in the deepling base. Besides, I found this item in my warehouse. If I remember correctly, it's one of the components of rocket fuel. You can produce the fuel by using an atomic splitter on the fuel rod. I've placed this device on your spaceship. You'll also find a remote depot there. I think it will come in handy.",
 	["I'll need engine blueprints. Also, you'll need to have some basic knowledge of astronomy, so have three sky map pieces with you. Without them, you won't get far."] = "I'll need engine blueprints. Also, you'll need to have some basic knowledge of astronomy, so have three sky map pieces with you. Without them, you won't get far.",
 	["Flights within a given system require only the power of mana. For intergalactic travel, you'll need rocket fuel. Therefore, you'll need to find a refueling station that sells such fuel. I've included the coordinates of a CPN-sponsored one in the ship's navigation. Good luck!"] = "Flights within a given system require only the power of mana. For intergalactic travel, you'll need rocket fuel. Therefore, you'll need to find a refueling station that sells such fuel. I've included the coordinates of a CPN-sponsored one in the ship's navigation. Good luck!",
@@ -56,7 +56,6 @@ return {
 	["I don't know what kind of gigachads those thieves must have been to move a crate of that weight."] = "I don't know what kind of gigachads those thieves must have been to move a crate of that weight.",
 	["Thanks for your help. In return, I can give you one rod. Be careful; they're very heavy! I can sell you more rods for a small fee of 1000 gp each. One more thing: recently, Sad Gentlemen turned up at my station. From an overheard conversation, I learned that they're involved in transporting REDACTED to Hugo Boss's summer cottage."] = "Thanks for your help. In return, I can give you one rod. Be careful; they're very heavy! I can sell you more rods for a small fee of 1000 gp each. One more thing: recently, Sad Gentlemen turned up at my station. From an overheard conversation, I learned that they're involved in transporting REDACTED to Hugo Boss's summer cottage.",
 	["I know nothing about it."] = "I know nothing about it.",
-	["Thanks for helping me get out. Keep this - it's my cigarette case that I got for my eighteenth birthday. Personally I don't smoke , so maybe you'll find a better use for it."] = "Thanks for helping me get out. Keep this - it's my cigarette case that I got for my eighteenth birthday. Personally I don't smoke , so maybe you'll find a better use for it.",
 	["How many rods would you like to buy?"] = "How many rods would you like to buy?",
 	["Here you go, these are your rods."] = "Here you go, these are your rods.",
 	["Rocket engine blueprint. Qasim might have a use for it"] = "Rocket engine blueprint. Qasim might have a use for it",
@@ -75,8 +74,6 @@ return {
 		result = result .. tostring(tostring(controlSum))
 		return result
 	end,
-	["I can pay you any amount admitted in a token, effectively charging the party that signed it."] = "I can pay you any amount admitted in a token, effectively charging the party that signed it.",
-	["Here, take your money."] = "Here, take your money.",
 	["ShipOk"] = "Ok",
 	["ShipCancel"] = "Cancel",
 	["ShipLocationLocked"] = "New destination chosen: ",
@@ -84,7 +81,7 @@ return {
 	["ShipMessage"] = "Choose new destination:",
 	["ShipCantAffordFuel"] = "You can't afford fuel for this travel",
 	["ShipCantAffordMana"] = "You can't afford mana for this travel",
-	["ShipCurrentlyFlying"] = "Dont leave the cockpit during a flight!",
+	["ShipHasNotArrivedYet"]= "You cannot leave during a flight!",
 	["ShipAlreadyAtDestination"] = "You are already there",
 	["ShipJustStartedTravel"] = "Starting flight to: ",
 	["ShipDestCpn"] = "Cosmo Petrol Natural",
@@ -133,6 +130,6 @@ return {
 	["Hugo asked you to deal with something lurking in southern beach."] = "Hugo asked you to deal with something lurking in southern beach.",
 	["05. I Don't Brush My Teeth. How Did You Know?"] = "05. I Don't Brush My Teeth. How Did You Know?",
 	["You killed the monster menacing the beach. Report to Hugo."] = "You killed the monster menacing the beach. Report to Hugo.",
-	["Hugo told you about ancient artifact buried somewhere in the northern dump."] = "Hugo told you about ancient artifact buried somewhere in the northern dump.",
-	["You found an ancient artifact. Report to Astral Janus."] = "You found an ancient artifact. Report to Astral Janus.",
+	["Your job is finished. Report to Astral Janus."] = "Your job is finished. Report to Astral Janus.",
+	["You completed this chapter."] = "You completed this chapter."
 }

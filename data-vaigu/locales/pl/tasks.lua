@@ -5,7 +5,7 @@ return {
 	["Ongoing tasks list:"] = "Wziete taski:",
 	["You don't have any active tasks. Ask me for {tasks} to sign up for one."] = "Nie masz aktywnych zadan. Zapytaj mnie o {taski}, aby rozpoczac zadanie.",
 	["Great job!"] = "Dobra robota!",
-	["Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}."] = "Posiadam paczki creature productow na kazdy z {imbuingow}. Kosztowac cie to bedzie troche zlota oraz {punktow}.",
+	["Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}."] = "Czesc, mam {taski} dla ciebie, bierzesz? Skupuje takze niektore trofea oraz sprzedaje rozmaite znalezione przedmioty. A no i moge opchnac paczki {creature products} do {imbuingow} i wymienic {punkty}.",
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Siemaneczko, widze ze zadanie o ktore cie prosilem zostalo wykonane. Nalezy ci sie {nagroda}!",
 	["Finish one of {tasks}, then we can talk about reward."] = "Ukoncz jakis z {taskow}, to porozmawiamy o nagrodzie.",
 	["TASKS_HELP_WINDOW_INFO"] = function()
@@ -30,10 +30,9 @@ return {
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
 		local task = context.task
-		local currentKills = context.player:getStorageValueByKey(task.storage)
 		local name = task.name
 		local requiredKills = task.requiredKills
-		currentKills = ParseCurrentKills(currentKills, requiredKills)
+		local currentKills = context.player:getStorageValueByKey(task.currentKills)
 		return T("Task na :name:: :currentKills:/:requiredKills: ", {
 			name = name,
 			currentKills = currentKills,
@@ -128,16 +127,25 @@ return {
 	["TASK_MISSION_DESCRIPTION"] = function(context)
 		local player = context.player
 		local task = context.task
+		local taskState = player:getStorageValueByKey(task.storage)
 
-		local storage = task.storage
+		if taskState == MISSION_NOT_STARTED then
+			return "Pusty slot na taska."
+		end
+
+		local currentKills = player:getStorageValueByKey(task.currentKills)
 		local name = task.name
 		local requiredKills = task.requiredKills
-		local currentKills = player:getStorageValueByKey(storage)
-		currentKills = ParseCurrentKills(currentKills, requiredKills)
-		return T("Zabitych :name:: :currentKills:/:requiredKills:.", {
+
+		local finishedSuffix = ""
+		if taskState == REPORT_TASK_TO_NPC then
+			finishedSuffix = " Mozesz udac do npc po nagrode."
+		end
+		return T("Zabitych :name:: :currentKills:/:requiredKills:.:finishedSuffix:", {
 			name = name,
 			currentKills = currentKills,
 			requiredKills = requiredKills,
+			finishedSuffix = finishedSuffix,
 		})
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_NAME"] = function(context)
@@ -145,16 +153,18 @@ return {
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION"] = function(context)
 		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Tasks):Get(context.task.name)
-		return bossLocationDescription
+		local bossAdmits = math.max(context.player:getStorageValueByKey(context.task.bossAdmitCounter), 0)
+		local admitsCountSuffix = T(" \nMozesz zmierzyc sie z bossem :bossAdmits: razy.", { bossAdmits = bossAdmits })
+		return bossLocationDescription .. admitsCountSuffix
 	end,
-	["Apes"] = "Gorila mieszka w malej osadzie malp na wschodniej czesci pasma gor w dzungli.",
+	["Apes"] = "Golira mieszka w malej osadzie malp na wschodniej czesci pasma gor w dzungli.",
 	["Carniphilas"] = "Deathbine ulokowal sie gdzies przy skalach na bambusowej polanie, ktora jest siedliskiem Terror Birdow oraz Carniphili.",
 	["Crocodiles"] = "Jego legowisko podobno znajduje sie pod wodospadem, a w okolicy kreci sie sporo krokodyli.",
 	["Cyclops"] = "Stary cyklop widywany byl w jaskini przy polnocnej bramie Mirko Town.",
 	["Dragons"] = "Stara smoczyca przesiaduje w wulkanie na polnocy Mirko Town.",
 	["Gargoyles"] = "Grota gargulca znajduje sie na szczycie gor zamieszkalych przez cyklopy.",
 	["Mammoths"] = "Wejscie do groty Bloodtuska znajduje sie na powierzchni Sybiru.",
-	["Minos (Horned Fox)"] = "Jeden z przywodcow minotaurow podobno ukrywa sie w ich osadzie na polnoc od Mirko Town.",
+	["Minotaurs"] = "Jeden z przywodcow minotaurow podobno ukrywa sie w ich osadzie na polnoc od Mirko Town.",
 	["Mutated Humans"] = "Jego kryjowka znajduje sie pod cmentarzem we wiosce zmutowancow.",
 	["Orcs"] = "Bibby najczesciej przesiadywal w polnocnej fortecy orkow, zapewne nadal tam jast.",
 	["Rotworms"] = "Odnajdz legowisko White Pale pod MirkoTown.",

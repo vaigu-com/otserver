@@ -54,4 +54,5 @@ return {
 	["You managed to get a virgin's soul. Now go see Konmuld."] = "Udalo ci sie zdobyc dusze dziewicy, przekaz to Konmuldowi.",
 	["Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself."] = "Konmuld pozwolil ci wybrac jedna z czesci legendarnego stroju Yalahari.",
 	["In his gratitude, Konmuld gave you one of his old Yalahari set pieces."] = "Konmuld w podziece przekazal ci jedna czesc ze swojego dawnego stroju Yalahari.",
+	["You finished this mission."] = "Ukonczyles te misje.",
 }

@@ -1,14 +1,45 @@
 local directionToString = {
 	[DIRECTION_NORTH] = "polnoc",
-	[DIRECTION_NORTHEAST] = "wschod",
-	[DIRECTION_EAST] = "zachod",
-	[DIRECTION_SOUTHEAST] = "poludnie",
-	[DIRECTION_SOUTH] = "poludniowy zachod",
-	[DIRECTION_SOUTHWEST] = "poludniowy wschod",
-	[DIRECTION_WEST] = "polnocny zachod",
-	[DIRECTION_NORTHWEST] = "polnocny wschod",
+	[DIRECTION_NORTHEAST] = "polnocny wschod",
+	[DIRECTION_EAST] = "wschod",
+	[DIRECTION_SOUTHEAST] = "poludniowy wschod",
+	[DIRECTION_SOUTH] = "poludnie",
+	[DIRECTION_SOUTHWEST] = "poludniowy zachod",
+	[DIRECTION_WEST] = "zachod",
+	[DIRECTION_NORTHWEST] = "polnocny zachod",
+}
+local incomprehensibleStringPool = {
+	"Musisz mowic wyrazniej.",
+	"Nic z tego nie rozumiem.",
+	"Mozesz powtorzyc?",
+	"Nie wiem co masz na mysli.",
+	"Nie wiem o czym mowisz.",
+	"Ze co?",
 }
 return {
+	["Distance shop"] = "Zaopatrzenie dla lucznika",
+	["Smith shop"] = "Kowal",
+	["Magic shop"] = "Sklep magiczny",
+	["Creature product vendor"] = "Lup z potworow",
+	["Furniture"] = "Meble",
+	["Tasks"] = "Taski",
+	["Jeweller"] = "Jubiler",
+	["Utility shop"] = "Narzedzia",
+	["Post Office"] = "Poczta",
+	["Food shop"] = "Karczma",
+	["Soft Boots Recharge"] = "Soft boots",
+	["Ruler"] = "Wladca",
+	["Fisher"] = "Rybak",
+	["Aol"] = "Aol",
+	["Bank"] = "Bank",
+	["Temple"] = "Swiatynia",
+	["NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!"] = "AAAAAMUULETY ZA DWA ZLOTA, PIERSCIONECZKI DLA PIEKNYCH DZIEWCZYYYYN, WYMIANA {LIFE CRYSTAL}. Zapraszam do straganuuu!",
+	["Bye, be aware of pickpockets!"] = "Nara, uwazaj zeby cie ktos nie ocyganil.",
+	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one."] = "Moj stary jest fanatykiem wedkarstwa. Pol mieszkania zajebane wedkami najgorsze. Ostatnio kaze dorabiac mi plywajac lodka, dlatego moge zabrac cie w pobliskie rejony, lub opchnac jakies {wedki}. Jesli masz chwile, to moge ci opowiedziec jakies {historie}.",
+	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "Nie wybrales trudnosi dla tego starcia!",
+	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "Oto dzwignia starcia. Ukonczenie starcia odblokowuje wyzszy poziom trudnosci. Mozesz wybrac poziom trudnosci patrzac na dzwignie.\n\nWyzszy poziom trudnosci oznacza wiecej nagrod, ale takze zwieksza obrazenia i zycie przeciwnikow, a takze moze dodac dodatkowe mechaniki do walki.\n\n20% addytywnych nagrod za poziom\n\n20% multiplikatywnych obrazen/zycia za poziom",
+	["Select difficulty:"] = "Wybierz trudnosc:",
+	["Go away, or even better: flip off."] = "Jak nie masz nic madrego do powiedzenia to stad spieprzaj.",
 	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
 		local townName = context.townName
 		local genderText = "Zostales"
@@ -20,11 +51,11 @@ return {
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Witaj, |PLAYERNAME|! Ostatnio rzadko ktos mnie odwiedza.",
 	["QUEST_MISSION_COMPLETE_SUFFIX"] = " (ukonczone)",
 	["GO_IN_DIRECTION"] = function(context)
-		local dir = context.direction
-		if dir == DIRECTION_NONE then
+		local direction = context.direction
+		if direction == DIRECTION_NONE then
 			return "Jestes na miejscu!"
 		end
-		return T("Idz na :dir:.", { dir = directionToString[dir] })
+		return T("Idz na :direction:.", { direction = directionToString[direction] })
 	end,
 	["Starter weapons"] = "Bron startowa",
 	["Choose your starter weapon:"] = "Wybierz swoja bron startowa:",
@@ -40,22 +71,22 @@ return {
 	["LIST_AVAILABLE_COMMANDS"] = "Lista dostepnych komend: !serverinfo - !language - !faq. Reszte znajdziesz pod !commands",
 	["You can report ingame bugs using ctrl+z."] = "Bledy w grze zglaszac mozesz poprzez ctrl+z.",
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
-		return T("Ty albo czlonek twojego zespolu nie moze jeszcze wejsc na :encounterName:.", { encounterName = context.encounterName })
+		return T("Ty albo czlonek twojego zespolu nie moze jeszcze wejsc na :displayName:.", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT] = function(context)
-		return T("Musisz jeszcze odczekac :timeLeftString: aby wejsc na :encounterName:.", { encounterName = context.encounterName, timeLeftString = context.timeLeftString })
+		return T("Musisz jeszcze odczekac :timeLeftString: aby wejsc na :displayName:.", { displayName = context.displayName, timeLeftString = context.timeLeftString })
 	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
-		return T("Ty albo czlonek twojego zespolu nie ma dostepu na :encounterName:.", { encounterName = context.encounterName })
+		return T("Ty albo czlonek twojego zespolu nie ma dostepu na :displayName:.", { displayName = context.displayName })
 	end,
-	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function()
-		return T("Nie masz dostepu do :encounterName:")
+	[ENCOUNTER_ERROR_CODES.YOU_HAVE_NO_ACCESS] = function(context)
+		return T("Nie masz dostepu do :displayName:", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.ONLY_PLAYERS] = function()
 		return "W tej walce brac moga udzial tylko gracze!"
 	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_INSIDE_ALREADY] = function(context)
-		return T("Ktos juz bierze udzial w :encounterName:.", { encounterName = context.encounterName })
+		return T("Ktos juz bierze udzial w :displayName:.", { displayName = context.displayName })
 	end,
 	[ENCOUNTER_ERROR_CODES.STAND_ON_ENTRANCE] = function()
 		return "Aby zaczac, musisz stac w miejscu wyznaczonym do wejscia."
@@ -103,7 +134,7 @@ return {
 	end,
 	[""] = "",
 	["Cancel"] = "Anuluj",
-	["Select"] = "Wybierz",
+	["Select"] = "Ok",
 	["Wyjdz"] = "Wyjdz",
 	["Help"] = "Pomoc",
 	[GREET] = "Czesc.",
@@ -112,17 +143,8 @@ return {
 	["Bye..."] = "Pa...",
 	[FAREWELL] = "Zegnaj.",
 	["Thanks."] = "Dzieki.",
-	[INCOMPREHENSIBLE] = function(context)
-		local stringPool = {
-			"Musisz mowic wyrazniej.",
-			"Nic z tego nie rozumiem.",
-			"Mozesz powtorzyc?",
-			"Nie wiem co masz na mysli.",
-			"Nie wiem o czym mowisz.",
-			"Ze co?",
-		}
-		local finalString = stringPool[math.random(1, #stringPool)]
-		return finalString
+	[INCOMPREHENSIBLE] = function()
+		return table.random(incomprehensibleStringPool)
 	end,
 	[NOT_ENOUGH_CAP_OR_SLOTS] = "Nie masz wystarczajaco miejsca w ekwipunku lub nie bedziesz mogl uniesc tych przedmiotow.",
 	["You dont have enough money."] = function(context)
@@ -157,25 +179,27 @@ return {
 		})
 	end,
 	["ShipWindowTitle"] = "Statek",
+	["CarpetWindowTitle"] = "Dywan",
+	["TrainWindowTitle"] = "Pociag",
 	["ShipWindowMessage"] = function(context)
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("Jako nowicjusz masz :freeTravels: darmowe zeglugi.\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("Jako nowicjusz przysluguja ci darmowe zeglugi w ilosci :freeTravels:.\n", { freeTravels = freeTravels })
 		end
-		finalString = finalString .. "Gdzie chcialbys poplynac??"
+		finalString = finalString .. "Gdzie chcialbys poplynac?"
 		return finalString
 	end,
-	["CarpetWindowTitle"] = "Carpet",
 	["CarpetWindowMessage"] = function(context)
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
 		if freeTravels > 0 then
-			finalString = finalString .. T("Jako nowicjusz masz :freeTravels: darmowe loty.\n", { freeTravels = freeTravels })
+			finalString = finalString .. T("Jako nowicjusz przysluguja ci darmowe loty dywanem w ilosci :freeTravels:.\n", { freeTravels = freeTravels })
 		end
-		finalString = finalString .. "Gdzie chcialbys poplynac??"
+		finalString = finalString .. "Gdzie chcialbys poleciec?"
 		return finalString
 	end,
+	["TrainWindowMessage"] = "Gdzie chcialbys pojechac?",
 	["Looks like you have fought someone.. Better step away, I can't trust you."] = "Wygladasz jakbys sie przed chwila z kims bil... Lepiej odejdz.",
 	["Welcome to my ship. Where would you like to {sail}?"] = "Witam na moim statku. Czyzbys chcial gdzies {popylnac}?",
 	["Hello, traveler. Would you like me to {fly} you somewhere?"] = "Czesc. Czy przychodzisz tu aby gdzies {poleciec}?",
@@ -199,10 +223,8 @@ return {
 	["He is my brother, nothing more to it."] = "To moj brat, ale nie wiem jakie to ma znaczenie.",
 	["Ask Woody about the wood supply."] = "O dostawe spytaj Rasiaka.",
 	["Hello, Im Jack Sparrow - Caribbean King! Would you like to {sail} somewhere?"] = "Witaj, jestem Jack Sparrow - wladca Karaibow! Chcesz gdzies {plynac}?",
-	["Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?"] = "",
-	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to The Mirko City or sell some of those {rods}.. If you are interested in some {stories}, ask me for one."] = "",
-	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to elf court or sell some of those {rods}.. If you are interested in some {stories}, ask me for one."] = "",
-	["When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day.."] = "W dziecinstwie ojciec opowiadal mi o {mitycznych} zwierzetach plywajacych w {Ocean}ie. Tyle sie tego nasluchalem, ze zapragnalem miec kawalek wielkiego swiata w swoim {domku}.\nNa przyklad zlowic ta wielka rybe z wlasnym zaglem na grzbiecie, ktory pomaga jej przemiezac ogrom oceanu.\nAle ja, prosty syn, nie moge ruszyc sie tak daleko. Ajjj, a chcialbym kiedys chociaz zmierzyc sie z tym legendarnym morskim stworem zwanym, {Thul}em!",
+	["Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?"] = "Witaj. Wyplywam z polnocy Mirko. Moge zabrac cie na Stepy, Bornholm oraz podwodne tereny zamieszkane przez quary. To gdzie chcesz plynac?",
+	["When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day.."] = "W dziecinstwie ojciec opowiadal mi o {mitycznych} zwierzetach plywajacych w oceanie. Tyle sie tego nasluchalem, ze zapragnalem miec kawalek wielkiego swiata w swoim {domku}.\nNa przyklad zlowic ta wielka rybe z wlasnym zaglem na grzbiecie, ktory pomaga jej przemiezac ogrom oceanu.\nAle ja, prosty syn, nie moge ruszyc sie tak daleko. Ajjj, a chcialbym kiedys chociaz zmierzyc sie z tym legendarnym morskim stworem zwanym, {Thul}em!",
 	["There is lot of creatures that came from the great unknown. My father friend, Christopher, talked about fish with human-like features or even whole bodies. {Quara}s inhabit the very deeps of the {ocean} near the island where he likes to party while his {red wife} is oblivious.\n Hehe, his ship is visibly damaged by sea serpents. This is his second ship already. {Santa Maria} Mark I was utterly demolished by a giant {Sea Serpent}\nUncle says, that is was Leviathan itself that made attempt on his life, but it was probably just the rum-incuced delirium. Haha, Leviathan, good one. When the end of times come, perhaps he will come."] = "Jest wiele roznych istot, ktore nie wiadomo skad sie wziely. Znajomy mojego ojca, Krzysiek, opowiadal o rybach ksztaltu ludzi. {Quary} zamieszkujace dno {ocean}u przy wyspie, na ktora ucieka przed swoja {czerwona zona} robic imprezki.\nHeh, jego statek ma wiele sladow uderzen przez morskie weze. To juz jego drugi statek. Pierwszy model, {Santa Maria}, zostal doszczednie zniszczony przez olbrzymiego {weza morskiego}.\nWujek twierdzi, ze sam {Leviathan} sie pofatygowal o jego zycie, ale pewnie znowu upil sie rumem. HAHA, Leviathan, dobre. Gdy bedzie koniec swiata to moze sie pojawi.",
 	["Giant creatures that look similar to snakes. Their breath can put a sizeable fire away. Lot of wenches in our city love hearing stories about those. Perhaps if i could put my hands on a proof of their demise, i would get laid? Who knows.."] = "Ogromne snejki, ktore swoim oddechem potrafia zamrozic nie jeden pozar. W miescie jest wiele dziewek, ktore uwielbiaja historie o tych wezach. Moze gdybym kiedy zdobyl jakis dowod na zabicie paru, a potem zmyslilbym historie, to mialbym powodzenia u nich? Kto wie...",
 	["The biggest one of them all serpents. If i could escape this life, i will face him."] = "Najwiekszy z {morskich wezy}. Gdybym mogl sie stad wyrwac i zmierzyc sie z sama smiercia oko w oko.",
@@ -214,7 +236,7 @@ return {
 	["You sometimes find them inside a gooey mass."] = "Mozna je zdobyc wyciskajac gooey mass.",
 	["Ask about {trade} if you want to see some. I also have special {mechanical} rod in my offer."] = "Zagadaj o {handel} jesli chcesz jakies zobaczyc. Mam w ofercie kozacka {mechaniczna} wedke.",
 	["Really strong designed to swamp use. Its recommeded to use {larvaes} instead of worms. Be aware of {leeches}!"] = "Wytrzymalsza wedka, ktora mozna lowic w bagnach. Najlepiej uzywac {larw} zamiast robakow. Uwazaj na {pijawki}!",
-	["Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day."] = "Krzysiek kiedys sobie ubzdural, ze z nowo odkrytej wyspy porwie kobiete. To jaki blad popelnil, moze podziwiac do dzisiaj u siebie w domu.",
+	["Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day. At least he has his {marlin} still."] = "Krzysiek kiedys sobie ubzdural, ze z nowo odkrytej wyspy porwie kobiete. To jaki blad popelnil, moze podziwiac do dzisiaj u siebie w domu. Przynajmniej dalej ma swojego {marlina}.",
 	["It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative."] = "Pierwszy statek mojego wujka. Uzywany do jego pierwszych przygod. Nie wiem co bym zrobil, gdybym to ja stracil kawalek takiej historii w swoim zyciu. Moze on bedzie chcial kiedys przy butelce opowiedziec ci co nieco. Ale uprzedzam, na trzezwo nie jest taki gadatliwy.",
 	["I live just in next house."] = "No tutaj obok przeciez mieszkam.",
 	-- shop npcs
@@ -257,18 +279,15 @@ return {
 			orderedCardsPrice = orderedCardsPrice,
 		})
 	end,
+	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages."] = "Witaj |PLAYERNAME|. Mozesz zaopatrzyc sie u mnie w przedmioty magiczne.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard}, which will increase your prey powers!"] = "Witaj |PLAYERNAME|. Mozesz zaopatrzyc sie u mnie w przedmioty magiczne. Sprzedaje takze {wildcard}, pomagajacy w modlitwach!",
 	["Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer."] = "Witaj. Skupuje szczatki potworow. Zapytaj mnie o {handel}, jesli jestes zainteresowany moja oferta.",
 	["You need to tell me the number of wildcards you'd like to buy."] = "Podaj liczbe wildcardow ktore chcesz kupic.",
 	["Here are your wildcards!"] = "Prosze, oto twoje wildcardy!",
 	["Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}."] = "Witam witam 100% pozytywnych transakcji, zapraszam do zakupow!",
-	["Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road."] = "Drewno, drewno, mialo byc juz 2 dni temu, znowu pewnie jakas afera w Knurowie ze nie da sie przejechac.",
-	["Thanks that you agreed to {help}. I hope that its not another mafia."] = "Dziekuje, ze zgodziles sie mi {pomoc}. Mam nadzieje, ze to nie sprawka kolejnej mafii.",
-	["Maybe Gypsy knows something about furniture thief, people like him stick together..."] = "Moze Cygan cos wie o zlodzieju mebli, tacy jak on trzymaja sie razem...",
-	["I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}."] = "Przejrzalem liste skradzionych rzeczy, i widze, ze gdzies trzymal kule, ktorej szuka cygan. Czekaj, to nie {wszystko}.",
-	["Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief."] = "Ostatnie wpisy na liscie sugeruja, ze nasz zlodziej wykradal wikt i oporzadzenie orkom z poludnia.\nProsze, idz do komisarza Ryby, i opowiedz mu o tym. Spytaj go tez, czy wie cos o tym zlodzieju.",
 	["Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}"] = "Jako wlasciciel sklepu z bizuteria moge sporzadzic ladne blyskotki albo kupic od ciebie bizuterie. ktorej juz nie potrzebujesz.",
 	["Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested."] = "Witam. W mojej ofercie znajdziesz narzedzia, bez ktorych zaden poszukiacz przygod nie powinien wychodzic z domu!",
+	["Hello, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "Uszanowanie, |PLAYERNAME|. Roznosze listy i paczki. Jesli chcesz cos kupic, napisz {trade}.",
 	["I am local postman, ask about {trade} if you want to buy some parcel or letter."] = "Zajmuje sie zarzadzaniem poczta w tym miescie. Byc moze chcesz wyslac list albo nadac paczke?",
 	["Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Dzien dobry! Pohandlujemy, a moze naprawie Ci zuzyte {soft boots}? Przebuje takze {medicine pouch}, zglos sie jesli zdobedziesz jakies.",
 	["Oh hello! Check out my new recipes, we can {trade} a little."] = "Czesc! Sprawdz moje nowe receptury i skladniki, wpisujac {trade}.",

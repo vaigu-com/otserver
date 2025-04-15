@@ -5,10 +5,13 @@ LOCALIZERS = {
 	Arena = "arena",
 	ArielsFriend = "ariels_friend",
 	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
+	AvastYe = "avast_ye",
+	BahledaPharellTroubles = "bahleda_pharell_troubles",
 	BankSystem = "bank_system",
-	BigfootBurden = "bifoot_burden",
+	BigfootBurden = "bigfoot_burden",
 	CaveExplorerOnShield = "cave_explorer_on_shield",
 	ChesterTheDwarf = "chester_the_dwarf",
+	FashionistaOnanista = "fashionista_onanista",
 	DailyTasks = "daily_tasks",
 	DemonOak = "demon_oak",
 	DesertQuestHub = "desert_quest_hub",
@@ -25,6 +28,7 @@ LOCALIZERS = {
 	LocalSupport = "local_support",
 	LuaRaids = "lua_raids",
 	MapMark = "map_mark",
+	OneTimeEscorts = "one_time_escorts",
 	Minigames = "minigames",
 	NpcName = "npc_name",
 	PathOfTheUndead = "path_of_the_undead",
@@ -55,24 +59,139 @@ for _, language in pairs(LANGUAGES) do
 		if localizer ~= LOCALIZERS.NONE then
 			local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
 			local success, fileContent = pcall(require, filePath)
-			TRANSLATION_TABLES[language][localizer] = fileContent
 			if not success then
 				logger.warn(T("File :filePath: does not exist", { filePath = filePath }))
 			end
+			TRANSLATION_TABLES[language][localizer] = fileContent
 		end
 	end
 end
 
---register TRANSLATION_TABLES on cpp side
+MISSING_STRINGS = {}
+EXCESS_STRINGS = {}
+function LoadMissingExcessStrings()
+	for language in pairs(LANGUAGES) do
+		MISSING_STRINGS[language] = {}
+		EXCESS_STRINGS[language] = {}
+		for key, fileName in pairs(LOCALIZERS) do
+			MISSING_STRINGS[language][fileName] = {}
+			EXCESS_STRINGS[language][fileName] = {}
+		end
+	end
+	for localizer, translationTable in pairs(TRANSLATION_TABLES[LANGUAGES.EN]) do
+		for key, translatedString in pairs(translationTable) do
+			for language in pairs(LANGUAGES) do
+				if not TRANSLATION_TABLES[language][localizer][key] then
+					MISSING_STRINGS[language][localizer][key] = true
+				end
+			end
+		end
+	end
+	for language, localizerToTranslationTable in pairs(TRANSLATION_TABLES) do
+		if language == LANGUAGES.EN then
+			goto continue
+		end
+
+		for localizer, translationTable in pairs(localizerToTranslationTable) do
+			for key, translatedString in pairs(translationTable) do
+				if not TRANSLATION_TABLES[LANGUAGES.EN][localizer][key] then
+					EXCESS_STRINGS[language][localizer][key] = true
+				end
+			end
+		end
+		::continue::
+	end
+end
+
+-- this registers TRANSLATION_TABLES on cpp side
 Game.initializeTranslationTable()
 
-local function translatedFromSpecificQuest(str, questId, targetLanguage)
-	local questConf = TRANSLATION_TABLES[targetLanguage][questId]
+local function translatedFromSpecificQuest(str, localizer, langauge)
+	local questConf = TRANSLATION_TABLES[langauge][localizer]
 	if questConf then
 		return questConf[str]
 	end
 end
-function translatedFromAnyQuest(string, language, localizer)
+
+local missingStrings = {}
+local stringsWithWrongLocalizer = {}
+for _, language in pairs(LANGUAGES) do
+	missingStrings[language] = {}
+	stringsWithWrongLocalizer[language] = {}
+	for _, localizer in pairs(LOCALIZERS) do
+		missingStrings[language][localizer] = {}
+		stringsWithWrongLocalizer[language][localizer] = {}
+	end
+end
+function RegisterString(str, localizer)
+	if not localizer then
+		logger.warn(T("Localizer not found for str :str:", { str = str }))
+		localizer = LOCALIZERS.NONE
+	end
+	for _, language in pairs(LANGUAGES) do
+		missingStrings[language][localizer][str] = true
+		stringsWithWrongLocalizer[language][localizer][str] = true
+	end
+end
+
+local function translationExistsForLocalizer(str, localizer, langauge)
+	local questConf = TRANSLATION_TABLES[langauge][localizer]
+	if questConf then
+		return questConf[str]
+	end
+	return false
+end
+
+local function translationExists(str, language)
+	local allStrings = TRANSLATION_TABLES[language]
+	if allStrings[LOCALIZERS.Universal][str] then
+		return true
+	end
+	for localizer, questStrings in pairs(allStrings) do
+		if questStrings[str] then
+			return true
+		end
+	end
+
+	return false
+end
+
+function PrintMissingStrings()
+	for language, localizerToStr in pairs(missingStrings) do
+		for localizer, strToMissing in pairs(localizerToStr) do
+			for str in pairs(strToMissing) do
+				if translationExists(str, language) then
+					strToMissing[str] = nil
+				else
+					strToMissing[str] = true
+				end
+			end
+		end
+	end
+	PrintAnything(missingStrings)
+end
+
+function PrintWrongLocalizerStrings()
+	for language, localizerToStr in pairs(stringsWithWrongLocalizer) do
+		for localizer, strToWrong in pairs(localizerToStr) do
+			for str in pairs(strToWrong) do
+				if translationExists(str, language) and not translationExistsForLocalizer(str, language, localizer) then
+					strToWrong[str] = true
+				else
+					strToWrong[str] = nil
+				end
+			end
+		end
+	end
+	PrintAnything(stringsWithWrongLocalizer)
+end
+
+local notFoundSuffix = " //Translation unavailable"
+local function translationNotFound(str, language)
+	logger.warn(T("[Localizer] translation not found for language :language:, for string: :str:", { language = language, str = str }))
+	return str .. notFoundSuffix
+end
+function TranslatedFromAnyQuest(string, language, localizer)
 	local allStrings = TRANSLATION_TABLES[language]
 	if allStrings[LOCALIZERS.Universal][string] then
 		return allStrings[LOCALIZERS.Universal][string]
@@ -84,8 +203,9 @@ function translatedFromAnyQuest(string, language, localizer)
 	end
 
 	localizer = localizer or LOCALIZERS.Universal
-	MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
-	MissingStrings[language][localizer][string] = true
+	--MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
+	--MissingStrings[language][localizer][string] = true
+	return translationNotFound(string, language)
 end
 
 ---@class Localizer
@@ -121,7 +241,7 @@ function Localizer:Get(translateMe)
 	end
 
 	local targetLanguage = self.player:getLanguage()
-	local translated = translatedFromSpecificQuest(translateMe, self.questId, targetLanguage) or translatedFromAnyQuest(translateMe, targetLanguage)
+	local translated = translatedFromSpecificQuest(translateMe, self.questId, targetLanguage) or TranslatedFromAnyQuest(translateMe, targetLanguage)
 	self.translated = Evaluate(translated, self.context)
 	return self.translated
 end

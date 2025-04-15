@@ -1,31 +1,22 @@
-local taskBossRoomExitPortalKey = TaskBossPortalKeyScope:Get("Exit")
-local taskBossRoomLastEnterPos = TaskBossPortalKeyScope:Get("LastEnterPos")
+local taskScope = Scope("Task")
+local taskBossRoomExitPortalKey = taskScope:Get("BossRoomExitPortal")
+local taskBossRoomLastEnterPos = taskScope:Get("LastBossRoomEnterPosition")
 
-local function roomIsOccupied(bossRoomCenter, clearRadiusX, clearRadiusY, playerId)
-	local spectators = Game.getSpectators(bossRoomCenter, false, true, clearRadiusX, clearRadiusX, clearRadiusY, clearRadiusY)
-	if #spectators ~= 0 then
-		local player = Player(playerId)
-		for i = 1, #spectators do
-			local spectator = spectators[i]
-			if #spectators == 1 and spectator:getName() == player:getName() then
-				return false
-			end
-		end
+local function tryTeleportToLastEnterPosition(player)
+	local lastEnterPosition = player:getStorageValueByKey(taskBossRoomLastEnterPos)
+	if lastEnterPosition.x and lastEnterPosition.y and lastEnterPosition.z then
+		player:teleportTo(lastEnterPosition)
+		Position(lastEnterPosition):sendMagicEffect(CONST_ME_TELEPORT)
 		return true
 	end
+
 	return false
 end
-
-local function clearBossRoom(playerId, bossId, bossRoomCenter, clearRadiusX, clearRadiusY, exitPosition)
-	if not Creature(bossId) then
-		return
-	end
-	local spectators, spectator = Game.getSpectators(bossRoomCenter, false, false, clearRadiusX, clearRadiusX, clearRadiusY, clearRadiusY)
-	for i = 1, #spectators do
-		spectator = spectators[i]
-		if spectator:isPlayer() and spectator.uid == playerId then
-			spectator:teleportTo(exitPosition)
-			exitPosition:sendMagicEffect(CONST_ME_TELEPORT)
+local function clearBossRoom(task)
+	local players = task.bossRoomZone:getPlayers()
+	for _, player in pairs(players) do
+		if not tryTeleportToLastEnterPosition(player) then
+			player:teleportTo(player:getTemplePosition())
 		end
 	end
 end
@@ -38,36 +29,42 @@ local function playerIsCheesing(fromPosition, toPosition)
 end
 
 local defaultTimeLimitMinutes = 5
+local function beforeEnter(player, task, fromPosition)
+	local remainingMonsters = task.bossRoomZone:getMonsters()
+	for _, monster in pairs(remainingMonsters) do
+		monster:remove()
+	end
 
-local function onEnter(player, task, fromPosition)
-	player:IncrementStorage(task.bossStorage, -1)
+	local bossAdmits = player:getStorageValueByKey(task.bossAdmitCounter)
+	local nextAdmits = bossAdmits - 1
+	if nextAdmits == 0 then
+		nextAdmits = MISSION_NOT_STARTED
+	end
+	player:setStorageValueByKey(task.bossAdmitCounter, nextAdmits)
 	player:setStorageValueByKey(taskBossRoomLastEnterPos, fromPosition)
 
-	local spectators, spectator = Game.getSpectators(task.bossRoomCenter, false, false, task.clearRadiusX, task.clearRadiusX, task.clearRadiusY, task.clearRadiusY)
-	for i = 1, #spectators do
-		spectator = spectators[i]
-		if spectator:isMonster() then
-			spectator:remove()
-		end
-	end
-
-	player:teleportTo(task.bossRoomPlayerEnterPosition)
-	task.bossRoomPlayerEnterPosition:sendMagicEffect(CONST_ME_TELEPORT)
-
-	local bossName = ""
-	if type(task.bossName) == "table" then
-		bossName = task.bossName[math.random(1, #task.bossName)]
-	else
-		bossName = task.bossName
-	end
-
-	local monster = Game.createMonster(bossName, task.bossPosition, true, true)
-	if not monster then
-		return true
-	end
 	local timeLimitMinutes = task.bossTimeLimit or defaultTimeLimitMinutes
+	stopEvent(task.clearRoomEvent)
+	task.clearRoomEvent = addEvent(clearBossRoom, 60 * timeLimitMinutes * 1000, task)
+end
+local function taskRandomBossName(task)
+	local bossName = task.bossName
+	if type(task.bossName) == "table" then
+		bossName = table.random(task.bossName)
+	end
+	return bossName
+end
+local function afterEnter(player, task)
+	local bossName = taskRandomBossName(task)
+	local boss = Game.createMonster(bossName, task.bossSpawnPosition, true, true)
+	if not boss then
+		logger.error(T("Could not create boss ':bossName:' creature for the task :name: on position :pos:.", { bossName = task.bossName, name = task.name, pos = task.bossSpawnPosition:ToString() }))
+	end
 
-	addEvent(clearBossRoom, 60 * timeLimitMinutes * 1000, player.uid, monster.uid, task.bossRoomCenter, task.clearRadiusX, task.clearRadiusY, fromPosition) --5 min
+	player:teleportTo(task.playerSpawnPosition)
+	task.playerSpawnPosition:sendMagicEffect(CONST_ME_TELEPORT)
+
+	local timeLimitMinutes = task.bossTimeLimit or defaultTimeLimitMinutes
 	player:say(T("You have :time: minutes to defeat :bossName:.", { time = timeLimitMinutes, bossName = bossName }), TALKTYPE_MONSTER_SAY)
 end
 
@@ -81,54 +78,55 @@ local function canEnter(player, task, fromPosition, toPosition)
 		return false
 	end
 
-	local availableBossEntries = player:getStorageValueByKey(task.bossStorage)
-	if availableBossEntries <= MISSION_NOT_STARTED then
+	local availableBossEntries = player:getStorageValueByKey(task.bossAdmitCounter)
+	if availableBossEntries <= 0 then
 		player:sendCancelMessage("You can not enter until you finish the task.")
-		player:teleportTo(fromPosition)
 		return false
 	end
 
-	if roomIsOccupied(task.bossRoomCenter, task.clearRadiusX, task.clearRadiusY, player.uid) then
+	if task.bossRoomZone:countPlayers() > 0 then
 		player:sendCancelMessage("Someone is already inside.")
-		player:teleportTo(fromPosition)
 		return false
 	end
 
 	return true
 end
 
-function RegisterTaskBossTp()
-	local bossRoomPortalEntrance = MoveEvent()
-	function bossRoomPortalEntrance.onStepIn(creature, item, toPosition, fromPosition)
+function RegisterTasksBossTp()
+	local bossRoomEntrance = MoveEvent()
+	function bossRoomEntrance.onStepIn(creature, item, toPosition, fromPosition)
+		local player = creature:getPlayer()
+		if not player then
+			return
+		end
+
 		local task = GetTaskByPortalKey(item:getKey())
-
-		local player = creature:getPlayer()
-
 		if canEnter(player, task, fromPosition, toPosition) then
-			onEnter(player, task, fromPosition)
+			beforeEnter(player, task, fromPosition)
+			afterEnter(player, task)
+		else
+			player:teleportTo(fromPosition)
 		end
 
 		return true
 	end
-
-	bossRoomPortalEntrance:type("stepin")
+	bossRoomEntrance:type("stepin")
 	for _, task in pairs(GetAllTasks()) do
-		bossRoomPortalEntrance:key(task.bossPortalKey)
+		bossRoomEntrance:key(task.bossRoomEnterPortal)
 	end
-	bossRoomPortalEntrance:register()
+	bossRoomEntrance:register()
 
-	local bossRoomPortal = MoveEvent()
-	function bossRoomPortal.onStepIn(creature, item, toPosition, fromPosition)
+	local bossRoomExit = MoveEvent()
+	function bossRoomExit.onStepIn(creature, item, toPosition, fromPosition)
 		local player = creature:getPlayer()
-		local lastEnterPosition = player:getStorageValueByKey(taskBossRoomLastEnterPos)
-		if lastEnterPosition then
-			player:teleportTo(lastEnterPosition)
-			Position(lastEnterPosition):sendMagicEffect(CONST_ME_TELEPORT)
+		if not player then
+			return
 		end
+
+		tryTeleportToLastEnterPosition(player)
 		return true
 	end
-
-	bossRoomPortal:type("stepin")
-	bossRoomPortal:key(taskBossRoomExitPortalKey)
-	bossRoomPortal:register()
+	bossRoomExit:type("stepin")
+	bossRoomExit:key(taskBossRoomExitPortalKey)
+	bossRoomExit:register()
 end

@@ -1,4 +1,6 @@
-NPC_SHOP_TABLES = {
+local exerciseWeaponPrice1800 = 945000
+
+JOB_SHOPS = {
 	[JOB_ARMOR_WEAPON] = {
 		{ itemName = "battle hammer", clientId = 3305, buy = 350 },
 		{ itemName = "leather boots", clientId = 3552, buy = 15 },
@@ -538,37 +540,37 @@ NPC_SHOP_TABLES = {
 		{
 			itemName = "durable exercise axe",
 			clientId = 35280,
-			buy = 945000,
+			buy = exerciseWeaponPrice1800,
 			count = 1800,
 		},
 		{
 			itemName = "durable exercise bow",
 			clientId = 35282,
-			buy = 945000,
+			buy = exerciseWeaponPrice1800,
 			count = 1800,
 		},
 		{
 			itemName = "durable exercise club",
 			clientId = 35281,
-			buy = 945000,
+			buy = exerciseWeaponPrice1800,
 			count = 1800,
 		},
 		{
 			itemName = "durable exercise sword",
 			clientId = 35279,
-			buy = 945000,
+			buy = exerciseWeaponPrice1800,
 			count = 1800,
 		},
 		{
 			itemName = "durable exercise rod",
 			clientId = 35283,
-			buy = 945000,
+			buy = exerciseWeaponPrice1800,
 			count = 1800,
 		},
 		{
 			itemName = "durable exercise wand",
 			clientId = 35284,
-			buy = 945000,
+			buy = exerciseWeaponPrice1800,
 			count = 1800,
 		},
 	},
@@ -1488,7 +1490,6 @@ NPC_SHOP_TABLES = {
 	},
 	[JOB_TASKS] = {
 		{ itemName = "the witches grimoire", clientId = 7874, buy = 25000 },
-
 		{ itemName = "sea serpent trophy", clientId = 9613, sell = 10000 },
 		{ itemName = "cyclops trophy", clientId = 7398, sell = 500 },
 		{ itemName = "draken trophy", clientId = 10398, sell = 15000 },
@@ -1521,4 +1522,18 @@ NPC_SHOP_TABLES = {
 		{ itemName = "green perch	", clientId = 7159, sell = 15 },
 	},
 	[JOB_AOL] = { { itemName = "amulet of loss", clientId = 3057, buy = 30000 } },
+}
+
+JOB_ON_SELL = {}
+
+JOB_ON_BUY = {
+	[JOB_WILDCARD] = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
+		if itemId == ItemId.PREY_WILDCARD_ITEM_SUBSTITUTE then
+			player:addPreyCards(amount)
+			player:removeMoney(totalCost)
+			player:sendTextMessage(MESSAGE_LOOK, T("Bought :amount:x prey wildcard for :totalCost: gold coins.", { amount = amount, totalCost = totalCost }))
+		else
+			npc:sellItem(player, itemId, amount, subType, 0, ignore, inBackpacks)
+		end
+	end,
 }

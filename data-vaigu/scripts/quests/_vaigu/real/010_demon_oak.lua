@@ -17,24 +17,31 @@ quest
 		}
 		QuestState.DemonOak = {
 			Mission01 = {
-				EnteredOak_ReportToOldrak = 1,
+				ReportEnteringToOldrak = 1,
 				EnchantAxeAtOldrak_KillOak = 2,
-				KilledOak_Report_ToOldrak = 3,
+				ReportOakKillToOldrak = 3,
 				FindRewardChest = 4,
 			},
 		}
 	end)
-	:Questlog(function()
+	:Constant(function()
+		DEMON_OAK_POSITION = Position(6101, 1072, 7)
+		DEMON_OAK_KICK_POSITION = Position(6101, 1061, 7)
+		DEMON_OAK_ENTER_POSITION = Position(6101, 1068, 7)
+		DEMON_OAK_REWARDROOM_POSITION = Position(6093, 1876, 8)
+	end)
+	:Questlog(function(localizer)
 		table.insert(Quests, {
 			name = "Demon Oak",
-			missions = {
+			localizer = localizer,
+			missions ={
 				{
 					name = "Demon Oak",
 					storage = Storage.DemonOak.Mission01,
 					states = {
-						[QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
+						[QuestState.DemonOak.Mission01.ReportEnteringToOldrak] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
 						[QuestState.DemonOak.Mission01.EnchantAxeAtOldrak_KillOak] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",
-						[QuestState.DemonOak.Mission01.KilledOak_Report_ToOldrak] = "You defeated the Demon Oak! Report to Oldrak.",
+						[QuestState.DemonOak.Mission01.ReportOakKillToOldrak] = "You defeated the Demon Oak! Report to Oldrak.",
 						[QuestState.DemonOak.Mission01.FindRewardChest] = "You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury.",
 						[MISSION_FINISHED] = "You found and took your reward for defeating The Demon Oak.",
 					},
@@ -44,7 +51,44 @@ quest
 	end)
 	:Mission(Storage.DemonOak.Mission01)
 	:State(function()
-		return QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak,
+		return ANY_STATE,
+			QuestFactory.Script(function()
+				local questArea = {
+					Position(6091, 1066, 7), --{x = 6091, y = 1066, z = 7}
+					Position(6110, 1078, 7), --{x = 6110, y = 1078, z = 7}
+				}
+
+				local sounds = {
+					"Release me and you will be rewarded greatefully!",
+					"What is this? Demon Legs lying here? Someone might have lost them!",
+					"I'm trapped, come here and free me fast!!",
+					"I can bring your beloved back from the dead, just release me!",
+					"What a nice shiny golden armor. Come to me and you can have it!",
+					"Find a way in here and release me! Pleeeease hurry!",
+					"You can have my demon set, if you help me get out of here!",
+				}
+
+				local globalevent = GlobalEvent("DemonOakVoices")
+				function globalevent.onThink(...)
+					local spectators, spectator = Game.getSpectators(DEMON_OAK_POSITION, false, true, 0, 15, 0, 15)
+					local sound = sounds[math.random(#sounds)]
+					for i = 1, #spectators do
+						spectator = spectators[i]
+						if isInRange(spectator:getPosition(), questArea[1], questArea[2]) then
+							return true
+						end
+
+						spectator:say(sound, TALKTYPE_MONSTER_YELL, false, 0, DEMON_OAK_POSITION)
+					end
+					return true
+				end
+
+				globalevent:interval(10 * 60 * 1000) --10min
+				globalevent:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.DemonOak.Mission01.ReportEnteringToOldrak,
 			QuestFactory.Dialog("Oldrak", {
 				[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
 					text = "How do you know? Did you go into the infested area?",
@@ -116,7 +160,7 @@ quest
 						if player:getItemCount(9388) > 0 and #Game.getSpectators(DEMON_OAK_POSITION, false, true, 9, 9, 6, 6) == 0 then
 							player:teleportTo(DEMON_OAK_ENTER_POSITION)
 							player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-							player:setStorageValueByKey(Storage.DemonOak.Mission01, QuestState.DemonOak.Mission01.EnteredOak_ReportToOldrak)
+							player:setStorageValueByKey(Storage.DemonOak.Mission01, QuestState.DemonOak.Mission01.ReportEnteringToOldrak)
 							player:removeItem(9388, 1)
 
 							player:say("OCZEKIWALEM CIE! CHODZ TU A DOSTANIESZ CZEGO CHCIALES!", TALKTYPE_MONSTER_YELL, false, player, DEMON_OAK_POSITION)
@@ -294,7 +338,7 @@ quest
 			end)
 	end)
 	:State(function()
-		return QuestState.DemonOak.Mission01.KilledOak_Report_ToOldrak,
+		return QuestState.DemonOak.Mission01.ReportOakKillToOldrak,
 			QuestFactory.Dialog("Oldrak", {
 				[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
 					text = "You chopped down the demon oak?!? Unbelievable!! Let's hope it doesn't come back. As long as evil is still existent in the soil of the plains, it won't be over. Still, the demons suffered a setback, that's for sure. ...\n\nFor your brave action, I tell you a secret which has been kept for many many years. There is an old cemetery in the south east from elvish court, far south from Mirko Town. There should be a grave with the name 'Grdhor Faelyn' somewhere. ...\n\nSomeone can gain the treasure hidden in there. I'm sure this 'someone' is you. Good luck in finding it!",
@@ -360,4 +404,3 @@ quest
 			end)
 	end)
 	:Register()
-

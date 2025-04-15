@@ -1,4 +1,8 @@
 return {
+	["You are not worthy to gather the sacred water!"] = "Nie jestes godzien wziac swietej wody!",
+	["You already gathered the sacred water"] = "Zebrales juz swietej wody.",
+	["You are not worthy to gather the sacred flower!"] = "Nie jestes godzien wziac swietego kwiatu!",
+	["You already gathered the sacred flower"] = "Zebrales juz swiety kwiat.",
 	["I won't let you use my boat yet. Not until i see a friend in you."] = "Nie pozwole ci przeplynac na wyspe koszmarow, poki nie zdobedziesz mojego zaufania.",
 	["Do you want to serve the druids circle? I'm one of them but I prefer desert instead of green lands.\nIf you want to serve us, sneak into the camp in the east, not far from bonebeast peninsula. I was living there but nomads attacked us and I had to move here.\nSomewhere close to the shore I buried a note with spell for summoning an undead bear.\nRemember the spell and burn down the note just in case someone catches you.\nIf you were to struggle you could probably use a {map}. I can give you one if you want."] = "Chcesz sie przysluzyc kregowi druidow? Jestem jednym z nich. Lecz wole pustynie od zielonych terenow.\nJesli chcesz sie przysluzyc, to zakradnij sie do obozu na polnocy, niedaleko wyspy piratow. Mieszkalem tam kiedys, jednak najechali nas nomadzi i musialem osiedlic sie tutaj.\nGdzies blisko brzegu zakopalem tam kartke z zakleciem przywolujacym Nieumarlego niedzwiedzia.\nZapamietaj czar, i spal kartke jak najszybciej, na wszelki wypadek, gdyby mial cie ktos zlapac.\nGdybys mial problem, to moze przydac ci sie {mapa}, przekaze ci ja jesli chcesz.",
 	["Have this map, it should help you."] = "Trzymaj mape, powinna ci pomoc.",

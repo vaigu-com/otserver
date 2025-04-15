@@ -4,10 +4,11 @@ local quest = Quest(LOCALIZERS.BigfootBurden)
 quest
 	:Storage(function() end)
 	:Constant(function() end)
-	:Questlog(function()
+	:Questlog(function(localizer)
 		table.insert(Quests, {
 			name = "Bigfoot's Burden",
-			missions = {
+			localizer = localizer,
+			missions ={
 				{
 					name = "Reputation points",
 					storage = 921,

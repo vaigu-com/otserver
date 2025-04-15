@@ -80,8 +80,6 @@ end
 
 local dailyQuest = GlobalEvent("dailyQuest")
 function dailyQuest.onStartup()
-	Game.setStorageValueByKey(Storage.FlamingOrchid, 0)
-
 	local todayDate = calculateTodayDate()
 	if not wereDailyTasksSetToday(todayDate) then
 		setTodayDailyTasks(todayDate)
