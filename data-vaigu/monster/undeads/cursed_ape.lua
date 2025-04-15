@@ -83,6 +83,7 @@ monster.loot = {
 	{ name = "health potion", chance = 500, maxCount = 1 },
 	{ id = 3050, chance = 380 }, -- power ring
 	{ id = 3093, chance = 250 }, -- club ring
+	{ id = 5785, chance = 3000}
 }
 
 monster.attacks = {
