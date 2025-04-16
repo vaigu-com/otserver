@@ -3,7 +3,7 @@ return {
 	["Hey."] = "Hejka.",
 	["You don't have permission to go there. Talk to Overseer Henry of Januszex to be granted an entry."] = "Nie mozesz tu wejsc. Porozmawiaj z Nadzorca Henrykiem aby nadal ci uprawnienia.",
 	["I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside."] = "Moja matka ostanio truje mi dupe, zebym znalazl sobie wreszcie jakas prace. Mam teraz na oku pewien Januszex. Maja siedzibe bardzo daleko na wschodzie. Skladalbym juz CV, ale najpierw wolalbym poznac tamtejsze warunki pracy. Chcialbym Cie prosic, aby udal sie tam {pociagiem}. Maja specjalna linie metra, ktora zatrzymuje sie pod ich firma. Kiedy dojedziesz na miejsce odszukaj budynek przed ktorym widoczna jest litera 'C'.",
-	["Just use the blackboard here to see the schedules of the train."] = "Rozklad jazdy pociagow mozesz sprawdzic na ten czarnej tablicy.",
+	["Just ask the conductor to see the schedules of the train."] = "Rozklad jazdy pociagow mozesz sprawdzic u konduktora.",
 	["TrainMovingTo"] = "Wyruszyles do: ",
 	["Are you new here? This will be your first job: paint the topex hammers. Head to the 'A' building first."] = "To bedzie twoje pierwsze zadanie: Pomalowanie mlotkow Topex TM. Instrukcje znajdziesz przy pasie produkcyjnym w budynku A.",
 	["Get to making calculators, you slacker! Go to the 'P' building now."] = "Bierz sie teraz za skladanie kalkulatorow nierobie. Narzedzia pracy znajdziesz w budynku P.",

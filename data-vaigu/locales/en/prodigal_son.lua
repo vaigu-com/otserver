@@ -3,7 +3,7 @@ return {
 	["Hey."] = "Hey.",
 	["You don't have permission to go there. Talk to Overseer Henry of Januszex to be granted an entry."] = "You don't have permission to go there. Talk to Overseer Henry of Januszex to be granted an entry.",
 	["I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside."] = "I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside.",
-	["Just use the blackboard here to see the schedules of the train."] = "Just use the blackboard here to see the schedules of the train.",
+	["Just ask the conductor to see the schedules of the train."] = "Just ask the conductor to see the schedules of the train.",
 	["TrainMovingTo"] = "TrainMovingTo",
 	["Are you new here? This will be your first job: paint the topex hammers. Head to the 'A' building first."] = "Are you new here? This will be your first job: paint the topex hammers. Head to the 'A' building first.",
 	["Get to making calculators, you slacker! Go to the 'P' building now."] = "Get to making calculators, you slacker! Go to the 'P' building now.",

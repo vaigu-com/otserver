@@ -5,22 +5,41 @@ pseudoQuest
 	:Constant(function()
 		FREE_TRAVELS_COUNT = 10
 
-		SAIL_KEYWORDS = {
-			"sail",
-			"ship",
-			"plynac",
-			"statek",
-			"zegluje",
-			"statku",
-			"zegluj",
-			"zegluga",
-		}
-
 		TRANSPORT_TYPE = {
 			SHIP = "TRANSPORT_TYPE.SHIP",
 			CARPET = "TRANSPORT_TYPE.CARPET",
-			TRAIN = "TRANSPORT_TYPE.TRAIN"
+			TRAIN = "TRANSPORT_TYPE.TRAIN",
 		}
+
+		TRAVEL_KEYWORDS = {
+			[TRANSPORT_TYPE.SHIP] = {
+				"travel",
+				"podroz",
+				"sail",
+				"ship",
+				"plynac",
+				"statek",
+				"zegluje",
+				"statku",
+				"zegluj",
+				"zegluga",
+			},
+			[TRANSPORT_TYPE.CARPET] = {
+				"travel",
+				"podroz",
+				"fly",
+				"poleciec",
+			},
+			[TRANSPORT_TYPE.TRAIN] = {
+				"travel",
+				"podroz",
+				"pojechac",
+				"jazda",
+				"jedziemy",
+				"ride",
+			},
+		}
+
 		DEFAULT_TRANSPORT_COST = 200
 		TRANSPORT_ROUTES = {
 			ALI_BABA_CARPET = {
@@ -65,6 +84,11 @@ pseudoQuest
 				{ toPos = Position(5801, 1649, 7), name = "Mirkotown Slums" },
 				{ toPos = Position(6028, 1944, 7), name = "Elf Fortress" },
 				{ toPos = Position(5876, 1755, 7), name = "Cyclops Hills" },
+			},
+			VAVZHEEK_TRAIN = {
+				{ toPos = Position(7550, 962, 13), name = "Januszex", requiredState = { [Storage.ProdigalSon.TrainDestinations.ToJanuszex] = ACCESS_GRANTED } },
+				{ toPos = Position(7876, 1434, 9), name = "Bydgoshch" },
+				{ toPos = Position(6462, 1125, 14), name = "Hurghada underground" },
 			},
 		}
 	end)
@@ -164,3 +188,4 @@ pseudoQuest
 			window:sendToPlayer(player)
 		end
 	end)
+	:Register()

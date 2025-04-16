@@ -48,12 +48,6 @@ quest
 			BlackBoardLever2 = {},
 			PolAccess = {},
 			Payslip = {},
-			Train = {
-				SelectDestination = {},
-				FakeMoveTeleport11 = {},
-				FakeMoveTeleport12 = {},
-				FakeMoveTeleport13 = {},
-			},
 			TrainDestinations = {
 				ToHurghada = {},
 				ToJanuszex = {},
@@ -808,93 +802,9 @@ quest
 		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex,
 			QuestFactory.Dialog("Chester the Dwarf", {
 				[{ "train", "pociagiem" }] = {
-					text = "Just use the blackboard here to see the schedules of the train.",
+					text = "Just ask the conductor to see the schedules of the train.",
 				},
-			}),
-			QuestFactory.Script(function(missionState)
-				local travelTimeSeconds = 20
-				local keyToDest = {
-					[Storage.ProdigalSon.TrainDestinations.ToHurghada] = Position(6461, 1125, 14),
-					[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = Position(7550, 962, 13),
-					[Storage.ProdigalSon.TrainDestinations.ToBydgoshch] = Position(7877, 1434, 9),
-				}
-				local keyToName = {
-					[Storage.ProdigalSon.TrainDestinations.ToHurghada] = "Hurghada",
-					[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = "Januszex",
-					[Storage.ProdigalSon.TrainDestinations.ToBydgoshch] = "Bydgoshch",
-				}
-				local keyToRequiresAccess = {
-					[Storage.ProdigalSon.TrainDestinations.ToHurghada] = false,
-					[Storage.ProdigalSon.TrainDestinations.ToBydgoshch] = false,
-					[Storage.ProdigalSon.TrainDestinations.ToJanuszex] = true,
-				}
-
-				local confirmChoice = function(player, button, choice)
-					if not choice then
-						return true
-					end
-					if player:getPosition():EuclideanDistance(keyToDest[choice.key]) < 100 then
-						return true
-					end
-
-					player:ClearConditions()
-					player:teleportTo(keyToDest[choice.key])
-
-					--Animation - cancelled idea
-					--[[
-					player:teleportTo(JANUSZEX_MOVING_TRAIN_ANCHOR)
-					player:say(player:Localizer(Storage.ProdigalSon.Localizer):Get("TrainMovingTo") .. choice.text, TALKTYPE_MONSTER_SAY)
-					addEvent(function()
-						if player then
-							player:teleportTo(keyToDest[choice.key])
-						end
-					end, travelTimeSeconds * 1000)
-				]]
-				end
-
-				local function hasUnlockedDestination(player, key)
-					if not keyToRequiresAccess[key] then
-						return true
-					end
-					return player:getStorageValueByKey(key) == ACCESS_GRANTED
-				end
-
-				local nextState = {
-					[Storage.ProdigalSon.Mission01] = MISSION_FINISHED,
-					[Storage.ProdigalSon.Mission02] = QuestState.ProdigalSon.Mission02.FindForeman,
-				}
-
-				local trainTravel = Action()
-				function trainTravel.onUse(player, item, toPosition, fromPosition)
-					if not player:isPlayer() then
-						return false
-					end
-
-					if player:HasExactMissionState(missionState) then
-						player:NextState(nextState)
-					end
-
-					local title = player:Localizer(Storage.ProdigalSon.Localizer):Get("ShipTitle")
-					local message = player:Localizer(Storage.ProdigalSon.Localizer):Get("ShipMessage")
-					local window = ModalWindow({ title = title, message = message })
-
-					for key in pairs(keyToDest) do
-						if hasUnlockedDestination(player, key) then
-							local text = keyToName[key]
-							--local transaltedText = TryGetTranslatedString(player, Storage.PerIustitiaAdAstra.Questline, keyToName[key])
-							local choice = window:addChoice(text)
-							choice.key = key
-						end
-					end
-
-					window:addButton(player:Localizer(Storage.ProdigalSon.Localizer):Get("ShipOk"), confirmChoice)
-					window:sendToPlayer(player)
-					return true
-				end
-
-				trainTravel:key(Storage.ProdigalSon.Train.SelectDestination)
-				trainTravel:register()
-			end)
+			})
 	end)
 	:Mission(Storage.ProdigalSon.Mission02)
 	:State(function()
