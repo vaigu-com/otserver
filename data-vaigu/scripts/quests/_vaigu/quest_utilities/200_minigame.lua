@@ -15,7 +15,8 @@ pseudoQuest
 			ExitToSharedLobby = {},
 			SharedLobbyExitTeleport = {},
 			SharedLobbyEnterTeleport = {},
-			SharedLobbyPlayerAppear = {},
+			SharedLobbyPlayerSpawn = {},
+			SharedLobbyArea = {},
 			LastLobbyEnterFromPostion = {},
 		}
 	end)
@@ -91,20 +92,49 @@ pseudoQuest
 			return self.minigameName
 		end
 
-		local sharedLobbyAppearPosition = nil
-		local sharedLobbyAppearPositionScope = Storage.Minigames.SharedLobbyPlayerAppear
-		local sharedLobbyAppearPositionStartup = GlobalEvent(sharedLobbyAppearPositionScope)
-		function sharedLobbyAppearPositionStartup.onStartup()
-			sharedLobbyAppearPosition = Zone(sharedLobbyAppearPositionScope):randomPosition()
+		function MinigameData.ConfigureSharedLobby()
+			local sharedLobbyZone = Zone(Storage.Minigames.SharedLobbyArea)
+			local zoneEvents = ZoneEvent(sharedLobbyZone)
+
+			function zoneEvents.afterEnter(zone, creature)
+				local player = creature:getPlayer()
+				if not player then
+					return true
+				end
+
+				player:sendTextMessage(MESSAGE_FAILURE, "During minigames, you cannot use potions, runes or spells and your movement speed will be fixed to a certain value.")
+				player:isOnMinigame(true)
+				player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 100)
+				player:changeSpeed()
+			end
+
+			function zoneEvents.afterLeave(zone, creature)
+				local player = creature:getPlayer()
+				if not player then
+					return
+				end
+				player:isOnMinigame(false)
+				player:changeSpeed()
+			end
+
+			zoneEvents:register()
 		end
-		sharedLobbyAppearPositionStartup:register()
+		local sharedLobbySpawnPosition = nil
+		local sharedLobbySpawnPositionScope = Storage.Minigames.SharedLobbyPlayerSpawn
+
+		local sharedLobbySpawnPositionStartup = GlobalEvent(sharedLobbySpawnPositionScope)
+		function sharedLobbySpawnPositionStartup.onStartup()
+			sharedLobbySpawnPosition = Zone(sharedLobbySpawnPositionScope):randomPosition()
+			MinigameData.ConfigureSharedLobby()
+		end
+		sharedLobbySpawnPositionStartup:register()
 
 		local requiredGeneratedFields = {
 			"minigameScope",
-			"lobbyPlayerAppearZone",
-			"lobbyPlayerAppearStorage",
+			"lobbyPlayerSpawnZone",
+			"lobbyPlayerSpawnKey",
 			"lobbyAreaZone",
-			"gamePlayerAppearZone",
+			"gamePlayerSpawnZone",
 			"gameAreaZone",
 			"winsStorage",
 			"matchesStorage",
@@ -113,9 +143,9 @@ pseudoQuest
 			"longestTimeStorage",
 		}
 		local requiredZones = {
-			"lobbyPlayerAppearZone",
+			"lobbyPlayerSpawnZone",
 			"lobbyAreaZone",
-			"gamePlayerAppearZone",
+			"gamePlayerSpawnZone",
 			"gameAreaZone",
 		}
 		function MinigameData:Validate()
@@ -126,7 +156,7 @@ pseudoQuest
 
 			local missingFields = {}
 			for _, value in pairs(requiredGeneratedFields) do
-				if not self[value] then
+				if self[value] == nil then
 					table.insert(missingFields, value)
 				end
 			end
@@ -137,7 +167,7 @@ pseudoQuest
 
 			local emptyZones = {}
 			for _, value in pairs(requiredZones) do
-				if not self[value] then
+				if self[value] == nil then
 					table.insert(emptyZones, value)
 				elseif #self[value]:getPositions() == 0 then
 					table.insert(emptyZones, value)
@@ -150,7 +180,7 @@ pseudoQuest
 			return true
 		end
 
-		function MinigameData:SetupExitTeleport()
+		function MinigameData.SetupExitToSharedLobby()
 			local teleport = MoveEvent()
 			function teleport.onStepIn(creature, item, position, fromPosition)
 				local player = creature:getPlayer()
@@ -158,13 +188,15 @@ pseudoQuest
 					return false
 				end
 
-				player:teleportTo(sharedLobbyAppearPosition)
+				player:teleportTo(sharedLobbySpawnPosition)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				return true
 			end
-			teleport:key(self.exitTeleportDestinationStorage)
+			teleport:key(Storage.Minigames.ExitToSharedLobby)
 			teleport:register()
 		end
+		MinigameData.SetupExitToSharedLobby()
+
 		function MinigameData:SetupEnterTeleport()
 			local teleport = MoveEvent()
 			function teleport.onStepIn(creature, item, position, fromPosition)
@@ -173,13 +205,14 @@ pseudoQuest
 					return false
 				end
 
-				player:teleportTo(self.lobbyPlayerAppearZone:randomPosition())
+				player:teleportTo(self.lobbyPlayerSpawnZone:randomPosition())
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				return true
 			end
-			teleport:key(self.lobbyPlayerAppearStorage)
+			teleport:key(self.lobbyPlayerSpawnKey)
 			teleport:register()
 		end
+
 		function MinigameData.SetupSharedLobbyEnterTeleport()
 			local teleport = MoveEvent()
 			function teleport.onStepIn(creature, item, position, fromPosition)
@@ -190,7 +223,7 @@ pseudoQuest
 
 				player:setStorageValueByKey(Storage.Minigames.LastLobbyEnterFromPostion, fromPosition)
 
-				player:teleportTo(sharedLobbyAppearPosition)
+				player:teleportTo(sharedLobbySpawnPosition)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				return true
 			end
@@ -254,9 +287,9 @@ end
 
 		local minigameScopes = {
 			LobbyArea = "LobbyArea",
-			LobbyPlayerAppear = "LobbyPlayerAppear",
+			LobbyPlayerSpawn = "LobbyPlayerSpawn",
 			GameArea = "GameArea",
-			GamePlayerAppear = "GamePlayerAppear",
+			GamePlayerSpawn = "GamePlayerSpawn",
 			LobbyEntrancePosition = "LobbyEntrancePosition",
 
 			Wins = "Wins",
@@ -271,20 +304,20 @@ end
 
 			--Position (or random positions) at which player will appear in lobby
 			--Usually one position
-			local lobbyPlayerAppearScope = minigameScope:Get(minigameScopes.LobbyPlayerAppear)
-			self.lobbyPlayerAppearZone = Zone(lobbyPlayerAppearScope)
-			self.lobbyPlayerAppearStorage = lobbyPlayerAppearScope
+			local lobbyPlayerSpawnScore = minigameScope:Get(minigameScopes.LobbyPlayerSpawn)
+			self.lobbyPlayerSpawnZone = Zone(lobbyPlayerSpawnScore)
+			self.lobbyPlayerSpawnKey = lobbyPlayerSpawnScore
 
-			--Area of positions from which players will be teleported to "gameAreaPlayerAppearZone"
+			--Area of positions from which players will be teleported to "gameAreaPlayerSpawnZone"
 			local lobbyAreaScope = minigameScope:Get(minigameScopes.LobbyArea)
 			self.lobbyAreaZone = Zone(lobbyAreaScope)
 
-			--Position (or random positions) where players will apear in playing field
-			--Usually one position for speedruns - for even playing field
-			--Usually same as "gameAreaZone" for last man standing
-			--Can be empty if minigame uses custom teleport method (custom self.beforeStart)
-			local gamePlayerAppearScope = minigameScope:Get(minigameScopes.GamePlayerAppear)
-			self.gamePlayerAppearZone = Zone(gamePlayerAppearScope)
+			--Position (or random positions) where players will apear in playing field.
+			--Usually one position for speedruns - for even playing field.
+			--Usually same as "gameAreaZone" for last man standing.
+			--Can be empty if minigame uses custom teleport method (custom self.beforeStart).
+			local gamePlayerSpawnScope = minigameScope:Get(minigameScopes.GamePlayerSpawn)
+			self.gamePlayerSpawnZone = Zone(gamePlayerSpawnScope)
 
 			--Minigame whole playing field
 			local gameAreaScope = minigameScope:Get(minigameScopes.GameArea)
@@ -309,8 +342,10 @@ end
 			local longestTimeScope = minigameScope:Get(minigameScopes.LongestTime)
 			self.longestTimeStorage = longestTimeScope
 
+			--[[
 			local exitTeleportDestinationScope = Storage.Minigames.ExitToSharedLobby
-			self.exitTeleportDestinationStorage = exitTeleportDestinationScope
+			self.exitTeleportDestinationKey = exitTeleportDestinationScope
+			]]
 		end
 
 		function MinigameData:TryStartLobby()
@@ -326,8 +361,8 @@ end
 				logger.error("[ MinigameData:TryStartLobbyFast] minigame is already active.")
 				return
 			end
-			self.entranceTeleport = self.entranceTeleport or Game.createItem(1949, 1, self.lobbyPlayerAppearZone:randomPosition())
-			self.entranceTeleport:setKey(self.lobbyPlayerAppearStorage)
+			self.entranceTeleport = self.entranceTeleport or Game.createItem(1949, 1, self.lobbyPlayerSpawnZone:randomPosition())
+			self.entranceTeleport:setKey(self.lobbyPlayerSpawnKey)
 
 			self:enterStage(MINIGAME_STAGE.LOBBY_10SECONDS_BEFORE)
 		end
@@ -351,7 +386,6 @@ end
 					logger.error(T("[MinigameData:Data] Minigame :name: no competitionType declared. Not registering.", { name = self.minigameName }))
 					return
 				end
-				--self:SetupExitTeleportStepin()
 				--self:SetupEntranceLeverUse()
 
 				self.requiredPlayers = context.requiredPlayers or 3
@@ -384,8 +418,8 @@ end
 				})
 				self:addStage({
 					start = function()
-						self.entranceTeleport = Game.createItem(self.lobbyTeleportId, 1, self.lobbyEntrancePosition)
-						self.entranceTeleport:setKey(self.lobbyPlayerAppearStorage)
+						self.entranceTeleport = self.entranceTeleport or Game.createItem(self.lobbyTeleportId, 1, self.lobbyEntrancePosition)
+						self.entranceTeleport:setKey(self.lobbyPlayerSpawnKey)
 
 						Game.broadcastMessage(T("Minigame :name: starts in 10 minutes!", { name = self.minigameName }))
 						addEvent(function()
@@ -530,16 +564,16 @@ end
 
 		function MinigameData:teleportParticipantsToSharedLobby()
 			for key, value in pairs(self.gameAreaZone:getPlayers()) do
-				value:teleportTo(sharedLobbyAppearPosition)
+				value:teleportTo(sharedLobbySpawnPosition)
 			end
 			for key, value in pairs(self.lobbyAreaZone:getPlayers()) do
-				value:teleportTo(sharedLobbyAppearPosition)
+				value:teleportTo(sharedLobbySpawnPosition)
 			end
 		end
 
-		function MinigameData:teleportPlayersToMinigameAppearPositions(players)
+		function MinigameData:teleportPlayersToMinigameSpawnPositions(players)
 			for _, player in ipairs(players) do
-				local destination = self.gamePlayerAppearZone:randomPosition()
+				local destination = self.gamePlayerSpawnZone:randomPosition()
 				player:teleportTo(destination)
 			end
 		end
@@ -552,7 +586,7 @@ end
 
 			local participants = self.lobbyAreaZone:getPlayers()
 			self.participantsStartingCount = #participants
-			self:teleportPlayersToMinigameAppearPositions(participants)
+			self:teleportPlayersToMinigameSpawnPositions(participants)
 
 			self:start()
 			self:handleTimeEvent(zone)
@@ -860,10 +894,12 @@ end
 			player:isOnMinigame(true)
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, self.fixedSpeed)
 			player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.encounterName)
+			player:changeSpeed()
 		end
 		function ResetMinigameLock(player)
 			player:isOnMinigame(false)
 			SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
+			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 0	)
 			player:unregisterEvent("MinigameDeath")
 			player:changeSpeed()
 		end
@@ -1042,7 +1078,7 @@ end
 		end
 
 		function MinigameData:debug(...)
-			if not MinigameData.enableDebug then
+			if not self.enableDebug then
 				return
 			end
 			logger.debug(...)

@@ -6542,10 +6542,11 @@ void Game::changeSpeed(const std::shared_ptr<Creature> &creature, int32_t varSpe
 	// Vaigu custom
 	int32_t stepSpeed = creature->getStepSpeed();
 	std::shared_ptr<Player> player = creature->getPlayer();
-	if (player) {
-		if (player->isOnMinigame()) {
-			stepSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
-		}
+	if (player && player->isOnMinigame()) {
+			int32_t minigameFixedSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
+			if (minigameFixedSpeed > 0 ) {
+				stepSpeed = minigameFixedSpeed;
+			}
 	}
 
 	// Send to clients
