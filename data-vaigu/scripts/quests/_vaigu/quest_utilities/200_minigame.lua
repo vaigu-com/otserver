@@ -18,9 +18,36 @@ pseudoQuest
 			SharedLobbyPlayerSpawn = {},
 			SharedLobbyArea = {},
 			LastLobbyEnterFromPostion = {},
+			LastMinigameExitPosition = {},
 		}
 	end)
 	:Constant(function()
+		GRAND_PLACE_NOT_ASSIGNED = -1
+
+		---@class PlayerMinigameFinishContext
+		---@field player Player
+		---@field minigame MinigameData
+		---@field grandPlace number
+		---generated
+		---@field timeTakenSeconds number
+		---@field competitionType MINIGAME_COMPETITION_TYPE
+		PlayerMinigameFinishContext = {}
+		PlayerMinigameFinishContext.__index = PlayerMinigameFinishContext
+		function PlayerMinigameFinishContext.New(context)
+			local newObj = {}
+			newObj.player = context.player
+			newObj.grandPlace = context.grandPlace
+			newObj.timeTakenSeconds = os.time() - newObj.minigame:GetStartTimestamp()
+
+			setmetatable(newObj, PlayerMinigameFinishContext)
+			return newObj
+		end
+		setmetatable(PlayerMinigameFinishContext, {
+			__call = function(_, ...)
+				return PlayerMinigameFinishContext.New(...)
+			end,
+		})
+
 		---@class MinigameDataContext:DataClass
 		---@field private disabled boolean?
 		---@field public disableLockout boolean does not apply cooldown on kill/entry
@@ -45,6 +72,230 @@ pseudoQuest
 		---@field private isMinigame boolean?
 		---@field public bossName string?
 		MinigameDataContext = MinigameDataContext
+
+		---@class MinigameOrchestratorContext
+		---@field competitionType MINIGAME_COMPETITION_TYPE
+		---@field finishPosition Position
+		---@field startParticipantsCount integer
+		---@field startPosition Position
+		MinigameOrchestratorContext = {}
+		MinigameOrchestratorContext.__index = MinigameOrchestratorContext
+		function MinigameOrchestratorContext.New(competitionType, finishPosition, startParticipantsCount, startPosition , minigameName)
+			local newObj = {}
+			newObj.competitionType = competitionType
+			newObj.finishPosition = finishPosition
+			newObj.startParticipantsCount = startParticipantsCount
+			newObj.startPosition = startPosition
+			newObj.minigameName = minigameName
+			setmetatable(newObj, MinigameOrchestratorContext)
+			return newObj
+		end
+		setmetatable(MinigameOrchestratorContext, {
+			__call = function(_, ...)
+				return MinigameOrchestratorContext.New(...)
+			end,
+		})
+
+		---@param minigameData MinigameData
+		---@return MinigameOrchestratorContext
+		function MinigameOrchestratorContext.FromMinigameData(minigameData)
+			local context = MinigameOrchestratorContext(minigameData:GetCompetitionType(), minigameData:GetFinishPosition(), minigameData:GetStartParticipantsCount(), minigameData:GetStartPosition(), minigameData:GetDisplayName())
+			return context
+		end
+
+		---@class MinigameOrchestrator
+		---@field private competitionType MINIGAME_COMPETITION_TYPE
+		---@field private finishPosition Position
+		---@field private startParticipantsCount number
+		---@field private startPosition Position
+		---@field private minigameName string
+		---generated
+		---@field private finishContexts PlayerMinigameFinishContext[]
+		MinigameOrchestrator = {}
+		MinigameOrchestrator.__index = MinigameOrchestrator
+		---@param context MinigameOrchestratorContext
+		---@return MinigameOrchestrator
+		function MinigameOrchestrator.New(context)
+			local newObj = {
+				competitionType = context.competitionType,
+				finishPosition = context.finishPosition,
+				startParticipantsCount = context.startParticipantsCount,
+				finishContexts = {},
+				startPosition = context.startPosition,
+				minigameName = context.minigameName
+			}
+			if newObj.competitionType == MINIGAME_COMPETITION_TYPE.LAST_MAN_STANDING then
+				newObj.nextGrandPlace = newObj.startParticipantsCount
+			elseif newObj.competitionType == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
+				newObj.nextGrandPlace = 1
+			end
+			setmetatable(newObj, MinigameOrchestrator)
+			return newObj
+		end
+		setmetatable(MinigameOrchestrator, {
+			__call = function(_, ...)
+				return MinigameOrchestrator.New(...)
+			end,
+		})
+
+		function MinigameOrchestrator:GetNextGrandPlaceSpeedrun()
+			local nextGrandPlace = self.nextGrandPlace
+			self.nextGrandPlace = self.nextGrandPlace + 1
+			return nextGrandPlace
+		end
+		function MinigameOrchestrator:GetNextGrandPlaceLMS()
+			local nextGrandPlace = self.nextGrandPlace
+			self.nextGrandPlace = self.nextGrandPlace - 1
+			return nextGrandPlace
+		end
+
+		---@param playerContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:UpdateWins(playerContext)
+			playerContext.player:incrementStorageByKeyClampZero(playerContext.minigame.winsStorage)
+			playerContext.player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Wins)
+		end
+		---@param playerContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:UpdateMatches(playerContext)
+			playerContext.player:incrementStorageByKeyClampZero(playerContext.minigame.matchesStorage)
+			playerContext.player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Matches)
+		end
+		---@param playerContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:UpdatePoints(playerContext)
+			local grandPlacePoints = math.max((4 - playerContext.grandPlace), 0)
+			playerContext.player:incrementStorageByKeyClampZero(playerContext.minigame.pointsStorage, grandPlacePoints)
+			playerContext.player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Points, grandPlacePoints)
+		end
+		---@param playerContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:UpdateTimesSpeedrun(playerContext)
+			local timeTakenSeconds = playerContext.timeTakenSeconds
+			local shortestTime = playerContext.player:getStorageValueByKey(playerContext.minigame.shortestTime)
+			if shortestTime == MISSION_NOT_STARTED then
+				shortestTime = 9000000
+			end
+
+			if timeTakenSeconds < shortestTime and playerContext.grandPlace == 1 then
+				playerContext.player:setStorageValueByKey(playerContext.minigame.shortestTime, timeTakenSeconds)
+			end
+		end
+		---@param playerContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:UpdateTimesLMS(playerContext)
+			local timeTakenSeconds = playerContext.timeTakenSeconds
+			local longestTime = playerContext.player:getStorageValueByKey(playerContext.minigame.longestTime)
+
+			if timeTakenSeconds > longestTime then
+				playerContext.player:setStorageValueByKey(playerContext.minigame.longestTime, timeTakenSeconds)
+			end
+		end
+
+		---@param playerContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:UpdateRecords(playerContext)
+			if playerContext.grandPlace == 1 then
+				self:UpdateWins(playerContext)
+			end
+
+			self:UpdateMatches(playerContext)
+			self:UpdatePoints(playerContext)
+		end
+		local consolationMultiplier = 1
+		---@param finishContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:GrantRewards(finishContext)
+			local highPlaceMultiplier = math.max((4 - finishContext.grandPlace), 0)
+			finishContext.player:addXpBoostTime((highPlaceMultiplier + consolationMultiplier) * 5)
+			finishContext.player:AddAllCoins((consolationMultiplier + highPlaceMultiplier) * 1)
+		end
+		function MinigameOrchestrator:AnnounceGrandPlace(finishContext)
+			if finishContext.grandPlace < 3 then
+				return
+			end
+			Game.broadcastMessage(MINIGAMES_BROADCAST_TOP_PARTICIPANTS, nil, true, {
+				playerName = finishContext.player:getName(),
+				timeTakenSeconds = finishContext.timeTakenSeconds,
+				grandPlace = finishContext.grandPlace,
+				competitionType = self.competitionType,
+				minigameName = self.minigameName
+			})
+		end
+		function MinigameOrchestrator:AfterSuccesfulEveryoneFinishSpeedrun()
+			local finishContexts = self:GetFinishContexts()
+			table.sort(finishContexts, function(a, b)
+				if a.distance ~= b.distance then
+					return a.distance > b.distance
+				else
+					return a.timeTakenSeconds < b.timeTakenSeconds
+				end
+			end)
+
+			for _, finishContext in pairs(finishContexts) do
+				self:OnNextPlaceWinnerFinish(finishContext)
+			end
+		end
+		--[[
+		function MinigameOrchestrator:AfterSuccesfulEveryoneFinishLMS()
+			local finishContexts = self:GetFinishContexts()
+			table.sort(finishContexts, function(a, b)
+				return a.timeTakenSeconds > b.timeTakenSeconds
+			end)
+
+			for _, playerContext in pairs(finishContexts) do
+				playerContext.grandPlace = self:GetNextGrandPlaceSpeedrun()
+				self:UpdateTimesSpeedrun(playerContext)
+				self:UpdateRecords(playerContext)
+				self:GrantRewards(playerContext)
+				self:AnnounceGrandPlace(playerContext)
+			end
+		end
+		]]
+		---@return PlayerMinigameFinishContext[]
+		function MinigameOrchestrator:GetFinishContexts()
+			return self.finishContexts
+		end
+		---@param finishContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:AppendFinishContext(finishContext)
+			table.insert(self.finishContexts, finishContext)
+		end
+		function MinigameOrchestrator:GetFinishPosition()
+			return self.finishPosition
+		end
+		---@param finishContext PlayerMinigameFinishContext
+		function MinigameOrchestrator:OnNextPlaceWinnerFinish(finishContext)
+			finishContext.grandPlace = self:GetNextGrandPlaceSpeedrun()
+			self:UpdateTimesSpeedrun(finishContext)
+			self:UpdateRecords(finishContext)
+			self:GrantRewards(finishContext)
+			self:AnnounceGrandPlace(finishContext)
+		end
+		function MinigameOrchestrator:AfterSuccesfulPlayerFinishSpeedrun(player)
+			local playerFinishPosition = player:getPosition()
+			local x, y, z = playerFinishPosition:DistanceVector(self.startPosition)
+			local maxDist = math.max(x, y, z)
+			local playerContext = PlayerMinigameFinishContext({
+				player = player,
+				grandPlace = GRAND_PLACE_NOT_ASSIGNED,
+				distance = maxDist,
+			})
+			if self.finishPosition == playerFinishPosition then
+				self:OnNextPlaceWinnerFinish(playerContext)
+			else
+				self:AppendFinishContext(playerContext)
+			end
+		end
+		function MinigameOrchestrator:AfterSuccesfulPlayerFinishLMS(player)
+			local playerContext = PlayerMinigameFinishContext({
+				player = player,
+				grandPlace = self:GetNextGrandPlaceLMS(),
+			})
+			self:OnNextPlaceWinnerFinish(playerContext)
+		end
+		function MinigameOrchestrator:AfterSuccesfulPlayerFinish(player)
+			local competitionType = self.competitionType
+			if competitionType == MINIGAME_COMPETITION_TYPE.LAST_MAN_STANDING then
+				self:AfterSuccesfulPlayerFinishLMS(player)
+			elseif competitionType == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
+				self:AfterSuccesfulPlayerFinishSpeedrun(player)
+			end
+		end
+
+		local specificMinigameStatisticsScope = Scope(Storage.Minigames.SpecificMinigameStatistics)
 
 		---@class MinigameData
 		---@field private disabled boolean?
@@ -73,11 +324,16 @@ pseudoQuest
 		---@field private bossRoomEntranceZone Zone
 		---@field private encounterAreaPositionsZone Zone
 		---@field private monsterSpawnZone Zone
+		---@field shortestTime string
+		---@field longestTime string
 		MinigameData = {}
 		MinigameData.__index = MinigameData
 		---@param context MinigameDataContext
 		function MinigameData.New(context)
-			local newObj = {}
+			local newObj = {
+				shortestTime = specificMinigameStatisticsScope:Get("ShortestTime"),
+				longestTime = specificMinigameStatisticsScope:Get("LongestTime"),
+			}
 			setmetatable(newObj, MinigameData)
 			newObj:GenerateOnStartup(context)
 			return newObj
@@ -90,6 +346,10 @@ pseudoQuest
 
 		function MinigameData:GetDisplayName()
 			return self.minigameName
+		end
+		
+		function MinigameData:GetCompetitionType()
+			return self.competitionType
 		end
 
 		function MinigameData.ConfigureSharedLobby()
@@ -148,6 +408,9 @@ pseudoQuest
 			"gamePlayerSpawnZone",
 			"gameAreaZone",
 		}
+		local requiredZonesSpeedrun = {
+			"finishTeleportZone",
+		}
 		function MinigameData:Validate()
 			if not self.minigameName then
 				logger.error(debug.traceback("[MinigameData:Validate] no minigameName provided."))
@@ -161,7 +424,7 @@ pseudoQuest
 				end
 			end
 			if #missingFields > 0 then
-				logger.warn("[MinigameData:Validate] - minigame with name {} missing generated fields (zones might be missing in otbm): {}", (self.encounterName or "Unknown"), table.concat(missingFields, ", "))
+				logger.warn("[MinigameData:Validate] - minigame with name {} missing generated fields (zones might be missing in otbm): {}", (self.minigameName or "Unknown"), table.concat(missingFields, ", "))
 				return false
 			end
 
@@ -174,9 +437,25 @@ pseudoQuest
 				end
 			end
 			if #emptyZones > 0 then
-				logger.warn("[MinigameData:Validate] - minigame with name {} zones have no positions assigned (zones might be missing in otbm): {}", (self.encounterName or "Unknown"), table.concat(emptyZones, ", "))
+				logger.warn("[MinigameData:Validate] - minigame with name {} zones have no positions assigned (zones might be missing in otbm): {}", (self.minigameName or "Unknown"), table.concat(emptyZones, ", "))
 				return false
 			end
+
+			if self:GetCompetitionType() == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
+				local emptyZonesSpeedrun = {}
+				for _, value in pairs(requiredZonesSpeedrun) do
+					if self[value] == nil then
+						table.insert(emptyZonesSpeedrun, value)
+					elseif #self[value]:getPositions() == 0 then
+						table.insert(emptyZonesSpeedrun, value)
+					end
+				end
+				if #emptyZonesSpeedrun > 0 then
+					logger.warn("[MinigameData:Validate] - minigame with name {} zones have no positions assigned (zones might be missing in otbm): {}", (self.minigameName or "Unknown"), table.concat(emptyZonesSpeedrun, ", "))
+					return false
+				end
+			end
+
 			return true
 		end
 
@@ -290,6 +569,8 @@ end
 			LobbyPlayerSpawn = "LobbyPlayerSpawn",
 			GameArea = "GameArea",
 			GamePlayerSpawn = "GamePlayerSpawn",
+			FinishTeleport = "FinishTeleport",
+
 			LobbyEntrancePosition = "LobbyEntrancePosition",
 
 			Wins = "Wins",
@@ -318,6 +599,9 @@ end
 			--Can be empty if minigame uses custom teleport method (custom self.beforeStart).
 			local gamePlayerSpawnScope = minigameScope:Get(minigameScopes.GamePlayerSpawn)
 			self.gamePlayerSpawnZone = Zone(gamePlayerSpawnScope)
+
+			local finishTeleportsZoneScope = minigameScope:Get(minigameScopes.FinishTeleport)
+			self.finishTeleportZone = Zone(finishTeleportsZoneScope)
 
 			--Minigame whole playing field
 			local gameAreaScope = minigameScope:Get(minigameScopes.GameArea)
@@ -361,7 +645,7 @@ end
 				logger.error("[ MinigameData:TryStartLobbyFast] minigame is already active.")
 				return
 			end
-			self.entranceTeleport = self.entranceTeleport or Game.createItem(1949, 1, self.lobbyPlayerSpawnZone:randomPosition())
+			self.entranceTeleport = self.entranceTeleport or Game.createItem(1949, 1, self.lobbyEntranceTeleport)
 			self.entranceTeleport:setKey(self.lobbyPlayerSpawnKey)
 
 			self:enterStage(MINIGAME_STAGE.LOBBY_10SECONDS_BEFORE)
@@ -375,8 +659,7 @@ end
 		local minigameScope = Scope("Minigame")
 		function MinigameData:GenerateOnStartup(context)
 			self.validationStatus = MINIGAME_VALIDATION_STATUS.UNVALIDATED
-			self.encounterName = context.encounterName or context.minigameName
-			self.minigameName = context.encounterName or context.minigameName
+			self.minigameName = context.minigameName or context.encounterName
 
 			local serverstartup = GlobalEvent(minigameScope:Get(self:GetDisplayName(), "GenerateOnStartup"))
 			function serverstartup.onStartup()
@@ -385,6 +668,18 @@ end
 				if not self.competitionType then
 					logger.error(T("[MinigameData:Data] Minigame :name: no competitionType declared. Not registering.", { name = self.minigameName }))
 					return
+				end
+				if self.competitionType == MINIGAME_COMPETITION_TYPE.OTHER then
+					self.GetGrandPlace = context.GetGrandPlace
+					self.IsSuccesfulFinish = context.IsSuccesfulFinish
+					if not self.GetGrandPlace then
+						logger.error(T("[MinigameData:Data] Minigame :name: has competitionType of 'OTHER' but no GetGrandPlace function defined. Not registering.", { name = self.minigameName }))
+						return
+					end
+					if not self.IsSuccesfulFinish then
+						logger.error(T("[MinigameData:Data] Minigame :name: has competitionType of 'OTHER' but no IsSuccesfulFinish function defined. Not registering.", { name = self.minigameName }))
+						return
+					end
 				end
 				--self:SetupEntranceLeverUse()
 
@@ -457,8 +752,11 @@ end
 				})
 				self:addStage({
 					start = function()
-						self.entranceTeleport:remove()
-						self.entranceTeleport = nil
+						if self.entranceTeleport then
+							self.entranceTeleport:remove()
+							self.entranceTeleport = nil
+						end
+						
 						local participants = self.lobbyAreaZone:getPlayers()
 						if #participants < self.requiredPlayers then
 							Game.broadcastMessage(T("Minigame :name: was not started - not enough players.", { name = self.minigameName }))
@@ -515,7 +813,7 @@ end
 			end, self.timeToComplete * 1000, zone)
 		end
 
-		local function formatEncounterName(name)
+		local function formatMinigameName(name)
 			local cleaned = name:gsub("[^%w]", " ")
 
 			local formatted = cleaned:gsub("(%S+)", function(word)
@@ -550,7 +848,7 @@ end
 			end
 
 			if self.ejectAfterCompletionSeconds > 0 then
-				zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":formattedName: is finished. You have :time: seconds to leave the room.", { formattedName = formatEncounterName(self.encounterName), time = self.ejectAfterCompletionSeconds }))
+				zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":formattedName: is finished. You have :time: seconds to leave the room.", { formattedName = formatMinigameName(self.minigameName), time = self.ejectAfterCompletionSeconds }))
 
 				self.timeoutEvent = addEvent(function(zn)
 					zn:refresh()
@@ -571,22 +869,26 @@ end
 			end
 		end
 
-		function MinigameData:teleportPlayersToMinigameSpawnPositions(players)
+		--TODO teleport to not-so-random positions, eg.: always teleport fixed amount of tiles north
+		function MinigameData:teleportParticipantToSpawnPosition(players)
 			for _, player in ipairs(players) do
 				local destination = self.gamePlayerSpawnZone:randomPosition()
 				player:teleportTo(destination)
 			end
 		end
 
-		---@param leverUser Player
+		function MinigameData:GetStartParticipantsCount()
+			return self.startParticipantsCount
+		end
 		---@return boolean
 		function MinigameData:TryStartMinigame()
 			local zone = self:GetMinigameZone()
 			zone:removeMonsters()
 
 			local participants = self.lobbyAreaZone:getPlayers()
-			self.participantsStartingCount = #participants
-			self:teleportPlayersToMinigameSpawnPositions(participants)
+			self.startParticipantsCount = #participants
+			self.startPosition = self.gamePlayerSpawnZone:randomPosition()
+			self:teleportParticipantToSpawnPosition(participants)
 
 			self:start()
 			self:handleTimeEvent(zone)
@@ -627,7 +929,7 @@ end
 		---@param abort boolean? A flag to determine whether to abort the current stage without calling the finish function. Optional.
 		---@return boolean True if the stage is entered successfully, false otherwise
 		function MinigameData:enterStage(stageNumber, abort)
-			self:debug("MinigameData[{}]:enterStage | stageNumber: {} | abort: {}", self.encounterName, stageNumber, abort)
+			self:debug("MinigameData[{}]:enterStage | stageNumber: {} | abort: {}", self.minigameName, stageNumber, abort)
 			if not abort then
 				local currentStage = self:getStage(self.currentStage)
 				if currentStage and currentStage.finish then
@@ -765,7 +1067,7 @@ end
 		---Resets the encounter to its initial state
 		---@return boolean True if the encounter is reset successfully, false otherwise
 		function MinigameData:reset()
-			self:debug("MinigameData[{}]:reset", self.encounterName)
+			self:debug("MinigameData[{}]:reset", self.minigameName)
 			if self.onReset then
 				self:onReset()
 			end
@@ -795,15 +1097,31 @@ end
 			return self:enterStage(self.currentStage + 1)
 		end
 
-		---Check if can start encounter
-		---@return boolean True if encounter can be started, fale otherwise
+		---@return boolean
 		function MinigameData:canStart()
 			return self.currentStage == MINIGAME_STAGE.UNSTARTED
 		end
 
-		---Starts the encounter
-		---@return boolean True if the encounter is started successfully, false otherwise
+		function MinigameData:GetFinishPosition()
+			return self.finishTeleportPosition
+		end
+		function MinigameData:GetStartPosition()
+			return self.startPosition
+		end
+
+		function MinigameData:ResetOrchestrator()
+			self.orchestrator = MinigameOrchestrator(MinigameOrchestratorContext.FromMinigameData(self))
+			return self
+		end
+		function MinigameData:ResetFinishPosition()
+			self.finishTeleportPosition = self.finishTeleportZone:randomPosition()
+			return self
+		end
+
+		---@return boolean
 		function MinigameData:start()
+			self:ResetOrchestrator()
+			self:ResetFinishPosition()
 			if self.beforeStart then
 				self:beforeStart()
 			end
@@ -893,14 +1211,14 @@ end
 		function MinigameData:SetMinigameLock(player)
 			player:isOnMinigame(true)
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, self.fixedSpeed)
-			player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.encounterName)
+			player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.minigameName)
 			player:changeSpeed()
 		end
 		function ResetMinigameLock(player)
 			player:isOnMinigame(false)
 			SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
-			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 0	)
-			player:unregisterEvent("MinigameDeath")
+			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 0)
+			player:unregisterEvent("MinigamePlayerDeath")
 			player:changeSpeed()
 		end
 		function MinigameData:AfterEnterAnyMinigameState(player)
@@ -918,10 +1236,6 @@ end
 			player:changeSpeed()
 		end
 
-		function MinigameData:AfterLeaveAnyStateMinigame(player)
-			ResetMinigameLock(player)
-		end
-
 		function MinigameData:GetCurrentPlayersCount()
 			return #self.gameAreaZone:getPlayers()
 		end
@@ -936,104 +1250,26 @@ end
 			return self.startTimestamp
 		end
 
-		MinigameCompletionContext = {}
-		MinigameCompletionContext.__index = MinigameCompletionContext
-		function MinigameCompletionContext.New(context)
-			local newObj = {}
-			newObj.player = context.player
-			newObj.minigame = context.minigame
 
-			newObj.grandPlace = context.grandPlace
-			newObj.timeTakenSeconds = os.time() - newObj.minigame:GetStartTimestamp()
-			newObj.competitionType = newObj.minigame:GetCompetitionType()
-
-			setmetatable(newObj, MinigameCompletionContext)
-			return newObj
-		end
-		setmetatable(MinigameCompletionContext, {
-			__call = function(_, ...)
-				return MinigameCompletionContext.New(...)
-			end,
-		})
-
-		function MinigameCompletionContext:UpdateWins()
-			self.player:incrementStorageByKeyClampZero(self.minigame.winsStorage)
-			self.player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Wins)
+		--TODO implementation
+		function MinigameData:AfterSuccesfulMinigameFinishOther(player)
+			logger.warn("[MinigameData::AfterSuccesfulMinigameFinishLastManOther] Not implemented.")
 		end
 
-		function MinigameCompletionContext:UpdateRecords()
-			if self.grandPlace == 1 then
-				MinigameCompletionContext:UpdateWins()
-			end
-
-			local grandPlacePoints = math.max((4 - self.grandPlace), 0)
-			self.player:incrementStorageByKeyClampZero(self.minigame.pointsStorage, grandPlacePoints)
-			self.player:incrementStorageByKeyClampZero(self.matchesStorage)
-			self.player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Points, grandPlacePoints)
-			self.player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Matches)
-
-			local timeTakenSeconds = self.timeTakenSeconds
-			local shortestTime = self.player:getStorageValueByKey(self.minigame.shortestTime)
-			if shortestTime == MISSION_NOT_STARTED then
-				shortestTime = 90000
-			end
-			local longestTime = self.player:getStorageValueByKey(self.minigame.longestTime)
-
-			if timeTakenSeconds < shortestTime then
-				self.player:setStorageValueByKey(self.minigame.shortestTime, timeTakenSeconds)
-			end
-			if timeTakenSeconds > longestTime then
-				self.player:setStorageValueByKey(self.minigame.longestTime, timeTakenSeconds)
-			end
-		end
-
-		local consolationMultiplier = 1
-		function MinigameCompletionContext:GrantRewards()
-			local highPlaceMultiplier = math.max((4 - self.grandPlace), 0)
-			self.player:addXpBoostTime((highPlaceMultiplier + consolationMultiplier) * 5)
-			self.player:AddAllCoins((consolationMultiplier + highPlaceMultiplier) * 1)
-		end
-		function MinigameCompletionContext:AnnounceGrandPlace()
-			if self.grandPlace < 3 then
-				return
-			end
-			Game.broadcastMessage(MINIGAMES_BROADCAST_TOP_PARTICIPANTS, nil, true, {
-				playerName = self.player:getName(),
-				timeTakenSeconds = self.timeTakenSeconds,
-				grandPlace = self.grandPlace,
-				competitionType = self.competitionType,
-				minigameName = self:GetDisplayName(),
-			})
-		end
-
-		function MinigameData:AfterLeaveActiveMinigame(player)
-			local grandPlace = 0
-			local currentPlayers = self:GetCurrentPlayersCount()
-			if self.competitionType == MINIGAME_COMPETITION_TYPE.LAST_MAN_STANDING then
-				grandPlace = currentPlayers
-			elseif self.competitionType == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
-				grandPlace = self.participantsStartingCount - currentPlayers + 1
-			end
-
-			local completionContext = MinigameCompletionContext({
-				player = player,
-				minigame = self,
-				grandPlace = grandPlace,
-			})
-			completionContext:UpdateRecords()
-			completionContext:GrantRewards()
-			completionContext:AnnounceGrandPlace()
-		end
-
-		--Localization
+		--TODO Localization
 		function MinigameData:BroadCastPlayerJoinedLobby(player)
 			local participantsCount = #self.lobbyAreaZone:getPlayers()
 			Game.broadcastMessage(T("Player :playerName: joined :minigameName:. :participantsCount:/:maxPartitipantsCount:", { playerName = player:getName(), name = self:GetDisplayName(), participantsCount = participantsCount, maxPartitipantsCount = self.maxPartitipantsCount }))
 		end
-		--Localization
-		function MinigameData:BroadCastPlayerLeftLobby(player)
+		--TODO Localization
+		function MinigameData:BroadcastPlayerLeftLobby(player)
 			local participantsCount = #self.lobbyAreaZone:getPlayers()
 			Game.broadcastMessage(T("Player :playerName: left :minigameName:. :participantsCount:/:maxPartitipantsCount:", { playerName = player:getName(), name = self:GetDisplayName(), participantsCount = participantsCount, maxPartitipantsCount = self.maxPartitipantsCount }))
+		end
+
+		---@return MinigameOrchestrator
+		function MinigameData:GetOrchestrator()
+			return self.orchestrator
 		end
 
 		function MinigameData:ConfigureOnEnterLeave()
@@ -1053,7 +1289,7 @@ end
 				self:AfterEnterAnyMinigameState()
 			end
 
-			function zoneEvents.afterLeave(zone, creature)
+			function zoneEvents.beforeLeave(zone, creature)
 				local player = creature:getPlayer()
 				if not player then
 					return
@@ -1062,12 +1298,14 @@ end
 					return
 				end
 
-				if not self:IsActive() then
-					self:BroadCastPlayerLeftLobby(player)
+				player:setStorageValueByKey(Storage.Minigames.LastMinigameExitPosition, player:getPosition()) -- TODO might be unused
+
+				if self:IsActive() then
+					self:GetOrchestrator():AfterSuccesfulPlayerFinish(player)
 				else
-					self:AfterLeaveActiveMinigame(player)
+					self:BroadcastPlayerLeftLobby(player)
 				end
-				self:AfterLeaveAnyStateMinigame(player)
+				ResetMinigameLock(player)
 
 				if self:countPlayers() == 0 then
 					self:reset()

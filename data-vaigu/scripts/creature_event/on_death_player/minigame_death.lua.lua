@@ -1,3 +1,5 @@
+--TODO fixes
+
 ---@enum MINIGAMES_WIN_CONDITION
 MINIGAMES_WIN_CONDITION = {
 	speedrun = "speedrun",
@@ -66,7 +68,7 @@ end
 
 local minigamesScope = Scope(Storage.Minigames)
 
-local minigameDeath = CreatureEvent("MinigameDeath")
+local minigameDeath = CreatureEvent("MinigamePlayerDeath")
 function minigameDeath.onPrepareDeath(creature, killer)
 	local player = Player(creature)
 	local minigameName = player:getStorageValueByKey(Storage.Minigames.CurrentMinigame)

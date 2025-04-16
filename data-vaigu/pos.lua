@@ -626,14 +626,14 @@ function Position:EuclideanDistance(dest)
 end
 
 function Position:ManhattanDistance(dest)
-	local x2 = math.abs(self.x - dest.x)
-	local y2 = math.abs(self.y - dest.y)
-	local z2 = math.abs(self.z - dest.z)
-	local distance = x2 + y2 + z2
+	local x = math.abs(self.x - dest.x)
+	local y = math.abs(self.y - dest.y)
+	local z = math.abs(self.z - dest.z)
+	local distance = x + y + z
 	return distance
 end
 
-function Position:GetDistances(dest)
+function Position:GetDistanceVector(dest)
 	local vector = self:VectorTo(dest):Abs()
 	return vector.x, vector.y, vector.z
 end
