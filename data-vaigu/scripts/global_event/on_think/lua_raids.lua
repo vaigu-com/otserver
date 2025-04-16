@@ -1,3 +1,24 @@
+local pseudoQuest = Quest(LOCALIZERS.NONE)
+
+pseudoQuest
+	:NoQuestlog()
+	:EncounterData(function()
+		local function validateCreature(creatureName)
+			if not MonsterType(creatureName) then
+				logger.warn(T("[Wave::Creature] Cannot add creature :creatureName: to wave.", { creatureName = creatureName }))
+			end
+		end
+
+		for key, luaRaid in pairs(LuaRaidRegistry.registry) do
+			for key, value in pairs(luaRaid.waves) do
+				for key, creature in pairs(value.creatures) do
+					validateCreature(creature.name)
+				end
+			end
+		end
+	end)
+	:Register()
+
 ---@class Wave
 ---@field delay number
 ---@field creatures table

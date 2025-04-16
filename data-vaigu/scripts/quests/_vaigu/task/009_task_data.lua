@@ -650,10 +650,14 @@ function GenerateTasksAuxillaryData()
 		else
 			table.insert(bossNames, task.bossName)
 		end
-		for _, bossName in pairs(bossNames) do
-			if not MonsterType(bossName) then
-				logger.warn(T("[validateBossRoomZone] task :taskName: has nonexistant boss with name :bossName: is empty.", { taskName = task.name, bossName = bossName }))
+		if #bossNames > 0 then
+			for _, bossName in pairs(bossNames) do
+				if not MonsterType(bossName) then
+					logger.warn(T("[validateBossRoomZone] task :taskName: has nonexistant boss with name :bossName: is empty.", { taskName = task.name, bossName = bossName }))
+				end
 			end
+		else
+			logger.warn(T("[validateBossRoomZone] task :taskName: bossName is empty.", { taskName = task.name }))
 		end
 	end
 
