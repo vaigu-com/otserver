@@ -1130,8 +1130,7 @@ quest
 						return
 					end
 
-					ratOfKingsNpc = Game.createNpc("Rat of Kings", ratOfKingsPos, false, false)
-					ratOfKingsLock:Set()
+					ratOfKingsLock:Set(Game.createNpc("Rat of Kings", ratOfKingsPos, false, false))
 					ratOfKingsPos:sendMagicEffect(CONST_ME_TELEPORT)
 				end
 

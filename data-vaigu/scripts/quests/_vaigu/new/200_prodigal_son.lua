@@ -1067,9 +1067,8 @@ quest
 					if arechekLock:IsSet() then
 						return
 					end
-
-					Game.createMonster("Notorious Arechek", player:getPosition())
-					arechekLock:Set()
+					
+					arechekLock:Set(Game.createMonster("Notorious Arechek", player:getPosition()))
 					SwapNotoriousArechekBed()
 				end
 

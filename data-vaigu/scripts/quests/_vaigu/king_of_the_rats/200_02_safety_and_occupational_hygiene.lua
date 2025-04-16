@@ -636,8 +636,7 @@ quest
 						return
 					end
 
-					Game.createMonster("petrus ciemiezca", player:getPosition())
-					lock:Set()
+					lock:Set(Game.createMonster("petrus ciemiezca", player:getPosition()))
 				end
 
 				tile:key(Storage.SafetyAndOccupationalHygiene.PetrusSpawn)

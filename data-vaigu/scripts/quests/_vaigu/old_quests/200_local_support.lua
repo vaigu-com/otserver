@@ -1100,8 +1100,7 @@ quest
 						return false
 					end
 
-					Game.createMonster("Lumberjack Domino Underground", toPosition)
-					SpawnLocks.LocalSupport.IKEAForTheBold.DominoUnderground:Set()
+					SpawnLocks.LocalSupport.IKEAForTheBold.DominoUnderground:Set(Game.createMonster("Lumberjack Domino Underground", toPosition))
 				end
 				undergroundChest:key(Storage.LocalSupport.SpawnDominoUndergroundChest)
 				undergroundChest:register()
@@ -1339,8 +1338,7 @@ quest
 						return
 					end
 
-					Game.createMonster("Lumberjack Domino Shore", toPosition)
-					SpawnLocks.LocalSupport.IKEAForTheBold.DominoShore:Set()
+					SpawnLocks.LocalSupport.IKEAForTheBold.DominoShore:Set(Game.createMonster("Lumberjack Domino Shore", toPosition))
 				end
 				tileBeforeHawser:key(Storage.LocalSupport.TileBeforeHawser)
 				tileBeforeHawser:type("stepin")

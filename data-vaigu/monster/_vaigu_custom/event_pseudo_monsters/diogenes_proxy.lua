@@ -112,8 +112,7 @@ mType.onSay = function(listener, talker, type, message)
 		return
 	end
 
-	local npc = Game.createNpc("Diogenes", Position(6237, 1027, 5))
-	npcLock:Set(npc)
+	npcLock:Set(Game.createNpc("Diogenes", Position(6237, 1027, 5)))
 end
 
 mType.onAppear = function(monster, creature) end

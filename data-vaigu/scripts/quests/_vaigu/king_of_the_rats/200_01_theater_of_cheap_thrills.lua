@@ -752,8 +752,7 @@ quest
 						return
 					end
 
-					lock:Set()
-					Game.createMonster("Miss Pitca", player:getPosition())
+					lock:Set(Game.createMonster("Miss Pitca", player:getPosition()))
 				end
 
 				tile:key(Storage.TheaterOfCheapThrills.MissPizzaSpawn)
@@ -1131,8 +1130,7 @@ quest
 						return
 					end
 
-					lock:Set()
-					Game.createMonster("Robercik", player:getPosition())
+					lock:Set(Game.createMonster("Robercik", player:getPosition()))
 				end
 
 				tile:key(Storage.TheaterOfCheapThrills.RobercikSpawn)
@@ -1324,8 +1322,7 @@ quest
 						return
 					end
 
-					lock:Set()
-					Game.createMonster("Juerdo Titsgo", player:getPosition())
+					lock:Set(Game.createMonster("Juerdo Titsgo", player:getPosition()))
 				end
 
 				tile:key(Storage.TheaterOfCheapThrills.JuerdoTitsgoSpawn)

@@ -303,7 +303,6 @@ quest
 					robBarleyLock:Set(robBarley)
 					addEvent(function()
 						robBarley:remove()
-						robBarleyLock:Reset(robBarley)
 					end, 60 * 1000)
 				end
 				spawnRobBarley:type("stepin")

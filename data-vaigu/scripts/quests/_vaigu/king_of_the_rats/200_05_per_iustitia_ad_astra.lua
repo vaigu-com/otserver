@@ -556,8 +556,8 @@ quest
 					if astralJanusLock:IsSet() then
 						return
 					end
-					astralJanus = Game.createNpc("Astral Janus", astralJanusPos, false, false)
-					astralJanusLock:Set()
+					
+					astralJanusLock:Set(Game.createNpc("Astral Janus", astralJanusPos, false, false))
 				end
 				tileIn:key(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
 				tileIn:register()
