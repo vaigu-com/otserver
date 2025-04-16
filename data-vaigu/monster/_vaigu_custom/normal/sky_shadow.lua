@@ -13,6 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+--[[
 monster.raceId = 2581
 monster.Bestiary = {
 	class = "Undead",
@@ -25,11 +26,12 @@ monster.Bestiary = {
 	Occurrence = 0,
 	Locations = "Unknown.",
 }
+]]
 
 monster.health = 3000
 monster.maxHealth = 3000
 monster.race = "blood"
-monster.corpse = 26125
+monster.corpse = 12840
 monster.speed = 120
 monster.manaCost = 0
 

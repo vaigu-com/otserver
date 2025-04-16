@@ -13,6 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+--[[
 monster.raceId = 2584
 monster.Bestiary = {
 	class = "Magical",
@@ -25,6 +26,7 @@ monster.Bestiary = {
 	Occurrence = 0,
 	Locations = "Vaux Mach mountain range on Ganymede.",
 }
+]]
 
 monster.health = 3000
 monster.maxHealth = 3000

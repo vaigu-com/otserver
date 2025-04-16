@@ -41,7 +41,7 @@ monster.flags = {
 	rewardBoss = false,
 	illusionable = false,
 	canPushItems = true,
-	canPushCreatures = false,
+	canPushCreatures = true,
 	staticAttackChance = 90,
 	targetDistance = 1,
 	runHealth = 0,
@@ -88,9 +88,9 @@ monster.elements = {
 }
 
 monster.immunities = {
-	{ type = "paralyze", condition = false },
+	{ type = "paralyze", condition = true },
 	{ type = "outfit", condition = false },
-	{ type = "invisible", condition = false },
+	{ type = "invisible", condition = true  },
 	{ type = "bleed", condition = false },
 }
 
