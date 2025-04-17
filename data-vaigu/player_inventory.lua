@@ -374,7 +374,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 		addedItems = { addedItems }
 	end
 
-	local lastErrorCode = 0
+	local lastErrorCode = RETURNVALUE_NOERROR
 	for _, addedItem in pairs(addedItems) do
 		for key, value in pairs(itemData) do
 			if IsCustomAttribute(key) then
@@ -441,7 +441,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 			name = desc
 		end
 
-		if name and itemData.dontAnnounce ~= true then
+		if name and itemData.dontAnnounce ~= true and lastErrorCode == RETURNVALUE_NOERROR then
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. name .. ".")
 		end
 	end

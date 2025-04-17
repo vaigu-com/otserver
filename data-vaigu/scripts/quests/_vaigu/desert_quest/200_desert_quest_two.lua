@@ -562,7 +562,7 @@ quest
 				local topLeftGenerate = DESERT_QUEST_TWO_ANCHOR:Moved(-3, -2, 2)
 				local downRightGenerate = DESERT_QUEST_TWO_ANCHOR:Moved(31, 32, 2)
 
-				local dx, dy, dz = topLeftGenerate:GetDistances(downRightGenerate)
+				local dx, dy, dz = topLeftGenerate:GetDistanceVector(downRightGenerate)
 				local width = dx + 1
 				local height = dy + 1
 

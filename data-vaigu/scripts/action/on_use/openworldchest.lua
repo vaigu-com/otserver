@@ -51,6 +51,7 @@ local openWorldChestRewardCategories = {
 		{ id = 3606, chance = 20000, count = 3 }, -- egg
 		{ id = 3582, chance = 20000, count = 3 }, -- meat
 		{ id = 3577, chance = 20000, count = 3 }, -- ham
+		{ id = 3725, chance = 12000, count = 10 }, -- brown mushroom
 	},
 	[specificOpenworldchestScopes.Rural] = {
 		{ id = 3606, chance = 20000, count = 3 }, -- egg

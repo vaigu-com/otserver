@@ -97,7 +97,7 @@ Blessings.PlayerDeath = function(player, corpse, killer)
 	end
 
 	if not player:getSlotItem(CONST_SLOT_BACKPACK) then
-		player:AddCustomItem({ id = ITEM_BAG }, CONST_SLOT_BACKPACK)
+		player:AddCustomItem({ id = ITEM_BAG })
 	end
 
 	return true

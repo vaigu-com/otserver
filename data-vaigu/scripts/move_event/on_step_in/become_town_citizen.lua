@@ -1,3 +1,4 @@
+Storage.BecomeTownCitizen = {}
 local function findNearestTown(pos)
 	local nearestDist = 65536
 	local nearestTown = nil

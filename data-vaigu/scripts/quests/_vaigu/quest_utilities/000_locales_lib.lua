@@ -188,6 +188,8 @@ end
 
 local notFoundSuffix = " //Translation unavailable"
 local function translationNotFound(str, language)
+	str = str:gsub("{", "#")
+	str = str:gsub("}", "#")
 	logger.warn(T("[Localizer] translation not found for language :language:, for string: :str:", { language = language, str = str }))
 	return str .. notFoundSuffix
 end

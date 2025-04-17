@@ -30,11 +30,12 @@ function NpcTypeRepository:Serialize()
 	xml = xml .. "</npcs>\n"
 	local file = io.open(npcXmlPath, "w+")
 	if not file then
-		logger.error(T("[NpcTypeRepository::Serialize] Cannot open file :path:. Npcs have NOT been serialized.", { path = npcXmlPath }))
+		logger.error(T("[NpcTypeRepository:::Serialize] Cannot open file :path:. Npcs have NOT been serialized.", { path = npcXmlPath }))
 		return
 	end
 	file:write(xml)
 	file:close()
+	logger.info("[NpcTypeRepository::Serialize] Serialization succesful.")
 end
 
 registerNpcType = {}

@@ -35,6 +35,7 @@ function MonsterTypeRepository:Serialize()
 	end
 	file:write(xml)
 	file:close()
+	logger.info("[MonsterTypeRepository::Serialize] Serialization succesful.")
 end
 
 registerMonsterType = {}
