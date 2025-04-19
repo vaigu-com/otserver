@@ -12,8 +12,8 @@ local function doCreateDummy(cid, position)
 		end
 	end
 
-	if player:getStorageValueByKey(Storage.BigfootBurden.Shooting) >= 5 then
-		player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 9)
+	if player:getStorageValueByKey(Storage.BigfootsBurden.Shooting) >= 5 then
+		player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 9)
 		return
 	end
 
@@ -30,13 +30,13 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) ~= 8 then
+	if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) ~= 8 then
 		player:teleportTo(fromPosition)
 		return true
 	end
 
 	local playerPosition = player:getPosition()
-	player:setStorageValueByKey(Storage.BigfootBurden.Shooting, 0)
+	player:setStorageValueByKey(Storage.BigfootsBurden.Shooting, 0)
 	fromPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	doCreateDummy(player.uid, Position(playerPosition.x, playerPosition.y - 5, 9))
 	return true

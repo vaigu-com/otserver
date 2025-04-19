@@ -13,20 +13,20 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	local sporeCount = player:getStorageValueByKey(Storage.BigfootBurden.SporeCount)
-	if sporeCount == 4 or player:getStorageValueByKey(Storage.BigfootBurden.MissionSporeGathering) ~= 1 then
+	local sporeCount = player:getStorageValueByKey(Storage.BigfootsBurden.SporeCount)
+	if sporeCount == 4 or player:getStorageValueByKey(Storage.BigfootsBurden.MissionSporeGathering) ~= 1 then
 		return false
 	end
 
 	if target.itemid ~= spores then
-		player:setStorageValueByKey(Storage.BigfootBurden.SporeCount, 0)
+		player:setStorageValueByKey(Storage.BigfootsBurden.SporeCount, 0)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Wybrales zly zarodnik.. popsujesz sobie kolekcje.")
 		item:transform(15817)
 		toPosition:sendMagicEffect(CONST_ME_POFF)
 		return true
 	end
 
-	player:setStorageValueByKey(Storage.BigfootBurden.SporeCount, sporeCount + 1)
+	player:setStorageValueByKey(Storage.BigfootsBurden.SporeCount, sporeCount + 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Zebrales wlasciwe zarodniki.")
 	item:transform(item.itemid + 1)
 	toPosition:sendMagicEffect(CONST_ME_GREEN_RINGS)

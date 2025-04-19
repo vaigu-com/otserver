@@ -67,4 +67,4 @@ end
 
 movement:type("stepin")
 movement:id(15320)
-movement:register()
+--movement:register()

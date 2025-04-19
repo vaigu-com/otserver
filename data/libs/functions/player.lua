@@ -95,7 +95,7 @@ end
 
 --Vaigu custom
 function Player.checkGnomeRank(self)
-	local questProgress = self:getStorageValueByKey(Storage.BigfootBurden.QuestLine)
+	local questProgress = self:getStorageValueByKey(Storage.BigfootsBurden.QuestLine)
 	if questProgress >= 30 then
 		return
 	end
@@ -105,7 +105,15 @@ function Player.checkGnomeRank(self)
 	self:addAchievement("Gnome Friend")
 	self:addAchievement("Gnomelike")
 	self:addAchievement("Honorary Gnome")
-	self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 30)
+	self:NextState({
+		[Storage.BigfootsBurden.QuestLine] = 30,
+		[Storage.BigfootsBurden.QuestLineComplete] = 2,
+		[Storage.BigfootsBurden.Warzone1Access] = 2,
+		[Storage.BigfootsBurden.Warzone2Access] = 2,
+		[Storage.BigfootsBurden.Warzone3Access] = 2,
+		[Storage.BigfootsBurden.Rank] = 1440,
+		[Storage.BigfootsBurden.WarzoneStatus] = 1
+	})
 	return true
 end
 

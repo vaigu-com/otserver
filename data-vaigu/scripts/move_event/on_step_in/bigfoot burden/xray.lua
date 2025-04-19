@@ -32,23 +32,23 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	end
 
 	if item.uid == 3122 then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 4 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 4 then
 			player:addCondition(condition)
 			player:getPosition():sendMagicEffect(CONST_ME_ENERGYHIT)
-			player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 5)
+			player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 5)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have been succesfully g-rayed. Now let Doctor Gnomedix inspect your ears!")
 			player:say("*Rrrrrrrrrrr...*", TALKTYPE_MONSTER_SAY)
-		elseif player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) < 4 then
+		elseif player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) < 4 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The x-ray is not ready.")
 			player:teleportTo(fromPosition, true)
 		end
 	elseif item.uid == 3123 then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) < 6 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) < 6 then
 			player:teleportTo(fromPosition, true)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Najpierw popros doktora.")
 			return true
 		end
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) >= 7 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) >= 7 then
 			return true
 		end
 
@@ -56,7 +56,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 			addEvent(sendTextMessages, (i - 1) * 2000, player.uid, messages[i], player:getPosition())
 		end
 
-		player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 7)
+		player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 7)
 		addEvent(Game.createMonster, 14 * 1000, "Strange Slime", fromPosition:Moved(0, 1, 0))
 	end
 	return true

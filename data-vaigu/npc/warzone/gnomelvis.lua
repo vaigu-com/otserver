@@ -59,10 +59,10 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "looking") then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 12 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 12 then
 			npcHandler:say("I'm the gnomish {musical} supervisor!", npc, creature)
 			npcHandler:setTopic(playerId, 1)
-		elseif player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 13 then
+		elseif player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 13 then
 			npcHandler:say("I'm the gnomish {musical} supervisor!", npc, creature)
 			npcHandler:setTopic(playerId, 2)
 		end
@@ -73,16 +73,16 @@ local function creatureSayCallback(npc, creature, type, message)
 				"So what you have to do is to find your soul melody. Do you see the huge crystals in this room? Those are harmonic crystals. Use them to deduce your soul melody. Simply use them to create a sound sequence. ...",
 				"Every soul melody consists of seven sound sequences. You will have to figure out your correct soul melody by trial and error. If you hit a wrong note, you will have to start over.",
 			}, npc, creature)
-			player:setStorageValueByKey(Storage.BigfootBurden.MelodyStatus, 1)
+			player:setStorageValueByKey(Storage.BigfootsBurden.MelodyStatus, 1)
 			for i = 0, 6 do
-				player:setStorageValueByKey(Storage.BigfootBurden.MelodyTone1 + i, math.random(3124, 3127))
+				player:setStorageValueByKey(Storage.BigfootsBurden.MelodyTone1 + i, math.random(3124, 3127))
 			end
 		elseif npcHandler:getTopic(playerId) == 2 then
 			npcHandler:say({
 				"Congratulations on finding your soul melody. And a pretty one as far as I can tell. Now you are a true recruit of the Bigfoot company! Commander Stone might have some tasks for you to do! ...",
 				"Look for him in the central chamber.",
 			}, npc, creature)
-			player:setStorageValueByKey(Storage.BigfootBurden.Rank, 1440)
+			player:setStorageValueByKey(Storage.BigfootsBurden.Rank, 1440)
 			player:addAchievement("Becoming a Bigfoot")
 			player:checkGnomeRank()
 		end

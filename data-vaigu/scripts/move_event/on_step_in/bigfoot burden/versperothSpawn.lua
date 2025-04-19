@@ -1,76 +1,75 @@
-local versperothPosition = Position(7488, 1378, 11) --{x = 7488, y = 1378, z = 11}
+local roomCorner1 = Position(6454, 2485, 12)
+local roomCorner2 = Position(6469, 2498, 12)
+local roomArea = Area(roomCorner1, roomCorner2)
 
-local function removeMinion(mid)
-	local monster = Monster(mid)
-	if monster then
-		monster:getPosition():sendMagicEffect(CONST_ME_POFF)
-		monster:remove()
-	end
-end
+local vesperothSpawnPosition = Position(6461, 2492, 12)
+local vesperothHidePosition = Position(6461, 2492, 13)
 
-local function executeVersperothBattle(mid)
-	if Game.getStorageValueByKey(Storage.Versperoth.Battle) ~= 1 then
-		return
-	end
+local minMinionsPerWave = 8
+local maxMinionsPerWave = 10
+local vesperothMonster = nil
 
-	if mid then
-		local monster = Monster(mid)
-		if not monster then
-			return
-		end
-
-		Game.setStorageValueByKey(Storage.Versperoth.Health, monster:getMaxHealth() - monster:getHealth())
-		monster:remove()
-		versperothPosition:sendMagicEffect(CONST_ME_POFF)
-		local hole = Game.createItem(16172, 1, versperothPosition)
-
-		local position, minionMonster
-		for i = 1, math.random(8, 10) do
-			position = Position(math.random(7479, 7499), math.random(1370, 1387), 11)
-			minionMonster = Game.createMonster("Minion of Versperoth", position)
-			position:sendMagicEffect(CONST_ME_TELEPORT)
-			if minionMonster then
-				addEvent(removeMinion, 20 * 1000, minionMonster.uid)
+local function clearMinionWaveDelayed(minions)
+	addEvent(function()
+		for _, monster in pairs(minions:Get()) do
+			if not monster:isDead() then
+				monster:remove()
 			end
 		end
-		addEvent(executeVersperothBattle, 10 * 1000)
+	end, 1000 * 60)
+end
+
+function VesperothAppearLoop()
+	if (not vesperothMonster) or vesperothMonster:isDead() then
 		return
 	end
 
-	local monster = Game.createMonster("Versperoth", versperothPosition, false, true)
-	if monster then
-		versperothPosition:sendMagicEffect(CONST_ME_GROUNDSHAKER)
-		monster:addHealth(-Game.getStorageValueByKey(Storage.Versperoth.Health))
-		local hole = Tile(versperothPosition):getItemById(16172)
-		if hole then
-			hole:remove()
-		end
-		addEvent(executeVersperothBattle, 20 * 1000, monster.uid)
-	end
+	vesperothMonster:teleportTo(vesperothSpawnPosition)
+
+	addEvent(VesperothHideLoop, 20 * 1000)
 end
 
+function VesperothHideLoop()
+	if (not vesperothMonster) or vesperothMonster:isDead() then
+		return
+	end
+	
+	vesperothMonster:teleportTo(vesperothHidePosition)
+
+	local minionsPerWave = math.random(minMinionsPerWave, maxMinionsPerWave)
+	local monsters = CreatureList()
+	for _ = 1, minionsPerWave do
+		local spawnPosition = roomArea:RandomPosition()
+		monsters:Add(Game.createMonster("Minion of Versperoth", spawnPosition))
+		spawnPosition:sendMagicEffect(CONST_ME_TELEPORT)
+	end
+
+	clearMinionWaveDelayed(monsters)
+	addEvent(VesperothAppearLoop, 10 * 1000)
+end
+
+local spawnLock = SpawnLocks.BigfootsBurden.Warzone3
+local bossSpawnPosition = Position(6476, 2524, 12)
+
 local movement = MoveEvent()
-
-function movement.onStepIn(creature, item, toPosition, fromPosition)
+function movement.onStepIn(creature, veperothHole, toPosition, fromPosition)
 	local player = creature:getPlayer()
-	if not player then
+	if not (player and veperothHole) then
 		return true
 	end
 
-	if false and Game.getStorageValueByKey(Storage.Versperoth.Battle) >= 1 then
-		return true
-	end
-
-	player:teleportTo(Position(7485, 1377, 11)) --{x = 7485, y = 1377, z = 11}
-	Game.setStorageValueByKey(Storage.Versperoth.Battle, 1)
-	Game.setStorageValueByKey(Storage.Versperoth.Health, 0)
-	executeVersperothBattle()
-	if item then
-		item:remove()
+	-- should be impossible
+	if spawnLock:IsSet() then
+		return
+	else
+		spawnLock:Set(Game.createMonster("abyssador", bossSpawnPosition))
+		player:teleportTo(fromPosition)
+		vesperothMonster = Game.createMonster("versperoth", vesperothSpawnPosition)
+		veperothHole:remove()
+		VesperothAppearLoop()
 	end
 	return true
 end
-
 movement:type("stepin")
 movement:id(16173)
 movement:register()

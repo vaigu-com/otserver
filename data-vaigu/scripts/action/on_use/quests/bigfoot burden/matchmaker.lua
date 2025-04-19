@@ -12,7 +12,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if player:getStorageValueByKey(Storage.BigfootBurden.MatchmakerStatus) == 1 or player:getStorageValueByKey(Storage.BigfootBurden.MissionMatchmaker) ~= 1 then
+	if player:getStorageValueByKey(Storage.BigfootsBurden.MatchmakerStatus) == 1 or player:getStorageValueByKey(Storage.BigfootsBurden.MissionMatchmaker) ~= 1 then
 		return false
 	end
 
@@ -24,7 +24,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return true
 	end
 
-	player:setStorageValueByKey(Storage.BigfootBurden.MatchmakerStatus, 1)
+	player:setStorageValueByKey(Storage.BigfootsBurden.MatchmakerStatus, 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Gratulacje! Twoja misja wykonana!")
 	return true
 end

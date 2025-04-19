@@ -1,67 +1,33 @@
-local warzoneConfig = {
-	[45700] = { -- tp aid
-		center = Position(7530, 1456, 10),
-		rangeX = 27,
-		rangeY = 25,
-		boss = "Gnomevil",
-		teleportTo = Position(7519, 1455, 10),
-		timerStorage = Storage.BigfootBurden.GnomevilTimer,
-		Storage = Storage.GnomevilSpawned,
-		interval = 10 * 60 * 60,
-	},
-	[45702] = { -- tp aid
-		center = Position(7523, 1465, 9),
-		rangeX = 26,
-		rangeY = 25,
-		boss = "Deathstrike",
-		teleportTo = Position(7509, 1455, 9),
-		timerStorage = Storage.BigfootBurden.DeathstrikeTimer,
-		Storage = Storage.DeathstrikeSpawned,
-		interval = 10 * 60 * 60,
-	},
-	[45701] = { -- tp aid
-		center = Position(7503, 1410, 11),
-		rangeX = 20,
-		rangeY = 20,
-		boss = "Abyssador",
-		teleportTo = Position(7496, 1404, 11),
-		timerStorage = Storage.BigfootBurden.AbyssadorTimer,
-		Storage = Storage.AbyssadorSpawned,
-		interval = 10 * 60 * 60,
-	},
+local teleportData = {
+	[45701] = Position(6482, 2569, 10),
+	[45702] = Position(6491, 2568, 11),
+	[45703] = Position(6468, 2517, 12),
+}
+
+local spawnLockData = {
+	[45701] = SpawnLocks.BigfootsBurden.Warzone1,
+	[45702] = SpawnLocks.BigfootsBurden.Warzone3,
+	[45703] = SpawnLocks.BigfootsBurden.Warzone2,
 }
 
 local movement = MoveEvent()
-
 function movement.onStepIn(creature, item, toPosition, fromPosition)
 	if not creature:isPlayer() then
 		creature:teleportTo(fromPosition)
 		return false
 	end
 
-	local config = warzoneConfig[item:getActionId()]
-	if not config then
+	local teleporterAid = item:getActionId()
+
+	local destination, spawnLock = teleportData[teleporterAid], spawnLockData[teleporterAid]
+	if not (destination and spawnLock) then
 		return false
 	end
 
-	if creature:getStorageValueByKey(config.timerStorage) >= os.time() then
-		creature:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Musisz odczekac 20 godzin po pokonaniu bossa.")
-		creature:teleportTo(fromPosition)
-		return false
-	end
-
-	local destPos = config.teleportTo
-
-	creature:teleportTo(destPos)
-	destPos:sendMagicEffect(CONST_ME_TELEPORT)
-
-	if Game.getStorageValueByKey(config.Storage) <= 0 then
-		Game.setStorageValueByKey(config.Storage, 1)
-		Game.createMonster(config.boss, config.center)
-	end
+	creature:teleportTo(destination)
+	destination:sendMagicEffect(CONST_ME_TELEPORT)
 	return true
 end
-
 movement:type("stepin")
-movement:aid(45700, 45701, 45702)
+movement:aid(45701, 45702, 45703)
 movement:register()

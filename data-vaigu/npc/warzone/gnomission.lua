@@ -59,18 +59,18 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "warzones") then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 18 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 18 then
 			npcHandler:say({
 				"There are three warzones. In each warzone you will find fearsome foes. At the end you'll find their mean master. The masters is well protected though. ...",
 				"Make sure to talk to our gnomish agent in there for specifics of its' protection. ...",
 				"Oh, and to be able to enter the second warzone you have to best the first. To enter the third you have to best the second. ...",
 				"And you can enter each one only once every twenty hours. Your normal teleport crystals won't work on these teleporters. You will have to get {mission} crystals from Gnomally.",
 			}, npc, creature)
-			player:setStorageValueByKey(Storage.BigfootBurden.Warzone1Entry, 1)
+			player:setStorageValueByKey(Storage.BigfootsBurden.Warzone1Entry, 1)
 			npcHandler:setTopic(playerId, 1)
 		end
 	elseif MsgContains(message, "job") then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) >= 18 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) >= 18 then
 			npcHandler:say("I am responsible for our war missions, to trade with seasoned soldiers and rewarding war {heroes}. You have to be rank 4 to enter the warzones.", npc, creature)
 			npcHandler:setTopic(playerId, 2)
 		end
@@ -85,7 +85,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "snippet") then
 		if npcHandler:getTopic(playerId) == 3 then
 			if player:removeItem(16136, 1) then
-				player:setStorageValueByKey(Storage.BigfootBurden.Warzone1Access, 1)
+				player:setStorageValueByKey(Storage.BigfootsBurden.Warzone1Access, 1)
 				npcHandler:say("As a war hero you are allowed to use the warzone teleporter one for free!", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			end
@@ -93,7 +93,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "lash") then
 		if npcHandler:getTopic(playerId) == 3 then
 			if player:removeItem(16206, 1) then
-				player:setStorageValueByKey(Storage.BigfootBurden.Warzone3Access, 1)
+				player:setStorageValueByKey(Storage.BigfootsBurden.Warzone3Access, 1)
 				npcHandler:say("As a war hero you are allowed to use the warzone teleporter three for free!", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			end
@@ -101,7 +101,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "hat") then
 		if npcHandler:getTopic(playerId) == 3 then
 			if player:removeItem(16205, 1) then
-				player:setStorageValueByKey(Storage.BigfootBurden.Warzone2Access, 1)
+				player:setStorageValueByKey(Storage.BigfootsBurden.Warzone2Access, 1)
 				npcHandler:say("As a war hero you are allowed to use the warzone teleporter two for free!", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			end
@@ -109,10 +109,9 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "mission") then
 		if npcHandler:getTopic(playerId) == 1 then
 			npcHandler:say("Fine, I grant you the permission to enter the warzones. Be warned though, this will be not a picnic. Better bring some friends with you. Bringing a lot of them sounds like a good idea.", npc, creature)
-			player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 19)
-			player:setStorageValueByKey(Storage.BigfootBurden.WarzoneStatus, 1)
+			player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 19)
+			player:setStorageValueByKey(Storage.BigfootsBurden.WarzoneStatus, 1)
 			player:setStorageValueByKey(Storage.Finished.BigfootsBurden, 1)
-			player:AddCustomItem({id = 16242, count = 3})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end

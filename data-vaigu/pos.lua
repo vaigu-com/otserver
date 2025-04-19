@@ -36,6 +36,9 @@ setmetatable(Area, {
 		return Area.New(...)
 	end,
 })
+---@param pos Position
+---@param radius number
+---@return Area
 function Area.FromSquareRadius(pos, radius)
 	radius = radius or 1
 	local corner1 = pos:Moved(-radius, -radius)
@@ -50,6 +53,10 @@ function Area:GetPositions()
 		table.append(positions, pos)
 	end)
 	return positions
+end
+
+function Area:GetCorners()
+	return self.corner1, self.corner2
 end
 
 function Area:RandomPosition()

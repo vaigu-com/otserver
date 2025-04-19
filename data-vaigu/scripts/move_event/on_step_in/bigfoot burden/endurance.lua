@@ -3,7 +3,6 @@ condition:setParameter(CONDITION_PARAM_TICKS, 2000)
 condition:setFormula(-0.9, 0, -0.9, 0)
 
 local movement = MoveEvent()
-
 function movement.onStepIn(creature, item, toPosition, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
@@ -21,13 +20,13 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 			player:addCondition(condition)
 		end
 	elseif item.actionid == 7817 then
-		player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 11)
-		player:teleportTo(Position(7287, 1350, 9)) --{x = 7287, y = 1350, z = 9}
+		player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 11)
+		player:teleportTo(Position(6146, 2425, 10)) --{x = 7287, y = 1350, z = 9}
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You passed endurance test.")
 	elseif item.actionid == 7818 then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 10 then
-			player:teleportTo(Position(7286, 1350, 10)) --{x = 7286, y = 1350, z = 10}
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 10 then
+			player:teleportTo(Position(6145, 2426, 11)) --{x = 7286, y = 1350, z = 10}
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		else
 			player:teleportTo(fromPosition)
@@ -35,7 +34,6 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 	end
 	return true
 end
-
 movement:type("stepin")
 movement:aid(7816, 7817, 7818)
 movement:register()

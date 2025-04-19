@@ -261,8 +261,6 @@ local realLootboxData = {
 	LootboxData({
 		lootboxId = ItemId.GNOMISH_SUPPLY_PACKAGE, -- gnomish supply package
 		rewards = {
-			LootboxReward({ rewardItemId = 16167, weight = 1500, count = 1 }),
-			LootboxReward({ rewardItemId = 16242, weight = 1000, count = 1 }),
 			LootboxReward({ rewardItemId = 7643, weight = 700, count = 10 }),
 			LootboxReward({ rewardItemId = 237, weight = 800, count = 20 }),
 			LootboxReward({ rewardItemId = 268, weight = 800, count = 25 }),

@@ -131,8 +131,9 @@ Storage.Exercisedummy = { exaust = {} }
 Storage.VampireHunter = {
 	Rank = {},
 }
-Storage.BigfootBurden = { -- Reserved 900 - 967
+Storage.BigfootsBurden = { -- Reserved 900 - 967
 	QuestLine = {},
+	QuestLineComplete = {},
 	Test = {},
 	Shooting = {},
 
@@ -188,6 +189,14 @@ Storage.BigfootBurden = { -- Reserved 900 - 967
 	Warzone1Reward = {},
 	Warzone2Reward = {},
 	Warzone3Reward = {},
+
+	Warzone1Cooldown = {},
+	Warzone2Cooldown = {},
+	Warzone3Cooldown = {},
+
+	Warzone1BossRoom = {},
+	Warzone2BossRoom = {},
+	Warzone3BossRoom = {},
 
 	DeathstrikeTimer = {},
 	GnomevilTimer = {},
@@ -3432,9 +3441,6 @@ Storage.hellgorakTimer = {}
 
 Storage.PitsOfInfernoLevers = {}
 Storage.DailyQuest = { LLvl = {}, MLvl = {}, HLvl = {} }
-Storage.DeathstrikeSpawned = {}
-Storage.GnomevilSpawned = {}
-Storage.AbyssadorSpawned = {}
 Storage.Warzones = {}
 Storage.Weeper = {}
 Storage.Versperoth = { Battle = {}, Health = {} }

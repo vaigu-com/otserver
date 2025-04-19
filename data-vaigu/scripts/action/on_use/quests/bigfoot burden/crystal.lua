@@ -1,13 +1,13 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local repairedCount = player:getStorageValueByKey(Storage.BigfootBurden.RepairedCrystalCount)
-	if repairedCount == 5 or player:getStorageValueByKey(Storage.BigfootBurden.MissionCrystalKeeper) ~= 1 then
+	local repairedCount = player:getStorageValueByKey(Storage.BigfootsBurden.RepairedCrystalCount)
+	if repairedCount == 5 or player:getStorageValueByKey(Storage.BigfootsBurden.MissionCrystalKeeper) ~= 1 then
 		return false
 	end
 
 	if target.itemid == 15796 or target.itemid == 15712 then
-		player:setStorageValueByKey(Storage.BigfootBurden.RepairedCrystalCount, repairedCount + 1)
+		player:setStorageValueByKey(Storage.BigfootsBurden.RepairedCrystalCount, repairedCount + 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Naprawiles zniszczony krysztal.")
 		target:transform(15800)
 		target:decay()
