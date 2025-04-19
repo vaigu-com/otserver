@@ -36,14 +36,19 @@
 	<zone name="Encounter-SKURWIWIJ-MonsterSpawnPositions" zoneid="39" />
 	<zone name="Encounter-SKURWIWIJ-PlayerAppearPositions" zoneid="35" />
 	<zone name="Minigames-Crossroad-EdgePositions" zoneid="14" />
+	<zone name="Minigames-Crossroad-FinishTeleport" zoneid="197" />
 	<zone name="Minigames-Crossroad-GameArea" zoneid="11" />
-	<zone name="Minigames-Crossroad-GamePlayerAppear" zoneid="10" />
+	<zone name="Minigames-Crossroad-GamePlayerSpawn" zoneid="10" />
 	<zone name="Minigames-Crossroad-InstancePositions" zoneid="13" />
 	<zone name="Minigames-Crossroad-LobbyArea" zoneid="9" />
 	<zone name="Minigames-Crossroad-LobbyEntrancePosition" zoneid="12" />
-	<zone name="Minigames-Crossroad-LobbyPlayerAppear" zoneid="8" />
+	<zone name="Minigames-Crossroad-LobbyPlayerSpawn" zoneid="8" />
 	<zone name="PharaohSpawnPositions" zoneid="195" />
-	<zone name="Storage-Minigames-SharedLobbyPlayerAppear" zoneid="7" />
+	<zone name="Storage-BigfootsBurden-Warzone1BossRoom" zoneid="198" />
+	<zone name="Storage-BigfootsBurden-Warzone2BossRoom" zoneid="199" />
+	<zone name="Storage-BigfootsBurden-Warzone3BossRoom" zoneid="200" />
+	<zone name="Storage-Minigames-SharedLobbyArea" zoneid="196" />
+	<zone name="Storage-Minigames-SharedLobbyPlayerSpawn" zoneid="7" />
 	<zone name="Storage-OneTimeEscorts-MegadragonCliffs-RopeThrowFromTiles" zoneid="194" />
 	<zone name="Storage-PathOfTheUndead-BossArea" zoneid="16" />
 	<zone name="Storage-PathOfTheUndead-GuardianSkullsPositions" zoneid="15" />

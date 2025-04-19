@@ -358,7 +358,6 @@
 	</monster>
 	<monster centerx="5542" centery="1675" centerz="1" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="1" spawntime="60" />
-		<monster name="Gladiator" x="0" y="1" z="1" spawntime="60" />
 	</monster>
 	<monster centerx="5542" centery="1677" centerz="1" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="1" spawntime="60" />
@@ -866,6 +865,9 @@
 	<monster centerx="5685" centery="1513" centerz="2" radius="1">
 		<monster name="Goblin Assassin" x="0" y="0" z="2" spawntime="60" />
 	</monster>
+	<monster centerx="5693" centery="1530" centerz="2" radius="1">
+		<monster name="Yellow Butterfly" x="0" y="0" z="2" spawntime="60" />
+	</monster>
 	<monster centerx="7535" centery="1561" centerz="2" radius="1">
 		<monster name="Poison Spider" x="0" y="0" z="2" spawntime="60" />
 	</monster>
@@ -907,9 +909,13 @@
 	<monster centerx="5539" centery="1672" centerz="2" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="2" spawntime="60" />
 	</monster>
+	<monster centerx="5532" centery="1673" centerz="2" radius="1">
+		<monster name="Gladiator" x="0" y="0" z="2" spawntime="60" />
+	</monster>
 	<monster centerx="5534" centery="1673" centerz="2" radius="1">
 		<monster name="Gladiator" x="0" y="-1" z="2" spawntime="60" />
 		<monster name="Gladiator" x="0" y="0" z="2" spawntime="60" />
+		<monster name="Gladiator" x="1" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="5533" centery="1681" centerz="2" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="2" spawntime="60" />
@@ -2167,6 +2173,9 @@
 	<monster centerx="5659" centery="1535" centerz="3" radius="1">
 		<monster name="Goblin Scavenger" x="0" y="0" z="3" spawntime="60" />
 	</monster>
+	<monster centerx="5678" centery="1535" centerz="3" radius="1">
+		<monster name="Purple Butterfly" x="0" y="0" z="3" spawntime="60" />
+	</monster>
 	<monster centerx="5661" centery="1536" centerz="3" radius="1">
 		<monster name="Red Butterfly" x="0" y="0" z="3" spawntime="60" />
 	</monster>
@@ -2221,10 +2230,10 @@
 	</monster>
 	<monster centerx="5529" centery="1654" centerz="3" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="3" spawntime="60" />
-		<monster name="Gladiator" x="-1" y="1" z="3" spawntime="60" />
 		<monster name="Gladiator" x="0" y="1" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="5524" centery="1659" centerz="3" radius="1">
+		<monster name="Gladiator" x="1" y="-1" z="3" spawntime="60" />
 		<monster name="Gladiator" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="5539" centery="1672" centerz="3" radius="1">
@@ -3566,6 +3575,9 @@
 	<monster centerx="7389" centery="1215" centerz="4" radius="1">
 		<monster name="Nightstalker" x="0" y="0" z="4" spawntime="60" />
 	</monster>
+	<monster centerx="6815" centery="1216" centerz="4" radius="1">
+		<monster name="Wyvern" x="0" y="0" z="4" spawntime="60" />
+	</monster>
 	<monster centerx="6886" centery="1216" centerz="4" radius="1">
 		<monster name="Energy Elemental" x="0" y="0" z="4" spawntime="60" />
 	</monster>
@@ -3577,6 +3589,9 @@
 	</monster>
 	<monster centerx="7402" centery="1217" centerz="4" radius="1">
 		<monster name="Nightstalker" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="6780" centery="1219" centerz="4" radius="1">
+		<monster name="Wyvern" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="7421" centery="1219" centerz="4" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="4" spawntime="60" />
@@ -4552,6 +4567,9 @@
 	</monster>
 	<monster centerx="5688" centery="1597" centerz="4" radius="1">
 		<monster name="Elf Scout" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7442" centery="1604" centerz="4" radius="1">
+		<monster name="Gryphon" x="0" y="0" z="4" spawntime="3600" />
 	</monster>
 	<monster centerx="6003" centery="1606" centerz="4" radius="1">
 		<monster name="Slime" x="0" y="0" z="4" spawntime="60" />
@@ -14262,9 +14280,9 @@
 	</monster>
 	<monster centerx="7182" centery="1284" centerz="6" radius="1">
 		<monster name="Amazon" x="0" y="0" z="6" spawntime="60" />
-		<monster name="Amazon" x="1" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7184" centery="1284" centerz="6" radius="1">
+		<monster name="Amazon" x="0" y="-1" z="6" spawntime="60" />
 		<monster name="Amazon" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7551" centery="1284" centerz="6" radius="1">
@@ -27732,8 +27750,6 @@
 	</monster>
 	<monster centerx="7553" centery="1137" centerz="7" radius="1">
 		<monster name="Goldhanded Cultist" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Goldhanded Cultist" x="1" y="0" z="7" spawntime="60" />
-		<monster name="Goldhanded Cultist" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7681" centery="1137" centerz="7" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="7" spawntime="60" />
@@ -27762,7 +27778,6 @@
 	</monster>
 	<monster centerx="7555" centery="1138" centerz="7" radius="1">
 		<monster name="Goldhanded Cultist" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Goldhanded Cultist" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7662" centery="1138" centerz="7" radius="1">
 		<monster name="Stone Golem" x="-1" y="0" z="7" spawntime="60" />
@@ -42471,6 +42486,9 @@
 	<monster centerx="7522" centery="1680" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5592" centery="1681" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5846" centery="1681" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42542,6 +42560,9 @@
 	</monster>
 	<monster centerx="7567" centery="1684" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5572" centery="1685" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5883" centery="1685" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
@@ -42692,6 +42713,9 @@
 		<monster name="Swampling" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Swampling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5608" centery="1694" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5920" centery="1694" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42715,6 +42739,9 @@
 	</monster>
 	<monster centerx="7549" centery="1695" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5567" centery="1696" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5993" centery="1696" centerz="7" radius="1">
 		<monster name="Boar" x="0" y="0" z="7" spawntime="60" />
@@ -42806,6 +42833,9 @@
 	<monster centerx="7563" centery="1699" centerz="7" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Haunted Treeling" x="-1" y="1" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5594" centery="1700" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5777" centery="1700" centerz="7" radius="1">
 		<monster name="Cyclops Smith" x="0" y="0" z="7" spawntime="60" />
@@ -42901,6 +42931,9 @@
 		<monster name="Haunted Treeling" x="-1" y="-1" z="7" spawntime="60" />
 		<monster name="Demon Skeleton" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Haunted Treeling" x="-1" y="1" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5610" centery="1705" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5888" centery="1705" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
@@ -43070,6 +43103,9 @@
 	<monster centerx="7549" centery="1712" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5568" centery="1713" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5874" centery="1713" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -43090,6 +43126,9 @@
 		<monster name="Swamp Troll" x="-1" y="1" z="7" spawntime="60" />
 		<monster name="Swampling" x="1" y="1" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5608" centery="1714" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7380" centery="1714" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -43108,6 +43147,9 @@
 	</monster>
 	<monster centerx="7568" centery="1714" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5602" centery="1715" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5856" centery="1715" centerz="7" radius="9">
 		<monster name="Wolf" x="-4" y="-3" z="7" spawntime="60" />
@@ -43201,6 +43243,9 @@
 	<monster centerx="7544" centery="1720" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5591" centery="1721" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5913" centery="1721" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -43224,6 +43269,9 @@
 	</monster>
 	<monster centerx="7569" centery="1721" centerz="7" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5584" centery="1722" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5991" centery="1722" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
@@ -51698,14 +51746,20 @@
 	<monster centerx="6948" centery="1315" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="6955" centery="1315" centerz="8" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6958" centery="1315" centerz="8" radius="1">
-		<monster name="Nightmare" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6680" centery="1316" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6687" centery="1317" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6946" centery="1317" centerz="8" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="5774" centery="1319" centerz="8" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="8" spawntime="60" />
@@ -51757,6 +51811,9 @@
 	<monster centerx="6898" centery="1324" centerz="8" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="6958" centery="1324" centerz="8" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6039" centery="1325" centerz="8" radius="1">
 		<monster name="Mad Scientist" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -51764,7 +51821,10 @@
 		<monster name="Water Elemental" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6945" centery="1325" centerz="8" radius="1">
-		<monster name="Nightmare" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6951" centery="1325" centerz="8" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6969" centery="1325" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
@@ -51815,7 +51875,7 @@
 		<monster name="Minotaur" x="2" y="2" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6961" centery="1329" centerz="8" radius="1">
-		<monster name="Nightmare" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6977" centery="1329" centerz="8" radius="1">
 		<monster name="Nightmare" x="0" y="0" z="8" spawntime="60" />
@@ -51854,6 +51914,9 @@
 	<monster centerx="6895" centery="1332" centerz="8" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="6967" centery="1332" centerz="8" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="7696" centery="1332" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -51878,6 +51941,9 @@
 	</monster>
 	<monster centerx="6711" centery="1336" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6971" centery="1336" centerz="8" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6034" centery="1338" centerz="8" radius="1">
 		<monster name="Mad Scientist" x="0" y="0" z="8" spawntime="60" />
@@ -56604,6 +56670,15 @@
 	<monster centerx="6261" centery="842" centerz="9" radius="1">
 		<monster name="Mutated Rat" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="6814" centery="842" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6816" centery="842" centerz="9" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6809" centery="843" centerz="9" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6185" centery="844" centerz="9" radius="1">
 		<monster name="Souleater" x="0" y="0" z="9" spawntime="60" />
 		<monster name="Mutated Bat" x="-1" y="1" z="9" spawntime="60" />
@@ -56625,6 +56700,12 @@
 	<monster centerx="6913" centery="845" centerz="9" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="6807" centery="846" centerz="9" radius="1">
+		<monster name="Lizard Zaogun" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6813" centery="846" centerz="9" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6907" centery="846" centerz="9" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="9" spawntime="60" />
 		<monster name="Scorpion" x="1" y="0" z="9" spawntime="60" />
@@ -56642,6 +56723,9 @@
 		<monster name="Mutated Bat" x="0" y="3" z="9" spawntime="60" />
 		<monster name="Souleater" x="2" y="5" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="6823" centery="847" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6915" centery="847" centerz="9" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -56650,6 +56734,12 @@
 	</monster>
 	<monster centerx="6550" centery="848" centerz="9" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6809" centery="849" centerz="9" radius="1">
+		<monster name="Lizard Dragon Priest" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6814" centery="849" centerz="9" radius="1">
+		<monster name="Lizard High Guard" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6909" centery="850" centerz="9" radius="1">
 		<monster name="Lizard Sentinel" x="0" y="0" z="9" spawntime="60" />
@@ -56668,9 +56758,11 @@
 	<monster centerx="6558" centery="851" centerz="9" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="6811" centery="851" centerz="9" radius="1">
+		<monster name="Lizard Legionnaire" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6924" centery="851" centerz="9" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Templar" x="-1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6583" centery="852" centerz="9" radius="1">
 		<monster name="Behemoth" x="0" y="1" z="9" spawntime="60" />
@@ -56708,7 +56800,6 @@
 	<monster centerx="6905" centery="858" centerz="9" radius="1">
 		<monster name="Lizard Sentinel" x="-1" y="0" z="9" spawntime="60" />
 		<monster name="Lizard Sentinel" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Sentinel" x="-1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6200" centery="859" centerz="9" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="9" spawntime="60" />
@@ -56864,7 +56955,6 @@
 	</monster>
 	<monster centerx="6934" centery="875" centerz="9" radius="1">
 		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Snakecharmer" x="1" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6264" centery="876" centerz="9" radius="1">
 		<monster name="Souleater" x="0" y="0" z="9" spawntime="60" />
@@ -56884,19 +56974,11 @@
 	<monster centerx="6910" centery="876" centerz="9" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="6932" centery="876" centerz="9" radius="1">
-		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Snakecharmer" x="1" y="1" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="6921" centery="877" centerz="9" radius="1">
-		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="6924" centery="877" centerz="9" radius="1">
 		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6940" centery="877" centerz="9" radius="1">
 		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Snakecharmer" x="1" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6900" centery="878" centerz="9" radius="1">
 		<monster name="Toad" x="0" y="0" z="9" spawntime="60" />
@@ -56906,9 +56988,6 @@
 		<monster name="Lizard Sentinel" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6930" centery="878" centerz="9" radius="1">
-		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="6936" centery="878" centerz="9" radius="1">
 		<monster name="Lizard Snakecharmer" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6895" centery="879" centerz="9" radius="1">
@@ -56932,8 +57011,6 @@
 	</monster>
 	<monster centerx="6904" centery="881" centerz="9" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Templar" x="1" y="0" z="9" spawntime="60" />
-		<monster name="Lizard Templar" x="-1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6946" centery="881" centerz="9" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="9" spawntime="60" />
@@ -56949,9 +57026,6 @@
 	</monster>
 	<monster centerx="6508" centery="883" centerz="9" radius="1">
 		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="6903" centery="883" centerz="9" radius="1">
-		<monster name="Lizard Templar" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6908" centery="883" centerz="9" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="9" spawntime="60" />
@@ -59237,13 +59311,8 @@
 	<monster centerx="7489" centery="1125" centerz="9" radius="1">
 		<monster name="Earth Elemental" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="7491" centery="1125" centerz="9" radius="1">
-		<monster name="Earth Elemental" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Earth Elemental" x="0" y="1" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="7494" centery="1125" centerz="9" radius="1">
 		<monster name="Earth Elemental" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Earth Elemental" x="0" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7731" centery="1125" centerz="9" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="9" spawntime="60" />
@@ -64477,9 +64546,6 @@
 	<monster centerx="6239" centery="876" centerz="10" radius="1">
 		<monster name="Souleater" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="6931" centery="876" centerz="10" radius="1">
-		<monster name="Lizard Snakecharmer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
 	<monster centerx="6752" centery="877" centerz="10" radius="1">
 		<monster name="Iks Ahpututu" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -64508,8 +64574,6 @@
 		<monster name="Iks Aucar" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6929" centery="882" centerz="10" radius="1">
-		<monster name="Lizard Snakecharmer" x="0" y="-1" z="10" spawntime="60" />
-		<monster name="Lizard Snakecharmer" x="1" y="-1" z="10" spawntime="60" />
 		<monster name="Lizard Snakecharmer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6271" centery="883" centerz="10" radius="1">
@@ -86614,17 +86678,47 @@
 	<monster centerx="7635" centery="1302" centerz="14" radius="1">
 		<monster name="Vampire Viscount" x="0" y="0" z="14" spawntime="60" />
 	</monster>
+	<monster centerx="6744" centery="1303" centerz="14" radius="1">
+		<monster name="Spectre" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="7608" centery="1304" centerz="14" radius="1">
 		<monster name="Vampire Viscount" x="0" y="0" z="14" spawntime="60" />
 	</monster>
+	<monster centerx="6724" centery="1305" centerz="14" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6726" centery="1307" centerz="14" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6731" centery="1308" centerz="14" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6734" centery="1308" centerz="14" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6739" centery="1308" centerz="14" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6742" centery="1308" centerz="14" radius="1">
+		<monster name="Lich" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6745" centery="1308" centerz="14" radius="1">
+		<monster name="Lich" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="7625" centery="1308" centerz="14" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6744" centery="1312" centerz="14" radius="1">
+		<monster name="Spectre" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="7576" centery="1313" centerz="14" radius="1">
 		<monster name="Vampire" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="7620" centery="1313" centerz="14" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6718" centery="1315" centerz="14" radius="1">
+		<monster name="Braindeath" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="7623" centery="1315" centerz="14" radius="1">
 		<monster name="Vampire Viscount" x="0" y="0" z="14" spawntime="60" />
@@ -87449,6 +87543,12 @@
 	<monster centerx="6847" centery="2527" centerz="14" radius="1">
 		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
 	</monster>
+	<monster centerx="6750" centery="2529" centerz="14" radius="1">
+		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6749" centery="2531" centerz="14" radius="1">
+		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="6761" centery="2535" centerz="14" radius="1">
 		<monster name="Deepling Worker" x="0" y="0" z="14" spawntime="60" />
 	</monster>
@@ -87460,6 +87560,9 @@
 	</monster>
 	<monster centerx="6822" centery="2536" centerz="14" radius="1">
 		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6742" centery="2537" centerz="14" radius="1">
+		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="6830" centery="2538" centerz="14" radius="1">
 		<monster name="Deepling Brawler" x="1" y="0" z="14" spawntime="60" />
