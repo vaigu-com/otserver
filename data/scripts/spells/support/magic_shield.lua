@@ -9,7 +9,8 @@ function spell.onCastSpell(creature, var)
 	condition:setParameter(CONDITION_PARAM_TICKS, 180000)
 	local player = creature:getPlayer()
 	local grade = player:upgradeSpellsWOD("Magic Shield")
-	local shield = 300 + 7.6 * player:getLevel() + 7 * player:getMagicLevel()
+	-- Vaigu custom
+	local shield = 200 + 3.5 * player:getLevel() + 3.5 * player:getMagicLevel()
 	if grade >= WHEEL_GRADE_REGULAR then
 		shield = shield * 1.25
 	end
