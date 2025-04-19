@@ -12,20 +12,39 @@
             "type": "lua"
         },
         {
+            "name": "Launch (Lua debugger)",
+            "type": "lua",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln.exe",
+            "cwd": "${fileDirname}/../",
+            "console": "externalTerminal"
+        },
+        {
             "name": "C++ attach",
             "type": "cppvsdbg",
             "request": "attach",
         },
         {
-            "name": "(Windows) Launch",
+            "name": "C++ launch release",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/canary-sln.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}/../",
+            "cwd": "${workspaceFolder}/",
             "environment": [],
             "console": "externalTerminal"
-        }
+        },
+        {
+            "name": "C++ launch debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln-dbg.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/",
+            "environment": [],
+            "console": "externalTerminal"
+        },
     ]
 }
