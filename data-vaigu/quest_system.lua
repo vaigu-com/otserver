@@ -257,7 +257,7 @@ function QuestRegistry.NormalizeQuestlog()
 			for _, mission in pairs(quest.missions) do
 				local min, max
 				if mission.states then
-					min, max = FindMinMaxValue(mission.states)
+					min, max = FindMinMaxKey(mission.states)
 				end
 				mission.minState = mission.minState or min or DEFAULT_MIN_STATE
 				mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE

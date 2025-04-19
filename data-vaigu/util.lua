@@ -1,4 +1,3 @@
-
 ---using types other than string/number is not recommended
 ---@param key string|number|any
 ---@return any
@@ -227,41 +226,37 @@ local safeLowValue = -2e+300
 local safeHighValue = 2e+300
 
 function FindMinMaxKey(table)
-	local max = nil
-	local min = nil
+	local max = safeLowValue
+	local min = safeHighValue
+	local numericValues = 0
 	for key, _ in pairs(table) do
-		if type(key) ~= "number" then
-			goto continue
+		if type(key) == "number" then
+			max = math.max(max, key)
+			min = math.min(min, key)
+			numericValues = numericValues + 1
 		end
-		max = max or key
-		min = min or key
-		if key > max then
-			max = key
-		end
-		if key < min then
-			min = key
-		end
-		::continue::
+	end
+
+	if numericValues == 0 then
+		return nil, nil
 	end
 	return min, max
 end
 
 function FindMinMaxValue(table)
-	local max = nil
-	local min = nil
+	local max = safeLowValue
+	local min = safeHighValue
+	local numericValues = 0
 	for _, value in pairs(table) do
-		if type(value) ~= "number" then
-			goto continue
+		if type(value) == "number" then
+			max = math.max(max, value)
+			min = math.min(min, value)
+			numericValues = numericValues + 1
 		end
-		max = max or value
-		min = min or value
-		if value > max then
-			max = value
-		end
-		if value < min then
-			min = value
-		end
-		::continue::
+	end
+
+	if numericValues == 0 then
+		return nil, nil
 	end
 	return min, max
 end
@@ -368,18 +363,18 @@ function PredictNetHealthgain(primaryDamage, primaryType, secondaryDamage, secon
 end
 
 function TryReverseTable(tab)
-    if not tab then
+	if not tab then
 		return
 	end
 	local n = #tab
-    for i = 1, math.floor(n / 2) do
-        tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
-    end
+	for i = 1, math.floor(n / 2) do
+		tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
+	end
 end
 
 function ReverseTable(tab)
-    local n = #tab
-    for i = 1, math.floor(n / 2) do
-        tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
-    end
+	local n = #tab
+	for i = 1, math.floor(n / 2) do
+		tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
+	end
 end
