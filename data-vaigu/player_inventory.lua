@@ -323,9 +323,9 @@ DONT_ADD_ITEM_TO_INVENTORY = "DONT_ADD_ITEM_TO_INVENTORY"
 
 local explodingCookie = 130
 local function onAddExplodingcookie(context)
-	local exp = tonumber(context.item:getKey())
+	local exp = tonumber(context.item.key or 1000)
 	if not exp then
-		logger.error(T("[onAddExplodingcookie] Exp cookie key (:key:) cannot be converted to number. Item position :pos:", { key = context.item:getKey(), pos = context.item:getPosition():ToString() }))
+		logger.error(T("[onAddExplodingcookie] Exp cookie key (:key:) cannot be converted to number. Chest position :pos:", { key = context.item:getKey(), pos = context.item:getPosition():ToString() }))
 	end
 	AddExperienceWithAnnouncement(context.player, exp)
 	return DONT_ADD_ITEM_TO_INVENTORY

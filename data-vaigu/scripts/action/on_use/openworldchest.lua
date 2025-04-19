@@ -2,7 +2,7 @@ if not openWorldChestCooldownExpiry then
 	openWorldChestCooldownExpiry = {}
 end
 
-local openworldchestScope = Scope("	")
+local openworldchestScope = Scope("OpenWorldChest")
 -- eg. OpenWorldChest-Elf
 local specificOpenworldchestScopes = {
 	Weapons = openworldchestScope:Get("Weapons"),

@@ -88,8 +88,8 @@ local config = {
 
 local function spawnBoss(bossName, bossPos, bossHealth)
 	local playerCount = Game.getPlayerCount()
-	local additionalHealth = (playerCount - config.playerThreshold) * config.healthPerPlayer
 	if playerCount > config.playerThreshold then
+		local additionalHealth = (playerCount - config.playerThreshold) * config.healthPerPlayer
 		bossHealth = bossHealth + additionalHealth
 	end
 
@@ -145,15 +145,69 @@ local function runDailyBoss(byCommand)
 	return true
 end
 
+local possibleRewards = {
+	{ -- 100% for one of following items
+		chance = 100,
+		levelRestriction = true,
+		itemId = {
+			36729,
+			36730,
+			36731,
+			36732,
+			36733,
+			36734,
+			36735, -- resist cocotions
+			36736,
+			36737,
+			36738,
+			36739,
+			36740,
+			36741,
+			36742, -- atak cocotions
+			23544,
+			23542,
+			23543,
+			23533,
+			23531,
+			23529, -- collary i ringi
+			3043, -- 1cc
+			22516, -- silver token
+		},
+	},
+	{ chance = 1, levelRestriction = true, itemId = { 36727, 36725 } }, -- wealth(2xloot 1h), stamina 1h
+	{ chance = 5, levelRestriction = true, itemId = { 36726 } }, -- charm upgr
+	{ chance = 10, levelRestriction = true, itemId = { 36723, 36724, 36728 } }, -- kooldown, strike ench, bestiary2x
+	{ chance = 20, levelRestriction = true, itemId = { 25360, 25361 }, count = 1 }, -- blood, heart of the mountain
+	{ chance = 10, itemId = { 9598, 9596, 9594 } }, -- scyzoryki
+	{ chance = 5, itemId = { 18339 } }, -- zao chess box
+	{ chance = 20, itemId = { 9058, 3038, 3041 }, count = 1 }, -- ignot, blue, green gem
+	{ chance = 100, itemId = { 3032, 3028, 9057 }, count = 5 }, -- blyskotki
+	{ chance = 100, itemId = { 3033, 3029, 3030 }, count = 5 }, -- blyskotki
+	{ chance = 100, itemId = { 16125, 16126, 16127 }, count = 4 }, -- crystal fragments
+	{ chance = 100, itemId = { 3052, 3098, 3049, 3053 }, count = 1 }, -- ringi
+}
+local function generateDailyBossAdditionalLoot()
+	local additionalLoot = {}
+	for _, possibleReward in pairs(possibleRewards) do
+		local roll = math.random(1, 100)
+		if roll < possibleReward.chance then
+			local id = table.random(possibleReward.itemId)
+			if id then
+				additionalLoot[id] = { id = id, count = possibleReward.count or 1 }
+			end
+		end
+		return additionalLoot
+	end
+end
+
 -- Dailyboss onKill event
 local dailyBossDeath = CreatureEvent("DailyBossSystemDeath")
-function dailyBossDeath.onDeath(creature)
+function dailyBossDeath.onDeath(creature, corpse)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValueByKey(Storage.DailyBossReward) <= 0 then
-			player:setStorageValueByKey(Storage.DailyBossReward, 1)
-		else
-			player:setStorageValueByKey(Storage.DailyBossReward, player:getStorageValueByKey(Storage.DailyBossReward) + 1)
-		end
+		local rewardId = corpse:getAttribute(ITEM_ATTRIBUTE_DATE)
+		local rewardChest = player:getReward(rewardId, true)
+		rewardChest:addLoot(generateDailyBossAdditionalLoot())
+
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations! You can get additional rewards from chest in depot.")
 	end)
 	return true
@@ -168,7 +222,6 @@ function dailyBoss.onTime(interval)
 		runDailyBoss()
 	end
 end
-
 dailyBoss:time(config.dailyBossTime)
 dailyBoss:register()
 
@@ -178,7 +231,6 @@ function dailyBossTA.onSay(player, words, param)
 	runDailyBoss(true)
 	return true
 end
-
 dailyBossTA:separator(" ")
 dailyBossTA:groupType("senior tutor")
 dailyBossTA:register()

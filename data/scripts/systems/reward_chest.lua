@@ -86,9 +86,8 @@ function bossDeath.onDeath(boss, corpse, killer, mostDamageKiller, lastHitUnjust
 	for _, playerScore in ipairs(playerScores) do
 		local player = playerScore.player or Game.getOfflinePlayer(playerScore.guid)
 
-		local rewardItem = player:getReward(rewardId, true)
+		local rewardChest = player:getReward(rewardId, true)
 
-		
 		local encounter = ActiveEncounterRegistry:GetByCreature(boss)
 		local playerLootFactor = 1
 		if encounter then
@@ -96,7 +95,6 @@ function bossDeath.onDeath(boss, corpse, killer, mostDamageKiller, lastHitUnjust
 		else
 			playerLootFactor = baseLootFactor / (participantsCount ^ (1 / 3))
 			playerLootFactor = playerLootFactor * (1 + playerLootFactor) ^ (playerScore.score / expectedScore)
-	
 		end
 
 		local rolls = 1
@@ -135,12 +133,12 @@ function bossDeath.onDeath(boss, corpse, killer, mostDamageKiller, lastHitUnjust
 		for _, lootLayer in pairs(MONSTER_LOOT_LAYER) do
 			local items = lootTable[lootLayer]
 			if items then
-				rewardItem:addLoot(items)
+				rewardChest:addLoot(items)
 			end
 		end
 
 		if playerScore.player and lootTable then
-			local lootMessage = RewardbossLootParseDesc(boss, rewardItem, true, lootRegistryIdentifier)
+			local lootMessage = RewardbossLootParseDesc(boss, rewardChest, true, lootRegistryIdentifier)
 			player:sendTextMessage(MESSAGE_LOOT, lootMessage)
 		else
 			player:save()
