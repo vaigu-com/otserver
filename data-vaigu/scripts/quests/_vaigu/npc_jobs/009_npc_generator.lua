@@ -10,13 +10,22 @@ local function getJobConfigs(jobs)
 	local totalShop = {}
 	local totalDialogs = {}
 	for _, job in pairs(jobs) do
-		totalShop = MergedTable(totalShop, NPC_SHOP_TABLES[job])
-		totalDialogs = MergedTable(totalDialogs, NPC_UNIVERSAL_DIALOGS[job])
+		totalShop = MergedTable(totalShop, JOB_SHOPS[job])
+		totalDialogs = MergedTable(totalDialogs, JOB_UNIVERSAL_DIALOGS[job])
 	end
 
 	return totalShop, totalDialogs
 end
 
+local function getJobsOnBuyItem(jobs, greetJob)
+	for key, value in pairs(jobs) do
+		if JOB_ON_BUY[value] then
+			return JOB_ON_BUY[value]
+		end
+	end
+
+	return JOB_ON_BUY[greetJob]
+end
 
 ---@param internalNpcName string string REQUIRED
 ---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
@@ -33,6 +42,7 @@ function RegisterNpcDefinition(npcData)
 
 	local greetJob = npcData.greetJob
 	local jobs = npcData.jobs or {}
+	local onBuyItem = npcData.onBuyItem or getJobsOnBuyItem(jobs, greetJob)
 	local outfit = npcData.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
 	local npcSpecificDialogs = npcData.dialogs
 	local customShop = npcData.shop
@@ -46,8 +56,8 @@ function RegisterNpcDefinition(npcData)
 
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
-	if JOBS_GREETINGS[greetJob] then
-		allDialogs[LOCALIZERS.Universal][GREET] = JOBS_GREETINGS[greetJob]
+	if JOB_GREETINGS[greetJob] then
+		allDialogs[LOCALIZERS.Universal][GREET] = JOB_GREETINGS[greetJob]
 	end
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
@@ -77,32 +87,32 @@ function RegisterNpcDefinition(npcData)
 
 	local npcType = Game.createNpcType(name)
 
-	npcType.onThink = function(npc, interval)
+	npcType.onThink = npcData.onThink or function(npc, interval)
 		npcHandler:onThink(npc, interval)
 	end
 
-	npcType.onAppear = function(npc, creature)
+	npcType.onAppear = npcData.onAppear or function(npc, creature)
 		npcHandler:onAppear(npc, creature)
 	end
 
-	npcType.onDisappear = function(npc, creature)
+	npcType.onDisappear = npcData.onDisappear or function(npc, creature)
 		npcHandler:onDisappear(npc, creature)
 	end
 
-	npcType.onMove = function(npc, creature, fromPosition, toPosition)
+	npcType.onMove = npcData.onMove or function(npc, creature, fromPosition, toPosition)
 		npcHandler:onMove(npc, creature, fromPosition, toPosition)
 	end
 
-	npcType.onSay = function(npc, creature, type, message)
+	npcType.onSay = npcData.onSay or function(npc, creature, type, message)
 		npcHandler:onSay(npc, creature, type, message)
 	end
 
-	npcType.onCloseChannel = function(npc, creature)
+	npcType.onCloseChannel = npcData.onCloseChannel or function(npc, creature)
 		npcHandler:onCloseChannel(npc, creature)
 	end
 
 	-- On buy npc shop message
-	npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
+	npcType.onBuyItem = onBuyItem or function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
 		npc:sellItem(player, itemId, amount, subType, 0, ignore, inBackpacks)
 	end
 
@@ -116,10 +126,12 @@ function RegisterNpcDefinition(npcData)
 
 	local greetCallback = npcData.greetCallback or function(npc, creature, type, message)
 		if npcData.ignoreGreet then
-			return IGNORE_GREET
+			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
 		end
-		InitializeResponses(creature, npcConfig.dialogs, npcHandler, npc)
-		return true
+
+		InitializeFarewellWalkaway(creature, npcConfig.dialogs, npcHandler, npc)
+		local greetContext = InitializeGreet(creature, npcConfig.dialogs, npcHandler, npc)
+		return greetContext
 	end
 
 	local creatureSayCallback = npcData.creatureSayCallback or function(npc, creature, type, msg)

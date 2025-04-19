@@ -404,11 +404,12 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "removeIconBakragore", PlayerFunctions::luaPlayerRemoveIconBakragore);
 	Lua::registerMethod(L, "Player", "sendCreatureAppear", PlayerFunctions::luaPlayerSendCreatureAppear);
 
-		// Vaigu custom
-		Lua::registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerGetAttackSpeed);
-		Lua::registerMethod(L, "Player", "setAttackSpeed", PlayerFunctions::luaPlayerSetAttackSpeed);
-		Lua::registerMethod(L, "Player", "getLanguage", PlayerFunctions::luaPlayerGetLanguage);
-		Lua::registerMethod(L, "Player", "setLanguage", PlayerFunctions::luaPlayerSetLanguage);
+	// Vaigu custom
+	Lua::registerMethod(L, "Player", "getAttackSpeed", PlayerFunctions::luaPlayerGetAttackSpeed);
+	Lua::registerMethod(L, "Player", "setAttackSpeed", PlayerFunctions::luaPlayerSetAttackSpeed);
+	Lua::registerMethod(L, "Player", "getLanguage", PlayerFunctions::luaPlayerGetLanguage);
+	Lua::registerMethod(L, "Player", "setLanguage", PlayerFunctions::luaPlayerSetLanguage);
+	Lua::registerMethod(L, "Player", "isOnMinigame", PlayerFunctions::luaPlayerIsOnMinigame);
 
 	GroupFunctions::init(L);
 	GuildFunctions::init(L);
@@ -537,32 +538,6 @@ int PlayerFunctions::luaPlayerCreate(lua_State* L) {
 	} else {
 		lua_pushnil(L);
 	}
-	return 1;
-}
-
-// Vaigu custom
-int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
-	// getLanguage()
-	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
-	if (player) {
-		lua_pushstring(L, player->getLanguage().c_str());
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
-// Vaigu custom
-int PlayerFunctions::luaPlayerSetLanguage(lua_State* L) {
-	// setLanguage(language)
-	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
-	if (!player) {
-		lua_pushnil(L);
-		return 1;
-	}
-
-	player->setLanguage(Lua::getString(L, 2));
-	Lua::pushBoolean(L, true);
 	return 1;
 }
 
@@ -783,13 +758,12 @@ int PlayerFunctions::luaPlayergetCharmMonsterType(lua_State* L) {
 	return 1;
 }
 
-
 // Vaigu custom
 int PlayerFunctions::luaPlayerRemovePreyStamina(lua_State* L) {
 	// player:removePreyStamina(amount, raceId)
-	std::shared_ptr<Player> player =Lua:: getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
 	if (player) {
-		g_ioprey().reducePlayerPreyTime(player, Lua::getNumber<uint8_t>(L, 2, 1),Lua:: getNumber<uint16_t>(L, 3, -1));
+		g_ioprey().reducePlayerPreyTime(player, Lua::getNumber<uint8_t>(L, 2, 1), Lua::getNumber<uint16_t>(L, 3, -1));
 		g_ioprey().updatePlayerPreyStatus(player);
 		Lua::pushBoolean(L, true);
 	} else {
@@ -4927,6 +4901,50 @@ int PlayerFunctions::luaPlayerSendCreatureAppear(lua_State* L) {
 
 	bool isLogin = Lua::getBoolean(L, 2, false);
 	player->sendCreatureAppear(player, player->getPosition(), isLogin);
+	Lua::pushBoolean(L, true);
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerIsOnMinigame(lua_State* L) {
+	// get: player:isOnMinigame() set: player:isOnMinigame(nextState)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1);
+	if (player) {
+		if (lua_gettop(L) == 1) {
+			Lua::pushBoolean(L, player->isOnMinigame());
+		} else {
+			auto nextState = Lua::getBoolean(L, 2, false);
+			player->isOnMinigame(nextState);
+			Lua::pushBoolean(L, nextState);
+		}
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerGetLanguage(lua_State* L) {
+	// getLanguage()
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	if (player) {
+		lua_pushstring(L, player->getLanguage().c_str());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerSetLanguage(lua_State* L) {
+	// setLanguage(language)
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	player->setLanguage(Lua::getString(L, 2));
 	Lua::pushBoolean(L, true);
 	return 1;
 }

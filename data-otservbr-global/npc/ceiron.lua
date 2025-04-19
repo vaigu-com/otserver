@@ -143,7 +143,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("Alright then. Take this botanist's container and return to me once you were able to retrieve a sample. Don't lose patience!", npc, creature)
 			player:setStorageValue(Storage.Quest.U7_8.DruidOutfits.DruidHatAddon, 1)
 			player:setStorageValue(Storage.Quest.U7_8.DruidOutfits.DefaultStart, 1) --this for default start of Outfit and Addon Quests
-			player:addItem(4867, 1)
+			player:AddCustomItem({id = 4867, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 5 then
 			if player:removeItem(5937, 1) then
@@ -154,7 +154,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 6 then
 			npcHandler:say("Great! Here, take my waterskin and try to fill it with water from this special trickle. Don't lose my waterskin, I will not accept some random dirty waterskin.", npc, creature)
 			player:setStorageValue(Storage.Quest.U7_8.DruidOutfits.DruidHatAddon, 3)
-			player:addItem(5938, 1)
+			player:AddCustomItem({id = 5938, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 7 then
 			if player:removeItem(5939, 1) then
@@ -188,7 +188,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 13)
 		elseif npcHandler:getTopic(playerId) == 13 then
 			if player:removeMoneyBank(1000) then
-				player:addItem(5938, 1)
+				player:AddCustomItem({id = 5938, count = 1})
 				npcHandler:setTopic(playerId, 0)
 			end
 		end

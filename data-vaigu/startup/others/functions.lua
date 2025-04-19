@@ -107,54 +107,55 @@ end
 function loadLuaMapBookDocument(tablename)
 	-- Index 1: total valid, index 2: total loaded
 	local totals = { 0, 0 }
+
 	for index, value in ipairs(tablename) do
+		if not value.position then
+			-- Skip if position is not defined
+			goto continue
+		end
+
 		local tile = Tile(value.position)
-		-- Check position (some items dont have a know position yet defined, lets ignore them)
-		if value.position then
-			totals[1] = totals[1] + 1
-			-- Check if is a valid tile
-			if tile then
-				-- Try find the container on the map if containerId is set
-				local container = (value.containerId and tile:getItemById(value.containerId) or nil)
-				-- Check if cotainerId is not set or if containerId is set also if the container exists
-				if not value.containerId or value.containerId and container then
-					local item
-					-- Check if the item need to be in a container
-					if container then
-						-- Create the item inside the container
-						item = container:addItem(value.itemId, 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
-					else
-						-- Try first find the item on the map (in some cases the item is already on the map)
-						item = tile:getItemById(value.itemId)
-						-- Create the item at map position if dont was found
-						if not item then
-							item = Game.createItem(value.itemId, 1, value.position)
-						end
-					end
-					-- If the item exists, add the text
-					if item then
-						item:setAttribute(ITEM_ATTRIBUTE_TEXT, value.text)
-						totals[2] = totals[2] + 1
-					else
-						logger.warn("[loadLuaMapBookDocument] - Item not found! Index: {}, itemId: {}", index, value.itemId)
-						break
-					end
-				else
-					logger.warn("[loadLuaMapBookDocument] - Container not found! Index: {}, containerId: {}", index, value.containerId)
-					break
-				end
-			else
-				logger.warn("[loadLuaMapBookDocument] - Tile not found! Index: {}, position: x: {} y: {} z: {}", index, value.position.x, value.position.y, value.position.z)
-				break
+		if not tile then
+			logger.warn("[loadLuaMapBookDocument] - Tile not found! Index: {}, position: x: {} y: {} z: {}", index, value.position.x, value.position.y, value.position.z)
+			break
+		end
+
+		totals[1] = totals[1] + 1
+
+		local container = value.containerId and tile:getItemById(value.containerId) or nil
+		if value.containerId and not container then
+			logger.warn("[loadLuaMapBookDocument] - Container not found! Index: {}, containerId: {}", index, value.containerId)
+			break
+		end
+
+		local item
+		if container then
+			item = container:addItem(value.itemId, 1, INDEX_WHEREEVER, FLAG_NOLIMIT)
+		else
+			item = tile:getItemById(value.itemId)
+			if not item then
+				item = Game.createItem(value.itemId, 1, value.position)
 			end
 		end
+
+		if not item then
+			logger.warn("[loadLuaMapBookDocument] - Item not found! Index: {}, itemId: {}", index, value.itemId)
+			break
+		end
+
+		item:setAttribute(ITEM_ATTRIBUTE_TEXT, value.text)
+		totals[2] = totals[2] + 1
+
+		::continue::
 	end
+
 	if totals[1] == totals[2] then
 		logger.debug("Loaded {} books and documents in the map", totals[2])
 	else
 		logger.debug("Loaded {} of {} books and documents in the map", totals[2], totals[1])
 	end
 end
+
 
 function updateKeysStorage(tablename)
 	-- It updates old storage keys from quests for all players

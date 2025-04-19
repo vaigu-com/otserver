@@ -67,7 +67,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.ToOutfoxAFoxQuest.Questline) == 1 then
 			if player:removeItem(139, 1) then
 				player:setStorageValue(Storage.Quest.U8_1.ToOutfoxAFoxQuest.Questline, 2)
-				player:addItem(875, 1)
+				player:AddCustomItem({id = 875, count = 1})
 				npcHandler:say("As I was just saying to the others, 'this brave fellow will bring me my mining helmet back' and here you are with it!! Here take my spare helmet, I don't need it anymore!", npc, creature)
 			else
 				npcHandler:say("We presume the hideout of The Horned Fox is somewhere in the south-west near the coast, good luck finding my mining helmet!", npc, creature)

@@ -5551,7 +5551,7 @@ GameStore.Categories = {
 				icons = { "Name_Change.png" },
 				name = "Character Name Change",
 				home = true,
-				price = 15,
+				price = 2000,
 				id = 65002,
 				description = "<i>Tired of your current character name? Purchase a new one!</i>\n\n{character}\n{info} relog required after purchase to finalise the name change",
 				type = GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE,
@@ -5602,7 +5602,7 @@ GameStore.Categories = {
 				type = GameStore.OfferTypes.OFFER_TYPE_PREYSLOT,
 				coinType = GameStore.CoinType.Coin,
 			},
-			-- 3bf: revamp hunting tasks
+			-- FUTURE_PATCH_TODO: revamp hunting tasks
 			--[[
 			{
 				icons = { "Permanent_Hunting_Task_Slot.png" },
@@ -5638,11 +5638,11 @@ GameStore.Categories = {
 			},
 			{
 				icons = { "Magic_Gold_Converter.png" },
-				name = "Magic Gold Converter",
+				name = "Gold Pouch Converter",
 				price = 5,
 				itemtype = 28525,
 				charges = 2500,
-				description = "<i>Changes automatically either a stack of 100 gold pieces into 1 platinum coin, or a stack of 100 platinum coins into 1 crystal coin!</i>\n\n{character}\n{storeinbox}\n{useicon} use it to activate or deactivate the automatic conversion\n{info} converts all stacks of 100 gold or platinum in the inventory whenever it is activated\n{info} deactivated upon purchase\n{info} usable for 500 conversions a piece",
+				description = "<i>Requires a gold pouch to work! Changes automatically either a stack of 100 gold pieces into 1 platinum coin, or a stack of 100 platinum coins into 1 crystal coin!</i>\n\n{character}\n{storeinbox}\n{useicon} use it to activate or deactivate the automatic conversion\n{info} converts all stacks of 100 gold or platinum in the inventory whenever it is activated\n{info} deactivated upon purchase\n{info} usable for 2500 conversions a piece",
 				type = GameStore.OfferTypes.OFFER_TYPE_CHARGES,
 			},
 			{

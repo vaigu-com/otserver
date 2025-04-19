@@ -59,16 +59,16 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "endurance") then
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 9 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 9 then
 			npcHandler:say({
 				"Ah, the test is a piece of mushroomcake! Just take the teleporter over there in the south and follow the hallway. ...",
 				"You'll need to run quite a bit. It is important that you don't give up! Just keep running and running and running and ... I guess you got the idea. ...",
 				"At the end of the hallway you'll find a teleporter. Step on it and you are done! I'm sure you'll do a true gnomerun! Afterwards talk to me.",
 			}, npc, creature)
-			player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 10)
-		elseif player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 11 then
+			player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 10)
+		elseif player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 11 then
 			npcHandler:say("You have passed the test and are ready to create your soul melody. Talk to Gnomelvis in the east about it.", npc, creature)
-			player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 12)
+			player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 12)
 		end
 	end
 	return true

@@ -78,7 +78,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"So, he is dead as I feared. I warned him not to go with this woman, but he gave in to temptation. My heart darkens and moans. But you have my sincere thanks. ...",
 				"Without your help I would have stayed in the dark about his fate. Please, take this as a little recompense.",
 			}, npc, creature)
-			player:addItem(3039, 1)
+			player:AddCustomItem({id = 3039, count = 1})
 			player:addExperience(3000, true)
 			player:setStorageValue(Storage.Quest.U10_80.TheLostBrotherQuest, 3)
 			npcHandler:setTopic(playerId, 0)

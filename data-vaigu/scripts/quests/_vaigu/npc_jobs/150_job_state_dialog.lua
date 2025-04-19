@@ -30,15 +30,6 @@ end
 NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
 		[Storage.Tasks.TaskPoints] = {
-			[MISSION_NOT_STARTED] = {
-				[{ GREET }] = {
-					text = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
-					nextState = {
-						[Storage.Tasks.TaskInfo] = 1,
-						[Storage.Tasks.TaskPoints] = 0,
-					},
-				},
-			},
 			[{ max = 0 }] = {
 				[{ "punkt", "point", "punktow", "points", "punkty" }] = {
 					text = "You don't have any points. You'll get some after finishing the {tasks}. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.",
@@ -104,12 +95,12 @@ NPC_STATE_DIALOGS = {
 					nextState = {
 						[Storage.Tasks.TaskPoints] = T("-:cost:", { cost = antelopeCost }),
 					},
-					specialConditions = {
+					specialRequirements = {
 						{
-							condition = SPECIAL_CONDITIONS_UNIVERSAL.hasMount,
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasMount,
 							requiredOutcome = false,
 							mountId = antelopeMountId,
-							textNoRequiredCondition = "You already have this mount.",
+							textFailedRequirement = "You already have this mount.",
 						},
 					},
 				},

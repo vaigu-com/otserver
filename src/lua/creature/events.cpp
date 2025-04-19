@@ -134,8 +134,16 @@ bool Events::loadFromXml() {
 		} else if (className == "Monster") {
 			if (methodName == "onDropLoot") {
 				info.monsterOnDropLoot = event;
+			} else if (methodName == "onSpawn") {
+				info.monsterOnSpawn = event;
 			} else {
 				g_logger().warn("{} - Unknown monster method: {}", __FUNCTION__, methodName);
+			}
+		} else if (className == "Npc") {
+			if (methodName == "onSpawn") {
+				info.monsterOnSpawn = event;
+			} else {
+				g_logger().warn("{} - Unknown npc method: {}", __FUNCTION__, methodName);
 			}
 		} else {
 			g_logger().warn("{} - Unknown class: {}", __FUNCTION__, className);
@@ -174,6 +182,74 @@ bool Events::eventCreatureOnChangeOutfit(const std::shared_ptr<Creature> &creatu
 	LuaScriptInterface::pushOutfit(L, outfit);
 
 	return scriptInterface.callFunction(2);
+}
+
+// Monster
+void Events::eventMonsterOnSpawn(const std::shared_ptr<Monster> &monster, const Position &position) {
+	// Monster:onSpawn(position) or Monster.onSpawn(self, position)
+	if (info.monsterOnSpawn == -1) {
+		return;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		g_logger().error("{} - "
+						 "Position {}"
+						 ". Call stack overflow. Too many lua script calls being nested.",
+						 __FUNCTION__, position.toString());
+		return;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.monsterOnSpawn, &scriptInterface);
+
+	lua_State* L = scriptInterface.getLuaState();
+	scriptInterface.pushFunction(info.monsterOnSpawn);
+
+	LuaScriptInterface::pushUserdata<Monster>(L, monster);
+	LuaScriptInterface::setMetatable(L, -1, "Monster");
+	LuaScriptInterface::pushPosition(L, position);
+
+	if (scriptInterface.protectedCall(L, 2, 1) != 0) {
+		LuaScriptInterface::reportError(nullptr, LuaScriptInterface::popString(L));
+	} else {
+		lua_pop(L, 1);
+	}
+
+	scriptInterface.resetScriptEnv();
+}
+
+// Npc
+void Events::eventNpcOnSpawn(const std::shared_ptr<Npc> &npc, const Position &position) {
+	// Npc:onSpawn(position) or Npc.onSpawn(self, position)
+	if (info.npcOnSpawn == -1) {
+		return;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		g_logger().error("{} - "
+						 "Position {}"
+						 ". Call stack overflow. Too many lua script calls being nested.",
+						 __FUNCTION__, position.toString());
+		return;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.npcOnSpawn, &scriptInterface);
+
+	lua_State* L = scriptInterface.getLuaState();
+	scriptInterface.pushFunction(info.npcOnSpawn);
+
+	LuaScriptInterface::pushUserdata<Npc>(L, npc);
+	LuaScriptInterface::setMetatable(L, -1, "Npc");
+	LuaScriptInterface::pushPosition(L, position);
+
+	if (scriptInterface.protectedCall(L, 2, 1) != 0) {
+		LuaScriptInterface::reportError(nullptr, LuaScriptInterface::popString(L));
+	} else {
+		lua_pop(L, 1);
+	}
+
+	scriptInterface.resetScriptEnv();
 }
 
 ReturnValue Events::eventCreatureOnAreaCombat(const std::shared_ptr<Creature> &creature, const std::shared_ptr<Tile> &tile, bool aggressive) {
@@ -1232,39 +1308,4 @@ void Events::eventMonsterOnDropLoot(const std::shared_ptr<Monster> &monster, con
 	LuaScriptInterface::setMetatable(L, -1, "Container");
 
 	return scriptInterface.callVoidFunction(2);
-}
-
-
-// Vaigu custom
-void Events::eventMonsterOnSpawn(const std::shared_ptr<Monster> &monster, const Position &position) {
-	// Monster:onSpawn(position) or Monster.onSpawn(self, position)
-	if (info.monsterOnSpawn == -1) {
-		return;
-	}
-
-	if (!scriptInterface.reserveScriptEnv()) {
-		g_logger().error("{} - "
-		                 "Position {}"
-		                 ". Call stack overflow. Too many lua script calls being nested.",
-		                 __FUNCTION__, position.toString());
-		return;
-	}
-
-	ScriptEnvironment* env = scriptInterface.getScriptEnv();
-	env->setScriptId(info.monsterOnSpawn, &scriptInterface);
-
-	lua_State* L = scriptInterface.getLuaState();
-	scriptInterface.pushFunction(info.monsterOnSpawn);
-
-	LuaScriptInterface::pushUserdata<Monster>(L, monster);
-	LuaScriptInterface::setMetatable(L, -1, "Monster");
-	LuaScriptInterface::pushPosition(L, position);
-
-	if (scriptInterface.protectedCall(L, 2, 1) != 0) {
-		LuaScriptInterface::reportError(nullptr, LuaScriptInterface::popString(L));
-	} else {
-		lua_pop(L, 1);
-	}
-
-	scriptInterface.resetScriptEnv();
 }

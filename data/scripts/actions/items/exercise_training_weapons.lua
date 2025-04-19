@@ -146,6 +146,11 @@ local function findWeaponToMerge(player, addedWeaponSkill)
 end
 
 function TryMergeExerciseWeapons(player, addedWeapon, oldWeapon)
+	local weaponData = exerciseWeaponsTable[addedWeapon:getId()]
+	if not weaponData then
+		return false
+	end
+
 	oldWeapon = oldWeapon or findWeaponToMerge(player, exerciseWeaponsTable[addedWeapon:getId()].skill)
 	if not oldWeapon then
 		return false

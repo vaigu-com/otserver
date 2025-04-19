@@ -2,15 +2,16 @@
 do
 	return
 end
-local quest = Quest(LOCALIZERS.BigfootBurden)
+local quest = Quest(LOCALIZERS.Arena)
 
 quest
 	:Storage(function() end)
 	:Constant(function() end)
-	:Questlog(function()
+	:Questlog(function(localizer)
 		table.insert(Quests, {
 			name = "Arena",
-			missions = {
+			localizer = localizer,
+			missions ={
 				{
 					name = "First arena",
 					storage = 301,

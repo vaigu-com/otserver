@@ -1,4 +1,4 @@
-TASK_FINISHED = -2
+TASK_CANT_START_BECAUSE_HIGHER_LEVEL = -2
 TASK_CAN_START_DESPITE_HIGHER_LEVEL = -1
 
 TASK_SLOT_UNNOCUPIED = -1
@@ -14,12 +14,14 @@ function Player:TryResetDailyTaskCounter()
 	end
 end
 
-local function resetTaskKillCounter(player, task)
-	player:setStorageValueByKey(task.storage, TASK_FINISHED)
+local function resetTaskSuccesfulCompletion(player, task)
+	player:setStorageValueByKey(task.storage, TASK_CANT_START_BECAUSE_HIGHER_LEVEL)
+	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
 end
 
 local function cancelTask(player, task)
 	player:setStorageValueByKey(task.storage, TASK_CAN_START_DESPITE_HIGHER_LEVEL)
+	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
 end
 
 local function resetTaskSlot(player, taskSlot)
@@ -30,14 +32,13 @@ function Player:DoneAnyTask()
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
 		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage ~= TASK_SLOT_UNNOCUPIED then
-			local currentKills = self:getStorageValueByKey(ongoingTaskStorage)
 			local task = GetTaskByStorage(ongoingTaskStorage)
 			if not task then
 				self:setStorageValueByKey(taskSlot, -1)
 				return
 			end
-			local requiredKills = task.requiredKills
-			if currentKills >= requiredKills then
+			local state = self:getStorageValueByKey(task.storage)
+			if state == REPORT_TASK_TO_NPC then
 				return true
 			end
 		end
@@ -78,33 +79,35 @@ function Player:HasAnyOngoingDailyTask()
 	return false
 end
 
-function Player:AddOngoingTask(killCountStorage)
+function Player:AddOngoingTask(task)
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
 		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		if ongoingTaskStorage == TASK_SLOT_UNNOCUPIED then
-			self:setStorageValueByKey(taskSlot, killCountStorage)
-			self:setStorageValueByKey(killCountStorage, 0)
+			self:setStorageValueByKey(task.currentKills, 0)
+			self:setStorageValueByKey(task.storage, MISSION_STARTED)
+			self:setStorageValueByKey(taskSlot, task.storage)
 			return
 		end
 	end
 end
 
-function Player:AddOngoingDailyTask(storage)
-	self:setStorageValueByKey(storage, 0)
+function Player:AddOngoingDailyTask(dailyTask)
+	self:setStorageValueByKey(dailyTask.storage, MISSION_STARTED)
+	self:setStorageValueByKey(dailyTask.currentKills, 0)
 end
 
 local function selectTaskFromList(player, button, choice)
 	local task = choice.task
-	player:AddOngoingTask(task.storage)
+	player:AddOngoingTask(task)
 end
 
 local function selectDailyTaskFromList(player, button, choice)
 	local dailyTask = choice.dailyTask
 	local storage = dailyTask.storage
-	player:AddOngoingDailyTask(storage)
+	player:AddOngoingDailyTask(dailyTask)
 	player:AddCustomItem({
 		id = 2815,
-		aid = storage,
+		key = storage,
 		text = "DAILY_TASK_PAMPHLET_DESCRIPTION",
 		addToStore = false,
 	})
@@ -207,12 +210,7 @@ function OpenTaskWindow(context)
 	local availableTasks = {}
 	for _, task in pairs(GetAllTasks()) do
 		if playerCanTakeTask(player, task) then
-			local availableTask = {
-				name = task.name,
-				requiredKills = task.requiredKills,
-				storage = task.storage,
-			}
-			table.insert(availableTasks, availableTask)
+			table.insert(availableTasks, task)
 		end
 	end
 
@@ -243,7 +241,7 @@ function OpenDailyTaskWindow(context)
 	local player = context.player
 
 	local localizerTasks = player:Localizer(Storage.Tasks.TaskInfo)
-	local localizerDailyTasks = player:localizer(Storage.DailyTasks.DailyTaskInfo)
+	local localizerDailyTasks = player:Localizer(Storage.DailyTasks.DailyTaskInfo)
 	local message = localizerTasks:Get("Select task you're interested in: ")
 	local title = localizerDailyTasks:Get("Daily tasks")
 	local modalWindow = ModalWindow({ title = title, message = message })
@@ -317,48 +315,46 @@ function OpenDailyTaskCancelWindow(context)
 end
 
 function PlayerFinishedTaskAtLeastOnce(player, task)
-	return player:getStorageValueByKey(task.storage) == TASK_FINISHED
+	return player:getStorageValueByKey(task.storage) == TASK_CANT_START_BECAUSE_HIGHER_LEVEL
 end
 
-TRANSFERABLE_COINS_MULTIPLIER = 30
+TRANSFERABLE_COINS_GAIN_MULTIPLIER = 10
 function Player:AddAllCoins(coins)
 	self:addTibiaCoins(coins)
-	self:addTransferableCoins(coins * 30)
+	self:addTransferableCoins(coins * TRANSFERABLE_COINS_GAIN_MULTIPLIER)
 end
 
-local function grantTaskRewards(context)
+local function grantTaskRewards(context, task)
 	local player = context.player
-	local task = context.task or context.dailyTask
 
 	if not player:TryAddItems(task.rewards or {}) then
 		return false
 	end
 	local money = task.money
-	local points = task.tibiaCoins
+	local coins = task.tibiaCoins
 	local exp = task.exp
 
 	player:addMoney(money)
-	player:addTibiaCoins(points)
-	player:addTransferableCoins(points)
-	player:IncrementStorage(Storage.Tasks.TaskPoints, points)
+	player:AddAllCoins(coins)
+	player:IncrementStorage(Storage.Tasks.TaskPoints, coins)
 	player:addExperience(exp, true)
-	return false
+	return true
 end
 
+local rewardWasNotGranted = false
+local rewardWasGranted = true
 function Player:TryAddTaskRewards(context, task)
 	local storage = task.storage
-	local currentKills = self:getStorageValueByKey(storage)
-	local requiredKills = task.requiredKills
-	if currentKills < requiredKills then
-		return ""
+	local state = self:getStorageValueByKey(storage)
+	if state ~= REPORT_TASK_TO_NPC then
+		return rewardWasNotGranted
 	end
-	if not grantTaskRewards(context) then
-		return ""
+	if not grantTaskRewards(context, task) then
+		return rewardWasNotGranted
 	end
-	resetTaskKillCounter(self, task)
+	resetTaskSuccesfulCompletion(self, task)
 	resetTaskSlot(self, task.storage)
-
-	return self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_REWARDS_DIALOG")
+	return rewardWasGranted
 end
 
 function Player:GrantRewardsForAllTasks(context)
@@ -366,13 +362,15 @@ function Player:GrantRewardsForAllTasks(context)
 	for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
 		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		local task = GetTaskByStorage(ongoingTaskStorage)
-		local taskMessage = self:TryAddTaskRewards(context, task)
-		if taskMessage ~= "" then
-			translatedMessage = translatedMessage .. taskMessage .. "\n"
+		if task then
+			local grantedRewardForThisTask = self:TryAddTaskRewards(context, task)
+			if grantedRewardForThisTask then
+				translatedMessage = translatedMessage .. self:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_REWARDS_DIALOG") .. "\n"
+			end
 		end
 	end
 
-	translatedMessage = translatedMessage .. self:Localizer(Storage.Tasks.TaskInfo):Get("Great job!")
+	translatedMessage = translatedMessage .. self:Localizer(LOCALIZERS.Tasks):Get("Great job!")
 	context.npcHandler:say(translatedMessage, context.npc, context.player)
 end
 
@@ -402,10 +400,9 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
 		return localizer:Get("YOU_DONT_HAVE_REQUIRED_DAILY_TASK_ITEMS")
 	end
 
-	context.dailyTask = dailyTask
 	self:RemoveItems(requiredItems)
-	grantTaskRewards(context)
-	resetTaskKillCounter(self, dailyTask)
+	grantTaskRewards(context, dailyTask)
+	resetTaskSuccesfulCompletion(self, dailyTask)
 	resetTaskSlot(self, storage)
 	self:IncrementStorage(Storage.DailyTasks.DailyLimit, 1)
 	return localizer:Get("DAILY_TASK_REWARDS_DIALOG")

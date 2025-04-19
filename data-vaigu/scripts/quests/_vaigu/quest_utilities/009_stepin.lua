@@ -5,6 +5,7 @@ quest
 			DontAllowDiagonal = {},
 		}
 	end)
+	:NoQuestlog()
 	:Script(function(missionState)
 		local noDiagonal = MoveEvent()
 		function noDiagonal.onStepIn(creature, item, toPosition, fromPosition)

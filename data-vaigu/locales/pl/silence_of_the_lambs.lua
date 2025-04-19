@@ -13,12 +13,12 @@ return {
 	["The test of Strength"] = "Proba sily",
 	["Lecter asked you for 5 vampire teeth."] = "Lecter poprosil cie o 5 wampirzych zebow.",
 	["In exchange for your help, Lecter bestowed you with his old soul-extraction tool."] = "W zamian za wykazanie sie, Lecter podarowal ci stary przyrzad do wyciagania dusz.",
-	["Fashionista clothes"] = "Modne ubrania",
+	["Fashionable clothes"] = "Modne ubrania",
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter poprosil cie o przyniesienie po 20 skor kazdego rodzaju.",
 	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
 	["Rub Meat With Lecter"] = "Gotuj z Lecterem",
-	["LECTER_WANTS_HEARTS_AND_LIVERS_STATUS"] = function(context)
-		return T("Lecter prosi cie o uzbieranie 15 serc i 20 watrob ludzkich na impreze kanibali. Poki co zebrales :hearts: serc i :livers: watrob.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart), livers = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanLivers) })
+	["LECTER_WANTS_HUMAN_HEARTS_STATUS"] = function(context)
+		return T("Lecter prosi cie o uzbieranie 15 serc ludzkich na impreze kanibali. Poki co zebrales :hearts: serc.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart)})
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "W zamian za przysluge, zostales przyjety do klubu kanibali, i zyskales ich stroj.",
 	["Hearts collected"] = "Ludzkie serca",

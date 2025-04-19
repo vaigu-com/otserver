@@ -11,12 +11,12 @@ function actions_magicalPaint.onUse(player, item, fromPosition, target, toPositi
 	if item.itemid == sapphireDust and target.itemid == sunFruitJuice then
 		target:remove(1)
 		item:remove(1)
-		player:addItem(enchantedBottle)
+		player:AddCustomItem({id = enchantedBottle})
 		return true
 	elseif item.itemid == egg and target.itemid == enchantedBottle then
 		target:remove(1)
 		item:remove(1)
-		player:addItem(magicalPaint)
+		player:AddCustomItem({id = magicalPaint})
 		return true
 	elseif item.itemid == magicalPaint and target.actionid == 23109 then
 		if player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.TheSevenKeys.Painting) < 1 then

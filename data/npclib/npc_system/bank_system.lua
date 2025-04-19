@@ -340,7 +340,7 @@ function Npc:parseBank(message, npc, creature, npcHandler)
 	elseif npcHandler:getTopic(playerId) == 15 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(ITEM_GOLD_COIN, count[playerId] * 100) then
-				player:addItem(ITEM_PLATINUM_COIN, count[playerId])
+				player:AddCustomItem({id = ITEM_PLATINUM_COIN, count = count[playerId]})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough gold coins.", npc, creature)
@@ -375,7 +375,7 @@ function Npc:parseBank(message, npc, creature, npcHandler)
 	elseif npcHandler:getTopic(playerId) == 18 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(ITEM_PLATINUM_COIN, count[playerId]) then
-				player:addItem(ITEM_GOLD_COIN, count[playerId] * 100)
+				player:AddCustomItem({id = ITEM_GOLD_COIN, count = count[playerId] * 100})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough platinum coins.", npc, creature)
@@ -396,7 +396,7 @@ function Npc:parseBank(message, npc, creature, npcHandler)
 	elseif npcHandler:getTopic(playerId) == 20 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(ITEM_PLATINUM_COIN, count[playerId] * 100) then
-				player:addItem(ITEM_CRYSTAL_COIN, count[playerId])
+				player:AddCustomItem({id = ITEM_CRYSTAL_COIN, count = count[playerId]})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough platinum coins.", npc, creature)
@@ -420,7 +420,7 @@ function Npc:parseBank(message, npc, creature, npcHandler)
 	elseif npcHandler:getTopic(playerId) == 22 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(ITEM_CRYSTAL_COIN, count[playerId]) then
-				player:addItem(ITEM_PLATINUM_COIN, count[playerId] * 100)
+				player:AddCustomItem({id = ITEM_PLATINUM_COIN, count = count[playerId] * 100})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough crystal coins.", npc, creature)

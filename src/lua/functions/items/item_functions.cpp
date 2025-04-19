@@ -316,7 +316,11 @@ int ItemFunctions::luaItemGetKey(lua_State* L) {
 	std::shared_ptr<Item> item = Lua::getUserdataShared<Item>(L, 1);
 	if (item) {
 		auto key = item->getAttribute<std::string>(ItemAttribute_t::KEY);
-		Lua::pushString(L, key);
+		if (!key.empty()) {
+			Lua::pushString(L, key);
+		} else {
+			lua_pushnil(L);
+		}
 	} else {
 		lua_pushnil(L);
 	}

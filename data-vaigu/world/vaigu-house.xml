@@ -441,8 +441,6 @@
 	<house name="Flat #240" houseid="10240" entryx="7593" entryy="1024" entryz="11" rent="0" townid="10" size="16" clientid="0" beds="0" />
 	<house name="Flat #241" houseid="10241" entryx="7594" entryy="1024" entryz="11" rent="0" townid="10" size="18" clientid="0" beds="0" />
 	<house name="Flat #242" houseid="10242" entryx="7586" entryy="1023" entryz="11" rent="0" townid="10" size="20" clientid="0" beds="0" />
-	<house name="Flat #243" houseid="10243" entryx="7579" entryy="1029" entryz="10" rent="0" townid="10" size="38" clientid="0" beds="0" />
-	<house name="Flat #244" houseid="10244" entryx="7582" entryy="1025" entryz="10" rent="0" townid="10" size="16" clientid="0" beds="0" />
 	<house name="Flat #245" houseid="10245" entryx="7603" entryy="1026" entryz="11" rent="0" townid="10" size="11" clientid="0" beds="0" />
 	<house name="Flat #246" houseid="10246" entryx="7603" entryy="1026" entryz="11" rent="0" townid="10" size="15" clientid="0" beds="0" />
 	<house name="Flat #247" houseid="10247" entryx="7600" entryy="1017" entryz="11" rent="0" townid="10" size="19" clientid="0" beds="0" />
@@ -517,7 +515,7 @@
 	<house name="Flat #328" houseid="10328" entryx="7665" entryy="998" entryz="13" rent="0" townid="10" size="14" clientid="0" beds="0" />
 	<house name="Flat #329" houseid="10329" entryx="7664" entryy="1004" entryz="13" rent="0" townid="10" size="22" clientid="0" beds="0" />
 	<house name="Flat #330" houseid="10330" entryx="7666" entryy="1009" entryz="13" rent="0" townid="10" size="16" clientid="0" beds="0" />
-	<house name="Flat #331" houseid="10331" entryx="7658" entryy="1014" entryz="13" rent="0" townid="10" size="86" clientid="0" beds="0" />
+	<house name="Flat #331" houseid="10331" entryx="7658" entryy="1014" entryz="13" rent="0" townid="10" size="87" clientid="0" beds="0" />
 	<house name="Flat #333" houseid="10333" entryx="7673" entryy="1043" entryz="12" rent="0" townid="10" size="22" clientid="0" beds="0" />
 	<house name="Flat #334" houseid="10334" entryx="7669" entryy="1048" entryz="12" rent="0" townid="10" size="18" clientid="0" beds="0" />
 	<house name="Flat #335" houseid="10335" entryx="7667" entryy="1058" entryz="12" rent="0" townid="10" size="64" clientid="0" beds="0" />
@@ -533,16 +531,12 @@
 	<house name="Flat #349" houseid="10349" entryx="7675" entryy="1048" entryz="12" rent="0" townid="10" size="109" clientid="0" beds="0" />
 	<house name="Flat #355" houseid="10355" entryx="7692" entryy="1055" entryz="11" rent="0" townid="10" size="20" clientid="0" beds="0" />
 	<house name="Flat #356" houseid="10356" entryx="7690" entryy="1047" entryz="11" rent="0" townid="10" size="23" clientid="0" beds="0" />
-	<house name="Flat #357" houseid="10357" entryx="7663" entryy="1063" entryz="11" rent="0" townid="10" size="25" clientid="0" beds="0" />
 	<house name="Flat #358" houseid="10358" entryx="7660" entryy="1035" entryz="11" rent="0" townid="10" size="39" clientid="0" beds="0" />
 	<house name="Flat #360" houseid="10360" entryx="7690" entryy="1047" entryz="12" rent="0" townid="10" size="22" clientid="0" beds="0" />
 	<house name="Flat #361" houseid="10361" entryx="7692" entryy="1057" entryz="12" rent="0" townid="10" size="35" clientid="0" beds="0" />
 	<house name="Flat #362" houseid="10362" entryx="7597" entryy="1021" entryz="12" rent="0" townid="10" size="18" clientid="0" beds="0" />
 	<house name="Flat #363" houseid="10363" entryx="7657" entryy="1027" entryz="11" rent="0" townid="10" size="22" clientid="0" beds="0" />
 	<house name="Flat #364" houseid="10364" entryx="7670" entryy="1027" entryz="11" rent="0" townid="10" size="16" clientid="0" beds="0" />
-	<house name="Flat #365" houseid="10365" entryx="7742" entryy="1026" entryz="11" rent="0" townid="10" size="23" clientid="0" beds="0" />
-	<house name="Flat #366" houseid="10366" entryx="7740" entryy="1025" entryz="11" rent="0" townid="10" size="1" clientid="0" beds="0" />
-	<house name="Flat #367" houseid="10367" entryx="7747" entryy="1026" entryz="11" rent="0" townid="10" size="24" clientid="0" beds="0" />
 	<house name="Flat #370" houseid="10370" entryx="7661" entryy="1025" entryz="10" rent="0" townid="10" size="32" clientid="0" beds="0" />
 	<house name="Guildhall #10372" houseid="10372" entryx="7371" entryy="1113" entryz="7" rent="0" guildhall="true" townid="6" size="328" clientid="0" beds="0" />
 	<house name="Unnamed House #10374" houseid="10374" entryx="7388" entryy="1090" entryz="7" rent="0" townid="6" size="24" clientid="0" beds="0" />
@@ -555,4 +549,8 @@
 	<house name="Unnamed House #10381" houseid="10381" entryx="7260" entryy="1118" entryz="5" rent="0" townid="6" size="23" clientid="0" beds="0" />
 	<house name="Unnamed House #10382" houseid="10382" entryx="7658" entryy="1027" entryz="12" rent="0" townid="10" size="30" clientid="0" beds="0" />
 	<house name="Unnamed House #10383" houseid="10383" entryx="7850" entryy="1459" entryz="6" rent="0" townid="7" size="34" clientid="0" beds="0" />
+	<house name="Port Louse House 1 #10384" houseid="10384" entryx="6822" entryy="1438" entryz="7" rent="0" townid="1" size="41" clientid="0" beds="0" />
+	<house name="Port Louse House 2 #10385" houseid="10385" entryx="6826" entryy="1443" entryz="6" rent="0" townid="1" size="40" clientid="0" beds="0" />
+	<house name="Port Louse House 2 #10386" houseid="10386" entryx="6813" entryy="1453" entryz="7" rent="0" townid="1" size="79" clientid="0" beds="0" />
+	<house name="Port Louse House 4 #10387" houseid="10387" entryx="6818" entryy="1420" entryz="6" rent="0" townid="1" size="50" clientid="0" beds="0" />
 </houses>

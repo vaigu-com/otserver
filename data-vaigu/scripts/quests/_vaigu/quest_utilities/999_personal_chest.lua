@@ -1,14 +1,19 @@
-local personalChestScope = Scope("PersonalChest")
-local chestType = {
-	oneTime = personalChestScope:Get("OneTime"),
-	daily = personalChestScope:Get("Daily"),
-	weekly = personalChestScope:Get("Weekly"),
+PersonalChestScope = Scope("PersonalChest")
+PersonalChest = {
+	OneTime = PersonalChestScope:Get("OneTime"),
+	Daily = PersonalChestScope:Get("Daily"),
+	Weekly = PersonalChestScope:Get("Weekly"),
 }
+do
+	for _, key in pairs(PersonalChest) do
+		ImmovableKeys:Add(key)
+	end
+end
 
 local keyToCooldown = {
-	[chestType.oneTime] = LOCKOUT_TIME.FOREVER,
-	[chestType.daily] = LOCKOUT_TIME.DAILY,
-	[chestType.weekly] = LOCKOUT_TIME.WEEKLY,
+	[PersonalChest.OneTime] = LOCKOUT_TIME.FOREVER,
+	[PersonalChest.Daily] = LOCKOUT_TIME.DAILY,
+	[PersonalChest.Weekly] = LOCKOUT_TIME.WEEKLY,
 }
 local cooldownNeverExpires = -2
 local function calculateCooldownExpiry(chest)
@@ -32,12 +37,12 @@ end
 
 local function personalChestWasOpened(player, chest)
 	local nextCooldownExpiry = calculateCooldownExpiry(chest)
-	local key = personalChestScope:Get(chest:getPosition():ToString())
+	local key = PersonalChestScope:Get(chest:getPosition():ToString())
 	player:setStorageValueByKey(key, nextCooldownExpiry)
 end
 
 local function hasCooldownExpired(player, chest)
-	local key = personalChestScope:Get(chest:getPosition():ToString())
+	local key = PersonalChestScope:Get(chest:getPosition():ToString())
 	local cooldownExpiry = player:getStorageValueByKey(key)
 	if cooldownExpiry == cooldownNeverExpires then
 		return false
@@ -45,8 +50,8 @@ local function hasCooldownExpired(player, chest)
 	return os.time() > cooldownExpiry
 end
 
-local personalChest = Action()
-function personalChest.onUse(player, chest, fromPosition, target, toPosition, isHotkey)
+local personalChestUse = Action()
+function personalChestUse.onUse(player, chest, fromPosition, target, toPosition, isHotkey)
 	if not hasCooldownExpired(player, chest) then
 		SendChestIsEmpty(player, chest:getId())
 		return true
@@ -59,7 +64,7 @@ function personalChest.onUse(player, chest, fromPosition, target, toPosition, is
 	end
 	return true
 end
-for _, key in pairs(chestType) do
-	personalChest:key(key)
+for _, key in pairs(PersonalChest) do
+	personalChestUse:key(key)
 end
-personalChest:register()
+personalChestUse:register()

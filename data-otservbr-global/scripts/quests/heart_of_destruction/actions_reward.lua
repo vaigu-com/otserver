@@ -2,7 +2,7 @@ local heartDestructionReward = Action()
 function heartDestructionReward.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.uid == 1038 then
 		if player:getStorageValue(14337) < 1 then
-			local container = player:addItem(23525)
+			local container = player:AddCustomItem({id = 23525})
 			container:addItem(23512, 1)
 			container:addItem(23538, 1)
 			container:addItem(23536, 1)

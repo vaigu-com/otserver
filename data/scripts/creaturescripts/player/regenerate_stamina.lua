@@ -1,5 +1,4 @@
 local regenerateStamina = CreatureEvent("RegenerateStamina")
-
 function regenerateStamina.onLogin(player)
 	if not configManager.getBoolean(configKeys.STAMINA_SYSTEM) then
 		return true
@@ -28,5 +27,4 @@ function regenerateStamina.onLogin(player)
 	player:setStamina(staminaMinutes)
 	return true
 end
-
 regenerateStamina:register()

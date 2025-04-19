@@ -21,7 +21,7 @@ npcConfig.outfit = {
 
 npcConfig.flags = { floorchange = 0 }
 
-local dialog = {
+local config = {
 	[1] = {
 		female = 136,
 		male = 128,

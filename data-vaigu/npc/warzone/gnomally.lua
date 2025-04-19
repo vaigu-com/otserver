@@ -75,7 +75,6 @@ local renown = {}
 local config = {
 	["supply"] = { itemid = 15698, token = { type = "minor", id = 16128, count = 2 } },
 	["muck"] = { itemid = 16101, token = { type = "minor", id = 16128, count = 2 } },
-	["mission"] = { itemid = 16242, token = { type = "minor", id = 16128, count = 10 } },
 	["lamp"] = { itemid = 16094, token = { type = "minor", id = 16128, count = 15 } },
 	["backpack"] = { itemid = 16099, token = { type = "minor", id = 16128, count = 15 } },
 	["addition to the soil guardian outfit"] = { itemid = 16253, token = { type = "minor", id = 16128, count = 70 } },
@@ -89,11 +88,11 @@ local config = {
 	["prismatic legs"] = { itemid = 16111, token = { type = "major", id = 16129, count = 10 } },
 	["prismatic boots"] = { itemid = 16112, token = { type = "major", id = 16129, count = 10 } },
 	["prismatic shield"] = { itemid = 16116, token = { type = "major", id = 16129, count = 10 } },
-	["gnome helmet"] = { itemid = 27647, token = { type = "major", id = 16129, count = 40 } },
-	["gnome armor"] = { itemid = 27648, token = { type = "major", id = 16129, count = 40 } },
-	["gnome legs"] = { itemid = 27649, token = { type = "major", id = 16129, count = 40 } },
-	["gnome sword"] = { itemid = 27651, token = { type = "major", id = 16129, count = 40 } },
-	["gnome shield"] = { itemid = 27650, token = { type = "major", id = 16129, count = 40 } },
+	["gnome helmet"] = { itemid = 27647, token = { type = "major", id = 16129, count = 80 } },
+	["gnome armor"] = { itemid = 27648, token = { type = "major", id = 16129, count = 80 } },
+	["gnome legs"] = { itemid = 27649, token = { type = "major", id = 16129, count = 80 } },
+	["gnome sword"] = { itemid = 27651, token = { type = "major", id = 16129, count = 80 } },
+	["gnome shield"] = { itemid = 27650, token = { type = "major", id = 16129, count = 80 } },
 	["basic soil guardian outfit"] = { itemid = 16252, token = { type = "major", id = 16129, count = 20 } },
 	["basic crystal warlord outfit"] = { itemid = 16255, token = { type = "major", id = 16129, count = 20 } },
 	["iron loadstone"] = { itemid = 16153, token = { type = "major", id = 16129, count = 20 } },
@@ -121,7 +120,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		}, npc, creature)
 	elseif MsgContains(message, "minor") then
 		npcHandler:say({
-			"For two minor tokens, you can buy one gnomish {supply} package! For eight tokens, you can buy a {muck} remover! For ten tokens, you can buy a {mission} crystal. For fifteen tokens, you can buy a crystal {lamp} or a mushroom {backpack}. ...",
+			"For two minor tokens, you can buy one gnomish {supply} package! For eight tokens, you can buy a {muck} remover! For fifteen tokens, you can buy a crystal {lamp} or a mushroom {backpack}. ...",
 			"For seventy tokens, I can offer you a voucher for an {addition to the soil guardian outfit}, or a voucher for an {addition to the crystal warlord armor outfit}.",
 		}, npc, creature)
 	elseif config[message] then
@@ -131,9 +130,9 @@ local function creatureSayCallback(npc, creature, type, message)
 		topic[playerId] = message
 	elseif MsgContains(message, "relations") then
 		local player = Player(creature)
-		if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) >= 14 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) >= 14 then
 			npcHandler:say("Our relations improve with every mission you undertake on our behalf. Another way to improve your relations with us gnomes is to trade in minor crystal tokens. ...", npc, creature)
-			npcHandler:say("Your renown amongst us gnomes is currently {" .. math.max(0, player:getStorageValueByKey(Storage.BigfootBurden.Rank)) .. "}. Do you want to improve your standing by sacrificing tokens? One token will raise your renown by 5 points. ", npc, creature)
+			npcHandler:say("Your renown amongst us gnomes is currently {" .. math.max(0, player:getStorageValueByKey(Storage.BigfootsBurden.Rank)) .. "}. Do you want to improve your standing by sacrificing tokens? One token will raise your renown by 5 points. ", npc, creature)
 			npcHandler:setTopic(playerId, 2)
 		else
 			npcHandler:say("You are not even a recruit of the Bigfoots. Sorry I can't help you.", npc, creature)
@@ -180,8 +179,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 4 then
 			local player = Player(creature)
 			if player:removeItem(16128, renown[playerId]) then
-				player:setStorageValueByKey(Storage.BigfootBurden.Rank, math.max(0, player:getStorageValueByKey(Storage.BigfootBurden.Rank)) + renown[playerId] * 5)
-				npcHandler:say("As you wish! Your new renown is {" .. player:getStorageValueByKey(Storage.BigfootBurden.Rank) .. "}.", npc, creature)
+				player:setStorageValueByKey(Storage.BigfootsBurden.Rank, math.max(0, player:getStorageValueByKey(Storage.BigfootsBurden.Rank)) + renown[playerId] * 5)
+				npcHandler:say("As you wish! Your new renown is {" .. player:getStorageValueByKey(Storage.BigfootsBurden.Rank) .. "}.", npc, creature)
 			else
 				npcHandler:say("You don't have these many tokens.", npc, creature)
 			end

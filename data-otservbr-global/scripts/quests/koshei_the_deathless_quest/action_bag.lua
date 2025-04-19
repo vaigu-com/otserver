@@ -12,7 +12,7 @@ Then it was discovered that he had built a tower south of the mountains. It is u
 local kosheiBag = Action()
 function kosheiBag.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getStorageValue(483293) == -1 then
-		local bag = player:addItem(2853, 1)
+		local bag = player:AddCustomItem({id = 2853, count = 1})
 		if bag then
 			local document = bag:addItem(2834, 1)
 			if document then

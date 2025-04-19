@@ -54,4 +54,5 @@ return {
 	["You managed to get a virgin's soul. Now go see Konmuld."] = "You managed to get a virgin's soul. Now go see Konmuld.",
 	["Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself."] = "Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself.",
 	["In his gratitude, Konmuld gave you one of his old Yalahari set pieces."] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
+	["You finished this mission."] = "You finished this mission.",
 }

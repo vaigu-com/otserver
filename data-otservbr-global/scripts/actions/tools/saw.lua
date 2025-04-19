@@ -6,7 +6,7 @@ function saw.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	target:transform(target.itemid, target.type - 1)
-	player:addItem(9114, 1)
+	player:AddCustomItem({id = 9114, count = 1})
 	toPosition:sendMagicEffect(CONST_ME_POFF) --Not sure if there's any magic effect when you use saw?
 	return true
 end

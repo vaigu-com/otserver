@@ -68,7 +68,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Quest.U7_8.MarlinTrophy) < 1 then
 		if player:removeItem(901, 1) then
 			npcHandler:say("Yeah! Now let's see... <fumble fumble> There you go, I hope you like it!", npc, creature)
-			player:addItem(902, 1)
+			player:AddCustomItem({id = 902, count = 1})
 			player:setStorageValue(Storage.Quest.U7_8.MarlinTrophy, 1)
 		else
 			npcHandler:say("You don't have the fish.", npc, creature)

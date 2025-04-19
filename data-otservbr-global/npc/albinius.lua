@@ -143,7 +143,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		if haveParts then
 			npcHandler:say("As you wish.", npc, creature)
-			player:addItem(24960, 1)
+			player:AddCustomItem({id = 24960, count = 1})
 			npcHandler:removeInteraction(npc, creature)
 		end
 	elseif MsgContains(message, "no") and npcHandler:getTopic(playerId) == 8 then

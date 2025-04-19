@@ -4,10 +4,14 @@ EncounterDataRegistry.registry = {}
 
 ---@param encounter EncounterData
 function EncounterDataRegistry:Register(encounter)
-	self.registry[encounter.encounterName] = encounter
+	self.registry[encounter.displayName] = encounter
+	self.registry[encounter.encounterId] = encounter
 	return self
 end
 
-function EncounterDataRegistry:GetByEncounterName(encounterName)
-	return self.registry[encounterName]
+function EncounterDataRegistry:GetByDisplayName(displayName)
+	return self.registry[displayName]
+end
+function EncounterDataRegistry:GetByEncounterId(id)
+	return self.registry[id]
 end

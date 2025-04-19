@@ -19,7 +19,7 @@ function itemTransformation.onUse(player, item, fromPosition, target, toPosition
 	if transformation then
 		item:transform(transformation.transformedItemId)
 
-		player:addItem(transformation.rewardItemId, 1)
+		player:AddCustomItem({id = transformation.rewardItemId, count = 1})
 
 		local messages = {
 			"Achoo! You spill the pollen into your bag.",

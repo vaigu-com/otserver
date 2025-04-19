@@ -804,12 +804,18 @@ local function setAuxillaryMaps(dailyTask, i)
 	end
 end
 
+local taskTaskNameScope = Scope("DailyTask", "TaskName")
+local taskCurrentKillsScope = Scope("DailyTask", "CurrentKills")
 function RegisterDailyTasksInQuestsTable()
 	for i, dailyTask in pairs(dailyTaskData) do
-		local storage = Scope("Storage", "DailyTask", "DailyTaskNames"):Get(dailyTask.name)
+		local storage = taskTaskNameScope:Get(dailyTask.name)
+		local currentKills  = taskCurrentKillsScope:Get(dailyTask.name)
+
 
 		dailyTask.storage = storage
 		dailyTaskData[i].storage = storage
+		dailyTask.currentKills = currentKills
+		
 		local dailyTaskMission = {
 			name = "DAILY_TASK_MISSION_NAME",
 			dailyTask = dailyTaskData[i],

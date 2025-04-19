@@ -181,6 +181,8 @@ bool IOLoginDataSave::savePlayerFirst(const std::shared_ptr<Player> &player) {
 	// First, an UPDATE query to write the player itself
 	query.str("");
 	query << "UPDATE `players` SET ";
+	// Vaigu custom
+	query << "`language` = " << db.escapeString(player->getLanguage()) << ",";
 	query << "`name` = " << db.escapeString(player->name) << ",";
 	query << "`level` = " << player->level << ",";
 	query << "`group_id` = " << player->group->id << ",";
@@ -312,6 +314,7 @@ bool IOLoginDataSave::savePlayerFirst(const std::shared_ptr<Player> &player) {
 		query << "`blessings" << i << "`"
 			  << " = " << static_cast<uint32_t>(player->getBlessingCount(static_cast<uint8_t>(i))) << ((i == 8) ? " " : ",");
 	}
+
 	query << " WHERE `id` = " << player->getGUID();
 
 	if (!db.executeQuery(query.str())) {

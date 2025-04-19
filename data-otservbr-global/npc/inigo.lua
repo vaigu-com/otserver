@@ -597,11 +597,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				end
 			end
 		end
-		player:addItem(3270, 1)
-		player:addItem(2853, 1)
-		player:addItem(2920, 1)
-		player:addItem(3585, 1)
-		player:addItem(3561, 1)
+		player:AddCustomItem({id = 3270, count = 1})
+		player:AddCustomItem({id = 2853, count = 1})
+		player:AddCustomItem({id = 2920, count = 1})
+		player:AddCustomItem({id = 3585, count = 1})
+		player:AddCustomItem({id = 3561, count = 1})
 		npcHandler:say(
 			"Then so be it. I'm sorry to see you go, but if this is what you want, step this way... right. \z
 		Now, cover your eyes... GO!",

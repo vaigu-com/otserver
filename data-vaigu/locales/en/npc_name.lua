@@ -64,7 +64,7 @@ return {
 	["Honkler"] = "Honkler",
 	["Kalyana"] = "Kalyana",
 	["Klaus Schwab"] = "Klaus Schwab",
-	["commissioner Fisher"] = "commissioner Fisher",
+	["Commissioner Fisher"] = "Commissioner Fisher",
 	["Komor"] = "Komor",
 	["Konmuld"] = "Konmuld",
 	["Constance"] = "Constance",

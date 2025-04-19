@@ -83,7 +83,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 3 then
 			if player:removeItem(3061, 1) then
 				npcHandler:say("Thank you! Take this ring. If you ever need a healing, come, bring the scroll, and ask me to {heal}.", npc, creature)
-				player:addItem(3052, 1)
+				player:AddCustomItem({id = 3052, count = 1})
 			else
 				npcHandler:say("Sorry, but you have none.", npc, creature)
 			end
@@ -145,7 +145,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 12 then
 			if player:removeMoneyBank(1000) then
-				player:addItem(397, 1)
+				player:AddCustomItem({id = 397, count = 1})
 				npcHandler:say("Here you are. Better don't loose it again.", npc, creature)
 			else
 				npcHandler:say("You don't have enough money", npc, creature)
@@ -155,7 +155,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeItem(396, 1) then
 				player:setStorageValue(Storage.Quest.U8_1.SecretService.Mission07, 2)
 				player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 15)
-				player:addItem(897, 1)
+				player:AddCustomItem({id = 897, count = 1})
 				npcHandler:say("You have done superb work agent, I grant you the title of Top Agent! Here's a little gift you might find useful.", npc, creature)
 			else
 				npcHandler:say("Please bring me proof of the mad technomancers defeat!", npc, creature)
@@ -256,7 +256,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.SecretService.TBIMission04) == 2 and player:getStorageValue(Storage.Quest.U8_1.SecretService.Quest) == 9 then
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 10)
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.TBIMission05, 1)
-			player:addItem(349, 1)
+			player:AddCustomItem({id = 349, count = 1})
 			npcHandler:say({
 				"It's bad enough that Carlin got a solid foothold in the far North but now the Venoreans also try to move in. They try to gain influence on the barbarian raiders by bribing their leaders or making them great promises ...",
 				"We want you to cause some bad blood in this relationship. Travel to their most southern camp, enter the ice tower of their leaders and kill some of them ...",
@@ -269,7 +269,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.SecretService.TBIMission05) == 3 and player:getStorageValue(Storage.Quest.U8_1.SecretService.Quest) == 11 then
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 12)
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.TBIMission06, 1)
-			player:addItem(397, 1)
+			player:AddCustomItem({id = 397, count = 1})
 			npcHandler:say({
 				"The women of Carlin have the northern city Svargrond in the firm grip of her manicured hands. At the moment, there is little we can do about it but there is one thing that plays into our hands ...",
 				"The barbarians have surely at least heard about the fact that alcohol is outlawed in Carlin ...",

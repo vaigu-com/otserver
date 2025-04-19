@@ -117,7 +117,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValueByKey(Storage.TheInquisition.Questline, 4) -- to zaczyna trzecia
 			player:setStorageValueByKey(Storage.TheInquisition.Mission02, 1) -- The Inquisition Questlog- "Mission 2: Eclipse"
-			player:addItem(133, 1)
+			player:AddCustomItem({id = 133, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 5 then
 			if player:removeItem(7874, 1) then
@@ -152,7 +152,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValueByKey(Storage.TheInquisition.Questline, 12)
 			player:setStorageValueByKey(Storage.TheInquisition.Mission04, 1) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
-			player:addItem(133, 1)
+			player:AddCustomItem({id = 133, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 12 or player:getStorageValueByKey(Storage.TheInquisition.Questline) == 13 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Musisz wypedzic zle moce z pirackich ruin. Ukonczyles to zadanie?" or "Your current mission is to exorcise an evil being from a ruin in jungle. Are you done with that mission?", npc, creature)
@@ -214,7 +214,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Zniszcz shadow nexus uzywajac na nim wody swieconej, oraz pokonaj wszystkich demonicznych wladcow." or "Destroy the shadow nexus using this vial of holy water and kill all demon lords.", npc, creature)
 			player:setStorageValueByKey(Storage.TheInquisition.Questline, 21)
 			player:setStorageValueByKey(Storage.TheInquisition.Mission07, 1) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
-			player:addItem(133, 1)
+			player:AddCustomItem({id = 133, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 21 or player:getStorageValueByKey(Storage.TheInquisition.Questline) == 22 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Zniszcz shadow nexus zlokalizowany w Demon Forge. Ukonczyles te misje?" or "Your current mission is to destroy the shadow nexus in the Demon Forge. Are you done with that mission?", npc, creature)
@@ -277,7 +277,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 8 then
 			if player:removeMoney(flaskCost) then
 				npcHandler:say("Here is your new flask!, |PLAYERNAME|.", npc, creature)
-				player:addItem(133, 1)
+				player:AddCustomItem({id = 133, count = 1})
 			else
 				npcHandler:say("Come back when you have enough money.", npc, creature)
 			end

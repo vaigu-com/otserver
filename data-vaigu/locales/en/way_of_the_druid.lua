@@ -1,4 +1,8 @@
 return {
+	["You are not worthy to gather the sacred water!"] = "You are not worthy to gather the sacred water!",
+	["You already gathered the sacred water"] = "You already gathered the sacred water",
+	["You are not worthy to gather the sacred flower!"] = "You are not worthy to gather the sacred flower!",
+	["You already gathered the sacred flower"] = "You already gathered the sacred flower",
 	["I won't let you use my boat yet. Not until i see a friend in you."] = "I won't let you use my boat yet. Not until i see a friend in you.",
 	["Do you want to serve the druids circle? I'm one of them but I prefer desert instead of green lands.\nIf you want to serve us, sneak into the camp in the east, not far from bonebeast peninsula. I was living there but nomads attacked us and I had to move here.\nSomewhere close to the shore I buried a note with spell for summoning an undead bear.\nRemember the spell and burn down the note just in case someone catches you.\nIf you were to struggle you could probably use a {map}. I can give you one if you want."] = "Do you want to serve the druids circle? I'm one of them but I prefer desert instead of green lands.\nIf you want to serve us, sneak into the camp in the east, not far from bonebeast peninsula. I was living there but nomads attacked us and I had to move here.\nSomewhere close to the shore I buried a note with spell for summoning an undead bear.\nRemember the spell and burn down the note just in case someone catches you.\nIf you were to struggle you could probably use a {map}. I can give you one if you want.",
 	["Have this map, it should help you."] = "Have this map, it should help you.",

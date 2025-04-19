@@ -34,7 +34,8 @@ function amberCrusher.onUse(player, item, fromPosition, target, toPosition, isHo
 	target:remove(breakAmount)
 
 	for _ = 1, breakAmount do
-		player:addItem(fragmentType, math.random(fragmentRange[1], fragmentRange[2]))
+		local amoutPerBreak = math.random(fragmentRange[1], fragmentRange[2])
+		player:AddCustomItem({id = fragmentType, count = amoutPerBreak})
 	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have broken the gem into fragments.")
@@ -65,7 +66,8 @@ function crusher.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	target:remove(1)
-	player:addItem(fragmentType, math.random(fragmentRange[1], fragmentRange[2]))
+	local amoutPerBreak = math.random(fragmentRange[1], fragmentRange[2])
+	player:AddCustomItem({id = fragmentType, count = amoutPerBreak})
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have broken the gem into fragments.")
 
 	crusherCharges = crusherCharges - 1

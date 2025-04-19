@@ -157,7 +157,7 @@ pickKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler,
 	return player:getItemCount(3462) > 0
 end, function(player)
 	player:removeItem(3462, 1)
-	player:addItem(3456, 1)
+	player:AddCustomItem({id = 3456, count = 1})
 end)
 pickKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Sorry, I am looking for a SMALL axe.", reset = true })
 pickKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "Well, then don't.", reset = true })

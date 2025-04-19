@@ -63,7 +63,7 @@ function rewardBox.onUse(player, item, fromPosition, itemEx, toPosition)
 	end
 
 	for _, reward in ipairs(box) do
-		player:addItem(reward.id, reward.count)
+		player:AddCustomItem({id = reward.id, count = reward.count})
 		player:getPosition():sendMagicEffect(CONST_ME_PRISMATIC_SPARK)
 	end
 

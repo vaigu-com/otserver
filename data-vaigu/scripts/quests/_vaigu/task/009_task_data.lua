@@ -1,3 +1,5 @@
+NO_MAX_LEVEL_LIMIT = 5000
+
 local taskData = {
 	{
 		name = "Apes",
@@ -8,12 +10,7 @@ local taskData = {
 		tibiaCoins = 2,
 		min = 0,
 		max = 45,
-		bossName = "Gorila",
-		bossPosition = Position(6767, 574, 6),
-		bossRoomCenter = Position(6772, 574, 6),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10001,
+		bossName = "Golira",
 	},
 	{
 		name = "Carniphilas",
@@ -25,11 +22,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Deathbine",
-		bossPosition = Position(6769, 535, 8),
-		bossRoomCenter = Position(6766, 541, 8),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10002,
 	},
 	{
 		name = "Crocodiles",
@@ -41,11 +33,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "The Snapper",
-		bossPosition = Position(6885, 662, 10),
-		bossRoomCenter = Position(6882, 666, 10),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10003,
 	},
 	{
 		name = "Cyclops",
@@ -57,11 +44,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "The Old Whopper",
-		bossPosition = Position(5865, 1478, 9),
-		bossRoomCenter = Position(5870, 1480, 9),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10004,
 	},
 	{
 		name = "Dragons",
@@ -73,11 +55,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Grand Mother Foulscale",
-		bossPosition = Position(5852, 1355, 5),
-		bossRoomCenter = Position(5852, 1355, 5),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10005,
 	},
 	{
 		name = "Gargoyles",
@@ -89,30 +66,9 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Stoner",
-		bossPosition = Position(5863, 1791, 5),
-		bossRoomCenter = Position(5865, 1795, 5),
-		clearRadiusX = 8,
-		clearRadiusY = 8,
-		bossPortalUid = 10006,
 	},
 	{
-		name = "Mammoths",
-		requiredKills = 200,
-		creatures = { "mammoth" },
-		exp = 24000,
-		money = 5000,
-		tibiaCoins = 2,
-		min = 0,
-		max = 45,
-		bossName = "The Bloodtusk",
-		bossPosition = Position(6500, 1840, 9),
-		bossRoomCenter = Position(6500, 1845, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10007,
-	},
-	{
-		name = "Minos (Horned Fox)",
+		name = "Minotaurs",
 		requiredKills = 1500,
 		creatures = {
 			"minotaur",
@@ -126,11 +82,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "The Horned Fox",
-		bossPosition = Position(5962, 1348, 9),
-		bossRoomCenter = Position(5962, 1351, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10008,
 	},
 	{
 		name = "Mutated Humans",
@@ -142,11 +93,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Mutanted",
-		bossPosition = Position(6312, 1167, 6),
-		bossRoomCenter = Position(6315, 1167, 6),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10009,
 	},
 	{
 		name = "Orcs",
@@ -167,11 +113,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Bibby Bloodbath",
-		bossPosition = Position(5798, 1281, 8),
-		bossRoomCenter = Position(5800, 1284, 8),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10010,
 	},
 	{
 		name = "Rotworms",
@@ -183,11 +124,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "White Pale",
-		bossPosition = Position(5983, 1506, 9),
-		bossRoomCenter = Position(5979, 1513, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10011,
 	},
 	{
 		name = "Stone Golems",
@@ -199,11 +135,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Grorlam",
-		bossPosition = Position(6761, 1244, 9),
-		bossRoomCenter = Position(6766, 1239, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10012,
 	},
 	{
 		name = "Tarantulas",
@@ -215,11 +146,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Hide",
-		bossPosition = Position(6833, 748, 10),
-		bossRoomCenter = Position(6830, 749, 10),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10013,
 	},
 	{
 		name = "Terramites",
@@ -231,11 +157,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Thermite",
-		bossPosition = Position(6865, 1269, 9),
-		bossRoomCenter = Position(6867, 1276, 9),
-		clearRadiusX = 14,
-		clearRadiusY = 14,
-		bossPortalUid = 10014,
 	},
 	{
 		name = "Tortoises",
@@ -247,14 +168,9 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Thorner",
-		bossPosition = Position(6643, 513, 7),
-		bossRoomCenter = Position(6635, 509, 7),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10015,
 	},
 	{
-		name = "Weak undeads",
+		name = "Weak Undeads",
 		requiredKills = 300,
 		creatures = {
 			"ghoul",
@@ -270,11 +186,6 @@ local taskData = {
 		min = 0,
 		max = 45,
 		bossName = "Ripper",
-		bossPosition = Position(6045, 1586, 8),
-		bossRoomCenter = Position(6050, 1589, 8),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10016,
 	},
 	{
 		name = "Ancient Scarabs",
@@ -284,13 +195,8 @@ local taskData = {
 		money = 7000,
 		tibiaCoins = 2,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Fleshcrawler",
-		bossPosition = Position(6236, 1187, 9),
-		bossRoomCenter = Position(6230, 1188, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10017,
 	},
 	{
 		name = "Bonebeasts",
@@ -300,14 +206,8 @@ local taskData = {
 		money = 7000,
 		tibiaCoins = 2,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Ribstride",
-		bossPosition = Position(6985, 1289, 7),
-		bossRoomCenter = Position(6983, 1292, 7),
-		bossRoomPlayerEnterPosition = Position(6975, 1295, 7),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10018,
 	},
 	{
 		name = "Crystal Spiders",
@@ -317,13 +217,8 @@ local taskData = {
 		money = 7000,
 		tibiaCoins = 2,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "The Bloodweb",
-		bossPosition = Position(6544, 1805, 8),
-		bossRoomCenter = Position(6547, 1809, 8),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10019,
 	},
 	{
 		name = "Giant Spiders",
@@ -333,13 +228,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "The Old Widow",
-		bossPosition = Position(6056, 1810, 9),
-		bossRoomCenter = Position(6056, 1813, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10020,
 	},
 	{
 		name = "Ice Golems",
@@ -349,13 +239,8 @@ local taskData = {
 		money = 4000,
 		tibiaCoins = 2,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Shardhead",
-		bossPosition = Position(6484, 1784, 8),
-		bossRoomCenter = Position(6482, 1792, 8),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10021,
 	},
 	{
 		name = "Lancer Beetles",
@@ -365,13 +250,8 @@ local taskData = {
 		money = 8000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Deadly Beetle",
-		bossPosition = Position(6396, 855, 7),
-		bossRoomCenter = Position(6393, 860, 7),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10022,
 	},
 	{
 		name = "Mutated Bats",
@@ -381,13 +261,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Bruise Payne",
-		bossPosition = Position(6227, 847, 6),
-		bossRoomCenter = Position(6228, 851, 6),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10023,
 	},
 	{
 		name = "Mutated Rats",
@@ -397,13 +272,8 @@ local taskData = {
 		money = 5000,
 		tibiaCoins = 2,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Esmeralda",
-		bossPosition = Position(6187, 1011, 9),
-		bossRoomCenter = Position(6189, 1006, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10024,
 	},
 	{
 		name = "Mutated Tigers",
@@ -413,13 +283,8 @@ local taskData = {
 		money = 4000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Tigre",
-		bossPosition = Position(6240, 910, 8),
-		bossRoomCenter = Position(6247, 915, 8),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10025,
 	},
 	{
 		name = "Necromancers",
@@ -429,13 +294,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 6,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Necropharus",
-		bossPosition = Position(6113, 1571, 12),
-		bossRoomCenter = Position(6112, 1576, 12),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10026,
 	},
 	{
 		name = "Ogres",
@@ -445,13 +305,8 @@ local taskData = {
 		money = 5000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Brutus",
-		bossPosition = Position(5967, 1083, 8),
-		bossRoomCenter = Position(5972, 1079, 8),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10027,
 	},
 	{
 		name = "Pirates",
@@ -467,13 +322,8 @@ local taskData = {
 		money = 5000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = { "Brutus Bloodbeard", "Deadeye Devious", "Lethal Lissy", "Ron the Ripper" },
-		bossPosition = Position(6796, 1045, 7),
-		bossRoomCenter = Position(6799, 1047, 7),
-		clearRadiusX = 6,
-		clearRadiusY = 6,
-		bossPortalUid = 10028,
 	},
 	{
 		name = "Stampors",
@@ -483,13 +333,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Tromphonyte",
-		bossPosition = Position(6051, 1162, 9),
-		bossRoomCenter = Position(6045, 1161, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10029,
 	},
 	{
 		name = "Wailing Widows",
@@ -499,13 +344,8 @@ local taskData = {
 		money = 8000,
 		tibiaCoins = 3,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Fiery Widow",
-		bossPosition = Position(6620, 1343, 9),
-		bossRoomCenter = Position(6625, 1347, 9),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10030,
 	},
 	{
 		name = "Wyverns",
@@ -515,13 +355,8 @@ local taskData = {
 		money = 4000,
 		tibiaCoins = 2,
 		min = 46,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Reptilia",
-		bossPosition = Position(6578, 528, 7),
-		bossRoomCenter = Position(6585, 531, 7),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10031,
 	},
 	{
 		name = "Behemoths",
@@ -531,29 +366,19 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Stonecracker",
-		bossPosition = Position(6610, 815, 9),
-		bossRoomCenter = Position(6608, 820, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10032,
 	},
 	{
-		name = "Brimstone Bug",
+		name = "Brimstone Bugs",
 		requiredKills = 300,
 		creatures = { "brimstone bug" },
 		exp = 270000,
 		money = 10000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Sulphur Scuttler",
-		bossPosition = Position(6435, 899, 8),
-		bossRoomCenter = Position(6434, 895, 8),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10033,
 	},
 	{
 		name = "Demons",
@@ -563,14 +388,9 @@ local taskData = {
 		money = 30000,
 		tibiaCoins = 15,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		rewards = { { id = 9388 } },
 		bossName = "Demonica",
-		bossPosition = Position(5742, 1438, 12),
-		bossRoomCenter = Position(5742, 1428, 12),
-		clearRadiusX = 15,
-		clearRadiusY = 15,
-		bossPortalUid = 10034,
 	},
 	{
 		name = "Destroyers",
@@ -580,13 +400,8 @@ local taskData = {
 		money = 20000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Bretzecutioner",
-		bossPosition = Position(6977, 1344, 9),
-		bossRoomCenter = Position(6981, 1343, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10035,
 	},
 	{
 		name = "Drakens",
@@ -601,13 +416,8 @@ local taskData = {
 		money = 5000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Paiz the Pauperizer",
-		bossPosition = Position(6455, 933, 11),
-		bossRoomCenter = Position(6449, 936, 11),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10036,
 	},
 	{
 		name = "Frost Dragons",
@@ -617,13 +427,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Frosty",
-		bossPosition = Position(6493, 1842, 8),
-		bossRoomCenter = Position(6493, 1847, 8),
-		clearRadiusX = 9,
-		clearRadiusY = 9,
-		bossPortalUid = 10037,
 	},
 	{
 		name = "Ghastly Dragons",
@@ -633,13 +438,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Ethershreck",
-		bossPosition = Position(6673, 925, 12),
-		bossRoomCenter = Position(6677, 926, 12),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10038,
 	},
 	{
 		name = "Hellhound",
@@ -649,13 +449,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Kerberos",
-		bossPosition = Position(5585, 1525, 13),
-		bossRoomCenter = Position(5589, 1527, 13),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10039,
 	},
 	{
 		name = "Hellspawns",
@@ -665,13 +460,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Flameborn",
-		bossPosition = Position(6702, 609, 9),
-		bossRoomCenter = Position(6708, 608, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10040,
 	},
 	{
 		name = "High Class Lizards",
@@ -688,13 +478,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Fazzrah",
-		bossPosition = Position(6454, 923, 6),
-		bossRoomCenter = Position(6454, 928, 6),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10041,
 	},
 	{
 		name = "Hydras",
@@ -704,13 +489,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "The Many",
-		bossPosition = Position(6674, 852, 9),
-		bossRoomCenter = Position(6673, 857, 9),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10042,
 	},
 	{
 		name = "Killer Caimans",
@@ -720,13 +500,8 @@ local taskData = {
 		money = 5000,
 		tibiaCoins = 2,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Killa",
-		bossPosition = Position(6475, 954, 8),
-		bossRoomCenter = Position(6469, 957, 8),
-		clearRadiusX = 10,
-		clearRadiusY = 10,
-		bossPortalUid = 10043,
 	},
 	{
 		name = "Medusa",
@@ -736,13 +511,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Gorgo",
-		bossPosition = Position(6584, 581, 11),
-		bossRoomCenter = Position(6580, 580, 11),
-		clearRadiusX = 12,
-		clearRadiusY = 12,
-		bossPortalUid = 10044,
 	},
 	{
 		name = "Nightmares",
@@ -752,13 +522,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Tormentor",
-		bossPosition = Position(6032, 1402, 12),
-		bossRoomCenter = Position(6039, 1399, 12),
-		clearRadiusX = 8,
-		clearRadiusY = 8,
-		bossPortalUid = 10045,
 	},
 	{
 		name = "Quaras",
@@ -779,13 +544,8 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Thul",
-		bossPosition = Position(6260, 1392, 10),
-		bossRoomCenter = Position(6256, 1394, 10),
-		clearRadiusX = 11,
-		clearRadiusY = 11,
-		bossPortalUid = 10046,
 	},
 	{
 		name = "Sea Serpents",
@@ -795,13 +555,8 @@ local taskData = {
 		money = 7000,
 		tibiaCoins = 2,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Leviathan",
-		bossPosition = Position(6506, 1555, 9),
-		bossRoomCenter = Position(6510, 1560, 9),
-		clearRadiusX = 14,
-		clearRadiusY = 14,
-		bossPortalUid = 10047,
 	},
 	{
 		name = "Serpent Spawns",
@@ -811,13 +566,8 @@ local taskData = {
 		money = 15000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "The Noxious Spawn",
-		bossPosition = Position(6578, 755, 8),
-		bossRoomCenter = Position(6584, 755, 8),
-		clearRadiusX = 14,
-		clearRadiusY = 14,
-		bossPortalUid = 10048,
 	},
 	{
 		name = "Undead Dragons",
@@ -827,13 +577,8 @@ local taskData = {
 		money = 5000,
 		tibiaCoins = 4,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Zanakeph",
-		bossPosition = Position(6634, 603, 10),
-		bossRoomCenter = Position(6632, 598, 10),
-		clearRadiusX = 14,
-		clearRadiusY = 14,
-		bossPortalUid = 10049,
 	},
 	{
 		name = "Werewolves",
@@ -843,17 +588,11 @@ local taskData = {
 		money = 10000,
 		tibiaCoins = 3,
 		min = 121,
-		max = 2000,
+		max = NO_MAX_LEVEL_LIMIT,
 		bossName = "Hemming",
-		bossPosition = Position(6177, 1141, 7),
-		bossRoomCenter = Position(6177, 1148, 7),
-		clearRadiusX = 11,
-		clearRadiusY = 11,
-		bossPortalUid = 10050,
 	},
 }
 
-local portalUidToTask = {}
 local portalKeyToTask = {}
 local creatureNameToTask = {}
 local bossNameToTask = {}
@@ -865,11 +604,8 @@ end
 function GetTaskByBossName(bossName)
 	return bossNameToTask[bossName]
 end
-function GetTaskByPortalUid(uid)
-	return portalUidToTask[uid]
-end
-function GetTaskByPortalKey(uid)
-	return portalKeyToTask[uid]
+function GetTaskByPortalKey(key)
+	return portalKeyToTask[key]
 end
 function GetTaskByStorage(storage)
 	return storageToTask[storage]
@@ -878,44 +614,99 @@ function GetAllTasks()
 	return taskData
 end
 
-local function setAuxillaryMaps(i, task)
-	portalUidToTask[task.bossPortalUid] = taskData[i]
-	portalKeyToTask[task.bossPortalKey] = taskData[i]
-	bossNameToTask[task.bossName] = taskData[i]
-	storageToTask[task.storage] = taskData[i]
-	for _, creatureName in pairs(task.creatures) do
-		creatureNameToTask[creatureName] = taskData[i]
-	end
-end
-
-TaskBossPortalKeyScope = Scope("Storage", "Task", "BossRoomPortal")
-function RegisterTasksInQuestsTable()
-	for i, task in pairs(taskData) do
-		local storage = Scope("Storage", "Task", "TaskNames"):Get(task.name)
-		local bossStorage = Scope("Storage", "Task", "TaskBosses"):Get(task.name)
+local taskScope = Scope("Task")
+function GenerateTasksAuxillaryData()
+	for _, task in pairs(GetAllTasks()) do
+		local storage = taskScope:Get(task.name, "State")
+		local currentKills = taskScope:Get(task.name, "CurrentKills")
+		local bossAdmitCounter = taskScope:Get(task.name, "BossFightAdmits")
 
 		task.storage = storage
-		task.bossStorage = bossStorage
-		taskData[i].storage = storage
+		task.currentKills = currentKills
+		task.bossAdmitCounter = bossAdmitCounter
 
-		task.bossPortalKey = TaskBossPortalKeyScope:Get(task.name)
+		task.bossRoomEnterPortal = taskScope:Get(task.name, "BossRoomEnterPortal")
+		task.bossSpawnPositionKey = taskScope:Get(task.name, "BossSpawnPosition")
+		task.playerSpawnPositionKey = taskScope:Get(task.name, "PlayerSpawnPosition")
+		task.bossRoomKey = taskScope:Get(task.name, "BossRoom")
+
+		bossNameToTask[task.bossName] = task
+		storageToTask[task.storage] = task
+		portalKeyToTask[task.bossRoomEnterPortal] = task
+
+		for _, creatureName in pairs(task.creatures) do
+			creatureNameToTask[creatureName] = task
+		end
+	end
+
+	local function validateTask(task)
+		if not task.bossRoomZone:randomPosition() then
+			logger.warn(T("[validateBossRoomZone] task :taskName: bossRoomZone is empty.", { taskName = task.name }))
+		end
+
+		local bossNames = {}
+		if type(task.bossName) == "table" then
+			bossNames = task.bossName
+		else
+			table.insert(bossNames, task.bossName)
+		end
+		if #bossNames > 0 then
+			for _, bossName in pairs(bossNames) do
+				if not MonsterType(bossName) then
+					logger.warn(T("[validateBossRoomZone] task :taskName: has nonexistant boss with name :bossName: is empty.", { taskName = task.name, bossName = bossName }))
+				end
+			end
+		else
+			logger.warn(T("[validateBossRoomZone] task :taskName: bossName is empty.", { taskName = task.name }))
+		end
+	end
+
+	local setupTaskZones = GlobalEvent("SetupTaskZones")
+	function setupTaskZones.onStartup()
+		for _, task in pairs(GetAllTasks()) do
+			task.bossSpawnPosition = Zone(task.bossSpawnPositionKey):randomPosition()
+			task.playerSpawnPosition = Zone(task.playerSpawnPositionKey):randomPosition()
+			task.bossRoomZone = Zone(task.bossRoomKey)
+			validateTask(task)
+		end
+	end
+	setupTaskZones:register()
+end
+
+function RegisterTasksInQuestsTable()
+	for _, task in pairs(GetAllTasks()) do
 		local killsMission = {
 			name = "TASK_MISSION_NAME",
-			task = taskData[i],
-			storage = storage,
+			task = task,
+			storage = task.storage,
 			minState = 0,
 			description = "TASK_MISSION_DESCRIPTION",
 		}
 		local bossMission = {
 			name = "FIGHT_WITH_TASK_BOSS_MISSION_NAME",
-			task = taskData[i],
-			storage = bossStorage,
+			task = task,
+			storage = task.bossAdmitCounter,
 			minState = 0,
 			description = "FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION",
 		}
 
-		setAuxillaryMaps(i, task)
 		table.insert(TaskQuestlog.missions, killsMission)
 		table.insert(TaskQuestlog.missions, bossMission)
 	end
 end
+
+--[[
+	{
+		name = "Mammoths",
+		requiredKills = 200,
+		creatures = { "mammoth" },
+		exp = 24000, 
+		money = 5000,
+		tibiaCoins = 2,
+		min = 0,
+		max = 45,
+		bossName = "The Bloodtusk",
+		bossPosition = Position(6500, 1840, 9),
+		bossRoomCenter = Position(6500, 1845, 9),
+					},
+	]]

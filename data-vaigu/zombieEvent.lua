@@ -1,5 +1,4 @@
 -- Store player kills
---3af
 do return end
 if zombieKillCount == nil then
 	zombieKillCount = {}

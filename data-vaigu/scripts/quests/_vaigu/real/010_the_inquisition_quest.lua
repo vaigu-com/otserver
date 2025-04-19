@@ -1,10 +1,31 @@
 local quest = Quest(LOCALIZERS.TheInquisitionQuest)
 
 quest
-	:Storage(function() end)
-	:Questlog(function()
+	:Storage(function()
+		Storage.TheInquisition = {
+			Questline = {},
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			Mission04 = {},
+			Mission05 = {},
+			Mission06 = {},
+			Mission07 = {},
+			GrofGuard = {},
+			KulagGuard = {},
+			MilesGuard = {},
+			TimGuard = {},
+			WalterGuard = {},
+			StorkusVampiredust = {},
+			EnterTeleport = {},
+			Reward = {},
+			RewardRoomText = {},
+		}
+	end)
+	:Questlog(function(localizer)
 		table.insert(Quests, {
 			name = "The Inquisition",
+			localizer = localizer,
 			missions = {
 				{
 					name = "Mission 1: Interrogation",

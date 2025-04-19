@@ -16,9 +16,9 @@ function quests.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		if player:getStorageValue(Storage.Quest.ExampleQuest.Example) == -1 then
 			if playerCap >= itemWeight then
 				if item.uid == 1990 then
-					player:addItem(2856, 1):addItem(3213, 1)
+					player:AddCustomItem({ id = 2856 }):addItem(3213, 1)
 				else
-					player:addItem(item.uid, 1)
+					player:AddCustomItem({ id = item.uid })
 				end
 				player:sendTextMessage(MESSAGE_LOOK, "You have found a " .. itemType:getName() .. ".")
 				player:setStorageValue(Storage.Quest.ExampleQuest.Example, 1)
@@ -31,7 +31,7 @@ function quests.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	elseif player:getStorageValue(item.uid) == -1 then
 		if playerCap >= itemWeight then
 			player:sendTextMessage(MESSAGE_LOOK, "You have found a " .. itemType:getName() .. ".")
-			player:addItem(item.uid, 1)
+			player:AddCustomItem({ id = item.uid })
 			player:setStorageValue(item.uid, 1)
 		else
 			player:sendTextMessage(MESSAGE_LOOK, "You have found a " .. itemType:getName() .. " weighing " .. itemWeight .. " oz it's too heavy.")

@@ -10,7 +10,7 @@ function tinderBox.onUse(player, item, fromPosition, target, toPosition, isHotke
 	if item.itemid == config.item and target.itemid == config.target then
 		item:remove(1)
 		target:remove(1)
-		player:addItem(config.reward, 1)
+		player:AddCustomItem({id = config.reward, count = 1})
 	end
 
 	return true

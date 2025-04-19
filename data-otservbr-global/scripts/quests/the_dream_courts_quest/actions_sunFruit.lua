@@ -17,7 +17,7 @@ function actions_sunFruit.onUse(player, item, fromPosition, target, toPosition, 
 
 	local r = math.random(2, 4)
 
-	player:addItem(fruitId, r)
+	player:AddCustomItem({id = fruitId, count = r})
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found some " .. ItemType(fruitId):getName() .. "s.")
 	item:transform(29970)
 	item:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)

@@ -105,7 +105,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif player:getStorageValue(Storage.Quest.U8_1.TibiaTales.ToAppeaseTheMightyQuest) == 3 then
 		npcHandler:say("Well, I don't blame you for that. I am sure you did your best. Now we can just hope that peace remains. Here, take this small gratification for your effort to help and Daraman may bless you!", npc, creature)
 		player:setStorageValue(Storage.Quest.U8_1.TibiaTales.ToAppeaseTheMightyQuest, player:getStorageValue(Storage.Quest.U8_1.TibiaTales.ToAppeaseTheMightyQuest) + 1)
-		player:addItem(3035, 20)
+		player:AddCustomItem({id = 3035, count = 20})
 	end
 
 	return true

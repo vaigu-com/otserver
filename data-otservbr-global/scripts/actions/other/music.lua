@@ -55,7 +55,7 @@ function music.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				player:setStorageValue(ThreatenedDreams.Mission03.PanpipesTimer, os.time() + 20 * 3600)
 				player:setStorageValue(ThreatenedDreams.Mission03[1], 2)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Mysteriously some colourful music notes fall of the panpipes. - Hurry, they will fade away quickly.")
-				player:addItem(25782, 1)
+				player:AddCustomItem({id = 25782, count = 1})
 			end
 		end
 	end

@@ -123,7 +123,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("I can't believe it. Finally I will be rich! I could move to Edron and enjoy my retirement! But ... wait a minute! I will not start working without a contract! Are you willing to sign one?", npc, creature)
 			npcHandler:setTopic(playerId, 3)
 		elseif npcHandler:getTopic(playerId) == 3 then
-			player:addItem(129, 1)
+			player:AddCustomItem({id = 129, count = 1})
 			npcHandler:say("Fine! Here is the contract. Please sign it. Talk to me about it again when you're done.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 4 then

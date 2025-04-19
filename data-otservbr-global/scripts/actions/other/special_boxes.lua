@@ -116,7 +116,7 @@ function specialBox.onUse(player, item, fromPosition, itemEx, toPosition)
 		Item(item.uid):remove(1)
 		if fromPosition.x == CONTAINER_POSITION then
 			player:getPosition():sendMagicEffect(CONST_ME_PRISMATIC_SPARK)
-			player:addItem(gift)
+			player:AddCustomItem({id = gift})
 		else
 			fromPosition:sendMagicEffect(CONST_ME_PRISMATIC_SPARK)
 			fromPosition:getTile():addItem(gift)

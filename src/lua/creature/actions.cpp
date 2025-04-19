@@ -157,7 +157,7 @@ bool Actions::registerLuaPositionEvent(const std::shared_ptr<Action> &action) {
 		}
 	}
 
-		positionVector = std::move(tmpVector);
+	positionVector = std::move(tmpVector);
 	return !positionVector.empty();
 }
 
@@ -187,7 +187,7 @@ bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> &action) {
 	}
 
 	keysVector = std::move(tmpVector);
-	return !keysVector	.empty();
+	return !keysVector.empty();
 }
 
 bool Actions::registerLuaEvent(const std::shared_ptr<Action> &action) {
@@ -453,6 +453,10 @@ ReturnValue Actions::internalUseItem(const std::shared_ptr<Player> &player, cons
 bool Actions::useItem(const std::shared_ptr<Player> &player, const Position &pos, uint8_t index, const std::shared_ptr<Item> &item, bool isHotkey) {
 	const ItemType &it = Item::items[item->getID()];
 	if (it.isRune() || it.type == ITEM_TYPE_POTION) {
+		if (player->isOnMinigame()) {
+			player->sendTextMessage(MESSAGE_FAILURE, "You cannot use runes and potions during minigames.");
+			return false;
+		}
 		if (player->walkExhausted()) {
 			player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
 			return false;

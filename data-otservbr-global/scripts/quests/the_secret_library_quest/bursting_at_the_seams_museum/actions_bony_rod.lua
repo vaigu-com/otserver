@@ -8,7 +8,7 @@ function actions_museum_bony_rod.onUse(player, item, fromPosition, target, toPos
 		if target.itemid == 27847 then
 			item:remove(1)
 			target:remove(1)
-			player:addItem(28708, 1)
+			player:AddCustomItem({id = 28708, count = 1})
 		end
 	elseif item.itemid == 28708 then
 		if target.itemid == basin then

@@ -15,7 +15,7 @@ function tortoiseEggNargor.onUse(player, item, fromPosition, target, toPosition,
 	end
 
 	if player:getStorageValue(Storage.Quest.U7_8.TheShatteredIsles.TortoiseEggNargorTime) < os.time() then
-		player:addItem(setting.name, setting.count, true)
+		player:AddCustomItem({id = setting.name, setting.count, count = true})
 		player:setStorageValue(Storage.Quest.U7_8.TheShatteredIsles.TortoiseEggNargorTime, os.time() + 24 * 3600)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")
 	else

@@ -61,6 +61,11 @@ TalkActionResult_t Spells::playerSaySpell(const std::shared_ptr<Player> &player,
 		return TALKACTION_CONTINUE;
 	}
 
+	if (player->isOnMinigame()){
+		player->sendTextMessage(MESSAGE_FAILURE, "You cannot cast spells during minigames.");
+		return TALKACTION_FAILED;
+	}
+
 	std::string param;
 
 	if (instantSpell->getHasParam()) {

@@ -236,7 +236,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 15 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(3031, count[playerId] * 100) then
-				player:addItem(3035, count[playerId])
+				player:AddCustomItem({id = 3035, count = count[playerId]})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough gold coins.", npc, creature)
@@ -272,7 +272,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 18 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(3035, count[playerId]) then
-				player:addItem(3031, count[playerId] * 100)
+				player:AddCustomItem({id = 3031, count = count[playerId] * 100})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough platinum coins.", npc, creature)
@@ -294,7 +294,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 20 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(3035, count[playerId] * 100) then
-				player:addItem(3043, count[playerId])
+				player:AddCustomItem({id = 3043, count = count[playerId]})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough platinum coins.", npc, creature)
@@ -319,7 +319,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 22 then
 		if MsgContains(message, "yes") then
 			if player:removeItem(3043, count[playerId]) then
-				player:addItem(3035, count[playerId] * 100)
+				player:AddCustomItem({id = 3035, count = count[playerId] * 100})
 				npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry, you do not have enough crystal coins.", npc, creature)

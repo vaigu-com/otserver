@@ -28,7 +28,7 @@ function statuedeeplings.onUse(player, item, fromPosition, target, toPosition, i
 end
 
 for index, value in pairs(config) do
-	statuedeeplings:key(index)
+	statuedeeplings:uid(index)
 end
 
 statuedeeplings:register()

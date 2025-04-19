@@ -1,3 +1,5 @@
+local scrollPointsKey = Scope("wheel-of-destiny", "scroll-points")
+
 local promotionScrolls = {
 	[43946] = { name = "abridged", points = 3, itemName = "abridged promotion scroll" },
 	[43947] = { name = "basic", points = 5, itemName = "basic promotion scroll" },
@@ -5,11 +7,22 @@ local promotionScrolls = {
 	[43949] = { name = "extended", points = 18, itemName = "extended promotion scroll" },
 	[43950] = { name = "advanced", points = 30, itemName = "advanced promotion scroll" },
 }
+for scrollId, scroll in pairs(promotionScrolls) do
+	scroll.key = scrollPointsKey:Get(scrollId)
+end
 
-local scrollPointsKey = Scope("wheel-of-destiny","scroll-points")
-
+local function sumPoints(player)
+	local sum = 0
+	for _, scroll in pairs(promotionScrolls) do
+		local key = scroll.key
+		local pointsPerScroll = scroll.points
+		local unlockedScrolls = math.max(player:getStorageValueByKey(key), 0)
+		local pointsPerScrollId = pointsPerScroll * unlockedScrolls
+		sum = sum + pointsPerScrollId
+	end
+	return sum
+end
 local scroll = Action()
-
 function scroll.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getLevel() < 51 then
 		player:sendTextMessage(MESSAGE_LOOK, "Only a hero of level 51 or above can decipher this scroll.")
@@ -17,22 +30,18 @@ function scroll.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	local scrollData = promotionScrolls[item:getId()]
-	local scrollStorage = scrollPointsKey:Get(item:getId())
+	local scrollStorage = scrollData.key
 
-	local scrollCount = player:getStorageValueByKey(scrollStorage)
-	if not scrollCount or scrollCount < 0 then
-		scrollCount = 0
-	end
-	player:setStorageValueByKey(scrollStorage, scrollCount + 1)
+	local currentScrollCount = math.max(player:getStorageValueByKey(scrollStorage), 0)
+	local nextScrollCount = currentScrollCount + 1
+	player:setStorageValueByKey(scrollStorage, nextScrollCount)
 
 	local addedPoints = scrollData.points
-	player:sendTextMessage(MESSAGE_LOOK, T("You have gained :points: promotion points for the Wheel of Destiny by deciphering the :name:. You now have a total of :total: points.", { points = addedPoints, name = scrollData.itemName, total = scrollCount + 1 }))
+	player:sendTextMessage(MESSAGE_LOOK, T("You have deciphered a total of :decipheredCount: :scrollName:s. You have gained :points: promotion points and now have a total of :sum: points.", { points = addedPoints, decipheredCount = nextScrollCount, scrollName = scrollData.itemName, sum = sumPoints(player) }))
 	item:remove(1)
 	return true
 end
-
 for id in pairs(promotionScrolls) do
 	scroll:id(id)
 end
-
 scroll:register()

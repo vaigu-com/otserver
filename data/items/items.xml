@@ -35358,7 +35358,6 @@
 	<item id="16572" article="a" name="wooden treadmill">
 		<attribute key="primarytype" value="machines (objects)" />
 	</item>
-	<item fromid="16573" toid="16575" article="a" name="wooden ramp" />
 	<item fromid="16576" toid="16577" article="a" name="wooden planks">
 		<attribute key="primarytype" value="tools (objects)" />
 	</item>
@@ -82110,7 +82109,7 @@ Granted by TibiaGoals.com" />
 	<item id="49164" article="a" name="soul prism">
 		<attribute key="description"
 			value="Focalises the soul within a core. Can be used to turn a soul core into a greater version" />
-		<attribute key="weight" value="100" />
+		<attribute key="weight" value="100" />6915
 	</item>
 	<item id="47367" article="a" name="large obelisk">
 		<attribute key="primarytype" value="pillars" />
@@ -82118,9 +82117,17 @@ Granted by TibiaGoals.com" />
 	<item id="47379" article="a" name="large obelisk">
 		<attribute key="primarytype" value="pillars" />
 	</item>
-		<item id="49279" article="a" name="key ring">
+	<!-- Vaigu custom -->
+	<item id="50343" article="a" name="key ring">
 		<attribute key="primarytype" value="containers" />
 		<attribute key="containersize" value="7" />
 		<attribute key="weight" value="0" />
 	</item>
+	<item id="16573" article="a" name="wooden ramp">
+		<attribute key="floorchange" value="north"/>
+	</item>
+	<item id="16574" article="a" name="wooden ramp">
+		<attribute key="floorchange" value="west"/>
+	</item>
+	<item id="16575" article="a" name="wooden ramp" />
 </items>

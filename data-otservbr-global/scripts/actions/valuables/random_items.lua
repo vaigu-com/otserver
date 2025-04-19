@@ -205,7 +205,7 @@ function randomItems.onUse(player, item, fromPosition, target, toPosition, isHot
 		if chance >= randomItem.from and chance <= randomItem.to then
 			if randomItem.itemId then
 				local itemId, count = randomItem.itemId, randomItem.count or 1
-				player:addItem(itemId, count)
+				player:AddCustomItem({id = itemId, count = count})
 				if item.itemid == 12413 then
 					local itemType = ItemType(itemId)
 					player:say("You found " .. (count > 1 and count or (itemType:getArticle() ~= "" and itemType:getArticle() or "")) .. " " .. (count > 1 and itemType:getPluralName() or itemType:getName()) .. " in the bag.", TALKTYPE_MONSTER_SAY)

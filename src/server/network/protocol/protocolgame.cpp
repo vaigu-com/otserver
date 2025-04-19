@@ -273,7 +273,7 @@ std::string FindValueByKey(const std::vector<Game::LuaElement> elements, const s
 const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_ptr<Item> item, std::shared_ptr<Player> player) {
 	std::string defaultLocalizer = "_universal";
 	try {
-		std::string targetLocalizer; 
+		std::string targetLocalizer;
 		if (item != nullptr) {
 			auto attribute = item->getCustomAttribute("localizer");
 			if (attribute) {
@@ -293,13 +293,13 @@ const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_
 			usedLocalizer(), str
 		};
 
-		std::string translated = FindValueByKey(g_game().translationMap, keys);	
-		if (!translated.empty()){
+		std::string translated = FindValueByKey(g_game().translationMap, keys);
+		if (!translated.empty()) {
 			return translated;
 		}
 		return str;
 	} catch (...) {
-		return str; 
+		return str;
 	}
 }
 
@@ -322,12 +322,12 @@ const std::string ProtocolGame::TryTranslate(const std::string str, const std::s
 		};
 
 		std::string translated = FindValueByKey(g_game().translationMap, keys);
-		if (!translated.empty()){
+		if (!translated.empty()) {
 			return translated;
 		}
 		return str;
 	} catch (...) {
-		return str; 
+		return str;
 	}
 }
 
@@ -5509,6 +5509,8 @@ void ProtocolGame::sendForgingData() {
 	writeToOutputBuffer(msg);
 }
 
+// Vaigu custom
+// Item of tier N requires another tier 0 item for fusion, not another tier N
 void ProtocolGame::sendOpenForge() {
 	// We will use it when sending the bytes to send the item information to the client
 	std::map<uint16_t, std::map<uint8_t, uint16_t>> fusionItemsMap;
@@ -5559,12 +5561,19 @@ void ProtocolGame::sendOpenForge() {
 	}
 
 	// Checking size of map to send in the addByte (total fusion items count)
+	// Modified: Require tiered item + tier 0 item for fusion
 	uint8_t fusionTotalItemsCount = 0;
 	for (const auto &[itemId, tierAndCountMap] : fusionItemsMap) {
+		auto itTier0 = tierAndCountMap.find(0);
+		if (itTier0 == tierAndCountMap.end() || itTier0->second == 0) {
+			continue; // No tier 0 item for this itemId
+		}
 		for (const auto &[itemTier, itemCount] : tierAndCountMap) {
-			if (itemCount >= 2) {
-				fusionTotalItemsCount++;
+			if (itemCount == 0) {
+				continue;
 			}
+			// Found at least one item of another tier N0+ and tier 0 => valid fusion
+			fusionTotalItemsCount++;
 		}
 	}
 
@@ -5578,13 +5587,22 @@ void ProtocolGame::sendOpenForge() {
 
 	msg.add<uint16_t>(fusionTotalItemsCount);
 	for (const auto &[itemId, tierAndCountMap] : fusionItemsMap) {
+		auto itTier0 = tierAndCountMap.find(0);
+		if (itTier0 == tierAndCountMap.end() || itTier0->second == 0) {
+			continue; // Skip if no tier 0 item
+		}
 		for (const auto &[itemTier, itemCount] : tierAndCountMap) {
-			if (itemCount >= 2) {
-				msg.addByte(0x01); // Number of friend items?
-				msg.add<uint16_t>(itemId);
-				msg.addByte(itemTier);
-				msg.add<uint16_t>(itemCount);
+			if (itemCount == 0) {
+				continue;
 			}
+			msg.addByte(0x01);
+			msg.add<uint16_t>(itemId);
+			msg.addByte(itemTier);
+			auto displayedCount = itTier0->second;
+			if (itemTier != 0) {
+				displayedCount = displayedCount + 1;
+			}
+			msg.add<uint16_t>(displayedCount);
 		}
 	}
 
@@ -7822,7 +7840,7 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 		if (!oldProtocol && creature->isHealthHidden()) {
 			msg.addString(""); // ProtocolGame::AddCreature - empty
 		} else {
-			const std::string creatureName = TryTranslate(creature->getName(), "npc_names", player);
+			const std::string creatureName = TryTranslate(creature->getName(), "npc_name", player);
 			msg.addString(creatureName); // ProtocolGame::AddCreature - creature->getName()
 		}
 	}

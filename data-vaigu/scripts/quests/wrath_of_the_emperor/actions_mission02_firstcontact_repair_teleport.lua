@@ -21,7 +21,7 @@ function wrathEmperorMiss2FirstContact.onUse(player, item, fromPosition, target,
 		player:say("You carefully mix the clay with the sacred earth.", TALKTYPE_MONSTER_SAY)
 		item:remove()
 		target:remove()
-		player:addItem(11344, 1)
+		player:AddCustomItem({id = 11344, count = 1})
 		-- sacred clay
 	elseif item.itemid == 11344 and target.itemid == 11331 then
 		player:say("You carefully coat the inside of the wooden bowl with the sacred clay.", TALKTYPE_MONSTER_SAY)

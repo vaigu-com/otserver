@@ -69,7 +69,7 @@ local function greetCallback(npc, creature)
 	end
 
 	player:setStorageValue(Storage.Dragonfetish, 1)
-	player:addItem(3206, 1)
+	player:AddCustomItem({id = 3206, count = 1})
 	npcHandler:say("AHHH MUSHRRROOOMSSS! NOW MY PAIN WILL BE EASSSED FOR A WHILE! TAKE THISS AND LEAVE THE DRAGONSSS' CEMETERY AT ONCE!", npc, creature)
 	return false
 end

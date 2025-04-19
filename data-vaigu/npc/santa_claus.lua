@@ -1,4 +1,3 @@
---3af
 local name = "Santa Claus"
 local outfit = {
 	lookType = 160,

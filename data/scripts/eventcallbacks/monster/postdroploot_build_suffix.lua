@@ -89,7 +89,6 @@ function ContainerCorpseParseDesc(monster, corpse, shouldColor)
 	local layersDesc = ParseLayersDesc(monster, shouldColor)
 
 	local message = T("Loot of :monsterDesc:::layersDesc:.", { monsterDesc = monsterDesc, layersDesc = layersDesc })
-	print("message", message)
 	return message
 end
 

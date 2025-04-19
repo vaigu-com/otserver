@@ -111,7 +111,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Thank you very much! Our smiths are now able to craft heat-resistent weapons and armor. A little reward for you is this. ...",
 				"There is one last thing I would like to say to you, there are rumours that this dungeon can only be entered alive. This could mean that there's an unknown dungeon keeper guarding this place, so take care of you!",
 			}, npc, creature)
-			player:addItem(3040, 2)
+			player:AddCustomItem({id = 3040, count = 2})
 			player:setStorageValue(HiddenThreats.QuestLine, 5)
 			player:setStorageValue(HiddenThreats.CorymRescueMission, 9)
 		else

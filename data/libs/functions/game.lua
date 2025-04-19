@@ -36,13 +36,17 @@ function Game.broadcastMessage(message, messageType, translate, context)
 	if not messageType then
 		messageType = MESSAGE_GAME_HIGHLIGHT
 	end
+	local langToMessage = {}
+	for _, language in pairs(LANGUAGES) do
+		if translate then
+			langToMessage[language] = Evaluate(TranslatedFromAnyQuest(message, language), context)
+		else
+			langToMessage[language] = message
+		end
+	end
 
 	for _, player in ipairs(Game.getPlayers()) do
-		local translatedMessage = message
-		if translate then
-			translatedMessage = player:Localizer(nil):Context(context):Get(message)
-		end
-		player:sendTextMessage(messageType, translatedMessage)
+		player:sendTextMessage(messageType, langToMessage[player:getLanguage()])
 	end
 end
 

@@ -1,6 +1,36 @@
 -- Advanced NPC System by Jiddo
-IGNORE_GREET = "IGNORE_GREET"
 DEFAULT_TOPIC = 0
+
+GreetCallbackContext = {}
+GreetCallbackContext.__index = GreetCallbackContext
+function GreetCallbackContext.New()
+	local newObj = {}
+	newObj.interactOnGreet = true
+	newObj.messageOnGreet = true
+	setmetatable(newObj, GreetCallbackContext)
+	return newObj
+end
+setmetatable(GreetCallbackContext, {
+	__call =function (_, ...)
+		return GreetCallbackContext.New(...)
+	end
+})
+
+function GreetCallbackContext:InteractOnGreet(nextState)
+	self.interactOnGreet = nextState
+	return self
+end
+function GreetCallbackContext:MessageOnGreet(nextState)
+	self.messageOnGreet = nextState
+	return self
+end
+
+function GreetCallbackContext:ShouldMessageOnGreet()
+	return self.messageOnGreet
+end
+function GreetCallbackContext:ShouldInteractOnGreet()
+	return self.interactOnGreet
+end
 
 if NpcHandler == nil then
 	-- Constant talkdelay behaviors.
@@ -397,18 +427,25 @@ if NpcHandler == nil then
 	end
 
 	-- Greets the player, thus initiating the direct interaction between the npc and the player
+	-- Vaigu custom
 	function NpcHandler:greet(npc, player, message)
 		if self:checkInteraction(npc, player) then
 			return
 		end
 
 		local callback = self:getCallback(CALLBACK_GREET)
-		local result = nil
+		local greetContext = nil
 		if callback ~= nil then
-			result = callback(npc, player, message)
+			greetContext = callback(npc, player, message)
+		end
+		
+		-- Vaigu custom
+		-- Old system compatibility
+		if greetContext == nil then
+			greetContext = GreetCallbackContext()
 		end
 
-		if result ~= false and result ~= IGNORE_GREET then
+		if greetContext:ShouldMessageOnGreet() then
 			if self:processModuleCallback(CALLBACK_GREET, npc, player) then
 				local msg = self:getMessage(MESSAGE_GREET)
 				local playerName = player:getName() or -1
@@ -418,7 +455,7 @@ if NpcHandler == nil then
 			end
 		end
 
-		if result ~= IGNORE_GREET then
+		if greetContext:ShouldInteractOnGreet() then
 			self:setInteraction(npc, player)
 		end
 	end

@@ -75,7 +75,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 
-			player:addItem(3503, 1)
+			player:AddCustomItem({id = 3503, count = 1})
 			npcHandler:say("Fine.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 2 then
@@ -85,7 +85,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 
-			player:addItem(3507, 1)
+			player:AddCustomItem({id = 3507, count = 1})
 			npcHandler:say("Fine.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		end

@@ -64,7 +64,7 @@ local function greetCallback(npc, creature)
 					See what you can find while hunting. Or buy food in a city shop. \z
 					Here, have some of my rations, I'll take my dagger. Tell me when you're {ready}.",
 		}, npc, creature, 10)
-		player:addItem(3577, 1)
+		player:AddCustomItem({id = 3577, count = 1})
 		player:setStorageValue(Storage.Dawnport.Tutorial, 1)
 	end
 	return true

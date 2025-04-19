@@ -65,7 +65,7 @@ stakeKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler
 	return player:getMoney() + player:getBankBalance() >= 5000
 end, function(player)
 	player:removeMoneyBank(5000)
-	player:addItem(5941, 1)
+	player:AddCustomItem({id = 5941, count = 1})
 end)
 
 stakeKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "You can't even pay for that.", reset = true })

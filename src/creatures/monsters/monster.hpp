@@ -53,7 +53,8 @@ public:
 		{4, "Epic "}, 
 		{5, "Legendary "},
 		{15, "Fiendish "}
-    };
+	};
+	bool hasIgnoreCreatures();
 
 	// Real monster name, set on monster creation "createMonsterType(typeName)"
 	const std::string &getTypeName() const override;
@@ -199,6 +200,8 @@ public:
 
 	static uint32_t monsterAutoID;
 
+	void updateFullName();
+
 	void configureForgeSystem();
 
 	bool canBeForgeMonster() const;
@@ -236,6 +239,11 @@ public:
 	bool isDead() const override;
 
 	void setDead(bool isDead);
+
+	// Vaigu custom
+	uint32_t encounterDifficulty = 0;
+	uint32_t getEncounterDifficulty();
+	void setEncounterDifficulty(uint32_t newDifficuly);
 
 protected:
 	void onExecuteAsyncTasks() override;

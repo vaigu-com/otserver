@@ -163,8 +163,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Eighth.Yonan) == 1 then
 		if player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Eighth.Yonan) == 1 then
-			player:addItem(31717, 1) -- Yonans List
-			player:addItem(31613, 1) -- Pick Enchanted
+			player:AddCustomItem({id = 31717, count = 1}) -- Yonans List
+			player:AddCustomItem({id = 31613, count = 1}) -- Pick Enchanted
 			npcHandler:say({ "Here is the list with the missing ingredients to complete the ritual." }, npc, creature) -- It needs to be revised, it's not the same as the global
 			player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Eighth.Yonan, 2)
 			npcHandler:setTopic(playerId, 2)
@@ -198,7 +198,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:setTopic(playerId, 5)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 5 then
 		if player:getItemById(31572, 1) and player:getItemById(31573, 1) and player:getItemById(31574, 1) and player:getItemById(31575, 1) then
-			if player:addItem(31576, 1) then -- regalia of suon
+			if player:AddCustomItem({id = 31576, count = 1}) then -- regalia of suon
 				player:removeItem(31572, 1) -- blue and golden cordon
 				player:removeItem(31573, 1) -- sun medal
 				player:removeItem(31574, 1) -- sunray emblem

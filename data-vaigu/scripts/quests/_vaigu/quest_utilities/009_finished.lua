@@ -42,7 +42,7 @@ quest
 			TheDreamCourts = {},
 			FerumbrasAscendant = {},
 			TopChef = {},
-			SciezkaDruida = {},
+			WayOfTheDruid = {},
 			--#endregion
 
 			--#region 2022
@@ -69,4 +69,5 @@ quest
 			--#endregion
 		}
 	end)
+	:NoQuestlog()
 	:Register()

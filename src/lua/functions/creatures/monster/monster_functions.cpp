@@ -78,13 +78,11 @@ void MonsterFunctions::init(lua_State* L) {
 	MonsterSpellFunctions::init(L);
 	MonsterTypeFunctions::init(L);
 
-		
-		// Vaigu custom
-		Lua::registerMethod(L, "Monster", "getLoot", MonsterFunctions::luaMonsterGetLoot);
-		Lua::registerMethod(L, "Monster", "addLoot", MonsterFunctions::luaMonsterAddLoot);
-
-	Lua::	registerMethod(L, "Monster", "isBoosted", MonsterFunctions::luaMonsterIsBoosted);
-
+	// Vaigu custom
+	Lua::registerMethod(L, "Monster", "getLoot", MonsterFunctions::luaMonsterGetLoot);
+	Lua::registerMethod(L, "Monster", "addLoot", MonsterFunctions::luaMonsterAddLoot);
+	Lua::registerMethod(L, "Monster", "isBoosted", MonsterFunctions::luaMonsterIsBoosted);
+	Lua::registerMethod(L, "Monster", "setEncounterDifficulty", MonsterFunctions::luaMonsterSetEncounterDifficulty);
 }
 
 void MonsterFunctions::createMonsterLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList) {
@@ -846,5 +844,17 @@ int MonsterFunctions::luaMonsterImmune(lua_State* L) {
 	}
 
 	Lua::pushBoolean(L, monster->isImmune());
+	return 1;
+}
+
+int MonsterFunctions::luaMonsterSetEncounterDifficulty(lua_State* L) {
+	// monster:setEncounterDifficulty(newDifficulty)
+	const auto &monster = Lua::getUserdataShared<Monster>(L, 1);
+	if (monster) {
+		const auto newDifficulty = Lua::getNumber<int32_t>(L, 2, 0);
+		monster->setEncounterDifficulty(newDifficulty);
+	} else {
+		lua_pushnil(L);
+	}
 	return 1;
 }

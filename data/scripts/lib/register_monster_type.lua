@@ -8,10 +8,10 @@ end
 local rme_dir = "../rme/"
 local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
 
-function MonsterTypeRepository:SaveToXML()
+function MonsterTypeRepository:Serialize()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
 	for name, data in
-		pairssortedkey(self.registry, function(a, b)
+		sortedkeypairs(self.registry, function(a, b)
 			return a:lower() < b:lower()
 		end)
 	do
@@ -30,11 +30,12 @@ function MonsterTypeRepository:SaveToXML()
 	xml = xml .. "</monsters>\n"
 	local file = io.open(monstersXmlPath, "w+")
 	if not file then
-		logger.error(T("[MonsterTypeRepository::SaveToXML] Cannt open file :path:. Monsters have NOT been saved.", { path = monstersXmlPath }))
+		logger.error(T("[MonsterTypeRepository::Serialize] Cannot open file :path:. Monsters have NOT been serialized.", { path = monstersXmlPath }))
 		return
 	end
 	file:write(xml)
 	file:close()
+	logger.info("[MonsterTypeRepository::Serialize] Serialization succesful.")
 end
 
 registerMonsterType = {}
@@ -46,8 +47,69 @@ setmetatable(registerMonsterType, {
 	end,
 })
 
+local bestiarykillcountRealToVaigu = {
+	[5000] = {
+		toKill = 2000,
+		FirstUnlock = 500,
+		SecondUnlock = 1000,
+		CharmsPoints = 100,
+	},
+	[2500] = {
+		toKill = 1000,
+		FirstUnlock = 50,
+		SecondUnlock = 500,
+		CharmsPoints = 50,
+	},
+	[1000] = {
+		toKill = 200,
+		FirstUnlock = 25,
+		SecondUnlock = 50,
+		CharmsPoints = 25,
+	},
+	[500] = {
+		toKill = 50,
+		FirstUnlock = 10,
+		SecondUnlock = 25,
+		CharmsPoints = 15,
+	},
+	[250] = {
+		toKill = 25,
+		FirstUnlock = 5,
+		SecondUnlock = 10,
+		CharmsPoints = 5,
+	},
+	[25]  = {
+		toKill = 10,
+		FirstUnlock = 3,
+		SecondUnlock = 5,
+		CharmsPoints = 1,
+	},
+	--Unchanged
+	[5] = {
+		toKill = 5,
+		FirstUnlock = 2,
+		SecondUnlock = 3,
+		CharmsPoints = 50,
+	},
+}
+
+local function applyCustomBestiaryKillCounts(mask)
+	if mask.Bestiary and mask.Bestiary.toKill then
+		local newData = bestiarykillcountRealToVaigu[mask.Bestiary.toKill]
+		if not newData then
+			logger.warn(T("[applyCustomBestiaryKillCounts] Unknown real 'toKill' :toKill:. No modifications were applied.", {toKill = mask.Bestiary.toKill}))
+			return mask
+		end
+		mask.Bestiary.toKill = newData.toKill
+		mask.Bestiary.FirstUnlock = newData.FirstUnlock
+		mask.Bestiary.SecondUnlock = newData.SecondUnlock
+		mask.Bestiary.CharmsPoints = newData.CharmsPoints
+	end
+	return mask
+end
 
 MonsterType.register = function(self, mask)
+	mask = applyCustomBestiaryKillCounts(mask)
 	registerMonsterType(self, mask)
 	MonsterTypeRepository:Add(self:getUniqueName(), mask)
 end
@@ -272,6 +334,9 @@ registerMonsterType.flags = function(mtype, mask)
 		end
 		if mask.flags.isForgeCreature ~= nil then
 			mtype:isForgeCreature(mask.flags.isForgeCreature)
+		end
+		if mask.flags.ignoreCreatures ~= nil then
+			mtype:ignoreCreatures(mask.flags.ignoreCreatures)
 		end
 	end
 end

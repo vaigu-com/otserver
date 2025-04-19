@@ -252,41 +252,61 @@ function Player:onLookInBattleList(creature, distance)
 end
 
 local storeInboxName = "your store inbox"
-local function itemIsInStoreInbox(item)
+local function isInStoreinbox(item)
 	local maybeStoreInbox = item:getParent()
+	if not maybeStoreInbox or not maybeStoreInbox.getName then
+		return false
+	end
 	return maybeStoreInbox:getName() == storeInboxName
 end
 
 local immovableAid = {
 	[IMMOVABLE_ACTION_ID] = true,
-	[POSITIONCHEST_ACTION_ID] = true,
 }
 
-local function isImmovable(item)
+ImmovableKeys = {}
+ImmovableKeys.__index = ImmovableKeys
+ImmovableKeys.registry = {}
+function ImmovableKeys:Add(key)
+	self.registry[key] = true
+end
+function ImmovableKeys:Has(key)
+	return self.registry[key] ~= nil
+end
+do
+	ImmovableKeys:Add(IMMOVABLE_KEY)
+end
+
+local function isImmovable(item, fromPosition, toPosition)
 	if immovableAid[item:getActionId()] then
 		return true
 	end
-		
-	local key = item:getKey()
-	if key and key ~= "" then
+
+	if ImmovableKeys:Has(item:getKey()) then
 		return true
 	end
-
 	return false
 end
 
 local exhaust = {}
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
-	if isImmovable(item) then
-		if toPosition.x ~= CONTAINER_POSITION then
-			local thing = Tile(toPosition):getItemByType(ITEM_TYPE_TRASHHOLDER)
-			if not thing then
-				self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-				return false
-			end
-			item:remove()
-		else
-			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+	if isImmovable(item, fromPosition, toPosition) then
+		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+		return false
+	end
+
+	if isInStoreinbox(item) then
+		--Dont allow moving items from storeinbox inner containers to storeinbox main container
+		if toPosition.y ~= fromPosition.y then
+			return false
+		end
+		--Dont allow moving items from storeinbox main container to inner storeinbox containers
+		if toPosition.z ~= 255 then
+			return false
+		end
+	else
+		local key = item:getKey()
+		if key and key ~= "" then
 			return false
 		end
 	end
@@ -560,8 +580,8 @@ function Player:onTurn(direction)
 end
 
 local function isQuestItem(item)
-	local aid = item:getActionId()
-	if aid and aid > 0 and itemIsInStoreInbox(item) then
+	local aid = item:getKey()
+	if aid and aid ~= "" and isInStoreinbox(item) then
 		return true
 	end
 	return false

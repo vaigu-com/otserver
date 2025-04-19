@@ -1,4 +1,3 @@
-local json = dofile(DATA_DIRECTORY .. "/json.lua")
 --[[
 Reserved player action storage key ranges (const.h)
 	It is possible to place the storage in a quest door, so the player who has that storage will go through the door
@@ -94,7 +93,6 @@ Storage.Factions = {}
 -- unused TrainerRoom = {},
 -- unused NpcSpawn = {},
 Storage.ExerciseDummyExhaust = {}
-Storage.BecomeTownCitizen = {}
 
 Storage.TibiaDrome = {
 	-- General Upgrades
@@ -133,8 +131,9 @@ Storage.Exercisedummy = { exaust = {} }
 Storage.VampireHunter = {
 	Rank = {},
 }
-Storage.BigfootBurden = { -- Reserved 900 - 967
+Storage.BigfootsBurden = { -- Reserved 900 - 967
 	QuestLine = {},
+	QuestLineComplete = {},
 	Test = {},
 	Shooting = {},
 
@@ -190,6 +189,14 @@ Storage.BigfootBurden = { -- Reserved 900 - 967
 	Warzone1Reward = {},
 	Warzone2Reward = {},
 	Warzone3Reward = {},
+
+	Warzone1Cooldown = {},
+	Warzone2Cooldown = {},
+	Warzone3Cooldown = {},
+
+	Warzone1BossRoom = {},
+	Warzone2BossRoom = {},
+	Warzone3BossRoom = {},
 
 	DeathstrikeTimer = {},
 	GnomevilTimer = {},
@@ -285,25 +292,6 @@ Storage.TheApeCity = { -- Reserved 12120 - 12152
 	SnakeDestroyer = {},
 	ShamanOutfit = {},
 }
-Storage.TheInquisition = { -- Reserved 12160 - 12178
-	Questline = {}, -- Storage through the Quest
-	Mission01 = {},
-	Mission02 = {},
-	Mission03 = {},
-	Mission04 = {},
-	Mission05 = {},
-	Mission06 = {},
-	Mission07 = {},
-	GrofGuard = {},
-	KulagGuard = {},
-	MilesGuard = {},
-	TimGuard = {},
-	WalterGuard = {},
-	StorkusVampiredust = {},
-	EnterTeleport = {},
-	Reward = {},
-	RewardRoomText = {},
-}
 Storage.TheDreamCourts = { -- 12200-12300
 	QuestLine = {},
 	WardStones = {
@@ -393,6 +381,14 @@ Storage.Ferumbras = { -- Reserved 60011 - 60028
 	Reward = {},
 	ShattererEntry = {},
 	EssencesBringed = {},
+	PlagirathTp = {},
+	ZamuloshTp = {},
+	MazoranTp = {},
+	RazzagornTp = {},
+	RagiazTp = {},
+	TarbazTp = {},
+	ShulgraxTp = {},
+	FerumbrasMortalTp = {},
 }
 Storage.SvargrondArena = { -- Reserved 1100 - 1101, 50140 - 50142, 26300, 27300, 28300, 1103, 1105, 1107, 26100, 27100, 28100
 	Arena = {},
@@ -3385,7 +3381,6 @@ Storage.KeysUpdate = {} -- Reserved storage from 40000 - 40000
 
 Storage.PoiLeverCount = {}
 Storage.LastStartupTimestamp = {}
-Storage.FlamingOrchid = {}
 Storage.MawhawkState = {}
 Storage.Football = {
 	LeftScore = {},
@@ -3446,9 +3441,6 @@ Storage.hellgorakTimer = {}
 
 Storage.PitsOfInfernoLevers = {}
 Storage.DailyQuest = { LLvl = {}, MLvl = {}, HLvl = {} }
-Storage.DeathstrikeSpawned = {}
-Storage.GnomevilSpawned = {}
-Storage.AbyssadorSpawned = {}
 Storage.Warzones = {}
 Storage.Weeper = {}
 Storage.Versperoth = { Battle = {}, Health = {} }
@@ -3481,16 +3473,6 @@ Storage.ElementalSphere = {
 
 Storage.ExpBoost = {}
 Storage.OberonLock = {}
-Storage.Ferumbras = {
-	PlagirathTp = {},
-	ZamuloshTp = {},
-	MazoranTp = {},
-	RazzagornTp = {},
-	RagiazTp = {},
-	TarbazTp = {},
-	ShulgraxTp = {},
-	FerumbrasMortalTp = {},
-}
 Storage.Warzone1Global = {}
 Storage.GameStore = {
 	ExpBoostCount = {},

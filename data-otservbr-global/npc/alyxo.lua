@@ -179,7 +179,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 15 then
 		if player:getItemById(31445, 1) then
 			player:removeItem(31445, 1)
-			player:addItem(31446, 1)
+			player:AddCustomItem({id = 31446, count = 1})
 			npcHandler:say({ "Here's your Small Petrified Tortoise." }, npc, creature) -- needs review, this is not the speech of the global
 			npcHandler:setTopic(playerId, 16)
 		else
@@ -195,7 +195,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 13 and player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Thirteen.Fafnar) == 301 then
 		if player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Thirteen.Fafnar) == 301 then
 			player:addAchievement("Sculptor Apprentice", 'Congratulations! You earned the achievement "Sculptor Apprentice".')
-			player:addItem(31574, 1)
+			player:AddCustomItem({id = 31574, count = 1})
 			npcHandler:say({ "Congratulations, you have completed the 3 jobs I gave you." }, npc, creature) -- needs review, this is not the speech of the global
 			player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Fourteen.Remains, 1)
 			npcHandler:setTopic(playerId, 14)

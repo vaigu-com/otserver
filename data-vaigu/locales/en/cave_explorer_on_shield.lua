@@ -40,7 +40,7 @@ return {
 	["(Torn page fragment) This damned place is overflowing with traps. Some devilish forces wish my life to meet a demise! Today I nearly slipped into a pit of fire. But there are also a lot of hints placed all over in the strangest of places. Looks like those are addressed to other adventurers like me and Anthony. Some of them don't seem to be created by humans. Don't trust them."] = "(Torn page fragment) This damned place is overflowing with traps. Some devilish forces wish my life to meet a demise! Today I nearly slipped into a pit of fire. But there are also a lot of hints placed all over in the strangest of places. Looks like those are addressed to other adventurers like me and Anthony. Some of them don't seem to be created by humans. Don't trust them.",
 	["Desert ruins dead adventurer's firebug"] = "Desert ruins dead adventurer's firebug",
 	["A punchcard for opening mechanical doors"] = "A punchcard for opening mechanical doors",
-	["GERMI_NOTES"] = "find germi journal pages\nonly trust those mentioned in the pages\n",
+	["GERMI_NOTES"] = "find germi journal pages\nonly trust those mentioned in my pages\n",
 	["Did you read it? What was written there?"] = "Did you read it? What was written there?",
 	-- Cave Explorer
 	["Cave Explorer on Shield"] = "Cave Explorer on Shield",
@@ -54,5 +54,4 @@ return {
 	["Mission completed."] = "Mission completed.",
 	["Notes from the Conversation"] = "Notes from the Conversation",
 	["cyk dwojeczka"] = "cyk dwojeczka",
-	
 }

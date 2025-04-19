@@ -114,7 +114,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}
 			if player:getItemCount(trade[npcHandler:getTopic(playerId)].NeedItem) >= trade[npcHandler:getTopic(playerId)].Ncount then
 				player:removeItem(trade[npcHandler:getTopic(playerId)].NeedItem, trade[npcHandler:getTopic(playerId)].Ncount)
-				player:addItem(trade[npcHandler:getTopic(playerId)].GiveItem, trade[npcHandler:getTopic(playerId)].Gcount)
+				player:AddCustomItem({id = trade[npcHandler:getTopic(playerId)].GiveItem, count = trade[npcHandler:getTopic(playerId)].Gcount})
 				return npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry but you don't have the item.", npc, creature)

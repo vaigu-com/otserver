@@ -68,7 +68,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"A frozen dragon lord? This is just the information we needed! And you even brought a scale from it! Take these 5000 gold pieces as a reward. ...",
 					"As you did such a great job, I might have another mission for you later.",
 				}, npc, creature)
-				player:addItem(3035, 50)
+				player:AddCustomItem({id = 3035, count = 50})
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheIslandofDragons, 59)
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 59)
 			else
@@ -84,7 +84,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheIceMusic, 60)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 60)
-			player:addItem(7242, 1)
+			player:AddCustomItem({id = 7242, count = 1})
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheIceMusic) == 61 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 61 and player:removeItem(7315, 1) then
 			npcHandler:say({
 				"Ah! You did it! I can't wait to hear the sound... but I will do that in a silent moment. ...",

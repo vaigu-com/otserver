@@ -131,7 +131,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 	if item.itemid == 5908 then
 		if target:getId() == CONST_FIREWORK_ITEMID_DISASSEMBLE then
 			stopEvent(target:getCustomAttribute("event"))
-			player:addItem(target:getCustomAttribute("id"), 1)
+			player:AddCustomItem({id = target:getCustomAttribute("id"), count = 1})
 			target:remove()
 			return true
 		elseif target.itemid == 33778 then -- raw watermelon tourmaline
@@ -139,9 +139,9 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 			target:getPosition():sendMagicEffect(CONST_ME_HITAREA)
 			target:remove(1)
 			if chance <= 8640 then
-				player:addItem(33779, 1)
+				player:AddCustomItem({id = 33779, count = 1})
 			else
-				player:addItem(33780, 1)
+				player:AddCustomItem({id = 33780, count = 1})
 			end
 			return true
 			-- Wrath of the emperor quest
@@ -160,18 +160,18 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 			return true
 		elseif target.itemid == 8181 and player:getStorageValue(789100) <= 1 then
 			player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
-			player:addItem(954, 1)
+			player:AddCustomItem({id = 954, count = 1})
 			player:setStorageValue(789100, 1)
 			return true
 		elseif target.itemid == 8182 and player:getStorageValue(789100) <= 1 then
 			player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
-			player:addItem(954, 1)
+			player:AddCustomItem({id = 954, count = 1})
 			player:setStorageValue(789100, 2)
 			return true
 		-- Rottin Wood and the Married Men Quest
 		elseif target.itemid == 4301 then
 			player:say("You successfully gathered a rabbit's food in excellent condition.", TALKTYPE_MONSTER_SAY)
-			player:addItem(12172, 1)
+			player:AddCustomItem({id = 12172, count = 1})
 			return true
 		end
 	end
@@ -187,8 +187,8 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 		player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
 		player:addAchievement("Mutated Presents")
 		local reward = math.random(1, #skin)
-		player:addItem(skin[reward].newItem, skin[reward].amount or 1)
-		effect = CONST_ME_HITAREA
+		player:AddCustomItem({id = skin[reward].newItem, count = skin[reward].amount or 1})
+		--effect = CONST_ME_HITAREA
 		return true
 	end
 
@@ -214,7 +214,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 			if random <= _skin.value then
 				if target.itemid == 10426 then
 					target:getPosition():sendMagicEffect(CONST_ME_HITAREA)
-					local gobletItem = player:addItem(_skin.newItem, _skin.amount or 1)
+					local gobletItem = player:AddCustomItem({id = _skin.newItem, count = _skin.amount or 1})
 					if gobletItem then
 						gobletItem:setDescription(_skin.desc:gsub("|PLAYERNAME|", player:getName()))
 					end
@@ -257,7 +257,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 			if fromPosition.x == CONTAINER_POSITION and container:getEmptySlots() ~= 0 then
 				container:addItem(skin.newItem, skin.amount or 1)
 			else
-				player:addItem(skin.newItem, skin.amount or 1)
+				player:AddCustomItem({id = skin.newItem, count = skin.amount or 1})
 			end
 		end
 	else

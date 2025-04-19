@@ -6,7 +6,7 @@ function gravediggerBones.onUse(player, item, fromPosition, target, toPosition, 
 
 	if player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission17) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission19) < 1 then
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission19, 1)
-		player:addItem(19089, 1)
+		player:AddCustomItem({id = 19089, count = 1})
 		item:remove()
 	end
 	return true

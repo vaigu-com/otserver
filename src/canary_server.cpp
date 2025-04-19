@@ -378,7 +378,7 @@ void CanaryServer::loadModules() {
 	modulesLoadHelper(g_scripts().loadScripts(datapackFolder + "/monster", false, false), datapackFolder + "/monster");
 	modulesLoadHelper((g_npcs().load(false, true)), "npc");
 
-	g_game().loadBoostedCreature();
+	g_game().initializeBoostedCreatures();
 	g_ioBosstiary().loadBoostedBoss();
 	g_ioprey().initializeTaskHuntOptions();
 	g_game().logCyclopediaStats();

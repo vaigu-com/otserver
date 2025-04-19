@@ -27,7 +27,7 @@ function christmasBundle.onUse(player, item, fromPosition, target, toPosition, i
 	end
 
 	for _, reward in ipairs(rewards) do
-		player:addItem(unpack(reward))
+		player:AddCustomItem({id = unpack(reward)})
 	end
 
 	player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)

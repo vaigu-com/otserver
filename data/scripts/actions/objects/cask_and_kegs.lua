@@ -41,7 +41,7 @@ function flasks.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		local potMath = item:getCount() - itemCount
 		local parent = item:getParent()
 		if not (parent:isContainer() and parent:addItem(item:getId(), potMath)) then
-			player:addItem(item:getId(), potMath, true)
+			player:AddCustomItem({id = item:getId(), count = potMath})
 		end
 
 		item:transform(targetId.transform, itemCount)

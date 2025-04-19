@@ -85,7 +85,7 @@ function lionsRockTranslationScroll.onStepIn(creature, item, position, fromPosit
 			amphora:transform(amphoraBrokenID)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "As you pass incautiously, the ancient amphora crumbles to shards and dust. Amidst the debris you discover an old scroll.")
 			player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, 5)
-			player:addItem(21467, 1)
+			player:AddCustomItem({id = 21467, count = 1})
 			amphoraPos:sendMagicEffect(CONST_ME_GROUNDSHAKER)
 			addEvent(reset, 15 * 1000)
 		end

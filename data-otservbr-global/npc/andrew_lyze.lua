@@ -170,7 +170,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Alright, I put the glasses into the right pattern and can repair the compass. ...",
 					"There we are! The next step is the charging of the compass. For this you have to dig three different crystals down there: 5 blue, 3 green and one violet crystal. Are you ready to do that?",
 				}, npc, creature)
-				player:addItem(chargeableCompass, 1)
+				player:AddCustomItem({id = chargeableCompass, count = 1})
 				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.Questline, 2)
 				npcHandler:setTopic(playerId, 12)
 			else
@@ -182,14 +182,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Nice! To do so, take this golden axe and mine the prominent crystals in the cave. Besides, I need a poison gland of quite rare spiders, they are called lucifuga araneae. ...",
 				"These are quite shy, but I have a {bait} for you to lure them. But take care not to face too many of them at once. And hurry, the effect won't last forever!",
 			}, npc, creature)
-			player:addItem(goldenAxe, 1)
+			player:AddCustomItem({id = goldenAxe, count = 1})
 			player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.GotAxe, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 51 then
 			if (player:getMoney() + player:getBankBalance()) >= CompassValue then
 				npcHandler:say("Here's your broken compass!", npc, creature)
 				player:removeMoneyBank(CompassValue)
-				player:addItem(brokenCompass, 1)
+				player:AddCustomItem({id = brokenCompass, count = 1})
 				npcHandler:setTopic(playerId, 10)
 			else
 				npcHandler:say("You don't have enough money.", npc, creature)
@@ -219,7 +219,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"I put these crystals onto the top of compass. As you can see, the compass is now pulsating in a warm, violet colour. ...",
 					"Now this compass is ready for usage. It can transfer the bound energy to other inanimate objects to open certain gates or chests.",
 				}, npc, creature)
-				player:addItem(chargedCompass, 1)
+				player:AddCustomItem({id = chargedCompass, count = 1})
 				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.Questline, 3)
 				npcHandler:setTopic(playerId, 0)
 			else

@@ -101,7 +101,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getItemCount(14112) >= itemPrice then
 				npcHandler:say("You bought {" .. npcHandler:getTopic(playerId) .. "} " .. itemCount .. "x for " .. itemPrice .. " {Bar of Gold(s)}!", npc, creature)
 				player:removeItem(14112, itemPrice)
-				player:addItem(itemId, itemCount)
+				player:AddCustomItem({id = itemId, count = itemCount})
 			else
 				npcHandler:say("You don't have enough bar's.", npc, creature)
 				return true

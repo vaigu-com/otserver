@@ -12,20 +12,24 @@ Zone = Zone
 
 ---@param encounterData EncounterData
 function Zone.getByEncounter(encounterData)
-	return Zone("encounter." .. toKey(encounterData.encounterName))
+	return Zone("encounter." .. toKey(encounterData.displayName))
 end
 
-function Zone:randomPosition()
+function Zone:getRandomPlayer()
+	return table.random(self:getPlayers())
+end
+
+function Zone:randomPosition(ignoreWalkability)
 	local positions = self:getPositions()
 	if #positions == 0 then
-		logger.error("Zone:randomPosition() - Zone {} has no positions", self:getName())
+		logger.error(debug.traceback(T("Zone:randomPosition() - Zone :name: has no positions", { name = self:getName() })))
 		return nil
 	end
 
 	local validPositions = {}
 	for _, position in ipairs(positions) do
 		local tile = position:getTile()
-		if tile and tile:isWalkable(false, false, false, false, true) then
+		if tile and (ignoreWalkability or tile:isWalkable(false, false, false, false, true)) then
 			table.insert(validPositions, position)
 		else
 			logger.debug("Zone:randomPosition() - Position {} is invalid (Tile: {}, Walkable: {})", position, tile or "nil", tile and tile:isWalkable(false, false, false, false, true) or "false")

@@ -158,7 +158,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 8 then
 			if player:getStorageValue(ThreatenedDreams.Mission02.ChargedMoonMirror) == 0 and player:getStorageValue(ThreatenedDreams.Mission02.ChargedStarlightVial) == 0 and player:getStorageValue(ThreatenedDreams.Mission02.ChargedSunCatcher) == 0 then
 				npcHandler:say("Thank you, mortal being! The fae will be forever grateful. Take this blossom bag as a little thank-you gift. Such blossoms grow on our trees just once in a decade, so they are quite rare.", npc, creature)
-				player:addItem(25780, 1)
+				player:AddCustomItem({id = 25780, count = 1})
 				player:setStorageValue(ThreatenedDreams.Mission02[1], 8)
 				npcHandler:setTopic(playerId, 0)
 			else

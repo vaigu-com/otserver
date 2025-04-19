@@ -57,7 +57,7 @@ function theCursedMedusa.onUse(player, item, fromPosition, target, toPosition, i
 
 			item:remove(1)
 			target:remove(1)
-			player:addItem(value.finalID, 1)
+			player:AddCustomItem({id = value.finalID, count = 1})
 			return true
 		end
 	end

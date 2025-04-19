@@ -19,12 +19,12 @@ EncounterInstanceRegistry()
 EncounterInstanceRegistry.states = {}
 ---@param encounter EncounterData
 function EncounterInstanceRegistry:Register(encounter)
-	self.states[encounter.encounterName] = encounter
+	self.states[encounter.displayName] = encounter
 	return self
 end
 
-function EncounterInstanceRegistry:MapBossToEncounter(encounterName, bossName)
-	self.states[bossName] = self:GetStateByEncounterName(encounterName)
+function EncounterInstanceRegistry:MapBossToEncounter(displayName, bossName)
+	self.states[bossName] = self:GetStateByEncounterName(displayName)
 end
 
 function EncounterInstanceRegistry:GetStateByCreature(creature)
@@ -36,18 +36,6 @@ function EncounterInstanceRegistry:GetStateByCreatureName(creatureName)
 	return self.states[creatureName]
 end
 
-function EncounterInstanceRegistry:GetStateByEncounterName(encounterName)
-	return self.states[encounterName]
+function EncounterInstanceRegistry:GetStateByEncounterName(displayName)
+	return self.states[displayName]
 end
-
---[[
-function EncounterInstanceRegistry:unregister(name)
-	local encounterName = self.states[name].encounterName
-	for key, encounter in pairs(self.states) do
-		if encounter.encounterName == encounterName then
-			self.states[key] = nil
-		end
-	end
-	return self
-end
-]]

@@ -15,6 +15,7 @@ QuestTopics.JOB_TOPICS = {
 	confirmMedicinepouchExchance = NextTopic(),
 	-- JOB_JEWELLER
 	confirmLifecrystalExchange = NextTopic(),
+	ConfirmExchangeRedGem = NextTopic(),
 	-- JOB_SOULORB
 	confirmExchangeSoulorbToInfernalbolt = NextTopic(),
 	-- JOB_GOLDENOUTFIT

@@ -49,7 +49,7 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		for i = 1, #elementals.chances do
 			local randomItem = elementals.chances[i]
 			if chance >= randomItem.from and chance <= randomItem.to then
-				player:addItem(randomItem.itemId, 1)
+				player:AddCustomItem({id = randomItem.itemId, count = 1})
 			end
 			if chance > 1115 then
 				player:say("There was just rubbish in it.", TALKTYPE_MONSTER_SAY)
@@ -62,13 +62,13 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		toPosition:sendMagicEffect(CONST_ME_WATERSPLASH)
 		local rareChance = math.random(100)
 		if rareChance == 1 then
-			player:addItem(lootVeryRare1[math.random(#lootVeryRare1)], 1)
+			player:AddCustomItem({id = lootVeryRare1[math.random(#lootVeryRare1)], count = 1})
 		elseif rareChance <= 3 then
-			player:addItem(lootRare1[math.random(#lootRare1)], 1)
+			player:AddCustomItem({id = lootRare1[math.random(#lootRare1)], count = 1})
 		elseif rareChance <= 10 then
-			player:addItem(lootCommon1[math.random(#lootCommon1)], 1)
+			player:AddCustomItem({id = lootCommon1[math.random(#lootCommon1)], count = 1})
 		else
-			player:addItem(lootTrash[math.random(#lootTrash)], 1)
+			player:AddCustomItem({id = lootTrash[math.random(#lootTrash)], count = 1})
 		end
 		return true
 	end
@@ -84,13 +84,13 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if useWorms and targetId == 21414 and player:removeItem("worm", 1) then
 		if player:getStorageValue(Storage.Quest.U10_55.Dawnport.TheDormKey) == 2 then
 			if math.random(100) >= 97 then
-				player:addItem(21402, 1)
+				player:AddCustomItem({id = 21402, count = 1})
 				player:setStorageValue(Storage.Quest.U10_55.Dawnport.TheDormKey, 3)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "With a giant splash, you heave an enormous fish out of the water.")
 				return true
 			end
 		elseif math.random(100) <= math.min(math.max(10 + (player:getEffectiveSkillLevel(SKILL_FISHING) - 10) * 0.597, 10), 50) then
-			player:addItem(3578, 1)
+			player:AddCustomItem({id = 3578, count = 1})
 		end
 	end
 
@@ -108,7 +108,7 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			target:decay()
 
 			if math.random(100) >= 97 then
-				player:addItem(13992, 1)
+				player:AddCustomItem({id = 13992, count = 1})
 				return true
 			end
 		elseif targetId == 7236 then
@@ -117,20 +117,20 @@ function fishing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			addEvent(refreeIceHole, 1000 * 60 * 15, position)
 			local rareChance = math.random(100)
 			if rareChance == 1 then
-				player:addItem(7158, 1)
+				player:AddCustomItem({id = 7158, count = 1})
 				player:addAchievementProgress("Exquisite Taste", 250)
 				return true
 			elseif rareChance <= 4 then
-				player:addItem(3580, 1)
+				player:AddCustomItem({id = 3580, count = 1})
 				player:addAchievementProgress("Exquisite Taste", 250)
 				return true
 			elseif rareChance <= 10 then
-				player:addItem(7159, 1)
+				player:AddCustomItem({id = 7159, count = 1})
 				player:addAchievementProgress("Exquisite Taste", 250)
 				return true
 			end
 		end
-		player:addItem(3578, 1)
+		player:AddCustomItem({id = 3578, count = 1})
 		player:addAchievementProgress("Here, Fishy Fishy!", 250)
 	end
 	return true

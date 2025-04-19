@@ -1,32 +1,27 @@
-function ParseCurrentKills(currentKills, requiredKills)
-	if currentKills == MISSION_FINISHED then
-		return requiredKills
-	end
-	return currentKills
+local function taskRewardCanBeClaimed(player, task)
+	local state = player:getStorageValueByKey(task.storage)
+	return state == REPORT_TASK_TO_NPC
 end
 
-local function isTaskFinished(player, task)
-	local currentKills = player:getStorageValueByKey(task.storage)
-	return currentKills == MISSION_FINISHED
-end
-
+---@param task table
+---@return boolean
 function Player:AddTaskKill(task)
-	local currentKills = self:getStorageValueByKey(task.storage)
-	if currentKills >= MISSION_FINISHED then
-		return true
-	end
-
-	local nextKills = currentKills + 1
-	self:setStorageValueByKey(task.storage, nextKills)
+	self:IncrementStorage(task.currentKills)
+	self:RefreshStorage(task.storage)
 
 	local currentKillsString = self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_CURRENT_KILLS")
 	self:sendTextMessage(MESSAGE_EXPERIENCE, currentKillsString)
 
-	if nextKills >= task.requiredKills then
-		self:setStorageValueByKey(task.storage, MISSION_FINISHED)
+	if self:getStorageValueByKey(task.currentKills) >= task.requiredKills then
+		self:setStorageValueByKey(task.storage, REPORT_TASK_TO_NPC)
+		self:setStorageValueByKey(task.currentKills, task.requiredKills)
+
 		local translatedMessageWhenFinished = self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_READY_TO_TURN_IN")
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessageWhenFinished)
-		self:IncrementStorage(task.bossStorage, 1)
+
+		local bossAdmits = math.max(self:getStorageValueByKey(task.bossAdmitCounter), 0)
+		local nextBossAdmits = bossAdmits + 1
+		self:setStorageValueByKey(task.bossAdmitCounter, nextBossAdmits)
 	end
 end
 
@@ -38,10 +33,13 @@ function Player:CanAddTaskKill(task)
 	if state == TASK_CAN_START_DESPITE_HIGHER_LEVEL then
 		return false
 	end
-	if state == TASK_FINISHED then
+	if state == TASK_CANT_START_BECAUSE_HIGHER_LEVEL then
 		return false
 	end
-	if isTaskFinished(self, task) then
+	if taskRewardCanBeClaimed(self, task) then
+		return false
+	end
+	if state >= REPORT_TASK_TO_NPC then
 		return false
 	end
 	return true
@@ -55,8 +53,11 @@ function Player:TryAddTaskKill(task)
 	return false
 end
 
+---@param damageMap table
+---@param lastHitKiller nil|Creature
+---@return table topKillers
 function GetTopKillers(damageMap, lastHitKiller)
-	if not lastHitKiller:getPlayer() then
+	if not (lastHitKiller and lastHitKiller:getPlayer()) then
 		lastHitKiller = nil
 	end
 
@@ -67,9 +68,6 @@ function GetTopKillers(damageMap, lastHitKiller)
 			goto continue
 		end
 		if player == lastHitKiller then
-			goto continue
-		end
-		if not player then
 			goto continue
 		end
 		table.insert(damageMapSorted, { player = player, damage = damage.total })
@@ -88,8 +86,8 @@ function GetTopKillers(damageMap, lastHitKiller)
 end
 
 local grantCreditForUpto = 2
-local creatureEvent = CreatureEvent("TaskMonsterDeath")
-function creatureEvent.onDeath(killedCreature, corpse, lastHitKiller, mostDamageKiller)
+local taskMonsterDeath = CreatureEvent("TaskMonsterDeath")
+function taskMonsterDeath.onDeath(killedCreature, corpse, lastHitKiller, mostDamageKiller)
 	local targetMonster = killedCreature:getMonster()
 	if not targetMonster or targetMonster:getMaster() then
 		return true
@@ -113,23 +111,24 @@ function creatureEvent.onDeath(killedCreature, corpse, lastHitKiller, mostDamage
 	end
 	return true
 end
-creatureEvent:register()
+taskMonsterDeath:register()
 
--- Setup onDeath events
-local serverstartup = GlobalEvent("TaskMonsterDeathStartup")
-function serverstartup.onStartup()
-	local monsters = Set({}, { insensitive = true })
+local taskMonsterDeathStartup = GlobalEvent("TaskMonsterDeathStartup")
+function taskMonsterDeathStartup.onStartup()
+	local monsterNames = {}
 	for _, task in pairs(GetAllTasks()) do
-		monsters = monsters:union(task.creatures)
+		for _, monsterName in pairs(task.creatures) do
+			monsterNames[monsterName:lower()] = true
+		end
 	end
 
-	for monster in monsters:iter() do
-		local mType = MonsterType(monster)
+	for monsterName in pairs(monsterNames) do
+		local mType = MonsterType(monsterName)
 		if not mType then
-			logger.error("[TaskMonsterDeathStartup] monster with name {} is not a valid MonsterType", monster)
+			logger.error("[TaskMonsterDeathStartup] monster with name {} is not a valid MonsterType", monsterName)
 		else
 			mType:registerEvent("TaskMonsterDeath")
 		end
 	end
 end
-serverstartup:register()
+taskMonsterDeathStartup:register()

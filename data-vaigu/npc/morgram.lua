@@ -1,0 +1,18 @@
+local name = "Morgram"
+local outfit = {
+	lookType = 367,
+	lookHead = 78,
+	lookBody = 115,
+	lookLegs = 115,
+	lookFeet = 114,
+	lookAddons = 0,
+}
+
+local context = {
+	name = name,
+	outfit = outfit,
+	dialogs = dialogs,
+	voices = voices,
+	checkInteraction = false,
+}
+NpcRegistry:AppendNpcData(context)

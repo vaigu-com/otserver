@@ -13,6 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+--[[
 monster.raceId = 2583
 monster.Bestiary = {
 	class = "Magical",
@@ -25,6 +26,7 @@ monster.Bestiary = {
 	Occurrence = 0,
 	Locations = "Vaux Mach mountain range on Ganymede.",
 }
+]]
 
 monster.health = 2500
 monster.maxHealth = 2500
@@ -92,7 +94,7 @@ monster.loot = {
 	{ name = "ring of the sky", chance = 120 },
 	{ name = "snake god's wristguard", chance = 10 },
 	{ name = "snake god's sceptre", chance = 10 },
-	{ name = "snake god trophy", chance = 10}
+	{ name = "snake god trophy", chance = 10 },
 }
 
 monster.attacks = {

@@ -47,7 +47,7 @@ return {
 			}
 		)
 	end,
-	["COIN_LOTTERY_WINNER"] = function(context)
-		return T("Coin lottery! :playerName: winds :coins: coins. Congratulations!", { playerName = context.playerName, coins = context.coins })
+	["COIN_LOTTERY_WINNER_BROADCAST_MESSAGE"] = function(context)
+		return T("Coin lottery! :playerName: wins :coins: coins. Congratulations!", { playerName = context.playerName, coins = context.coins })
 	end,
 }

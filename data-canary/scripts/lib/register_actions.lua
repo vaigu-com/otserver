@@ -77,13 +77,13 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.itemid == 10310 then -- shiny stone refining
 		local chance = math.random(1, 100)
 		if chance == 1 then
-			player:addItem(ITEM_CRYSTAL_COIN) -- 1% chance of getting crystal coin
+			player:AddCustomItem({id = ITEM_CRYSTAL_COIN}) -- 1% chance of getting crystal coin
 		elseif chance <= 6 then
-			player:addItem(ITEM_GOLD_COIN) -- 5% chance of getting gold coin
+			player:AddCustomItem({id = ITEM_GOLD_COIN}) -- 5% chance of getting gold coin
 		elseif chance <= 51 then
-			player:addItem(ITEM_PLATINUM_COIN) -- 45% chance of getting platinum coin
+			player:AddCustomItem({id = ITEM_PLATINUM_COIN}) -- 45% chance of getting platinum coin
 		else
-			player:addItem(3028) -- 49% chance of getting small diamond
+			player:AddCustomItem({id = 3028}) -- 49% chance of getting small diamond
 		end
 		player:addAchievementProgress("Petrologist", 100)
 		target:getPosition():sendMagicEffect(CONST_ME_BLOCKHIT)
@@ -190,13 +190,13 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 			local chance = math.random(1, 100)
 			if chance <= 42 then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You dug up a dead snake.")
-				player:addItem(4259)
+				player:AddCustomItem({id = 4259})
 			elseif chance >= 43 and chance <= 79 then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You dug up a small diamond.")
-				player:addItem(3028)
+				player:AddCustomItem({id = 3028})
 			else
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You dug up a leech.")
-				player:addItem(17858)
+				player:AddCustomItem({id = 17858})
 			end
 
 			player:setExhaustion("swamp-digging", 7 * 24 * 60 * 60)
@@ -264,7 +264,7 @@ function onUseKitchenKnife(player, item, fromPosition, target, toPosition, isHot
 
 	if table.contains(fruits, target.itemid) and player:removeItem(6277, 1) then
 		target:remove(1)
-		player:addItem(6278, 1)
+		player:AddCustomItem({id = 6278, count = 1})
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 		return true
 	end

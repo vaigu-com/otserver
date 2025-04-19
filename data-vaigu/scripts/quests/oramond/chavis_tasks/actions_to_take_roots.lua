@@ -11,7 +11,7 @@ function toTakeRoots.onUse(player, item, fromPosition, target, toPosition, isHot
 	if item.itemid == 21104 then
 		if rand <= 50 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You successfully harvest some juicy roots.")
-			player:addItem(21291, 1)
+			player:AddCustomItem({id = 21291, count = 1})
 			item:transform(item.itemid + 2)
 			addEvent(revertRoot, 120000, toPosition, 21106, 21104)
 			toPosition:sendMagicEffect(CONST_ME_GREEN_RINGS)
@@ -31,7 +31,7 @@ function toTakeRoots.onUse(player, item, fromPosition, target, toPosition, isHot
 	elseif item.itemid == 21105 then
 		if rand <= 50 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You successfully harvest some juicy roots.")
-			player:addItem(21291, 1)
+			player:AddCustomItem({id = 21291, count = 1})
 			item:transform(item.itemid + 2)
 			addEvent(revertRoot, 120000, toPosition, 21107, 21105)
 			toPosition:sendMagicEffect(CONST_ME_GREEN_RINGS)

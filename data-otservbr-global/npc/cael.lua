@@ -317,7 +317,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 65 then
 		if player:removeItem(10289, 1) then
-			player:addItem(10212, 1)
+			player:AddCustomItem({id = 10212, count = 1})
 			npcHandler:say("Let's put this little lantern here.. there you go. I wrap it up for you, just unwrap it in your house again!", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		else
@@ -331,7 +331,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 66 then
 		if player:removeItem(5911, 1) then
-			player:addItem(10286, 1)
+			player:AddCustomItem({id = 10286, count = 1})
 			npcHandler:say("Let's put this cloth over the seat.. there you go. I wrap it up for you, just unwrap it in your house again!", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		else

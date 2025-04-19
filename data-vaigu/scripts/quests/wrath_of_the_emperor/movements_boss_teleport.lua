@@ -65,7 +65,7 @@ end
 bossTeleport:type("stepin")
 
 for index, value in pairs(teleports) do
-	bossTeleport:key(index)
+	bossTeleport:uid(index)
 end
 
 bossTeleport:register()

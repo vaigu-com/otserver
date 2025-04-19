@@ -38,7 +38,7 @@ return {
 	["Collect 1 slimming carrot for fat Mirek."] = "Znajdz odchudzajaca marchewke dla Grubego Mirka.",
 	["The carrot was dogshit, and u received chocolate slush in for your effort."] = "Marchewka byla chujowa, ale dostales czekoladowa papke w zamian.",
 	["Kitz's Dominando"] = "Dominando Kitza",
-	["Arrange a special bow from elf adobe."] = "Zalatw specjalny luk z siedziby elfow.",
+	["Arrange a special bow from elf abode."] = "Zalatw specjalny luk z siedziby elfow.",
 	["You have received the item from Legolas. Go give it to Kitz."] = "Otrzymales luk od Legolasa, przekaz go Kitzowi.",
 	["Turns out elvish bow sucks. Kitz now wishes to rook the elves. In return for your efforts you received his old bow."] = "Luk okazal sie chujowy, wiec Kitz pragnie zrobic Dominando elfom. W zamian jednak dal ci jego wlasny luk.",
 }

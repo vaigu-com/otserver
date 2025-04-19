@@ -40,6 +40,7 @@ return {
 	["(Torn page fragment) This damned place is overflowing with traps. Some devilish forces wish my life to meet a demise! Today I nearly slipped into a pit of fire. But there are also a lot of hints placed all over in the strangest of places. Looks like those are addressed to other adventurers like me and Anthony. Some of them don't seem to be created by humans. Don't trust them."] = "(Wyrwany fragment strony) To przeklete miejsce jest pelne pulapek. Jakies diabelskie moce chca, zebym w nie wpadl i umarl! Dzis prawie zginalem wpadajac w szczeline z ogniem! Ale jest tu rowniez pelno wskazowek umieszczonych w roznych dziwnych miejscach. Ich adresatem zdaja sie byc podroznicy tacy jak ja, ale niektore z nich zdaja sie nie byc stworzone przez czlowieka. Nie ufam im! \n\n~Germi",
 	["Desert ruins dead adventurer's firebug"] = "Zapalniczka zdechlaka z pustynnych ruin",
 	["A punchcard for opening mechanical doors"] = "Karta perforowana do mechanicznych drzwi",
+	["GERMI_NOTES"] = "znajdz moj dziennik\nufaj tylko tym, ktorym ci wskazalem\n",
 	["Did you read it? What was written there?"] = "I jak, prezczytales to? Co tam bylo?",
 	-- Cave Explorer
 	["Cave Explorer on Shield"] = "Grotolaz na Tarczy",

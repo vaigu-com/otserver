@@ -3,7 +3,7 @@ function explorerSocietyDragon.onUse(player, item, fromPosition, target, toPosit
 	if player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheIslandofDragons) == 57 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 57 then
 		player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheIslandofDragons, 58)
 		player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 58)
-		player:addItem(7314, 1)
+		player:AddCustomItem({id = 7314, count = 1})
 		toPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	end
 	return true

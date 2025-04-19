@@ -108,7 +108,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 3 then
 			npcHandler:say("Look at these dwarven legs. They were forged years ago by a dwarf who was rather tall for our kind. I want you to have them. Thank you for rescuing my son |PLAYERNAME|.", npc, creature)
-			player:addItem(3398, 1)
+			player:AddCustomItem({id = 3398, count = 1})
 			player:setStorageValue(Storage.Quest.U8_4.TheHiddenCityOfBeregar.RoyalRescue, 8)
 			npcHandler:setTopic(playerId, 0)
 		end

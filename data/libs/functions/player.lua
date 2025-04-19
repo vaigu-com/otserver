@@ -95,7 +95,7 @@ end
 
 --Vaigu custom
 function Player.checkGnomeRank(self)
-	local questProgress = self:getStorageValueByKey(Storage.BigfootBurden.QuestLine)
+	local questProgress = self:getStorageValueByKey(Storage.BigfootsBurden.QuestLine)
 	if questProgress >= 30 then
 		return
 	end
@@ -105,7 +105,15 @@ function Player.checkGnomeRank(self)
 	self:addAchievement("Gnome Friend")
 	self:addAchievement("Gnomelike")
 	self:addAchievement("Honorary Gnome")
-	self:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 30)
+	self:NextState({
+		[Storage.BigfootsBurden.QuestLine] = 30,
+		[Storage.BigfootsBurden.QuestLineComplete] = 2,
+		[Storage.BigfootsBurden.Warzone1Access] = 2,
+		[Storage.BigfootsBurden.Warzone2Access] = 2,
+		[Storage.BigfootsBurden.Warzone3Access] = 2,
+		[Storage.BigfootsBurden.Rank] = 1440,
+		[Storage.BigfootsBurden.WarzoneStatus] = 1
+	})
 	return true
 end
 
@@ -579,8 +587,10 @@ function Player:removeAll(itemId)
 	return count
 end
 
-local function encounterKVscope(encounter)
-	return "encounter.cooldown." .. encounter.encounterName
+---@param encounterData EncounterData
+---@return unknown
+local function encounterKVscope(encounterData)
+	return "encounter.cooldown." .. encounterData:GetId()
 end
 
 function Player:getEncounterLockout(encounter)
@@ -592,14 +602,17 @@ function Player:getEncounterLockout(encounter)
 	return self:kv():get(scope) or 0
 end
 
-function Player:setEncounterLockout(encounter, time)
-	local scope = encounterKVscope(encounter)
-	if not scope then
+---@param encounterData EncounterData
+---@return boolean
+function Player:setEncounterLockout(encounterData, expiry)
+	local storage = encounterData:GetLockoutStorage()
+	if not storage then
 		return false
 	end
-	local result = self:kv():set(scope, time)
+
+	self:setStorageValueByKey(storage, expiry)
 	self:sendBosstiaryCooldownTimer()
-	return result
+	return true
 end
 
 function Player:canFightBoss(bossNameOrId)
@@ -672,7 +685,7 @@ function Player.getDailyRewardBonusesCount(self)
 		if streakLevel > 7 then
 			streakLevel = 7
 		end
-		for i = DAILY_REWARD_FIRST, streakLevel do
+		for _ = DAILY_REWARD_FIRST, streakLevel do
 			count = count + 1
 		end
 	else

@@ -17,15 +17,15 @@ local dialogs = {
 				transportType = TRANSPORT_TYPE.SHIP,
 			},
 		},
-		specialConditions = {
+		specialRequirements = {
 			{
-				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerIsPzLocked,
 				requiredOutcome = false,
-				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+				textFailedRequirement = "Looks like you have fought someone.. Better step away, I can't trust you.",
 			},
 		},
 	},
-	[GREET] = {
+	[{ GREET }] = {
 		text = "Hello. I can sail you to steppes, Bornholm and island inhabited by quaras. So where you'd like to {sail} to?",
 	},
 }
@@ -34,6 +34,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	checkInteraction = false
+	checkInteraction = false,
 }
 NpcRegistry:AppendNpcData(context)

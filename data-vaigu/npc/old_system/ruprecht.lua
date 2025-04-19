@@ -109,7 +109,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if tonumber(storeTable[playerId]) == 6527 then
 				if player:removeItem(6496, 1) then
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Dzieki, oto token dla ciebie!" or "Thank you, here is your 1 christmas token.", npc, creature)
-					player:addItem(6526, 1)
+					player:AddCustomItem({id = 6526, count = 1})
 					npcHandler:setTopic(playerId, 0)
 				else
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie posiadasz present baga." or "You don't have a present bag.", npc, creature)
@@ -119,7 +119,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 			if player:removeItem(6526, itemsTable[storeTable[playerId]].count) then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Dzieki, oto twoj " .. storeTable[playerId] .. "." or "Thank you, here is your " .. storeTable[playerId] .. ".", npc, creature)
-				player:addItem(itemsTable[storeTable[playerId]].itemId, 1)
+				player:AddCustomItem({id = itemsTable[storeTable[playerId]].itemId, count = 1})
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Nie masz wystarczajacej liczby tokenow." or "You don't have enough of tokens.", npc, creature)

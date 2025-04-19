@@ -8,6 +8,9 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
+	[{ GREET }] = {
+		text = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one.",
+	},
 	[{ "sail", "plynac" }] = {
 		text = "",
 		specialActionsOnSuccess = {
@@ -17,15 +20,14 @@ local dialogs = {
 				transportType = TRANSPORT_TYPE.SHIP,
 			},
 		},
-		specialConditions = {
+		specialRequirements = {
 			{
-				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerIsPzLocked,
 				requiredOutcome = false,
-				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+				textFailedRequirement = "Looks like you have fought someone.. Better step away, I can't trust you.",
 			},
 		},
 	},
-	[GREET] = { text = "FISHERMAN_GREET" },
 	[{ "story", "stories", "historia", "historie" }] = {
 		text = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
 	},
@@ -34,6 +36,7 @@ local dialogs = {
 	},
 	[{
 		"weze morskie",
+		"weza morskiego",
 		"morskie weze",
 		"waz morski",
 		"morski waz",
@@ -41,19 +44,19 @@ local dialogs = {
 	}] = {
 		text = "Giant creatures that look similar to snakes. Their breath can put a sizeable fire away. Lot of wenches in our city love hearing stories about those. Perhaps if i could put my hands on a proof of their demise, i would get laid? Who knows..",
 	},
-	[{ "leviathan" }] = {
+	[{ "leviathan", "Leviathan" }] = {
 		text = "The biggest one of them all serpents. If i could escape this life, i will face him.",
 	},
-	[{ "quary", "quara", "quaras" }] = {
+	[{ "quary", "quara", "quaras","Quary" }] = {
 		text = "Big family of sea creatures. I saw their sketches made by adventurers visiting city marketplace. I saw so many of them, i can now differentiate every {species}. Maybe not with closed eyes, but i roughly know this subject.",
 	},
 	[{ "rodzaje", "rodzaj", "species" }] = {
 		text = "To my knowledge, there is five species. Quara Constrictor, Mantassin, Hydromancer, Pincher, Predator! Ha, i know them all.",
 	},
-	[{ "thul" }] = {
+	[{ "thul", "Thul" }] = {
 		text = "Rumored to be the last one living of the lost underound city that was established ages ago. He is saving his energy, and only comes out when his {Quara} sons are failing. In that case, he comes out from his slumber, and shows no fear.",
 	},
-	[{ "ocean" }] = {
+	[{ "ocean", "oceanie" }] = {
 		text = "A puddle of water that someone sprinkled salt over.",
 	},
 	[{ "leech", "pijawki" }] = { text = "The Water Buffalos love them." },
@@ -67,10 +70,10 @@ local dialogs = {
 		text = "Really strong designed to swamp use. Its recommeded to use {larvaes} instead of worms. Be aware of {leeches}!",
 	},
 	[{ "czerwona zona", "red wife" }] = {
-		text = "Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day.",
+		text = "Christopher had this very brilliant idea to capture a woman from the newly discovered island and make her his wife. The consequences of this mistake can be seen in his house till this day. At least he has his {marlin} still.",
 	},
 	[{ "domku", "house" }] = { text = "I live just in next house." },
-	[{ "santa maria" }] = {
+	[{ "santa maria", "Santa Maria" }] = {
 		text = "It was my uncle original ship. He used it since his very first adventure. I dont know how i would stand losing such a chunk of my life and its history. Perhaps he will tell you more about it, if you can serve him a full glass of acohol - when sober, hes not talkative.",
 	},
 }
@@ -79,6 +82,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	checkInteraction = false
+	checkInteraction = false,
 }
 NpcRegistry:AppendNpcData(context)

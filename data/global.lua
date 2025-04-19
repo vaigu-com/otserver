@@ -79,7 +79,9 @@ SCARLETT_MAY_DIE = 0
 
 ropeSpots = { 386, 421, 386, 7762, 12202, 12936, 14238, 17238, 23363, 21965, 21966, 21967, 21968 }
 specialRopeSpots = { 12935 }
-swimmingTiles = { 629, 630, 631, 632, 633, 634, 4809, 4810, 4811, 4812, 4813, 4814 }
+--swimmingTiles = { 629, 630, 631, 632, 633, 634, 4809, 4810, 4811, 4812, 4813, 4814 }
+-- Vaigu custom
+swimmingTiles = { 629, 630, 631, 632, 633, 634 }
 
 -- Global tables for systems
 if not _G.GlobalBosses then

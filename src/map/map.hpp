@@ -97,6 +97,8 @@ public:
 	 */
 	bool placeCreature(const Position &centerPos, const std::shared_ptr<Creature> &creature, bool extendedPos = false, bool forceLogin = false);
 
+	void moveCreatureMinigame(const std::shared_ptr<Creature>& creature, const std::shared_ptr<Tile>& newTile, bool forceTeleport);
+
 	void moveCreature(const std::shared_ptr<Creature> &creature, const std::shared_ptr<Tile> &newTile, bool forceTeleport = false);
 
 	/**

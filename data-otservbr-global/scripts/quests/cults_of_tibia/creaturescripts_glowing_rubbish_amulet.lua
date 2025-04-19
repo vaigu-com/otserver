@@ -27,7 +27,7 @@ function glowingRubbishAmulet.onDeath(creature, _corpse, _lastHitKiller, mostDam
 
 			if player:getStorageValue(Storage.Quest.U11_40.CultsOfTibia.Misguided.Monsters) >= 10 then
 				amulet:remove()
-				local it = player:addItem(25297, 1)
+				local it = player:AddCustomItem({id = 25297, count = 1})
 				if it then
 					it:decay()
 				end

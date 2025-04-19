@@ -85,7 +85,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 			player:setStorageValue(Storage.Quest.U7_4.DjinnWar.MaridFaction.RataMari, 2)
-			player:addItem(3232, 1)
+			player:AddCustomItem({id = 3232, count = 1})
 			npcHandler:say("Meep! Meep! Great! Here is the spyreport for you!", npc, creature)
 		else
 			npcHandler:say("No cheese - no report.", npc, creature)

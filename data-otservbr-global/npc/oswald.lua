@@ -102,7 +102,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 3)
 		elseif npcHandler:getTopic(playerId) == 3 then
 			if player:removeMoneyBank(1000) then
-				player:addItem(7933, 1)
+				player:AddCustomItem({id = 7933, count = 1})
 				player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission03, 2)
 				npcHandler:say("Excellent! Here is your invitation!", npc, creature)
 			else

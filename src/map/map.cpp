@@ -323,8 +323,106 @@ bool Map::placeCreature(const Position &centerPos, const std::shared_ptr<Creatur
 	return true;
 }
 
+void Map::moveCreatureMinigame(const std::shared_ptr<Creature> &creature, const std::shared_ptr<Tile> &newTile, bool forceTeleport /* = false*/) {
+	const auto &oldTile = creature->getTile();
+
+	if (!oldTile) {
+		return;
+	}
+
+	const auto &oldPos = oldTile->getPosition();
+	const auto &newPos = newTile->getPosition();
+
+	if (oldPos == newPos) {
+		return;
+	}
+
+	const auto &fromZones = oldTile->getZones();
+	const auto &toZones = newTile->getZones();
+
+	if (const auto &ret = g_game().beforeCreatureZoneChange(creature, fromZones, toZones); ret != RETURNVALUE_NOERROR) {
+		return;
+	}
+
+	if (fromZones.empty()) {
+		return;
+	}
+	auto &zone = *fromZones.begin();
+	auto players = zone.get()->getPlayers();
+
+	const bool teleport = forceTeleport || !newTile->getGround() || !Position::areInRange<1, 1, 0>(oldPos, newPos);
+
+	std::vector<int32_t> oldStackPosVector;
+	oldStackPosVector.reserve(players.size());
+
+	for (const auto &player : players) {
+		if (player->canSeeCreature(creature)) {
+			oldStackPosVector.push_back(oldTile->getClientIndexOfCreature(player, creature));
+		} else {
+			oldStackPosVector.push_back(-1);
+		}
+	}
+	// remove the creature
+	oldTile->removeThing(creature, 0);
+
+	MapSector* old_sector = getMapSector(oldPos.x, oldPos.y);
+	MapSector* new_sector = getMapSector(newPos.x, newPos.y);
+
+	// Switch the node ownership
+	if (old_sector != new_sector) {
+		old_sector->removeCreature(creature);
+		new_sector->addCreature(creature);
+	}
+
+	// add the creature
+	newTile->addThing(creature);
+
+	if (!teleport) {
+		if (oldPos.y > newPos.y) {
+			creature->setDirection(DIRECTION_NORTH);
+		} else if (oldPos.y < newPos.y) {
+			creature->setDirection(DIRECTION_SOUTH);
+		}
+
+		if (oldPos.x < newPos.x) {
+			creature->setDirection(DIRECTION_EAST);
+		} else if (oldPos.x > newPos.x) {
+			creature->setDirection(DIRECTION_WEST);
+		}
+	}
+
+	int i = 0;
+	for (const auto &player : players) {
+		const int32_t stackpos = oldStackPosVector[i++];
+		if (stackpos != -1) {
+			player->sendCreatureMove(creature, newPos, newTile->getStackposOfCreature(player, creature), oldPos, stackpos, teleport);
+		}
+	}
+	for (const auto &player : players) {
+		player->onCreatureMove(creature, newTile, newPos, oldTile, oldPos, teleport);
+	}
+
+	auto events = [=] {
+		oldTile->postRemoveNotification(creature, newTile, 0);
+		newTile->postAddNotification(creature, oldTile, 0);
+		g_game().afterCreatureZoneChange(creature, fromZones, toZones);
+	};
+
+	if (g_dispatcher().context().getGroup() == TaskGroup::Walk) {
+		// onCreatureMove for monster is asynchronous, so we need to defer the actions.
+		g_dispatcher().addEvent(std::move(events), "Map::moveCreature");
+	} else {
+		events();
+	}
+}
+
 void Map::moveCreature(const std::shared_ptr<Creature> &creature, const std::shared_ptr<Tile> &newTile, bool forceTeleport /* = false*/) {
 	if (!creature || creature->isRemoved() || !newTile) {
+		return;
+	}
+
+	if (auto monster = creature->getMonster(); monster && monster.get()->hasIgnoreCreatures()) {
+		moveCreatureMinigame(creature, newTile, forceTeleport);
 		return;
 	}
 

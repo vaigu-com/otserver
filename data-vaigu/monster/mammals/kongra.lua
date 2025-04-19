@@ -85,6 +85,7 @@ monster.loot = {
 	{ name = "ape fur", chance = 980 },
 	{ name = "health potion", chance = 570 },
 	{ name = "kongra's shoulderpad", chance = 4900 },
+	{ id = 5785, chance = 2000}
 }
 
 monster.attacks = {

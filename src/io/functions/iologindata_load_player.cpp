@@ -128,6 +128,8 @@ bool IOLoginDataLoad::loadPlayerBasicInfo(const std::shared_ptr<Player> &player,
 	}
 
 	player->setGUID(result->getNumber<uint32_t>("id"));
+	// Vaigu custom
+	player->setLanguage(result->getString("language"));
 	player->name = result->getString("name");
 
 	if (!player->getAccount()) {

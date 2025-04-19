@@ -44,7 +44,7 @@ end
 yalaharMachineWarGolems:type("stepin")
 
 for index, value in pairs(setting) do
-	yalaharMachineWarGolems:key(index)
+	yalaharMachineWarGolems:aid(index)
 end
 
 yalaharMachineWarGolems:register()

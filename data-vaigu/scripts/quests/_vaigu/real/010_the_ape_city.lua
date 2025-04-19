@@ -2,10 +2,11 @@ local quest = Quest(LOCALIZERS.TheApeCity)
 
 quest
 	:Storage(function() end)
-	:Questlog(function()
+	:Questlog(function(localizer)
 		table.insert(Quests, {
 			name = "The Ape City",
-			missions = {
+			localizer = localizer,
+			missions ={
 				{
 					name = "Hairycles Missions",
 					storage = 11102,

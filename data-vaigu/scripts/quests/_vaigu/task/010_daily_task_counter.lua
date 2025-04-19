@@ -6,29 +6,32 @@ local function playerStaredThisTask(player, storage)
 	return false
 end
 
-local function isDailyTaskFinished(player, dailyTask)
-	local currentKills = player:getStorageValueByKey(dailyTask.storage)
-	local requiredKills = dailyTask.requiredKills
-	return currentKills >= requiredKills
+local function isDailytaskReadyToTurnIn(player, dailyTask)
+	local state = player:getStorageValueByKey(dailyTask.storage)
+	return state == REPORT_TASK_TO_NPC
 end
 
 function Player:CanAddDailyTaskKill(dailyTask)
-	local storage = dailyTask.storage
-	if not playerStaredThisTask(self, storage) then
+	if not playerStaredThisTask(self, dailyTask) then
 		return false
 	end
-	if isDailyTaskFinished(self, dailyTask) then
+	if isDailytaskReadyToTurnIn(self, dailyTask) then
 		return false
 	end
 	return true
 end
 
+---@param dailyTask table
+---@return boolean
 function Player:AddDailyTaskKill(dailyTask)
-	self:IncrementStorage(dailyTask.storage, 1)
-	local currentKillsString = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Context({ taskConfig = dailyTask }):Get("DAILY_TASK_CURRENT_KILLS")
+	self:IncrementStorage(dailyTask.currentKills, 1)
+	local currentKillsString = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Context({ dailyTask = dailyTask }):Get("DAILY_TASK_CURRENT_KILLS")
 	self:sendTextMessage(MESSAGE_EXPERIENCE, currentKillsString)
 
-	if isDailyTaskFinished(self, dailyTask) then
+	if self:getStorageValueByKey(dailyTask.currentKills) >= dailyTask.requiredKills then
+		self:setStorageValueByKey(dailyTask.storage, REPORT_TASK_TO_NPC)
+		self:setStorageValueByKey(dailyTask.currentKills, dailyTask.requiredKills)
+
 		local translatedMessageWhenFinished = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Context({ dailyTask = dailyTask }):Get("DAILY_TASK_READY_TO_TURN_IN")
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessageWhenFinished)
 	end
@@ -51,8 +54,6 @@ function dailyKill.onDeath(killedCreature, corpse, lastHitKiller, mostDamageKill
 		return true
 	end
 
-	--print("Target: "..targetName.." LastHit: ".._lastHitKiller:getName().." Most Dmg: ".. mostDamageKiller:getName())
-	--player:addAchievementProgress(3, 1000) -- action man (zabij 1000 potworow)
 	local dailyTask = GetDailyTaskByCreatureName(killedCreature:getName():lower())
 	if not dailyTask then
 		return
@@ -73,21 +74,22 @@ function dailyKill.onDeath(killedCreature, corpse, lastHitKiller, mostDamageKill
 end
 dailyKill:register()
 
--- Setup onDeath events
-local serverstartup = GlobalEvent("DailyTaskMonsterDeathStartup")
-function serverstartup.onStartup()
-	local monsters = Set({}, { insensitive = true })
-	for _, dailyTask in pairs(GetAllDailyTasks()) do
-		monsters = monsters:union(dailyTask.creatures)
+local dailyTaskMonsterDeathStartup = GlobalEvent("DailyTaskMonsterDeathStartup")
+function dailyTaskMonsterDeathStartup.onStartup()
+	local monsterNames = {}
+	for _, task in pairs(GetAllDailyTasks()) do
+		for _, monsterName in pairs(task.creatures) do
+			monsterNames[monsterName:lower()] = true
+		end
 	end
 
-	for monster in monsters:iter() do
-		local mType = MonsterType(monster)
+	for monsterName in pairs(monsterNames) do
+		local mType = MonsterType(monsterName)
 		if not mType then
-			logger.error("[DailyTaskMonsterDeathStartup] monster with name {} is not a valid MonsterType", monster)
+			logger.error("[TaskMonsterDeathStartup] monster with name {} is not a valid MonsterType", monsterName)
 		else
-			mType:registerEvent("DailyTasksCounter")
+			mType:registerEvent("TaskMonsterDeath")
 		end
 	end
 end
-serverstartup:register()
+dailyTaskMonsterDeathStartup:register()

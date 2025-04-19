@@ -5,7 +5,7 @@
 --   success-resolved: Npc will say text that is supposed to be shown on success for this dialog. Actions on success (eg. rewards, special effects) will all be perfomed for this dialog
 --   fail-resolved: Npc will say text that corresponds to the reason of this dialog fail. Actions on success wont be performed for this dialog
 ---@Deprecated
-local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialConditions, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogData)
+local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredItems, textNoRequiredItems, requiredState, requiredGlobalState, specialRequirements, requiredMoney, specialActionsOnSucess, rewards, spawnMonstersOnSuccess, outfitRewards, mountRewards, expReward, nextState, nextGlobalState, nextTopic, addDialogData)
 	-- Important note: all text in dialogues (text on no required items, text on success, text on no required state etc.) is not conidered final text, but an identifier for the localizer.
 	-- This means that all text will be translated based on player language and other context.
 
@@ -176,12 +176,12 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 
 	-- This param allows user to define special conditions required to success-resolve dialog
 	-- Most of common conditions can be checked using decicated params (eg. requiredMoney, requiredState, requiredItems)
-	-- Other conditions can be checked with special function, either declared by you or found in global function tables, eg. SPECIAL_CONDITIONS_GENERAL
-	-- Structure: {condition, requiredOutcome, [textNoRequiredCondition,] [params...] }
+	-- Other conditions can be checked with special function, either declared by you or found in global function tables, eg. SPECIAL_REQUIREMENTS_GENERAL
+	-- Structure: {condition, requiredOutcome, [textFailedRequirement,] [params...] }
 	-- The context argument will contain everything declared on the right side (value) as well as other context things like player, npc, npcHandler, msg, etc.
 	-- If condition function return value is not equal to requiredOutcome:
-	--	If textNoRequiredCondition is not nil, npc will say the textNoRequiredCondition and fail-resolve dialog
-	--	If textNoRequiredCondition is nil, this dialog is discarded, and system will try to resolve next dialog
+	--	If textFailedRequirement is not nil, npc will say the textFailedRequirement and fail-resolve dialog
+	--	If textFailedRequirement is nil, this dialog is discarded, and system will try to resolve next dialog
 	local playerHasLevel = function(context)
 		local level = context.player:getLevel()
 		local min = context.min or 0
@@ -195,14 +195,14 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 
 		return true
 	end
-	specialConditions = {
+	specialRequirements = {
 		{
 			-- Callback function - Required
 			condition = playerHasLevel,
 			-- This field is required
 			requiredOutcome = true,
 			-- Dont specify it to discard this dialog on failed requiredOutcome
-			textNoRequiredCondition = "Your level is not in range",
+			textFailedRequirement = "Your level is not in range",
 			-- Additional custom params
 			minLevel = 20,
 			maxLevel = 60,
@@ -210,7 +210,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	}
 
 	-- This param allows user to define special actions to be invoked when dialog success-resolved
-	-- Most of common actions can be invoked using decicated params (spawnMonstersOnSuccess, rewards, expRewards etc.)
+	-- Most of common actions can be invoked using decicated params (spawnMonstersOnSuccess, rewards, expReward etc.)
 	-- Structure: { [func] = { [params...] } }
 	-- The context will contain everything declared on the right side value as well as other context things like player, npc, npcHandler, msg, etc.
 	local setGameTime = function(context)
@@ -373,7 +373,7 @@ local function exampleNpc()
 	-- Dialog structure is split into two categories: requirements and actions
 	-- If all requirements are met, all actions will be executed and dialog is success-resolved
 	-- If a requirements is not met, then either:
-	--  If this requirements has text on fail(eg. textNoRequiredCondition, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialog is fail-resolved
+	--  If this requirements has text on fail(eg. textFailedRequirement, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialog is fail-resolved
 	--  Else This dialog will be discarded and quest system will try to process the next dialog
 	local dialogs = {
 		[LOCALIZER_UNIVERSAL] = {
@@ -464,11 +464,11 @@ local function exampleNpc()
 					},
 					-- removes money from backpacks and then from bank if its not enoug
 					requiredMoney = 10,
-					specialConditions = {
+					specialRequirements = {
 						{
-							condition = SPECIAL_CONDITIONS_UNIVERSAL.playerHasLevel,
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerHasLevel,
 							requiredOutcome = true,
-							textNoRequiredCondition = "I cannot tell such things to an underage person!",
+							textFailedRequirement = "I cannot tell such things to an underage person!",
 							minLevel = 18,
 						},
 					},

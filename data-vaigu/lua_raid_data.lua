@@ -1,4 +1,4 @@
-local raidData =  {
+local raidData = {
 	LuaRaid("Supply_1"):Context({
 		perDay = 0.648,
 		waves = {
@@ -197,11 +197,7 @@ local raidData =  {
 				:Creature("Ancient Scarab", Area(Position(6740, 1259, 7), Position(6773, 1326, 7)), 15, true)
 				:Creature("Scarab", Area(Position(6740, 1259, 7), Position(6773, 1326, 7)), 20, true)
 				:Creature("Larva", Area(Position(6740, 1259, 7), Position(6773, 1326, 7)), 15, true),
-			Wave(340000)
-				:Creature("Ancient Scarab", Area(Position(6667, 1268, 7), Position(6735, 1364, 7)), 45, true)
-				:Creature("Scarab", Area(Position(6667, 1268, 7), Position(6735, 1364, 7)), 70, true)
-				:Creature("Fleshcrawler", Area(Position(6667, 1268, 7), Position(6735, 1364, 7)), 2, true)
-				:Notification(-160000, "There are more and more Scarabs!"),
+			Wave(340000):Creature("Ancient Scarab", Area(Position(6667, 1268, 7), Position(6735, 1364, 7)), 45, true):Creature("Scarab", Area(Position(6667, 1268, 7), Position(6735, 1364, 7)), 70, true):Creature("Fleshcrawler", Area(Position(6667, 1268, 7), Position(6735, 1364, 7)), 2, true):Notification(-160000, "There are more and more Scarabs!"),
 		},
 		cooldown = 43200,
 		minPlayersOnline = 5,
@@ -393,11 +389,7 @@ local raidData =  {
 				:Creature("Minotaur Archer", Area(Position(5943, 1357, 7), Position(5975, 1383, 7)), 18, true)
 				:Creature("Minotaur Mage", Area(Position(5943, 1357, 7), Position(5975, 1383, 7)), 5, true)
 				:Notification(-9000, "A group of minotaurs has left their camp."),
-			Wave(120000)
-				:Creature("Minotaur", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 38, true)
-				:Creature("Minotaur Guard", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 38, true)
-				:Creature("Minotaur Archer", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 38, true)
-				:Creature("Minotaur Mage", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 15, true),
+			Wave(120000):Creature("Minotaur", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 38, true):Creature("Minotaur Guard", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 38, true):Creature("Minotaur Archer", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 38, true):Creature("Minotaur Mage", Area(Position(5891, 1411, 7), Position(5947, 1460, 7)), 15, true),
 			Wave(185000)
 				:Creature("Minotaur", Area(Position(5885, 1436, 7), Position(5946, 1477, 7)), 38, true)
 				:Creature("Minotaur Guard", Area(Position(5885, 1436, 7), Position(5946, 1477, 7)), 38, true)
@@ -565,14 +557,6 @@ local raidData =  {
 		cooldown = 7200,
 		minPlayersOnline = 0,
 	}),
-	LuaRaid("Bane_Lord"):Context({
-		perDay = 0.36,
-		waves = {
-			Wave(10000):Creature("Bane Lord", Area(Position(6094, 1051, 7), Position(6094, 1051, 7)), 1, false),
-		},
-		cooldown = 14400,
-		minPlayersOnline = 1,
-	}),
 	LuaRaid("Smuggler_baron_silvertoe"):Context({
 		perDay = 0.864,
 		waves = {
@@ -600,7 +584,7 @@ local raidData =  {
 	LuaRaid("Shadow_Hound"):Context({
 		perDay = 0.648,
 		waves = {
-			Wave(10000):Creature("Shadow_Hound", Area(Position(6404, 1949, 8), Position(6404, 1949, 8)), 1, false),
+			Wave(10000):Creature("Shadow Hound", Area(Position(6404, 1949, 8), Position(6404, 1949, 8)), 1, false),
 		},
 		cooldown = 10800,
 		minPlayersOnline = 1,
@@ -719,11 +703,7 @@ local raidData =  {
 	LuaRaid("Manta_Ray"):Context({
 		perDay = 2.304,
 		waves = {
-			Wave(10000)
-				:Creature("Manta Ray", Area(Position(6493, 743, 10), Position(6493, 743, 10)), 1, false)
-				:Creature("Manta Ray", Area(Position(6511, 746, 10), Position(6511, 746, 10)), 1, false)
-				:Creature("Manta Ray", Area(Position(6485, 728, 10), Position(6485, 728, 10)), 1, false)
-				:Creature("Manta Ray", Area(Position(6510, 728, 10), Position(6510, 728, 10)), 1, false),
+			Wave(10000):Creature("Manta Ray", Area(Position(6493, 743, 10), Position(6493, 743, 10)), 1, false):Creature("Manta Ray", Area(Position(6511, 746, 10), Position(6511, 746, 10)), 1, false):Creature("Manta Ray", Area(Position(6485, 728, 10), Position(6485, 728, 10)), 1, false):Creature("Manta Ray", Area(Position(6510, 728, 10), Position(6510, 728, 10)), 1, false),
 		},
 		cooldown = 7200,
 		minPlayersOnline = 1,
@@ -739,11 +719,7 @@ local raidData =  {
 	LuaRaid("Raty"):Context({
 		perDay = 0.216,
 		waves = {
-			Wave(10000)
-				:Creature("Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false)
-				:Creature("Cave Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false)
-				:Creature("Munster", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 1, false)
-				:Notification(-9000, "A plague of rats is spreading through the city!"),
+			Wave(10000):Creature("Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Cave Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Munster", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 1, false):Notification(-9000, "A plague of rats is spreading through the city!"),
 			Wave(230000):Creature("Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Cave Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Notification(-10000, "Rats are still emerging from the sewers!"),
 			Wave(420000):Creature("Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Cave Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Munster", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 1, false),
 			Wave(600000):Creature("Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Cave Rat", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 200, false):Creature("Munster", Area(Position(5801, 1500, 4), Position(5973, 1610, 8)), 1, false),
@@ -860,28 +836,13 @@ local raidData =  {
 		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
-	LuaRaid("Midnight_Spawn"):Context({
-		perDay = 0.648,
-		waves = {
-			Wave(10000):Creature("Midnight Spawn", Area(Position(7571, 1001, 6), Position(7571, 1001, 6)), 1, false),
-		},
-		cooldown = 10800,
-		minPlayersOnline = 1,
-	}),
-	LuaRaid("Nightslayer"):Context({
-		perDay = 0.648,
-		waves = {
-			Wave(10000):Creature("Nightslayer", Area(Position(7431, 1830, 10), Position(7431, 1830, 10)), 1, false),
-		},
-		cooldown = 10800,
-		minPlayersOnline = 1,
-	}),
+
 	LuaRaid("Karakan"):Context({
 		perDay = 0.216,
 		waves = {
 			Wave(10000):Creature("Bug", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 150, true):Notification(-9000, "Vermin has once again scattered in the west of MirkoTown!"),
-			Wave(125000):Creature("Brimstone Bug", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 45, true):Notification(-5000, "Toxic bugs are attacking the farms!"),
-			Wave(245000):Creature("Brimstone Bug", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 25, true):Creature("Karaczan", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 7, true):Notification(-5000, "Cockroaches are appearing around the farm!"),
+			Wave(125000):Creature("Bug", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 45, true):Notification(-5000, "Toxic bugs are attacking the farms!"),
+			Wave(245000):Creature("Bug", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 25, true):Creature("Karaczan", Area(Position(5711, 1542, 7), Position(5801, 1616, 7)), 7, true):Notification(-5000, "Cockroaches are appearing around the farm!"),
 		},
 		cooldown = 43200,
 		minPlayersOnline = 5,
@@ -982,14 +943,6 @@ local raidData =  {
 		cooldown = 7200,
 		minPlayersOnline = 1,
 	}),
-	LuaRaid("Doomsday_Cultist"):Context({
-		perDay = 0.648,
-		waves = {
-			Wave(10000):Creature("Doomsday Cultist", Area(Position(7715, 1661, 11), Position(7715, 1661, 11)), 1, false),
-		},
-		cooldown = 10800,
-		minPlayersOnline = 1,
-	}),
 	LuaRaid("Bane_Bringer"):Context({
 		perDay = 0.648,
 		waves = {
@@ -1065,7 +1018,7 @@ local raidData =  {
 }
 
 for _, raid in pairs(raidData) do
-	 LuaRaidRegistry:Register(raid)
+	LuaRaidRegistry:Register(raid)
 end
 
 local weekdayRaids = {
@@ -1118,7 +1071,6 @@ globalevent:register()
 local raidByMonthDay = GlobalEvent("RaidsByMonthDay")
 
 function raidByMonthDay.onThink(...)
-
 	local date = getRealDate()
 	local hourMinuteNow = getRealTime()
 

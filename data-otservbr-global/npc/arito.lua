@@ -102,7 +102,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "Acquitted") and npcHandler:getTopic(playerId) == 2 then
 		npcHandler:say("These are great news!! Thank you for your help! I don't have much, but without you I wouldn't have anything so please take this as a reward.", npc, creature)
 		player:setStorageValue(Storage.Quest.U8_1.TibiaTales.AritosTask, 3)
-		player:addItem(3035, 100)
+		player:AddCustomItem({id = 3035, count = 100})
 	end
 
 	return true

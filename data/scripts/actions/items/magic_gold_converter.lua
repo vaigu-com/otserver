@@ -20,7 +20,7 @@ local function findAndConvertCoins(player, container, converter)
 				if item:getId() == fromId and item:getCount() == 100 then
 					item:remove()
 					if not (container:addItem(toId, 1)) then
-						player:addItem(toId, 1)
+						player:AddCustomItem({id = toId, count = 1})
 					end
 
 					converter:setAttribute(ITEM_ATTRIBUTE_CHARGES, converter:getAttribute(ITEM_ATTRIBUTE_CHARGES) - 1)
@@ -54,19 +54,16 @@ local function startConverter(playerId, converterItemId)
 end
 
 local magicGoldConverter = Action()
-
 function magicGoldConverter.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	item:transform(data.converterIds[item.itemid])
 	item:decay()
 	startConverter(player:getId(), 28526)
 	return true
 end
-
 magicGoldConverter:id(28525, 28526)
 magicGoldConverter:register()
 
 local converterOnLogin = CreatureEvent("MagicConverter")
-
 function converterOnLogin.onLogin(player)
 	if not player then
 		return false
@@ -74,5 +71,4 @@ function converterOnLogin.onLogin(player)
 	startConverter(player:getId(), 33299)
 	return true
 end
-
 converterOnLogin:register()

@@ -6,7 +6,7 @@
 ---@field scripts table
 ---@field npcs table
 ---@field onUseDeclarations table
----@field questlog table
+---@field questlog function
 ---@field currentMission integer
 ---@field missions table
 ---@field state integer
@@ -25,7 +25,7 @@ function Quest:New(name)
 		scripts = {},
 		npcs = {},
 		onUseDeclarations = {},
-		questlog = function() end,
+		questlog = nil,
 	}
 
 	setmetatable(newObj, self)
@@ -44,6 +44,10 @@ QUEST_SCRIPT_TYPE = {
 	ON_USE_DECLARATION = "ON_USE_DECLARATION",
 }
 
+function Quest:GetName()
+	return self.name
+end
+
 --#region Immediate execution
 function Quest:Storage(storages)
 	storages()
@@ -58,6 +62,10 @@ end
 --#region Not quest state dependant
 function Quest:Questlog(questlog)
 	self.questlog = questlog
+	return self
+end
+function Quest:NoQuestlog()
+	self.questlog = function() end
 	return self
 end
 --#endregion
@@ -86,8 +94,8 @@ end
 function QuestFactory.Script(script)
 	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
 end
-function QuestFactory.OnUseDeclaration(items, anchor)
-	return { items = items, anchor = anchor, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
+function QuestFactory.OnUseDeclarations(items)
+	return { items = items, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
 end
 function Quest:Script(script)
 	table.insert(self.scripts, { script = script })
@@ -97,6 +105,7 @@ function Quest:OnUseDeclaration(items, anchor) --Unused
 	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
 	return self
 end
+
 ---@private
 function Quest:AddDialog(context)
 	local names, dialogs = context.names, context.dialogs
@@ -114,13 +123,12 @@ function Quest:AddDialog(context)
 		logger.debug(T(":quest: missing name for dialog", { quest = self.name }))
 	end
 
-	--3af remove on prod
-	--3af search for missing translations
-	for requredKeywords, actionsAndRequirements in pairs(dialogs) do
-		for key, value in pairs(actionsAndRequirements) do
-			if type(value) == "string" then
-				translatedFromAnyQuest(value, LANGUAGES.EN, self.localizer)
-				translatedFromAnyQuest(value, LANGUAGES.PL, self.localizer)
+	for _, lang in pairs(LANGUAGES) do
+		for requredKeywords, actionsAndRequirements in pairs(dialogs) do
+			for key, value in pairs(actionsAndRequirements) do
+				if type(value) == "string" then
+					RegisterString(value, self.localizer)
+				end
 			end
 		end
 	end
@@ -153,7 +161,17 @@ function Quest:AddOnUseDeclaration(context)
 	local mission, state = context.mission, context.state
 
 	for _, item in pairs(items) do
-		item.requiredState = item.requiredState or { [mission] = state } -- default: onUse requiredState is exact mission state it was declared in
+		-- default: onUse requiredState is exact mission state it was declared in
+		if not item.requiredState then
+			item.requiredState = {}
+			item.requiredState[mission] = state
+		end
+		if item.key then
+			item.requiredState[item.key] = MISSION_NOT_STARTED
+
+			item.nextState = item.nextState or {}
+			item.nextState[item.key] = item.nextState[item.key] or MISSION_FINISHED
+		end
 	end
 
 	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
@@ -162,6 +180,11 @@ end
 --#endregion
 
 function Quest:Mission(mission)
+	if self.missions[mission] then
+		logger.error(T("[Quest:Mission] Mission :storage: was already registered!!!", { storage = mission }))
+		return
+	end
+
 	self.currentMission = mission
 	self.missions[self.currentMission] = {}
 	return self
@@ -178,34 +201,11 @@ function Quest:State(stateDataCallback)
 end
 
 function Quest:Register()
-	QuestRegistry:Register(self)
-end
-
-local function normalizeQuestlog()
-	for _, quest in pairs(Quests) do
-		quest.questId = NextQuestId()
-		IdToQuest[quest.questId] = quest
-		for _, mission in pairs(quest.missions) do
-			local min, max
-			if mission.states then
-				min, max = FindMinMaxValue(mission.states)
-			end
-			mission.minState = mission.minState or min or DEFAULT_MIN_STATE
-			mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
-			mission.finishedState = mission.finishedState or MISSION_FINISHED
-			mission.missionId = NextMissionId()
-			for _, desc in pairs(mission.states or {}) do
-				if type(desc) == "string" then
-					translatedFromAnyQuest(desc, "EN", quest.localizer)
-					translatedFromAnyQuest(desc, "PL", quest.localizer)
-				end
-			end
-
-			StorageToMission[mission.storage] = mission
-			IdToMission[mission.missionId] = mission
-			Game.linkMissionToStorages(mission.storage, mission.linkedStorages or {})
-		end
+	if not self.questlog then
+		logger.error(debug.traceback(T("Quest :name: has no questlog. Define questlog with Quest::Questlog or explicitly declare no questlog with Quest::NoQuestlog", { name = self:GetName() })))
 	end
+
+	QuestRegistry:Register(self)
 end
 
 local storageToMaxState = {}
@@ -248,9 +248,39 @@ function QuestRegistry:UnpackStateData()
 	end
 end
 
+function QuestRegistry.NormalizeQuestlog()
+	local normalizeQuestlogStartup = GlobalEvent("Quest/NormalizeQuestlog")
+	function normalizeQuestlogStartup.onStartup()
+		for _, quest in pairs(Quests) do
+			quest.questId = NextQuestId()
+			IdToQuest[quest.questId] = quest
+			for _, mission in pairs(quest.missions) do
+				local min, max
+				if mission.states then
+					min, max = FindMinMaxKey(mission.states)
+				end
+				mission.minState = mission.minState or min or DEFAULT_MIN_STATE
+				mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
+				mission.finishedState = mission.finishedState or MISSION_FINISHED
+				mission.missionId = NextMissionId()
+				for _, desc in pairs(mission.states or {}) do
+					if type(desc) == "string" then
+						RegisterString(desc, quest.localizer)
+					end
+				end
+
+				StorageToMission[mission.storage] = mission
+				IdToMission[mission.missionId] = mission
+				Game.linkMissionToStorages(mission.storage, mission.linkedStorages or {})
+			end
+		end
+	end
+	normalizeQuestlogStartup:register()
+end
+
 function QuestRegistry:CreateQuestlog()
 	for _, quest in pairs(self.registry) do
-		quest.questlog()
+		quest.questlog(quest.localizer)
 	end
 end
 function QuestRegistry:CreateMonstersEvents()
@@ -261,11 +291,15 @@ function QuestRegistry:CreateMonstersEvents()
 	end
 end
 function QuestRegistry:CreateEncounters()
-	for _, quest in pairs(self.registry) do
-		for _, encounter in pairs(quest.encounters) do
-			encounter()
+	local encountersStartup = GlobalEvent("Quest/CreateEncounters")
+	function encountersStartup.onStartup()
+		for _, quest in pairs(self.registry) do
+			for _, encounter in pairs(quest.encounters) do
+				encounter()
+			end
 		end
 	end
+	encountersStartup:register()
 end
 function QuestRegistry:CreateMonsters()
 	for _, quest in pairs(self.registry) do
@@ -284,7 +318,7 @@ function QuestRegistry:RegisterNpcData()
 	end
 end
 function QuestRegistry:RegisterOnUseDeclarations()
-	local onUseDeclarations = GlobalEvent("QuestSystem/RegisterOnUseDeclarations")
+	local onUseDeclarations = GlobalEvent("Quest/RegisterOnUseDeclarations")
 	function onUseDeclarations.onStartup()
 		for _, quest in pairs(self.registry) do
 			for _, itemsData in pairs(quest.onUseDeclarations) do
@@ -312,7 +346,7 @@ function QuestRegistry:RegisterQuestData()
 	self:RegisterNpcData()
 	self:RegisterOnUseDeclarations()
 	self:RunScripts()
-	normalizeQuestlog()
+	self.NormalizeQuestlog()
 	questlogLookups()
 end
 

@@ -66,7 +66,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Take this talisman to empower the ward stones. It will work with all the stones at known locations. ...",
 					"However, the empowering of the last stone could be a bit more complicated. But you have to find out yourself what to do..",
 				}, npc, creature)
-				player:addItem(30132)
+				player:AddCustomItem({id = 30132})
 				player:setStorageValueByKey(Storage.TheDreamCourts.QuestLine, 2)
 			elseif (player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) == 2) and (player:getStorageValueByKey(Storage.TheDreamCourts.WardStones.WardStones) < 8) then
 				npcHandler:say({

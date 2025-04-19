@@ -34,12 +34,14 @@ FAREWELL = "DIALOG_MESSAGE_FAREWELL"
 WALKAWAY = "DIALOG_MESSAGE_WALKAWAY"
 INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
-DEFAULT_MAX_STATE = 2 ^ 31 - 1
-DEFAULT_MIN_STATE = -2 ^ 31 - 1
-
 MISSION_NOT_STARTED = -1
 MISSION_STARTED = 1
 MISSION_FINISHED = 2 ^ 31 - 1
+
+DEFAULT_MAX_STATE = MISSION_FINISHED
+DEFAULT_MIN_STATE = -MISSION_FINISHED
+
+REPORT_TASK_TO_NPC = MISSION_FINISHED - 1
 
 ACCESS_NOT_GRANTED = -1
 ACCESS_GRANTED = 1
@@ -50,23 +52,23 @@ ANY_STATE = { min = DEFAULT_MIN_STATE, max = DEFAULT_MAX_STATE }
 TOPIC_DEFAULT = 0
 
 REQUIREMENT_STATUS = {
-	CONDITION_PASSED = "CONDITION_PASSED",
-	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
+	REQUIREMENT_PASSED = "REQUIREMENT_PASSED",
+	REQUIREMENT_NOT_PASSED = "REQUIREMENT_NOT_PASSED",
 	--Unused
 	--AT_LEAST_ONE_CONDITION_PASSED = "AT_LEAST_ONE_CONDITION_PASSED"
 	--NO_CONDITIONS_PASSED = "NO_CONDITIONS_PASSED"
 }
 
 RESOLVER_STATUS = {
-	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
-	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
+	AT_LEAST_ONE_REQUIREMENT_NOT_PASSED = "AT_LEAST_ONE_REQUIREMENT_NOT_PASSED",
+	ALL_REQUIREMENTS_PASSED = "ALL_REQUIREMENTS_PASSED",
 }
 
 DISCARD_DIALOG = "DISCARD_DIALOG"
 SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
 FAIL_RESOLVE = "FAIL_RESOLVE"
 
-local specialMessageTypes = { MESSAGE_GREET, MESSAGE_FAREWELL, MESSAGE_WALKAWAY }
+local specialMessageTypes = { MESSAGE_GREET = MESSAGE_GREET, MESSAGE_FAREWELL = MESSAGE_FAREWELL, MESSAGE_WALKAWAY = MESSAGE_WALKAWAY }
 local specialMessageTypeToMessage = {
 	[MESSAGE_GREET] = GREET,
 	[MESSAGE_FAREWELL] = FAREWELL,
@@ -78,31 +80,6 @@ NEXT_TOPIC = NEXT_TOPIC or FIRST_AVAILABLE_TOPIC
 function NextTopic()
 	NEXT_TOPIC = NEXT_TOPIC + 1
 	return NEXT_TOPIC
-end
-
----@param key any
----@return any
-function Player:getStorageValueByKey(key)
-	return self:kv():get(key) or MISSION_NOT_STARTED
-end
-function Player:setStorageValueByKey(key, nextValue)
-	local previousValue = self:getStorageValueByKey(key)
-	self:kv():set(key, nextValue)
-	self:updateStorage(key, nextValue, previousValue, os.time())
-end
-
-function Game.getStorageValueByKey(key)
-	return kv.get(key) or MISSION_NOT_STARTED
-end
-function Game.setStorageValueByKey(key, value)
-	return kv.set(key, value)
-end
-
-function Shop:getStorageValueByKey(key)
-	return self:kv():get(key) or MISSION_NOT_STARTED
-end
-function Shop:setStorageValueByKey(key, value)
-	return self:kv():set(key, value)
 end
 
 function GrantPlayerExpByAid(player, actionId)
@@ -157,8 +134,8 @@ function Player:NextState(storages)
 end
 
 function Player:RefreshStorage(storage)
-	local currentValue = self:kv():get(storage)
-	self:setStorageValueByKey(storage):set(currentValue)
+	local currentValue = self:getStorageValueByKey(storage)
+	self:setStorageValueByKey(storage, currentValue)
 end
 
 function Player:RefreshStorages(storages)
@@ -202,18 +179,18 @@ local function parseRequiredState(requiredState)
 end
 
 function Player:HasExactMissionState(missionState)
-	return self:HasCorrectStorageValue(missionState.mission, missionState.state)
+	return self:HasRequiredState(missionState.mission, missionState.state)
 end
 
 function Player:HasAtLeastMissionState(missionState)
-	return self:HasCorrectStorageValue(missionState.mission, { min = missionState.state })
+	return self:HasRequiredState(missionState.mission, { min = missionState.state })
 end
 
 function Player:HasHigherMissionState(missionState)
-	return self:HasCorrectStorageValue(missionState.mission, { min = missionState.state, excludeMin = true })
+	return self:HasRequiredState(missionState.mission, { min = missionState.state, excludeMin = true })
 end
 
-function Player:HasCorrectStorageValue(storage, requiredState)
+function Player:HasRequiredState(storage, requiredState)
 	local currentState = self:getStorageValueByKey(storage)
 
 	local requirements = parseRequiredState(requiredState)
@@ -245,25 +222,25 @@ function Player:HasCorrectStorageValue(storage, requiredState)
 	return true
 end
 
-function Player:HasCorrectStorageValues(storages)
-	if not storages then
+function Player:HasRequiredStates(requiredStates)
+	if not requiredStates then
 		return true
 	end
-	for storage, requiredState in pairs(storages) do
-		if not self:HasCorrectStorageValue(storage, requiredState) then
+	for storage, requiredState in pairs(requiredStates) do
+		if not self:HasRequiredState(storage, requiredState) then
 			return false
 		end
 	end
 	return true
 end
 
--- First matched incorrect value returns an error
+-- First matched incorrect value breaks the loop and returns an error
 function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
 	if not storages then
 		return true
 	end
 	for storage, requiredState in pairs(storages) do
-		if not self:HasCorrectStorageValue(storage, requiredState) then
+		if not self:HasRequiredState(storage, requiredState) then
 			if type(requiredState) == "table" then
 				return requiredState.errorMessage, false
 			end
@@ -297,31 +274,6 @@ function SpawnMonstersAtPlayer(monsterName, player, count)
 	end
 end
 
-function Player:AddOutfitsAndAddons(outfitsAndAddons)
-	for _, data in pairs(outfitsAndAddons) do
-		local outfit = data.outfitId or data.outfit or data.id
-		local addon = data.addon
-
-		self:addOutfit(outfit)
-		if addon then
-			self:addOutfitAddon(outfit, addon)
-		end
-	end
-	self:addOutfit()
-end
-
-function Player:AddMounts(mounts)
-	for _, mountId in pairs(mounts) do
-		self:addMount(mountId)
-	end
-end
-
-function AddExperienceWithAnnouncement(player, exp)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained :exp: experience!", { exp = exp }))
-	player:addExperience(exp)
-	player:getPosition():sendMagicEffect(CONST_ME_STUN)
-end
-
 ---@class DialogContext
 ---@field player Player player object
 ---@field cid number player id
@@ -331,8 +283,8 @@ end
 ---@field npc userdata npc object
 ---@field specialMessageType string
 ---@field localizer number
+---@field greetContext nil|table
 ---@field requirements table
----@alias Player table
 DialogContext = {}
 DialogContext.__index = DialogContext
 setmetatable(DialogContext, {
@@ -355,6 +307,13 @@ setmetatable(DialogContext, {
 	end,
 })
 
+function DialogContext:GetGreetContext()
+	return self.greetContext
+end
+function DialogContext:GetResolutionContext()
+	return self.resolutionContext
+end
+
 function DialogContext:SendIncomprehensibleError()
 	local player = self.player
 	local npc = self.npc
@@ -363,7 +322,7 @@ function DialogContext:SendIncomprehensibleError()
 
 	local errorMessageIdentifier = INCOMPREHENSIBLE
 	if npcDialogData[LOCALIZERS.Universal] and npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE] then
-		errorMessageIdentifier = npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE]
+		errorMessageIdentifier = npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE].text
 	end
 
 	local errorMessage = player:Localizer(LOCALIZERS.Universal):Context(self):Get(errorMessageIdentifier)
@@ -470,6 +429,10 @@ function DialogContext:PlayerSaidRequiredWord()
 	if type(pattern) ~= "table" then
 		pattern = { pattern }
 	end
+	if self.anyMessage and table.contains(pattern, ANY_MESSAGE) then
+		return true
+	end
+
 	if not isPattern(pattern) then
 		return table.contains(pattern, msg)
 	end
@@ -525,7 +488,7 @@ function DialogContext:ResolveDialogDefault()
 end
 
 function DialogContext:ResolveDialogAnyMsg()
-	self.msg = ANY_MESSAGE
+	self.anyMessage = true
 	self:ResolveDialogDefault()
 end
 
@@ -610,6 +573,8 @@ function DialogContext:ResolveKeyword()
 
 		self.resolvedStatus = resolutionContext:Resolve()
 		if self:IsResolved() then
+			self.resolutionContext = resolutionContext
+			self.greetContext = self.resolutionContext:GetGreetContext()
 			return
 		end
 		::continue::
@@ -635,7 +600,25 @@ function ParseTopicMinMax(config)
 	return min, max
 end
 
-function InitializeResponses(player, config, npcHandler, npc, msg)
+function InitializeFarewellWalkaway(player, config, npcHandler, npc, msg)
+	player = Player(player)
+
+	PlayerDialogDataRegistry:Register(player)
+
+	local cid = player:getId()
+	npcHandler.topic[cid] = TOPIC_DEFAULT
+
+	for _, specialMessageType in pairs({ specialMessageTypes.MESSAGE_WALKAWAY, specialMessageTypes.MESSAGE_FAREWELL }) do
+		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
+		dialogContext:TryResolveDialog()
+		if not dialogContext:IsResolved() then
+			local message = player:Localizer(LOCALIZERS.Universal):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.Universal):Get(specialMessageType)
+			npcHandler:setMessage(specialMessageType, message)
+		end
+	end
+end
+
+function InitializeGreet(player, config, npcHandler, npc, msg)
 	player = Player(player)
 
 	PlayerDialogDataRegistry:Register(player)
@@ -643,12 +626,15 @@ function InitializeResponses(player, config, npcHandler, npc, msg)
 
 	npcHandler.topic[cid] = TOPIC_DEFAULT
 
-	for _, specialMessageType in pairs(specialMessageTypes) do
-		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
-		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZERS.Universal):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.Universal):Get(specialMessageType)
-			npcHandler:setMessage(specialMessageType, message)
-		end
+	local specialMessageType = specialMessageTypes.MESSAGE_GREET
+	local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
+	dialogContext:TryResolveDialog()
+	if dialogContext:IsResolved() then
+		return dialogContext:GetGreetContext()
+	else
+		local message = player:Localizer(LOCALIZERS.Universal):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.Universal):Get(specialMessageType)
+		npcHandler:setMessage(specialMessageType, message)
+		return GreetCallbackContext()
 	end
 end
 

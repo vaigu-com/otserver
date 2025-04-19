@@ -218,7 +218,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 29)
 			player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Mission10, 1) --Questlog, Wrath of the Emperor "Mission 10: A Message of Freedom"
-			player:addItem(10343, 1)
+			player:AddCustomItem({id = 10343, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		end
 	end

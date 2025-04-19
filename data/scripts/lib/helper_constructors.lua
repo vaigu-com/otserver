@@ -1,11 +1,44 @@
 -- HelperConstructors
-local classes = { Action, CreatureEvent, Spell, TalkAction, MoveEvent, GlobalEvent, Weapon }
+local classes = {
+	Action = Action,
+	CreatureEvent = CreatureEvent,
+	Spell = Spell,
+	TalkAction = TalkAction,
+	MoveEvent = MoveEvent,
+	GlobalEvent = GlobalEvent,
+	Weapon = Weapon,
+}
 
-for _, class in ipairs(classes) do
+-- Vaigu custom
+local checkClasses = {
+	Action = true,
+	CreatureEvent = true,
+	Spell = nil,
+	TalkAction = true,
+	MoveEvent = true,
+	GlobalEvent = true,
+	Weapon = nil,
+}
+local nameToPresence = {}
+local function validateDuplicates(className, name)
+	if not name then
+		return
+	end
+	if not checkClasses[className] then
+		return
+	end
+	if nameToPresence[name] then
+		logger.warn(T("[CreatureEvent::New] Already registered :className: with :name: ", { className = className, name = name }))
+	end
+	nameToPresence[name] = true
+end
+
+for className, class in pairs(classes) do
 	local MT = getmetatable(class)
 	local DefaultConstructor = MT.__call
 
 	MT.__call = function(self, def, ...)
+		validateDuplicates(className, def)
 		-- Backwards compatibility for default obj() constructor
 		if type(def) ~= "table" then
 			return DefaultConstructor(self, def, ...)

@@ -1,4 +1,4 @@
-DONT_SHOW_ONLOOK = "DONT_SHOW_ONLOOK"
+Storage.DebugOnLook = {}
 
 local OnLookMessageBuilder = {}
 function OnLookMessageBuilder:new(player, inspectedThing, inspectedPosition, lookDistance)
@@ -17,18 +17,23 @@ setmetatable(OnLookMessageBuilder, {
 	end,
 })
 
-function SimpleTextDisplay(player, item, message)
+local _nextModalWindowId = 1000
+local function nextModalWindowId()
+	_nextModalWindowId = _nextModalWindowId + 1
+	return _nextModalWindowId
+end
+
+function SimpleTextDisplay(player, message)
 	local title = "You read the following."
 	if message == nil then
-		message = message or ("Report this bug to the gamemaster. Debug info: AID:" .. item:getActionId())
-		logger.debug(T("[SimpleTextDisplay] Trying to display nil message. item: :item:, aid: :aid:", { item = item, aid = item:getActionId() }))
+		logger.error(debug.traceback(T("[SimpleTextDisplay] Trying to display nil message :message:"), { message = message }))
+		return
 	end
 	local close = "Close"
-	local aid = item:getActionId()
 
 	player:registerEvent("SimpleDisplayOnLook")
 
-	local window = ModalWindow(aid, title, message)
+	local window = ModalWindow(nextModalWindowId(), title, message)
 	window:addButton(101, close)
 	window:setDefaultEscapeButton(101)
 
@@ -86,7 +91,7 @@ function OnLookMessageBuilder:ParseItemDescription()
 	if isRefiller(inspectedThing.itemid) then
 		local itemCharges = inspectedThing:getCharges()
 		if itemCharges > 0 then
-			return T("You see :descriptionText:\nIt has :charges: refillings left.", { name = descriptionText, charges = itemCharges })
+			return T("You see :descriptionText:\nIt has :charges: refillings left.", { descriptionText = descriptionText, charges = itemCharges })
 		end
 	end
 	return "You see " .. descriptionText
@@ -167,7 +172,8 @@ function OnLookMessageBuilder:ParseAdminDetails()
 		descriptionText = string.format("%s\nSpeed Base: %d\nSpeed: %d", descriptionText, creatureBaseSpeed, creatureCurrentSpeed)
 
 		if inspectedThing:isPlayer() then
-			descriptionText = string.format("%s\nIP: %s", descriptionText, Game.convertIpToString(inspectedThing:getIp()))
+			-- RODO?
+			-- descriptionText = string.format("%s\nIP: %s", descriptionText, Game.convertIpToString(inspectedThing:getIp()))
 		end
 	end
 
@@ -181,7 +187,7 @@ function OnLookMessageBuilder:Build()
 		self.normalDescription = self:ParseCreatureDescription()
 	end
 
-	if self.player:getGroup():getAccess() then
+	if self.player:getGroup():getAccess() or self.player:getStorageValueByKey(Storage.DebugOnLook) == ACCESS_GRANTED then
 		self.adminDescription = self:ParseAdminDetails()
 	end
 	return self

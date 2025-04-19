@@ -1518,6 +1518,7 @@ function Player:pulsatingEnergyKV()
 	return self:furiousCraterKV():scoped("pulsating-energy")
 end
 
+--[[
 function Zone:getRandomPlayer()
 	local players = self:getPlayers()
 	if #players == 0 then
@@ -1527,6 +1528,7 @@ function Zone:getRandomPlayer()
 	local randomIndex = math.random(#players)
 	return players[randomIndex]
 end
+]]
 
 local conditionOutfit = Condition(CONDITION_OUTFIT)
 

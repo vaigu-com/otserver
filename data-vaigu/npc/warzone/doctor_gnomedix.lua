@@ -48,13 +48,13 @@ npcType.onSay = function(npc, creature, type, message)
 	local player = Player(creature)
 	local playerId = player:getId()
 
-	if player:getStorageValueByKey(Storage.BigfootBurden.QuestLine) == 5 then
+	if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 5 then
 		if getPlayerLanguage(player) == "PL" then
 			npcHandler:setMessage(MESSAGE_GREET, "Wejdz prosze na platforme egzaminacyjna, |PLAYERNAME|.")
 		else
 			npcHandler:setMessage(MESSAGE_GREET, "Stand still on the examination platform |PLAYERNAME|.")
 		end
-		player:setStorageValueByKey(Storage.BigfootBurden.QuestLine, 6)
+		player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 6)
 	end
 	npcHandler:onSay(npc, creature, type, message)
 end

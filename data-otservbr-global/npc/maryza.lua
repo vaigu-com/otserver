@@ -94,7 +94,7 @@ local function creatureSayCallback(npc, creature, type, message)
 
 			npcHandler:say("Here you are. Happy cooking!", npc, creature)
 			player:setStorageValue(Storage.MaryzaCookbook, 1)
-			player:addItem(3234, 1)
+			player:AddCustomItem({id = 3234, count = 1})
 		elseif MsgContains(message, "no") then
 			npcHandler:say("I have but a few copies, anyway.", npc, creature)
 		end

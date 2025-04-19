@@ -62,8 +62,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getStorageValue(Storage.Quest.U8_1.TibiaTales.UltimateBoozeQuest) == 2 and player:removeItem(136, 1) then
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.UltimateBoozeQuest, 3)
 			npcHandler:setTopic(playerId, 0)
-			player:addItem(5710, 1)
-			player:addItem(3035, 10)
+			player:AddCustomItem({id = 5710, count = 1})
+			player:AddCustomItem({id = 3035, count = 10})
 			player:addExperience(100, true)
 			npcHandler:say("Yessss! Now I only need to build my own small brewery, figure out the secret recipe, duplicate the dwarvish brew and BANG I'll be back in business! Here take this as a reward.", npc, creature)
 		elseif player:getStorageValue(Storage.Quest.U8_1.TibiaTales.UltimateBoozeQuest) < 1 then
@@ -74,7 +74,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if npcHandler:getTopic(playerId) == 1 then
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.DefaultStart, 1)
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.UltimateBoozeQuest, 1)
-			player:addItem(138, 1)
+			player:AddCustomItem({id = 138, count = 1})
 			npcHandler:say("Good! Listen closely. Take this bottle and go to Kazordoon. I need a sample of their very special brown ale. You may find a cask in their brewery. Come back as soon as you got it.", npc, creature)
 		end
 	end

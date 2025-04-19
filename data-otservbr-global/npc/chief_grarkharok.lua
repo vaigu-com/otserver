@@ -107,7 +107,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say("|PLAYERNAME|?!? Sound good! Bring troll lady to Grarkharok!! Here, give troll lady! Take take! Bring lady to Grarkharok for make tribe!! Now GO!", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 		player:setStorageValue(mission.Questline, 2)
-		player:addItem(7754, 1)
+		player:AddCustomItem({id = 7754, count = 1})
 	elseif MsgContains(message, "frog") then
 		npcHandler:say("Have dead frog for Grarkharok??", npc, creature)
 		npcHandler:setTopic(playerId, 100)

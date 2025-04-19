@@ -18,7 +18,7 @@ local conditions = {
 	CONDITION_FREEZING, -- special chest
 
 	CONDITION_DAZZLED, --utori san
-	CONDITIONCURSED, --utori mort
+	CONDITION_CURSED, --utori mort
 }
 
 function addCondition.onSay(player, words, param)

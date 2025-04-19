@@ -102,7 +102,7 @@ boxKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, 
 	return player:getItemCount(2856) > 0
 end, function(player)
 	player:removeItem(2856, 1)
-	player:addItem(3374, 1)
+	player:AddCustomItem({id = 3374, count = 1})
 end)
 boxKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "HEY! You don't have one! Stop playing tricks on me or I'll give you some extra work!", reset = true })
 

@@ -40,6 +40,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> &mType) :
 	m_lowerName(asLowerCaseString(mType->name)),
 	nameDescription(asLowerCaseString(mType->nameDescription)),
 	mType(mType) {
+	name = mType->name,
 	defaultOutfit = mType->info.outfit;
 	currentOutfit = mType->info.outfit;
 	skull = mType->info.skull;
@@ -59,7 +60,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> &mType) :
 			                scriptName);
 		}
 	}
-	fullName = mType->name; // Vaigu custom
+	updateFullName();
 }
 
 std::shared_ptr<Monster> Monster::getMonster() {
@@ -84,20 +85,28 @@ void Monster::removeList() {
 	g_game().removeMonster(static_self_cast<Monster>());
 }
 
-const std::string &Monster::getName() const {
-	if (name.empty()) {
-		return mType->name;
-	}
-	//return name;
-	return fullName; // Vaigu custom
+//Vaigu custom
+bool Monster::hasIgnoreCreatures() {
+	return mType->info.ignoreCreatures;
 }
 
+// Vaigu custom
+const std::string &Monster::getName() const {
+	if (fullName.empty()) {
+		return mType->name;
+	}
+	// return name;
+	return fullName;
+}
+
+// Vaigu custom
 void Monster::setName(const std::string &name) {
 	if (getName() == name) {
 		return;
 	}
 
 	this->name = name;
+	this->fullName = name;
 
 	// NOTE: Due to how client caches known creatures,
 	// it is not feasible to send creature update to everyone that has ever met it
@@ -283,6 +292,9 @@ void Monster::onAttackedCreatureDisappear(bool) {
 }
 
 void Monster::onCreatureAppear(const std::shared_ptr<Creature> &creature, bool isLogin) {
+	if(mType->info.ignoreCreatures){
+		return;
+	}
 	Creature::onCreatureAppear(creature, isLogin);
 
 	if (mType->info.creatureAppearEvent != -1) {
@@ -1023,6 +1035,9 @@ void Monster::onEndCondition(ConditionType_t type) {
 }
 
 void Monster::onThink(uint32_t interval) {
+	if(mType->info.ignoreCreatures){
+		return;
+	}
 	Creature::onThink(interval);
 
 	if (mType->info.thinkEvent != -1) {
@@ -1409,7 +1424,8 @@ void Monster::pushItems(const std::shared_ptr<Tile> &tile, const Direction &next
 		int32_t downItemSize = tile->getDownItemCount();
 		for (int32_t i = downItemSize; --i >= 0;) {
 			const auto &item = items->at(i);
-			if (item && item->hasProperty(CONST_PROP_MOVABLE) && (item->hasProperty(CONST_PROP_BLOCKPATH) || item->hasProperty(CONST_PROP_BLOCKSOLID)) && item->canBeMoved()) {
+			// Vaigu custom
+			if (item && item->hasProperty(CONST_PROP_MOVABLE) && (item->hasProperty(CONST_PROP_BLOCKPATH) || item->hasProperty(CONST_PROP_BLOCKSOLID)) && item->canBePushed()) {
 				if (moveCount < 20 && pushItem(item, nextDirection)) {
 					++moveCount;
 				} else if (!item->isCorpse() && g_game().internalRemoveItem(item) == RETURNVALUE_NOERROR) {
@@ -2553,6 +2569,13 @@ void Monster::getPathSearchParams(const std::shared_ptr<Creature> &creature, Fin
 	}
 }
 
+// Vaigu custom
+void Monster::updateFullName() {
+	// Set monster title based on influence
+	std::string title = influenceRankToTitle[getForgeStack()];
+	fullName = title + name;
+}
+
 void Monster::configureForgeSystem() {
 	if (!canBeForgeMonster()) {
 		return;
@@ -2569,13 +2592,11 @@ void Monster::configureForgeSystem() {
 		g_game().updateCreatureIcon(static_self_cast<Monster>());
 	}
 
+	updateFullName();
+	
 	// Change health based in stacks
 	const auto percentToIncrement = 1 + (15 * forgeStack + 35) / 100.f;
 	auto newHealth = static_cast<int32_t>(std::ceil(static_cast<float>(healthMax) * percentToIncrement));
-
-	// Set monster title based on influence
-	std::string title = influenceRankToTitle[getForgeStack()];
-	fullName = title + mType->name;
 
 	healthMax = newHealth;
 	health = newHealth;
@@ -2635,7 +2656,7 @@ void Monster::clearFiendishStatus() {
 	health = mType->info.health * mType->getHealthMultiplier();
 	healthMax = mType->info.healthMax * mType->getHealthMultiplier();
 
-	fullName = mType->name;
+	updateFullName();
 	removeIcon("forge");
 	g_game().updateCreatureIcon(static_self_cast<Monster>());
 	g_game().sendUpdateCreature(static_self_cast<Monster>());
@@ -2695,4 +2716,14 @@ void Monster::loadLoot(const std::shared_ptr<Monster> monster, LootBlock lootBlo
 	} else {
 		monster->lootItems.push_back(lootBlock);
 	}
+}
+
+// Vaigu custom
+uint32_t Monster::getEncounterDifficulty() {
+	return encounterDifficulty;
+}
+
+// Vaigu custom
+void Monster::setEncounterDifficulty(uint32_t newDifficuly) {
+	encounterDifficulty = newDifficuly;
 }

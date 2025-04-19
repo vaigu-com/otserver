@@ -78,7 +78,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"Take these two sterilised vials, one for each blood basin. Oh, I wish I could go myself! Come back when you have filled both vials.",
 		}, npc, creature)
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission36, 1)
-		player:addItem(19100, 2)
+		player:AddCustomItem({id = 19100, count = 2})
 		npcHandler:setTopic(playerId, 0)
 	elseif (MsgContains(message, "scroll") or MsgContains(message, "mission") or MsgContains(message, "blood")) and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission37) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission38) < 1 then
 		npcHandler:say("Hello hello! Did you bring those blood samples?", npc, creature)
@@ -93,7 +93,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission38, 1)
 			player:removeItem(19101, 1)
 			player:removeItem(19102, 1)
-			player:addItem(19133, 1)
+			player:AddCustomItem({id = 19133, count = 1})
 			npcHandler:setTopic(playerId, 0)
 		else
 			npcHandler:say("You haven't got any blood.", npc, creature)
@@ -117,7 +117,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 4 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission41) == 1 then
 		npcHandler:say("My heart bleeds to part from it. Here. Extend your hand - I'll just retrieve some blood from in exchange - HOLD STILL.", npc, creature)
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission42, 1)
-		player:addItem(18933, 1)
+		player:AddCustomItem({id = 18933, count = 1})
 		npcHandler:setTopic(playerId, 0)
 	end
 	return true

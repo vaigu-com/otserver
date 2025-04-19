@@ -24,7 +24,6 @@ return {
 	["Here's the document for you."] = "Here's the document for you.",
 	["Get back when you get all the items."] = "Get back when you get all the items.",
 	["So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have a crystal coin with you."] = "So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have a crystal coin with you.",
-	["Lost the bag? Come back when you  it."] = "Lost the bag? Come back when you  it.",
 	-- Chester the Dwarf
 	["Chester the Dwarf"] = "Chester the Dwarf",
 	["Fortune Teller 3000"] = "Fortune Teller 3000",

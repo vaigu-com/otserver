@@ -74,7 +74,7 @@ function gooeyMass.onUse(player, item, fromPosition, target, toPosition, isHotke
 			local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)
 			if backpack and backpack:getEmptySlots(true) >= 1 then
 				if (player:getFreeCapacity() / 100) > getItemWeight(setting.reward) then
-					player:addItem(setting.reward)
+					player:AddCustomItem({id = setting.reward})
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. getItemName(setting.reward) .. ".")
 					player:setStorageValue(setting.storage, os.time() + 7 * 24 * 60 * 60) -- 7 days
 					return true

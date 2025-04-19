@@ -65,7 +65,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 1 then
 		if player:getItemCount(10328) > 0 then
 			npcHandler:say(string.format("Here you go. %d rice balls. Hope you buy a beer with them at least.", player:getItemCount(10328) * 10), npc, creature)
-			player:addItem(10329, player:getItemCount(10328) * 10)
+			player:AddCustomItem({id = 10329, count = player:getItemCount(10328) * 10})
 			player:removeItem(10328, player:getItemCount(10328))
 		else
 			npcHandler:say("You don't have a ripe rice plant. Thank fire and earth I was spared.", npc, creature)

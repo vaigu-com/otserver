@@ -2,7 +2,7 @@ return {
 	["Come back when you find my shipment."] = "Come back when you find my shipment.",
 	["Were you able to find my {shipment}?"] = "Were you able to find my {shipment}?",
 	["I hope that you'll find this ticket."] = "I hope that you'll find this ticket.",
-	["Thanks a lot! Can't wait to see the match. But there's something more, I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?"] = "Thanks a lot! Can't wait to see the match. But there's something more, I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?",
+	["Thanks a lot! Can't wait to see the match."] = "Thanks a lot! Can't wait to see the match.",
 	["This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you."] = "This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you.",
 	["Could you take this package to Anon's father? He's surely getting impatient, so he'll reward you for your help."] = "Could you take this package to Anon's father? He's surely getting impatient, so he'll reward you for your help.",
 	["Here, please, this box. Anon's father hangs around a pond near the {barracks}."] = "Here, please, this box. Anon's father hangs around a pond near the {barracks}.",
@@ -61,10 +61,12 @@ return {
 	["Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on."] = "Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on.",
 	["I think you missed some colour, bring me all six"] = "I think you missed some colour, bring me all six",
 	["My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any."] = "My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any.",
+	["Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on."] = "Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on.",
 	["I like to sew something when I am bored but slowly I am lack of colorful fabrics."] = "I like to sew something when I am bored but slowly I am lack of colorful fabrics.",
 	["I love {rotworm stew} and {roasted dragon wings} from Mickey Dicks. If you make this for me, I will certainly pay you back."] = "I love {rotworm stew} and {roasted dragon wings} from Mickey Dicks. If you make this for me, I will certainly pay you back.",
 	["Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?"] = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
 	["Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied"] = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
+	["Find two marlins for me and i will craft you a trophy that you can hang on your house walls."] = "Find two marlins for me and i will craft you a trophy that you can hang on your house walls.",
 	["Bring me exactly two marlins"] = "Bring me exactly two marlins",
 	["Thank you for that marlin. It looks great by the fireplace."] = "Thank you for that marlin. It looks great by the fireplace.",
 	["You are probably not a football devotee like me, but I wanted to go to the {match}. However, someone disrupted my plans."] = "You are probably not a football devotee like me, but I wanted to go to the {match}. However, someone disrupted my plans.",
@@ -74,38 +76,60 @@ return {
 	["There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to help me the one responsible for stealing my furniture?"] = "There is one problem with which you could help me. Some furniture started to disappear from my storages.\nI know for sure that it wasnt Narro's mafia, because they are using wood for different purposes, they are not interested in my products.\nDo you want to help me the one responsible for stealing my furniture?",
 	["What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently."] = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 	["I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?"] = "I'm stuck on this shithole and running low on food.\nWould you mind fixing some food for me?",
-	["Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your red gems for a ring of healing from now on."] = "Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your red gems for a ring of healing from now on.",
 	["Very well, let them die. I could use the cane, but you can keep the shoes. Take this pickaxe, just like we agreed.\nAbout this pickaxe - you can use it to smash icicles, for example, or some of the crystals on the island. The magic in this pickaxe is very faint and it only allows you to use it once a week."] = "Very well, let them die. I could use the cane, but you can keep the shoes. Take this pickaxe, just like we agreed.\nAbout this pickaxe - you can use it to smash icicles, for example, or some of the crystals on the island. The magic in this pickaxe is very faint and it only allows you to use it once a week.",
+	["Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road."] = "Wood, wood delivery. It was supposed to arrive two days ago. Probably another riots in Knurow that blocked the road.",
+	["Thanks that you agreed to {help}. I hope that its not another mafia."] = "Thanks that you agreed to {help}. I hope that its not another mafia.",
+	["Maybe Gypsy knows something about furniture thief, people like him stick together..."] = "Maybe Gypsy knows something about furniture thief, people like him stick together...",
+	["First off, I didnt see anything, Second: ... wait, did you say {furniture}?"] = "First off, I didnt see anything, Second: ... wait, did you say {furniture}?",
+	["I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}."] = "I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}.",
+	["Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief."] = "Recent entries on the list suggest that our thief was stealing food and supplies from the orcs of the south.\nGo to Commissioner Fisher and tell him about it. Also ask him if he knows something about that thief.",
+	["I don't know of anyone who would like to {steal} this junk from Komor."] = "I don't know of anyone who would like to {steal} this junk from Komor.",
+	["Maybe the thief is hiding beneath the MirkoTown, I doubt its anyone from outside of town. However, no one has the courage to check it out."] = "Maybe the thief is hiding beneath the MirkoTown, I doubt its anyone from outside of town. However, no one has the courage to check it out.",
 	["DOMINO_BOOK_OF_CONTRABAND_TEXT"] = "Page 7\n\nTaking: Rotten artificial beech leg, crystal ball with mahogany stand, oaken stool.",
 	--Questlog
 	["Local Support"] = "Local Support",
+	["Two Marlins"] = "Two Marlins",
+	["You delivered two marlins to Fisherman son and were rewarded for it."] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 	["Discernment"] = "Discernment",
 	["Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown."] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 	["VISIT_DEALERS_STATUS"] = function(context)
+		local player = context.player
+		local localizer = player:Localizer(LOCALIZERS.LocalSupport)
+
 		local visitedDealers = 0
-		for _, vendor in pairs(Storage.LocalSupport.VendorsAsked) do
-			if context.player:getStorageValueByKey(vendor) ~= MISSION_NOT_STARTED then
+		local unvisitedNames = ""
+		for storageKey, npcName in pairs(QuestConstants.LocalSupport.StorageToVisitNpcName) do
+			if player:getStorageValueByKey(storageKey) == MISSION_NOT_STARTED then
+				unvisitedNames = unvisitedNames .. "\n" .. localizer:Get(npcName)
+			else
 				visitedDealers = visitedDealers + 1
 			end
 		end
-		return T("Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: :visitedDealers:/10", { visitedDealers = visitedDealers })
+		local unvisitedSuffix = ""
+		if visitedDealers ~= 10 then
+			unvisitedSuffix = "\n\nYou did not visit the following vendors:" .. unvisitedSuffix
+		end
+		return T("Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: :visitedDealers:/10.:unvisitedSuffix:", { visitedDealers = visitedDealers, unvisitedSuffix = unvisitedSuffix })
 	end,
+	["You visited all dealers in mirkotown and got rewarded by the Commissioner."] = "You visited all dealers in mirkotown and got rewarded by the Commissioner.",
 	["Wood Delivery"] = "Wood Delivery",
 	["Go to Knurowo's port and find out what happened to the wood delivery."] = "Go to Knurowo's port and find out what happened to the wood delivery.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
-	["Tell Ryba that Narro and his mafia stole all of the wood delivery."] = "Tell Ryba that Narro and his mafia stole all of the wood delivery.",
+	["Tell Commissioner that Narro and his mafia stole all of the wood delivery."] = "Tell Commissioner that Narro and his mafia stole all of the wood delivery.",
 	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
 	["Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner."] = "Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner.",
 	["Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward."] = "Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward.",
-	["Arrange a special bow from elf adobe."] = "Arrange a special bow from elf adobe.",
+	["Ask fstab for the promised potion supply."] = "Ask fstab for the promised potion supply.",
+	["You completed the mision and picked up all rewards."] = "You completed the mision and picked up all rewards.",
+	["Arrange a special bow from elf abode."] = "Arrange a special bow from elf abode.",
 	["You have received the item from Legolas. Go give it to Kitz."] = "You have received the item from Legolas. Go give it to Kitz.",
 	["Turns out elvish bow sucks. Kitz now wishes to rook the elves. In return for your efforts you received his old bow."] = "Turns out elvish bow sucks. Kitz now wishes to rook the elves. In return for your efforts you received his old bow.",
 	["Ocellatus Xddd"] = "Ocellatus Xddd",
 	["Tickets"] = "Tickets",
-	["Recover the match tickets whose have been stolen from Ocellatus."] = "Recover the match tickets whose have been stolen from Ocellatus.",
+	["Recover the match tickets that have been stolen from Ocellatus."] = "Recover the match tickets that have been stolen from Ocellatus.",
 	["You found the Tickets in a bandits tent."] = "You found the Tickets in a bandits tent.",
-	["You gave tickets back to Ocellatus."] = "You gave tickets back to Ocellatus.",
-	["Ocellatus asks you to bring him specific food. Ask Pewter for help."] = "Ocellatus asks you to bring him specific food. Ask Piotrek for help.",
+	["You gave tickets back to Ocellatus. Ask him for new mission."] = "You gave tickets back to Ocellatus. Ask him for new mission.",
+	["Ocellatus asks you to bring him soup and wings. Ask Pewter for help."] = "Ocellatus asks you to bring him specific food. Ask Piotrek for help.",
 	["U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
 	["Demon Oak"] = "Demon Oak",
 	["You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it."] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
@@ -126,12 +150,12 @@ return {
 	["Biodegradable"] = "Biodegradable",
 	["Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west."] = "Old postman asked you to find a package. You know that this cargo was supposed to arrive by water from the west.",
 	["You found the package for Old Postman. Return to him now."] = "You found the package for Old Postman. Return to him now.",
-	["You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father."] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also box of fish bait to Anon's father.",
+	["You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also take a box of fish bait to Anon's father."] = "You received a reward from Old Postman in exchange for helping locate the overdue shipment. He mentioned that you can also take a box of fish bait to Anon's father.",
 	["You took the box from Old Postman, which you should deliver to Anon's father."] = "You took the box from Old Postman, which you should deliver to Anon's father.",
 	["IKEA for the BOLD"] = "IKEA for the BOLD",
 	["Commissioner Fisher has mentioned that Komor needs help."] = "Commissioner Fisher has mentioned that Komor needs help.",
 	["Komor needs help dealing with the disappearing furniture from his warehouse."] = "Komor needs help dealing with the disappearing furniture from his warehouse.",
-	["Komor let you ask Gypsy if he knows anything about the theft of the furniture."] = "Komor let you ask Gypsy if he knows anything about the theft of the furniture.",
+	["Komor asked you inquire Gypsy if he knows anything about the recent theft of the furniture."] = "Komor asked you inquire Gypsy if he knows anything about the recent theft of the furniture.",
 	["Try to find the thief; he's possibly hiding in the sewers."] = "Try to find the thief; he's possibly hiding in the sewers.",
 	["You found the thief, but he managed to get away. Try to look around his hideout."] = "You found the thief, but he managed to get away. Try to look around his hideout.",
 	["You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list."] = "You found a list of stolen items; the thief has apparently stolen more than just furniture. Go to Komor and give him the list.",
@@ -143,8 +167,8 @@ return {
 	["Ask the bandit leader about the furniture thief."] = "Ask the bandit leader about the furniture thief.",
 	["Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now."] = "Everything indicates that the thief is trying to smuggle items and hide in the steppes. The bandit leader suggested where you should go now.",
 	["You have defeated the Lumberjack Domino, look around his hiding place."] = "You have defeated the Lumberjack Domino, look around his hiding place.",
-	["From now on, you can use his boat. Report to Commissioner Fisher."] = "From now on, you can use his boat. Report to Commissioner Fisher.",
-	["You prematurely ended the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes."] = "You prematurely ended the plot of Lumberjack Domino, from now on you can sail his boat from the bandit camp to the south of the steppes.",
+	["From now on, you can use Domino's boat. Report to Commissioner Fisher."] = "From now on, you can use Domino's boat. Report to Commissioner Fisher.",
+	["You prematurely ended the efforts of Lumberjack Domino. From now on you can sail his boat from the bandit camp to the south of the steppes."] = "You prematurely ended the efforts of Lumberjack Domino. From now on you can sail his boat from the bandit camp to the south of the steppes.",
 	["Settled down Fishmonger"] = "Settled down Fishmonger",
 	["Anon's father is waiting for his order."] = "Anon's father is waiting for his order.",
 	["You helped Anon's father recover his long-awaited package. Ask him for new mission now."] = "You helped Anon's father recover his long-awaited package. Ask him for new mission now.",
@@ -156,5 +180,5 @@ return {
 	["You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer."] = "You have received a reward from the Fisherman Son. You gained the ability to purchase Shimmer Swimmer.",
 	["Unwanted Guests"] = "Unwanted Guests",
 	["Bring Brutetamers Staff and Fur Boots to Old Man Frost."] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
-	["You completed Old Man Frosts's request."] = "You completed Old Man Frosts's request.",
+	["You completed Old Man Frost's request."] = "You completed Old Man Frost's request.",
 }

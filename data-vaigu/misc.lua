@@ -39,7 +39,7 @@ function pairssorted(t, predicate)
 	end
 end
 
-function pairssortedkey(tbl, predicate)
+function sortedkeypairs(tbl, predicate)
 	local keys = {}
 	for k in pairs(tbl) do
 		table.insert(keys, k)

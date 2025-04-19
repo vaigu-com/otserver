@@ -25,11 +25,14 @@ setmetatable(Scope, {
 		return class:New(...)
 	end,
 })
-function Scope:Key(key)
-	local keys = splitString(key)
-	for _, value in pairs(keys) do
-		table.insert(self.keys, value)
+function Scope:Key(...)
+	for _, key in pairs({ ... }) do
+		local keys = splitString(key)
+		for _, value in pairs(keys) do
+			table.insert(self.keys, value)
+		end
 	end
+
 	return self
 end
 
@@ -45,15 +48,17 @@ function Scope:Build()
 	return self
 end
 
-function Scope:Get(str)
+function Scope:Get(...)
 	self:Build()
 	if self.keyStr == nil then
 		logger.warn(debug.traceback("[Scope::Get] keyStr is null"))
 	end
 
-	if str then
-		local addedScope = Scope(str)
-		return self.keyStr .. scopeSeparator .. addedScope:Get()
+	if ... then
+		for _, str in pairs({ ... }) do
+			local addedScope = Scope(str)
+			self.keyStr = self.keyStr .. scopeSeparator .. addedScope:Get()
+		end
 	end
 	return self.keyStr
 end

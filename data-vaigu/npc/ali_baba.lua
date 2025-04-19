@@ -1,11 +1,11 @@
 local name = "Ali Baba"
 local outfit = {
-	lookType = 132,
-	lookHead = 19,
-	lookBody = 10,
-	lookLegs = 38,
-	lookFeet = 95,
-	lookAddons = 0,
+	lookType = 146,
+	lookHead = 76,
+	lookBody = 19,
+	lookLegs = 130,
+	lookFeet = 21,
+	lookAddons = 2,
 }
 local dialogs = {
 	[{ "fly", "poleciec", "yes", "tak" }] = {
@@ -17,11 +17,11 @@ local dialogs = {
 				transportType = TRANSPORT_TYPE.CARPET,
 			},
 		},
-		specialConditions = {
+		specialRequirements = {
 			{
-				condition = SPECIAL_CONDITIONS_UNIVERSAL.playerIsPzLocked,
+				requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerIsPzLocked,
 				requiredOutcome = false,
-				textNoRequiredCondition = "Looks like you have fought someone.. Better step away, I can't trust you.",
+				textFailedRequirement = "Looks like you have fought someone.. Better step away, I can't trust you.",
 			},
 		},
 	},

@@ -675,7 +675,7 @@ void Player::updateInventoryWeight() {
 	inventoryWeight = 0;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
 		// Vaigu custom
-		if (i == CONST_SLOT_STORE_INBOX) { 
+		if (i == CONST_SLOT_STORE_INBOX) {
 			continue;
 		}
 		const auto &item = inventory[i];
@@ -1159,6 +1159,9 @@ bool Player::canSeeCreature(const std::shared_ptr<Creature> &creature) const {
 
 bool Player::canWalkthrough(const std::shared_ptr<Creature> &creature) {
 	if (group->access || creature->isInGhostMode()) {
+		return true;
+	}
+	if (isOnMinigame() && creature->getPlayer()) {
 		return true;
 	}
 
@@ -3491,7 +3494,7 @@ void Player::doAttacking(uint32_t interval) {
 
 		const auto &task = createPlayerTask(
 			std::max<uint32_t>(SCHEDULER_MINTICKS, delay), [self = std::weak_ptr<Creature>(getCreature())] {
-				if (const auto &creature = self.lock()) {
+				if (const auto& creature = self.lock()) {
 					creature->checkCreatureAttack(true);
 				} }, __FUNCTION__
 		);
@@ -6419,13 +6422,15 @@ uint32_t Player::getAttackSpeed() const {
 
 		return attackSpeed;
 	} else {
-		return vocation->getAttackSpeed();
+		// Vaigu custom
+		return attackSpeed;
+		// return vocation->getAttackSpeed();
 	}
 }
 
 void Player::setAttackSpeed(uint32_t speed) {
-		attackSpeed = speed;
-	}
+	attackSpeed = speed;
+}
 
 double Player::getLostPercent() const {
 	int32_t blessingCount = 0;
@@ -7082,7 +7087,10 @@ bool Player::toggleMount(bool mount) {
 		kv()->set("last-mount", currentMount->id);
 
 		if (currentMount->speed != 0) {
-			g_game().changeSpeed(static_self_cast<Player>(), currentMount->speed);
+			auto deltaSpeedChange = currentMount->speed;
+			int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
+			deltaSpeedChange += std::max(bonusMountedSpeed, 0);
+			g_game().changeSpeed(static_self_cast<Player>(), deltaSpeedChange);
 		}
 	} else {
 		if (!isMounted()) {
@@ -7167,7 +7175,10 @@ bool Player::hasMount(const std::shared_ptr<Mount> &mount) const {
 void Player::dismount() {
 	const auto &mount = g_game().mounts->getMountByID(getCurrentMount());
 	if (mount && mount->speed > 0) {
-		g_game().changeSpeed(static_self_cast<Player>(), -mount->speed);
+		auto deltaSpeedChange = mount->speed;
+		int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
+		deltaSpeedChange += std::max(bonusMountedSpeed, 0);
+		g_game().changeSpeed(static_self_cast<Player>(), -deltaSpeedChange);
 	}
 
 	defaultOutfit.lookMount = 0;
@@ -8812,13 +8823,13 @@ std::pair<std::vector<std::shared_ptr<Item>>, std::map<uint16_t, std::map<uint8_
 }
 
 /**
-    This function returns a pair of an array of items and a 16-bit integer from a DepotLocker instance, a 8-bit byte and a 16-bit integer.
-    @param depotLocker The instance of DepotLocker from which to retrieve items.
-    @param tier The 8-bit byte that specifies the level of the tier to search.
-    @param itemId The 16-bit integer that specifies the ID of the item to search for.
-    @return A pair of an array of items and a 16-bit integer, where the array of items is filled with all items from the
-    locker with the specified id and the 16-bit integer is the total items found.
-    */
+        This function returns a pair of an array of items and a 16-bit integer from a DepotLocker instance, a 8-bit byte and a 16-bit integer.
+        @param depotLocker The instance of DepotLocker from which to retrieve items.
+        @param tier The 8-bit byte that specifies the level of the tier to search.
+        @param itemId The 16-bit integer that specifies the ID of the item to search for.
+        @return A pair of an array of items and a 16-bit integer, where the array of items is filled with all items from the
+        locker with the specified id and the 16-bit integer is the total items found.
+        */
 
 std::pair<std::vector<std::shared_ptr<Item>>, uint16_t> Player::getLockerItemsAndCountById(const std::shared_ptr<DepotLocker> &depotLocker, uint8_t tier, uint16_t itemId) const {
 	std::vector<std::shared_ptr<Item>> lockerItems;
@@ -8993,6 +9004,8 @@ void Player::triggerTranscendance() {
 	}
 }
 
+// Vaigu custom
+// Item of tier N requires another tier 0 item for fusion, not another tier N
 // Forge system
 void Player::forgeFuseItems(ForgeAction_t actionType, uint16_t firstItemId, uint8_t tier, uint16_t secondItemId, bool success, bool reduceTierLoss, bool convergence, uint8_t bonus, uint8_t coreCount) {
 	if (getFreeBackpackSlots() == 0) {
@@ -9019,7 +9032,7 @@ void Player::forgeFuseItems(ForgeAction_t actionType, uint16_t firstItemId, uint
 		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
 		return;
 	}
-	const auto &secondForgingItem = getForgeItemFromId(secondItemId, tier);
+	const auto &secondForgingItem = getForgeItemFromId(secondItemId, 0);
 	if (!secondForgingItem) {
 		g_logger().error("[Log 2] Player with name {} failed to fuse item with id {}", getName(), secondItemId);
 		sendForgeError(RETURNVALUE_CONTACTADMINISTRATOR);
@@ -9097,7 +9110,6 @@ void Player::forgeFuseItems(ForgeAction_t actionType, uint16_t firstItemId, uint
 			return;
 		}
 
-		secondForgedItem->setTier(tier);
 		returnValue = g_game().internalAddItem(exaltationContainer, secondForgedItem, INDEX_WHEREEVER);
 		if (returnValue != RETURNVALUE_NOERROR) {
 			g_logger().error("[Log 2] Failed to add forge item {} from player with name {}", secondItemId, getName());
@@ -9166,8 +9178,8 @@ void Player::forgeFuseItems(ForgeAction_t actionType, uint16_t firstItemId, uint
 		} else {
 			auto isTierLost = uniform_random(1, 100) <= (reduceTierLoss ? g_configManager().getNumber(FORGE_TIER_LOSS_REDUCTION) : 100);
 			if (isTierLost) {
-				if (secondForgedItem->getTier() >= 1) {
-					secondForgedItem->setTier(tier - 1);
+				if (firstForgedItem->getTier() >= 1) {
+					firstForgedItem->setTier(tier - 1);
 				} else {
 					returnValue = g_game().internalRemoveItem(secondForgedItem, 1);
 					if (returnValue != RETURNVALUE_NOERROR) {
@@ -10520,15 +10532,15 @@ void Player::BestiarysendCharms() const {
 }
 
 void Player::addBestiaryKillCount(uint16_t raceid, uint32_t amount) {
-		uint32_t oldCount = getBestiaryKillCount(raceid);
-		std::string key = "BestiaryKillCount-" + std::to_string(raceid);
-		setStorageValueByKey(key, oldCount + amount);
+	uint32_t oldCount = getBestiaryKillCount(raceid);
+	std::string key = "BestiaryKillCount-" + std::to_string(raceid);
+	setStorageValueByKey(key, oldCount + amount);
 }
 
 uint32_t Player::getBestiaryKillCount(uint16_t raceid) const {
-		std::string key = "BestiaryKillCount-" + std::to_string(raceid);
-		auto value = getStorageValueByKey(key);
-		return value > 0 ? static_cast<uint32_t>(value) : 0;
+	std::string key = "BestiaryKillCount-" + std::to_string(raceid);
+	auto value = getStorageValueByKey(key);
+	return value > 0 ? static_cast<uint32_t>(value) : 0;
 }
 
 void Player::setGUID(uint32_t newGuid) {

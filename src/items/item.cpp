@@ -1209,6 +1209,27 @@ bool Item::hasProperty(ItemProperty prop) const {
 	}
 }
 
+// Vaigu custom
+bool Item::canBePushed() const {
+	static std::unordered_set<int32_t> immovableActionIds = {
+		IMMOVABLE_ACTION_ID,
+	};
+	static std::unordered_set<std::string> immovableKeys = {
+		IMMOVABLE_KEY,
+	};
+
+	if (hasAttribute(ItemAttribute_t::UNIQUEID)) {
+		return false;
+	}
+	if (hasAttribute(ItemAttribute_t::ACTIONID)) {
+		return false;
+	}
+	if (hasAttribute(ItemAttribute_t::KEY)) {
+		return false;
+	}
+	return isMovable();
+}
+
 bool Item::canBeMoved() const {
 	static std::unordered_set<int32_t> immovableActionIds = {
 		IMMOVABLE_ACTION_ID,
