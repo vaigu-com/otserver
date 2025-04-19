@@ -1,4 +1,4 @@
-reward = {
+local reward = {
 	[4043] = { id_goblet = 5807, text = "wykonanie pierwszej areny.", rewardPosition = Position(6925, 616, 7) },
 	[4044] = { id_goblet = 5806, text = "wykonanie drugiej areny.", rewardPosition = Position(6925, 609, 7) },
 	[4045] = { id_goblet = 5805, text = "wykonanie ostatniej areny.", rewardPosition = Position(6925, 602, 7) },

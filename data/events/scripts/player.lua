@@ -271,7 +271,7 @@ function ImmovableKeys:Add(key)
 	self.registry[key] = true
 end
 function ImmovableKeys:Has(key)
-	return self.registry[key]
+	return self.registry[key] ~= nil
 end
 do
 	ImmovableKeys:Add(IMMOVABLE_KEY)

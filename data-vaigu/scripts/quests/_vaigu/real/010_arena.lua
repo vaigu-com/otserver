@@ -2,7 +2,7 @@
 do
 	return
 end
-local quest = Quest(LOCALIZERS.BigfootBurden)
+local quest = Quest(LOCALIZERS.Arena)
 
 quest
 	:Storage(function() end)

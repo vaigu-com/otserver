@@ -91,7 +91,7 @@ function OnLookMessageBuilder:ParseItemDescription()
 	if isRefiller(inspectedThing.itemid) then
 		local itemCharges = inspectedThing:getCharges()
 		if itemCharges > 0 then
-			return T("You see :descriptionText:\nIt has :charges: refillings left.", { name = descriptionText, charges = itemCharges })
+			return T("You see :descriptionText:\nIt has :charges: refillings left.", { descriptionText = descriptionText, charges = itemCharges })
 		end
 	end
 	return "You see " .. descriptionText
