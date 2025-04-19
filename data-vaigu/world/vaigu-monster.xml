@@ -2746,6 +2746,9 @@
 	<monster centerx="7118" centery="957" centerz="4" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="4" spawntime="60" />
 	</monster>
+	<monster centerx="7146" centery="964" centerz="4" radius="1">
+		<monster name="Pigeon" x="0" y="0" z="4" spawntime="60" />
+	</monster>
 	<monster centerx="7194" centery="982" centerz="4" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="4" spawntime="60" />
 	</monster>
@@ -5648,6 +5651,9 @@
 	<monster centerx="6970" centery="905" centerz="5" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="5" spawntime="60" />
 	</monster>
+	<monster centerx="7143" centery="905" centerz="5" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="7154" centery="905" centerz="5" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="5" spawntime="60" />
 	</monster>
@@ -5678,8 +5684,6 @@
 	<monster centerx="7133" centery="910" centerz="5" radius="1">
 		<monster name="Island Troll" x="1" y="-1" z="5" spawntime="60" />
 		<monster name="Island Troll" x="0" y="0" z="5" spawntime="60" />
-		<monster name="Island Troll" x="1" y="0" z="5" spawntime="60" />
-		<monster name="Island Troll" x="0" y="1" z="5" spawntime="60" />
 		<monster name="Island Troll" x="1" y="1" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6203" centery="911" centerz="5" radius="1">
@@ -5899,6 +5903,9 @@
 	</monster>
 	<monster centerx="7168" centery="938" centerz="5" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7073" centery="940" centerz="5" radius="1">
+		<monster name="Pigeon" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6678" centery="942" centerz="5" radius="1">
 		<monster name="Nomad Female" x="0" y="0" z="5" spawntime="60" />
@@ -11114,6 +11121,15 @@
 	<monster centerx="7077" centery="938" centerz="6" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
 	</monster>
+	<monster centerx="7062" centery="939" centerz="6" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
+		<monster name="Island Troll" x="0" y="1" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7072" centery="939" centerz="6" radius="1">
+		<monster name="Island Troll" x="-1" y="-1" z="6" spawntime="60" />
+		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
+		<monster name="Island Troll" x="1" y="1" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6434" centery="940" centerz="6" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -11130,6 +11146,10 @@
 		<monster name="Nomad" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7091" centery="942" centerz="6" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7074" centery="943" centerz="6" radius="1">
+		<monster name="Island Troll" x="-1" y="0" z="6" spawntime="60" />
 		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7142" centery="944" centerz="6" radius="1">
@@ -11202,14 +11222,11 @@
 	<monster centerx="7145" centery="964" centerz="6" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="7161" centery="964" centerz="6" radius="1">
-		<monster name="Pirate Skeleton" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="7149" centery="966" centerz="6" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="7161" centery="970" centerz="6" radius="1">
-		<monster name="Pirate Marauder" x="0" y="0" z="6" spawntime="60" />
+	<monster centerx="7163" centery="966" centerz="6" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7097" centery="971" centerz="6" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
@@ -22704,6 +22721,9 @@
 	<monster centerx="7005" centery="938" centerz="7" radius="1">
 		<monster name="Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="7071" centery="938" centerz="7" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7103" centery="938" centerz="7" radius="1">
 		<monster name="Pigeon" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -22729,6 +22749,13 @@
 		<monster name="Centipede" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Bug" x="1" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="7063" centery="939" centerz="7" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7067" centery="939" centerz="7" radius="1">
+		<monster name="Island Troll" x="-1" y="0" z="7" spawntime="60" />
+		<monster name="Island Troll" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6401" centery="940" centerz="7" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -22737,6 +22764,9 @@
 	</monster>
 	<monster centerx="7044" centery="940" centerz="7" radius="1">
 		<monster name="Orchid Frog" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7069" centery="940" centerz="7" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7106" centery="940" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
@@ -46220,8 +46250,17 @@
 	<monster centerx="6767" centery="2543" centerz="7" radius="1">
 		<monster name="Pirate Marauder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6739" centery="2545" centerz="7" radius="1">
+	<monster centerx="6747" centery="2574" centerz="7" radius="1">
+		<monster name="Pirate Buccaneer" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Pirate Corsair" x="1" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6749" centery="2574" centerz="7" radius="1">
+		<monster name="Pirate Cutthroat" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Pirate Ghost" x="1" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6751" centery="2574" centerz="7" radius="1">
 		<monster name="Pirate Marauder" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Pirate Skeleton" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6749" centery="2586" centerz="7" radius="1">
 		<monster name="Pirate Ghost" x="0" y="0" z="7" spawntime="60" />
