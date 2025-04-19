@@ -124,7 +124,7 @@ pseudoQuest
 			[7644] = { vocations = edEkRpMs, combat = antidote, flask = 285 },
 
 			--Mana shield
-			[35563] = { vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, requiredLevel = 14, func = magicshield, effect = CONST_ME_ENERGYAREA },
+			-- [35563] = { vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, requiredLevel = 14, func = magicshield, effect = CONST_ME_ENERGYAREA },
 		}
 		local function gernerateAuxilalryFields()
 			for _, potion in pairs(potions) do
