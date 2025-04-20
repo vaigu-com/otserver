@@ -26,14 +26,11 @@ Bank::~Bank() {
 	}
 	const auto &player = bankable->getPlayer();
 	if (player && !player->isOnline()) {
-		g_saveManager().savePlayer(player);
-
 		return;
 	}
 	if (bankable->isGuild()) {
 		const auto guild = static_self_cast<Guild>(bankable);
 		if (guild && !guild->isOnline()) {
-			g_saveManager().saveGuild(guild);
 		}
 	}
 }

@@ -504,7 +504,7 @@ void Npc::onPlayerSellAllLoot(uint32_t playerId, uint16_t itemId, bool ignore, u
 		ss << "You sold all of the items from your loot pouch for ";
 		ss << totalPrice << " gold.";
 		player->sendTextMessage(MESSAGE_TRANSACTION, ss.str());
-		player->openPlayerContainers();
+		player->sendOpenContainers();
 	}
 }
 
