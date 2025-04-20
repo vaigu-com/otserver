@@ -111,14 +111,13 @@ protected:
 
 protected:
 	Logger &logger;
+	void setLocked(const std::string &key, const ValueWrapper &value);
 
 	virtual std::optional<ValueWrapper> load(const std::string &key) = 0;
 	virtual bool save(const std::string &key, const ValueWrapper &value) = 0;
 	virtual std::vector<std::string> loadPrefix(const std::string &prefix = "") = 0;
 
 private:
-	void setLocked(const std::string &key, const ValueWrapper &value);
-
 	phmap::parallel_flat_hash_map<std::string, std::pair<ValueWrapper, std::list<std::string>::iterator>> store_;
 	std::list<std::string> lruQueue_;
 	std::mutex mutex_;

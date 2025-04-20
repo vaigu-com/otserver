@@ -209,7 +209,6 @@ void BedItem::wakeUp(const std::shared_ptr<Player> &player) {
 			auto regenPlayer = std::make_shared<Player>(nullptr);
 			if (IOLoginData::loadPlayerById(regenPlayer, sleeperGUID)) {
 				regeneratePlayer(regenPlayer);
-				g_saveManager().savePlayer(regenPlayer);
 			}
 		} else {
 			regeneratePlayer(player);

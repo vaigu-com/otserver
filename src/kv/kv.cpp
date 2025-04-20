@@ -59,21 +59,23 @@ void KVStore::setLocked(const std::string &key, const ValueWrapper &value) {
 std::optional<ValueWrapper> KVStore::get(const std::string &key, bool forceLoad /*= false */) {
 	logger.trace("KVStore::get({})", key);
 	std::scoped_lock lock(mutex_);
-	if (forceLoad || !store_.contains(key)) {
+	if (forceLoad) {
 		auto value = load(key);
 		if (value) {
 			setLocked(key, *value);
 		}
 		return value;
-	}
-
-	auto &[value, lruIt] = store_[key];
-	if (value.isDeleted()) {
-		lruQueue_.splice(lruQueue_.end(), lruQueue_, lruIt);
+	} else if (!store_.contains(key)) {
 		return std::nullopt;
+	} else {
+		auto &[value, lruIt] = store_[key];
+		if (value.isDeleted()) {
+			lruQueue_.splice(lruQueue_.end(), lruQueue_, lruIt);
+			return std::nullopt;
+		}
+		lruQueue_.splice(lruQueue_.begin(), lruQueue_, lruIt);
+		return value;
 	}
-	lruQueue_.splice(lruQueue_.begin(), lruQueue_, lruIt);
-	return value;
 }
 
 std::unordered_set<std::string> KVStore::keys(const std::string &prefix /*= ""*/) {

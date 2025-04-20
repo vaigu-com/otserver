@@ -3313,15 +3313,7 @@ int PlayerFunctions::luaPlayerAddMapMark(lua_State* L) {
 
 int PlayerFunctions::luaPlayerSave(lua_State* L) {
 	// player:save()
-	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
-	if (player) {
-		if (!player->isOffline()) {
-			player->loginPosition = player->getPosition();
-		}
-		Lua::pushBoolean(L, g_saveManager().savePlayer(player));
-	} else {
-		lua_pushnil(L);
-	}
+	g_logger().error("[PlayerFunctions::luaPlayerSave] player:save() is deprecated");
 	return 1;
 }
 
