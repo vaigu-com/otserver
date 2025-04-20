@@ -1149,9 +1149,9 @@ std::vector<std::shared_ptr<Player>> Game::getPlayersByAccount(const std::shared
 	for (const auto &[name, _] : accountPlayers) {
 		const auto &player = getPlayerByName(name, allowOffline);
 		if (player) {
-			if (player->isOnline()){
+			if (player->isOnline()) {
 				ret.push_back(player);
-			} else if (allowOffline){
+			} else if (allowOffline) {
 				ret.push_back(player);
 			}
 		}
@@ -1265,8 +1265,8 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 	afterCreatureZoneChange(creature, fromZones, {});
 
 	creature->removeList();
-	if(!creature->getPlayer()){
-			creature->setRemoved();
+	if (!creature->getPlayer()) {
+		creature->setRemoved();
 	}
 
 	removeCreatureCheck(creature);
