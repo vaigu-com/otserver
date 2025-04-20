@@ -215,7 +215,6 @@ void IOMarket::processExpiredOffers(const DBResult_ptr &result, bool) {
 			}
 
 			if (player->isOffline()) {
-				g_saveManager().savePlayer(player);
 			}
 		} else {
 			uint64_t totalPrice = result->getNumber<uint64_t>("price") * amount;

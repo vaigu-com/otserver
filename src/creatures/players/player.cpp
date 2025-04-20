@@ -2056,6 +2056,10 @@ void Player::removeMagicEffect(const Position &pos, uint16_t type) const {
 }
 
 void Player::sendPing() {
+	if (!isOnline()) {
+		return;
+	}
+
 	const int64_t timeNow = OTSYS_TIME();
 
 	bool hasLostConnection = false;
@@ -3926,8 +3930,6 @@ void Player::setDailyReward(uint8_t reward) {
 }
 
 void Player::removeList() {
-	g_game().removePlayer(static_self_cast<Player>());
-
 	for (const auto &[key, player] : g_game().getPlayers()) {
 		player->vip()->notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline);
 	}
@@ -6153,6 +6155,10 @@ void Player::setFamiliarLooktype(uint16_t familiarLooktype) {
 }
 
 bool Player::canLogout() {
+	if (!isOnline()) {
+		return false;
+	}
+
 	if (isConnecting) {
 		return false;
 	}
@@ -9975,8 +9981,6 @@ void Player::onRemoveCreature(const std::shared_ptr<Creature> &creature, bool is
 		}
 
 		closeShopWindow();
-
-		g_saveManager().savePlayer(player);
 	}
 
 	if (creature == shopOwner) {
@@ -10113,6 +10117,49 @@ void Player::onCloseContainer(const std::shared_ptr<Container> &container) {
 	for (const auto &[containerId, containerInfo] : openContainers) {
 		if (containerInfo.container == container) {
 			client->sendCloseContainer(containerId);
+		}
+	}
+}
+
+void Player::sendOpenContainers() {
+	for (const auto &[key, val] : openContainers) {
+		onSendContainer(val.container);
+	}
+}
+
+void Player::addOpenContainers(bool oldProtocol) {
+	auto allSlotItems = getAllInventoryItems();
+	std::vector<std::shared_ptr<Container>> containers;
+	for (auto item : allSlotItems) {
+		auto container = item->getContainer();
+		if (container) {
+			containers.push_back(container);
+		}
+	}
+	std::vector<std::pair<uint8_t, std::shared_ptr<Container>>> openContainersCidVector;
+	for (auto container : containers) {
+		auto cid = container->getAttribute<int64_t>(ItemAttribute_t::OPENCONTAINER);
+		if (cid > 0) {
+			openContainersCidVector.emplace_back(std::make_pair(cid, container));
+		}
+		for (bool isLootContainer : { true, false }) {
+			auto checkAttribute = isLootContainer ? ItemAttribute_t::QUICKLOOTCONTAINER : ItemAttribute_t::OBTAINCONTAINER;
+			if (container->hasAttribute(checkAttribute)) {
+				auto flags = container->getAttribute<uint32_t>(checkAttribute);
+				for (uint8_t category = OBJECTCATEGORY_FIRST; category <= OBJECTCATEGORY_LAST; category++) {
+					if (hasBitSet(1 << category, flags)) {
+						refreshManagedContainer(static_cast<ObjectCategory_t>(category), container, isLootContainer, true);
+					}
+				}
+			}
+		}
+	}
+	if (!oldProtocol) {
+		std::sort(openContainersCidVector.begin(), openContainersCidVector.end(), [](const std::pair<uint8_t, std::shared_ptr<Container>> &left, const std::pair<uint8_t, std::shared_ptr<Container>> &right) {
+			return left.first < right.first;
+		});
+		for (auto openContainerCid : openContainersCidVector) {
+			addContainer(openContainerCid.first, openContainerCid.second);
 		}
 	}
 }

@@ -28,20 +28,27 @@ SaveManager &SaveManager::getInstance() {
 void SaveManager::saveAll() {
 	Benchmark bm_saveAll;
 	logger.info("Saving server...");
-	const auto players = game.getPlayers();
-
-	for (const auto &[_, player] : players) {
-		player->loginPosition = player->getPosition();
-		doSavePlayer(player);
+	const bool success = DBTransaction::executeWithinTransaction([this]() {
+		const auto players = game.getPlayers();
+		for (const auto& [_, player] : players) {
+			player->loginPosition = player->getPosition();
+			doSavePlayer(player);
+			if(!player->isOnline()){
+				g_game().removePlayer(std::shared_ptr<Player>(player));
+				player->setRemoved();
+			}
+		}
+		auto guilds = game.getGuilds();
+		for (const auto& [_, guild] : guilds) {
+			saveGuild(guild);
+		}
+		saveMap();
+		saveKV();
+		return true;
+		});
+	if (!success) {
+		g_logger().error("[{}] Error occurred saving the server", __FUNCTION__);
 	}
-
-	auto guilds = game.getGuilds();
-	for (const auto &[_, guild] : guilds) {
-		saveGuild(guild);
-	}
-
-	saveMap();
-	saveKV();
 	logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 }
 

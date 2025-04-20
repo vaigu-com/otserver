@@ -651,9 +651,8 @@ void Game::setGameState(GameState_t newState) {
 
 			// kick all players that are still online
 			auto it = players.begin();
-			while (it != players.end()) {
-				it->second->removePlayer(true);
-				it = players.begin();
+			for (const auto &[_, player] : players) {
+				player->client->logout(false, true);
 			}
 
 			saveMotdNum();
@@ -668,13 +667,9 @@ void Game::setGameState(GameState_t newState) {
 			g_globalEvents().save();
 
 			/* kick all players without the CanAlwaysLogin flag */
-			auto it = players.begin();
-			while (it != players.end()) {
-				if (!it->second->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
-					it->second->removePlayer(true);
-					it = players.begin();
-				} else {
-					++it;
+			for (const auto &[_, player] : players) {
+				if (!player->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
+					player->client->logout(false, true);
 				}
 			}
 
@@ -1147,7 +1142,8 @@ std::vector<std::shared_ptr<Player>> Game::getPlayersByAccount(const std::shared
 
 bool Game::internalPlaceCreature(const std::shared_ptr<Creature> &creature, const Position &pos, bool extendedPos /*=false*/, bool forced /*= false*/, bool creatureCheck /*= false*/) {
 	if (creature->getParent() != nullptr) {
-		return false;
+		// // TODO_VAIGU maybe remove?
+		// return false;
 	}
 	const auto &tile = map.getTile(pos);
 	if (!tile) {
@@ -1250,7 +1246,6 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 	afterCreatureZoneChange(creature, fromZones, {});
 
 	creature->removeList();
-	creature->setRemoved();
 
 	removeCreatureCheck(creature);
 
@@ -9163,7 +9158,6 @@ void Game::playerCreateMarketOffer(uint32_t playerId, uint8_t type, uint16_t ite
 
 	// Exhausted for create offert in the market
 	player->updateUIExhausted();
-	g_saveManager().savePlayer(player);
 }
 
 void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter) {
@@ -9247,7 +9241,6 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 	player->sendMarketEnter(player->getLastDepotId());
 	// Exhausted for cancel offer in the market
 	player->updateUIExhausted();
-	g_saveManager().savePlayer(player);
 }
 
 void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter, uint16_t amount) {
@@ -9401,7 +9394,6 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		}
 
 		if (buyerPlayer->isOffline()) {
-			g_saveManager().savePlayer(buyerPlayer);
 		}
 	} else if (offer.type == MARKETACTION_SELL) {
 		std::shared_ptr<Player> sellerPlayer = getPlayerByGUID(offer.playerId, true);
@@ -9493,7 +9485,6 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		}
 
 		if (sellerPlayer->isOffline()) {
-			g_saveManager().savePlayer(sellerPlayer);
 		}
 	}
 
@@ -9524,7 +9515,6 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 	player->sendMarketAcceptOffer(offer);
 	// Exhausted for accept offer in the market
 	player->updateUIExhausted();
-	g_saveManager().savePlayer(player);
 }
 
 void Game::parsePlayerExtendedOpcode(uint32_t playerId, uint8_t opcode, const std::string &buffer) {
@@ -10127,7 +10117,6 @@ void Game::addGuild(const std::shared_ptr<Guild> &guild) {
 void Game::removeGuild(uint32_t guildId) {
 	auto it = guilds.find(guildId);
 	if (it != guilds.end()) {
-		g_saveManager().saveGuild(it->second);
 	}
 	guilds.erase(guildId);
 }

@@ -829,6 +829,8 @@ public:
 	void onRemoveContainerItem(const std::shared_ptr<Container> &container, const std::shared_ptr<Item> &item);
 
 	void onCloseContainer(const std::shared_ptr<Container> &container);
+	void sendOpenContainers();
+	void addOpenContainers(bool oldProtocol);
 	void onSendContainer(const std::shared_ptr<Container> &container);
 	// close container and its child containers
 	void autoCloseContainers(const std::shared_ptr<Container> &container);
