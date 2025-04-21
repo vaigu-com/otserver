@@ -99,8 +99,15 @@ public:
 		return "gameworld protocol";
 	}
 
+	struct PlayerDatabaseLoadStatus {
+		bool cached;
+		bool error;
+	};
+
 	explicit ProtocolGame(const Connection_ptr &initConnection);
 
+	static PlayerDatabaseLoadStatus loadOfflinePlayerFromDatabase(const std::shared_ptr<Player> &player, const std::string &name);
+	PlayerDatabaseLoadStatus loadPlayerFromDatabase(std::shared_ptr<Player> &player, const std::string &name);
 	void login(const std::string &name, uint32_t accnumber, OperatingSystem_t operatingSystem);
 	void logout(bool displayEffect, bool forced);
 
