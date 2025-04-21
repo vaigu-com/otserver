@@ -1,3 +1,5 @@
+NOT_NAME_LOCKED = -1
+
 GLOBAL_EVENT_OK = true
 
 USE_UP = "USE_UP"
