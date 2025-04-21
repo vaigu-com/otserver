@@ -449,7 +449,7 @@ function parseBuyStoreOffer(playerId, msg)
 	-- At this point the purchase is assumed to be formatted correctly
 	local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or offer.price
 	local offerCoinType = offer.coinType
-	if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
+	if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:isNameLocked() then
 		offerPrice = 0
 	end
 	-- Check if offer can be honored
@@ -925,8 +925,8 @@ function sendShowStoreOffers(playerId, category, redirectId)
 					xpBoostPrice = GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)]
 				end
 
-				nameLockPrice = nil
-				if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
+				local nameLockPrice = nil
+				if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:isNameLocked() then
 					nameLockPrice = 0
 				end
 
@@ -1753,14 +1753,15 @@ function GameStore.processNameChangePurchase(player, offer, productType, newName
 			return error({ code = 1, message = result.reason })
 		end
 
-		local message, namelockReason = "", player:kv():get("namelock")
+		local messageAfterPurchase = ""
+		local namelockReason = player:reasonIfNamelocked()
 		if not namelockReason then
 			player:makeCoinTransaction(offer)
-			message = string.format("You have purchased %s for %d coins.", offer.name, offer.price)
+			messageAfterPurchase = string.format("You have purchased %s for %d coins.", offer.name, offer.price)
 		else
-			message = "Your character has been renamed successfully."
+			messageAfterPurchase = "Your character has been renamed successfully."
 		end
-		addPlayerEvent(sendStorePurchaseSuccessful, 500, player:getId(), message)
+		addPlayerEvent(sendStorePurchaseSuccessful, 500, player:getId(), messageAfterPurchase)
 
 		player:changeName(newName)
 	else
@@ -2209,7 +2210,7 @@ function sendHomePage(playerId)
 	msg:addU16(#homeOffers) -- offers
 	for p, offer in pairs(homeOffers) do
 		local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or offer.price
-		if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
+		if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:isNameLocked() then
 			offerPrice = 0
 		end
 

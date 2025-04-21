@@ -3,6 +3,7 @@ O_NAMELOCK = -1
 
 LOGIN_OK = true
 LOGIN_ERROR = false
+NOT_NAME_LOCKED = -1
 
 GLOBAL_EVENT_OK = true
 
