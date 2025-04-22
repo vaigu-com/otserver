@@ -5,7 +5,7 @@
 #include "items/item.hpp"
 #include "lua/functions/lua_functions_loader.hpp"
 
-void LookFunctions::init(lua_State* L){
+void LookFunctions::init(lua_State* L) {
 	Lua::registerSharedClass(L, "Look", "", LookFunctions::luaCreateLook);
 	Lua::registerMethod(L, "Look", "onLook", LookFunctions::luaLookOnLook);
 	Lua::registerMethod(L, "Look", "register", LookFunctions::luaLookRegister);
@@ -29,7 +29,7 @@ int LookFunctions::luaCreateLook(lua_State* L) {
 
 int LookFunctions::luaLookOnLook(lua_State* L) {
 	// look:onLook(callback)
-	const auto look = Lua::getUserdataShared<Look>(L, 1);
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
 		if (!look->loadScriptId()) {
 			Lua::pushBoolean(L, false);
@@ -45,7 +45,7 @@ int LookFunctions::luaLookOnLook(lua_State* L) {
 
 int LookFunctions::luaLookRegister(lua_State* L) {
 	// look:register()
-	const auto look = Lua::getUserdataShared<Look>(L, 1);
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
 		if (!look->isLoadedScriptId()) {
 			Lua::pushBoolean(L, false);
@@ -62,7 +62,7 @@ int LookFunctions::luaLookRegister(lua_State* L) {
 
 int LookFunctions::luaLookItemId(lua_State* L) {
 	// look:id(ids)
-	const auto look = Lua::getUserdataShared<Look>(L, 1);
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -82,7 +82,7 @@ int LookFunctions::luaLookItemId(lua_State* L) {
 
 int LookFunctions::luaLookActionId(lua_State* L) {
 	// look:aid(aids)
-	const auto look = Lua::getUserdataShared<Look>(L, 1);
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -102,7 +102,7 @@ int LookFunctions::luaLookActionId(lua_State* L) {
 
 int LookFunctions::luaLookUniqueId(lua_State* L) {
 	// look:uid(uids)
-	const auto look = Lua::getUserdataShared<Look>(L, 1);
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -126,8 +126,8 @@ int LookFunctions::luaLookPosition(lua_State* L) {
 	 * @param itemId or @param itemName = if item id or string name is set, the item is created on position (if not exists), this variable is nil by default
 	 * look:position(positions, itemId or name)
 	 */
-	const auto action = Lua::getUserdataShared<Look>(L, 1);
-	if (!action) {
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
+	if (!look) {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
 		Lua::pushBoolean(L, false);
 		return 1;
@@ -139,10 +139,10 @@ int LookFunctions::luaLookPosition(lua_State* L) {
 	if (int parameters = lua_gettop(L) - 1;
 	    parameters > 1 && Lua::isNumber(L, 2)) {
 		for (int i = 0; i < parameters; ++i) {
-			action->setPositionsVector(Lua::getPosition(L, 2 + i));
+			look->setPositionsVector(Lua::getPosition(L, 2 + i));
 		}
 	} else {
-		action->setPositionsVector(position);
+		look->setPositionsVector(position);
 	}
 
 	uint16_t itemId;
@@ -183,7 +183,7 @@ int LookFunctions::luaLookPosition(lua_State* L) {
 
 int LookFunctions::luaLookKey(lua_State* L) {
 	// look:key(keys)
-	const auto look = Lua::getUserdataShared<Look>(L, 1);
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -203,9 +203,9 @@ int LookFunctions::luaLookKey(lua_State* L) {
 
 int LookFunctions::luaLookBlockWalls(lua_State* L) {
 	// look:blockWalls(bool)
-	const auto action = Lua::getUserdataShared<Look>(L, 1);
-	if (action) {
-		action->setCheckLineOfSight(Lua::getBoolean(L, 2));
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
+	if (look) {
+		look->setCheckLineOfSight(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);
 	} else {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
@@ -216,9 +216,9 @@ int LookFunctions::luaLookBlockWalls(lua_State* L) {
 
 int LookFunctions::luaLookCheckFloor(lua_State* L) {
 	// look:checkFloor(bool)
-	const auto action = Lua::getUserdataShared<Look>(L, 1);
-	if (action) {
-		action->setCheckFloor(Lua::getBoolean(L, 2));
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
+	if (look) {
+		look->setCheckFloor(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);
 	} else {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));

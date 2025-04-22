@@ -7,14 +7,22 @@ function actions_asura_bonefiddle.onUse(player, item, fromPosition, target, toPo
 				item:remove(1)
 				target:remove(1)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You attach the ebony wood to the skull. This should meet the requirements of a fingerboard.")
+<<<<<<< HEAD
 				player:AddCustomItem({id = 28492})
+=======
+				player:addItem(28492)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			end
 		elseif item.itemid == 28492 then
 			if target.itemid == 28490 then
 				item:remove(1)
 				target:remove(1)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You tack the hair to the ebony fingerboard. The strands should be adquate to serve as strings.")
+<<<<<<< HEAD
 				player:AddCustomItem({id = 28493})
+=======
+				player:addItem(28493)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U11_80.TheSecretLibrary.Asuras.Questline, 2)
 			end
 		end

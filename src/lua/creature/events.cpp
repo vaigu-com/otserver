@@ -134,16 +134,8 @@ bool Events::loadFromXml() {
 		} else if (className == "Monster") {
 			if (methodName == "onDropLoot") {
 				info.monsterOnDropLoot = event;
-			} else if (methodName == "onSpawn") {
-				info.monsterOnSpawn = event;
 			} else {
 				g_logger().warn("{} - Unknown monster method: {}", __FUNCTION__, methodName);
-			}
-		} else if (className == "Npc") {
-			if (methodName == "onSpawn") {
-				info.monsterOnSpawn = event;
-			} else {
-				g_logger().warn("{} - Unknown npc method: {}", __FUNCTION__, methodName);
 			}
 		} else {
 			g_logger().warn("{} - Unknown class: {}", __FUNCTION__, className);

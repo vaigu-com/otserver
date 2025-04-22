@@ -12,7 +12,11 @@ function tinderReward.onUse(player, item, fromPosition, target, toPosition, isHo
 		return player:sendCancelMessage("The pile of bones is empty.")
 	end
 
+<<<<<<< HEAD
 	player:AddCustomItem({id = 20357, count = 1})
+=======
+	player:addItem(20357, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 	player:setStorageValue(Storage.Quest.U10_37.TinderBoxQuestChyllfroest.Reward, currentTime + 72000)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a tinder box.")
 

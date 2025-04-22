@@ -123,7 +123,11 @@ function actions_containerRewards.onUse(player, item, fromPosition, target, toPo
 			if player:getStorageValue(k.storage) < k.value then
 				if k.defaultItem then
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. ItemType(k.reward):getName() .. ".")
+<<<<<<< HEAD
 					player:AddCustomItem({id = k.reward, count = 1})
+=======
+					player:addItem(k.reward, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				else
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, k.text)
 					if player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.BurriedCatedral.WordCount) < 0 then

@@ -18,7 +18,11 @@ function rewardSoulWar.onUse(creature, item, fromPosition, target, toPosition, i
 		return true
 	end
 
+<<<<<<< HEAD
 	player:AddCustomItem({id = rewardItem.id, count = 1})
+=======
+	player:addItem(rewardItem.id, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. rewardItem.name .. ".")
 	soulWarQuest:set("final-reward", true)
 	return true

@@ -84,7 +84,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 1 and player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Eighth.Narsai) == 1 then
 		if player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Eighth.Narsai) == 1 then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 31714, count = 1})
+=======
+			player:addItem(31714, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:say({ "Here is the list of ingredients that are missing to complete the ritual. " }, npc, creature) -- It needs to be revised, it's not the same as the global
 			player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Eighth.Narsai, 2)
 			npcHandler:setTopic(playerId, 2)

@@ -12,10 +12,10 @@ npcConfig.walkRadius = 2
 
 npcConfig.outfit = {
 	lookType = 132,
-	lookHead = 82,
+	lookHead = 41,
 	lookBody = 0,
-	lookLegs = 120,
-	lookFeet = 38,
+	lookLegs = 39,
+	lookFeet = 20,
 	lookAddons = 2,
 }
 
@@ -89,7 +89,11 @@ local function creatureSayCallback(npc, creature, type, message)
 					"A very varuable artefact has been stolen. I open the door for you. You can find the room on the same floor as we are right now.",
 				}, npc, creature)
 				player:removeMoneyBank(value)
+<<<<<<< HEAD
 				player:AddCustomItem({id = 25689, count = 1})
+=======
+				player:addItem(25689, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U11_40.CultsOfTibia.MotA.Mission, 2)
 				player:setStorageValue(Storage.Quest.U11_40.CultsOfTibia.MotA.AccessDoorInvestigation, 1)
 				npcHandler:setTopic(playerId, 3)

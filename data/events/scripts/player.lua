@@ -655,12 +655,24 @@ function Player:onGainExperience(target, exp, rawExp)
 		end
 	end
 
+	local soulwarMultiplier = 1
+	if SoulWarQuest then
+		local monsterType = target:getType()
+		if monsterType and monsterType:getName() and table.contains(SoulWarQuest.bagYouDesireMonsters, monsterType:getName()) then
+			local taintLevel = self:getTaintLevel()
+			if taintLevel > 0 then
+				local taintBoost = SoulWarQuest.taintExperienceBoostMap[taintLevel] and SoulWarQuest.taintExperienceBoostMap[taintLevel].boost or 0
+				soulwarMultiplier =  (1 + taintBoost / 100)
+			end
+		end
+	end
+
 	-- Final Adjustments: Low Level Bonus and Base Rate
 	local lowLevelBonusExp = self:getFinalLowLevelBonus()
 	local baseRateExp = self:getFinalBaseRateExperience()
 
 	-- Return final experience value
-	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * (1 + boostedCreaturePercentage)
+	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * (1 + boostedCreaturePercentage) * soulwarMultiplier
 end
 
 function Player:onLoseExperience(exp)

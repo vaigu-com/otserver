@@ -174,6 +174,7 @@ function Monster:setRewardBoss()
 	end
 end
 
+--[[
 local equipmentBags = {
 	BAG_YOU_DESIRE,
 	PRIMAL_BAG,
@@ -204,26 +205,24 @@ do
 		return table.contains(equipmentTypes, t)
 	end
 
-
-	-- Vaigu custom
-	-- Unused
-	--[[
-	function Monster:getBossReward(lootFactor, topScore, equipmentOnly, lootTable)
+	function MonsterType.getBossReward(self, lootFactor, topScore, equipmentOnly, lootTable, player)
 		if configManager.getNumber(configKeys.RATE_LOOT) <= 0 then
 			return lootTable or {}
 		end
 
-		local filter = function(itemType, unique)
-			if not topScore then
-				return false
-			end
-			if equipmentOnly then
-				return isEquipment(itemType)
-			end
-			return true
-		end
-
-		return TryGenerateLootRoll(MONSTER_LOOT_LAYER.bossReward, self, player, lootFactor, applyGut, filter)
+		return self:generateLootRoll({
+			factor = lootFactor,
+			gut = false,
+			filter = function(itemType, unique)
+				if unique and not topScore then
+					return false
+				end
+				if equipmentOnly then
+					return not unique and isEquipment(itemType)
+				end
+				return true
+			end,
+		}, lootTable, player)
 	end
-	]]
 end
+	]]

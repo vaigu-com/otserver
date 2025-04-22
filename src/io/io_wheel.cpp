@@ -13,6 +13,7 @@
 #include "kv/kv.hpp"
 #include "creatures/players/wheel/player_wheel.hpp"
 #include "creatures/players/player.hpp"
+#include "creatures/players/components/wheel/wheel_definitions.hpp"
 #include "creatures/combat/spells.hpp"
 #include "utils/tools.hpp"
 
@@ -206,7 +207,7 @@ int8_t IOWheel::getSlotPrioritaryOrder(WheelSlots_t slot) const {
 		return 4;
 	}
 
-	g_logger().error("[{}] unknown whell slot type': {}", __FUNCTION__, std::to_string(slot));
+	g_logger().error("[{}] unknown wheel slot type': {}", __FUNCTION__, slot);
 	return -1;
 }
 
@@ -310,7 +311,7 @@ void IOWheel::initializeSorcererSpells() {
 }
 
 bool IOWheel::isMaxPointAddedToSlot(const std::shared_ptr<Player> &player, uint16_t points, WheelSlots_t slotType) const {
-	return points == player->wheel()->getPointsBySlotType(slotType) && points == player->wheel()->getMaxPointsPerSlot(slotType);
+	return points == player->wheel().getPointsBySlotType(slotType) && points == player->wheel().getMaxPointsPerSlot(slotType);
 }
 
 bool IOWheel::isKnight(uint8_t vocationId) const {

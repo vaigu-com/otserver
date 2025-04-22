@@ -91,7 +91,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Well, we need more data on this but first I will have to show this to our grand horticulturist. Thank you for getting this for us!",
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.TimeTaskMeasurements, os.time() + time)
+<<<<<<< HEAD
 			player:AddCustomItem({id = 27654, count = 1})
+=======
+			player:addItem(27654, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 1)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Measurements, 2)
 			npcHandler:setTopic(playerId, 1)
@@ -150,13 +154,21 @@ local function creatureSayCallback(npc, creature, type, message)
 					"The other are already telling stories about you. Please return to me later if you want to help out some more!",
 				}, npc, creature)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.TimeTaskOrdnance, os.time() + time)
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 2})
+=======
+				player:addItem(27654, 2)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 2)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Ordnance, 3)
 			else
 				npcHandler:say("The other are already telling stories about you. Please return to me later if you want to help out some more!", npc, creature)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.TimeTaskOrdnance, os.time() + time)
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 1})
+=======
+				player:addItem(27654, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 1)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Ordnance, 3)
 			end
@@ -205,10 +217,17 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Charting) == 1 and player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.ChartingCount) >= 3 then
 			npcHandler:say("Thank you very much! With those structures mapped out we will be able to complete the puzzle in no time!", npc, creature)
 			if player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.ChartingCount) == 6 then
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 2})
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 2)
 			else
 				player:AddCustomItem({id = 27654, count = 1})
+=======
+				player:addItem(27654, 2)
+				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 2)
+			else
+				player:addItem(27654, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 1)
 			end
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Charting, 2)

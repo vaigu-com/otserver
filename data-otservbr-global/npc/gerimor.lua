@@ -429,11 +429,19 @@ local function creatureSayCallback(npc, creature, type, message)
 			local reward = vocationRewards[vocationId]
 			local item = ""
 			if reward then
+<<<<<<< HEAD
 				player:AddCustomItem({id = reward.itemId})
 				item = reward.itemName
 			end
 			player:addExperience(50000)
 			player:AddCustomItem({id = 26186})
+=======
+				player:addItem(reward.itemId)
+				item = reward.itemName
+			end
+			player:addExperience(50000)
+			player:addItem(26186)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:addAchievement("Corruption Contained")
 			player:sendTextMessage(MESSAGE_EXPERIENCE, "You gained 50000 experience points.")
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You gained a mystery box.")

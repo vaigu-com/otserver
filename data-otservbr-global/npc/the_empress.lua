@@ -59,10 +59,17 @@ local function greetCallback(npc, creature)
 			"You succeeded! Issavi is safe again. Take this as a sign of our grace and gratitude, brave mortal being. It is a precious relic from earlier times. More precisely, it is one of four parts of the relic called the Regalia of Suon. ...",
 			"Should you ever find the other three parts, a talented jeweler might be able to combine them and recreate the regalia for you.",
 		})
+<<<<<<< HEAD
 		player:AddCustomItem({id = 31573, count = 1})
 		player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor, 11)
 	elseif player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Fifth.Memories) == 5 then
 		player:AddCustomItem({id = 31414, count = 1})
+=======
+		player:addItem(31573, 1)
+		player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor, 11)
+	elseif player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Fifth.Memories) == 5 then
+		player:addItem(31414, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		npcHandler:setMessage(MESSAGE_GREET, {
 			"I see. There is enough and adequate evidence that the Ambassador of Rathleton is indeed an arch traitor. So, Eshaya was right. Well done, mortal being. You have proven your loyalty and bravery, therefore allow me to ask you one more favour. ...",
 			"The Cult of Fafnar is a serious problem for Issavi. The cultists are roaming the sewers and catacombs beneath the city now and again but this time they are really up to something. ...",

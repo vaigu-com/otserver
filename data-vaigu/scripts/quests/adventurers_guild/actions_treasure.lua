@@ -15,23 +15,34 @@ local items = {
 }
 
 local adventurersTreasure = Action()
+
 function adventurersTreasure.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+<<<<<<<< HEAD:data-vaigu/scripts/quests/adventurers_guild/actions_treasure.lua
 	if player:getStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter) >= 50 then
+========
+	if player:getStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter) >= 50 then
+>>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a:data-otservbr-global/scripts/quests/the_great_dragon_hunt_quest/actions_treasure.lua
 		local treasure = items[math.random(#items)]
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is impossible to take along all of the treasures here. Buy you pick out " .. treasure.description)
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is impossible to take along all of the treasures here. But you pick out " .. treasure.description)
 		for _, item in ipairs(treasure.items) do
 			player:AddCustomItem({id = item.id, count = item.count})
 		end
 
+<<<<<<<< HEAD:data-vaigu/scripts/quests/adventurers_guild/actions_treasure.lua
 		-- reset dragon counter
 		player:setStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter, 0)
+========
+		player:setStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter, 0)
+>>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a:data-otservbr-global/scripts/quests/the_great_dragon_hunt_quest/actions_treasure.lua
 
-		-- hoard of the dragon achievement
-		local achievement = getAchievementInfoByName("Hoard of the Dragon")
-		if not achievement or player:hasAchievement(achievement.id) then
-			return true
+		local times = player:getStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement)
+		if times < 0 then
+			times = 0
 		end
+		times = times + 1
+		player:setStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement, times)
 
+<<<<<<<< HEAD:data-vaigu/scripts/quests/adventurers_guild/actions_treasure.lua
 		local times = player:getStorageValueByKey(achievement.actionStorage)
 		if times < 10 then
 			player:setStorageValueByKey(achievement.actionStorage, times + 1)
@@ -39,6 +50,10 @@ function adventurersTreasure.onUse(player, item, fromPosition, target, toPositio
 
 		if times + 1 == 10 then
 			player:addAchievement(achievement.id)
+========
+		if times == 10 then
+			player:addAchievement("Hoard of the Dragon")
+>>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a:data-otservbr-global/scripts/quests/the_great_dragon_hunt_quest/actions_treasure.lua
 		end
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You try to pick a treasure, but you hear further dragons approaching. You should kill some more before picking out something.")

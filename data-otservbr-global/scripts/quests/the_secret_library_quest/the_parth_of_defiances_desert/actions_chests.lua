@@ -15,7 +15,11 @@ function actions_desert_chests.onUse(player, item, fromPosition, target, toPosit
 				if k.questlog then
 					player:setStorageValue(Storage.Quest.U11_80.TheSecretLibrary.Darashia.Questline, player:getStorageValue(Storage.Quest.U11_80.TheSecretLibrary.Darashia.Questline) + 1)
 				end
+<<<<<<< HEAD
 				player:AddCustomItem({id = k.reward, count = 1})
+=======
+				player:addItem(k.reward, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(k.storage, 1)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. ItemType(k.reward):getName():lower() .. ".")
 			else

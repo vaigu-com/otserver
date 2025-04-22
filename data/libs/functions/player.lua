@@ -93,7 +93,7 @@ function Player.addManaSpent(...)
 	return ret
 end
 
---Vaigu custom
+-- Vaigu custom
 function Player.checkGnomeRank(self)
 	local questProgress = self:getStorageValueByKey(Storage.BigfootsBurden.QuestLine)
 	if questProgress >= 30 then

@@ -163,7 +163,11 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if talkState[playerId] == "pacifiers" then
 		if MsgContains(message, "yes") then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19204, count = 1})
+=======
+			player:addItem(19204, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U10_20.SpikeTaskQuest.Spike_Upper_Pacifier_Main, 0)
 			npcHandler:say("Gnometastic! Take this resonance charger and use it on seven of the pacifiers in the cave. If you lose the charger, you'll have to bring your own. Gnomux sells all the equipment that is required for our missions.", npc, creature)
 			talkState[playerId] = nil
@@ -195,7 +199,11 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if talkState[playerId] == "release" then
 		if MsgContains(message, "yes") then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19203, count = 1})
+=======
+			player:addItem(19203, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U10_20.SpikeTaskQuest.Spike_Upper_Mound_Main, 0)
 			npcHandler:say("Gnometastic! Take this spirit shovel and use it on four graves in the cave system. If you lose the shovel you'll have to bring your own. Gnomux sells all the equipment that is required for our missions.", npc, creature)
 			talkState[playerId] = nil
@@ -232,7 +240,11 @@ local function creatureSayCallback(npc, creature, type, message)
 	if talkState[playerId] == "track" then
 		if MsgContains(message, "yes") then
 			GHOST_DETECTOR_MAP[player:getGuid()] = Position.getFreeSand()
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19205, count = 1})
+=======
+			player:addItem(19205, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U10_20.SpikeTaskQuest.Spike_Upper_Track_Main, 0)
 			npcHandler:say("Gnometastic! Use this tracking device in the caves and locate the residual spirit energy. If you lose the tracking device, you'll have to bring your own. Gnomux sells all the equipment that is required for our missions.", npc, creature)
 			talkState[playerId] = nil

@@ -83,7 +83,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			"If you have done that, you may have the scroll piece. Now go.",
 		}, npc, creature)
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission61, 1)
+<<<<<<< HEAD
 		player:AddCustomItem({id = 18932, count = 1})
+=======
+		player:addItem(18932, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		npcHandler:setTopic(playerId, 0)
 	elseif MsgContains(message, "mission") and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission66) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission67) < 1 then
 		npcHandler:say("Hello, brother. You have finished the dance?", npc, creature)

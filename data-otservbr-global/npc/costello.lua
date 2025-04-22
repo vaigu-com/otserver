@@ -89,7 +89,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			npcHandler:say("By the gods! This is brother Fugio's handwriting and what I read is horrible indeed! You have done our order a great favour by giving this diary to me! Take this blessed Ankh. May it protect you in even your darkest hours.", npc, creature)
+<<<<<<< HEAD
 			player:AddCustomItem({id = 3214, count = 1})
+=======
+			player:addItem(3214, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U7_24.TheWhiteRavenMonastery.Diary, 2)
 		end
 	elseif npcHandler:getTopic(playerId) == 3 then
@@ -99,7 +103,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			return true
 		end
 
+<<<<<<< HEAD
 		player:AddCustomItem({id = 133, count = 1})
+=======
+		player:addItem(133, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		player:setStorageValue(Storage.Quest.U8_1.RestInHallowedGround.Questline, 2)
 		npcHandler:say("Ohh, why didn't you tell me before? Sure you get some holy water if it's for Amanda! Here you are.", npc, creature)
 		npcHandler:setTopic(playerId, 0)

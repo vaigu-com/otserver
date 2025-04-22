@@ -159,6 +159,7 @@ bool ConfigManager::load() {
 	loadBoolConfig(L, WARN_UNSAFE_SCRIPTS, "warnUnsafeScripts", true);
 	loadBoolConfig(L, XP_DISPLAY_MODE, "experienceDisplayRates", true);
 	loadBoolConfig(L, CYCLOPEDIA_HOUSE_AUCTION, "toggleCyclopediaHouseAuction", true);
+	loadBoolConfig(L, LEAVE_PARTY_ON_DEATH, "leavePartyOnDeath", false);
 
 	loadFloatConfig(L, BESTIARY_RATE_CHARM_SHOP_PRICE, "bestiaryRateCharmShopPrice", 1.0);
 	loadFloatConfig(L, COMBAT_CHAIN_SKILL_FORMULA_AXE, "combatChainSkillFormulaAxe", 0.9);
@@ -199,6 +200,9 @@ bool ConfigManager::load() {
 	loadFloatConfig(L, TRANSCENDANCE_CHANCE_FORMULA_A, "transcendanceChanceFormulaA", 0.0127);
 	loadFloatConfig(L, TRANSCENDANCE_CHANCE_FORMULA_B, "transcendanceChanceFormulaB", 0.1070);
 	loadFloatConfig(L, TRANSCENDANCE_CHANCE_FORMULA_C, "transcendanceChanceFormulaC", 0.0073);
+	loadFloatConfig(L, ANIMUS_MASTERY_MAX_MONSTER_XP_MULTIPLIER, "animusMasteryMaxMonsterXpMultiplier", 4.0);
+	loadFloatConfig(L, ANIMUS_MASTERY_MONSTER_XP_MULTIPLIER, "animusMasteryMonsterXpMultiplier", 2.0);
+	loadFloatConfig(L, ANIMUS_MASTERY_MONSTERS_XP_MULTIPLIER, "animusMasteryMonstersXpMultiplier", 0.1);
 
 	loadIntConfig(L, ACTIONS_DELAY_INTERVAL, "timeBetweenActions", 200);
 	loadIntConfig(L, ADVENTURERSBLESSING_LEVEL, "adventurersBlessingLevel", 21);
@@ -345,6 +349,7 @@ bool ConfigManager::load() {
 	loadIntConfig(L, AUGMENT_INCREASED_DAMAGE_PERCENT, "augmentIncreasedDamagePercent", 5);
 	loadIntConfig(L, AUGMENT_POWERFUL_IMPACT_PERCENT, "augmentPowerfulImpactPercent", 10);
 	loadIntConfig(L, AUGMENT_STRONG_IMPACT_PERCENT, "augmentStrongImpactPercent", 7);
+	loadIntConfig(L, ANIMUS_MASTERY_MONSTERS_TO_INCREASE_XP_MULTIPLIER, "animusMasteryMonstersToIncreaseXpMultiplier", 10);
 
 	loadStringConfig(L, CORE_DIRECTORY, "coreDirectory", "data");
 	loadStringConfig(L, DATA_DIRECTORY, "dataPackDirectory", "data-otservbr-global");
@@ -371,6 +376,8 @@ bool ConfigManager::load() {
 	loadBoolConfig(L, WEATHER_RAIN, "weatherRain", false);
 	loadBoolConfig(L, WEATHER_THUNDER, "thunderEffect", false);
 	loadBoolConfig(L, ALL_CONSOLE_LOG, "allConsoleLog", false);
+	
+	loadLuaOTCFeatures(L);
 
 	loaded = true;
 	lua_close(L);
@@ -519,4 +526,50 @@ float ConfigManager::getFloat(const ConfigKey_t &key, const std::source_location
 
 	g_logger().warn("[{}] accessing invalid or wrong type index: {}[{}]. Called line: {}:{}, in {}", __FUNCTION__, magic_enum::enum_name(key), fmt::underlying(key), location.line(), location.column(), location.function_name());
 	return 0.0f;
+}
+
+void ConfigManager::loadLuaOTCFeatures(lua_State* L) {
+	lua_getglobal(L, "OTCRFeatures");
+	if (!lua_istable(L, -1)) {
+		// Temp to avoid a bug in OTC if the "OTCRFeatures" array is not declared in config.lua.
+		enabledFeaturesOTC.push_back(101);
+		enabledFeaturesOTC.push_back(102);
+		enabledFeaturesOTC.push_back(103);
+		enabledFeaturesOTC.push_back(118);
+		lua_pop(L, 1);
+		return;
+	}
+
+	lua_pushstring(L, "enableFeature");
+	lua_gettable(L, -2);
+	if (lua_istable(L, -1)) {
+		lua_pushnil(L);
+		while (lua_next(L, -2) != 0) {
+			const auto feature = static_cast<uint8_t>(lua_tointeger(L, -1));
+			enabledFeaturesOTC.push_back(feature);
+			lua_pop(L, 1);
+		}
+	}
+	lua_pop(L, 1);
+
+	lua_pushstring(L, "disableFeature");
+	lua_gettable(L, -2);
+	if (lua_istable(L, -1)) {
+		lua_pushnil(L);
+		while (lua_next(L, -2) != 0) {
+			const auto feature = static_cast<uint8_t>(lua_tointeger(L, -1));
+			disabledFeaturesOTC.push_back(feature);
+			lua_pop(L, 1);
+		}
+	}
+	lua_pop(L, 1);
+
+	lua_pop(L, 1);
+}
+OTCFeatures ConfigManager::getEnabledFeaturesOTC() const {
+	return enabledFeaturesOTC;
+}
+
+OTCFeatures ConfigManager::getDisabledFeaturesOTC() const {
+	return disabledFeaturesOTC;
 }

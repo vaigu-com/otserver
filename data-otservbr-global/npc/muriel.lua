@@ -135,7 +135,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Great! Here is the container for the bone. Once, I used it to collect ectoplasma of ghosts, but it will work here as well. ...",
 				"If you lose it, you can buy a new one from the explorer's society in North Port or Port Hope. Ask me about the mission when you come back.",
 			}, npc, creature)
+<<<<<<< HEAD
 			player:AddCustomItem({id = 4852, count = 1})
+=======
+			player:addItem(4852, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.IntoTheBonePit, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 2 then

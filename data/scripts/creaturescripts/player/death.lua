@@ -1,4 +1,3 @@
---[[
 local deathListEnabled = true
 
 local function getKillerInfo(killer)
@@ -186,4 +185,3 @@ function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, unjustifi
 end
 
 playerDeath:register()
-]]
