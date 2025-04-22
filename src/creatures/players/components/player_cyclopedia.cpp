@@ -7,8 +7,6 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "creatures/players/cyclopedia/player_cyclopedia.hpp"
-
 #include "creatures/players/player.hpp"
 // Player.hpp already includes the cylopedia
 #include "creatures/players/player.hpp"

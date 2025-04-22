@@ -9,7 +9,6 @@
 
 #include "lua/functions/core/game/lua_enums.hpp"
 
-#include "creatures/players/wheel/wheel_definitions.hpp"
 #include "enums/account_group_type.hpp"
 #include "enums/account_type.hpp"
 #include "enums/item_attribute.hpp"

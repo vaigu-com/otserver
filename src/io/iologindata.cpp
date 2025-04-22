@@ -16,7 +16,6 @@
 #include "io/functions/iologindata_save_player.hpp"
 #include "game/game.hpp"
 #include "creatures/monsters/monster.hpp"
-#include "creatures/players/wheel/player_wheel.hpp"
 #include "creatures/players/player.hpp"
 #include "lib/metrics/metrics.hpp"
 #include "enums/account_type.hpp"

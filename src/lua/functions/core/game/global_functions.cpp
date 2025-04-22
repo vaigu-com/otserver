@@ -13,7 +13,6 @@
 #include "creatures/creature.hpp"
 #include "creatures/combat/condition.hpp"
 #include "creatures/interactions/chat.hpp"
-#include "creatures/players/wheel/player_wheel.hpp"
 #include "creatures/players/player.hpp"
 #include "game/game.hpp"
 #include "game/scheduling/dispatcher.hpp"

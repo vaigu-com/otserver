@@ -10,7 +10,6 @@
 #pragma once
 
 #include "lua/creature/actions.hpp"
-#include "creatures/players/wheel/wheel_definitions.hpp"
 #include "creatures/players/components/wheel/wheel_definitions.hpp"
 
 class InstantSpell;

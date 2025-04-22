@@ -89,6 +89,7 @@ void CreatureFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Creature", "removeIcon", CreatureFunctions::luaCreatureRemoveIcon);
 	Lua::registerMethod(L, "Creature", "clearIcons", CreatureFunctions::luaCreatureClearIcons);
 
+	// Vaigu custom
 	Lua::registerMethod(L, "Creature", "getMaxBaseHealth", CreatureFunctions::luaCreatureGetMaxBaseHealth); // Vaigu custom
 	Lua::registerMethod(L, "Creature", "getNameDescription", CreatureFunctions::luaCreatureGetNameDescription); // Vaigu custom
 	
@@ -1011,6 +1012,19 @@ int CreatureFunctions::luaCreatureGetDescription(lua_State* L) {
 	}
 	return 1;
 }
+
+// Vaigu custom
+int CreatureFunctions::luaCreatureGetMaxBaseHealth(lua_State* L) {
+	// creature:getMaxBaseHealth()
+	const auto &creature = Lua::getUserdataShared<Creature>(L, 1, "Creature");
+	if (creature) {
+		lua_pushnumber(L, creature->getMaxBaseHealth());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 
 // Vaigu custom
 int CreatureFunctions::luaCreatureGetNameDescription(lua_State* L) {

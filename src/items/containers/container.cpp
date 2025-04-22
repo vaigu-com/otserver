@@ -241,11 +241,6 @@ uint32_t Container::getWeight() const {
 	return Item::getWeight() + totalWeight;
 }
 
-std::string Container::getContentDescription(bool oldProtocol) {
-	std::ostringstream os;
-	return getContentDescription(os, oldProtocol).str();
-}
-
 std::ostringstream &Container::getContentDescription(std::ostringstream &os, bool sendColoredMessage) {
 	bool firstitem = true;
 	for (ContainerIterator it = iterator(); it.hasNext(); it.advance()) {

@@ -10,8 +10,6 @@
 #pragma once
 
 #include "creatures/appearance/outfit/outfit.hpp"
-#include "creatures/players/cyclopedia/player_badge.hpp"
-#include "creatures/players/cyclopedia/player_title.hpp"
 #include "creatures/players/components/player_badge.hpp"
 #include "creatures/players/components/player_title.hpp"
 #include "creatures/players/grouping/familiars.hpp"

@@ -13,7 +13,6 @@
 #include "creatures/combat/spells.hpp"
 #include "creatures/monsters/monsters.hpp"
 #include "creatures/players/player.hpp"
-#include "creatures/players/wheel/player_wheel.hpp"
 #include "game/game.hpp"
 #include "game/scheduling/dispatcher.hpp"
 #include "items/tile.hpp"
@@ -64,20 +63,6 @@ Monster::Monster(const std::shared_ptr<MonsterType> &mType) :
 		}
 	}
 	updateFullName();
-}
-
-std::shared_ptr<Monster> Monster::getMonster() {
-	return static_self_cast<Monster>();
-}
-
-std::shared_ptr<const Monster> Monster::getMonster() const {
-	return static_self_cast<Monster>();
-}
-
-void Monster::setID() {
-	if (id == 0) {
-		id = monsterAutoID++;
-	}
 }
 
 std::shared_ptr<Monster> Monster::getMonster() {

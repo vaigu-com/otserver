@@ -7,7 +7,6 @@
  * Website: https://docs.opentibiabr.org/
  */
 
-#include "creatures/players/wheel/player_wheel.hpp"
 // Player.hpp already includes the wheel
 #include "creatures/players/player.hpp"
 
@@ -18,7 +17,6 @@
 #include "creatures/combat/spells.hpp"
 #include "creatures/players/player.hpp"
 #include "creatures/players/vocations/vocation.hpp"
-#include "creatures/players/wheel/wheel_gems.hpp"
 #include "creatures/players/vocations/vocation.hpp"
 #include "enums/player_wheel.hpp"
 #include "game/game.hpp"

@@ -265,8 +265,6 @@ protected:
 	void loadLoot(std::shared_ptr<Monster> monsterType, LootBlock lootblock);
 	std::vector<LootBlock> lootItems;
 
-	void onExecuteAsyncTasks() override;
-
 private:
 	void onThink_async();
 

@@ -22,7 +22,6 @@ void ContainerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Container", "getMaxCapacity", ContainerFunctions::luaContainerGetMaxCapacity);
 	Lua::registerMethod(L, "Container", "getCapacity", ContainerFunctions::luaContainerGetCapacity);
 	Lua::registerMethod(L, "Container", "getEmptySlots", ContainerFunctions::luaContainerGetEmptySlots);
-	Lua::registerMethod(L, "Container", "getContentDescription", ContainerFunctions::luaContainerGetContentDescription);
 	Lua::registerMethod(L, "Container", "getItems", ContainerFunctions::luaContainerGetItems);
 	Lua::registerMethod(L, "Container", "getItemHoldingCount", ContainerFunctions::luaContainerGetItemHoldingCount);
 	Lua::registerMethod(L, "Container", "getItemCountById", ContainerFunctions::luaContainerGetItemCountById);
@@ -259,40 +258,6 @@ int ContainerFunctions::luaContainerGetItemCountById(lua_State* L) {
 }
 
 // Vaigu custom
-int ContainerFunctions::luaContainerGetItems(lua_State* L) {
-	// container:getItems([recursive = false])
-	const auto &container = Lua::getUserdataShared<Container>(L, 1, "Container");
-	if (!container) {
-		lua_pushnil(L);
-		return 1;
-	}
-
-	const bool recursive = Lua::getBoolean(L, 2, false);
-	const std::vector<std::shared_ptr<Item>> items = container->getItems(recursive);
-
-	lua_createtable(L, static_cast<int>(items.size()), 0);
-
-	int index = 0;
-	for (const auto &item : items) {
-		index++;
-		Lua::pushUserdata(L, item);
-		Lua::setItemMetatable(L, -1, item);
-		lua_rawseti(L, -2, index);
-	}
-	return 1;
-}
-
-int ContainerFunctions::luaContainerGetContentDescription(lua_State* L) {
-	// container:getContentDescription([oldProtocol])
-	const auto &container = Lua::getUserdataShared<Container>(L, 1, "Container");
-	if (container) {
-		Lua::pushString(L, container->getContentDescription(Lua::getBoolean(L, 2, false)));
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
 int ContainerFunctions::luaContainerGetItems(lua_State* L) {
 	// container:getItems([recursive = false])
 	const auto &container = Lua::getUserdataShared<Container>(L, 1, "Container");

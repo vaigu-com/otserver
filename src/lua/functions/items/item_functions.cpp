@@ -867,7 +867,7 @@ int ItemFunctions::luaItemGetDescription(lua_State* L) {
 	const auto &item = Lua::getUserdataShared<Item>(L, 1, "Item");
 	if (item) {
 		int32_t distance = Lua::getNumber<int32_t>(L, 2);
-		std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 3);
+		std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 3, "Player");
 		Lua::pushString(L, item->getDescription(distance, player));
 	} else {
 		lua_pushnil(L);

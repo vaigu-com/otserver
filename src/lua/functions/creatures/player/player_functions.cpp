@@ -15,13 +15,8 @@
 #include "creatures/creature.hpp"
 #include "creatures/interactions/chat.hpp"
 #include "creatures/monsters/monsters.hpp"
-#include "creatures/players/achievement/player_achievement.hpp"
-#include "creatures/players/cyclopedia/player_cyclopedia.hpp"
-#include "creatures/players/cyclopedia/player_title.hpp"
 #include "creatures/players/player.hpp"
-#include "creatures/players/vip/player_vip.hpp"
 #include "creatures/players/vocations/vocation.hpp"
-#include "creatures/players/wheel/player_wheel.hpp"
 #include "creatures/players/player.hpp"
 #include "creatures/players/vocations/vocation.hpp"
 #include "server/network/protocol/protocolgame.hpp"
@@ -3593,7 +3588,7 @@ int PlayerFunctions::luaPlayerGetFightMode(lua_State* L) {
 // Vaigu custom
 int PlayerFunctions::luaPlayerSetAttackSpeed(lua_State* L) {
 	// player:setAttackSpeed(ms)
-	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1, "Player");
 	uint32_t ms = Lua::getNumber<uint32_t>(L, 2);
 	if (player) {
 		player->setAttackSpeed(ms);
@@ -3604,9 +3599,10 @@ int PlayerFunctions::luaPlayerSetAttackSpeed(lua_State* L) {
 	return 1;
 }
 
+// Vaigu custom
 int PlayerFunctions::luaPlayerGetAttackSpeed(lua_State* L) {
 	// player:getAttackSpeed()
-	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1);
+	std::shared_ptr<Player> player = Lua::getUserdataShared<Player>(L, 1, "Player");
 	if (player) {
 		lua_pushnumber(L, player->getAttackSpeed());
 	} else {
@@ -4362,9 +4358,9 @@ int PlayerFunctions::luaPlayerInstantSkillWOD(lua_State* L) {
 
 	const std::string name = Lua::getString(L, 2);
 	if (lua_gettop(L) == 2) {
-		Lua::pushBoolean(L, player->wheel()->getInstant(name));
+		Lua::pushBoolean(L, player->wheel().getInstant(name));
 	} else {
-		player->wheel()->setSpellInstant(name, Lua::getBoolean(L, 3));
+		player->wheel().setSpellInstant(name, Lua::getBoolean(L, 3));
 		Lua::pushBoolean(L, true);
 	}
 	return 1;
@@ -4571,26 +4567,6 @@ int PlayerFunctions::luaPlayerWheelUnlockScroll(lua_State* L) {
 	}
 
 	lua_pushboolean(L, player->wheel().unlockScroll(scrollName));
-	return 1;
-}
-
-int PlayerFunctions::luaPlayerWheelUnlockScroll(lua_State* L) {
-	// player:wheelUnlockScroll(scrollName)
-	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
-	if (!player) {
-		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_PLAYER_NOT_FOUND));
-		Lua::pushBoolean(L, false);
-		return 0;
-	}
-
-	const auto scrollName = Lua::getString(L, 2);
-	if (scrollName.empty()) {
-		Lua::reportErrorFunc("Scroll name is empty");
-		Lua::pushBoolean(L, false);
-		return 0;
-	}
-
-	lua_pushboolean(L, player->wheel()->unlockScroll(scrollName));
 	return 1;
 }
 

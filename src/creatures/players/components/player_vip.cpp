@@ -7,8 +7,6 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "creatures/players/vip/player_vip.hpp"
-
 #include "account/account.hpp"
 #include "creatures/players/grouping/groups.hpp"
 // Player.hpp already includes the vip
