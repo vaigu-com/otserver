@@ -728,6 +728,23 @@ int MonsterFunctions::luaMonsterHazardDamageBoost(lua_State* L) {
 	return 1;
 }
 
+int MonsterFunctions::luaMonsterHazardDefenseBoost(lua_State* L) {
+	// get: monster:hazardDefenseBoost() ; set: monster:hazardDefenseBoost(hazardDefenseBoost)
+	const auto &monster = Lua::getUserdataShared<Monster>(L, 1, "Monster");
+	const bool hazardDefenseBoost = Lua::getBoolean(L, 2, false);
+	if (monster) {
+		if (lua_gettop(L) == 1) {
+			Lua::pushBoolean(L, monster->getHazardSystemDefenseBoost());
+		} else {
+			monster->setHazardSystemDefenseBoost(hazardDefenseBoost);
+			Lua::pushBoolean(L, monster->getHazardSystemDefenseBoost());
+		}
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int MonsterFunctions::luaMonsterSoulPit(lua_State* L) {
 	// get: monster:soulPit() ; set: monster:soulPit(hazard)
 	const auto &monster = Lua::getUserdataShared<Monster>(L, 1, "Monster");

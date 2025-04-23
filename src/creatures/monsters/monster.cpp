@@ -79,20 +79,6 @@ void Monster::setID() {
 	}
 }
 
-std::shared_ptr<Monster> Monster::getMonster() {
-	return static_self_cast<Monster>();
-}
-
-std::shared_ptr<const Monster> Monster::getMonster() const {
-	return static_self_cast<Monster>();
-}
-
-void Monster::setID() {
-	if (id == 0) {
-		id = monsterAutoID++;
-	}
-}
-
 void Monster::addList() {
 	g_game().addMonster(static_self_cast<Monster>());
 }

@@ -77,6 +77,10 @@ class Events {
 
 		// Monster
 		int32_t monsterOnDropLoot = -1;
+		int32_t monsterOnSpawn = -1;
+
+		// Npc
+		int32_t npcOnSpawn = -1;
 	};
 
 public:
