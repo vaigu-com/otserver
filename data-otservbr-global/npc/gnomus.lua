@@ -92,10 +92,14 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.TimeTaskMeasurements, os.time() + time)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 27654, count = 1})
 =======
 			player:addItem(27654, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+			player:addItem(27654, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 1)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Measurements, 2)
 			npcHandler:setTopic(playerId, 1)
@@ -155,20 +159,28 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.TimeTaskOrdnance, os.time() + time)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 2})
 =======
 				player:addItem(27654, 2)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+				player:addItem(27654, 2)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 2)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Ordnance, 3)
 			else
 				npcHandler:say("The other are already telling stories about you. Please return to me later if you want to help out some more!", npc, creature)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.TimeTaskOrdnance, os.time() + time)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 1})
 =======
 				player:addItem(27654, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+				player:addItem(27654, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 1)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Ordnance, 3)
 			end
@@ -218,16 +230,22 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("Thank you very much! With those structures mapped out we will be able to complete the puzzle in no time!", npc, creature)
 			if player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.ChartingCount) == 6 then
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 2})
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 2)
 			else
 				player:AddCustomItem({id = 27654, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:addItem(27654, 2)
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 2)
 			else
 				player:addItem(27654, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + 1)
 			end
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Charting, 2)
@@ -273,39 +291,63 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 1)
 		end
 	elseif MsgContains(message, "gnomes") and npcHandler:getTopic(playerId) == 56 then
+<<<<<<< HEAD
 		if player:getItemCount(30888) >= amount[playerId] then
+=======
+		if player:getItemCount(27653) >= amount[playerId] then
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			npcHandler:say("Done.", npc, creature)
 			if amount[playerId] > 1 then
 				plural = plural .. "s"
 			end
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You earned " .. amount[playerId] .. " point" .. plural .. " on the gnomes mission.")
+<<<<<<< HEAD
 			player:removeItem(30888, amount[playerId])
+=======
+			player:removeItem(27653, amount[playerId])
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Gnomes.Points) + amount[playerId])
 		else
 			npcHandler:say("You don't have enough suspicious devices.", npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
 	elseif MsgContains(message, "dwarves") and npcHandler:getTopic(playerId) == 56 then
+<<<<<<< HEAD
 		if player:getItemCount(30888) >= amount[playerId] then
+=======
+		if player:getItemCount(27653) >= amount[playerId] then
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			npcHandler:say("Done.", npc, creature)
 			if amount[playerId] > 1 then
 				plural = plural .. "s"
 			end
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You earned " .. amount[playerId] .. " point" .. plural .. " on the dwarves mission.")
+<<<<<<< HEAD
 			player:removeItem(30888, amount[playerId])
+=======
+			player:removeItem(27653, amount[playerId])
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Dwarves.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Dwarves.Points) + amount[playerId])
 		else
 			npcHandler:say("You don't have enough suspicious devices.", npc, creature)
 			npcHandler:setTopic(playerId, 1)
 		end
 	elseif MsgContains(message, "scouts") and npcHandler:getTopic(playerId) == 56 then
+<<<<<<< HEAD
 		if player:getItemCount(30888) >= amount[playerId] then
+=======
+		if player:getItemCount(27653) >= amount[playerId] then
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			npcHandler:say("Done.", npc, creature)
 			if amount[playerId] > 1 then
 				plural = plural .. "s"
 			end
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You earned " .. amount[playerId] .. " point" .. plural .. " on the scouts mission.")
+<<<<<<< HEAD
 			player:removeItem(30888, amount[playerId])
+=======
+			player:removeItem(27653, amount[playerId])
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points) + amount[playerId])
 		else
 			npcHandler:say("You don't have enough suspicious devices.", npc, creature)

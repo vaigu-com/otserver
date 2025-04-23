@@ -24,7 +24,10 @@ SoulWarQuest = {
 	},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	taintExperienceBoostMap = { -- Experience Boost per taint (In percentage %)
 		[1] = { boost = 4.5 },
 		[2] = { boost = 9.2 },
@@ -33,7 +36,10 @@ SoulWarQuest = {
 		[5] = { boost = 24.6 },
 	},
 
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	timeToIncreaseCrueltyDefense = 15, -- In seconds, it will increase every 15 seconds if don't use mortal essence in greedy maw
 	useGreedMawCooldown = 30, -- In seconds
 	goshnarsCrueltyDefenseChange = 2, -- Defense change, the amount that will decrease or increase defense, the defense cannot decrease more than the monster's original defense amount
@@ -1530,9 +1536,12 @@ function Player:pulsatingEnergyKV()
 end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --[[
 =======
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 function Zone:getRandomPlayer()
 	local players = self:getPlayers()
 	if #players == 0 then
@@ -1543,9 +1552,12 @@ function Zone:getRandomPlayer()
 	return players[randomIndex]
 end
 <<<<<<< HEAD
+<<<<<<< HEAD
 ]]
 =======
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 
 local conditionOutfit = Condition(CONDITION_OUTFIT)
 

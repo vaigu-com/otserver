@@ -86,7 +86,10 @@ function lionsGetLionsMane.onUse(player, item, fromPosition, target, toPosition,
 	player:AddCustomItem({id = 21389, count = 1})
 =======
 	player:addItem(21389, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, math.max(player:getStorageValue(Storage.Quest.U10_70.LionsRock.Questline), 1))
 	player:setStorageValue(Storage.Quest.U8_1.TibiaTales.DefaultStart, 1)
 	item:transform(21935)
@@ -108,7 +111,10 @@ function lionsGetHolyWater.onUse(player, item, fromPosition, target, toPosition,
 	player:AddCustomItem({id = 21466, count = 1})
 =======
 	player:addItem(21466, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, math.max(player:getStorageValue(Storage.Quest.U10_70.LionsRock.Questline), 1))
 	player:setStorageValue(Storage.Quest.U8_1.TibiaTales.DefaultStart, 1)
 	return true
@@ -142,7 +148,10 @@ function lionsRockFountain.onUse(player, item, fromPosition, target, toPosition,
 		player:AddCustomItem({id = rewards[reward], count = 1})
 =======
 		player:addItem(rewards[reward], 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U10_70.LionsRock.Time, os.time() + 24 * 60 * 60)
 		player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, 11)
 	else

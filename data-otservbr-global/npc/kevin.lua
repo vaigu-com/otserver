@@ -216,8 +216,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("I need you to deliver a bill to the stage magician David Brassacres. He's hiding from his creditors somewhere in Venore. It's likely you will have to trick him somehow to reveal his identity. Report back when you delivered this bill.", npc, creature)
 			player:setStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Mission03, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 3216, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(3216, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:setTopic(playerId, 0)
@@ -240,8 +243,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("I grant you the title of postman. You are now a full member of our guild. Here have your own officers hat and wear it with pride.", npc, creature)
 			player:setStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Rank, 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 3576, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(3576, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:setTopic(playerId, 15)
@@ -285,8 +291,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("From now on you are a grand postman for special operations. You are an honoured member of our guild and earned the privilege of your own post horn. Here, take it.", npc, creature)
 			player:setStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Rank, 4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 3252, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(3252, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:setTopic(playerId, 0)
@@ -299,8 +308,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Mission09, 4)
 			player:setStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Mission10, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 3220, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(3220, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:setTopic(playerId, 0)

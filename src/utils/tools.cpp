@@ -1190,9 +1190,11 @@ ItemAttribute_t stringToItemAttribute(const std::string &str) {
 	if (str == "uid") {
 		return ItemAttribute_t::UNIQUEID;
 	}
+	// Vaigu custom
 	if (str == "key") {
 		return ItemAttribute_t::KEY;
 	}
+
 	if (str == "description") {
 		return ItemAttribute_t::DESCRIPTION;
 	}

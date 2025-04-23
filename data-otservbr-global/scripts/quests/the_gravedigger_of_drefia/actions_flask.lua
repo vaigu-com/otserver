@@ -9,10 +9,14 @@ function gravediggerFlask.onUse(player, item, fromPosition, target, toPosition, 
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission12, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Done! Report back to Omrabas.")
 <<<<<<< HEAD
+<<<<<<< HEAD
 		player:AddCustomItem({id = 19086, count = 1})
 =======
 		player:addItem(19086, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+		player:addItem(19086, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		item:remove()
 		target:remove()
 	end

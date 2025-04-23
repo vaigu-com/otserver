@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	centerRoom = Position(32977, 31662, 14),
 	newPosition = Position(32977, 31667, 14),
 }
@@ -47,6 +48,8 @@ end
 leverTimeGuardian:position(Position(33010, 31659, 14))
 leverTimeGuardian:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "The Time Guardian",
 		position = Position(32977, 31662, 14),
@@ -73,4 +76,7 @@ leverTimeGuardian:register()
 local lever = BossLever(config)
 lever:position(Position(33010, 31659, 14))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32

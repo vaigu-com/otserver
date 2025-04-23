@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bossPosition = Position(33357, 31182, 10),
 	newPosition = Position(33359, 31186, 10),
 	soulPosition = Position(33359, 31182, 12),
@@ -52,6 +53,8 @@ end
 leverZyrtarch:position(Position(33391, 31177, 10))
 leverZyrtarch:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "soul of dragonking zyrtarch",
 		position = Position(33359, 31182, 12),
@@ -81,4 +84,7 @@ leverZyrtarch:register()
 local lever = BossLever(config)
 lever:position(Position(33391, 31177, 10))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32

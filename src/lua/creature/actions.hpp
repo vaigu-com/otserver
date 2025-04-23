@@ -172,7 +172,7 @@ public:
 	bool registerLuaUniqueEvent(const std::shared_ptr<Action> &action);
 	bool registerLuaActionEvent(const std::shared_ptr<Action> &action);
 	bool registerLuaPositionEvent(const std::shared_ptr<Action> &action);
-	bool registerLuaKeyEvent(const std::shared_ptr<Action> &action);
+	bool registerLuaKeyEvent(const std::shared_ptr<Action> &action); // Vaigu custom
 	bool registerLuaEvent(const std::shared_ptr<Action> &action);
 	// Clear maps for reloading
 	void clear();

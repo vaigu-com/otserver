@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	centerRoom = Position(33485, 32786, 13),
 	BossPosition = Position(33485, 32786, 13),
 	playerPositions = {
@@ -56,6 +57,8 @@ end
 leverShulgrax:uid(1028)
 leverShulgrax:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "Shulgrax",
 		position = Position(33485, 32786, 13),
@@ -79,4 +82,7 @@ leverShulgrax:register()
 local lever = BossLever(config)
 lever:position(Position(33434, 32784, 13))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
