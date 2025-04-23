@@ -81,10 +81,14 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 15 then
 			npcHandler:say("Very good. Hopefully analysing this sample will get us closer to the solution of this mistery.", npc, creature)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 25305, count = 1})
 =======
 			player:addItem(25305, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+			player:addItem(25305, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U11_40.CultsOfTibia.Life.Mission, 4)
 		end
 	end
@@ -96,10 +100,14 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 16 then
 			npcHandler:say("Thanks a lot. Let me check the result. Well, I think you need the counteragent. Please apply it to the oasis!", npc, creature)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 25304, count = 1})
 =======
 			player:addItem(25304, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+			player:addItem(25304, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U11_40.CultsOfTibia.Life.Mission, 6)
 		end
 	end

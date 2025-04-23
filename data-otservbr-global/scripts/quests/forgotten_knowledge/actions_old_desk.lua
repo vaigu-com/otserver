@@ -10,7 +10,10 @@ function forgottenKnowledgeOldDesk.onUse(player, item, fromPosition, target, toP
 		player:AddCustomItem({id = 23733, true, count = true})
 =======
 		player:addItem(23733, true, true)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.SilverKey, 1)
 		return true
 	end
@@ -23,7 +26,10 @@ function forgottenKnowledgeOldDesk.onUse(player, item, fromPosition, target, toP
 	player:AddCustomItem({id = 23731, true, count = true})
 =======
 	player:addItem(23731, true, true)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	player:setStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.OldDesk, 1)
 	return true
 end

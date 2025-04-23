@@ -63,8 +63,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			local headItem = player:getSlotItem(CONST_SLOT_HEAD)
 			if headItem and headItem.itemid == 3576 and player:getStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Rank) == 5 then
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = 7934, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:addItem(7934, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission06, 2)

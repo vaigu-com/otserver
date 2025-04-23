@@ -25,7 +25,7 @@ void MoveEventFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "MoveEvent", "aid", MoveEventFunctions::luaMoveEventActionId);
 	Lua::registerMethod(L, "MoveEvent", "uid", MoveEventFunctions::luaMoveEventUniqueId);
 	Lua::registerMethod(L, "MoveEvent", "position", MoveEventFunctions::luaMoveEventPosition);
-	Lua::registerMethod(L, "MoveEvent", "key", MoveEventFunctions::luaMoveEventKey);
+	Lua::registerMethod(L, "MoveEvent", "key", MoveEventFunctions::luaMoveEventKey); // Vaigu custom
 	Lua::registerMethod(L, "MoveEvent", "premium", MoveEventFunctions::luaMoveEventPremium);
 	Lua::registerMethod(L, "MoveEvent", "vocation", MoveEventFunctions::luaMoveEventVocation);
 	Lua::registerMethod(L, "MoveEvent", "onEquip", MoveEventFunctions::luaMoveEventOnCallback);

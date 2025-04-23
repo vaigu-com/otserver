@@ -139,8 +139,11 @@ function ParseTerebanSay(npc, creature, message, npcHandler)
 
 				player:setStorageValue(Storage.Quest.U8_6.AFathersBurden.Status, 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = oldCape, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:addItem(oldCape, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:addExperience(8000, true)

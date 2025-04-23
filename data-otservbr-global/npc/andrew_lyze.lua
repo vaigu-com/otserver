@@ -171,10 +171,14 @@ local function creatureSayCallback(npc, creature, type, message)
 					"There we are! The next step is the charging of the compass. For this you have to dig three different crystals down there: 5 blue, 3 green and one violet crystal. Are you ready to do that?",
 				}, npc, creature)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = chargeableCompass, count = 1})
 =======
 				player:addItem(chargeableCompass, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+				player:addItem(chargeableCompass, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.Questline, 2)
 				npcHandler:setTopic(playerId, 12)
 			else
@@ -187,10 +191,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				"These are quite shy, but I have a {bait} for you to lure them. But take care not to face too many of them at once. And hurry, the effect won't last forever!",
 			}, npc, creature)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = goldenAxe, count = 1})
 =======
 			player:addItem(goldenAxe, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+			player:addItem(goldenAxe, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.GotAxe, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 51 then
@@ -198,10 +206,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say("Here's your broken compass!", npc, creature)
 				player:removeMoneyBank(CompassValue)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = brokenCompass, count = 1})
 =======
 				player:addItem(brokenCompass, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+				player:addItem(brokenCompass, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				npcHandler:setTopic(playerId, 10)
 			else
 				npcHandler:say("You don't have enough money.", npc, creature)
@@ -232,10 +244,14 @@ local function creatureSayCallback(npc, creature, type, message)
 					"Now this compass is ready for usage. It can transfer the bound energy to other inanimate objects to open certain gates or chests.",
 				}, npc, creature)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = chargedCompass, count = 1})
 =======
 				player:addItem(chargedCompass, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+				player:addItem(chargedCompass, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.UnsafeRelease.Questline, 3)
 				npcHandler:setTopic(playerId, 0)
 			else

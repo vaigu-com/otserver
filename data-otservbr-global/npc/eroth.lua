@@ -69,7 +69,10 @@ local function creatureSayCallback(npc, creature, type, message)
 =======
 			player:addItem(3082, 1)
 			player:addItem(3035, 10)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.Questline, 3)
 			npcHandler:setTopic(playerId, 0)
 		end
@@ -84,7 +87,10 @@ local function creatureSayCallback(npc, creature, type, message)
 		player:AddCustomItem({id = 3463, count = 1})
 =======
 		player:addItem(3463, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.Questline, 1)
 		npcHandler:setTopic(playerId, 0)
 	end

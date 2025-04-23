@@ -110,10 +110,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline, 1)
 				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count, 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = dreamTalisman, count = 1})
 =======
 				player:addItem(dreamTalisman, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+				player:addItem(dreamTalisman, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("I already gave your task.", npc, creature)

@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{ newPosition = Position(31985, 32851, 14) },
 	{ pos = Position(31986, 32840, 14), monster = "a shielded astral glyph" },
 	{ pos = Position(31975, 32856, 15), monster = "bound astral power" },
@@ -51,6 +52,8 @@ end
 leverLoreKeeper:position(Position(32019, 32843, 14))
 leverLoreKeeper:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "The Last Lore Keeper",
 		position = Position(31987, 32839, 14),
@@ -94,4 +97,7 @@ leverLoreKeeper:register()
 local lever = BossLever(config)
 lever:position(Position(32019, 32843, 14))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32

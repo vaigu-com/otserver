@@ -161,6 +161,7 @@ bool Actions::registerLuaPositionEvent(const std::shared_ptr<Action> &action) {
 	return !positionVector.empty();
 }
 
+// Vaigu custom
 bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> &action) {
 	auto keysVector = action->getKeysVector();
 	if (keysVector.empty()) {

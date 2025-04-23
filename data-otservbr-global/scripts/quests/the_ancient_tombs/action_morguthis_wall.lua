@@ -15,10 +15,14 @@ function morguthisWall.onUse(player, item, fromPosition, target, toPosition)
 	else
 		local creatures = tile:getCreatures()
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if creatures then
 =======
 		if #creatures > 0 then
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+		if #creatures > 0 then
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			for _, creature in ipairs(creatures) do
 				local newPosition = Position(wallPosition.x, wallPosition.y + 1, wallPosition.z)
 				creature:teleportTo(newPosition)
@@ -27,10 +31,14 @@ function morguthisWall.onUse(player, item, fromPosition, target, toPosition)
 
 		local items = tile:getItems()
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if items then
 =======
 		if #items > 0 then
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+		if #items > 0 then
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			for _, tileItem in ipairs(items) do
 				local newPosition = Position(wallPosition.x, wallPosition.y + 1, wallPosition.z)
 				tileItem:moveTo(newPosition)
@@ -45,7 +53,11 @@ end
 
 morguthisWall:position(Position(33212, 32693, 13))
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 morguthisWall:position(Position(33209, 32701, 13))
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+morguthisWall:position(Position(33209, 32701, 13))
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 morguthisWall:register()

@@ -154,6 +154,7 @@ SoulPit = {
 	end,
 	onFuseSoulCores = function(player, item, target)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		local itemName = item:getName()
 		local targetItemName = target:getName()
 
@@ -169,6 +170,8 @@ SoulPit = {
 
 		return false
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		local itemCount = item:getCount(item:getId())
 		if item:getId() == target:getId() and itemCount <= 1 then
 			return false
@@ -188,7 +191,10 @@ SoulPit = {
 		item:remove(1)
 		target:remove(1)
 		return true
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	end,
 }
 

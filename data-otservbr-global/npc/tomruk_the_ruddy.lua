@@ -79,8 +79,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		}, npc, creature)
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission36, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		player:AddCustomItem({id = 19100, count = 2})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:addItem(19100, 2)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		npcHandler:setTopic(playerId, 0)
@@ -122,8 +125,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say("My heart bleeds to part from it. Here. Extend your hand - I'll just retrieve some blood from in exchange - HOLD STILL.", npc, creature)
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission42, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		player:AddCustomItem({id = 18933, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:addItem(18933, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		npcHandler:setTopic(playerId, 0)

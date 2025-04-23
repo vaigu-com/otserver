@@ -68,8 +68,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeItem(139, 1) then
 				player:setStorageValue(Storage.Quest.U8_1.ToOutfoxAFoxQuest.Questline, 2)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				player:AddCustomItem({id = 875, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:addItem(875, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				npcHandler:say("As I was just saying to the others, 'this brave fellow will bring me my mining helmet back' and here you are with it!! Here take my spare helmet, I don't need it anymore!", npc, creature)
