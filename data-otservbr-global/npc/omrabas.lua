@@ -101,8 +101,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission10) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission11) < 1 then
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission11, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19085, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(19085, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:say({
@@ -193,17 +196,24 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:AddCustomItem({id = 19173, count = 1})
 =======
 			player:addItem(19173, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission52, 1)
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission57) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission58) < 1 then
 			npcHandler:say("Hello - what? You have the {scroll} piece, you say?", npc, creature)
 			npcHandler:setTopic(playerId, 13)
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission58) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission59) < 1 then
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19148, count = 1})
 =======
 			player:addItem(19148, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+			player:addItem(19148, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission59, 1)
 			npcHandler:say({
 				"Hahah, eager for it, I like that! ...",
@@ -228,7 +238,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:AddCustomItem({id = 19148, count = 1})
 =======
 			player:addItem(19148, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission66, 1)
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission72) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission73) < 1 then
 			npcHandler:say("Don't keep me waiting. The last scroll piece - were you able to {restore} it?", npc, creature)
@@ -242,8 +255,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission76, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19136, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(19136, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		end
@@ -364,7 +380,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:AddCustomItem({id = 19173, count = 1})
 =======
 			player:addItem(19173, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission52, 1)
 		elseif npcHandler:getTopic(playerId) == 13 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission57) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission58) < 1 then
 			if player:removeItem(18933, 1) then
@@ -380,10 +399,14 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission58) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission59) < 1 then
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19148, count = 1})
 =======
 			player:addItem(19148, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+			player:addItem(19148, 1)
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission59, 1)
 			npcHandler:say({
 				"Hahah, eager for it, I like that! ...",
@@ -434,9 +457,12 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission74, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			player:AddCustomItem({id = 18934, count = 1})
 			player:AddCustomItem({id = 19160, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:addItem(18934, 1)
 			player:addItem(19160, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
@@ -474,8 +500,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say("What? No bones around you say? Hrmmm. Wait. Check the skull heap here - that's right - hah! There! Now get to work!", npc, creature)
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission18, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		player:AddCustomItem({id = 19090, count = 3})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:addItem(19090, 3)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		npcHandler:setTopic(playerId, 0)
@@ -488,9 +517,12 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "proceed") and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission30) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission31) < 1 then
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission31, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 		player:AddCustomItem({id = 19132, count = 1})
 		player:AddCustomItem({id = 19166, count = 1})
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:addItem(19132, 1)
 		player:addItem(19166, 1)
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
@@ -535,7 +567,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:AddCustomItem({id = 19148, count = 1})
 =======
 			player:addItem(19148, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission68) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission69) < 1 then
 			npcHandler:say("Hello, young apprentice. Do you have that scroll piece from the priestess?", npc, creature)
 			npcHandler:setTopic(playerId, 15)
@@ -567,7 +602,10 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission52, 1)
 		elseif player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission58) == 1 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission59) < 1 then
 			player:addItem(19148, 1)
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission59, 1)
 			npcHandler:say({
 				"Hahah, eager for it, I like that! ...",

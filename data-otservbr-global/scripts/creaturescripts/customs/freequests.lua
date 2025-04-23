@@ -211,7 +211,10 @@ local questTable = {
 	{ storageName = "TheNewFrontier.Mission05.Telas", storage = Storage.Quest.U8_54.TheNewFrontier.Mission05.Telas, storageValue = 1 },
 	{ storageName = "TheNewFrontier.Mission05.Humgolf", storage = Storage.Quest.U8_54.TheNewFrontier.Mission05.Humgolf, storageValue = 1 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	{ storageName = "TheSecretLibrary.MoTA.Questline", storage = Storage.Quest.U11_80.TheSecretLibrary.MoTA.Questline, storageValue = 8 },
 	{ storageName = "TheSecretLibrary.MoTA.LeverPermission", storage = Storage.Quest.U11_80.TheSecretLibrary.MoTA.LeverPermission, storageValue = 1 },
 	{ storageName = "TheSecretLibrary.MoTA.FinalBasin", storage = Storage.Quest.U11_80.TheSecretLibrary.MoTA.FinalBasin, storageValue = 1 },
@@ -219,7 +222,10 @@ local questTable = {
 	{ storageName = "TheSecretLibrary.MoTA.YellowGem", storage = Storage.Quest.U11_80.TheSecretLibrary.MoTA.YellowGem, storageValue = 1 },
 	{ storageName = "TheSecretLibrary.MoTA.GreenGem", storage = Storage.Quest.U11_80.TheSecretLibrary.MoTA.GreenGem, storageValue = 1 },
 	{ storageName = "TheSecretLibrary.MoTA.RedGem", storage = Storage.Quest.U11_80.TheSecretLibrary.MoTA.RedGem, storageValue = 1 },
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	{ storageName = "TheShatteredIsles.DefaultStart", storage = Storage.Quest.U7_8.TheShatteredIsles.DefaultStart, storageValue = 3 },
 	{ storageName = "TheShatteredIsles.TheGovernorDaughter", storage = Storage.Quest.U7_8.TheShatteredIsles.TheGovernorDaughter, storageValue = 3 },
 	{ storageName = "TheShatteredIsles.TheErrand", storage = Storage.Quest.U7_8.TheShatteredIsles.TheErrand, storageValue = 2 },

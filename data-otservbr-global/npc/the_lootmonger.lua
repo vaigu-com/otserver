@@ -55,6 +55,12 @@ npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 npcConfig.shop = LootShopConfig
 
 local function creatureSayCallback(npc, player, type, message)
+<<<<<<< HEAD
+=======
+	if not npcHandler:checkInteraction(npc, player) then
+		return false
+	end
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	local categoryTable = LootShopConfigTable[message:lower()]
 	if MsgContains(message, "shop options") then
 		npcHandler:say("I sell a selection of " .. GetFormattedShopCategoryNames(LootShopConfigTable), npc, player)

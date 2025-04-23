@@ -1,37 +1,24 @@
-local setting = {
-	[6506] = { { 6569, 15 }, { 3585, 5 }, { 3586, 10 }, { 3598, 20 }, { 3599, 10 }, 6500, 6501, 6489, 6503, 6387 }, -- red bundle
-	[6507] = { { 6569, 15 }, { 3585, 5 }, { 3586, 10 }, { 3598, 20 }, { 3599, 10 }, 6500, 6501, 6489, 6505, 6387 }, -- blue bundle
-	[6508] = { { 6569, 15 }, { 3585, 5 }, { 3586, 10 }, { 3598, 20 }, { 3599, 10 }, 6500, 6501, 6489, 6502, 6387 }, -- green bundle
+local christmasbundleToPossibleReward = {
+	[6506] = { { id = 6569, count = 15 }, { id = 3585, count = 5 }, { id = 3586, count = 10 }, { id = 3598, count = 20 }, { id = 3599, count = 10 }, { id = 6500, count = 1 }, { id = 6501, count = 1 }, { id = 6489, count = 1 }, { id = 6503, count = 1 }, { id = 6387, count = 1 } }, -- red bundle
+	[6507] = { { id = 6569, count = 15 }, { id = 3585, count = 5 }, { id = 3586, count = 10 }, { id = 3598, count = 20 }, { id = 3599, count = 10 }, { id = 6500, count = 1 }, { id = 6501, count = 1 }, { id = 6489, count = 1 }, { id = 6505, count = 1 }, { id = 6387, count = 1 } }, -- blue bundle
+	[6508] = { { id = 6569, count = 15 }, { id = 3585, count = 5 }, { id = 3586, count = 10 }, { id = 3598, count = 20 }, { id = 3599, count = 10 }, { id = 6500, count = 1 }, { id = 6501, count = 1 }, { id = 6489, count = 1 }, { id = 6502, count = 1 }, { id = 6387, count = 1 } }, -- green bundle
 }
 
 local christmasBundle = Action()
 
 function christmasBundle.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local targetItem = setting[item.itemid]
+	local targetItem = christmasbundleToPossibleReward[item.itemid]
 	if not targetItem then
 		return true
 	end
 
-	local rewards = {}
-	while #rewards < 7 do
-		local randIndex = math.random(#targetItem)
-		local reward = targetItem[randIndex]
-
-		local count = 1
-		if type(reward) == "table" then
-			reward, count = unpack(reward)
-		end
-
-		rewards[#rewards + 1] = { reward, count }
-		table.remove(targetItem, randIndex)
+	local selectedRewards = {}
+	while #selectedRewards < 7 do
+		table.insert(selectedRewards, table.random(christmasbundleToPossibleReward))
 	end
 
-	for _, reward in ipairs(rewards) do
-		if type(reward) == "table" then
-			player:AddCustomItem({ id = reward[1], count = reward[2] })
-		else
-			player:AddCustomItem({ id = reward })
-		end
+	for _, reward in ipairs(selectedRewards) do
+		player:AddCustomItem({ id = reward.id, count = reward.count })
 	end
 
 	player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
@@ -39,7 +26,7 @@ function christmasBundle.onUse(player, item, fromPosition, target, toPosition, i
 	return true
 end
 
-for itemId in pairs(setting) do
+for itemId in pairs(christmasbundleToPossibleReward) do
 	christmasBundle:id(itemId)
 end
 

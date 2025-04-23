@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	centerRoom = Position(33422, 32467, 14),
 	BossPosition = Position(33422, 32467, 14),
 	newPosition = Position(33419, 32467, 14),
@@ -50,6 +51,8 @@ end
 leverRazzagorn:uid(1024)
 leverRazzagorn:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "Razzagorn",
 		position = Position(33422, 32467, 14),
@@ -73,4 +76,7 @@ leverRazzagorn:register()
 local lever = BossLever(config)
 lever:position(Position(33385, 32455, 14))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32

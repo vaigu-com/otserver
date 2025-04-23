@@ -153,8 +153,8 @@ void runFiles(const std::vector<std::filesystem::path>& files, bool isReload, Lu
     }
 }
 
-// Main function
 // Vaigu custom
+// Main function
 bool Scripts::loadScripts(std::string_view loadPath, bool isLib, bool isReload) {
     const auto dir = std::filesystem::current_path() / loadPath;
 

@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	centerRoom = Position(32624, 32880, 14),
 	bossPosition = Position(32624, 32880, 14),
 	newPosition = Position(32624, 32886, 14),
@@ -43,6 +44,8 @@ end
 leverThornKnight:position(Position(32657, 32876, 14))
 leverThornKnight:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "The Enraged Thorn Knight",
 		createFunction = function()
@@ -72,4 +75,7 @@ leverThornKnight:register()
 local lever = BossLever(config)
 lever:position(Position(32657, 32876, 14))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32

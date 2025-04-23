@@ -1,5 +1,6 @@
 local config = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	centerRoom = Position(33172, 31501, 13),
 	BossPosition = Position(33172, 31501, 13),
 	playerPositions = {
@@ -57,6 +58,8 @@ end
 leverPlagirath:uid(1022)
 leverPlagirath:register()
 =======
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	boss = {
 		name = "Plagirath",
 		position = Position(33172, 31501, 13),
@@ -80,4 +83,7 @@ leverPlagirath:register()
 local lever = BossLever(config)
 lever:position(Position(33229, 31499, 13))
 lever:register()
+<<<<<<< HEAD
 >>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
+=======
+>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32

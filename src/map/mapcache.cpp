@@ -35,6 +35,7 @@ void MapCache::flush() const {
 	tiles.clear();
 }
 
+// Vaigu custom
 void MapCache::parseItemAttr(const std::shared_ptr<BasicItem> &BasicItem, const std::shared_ptr<Item> &item) const {
 	if (!BasicItem->key.empty()) {
 		item->setAttribute(ItemAttribute_t::KEY, BasicItem->key);
