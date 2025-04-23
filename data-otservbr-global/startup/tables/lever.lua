@@ -129,6 +129,7 @@ LeverAction = {
 			{ x = 32576, y = 31862, z = 14 },
 		},
 	},
+<<<<<<< HEAD
 	-- Grave Danger Quest
 	[14557] = {
 		itemId = 8911,
@@ -154,6 +155,8 @@ LeverAction = {
 			{ x = 33484, y = 31546, z = 13 },
 		},
 	},
+=======
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 	-- Forgotten Knowledge Quest
 	[26663] = {
 		itemId = 9125,

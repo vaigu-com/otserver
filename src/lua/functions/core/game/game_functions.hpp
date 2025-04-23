@@ -47,6 +47,7 @@ private:
 	static int luaGameCreateItem(lua_State* L);
 	static int luaGameCreateContainer(lua_State* L);
 	static int luaGameCreateMonster(lua_State* L);
+	static int luaGameCreateSoulPitMonster(lua_State* L);
 	static int luaGameGenerateNpc(lua_State* L);
 	static int luaGameCreateNpc(lua_State* L);
 	static int luaGameCreateTile(lua_State* L);
@@ -93,4 +94,9 @@ private:
 	// Vaigu custom
 	static int luaInitializeTranslationTable(lua_State* L);
 	static int copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement>& result);
+	
+	static int luaGameGetSoulCoreItems(lua_State* L);
+
+	static int luaGameGetMonstersByRace(lua_State* L);
+	static int luaGameGetMonstersByBestiaryStars(lua_State* L);
 };

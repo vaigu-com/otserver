@@ -83,14 +83,13 @@ public:
 		positions.emplace_back(pos);
 	}
 
-
 	bool hasPosition(Position position) {
 		return std::ranges::find_if(positions.begin(), positions.end(), [position](Position storedPosition) {
-			if (storedPosition == position) {
-				return true;
-			}
-			return false;
-			})
+				   if (storedPosition == position) {
+					   return true;
+				   }
+				   return false;
+			   })
 			!= positions.end();
 	}
 
@@ -104,11 +103,11 @@ public:
 
 	bool hasKey(std::string key) {
 		return std::ranges::find_if(keys.begin(), keys.end(), [key](std::string storedKey) {
-			if (storedKey == key) {
-				return true;
-			}
-			return false;
-			})
+				   if (storedKey == key) {
+					   return true;
+				   }
+				   return false;
+			   })
 			!= keys.end();
 	}
 
@@ -157,8 +156,8 @@ public:
 	~Actions();
 
 	// non-copyable
-	Actions(const Actions&) = delete;
-	Actions& operator=(const Actions&) = delete;
+	Actions(const Actions &) = delete;
+	Actions &operator=(const Actions &) = delete;
 
 	static Actions &getInstance();
 
@@ -181,7 +180,7 @@ public:
 private:
 	bool hasPosition(const Position &position) const {
 		if (auto it = positionItemMap.find(position);
-			it != positionItemMap.end()) {
+		    it != positionItemMap.end()) {
 			return true;
 		}
 		return false;
@@ -197,7 +196,7 @@ private:
 
 	bool hasItemId(uint16_t itemId) const {
 		if (const auto it = useItemMap.find(itemId);
-			it != useItemMap.end()) {
+		    it != useItemMap.end()) {
 			return true;
 		}
 		return false;
@@ -221,7 +220,7 @@ private:
 
 	bool hasActionId(uint16_t actionId) const {
 		if (const auto it = actionItemMap.find(actionId);
-			it != actionItemMap.end()) {
+		    it != actionItemMap.end()) {
 			return true;
 		}
 		return false;
@@ -237,7 +236,7 @@ private:
 
 	bool hasKey(std::string key) const {
 		if (auto it = keyItemMap.find(key);
-			it != keyItemMap.end()) {
+		    it != keyItemMap.end()) {
 			return true;
 		}
 		return false;

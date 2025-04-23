@@ -141,6 +141,12 @@ public:
 		return getCorpseOwner() == static_cast<uint32_t>(std::numeric_limits<int32_t>::max());
 	}
 
+	void setShader(const std::string &shaderName);
+
+	bool hasShader() const;
+
+	std::string getShader() const;
+
 protected:
 	std::unique_ptr<ItemAttribute> &initAttributePtr() {
 		if (!attributePtr) {
@@ -166,16 +172,15 @@ protected:
 		return attributePtr->getAttributeVector();
 	}
 
-	const int64_t &getInteger(ItemAttribute_t type) const {
-		static int64_t emptyInt;
+	int64_t getInteger(ItemAttribute_t type) const {
 		if (!attributePtr) {
-			return emptyInt;
+			return {};
 		}
 
 		return attributePtr->getAttributeValue(type);
 	}
 	const std::string &getString(ItemAttribute_t type) const {
-		static std::string emptyString;
+		static const std::string emptyString;
 		if (!attributePtr) {
 			return emptyString;
 		}
@@ -289,10 +294,13 @@ public:
 	static std::string parseClassificationDescription(const std::shared_ptr<Item> &item);
 
 	static std::vector<std::pair<std::string, std::string>> getDescriptions(const ItemType &it, const std::shared_ptr<Item> &item = nullptr);
+	
+	// Vaigu custom
 	static std::string getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player = nullptr, const std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
 	static std::string getNameDescription(const ItemType &it, const std::shared_ptr<Player> player = nullptr, const std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
 	static std::string getWeightDescription(const ItemType &it, uint32_t weight, uint32_t count = 1);
 
+	// Vaigu custom
 	std::string getDescription(int32_t lookDistance) override final;
 	std::string getDescription(int32_t lookDistance, std::shared_ptr<Player> player);
 	std::string getNameDescription(std::shared_ptr<Player> player = nullptr);
@@ -677,6 +685,7 @@ public:
 		return false;
 	}
 	bool hasImbuementCategoryId(uint16_t categoryId) const;
+	bool hasImbuementAttribute(const std::string &attributeSlot) const;
 	bool hasImbuements() const {
 		for (uint8_t slotid = 0; slotid < getImbuementSlot(); slotid++) {
 			ImbuementInfo imbuementInfo;
@@ -707,6 +716,14 @@ public:
 	bool canBeMoved() const;
 	void checkDecayMapItemOnMove();
 
+	void setActor(bool value) {
+		m_hasActor = value;
+	}
+
+	bool hasActor() const {
+		return m_hasActor;
+	}
+
 protected:
 	std::weak_ptr<Cylinder> m_parent;
 
@@ -716,6 +733,7 @@ protected:
 	bool loadedFromMap = false;
 	bool isLootTrackeable = false;
 	bool decayDisabled = false;
+	bool m_hasActor = false;
 
 private:
 	void setImbuement(uint8_t slot, uint16_t imbuementId, uint32_t duration);

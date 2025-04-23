@@ -82,7 +82,11 @@ local lionsGetLionsMane = Action()
 
 function lionsGetLionsMane.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You picked a beautiful lion's mane flower.")
+<<<<<<< HEAD
 	player:AddCustomItem({id = 21389, count = 1})
+=======
+	player:addItem(21389, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 	player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, math.max(player:getStorageValue(Storage.Quest.U10_70.LionsRock.Questline), 1))
 	player:setStorageValue(Storage.Quest.U8_1.TibiaTales.DefaultStart, 1)
 	item:transform(21935)
@@ -100,7 +104,11 @@ local lionsGetHolyWater = Action()
 
 function lionsGetHolyWater.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You took some holy water from the sacred well.")
+<<<<<<< HEAD
 	player:AddCustomItem({id = 21466, count = 1})
+=======
+	player:addItem(21466, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 	player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, math.max(player:getStorageValue(Storage.Quest.U10_70.LionsRock.Questline), 1))
 	player:setStorageValue(Storage.Quest.U8_1.TibiaTales.DefaultStart, 1)
 	return true
@@ -130,7 +138,11 @@ function lionsRockFountain.onUse(player, item, fromPosition, target, toPosition,
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 		player:addAchievement("Lion's Den Explorer")
 		item:transform(lionsRockSanctuaryRockId)
+<<<<<<< HEAD
 		player:AddCustomItem({id = rewards[reward], count = 1})
+=======
+		player:addItem(rewards[reward], 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		player:setStorageValue(Storage.Quest.U10_70.LionsRock.Time, os.time() + 24 * 60 * 60)
 		player:setStorageValue(Storage.Quest.U10_70.LionsRock.Questline, 11)
 	else

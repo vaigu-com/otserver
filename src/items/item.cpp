@@ -93,8 +93,18 @@ std::shared_ptr<Item> Item::CreateItem(const uint16_t type, uint16_t count /*= 0
 	return newItem;
 }
 
+bool Item::hasImbuementAttribute(const std::string &attributeSlot) const {
+	// attributeSlot = ITEM_IMBUEMENT_SLOT + slot id
+	return getCustomAttribute(attributeSlot) != nullptr;
+}
+
 bool Item::getImbuementInfo(uint8_t slot, ImbuementInfo* imbuementInfo) const {
-	const CustomAttribute* attribute = getCustomAttribute(std::to_string(ITEM_IMBUEMENT_SLOT + slot));
+	std::string attributeSlot = std::to_string(ITEM_IMBUEMENT_SLOT + slot);
+	if (!hasImbuementAttribute(attributeSlot)) {
+		return false;
+	}
+
+	const CustomAttribute* attribute = getCustomAttribute(attributeSlot);
 	const auto info = attribute ? attribute->getAttribute<uint32_t>() : 0;
 	imbuementInfo->imbuement = g_imbuements().getImbuement(info & 0xFF);
 	imbuementInfo->duration = info >> 8;
@@ -2474,6 +2484,7 @@ std::string Item::parseShowAttributesDescription(const std::shared_ptr<Item> &it
 	return itemDescription.str();
 }
 
+// Vaigu custom
 std::string Item::getDescription(const ItemType &it, int32_t lookDistance, const std::shared_ptr<Player> player, const std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
 	std::string text = "";
 
@@ -3252,16 +3263,20 @@ std::string Item::getDescription(const ItemType &it, int32_t lookDistance, const
 	return s.str();
 }
 
+// Vaigu custom
 std::string Item::getDescription(int32_t lookDistance, std::shared_ptr<Player> player) {
 	const ItemType &it = items[id];
 	return getDescription(it, lookDistance, player, getItem());
 }
 
+// Vaigu custom
 std::string Item::getDescription(int32_t lookDistance) {
 	const ItemType &it = items[id];
 	return getDescription(it, lookDistance, nullptr, getItem());
 }
 
+
+// Vaigu custom
 std::string Item::getNameDescription(const ItemType &it, const std::shared_ptr<Player> player, const std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
 	if (item) {
 		subType = item->getSubType();
@@ -3516,4 +3531,22 @@ int32_t ItemProperties::getDuration() const {
 	} else {
 		return getAttribute<int32_t>(ItemAttribute_t::DURATION);
 	}
+}
+
+void ItemProperties::setShader(const std::string &shaderName) {
+	if (shaderName.empty()) {
+		removeCustomAttribute("shader");
+		return;
+	}
+
+	setCustomAttribute("shader", shaderName);
+}
+
+bool ItemProperties::hasShader() const {
+	return getCustomAttribute("shader") != nullptr;
+}
+
+std::string ItemProperties::getShader() const {
+	const CustomAttribute* shader = getCustomAttribute("shader");
+	return shader ? shader->getString() : "";
 }

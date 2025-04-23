@@ -92,7 +92,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Diremaw) == 1 and player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.DiremawsCount) >= 20 then
 			npcHandler:say("You got rid of a lot of corpses, very good. Now we have a realistic chance of pushing them back! Return to me later for more work if you want.", npc, creature)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Dwarves.TimeTaskDiremaws, os.time() + time)
+<<<<<<< HEAD
 			player:AddCustomItem({id = 27654, count = 1})
+=======
+			player:addItem(27654, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points) + 1)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Diremaw, 2)
 			npcHandler:setTopic(playerId, 1)
@@ -139,10 +143,17 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("You did a great job out there, the stuff will continue to grow, however. Return to me later for more work.", npc, creature)
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Dwarves.TimeTaskGrowth, os.time() + time)
 			if player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.BarrelCount) >= 5 then
+<<<<<<< HEAD
 				player:AddCustomItem({id = 27654, count = 2})
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points) + 2)
 			else
 				player:AddCustomItem({id = 27654, count = 1})
+=======
+				player:addItem(27654, 2)
+				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points) + 2)
+			else
+				player:addItem(27654, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points, player:getStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Points) + 1)
 			end
 			player:setStorageValue(Storage.Quest.U11_50.DangerousDepths.Scouts.Growth, 2)

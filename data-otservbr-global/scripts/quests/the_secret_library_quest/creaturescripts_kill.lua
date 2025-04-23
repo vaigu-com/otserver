@@ -45,6 +45,7 @@ function creaturescripts_library_bosses.onDeath(creature, corpse, killer, mostDa
 end
 
 creaturescripts_library_bosses:register()
+<<<<<<< HEAD
 
 local creaturescripts_library_bosses_oberon = CreatureEvent("oberonImmune")
 
@@ -55,3 +56,5 @@ function creaturescripts_library_bosses_oberon.onHealthChange(creature, attacker
 end
 
 creaturescripts_library_bosses_oberon:register()
+=======
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a

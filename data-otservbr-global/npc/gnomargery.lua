@@ -166,7 +166,11 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if talkState[playerId] == "delivery" then
 		if MsgContains(message, "yes") then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19219, count = 4})
+=======
+			player:addItem(19219, 4)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U10_20.SpikeTaskQuest.Spike_Lower_Parcel_Main, 0)
 			npcHandler:say({ "Gnometastic! Here are the parcels. Regrettably, the labels got lost during transport; but I guess those lonely gnomes won't mind as long as they get ANY parcel at all.", "If you lose the parcels, you'll have to get new ones. Gnomux sells all the equipment that is required for our missions." }, npc, creature)
 			talkState[playerId] = nil
@@ -229,7 +233,11 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if talkState[playerId] == "temperature" then
 		if MsgContains(message, "yes") then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 19206, count = 1})
+=======
+			player:addItem(19206, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U10_20.SpikeTaskQuest.Spike_Lower_Lava_Main, 0)
 			npcHandler:say("Gnometastic! Find the hottest spot of the lava pools in the caves. If you lose the GTMD before you find the hot spot, you'll have to get yourself a new one. Gnomux sells all the equipment that is required for our missions.", npc, creature)
 			talkState[playerId] = nil

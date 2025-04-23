@@ -37,7 +37,11 @@ local function tryCrystal(player, itemid, position, actionid, message, rewardid)
 			if crystal:getActionId() == actionid then
 				if r == 1 then
 					player:say(message, TALKTYPE_MONSTER_SAY)
+<<<<<<< HEAD
 					player:AddCustomItem({id = rewardid, count = 1})
+=======
+					player:addItem(rewardid, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 					crystal:setActionId(0)
 					addEvent(setActionId, 1000 * 30, itemid, position, actionid)
 				else

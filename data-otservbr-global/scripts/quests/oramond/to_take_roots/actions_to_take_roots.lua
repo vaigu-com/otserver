@@ -15,6 +15,18 @@ function toTakeRoots.onUse(player, item, fromPosition, target, toPosition, isHot
 			item:transform(item.itemid + 2)
 			addEvent(revertRoot, 120000, toPosition, 21106, 21104)
 			toPosition:sendMagicEffect(CONST_ME_GREEN_RINGS)
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:data-vaigu/scripts/quests/oramond/chavis_tasks/actions_to_take_roots.lua
+			if player:getStorageValueByKey(Storage.Oramond.QuestLine) <= 0 then
+				player:setStorageValueByKey(Storage.Oramond.QuestLine, 1)
+			end
+			if player:getStorageValueByKey(Storage.Oramond.MissionToTakeRoots) <= 0 then
+				player:setStorageValueByKey(Storage.Oramond.MissionToTakeRoots, 1)
+			end
+			player:setStorageValueByKey(Storage.Oramond.HarvestedRootCount, player:getStorageValueByKey(Storage.Oramond.HarvestedRootCount) > 0 and player:getStorageValueByKey(Storage.Oramond.HarvestedRootCount) + 1 or 1)
+========
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			if player:getStorageValue(Storage.Quest.U10_50.OramondQuest.QuestLine) <= 0 then
 				player:setStorageValue(Storage.Quest.U10_50.OramondQuest.QuestLine, 1)
 			end
@@ -22,6 +34,10 @@ function toTakeRoots.onUse(player, item, fromPosition, target, toPosition, isHot
 				player:setStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Mission, 1)
 			end
 			player:setStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Count, player:getStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Count) > 0 and player:getStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Count) + 1 or 1)
+<<<<<<< HEAD
+=======
+>>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a:data-otservbr-global/scripts/quests/oramond/to_take_roots/actions_to_take_roots.lua
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your harvesting attempt destroyed more of the juicy roots than you could salvage.")
 			item:transform(item.itemid + 2)
@@ -35,6 +51,18 @@ function toTakeRoots.onUse(player, item, fromPosition, target, toPosition, isHot
 			item:transform(item.itemid + 2)
 			addEvent(revertRoot, 120000, toPosition, 21107, 21105)
 			toPosition:sendMagicEffect(CONST_ME_GREEN_RINGS)
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:data-vaigu/scripts/quests/oramond/chavis_tasks/actions_to_take_roots.lua
+			if player:getStorageValueByKey(Storage.Oramond.QuestLine) <= 0 then
+				player:setStorageValueByKey(Storage.Oramond.QuestLine, 1)
+			end
+			if player:getStorageValueByKey(Storage.Oramond.MissionToTakeRoots) <= 0 then
+				player:setStorageValueByKey(Storage.Oramond.MissionToTakeRoots, 1)
+			end
+			player:setStorageValueByKey(Storage.Oramond.HarvestedRootCount, player:getStorageValueByKey(Storage.Oramond.HarvestedRootCount) > 0 and player:getStorageValueByKey(Storage.Oramond.HarvestedRootCount) + 1 or 1)
+========
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			if player:getStorageValue(Storage.Quest.U10_50.OramondQuest.QuestLine) <= 0 then
 				player:setStorageValue(Storage.Quest.U10_50.OramondQuest.QuestLine, 1)
 			end
@@ -42,6 +70,10 @@ function toTakeRoots.onUse(player, item, fromPosition, target, toPosition, isHot
 				player:setStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Mission, 1)
 			end
 			player:setStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Count, player:getStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Count) > 0 and player:getStorageValue(Storage.Quest.U10_50.OramondQuest.ToTakeRoots.Count) + 1 or 1)
+<<<<<<< HEAD
+=======
+>>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a:data-otservbr-global/scripts/quests/oramond/to_take_roots/actions_to_take_roots.lua
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your harvesting attempt destroyed more of the juicy roots than you could salvage.")
 			item:transform(item.itemid + 2)

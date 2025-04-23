@@ -39,7 +39,7 @@ int ActionFunctions::luaCreateAction(lua_State* L) {
 
 int ActionFunctions::luaActionOnUse(lua_State* L) {
 	// action:onUse(callback)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		if (!action->loadScriptId()) {
 			Lua::pushBoolean(L, false);
@@ -55,7 +55,7 @@ int ActionFunctions::luaActionOnUse(lua_State* L) {
 
 int ActionFunctions::luaActionRegister(lua_State* L) {
 	// action:register()
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		if (!action->isLoadedScriptId()) {
 			Lua::pushBoolean(L, false);
@@ -72,7 +72,7 @@ int ActionFunctions::luaActionRegister(lua_State* L) {
 
 int ActionFunctions::luaActionItemId(lua_State* L) {
 	// action:id(ids)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		const int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -92,7 +92,7 @@ int ActionFunctions::luaActionItemId(lua_State* L) {
 
 int ActionFunctions::luaActionActionId(lua_State* L) {
 	// action:aid(aids)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		const int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -112,7 +112,7 @@ int ActionFunctions::luaActionActionId(lua_State* L) {
 
 int ActionFunctions::luaActionUniqueId(lua_State* L) {
 	// action:uid(uids)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		const int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -136,7 +136,7 @@ int ActionFunctions::luaActionPosition(lua_State* L) {
 	 * @param itemId or @param itemName = if item id or string name is set, the item is created on position (if not exists), this variable is nil by default
 	 * action:position(positions, itemId or name)
 	 */
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (!action) {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
 		Lua::pushBoolean(L, false);
@@ -193,8 +193,8 @@ int ActionFunctions::luaActionPosition(lua_State* L) {
 
 // Vaigu custom
 int ActionFunctions::luaActionKey(lua_State* L) {
-	// look:key(keys)
-	const auto action = Lua::getUserdataShared<Action>(L, 1);
+	// action:key(keys)
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		int parameters = lua_gettop(L) - 1; // - 1 because self is a parameter aswell, which we want to skip ofc
 		if (parameters > 1) {
@@ -214,7 +214,7 @@ int ActionFunctions::luaActionKey(lua_State* L) {
 
 int ActionFunctions::luaActionAllowFarUse(lua_State* L) {
 	// action:allowFarUse(bool)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		action->setAllowFarUse(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);
@@ -227,7 +227,7 @@ int ActionFunctions::luaActionAllowFarUse(lua_State* L) {
 
 int ActionFunctions::luaActionBlockWalls(lua_State* L) {
 	// action:blockWalls(bool)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		action->setCheckLineOfSight(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);
@@ -240,7 +240,7 @@ int ActionFunctions::luaActionBlockWalls(lua_State* L) {
 
 int ActionFunctions::luaActionCheckFloor(lua_State* L) {
 	// action:checkFloor(bool)
-	const auto &action = Lua::getUserdataShared<Action>(L, 1);
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
 		action->setCheckFloor(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);

@@ -91,7 +91,11 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("Thank you. Here it is.", npc, creature)
 			player:AddCustomItem({id = 4828, count = 1})
 		elseif npcHandler:getTopic(playerId) == 2 then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 135, count = 1})
+=======
+			player:addItem(135, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.TheExterminator, 1)
 			npcHandler:say({
 				"I knew I could count on you. Take this highly intensified vermin poison. In my vision, I saw some kind of 'pool' where these slimes came from. ...",

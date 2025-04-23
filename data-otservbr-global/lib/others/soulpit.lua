@@ -153,6 +153,7 @@ SoulPit = {
 		return name:match("^(.-) soul core")
 	end,
 	onFuseSoulCores = function(player, item, target)
+<<<<<<< HEAD
 		local itemName = item:getName()
 		local targetItemName = target:getName()
 
@@ -167,6 +168,27 @@ SoulPit = {
 		end
 
 		return false
+=======
+		local itemCount = item:getCount(item:getId())
+		if item:getId() == target:getId() and itemCount <= 1 then
+			return false
+		end
+
+		local itemSoulCore = SoulPit.getSoulCoreMonster(item:getName())
+		local targetSoulCore = SoulPit.getSoulCoreMonster(target:getName())
+		if not itemSoulCore or not targetSoulCore then
+			return false
+		end
+
+		local randomSoulCore = SoulPit.soulCores[math.random(#SoulPit.soulCores)]
+		player:addItem(randomSoulCore:getId(), 1)
+		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("You have received a %s soul core.", randomSoulCore:getName()))
+
+		item:remove(1)
+		target:remove(1)
+		return true
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 	end,
 }
 

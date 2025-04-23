@@ -138,7 +138,11 @@ function movements_asura_elemental_portals.onStepIn(creature, item, position, fr
 	elseif item.actionid == 4914 then
 		if position == hiddenMap1 or hiddenMap2 then
 			if player:getStorageValue(quest) == 5 then
+<<<<<<< HEAD
 				player:AddCustomItem({id = 28908, count = 1})
+=======
+				player:addItem(28908, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have discovered an old writing desk that contains an ancient map.")
 				player:setStorageValue(quest, 6)
 			end

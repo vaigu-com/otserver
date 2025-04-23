@@ -75,7 +75,11 @@ local function creatureSayCallback(npc, creature, type, message)
 				"You will find {phials} for water near this sacred well which will take you safely to the glade. No seeds are left, they are in the hands of the intruders now. Have faith in yourself, guardian.",
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.BirdCage, 1)
+<<<<<<< HEAD
 			player:AddCustomItem({id = 23812, count = 1})
+=======
+			player:addItem(23812, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "seeds") then

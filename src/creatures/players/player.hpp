@@ -18,6 +18,17 @@
 #include "creatures/creatures_definitions.hpp"
 #include "utils/const.hpp"
 
+// Player components are decoupled to reduce complexity. Keeping includes here aids in clarity and maintainability, but avoid including player.hpp in headers to prevent circular dependencies.
+#include "creatures/players/animus_mastery/animus_mastery.hpp"
+#include "creatures/players/components/player_achievement.hpp"
+#include "creatures/players/components/player_badge.hpp"
+#include "creatures/players/components/player_cyclopedia.hpp"
+#include "creatures/players/components/player_title.hpp"
+#include "creatures/players/components/wheel/player_wheel.hpp"
+#include "creatures/players/components/player_vip.hpp"
+#include "creatures/players/components/wheel/wheel_gems.hpp"
+#include "creatures/players/components/player_attached_effects.hpp"
+
 class House;
 class NetworkMessage;
 class Weapon;
@@ -29,12 +40,6 @@ class Imbuement;
 class PreySlot;
 class TaskHuntingSlot;
 class Spell;
-class PlayerWheel;
-class PlayerAchievement;
-class PlayerBadge;
-class PlayerCyclopedia;
-class PlayerTitle;
-class PlayerVIP;
 class Spectators;
 class Account;
 class RewardChest;
@@ -54,6 +59,10 @@ struct ModalWindow;
 struct Achievement;
 struct VIPGroup;
 struct Mount;
+struct Wing;
+struct Effect;
+struct Shader;
+struct Aura;
 struct OutfitEntry;
 struct Outfit;
 struct FamiliarEntry;
@@ -199,6 +208,7 @@ public:
 	bool hasAnyMount() const;
 	uint8_t getRandomMountId() const;
 	void dismount();
+
 	uint16_t getDodgeChance() const;
 
 	uint8_t isRandomMounted() const;
@@ -934,7 +944,7 @@ public:
 	void resetAsyncOngoingTask(uint64_t flags);
 	void sendEnterWorld() const;
 	void sendFightModes() const;
-	void sendNetworkMessage(const NetworkMessage &message) const;
+	void sendNetworkMessage(NetworkMessage &message) const;
 
 	void receivePing();
 
@@ -952,6 +962,12 @@ public:
 
 	void setNextPotionAction(int64_t time);
 	bool canDoPotionAction() const;
+
+	void setNextNecklaceAction(int64_t time);
+	bool canEquipNecklace() const;
+
+	void setNextRingAction(int64_t time);
+	bool canEquipRing() const;
 
 	void setLoginProtection(int64_t time);
 	bool isLoginProtected() const;
@@ -1257,28 +1273,36 @@ public:
 	std::vector<std::shared_ptr<Item>> getEquippedItems() const;
 
 	// Player wheel interface
-	std::unique_ptr<PlayerWheel> &wheel();
-	const std::unique_ptr<PlayerWheel> &wheel() const;
+	PlayerWheel &wheel();
+	const PlayerWheel &wheel() const;
 
 	// Player achievement interface
-	std::unique_ptr<PlayerAchievement> &achiev();
-	const std::unique_ptr<PlayerAchievement> &achiev() const;
+	PlayerAchievement &achiev();
+	const PlayerAchievement &achiev() const;
 
 	// Player badge interface
-	std::unique_ptr<PlayerBadge> &badge();
-	const std::unique_ptr<PlayerBadge> &badge() const;
+	PlayerBadge &badge();
+	const PlayerBadge &badge() const;
 
 	// Player title interface
-	std::unique_ptr<PlayerTitle> &title();
-	const std::unique_ptr<PlayerTitle> &title() const;
+	PlayerTitle &title();
+	const PlayerTitle &title() const;
 
 	// Player summary interface
-	std::unique_ptr<PlayerCyclopedia> &cyclopedia();
-	const std::unique_ptr<PlayerCyclopedia> &cyclopedia() const;
+	PlayerCyclopedia &cyclopedia();
+	const PlayerCyclopedia &cyclopedia() const;
 
 	// Player vip interface
-	std::unique_ptr<PlayerVIP> &vip();
-	const std::unique_ptr<PlayerVIP> &vip() const;
+	PlayerVIP &vip();
+	const PlayerVIP &vip() const;
+
+	// Player animusMastery interface
+	AnimusMastery &animusMastery();
+	const AnimusMastery &animusMastery() const;
+
+	// Player attached effects interface
+	PlayerAttachedEffects &attachedEffects();
+	const PlayerAttachedEffects &attachedEffects() const;
 
 	void sendLootMessage(const std::string &message) const;
 
@@ -1306,6 +1330,8 @@ public:
 		setStorageValueByKey(KEY_IS_ON_MINIGAME, nextState ? 1 : -1);
 		return nextState;
 	}
+
+	void sendPlayerTyping(const std::shared_ptr<Creature> &creature, uint8_t typing) const;
 
 private:
 	friend class PlayerLock;
@@ -1449,6 +1475,8 @@ private:
 	int64_t lastPong;
 	int64_t nextAction = 0;
 	int64_t nextPotionAction = 0;
+	int64_t nextNecklaceAction = 0;
+	int64_t nextRingAction = 0;
 	int64_t lastQuickLootNotification = 0;
 	int64_t lastWalking = 0;
 	int64_t loginProtectionTime = 0;
@@ -1635,12 +1663,8 @@ private:
 	uint16_t getLookCorpse() const override;
 	void getPathSearchParams(const std::shared_ptr<Creature> &creature, FindPathParams &fpp) override;
 
-	void setDead(bool isDead) {
-		m_isDead = isDead;
-	}
-	bool isDead() const override {
-		return m_isDead;
-	}
+	void setDead(bool isDead);
+	bool isDead() const override;
 
 	void triggerMomentum();
 	void clearCooldowns();
@@ -1665,13 +1689,16 @@ private:
 	friend class PlayerCyclopedia;
 	friend class PlayerTitle;
 	friend class PlayerVIP;
+	friend class PlayerAttachedEffects;
 
-	std::unique_ptr<PlayerWheel> m_wheelPlayer;
-	std::unique_ptr<PlayerAchievement> m_playerAchievement;
-	std::unique_ptr<PlayerBadge> m_playerBadge;
-	std::unique_ptr<PlayerCyclopedia> m_playerCyclopedia;
-	std::unique_ptr<PlayerTitle> m_playerTitle;
-	std::unique_ptr<PlayerVIP> m_playerVIP;
+	PlayerWheel m_wheelPlayer;
+	PlayerAchievement m_playerAchievement;
+	PlayerBadge m_playerBadge;
+	PlayerCyclopedia m_playerCyclopedia;
+	PlayerTitle m_playerTitle;
+	PlayerVIP m_playerVIP;
+	AnimusMastery m_animusMastery;
+	PlayerAttachedEffects m_playerAttachedEffects;
 
 	std::mutex quickLootMutex;
 

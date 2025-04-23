@@ -23,10 +23,7 @@
     {
       "name": "opentelemetry-cpp",
       "default-features": true,
-      "features": [
-        "otlp-http",
-        "prometheus"
-      ]
+      "features": ["otlp-http", "prometheus"]
     },
     {
       "name": "gmp",

@@ -186,4 +186,5 @@ function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, unjustifi
 end
 
 playerDeath:register()
+
 ]]

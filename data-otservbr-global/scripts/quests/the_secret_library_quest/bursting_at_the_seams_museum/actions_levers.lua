@@ -37,7 +37,11 @@ function actions_museum_levers.onUse(player, item, fromPosition, target, toPosit
 
 	if item:getPosition() == thirdLever and player:getStorageValue(Storage.Quest.U11_80.TheSecretLibrary.MoTA.FinalBasin) ~= 1 then
 		if player:getStorageValue(Storage.Quest.U11_80.TheSecretLibrary.MoTA.TakenRod) < os.time() then
+<<<<<<< HEAD
 			player:AddCustomItem({id = 28709, count = 1})
+=======
+			player:addItem(28709, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U11_80.TheSecretLibrary.MoTA.TakenRod, os.time() + 2 * 60)
 		else
 			return true

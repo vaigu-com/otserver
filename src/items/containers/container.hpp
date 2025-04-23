@@ -285,6 +285,8 @@ public:
 	bool isInsideContainerWithId(uint16_t id);
 
 protected:
+	std::ostringstream &getContentDescription(std::ostringstream &os, bool oldProtocol);
+
 	uint32_t m_maxItems {};
 	uint32_t maxSize {};
 	uint32_t totalWeight {};

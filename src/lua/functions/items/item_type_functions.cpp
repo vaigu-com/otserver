@@ -79,8 +79,9 @@ void ItemTypeFunctions::init(lua_State* L) {
 
 	Lua::registerMethod(L, "ItemType", "hasSubType", ItemTypeFunctions::luaItemTypeHasSubType);
 
-	Lua::registerMethod(L, "ItemType", "getAllowDistRead", ItemTypeFunctions::luaItemTypeGetAllowDistRead); // Vaigu custom
-	Lua::registerMethod(L, "ItemType", "getNameDescription", ItemTypeFunctions::luaItemTypeGetNameDescription); // Vaigu custom
+	// Vaigu custom
+	Lua::registerMethod(L, "ItemType", "getAllowDistRead", ItemTypeFunctions::luaItemTypeGetAllowDistRead); 
+	Lua::registerMethod(L, "ItemType", "getNameDescription", ItemTypeFunctions::luaItemTypeGetNameDescription); 
 
 	ItemClassificationFunctions::init(L);
 }

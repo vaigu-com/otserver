@@ -15,19 +15,23 @@ function christmasBundle.onUse(player, item, fromPosition, target, toPosition, i
 	local rewards = {}
 	while #rewards < 7 do
 		local randIndex = math.random(#targetItem)
-		local gift = targetItem[randIndex]
+		local reward = targetItem[randIndex]
 
 		local count = 1
-		if type(gift) == "table" then
-			gift, count = unpack(gift)
+		if type(reward) == "table" then
+			reward, count = unpack(reward)
 		end
 
-		rewards[#rewards + 1] = { gift, count }
+		rewards[#rewards + 1] = { reward, count }
 		table.remove(targetItem, randIndex)
 	end
 
 	for _, reward in ipairs(rewards) do
-		player:AddCustomItem({id = unpack(reward)})
+		if type(reward) == "table" then
+			player:AddCustomItem({ id = reward[1], count = reward[2] })
+		else
+			player:AddCustomItem({ id = reward })
+		end
 	end
 
 	player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)

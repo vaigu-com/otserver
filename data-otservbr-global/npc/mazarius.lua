@@ -97,7 +97,11 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 3 then
 		if player:removeItem(6499, 30) then
 			npcHandler:say("Excellent! This will empower possibilty to create a breach is enough to let you pass into that hellish hiding place. ...", npc, creature)
+<<<<<<< HEAD
 			player:AddCustomItem({id = 22182, count = 1})
+=======
+			player:addItem(22182, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Access, 1)
 			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FirstDoor, 1)
 			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.MonsterDoor, 1)

@@ -130,6 +130,8 @@ private:
 	static int luaMonsterTypeBossRace(lua_State* L);
 	static int luaMonsterTypeBossRaceId(lua_State* L);
 
+	static int luaMonsterTypeSoulCore(lua_State* L);
+
 	static int luaMonsterTypeSoundChance(lua_State* L);
 	static int luaMonsterTypeSoundSpeedTicks(lua_State* L);
 	static int luaMonsterTypeAddSound(lua_State* L);
@@ -141,4 +143,7 @@ private:
 
 	// Vaigu custom
 	static int luaMonsterTypeIgnoreCreatures(lua_State* L);
+	
+	static int luaMonsterTypeGetMonstersByRace(lua_State* L);
+	static int luaMonsterTypeGetMonstersByBestiaryStars(lua_State* L);
 };

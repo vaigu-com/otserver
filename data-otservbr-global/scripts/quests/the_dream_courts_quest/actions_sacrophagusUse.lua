@@ -33,7 +33,11 @@ local function resetActionId(player, itemid, position, actionid, message, reward
 			if check:getActionId() == actionid then
 				if r >= 7 then
 					player:say(message, TALKTYPE_MONSTER_SAY)
+<<<<<<< HEAD
 					local item = player:AddCustomItem({id = rewardid, count = 1})
+=======
+					local item = player:addItem(rewardid, 1)
+>>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 					item:decay()
 				else
 					Game.createMonster("Mummy", check:getPosition())
