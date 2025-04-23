@@ -97,9 +97,11 @@ local initialStorages = {
 	[Storage.Tasks.TaskPoints] = 0,
 }
 
+Storage.FirstLogin = {}
+
 local firstLogin = CreatureEvent("FirstLogin")
 function firstLogin.onLogin(player)
-	if player:getLastLoginSaved() ~= 0 then
+	if player:getStorageValueByKey(Storage.FirstLogin) == ACCESS_GRANTED then
 		return true
 	end
 
@@ -109,26 +111,24 @@ function firstLogin.onLogin(player)
 
 	local playerVocation = player:getVocation():getId()
 	local items = starterItems[playerVocation]
-	if not items then
-		return true
-	end
 
-	for _, item in pairs(items.toBody) do
-		player:AddCustomItem({id = item.id, count = item.count or 1})
-	end
+	if items then
+		for _, item in pairs(items.toBody) do
+			player:AddCustomItem({ id = item.id, count = item.count or 1 })
+		end
 
-	local backpack = player:AddCustomItem({id = 2854})
-	if not backpack then
-		return true
-	end
-	for _, item in pairs(items.toBackpack) do
-		player:AddCustomItem(item, backpack)
+		player:AddCustomItem({ id = 2854 })
+		for _, item in pairs(items.toBackpack) do
+			player:AddCustomItem(item)
+		end
 	end
 
 	player:addForgeDustLevel(1000 - player:getForgeDustLevel())
 	addKeyRing(player)
 
 	CreateChooseLanguageWindow(player)
+
+	player:setStorageValueByKey(Storage.FirstLogin, ACCESS_GRANTED)
 	return true
 end
 

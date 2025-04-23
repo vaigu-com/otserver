@@ -243,14 +243,7 @@ local function addFerumbrasAscendantReward(player, target, toPosition)
 			return false
 		end
 
-<<<<<<< HEAD
 		player:AddCustomItem({id = 22170, count = 1})
-=======
-		player:addItem(22170, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Ring, 1)
 	end
 end
@@ -395,15 +388,7 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 			if player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission14) == 1 then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found a small dragon tear. You pocket it quickly.")
 				player:getPosition():sendMagicEffect(CONST_ME_POFF)
-<<<<<<< HEAD
-<<<<<<< HEAD
 				player:AddCustomItem({id = 19084, count = 1})
-=======
-				player:addItem(19084, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-				player:addItem(19084, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(data.storage, 1)
 				return true
 			else
@@ -452,26 +437,12 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 		-- Gravedigger Quest
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found a piece of the scroll. You pocket it quickly.")
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-<<<<<<< HEAD
 		player:AddCustomItem({id = 18933, count = 1})
-=======
-		player:addItem(18933, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission50, 1)
 	elseif target.actionid == 4668 and player:getStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission71) == 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A torn scroll piece emerges. Probably gnawed off by rats.")
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-<<<<<<< HEAD
 		player:AddCustomItem({id = 18933, count = 1})
-=======
-		player:addItem(18933, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission71, 2)
 	elseif target.actionid == 50118 then
 		local wagonItem = Tile(Position(32717, 31492, 11)):getItemById(7131)
@@ -563,15 +534,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 		if tPos == oldTable[i] then
 			if player:getStorageValue(storage) < 1 then
 				for j = 1, #foundItems do
-<<<<<<< HEAD
-<<<<<<< HEAD
 					player:AddCustomItem({id = foundItems[j].id, count = foundItems[j].quantity})
-=======
-					player:addItem(foundItems[j].id, foundItems[j].quantity)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-					player:addItem(foundItems[j].id, foundItems[j].quantity)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				end
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "This table is made of several old doors. One of them has a noticeable ornate lock. Perhaps you could lever it out with a tool.")
 				player:setStorageValue(storage, 1)
@@ -589,15 +552,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 			if player:getStorageValue(j.storage) < os.time() then
 				local r = math.random(1, 3)
 				local item_id = secret_library.items[r]
-<<<<<<< HEAD
-<<<<<<< HEAD
 				player:AddCustomItem({id = item_id, count = 1})
-=======
-				player:addItem(item_id, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-				player:addItem(item_id, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:say("You have found a " .. ItemType(item_id):getName() .. ".", TALKTYPE_MONSTER_SAY)
 				player:setStorageValue(j.storage, os.time() + 2 * 60)
 			else
@@ -717,7 +672,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 				Getting liquid silver out of the mountain needs concentration and a steady hand."
 			)
 		end
-	elseif target and target.getActionId and target:getActionId() == 60000 then
+	elseif target:getActionId() == 60000 then
 		--The Ice Islands Quest, Nibelor 1: Breaking the Ice
 		local missionProgress = player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission02)
 		local pickAmount = player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.PickAmount)
@@ -860,14 +815,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 			if player:getStorageValue(Storage.Quest.U8_7.JackFutureQuest.Statue) == 1 then
 				target:transform(2066)
 				toPosition:sendMagicEffect(CONST_ME_POFF)
-<<<<<<< HEAD
 				player:AddCustomItem({id = 10426, count = 1})
-=======
-				player:addItem(10426, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U8_7.JackFutureQuest.Statue, 2)
 				player:setStorageValue(Storage.Quest.U8_7.JackFutureQuest.QuestLine, player:getStorageValue(Storage.Quest.U8_7.JackFutureQuest.QuestLine) + 1)
 				addEvent(revertItem, 2 * 60 * 1000, { x = 33277, y = 31754, z = 7 }, 2066, 2071)
@@ -998,11 +946,8 @@ function onUseCrowbar(player, item, fromPosition, target, toPosition, isHotkey)
 end
 
 function onUseSpoon(player, item, fromPosition, target, toPosition, isHotkey)
-	if not target or not target.getId then
-		return false
-	end
-	
 	local targetId = target:getId()
+
 	if targetId == 3920 then
 		if player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.SporesMushroom) < 1 then
 			player:AddCustomItem({id = 7251, count = 1})
@@ -1101,15 +1046,7 @@ function onUseKitchenKnife(player, item, fromPosition, target, toPosition, isHot
 		if tPos == oldTable[i] then
 			if player:getStorageValue(storage) < 1 then
 				for j = 1, #foundItems do
-<<<<<<< HEAD
-<<<<<<< HEAD
 					player:AddCustomItem({id = foundItems[j].id, count = foundItems[j].quantity})
-=======
-					player:addItem(foundItems[j].id, foundItems[j].quantity)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-					player:addItem(foundItems[j].id, foundItems[j].quantity)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				end
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "This table is made of several old doors. One of them has a noticeable ornate lock. Perhaps you could lever it out with a tool.")
 				player:setStorageValue(storage, 1)
@@ -1127,15 +1064,7 @@ function onUseKitchenKnife(player, item, fromPosition, target, toPosition, isHot
 			if player:getStorageValue(j.storage) < os.time() then
 				local r = math.random(1, 3)
 				local item_id = secret_library.items[r]
-<<<<<<< HEAD
-<<<<<<< HEAD
 				player:AddCustomItem({id = item_id, count = 1})
-=======
-				player:addItem(item_id, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-				player:addItem(item_id, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:say("You have found a " .. ItemType(item_id):getName() .. ".", TALKTYPE_MONSTER_SAY)
 				player:setStorageValue(j.storage, os.time() + 2 * 60)
 			else

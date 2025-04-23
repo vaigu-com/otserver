@@ -270,7 +270,7 @@ SPECIAL_ACTIONS_BANK = {
 		data.amount = amount
 	end,
 	setRecipient = function(context)
-		local recipient = context.recipient
+		local recipient = SPECIAL_REQUIREMENTS_BANK.extractRecipientName(context)
 		local data = PlayerCustomDialogDataRegistry:Get(context.player)
 		data.recipient = recipient
 	end,

@@ -764,7 +764,7 @@ pseudoQuest
 					requiredTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
 				},
 				--transfer
-				[{ "transfer <amount> to <recipient>", "transfer <amount> <recipient>" }] = {
+				[{ "transfer <amount> to <recipient>", "transfer <amount> <recipient> [recipientNameSegment2] [recipientNameSegment3]" }] = {
 					text = "CONFIRM_TRANSFER",
 					nextTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 					specialRequirements = {
@@ -808,7 +808,7 @@ pseudoQuest
 						{ action = SPECIAL_ACTIONS_BANK.setAmountWithdrawTransfer },
 					},
 				},
-				[{ "<recipient>" }] = {
+				[{ "<recipient> [recipientNameSegment2] [recipientNameSegment3]" }] = {
 					text = "CONFIRM_TRANSFER",
 					requiredTopic = QuestTopics.JOB_TOPICS.declareRecipient,
 					specialRequirements = {
@@ -835,16 +835,6 @@ pseudoQuest
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
 							textFailedRequirement = "There is not enough gold on your account.",
-						},
-						{
-							requirement = SPECIAL_REQUIREMENTS_BANK.recipientIsnotself,
-							requiredOutcome = true,
-							textFailedRequirement = "You can't do that.",
-						},
-						{
-							requirement = SPECIAL_REQUIREMENTS_BANK.recipientExists,
-							requiredOutcome = true,
-							textFailedRequirement = "You cannot transfer money to this account.",
 						},
 					},
 					specialActionsOnSuccess = {

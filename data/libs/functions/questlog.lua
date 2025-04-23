@@ -87,8 +87,11 @@ function Player:getTrackedMissionIds()
 	return trackedMissionIds
 end
 
-function Player.sendQuestlogMainPage(self, mission)
+function Player.setMissionAsTracked(self, mission)
 	local trackedMissionStorages = self:getStorageValueByKey(Storage.TrackedMissionsStorages)
+	if type(trackedMissionStorages) ~= "table" then
+		trackedMissionStorages = {}
+	end
 	local currentlyTrackedCount = TableSize(trackedMissionStorages)
 	if currentlyTrackedCount >= self:getAllowedTrackedQuestCount() then
 		return
@@ -105,7 +108,9 @@ function Player.sendQuestlogMainPage(self, mission)
 		missionName = self:getTranslatedMissionName(mission),
 		missionDesc = self:getTranslatedMissionDescription(mission),
 	}
-	PlayerTrackedMissionsData[self:getId()][mission.missionId] = missionData
+	local playerId = self:getId()
+	PlayerTrackedMissionsData[playerId] = PlayerTrackedMissionsData[playerId] or {}
+	PlayerTrackedMissionsData[playerId][mission.missionId] = missionData
 end
 
 Storage.TrackedMissionsStorages = {}
@@ -388,7 +393,7 @@ function Player.tryAutoTrackMission(self, mission, oldValue)
 		return
 	end
 
-	self:sendQuestlogMainPage(mission)
+	self:setMissionAsTracked(mission)
 
 	local translatedMission = {
 		missionId = mission.missionId,

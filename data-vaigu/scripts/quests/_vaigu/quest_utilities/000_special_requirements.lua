@@ -177,20 +177,39 @@ SPECIAL_REQUIREMENTS_BANK = {
 		local hasCap, noCapMessage = player:HasEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
 		if not hasCap then
 			player:sendTextMessage(MESSAGE_FAILURE, noCapMessage)
+			return false
 		end
 		local hasSlots, noSlotsMessage = player:HasEnoughSlots({ requiredSlots = pilesCount })
 		if not hasSlots then
 			player:sendTextMessage(MESSAGE_FAILURE, noSlotsMessage)
+			return false
 		end
 
 		return true
 	end,
+	extractRecipientName = function(context)
+		local name = context.recipient
+		if not name then
+			return nil
+		end
+		if context.recipientNameSegment2 then
+			name = name .. " " .. context.recipientNameSegment2
+		end
+		if context.recipientNameSegment3 then
+			name = name .. " " .. context.recipientNameSegment3
+		end
+
+		return name
+	end,
 	recipientIsnotself = function(context)
-		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
-		return context.player:getName() ~= recipient
+		return context.player:getName() ~= SPECIAL_REQUIREMENTS_BANK.extractRecipientName(context)
 	end,
 	recipientExists = function(context)
-		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
+		local recipientName = SPECIAL_REQUIREMENTS_BANK.extractRecipientName(context)
+		local recipient = Game.getOfflinePlayer(recipientName)
+		if not recipient then
+			return false
+		end
 		return type(Bank.balance(recipient)) == "number"
 	end,
 }
