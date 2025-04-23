@@ -1,8 +1,31 @@
 function onUpdateDatabase()
-	logger.info("Updating database to version 50 (allow multiple boosted monsters for one day)")
-	
+	logger.info("Updating database to version 50 (vaigu custom)")
+
+	logger.info("(add language to player)")
+	db.query([[
+		ALTER TABLE players ADD COLUMN language VARCHAR(2) DEFAULT 'EN';
+	]])
+
+	logger.info("(allow multiple boosted monsters for one day)")
 	db.query([[
 		ALTER TABLE boosted_creature DROP PRIMARY KEY;
 	]])
+
+	logger.info("(add failstack to preyslot)")
+	db.query([[
+		ALTER TABLE player_prey ADD failstack blob;
+	]])
+
+	logger.info("(add start date)")
+	db.query([[
+			INSERT INTO `server_config` (`config`, `value`) VALUES ('start_date', '2025-06-01 20:00:01');
+		]])
+
+	logger.info("(change default town to id 1)")
+	db.query([[
+				UPDATE canary_samples SET town_id = 1;
+			]])
+
+	logger.info("Updated database to version 50 (vaigu custom)")
 	return true
 end
