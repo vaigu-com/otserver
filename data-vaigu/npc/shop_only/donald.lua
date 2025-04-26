@@ -1,18 +1,19 @@
-local name = "Redbeard"
+local name = "Donald"
 local outfit = {
-	lookType = 750,
-	lookHead = 75,
+	lookType = 132,
+	lookHead = 2,
 	lookBody = 76,
-	lookLegs = 2,
-	lookFeet = 1,
+	lookLegs = 130,
+	lookFeet = 95,
 	lookAddons = 0,
 }
 
 local context = {
 	name = name,
+	greetJob = JOB_FURNITURE,
+	jobs = { JOB_FURNITURE },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	checkInteraction = false,
 }
 NpcRegistry:AppendNpcData(context)

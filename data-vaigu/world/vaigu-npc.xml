@@ -28,7 +28,7 @@
 		<npc name="Ali Baba" x="0" y="0" z="4" spawntime="60" />
 	</npc>
 	<npc centerx="7040" centery="788" centerz="4" radius="3">
-		<npc name="Honkler" x="0" y="0" z="4" spawntime="60" />
+		<npc name="Jack of all Swindles" x="0" y="0" z="4" spawntime="60" />
 	</npc>
 	<npc centerx="6727" centery="1247" centerz="4" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="4" spawntime="60" />

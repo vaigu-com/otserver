@@ -1,18 +1,19 @@
-local name = "Redbeard"
+local name = "Kacper"
 local outfit = {
-	lookType = 750,
-	lookHead = 75,
+	lookType = 1384,
+	lookHead = 2,
 	lookBody = 76,
 	lookLegs = 2,
-	lookFeet = 1,
+	lookFeet = 117,
 	lookAddons = 0,
 }
 
 local context = {
 	name = name,
+	greetJob = JOB_MAGIC_WILDCARD,
+	jobs = { JOB_MAGIC, JOB_WILDCARD },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	checkInteraction = false,
 }
 NpcRegistry:AppendNpcData(context)

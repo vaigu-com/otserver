@@ -1,10 +1,10 @@
 local name = "Vavzheek"
 local outfit = {
-	lookType = 132,
-	lookHead = 19,
-	lookBody = 10,
-	lookLegs = 38,
-	lookFeet = 95,
+	lookType = 1776,
+	lookHead = 2,
+	lookBody = 76,
+	lookLegs = 28,
+	lookFeet = 131,
 	lookAddons = 0,
 }
 local dialogs = {
