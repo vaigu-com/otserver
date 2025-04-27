@@ -1,11 +1,6 @@
 local name = "Wasik"
 local outfit = {
-	lookType = 128,
-	lookHead = 0,
-	lookBody = 0,
-	lookLegs = 0,
-	lookFeet = 0,
-	lookAddons = 0,
+	lookType = 940,
 }
 
 local context = {

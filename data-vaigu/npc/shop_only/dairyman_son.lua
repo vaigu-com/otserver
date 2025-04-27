@@ -1,17 +1,17 @@
-local name = "Kacper"
+local name = "Dairyman Son"
 local outfit = {
-	lookType = 1384,
+	lookType = 1371,
 	lookHead = 2,
 	lookBody = 76,
-	lookLegs = 2,
-	lookFeet = 117,
+	lookLegs = 116,
+	lookFeet = 95,
 	lookAddons = 0,
 }
 
 local context = {
 	name = name,
-	greetJob = JOB_MAGIC_WILDCARD,
-	jobs = { JOB_MAGIC, JOB_WILDCARD },
+	greetJob = JOB_FISHER,
+	jobs = { JOB_FISHER },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,

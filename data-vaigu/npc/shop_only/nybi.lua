@@ -1,11 +1,11 @@
-local name = "Apollo"
+local name = "Nybi"
 local outfit = {
-	lookType = 140,
-	lookHead = 23,
-	lookBody = 130,
-	lookLegs = 128,
-	lookFeet = 19,
-	lookAddons = 1,
+	lookType = 900,
+	lookHead = 38,
+	lookBody = 114,
+	lookLegs = 56,
+	lookFeet = 0,
+	lookAddons = 0,
 }
 
 local context = {
