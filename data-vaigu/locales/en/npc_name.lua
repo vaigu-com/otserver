@@ -167,7 +167,7 @@ return {
 	["Hoghunter"] = "Hoghunter",
 	["Ignus"] = "Ignus",
 	["Json"] = "Json",
-	["Kacper"] = "Kacper",
+	["Caspar"] = "Caspar",
 	["Kaminski"] = "Kaminski",
 	["Keliho"] = "Keliho",
 	["Kiara"] = "Kiara",
@@ -217,4 +217,7 @@ return {
 	["Za'qir"] = "Za'qir",
 	["Zong"] = "Zong",
 	["Zordon"] = "Zordon",
+	["Mlechior"] = "Melchior",
+	["Nybi"] = "Nybi",
+	["Rosa"] = "Rosa",
 }
