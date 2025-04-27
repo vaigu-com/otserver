@@ -5952,9 +5952,6 @@
 	<monster centerx="6601" centery="970" centerz="5" radius="1">
 		<monster name="Killer Caiman" x="0" y="0" z="5" spawntime="60" />
 	</monster>
-	<monster centerx="7162" centery="970" centerz="5" radius="1">
-		<monster name="Pirate Cutthroat" x="0" y="0" z="5" spawntime="60" />
-	</monster>
 	<monster centerx="6607" centery="973" centerz="5" radius="1">
 		<monster name="Centipede" x="0" y="0" z="5" spawntime="60" />
 	</monster>
