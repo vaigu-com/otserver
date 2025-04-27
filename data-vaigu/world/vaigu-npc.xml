@@ -6,9 +6,6 @@
 	<npc centerx="7027" centery="1200" centerz="2" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="2" spawntime="60" />
 	</npc>
-	<npc centerx="7357" centery="1474" centerz="2" radius="1">
-		<npc name="Bueno" x="0" y="0" z="2" spawntime="60" />
-	</npc>
 	<npc centerx="7367" centery="1474" centerz="2" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="2" spawntime="60" />
 	</npc>
@@ -26,6 +23,9 @@
 	</npc>
 	<npc centerx="7402" centery="1465" centerz="3" radius="1">
 		<npc name="Rat Knacker" x="0" y="0" z="3" spawntime="60" />
+	</npc>
+	<npc centerx="7395" centery="1467" centerz="3" radius="1">
+		<npc name="Bueno" x="0" y="0" z="3" spawntime="60" />
 	</npc>
 	<npc centerx="7419" centery="1485" centerz="3" radius="1">
 		<npc name="Keliho" x="0" y="0" z="3" spawntime="60" />
