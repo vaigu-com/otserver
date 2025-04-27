@@ -108,7 +108,7 @@
 	<npc centerx="5740" centery="1498" centerz="5" radius="1">
 		<npc name="Xe'na" x="0" y="0" z="5" spawntime="60" />
 	</npc>
-	<npc centerx="7375" centery="1503" centerz="5" radius="1">
+	<npc centerx="7375" centery="1504" centerz="5" radius="1">
 		<npc name="Young Essasitek" x="0" y="0" z="5" spawntime="60" />
 	</npc>
 	<npc centerx="5841" centery="1544" centerz="5" radius="3">
