@@ -356,6 +356,9 @@
 	<monster centerx="7474" centery="1423" centerz="1" radius="1">
 		<monster name="Carnivostrich" x="0" y="0" z="1" spawntime="60" />
 	</monster>
+	<monster centerx="7429" centery="1463" centerz="1" radius="1">
+		<monster name="Gryphon" x="0" y="0" z="1" spawntime="3600" />
+	</monster>
 	<monster centerx="5542" centery="1675" centerz="1" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="1" spawntime="60" />
 	</monster>
