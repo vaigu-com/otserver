@@ -73,16 +73,6 @@ local DailyRewardItems = {
 	[VOCATION.BASE_ID.KNIGHT] = { 266, 236, 239, 7643, 23375, 268, 3203, 3161, 3178, 3153, 3197, 3149, 3164, 3200, 3192, 3188, 3190, 3189, 3191, 3158, 3152, 3180, 3173, 3176, 3195, 3175, 3155, 3202 },
 }
 
-Storage.DailyRewardShrine = {
-	ConsecutiveDaysStreak = {},
-	ConsecutiveDaysStreakEndless = {},
-	JokersCount = {},
-	CollectionTokensCount = {},
-	NextCollectTimestamp = {},
-	PreviousCollectionTimestamp = {},
-	StreakExpiryTimestamp = {},
-}
-
 DailyReward = {
 	testMode = false,
 	serverTimeThreshold = (25 * 60 * 60), -- Counting down 24hours from last server save
@@ -274,7 +264,7 @@ DailyReward.afterPickingReward = function(playerId)
 	end
 
 	-- Reset day streak to 0 when reaches last reward
-	local currentStreak = player:getDayStreak()
+	local currentStreak = player:getStreakLevel()
 	local nextStreak = currentStreak + 1
 
 	player:setDayStreak(nextStreak % 7)
