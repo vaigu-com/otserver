@@ -351,6 +351,7 @@ void CanaryServer::loadModules() {
 
 	// Load XML folder dependencies (order matters)
 	modulesLoadHelper(g_vocations().loadFromXml(), "XML/vocations.xml");
+	modulesLoadHelper(g_eventsScheduler().generateWeekendEventsXml(), "XML/events.xml");
 	modulesLoadHelper(g_eventsScheduler().loadScheduleEventFromXml(), "XML/events.xml");
 	modulesLoadHelper(Outfits::getInstance().loadFromXml(), "XML/outfits.xml");
 	modulesLoadHelper(Familiars::getInstance().loadFromXml(), "XML/familiars.xml");

@@ -97,5 +97,5 @@ function RetrieveGlobalStorage(key)
 		Result.free(resultId)
 		return val
 	end
-	return 1
+	return -1
 end

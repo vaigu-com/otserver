@@ -126,7 +126,7 @@ function firstLogin.onLogin(player)
 	player:addForgeDustLevel(1000 - player:getForgeDustLevel())
 	addKeyRing(player)
 
-	CreateChooseLanguageWindow(player)
+	-- CreateChooseLanguageWindow(player)
 
 	player:setStorageValueByKey(Storage.FirstLogin, ACCESS_GRANTED)
 	return true

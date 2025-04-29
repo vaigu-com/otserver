@@ -79,6 +79,16 @@ setmetatable(Storage, {
 	end,
 })
 
+Storage.DailyRewardShrine = {
+	ConsecutiveDaysStreak = {},
+	ConsecutiveDaysStreakEndless = {},
+	JokersCount = {},
+	CollectionTokensCount = {},
+	NextCollectTimestamp = {},
+	PreviousCollectionTimestamp = {},
+	StreakExpiryTimestamp = {},
+}
+
 -- General storages
 -- EmoteSpells Storage cannot be changed, it is set in source code
 Storage.WarCooldown = {}

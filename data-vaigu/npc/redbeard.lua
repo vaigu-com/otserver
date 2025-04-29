@@ -1,10 +1,10 @@
 local name = "Redbeard"
 local outfit = {
-	lookType = 1338,
-	lookHead = 113,
-	lookBody = 114,
-	lookLegs = 59,
-	lookFeet = 118,
+	lookType = 750,
+	lookHead = 75,
+	lookBody = 76,
+	lookLegs = 2,
+	lookFeet = 1,
 	lookAddons = 0,
 }
 

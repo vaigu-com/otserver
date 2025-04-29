@@ -1282,7 +1282,7 @@ quest
 					text = "Mister, I'm just fishing here quietly, and all of the sudden I see a man emerging on the surface. You're saying that he is a thief? - he ran that way, to the east.",
 				},
 			}),
-			QuestFactory.Dialog("Miles the Guard", {
+			QuestFactory.Dialog("Miles, the Guard", {
 				[{ "thief", "zlodziej" }] = {
 					text = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",
 				},

@@ -41,6 +41,8 @@ public:
 	// Event schedule xml load
 	bool loadScheduleEventFromXml();
 
+	bool generateWeekendEventsXml();
+
 	// Event schedule
 	uint16_t getExpSchedule() const {
 		return expSchedule;

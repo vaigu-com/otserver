@@ -112,7 +112,7 @@ function Player.checkGnomeRank(self)
 		[Storage.BigfootsBurden.Warzone2Access] = 2,
 		[Storage.BigfootsBurden.Warzone3Access] = 2,
 		[Storage.BigfootsBurden.Rank] = 1440,
-		[Storage.BigfootsBurden.WarzoneStatus] = 1
+		[Storage.BigfootsBurden.WarzoneStatus] = 1,
 	})
 	return true
 end
@@ -293,6 +293,7 @@ function Player:CreateFamiliarSpell(spellId)
 	return true
 end
 
+local familiarSummonTimeScope = Scope("familiar-summon-time")
 function Player:createFamiliar(familiarName, timeLeft)
 	local playerPosition = self:getPosition()
 	if not familiarName then
@@ -314,7 +315,7 @@ function Player:createFamiliar(familiarName, timeLeft)
 	playerPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	myFamiliar:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	-- Divide by 2 to get half the time (the default total time is 30 / 2 = 15)
-	self:kv():set("familiar-summon-time", os.time() + timeLeft)
+	self:setStorageValueByKey(familiarSummonTimeScope:Get(), os.time() + timeLeft)
 	addEvent(RemoveFamiliar, timeLeft * 1000, myFamiliar:getId(), self:getId())
 	for sendMessage = 1, #FAMILIAR_TIMER do
 		self:setStorageValueByKey(
@@ -522,13 +523,17 @@ function Player:calculateLootFactor(monster)
 	}
 end
 
-function Player:setExhaustion(scope, seconds)
-	return self:kv():scoped("exhaustion"):set(scope, os.time() + seconds)
+local exhaustionScope = Scope("exhaustion")
+function Player:setExhaustion(itemKey, seconds)
+	return self:setStorageValueByKey(exhaustionScope:Get(itemKey), os.time() + seconds)
 end
-
-function Player:getExhaustion(scope)
-	local exhaustionKV = self:kv():scoped("exhaustion"):get(scope) or 0
-	return math.max(exhaustionKV - os.time(), 0)
+function Player:getExhaustion(itemKey)
+	local exhaustionExpiry = self:getStorageValueByKey(exhaustionScope:Get(itemKey)) or 0
+	local expiresInSeconds = exhaustionExpiry - os.time()
+	if expiresInSeconds > 0 then
+		return expiresInSeconds
+	end
+	return 0
 end
 
 function Player:hasExhaustion(scope)
@@ -587,10 +592,11 @@ function Player:removeAll(itemId)
 	return count
 end
 
+local encounterCooldownScope = Scope("encounter", "cooldown")
 ---@param encounterData EncounterData
 ---@return unknown
 local function encounterKVscope(encounterData)
-	return "encounter.cooldown." .. encounterData:GetId()
+	return encounterCooldownScope:Get(encounterData:GetId())
 end
 
 function Player:getEncounterLockout(encounter)
@@ -599,7 +605,7 @@ function Player:getEncounterLockout(encounter)
 		logger.warn("[Player::getEncounterLockout] error parsing scope")
 		return false
 	end
-	return self:kv():get(scope) or 0
+	return self:getStorageValueByKey(scope) or 0
 end
 
 ---@param encounterData EncounterData
@@ -620,44 +626,42 @@ function Player:canFightBoss(bossNameOrId)
 	return cooldown <= os.time()
 end
 
-function Player.getCollectionTokens(self)
-	return math.max(self:getStorageValueByKey(DailyReward.storages.collectionTokens), 0)
-end
-
 function Player.getJokerTokens(self)
-	return math.max(self:getStorageValueByKey(DailyReward.storages.jokerTokens), 0)
+	return math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.JokersCount), 0)
 end
-
 function Player.setJokerTokens(self, value)
-	self:setStorageValueByKey(DailyReward.storages.jokerTokens, value)
+	self:setStorageValueByKey(Storage.DailyRewardShrine.JokersCount, value)
 end
 
+function Player.getCollectionTokens(self)
+	return math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.CollectionTokensCount), 0)
+end
 function Player.setCollectionTokens(self, value)
-	self:setStorageValueByKey(DailyReward.storages.collectionTokens, value)
+	self:setStorageValueByKey(Storage.DailyRewardShrine.CollectionTokensCount, value)
 end
 
+-- Up to 6 days; impacts pz bonuses
 function Player.getDayStreak(self)
-	return math.max(self:getStorageValueByKey(DailyReward.storages.currentDayStreak), 0)
+	return math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreak), 0)
+end
+function Player.setDayStreak(self, streakDays)
+	self:setStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreak, streakDays)
 end
 
-function Player.setDayStreak(self, value)
-	self:setStorageValueByKey(DailyReward.storages.currentDayStreak, value)
-end
-
+-- Endless streak; just cosmetic number
 function Player.getStreakLevel(self)
-	return self:kv():scoped("daily-reward"):get("streak") or 7
+	local streak = math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreakEndless) or 0, 0)
+	return streak
+end
+function Player.setStreakLevel(self, nextValue)
+	self:setStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreakEndless, nextValue)
 end
 
-function Player.setStreakLevel(self, value)
-	self:kv():scoped("daily-reward"):set("streak", value)
+function Player.setNextRewardTime(self, nextValue)
+	self:setStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp, nextValue)
 end
-
-function Player.setNextRewardTime(self, value)
-	self:setStorageValueByKey(DailyReward.storages.nextRewardTime, value)
-end
-
 function Player.getNextRewardTime(self)
-	return math.max(self:getStorageValueByKey(DailyReward.storages.nextRewardTime), 0)
+	return math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp), 0)
 end
 
 function Player.getActiveDailyRewardBonusesName(self)
@@ -820,8 +824,9 @@ do
 	end
 end
 
+local questsScope = Scope("quests")
 function Player:questKV(questName)
-	return self:kv():scoped("quests"):scoped(questName)
+	return self:getStorageValueByKey(questsScope:Get(questName))
 end
 
 function Player:canGetReward(rewardId, questName)

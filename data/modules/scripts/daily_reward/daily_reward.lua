@@ -84,6 +84,7 @@ DailyReward = {
 		collectionTokens = 14901,
 		staminaBonus = 14902,
 		jokerTokens = 14903,
+
 		-- Global
 		lastServerSave = 14110,
 		avoidDouble = 13412,
@@ -255,23 +256,25 @@ DailyReward.loadDailyReward = function(playerId, target)
 	return true
 end
 
-DailyReward.pickedReward = function(playerId)
+local oneDay = 24 * 60 * 60
+DailyReward.afterPickingReward = function(playerId)
 	local player = Player(playerId)
 	if not player then
 		return false
 	end
 
 	-- Reset day streak to 0 when reaches last reward
-	if player:getDayStreak() ~= 6 then
-		player:setDayStreak(player:getDayStreak() + 1)
-	else
-		player:setDayStreak(0)
-	end
+	local currentStreak = player:getStreakLevel()
+	local nextStreak = currentStreak + 1
 
-	player:setStreakLevel(player:getStreakLevel() + 1)
-	player:setStorageValueByKey(DailyReward.storages.avoidDouble, GetDailyRewardLastServerSave())
+	player:setDayStreak(nextStreak % 7)
+	player:setStreakLevel(nextStreak)
+
+	player:setStorageValueByKey(Storage.DailyRewardShrine.PreviousCollectionTimestamp, os.time())
+	player:setStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp, NextDayEpochTime())
+	player:setStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp, NextDayEpochTime() + oneDay)
+
 	player:setDailyReward(DAILY_REWARD_COLLECTED)
-	player:setNextRewardTime(GetDailyRewardLastServerSave() + DailyReward.serverTimeThreshold)
 	player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_YELLOW)
 	return true
 end
@@ -288,11 +291,9 @@ DailyReward.isRewardTaken = function(playerId)
 	if not player then
 		return false
 	end
-	local playerStorage = player:getStorageValueByKey(DailyReward.storages.avoidDouble)
-	if playerStorage == GetDailyRewardLastServerSave() then
-		return true
-	end
-	return false
+
+	local nextCollectTimestamp = player:getStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp)
+	return nextCollectTimestamp > os.time()
 end
 
 DailyReward.init = function(playerId)
@@ -302,26 +303,18 @@ DailyReward.init = function(playerId)
 		return false
 	end
 
-	if player:getJokerTokens() < 3 and tonumber(os.date("%m")) ~= player:getStorageValueByKey(DailyReward.storages.avoidDoubleJoker) then
-		player:setStorageValueByKey(DailyReward.storages.avoidDoubleJoker, tonumber(os.date("%m")))
-		player:setJokerTokens(player:getJokerTokens() + 1)
-	end
+	local streakExpiryTimestamp = player:getStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp)
 
-	local timeMath = GetDailyRewardLastServerSave() - player:getNextRewardTime()
-	if player:getNextRewardTime() < GetDailyRewardLastServerSave() then
-		if player:getStorageValueByKey(DailyReward.storages.notifyReset) ~= GetDailyRewardLastServerSave() then
-			player:setStorageValueByKey(DailyReward.storages.notifyReset, GetDailyRewardLastServerSave())
-			timeMath = math.ceil(timeMath / DailyReward.serverTimeThreshold)
-			if player:getJokerTokens() >= timeMath then
-				player:setJokerTokens(player:getJokerTokens() - timeMath)
-				player:sendTextMessage(MESSAGE_LOGIN, "You lost " .. timeMath .. " joker tokens to prevent loosing your streak.")
-			else
-				player:setStreakLevel(0)
-				if player:getLastLoginSaved() > 0 then -- message wont appear at first character login
-					player:setJokerTokens(-(player:getJokerTokens()))
-					player:sendTextMessage(MESSAGE_LOGIN, "You just lost your daily reward streak.")
-				end
-			end
+	if (os.time() > streakExpiryTimestamp) and (player:getLastLoginSaved() > 0) then
+		local jokersCount = player:getJokerTokens()
+		if jokersCount > 0 then
+			player:setStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp, NextDayEpochTime() + oneDay)
+			player:setJokerTokens(jokersCount - 1)
+			player:sendTextMessage(MESSAGE_LOGIN, "You lost a joker token to prevent loosing your streak.")
+		else
+			player:setStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp, -1)
+			player:sendTextMessage(MESSAGE_LOGIN, "You just lost your daily reward streak.")
+			player:setStreakLevel(0)
 		end
 	end
 
@@ -337,7 +330,7 @@ DailyReward.init = function(playerId)
 end
 
 DailyReward.processReward = function(playerId, target)
-	DailyReward.pickedReward(playerId)
+	DailyReward.afterPickingReward(playerId)
 	DailyReward.loadDailyReward(playerId, target)
 	local player = Player(playerId)
 	if player then
@@ -357,7 +350,7 @@ function Player.sendOpenRewardWall(self, shrine)
 	if DailyReward.testMode or not (DailyReward.isRewardTaken(self:getId())) then
 		msg:addU32(0)
 	else
-		msg:addU32(GetDailyRewardLastServerSave() + DailyReward.serverTimeThreshold)
+		msg:addU32(self:getStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp))
 	end
 	msg:addByte(self:getDayStreak()) -- current reward? day = 0, day 1, ... this should be resetted to 0 every week imo
 	if DailyReward.isRewardTaken(self:getId()) then -- state (player already took reward? but just make sure noone wpe)
@@ -372,7 +365,7 @@ function Player.sendOpenRewardWall(self, shrine)
 	else
 		msg:addByte(0)
 		msg:addByte(2)
-		msg:addU32(GetDailyRewardLastServerSave() + DailyReward.serverTimeThreshold) --timeLeft to pickUp reward without loosing streak
+		msg:addU32(self:getStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp)) --timeLeft to pickUp reward without loosing streak
 		msg:addU16(self:getJokerTokens())
 	end
 	msg:addU16(self:getStreakLevel()) -- day strike
@@ -395,7 +388,7 @@ end
 function Player.selectDailyReward(self, msg)
 	local playerId = self:getId()
 
-	if DailyReward.isRewardTaken(playerId) and not DailyReward.testMode then
+	if DailyReward.isRewardTaken(playerId) then
 		self:sendError("You have already collected your daily reward.")
 		return false
 	end
@@ -497,8 +490,7 @@ function Player.selectDailyReward(self, msg)
 
 	if dailyRewardMessage then
 		-- Registering history
-		DailyReward.insertHistory(self:getGuid(), self:getDayStreak(), "Claimed reward no. \z
-			" .. self:getDayStreak() + 1 .. ". " .. dailyRewardMessage)
+		DailyReward.insertHistory(self:getGuid(), self:getDayStreak(), "Claimed reward no. " .. self:getDayStreak() + 1 .. ". " .. dailyRewardMessage)
 		DailyReward.processReward(playerId, target)
 	end
 

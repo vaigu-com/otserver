@@ -356,6 +356,9 @@
 	<monster centerx="7474" centery="1423" centerz="1" radius="1">
 		<monster name="Carnivostrich" x="0" y="0" z="1" spawntime="60" />
 	</monster>
+	<monster centerx="7429" centery="1463" centerz="1" radius="1">
+		<monster name="Gryphon" x="0" y="0" z="1" spawntime="3600" />
+	</monster>
 	<monster centerx="5542" centery="1675" centerz="1" radius="1">
 		<monster name="Gladiator" x="0" y="0" z="1" spawntime="60" />
 	</monster>
@@ -5951,9 +5954,6 @@
 	</monster>
 	<monster centerx="6601" centery="970" centerz="5" radius="1">
 		<monster name="Killer Caiman" x="0" y="0" z="5" spawntime="60" />
-	</monster>
-	<monster centerx="7162" centery="970" centerz="5" radius="1">
-		<monster name="Pirate Cutthroat" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6607" centery="973" centerz="5" radius="1">
 		<monster name="Centipede" x="0" y="0" z="5" spawntime="60" />
@@ -42121,6 +42121,9 @@
 	<monster centerx="7447" centery="1661" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5579" centery="1662" centerz="7" radius="1">
+		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5708" centery="1662" centerz="7" radius="1">
 		<monster name="Elf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42284,6 +42287,9 @@
 	<monster centerx="7574" centery="1668" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5583" centery="1669" centerz="7" radius="1">
+		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5592" centery="1669" centerz="7" radius="1">
 		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42433,6 +42439,9 @@
 	<monster centerx="7568" centery="1676" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5570" centery="1677" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5719" centery="1677" centerz="7" radius="1">
 		<monster name="Elf Arcanist" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42515,6 +42524,9 @@
 	</monster>
 	<monster centerx="7522" centery="1680" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5583" centery="1681" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5592" centery="1681" centerz="7" radius="1">
 		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
@@ -42700,6 +42712,9 @@
 	<monster centerx="7560" centery="1689" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5596" centery="1690" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6014" centery="1690" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42746,6 +42761,9 @@
 	<monster centerx="5608" centery="1694" centerz="7" radius="1">
 		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5610" centery="1694" centerz="7" radius="1">
+		<monster name="Assassin" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5920" centery="1694" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42781,6 +42799,9 @@
 	</monster>
 	<monster centerx="7586" centery="1696" centerz="7" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5578" centery="1697" centerz="7" radius="1">
+		<monster name="Assassin" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5901" centery="1697" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
@@ -42885,6 +42906,9 @@
 	<monster centerx="7544" centery="1700" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5605" centery="1701" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5903" centery="1701" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42981,6 +43005,9 @@
 	<monster centerx="7586" centery="1705" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5577" centery="1706" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5966" centery="1706" centerz="7" radius="1">
 		<monster name="Poison Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42996,6 +43023,9 @@
 	<monster centerx="7556" centery="1706" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Centipede" x="0" y="1" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5569" centery="1707" centerz="7" radius="1">
+		<monster name="Assassin" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5840" centery="1707" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
@@ -43070,6 +43100,9 @@
 	<monster centerx="7555" centery="1709" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5617" centery="1710" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5878" centery="1710" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -43110,6 +43143,9 @@
 	</monster>
 	<monster centerx="7566" centery="1711" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5584" centery="1712" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5921" centery="1712" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
@@ -43155,6 +43191,9 @@
 		<monster name="Swampling" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Swamp Troll" x="-1" y="1" z="7" spawntime="60" />
 		<monster name="Swampling" x="1" y="1" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5594" centery="1714" centerz="7" radius="1">
+		<monster name="Assassin" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5608" centery="1714" centerz="7" radius="1">
 		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
@@ -43235,6 +43274,9 @@
 	<monster centerx="7407" centery="1717" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="5581" centery="1718" centerz="7" radius="1">
+		<monster name="Assassin" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6036" centery="1718" centerz="7" radius="1">
 		<monster name="Poacher" x="1" y="-1" z="7" spawntime="60" />
 		<monster name="Poacher" x="-1" y="0" z="7" spawntime="60" />
@@ -43251,6 +43293,9 @@
 	</monster>
 	<monster centerx="6584" centery="1719" centerz="7" radius="1">
 		<monster name="Arctic Faun" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5610" centery="1720" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5996" centery="1720" centerz="7" radius="1">
 		<monster name="Poacher" x="0" y="0" z="7" spawntime="60" />
@@ -43272,6 +43317,9 @@
 	</monster>
 	<monster centerx="7544" centery="1720" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5572" centery="1721" centerz="7" radius="1">
+		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5591" centery="1721" centerz="7" radius="1">
 		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
