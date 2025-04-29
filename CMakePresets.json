@@ -7,36 +7,6 @@
   },
   "configurePresets": [
     {
-      "name": "vaigu-debug",
-      "inherits": "linux-debug-asan",
-      "displayName": "Vaigu Debug (Linux)",
-      "description": "Ebebebe",
-      "binaryDir": "/home/karol/vaigu/build/ots-debug-clion",
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      },
-      "environment": {
-        "CCACHE_DIR": "/home/karol/vaigu/.cache/ccache",
-        "VCPKG_DEFAULT_BINARY_CACHE": "/home/karol/vaigu/.cache/vcpkg",
-        "VCPKG_ROOT": "/home/karol/vaigu/vcpkg"
-      }
-    },
-    {
-      "name": "vaigu-release",
-      "inherits": "linux-release",
-      "displayName": "Vaigu Release (Linux)",
-      "description": "Ebebebe",
-      "binaryDir": "/home/karol/vaigu/build/otserver-release-clion",
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      },
-      "environment": {
-        "CCACHE_DIR": "/home/karol/vaigu/.cache/ccache",
-        "VCPKG_DEFAULT_BINARY_CACHE": "/home/karol/vaigu/.cache/vcpkg",
-        "VCPKG_ROOT": "/home/karol/vaigu/vcpkg"
-      }
-    },
-    {
       "name": "base",
       "hidden": true,
       "generator": "Ninja",
