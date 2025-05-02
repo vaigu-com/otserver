@@ -43,8 +43,8 @@ public:
 	const std::string &getName() const override;
 	void setName(const std::string &name);
 
-	// Vaigu custom; Revert in Monster::configureForgeSystem and Monster::getName
-	std::string fullName;
+	// Vaigu custom
+	std::string displayName;
 	std::map<uint16_t, std::string> influenceRankToTitle = {
         {0, ""},
 		{1, "Potent "},
@@ -204,7 +204,7 @@ public:
 	static uint32_t monsterAutoID;
 
 	// Vaigu custom
-	void updateFullName();
+	void addTitleToDisplayName();
 	
 	void applyStacks();
 

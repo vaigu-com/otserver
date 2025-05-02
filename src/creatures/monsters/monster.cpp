@@ -62,7 +62,7 @@ Monster::Monster(const std::shared_ptr<MonsterType> &mType) :
 			                scriptName);
 		}
 	}
-	updateFullName();
+	addTitleToDisplayName();
 }
 
 std::shared_ptr<Monster> Monster::getMonster() {
@@ -92,23 +92,27 @@ bool Monster::hasIgnoreCreatures() {
 	return mType->info.ignoreCreatures;
 }
 
-// Vaigu custom
 const std::string &Monster::getName() const {
-	if (fullName.empty()) {
-		return mType->name;
-	}
-	// return name;
-	return fullName;
+	return mType->name;
 }
 
 // Vaigu custom
+/*
+const std::string &Monster::getDisplayName() const {
+	if (displayName.empty()) {
+		return mType->name;
+	}
+	// return name;
+	return displayName;
+}
+*/
+
 void Monster::setName(const std::string &name) {
 	if (getName() == name) {
 		return;
 	}
 
 	this->name = name;
-	this->fullName = name;
 
 	// NOTE: Due to how client caches known creatures,
 	// it is not feasible to send creature update to everyone that has ever met it
@@ -2605,10 +2609,10 @@ void Monster::getPathSearchParams(const std::shared_ptr<Creature> &creature, Fin
 }
 
 // Vaigu custom
-void Monster::updateFullName() {
+void Monster::addTitleToDisplayName() {
 	// Set monster title based on influence
 	std::string title = influenceRankToTitle[getForgeStack()];
-	fullName = title + name;
+	displayName = title + name;
 }
 
 void Monster::applyStacks() {
@@ -2637,7 +2641,7 @@ void Monster::configureForgeSystem() {
 	}
 
 	// Vaigu custom
-	updateFullName();
+	addTitleToDisplayName();
 	
 	// Change health based in stacks
 	const auto percentToIncrement = 1 + (15 * forgeStack + 35) / 100.f;
@@ -2702,7 +2706,7 @@ void Monster::clearFiendishStatus() {
 	health = mType->info.health * mType->getHealthMultiplier();
 	healthMax = mType->info.healthMax * mType->getHealthMultiplier();
 
-	updateFullName();
+	addTitleToDisplayName();
 	removeIcon("forge");
 	g_game().updateCreatureIcon(static_self_cast<Monster>());
 	g_game().sendUpdateCreature(static_self_cast<Monster>());
