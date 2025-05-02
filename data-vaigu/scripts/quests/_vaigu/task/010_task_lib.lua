@@ -92,8 +92,8 @@ function Player:AddOngoingTask(task)
 end
 
 function Player:AddOngoingDailyTask(dailyTask)
-	self:setStorageValueByKey(dailyTask.storage, MISSION_STARTED)
 	self:setStorageValueByKey(dailyTask.currentKills, 0)
+	self:setStorageValueByKey(dailyTask.storage, MISSION_STARTED)
 end
 
 local function selectTaskFromList(player, button, choice)
