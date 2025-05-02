@@ -1,4 +1,15 @@
 local raidData = {
+	LuaRaid("Ancient_Spawn_Of_Morgathla"):Context({
+		perday = 0.1872,
+		waves = {
+			Wave(60 * 5)
+			:Creature("Ancient Spawn Of Morgathla", Area(Position(6581, 1341, 9), Position(6581, 1341, 9), 1, true))
+			:Notification(-60 * 5, "Morgathla sent her legate to inspect the breeding grounds.")
+			:Notification(-1, "Ancient Spawn of Morgathla is present in ancient scarab caves.")
+		},
+		cooldown = 14400,
+		minPlayersOnline = 1,
+	}),
 	LuaRaid("Supply_1"):Context({
 		perDay = 0.648,
 		waves = {
@@ -56,7 +67,7 @@ local raidData = {
 		minPlayersOnline = 1,
 	}),
 	LuaRaid("Tyrn"):Context({
-		perDay = 0.288,
+		perDay = 0.8,
 		waves = {
 			Wave(10000):Creature("Tyrn", Area(Position(6628, 585, 4), Position(6628, 585, 4)), 1, false),
 		},
@@ -64,7 +75,7 @@ local raidData = {
 		minPlayersOnline = 1,
 	}),
 	LuaRaid("Ribstride"):Context({
-		perDay = 0.432,
+		perDay = 1.5,
 		waves = {
 			Wave(10000):Creature("Bonebeast", Area(Position(6905, 1232, 7), Position(6966, 1279, 7)), 35, true):Creature("Ribstride", Area(Position(6905, 1232, 7), Position(6966, 1279, 7)), 1, true),
 		},
@@ -83,10 +94,10 @@ local raidData = {
 		perDay = 0.1728,
 		waves = {
 			Wave(800000):Creature("Deathslicer", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 12, true):Notification(-799000, "Primordial evil is awakening deep in the mines of Siberia."):Notification(-200000, "Demonic entities begin to appear in the deepest mines of Siberia."),
-			Wave(900000):Creature("Juggernaut", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
+			Wave(900000):Creature("Juggernaut", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true):Notification(-1 , "Demonic entities begin to appear in the deepest mines of Siberia."),
 			Wave(1000000):Creature("Fury", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
 			Wave(1100000):Creature("Demon", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
-			Wave(1200000):Creature("Ghazbaran", Area(Position(6436, 1734, 14), Position(6436, 1734, 14)), 1, true),
+			Wave(1200000):Creature("Ghazbaran", Area(Position(6436, 1734, 14), Position(6436, 1734, 14)), 1, true):Notification(-1, "The Demonic Master has revealed himself in the mines of Siberia."),
 		},
 		cooldown = 144000,
 		minPlayersOnline = 5,
@@ -429,7 +440,7 @@ local raidData = {
 		perDay = 0.1872,
 		waves = {
 			Wave(360000):Creature("Demon", Area(Position(6713, 1143, 10), Position(6749, 1173, 10)), 7, true):Notification(-359000, "Strange footsteps can be heard in the north of the desert."),
-			Wave(720000):Creature("Morgaroth", Area(Position(6728, 1158, 10), Position(6728, 1158, 10)), 1, true):Notification(-360000, "The presence of mythical evil can be sensed near the extinct volcano in the desert."),
+			Wave(720000):Creature("Morgaroth", Area(Position(6728, 1158, 10), Position(6728, 1158, 10)), 1, true):Notification(-360000, "The presence of mythical evil can be sensed near the extinct volcano in the desert."):Notification(-1, "Morgaroth has activated the volcano and revealed himself in its depths!"),
 		},
 		cooldown = 144000,
 		minPlayersOnline = 5,
@@ -501,7 +512,7 @@ local raidData = {
 		minPlayersOnline = 1,
 	}),
 	LuaRaid("Icegolem"):Context({
-		perDay = 0.36,
+		perDay = 0.8,
 		waves = {
 			Wave(10000)
 				:Creature("Ice Golem", Area(Position(6522, 1756, 9), Position(6545, 1789, 9)), 4, true)
@@ -571,14 +582,6 @@ local raidData = {
 			Wave(10000):Creature("The old Widow", Area(Position(7375, 1661, 9), Position(7375, 1661, 9)), 1, false),
 		},
 		cooldown = 10800,
-		minPlayersOnline = 1,
-	}),
-	LuaRaid("Teleskor"):Context({
-		perDay = 0.864,
-		waves = {
-			Wave(10000):Creature("Teleskor", Area(Position(6064, 1565, 7), Position(6064, 1565, 7)), 1, false),
-		},
-		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
 	LuaRaid("Shadow_Hound"):Context({
@@ -880,7 +883,7 @@ local raidData = {
 		minPlayersOnline = 1,
 	}),
 	LuaRaid("Tyrn2"):Context({
-		perDay = 0.288,
+		perDay = 0.8,
 		waves = {
 			Wave(10000):Creature("Tyrn", Area(Position(6406, 1263, 3), Position(6406, 1263, 3)), 1, false),
 		},
@@ -992,7 +995,7 @@ local raidData = {
 		minPlayersOnline = 1,
 	}),
 	LuaRaid("The_Evil_Eye"):Context({
-		perDay = 0.432,
+		perDay = 0.7,
 		waves = {
 			Wave(10000):Creature("The Evil Eye", Area(Position(5769, 1411, 9), Position(5769, 1411, 9)), 1, false),
 		},
