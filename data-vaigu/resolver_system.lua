@@ -36,6 +36,7 @@ local goesToActions = {
 	outfitRewards = true,
 	mountRewards = true,
 	expReward = true,
+	wildcardReward = true,
 	nextState = true,
 	nextGlobalState = true,
 	nextTopic = true,
@@ -353,6 +354,17 @@ function ResolutionContext:AddExperience()
 	AddExperienceWithAnnouncement(self.player, actions.expReward)
 end
 
+
+function ResolutionContext:AddWildcard()
+	local actions = self.actionsOnSuccess
+	if not actions.preycardReward then
+		return
+	end
+
+	self.player:addPreyCards(actions.preycardReward)
+end
+
+
 function ResolutionContext:UpdatePlayerState()
 	local actions = self.actionsOnSuccess
 	if not actions.nextState then
@@ -476,6 +488,7 @@ local actionsOnSuccessfulResolution = {
 	ResolutionContext.AddOutfits,
 	ResolutionContext.AddMounts,
 	ResolutionContext.AddExperience,
+	ResolutionContext.AddWildcard,
 	ResolutionContext.UpdatePlayerState,
 	ResolutionContext.UpdateGlobalState,
 	ResolutionContext.SetNextTopic,
