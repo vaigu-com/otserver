@@ -218,7 +218,7 @@ pseudoQuest
 						if fromPosition.x == CONTAINER_POSITION and container ~= storeInbox and container:getEmptySlots() ~= 0 then
 							container:addItem(potion.flask, 1)
 						else
-							player:AddCustomItem({id = potion.flask, count = 1})
+							player:AddCustomItem({id = potion.flask, count = 1, dontAnnounce = true})
 						end
 					else
 						Game.createItem(potion.flask, 1, fromPosition)
