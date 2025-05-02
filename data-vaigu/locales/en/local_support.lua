@@ -1,4 +1,36 @@
 return {
+	["Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients."] = "Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients.",
+	["Thanks, these are things i needed. Here's your reward."] = "Thanks, these are things i needed. Here's your reward.",
+	["My plan is very sticky. Make sure to not tell anyone, alright?"] = "My plan is very sticky. Make sure to not tell anyone, alright?",
+	["I heard about some elf trying to make a move on madame malkin. I have a plan involving pinata vooodoo.. Bring me the pinata ingredients and i will reward you."] = "I heard about some elf trying to make a move on madame malkin. I have a plan involving pinata vooodoo.. Bring me the pinata ingredients and i will reward you.",
+	["Now this is a cooperation! Here is your reward."] = "Now this is a cooperation! Here is your reward.",
+	["So you are back. I got a new hustle for you. Bring me items from questlog. Their purpose is to no interest to you, so i wont be bothering you with that."] = "So you are back. I got a new hustle for you. Bring me items from questlog. Their purpose is to no interest to you, so i wont be bothering you with that.",
+	["Yo, whats good? I see you got all things i needed. Take this reward."] = "Yo, whats good? I see you got all things i needed. Take this reward.",
+	["I have some grim news - for myself at least. Plot owner raised rent prices and i might be out of business soon with that walmart prospering.. I heard he likes exotic items used for black magic. Bring me those and i will reward you."] = "I have some grim news - for myself at least. Plot owner raised rent prices and i might be out of business soon with that walmart prospering.. I heard he likes exotic items used for black magic. Bring me those and i will reward you.",
+	["I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!"] = "I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!",
+	["Potion Conveyor Journeyman"] = "Potion Conveyor Journeyman",
+	["Ask fstab about a new mission."] = "Ask fstab about a new mission.",
+	["You collected all the items fstab asked and got rewarded for it."] = "You collected all the items fstab asked and got rewarded for it.",
+	["BRING_MOULDY_INGREDIENTS_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.MouldyIngredients)
+		local missionDesc = "Fstab asked you to bring him the following items:\n" .. requiredItemsString
+		return missionDesc
+	end,
+	["BRING_MOULDY_PINATA_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.PinataIngredients)
+		local missionDesc = "Fstab asked you to bring him the following items:\n" .. requiredItemsString
+		return missionDesc
+	end,
+	["BRING_UNKNOWNCAUSE_INGREDIENTS_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.UnknownCauseIngredients)
+		local missionDesc = "Fstab asked you to bring him the following items:\n" .. requiredItemsString
+		return missionDesc
+	end,
+	["BRING_COMBAT_INGREDIENTS_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.CombatIngredients)
+		local missionDesc = "Fstab asked you to bring him the following items:\n" .. requiredItemsString
+		return missionDesc
+	end,
 	["Come back when you find my shipment."] = "Come back when you find my shipment.",
 	["Were you able to find my {shipment}?"] = "Were you able to find my {shipment}?",
 	["I hope that you'll find this ticket."] = "I hope that you'll find this ticket.",
@@ -25,7 +57,7 @@ return {
 	["Listen, over the past few years, I've lost a few components of my fishing gear in various ponds and lakes around Mirko. Specifically, I lost my wooden {float}, {reel}, and my old {stool}. Find all these items and {return} to me."] = "Listen, over the past few years, I've lost a few components of my fishing gear in various ponds and lakes around Mirko. Specifically, I lost my wooden {float}, {reel}, and my old {stool}. Find all these items and {return} to me.",
 	["Come back with all the items i need: {float}, {reel}, and my old {stool}."] = "Come back with all the items i need: {float}, {reel}, and my old {stool}.",
 	["Well I do in fact need some help. Wood delivery from Knurow is already delayed by two days.quest I can't check on that myself as im busy doing my business here.."] = "Well I do in fact need some help. Wood delivery from Knurow is already delayed by two days.quest I can't check on that myself as im busy doing my business here..",
-	["Everything is fine, but some journeyman could come in handy. Id say that you look promising."] = "Everything is fine, but some journeyman could come in handy. Id say that you look promising.",
+	["Everything is fine, but some {journeyman} could come in handy. Id say that you look promising."] = "Everything is fine, but some {journeyman} could come in handy. Id say that you look promising.",
 	["There's something I need help with. One of the recent packages from the monks has gone missing. It probably got stuck while flowing along the {route} waterway."] = "There's something I need help with. One of the recent packages from the monks has gone missing. It probably got stuck while flowing along the {route} waterway.",
 	["I dont need any help, but I would be glad if you bring me one piece of {cloth} of each color. I will definitely pay back for that."] = "I dont need any help, but I would be glad if you bring me one piece of {cloth} of each color. I will definitely pay back for that.",
 	["I need help, but not in areas that Fisher would suspect me of. But if you want to be useful, please contact me."] = "I need help, but not in areas that Fisher would suspect me of. But if you want to be useful, please contact me.",

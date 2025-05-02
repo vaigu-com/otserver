@@ -17,6 +17,8 @@ quest
 				GypsyAsked = {},
 			},
 
+			PotionConveyorJourneyman = {},
+
 			WoodDelivery = {},
 			NarroStages = {},
 
@@ -60,6 +62,15 @@ quest
 		QuestState.LocalSupport = {
 			Discernment = {
 				VisitDealers = 1,
+			},
+			PotionConveyorJourneyman = {
+				BringMouldyIngredients = 1,
+				AskForPinataQuest = 2,
+				BringPinataIngredients = 3,
+				AskForUnknownCauseQuest = 4,
+				BringUnknownCauseIngredients = 5,
+				AskForCombatQuest = 6,
+				BringCombatIngredients = 7,
 			},
 			WoodDelivery = {
 				TalkWithWoody = 1,
@@ -138,6 +149,7 @@ quest
 			ConfirmHavingpackage = NextTopic(),
 			ConfirmBuyingShimmerSwimmer = NextTopic(),
 			ConfirmTradeInTwomarlins = NextTopic(),
+			ConfirmPinataQuestSecret = NextTopic(),
 		}
 	end)
 	:Constant(function()
@@ -165,6 +177,29 @@ quest
 				[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
 				[Storage.LocalSupport.IKEAForTheBold] = MISSION_FINISHED,
 				[Storage.LocalSupport.SettledDownFishmonger] = MISSION_FINISHED,
+				[Storage.LocalSupport.PotionConveyorJourneyman] = MISSION_FINISHED,
+			},
+			PotionConveyorJourneyman = {
+				MouldyIngredients = {
+					{ id = ItemId.MOULDY_CHEESE, count = 1 },
+					{ id = ItemId.DAMSELFLY_EYE, count = 1 },
+					{ id = ItemId.HAUNCH_OF_BOAR, count = 1 },
+				},
+				PinataIngredients = {
+					{ id = ItemId.FROST_GIANT_PELT, count = 1 },
+					{ id = ItemId.SWAMPLING_MOSS, count = 1 },
+					{ id = ItemId.ACORN, count = 1 },
+				},
+				UnknownCauseIngredients = {
+					{ id = ItemId.SHARD, count = 1 },
+					{ id = ItemId.POISONOUS_SLIME, count = 1 },
+					{ id = ItemId.HAUNTED_PIECE_OF_WOOD, count = 1 },
+				},
+				CombatIngredients = {
+					{ id = ItemId.MAGIC_SULPHUR, count = 1 },
+					{ id = ItemId.WAR_CRYSTAL, count = 1 },
+					{ id = ItemId.UNHOLY_BONE, count = 1 },
+				},
 			},
 			StorageToVisitNpcName = {
 				[Storage.LocalSupport.VendorsAsked.TrollskyAsked] = "Trollsky",
@@ -226,6 +261,20 @@ quest
 						[QuestState.LocalSupport.FreakingRats.BringMouldyCheeseToGertrude] = "Gertrude asked you to bring her one mouldy cheese.",
 						[QuestState.LocalSupport.FreakingRats.BringPoisonedChesseToWalmart] = "The cheese has been poisoned. Bring it to Walmart, so she can repel the rats.",
 						[MISSION_FINISHED] = "Walmart didn't have time to make use of the poisonous cheese, but she already gave you your reward: Carrot cake and a minor gift.",
+					},
+				},
+				{
+					name = "Potion Conveyor Journeyman",
+					storage = Storage.LocalSupport.PotionConveyorJourneyman,
+					states = {
+						[QuestState.LocalSupport.PotionConveyorJourneyman.BringMouldyIngredients] = "BRING_MOULDY_INGREDIENTS_DESCRIPTION",
+						[QuestState.LocalSupport.PotionConveyorJourneyman.AskForPinataQuest] = "Ask fstab about a new mission.",
+						[QuestState.LocalSupport.PotionConveyorJourneyman.BringPinataIngredients] = "BRING_MOULDY_PINATA_DESCRIPTION",
+						[QuestState.LocalSupport.PotionConveyorJourneyman.AskForUnknownCauseQuest] = "Ask fstab about a new mission.",
+						[QuestState.LocalSupport.PotionConveyorJourneyman.BringUnknownCauseIngredients] = "BRING_UNKNOWNCAUSE_INGREDIENTS_DESCRIPTION",
+						[QuestState.LocalSupport.PotionConveyorJourneyman.AskForCombatQuest] = "Ask fstab about a new mission.",
+						[QuestState.LocalSupport.PotionConveyorJourneyman.BringCombatIngredients] = "BRING_COMBAT_INGREDIENTS_DESCRIPTION",
+						[MISSION_FINISHED] = "You collected all the items fstab asked and got rewarded for it.",
 					},
 				},
 				{
@@ -345,7 +394,7 @@ quest
 			}),
 			QuestFactory.Dialog("Fstab", {
 				[{ "mission", "misja", "help", "pomoc" }] = {
-					text = "Everything is fine, but some journeyman could come in handy. Id say that you look promising.",
+					text = "Everything is fine, but some {journeyman} could come in handy. Id say that you look promising.",
 					requiredState = {
 						[Storage.LocalSupport.VendorsAsked.FstabAsked] = MISSION_NOT_STARTED,
 					},
@@ -652,6 +701,138 @@ quest
 					rewards = { { id = 268, count = 40, addToStore = true }, { id = 268, count = 5, addToStore = true } },
 				},
 			})
+	end)
+	:Mission(Storage.LocalSupport.PotionConveyorJourneyman)
+	:State(function()
+		return MISSION_NOT_STARTED,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients.",
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.BringMouldyIngredients,
+					},
+					requiredState = {
+						[Storage.LocalSupport.VendorsAsked.FstabAsked] = MISSION_FINISHED,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.BringMouldyIngredients,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "Thanks, these are things i needed. Here's your reward.",
+					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.MouldyIngredients,
+					rewards = {
+						ExerciseWeaponBox(100),
+					},
+					wildcardReward = 1,
+					expReward = 5000,
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.AskForPinataQuest,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.AskForPinataQuest,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "My plan is very sticky. Make sure to not tell anyone, alright?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmPinataQuestSecret,
+				},
+				[{ "yes", "tak", "ok", "sure", "yeah" }] = {
+					text = "I heard about some elf trying to make a move on madame malkin. I have a plan involving pinata vooodoo.. Bring me the pinata ingredients and i will reward you.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmPinataQuestSecret,
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.BringPinataIngredients,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.BringPinataIngredients,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "Now this is a cooperation! Here is your reward.",
+					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.PinataIngredients,
+					rewards = {
+						ExerciseWeaponBox(200),
+						{ id = ItemId.MANA_POTION, count = 30 },
+						{ id = ItemId.MAGICAL_TORCH },
+					},
+					wildcardReward = 3,
+					expReward = 12000,
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.AskForUnknownCauseQuest,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.AskForUnknownCauseQuest,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "So you are back. I got a new hustle for you. Bring me items from questlog. Their purpose is to no interest to you, so i wont be bothering you with that.",
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.BringUnknownCauseIngredients,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.BringUnknownCauseIngredients,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "Yo, whats good? I see you got all things i needed. Take this reward.",
+					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.UnknownCauseIngredients,
+					rewards = {
+						ExerciseWeaponBox(400),
+						{ id = ItemId.BEETLE_NECKLACE },
+					},
+					wildcardReward = 3,
+					expReward = 50000,
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.AskForCombatQuest,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.AskForCombatQuest,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "I have some grim news - for myself at least. Plot owner raised rent prices and i might be out of business soon with that walmart prospering.. I heard he likes exotic items used for black magic. Bring me those and i will reward you.",
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.BringCombatIngredients,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.PotionConveyorJourneyman.BringCombatIngredients,
+			QuestFactory.Dialog("Fstab", {
+				[{ "journeyman", "czeladnik" }] = {
+					text = "I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!",
+					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.CombatIngredients,
+					rewards = {
+						ExerciseWeaponBox(700),
+						{ id = ItemId.SWAN_FEATHER_CLOAK },
+					},
+					wildcardReward = 10,
+					expReward = 700000,
+					nextState = {
+						[Storage.LocalSupport.PotionConveyorJourneyman] = MISSION_FINISHED,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return MISSION_FINISHED, QuestFactory.Dialog("Fstab", {
+			[{ "journeyman", "czeladnik" }] = {
+				text = "Thanks for your help. Although i wont be needing your assistance for now.",
+			},
+		})
 	end)
 	:Mission(Storage.LocalSupport.FreakingRats)
 	:State(function()

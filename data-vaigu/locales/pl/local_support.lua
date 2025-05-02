@@ -1,4 +1,36 @@
 return {
+	["Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients."] = "Interes mam do ciebie. Chce zrobic psikusa Biedronce, psikuta mysli ze sobie moze tak bez podatku sprzedawac te zarobaczale jedzenie. Ja jej pokaze na czym polega sabotaz.. to znaczy subtelnosc. Jak zbierzes wszystkie itemy, ktore spisalem w twoim questlogu, to zglos sie do mnie i pamietaj, aby uzyc naszego hasla - {czeladnik}.",
+	["Thanks, these are things i needed. Here's your reward."] = "Trzymaj - to za twoja pomoc. Mam nadzieje sie to nie konieci bedziesz chcial mi jeszcze pomoc.",
+	["My plan is very sticky. Make sure to not tell anyone, alright?"] = "Taka sytuacja - sliski temat ogolnie. Nie mozesz nikomu powiedziec o tym, ok?",
+	["I heard about some elf trying to make a move on madame malkin. I have a plan involving pinata vooodoo.. Bring me the pinata ingredients and i will reward you."] = "Slyszalem o elfie, ktory zarywal do madame malkin. Do mojego planu bede potrzebowac piniaty vodooo.. Przynies mi potrzebne materialy a cie nagrodze.",
+	["Now this is a cooperation! Here is your reward."] = "Nooo - i to sie nazywa wspolraca; masz - zasluzyles. Wroc do mnie jeszcze kiedys, a moze bede potrzebowal twojej pomocy.",
+	["So you are back. I got a new hustle for you. Bring me items from questlog. Their purpose is to no interest to you, so i wont be bothering you with that."] = "Jednak wrociles. Jest sprawa, ale tym razem nie bedzie latwo. Musze cos odjebac, bo mi sie nudzi, ale nie moga stad sie ruszyc. Potrzebuje kilku przedmiotow, co celow chytrych, acz tajnych. Szczegoly zamiescilem w twoim questlogu.",
+	["Yo, whats good? I see you got all things i needed. Take this reward."] = "Mooordo - nie wierzylem, ze ci sie uda. Wielkie dzieki; na pewno nie polazujesz. Lap i nikomu ani slowa.",
+	["I have some grim news - for myself at least. Plot owner raised rent prices and i might be out of business soon with that walmart prospering.. I heard he likes exotic items used for black magic. Bring me those and i will reward you."] = 'Nie bede owijal w bawelne - nie jest ciekawie. Wlasciciel tej rudery chce mnie zaplacic, bo "nie place za czynsz", czy cos takiego. Mysle, ze jestem w stanie przekupic go tymi trzema przedmiotami do okultyzmu. Przynies mi przedmioty, ktore wypisalem w twoim questlogu, a cie nagrodze.',
+	["I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!"] = "To to jestes. Wiedzialem, ze moge na ciebie liczyc. Oto twoja nagroda. Nabrales duzo doswiadczenia i pewnie zwiedziles wiele krain w swoich poszukiwanniach. Wiecej nie bede kombinowac, bo jeszcze straznikow na karku bede mial za te akcje. Powodzonka trzym sie!",
+	["Potion Conveyor Journeyman"] = "Montownia Potionow",
+	["Ask fstab about a new mission."] = "Zapytaj fstaba o nowa misje.",
+	["You collected all the items fstab asked and got rewarded for it."] = "Zebrales wszystkie przedmioty, o ktore prosil fstab, za co cie nagrodzil.",
+	["BRING_MOULDY_INGREDIENTS_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.MouldyIngredients)
+		local missionDesc = "Fstab poprosil cie o przytarganie nastepujacych przedmiotow:\n" .. requiredItemsString
+		return missionDesc
+	end,
+	["BRING_MOULDY_PINATA_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.PinataIngredients)
+		local missionDesc = "Fstab poprosil cie o przytarganie nastepujacych przedmiotow:\n" .. requiredItemsString
+		return missionDesc
+	end,
+	["BRING_UNKNOWNCAUSE_INGREDIENTS_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.UnknownCauseIngredients)
+		local missionDesc = "Fstab poprosil cie o przytarganie nastepujacych przedmiotow:\n" .. requiredItemsString
+		return missionDesc
+	end,
+	["BRING_COMBAT_INGREDIENTS_DESCRIPTION"] = function(context)
+		local requiredItemsString = ItemsToString(QuestConstants.LocalSupport.PotionConveyorJourneyman.CombatIngredients)
+		local missionDesc = "Fstab poprosil cie o przytarganie nastepujacych przedmiotow:\n" .. requiredItemsString
+		return missionDesc
+	end,
 	["Come back when you find my shipment."] = "Wroc, gdy zdobedziesz moja przesylke.",
 	["Were you able to find my {shipment}?"] = "Czy udalo ci sie znalezc moja {przesylke}?",
 	["I hope that you'll find this ticket."] = "Mam nadzieje, ze uda ci sie odnalezc ten bilet.",
@@ -25,7 +57,7 @@ return {
 	["Listen, over the past few years, I've lost a few components of my fishing gear in various ponds and lakes around Mirko. Specifically, I lost my wooden {float}, {reel}, and my old {stool}. Find all these items and {return} to me."] = "Sluchaj, na przestrzeni ostatnich kilku lat zgubilem kilka komponentow mojego sprzetu wedkarskiego w roznych oczkach wodnych i jeziorkach kolo mirko. Dokladnie to zgubilem drewniany {splawik}, {spinning} oraz moj stary {stolek}. Znajdz wszystkie te przedmioty i wroc do mnie.",
 	["Come back with all the items i need: {float}, {reel}, and my old {stool}."] = "Ktory z przedmiotow znalazles? Byl to {spinning}, {splawik} orak {stolek}.",
 	["Well I do in fact need some help. Wood delivery from Knurow is already delayed by two days.quest I can't check on that myself as im busy doing my business here.."] = "W zasadzie to tak, od jakis 2 dni spoznia sie dostawa drewna z Knurowa, niestety nie moge sie stad ruszyc aby to sprawdzic.",
-	["Everything is fine, but some journeyman could come in handy. Id say that you look promising."] = "Wszystko w porzadku, ale przydalby mi sie czeladnik, wiec jak bedziesz miec ochote to sie zglos.",
+	["Everything is fine, but some {journeyman} could come in handy. Id say that you look promising."] = "Wszystko w porzadku, ale przydalby mi sie {czeladnik}, wiec jak bedziesz miec ochote to sie zglos.",
 	["There's something I need help with. One of the recent packages from the monks has gone missing. It probably got stuck while flowing along the {route} waterway."] = "Jest cos, z czym potrzebuje pomocy. Jedna z ostatnich paczek od mnichow gdzies zaginela. Prawdopodobnie utknela, plynac {szlakiem} wodnym.",
 	["I dont need any help, but I would be glad if you bring me one piece of {cloth} of each color. I will definitely pay back for that."] = "Nie potrzebuje pomocy, ale gdybys przyniosl mi po 1 {tkaninie} kazdego koloru to sie na pewno odwdziecze.",
 	["I need help, but not in areas that Fisher would suspect me of. But if you want to be useful, please contact me."] = "Potrzebuje pomocy, ale pewnie nie taka o jaka chodzi Rybie, natomiast jakbys chcial sie przydac to sie zglos do mnie.",
@@ -107,7 +139,7 @@ return {
 		end
 		local unvisitedSuffix = ""
 		if visitedDealers ~= 10 then
-			unvisitedSuffix= "\n\nNie odwiedziles jeszcze tych sprzedawcow:" .. unvisitedNames
+			unvisitedSuffix = "\n\nNie odwiedziles jeszcze tych sprzedawcow:" .. unvisitedNames
 		end
 		return T("Przejdz sie po glownych sprzedawcach w MirkoTown i zobacz czy nie potrzebuja pomocy, po czym zamelduj o tym Komisarzowi. Odwiedzeni sprzedawcy: :visitedDealers:/10.:unvisitedSuffix:", { visitedDealers = visitedDealers, unvisitedSuffix = unvisitedSuffix })
 	end,
