@@ -88,16 +88,7 @@ return {
 			requiredKills = requiredKills,
 		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przedmioty do Pani Burmistrz:\n"
-			for _, item in pairs(requiredItems) do
-				local id = item.id
-				local itemName = ItemType(id):getName()
-				local count = item.count
-				dailyTaskDescription = dailyTaskDescription .. T(":count: :itemName:\n", {
-					count = count,
-					itemName = itemName,
-				})
-			end
+			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przedmioty do Pani Burmistrz:\n" .. ItemsToString(requiredItems)
 		end
 		dailyTaskDescription = dailyTaskDescription .. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
 			money = dailyTask.money,

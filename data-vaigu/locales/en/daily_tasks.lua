@@ -23,16 +23,7 @@ return {
 			requiredKills = requiredKills,
 		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n"
-			for _, item in pairs(requiredItems) do
-				local id = item.id
-				local itemName = ItemType(id):getName()
-				local count = item.count
-				dailyTaskDescription = dailyTaskDescription .. T(":count: :itemName:\n", {
-					count = count,
-					itemName = itemName,
-				})
-			end
+			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n" .. ItemsToString(requiredItems)
 		end
 		dailyTaskDescription = dailyTaskDescription .. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
 			money = dailyTask.money,

@@ -1,3 +1,19 @@
+function ItemsToString(items)
+	items = items or {}
+
+	local str = ""
+	for _, item in pairs(items) do
+		local id = item.id
+		local itemName = ItemType(id):getName()
+		local count = item.count
+		str = str .. T(":count: :itemName:\n", {
+			count = count,
+			itemName = itemName,
+		})
+	end
+	return str
+end
+
 ---using types other than string/number is not recommended
 ---@param key string|number|any
 ---@return any
