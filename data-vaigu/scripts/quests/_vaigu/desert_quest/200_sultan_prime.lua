@@ -559,19 +559,6 @@ quest
 			lookMount = 0,
 		}
 
-		monster.raceId = 733
-		monster.Bestiary = {
-			class = "Mammal",
-			race = BESTY_RACE_MAMMAL,
-			toKill = 250,
-			FirstUnlock = 10,
-			SecondUnlock = 100,
-			CharmsPoints = 5,
-			Stars = 1,
-			Occurrence = 0,
-			Locations = "Ankrahmun near the way to Darashia, Ankrahmun near sea, around Darashia, Issavi.",
-		}
-
 		monster.health = 45
 		monster.maxHealth = 45
 		monster.race = "blood"
