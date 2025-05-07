@@ -9571,11 +9571,11 @@
 	<monster centerx="7550" centery="1766" centerz="5" radius="1">
 		<monster name="Goblin Scavenger" x="0" y="0" z="5" spawntime="60" />
 	</monster>
+	<monster centerx="6558" centery="1770" centerz="5" radius="1">
+		<monster name="Ice Dragon" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="5805" centery="1771" centerz="5" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="5" spawntime="60" />
-	</monster>
-	<monster centerx="6558" centery="1771" centerz="5" radius="1">
-		<monster name="Ice Golem" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="7531" centery="1772" centerz="5" radius="1">
 		<monster name="Goblin Scavenger" x="0" y="0" z="5" spawntime="60" />
@@ -34488,6 +34488,10 @@
 	</monster>
 	<monster centerx="7100" centery="1316" centerz="7" radius="1">
 		<monster name="Assassin" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Assassin" x="1" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7103" centery="1316" centerz="7" radius="1">
+		<monster name="Stalker" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7205" centery="1316" centerz="7" radius="1">
 		<monster name="Amazon" x="0" y="0" z="7" spawntime="60" />
@@ -34567,6 +34571,9 @@
 	</monster>
 	<monster centerx="6801" centery="1319" centerz="7" radius="1">
 		<monster name="Tomb Servant" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7100" centery="1319" centerz="7" radius="1">
+		<monster name="Stalker" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7142" centery="1319" centerz="7" radius="1">
 		<monster name="Amazon" x="0" y="0" z="7" spawntime="60" />
@@ -45858,9 +45865,6 @@
 	<monster centerx="6028" centery="1889" centerz="7" radius="1">
 		<monster name="Crazed Summer Vanguard" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6070" centery="1889" centerz="7" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6533" centery="1889" centerz="7" radius="1">
 		<monster name="Frost Dragon Hatchling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -45947,9 +45951,6 @@
 	<monster centerx="6507" centery="1893" centerz="7" radius="1">
 		<monster name="Winter Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6080" centery="1894" centerz="7" radius="1">
-		<monster name="Ghoul" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6551" centery="1894" centerz="7" radius="1">
 		<monster name="Frost Dragon" x="0" y="1" z="7" spawntime="60" />
 	</monster>
@@ -45958,9 +45959,6 @@
 	</monster>
 	<monster centerx="5994" centery="1896" centerz="7" radius="1">
 		<monster name="Crazed Summer Vanguard" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6084" centery="1896" centerz="7" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6002" centery="1897" centerz="7" radius="1">
 		<monster name="Crazed Summer Vanguard" x="0" y="0" z="7" spawntime="60" />
@@ -45994,12 +45992,6 @@
 	</monster>
 	<monster centerx="5932" centery="1900" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6069" centery="1900" centerz="7" radius="1">
-		<monster name="Ghoul" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6075" centery="1900" centerz="7" radius="1">
-		<monster name="Elf Arcanist" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5955" centery="1901" centerz="7" radius="1">
 		<monster name="Elf" x="0" y="0" z="7" spawntime="60" />
@@ -46058,9 +46050,6 @@
 	<monster centerx="6039" centery="1908" centerz="7" radius="1">
 		<monster name="Wilting Leaf Golem" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6072" centery="1908" centerz="7" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5984" centery="1909" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -46079,9 +46068,6 @@
 	<monster centerx="6033" centery="1911" centerz="7" radius="1">
 		<monster name="Yellow Butterfly" x="0" y="1" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6079" centery="1911" centerz="7" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5984" centery="1912" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -46097,9 +46083,6 @@
 	<monster centerx="5909" centery="1914" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6083" centery="1915" centerz="7" radius="1">
-		<monster name="Ghoul" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5888" centery="1916" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -46112,17 +46095,11 @@
 	<monster centerx="5949" centery="1917" centerz="7" radius="1">
 		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6086" centery="1917" centerz="7" radius="1">
-		<monster name="Elf Arcanist" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5886" centery="1918" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6061" centery="1918" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6095" centery="1918" centerz="7" radius="1">
-		<monster name="Ghoul" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5898" centery="1919" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
@@ -46138,9 +46115,6 @@
 	</monster>
 	<monster centerx="6062" centery="1920" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6089" centery="1920" centerz="7" radius="1">
-		<monster name="Elf Arcanist" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5883" centery="1921" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
@@ -46159,12 +46133,6 @@
 	</monster>
 	<monster centerx="5951" centery="1923" centerz="7" radius="1">
 		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6095" centery="1923" centerz="7" radius="1">
-		<monster name="Ghoul" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6084" centery="1924" centerz="7" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5897" centery="1925" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
