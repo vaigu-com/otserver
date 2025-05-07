@@ -38,6 +38,21 @@ function NpcTypeRepository:Serialize()
 	logger.info("[NpcTypeRepository::Serialize] Serialization succesful.")
 end
 
+function NpcTypeRepository:GetNpcsNotOnMap()
+	local namesNotOnMap = {}
+	for name in
+		sortedkeypairs(self.registry, function(a, b)
+			return a:lower() < b:lower()
+		end)
+	do
+		if not Creature(name) then
+			table.insert(namesNotOnMap, name)
+		end
+	end
+
+	return namesNotOnMap
+end	
+
 registerNpcType = {}
 setmetatable(registerNpcType, {
 	__call = function(self, npcType, mask)
@@ -126,7 +141,7 @@ end
 registerNpcType.light = function(npcType, mask)
 	if mask.light then
 		if mask.light.color then
-			local 	color = mask.light.color
+			local color = mask.light.color
 		end
 		if mask.light.level then
 			npcType:light(color, mask.light.level)

@@ -217,10 +217,7 @@ local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 		if roll <= _skin.successChance then
 			if corpseId == 10426 then
 				corpse:getPosition():sendMagicEffect(CONST_ME_HITAREA)
-				local gobletItem = player:AddCustomItem({id = _skin.rewardId, count = _skin.amount or 1})
-				if gobletItem then
-					gobletItem:setDescription(_skin.desc:gsub("|PLAYERNAME|", player:getName()))
-				end
+				player:AddCustomItem({id = _skin.rewardId, count = _skin.amount or 1, desc = _skin.desc:gsub("|PLAYERNAME|", player:getName())})
 				if _skin.rewardId == 10429 then
 					player:addAchievement("Marblelous")
 					player:addAchievementProgress("Marble Madness", 5)

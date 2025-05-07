@@ -15,14 +15,8 @@ pseudoQuest
 			["Sunday"] = "Vashresamun",
 		}
 
-		local requiredMaxRoll = 35
 		local pharaoh = GlobalEvent("PharaohSummonHurghada")
 		function pharaoh.onTime(interval)
-			local roll = math.random(1, 100)
-			if roll > requiredMaxRoll then
-				return true
-			end
-
 			if SpawnLocks.PharaohHurghada:IsSet() then
 				return true
 			end

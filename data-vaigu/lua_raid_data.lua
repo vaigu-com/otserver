@@ -2,10 +2,84 @@ local raidData = {
 	LuaRaid("Ancient_Spawn_Of_Morgathla"):Context({
 		perday = 0.1872,
 		waves = {
+			Wave(60 * 5):Creature("Ancient Spawn Of Morgathla", Area(Position(6581, 1341, 9), Position(6581, 1341, 9)), 1, true):Notification(-60 * 5, "Morgathla sent her legate to inspect the breeding grounds."):Notification(-1, "Ancient Spawn of Morgathla is present in ancient scarab caves."),
+		},
+		cooldown = 14400,
+		minPlayersOnline = 1,
+	}),
+	LuaRaid("DjinnHurghada"):Context({
+		perday = 0.2,
+		waves = {
+			Wave(60):Creature("Green Djinn", Area(Position(6516, 1211, 7), Position(6550, 1231, 7)), 10):Creature("Blue Djinn", Area(Position(6516, 1211, 7), Position(6550, 1231, 7)), 10):Notification(-60, "The brotherhoods of the blue and green Djinns are organizing Islamic harvest festivals near their palaces. Be careful, they do not tolerate infidels."),
 			Wave(60 * 5)
-			:Creature("Ancient Spawn Of Morgathla", Area(Position(6581, 1341, 9), Position(6581, 1341, 9), 1, true))
-			:Notification(-60 * 5, "Morgathla sent her legate to inspect the breeding grounds.")
-			:Notification(-1, "Ancient Spawn of Morgathla is present in ancient scarab caves.")
+				:Creature("Green Djinn", Area(Position(6589, 1234, 7), Position(6628, 1262, 7)), 12)
+				:Creature("Blue Djinn", Area(Position(6589, 1234, 7), Position(6628, 1262, 7)), 12)
+				:Creature("Marid", Area(Position(6589, 1234, 7), Position(6628, 1262, 7)), 3)
+				:Creature("Efreet", Area(Position(6589, 1234, 7), Position(6628, 1262, 7)), 3)
+				:Notification(-30, "Hordes of Djinns have arrived at the festival. Caution! They won't let anyone through who doesn't worship the Great Allah or secure them a visa to Germany!"),
+			Wave(60 * 10)
+				:Creature("Marid", Area(Position(6656, 1285, 7), Position(6705, 1332, 7)), 15)
+				:Creature("Efreet", Area(Position(6656, 1285, 7), Position(6705, 1332, 7)), 15)
+				:Notification(-30, "Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad?"),
+		},
+		cooldown = 14400,
+		minPlayersOnline = 1,
+	}),
+	LuaRaid("WorkerGolemsMirkoNorth"):Context({
+		perday = 0.2,
+		waves = {
+			Wave(60):Creature("Worker golem", Area(Position(5899, 1401, 7), Position(5906, 1415, 7)), 5):Notification(-60, "Loud tremors can be heard from the salt mine north of Mirko Town. Rumor has it that the golem working class has started a rebellion against the city authorities over the lack of a 15th paycheck."),
+			Wave(60 * 3):Creature("Worker golem", Area(Position(5891, 1417, 7), Position(5909, 1423, 7)), 6):Creature("War golem", Area(Position(5891, 1417, 7), Position(5909, 1423, 7)), 1):Notification(-30, "The enraged golems have emerged from the depths. We strongly advise all citizens to avoid the vicinity of the mine — this uprising will not stop at burning tires. Flying boulders are imminent."),
+			Wave(60 * 8):Creature("Worker golem", Area(Position(5892, 1420, 7), Position(5910, 1427, 7)), 9):Creature("War golem", Area(Position(5892, 1420, 7), Position(5910, 1427, 7)), 2):Notification(-30, "The jokes are over — deadly war golems have joined the rebellion. Fight or flee, unless you want to be stoned to death!"),
+		},
+		cooldown = 14400,
+		minPlayersOnline = 1,
+	}),
+	LuaRaid("AmazonsKnurowo"):Context({
+		perday = 0.2,
+		waves = {
+			Wave(60):Creature("Amazon", Area(Position(5532, 1539, 7), Position(5569, 1578, 7)), 8):Creature("Valkyrie", Area(Position(5532, 1539, 7), Position(5569, 1578, 7)), 5):Notification(-30, "Knurowo is in trouble! A band of Amazons has attacked the town in search of breeding bulls and women's lingerie. Residents are barricading themselves in their homes — someone, please help them!"),
+			Wave(60 * 4):Creature("Amazon", Area(Position(5532, 1539, 7), Position(5569, 1578, 7)), 14):Creature("Valkyrie", Area(Position(5532, 1539, 7), Position(5569, 1578, 7)), 7),
+			Wave(60 * 7):Creature("Amazon", Area(Position(5532, 1539, 7), Position(5569, 1578, 7)), 19):Creature("Valkyrie", Area(Position(5532, 1539, 7), Position(5569, 1578, 7)), 14),
+		},
+		cooldown = 14400,
+		minPlayersOnline = 1,
+	}),
+	LuaRaid("NomadsHurghada"):Context({
+		perday = 0.2,
+		waves = {
+			Wave(60 * 2)
+				:Creature("Nomad", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 10)
+				:Creature("Nomad Blue", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 10)
+				:Creature("Nomad Female", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 10)
+				:Creature("Smuggler", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 5)
+				:Notification(-60 * 2, "Shitskins are storming the border fence, abducting women to take them to Dubai. The pyramid of the Hurghada are in grave danger!"),
+			Wave(60 * 5)
+				:Creature("Crypt Defiler", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 10)
+				:Creature("Grave Robber", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 10)
+				:Creature("Nomad", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 20)
+				:Creature("Nomad Female", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 20)
+				:Creature("Nomad Blue", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 20)
+				:Creature("Hunter", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 5)
+				:Creature("Bandit", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 8)
+				:Creature("Gang Member", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 5)
+				:Creature("Assassin", Area(Position(6769, 1268, 7), Position(6839, 1335, 7)), 3)
+				:Notification(-30, "Borderland nomads are blessing the pyramids with their so-called cultural enrichment. This is hybrid warfare!"),
+		},
+		cooldown = 14400,
+		minPlayersOnline = 1,
+	}),
+	LuaRaid("ChakoyaSyberia"):Context({
+		perday = 0.2,
+		waves = {
+			Wave(60 * 3)
+				:Creature("Ocyakao", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 1)
+				:Creature("Chakoya Windcaller", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 11)
+				:Creature("Chakoya Toolshaper", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 14)
+				:Creature("Chakoya Tribewarden", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 22)
+				:Creature("Dwarf Soldier", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 5)
+				:Creature("Dwarf Guard", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 8)
+				:Notification(-60 * 3, "The Fur Gang in Siberia has launched Operation Degeneration at the Dwarf camp near the mine. A bloody massacre is guaranteed."),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 1,
@@ -94,7 +168,7 @@ local raidData = {
 		perDay = 0.1728,
 		waves = {
 			Wave(800000):Creature("Deathslicer", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 12, true):Notification(-799000, "Primordial evil is awakening deep in the mines of Siberia."):Notification(-200000, "Demonic entities begin to appear in the deepest mines of Siberia."),
-			Wave(900000):Creature("Juggernaut", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true):Notification(-1 , "Demonic entities begin to appear in the deepest mines of Siberia."),
+			Wave(900000):Creature("Juggernaut", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true):Notification(-1, "Demonic entities begin to appear in the deepest mines of Siberia."),
 			Wave(1000000):Creature("Fury", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
 			Wave(1100000):Creature("Demon", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
 			Wave(1200000):Creature("Ghazbaran", Area(Position(6436, 1734, 14), Position(6436, 1734, 14)), 1, true):Notification(-1, "The Demonic Master has revealed himself in the mines of Siberia."),

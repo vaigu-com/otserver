@@ -615,17 +615,16 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 		return false
 	end
 
-	local item = self:AddCustomItem({ id = conjureId, count = conjureCount })
-	if not item then
+	local status = self:AddCustomItem({ id = conjureId, count = conjureCount })
+	if status ~= RETURNVALUE_NOERROR then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false
 	end
 
-	if item:hasAttribute(ITEM_ATTRIBUTE_DURATION) then
-		item:decay()
+	if ItemType(id) and ItemType(id):isRune() then
+		effect = CONST_ME_MAGIC_RED
 	end
-
-	self:getPosition():sendMagicEffect(item:getType():isRune() and CONST_ME_MAGIC_RED or effect)
+	self:getPosition():sendMagicEffect(effect)
 	return true
 end

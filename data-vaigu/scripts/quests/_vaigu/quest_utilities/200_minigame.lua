@@ -356,7 +356,7 @@ pseudoQuest
 			local sharedLobbyZone = Zone(Storage.Minigames.SharedLobbyArea)
 			local zoneEvents = ZoneEvent(sharedLobbyZone)
 
-			function zoneEvents.afterEnter(zone, creature)
+			function zoneEvents.beforeEnter(zone, creature)
 				local player = creature:getPlayer()
 				if not player then
 					return true
@@ -366,6 +366,7 @@ pseudoQuest
 				player:isOnMinigame(true)
 				player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 100)
 				player:changeSpeed()
+				return true
 			end
 
 			function zoneEvents.afterLeave(zone, creature)

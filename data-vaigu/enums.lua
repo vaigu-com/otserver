@@ -1,3 +1,6 @@
+LOGIN_OK = true
+LOGIN_ERROR = false
+
 GLOBAL_EVENT_OK = true
 
 USE_UP = "USE_UP"

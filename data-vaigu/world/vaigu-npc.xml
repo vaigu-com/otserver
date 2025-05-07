@@ -267,6 +267,9 @@
 	<npc centerx="5539" centery="1509" centerz="6" radius="3">
 		<npc name="Jack Sparrow" x="0" y="0" z="6" spawntime="60" />
 	</npc>
+	<npc centerx="5561" centery="1512" centerz="6" radius="1">
+		<npc name="Owsiak" x="0" y="0" z="6" spawntime="60" />
+	</npc>
 	<npc centerx="6166" centery="1518" centerz="6" radius="1">
 		<npc name="Rat of Kings" x="0" y="0" z="6" spawntime="60" />
 	</npc>
@@ -498,6 +501,9 @@
 	<npc centerx="5874" centery="1563" centerz="7" radius="1">
 		<npc name="Vislav Shivka" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="5560" centery="1570" centerz="7" radius="1">
+		<npc name="Barbara" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5848" centery="1574" centerz="7" radius="1">
 		<npc name="Gypsy" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -526,7 +532,7 @@
 		<npc name="Lecter" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5887" centery="1600" centerz="7" radius="3">
-		<npc name="Miles, the Guard" x="0" y="0" z="7" spawntime="60" />
+		<npc name="Miles, The Guard" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5849" centery="1608" centerz="7" radius="3">
 		<npc name="Commissioner Fisher" x="0" y="0" z="7" spawntime="60" />

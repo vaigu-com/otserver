@@ -8,6 +8,52 @@ end
 local rme_dir = "../rme/"
 local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
 
+local function extractCorpseData(firstStageId)
+	local firstStageitem = ItemType(firstStageId)
+	if not firstStageitem then
+		return
+	end
+	local secondStageId = firstStageitem:getDecayId()
+	if not secondStageId or (secondStageId == 0) or (secondStageId == -1) then
+		return
+	end
+
+	local secondStageItem = ItemType(secondStageId)
+	if not secondStageItem or (not secondStageItem:isContainer()) then
+		return
+	end
+
+	return firstStageId, secondStageId
+end
+
+function MonsterTypeRepository:SerializeCorpses()
+	local corpseIds = {}
+	for name, data in pairs(self.registry) do
+		local firstStageId, secondStageId = extractCorpseData(data.corpse)
+		if firstStageId and secondStageId then
+			local previousId = corpseIds[firstStageId]
+			if previousId ~= secondStageId and previousId ~= nil then
+				print(firstStageId, ":", previousId, secondStageId)
+			end
+			corpseIds[firstStageId] = secondStageId
+		end
+	end
+
+	local corpseIdsStr = ""
+	for key, value in pairs(corpseIds) do
+		corpseIdsStr = corpseIdsStr .. "\n" .. key .. ", " .. value
+	end
+
+	local file = io.open("corpseIds.txt", "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SerializeCorpses] Cannot open file :path:. Cropses have NOT been serialized.", { path = monstersXmlPath }))
+		return
+	end
+	file:write(corpseIdsStr)
+	file:close()
+	logger.info("[MonsterTypeRepository::SerializeCorpses] Serialization succesful.")
+end
+
 function MonsterTypeRepository:Serialize()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
 	for name, data in
@@ -78,13 +124,12 @@ local bestiarykillcountRealToVaigu = {
 		SecondUnlock = 10,
 		CharmsPoints = 5,
 	},
-	[25]  = {
+	[25] = {
 		toKill = 10,
 		FirstUnlock = 3,
 		SecondUnlock = 5,
 		CharmsPoints = 1,
 	},
-	--Unchanged
 	[5] = {
 		toKill = 5,
 		FirstUnlock = 2,
@@ -93,23 +138,169 @@ local bestiarykillcountRealToVaigu = {
 	},
 }
 
-local function applyCustomBestiaryKillCounts(mask)
+local nameToNewExp = {
+	["Anomaly"] = 200000,
+	["Behemoth"] = 3000,
+	["Blightwalker"] = 7500,
+	["Blue Djinn"] = 300,
+	["Bog Raider"] = 1000,
+	["Bones"] = 10000,
+	["Bragrumol"] = 40000,
+	["Braindeath"] = 1100,
+	["Bretzecutioner"] = 6000,
+	["Crawler"] = 1300,
+	["Crystalcrusher"] = 700,
+	["Deepworm"] = 2900,
+	["Diremaw"] = 3200,
+	["Dreadmaw"] = 4000,
+	["Drillworm"] = 1400,
+	["Elder Wyrm"] = 2700,
+	["Eradicator"] = 200000,
+	["Falcon Knight"] = 8000,
+	["Falcon Paladin"] = 8000,
+	["Ferumbras"] = 100000,
+	["Flamecaller Zazrak"] = 6000,
+	["Frost Giant"] = 220,
+	["Frost Giantess"] = 220,
+	["Furyosa"] = 20000,
+	["Gravelord Oshuran"] = 4000,
+	["Green Djinn"] = 300,
+	["Hellflayer"] = 14000,
+	["Ironblight"] = 6100,
+	["Jaul"] = 70000,
+	["Juggernaut"] = 15000,
+	["Kollos"] = 3000,
+	["Lizard Gate Guardian"] = 5000,
+	["Lost Exile"] = 2000,
+	["Lost Husher"] = 2000,
+	["Mawhawk"] = 33000,
+	["Obujos"] = 40000,
+	["Ogre Brute"] = 1000,
+	["Orc Leader"] = 340,
+	["Orewalker"] = 6700,
+	["Outburst"] = 200000,
+	["Owin"] = 10000,
+	["Plaguesmith"] = 6000,
+	["Rotspit"] = 7000,
+	["Shock Head"] = 4000,
+	["Spidris"] = 3300,
+	["Spitter"] = 1400,
+	["Stampor"] = 1000,
+	["The Voice of Ruin"] = 8000,
+	["War Golem"] = 3700,
+	["Wiggler"] = 1100,
+	["Worker Golem"] = 1700,
+	["Yakchal"] = 7000,
+	["Zulazza the Corruptor"] = 50000,
+}
+
+local function countMonsters(filePath)
+	local monsterCounts = {}
+
+	local xml = io.open(filePath, "r")
+	if not xml then
+		logger.warn("[countMonsters] file not found: " .. filePath)
+		return {}
+	end
+
+	for name in xml:read("*a"):gmatch('<monster%s+[^>]-name="(.-)"') do
+		monsterCounts[name] = (monsterCounts[name] or 0) + 1
+	end
+	xml:close()
+
+	return monsterCounts
+end
+
+local function applyCustomExp(mask)
+	if not mask.name then
+		return mask
+	end
+
+	local newExp = nameToNewExp[mask.name]
+	if not newExp then
+		return mask
+	end
+
+	mask.experience = newExp
+	return mask
+end
+
+local countToMultiplier = {
+	--impossible
+	--[0] = 1,
+
+	[1] = 0.25,
+	[2] = 0.25,
+	[3] = 0.25,
+	[4] = 0.25,
+	[5] = 0.25,
+
+	[6] = 0.5,
+	[7] = 0.5,
+	[8] = 0.5,
+	[9] = 0.5,
+	[10] = 0.5,
+
+	[11] = 0.75,
+	[12] = 0.75,
+	[13] = 0.75,
+	[14] = 0.75,
+	[15] = 0.75,
+	[16] = 0.75,
+	[17] = 0.75,
+	[18] = 0.75,
+	[19] = 0.75,
+	[20] = 0.75,
+}
+
+local monsterNameToCountOnMap = nil
+local function applyCustomBestiaryKillCounts(mask, monsterType)
+	monsterNameToCountOnMap = monsterNameToCountOnMap or countMonsters(DATA_DIRECTORY .. "/world/vaigu-monster.xml")
 	if mask.Bestiary and mask.Bestiary.toKill then
 		local newData = bestiarykillcountRealToVaigu[mask.Bestiary.toKill]
 		if not newData then
-			logger.warn(T("[applyCustomBestiaryKillCounts] Unknown real 'toKill' :toKill:. No modifications were applied.", {toKill = mask.Bestiary.toKill}))
+			logger.warn(T("[applyCustomBestiaryKillCounts] Unknown realtibia 'toKill' :toKill:. No modifications were applied.", { toKill = mask.Bestiary.toKill }))
 			return mask
 		end
+
 		mask.Bestiary.toKill = newData.toKill
 		mask.Bestiary.FirstUnlock = newData.FirstUnlock
 		mask.Bestiary.SecondUnlock = newData.SecondUnlock
 		mask.Bestiary.CharmsPoints = newData.CharmsPoints
+		if mask.Bestiary.toKill > 25 then
+			local monsterName = monsterType:name()
+			local monsterCount = monsterNameToCountOnMap[monsterName]
+			local bestiaryMultiplier = countToMultiplier[monsterCount]
+			if monsterCount and bestiaryMultiplier then
+				logger.trace(T("Monster :name: has only :count: spawn points! Its bestiary kill counts have been reduced accordingly.", { name = monsterName, count = monsterCount }))
+			end
+			bestiaryMultiplier = bestiaryMultiplier or 1
+			mask.Bestiary.toKill = math.ceil(mask.Bestiary.toKill * bestiaryMultiplier)
+			mask.Bestiary.FirstUnlock = math.ceil(mask.Bestiary.FirstUnlock * bestiaryMultiplier)
+			mask.Bestiary.SecondUnlock = math.ceil(mask.Bestiary.SecondUnlock * bestiaryMultiplier)
+
+			bestiaryMultiplier = bestiaryMultiplier or 1
+			--logger.warn(monsterType:name(), monsterCount, countToMultiplier[monsterCount])
+		end
+	end
+
+	return mask
+end
+
+local customAttributeCallbacks = {
+	applyCustomBestiaryKillCounts,
+	applyCustomExp,
+}
+local function applyCustomAttributes(mask, monsterType)
+	for _, callback in pairs(customAttributeCallbacks) do
+		mask = callback(mask, monsterType)
+		break
 	end
 	return mask
 end
 
 MonsterType.register = function(self, mask)
-	mask = applyCustomBestiaryKillCounts(mask)
+	mask = applyCustomAttributes(mask, self)
 	registerMonsterType(self, mask)
 	MonsterTypeRepository:Add(self:getUniqueName(), mask)
 end

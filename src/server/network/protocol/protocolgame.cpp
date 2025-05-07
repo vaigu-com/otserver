@@ -1431,15 +1431,15 @@ void ProtocolGame::parsePacketFromDispatcher(NetworkMessage &msg, uint8_t recvby
 		case 0xEE:
 			parseGreet(msg);
 			break;
-		// Premium coins transfer
-		// case 0xEF: parseCoinTransfer(msg); break;
+			// Premium coins transfer
+			// case 0xEF: parseCoinTransfer(msg); break;
 		case 0xF0:
 			g_game().playerShowQuestLog(player->getID());
 			break;
 		case 0xF1:
 			parseQuestLine(msg);
 			break;
-		// case 0xF2: parseRuleViolationReport(msg); break;
+			// case 0xF2: parseRuleViolationReport(msg); break;
 		case 0xF3: /* get object info */
 			break;
 		case 0xF4:
@@ -4149,14 +4149,14 @@ void ProtocolGame::sendCyclopediaCharacterStoreSummary() {
 
 	/*std::vector<uint16_t> m_hOutfits;
 	for (const auto &it : g_game().getHirelingOutfits()) {
-	    if (player->kv()->scoped("hireling-outfits")->get(it.second)) {
-	        m_hOutfits.emplace_back(it.first);
-	        g_logger().debug("outfit id: {}, name: {}", it.first, it.second);
-	    }
+	        if (player->kv()->scoped("hireling-outfits")->get(it.second)) {
+	                m_hOutfits.emplace_back(it.first);
+	                g_logger().debug("outfit id: {}, name: {}", it.first, it.second);
+	        }
 	}
 	msg.addByte(m_hOutfits.size());
 	for (const auto &id : m_hOutfits) {
-	    msg.addByte(0x01); // TODO need to get the correct id from hireling outfit
+	        msg.addByte(0x01); // TODO need to get the correct id from hireling outfit
 	}*/
 	msg.addByte(0x00); // hireling outfit size
 
@@ -5649,9 +5649,9 @@ void ProtocolGame::sendOpenForge() {
 	for each convergence fusion (1 per item slot, only class 4):
 	1 byte: count fusable items
 	for each fusable item:
-	    2 bytes: item id
-	    1 byte: tier
-	    2 bytes: count
+	        2 bytes: item id
+	        1 byte: tier
+	        2 bytes: count
 	*/
 	for (const auto &[slot, itemMap] : convergenceFusionItemsMap) {
 		uint8_t totalItemsCount = 0;
@@ -5743,15 +5743,15 @@ void ProtocolGame::sendOpenForge() {
 
 	/*
 	for each convergence transfer:
-	    2 bytes: count donors
-	    for each donor:
-	        2 bytes: item id
-	        1 byte: tier
-	        2 bytes: count
-	    2 bytes: count receivers
-	    for each receiver:
-	        2 bytes: item id
-	        2 bytes: count
+	        2 bytes: count donors
+	        for each donor:
+	                2 bytes: item id
+	                1 byte: tier
+	                2 bytes: count
+	        2 bytes: count receivers
+	        for each receiver:
+	                2 bytes: item id
+	                2 bytes: count
 	*/
 	for (const auto &[slot, itemMap] : convergenceTransferItemsMap) {
 		uint16_t donorCount = 0;
@@ -7927,7 +7927,16 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 	msg.addByte(player->isAccessPlayer() ? 0xFF : lightInfo.level);
 	msg.addByte(lightInfo.color);
 
-	msg.add<uint16_t>(creature->getStepSpeed());
+	// Vaigu custom
+	auto stepSpeed = creature->getStepSpeed();
+	std::shared_ptr<Player> _player = creature->getPlayer();
+	if (_player && _player->isOnMinigame()) {
+		auto minigameFixedSpeed = _player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
+		if (minigameFixedSpeed > 0) {
+			stepSpeed = minigameFixedSpeed;
+		}
+	}
+	msg.add<uint16_t>(stepSpeed);
 
 	addCreatureIcon(msg, creature);
 

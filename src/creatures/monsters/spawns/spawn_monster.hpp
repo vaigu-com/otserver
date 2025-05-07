@@ -82,6 +82,7 @@ class SpawnsMonster {
 public:
 	static bool isInZone(const Position &centerPos, int32_t radius, const Position &pos);
 
+	static bool loadMonsterCounts(const std::string &filemonstername);
 	bool loadFromXML(const std::string &filemonstername);
 	void startup();
 	void clear();

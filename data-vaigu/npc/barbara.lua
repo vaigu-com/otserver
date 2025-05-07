@@ -20,8 +20,8 @@ local voices = {
 }
 local context = {
 	name = name,
-	greetJob = JOB_FOOD,
-	jobs = { JOB_FOOD },
+	greetJob = JOB_MAGIC_WILDCARD,
+	jobs = { JOB_MAGIC, JOB_WILDCARD },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
