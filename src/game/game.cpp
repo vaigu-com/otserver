@@ -447,8 +447,17 @@ void Game::resetNpcs() const {
 std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t count) {
 	std::vector<std::string> monsterNames;
 
+	SpawnsMonster::loadMonsterCounts(g_configManager().getString(DATA_DIRECTORY) + "/world/" +  g_configManager().getString(MAP_NAME) + "-monster.xml");
+	auto &monsterCounts = g_game().map.spawnsMonster.getMonsterCounts();
 	std::vector<BoostedMonsterData> boostableMonsters;
 	for (const auto &[raceId, _name] : BestiaryList) {
+		// Vaigu custom
+		// Only monsters with count of at least 10 on the whole map can become boosted
+		auto it = monsterCounts.find(_name);
+		if (it == monsterCounts.end() || it->second <= 10) {
+			continue;
+		}
+
 		if (std::find(monsterNames.begin(), monsterNames.end(), _name) == monsterNames.end()) {
 			boostableMonsters.emplace_back(BoostedMonsterData { raceId, _name });
 		}
@@ -3519,8 +3528,6 @@ void Game::playerEquipItem(uint32_t playerId, uint16_t itemId, bool hasTier /* =
 	} else {
 		player->setNextAction(OTSYS_TIME() + g_configManager().getNumber(ACTIONS_DELAY_INTERVAL));
 	}
-
-	player->setNextAction(OTSYS_TIME() + g_configManager().getNumber(ACTIONS_DELAY_INTERVAL));
 }
 
 void Game::playerMove(uint32_t playerId, Direction direction) {
@@ -6690,14 +6697,17 @@ void Game::changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varS
 	player->setSpeed(varSpeed);
 
 	// Vaigu custom
-	int32_t stepSpeed = player->getStepSpeed();
+	auto stepSpeed = player->getStepSpeed();
 	if (player->isOnMinigame()) {
-		stepSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
+		auto minigameFixedSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
+		if (minigameFixedSpeed > 0) {
+			stepSpeed = minigameFixedSpeed;
+		}
 	}
 
-	// Send new player speed to the spectators
-	for (const auto &creatureSpectator : Spectators().find<Player>(player->getPosition())) {
-		creatureSpectator->getPlayer()->sendChangeSpeed(player, stepSpeed);
+	// Send to clients
+	for (const auto &spectator : Spectators().find<Player>(player->getPosition())) {
+		spectator->getPlayer()->sendChangeSpeed(player, stepSpeed);
 	}
 }
 
