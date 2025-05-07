@@ -27,6 +27,30 @@
 static constexpr int32_t MONSTER_MINSPAWN_INTERVAL = 1000; // 1 second
 static constexpr int32_t MONSTER_MAXSPAWN_INTERVAL = 86400000; // 1 day
 
+
+bool SpawnsMonster::loadMonsterCounts(const std::string &filemonstername) {
+	pugi::xml_document doc;
+	const pugi::xml_parse_result result = doc.load_file(filemonstername.c_str());
+	if (!result) {
+		printXMLError(__FUNCTION__, filemonstername, result);
+		return false;
+	}
+
+	for (const auto &spawnMonsterNode : doc.child("monsters").children()) {
+		for (const auto &childMonsterNode : spawnMonsterNode.children()) {
+			if (strcasecmp(childMonsterNode.name(), "monster") == 0) {
+				pugi::xml_attribute nameAttribute = childMonsterNode.attribute("name");
+				if (!nameAttribute) {
+					continue;
+				}
+				incrementMapMonsterCount(nameAttribute.as_string());
+			}
+		}
+	}
+
+	return true;
+}
+
 bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 	if (isLoaded()) {
 		return true;
