@@ -7,7 +7,7 @@ local openworldchestScope = Scope("OpenWorldChest")
 local specificOpenworldchestScopes = {
 	Weapons = openworldchestScope:Get("Weapons"),
 	Armour = openworldchestScope:Get("Armour"),
-	Magic = openworldchestScope:Get("Mage"),
+	Magic = openworldchestScope:Get("Magic"),
 	Distance = openworldchestScope:Get("Distance"),
 
 	Trash = openworldchestScope:Get("Trash"),
