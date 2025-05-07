@@ -119,12 +119,14 @@ LUA_RAID_DIFFICULTY_TIER_LOOT = {
 
 local fourHours = 14400
 
----@class 	LuaRaid
+---@class LuaRaid
 ---@field name string
 ---@field perDay number
 ---@field waves Wave[]
 ---@field cooldown integer seconds
 ---@field minPlayerOnline integer
+---@field isRare boolean generated field
+---@field isCommon boolean generated field
 ---@field private difficultyTier LUA_RAID_DIFFICULTY_TIER
 ---@field private lastRunTime integer
 LuaRaid = {}
@@ -189,8 +191,15 @@ local triesPerDay = 24 * 60 * 60 * 1000 / tryStartRaidInterval
 local maxRoll = 100000
 local additionalChancePerFailstack = 1 / triesPerDay
 
+local rareThreshold = 0.2
+
 ---@param luaRaid LuaRaid
 function LuaRaidRegistry:Register(luaRaid)
+	if luaRaid.perDay < rareThreshold then
+		luaRaid.isRare = true
+	else
+		luaRaid.isCommon = true
+	end
 	self.registry[luaRaid.name] = luaRaid
 end
 
@@ -198,17 +207,35 @@ function LuaRaidRegistry:Get(name)
 	return self.registry[name] or self.registry
 end
 
-function LuaRaidRegistry:TryStartRandom()
+function LuaRaidRegistry:TryStartRandomCommon()
 	for name, raid in randomPairs(self.registry) do
-		local roll = math.random(1, maxRoll)
-		local requiredRoll = raid.perDay / triesPerDay * maxRoll * (1 + self.failStacks * additionalChancePerFailstack)
-		if roll <= requiredRoll and raid:CanStart() then
-			self.failStacks = 0
-			logger.info("Randomly Starting Raid: " .. name)
-			raid:Start()
-			return true
+		if raid.isCommon then
+			local roll = math.random(1, maxRoll)
+			local requiredRoll = raid.perDay / triesPerDay * maxRoll * (1 + self.failStacks * additionalChancePerFailstack)
+			if roll <= requiredRoll and raid:CanStart() then
+				self.failStacks = 0
+				logger.info("Randomly Starting Raid: " .. name)
+				raid:Start()
+				return true
+			end
+			self.failStacks = self.failStacks + 1
 		end
-		self.failStacks = self.failStacks + 1
+	end
+	return true
+end
+
+function LuaRaidRegistry:TryStartRandomRare()
+	for name, raid in randomPairs(self.registry) do
+		if raid.isRare then
+			local roll = math.random(1, maxRoll)
+			local requiredRoll = raid.perDay / triesPerDay * maxRoll * (1 + self.failStacks * additionalChancePerFailstack)
+			if roll <= requiredRoll and raid:CanStart() then
+				self.failStacks = 0
+				logger.info("Randomly Starting Rare Raid: " .. name)
+				raid:Start()
+				return true
+			end
+		end
 	end
 	return true
 end
@@ -231,7 +258,14 @@ dofile(DATA_DIRECTORY .. "/lua_raid_data.lua")
 
 local globalevent = GlobalEvent("LuaRaids")
 function globalevent.onThink(...)
-	return LuaRaidRegistry:TryStartRandom()
+	return LuaRaidRegistry:TryStartRandomCommon()
+end
+globalevent:interval(tryStartRaidInterval)
+globalevent:register()
+
+local globalevent = GlobalEvent("LuaRaidsRare")
+function globalevent.onThink(...)
+	return LuaRaidRegistry:TryStartRandomRare()
 end
 globalevent:interval(tryStartRaidInterval)
 globalevent:register()
