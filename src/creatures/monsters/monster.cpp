@@ -310,9 +310,10 @@ void Monster::onAttackedCreatureDisappear(bool) {
 }
 
 void Monster::onCreatureAppear(const std::shared_ptr<Creature> &creature, bool isLogin) {
-	if(mType->info.ignoreCreatures){
+	if(hasIgnoreCreatures()){
 		return;
 	}
+
 	Creature::onCreatureAppear(creature, isLogin);
 
 	if (mType->info.creatureAppearEvent != -1) {
