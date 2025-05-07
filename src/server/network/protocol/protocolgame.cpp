@@ -7927,7 +7927,16 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 	msg.addByte(player->isAccessPlayer() ? 0xFF : lightInfo.level);
 	msg.addByte(lightInfo.color);
 
-	msg.add<uint16_t>(creature->getStepSpeed());
+	// Vaigu custom
+	auto stepSpeed = creature->getStepSpeed();
+	std::shared_ptr<Player> _player = creature->getPlayer();
+	if (_player && _player->isOnMinigame()) {
+		auto minigameFixedSpeed = _player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
+		if (minigameFixedSpeed > 0) {
+			stepSpeed = minigameFixedSpeed;
+		}
+	}
+	msg.add<uint16_t>(stepSpeed);
 
 	addCreatureIcon(msg, creature);
 
