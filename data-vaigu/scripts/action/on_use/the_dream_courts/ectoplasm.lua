@@ -12,20 +12,11 @@ function ectoplasmBucket.onUse(player, item, fromPosition, target, toPosition, i
 		local chance = math.random(1, 2)
 		if chance == 1 then
 			if item.itemid == 29310 then
-				local it = player:AddCustomItem({id = 29307, count = 1})
-				if it then
-					it:decay()
-				end
+				player:AddCustomItem({ id = 29307, count = 1 })
 			elseif item.itemid == 29307 then
-				local it = player:AddCustomItem({id = 29308, count = 1})
-				if it then
-					it:decay()
-				end
+				player:AddCustomItem({ id = 29308, count = 1 })
 			elseif item.itemid == 29308 then
-				local it = player:AddCustomItem({id = 29309, count = 1})
-				if it then
-					it:decay()
-				end
+				player:AddCustomItem({ id = 29309, count = 1 })
 			end
 			target:transform(29306)
 			item:remove(1)
@@ -74,4 +65,3 @@ end
 
 ectoplasmEntranceBack:uid(9001)
 ectoplasmEntranceBack:register()
-
