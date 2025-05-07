@@ -436,6 +436,10 @@ function Player:AddCustomItem(itemData, container, localizer)
 			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
 		end
 
+		if addedItem:hasAttribute(ITEM_ATTRIBUTE_DURATION) then
+			addedItem:decay()
+		end
+
 		local name = addedItem:getName()
 		if showCustomDescOnAcquire then
 			name = desc
