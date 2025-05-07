@@ -10,6 +10,10 @@
 ---@method getItems
 Zone = Zone
 
+function Zone:isMinigameZone()
+	return string.find(self:getName():lower(), "minigame")
+end
+
 ---@param encounterData EncounterData
 function Zone.getByEncounter(encounterData)
 	return Zone("encounter." .. toKey(encounterData.displayName))
