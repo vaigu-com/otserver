@@ -15,7 +15,11 @@ monster.speed = 0
 
 monster.changeTarget = {
 	interval = 1000,
-	chance = 0,
+	chance = 100,
+}
+
+monster.strategiesTarget = {
+	nearest = 100,
 }
 
 monster.flags = {
@@ -61,7 +65,8 @@ monster.summons = {}
 monster.loot = {}
 
 monster.attacks = {
-	--{ name = "melee", interval = 2000, chance = 100, minDamage = -2, maxDamage = -7, attack = 130 },
+	{ name = "melee", interval = 1000, chance = 100, minDamage = -1, maxDamage = -2, attack = 10 },
+	{ name = "melee", interval = 1000, chance = 100, minDamage = -1, maxDamage = -2, attack = 10 },
 }
 
 monster.defenses = {
