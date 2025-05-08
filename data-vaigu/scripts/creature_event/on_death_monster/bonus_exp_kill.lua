@@ -60,7 +60,7 @@ callback:register()
 local function addPlayerBonusExperience(player, baseExp)
 	local playerSpecificExpRate = getRateFromTable(experienceStages, player:getLevel(), configManager.getNumber(configKeys.RATE_EXPERIENCE))
 	local finalExp = baseExp * playerSpecificExpRate
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You received " .. finalExp .. " bonus experience!")
+	player:sendTextMessage(MESSAGE_DAMAGE_DEALT, "You received " .. finalExp .. " bonus experience!")
 	player:addExperience(finalExp)
 end
 
