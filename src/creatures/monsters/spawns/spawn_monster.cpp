@@ -316,7 +316,7 @@ void SpawnMonster::checkSpawnMonster() {
 		if (!mType) {
 			continue;
 		}
-		if (!mType->canSpawn(sb.pos) || (mType->info.isBlockable && findPlayer(sb.pos))) {
+		if (!mType->canSpawn(sb.pos) || findPlayer(sb.pos)) {
 			sb.lastSpawn = OTSYS_TIME();
 			continue;
 		}
