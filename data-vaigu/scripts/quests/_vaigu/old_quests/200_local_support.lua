@@ -520,8 +520,7 @@ quest
 					rewards = {
 						{ id = 268, count = 15, addToStore = true },
 						{ id = 266, count = 5, addToStore = true },
-						{ id = 3003 },
-						{ id = 3059 },
+						{ id = 21400 },
 					},
 				},
 				[{ ANY_MESSAGE }] = {
@@ -552,7 +551,6 @@ quest
 					rewards = {
 						{ id = 268, count = 10, addToStore = true },
 						{ id = 266, count = 10, addToStore = true },
-						{ id = 3003 },
 						{ id = 3412 },
 					},
 				},
@@ -602,8 +600,6 @@ quest
 						{ id = 3031, count = 70 },
 					},
 				},
-			}),
-			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
 					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
@@ -621,8 +617,6 @@ quest
 						{ id = 3031, count = 70 },
 					},
 				},
-			}),
-			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
 					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
@@ -639,8 +633,6 @@ quest
 						{ id = 3074 },
 					},
 				},
-			}),
-			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
 					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {

@@ -7,6 +7,7 @@ local starterItems = {
 		toBackpack = {
 			{ id = 8015, count = 5, dontAnnounce = true },
 			{ id = 7879, count = 1, dontAnnounce = true },
+			{ id = 3003, count = 1, dontAnnounce = true },
 		},
 	},
 	[VOCATION.ID.DRUID] = {
@@ -17,6 +18,7 @@ local starterItems = {
 		toBackpack = {
 			{ id = 8015, count = 5, dontAnnounce = true },
 			{ id = 7879, count = 1, dontAnnounce = true },
+			{ id = 3003, count = 1, dontAnnounce = true },
 		},
 	},
 	[VOCATION.ID.PALADIN] = {
@@ -27,6 +29,7 @@ local starterItems = {
 		toBackpack = {
 			{ id = 8015, count = 5, dontAnnounce = true },
 			{ id = 7879, count = 1, dontAnnounce = true },
+			{ id = 3003, count = 1, dontAnnounce = true },
 		},
 	},
 	[VOCATION.ID.KNIGHT] = {
@@ -36,6 +39,7 @@ local starterItems = {
 		toBackpack = {
 			{ id = 8015, count = 5, dontAnnounce = true },
 			{ id = 7879, count = 1, dontAnnounce = true },
+			{ id = 3003, count = 1, dontAnnounce = true },
 
 			{ id = 3267, count = 1 },
 			{ id = 3268, count = 1 },
