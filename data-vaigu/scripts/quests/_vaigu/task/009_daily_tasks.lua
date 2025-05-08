@@ -74,12 +74,14 @@ quest
 		local dailyPamphletUse = Action()
 		function dailyPamphletUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			onPamphlet(player, item)
+			item:remove()
 			return true
 		end
 
 		local dailyPamphletLook = Look()
 		function dailyPamphletLook.onLook(player, item)
 			onPamphlet(player, item)
+			item:remove()
 			return DONT_SHOW_ONLOOK
 		end
 
