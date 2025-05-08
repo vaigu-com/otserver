@@ -19,13 +19,14 @@ local function resetTaskSuccesfulCompletion(player, task)
 	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
 end
 
-local function cancelTask(player, task)
-	player:setStorageValueByKey(task.storage, TASK_CAN_START_DESPITE_HIGHER_LEVEL)
+local function resetTask(player, task)
 	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
+	player:setStorageValueByKey(task.storage, TASK_CAN_START_DESPITE_HIGHER_LEVEL)
 end
 
-local function resetTaskSlot(player, taskSlot)
-	player:setStorageValueByKey(taskSlot, TASK_SLOT_UNNOCUPIED)
+local function resetDailyTask(player, task)
+	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
+	player:setStorageValueByKey(task.storage, TASK_SLOT_UNNOCUPIED)
 end
 
 function Player:DoneAnyTask()
@@ -116,17 +117,15 @@ local function selectDailyTaskFromList(player, button, choice)
 end
 
 local function cancelTaskFromList(player, button, choice)
-	if choice.taskSlot then
-		resetTaskSlot(player, choice.taskSlot)
+	if choice.task then
+		resetTask(player, choice.task)
 	end
-	cancelTask(player, choice.task)
 end
 
 local function canceDailyTaskFromList(player, button, choice)
-	if choice.taskSlot then
-		resetTaskSlot(player, choice.taskSlot)
+	if choice.dailyTask then
+		resetDailyTask(player, choice.dailyTask)
 	end
-	cancelTask(player, choice.dailyTask)
 end
 
 local function showDailyTaskHelpWindow(player)
@@ -277,7 +276,6 @@ function OpenTaskCancelWindow(context)
 		local task = GetTaskByStorage(ongoingTaskStorage)
 		if task then
 			local choice = modalWindow:addChoice(T(":name:", { name = task.name }))
-			choice.taskSlot = taskSlot
 			choice.task = task
 		end
 	end
@@ -353,7 +351,7 @@ function Player:TryAddTaskRewards(context, task)
 		return rewardWasNotGranted
 	end
 	resetTaskSuccesfulCompletion(self, task)
-	resetTaskSlot(self, task.storage)
+	resetTask(self, task)
 	return rewardWasGranted
 end
 
@@ -403,7 +401,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
 	self:RemoveItems(requiredItems)
 	grantTaskRewards(context, dailyTask)
 	resetTaskSuccesfulCompletion(self, dailyTask)
-	resetTaskSlot(self, storage)
+	resetDailyTask(self, dailyTask)
 	self:IncrementStorage(Storage.DailyTasks.DailyLimit, 1)
 	return localizer:Get("DAILY_TASK_REWARDS_DIALOG")
 end

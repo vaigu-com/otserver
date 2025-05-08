@@ -71,7 +71,7 @@ pseudoQuest
 				{ toPos = Position(7074, 801, 6), name = "Kongo" },
 				{ toPos = Position(5539, 1509, 6), name = "Knurowo" },
 				{ toPos = Position(6602, 1877, 7), name = "Syberia" },
-				-- { toPos = Position(6421, 727, 7), name = "Praga Polnoc", minLevel = 60 }, --removed from game (currently)
+				{ toPos = Position(6421, 727, 7), name = "Prague North", minLevel = 60 },
 				{ toPos = Position(7311, 1082, 6), name = "Maioor'ka" },
 				{ toPos = Position(7933, 1546, 6), name = "Bydgoshch" },
 			},
