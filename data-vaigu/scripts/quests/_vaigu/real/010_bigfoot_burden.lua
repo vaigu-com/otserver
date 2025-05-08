@@ -21,9 +21,7 @@ quest
 				{
 					name = "Looking for Gnomerik",
 					storage = Storage.BigfootsBurden.QuestLine,
-					description = "The dwarf Xelvar has sent you to meet the gnome Gnomerik. \z
-						He can recruit you to the Bigfoot Company. \z
-						Use the teleporter near Xelvar to enter the gnomish base and start looking for Gnomerik.",
+					description = "The dwarf Xelvar has sent you to meet the gnome Gnomerik. \nHe can recruit you to the Bigfoot Company. \nUse the teleporter near Xelvar to enter the gnomish base and start looking for Gnomerik.",
 				},
 				{
 					name = "A New Recruit",
@@ -34,10 +32,8 @@ quest
 					name = "Recruitment: A Test in Gnomology",
 					storage = Storage.BigfootsBurden.QuestLine,
 					states = {
-						[5] = "Pass Gnomerik's test by answering his questions. \z
-							If you fail to get a high enough score drink a mushroom beer and start again.",
-						[6] = "You have passed the gnomish psychology test and can proceed to the medical exam. \z
-							Talk to Gnomespector about your next examination.",
+						[5] = "Pass Gnomerik's test by answering his questions. \nIf you fail to get a high enough score drink a mushroom beer and start again.",
+						[6] = "You have passed the gnomish psychology test and can proceed to the medical exam. \nTalk to Gnomespector about your next examination.",
 					},
 				},
 				{
@@ -49,10 +45,8 @@ quest
 					name = "Recruitment: Ear Examination",
 					storage = Storage.BigfootsBurden.QuestLine,
 					states = {
-						[10] = "You have been g-rayed. It has been an ... unexpected experience. Now you are ready for your \z
-							ear examination. Walk up to doctor Gnomedix and wait for him to finish your ear examination.",
-						[11] = "You passed the ear examination. Well, at least most of you did. \z
-							Now talk to Gnomaticus about your next test. ",
+						[10] = "You have been g-rayed. It has been an ... unexpected experience. Now you are ready for your \near examination. Walk up to doctor Gnomedix and wait for him to finish your ear examination.",
+						[11] = "You passed the ear examination. Well, at least most of you did. \nNow talk to Gnomaticus about your next test. ",
 					},
 				},
 				{
@@ -86,8 +80,7 @@ quest
 					minState = 21,
 					maxState = 23,
 					states = {
-						[21] = "Find your personal soul melody by trial and error. \z
-							Create the complete soul melody of seven notes and then report to Gnomelvis. Red notes indicate a failure.",
+						[21] = "Find your personal soul melody by trial and error. \nCreate the complete soul melody of seven notes and then report to Gnomelvis. Red notes indicate a failure.",
 						[22] = "You found your very own soul melody. You should talk to Gnomelvis about it!",
 					},
 				},
@@ -184,5 +177,22 @@ quest
 				},
 			},
 		})
+	end)
+	:Script(function()
+		local trophyItemIds = { ItemId.ABYSSADOR_S_LASH, ItemId.GNOMEVIL_S_HAT, ItemId.DEATHSTRIKE_S_SNIPPET }
+		local reward = { id = ItemId.MAJOR_CRYSTALLINE_TOKEN, count = 5 }
+
+		local warzoneTrophy = Action()
+		function warzoneTrophy.onUse(player, trophyItem, fromPosition, target, toPosition, isHotkey)
+			if player:CanAddItems({ reward }) then
+				trophyItem:remove()
+				player:AddCustomItem(reward)
+			end
+			return true
+		end
+		for _, trophyItemId in pairs(trophyItemIds) do
+			warzoneTrophy:id(trophyItemId)
+		end
+		warzoneTrophy:register()
 	end)
 	:Register()
