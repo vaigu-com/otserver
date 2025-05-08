@@ -229,7 +229,7 @@ pseudoQuest
 					textNoRequiredMoney = "I wont do it for free.",
 					textNoRequiredItems = "Sorry, but you dont have such item. I can only fix {soft boots}.",
 				},
-				[{ "medicine", "belongings","medicine pouch" }] = {
+				[{ "medicine", "belongings", "medicine pouch" }] = {
 					text = "You have medicine pouch for me?",
 					nextTopic = QuestTopics.JOB_TOPICS.confirmMedicinepouchExchance,
 					requiredItems = { { id = 12517, remove = false } },
@@ -375,7 +375,9 @@ pseudoQuest
 			},
 			[JOB_DAILYTASK] = {
 				[{ "anuluj", "zrezygnowac", "cancel" }] = {
-					specialActionsOnSuccess = { { SPECIAL_ACTIONS_DAILY_TASK.openDailyTaskCancelWindow } },
+					specialActionsOnSuccess = { {
+						action = SPECIAL_ACTIONS_DAILY_TASK.openDailyTaskCancelWindow,
+					} },
 					specialRequirements = {
 						{
 							requirement = SPECIAL_REQUIREMENTS_DAILY_TASK.hasAnyOngoingDailyTask,
