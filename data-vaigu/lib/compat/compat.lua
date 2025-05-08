@@ -544,7 +544,7 @@ function isPremium(cid)
 end
 
 function getBlessingsCost(level, byCommand)
-	return Blessings.getBlessingsCost(level, byCommand)
+	return Blessings.getBlessingCost(level, byCommand)
 end
 
 function getPvpBlessingCost(level, byCommand)
