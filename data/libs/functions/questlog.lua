@@ -87,6 +87,20 @@ function Player:getTrackedMissionIds()
 	return trackedMissionIds
 end
 
+function Player.setMissionAsNotTracked(self, mission)
+	local trackedMissionStorages = self:getStorageValueByKey(Storage.TrackedMissionsStorages)
+	if type(trackedMissionStorages) ~= "table" then
+		trackedMissionStorages = {}
+	end
+
+	trackedMissionStorages[mission.storage] = nil
+	self:setStorageValueByKey(Storage.TrackedMissionsStorages, trackedMissionStorages)
+
+	local playerId = self:getId()
+	PlayerTrackedMissionsData[playerId] = PlayerTrackedMissionsData[playerId] or {}
+	PlayerTrackedMissionsData[playerId][mission.missionId] = nil
+end
+
 function Player.setMissionAsTracked(self, mission)
 	local trackedMissionStorages = self:getStorageValueByKey(Storage.TrackedMissionsStorages)
 	if type(trackedMissionStorages) ~= "table" then
@@ -388,23 +402,27 @@ local function questUpdateIsAnnouncable(key, value, oldValue)
 	return true
 end
 
-function Player.tryAutoTrackMission(self, mission, oldValue)
-	if not (self:isTrackingMissionState(mission) or oldValue == MISSION_NOT_STARTED) then
+function Player.tryAutoTrackMission(self, mission, oldValue, nextValue)
+	if mission.autoTrack == DONT_AUTOTRACK then
+		return
+	end
+	if not self:isMissionOngoing(mission) then
+		return
+	end
+	if self:isTrackingMissionState(mission) then
+		return
+	end
+	if oldValue ~= MISSION_NOT_STARTED then
+		return
+	end
+	if nextValue == MISSION_NOT_STARTED then
 		return
 	end
 
 	self:setMissionAsTracked(mission)
-
-	local translatedMission = {
-		missionId = mission.missionId,
-		missionName = self:getTranslatedMissionName(mission),
-		missionDesc = self:getTranslatedMissionDescription(mission),
-	}
-	self:sendTrackedMission(translatedMission)
-	self:sendQuestLogMainPage()
 end
 
-function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTime)
+function Player.trySendQuestlogUpdatedText(self, currentFrameTime, nextValue, oldValue)
 	local playerId = self:getId()
 	if LastQuestlogUpdate[playerId] ~= currentFrameTime and Game.isQuestStorage(storage) then
 		LastQuestlogUpdate[playerId] = currentFrameTime
@@ -412,15 +430,14 @@ function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTi
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your questlog has been updated.")
 		end
 	end
+end
 
-	local mission = Game.getMissionByStorage(storage)
-	if mission and mission.autoTrack ~= DONT_AUTOTRACK then
-		self:tryAutoTrackMission(mission, oldValue)
-	end
+function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTime)
+	self:trySendQuestlogUpdatedText(currentFrameTime, nextValue, oldValue)
 
 	local linkedMissions = Game.getLinkedMissions(storage)
 	for _, linkedMission in pairs(linkedMissions) do
-		if self:isTrackingMissionState(linkedMission) then
+		if self:isTrackingMissionState(linkedMission) and self:isMissionOngoing(linkedMission) then
 			local translatedMission = {
 				missionId = linkedMission.missionId,
 				missionName = self:getTranslatedMissionName(linkedMission),
@@ -429,6 +446,28 @@ function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTi
 			self:sendTrackedMission(translatedMission)
 		end
 	end
+
+	local mission = Game.getMissionByStorage(storage)
+	if not mission then
+		return
+	end
+
+	self:tryAutoTrackMission(mission, oldValue, nextValue)
+
+	if nextValue == MISSION_NOT_STARTED then
+		self:setMissionAsNotTracked(mission)
+	end
+
+	if self:isTrackingMissionState(mission) and self:isMissionOngoing(mission) then
+		local translatedMission = {
+			missionId = mission.missionId,
+			missionName = self:getTranslatedMissionName(mission),
+			missionDesc = self:getTranslatedMissionDescription(mission),
+		}
+		self:sendTrackedMission(translatedMission)
+	end
+
+	self:sendQuestLogMainPage()
 end
 
 function Player.sendTrackedMissions(self)
