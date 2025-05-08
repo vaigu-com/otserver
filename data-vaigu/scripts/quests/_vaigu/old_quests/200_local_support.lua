@@ -510,9 +510,50 @@ quest
 						[Storage.LocalSupport.VendorsAsked.JackAsked] = MISSION_FINISHED,
 						[Storage.LocalSupport.VendorsAsked.GypsyAsked] = MISSION_FINISHED,
 					},
-					expReward = 3500,
+					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.isMage,
+							requiredOutcome = true,
+						},
+					},
+					expReward = 500,
 					rewards = {
 						{ id = 268, count = 15, addToStore = true },
+						{ id = 266, count = 5, addToStore = true },
+						{ id = 3003 },
+						{ id = 3059 },
+					},
+				},
+				[{ ANY_MESSAGE }] = {
+					text = "Gypsy fortune telling ball? He was a clumsy one ever since.\nThree people are complaining about wood deficiency? It has to be checked as soon as possible. Make your way to Knurowo and ask in about the delivery at the city pier.\nFollow the road at the west of the city and you will find it. I'll give you some potions supply, you may need them.",
+					nextState = {
+						[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
+						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TalkWithWoody,
+					},
+					requiredState = {
+						[Storage.LocalSupport.VendorsAsked.TrollskyAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.FstabAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.LebesgueAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.PostmanAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.MadameAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.WalmartAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.KomorAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.DiggerAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.JackAsked] = MISSION_FINISHED,
+						[Storage.LocalSupport.VendorsAsked.GypsyAsked] = MISSION_FINISHED,
+					},
+					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.isMage,
+							requiredOutcome = false,
+						},
+					},
+					expReward = 500,
+					rewards = {
+						{ id = 268, count = 10, addToStore = true },
+						{ id = 266, count = 10, addToStore = true },
+						{ id = 3003 },
+						{ id = 3412 },
 					},
 				},
 			})
@@ -549,6 +590,71 @@ quest
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+					},
+					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.isPaladin,
+							requiredOutcome = true,
+						},
+					},
+					rewards = {
+						{ id = 3571 },
+						{ id = 3031, count = 70 },
+					},
+				},
+			}),
+			QuestFactory.Dialog("Commissioner Fisher", {
+				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					nextState = {
+						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
+						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+					},
+					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.isKnight,
+							requiredOutcome = true,
+						},
+					},
+					rewards = {
+						{ id = 3372 },
+						{ id = 3031, count = 70 },
+					},
+				},
+			}),
+			QuestFactory.Dialog("Commissioner Fisher", {
+				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					nextState = {
+						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
+						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+					},
+					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.isSorcerer,
+							requiredOutcome = true,
+						},
+					},
+					rewards = {
+						{ id = 3074 },
+					},
+				},
+			}),
+			QuestFactory.Dialog("Commissioner Fisher", {
+				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					nextState = {
+						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
+						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+					},
+					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.isDruid,
+							requiredOutcome = true,
+						},
+					},
+					rewards = {
+						{ id = 3066 },
 					},
 				},
 			})
@@ -638,7 +744,7 @@ quest
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ "mission", "misja" }] = {
 					text = "Very good, go speak with Trollsky about your reward, from now on you are a certified warrior of MirkoTown.",
-					expReward = 55000,
+					expReward = 35000,
 					nextState = {
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward,
 					},
@@ -724,7 +830,7 @@ quest
 					text = "Thanks, these are things i needed. Here's your reward.",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.MouldyIngredients,
 					rewards = {
-						ExerciseWeaponBox(100),
+						ExerciseWeaponBox(80),
 					},
 					wildcardReward = 1,
 					expReward = 5000,
@@ -998,7 +1104,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.LocalSupport.Parcel,
 					},
-					expReward = 15000,
+					expReward = 3500,
 					rewards = {
 						{ id = 7290 },
 					},
@@ -1066,7 +1172,7 @@ quest
 						{ id = 7379 },
 						{ id = 7457, remove = false },
 					},
-					expReward = 100000,
+					expReward = 40000,
 					rewards = {
 						QuestKeyItems.LocalSupport.OldManFrostPickaxe,
 					},
@@ -1133,7 +1239,7 @@ quest
 					rewards = {
 						{ id = 902 },
 					},
-					expReward = 147000,
+					expReward = 27000,
 					requiredTopic = QuestTopics.LocalSupport.ConfirmTradeInTwomarlins,
 					requiredItems = {
 						{ id = 901, count = 2 },
@@ -1178,7 +1284,7 @@ quest
 			QuestFactory.Dialog("Ocellatus", {
 				[{ "mission", "misja" }] = {
 					text = "Thanks a lot! Can't wait to see the match.",
-					expReward = 15000,
+					expReward = 2500,
 					requiredItems = {
 						QuestKeyItems.LocalSupport.Ticket,
 					},
@@ -1210,7 +1316,7 @@ quest
 				[{ "mission", "misja", "food", "soup", "order", "zupa" }] = {
 					text = "Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway.",
 					textNoRequiredItems = "Come back with the food.",
-					expReward = 350000,
+					expReward = 150000,
 					requiredItems = {
 						{ id = 9081 },
 						{ id = 9079, remove = false },
@@ -1436,7 +1542,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.LocalSupport.BookOfContraband,
 					},
-					expReward = 30000,
+					expReward = 12000,
 				},
 			})
 	end)
@@ -1463,7 +1569,7 @@ quest
 					text = "Mister, I'm just fishing here quietly, and all of the sudden I see a man emerging on the surface. You're saying that he is a thief? - he ran that way, to the east.",
 				},
 			}),
-			QuestFactory.Dialog("Miles, the Guard", {
+			QuestFactory.Dialog("Miles, The Guard", {
 				[{ "thief", "zlodziej" }] = {
 					text = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",
 				},

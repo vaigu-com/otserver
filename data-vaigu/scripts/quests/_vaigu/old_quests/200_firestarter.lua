@@ -53,7 +53,7 @@ quest
 		table.insert(Quests, {
 			name = "Firestarter",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Mission 1: Fiery Beginnings",
 					storage = Storage.Firestarter.Mission01,
@@ -147,7 +147,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.Firestarter.FirebugHaystack,
 					},
-					expReward = 12000,
+					expReward = 2500,
 				},
 			})
 	end)
@@ -203,7 +203,7 @@ quest
 					nextState = {
 						[Storage.Firestarter.Mission02] = QuestState.Firestarter.Mission02.AskForNewMission,
 					},
-					expReward = 16000,
+					expReward = 7000,
 					rewards = {
 						{ id = 7430 },
 						{ id = 3731, count = 5 },
@@ -280,7 +280,10 @@ quest
 			QuestFactory.Dialog("Hymel", {
 				[{ "mission", "misja" }] = {
 					text = "It was great! I already can see that smoke I'll be breathing in.\nTake this weapon for your achievements, you will be able to burn more stuff with it.\nThat was fun! See you!",
-					expReward = 60000,
+					expReward = 16000,
+					rewards = {
+						{ id = 3280 },
+					},
 					nextState = {
 						[Storage.Firestarter.Mission03] = MISSION_FINISHED,
 						[Storage.Finished.Firestarter] = MISSION_FINISHED,

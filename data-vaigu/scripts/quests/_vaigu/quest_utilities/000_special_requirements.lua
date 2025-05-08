@@ -1,4 +1,39 @@
 SPECIAL_REQUIREMENTS_UNIVERSAL = {
+	isSorcerer = function (context)
+		local player = context.player
+		if not player then
+			 return
+		end
+		return player:isSorcerer()
+	end,
+	isDruid = function (context)
+		local player = context.player
+		if not player then
+			 return
+		end
+		return player:isDruid()
+	end,
+	isKnight = function (context)
+		local player = context.player
+		if not player then
+			 return
+		end
+		return player:isKnight()
+	end,
+	isPaladin = function (context)
+		local player = context.player
+		if not player then
+			 return
+		end
+		return player:isPaladin()
+	end,
+	isMage = function (context)
+		local player = context.player
+		if not player then
+			 return
+		end
+		return player:isMage()
+	end,
 	canStartEscort = function(context)
 		if context.escort:IsOngoing() then
 			return false, "You cannot start this escort yet."

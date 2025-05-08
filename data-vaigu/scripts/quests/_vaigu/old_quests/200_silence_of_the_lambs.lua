@@ -82,7 +82,7 @@ quest
 				[{ "mission", "misja" }] = {
 					text = "You did your task very well, you will use these tools properly for sure. Come back to me when you have decided you want to know the real taste.",
 					textNoRequiredItems = "Why are you coming back without vampire teeth? Should I be taking yours instead?\nCome back when you have proven that you are worthy of using this tool.",
-					expReward = 90000,
+					expReward = 50000,
 					requiredItems = {
 						{ id = 9685, count = 5 },
 					},

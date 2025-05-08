@@ -113,7 +113,7 @@ quest
 						{ id = 3061 },
 					},
 					textNoRequiredItems = "Come back when you've collected all the items.",
-					expReward = 60000,
+					expReward = 26000,
 					outfitRewards = {
 						{ outfitId = 574, addon = 1 },
 						{ outfitId = 575, addon = 1 },
@@ -184,7 +184,7 @@ quest
 						{ outfitId = 575, addon = 3 },
 					},
 					rewards = { { id = 3035, count = 70 } },
-					expReward = 250000,
+					expReward = 150000,
 					textNoRequiredItems = "Don't you have a new document for me yet? I'll wait then.",
 				},
 			})
@@ -244,7 +244,7 @@ quest
 						[Storage.ChesterTheDwarf.Mission03] = MISSION_FINISHED,
 						[Storage.ChesterTheDwarf.DoorToChesterCompartment] = ACCESS_GRANTED,
 					},
-					expReward = 30000,
+					expReward = 50000,
 					rewards = { { id = 27605 } },
 				},
 			})
