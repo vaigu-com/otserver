@@ -23,7 +23,16 @@ function onUpdateDatabase()
 
 	logger.info("(change default town to id 1)")
 	db.query([[
-				UPDATE canary_samples SET town_id = 1;
+				UPDATE players 
+				SET
+					town_id = 1,
+					level = 1,
+					health = 150,
+					healthmax = 150,
+					mana = 55,
+					manamax = 55,
+					cap = 400
+				WHERE LOWER(name) LIKE "%sample%";
 			]])
 
 	logger.info("Updated database to version 50 (vaigu custom)")
