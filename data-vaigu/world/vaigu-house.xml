@@ -420,8 +420,6 @@
 	<house name="Flat #148" houseid="10159" entryx="7255" entryy="1119" entryz="5" rent="0" townid="6" size="18" clientid="0" beds="0" />
 	<house name="Flat #149" houseid="10160" entryx="7225" entryy="1122" entryz="5" rent="0" townid="6" size="17" clientid="0" beds="0" />
 	<house name="Flat #150" houseid="10161" entryx="7226" entryy="1133" entryz="5" rent="0" townid="6" size="10" clientid="0" beds="0" />
-	<house name="Flat #200" houseid="10213" entryx="7713" entryy="1445" entryz="7" rent="0" townid="7" size="49" clientid="0" beds="0" />
-	<house name="Flat #201" houseid="10214" entryx="7720" entryy="1450" entryz="7" rent="0" townid="7" size="18" clientid="0" beds="0" />
 	<house name="Flat #209" houseid="10222" entryx="7623" entryy="1025" entryz="12" rent="0" townid="10" size="13" clientid="0" beds="0" />
 	<house name="Flat #223" houseid="10223" entryx="7623" entryy="1024" entryz="12" rent="0" townid="10" size="15" clientid="0" beds="0" />
 	<house name="Flat #224" houseid="10224" entryx="7620" entryy="1016" entryz="12" rent="0" townid="10" size="10" clientid="0" beds="0" />
