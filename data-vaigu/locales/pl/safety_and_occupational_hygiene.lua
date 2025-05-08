@@ -25,7 +25,7 @@ return {
 	["Amazon leader lives in the western mountains."] = "Amazonki maja swoja siedzibe gdzies na skalkach na zachod od mirko.",
 	-- Safety and Occupational Hygiene
 	["Safety and Occupational Hygiene"] = "Bezpieczenstwo i higiena pracy",
-	["01. Avast ye, scallywag!"] = "01. Draze sebiarze",
+	["01. Dragee Turdee"] = "01. Draze sebiarze",
 	["Find Turdstin - he might know where the Rat of Kings is."] = "Odnajdz sebixa - mozliwe, ze wie gdzie jest szczur krolow.",
 	["Try to convince Xe'na to remove the cuckcurse from Turdstin."] = "Sproboj przekonac Xe'ne, aby zdjela cucklatwe z Sebixa.",
 	["Xe'na refused to help Turdstin. Go back to him and deliver the news."] = "Xe'na odmowila pomocy Sebixowi. Wroc teraz do niego i przekaz mu wiesci.",

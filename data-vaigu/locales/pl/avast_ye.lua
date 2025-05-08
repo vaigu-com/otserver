@@ -1,4 +1,5 @@
 return {
+	["Avast Ye!"] = "Stoj ty tam!",
 	["Up to snuff"] = "Nieumytabaka",
 	["You unlocked this route."] = "Odblokowales te trase.",
 	["Oh, ye must be mistaken - I don't deal with half-done sailing."] = "Och, musisz sie mylic. Nie zajmuje sie takimi sprawami jak zegluga.",
