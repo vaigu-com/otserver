@@ -309,8 +309,9 @@ JOB_SHOPS = {
 		{ itemName = "mining helmet", clientId = 875, sell = 400 },
 		{ itemName = "bandana", clientId = 5917, sell = 100 },
 		{ itemName = "party hat", clientId = 6578, sell = 200 },
-		{ itemName = "mage hat", clientId = 7992, sell = 150 },
-		{ itemName = "studded legs", clientId = 3362, sell = 60 },
+		{ itemName = "mage hat", clientId = 7992, sell = 15 },
+		{ itemName = "studded legs", clientId = 3362, sell = 15 },
+		{ itemName = "studded legs", clientId = 3362, buy = 30 },
 		{ itemName = "golden legs", clientId = 3364, sell = 30000 },
 		{ itemName = "knight legs", clientId = 3371, sell = 5000 },
 		{ itemName = "brass legs", clientId = 3372, sell = 20 },
@@ -368,7 +369,7 @@ JOB_SHOPS = {
 		{ itemName = "skullcracker armor", clientId = 8061, sell = 18000 },
 		{ itemName = "paladin armor", clientId = 8063, sell = 15000 },
 		{ itemName = "ethno coat", clientId = 8064, sell = 400 },
-		{ itemName = "magicians robe", clientId = 7991, sell = 100 },
+		{ itemName = "magician's robe", clientId = 7991, sell = 10 },
 		{ itemName = "steel shield", clientId = 3409, sell = 80 },
 		{ itemName = "plate shield", clientId = 3410, sell = 45 },
 		{ itemName = "brass shield", clientId = 3411, sell = 110 },
@@ -1353,7 +1354,8 @@ JOB_SHOPS = {
 		{ itemName = "label", clientId = 3507, buy = 1 },
 	},
 	[JOB_SOFT_BOOTS_RECHARGE] = {
-		{ itemName = "magician's robe", clientId = 7991, buy = 450 },
+		{ itemName = "magician's robe", clientId = 7991, buy = 35 },
+		{ itemName = "mage hat", clientId = 7992, buy = 50 },
 		{ itemName = "ethno coat", clientId = 8064, buy = 750 },
 		{ itemName = "spirit cloak", clientId = 8042, buy = 1000 },
 		{ itemName = "ethno coat", clientId = 8064, sell = 200 },
@@ -1480,7 +1482,7 @@ JOB_SHOPS = {
 		{ itemName = "Dragon Necklace", clientId = 3085, buy = 1000 },
 		{ itemName = "Garlic Necklace", clientId = 3083, buy = 100 },
 		{ itemName = "Golden Amulet", clientId = 3013, buy = 6600 },
-		{ itemName = "Scarf", clientId = 3572, buy = 10 },
+		{ itemName = "Scarf", clientId = 3572, buy = 50 },
 		{ itemName = "Bronze Amulet", clientId = 3056, buy = 100 },
 		{ itemName = "Elven amulet", clientId = 3082, buy = 500 },
 		{ itemName = "Protection amulet", clientId = 3084, buy = 700 },
@@ -1537,3 +1539,28 @@ JOB_ON_BUY = {
 		end
 	end,
 }
+
+local function vaidateShops()
+	local buyTable = {}
+	local sellTable = {}
+	for _, JOB_SHOP in pairs(JOB_SHOPS) do
+		for _, item in pairs(JOB_SHOP) do
+			local id = item.clientId
+			buyTable[id] = buyTable[id] or 9999999
+			sellTable[id] = sellTable[id] or 0
+			if item.buy and item.buy < buyTable[id] then
+				buyTable[id] = item.buy
+			end
+			if item.sell and item.sell > sellTable[id] then
+				sellTable[id] = item.sell
+			end
+		end
+	end
+	for id, buyPrice in pairs(buyTable) do
+		local sellPrice = sellTable[id]
+		if sellPrice > buyPrice  then
+			logger.warn(T("[JOB_SHOPS] Item :id: has sell price higher than buy price!", {id = id}))
+		end
+	end
+end
+vaidateShops()

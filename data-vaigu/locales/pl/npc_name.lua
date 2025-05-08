@@ -114,7 +114,7 @@ return {
 	["[SOLID] Kitz"] = "[SOLID] Kitz",
 	["Stanley"] = "Stachu",
 	["Oldman"] = "Stary",
-	["Anon's father"] = "Stary Anona",
+	["Anon's Father"] = "Stary Anona",
 	["Storkus"] = "Storkus",
 	["Grof, The Guard"] = "Straznik Grof",
 	["Kulag, The Guard"] = "Straznik Kulag",

@@ -1,4 +1,5 @@
 return {
+	["Avast Ye!"] = "Avast Ye!",
 	["Up to snuff"] = "Up to snuff",
 	["You unlocked this route."] = "You unlocked this route.",
 	["Oh, ye must be mistaken - I don't deal with half-done sailing."] = "Oh, ye must be mistaken - I don't deal with half-done sailing.",

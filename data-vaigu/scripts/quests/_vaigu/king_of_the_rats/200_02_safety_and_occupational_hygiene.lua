@@ -126,7 +126,7 @@ quest
 			localizer = localizer,
 			missions = {
 				{
-					name = "01. Avast ye, scallywag!",
+					name = "01. Dragee Turdee",
 					storage = Storage.SafetyAndOccupationalHygiene.Mission01,
 					states = {
 						[QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission] = "GM Romek needs help with a new problem, go to him.",

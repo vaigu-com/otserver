@@ -133,6 +133,37 @@ pseudoQuest
 		end
 		gernerateAuxilalryFields()
 
+		local function tryCreateEmptyFlask(player, usedPotionEx, potionData, fromPosition)
+			local deactivatedFlasks = player:kv():get("talkaction.potions.flask") or false
+			if deactivatedFlasks then
+				return
+			end
+
+			local container = Container(usedPotionEx:getParent().uid)
+			if not container then
+				Game.createItem(potionData.flask, 1, fromPosition)
+				return
+			end
+
+			local storeInbox = player:getSlotItem(CONST_SLOT_STORE_INBOX)
+			local parent = usedPotionEx:getParent()
+			if parent == storeInbox then
+				Game.createItem(potionData.flask, 1, fromPosition)
+				return
+			end
+
+			local emptyFlaskEx = { id = potionData.flask, count = 1, dontAnnounce = true }
+			if player:CanAddItems({ emptyFlaskEx }) then
+				if container:getEmptySlots() ~= 0 or container:getItemCountById(potionData.flask) > 0 then
+					player:AddCustomItem(emptyFlaskEx, parent)
+				else
+					player:AddItems({ emptyFlaskEx })
+				end
+			else
+				Game.createItem(potionData.flask, 1, fromPosition)
+			end
+		end
+
 		local noError = nil
 		local function errorMessageIfCannotUse(player, potion)
 			local hasLevel = false
@@ -174,82 +205,69 @@ pseudoQuest
 		end
 
 		local flaskPotion = Action()
-		function flaskPotion.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+		function flaskPotion.onUse(player, usedPotionEx, fromPosition, target, toPosition, isHotkey)
 			if not target or type(target) == "userdata" and not target:isPlayer() then
 				return false
 			end
 
-			local potion = potions[item:getId()]
-			if not potion then
+			local potionData = potions[usedPotionEx:getId()]
+			if not potionData then
 				return false
 			end
 
-			local errorMessage = errorMessageIfCannotUse(player, potion)
+			local errorMessage = errorMessageIfCannotUse(player, potionData)
 			if errorMessage then
 				player:say(errorMessage, MESSAGE_POTION)
 				return false
 			end
 
-			if potion.health or potion.mana or potion.combat then
-				if potion.health then
-					doTargetCombatHealth(player, target, COMBAT_HEALING, potion.health[1], potion.health[2], CONST_ME_MAGIC_BLUE)
+			if potionData.health or potionData.mana or potionData.combat then
+				if potionData.health then
+					doTargetCombatHealth(player, target, COMBAT_HEALING, potionData.health[1], potionData.health[2], CONST_ME_MAGIC_BLUE)
 				end
 
-				if potion.mana then
-					doTargetCombatMana(0, target, potion.mana[1], potion.mana[2], CONST_ME_MAGIC_BLUE)
+				if potionData.mana then
+					doTargetCombatMana(0, target, potionData.mana[1], potionData.mana[2], CONST_ME_MAGIC_BLUE)
 				end
 
-				if potion.combat then
-					potion.combat:execute(target, Variant(target:getId()))
+				if potionData.combat then
+					potionData.combat:execute(target, Variant(target:getId()))
 				end
 
-				if not potion.effect and target:getPosition() ~= nil then
+				if not potionData.effect and target:getPosition() ~= nil then
 					target:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				end
 
 				player:addAchievementProgress("Potion Addict", 100000)
 				target:say("Aaaah...", MESSAGE_POTION)
 
-				local deactivatedFlasks = player:kv():get("talkaction.potions.flask") or false
-				if not deactivatedFlasks then
-					local container = Container(item:getParent().uid)
-					if container then
-						local storeInbox = player:getSlotItem(CONST_SLOT_STORE_INBOX)
-						if fromPosition.x == CONTAINER_POSITION and container ~= storeInbox and container:getEmptySlots() ~= 0 then
-							container:addItem(potion.flask, 1)
-						else
-							player:AddCustomItem({id = potion.flask, count = 1, dontAnnounce = true})
-						end
-					else
-						Game.createItem(potion.flask, 1, fromPosition)
-					end
-				end
+				tryCreateEmptyFlask(player, usedPotionEx, potionData, fromPosition)
 			end
 
 			player:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ITEM_USE_POTION, player:isInGhostMode() and nil or player)
 
-			if potion.func then
-				potion.func(player)
+			if potionData.func then
+				potionData.func(player)
 				player:say("Aaaah...", MESSAGE_POTION)
-				player:getPosition():sendMagicEffect(potion.effect)
+				player:getPosition():sendMagicEffect(potionData.effect)
 
-				if potion.achievement then
-					player:addAchievementProgress(potion.achievement, 100)
+				if potionData.achievement then
+					player:addAchievementProgress(potionData.achievement, 100)
 				end
 			end
 
-			if potion.condition then
-				player:addCondition(potion.condition)
-				player:say(potion.text, MESSAGE_POTION)
-				player:getPosition():sendMagicEffect(potion.effect)
+			if potionData.condition then
+				player:addCondition(potionData.condition)
+				player:say(potionData.text, MESSAGE_POTION)
+				player:getPosition():sendMagicEffect(potionData.effect)
 			end
 
 			if not configManager.getBoolean(configKeys.REMOVE_POTION_CHARGES) then
 				return true
 			end
 
-			player:updateSupplyTracker(item)
-			item:remove(1)
+			player:updateSupplyTracker(usedPotionEx)
+			usedPotionEx:remove(1)
 			return true
 		end
 

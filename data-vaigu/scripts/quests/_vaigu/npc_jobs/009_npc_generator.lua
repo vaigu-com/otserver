@@ -6,11 +6,20 @@ local function getJobStateDialogs(jobs)
 	return totalDialogs
 end
 
-local function getJobConfigs(jobs)
+local function getJobConfigs(jobs, customShop)
 	local totalShop = {}
+	for _, job in pairs(jobs) do
+		local jobShop = JOB_SHOPS[job]
+		for _, item in pairs(jobShop or {}) do
+			table.insert(totalShop, item)
+		end
+	end
+	for _, item in pairs(customShop or {}) do
+		table.insert(totalShop, item)
+	end
+
 	local totalDialogs = {}
 	for _, job in pairs(jobs) do
-		totalShop = MergedTable(totalShop, JOB_SHOPS[job])
 		totalDialogs = MergedTable(totalDialogs, JOB_UNIVERSAL_DIALOGS[job])
 	end
 
@@ -49,8 +58,7 @@ function RegisterNpcDefinition(npcData)
 	local voices = npcData.voices
 	local currency = npcData.currency or npcData.shopCurrency
 
-	local jobShop, jobUniversalDialogs = getJobConfigs(jobs)
-	local totalShop = MergedTable(jobShop, customShop)
+	local totalShop, jobUniversalDialogs = getJobConfigs(jobs, customShop)
 
 	local jobStateDialogs = getJobStateDialogs(jobs)
 

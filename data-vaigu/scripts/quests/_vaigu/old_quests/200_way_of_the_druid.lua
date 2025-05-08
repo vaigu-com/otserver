@@ -155,7 +155,7 @@ quest
 			QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 				[{ "mission", "misja" }] = {
 					text = "For your service to the druids, you may go to our holy tree and fetch a gob of water from the spring.\nOur sacred tree is located in the very heart of the jungle.",
-					expReward = 120000,
+					expReward = 47000,
 					requiredState = {
 						[Storage.WayOfTheDruid.CouncilThreeDruidsReward] = MISSION_NOT_STARTED,
 					},
@@ -197,7 +197,7 @@ quest
 			QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 				[{ "mission", "misja" }] = {
 					text = "For your service to the druids, you may go to our sacred tree and pick a sample of the Griffinclaw flower.\nOur sacred tree is located in the very heart of the jungle. As a bonus, take this necklace. We welcome you to our community.",
-					expReward = 400000,
+					expReward = 256000,
 					rewards = {
 						{ id = 5940 },
 					},
@@ -280,7 +280,7 @@ quest
 			QuestFactory.Dialog("Radaghast the brown", {
 				[{ "mission", "misja" }] = {
 					text = "Great, now they need to gather all the wood again. I thank you in the names of {druids}. If u would like, now I can tell you about our way.\nYou can also use my {boat}, but be careful, there's a island nearby, from which none of the survivors came back wtih life.",
-					expReward = 12000,
+					expReward = 3400,
 					rewards = {
 						{ id = 5907 },
 						{ id = 830 },
@@ -363,7 +363,7 @@ quest
 			QuestFactory.Dialog("Sand Nigger", {
 				[{ "mission", "misja" }] = {
 					text = "The spell is working! In the name of {druid} let me thank you and bestow this amulet upon you.",
-					expReward = 35000,
+					expReward = 12000,
 					requiredItems = {
 						QuestKeyItems.WayOfTheDruid.SandniggerMap,
 					},
@@ -432,7 +432,7 @@ quest
 				},
 				[{ "help", "pomoc", "yes", "tak" }] = {
 					text = "Thank you so much! If it weren't for you he would be dead for sure, look at how exhausted and injured he is. Luckily, as one of the druids, I have expertise in animal care.\nYou can have the knife and take my wand as a token of my gratitude. Be blessed by the Mother Earth.",
-					expReward = 20000,
+					expReward = 10000,
 					requiredItems = {
 						QuestKeyItems.WayOfTheDruid.BenekKnife,
 					},

@@ -25,7 +25,7 @@ return {
 	["Amazon leader lives in the western mountains."] = "Amazon leader lives in the western mountains.",
 	-- Safety and Occupational Hygiene
 	["Safety and Occupational Hygiene"] = "Safety and Occupational Hygiene",
-	["01. Avast ye, scallywag!"] = "01. Avast ye, scallywag!",
+	["01. Dragee Turdee"] = "01. Dragee Turdee",
 	["Find Turdstin - he might know where the Rat of Kings is."] = "Find Turdstin - he might know where the Rat of Kings is.",
 	["Try to convince Xe'na to remove the cuckcurse from Turdstin."] = "Try to convince Xe'na to remove the cuckcurse from Turdstin.",
 	["Xe'na refused to help Turdstin. Go back to him and deliver the news."] = "Xe'na refused to help Turdstin. Go back to him and deliver the news.",

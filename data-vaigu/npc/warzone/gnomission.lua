@@ -84,27 +84,18 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "snippet") then
 		if npcHandler:getTopic(playerId) == 3 then
-			if player:removeItem(16136, 1) then
-				player:setStorageValueByKey(Storage.BigfootsBurden.Warzone1Access, 1)
-				npcHandler:say("As a war hero you are allowed to use the warzone teleporter one for free!", npc, creature)
-				npcHandler:setTopic(playerId, 0)
-			end
+			npcHandler:say("As a war hero you are allowed to use the warzone teleporter one for free!", npc, creature)
+			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "lash") then
 		if npcHandler:getTopic(playerId) == 3 then
-			if player:removeItem(16206, 1) then
-				player:setStorageValueByKey(Storage.BigfootsBurden.Warzone3Access, 1)
-				npcHandler:say("As a war hero you are allowed to use the warzone teleporter three for free!", npc, creature)
-				npcHandler:setTopic(playerId, 0)
-			end
+			npcHandler:say("As a war hero you are allowed to use the warzone teleporter three for free!", npc, creature)
+			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "hat") then
 		if npcHandler:getTopic(playerId) == 3 then
-			if player:removeItem(16205, 1) then
-				player:setStorageValueByKey(Storage.BigfootsBurden.Warzone2Access, 1)
-				npcHandler:say("As a war hero you are allowed to use the warzone teleporter two for free!", npc, creature)
-				npcHandler:setTopic(playerId, 0)
-			end
+			npcHandler:say("As a war hero you are allowed to use the warzone teleporter two for free!", npc, creature)
+			npcHandler:setTopic(playerId, 0)
 		end
 	elseif MsgContains(message, "mission") then
 		if npcHandler:getTopic(playerId) == 1 then

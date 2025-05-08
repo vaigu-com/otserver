@@ -30,7 +30,7 @@ return {
 	["Ariel's Friend"] = "Przyjaciel Ariela",
 	["Mission 1: Humble Request"] = "Pomoc dla Ariela",
 	["Ariel asked you to bring him his friend's favorite flower. Namely it is the Heaven Blossom. Some elves keep it in their pouch."] = "Ariel poprosil cie o przyniesienie mu ulubionego kwiata jego przyjaciela, czyli heaven blossom. Czasami elfy nosza je przy sobie.",
-	["Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story."] = "Ariel poprosil cie o zlozenie ich na grobie jego przyjaciela, ktory znajduje sie na pobliskim wzgorzu. W zamian obiecal ci opowiedzenie jego historii.",
+	["Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story."] = "Ariel poprosil cie o zlozenie kwiatow heaven blossom na grobie jego przyjaciela, ktory znajduje sie na pobliskim wzgorzu. W zamian obiecal ci opowiedzenie jego historii.",
 	["You put the flowers on Ariel's friend's grave, now come back to Ariel."] = "Udalo ci sie zlozyc kwiaty na grobie, przekaz ta wiesc Arielowi.",
 	["Ariel endowed you with a bow and a few minor gifts. He is now ready to tell you his story, whenever you ask him to do so."] = "Ariel odwdzieczyl sie za pomoc elfickim lukiem, kilkoma upominkami, oraz obietnica opowiedzenia swojej historii, jesli go o to poprosisz.",
 	["Yalahari Quest"] = "Yalahari Quest",

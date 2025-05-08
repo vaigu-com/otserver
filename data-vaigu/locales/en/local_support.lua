@@ -139,7 +139,7 @@ return {
 		end
 		local unvisitedSuffix = ""
 		if visitedDealers ~= 10 then
-			unvisitedSuffix = "\n\nYou did not visit the following vendors:" .. unvisitedSuffix
+			unvisitedSuffix = "\n\nYou did not visit the following vendors:" .. unvisitedNames
 		end
 		return T("Visit main dealers in MirkoTown and ask if they need any help. Then report it back to Commissioner Fisher. Dealers met: :visitedDealers:/10.:unvisitedSuffix:", { visitedDealers = visitedDealers, unvisitedSuffix = unvisitedSuffix })
 	end,

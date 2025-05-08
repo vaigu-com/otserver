@@ -193,7 +193,7 @@ quest
 						{ id = 3047, count = 20 },
 						{ id = 3728, count = 5 },
 					},
-					expReward = 20000,
+					expReward = 3000,
 				},
 			})
 	end)
@@ -331,7 +331,7 @@ quest
 						{ id = 5922, count = 5 },
 						{ id = 3082, count = 50 },
 					},
-					expReward = 70000,
+					expReward = 30000,
 					nextState = {
 						[Storage.ArielsFriend.LoveIsInTheAir] = MISSION_FINISHED,
 					},
