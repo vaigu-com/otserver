@@ -14,7 +14,6 @@ monster.outfit = {
 }
 
 monster.events = {
-	"CarlinVortexDeath",
 }
 
 monster.raceId = 1512

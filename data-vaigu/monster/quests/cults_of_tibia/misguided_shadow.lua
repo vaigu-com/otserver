@@ -33,7 +33,6 @@ monster.strategiesTarget = {
 }
 
 monster.events = {
-	"GlowingRubbishAmuletDeath",
 }
 
 monster.flags = {
