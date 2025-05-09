@@ -1148,6 +1148,8 @@ JOB_SHOPS = {
 		{ itemName = "horoscope", clientId = 18926, sell = 40 },
 	},
 	[JOB_FOOD] = {
+		{ itemName = "Orange Mushroom", clientId = 3726, sell = 150 },
+		{ itemName = "Dark Mushroom", clientId = 3728, sell = 100 },
 		{ itemName = "Meat", clientId = 3577, sell = 2 },
 		{ itemName = "Ham", clientId = 3582, sell = 4 },
 		{ itemName = "Cheese", clientId = 3607, sell = 2 },
