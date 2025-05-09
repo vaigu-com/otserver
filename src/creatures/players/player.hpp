@@ -177,6 +177,11 @@ public:
 
 	static MuteCountMap muteCountMap;
 
+	//Vaigu custom
+	const std::string &getTranslatedName(std::string language) const override {
+		return name;
+	}
+	
 	const std::string &getName() const override {
 		return name;
 	}
@@ -773,6 +778,7 @@ public:
 	void sendCreatureMove(const std::shared_ptr<Creature> &creature, const Position &newPos, int32_t newStackPos, const Position &oldPos, int32_t oldStackPos, bool teleport) const;
 	void sendCreatureTurn(const std::shared_ptr<Creature> &creature);
 	void sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos = nullptr) const;
+	void sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos, std::string language) const;
 	void sendCreatureReload(const std::shared_ptr<Creature> &creature) const;
 	void sendPrivateMessage(const std::shared_ptr<Player> &speaker, SpeakClasses type, const std::string &text) const;
 	void sendCreatureSquare(const std::shared_ptr<Creature> &creature, SquareColor_t color) const;

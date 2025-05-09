@@ -43,6 +43,10 @@ public:
 	void removeList() override;
 	void addList() override;
 
+	// Vaigu custom
+	std::unordered_map<std::string, std::string> translatedNames;
+	const std::string &getTranslatedName(std::string language) const override;
+
 	const std::string &getName() const override;
 	// Real npc name, set on npc creation "createNpcType(typeName)"
 	const std::string &getTypeName() const override;

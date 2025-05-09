@@ -6590,7 +6590,7 @@ bool Game::internalCreatureSay(const std::shared_ptr<Creature> &creature, SpeakC
 	for (const auto &spectator : spectators) {
 		if (const auto &tmpPlayer = spectator->getPlayer()) {
 			if (!ghostMode || tmpPlayer->canSeeCreature(creature)) {
-				tmpPlayer->sendCreatureSay(creature, type, text, pos);
+				tmpPlayer->sendCreatureSay(creature, type, text, pos, tmpPlayer->getLanguage());
 			}
 		}
 	}

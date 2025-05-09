@@ -19,6 +19,7 @@
 #include "lua/callbacks/creaturecallback.hpp"
 #include "lua/global/shared_object.hpp"
 #include "map/spectators.hpp"
+#include "server/network/protocol/protocolgame.hpp"
 
 int32_t Npc::despawnRange;
 int32_t Npc::despawnRadius;
@@ -52,6 +53,15 @@ Npc::Npc(const std::shared_ptr<NpcType> &npcType) :
 			g_logger().warn("Unknown event name: {}", scriptName);
 		}
 	}
+
+	for (const auto& language : ProtocolGame::getLanguages()){
+			static std::string npcLocalizer = "npc_name";
+			const std::vector<std::string> keys = {
+				language, npcLocalizer, getName()
+			};
+			const auto translated = ProtocolGame::TryTranslate(getName(), npcLocalizer, language);
+			translatedNames[language] = translated;
+	}
 }
 
 Npc &Npc::getInstance() {
@@ -74,6 +84,14 @@ void Npc::setID() {
 
 void Npc::addList() {
 	g_game().addNpc(static_self_cast<Npc>());
+}
+
+const std::string &Npc::getTranslatedName(std::string language) const {
+	  auto it = translatedNames.find(language);
+    if (it != translatedNames.end()) {
+        return it->second;
+    }
+    return getName();
 }
 
 const std::string &Npc::getName() const {

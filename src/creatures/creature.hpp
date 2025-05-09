@@ -109,6 +109,9 @@ public:
 		return nullptr;
 	}
 
+	// Vaigu custom
+	virtual const std::string& getTranslatedName(std::string language) const = 0; 
+	
 	virtual const std::string& getName() const = 0;
 	// Real creature name, set on creature creation "createNpcType(typeName) and createMonsterType(typeName)"
 	virtual const std::string& getTypeName() const = 0;
