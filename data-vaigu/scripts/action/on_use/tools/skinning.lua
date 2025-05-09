@@ -1,5 +1,6 @@
 local CREATURE_SKINNING_CHANCE = 25000 -- 25% probability
-ACTION_NOT_PERFORMED = "ACTION_NOT_PERFORMED"
+SKINNING_SPECIAL_ACTION_NOT_PERFORMED = "SKINNING_SPECIAL_ACTION_NOT_PERFORMED"
+SKINNING_SPECIAL_ACTION_PERFORMED = "SKINNING_SPECIAL_ACTION_PERFORMED"
 local toolToCorpseToData = {
 	[5908] = {
 		--#region Vaigu custom id
@@ -217,7 +218,7 @@ local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 		if roll <= _skin.successChance then
 			if corpseId == 10426 then
 				corpse:getPosition():sendMagicEffect(CONST_ME_HITAREA)
-				player:AddCustomItem({id = _skin.rewardId, count = _skin.amount or 1, desc = _skin.desc:gsub("|PLAYERNAME|", player:getName())})
+				player:AddCustomItem({ id = _skin.rewardId, count = _skin.amount or 1, desc = _skin.desc:gsub("|PLAYERNAME|", player:getName()) })
 				if _skin.rewardId == 10429 then
 					player:addAchievement("Marblelous")
 					player:addAchievementProgress("Marble Madness", 5)
@@ -254,100 +255,101 @@ local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
 	end
 
 	local reward = corpseData[math.random(1, #corpseData)]
-	player:AddCustomItem({id = reward.rewardId, count = reward.amount or 1})
+	player:AddCustomItem({ id = reward.rewardId, count = reward.amount or 1 })
 	local effect = CONST_ME_HITAREA
 	corpse:getPosition():sendMagicEffect(effect)
 	corpse:transform(corpseData.nextCorpseId)
 end
 local toolToCorpseIdToSpecialAction = {
-	--#region Vaigu custom id
-	[4240] = onHumanSkinning,
-	[4247] = onHumanSkinning,
-	[18034] = onHumanSkinning,
-	[18037] = onHumanSkinning,
-	--#endregion
-	
-	[30329] = function(player, corpse, corpseId, corpseData, roll)
-		stopEvent(corpse:getCustomAttribute("event"))
-		player:AddCustomItem({id = corpse:getCustomAttribute("id"), count = 1})
-		corpse:remove()
-		return true
-	end,
-	[33778] = function(player, corpse, corpseId, corpseData, roll)
-		local chance = math.random(1, 10000)
-		corpse:getPosition():sendMagicEffect(CONST_ME_HITAREA)
-		corpse:remove(1)
-		if chance <= 8640 then
-			player:AddCustomItem({id = 33779, count = 1})
-		else
-			player:AddCustomItem({id = 33780, count = 1})
-		end
-		return true
-	end,
-	[11339] = function(player, corpse, corpseId, corpseData, roll)
-		corpse:transform(11331)
-		player:say("You carve a solid bowl of the chunk of wood.", TALKTYPE_MONSTER_SAY)
-		return true
-	end,
-	[10735] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getItemCount(11699) > 0 and player:getStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 1 then
-			player:say("The plant feels cold but dry and very soft. You streak the plant gently with your knife and put a fragment in the almanach.", TALKTYPE_MONSTER_SAY)
-			player:setStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline, 2)
-			return true
-		end
-	end,
-	[10697] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getItemCount(11699) > 0 and player:getStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 2 then
-			player:say("You cut a leaf from a branch and put it in the almanach. It smells strangely sweet and awfully bitter at the same time.", TALKTYPE_MONSTER_SAY)
-			player:setStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline, 3)
-			return true
-		end
-	end,
-	[8181] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValueByKey(789100) <= 1 then
-			player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
-			player:AddCustomItem({id = 954, count = 1})
-			player:setStorageValueByKey(789100, 1)
-			return true
-		end
-	end,
-	[8182] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValueByKey(789100) <= 1 then
-			player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
-			player:AddCustomItem({id = 954, count = 1})
-			player:setStorageValueByKey(789100, 2)
-			return true
-		end
-	end,
-	[301] = function(player, corpse, corpseId, corpseData, roll)
-		player:say("You successfully gathered a rabbit's food in excellent condition.", TALKTYPE_MONSTER_SAY)
-		player:AddCustomItem({id = 12172, count = 1})
-		return true
-	end,
-	[12816] = function(player, corpse, corpseId, corpseData, roll)
-		if player:getStorageValueByKey(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned) > os.time() then
-			player:sendCancelMessage("You already used your knife on the corpse.")
-			return true
-		end
+	[5908] = {
 
-		player:setStorageValueByKey(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned, os.time() + 4 * 60 * 60)
-		player:say("Happy Halloween!", TALKTYPE_MONSTER_SAY)
-		player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
-		player:addAchievement("Mutated Presents")
-		local reward = corpseData[math.random(1, #corpseData)]
-		player:AddCustomItem({id = reward.rewardId, count = reward.amount or 1})
-		local effect = CONST_ME_HITAREA
-		corpse:getPosition():sendMagicEffect(effect)
-		return true
-	end,
-	[7441] = onIceCubeSculpting,
-	[7442] = onIceCubeSculpting,
-	[7444] = onIceCubeSculpting,
-	[7445] = onIceCubeSculpting,
-	[10426] = onMarbleSculpting,
+		--#region Vaigu custom id
+		[4240] = onHumanSkinning,
+		[4247] = onHumanSkinning,
+		[18034] = onHumanSkinning,
+		[18037] = onHumanSkinning,
+		--#endregion
+
+		[30329] = function(player, corpse, corpseId, corpseData, roll)
+			stopEvent(corpse:getCustomAttribute("event"))
+			player:AddCustomItem({ id = corpse:getCustomAttribute("id"), count = 1 })
+			corpse:remove()
+			return true
+		end,
+		[33778] = function(player, corpse, corpseId, corpseData, roll)
+			local chance = math.random(1, 10000)
+			corpse:getPosition():sendMagicEffect(CONST_ME_HITAREA)
+			corpse:remove(1)
+			if chance <= 8640 then
+				player:AddCustomItem({ id = 33779, count = 1 })
+			else
+				player:AddCustomItem({ id = 33780, count = 1 })
+			end
+			return true
+		end,
+		[11339] = function(player, corpse, corpseId, corpseData, roll)
+			corpse:transform(11331)
+			player:say("You carve a solid bowl of the chunk of wood.", TALKTYPE_MONSTER_SAY)
+			return true
+		end,
+		[10735] = function(player, corpse, corpseId, corpseData, roll)
+			if player:getItemCount(11699) > 0 and player:getStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 1 then
+				player:say("The plant feels cold but dry and very soft. You streak the plant gently with your knife and put a fragment in the almanach.", TALKTYPE_MONSTER_SAY)
+				player:setStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline, 2)
+				return true
+			end
+		end,
+		[10697] = function(player, corpse, corpseId, corpseData, roll)
+			if player:getItemCount(11699) > 0 and player:getStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline) == 2 then
+				player:say("You cut a leaf from a branch and put it in the almanach. It smells strangely sweet and awfully bitter at the same time.", TALKTYPE_MONSTER_SAY)
+				player:setStorageValueByKey(Storage.Quest.U8_6.AnInterestInBotany.Questline, 3)
+				return true
+			end
+		end,
+		[8181] = function(player, corpse, corpseId, corpseData, roll)
+			if player:getStorageValueByKey(789100) <= 1 then
+				player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
+				player:AddCustomItem({ id = 954, count = 1 })
+				player:setStorageValueByKey(789100, 1)
+				return true
+			end
+		end,
+		[8182] = function(player, corpse, corpseId, corpseData, roll)
+			if player:getStorageValueByKey(789100) <= 1 then
+				player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
+				player:AddCustomItem({ id = 954, count = 1 })
+				player:setStorageValueByKey(789100, 2)
+				return true
+			end
+		end,
+		[301] = function(player, corpse, corpseId, corpseData, roll)
+			player:say("You successfully gathered a rabbit's food in excellent condition.", TALKTYPE_MONSTER_SAY)
+			player:AddCustomItem({ id = 12172, count = 1 })
+			return true
+		end,
+		[12816] = function(player, corpse, corpseId, corpseData, roll)
+			if player:getStorageValueByKey(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned) > os.time() then
+				player:sendCancelMessage("You already used your knife on the corpse.")
+				return true
+			end
+
+			player:setStorageValueByKey(Storage.Quest.U8_2.TheMutatedPumpkin.Skinned, os.time() + 4 * 60 * 60)
+			player:say("Happy Halloween!", TALKTYPE_MONSTER_SAY)
+			player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
+			player:addAchievement("Mutated Presents")
+			local reward = corpseData[math.random(1, #corpseData)]
+			player:AddCustomItem({ id = reward.rewardId, count = reward.amount or 1 })
+			local effect = CONST_ME_HITAREA
+			corpse:getPosition():sendMagicEffect(effect)
+			return true
+		end,
+		[7441] = onIceCubeSculpting,
+		[7442] = onIceCubeSculpting,
+		[7444] = onIceCubeSculpting,
+		[7445] = onIceCubeSculpting,
+		[10426] = onMarbleSculpting,
+	},
 }
-
-local corpseAidToSpecialAction = {}
 
 local function isInBags(pos)
 	return pos.x == CONTAINER_POSITION
@@ -363,7 +365,7 @@ local function defaultOnSuccessSkin(player, corpseData, usePosition, skinningToo
 	if isInBags(usePosition) and container:getEmptySlots() ~= 0 then
 		container:addItem(corpseData.rewardId, corpseData.amount or 1)
 	else
-		player:AddCustomItem({id = corpseData.rewardId, count = corpseData.amount or 1})
+		player:AddCustomItem({ id = corpseData.rewardId, count = corpseData.amount or 1 })
 	end
 end
 
@@ -378,6 +380,23 @@ local function calculateMaxRoll(player, corpseId)
 		end
 	end
 	return maxRoll
+end
+
+local function tryPerformSpecialCorpseAction(player, corpse, corpseData, roll, toolId, corpseId)
+	local toolActions = toolToCorpseIdToSpecialAction[toolId]
+	if not toolActions then
+		return SKINNING_SPECIAL_ACTION_NOT_PERFORMED
+	end
+
+	local specialCorpseIdAction = toolActions[corpseId]
+	if not specialCorpseIdAction then
+		return SKINNING_SPECIAL_ACTION_NOT_PERFORMED
+	end
+	local status = specialCorpseIdAction(player, corpse, corpseId, corpseData, roll)
+	if status == SKINNING_SPECIAL_ACTION_PERFORMED then
+		return SKINNING_SPECIAL_ACTION_PERFORMED
+	end
+	return SKINNING_SPECIAL_ACTION_NOT_PERFORMED
 end
 
 local skinning = Action()
@@ -397,17 +416,8 @@ function skinning.onUse(player, skinningTool, usePosition, corpse, corpsePositio
 
 	local maxRoll = calculateMaxRoll(player, corpseId)
 	local roll = math.random(1, maxRoll)
-	local specialCorpseAidAction = corpseAidToSpecialAction[corpse:getActionId()]
-	if specialCorpseAidAction then
-		if specialCorpseAidAction(player, corpse, corpseId, corpseData, roll) ~= ACTION_NOT_PERFORMED then
-			return
-		end
-	end
-	local specialCorpseIdAction = toolToCorpseIdToSpecialAction[toolId][corpseId]
-	if specialCorpseIdAction then
-		if specialCorpseIdAction(player, corpse, corpseId, corpseData, roll) ~= ACTION_NOT_PERFORMED then
-			return
-		end
+	if tryPerformSpecialCorpseAction(player, corpse, corpseData, roll, toolId, corpseId) == SKINNING_SPECIAL_ACTION_PERFORMED then
+		return
 	end
 
 	if not corpseData then
