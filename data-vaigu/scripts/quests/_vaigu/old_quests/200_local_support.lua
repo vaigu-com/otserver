@@ -516,7 +516,7 @@ quest
 							requiredOutcome = true,
 						},
 					},
-					expReward = 500,
+					expReward = 200,
 					rewards = {
 						{ id = 268, count = 15, addToStore = true },
 						{ id = 266, count = 5, addToStore = true },
@@ -547,7 +547,7 @@ quest
 							requiredOutcome = false,
 						},
 					},
-					expReward = 500,
+					expReward = 200,
 					rewards = {
 						{ id = 268, count = 10, addToStore = true },
 						{ id = 266, count = 10, addToStore = true },
