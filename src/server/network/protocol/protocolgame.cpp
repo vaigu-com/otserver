@@ -266,6 +266,38 @@ std::string FindValueByKey(const std::vector<Game::LuaElement> elements, const s
 }
 
 // Vaigu custom
+const std::vector<std::string> ProtocolGame::languages = { "EN", "PL" };
+const std::vector<std::string> ProtocolGame::getLanguages(){
+	return languages;
+}
+
+// Vaigu custom
+const std::string ProtocolGame::TryTranslate(const std::string str, const std::string targetLocalizer, std::string language) {
+	std::string defaultLocalizer = "_universal";
+	try {
+		auto usedLocalizer = [&]() -> std::string {
+			if (!targetLocalizer.empty()) {
+				return targetLocalizer;
+			}
+			return defaultLocalizer;
+		};
+
+		const std::vector<std::string> keys = {
+			language.empty() ? "EN" : language,
+			usedLocalizer(), str
+		};
+
+		std::string translated = FindValueByKey(g_game().translationMap, keys);
+		if (!translated.empty()) {
+			return translated;
+		}
+		return str;
+	} catch (...) {
+		return str;
+	}
+}
+
+// Vaigu custom
 const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_ptr<Item> item, std::shared_ptr<Player> player) {
 	std::string defaultLocalizer = "_universal";
 	try {
@@ -303,8 +335,6 @@ const std::string ProtocolGame::TryTranslate(const std::string str, std::shared_
 const std::string ProtocolGame::TryTranslate(const std::string str, const std::string targetLocalizer, std::shared_ptr<Player> player) {
 	std::string defaultLocalizer = "_universal";
 	try {
-		std::string itemLocalizer;
-
 		auto usedLocalizer = [&]() -> std::string {
 			if (!targetLocalizer.empty()) {
 				return targetLocalizer;
@@ -6374,6 +6404,7 @@ void ProtocolGame::sendCreatureTurn(const std::shared_ptr<Creature> &creature, u
 	writeToOutputBuffer(msg);
 }
 
+
 void ProtocolGame::sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos /* = nullptr*/) {
 	NetworkMessage msg;
 	msg.addByte(0xAA);
@@ -6382,6 +6413,42 @@ void ProtocolGame::sendCreatureSay(const std::shared_ptr<Creature> &creature, Sp
 	msg.add<uint32_t>(++statementId);
 
 	msg.addString(creature->getName());
+
+	if (!oldProtocol) {
+		msg.addByte(0x00); // Show (Traded)
+	}
+
+	// Add level only for players
+	if (std::shared_ptr<Player> speaker = creature->getPlayer()) {
+		msg.add<uint16_t>(speaker->getLevel());
+	} else {
+		msg.add<uint16_t>(0x00);
+	}
+
+	if (oldProtocol && type >= TALKTYPE_MONSTER_LAST_OLDPROTOCOL && type != TALKTYPE_CHANNEL_R2) {
+		msg.addByte(TALKTYPE_MONSTER_SAY);
+	} else {
+		msg.addByte(type);
+	}
+
+	if (pos) {
+		msg.addPosition(*pos);
+	} else {
+		msg.addPosition(creature->getPosition());
+	}
+
+	msg.addString(text);
+	writeToOutputBuffer(msg);
+}
+
+void ProtocolGame::sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos, const std::string language) {
+	NetworkMessage msg;
+	msg.addByte(0xAA);
+
+	static uint32_t statementId = 0;
+	msg.add<uint32_t>(++statementId);
+
+	msg.addString(creature->getTranslatedName(language));
 
 	if (!oldProtocol) {
 		msg.addByte(0x00); // Show (Traded)

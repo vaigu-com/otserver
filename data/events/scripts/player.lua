@@ -114,12 +114,13 @@ local function usePreyStamina(player, intervalSeconds, raceId)
 	end
 end
 
+local stamineUseInterval = 60
 local function useStamina(player, isStaminaEnabled, raceId)
 	if not player then
 		return false
 	end
 
-	usePreyStamina(player, 120, raceId)
+	usePreyStamina(player, stamineUseInterval, raceId)
 
 	local staminaMinutes = player:getStamina()
 	if staminaMinutes == 0 then
@@ -137,7 +138,7 @@ local function useStamina(player, isStaminaEnabled, raceId)
 		return
 	end
 
-	if timePassed < 60 or not isStaminaEnabled then
+	if timePassed < stamineUseInterval or not isStaminaEnabled then
 		return
 	end
 

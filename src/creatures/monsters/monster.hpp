@@ -40,6 +40,11 @@ public:
 	void addList() override;
 	void removeList() override;
 
+	//Vaigu custom
+	const std::string &getTranslatedName(std::string language) const override {
+		return name;
+	}
+	
 	const std::string &getName() const override;
 	void setName(const std::string &name);
 

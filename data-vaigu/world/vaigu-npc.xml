@@ -354,6 +354,9 @@
 	<npc centerx="6880" centery="764" centerz="7" radius="1">
 		<npc name="Mundral" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="7017" centery="787" centerz="7" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="7040" centery="837" centerz="7" radius="1">
 		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -362,6 +365,9 @@
 	</npc>
 	<npc centerx="6391" centery="912" centerz="7" radius="3">
 		<npc name="Gertrude" x="-1" y="0" z="7" spawntime="90" direction="2" />
+	</npc>
+	<npc centerx="7209" centery="1048" centerz="7" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="7255" centery="1077" centerz="7" radius="1">
 		<npc name="Jack of all Swindles" x="0" y="0" z="7" spawntime="60" />
@@ -567,10 +573,10 @@
 	<npc centerx="6105" centery="1688" centerz="7" radius="1">
 		<npc name="Radaghast the brown" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="7474" centery="1745" centerz="7" radius="1">
+	<npc centerx="7475" centery="1746" centerz="7" radius="1">
 		<npc name="Melchior" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="7457" centery="1748" centerz="7" radius="1">
+	<npc centerx="7456" centery="1748" centerz="7" radius="1">
 		<npc name="Caspar" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5877" centery="1755" centerz="7" radius="1">
@@ -609,6 +615,9 @@
 	<npc centerx="6222" centery="985" centerz="8" radius="3">
 		<npc name="Mazarius" x="0" y="2" z="8" spawntime="60" direction="2" />
 	</npc>
+	<npc centerx="6218" centery="1048" centerz="8" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="8" spawntime="60" />
+	</npc>
 	<npc centerx="5567" centery="1576" centerz="8" radius="1">
 		<npc name="Ryan" x="0" y="0" z="8" spawntime="60" />
 	</npc>
@@ -626,6 +635,9 @@
 	</npc>
 	<npc centerx="7686" centery="1019" centerz="9" radius="1">
 		<npc name="Memcelina" x="0" y="0" z="9" spawntime="60" />
+	</npc>
+	<npc centerx="5922" centery="1394" centerz="9" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="9" spawntime="60" />
 	</npc>
 	<npc centerx="7879" centery="1434" centerz="9" radius="1">
 		<npc name="Vavzheek" x="0" y="0" z="9" spawntime="60" />
@@ -753,6 +765,9 @@
 	</npc>
 	<npc centerx="5997" centery="1388" centerz="12" radius="1">
 		<npc name="Grazhena" x="0" y="0" z="12" spawntime="60" />
+	</npc>
+	<npc centerx="7517" centery="1849" centerz="12" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="12" spawntime="60" />
 	</npc>
 	<npc centerx="7553" centery="962" centerz="13" radius="1">
 		<npc name="Vavzheek" x="0" y="0" z="13" spawntime="60" />

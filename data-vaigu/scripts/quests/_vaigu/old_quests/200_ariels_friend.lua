@@ -190,7 +190,7 @@ quest
 					rewards = {
 						{ id = 7438 },
 						{ id = 3061 },
-						{ id = 3047, count = 20 },
+						{ id = 3048, count = 20 },
 						{ id = 3728, count = 5 },
 					},
 					expReward = 3000,

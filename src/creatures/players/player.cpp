@@ -7900,6 +7900,13 @@ void Player::sendCreatureTurn(const std::shared_ptr<Creature> &creature) {
 	}
 }
 
+// Vaigu custom
+void Player::sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos, const std::string language) const {
+	if (client) {
+		client->sendCreatureSay(creature, type, text, pos, language);
+	}
+}
+
 void Player::sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos) const {
 	if (client) {
 		client->sendCreatureSay(creature, type, text, pos);

@@ -108,6 +108,11 @@ public:
 	void AddItem(NetworkMessage &msg, uint16_t id, uint8_t count, uint8_t tier) const;
 
 	// Vaigu custom
+	static const std::vector<std::string> getLanguages();
+	static const std::vector<std::string> languages;
+
+	// Vaigu custom
+	static const std::string TryTranslate(const std::string str, const std::string targetLocalizer, std::string language);
 	static const std::string TryTranslate(const std::string str, std::shared_ptr<Item> item, std::shared_ptr<Player> player = nullptr);
 	static const std::string TryTranslate(const std::string str, const std::string targetLocalizer, std::shared_ptr<Player> player = nullptr);
 
@@ -329,6 +334,7 @@ private:
 	void sendPingBack();
 	void sendCreatureTurn(const std::shared_ptr<Creature> &creature, uint32_t stackpos);
 	void sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos = nullptr);
+	void sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos, std::string language);
 
 	// Unjust Panel
 	void sendUnjustifiedPoints(const uint8_t &dayProgress, const uint8_t &dayLeft, const uint8_t &weekProgress, const uint8_t &weekLeft, const uint8_t &monthProgress, const uint8_t &monthLeft, const uint8_t &skullDuration);

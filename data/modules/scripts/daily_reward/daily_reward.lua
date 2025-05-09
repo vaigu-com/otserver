@@ -263,12 +263,11 @@ DailyReward.afterPickingReward = function(playerId)
 		return false
 	end
 
-	-- Reset day streak to 0 when reaches last reward
-	local currentStreak = player:getStreakLevel()
-	local nextStreak = currentStreak + 1
+	local nextStreakLevel = player:getStreakLevel() + 1
+	player:setStreakLevel(nextStreakLevel)
 
-	player:setDayStreak(nextStreak % 7)
-	player:setStreakLevel(nextStreak)
+	local nextWeekDay = player:getDayStreak() + 1
+	player:setDayStreak(nextWeekDay % 7)
 
 	player:setStorageValueByKey(Storage.DailyRewardShrine.PreviousCollectionTimestamp, os.time())
 	player:setStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp, NextDayEpochTime())
