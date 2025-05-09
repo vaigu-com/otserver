@@ -15,13 +15,17 @@ function Player:TryResetDailyTaskCounter()
 end
 
 local function resetTaskSuccesfulCompletion(player, task)
-	player:setStorageValueByKey(task.storage, TASK_CANT_START_BECAUSE_HIGHER_LEVEL)
 	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
+	player:setStorageValueByKey(task.storage, TASK_CANT_START_BECAUSE_HIGHER_LEVEL)
 end
 
-local function resetTask(player, task)
+local function cancelTask(player, task)
 	player:setStorageValueByKey(task.currentKills, MISSION_NOT_STARTED)
 	player:setStorageValueByKey(task.storage, TASK_CAN_START_DESPITE_HIGHER_LEVEL)
+end
+
+local function resetTaskSlot(player, taskSlot)
+	player:setStorageValueByKey(taskSlot, TASK_SLOT_UNNOCUPIED)
 end
 
 local function resetDailyTask(player, task)
@@ -118,7 +122,10 @@ end
 
 local function cancelTaskFromList(player, button, choice)
 	if choice.task then
-		resetTask(player, choice.task)
+		cancelTask(player, choice.task)
+	end
+	if choice.taskSlot then
+		resetTaskSlot(player, choice.taskSlot)
 	end
 end
 
@@ -276,6 +283,7 @@ function OpenTaskCancelWindow(context)
 		local task = GetTaskByStorage(ongoingTaskStorage)
 		if task then
 			local choice = modalWindow:addChoice(T(":name:", { name = task.name }))
+			choice.taskSlot = taskSlot
 			choice.task = task
 		end
 	end
@@ -341,7 +349,7 @@ end
 
 local rewardWasNotGranted = false
 local rewardWasGranted = true
-function Player:TryAddTaskRewards(context, task)
+function Player:TryAddTaskRewards(context, task, taskSlot)
 	local storage = task.storage
 	local state = self:getStorageValueByKey(storage)
 	if state ~= REPORT_TASK_TO_NPC then
@@ -351,7 +359,7 @@ function Player:TryAddTaskRewards(context, task)
 		return rewardWasNotGranted
 	end
 	resetTaskSuccesfulCompletion(self, task)
-	resetTask(self, task)
+	resetTaskSlot(self, taskSlot)
 	return rewardWasGranted
 end
 
@@ -361,7 +369,7 @@ function Player:GrantRewardsForAllTasks(context)
 		local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 		local task = GetTaskByStorage(ongoingTaskStorage)
 		if task then
-			local grantedRewardForThisTask = self:TryAddTaskRewards(context, task)
+			local grantedRewardForThisTask = self:TryAddTaskRewards(context, task, taskSlot)
 			if grantedRewardForThisTask then
 				translatedMessage = translatedMessage .. self:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_REWARDS_DIALOG") .. "\n"
 			end
