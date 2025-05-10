@@ -69315,10 +69315,10 @@ former students at the Noodles Academy. Awarded by TibiaLabs.com" />
 			value="The favourite flower of Yselda of Bounac. Picked from the royal gardens and given to you by Kesar himself to deliver to his beloved" />
 		<attribute key="weight" value="100" />
 	</item>
-	<item id="36813" article="a" name="Galthen's satchel">
+	<item id="36813" article="a" name="door key satchel">
 		<attribute key="description"
-			value="The original satchel in which Galthen once carried all his personal notes and research" />
-		<attribute key="containersize" value="32" />
+			value="Satchel with your collection of door keys" />
+		<attribute key="containersize" value="7" />
 		<attribute key="weight" value="1000" />
 	</item>
 	<item fromid="36814" toid="36819" article="a" name="glass tile" />
@@ -82118,11 +82118,6 @@ Granted by TibiaGoals.com" />
 		<attribute key="primarytype" value="pillars" />
 	</item>
 	<!-- Vaigu custom -->
-	<item id="50343" article="a" name="key ring">
-		<attribute key="primarytype" value="containers" />
-		<attribute key="containersize" value="7" />
-		<attribute key="weight" value="0" />
-	</item>
 	<item id="16573" article="a" name="wooden ramp">
 		<attribute key="floorchange" value="north"/>
 	</item>
