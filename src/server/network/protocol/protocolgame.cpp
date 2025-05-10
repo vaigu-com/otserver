@@ -646,7 +646,7 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 
 	// dispatcher thread
 	std::shared_ptr<Player> foundPlayer = g_game().getPlayerByName(name);
-	if (!foundPlayer) {
+	if (!foundPlayer || !foundPlayer->isOnline()) {
 		player = std::make_shared<Player>(getThis());
 		player->setName(name);
 
