@@ -597,7 +597,6 @@ ProtocolGame::PlayerDatabaseLoadStatus ProtocolGame::loadOfflinePlayerFromDataba
 		cached  = true;
 	} else {
 		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
-			g_game().removePlayerUniqueLogin(player);
 			g_logger().warn("Player {} could not be loaded", player->getName());
 			error = true;
 		}
@@ -616,7 +615,6 @@ ProtocolGame::PlayerDatabaseLoadStatus ProtocolGame::loadPlayerFromDatabase(std:
 		player->client = client;
 	} else {
 		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
-			g_game().removePlayerUniqueLogin(player);
 			disconnectClient("Your character could not be loaded.");
 			g_logger().warn("Player {} could not be loaded", player->getName());
 			error = true;

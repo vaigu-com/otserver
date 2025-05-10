@@ -322,7 +322,6 @@ bool House::transferToDepot(const std::shared_ptr<Player> &player, const std::sh
 			const auto &itemOwner = g_game().getPlayerByGUID(item->getOwnerId(), true);
 			if (itemOwner) {
 				targetPlayer = itemOwner;
-				playersToSave.insert(targetPlayer);
 			} else {
 				g_logger().warn("[{}] owner of item '{}' (GUID: {}) not found, skipping transfer", __FUNCTION__, item->getName(), item->getOwnerId());
 				continue;
