@@ -169,7 +169,7 @@ quest
 						player:NextState(nextState)
 						player:addOutfit(574)
 						player:addOutfit(575)
-						AddExperienceWithAnnouncement(player, 5000)
+						AddExperienceWithAnnouncement(player, 25000)
 						player:getPosition():sendMagicEffect(CONST_ME_STUN)
 					end
 					return false

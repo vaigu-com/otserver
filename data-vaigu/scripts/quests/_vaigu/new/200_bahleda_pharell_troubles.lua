@@ -43,7 +43,7 @@ quest
 			rewards = {
 				{ id = 30196 },
 			},
-			expReward = 60000,
+			expReward = 370000,
 		})
 		EscortRegistry:Register(bahledaEscort)
 	end)

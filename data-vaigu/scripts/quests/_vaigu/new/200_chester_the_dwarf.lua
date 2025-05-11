@@ -184,7 +184,7 @@ quest
 						{ outfitId = 575, addon = 3 },
 					},
 					rewards = { { id = 3035, count = 70 } },
-					expReward = 150000,
+					expReward = 85000,
 					textNoRequiredItems = "Don't you have a new document for me yet? I'll wait then.",
 				},
 			})

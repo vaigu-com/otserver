@@ -1195,6 +1195,7 @@ JOB_SHOPS = {
 		{ itemName = "Raspberry", clientId = 8012, buy = 1 },
 		{ itemName = "Potato", clientId = 8010, buy = 5 },
 		{ itemName = "Tomato", clientId = 3596, buy = 10 },
+		{ itemName = "Bulb of Garlic", clientId = 8197, buy = 50 },
 		{ itemName = "Red Mushroom", clientId = 3724, buy = 12 },
 		{ itemName = "Strawberry", clientId = 3591, buy = 2 },
 		{ itemName = "Orange", clientId = 3586, buy = 10 },
@@ -1354,6 +1355,7 @@ JOB_SHOPS = {
 		{ itemName = "parcel", clientId = 3503, buy = 15 },
 		{ itemName = "letter", clientId = 3505, buy = 10 },
 		{ itemName = "label", clientId = 3507, buy = 1 },
+		{ itemName = "inkwell", clientId = 3509, buy = 70 },
 	},
 	[JOB_SOFT_BOOTS_RECHARGE] = {
 		{ itemName = "magician's robe", clientId = 7991, buy = 35 },
@@ -1396,18 +1398,21 @@ JOB_SHOPS = {
 		{ itemName = "crystal of focus", clientId = 9027, sell = 2000 },
 		{ itemName = "crystal of power", clientId = 9067, sell = 3000 },
 		{ itemName = "Small Sapphire", clientId = 3029, sell = 250 },
-		{ itemName = "Small Diamond", clientId = 3028, sell = 300 },
+		{ itemName = "Small Sapphire", clientId = 3029, buy = 500 },
 		{ itemName = "Black Pearl", clientId = 3027, sell = 280 },
 		{ itemName = "Gold ingot", clientId = 9058, sell = 5000 },
 		{ itemName = "Scarab coin", clientId = 3042, sell = 100 },
 		{ itemName = "Small Amethyst", clientId = 3033, sell = 200 },
+		{ itemName = "Small Amethyst", clientId = 3033, buy = 400 },
 		{ itemName = "Small Enchanted Amethyst", clientId = 678, sell = 200 },
 		{ itemName = "Small Diamond", clientId = 3028, sell = 300 },
+		{ itemName = "Small Diamond", clientId = 3028, buy = 600 },
 		{ itemName = "Small Emerald", clientId = 3032, sell = 250 },
+		{ itemName = "Small Emerald", clientId = 3032, buy = 500 },
 		{ itemName = "Small Enchanted Emerald", clientId = 677, sell = 250 },
 		{ itemName = "Small Ruby", clientId = 3030, sell = 250 },
+		{ itemName = "Small Ruby", clientId = 3030, buy = 500 },
 		{ itemName = "Small Enchanted Ruby", clientId = 676, sell = 250 },
-		{ itemName = "Small Sapphire", clientId = 3029, sell = 250 },
 		{ itemName = "Small Enchanted Sapphire", clientId = 675, sell = 250 },
 		{ itemName = "Small Topaz", clientId = 9057, sell = 200 },
 		{ itemName = "White Pearl", clientId = 3026, sell = 160 },
@@ -1560,8 +1565,8 @@ local function vaidateShops()
 	end
 	for id, buyPrice in pairs(buyTable) do
 		local sellPrice = sellTable[id]
-		if sellPrice > buyPrice  then
-			logger.warn(T("[JOB_SHOPS] Item :id: has sell price higher than buy price!", {id = id}))
+		if sellPrice > buyPrice then
+			logger.warn(T("[JOB_SHOPS] Item :id: has sell price higher than buy price!", { id = id }))
 		end
 	end
 end

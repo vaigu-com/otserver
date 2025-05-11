@@ -278,6 +278,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValueByKey(Storage.LiquidBlack.Visitor, QuestState.LiquidBlack.MezamirLetYouUseShortcut)
 			player:setStorageValueByKey(Storage.LiquidBlack.ShortcutAccess, ACCESS_GRANTED)
+			AddExperienceWithAnnouncement(player, 100000)
 			npcHandler:setTopic(playerId, 24)
 		end
 	return true

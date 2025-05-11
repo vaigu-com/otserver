@@ -211,6 +211,9 @@ quest
 						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
 					},
 				},
+			}),
+			QuestFactory.OnUseDeclarations({
+				{ id = 5499, key = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
 			})
 	end)
 	:State(function()
@@ -233,9 +236,6 @@ quest
 						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp,
 					},
 				},
-			}),
-			QuestFactory.OnUseDeclarations({
-				{ id = 5499, key = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
 			})
 	end)
 	:State(function()
@@ -256,7 +256,14 @@ quest
 	end)
 	:State(function()
 		return QuestState.ArielsFriend.LoveIsInTheAir.StealElixir, QuestFactory.OnUseDeclarations({
-			{ id = 8998, key = Storage.ArielsFriend.ElixirStand, rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw } },
+			{
+				id = 8998,
+				key = Storage.ArielsFriend.ElixirStand,
+				rewards = { QuestKeyItems.ArielsFriend.LoveElixirRaw },
+				nextState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman,
+				},
+			},
 		})
 	end)
 	:State(function()
@@ -331,7 +338,7 @@ quest
 						{ id = 5922, count = 5 },
 						{ id = 3082, count = 50 },
 					},
-					expReward = 30000,
+					expReward = 70000,
 					nextState = {
 						[Storage.ArielsFriend.LoveIsInTheAir] = MISSION_FINISHED,
 					},
