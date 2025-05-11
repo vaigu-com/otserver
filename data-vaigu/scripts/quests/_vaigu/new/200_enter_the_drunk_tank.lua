@@ -25,6 +25,7 @@ quest
 		}
 		QuestTopics.EnterTheDrunkTank = {
 			AcceptTacticalTask = NextTopic(),
+			ConfirmWantToLearnMethod = NextTopic(),
 		}
 	end)
 	:Constant(function()
@@ -52,7 +53,7 @@ quest
 		table.insert(Quests, {
 			name = "Enter the Drunk Tank",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Iron Stomach",
 					storage = Storage.EnterTheDrunkTank.Mission01,
@@ -73,11 +74,28 @@ quest
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ GREET }] = {
 					text = "I see you have made a great effort to help our city people. For that I would like to thank you personally. Please visit Vislav Shivka, he has a {tactical task} for you, if you know what i mean.",
-					requiredState = QuestConstants.LocalSupport.LocalSupportFinished,
+					specialRequirements = {
+						requirement = function(context)
+							local finishedCount = 0
+							local leeway = 1
+							local player = context.player
+							for _, storage in pairs(QuestConstants.LocalSupport.LocalSupportMissionStorages) do
+								local state = player:getStorageValueByKey(storage)
+								if state == MISSION_FINISHED then
+									finishedCount = finishedCount + 1
+								end
+							end
+
+							return (finishedCount + leeway) >= TableSize(QuestConstants.LocalSupport.LocalSupportMissionStorages)
+						end,
+						requiredOutcome = true,
+					},
+					requiredState = QuestConstants.LocalSupport.LocalSupportMissionStorages,
 					nextTopic = QuestTopics.EnterTheDrunkTank.AcceptTacticalTask,
 				},
 				[{ "tactical task", "zadanie bojowe" }] = {
-					text = "If you would like to expand your vocation expertise, you should meet Vislav Shivka. While he is a master imbiber of magical elixirs himself, he is also capable of teaching his 'craft' to others. Ask him about tactical task and he will surely guide you. Tell him that i sent u there or he might not want to share this knowledge with you.",
+					text = "If you would like to expand your vocation expertise, you should meet Vislav Shivka. While he is a master imbiber of magical elixirs himself, he is also capable of teaching his 'craft' to others. Ask him about tactical task and he will surely guide you. Tell him that i sent u there or he might not want to share this knowledge with you. Also take this experience as your reward.",
+					expReward = 1000000,
 					requiredTopic = QuestTopics.EnterTheDrunkTank.AcceptTacticalTask,
 					nextState = {
 						[Storage.EnterTheDrunkTank.Mission01] = QuestState.EnterTheDrunkTank.Mission01.AskVislavAboutTask,
@@ -88,14 +106,23 @@ quest
 	:State(function()
 		return QuestState.EnterTheDrunkTank.Mission01.AskVislavAboutTask,
 			QuestFactory.Dialog("Vislav Shivka", {
-				[{ "tactical task", "zadanie bojowe", "mission", "misja" }] = {
+				[{ "tactical task", "zadanie bojowe" }] = {
 					text = "Even strongers potions? Life is not a game, my friend. But if Fisher vouched for you, i suppose i can {teach} you then.",
 				},
 				[{ "teach", "nauczyc" }] = {
 					text = "I learned how to safely drink potions thanks to my excessive drinking habits. You can probably reach same results in 10-15 years. But i suppose you are looking for a faster {method}.",
+					nextTopic = QuestTopics.EnterTheDrunkTank.ConfirmWantToLearnMethod,
+					specialRequirements = {
+						{
+							requriement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerHasLevel,
+							minLevel = 200,
+							textOnFail = "I see that Fisher vouched for you, but i cannot teach you yet. Come back when you are at least level 200.",
+						},
+					},
 				},
 				[{ "method", "sposobu" }] = {
-					text = "This metod was devised by my mentor, sensei Sy-Fu. You have visit the floating naga temple. Its rumored that they keep their special glowing water there. The temple is located somehwere within unchareted waters You will also need churn of bull's spooge. You can find it at bulltaur canteen. Take this vial and churn, you will need it to store those liquids. Both of those ingredients will be needed for the next step. Come back when you are done with your task.",
+					text = "This method was devised by my mentor, sensei Sy-Fu. You have to visit the floating naga temple. Its rumored that they keep their special glowing water there. The temple is located somehwere within unchareted waters.\n\nYou will also need churn of bull's spooge. You can find it at bulltaur canteen.\n\nTake this vial and churn, you will need it to store those liquids. Both of those ingredients will be needed for the next step. Come back when you are done with your task.",
+					requiredTopic = QuestTopics.EnterTheDrunkTank.ConfirmWantToLearnMethod,
 					rewards = {
 						QuestKeyItems.EnterTheDrunkTank.GlowingWaterVial,
 						QuestKeyItems.EnterTheDrunkTank.BullSpoogeChurn,

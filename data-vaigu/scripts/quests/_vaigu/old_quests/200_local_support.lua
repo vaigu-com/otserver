@@ -165,19 +165,19 @@ quest
 			FishmongerStool = { id = 3107, key = Storage.LocalSupport.FishmongerStool },
 		}
 		QuestConstants.LocalSupport = {
-			LocalSupportFinished = {
-				[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
-				[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
-				[Storage.LocalSupport.FreakingRats] = MISSION_FINISHED,
-				[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
-				[Storage.LocalSupport.LostCrystalBall] = MISSION_FINISHED,
-				[Storage.LocalSupport.Biodegradable] = MISSION_FINISHED,
-				[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
-				[Storage.LocalSupport.TwoMarlinQuest] = MISSION_FINISHED,
-				[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
-				[Storage.LocalSupport.IKEAForTheBold] = MISSION_FINISHED,
-				[Storage.LocalSupport.SettledDownFishmonger] = MISSION_FINISHED,
-				[Storage.LocalSupport.PotionConveyorJourneyman] = MISSION_FINISHED,
+			LocalSupportMissionStorages = {
+				Storage.LocalSupport.Discernment,
+				Storage.LocalSupport.WoodDelivery,
+				Storage.LocalSupport.FreakingRats,
+				Storage.LocalSupport.BudgetRecycling,
+				Storage.LocalSupport.LostCrystalBall,
+				Storage.LocalSupport.Biodegradable,
+				Storage.LocalSupport.UnwantedGuests,
+				Storage.LocalSupport.TwoMarlinQuest,
+				Storage.LocalSupport.OcellatusXD,
+				Storage.LocalSupport.IKEAForTheBold,
+				Storage.LocalSupport.SettledDownFishmonger,
+				Storage.LocalSupport.PotionConveyorJourneyman,
 			},
 			PotionConveyorJourneyman = {
 				MouldyIngredients = {
