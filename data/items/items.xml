@@ -24261,6 +24261,9 @@
 		<attribute key="decayTo" value="0" />
 		<attribute key="defense" value="25" />
 		<attribute key="weight" value="1800" />
+		<attribute key="script" value="moveevent">
+			<attribute key="slot" value="ammo" />
+		</attribute>
 	</item>
 	<item id="9043" article="a" name="yalahar coal basin" />
 	<item id="9044" name="RESERVED SPRITE" />
