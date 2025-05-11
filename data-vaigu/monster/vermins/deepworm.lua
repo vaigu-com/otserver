@@ -14,7 +14,6 @@ monster.outfit = {
 }
 
 monster.events = {
-	"WarzoneWormDeath",
 }
 
 monster.raceId = 1531
