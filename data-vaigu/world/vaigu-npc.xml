@@ -351,6 +351,9 @@
 	<npc centerx="6421" centery="729" centerz="7" radius="1">
 		<npc name="Jack Sparrow" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="6878" centery="743" centerz="7" radius="1">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6880" centery="764" centerz="7" radius="1">
 		<npc name="Mundral" x="0" y="0" z="7" spawntime="60" />
 	</npc>
