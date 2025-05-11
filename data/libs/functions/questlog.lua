@@ -56,7 +56,7 @@ end
 function Game.linkMissionToStorages(missionStorage, storages)
 	local mission = Game.getMissionByStorage(missionStorage)
 	if not mission then
-		logger.error(T("[Game::linkMissionToStorages] storage :missionStorage: is not a mision!", { missionStorage = missionStorage }))
+		logger.error(T("[Game::linkMissionToStorages] storage :missionStorage: is not a mission!", { missionStorage = missionStorage }))
 		return
 	end
 
@@ -422,7 +422,7 @@ function Player.tryAutoTrackMission(self, mission, oldValue, nextValue)
 	self:setMissionAsTracked(mission)
 end
 
-function Player.trySendQuestlogUpdatedText(self, currentFrameTime, nextValue, oldValue)
+function Player.trySendQuestlogUpdatedText(self, storage, nextValue, oldValue, currentFrameTime)
 	local playerId = self:getId()
 	if LastQuestlogUpdate[playerId] ~= currentFrameTime and Game.isQuestStorage(storage) then
 		LastQuestlogUpdate[playerId] = currentFrameTime
@@ -433,7 +433,7 @@ function Player.trySendQuestlogUpdatedText(self, currentFrameTime, nextValue, ol
 end
 
 function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTime)
-	self:trySendQuestlogUpdatedText(currentFrameTime, nextValue, oldValue)
+	self:trySendQuestlogUpdatedText(storage, nextValue, oldValue, currentFrameTime)
 
 	local linkedMissions = Game.getLinkedMissions(storage)
 	for _, linkedMission in pairs(linkedMissions) do
