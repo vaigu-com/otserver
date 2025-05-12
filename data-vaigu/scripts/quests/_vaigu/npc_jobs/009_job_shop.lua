@@ -1537,7 +1537,7 @@ JOB_ON_SELL = {}
 
 JOB_ON_BUY = {
 	[JOB_WILDCARD] = function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
-		if itemId == ItemId.PREY_WILDCARD_ITEM_SUBSTITUTE then
+		if itemId == ItemId.PREY_WILDCARD_ITEM_SUBSTITUTE and player:canRemoveMoney(totalCost) then
 			player:addPreyCards(amount)
 			player:removeMoney(totalCost)
 			player:sendTextMessage(MESSAGE_LOOK, T("Bought :amount:x prey wildcard for :totalCost: gold coins.", { amount = amount, totalCost = totalCost }))

@@ -163,7 +163,7 @@ pseudoQuest
 						{
 							action = function(context)
 								local wildCardPrice = context.player:GetWildcardPrice()
-								local shop = { { itemName = "Prey Wildcard", clientId = PREY_WILDCARD_ITEM_SUBSTITUTE, buy = wildCardPrice } }
+								local shop = { { itemName = "Prey Wildcard", clientId = ItemId.PREY_WILDCARD_ITEM_SUBSTITUTE, buy = wildCardPrice } }
 								context.npc:openShopWindowTable(context.player, shop)
 							end,
 						},

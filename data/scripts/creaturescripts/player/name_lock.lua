@@ -1,5 +1,5 @@
 function CheckNamelock(player)
-	local namelockReason = player:kv():get("namelock")
+	local namelockReason = player:kv():get("namelock") or NO_NAMELOCK
 	if namelockReason == NO_NAMELOCK then
 		return true
 	end

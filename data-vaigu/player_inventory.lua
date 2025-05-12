@@ -1,5 +1,11 @@
 TAKE_ALL_AVAILABLE = "TAKE_ALL_AVAILABLE"
 
+function Player:canRemoveMoney(amount)
+	local balance = Bank.balance(self)
+	local playerMoney = self:getMoney()
+	return (balance + playerMoney) >= amount
+end
+
 function Player:GetWildcardPrice()
 	local level = self:getLevel()
 	local price = level * 75

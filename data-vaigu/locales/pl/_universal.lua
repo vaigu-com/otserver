@@ -295,7 +295,7 @@ return {
 	["Here you go."] = "Prosze bardzo, oto Twoje buty.",
 	["Im sorry, but you dont have such crystal. Only life crystal counts."] = "Sorry, ale nie masz tego krysztalu ze soba. Tylko {life crystal} nadaje sie do wytworzenia tego pierscienia.",
 	["Would you like to exchange {worn soft boots}, or {charge} active ones? Cost of both services is 20k of gold."] = "Chcesz zamienic {worn soft boots}, czy {doladowac} jeszcze nie zuzyte? Koszt przywrocenia butow do stanu uzywalnosci to 20k.",
-	["Here you are."] = "Prosze bardzo, oto Twoje buty.",
+	["Here you are."] = "Prosze bardzo.",
 	["What?! I wont do it for free."] = "Zglupiales? Za darmo ja nie pracuje!",
 	["Here are your soft boots."] = "rosze bardzo, oto Twoje buty.",
 	["I wont do it for free."] = "Za darmo ja nie pracuje!",

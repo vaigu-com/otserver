@@ -184,8 +184,7 @@ quest
 				[{ "mission" }] = {
 					text = "Wow! I can feel the flow of positive energy. Even the flowers started to sing from happiness. Thank you for your help, my friend. Here, keep your reward. I can tell you my {story}, if you want.",
 					nextState = {
-						[Storage.ArielsFriend.HumbleRequest] = MISSION_FINISHED,
-						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
+						[Storage.ArielsFriend.HumbleRequest] = QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
 					},
 					rewards = {
 						{ id = 7438 },

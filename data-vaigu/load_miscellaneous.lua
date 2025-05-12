@@ -4,6 +4,7 @@ do
 	end
 end
 
+dofile(DATA_DIRECTORY .. "/arena.lua")
 dofile(DATA_DIRECTORY .. "/enums.lua")
 dofile(DATA_DIRECTORY .. "/util.lua")
 dofile(DATA_DIRECTORY .. "/custom_item_registry.lua")
