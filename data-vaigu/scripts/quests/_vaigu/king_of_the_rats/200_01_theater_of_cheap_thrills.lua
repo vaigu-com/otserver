@@ -670,7 +670,6 @@ quest
 			}),
 			QuestFactory.OnUseDeclarations({
 				{
-
 					id = 2472,
 					key = Storage.TheaterOfCheapThrills.Cheese,
 					rewards = { QuestKeyItems.TheaterOfCheapThrills.Cheese },
@@ -769,7 +768,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission03] = QuestState.TheaterOfCheapThrills.Mission03.AskGravedigger_FindBook,
 						[Storage.TheaterOfCheapThrills.PlusShapePuzzle.AccessDoor] = ACCESS_GRANTED,
 					},
-					rewards = { ExerciseWeaponBox(200) },
+					rewards = { ExerciseWeaponBox(500) },
 				},
 			})
 	end)
@@ -961,7 +960,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission03] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission04] = QuestState.TheaterOfCheapThrills.Mission04.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(200) },
+					rewards = { ExerciseWeaponBox(600) },
 				},
 			})
 	end)
@@ -1023,7 +1022,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission04] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission05] = QuestState.TheaterOfCheapThrills.Mission05.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(200) },
+					rewards = { ExerciseWeaponBox(800) },
 				},
 			})
 	end)

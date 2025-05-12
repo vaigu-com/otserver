@@ -5,6 +5,7 @@ local teleporters = {
 	[3218] = { destination = Position(7517, 1850, 12), minState = 1, requiresCrystal = true }, --To Orshaawa
 	[3219] = { destination = Position(7209, 1048, 7), minState = 1, requiresCrystal = true }, --To Maioor'ka
 	[3220] = { destination = Position(6448, 1844, 10), minState = 1, requiresCrystal = true }, --To Syberia
+	[3221] = { destination = Position(5571, 1605, 7), minState = 1, requiresCrystal = true }, --To Knurowo
 
 	[4121] = { destination = Position(6187, 2380, 9), minState = 1, requiresCrystal = true }, --To Hub
 

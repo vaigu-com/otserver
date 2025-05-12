@@ -47,6 +47,15 @@ local function addDish(context)
 	player:AddItems({ { id = ItemType(dishData.dishName):getId() } })
 end
 
+local function grantExpForDish(context)
+	local player = context.player
+	local questState = player:getStorageValueByKey(Storage.TopChef.Mission01)
+	local nextState = math.max(questState, 0) + 1
+
+	local grantedExp = 100000 * 1.3 ^ nextState
+	AddExperienceWithAnnouncement(player, grantedExp)
+end
+
 quest
 	:Storage(function()
 		Storage.TopChef = {
@@ -154,7 +163,6 @@ quest
 			player:showTextDialog(item.itemid, table.concat(fullText))
 			return true
 		end
-
 		cookBook:id(9093)
 		cookBook:register()
 
@@ -179,7 +187,6 @@ quest
 				COOKING_DISH_NAMES[dishData.dishName:lower()] = storage
 			end
 		end
-
 		local cooking = GlobalEvent("generateCookingAuxillaryData")
 		function cooking.onStartup()
 			generateCookingAuxillaryData()
@@ -190,7 +197,7 @@ quest
 		table.insert(Quests, {
 			name = "Top Chef",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Top Chef",
 					storage = Storage.TopChef.Mission01,
@@ -230,7 +237,7 @@ quest
 						end
 
 						item:remove()
-						player:AddCustomItem({id = 7141})
+						player:AddCustomItem({ id = 7141 })
 						player:setStorageValueByKey(Storage.MeadVial, os.time() + cooldownSeconds)
 						toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 					end
@@ -288,6 +295,9 @@ quest
 						},
 						{
 							action = addDish,
+						},
+						{
+							action = grantExpForDish,
 						},
 					},
 					nextState = { [Storage.TopChef.Mission01] = "+1" },

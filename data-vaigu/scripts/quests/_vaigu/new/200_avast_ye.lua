@@ -234,6 +234,7 @@ quest
 				[{ "mission", "misja" }] = {
 					text = "Well, I'll be damned! Ye actually got 'em! Look at these beauties - shinin' like stolen moonlight! Ye done good, matey. As promised, I'll see ye safe between this Phantom Port 'ere and Pirate Island.",
 					textNoRequiredItems = "Har har har! This be a jest, aye? Ye tell me ye got 10 sapphires, but I see nothin' but air in yer hands. Either cough up the goods, or get lost!",
+					expReward = 25000,
 					requiredItems = {
 						{ id = 3029, count = 10 },
 					},

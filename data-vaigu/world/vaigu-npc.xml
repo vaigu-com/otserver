@@ -351,6 +351,9 @@
 	<npc centerx="6421" centery="729" centerz="7" radius="1">
 		<npc name="Jack Sparrow" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="6878" centery="743" centerz="7" radius="1">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6880" centery="764" centerz="7" radius="1">
 		<npc name="Mundral" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -380,9 +383,6 @@
 	</npc>
 	<npc centerx="7333" centery="1117" centerz="7" radius="1">
 		<npc name="Stonoga" x="0" y="0" z="7" spawntime="60" />
-	</npc>
-	<npc centerx="5758" centery="1170" centerz="7" radius="1">
-		<npc name="Monica" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5764" centery="1175" centerz="7" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="7" spawntime="60" />
@@ -554,6 +554,9 @@
 	</npc>
 	<npc centerx="5887" centery="1600" centerz="7" radius="3">
 		<npc name="Miles, The Guard" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="5572" centery="1606" centerz="7" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5849" centery="1608" centerz="7" radius="3">
 		<npc name="Commissioner Fisher" x="0" y="0" z="7" spawntime="60" />

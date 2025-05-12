@@ -23,10 +23,13 @@ setmetatable(SurpriseMinibossData, {
 function SurpriseMinibossData:GetRegularMonsters()
 	return self.regularMonsters
 end
+local baseAlignment = 100 --allows for chances to be defined up to 1%
+local alignmentMultiplier = 100 --allows for chances to be defined up to 0.01%
+local alignment = baseAlignment * alignmentMultiplier
 ---@param spawnPosition Position
 function SurpriseMinibossData:TrySpawnBoss(spawnPosition)
-	local requiredRoll = self.chance * 100
-	local roll = math.random(1, 100)
+	local requiredRoll = self.chance * 100 * alignment
+	local roll = math.random(1, 100 * alignment)
 	if roll > requiredRoll then
 		return
 	end

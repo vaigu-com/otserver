@@ -486,10 +486,6 @@ quest
 					rewards = {
 						QuestKeyItems.WayOfTheDruid.OrnuldWyrmEgg,
 					},
-					spawnMonstersOnSuccess = {
-						{ name = "Elder Wyrm", count = 1 },
-						{ name = "Wyrm", count = 1 },
-					},
 				},
 			})
 	end)
@@ -501,7 +497,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.WayOfTheDruid.OrnuldWyrmEgg,
 					},
-					expReward = 60000,
+					expReward = 40000,
 					rewards = {
 						QuestKeyItems.WayOfTheDruid.OrnuldMedicine,
 					},
@@ -516,7 +512,7 @@ quest
 			QuestFactory.Dialog("Mundral", {
 				[{ "mission", "misja" }] = {
 					text = "Thank you, from the bottom of my heart. My Leon finally will cure up. As one of the {druids} I thank you also of behalf of the forest.",
-					expReward = 20000,
+					expReward = 40000,
 					rewards = {
 						{ id = 12549 },
 					},
@@ -557,10 +553,10 @@ quest
 						[Storage.WayOfTheDruid.SingingCrystal] = MISSION_FINISHED,
 						[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
 					},
-					expReward = 37000,
+					expReward = 17000,
 					rewards = {
 						[16100] = {
-							{ id = 7250 },
+							{ id = 7250, count = 2 },
 						},
 					},
 					requiredItems = {

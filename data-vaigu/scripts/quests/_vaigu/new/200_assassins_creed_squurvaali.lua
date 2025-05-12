@@ -48,7 +48,7 @@ quest
 		table.insert(Quests, {
 			name = "Assassins's Creed: Squurva'ali",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "The First Step to Heaven",
 					storage = Storage.AssassinsCreedSquurvaali.Mission01,
@@ -191,7 +191,7 @@ quest
 				[{ "falling", "spadac" }] = {
 					text = "That's all I remember. Then I woke up here as a specter. I didn't know that the spirits whose bodies were once mistreated would be unable to move. I've been {waiting} here for a long time for someone to take me to the other side...",
 				},
-				[{ "waiting", "czekam" }] = {
+				[{ "waiting", "czekam", "Czekam" }] = {
 					text = "But no one comes. Please, will you help me find peace and find someone who will send me to {heaven}?",
 				},
 				[{ "heaven", "nieba" }] = {
@@ -396,7 +396,7 @@ quest
 						[Storage.AssassinsCreedSquurvaali.Mission03] = QuestState.AssassinsCreedSquurvaali.Mission03.FindVislavShivka,
 					},
 					expReward = 150000,
-					rewards = { ExerciseWeaponBox(30) },
+					rewards = { ExerciseWeaponBox(300) },
 				},
 			})
 	end)

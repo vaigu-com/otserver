@@ -165,19 +165,19 @@ quest
 			FishmongerStool = { id = 3107, key = Storage.LocalSupport.FishmongerStool },
 		}
 		QuestConstants.LocalSupport = {
-			LocalSupportFinished = {
-				[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
-				[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
-				[Storage.LocalSupport.FreakingRats] = MISSION_FINISHED,
-				[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
-				[Storage.LocalSupport.LostCrystalBall] = MISSION_FINISHED,
-				[Storage.LocalSupport.Biodegradable] = MISSION_FINISHED,
-				[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
-				[Storage.LocalSupport.TwoMarlinQuest] = MISSION_FINISHED,
-				[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
-				[Storage.LocalSupport.IKEAForTheBold] = MISSION_FINISHED,
-				[Storage.LocalSupport.SettledDownFishmonger] = MISSION_FINISHED,
-				[Storage.LocalSupport.PotionConveyorJourneyman] = MISSION_FINISHED,
+			LocalSupportMissionStorages = {
+				Storage.LocalSupport.Discernment,
+				Storage.LocalSupport.WoodDelivery,
+				Storage.LocalSupport.FreakingRats,
+				Storage.LocalSupport.BudgetRecycling,
+				Storage.LocalSupport.LostCrystalBall,
+				Storage.LocalSupport.Biodegradable,
+				Storage.LocalSupport.UnwantedGuests,
+				Storage.LocalSupport.TwoMarlinQuest,
+				Storage.LocalSupport.OcellatusXD,
+				Storage.LocalSupport.IKEAForTheBold,
+				Storage.LocalSupport.SettledDownFishmonger,
+				Storage.LocalSupport.PotionConveyorJourneyman,
 			},
 			PotionConveyorJourneyman = {
 				MouldyIngredients = {
@@ -186,7 +186,7 @@ quest
 					{ id = ItemId.HAUNCH_OF_BOAR, count = 1 },
 				},
 				PinataIngredients = {
-					{ id = ItemId.FROST_GIANT_PELT, count = 1 },
+					{ id = ItemId.WOOD, count = 1 },
 					{ id = ItemId.SWAMPLING_MOSS, count = 1 },
 					{ id = ItemId.ACORN, count = 1 },
 				},
@@ -250,7 +250,7 @@ quest
 						[QuestState.LocalSupport.WoodDelivery.ReportToCommissioner] = "Narro gave up, and he is going to let Commissioner take the wood back. Report back to Commissioner.",
 						[QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward] = "Your merits earned you a special reward. Commissioner sent you to Trollsky, where you can receive your reward.",
 						[QuestState.LocalSupport.WoodDelivery.TakeFstabReward] = "Ask fstab for the promised potion supply.",
-						[MISSION_FINISHED] = "You completed the mision and picked up all rewards.",
+						[MISSION_FINISHED] = "You completed the mission and picked up all rewards.",
 					},
 				},
 				{
@@ -323,7 +323,7 @@ quest
 					storage = Storage.LocalSupport.OcellatusXD,
 					states = {
 						[QuestState.LocalSupport.OcellatusXD.FindTicket] = "Recover the match tickets that have been stolen from Ocellatus.",
-						[QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus] = "You found the Tickets in a bandits tent.",
+						[QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus] = "You found the Tickets in a bandits tent. Bring to to Ocellatus.",
 						[QuestState.LocalSupport.OcellatusXD.AskOcellatusForNewMission] = "You gave tickets back to Ocellatus. Ask him for new mission.",
 						[QuestState.LocalSupport.OcellatusXD.BringFoodToOcellatus] = "Ocellatus asks you to bring him soup and wings. Ask Pewter for help.",
 						[MISSION_FINISHED] = "You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
@@ -757,7 +757,7 @@ quest
 				[{ "miecz", "sword" }] = {
 					text = "Here is your sword. You should also visit Fstab, he should provide you some supplies.",
 					nextState = { [Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TakeFstabReward },
-					rewards = { { id = 2117 } },
+					rewards = { { id = 3326 } },
 				},
 				[{ "obuch", "club" }] = {
 					text = "Here is your club. You should also visit Fstab, he should provide you some supplies.",
@@ -767,7 +767,7 @@ quest
 				[{ "spellbook", "ksiazka" }] = {
 					text = "Here is your spellbook. You should also visit Fstab, he should provide you some supplies.",
 					nextState = { [Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TakeFstabReward },
-					rewards = { { id = 7387 } },
+					rewards = { { id = 8072 } },
 				},
 				[{ "belty", "bolts", "strzaly", "arrows" }] = {
 					text = "Visit Lebesgue for this reward, and then meet Fstab. He should provide you some supplies.",
@@ -804,7 +804,7 @@ quest
 	:State(function()
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Fstab", {
-				[{ "journeyman", "czeladnik" }] = {
+				[{ "journeyman", "czeladnik", "mission", "misja" }] = {
 					text = "Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients.",
 					nextState = {
 						[Storage.LocalSupport.PotionConveyorJourneyman] = QuestState.LocalSupport.PotionConveyorJourneyman.BringMouldyIngredients,
@@ -1053,7 +1053,7 @@ quest
 					requiredItems = {
 						{ id = 3076 },
 					},
-					expReward = 8000,
+					expReward = 4000,
 					nextState = {
 						[Storage.LocalSupport.RedGemExchange] = ACCESS_GRANTED,
 						[Storage.LocalSupport.LostCrystalBall] = MISSION_FINISHED,
@@ -1164,7 +1164,7 @@ quest
 						{ id = 7379 },
 						{ id = 7457, remove = false },
 					},
-					expReward = 40000,
+					expReward = 120000,
 					rewards = {
 						QuestKeyItems.LocalSupport.OldManFrostPickaxe,
 					},
@@ -1200,7 +1200,7 @@ quest
 					end
 
 					local nextCooldownExpiry = NextWednesdayEpochTime()
-					player:setStorageValueByKey(nextCooldownExpiry)
+					player:setStorageValueByKey(Storage.LocalSupport.OldManFrostPickaxe, nextCooldownExpiry)
 					player:addCharmPoints(charmPoints)
 					local bonusExp = player:ExpForNextlevel() * 0.15 + 50000
 					AddExperienceWithAnnouncement(player, bonusExp)
@@ -1254,7 +1254,7 @@ quest
 					nextTopic = QuestTopics.LocalSupport.AcceptBringTicketQuest,
 				},
 				[{ "match", "mecz", "legia", "legii" }] = {
-					text = "Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Could you help me get it back?",
+					text = "Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Help me get it back.",
 					requiredTopic = QuestTopics.LocalSupport.AcceptBringTicketQuest,
 					nextState = {
 						[Storage.LocalSupport.OcellatusXD] = QuestState.LocalSupport.OcellatusXD.FindTicket,
@@ -1534,7 +1534,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.LocalSupport.BookOfContraband,
 					},
-					expReward = 12000,
+					expReward = 7000,
 				},
 			})
 	end)
@@ -1807,7 +1807,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.LocalSupport.FishBait,
 					},
-					expReward = 10000,
+					expReward = 1000,
 					rewards = {
 						{ id = 12807 },
 					},
@@ -1845,7 +1845,7 @@ quest
 						{ id = 12735 },
 						{ id = 7457 },
 					},
-					expReward = 40000,
+					expReward = 12000,
 					outfitRewards = {
 						{ outfit = 157, addons = 1 },
 						{ outfit = 153, addons = 1 },

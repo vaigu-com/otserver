@@ -1,3 +1,5 @@
+NO_NAMELOCK = -1
+
 LOGIN_OK = true
 LOGIN_ERROR = false
 

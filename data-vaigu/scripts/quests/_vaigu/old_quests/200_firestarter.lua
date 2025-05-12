@@ -198,7 +198,7 @@ quest
 	:State(function()
 		return QuestState.Firestarter.Mission02.ReportToHymel,
 			QuestFactory.Dialog("Hymel", {
-				[{ "mision", "misja" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Too bad that I won't be seeing their faces when they will find out.\nYou're getting better. If you need more just come back! Take this staff that of the real smoker!",
 					nextState = {
 						[Storage.Firestarter.Mission02] = QuestState.Firestarter.Mission02.AskForNewMission,
@@ -218,7 +218,7 @@ quest
 	:State(function()
 		return QuestState.Firestarter.Mission02.AskForNewMission,
 			QuestFactory.Dialog("Hymel", {
-				[{ "mision", "misja" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Once e and my fellas we were having fun and we planted some toxic flowers in Mirkotown, some of them were beyond city walls.\nSadly I am not able to tell you which ones exactly because they look like normal red flowers. \nIf you burn them the whole city will be high, would you do that?",
 					nextTopic = QuestTopics.Firestarter.AcceptFlowerIgnitionQuest,
 				},

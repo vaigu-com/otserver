@@ -104,7 +104,7 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Arni", {
 				[{ "mission", "misja" }] = {
-					text = "Mission? I would love to go on some mission, like Schwarzenegger did. He was the man. Do you think that I look as jacked as he did?\nIf you want to help me, you can do me a favour. Unfortunately, I can't leave this place and I miss a few things to become even a more badass.\nI always wanted to show off with my teeth necklace. I need 5 orc teeth, 5 rotworm teeth and maybe some of the vampire. Would you get them for me?",
+					text = "Mission? I would love to go on some mission, like Schwarzenegger did. He was the man. Do you think that I look as jacked as he did?\nIf you want to help me, you can do me a favour. Unfortunately, I can't leave this place and I miss a few things to become even a more badass.\nI always wanted to show off with my teeth necklace. I need 3 orc teeth, 3 rotworm teeth and maybe some of the vampire. Would you get them for me?",
 					textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 					requiredState = {
 						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
@@ -126,11 +126,11 @@ quest
 				[{ "mission", "misja", "necklace", "naszyjnik" }] = {
 					text = "Thats awesome! Only if I knew how to make a necklace of that.. Please, find someone that will be able to weave one of those teeths. I would be really greateful.",
 					requiredItems = {
-						{ id = 10196, count = 5 },
-						{ id = 10275, count = 5 },
+						{ id = 10196, count = 3 },
+						{ id = 10275, count = 3 },
 						{ id = 9685, count = 1 },
 					},
-					requiredItemsRemove = false,
+					removeRequiredItems = false,
 				},
 			}),
 			QuestFactory.Dialog("Madame Malkin", {
@@ -156,7 +156,7 @@ quest
 			QuestFactory.Dialog("Arni", {
 				[{ "mission", "misja" }] = {
 					text = "Thank you! Wooah, and it even smells nice. Madame Malkin did a great job. Take this as your reward.",
-					expReward = 30000,
+					expReward = 40000,
 					requiredItems = {
 						QuestKeyItems.ToCarryThePigs.ArniNecklace,
 					},
