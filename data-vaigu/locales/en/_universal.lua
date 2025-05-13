@@ -30,6 +30,16 @@ local toOrdinal = {
 }
 
 return {
+	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Hello! You look really hungry.. Ask about {trade} to see my offer.",
+	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!" ] = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!" ,
+	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}." ] = "Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}." ,
+	["Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors." ] = "Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors." ,
+	["Hello! You want to trade or repair your worn {soft boots}? I can also exchange your {medicine pouch}." ] = "Hello! You want to trade or repair your worn {soft boots}? I can also exchange your {medicine pouch}." ,
+	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!",
+	["Hello, I have some {tasks} for you. You can also ask for {trade} if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}."] = "Hello, I have some {tasks} for you. You can also ask for {trade} if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
+	["Yes? What may I do for you, |PLAYERNAME|? Bank business, perhaps?" ] = "Yes? What may I do for you, |PLAYERNAME|? Bank business, perhaps?" ,
+	["Of course, just browse through my wares."] = "Of course, just browse through my wares.",
+	["Sorry, I'm not offering anything."] = "Sorry, I'm not offering anything.",
 	["Distance shop"] = "Distance shop",
 	["Smith shop"] = "Smith shop",
 	["Magic shop"] = "Magic shop",

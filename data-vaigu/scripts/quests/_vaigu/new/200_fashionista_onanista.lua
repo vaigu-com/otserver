@@ -116,7 +116,7 @@ quest
 					name = "Wish Upon a Trap Star",
 					storage = Storage.FashionistaOnanista.Mission02,
 					states = {
-						[QuestState.FashionistaOnanista.Mission02.AskOcellatusForNewMission] = "Ask Ocellatus about new mission",
+						[QuestState.FashionistaOnanista.Mission02.AskOcellatusForNewMission] = "Ask Ocellatus about new mission.",
 						[QuestState.FashionistaOnanista.Mission02.AskMoustachillesForNewMission] = "Find Moustachilles, the local trap star.",
 						[QuestState.FashionistaOnanista.Mission02.ReadSecretiveLetter] = "Moustachilles asked you to find his lost coke.",
 						[QuestState.FashionistaOnanista.Mission02.BringPotionToRobBarley] = "You read an ominous letter. Sender mentioned to bring a bullseye potion to abandoned house, south of Kongo.",
@@ -139,7 +139,7 @@ quest
 					name = "Cum Faucet",
 					storage = Storage.FashionistaOnanista.Mission04,
 					states = {
-						[QuestState.FashionistaOnanista.Mission04.AskOcellatusForNewMission] = "Ask ocellatus about new mission.",
+						[QuestState.FashionistaOnanista.Mission04.AskOcellatusForNewMission] = "Ask Ocellatus about new mission.",
 						[QuestState.FashionistaOnanista.Mission04.BringMedalsToOcellatusEndless] = "WEEKLY_OCELLATUS_MEDAL_QUEST_STATUS",
 					},
 					linkedStorages = { Storage.FashionistaOnanista.CarrotsMade },

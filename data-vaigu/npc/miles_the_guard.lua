@@ -7,6 +7,11 @@ local outfit = {
 	lookFeet = 19,
 	lookAddons = 0,
 }
+local dialogs = {
+	[{ "camp", "obozu", "oboz" }] = {
+		text = "Nearest bandit camp is located east from here. Moustachilles is the leader there.",
+	},
+}
 local context = {
 	name = name,
 	outfit = outfit,

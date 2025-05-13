@@ -106,13 +106,13 @@ local directions = {
 }
 local anglePerDir = 360 / #directions
 
----@return integer direction direction enum, based on vector x and y; eg. x = 1, y = 1 returns DIRECTION_SOUTHEAST
 function Vector:ToDirection()
 	if self.x == 0 and self.y == 0 then
 		return DIRECTION_NONE
 	end
-	local angle = math.deg(math.atan(self.x / -self.y))
-	local dirId = (math.ceil((angle + anglePerDir / 2) % 360 / anglePerDir))
-	local direction = directions[dirId]
-	return direction
+
+	local angle = math.deg(math.atan2(-self.y, -self.x))
+	angle = (angle + 90 + 180) % 360
+	local dirId = math.floor((angle + anglePerDir / 2) / anglePerDir) % 8 + 1
+	return directions[dirId]
 end

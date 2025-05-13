@@ -97,4 +97,6 @@ return {
 	["Congratulations, you finished my training program. These are my books on cooking. Please, take them."] = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
 	["Do you have all the necessary ingredients?"] = "Do you have all the necessary ingredients?",
 	["Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!"] = "Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!",
+	["You finished the cooking course. Ask Pewter for your next directions."] = "You finished the cooking course. Ask Pewter for your next directions.",
+	["Pewter provided you with his cookbooks and you can craft any food now."] = "Pewter provided you with his cookbooks and you can craft any food now.",
 }

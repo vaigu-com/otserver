@@ -1,4 +1,6 @@
 return {
+	["Thanks for your help. Although i wont be needing your assistance for now."] =  "Thanks for your help. Although i wont be needing your assistance for now.",
+	["Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you."] = "Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you.",
 	["Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients."] = "Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients.",
 	["Thanks, these are things i needed. Here's your reward."] = "Thanks, these are things i needed. Here's your reward.",
 	["My plan is very sticky. Make sure to not tell anyone, alright?"] = "My plan is very sticky. Make sure to not tell anyone, alright?",
@@ -44,6 +46,7 @@ return {
 	["We must stop this thief as fast as possible. He might be scheming how to get back unnoticed and take back his loot. Ask people around, maybe someone saw where he ran to."] = "We must stop this thief as fast as possible. He might be scheming how to get back unnoticed and take back his loot. Ask people around, maybe someone saw where he ran to.",
 	["Mister, I'm just fishing here quietly, and all of the sudden I see a man emerging on the surface. You're saying that he is a thief? - he ran that way, to the east."] = "Mister, I'm just fishing here quietly, and all of the sudden I see a man emerging on the surface. You're saying that he is a thief? - he ran that way, to the east.",
 	["I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?"] = "I saw someone run past the city gate and then to the east. Maybe he went to the bandit's {camp}?",
+	["Nearest bandit camp is located east from here. Moustachilles is the leader there."] = "Nearest bandit camp is located east from here. Moustachilles is the leader there.",
 	["This ain't the opp block, pipe down."] = "This ain't the opp block, pipe down.",
 	["Please, you don't think that I am giving any {information} about my - ekhem - contractors just like that."] = "Please, you don't think that I am giving any {information} about my - ekhem - contractors just like that.",
 	["Guards! This man got to go, show him where we throw out carcasses."] = "Guards! This man got to go, show him where we throw out carcasses.",
@@ -162,7 +165,7 @@ return {
 	["You found the Tickets in a bandits tent. Bring to to Ocellatus."] = "You found the Tickets in a bandits tent. Bring to to Ocellatus.",
 	["You gave tickets back to Ocellatus. Ask him for new mission."] = "You gave tickets back to Ocellatus. Ask him for new mission.",
 	["Ocellatus asks you to bring him soup and wings. Ask Pewter for help."] = "Ocellatus asks you to bring him specific food. Ask Piotrek for help.",
-	["U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
+	["You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
 	["Demon Oak"] = "Demon Oak",
 	["You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it."] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
 	["Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak."] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",

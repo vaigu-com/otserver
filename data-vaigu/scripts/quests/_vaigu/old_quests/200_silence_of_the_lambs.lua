@@ -40,7 +40,7 @@ quest
 					storage = Storage.SilenceOfTheLambs.TestOfStrength,
 					states = {
 						[QuestState.SilenceOfTheLambs.TestOfStrength.BringTeethToLecter] = "Lecter asked you for 5 vampire teeth.",
-						[QuestState.SilenceOfTheLambs.TestOfStrength.AskLecterForNewMission] = "Ask him for new mission.",
+						[QuestState.SilenceOfTheLambs.TestOfStrength.AskLecterForNewMission] = "Ask Lecter for a new mission.",
 						[MISSION_FINISHED] = "In exchange for your help, Lecter bestowed you with his old soul-extraction tool.",
 					},
 				},

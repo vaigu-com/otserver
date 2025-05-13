@@ -1,36 +1,36 @@
 SPECIAL_REQUIREMENTS_UNIVERSAL = {
-	isSorcerer = function (context)
+	isSorcerer = function(context)
 		local player = context.player
 		if not player then
-			 return
+			return
 		end
 		return player:isSorcerer()
 	end,
-	isDruid = function (context)
+	isDruid = function(context)
 		local player = context.player
 		if not player then
-			 return
+			return
 		end
 		return player:isDruid()
 	end,
-	isKnight = function (context)
+	isKnight = function(context)
 		local player = context.player
 		if not player then
-			 return
+			return
 		end
 		return player:isKnight()
 	end,
-	isPaladin = function (context)
+	isPaladin = function(context)
 		local player = context.player
 		if not player then
-			 return
+			return
 		end
 		return player:isPaladin()
 	end,
-	isMage = function (context)
+	isMage = function(context)
 		local player = context.player
 		if not player then
-			 return
+			return
 		end
 		return player:isMage()
 	end,
@@ -57,11 +57,8 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 		return false
 	end,
 	hasMoney = function(context)
-		local player = context.player
-		local itemPrice = context.price
-		local balance = Bank.balance(player)
-		local playerMoney = player:getMoney()
-		return (balance + playerMoney) > itemPrice, "You dont have enough money."
+		local requiredMoney = context.price or context.money or context.requiredMoney
+		return context.player:canRemoveMoney(requiredMoney), "You dont have enough money."
 	end,
 	playerIsPzLocked = function(context)
 		local player = context.player

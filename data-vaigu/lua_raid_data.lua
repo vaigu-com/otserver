@@ -25,6 +25,7 @@ local raidData = {
 		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
+	--[[
 	LuaRaid("WorkerGolemsMirkoNorth"):Context({
 		perday = 0.2,
 		waves = {
@@ -35,6 +36,7 @@ local raidData = {
 		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
+	]]
 	LuaRaid("AmazonsKnurowo"):Context({
 		perday = 0.2,
 		waves = {

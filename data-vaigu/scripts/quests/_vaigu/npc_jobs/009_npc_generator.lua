@@ -149,8 +149,28 @@ function RegisterNpcDefinition(npcData)
 		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc)
 	end
 
+	local tradeCallback = npcData.tradeCallback
+		or function(npc, creature, type, msg)
+			local player = Player(creature)
+			if not player then
+				return false
+			end
+
+			local messageId = 0
+			if npc:isMerchant() then
+				messageId = MESSAGE_SENDTRADE
+			else
+				messageId = MESSAGE_NOSHOP
+			end
+			local translatedMessage = player:Localizer(LOCALIZERS.NONE):Get(NpcHandler.messages[messageId])
+			npcHandler:say(translatedMessage, npc, player)
+
+			return true
+		end
+
 	npcHandler:setCallback(CALLBACK_GREET, greetCallback)
 	npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
+	npcHandler:setCallback(CALLBACK_ON_TRADE_REQUEST, tradeCallback)
 
 	npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 

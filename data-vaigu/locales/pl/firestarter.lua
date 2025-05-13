@@ -26,4 +26,6 @@ return {
 	["Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug."] = "Hymel opowiedzial ci o tym, jak kiedys z ziomkami zasiali 5 mocnych ziol, niestety nie pamieta gdzie, a wygladaja jak zwykle czerwone kwiatki. Odnajdz je i spal.",
 	["The smell of weed is now around the whole city, you managed to burn all the flowers."] = "Cale miasto jest na haju, udalo ci sie spalic wszystkie kwiaty.",
 	["Hymel declared you a true pyromaniac and gave you his arsonist weapon."] = "Hymel zrobil z ciebie prawdziwego piromana oraz dal Ci swoja bron podpalacza.",
+	["Hymel gave you an incendiary firebug. Ask him for a new mission."] = "Hymel dal ci butle czystego ognia. Zapytaj go o nowa misje.",
+	["You finished this mission."] = "Ukonczyles te misje.",
 }

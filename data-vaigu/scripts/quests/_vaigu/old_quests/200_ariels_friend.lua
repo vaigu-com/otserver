@@ -96,9 +96,9 @@ quest
 						[QuestState.ArielsFriend.LoveIsInTheAir.StealElixir] = "Old Postman had a disgraceful idea to steal an elixir of love. He told you to fill this vial he gave you. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
-						[QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
-						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
-						[MISSION_FINISHED] = "You finished this mission.",
+						[QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel] = "Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel.",
+						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
+						[MISSION_FINISHED] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
 					},
 				},
 				{
@@ -184,8 +184,7 @@ quest
 				[{ "mission" }] = {
 					text = "Wow! I can feel the flow of positive energy. Even the flowers started to sing from happiness. Thank you for your help, my friend. Here, keep your reward. I can tell you my {story}, if you want.",
 					nextState = {
-						[Storage.ArielsFriend.HumbleRequest] = MISSION_FINISHED,
-						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame,
+						[Storage.ArielsFriend.HumbleRequest] = QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
 					},
 					rewards = {
 						{ id = 7438 },
@@ -213,7 +212,14 @@ quest
 				},
 			}),
 			QuestFactory.OnUseDeclarations({
-				{ id = 5499, key = Storage.ArielsFriend.Haybed, rewards = { QuestKeyItems.ArielsFriend.HairStrand } },
+				{
+					id = 5499,
+					key = Storage.ArielsFriend.Haybed,
+					rewards = { QuestKeyItems.ArielsFriend.HairStrand },
+					requiredState = {
+						[Storage.ArielsFriend.LoveIsInTheAir] = { min = MISSION_STARTED },
+					},
+				},
 			})
 	end)
 	:State(function()
@@ -246,7 +252,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Old Postman", {
-				[{ "zaproszenie", "madame", "mission", "ariel", "invitation" }] = {
+				[{ "eliksir", "madame", "mikstura", "elixir", "milosc", "love", "zaproszenie", "invitation" }] = {
 					text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
 					nextState = {
 						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
@@ -269,11 +275,11 @@ quest
 	:State(function()
 		return QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman,
 			QuestFactory.Dialog("Old Postman", {
-				[{ "eliksir", "madame", "mission", "misja", "mikstura", "elixir" }] = {
+				[{ "eliksir", "madame", "mikstura", "elixir", "milosc", "love" }] = {
 					text = "If we have an elixir, we do need to get Ariel's hair to dissolve it in it...\nGo to him and look for his hair in his bed, there must be something. Next, give Madame the love elixir as wine from me.",
-				},
-				nextState = {
-					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
+					nextState = {
+						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
+					},
 				},
 			})
 	end)
@@ -281,26 +287,18 @@ quest
 		return QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
 			QuestFactory.Script(function(missionState)
 				local hair = Action()
-
 				function hair.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					if not player:HasExactMissionState(missionState) then
 						return false
 					end
 
-					if not target then
-						return
+					if player:TryRemoveItems({
+						QuestKeyItems.ArielsFriend.LoveElixirRaw,
+						QuestKeyItems.ArielsFriend.HairStrand,
+					}) then
+						player:AddItems({ QuestKeyItems.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" })
+						player:getPosition():sendMagicEffect(CONST_ME_SOUND_GREEN)
 					end
-
-					if target:getId() ~= elixirId then
-						return
-					end
-					if target:getKey() ~= Storage.ArielsFriend.LoveElixirRaw then
-						return
-					end
-
-					target:remove()
-					item:setDescription("Enchanted magical elixir.")
-					item:setKey(Storage.ArielsFriend.LoveElixirEnchanted)
 					return true
 				end
 
@@ -323,9 +321,9 @@ quest
 		return QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel, QuestFactory.Dialog("Madame Malkin", {
 			[{ "mission", "misja", "ariel" }] = {
 				text = "Party invitation from my lovely Ariel? Of course I will go. Tell him to pick me up at 6pm.",
-			},
-			nextState = {
-				[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel,
+				nextState = {
+					[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel,
+				},
 			},
 		})
 	end)

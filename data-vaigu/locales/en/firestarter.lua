@@ -26,4 +26,6 @@ return {
 	["Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug."] = "Hymel told you about how he and his mates once sowed 5 mysterious herbs all around MirkoTown. Unfortunately he doesn't remember where exactly they did sow them. They look like usual red flowers. Find them and set them ablaze with firebug.",
 	["The smell of weed is now around the whole city, you managed to burn all the flowers."] = "The smell of weed is now around the whole city, you managed to burn all the flowers.",
 	["Hymel declared you a true pyromaniac and gave you his arsonist weapon."] = "Hymel declared you a true pyromaniac and gave you his arsonist weapon.",
+	["Hymel gave you an incendiary firebug. Ask him for a new mission."] = "Hymel gave you an incendiary firebug. Ask him for a new mission.",
+	["You finished this mission."] = "You finished this mission.",
 }

@@ -177,7 +177,7 @@ quest
 		table.insert(Quests, {
 			name = "Per Iustitia Ad Astra",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "01. Beyond the Justice",
 					storage = Storage.PerIustitiaAdAstra.Mission01,
@@ -556,7 +556,7 @@ quest
 					if astralJanusLock:IsSet() then
 						return
 					end
-					
+
 					astralJanusLock:Set(Game.createNpc("Astral Janus", astralJanusPos, false, false))
 				end
 				tileIn:key(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
@@ -1134,7 +1134,9 @@ quest
 		return ACCESS_GRANTED, QuestFactory.Dialog("Swagger", {
 			[{ "fuel", "rod", "paliwo", "pret" }] = {
 				specialActionsOnSuccess = {
-					{ action = SPECIAL_ACTIONS_UNIVERSAL.openTradeWindow },
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.openTradeWindow,
+					},
 				},
 			},
 		})
@@ -1738,7 +1740,7 @@ quest
 					text = "Good job. Thanks to you, there's more justice in this world. Here's your reward. Now go back to Tomek. He said he has a problem with his old hag.",
 					nextState = {
 						[Storage.PerIustitiaAdAstra.Mission05] = MISSION_FINISHED,
-						[Storage.PerIustitiaAdAstra.AstralJanusSpawnTileAccess] = ACCESS_GRANTED
+						[Storage.PerIustitiaAdAstra.AstralJanusSpawnTileAccess] = ACCESS_GRANTED,
 						--[Storage.BigKlamoty.Mission01] = 1,
 					},
 					rewards = { ExerciseWeaponBox(5000) },

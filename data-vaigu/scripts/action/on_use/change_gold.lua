@@ -31,7 +31,7 @@ function changeGold.onUse(player, usedCoinPile, fromPosition, target, toPosition
 	end
 	if usedCoinData.downgrade then
 		usedCoinPile:remove(1)
-		player:AddCustomItem({id = usedCoinData.downgrade, count = 100})
+		player:AddCustomItem({id = usedCoinData.downgrade, count = 100, dontAnnounce = true})
 		return true
 	end
 	return false

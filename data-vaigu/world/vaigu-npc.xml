@@ -18,6 +18,12 @@
 	<npc centerx="7274" centery="1103" centerz="3" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="3" spawntime="60" />
 	</npc>
+	<npc centerx="6006" centery="1267" centerz="3" radius="1">
+		<npc name="Corna" x="0" y="0" z="3" spawntime="60" />
+	</npc>
+	<npc centerx="6078" centery="1268" centerz="3" radius="1">
+		<npc name="Lok" x="0" y="0" z="3" spawntime="60" />
+	</npc>
 	<npc centerx="6043" centery="1281" centerz="3" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="3" spawntime="60" />
 	</npc>
@@ -47,6 +53,15 @@
 	</npc>
 	<npc centerx="6727" centery="1247" centerz="4" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="4" spawntime="60" />
+	</npc>
+	<npc centerx="6021" centery="1264" centerz="4" radius="1">
+		<npc name="Veev" x="0" y="0" z="4" spawntime="60" />
+	</npc>
+	<npc centerx="6041" centery="1265" centerz="4" radius="1">
+		<npc name="Jack of all Swindles" x="0" y="0" z="4" spawntime="60" />
+	</npc>
+	<npc centerx="6007" centery="1267" centerz="4" radius="1">
+		<npc name="Mah" x="0" y="0" z="4" spawntime="60" />
 	</npc>
 	<npc centerx="6739" centery="1280" centerz="4" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="4" spawntime="60" />
@@ -98,6 +113,9 @@
 	</npc>
 	<npc centerx="6061" centery="1183" centerz="5" radius="1">
 		<npc name="Dampreefer" x="0" y="0" z="5" spawntime="60" />
+	</npc>
+	<npc centerx="6005" centery="1276" centerz="5" radius="1">
+		<npc name="Groover" x="0" y="0" z="5" spawntime="60" />
 	</npc>
 	<npc centerx="5757" centery="1384" centerz="5" radius="1">
 		<npc name="Ocellatus" x="0" y="0" z="5" spawntime="90" />

@@ -90,7 +90,6 @@ quest
 						end,
 						requiredOutcome = true,
 					},
-					requiredState = QuestConstants.LocalSupport.LocalSupportMissionStorages,
 					nextTopic = QuestTopics.EnterTheDrunkTank.AcceptTacticalTask,
 				},
 				[{ "tactical task", "zadanie bojowe" }] = {

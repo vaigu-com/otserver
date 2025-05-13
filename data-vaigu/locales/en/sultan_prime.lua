@@ -31,6 +31,7 @@ return {
 	["Sultan Prime"] = "Sultan Prime",
 	["What Is Mafia? Is It Good?"] = "What Is Mafia? Is It Good?",
 	["You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan."] = "You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan.",
+	["Sultan made you an offer. Give the neclace to him to begin your mission."] = "Sultan made you an offer. Give the neclace to him to begin your mission.",
 	["You returned the amulet to the Sultan and agreed to help him."] = "You returned the amulet to the Sultan and agreed to help him.",
 	["Unlucky Surveyors"] = "Unlucky Surveyors",
 	["Go to Sultan of Phantasms for another task."] = "Go to Sultan of Phantasms for another task.",

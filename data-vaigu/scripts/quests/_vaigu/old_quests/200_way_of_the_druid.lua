@@ -432,7 +432,7 @@ quest
 				},
 				[{ "help", "pomoc", "yes", "tak" }] = {
 					text = "Thank you so much! If it weren't for you he would be dead for sure, look at how exhausted and injured he is. Luckily, as one of the druids, I have expertise in animal care.\nYou can have the knife and take my wand as a token of my gratitude. Be blessed by the Mother Earth.",
-					expReward = 10000,
+					expReward = 3000,
 					requiredItems = {
 						QuestKeyItems.WayOfTheDruid.BenekKnife,
 					},

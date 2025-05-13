@@ -127,7 +127,7 @@ function Quest:AddDialog(context)
 		for requredKeywords, actionsAndRequirements in pairs(dialogs) do
 			for key, value in pairs(actionsAndRequirements) do
 				if type(value) == "string" then
-					RegisterString(value, self.localizer)
+					MissingStrings:TestAllLanaguages(value, self.localizer)
 				end
 			end
 		end
@@ -265,7 +265,7 @@ function QuestRegistry.NormalizeQuestlog()
 				mission.missionId = NextMissionId()
 				for _, desc in pairs(mission.states or {}) do
 					if type(desc) == "string" then
-						RegisterString(desc, quest.localizer)
+						MissingStrings:TestAllLanaguages(desc, quest.localizer)
 					end
 				end
 

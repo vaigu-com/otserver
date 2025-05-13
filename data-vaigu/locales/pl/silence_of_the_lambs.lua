@@ -12,6 +12,7 @@ return {
 	["The Silence of the Lambs"] = "Milczenie Owiec",
 	["The test of Strength"] = "Proba sily",
 	["Lecter asked you for 5 vampire teeth."] = "Lecter poprosil cie o 5 wampirzych zebow.",
+	["Ask Lecter for a new mission."] = "Zapytaj Lectera o nowa misje.",
 	["In exchange for your help, Lecter bestowed you with his old soul-extraction tool."] = "W zamian za wykazanie sie, Lecter podarowal ci stary przyrzad do wyciagania dusz.",
 	["Fashionable clothes"] = "Modne ubrania",
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter poprosil cie o przyniesienie po 20 skor kazdego rodzaju.",
