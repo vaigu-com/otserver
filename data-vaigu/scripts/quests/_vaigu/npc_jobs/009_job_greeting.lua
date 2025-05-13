@@ -22,7 +22,7 @@ JOB_GREETINGS = {
 		},
 	},
 	[JOB_AOL] = {
-		text = "Siemano siemanko, |PLAYERNAME| ja jestem Jurek i sprzedaje zabezpieczenie przed zbyt ostrym imprezowaniem! Napisz {trade} to zobaczysz o co mi chodzi!"
+		text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!"
 	},
 	[JOB_POST] = { 
 		text = {

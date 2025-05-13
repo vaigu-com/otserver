@@ -1305,6 +1305,9 @@ quest
 	:State(function()
 		return QuestState.LocalSupport.OcellatusXD.BringFoodToOcellatus,
 			QuestFactory.Dialog("Ocellatus", {
+				[{ "rotworm stew", "roasted dragon wings", "zupe rotowrmowa", "zupa rotwormowa", "pieczone smocze skrzydelka" }] = {
+					text = "Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you.",
+				},
 				[{ "mission", "misja", "food", "soup", "order", "zupa" }] = {
 					text = "Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway.",
 					textNoRequiredItems = "Come back with the food.",
