@@ -57741,6 +57741,9 @@
 	<monster centerx="7136" centery="1265" centerz="8" radius="1">
 		<monster name="Slug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="7149" centery="1265" centerz="8" radius="1">
+		<monster name="Toad" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="7317" centery="1265" centerz="8" radius="1">
 		<monster name="Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
