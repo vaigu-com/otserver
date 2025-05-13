@@ -67,6 +67,9 @@ function RegisterNpcDefinition(npcData)
 	if JOB_GREETINGS[greetJob] then
 		allDialogs[LOCALIZERS.Universal][GREET] = JOB_GREETINGS[greetJob]
 	end
+	if JOB_TRADE_REQUESTS[greetJob] then
+		allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUESTS[greetJob]
+	end
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 
@@ -137,7 +140,7 @@ function RegisterNpcDefinition(npcData)
 			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
 		end
 
-		InitializeFarewellWalkaway(creature, npcConfig.dialogs, npcHandler, npc)
+		InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
 		local greetContext = InitializeGreet(creature, npcConfig.dialogs, npcHandler, npc)
 		return greetContext
 	end
