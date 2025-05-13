@@ -464,17 +464,21 @@ function CalculateItemsRequiredSlots(items)
 	for containerId, item in pairs(items) do
 		local count = 1
 		local stackable = false
+		local chargesPerItem = false
 		if ItemType(containerId):isContainer() then
 			count = CalculateItemsRequiredSlots(item)
 			count = count + 1
 		else
 			count = item.count or count
-			stackable = ItemType(item.id):isStackable() or stackable
+			stackable = ItemType(item.id):isStackable()
+			chargesPerItem = ItemType(item.id):getCharges()
 		end
 
 		local requiredSlots = 0
 		if stackable then
 			requiredSlots = math.ceil(count / 100)
+		elseif chargesPerItem > 1 then
+			requiredSlots = math.ceil(count / chargesPerItem)
 		else
 			requiredSlots = count
 		end
