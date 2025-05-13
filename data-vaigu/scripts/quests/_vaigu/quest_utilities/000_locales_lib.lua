@@ -67,42 +67,6 @@ for _, language in pairs(LANGUAGES) do
 	end
 end
 
-MISSING_STRINGS = {}
-EXCESS_STRINGS = {}
-function LoadMissingExcessStrings()
-	for language in pairs(LANGUAGES) do
-		MISSING_STRINGS[language] = {}
-		EXCESS_STRINGS[language] = {}
-		for key, fileName in pairs(LOCALIZERS) do
-			MISSING_STRINGS[language][fileName] = {}
-			EXCESS_STRINGS[language][fileName] = {}
-		end
-	end
-	for localizer, translationTable in pairs(TRANSLATION_TABLES[LANGUAGES.EN]) do
-		for key, translatedString in pairs(translationTable) do
-			for language in pairs(LANGUAGES) do
-				if not TRANSLATION_TABLES[language][localizer][key] then
-					MISSING_STRINGS[language][localizer][key] = true
-				end
-			end
-		end
-	end
-	for language, localizerToTranslationTable in pairs(TRANSLATION_TABLES) do
-		if language == LANGUAGES.EN then
-			goto continue
-		end
-
-		for localizer, translationTable in pairs(localizerToTranslationTable) do
-			for key, translatedString in pairs(translationTable) do
-				if not TRANSLATION_TABLES[LANGUAGES.EN][localizer][key] then
-					EXCESS_STRINGS[language][localizer][key] = true
-				end
-			end
-		end
-		::continue::
-	end
-end
-
 -- this registers TRANSLATION_TABLES on cpp side
 Game.initializeTranslationTable()
 
@@ -123,91 +87,29 @@ for _, language in pairs(LANGUAGES) do
 		stringsWithWrongLocalizer[language][localizer] = {}
 	end
 end
-function RegisterString(str, localizer)
-	if not localizer then
-		logger.warn(T("Localizer not found for str :str:", { str = str }))
-		localizer = LOCALIZERS.NONE
-	end
-	for _, language in pairs(LANGUAGES) do
-		missingStrings[language][localizer][str] = true
-		stringsWithWrongLocalizer[language][localizer][str] = true
-	end
-end
-
-local function translationExistsForLocalizer(str, localizer, langauge)
-	local questConf = TRANSLATION_TABLES[langauge][localizer]
-	if questConf then
-		return questConf[str]
-	end
-	return false
-end
-
-local function translationExists(str, language)
-	local allStrings = TRANSLATION_TABLES[language]
-	if allStrings[LOCALIZERS.Universal][str] then
-		return true
-	end
-	for localizer, questStrings in pairs(allStrings) do
-		if questStrings[str] then
-			return true
-		end
-	end
-
-	return false
-end
-
-function PrintMissingStrings()
-	for language, localizerToStr in pairs(missingStrings) do
-		for localizer, strToMissing in pairs(localizerToStr) do
-			for str in pairs(strToMissing) do
-				if translationExists(str, language) then
-					strToMissing[str] = nil
-				else
-					strToMissing[str] = true
-				end
-			end
-		end
-	end
-	PrintAnything(missingStrings)
-end
-
-function PrintWrongLocalizerStrings()
-	for language, localizerToStr in pairs(stringsWithWrongLocalizer) do
-		for localizer, strToWrong in pairs(localizerToStr) do
-			for str in pairs(strToWrong) do
-				if translationExists(str, language) and not translationExistsForLocalizer(str, language, localizer) then
-					strToWrong[str] = true
-				else
-					strToWrong[str] = nil
-				end
-			end
-		end
-	end
-	PrintAnything(stringsWithWrongLocalizer)
-end
 
 local notFoundSuffix = " //Translation unavailable"
-local function translationNotFound(str, language)
+local function translationNotFound(language, localizer, str)
 	str = str:gsub("{", "#")
 	str = str:gsub("}", "#")
 	logger.warn(T("[Localizer] translation not found for language :language:, for string: :str:", { language = language, str = str }))
+	MissingStrings:Add(language, localizer, str)
 	return str .. notFoundSuffix
 end
-function TranslatedFromAnyQuest(string, language, localizer)
+
+function TranslatedFromAnyQuest(str, language, localizer)
 	local allStrings = TRANSLATION_TABLES[language]
-	if allStrings[LOCALIZERS.Universal][string] then
-		return allStrings[LOCALIZERS.Universal][string]
+	if allStrings[LOCALIZERS.Universal][str] then
+		return allStrings[LOCALIZERS.Universal][str]
 	end
 	for _, questStrings in pairs(allStrings) do
-		if questStrings[string] then
-			return questStrings[string]
+		if questStrings[str] then
+			return questStrings[str]
 		end
 	end
 
 	localizer = localizer or LOCALIZERS.Universal
-	--MissingStrings[language][localizer] = MissingStrings[language][localizer] or {}
-	--MissingStrings[language][localizer][string] = true
-	return translationNotFound(string, language)
+	return translationNotFound(language, localizer, str)
 end
 
 ---@class Localizer
@@ -261,33 +163,56 @@ function Player:Localizer(questId)
 end
 
 MissingStrings = {}
-for key, value in pairs(LANGUAGES) do
-	MissingStrings[value] = {}
+MissingStrings.__index = MissingStrings
+MissingStrings.registry = {}
+function MissingStrings:Add(language, localizer, str)
+	self.registry[language] = self.registry[language] or {}
+	self.registry[language][localizer] = self.registry[language][localizer] or {}
+	self.registry[language][localizer][str] = true
 end
 
--- usage in-game: /lua missingStringsToFile()
-function missingStringsToFile()
-	for language, questIdToStr in pairs(MissingStrings) do
-		for questId, strToPresence in pairs(questIdToStr) do
-			for str in pairs(strToPresence) do
-				-- Construct the file path
-				local dirPath = ".\\missingStrings\\" .. language
-				local filePath = dirPath .. "\\" .. questId .. ".lua"
+for key, value in pairs(LANGUAGES) do
+	MissingStrings.registry[value] = {}
+end
 
-				-- Open the file in append mode
-				local file, err = io.open(filePath, "a+")
-				if not file then
-					logger.warn("[missingStringsToFile] Error opening file: " .. err)
-					return false
-				end
-
-				str = string.gsub(str, "\n", "\\n")
-				-- Write the content to the file
-				file:write(str .. "\n")
-
-				-- Close the file
-				file:close()
+function MissingStrings:TestAllLanaguages(str, localizer)
+	for _, language in pairs(LANGUAGES) do
+		local allStrings = TRANSLATION_TABLES[language]
+		if allStrings[LOCALIZERS.Universal][str] then
+			return allStrings[LOCALIZERS.Universal][str]
+		end
+		for _, questStrings in pairs(allStrings) do
+			if questStrings[str] then
+				return questStrings[str]
 			end
+		end
+
+		localizer = localizer or LOCALIZERS.Universal
+		MissingStrings:Add(language, localizer, str)
+	end
+end
+
+-- usage in-game: /lua MissingStrings:Serialize()
+function MissingStrings:Serialize()
+	local missing_strings = DATA_DIRECTORY .. "\\missing_strings"
+	os.execute("mkdir " .. missing_strings)
+	for language, questIdToStr in pairs(self.registry) do
+		local missing_strings_lang = missing_strings .. "\\" .. language
+		os.execute("mkdir " .. missing_strings_lang)
+		for localizer, strToPresence in pairs(questIdToStr) do
+			local missing_strings_lang_localizer_path = missing_strings_lang .. "\\" .. localizer .. ".lua"
+			local file, err = io.open(missing_strings_lang_localizer_path, "a+")
+			if not file then
+				logger.warn("[MissingStrings::Serialize] Error opening file: " .. err)
+				return false
+			end
+			local formattedStrToSerialize = ""
+			for str in pairs(strToPresence) do
+				formattedStrToSerialize = formattedStrToSerialize .. string.gsub(str, "\n", "\\n") .. "\n"
+			end
+			file:write(formattedStrToSerialize)
+			file:flush()
+			file:close()
 		end
 	end
 end

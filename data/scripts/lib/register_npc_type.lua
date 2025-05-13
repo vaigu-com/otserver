@@ -2,6 +2,7 @@ NpcTypeRepository = {}
 NpcTypeRepository.__index = NpcTypeRepository
 NpcTypeRepository.registry = {}
 function NpcTypeRepository:Add(name, data)
+	MissingStrings:TestAllLanaguages(name, LOCALIZERS.NpcName)
 	self.registry[name] = data
 end
 
@@ -51,7 +52,7 @@ function NpcTypeRepository:GetNpcsNotOnMap()
 	end
 
 	return namesNotOnMap
-end	
+end
 
 registerNpcType = {}
 setmetatable(registerNpcType, {
