@@ -40,13 +40,13 @@ quest
 					name = "Up to snuff",
 					storage = Storage.AvastYe.Mission01,
 					states = {
-						[QuestState.AvastYe.Mission01.BringSapphiresToMorgram] = "BringSapphiresToMorgram",
-						[QuestState.AvastYe.Mission01.TalkToRedbeard] = "TalkToRedbeard",
-						[QuestState.AvastYe.Mission01.BringHydraHeadToRedbeard] = "BringHydraHeadToRedbeard",
-						[QuestState.AvastYe.Mission01.TalkToIronhook] = "TalkToIronhook",
-						[QuestState.AvastYe.Mission01.BringPantherHeadToIronhook] = "BringPantherHeadToIronhook",
-						[QuestState.AvastYe.Mission01.TalkToChrisTheTailor] = "TalkToChrisTheTailor",
-						[QuestState.AvastYe.Mission01.BringRingToChrisTheTailor] = "BringRingToChrisTheTailor",
+						[QuestState.AvastYe.Mission01.BringSapphiresToMorgram] = "Bring 10 sapphires to Morgram.",
+						[QuestState.AvastYe.Mission01.TalkToRedbeard] = "Try to find the next pirate lord and gain his trust.",
+						[QuestState.AvastYe.Mission01.BringHydraHeadToRedbeard] = "Show one freshly cut hydra head to Redbeard.",
+						[QuestState.AvastYe.Mission01.TalkToIronhook] = "Try to find the next pirate lord and gain his trust.",
+						[QuestState.AvastYe.Mission01.BringPantherHeadToIronhook] = "Lady Ironhook wants you to bring her one panther head.",
+						[QuestState.AvastYe.Mission01.TalkToChrisTheTailor] = "Try to find the next pirate lord and gain his trust.",
+						[QuestState.AvastYe.Mission01.BringRingToChrisTheTailor] = "Chris the Tailor send you out on a mission to find a broken ring of ending. Find it and bring it back to him.",
 						[MISSION_FINISHED] = "You helped all pirate lords.",
 					},
 				},
@@ -308,7 +308,7 @@ quest
 		return QuestState.AvastYe.Mission01.TalkToChrisTheTailor,
 			QuestFactory.Dialog("Chris the Tailor", {
 				[{ "mission", "misja" }] = {
-					text = "Ah, another traveler seekin' passage? I don't trade in steel and blood, but I do trade in legend. The Broken Ring of Ending - an artifact lost to time. Bring it to me, and I'll sail ye to Naga Island. And trust me, mate, I can tell a fraud when I see one.",
+					text = "Ah, another traveler seekin' passage? I don't trade in steel and blood, but I do trade in legend. The Broken Ring of Ending - an artifact lost to time. Bring it to me, and I'll sail ye to Naga Island. Im the only one on this hemisphere that can take you there And trust me, mate, I can tell a fraud when I see one.",
 					nextState = {
 						[Storage.AvastYe.Mission01] = QuestState.AvastYe.Mission01.BringRingToChrisTheTailor,
 					},

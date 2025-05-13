@@ -7,4 +7,11 @@ return {
 	["Let's see....<mumbles a prayer>....here we go. The blessing on this axe will be absorbed by all the demonic energy around here. I presume it will not last very long, so better hurry. Actually, I can refresh the blessing as often as you like."] = "Let's see....<mumbles a prayer>....here we go. The blessing on this axe will be absorbed by all the demonic energy around here. I presume it will not last very long, so better hurry. Actually, I can refresh the blessing as often as you like.",
 	["You dont have an axe."] = "You dont have an axe.",
 	["What a pity! Let me know when you managed to get in there. Maybe I can help you when we know what we are dealing with."] = "What a pity! Let me know when you managed to get in there. Maybe I can help you when we know what we are dealing with.",
+	--Questlog
+	["Demon Oak"] = "Demon Oak",
+	["You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it."] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
+	["Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak."] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",
+	["You defeated the Demon Oak! Report to Oldrak."] = "You defeated the Demon Oak! Report to Oldrak.",
+	["You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury."] = "You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury.",
+	["You found and took your reward for defeating The Demon Oak."] = "You found and took your reward for defeating The Demon Oak.",
 }

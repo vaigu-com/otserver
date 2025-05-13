@@ -1,4 +1,5 @@
 return {
+	["Thanks for your help. Although i wont be needing your assistance for now."] =  "Thanks for your help. Although i wont be needing your assistance for now.",
 	["Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you."] = "Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you.",
 	["Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients."] = "Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients.",
 	["Thanks, these are things i needed. Here's your reward."] = "Thanks, these are things i needed. Here's your reward.",
@@ -164,7 +165,7 @@ return {
 	["You found the Tickets in a bandits tent. Bring to to Ocellatus."] = "You found the Tickets in a bandits tent. Bring to to Ocellatus.",
 	["You gave tickets back to Ocellatus. Ask him for new mission."] = "You gave tickets back to Ocellatus. Ask him for new mission.",
 	["Ocellatus asks you to bring him soup and wings. Ask Pewter for help."] = "Ocellatus asks you to bring him specific food. Ask Piotrek for help.",
-	["U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
+	["You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat.",
 	["Demon Oak"] = "Demon Oak",
 	["You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it."] = "You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it.",
 	["Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak."] = "Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak.",

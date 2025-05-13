@@ -31,6 +31,7 @@ return {
 	["Sultan Prime"] = "Sultan Prime",
 	["What Is Mafia? Is It Good?"] = "Co to mafia? Dobre to?",
 	["You found the cursed amulet of power. Return it to the King of Phantasms so he can begin his world destruction plan."] = "Znalazles przeklety naszyjnik wladzy. Oddaj go Krolowi Phantasmow, aby mogl rozpoczac swoje dzielo unicestwienia swiata.",
+	["Sultan made you an offer. Give the neclace to him to begin your mission."] = "Sultan zlozyl ci oferte. Oddaj mu teraz amulet, aby rozpoczac swoja misje.",
 	["You returned the amulet to the Sultan and agreed to help him."] = "Oddales amulet Sultanowi i zgodziles sie mu pomoc.",
 	["Unlucky Surveyors"] = "Pechowi ankieterzy",
 	["Go to Sultan of Phantasms for another task."] = "Udaj sie do Sultana Phantasmow po kolejne zadanie.",

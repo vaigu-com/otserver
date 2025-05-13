@@ -97,4 +97,6 @@ return {
 	["Congratulations, you finished my training program. These are my books on cooking. Please, take them."] = "Gratulacje, ukonczyles moj program szkoleniowy. To sa moje ksiazki o gotowaniu. Prosze, wez je.",
 	["Do you have all the necessary ingredients?"] = "Czy masz wszystkie niezbedne skladniki?",
 	["Lets begin then!\nBit of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish!"] = "Zaczynajmy!\nTroche tego... Posiekaj tamto... Dodaj to...\nGotowe!\nMysle, ze wszystko bylo jasne. Oto twoje danie!",
+	["You finished the cooking course. Ask Pewter for your next directions."] = "Zakonczyles program treningowy z zakresu gotowania. Zapytaj Piotrka o dalsze kroki.",
+	["Pewter provided you with his cookbooks and you can craft any food now."] = "Piotrek podarowal ci swoja ksiazke kucharska, dzieki ktorej mozesz gotowac dowolna potrawe.",
 }

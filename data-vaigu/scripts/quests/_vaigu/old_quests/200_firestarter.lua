@@ -61,7 +61,7 @@ quest
 						[QuestState.Firestarter.Mission01.BurnHayStack] = "Hymel asked you to burn down the herbs he left on his house on north side of MikroTown.",
 						[QuestState.Firestarter.Mission01.ReportToHymel] = "You burnt the herbs, now talk again with Hymel.",
 						[QuestState.Firestarter.Mission01.AskForNewMission] = "Hymel gave you an incendiary firebug. Ask him for a new mission.",
-						[MISSION_FINISHED] = "Hymel gave you an incendiary firebug.",
+						[MISSION_FINISHED] = "You finished this mission.",
 					},
 				},
 				{

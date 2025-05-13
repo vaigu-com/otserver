@@ -1,4 +1,5 @@
 return {
+	["Thanks for your help. Although i wont be needing your assistance for now."] = "Dzieki za twoja pomoc, jakkolwiek aktualnie raczej nie bede potrzebowac juz pomocy.",
 	["Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you."] = "Piotrek ze stepow zna saie na gotowaniu. Sproboj z nim pogadac, z moze uda wam sie przygotowac te dania.",
 	["Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients."] = "Interes mam do ciebie. Chce zrobic psikusa Biedronce, psikuta mysli ze sobie moze tak bez podatku sprzedawac te zarobaczale jedzenie. Ja jej pokaze na czym polega sabotaz.. to znaczy subtelnosc. Jak zbierzes wszystkie itemy, ktore spisalem w twoim questlogu, to zglos sie do mnie i pamietaj, aby uzyc naszego hasla - {czeladnik}.",
 	["Thanks, these are things i needed. Here's your reward."] = "Trzymaj - to za twoja pomoc. Mam nadzieje sie to nie konieci bedziesz chcial mi jeszcze pomoc.",
@@ -164,7 +165,7 @@ return {
 	["You found the Tickets in a bandits tent. Bring to to Ocellatus."] = "Znalazles bilety w namiocie bandytow. Przynies je teraz od Oskarka.",
 	["You gave tickets back to Ocellatus. Ask him for new mission."] = "Oddales bilety, i zwrociles je Oskarkowi. Zapytaj go, czy ma dla ciebie jakies dodatkowe zadanie.",
 	["Ocellatus asks you to bring him soup and wings. Ask Pewter for help."] = "Zostales poproszony o zarcie, porozmawiaj z Piotrkiem, jesli bedziesz mial problem.",
-	["U brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "Przyniosles zarcie Oskarkowi, za co podarowal ci stroj, i pozwolil plywac swoja lodka.",
+	["You brang food to Ocellatus. In his gratitude, he gave you outfit and let you sail his boat."] = "Przyniosles zarcie Oskarkowi, za co podarowal ci stroj, i pozwolil plywac swoja lodka.",
 	["Demon Oak"] = "Demoniczny Dab",
 	["You have made your way into the den of Demon Oak. Try to find someone who will tell you more about it."] = "Dostales sie o demonizcznego debu. Znajdz kogos, kto powie ci o nim cos wiecej.",
 	["Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak."] = "Uzyskales od Oldraka informacje na temat demonicznego debu. Jesli przyniesies mu topor, to poblogoslawi go, aby mogl zostac uzyty w walce z debem.",

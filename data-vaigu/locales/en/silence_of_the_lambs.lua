@@ -12,6 +12,7 @@ return {
 	["The Silence of the Lambs"] = "The Silence of the Lambs",
 	["The test of Strength"] = "The test of Strength",
 	["Lecter asked you for 5 vampire teeth."] = "Lecter asked you for 5 vampire teeth.",
+	["Ask Lecter for a new mission."] = "Ask Lecter for a new mission.",
 	["In exchange for your help, Lecter bestowed you with his old soul-extraction tool."] = "In exchange for your help, Lecter bestowed you with his old soul-extraction tool.",
 	["Fashionable clothes"] = "Fashionable clothes",
 	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter asked you to bring him 20 leathers of every kind.",

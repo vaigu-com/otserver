@@ -13,4 +13,5 @@ return {
 	["Oldrak gave you information regarding Demon Oak. He can bless an axe if you bring him one. The blessed axe should help you fight the Oak."] = "Oldrak przekazal ci informacje o Demonicznym Debie. Poprosil cie o przyniesienie mu topora, ktory po poblogoslawieniu pomoze w pokonaniu debu.",
 	["You defeated the Demon Oak! Report to Oldrak."] = "Pokonales Demoniczny Dab! Przekaz te informacje Oldrakowi.",
 	["You reported to Oldrak about your victory. You have been rewarded for your efforts: Oldrak told you a secret about the way to the Elvish treasury."] = "Przekazales Oldrakowi wiesc o pokonaniu Debu. W zamian wyjawil ci sekret dotyczacy Elfickiego skarbca.",
+	["You found and took your reward for defeating The Demon Oak."] = "You found and took your reward for defeating The Demon Oak.",
 }
