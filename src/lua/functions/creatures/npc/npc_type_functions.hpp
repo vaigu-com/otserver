@@ -65,5 +65,8 @@ private:
 	static int luaNpcTypeAddSound(lua_State* L);
 	static int luaNpcTypeGetSounds(lua_State* L);
 
+	// Vaigu custom
+	static int luaNpcTypeIsTransportNpc(lua_State* L);
+
 	friend class GameFunctions;
 };

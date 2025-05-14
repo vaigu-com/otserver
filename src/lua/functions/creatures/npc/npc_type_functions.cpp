@@ -28,6 +28,9 @@ void NpcTypeFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "NpcType", "canPushCreatures", NpcTypeFunctions::luaNpcTypeCanPushCreatures);
 
 	// Vaigu custom
+	Lua::registerMethod(L, "NpcType", "isTransportNpc", NpcTypeFunctions::luaNpcTypeIsTransportNpc);
+
+	// Vaigu custom
 	Lua::registerMethod(L, "NpcType", "getUniqueName", NpcTypeFunctions::luaNpcTypeGetUniqueName);
 
 	Lua::registerMethod(L, "NpcType", "name", NpcTypeFunctions::luaNpcTypeName);
@@ -639,6 +642,25 @@ int NpcTypeFunctions::luaNpcTypeGetSounds(lua_State* L) {
 		lua_createtable(L, 0, 1);
 		lua_pushnumber(L, static_cast<lua_Number>(sound));
 		lua_rawseti(L, -2, index);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int NpcTypeFunctions::luaNpcTypeIsTransportNpc(lua_State* L){
+	// get: npc:isTransportNpc()
+	// set: npc:isTransportNpc(nextState)
+	const auto &npcType = Lua::getUserdataShared<NpcType>(L, 1, "NpcType");
+	if (npcType) {
+		if (lua_gettop(L) == 1) {
+			Lua::pushBoolean(L, npcType->info.isTransportNpc);
+		} else {
+			auto nextState = Lua::getBoolean(L, 2, false);
+			npcType->info.isTransportNpc = nextState;
+			Lua::pushBoolean(L, nextState);
+		}
+	} else {
+		lua_pushnil(L);
 	}
 	return 1;
 }

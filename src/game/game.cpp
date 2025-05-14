@@ -9033,7 +9033,7 @@ void Game::playerNpcGreet(uint32_t playerId, uint32_t npcId) {
 
 	if (npc->getSpeechBubble() == SPEECHBUBBLE_TRADE) {
 		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "trade", false, &npcsSpectators);
-	} else {
+	} else if(npc->isTransportNpc()) {
 		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "sail", false, &npcsSpectators);
 	}
 

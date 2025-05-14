@@ -131,6 +131,11 @@ void Npc::setMasterPos(Position pos) {
 	masterPos = pos;
 }
 
+// Vaigu custom
+bool Npc::isTransportNpc() const {
+	return npcType->info.isTransportNpc;
+}
+
 uint8_t Npc::getSpeechBubble() const {
 	return npcType->info.speechBubble;
 }

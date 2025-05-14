@@ -62,6 +62,9 @@ public:
 	const Position &getMasterPos() const;
 	void setMasterPos(Position pos);
 
+	// Vaigu custom
+	bool isTransportNpc() const;
+
 	uint8_t getSpeechBubble() const override;
 	void setSpeechBubble(const uint8_t bubble) const;
 
