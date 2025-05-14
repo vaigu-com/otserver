@@ -75,20 +75,22 @@ quest
 				[{ GREET }] = {
 					text = "I see you have made a great effort to help our city people. For that I would like to thank you personally. Please visit Vislav Shivka, he has a {tactical task} for you, if you know what i mean.",
 					specialRequirements = {
-						requirement = function(context)
-							local finishedCount = 0
-							local leeway = 1
-							local player = context.player
-							for _, storage in pairs(QuestConstants.LocalSupport.LocalSupportMissionStorages) do
-								local state = player:getStorageValueByKey(storage)
-								if state == MISSION_FINISHED then
-									finishedCount = finishedCount + 1
+						{
+							requirement = function(context)
+								local finishedCount = 0
+								local leeway = 1
+								local player = context.player
+								for _, storage in pairs(QuestConstants.LocalSupport.LocalSupportMissionStorages) do
+									local state = player:getStorageValueByKey(storage)
+									if state == MISSION_FINISHED then
+										finishedCount = finishedCount + 1
+									end
 								end
-							end
 
-							return (finishedCount + leeway) >= TableSize(QuestConstants.LocalSupport.LocalSupportMissionStorages)
-						end,
-						requiredOutcome = true,
+								return (finishedCount + leeway) >= TableSize(QuestConstants.LocalSupport.LocalSupportMissionStorages)
+							end,
+							requiredOutcome = true,
+						},
 					},
 					nextTopic = QuestTopics.EnterTheDrunkTank.AcceptTacticalTask,
 				},
