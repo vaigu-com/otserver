@@ -125,21 +125,21 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline, 6)
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission03, 1) -- Questlog The Ice Islands Quest, Nibelor 2: Ecological Terrorism
-			player:AddCustomItem({id = 7243, count = 1})
+			player:addItem(7243, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 2 then
 			if player:getMoney() + player:getBankBalance() >= 1000 then
 				player:removeMoneyBank(1000)
 				npcHandler:say("Here you are.", npc, creature)
 				npcHandler:setTopic(playerId, 0)
-				player:AddCustomItem({id = 7243, count = 1})
+				player:addItem(7243, 1)
 			end
 		elseif npcHandler:getTopic(playerId) == 3 then
 			npcHandler:say("Good! Now listen. To protect the animals there, we have to harm the profit of the hunters. Therefor, I ask you to ruin their best source of earnings. Are you willing to do that?", npc, creature)
 			npcHandler:setTopic(playerId, 4)
 		elseif npcHandler:getTopic(playerId) == 4 then
 			npcHandler:say("So let's proceed. Take this vial of paint. Travel to Tyrsung again and ruin as many pelts of baby seals as possible before the paint runs dry or freezes. Then return here to report about your mission. ", npc, creature)
-			player:AddCustomItem({id = 7253, count = 1})
+			player:addItem(7253, 1)
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline, 8)
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission04, 1) -- Questlog The Ice Islands Quest, Nibelor 3: Artful Sabotage
 			npcHandler:setTopic(playerId, 0)
@@ -200,7 +200,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 13 then
 		if npcHandler:getTopic(playerId) == 13 and player:removeMoneyBank(400) then
-			player:AddCustomItem({id = 8819, count = 1})
+			player:addItem(8819, 1)
 			npcHandler:say("Here you go.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		else

@@ -62,18 +62,11 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission06) == 1 then
 			local headItem = player:getSlotItem(CONST_SLOT_HEAD)
 			if headItem and headItem.itemid == 3576 and player:getStorageValue(Storage.Quest.U7_24.ThePostmanMissions.Rank) == 5 and player:getSex() ~= PLAYERSEX_FEMALE then
-<<<<<<< HEAD
-<<<<<<< HEAD
-				player:AddCustomItem({id = 7934})
-=======
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:addItem(7934)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission06, 2)
 				npcHandler:say("Oh my! You look so great in your uniform! You archpostmen are not only daring but also handsome. Here take it, that's the key you wanted. Just promise to visit me now and then!", npc, creature)
 			elseif player:removeItem(7939, 1) then
-				player:AddCustomItem({id = 7934})
+				player:addItem(7934)
 				player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission06, 2)
 				npcHandler:say("Oh my, such a lovely necklace! Here take it, that's the key you wanted. Now let me admire my precious necklace alone.", npc, creature)
 			else

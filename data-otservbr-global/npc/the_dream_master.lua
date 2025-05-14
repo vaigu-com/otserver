@@ -88,13 +88,13 @@ local function creatureSayCallback(npc, creature, type, message)
 				"So I welcome you as the latest member of the order of the Nightmare Knights. You entered this place as a stranger, butyou will leave this place as a friend ...",
 				"You can always ask me about your current rank and about the privileges the ranks grant to those who hold them.",
 			}, npc, creature)
-			player:AddCustomItem({id = 768, count = 1})
+			player:addItem(768, 1)
 			player:setStorageValue(Storage.Quest.U7_9.NightmareOutfits.Outfits, 1)
 			player:addAchievement("Nightmare Knight")
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 3 then
 			if player:removeItem(6499, 500) then
-				player:AddCustomItem({id = 769, count = 1})
+				player:addItem(769, 1)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				player:setStorageValue(Storage.Quest.U7_9.NightmareOutfits.Outfits, 2)
 				npcHandler:say("You advanced to {Initiate} rank! You are now able to use teleports of second floor of Knightwatch Tower.", npc, creature)
@@ -106,8 +106,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeItem(6499, 1000) then
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				player:setStorageValue(Storage.Quest.U7_9.NightmareOutfits.Outfits, 3)
-				player:AddCustomItem({id = 770, count = 1})
-				player:AddCustomItem({id = 6390, count = 1})
+				player:addItem(770, 1)
+				player:addItem(6390, 1)
 				player:addAchievement("Nightmare Walker")
 				npcHandler:say("You advanced to {Dreamer} rank!", npc, creature)
 			else

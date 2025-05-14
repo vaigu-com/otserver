@@ -1085,15 +1085,7 @@ ChestUnique = {
 		itemPos = { x = 33352, y = 31318, z = 7 },
 		randomReward = { { 9081, 1 }, { 28821, 1 }, { 28823, 1 }, { 9058, 1 }, { 6299, 1 }, { 3052, 1 }, { 3035, 10 } },
 		reward = { { nil, nil } },
-<<<<<<< HEAD
-<<<<<<< HEAD
-		timerStorage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Coast,
-=======
 		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Coast,
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Coast,
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		time = 24, -- hour
 	},
 	[6106] = {
@@ -1101,15 +1093,7 @@ ChestUnique = {
 		itemPos = { x = 33384, y = 31285, z = 7 },
 		randomReward = { { 9081, 1 }, { 28821, 1 }, { 28823, 1 }, { 9058, 1 }, { 6299, 1 }, { 3052, 1 }, { 3035, 10 } },
 		reward = { { nil, nil } },
-<<<<<<< HEAD
-<<<<<<< HEAD
-		timerStorage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Island,
-=======
 		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Island,
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Island,
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		time = 24, -- hour
 	},
 	[6107] = {
@@ -1117,15 +1101,7 @@ ChestUnique = {
 		itemPos = { x = 33366, y = 31323, z = 5 },
 		randomReward = { { 9081, 1 }, { 28821, 1 }, { 28823, 1 }, { 9058, 1 }, { 6299, 1 }, { 3052, 1 }, { 3035, 10 } },
 		reward = { { nil, nil } },
-<<<<<<< HEAD
-<<<<<<< HEAD
-		timerStorage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.ThroneHall,
-=======
 		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.ThroneHall,
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.ThroneHall,
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		time = 24, -- hour
 	},
 	[6108] = {
@@ -1133,15 +1109,7 @@ ChestUnique = {
 		itemPos = { x = 33374, y = 31340, z = 4 },
 		randomReward = { { 9081, 1 }, { 28821, 1 }, { 28823, 1 }, { 9058, 1 }, { 6299, 1 }, { 3052, 1 }, { 3035, 10 } },
 		reward = { { nil, nil } },
-<<<<<<< HEAD
-<<<<<<< HEAD
-		timerStorage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Shortcut,
-=======
 		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Shortcut,
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.Shortcut,
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		time = 24, -- hour
 	},
 	[6109] = {
@@ -1149,15 +1117,7 @@ ChestUnique = {
 		itemPos = { x = 33324, y = 31268, z = 8 },
 		randomReward = { { 9081, 1 }, { 28821, 1 }, { 28823, 1 }, { 9058, 1 }, { 6299, 1 }, { 3052, 1 }, { 3035, 10 } },
 		reward = { { nil, nil } },
-<<<<<<< HEAD
-<<<<<<< HEAD
-		timerStorage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.LowerBastion,
-=======
 		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.LowerBastion,
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.LowerBastion,
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		time = 24, -- hour
 	},
 	[6110] = {
@@ -1165,15 +1125,7 @@ ChestUnique = {
 		itemPos = { x = 33308, y = 31304, z = 9 },
 		randomReward = { { 9081, 1 }, { 28821, 1 }, { 28823, 1 }, { 9058, 1 }, { 6299, 1 }, { 3052, 1 }, { 3035, 10 } },
 		reward = { { nil, nil } },
-<<<<<<< HEAD
-<<<<<<< HEAD
-		timerStorage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.UndergroundBastion,
-=======
 		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.UndergroundBastion,
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastion.ChestsTimer.UndergroundBastion,
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		time = 24, -- hour
 	},
 	-- Blood Herb Quest
@@ -2622,30 +2574,14 @@ ChestUnique = {
 		questName = "Rookgaard05BrownMushrooms",
 	},
 	-- Dark Trails Quest
-<<<<<<< HEAD
-<<<<<<< HEAD
-	[6302] = {
-=======
 	[6303] = {
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	[6303] = {
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		itemId = 2469,
 		itemPos = { x = 33457, y = 32073, z = 8 },
 		reward = { { 11450, 1 } },
 		weight = 1.00,
 		storage = Storage.Quest.U10_50.DarkTrails.RewardSmallNotebook,
 	},
-<<<<<<< HEAD
-<<<<<<< HEAD
-	[6303] = {
-=======
 	[6304] = {
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	[6304] = {
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		itemId = 2478,
 		itemPos = { x = 33468, y = 32083, z = 8 },
 		container = 2853,
@@ -2653,15 +2589,7 @@ ChestUnique = {
 		weight = 189.00,
 		storage = Storage.Quest.U10_50.DarkTrails.Reward05GlothAndBelongings,
 	},
-<<<<<<< HEAD
-<<<<<<< HEAD
-	[6304] = {
-=======
 	[6305] = {
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	[6305] = {
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		itemId = 2478,
 		itemPos = { x = 33487, y = 32085, z = 9 },
 		container = 2853,
@@ -2670,15 +2598,7 @@ ChestUnique = {
 		storage = Storage.Quest.U10_50.DarkTrails.Reward10GlothAndBelongings,
 	},
 	-- Nightmare Teddy Quest
-<<<<<<< HEAD
-<<<<<<< HEAD
-	[6305] = {
-=======
 	[6306] = {
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	[6306] = {
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		useKV = true,
 		itemId = 2433,
 		itemPos = { x = 33444, y = 32605, z = 11 },
@@ -2687,30 +2607,14 @@ ChestUnique = {
 		questName = "NightmareTeddyQuest",
 	},
 	-- Ferumbras' Ascension Quest
-<<<<<<< HEAD
-<<<<<<< HEAD
-	[6306] = {
-=======
 	[6307] = {
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	[6307] = {
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		itemId = 1983,
 		itemPos = { x = 33384, y = 32323, z = 12 },
 		reward = { { 22160, 1 } },
 		weight = 1.00,
 		storage = Storage.Quest.U10_90.FerumbrasAscension.TheRiteOfEternalNight,
 	},
-<<<<<<< HEAD
-<<<<<<< HEAD
-	[6307] = {
-=======
 	[6308] = {
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	[6308] = {
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		itemId = 1986,
 		itemPos = { x = 33393, y = 32373, z = 11 },
 		reward = { { 22158, 1 } },

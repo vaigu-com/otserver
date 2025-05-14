@@ -6,7 +6,7 @@ function gravediggerAmforas.onUse(player, item, fromPosition, target, toPosition
 			player:setStorageValue(Storage.Quest.U10_10.TheGravediggerOfDrefia.Mission06, 1)
 			player:say("You've got an amazing heart!", TALKTYPE_MONSTER_SAY)
 			player:getPosition():sendMagicEffect(CONST_ME_HEARTS)
-			player:AddCustomItem({id = 19077, count = 1})
+			player:addItem(19077, 1)
 		else
 			player:say("Keep it trying!", TALKTYPE_MONSTER_SAY)
 			player:getPosition():sendMagicEffect(CONST_ME_POFF)

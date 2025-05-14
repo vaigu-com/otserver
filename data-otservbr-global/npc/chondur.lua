@@ -253,7 +253,7 @@ local function handleOtherMessages(npcHandler, npc, creature, message, playerId)
 				player:setStorageValue(Storage.Quest.U7_8.FriendsAndTraders.TheBlessedStakeWaitTime, os.time() + 7 * 86400)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 				player:removeItem(5941, 1)
-				player:AddCustomItem({id = 5942, count = 1})
+				player:addItem(5942, 1)
 				npcHandler:say("<mumblemumble> Sha Kesh Mar!", npc, creature)
 				return true
 			end

@@ -70,7 +70,7 @@ function explorerSocietyFindings.onUse(player, item, fromPosition, target, toPos
 		return true
 	end
 	if player:getStorageValue(uniqueItem.storageMission) ~= uniqueItem.storageMissionValue then
-		player:AddCustomItem({id = uniqueItem.rewardItemId, count = 1})
+		player:addItem(uniqueItem.rewardItemId, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. getItemName(uniqueItem.rewardItemId) .. ".")
 		player:setStorageValue(item.uid, 1)
 		player:setStorageValue(uniqueItem.storageMission, uniqueItem.storageMissionValue)

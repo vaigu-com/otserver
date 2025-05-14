@@ -168,8 +168,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 2 then
 			if player:removeItem(11699, 1) then
-				player:AddCustomItem({id = 11700, count = 1})
-				player:AddCustomItem({id = 3035, count = 10})
+				player:addItem(11700, 1)
+				player:addItem(3035, 10)
 				player:addExperience(3000, true)
 				player:setStorageValue(Storage.Quest.U8_6.AnInterestInBotany.Questline, 4)
 				npcHandler:say({

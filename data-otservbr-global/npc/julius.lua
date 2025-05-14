@@ -144,7 +144,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Here is the map. When you are standing near a remarkable spot, use it to mark that spot on the map. Don't forget, come back with at least five marks! ...",
 				"Also, they say there is a castle on this island. That mark HAS to be included, it's far too important to leave it out. Good luck!",
 			}, npc, creature)
-			player:AddCustomItem({id = 8200})
+			player:addItem(8200)
 			player:setStorageValue(Storage.Quest.U8_4.BloodBrothers.Mission04, 1)
 			player:setStorageValue(Storage.Quest.U8_4.BloodBrothers.VengothAccess, 1)
 			npcHandler:setTopic(playerId, 0)

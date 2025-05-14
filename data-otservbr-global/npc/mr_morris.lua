@@ -89,7 +89,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					it was to be expected he would meet an early end. Oh, well. ...",
 			}, npc, creature, 0)
 			player:removeItem(21379, 1)
-			player:AddCustomItem({id = 3031, count = 50})
+			player:addItem(3031, 50)
 			player:setStorageValue(Storage.Quest.U10_55.Dawnport.TheLostAmulet, 3)
 			npcHandler:setTopic(playerId, 0)
 		end
@@ -111,7 +111,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				creature
 			)
 			player:removeItem(21378, 1)
-			player:AddCustomItem({id = 3031, count = 50})
+			player:addItem(3031, 50)
 			player:setStorageValue(Storage.Quest.U10_55.Dawnport.TheStolenLogBook, 2)
 			npcHandler:setTopic(playerId, 0)
 		end
@@ -131,7 +131,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npc,
 				creature
 			)
-			player:AddCustomItem({id = 3031, count = 50})
+			player:addItem(3031, 50)
 			player:setStorageValue(Storage.Quest.U10_55.Dawnport.TheRareHerb, 3)
 			npcHandler:setTopic(playerId, 0)
 		end
@@ -187,7 +187,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 5 then
 			npcHandler:say("The key to the dormitory! Finally! You're a real sleuth. Here's your reward.", npc, creature)
 			player:removeItem(21392, 1)
-			player:AddCustomItem({id = 3031, count = 50})
+			player:addItem(3031, 50)
 			player:setStorageValue(Storage.Quest.U10_55.Dawnport.TheDormKey, 5)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 6 then
@@ -236,7 +236,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say("Ah, very good job. That should put a crimp in their activities. Here's your reward.", npc, creature)
 				player:setStorageValue(14898, 1)
 				player:setStorageValue(Storage.Quest.U10_55.Dawnport.MorriskTroll, 2)
-				player:AddCustomItem({id = 3031, count = 50})
+				player:addItem(3031, 50)
 			else
 				npcHandler:say("Come back when you have slain {20 mountain trolls!}", npc, creature)
 			end
@@ -254,7 +254,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say("Ah, very good job. That should put a crimp in their activities. Here's your reward.", npc, creature)
 				player:setStorageValue(14899, 1)
 				player:setStorageValue(Storage.Quest.U10_55.Dawnport.MorrisGoblin, 2)
-				player:AddCustomItem({id = 3031, count = 50})
+				player:addItem(3031, 50)
 			else
 				npcHandler:say("Come back when you have slain {20 muglex clan footman!}", npc, creature)
 			end
@@ -272,7 +272,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:say("Ah, very good job. That should put a crimp in their activities. Here's your reward.", npc, creature)
 				player:setStorageValue(14900, 1)
 				player:setStorageValue(Storage.Quest.U10_55.Dawnport.MorrisMinos, 2)
-				player:AddCustomItem({id = 3031, count = 50})
+				player:addItem(3031, 50)
 			else
 				npcHandler:say("Come back when you have slain {20 minotaur bruisers!}", npc, creature)
 			end

@@ -83,14 +83,14 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionMatchmaker, 1)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MatchmakerStatus, 0)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MatchmakerIdNeeded, math.random(15809, 15815))
-				player:AddCustomItem({id = 15802, count = 1}) --- taking missions
+				player:addItem(15802, 1) --- taking missions
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MatchmakerTimeout) > os.time() then -- trying to take mission while in cooldown
 				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionMatchmaker) > 0 then -- reporting mission
 				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MatchmakerStatus) == 1 then -- can report missions
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 10)
-					player:AddCustomItem({id = 16128, count = 2})
-					player:AddCustomItem({id = 15698, count = 1})
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionMatchmaker, 0)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MatchmakerStatus, -1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MatchmakerIdNeeded, -1)
@@ -125,15 +125,15 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionTinkersBell, 1)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.GolemCount, 0)
-				player:AddCustomItem({id = 15832, count = 1}) --- taking missions
+				player:addItem(15832, 1) --- taking missions
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.TinkerBellTimeout) > os.time() then -- trying to take mission while in cooldown
 				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionTinkersBell) > 0 then -- reporting mission
 				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.GolemCount) >= 4 then -- can report missions
 					player:removeItem(15832, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 5)
-					player:AddCustomItem({id = 16128, count = 2})
-					player:AddCustomItem({id = 15698, count = 1})
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionTinkersBell, 0)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.GolemCount, -1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.TinkerBellTimeout, os.time() + 72000)
@@ -166,7 +166,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionSporeGathering, 1)
 				player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.SporeCount, 0)
-				player:AddCustomItem({id = 15817, count = 1})
+				player:addItem(15817, 1)
 				npcHandler:setTopic(playerId, 0) --- taking missions
 			elseif player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.SporeGatheringTimeout) > os.time() then -- trying to take mission while in cooldown
 				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", npc, creature)
@@ -174,8 +174,8 @@ local function creatureSayCallback(npc, creature, type, message)
 				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.SporeCount) == 4 then -- can report missions
 					player:removeItem(15821, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 10)
-					player:AddCustomItem({id = 16128, count = 2})
-					player:AddCustomItem({id = 15698, count = 1})
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionSporeGathering, 0)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.SporeCount, -1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.SporeGatheringTimeout, os.time() + 72000)
@@ -214,8 +214,8 @@ local function creatureSayCallback(npc, creature, type, message)
 				if player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.GrindstoneStatus) == 1 then -- can report missions
 					player:removeItem(15826, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank, player:getStorageValue(Storage.Quest.U9_60.BigfootsBurden.Rank) + 10)
-					player:AddCustomItem({id = 16128, count = 2})
-					player:AddCustomItem({id = 15698, count = 1})
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.MissionGrindstoneHunt, 0)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.GrindstoneStatus, -1)
 					player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.GrindstoneTimeout, os.time() + 72000)

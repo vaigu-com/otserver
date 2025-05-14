@@ -87,7 +87,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getMoney() + player:getBankBalance() >= 5000 then
 				player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.GhostOfAPriest01, 1)
 				player:removeMoneyBank(5000)
-				player:AddCustomItem({id = 11368, count = 1})
+				player:addItem(11368, 1)
 				npcHandler:say("So be it! Here is my part of the sceptre. Combine it with the other parts on the altar of the Great Snake in the depths of this temple.", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			end
@@ -95,7 +95,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getMoney() + player:getBankBalance() >= 5000 then
 				player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.GhostOfAPriest02, 1)
 				player:removeMoneyBank(5000)
-				player:AddCustomItem({id = 11369, count = 1})
+				player:addItem(11369, 1)
 				npcHandler:say("So be it! Here is my part of the sceptre. Combine it with the other parts on the altar of the Great Snake in the depths of this temple.", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			end
@@ -103,7 +103,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getMoney() + player:getBankBalance() >= 5000 then
 				player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.GhostOfAPriest03, 1)
 				player:removeMoneyBank(5000)
-				player:AddCustomItem({id = 11370, count = 1})
+				player:addItem(11370, 1)
 				npcHandler:say("So be it! Here is my part of the sceptre. Combine it with the other parts on the altar of the Great Snake in the depths of this temple.", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			end

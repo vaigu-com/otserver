@@ -7,7 +7,7 @@ function lockPick.onUse(player, item, fromPosition, target, toPosition, isHotkey
 
 	if math.random(100) <= 30 then
 		if player:getStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission02) == 1 then
-			player:AddCustomItem({id = 227, count = 1})
+			player:addItem(227, 1)
 			player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission02, 2)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your lock pick open this chest!")
 		end

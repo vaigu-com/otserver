@@ -68,7 +68,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 1 then
 		if player:removeItem(12517, 1) then
-			player:AddCustomItem({id = 12413, count = 1})
+			player:addItem(12413, 1)
 			player:addAchievementProgress("Doctor! Doctor!", 100)
 			npcHandler:say("Here you are", npc, creature)
 		else

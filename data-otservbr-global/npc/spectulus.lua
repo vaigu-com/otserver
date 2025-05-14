@@ -226,7 +226,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 6 then
 			player:setStorageValue(Storage.Quest.U8_54.SeaOfLight.Questline, 7)
 			player:setStorageValue(Storage.Quest.U8_54.SeaOfLight.Mission3, 1)
-			player:AddCustomItem({id = 9698, count = 1})
+			player:addItem(9698, 1)
 			npcHandler:say("To collect the unbelievably rare, practically unique mirror crystal, you will need to use this special carrying device I developed. If you find the crystal, use it to store it and transport it safely to me. There is no second one.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 7 then
@@ -235,8 +235,8 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:setTopic(playerId, 0)
 				return true
 			end
-			player:AddCustomItem({id = 3028, count = 10})
-			player:AddCustomItem({id = 3037, count = 1})
+			player:addItem(3028, 10)
+			player:addItem(3037, 1)
 			player:addExperience(1000, true)
 			player:setStorageValue(Storage.Quest.U8_54.SeaOfLight.Mission3, 4)
 			player:setStorageValue(Storage.Quest.U8_54.SeaOfLight.Questline, 10)
@@ -271,12 +271,12 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 18 then
 			npcHandler:say("Good. Take this wand - we call it a spirit meter - and go to the graveyard I have marked on your map and take a few measurements on the graves.", npc, creature)
 			player:setStorageValue(Storage.Quest.U8_7.SpiritHunters.Mission01, 1)
-			player:AddCustomItem({id = 4049, count = 1})
+			player:addItem(4049, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 19 then
 			npcHandler:say("Let me see the spirit meter. Hmmm... those are grave news you bring - uhm, you know what I mean. But this is awesome! Now I know for sure that the calibration is only some short bursts of magically enhanced energy away.", npc, creature)
 			player:addExperience(500, true)
-			player:AddCustomItem({id = 3035, count = 5})
+			player:addItem(3035, 5)
 			player:setStorageValue(Storage.Quest.U8_7.SpiritHunters.Mission01, 2)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 27 then

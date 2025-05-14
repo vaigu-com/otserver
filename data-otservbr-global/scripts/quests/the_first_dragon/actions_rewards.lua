@@ -46,15 +46,7 @@ function finalReward.onUse(player, item, fromPosition, target, toPosition, isHot
 	end
 
 	if item.uid == 14021 and player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardMask) < os.time() then
-<<<<<<< HEAD
-<<<<<<< HEAD
-		player:AddCustomItem({id = setting.name, setting.count, count = true})
-=======
 		player:addItem(setting.name, setting.count, true)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		player:addItem(setting.name, setting.count, true)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardMask, os.time() + 60 * 60 * 24 * 5)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")
 	elseif item.uid == 14022 and player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardBackpack) < os.time() then
@@ -72,15 +64,7 @@ function finalReward.onUse(player, item, fromPosition, target, toPosition, isHot
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found a backpack.")
 		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardBackpack, os.time() + 60 * 60 * 24 * 365)
 	elseif item.uid == 14023 and player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardFeather) < os.time() then
-<<<<<<< HEAD
-<<<<<<< HEAD
-		player:AddCustomItem({id = setting.name, setting.count, count = true})
-=======
 		player:addItem(setting.name, setting.count, true)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		player:addItem(setting.name, setting.count, true)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardFeather, os.time() + 24 * 3600)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")
 	else

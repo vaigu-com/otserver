@@ -132,7 +132,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "yes") then
 		if npcHandler:getTopic(playerId) == 1 then
 			if player:removeMoneyBank(1000) then
-				player:AddCustomItem({id = 7866, count = 1})
+				player:addItem(7866, 1)
 				player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission04, 5)
 				npcHandler:say("And here they are! Now forget where you got them from.", npc, creature)
 			else
@@ -150,16 +150,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeItem(235, 1) then
 				npcHandler:say("GREAT! If you ever need a job as my personal security guard, let me know. Here is the reward I promised you.", npc, creature)
 				player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.StealFromThieves, 3)
-<<<<<<< HEAD
-<<<<<<< HEAD
-				player:AddCustomItem({id = 3031, count = 100})
-				player:AddCustomItem({id = 3725, count = 100})
-=======
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:addItem(3031, 100)
 				player:addItem(3725, 100)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("Come back when you find my stuff.", npc, creature)

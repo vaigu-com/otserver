@@ -136,7 +136,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getMoney() + player:getBankBalance() >= 1000 then
 				if player:removeItem(3274, 1) and player:removeMoneyBank(1000) then
 					npcHandler:say("Let's see....<mumbles a prayer>....here we go. The blessing on this axe will be absorbed by all the demonic energy around here. I presume it will not last very long, so better hurry. Actually, I can refresh the blessing as often as you like.", npc, creature)
-					player:AddCustomItem({id = 919, count = 1})
+					player:addItem(919, 1)
 					npc:getPosition():sendMagicEffect(CONST_ME_YELLOWENERGY)
 					npcHandler:setTopic(playerId, 0)
 				else
@@ -183,7 +183,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 3 then
 		if player:removeMoney(1000) then
-			player:AddCustomItem({id = 2836, count = 1})
+			player:addItem(2836, 1)
 			npcHandler:say("Here is your The Holy Tible.", npc, creature)
 		else
 			npcHandler:say("You do not have enough money.", npc, creature)

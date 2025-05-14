@@ -65,7 +65,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			local player = Player(creature)
 			if player:getMoney() + player:getBankBalance() >= 50 then
 				npcHandler:say("Here it is.", npc, creature)
-				local key = player:AddCustomItem({id = 2969, count = 1})
+				local key = player:addItem(2969, 1)
 				if key then
 					key:setActionId(3033)
 				end

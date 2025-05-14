@@ -20,7 +20,7 @@ function demonOakChest.onUse(player, item, fromPosition, target, toPosition, isH
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. (#article > 0 and article .. " " or "") .. itemType:getName() .. ".")
 		end
 
-		player:AddCustomItem({id = chest.itemid, count = chest.count})
+		player:addItem(chest.itemid, chest.count)
 		player:setStorageValue(Storage.Quest.U8_2.TheDemonOak.Done, 3)
 	end
 	return true

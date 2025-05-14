@@ -98,7 +98,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Here is a reward. It's a strange tome that we've found in the lizard ruins. Maybe it is of some value for you or your allies.",
 			}, npc, creature)
 			player:setStorageValue(AnUneasyAlliance.Questline, 5)
-			player:AddCustomItem({id = 10217})
+			player:addItem(10217)
 		end
 	elseif MsgContains(message, "test") then
 		if npcHandler:getTopic(playerId) == 1 then

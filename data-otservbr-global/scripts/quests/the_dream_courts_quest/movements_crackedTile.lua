@@ -10,15 +10,7 @@ function movements_crackedTile.onStepIn(creature, item, position, fromPosition)
 	local min = player:getMaxHealth() * 0.2
 	local max = player:getMaxHealth() * 0.5
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	doTargetCombat(0, player, COMBAT_DEATHDAMAGE, -min, -max, CONST_ME_MORTAREA, ORIGIN_NONE)
-=======
 	doTargetCombatHealth(0, player, COMBAT_DEATHDAMAGE, -min, -max, CONST_ME_MORTAREA, ORIGIN_NONE)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	doTargetCombatHealth(0, player, COMBAT_DEATHDAMAGE, -min, -max, CONST_ME_MORTAREA, ORIGIN_NONE)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 
 	return true
 end

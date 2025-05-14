@@ -153,9 +153,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheAstralPortals, 56)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 56)
-			player:AddCustomItem({id = 5021, count = 6}) -- Orichalcum pearl
-			player:AddCustomItem({id = 9605, count = 1}) -- Crown backpack
-			player:AddCustomItem({id = 3035, count = 50}) -- 50 Platinum coins
+			player:addItem(5021, 6) -- Orichalcum pearl
+			player:addItem(9605, 1) -- Crown backpack
+			player:addItem(3035, 50) -- 50 Platinum coins
 			-- ASTRAL PORTALS
 		end
 		-- MISSION CHECK
@@ -197,7 +197,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Just use it on the fresh corpse of a blue butterfly, return the prepared butterfly to me and give me a report of your butterfly hunt.",
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4863, count = 1})
+			player:addItem(4863, 1)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheButterflyHunt, 12)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 12)
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheButterflyHunt) == 13 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 13 then
@@ -209,7 +209,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Just use it on the fresh corpse of a red butterfly, return the prepared butterfly to me and give me a report of your butterfly hunt.",
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4863, count = 1})
+			player:addItem(4863, 1)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheButterflyHunt, 15)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 15)
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheButterflyHunt) == 16 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 16 then
@@ -228,7 +228,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection) == 20 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 20 then
 			npcHandler:say("Use this botanist's container on a witches cauldron to collect a sample for us. Bring it here and report about your plant collection.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4867, count = 1})
+			player:addItem(4867, 1)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection, 21)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 21)
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection) == 22 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 22 then
@@ -237,7 +237,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection) == 23 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 23 then
 			npcHandler:say("Use this botanist's container on a giant jungle rose to obtain a sample for us. Bring it here and report about your plant collection.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4867, count = 1})
+			player:addItem(4867, 1)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection, 24)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 24)
 		elseif player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection) == 25 and player:getStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine) == 25 then
@@ -364,7 +364,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Should the ice melt away, report on your ice delivery mission anyway. I will then tell you if the time is right to start another mission.",
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 3456, count = 1})
+			player:addItem(3456, 1)
 		elseif npcHandler:getTopic(playerId) == 5 then
 			if player:removeItem(4837, 1) then
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheIceDelivery, 7)
@@ -387,7 +387,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Just use it on the fresh corpse of a purple butterfly, return the prepared butterfly to me and give me a report of your butterfly hunt.",
 			}, npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4863, count = 1})
+			player:addItem(4863, 1)
 		elseif npcHandler:getTopic(playerId) == 8 then
 			if player:removeItem(4864, 1) then
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheButterflyHunt, 10)
@@ -417,7 +417,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 17)
 			npcHandler:say("Fine! Here take this botanist's container. Use it on a jungle bells plant to collect a sample for us. Report about your plant collection when you have been successful.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4867, count = 1})
+			player:addItem(4867, 1)
 		elseif npcHandler:getTopic(playerId) == 12 then
 			if player:removeItem(4868, 1) then
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.ThePlantCollection, 19)
@@ -537,7 +537,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 42)
 			npcHandler:say("Excellent! Here, take this tracing paper and use it on the object you will find there to create a copy of the ancient runes.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
-			player:AddCustomItem({id = 4842, count = 1})
+			player:addItem(4842, 1)
 		elseif npcHandler:getTopic(playerId) == 26 then
 			if player:removeItem(4843, 1) then
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheRuneWritings, 44)
@@ -561,7 +561,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 0)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheEctoplasm, 45)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 45)
-			player:AddCustomItem({id = 4852, count = 1})
+			player:addItem(4852, 1)
 		elseif npcHandler:getTopic(playerId) == 29 then
 			if player:removeItem(4853, 1) then
 				player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheEctoplasm, 47)
@@ -599,7 +599,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.TheSpectralStone, 53)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.SpectralStoneDoor, 1)
 			player:setStorageValue(Storage.Quest.U7_6.ExplorerSociety.QuestLine, 53)
-			player:AddCustomItem({id = 4840, count = 1}) -- spectral stone
+			player:addItem(4840, 1) -- spectral stone
 			-- SPECTRAL STONE
 
 			-- SKULL OF RATHA / GIANT SMITHHAMMER

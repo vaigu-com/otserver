@@ -69,7 +69,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 
 			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 1)
-			player:AddCustomItem({id = 16167, count = 4})
+			player:addItem(16167, 4)
 
 			--npcHandler:say("Right now I am sort of {recruiting} people.", npc, creature)
 			npcHandler:setTopic(playerId, 1)
@@ -114,7 +114,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 
 			player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.QuestLine, 1)
-			player:AddCustomItem({id = 16167, count = 4})
+			player:addItem(16167, 4)
 			npcHandler:setTopic(playerId, 0)
 		end
 	end

@@ -157,7 +157,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_54.ChildrenOfTheRevolution.Questline, 21)
 			player:setStorageValue(Storage.Quest.U8_54.ChildrenOfTheRevolution.Mission05, 3) --Questlog, Children of the Revolution "Mission 5: Phantom Army"
-			player:AddCustomItem({id = 10199, count = 1})
+			player:addItem(10199, 1)
 			player:addExperience(10000, true)
 			npcHandler:setTopic(playerId, 0)
 			-- CHILDREN OF REVOLUTION QUEST
@@ -330,7 +330,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"By zze way, before I forget it - zzinzze you are zzkilled in zzolving riddlezz, maybe you can make uzze of zzizz old tome I've found? It containzz ancient knowledge and truly izz a tezztament of our culture, treat it wizz care. ...",
 				"I may alzzo have anozzer mizzion for you if you are interezzted.",
 			}, npc, creature)
-			player:AddCustomItem({id = 10217, count = 1})
+			player:addItem(10217, 1)
 			player:setStorageValue(Storage.Quest.U8_54.ChildrenOfTheRevolution.Questline, 18)
 			player:setStorageValue(Storage.Quest.U8_54.ChildrenOfTheRevolution.Mission04, 6) --Questlog, Children of the Revolution "Mission 4: Zze Way of Zztonezz"
 			npcHandler:setTopic(playerId, 0)
@@ -375,7 +375,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:removeItem(953, 3)
 				player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 2)
 				player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Mission01, 2) --Questlog, Wrath of the Emperor "Mission 01: Catering the Lions Den"
-				player:AddCustomItem({id = 11328, count = 1})
+				player:addItem(11328, 1)
 				npcHandler:say({
 					"Alright. Let uzz create a crate. Hm. Let me zzee. ... ",
 					"Good. Zzat will do. ... ",
@@ -396,7 +396,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 7)
 			player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Mission03, 1) --Questlog, Wrath of the Emperor "Mission 03: The Keeper"
-			player:AddCustomItem({id = 11364, count = 1})
+			player:addItem(11364, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 20 then
 			if player:removeItem(11367, 1) then

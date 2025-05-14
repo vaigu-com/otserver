@@ -17,7 +17,7 @@ function prison.onStepIn(creature, item, position, fromPosition)
 	position:sendMagicEffect(CONST_ME_TELEPORT)
 	destination:sendMagicEffect(CONST_ME_TELEPORT)
 	if player:getStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline) == 2 then
-		player:AddCustomItem({id = 11328})
+		player:addItem(11328)
 	end
 	return true
 end

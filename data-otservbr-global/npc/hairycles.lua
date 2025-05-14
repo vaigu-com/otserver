@@ -443,7 +443,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if MsgContains(message, "yes") then
 			npcHandler:say("Hairycles sure you will make it. Just use hammer on all that looks like snake or lizard. Tell Hairycles if you succeed with mission.", npc, creature)
 			player:setStorageValue(Storage.Quest.U7_6.TheApeCity.Questline, 17)
-			player:AddCustomItem({id = 4835, count = 1})
+			player:addItem(4835, 1)
 		elseif MsgContains(message, "no") then
 			npcHandler:say("Me sad. Please reconsider.", npc, creature)
 		end

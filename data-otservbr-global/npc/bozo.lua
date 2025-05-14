@@ -644,7 +644,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			if targetValue.addItem then
-				player:AddCustomItem({id = targetValue.addItem.itemId, count = targetValue.addItem.count or 1})
+				player:addItem(targetValue.addItem.itemId, targetValue.addItem.count or 1)
 			end
 		end
 
@@ -736,7 +736,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			if targetValue.addItem then
-				player:AddCustomItem({id = targetValue.addItem.itemId, count = targetValue.addItem.count or 1})
+				player:addItem(targetValue.addItem.itemId, targetValue.addItem.count or 1)
 			end
 
 			if targetValue.addon then
@@ -791,7 +791,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			elseif player:getStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.Questline) == 30 then
 				npcHandler:say("You won't be successful in the fool's world with such an attitude.", npc, creature)
 			elseif player:getStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.Questline) == 35 and player:getStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.LostDisguise) ~= 1 then
-				player:AddCustomItem({id = 144, count = 1})
+				player:addItem(144, 1)
 				player:setStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.LostDisguise, 1)
 				npcHandler:say("You wasted the disguise?? Why do only fools apply for the fools guild? Here... try again, but be wittier this time.", npc, creature)
 			else
@@ -896,7 +896,7 @@ weaponKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandle
 end)
 weaponKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "And here it is, it suits you well!", reset = true }, nil, function(player)
 	if player:removeMoneyBank(250) then
-		player:AddCustomItem({id = 3473, count = 1})
+		player:addItem(3473, 1)
 	end
 end)
 weaponKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "You dont know what offer you have passed!", reset = true })

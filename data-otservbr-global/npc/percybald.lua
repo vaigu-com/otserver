@@ -93,7 +93,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 13 then
 			npcHandler:say("Ah well, I think you passed the test! Here is your disguise kit! Now get lost, fate awaits me!", npc, creature)
 			player:setStorageValue(Storage.Quest.U8_2.TheThievesGuildQuest.Mission04, 6)
-			player:AddCustomItem({id = 7865, count = 1})
+			player:addItem(7865, 1)
 			npcHandler:setTopic(playerId, 0)
 		end
 	elseif npcHandler:getTopic(playerId) == 2 then

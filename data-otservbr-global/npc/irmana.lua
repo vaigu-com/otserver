@@ -222,7 +222,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getItemCount(3566) >= 1 then
 			player:removeItem(3566, 1)
 			npcHandler:say("A {Red Robe}! Great. Here, take this red piece of cloth, I don't need it anyway.", npc, creature)
-			player:AddCustomItem({id = 5911, count = 1})
+			player:addItem(5911, 1)
 			npcHandler:setTopic(playerId, 0)
 		else
 			npcHandler:say("Are you trying to mess with me?!", npc, creature)
@@ -231,7 +231,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getItemCount(3574) >= 1 then
 			player:removeItem(3574, 1)
 			npcHandler:say("A {Mystic Turban}! Great. Here, take this blue piece of cloth, I don't need it anyway.", npc, creature)
-			player:AddCustomItem({id = 5912, count = 1})
+			player:addItem(5912, 1)
 			npcHandler:setTopic(playerId, 0)
 		else
 			npcHandler:say("Are you trying to mess with me?!", npc, creature)
@@ -240,7 +240,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getItemCount(3563) >= 150 then
 			player:removeItem(3563, 150)
 			npcHandler:say("A 150 {Green Tunic}! Great. Here, take this green piece of cloth, I don't need it anyway.", npc, creature)
-			player:AddCustomItem({id = 5910, count = 1})
+			player:addItem(5910, 1)
 			npcHandler:setTopic(playerId, 0)
 		else
 			npcHandler:say("Are you trying to mess with me?!", npc, creature)
@@ -248,7 +248,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 8 then
 		if player:getMoney() >= 1000 then
 			player:removeMoney(1000)
-			player:AddCustomItem({id = 25238, count = 1}) -- Fur of a Wolf Whelp
+			player:addItem(25238, 1) -- Fur of a Wolf Whelp
 			npcHandler:say("Alright. Here is the fur.", npc, creature)
 			player:setStorageValue(ThreatenedDreams.Mission01[1], 8)
 			npcHandler:setTopic(playerId, 0)

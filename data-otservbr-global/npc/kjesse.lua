@@ -72,14 +72,7 @@ local stoneKeyword = keywordHandler:addKeyword({ "adventurer stone" }, StdModule
 	return player:getStorageValue(Storage.Quest.U9_80.AdventurersGuild.FreeStone.Kjesse) ~= 1
 end)
 stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Here you are. Take care.", reset = true }, nil, function(player)
-<<<<<<< HEAD
-	player:AddCustomItem({id = 16277, count = 1})
-=======
 	player:addItem(16277, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	player:setStorageValue(Storage.Quest.U9_80.AdventurersGuild.FreeStone.Kjesse, 1)
 end)
 stoneKeyword:addChildKeyword({ "" }, StdModule.say, { npcHandler = npcHandler, text = "No problem.", reset = true })
@@ -89,7 +82,7 @@ stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler
 	return player:getMoney() + player:getBankBalance() >= 30
 end, function(player)
 	if player:removeMoneyBank(30) then
-		player:AddCustomItem({id = 16277, count = 1})
+		player:addItem(16277, 1)
 	end
 end)
 stoneKeyword:addChildKeyword({ "yes" }, StdModule.say, { npcHandler = npcHandler, text = "Sorry, you don't have enough money.", reset = true })

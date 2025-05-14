@@ -18,7 +18,7 @@ function falconShield.onUse(player, item, fromPosition, target, toPosition, isHo
 	toPosition:sendMagicEffect(CONST_ME_HITAREA)
 	mould:sendMagicEffect(CONST_ME_SMOKE)
 	player:removeItem(28821, 1)
-	player:AddCustomItem({id = 28722, count = 1})
+	player:addItem(28722, 1)
 	item:remove(1)
 	return true
 end

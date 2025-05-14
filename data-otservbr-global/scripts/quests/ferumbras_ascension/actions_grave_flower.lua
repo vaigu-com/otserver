@@ -9,7 +9,7 @@ local ferumbrasAscendantGraveFlower = Action()
 
 function ferumbrasAscendantGraveFlower.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	item:transform(22874)
-	player:AddCustomItem({id = 3661, count = 1})
+	player:addItem(3661, 1)
 	addEvent(revertItem, 2 * 60 * 1000, toPosition, 25530, 25529)
 	return true
 end

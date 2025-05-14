@@ -154,7 +154,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					storeTalkCid[playerId] = 2
 				end
 			else
-				player:AddCustomItem({id = 3562, count = 1})
+				player:addItem(3562, 1)
 				npcHandler:say("Oh no, did you lose my coat? Well, lucky you, I have a spare one here. Don't lose it again! Now we're getting to the fun part, let's get you armed! Are you ready for some {action}?", npc, creature)
 				storeTalkCid[playerId] = 3
 			end
@@ -163,7 +163,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U8_2.TheBeginningQuest.SantiagoQuestLog, 4)
 			player:setStorageValue(Storage.Quest.U8_2.TheBeginningQuest.SantiagoNpcGreetStorage, 5)
 			Position(32036, 32277, 6):sendMagicEffect(CONST_ME_TUTORIALARROW)
-			player:AddCustomItem({id = 3270, count = 1})
+			player:addItem(3270, 1)
 			npcHandler:removeInteraction(npc, creature)
 			npcHandler:resetNpc(creature)
 		elseif storeTalkCid[playerId] == 4 then
@@ -192,7 +192,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"By the way: If your hitpoints are below 150, you will regenerate back to 150 hitpoints after few seconds as long as you are not hungry, outside a protection zone and do not have a battle sign. {Easy}, yes?",
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_2.TheBeginningQuest.SantiagoQuestLog, 9)
-			player:AddCustomItem({id = 3578, count = 1})
+			player:addItem(3578, 1)
 			player:setStorageValue(Storage.Quest.U8_2.TheBeginningQuest.SantiagoNpcGreetStorage, 11)
 			storeTalkCid[playerId] = 8
 		elseif storeTalkCid[playerId] == 8 then
@@ -224,7 +224,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U8_2.TheBeginningQuest.SantiagoQuestLog, 4)
 			player:setStorageValue(Storage.Quest.U8_2.TheBeginningQuest.SantiagoNpcGreetStorage, 5)
 			Position(32036, 32277, 6):sendMagicEffect(CONST_ME_TUTORIALARROW)
-			player:AddCustomItem({id = 3270, count = 1})
+			player:addItem(3270, 1)
 			npcHandler:removeInteraction(npc, creature)
 			npcHandler:resetNpc(creature)
 		end
