@@ -503,6 +503,7 @@ function DialogContext:SetDefaultGreetFarewellWalkaway()
 	local translatedMessage = self.player:Localizer(LOCALIZERS.Universal):Context(self):Get(self.msg)
 	self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
 	self.resolvedStatus = SUCCESS_RESOLVE
+	self.greetContext = GreetCallbackContext()
 end
 
 local dialogResolvers = {
@@ -619,6 +620,17 @@ function InitializeSpecialMessages(player, config, npcHandler, npc, msg)
 			local message = player:Localizer(LOCALIZERS.Universal):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.Universal):Get(specialMessageType)
 			npcHandler:setMessage(specialMessageType, message)
 		end
+	end
+
+	local specialMessageType = specialMessageTypes.MESSAGE_GREET
+	local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
+	dialogContext:TryResolveDialog()
+	if not dialogContext:IsResolved() then
+		local message = player:Localizer(LOCALIZERS.Universal):Get(config[specialMessageType]) or player:Localizer(LOCALIZERS.Universal):Get(specialMessageType)
+		npcHandler:setMessage(specialMessageType, message)
+		return GreetCallbackContext()
+	else
+		return dialogContext:GetGreetContext()
 	end
 end
 

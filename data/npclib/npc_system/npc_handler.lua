@@ -443,8 +443,10 @@ if NpcHandler == nil then
 		local greetCallbackContext = GreetCallbackContext()
 		if type(result) == "table" and (getmetatable(result) == GreetCallbackContext) then
 			greetCallbackContext = result
+		elseif result == nil then
+			greetCallbackContext:InteractOnGreet(true):MessageOnGreet(true)
 		else
-			greetCallbackContext:InteractOnGreet(result)
+			greetCallbackContext:InteractOnGreet(result):MessageOnGreet(result)
 		end
 
 		if greetCallbackContext:ShouldMessageOnGreet() then

@@ -147,9 +147,7 @@ function RegisterNpcDefinition(npcData)
 			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
 		end
 
-		InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
-		local greetContext = InitializeGreet(creature, npcConfig.dialogs, npcHandler, npc)
-		return greetContext
+		return InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
 	end
 
 	local creatureSayCallback = npcData.creatureSayCallback or function(npc, creature, type, msg)
