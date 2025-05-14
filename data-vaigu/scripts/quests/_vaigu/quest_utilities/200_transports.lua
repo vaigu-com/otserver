@@ -54,7 +54,7 @@ pseudoQuest
 			PIRATE_SHIP = {
 				{ toPos = Position(5689, 1465, 6), name = "Phantom Port", requiredState = { [Storage.AvastYe.ShipDestinations.PhantomPort] = ACCESS_GRANTED } },
 				{ toPos = Position(6750, 2584, 6), name = "Pirate Island", requiredState = { [Storage.AvastYe.ShipDestinations.PirateIsland] = ACCESS_GRANTED } },
-				{ toPos = Position(6846, 1425, 6), name = "Hurghada Safehouse", requiredState = { [Storage.AvastYe.ShipDestinations.PortLouse] = ACCESS_GRANTED } },
+				{ toPos = Position(6846, 1425, 6), name = "Port Louse", requiredState = { [Storage.AvastYe.ShipDestinations.PortLouse] = ACCESS_GRANTED } },
 				{ toPos = Position(6335, 1357, 6), name = "Wyrm Cliffs", requiredState = { [Storage.AvastYe.ShipDestinations.WyrmCliffs] = ACCESS_GRANTED } },
 				{ toPos = Position(7058, 1426, 6), name = "Naga Island", requiredState = { [Storage.AvastYe.ShipDestinations.NagaIsland] = ACCESS_GRANTED } },
 			},
@@ -63,11 +63,11 @@ pseudoQuest
 				{ toPos = Position(6247, 1023, 6), name = "Steppes" },
 				{ toPos = Position(5747, 1217, 6), name = "Bornholm", minLevel = 50 },
 				{ toPos = Position(6223, 1392, 7), name = "Quara Island" },
-				{ toPos = KRAKEN_ANCHOR, name = "Leviathan", minLevel = 50 },
+				{ toPos = KRAKEN_ANCHOR, name = "Leviathan", minLevel = 50, requiredState = { [Storage.FourActTragedy.LeviathanAccess] = ACCESS_GRANTED } },
 			},
 			JACK_SPARROW_SHIP = {
 				{ toPos = Position(5980, 1502, 6), name = "Mirko Town" },
-				{ toPos = Position(6740, 1357, 6), name = "Hurgada" },
+				{ toPos = Position(6740, 1357, 6), name = "Hurghada" },
 				{ toPos = Position(7074, 801, 6), name = "Kongo" },
 				{ toPos = Position(5539, 1509, 6), name = "Knurowo" },
 				{ toPos = Position(6602, 1877, 7), name = "Syberia" },
@@ -79,7 +79,7 @@ pseudoQuest
 				{ toPos = Position(7038, 837, 7), name = "Kongo" },
 				{ toPos = Position(6563, 701, 7), name = "Ornuld Camp" },
 				{ toPos = Position(6730, 705, 7), name = "Heart of the Jungle" },
-				{ toPos = Position(6879, 743, 7), name = "Mundral Daycare"}
+				{ toPos = Position(6879, 743, 7), name = "Mundral Daycare" },
 			},
 			FISHERMAN_SHIP = {
 				{ toPos = Position(5801, 1649, 7), name = "Mirkotown Slums" },
@@ -171,7 +171,7 @@ pseudoQuest
 
 			for _, transportConfig in pairs(transports) do
 				if hasAccess(player, transportConfig) then
-					local translatedName = player:Localizer(LOCALIZERS.Universal):Get(transportConfig.name)
+					local translatedName = player:Localizer(LOCALIZERS.TransportName):Get(transportConfig.name)
 					if not translatedName then
 						translatedName = transportConfig.name
 					end
