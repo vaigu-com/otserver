@@ -9,6 +9,7 @@ local outfit = {
 }
 local context = {
 	name = name,
+	greetJob = JOB_ARMOR_WEAPON,
 	jobs = { JOB_ARMOR_WEAPON, JOB_JEWELLER },
 	outfit = outfit,
 	dialogs = dialogs,

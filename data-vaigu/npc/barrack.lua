@@ -23,6 +23,7 @@ local dialogs = {
 }
 local context = {
 	name = name,
+	greetJob = JOB_POST,
 	jobs = { JOB_POST },
 	outfit = outfit,
 	dialogs = dialogs,

@@ -14,6 +14,7 @@ local dialogs = {
 }
 local context = {
 	name = name,
+	greetJob = JOB_BANK,
 	jobs = { JOB_POST, JOB_BANK },
 	outfit = outfit,
 	dialogs = dialogs,

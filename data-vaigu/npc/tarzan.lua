@@ -32,6 +32,7 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	checkInteraction = false
+	checkInteraction = false,
+	isTransportNpc = true,
 }
 NpcRegistry:AppendNpcData(context)

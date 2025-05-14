@@ -9,7 +9,6 @@ local outfit = {
 }
 local context = {
 	name = name,
-	jobs = { JOB_CREATURE_PRODUCT },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
