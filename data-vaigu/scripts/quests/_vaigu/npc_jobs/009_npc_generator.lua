@@ -49,6 +49,13 @@ function RegisterNpcDefinition(npcData)
 	local displayName = npcData.npcName or npcData.displayname or npcData.displayName or name
 	local onlookName = npcData.npcDescription or npcData.onlookname or ("a " .. name)
 
+	if npcData.greetJob and not npcData.jobs then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has greetJob but no jobs.", { name = name }))
+	end
+	if npcData.jobs and not npcData.greetJob then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob.", { name = name }))
+	end
+
 	local greetJob = npcData.greetJob
 	local jobs = npcData.jobs or {}
 	local onBuyItem = npcData.onBuyItem or getJobsOnBuyItem(jobs, greetJob)
