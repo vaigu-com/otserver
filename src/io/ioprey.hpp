@@ -250,7 +250,7 @@ public:
 	}
 
 	void rerollBonusType() {
-		if (bonusRarity >= PreyStars_Max){
+		if (bonusRarity >= PreyStars_Max) {
 			bonus = static_cast<PreyBonus_t>((bonus + 1) % static_cast<int>(PreyBonus_Last + 1));
 		} else {
 			bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));

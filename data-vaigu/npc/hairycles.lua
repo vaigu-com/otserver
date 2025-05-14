@@ -242,7 +242,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 				player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 18)
 				player:setStorageValueByKey(Storage.Finished.TheApeCity, 1) -- quest done (website)
-				player:AddCustomItem({id = 3002, count = 1})
+				player:AddCustomItem({ id = 3002, count = 1 })
 				player:addAchievement("Friend of the Apes")
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Ja wiem, ze o wiele prosze, ale wejdz tam w podziemia i zniszcz pomnik boga wezy." or "Me know its much me asked for but go into the deepest catacombs under Banuta and destroy the monument of the serpent god.", npc, creature)
@@ -511,7 +511,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hairycles jest pewien, ze ci sie uda. Po prostu rozwal ta glowe tego jaszczuroludzia. Powiedz Hairyclesowi jesli uda ci sie ukonczyc misje." or "Hairycles sure you will make it. Just use hammer on all that looks like snake or lizard. Tell Hairycles if you succeed with mission.", npc, creature)
 			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 17)
-			player:AddCustomItem({ id = 4835, addToStore = true }) 
+			player:AddCustomItem({ id = 4835, addToStore = true })
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmmm. Rozwaz to jeszcze raz." or "Me sad. Please reconsider.", npc, creature)
 		end

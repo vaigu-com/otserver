@@ -29,4 +29,3 @@ for i, v in pairs(cStorages) do
 end
 
 movement:register()
-

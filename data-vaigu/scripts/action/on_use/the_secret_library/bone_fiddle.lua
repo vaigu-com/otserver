@@ -4,7 +4,7 @@ function boneFiddleBase.onUse(player, item, fromPosition, target, toPosition, is
 	if target.itemid == 28489 then
 		target:remove(1)
 		item:remove(1)
-		player:AddCustomItem({id = 28492})
+		player:AddCustomItem({ id = 28492 })
 		toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 		return true
 	end
@@ -19,7 +19,7 @@ function boneFiddleString.onUse(player, item, fromPosition, target, toPosition, 
 	if target.itemid == 28492 then
 		target:remove(1)
 		item:remove(1)
-		player:AddCustomItem({id = 28493})
+		player:AddCustomItem({ id = 28493 })
 		toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 		return true
 	end

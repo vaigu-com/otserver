@@ -20,7 +20,7 @@ function wrathEmperorMiss3Keeper.onUse(player, item, fromPosition, target, toPos
 		if player:getStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Questline) == 7 then
 			player:setStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 8)
 			player:setStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Mission03, 2) --Questlog, Wrath of the Emperor "Mission 03: The Keeper"
-			player:AddCustomItem({id = 11367, count = 1})
+			player:AddCustomItem({ id = 11367, count = 1 })
 		end
 	end
 	return true

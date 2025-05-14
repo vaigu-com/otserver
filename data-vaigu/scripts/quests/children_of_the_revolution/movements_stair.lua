@@ -34,4 +34,3 @@ end
 stair:type("stepin")
 stair:uid(3169)
 stair:register()
-

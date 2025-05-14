@@ -56,7 +56,7 @@ quest
 		table.insert(Quests, {
 			name = "Path of the Undead",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Test of Strength",
 					storage = Storage.PathOfTheUndead.Mission01,
@@ -1498,18 +1498,18 @@ quest
 				skull:register()
 			end)
 	end)
-	:State(function ()
+	:State(function()
 		return QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
-		QuestFactory.Dialog("Gandalf", {
-			[{ "mission" }] = {
-				text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
-				nextState = {
-					[Storage.PathOfTheUndead.Mission03] = MISSION_FINISHED,
-					[Storage.Finished.PathOfTheUndead] = MISSION_FINISHED,
-					[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.FindChester,
+			QuestFactory.Dialog("Gandalf", {
+				[{ "mission" }] = {
+					text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission03] = MISSION_FINISHED,
+						[Storage.Finished.PathOfTheUndead] = MISSION_FINISHED,
+						[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.FindChester,
+					},
+					expReward = 25000000,
 				},
-				expReward = 25000000,
-			},
-		})
+			})
 	end)
 	:Register()

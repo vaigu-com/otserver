@@ -10,13 +10,13 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			doTargetCombatHealth(0, player, COMBAT_POISONDAMAGE, -60, -150, CONST_ME_HITBYPOISON)
 			player:say("Niech to!", TALKTYPE_MONSTER_SAY)
 		elseif szansa >= 30 and szansa <= 49 then
-			player:AddCustomItem({id = 3029, count = 2}) --small sapphire
+			player:AddCustomItem({ id = 3029, count = 2 }) --small sapphire
 		elseif szansa >= 50 and szansa <= 69 then
-			player:AddCustomItem({id = 3032, count = 2}) --small emerald
+			player:AddCustomItem({ id = 3032, count = 2 }) --small emerald
 		elseif szansa >= 70 and szansa <= 79 then
-			player:AddCustomItem({id = 4839, count = 1}) --hydra egg
+			player:AddCustomItem({ id = 4839, count = 1 }) --hydra egg
 		elseif szansa >= 80 then
-			player:AddCustomItem({id = 7250, count = 1}) --hydra tongue
+			player:AddCustomItem({ id = 7250, count = 1 }) --hydra tongue
 		end
 		player:setStorageValueByKey(Storage.HydraNest, os.time() + 20 * 3600) --20h
 		fromPosition:sendMagicEffect(CONST_ME_POFF)
@@ -29,6 +29,3 @@ end
 
 action:uid(9030)
 action:register()
-
-
-

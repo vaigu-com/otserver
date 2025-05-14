@@ -64,7 +64,7 @@ quest
 		table.insert(Quests, {
 			name = "Sultan Prime",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "What Is Mafia? Is It Good?",
 					storage = Storage.SultanPrime.Mission01,

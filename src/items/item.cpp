@@ -3275,7 +3275,6 @@ std::string Item::getDescription(int32_t lookDistance) {
 	return getDescription(it, lookDistance, nullptr, getItem());
 }
 
-
 // Vaigu custom
 std::string Item::getNameDescription(const ItemType &it, const std::shared_ptr<Player> player, const std::shared_ptr<Item> item /*= nullptr*/, int32_t subType /*= -1*/, bool addArticle /*= true*/) {
 	if (item) {

@@ -52,10 +52,10 @@ function deeplingRewards.onUse(player, item, fromPosition, target, toPosition, i
 			local items = reward.items[i]
 			if items.rand then
 				if math.random(2) == 1 then
-					player:AddCustomItem({id = items.itemId[math.random(#items.itemId)], count = 1})
+					player:AddCustomItem({ id = items.itemId[math.random(#items.itemId)], count = 1 })
 				end
 			else
-				player:AddCustomItem({id = items.itemId, count = items.count or 1})
+				player:AddCustomItem({ id = items.itemId, count = items.count or 1 })
 			end
 		end
 
@@ -66,4 +66,3 @@ end
 
 deeplingRewards:uid(25610, 25611, 25612)
 deeplingRewards:register()
-

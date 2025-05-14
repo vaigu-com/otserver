@@ -44,4 +44,3 @@ end
 
 kosheiSwitch:uid(3070)
 kosheiSwitch:register()
-

@@ -158,14 +158,14 @@ end
 
 function table.random(tbl)
 	local keys = {}
-    for k in pairs(tbl) do
-        table.insert(keys, k)
-    end
+	for k in pairs(tbl) do
+		table.insert(keys, k)
+	end
 
-    if #keys == 0 then
-        return nil, nil
-    end
+	if #keys == 0 then
+		return nil, nil
+	end
 
-    local randomKey = keys[math.random(#keys)]
-    return tbl[randomKey]
+	local randomKey = keys[math.random(#keys)]
+	return tbl[randomKey]
 end

@@ -8,7 +8,7 @@ function creatureevent.onLogin(player)
 				player:addBlessing(i, 1)
 			end
 		end
-		
+
 		if getPlayerLanguage(player) == "PL" then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Do " .. freeBlessMaxLevelSharp .. " poziomu otrzymujesz darmowe blogoslawienstwa.")
 		else

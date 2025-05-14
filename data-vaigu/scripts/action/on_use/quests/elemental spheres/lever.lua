@@ -72,4 +72,3 @@ end
 
 action:uid(9024)
 action:register()
-

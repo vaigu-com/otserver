@@ -32,4 +32,3 @@ end
 lastFightTeleport:type("stepin")
 lastFightTeleport:uid(7809, 7810)
 lastFightTeleport:register()
-

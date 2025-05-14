@@ -110,7 +110,7 @@ void GameFunctions::init(lua_State* L) {
 
 	// Vaigu custom
 	Lua::registerMethod(L, "Game", "initializeTranslationTable", GameFunctions::luaInitializeTranslationTable);
-	
+
 	Lua::registerMethod(L, "Game", "getSoulCoreItems", GameFunctions::luaGameGetSoulCoreItems);
 
 	Lua::registerMethod(L, "Game", "getMonstersByRace", GameFunctions::luaGameGetMonstersByRace);
@@ -209,9 +209,9 @@ int GameFunctions::luaGameGetBoostedCreatures(lua_State* L) {
 	lua_newtable(L);
 
 	for (size_t i = 0; i < boostedMonsters.size(); ++i) {
-		lua_pushnumber(L, i + 1); 
+		lua_pushnumber(L, i + 1);
 		lua_pushstring(L, boostedMonsters[i].c_str());
-		lua_settable(L, -3); 
+		lua_settable(L, -3);
 	}
 
 	return 1;
@@ -952,7 +952,7 @@ int GameFunctions::luaInitializeTranslationTable(lua_State* L) {
 	return 1;
 }
 
-//Vaigu custom
+// Vaigu custom
 int GameFunctions::copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement> &destination) {
 	lua_pushnil(L);
 	while (lua_next(L, index)) {

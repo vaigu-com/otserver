@@ -423,8 +423,8 @@ void Map::moveCreature(const std::shared_ptr<Creature> &creature, const std::sha
 
 	/*
 	if (auto monster = creature->getMonster(); monster && monster.get()->hasIgnoreCreatures()) {
-		moveCreatureMinigame(creature, newTile, forceTeleport);
-		return;
+	    moveCreatureMinigame(creature, newTile, forceTeleport);
+	    return;
 	}
 	*/
 

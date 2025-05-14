@@ -39,4 +39,3 @@ end
 
 sacrificeSkulls:uid(25012)
 sacrificeSkulls:register()
-

@@ -19,4 +19,3 @@ end
 
 sacrificeTeleport:uid(35010)
 sacrificeTeleport:register()
-

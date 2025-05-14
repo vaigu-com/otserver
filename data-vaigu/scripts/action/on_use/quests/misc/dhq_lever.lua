@@ -1,9 +1,9 @@
 Storage.DhqLever = {}
 
-local stoneId =1842
+local stoneId = 1842
 local stonePos = Position(5670, 1379, 15)
 
-local teleportId= 1949
+local teleportId = 1949
 local teleportPos = Position(5671, 1377, 15)
 local teleportDest = Position(5684, 1396, 14)
 

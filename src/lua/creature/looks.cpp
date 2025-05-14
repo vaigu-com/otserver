@@ -25,7 +25,7 @@
 Looks::Looks() = default;
 Looks::~Looks() = default;
 
-Looks &Looks::getInstance(){
+Looks &Looks::getInstance() {
 	return inject<Looks>();
 }
 
@@ -160,7 +160,6 @@ bool Looks::registerLuaPositionEvent(const std::shared_ptr<Look> &look) {
 	return !positionVector.empty();
 }
 
-
 bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> &look) {
 	auto keysVector = look->getKeysVector();
 	if (keysVector.empty()) {
@@ -187,10 +186,10 @@ bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> &look) {
 	}
 
 	keysVector = std::move(tmpVector);
-	return !keysVector	.empty();
+	return !keysVector.empty();
 }
 
-bool Looks::registerLuaEvent(const std::shared_ptr<Look>  &look) {
+bool Looks::registerLuaEvent(const std::shared_ptr<Look> &look) {
 	std::vector<std::function<bool(const std::shared_ptr<Look> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<Look> &look) { return registerLuaItemEvent(look); },
 		[this](const std::shared_ptr<Look> &look) { return registerLuaUniqueEvent(look); },
@@ -348,12 +347,11 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 	if (look->executeLook(player, item, fromPos, creature, toPos)) {
 		/*
 		if (!look->hasOwnErrorHandler()) {
-			player->sendCancelMessage(RETURNVALUE_CANNOTUSETHISOBJECT);
+		    player->sendCancelMessage(RETURNVALUE_CANNOTUSETHISOBJECT);
 		}
 		*/
 		return true;
 	}
-
 
 	return false;
 }
@@ -365,7 +363,7 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 */
 
 // Look constructor
-Look::Look() = default; 
+Look::Look() = default;
 
 LuaScriptInterface* Look::getScriptInterface() const {
 	return &g_scripts().getScriptInterface();

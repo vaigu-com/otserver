@@ -11,4 +11,3 @@ end
 
 telescop:uid(1103)
 telescop:register()
-

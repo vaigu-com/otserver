@@ -79,7 +79,7 @@ quest
 		table.insert(Quests, {
 			name = "The Way of a Druid",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "The Council of Druids",
 					storage = Storage.WayOfTheDruid.CouncilOfDruids,
@@ -177,7 +177,7 @@ quest
 						return
 					end
 
-					player:AddCustomItem({id = 5938, count = 1})
+					player:AddCustomItem({ id = 5938, count = 1 })
 					toPosition:sendMagicEffect(CONST_ME_WATERCREATURE)
 					player:setStorageValueByKey(Storage.WayOfTheDruid.LootedWater, MISSION_FINISHED)
 				end
@@ -224,7 +224,7 @@ quest
 						return
 					end
 
-					player:AddCustomItem({id = 5937, count = 1})
+					player:AddCustomItem({ id = 5937, count = 1 })
 					toPosition:sendMagicEffect(CONST_ME_CARNIPHILA)
 					player:setStorageValueByKey(Storage.WayOfTheDruid.LootedFlower, MISSION_FINISHED)
 				end
@@ -476,18 +476,17 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.WayOfTheDruid.SecretIngredient.FindWyrmEgg,
-			QuestFactory.OnUseDeclarations({
-				{
-					key = Storage.WayOfTheDruid.WyrmEgg,
-					nextState = {
-						[Storage.WayOfTheDruid.SecretIngredient] = QuestState.WayOfTheDruid.SecretIngredient.BringEggToOrnuld,
-					},
-					rewards = {
-						QuestKeyItems.WayOfTheDruid.OrnuldWyrmEgg,
-					},
+		return QuestState.WayOfTheDruid.SecretIngredient.FindWyrmEgg, QuestFactory.OnUseDeclarations({
+			{
+				key = Storage.WayOfTheDruid.WyrmEgg,
+				nextState = {
+					[Storage.WayOfTheDruid.SecretIngredient] = QuestState.WayOfTheDruid.SecretIngredient.BringEggToOrnuld,
 				},
-			})
+				rewards = {
+					QuestKeyItems.WayOfTheDruid.OrnuldWyrmEgg,
+				},
+			},
+		})
 	end)
 	:State(function()
 		return QuestState.WayOfTheDruid.SecretIngredient.BringEggToOrnuld,

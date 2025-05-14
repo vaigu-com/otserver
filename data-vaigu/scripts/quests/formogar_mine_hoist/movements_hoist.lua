@@ -29,4 +29,3 @@ end
 hoist:type("stepin")
 hoist:uid(3059, 3060, 3061)
 hoist:register()
-

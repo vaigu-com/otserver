@@ -10,7 +10,7 @@ local outfit = {
 }
 local context = {
 	name = name,
-	displayName= displayName,
+	displayName = displayName,
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,

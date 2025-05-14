@@ -153,4 +153,3 @@ end
 
 unholyCryptChests:uid(40077, 40078)
 unholyCryptChests:register()
-

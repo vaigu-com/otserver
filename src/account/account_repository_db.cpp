@@ -95,11 +95,7 @@ bool AccountRepositoryDB::getCoins(const uint32_t &id, CoinType coinType, uint32
 
 	auto column = it->second;
 
-	const auto result = g_database().storeQuery(fmt::format(
-		"SELECT `{}` FROM `accounts` WHERE `id` = {}",
-		column,
-		id
-	));
+	const auto result = g_database().storeQuery(fmt::format("SELECT `{}` FROM `accounts` WHERE `id` = {}", column, id));
 
 	if (!result) {
 		return false;
@@ -119,12 +115,7 @@ bool AccountRepositoryDB::setCoins(const uint32_t &id, CoinType coinType, const 
 
 	auto column = it->second;
 
-	const bool successful = g_database().executeQuery(fmt::format(
-		"UPDATE `accounts` SET `{}` = {} WHERE `id` = {}",
-		column,
-		amount,
-		id
-	));
+	const bool successful = g_database().executeQuery(fmt::format("UPDATE `accounts` SET `{}` = {} WHERE `id` = {}", column, amount, id));
 
 	if (!successful) {
 		g_logger().error("Error setting account[{}] coins to [{}]", id, amount);

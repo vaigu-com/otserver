@@ -80,8 +80,8 @@ void ItemTypeFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "ItemType", "hasSubType", ItemTypeFunctions::luaItemTypeHasSubType);
 
 	// Vaigu custom
-	Lua::registerMethod(L, "ItemType", "getAllowDistRead", ItemTypeFunctions::luaItemTypeGetAllowDistRead); 
-	Lua::registerMethod(L, "ItemType", "getNameDescription", ItemTypeFunctions::luaItemTypeGetNameDescription); 
+	Lua::registerMethod(L, "ItemType", "getAllowDistRead", ItemTypeFunctions::luaItemTypeGetAllowDistRead);
+	Lua::registerMethod(L, "ItemType", "getNameDescription", ItemTypeFunctions::luaItemTypeGetNameDescription);
 
 	ItemClassificationFunctions::init(L);
 }
@@ -359,7 +359,7 @@ int ItemTypeFunctions::luaItemTypeGetDescription(lua_State* L) {
 	const auto &itemType = Lua::getUserdata<ItemType>(L, 1);
 	if (itemType) {
 		const auto count = Lua::getNumber<uint16_t>(L, 2, -1);
-		const auto description = Item::getDescription(*itemType, 1, nullptr,nullptr, count);
+		const auto description = Item::getDescription(*itemType, 1, nullptr, nullptr, count);
 		Lua::pushString(L, description);
 	} else {
 		lua_pushnil(L);

@@ -16,4 +16,3 @@ end
 
 wrathEmperorMiss12Just:uid(3200)
 wrathEmperorMiss12Just:register()
-

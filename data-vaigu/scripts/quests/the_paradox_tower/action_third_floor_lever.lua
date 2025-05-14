@@ -26,4 +26,3 @@ end
 
 thirdFloorLever:uid(30026)
 thirdFloorLever:register()
-

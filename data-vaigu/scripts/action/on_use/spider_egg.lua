@@ -11,7 +11,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		item:transform(211)
 		item:decay()
 	elseif roll == 100 then
-		player:AddCustomItem({id = 5879, count = 1})
+		player:AddCustomItem({ id = 5879, count = 1 })
 		item:transform(211)
 		item:decay()
 	else

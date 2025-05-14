@@ -9,8 +9,8 @@ QuestTopics.SweatyCyclops = {
 }
 
 local name = "A Sweaty Cyclops"
-local outfit  = {
-	lookType = 22
+local outfit = {
+	lookType = 22,
 }
 local voices = {
 	interval = 15000,

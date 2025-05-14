@@ -6,7 +6,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			--if player:removeItem(28821, 1) then --patch of fine
 			player:removeItem(28721, 1) --shield
 			player:removeItem(28821, 1) --patch of fine
-			player:AddCustomItem({id = 28722, count = 1}) --falcon escu
+			player:AddCustomItem({ id = 28722, count = 1 }) --falcon escu
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Udalo ci sie stworzyc Falcon Escutcheon.")
 			--else
 			--	player:sendTextMessage(MESSAGE_EVENT_ADVANCE,"Nie posiadasz patch of fine cloth.")

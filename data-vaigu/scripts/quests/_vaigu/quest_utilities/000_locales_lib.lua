@@ -94,7 +94,7 @@ local function translationNotFound(language, localizer, str)
 	local loggerCompatibleString = str
 	loggerCompatibleString = loggerCompatibleString:gsub("{", "#")
 	loggerCompatibleString = loggerCompatibleString:gsub("}", "#")
-	logger.warn(T("[Localizer] translation not found for language :language:, for string: :loggerCompatibleString:", { language = language or LOCALIZERS.NONE, loggerCompatibleString = loggerCompatibleString or "EMPTY_STRING"}))
+	logger.warn(T("[Localizer] translation not found for language :language:, for string: :loggerCompatibleString:", { language = language or LOCALIZERS.NONE, loggerCompatibleString = loggerCompatibleString or "EMPTY_STRING" }))
 	MissingStrings:Add(language, localizer, str)
 	return str .. notFoundSuffix
 end

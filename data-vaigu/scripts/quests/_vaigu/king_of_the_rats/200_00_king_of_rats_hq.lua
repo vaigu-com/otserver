@@ -87,7 +87,7 @@ quest
 		table.insert(Quests, {
 			name = "King of Rats Headquarters",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Current HeadQuarters status",
 					storage = Storage.KingOfRatsHQ.Mission01,

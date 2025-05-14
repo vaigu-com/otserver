@@ -392,7 +392,7 @@ class PlayerFunctions {
 
 	// Vaigu custom
 	static int luaPlayerIsOnMinigame(lua_State* L);
-	
+
 	static int luaPlayerSendCreatureAppear(lua_State* L);
 
 	static int luaPlayerAddAnimusMastery(lua_State* L);

@@ -43,4 +43,3 @@ for uniqueRange = 2050, 2065 do
 	action:uid(uniqueRange)
 end
 action:register()
-

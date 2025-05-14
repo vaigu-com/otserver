@@ -40,4 +40,3 @@ function facelessbook.onUse(player, item, fromPosition, target, toPosition, isHo
 end
 facelessbook:uid(7917)
 facelessbook:register()
-

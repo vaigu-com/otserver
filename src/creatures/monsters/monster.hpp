@@ -40,24 +40,24 @@ public:
 	void addList() override;
 	void removeList() override;
 
-	//Vaigu custom
+	// Vaigu custom
 	const std::string &getTranslatedName(std::string language) const override {
 		return name;
 	}
-	
+
 	const std::string &getName() const override;
 	void setName(const std::string &name);
 
 	// Vaigu custom
 	std::string displayName;
 	std::map<uint16_t, std::string> influenceRankToTitle = {
-        {0, ""},
-		{1, "Potent "},
-        {2, "Sturdy "},
-        {3, "Veteran "},
-		{4, "Epic "}, 
-		{5, "Legendary "},
-		{15, "Fiendish "}
+		{ 0, "" },
+		{ 1, "Potent " },
+		{ 2, "Sturdy " },
+		{ 3, "Veteran " },
+		{ 4, "Epic " },
+		{ 5, "Legendary " },
+		{ 15, "Fiendish " }
 	};
 	bool hasIgnoreCreatures();
 
@@ -210,7 +210,7 @@ public:
 
 	// Vaigu custom
 	void addTitleToDisplayName();
-	
+
 	void applyStacks();
 
 	void configureForgeSystem();

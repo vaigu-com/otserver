@@ -16,4 +16,3 @@ end
 
 theOutlawPowerSwitch:uid(30032)
 theOutlawPowerSwitch:register()
-

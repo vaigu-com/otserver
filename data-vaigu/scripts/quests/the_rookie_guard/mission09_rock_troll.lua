@@ -171,4 +171,3 @@ function onUsePickAtTunnelPillar(player, item, fromPosition, itemEx, toPosition)
 	end
 	return true
 end
-

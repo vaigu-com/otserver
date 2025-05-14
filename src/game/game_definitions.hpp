@@ -119,6 +119,6 @@ enum Boosted_Monsters_t : uint32_t {
 	NUMBER_BOOSTED_MONSTERS = 5
 };
 
-enum Vaigu_Custom_t : uint32_t{
+enum Vaigu_Custom_t : uint32_t {
 	POSITIONCHEST_ACTION_ID = 2013
 };

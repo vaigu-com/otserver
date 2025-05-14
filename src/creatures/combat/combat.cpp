@@ -688,7 +688,7 @@ void Combat::CombatHealthFunc(const std::shared_ptr<Creature> &caster, const std
 		}
 
 		// Vaigu custom
-		if(attackerMonster->isRewardBoss()){
+		if (attackerMonster->isRewardBoss()) {
 			auto encounterDifficulty = attackerMonster->getEncounterDifficulty();
 			auto encounterMultiplier = pow((1 + 0.2), encounterDifficulty);
 			damage.primary.value = damage.primary.value * encounterMultiplier;

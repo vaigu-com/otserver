@@ -114,8 +114,6 @@ end
 action:id(5467)
 action:register()
 
-
-
 --[[
 local function revert(position, itemId, transformId)
 	local item = Tile(position):getItemById(itemId)

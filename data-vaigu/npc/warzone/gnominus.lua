@@ -81,7 +81,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getMoney() >= 10 then
 				npcHandler:say("And here it is! Drink it quick, it gets stale quite fast!", npc, creature)
 				player:removeMoney(10)
-				player:AddCustomItem({id = 15794})
+				player:AddCustomItem({ id = 15794 })
 			else
 				npcHandler:say("You do not have enough money.", npc, creature)
 			end

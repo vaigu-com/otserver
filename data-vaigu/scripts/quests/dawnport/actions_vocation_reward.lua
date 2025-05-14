@@ -121,4 +121,3 @@ for index, value in pairs(reward.vocationItems) do
 	vocationReward:uid(index)
 end
 vocationReward:register()
-

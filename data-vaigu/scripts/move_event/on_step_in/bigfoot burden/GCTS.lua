@@ -39,12 +39,11 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-
 	local canTeleport = false
 	if not teleporter.requiresCrystal then
 		canTeleport = true
 	elseif teleporter.requiresCrystal then
-		if player:removeItem(16167, 1)  then
+		if player:removeItem(16167, 1) then
 			canTeleport = true
 		else
 			canTeleport = false

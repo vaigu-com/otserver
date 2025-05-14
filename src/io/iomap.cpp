@@ -227,7 +227,7 @@ void IOMap::parseTileArea(FileStream &stream, Map &map, const Position &pos) {
 			}
 
 			if (!stream.endNode()) {
- 				throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Could not end node.", x, y, z));
+				throw IOMapException(fmt::format("[x:{}, y:{}, z:{}] Could not end node.", x, y, z));
 			}
 
 			if (tile->isEmpty(true)) {

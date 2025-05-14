@@ -34,7 +34,7 @@ quest
 		table.insert(Quests, {
 			name = "Demon Oak",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Demon Oak",
 					storage = Storage.DemonOak.Mission01,
@@ -378,7 +378,7 @@ quest
 							player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. (#article > 0 and article .. " " or "") .. itemType:getName() .. ".")
 						end
 
-						player:AddCustomItem({id = chest.itemid, count = chest.count})
+						player:AddCustomItem({ id = chest.itemid, count = chest.count })
 						player:setStorageValueByKey(Storage.DemonOak.Mission01, MISSION_FINISHED)
 						player:setStorageValueByKey(Storage.Finished.DemonOak, MISSION_FINISHED)
 					end

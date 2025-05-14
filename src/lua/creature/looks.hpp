@@ -91,11 +91,11 @@ public:
 
 	bool hasKey(std::string key) {
 		return std::ranges::find_if(keys.begin(), keys.end(), [key](std::string storedKey) {
-			if (storedKey == key) {
-				return true;
-			}
-			return false;
-			})
+				   if (storedKey == key) {
+					   return true;
+				   }
+				   return false;
+			   })
 			!= keys.end();
 	}
 
@@ -113,7 +113,6 @@ public:
 	void setScriptId(int32_t newScriptId);
 	bool isLoadedScriptId() const;
 
-	
 private:
 	int32_t m_scriptId {};
 
@@ -224,7 +223,7 @@ private:
 
 	bool hasKey(std::string key) const {
 		if (auto it = keyItemMap.find(key);
-			it != keyItemMap.end()) {
+		    it != keyItemMap.end()) {
 			return true;
 		}
 		return false;

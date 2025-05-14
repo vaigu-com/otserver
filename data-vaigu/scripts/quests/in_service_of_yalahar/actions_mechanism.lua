@@ -41,4 +41,3 @@ for value = 3091, 3102 do
 	inServiceYalaharMechanism:uid(value)
 end
 inServiceYalaharMechanism:register()
-

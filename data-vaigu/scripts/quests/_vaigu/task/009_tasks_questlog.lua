@@ -16,7 +16,7 @@ quest
 		TaskQuestlog = {
 			name = "Tasks",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Task informations",
 					storage = Storage.Tasks.TaskInfo,

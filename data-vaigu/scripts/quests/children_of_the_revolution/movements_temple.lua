@@ -18,4 +18,3 @@ end
 temple:type("stepin")
 temple:uid(3163)
 temple:register()
-

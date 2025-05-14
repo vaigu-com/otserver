@@ -15,4 +15,3 @@ end
 
 boatTp:uid(1104)
 boatTp:register()
-

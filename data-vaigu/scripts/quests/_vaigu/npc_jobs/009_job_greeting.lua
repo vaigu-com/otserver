@@ -2,7 +2,7 @@ JOB_GREETINGS = {
 	[JOB_DISTANCE_SOULORB] = { text = "Hello, |PLAYERNAME|. My offers are bows, crossbows and ammunition. If you'd like to see, ask me for a {trade}. I can also exchange your {soul orbs}." },
 	[JOB_ARMOR_WEAPON] = { text = "Hello, I buy various equipment like armors, weapons, and.. well ask about {trade} to see my whole offer." },
 	[JOB_MAGIC_WILDCARD] = { text = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard}, which will increase your prey powers!" },
-	[JOB_MAGIC]  = {text = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages."},
+	[JOB_MAGIC] = { text = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages." },
 	[JOB_CREATURE_PRODUCT] = { text = "Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer." },
 	[JOB_FURNITURE] = { text = "Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}." },
 	[JOB_JEWELLER] = { text = "Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}" },
@@ -22,9 +22,9 @@ JOB_GREETINGS = {
 		},
 	},
 	[JOB_AOL] = {
-		text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!"
+		text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 	},
-	[JOB_POST] = { 
+	[JOB_POST] = {
 		text = {
 			"Hello, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 			"I am local postman, ask about {trade} if you want to buy some parcel or letter.",

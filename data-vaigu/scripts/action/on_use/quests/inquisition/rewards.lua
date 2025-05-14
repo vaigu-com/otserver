@@ -21,7 +21,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			player:setStorageValueByKey(Storage.TheInquisition.Reward, 1)
 			player:setStorageValueByKey(Storage.TheInquisition.Questline, 25)
 			player:setStorageValueByKey(Storage.TheInquisition.Mission07, 5) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
-			player:AddCustomItem({id = rewards[item.uid], count = 1})
+			player:AddCustomItem({ id = rewards[item.uid], count = 1 })
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. ItemType(rewards[item.uid]):getName() .. ".")
 			--player:addAchievement('Master of the Nexus')
 		else
@@ -35,4 +35,3 @@ for i, _ in pairs(rewards) do
 	action:uid(i)
 end
 action:register()
-

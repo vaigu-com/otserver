@@ -376,7 +376,7 @@ bool ConfigManager::load() {
 	loadBoolConfig(L, WEATHER_RAIN, "weatherRain", false);
 	loadBoolConfig(L, WEATHER_THUNDER, "thunderEffect", false);
 	loadBoolConfig(L, ALL_CONSOLE_LOG, "allConsoleLog", false);
-	
+
 	loadLuaOTCFeatures(L);
 
 	loaded = true;

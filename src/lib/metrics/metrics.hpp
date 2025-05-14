@@ -168,10 +168,10 @@ struct Options {
 
 class ScopedLatency {
 public:
-	explicit ScopedLatency([[maybe_unused]] std::string_view name, [[maybe_unused]] const std::string &histogramName, [[maybe_unused]] const std::string &scopeKey) {};
-	explicit ScopedLatency([[maybe_unused]] std::string_view name, [[maybe_unused]] std::set<double> &histogram, [[maybe_unused]] const std::map<std::string, std::string> &attrs = {}, [[maybe_unused]] const std::string &context = std::string()) {};
+	explicit ScopedLatency([[maybe_unused]] std::string_view name, [[maybe_unused]] const std::string &histogramName, [[maybe_unused]] const std::string &scopeKey) { };
+	explicit ScopedLatency([[maybe_unused]] std::string_view name, [[maybe_unused]] std::set<double> &histogram, [[maybe_unused]] const std::map<std::string, std::string> &attrs = {}, [[maybe_unused]] const std::string &context = std::string()) { };
 
-	void stop() const {};
+	void stop() const { };
 
 	~ScopedLatency() = default;
 };
@@ -203,9 +203,9 @@ namespace metrics {
 		Metrics() = default;
 		~Metrics() = default;
 
-		void init([[maybe_unused]] Options opts) const {};
-		void initHistograms() const {};
-		void shutdown() const {};
+		void init([[maybe_unused]] Options opts) const { };
+		void initHistograms() const { };
+		void shutdown() const { };
 
 		static Metrics &getInstance() {
 			return inject<Metrics>();

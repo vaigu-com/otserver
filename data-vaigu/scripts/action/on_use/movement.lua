@@ -1,6 +1,6 @@
 local useUp = Action()
 function useUp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-    fromPosition:moveUpstairs()
+	fromPosition:moveUpstairs()
 
 	if player:isPzLocked() and Tile(fromPosition):hasFlag(TILESTATE_PROTECTIONZONE) then
 		player:sendCancelMessage(RETURNVALUE_PLAYERISPZLOCKED)

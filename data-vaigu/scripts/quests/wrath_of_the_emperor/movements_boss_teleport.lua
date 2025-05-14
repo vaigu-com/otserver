@@ -69,4 +69,3 @@ for index, value in pairs(teleports) do
 end
 
 bossTeleport:register()
-

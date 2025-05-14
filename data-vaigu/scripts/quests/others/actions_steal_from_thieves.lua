@@ -11,7 +11,7 @@ function othersSteal.onUse(player, item, fromPosition, target, toPosition, isHot
 		end
 
 		local chest = chests[item.uid]
-		player:AddCustomItem({id = chest.itemid, count = 1})
+		player:AddCustomItem({ id = chest.itemid, count = 1 })
 		player:setStorageValueByKey(Storage.QuestChests.StealFromThieves, 2)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found a bag.")
 	end

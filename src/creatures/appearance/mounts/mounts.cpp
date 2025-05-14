@@ -35,14 +35,7 @@ bool Mounts::loadFromXml() {
 			continue;
 		}
 
-		mounts.emplace(std::make_shared<Mount>(
-			static_cast<uint8_t>(pugi::cast<uint16_t>(mountNode.attribute("id").value())),
-			lookType,
-			mountNode.attribute("name").as_string(),
-			pugi::cast<int32_t>(mountNode.attribute("speed").value()),
-			mountNode.attribute("premium").as_bool(),
-			mountNode.attribute("type").as_string()
-		));
+		mounts.emplace(std::make_shared<Mount>(static_cast<uint8_t>(pugi::cast<uint16_t>(mountNode.attribute("id").value())), lookType, mountNode.attribute("name").as_string(), pugi::cast<int32_t>(mountNode.attribute("speed").value()), mountNode.attribute("premium").as_bool(), mountNode.attribute("type").as_string()));
 	}
 	return true;
 }

@@ -166,7 +166,7 @@ function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, unjustifi
 	if player:getStorageValueByKey(Storage.SvargrondArena.Pit) > 0 then
 		player:setStorageValueByKey(Storage.SvargrondArena.Pit, 0)
 	end
-	
+
 	if not deathListEnabled then
 		return
 	end

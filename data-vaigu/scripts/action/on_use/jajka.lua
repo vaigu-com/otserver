@@ -14,16 +14,16 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		item:transform(12676)
 	elseif szansa > 30 and szansa <= 50 then
 		item:transform(12676)
-		player:AddCustomItem({id = 5890, count = 1})
+		player:AddCustomItem({ id = 5890, count = 1 })
 	elseif szansa > 50 and szansa <= 80 then
 		item:transform(12676)
-		player:AddCustomItem({id = 3606, count = 1})
+		player:AddCustomItem({ id = 3606, count = 1 })
 	elseif szansa > 80 and szansa <= 97 then
 		item:transform(12676)
-		player:AddCustomItem({id = 3606, count = 2})
+		player:AddCustomItem({ id = 3606, count = 2 })
 	elseif szansa >= 98 then
 		item:transform(12676)
-		player:AddCustomItem({id = 6545, count = 1})
+		player:AddCustomItem({ id = 6545, count = 1 })
 	end
 	addEvent(revertCask, 10 * 60 * 1000, toPosition) --10min
 	fromPosition:sendMagicEffect(CONST_ME_POFF)

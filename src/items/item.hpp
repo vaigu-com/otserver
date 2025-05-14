@@ -294,7 +294,7 @@ public:
 	static std::string parseClassificationDescription(const std::shared_ptr<Item> &item);
 
 	static std::vector<std::pair<std::string, std::string>> getDescriptions(const ItemType &it, const std::shared_ptr<Item> &item = nullptr);
-	
+
 	// Vaigu custom
 	static std::string getDescription(const ItemType &it, int32_t lookDistance, std::shared_ptr<Player> player = nullptr, const std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
 	static std::string getNameDescription(const ItemType &it, const std::shared_ptr<Player> player = nullptr, const std::shared_ptr<Item> item = nullptr, int32_t subType = -1, bool addArticle = true);
@@ -712,7 +712,7 @@ public:
 	}
 
 	void updateTileFlags();
-	bool canBePushed() const; //Vaigu custom
+	bool canBePushed() const; // Vaigu custom
 	bool canBeMoved() const;
 	void checkDecayMapItemOnMove();
 

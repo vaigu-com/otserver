@@ -238,4 +238,3 @@ end
 
 warWolfDenChest:uid(40076)
 warWolfDenChest:register()
-

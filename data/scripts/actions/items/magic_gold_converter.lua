@@ -20,7 +20,7 @@ local function findAndConvertCoins(player, container, converter)
 				if item:getId() == fromId and item:getCount() == 100 then
 					item:remove()
 					if not (container:addItem(toId, 1)) then
-						player:AddCustomItem({id = toId, count = 1})
+						player:AddCustomItem({ id = toId, count = 1 })
 					end
 
 					converter:setAttribute(ITEM_ATTRIBUTE_CHARGES, converter:getAttribute(ITEM_ATTRIBUTE_CHARGES) - 1)
@@ -41,7 +41,7 @@ local function startConverter(playerId, converterItemId)
 	if not (converter and converter:hasAttribute(ITEM_ATTRIBUTE_CHARGES)) then
 		return
 	end
-	
+
 	local charges = converter:getAttribute(ITEM_ATTRIBUTE_CHARGES)
 	if charges >= 1 then
 		if player:getItemCount(ITEM_GOLD_COIN) >= 100 or player:getItemCount(ITEM_PLATINUM_COIN) >= 100 then

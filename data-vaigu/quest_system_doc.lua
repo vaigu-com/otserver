@@ -379,7 +379,7 @@ local function exampleNpc()
 		[LOCALIZER_UNIVERSAL] = {
 			-- This dialog can always be accessed. In case of conflicting keywords you should use topic to differentiate
 			[{ "secret code" }] = { text = "okkk" },
-			[ GREET ] = { text = "Hello." },
+			[GREET] = { text = "Hello." },
 		},
 		-- Quest dialogs main storage that determines required state
 		[Storage.CatBranchman.Questline] = {

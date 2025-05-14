@@ -11,9 +11,9 @@ function GreetCallbackContext.New()
 	return newObj
 end
 setmetatable(GreetCallbackContext, {
-	__call =function (_, ...)
+	__call = function(_, ...)
 		return GreetCallbackContext.New(...)
-	end
+	end,
 })
 
 function GreetCallbackContext:InteractOnGreet(nextState)

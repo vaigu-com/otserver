@@ -1915,21 +1915,21 @@ void Creature::detachEffectById(uint16_t id) {
 	g_game().sendDetachEffect(static_self_cast<Creature>(), id);
 }
 
-void Creature::updateCalculatedStepSpeed(){
-		auto stepSpeed = getStepSpeed();
-		std::shared_ptr<Player> player = getPlayer();
-		if (player && player->isOnMinigame()) {
-			auto minigameFixedSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
-			if (minigameFixedSpeed > 0) {
-				stepSpeed = minigameFixedSpeed;
-			}
+void Creature::updateCalculatedStepSpeed() {
+	auto stepSpeed = getStepSpeed();
+	std::shared_ptr<Player> player = getPlayer();
+	if (player && player->isOnMinigame()) {
+		auto minigameFixedSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
+		if (minigameFixedSpeed > 0) {
+			stepSpeed = minigameFixedSpeed;
 		}
+	}
 
-		walk.calculatedStepSpeed = 1;
-		if (stepSpeed > -Creature::speedB) {
-			const auto formula = std::floor((Creature::speedA * log(stepSpeed + Creature::speedB) + Creature::speedC) + .5);
-			walk.calculatedStepSpeed = static_cast<uint16_t>(std::max(formula, 1.));
-		}
+	walk.calculatedStepSpeed = 1;
+	if (stepSpeed > -Creature::speedB) {
+		const auto formula = std::floor((Creature::speedA * log(stepSpeed + Creature::speedB) + Creature::speedC) + .5);
+		walk.calculatedStepSpeed = static_cast<uint16_t>(std::max(formula, 1.));
+	}
 
-		walk.recache();
+	walk.recache();
 }

@@ -1,5 +1,4 @@
-local dialogs = {
-}
+local dialogs = {}
 local voices = {
 	interval = 15000,
 	chance = 50,

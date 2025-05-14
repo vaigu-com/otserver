@@ -3,7 +3,7 @@ function gleamingStarlight.onUse(player, item, fromPosition, target, toPosition,
 	if target.itemid == 3613 then
 		--target:remove(1)
 		item:remove(1)
-		player:AddCustomItem({id = 25976})
+		player:AddCustomItem({ id = 25976 })
 		toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 		return true
 	end

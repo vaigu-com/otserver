@@ -1,7 +1,7 @@
 local name = "Kaminski"
 local outfit = {
 	lookType = 1044,
- }
+}
 
 local context = {
 	name = name,

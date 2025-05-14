@@ -93,4 +93,3 @@ end
 
 inServiceYalaharLastFight:uid(3086)
 inServiceYalaharLastFight:register()
-

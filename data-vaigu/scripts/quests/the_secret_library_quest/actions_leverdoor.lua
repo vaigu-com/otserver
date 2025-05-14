@@ -12,4 +12,3 @@ end
 
 leverDoor:uid(1084)
 leverDoor:register()
-

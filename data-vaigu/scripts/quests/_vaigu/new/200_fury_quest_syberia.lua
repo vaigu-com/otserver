@@ -26,7 +26,7 @@ quest
 
 		local eastGatePos = Position(6522, 1755, 12)
 		local eastGateId = 2184
-        local statueEast = Action()
+		local statueEast = Action()
 		function statueEast.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			local gate = eastGatePos:GetItemById(eastGateId)
 			if gate then
@@ -38,9 +38,9 @@ quest
 		statueEast:key(Storage.FuryQuestSyberia.StatueEast)
 		statueEast:register()
 
-        local stoneId = 1791
-        local stonePos = Position(6490, 1750, 9)
-        local lever = Action()
+		local stoneId = 1791
+		local stonePos = Position(6490, 1750, 9)
+		local lever = Action()
 		function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			local stone = stonePos:GetItemById(stoneId)
 			if stone then

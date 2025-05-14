@@ -29,4 +29,3 @@ for i, v in pairs(destinations) do
 end
 
 movement:register()
-

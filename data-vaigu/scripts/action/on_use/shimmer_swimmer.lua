@@ -7,20 +7,20 @@ function shimmerSwimmer.onUse(player, item, fromPosition, target, toPosition, is
 		item:remove(1)
 		toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
 		if target.itemid == 12737 then
-			player:AddCustomItem({id = 12741})
+			player:AddCustomItem({ id = 12741 })
 		elseif target.itemid == 12730 then
-			player:AddCustomItem({id = 12735})
+			player:AddCustomItem({ id = 12735 })
 		elseif target.itemid == 12805 then
-			player:AddCustomItem({id = 12733})
+			player:AddCustomItem({ id = 12733 })
 		elseif target.itemid == 12806 then
-			player:AddCustomItem({id = 12731})
+			player:AddCustomItem({ id = 12731 })
 		elseif target.itemid == 12742 then
-			player:AddCustomItem({id = 12732})
+			player:AddCustomItem({ id = 12732 })
 		end
 	elseif target.itemid == 7841 or target.itemid == 7842 then
 		item:remove(1)
 		toPosition:sendMagicEffect(CONST_ME_BLOCKHIT)
-		player:AddCustomItem({id = 12807})
+		player:AddCustomItem({ id = 12807 })
 		return true
 	end
 end

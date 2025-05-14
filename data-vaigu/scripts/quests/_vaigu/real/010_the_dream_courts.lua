@@ -6,7 +6,7 @@ quest
 		table.insert(Quests, {
 			name = "The Dream Courts",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "The Dream Courts",
 					storage = 12200,

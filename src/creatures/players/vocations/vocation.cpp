@@ -367,8 +367,8 @@ uint32_t Vocation::getAttackSpeed() const {
 }
 
 void Vocation::setAttackSpeed(uint32_t speed) {
-		attackSpeed = speed;
-	}
+	attackSpeed = speed;
+}
 
 uint32_t Vocation::getBaseSpeed() const {
 	return baseSpeed;

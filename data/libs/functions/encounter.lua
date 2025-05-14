@@ -197,7 +197,6 @@ function EncounterData:GetCurrentPhase()
 	return self.stages[self.currentStage]
 end
 
-
 ENCOUNTER_SCOPE_NAME = {
 	BossSpawnPosition = "BossSpawnPosition",
 	ExitTeleportDestination = "ExitTeleportDestination",

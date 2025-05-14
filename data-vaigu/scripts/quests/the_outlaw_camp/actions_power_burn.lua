@@ -18,4 +18,3 @@ end
 
 theOutlawPower:uid(30033)
 theOutlawPower:register()
-

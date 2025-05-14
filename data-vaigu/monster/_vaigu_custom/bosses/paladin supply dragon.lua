@@ -89,8 +89,7 @@ monster.loot = {
 	{ id = 3053, chance = 20000, maxCount = 1 },
 }
 
-monster.attacks = {
-}
+monster.attacks = {}
 
 monster.defenses = {
 	defense = 20,

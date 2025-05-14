@@ -61,7 +61,7 @@ function teleportHeart.onStepIn(creature, item, position, fromPosition)
 	if not player then
 		return true
 	end
-	
+
 	local normalVortex = vortex[item.actionid]
 	local bossVortex = accessVortex[item.actionid]
 	local uBosses = finalBosses[item.actionid]

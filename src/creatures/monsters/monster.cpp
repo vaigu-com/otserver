@@ -87,7 +87,7 @@ void Monster::removeList() {
 	g_game().removeMonster(static_self_cast<Monster>());
 }
 
-//Vaigu custom
+// Vaigu custom
 bool Monster::hasIgnoreCreatures() {
 	return mType->info.ignoreCreatures;
 }
@@ -99,11 +99,11 @@ const std::string &Monster::getName() const {
 // Vaigu custom
 /*
 const std::string &Monster::getDisplayName() const {
-	if (displayName.empty()) {
-		return mType->name;
-	}
-	// return name;
-	return displayName;
+    if (displayName.empty()) {
+        return mType->name;
+    }
+    // return name;
+    return displayName;
 }
 */
 
@@ -310,7 +310,7 @@ void Monster::onAttackedCreatureDisappear(bool) {
 }
 
 void Monster::onCreatureAppear(const std::shared_ptr<Creature> &creature, bool isLogin) {
-	if(hasIgnoreCreatures()){
+	if (hasIgnoreCreatures()) {
 		return;
 	}
 
@@ -1055,7 +1055,7 @@ void Monster::onEndCondition(ConditionType_t type) {
 }
 
 void Monster::onThink(uint32_t interval) {
-	if(mType->info.ignoreCreatures){
+	if (mType->info.ignoreCreatures) {
 		return;
 	}
 	Creature::onThink(interval);
@@ -2643,7 +2643,7 @@ void Monster::configureForgeSystem() {
 
 	// Vaigu custom
 	addTitleToDisplayName();
-	
+
 	// Change health based in stacks
 	const auto percentToIncrement = 1 + (15 * forgeStack + 35) / 100.f;
 	auto newHealth = static_cast<int32_t>(std::ceil(static_cast<float>(healthMax) * percentToIncrement));

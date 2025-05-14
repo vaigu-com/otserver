@@ -12,4 +12,3 @@ end
 
 inServiceYalaharMorik:uid(1015)
 inServiceYalaharMorik:register()
-

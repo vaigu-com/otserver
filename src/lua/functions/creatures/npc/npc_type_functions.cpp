@@ -647,7 +647,7 @@ int NpcTypeFunctions::luaNpcTypeGetSounds(lua_State* L) {
 }
 
 // Vaigu custom
-int NpcTypeFunctions::luaNpcTypeIsTransportNpc(lua_State* L){
+int NpcTypeFunctions::luaNpcTypeIsTransportNpc(lua_State* L) {
 	// get: npc:isTransportNpc()
 	// set: npc:isTransportNpc(nextState)
 	const auto &npcType = Lua::getUserdataShared<NpcType>(L, 1, "NpcType");

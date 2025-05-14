@@ -27,7 +27,6 @@
 static constexpr int32_t MONSTER_MINSPAWN_INTERVAL = 1000; // 1 second
 static constexpr int32_t MONSTER_MAXSPAWN_INTERVAL = 86400000; // 1 day
 
-
 bool SpawnsMonster::loadMonsterCounts(const std::string &filemonstername) {
 	pugi::xml_document doc;
 	const pugi::xml_parse_result result = doc.load_file(filemonstername.c_str());
@@ -115,7 +114,7 @@ bool SpawnsMonster::loadFromXML(const std::string &filemonstername) {
 				pugi::xml_attribute weightAttribute = childMonsterNode.attribute("weight");
 				uint32_t weight = 1;
 				if (weightAttribute) {
-					weight = pugi::cast<uint32_t>(weightAttribute.value());	
+					weight = pugi::cast<uint32_t>(weightAttribute.value());
 				}
 
 				uint32_t scheduleInterval = g_configManager().getNumber(DEFAULT_RESPAWN_TIME);
@@ -511,7 +510,7 @@ std::shared_ptr<MonsterType> spawnBlock_t::getMonsterType() const {
 	return nullptr;
 }
 
-bool spawnBlock_t::hasBoss() const {	
+bool spawnBlock_t::hasBoss() const {
 	return std::ranges::any_of(monsterTypes, [](const auto &pair) {
 		const auto &[monsterType, weight] = pair;
 		return monsterType->isBoss();

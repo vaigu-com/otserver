@@ -447,7 +447,7 @@ void Game::resetNpcs() const {
 std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t count) {
 	std::vector<std::string> monsterNames;
 
-	SpawnsMonster::loadMonsterCounts(g_configManager().getString(DATA_DIRECTORY) + "/world/" +  g_configManager().getString(MAP_NAME) + "-monster.xml");
+	SpawnsMonster::loadMonsterCounts(g_configManager().getString(DATA_DIRECTORY) + "/world/" + g_configManager().getString(MAP_NAME) + "-monster.xml");
 	auto &monsterCounts = g_game().map.spawnsMonster.getMonsterCounts();
 	std::vector<BoostedMonsterData> boostableMonsters;
 	for (const auto &[raceId, _name] : BestiaryList) {
@@ -9033,7 +9033,7 @@ void Game::playerNpcGreet(uint32_t playerId, uint32_t npcId) {
 
 	if (npc->getSpeechBubble() == SPEECHBUBBLE_TRADE) {
 		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "trade", false, &npcsSpectators);
-	} else if(npc->isTransportNpc()) {
+	} else if (npc->isTransportNpc()) {
 		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "sail", false, &npcsSpectators);
 	}
 

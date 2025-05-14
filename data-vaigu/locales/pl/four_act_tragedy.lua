@@ -40,7 +40,7 @@ return {
 	["Grazhena Core i3"] = "Grazyna Core i3",
 	["As i said, go to the Caribbean."] = "Tak jak mowilem. Udaj sie na karaiby.",
 	["Back when i was young we sat around the fireplace and we could teleport anywhere using power of our imagination."] = "Gdy bylem maly, zbieralismy sie przy ognisku. Nasza wyobraznia pozwalala nam przenosic sie gdziekolwiek chcielismy.",
-	["You will not be forgotten\n~Members of the super frog cult"] ="Nie bedziesz zapomniany\n~Czlonkowie super kultu zaby",
+	["You will not be forgotten\n~Members of the super frog cult"] = "Nie bedziesz zapomniany\n~Czlonkowie super kultu zaby",
 	-- Four Act Tregedy
 	["Four Act Tragedy"] = "Tragedya w Czterech Aktach",
 	["01. Dodge those compensation claims"] = "01. Chron sie przed roszczeniami odszkodowawczymi",

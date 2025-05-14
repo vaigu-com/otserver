@@ -51,7 +51,7 @@ quest
 		table.insert(Quests, {
 			name = "Cave Explorer on Shield",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "First Mission",
 					storage = Storage.CaveExplorerOnShield.Mission01,
@@ -88,7 +88,7 @@ quest
 				local function tryUseFrozenFireplace(frostplace)
 					local unlitId = frostplace:getId()
 					frostplace:transform(litFrostplaceId)
-					
+
 					local tile = Tile(passage_pos)
 					if tile:getItemById(2129) then
 						tile:getItemById(2129):remove()

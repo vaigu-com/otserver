@@ -81,7 +81,7 @@ return {
 	["ShipMessage"] = "Choose new destination:",
 	["ShipCantAffordFuel"] = "You can't afford fuel for this travel",
 	["ShipCantAffordMana"] = "You can't afford mana for this travel",
-	["ShipHasNotArrivedYet"]= "You cannot leave during a flight!",
+	["ShipHasNotArrivedYet"] = "You cannot leave during a flight!",
 	["ShipAlreadyAtDestination"] = "You are already there",
 	["ShipJustStartedTravel"] = "Starting flight to: ",
 	["ShipDestCpn"] = "Cosmo Petrol Natural",
@@ -131,5 +131,5 @@ return {
 	["05. I Don't Brush My Teeth. How Did You Know?"] = "05. I Don't Brush My Teeth. How Did You Know?",
 	["You killed the monster menacing the beach. Report to Hugo."] = "You killed the monster menacing the beach. Report to Hugo.",
 	["Your job is finished. Report to Astral Janus."] = "Your job is finished. Report to Astral Janus.",
-	["You completed this chapter."] = "You completed this chapter."
+	["You completed this chapter."] = "You completed this chapter.",
 }
