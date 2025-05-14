@@ -434,18 +434,20 @@ if NpcHandler == nil then
 		end
 
 		local callback = self:getCallback(CALLBACK_GREET)
-		local greetContext = nil
+		local result = nil
 		if callback ~= nil then
-			greetContext = callback(npc, player, message)
-		end
-		
-		-- Vaigu custom
-		-- Old system compatibility
-		if greetContext == nil then
-			greetContext = GreetCallbackContext()
+			result = callback(npc, player, message)
 		end
 
-		if greetContext:ShouldMessageOnGreet() then
+		-- Vaigu custom
+		local greetCallbackContext = GreetCallbackContext()
+		if type(result) == "table" and (getmetatable(result) == GreetCallbackContext) then
+			greetCallbackContext = result
+		else
+			greetCallbackContext:InteractOnGreet(result)
+		end
+
+		if greetCallbackContext:ShouldMessageOnGreet() then
 			if self:processModuleCallback(CALLBACK_GREET, npc, player) then
 				local msg = self:getMessage(MESSAGE_GREET)
 				local playerName = player:getName() or -1
@@ -455,7 +457,7 @@ if NpcHandler == nil then
 			end
 		end
 
-		if greetContext:ShouldInteractOnGreet() then
+		if greetCallbackContext:ShouldInteractOnGreet() then
 			self:setInteraction(npc, player)
 		end
 	end
