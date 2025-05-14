@@ -27,7 +27,7 @@ function refill.onSay(player, words, param)
 			table.insert(refilledItems, itemName)
 			player:removeItem(silverTokenID, itemData.cost)
 			player:removeItem(itemData.noChargeID, 1)
-			player:AddCustomItem({id = itemData.ChargeID, count = 1})
+			player:AddCustomItem({ id = itemData.ChargeID, count = 1 })
 		end
 	end
 	if #refilledItems == 0 then

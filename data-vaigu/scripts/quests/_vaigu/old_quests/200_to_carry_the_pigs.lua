@@ -56,7 +56,7 @@ quest
 		table.insert(Quests, {
 			name = "To Carry the Pigs",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "To be like the Schwarzenegger",
 					storage = Storage.ToCarryThePigs.BeLikeSchwarzenegger,

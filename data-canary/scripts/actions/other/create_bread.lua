@@ -8,13 +8,13 @@ function createBread.onUse(player, item, fromPosition, target, toPosition, isHot
 	if itemId == 3603 then
 		if target.type == 1 and table.contains(liquidContainers, target.itemid) then
 			item:remove(1)
-			player:AddCustomItem({id = 3604, count = 1})
+			player:addItem(3604, 1)
 			target:transform(target.itemid, 0)
 			return true
 		end
 	elseif table.contains(millstones, target.itemid) then
 		item:remove(1)
-		player:AddCustomItem({id = 3603, count = 1})
+		player:addItem(3603, 1)
 		return true
 	end
 	return false

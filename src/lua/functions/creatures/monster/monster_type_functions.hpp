@@ -143,7 +143,7 @@ private:
 
 	// Vaigu custom
 	static int luaMonsterTypeIgnoreCreatures(lua_State* L);
-	
+
 	static int luaMonsterTypeGetMonstersByRace(lua_State* L);
 	static int luaMonsterTypeGetMonstersByBestiaryStars(lua_State* L);
 };

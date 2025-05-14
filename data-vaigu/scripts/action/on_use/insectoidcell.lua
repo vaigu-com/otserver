@@ -16,11 +16,11 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	elseif szansa > 5 and szansa <= 8 then
 		item:remove()
 		Game.createItem(12959, 1, toPosition)
-		player:AddCustomItem({id = 14172, count = 1})
+		player:AddCustomItem({ id = 14172, count = 1 })
 	elseif szansa > 8 then
 		item:remove()
 		Game.createItem(12959, 1, toPosition)
-		player:AddCustomItem({id = 14172, count = 2})
+		player:AddCustomItem({ id = 14172, count = 2 })
 	end
 	addEvent(revertCask, 10 * 60 * 1000, toPosition) --10min
 	fromPosition:sendMagicEffect(CONST_ME_HITBYPOISON)

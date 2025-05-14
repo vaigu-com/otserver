@@ -129,7 +129,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 		elseif npcHandler:getTopic(playerId) == 3 then
 			npcHandler:say("Here take holy skull. You bring where you think is good. See as much as possible! See where other people live!", npc, creature)
-			player:AddCustomItem({id = 10159, count = 1})
+			player:addItem(10159, 1)
 			player:setStorageValue(UnnaturalSelection.Questline, 3)
 			player:setStorageValue(UnnaturalSelection.Mission02, 1) -- Questlog, Unnatural Selection Quest "Mission 2: All Around the World"
 			npcHandler:setTopic(playerId, 0)
@@ -152,7 +152,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 6 then
 			if player:removeItem(3465, 1, 3) then
 				npcHandler:say("We make big ritual soon and learn much about world outside. Me thank you many times for teaching us world. Very wise and adventurous you are!", npc, creature)
-				player:AddCustomItem({id = 10198, count = 1})
+				player:addItem(10198, 1)
 				player:setStorageValue(UnnaturalSelection.Questline, 15)
 				player:setStorageValue(UnnaturalSelection.Mission06, 3) -- Questlog, Unnatural Selection Quest "Mission 6: Firewater Burn"
 				npcHandler:setTopic(playerId, 0)

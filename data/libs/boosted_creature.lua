@@ -6,7 +6,7 @@ function boostedCreatureAnnouncementInit.onStartup()
 	for _, name in pairs(booostedCreatures) do
 		names = names .. ", " .. name
 	end
-	names = names:sub(1,-2)
+	names = names:sub(1, -2)
 	logger.info(T("Today boosted creatures: :names:", { names = names }))
 end
 boostedCreatureAnnouncementInit:register()

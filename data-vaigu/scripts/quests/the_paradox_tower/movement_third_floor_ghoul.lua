@@ -35,4 +35,3 @@ end
 
 thirdFloorGhoul:uid(25017)
 thirdFloorGhoul:register()
-

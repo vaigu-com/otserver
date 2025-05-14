@@ -267,7 +267,7 @@ std::string FindValueByKey(const std::vector<Game::LuaElement> elements, const s
 
 // Vaigu custom
 const std::vector<std::string> ProtocolGame::languages = { "EN", "PL" };
-const std::vector<std::string> ProtocolGame::getLanguages(){
+const std::vector<std::string> ProtocolGame::getLanguages() {
 	return languages;
 }
 
@@ -6400,7 +6400,6 @@ void ProtocolGame::sendCreatureTurn(const std::shared_ptr<Creature> &creature, u
 	msg.addByte(player->canWalkthroughEx(creature) ? 0x00 : 0x01);
 	writeToOutputBuffer(msg);
 }
-
 
 void ProtocolGame::sendCreatureSay(const std::shared_ptr<Creature> &creature, SpeakClasses type, const std::string &text, const Position* pos /* = nullptr*/) {
 	NetworkMessage msg;

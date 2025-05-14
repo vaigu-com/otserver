@@ -72,7 +72,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if npcHandler:getTopic(playerId) == 1 then
 			player:setStorageValue(Storage.Quest.U8_4.InServiceOfYalahar.TheWayToYalahar, 2)
 			npcHandler:say("Excellent! You will find Palimuth near the entrance of the city centre. Just ask him if you can assist him in a few missions.", npc, creature)
-			player:AddCustomItem({id = 9171, count = 1})
+			player:addItem(9171, 1)
 			npcHandler:setTopic(playerId, 0)
 		end
 	end

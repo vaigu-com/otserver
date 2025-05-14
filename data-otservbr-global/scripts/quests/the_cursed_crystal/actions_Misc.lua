@@ -37,15 +37,7 @@ function cursedMiscItem.onUse(player, item, fromPosition, target, toPosition, is
 	if item.itemid == 5902 then
 		if (target.itemid == 2535) or (target.itemid == 2537) or (target.itemid == 2539) or (target.itemid == 2541) then
 			item:remove(1)
-<<<<<<< HEAD
-<<<<<<< HEAD
-			player:AddCustomItem({id = 9106, count = 1})
-=======
 			player:addItem(9106, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-			player:addItem(9106, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		end
 	elseif item.itemid == 21554 then
 		local playerPos = player:getPosition()
@@ -88,15 +80,7 @@ function theCursedMiscAction.onUse(player, item, fromPosition, target, toPositio
 	if item.actionid == 40001 and item:getPosition() == TCC_SKELETON_PAPER_POS then
 		if player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Oneeyedjoe) < 1 and player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.SheetOfPaper) < 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a sheet of paper.")
-<<<<<<< HEAD
-<<<<<<< HEAD
-			local paperCursedCrystal = player:AddCustomItem({id = 2820, count = 1})
-=======
 			local paperCursedCrystal = player:addItem(2820, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-			local paperCursedCrystal = player:addItem(2820, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			paperCursedCrystal:setAttribute(
 				ITEM_ATTRIBUTE_TEXT,
 				"I did it! I reached the crystal gardens! What beauty and splendor I have seen down there. Even more: I discovered a small subterranean lake - but Harry was there before me. And he did something strange: He ringed a small, transparent looking bell and immediately a big whirl appeared in the water. I suppose this is the mysterious way deeper into the caves we sought after for so long. But Harry, the coward, didn't dare to dive into the water. Instead he left the caverns and headed back to the surface. I must have this bell!"
@@ -108,15 +92,7 @@ function theCursedMiscAction.onUse(player, item, fromPosition, target, toPositio
 	elseif item.actionid == 40001 and item:getPosition() == TCC_SKELETON_BELL_POS then
 		if player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Oneeyedjoe) < 1 and player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.SmallCrystalBell) < 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a small crystal bell.")
-<<<<<<< HEAD
-<<<<<<< HEAD
-			player:AddCustomItem({id = 21554, count = 1})
-=======
 			player:addItem(21554, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-			player:addItem(21554, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U10_70.TheCursedCrystal.SmallCrystalBell, 1)
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The pile of bones is empty.")
@@ -124,15 +100,7 @@ function theCursedMiscAction.onUse(player, item, fromPosition, target, toPositio
 	elseif item.actionid == 40002 and item.itemid == 21572 then
 		if player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Oneeyedjoe) < 1 and player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.SheetOfPaper) > 0 and player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.SmallCrystalBell) > 0 then
 			if player:getStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Time) < os.time() then
-<<<<<<< HEAD
-<<<<<<< HEAD
-				player:AddCustomItem({id = 21504, count = 1})
-=======
 				player:addItem(21504, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-				player:addItem(21504, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				item:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You take some blood out of the hollow crystal. Hopefully it is actually a medusa's blood.")
 				player:setStorageValue(Storage.Quest.U10_70.TheCursedCrystal.Oneeyedjoe, 1)

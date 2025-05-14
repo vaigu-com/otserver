@@ -106,14 +106,14 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(TheNewFrontier.Questline, 5)
 			player:setStorageValue(TheNewFrontier.Mission02[1], 2) --Questlog, The New Frontier Quest "Mission 02: From Kazordoon With Love"
-			player:AddCustomItem({id = 9843, count = 1})
+			player:addItem(9843, 1)
 			for i = 1, #config do
 				player:addMapMark(config[i].position, config[i].type, config[i].description)
 			end
 			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler:getTopic(playerId) == 2 then
 			if player:removeMoneyBank(100) then
-				player:AddCustomItem({id = 9843, count = 1})
+				player:addItem(9843, 1)
 				npcHandler:say("Here you go.", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			else

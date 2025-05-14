@@ -354,7 +354,6 @@ function ResolutionContext:AddExperience()
 	AddExperienceWithAnnouncement(self.player, actions.expReward)
 end
 
-
 function ResolutionContext:AddWildcard()
 	local actions = self.actionsOnSuccess
 	if not actions.preycardReward then
@@ -363,7 +362,6 @@ function ResolutionContext:AddWildcard()
 
 	self.player:addPreyCards(actions.preycardReward)
 end
-
 
 function ResolutionContext:UpdatePlayerState()
 	local actions = self.actionsOnSuccess

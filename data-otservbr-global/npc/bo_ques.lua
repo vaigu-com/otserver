@@ -153,7 +153,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				"Incidentally, I have talked to Fa'hradin about you during dinner. I think he might have some work for you. Why don't you talk to him about it?",
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U7_4.DjinnWar.MaridFaction.Mission01, 2)
-			player:AddCustomItem({id = 3029, count = 3})
+			player:addItem(3029, 3)
 		elseif MsgContains(message, "no") then
 			npcHandler:say("Too bad. I must have this book.", npc, creature)
 		end

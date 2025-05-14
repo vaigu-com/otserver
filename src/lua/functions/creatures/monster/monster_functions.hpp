@@ -86,7 +86,7 @@ private:
 	// Vaigu custom
 	static int luaMonsterIsBoosted(lua_State* L);
 	static int luaMonsterSetEncounterDifficulty(lua_State* L);
-	
+
 	static int luaMonsterSoulPit(lua_State* L);
 
 	static int luaMonsterIsDead(lua_State* L);

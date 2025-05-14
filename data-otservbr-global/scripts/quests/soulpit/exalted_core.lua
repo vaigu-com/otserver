@@ -80,15 +80,7 @@ function exaltedCore.onUse(player, item, fromPosition, target, toPosition, isHot
 		return false
 	end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	player:AddCustomItem({id = newSoulCoreItem, count = 1})
-=======
 	player:addItem(newSoulCoreItem, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-	player:addItem(newSoulCoreItem, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	target:remove(1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("You have received a %s soul core.", newMonsterType:getName()))
 	item:remove(1)

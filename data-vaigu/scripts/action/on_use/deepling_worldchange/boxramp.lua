@@ -12,4 +12,3 @@ end
 
 boxRamp:uid(1106)
 boxRamp:register()
-

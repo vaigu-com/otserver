@@ -1824,12 +1824,11 @@ quest
 						local resultReal = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
 						local resultTrick = localizer:Get("the sign says that knight and druid should use rope")
 						player:say(resultTrick, TALKTYPE_SAY)
-						player:sendTextMessage(MESSAGE_LOOK,resultReal)
+						player:sendTextMessage(MESSAGE_LOOK, resultReal)
 					else
-						player:sendTextMessage(MESSAGE_LOOK,localizer:Get("Only paladins can read the sacred texts."))
+						player:sendTextMessage(MESSAGE_LOOK, localizer:Get("Only paladins can read the sacred texts."))
 					end
-				
-					
+
 					return DONT_SHOW_ONLOOK
 				end
 				trickSignLook:key(Storage.DesertQuestTwo.Puzzles.TrickSign)
@@ -1861,7 +1860,7 @@ quest
 					})
 					killingCurse(player)
 
-					player:sendTextMessage(MESSAGE_LOOK,finalString)
+					player:sendTextMessage(MESSAGE_LOOK, finalString)
 					return DONT_SHOW_ONLOOK
 				end
 				trickGraveLook:key(Storage.DesertQuestTwo.Puzzles.TrickGrave)

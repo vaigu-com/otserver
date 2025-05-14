@@ -87,7 +87,7 @@ local function creatureSayCallback(npc, creature, type, message)
 					player:addMount(202)
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations you received the Noxious Ripptor mount.")
 					player:addAchievement("Ripp-Ripp Hooray!")
-					player:AddCustomItem({id = PRIMAL_BAG, count = 1})
+					player:addItem(PRIMAL_BAG, 1)
 					player:kv():scoped("primal-ordeal"):set("received-prize", true)
 					npcHandler:say("You've achieved the necessary hazard level. As a reward, you've received the Noxious Ripptor mount and a primal bag.", npc, creature)
 				end

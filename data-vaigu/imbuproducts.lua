@@ -21,7 +21,7 @@ IMBUING_NAMES = {
 	blockade = "blockade",
 	epiphany = "epiphany",
 	swiftness = "swiftness",
-	featherweight = "featherweight"
+	featherweight = "featherweight",
 }
 
 -- Names only
@@ -36,7 +36,7 @@ IMBUING_CATEGORIES = {
 	Support = "Support",
 	Offensive = "Offensive",
 	Defensive = "Defensive",
-	Skill_improving = "Skill improving"
+	Skill_improving = "Skill improving",
 }
 
 local imbuingCategories = {

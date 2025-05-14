@@ -157,4 +157,3 @@ end
 
 treasureChest:uid(40047)
 treasureChest:register()
-

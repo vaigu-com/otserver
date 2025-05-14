@@ -268,7 +268,7 @@ quest
 		table.insert(Quests, {
 			name = "Prodigal Son",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "01. Work is da poop!",
 					storage = Storage.ProdigalSon.Mission01,
@@ -799,12 +799,11 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex,
-			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "train", "pociagiem" }] = {
-					text = "Just ask the conductor to see the schedules of the train.",
-				},
-			})
+		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex, QuestFactory.Dialog("Chester the Dwarf", {
+			[{ "train", "pociagiem" }] = {
+				text = "Just ask the conductor to see the schedules of the train.",
+			},
+		})
 	end)
 	:Mission(Storage.ProdigalSon.Mission02)
 	:State(function()
@@ -1067,7 +1066,7 @@ quest
 					if arechekLock:IsSet() then
 						return
 					end
-					
+
 					arechekLock:Set(Game.createMonster("Notorious Arechek", player:getPosition()))
 					SwapNotoriousArechekBed()
 				end

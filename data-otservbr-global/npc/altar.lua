@@ -69,7 +69,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 
 		if player:removeItem(43855, 5) and player:removeItem(43854, 5) then
-			player:AddCustomItem({id = BAG_YOU_COVET, count = 1})
+			player:addItem(BAG_YOU_COVET, 1)
 			npcHandler:say("Your sacrifice has been accepted, mortal. Embrace your reward!", npc, creature)
 		end
 	elseif MsgContains(message, "no") and npcHandler:getTopic(playerId) == 1 then

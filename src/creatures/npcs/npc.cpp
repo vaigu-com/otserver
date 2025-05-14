@@ -54,13 +54,13 @@ Npc::Npc(const std::shared_ptr<NpcType> &npcType) :
 		}
 	}
 
-	for (const auto& language : ProtocolGame::getLanguages()){
-			static std::string npcLocalizer = "npc_name";
-			const std::vector<std::string> keys = {
-				language, npcLocalizer, getName()
-			};
-			const auto translated = ProtocolGame::TryTranslate(getName(), npcLocalizer, language);
-			translatedNames[language] = translated;
+	for (const auto &language : ProtocolGame::getLanguages()) {
+		static std::string npcLocalizer = "npc_name";
+		const std::vector<std::string> keys = {
+			language, npcLocalizer, getName()
+		};
+		const auto translated = ProtocolGame::TryTranslate(getName(), npcLocalizer, language);
+		translatedNames[language] = translated;
 	}
 }
 
@@ -87,11 +87,11 @@ void Npc::addList() {
 }
 
 const std::string &Npc::getTranslatedName(std::string language) const {
-	  auto it = translatedNames.find(language);
-    if (it != translatedNames.end()) {
-        return it->second;
-    }
-    return getName();
+	auto it = translatedNames.find(language);
+	if (it != translatedNames.end()) {
+		return it->second;
+	}
+	return getName();
 }
 
 const std::string &Npc::getName() const {
@@ -129,6 +129,11 @@ const Position &Npc::getMasterPos() const {
 
 void Npc::setMasterPos(Position pos) {
 	masterPos = pos;
+}
+
+// Vaigu custom
+bool Npc::isTransportNpc() const {
+	return npcType->info.isTransportNpc;
 }
 
 uint8_t Npc::getSpeechBubble() const {

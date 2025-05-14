@@ -22,7 +22,7 @@ quest
 		table.insert(Quests, {
 			name = "Im Resting Here",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "A Work to Screw up",
 					storage = Storage.ImRestingHere.Mission01,

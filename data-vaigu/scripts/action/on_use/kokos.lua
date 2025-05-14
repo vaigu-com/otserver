@@ -16,7 +16,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	elseif szansa >= 9 then
 		item:transform(3640)
 		toPosition:sendMagicEffect(CONST_ME_POFF)
-		player:AddCustomItem({id = 3589, count = 1})
+		player:AddCustomItem({ id = 3589, count = 1 })
 	end
 	addEvent(revertCask, 15 * 60 * 1000, toPosition) --15min
 	return true

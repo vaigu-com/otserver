@@ -787,4 +787,3 @@ end
 
 orcFortressChests:uid(40079, 40080, 40081)
 orcFortressChests:register()
-

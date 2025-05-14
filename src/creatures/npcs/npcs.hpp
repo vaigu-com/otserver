@@ -40,6 +40,9 @@ class NpcType final : public SharedObject {
 
 		LightInfo light = {};
 
+		// Vaigu custom
+		bool isTransportNpc = false;
+
 		uint8_t speechBubble = SPEECHBUBBLE_NORMAL;
 
 		uint16_t currencyId = ITEM_GOLD_COIN;

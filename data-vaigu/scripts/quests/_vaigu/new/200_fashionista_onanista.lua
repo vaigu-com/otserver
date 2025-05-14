@@ -102,7 +102,7 @@ quest
 		table.insert(Quests, {
 			name = "Fashionista Onanista",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Cum Bucket",
 					storage = Storage.FashionistaOnanista.Mission01,

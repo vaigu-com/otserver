@@ -24,4 +24,5 @@ function bossesWarzone.onDeath(creature)
 	end)
 	return true
 end
+
 bossesWarzone:register()

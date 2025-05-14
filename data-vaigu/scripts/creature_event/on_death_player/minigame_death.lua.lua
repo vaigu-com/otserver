@@ -24,7 +24,6 @@ local function announceNthPlace(context)
 	Game.broadcastMessage(message, nil, true, context)
 end
 
-
 local winConditionToRecordString = {
 	[MINIGAMES_WIN_CONDITION.speedrun] = "best-time",
 	[MINIGAMES_WIN_CONDITION.last_man_standing] = "best-monster-count",
@@ -75,7 +74,6 @@ function minigameDeath.onPrepareDeath(creature, killer)
 
 	local eventKv = minigamesScope:Get(minigameName)
 	local eventState = getStorageValueByKey(eventKv)
-
 
 	local currentPlayers = eventState.currentPlayersCount
 	local startingPlayers = eventState.startingPlayersCount

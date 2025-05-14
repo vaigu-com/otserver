@@ -65,13 +65,7 @@ bool Familiars::loadFromXml() {
 			continue;
 		}
 
-		familiars[vocation].emplace_back(std::make_shared<Familiar>(
-			familiarsNode.attribute("name").as_string(),
-			pugi::cast<uint16_t>(lookTypeAttribute.value()),
-			familiarsNode.attribute("premium").as_bool(),
-			familiarsNode.attribute("unlocked").as_bool(true),
-			familiarsNode.attribute("type").as_string()
-		));
+		familiars[vocation].emplace_back(std::make_shared<Familiar>(familiarsNode.attribute("name").as_string(), pugi::cast<uint16_t>(lookTypeAttribute.value()), familiarsNode.attribute("premium").as_bool(), familiarsNode.attribute("unlocked").as_bool(true), familiarsNode.attribute("type").as_string()));
 	}
 	for (uint16_t vocation = VOCATION_NONE; vocation <= VOCATION_LAST; ++vocation) {
 		familiars[vocation].shrink_to_fit();

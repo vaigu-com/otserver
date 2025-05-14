@@ -2,7 +2,7 @@ local minotaurskull = Action()
 function minotaurskull.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.TheDreamCourts.MinotaurSkull) <= 0 then
 		player:setStorageValueByKey(Storage.TheDreamCourts.MinotaurSkull, 1)
-		player:AddCustomItem({id = 29988, count = 1})
+		player:AddCustomItem({ id = 29988, count = 1 })
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found Minotaur Skull.")
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Juz to wzialem..")
@@ -16,8 +16,8 @@ local orcskull = Action()
 function orcskull.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.TheDreamCourts.OrcSkull) <= 0 then
 		player:setStorageValueByKey(Storage.TheDreamCourts.OrcSkull, 1)
-		player:AddCustomItem({id = 29989, count = 1})
-		player:AddCustomItem({id = 29990, count = 1})
+		player:AddCustomItem({ id = 29989, count = 1 })
+		player:AddCustomItem({ id = 29990, count = 1 })
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found Troll and Orc Skull.")
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Juz to wzialem..")
@@ -89,4 +89,3 @@ function trolluse.onUse(player, item, fromPosition, target, toPosition, isHotkey
 end
 trolluse:id(29990)
 trolluse:register()
-

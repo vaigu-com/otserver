@@ -4,7 +4,7 @@ function wrathEmperorMiss4Sacrament.onUse(player, item, fromPosition, target, to
 		player:removeItem(11368, 1)
 		player:removeItem(11369, 1)
 		player:removeItem(11370, 1)
-		player:AddCustomItem({id = 11371, count = 1})
+		player:addItem(11371, 1)
 		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 		player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 11)
 		player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Mission04, 2) --Questlog, Wrath of the Emperor "Mission 04: Sacrament of the Snake"

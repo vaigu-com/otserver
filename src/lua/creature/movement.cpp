@@ -138,7 +138,7 @@ bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> &moveEvent
 
 // Vaigu custo
 bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> &moveEvent) {
-		std::vector<std::function<bool(const std::shared_ptr<MoveEvent> &)>> luaEventCallbacks = {
+	std::vector<std::function<bool(const std::shared_ptr<MoveEvent> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaItemEvent(moveEvent); },
 		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaUniqueEvent(moveEvent); },
 		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaActionEvent(moveEvent); },
@@ -240,13 +240,12 @@ std::shared_ptr<MoveEvent> MoveEvents::getEvent(const std::shared_ptr<Item> &ite
 			slotp = SLOTP_AMMO;
 			break;
 		case CONST_SLOT_RING:
-			slotp = SLOTP_RING;	
+			slotp = SLOTP_RING;
 			break;
 		default:
 			slotp = 0;
 			break;
 	}
-
 
 	if (item->hasAttribute(ItemAttribute_t::KEY)) {
 		std::map<std::string, MoveEventList>::iterator itk;
@@ -316,7 +315,6 @@ std::shared_ptr<MoveEvent> MoveEvents::getEvent(const std::shared_ptr<Item> &ite
 			}
 		}
 	}
-
 
 	it = itemIdMap.find(item->getID());
 	if (it != itemIdMap.end()) {

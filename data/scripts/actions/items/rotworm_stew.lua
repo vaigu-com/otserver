@@ -5,7 +5,7 @@ function rotwormStew.onUse(player, item, fromPosition, target, toPosition, isHot
 	if errorMessage then
 		player:say(errorMessage)
 	end
-	
+
 	player:addHealth(player:getMaxHealth())
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your health has been refilled.")
 	player:say("Gulp.", TALKTYPE_MONSTER_SAY)

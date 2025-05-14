@@ -23,4 +23,3 @@ end
 
 action:uid(9021)
 action:register()
-

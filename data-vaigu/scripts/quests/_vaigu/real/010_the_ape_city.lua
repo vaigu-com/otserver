@@ -6,7 +6,7 @@ quest
 		table.insert(Quests, {
 			name = "The Ape City",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Hairycles Missions",
 					storage = 11102,

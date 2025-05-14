@@ -104,7 +104,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 
 		player:removeItem(6530, 1)
-		player:AddCustomItem({id = 6529, count = 1})
+		player:addItem(6529, 1)
 		npcHandler:say("Here you are.", npc, creature)
 	elseif MsgContains(message, "no") and npcHandler:getTopic(playerId) == 1 then
 		npcHandler:setTopic(playerId, 0)

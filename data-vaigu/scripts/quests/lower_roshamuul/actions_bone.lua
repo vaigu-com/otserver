@@ -11,7 +11,7 @@ function lowerRoshamuulBone.onUse(player, item, fromPosition, target, toPosition
 	if item.itemid == 20179 then
 		if rand <= 20 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Amidst the pile of various bones you find  large, hollow part, similar to a pipe.")
-			player:AddCustomItem({id = 20055, count = 1})
+			player:AddCustomItem({ id = 20055, count = 1 })
 			item:transform(10336, 20179)
 			addEvent(revertBone, 120000, toPosition, 10336, 20179)
 			toPosition:sendMagicEffect(3)

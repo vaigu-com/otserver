@@ -71,4 +71,3 @@ end
 
 gloothFairyLever:uid(1020)
 gloothFairyLever:register()
-

@@ -3,7 +3,7 @@ function forgottenKnowledgeFount.onUse(player, item, fromPosition, target, toPos
 	if player:getStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.Phial) >= 1 then
 		return false
 	end
-	player:AddCustomItem({id = 23810})
+	player:addItem(23810)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A phial of fresh pond water. It looks crystal clear and sparkles a little.")
 	player:setStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.Phial, 1)
 	return true

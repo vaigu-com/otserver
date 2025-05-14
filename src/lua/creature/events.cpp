@@ -185,9 +185,9 @@ void Events::eventMonsterOnSpawn(const std::shared_ptr<Monster> &monster, const 
 
 	if (!scriptInterface.reserveScriptEnv()) {
 		g_logger().error("{} - "
-						 "Position {}"
-						 ". Call stack overflow. Too many lua script calls being nested.",
-						 __FUNCTION__, position.toString());
+		                 "Position {}"
+		                 ". Call stack overflow. Too many lua script calls being nested.",
+		                 __FUNCTION__, position.toString());
 		return;
 	}
 
@@ -219,9 +219,9 @@ void Events::eventNpcOnSpawn(const std::shared_ptr<Npc> &npc, const Position &po
 
 	if (!scriptInterface.reserveScriptEnv()) {
 		g_logger().error("{} - "
-						 "Position {}"
-						 ". Call stack overflow. Too many lua script calls being nested.",
-						 __FUNCTION__, position.toString());
+		                 "Position {}"
+		                 ". Call stack overflow. Too many lua script calls being nested.",
+		                 __FUNCTION__, position.toString());
 		return;
 	}
 

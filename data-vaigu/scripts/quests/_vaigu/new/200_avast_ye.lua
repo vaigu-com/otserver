@@ -221,7 +221,7 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Morgram", {
 				[{ GREET, "mission", "misja" }] = {
-					text = "Aye, what be this? A landlubber seekin' favor from Morgram? Har har! If ye want my help, I got me own desires - 10 sapphires, rare and shimmerin' like the sea at dawn. Bring 'em to me, and I'll see to it ye get safe passage to the Hurghada Safehouse.",
+					text = "Aye, what be this? A landlubber seekin' favor from Morgram? Har har! If ye want my help, I got me own desires - 10 sapphires, rare and shimmerin' like the sea at dawn. Bring 'em to me, and I'll see to it ye get safe passage to the Port Louse.",
 					nextState = {
 						[Storage.AvastYe.Mission01] = QuestState.AvastYe.Mission01.BringSapphiresToMorgram,
 					},
@@ -263,7 +263,7 @@ quest
 		return QuestState.AvastYe.Mission01.BringHydraHeadToRedbeard,
 			QuestFactory.Dialog("Redbeard", {
 				[{ "mission", "misja" }] = {
-					text = "By the briny deep, ye actually did it! The ugly thing's even worse lookin' up close. Fine work, matey! I be willin' to ferry ye to Hurghada Safehouse, should ye need it. But listen now, there be other Pirate Lords with needs as dire as mine. Ye scratch their backs, and they might be helpin' ye too. If yer still thirsty fer adventure, seek out other pirate lords.",
+					text = "By the briny deep, ye actually did it! The ugly thing's even worse lookin' up close. Fine work, matey! I be willin' to ferry ye to Port Louse, should ye need it. But listen now, there be other Pirate Lords with needs as dire as mine. Ye scratch their backs, and they might be helpin' ye too. If yer still thirsty fer adventure, seek out other pirate lords.",
 					textNoRequiredItems = "Arrr, what kinda fool's game be this? Ye tryin' to swindle ol' Redbeard? Ye best come back when ye actually got that Hydra's head, ye sorry excuse for a deckhand!",
 					requiredItems = {
 						{ id = 10282, remove = false },

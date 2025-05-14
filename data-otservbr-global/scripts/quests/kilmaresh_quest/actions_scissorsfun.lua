@@ -274,7 +274,7 @@ function scissorsfun.onUse(player, item, fromPosition, target, toPosition, isHot
 		if player:getStorageValue(key.storage) == key.getValue then
 			if table.contains({ key.itemId }, target.itemid) then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, key.msg)
-				player:AddCustomItem({id = key.addItemId, count = 1})
+				player:addItem(key.addItemId, 1)
 			end
 		else
 			player:sendTextMessage(MESSAGE_FAILURE, "Sorry, not possible.")

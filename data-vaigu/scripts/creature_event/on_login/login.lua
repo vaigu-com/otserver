@@ -97,7 +97,6 @@ function playerLoginVaigu.onLogin(player)
 	player:setStaminaXpBoost(player:getFinalBonusStamina() * 100)
 	player:getFinalLowLevelBonus()
 
-
 	-- Set Ghost Mode
 	if player:getGroup():getId() >= GROUP_TYPE_GAMEMASTER then
 		player:setGhostMode(true)

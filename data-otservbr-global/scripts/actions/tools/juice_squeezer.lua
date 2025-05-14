@@ -11,7 +11,7 @@ function juiceSqueezer.onUse(player, item, fromPosition, target, toPosition, isH
 
 	if table.contains(fruits, target.itemid) and player:removeItem(2874, 1, 0) then
 		target:remove(1)
-		player:AddCustomItem({id = 2874, count = target.itemid == 3589 and 14 or 21})
+		player:addItem(2874, target.itemid == 3589 and 14 or 21)
 		return true
 	end
 end

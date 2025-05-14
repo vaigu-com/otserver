@@ -6,7 +6,7 @@ function basinFire.onUse(player, item, fromPosition, target, toPosition, isHotke
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a reward.")
 			player:setStorageValueByKey(Storage.TheSecretLibrary.Mota, 9)
 			player:removeItem(32408, 1)
-			player:AddCustomItem({id = 32623, count = 1})
+			player:AddCustomItem({ id = 32623, count = 1 })
 			player:setStorageValueByKey(Storage.TheSecretLibrary.BasinDoor, 1)
 		end
 		return true

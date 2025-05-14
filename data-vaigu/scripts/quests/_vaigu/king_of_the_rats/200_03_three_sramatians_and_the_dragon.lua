@@ -115,7 +115,7 @@ quest
 		table.insert(Quests, {
 			name = "The Three Sramatians and the Dragon",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "01. Hither and Thither",
 					storage = Storage.ThreeSramatiansAndTheDragon.Mission01,
@@ -979,13 +979,12 @@ quest
 	end)
 	:Mission(Storage.ThreeSramatiansAndTheDragon.Mission07)
 	:State(function()
-		return { min = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles },
-			QuestFactory.OnUseDeclarations({
-				{
-					key = Storage.KingOfRatsHQ.ArtifactContainer.Bottomless,
-					rewards = { QuestKeyItems.KingOfRatsHQ.Bottomless },
-				},
-			})
+		return { min = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles }, QuestFactory.OnUseDeclarations({
+			{
+				key = Storage.KingOfRatsHQ.ArtifactContainer.Bottomless,
+				rewards = { QuestKeyItems.KingOfRatsHQ.Bottomless },
+			},
+		})
 	end)
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles,

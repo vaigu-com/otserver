@@ -123,7 +123,7 @@ quest
 		table.insert(Quests, {
 			name = "Theater of Cheap Thrills",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "01. Vitat Iustitia",
 					storage = Storage.TheaterOfCheapThrills.Mission01,

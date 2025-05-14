@@ -113,7 +113,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 		elseif npcHandler:getTopic(playerId) == 5 then
 			if player:removeItem(5879, 10) then
-				player:AddCustomItem({id = 5886, count = 1})
+				player:addItem(5886, 1)
 				npcHandler:say("Ew... gooey... there you go.", npc, creature)
 				npcHandler:setTopic(playerId, 0)
 			else

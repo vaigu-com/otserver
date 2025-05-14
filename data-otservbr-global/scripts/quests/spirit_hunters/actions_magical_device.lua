@@ -4,9 +4,9 @@ function spiritMagical.onUse(cid, item, fromPosition, itemEx, toPosition)
 	if item:getId() == 4049 then
 		if itemEx.itemid == 1979 then
 			if player:getStorageValue(Storage.Quest.U8_7.SpiritHunters.Mission01 == 1) then
-				local qStorage = player:getStorageValue(Storage.Quest.U8_7.SpiritHunters.TombUse)
+				qStorage = player:getStorageValue(Storage.Quest.U8_7.SpiritHunters.TombUse)
 				if qStorage < 3 then
-					local position = player:getPosition()
+					position = player:getPosition()
 					player:say("An incredibly slimy substance oozes out of every crack in the old gravestone. It seems to attack you.", TALKTYPE_MONSTER_SAY)
 					player:setStorageValue(Storage.Quest.U8_7.SpiritHunters.TombUse, qStorage + 1)
 					Game.createMonster("Squidgy Slime", Position(position.x + 1, position.y, position.z), false, false)

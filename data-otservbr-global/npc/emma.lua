@@ -118,7 +118,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.Quest.U8_1.SecretService.Mission07, 2)
 				player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 15)
 				player:addAchievement("Top CGB Agent")
-				player:AddCustomItem({id = 898, count = 1})
+				player:addItem(898, 1)
 				npcHandler:say({
 					"Excellent. The queen was not amused about this threat. It's a good thing that you have saved the city ...",
 					"Unfortunately, as we are secret agents we can't parade for you or something like that, but let me express our gratitude for everything you have done for our city ...",
@@ -179,7 +179,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.SecretService.CGBMission02) == 2 and player:getStorageValue(Storage.Quest.U8_1.SecretService.Quest) == 5 then
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 6)
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.CGBMission03, 1)
-			player:AddCustomItem({id = 350, count = 1})
+			player:addItem(350, 1)
 			npcHandler:say({
 				"The scheming Venoreans are a constant thorn in our side. They supply our enemies with all kind of equipment to boost the threat they pose to our freedom. It will be your task to hinder future weapon deliveries significantly ...",
 				"The druids have supplied us with some exotic bugs. They are called rust bugs and they did not receive this name for their colour ...",

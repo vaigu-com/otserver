@@ -86,14 +86,7 @@ function gems.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- Small emerald for Kilmaresh quest
 	-- see data\scripts\quests\kilmaresh\1-fafnars-wrath\7-four-masks.lua
 	if item.itemid == 3032 and target.uid == 40032 and player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor) >= 1 and not testFlag(player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.FourMasks), 4) then
-<<<<<<< HEAD
-<<<<<<< HEAD
-		player:AddCustomItem({id = 31371, count = 1}) -- Ivory mask
-=======
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:addItem(31371, 1) -- Ivory mask
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
 		item:remove(1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You hear a *click*. You can now lift the floor tile and discover a secret compartment. A mask made of ivory lies in it.")
 		player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor, player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Sixth.Favor) + 1)

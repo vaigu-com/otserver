@@ -1869,7 +1869,7 @@ uint16_t PlayerWheel::getExtraPoints() const {
 	uint16_t totalBonus = 0;
 	for (const auto &[itemId, _, pointsPerScroll] : WheelOfDestinyPromotionScrolls) {
 		auto scrollsCount = m_player.getStorageValueByKey(wheelPointsKey + std::to_string(itemId));
-		if (scrollsCount < 0 ) {
+		if (scrollsCount < 0) {
 			scrollsCount = 0;
 		}
 		totalBonus += scrollsCount * pointsPerScroll;

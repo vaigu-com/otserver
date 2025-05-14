@@ -25,7 +25,7 @@ local function clearFields(arenaroom)
 				item:remove()
 			end
 		end
-end)
+	end)
 end
 
 local arenaMonsterDeathStartup = GlobalEvent("ArenaMonsterDeathStartup")

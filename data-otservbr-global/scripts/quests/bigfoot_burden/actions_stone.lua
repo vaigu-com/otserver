@@ -14,7 +14,7 @@ function bigfootStone.onUse(player, item, fromPosition, target, toPosition, isHo
 
 	player:setStorageValue(Storage.Quest.U9_60.BigfootsBurden.GrindstoneStatus, 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your skill allowed you to grab a whetstone before the stone sinks into lava.")
-	player:AddCustomItem({id = 15826, count = 1})
+	player:addItem(15826, 1)
 	return true
 end
 

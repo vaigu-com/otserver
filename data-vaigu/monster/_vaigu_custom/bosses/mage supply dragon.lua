@@ -88,8 +88,7 @@ monster.loot = {
 	{ id = 3051, chance = 45000, maxCount = 1 }, -- energy ring
 }
 
-monster.attacks = {
-}
+monster.attacks = {}
 
 monster.defenses = {
 	defense = 20,

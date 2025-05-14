@@ -37,7 +37,7 @@ void ItemFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Item", "getUniqueId", ItemFunctions::luaItemGetUniqueId);
 	Lua::registerMethod(L, "Item", "getActionId", ItemFunctions::luaItemGetActionId);
 	Lua::registerMethod(L, "Item", "setActionId", ItemFunctions::luaItemSetActionId);
-	
+
 	// Vaigu custom
 	Lua::registerMethod(L, "Item", "getKey", ItemFunctions::luaItemGetKey);
 
@@ -97,8 +97,8 @@ void ItemFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Item", "canReceiveAutoCarpet", ItemFunctions::luaItemCanReceiveAutoCarpet);
 
 	// Vaigu custom
-	Lua::registerMethod(L, "Item", "getDescription", ItemFunctions::luaItemGetDescription); 
-	Lua::registerMethod(L, "Item", "getNameDescription", ItemFunctions::luaItemGetNameDescription); 
+	Lua::registerMethod(L, "Item", "getDescription", ItemFunctions::luaItemGetDescription);
+	Lua::registerMethod(L, "Item", "getNameDescription", ItemFunctions::luaItemGetNameDescription);
 
 	Lua::registerMethod(L, "Item", "setShader", ItemFunctions::luaItemSetShader);
 	Lua::registerMethod(L, "Item", "getShader", ItemFunctions::luaItemGetShader);

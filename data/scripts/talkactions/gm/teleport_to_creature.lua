@@ -9,7 +9,6 @@ function teleportToCreature.onSay(player, words, creaturename)
 		return true
 	end
 
-
 	local target = Creature(creaturename)
 	if target then
 		player:teleportTo(target:getPosition())

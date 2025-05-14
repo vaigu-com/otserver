@@ -30,4 +30,3 @@ end
 
 action:uid(3124, 3125, 3126, 3127)
 action:register()
-

@@ -82112,7 +82112,7 @@ Granted by TibiaGoals.com" />
 	<item id="49164" article="a" name="soul prism">
 		<attribute key="description"
 			value="Focalises the soul within a core. Can be used to turn a soul core into a greater version" />
-		<attribute key="weight" value="100" />6915
+		<attribute key="weight" value="100" />
 	</item>
 	<item id="47367" article="a" name="large obelisk">
 		<attribute key="primarytype" value="pillars" />
@@ -82122,10 +82122,10 @@ Granted by TibiaGoals.com" />
 	</item>
 	<!-- Vaigu custom -->
 	<item id="16573" article="a" name="wooden ramp">
-		<attribute key="floorchange" value="north"/>
+		<attribute key="floorchange" value="north" />
 	</item>
 	<item id="16574" article="a" name="wooden ramp">
-		<attribute key="floorchange" value="west"/>
+		<attribute key="floorchange" value="west" />
 	</item>
 	<item id="16575" article="a" name="wooden ramp" />
 </items>

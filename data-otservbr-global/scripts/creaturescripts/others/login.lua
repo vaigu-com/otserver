@@ -1,6 +1,9 @@
 local playerLogin = CreatureEvent("PlayerLogin")
 
 function playerLogin.onLogin(player)
+	do 
+		return true
+	end
 	-- Premium Ends Teleport to Temple, change addon (citizen) houseless
 	local defaultTown = "Thais" -- default town where player is teleported if his home town is in premium area
 	local freeTowns = { "Ab'Dendriel", "Carlin", "Kazordoon", "Thais", "Venore", "Rookgaard", "Dawnport", "Dawnport Tutorial", "Island of Destiny" } -- towns in free account area

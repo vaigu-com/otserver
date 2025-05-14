@@ -188,4 +188,3 @@ end
 
 action:uid(9025, 9026, 9027, 9028)
 action:register()
-

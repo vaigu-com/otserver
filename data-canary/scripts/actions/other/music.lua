@@ -44,7 +44,7 @@ function music.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				player:setSummon(monster)
 			end
 		elseif instrument.itemId and chance then
-			player:AddCustomItem({id = instrument.itemId, count = instrument.itemCount})
+			player:addItem(instrument.itemId, instrument.itemCount)
 		end
 	end
 

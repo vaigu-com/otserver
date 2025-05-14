@@ -19,6 +19,7 @@ TOPIC_DEFAULT = 0
 MESSAGE_GREET = 1
 MESSAGE_FAREWELL = 2
 MESSAGE_WALKAWAY = 16
+MESSAGE_SENDTRADE = 18
 
 ANY_MESSAGE = "ANY_MESSAGE"
 NOT_ENOUGH_CAP_OR_SLOTS = "NOT_ENOUGH_CAP_OR_SLOTS"
@@ -29,9 +30,11 @@ LOCALIZER_TASK_BOSS_LOCATIONS = "LOCALIZER_TASK_BOSS_LOCATIONS"
 LOCALIZER_QUESTLOG = "LOCALIZER_QUESTLOG"
 LOCALIZER_NPC_NAME = "LOCALIZER_NPC_NAME" -- modify cpp definition in case of changes
 LOCALIZER_BANK_SYSTEM = "LOCALIZER_BANK_SYSTEM"
+
 GREET = "DIALOG_MESSAGE_GREET"
 FAREWELL = "DIALOG_MESSAGE_FAREWELL"
 WALKAWAY = "DIALOG_MESSAGE_WALKAWAY"
+SENDTRADE = "DIALOG_MESSAGE_SENDTRADE"
 INCOMPREHENSIBLE = "DIALOG_MESSAGE_INCOMPREHENSIBLE"
 
 MISSION_NOT_STARTED = -1
@@ -68,11 +71,12 @@ DISCARD_DIALOG = "DISCARD_DIALOG"
 SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
 FAIL_RESOLVE = "FAIL_RESOLVE"
 
-local specialMessageTypes = { MESSAGE_GREET = MESSAGE_GREET, MESSAGE_FAREWELL = MESSAGE_FAREWELL, MESSAGE_WALKAWAY = MESSAGE_WALKAWAY }
+local specialMessageTypes = { MESSAGE_GREET = MESSAGE_GREET, MESSAGE_FAREWELL = MESSAGE_FAREWELL, MESSAGE_WALKAWAY = MESSAGE_WALKAWAY, MESSAGE_SENDTRADE = MESSAGE_SENDTRADE }
 local specialMessageTypeToMessage = {
 	[MESSAGE_GREET] = GREET,
 	[MESSAGE_FAREWELL] = FAREWELL,
 	[MESSAGE_WALKAWAY] = WALKAWAY,
+	[MESSAGE_SENDTRADE] = SENDTRADE,
 }
 
 local FIRST_AVAILABLE_TOPIC = 100000
@@ -600,7 +604,7 @@ function ParseTopicMinMax(config)
 	return min, max
 end
 
-function InitializeFarewellWalkaway(player, config, npcHandler, npc, msg)
+function InitializeSpecialMessages(player, config, npcHandler, npc, msg)
 	player = Player(player)
 
 	PlayerDialogDataRegistry:Register(player)
@@ -608,7 +612,7 @@ function InitializeFarewellWalkaway(player, config, npcHandler, npc, msg)
 	local cid = player:getId()
 	npcHandler.topic[cid] = TOPIC_DEFAULT
 
-	for _, specialMessageType in pairs({ specialMessageTypes.MESSAGE_WALKAWAY, specialMessageTypes.MESSAGE_FAREWELL }) do
+	for _, specialMessageType in pairs({ specialMessageTypes.MESSAGE_WALKAWAY, specialMessageTypes.MESSAGE_FAREWELL, specialMessageTypes.MESSAGE_SENDTRADE }) do
 		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
 		dialogContext:TryResolveDialog()
 		if not dialogContext:IsResolved() then

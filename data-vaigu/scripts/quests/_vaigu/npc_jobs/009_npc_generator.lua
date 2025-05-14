@@ -49,6 +49,13 @@ function RegisterNpcDefinition(npcData)
 	local displayName = npcData.npcName or npcData.displayname or npcData.displayName or name
 	local onlookName = npcData.npcDescription or npcData.onlookname or ("a " .. name)
 
+	if npcData.greetJob and not npcData.jobs then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has greetJob but no jobs.", { name = name }))
+	end
+	if npcData.jobs and not npcData.greetJob then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob.", { name = name }))
+	end
+
 	local greetJob = npcData.greetJob
 	local jobs = npcData.jobs or {}
 	local onBuyItem = npcData.onBuyItem or getJobsOnBuyItem(jobs, greetJob)
@@ -58,22 +65,25 @@ function RegisterNpcDefinition(npcData)
 	local voices = npcData.voices
 	local currency = npcData.currency or npcData.shopCurrency
 
+	local npcConfig = {}
+
 	local totalShop, jobUniversalDialogs = getJobConfigs(jobs, customShop)
+	npcConfig.shop = totalShop
+	npcConfig.currency = currency
 
 	local jobStateDialogs = getJobStateDialogs(jobs)
-
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
 	if JOB_GREETINGS[greetJob] then
 		allDialogs[LOCALIZERS.Universal][GREET] = JOB_GREETINGS[greetJob]
 	end
+	if JOB_TRADE_REQUESTS[greetJob] then
+		allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUESTS[greetJob]
+	elseif TableSize(npcConfig.shop) == 0 then
+		allDialogs[LOCALIZERS.Universal][SENDTRADE] = { text = "Sorry, I'm not offering anything." }
+	end
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
-
-	local npcConfig = {}
-	npcConfig.shop = totalShop
-	npcConfig.currency = currency
-
 	npcConfig.dialogs = allDialogs
 
 	npcConfig.name = displayName or name
@@ -137,7 +147,7 @@ function RegisterNpcDefinition(npcData)
 			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
 		end
 
-		InitializeFarewellWalkaway(creature, npcConfig.dialogs, npcHandler, npc)
+		InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
 		local greetContext = InitializeGreet(creature, npcConfig.dialogs, npcHandler, npc)
 		return greetContext
 	end
@@ -173,6 +183,10 @@ function RegisterNpcDefinition(npcData)
 	npcHandler:setCallback(CALLBACK_ON_TRADE_REQUEST, tradeCallback)
 
 	npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
+
+	if npcData.isTransportNpc then
+		npcType:isTransportNpc(true)
+	end
 
 	npcType:register(npcConfig)
 end

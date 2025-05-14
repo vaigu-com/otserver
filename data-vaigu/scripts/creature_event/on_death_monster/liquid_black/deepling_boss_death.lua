@@ -9,7 +9,7 @@ function clearDeeplingBossRoom(centerPosition, rangeX, rangeY, exitPosition)
 	for i = 1, #spectators do
 		spectator = spectators[i]
 		if spectator:isPlayer() then
-			if os.time() < spectator:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill)  then
+			if os.time() < spectator:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill) then
 				spectator:teleportTo(exitPosition)
 				exitPosition:sendMagicEffect(CONST_ME_TELEPORT)
 			end

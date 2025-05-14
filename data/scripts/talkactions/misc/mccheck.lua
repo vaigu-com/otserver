@@ -20,7 +20,7 @@ function talkaction.onSay(admin, words, param)
 			admin:sendTextMessage(MESSAGE_EVENT_ADVANCE, message .. ".")
 		end
 	end
-	
+
 	return false
 end
 

@@ -177,11 +177,11 @@ public:
 
 	static MuteCountMap muteCountMap;
 
-	//Vaigu custom
+	// Vaigu custom
 	const std::string &getTranslatedName(std::string language) const override {
 		return name;
 	}
-	
+
 	const std::string &getName() const override {
 		return name;
 	}
@@ -390,13 +390,13 @@ public:
 
 	void addStorageValue(uint32_t key, int32_t value, bool isLogin = false);
 	int32_t getStorageValue(const uint32_t key) const;
-	
+
 	// Vaigu Custom
 	int32_t getStorageValueByKey(const std::string key) const;
 	void setStorageValueByKey(const std::string key, const int32_t nextValue) const;
 	int32_t getStorageValueByKey(const uint32_t key) const;
 	void setStorageValueByKey(const uint32_t key, const int32_t nextValue) const;
-	
+
 	int32_t getStorageValueByName(const std::string &storageName) const;
 	void addStorageValueByName(const std::string &storageName, int32_t value, bool isLogin = false);
 
@@ -1315,7 +1315,7 @@ public:
 	std::shared_ptr<Container> getLootPouch();
 
 	bool hasPermittedConditionInPZ() const;
-	
+
 	std::shared_ptr<Container> getStoreInbox() const;
 
 	bool canSpeakWithHireling(uint8_t speechbubble);
@@ -1327,9 +1327,9 @@ public:
 	std::string language = "EN"; // ISO-639-1
 	const std::string &getLanguage();
 	void setLanguage(std::string language);
-	
+
 	// Vaigu custom
-	bool isOnMinigame(){
+	bool isOnMinigame() {
 		return getStorageValueByKey(KEY_IS_ON_MINIGAME) == 1;
 	}
 	bool isOnMinigame(bool nextState) {

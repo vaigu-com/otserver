@@ -53,4 +53,3 @@ for i, v in pairs(config) do
 end
 
 movement:register()
-

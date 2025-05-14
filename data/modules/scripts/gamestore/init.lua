@@ -184,7 +184,7 @@ GameStore.ExpBoostValues = {
 	[2] = 30,
 	[3] = 30,
 	[4] = 30,
-	[5] = 30
+	[5] = 30,
 }
 
 GameStore.DefaultValues = {

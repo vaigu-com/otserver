@@ -90,23 +90,10 @@ function soulPrism.onUse(player, item, fromPosition, target, toPosition, isHotke
 	end
 
 	if math.random(100) <= SoulPit.SoulCoresConfiguration.chanceToGetOminousSoulCore then
-<<<<<<< HEAD
-<<<<<<< HEAD
-		player:AddCustomItem({id = 49163, count = 1})
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have received an Ominous Soul Core.")
-	else
-		player:AddCustomItem({id = newSoulCoreItem, count = 1})
-=======
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:addItem(49163, 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have received an Ominous Soul Core.")
 	else
 		player:addItem(newSoulCoreItem, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		target:remove(1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("You have received a %s soul core.", newMonsterType:getName()))
 	end

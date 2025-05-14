@@ -80,7 +80,7 @@ pseudoQuest
 		---@field startPosition Position
 		MinigameOrchestratorContext = {}
 		MinigameOrchestratorContext.__index = MinigameOrchestratorContext
-		function MinigameOrchestratorContext.New(competitionType, finishPosition, startParticipantsCount, startPosition , minigameName)
+		function MinigameOrchestratorContext.New(competitionType, finishPosition, startParticipantsCount, startPosition, minigameName)
 			local newObj = {}
 			newObj.competitionType = competitionType
 			newObj.finishPosition = finishPosition
@@ -122,7 +122,7 @@ pseudoQuest
 				startParticipantsCount = context.startParticipantsCount,
 				finishContexts = {},
 				startPosition = context.startPosition,
-				minigameName = context.minigameName
+				minigameName = context.minigameName,
 			}
 			if newObj.competitionType == MINIGAME_COMPETITION_TYPE.LAST_MAN_STANDING then
 				newObj.nextGrandPlace = newObj.startParticipantsCount
@@ -212,7 +212,7 @@ pseudoQuest
 				timeTakenSeconds = finishContext.timeTakenSeconds,
 				grandPlace = finishContext.grandPlace,
 				competitionType = self.competitionType,
-				minigameName = self.minigameName
+				minigameName = self.minigameName,
 			})
 		end
 		function MinigameOrchestrator:AfterSuccesfulEveryoneFinishSpeedrun()
@@ -347,7 +347,7 @@ pseudoQuest
 		function MinigameData:GetDisplayName()
 			return self.minigameName
 		end
-		
+
 		function MinigameData:GetCompetitionType()
 			return self.competitionType
 		end
@@ -757,7 +757,7 @@ end
 							self.entranceTeleport:remove()
 							self.entranceTeleport = nil
 						end
-						
+
 						local participants = self.lobbyAreaZone:getPlayers()
 						if #participants < self.requiredPlayers then
 							Game.broadcastMessage(T("Minigame :name: was not started - not enough players.", { name = self.minigameName }))
@@ -1250,7 +1250,6 @@ end
 		function MinigameData:GetStartTimestamp()
 			return self.startTimestamp
 		end
-
 
 		--TODO implementation
 		function MinigameData:AfterSuccesfulMinigameFinishOther(player)

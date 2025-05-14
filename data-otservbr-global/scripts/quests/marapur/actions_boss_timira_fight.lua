@@ -299,7 +299,7 @@ local timiraBucket = Action()
 function timiraBucket.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == firstStageConfig.sparklingBucketId and target and target.itemid == firstStageConfig.shatteredWaterId then
 		if player:removeItem(firstStageConfig.sparklingBucketId, 1) then
-			player:AddCustomItem({id = firstStageConfig.emptyBucketId, count = 1})
+			player:addItem(firstStageConfig.emptyBucketId, 1)
 			toPosition:sendMagicEffect(CONST_ME_WATER_DROP)
 			firstStagePoints = firstStagePoints + 1
 
@@ -314,7 +314,7 @@ function timiraBucket.onUse(player, item, fromPosition, target, toPosition, isHo
 	end
 	if item.itemid == firstStageConfig.badWaterBucketId and target and target.itemid ~= firstStageConfig.shatteredWaterId then
 		if player:removeItem(firstStageConfig.badWaterBucketId, 1) then
-			player:AddCustomItem({id = firstStageConfig.emptyBucketId, count = 1})
+			player:addItem(firstStageConfig.emptyBucketId, 1)
 			local splash = Game.createItem(2886, 0, toPosition)
 			splash:decay()
 		end
@@ -323,9 +323,9 @@ function timiraBucket.onUse(player, item, fromPosition, target, toPosition, isHo
 	if item.itemid == firstStageConfig.emptyBucketId and target and table.contains(firstStageConfig.shallowWaterBorderIds, target.itemid) then
 		if player:removeItem(firstStageConfig.emptyBucketId, 1) then
 			if firstStageConfig.isWaterSparkling then
-				player:AddCustomItem({id = firstStageConfig.sparklingBucketId, count = 1})
+				player:addItem(firstStageConfig.sparklingBucketId, 1)
 			else
-				player:AddCustomItem({id = firstStageConfig.badWaterBucketId, count = 1})
+				player:addItem(firstStageConfig.badWaterBucketId, 1)
 			end
 		end
 		return true
@@ -385,7 +385,7 @@ function timiraChest.onUse(player, item, fromPosition, target, toPosition, isHot
 	end
 
 	local rewardItem = ItemType(itemName)
-	player:AddCustomItem({id = rewardItem:getId(), count = 1})
+	player:addItem(rewardItem:getId(), 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a " .. itemName .. ".")
 	return true
 end

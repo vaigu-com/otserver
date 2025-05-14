@@ -50,4 +50,3 @@ for index, value in pairs(teleports) do
 end
 
 demonTeleport:register()
-

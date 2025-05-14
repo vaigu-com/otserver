@@ -19,7 +19,7 @@ return {
 	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
 	["Rub Meat With Lecter"] = "Gotuj z Lecterem",
 	["LECTER_WANTS_HUMAN_HEARTS_STATUS"] = function(context)
-		return T("Lecter prosi cie o uzbieranie 15 serc ludzkich na impreze kanibali. Poki co zebrales :hearts: serc.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart)})
+		return T("Lecter prosi cie o uzbieranie 15 serc ludzkich na impreze kanibali. Poki co zebrales :hearts: serc.", { hearts = context.player:getStorageValueByKey(Storage.SilenceOfTheLambs.HumanHeart) })
 	end,
 	["In exchange for this favor you have been introduced to the cannibal club. You also received their outfits."] = "W zamian za przysluge, zostales przyjety do klubu kanibali, i zyskales ich stroj.",
 	["Hearts collected"] = "Ludzkie serca",

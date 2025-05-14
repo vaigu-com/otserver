@@ -20,7 +20,7 @@ local openDoor = Action()
 function openDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	item:transform(keyOpenToClosed[item:getId()])
 	item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
-	Creature.checkCreatureInsideDoor(player, toPosition) 
+	Creature.checkCreatureInsideDoor(player, toPosition)
 	return true
 end
 for _, value in pairs(CustomDoorTable) do

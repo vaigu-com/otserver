@@ -65,8 +65,7 @@ monster.voices = {
 
 monster.loot = {}
 
-monster.attacks = {
-}
+monster.attacks = {}
 
 monster.defenses = {
 	defense = 20,

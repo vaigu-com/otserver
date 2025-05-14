@@ -106,7 +106,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:setStorageValue(Storage.Quest.U8_1.SecretService.Mission07, 2)
 				player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 15)
 				player:addAchievement("Top AVIN Agent")
-				player:AddCustomItem({id = 899, count = 1})
+				player:addItem(899, 1)
 				npcHandler:say({
 					"You have proven yourself as very efficient. The future may hold great things for you in store ...",
 					"Take this token of gratitude. I hope you can use well what you will find inside!",
@@ -133,7 +133,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if player:getStorageValue(Storage.Quest.U8_1.SecretService.Quest) == 1 and player:getStorageValue(Storage.Quest.U8_1.SecretService.TBIMission01) < 1 and player:getStorageValue(Storage.Quest.U8_1.SecretService.CGBMission01) < 1 then
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 2)
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.AVINMission01, 1)
-			player:AddCustomItem({id = 402, count = 1})
+			player:addItem(402, 1)
 			npcHandler:say("Let's start with a rather simple job. There is a contact in Thais with that we need to get in touch again. Deliver this note to Gamel in Thais. Get an answer from him. If he is a bit reluctant, be 'persuasive'.", npc, creature)
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U8_1.SecretService.AVINMission01) == 3 then
@@ -154,7 +154,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.SecretService.AVINMission02) == 2 and player:getStorageValue(Storage.Quest.U8_1.SecretService.Quest) == 5 then
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 6)
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.AVINMission03, 1)
-			player:AddCustomItem({id = 404, count = 1})
+			player:addItem(404, 1)
 			npcHandler:say({
 				"The oppression of Carlin's men by their lunatic women is unbearable to some of our authorities. We see it as our honourable duty to support the male resistance in Carlin ...",
 				"The poor guys have some speakeasy in the sewers. Bring them this barrel of beer with our kind regards to strengthen their resistance.",
@@ -189,7 +189,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.SecretService.AVINMission05) == 2 and player:getStorageValue(Storage.Quest.U8_1.SecretService.Quest) == 11 then
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.Quest, 12)
 			player:setStorageValue(Storage.Quest.U8_1.SecretService.AVINMission06, 1)
-			player:AddCustomItem({id = 405, count = 1})
+			player:addItem(405, 1)
 			npcHandler:say({
 				"We try to establish new trade agreements with various potential customers. Sometimes we have to offer some presents in advance to ensure that trade is prospering and flourishing. It will be your task to deliver one of those little presents ...",
 				"The northern barbarians are extremely hostile to us. The ones living in Svargrond are poisoned by the lies of agitators from Carlin. The barbarians that are also known as raiders are another story though ...",

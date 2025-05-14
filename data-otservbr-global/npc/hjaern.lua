@@ -102,7 +102,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline, 39)
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission11, 2) -- Questlog The Ice Islands Quest, Formorgar Mines 3: The Secret
 			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission12, 1) -- Questlog The Ice Islands Quest, Formorgar Mines 4: Retaliation
-			player:AddCustomItem({id = 7289, count = 1})
+			player:addItem(7289, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline) == 39 and player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Obelisk01) == 5 and player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Obelisk02) == 5 and player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Obelisk03) == 5 and player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Obelisk04) == 5 then
 			if player:removeItem(7289, 1) then

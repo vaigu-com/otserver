@@ -32,4 +32,3 @@ for index, value in pairs(config) do
 end
 
 statuedeeplings:register()
-

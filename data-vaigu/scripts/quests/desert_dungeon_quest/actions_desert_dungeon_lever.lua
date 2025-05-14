@@ -80,4 +80,3 @@ end
 
 othersDesert:uid(30030)
 othersDesert:register()
-

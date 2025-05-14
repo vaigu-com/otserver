@@ -67,14 +67,14 @@ local guillotineIsReserved = false
 --description, byPlayer, internal name
 function GetKillerDetails(killer)
 	if killer == nil then
-		 return "field item", false
+		return "field item", false
 	end
 	if killer:isPlayer() then
 		return killer:getName(), true
 	end
 
 	local master = killer:getMaster()
-	if master and master~=killer and master:isPlayer() then
+	if master and master ~= killer and master:isPlayer() then
 		return master, true
 	end
 

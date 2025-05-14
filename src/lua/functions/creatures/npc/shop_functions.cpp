@@ -163,7 +163,7 @@ int ShopFunctions::luaShopAddChildShop(lua_State* L) {
 	return 1;
 }
 
-//Vaigu custom
+// Vaigu custom
 int ShopFunctions::luaShopKV(lua_State* L) {
 	// shop:kv()
 	if (const auto &shop = Lua::getUserdataShared<Shop>(L, 1, "Shop")) {

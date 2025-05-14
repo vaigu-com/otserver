@@ -15,7 +15,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	player:setStorageValueByKey(Storage.BigfootsBurden.GrindstoneStatus, 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Twoja zwinnosc pozwolila zlapac kamien nim wpadl do lawy.")
-	player:AddCustomItem({id = 15826, count = 1})
+	player:AddCustomItem({ id = 15826, count = 1 })
 	return true
 end
 

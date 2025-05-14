@@ -138,9 +138,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:removeItem(5905, count)
 			if player:getStorageValueByKey(Storage.TheInquisition.StorkusVampiredust) < 20 then
 				npcHandler:say(
-					getPlayerLanguage(player) == "PL"
-							and "Przyniosles mi " .. count .. " vampire dustow. " .. (20 - player:getStorageValueByKey(Storage.TheInquisition.StorkusVampiredust)) == 0
-							and "Spytaj o {misje} aby kontynuowac."
+					getPlayerLanguage(player) == "PL" and "Przyniosles mi " .. count .. " vampire dustow. " .. (20 - player:getStorageValueByKey(Storage.TheInquisition.StorkusVampiredust)) == 0 and "Spytaj o {misje} aby kontynuowac."
 						or ("Musisz przyniesc mi jeszcze " .. (20 - player:getStorageValueByKey(Storage.TheInquisition.StorkusVampiredust)) .. ".")
 						or "Ye've brought me " .. count .. " vampire dusts. " .. (20 - player:getStorageValueByKey(Storage.TheInquisition.StorkusVampiredust)) == 0 and "Ask me for a {mission} to continue your quest."
 						or ("Ye' need to bring " .. (20 - player:getStorageValueByKey(Storage.TheInquisition.StorkusVampiredust)) .. " more."),
@@ -200,7 +198,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:removeItem(8192, 50) then
 				npcHandler:say("Ye' brought the fifty tokens needed to advance to the last vampire hunter rank. Now that's something. You're razing-amazing! Let me share some of my experience and a little something with ye'!", npc, creature)
 				player:setStorageValueByKey(Storage.VampireHunter.Rank, 6)
-				player:AddCustomItem({id = 8191, count = 1})
+				player:AddCustomItem({ id = 8191, count = 1 })
 				player:addExperience(100 * 1000, true)
 			else
 				npcHandler:say("Ye' don't have enought tokens.", npc, creature)

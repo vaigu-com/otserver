@@ -74,7 +74,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif player:getStorageValue(Storage.Quest.U8_1.TibiaTales.TheExterminator) == 2 then
 			local itemId = { 3033, 3032, 3030, 3029 }
 			for i = 1, #itemId do
-				player:AddCustomItem({id = itemId[i], count = 1})
+				player:addItem(itemId[i], 1)
 			end
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.TheExterminator, 3)
 			npcHandler:say("You did it! Even if only few of the Carliners will ever know about that, you saved all of their lives. Here, take this as a reward. Farewell!", npc, creature)
@@ -89,16 +89,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 
 			npcHandler:say("Thank you. Here it is.", npc, creature)
-			player:AddCustomItem({id = 4828, count = 1})
+			player:addItem(4828, 1)
 		elseif npcHandler:getTopic(playerId) == 2 then
-<<<<<<< HEAD
-			player:AddCustomItem({id = 135, count = 1})
-=======
 			player:addItem(135, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U8_1.TibiaTales.TheExterminator, 1)
 			npcHandler:say({
 				"I knew I could count on you. Take this highly intensified vermin poison. In my vision, I saw some kind of 'pool' where these slimes came from. ...",

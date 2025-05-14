@@ -109,7 +109,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline, 4)
 			player:setStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Mission02, 1) -- The Inquisition Questlog- "Mission 2: Eclipse"
-			player:AddCustomItem({id = 133, count = 1})
+			player:addItem(133, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline) == 5 then
 			npcHandler:say("Your current mission is to destroy this coven. Are you done with that mission?", npc, creature)
@@ -133,7 +133,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}, npc, creature)
 			player:setStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline, 12)
 			player:setStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Mission04, 1) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
-			player:AddCustomItem({id = 133, count = 1})
+			player:addItem(133, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline) == 12 or player:getStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline) == 13 then
 			npcHandler:say("Your current mission is to exorcise an evil being from a house in Liberty Bay. Are you done with that mission? ", npc, creature)
@@ -179,7 +179,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("Destroy the shadow nexus using this vial of holy water and kill all demon lords.", npc, creature)
 			player:setStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline, 21)
 			player:setStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Mission07, 1) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
-			player:AddCustomItem({id = 133, count = 1})
+			player:addItem(133, 1)
 			npcHandler:setTopic(playerId, 0)
 		elseif player:getStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline) == 21 or player:getStorageValue(Storage.Quest.U8_2.TheInquisitionQuest.Questline) == 22 then
 			npcHandler:say("Your current mission is to destroy the shadow nexus in the Demon Forge. Are you done with that mission?", npc, creature)
@@ -253,7 +253,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 8 then
 			if player:removeMoneyBank(flaskCost) then
 				npcHandler:say("Here is your new flask!, |PLAYERNAME|.", npc, creature)
-				player:AddCustomItem({id = 133, count = 1})
+				player:addItem(133, 1)
 			else
 				npcHandler:say("Come back when you have enough money.", npc, creature)
 			end

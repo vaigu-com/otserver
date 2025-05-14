@@ -183,7 +183,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				player:removeItem(676, 2)
 				player:removeItem(677, 2)
 				player:removeItem(678, 2)
-				player:AddCustomItem({id = 25733, count = 1})
+				player:addItem(25733, 1)
 				player:setStorageValue(ThreatenedDreams.Mission03.DarkSunCatcher, 1)
 				npcHandler:setTopic(playerId, 0)
 			else

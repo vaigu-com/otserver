@@ -8,8 +8,6 @@ local outfit = {
 }
 local context = {
 	name = "Aunor",
-	greetJob = nil,
-	jobs = {},
 	outfit = outfit,
 	dialogs = nil,
 	voices = nil,

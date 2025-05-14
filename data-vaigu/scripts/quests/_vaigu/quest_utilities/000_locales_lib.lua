@@ -47,6 +47,7 @@ LOCALIZERS = {
 	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
 	ToCarryThePigs = "to_carry_the_pigs",
 	TopChef = "top_chef",
+	TransportName = "transport_name",
 	WayOfTheDruid = "way_of_the_druid",
 
 	NONE = "",
@@ -90,9 +91,10 @@ end
 
 local notFoundSuffix = " //Translation unavailable"
 local function translationNotFound(language, localizer, str)
-	str = str:gsub("{", "#")
-	str = str:gsub("}", "#")
-	logger.warn(T("[Localizer] translation not found for language :language:, for string: :str:", { language = language, str = str }))
+	local loggerCompatibleString = str
+	loggerCompatibleString = loggerCompatibleString:gsub("{", "#")
+	loggerCompatibleString = loggerCompatibleString:gsub("}", "#")
+	logger.warn(T("[Localizer] translation not found for language :language:, for string: :loggerCompatibleString:", { language = language or LOCALIZERS.NONE, loggerCompatibleString = loggerCompatibleString or "EMPTY_STRING" }))
 	MissingStrings:Add(language, localizer, str)
 	return str .. notFoundSuffix
 end

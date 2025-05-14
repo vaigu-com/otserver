@@ -51,10 +51,10 @@ function bossesReward.onUse(player, item, fromPosition, target, toPosition, isHo
 			local items = reward.items[i]
 			if items.rand then
 				if math.random(10) == 1 then
-					player:AddCustomItem({id = items.itemId[math.random(#items.itemId)], count = 1})
+					player:addItem(items.itemId[math.random(#items.itemId)], 1)
 				end
 			else
-				player:AddCustomItem({id = items.itemId, count = items.count or 1})
+				player:addItem(items.itemId, items.count or 1)
 			end
 		end
 

@@ -150,7 +150,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif MsgContains(message, "yes") then
 		if npcHandler:getTopic(playerId) == 1 then
-			player:AddCustomItem({id = itemId, count = 1})
+			player:addItem(itemId, 1)
 			npcHandler:say("Here you are young adept, take care yourself.", npc, creature)
 			player:setStorageValue(Storage.FirstMageWeapon, 1)
 		end

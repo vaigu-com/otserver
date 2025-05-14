@@ -55,19 +55,22 @@ local function greetCallback(npc, creature, message)
 	local player = Player(creature)
 	local playerId = player:getId()
 
-	if not MsgContains(message, "djanni'hah") then
-		npcHandler:say("Shove off, little one! Humans are not welcome here, |PLAYERNAME|!", npc, creature)
-		endConversationWithDelay(npcHandler, npc, creature)
-		return false
-	end
+	--Checks if the player has completed the quest
+	if player:getStorageValue(Storage.Quest.U7_4.DjinnWar.EfreetFaction.Mission03) ~= 3 then
+		if not MsgContains(message, "djanni'hah") then
+			npcHandler:say("Shove off, little one! Humans are not welcome here, |PLAYERNAME|!", npc, creature)
+			endConversationWithDelay(npcHandler, npc, creature)
+			return false
+		end
 
-	if player:getStorageValue(Storage.Quest.U7_4.DjinnWar.MaridFaction.Start) == 1 then
-		npcHandler:say({
-			"Hahahaha! ...",
-			"|PLAYERNAME|, that almost sounded like the word of greeting. Humans - cute they are!",
-		}, npc, creature)
-		endConversationWithDelay(npcHandler, npc, creature)
-		return false
+		if player:getStorageValue(Storage.Quest.U7_4.DjinnWar.MaridFaction.Start) == 1 then
+			npcHandler:say({
+				"Hahahaha! ...",
+				"|PLAYERNAME|, that almost sounded like the word of greeting. Humans - cute they are!",
+			}, npc, creature)
+			endConversationWithDelay(npcHandler, npc, creature)
+			return false
+		end
 	end
 
 	npcHandler:say("Be greeted, human |PLAYERNAME|. How can a humble djinn be of service?", npc, creature)
@@ -114,7 +117,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			}
 			if player:getItemCount(trade[npcHandler:getTopic(playerId)].NeedItem) >= trade[npcHandler:getTopic(playerId)].Ncount then
 				player:removeItem(trade[npcHandler:getTopic(playerId)].NeedItem, trade[npcHandler:getTopic(playerId)].Ncount)
-				player:AddCustomItem({id = trade[npcHandler:getTopic(playerId)].GiveItem, count = trade[npcHandler:getTopic(playerId)].Gcount})
+				player:addItem(trade[npcHandler:getTopic(playerId)].GiveItem, trade[npcHandler:getTopic(playerId)].Gcount)
 				return npcHandler:say("Here you are.", npc, creature)
 			else
 				npcHandler:say("Sorry but you don't have the item.", npc, creature)

@@ -7,7 +7,7 @@ quest
 			Visitor = {},
 			ShortcutAccess = {},
 			ShortcutToOutside = {},
-			ShortcutToInside = {}
+			ShortcutToInside = {},
 		}
 		QuestState.LiquidBlack = {
 			FindUseForCoordinates = 1,
@@ -20,7 +20,7 @@ quest
 		table.insert(Quests, {
 			name = "Liquid Black",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Visitor",
 					storage = Storage.LiquidBlack.Visitor,

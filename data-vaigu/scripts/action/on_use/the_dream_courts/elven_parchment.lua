@@ -3,7 +3,7 @@ function elvenparchment.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.TheDreamCourts.QuestLine) >= 3 then -- questline
 		if player:getStorageValueByKey(Storage.TheDreamCourts.ElvenParchment) <= 0 then
 			player:setStorageValueByKey(Storage.TheDreamCourts.ElvenParchment, 1)
-			player:AddCustomItem({id = 22865, count = 1})
+			player:AddCustomItem({ id = 22865, count = 1 })
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found Elven Parchment.")
 		else
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Juz go wzialem..")
@@ -30,7 +30,7 @@ local anatomybook = Action()
 function anatomybook.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.TheDreamCourts.AnatomyBook) <= 0 then
 		player:setStorageValueByKey(Storage.TheDreamCourts.AnatomyBook, 1)
-		player:AddCustomItem({id = 29991, count = 1})
+		player:AddCustomItem({ id = 29991, count = 1 })
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found Anatomy Book.")
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Juz ja wzialem..")
@@ -44,7 +44,7 @@ local rosebush = Action()
 function rosebush.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.TheDreamCourts.Rosebush) <= 0 then
 		player:setStorageValueByKey(Storage.TheDreamCourts.Rosebush, 1)
-		player:AddCustomItem({id = 29993, count = 1})
+		player:AddCustomItem({ id = 29993, count = 1 })
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found Rosebush.")
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nic wiecej tu nie ma..")
@@ -58,7 +58,7 @@ local recipe = Action()
 function recipe.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.TheDreamCourts.Recipe) <= 0 then
 		player:setStorageValueByKey(Storage.TheDreamCourts.Recipe, 1)
-		player:AddCustomItem({id = 30147, count = 1})
+		player:AddCustomItem({ id = 30147, count = 1 })
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found Recipe for Magical Paint.")
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nic wiecej tu nie ma..")
@@ -67,4 +67,3 @@ function recipe.onUse(player, item, fromPosition, itemEx, toPosition)
 end
 recipe:uid(7921)
 recipe:register()
-

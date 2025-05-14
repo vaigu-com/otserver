@@ -93,7 +93,6 @@ void MonsterFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Monster", "setEncounterDifficulty", MonsterFunctions::luaMonsterSetEncounterDifficulty);
 }
 
-
 // Vaigu custom
 void MonsterFunctions::createMonsterLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList) {
 	lua_createtable(L, lootList.size(), 0);

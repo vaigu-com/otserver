@@ -37,4 +37,3 @@ for i, _ in pairs(config) do
 	action:uid(i)
 end
 action:register()
-

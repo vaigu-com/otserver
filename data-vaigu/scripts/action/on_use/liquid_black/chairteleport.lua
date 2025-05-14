@@ -16,4 +16,3 @@ end
 
 chairteleport:uid(57744)
 chairteleport:register()
-

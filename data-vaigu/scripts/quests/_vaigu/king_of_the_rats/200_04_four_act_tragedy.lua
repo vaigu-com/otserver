@@ -102,7 +102,7 @@ quest
 		table.insert(Quests, {
 			name = "Four Act Tragedy",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "01. Dodge those compensation claims",
 					storage = Storage.FourActTragedy.Mission01,

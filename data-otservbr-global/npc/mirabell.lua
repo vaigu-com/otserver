@@ -93,7 +93,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				return true
 			end
 
-			player:AddCustomItem({id = 119, count = 1})
+			player:addItem(119, 1)
 			player:setStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.PieBuying, player:getStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.PieBuying) - 1)
 			player:setStorageValue(Storage.Quest.U8_1.WhatAFoolishQuest.PieBoxTimer, os.time() + 1200) -- 20 minutes to deliver
 			npcHandler:say({

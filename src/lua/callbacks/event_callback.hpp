@@ -158,7 +158,7 @@ public:
 	// Monster
 	void monsterOnDropLoot(const std::shared_ptr<Monster> &monster, const std::shared_ptr<Container> &corpse) const;
 	void monsterPostDropLoot(const std::shared_ptr<Monster> &monster, const std::shared_ptr<Container> &corpse) const;
-	void monsterOnSpawn(const std::shared_ptr<Monster>& monster, const Position& position) const;
+	void monsterOnSpawn(const std::shared_ptr<Monster> &monster, const Position &position) const;
 
 	// Npc
 	void npcOnSpawn(const std::shared_ptr<Npc> &npc, const Position &position) const;

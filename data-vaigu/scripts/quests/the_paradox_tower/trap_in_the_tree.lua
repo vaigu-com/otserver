@@ -21,4 +21,3 @@ end
 
 trap_in_the_tree:uid(25011)
 trap_in_the_tree:register()
-

@@ -22,4 +22,3 @@ end
 
 inServiceYalaharWest:uid(3081, 3082)
 inServiceYalaharWest:register()
-

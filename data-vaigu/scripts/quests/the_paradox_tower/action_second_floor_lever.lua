@@ -40,4 +40,3 @@ end
 
 secondFloorLever:uid(25016)
 secondFloorLever:register()
-

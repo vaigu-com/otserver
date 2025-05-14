@@ -1,33 +1,9 @@
 local adventurersWarriorSkeleton = Action()
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:data-vaigu/scripts/quests/adventurers_guild/actions_warrior_skeleton.lua
-function adventurersWarriorSkeleton.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.WarriorSkeleton) < 1 then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have discovered a deceased warrior's skeleton. It seems he tried to hunt the dragons around here - and failed.")
-		player:AddCustomItem({id = 5882, count = 1}) -- red dragon scale
-
-		if player:getStorageValueByKey(Storage.AdventurersGuild.QuestLine) < 1 then
-			player:setStorageValueByKey(Storage.AdventurersGuild.QuestLine, 1)
-		end
-
-		player:setStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.WarriorSkeleton, 1)
-		player:setStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter, 0)
-========
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 
 function adventurersWarriorSkeleton.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.WarriorSkeleton) < 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have discovered a deceased warrior's skeleton. It seems he tried to hunt the dragons around here - and failed.")
-<<<<<<< HEAD
-<<<<<<< HEAD
-		player:AddCustomItem({id = 5882, count = 1})
-=======
 		player:addItem(5882, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-		player:addItem(5882, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 
 		if player:getStorageValue(Storage.Quest.U9_80.AdventurersGuild.QuestLine) < 1 then
 			player:setStorageValue(Storage.Quest.U9_80.AdventurersGuild.QuestLine, 1)
@@ -35,10 +11,6 @@ function adventurersWarriorSkeleton.onUse(player, item, fromPosition, target, to
 
 		player:setStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.WarriorSkeleton, 1)
 		player:setStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter, 0)
-<<<<<<< HEAD
-=======
->>>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32:data-otservbr-global/scripts/quests/the_great_dragon_hunt_quest/actions_warrior_skeleton.lua
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The dead explorer is empty.")
 	end

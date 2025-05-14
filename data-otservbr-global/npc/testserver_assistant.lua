@@ -63,7 +63,7 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if MsgContains(message, "money") or MsgContains(message, "gold") then
 		npcHandler:say("There you have", npc, creature)
-		player:AddCustomItem({id = 3043, count = npcConfig.amountMoney})
+		player:addItem(3043, npcConfig.amountMoney)
 	end
 
 	if MsgContains(message, "exp") or MsgContains(message, "experience") then

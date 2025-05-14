@@ -99,7 +99,7 @@ function treasureChest.onUse(player, item, fromPosition, target, toPosition, isH
 
 	if player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) >= 19 then
 		player:addAchievement("Treasure Hunter")
-		player:AddCustomItem({id = setting.name or setting.itemId, setting.count, count = true})
+		player:addItem(setting.name or setting.itemId, setting.count, true)
 		player:setStorageValue(item.uid, 1)
 		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.ChestCounter, player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) + 1)
 		return true
@@ -110,9 +110,9 @@ function treasureChest.onUse(player, item, fromPosition, target, toPosition, isH
 
 	if setting.name then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")
-		player:AddCustomItem({id = setting.name, setting.count, count = true})
+		player:addItem(setting.name, setting.count, true)
 	elseif setting.itemId then
-		player:AddCustomItem({id = setting.itemId, setting.count, count = true})
+		player:addItem(setting.itemId, setting.count, true)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. getItemName(setting.itemId) .. ".")
 	end
 	return true

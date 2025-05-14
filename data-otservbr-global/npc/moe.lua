@@ -89,15 +89,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			local timeLeft = player:getStorageValue(Storage.Quest.U12_20.KilmareshQuest.Fourth.MoeTimer) - os.time()
 			if timeLeft <= 0 then
 				npcHandler:say("You're arriving at the right time. I have the ring you asked for. It was not too difficult. I just had to wait until the Ambassador left his residence and then I climbed in through the window. Here it is.", npc, creature)
-<<<<<<< HEAD
-<<<<<<< HEAD
-				player:AddCustomItem({id = 31306, count = 1})
-=======
 				player:addItem(31306, 1)
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
-				player:addItem(31306, 1)
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 				player:setStorageValue(Storage.Quest.U12_20.KilmareshQuest.Fourth.Moe, 4)
 			else
 				npcHandler:say("I will steal it, promised. I'm just waiting for a good moment.", npc, creature)

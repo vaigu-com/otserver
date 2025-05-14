@@ -36,16 +36,13 @@ return {
 	end,
 	["MINIGAMES_BROADCAST_LMS_YES_MONSTERS"] = function(context)
 		local timeMessage = timeToMessage(context.timeElaps)
-		return T(
-			"Player :playerName: has taken :place: in :eventName: event. They lasted :timeMessage:, and faced :monsterCount: monsters.",
-			{
-				playerName = context.playerName,
-				place = context.ordinalStringPlace,
-				eventName = context.eventName,
-				timeMessage = timeMessage,
-				monsterCount = context.monsterCount,
-			}
-		)
+		return T("Player :playerName: has taken :place: in :eventName: event. They lasted :timeMessage:, and faced :monsterCount: monsters.", {
+			playerName = context.playerName,
+			place = context.ordinalStringPlace,
+			eventName = context.eventName,
+			timeMessage = timeMessage,
+			monsterCount = context.monsterCount,
+		})
 	end,
 	["COIN_LOTTERY_WINNER_BROADCAST_MESSAGE"] = function(context)
 		return T("Coin lottery! :playerName: wins :coins: coins. Congratulations!", { playerName = context.playerName, coins = context.coins })

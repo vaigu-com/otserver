@@ -60,7 +60,7 @@ TalkActionResult_t Spells::playerSaySpell(const std::shared_ptr<Player> &player,
 		return TALKACTION_CONTINUE;
 	}
 
-	if (player->isOnMinigame()){
+	if (player->isOnMinigame()) {
 		player->sendTextMessage(MESSAGE_FAILURE, "You cannot cast spells during minigames.");
 		return TALKACTION_FAILED;
 	}
@@ -455,15 +455,15 @@ bool Spell::playerSpellCheck(const std::shared_ptr<Player> &player) const {
 		return false;
 	}
 
-	if (player->isOnMinigame()){
+	if (player->isOnMinigame()) {
 		player->sendCancelMessage(RETURNVALUE_PLAYERISONMINIGAME);
 		return false;
 	}
 
 	/*if (aggressive && player->hasCondition(CONDITION_PACIFIED)) {
-		player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
-		g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);
-		return false;
+	    player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
+	    g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);
+	    return false;
 	}*/
 	if (aggressive && player->hasCondition(CONDITION_PACIFIED)) {
 		player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);

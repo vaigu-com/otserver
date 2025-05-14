@@ -4,7 +4,7 @@ function sapphireDust.onUse(player, item, fromPosition, target, toPosition, isHo
 	if target.itemid == 30003 then
 		target:remove(1)
 		item:remove(1)
-		player:AddCustomItem({id = 30006})
+		player:AddCustomItem({ id = 30006 })
 		return true
 	end
 end
@@ -18,7 +18,7 @@ function dreamEgg.onUse(player, item, fromPosition, target, toPosition, isHotkey
 	if target.itemid == 30006 then
 		target:remove(1)
 		item:remove(1)
-		player:AddCustomItem({id = 29994})
+		player:AddCustomItem({ id = 29994 })
 		return true
 	end
 end

@@ -68,13 +68,7 @@ bool Outfits::loadFromXml() {
 			continue;
 		}
 
-		outfits[type].emplace_back(std::make_shared<Outfit>(
-			outfitNode.attribute("name").as_string(),
-			pugi::cast<uint16_t>(lookTypeAttribute.value()),
-			outfitNode.attribute("premium").as_bool(),
-			outfitNode.attribute("unlocked").as_bool(true),
-			outfitNode.attribute("from").as_string()
-		));
+		outfits[type].emplace_back(std::make_shared<Outfit>(outfitNode.attribute("name").as_string(), pugi::cast<uint16_t>(lookTypeAttribute.value()), outfitNode.attribute("premium").as_bool(), outfitNode.attribute("unlocked").as_bool(true), outfitNode.attribute("from").as_string()));
 	}
 	for (uint8_t sex = PLAYERSEX_FEMALE; sex <= PLAYERSEX_LAST; ++sex) {
 		outfits[sex].shrink_to_fit();

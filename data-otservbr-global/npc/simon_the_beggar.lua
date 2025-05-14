@@ -282,7 +282,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				npcHandler:setTopic(playerId, 0)
 				return true
 			end
-			local key = player:AddCustomItem({id = 2968, count = 1})
+			local key = player:addItem(2968, 1)
 			if key then
 				key:setActionId(3940)
 			end

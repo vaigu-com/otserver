@@ -40,7 +40,7 @@ experienceStages = {
 	{
 		minlevel = 101,
 		multiplier = 6.0,
-	}
+	},
 }
 
 skillsStages = {

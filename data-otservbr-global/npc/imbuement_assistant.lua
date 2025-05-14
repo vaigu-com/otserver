@@ -87,7 +87,7 @@ function addItemsToShoppingBag(npc, player)
 			return false, "You don't have enough room."
 		end
 
-		local shoppingBag = player:AddCustomItem({id = 2856, count = 1}) -- present box
+		local shoppingBag = player:addItem(2856, 1) -- present box
 		for _, item in pairs(itemList) do
 			shoppingBag:addItem(item.itemId, item.count)
 		end

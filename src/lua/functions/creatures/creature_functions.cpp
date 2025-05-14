@@ -92,7 +92,7 @@ void CreatureFunctions::init(lua_State* L) {
 	// Vaigu custom
 	Lua::registerMethod(L, "Creature", "getMaxBaseHealth", CreatureFunctions::luaCreatureGetMaxBaseHealth); // Vaigu custom
 	Lua::registerMethod(L, "Creature", "getNameDescription", CreatureFunctions::luaCreatureGetNameDescription); // Vaigu custom
-	
+
 	Lua::registerMethod(L, "Creature", "attachEffectById", CreatureFunctions::luaCreatureAttachEffectById);
 	Lua::registerMethod(L, "Creature", "detachEffectById", CreatureFunctions::luaCreatureDetachEffectById);
 	Lua::registerMethod(L, "Creature", "getAttachedEffects", CreatureFunctions::luaCreatureGetAttachedEffects);
@@ -1024,7 +1024,6 @@ int CreatureFunctions::luaCreatureGetMaxBaseHealth(lua_State* L) {
 	}
 	return 1;
 }
-
 
 // Vaigu custom
 int CreatureFunctions::luaCreatureGetNameDescription(lua_State* L) {

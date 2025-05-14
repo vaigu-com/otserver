@@ -14,7 +14,7 @@ function fatherCorpse.onUse(player, item, fromPosition, target, toPosition, isHo
 		return false
 	end
 
-	player:AddCustomItem({id = corpse.itemId, count = 1})
+	player:addItem(corpse.itemId, 1)
 	player:setStorageValue(corpse.storage, 1)
 	player:say("You acquired " .. corpse.text, TALKTYPE_MONSTER_SAY)
 	return true

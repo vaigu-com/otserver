@@ -33,7 +33,7 @@ function VesperothHideLoop()
 	if (not vesperothMonster) or vesperothMonster:isDead() then
 		return
 	end
-	
+
 	vesperothMonster:teleportTo(vesperothHidePosition)
 
 	local minionsPerWave = math.random(minMinionsPerWave, maxMinionsPerWave)

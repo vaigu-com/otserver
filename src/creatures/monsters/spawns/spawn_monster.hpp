@@ -77,7 +77,6 @@ private:
 	void scheduleSpawn(uint32_t spawnMonsterId, spawnBlock_t &sb, const std::shared_ptr<MonsterType> &monsterType, uint16_t interval, bool startup = false);
 };
 
-
 class SpawnsMonster {
 public:
 	static bool isInZone(const Position &centerPos, int32_t radius, const Position &pos);
@@ -95,15 +94,15 @@ public:
 	struct MonsterCounter {
 		std::unordered_map<std::string, int> counts;
 
-		void increment(const std::string& monsterName) {
+		void increment(const std::string &monsterName) {
 			counts[monsterName]++;
-		}	
+		}
 	};
-	static std::unordered_map<std::string, int>&  getMonsterCounts(){
+	static std::unordered_map<std::string, int> &getMonsterCounts() {
 		return monsterCounter.counts;
 	}
-	static void incrementMapMonsterCount(std::string name){
-			monsterCounter.increment(name);
+	static void incrementMapMonsterCount(std::string name) {
+		monsterCounter.increment(name);
 	}
 
 private:

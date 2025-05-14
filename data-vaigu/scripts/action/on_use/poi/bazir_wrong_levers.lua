@@ -12,4 +12,3 @@ for value = 50095, 50104 do
 	pitsOfInfernoWrongLevers:uid(value)
 end
 pitsOfInfernoWrongLevers:register()
-

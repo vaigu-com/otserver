@@ -54,4 +54,16 @@
 		<colors colordark="#235c00" colorlight="#2d7400" />
 		<details displaypriority="6" isseasonal="0" specialevent="0" />
 	</event>
+	<event name="Weekend 30% Exp Boost!" startdate="7/4/2025" enddate="7/6/2025" script="">
+		<ingame exprate="130" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="100" />
+		<description description="Weekend Event: 30% Exp Boost!" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
+	<event name="Weekend 30% Exp Boost!" startdate="7/11/2025" enddate="7/13/2025" script="">
+		<ingame exprate="130" lootrate="100" bosslootrate="100" spawnrate="100" skillrate="100" />
+		<description description="Weekend Event: 30% Exp Boost!" />
+		<colors colordark="#235c00" colorlight="#2d7400" />
+		<details displaypriority="6" isseasonal="0" specialevent="0" />
+	</event>
 </events>

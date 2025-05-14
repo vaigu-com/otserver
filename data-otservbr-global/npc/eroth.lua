@@ -63,16 +63,8 @@ local function creatureSayCallback(npc, creature, type, message)
 		-- Check if player has completed certain objectives
 		elseif player:getStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.Questline) == 2 and player:getStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.DwarvenShield) == 1 and player:getStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.MorningStar) == 1 and player:getStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.BP1) == 1 and player:getStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.BP2) == 1 then
 			npcHandler:say("I heard the blow! The reflection must have caused a overcharge of magical energy leading to the contraction and the implosion. Just like I hoped! Please take this as a reward. Thank you very much.", npc, creature)
-<<<<<<< HEAD
-			player:AddCustomItem({id = 3082, count = 1})
-			player:AddCustomItem({id = 3035, count = 10})
-=======
 			player:addItem(3082, 1)
 			player:addItem(3035, 10)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 			player:setStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.Questline, 3)
 			npcHandler:setTopic(playerId, 0)
 		end
@@ -83,14 +75,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			"No wonder that they always have been so well prepared. Now you come into play, destroy the scrying crystal ball in Elvenbane. It should be on the top floor. ...",
 			"We don't really know how to destroy it but we suppose it may work if you reflect the invisible power of the ball. The beam should be adjusted to Ab'Dendriel. Take this mirror and give it a try. Good luck.",
 		}, npc, creature)
-<<<<<<< HEAD
-		player:AddCustomItem({id = 3463, count = 1})
-=======
 		player:addItem(3463, 1)
-<<<<<<< HEAD
->>>>>>> c3bafd85d37e25814e6a6548e2252b64f9f7f33a
-=======
->>>>>>> 2c5bf72d39e17e74a5e9f70901c0ed9d0e5d2d32
 		player:setStorageValue(Storage.Quest.U8_1.ToBlindTheEnemy.Questline, 1)
 		npcHandler:setTopic(playerId, 0)
 	end

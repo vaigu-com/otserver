@@ -61,7 +61,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "rozetrzec", "dust" }, message) then
 		if player:getItemCount(675) > 0 then
 			player:removeItem(675, 1)
-			player:AddCustomItem({id = 30004, count = 1})
+			player:AddCustomItem({ id = 30004, count = 1 })
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo." or "Here you are.", npc, creature)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Zebym tylko mial co.." or "Yeah, maybe if you had some.", npc, creature)

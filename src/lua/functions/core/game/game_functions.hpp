@@ -93,8 +93,8 @@ private:
 
 	// Vaigu custom
 	static int luaInitializeTranslationTable(lua_State* L);
-	static int copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement>& result);
-	
+	static int copyLuaTable(lua_State* L, int index, std::vector<Game::LuaElement> &result);
+
 	static int luaGameGetSoulCoreItems(lua_State* L);
 
 	static int luaGameGetMonstersByRace(lua_State* L);

@@ -11,7 +11,7 @@ quest
 		table.insert(Quests, {
 			name = "Arena",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "First arena",
 					storage = 301,

@@ -51,7 +51,7 @@ function ravenHerb.onUse(player, item, fromPosition, target, toPosition, isHotke
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
 	player:setStorageValue(config.storage, os.time() + 60 * 30 * 1000)
-	player:AddCustomItem({id = config.herbId, count = 1})
+	player:addItem(config.herbId, 1)
 	return true
 end
 

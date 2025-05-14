@@ -52,7 +52,7 @@ quest
 		table.insert(Quests, {
 			name = "Chester the Dwarf",
 			localizer = localizer,
-			missions ={
+			missions = {
 				{
 					name = "Fortune Teller 3000",
 					storage = Storage.ChesterTheDwarf.Mission01,
@@ -329,7 +329,7 @@ quest
 					},
 					rewards = { { id = 11687 } },
 				},
-				[{ "Elite Draken Helmet","elite darken helmet" }] = {
+				[{ "Elite Draken Helmet", "elite darken helmet" }] = {
 					requiredItems = { QuestKeyItems.ChesterTheDwarf.GandalfBag },
 					text = "Right, it was the Elite Draken Helmet. Here's your reward.",
 					nextState = {

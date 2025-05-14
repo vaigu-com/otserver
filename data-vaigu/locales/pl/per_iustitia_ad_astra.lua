@@ -81,7 +81,7 @@ return {
 	["ShipMessage"] = "Wybierz destynacje statku:",
 	["ShipCantAffordFuel"] = "Nie masz wystarczajacej ilosc paliwa na te podroz",
 	["ShipCantAffordMana"] = "Nie masz wystarczajacej ilosc many na te podroz",
-	["ShipHasNotArrivedYet"]= "Nie mozesz opuscic statku podczas lotu!",
+	["ShipHasNotArrivedYet"] = "Nie mozesz opuscic statku podczas lotu!",
 	["ShipAlreadyAtDestination"] = "Juz jestes u celu",
 	["ShipJustStartedTravel"] = "Zaczynasz lot do: ",
 	["ShipDestCpn"] = "Stacja CPN",
@@ -132,5 +132,5 @@ return {
 	["So you would like to know the password? I can {reveal} it for a small fee of 3 transferable coins. I really need that gold converter.."] = "Moge sprzedac Ci to haslo za 15 coinow. Potrzebuje pieniedzy na nowy konwerter do monet..",
 	["The password is 'Ali Baba', same as my name. Hope this helps."] = "Haslo to 'Ali Baba', takie samo jak moje imie. Mam nadzieje, ze to pomoze.",
 	["Come back with 15 coins."] = "Wroc gdy zdobedziesz 15 coinow.",
-	["You completed this chapter."] = "Ukonczyles te misje."
+	["You completed this chapter."] = "Ukonczyles te misje.",
 }

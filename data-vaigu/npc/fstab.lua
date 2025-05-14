@@ -19,9 +19,7 @@ if DAYS_SINCE_START >= 7 then
 	additionalJob = JOB_EXERCISE
 end
 
-local dialogs = {
-
-}
+local dialogs = {}
 
 local outfit = {
 	lookType = 130,

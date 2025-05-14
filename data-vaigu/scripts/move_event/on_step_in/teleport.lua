@@ -20,4 +20,3 @@ for uniqueRange = 38001, 40000 do
 end
 
 teleport:register()
-

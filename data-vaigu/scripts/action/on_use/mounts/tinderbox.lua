@@ -10,7 +10,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == config.item and target.itemid == config.target then
 		item:remove(1)
 		target:remove(1)
-		player:AddCustomItem({id = config.reward, count = 1})
+		player:AddCustomItem({ id = config.reward, count = 1 })
 	end
 
 	return true

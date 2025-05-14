@@ -179,7 +179,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		elseif npcHandler:getTopic(playerId) == 8 then
 			if player:removeItem(8192, 50) then
 				npcHandler:say("Ye' brought the fifty tokens needed to advance to the last vampire hunter rank. Now that's something. You're razing-amazing! Let me share some of my experience and a little something with ye'!", npc, creature)
-				player:AddCustomItem({id = 8191, count = 1})
+				player:addItem(8191, 1)
 				player:addExperience(100 * 1000, true)
 				player:setStorageValue(Storage.Quest.U8_2.VampireHunterQuest.Rank, 6)
 				player:setStorageValue(Storage.Quest.U8_2.VampireHunterQuest.Door, 1)
