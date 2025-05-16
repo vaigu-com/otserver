@@ -85,6 +85,14 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 			player:addBlessing(i, 1)
 		end
 	end,
+	chargeForBless = function(context)
+		local player = context.player
+		local level = player:getLevel()
+		if level <= MAX_LVL_TO_GET_FREE_BLESS then
+			return
+		end
+		player:removeMoney(player:getFiveBlessingsCost())
+	end,
 	removeMoneyBank = function(context)
 		local player = context.player
 		local price = context.price

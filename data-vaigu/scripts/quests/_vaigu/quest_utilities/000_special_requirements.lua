@@ -1,3 +1,5 @@
+MAX_LVL_TO_GET_FREE_BLESS = 35
+
 SPECIAL_REQUIREMENTS_UNIVERSAL = {
 	isSorcerer = function(context)
 		local player = context.player
@@ -47,9 +49,14 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 		local maxLevel = context.maxLevel or 9999
 		return playerLevel >= minLevel and playerLevel <= maxLevel
 	end,
-	canBuyBless = function(context)
+	canAffordBless = function(context)
 		local player = context.player
-		local price = getBlessingsCost(player:getLevel()) * 5
+		local level  = player:getLevel()
+		if level <= MAX_LVL_TO_GET_FREE_BLESS then
+			return true
+		end
+
+		local price = player:getFiveBlessingsCost()
 		context.price = price
 		if SPECIAL_REQUIREMENTS_UNIVERSAL.hasMoney(context) then
 			return true

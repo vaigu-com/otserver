@@ -8,14 +8,14 @@ return {
 	["BLESS_PRICE_TEXT"] = function(context)
 		local player = context.player
 		local finalString = T("Blogoslawienstwo dla ciebie kosztuje :blessPrice: zlota (na nowy konfesjonal!) i chroni Cie przed utrata ekwipunku, jak i zmniejsza kare za smierc. Czy chcesz, abym Cie poblogoslawil?", {
-			blessPrice = getBlessingsCost(player:getLevel()) * 5,
+			blessPrice = player:getFiveBlessingsCost(),
 		})
 		return finalString
 	end,
 	["BLESS_INSUFFICIENT_MONEY"] = function(context)
 		local player = context.player
 		local finalString = T("Wybacz, ale abym Cie poblogoslawil musisz wpierw zlozyc ofiare na tace... skromne :blessPrice: sztuk zlota.", {
-			blessPrice = getBlessingsCost(player:getLevel()) * 5,
+			blessPrice = player:getFiveBlessingsCost(),
 		})
 		return finalString
 	end,
