@@ -401,3 +401,6 @@ database_backup
 # CLION
 cmake-build-*
 out
+
+# RME backups
+/world/backup/*
