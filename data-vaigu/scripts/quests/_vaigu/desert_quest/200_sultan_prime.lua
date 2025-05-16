@@ -53,9 +53,12 @@ quest
 		SULTAN_PRIME_RETRO_MIRKO = {
 			requiredCoffinCount = 5,
 			corpseId = {
-				[18134] = 1, -- hero
 				[18034] = 1, -- adventurer
+				[18042] = 1, -- amazon
+				[18050] = 1, -- bandit
 				[18138] = 1, -- hunter
+				[18206] = 1, -- poacher
+				[18250] = 1, -- wild warrior
 			},
 			requiredCorpseCount = 10,
 		}
