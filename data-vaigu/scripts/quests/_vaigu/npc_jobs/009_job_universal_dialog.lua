@@ -1,4 +1,7 @@
 local pseudoQuest = Quest(LOCALIZERS.NONE)
+
+local powerfulImbueUnlockCost = 15
+
 pseudoQuest
 	:NoQuestlog()
 	:Script(function()
@@ -316,7 +319,42 @@ pseudoQuest
 				},
 			},
 			[JOB_IMBUING] = {
-				[{ "imbuing", "imbuings" }] = {
+				[{ "mozliwosc", "ability" }] = {
+					text = "YOU_WANT_BUY_ABILITY_POWEFUL_IMBUEMENT",
+					nextTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
+					requiredState = {
+						[Storage.powerfulImbue] = { max = 0 },
+					},
+					cost = powerfulImbueUnlockCost,
+				},
+				[{ "yes", "tak" }] = {
+					text = "Here you are.",
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
+					requiredState = {
+						[Storage.Tasks.TaskPoints] = powerfulImbueUnlockCost,
+						[Storage.powerfulImbue] = { max = 0 },
+					},
+					nextState = {
+						[Storage.powerfulImbue] = 1,
+						[Storage.Tasks.TaskPoints] = "-" .. tostring(powerfulImbueUnlockCost),
+					},
+					textNoRequiredState = "YOU_DONT_HAVE_ENOUGH_TASK_POINTS",
+					cost = powerfulImbueUnlockCost,
+				},
+				[{ "mozliwosc", "ability" }] = {
+					text = "You already got it.",
+					requiredState = {
+						[Storage.powerfulImbue] = { min = 1 },
+					},
+				},
+				[{ "yes", "tak" }] = {
+					text = "You already got it.",
+					requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
+					requiredState = {
+						[Storage.powerfulImbue] = { min = 1 },
+					},
+				},
+				[{ "imbuing", "imbuings", "imbuingow" }] = {
 					text = "LIST_IMBUING_NAMES",
 					nextTopic = QuestTopics.JOB_TOPICS.chooseImbuingname,
 				},
