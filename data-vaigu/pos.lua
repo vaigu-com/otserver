@@ -681,11 +681,14 @@ function Position:GetTopItem()
 		return nil
 	end
 	local topThing = tile:getTopVisibleThing()
-	if topThing:isItem() then
-		return topThing
-	else
+	if not topThing then
 		return nil
 	end
+	if not topThing:isItem() then
+		return nil
+	end
+	
+	return topThing
 end
 
 function Position:GetPlayers()
