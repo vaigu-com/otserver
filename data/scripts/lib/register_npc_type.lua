@@ -198,6 +198,37 @@ registerNpcType.events = function(npcType, mask)
 	end
 end
 
+
+--#region ItemTypeSellPriceRegistry
+---@class ItemTypeSellPriceRegistry
+ItemTypeSellPriceRegistry = {}
+ItemTypeSellPriceRegistry.__index = ItemTypeSellPriceRegistry
+ItemTypeSellPriceRegistry.registry = {}
+---@param itemId number
+function ItemTypeSellPriceRegistry:GetPrice(itemId)
+	return self.registry[itemId]
+end
+local valuablePrice = 5000
+---@param itemId number
+---@return boolean
+function ItemTypeSellPriceRegistry:IsValuable(itemId)
+	if not self.registry[itemId] then
+		return false
+	end
+	return self.registry[itemId] >= valuablePrice
+end
+---@param itemId number
+---@param price number
+---@return ItemTypeSellPriceRegistry 
+function ItemTypeSellPriceRegistry:AddIfHigherPrice(itemId, price)
+	local existingPrice = self.registry[itemId]
+	if not existingPrice or existingPrice < price then
+		self.registry[itemId] = price
+	end
+	return self
+end
+--#endregion ItemTypeSellPriceRegistry
+
 -- Global item tracker to track buy and sell prices across all NPCs
 NpcPriceChecker = NpcPriceChecker or {}
 
@@ -240,6 +271,7 @@ registerNpcType.shop = function(npcType, mask)
 				if sellPrice then
 					NpcPriceChecker[clientId].sell = sellPrice
 					NpcPriceChecker[clientId].sellNpc = npcName
+					ItemTypeSellPriceRegistry:AddIfHigherPrice(clientId, sellPrice)
 				end
 
 				if NpcPriceChecker[clientId].buy and NpcPriceChecker[clientId].sell then

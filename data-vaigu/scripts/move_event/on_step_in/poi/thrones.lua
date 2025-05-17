@@ -39,10 +39,10 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 			creature:setStorageValueByKey(Storage.PitsOfInferno.OneThrone, 1)
 		end
 	else
-		creature:teleportTo(throne.toPosition)
-		creature:getPosition():sendMagicEffect(CONST_ME_MORTAREA)
 		creature:say("Tron zostal juz zaliczony!", TALKTYPE_MONSTER_SAY)
 	end
+	creature:teleportTo(throne.toPosition)
+	creature:getPosition():sendMagicEffect(CONST_ME_MORTAREA)
 	return true
 end
 

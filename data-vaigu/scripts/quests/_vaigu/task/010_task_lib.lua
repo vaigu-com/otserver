@@ -382,9 +382,8 @@ end
 
 function Player:TryAddDailyTaskRewards(context, dailyTask)
 	local storage = dailyTask.storage
-	local currentKills = self:getStorageValueByKey(storage)
-	if currentKills == TASK_SLOT_UNNOCUPIED then
-		logger.warn("[Player:TryAddDailyTaskRewards] currentKills == TASK_SLOT_UNNOCUPIED")
+	local dailyTaskState = self:getStorageValueByKey(storage)
+	if dailyTaskState == TASK_SLOT_UNNOCUPIED then
 		return ""
 	end
 
@@ -397,6 +396,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
 	end
 
 	local requiredKills = dailyTask.requiredKills
+	local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
 	if currentKills < requiredKills then
 		return localizer:Get("YOU_DONT_HAVE_REQUIRED_DAILY_TASK_KILLS")
 	end

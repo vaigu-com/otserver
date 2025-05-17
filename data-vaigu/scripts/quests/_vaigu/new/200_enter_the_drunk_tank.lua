@@ -115,8 +115,9 @@ quest
 					nextTopic = QuestTopics.EnterTheDrunkTank.ConfirmWantToLearnMethod,
 					specialRequirements = {
 						{
-							requriement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerHasLevel,
+							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerHasLevel,
 							minLevel = 200,
+							requiredOutcome = true,
 							textOnFail = "I see that Fisher vouched for you, but i cannot teach you yet. Come back when you are at least level 200.",
 						},
 					},

@@ -47,6 +47,7 @@
 	<zone name="Storage-BigfootsBurden-Warzone1BossRoom" zoneid="198" />
 	<zone name="Storage-BigfootsBurden-Warzone2BossRoom" zoneid="199" />
 	<zone name="Storage-BigfootsBurden-Warzone3BossRoom" zoneid="200" />
+	<zone name="Storage-LocalSupport-CaravanZone" zoneid="201" />
 	<zone name="Storage-Minigames-SharedLobbyArea" zoneid="196" />
 	<zone name="Storage-Minigames-SharedLobbyPlayerSpawn" zoneid="7" />
 	<zone name="Storage-OneTimeEscorts-MegadragonCliffs-RopeThrowFromTiles" zoneid="194" />

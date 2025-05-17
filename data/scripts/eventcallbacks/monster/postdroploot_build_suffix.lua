@@ -102,12 +102,28 @@ function callback.monsterPostDropLoot(monster, corpse)
 		return
 	end
 
+	local hasValuableItem = false
+
 	local lootTable = LootTableRegistry:Get(monster:getId()):Get()
+	local nonEmptyLootTables = {}
 	for _, lootLayer in pairs(LOOT_LAYER_ORDER) do
 		local items = lootTable[lootLayer]
 		if items then
-			corpse:addLoot(items)
+			table.insert(nonEmptyLootTables, items)
 		end
+	end
+
+	for _, items in pairs(nonEmptyLootTables) do
+		corpse:addLoot(items)
+		for itemId in pairs(items) do
+			if ItemTypeSellPriceRegistry:IsValuable(itemId) then
+				hasValuableItem = true
+			end
+		end
+	end
+
+	if hasValuableItem then
+		corpse:getPosition():sendMagicEffect(CONST_ME_TUTORIALARROW)
 	end
 end
 
