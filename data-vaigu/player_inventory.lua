@@ -464,7 +464,7 @@ function CalculateItemsRequiredSlots(items)
 	for containerId, item in pairs(items) do
 		local count = 1
 		local stackable = false
-		local chargesPerItem = false
+		local chargesPerItem = 1
 		if ItemType(containerId):isContainer() then
 			count = CalculateItemsRequiredSlots(item)
 			count = count + 1
