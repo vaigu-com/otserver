@@ -401,6 +401,9 @@ end
 
 local skinning = Action()
 function skinning.onUse(player, skinningTool, usePosition, corpse, corpsePosition, isHotkey)
+	if not corpse then
+		return true
+	end
 	local toolId = skinningTool:getId()
 	local corpseId = corpse:getId()
 
