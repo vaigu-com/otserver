@@ -213,7 +213,7 @@ quest
 					nextState = { [Storage.CaveExplorerOnShield.Mission01] = QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi },
 					rewards = { QuestKeyItems.CaveExplorerOnShield.GermiDocument },
 				},
-			}, DESERT_QUEST_ONE_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi,
@@ -462,6 +462,7 @@ quest
 					},
 					nextState = {
 						[Storage.CaveExplorerOnShield.Mission01] = MISSION_FINISHED,
+						[Storage.Finished.CaveExplorerOnShield] = MISSION_FINISHED,
 					},
 				},
 			})

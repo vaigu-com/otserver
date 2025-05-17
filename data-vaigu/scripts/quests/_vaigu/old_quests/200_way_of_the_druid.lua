@@ -172,7 +172,7 @@ quest
 						doCreatureSay(player, localizer:Get("You are not worthy to gather the sacred water!"), TALKTYPE_ORANGE_1)
 						return
 					end
-					if player:getStorageValueByKey(Storage.WayOfTheDruid.LootedWater) ~= MISSION_NOT_STARTED then
+					if player:getStorageValueByKey(Storage.WayOfTheDruid.LootedWater) == MISSION_FINISHED then
 						doCreatureSay(player, localizer:Get("You already gathered the sacred water"), TALKTYPE_ORANGE_1)
 						return
 					end
@@ -219,7 +219,7 @@ quest
 						doCreatureSay(player, localizer:Get("You are not worthy to gather the sacred flower!"), TALKTYPE_ORANGE_1)
 						return
 					end
-					if player:getStorageValueByKey(Storage.WayOfTheDruid.LootedFlower) ~= MISSION_NOT_STARTED then
+					if player:getStorageValueByKey(Storage.WayOfTheDruid.LootedFlower) == MISSION_FINISHED then
 						doCreatureSay(player, localizer:Get("You already gathered the sacred flower"), TALKTYPE_ORANGE_1)
 						return
 					end
@@ -291,6 +291,7 @@ quest
 					nextState = {
 						[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
 						[Storage.WayOfTheDruid.DeerSeason] = MISSION_FINISHED,
+						[Storage.Finished.DeerSeason] = MISSION_FINISHED,
 						[Storage.WayOfTheDruid.RadaghastBoat] = ACCESS_GRANTED,
 					},
 				},
@@ -372,6 +373,7 @@ quest
 					},
 					nextState = {
 						[Storage.WayOfTheDruid.RudeEviction] = MISSION_FINISHED,
+						[Storage.Finished.RudeEviction] = MISSION_FINISHED,
 						[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
 					},
 					spawnMonstersOnSuccess = {
@@ -442,6 +444,7 @@ quest
 					},
 					nextState = {
 						[Storage.WayOfTheDruid.TakenBenek] = MISSION_FINISHED,
+						[Storage.Finished.TakenBenek] = MISSION_FINISHED,
 						[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
 					},
 				},
@@ -517,6 +520,7 @@ quest
 					},
 					nextState = {
 						[Storage.WayOfTheDruid.SecretIngredient] = MISSION_FINISHED,
+						[Storage.Finished.SecretIngredient] = MISSION_FINISHED,
 						[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
 					},
 					requiredItems = {
@@ -551,6 +555,7 @@ quest
 					nextState = {
 						[Storage.WayOfTheDruid.SingingCrystal] = MISSION_FINISHED,
 						[Storage.WayOfTheDruid.CouncilOfDruids] = "+1",
+						[Storage.Finished.SingingCrystal] = MISSION_FINISHED,
 					},
 					expReward = 17000,
 					rewards = {

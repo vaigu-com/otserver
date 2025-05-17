@@ -1309,7 +1309,7 @@ quest
 					key = Storage.ProdigalSon.EristicsBooks.Three,
 					rewards = { QuestKeyItems.ProdigalSon.BookThree },
 				},
-			}, JANUSZEX_ANCHOR),
+			}),
 			QuestFactory.Script(function(missionState)
 				local surfaceZ = JANUSZEX_ANCHOR:Moved(0, 0, 2).z
 				local function isOnSurface(pos)
@@ -1423,7 +1423,7 @@ quest
 					key = Storage.ProdigalSon.DiamondNecklace,
 					rewards = { QuestKeyItems.ProdigalSon.DiamondNecklace },
 				},
-			}, JANUSZEX_ANCHOR),
+			}),
 			QuestFactory.Dialog("Henry the Foreman", {
 				[{ "mission" }] = {
 					text = "Yeah, this is the one i was looking for.",

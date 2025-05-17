@@ -102,7 +102,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say("Fine, I grant you the permission to enter the warzones. Be warned though, this will be not a picnic. Better bring some friends with you. Bringing a lot of them sounds like a good idea.", npc, creature)
 			player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 19)
 			player:setStorageValueByKey(Storage.BigfootsBurden.WarzoneStatus, 1)
-			player:setStorageValueByKey(Storage.Finished.BigfootsBurden, 1)
+			player:setStorageValueByKey(Storage.Finished.BigfootsBurden, MISSION_FINISHED)
 			npcHandler:setTopic(playerId, 0)
 		end
 	end

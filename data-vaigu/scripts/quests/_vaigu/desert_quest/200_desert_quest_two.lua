@@ -335,7 +335,7 @@ quest
 
 				local pieceIds = {}
 
-				local function moveFifteenPuzzleElement(direction, toPosition)
+				local function moveFifteenPuzzleElement(direction)
 					local nextPiecePos = emptySpacePos:Moved(Vector.FromDirection(direction))
 					local piece = nextPiecePos:GetTopItem()
 					if not piece then
@@ -344,12 +344,11 @@ quest
 					if not pieceIds[piece:getId()] then
 						return
 					end
-					piece:moveTo(emptySpacePos)
+
+						piece:moveTo(emptySpacePos)
 					emptySpacePos = nextPiecePos
 					emptySpacePos:sendMagicEffect(CONST_ME_POFF)
-					if toPosition then
-						toPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
-					end
+					return true
 				end
 
 				local function scramblePuzzle()
@@ -389,8 +388,11 @@ quest
 						return true
 					end
 					creature:teleportTo(fromPosition)
+					--moving west means searching for element to move on the east of current empty tile position
 					local reverseDirection = toPosition:DirectionTo(fromPosition)
-					moveFifteenPuzzleElement(reverseDirection, toPosition)
+					if moveFifteenPuzzleElement(reverseDirection) then
+						toPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
+					end
 					return true
 				end
 
@@ -1666,7 +1668,7 @@ quest
 					[Storage.DesertQuestTwo.Puzzles.RubiksCube.Top] = "top",
 				}
 
-				local scrambles = 6
+				local scrambles = 3
 				local function scrambleCube()
 					local faceNames = {}
 
@@ -1930,11 +1932,29 @@ quest
 				beforeSparks:register()
 			end),
 			QuestFactory.OnUseDeclarations({
-				{ id = 28179, key = Storage.DesertQuestTwo.Rewards.ExpReward, expReward = 1000 * 500, rewards = {} },
-				{ id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestOne, expReward = 1000 * 500, rewards = { { id = 3029, count = 50 }, { id = 5785 }, { id = 3438 } } },
-				{ id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 3043, count = 4 } } },
-				--{  id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 1000 * 500, rewards = { { id = 2971, key = Storage.DesertQuestThree.AccessKey }, { id = 6118, key = Storage.DesertQuestThree.AccessMap } } },
-			}, DESERT_QUEST_TWO_ANCHOR),
+				{
+					id = 28179,
+					key = Storage.DesertQuestTwo.Rewards.ExpReward,
+					expReward = 700 * 1000,
+					rewards = {},
+				},
+				{
+					id = 5674,
+					key = Storage.DesertQuestTwo.Rewards.ChestOne,
+					expReward = 700 * 1000,
+					rewards = { { id = 3029, count = 50 }, { id = 5785 }, { id = 3438 } },
+				},
+				{
+					id = 5674,
+					key = Storage.DesertQuestTwo.Rewards.ChestTwo,
+					expReward = 700 * 1000,
+					rewards = { { id = 3043, count = 4 } },
+					nextState = {
+						[Storage.Finished.DesertQuestTwo] = MISSION_FINISHED,
+					},
+				},
+				--{  id = 5674, key = Storage.DesertQuestTwo.Rewards.ChestTwo, expReward = 500 * 1000, rewards = { { id = 2971, key = Storage.DesertQuestThree.AccessKey }, { id = 6118, key = Storage.DesertQuestThree.AccessMap } } },
+			}),
 			QuestFactory.Script(function()
 				local encounterLeverInit = GlobalEvent("DesertQuestTwo/InitializePuzzles")
 				function encounterLeverInit.onStartup()

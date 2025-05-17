@@ -355,52 +355,20 @@ quest
 	:State(function()
 		return QuestState.DemonOak.Mission01.FindRewardChest,
 			QuestFactory.Script(function(missionState)
-				local chests = {
-					[9008] = { itemid = 3389, count = 1 },
-					[9009] = { itemid = 8077, count = 1 },
-					[9010] = { itemid = 14768, count = 1 },
-					[9011] = { itemid = 14769, count = 1 },
-				}
-
-				local action = Action()
-
-				function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					if chests[item.uid] then
-						if player:getStorageValueByKey(Storage.DemonOak.Mission01) ~= QuestState.DemonOak.Mission01.FindRewardChest then
-							player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It's empty.")
-							return true
-						end
-
-						local chest = chests[item.uid]
-						local itemType = ItemType(chest.itemid)
-						if itemType then
-							local article = itemType:getArticle()
-							player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. (#article > 0 and article .. " " or "") .. itemType:getName() .. ".")
-						end
-
-						player:AddCustomItem({ id = chest.itemid, count = chest.count })
-						player:setStorageValueByKey(Storage.DemonOak.Mission01, MISSION_FINISHED)
-						player:setStorageValueByKey(Storage.Finished.DemonOak, MISSION_FINISHED)
+				local gravestone = Action()
+				function gravestone.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if player:isPzLocked() then
+						return false
 					end
 
-					return true
-				end
-
-				action:uid(9008, 9009, 9010, 9011)
-				action:register()
-			end),
-			QuestFactory.Script(function(missionState)
-				local action = Action()
-
-				function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					if player:getStorageValueByKey(Storage.DemonOak.Mission01) == QuestState.DemonOak.Mission01.FindRewardChest then
 						player:teleportTo(DEMON_OAK_REWARDROOM_POSITION)
 						DEMON_OAK_REWARDROOM_POSITION:sendMagicEffect(CONST_ME_TELEPORT)
 						return true
 					end
 				end
-				action:uid(9007)
-				action:register()
+				gravestone:uid(9007)
+				gravestone:register()
 			end)
 	end)
 	:Register()
