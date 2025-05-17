@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Demonica")
 local monster = {}
 
 monster.description = "a demonica"
-monster.experience = 25000
+monster.experience = 16000
 monster.outfit = {
 	lookType = 35,
 	lookHead = 0,
@@ -54,8 +54,8 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{ name = "fire elemental", chance = 20, interval = 2000, count = 3 },
-		{ name = "demon", chance = 10, interval = 2000, count = 1 },
+		{ name = "fire elemental", chance = 20, interval = 2000, count = 2 },
+		{ name = "demon", chance = 10, interval = 2000, count = 2 },
 	},
 }
 
