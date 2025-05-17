@@ -61313,18 +61313,11 @@
 	<monster centerx="7488" centery="1496" centerz="8" radius="1">
 		<monster name="Lich" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="7500" centery="1496" centerz="8" radius="1">
-		<monster name="Lich" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Lich" x="1" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7793" centery="1496" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6253" centery="1497" centerz="8" radius="1">
 		<monster name="Dragon Lord Hatchling" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="7491" centery="1497" centerz="8" radius="1">
-		<monster name="Lich" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7498" centery="1497" centerz="8" radius="1">
 		<monster name="Lich" x="0" y="0" z="8" spawntime="60" />
@@ -71729,8 +71722,6 @@
 	</monster>
 	<monster centerx="7491" centery="1492" centerz="9" radius="1">
 		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lich" x="1" y="0" z="9" spawntime="60" />
-		<monster name="Lich" x="1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7801" centery="1492" centerz="9" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="9" spawntime="60" />
@@ -71771,11 +71762,9 @@
 	</monster>
 	<monster centerx="7492" centery="1497" centerz="9" radius="1">
 		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lich" x="1" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7494" centery="1497" centerz="9" radius="1">
 		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Lich" x="1" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6202" centery="1498" centerz="9" radius="1">
 		<monster name="Werecrocodile" x="0" y="0" z="9" spawntime="60" />
@@ -71853,14 +71842,8 @@
 	<monster centerx="5931" centery="1506" centerz="9" radius="1">
 		<monster name="Cyclops Drone" x="1" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="7497" centery="1506" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="6034" centery="1507" centerz="9" radius="1">
 		<monster name="Skeleton Warrior" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="7501" centery="1507" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7503" centery="1507" centerz="9" radius="1">
 		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
@@ -71928,12 +71911,6 @@
 	<monster centerx="6026" centery="1513" centerz="9" radius="1">
 		<monster name="Cave Rat" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="7488" centery="1513" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="7492" centery="1513" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="7883" centery="1513" centerz="9" radius="1">
 		<monster name="Furious Troll" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -71958,9 +71935,6 @@
 	<monster centerx="5574" centery="1515" centerz="9" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="7498" centery="1515" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="7870" centery="1515" centerz="9" radius="1">
 		<monster name="Furious Troll" x="0" y="-1" z="9" spawntime="60" />
 		<monster name="Furious Troll" x="0" y="0" z="9" spawntime="60" />
@@ -71970,9 +71944,6 @@
 		<monster name="Furious Troll" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7483" centery="1516" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="7501" centery="1516" centerz="9" radius="1">
 		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7504" centery="1516" centerz="9" radius="1">
@@ -71992,9 +71963,6 @@
 		<monster name="Carrion Worm" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7501" centery="1519" centerz="9" radius="1">
-		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="7504" centery="1519" centerz="9" radius="1">
 		<monster name="Lich" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7870" centery="1519" centerz="9" radius="1">
