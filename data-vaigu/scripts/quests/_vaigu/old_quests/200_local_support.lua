@@ -20,6 +20,7 @@ quest
 			PotionConveyorJourneyman = {},
 
 			WoodDelivery = {},
+			CaravanZone = {},
 			NarroStages = {},
 
 			FreakingRats = {},
@@ -493,7 +494,7 @@ quest
 			}),
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ ANY_MESSAGE }] = {
-					text = "Gypsy fortune telling ball? He was a clumsy one ever since.\nThree people are complaining about wood deficiency? It has to be checked as soon as possible. Make your way to Knurowo and ask in about the delivery at the city pier.\nFollow the road at the west of the city and you will find it. I'll give you some potions supply, you may need them.",
+					text = "Gypsy fortune telling ball? He was a clumsy one ever since.\nThree people are complaining about wood deficiency? It has to be checked as soon as possible. Make your way to Knurowo and ask in about the delivery at the city pier.\nFollow the road at the west of the city and you will find it. Alternatively, you can ask Jack Sparrow to sail you to knurow. Find him in our city port, on the north east. I'll give you some potions supply, you may need them.",
 					nextState = {
 						[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
 						[Storage.Finished.Discernment] = MISSION_FINISHED,
@@ -525,7 +526,7 @@ quest
 					},
 				},
 				[{ ANY_MESSAGE }] = {
-					text = "Gypsy fortune telling ball? He was a clumsy one ever since.\nThree people are complaining about wood deficiency? It has to be checked as soon as possible. Make your way to Knurowo and ask in about the delivery at the city pier.\nFollow the road at the west of the city and you will find it. I'll give you some potions supply, you may need them.",
+					text = "Gypsy fortune telling ball? He was a clumsy one ever since.\nThree people are complaining about wood deficiency? It has to be checked as soon as possible. Make your way to Knurowo and ask in about the delivery at the city pier.\nFollow the road at the west of the city and you will find it. Alternatively, you can ask Jack Sparrow to sail you to knurow. Find him in our city port, on the north east. I'll give you some potions supply, you may need them.",
 					nextState = {
 						[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TalkWithWoody,
@@ -654,6 +655,24 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
+			QuestFactory.Script(function()
+				local caravanZoneSetup = GlobalEvent("CaravanZoneSetup")
+				function caravanZoneSetup.onStartup()
+					local zone = Zone(Storage.LocalSupport.CaravanZone)
+					local zoneEvents = ZoneEvent(zone)
+					function zoneEvents.afterEnter(zone, creature)
+						local player = creature:getPlayer()
+						if not player then
+							return true
+						end
+
+						local translatedMessage = player:Localizer(LOCALIZERS.LocalSupport):Get("This caravan of wood has been attacked recently. I better follow the path of loose wooden planks.")
+						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
+					end
+					zoneEvents:register()
+				end
+				caravanZoneSetup:register()
+			end),
 			QuestFactory.Dialog("Narro", {
 				[{ "drewno", "dostawa", "misja", "mission", "wood" }] = {
 					text = "Huh, hes a badass? I am the only badass here.\nNow YOU tell ME: am I the only badass in this bitch!?",
