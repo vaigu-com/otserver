@@ -1299,9 +1299,9 @@ bool ConditionRegeneration::executeCondition(const std::shared_ptr<Creature> &cr
 	const auto &player = creature->getPlayer();
 	int32_t dailyStreak = 0;
 	if (player) {
-		auto optStreak = player->kv()->scoped("daily-reward")->get("streak");
-		if (optStreak) {
-			dailyStreak = static_cast<int32_t>(optStreak->getNumber());
+		auto dailyStreakStored = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreak");
+		if (dailyStreakStored > 0) {
+			dailyStreak = dailyStreakStored;
 		}
 	}
 	if (creature->getZoneType() != ZONE_PROTECTION || dailyStreak >= DAILY_REWARD_HP_REGENERATION) {
