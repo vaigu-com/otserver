@@ -596,6 +596,7 @@ function Player:addPartyCondition(combat, variant, condition, baseMana)
 	return true
 end
 
+local defaultEffect = CONST_ME_MAGIC_RED
 function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 	if not conjureCount and conjureId ~= 0 then
 		local itemType = ItemType(conjureId)
@@ -625,6 +626,6 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 	if ItemType(id) and ItemType(id):isRune() then
 		effect = CONST_ME_MAGIC_RED
 	end
-	self:getPosition():sendMagicEffect(effect)
+	self:getPosition():sendMagicEffect(effect or defaultEffect)
 	return true
 end
