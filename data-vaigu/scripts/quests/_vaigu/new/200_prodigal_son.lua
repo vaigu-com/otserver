@@ -345,16 +345,10 @@ quest
 				return primaryDamage, primaryType, secondaryDamage, secondaryType
 			end
 
-			if not (creature:getName():lower() == "arechek") then
-				return
-			end
-
 			local healthGain = PredictNetHealthgain(primaryDamage, primaryType, secondaryDamage, secondaryType)
 			local currentHealth = creature:getHealth()
 			if (currentHealth + healthGain) < creature:getMaxHealth() then
-				local pos = creature:getPosition()
-				creature:remove()
-				Game.createMonster("Arechek Enraged", pos)
+				creature:setType("Arechek Enraged")
 			end
 
 			return primaryDamage, primaryType, secondaryDamage, secondaryType
@@ -367,16 +361,10 @@ quest
 				return primaryDamage, primaryType, secondaryDamage, secondaryType
 			end
 
-			if not (creature:getName():lower() == "arechek") then
-				return
-			end
-
 			local healthGain = PredictNetHealthgain(primaryDamage, primaryType, secondaryDamage, secondaryType)
 			local currentHealth = creature:getHealth()
 			if (currentHealth + healthGain) >= creature:getMaxHealth() then
-				local pos = creature:getPosition()
-				creature:remove()
-				Game.createMonster("Arechek Calm", pos)
+				creature:setType("Arechek Calm")
 			end
 
 			return primaryDamage, primaryType, secondaryDamage, secondaryType
@@ -500,6 +488,7 @@ quest
 	end)
 	:Monster(function()
 		local mType = Game.createMonsterType("Arechek calm")
+		local arechekBase = Game.createMonsterType("Arechek")
 		local monster = {}
 
 		monster.name = "Arechek"
@@ -639,6 +628,7 @@ quest
 		}
 
 		mType:register(monster)
+		arechekBase:register(monster)
 	end)
 	:Script(function(missionState)
 		local nextState = {
@@ -1319,7 +1309,7 @@ quest
 					key = Storage.ProdigalSon.EristicsBooks.Three,
 					rewards = { QuestKeyItems.ProdigalSon.BookThree },
 				},
-			}, JANUSZEX_ANCHOR),
+			}),
 			QuestFactory.Script(function(missionState)
 				local surfaceZ = JANUSZEX_ANCHOR:Moved(0, 0, 2).z
 				local function isOnSurface(pos)
@@ -1433,7 +1423,7 @@ quest
 					key = Storage.ProdigalSon.DiamondNecklace,
 					rewards = { QuestKeyItems.ProdigalSon.DiamondNecklace },
 				},
-			}, JANUSZEX_ANCHOR),
+			}),
 			QuestFactory.Dialog("Henry the Foreman", {
 				[{ "mission" }] = {
 					text = "Yeah, this is the one i was looking for.",
@@ -1665,7 +1655,7 @@ quest
 				if not creature then
 					return
 				end
-				if creature:getName():lower() == "arechek" then
+				if creature:getName():lower() == "arechek calm" then
 					doTargetCombatHealth(monster, creature, COMBAT_FIREDAMAGE, -1, -1, CONST_ME_NONE)
 				end
 			end)

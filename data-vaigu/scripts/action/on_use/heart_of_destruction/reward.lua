@@ -14,7 +14,7 @@ function heartDestructionReward.onUse(player, item, fromPosition, target, toPosi
 			})
 
 			player:setStorageValueByKey(14337, 1)
-			player:setStorageValueByKey(Storage.Finished.HeartofDestruction, 1)
+			player:setStorageValueByKey(Storage.Finished.HeartOfDestruction, 1)
 			--player:addAchievement("Ender of the End")
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found an energetic backpack.")
 		else

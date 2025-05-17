@@ -4,29 +4,25 @@ quest
 	:Storage(function()
 		Storage.Finished = {
 			--#region Real
-			DemonHelmet = {},
-			PitsofInferno = {},
 			Annihilator = {},
-			Banshee = {},
+			PitsOfInferno = {},
+			OrcFortress = {},
+			DwarvenLegs = {},
+			
 			TheInquisition = {},
-			HeartofDestruction = {},
+			HeartOfDestruction = {},
 			TheApeCity = {},
 			LiquidBlack = {},
 			DemonOak = {},
 			BigfootsBurden = {},
-			-- Annihilator = 4016,
-			-- Annihilator = 4017,
-			-- Annihilator = 4018,
-			-- PitsofInferno = 4020,
-			-- PitsofInferno = 4021,
+			TheDreamCourts = {},
+
 			FirstArena = {},
 			SecondArena = {},
 			ThirdArena = {},
 			--#endregion
 
 			--#region Simple chest
-			DwarvenLegs = {},
-			OrcFortress = {},
 			-- OrcFortress = 6024,
 			-- OrcFortress = 6025,
 			-- blegs = 6037
@@ -36,37 +32,61 @@ quest
 			--#region Old quests
 			ArielsFriend = {},
 			Firestarter = {},
-			TrudnePoczatki = {},
-			Ocellatus = {},
 			SilenceOfTheLambs = {},
-			TheDreamCourts = {},
 			FerumbrasAscendant = {},
 			TopChef = {},
-			WayOfTheDruid = {},
 			--#endregion
 
 			--#region 2022
-			TheaterOfCheapThrills = {},
-			IkeaForTheBold = {},
-			SettledDownFishmonger = {},
-			PathOfTheUndead = {},
-			AssassinsCreedSquurvaali = {},
 			ImRestingHere = {},
 			ChesterTheDwarf = {},
-			CaveExplorerOnShield = {},
-			DesertQuestOne = {},
+			AssassinsCreedSquurvaali = {},
+			PathOfTheUndead = {},
 			SultanPrime = {},
+			ProdigalSon = {},
 			--#endregion
 
 			--#region 2024
+			CaveExplorerOnShield = {},
+			DesertQuestOne = {},
 			DesertQuestTwo = {},
-			ProdigalSon = {},
+			--#endregion
+
+			--local support
+			EnterTheDrunkTank = {},
+			Discernment = {},
+			WoodDelivery = {},
+			PotionConveyorJourneyman = {},
+			FreakingRats = {},
+			BudgetRecycling = {},
+			LostCrystalBall = {},
+			Biodegradable = {},
+			UnwantedGuests = {},
+			TwoMarlinQuest = {},
+			OcellatusXD = {},
+			IKEAForTheBold = {},
+			SettledDownFishmonger = {},
+
+			-- to carry the pigs
+			BeLikeSchwarzenegger = {},
+			HalfTurnKick = {},
+			BalancedDiet = {},
+			KitzDominando = {},
+
+			--king ot the rats
+			TheaterOfCheapThrills = {},
 			SafetyAndOccupationalHygiene = {},
 			ThreeSramatiansAndTheDragon = {},
 			FourActTragedy = {},
 			PerIustitiaAdAstra = {},
-			KingOfRatsHQ = {},
-			--#endregion
+
+			--way of the druid
+			WayOfTheDruid = {},
+			DeerSeason = {},
+			TakenBenek = {},
+			RudeEviction = {},
+			SecretIngredient = {},
+			SingingCrystal = {},
 		}
 	end)
 	:NoQuestlog()

@@ -57,19 +57,19 @@ return {
 		return T("Aktualnie posiadasz :points: punktow taskow.  Mozesz wymienic je na kilka {trofeow}, {wierzchowca} oraz {mozliwosc} nasycania na najwyzszy poziom.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
-		return T("Ktore chcial bys zakupic? Kosztowac cie to bedzie :cost: punktow taskow: {bronze hunter trophy}, {silver hunter trophy}, {gold hunter trophy}, {gozzler trophy}, {hellflayer trophy} oraz {sea serpent doll}.", { cost = context.keywordConfig.cost })
+		return T("Ktore chcial bys zakupic? Kosztowac cie to bedzie :cost: punktow taskow: {bronze hunter trophy}, {silver hunter trophy}, {gold hunter trophy}, {gozzler trophy}, {hellflayer trophy} oraz {sea serpent doll}.", { cost = context.cost })
 	end,
 	["YOU_WANT_TO_BUY_TROHPY_NAME"] = function(context)
-		return T("Czy chcesz kupic :name: za :cost: punktow taskowych?", { name = context.msg:lower(), cost = context.keywordConfig.cost })
+		return T("Czy chcesz kupic :name: za :cost: punktow taskowych?", { name = context.msg:lower(), cost = context.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
 		local current = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
-		local required = context.keywordConfig.cost or PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints
+		local required = context.cost or PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("Nie posiadasz odpowiedniej liczby punktow taskowych. Potrzebuejsz :required: punktow aby to kupic. Posiadasz :current: punktow, co oznacza, ze potrzebuejesz jeszcze :diff: punktow.", { current = current, required = required, diff = diff })
 	end,
 	["YOU_WANT_TO_BUY_ANTELOPE"] = function(context)
-		return T("Czy chcesz wymienic :cost: punktow taskowych na na wierzchowca Antelope?", { cost = context.keywordConfig.cost })
+		return T("Czy chcesz wymienic :cost: punktow taskowych na na wierzchowca Antelope?", { cost = context.cost })
 	end,
 	["LIST_IMBUING_NAMES"] = function()
 		local translatedString = "Sprzedaje paczki z produktami, ktore umozliwiaja dokonanie nasycenia. Oto oferowane przeze rodzaje:"
@@ -109,7 +109,7 @@ return {
 		return message
 	end,
 	["YOU_WANT_BUY_ABILITY_POWEFUL_IMBUEMENT"] = function(context)
-		return T("Czy chcesz kupic mozliwosc nasycania najwyzszego poziomu (powerful) za :cost: punktow taskowych?", { cost = context.keywordConfig.cost })
+		return T("Czy chcesz kupic mozliwosc nasycania najwyzszego poziomu (powerful) za :cost: punktow taskowych?", { cost = context.cost })
 	end,
 	["You already have this mount."] = "Juz posiadasz tego wierzchowca.",
 	["I can sell you creature product bundles for each of {imbuings}. They will cost you some gold and {points}."] = "Posiadam paczki creature productow na kazdy z {imbuingow}. Kosztowac cie to bedzie troche zlota oraz {punktow}.",

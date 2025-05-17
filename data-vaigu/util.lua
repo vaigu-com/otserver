@@ -1,3 +1,11 @@
+function Player:getFiveBlessingsCost()
+	local level = self:getLevel()
+	if level <= MAX_LVL_TO_GET_FREE_BLESS then
+		return 0
+	end
+	return getBlessingsCost(level) * 5
+end
+
 function ItemsToString(items)
 	items = items or {}
 

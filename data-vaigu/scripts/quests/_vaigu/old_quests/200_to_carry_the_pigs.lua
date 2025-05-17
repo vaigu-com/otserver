@@ -168,6 +168,7 @@ quest
 					},
 					nextState = {
 						[Storage.ToCarryThePigs.BeLikeSchwarzenegger] = MISSION_FINISHED,
+						[Storage.Finished.BeLikeSchwarzenegger] = MISSION_FINISHED,
 					},
 				},
 			})
@@ -270,6 +271,7 @@ quest
 					},
 					nextState = {
 						[Storage.ToCarryThePigs.HalfTurnKick] = MISSION_FINISHED,
+						[Storage.Finished.HalfTurnKick] = MISSION_FINISHED,
 					},
 					requiredItems = {
 						QuestKeyItems.ToCarryThePigs.SmuggledLegs,
@@ -317,6 +319,7 @@ quest
 					textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 					nextState = {
 						[Storage.ToCarryThePigs.BalancedDiet] = MISSION_FINISHED,
+						[Storage.Finished.BalancedDiet] = MISSION_FINISHED,
 					},
 					rewards = {
 						{ id = 8018 },
@@ -373,15 +376,18 @@ quest
 		return QuestState.ToCarryThePigs.KitzDominando.GiveBowToKitz,
 			QuestFactory.Dialog(
 				"[SOLID] Kitz",
-				{ [{ "mission", "misja" }] = {
-					text = "Is that THIS bow? Guess I got played by the elves. I will make them regret..\nBut thanks, you finished your mission. Here, keep my old bow in return.",
-					nextState = {
-						[Storage.ToCarryThePigs.KitzDominando] = MISSION_FINISHED,
+				{
+					[{ "mission", "misja" }] = {
+						text = "Is that THIS bow? Guess I got played by the elves. I will make them regret..\nBut thanks, you finished your mission. Here, keep my old bow in return.",
+						nextState = {
+							[Storage.ToCarryThePigs.KitzDominando] = MISSION_FINISHED,
+							[Storage.Finished.KitzDominando] = MISSION_FINISHED,
+						},
+						requiredItems = {
+							QuestKeyItems.ToCarryThePigs.NewBow,
+						},
 					},
-					requiredItems = {
-						QuestKeyItems.ToCarryThePigs.NewBow,
-					},
-				} }
+				}
 			)
 	end)
 	:Register()

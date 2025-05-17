@@ -113,6 +113,7 @@ function Player.checkGnomeRank(self)
 		[Storage.BigfootsBurden.Warzone3Access] = 2,
 		[Storage.BigfootsBurden.Rank] = 1440,
 		[Storage.BigfootsBurden.WarzoneStatus] = 1,
+		[Storage.Finished.BigfootsBurden] = MISSION_FINISHED,
 	})
 	return true
 end

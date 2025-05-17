@@ -1109,7 +1109,7 @@ quest
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.SwagierCrate },
 					nextState = { [Storage.PerIustitiaAdAstra.Mission02] = QuestState.PerIustitiaAdAstra.Mission02.ReturnCrateToSwagger },
 				},
-			}, GANYMEDE_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission02.ReturnCrateToSwagger,
@@ -1169,7 +1169,7 @@ quest
 					rewards = { QuestKeyItems.PerIustitiaAdAstra.OfficerId },
 					nextState = { [Storage.PerIustitiaAdAstra.Mission03] = QuestState.PerIustitiaAdAstra.Mission03.BringDocumentsToRubelstein },
 				},
-			}, HUGO_TAR_PLANET_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission03.BringDocumentsToRubelstein,
@@ -1280,7 +1280,7 @@ quest
 						[Storage.PerIustitiaAdAstra.Mission04] = QuestState.PerIustitiaAdAstra.Mission04.BringRecipeToHugo,
 					},
 				},
-			}, HUGO_BEACH_PLANET_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission04.BringRecipeToHugo,
@@ -1304,7 +1304,7 @@ quest
 			}),
 			QuestFactory.OnUseDeclarations({
 				{ id = 30304, key = Storage.PerIustitiaAdAstra.KeyItems.LecinaHammer, rewards = { QuestKeyItems.PerIustitiaAdAstra.LecinaHammer } },
-			}, HUGO_BEACH_PLANET_ANCHOR),
+			}),
 			QuestFactory.Script(function(missionState)
 				local updateStorages = {
 					[Storage.PerIustitiaAdAstra.Mission04] = QuestState.PerIustitiaAdAstra.Mission04.ReportRepairToHugo,
@@ -1741,6 +1741,7 @@ quest
 					nextState = {
 						[Storage.PerIustitiaAdAstra.Mission05] = MISSION_FINISHED,
 						[Storage.PerIustitiaAdAstra.AstralJanusSpawnTileAccess] = ACCESS_GRANTED,
+						[Storage.Finished.PerIustitiaAdAstra] = MISSION_FINISHED,
 						--[Storage.BigKlamoty.Mission01] = 1,
 					},
 					rewards = { ExerciseWeaponBox(5000) },

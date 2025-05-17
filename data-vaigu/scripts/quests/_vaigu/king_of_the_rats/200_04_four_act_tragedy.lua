@@ -836,7 +836,7 @@ quest
 					key = Storage.FourActTragedy.Rewards.Fanfare,
 					rewards = { QuestKeyItems.FourActTragedy.Fanfare },
 				},
-			}, RETRO_KNUROWO_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
@@ -876,7 +876,7 @@ quest
 						QuestKeyItems.FourActTragedy.TimmyPowder,
 					},
 				},
-			}, RETRO_KNUROWO_ANCHOR)
+			})
 	end)
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.ReportToRomek,

@@ -36,7 +36,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Otrzymujesz worek z nagroda, oraz Rift Warrior outfit!")
 	player:getPosition():sendMagicEffect(CONST_ME_STUN)
-	player:setStorageValueByKey(Storage.Finished.FerumbrasAscendant, 1) -- quest done (website)
+	player:setStorageValueByKey(Storage.Finished.FerumbrasAscendant, MISSION_FINISHED) -- quest done (website)
 	player:setStorageValueByKey(Storage.Ferumbras.Reward, 1)
 	return true
 end

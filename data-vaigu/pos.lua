@@ -681,11 +681,14 @@ function Position:GetTopItem()
 		return nil
 	end
 	local topThing = tile:getTopVisibleThing()
-	if topThing:isItem() then
-		return topThing
-	else
+	if not topThing then
 		return nil
 	end
+	if not topThing:isItem() then
+		return nil
+	end
+	
+	return topThing
 end
 
 function Position:GetPlayers()
@@ -859,7 +862,7 @@ end
 
 DESERT_QUEST_HUB_ANCHOR = Position(6795, 1275, 9)
 DESERT_QUEST_ONE_ANCHOR = Position(5158, 866, 11)
-DESERT_QUEST_TWO_ANCHOR = Position(5051, 646, 7)
+DESERT_QUEST_TWO_ANCHOR = Position(4670, 2565, 7)
 RUBIKS_CUBE_ANCHOR = DESERT_QUEST_TWO_ANCHOR:Moved(-20, -39, -3)
 
 RETRO_MIRKO_ANCHOR = Position(4750, 856, 7)

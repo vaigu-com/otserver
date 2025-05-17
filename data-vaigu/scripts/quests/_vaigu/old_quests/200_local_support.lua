@@ -496,6 +496,7 @@ quest
 					text = "Gypsy fortune telling ball? He was a clumsy one ever since.\nThree people are complaining about wood deficiency? It has to be checked as soon as possible. Make your way to Knurowo and ask in about the delivery at the city pier.\nFollow the road at the west of the city and you will find it. I'll give you some potions supply, you may need them.",
 					nextState = {
 						[Storage.LocalSupport.Discernment] = MISSION_FINISHED,
+						[Storage.Finished.Discernment] = MISSION_FINISHED,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TalkWithWoody,
 					},
 					requiredState = {
@@ -795,7 +796,10 @@ quest
 			QuestFactory.Dialog("Fstab", {
 				[{ "nagroda", "reward" }] = {
 					text = "Well, thank you on behalf of our City for your help, get some of these potions.",
-					nextState = { [Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED },
+					nextState = {
+						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
+						[Storage.Finished.WoodDelivery] = MISSION_FINISHED,
+					},
 					rewards = { { id = 268, count = 40, addToStore = true }, { id = 268, count = 5, addToStore = true } },
 				},
 			})
@@ -921,6 +925,7 @@ quest
 					expReward = 700000,
 					nextState = {
 						[Storage.LocalSupport.PotionConveyorJourneyman] = MISSION_FINISHED,
+						[Storage.Finished.PotionConveyorJourneyman] = MISSION_FINISHED,
 					},
 				},
 			})
@@ -999,7 +1004,10 @@ quest
 					requiredItems = {
 						QuestKeyItems.LocalSupport.PoisonedCheese,
 					},
-					nextState = { [Storage.LocalSupport.FreakingRats] = MISSION_FINISHED },
+					nextState = {
+						[Storage.LocalSupport.FreakingRats] = MISSION_FINISHED,
+						[Storage.Finished.FreakingRats] = MISSION_FINISHED,
+					},
 				},
 			})
 	end)
@@ -1022,6 +1030,7 @@ quest
 					textNoRequiredItems = "I think you missed some colour, bring me all six",
 					nextState = {
 						[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
+						[Storage.Finished.BudgetRecycling] = MISSION_FINISHED,
 					},
 					requiredItems = {
 						{ id = 5909 },
@@ -1057,6 +1066,7 @@ quest
 					nextState = {
 						[Storage.LocalSupport.RedGemExchange] = ACCESS_GRANTED,
 						[Storage.LocalSupport.LostCrystalBall] = MISSION_FINISHED,
+						[Storage.Finished.LostCrystalBall] = MISSION_FINISHED,
 					},
 				},
 			})
@@ -1116,6 +1126,7 @@ quest
 					text = "Here, please, this box. Anon's father hangs around a pond near the {barracks}.",
 					nextState = {
 						[Storage.LocalSupport.Biodegradable] = MISSION_FINISHED,
+						[Storage.Finished.Biodegradable] = MISSION_FINISHED,
 						[Storage.LocalSupport.SettledDownFishmonger] = QuestState.LocalSupport.SettledDownFishmonger.DeliverAnonFatherPackage,
 					},
 					rewards = {
@@ -1170,6 +1181,7 @@ quest
 					},
 					nextState = {
 						[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
+						[Storage.Finished.UnwantedGuests] = MISSION_FINISHED,
 					},
 				},
 			}),
@@ -1227,6 +1239,7 @@ quest
 					text = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
 					nextState = {
 						[Storage.LocalSupport.TwoMarlinQuest] = MISSION_FINISHED,
+						[Storage.Finished.TwoMarlinQuest] = MISSION_FINISHED,
 					},
 					rewards = {
 						{ id = 902 },
@@ -1324,7 +1337,7 @@ quest
 						[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
 						[Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED,
 						[Storage.FashionistaOnanista.Mission01] = QuestState.FashionistaOnanista.Mission01.AskOcellatusForNewMission,
-						[Storage.Finished.Ocellatus] = MISSION_FINISHED,
+						[Storage.Finished.OcellatusXD] = MISSION_FINISHED,
 					},
 				},
 			}),
@@ -1785,7 +1798,7 @@ quest
 					text = "Well done soldier, here's your reward. I found these items among stolen goods which we found in this thug's den.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = MISSION_FINISHED,
-						[Storage.Finished.IkeaForTheBold] = MISSION_FINISHED,
+						[Storage.Finished.IKEAForTheBold] = MISSION_FINISHED,
 					},
 					rewards = {
 						{ id = 22195 },

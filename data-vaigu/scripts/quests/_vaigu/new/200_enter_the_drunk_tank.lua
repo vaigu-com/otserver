@@ -237,6 +237,7 @@ quest
 				expReward = 1000000,
 				nextState = {
 					[Storage.EnterTheDrunkTank.Mission01] = MISSION_FINISHED,
+					[Storage.Finished.EnterTheDrunkTank] = MISSION_FINISHED,
 				},
 			},
 		})

@@ -2,7 +2,6 @@ local quest = Quest(LOCALIZERS.DesertQuestOne)
 
 quest
 	:Storage(function()
-		Storage.Finished.DesertQuestOne = {}
 		Storage.DesertQuestOne = {
 			Mission01 = {},
 			QuestState = {
@@ -589,10 +588,12 @@ quest
 					rewards = { { id = 3035, count = 30 } },
 				},
 				{
-
+					nextState = {
+						[Storage.Finished.DesertQuestOne] = MISSION_FINISHED,
+					},
 					id = 21743,
 					key = Storage.DesertQuestOne.Rewards.FinalExpBox,
-					expReward = 1000 * 1000 * 1,
+					expReward = 1 * 1000 * 1000,
 				},
 			}),
 			QuestFactory.Script(function()
