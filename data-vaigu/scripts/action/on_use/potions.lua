@@ -206,8 +206,11 @@ pseudoQuest
 
 		local flaskPotion = Action()
 		function flaskPotion.onUse(player, usedPotionEx, fromPosition, target, toPosition, isHotkey)
-			if not target or type(target) == "userdata" and not target:isPlayer() then
+			if not target or not player then
 				return false
+			end
+			if not target:isPlayer() or not player:isPlayer() then
+				return
 			end
 
 			local potionData = potions[usedPotionEx:getId()]
