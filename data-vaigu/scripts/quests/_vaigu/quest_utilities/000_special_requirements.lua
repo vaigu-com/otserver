@@ -188,15 +188,21 @@ SPECIAL_REQUIREMENTS_BANK = {
 		local moneyInInventory = context.player:getMoney()
 		if type(context.amount) == "string" and context.amount == "all" then
 			return moneyInInventory > 0
+		elseif type(context.amount)== "nil" then
+			return false
 		end
 
+		-- TODOVAIGU check if parses to number
 		local declaredMoney = tonumber(context.amount) or PlayerCustomDialogDataRegistry:Get(context.player).amount
 		return declaredMoney <= moneyInInventory
 	end,
 	hasMoneyinbank = function(context)
 		if type(context.amount) == "string" and context.amount == "all" then
 			return Bank.balance(context.player) > 0
+		elseif type(context.amount)== "nil" then
+			return false
 		end
+		
 		local amount = tonumber(context.amount) or PlayerCustomDialogDataRegistry:Get(context.player).amount
 		return amount <= context.player:getBankBalance()
 	end,

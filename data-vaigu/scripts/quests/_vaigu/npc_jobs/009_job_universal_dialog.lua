@@ -698,6 +698,10 @@ pseudoQuest
 				},
 			},
 			[JOB_BANK] = {
+				[{ "yes" }] = {
+					text = "You can {deposit}, {withdraw} and {transfer} your money here. If you need to monitor your finances, ask be for {balance}.",
+					requiredTopic = DEFAULT_TOPIC,
+				},
 				--balance
 				[{ "balance" }] = {
 					text = "ACCOUNT_BALANCE",
@@ -762,7 +766,7 @@ pseudoQuest
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
-							textFailedRequirement = "There is not enough gold on your account.",
+							textFailedRequirement = "There is not enough gold in your account.",
 						},
 					},
 					specialActionsOnSuccess = {
@@ -781,7 +785,7 @@ pseudoQuest
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
-							textFailedRequirement = "There is not enough gold on your account.",
+							textFailedRequirement = "There is not enough gold in your account.",
 						},
 					},
 					specialActionsOnSuccess = {
@@ -795,7 +799,7 @@ pseudoQuest
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
-							textFailedRequirement = "There is not enough gold on your account.",
+							textFailedRequirement = "There is not enough gold in your account.",
 						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.canCarryWithdrawnMoney,
@@ -819,7 +823,7 @@ pseudoQuest
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
-							textFailedRequirement = "There is not enough gold on your account.",
+							textFailedRequirement = "There is not enough gold in your account.",
 						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.recipientIsnotself,
@@ -849,7 +853,7 @@ pseudoQuest
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
-							textFailedRequirement = "There is not enough gold on your account.",
+							textFailedRequirement = "There is not enough gold in your account.",
 						},
 					},
 					specialActionsOnSuccess = {
@@ -882,7 +886,7 @@ pseudoQuest
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
-							textFailedRequirement = "There is not enough gold on your account.",
+							textFailedRequirement = "There is not enough gold in your account.",
 						},
 					},
 					specialActionsOnSuccess = {

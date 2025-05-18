@@ -5,7 +5,7 @@ JOB_GREETINGS = {
 	[JOB_MAGIC] = { text = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages." },
 	[JOB_CREATURE_PRODUCT] = { text = "Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer." },
 	[JOB_FURNITURE] = { text = "Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}." },
-	[JOB_JEWELLER] = { text = "Hello |PLAYERNAME|. As a jeweler store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}" },
+	[JOB_JEWELLER] = { text = "Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}." },
 	[JOB_UTILITY] = { text = "Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested." },
 	[JOB_DAILYTASKS_GOLDENOUTFIT] = { text = "Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors." },
 	[JOB_FISHER] = { text = "Hello, I {trade} with fishing equipment, take a look at my offer if you want." },

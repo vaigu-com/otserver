@@ -1,11 +1,13 @@
 local accountBalanceStrings = {
-	{ requiredBalance = 100 * 10 ^ 6, text = "I think you must be one of the richest inhabitants in the world!" },
-	{ requiredBalance = 100 * 10 ^ 6, text = "You have made ten millions and it still grows!" },
-	{ requiredBalance = 100 * 10 ^ 6, text = "Wow, you have reached the magic number of a million gp!!!" },
-	{ requiredBalance = 100 * 10 ^ 6, text = "You certainly have made a pretty penny." },
+	{ requiredBalance = 10 ^ 9, text = "I think you must be one of the richest inhabitants in the world!" },
+	{ requiredBalance = 10 ^ 8, text = "You have made ten millions and it still grows!" },
+	{ requiredBalance = 10 ^ 7, text = "Wow, you have reached the magic number of a million gp!!!" },
+	{ requiredBalance = 10 ^ 6, text = "You certainly have made a pretty penny." },
 }
 
 return {
+	["You can {deposit}, {withdraw} and {transfer} your money here. If you need to monitor your finances, ask be for {balance}."] = "You can {deposit}, {withdraw} and {transfer} your money here. If you need to monitor your finances, ask be for {balance}.",
+
 	["ACCOUNT_BALANCE"] = function(context)
 		local balance = Bank.balance(context.player)
 		local balanceString = ""
