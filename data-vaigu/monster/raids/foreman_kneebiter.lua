@@ -69,9 +69,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 5880, chance = 2500, maxCount = 2 }, -- iron ore
-	{ id = 3031, chance = 90000, maxCount = 100 }, -- gold coin
-	{ id = 3413, chance = 6666 }, -- battle shield
+	{ id = 5880, chance = 25000, maxCount = 10 }, -- iron ore
+	{ id = 3035, chance = 90000, maxCount = 10 }, -- platinum coin
+	{ id = 3415, chance = 6666 }, -- guardian shield
 }
 
 monster.attacks = {
