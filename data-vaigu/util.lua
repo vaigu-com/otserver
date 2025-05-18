@@ -1,3 +1,7 @@
+function FirstCharToUpper(str)
+	return str:gsub("^%l", string.upper)
+end
+
 function Player:getFiveBlessingsCost()
 	local level = self:getLevel()
 	if level <= MAX_LVL_TO_GET_FREE_BLESS then

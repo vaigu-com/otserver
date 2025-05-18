@@ -899,7 +899,6 @@ function RegisterDailyTasksInQuestsTable()
 		dailyTask.storage = storage
 		dailyTaskData[i].storage = storage
 		dailyTask.currentKills = currentKills
-		print(dailyTask.name, dailyTask.max)
 
 		local dailyTaskMission = {
 			name = "DAILY_TASK_MISSION_NAME",
