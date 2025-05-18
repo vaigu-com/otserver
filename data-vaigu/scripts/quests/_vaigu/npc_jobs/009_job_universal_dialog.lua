@@ -712,6 +712,11 @@ pseudoQuest
 					nextTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
 					specialRequirements = {
 						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
+						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyininventory,
 							requiredOutcome = true,
 							textFailedRequirement = "You do not have enough gold.",
@@ -731,6 +736,11 @@ pseudoQuest
 					requiredTopic = QuestTopics.JOB_TOPICS.declareAmountdeposit,
 					specialRequirements = {
 						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
+						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyininventory,
 							requiredOutcome = true,
 							textFailedRequirement = "You do not have enough gold.",
@@ -744,6 +754,11 @@ pseudoQuest
 					text = "DEPOSIT_OK",
 					requiredTopic = QuestTopics.JOB_TOPICS.confirmDeposit,
 					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyininventory,
 							requiredOutcome = true,
@@ -764,6 +779,11 @@ pseudoQuest
 					nextTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
 					specialRequirements = {
 						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
+						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
 							textFailedRequirement = "There is not enough gold in your account.",
@@ -783,6 +803,11 @@ pseudoQuest
 					requiredTopic = QuestTopics.JOB_TOPICS.declareAmountwithdraw,
 					specialRequirements = {
 						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
+						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
 							textFailedRequirement = "There is not enough gold in your account.",
@@ -796,6 +821,11 @@ pseudoQuest
 					text = "WITHDRAW_OK",
 					requiredTopic = QuestTopics.JOB_TOPICS.confirmWithdraw,
 					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
@@ -820,6 +850,11 @@ pseudoQuest
 					text = "CONFIRM_TRANSFER",
 					nextTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
@@ -850,6 +885,11 @@ pseudoQuest
 					nextTopic = QuestTopics.JOB_TOPICS.declareRecipient,
 					requiredTopic = QuestTopics.JOB_TOPICS.declareAmounttransfer,
 					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,
@@ -883,6 +923,11 @@ pseudoQuest
 					text = "TRANSFER_OK",
 					requiredTopic = QuestTopics.JOB_TOPICS.confirmTransfer,
 					specialRequirements = {
+						{
+							requirement = SPECIAL_REQUIREMENTS_BANK.declaredMoneyIsParsable,
+							requiredOutcome = true,
+							textFailedRequirement = "Thats not a correct amount.",
+						},
 						{
 							requirement = SPECIAL_REQUIREMENTS_BANK.hasMoneyinbank,
 							requiredOutcome = true,

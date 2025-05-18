@@ -60,6 +60,8 @@ return {
 	end,
 
 	["You do not have enough gold."] = "You do not have enough gold.",
+	["There is not enough gold in your account."] = "There is not enough gold in your account.",
+	["Thats not a correct amount."] = "Thats not a correct amount.",
 
 	["DEPOSIT_CANCEL"] = "As you wish. Is there something else I can do for you?",
 	["WITHDRAW_CANCEL"] = "The customer is king! Come back anytime you want to if you wish to {withdraw} your money.",
