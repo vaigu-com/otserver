@@ -62,7 +62,7 @@ pseudoQuest
 				{ toPos = Position(5909, 1233, 6), name = "North Mirko" },
 				{ toPos = Position(6247, 1023, 6), name = "Steppes" },
 				{ toPos = Position(5747, 1217, 6), name = "Bornholm", minLevel = 50 },
-				{ toPos = Position(6223, 1392, 7), name = "Quara Island" },
+				{ toPos = Position(5665, 1280, 7), name = "Quara Island" },
 				{ toPos = KRAKEN_ANCHOR, name = "Leviathan", minLevel = 50, requiredState = { [Storage.FourActTragedy.LeviathanAccess] = ACCESS_GRANTED } },
 			},
 			JACK_SPARROW_SHIP = {
@@ -92,9 +92,6 @@ pseudoQuest
 				{ toPos = Position(6462, 1125, 14), name = "Hurghada underground" },
 			},
 		}
-	end)
-	:NoQuestlog()
-	:Script(function()
 		local function createHelpDialog(player, _, _)
 			player:showTextDialog(2994, player:Localizer(LOCALIZERS.Universal):Get("TravelHelpDialog"))
 		end
@@ -145,13 +142,11 @@ pseudoQuest
 			[TRANSPORT_TYPE.CARPET] = "CarpetWindowTitle",
 			[TRANSPORT_TYPE.TRAIN] = "TrainWindowTitle",
 		}
-
 		local transportTypeToWindowMessage = {
 			[TRANSPORT_TYPE.SHIP] = "ShipWindowMessage",
 			[TRANSPORT_TYPE.CARPET] = "CarpetWindowMessage",
 			[TRANSPORT_TYPE.TRAIN] = "TraintWindowMessage",
 		}
-
 		local function hasAccess(player, transport)
 			if transport.requiredState and not player:HasRequiredStates(transport.requiredState) then
 				return false
@@ -159,7 +154,6 @@ pseudoQuest
 
 			return true
 		end
-
 		function CreateTransportWindow(context)
 			local player = context.player
 			local transports = context.transports
@@ -189,4 +183,5 @@ pseudoQuest
 			window:sendToPlayer(player)
 		end
 	end)
+	:NoQuestlog()
 	:Register()

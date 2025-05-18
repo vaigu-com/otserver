@@ -1,4 +1,4 @@
-local config = {
+WEREBOSS_DATA = {
 	[28580] = { value = 13, bossName = "Black Vixen" }, -- {x = 6210, y = 1085, z = 7}
 	[28581] = { value = 13, bossName = "Sharpclaw" }, --
 	[28582] = { value = 13, bossName = "Darkfang" }, --
@@ -6,8 +6,10 @@ local config = {
 	[28584] = { value = 13, bossName = "Shadowpelt" }, --
 }
 
-local wereBosses = MoveEvent()
+local bossRoomCenter = Position(6205, 1082, 7)
+local bossSpawnPosition = Position(6205, 1092, 7)
 
+local wereBosses = MoveEvent()
 function wereBosses.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
@@ -15,8 +17,8 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 	end
 
 	local function roomIsOccupied()
-		local setting = config[item.actionid]
-		local spectators = Game.getSpectators(Position(6210, 1085, 7), false, true, 9, 9)
+		local setting = WEREBOSS_DATA[item.actionid]
+		local spectators = Game.getSpectators(bossRoomCenter, false, true, 9, 9)
 		if #spectators ~= 0 then
 			return true
 		end
@@ -32,7 +34,7 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 	if os.time() < player:getStorageValueByKey(Storage.WereBossKill) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:sendCancelMessage("Try another day.")
+		player:sendCancelMessage("You can fight today wereboss every 6 hours.")
 		return true
 	end
 
@@ -43,7 +45,7 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	local spectators, spectator = Game.getSpectators(Position(6210, 1085, 7), false, false, 9, 9, 9, 9)
+	local spectators, spectator = Game.getSpectators(bossRoomCenter, false, false, 9, 9, 9, 9)
 	for i = 1, #spectators do
 		spectator = spectators[i]
 		if spectator:isMonster() then
@@ -51,15 +53,13 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 		end
 	end
 
-	local setting = config[item.actionid]
-	player:teleportTo(Position(6212, 1088, 7))
+	local setting = WEREBOSS_DATA[item.actionid]
+	player:teleportTo(bossRoomCenter)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-	Game.createMonster(setting.bossName, Position(6208, 1084, 7), true, true)
+	Game.createMonster(setting.bossName, bossSpawnPosition, true, true)
 	return true
 end
-
-for index, value in pairs(config) do
+for index, value in pairs(WEREBOSS_DATA) do
 	wereBosses:aid(index)
 end
-
 wereBosses:register()

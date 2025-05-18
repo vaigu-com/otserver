@@ -60,9 +60,6 @@ pseudoQuest
 				vocString = string.sub(vocString, 1, -3) .. " and " .. vocIdToName[vocations[#vocations]]
 				return vocString
 			end,
-			[4] = function()
-				return "players"
-			end,
 		}
 
 		local function parseVocationsCountIdentifier(vocationsCount)
@@ -78,17 +75,14 @@ pseudoQuest
 			return T("of :requiredLevel:", { requiredLevel = requiredLevel })
 		end
 		local function generateVocationLevelError(potion)
-			local allVocations = {}
-			for key, value in pairs(potion.vocations or {}) do
-				table.insert(allVocations, value)
+			local vocations = vocSizeToMessageCallback[parseVocationsCountIdentifier(#potion.vocations)](potion.vocations)
+			local accessStr = ""
+			if #potion.accessVocations > 0 then
+				local accessVocations = vocSizeToMessageCallback[parseVocationsCountIdentifier(#potion.accessVocations)](potion.accessVocations)
+				accessStr = " " .. FirstCharToUpper(accessVocations) .. " of level 200 will require training in order to drink this fluid."
 			end
-			for key, value in pairs(potion.accessVocations or {}) do
-				table.insert(allVocations, value)
-			end
-			local vocationsCount = parseVocationsCountIdentifier(#allVocations)
-			local vocationMessage = vocSizeToMessageCallback[vocationsCount](allVocations)
 			local levelMessage = parseLevelMessage(potion.requiredLevel)
-			return T("Only :vocationMessage: :levelMessage: may drink this fluid.", { vocationMessage = vocationMessage, levelMessage = levelMessage })
+			return T("Only :vocations: :levelMessage: may drink this fluid.:accessStr:", { vocations = vocations, levelMessage = levelMessage, accessStr = accessStr })
 		end
 
 		local edEkRpMs = {
@@ -126,12 +120,14 @@ pseudoQuest
 			--Mana shield
 			-- [35563] = { vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, requiredLevel = 14, func = magicshield, effect = CONST_ME_ENERGYAREA },
 		}
-		local function gernerateAuxilalryFields()
+		local function gernerateAuxillaryFields()
 			for _, potion in pairs(potions) do
+				potion.vocations = potion.vocations or {}
+				potion.accessVocations = potion.accessVocations or {}
 				potion.noLevelVocationError = generateVocationLevelError(potion)
 			end
 		end
-		gernerateAuxilalryFields()
+		gernerateAuxillaryFields()
 
 		local function tryCreateEmptyFlask(player, usedPotionEx, potionData, fromPosition)
 			local deactivatedFlasks = player:kv():get("talkaction.potions.flask") or false

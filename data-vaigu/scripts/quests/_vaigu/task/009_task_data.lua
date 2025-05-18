@@ -1,5 +1,3 @@
-NO_MAX_LEVEL_LIMIT = 5000
-
 local taskData = {
 	{
 		name = "Apes",
@@ -98,7 +96,7 @@ local taskData = {
 		tibiaCoins = 4,
 		min = 46,
 		max = NO_MAX_LEVEL_LIMIT,
-		bossName = "LOST EXTHROHUSHER",
+		bossName = "Lost Extrohusher",
 	},
 	{
 		name = "Vampires",

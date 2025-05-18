@@ -21,7 +21,7 @@ local raidData = {
 				:Creature("Marid", Area(Position(6656, 1285, 7), Position(6705, 1332, 7)), 15)
 				:Creature("Efreet", Area(Position(6656, 1285, 7), Position(6705, 1332, 7)), 15)
 				:Notification(-30, "Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad?"),
-		},
+		},	
 		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
@@ -137,7 +137,7 @@ local raidData = {
 	LuaRaid("Horestis"):Context({
 		perDay = 0.36,
 		waves = {
-			Wave(10000):Creature("Horestis", Area(Position(6573, 1454, 7), Position(6573, 1454, 7)), 1, false),
+			Wave(10000):Creature("Horestis", Area(Position(67119, 1074, 10), Position(7119, 1074, 10)), 1, false),
 		},
 		cooldown = 43200,
 		minPlayersOnline = 1,
@@ -245,7 +245,10 @@ local raidData = {
 	LuaRaid("Midnight_Panther"):Context({
 		perDay = 2.304,
 		waves = {
-			Wave(10000):Creature("Midnight Panther", Area(Position(6673, 943, 10), Position(6673, 943, 10)), 1, false):Creature("Midnight Panther", Area(Position(6668, 939, 10), Position(6668, 939, 10)), 1, false):Creature("Midnight Panther", Area(Position(6680, 916, 10), Position(6680, 916, 10)), 1, false),
+			Wave(10000)
+			:Creature("Midnight Panther", Area(Position(6673, 943, 10), Position(6673, 943, 10)), 1, false)
+			:Creature("Midnight Panther", Area(Position(6687, 948, 10), Position(6687, 948, 10)), 1, false)
+			:Creature("Midnight Panther", Area(Position(6692, 921, 10), Position(6692, 921, 10)), 1, false),
 		},
 		cooldown = 7200,
 		minPlayersOnline = 1,
@@ -660,14 +663,6 @@ local raidData = {
 		cooldown = 10800,
 		minPlayersOnline = 1,
 	}),
-	LuaRaid("Shadow_Hound"):Context({
-		perDay = 0.648,
-		waves = {
-			Wave(10000):Creature("Shadow Hound", Area(Position(6404, 1949, 8), Position(6404, 1949, 8)), 1, false),
-		},
-		cooldown = 10800,
-		minPlayersOnline = 1,
-	}),
 	LuaRaid("The_Many"):Context({
 		perDay = 0.36,
 		waves = {
@@ -782,7 +777,11 @@ local raidData = {
 	LuaRaid("Manta_Ray"):Context({
 		perDay = 2.304,
 		waves = {
-			Wave(10000):Creature("Manta Ray", Area(Position(6493, 743, 10), Position(6493, 743, 10)), 1, false):Creature("Manta Ray", Area(Position(6511, 746, 10), Position(6511, 746, 10)), 1, false):Creature("Manta Ray", Area(Position(6485, 728, 10), Position(6485, 728, 10)), 1, false):Creature("Manta Ray", Area(Position(6510, 728, 10), Position(6510, 728, 10)), 1, false),
+			Wave(10000)
+			:Creature("Manta Ray", Area(Position(6491, 743, 10), Position(6491, 743, 10)), 1, false)
+			:Creature("Manta Ray", Area(Position(6471, 745, 10), Position(6471, 745, 10)), 1, false)
+			:Creature("Manta Ray", Area(Position(6485, 728, 10), Position(6485, 728, 10)), 1, false)
+			:Creature("Manta Ray", Area(Position(6451, 753, 10), Position(6451, 753, 10)), 1, false),
 		},
 		cooldown = 7200,
 		minPlayersOnline = 1,
@@ -910,7 +909,7 @@ local raidData = {
 	LuaRaid("Ekatrix"):Context({
 		perDay = 0.576,
 		waves = {
-			Wave(10000):Creature("Ekatrix", Area(Position(5667, 1742, 4), Position(5667, 1742, 4)), 1, false),
+			Wave(10000):Creature("Ekatrix", Area(Position(5698, 1510, 3), Position(5698, 1510, 3)), 1, false),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 1,
@@ -961,7 +960,7 @@ local raidData = {
 	LuaRaid("Tyrn2"):Context({
 		perDay = 0.8,
 		waves = {
-			Wave(10000):Creature("Tyrn", Area(Position(6406, 1263, 3), Position(6406, 1263, 3)), 1, false),
+			Wave(10000):Creature("Tyrn", Area(Position(6363, 1253, 3), Position(6363, 1253, 3)), 1, false),
 		},
 		cooldown = 57600,
 		minPlayersOnline = 1,
@@ -1143,12 +1142,10 @@ function globalevent.onThink(...)
 	end
 	return true
 end
-
 globalevent:interval(1 * 60 * 1000) --1min
 globalevent:register()
 
 local raidByMonthDay = GlobalEvent("RaidsByMonthDay")
-
 function raidByMonthDay.onThink(...)
 	local date = getRealDate()
 	local hourMinuteNow = getRealTime()
@@ -1161,6 +1158,5 @@ function raidByMonthDay.onThink(...)
 	end
 	return true
 end
-
 raidByMonthDay:interval(1 * 60 * 1000) --1min
 raidByMonthDay:register()

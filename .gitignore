@@ -403,4 +403,5 @@ cmake-build-*
 out
 
 # RME backups
-/world/backup/*
+data-vaigu/world/backup/*
+data-vaigu/world/backups/*

@@ -1,10 +1,6 @@
 -- Functions from The Forgotten Server
 local foodCondition = Condition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
 
-local function firstToUpper(str)
-	return (str:gsub("^%l", string.upper))
-end
-
 function Player.feed(self, food)
 	local condition = self:getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
 	if condition then

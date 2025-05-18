@@ -1424,9 +1424,14 @@ quest
 					return 0 <= dir and dir <= 3
 				end
 
-				local function isNextPosWalkable(nextPos)
+				local function isNextPosIce(nextPos)
 					local groundId = Tile(nextPos):getGround():getId()
-					return stopid[groundId] or iceId[groundId]
+					return iceId[groundId]
+				end
+
+				local function isNextPosStopper(nextPos)
+					local groundId = Tile(nextPos):getGround():getId()
+					return stopid[groundId]
 				end
 
 				local function icyRelocate(player, fromPosition, toPos)
@@ -1438,14 +1443,20 @@ quest
 					end
 
 					local offset = Vector.FromDirection(playerMoveDir)
-					local nextPos = toPos:Moved(offset)
-
-					if not isNextPosWalkable(nextPos) then
-						return false
+					local lastIcyPos = nil
+					for i = 1, 100 do
+						local nextPos = toPos:Moved(offset:Scaled(i))
+						if isNextPosStopper(nextPos) then
+							player:teleportTo(nextPos)
+							return
+						elseif not isNextPosIce(nextPos) then
+							if lastIcyPos then
+								player:teleportTo(lastIcyPos)
+							end
+							return
+						end
+						lastIcyPos = nextPos
 					end
-					addEvent(function()
-						player:teleportTo(nextPos)
-					end, 10)
 				end
 
 				local function snowyRelocate(player, fromPosition, dir)
@@ -1455,7 +1466,6 @@ quest
 				end
 
 				local stopTile = MoveEvent()
-
 				function stopTile.onStepIn(creature, _, toPosition, fromPosition)
 					local player = creature:getPlayer()
 					if not player then
@@ -1467,13 +1477,11 @@ quest
 					snowyRelocate(player, fromPosition, playerMoveDir)
 					return true
 				end
-
 				stopTile:key(Storage.DesertQuestOne.Puzzles.SkatingPuzzle.StopTile)
 				stopTile:type("stepin")
 				stopTile:register()
 
 				local iceTile = MoveEvent()
-
 				function iceTile.onStepIn(creature, _, toPosition, fromPosition)
 					local player = creature:getPlayer()
 					if not player then
@@ -1483,7 +1491,6 @@ quest
 					icyRelocate(player, fromPosition, toPosition)
 					return true
 				end
-
 				iceTile:key(Storage.DesertQuestOne.Puzzles.SkatingPuzzle.IceTile)
 				iceTile:type("stepin")
 				iceTile:register()

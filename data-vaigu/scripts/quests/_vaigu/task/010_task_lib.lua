@@ -396,7 +396,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
 	end
 
 	local requiredKills = dailyTask.requiredKills
-	local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
+	local currentKills = self:getStorageValueByKey(dailyTask.currentKills)
 	if currentKills < requiredKills then
 		return localizer:Get("YOU_DONT_HAVE_REQUIRED_DAILY_TASK_KILLS")
 	end

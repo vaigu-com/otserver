@@ -1299,7 +1299,7 @@ bool ConditionRegeneration::executeCondition(const std::shared_ptr<Creature> &cr
 	const auto &player = creature->getPlayer();
 	int32_t dailyStreak = 0;
 	if (player) {
-		auto dailyStreakStored = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreak");
+		auto dailyStreakStored = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreakEndless");
 		if (dailyStreakStored > 0) {
 			dailyStreak = dailyStreakStored;
 		}

@@ -54,6 +54,10 @@ function MonsterTypeRepository:SerializeCorpses()
 	logger.info("[MonsterTypeRepository::SerializeCorpses] Serialization succesful.")
 end
 
+function MonsterTypeRepository:Get()
+	return self.registry
+end
+
 function MonsterTypeRepository:Serialize()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
 	for name, data in

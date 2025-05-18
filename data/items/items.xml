@@ -419,13 +419,13 @@
 		<attribute key="primarytype" value="liquids" />
 		<attribute key="weight" value="290" />
 		<attribute key="description"
-			value="This potion can only be consumed by players of level 50 or higher." />
+			value="This potion can only be consumed by sorcerers, druids and paladins of level 50 or higher. Knights of level 200 will require training in order to drink this fluid." />
 	</item>
 	<item id="238" article="a" name="great mana potion">
 		<attribute key="primarytype" value="liquids" />
 		<attribute key="weight" value="310" />
 		<attribute key="description"
-			value="This potion can only be consumed by sorcerers, druids and paladins of level 80 or higher." />
+			value="This potion can only be consumed by sorcerers and druids of level 80 or higher. Knights of level 200 will require training in order to drink this fluid." />
 	</item>
 	<item id="239" article="a" name="great health potion">
 		<attribute key="primarytype" value="liquids" />
@@ -46534,7 +46534,7 @@ hands of its owner. Granted by TibiaRoyal.com" />
 	<item id="23373" article="an" name="ultimate mana potion">
 		<attribute key="primarytype" value="liquids" />
 		<attribute key="description"
-			value="This potion can only be consumed by sorcerers and druids of level 130 or higher" />
+			value="Sorcerers and druids of level 200 will require training in order to drink this fluid." />
 		<attribute key="weight" value="310" />
 	</item>
 	<item id="23374" article="an" name="ultimate spirit potion">
