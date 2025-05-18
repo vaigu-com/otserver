@@ -59,6 +59,9 @@
 	<zone name="Task-Apes-BossRoom" zoneid="48" />
 	<zone name="Task-Apes-BossSpawnPosition" zoneid="46" />
 	<zone name="Task-Apes-PlayerSpawnPosition" zoneid="47" />
+	<zone name="Task-Barbarians-BossRoom" zoneid="202" />
+	<zone name="Task-Barbarians-BossSpawnPosition" zoneid="204" />
+	<zone name="Task-Barbarians-PlayerSpawnPosition" zoneid="203" />
 	<zone name="Task-Behemoths-BossRoom" zoneid="133" />
 	<zone name="Task-Behemoths-BossSpawnPosition" zoneid="135" />
 	<zone name="Task-Behemoths-PlayerSpawnPosition" zoneid="134" />
@@ -92,9 +95,18 @@
 	<zone name="Task-Drakens-BossRoom" zoneid="145" />
 	<zone name="Task-Drakens-BossSpawnPosition" zoneid="146" />
 	<zone name="Task-Drakens-PlayerSpawnPosition" zoneid="147" />
+	<zone name="Task-Dwarves-BossRoom" zoneid="207" />
+	<zone name="Task-Dwarves-BossSpawnPosition" zoneid="205" />
+	<zone name="Task-Dwarves-PlayerSpawnPosition" zoneid="206" />
+	<zone name="Task-Falcons-BossRoom" zoneid="208" />
+	<zone name="Task-Falcons-BossSpawnPosition" zoneid="209" />
+	<zone name="Task-Falcons-PlayerSpawnPosition" zoneid="210" />
 	<zone name="Task-Frost-Dragons-BossRoom" zoneid="148" />
 	<zone name="Task-Frost-Dragons-BossSpawnPosition" zoneid="149" />
 	<zone name="Task-Frost-Dragons-PlayerSpawnPosition" zoneid="150" />
+	<zone name="Task-Furies-BossRoom" zoneid="217" />
+	<zone name="Task-Furies-BossSpawnPosition" zoneid="218" />
+	<zone name="Task-Furies-PlayerSpawnPosition" zoneid="219" />
 	<zone name="Task-Gargoyles-BossRoom" zoneid="61" />
 	<zone name="Task-Gargoyles-BossSpawnPosition" zoneid="63" />
 	<zone name="Task-Gargoyles-PlayerSpawnPosition" zoneid="62" />
@@ -119,15 +131,24 @@
 	<zone name="Task-Ice-Golems-BossRoom" zoneid="103" />
 	<zone name="Task-Ice-Golems-BossSpawnPosition" zoneid="105" />
 	<zone name="Task-Ice-Golems-PlayerSpawnPosition" zoneid="104" />
+	<zone name="Task-Infernalists-BossRoom" zoneid="220" />
+	<zone name="Task-Infernalists-BossSpawnPosition" zoneid="222" />
+	<zone name="Task-Infernalists-PlayerSpawnPosition" zoneid="221" />
 	<zone name="Task-Killer-Caimans-BossRoom" zoneid="166" />
 	<zone name="Task-Killer-Caimans-BossSpawnPosition" zoneid="167" />
 	<zone name="Task-Killer-Caimans-PlayerSpawnPosition" zoneid="168" />
 	<zone name="Task-Lancer-Beetles-BossRoom" zoneid="106" />
 	<zone name="Task-Lancer-Beetles-BossSpawnPosition" zoneid="108" />
 	<zone name="Task-Lancer-Beetles-PlayerSpawnPosition" zoneid="107" />
+	<zone name="Task-Lost-Dwarves-BossRoom" zoneid="223" />
+	<zone name="Task-Lost-Dwarves-BossSpawnPosition" zoneid="224" />
+	<zone name="Task-Lost-Dwarves-PlayerSpawnPosition" zoneid="225" />
 	<zone name="Task-Medusa-BossRoom" zoneid="169" />
 	<zone name="Task-Medusa-BossSpawnPosition" zoneid="170" />
 	<zone name="Task-Medusa-PlayerSpawnPosition" zoneid="171" />
+	<zone name="Task-Metal-Gargoyles-BossRoom" zoneid="211" />
+	<zone name="Task-Metal-Gargoyles-BossSpawnPosition" zoneid="212" />
+	<zone name="Task-Metal-Gargoyles-PlayerSpawnPosition" zoneid="213" />
 	<zone name="Task-Minotaurs-BossRoom" zoneid="64" />
 	<zone name="Task-Minotaurs-BossSpawnPosition" zoneid="65" />
 	<zone name="Task-Minotaurs-PlayerSpawnPosition" zoneid="66" />
@@ -188,9 +209,15 @@
 	<zone name="Task-Undead-Dragons-BossRoom" zoneid="184" />
 	<zone name="Task-Undead-Dragons-BossSpawnPosition" zoneid="185" />
 	<zone name="Task-Undead-Dragons-PlayerSpawnPosition" zoneid="186" />
+	<zone name="Task-Vampires-BossRoom" zoneid="226" />
+	<zone name="Task-Vampires-BossSpawnPosition" zoneid="227" />
+	<zone name="Task-Vampires-PlayerSpawnPosition" zoneid="228" />
 	<zone name="Task-Wailing-Widows-BossRoom" zoneid="127" />
 	<zone name="Task-Wailing-Widows-BossSpawnPosition" zoneid="128" />
 	<zone name="Task-Wailing-Widows-PlayerSpawnPosition" zoneid="129" />
+	<zone name="Task-War-Golems-BossRoom" zoneid="214" />
+	<zone name="Task-War-Golems-BossSpawnPosition" zoneid="215" />
+	<zone name="Task-War-Golems-PlayerSpawnPosition" zoneid="216" />
 	<zone name="Task-Weak-Undeads-BossRoom" zoneid="88" />
 	<zone name="Task-Weak-Undeads-BossSpawnPosition" zoneid="89" />
 	<zone name="Task-Weak-Undeads-PlayerSpawnPosition" zoneid="90" />

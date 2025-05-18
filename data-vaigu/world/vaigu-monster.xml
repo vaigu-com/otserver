@@ -5778,20 +5778,17 @@
 	<monster centerx="6791" centery="2567" centerz="4" radius="1">
 		<monster name="Pirate Buccaneer" x="0" y="0" z="4" spawntime="60" />
 	</monster>
-	<monster centerx="6705" centery="2569" centerz="4" radius="1">
-		<monster name="Pirate Corsair" x="0" y="0" z="4" spawntime="60" />
-	</monster>
 	<monster centerx="6734" centery="2569" centerz="4" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="4" spawntime="60" />
-	</monster>
-	<monster centerx="6696" centery="2570" centerz="4" radius="1">
-		<monster name="Pirate Skeleton" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="6759" centery="2570" centerz="4" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="4" spawntime="60" />
 	</monster>
-	<monster centerx="6694" centery="2575" centerz="4" radius="1">
-		<monster name="Pirate Skeleton" x="0" y="0" z="4" spawntime="60" />
+	<monster centerx="6694" centery="2574" centerz="4" radius="1">
+		<monster name="Seagull" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="6693" centery="2580" centerz="4" radius="1">
+		<monster name="Seagull" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="6778" centery="2584" centerz="4" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="4" spawntime="60" />
@@ -19901,9 +19898,6 @@
 	<monster centerx="6176" centery="1755" centerz="6" radius="1">
 		<monster name="Retching Horror" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="6468" centery="1755" centerz="6" radius="1">
-		<monster name="Barbarian Headsplitter" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="6470" centery="1755" centerz="6" radius="1">
 		<monster name="Barbarian Brutetamer" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -19924,6 +19918,9 @@
 	</monster>
 	<monster centerx="6470" centery="1757" centerz="6" radius="1">
 		<monster name="Barbarian Brutetamer" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="6476" centery="1757" centerz="6" radius="1">
+		<monster name="Barbarian Headsplitter" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6142" centery="1758" centerz="6" radius="1">
 		<monster name="Choking Fear" x="0" y="0" z="6" spawntime="60" />
@@ -37531,7 +37528,6 @@
 	<monster centerx="7683" centery="1279" centerz="7" radius="1">
 		<monster name="Orc" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7685" centery="1279" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
@@ -37571,8 +37567,6 @@
 	</monster>
 	<monster centerx="7699" centery="1280" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc" x="0" y="1" z="7" spawntime="60" />
-		<monster name="Orc" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7703" centery="1280" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
@@ -37903,17 +37897,14 @@
 	</monster>
 	<monster centerx="7690" centery="1287" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7692" centery="1287" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7694" centery="1287" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7706" centery="1287" centerz="7" radius="1">
-		<monster name="Orc" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7728" centery="1287" centerz="7" radius="1">
@@ -37951,7 +37942,6 @@
 		<monster name="Tarnished Spirit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7708" centery="1288" centerz="7" radius="1">
-		<monster name="Orc" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7716" centery="1288" centerz="7" radius="1">
@@ -40781,8 +40771,6 @@
 	</monster>
 	<monster centerx="7767" centery="1373" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc Warrior" x="0" y="1" z="7" spawntime="60" />
-		<monster name="Orc Warrior" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7773" centery="1373" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
@@ -40823,7 +40811,6 @@
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7768" centery="1375" centerz="7" radius="1">
-		<monster name="Orc Warrior" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Orc Warrior" x="-1" y="1" z="7" spawntime="60" />
 	</monster>
@@ -41234,7 +41221,6 @@
 	</monster>
 	<monster centerx="7755" centery="1387" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Orc Warrior" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7757" centery="1387" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
@@ -49381,9 +49367,6 @@
 	<monster centerx="6460" centery="1768" centerz="7" radius="1">
 		<monster name="Barbarian Headsplitter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6492" centery="1768" centerz="7" radius="1">
-		<monster name="Barbarian Brutetamer" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5718" centery="1769" centerz="7" radius="1">
 		<monster name="Pooka" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -49433,6 +49416,9 @@
 	</monster>
 	<monster centerx="6426" centery="1771" centerz="7" radius="1">
 		<monster name="Chakoya Tribewarden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6493" centery="1771" centerz="7" radius="1">
+		<monster name="Barbarian Brutetamer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6507" centery="1771" centerz="7" radius="1">
 		<monster name="Barbarian Skullhunter" x="0" y="0" z="7" spawntime="60" />
@@ -52473,7 +52459,9 @@
 	</monster>
 	<monster centerx="4899" centery="618" centerz="8" radius="1">
 		<monster name="Old Dark Apprentice" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Dark Magician" x="1" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4901" centery="618" centerz="8" radius="1">
+		<monster name="Old Dark Magician" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6214" centery="618" centerz="8" radius="1">
 		<monster name="Nightmare" x="0" y="0" z="8" spawntime="105" />
@@ -90638,10 +90626,6 @@
 	<monster centerx="7546" centery="1265" centerz="12" radius="1">
 		<monster name="Vampire" x="0" y="0" z="12" spawntime="60" />
 	</monster>
-	<monster centerx="7679" centery="1265" centerz="12" radius="1">
-		<monster name="Vampire Viscount" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Vampire Viscount" x="0" y="1" z="12" spawntime="60" />
-	</monster>
 	<monster centerx="5978" centery="1267" centerz="12" radius="1">
 		<monster name="War Golem" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -90654,9 +90638,6 @@
 	<monster centerx="7552" centery="1267" centerz="12" radius="1">
 		<monster name="Vampire" x="1" y="-1" z="12" spawntime="60" />
 		<monster name="Vampire" x="0" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="7680" centery="1267" centerz="12" radius="1">
-		<monster name="Vampire Viscount" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6866" centery="1268" centerz="12" radius="1">
 		<monster name="Vampire" x="0" y="0" z="12" spawntime="60" />
@@ -90689,11 +90670,6 @@
 	<monster centerx="6874" centery="1269" centerz="12" radius="1">
 		<monster name="Vampire" x="0" y="0" z="12" spawntime="60" />
 	</monster>
-	<monster centerx="7675" centery="1269" centerz="12" radius="1">
-		<monster name="Vampire Viscount" x="1" y="-1" z="12" spawntime="60" />
-		<monster name="Vampire Viscount" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Vampire Viscount" x="0" y="1" z="12" spawntime="60" />
-	</monster>
 	<monster centerx="6878" centery="1270" centerz="12" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -90723,10 +90699,6 @@
 	</monster>
 	<monster centerx="6709" centery="1273" centerz="12" radius="1">
 		<monster name="Putrid Mummy" x="0" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="7680" centery="1273" centerz="12" radius="1">
-		<monster name="Vampire Bride" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Vampire Bride" x="1" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6706" centery="1274" centerz="12" radius="1">
 		<monster name="Elder Mummy" x="0" y="0" z="12" spawntime="60" />
