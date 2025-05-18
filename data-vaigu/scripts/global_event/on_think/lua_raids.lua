@@ -39,10 +39,10 @@ setmetatable(Wave, {
 	end,
 })
 
-function Wave:Creature(name, positions, amount, forceSpawn)
+function Wave:Creature(name, area, amount, forceSpawn)
 	table.insert(self.creatures, {
 		name = name,
-		positions = positions,
+		area = area,
 		amount = amount,
 		forceSpawn = forceSpawn,
 	})
@@ -92,7 +92,7 @@ function Wave:EnqueueCreatureSpawns(difficultyTier)
 	addEvent(function(creatures)
 		for _, creature in pairs(creatures) do
 			for _ = 1, creature.amount do
-				local pos = creature.positions:RandomPosition()
+				local pos = creature.area:RandomPosition()
 				trySpawnRaidMonster(pos, creature, additionalLoot)
 			end
 		end
@@ -269,3 +269,29 @@ function globalevent.onThink(...)
 end
 globalevent:interval(tryStartRaidInterval)
 globalevent:register()
+
+local function handleWave(wave, waveIndex, raidName)
+	for creatureIndex, waveCreature in pairs(wave.creatures) do
+		local atLeastOneCorrectPosition = false
+		local corner1, corner2 = waveCreature.area:GetCorners()
+		IterateBetweenPositions(corner1, corner2, function(context)
+			local pos = context.pos
+			local tile = Tile(pos)
+			if tile then
+				atLeastOneCorrectPosition = true
+				return true
+			end
+			return false
+		end, { stopCondition = STOP_CONDITIONS.isTrue })
+		if not atLeastOneCorrectPosition then
+			logger.warn(T("[LuaRaidRegistry::TestDry] Could not find at least one correct spawn position for creature#:creatureIndex: wave #:waveIndex: for raid :raidName:", { waveIndex = waveIndex, raidName = raidName, creatureIndex = creatureIndex }))
+		end
+	end
+end
+function LuaRaidRegistry:TestDry()
+	for key, luaraid in pairs(self.registry) do
+		for key, wave in pairs(luaraid.waves) do
+			handleWave(wave, key, luaraid.name)
+		end
+	end
+end
