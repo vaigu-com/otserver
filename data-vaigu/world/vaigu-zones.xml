@@ -116,9 +116,9 @@
 	<zone name="Task-Giant-Spiders-BossRoom" zoneid="100" />
 	<zone name="Task-Giant-Spiders-BossSpawnPosition" zoneid="101" />
 	<zone name="Task-Giant-Spiders-PlayerSpawnPosition" zoneid="102" />
-	<zone name="Task-Hellhound-BossRoom" zoneid="154" />
-	<zone name="Task-Hellhound-BossSpawnPosition" zoneid="155" />
-	<zone name="Task-Hellhound-PlayerSpawnPosition" zoneid="156" />
+	<zone name="Task-Hellhounds-BossRoom" zoneid="154" />
+	<zone name="Task-Hellhounds-BossSpawnPosition" zoneid="155" />
+	<zone name="Task-Hellhounds-PlayerSpawnPosition" zoneid="156" />
 	<zone name="Task-Hellspawns-BossRoom" zoneid="157" />
 	<zone name="Task-Hellspawns-BossSpawnPosition" zoneid="158" />
 	<zone name="Task-Hellspawns-PlayerSpawnPosition" zoneid="159" />
@@ -143,9 +143,9 @@
 	<zone name="Task-Lost-Dwarves-BossRoom" zoneid="223" />
 	<zone name="Task-Lost-Dwarves-BossSpawnPosition" zoneid="224" />
 	<zone name="Task-Lost-Dwarves-PlayerSpawnPosition" zoneid="225" />
-	<zone name="Task-Medusa-BossRoom" zoneid="169" />
-	<zone name="Task-Medusa-BossSpawnPosition" zoneid="170" />
-	<zone name="Task-Medusa-PlayerSpawnPosition" zoneid="171" />
+	<zone name="Task-Medusas-BossRoom" zoneid="169" />
+	<zone name="Task-Medusas-BossSpawnPosition" zoneid="170" />
+	<zone name="Task-Medusas-PlayerSpawnPosition" zoneid="171" />
 	<zone name="Task-Metal-Gargoyles-BossRoom" zoneid="211" />
 	<zone name="Task-Metal-Gargoyles-BossSpawnPosition" zoneid="212" />
 	<zone name="Task-Metal-Gargoyles-PlayerSpawnPosition" zoneid="213" />

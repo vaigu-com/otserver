@@ -72691,6 +72691,9 @@
 	<monster centerx="5702" centery="1701" centerz="9" radius="1">
 		<monster name="Cult Enforcer" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="6589" centery="1702" centerz="9" radius="1">
+		<monster name="Crystal Spider" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7603" centery="1702" centerz="9" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -72714,6 +72717,9 @@
 	</monster>
 	<monster centerx="5748" centery="1705" centerz="9" radius="1">
 		<monster name="Twisted Shaper" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6579" centery="1705" centerz="9" radius="1">
+		<monster name="Crystal Spider" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7522" centery="1705" centerz="9" radius="1">
 		<monster name="Ghoul" x="0" y="0" z="9" spawntime="60" />
@@ -72793,6 +72799,9 @@
 	</monster>
 	<monster centerx="5762" centery="1715" centerz="9" radius="1">
 		<monster name="Shaper Matriarch" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6581" centery="1715" centerz="9" radius="1">
+		<monster name="Crystal Spider" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7551" centery="1715" centerz="9" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="9" spawntime="60" />
@@ -80082,6 +80091,9 @@
 	<monster centerx="6485" centery="1747" centerz="10" radius="1">
 		<monster name="Acolyte of the Cult" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="6550" centery="1748" centerz="10" radius="1">
+		<monster name="Crystal Spider" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6832" centery="1748" centerz="10" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -80133,9 +80145,6 @@
 	</monster>
 	<monster centerx="6021" centery="1752" centerz="10" radius="1">
 		<monster name="Vampire" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6551" centery="1752" centerz="10" radius="1">
-		<monster name="Crystal Spider" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6862" centery="1752" centerz="10" radius="1">
 		<monster name="Hellhound" x="1" y="0" z="10" spawntime="60" />
