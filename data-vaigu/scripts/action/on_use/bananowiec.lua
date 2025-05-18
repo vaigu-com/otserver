@@ -1,28 +1,17 @@
-local function revertCask(position)
-	local caskItem = Tile(position):getItemById(5091)
-	if caskItem then
-		caskItem:transform(5093)
-		position:sendMagicEffect(CONST_ME_HITBYPOISON)
-	end
-end
-
 local action = Action()
-
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local szansa = math.random(10)
-	if szansa <= 6 then
+	local roll = math.random(10)
+	if roll <= 6 then
 		toPosition:sendMagicEffect(CONST_ME_POFF)
-	elseif szansa >= 7 and szansa <= 8 then
+	elseif roll >= 7 and roll <= 8 then
 		toPosition:sendMagicEffect(CONST_ME_POFF)
 		player:AddCustomItem({ id = 3587, count = 1 })
-	elseif szansa >= 9 then
+	elseif roll >= 9 then
 		toPosition:sendMagicEffect(CONST_ME_POFF)
 		player:AddCustomItem({ id = 3587, count = 2 })
 	end
 	item:transform(5091)
-	addEvent(revertCask, 5 * 60 * 1000, toPosition) --5min
 	return true
 end
-
 action:id(5093)
 action:register()
