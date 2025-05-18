@@ -22,13 +22,13 @@ function ItemsToString(items)
 	return str
 end
 
----using types other than string/number is not recommended
+---using key types other than string/number is not recommended
 ---@param key string|number|any
 ---@return any
 function Player:getStorageValueByKey(key)
 	return self:kv():get(key) or MISSION_NOT_STARTED
 end
----using types other than string/number is not recommended
+---using key types other than string/number is not recommended
 ---@param key string|number|any
 ---@param nextValue any
 ---@return any

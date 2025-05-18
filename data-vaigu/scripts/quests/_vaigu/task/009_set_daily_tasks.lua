@@ -7,13 +7,13 @@ local function getLevelBracketDailyTasks()
 	return result
 end
 
-local function getDailyTasksLevelBrackets()
+function getDailyTasksLevelBrackets()
 	local result = {}
 	local mem = {}
 	for _, dailyTask in pairs(GetAllDailyTasks()) do
 		if not mem[dailyTask.min] then
 			mem[dailyTask.min] = dailyTask.min
-			result[#result + 1] = dailyTask.min
+			table.insert(result, dailyTask.min)
 		end
 	end
 	return result
@@ -60,7 +60,7 @@ local function wereDailyTasksSetToday(currentTimestamp)
 	return false
 end
 
-local function setTodayDailyTasks(currentTimestamp)
+function setTodayDailyTasks(currentTimestamp)
 	math.randomseed(os.time())
 	local todayDailyTasks = generateRandomDailyTasks()
 	for i, task in ipairs(todayDailyTasks) do

@@ -87,7 +87,7 @@ monster.loot = {
 	{ id = 5944, chance = 25000, maxCount = 30 }, -- soul orb
 	{ id = 3439, chance = 30000 }, -- phoenix shield
 	{ id = 8039, chance = 25000 },
-	{ id = 3034, chance = 30000, maxCount = 20 }
+	{ id = 3034, chance = 30000, maxCount = 20 },
 	{ id = 22516, chance = 50000 },
 	{ id = 19391, chance = 15000 }, -- furious frock
 }
@@ -103,8 +103,6 @@ monster.attacks = {
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -120, maxDamage = -300, radius = 4, effect = CONST_ME_DRAWBLOOD, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = -400, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_SMALLCLOUDS, target = false, duration = 30000 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -125, maxDamage = -250, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_SMALLCLOUDS, target = false },
-
-
 }
 
 monster.defenses = {
