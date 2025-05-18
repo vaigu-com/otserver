@@ -404,3 +404,4 @@ out
 
 # RME backups
 /world/backup/*
+/world/backups/*
