@@ -573,6 +573,27 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.WoodDelivery.InvestigateCamp,
+			QuestFactory.Script(function(missionState)
+				local caravanZoneSetup = GlobalEvent("CaravanZoneSetup")
+				function caravanZoneSetup.onStartup()
+					local zone = Zone(Storage.LocalSupport.CaravanZone)
+					local zoneEvents = ZoneEvent(zone)
+					function zoneEvents.afterEnter(zone, creature)
+						local player = creature:getPlayer()
+						if not player then
+							return true
+						end
+						if not player:HasExactMissionState(missionState) then
+							return true
+						end
+
+						local translatedMessage = player:Localizer(LOCALIZERS.LocalSupport):Get("This caravan of wood was just attacked. I better follow the path of loose wooden planks.")
+						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
+					end
+					zoneEvents:register()
+				end
+				caravanZoneSetup:register()
+			end),
 			QuestFactory.Dialog("Narro", {
 				[{ "drewno", "dostawa", "misja", "mission", "wood" }] = {
 					text = "What? Are you looking for the wood? Now thats my wood. You can tell Commissioner Fisher that he'll never get it back.",
@@ -655,24 +676,6 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
-			QuestFactory.Script(function()
-				local caravanZoneSetup = GlobalEvent("CaravanZoneSetup")
-				function caravanZoneSetup.onStartup()
-					local zone = Zone(Storage.LocalSupport.CaravanZone)
-					local zoneEvents = ZoneEvent(zone)
-					function zoneEvents.afterEnter(zone, creature)
-						local player = creature:getPlayer()
-						if not player then
-							return true
-						end
-
-						local translatedMessage = player:Localizer(LOCALIZERS.LocalSupport):Get("This caravan of wood has been attacked recently. I better follow the path of loose wooden planks.")
-						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
-					end
-					zoneEvents:register()
-				end
-				caravanZoneSetup:register()
-			end),
 			QuestFactory.Dialog("Narro", {
 				[{ "drewno", "dostawa", "misja", "mission", "wood" }] = {
 					text = "Huh, hes a badass? I am the only badass here.\nNow YOU tell ME: am I the only badass in this bitch!?",
