@@ -467,7 +467,7 @@ function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTi
 		self:sendTrackedMission(translatedMission)
 	end
 
-	self:sendQuestLogMainPage()
+	-- self:sendQuestLogMainPage()
 end
 
 function Player.sendTrackedMissions(self)
