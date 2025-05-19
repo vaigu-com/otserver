@@ -45,6 +45,8 @@ function dailyGuaranteedSilverTokenDeath.onDeath(creature, _corpse, _lastHitKill
 		end
 		if player:TryAddItems({ oneSilverToken }) then
 			player:setStorageValueByKey(Storage.DailyGuaranteedSilverToken, NextWednesdayEpochTime())
+		else
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You cannot receive your daily silver token because you dont have capacity or empty slots."))
 		end
 	end)
 	return true
