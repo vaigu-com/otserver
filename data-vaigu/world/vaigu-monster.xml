@@ -828,10 +828,6 @@
 		<monster name="Cyclops Drone" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="5950" centery="1294" centerz="2" radius="1">
-		<monster name="Gargoyle" x="1" y="-1" z="2" spawntime="60" />
-		<monster name="Gargoyle" x="0" y="0" z="2" spawntime="60" />
-	</monster>
-	<monster centerx="5954" centery="1294" centerz="2" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="5957" centery="1294" centerz="2" radius="1">
@@ -4803,9 +4799,6 @@
 	</monster>
 	<monster centerx="6048" centery="1351" centerz="4" radius="1">
 		<monster name="Dark Magician" x="0" y="0" z="4" spawntime="60" />
-	</monster>
-	<monster centerx="6233" centery="1351" centerz="4" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="6506" centery="1354" centerz="4" radius="1">
 		<monster name="Demon Parrot" x="0" y="0" z="4" spawntime="60" />
@@ -9123,9 +9116,6 @@
 	<monster centerx="6670" centery="1277" centerz="5" radius="1">
 		<monster name="Swarmer" x="0" y="0" z="5" spawntime="60" />
 	</monster>
-	<monster centerx="5964" centery="1278" centerz="5" radius="1">
-		<monster name="Gozzler" x="0" y="0" z="5" spawntime="60" />
-	</monster>
 	<monster centerx="6103" centery="1278" centerz="5" radius="1">
 		<monster name="Swarmer" x="0" y="0" z="5" spawntime="60" />
 	</monster>
@@ -9744,12 +9734,6 @@
 	<monster centerx="5876" centery="1369" centerz="5" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="5" spawntime="60" />
 	</monster>
-	<monster centerx="6241" centery="1369" centerz="5" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="5" spawntime="60" />
-	</monster>
-	<monster centerx="6244" centery="1369" centerz="5" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="5" spawntime="60" />
-	</monster>
 	<monster centerx="6300" centery="1370" centerz="5" radius="1">
 		<monster name="Pirat Scoundrel" x="0" y="0" z="5" spawntime="60" />
 	</monster>
@@ -9777,9 +9761,6 @@
 	<monster centerx="5928" centery="1374" centerz="5" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="5" spawntime="60" />
 	</monster>
-	<monster centerx="6186" centery="1376" centerz="5" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="5" spawntime="60" />
-	</monster>
 	<monster centerx="6326" centery="1376" centerz="5" radius="1">
 		<monster name="Pirat Cutthroat" x="-1" y="-1" z="5" spawntime="60" />
 		<monster name="Pirat Mate" x="0" y="0" z="5" spawntime="60" />
@@ -9795,12 +9776,6 @@
 	</monster>
 	<monster centerx="6096" centery="1379" centerz="5" radius="1">
 		<monster name="Hero" x="0" y="0" z="5" spawntime="60" />
-	</monster>
-	<monster centerx="6195" centery="1379" centerz="5" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="5" spawntime="60" />
-	</monster>
-	<monster centerx="6218" centery="1379" centerz="5" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6313" centery="1379" centerz="5" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="5" spawntime="60" />
@@ -9840,9 +9815,6 @@
 	</monster>
 	<monster centerx="7363" centery="1386" centerz="5" radius="1">
 		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
-	</monster>
-	<monster centerx="6172" centery="1387" centerz="5" radius="1">
-		<monster name="Dragon" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6327" centery="1387" centerz="5" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="5" spawntime="60" />
@@ -17662,9 +17634,6 @@
 	<monster centerx="5612" centery="1370" centerz="6" radius="1">
 		<monster name="Frazzlemaw" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="6248" centery="1370" centerz="6" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="6485" centery="1370" centerz="6" radius="1">
 		<monster name="Ghoulish Hyaena" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -17693,9 +17662,6 @@
 	<monster centerx="6004" centery="1372" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="6247" centery="1372" centerz="6" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="7551" centery="1372" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -17711,9 +17677,6 @@
 	</monster>
 	<monster centerx="5610" centery="1374" centerz="6" radius="1">
 		<monster name="Frazzlemaw" x="0" y="0" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="6194" centery="1374" centerz="6" radius="1">
-		<monster name="Swarmer" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6307" centery="1374" centerz="6" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="6" spawntime="60" />
@@ -17909,9 +17872,6 @@
 	<monster centerx="5602" centery="1394" centerz="6" radius="1">
 		<monster name="Frazzlemaw" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="6170" centery="1394" centerz="6" radius="1">
-		<monster name="Dragon Hatchling" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="6314" centery="1394" centerz="6" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -17921,17 +17881,11 @@
 	<monster centerx="6074" centery="1395" centerz="6" radius="1">
 		<monster name="Bandit" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="6201" centery="1395" centerz="6" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="5591" centery="1396" centerz="6" radius="1">
 		<monster name="Frazzlemaw" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5579" centery="1397" centerz="6" radius="1">
 		<monster name="Silencer" x="0" y="0" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="6164" centery="1398" centerz="6" radius="1">
-		<monster name="Hunter" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6476" centery="1398" centerz="6" radius="1">
 		<monster name="Ghoulish Hyaena" x="0" y="0" z="6" spawntime="60" />
@@ -17971,12 +17925,6 @@
 	</monster>
 	<monster centerx="6056" centery="1401" centerz="6" radius="1">
 		<monster name="Smuggler" x="0" y="0" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="6160" centery="1401" centerz="6" radius="1">
-		<monster name="Bandit" x="0" y="0" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="6195" centery="1401" centerz="6" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5582" centery="1402" centerz="6" radius="1">
 		<monster name="Frazzlemaw" x="0" y="0" z="6" spawntime="60" />
@@ -39982,10 +39930,6 @@
 	<monster centerx="6162" centery="1343" centerz="7" radius="1">
 		<monster name="Waspoid" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6255" centery="1343" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Parder" x="1" y="0" z="7" spawntime="-331020032" />
-	</monster>
 	<monster centerx="6299" centery="1343" centerz="7" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40024,9 +39968,6 @@
 	</monster>
 	<monster centerx="6175" centery="1344" centerz="7" radius="1">
 		<monster name="Insectoid Worker" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6259" centery="1344" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6496" centery="1344" centerz="7" radius="1">
 		<monster name="Hyaena" x="0" y="0" z="7" spawntime="60" />
@@ -40094,9 +40035,6 @@
 	</monster>
 	<monster centerx="6013" centery="1346" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6256" centery="1346" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6318" centery="1346" centerz="7" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="7" spawntime="60" />
@@ -40179,9 +40117,6 @@
 	</monster>
 	<monster centerx="5943" centery="1349" centerz="7" radius="1">
 		<monster name="Minotaur" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6240" centery="1349" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6323" centery="1349" centerz="7" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="7" spawntime="60" />
@@ -40324,9 +40259,6 @@
 		<monster name="Waspoid" x="3" y="2" z="7" spawntime="60" />
 		<monster name="Insectoid Worker" x="0" y="3" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6202" centery="1354" centerz="7" radius="1">
-		<monster name="Wiggler" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6647" centery="1354" centerz="7" radius="1">
 		<monster name="Larva" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40365,9 +40297,6 @@
 	<monster centerx="5627" centery="1355" centerz="7" radius="1">
 		<monster name="Guzzlemaw" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6196" centery="1355" centerz="7" radius="1">
-		<monster name="Wiggler" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6323" centery="1355" centerz="7" radius="1">
 		<monster name="Pirate Buccaneer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40394,12 +40323,6 @@
 	</monster>
 	<monster centerx="5959" centery="1356" centerz="7" radius="1">
 		<monster name="Minotaur" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6243" centery="1356" centerz="7" radius="1">
-		<monster name="Gnarlhound" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6268" centery="1356" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6556" centery="1356" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="60" />
@@ -40461,9 +40384,6 @@
 	<monster centerx="5975" centery="1358" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6211" centery="1358" centerz="7" radius="1">
-		<monster name="Wiggler" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6286" centery="1358" centerz="7" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40514,9 +40434,6 @@
 	</monster>
 	<monster centerx="5801" centery="1360" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6194" centery="1360" centerz="7" radius="1">
-		<monster name="Swarmer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6655" centery="1360" centerz="7" radius="1">
 		<monster name="Hyaena" x="0" y="0" z="7" spawntime="60" />
@@ -40582,9 +40499,6 @@
 	<monster centerx="7759" centery="1362" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6203" centery="1363" centerz="7" radius="1">
-		<monster name="Insectoid Worker" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6571" centery="1363" centerz="7" radius="1">
 		<monster name="Cobra" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40618,9 +40532,6 @@
 	<monster centerx="6165" centery="1364" centerz="7" radius="1">
 		<monster name="Waspoid" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6255" centery="1364" centerz="7" radius="1">
-		<monster name="Gnarlhound" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6553" centery="1364" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40653,9 +40564,6 @@
 	</monster>
 	<monster centerx="7775" centery="1364" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6182" centery="1365" centerz="7" radius="1">
-		<monster name="Swarmer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6858" centery="1365" centerz="7" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="7" spawntime="60" />
@@ -40714,8 +40622,8 @@
 	<monster centerx="6163" centery="1368" centerz="7" radius="3">
 		<monster name="Swarmer" x="-2" y="-1" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6216" centery="1368" centerz="7" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="7" spawntime="60" />
+	<monster centerx="6182" centery="1368" centerz="7" radius="1">
+		<monster name="Swarmer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6289" centery="1368" centerz="7" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="7" spawntime="60" />
@@ -40743,9 +40651,6 @@
 	</monster>
 	<monster centerx="5811" centery="1369" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6204" centery="1369" centerz="7" radius="1">
-		<monster name="Gnarlhound" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6281" centery="1369" centerz="7" radius="1">
 		<monster name="Pirat Scoundrel" x="0" y="0" z="7" spawntime="60" />
@@ -40805,12 +40710,6 @@
 		<monster name="Dworc Fleshhunter" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Dworc Venomsniper" x="1" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6175" centery="1371" centerz="7" radius="1">
-		<monster name="Swarmer" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6258" centery="1371" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6309" centery="1371" centerz="7" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40850,9 +40749,6 @@
 	</monster>
 	<monster centerx="6172" centery="1372" centerz="7" radius="1">
 		<monster name="Insectoid Worker" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6180" centery="1372" centerz="7" radius="1">
-		<monster name="Insect Swarm" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6320" centery="1372" centerz="7" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="7" spawntime="60" />
@@ -40894,10 +40790,6 @@
 	<monster centerx="5816" centery="1373" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6263" centery="1373" centerz="7" radius="1">
-		<monster name="Parder" x="-1" y="-1" z="7" spawntime="60" />
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6813" centery="1373" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -40919,12 +40811,6 @@
 	</monster>
 	<monster centerx="5787" centery="1374" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6228" centery="1374" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6257" centery="1374" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6592" centery="1374" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="60" />
@@ -41029,9 +40915,6 @@
 	<monster centerx="5848" centery="1378" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6231" centery="1378" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6542" centery="1378" centerz="7" radius="1">
 		<monster name="Minotaur" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41108,9 +40991,6 @@
 	</monster>
 	<monster centerx="5990" centery="1380" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6226" centery="1380" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6319" centery="1380" centerz="7" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="7" spawntime="60" />
@@ -41198,9 +41078,6 @@
 	<monster centerx="6129" centery="1382" centerz="7" radius="1">
 		<monster name="Acid Blob" x="-1" y="-1" z="7" spawntime="60" />
 		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6206" centery="1382" centerz="7" radius="1">
-		<monster name="Swarmer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6295" centery="1382" centerz="7" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="7" spawntime="60" />
@@ -41329,9 +41206,6 @@
 	<monster centerx="6105" centery="1385" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6200" centery="1385" centerz="7" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6441" centery="1385" centerz="7" radius="1">
 		<monster name="Clay Guardian" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41358,9 +41232,6 @@
 	</monster>
 	<monster centerx="6133" centery="1386" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6187" centery="1386" centerz="7" radius="1">
-		<monster name="Swarmer" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6447" centery="1386" centerz="7" radius="1">
 		<monster name="Clay Guardian" x="0" y="0" z="7" spawntime="60" />
@@ -41407,9 +41278,6 @@
 	<monster centerx="5833" centery="1388" centerz="7" radius="1">
 		<monster name="Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6171" centery="1388" centerz="7" radius="1">
-		<monster name="Dragon Hatchling" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6314" centery="1388" centerz="7" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41430,12 +41298,6 @@
 	</monster>
 	<monster centerx="5967" centery="1389" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6169" centery="1389" centerz="7" radius="1">
-		<monster name="Dragon Hatchling" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6211" centery="1389" centerz="7" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6308" centery="1389" centerz="7" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="7" spawntime="60" />
@@ -41595,9 +41457,6 @@
 	<monster centerx="6102" centery="1393" centerz="7" radius="1">
 		<monster name="Rorc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6194" centery="1393" centerz="7" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7449" centery="1393" centerz="7" radius="1">
 		<monster name="Glooth Brigand" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41722,9 +41581,6 @@
 	<monster centerx="5931" centery="1397" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6183" centery="1397" centerz="7" radius="1">
-		<monster name="Wyvern" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7494" centery="1397" centerz="7" radius="1">
 		<monster name="Glooth Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41743,9 +41599,6 @@
 	</monster>
 	<monster centerx="6108" centery="1398" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6207" centery="1398" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6464" centery="1398" centerz="7" radius="1">
 		<monster name="Sandstone Scorpion" x="0" y="0" z="7" spawntime="60" />
@@ -41767,9 +41620,6 @@
 	<monster centerx="6056" centery="1399" centerz="7" radius="1">
 		<monster name="Wild Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6170" centery="1399" centerz="7" radius="1">
-		<monster name="Gnarlhound" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6427" centery="1399" centerz="7" radius="1">
 		<monster name="Sandstone Scorpion" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41785,9 +41635,6 @@
 	</monster>
 	<monster centerx="5825" centery="1400" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6172" centery="1400" centerz="7" radius="1">
-		<monster name="Gnarlhound" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6334" centery="1400" centerz="7" radius="1">
 		<monster name="Pirat Scoundrel" x="0" y="0" z="7" spawntime="60" />
@@ -41881,9 +41728,6 @@
 	<monster centerx="6132" centery="1403" centerz="7" radius="1">
 		<monster name="Rorc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6206" centery="1403" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7861" centery="1403" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41917,12 +41761,6 @@
 	</monster>
 	<monster centerx="5997" centery="1405" centerz="7" radius="1">
 		<monster name="Rat" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6192" centery="1405" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6200" centery="1405" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6299" centery="1405" centerz="7" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="7" spawntime="60" />
@@ -41970,9 +41808,6 @@
 	</monster>
 	<monster centerx="6135" centery="1406" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6194" centery="1406" centerz="7" radius="1">
-		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6554" centery="1406" centerz="7" radius="1">
 		<monster name="Flamingo" x="0" y="0" z="7" spawntime="60" />
