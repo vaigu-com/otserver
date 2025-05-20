@@ -51,7 +51,7 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 	end,
 	canAffordBless = function(context)
 		local player = context.player
-		local level  = player:getLevel()
+		local level = player:getLevel()
 		if level <= MAX_LVL_TO_GET_FREE_BLESS then
 			return true
 		end
@@ -184,27 +184,39 @@ SPECIAL_REQUIREMENTS_DAILY_TASK = {
 }
 
 SPECIAL_REQUIREMENTS_BANK = {
+	declaredMoneyIsParsable = function(context)
+		if type(context.amount) == "string" and context.amount == "all" then
+			return true
+		end
+
+		local declaredMoney = tonumber(context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount)
+		if declaredMoney == nil then
+			return false
+		end
+		return declaredMoney > 0
+	end,
 	hasMoneyininventory = function(context)
 		local moneyInInventory = context.player:getMoney()
 		if type(context.amount) == "string" and context.amount == "all" then
 			return moneyInInventory > 0
-		elseif type(context.amount)== "nil" then
-			return false
 		end
 
-		-- TODOVAIGU check if parses to number
-		local declaredMoney = tonumber(context.amount) or PlayerCustomDialogDataRegistry:Get(context.player).amount
+		local declaredMoney = tonumber(context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount)
+		if declaredMoney == nil then
+			return false
+		end
 		return declaredMoney <= moneyInInventory
 	end,
 	hasMoneyinbank = function(context)
 		if type(context.amount) == "string" and context.amount == "all" then
 			return Bank.balance(context.player) > 0
-		elseif type(context.amount)== "nil" then
+		end
+
+		local declaredMoney = tonumber(context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount)
+		if declaredMoney == nil then
 			return false
 		end
-		
-		local amount = tonumber(context.amount) or PlayerCustomDialogDataRegistry:Get(context.player).amount
-		return amount <= context.player:getBankBalance()
+		return declaredMoney <= Bank.balance(context.player)
 	end,
 	canCarryWithdrawnMoney = function(context)
 		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount

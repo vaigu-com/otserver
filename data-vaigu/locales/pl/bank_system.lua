@@ -60,6 +60,8 @@ return {
 	end,
 
 	["You do not have enough gold."] = "Nie masz tyle zlota",
+	["There is not enough gold in your account."] = "There is not enough gold in your account",
+	["Thats not a correct amount."] = "To nie jest poprawna kwota.",
 
 	["DEPOSIT_CANCEL"] = "Jasne. Czy cos jeszcze moge dla ciebie zrobic?",
 	["WITHDRAW_CANCEL"] = "Klient nasz Pan! Wroc, gdy bedziesz chcial wyplacic swoje zloto.",

@@ -80,6 +80,7 @@ pseudoQuest
 				{ toPos = Position(6563, 701, 7), name = "Ornuld Camp" },
 				{ toPos = Position(6730, 705, 7), name = "Heart of the Jungle" },
 				{ toPos = Position(6879, 743, 7), name = "Mundral Daycare" },
+				{ toPos = Position(6436, 792, 7), name = "Stankass", minLevel = 60 },
 			},
 			FISHERMAN_SHIP = {
 				{ toPos = Position(5801, 1649, 7), name = "Mirkotown Slums" },

@@ -73,8 +73,6 @@ pseudoQuest
 		InstantTravel({ positions = { Position(6668, 1123, 8), Position(6560, 1082, 9) } }):Register()
 		--Chester caves 2
 		InstantTravel({ positions = { Position(6606, 1079, 12), Position(6649, 1108, 10) } }):Register()
-		--Near small pirate island, Killer bunny peninsula
-		InstantTravel({ positions = { Position(6308, 1464, 7), Position(6259, 1396, 7) } }):Register()
 		--Magician rock Mirkotown, Outlaw camp east
 		InstantTravel({ positions = { Position(6011, 1379, 7), Position(6017, 1424, 7) } }):Register()
 		--Mirko hero cave, Drillworms
