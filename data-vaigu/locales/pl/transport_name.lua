@@ -24,6 +24,7 @@ return {
 	["Ornuld Camp"] = "Oboz Ornulda",
 	["Heart of the Jungle"] = "Serce Dzungli",
 	["Mundral Daycare"] = "Folwark Onrulda",
+	["Stankass"] = "Cweltown",
 	["Mirkotown Slums"] = "Slumsy Mirkotown",
 	["Elf Fortress"] = "Forteca Elfow",
 	["Cyclops Hills"] = "Wzgorza Cyklopow",

@@ -24,6 +24,7 @@ return {
 	["Ornuld Camp"] = "Ornuld Camp",
 	["Heart of the Jungle"] = "Heart of the Jungle",
 	["Mundral Daycare"] = "Mundral Daycare",
+	["Stankass"] = "Stankass",
 	["Mirkotown Slums"] = "Mirkotown Slums",
 	["Elf Fortress"] = "Elf Fortress",
 	["Cyclops Hills"] = "Cyclops Hills",
