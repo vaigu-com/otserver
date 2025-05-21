@@ -183,40 +183,72 @@ SPECIAL_REQUIREMENTS_DAILY_TASK = {
 	end,
 }
 
+local function parseMoneyWithdraw(context)
+	local declaredMoneyAnyType = context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount or PlayerDialogDataRegistry:Get(context.player):Previous().amount
+	if type(declaredMoneyAnyType) == "string" and declaredMoneyAnyType == "all" then
+		return Bank.balance(context.player)
+	end
+
+	local declaredMoneyNumber = tonumber(declaredMoneyAnyType)
+	if declaredMoneyNumber == nil then
+		return nil
+	end
+	if declaredMoneyNumber <= 0 then
+		return nil
+	end
+
+	return declaredMoneyNumber
+end
+
+local function parseMoneyDeposit(context)
+	local declaredMoneyAnyType = context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount or PlayerDialogDataRegistry:Get(context.player):Previous().amount
+	if type(declaredMoneyAnyType) == "string" and declaredMoneyAnyType == "all" then
+		return context.player:getMoney()
+	end
+
+	local declaredMoneyNumber = tonumber(declaredMoneyAnyType)
+	if declaredMoneyNumber == nil then
+		return nil
+	end
+	if declaredMoneyNumber <= 0 then
+		return nil
+	end
+
+	return declaredMoneyNumber
+end
+
 SPECIAL_REQUIREMENTS_BANK = {
 	declaredMoneyIsParsable = function(context)
-		if type(context.amount) == "string" and context.amount == "all" then
+		local declaredMoneyAnyType = context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount or PlayerDialogDataRegistry:Get(context.player):Previous().amount
+		if type(declaredMoneyAnyType) == "string" and declaredMoneyAnyType == "all" then
 			return true
 		end
 
-		local declaredMoney = tonumber(context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount)
-		if declaredMoney == nil then
+		local declaredMoneyNumber = tonumber(declaredMoneyAnyType)
+		if declaredMoneyNumber == nil then
 			return false
 		end
-		return declaredMoney > 0
+		if declaredMoneyNumber <= 0 then
+			return false
+		end
+
+		return true
 	end,
 	hasMoneyininventory = function(context)
-		local moneyInInventory = context.player:getMoney()
-		if type(context.amount) == "string" and context.amount == "all" then
-			return moneyInInventory > 0
-		end
-
-		local declaredMoney = tonumber(context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount)
-		if declaredMoney == nil then
+		local depositedMoney = parseMoneyDeposit(context)
+		if not depositedMoney then
 			return false
 		end
-		return declaredMoney <= moneyInInventory
+		local moneyInInventory = context.player:getMoney()
+		return moneyInInventory >= depositedMoney
 	end,
 	hasMoneyinbank = function(context)
-		if type(context.amount) == "string" and context.amount == "all" then
-			return Bank.balance(context.player) > 0
-		end
-
-		local declaredMoney = tonumber(context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount)
-		if declaredMoney == nil then
+		local withdrawnMoney = parseMoneyWithdraw(context)
+		if not withdrawnMoney then
 			return false
 		end
-		return declaredMoney <= Bank.balance(context.player)
+
+		return Bank.balance(context.player) >= withdrawnMoney
 	end,
 	canCarryWithdrawnMoney = function(context)
 		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount

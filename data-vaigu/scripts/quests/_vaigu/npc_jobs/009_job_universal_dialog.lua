@@ -795,7 +795,7 @@ pseudoQuest
 				},
 				[{ "withdraw" }] = {
 					text = "DECLARE_WITHDRAW_AMOUNT",
-					nextTopic = QuestTopics.JOB_TOPICS.declareAmount,
+					nextTopic = QuestTopics.JOB_TOPICS.declareAmountwithdraw,
 				},
 				[{ "<amount>" }] = {
 					text = "CONFIRM_WITHDRAW",

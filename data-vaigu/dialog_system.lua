@@ -683,6 +683,9 @@ end
 function PlayerDialogData:Latest()
 	return self.data[#self.data] or {}
 end
+function PlayerDialogData:Previous()
+	return self.data[#self.data - 1] or {}
+end
 function PlayerDialogData:ByIndex(index)
 	return self.data[index] or {}
 end
