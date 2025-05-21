@@ -237,8 +237,8 @@ SPECIAL_ACTIONS_DAILY_TASK = {
 }
 
 SPECIAL_ACTIONS_IMBUING = {
-	removeTaskPointsByImbuing = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+	addproductsRemovemoneypoints = function(context)
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 
 		local player = context.player
 		player:AddItems(bundleData.items)

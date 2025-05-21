@@ -122,7 +122,7 @@ SPECIAL_REQUIREMENTS_IMBUING = {
 		return false
 	end,
 	canPurchaseThisImbuingLevel = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 		local level = bundleData.levelName
 		if level ~= IMBUING_LEVELS.powerful then
 			return true
@@ -130,8 +130,8 @@ SPECIAL_REQUIREMENTS_IMBUING = {
 		return context.player:getStorageValueByKey(Storage.powerfulImbue) >= 1
 	end,
 	hasEnoughTaskPoints = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
-		local requiredTaskPoints = bundleData.taskPointsCost
+		local bundleLevelData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
+		local requiredTaskPoints = bundleLevelData.taskPointsCost
 		local playerTaskPoints = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
 		local playerHasPoints = playerTaskPoints >= requiredTaskPoints
 		if not playerHasPoints then
@@ -140,13 +140,13 @@ SPECIAL_REQUIREMENTS_IMBUING = {
 		return playerHasPoints
 	end,
 	hasEnoughMoney = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 		local requiredMoney = bundleData.moneyCost
 		local playerMoney = context.player:GetTotalMoney()
 		return playerMoney >= requiredMoney
 	end,
 	hasEnoughCapSlots = function(context)
-		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleData
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 		return context.player:CanAddItems(bundleData.items)
 	end,
 }
