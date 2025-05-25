@@ -7,6 +7,10 @@ local config = {
 
 local lionCommanderDeath = CreatureEvent("LionCommanderDeath")
 function lionCommanderDeath.onPrepareDeath(creature)
+	-- Vaigu custom
+	do
+		return
+	end
 	local totalCommanders = Game.getStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalLionCommanders)
 	if totalCommanders > 1 then
 		Game.setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalLionCommanders, totalCommanders - 1)
@@ -29,6 +33,11 @@ lionCommanderDeath:register()
 
 local usurperCommanderDeath = CreatureEvent("UsurperCommanderDeath")
 function usurperCommanderDeath.onPrepareDeath(creature)
+	-- Vaigu custom
+	do
+		return
+	end
+
 	local totalCommanders = Game.getStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalUsurperCommanders)
 	if totalCommanders > 0 then
 		Game.setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalUsurperCommanders, totalCommanders - 1)
@@ -39,7 +48,6 @@ function usurperCommanderDeath.onPrepareDeath(creature)
 	end
 	return true
 end
-
 usurperCommanderDeath:register()
 
 local kesarHealthChange = CreatureEvent("KesarImmortal")
