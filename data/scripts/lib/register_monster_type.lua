@@ -95,7 +95,7 @@ setmetatable(registerMonsterType, {
 
 local bestiarykillcountRealToVaigu = {
 	[5000] = {
-		toKill = 2000,
+		toKill = 2500,
 		FirstUnlock = 500,
 		SecondUnlock = 1000,
 		CharmsPoints = 100,
@@ -107,27 +107,27 @@ local bestiarykillcountRealToVaigu = {
 		CharmsPoints = 50,
 	},
 	[1000] = {
-		toKill = 200,
-		FirstUnlock = 25,
-		SecondUnlock = 50,
+		toKill = 500,
+		FirstUnlock = 100,
+		SecondUnlock = 250,
 		CharmsPoints = 25,
 	},
 	[500] = {
-		toKill = 50,
-		FirstUnlock = 10,
-		SecondUnlock = 25,
+		toKill = 250,
+		FirstUnlock = 50,
+		SecondUnlock = 100,
 		CharmsPoints = 15,
 	},
 	[250] = {
-		toKill = 25,
-		FirstUnlock = 5,
-		SecondUnlock = 10,
+		toKill = 100,
+		FirstUnlock = 25,
+		SecondUnlock = 50,
 		CharmsPoints = 5,
 	},
 	[25] = {
-		toKill = 10,
-		FirstUnlock = 3,
-		SecondUnlock = 5,
+		toKill = 25,
+		FirstUnlock = 5,
+		SecondUnlock = 15,
 		CharmsPoints = 1,
 	},
 	[5] = {
