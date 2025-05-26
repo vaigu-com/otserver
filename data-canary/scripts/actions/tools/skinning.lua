@@ -232,23 +232,23 @@ local config = {
 		}, -- after being killed
 		-- behemoth
 		[4112] = {
-			chance = 15000,
+			chance = 10000,
 			newItem = 5893,
 			after = 4113,
 		},
 		[5999] = {
-			chance = 15000,
+			chance = 10000,
 			newItem = 5893,
 			after = 4113,
 		}, -- after being killed
 		-- bone beast
 		[4212] = {
-			chance = 8000,
+			chance = 6000,
 			newItem = 5925,
 			after = 4213,
 		},
 		[6030] = {
-			chance = 8000,
+			chance = 6000,
 			newItem = 5925,
 			after = 4213,
 		}, -- after being killed
@@ -263,154 +263,10 @@ local config = {
 			newItem = 24842,
 			after = 22744,
 		}, -- after being killed
-		-- blood crab
-		[5688] = {
-			chance = 15000,
-			newItem = 9633,
-			after = 5689,
-		},
-		[6075] = {
-			chance = 15000,
-			newItem = 9633,
-			after = 5689,
-		}, -- after being killed
-		-- mummy
-		[4130] = {
-			chance = 10000,
-			newItem = 5914,
-			after = 4131,
-		},
-		[6004] = {
-			chance = 10000,
-			newItem = 5914,
-			after = 4131,
-		}, -- after being killed
-		-- forest fury 
-		[19046] = {
-			chance = 15000,
-			newItem = 18944,
-			after = 19047,
-		},
-		[19042] = {
-			chance = 15000,
-			newItem = 18944,
-			after = 19047,
-		}, -- after being killed
-		-- mutated rat
-		[8957] = {
-			chance = 15000,
-			newItem = 9668,
-			after = 8959,
-		},
-		[8958] = {
-			chance = 15000,
-			newItem = 9668,
-			after = 8959,
-		}, -- after being killed
-		-- mutated bat
-		[8915] = {
-			chance = 15000,
-			newItem = 9662,
-			after = 8917,
-		},
-		[8916] = {
-			chance = 15000,
-			newItem = 9662,
-			after = 8917,
-		}, -- after being killed
-		-- Mutated Tiger
-		[8999] = {
-			chance = 15000,
-			newItem = 10311,
-			after = 4358,
-		},
-		[9000] = {
-			chance = 15000,
-			newItem = 10311,
-			after = 4358,
-		}, -- after being killed
-		-- stampor
-		[12325] = {
-			chance = 20000,
-			newItem = 12312,
-			after = 12326,
-		},
-		[12328] = {
-			chance = 20000,
-			newItem = 12312,
-			after = 12326,
-		}, -- after being killed
-		-- putrid mummy
-		[25841] = {
-			chance = 15000,
-			newItem = 25697,
-			after = 25840,
-		},
-		[25842] = {
-			chance = 15000,
-			newItem = 25697,
-			after = 25840,
-		}, -- after being killed
-		-- Braindeath
-		[7256] = {
-			chance = 15000,
-			newItem = 5898,
-			after = 7257,
-		},
-		[7260] = {
-			chance = 15000,
-			newItem = 5898,
-			after = 7257,
-		}, -- after being killed
-		-- Elder Bonelord
-		[6037] = {
-			chance = 15000,
-			newItem = 5898,
-			after = 4234,
-		},
-		[4233] = {
-			chance = 15000,
-			newItem = 5898,
-			after = 4234,
-		}, -- after being killed
-		-- Grimeleech
-		[22780] = {
-			chance = 10000,
-			newItem = 22730,
-			after = 22782,
-		},
-		[22781] = {
-			chance = 10000,
-			newItem = 22730,
-			after = 22782,
-		}, -- after being killed
-		-- Vexclaw
-		[22776] = {
-			chance = 10000,
-			newItem = 22728,
-			after = 22778,
-		},
-		[22777] = {
-			chance = 10000,
-			newItem = 22728,
-			after = 22778,
-		}, -- after being killed
-		-- Hellflyer
-		[22787] = {
-			chance = 20000,
-			newItem = 22729,
-			after = 22778,
-		},
-		[22784] = {
-			chance = 20000,
-			newItem = 22729,
-			after = 22778,
-		}, -- after being killed
-		
 		-- piece of marble rock
 		[10426] = {
 			{
-				chance = 5530,
+				chance = 530,
 				newItem = 10429,
 				desc = "This little figurine of a goddess was masterfully sculpted by |PLAYERNAME|.",
 			},
@@ -427,19 +283,19 @@ local config = {
 		},
 		-- ice cube
 		[7441] = {
-			chance = 28000,
+			chance = 22000,
 			newItem = 7442,
 		},
 		[7442] = {
-			chance = 18000,
+			chance = 4800,
 			newItem = 7444,
 		},
 		[7444] = {
-			chance = 11900,
+			chance = 900,
 			newItem = 7445,
 		},
 		[7445] = {
-			chance = 1840,
+			chance = 40,
 			newItem = 7446,
 		},
 	},
@@ -447,90 +303,46 @@ local config = {
 	[5942] = {
 		-- demon
 		[4097] = {
-			chance = 10000,
+			chance = 3000,
 			newItem = 5906,
 			after = 4098,
 		},
 		[5995] = {
-			chance = 10000,
+			chance = 3000,
 			newItem = 5906,
 			after = 4098,
 		}, -- after being killed
 		-- vampires
 		[4137] = {
-			chance = 7000,
+			chance = 6000,
 			newItem = 5905,
 			after = 4138,
 		}, -- vampire
 		[6006] = {
-			chance = 7000,
+			chance = 6000,
 			newItem = 5905,
 			after = 4138,
 		}, -- vampire, after being killed
 		[8738] = {
-			chance = 8000,
+			chance = 6000,
 			newItem = 5905,
 			after = 8742,
 		}, -- vampire bride
 		[8744] = {
-			chance = 8000,
+			chance = 6000,
 			newItem = 5905,
 			after = 8742,
 		}, -- vampire bride, after being killed
 		[18958] = {
-			chance = 8000,
+			chance = 6000,
 			newItem = 5905,
 			after = 18959,
 		}, -- vampire viscount
 		[18961] = {
-			chance = 8000,
+			chance = 6000,
 			newItem = 5905,
 			after = 18959,
 		}, -- vampire viscount, after being killed
-		-- nightmare
-		[6339] = {
-			chance = 10000,
-			newItem = 10306,
-			after = 6341,
-		},
-		[6340] = {
-			chance = 10000,
-			newItem = 10306,
-			after = 6341,
-		}, -- nightmare after being killed
-		-- diabolic imp
-		[6363] = {
-			chance = 22000,
-			newItem = 6499,
-			after = 6365,
-		},
-		[6364] = {
-			chance = 22000,
-			newItem = 6499,
-			after = 6365,
-		}, -- diabolic imp after being killed
-		-- infernalist
-		[18146] = {
-			chance = 12000,
-			newItem = 5904,
-			after = 18147,
-		},
-		[18149] = {
-			chance = 12000,
-			newItem = 5904,
-			after = 18147,
-		}, -- infernalist after being killed
-		-- juggernaut
-		[6335] = {
-			chance = 12000,
-			newItem = 6499,
-			after = 6337,
-		},
-		[6336] = {
-			chance = 12000,
-			newItem = 6499,
-			after = 6337,
-		}, -- juggernaut after being killed
 	},
 }
 
