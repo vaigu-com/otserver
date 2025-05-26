@@ -1,7 +1,7 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if target.itemid ~= 16197 then
+	if target.itemid ~= 16197 and target.itemid ~= 16194 then
 		return false
 	end
 
