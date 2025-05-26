@@ -373,7 +373,7 @@ pseudoQuest
 					text = "YOU_SELECTED_IMBUING_LEVEL",
 					specialRequirements = {
 						{
-							requirement = SPECIAL_REQUIREMENTS_IMBUING.saidImbuingLevels,
+							requirement = SPECIAL_REQUIREMENTS_IMBUING.saidImbuingLevel,
 							requiredOutcome = true,
 						},
 					},
@@ -407,7 +407,7 @@ pseudoQuest
 						},
 					},
 					specialActionsOnSuccess = {
-						{ action = SPECIAL_ACTIONS_IMBUING.removeTaskPointsByImbuing },
+						{ action = SPECIAL_ACTIONS_IMBUING.addproductsRemovemoneypoints },
 					},
 				},
 			},
@@ -795,7 +795,7 @@ pseudoQuest
 				},
 				[{ "withdraw" }] = {
 					text = "DECLARE_WITHDRAW_AMOUNT",
-					nextTopic = QuestTopics.JOB_TOPICS.declareAmount,
+					nextTopic = QuestTopics.JOB_TOPICS.declareAmountwithdraw,
 				},
 				[{ "<amount>" }] = {
 					text = "CONFIRM_WITHDRAW",

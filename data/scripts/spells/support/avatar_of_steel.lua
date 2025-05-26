@@ -29,7 +29,7 @@ spell:group("support")
 spell:id(264)
 spell:name("Avatar of Steel")
 spell:words("uteta res eq")
-spell:level(300)
+spell:level(50)
 spell:mana(800)
 spell:isPremium(true)
 spell:cooldown(2 * 60 * 60 * 1000) -- Default cooldown = 2 hours

@@ -47,7 +47,7 @@ return {
 
 	["DEPOSIT_OK"] = function(context)
 		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
-		return T("W porzadku. Na twoj rachunek wplynelo :amount: sztuk zlota. Mozesz je wywplacic w dowolnym momencie.", { amount = amount })
+		return T("W porzadku. Na twoj rachunek wplynelo :amount: sztuk zlota. Mozesz je wyplacic w dowolnym momencie.", { amount = amount })
 	end,
 	["WITHDRAW_OK"] = function(context)
 		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount

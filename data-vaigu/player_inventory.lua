@@ -505,7 +505,7 @@ function CalculateItemsWeight(items)
 			weight = getItemWeight(item.id) or weight
 		end
 		local requiredWeight = count * weight
-		if item.addToStore == true or (item.aid and item.aid > 0 and item.addToStore ~= false) then
+		if shouldAddToStore(item) then
 			requiredWeight = 0
 		end
 

@@ -44,6 +44,7 @@ local goesToActions = {
 	addDialogData = true,
 	text = true,
 	interactOnGreet = true,
+	preycardReward = true,
 }
 
 function ResolutionContext:Append(tab)

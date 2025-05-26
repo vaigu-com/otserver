@@ -14,7 +14,6 @@ monster.outfit = {
 }
 
 monster.events = {
-	"LastExileDeath",
 }
 
 monster.raceId = 1529

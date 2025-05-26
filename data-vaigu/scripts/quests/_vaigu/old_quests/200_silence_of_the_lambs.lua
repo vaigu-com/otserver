@@ -89,6 +89,9 @@ quest
 					rewards = {
 						{ id = 5942 },
 					},
+					nextState = {
+						[Storage.SilenceOfTheLambs.TestOfStrength] = QuestState.SilenceOfTheLambs.TestOfStrength.AskLecterForNewMission,
+					},
 				},
 			})
 	end)

@@ -1869,7 +1869,7 @@ quest
 				[{ "problem" }] = {
 					text = "Listen, over the past few years, I've lost a few components of my fishing gear in various ponds and lakes around Mirko. Specifically, I lost my wooden {float}, {reel}, and my old {stool}. Find all these items and {return} to me.",
 				},
-				[{ "return", "odnies", "mission" }] = {
+				[{ "return", "odnies", "mission", "misja" }] = {
 					text = "Thank you! Here's your reward. Wait a moment! Someone scribbled on my chair with a marker! Oh, {darn} it... For my current condition, only a stew with Chinese ping pong onion, meat from an under-milked centennial bull raised by wolves, all topped with wine stolen from the Kutonapleton winery, will help. Alternatively, a simple rotworm {stew} might do the trick.",
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = QuestState.LocalSupport.SettledDownFishmonger.BringSoupToAnonFather,
