@@ -75,14 +75,13 @@ monster.loot = {
 	{ name = "platinum coin", chance = 50000, maxCount = 3 },
 	{ name = "great health potion", chance = 50000, maxCount = 3 },
 	{ name = "small ruby", chance = 12700, maxCount = 3 },
-	{ name = "onyx arrow", chance = 30000, maxCount = 3 },
 	{ name = "golden armor", chance = 1000 },
 	{ name = "green gem", chance = 1300 },
 	{ name = "damaged armor plates", chance = 1800, maxCount = 3 },
 	{ name = "falcon crest", chance = 400, maxCount = 3 },
 	{ name = "patch of fine cloth", chance = 2500 },
-	{ name = "falcon coif", chance = 200 },
-	{ name = "falcon bow", chance = 200 },
+	{ name = "falcon coif", chance = 400 },
+	{ name = "falcon bow", chance = 400 },
 }
 
 monster.attacks = {

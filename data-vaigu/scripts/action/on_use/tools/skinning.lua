@@ -4,6 +4,150 @@ SKINNING_SPECIAL_ACTION_PERFORMED = "SKINNING_SPECIAL_ACTION_PERFORMED"
 local toolToCorpseToData = {
 	[5908] = {
 		--#region Vaigu custom id
+			-- blood crab
+		[5688] = {
+			successChance = 15000,
+			rewardId = 9633,
+			after = 5689,
+		},
+		[6075] = {
+			successChance = 15000,
+			rewardId = 9633,
+			after = 5689,
+		}, -- after being killed
+		-- mummy
+		[4130] = {
+			successChance = 10000,
+			rewardId = 5914,
+			after = 4131,
+		},
+		[6004] = {
+			successChance = 10000,
+			rewardId = 5914,
+			after = 4131,
+		}, -- after being killed
+		-- forest fury 
+		[19046] = {
+			successChance = 15000,
+			rewardId = 18944,
+			after = 19047,
+		},
+		[19042] = {
+			successChance = 15000,
+			rewardId = 18944,
+			after = 19047,
+		}, -- after being killed
+		-- mutated rat
+		[8957] = {
+			successChance = 15000,
+			rewardId = 9668,
+			after = 8959,
+		},
+		[8958] = {
+			successChance = 15000,
+			rewardId = 9668,
+			after = 8959,
+		}, -- after being killed
+		-- mutated bat
+		[8915] = {
+			successChance = 15000,
+			rewardId = 9662,
+			after = 8917,
+		},
+		[8916] = {
+			successChance = 15000,
+			rewardId = 9662,
+			after = 8917,
+		}, -- after being killed
+		-- Mutated Tiger
+		[8999] = {
+			successChance = 15000,
+			rewardId = 10311,
+			after = 4358,
+		},
+		[9000] = {
+			successChance = 15000,
+			rewardId = 10311,
+			after = 4358,
+		}, -- after being killed
+		-- stampor
+		[12325] = {
+			successChance = 20000,
+			rewardId = 12312,
+			after = 12326,
+		},
+		[12328] = {
+			successChance = 20000,
+			rewardId = 12312,
+			after = 12326,
+		}, -- after being killed
+		-- putrid mummy
+		[25841] = {
+			successChance = 15000,
+			rewardId = 25697,
+			after = 25840,
+		},
+		[25842] = {
+			successChance = 15000,
+			rewardId = 25697,
+			after = 25840,
+		}, -- after being killed
+		-- Braindeath
+		[7256] = {
+			successChance = 15000,
+			rewardId = 5898,
+			after = 7257,
+		},
+		[7260] = {
+			successChance = 15000,
+			rewardId = 5898,
+			after = 7257,
+		}, -- after being killed
+		-- Elder Bonelord
+		[6037] = {
+			successChance = 15000,
+			rewardId = 5898,
+			after = 4234,
+		},
+		[4233] = {
+			successChance = 15000,
+			rewardId = 5898,
+			after = 4234,
+		}, -- after being killed
+		-- Grimeleech
+		[22780] = {
+			successChance = 10000,
+			rewardId = 22730,
+			after = 22782,
+		},
+		[22781] = {
+			successChance = 10000,
+			rewardId = 22730,
+			after = 22782,
+		}, -- after being killed
+		-- Vexclaw
+		[22776] = {
+			successChance = 10000,
+			rewardId = 22728,
+			after = 22778,
+		},
+		[22777] = {
+			successChance = 10000,
+			rewardId = 22728,
+			after = 22778,
+		}, -- after being killed
+		-- Hellflyer
+		[22787] = {
+			successChance = 20000,
+			rewardId = 22729,
+			after = 22778,
+		},
+		[22784] = {
+			successChance = 20000,
+			rewardId = 22729,
+			after = 22778,
+		}, -- after being killed
+		
 		-- Apes
 		[4333] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4334 }, -- kongra
 		[4339] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4340 }, -- sibang
@@ -180,6 +324,50 @@ local toolToCorpseToData = {
 		[7445] = { successChance = 22344, rewardId = 7446 },
 	},
 	[5942] = {
+			-- nightmare
+		[6339] = {
+		successChance = 10000,
+			rewardId = 10306,
+			nextCorpseId = 6341,
+		},
+		[6340] = {
+			successChance = 10000,
+			rewardId = 10306,
+			nextCorpseId = 6341,
+		}, -- nightmare nextCorpseId being killed
+		-- diabolic imp
+		[6363] = {
+			successChance = 22000,
+			rewardId = 6499,
+			nextCorpseId = 6365,
+		},
+		[6364] = {
+			successChance = 22000,
+			rewardId = 6499,
+			nextCorpseId = 6365,
+		}, -- diabolic imp nextCorpseId being killed
+		-- infernalist
+		[18146] = {
+			successChance = 12000,
+			rewardId = 5904,
+			nextCorpseId = 18147,
+		},
+		[18149] = {
+			successChance = 12000,
+			rewardId = 5904,
+			nextCorpseId = 18147,
+		}, -- infernalist nextCorpseId being killed
+		-- juggernaut
+		[6335] = {
+			successChance = 12000,
+			rewardId = 6499,
+			nextCorpseId = 6337,
+		},
+		[6336] = {
+			successChance = 12000,
+			rewardId = 6499,
+			nextCorpseId = 6337,
+		}, -- juggernaut nextCorpseId being killed
 		-- Demon
 		[4097] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5906, nextCorpseId = 4098 },
 		[5995] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5906, nextCorpseId = 4098 }, -- nextCorpseId being killed
