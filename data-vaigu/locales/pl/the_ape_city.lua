@@ -1,4 +1,8 @@
 return {
+	["Wish you health."] = "Zdrowia zycze.",
+	["I am aware what im asking for is a lot, but this is the cost of the top notch service."] = "Wiem, ze to wysoka cena, ale budzetowka nas zje, jesli im w priorytecie nie przyniesiemy.",
+	["At the moment we're almost out of syrup. Those monkeys keep pestering us about it. That's why we charge 1000 gold for each bottle, do you have such money?"] = "W obecnej sytuacji mamy malo syropu na stanie. Ciagle zaczepki ze strony malp pozbawily nas duzej ilosci zapasow magazynie. Dlatego za jedna sztuke bedziesz musial zaplacic 1000 golda. Jestes w stanie nam tyle dac?",
+	["Urbanisation and the progress of civilization, which in turn meant ignorance towards the forces of nature, caused many people to fall ill. We export and sell medicine all over the world. If only those pesky monkeys could leave our warehouse alone."] = "W zwiazku z cywilizacyjnym postepem i zamieszkaniem w miastach, a co za tym idzie, odwroceniem sie od natury, ludzie zaczeli mocno chorowac. A my jestesmy dystrybutorem i ekseporterem lekarstwa na swiat. Ehhh, gdyby tylko te cholerne malpy zostawily nasze magazyny w spokoju! Niech ktos pogada z przywodca malp.",
 	--Questlog
 	["The Ape City"] = "Miasto Malp",
 	["Hairycles Missions"] = "Misje Hairyclesa",

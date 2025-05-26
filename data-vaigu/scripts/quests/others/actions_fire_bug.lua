@@ -9,31 +9,10 @@ local function checkFlowers(player)
 	return true
 end
 
--- The Ape City Quest --
-local campfirePosition = Position(6501, 592, 7)
-local function revertCampfire(position)
-	local tile = Tile(position)
-	if tile then
-		local campfire = tile:getItemById(1998)
-		if campfire then
-			campfire:transform(1997)
-		end
-	end
-end
-
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local removeItem = true
-	-- The Ape City
-	if (toPosition == campfirePosition) and (target.itemid == 1997) and (player:getStorageValueByKey(Storage.TheApeCity.CampfireMission) == 1) then
-		target:transform(1998)
-		Game.createMonster("Draken Spellweaver", Position(6499, 589, 7))
-		Game.createMonster("Draken Spellweaver", Position(6497, 593, 7))
-		player:setStorageValueByKey(Storage.TheApeCity.CampfireMission, 2)
-		player:say("Kto?! Kto osmielil sie rozpalic przedwczesnie ogien?", TALKTYPE_MONSTER_SAY, false, player, toPosition)
-		addEvent(revertCampfire, 1000 * 60, campfirePosition)
-	end
 	-- Sezon na Jelenie
 	if target.itemid == 2742 and player:getStorageValueByKey(Storage.WayOfTheDruid.DeerSeason) == 1 then
 		if target.uid == 11008 or target.uid == 11009 then

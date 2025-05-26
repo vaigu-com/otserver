@@ -1,4 +1,8 @@
 return {
+	["Wish you health."] = "Wish you health.",
+	["I am aware what im asking for is a lot, but this is the cost of the top notch service."] = "I am aware what im asking for is a lot, but this is the cost of the top notch service.",
+	["At the moment we're almost out of syrup. Those monkeys keep pestering us about it. That's why we charge 1000 gold for each bottle, do you have such money?"] = "At the moment we're almost out of syrup. Those monkeys keep pestering us about it. That's why we charge 1000 gold for each bottle, do you have such money?",
+	["Urbanisation and the progress of civilization, which in turn meant ignorance towards the forces of nature, caused many people to fall ill. We export and sell medicine all over the world. If only those pesky monkeys could leave our warehouse alone."] = "Urbanisation and the progress of civilization, which in turn meant ignorance towards the forces of nature, caused many people to fall ill. We export and sell medicine all over the world. If only those pesky monkeys could leave our warehouse alone.",
 	--Questlog
 	["The Ape City"] = "The Ape City",
 	["Hairycles Missions"] = "Hairycles Missions",

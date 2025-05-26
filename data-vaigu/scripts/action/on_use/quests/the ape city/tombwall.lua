@@ -1,11 +1,11 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValueByKey(Storage.TheApeCity.QuestProgress) == 7 then
+	if player:getStorageValueByKey(Storage.TheApeCity.QuestProgress) <= 7 then
 		player:setStorageValueByKey(Storage.TheApeCity.TombWall, 1)
 		doCreatureSay(player, "(.)(.),|,8--> Bendriksai.", TALKTYPE_ORANGE_1)
 	else
-		doCreatureSay(player, "Kolejne hieroglify. Ale zaraz, te sa jakies dziwne", TALKTYPE_ORANGE_1) -- Tylko dla robiacych questa jest tu cos xd
+		doCreatureSay(player, "Kolejne hieroglify. Ale zaraz, te sa jakies dziwne", TALKTYPE_ORANGE_1)
 	end
 	return true
 end
