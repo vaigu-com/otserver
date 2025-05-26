@@ -6,16 +6,19 @@ function playerLogin.onLogin(player)
 	if maxClientsPerIp <= 0 then
 		return true
 	end
-	local ipClients = 0
-	for _, client in ipairs(Game.getPlayers()) do
-		if player:getIp() == client:getIp() then
-			ipClients = ipClients + 1
+
+	local loggingInClientIp = player:getIp()
+	local sameIpClients = {}
+
+	for _, otherClient in ipairs(Game.getPlayers()) do
+		if loggingInClientIp == otherClient:getIp() then
+			table.insert(sameIpClients, otherClient)
 		end
 	end
-	if ipClients > maxClientsPerIp then
-		for _, client in ipairs(Game.getPlayers()) do
-			if player:getIp() == client:getIp() then
-			end
+
+	if #sameIpClients > maxClientsPerIp then
+		for _, client in ipairs(sameIpClients) do
+			client:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You can be logged in to up to :maxClientsPerIp: characters at the time!", { maxClientsPerIp = maxClientsPerIp }))
 		end
 		return false
 	end
