@@ -9,6 +9,13 @@
 
 #include "game/scheduling/save_manager.hpp"
 
+#ifndef OS_WINDOWS
+#include <sys/file.h>
+#include <unistd.h>
+#include <fcntl.h>
+#endif
+
+
 #include "config/configmanager.hpp"
 #include "creatures/players/grouping/guild.hpp"
 #include "game/game.hpp"
@@ -42,15 +49,27 @@ void SaveManager::saveAll() {
 		}
 	}
 
-// Now fork and do only the saving
 #ifndef OS_WINDOWS
 	auto pid = fork();
 	if (pid < 0) {
 		g_logger().error("[{}] Failed to fork process for saving", __FUNCTION__);
 		return;
 	} else if (pid > 0) {
+		// Parent process: return immediately
 		g_logger().info("Save initiated asynchronously in PID {}", pid);
 		return;
+	}
+	// Child process
+	int lockFd = open("/tmp/server_save.lock", O_CREAT | O_RDWR, 0666);
+	if (lockFd == -1) {
+		g_logger().error("Could not open lock file for saving!");
+		_exit(1);
+	}
+	if (flock(lockFd, LOCK_EX | LOCK_NB) != 0) {
+		// Another save is in progress
+		g_logger().warn("Another save is already in progress. Exiting.");
+		close(lockFd);
+		_exit(0);
 	}
 #endif
 
@@ -66,6 +85,12 @@ void SaveManager::saveAll() {
 		saveKV();
 		return true;
 	});
+
+#ifndef OS_WINDOWS
+	flock(lockFd, LOCK_UN); // release explicitly (not strictly needed due to _exit, but safe)
+	close(lockFd);
+	_exit(0);
+#endif
 }
 
 void SaveManager::scheduleAll() {
