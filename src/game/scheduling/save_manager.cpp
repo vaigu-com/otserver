@@ -33,17 +33,15 @@ void SaveManager::saveAll() {
 		const auto players = game.getPlayers();
 		for (const auto& [_, player] : players) {
 			player->loginPosition = player->getPosition();
-			doSavePlayer(player);
 			if (player->isLoggingOut()){
 				player->setLoggingOut(false);
 				player->setOnline(false);
 			}
 			if(!player->isOnline()){
-				player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
-				g_game().removeCreature(player, true);
 				g_game().removePlayer(std::shared_ptr<Player>(player));
 				player->setRemoved();
 			}
+			doSavePlayer(player);
 		}
 		auto guilds = game.getGuilds();
 		for (const auto& [_, guild] : guilds) {

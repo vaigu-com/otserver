@@ -102,6 +102,7 @@ public:
 	explicit ProtocolGame(const Connection_ptr &initConnection);
 
 	void login(const std::string &name, uint32_t accnumber, OperatingSystem_t operatingSystem);
+	ReturnValue messageIfCannotLogout(const std::shared_ptr<Player> player, bool forced);
 	void logout(bool displayEffect, bool forced);
 
 	void AddItem(NetworkMessage &msg, const std::shared_ptr<Item> &item);

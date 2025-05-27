@@ -1267,7 +1267,9 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 	creature->getParent()->postRemoveNotification(creature, nullptr, 0);
 	afterCreatureZoneChange(creature, fromZones, {});
 
-	creature->removeList();
+	if (!creature->getPlayer() && isLogout) {
+		creature->removeList();
+	}
 	creature->setRemoved();
 
 	removeCreatureCheck(creature);
