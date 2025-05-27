@@ -99,11 +99,6 @@ public:
 		return "gameworld protocol";
 	}
 
-	struct PlayerDatabaseLoadStatus {
-		bool cached;
-		bool error;
-	};
-
 	explicit ProtocolGame(const Connection_ptr &initConnection);
 
 	void login(const std::string &name, uint32_t accnumber, OperatingSystem_t operatingSystem);

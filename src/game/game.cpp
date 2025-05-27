@@ -1157,7 +1157,6 @@ std::vector<std::shared_ptr<Player>> Game::getPlayersByAccount(const std::shared
 
 bool Game::internalPlaceCreature(const std::shared_ptr<Creature> &creature, const Position &pos, bool extendedPos /*=false*/, bool forced /*= false*/, bool creatureCheck /*= false*/) {
 	if (creature->getParent() != nullptr) {
-		// // TODO_VAIGU maybe remove?
 		return false;
 	}
 	const auto &tile = map.getTile(pos);
@@ -1261,9 +1260,7 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 	afterCreatureZoneChange(creature, fromZones, {});
 
 	creature->removeList();
-	//if (!creature->getPlayer()) {
-		creature->setRemoved();
-	//}
+	creature->setRemoved();
 
 	removeCreatureCheck(creature);
 
