@@ -29,53 +29,43 @@ SaveManager &SaveManager::getInstance() {
 void SaveManager::saveAll() {
 	logger.info("Saving server...");
 
+	const auto players = game.getPlayers();
+	for (const auto &[_, player] : players) {
+		player->loginPosition = player->getPosition();
+		if (player->isLoggingOut()) {
+			player->setLoggingOut(false);
+			player->setOnline(false);
+		}
+		if (!player->isOnline()) {
+			g_game().removePlayer(std::shared_ptr<Player>(player));
+			player->setRemoved();
+		}
+	}
+
+// Now fork and do only the saving
 #ifndef OS_WINDOWS
 	auto pid = fork();
 	if (pid < 0) {
-		// Fork failed
 		g_logger().error("[{}] Failed to fork process for saving", __FUNCTION__);
 		return;
 	} else if (pid > 0) {
-		// Parent process: return immediately
-		g_logger.info("Save initiated asynchronously in PID {}", pid);
+		g_logger().info("Save initiated asynchronously in PID {}", pid);
 		return;
 	}
-	// Child process continues below
 #endif
 
 	Benchmark bm_saveAll;
 	const bool success = DBTransaction::executeWithinTransaction([this]() {
-		const auto players = game.getPlayers();
 		for (const auto &[_, player] : players) {
-			player->loginPosition = player->getPosition();
-			if (player->isLoggingOut()) {
-				player->setLoggingOut(false);
-				player->setOnline(false);
-			}
-			if (!player->isOnline()) {
-				g_game().removePlayer(std::shared_ptr<Player>(player));
-				player->setRemoved();
-			}
 			doSavePlayer(player);
 		}
-		auto guilds = game.getGuilds();
-		for (const auto &[_, guild] : guilds) {
+		for (const auto &[_, guild] : game.getGuilds()) {
 			saveGuild(guild);
 		}
 		saveMap();
 		saveKV();
 		return true;
 	});
-
-	if (!success) {
-		g_logger().error("[{}] Error occurred saving the server", __FUNCTION__);
-	}
-
-	logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
-
-#ifndef OS_WINDOWS
-	_exit(0); // Ensure child exits cleanly without calling destructors from shared resources
-#endif
 }
 
 void SaveManager::scheduleAll() {
