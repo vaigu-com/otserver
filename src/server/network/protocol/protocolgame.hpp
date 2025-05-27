@@ -106,8 +106,6 @@ public:
 
 	explicit ProtocolGame(const Connection_ptr &initConnection);
 
-	static PlayerDatabaseLoadStatus loadOfflinePlayerFromDatabase(const std::shared_ptr<Player> &player, const std::string &name);
-	PlayerDatabaseLoadStatus loadPlayerFromDatabase(std::shared_ptr<Player> &player, const std::string &name);
 	void login(const std::string &name, uint32_t accnumber, OperatingSystem_t operatingSystem);
 	void logout(bool displayEffect, bool forced);
 
@@ -126,6 +124,10 @@ public:
 	uint16_t getVersion() const {
 		return version;
 	}
+
+	// Vaigu custom
+	void sendSessionEndInformation(SessionEndInformations information);
+
 
 private:
 	ProtocolGame_ptr getThis() {
@@ -175,8 +177,6 @@ private:
 	void parseFightModes(NetworkMessage &msg);
 	void parseAttack(NetworkMessage &msg);
 	void parseFollow(NetworkMessage &msg);
-
-	void sendSessionEndInformation(SessionEndInformations information);
 
 	void sendItemInspection(uint16_t itemId, uint8_t itemCount, const std::shared_ptr<Item> &item, bool cyclopedia);
 	void parseInspectionObject(NetworkMessage &msg);

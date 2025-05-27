@@ -3995,6 +3995,8 @@ void Player::setDailyReward(uint8_t reward) {
 }
 
 void Player::removeList() {
+	g_game().removePlayer(static_self_cast<Player>());
+
 	for (const auto &[key, player] : g_game().getPlayers()) {
 		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline);
 	}

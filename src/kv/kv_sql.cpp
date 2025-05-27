@@ -42,13 +42,13 @@ std::optional<ValueWrapper> KVSQL::load(const std::string &key) {
 	const auto query = fmt::format("SELECT `key_name`, `timestamp`, `value` FROM `kv_store` WHERE `key_name` = {}", db.escapeString(key));
 	const auto result = db.storeQuery(query);
 	if (result == nullptr) {
-		return -1;
+		return std::nullopt;
 	}
 
 	unsigned long size;
 	const auto data = result->getStream("value", size);
 	if (data == nullptr) {
-		return -1;
+		return std::nullopt;
 	}
 
 	ValueWrapper valueWrapper;

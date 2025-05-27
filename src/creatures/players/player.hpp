@@ -172,6 +172,14 @@ public:
 		return online;
 	}
 
+	void setLoggingOut(bool nextState) {
+		loggingOut = true;
+	}
+
+	bool isLoggingOut() const {
+		return loggingOut;
+	}
+
 	static uint32_t getFirstID();
 	static uint32_t getLastID();
 
@@ -1712,6 +1720,7 @@ private:
 
 	std::shared_ptr<Account> account;
 	bool online = true;
+	bool loggingOut = false;
 
 	bool hasQuiverEquipped() const;
 

@@ -17,6 +17,7 @@
 #include "kv/kv.hpp"
 #include "lib/di/container.hpp"
 #include "creatures/players/player.hpp"
+#include "server/network/protocol/protocolgame.hpp"
 
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
 	threadPool(threadPool), kv(kvStore), logger(logger), game(game) { }
@@ -33,7 +34,13 @@ void SaveManager::saveAll() {
 		for (const auto& [_, player] : players) {
 			player->loginPosition = player->getPosition();
 			doSavePlayer(player);
+			if (player->isLoggingOut()){
+				player->setLoggingOut(false);
+				player->setOnline(false);
+			}
 			if(!player->isOnline()){
+				player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
+				g_game().removeCreature(player, true);
 				g_game().removePlayer(std::shared_ptr<Player>(player));
 				player->setRemoved();
 			}

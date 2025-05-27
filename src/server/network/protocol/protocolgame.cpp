@@ -589,40 +589,6 @@ void ProtocolGame::release() {
 	Protocol::release();
 }
 
-ProtocolGame::PlayerDatabaseLoadStatus ProtocolGame::loadOfflinePlayerFromDatabase(const std::shared_ptr<Player> &player, const std::string &name) {
-	auto cached = false;
-	auto error = false;
-	auto loadedPlayer = g_game().getPlayerByName(name, false);
-	if (loadedPlayer != nullptr) {
-		cached  = true;
-	} else {
-		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
-			g_logger().warn("Player {} could not be loaded", player->getName());
-			error = true;
-		}
-	}
-	return { cached, error};
-}
-
-ProtocolGame::PlayerDatabaseLoadStatus ProtocolGame::loadPlayerFromDatabase(std::shared_ptr<Player> &player, const std::string &name) {
-	auto cached = false;
-	auto error = false;
-	auto loadedPlayer = g_game().getPlayerByName(name, false);
-	if (loadedPlayer != nullptr) {
-		cached  = true;
-		auto client = player->client;
-		player = loadedPlayer;
-		player->client = client;
-	} else {
-		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
-			disconnectClient("Your character could not be loaded.");
-			g_logger().warn("Player {} could not be loaded", player->getName());
-			error = true;
-		}
-	}
-	return { cached, error};
-}
-
 void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingSystem_t operatingSystem) {
 	// OTCV8 features
 	if (otclientV8 > 0) {
@@ -646,7 +612,7 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 
 	// dispatcher thread
 	std::shared_ptr<Player> foundPlayer = g_game().getPlayerByName(name);
-	if (!foundPlayer || !foundPlayer->isOnline()) {
+	if (!foundPlayer) {
 		player = std::make_shared<Player>(getThis());
 		player->setName(name);
 
@@ -727,19 +693,13 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 			return;
 		}
 
-		const auto status = loadPlayerFromDatabase(player, name);
-		if (status.error) {
+		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
+			disconnectClient("Your character could not be loaded.");
+			g_logger().warn("Player {} could not be loaded", player->getName());
 			return;
 		}
 
 		player->setOperatingSystem(operatingSystem);
-
-		if (!status.cached) {
-			player->addOpenContainers(oldProtocol);
-		}
-		if (!oldProtocol) {
-			player->sendOpenContainers();
-		}
 
 		const auto tile = g_game().map.getOrCreateTile(player->getLoginPosition());
 		// moving from a pz tile to a non-pz tile
@@ -769,7 +729,7 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 		player->loginProtectionTime = OTSYS_TIME() + g_configManager().getNumber(LOGIN_PROTECTION_TIME);
 		acceptPackets = true;
 	} else {
-		if (eventConnect != 0 || !g_configManager().getBoolean(REPLACE_KICK_ON_LOGIN)) {
+		if (eventConnect != 0 || !g_configManager().getBoolean(REPLACE_KICK_ON_LOGIN) || foundPlayer->isLoggingOut()) {
 			// Already trying to connect
 			disconnectClient("You are already logged in.");
 			return;
@@ -856,9 +816,8 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 		g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);
 	}
 
-	sendSessionEndInformation(forced ? SESSION_END_FORCECLOSE : SESSION_END_LOGOUT);
-	player->setOnline(false);
-	g_game().removeCreature(player, true);
+	player->setLoggingOut(true);
+	// g_game().removeCreature(player, true);
 }
 
 void ProtocolGame::onRecvFirstMessage(NetworkMessage &msg) {
