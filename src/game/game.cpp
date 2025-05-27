@@ -666,8 +666,12 @@ void Game::setGameState(GameState_t newState) {
 
 			// kick all players that are still online
 			auto it = players.begin();
-			for (const auto &[_, player] : players) {
-				player->client->logout(false, true);
+			while (it != players.end()) {
+				for (const auto &[_, player] : players) {
+					it->second->removePlayer(true);
+					player->client->logout(false, true);
+					it = players.begin();
+				}
 			}
 
 			saveMotdNum();
@@ -682,9 +686,13 @@ void Game::setGameState(GameState_t newState) {
 			g_globalEvents().save();
 
 			/* kick all players without the CanAlwaysLogin flag */
-			for (const auto &[_, player] : players) {
-				if (!player->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
-					player->client->logout(false, true);
+			auto it = players.begin();
+			while (it != players.end()) {
+				if (!it->second->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
+					it->second->removePlayer(true);
+					it = players.begin();
+				} else {
+					++it;
 				}
 			}
 

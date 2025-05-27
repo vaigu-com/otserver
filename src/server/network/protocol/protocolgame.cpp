@@ -695,6 +695,7 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 
 		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
 			disconnectClient("Your character could not be loaded, please contact an adminstrator.");
+			g_logger().warn("Player {} could not be loaded", player->getName());
 			return;
 		}
 
@@ -762,8 +763,8 @@ void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t oper
 	if (isConnectionExpired()) {
 		// ProtocolGame::release() has been called at this point and the Connection object
 		// no longer exists, so we return to prevent leakage of the Player.
-		// return;
 		g_logger().warn("[ProtocolGame::connect] Player {} connection expired.", playerName);
+		return;
 	}
 
 	player = foundPlayer;
@@ -7119,7 +7120,7 @@ void ProtocolGame::sendAddCreature(const std::shared_ptr<Creature> &creature, co
 
 	// We need to manually send the open containers on player login, on IOLoginData it won't work.
 	if (isLogin && oldProtocol) {
-		player->sendOpenContainers();
+		player->openPlayerContainers();
 	}
 }
 
