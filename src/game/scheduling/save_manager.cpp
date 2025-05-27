@@ -86,6 +86,12 @@ void SaveManager::saveAll() {
 		return true;
 	});
 
+	if (!success){
+		g_logger().error("[{}] Error occured saving the saving the server", __FUNCTION__);
+	}
+
+	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
+
 #ifndef OS_WINDOWS
 	flock(lockFd, LOCK_UN); // release explicitly (not strictly needed due to _exit, but safe)
 	close(lockFd);
