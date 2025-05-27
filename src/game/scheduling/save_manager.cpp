@@ -55,7 +55,7 @@ void SaveManager::saveAll() {
 #endif
 
 	Benchmark bm_saveAll;
-	const bool success = DBTransaction::executeWithinTransaction([this]() {
+	const bool success = DBTransaction::executeWithinTransaction([this, players]() {
 		for (const auto &[_, player] : players) {
 			doSavePlayer(player);
 		}
