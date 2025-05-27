@@ -815,10 +815,10 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
 	}
-	
+
 	bool removePlayer = !player->isRemoved() && !forced;
 	auto errorMessage = messageIfCannotLogout(player, removePlayer);
-	if (errorMessage != RETURNVALUE_NOERROR){
+	if (errorMessage != RETURNVALUE_NOERROR) {
 		player->sendCancelMessage(errorMessage);
 		return;
 	}
@@ -831,7 +831,6 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 		g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);
 	}
 
-	//player->sendTextMessage(MESSAGE_EVENT_ADVANCE, "You will be logged out momentarily.");
 	player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
 	g_game().removeCreature(player, true);
 	player->setLoggingOut(true);
