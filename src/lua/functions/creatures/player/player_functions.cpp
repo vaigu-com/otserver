@@ -694,11 +694,6 @@ int PlayerFunctions::luaPlayerSetAccountType(lua_State* L) {
 		return 1;
 	}
 
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		lua_pushnil(L);
-		return 1;
-	}
-
 	Lua::pushBoolean(L, true);
 	return 1;
 }
@@ -2922,10 +2917,6 @@ int PlayerFunctions::luaPlayerAddPremiumDays(lua_State* L) {
 
 	player->getAccount()->addPremiumDays(addDays);
 
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		return 1;
-	}
-
 	Lua::pushBoolean(L, true);
 	return 1;
 }
@@ -2950,10 +2941,6 @@ int PlayerFunctions::luaPlayerRemovePremiumDays(lua_State* L) {
 	}
 
 	player->getAccount()->addPremiumDays(-removeDays);
-
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		return 1;
-	}
 
 	Lua::pushBoolean(L, true);
 	return 1;
@@ -2992,12 +2979,6 @@ int PlayerFunctions::luaPlayerAddTibiaCoins(lua_State* L) {
 		return 1;
 	}
 
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		Lua::reportErrorFunc("Failed to save account");
-		lua_pushnil(L);
-		return 1;
-	}
-
 	Lua::pushBoolean(L, true);
 
 	return 1;
@@ -3014,12 +2995,6 @@ int PlayerFunctions::luaPlayerRemoveTibiaCoins(lua_State* L) {
 
 	if (player->account->removeCoins(CoinType::Normal, Lua::getNumber<uint32_t>(L, 2)) != AccountErrors_t::Ok) {
 		Lua::reportErrorFunc("Failed to remove coins");
-		return 1;
-	}
-
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		Lua::reportErrorFunc("Failed to save account");
-		lua_pushnil(L);
 		return 1;
 	}
 
@@ -3061,12 +3036,6 @@ int PlayerFunctions::luaPlayerAddTransferableCoins(lua_State* L) {
 		return 1;
 	}
 
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		Lua::reportErrorFunc("failed to save account");
-		lua_pushnil(L);
-		return 1;
-	}
-
 	Lua::pushBoolean(L, true);
 
 	return 1;
@@ -3083,12 +3052,6 @@ int PlayerFunctions::luaPlayerRemoveTransferableCoins(lua_State* L) {
 
 	if (player->account->removeCoins(CoinType::Transferable, Lua::getNumber<uint32_t>(L, 2)) != AccountErrors_t::Ok) {
 		Lua::reportErrorFunc("failed to remove transferable coins");
-		lua_pushnil(L);
-		return 1;
-	}
-
-	if (player->getAccount()->save() != AccountErrors_t::Ok) {
-		Lua::reportErrorFunc("failed to save account");
 		lua_pushnil(L);
 		return 1;
 	}

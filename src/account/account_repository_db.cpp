@@ -153,8 +153,6 @@ void AccountRepositoryDB::setupLoyaltyInfo(std::unique_ptr<AccountInfo> &acc) {
 	if (acc->creationTime == 0) {
 		acc->creationTime = getTimeNow();
 	}
-
-	save(acc);
 }
 
 std::vector<CoinTransactionEntry> AccountRepositoryDB::flushCoinTransactionEntries() {

@@ -267,10 +267,6 @@ void Account::updatePremiumTime() {
 	if (remainingDays == m_account->premiumRemainingDays) {
 		return;
 	}
-
-	if (AccountErrors_t::Ok != save()) {
-		g_logger().error("Failed to update account premium time: [{}]", getDescriptor());
-	}
 }
 
 std::tuple<phmap::flat_hash_map<std::string, uint64_t>, AccountErrors_t>
