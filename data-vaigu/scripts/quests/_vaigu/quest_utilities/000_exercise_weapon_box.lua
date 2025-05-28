@@ -6,9 +6,12 @@ local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
-	if not player:TryRemoveItems({ { id = boxId, key = boxKey } }) then
+
+	local boxObject = choice.boxObject
+	if not boxObject then
 		return
 	end
+	boxObject:remove()
 
 	player:CoalesceNewExerciseWeapon(choice.id, choice.charges)
 end
@@ -47,12 +50,12 @@ function ExerciseWeaponBox(charges)
 end
 
 local exerciseWeaponBox = Action()
-function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+function exerciseWeaponBox.onUse(player, boxObject, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
 		return false
 	end
 
-	local charges = item:getCustomAttribute("charges")
+	local charges = boxObject:getCustomAttribute("charges")
 	local title = player:Localizer(LOCALIZERS.Universal):Get("ExerciseWeaponBoxTitle")
 	local message = player:Localizer(LOCALIZERS.Universal):Context({ charges = charges }):Get("ExerciseWeaponBoxMessage")
 	local window = ModalWindow({ title = title, message = message })
@@ -62,6 +65,7 @@ function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition,
 		local choice = window:addChoice(name)
 		choice.charges = charges
 		choice.id = id
+		choice.boxObject = boxObject
 	end
 
 	window:sendToPlayer(player)
