@@ -9,6 +9,13 @@
 
 #include "game/scheduling/save_manager.hpp"
 
+#ifndef OS_WINDOWS
+#include <sys/file.h>
+#include <unistd.h>
+#include <fcntl.h>
+#endif
+
+
 #include "config/configmanager.hpp"
 #include "creatures/players/grouping/guild.hpp"
 #include "game/game.hpp"
@@ -17,6 +24,8 @@
 #include "kv/kv.hpp"
 #include "lib/di/container.hpp"
 #include "creatures/players/player.hpp"
+#include "server/network/protocol/protocolgame.hpp"
+#include "account/account.hpp"
 
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
 	threadPool(threadPool), kv(kvStore), logger(logger), game(game) { }
@@ -26,23 +35,72 @@ SaveManager &SaveManager::getInstance() {
 }
 
 void SaveManager::saveAll() {
-	Benchmark bm_saveAll;
 	logger.info("Saving server...");
-	const auto players = game.getPlayers();
 
+	const auto players = game.getPlayers();
 	for (const auto &[_, player] : players) {
 		player->loginPosition = player->getPosition();
-		doSavePlayer(player);
+		if (player->isLoggingOut()) {
+			player->setLoggingOut(false);
+			player->setOnline(false);
+		}
+		if (!player->isOnline()) {
+			g_game().removePlayer(std::shared_ptr<Player>(player));
+			player->setRemoved();
+		}
+	}
+	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+
+#ifndef OS_WINDOWS
+	auto pid = fork();
+	if (pid < 0) {
+		g_logger().error("[{}] Failed to fork process for saving", __FUNCTION__);
+		return;
+	} else if (pid > 0) {
+		// Parent process: return immediately
+		g_logger().info("Save initiated asynchronously in PID {}", pid);
+		return;
+	}
+	// Child process
+	int lockFd = open("/tmp/server_save.lock", O_CREAT | O_RDWR, 0666);
+	if (lockFd == -1) {
+		g_logger().error("Could not open lock file for saving!");
+		_exit(1);
+	}
+	if (flock(lockFd, LOCK_EX | LOCK_NB) != 0) {
+		// Another save is in progress
+		g_logger().warn("Another save is already in progress. Exiting.");
+		close(lockFd);
+		_exit(0);
+	}
+#endif
+
+	Benchmark bm_saveAll;
+	const bool success = DBTransaction::executeWithinTransaction([this, players, newCoinTransactions]() {
+		for (const auto &[_, player] : players) {
+			doSavePlayer(player);
+			const auto account = player->account->save();
+		}
+		for (const auto &[_, guild] : game.getGuilds()) {
+			saveGuild(guild);
+		}
+		saveMap();
+		saveKV();
+		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+		return true;
+	});
+
+	if (!success){
+		g_logger().error("[{}] Error occured saving the saving the server", __FUNCTION__);
 	}
 
-	auto guilds = game.getGuilds();
-	for (const auto &[_, guild] : guilds) {
-		saveGuild(guild);
-	}
+	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
 
-	saveMap();
-	saveKV();
-	logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
+#ifndef OS_WINDOWS
+	flock(lockFd, LOCK_UN); // release explicitly (not strictly needed due to _exit, but safe)
+	close(lockFd);
+	_exit(0);
+#endif
 }
 
 void SaveManager::scheduleAll() {
@@ -111,7 +169,7 @@ bool SaveManager::doSavePlayer(std::shared_ptr<Player> player) {
 	}
 
 	bool saveSuccess = IOLoginData::savePlayer(player);
-	g_kv().savePlayer(player->getGUID());
+	// g_kv().savePlayer(player->getGUID());
 	if (!saveSuccess) {
 		logger.error("Failed to save player {}.", player->getName());
 	}

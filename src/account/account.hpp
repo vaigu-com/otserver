@@ -16,6 +16,14 @@ enum class CoinTransactionType : uint8_t;
 enum class AccountErrors_t : uint8_t;
 enum AccountType : uint8_t;
 
+struct CoinTransactionEntry {
+	const uint32_t id;
+	const CoinTransactionType transactionType;
+	const uint32_t amount;
+	const CoinType coinType;
+	const std::string description;
+};
+
 class Account {
 public:
 	explicit Account(const uint32_t &id);

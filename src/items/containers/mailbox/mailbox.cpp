@@ -110,7 +110,6 @@ bool Mailbox::sendItem(const std::shared_ptr<Item> &item) const {
 			if (player->isOnline()) {
 				player->onReceiveMail();
 			} else {
-				g_saveManager().savePlayer(player);
 			}
 			return true;
 		}

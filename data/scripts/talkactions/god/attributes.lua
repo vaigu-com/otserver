@@ -209,12 +209,6 @@ local playerFunctions = {
 			return player:setBankBalance(target + player:getBankBalance())
 		end,
 	},
-	["save"] = {
-		isActive = true,
-		targetFunction = function(player, target)
-			return player:save()
-		end,
-	},
 	["type"] = {
 		isActive = true,
 		targetFunction = function(player, target)

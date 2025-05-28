@@ -102,6 +102,7 @@ public:
 	explicit ProtocolGame(const Connection_ptr &initConnection);
 
 	void login(const std::string &name, uint32_t accnumber, OperatingSystem_t operatingSystem);
+	ReturnValue messageIfCannotLogout(const std::shared_ptr<Player> player, bool forced);
 	void logout(bool displayEffect, bool forced);
 
 	void AddItem(NetworkMessage &msg, const std::shared_ptr<Item> &item);
@@ -119,6 +120,10 @@ public:
 	uint16_t getVersion() const {
 		return version;
 	}
+
+	// Vaigu custom
+	void sendSessionEndInformation(SessionEndInformations information);
+
 
 private:
 	ProtocolGame_ptr getThis() {
@@ -168,8 +173,6 @@ private:
 	void parseFightModes(NetworkMessage &msg);
 	void parseAttack(NetworkMessage &msg);
 	void parseFollow(NetworkMessage &msg);
-
-	void sendSessionEndInformation(SessionEndInformations information);
 
 	void sendItemInspection(uint16_t itemId, uint8_t itemCount, const std::shared_ptr<Item> &item, bool cyclopedia);
 	void parseInspectionObject(NetworkMessage &msg);

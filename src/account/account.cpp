@@ -81,12 +81,18 @@ std::tuple<uint32_t, AccountErrors_t> Account::getCoins(CoinType type) const {
 		return { 0, NotInitialized };
 	}
 
-	uint32_t coins = 0;
-	if (!g_accountRepository().getCoins(m_account->id, type, coins)) {
-		return { 0, Storage };
+	switch (type) {
+		case CoinType::Normal:
+			return { m_account->coins, Ok };
+		case CoinType::Transferable:
+			return { m_account->coinsTransferable, Ok };
+		case CoinType::Tournament:
+			return { m_account->tournamentCoins, Ok };
+		default:
+			return { 0, Storage };
 	}
 
-	return { coins, Ok };
+	return { 0, Storage };
 }
 
 AccountErrors_t Account::addCoins(CoinType type, const uint32_t &amount, const std::string &detail) {
@@ -100,13 +106,22 @@ AccountErrors_t Account::addCoins(CoinType type, const uint32_t &amount, const s
 	}
 
 	auto [coins, result] = getCoins(type);
-
-	if (Ok != result) {
+	if (result != Ok) {
 		return result;
 	}
 
-	if (!g_accountRepository().setCoins(m_account->id, type, coins + amount)) {
-		return Storage;
+	switch (type) {
+		case CoinType::Normal:
+			m_account->coins = m_account->coins + amount;
+			break;
+		case CoinType::Transferable:
+			m_account->coinsTransferable = m_account->coinsTransferable + amount;
+			break;
+		case CoinType::Tournament:
+			m_account->tournamentCoins = m_account->tournamentCoins + amount;
+			break;
+		default:
+			return Storage;
 	}
 
 	registerCoinTransaction(CoinTransactionType::Add, type, amount, detail);
@@ -125,8 +140,7 @@ AccountErrors_t Account::removeCoins(CoinType type, const uint32_t &amount, cons
 	}
 
 	auto [coins, result] = getCoins(type);
-
-	if (Ok != result) {
+	if (result != Ok) {
 		return result;
 	}
 
@@ -135,8 +149,18 @@ AccountErrors_t Account::removeCoins(CoinType type, const uint32_t &amount, cons
 		return RemoveCoins;
 	}
 
-	if (!g_accountRepository().setCoins(m_account->id, type, coins - amount)) {
-		return Storage;
+	switch (type) {
+		case CoinType::Normal:
+			m_account->coins = m_account->coins - amount;
+			break;
+		case CoinType::Transferable:
+			m_account->coinsTransferable = m_account->coinsTransferable - amount;
+			break;
+		case CoinType::Tournament:
+			m_account->tournamentCoins = m_account->tournamentCoins - amount;
+			break;
+		default:
+			return Storage;
 	}
 
 	registerCoinTransaction(CoinTransactionType::Remove, type, amount, detail);
@@ -242,10 +266,6 @@ void Account::updatePremiumTime() {
 
 	if (remainingDays == m_account->premiumRemainingDays) {
 		return;
-	}
-
-	if (AccountErrors_t::Ok != save()) {
-		g_logger().error("Failed to update account premium time: [{}]", getDescriptor());
 	}
 }
 

@@ -694,7 +694,7 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 		}
 
 		if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
-			disconnectClient("Your character could not be loaded.");
+			disconnectClient("Your character could not be loaded, please contact an adminstrator.");
 			g_logger().warn("Player {} could not be loaded", player->getName());
 			return;
 		}
@@ -734,6 +734,10 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 			disconnectClient("You are already logged in.");
 			return;
 		}
+		if (foundPlayer->isLoggingOut()) {
+			disconnectClient("Your character is being saved. Try again in few seconds.");
+			return;
+		}
 
 		if (foundPlayer->client) {
 			foundPlayer->disconnect();
@@ -763,6 +767,7 @@ void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t oper
 	if (isConnectionExpired()) {
 		// ProtocolGame::release() has been called at this point and the Connection object
 		// no longer exists, so we return to prevent leakage of the Player.
+		g_logger().warn("[ProtocolGame::connect] Player {} connection expired.", playerName);
 		return;
 	}
 
@@ -774,7 +779,6 @@ void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t oper
 	player->isConnecting = false;
 
 	player->client = getThis();
-	player->openPlayerContainers();
 	sendAddCreature(player, player->getPosition(), 0, true);
 	player->lastIP = player->getIP();
 	player->lastLoginSaved = std::max<time_t>(time(nullptr), player->lastLoginSaved + 1);
@@ -788,25 +792,36 @@ void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t oper
 	acceptPackets = true;
 }
 
+ReturnValue ProtocolGame::messageIfCannotLogout(const std::shared_ptr<Player> player, bool removePlayer) {
+	auto tile = player->getTile();
+	if (removePlayer && !player->isAccessPlayer()) {
+		if (tile && tile->hasFlag(TILESTATE_NOLOGOUT)) {
+			return RETURNVALUE_YOUCANNOTLOGOUTHERE;
+		}
+
+		if (tile && !tile->hasFlag(TILESTATE_PROTECTIONZONE) && player->hasCondition(CONDITION_INFIGHT)) {
+			return RETURNVALUE_YOUMAYNOTLOGOUTDURINGAFIGHT;
+		}
+	}
+
+	if (removePlayer && !g_creatureEvents().playerLogout(player)) {
+		RETURNVALUE_YOUCANNOTLOGOUTHERE;
+	}
+
+	return RETURNVALUE_NOERROR;
+}
+
 void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
 	}
 
 	bool removePlayer = !player->isRemoved() && !forced;
-	auto tile = player->getTile();
-	if (removePlayer && !player->isAccessPlayer()) {
-		if (tile && tile->hasFlag(TILESTATE_NOLOGOUT)) {
-			player->sendCancelMessage(RETURNVALUE_YOUCANNOTLOGOUTHERE);
-			return;
-		}
-
-		if (tile && !tile->hasFlag(TILESTATE_PROTECTIONZONE) && player->hasCondition(CONDITION_INFIGHT)) {
-			player->sendCancelMessage(RETURNVALUE_YOUMAYNOTLOGOUTDURINGAFIGHT);
-			return;
-		}
+	auto errorMessage = messageIfCannotLogout(player, removePlayer);
+	if (errorMessage != RETURNVALUE_NOERROR) {
+		player->sendCancelMessage(errorMessage);
+		return;
 	}
-
 	if (removePlayer && !g_creatureEvents().playerLogout(player)) {
 		return;
 	}
@@ -816,9 +831,9 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 		g_game().addMagicEffect(player->getPosition(), CONST_ME_POFF);
 	}
 
-	sendSessionEndInformation(forced ? SESSION_END_FORCECLOSE : SESSION_END_LOGOUT);
-
+	player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
 	g_game().removeCreature(player, true);
+	player->setLoggingOut(true);
 }
 
 void ProtocolGame::onRecvFirstMessage(NetworkMessage &msg) {

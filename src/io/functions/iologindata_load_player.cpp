@@ -587,7 +587,7 @@ void IOLoginDataLoad::loadPlayerInventoryItems(const std::shared_ptr<Player> &pl
 			item->startDecaying();
 		}
 
-		if (!oldProtocol) {
+	if (!oldProtocol) {
 			std::ranges::sort(openContainersList.begin(), openContainersList.end(), [](const std::pair<uint8_t, std::shared_ptr<Container>> &left, const std::pair<uint8_t, std::shared_ptr<Container>> &right) {
 				return left.first < right.first;
 			});

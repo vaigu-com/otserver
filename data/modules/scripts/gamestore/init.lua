@@ -276,18 +276,18 @@ function parseTransferableCoins(playerId, msg)
 		return false
 	end
 
-	local reciver = msg:getString()
+	local recipientPlayerName = msg:getString()
 	local amount = msg:getU32()
 
 	if player:getTransferableCoins() < amount then
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "You don't have this amount of coins.")
 	end
 
-	if reciver:lower() == player:getName():lower() then
+	if recipientPlayerName:lower() == player:getName():lower() then
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "You can't transfer coins to yourself.")
 	end
 
-	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(reciver:lower()) .. "")
+	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(recipientPlayerName:lower()) .. "")
 	if not resultId then
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "We couldn't find that player.")
 	end
@@ -297,13 +297,18 @@ function parseTransferableCoins(playerId, msg)
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "You cannot transfer coin to a character in the same account.")
 	end
 
-	db.query("UPDATE `accounts` SET `coins_transferable` = `coins_transferable` + " .. amount .. " WHERE `id` = " .. accountId)
+	local recipient = Player(recipientPlayerName)
+	if not recipient then
+		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "The recipient has to be online.")
+	end
+
 	player:removeTransferableCoinsBalance(amount)
-	addPlayerEvent(sendStorePurchaseSuccessful, 550, playerId, "You have transfered " .. amount .. " coins to " .. reciver .. " successfully")
+	recipientPlayerName:addTransferableCoinsBalance(amount)
+	addPlayerEvent(sendStorePurchaseSuccessful, 550, playerId, "You have transfered " .. amount .. " coins to " .. recipientPlayerName .. " successfully")
 
 	-- Adding history for both receiver/sender
 	GameStore.insertHistory(accountId, GameStore.HistoryTypes.HISTORY_TYPE_NONE, player:getName() .. " transferred you this amount.", amount, GameStore.CoinType.Transferable)
-	GameStore.insertHistory(player:getAccountId(), GameStore.HistoryTypes.HISTORY_TYPE_NONE, "You transferred this amount to " .. reciver, -1 * amount, GameStore.CoinType.Transferable)
+	GameStore.insertHistory(player:getAccountId(), GameStore.HistoryTypes.HISTORY_TYPE_NONE, "You transferred this amount to " .. recipientPlayerName, -1 * amount, GameStore.CoinType.Transferable)
 	openStore(playerId)
 	player:updateUIExhausted()
 end
@@ -449,7 +454,7 @@ function parseBuyStoreOffer(playerId, msg)
 	-- At this point the purchase is assumed to be formatted correctly
 	local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or offer.price
 	local offerCoinType = offer.coinType
-	if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
+	if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:isNameLocked() then
 		offerPrice = 0
 	end
 	-- Check if offer can be honored
@@ -925,8 +930,8 @@ function sendShowStoreOffers(playerId, category, redirectId)
 					xpBoostPrice = GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)]
 				end
 
-				nameLockPrice = nil
-				if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
+				local nameLockPrice = nil
+				if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:isNameLocked() then
 					nameLockPrice = 0
 				end
 
@@ -1753,14 +1758,15 @@ function GameStore.processNameChangePurchase(player, offer, productType, newName
 			return error({ code = 1, message = result.reason })
 		end
 
-		local message, namelockReason = "", player:kv():get("namelock")
+		local messageAfterPurchase = ""
+		local namelockReason = player:reasonIfNamelocked()
 		if not namelockReason then
 			player:makeCoinTransaction(offer)
-			message = string.format("You have purchased %s for %d coins.", offer.name, offer.price)
+			messageAfterPurchase = string.format("You have purchased %s for %d coins.", offer.name, offer.price)
 		else
-			message = "Your character has been renamed successfully."
+			messageAfterPurchase = "Your character has been renamed successfully."
 		end
-		addPlayerEvent(sendStorePurchaseSuccessful, 500, player:getId(), message)
+		addPlayerEvent(sendStorePurchaseSuccessful, 500, player:getId(), messageAfterPurchase)
 
 		player:changeName(newName)
 	else
@@ -2209,7 +2215,7 @@ function sendHomePage(playerId)
 	msg:addU16(#homeOffers) -- offers
 	for p, offer in pairs(homeOffers) do
 		local offerPrice = offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST and GameStore.ExpBoostValues[player:getStorageValueByKey(Storage.GameStore.ExpBoostCount)] or offer.price
-		if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:kv():get("namelock") then
+		if offer.type == GameStore.OfferTypes.OFFER_TYPE_NAMECHANGE and player:isNameLocked() then
 			offerPrice = 0
 		end
 

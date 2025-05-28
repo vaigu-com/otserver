@@ -29,4 +29,8 @@ struct AccountInfo {
 	uint32_t premiumDaysPurchased = 0;
 	uint32_t creationTime = 0;
 	uint32_t houseBidId = 0;
+	
+	uint32_t coins = 0;
+	uint32_t coinsTransferable = 0;
+	uint32_t tournamentCoins = 0;
 };

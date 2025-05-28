@@ -315,8 +315,6 @@ bool House::transferToDepot(const std::shared_ptr<Player> &player, const std::sh
 		}
 	}
 
-	std::unordered_set<std::shared_ptr<Player>> playersToSave = { player };
-
 	for (const auto &item : moveItemList) {
 		std::shared_ptr<Player> targetPlayer = player;
 
@@ -324,7 +322,6 @@ bool House::transferToDepot(const std::shared_ptr<Player> &player, const std::sh
 			const auto &itemOwner = g_game().getPlayerByGUID(item->getOwnerId(), true);
 			if (itemOwner) {
 				targetPlayer = itemOwner;
-				playersToSave.insert(targetPlayer);
 			} else {
 				g_logger().warn("[{}] owner of item '{}' (GUID: {}) not found, skipping transfer", __FUNCTION__, item->getName(), item->getOwnerId());
 				continue;
@@ -332,9 +329,6 @@ bool House::transferToDepot(const std::shared_ptr<Player> &player, const std::sh
 		}
 
 		g_game().internalMoveItem(item->getParent(), targetPlayer->getInbox(), INDEX_WHEREEVER, item, item->getItemCount(), nullptr, FLAG_NOLIMIT);
-	}
-	for (const auto &playerToSave : playersToSave) {
-		g_saveManager().savePlayer(playerToSave);
 	}
 
 	return true;
@@ -911,7 +905,6 @@ void Houses::payHouses(RentPeriod_t rentPeriod) const {
 			} else if (!vipKeep && !activityKeep) {
 				g_logger().info("Player {} has not logged in for {} days, so the house will be reset.", player->getName(), daysToReset);
 				house->setOwner(0, true, player);
-				g_saveManager().savePlayer(player);
 				continue;
 			}
 		}
@@ -982,8 +975,6 @@ void Houses::payHouses(RentPeriod_t rentPeriod) const {
 				house->setOwner(0, true, player);
 			}
 		}
-
-		g_saveManager().savePlayer(player);
 	}
 }
 

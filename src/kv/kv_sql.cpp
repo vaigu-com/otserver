@@ -18,6 +18,26 @@
 KVSQL::KVSQL(Database &db, Logger &logger) :
 	KVStore(logger), db(db) { }
 
+void KVSQL::loadAll() {
+	auto query = fmt::format("SELECT `key_name`, `timestamp`, `value` FROM `kv_store`");
+	auto result = db.storeQuery(query);
+	do {
+		unsigned long size;
+		auto data = result->getStream("value", size);
+		if (data == nullptr) {
+			continue;
+		}
+		ValueWrapper valueWrapper;
+		auto timestamp = result->getNumber<uint64_t>("timestamp");
+		Canary::protobuf::kv::ValueWrapper protoValue;
+		if (protoValue.ParseFromArray(data, static_cast<int>(size))) {
+			valueWrapper = ProtoSerializable::fromProto(protoValue, timestamp);
+		}
+		auto key = result->getString("key");
+		setLocked(key, valueWrapper);
+	} while (result->next());
+}
+
 std::optional<ValueWrapper> KVSQL::load(const std::string &key) {
 	const auto query = fmt::format("SELECT `key_name`, `timestamp`, `value` FROM `kv_store` WHERE `key_name` = {}", db.escapeString(key));
 	const auto result = db.storeQuery(query);
@@ -83,48 +103,36 @@ bool KVSQL::prepareSave(const std::string &key, const ValueWrapper &value, DBIns
 
 bool KVSQL::saveAll() {
 	auto store = getStore();
-	const bool success = DBTransaction::executeWithinTransaction([this, &store]() {
-		auto update = dbUpdate();
-		if (!std::ranges::all_of(store, [this, &update](const auto &kv) {
-				const auto &[key, value] = kv;
-				return prepareSave(key, value.first, update);
-			})) {
-			return false;
-		}
-		return update.execute();
-	});
-
-	if (!success) {
+	auto update = dbUpdate();
+	if (!std::ranges::all_of(store, [this, &update](const auto &kv) {
+			const auto &[key, value] = kv;
+			return prepareSave(key, value.first, update);
+		})) {
 		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);
+		return false;
+	} else {
+		return update.execute();
 	}
-
-	return success;
 }
 
 bool KVSQL::savePlayer(uint32_t playerId) {
 	auto store = getStore();
-	const bool success = DBTransaction::executeWithinTransaction([this, &store, playerId]() {
-		auto update = dbUpdate();
-		if (!std::ranges::all_of(store, [this, &update, playerId](const auto &kv) {
-				const auto &[key, value] = kv;
-				std::string playerPrefix = "player." + std::to_string(playerId);
-				std::string keyStr = key;
+	auto update = dbUpdate();
+	if (!std::ranges::all_of(store, [this, &update, playerId](const auto &kv) {
+			const auto &[key, value] = kv;
+			std::string playerPrefix = "player." + std::to_string(playerId);
+			std::string keyStr = key;
 
-				if (keyStr.compare(0, playerPrefix.size(), playerPrefix) == 0) {
-					return prepareSave(key, value.first, update);
-				}
-				return true;
-			})) {
-			return false;
-		}
-		return update.execute();
-	});
-
-	if (!success) {
+			if (keyStr.compare(0, playerPrefix.size(), playerPrefix) == 0) {
+				return prepareSave(key, value.first, update);
+			}
+			return true;
+		})) {
 		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);
+		return false;
+	} else {
+		return update.execute();
 	}
-
-	return success;
 }
 
 DBInsert KVSQL::dbUpdate() {

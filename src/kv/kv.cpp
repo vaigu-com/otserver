@@ -67,13 +67,13 @@ std::optional<ValueWrapper> KVStore::get(const std::string &key, bool forceLoad 
 		return value;
 	}
 
-	auto &[value, lruIt] = store_[key];
-	if (value.isDeleted()) {
-		lruQueue_.splice(lruQueue_.end(), lruQueue_, lruIt);
-		return std::nullopt;
-	}
-	lruQueue_.splice(lruQueue_.begin(), lruQueue_, lruIt);
-	return value;
+		auto &[value, lruIt] = store_[key];
+		if (value.isDeleted()) {
+			lruQueue_.splice(lruQueue_.end(), lruQueue_, lruIt);
+			return std::nullopt;
+		}
+		lruQueue_.splice(lruQueue_.begin(), lruQueue_, lruIt);
+		return value;
 }
 
 std::unordered_set<std::string> KVStore::keys(const std::string &prefix /*= ""*/) {

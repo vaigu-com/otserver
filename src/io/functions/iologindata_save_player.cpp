@@ -166,6 +166,7 @@ bool IOLoginDataSave::savePlayerFirst(const std::shared_ptr<Player> &player) {
 	Database &db = Database::getInstance();
 
 	std::ostringstream query;
+	/*
 	query << "SELECT `save` FROM `players` WHERE `id` = " << player->getGUID();
 	DBResult_ptr result = db.storeQuery(query.str());
 	if (!result) {
@@ -178,6 +179,7 @@ bool IOLoginDataSave::savePlayerFirst(const std::shared_ptr<Player> &player) {
 		query << "UPDATE `players` SET `lastlogin` = " << player->lastLoginSaved << ", `lastip` = " << player->lastIP << " WHERE `id` = " << player->getGUID();
 		return db.executeQuery(query.str());
 	}
+	*/
 
 	// First, an UPDATE query to write the player itself
 	query.str("");
