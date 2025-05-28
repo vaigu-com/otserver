@@ -276,18 +276,18 @@ function parseTransferableCoins(playerId, msg)
 		return false
 	end
 
-	local reciver = msg:getString()
+	local recipientPlayerName = msg:getString()
 	local amount = msg:getU32()
 
 	if player:getTransferableCoins() < amount then
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "You don't have this amount of coins.")
 	end
 
-	if reciver:lower() == player:getName():lower() then
+	if recipientPlayerName:lower() == player:getName():lower() then
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "You can't transfer coins to yourself.")
 	end
 
-	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(reciver:lower()) .. "")
+	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(recipientPlayerName:lower()) .. "")
 	if not resultId then
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "We couldn't find that player.")
 	end
@@ -297,13 +297,18 @@ function parseTransferableCoins(playerId, msg)
 		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "You cannot transfer coin to a character in the same account.")
 	end
 
-	db.query("UPDATE `accounts` SET `coins_transferable` = `coins_transferable` + " .. amount .. " WHERE `id` = " .. accountId)
+	local recipient = Player(recipientPlayerName)
+	if not recipient then
+		return addPlayerEvent(sendStoreError, 350, playerId, GameStore.StoreErrors.STORE_ERROR_TRANSFER, "The recipient has to be online.")
+	end
+
 	player:removeTransferableCoinsBalance(amount)
-	addPlayerEvent(sendStorePurchaseSuccessful, 550, playerId, "You have transfered " .. amount .. " coins to " .. reciver .. " successfully")
+	recipientPlayerName:addTransferableCoinsBalance(amount)
+	addPlayerEvent(sendStorePurchaseSuccessful, 550, playerId, "You have transfered " .. amount .. " coins to " .. recipientPlayerName .. " successfully")
 
 	-- Adding history for both receiver/sender
 	GameStore.insertHistory(accountId, GameStore.HistoryTypes.HISTORY_TYPE_NONE, player:getName() .. " transferred you this amount.", amount, GameStore.CoinType.Transferable)
-	GameStore.insertHistory(player:getAccountId(), GameStore.HistoryTypes.HISTORY_TYPE_NONE, "You transferred this amount to " .. reciver, -1 * amount, GameStore.CoinType.Transferable)
+	GameStore.insertHistory(player:getAccountId(), GameStore.HistoryTypes.HISTORY_TYPE_NONE, "You transferred this amount to " .. recipientPlayerName, -1 * amount, GameStore.CoinType.Transferable)
 	openStore(playerId)
 	player:updateUIExhausted()
 end
