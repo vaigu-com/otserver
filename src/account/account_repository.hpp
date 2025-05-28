@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include "account/account.hpp"
+
 struct AccountInfo;
 
 enum class CoinType : uint8_t;
@@ -34,8 +36,10 @@ public:
 
 	virtual bool getPassword(const uint32_t &id, std::string &password) = 0;
 
-	virtual bool getCoins(const uint32_t &id, CoinType coinType, uint32_t &coins) = 0;
-	virtual bool setCoins(const uint32_t &id, CoinType coinType, const uint32_t &amount) = 0;
+	// Vaigu custom
+	virtual std::vector<CoinTransactionEntry> flushCoinTransactionEntries() = 0;
+	virtual void saveCoinTransactionEntries(std::vector<CoinTransactionEntry> entries) = 0;
+
 	virtual bool registerCoinsTransaction(
 		const uint32_t &id,
 		CoinTransactionType type,

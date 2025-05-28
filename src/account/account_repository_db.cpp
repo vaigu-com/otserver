@@ -14,28 +14,22 @@
 #include "utils/definitions.hpp"
 #include "utils/tools.hpp"
 
-AccountRepositoryDB::AccountRepositoryDB() {
-	coinTypeToColumn = {
-		{ CoinType::Normal, "coins" },
-		{ CoinType::Tournament, "coins_tournament" },
-		{ CoinType::Transferable, "coins_transferable" }
-	};
-}
+AccountRepositoryDB::AccountRepositoryDB() { }
 
 bool AccountRepositoryDB::loadByID(const uint32_t &id, std::unique_ptr<AccountInfo> &acc) {
-	auto query = fmt::format("SELECT `id`, `type`, `premdays`, `lastday`, `creation`, `premdays_purchased`, 0 AS `expires` FROM `accounts` WHERE `id` = {}", id);
+	auto query = fmt::format("SELECT `id`, `type`, `premdays`, `lastday`, `creation`, `premdays_purchased`, 0 AS `expires`, `coins`, `coins_transferable`, `tournament_coins` FROM `accounts` WHERE `id` = {}", id);
 	return load(query, acc);
 };
 
 bool AccountRepositoryDB::loadByEmailOrName(bool oldProtocol, const std::string &emailOrName, std::unique_ptr<AccountInfo> &acc) {
 	auto identifier = oldProtocol ? "name" : "email";
-	auto query = fmt::format("SELECT `id`, `type`, `premdays`, `lastday`, `creation`, `premdays_purchased`, 0 AS `expires` FROM `accounts` WHERE `{}` = {}", identifier, g_database().escapeString(emailOrName));
+	auto query = fmt::format("SELECT `id`, `type`, `premdays`, `lastday`, `creation`, `premdays_purchased`, 0 AS `expires`, `coins`, `coins_transferable`, `tournament_coins` FROM `accounts` WHERE `{}` = {}", identifier, g_database().escapeString(emailOrName));
 	return load(query, acc);
 };
 
 bool AccountRepositoryDB::loadBySession(const std::string &sessionKey, std::unique_ptr<AccountInfo> &acc) {
 	auto query = fmt::format(
-		"SELECT `accounts`.`id`, `type`, `premdays`, `lastday`, `creation`, `premdays_purchased`, `account_sessions`.`expires` "
+		"SELECT `accounts`.`id`, `type`, `premdays`, `lastday`, `creation`, `premdays_purchased`, `account_sessions`.`expires`, `coins`, `coins_transferable`, `tournament_coins` "
 		"FROM `accounts` "
 		"INNER JOIN `account_sessions` ON `account_sessions`.`account_id` = `accounts`.`id` "
 		"WHERE `account_sessions`.`id` = {}",
@@ -47,13 +41,16 @@ bool AccountRepositoryDB::loadBySession(const std::string &sessionKey, std::uniq
 bool AccountRepositoryDB::save(const std::unique_ptr<AccountInfo> &accInfo) {
 	bool successful = g_database().executeQuery(
 		fmt::format(
-			"UPDATE `accounts` SET `type` = {}, `premdays` = {}, `lastday` = {}, `creation` = {}, `premdays_purchased` = {}, `house_bid_id` = {} WHERE `id` = {}",
+			"UPDATE `accounts` SET `type` = {}, `premdays` = {}, `lastday` = {}, `creation` = {}, `premdays_purchased` = {}, `house_bid_id` = {}, `coins` = {}, `coins_transferable` = {}, `tournament_coins` = {} WHERE `id` = {}",
 			accInfo->accountType,
 			accInfo->premiumRemainingDays,
 			accInfo->premiumLastDay,
 			accInfo->creationTime,
 			accInfo->premiumDaysPurchased,
 			accInfo->houseBidId,
+			accInfo->coins,
+			accInfo->coinsTransferable,
+			accInfo->tournamentCoins,
 			accInfo->id
 		)
 	);
@@ -86,44 +83,6 @@ bool AccountRepositoryDB::getPassword(const uint32_t &id, std::string &password)
 	return true;
 };
 
-bool AccountRepositoryDB::getCoins(const uint32_t &id, CoinType coinType, uint32_t &coins) {
-	auto it = coinTypeToColumn.find(coinType);
-	if (it == coinTypeToColumn.end()) {
-		g_logger().error("[{}] invalid coin type:[{}]", __FUNCTION__, coinType);
-		return false;
-	}
-
-	auto column = it->second;
-
-	const auto result = g_database().storeQuery(fmt::format("SELECT `{}` FROM `accounts` WHERE `id` = {}", column, id));
-
-	if (!result) {
-		return false;
-	}
-
-	coins = result->getNumber<uint32_t>(column);
-
-	return true;
-};
-
-bool AccountRepositoryDB::setCoins(const uint32_t &id, CoinType coinType, const uint32_t &amount) {
-	auto it = coinTypeToColumn.find(coinType);
-	if (it == coinTypeToColumn.end()) {
-		g_logger().error("[{}]: invalid coin type:[{}]", __FUNCTION__, coinType);
-		return false;
-	}
-
-	auto column = it->second;
-
-	const bool successful = g_database().executeQuery(fmt::format("UPDATE `accounts` SET `{}` = {} WHERE `id` = {}", column, amount, id));
-
-	if (!successful) {
-		g_logger().error("Error setting account[{}] coins to [{}]", id, amount);
-	}
-
-	return successful;
-};
-
 bool AccountRepositoryDB::registerCoinsTransaction(
 	const uint32_t &id,
 	CoinTransactionType type,
@@ -131,29 +90,11 @@ bool AccountRepositoryDB::registerCoinsTransaction(
 	CoinType coinType,
 	const std::string &description
 ) {
-	bool successful = g_database().executeQuery(
-		fmt::format(
-			"INSERT INTO `coins_transactions` (`account_id`, `type`, `coin_type`, `amount`, `description`) VALUES ({}, {}, {}, {}, {})",
-			id,
-			type,
-			coinType,
-			coins,
-			g_database().escapeString(description)
-		)
-	);
 
-	if (!successful) {
-		g_logger().error(
-			"Error registering coin transaction! account_id:[{}], type:[{}], coin_type:[{}], coins:[{}], description:[{}]",
-			id,
-			type,
-			coinType,
-			coins,
-			g_database().escapeString(description)
-		);
-	}
+	const auto newEntry = CoinTransactionEntry(id, type, coins, coinType, description);
+	newCoinTransactionEntries.push_back(newEntry);
 
-	return successful;
+	return true;
 };
 
 bool AccountRepositoryDB::loadAccountPlayers(std::unique_ptr<AccountInfo> &acc) const {
@@ -191,6 +132,9 @@ bool AccountRepositoryDB::load(const std::string &query, std::unique_ptr<Account
 	acc->premiumDaysPurchased = result->getNumber<uint32_t>("premdays_purchased");
 	acc->creationTime = result->getNumber<uint32_t>("creation");
 	acc->premiumRemainingDays = acc->premiumLastDay > getTimeNow() ? (acc->premiumLastDay - getTimeNow()) / 86400 : 0;
+	acc->coins = result->getNumber<uint32_t>("coins");
+	acc->coinsTransferable = result->getNumber<uint32_t>("coins_transferable");
+	acc->tournamentCoins = result->getNumber<uint32_t>("tournament_coins");
 
 	setupLoyaltyInfo(acc);
 
@@ -211,4 +155,25 @@ void AccountRepositoryDB::setupLoyaltyInfo(std::unique_ptr<AccountInfo> &acc) {
 	}
 
 	save(acc);
+}
+
+std::vector<CoinTransactionEntry> AccountRepositoryDB::flushCoinTransactionEntries() {
+	std::vector<CoinTransactionEntry> deepCopy = newCoinTransactionEntries;
+	newCoinTransactionEntries.clear();
+	return deepCopy;
+}
+
+void AccountRepositoryDB::saveCoinTransactionEntries(std::vector<CoinTransactionEntry> entries) {
+	for (const auto& entry : entries) {
+		g_database().executeQuery(
+			fmt::format(
+				"INSERT INTO `coins_transactions` (`account_id`, `type`, `coin_type`, `amount`, `description`) VALUES ({}, {}, {}, {}, {})",
+				entry.id,
+				entry.transactionType,
+				entry.coinType,
+				entry.amount,
+				g_database().escapeString(entry.description)
+			)
+		);
+	}
 }

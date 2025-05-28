@@ -10,6 +10,7 @@
 #pragma once
 
 #include "account/account_repository.hpp"
+#include "account/account.hpp"
 
 enum class CoinType : uint8_t;
 enum class CoinTransactionType : uint8_t;
@@ -27,8 +28,9 @@ public:
 
 	bool getPassword(const uint32_t &id, std::string &password) override;
 
-	bool getCoins(const uint32_t &id, CoinType coinType, uint32_t &coins) override;
-	bool setCoins(const uint32_t &id, CoinType coinType, const uint32_t &amount) override;
+	std::vector<CoinTransactionEntry> flushCoinTransactionEntries() override;
+	void saveCoinTransactionEntries(std::vector<CoinTransactionEntry> entries) override;
+
 	bool registerCoinsTransaction(
 		const uint32_t &id,
 		CoinTransactionType type,
@@ -38,9 +40,8 @@ public:
 	) override;
 
 private:
-	std::unordered_map<CoinType, std::string> coinTypeToColumn {};
-
 	bool load(const std::string &query, std::unique_ptr<AccountInfo> &acc);
 	bool loadAccountPlayers(std::unique_ptr<AccountInfo> &acc) const;
 	void setupLoyaltyInfo(std::unique_ptr<AccountInfo> &acc);
+	std::vector<CoinTransactionEntry> newCoinTransactionEntries;
 };

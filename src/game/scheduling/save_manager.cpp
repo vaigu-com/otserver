@@ -25,6 +25,7 @@
 #include "lib/di/container.hpp"
 #include "creatures/players/player.hpp"
 #include "server/network/protocol/protocolgame.hpp"
+#include "account/account.hpp"
 
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
 	threadPool(threadPool), kv(kvStore), logger(logger), game(game) { }
@@ -48,6 +49,7 @@ void SaveManager::saveAll() {
 			player->setRemoved();
 		}
 	}
+	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
 
 #ifndef OS_WINDOWS
 	auto pid = fork();
@@ -74,15 +76,17 @@ void SaveManager::saveAll() {
 #endif
 
 	Benchmark bm_saveAll;
-	const bool success = DBTransaction::executeWithinTransaction([this, players]() {
+	const bool success = DBTransaction::executeWithinTransaction([this, players, newCoinTransactions]() {
 		for (const auto &[_, player] : players) {
 			doSavePlayer(player);
+			const auto account = player->account->save();
 		}
 		for (const auto &[_, guild] : game.getGuilds()) {
 			saveGuild(guild);
 		}
 		saveMap();
 		saveKV();
+		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
 		return true;
 	});
 
