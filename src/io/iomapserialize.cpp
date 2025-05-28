@@ -63,9 +63,7 @@ void IOMapSerialize::loadHouseItems(Map* map) {
 }
 
 bool IOMapSerialize::saveHouseItems() {
-	bool success = DBTransaction::executeWithinTransaction([]() {
-		return SaveHouseItemsGuard();
-	});
+	bool success = SaveHouseItemsGuard();
 
 	if (!success) {
 		g_logger().error("[{}] Error occurred saving houses", __FUNCTION__);
@@ -366,9 +364,7 @@ bool IOMapSerialize::loadHouseInfo() {
 }
 
 bool IOMapSerialize::saveHouseInfo() {
-	bool success = DBTransaction::executeWithinTransaction([]() {
-		return SaveHouseInfoGuard();
-	});
+	bool success = SaveHouseInfoGuard();
 
 	if (!success) {
 		g_logger().error("[{}] Error occurred saving houses info", __FUNCTION__);
