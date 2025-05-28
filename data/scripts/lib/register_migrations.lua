@@ -20,7 +20,6 @@ function Migration:forEachPlayer(callback, main)
 			local player = Game.getOfflinePlayer(playerId)
 			if player then
 				callback(player)
-				-- player:save()
 			end
 		until not Result.next(rows)
 		Result.free(rows)

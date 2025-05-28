@@ -140,8 +140,6 @@ function bossDeath.onDeath(boss, corpse, killer, mostDamageKiller, lastHitUnjust
 		if playerScore.player and lootTable then
 			local lootMessage = RewardbossLootParseDesc(boss, rewardChest, true, lootRegistryIdentifier)
 			player:sendTextMessage(MESSAGE_LOOT, lootMessage)
-		else
-			player:save()
 		end
 	end
 	_G.GlobalBosses[bossMonsterId] = nil

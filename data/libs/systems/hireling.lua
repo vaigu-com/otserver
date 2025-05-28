@@ -104,7 +104,6 @@ local function checkHouseAccess(hireling)
 		lamp:setCustomAttribute("Hireling", hireling:getId())
 	end
 
-	player:save()
 	hireling.active = 0
 	hireling.cid = -1
 	hireling:setPosition({ x = 0, y = 0, z = 0 })
