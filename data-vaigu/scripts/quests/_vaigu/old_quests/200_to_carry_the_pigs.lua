@@ -138,8 +138,8 @@ quest
 					text = "Oohh, from Arnie? For sure, he is so handsome. I will spray them with my perfumes. Greet him from me and take this necklace.",
 					textNoRequiredItems = "I'm not able to make any necklace out of that..",
 					requiredItems = {
-						{ id = 10196, count = 5 },
-						{ id = 10275, count = 5 },
+						{ id = 10196, count = 3 },
+						{ id = 10275, count = 3 },
 						{ id = 9685, count = 1 },
 					},
 					rewards = {
@@ -163,7 +163,7 @@ quest
 					rewards = {
 						[9605] = {
 							{ id = 3370 },
-							{ id = 3098, count = 3 },
+							{ id = 3039 },
 						},
 					},
 					nextState = {

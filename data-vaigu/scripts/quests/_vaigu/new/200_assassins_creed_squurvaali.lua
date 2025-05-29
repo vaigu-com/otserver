@@ -335,7 +335,7 @@ quest
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission02] = QuestState.AssassinsCreedSquurvaali.Mission02.CompleteExorcismOnTomek,
 						[Storage.TheaterOfCheapThrills.Mission01] = QuestState.TheaterOfCheapThrills.Mission01.AskRomekForMission,
-						[Storage.KingOfRatsHQ.Portals.Ryan] = MISSION_FINISHED,
+						[Storage.KingOfRatsHQ.Portals.Ryan] = ACCESS_GRANTED,
 						[Storage.KingOfRatsHQ.Mission01] = MISSION_STARTED,
 					},
 					specialActionsOnSuccess = {

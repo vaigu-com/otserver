@@ -1236,7 +1236,7 @@ quest
 					local nextCooldownExpiry = NextWednesdayEpochTime()
 					player:setStorageValueByKey(Storage.LocalSupport.OldManFrostPickaxe, nextCooldownExpiry)
 					player:addCharmPoints(charmPoints)
-					local bonusExp = player:ExpForNextlevel() * 0.15 + 50000
+					local bonusExp = math.floor(player:ExpForNextlevel() * 0.15 + 50000)
 					AddExperienceWithAnnouncement(player, bonusExp)
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You received :points: charm points.", { points = charmPoints }))
 				end
@@ -1257,7 +1257,7 @@ quest
 					requiredTopic = DEFAULT_TOPIC,
 					nextTopic = QuestTopics.LocalSupport.ConfirmTradeInTwomarlins,
 				},
-				[{ "marlin", "ryba", "rybka", "fish", "merlin", "marlina" }] = {
+				[{ "marlin", "ryba", "rybka", "fish", "merlin", "marlina", "yes", "tak" }] = {
 					text = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
 					nextState = {
 						[Storage.LocalSupport.TwoMarlinQuest] = MISSION_FINISHED,
@@ -1299,11 +1299,13 @@ quest
 	end)
 	:State(function()
 		return QuestState.LocalSupport.OcellatusXD.FindTicket,
-			QuestFactory.Dialog("Ocellatus", { [{ "mission", "misja" }] = {
-				text = "I hope that you'll find this ticket.",
-			} }),
+			QuestFactory.Dialog("Ocellatus", {
+				[{ "mission", "misja" }] = {
+					text = "I hope that you'll find this ticket.",
+				},
+			}),
 			QuestFactory.OnUseDeclarations({
-				{ id = 256, key = Storage.LocalSupport.Ticket, rewards = { QuestKeyItems.LocalSupport.Ticket }, nextState = { [Storage.LocalSupport.OcellatusXD] = QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus } },
+				{ id = 256, key = Storage.LocalSupport.Ticket, rewards = { QuestKeyItems.LocalSupport.Ticket }, nextState = { [Storage.LocalSupport.OcellatusXD] = QuestState.LocalSupport.OcellatusXD.BringTicketToOcellatus }, requiredState = {} },
 			})
 	end)
 	:State(function()
@@ -1912,9 +1914,8 @@ quest
 					text = "Slurp slurp... I'm feeling better now. To be honest, I can't finish the rest. Either eat or give it to those in need. You can collect your reward from my {son}.",
 					textNoRequiredItems = "Return with the stew, or the things might become unpleasant!",
 					requiredItems = {
-						{ id = 9079 },
+						{ id = 9079, remove = false },
 					},
-					removeItems = false,
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = QuestState.LocalSupport.SettledDownFishmonger.AskFishermanSonForReward,
 					},

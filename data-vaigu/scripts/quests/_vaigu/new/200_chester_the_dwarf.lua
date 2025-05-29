@@ -161,7 +161,7 @@ quest
 					rewards = {
 						QuestKeyItems.ChesterTheDwarf.IdentityDocument,
 					},
-					requiredMoney = 1000 * 10,
+					requiredMoney = 100,
 					textNoRequiredItems = "Get back when you get all the items.",
 					textNoRequiredMoney = "Get back when you get all the items.",
 				},
@@ -171,7 +171,7 @@ quest
 		return QuestState.ChesterTheDwarf.Mission02.BringDocumentsToChester,
 			QuestFactory.Dialog("Chester the Dwarf", {
 				[{ "mission" }] = {
-					text = "Thanks for your help. Now I'll be able to set up my office properly. Please take my mining helmet as a reward. As for the costs, I didn't expect such a high amount. I only have 70 platinum with me. I'll try to cover the rest in the future.",
+					text = "Thanks for your help. Now I'll be able to set up my office properly. Please take my mining helmet as a reward.",
 					requiredItems = {
 						QuestKeyItems.ChesterTheDwarf.IdentityDocument,
 					},
@@ -183,7 +183,7 @@ quest
 						{ outfitId = 574, addon = 3 },
 						{ outfitId = 575, addon = 3 },
 					},
-					rewards = { { id = 3035, count = 70 } },
+					rewards = { { id = 3035, count = 7 } },
 					expReward = 85000,
 					textNoRequiredItems = "Don't you have a new document for me yet? I'll wait then.",
 				},

@@ -1,7 +1,7 @@
 local mType = Game.createMonsterType(BASE_ESCORT_MONSTER_NAME)
 local monster = {}
 
-monster.name = BASE_ESCORT_MONSTER_NAME .. "_hpBarName"
+monster.name = BASE_ESCORT_MONSTER_NAME
 monster.description = BASE_ESCORT_MONSTER_NAME .. "_LookName"
 monster.experience = 1000
 monster.outfit = {

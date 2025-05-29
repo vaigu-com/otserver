@@ -78,7 +78,7 @@ quest
 						{
 							requirement = function(context)
 								local finishedCount = 0
-								local leeway = 1
+								local leeway = 2
 								local player = context.player
 								for _, storage in pairs(QuestConstants.LocalSupport.LocalSupportMissionStorages) do
 									local state = player:getStorageValueByKey(storage)

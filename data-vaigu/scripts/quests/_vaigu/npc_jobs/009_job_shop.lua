@@ -536,6 +536,8 @@ JOB_SHOPS = {
 		{ itemName = "hailstorm rod", clientId = 3067, buy = 15000 },
 		{ itemName = "springsprout rod", clientId = 8084, buy = 18000 },
 		{ itemName = "underworld rod", clientId = 8082, buy = 22000 },
+
+		{ itemName = "magician's robe", clientId = 7991, buy = 35 },
 	},
 	[JOB_EXERCISE] = {
 		{
