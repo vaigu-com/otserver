@@ -6459,7 +6459,7 @@ void ProtocolGame::sendCreatureSay(const std::shared_ptr<Creature> &creature, Sp
 	static uint32_t statementId = 0;
 	msg.add<uint32_t>(++statementId);
 
-	msg.addString(creature->getTranslatedName(language));
+	msg.addString(creature->getDisplayName(language));
 
 	if (!oldProtocol) {
 		msg.addByte(0x00); // Show (Traded)
@@ -7980,8 +7980,7 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 		if (!oldProtocol && creature->isHealthHidden()) {
 			msg.addString(""); // ProtocolGame::AddCreature - empty
 		} else {
-			const std::string creatureName = TryTranslate(creature->getName(), "npc_name", player);
-			msg.addString(creatureName); // ProtocolGame::AddCreature - creature->getName()
+			msg.addString(creature->getDisplayName(player->getLanguage()));
 		}
 	}
 
