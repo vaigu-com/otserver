@@ -120,6 +120,9 @@
 	<npc centerx="5757" centery="1384" centerz="5" radius="1">
 		<npc name="Ocellatus" x="0" y="0" z="5" spawntime="90" />
 	</npc>
+	<npc centerx="7428" centery="1422" centerz="5" radius="1">
+		<npc name="Mary" x="0" y="0" z="5" spawntime="60" />
+	</npc>
 	<npc centerx="7941" centery="1471" centerz="5" radius="1">
 		<npc name="Betatm" x="0" y="0" z="5" spawntime="60" />
 	</npc>
