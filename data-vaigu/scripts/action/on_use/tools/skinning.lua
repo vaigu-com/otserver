@@ -1,288 +1,236 @@
-local CREATURE_SKINNING_CHANCE = 25000 -- 25% probability
+-- 25% probability
+local CREATURE_SKINNING_CHANCE = 25000
 SKINNING_SPECIAL_ACTION_NOT_PERFORMED = "SKINNING_SPECIAL_ACTION_NOT_PERFORMED"
 SKINNING_SPECIAL_ACTION_PERFORMED = "SKINNING_SPECIAL_ACTION_PERFORMED"
 local toolToCorpseToData = {
 	[5908] = {
-		--#region Vaigu custom id
-			-- blood crab
 		[5688] = {
 			successChance = 15000,
 			rewardId = 9633,
-			after = 5689,
+			nextCorpseId = 5689,
 		},
 		[6075] = {
 			successChance = 15000,
 			rewardId = 9633,
-			after = 5689,
-		}, -- after being killed
-		-- mummy
+			nextCorpseId = 5689,
+		},
 		[4130] = {
 			successChance = 10000,
 			rewardId = 5914,
-			after = 4131,
+			nextCorpseId = 4131,
 		},
 		[6004] = {
 			successChance = 10000,
 			rewardId = 5914,
-			after = 4131,
-		}, -- after being killed
-		-- forest fury 
+			nextCorpseId = 4131,
+		},
 		[19046] = {
 			successChance = 15000,
-			rewardId = 18944,
-			after = 19047,
+			rewardId = 18994,
+			nextCorpseId = 19047,
 		},
 		[19042] = {
 			successChance = 15000,
-			rewardId = 18944,
-			after = 19047,
-		}, -- after being killed
-		-- mutated rat
+			rewardId = 18994,
+			nextCorpseId = 19047,
+		},
 		[8957] = {
 			successChance = 15000,
 			rewardId = 9668,
-			after = 8959,
+			nextCorpseId = 8959,
 		},
 		[8958] = {
 			successChance = 15000,
 			rewardId = 9668,
-			after = 8959,
-		}, -- after being killed
-		-- mutated bat
+			nextCorpseId = 8959,
+		},
 		[8915] = {
 			successChance = 15000,
 			rewardId = 9662,
-			after = 8917,
+			nextCorpseId = 8917,
 		},
 		[8916] = {
 			successChance = 15000,
 			rewardId = 9662,
-			after = 8917,
-		}, -- after being killed
-		-- Mutated Tiger
+			nextCorpseId = 8917,
+		},
 		[8999] = {
 			successChance = 15000,
 			rewardId = 10311,
-			after = 4358,
+			nextCorpseId = 4358,
 		},
 		[9000] = {
 			successChance = 15000,
 			rewardId = 10311,
-			after = 4358,
-		}, -- after being killed
-		-- stampor
+			nextCorpseId = 4358,
+		},
 		[12325] = {
 			successChance = 20000,
 			rewardId = 12312,
-			after = 12326,
+			nextCorpseId = 12326,
 		},
 		[12328] = {
 			successChance = 20000,
 			rewardId = 12312,
-			after = 12326,
-		}, -- after being killed
-		-- putrid mummy
+			nextCorpseId = 12326,
+		},
 		[25841] = {
 			successChance = 15000,
 			rewardId = 25697,
-			after = 25840,
+			nextCorpseId = 25840,
 		},
 		[25842] = {
 			successChance = 15000,
 			rewardId = 25697,
-			after = 25840,
-		}, -- after being killed
-		-- Braindeath
+			nextCorpseId = 25840,
+		},
 		[7256] = {
 			successChance = 15000,
 			rewardId = 5898,
-			after = 7257,
+			nextCorpseId = 7257,
 		},
 		[7260] = {
 			successChance = 15000,
 			rewardId = 5898,
-			after = 7257,
-		}, -- after being killed
-		-- Elder Bonelord
+			nextCorpseId = 7257,
+		},
 		[6037] = {
 			successChance = 15000,
 			rewardId = 5898,
-			after = 4234,
+			nextCorpseId = 4234,
 		},
 		[4233] = {
 			successChance = 15000,
 			rewardId = 5898,
-			after = 4234,
-		}, -- after being killed
-		-- Grimeleech
+			nextCorpseId = 4234,
+		},
 		[22780] = {
 			successChance = 10000,
 			rewardId = 22730,
-			after = 22782,
+			nextCorpseId = 22782,
 		},
 		[22781] = {
 			successChance = 10000,
 			rewardId = 22730,
-			after = 22782,
-		}, -- after being killed
-		-- Vexclaw
+			nextCorpseId = 22782,
+		},
 		[22776] = {
 			successChance = 10000,
 			rewardId = 22728,
-			after = 22778,
+			nextCorpseId = 22778,
 		},
 		[22777] = {
 			successChance = 10000,
 			rewardId = 22728,
-			after = 22778,
-		}, -- after being killed
-		-- Hellflyer
+			nextCorpseId = 22778,
+		},
 		[22787] = {
 			successChance = 20000,
 			rewardId = 22729,
-			after = 22778,
+			nextCorpseId = 22778,
 		},
 		[22784] = {
 			successChance = 20000,
 			rewardId = 22729,
-			after = 22778,
-		}, -- after being killed
-		
-		-- Apes
-		[4333] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4334 }, -- kongra
-		[4339] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4340 }, -- sibang
-		[4336] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4337 }, -- merlkin
-		--Tortoise
-		[5624] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5625 }, -- tortoise
-		[5627] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5628 }, -- thornback
-		-- Wolf
+			nextCorpseId = 22778,
+		},
+		[4333] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4334 },
+		[4339] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4340 },
+		[4336] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4337 },
+		[5624] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5625 },
+		[5627] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5628 },
 		[4007] = { successChance = 25000, rewardId = 5897 },
 		[5968] = { successChance = 25000, rewardId = 5897, nextCorpseId = 4008 },
-		-- Bear
 		[4030] = { successChance = 15000, rewardId = 5896 },
 		[5975] = { successChance = 15000, rewardId = 5896, nextCorpseId = 4031 },
-		-- Deer
 		[4016] = { successChance = 15000, rewardId = 10297 },
 		[5970] = { successChance = 15000, rewardId = 10297, nextCorpseId = 4017 },
-		-- Bat
 		[4363] = { successChance = 30000, rewardId = 5894 },
 		[6053] = { successChance = 30000, rewardId = 5894, nextCorpseId = 4364 },
-		-- Elephant
 		[4360] = { successChance = 25000, rewardId = 3044 },
 		[6052] = { successChance = 25000, rewardId = 3044, nextCorpseId = 4361 },
-		-- wyrm
 		[8114] = { successChance = 20000, rewardId = 9665 },
 		[8113] = { successChance = 20000, rewardId = 9665, nextCorpseId = 8115 },
-		-- elder wyrm
 		[18967] = { successChance = 20000, rewardId = 9665 },
 		[18966] = { successChance = 25000, rewardId = 9665, nextCorpseId = 18968 },
-		-- jung sea serpent
 		[8966] = { successChance = 10000, rewardId = 9666 },
 		[8965] = { successChance = 10000, rewardId = 9666, nextCorpseId = 8967 },
-		-- sea serpent
 		[951] = { successChance = 14000, rewardId = 9666, nextCorpseId = 955 },
 		[949] = { successChance = 20000, rewardId = 9666, nextCorpseId = 955 },
-		-- hydra
 		[4348] = { successChance = 15000, rewardId = 10282 },
 		[6048] = { successChance = 15000, rewardId = 10282, nextCorpseId = 4349 },
-		-- Sheep
 		[4086] = { successChance = 15000, rewardId = 10319 },
 		[5991] = { successChance = 15000, rewardId = 10319, nextCorpseId = 4087 },
-		-- chicken
 		[4330] = { successChance = 25000, rewardId = 5890 },
 		[6042] = { successChance = 25000, rewardId = 5890, nextCorpseId = 4331 },
-		-- hellspawn
 		[9010] = { successChance = 20000, rewardId = 10304 },
 		[9009] = { successChance = 20000, rewardId = 10304, nextCorpseId = 9011 },
-		-- frost dragon
 		[7092] = { successChance = 20000, rewardId = 9661 },
 		[7091] = { successChance = 20000, rewardId = 9661, nextCorpseId = 7093 },
-		-- frost dragon hatchling
 		[910] = { successChance = 10000, rewardId = 9661 },
 		[909] = { successChance = 10000, rewardId = 9661, nextCorpseId = 911 },
-		--#endregion
-
-		-- rabbits
 		[4173] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 12172, nextCorpseId = 4302 },
-		[6017] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 12172, nextCorpseId = 4302 }, -- nextCorpseId being killed
-
-		-- Minotaurs
-		[4011] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4012 }, -- minotaur
-		[5969] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4012 }, -- minotaur, nextCorpseId being killed
-		[4052] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4053 }, -- minotaur archer
-		[5982] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4053 }, -- minotaur archer, nextCorpseId being killed
-		[4047] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4048 }, -- minotaur mage
-		[5981] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4048 }, -- minotaur mage, nextCorpseId being killed
-		[4057] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4058 }, -- minotaur guard/invader
-		[5983] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4058 }, -- minotaur guard/invader, nextCorpseId being killed
-		[21092] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21093 }, -- mooh'tah warrior
-		[21091] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21093 }, -- mooh'tah warrior, nextCorpseId being killed
-		[21096] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21097 }, -- minotaur hunter
-		[21095] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21097 }, -- minotaur hunter, nextCorpseId being killed
-		[21100] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21101 }, -- worm priestess
-		[21099] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21101 }, -- worm priestess, nextCorpseId being killed
-		[21000] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21002 }, -- minotaur amazon
-		[21001] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21002 }, -- minotaur amazon, nextCorpseId being killed
-		[21004] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21006 }, -- execowtioner
-		[21005] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21006 }, -- execowtioner, nextCorpseId being killed
-		[20996] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 20998 }, -- moohtant
-		[20997] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 20998 }, -- moohtant, nextCorpseId being killed
-
-		-- Low Class Lizards
-		[4324] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4325 }, -- lizard sentinel
-		[6040] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4325 }, -- lizard sentinel, nextCorpseId being killed
-		[4327] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4328 }, -- lizard snakecharmer
-		[6041] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4328 }, -- lizard snakecharmer, nextCorpseId being killed
-		[4321] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4322 }, -- lizard templar
-		[4239] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4322 }, -- lizard templar, nextCorpseId being killed
-
-		-- High Class Lizards
-		[10368] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10369 }, -- lizard chosen,
-		[10371] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10369 }, -- lizard chosen, nextCorpseId being killed
-		[10360] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10361 }, -- lizard dragon priest
-		[10363] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10361 }, -- lizard dragon priest, nextCorpseId being killed
-		[10352] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10353 }, -- lizard high guard
-		[10355] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10353 }, -- lizard high guard, nextCorpseId being killed
-		[10364] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10365 }, -- lizard zaogun
-		[10367] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10365 }, -- lizard zaogun, nextCorpseId being killed
-		[10356] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10357 }, -- lizard legionnaire
-		[10359] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10357 }, -- lizard legionnaire, nextCorpseId being killed
-
-		-- Dragons
-		[4025] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5877, nextCorpseId = 4026 }, -- Dragon
-		[5973] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5877, nextCorpseId = 4026 }, -- Dragon, nextCorpseId being killed
-
-		-- Dragon Lords
+		[6017] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 12172, nextCorpseId = 4302 },
+		[4011] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4012 },
+		[5969] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4012 },
+		[4052] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4053 },
+		[5982] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4053 },
+		[4047] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4048 },
+		[5981] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4048 },
+		[4057] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4058 },
+		[5983] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 4058 },
+		[21092] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21093 },
+		[21091] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21093 },
+		[21096] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21097 },
+		[21095] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21097 },
+		[21100] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21101 },
+		[21099] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21101 },
+		[21000] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21002 },
+		[21001] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21002 },
+		[21004] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21006 },
+		[21005] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 21006 },
+		[20996] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 20998 },
+		[20997] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5878, nextCorpseId = 20998 },
+		[4324] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4325 },
+		[6040] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4325 },
+		[4327] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4328 },
+		[6041] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4328 },
+		[4321] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4322 },
+		[4239] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 4322 },
+		[10368] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10369 },
+		[10371] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10369 },
+		[10360] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10361 },
+		[10363] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10361 },
+		[10352] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10353 },
+		[10355] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10353 },
+		[10364] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10365 },
+		[10367] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10365 },
+		[10356] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10357 },
+		[10359] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5876, nextCorpseId = 10357 },
+		[4025] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5877, nextCorpseId = 4026 },
+		[5973] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5877, nextCorpseId = 4026 },
 		[4062] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5948, nextCorpseId = 4063 },
-		[5984] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5948, nextCorpseId = 4063 }, -- nextCorpseId being killed
-
-		-- Behemoths
+		[5984] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5948, nextCorpseId = 4063 },
 		[4112] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5893, nextCorpseId = 4113 },
-		[5999] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5893, nextCorpseId = 4113 }, -- nextCorpseId being killed
-
-		-- Bone Beasts
+		[5999] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5893, nextCorpseId = 4113 },
 		[4212] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5925, nextCorpseId = 4213 },
-		[6030] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5925, nextCorpseId = 4213 }, -- nextCorpseId being killed
-
-		-- Clomp - raw meat
+		[6030] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5925, nextCorpseId = 4213 },
 		[22743] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 22186, nextCorpseId = 22744 },
-		[22742] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 22186, nextCorpseId = 22744 }, -- nextCorpseId being killed
-
-		-- The Mutated Pumpkin
+		[22742] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 22186, nextCorpseId = 22744 },
 		[12816] = {
-			{ successChance = 5000, rewardId = 8032 }, -- spiderwebs
-			{ successChance = 5000, rewardId = 8178 }, -- toy spider
-			{ successChance = 5000, rewardId = 6491 }, -- bat decoration
-			{ successChance = 20000, rewardId = 6525 }, -- skeleton decoration
-			{ successChance = 90000, rewardId = 8177, amount = 20 }, -- yummy gummy worm
-			{ successChance = 10000, rewardId = 6571 }, -- surprise bag (red)
-			{ successChance = 10000, rewardId = 6570 }, -- surprise bag (blue)
-			{ successChance = 50000, rewardId = 6574 }, -- bar of chocolate
-			{ successChance = 60000, rewardId = 2977 }, -- pumpkinhead
-			{ successChance = 45000, rewardId = 3594 }, -- pumpkin
-			{ successChance = 90000, rewardId = 3599, amount = 50 }, -- candy cane
-			{ successChance = 90000, rewardId = 6569, amount = 50 }, -- candy
-			{ successChance = 2000, rewardId = 6574, amount = 50 }, -- bar of chocolate
+			{ successChance = 5000, rewardId = 8032 },
+			{ successChance = 5000, rewardId = 8178 },
+			{ successChance = 5000, rewardId = 6491 },
+			{ successChance = 20000, rewardId = 6525 },
+			{ successChance = 90000, rewardId = 8177, amount = 20 },
+			{ successChance = 10000, rewardId = 6571 },
+			{ successChance = 10000, rewardId = 6570 },
+			{ successChance = 50000, rewardId = 6574 },
+			{ successChance = 60000, rewardId = 2977 },
+			{ successChance = 45000, rewardId = 3594 },
+			{ successChance = 90000, rewardId = 3599, amount = 50 },
+			{ successChance = 90000, rewardId = 6569, amount = 50 },
+			{ successChance = 2000, rewardId = 6574, amount = 50 },
 		},
 		[4240] = {
 			{ successChance = 3000, rewardId = 5909, nextCorpseId = 4241 },
@@ -302,7 +250,6 @@ local toolToCorpseToData = {
 			{ successChance = 5000, rewardId = 5914, nextCorpseId = 4248 },
 			{ successChance = 35000, rewardId = 3115, nextCorpseId = 4248 },
 		},
-		-- Marble
 		[10426] = {
 			{
 				successChance = 10000,
@@ -316,17 +263,14 @@ local toolToCorpseToData = {
 			},
 			{ successChance = 60000, rewardId = 10427, desc = "This shoddy work was made by |PLAYERNAME|." },
 		},
-
-		-- Ice Cube
 		[7441] = { successChance = 22344, rewardId = 7442 },
 		[7442] = { successChance = 22344, rewardId = 7444 },
 		[7444] = { successChance = 22344, rewardId = 7445 },
 		[7445] = { successChance = 22344, rewardId = 7446 },
 	},
 	[5942] = {
-			-- nightmare
 		[6339] = {
-		successChance = 10000,
+			successChance = 10000,
 			rewardId = 10306,
 			nextCorpseId = 6341,
 		},
@@ -334,8 +278,7 @@ local toolToCorpseToData = {
 			successChance = 10000,
 			rewardId = 10306,
 			nextCorpseId = 6341,
-		}, -- nightmare nextCorpseId being killed
-		-- diabolic imp
+		},
 		[6363] = {
 			successChance = 22000,
 			rewardId = 6499,
@@ -345,21 +288,19 @@ local toolToCorpseToData = {
 			successChance = 22000,
 			rewardId = 6499,
 			nextCorpseId = 6365,
-		}, -- diabolic imp nextCorpseId being killed
-		-- infernalist
+		},
 		[18146] = {
-			successChance = 12000,
+			successChance = 5000,
 			rewardId = 5904,
 			nextCorpseId = 18147,
 		},
 		[18149] = {
-			successChance = 12000,
+			successChance = 5000,
 			rewardId = 5904,
 			nextCorpseId = 18147,
-		}, -- infernalist nextCorpseId being killed
-		-- juggernaut
+		},
 		[6335] = {
-			successChance = 12000,
+			successChance = 20000,
 			rewardId = 6499,
 			nextCorpseId = 6337,
 		},
@@ -367,20 +308,17 @@ local toolToCorpseToData = {
 			successChance = 12000,
 			rewardId = 6499,
 			nextCorpseId = 6337,
-		}, -- juggernaut nextCorpseId being killed
-		-- Demon
+		},
 		[4097] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5906, nextCorpseId = 4098 },
-		[5995] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5906, nextCorpseId = 4098 }, -- nextCorpseId being killed
-
-		-- Vampires
-		[4137] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 4138 }, -- vampire
-		[6006] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 4138 }, -- vampire, nextCorpseId being killed
-		[8738] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8742 }, -- vampire bride
-		[8744] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8742 }, -- vampire bride, nextCorpseId being killed
-		[8109] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8111 }, -- vampire lord, nextCorpseId being killed (the count, diblis, etc)
-		[8110] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8111 }, -- vampire lord (the count, diblis, etc)
-		[18958] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 18959 }, -- vampire viscount
-		[18961] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 18959 }, -- vampire viscount, nextCorpseId being killed
+		[5995] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5906, nextCorpseId = 4098 },
+		[4137] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 4138 },
+		[6006] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 4138 },
+		[8738] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8742 },
+		[8744] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8742 },
+		[8109] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8111 },
+		[8110] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 8111 },
+		[18958] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 18959 },
+		[18961] = { successChance = CREATURE_SKINNING_CHANCE, rewardId = 5905, nextCorpseId = 18959 },
 	},
 }
 local function onIceCubeSculpting(player, corpse, corpseId, corpseData, roll)
@@ -451,12 +389,10 @@ end
 local toolToCorpseIdToSpecialAction = {
 	[5908] = {
 
-		--#region Vaigu custom id
 		[4240] = onHumanSkinning,
 		[4247] = onHumanSkinning,
 		[18034] = onHumanSkinning,
 		[18037] = onHumanSkinning,
-		--#endregion
 
 		[30329] = function(player, corpse, corpseId, corpseData, roll)
 			stopEvent(corpse:getCustomAttribute("event"))
@@ -595,7 +531,7 @@ function skinning.onUse(player, skinningTool, usePosition, corpse, corpsePositio
 	if not corpse.getId then
 		return true
 	end
-	
+
 	local toolId = skinningTool:getId()
 	local corpseId = corpse:getId()
 
