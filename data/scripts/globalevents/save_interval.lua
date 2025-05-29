@@ -36,10 +36,3 @@ else
 end
 save:register()
 ]]
-
--- Vaigu custom
-local serverSaveStartup = GlobalEvent("ServerSaveStartup")
-function serverSaveStartup.onStartup()
-	saveServer()
-end
-serverSaveStartup:register()
