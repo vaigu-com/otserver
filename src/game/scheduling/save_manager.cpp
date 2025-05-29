@@ -61,18 +61,6 @@ void SaveManager::saveAll() {
 		g_logger().info("Save initiated asynchronously in PID {}", pid);
 		return;
 	}
-	// Child process
-	int lockFd = open("/tmp/server_save.lock", O_CREAT | O_RDWR, 0666);
-	if (lockFd == -1) {
-		g_logger().error("Could not open lock file for saving!");
-		_exit(1);
-	}
-	if (flock(lockFd, LOCK_EX | LOCK_NB) != 0) {
-		// Another save is in progress
-		g_logger().warn("Another save is already in progress. Exiting.");
-		close(lockFd);
-		_exit(0);
-	}
 #endif
 
 	Benchmark bm_saveAll;
@@ -96,11 +84,7 @@ void SaveManager::saveAll() {
 
 	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
 
-#ifndef OS_WINDOWS
-	flock(lockFd, LOCK_UN); // release explicitly (not strictly needed due to _exit, but safe)
-	close(lockFd);
-	_exit(0);
-#endif
+	scheduleAll();
 }
 
 void SaveManager::scheduleAll() {

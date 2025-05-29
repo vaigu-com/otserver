@@ -1,4 +1,5 @@
 
+--[[
 DONT_BROADCAST_SERVER_SAVE_COMPLETE = true
 local function serverSave(interval)
 	if configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL_CLEAN_MAP) then
@@ -16,7 +17,6 @@ local function serverSave(interval)
 end
 
 local save = GlobalEvent("save")
-
 function save.onTime(interval)
 	local remainingTime = 60 * 1000
 	if configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL) then
@@ -29,11 +29,17 @@ function save.onTime(interval)
 	end
 	return not configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL)
 end
-
 if SAVE_INTERVAL_TIME ~= 0 then
 	save:interval(SAVE_INTERVAL_CONFIG_TIME * SAVE_INTERVAL_TIME)
 else
 	return logger.error(string.format("[save.onTime] - Save interval type '%s' is not valid, use 'second', 'minute' or 'hour'", SAVE_INTERVAL_TYPE))
 end
-
 save:register()
+]]
+
+-- Vaigu custom
+local serverSaveStartup = GlobalEvent("ServerSaveStartup")
+function serverSaveStartup.onStartup()
+	saveServer()
+end
+serverSaveStartup:register()
