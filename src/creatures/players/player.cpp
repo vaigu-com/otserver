@@ -10829,3 +10829,8 @@ AcceptTransferErrorMessage Player::canAcceptTransferHouse(uint32_t houseId) {
 
 	return Success;
 }
+
+// Vaigu custom
+const std::string &Player::getDisplayName(const std::string &language) const {
+	return getName();
+}

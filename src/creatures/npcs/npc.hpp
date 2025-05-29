@@ -45,7 +45,8 @@ public:
 
 	// Vaigu custom
 	std::unordered_map<std::string, std::string> translatedNames;
-	const std::string &getTranslatedName(std::string language) const override;
+	const std::string &getTranslatedName(const std::string &language) const;
+	const std::string &getDisplayName(const std::string &language) const override;
 
 	const std::string &getName() const override;
 	// Real npc name, set on npc creation "createNpcType(typeName)"

@@ -41,15 +41,13 @@ public:
 	void removeList() override;
 
 	// Vaigu custom
-	const std::string &getTranslatedName(std::string language) const override {
-		return name;
-	}
+	const std::string &getDisplayName(const std::string &language) const override;
+	void setDisplayName(const std::string &newName);
 
 	const std::string &getName() const override;
 	void setName(const std::string &name);
 
 	// Vaigu custom
-	std::string displayName;
 	std::map<uint16_t, std::string> influenceRankToTitle = {
 		{ 0, "" },
 		{ 1, "Potent " },
@@ -292,6 +290,9 @@ private:
 	std::string name;
 	std::string m_lowerName;
 	std::string nameDescription;
+
+	// Vaigu custom
+	std::string displayName;
 
 	std::shared_ptr<MonsterType> mType;
 	std::shared_ptr<SpawnMonster> spawnMonster = nullptr;

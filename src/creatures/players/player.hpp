@@ -186,9 +186,7 @@ public:
 	static MuteCountMap muteCountMap;
 
 	// Vaigu custom
-	const std::string &getTranslatedName(std::string language) const override {
-		return name;
-	}
+	const std::string &getDisplayName(const std::string &language) const override;
 
 	const std::string &getName() const override {
 		return name;

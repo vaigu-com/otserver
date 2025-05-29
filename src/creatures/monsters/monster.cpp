@@ -97,15 +97,17 @@ const std::string &Monster::getName() const {
 }
 
 // Vaigu custom
-/*
-const std::string &Monster::getDisplayName() const {
-    if (displayName.empty()) {
-        return mType->name;
+const std::string &Monster::getDisplayName(const std::string &language) const {
+    if (!displayName.empty()) {
+        return displayName;
     }
-    // return name;
-    return displayName;
+
+	return mType->name;
 }
-*/
+
+void Monster::setDisplayName(const std::string &displayName) {
+	this->displayName = displayName;
+}
 
 void Monster::setName(const std::string &name) {
 	if (getName() == name) {
