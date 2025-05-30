@@ -10,11 +10,10 @@
 #include "game/scheduling/save_manager.hpp"
 
 #ifndef OS_WINDOWS
-#include <sys/file.h>
-#include <unistd.h>
-#include <fcntl.h>
+	#include <sys/file.h>
+	#include <unistd.h>
+	#include <fcntl.h>
 #endif
-
 
 #include "config/configmanager.hpp"
 #include "creatures/players/grouping/guild.hpp"
@@ -78,13 +77,16 @@ void SaveManager::saveAll() {
 		return true;
 	});
 
-	if (!success){
+	if (!success) {
 		g_logger().error("[{}] Error occured saving the saving the server", __FUNCTION__);
 	}
 
 	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
 
-	scheduleAll();
+	g_dispatcher().scheduleEvent(
+		1000, [] { scheduleAll(); },
+		__FUNCTION__
+	);
 }
 
 void SaveManager::scheduleAll() {
