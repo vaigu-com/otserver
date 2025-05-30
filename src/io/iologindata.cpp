@@ -189,8 +189,8 @@ bool IOLoginData::loadPlayer(const std::shared_ptr<Player> &player, const DBResu
 	}
 }
 
-bool IOLoginData::savePlayer(const std::shared_ptr<Player> &player) {
-	auto success = savePlayerGuard(player);
+bool IOLoginData::savePlayer(std::shared_ptr<Player> player) {
+	bool success = savePlayerGuard(player);
 
 	if (!success) {
 		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);

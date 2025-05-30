@@ -27,15 +27,46 @@
 #include "server/network/protocol/protocolgame.hpp"
 #include "account/account.hpp"
 
+#include <unistd.h>
+#include <sys/wait.h>
+
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
-	threadPool(threadPool), kv(kvStore), logger(logger), game(game) { }
+	threadPool(threadPool), kv(kvStore), logger(logger), game(game), child_saver_pid(-1) { }
 
 SaveManager &SaveManager::getInstance() {
 	return inject<SaveManager>();
 }
 
 void SaveManager::saveAll() {
-	logger.info("Saving server...");
+
+	class ResourceGuard {
+	public:
+		~ResourceGuard() {
+			_exit(0);
+		}
+	};
+
+	if (child_saver_pid != -1) {
+		int status;
+		pid_t wait_result = waitpid(child_saver_pid, &status, WNOHANG);
+
+		if (wait_result == -1) {
+			logger.error("waitpid failed: {}", strerror(errno));
+		} else if (wait_result == 0) {
+			logger.info("Child process has not exited yet. Skipping save.");
+			return;
+		} else if (WIFEXITED(status)) {
+			logger.info("Process {} exited with status {}", wait_result, WEXITSTATUS(status));
+		} else if (WIFSIGNALED(status)) {
+			logger.error("Process {} was killed by signal {}", wait_result, WTERMSIG(status));
+		} else if (WIFSTOPPED(status)) {
+			logger.error("Process {} was stopped by signal {}", wait_result, WSTOPSIG(status));
+		} else {
+			logger.error("Process {} changed state", wait_result);
+		}
+
+		child_saver_pid = -1;
+	}
 
 	const auto players = game.getPlayers();
 	for (const auto &[_, player] : players) {
@@ -50,40 +81,65 @@ void SaveManager::saveAll() {
 		}
 	}
 	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+	auto guilds = game.getGuilds();
 
-#ifndef OS_WINDOWS
-	auto pid = fork();
+	pid_t pid = fork();
+
 	if (pid < 0) {
-		g_logger().error("[{}] Failed to fork process for saving", __FUNCTION__);
-		return;
-	} else if (pid > 0) {
-		// Parent process: return immediately
-		g_logger().info("Save initiated asynchronously in PID {}", pid);
-		scheduleAll();
+		perror("Fork failed");
+		throw std::runtime_error("Fork failed");
+	} else if (pid == 0) {
+		ResourceGuard guard;
+		Benchmark bm_saveAll;
+
+		logger.info("Saving server...");
+
+		if (!Database::getInstance().connect()) {
+			throw std::runtime_error("Failed to connect to database.");
+		}
+
+		DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
+			for (const auto &[_, player] : players) {
+				player->loginPosition = player->getPosition();
+				doSavePlayer(player);
+				const auto account = player->account->save();
+			}
+
+			for (const auto &[_, guild] : guilds) {
+				saveGuild(guild);
+			}
+
+			saveMap();
+			saveKV();
+			g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+			return true;
+		});
+
+		logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
+
+		fflush(stdout);
+	} else {
+		child_saver_pid = pid;
+	}
+}
+
+void SaveManager::scheduleAll() {
+	auto scheduledAt = std::chrono::steady_clock::now();
+	m_scheduledAt = scheduledAt;
+
+	// Disable save async if the config is set to false
+	if (!g_configManager().getBoolean(TOGGLE_SAVE_ASYNC, __FUNCTION__)) {
+		saveAll();
 		return;
 	}
-#endif
 
-	Benchmark bm_saveAll;
-	const bool success = DBTransaction::executeWithinTransaction([this, players, newCoinTransactions]() {
-		for (const auto &[_, player] : players) {
-			doSavePlayer(player);
-			const auto account = player->account->save();
+	threadPool.detach_task([this, scheduledAt]() {
+		if (m_scheduledAt.load() != scheduledAt) {
+			logger.warn("Skipping save for server because another save has been scheduled.");
+			return;
 		}
-		for (const auto &[_, guild] : game.getGuilds()) {
-			saveGuild(guild);
-		}
-		saveMap();
-		saveKV();
-		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
-		return true;
+		saveAll();
 	});
-
-	if (!success) {
-		g_logger().error("[{}] Error occured saving the saving the server", __FUNCTION__);
-	}
-
-	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
 }
 
 void SaveManager::scheduleAll() {
@@ -150,7 +206,6 @@ bool SaveManager::doSavePlayer(std::shared_ptr<Player> player) {
 	}
 
 	Benchmark bm_savePlayer;
-	Player::PlayerLock lock(player);
 	m_playerMap.erase(player->getGUID());
 	if (g_game().getGameState() == GAME_STATE_NORMAL) {
 		logger.debug("Saving player {}.", player->getName());

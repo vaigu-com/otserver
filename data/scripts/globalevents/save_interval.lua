@@ -1,7 +1,6 @@
-
 --[[
 DONT_BROADCAST_SERVER_SAVE_COMPLETE = true
-local function serverSave(interval)
+local function serverSave()
 	if configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL_CLEAN_MAP) then
 		cleanMap()
 	end
@@ -18,21 +17,29 @@ end
 
 local save = GlobalEvent("save")
 function save.onTime(interval)
-	local remainingTime = 60 * 1000
+	local remainingTime = 60 * 10
 	if configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL) then
-		local message = "The server will save all accounts within " .. (remainingTime / 1000) .. " seconds. \z
-		You might lag or freeze for 5 seconds, please find a safe place."
-		Game.broadcastMessage(message, MESSAGE_GAME_HIGHLIGHT)
-		logger.info(string.format(message, SAVE_INTERVAL_CONFIG_TIME, SAVE_INTERVAL_TYPE))
-		addEvent(serverSave, remainingTime, interval)
+		--local message = "The server will save all accounts within " .. (remainingTime / 1000) .. " seconds. \z
+		--You might lag or freeze for 5 seconds, please find a safe place."
+		--Game.broadcastMessage(message, MESSAGE_GAME_HIGHLIGHT)
+		--logger.info(string.format(message, SAVE_INTERVAL_CONFIG_TIME, SAVE_INTERVAL_TYPE))
+		serverSave()
 		return true
 	end
 	return not configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL)
 end
 if SAVE_INTERVAL_TIME ~= 0 then
-	save:interval(SAVE_INTERVAL_CONFIG_TIME * SAVE_INTERVAL_TIME)
+	save:interval(2000)
 else
 	return logger.error(string.format("[save.onTime] - Save interval type '%s' is not valid, use 'second', 'minute' or 'hour'", SAVE_INTERVAL_TYPE))
 end
 save:register()
 ]]
+
+local save = GlobalEvent("save")
+function save.onTime(interval)
+	saveServer()
+	return not configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL)
+end
+save:interval(2000)
+save:register()
