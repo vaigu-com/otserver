@@ -15,6 +15,7 @@
 	#include <fcntl.h>
 #endif
 
+#include "game/scheduling/dispatcher.hpp"
 #include "config/configmanager.hpp"
 #include "creatures/players/grouping/guild.hpp"
 #include "game/game.hpp"
