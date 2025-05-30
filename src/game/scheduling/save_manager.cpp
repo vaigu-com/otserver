@@ -59,6 +59,7 @@ void SaveManager::saveAll() {
 	} else if (pid > 0) {
 		// Parent process: return immediately
 		g_logger().info("Save initiated asynchronously in PID {}", pid);
+		scheduleAll();
 		return;
 	}
 #endif
@@ -83,11 +84,6 @@ void SaveManager::saveAll() {
 	}
 
 	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
-
-	g_dispatcher().scheduleEvent(
-		1000, [this] { scheduleAll(); },
-		__FUNCTION__
-	);
 }
 
 void SaveManager::scheduleAll() {
@@ -96,7 +92,12 @@ void SaveManager::scheduleAll() {
 
 	// Disable save async if the config is set to false
 	if (!g_configManager().getBoolean(TOGGLE_SAVE_ASYNC)) {
+		g_dispatcher().scheduleEvent(
+			1000, [this] {
 		saveAll();
+			},
+			__FUNCTION__
+		);
 		return;
 	}
 
