@@ -84,7 +84,7 @@ void SaveManager::saveAll() {
 	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
 
 	g_dispatcher().scheduleEvent(
-		1000, [] { scheduleAll(); },
+		1000, [this] { scheduleAll(); },
 		__FUNCTION__
 	);
 }
