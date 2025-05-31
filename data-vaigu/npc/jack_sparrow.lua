@@ -40,6 +40,7 @@ local dialogs = {
 		text = "Ask Woody about the wood supply.",
 	},
 }
+
 local context = {
 	name = name,
 	outfit = outfit,
