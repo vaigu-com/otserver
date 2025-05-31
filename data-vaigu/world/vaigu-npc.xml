@@ -195,6 +195,9 @@
 	<npc centerx="7280" centery="1091" centerz="6" radius="1">
 		<npc name="Lekh Roc" x="0" y="0" z="6" spawntime="60" />
 	</npc>
+	<npc centerx="7302" centery="1094" centerz="6" radius="1">
+		<npc name="Jack of all Swindles" x="0" y="0" z="6" spawntime="60" />
+	</npc>
 	<npc centerx="7304" centery="1104" centerz="6" radius="1">
 		<npc name="Max Kolanko" x="0" y="0" z="6" spawntime="60" />
 	</npc>
