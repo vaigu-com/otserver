@@ -30,6 +30,7 @@ local toOrdinal = {
 }
 
 return {
+	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hey, Im Zong! Would you like to {ride} somewhere?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Hello! You look really hungry.. Ask about {trade} to see my offer.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!"] = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!",
 	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}."] = "Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}.",

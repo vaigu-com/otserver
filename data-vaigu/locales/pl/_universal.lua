@@ -17,6 +17,7 @@ local incomprehensibleStringPool = {
 	"Ze co?",
 }
 return {
+	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hej. Ja jestem Zong! Chcialbys, aby Cie gdzies {poswiezc}?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Dzien dobry! Wygladasz na glodnego.. Wpisz {trade} aby zobaczyc oferte.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!"] = "Witaj |PLAYERNAME|. Mozesz zaopatrzyc sie u mnie w przedmioty magiczne. Sprzedaje takze {wildcard}, pomagajacy w modlitwach!",
 	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}."] = "",

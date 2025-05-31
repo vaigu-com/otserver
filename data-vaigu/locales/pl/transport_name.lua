@@ -30,4 +30,8 @@ return {
 	["Cyclops Hills"] = "Wzgorza Cyklopow",
 	["Januszex"] = "Januszex",
 	["Hurghada underground"] = "Podziemia Hurghady",
+	["Draw well"] = "Studnia",
+	["Water elemental cave"] = "Jaskinia zywiolakow wody",
+	["Mareesha camp"] = "Oboz Mareeshy",
+	["Hurghada outskirts"] = "Hurghada",
 }
