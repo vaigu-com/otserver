@@ -39,7 +39,7 @@ save:register()
 local save = GlobalEvent("save")
 function save.onTime(interval)
 	saveServer()
-	return not configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL)
+	return true
 end
 save:interval(2000)
 save:register()
