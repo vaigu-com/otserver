@@ -189,7 +189,7 @@ bool IOLoginData::loadPlayer(const std::shared_ptr<Player> &player, const DBResu
 	}
 }
 
-bool IOLoginData::savePlayer(std::shared_ptr<Player> player) {
+bool IOLoginData::savePlayer(const std::shared_ptr<Player> &player) {
 	bool success = savePlayerGuard(player);
 
 	if (!success) {

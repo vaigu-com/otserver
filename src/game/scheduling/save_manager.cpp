@@ -128,32 +128,8 @@ void SaveManager::scheduleAll() {
 	m_scheduledAt = scheduledAt;
 
 	// Disable save async if the config is set to false
-	if (!g_configManager().getBoolean(TOGGLE_SAVE_ASYNC, __FUNCTION__)) {
-		saveAll();
-		return;
-	}
-
-	threadPool.detach_task([this, scheduledAt]() {
-		if (m_scheduledAt.load() != scheduledAt) {
-			logger.warn("Skipping save for server because another save has been scheduled.");
-			return;
-		}
-		saveAll();
-	});
-}
-
-void SaveManager::scheduleAll() {
-	auto scheduledAt = std::chrono::steady_clock::now();
-	m_scheduledAt = scheduledAt;
-
-	// Disable save async if the config is set to false
 	if (!g_configManager().getBoolean(TOGGLE_SAVE_ASYNC)) {
-		g_dispatcher().scheduleEvent(
-			1000, [this] {
 		saveAll();
-			},
-			__FUNCTION__
-		);
 		return;
 	}
 
