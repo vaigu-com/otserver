@@ -411,6 +411,9 @@
 	<npc centerx="7333" centery="1117" centerz="7" radius="1">
 		<npc name="Stonoga" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="7008" centery="1130" centerz="7" radius="1">
+		<npc name="Zong" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5764" centery="1175" centerz="7" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -429,6 +432,9 @@
 	<npc centerx="6470" centery="1275" centerz="7" radius="1">
 		<npc name="Mareesha" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="6483" centery="1275" centerz="7" radius="1">
+		<npc name="Zong" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5668" centery="1280" centerz="7" radius="1">
 		<npc name="Christopher Columbus" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -441,7 +447,10 @@
 	<npc centerx="6711" centery="1326" centerz="7" radius="3">
 		<npc name="Kalyana" x="0" y="-1" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="6639" centery="1336" centerz="7" radius="1">
+	<npc centerx="6637" centery="1331" centerz="7" radius="1">
+		<npc name="Zong" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="6918" centery="1332" centerz="7" radius="1">
 		<npc name="Zong" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6691" centery="1341" centerz="7" radius="2">

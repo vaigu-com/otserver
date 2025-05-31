@@ -16874,7 +16874,7 @@
 		<monster name="Roaring Lion" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6974" centery="1245" centerz="6" radius="1">
-		<monster name="Bonebeast" x="0" y="0" z="6" spawntime="60" />
+		<monster name="Demon Skeleton" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6979" centery="1245" centerz="6" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="6" spawntime="60" />
@@ -38209,8 +38209,8 @@
 	<monster centerx="6934" centery="1254" centerz="7" radius="1">
 		<monster name="Bonebeast" x="-1" y="-1" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6978" centery="1254" centerz="7" radius="1">
-		<monster name="Demon Skeleton" x="0" y="0" z="7" spawntime="60" />
+	<monster centerx="6979" centery="1254" centerz="7" radius="1">
+		<monster name="Bonebeast" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7566" centery="1254" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -41465,6 +41465,12 @@
 	<monster centerx="6310" centery="1330" centerz="7" radius="1">
 		<monster name="Pirate Marauder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="6633" centery="1330" centerz="7" radius="1">
+		<monster name="Dromedary" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6635" centery="1330" centerz="7" radius="1">
+		<monster name="Dromedary" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6802" centery="1330" centerz="7" radius="1">
 		<monster name="Tomb Servant" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41625,8 +41631,9 @@
 	<monster centerx="6427" centery="1333" centerz="7" radius="1">
 		<monster name="Sandstone Scorpion" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6634" centery="1333" centerz="7" radius="1">
+	<monster centerx="6636" centery="1333" centerz="7" radius="1">
 		<monster name="Nomad Female" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Nomad" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6829" centery="1333" centerz="7" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="7" spawntime="60" />
@@ -41668,9 +41675,7 @@
 	<monster centerx="6417" centery="1334" centerz="7" radius="1">
 		<monster name="Blood Crab" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6637" centery="1334" centerz="7" radius="1">
-		<monster name="Nomad" x="0" y="0" z="7" spawntime="60" />
-	</monster>
+	<monster centerx="6637" centery="1334" centerz="7" radius="1" />
 	<monster centerx="6639" centery="1334" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
