@@ -3,7 +3,7 @@ return {
 	["Orshaawa"] = "Orshaawa",
 	["Hurghada"] = "Hurghada",
 	["Zasrane"] = "Zasrane",
-	["Caribbean"] = "Kraiby",
+	["Caribbean"] = "Karaiby",
 	["Phantom Port"] = "Port Fantomowy",
 	["Pirate Island"] = "Wyspa Piratow",
 	["Port Louse"] = "Zatoka Mend",

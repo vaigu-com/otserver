@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 1,
 }
 local dialogs = {
-	[{ "sail", "plynac" }] = {
+	[TRAVEL_KEYWORDS[TRANSPORT_TYPE.CAMEL]] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
@@ -35,5 +35,7 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
+	checkInteraction = false,
+	isTransportNpc = true,
 }
 NpcRegistry:AppendNpcData(context)

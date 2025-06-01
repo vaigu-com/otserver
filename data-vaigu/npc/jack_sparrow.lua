@@ -16,7 +16,7 @@ local voices = {
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
 local dialogs = {
-	[{ "sail", "plynac" }] = {
+	[TRAVEL_KEYWORDS[TRANSPORT_TYPE.SHIP]] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
