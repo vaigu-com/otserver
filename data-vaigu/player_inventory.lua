@@ -502,6 +502,9 @@ function CalculateItemsWeight(items)
 			weight = weight + getItemWeight(tonumber(containerId))
 		else
 			count = item.count or count
+			if ItemType(item.id):isStackable() then
+				count = 1
+			end
 			weight = getItemWeight(item.id) or weight
 		end
 		local requiredWeight = count * weight
