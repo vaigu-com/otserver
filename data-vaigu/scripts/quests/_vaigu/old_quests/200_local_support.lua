@@ -822,7 +822,7 @@ quest
 						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
 						[Storage.Finished.WoodDelivery] = MISSION_FINISHED,
 					},
-					rewards = { { id = 268, count = 40, addToStore = true }, { id = 268, count = 5, addToStore = true } },
+					rewards = { { id = 268, count = 40, addToStore = true } },
 				},
 			})
 	end)

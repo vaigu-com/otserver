@@ -273,7 +273,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Father Natanek", {
-				[{ "oldrak" }] = {
+				[{ "oldrak", "Oldrak" }] = {
 					text = "Oldrak has currently gone to the steppes. He is teaching the villagers there.",
 				},
 			})

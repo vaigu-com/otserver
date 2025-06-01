@@ -13,7 +13,7 @@ return {
 	end,
 	["I see you have heard about the umpcoming meat beating competition. Bring me another 10 medals, so we can honour the winners."] = "Widze, ze slyszales o nadchodzacych zawodach w waleniu konia. Przynies mi kolejne 10 medali, abysmy mogli uhonorowac zwyciezcow.",
 	["Ask Ocellatus about a new mission"] = "Zapytaj Oskarka o nowa misje.",
-	["Bring two medals of honour to Ocellatus."] = "Przynies twa medale konne Oskarkowi.",
+	["Bring two medals of honour to Ocellatus."] = "Przynies dwa medale konne Oskarkowi.",
 	["Ocellatus gave you his book of marvelous mounted manoeuvers."] = "Oskarek dal ci swoja ksiege cudownych manewrow konnych.",
 	["Ask Ocellatus about new mission."] = "Zapytaj Oskarka o nowa misje.",
 	["Find Moustachilles, the local trap star."] = "Znajdz Andrzeja Wasacza, lokalna gwiazde trapu.",

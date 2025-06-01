@@ -700,7 +700,7 @@ JOB_SHOPS = {
 		{ itemName = "longing eyes", clientId = 27624, sell = 8000 },
 		{ itemName = "huge spiky snail shell", clientId = 27627, sell = 8000 },
 		{ itemName = "huge shell", clientId = 27621, sell = 15000 },
-		{ itemName = "harpoon of a giant snail", clientId = 27369, sell = 15000 },
+		{ itemName = "harpoon of a giant snail", clientId = 27625, sell = 15000 },
 		{ itemName = "half-digested stone", clientId = 27369, sell = 40 },
 		{ itemName = "giant tentacle", clientId = 27619, sell = 10000 },
 		{ itemName = "fox paw", clientId = 27462, sell = 100 },

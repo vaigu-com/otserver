@@ -3,10 +3,10 @@ local destination = Position(6249, 1009, 6) -- tp do magika npc {x = 6249, y = 1
 local chairteleport = Action()
 
 function chairteleport.onUse(player, item, frompos, item2, topos)
-	if player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == 2 then
+	if player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.FindUseForCoordinates then
 		player:teleportTo(destination)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Teleport.")
-		player:setStorageValueByKey(Storage.LiquidBlack.Visitor, 3)
+		player:setStorageValueByKey(Storage.LiquidBlack.Visitor, QuestState.LiquidBlack.TalkToMezamir)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Empty.")
 	end
