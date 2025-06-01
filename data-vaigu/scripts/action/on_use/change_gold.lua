@@ -26,7 +26,7 @@ function changeGold.onUse(player, usedCoinPile, fromPosition, target, toPosition
 	local fullPile = findFullPile(allCoinPiles)
 	if fullPile and usedCoinData.upgrade then
 		fullPile:remove()
-		player:AddCustomItem({ id = usedCoinData.upgrade, count = 1 })
+		player:AddCustomItem({ id = usedCoinData.upgrade, count = 1, dontAnnounce = true })
 		return true
 	end
 	if usedCoinData.downgrade then
