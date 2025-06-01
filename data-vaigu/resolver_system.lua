@@ -44,7 +44,6 @@ local goesToActions = {
 	addDialogData = true,
 	text = true,
 	interactOnGreet = true,
-	preycardReward = true,
 }
 
 function ResolutionContext:Append(tab)
@@ -357,11 +356,11 @@ end
 
 function ResolutionContext:AddWildcard()
 	local actions = self.actionsOnSuccess
-	if not actions.preycardReward then
+	if not actions.wildcardReward then
 		return
 	end
 
-	self.player:addPreyCards(actions.preycardReward)
+	self.player:addPreyCards(actions.wildcardReward)
 end
 
 function ResolutionContext:UpdatePlayerState()
