@@ -44,7 +44,7 @@ local storeItemID = {
 	29416, -- overcooked noodles
 }
 
-BOOSTED_CREATURE_EXP_MULTIPLIER = 1.0
+BOOSTED_CREATURE_EXP_MULTIPLIER = 1.5
 
 -- Players cannot throw items on teleports if set to true
 local blockTeleportTrashing = true
@@ -635,9 +635,9 @@ function Player:onGainExperience(target, exp, rawExp)
 	useConcoctionTime(self)
 
 	-- Apply Boosted Creature Bonus
-	local boostedCreaturePercentage = 0
+	local boostedCreatureMultiplier = 1
 	if target:isBoosted() then
-		boostedCreaturePercentage = BOOSTED_CREATURE_EXP_MULTIPLIER
+		boostedCreatureMultiplier = BOOSTED_CREATURE_EXP_MULTIPLIER
 	end
 
 	-- Prey System
@@ -673,7 +673,7 @@ function Player:onGainExperience(target, exp, rawExp)
 	local baseRateExp = self:getFinalBaseRateExperience()
 
 	-- Return final experience value
-	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * (1 + boostedCreaturePercentage) * soulwarMultiplier
+	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * boostedCreatureMultiplier * soulwarMultiplier
 end
 
 function Player:onLoseExperience(exp)
