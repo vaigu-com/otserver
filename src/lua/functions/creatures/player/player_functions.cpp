@@ -194,8 +194,10 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "getStorageValueByName", PlayerFunctions::luaPlayerGetStorageValueByName);
 	Lua::registerMethod(L, "Player", "setStorageValueByName", PlayerFunctions::luaPlayerSetStorageValueByName);
 
+	Lua::registerMethod(L, "Player", "canAddItem", PlayerFunctions::luaPlayerCanAddItem);
 	Lua::registerMethod(L, "Player", "addItem", PlayerFunctions::luaPlayerAddItem);
 	Lua::registerMethod(L, "Player", "addItemEx", PlayerFunctions::luaPlayerAddItemEx);
+	Lua::registerMethod(L, "Player", "canAddItemEx", PlayerFunctions::luaPlayerCanAddItemEx);
 	Lua::registerMethod(L, "Player", "addItemStash", PlayerFunctions::luaPlayerAddItemStash);
 	Lua::registerMethod(L, "Player", "removeStashItem", PlayerFunctions::luaPlayerRemoveStashItem);
 	Lua::registerMethod(L, "Player", "removeItem", PlayerFunctions::luaPlayerRemoveItem);
@@ -2188,6 +2190,85 @@ int PlayerFunctions::luaPlayerSetStorageValueByName(lua_State* L) {
 	return 1;
 }
 
+int PlayerFunctions::luaPlayerCanAddItem(lua_State* L) {
+	// player:canAddItem(itemId, count = 1, canDropOnMap = true, subType = 1, slot = CONST_SLOT_WHEREEVER, tier = 0)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
+	if (!player) {
+		Lua::pushBoolean(L, false);
+		return 1;
+	}
+
+	uint16_t itemId;
+	if (Lua::isNumber(L, 2)) {
+		itemId = Lua::getNumber<uint16_t>(L, 2);
+	} else {
+		itemId = Item::items.getItemIdByName(Lua::getString(L, 2));
+		if (itemId == 0) {
+			lua_pushnil(L);
+			return 1;
+		}
+	}
+
+	const auto count = Lua::getNumber<int32_t>(L, 3, 1);
+	auto subType = Lua::getNumber<int32_t>(L, 5, 1);
+
+	const ItemType &it = Item::items[itemId];
+
+	int32_t itemCount = 1;
+	const int parameters = lua_gettop(L);
+	if (parameters >= 4) {
+		itemCount = std::max<int32_t>(1, count);
+	} else if (it.hasSubType()) {
+		if (it.stackable) {
+			itemCount = std::ceil(count / static_cast<float_t>(it.stackSize));
+		}
+
+		subType = count;
+	} else {
+		itemCount = std::max<int32_t>(1, count);
+	}
+
+	const bool hasTable = itemCount > 1;
+	if (hasTable) {
+		lua_newtable(L);
+	} else if (itemCount == 0) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	const auto slot = Lua::getNumber<Slots_t>(L, 6, CONST_SLOT_WHEREEVER);
+	const auto tier = Lua::getNumber<uint8_t>(L, 7, 0);
+	for (int32_t i = 1; i <= itemCount; ++i) {
+		int32_t stackCount = subType;
+		if (it.stackable) {
+			stackCount = std::min<int32_t>(stackCount, it.stackSize);
+			subType -= stackCount;
+		}
+
+		const auto &item = Item::CreateItem(itemId, stackCount);
+		if (!item) {
+			if (!hasTable) {
+				lua_pushnil(L);
+			}
+			return 1;
+		}
+
+		if (tier > 0) {
+			item->setTier(tier);
+		}
+
+		ReturnValue ret = g_game().internalAddItem(player, item, index, flags, true);
+		if (ret == RETURNVALUE_NOERROR) {
+			ScriptEnvironment::removeTempItem(item);
+		} else {
+			lua_pushnumber(L, ret);
+			return 1;
+		}
+	}
+	lua_pushnumber(L, RETURNVALUE_NOERROR);
+	return 1;
+}
+
 int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
 	// player:addItem(itemId, count = 1, canDropOnMap = true, subType = 1, slot = CONST_SLOT_WHEREEVER, tier = 0)
 	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
@@ -2276,6 +2357,41 @@ int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
 			Lua::setItemMetatable(L, -1, item);
 		}
 	}
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerCanAddItemEx(lua_State* L) {
+	// player:canAddItemEx(item[, canDropOnMap = false[, index = INDEX_WHEREEVER[, flags = 0]]])
+	// player:canAddItemEx(item[, canDropOnMap = true[, slot = CONST_SLOT_WHEREEVER]])
+	const auto &item = Lua::getUserdataShared<Item>(L, 2, "Item");
+	if (!item) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ITEM_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+		return 1;
+	}
+
+	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	if (item->getParent() != VirtualCylinder::virtualCylinder) {
+		Lua::reportErrorFunc("Item already has a parent");
+		Lua::pushBoolean(L, false);
+		return 1;
+	}
+
+	ReturnValue returnValue;
+	const auto index = Lua::getNumber<int32_t>(L, 4, INDEX_WHEREEVER);
+	const auto flags = Lua::getNumber<uint32_t>(L, 5, 0);
+	returnValue = g_game().internalAddItem(player, item, index, flags, true);
+
+	if (returnValue == RETURNVALUE_NOERROR) {
+		ScriptEnvironment::removeTempItem(item);
+	}
+	lua_pushnumber(L, returnValue);
 	return 1;
 }
 

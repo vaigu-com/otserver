@@ -258,11 +258,11 @@ function Player:HasEnoughSlots(context)
 	return true
 end
 
+--[[
 local canAddItemsChecks = {
 	Player.HasEnoughCapacity,
 	Player.HasEnoughSlots,
 }
-
 function Player:CanAddItems(items)
 	local context = {
 		requiredCap = CalculateItemsWeight(items),
@@ -274,6 +274,17 @@ function Player:CanAddItems(items)
 
 		if not canProceed then
 			return canProceed, message
+		end
+	end
+
+	return true
+end
+]]
+
+function Player:CanAddItems(items)
+	for _, item in pairs(items) do
+		if self:canAddItem(item.id, item.count, false, nil, nil, nil, true) ~= RETURNVALUE_NOERROR then
+			return false
 		end
 	end
 
@@ -429,9 +440,9 @@ function Player:AddCustomItem(itemData, container, localizer)
 		else
 			container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
 			if container then
-				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER, FLAG_NOLIMIT)
+				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER)
 			else
-				lastErrorCode = self:addItemEx(addedItem, false, CONST_SLOT_WHEREEVER, FLAG_NOLIMIT)
+				lastErrorCode = self:addItemEx(addedItem, false, CONST_SLOT_WHEREEVER)
 			end
 		end
 
