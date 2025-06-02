@@ -28,7 +28,4 @@ private:
 	static int luaMoveEventUniqueId(lua_State* L);
 	static int luaMoveEventPosition(lua_State* L);
 	static int luaMoveEventKey(lua_State* L);
-
-	// Vaigu custom
-	static int luaLuaAnyEventIsRegistered(lua_State* L);
 };

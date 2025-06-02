@@ -114,9 +114,6 @@ public:
 	bool registerLuaEvent(const std::shared_ptr<MoveEvent> &event);
 	bool registerEvent(const std::shared_ptr<MoveEvent> &moveEvent, std::string key, std::map<std::string, MoveEventList> &moveListMap) const;
 	
-	// Vaigu custom
-	bool luaAnyEventIsRegistered(const std::shared_ptr<MoveEvent> &moveEvent);
-	
 	void clear();
 
 private:

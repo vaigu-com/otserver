@@ -232,7 +232,7 @@ int LookFunctions::luaLuaAnyEventIsRegistered(lua_State* L) {
 	// look:isRegistered()
 	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
 	if (look) {
-		Lua::pushBoolean(L, look->luaAnyEventIsRegistered());
+		Lua::pushBoolean(L, Looks::getInstance().luaAnyEventIsRegistered(look));
 	} else {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
 		Lua::pushBoolean(L, false);

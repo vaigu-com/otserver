@@ -136,18 +136,6 @@ bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> &moveEvent
 	return !keyVector.empty();
 }
 
-bool MoveEvents::luaAnyEventIsRegistered(const std::shared_ptr<MoveEvent> &moveEvent) {
-	const auto checkAny = [](const auto &vec, auto &&predicate) {
-		return std::any_of(vec.begin(), vec.end(), std::forward<decltype(predicate)>(predicate));
-	};
-
-	return checkAny(moveEvent->getItemIdsVector(), [this](auto id) { return hasItemId(id); })
-		|| checkAny(moveEvent->getUniqueIdsVector(), [this](auto id) { return hasUniqueId(id); })
-		|| checkAny(moveEvent->getActionIdsVector(), [this](auto id) { return hasActionId(id); })
-		|| checkAny(moveEvent->getPositionsVector(), [this](auto pos) { return hasPosition(pos); })
-		|| checkAny(moveEvent->getKeysVector(), [this](auto key) { return hasKey(key); });
-}
-
 // Vaigu custom
 bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> &moveEvent) {
 	std::vector<std::function<bool(const std::shared_ptr<MoveEvent> &)>> luaEventCallbacks = {

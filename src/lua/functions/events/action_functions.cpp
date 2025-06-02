@@ -257,7 +257,7 @@ int ActionFunctions::luaLuaAnyEventIsRegistered(lua_State* L) {
 	// action:isRegistered()
 	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
 	if (action) {
-		Lua::pushBoolean(L, action->luaAnyEventIsRegistered());
+		Lua::pushBoolean(L, Actions::getInstance().luaAnyEventIsRegistered(action));
 	} else {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
 		Lua::pushBoolean(L, false);
