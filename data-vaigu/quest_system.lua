@@ -337,6 +337,52 @@ function QuestRegistry:RunScripts()
 	end
 end
 
+local function normalizeItem(item)
+	local normalized = {}
+	normalized.id = item.id
+	normalized.aid = item.aid or item.actionid or item.actionId
+	normalized.uid = item.uid or item.uniqueid or item.uniqueId
+	normalized.key = item.key
+	normalized.pos = item.pos or item.position
+	return normalized
+end
+
+local function generateDummyAction(keyItem)
+	local dummyAction = Action()
+	function dummyAction.onUse(_, _, _, _, _, _)
+		return false
+	end
+	local normalized = normalizeItem(keyItem)
+	if normalized.id then
+		dummyAction:id(normalized.id)
+	end
+	if normalized.aid then
+		dummyAction:aid(normalized.aid)
+	end
+	if normalized.uid then
+		dummyAction:uid(normalized.uid)
+	end
+	if normalized.pos then
+		dummyAction:position(normalized.pos)
+	end
+	if normalized.key then
+		dummyAction:key(normalized.key)
+	end
+
+	return dummyAction
+end
+
+local function registerDummyActions()
+	for quest, keyItems in pairs(QuestKeyItems) do
+		for _, keyItem in pairs(keyItems) do
+			local dummyAction = generateDummyAction(keyItem)
+			if not dummyAction:isRegistered() then
+				dummyAction:register()
+			end
+		end
+	end
+end
+
 function QuestRegistry:RegisterQuestData()
 	self:UnpackStateData()
 	self:CreateQuestlog()
@@ -348,6 +394,7 @@ function QuestRegistry:RegisterQuestData()
 	self:RunScripts()
 	self.NormalizeQuestlog()
 	questlogLookups()
+	registerDummyActions()
 end
 
 function QuestRegistry:Register(quest)
