@@ -234,8 +234,7 @@ end
 ---@param requiredCap number
 ---@return boolean hasEnoughCap
 ---@return string|nil errorMessageIfHasNoCap
-function Player:HasEnoughCapacity(context)
-	local requiredCap = context.requiredCap
+function Player:ErrorIfHasNotEnoughCapacity(requiredCap)
 	local playerFreeCap = self:getFreeCapacity() / 100
 	if requiredCap > playerFreeCap then
 		local lackingCap = tostring(math.abs(playerFreeCap - requiredCap))
@@ -244,8 +243,7 @@ function Player:HasEnoughCapacity(context)
 	return true
 end
 
-function Player:HasEnoughSlots(context)
-	local requiredSlots = context.requiredSlots
+function Player:ErrorIfHasNotEnoughSlots(requiredSlots)
 	local freeSlots = self:getFreeBackpackSlots()
 	if requiredSlots > freeSlots then
 		local lackingSlots = requiredSlots - freeSlots
@@ -258,32 +256,23 @@ function Player:HasEnoughSlots(context)
 	return true
 end
 
-local canAddItemsChecks = {
-	Player.HasEnoughCapacity,
-	Player.HasEnoughSlots,
-}
-function Player:GetUnaddableItemsError(items, lastitemId, status)
-	local context = {
-		requiredCap = CalculateItemsWeight(items),
-		requiredSlots = CalculateItemsRequiredSlots(items),
-	}
-	local canProceed, message
-	for _, check in pairs(canAddItemsChecks) do
-		canProceed, message = check(self, context)
-
-		if not canProceed then
-			return message
-		end
+function Player:CanAddItems(items)
+	local requiredCap = CalculateItemsWeight(items)
+	local hasCap, capMessage = self:ErrorIfHasNotEnoughCapacity(requiredCap)
+	if not hasCap then
+		return false, capMessage
 	end
 
-	return T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status :status:", { playerName = self:getName(), status = status, lastitemId = lastitemId })
-end
-
-function Player:CanAddItems(items)
 	for _, item in pairs(items) do
 		local status = self:canAddItem(item.id, item.count, false, nil, nil, nil, true)
 		if status ~= RETURNVALUE_NOERROR then
-			return false, GetUnaddableItemsError(items, item.id, status)
+			local requiredSlots = CalculateItemsRequiredSlots(items)
+			local hasSlots, slotMessage = self:ErrorIfHasNotEnoughSlots(requiredSlots)
+			if not hasSlots then
+				return false, slotMessage
+			else
+				return false, T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status :status:", { playerName = self:getName(), status = status, lastitemId = lastitemId })
+			end
 		end
 	end
 
@@ -437,7 +426,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 			local inbox = self:getStoreInbox()
 			lastErrorCode = inbox:addItemEx(addedItem)
 		else
-			container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
+			-- container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
 			if container then
 				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER)
 			else
@@ -472,25 +461,25 @@ function CalculateItemsRequiredSlots(items)
 	local slotsCount = 0
 	local storeSlotsCount = 0
 	for containerId, item in pairs(items) do
-		local count = 1
+		local takenSlots = 1
 		local stackable = false
 		local chargesPerItem = 1
 		if ItemType(containerId):isContainer() then
-			count = CalculateItemsRequiredSlots(item)
-			count = count + 1
+			takenSlots = CalculateItemsRequiredSlots(item)
+			takenSlots = takenSlots + 1
 		else
-			count = item.count or count
+			takenSlots = item.count or takenSlots
 			stackable = ItemType(item.id):isStackable()
 			chargesPerItem = ItemType(item.id):getCharges()
 		end
 
 		local requiredSlots = 0
 		if stackable then
-			requiredSlots = math.ceil(count / 100)
+			requiredSlots = math.ceil(takenSlots / 100)
 		elseif chargesPerItem > 1 then
-			requiredSlots = math.ceil(count / chargesPerItem)
+			requiredSlots = math.ceil(takenSlots / chargesPerItem)
 		else
-			requiredSlots = count
+			requiredSlots = takenSlots
 		end
 
 		if shouldAddToStore(item) then
@@ -507,19 +496,29 @@ function CalculateItemsWeight(items)
 	for containerId, item in pairs(items) do
 		local count = 1
 		local weight = 0
+		local chargesPerItem = 1
 		if ItemType(containerId):isContainer() then
 			weight = CalculateItemsWeight(item)
 			weight = weight + getItemWeight(tonumber(containerId))
 		else
 			count = item.count or count
-			if ItemType(item.id):isStackable() then
-				count = 1
+			chargesPerItem = ItemType(item.id):getCharges()
+
+			count = item.count or count
+			local chargesPerItem = ItemType(item.id):getCharges()
+			if chargesPerItem > 1 then
+				count = math.ceil(count / chargesPerItem)
 			end
 			weight = getItemWeight(item.id) or weight
 		end
-		local requiredWeight = count * weight
+
+		local requiredWeight = 0
 		if shouldAddToStore(item) then
 			requiredWeight = 0
+		elseif chargesPerItem > 1 then
+			requiredWeight = weight * math.ceil(count / chargesPerItem)
+		else
+			requiredWeight = weight * count
 		end
 
 		totalWeight = totalWeight + requiredWeight
