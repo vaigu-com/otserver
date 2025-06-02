@@ -27,6 +27,7 @@ void ActionFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Action", "blockWalls", ActionFunctions::luaActionBlockWalls);
 	Lua::registerMethod(L, "Action", "checkFloor", ActionFunctions::luaActionCheckFloor);
 	Lua::registerMethod(L, "Action", "position", ActionFunctions::luaActionPosition);
+	Lua::registerMethod(L, "Action", "isRegistered", ActionFunctions::luaLuaAnyEventIsRegistered);
 }
 
 int ActionFunctions::luaCreateAction(lua_State* L) {
@@ -244,6 +245,19 @@ int ActionFunctions::luaActionCheckFloor(lua_State* L) {
 	if (action) {
 		action->setCheckFloor(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);
+	} else {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int ActionFunctions::luaLuaAnyEventIsRegistered(lua_State* L) {
+	// action:isRegistered()
+	const auto &action = Lua::getUserdataShared<Action>(L, 1, "Action");
+	if (action) {
+		Lua::pushBoolean(L, action->luaAnyEventIsRegistered());
 	} else {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
 		Lua::pushBoolean(L, false);

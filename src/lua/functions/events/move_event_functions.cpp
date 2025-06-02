@@ -34,6 +34,7 @@ void MoveEventFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "MoveEvent", "onStepOut", MoveEventFunctions::luaMoveEventOnCallback);
 	Lua::registerMethod(L, "MoveEvent", "onAddItem", MoveEventFunctions::luaMoveEventOnCallback);
 	Lua::registerMethod(L, "MoveEvent", "onRemoveItem", MoveEventFunctions::luaMoveEventOnCallback);
+	Lua::registerMethod(L, "MoveEvent", "isRegistered", MoveEventFunctions::luaLuaAnyEventIsRegistered);
 }
 
 int MoveEventFunctions::luaCreateMoveEvent(lua_State* L) {
@@ -330,6 +331,19 @@ int MoveEventFunctions::luaMoveEventKey(lua_State* L) {
 		Lua::pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int MoveEventFunctions::luaLuaAnyEventIsRegistered(lua_State* L) {
+	// moveevent:isRegistered()
+	const auto &moveevent = Lua::getUserdataShared<MoveEvent>(L, 1, "MoveEvent");
+	if (moveevent) {
+		Lua::pushBoolean(L, moveevent->luaAnyEventIsRegistered());
+	} else {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
+		Lua::pushBoolean(L, false);
 	}
 	return 1;
 }

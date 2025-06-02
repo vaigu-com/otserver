@@ -17,6 +17,7 @@ void LookFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Look", "blockWalls", LookFunctions::luaLookBlockWalls);
 	Lua::registerMethod(L, "Look", "checkFloor", LookFunctions::luaLookCheckFloor);
 	Lua::registerMethod(L, "Look", "position", LookFunctions::luaLookPosition);
+	Lua::registerMethod(L, "Look", "isRegistered", LookFunctions::luaLuaAnyEventIsRegistered);
 }
 
 int LookFunctions::luaCreateLook(lua_State* L) {
@@ -220,6 +221,18 @@ int LookFunctions::luaLookCheckFloor(lua_State* L) {
 	if (look) {
 		look->setCheckFloor(Lua::getBoolean(L, 2));
 		Lua::pushBoolean(L, true);
+	} else {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+	}
+	return 1;
+}
+
+int LookFunctions::luaLuaAnyEventIsRegistered(lua_State* L) {
+	// look:isRegistered()
+	const auto &look = Lua::getUserdataShared<Look>(L, 1, "Look");
+	if (look) {
+		Lua::pushBoolean(L, look->luaAnyEventIsRegistered());
 	} else {
 		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_ACTION_NOT_FOUND));
 		Lua::pushBoolean(L, false);

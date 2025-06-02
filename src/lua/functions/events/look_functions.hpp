@@ -24,4 +24,7 @@ private:
 	static int luaLookKey(lua_State* L);
 	static int luaLookBlockWalls(lua_State* L);
 	static int luaLookCheckFloor(lua_State* L);
+
+	// Vaigu custom
+	static int luaLuaAnyEventIsRegistered(lua_State* L);
 };
