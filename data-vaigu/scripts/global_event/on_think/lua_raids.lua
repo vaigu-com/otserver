@@ -114,7 +114,7 @@ LUA_RAID_DIFFICULTY_TIER = {
 }
 
 LUA_RAID_DIFFICULTY_TIER_LOOT = {
-	[LUA_RAID_DIFFICULTY_TIER.silver] = { Loot.fromItem({ id = 19083, chance = 7000 }) },
+	[LUA_RAID_DIFFICULTY_TIER.silver] = { Loot.fromItem({ id = ItemId.SILVER_RAID_TOKEN, chance = 7000 }) },
 }
 
 local fourHours = 14400
