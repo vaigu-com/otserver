@@ -223,9 +223,9 @@ function Player:TryTradeInItems(givenUpItems, addedItems)
 end
 
 function Player:TryAddItems(items)
-	local canAdd, errorMessage = self:CanAddItems(items)
+	local canAdd, status = self:CanAddItems(items)
 	if canAdd ~= true then
-		self:sendTextMessage(MESSAGE_FAILURE, errorMessage)
+		self:sendTextMessage(MESSAGE_FAILURE, status)
 		return canAdd
 	end
 	return self:AddItems(items)
@@ -258,12 +258,11 @@ function Player:HasEnoughSlots(context)
 	return true
 end
 
---[[
 local canAddItemsChecks = {
 	Player.HasEnoughCapacity,
 	Player.HasEnoughSlots,
 }
-function Player:CanAddItems(items)
+function Player:GetUnaddableItemsError(items, lastitemId, status)
 	local context = {
 		requiredCap = CalculateItemsWeight(items),
 		requiredSlots = CalculateItemsRequiredSlots(items),
@@ -273,22 +272,22 @@ function Player:CanAddItems(items)
 		canProceed, message = check(self, context)
 
 		if not canProceed then
-			return canProceed, message
+			return message
 		end
 	end
 
-	return true
+	return T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status :status:", { playerName = self:getName(), status = status, lastitemId = lastitemId })
 end
-]]
 
 function Player:CanAddItems(items)
 	for _, item in pairs(items) do
-		if self:canAddItem(item.id, item.count, false, nil, nil, nil, true) ~= RETURNVALUE_NOERROR then
-			return false
+		local status = self:canAddItem(item.id, item.count, false, nil, nil, nil, true)
+		if status ~= RETURNVALUE_NOERROR then
+			return false, GetUnaddableItemsError(items, item.id, status)
 		end
 	end
 
-	return true
+	return true, RETURNVALUE_NOERROR
 end
 
 function Player:AddItems(items, bag, localizer)
