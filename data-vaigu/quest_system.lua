@@ -354,7 +354,7 @@ local function generateDummyAction(keyItem)
 	end
 	local normalized = normalizeItem(keyItem)
 	if normalized.id then
-		dummyAction:id(normalized.id)
+		-- dummyAction:id(normalized.id)
 	end
 	if normalized.aid then
 		dummyAction:aid(normalized.aid)
@@ -369,18 +369,26 @@ local function generateDummyAction(keyItem)
 		dummyAction:key(normalized.key)
 	end
 
+	if not normalized.aid and not normalized.uid and not normalized.pos and not normalized.key then
+		return nil
+	end
+
 	return dummyAction
 end
 
 local function registerDummyActions()
-	for quest, keyItems in pairs(QuestKeyItems) do
-		for _, keyItem in pairs(keyItems) do
-			local dummyAction = generateDummyAction(keyItem)
-			if not dummyAction:isRegistered() then
-				dummyAction:register()
+	local registerDummyActionsStartup = GlobalEvent("Quest/registerDummyActions")
+	function registerDummyActionsStartup.onStartup()
+		for quest, keyItems in pairs(QuestKeyItems) do
+			for itemName, keyItem in pairs(keyItems) do
+				local dummyAction = generateDummyAction(keyItem)
+				if dummyAction and not dummyAction:isRegistered() then
+					dummyAction:register()
+				end
 			end
 		end
 	end
+	registerDummyActionsStartup:register()
 end
 
 function QuestRegistry:RegisterQuestData()
