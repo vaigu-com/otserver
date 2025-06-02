@@ -46,7 +46,9 @@ private:
 	KVStore &kv;
 	Logger &logger;
 	Game &game;
+	#ifndef OS_WINDOWS
 	pid_t child_saver_pid;
+	#endif
 };
 
 constexpr auto g_saveManager = SaveManager::getInstance;

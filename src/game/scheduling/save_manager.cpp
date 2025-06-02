@@ -13,6 +13,8 @@
 	#include <sys/file.h>
 	#include <unistd.h>
 	#include <fcntl.h>
+	#include <unistd.h>
+	#include <sys/wait.h>
 #endif
 
 #include "game/scheduling/dispatcher.hpp"
@@ -27,16 +29,18 @@
 #include "server/network/protocol/protocolgame.hpp"
 #include "account/account.hpp"
 
-#include <unistd.h>
-#include <sys/wait.h>
-
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
-	threadPool(threadPool), kv(kvStore), logger(logger), game(game), child_saver_pid(-1) { }
+	threadPool(threadPool), kv(kvStore), logger(logger), game(game)
+	#ifndef OS_WINDOWS
+	, child_saver_pid(-1)
+	#endif
+{ }
 
 SaveManager &SaveManager::getInstance() {
 	return inject<SaveManager>();
 }
 
+#ifndef OS_WINDOWS
 void SaveManager::saveAll() {
 
 	class ResourceGuard {
@@ -122,6 +126,54 @@ void SaveManager::saveAll() {
 		child_saver_pid = pid;
 	}
 }
+#endif
+
+#ifdef OS_WINDOWS
+void SaveManager::saveAll() {
+	const auto players = game.getPlayers();
+	for (const auto &[_, player] : players) {
+		player->loginPosition = player->getPosition();
+		if (player->isLoggingOut()) {
+			player->setLoggingOut(false);
+			player->setOnline(false);
+		}
+		if (!player->isOnline()) {
+			g_game().removePlayer(std::shared_ptr<Player>(player));
+			player->setRemoved();
+		}
+	}
+	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+	auto guilds = game.getGuilds();
+	Benchmark bm_saveAll;
+
+	logger.info("Saving server...");
+
+	if (!Database::getInstance().connect()) {
+		throw std::runtime_error("Failed to connect to database.");
+	}
+
+	DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
+		for (const auto &[_, player] : players) {
+			player->loginPosition = player->getPosition();
+			doSavePlayer(player);
+			const auto account = player->account->save();
+		}
+
+		for (const auto &[_, guild] : guilds) {
+			saveGuild(guild);
+		}
+
+		saveMap();
+		saveKV();
+		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+		return true;
+	});
+
+	logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
+
+	fflush(stdout);
+}
+#endif
 
 void SaveManager::scheduleAll() {
 	auto scheduledAt = std::chrono::steady_clock::now();
