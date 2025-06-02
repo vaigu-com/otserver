@@ -2257,7 +2257,7 @@ int PlayerFunctions::luaPlayerCanAddItem(lua_State* L) {
 			item->setTier(tier);
 		}
 
-		ReturnValue ret = g_game().internalAddItem(player, item, index, flags, true);
+		ReturnValue ret = g_game().internalAddItem(player, item, slot, 0, true);
 		if (ret == RETURNVALUE_NOERROR) {
 			ScriptEnvironment::removeTempItem(item);
 		} else {
