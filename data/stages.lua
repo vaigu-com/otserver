@@ -9,7 +9,7 @@ experienceStages = {
 	},
 	{
 		minlevel = 9,
-		malevel = 20,
+		maxlevel = 20,
 		multiplier = 1.5
 	},
 	{
