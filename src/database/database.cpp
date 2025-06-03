@@ -37,35 +37,42 @@ bool Database::connect() {
 
 bool Database::connect(const std::string* host, const std::string* user, const std::string* password, const std::string* database, uint32_t port, const std::string* sock) {
 	// connection handle initialization
+	g_logger().warn("[Database::connect] before mysql_init");
 	handle = mysql_init(nullptr);
 	if (!handle) {
 		g_logger().error("Failed to initialize MySQL connection handle.");
 		return false;
 	}
 
+	g_logger().warn("[Database::connect] before host->empty() |");
 	if (host->empty() || user->empty() || password->empty() || database->empty() || port <= 0) {
 		g_logger().warn("MySQL host, user, password, database or port not provided");
 	}
 
 	// automatic reconnect
 	bool reconnect = true;
+	g_logger().warn("[Database::connect] before mysql_options1");
 	mysql_options(handle, MYSQL_OPT_RECONNECT, &reconnect);
 
 	// Remove ssl verification
 	bool ssl_enabled = false;
+	g_logger().warn("[Database::connect] before mysql_options2");
 	mysql_options(handle, MYSQL_OPT_SSL_VERIFY_SERVER_CERT, &ssl_enabled);
 
 	// connects to database
+	g_logger().warn("[Database::connect] before mysql_real_connect");
 	if (!mysql_real_connect(handle, host->c_str(), user->c_str(), password->c_str(), database->c_str(), port, sock->c_str(), 0)) {
 		g_logger().error("MySQL Error Message: {}", mysql_error(handle));
 		return false;
 	}
 
+	g_logger().warn("[Database::connect] before storeQuery");
 	DBResult_ptr result = storeQuery("SHOW VARIABLES LIKE 'max_allowed_packet'");
 	if (result) {
+		g_logger().warn("[Database::connect] before getNumber");
 		maxPacketSize = result->getNumber<uint64_t>("Value");
 	}
-	
+	g_logger().warn("[Database::connect] after getNumber");
 	return true;
 }
 
