@@ -24,7 +24,7 @@ class Database {
 public:
 	static const size_t MAX_QUERY_SIZE = 8 * 1024 * 1024; // 8 Mb -- half the default MySQL max_allowed_packet size
 
-	Database() = default;
+	Database();
 	~Database();
 
 	// Singleton - ensures we don't accidentally copy it.

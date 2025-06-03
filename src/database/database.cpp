@@ -14,6 +14,13 @@
 #include "lib/metrics/metrics.hpp"
 #include "utils/tools.hpp"
 
+Database::Database() {
+	pthread_atfork(nullptr, nullptr, [] {
+		g_logger().warn("[Database] Fork detected, releasing database lock");
+		getInstance().databaseLock.unlock();
+	});
+}
+
 Database::~Database() {
 	if (handle != nullptr) {
 		mysql_close(handle);
@@ -58,6 +65,7 @@ bool Database::connect(const std::string* host, const std::string* user, const s
 	if (result) {
 		maxPacketSize = result->getNumber<uint64_t>("Value");
 	}
+	
 	return true;
 }
 
