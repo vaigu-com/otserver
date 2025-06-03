@@ -347,6 +347,15 @@ local function normalizeItem(item)
 	return normalized
 end
 
+local function hasIdAction(item)
+	local dummyIdAction = Action()
+	function dummyIdAction.onUse(_, _, _, _, _, _)
+		return false
+	end
+	dummyIdAction:id(item.id)
+	return dummyIdAction:isRegistered()
+end
+
 local function generateDummyAction(keyItem)
 	local dummyAction = Action()
 	function dummyAction.onUse(_, _, _, _, _, _)
@@ -354,7 +363,12 @@ local function generateDummyAction(keyItem)
 	end
 	local normalized = normalizeItem(keyItem)
 	if normalized.id then
-		-- dummyAction:id(normalized.id)
+		if table.contains(keysID, normalized.id) then
+			return nil
+		end
+		if hasIdAction(normalized) then
+			logger.debug(T("Registering dummy action for aid/uid/pos/key for item with id :id:", { id = normalized.id }))
+		end
 	end
 	if normalized.aid then
 		dummyAction:aid(normalized.aid)
