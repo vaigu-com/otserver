@@ -1075,6 +1075,7 @@ std::shared_ptr<Player> Game::getPlayerByName(const std::string &s, bool allowOf
 			}
 			return nullptr;
 		}
+		addPlayer(tmpPlayer);
 		tmpPlayer->setOnline(false);
 		return tmpPlayer;
 	}
