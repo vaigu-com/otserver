@@ -814,8 +814,9 @@ ReturnValue ProtocolGame::messageIfCannotLogout(const std::shared_ptr<Player> pl
 void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
-	}
-
+	}	
+	player->setLoggingOut(true);
+	
 	bool removePlayer = !player->isRemoved() && !forced;
 	auto errorMessage = messageIfCannotLogout(player, removePlayer);
 	if (errorMessage != RETURNVALUE_NOERROR) {
@@ -833,7 +834,6 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 
 	player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
 	g_game().removeCreature(player, true);
-	player->setLoggingOut(true);
 }
 
 void ProtocolGame::onRecvFirstMessage(NetworkMessage &msg) {
