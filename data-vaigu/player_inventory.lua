@@ -256,24 +256,41 @@ function Player:ErrorIfHasNotEnoughSlots(requiredSlots)
 	return true
 end
 
+function Player:CanAddItemsCpp(items)
+	local totalWeight = 0
+	for containerId, item in pairs(items) do
+		if ItemType(containerId):isContainer() then
+			local status = self:canAddItem(containerId, 1, false, nil, nil, nil, true)
+			if status ~= RETURNVALUE_NOERROR then
+				return status
+			end
+		else
+			local status = self:canAddItem(item.id, item.count, false, nil, nil, nil, true)
+			if status ~= RETURNVALUE_NOERROR then
+				return status
+			end
+		end
+	end
+	return RETURNVALUE_NOERROR
+end
+
 function Player:CanAddItems(items)
+	-- We do this before, as
 	local requiredCap = CalculateItemsWeight(items)
 	local hasCap, capMessage = self:ErrorIfHasNotEnoughCapacity(requiredCap)
 	if not hasCap then
 		return false, capMessage
 	end
 
-	for _, item in pairs(items) do
-		local status = self:canAddItem(item.id, item.count, false, nil, nil, nil, true)
-		if status ~= RETURNVALUE_NOERROR then
-			local requiredSlots = CalculateItemsRequiredSlots(items)
-			local hasSlots, slotMessage = self:ErrorIfHasNotEnoughSlots(requiredSlots)
-			if not hasSlots then
-				return false, slotMessage
-			else
-				return false, T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status :status:", { playerName = self:getName(), status = status, lastitemId = lastitemId })
-			end
-		end
+	local requiredSlots = CalculateItemsRequiredSlots(items)
+	local hasSlots, slotMessage = self:ErrorIfHasNotEnoughSlots(requiredSlots)
+	if not hasSlots then
+		return false, slotMessage
+	end
+
+	local status = self:CanAddItemsCpp(items)
+	if status ~= RETURNVALUE_NOERROR then
+		return false, T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status: :status:. Please contact an admin.", { playerName = self:getName(), status = status, lastitemId = lastitemId })
 	end
 
 	return true, RETURNVALUE_NOERROR
