@@ -15,10 +15,12 @@
 #include "utils/tools.hpp"
 
 Database::Database() {
+	#ifndef OS_WINDOWS
 	pthread_atfork(nullptr, nullptr, [] {
 		g_logger().warn("[Database] Fork detected, releasing database lock");
 		getInstance().databaseLock.unlock();
 	});
+	#endif
 }
 
 Database::~Database() {
