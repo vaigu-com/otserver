@@ -39,11 +39,19 @@ function createItem.onSay(player, words, param)
 				end
 
 				local countToAdd = math.min(remainingCount, stackSize)
-				local tmpItem = mainContainer:addItem(itemType:getId(), countToAdd)
-				if tmpItem then
-					remainingCount = remainingCount - countToAdd
+				local status = player:canAddItem(itemType:getId(), countToAdd)
+				if status == RETURNVALUE_NOERROR then
+					local tmpItem = mainContainer:addItem(itemType:getId(), countToAdd)
+					if tmpItem then
+						remainingCount = remainingCount - countToAdd
+					else
+						player:sendCancelMessage(T("Failed to add item:."))
+						logger.warn("Failed to add item: {}, to container", itemType:getName())
+						break
+					end
 				else
-					logger.warn("Failed to add item: {}, to container", itemType:getName())
+					player:sendCancelMessage(T("Failed to add item:. Status: :status:.", { item = itemType:getName(), status = status }))
+					logger.warn("Failed to add item: {}, to container. Status: {}", itemType:getName(), status)
 					break
 				end
 			end
