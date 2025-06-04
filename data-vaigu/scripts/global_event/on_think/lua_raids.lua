@@ -256,19 +256,22 @@ end
 ---@field self LuaRaid[]
 dofile(DATA_DIRECTORY .. "/lua_raid_data.lua")
 
-local globalevent = GlobalEvent("LuaRaids")
-function globalevent.onThink(...)
-	return LuaRaidRegistry:TryStartRandomCommon()
-end
-globalevent:interval(tryStartRaidInterval)
-globalevent:register()
+DAYS_TO_RUN_LUARAIDS = 4
+if DAYS_SINCE_START >= DAYS_TO_RUN_LUARAIDS then
+	local globalevent = GlobalEvent("LuaRaids")
+	function globalevent.onThink(...)
+		return LuaRaidRegistry:TryStartRandomCommon()
+	end
+	globalevent:interval(tryStartRaidInterval)
+	globalevent:register()
 
-local globalevent = GlobalEvent("LuaRaidsRare")
-function globalevent.onThink(...)
-	return LuaRaidRegistry:TryStartRandomRare()
+	local globalevent = GlobalEvent("LuaRaidsRare")
+	function globalevent.onThink(...)
+		return LuaRaidRegistry:TryStartRandomRare()
+	end
+	globalevent:interval(tryStartRaidInterval)
+	globalevent:register()
 end
-globalevent:interval(tryStartRaidInterval)
-globalevent:register()
 
 local function handleWave(wave, waveIndex, raidName)
 	for creatureIndex, waveCreature in pairs(wave.creatures) do
