@@ -75,14 +75,20 @@ pseudoQuest
 			return T("of :requiredLevel:", { requiredLevel = requiredLevel })
 		end
 		local function generateVocationLevelError(potion)
-			local vocations = vocSizeToMessageCallback[parseVocationsCountIdentifier(#potion.vocations)](potion.vocations)
+			local vocationBaseString = ""
+			if #potion.vocations > 0 then
+				local vocations = vocSizeToMessageCallback[parseVocationsCountIdentifier(#potion.vocations)](potion.vocations)
+				local levelMessage = parseLevelMessage(potion.requiredLevel)
+				vocationBaseString = T("Only :vocations: :levelMessage: may drink this fluid.", { vocations = vocations, levelMessage = levelMessage })
+			end
+
 			local accessStr = ""
 			if #potion.accessVocations > 0 then
 				local accessVocations = vocSizeToMessageCallback[parseVocationsCountIdentifier(#potion.accessVocations)](potion.accessVocations)
-				accessStr = " " .. FirstCharToUpper(accessVocations) .. " of level 200 will require training in order to drink this fluid."
+				accessStr = FirstCharToUpper(accessVocations) .. " " .. parseLevelMessage(QuestConstants.EnterTheDrunkTank.PotionAccessLevel) .. " will require training in order to drink this fluid."
 			end
-			local levelMessage = parseLevelMessage(potion.requiredLevel)
-			return T("Only :vocations: :levelMessage: may drink this fluid.:accessStr:", { vocations = vocations, levelMessage = levelMessage, accessStr = accessStr })
+
+			return T(":vocationBaseString::accessStr:", { vocationBaseString = vocationBaseString, accessStr = accessStr })
 		end
 
 		local edEkRpMs = {
