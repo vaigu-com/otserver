@@ -91,6 +91,7 @@ pseudoQuest
 				{ toPos = Position(6730, 705, 7), name = "Heart of the Jungle" },
 				{ toPos = Position(6879, 743, 7), name = "Mundral Daycare" },
 				{ toPos = Position(6436, 792, 7), name = "Stankass", minLevel = 60 },
+				{ toPos = Position(6693, 676, 7), name = "Celebimber's Post" },
 			},
 			FISHERMAN_SHIP = {
 				{ toPos = Position(5801, 1649, 7), name = "Mirkotown Slums" },
@@ -107,6 +108,7 @@ pseudoQuest
 				{ toPos = Position(6919, 1331, 7), name = "Water elemental cave" },
 				{ toPos = Position(6485, 1276, 7), name = "Mareesha camp" },
 				{ toPos = Position(6637, 1332, 7), name = "Hurghada outskirts" },
+				{ toPos = Position(7021, 1210, 7), name = "Cairo Fornia" },
 			},
 		}
 		local function createHelpDialog(player, _, _)
@@ -168,6 +170,13 @@ pseudoQuest
 			if transport.requiredState and not player:HasRequiredStates(transport.requiredState) then
 				return false
 			end
+
+			--[[
+			local minLevel = transport.minLevel or 0
+			if player:getLevel() < minLevel then
+				return false
+			end
+			]]
 
 			return true
 		end

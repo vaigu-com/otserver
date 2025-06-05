@@ -34,4 +34,5 @@ return {
 	["Water elemental cave"] = "Jaskinia zywiolakow wody",
 	["Mareesha camp"] = "Oboz Mareeshy",
 	["Hurghada outskirts"] = "Hurghada",
+	["Celebimber's Post"] = "Posterunek Celebimbera", 
 }

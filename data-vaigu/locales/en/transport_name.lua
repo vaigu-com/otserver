@@ -34,4 +34,5 @@ return {
 	["Water elemental cave"] = "Water elemental cave",
 	["Mareesha camp"] = "Mareesha camp",
 	["Hurghada outskirts"] = "Hurghada outskirts",
+	["Celebimber's Post"] = "Celebimber's Post",
 }
