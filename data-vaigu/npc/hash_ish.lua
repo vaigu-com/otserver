@@ -8,8 +8,8 @@ local outfit = {
 }
 local context = {
 	name = "Hash'Ish",
-	greetJob = JOB_CREATURE_PRODUCT,
-	jobs = { JOB_CREATURE_PRODUCT },
+	greetJob = JOB_DAILYTASKS_GOLDENOUTFIT,
+	jobs = { JOB_DAILYTASK, JOB_GOLDENOUTFIT },
 	outfit = outfit,
 }
 
