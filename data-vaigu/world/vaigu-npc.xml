@@ -39,6 +39,9 @@
 	<npc centerx="7488" centery="255" centerz="4" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="4" spawntime="60" />
 	</npc>
+	<npc centerx="6688" centery="671" centerz="4" radius="1">
+		<npc name="Celebimber" x="0" y="0" z="4" spawntime="60" />
+	</npc>
 	<npc centerx="6970" centery="784" centerz="4" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="4" spawntime="60" />
 	</npc>
@@ -113,6 +116,9 @@
 	</npc>
 	<npc centerx="6061" centery="1183" centerz="5" radius="1">
 		<npc name="Dampreefer" x="0" y="0" z="5" spawntime="60" />
+	</npc>
+	<npc centerx="7042" centery="1183" centerz="5" radius="1">
+		<npc name="Hash'Ish" x="0" y="0" z="5" spawntime="60" />
 	</npc>
 	<npc centerx="6005" centery="1276" centerz="5" radius="1">
 		<npc name="Groover" x="0" y="0" z="5" spawntime="60" />
@@ -360,6 +366,9 @@
 	<npc centerx="6192" centery="671" centerz="7" radius="1">
 		<npc name="Constance" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="6693" centery="675" centerz="7" radius="1">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6177" centery="680" centerz="7" radius="1">
 		<npc name="Monica" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -417,6 +426,12 @@
 	<npc centerx="7008" centery="1130" centerz="7" radius="1">
 		<npc name="Zong" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="5749" centery="1161" centerz="7" radius="1">
+		<npc name="Blantix" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="5758" centery="1171" centerz="7" radius="1">
+		<npc name="Julianne" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5764" centery="1175" centerz="7" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -428,6 +443,9 @@
 	</npc>
 	<npc centerx="7042" centery="1200" centerz="7" radius="1">
 		<npc name="Ra'Aj" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="7021" centery="1209" centerz="7" radius="1">
+		<npc name="Zong" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6218" centery="1236" centerz="7" radius="1">
 		<npc name="Konmuld" x="0" y="0" z="7" spawntime="60" />

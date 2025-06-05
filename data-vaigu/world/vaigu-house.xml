@@ -142,36 +142,36 @@
 	<house name="Os. Zielonki 9/1" houseid="292" entryx="5931" entryy="1512" entryz="7" rent="4200" townid="1" size="43" clientid="0" beds="0" />
 	<house name="Os. Zielonki 9/2" houseid="293" entryx="5931" entryy="1513" entryz="6" rent="3500" townid="1" size="46" clientid="0" beds="0" />
 	<house name="Wieza Widokowa" houseid="295" entryx="5718" entryy="1540" entryz="3" rent="7300" townid="6" size="88" clientid="0" beds="0" />
-	<house name="Mostowa 1" houseid="296" entryx="5904" entryy="1627" entryz="7" rent="5500" townid="5" size="61" clientid="0" beds="0" />
-	<house name="Mostowa 2" houseid="297" entryx="5899" entryy="1638" entryz="7" rent="5000" townid="5" size="67" clientid="0" beds="0" />
-	<house name="Mostowa 3" houseid="298" entryx="5899" entryy="1649" entryz="7" rent="6500" townid="5" size="81" clientid="0" beds="0" />
-	<house name="Mostowa 4" houseid="299" entryx="5888" entryy="1643" entryz="7" rent="1000" townid="5" size="15" clientid="0" beds="0" />
-	<house name="Mostowa 5" houseid="300" entryx="5888" entryy="1646" entryz="7" rent="1000" townid="5" size="16" clientid="0" beds="0" />
-	<house name="Mostowa 6" houseid="301" entryx="5883" entryy="1645" entryz="7" rent="1000" townid="5" size="18" clientid="0" beds="0" />
-	<house name="Mlyn" houseid="302" entryx="5919" entryy="1660" entryz="6" rent="800" townid="5" size="22" clientid="0" beds="0" />
-	<house name="Farma Mirkowo" houseid="303" entryx="5815" entryy="1639" entryz="7" rent="2500" townid="5" size="37" clientid="0" beds="0" />
-	<house name="Pozioma 1" houseid="304" entryx="5889" entryy="1631" entryz="7" rent="1000" townid="5" size="16" clientid="0" beds="0" />
-	<house name="Pozioma 2" houseid="305" entryx="5881" entryy="1631" entryz="7" rent="1400" townid="5" size="19" clientid="0" beds="0" />
-	<house name="Pozioma 3" houseid="306" entryx="5855" entryy="1626" entryz="7" rent="4300" townid="5" size="53" clientid="0" beds="0" />
-	<house name="Pozioma 4" houseid="307" entryx="5868" entryy="1626" entryz="7" rent="6300" townid="5" size="79" clientid="0" beds="0" />
-	<house name="Pozioma 5" houseid="308" entryx="5848" entryy="1626" entryz="7" rent="4300" townid="5" size="49" clientid="0" beds="0" />
-	<house name="Pozioma 6" houseid="309" entryx="5848" entryy="1631" entryz="7" rent="2600" townid="5" size="33" clientid="0" beds="0" />
-	<house name="Pozioma 7" houseid="310" entryx="5841" entryy="1628" entryz="7" rent="3800" townid="5" size="51" clientid="0" beds="0" />
-	<house name="Pozioma 8" houseid="311" entryx="5838" entryy="1636" entryz="7" rent="3500" townid="5" size="42" clientid="0" beds="0" />
-	<house name="Pozioma 10" houseid="312" entryx="5830" entryy="1639" entryz="7" rent="4500" townid="5" size="55" clientid="0" beds="0" />
-	<house name="Pozioma 9" houseid="313" entryx="5831" entryy="1636" entryz="7" rent="3500" townid="5" size="42" clientid="0" beds="0" />
+	<house name="Mostowa 1" houseid="296" entryx="5904" entryy="1627" entryz="7" rent="5500" townid="1" size="61" clientid="0" beds="0" />
+	<house name="Mostowa 2" houseid="297" entryx="5899" entryy="1638" entryz="7" rent="5000" townid="1" size="67" clientid="0" beds="0" />
+	<house name="Mostowa 3" houseid="298" entryx="5899" entryy="1649" entryz="7" rent="6500" townid="1" size="81" clientid="0" beds="0" />
+	<house name="Mostowa 4" houseid="299" entryx="5888" entryy="1643" entryz="7" rent="1000" townid="1" size="15" clientid="0" beds="0" />
+	<house name="Mostowa 5" houseid="300" entryx="5888" entryy="1646" entryz="7" rent="1000" townid="1" size="16" clientid="0" beds="0" />
+	<house name="Mostowa 6" houseid="301" entryx="5883" entryy="1645" entryz="7" rent="1000" townid="1" size="18" clientid="0" beds="0" />
+	<house name="Mlyn" houseid="302" entryx="5919" entryy="1660" entryz="6" rent="800" townid="1" size="22" clientid="0" beds="0" />
+	<house name="Farma Mirkowo" houseid="303" entryx="5815" entryy="1639" entryz="7" rent="2500" townid="1" size="37" clientid="0" beds="0" />
+	<house name="Pozioma 1" houseid="304" entryx="5889" entryy="1631" entryz="7" rent="1000" townid="1" size="16" clientid="0" beds="0" />
+	<house name="Pozioma 2" houseid="305" entryx="5881" entryy="1631" entryz="7" rent="1400" townid="1" size="19" clientid="0" beds="0" />
+	<house name="Pozioma 3" houseid="306" entryx="5855" entryy="1626" entryz="7" rent="4300" townid="1" size="53" clientid="0" beds="0" />
+	<house name="Pozioma 4" houseid="307" entryx="5868" entryy="1626" entryz="7" rent="6300" townid="1" size="79" clientid="0" beds="0" />
+	<house name="Pozioma 5" houseid="308" entryx="5848" entryy="1626" entryz="7" rent="4300" townid="1" size="49" clientid="0" beds="0" />
+	<house name="Pozioma 6" houseid="309" entryx="5848" entryy="1631" entryz="7" rent="2600" townid="1" size="33" clientid="0" beds="0" />
+	<house name="Pozioma 7" houseid="310" entryx="5841" entryy="1628" entryz="7" rent="3800" townid="1" size="51" clientid="0" beds="0" />
+	<house name="Pozioma 8" houseid="311" entryx="5838" entryy="1636" entryz="7" rent="3500" townid="1" size="42" clientid="0" beds="0" />
+	<house name="Pozioma 10" houseid="312" entryx="5830" entryy="1639" entryz="7" rent="4500" townid="1" size="55" clientid="0" beds="0" />
+	<house name="Pozioma 9" houseid="313" entryx="5831" entryy="1636" entryz="7" rent="3500" townid="1" size="42" clientid="0" beds="0" />
 	<house name="Farma" houseid="314" entryx="5759" entryy="1579" entryz="7" rent="6500" townid="6" size="99" clientid="0" beds="0" />
-	<house name="Mokra 2" houseid="315" entryx="5841" entryy="1643" entryz="7" rent="2800" townid="5" size="36" clientid="0" beds="0" />
-	<house name="Mokra 1" houseid="316" entryx="5844" entryy="1643" entryz="7" rent="3300" townid="5" size="39" clientid="0" beds="0" />
-	<house name="Mokra 3" houseid="317" entryx="5840" entryy="1649" entryz="7" rent="4400" townid="5" size="64" clientid="0" beds="0" />
-	<house name="Mokra 4" houseid="318" entryx="5844" entryy="1651" entryz="7" rent="3000" townid="5" size="40" clientid="0" beds="0" />
-	<house name="Slonecznikowa 1" houseid="319" entryx="5864" entryy="1635" entryz="7" rent="1800" townid="5" size="26" clientid="0" beds="0" />
-	<house name="Slonecznikowa 2" houseid="320" entryx="5869" entryy="1635" entryz="7" rent="1800" townid="5" size="27" clientid="0" beds="0" />
-	<house name="Slonecznikowa 3" houseid="321" entryx="5864" entryy="1641" entryz="7" rent="1000" townid="5" size="17" clientid="0" beds="0" />
-	<house name="Slonecznikowa 4" houseid="322" entryx="5869" entryy="1641" entryz="7" rent="1000" townid="5" size="17" clientid="0" beds="0" />
-	<house name="Slonecznikowa 5" houseid="323" entryx="5864" entryy="1649" entryz="7" rent="2200" townid="5" size="28" clientid="0" beds="0" />
-	<house name="Slonecznikowa 6" houseid="325" entryx="5874" entryy="1653" entryz="7" rent="5300" townid="5" size="71" clientid="0" beds="0" />
-	<house name="Domek na drzewie" houseid="326" entryx="6029" entryy="1940" entryz="6" rent="2100" townid="6" size="32" clientid="0" beds="0" />
+	<house name="Mokra 2" houseid="315" entryx="5841" entryy="1643" entryz="7" rent="2800" townid="1" size="36" clientid="0" beds="0" />
+	<house name="Mokra 1" houseid="316" entryx="5844" entryy="1643" entryz="7" rent="3300" townid="1" size="39" clientid="0" beds="0" />
+	<house name="Mokra 3" houseid="317" entryx="5840" entryy="1649" entryz="7" rent="4400" townid="1" size="64" clientid="0" beds="0" />
+	<house name="Mokra 4" houseid="318" entryx="5844" entryy="1651" entryz="7" rent="3000" townid="1" size="40" clientid="0" beds="0" />
+	<house name="Slonecznikowa 1" houseid="319" entryx="5864" entryy="1635" entryz="7" rent="1800" townid="1" size="26" clientid="0" beds="0" />
+	<house name="Slonecznikowa 2" houseid="320" entryx="5869" entryy="1635" entryz="7" rent="1800" townid="1" size="27" clientid="0" beds="0" />
+	<house name="Slonecznikowa 3" houseid="321" entryx="5864" entryy="1641" entryz="7" rent="1000" townid="1" size="17" clientid="0" beds="0" />
+	<house name="Slonecznikowa 4" houseid="322" entryx="5869" entryy="1641" entryz="7" rent="1000" townid="1" size="17" clientid="0" beds="0" />
+	<house name="Slonecznikowa 5" houseid="323" entryx="5864" entryy="1649" entryz="7" rent="2200" townid="1" size="28" clientid="0" beds="0" />
+	<house name="Slonecznikowa 6" houseid="325" entryx="5874" entryy="1653" entryz="7" rent="5300" townid="1" size="71" clientid="0" beds="0" />
+	<house name="Domek na drzewie" houseid="326" entryx="6029" entryy="1940" entryz="6" rent="2100" townid="1" size="32" clientid="0" beds="0" />
 	<house name="Rybacka 1/1" houseid="327" entryx="5523" entryy="1541" entryz="7" rent="400" townid="4" size="7" clientid="0" beds="0" />
 	<house name="Rybacka 1/2" houseid="328" entryx="5523" entryy="1544" entryz="7" rent="400" townid="4" size="7" clientid="0" beds="0" />
 	<house name="Rybacka 1/3" houseid="329" entryx="5523" entryy="1548" entryz="7" rent="5300" townid="4" size="65" clientid="0" beds="0" />
@@ -551,30 +551,42 @@
 	<house name="Port Louse House 2 #10385" houseid="10385" entryx="6826" entryy="1443" entryz="6" rent="0" townid="1" size="40" clientid="0" beds="0" />
 	<house name="Port Louse House 2 #10386" houseid="10386" entryx="6813" entryy="1453" entryz="7" rent="0" townid="1" size="79" clientid="0" beds="0" />
 	<house name="Port Louse House 4 #10387" houseid="10387" entryx="6818" entryy="1420" entryz="6" rent="0" townid="1" size="50" clientid="0" beds="0" />
-	<house name="Caribbean House 1" houseid="10388" entryx="7422" entryy="1469" entryz="3" rent="0" townid="1" size="53" clientid="0" beds="0" />
-	<house name="Caribbean House 2" houseid="10389" entryx="7419" entryy="1469" entryz="3" rent="0" townid="1" size="14" clientid="0" beds="0" />
-	<house name="Caribbean House 3" houseid="10390" entryx="7411" entryy="1466" entryz="3" rent="0" townid="1" size="28" clientid="0" beds="0" />
-	<house name="Caribbean House 4" houseid="10391" entryx="7422" entryy="1472" entryz="3" rent="0" townid="1" size="80" clientid="0" beds="0" />
-	<house name="Caribbean House 5" houseid="10392" entryx="7406" entryy="1485" entryz="3" rent="0" townid="1" size="67" clientid="0" beds="0" />
-	<house name="Caribbean House 6" houseid="10393" entryx="7378" entryy="1474" entryz="2" rent="0" townid="1" size="41" clientid="0" beds="0" />
-	<house name="Caribbean House 7" houseid="10394" entryx="7381" entryy="1474" entryz="3" rent="0" townid="1" size="16" clientid="0" beds="0" />
-	<house name="Caribbean House 8" houseid="10395" entryx="7371" entryy="1472" entryz="3" rent="0" townid="1" size="32" clientid="0" beds="0" />
-	<house name="Caribbean House 9" houseid="10396" entryx="7368" entryy="1482" entryz="3" rent="0" townid="1" size="14" clientid="0" beds="0" />
-	<house name="Caribbean House 10" houseid="10397" entryx="7363" entryy="1484" entryz="2" rent="0" townid="1" size="56" clientid="0" beds="0" />
-	<house name="Caribbean House 11" houseid="10398" entryx="7356" entryy="1481" entryz="1" rent="0" townid="1" size="13" clientid="0" beds="0" />
-	<house name="Caribbean House 12" houseid="10399" entryx="7354" entryy="1484" entryz="2" rent="0" townid="1" size="16" clientid="0" beds="0" />
-	<house name="Caribbean House 13" houseid="10400" entryx="7372" entryy="1484" entryz="2" rent="0" townid="1" size="42" clientid="0" beds="0" />
-	<house name="Caribbean House 14" houseid="10401" entryx="7378" entryy="1487" entryz="3" rent="0" townid="1" size="22" clientid="0" beds="0" />
-	<house name="Caribbean House 15" houseid="10402" entryx="7351" entryy="1509" entryz="4" rent="0" townid="1" size="43" clientid="0" beds="0" />
-	<house name="Caribbean House 16" houseid="10403" entryx="7366" entryy="1510" entryz="4" rent="0" townid="1" size="79" clientid="0" beds="0" />
-	<house name="Caribbean House 17" houseid="10404" entryx="7364" entryy="1516" entryz="4" rent="0" townid="1" size="55" clientid="0" beds="0" />
-	<house name="Caribbean House 18" houseid="10405" entryx="7353" entryy="1524" entryz="3" rent="0" townid="1" size="19" clientid="0" beds="0" />
-	<house name="Caribbean House 19" houseid="10406" entryx="7353" entryy="1524" entryz="5" rent="0" townid="1" size="13" clientid="0" beds="0" />
-	<house name="Caribbean House 20" houseid="10407" entryx="7367" entryy="1520" entryz="5" rent="0" townid="1" size="18" clientid="0" beds="0" />
-	<house name="Caribbean House 21" houseid="10408" entryx="7392" entryy="1520" entryz="4" rent="0" townid="1" size="50" clientid="0" beds="0" />
-	<house name="Caribbean House 22" houseid="10409" entryx="7379" entryy="1525" entryz="3" rent="0" townid="1" size="19" clientid="0" beds="0" />
-	<house name="Caribbean House 23" houseid="10410" entryx="7380" entryy="1524" entryz="2" rent="0" townid="1" size="18" clientid="0" beds="0" />
-	<house name="Caribbean House 24" houseid="10411" entryx="7378" entryy="1525" entryz="2" rent="0" townid="1" size="11" clientid="0" beds="0" />
-	<house name="Caribbean House 25" houseid="10412" entryx="7394" entryy="1499" entryz="4" rent="0" townid="1" size="60" clientid="0" beds="0" />
-	<house name="Caribbean House 26" houseid="10413" entryx="7370" entryy="1507" entryz="5" rent="0" townid="1" size="21" clientid="0" beds="0" />
+	<house name="Bornhouse 1" houseid="10414" entryx="5742" entryy="1175" entryz="7" rent="0" townid="5" size="152" clientid="0" beds="0" />
+	<house name="Bornhouse 2" houseid="10415" entryx="5749" entryy="1181" entryz="7" rent="0" townid="5" size="60" clientid="0" beds="0" />
+	<house name="Bornhouse 3" houseid="10416" entryx="5736" entryy="1185" entryz="7" rent="0" townid="5" size="54" clientid="0" beds="0" />
+	<house name="Bornhouse 4" houseid="10417" entryx="5745" entryy="1189" entryz="7" rent="0" townid="5" size="24" clientid="0" beds="0" />
+	<house name="Bornhouse 5" houseid="10418" entryx="5755" entryy="1191" entryz="7" rent="0" townid="5" size="44" clientid="0" beds="0" />
+	<house name="Bornhouse 6" houseid="10419" entryx="5765" entryy="1187" entryz="7" rent="0" townid="5" size="21" clientid="0" beds="0" />
+	<house name="Bornhouse 7" houseid="10420" entryx="5769" entryy="1187" entryz="6" rent="0" townid="5" size="85" clientid="0" beds="0" />
+	<house name="Bornhouse 8" houseid="10421" entryx="5768" entryy="1184" entryz="6" rent="0" townid="5" size="5" clientid="0" beds="0" />
+	<house name="Bornhouse 9" houseid="10422" entryx="5768" entryy="1184" entryz="7" rent="0" townid="5" size="89" clientid="0" beds="0" />
+	<house name="Bornhouse 10" houseid="10423" entryx="5769" entryy="1186" entryz="7" rent="0" townid="5" size="30" clientid="0" beds="0" />
+	<house name="Bornhouse 11" houseid="10424" entryx="5756" entryy="1162" entryz="7" rent="0" townid="5" size="20" clientid="0" beds="0" />
+	<house name="Bornhouse 12" houseid="10425" entryx="5753" entryy="1162" entryz="6" rent="0" townid="5" size="44" clientid="0" beds="0" />
+	<house name="Caribbean House 1" houseid="10388" entryx="7422" entryy="1469" entryz="3" rent="0" townid="8" size="53" clientid="0" beds="0" />
+	<house name="Caribbean House 2" houseid="10389" entryx="7419" entryy="1469" entryz="3" rent="0" townid="8" size="14" clientid="0" beds="0" />
+	<house name="Caribbean House 3" houseid="10390" entryx="7411" entryy="1466" entryz="3" rent="0" townid="8" size="28" clientid="0" beds="0" />
+	<house name="Caribbean House 4" houseid="10391" entryx="7422" entryy="1472" entryz="3" rent="0" townid="8" size="80" clientid="0" beds="0" />
+	<house name="Caribbean House 5" houseid="10392" entryx="7406" entryy="1485" entryz="3" rent="0" townid="8" size="67" clientid="0" beds="0" />
+	<house name="Caribbean House 6" houseid="10393" entryx="7378" entryy="1474" entryz="2" rent="0" townid="8" size="41" clientid="0" beds="0" />
+	<house name="Caribbean House 7" houseid="10394" entryx="7381" entryy="1474" entryz="3" rent="0" townid="8" size="16" clientid="0" beds="0" />
+	<house name="Caribbean House 8" houseid="10395" entryx="7371" entryy="1472" entryz="3" rent="0" townid="8" size="32" clientid="0" beds="0" />
+	<house name="Caribbean House 9" houseid="10396" entryx="7368" entryy="1482" entryz="3" rent="0" townid="8" size="14" clientid="0" beds="0" />
+	<house name="Caribbean House 10" houseid="10397" entryx="7363" entryy="1484" entryz="2" rent="0" townid="8" size="56" clientid="0" beds="0" />
+	<house name="Caribbean House 11" houseid="10398" entryx="7356" entryy="1481" entryz="1" rent="0" townid="8" size="13" clientid="0" beds="0" />
+	<house name="Caribbean House 12" houseid="10399" entryx="7354" entryy="1484" entryz="2" rent="0" townid="8" size="16" clientid="0" beds="0" />
+	<house name="Caribbean House 13" houseid="10400" entryx="7372" entryy="1484" entryz="2" rent="0" townid="8" size="42" clientid="0" beds="0" />
+	<house name="Caribbean House 14" houseid="10401" entryx="7378" entryy="1487" entryz="3" rent="0" townid="8" size="22" clientid="0" beds="0" />
+	<house name="Caribbean House 15" houseid="10402" entryx="7351" entryy="1509" entryz="4" rent="0" townid="8" size="43" clientid="0" beds="0" />
+	<house name="Caribbean House 16" houseid="10403" entryx="7366" entryy="1510" entryz="4" rent="0" townid="8" size="79" clientid="0" beds="0" />
+	<house name="Caribbean House 17" houseid="10404" entryx="7364" entryy="1516" entryz="4" rent="0" townid="8" size="55" clientid="0" beds="0" />
+	<house name="Caribbean House 18" houseid="10405" entryx="7353" entryy="1524" entryz="3" rent="0" townid="8" size="19" clientid="0" beds="0" />
+	<house name="Caribbean House 19" houseid="10406" entryx="7353" entryy="1524" entryz="5" rent="0" townid="8" size="13" clientid="0" beds="0" />
+	<house name="Caribbean House 20" houseid="10407" entryx="7367" entryy="1520" entryz="5" rent="0" townid="8" size="18" clientid="0" beds="0" />
+	<house name="Caribbean House 21" houseid="10408" entryx="7392" entryy="1520" entryz="4" rent="0" townid="8" size="50" clientid="0" beds="0" />
+	<house name="Caribbean House 22" houseid="10409" entryx="7379" entryy="1525" entryz="3" rent="0" townid="8" size="19" clientid="0" beds="0" />
+	<house name="Caribbean House 23" houseid="10410" entryx="7380" entryy="1524" entryz="2" rent="0" townid="8" size="18" clientid="0" beds="0" />
+	<house name="Caribbean House 24" houseid="10411" entryx="7378" entryy="1525" entryz="2" rent="0" townid="8" size="11" clientid="0" beds="0" />
+	<house name="Caribbean House 25" houseid="10412" entryx="7394" entryy="1499" entryz="4" rent="0" townid="8" size="60" clientid="0" beds="0" />
+	<house name="Caribbean House 26" houseid="10413" entryx="7370" entryy="1507" entryz="5" rent="0" townid="8" size="21" clientid="0" beds="0" />
 </houses>
