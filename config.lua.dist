@@ -228,13 +228,13 @@ wheelSystemEnabled = true
 wheelPointsPerLevel = 3
 
 -- Gem Atelier
-wheelAtelierRotateLesserCost = 125000
-wheelAtelierRotateRegularCost = 250000
-wheelAtelierRotateGreaterCost = 500000
+wheelAtelierRotateLesserCost = 1250
+wheelAtelierRotateRegularCost = 2500
+wheelAtelierRotateGreaterCost = 5000
 
-wheelAtelierRevealLesserCost = 125000
-wheelAtelierRevealRegularCost = 1000000
-wheelAtelierRevealGreaterCost = 6000000
+wheelAtelierRevealLesserCost = 1250
+wheelAtelierRevealRegularCost = 10000
+wheelAtelierRevealGreaterCost = 60000
 
 -- Familiar system
 -- NOTE: the time will be divided by 2 to get half the value, the familiar lasts 15 minutes by default and the cooldown of the spell is 30 minutes
