@@ -30456,9 +30456,6 @@
 	<monster centerx="7607" centery="1022" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6116" centery="1023" centerz="7" radius="1">
-		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="6155" centery="1023" centerz="7" radius="1">
 		<monster name="Spitter" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Spitter" x="1" y="0" z="7" spawntime="60" />
@@ -30693,9 +30690,6 @@
 	<monster centerx="6113" centery="1031" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6123" centery="1031" centerz="7" radius="1">
-		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6431" centery="1031" centerz="7" radius="1">
 		<monster name="Earth Elemental" x="0" y="0" z="7" spawntime="60" />
@@ -31107,9 +31101,6 @@
 	</monster>
 	<monster centerx="6041" centery="1044" centerz="7" radius="3">
 		<monster name="Sandcrawler" x="-1" y="-1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6111" centery="1044" centerz="7" radius="1">
-		<monster name="Orc Spearman" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6217" centery="1044" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
@@ -39747,7 +39738,6 @@
 		<monster name="Valkyrie" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7667" centery="1286" centerz="7" radius="1">
-		<monster name="Orc Spearman" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7787" centery="1286" centerz="7" radius="1">
@@ -41039,9 +41029,6 @@
 	<monster centerx="7651" centery="1322" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7653" centery="1322" centerz="7" radius="1">
-		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7772" centery="1322" centerz="7" radius="1">
 		<monster name="Hyaena" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41274,9 +41261,6 @@
 		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7653" centery="1328" centerz="7" radius="1">
-		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7655" centery="1328" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5758" centery="1329" centerz="7" radius="1">
@@ -41555,9 +41539,6 @@
 	<monster centerx="7230" centery="1334" centerz="7" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7644" centery="1334" centerz="7" radius="1">
-		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7646" centery="1334" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -41760,11 +41741,6 @@
 	</monster>
 	<monster centerx="7516" centery="1340" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7595" centery="1340" centerz="7" radius="1">
-		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Wasp" x="1" y="0" z="7" spawntime="60" />
-		<monster name="Wasp" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7718" centery="1340" centerz="7" radius="1">
 		<monster name="Hyaena" x="0" y="0" z="7" spawntime="60" />
