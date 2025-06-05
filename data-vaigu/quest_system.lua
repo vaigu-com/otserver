@@ -501,3 +501,17 @@ function NpcRegistry:RegisterNpcDefinitions()
 		RegisterNpcDefinition(npc)
 	end
 end
+
+MISSING_NPCS = {}
+function NpcRegistry:ValidateNpcsArePlacedOnMap()
+	local validateNpcsArePlacedOnMapStartup = GlobalEvent("NpcRegistry/ValidateNpcsArePlacedOnMap")
+	function validateNpcsArePlacedOnMapStartup.onStartup()
+		for npcName, data in pairs(self.registry) do
+			if data.spawnedByScript ~= true and not Npc(npcName) then
+				logger.warn(T("[NpcRegistry::ValidateNpcsArePlacedOnMap] Npc :npcName: is not placed on map.", {npcName = npcName}))
+				table.insert(MISSING_NPCS, npcName)
+			end
+		end
+	end
+	validateNpcsArePlacedOnMapStartup:register()
+end

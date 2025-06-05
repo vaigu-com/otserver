@@ -13,5 +13,6 @@ local context = {
 	dialogs = dialogs,
 	voices = voices,
 	ignoreGreet = true,
+	spawnedByScript = true,
 }
 NpcRegistry:AppendNpcData(context)
