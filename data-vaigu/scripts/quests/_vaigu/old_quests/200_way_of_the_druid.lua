@@ -178,7 +178,7 @@ quest
 					end
 
 					player:AddCustomItem({ id = 5938, count = 1 })
-					toPosition:sendMagicEffect(CONST_ME_WATERCREATURE)
+					player:getPosition():sendMagicEffect(CONST_ME_WATERCREATURE)
 					player:setStorageValueByKey(Storage.WayOfTheDruid.LootedWater, MISSION_FINISHED)
 				end
 				waterWell:key(Storage.WayOfTheDruid.LootedWater)

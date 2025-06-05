@@ -46,11 +46,11 @@ quest
 			localizer = localizer,
 			missions = {
 				{
-					name = "Megadragon Cliffs",
+					name = "Mary",
 					storage = Storage.OneTimeEscorts.MegadragonCliffs.Mission01,
 					states = {
-						[QuestState.OneTimeEscorts.MegadragonCliffs.ThrowRopeAndEscort] = "Test 1",
-						[MISSION_FINISHED] = "You helped TODO",
+						[QuestState.OneTimeEscorts.MegadragonCliffs.ThrowRopeAndEscort] = "Throw rope from above to help Mary, then escort her to her village.",
+						[MISSION_FINISHED] = "You helped Mary and got rewarded.",
 					},
 				},
 			},
@@ -83,7 +83,7 @@ quest
 			end),
 			QuestFactory.Dialog("Mary", {
 				[{ "mission", "misja", GREET }] = {
-					text = "Im have been trapped here for days.. Im too fat to safely ride the boat. Can you help me by throwing a rope from above? Surely, someone with your expertise can manage that. After you haul me, please escort me to my home, the amazon camp.",
+					text = "I have been trapped here for days.. Im too fat to safely ride the boat. Can you help me by throwing a rope from above? Surely, someone with your expertise can manage that. After you haul me, please escort me to my home, the amazon camp, west from here.",
 				},
 				[{ "yes", "tak" }] = {
 					text = "Thanks.",

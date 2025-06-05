@@ -1366,7 +1366,7 @@ quest
 				},
 			}),
 			QuestFactory.Script(function()
-				InstantTravel({ positions = { Position(5746, 1377, 7), Position(5464, 1302, 7) }, requiredState = { [Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED } }):Register()
+				InstantTravel({ positions = { Position(5746, 1377, 7), Position(5640, 1423, 7) }, requiredState = { [Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED } }):Register()
 			end)
 	end)
 	:Mission(Storage.LocalSupport.IKEAForTheBold)

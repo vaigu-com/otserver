@@ -51,7 +51,7 @@ function ResolutionContext:Append(tab)
 	return self
 end
 
----@return ResolutionContext ResolutionContext
+---@return ResolutionContext
 function ResolutionContext.FromDialogContext(context, data)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
@@ -61,7 +61,7 @@ function ResolutionContext.FromDialogContext(context, data)
 	return newObj
 end
 
----@return ResolutionContext ResolutionContext
+---@return ResolutionContext
 function ResolutionContext.FromAnyTable(context)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
