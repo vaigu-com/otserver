@@ -273,4 +273,6 @@ return {
 	["Za'Qir"] = "Za'Qir",
 	["Gnomenursey"] = "Gnomenursey",
 	["Conference Triss"] = "Triss",
+	["Celebimber"] = "Celebimber",
+	["Mary"] = "Maria",
 }
