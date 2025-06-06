@@ -2083,6 +2083,7 @@ void Player::sendPing() {
 	if (noPongTime >= 60000 && shouldForceLogout) {
 		if (canLogout() && g_creatureEvents().playerLogout(static_self_cast<Player>())) {
 			g_logger().info("Player {} has been kicked due to ping timeout. (has client: {})", getName(), client != nullptr);
+			player->setLoggingOut(true);
 			if (client) {
 				client->logout(true, true);
 			} else {
@@ -4008,6 +4009,7 @@ void Player::addList() {
 
 void Player::removePlayer(bool displayEffect, bool forced /*= true*/) {
 	g_creatureEvents().playerLogout(static_self_cast<Player>());
+	player->setLoggingOut(true);
 	if (client) {
 		client->logout(displayEffect, forced);
 	} else {

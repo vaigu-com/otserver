@@ -665,10 +665,10 @@ void Game::setGameState(GameState_t newState) {
 			g_globalEvents().shutdown();
 
 			// kick all players that are still online
-				for (const auto &[_, player] : players) {
-					player->client->logout(false, true);
+			for (const auto &[_, player] : players) {
+				player->client->logout(false, true);
 				player->removePlayer(true);
-				}
+			}
 			saveMotdNum();
 			g_saveManager().saveAll();
 
