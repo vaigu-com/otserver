@@ -275,7 +275,6 @@ function Player:CanAddItemsCpp(items)
 end
 
 function Player:CanAddItems(items)
-	-- We do this before, as
 	local requiredCap = CalculateItemsWeight(items)
 	local hasCap, capMessage = self:ErrorIfHasNotEnoughCapacity(requiredCap)
 	if not hasCap then
@@ -530,9 +529,13 @@ function CalculateItemsWeight(items)
 		end
 
 		local requiredWeight = 0
+		-- Do not set weight to 0 if its store item
+		--[[
 		if shouldAddToStore(item) then
 			requiredWeight = 0
 		elseif chargesPerItem > 1 then
+		]]
+		if chargesPerItem > 1 then
 			requiredWeight = weight * math.ceil(count / chargesPerItem)
 		else
 			requiredWeight = weight * count
