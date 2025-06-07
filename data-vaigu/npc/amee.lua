@@ -13,5 +13,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
+	walkRadius = 0,
 }
 NpcRegistry:AppendNpcData(context)
