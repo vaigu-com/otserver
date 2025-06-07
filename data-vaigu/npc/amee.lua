@@ -1,17 +1,15 @@
-local name = "Amee"
+local name = "4M-33 Mk II"
 local outfit = {
-	lookType = 136,
-	lookHead = 19,
-	lookBody = 76,
-	lookLegs = 104,
-	lookFeet = 73,
+	lookType = 397,
+	lookHead = 0,
+	lookBody = 0,
+	lookLegs = 0,
+	lookFeet = 0,
 	lookAddons = 0,
 }
 
 local context = {
 	name = name,
-	greetJob = JOB_BANK,
-	jobs = { JOB_BANK },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
