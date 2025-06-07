@@ -42,7 +42,7 @@ return {
 	["Lets go."] = "Ok. To ide.",
 	--Questlog
 	["Ariel's Friend"] = "Przyjaciel Ariela",
-	["Mission 1: Humble Request"] = "Misja 1: Pomoc dla Ariela",
+	["Mission 1: Humble Request"] = "Misja 1: Pomoc Arielowi",
 	["Ariel asked you to bring him his friend's favorite flower. Namely it is the Heaven Blossom. Some elves keep it in their pouch."] = "Ariel poprosil cie o przyniesienie mu ulubionego kwiata jego przyjaciela, czyli heaven blossom. Czasami elfy nosza je przy sobie.",
 	["Ariel asked you to pay respect to his friend by laying heaven flowers on their grave. You can find him tombstone located on a nearby hill. Should you succeed, Ariel will reveal his people story."] = "Ariel poprosil cie o zlozenie kwiatow heaven blossom na grobie jego przyjaciela, ktory znajduje sie na pobliskim wzgorzu. W zamian obiecal ci opowiedzenie jego historii.",
 	["You put the flowers on Ariel's friend's grave, now come back to Ariel."] = "Udalo ci sie zlozyc kwiaty na grobie, przekaz ta wiesc Arielowi.",
@@ -56,7 +56,7 @@ return {
 	["Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions."] = "Udalo ci sie napelnic fiolke eliksirem, wroc do postmana po dalsze wskazowki.",
 	["Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin."] = "Old Postman wspomnial, ze aby mikstura zdzialala, potrzeba w niej rozpuscic wlos Ariela, na pewno znajdzesz jakis w jego chacie. Pozniej przekaz eliksir Madame Malkin.",
 	["Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel."] = "Madame Malkin wypila eliksir, dzieki ktoremu pokocha Ariela. Odwiedz ja za jakis czas, i wspomnij o nim.",
-	["Turns out that the “wine” worked as intended. Tell Ariel about it."] = "Wino najwidoczniej zadzialalo, przekaz wiesci Arielowi.",
+	["Turns out that the \"wine\" worked as intended. Tell Ariel about it."] = "Wino najwidoczniej zadzialalo, przekaz wiesci Arielowi.",
 	["Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now."] = "Ariel ucieszyl sie, i podal ci tajemne haslo powitalne Yalaharian: Aloha. Mozesz teraz odwiedzic Gertrude lub Konmulda.",
 	["Mission 3: A Killer Liquor"] = "Misja 3: Zabojczy trunek",
 	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertrude."] = "Znajdz mega mocna wodke w siedzibie jaszczurow i przynies butelke do Gertrudy.",
