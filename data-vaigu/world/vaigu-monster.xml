@@ -14826,9 +14826,6 @@
 		<monster name="Spectre" x="0" y="0" z="6" spawntime="60" />
 		<monster name="Gravedigger" x="1" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="7527" centery="1041" centerz="6" radius="1">
-		<monster name="Lost Soul" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="7541" centery="1041" centerz="6" radius="1">
 		<monster name="Spectre" x="0" y="0" z="6" spawntime="60" />
 	</monster>
