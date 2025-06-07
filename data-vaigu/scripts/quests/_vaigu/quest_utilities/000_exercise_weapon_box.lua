@@ -6,29 +6,35 @@ local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
-
 	local boxObject = choice.boxObject
 	if not boxObject then
 		return
 	end
-	boxObject:remove()
 
-	player:CoalesceNewExerciseWeapon(choice.id, choice.charges)
+	if not player:CanAddItems({ { id = choice.id } }) then
+		player:say("Please wait for the fighters come out of the arena.", TALKTYPE_MONSTER_SAY)
+		return true
+	end
+
+	player:TryCoalesceNewExerciseWeapon(choice.id, choice.charges, boxObject)
 end
 
-function Player:CoalesceNewExerciseWeapon(id, newWeaponCharges)
+function Player:TryCoalesceNewExerciseWeapon(id, newWeaponCharges, boxObject)
 	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	local oldWeapon = self:getItemById(id, true)
 	local oldWeaponCharges = 0
 	if oldWeapon then
 		oldWeaponCharges = oldWeapon:getCharges()
-		oldWeapon:remove()
 	end
 
 	local totalCharges = oldWeaponCharges + newWeaponCharges
 
 	local inboxItem = inbox:addItem(id, totalCharges)
 	if inboxItem then
+		boxObject:remove()
+		if oldWeapon then
+			oldWeapon:remove()
+		end
 		inboxItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 		inboxItem:setOwner(self)
 	end
