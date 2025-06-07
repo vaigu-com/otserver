@@ -23,7 +23,7 @@ return {
 	["Bydgoshch"] = "Bydgoshch",
 	["Ornuld Camp"] = "Oboz Ornulda",
 	["Heart of the Jungle"] = "Serce Dzungli",
-	["Mundral Daycare"] = "Folwark Onrulda",
+	["Mundral Daycare"] = "Folwark Mundrala",
 	["Stankass"] = "Cweltown",
 	["Mirkotown Slums"] = "Slumsy Mirkotown",
 	["Elf Fortress"] = "Forteca Elfow",

@@ -20,10 +20,10 @@ local unusedDialogs = {
 				text = "Pozwol ze przedstawie Ci pewna opowiesc. O tym nie bylo na historii w podstawowce ani w gimbazie. Kondominium rosyjsko-niemieckie pod zydowsko-amerykanskim zarzadem powierniczym. Wigilia, rok 1980 - po obiedzie. Mlody Marceliusz czekal, az mikolaj przybedzie z prezentami. Wlasciwie to Marceliusz mial juz wtedy 14 lat, wiec wiedzial, ze mikolaj nie {istnieje}.",
 			},
 			[{ "real", "istnieje" }] = {
-				text = "Jednak to nie przeszkadzalo mu w kultywowaniu tradycji. Mijaly kwadranse, a pozniej godziny. Niestesty zaden mikolaj, ani rodzice, ani nawet dziadkowie nie polozyli prezentenow pod choinka - nie spielnialy sie jego oczekiwania. W koncu Marceliusz zapytal mame: “Nadszedl czas odplaty stara poczwaro, gdzie moje prezenty?”. Jego matka (kobieta w pelni wladz umyslowych) {odpowiedziala} mu: “Marceliusz ciemiezco! czemu Ty nas tak dreczysz? Czego Ty od nas chcesz?”.",
+				text = "Jednak to nie przeszkadzalo mu w kultywowaniu tradycji. Mijaly kwadranse, a pozniej godziny. Niestesty zaden mikolaj, ani rodzice, ani nawet dziadkowie nie polozyli prezentenow pod choinka - nie spielnialy sie jego oczekiwania. W koncu Marceliusz zapytal mame: “Nadszedl czas odplaty stara poczwaro, gdzie moje prezenty?\". Jego matka (kobieta w pelni wladz umyslowych) {odpowiedziala} mu: “Marceliusz ciemiezco! czemu Ty nas tak dreczysz? Czego Ty od nas chcesz?\".",
 			},
 			[{ "told", "odpowiedziala" }] = {
-				text = "Tak jest, Marceliusz zyl w komunistycznej Polsce. Tego dnia poprzysiagl sobie co nastepuje: “Trzy razy ponownie rozpierdole caly komunizm zanim kogut zapieje”. Pomyslal, ze powinien dokonac w zyciu czegos waznego - zajmie sie wsparciem interpunkcyjnym Polski. Tak jest, to on usunal sierp i kowaldo, i w zamian postawil los Polski pod znakiem {zapytania}.",
+				text = "Tak jest, Marceliusz zyl w komunistycznej Polsce. Tego dnia poprzysiagl sobie co nastepuje: “Trzy razy ponownie rozpierdole caly komunizm zanim kogut zapieje\". Pomyslal, ze powinien dokonac w zyciu czegos waznego - zajmie sie wsparciem interpunkcyjnym Polski. Tak jest, to on usunal sierp i kowaldo, i w zamian postawil los Polski pod znakiem {zapytania}.",
 			},
 			[{ "question", "zapytania" }] = {
 				text = "Z biegiem czasu Marceliusz stawal sie coraz bardziej prominentym obywatelem, a jego imie wciaz ulegalo skroceniu (wzgledy optymalizacyjne).",

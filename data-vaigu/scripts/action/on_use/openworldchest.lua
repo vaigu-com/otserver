@@ -6,7 +6,7 @@ local openworldchestScope = Scope("OpenWorldChest")
 -- eg. OpenWorldChest-Elf
 local specificOpenworldchestScopes = {
 	Weapons = openworldchestScope:Get("Weapons"),
-	Armour = openworldchestScope:Get("Armour"),
+	Armours = openworldchestScope:Get("Armour"),
 	Magic = openworldchestScope:Get("Magic"),
 	Distance = openworldchestScope:Get("Distance"),
 
@@ -68,7 +68,7 @@ local openWorldChestRewardCategories = {
 		{ id = 3471, chance = 6000, count = 1 }, -- cleaver
 		{ id = 3460, chance = 10000, count = 1 }, -- hammer
 	},
-	[specificOpenworldchestScopes.Armour] = {
+	[specificOpenworldchestScopes.Armours] = {
 		{ id = 3552, chance = 1000, count = 1 }, -- leather boots
 		{ id = 3415, chance = 200, count = 1 }, -- guardian shield
 		{ id = 3370, chance = 80, count = 1 }, -- knight armor
