@@ -2954,11 +2954,17 @@
 	<monster centerx="7482" centery="1405" centerz="3" radius="1">
 		<monster name="Harpy" x="0" y="0" z="3" spawntime="60" />
 	</monster>
+	<monster centerx="7568" centery="1405" centerz="3" radius="1">
+		<monster name="Demon Skeleton" x="0" y="0" z="3" spawntime="60" />
+	</monster>
 	<monster centerx="6841" centery="1406" centerz="3" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="7444" centery="1406" centerz="3" radius="1">
 		<monster name="Harpy" x="0" y="0" z="3" spawntime="60" />
+	</monster>
+	<monster centerx="7571" centery="1406" centerz="3" radius="1">
+		<monster name="Demon Skeleton" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="6820" centery="1407" centerz="3" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="3" spawntime="60" />
@@ -2974,6 +2980,9 @@
 	</monster>
 	<monster centerx="7401" centery="1412" centerz="3" radius="1">
 		<monster name="Burning Gladiator" x="0" y="0" z="3" spawntime="60" />
+	</monster>
+	<monster centerx="7570" centery="1412" centerz="3" radius="1">
+		<monster name="Demon Skeleton" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="7442" centery="1413" centerz="3" radius="1">
 		<monster name="Harpy" x="0" y="0" z="3" spawntime="60" />
@@ -5691,6 +5700,9 @@
 	</monster>
 	<monster centerx="6835" centery="1404" centerz="4" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7558" centery="1405" centerz="4" radius="1">
+		<monster name="Banshee" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="7510" centery="1407" centerz="4" radius="1">
 		<monster name="Cave Parrot" x="0" y="0" z="4" spawntime="60" />
@@ -48353,7 +48365,7 @@
 	<monster centerx="5790" centery="1611" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="6003" centery="1611" centerz="7" radius="1">
+	<monster centerx="6004" centery="1611" centerz="7" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6060" centery="1611" centerz="7" radius="1">
