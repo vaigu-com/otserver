@@ -4009,7 +4009,7 @@ void Player::addList() {
 
 void Player::removePlayer(bool displayEffect, bool forced /*= true*/) {
 	g_creatureEvents().playerLogout(static_self_cast<Player>());
-	player->setLoggingOut(true);
+	setLoggingOut(true);
 	if (client) {
 		client->logout(displayEffect, forced);
 	} else {
