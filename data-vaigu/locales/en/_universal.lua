@@ -17,13 +17,7 @@ local incomprehensibleStringPool = {
 	"What?!",
 }
 
-function SecondsToMinSec(seconds)
-	local minutes = math.floor(seconds / 60)
-	local remainingSeconds = seconds % 60
-	return minutes, remainingSeconds
-end
-
-local toOrdinal = {
+local toOrdinalGrandPlace = {
 	[1] = "first",
 	[2] = "second",
 	[3] = "third",
@@ -64,11 +58,11 @@ return {
 		local min, sec = SecondsToMinSec(context.timeTakenSeconds)
 		context.min = min
 		context.sec = sec
-		context.ordinal = toOrdinal[context.grandPlace]
+		context.ordinal = toOrdinalGrandPlace[context.grandPlace]
 		if context.competitionType == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
-			return T("Player :playerName: finished :minigameName: within :min:::sec: and took :ordinal:. Congratulations!", context)
+			return T("Player :playerName: finished :minigameName: with :ordinal: place and the time of :min: minutes and :sec: seconds. Congratulations!", context)
 		else
-			return T("Player :playerName: finished :minigameName:, lasted :min:::sec: and took :ordinal:. Congratulations!", context)
+			return T("Player :playerName: finished :minigameName: with :ordinal: place lasting :min: minutes and :sec: seconds. Congratulations!", context)
 		end
 	end,
 	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "You didn't choose difficulty for this encounter!",
