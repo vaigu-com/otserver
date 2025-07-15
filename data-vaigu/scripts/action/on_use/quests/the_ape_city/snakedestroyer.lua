@@ -1,5 +1,12 @@
 local allowedLizardHeadIds = {
 	[2080] = true,
+	[2081] = true,
+	[2082] = true,
+	[2083] = true,
+	
+	[2084] = true,
+	[2085] = true,
+	[2086] = true,
 	[2087] = true,
 }
 
