@@ -43,6 +43,11 @@
 	<zone name="Minigames-Crossroad-LobbyArea" zoneid="9" />
 	<zone name="Minigames-Crossroad-LobbyEntrancePosition" zoneid="12" />
 	<zone name="Minigames-Crossroad-LobbyPlayerSpawn" zoneid="8" />
+	<zone name="Minigames-Zombie-GameArea" zoneid="231" />
+	<zone name="Minigames-Zombie-GamePlayerSpawn" zoneid="232" />
+	<zone name="Minigames-Zombie-LobbyArea" zoneid="230" />
+	<zone name="Minigames-Zombie-LobbyEntrancePosition" zoneid="233" />
+	<zone name="Minigames-Zombie-LobbyPlayerSpawn" zoneid="229" />
 	<zone name="PharaohSpawnPositions" zoneid="195" />
 	<zone name="Storage-BigfootsBurden-Warzone1BossRoom" zoneid="198" />
 	<zone name="Storage-BigfootsBurden-Warzone2BossRoom" zoneid="199" />
