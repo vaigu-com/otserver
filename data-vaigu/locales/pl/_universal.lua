@@ -20,7 +20,7 @@ return {
 	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hej. Ja jestem Zong! Chcialbys, aby Cie gdzies {poswiezc}?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Dzien dobry! Wygladasz na glodnego.. Wpisz {trade} aby zobaczyc oferte.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!"] = "Witaj |PLAYERNAME|. Mozesz zaopatrzyc sie u mnie w przedmioty magiczne. Sprzedaje takze {wildcard}, pomagajacy w modlitwach!",
-	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}."] = "",
+	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}."] = "Witam w moim warsztacie. Jesli interesuje cie zakup mebli, to zapytaj mnie o handel.",
 	["Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors."] = "Witaj |PLAYERNAME|. Widziales dzisiejsze {ogloszenie}? Jesli chcesz, to mozesz z niego {zrezygnowac}. Posiadam takze pewnien {stroj} do zaoferowania.",
 	["Hello! You want to trade or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Dzien dobry! Pohandlujemy, a moze naprawie Ci zuzyte {soft boots}? Przebuje takze {medicine pouch}, zglos sie jesli zdobedziesz jakies.",
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Siemaneczko, widze ze zadanie o ktore cie prosilem zostalo wykonane. Nalezy ci sie {nagroda}!",
