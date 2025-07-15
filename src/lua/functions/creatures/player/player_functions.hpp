@@ -285,7 +285,7 @@ class PlayerFunctions {
 	static int luaPlayerSetStaminaXpBoost(lua_State* L);
 	static int luaPlayerGetXpBoostTime(lua_State* L);
 	static int luaPlayerSetXpBoostTime(lua_State* L);
-	static int luaPlayerAddXpBoostTime(lua_State* L); // Wykopots custom
+	static int luaPlayerAddXpBoostTime(lua_State* L); // Vaigu custom
 
 	static int luaPlayerGetIdleTime(lua_State* L);
 	static int luaPlayerGetFreeBackpackSlots(lua_State* L);

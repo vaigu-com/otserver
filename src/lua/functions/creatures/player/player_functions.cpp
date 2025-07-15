@@ -302,6 +302,7 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "setStaminaXpBoost", PlayerFunctions::luaPlayerSetStaminaXpBoost);
 	Lua::registerMethod(L, "Player", "getXpBoostTime", PlayerFunctions::luaPlayerGetXpBoostTime);
 	Lua::registerMethod(L, "Player", "setXpBoostTime", PlayerFunctions::luaPlayerSetXpBoostTime);
+	Lua::registerMethod(L, "Player", "addXpBoostTime", PlayerFunctions::luaPlayerAddXpBoostTime);
 
 	Lua::registerMethod(L, "Player", "getIdleTime", PlayerFunctions::luaPlayerGetIdleTime);
 	Lua::registerMethod(L, "Player", "getFreeBackpackSlots", PlayerFunctions::luaPlayerGetFreeBackpackSlots);
@@ -3821,6 +3822,21 @@ int PlayerFunctions::luaPlayerGetXpBoostTime(lua_State* L) {
 	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
 	if (player) {
 		lua_pushnumber(L, player->getXpBoostTime());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int PlayerFunctions::luaPlayerAddXpBoostTime(lua_State* L) {
+	// player:addXpBoostTime(addedTime)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
+	if (player) {
+		const uint16_t addedTime = Lua::getNumber<uint16_t>(L, 2);
+		auto currentTime = player->getXpBoostTime();
+		player->setXpBoostTime(currentTime + addedTime);
+		player->sendStats();
+		Lua::pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
 	}
