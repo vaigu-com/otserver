@@ -412,9 +412,16 @@ quest
 					"wodka",
 				}] = {
 					text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Hirschberg.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
-					requiredItems = { { id = 6106, remove = false } },
+					requiredItems = { { id = QuestKeyItems.ArielsFriend.LiquorItem.id, key = QuestKeyItems.ArielsFriend.LiquorItem.key, remove = false } },
 					nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
 					expReward = 150000,
+				},
+			}),
+			QuestFactory.OnUseDeclarations({
+				{
+					key = Storage.ArielsFriend.LiquorChest,
+					rewards = { QuestKeyItems.ArielsFriend.LiquorItem },
+					requiredState = {},
 				},
 			})
 	end)
@@ -644,7 +651,7 @@ quest
 					text = "I see you heard me through your radio and came to help me. I cannot move, as they removed my core.. altough your {radio} may just be a fine substitute.",
 					nextTopic = QuestTopics.ArielsFriend.AcceptHandInRadioToAmee,
 				},
-				[{ "radio","radiu" }] = {
+				[{ "radio", "radiu" }] = {
 					text = "Yes, its working. I can move on my own. You might be wondering how i ended up down there. I was designed to steal the map and password to secret library. I managed to do both of those, but my creator forgot to implement my logic after that. Didnt hear from him ever since. Just escort me to the abandoned flying carpet, south west from here, and i will give those to you. Are you ready to go now?",
 					requiredTopic = QuestTopics.ArielsFriend.AcceptHandInRadioToAmee,
 					nextTopic = QuestTopics.ArielsFriend.AcceptStartAmeeEsort,
