@@ -1,3 +1,9 @@
+function SecondsToMinSec(seconds)
+	local minutes = math.floor(seconds / 60)
+	local remainingSeconds = seconds % 60
+	return minutes, remainingSeconds
+end
+
 function FirstCharToUpper(str)
 	return str:gsub("^%l", string.upper)
 end
