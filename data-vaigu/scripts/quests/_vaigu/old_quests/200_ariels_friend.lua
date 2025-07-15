@@ -709,32 +709,6 @@ quest
 				tileBeforeHouse:register()
 			end)
 	end)
-	:State(function()
-		return QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse,
-			QuestFactory.Script(function(missionState)
-				local nextState = {
-					[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument,
-				}
-
-				local tileBeforeHouse = MoveEvent()
-				function tileBeforeHouse.onStepIn(player, item, toPosition, fromPosition)
-					if not player:isPlayer() then
-						return
-					end
-					if not player:HasExactMissionState(missionState) then
-						return
-					end
-					if player:HasItems({ QuestKeyItems.ArielsFriend.AmeeMap }) then
-						player:RemoveItems({ QuestKeyItems.ArielsFriend.AmeeMap })
-						player:getPosition():sendMagicEffect(CONST_ME_HITBYFIRE)
-						player:NextState(nextState)
-					end
-				end
-				tileBeforeHouse:key(Storage.ArielsFriend.HouseTile)
-				tileBeforeHouse:type("stepin")
-				tileBeforeHouse:register()
-			end)
-	end)
 	:Monster(function()
 		local mType = Game.createMonsterType("Monument door")
 		local monster = {}
