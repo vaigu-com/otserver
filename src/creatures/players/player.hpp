@@ -1335,7 +1335,7 @@ public:
 	void setLanguage(std::string language);
 
 	// Vaigu custom
-	bool isOnMinigame() {
+	bool isOnMinigame() const {
 		return getStorageValueByKey(KEY_IS_ON_MINIGAME) == 1;
 	}
 	bool isOnMinigame(bool nextState) {
