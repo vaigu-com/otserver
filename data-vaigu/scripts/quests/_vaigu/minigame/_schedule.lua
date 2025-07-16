@@ -14,7 +14,7 @@ pseudoQuest
 
 		local hourToMinuteToMinigame = {
 			[0] = {
-				[10] = nil
+				[10] = Minigames.Zombie
 			},
 		}
 		for hour, minuteToMinigame in pairs(hourToMinuteToMinigame) do
