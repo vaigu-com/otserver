@@ -485,6 +485,21 @@ pseudoQuest
 			return true
 		end
 
+		local minigameDeath = CreatureEvent("MinigamePlayerDeath")
+		function minigameDeath.onPrepareDeath(creature, killer)
+			local player = Player(creature)
+			if not player then
+				return true
+			end
+
+			player:addHealth(player:getMaxHealth())
+			player:addMana(player:getMaxMana())
+			player:teleportTo(sharedLobbySpawnPosition)
+			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+			return false
+		end
+
+		minigameDeath:register()
 		function MinigameData.SetupExitToSharedLobby()
 			local teleport = MoveEvent()
 			function teleport.onStepIn(creature, item, position, fromPosition)
@@ -501,7 +516,6 @@ pseudoQuest
 			teleport:register()
 		end
 		MinigameData.SetupExitToSharedLobby()
-
 		function MinigameData:SetupEnterTeleport()
 			local teleport = MoveEvent()
 			function teleport.onStepIn(creature, item, position, fromPosition)
@@ -622,7 +636,7 @@ end
 			--Position (or random positions) where players will apear in playing field.
 			--Usually one position for speedruns - for even playing field.
 			--Usually same as "gameAreaZone" for last man standing.
-			--Can be empty if minigame uses custom teleport method (custom self.beforeStart).
+			--Can be empty if minigame uses custom teleport method (eg. in self.beforeStart).
 			local gamePlayerSpawnScope = minigameScope:Get(minigameScopes.GamePlayerSpawn)
 			self.gamePlayerSpawnZone = Zone(gamePlayerSpawnScope)
 
@@ -668,7 +682,7 @@ end
 		end
 
 		MINIGAME_STARTING_STATUS = {
-			MINIGAME_WAS_STARTED = 0,
+			MINIGAME_WAS_STARTED = "MINIGAME_WAS_STARTED",
 			CANNOT_CREATE_LOBBY_ENTRANCE_TELEPORT = "CANNOT_CREATE_LOBBY_ENTRANCE_TELEPORT",
 			MINIGAME_IS_ALREADY_ACTIVE = "MINIGAME_IS_ALREADY_ACTIVE",
 		}
@@ -677,7 +691,7 @@ end
 				logger.error("[ MinigameData:TryStartLobbyFast] minigame is already active.")
 				return MINIGAME_STARTING_STATUS.MINIGAME_IS_ALREADY_ACTIVE
 			end
-			self.entranceTeleport = self.entranceTeleport or Game.createItem(1949, 1, self.lobbyEntrancePosition)
+			self.entranceTeleport = self.entranceTeleport or Game.createItem(self.lobbyTeleportId, 1, self.lobbyEntrancePosition)
 			if not self.entranceTeleport then
 				return MINIGAME_STARTING_STATUS.CANNOT_CREATE_LOBBY_ENTRANCE_TELEPORT
 			end
@@ -693,6 +707,9 @@ end
 			return nameToMinigameData[name]
 		end
 
+		local defaultFixedSpeed = 100
+		local defaultMaxParticipants = 30
+		local defaultTeleportId = 0
 		local minigameScope = Scope("Minigame")
 		function MinigameData:GenerateOnStartup(context)
 			self.validationStatus = MINIGAME_VALIDATION_STATUS.UNVALIDATED
@@ -732,8 +749,8 @@ end
 
 				self.timeToComplete = context.timeToDefeat or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_DEFEAT)
 
-				self.fixedSpeed = context.fixedSpeed or 200
-				self.maxPartitipantsCount = context.maxPartitipantsCount or 30
+				self.fixedSpeed = context.fixedSpeed or defaultFixedSpeed
+				self.maxPartitipantsCount = context.maxPartitipantsCount or defaultMaxParticipants
 
 				self.lobbyTeleportId = context.lobbyTeleportId or 22761
 
@@ -923,16 +940,23 @@ end
 		end
 		---@return boolean
 		function MinigameData:TryStartMinigame()
+			if self.beforeStart then
+				self:beforeStart()
+			end
+
 			self:SetStartTimestamp(os.time())
 			local zone = self:GetGameAreaZone()
 			zone:removeMonsters()
+			zone:removePlayers()
 
 			local participants = self.lobbyAreaZone:getPlayers()
 			self.startParticipantsCount = #participants
 			self.startPosition = self.gamePlayerSpawnZone:randomPosition()
 			self:teleportParticipantToSpawnPosition(participants)
 
-			self:start()
+			self:ResetOrchestrator()
+			self:ResetFinishPosition()
+			self:debug("MinigameData[{}]:start", self:GetDisplayName())
 			self:handleTimeEvent(zone)
 			return true
 		end
@@ -1174,17 +1198,6 @@ end
 			return self
 		end
 
-		---@return boolean
-		function MinigameData:start()
-			self:ResetOrchestrator()
-			self:ResetFinishPosition()
-			if self.beforeStart then
-				self:beforeStart()
-			end
-			self:debug("MinigameData[{}]:start", self:GetDisplayName())
-			-- return self:enterStage(MINIGAME_STAGE.RUNNING)
-		end
-
 		---Adds a new stage to the encounter
 		---@param context table The stage to add
 		---@return boolean True if the stage is added successfully, false otherwise
@@ -1278,15 +1291,8 @@ end
 		end
 		function MinigameData:AfterEnterAnyMinigameState(player)
 			player:registerEvent("MinigamePlayerDeath")
-			print("registered minigameDeath")
 
 			SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
-			--[[
-	player:addHealth(player:getMaxHealth())
-	player:addHealth(-(player:getMaxHealth() - player:getMaxBaseHealth()), COMBAT_UNDEFINEDDAMAGE)
-	local maxMana = player:getMaxMana()
-	player:addMana(-maxMana)
-	]]
 
 			self:SetMinigameLock(player)
 			player:changeSpeed()
@@ -1330,7 +1336,6 @@ end
 		function MinigameData:ConfigureOnEnterLeave()
 			local zoneEventsGameArea = ZoneEvent(self:GetGameAreaZone())
 			function zoneEventsGameArea.afterEnter(zone, creature)
-				print("after enter game area")
 				local player = creature:getPlayer()
 				if not player then
 					return true
@@ -1341,10 +1346,11 @@ end
 				end
 
 				self:AfterEnterAnyMinigameState(player)
+				player:addHealth(player:getMaxHealth())
+				player:addMana(-player:getMaxMana())
 				return true
 			end
 			function zoneEventsGameArea.beforeLeave(zone, creature)
-				print("before leave game area")
 				local player = creature:getPlayer()
 				if not player then
 					return true
@@ -1361,7 +1367,6 @@ end
 				return true
 			end
 			function zoneEventsGameArea.afterLeave(zone, creature)
-				print("after leave game area")
 				local player = creature:getPlayer()
 				if not player then
 					return true
@@ -1379,7 +1384,6 @@ end
 
 			local zoneEventsLobby = ZoneEvent(self:GetLobbyZone())
 			function zoneEventsLobby.afterEnter(zone, creature)
-				print("after enter lobby")
 				local player = creature:getPlayer()
 				if not player then
 					return true
@@ -1394,7 +1398,6 @@ end
 				return true
 			end
 			function zoneEventsLobby.afterLeave(zone, creature)
-				print("after leave lobby")
 				local player = creature:getPlayer()
 				if not player then
 					return true
