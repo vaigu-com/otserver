@@ -24,14 +24,14 @@ function adventurersTreasure.onUse(player, item, fromPosition, target, toPositio
 			player:addItem(item.id, item.count)
 		end
 
-		player:setStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter, 0)
+		player:setStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter, 0)
 
 		local times = player:getStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement)
 		if times < 0 then
 			times = 0
 		end
 		times = times + 1
-		player:setStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement, times)
+		player:setStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement, times)
 
 		if times == 10 then
 			player:addAchievement("Hoard of the Dragon")

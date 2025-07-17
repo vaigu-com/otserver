@@ -34,7 +34,7 @@ function ferumbrasAscendantReward.onUse(player, item, fromPosition, target, toPo
 		end
 		return true
 	end
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Reward, 1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Reward, 1)
 	return true
 end
 

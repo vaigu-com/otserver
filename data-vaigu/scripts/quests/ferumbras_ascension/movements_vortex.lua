@@ -10,7 +10,7 @@ function vortex.onStepIn(creature, item, position, fromPosition)
 
 	monster:remove()
 	position:sendMagicEffect(CONST_ME_POFF)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence) + 1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence) + 1)
 	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence) >= 8 then
 		Game.createMonster("Destabilized Ferumbras", config.bossPos, true, true)
 		for i = 1, config.maxSummon do

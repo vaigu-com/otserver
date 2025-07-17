@@ -27,7 +27,7 @@ function ferumbrasAscendantLeverThird.onUse(player, item, fromPosition, target, 
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A booming sound almost deafens you. From somewhere deep within you hear a whisper: 'Ice...'")
 		end
 		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) >= 3 then
-			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 4)
+			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 4)
 		end
 		item:transform(9111)
 	elseif item.itemid == 9111 then

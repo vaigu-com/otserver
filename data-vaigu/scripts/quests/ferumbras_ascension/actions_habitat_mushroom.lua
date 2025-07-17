@@ -391,15 +391,15 @@ local function transformArea()
 end
 
 local function resetFerumbrasAscendantHabitats(player)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Roshamuul, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Grass, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Mushroom, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Desert, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Venom, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Ice, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Corrupted, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Dimension, -1)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Roshamuul, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Grass, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Mushroom, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Desert, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Venom, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Ice, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Corrupted, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Dimension, -1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats, 0)
 end
 
 local ferumbrasAscendantHabitatMushroom = Action()
@@ -418,8 +418,8 @@ function ferumbrasAscendantHabitatMushroom.onUse(player, item, fromPosition, tar
 			basin:getPosition():sendMagicEffect(CONST_ME_ENERGYAREA)
 			basin:transform(22196)
 		end
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Mushroom, 1)
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) + 1)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Mushroom, 1)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) + 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The room transforms into a completely different landscape.")
 		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) >= 7 then
 			addEvent(function()

@@ -34,12 +34,12 @@ local function revertBasin(position)
 end
 
 function revertStorages()
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active, 0)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.First, 0)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Second, 0)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Third, 0)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Four, 0)
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.First, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Second, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Third, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Four, 0)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 0)
 end
 
 local greenGem = MoveEvent()
@@ -55,10 +55,10 @@ function greenGem.onStepIn(creature, item, position, fromPosition)
 		local leverSecond = Tile(Position(33671, 32638, 13)):getItemById(9110) or Tile(Position(33671, 32638, 13)):getItemById(9111) -- lever blue
 		local leverThird = Tile(Position(33651, 32661, 13)):getItemById(9110) or Tile(Position(33651, 32661, 13)):getItemById(9111) -- lever red
 		local leverFour = Tile(Position(33673, 32688, 13)):getItemById(9110) or Tile(Position(33673, 32688, 13)):getItemById(9111) -- lever green
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.First, 2) -- green
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Second, 3) -- blue
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Third, 1) -- red
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Four, 6) -- ice
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.First, 2) -- green
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Second, 3) -- blue
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Third, 1) -- red
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Four, 6) -- ice
 		player:sendTextMessage(
 			MESSAGE_EVENT_ADVANCE,
 			"You hear a whisper: \z
@@ -72,7 +72,7 @@ function greenGem.onStepIn(creature, item, position, fromPosition)
 		leverThird:setActionId(53823)
 		leverFour:setActionId(53824)
 	end
-	player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active, 1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active, 1)
 	item:transform(8648)
 	addEvent(activeBasin, 1 * 1000, position)
 	addEvent(revertBasin, 60 * 60 * 1000, position)

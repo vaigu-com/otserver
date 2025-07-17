@@ -69,8 +69,8 @@ local crystals = {
 local function transformCrystal(player)
 	for c = 1, #crystals do
 		local crystal = crystals[c]
-		player:setStorageValue(crystal.globalStorage, 0)
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Crystals.AllCrystals, 0)
+		player:setStorageValueByKey(crystal.globalStorage, 0)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Crystals.AllCrystals, 0)
 		local item = Tile(crystal.crystalPosition):getItemById(14961)
 		if item then
 			item:transform(14955)
@@ -109,7 +109,7 @@ function ascendantBossesKill.onDeath(creature)
 		if bossConfig.storage then
 			local cooldownTime = bossConfig.cooldown * 3600
 			local nextAvailableTime = os.time() + cooldownTime
-			player:setStorageValue(bossConfig.storage, nextAvailableTime)
+			player:setStorageValueByKey(bossConfig.storage, nextAvailableTime)
 			local cooldownMessage = formatCooldownMessage(bossConfig.cooldown)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have defeated " .. bossName .. ". You can challenge this boss again in " .. cooldownMessage .. ".")
 		end

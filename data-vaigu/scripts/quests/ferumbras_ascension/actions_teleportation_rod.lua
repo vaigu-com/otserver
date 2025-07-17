@@ -19,7 +19,7 @@ function ferumbrasAscendantTeleportation.onUse(player, item, fromPosition, targe
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already teleported this part of the Godbreaker to Mazarius.")
 		return true
 	end
-	player:setStorageValue(targetItem.storageKey, 1)
+	player:setStorageValueByKey(targetItem.storageKey, 1)
 	local pos = player:getPosition()
 	pos.z = pos.z - 1
 	player:teleportTo(pos)

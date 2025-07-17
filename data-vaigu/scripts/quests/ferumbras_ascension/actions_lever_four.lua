@@ -17,7 +17,7 @@ function ferumbrasAscendantLevelFour.onUse(player, item, fromPosition, target, t
 			return true
 		end
 		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) >= 4 then
-			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 4)
+			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 4)
 		end
 		item:transform(9111)
 	elseif item.itemid == 9111 then

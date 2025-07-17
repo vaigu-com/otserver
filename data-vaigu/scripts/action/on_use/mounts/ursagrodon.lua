@@ -50,7 +50,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				target:transform(config.item4)
 				item:remove(1)
 				player:addMount(38)
-				player:setStorageValue(config.storageKey, 1)
+				player:setStorageValueByKey(config.storageKey, 1)
 				addEvent(revertIce, 600 * 1000, toPosition)
 			end
 		end

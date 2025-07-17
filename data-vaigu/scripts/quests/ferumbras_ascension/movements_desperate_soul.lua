@@ -10,9 +10,9 @@ function desperateSoul.onStepIn(creature, item, position, fromPosition)
 
 	local player = Tile(fromPosition):getTopCreature()
 	if player and player:isPlayer() then
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, 1)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, 1)
 		addEvent(function()
-			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, 0)
+			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, 0)
 		end, 2 * 60 * 1000)
 	end
 

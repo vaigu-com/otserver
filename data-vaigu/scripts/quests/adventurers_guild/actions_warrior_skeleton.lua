@@ -5,11 +5,11 @@ function adventurersWarriorSkeleton.onUse(player, item, fromPosition, target, to
 		player:addItem(5882, 1) -- red dragon scale
 
 		if player:getStorageValue(Storage.AdventurersGuild.QuestLine) < 1 then
-			player:setStorageValue(Storage.AdventurersGuild.QuestLine, 1)
+			player:setStorageValueByKey(Storage.AdventurersGuild.QuestLine, 1)
 		end
 
-		player:setStorageValue(Storage.AdventurersGuild.GreatDragonHunt.WarriorSkeleton, 1)
-		player:setStorageValue(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter, 0)
+		player:setStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.WarriorSkeleton, 1)
+		player:setStorageValueByKey(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter, 0)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The dead explorer is empty.")
 	end

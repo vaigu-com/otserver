@@ -85,7 +85,7 @@ local newPos = Position(33436, 32443, 15)
 local theShattererKill = CreatureEvent("TheShattererDeath")
 function theShattererKill.onDeath(creature)
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.TheShatterer, 1)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.TheShatterer, 1)
 	end)
 
 	local teleport = Tile(Position(33393, 32438, 14)):getItemById(1949)
@@ -100,8 +100,8 @@ function theShattererKill.onDeath(creature)
 		addEvent(revertTeleport, 2 * 60 * 1000, teleportPos, 22761, 1949, oldPos)
 		revert()
 	end
-	Game.setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.TheShattererLever, 0)
-	Game.setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.TheShattererTimer, 0)
+	Game.setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.TheShattererLever, 0)
+	Game.setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.TheShattererTimer, 0)
 	return true
 end
 

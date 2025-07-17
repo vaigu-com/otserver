@@ -47,7 +47,7 @@ function finalReward.onUse(player, item, fromPosition, target, toPosition, isHot
 
 	if item.uid == 14021 and player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardMask) < os.time() then
 		player:AddCustomItem({ id = setting.name, count = setting.count })
-		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardMask, os.time() + 60 * 60 * 24 * 5)
+		player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.RewardMask, os.time() + 60 * 60 * 24 * 5)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")
 	elseif item.uid == 14022 and player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardBackpack) < os.time() then
 		local bp = Game.createItem("Backpack", 1)
@@ -62,10 +62,10 @@ function finalReward.onUse(player, item, fromPosition, target, toPosition, isHot
 			bp:moveTo(player)
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found a backpack.")
-		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardBackpack, os.time() + 60 * 60 * 24 * 365)
+		player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.RewardBackpack, os.time() + 60 * 60 * 24 * 365)
 	elseif item.uid == 14023 and player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardFeather) < os.time() then
 		player:AddCustomItem({ id = setting.name, count = setting.count })
-		player:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.RewardFeather, os.time() + 24 * 3600)
+		player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.RewardFeather, os.time() + 24 * 3600)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The chest is empty.")

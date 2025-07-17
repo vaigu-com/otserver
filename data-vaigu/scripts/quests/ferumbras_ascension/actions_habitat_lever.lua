@@ -5,7 +5,7 @@ function ferumbrasAscendantHabitatLever.onUse(player, item, fromPosition, target
 	end
 
 	if item.itemid == 9125 then
-		player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.HabitatsAccess, 1)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.HabitatsAccess, 1)
 		item:transform(9126)
 	elseif item.itemid == 9126 then
 		item:transform(9125)

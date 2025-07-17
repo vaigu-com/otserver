@@ -49,8 +49,8 @@ local config = {
 			[7] = { crystalPosition = Position(33387, 31475, 14), globalStorage = Storage.Quest.U10_90.FerumbrasAscension.Crystals.Crystal7 },
 			[8] = { crystalPosition = Position(33387, 31471, 14), globalStorage = Storage.Quest.U10_90.FerumbrasAscension.Crystals.Crystal8 },
 		}
-		Game.setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Crystals.AllCrystals, 0)
-		Game.setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, 0)
+		Game.setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Crystals.AllCrystals, 0)
+		Game.setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FerumbrasEssence, 0)
 		for _, crystal in pairs(crystals) do
 			local tile = Tile(crystal.crystalPosition)
 			if tile then
@@ -59,7 +59,7 @@ local config = {
 					item:transform(14955)
 				end
 			end
-			Game.setStorageValue(crystal.globalStorage, 0)
+			Game.setStorageValueByKey(crystal.globalStorage, 0)
 		end
 	end,
 }

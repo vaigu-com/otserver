@@ -25,7 +25,7 @@ function zamuloshTeleport.onStepIn(creature, item, position, fromPosition)
 			player:teleportTo(Position(33618, 32620, 10))
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "What was wrong is not necessarily right now. Nevertheless you nade it further.")
-			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports, 9)
+			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports, 9)
 			return true
 		else
 			local pos = player:getPosition()

@@ -13,7 +13,7 @@ function ferumbrasAscendantBoneFlute.onUse(player, item, fromPosition, target, t
 		local rand = math.random(100)
 		if rand <= 5 then
 			player:say("Finally this one reveal your spirit animal.", TALKTYPE_MONSTER_SAY)
-			player:setStorageValue(Storage.Quest.U10_90.FerumbrasAscension.BoneFlute, 1)
+			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.BoneFlute, 1)
 			item:remove()
 			return true
 		elseif rand > 5 and rand <= 50 then

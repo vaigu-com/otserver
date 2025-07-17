@@ -153,12 +153,12 @@ local function initialize(monster)
 		return
 	end
 
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.SpawnPos, monster:getPosition())
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.NextPodSpawn, os.time() + 20)
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.NextMonsterSpawn, os.time() + 10)
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts, {})
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.SpawnPos, monster:getPosition())
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.NextPodSpawn, os.time() + 20)
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.NextMonsterSpawn, os.time() + 10)
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts, {})
 
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.Initialized, true)
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.Initialized, true)
 end
 
 -- Functions for the fight
@@ -188,7 +188,7 @@ local function setNextTimeToSpawn(monster, spawnStorageValue, spawnConfig, hazar
 	local interval = intervalBase * (intervalReductionPer10PercentHp ^ count10PercentHpMissing) * (intervalReductionPerHazard ^ hazardPoints)
 
 	local nextTimeToSpawn = os.time() + interval
-	monster:setStorageValue(spawnStorageValue, nextTimeToSpawn)
+	monster:setStorageValueByKey(spawnStorageValue, nextTimeToSpawn)
 end
 
 local function spawnCount(spawnConfig, hazardPoints)
@@ -287,7 +287,7 @@ local function spawnMonster(monsterId, spawnPosition)
 
 	local primalBeasts = monster:getStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts)
 	table.insert(primalBeasts, primalBeastEntry)
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
 end
 
 local function spawnMonsters(monster, hazardPoints)
@@ -331,7 +331,7 @@ local function handlePrimalBeasts(monster)
 		table.remove(primalBeasts, indexToRemove)
 	end
 
-	monster:setStorageValue(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
+	monster:setStorageValueByKey(thePrimalMenaceConfig.Storage.PrimalBeasts, primalBeasts)
 end
 
 mType.onThink = function(monster, interval)
