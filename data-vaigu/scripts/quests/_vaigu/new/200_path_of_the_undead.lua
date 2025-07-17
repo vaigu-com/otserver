@@ -577,7 +577,7 @@ quest
 
 		monster.attacks = {
 			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -350 },
-			{ name = "undead crypt king anti tank stacks", interval = 1000, chance = 1000, range = 7, target = true },
+			{ name = "undead crypt king anti tank stacks", interval = 1000, chance = 100, range = 7, target = true },
 			{
 				name = "undead crypt king death lasers",
 				interval = 8000,

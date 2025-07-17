@@ -19,13 +19,13 @@ pseudoQuest
 		}
 		for hour, minuteToMinigame in pairs(hourToMinuteToMinigame) do
 			for minute, minigame in pairs(minuteToMinigame) do
-				local lotteryEvent = GlobalEvent(nextScheduledMinigameGlobalEventName())
-				function lotteryEvent.onTime(interval)
+				local nextScheduledMinigame = GlobalEvent(nextScheduledMinigameGlobalEventName())
+				function nextScheduledMinigame.onTime(interval)
 					minigame:TryStartLobby()
 					return true
 				end
-				lotteryEvent:time(hour .. ":" .. minute)
-				lotteryEvent:register()
+				nextScheduledMinigame:time(hour .. ":" .. minute)
+				nextScheduledMinigame:register()
 			end
 		end
 	end)
