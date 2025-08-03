@@ -221,6 +221,7 @@ local nonCustomAttributes = {
 	text = true,
 	uid = true,
 	key = true,
+	dontAnnounce = true,
 }
 
 local setableAtribute = {
