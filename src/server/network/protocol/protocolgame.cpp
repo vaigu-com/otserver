@@ -815,7 +815,6 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
 	}	
-	player->setLoggingOut(true);
 	
 	bool removePlayer = !player->isRemoved() && !forced;
 	auto errorMessage = messageIfCannotLogout(player, removePlayer);
@@ -833,6 +832,7 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 	}
 
 	player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
+	player->loginPosition = player->getPosition();
 	g_game().removeCreature(player, true);
 }
 

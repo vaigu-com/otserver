@@ -1220,6 +1220,11 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 		return false;
 	}
 
+	auto player = creature->getPlayer();
+	if (player){
+		player->setLoggingOut(true);
+	}
+
 	std::shared_ptr<Tile> tile = creature->getTile();
 	if (!tile) {
 		g_logger().error("[{}] tile on position '{}' for creature '{}' not exist", __FUNCTION__, creature->getPosition().toString(), creature->getName());
@@ -1251,6 +1256,7 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 
 		// event method
 		for (const auto &spectator : spectators) {
+			spectator->onRemoveCreature(creature, isLogout);
 			spectator->onRemoveCreature(creature, isLogout);
 		}
 	}

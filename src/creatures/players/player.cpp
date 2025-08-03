@@ -3879,7 +3879,7 @@ void Player::despawn() {
 
 	getParent()->postRemoveNotification(static_self_cast<Player>(), nullptr, 0);
 
-	g_game().removePlayer(static_self_cast<Player>());
+	g_game().removeCreature(static_self_cast<Player>());
 
 	// show player as pending
 	for (const auto &[key, player] : g_game().getPlayers()) {

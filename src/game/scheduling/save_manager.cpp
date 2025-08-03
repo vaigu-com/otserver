@@ -74,10 +74,11 @@ void SaveManager::saveAll() {
 
 	const auto players = game.getPlayers();
 	for (const auto &[_, player] : players) {
-		player->loginPosition = player->getPosition();
 		if (player->isLoggingOut()) {
 			player->setLoggingOut(false);
 			player->setOnline(false);
+		} else {
+			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
 			g_game().removePlayer(std::shared_ptr<Player>(player));
@@ -104,7 +105,6 @@ void SaveManager::saveAll() {
 
 		DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
 			for (const auto &[_, player] : players) {
-				player->loginPosition = player->getPosition();
 				doSavePlayer(player);
 				const auto account = player->account->save();
 			}
@@ -132,10 +132,11 @@ void SaveManager::saveAll() {
 void SaveManager::saveAll() {
 	const auto players = game.getPlayers();
 	for (const auto &[_, player] : players) {
-		player->loginPosition = player->getPosition();
 		if (player->isLoggingOut()) {
 			player->setLoggingOut(false);
 			player->setOnline(false);
+		} else {
+			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
 			g_game().removePlayer(std::shared_ptr<Player>(player));
@@ -154,7 +155,6 @@ void SaveManager::saveAll() {
 
 	DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
 		for (const auto &[_, player] : players) {
-			player->loginPosition = player->getPosition();
 			doSavePlayer(player);
 			const auto account = player->account->save();
 		}
