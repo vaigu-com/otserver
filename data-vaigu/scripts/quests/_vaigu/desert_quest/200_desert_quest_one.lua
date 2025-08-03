@@ -1084,6 +1084,15 @@ quest
 				end
 				shortcutSignLook:key(Storage.DesertQuestOne.Readable.ShortcutSign)
 				shortcutSignLook:register()
+
+				local toStartSignLook = Look()
+				function toStartSignLook.onLook(player, item)
+					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("Changed your mind? - return to the gate of expertise at the start of the quest.")
+					player:sendTextMessage(MESSAGE_LOOK, translatedMessage)
+					return DONT_SHOW_ONLOOK
+				end
+				toStartSignLook:key(Storage.DesertQuestOne.Readable.ToStartSign)
+				toStartSignLook:register()
 			end),
 			QuestFactory.Script(function(missionState)
 				local config = { ["SUCCESS"] = "One of the magic walls disappeared", ["FAIL"] = "You cannot use this yet" }
