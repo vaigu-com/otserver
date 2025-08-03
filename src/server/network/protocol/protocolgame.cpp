@@ -735,7 +735,10 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 			return;
 		}
 		if (foundPlayer->isLoggingOut()) {
-			disconnectClient("Your character is being saved. Try again in few seconds.");
+			eventConnect = g_dispatcher().scheduleEvent(
+				1000,
+				[self = getThis(), playerName = foundPlayer->getName(), accountId, operatingSystem] { self->login(playerName, accountId, operatingSystem); }, "ProtocolGame::login"
+			);
 			return;
 		}
 
