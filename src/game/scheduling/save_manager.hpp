@@ -36,6 +36,8 @@ private:
 	void saveMap();
 	void saveKV();
 
+	void setSuccesfulSaveTimestamp();
+
 	void schedulePlayer(std::weak_ptr<Player> player);
 	bool doSavePlayer(std::shared_ptr<Player> player);
 

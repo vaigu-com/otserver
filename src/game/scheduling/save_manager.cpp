@@ -116,6 +116,7 @@ void SaveManager::saveAll() {
 			saveMap();
 			saveKV();
 			g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+			setSuccesfulSaveTimestamp();
 			return true;
 		});
 
@@ -166,6 +167,7 @@ void SaveManager::saveAll() {
 		saveMap();
 		saveKV();
 		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+		setSuccesfulSaveTimestamp();
 		return true;
 	});
 
@@ -294,4 +296,12 @@ void SaveManager::saveKV() {
 
 	auto duration = bm_saveKV.duration();
 	logger.debug("Key-value store saved in {} milliseconds.", duration);
+}
+
+void SaveManager::setSuccesfulSaveTimestamp() {
+	Database &db = Database::getInstance();
+	std::ostringstream query;
+	query.str("");
+	query << "REPLACE INTO `server_config` (config, value) VALUES ('save_date', NOW())";
+	db.executeQuery(query.str());
 }
