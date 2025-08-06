@@ -227,6 +227,7 @@ public:
 
 	template <typename Func>
 	static bool executeWithinTransaction(const Func &callback)
+		requires std::invocable<Func>
 	{
 		DBTransaction transaction;
 		try {
