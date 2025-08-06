@@ -13,7 +13,7 @@ function talkaction.onSay(player, words, param)
 	uptime = uptime % 3600
 	local minutes = math.floor(uptime / 60)
 
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("Uptime: :d: days :h: hours :m: minutes.\n Last save: :lastSave:\nNow: :now:", { d = days, h = hours, m = minutes, lastSave = lastSave, now = now }))
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("Uptime: :d: days :h: hours :m: minutes.\n Last startup: :lastSave:\nNow: :now:", { d = days, h = hours, m = minutes, lastSave = lastSave, now = now }))
 	return true
 end
 
