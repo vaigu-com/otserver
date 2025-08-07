@@ -37,7 +37,7 @@ local function canUseTeleport(teleportData, player, fromPosition)
 	end
 
     if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) < teleportData.requiredQuestlineState then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have no idea on how to use this device. Xelvar in Kazordoon might tell you more about it.")
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have no idea on how to use this device. Xelvar in Syberia might tell you more about it.")
 		return false
 	end
 
