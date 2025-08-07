@@ -403,5 +403,5 @@ cmake-build-*
 out
 
 # RME backups
-data-vaigu/world/backup/*
 data-vaigu/world/backups/*
+data-vaigu/world/custom/realmap.otbm
