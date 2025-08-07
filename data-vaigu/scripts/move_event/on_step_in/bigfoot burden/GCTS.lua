@@ -1,72 +1,78 @@
-local teleporters = {
-	[3215] = { destination = Position(6218, 1048, 8), minState = 1, requiresCrystal = true }, --To Steppes
-	[3216] = { destination = Position(7018, 787, 7), minState = 1, requiresCrystal = true }, --To Kongo
-	[3217] = { destination = Position(5924, 1395, 9), minState = 1, requiresCrystal = true }, --To Mirkotown
-	[3218] = { destination = Position(7517, 1850, 12), minState = 1, requiresCrystal = true }, --To Orshaawa
-	[3219] = { destination = Position(7209, 1048, 7), minState = 1, requiresCrystal = true }, --To Maioor'ka
-	[3220] = { destination = Position(6448, 1844, 10), minState = 1, requiresCrystal = true }, --To Syberia
-	[3221] = { destination = Position(5571, 1605, 7), minState = 1, requiresCrystal = true }, --To Knurowo
-
-	[4121] = { destination = Position(6187, 2380, 9), minState = 1, requiresCrystal = true }, --To Hub
-
-	[3128] = { destination = Position(6386, 2484, 13), minState = 14 }, --{x = 7413, y = 1370, z = 12}
-	[3129] = { destination = Position(6181, 2376, 10), minState = 14 }, --{x = 7322, y = 1301, z = 9}
-	[3130] = { destination = Position(6250, 2458, 11), minState = 15 }, --{x = 7280, y = 1348, z = 11}
-	[3131] = { destination = Position(6189, 2360, 10), minState = 15 }, --{x = 7330, y = 1285, z = 9}
-	[3132] = { destination = Position(6372, 2476, 9), minState = 15 }, -- Gnomebase Alpha --{x = 7399, y = 1362, z = 8}
-	[3133] = { destination = Position(6182, 2396, 10), minState = 15 }, -- City --{x = 7323, y = 1320, z = 9}
-	[3134] = { destination = Position(6345, 2567, 9), minState = 16 }, -- Golems --{x = 7372, y = 1453, z = 8}
-	[3135] = { destination = Position(6387, 2529, 9), minState = 16 }, -- Gnomebase Alpha --{x = 7414, y = 1415, z = 8}
-	[3136] = { destination = Position(6290, 2508, 13), minState = 16 }, --{x = 7317, y = 1394, z = 12}
-	[3137] = { destination = Position(6365, 2521, 9), minState = 16 }, --{x = 7392, y = 1407, z = 8}
-	[35669] = { destination = Position(), minState = 1 }, -- leave warzone 3 --{x = 7399, y = 1362, z = 8}
+local crystalId = ItemId.TELEPORT_CRYSTAL
+local teleportsData = {
+	{ stepInPosition = Position(32628, 31863, 11), destinationPosition = Position(32801, 31766, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32330, 32173, 9), destinationPosition = Position(32801, 31766, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32403, 32818, 6), destinationPosition = Position(32801, 31766, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(33187, 32384, 8), destinationPosition = Position(32801, 31766, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32196, 31183, 8), destinationPosition = Position(32801, 31766, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(33154, 31834, 10), destinationPosition = Position(32801, 31766, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32803, 31798, 9), destinationPosition = Position(32627, 31864, 11), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32795, 31761, 10), destinationPosition = Position(33000, 31870, 13), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(33000, 31871, 13), destinationPosition = Position(32795, 31762, 10), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32803, 31745, 10), destinationPosition = Position(32864, 31844, 11), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32864, 31845, 11), destinationPosition = Position(32803, 31746, 10), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32796, 31780, 10), destinationPosition = Position(32988, 31862, 9), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32986, 31861, 9), destinationPosition = Position(32798, 31783, 10), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(33001, 31916, 9), destinationPosition = Position(32959, 31953, 9), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32959, 31952, 9), destinationPosition = Position(33001, 31915, 9), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32980, 31907, 9), destinationPosition = Position(32904, 31894, 13), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32904, 31893, 13), destinationPosition = Position(32979, 31907, 9), requiredQuestlineState = 1 },
+	{ stepInPosition = Position(32805, 31743, 9), destinationPosition = Position(32329, 32172, 9), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32786, 31754, 9), destinationPosition = Position(32195, 31182, 8), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32772, 31776, 9), destinationPosition = Position(32402, 32816, 6), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32831, 31797, 9), destinationPosition = Position(33153, 31833, 10), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32827, 31757, 9), destinationPosition = Position(33186, 32385, 8), requiredQuestlineState = 1, requriesCrystal = true },
+	{ stepInPosition = Position(32789, 31796, 10), destinationPosition = Position(32771, 31800, 10), requiredQuestlineState = 1, requriesCrystal = false },
+	{ stepInPosition = Position(32772, 31799, 10), destinationPosition = Position(32790, 31795, 10), requiredQuestlineState = 1, requriesCrystal = false },
+	{ stepInPosition = Position(32783, 31792, 9), destinationPosition = Position(32790, 31795, 10), requiredQuestlineState = 1, requriesCrystal = false },
 }
+local stepInPositionToTeleportData = {}
+for _, teleportData in pairs(teleportsData) do
+	stepInPositionToTeleportData[teleportData.stepInPosition:ToString()] = teleportData
+end
 
-local movement = MoveEvent()
-function movement.onStepIn(creature, item, toPosition, fromPosition)
+local function canUseTeleport(teleportData, player, fromPosition)
+	if not teleportData then
+		return false
+	end
+
+    if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) < teleportData.requiredQuestlineState then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have no idea on how to use this device. Xelvar in Kazordoon might tell you more about it.")
+		return false
+	end
+
+	if teleportData.requriesCrystal and not player:HasItem({ id = crystalId }) then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need a teleport crystal to pass there.")
+		return false
+	end
+
+	return true
+end
+
+local gnomebaseTeleport = MoveEvent()
+function gnomebaseTeleport.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
 		return
 	end
 
-	local teleporter = teleporters[item.actionid]
-	if not teleporter then
-		return
-	end
+	local teleportData = stepInPositionToTeleportData[player:getPosition():ToString()]
 
-	if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) < teleporter.minState then
+    if not canUseTeleport(teleportData, player, fromPosition) then
 		player:teleportTo(fromPosition)
 		return true
 	end
 
-	local canTeleport = false
-	if not teleporter.requiresCrystal then
-		canTeleport = true
-	elseif teleporter.requiresCrystal then
-		if player:removeItem(16167, 1) then
-			canTeleport = true
-		else
-			canTeleport = false
-		end
+	if teleportData.requiresCrystal then
+		player:RemoveItem({ id = crystalId })
 	end
+	player:teleportTo(teleportData.destinationPosition)
 
-	if canTeleport then
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:teleportTo(teleporter.destination)
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-	else
-		player:teleportTo(fromPosition)
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		if getPlayerLanguage(player) == "PL" then
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Aby uzyc potrzebujesz krysztalu teleportacyjnego.")
-		else
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need a teleport crystal to pass there.")
-		end
-	end
 	return true
 end
-movement:type("stepin")
-for aid in pairs(teleporters) do
-	movement:aid(aid)
+
+for _, teleportData in pairs(teleportsData) do
+	local stepInPosition = teleportData.stepInPosition
+	gnomebaseTeleport:position(stepInPosition)
 end
-movement:register()
+gnomebaseTeleport:register()
