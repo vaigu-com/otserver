@@ -404,4 +404,5 @@ out
 
 # RME backups
 data-vaigu/world/backups/*
+data-vaigu/world/custom/backups/*
 data-vaigu/world/custom/realmap.otbm
