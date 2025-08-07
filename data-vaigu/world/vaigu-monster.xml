@@ -46558,10 +46558,6 @@
 	<monster centerx="7605" centery="1530" centerz="7" radius="1">
 		<monster name="Elf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7738" centery="1530" centerz="7" radius="1">
-		<monster name="Bug" x="0" y="-1" z="7" spawntime="60" />
-		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7855" centery="1530" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -47054,9 +47050,6 @@
 	</monster>
 	<monster centerx="7481" centery="1559" centerz="7" radius="1">
 		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7752" centery="1559" centerz="7" radius="1">
-		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7612" centery="1560" centerz="7" radius="1">
 		<monster name="Elf" x="0" y="0" z="7" spawntime="60" />
