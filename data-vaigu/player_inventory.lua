@@ -199,8 +199,18 @@ function Player:RemoveEquippedItemByCriteria(removalCriteria)
 	end
 end
 
-function Player:RemoveItems(itemData)
-	local removalCriteria = self:ParseRemovalCriteria(itemData)
+function Player:RemoveItem(itemData)
+	local removalCriteria = self:ParseRemovalCriteria({ itemData })
+	for _, removalCriterion in pairs(removalCriteria) do
+		if removalCriterion.remove ~= false then
+			self:RemoveEquippedItemByCriteria(removalCriterion)
+		end
+	end
+	return true
+end
+
+function Player:RemoveItems(itemsData)
+	local removalCriteria = self:ParseRemovalCriteria(itemsData)
 	for _, removalCriterion in pairs(removalCriteria) do
 		if removalCriterion.remove ~= false then
 			self:RemoveEquippedItemByCriteria(removalCriterion)
