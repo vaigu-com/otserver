@@ -714,15 +714,6 @@
 	<npc centerx="6474" centery="1798" centerz="9" radius="3">
 		<npc name="Henricus" x="0" y="0" z="9" spawntime="90" direction="2" />
 	</npc>
-	<npc centerx="6184" centery="2379" centerz="9" radius="1">
-		<npc name="Gnomette" x="0" y="0" z="9" spawntime="90" />
-	</npc>
-	<npc centerx="6350" centery="2491" centerz="9" radius="1">
-		<npc name="Gnomeral" x="0" y="0" z="9" spawntime="60" />
-	</npc>
-	<npc centerx="6393" centery="2505" centerz="9" radius="1">
-		<npc name="Gnomission" x="0" y="0" z="9" spawntime="60" />
-	</npc>
 	<npc centerx="7688" centery="1025" centerz="10" radius="1">
 		<npc name="Yakeemovech" x="0" y="0" z="10" spawntime="60" />
 	</npc>
@@ -734,58 +725,6 @@
 	</npc>
 	<npc centerx="5466" centery="1546" centerz="10" radius="1">
 		<npc name="GM Romek" x="0" y="0" z="10" spawntime="60" />
-	</npc>
-	<npc centerx="6444" centery="1840" centerz="10" radius="1">
-		<npc name="Xelvar" x="0" y="0" z="10" spawntime="90" />
-	</npc>
-	<npc centerx="6162" centery="2359" centerz="10" radius="1">
-		<npc name="Gnomerik" x="-1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6180" centery="2360" centerz="10" radius="1">
-		<npc name="Gnomally" x="1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6212" centery="2364" centerz="10" radius="1">
-		<npc name="Gnomillion" x="-1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6151" centery="2369" centerz="10" radius="1">
-		<npc name="Gnomespector" x="1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6191" centery="2372" centerz="10" radius="1">
-		<npc name="Gnominus" x="-1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6177" centery="2379" centerz="10" radius="1">
-		<npc name="Gnomerank" x="0" y="0" z="10" spawntime="90" />
-	</npc>
-	<npc centerx="6155" centery="2384" centerz="10" radius="1">
-		<npc name="Doctor Gnomedix" x="-1" y="1" z="10" spawntime="90" direction="2" />
-		<npc name="Gnomenursey" x="0" y="1" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6172" centery="2390" centerz="10" radius="1">
-		<npc name="Gnomejam" x="1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6191" centery="2395" centerz="10" radius="1">
-		<npc name="Gnomegica" x="0" y="1" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6149" centery="2400" centerz="10" radius="5">
-		<npc name="Gnomaticus" x="1" y="3" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6173" centery="2403" centerz="10" radius="1">
-		<npc name="Gnomerrow" x="0" y="-1" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6187" centery="2405" centerz="10" radius="1">
-		<npc name="Bigfoot Soldier" x="1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6181" centery="2409" centerz="10" radius="1">
-		<npc name="Gnomailion" x="1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6190" centery="2412" centerz="10" radius="1">
-		<npc name="Commander Stone" x="1" y="0" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6145" centery="2422" centerz="10" radius="5">
-		<npc name="Gnomewart" x="0" y="-1" z="10" spawntime="90" direction="2" />
-	</npc>
-	<npc centerx="6161" centery="2422" centerz="10" radius="5">
-		<npc name="Gnomelvis" x="-1" y="0" z="10" spawntime="90" direction="2" />
 	</npc>
 	<npc centerx="7656" centery="1006" centerz="11" radius="1">
 		<npc name="Mick" x="0" y="0" z="11" spawntime="60" />
