@@ -116,7 +116,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "misja", "quest", "misje", "mission" }, message) then
 		local value = player:getStorageValueByKey(Storage.ElementalSphere.QuestLine)
 		if value < 1 then -- poczatek questa
-			if player:getLevel() >= 80 then
+			if player:getLevel() >= 40 then
 				if player:isSorcerer() then
 					npcHandler:say(getPlayerLanguage(player) == "PL" and {
 						"No dobra, sluchaj wiec: Po pierwsze potrzebujesz zebrac 20 zaczarowanych rubinow jesli chcesz udac sie do ognistej sfery. Jesli udasz sie kilka pieter w glab mojej piwnicy znajdziesz tam teleporter, ktora przeniesie cie do niej. Aby ja uruchomic musisz wlozyc w nia wszystkie rubiny. ...",

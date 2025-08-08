@@ -10,12 +10,14 @@
 #include "game/scheduling/save_manager.hpp"
 
 #ifndef OS_WINDOWS
-#include <sys/file.h>
-#include <unistd.h>
-#include <fcntl.h>
+	#include <sys/file.h>
+	#include <unistd.h>
+	#include <fcntl.h>
+	#include <unistd.h>
+	#include <sys/wait.h>
 #endif
 
-
+#include "game/scheduling/dispatcher.hpp"
 #include "config/configmanager.hpp"
 #include "creatures/players/grouping/guild.hpp"
 #include "game/game.hpp"
@@ -28,21 +30,55 @@
 #include "account/account.hpp"
 
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
-	threadPool(threadPool), kv(kvStore), logger(logger), game(game) { }
+	threadPool(threadPool), kv(kvStore), logger(logger), game(game)
+	#ifndef OS_WINDOWS
+	, child_saver_pid(-1)
+	#endif
+{ }
 
 SaveManager &SaveManager::getInstance() {
 	return inject<SaveManager>();
 }
 
+#ifndef OS_WINDOWS
 void SaveManager::saveAll() {
-	logger.info("Saving server...");
+
+	class ResourceGuard {
+	public:
+		~ResourceGuard() {
+			_exit(0);
+		}
+	};
+
+	if (child_saver_pid != -1) {
+		int status;
+		pid_t wait_result = waitpid(child_saver_pid, &status, WNOHANG);
+
+		if (wait_result == -1) {
+			logger.error("waitpid failed: {}", strerror(errno));
+		} else if (wait_result == 0) {
+			logger.info("Child process has not exited yet. Skipping save.");
+			return;
+		} else if (WIFEXITED(status)) {
+			logger.info("Process {} exited with status {}", wait_result, WEXITSTATUS(status));
+		} else if (WIFSIGNALED(status)) {
+			logger.error("Process {} was killed by signal {}", wait_result, WTERMSIG(status));
+		} else if (WIFSTOPPED(status)) {
+			logger.error("Process {} was stopped by signal {}", wait_result, WSTOPSIG(status));
+		} else {
+			logger.error("Process {} changed state", wait_result);
+		}
+
+		child_saver_pid = -1;
+	}
 
 	const auto players = game.getPlayers();
 	for (const auto &[_, player] : players) {
-		player->loginPosition = player->getPosition();
 		if (player->isLoggingOut()) {
 			player->setLoggingOut(false);
 			player->setOnline(false);
+		} else {
+			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
 			g_game().removePlayer(std::shared_ptr<Player>(player));
@@ -50,58 +86,96 @@ void SaveManager::saveAll() {
 		}
 	}
 	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+	auto guilds = game.getGuilds();
 
-#ifndef OS_WINDOWS
-	auto pid = fork();
+	pid_t pid = fork();
+
 	if (pid < 0) {
-		g_logger().error("[{}] Failed to fork process for saving", __FUNCTION__);
-		return;
-	} else if (pid > 0) {
-		// Parent process: return immediately
-		g_logger().info("Save initiated asynchronously in PID {}", pid);
-		return;
+		perror("Fork failed");
+		throw std::runtime_error("Fork failed");
+	} else if (pid == 0) {
+		ResourceGuard guard;
+		Benchmark bm_saveAll;
+
+		logger.info("Saving server...");
+
+		if (!Database::getInstance().connect()) {
+			throw std::runtime_error("Failed to connect to database.");
+		}
+
+		DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
+			for (const auto &[_, player] : players) {
+				doSavePlayer(player);
+				const auto account = player->account->save();
+			}
+
+			for (const auto &[_, guild] : guilds) {
+				saveGuild(guild);
+			}
+
+			saveMap();
+			saveKV();
+			g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+			setSuccesfulSaveTimestamp();
+			return true;
+		});
+
+		logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
+
+		fflush(stdout);
+	} else {
+		child_saver_pid = pid;
 	}
-	// Child process
-	int lockFd = open("/tmp/server_save.lock", O_CREAT | O_RDWR, 0666);
-	if (lockFd == -1) {
-		g_logger().error("Could not open lock file for saving!");
-		_exit(1);
-	}
-	if (flock(lockFd, LOCK_EX | LOCK_NB) != 0) {
-		// Another save is in progress
-		g_logger().warn("Another save is already in progress. Exiting.");
-		close(lockFd);
-		_exit(0);
-	}
+}
 #endif
 
+#ifdef OS_WINDOWS
+void SaveManager::saveAll() {
+	const auto players = game.getPlayers();
+	for (const auto &[_, player] : players) {
+		if (player->isLoggingOut()) {
+			player->setLoggingOut(false);
+			player->setOnline(false);
+		} else {
+			player->loginPosition = player->getPosition();
+		}
+		if (!player->isOnline()) {
+			g_game().removePlayer(std::shared_ptr<Player>(player));
+			player->setRemoved();
+		}
+	}
+	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+	auto guilds = game.getGuilds();
 	Benchmark bm_saveAll;
-	const bool success = DBTransaction::executeWithinTransaction([this, players, newCoinTransactions]() {
+
+	logger.info("Saving server...");
+
+	if (!Database::getInstance().connect()) {
+		throw std::runtime_error("Failed to connect to database.");
+	}
+
+	DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
 		for (const auto &[_, player] : players) {
 			doSavePlayer(player);
 			const auto account = player->account->save();
 		}
-		for (const auto &[_, guild] : game.getGuilds()) {
+
+		for (const auto &[_, guild] : guilds) {
 			saveGuild(guild);
 		}
+
 		saveMap();
 		saveKV();
 		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+		setSuccesfulSaveTimestamp();
 		return true;
 	});
 
-	if (!success){
-		g_logger().error("[{}] Error occured saving the saving the server", __FUNCTION__);
-	}
+	logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 
-	g_logger().info("Server saved in {} miliseconds", bm_saveAll.duration());
-
-#ifndef OS_WINDOWS
-	flock(lockFd, LOCK_UN); // release explicitly (not strictly needed due to _exit, but safe)
-	close(lockFd);
-	_exit(0);
-#endif
+	fflush(stdout);
 }
+#endif
 
 void SaveManager::scheduleAll() {
 	auto scheduledAt = std::chrono::steady_clock::now();
@@ -162,7 +236,6 @@ bool SaveManager::doSavePlayer(std::shared_ptr<Player> player) {
 	}
 
 	Benchmark bm_savePlayer;
-	Player::PlayerLock lock(player);
 	m_playerMap.erase(player->getGUID());
 	if (g_game().getGameState() == GAME_STATE_NORMAL) {
 		logger.debug("Saving player {}.", player->getName());
@@ -223,4 +296,12 @@ void SaveManager::saveKV() {
 
 	auto duration = bm_saveKV.duration();
 	logger.debug("Key-value store saved in {} milliseconds.", duration);
+}
+
+void SaveManager::setSuccesfulSaveTimestamp() {
+	Database &db = Database::getInstance();
+	std::ostringstream query;
+	query.str("");
+	query << "REPLACE INTO `server_config` (config, value) VALUES ('save_date', NOW())";
+	db.executeQuery(query.str());
 }

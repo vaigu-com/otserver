@@ -523,7 +523,7 @@ int GameFunctions::luaGameCreateContainer(lua_State* L) {
 }
 
 int GameFunctions::luaGameCreateMonster(lua_State* L) {
-	// Game.createMonster(monsterName, position[, extended = false[, force = false[, master = nil]]])
+	// Game.createMonster(monsterName, position[, extended = false[, force = false[, master = nil[, displayName = nil]]]])
 	const auto &monster = Monster::createMonster(Lua::getString(L, 1));
 	if (!monster) {
 		lua_pushnil(L);
@@ -536,6 +536,12 @@ int GameFunctions::luaGameCreateMonster(lua_State* L) {
 			monster->setMaster(master, true);
 			isSummon = true;
 		}
+	}
+
+	if (lua_gettop(L) >= 6) {
+		const auto &displayName = Lua::getString(L, 6);
+		monster->setDisplayName(displayName);
+		monster->setNameDescription(displayName);
 	}
 
 	const Position &position = Lua::getPosition(L, 2);

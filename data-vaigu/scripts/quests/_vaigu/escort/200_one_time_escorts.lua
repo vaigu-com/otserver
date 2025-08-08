@@ -3,16 +3,20 @@ local quest = Quest(LOCALIZERS.OneTimeEscorts)
 
 quest
 	:Storage(function()
-		Storage.OneTimeEscorts.MegadragonCliffs = {
-			Mission01 = {},
-			YellTiles = {},
-			RopeThrowFromTiles = {},
-			RopeThrowToTiles = {},
+		Storage.OneTimeEscorts = {
+			MegadragonCliffs = {
+				Mission01 = {},
+				YellTile = {},
+				RopeThrowFromTiles = {},
+				RopeThrowToTiles = {},
+			},
 		}
 	end)
 	:Constant(function()
-		QuestState.OneTimeEscorts.MegadragonCliffs = {
-			ThrowRopeAndEscort = {},
+		QuestState.OneTimeEscorts = {
+			MegadragonCliffs = {
+				ThrowRopeAndEscort = 1,
+			},
 		}
 		local maryEscort = EscortData({
 			key = Storage.OneTimeEscorts.MegadragonCliffs.Mission01,
@@ -21,15 +25,18 @@ quest
 			destinationPos = Position(7203, 1291, 7),
 			proximityToSucceed = 35,
 			requiredState = {
-				[Storage.OneTimeEscorts.MegadragonCliffs] = QuestState.OneTimeEscorts.MegadragonCliffs.ThrowRopeAndEscort,
+				[Storage.OneTimeEscorts.MegadragonCliffs.Mission01] = QuestState.OneTimeEscorts.MegadragonCliffs.ThrowRopeAndEscort,
 			},
 			nextState = {
-				[Storage.OneTimeEscorts.MegadragonCliffs] = MISSION_FINISHED,
+				[Storage.OneTimeEscorts.MegadragonCliffs.Mission01] = MISSION_FINISHED,
 			},
 			rewards = {
 				{ id = 48424 },
 			},
 			expReward = 200000,
+			AfterStart = function (activeEscort)
+				activeEscort.escortee:teleportTo(activeEscort.player:getPosition())
+			end
 		})
 		EscortRegistry:Register(maryEscort)
 	end)
@@ -39,10 +46,11 @@ quest
 			localizer = localizer,
 			missions = {
 				{
-					name = "Megadragon Cliffs",
+					name = "Mary",
 					storage = Storage.OneTimeEscorts.MegadragonCliffs.Mission01,
 					states = {
-						[MISSION_FINISHED] = "You helped TODO",
+						[QuestState.OneTimeEscorts.MegadragonCliffs.ThrowRopeAndEscort] = "Throw rope from above to help Mary, then escort her to her village.",
+						[MISSION_FINISHED] = "You helped Mary and got rewarded.",
 					},
 				},
 			},
@@ -63,15 +71,19 @@ quest
 					end
 
 					local npc = Npc("Mary")
+					if not npc then
+						return
+					end
+
 					npc:say("HEELP", TALKTYPE_MONSTER_YELL, true, player)
 				end
-				yellingTile:key(Storage.OneTimeEscorts.MegadragonCliffs.YellTiles)
 				yellingTile:type("stepin")
+				yellingTile:key(Storage.OneTimeEscorts.MegadragonCliffs.YellTile)
 				yellingTile:register()
 			end),
 			QuestFactory.Dialog("Mary", {
 				[{ "mission", "misja", GREET }] = {
-					text = "Im have been trapped here for days.. Im too fat to safely ride the boat. Can you help me by throwing a rope from above? Surely, someone with your expertise can manage that. After you haul me, please escort me to my home, the amazon camp.",
+					text = "I have been trapped here for days.. Im too fat to safely ride the boat. Can you help me by throwing a rope from above? Surely, someone with your expertise can manage that. After you haul me, please escort me to my home, the amazon camp, west from here.",
 				},
 				[{ "yes", "tak" }] = {
 					text = "Thanks.",
@@ -84,7 +96,12 @@ quest
 	:State(function()
 		return QuestState.OneTimeEscorts.MegadragonCliffs.ThrowRopeAndEscort,
 			QuestFactory.Script(function(missionState)
-				local playerThrowFromZone = Zone(Storage.OneTimeEscorts.MegadragonCliffs.RopeThrowFromTiles)
+				local playerThrowFromZone
+				local zoneInit = GlobalEvent("ThrowRopeAndEscortZoneInit")
+				function zoneInit.onStartup()
+					playerThrowFromZone = Zone(Storage.OneTimeEscorts.MegadragonCliffs.RopeThrowFromTiles)
+				end
+				zoneInit:register()
 				local ropeId = 3003
 
 				local ropeThrowToSpot = MoveEvent()
@@ -125,3 +142,4 @@ quest
 				},
 			})
 	end)
+	:Register()

@@ -108,7 +108,7 @@ quest
 					storage = Storage.FashionistaOnanista.Mission01,
 					states = {
 						[QuestState.FashionistaOnanista.Mission01.AskOcellatusForNewMission] = "Ask Ocellatus about a new mission",
-						[QuestState.FashionistaOnanista.Mission01.BringMedalsToOcellatus] = "Bring ten medals of honour to Ocellatus.",
+						[QuestState.FashionistaOnanista.Mission01.BringMedalsToOcellatus] = "Bring two medals of honour to Ocellatus.",
 						[MISSION_FINISHED] = "Ocellatus gave you his book of marvelous mounted manoeuvers.",
 					},
 				},
@@ -179,9 +179,9 @@ quest
 			QuestFactory.Dialog("Ocellatus", {
 				[{ "medal" }] = {
 					text = "Thanks for your help. Here is your reward.",
-					textNoRequiredItems = "Come back with the ten medals i asked for.",
+					textNoRequiredItems = "Come back with the the medals i asked for.",
 					requiredItems = {
-						{ id = 5785, count = 10 },
+						{ id = 5785, count = 2 },
 					},
 					rewards = {
 						QuestKeyItems.FashionistaOnanista.BookOfManoeuvers,

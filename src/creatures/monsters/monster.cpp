@@ -97,15 +97,17 @@ const std::string &Monster::getName() const {
 }
 
 // Vaigu custom
-/*
-const std::string &Monster::getDisplayName() const {
-    if (displayName.empty()) {
-        return mType->name;
+const std::string &Monster::getDisplayName(const std::string &language) const {
+    if (!displayName.empty()) {
+        return displayName;
     }
-    // return name;
-    return displayName;
+
+	return mType->name;
 }
-*/
+
+void Monster::setDisplayName(const std::string &displayName) {
+	this->displayName = displayName;
+}
 
 void Monster::setName(const std::string &name) {
 	if (getName() == name) {
@@ -305,8 +307,8 @@ uint32_t Monster::getHealingCombatValue(CombatType_t healingType) const {
 }
 
 void Monster::onAttackedCreatureDisappear(bool) {
-	attackTicks = 0;
-	extraMeleeAttack = true;
+	attackTicks = EVENT_CREATURE_THINK_INTERVAL; // vaigu custom
+	// extraMeleeAttack = true;
 }
 
 void Monster::onCreatureAppear(const std::shared_ptr<Creature> &creature, bool isLogin) {
@@ -1202,7 +1204,8 @@ void Monster::doAttacking(uint32_t interval) {
 
 		if (!inRange && spellBlock.isMelee) {
 			// melee swing out of reach
-			extraMeleeAttack = true;
+			// extraMeleeAttack = true;
+			attackTicks = EVENT_CREATURE_THINK_INTERVAL; // vaigu custom
 		}
 	}
 

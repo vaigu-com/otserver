@@ -30,5 +30,6 @@ local context = {
 	dialogs = dialogs,
 	checkInteraction = false,
 	onThink = onThink,
+	spawnedByScript = true,
 }
 NpcRegistry:AppendNpcData(context)

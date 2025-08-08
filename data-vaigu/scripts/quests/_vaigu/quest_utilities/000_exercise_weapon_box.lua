@@ -6,26 +6,35 @@ local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
-	if not player:TryRemoveItems({ { id = boxId, key = boxKey } }) then
+	local boxObject = choice.boxObject
+	if not boxObject then
 		return
 	end
 
-	player:CoalesceNewExerciseWeapon(choice.id, choice.charges)
+	if not player:CanAddItems({ { id = choice.id } }) then
+		player:say("Please wait for the fighters come out of the arena.", TALKTYPE_MONSTER_SAY)
+		return true
+	end
+
+	player:TryCoalesceNewExerciseWeapon(choice.id, choice.charges, boxObject)
 end
 
-function Player:CoalesceNewExerciseWeapon(id, newWeaponCharges)
+function Player:TryCoalesceNewExerciseWeapon(id, newWeaponCharges, boxObject)
 	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	local oldWeapon = self:getItemById(id, true)
 	local oldWeaponCharges = 0
 	if oldWeapon then
 		oldWeaponCharges = oldWeapon:getCharges()
-		oldWeapon:remove()
 	end
 
 	local totalCharges = oldWeaponCharges + newWeaponCharges
 
 	local inboxItem = inbox:addItem(id, totalCharges)
 	if inboxItem then
+		boxObject:remove()
+		if oldWeapon then
+			oldWeapon:remove()
+		end
 		inboxItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 		inboxItem:setOwner(self)
 	end
@@ -47,12 +56,12 @@ function ExerciseWeaponBox(charges)
 end
 
 local exerciseWeaponBox = Action()
-function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+function exerciseWeaponBox.onUse(player, boxObject, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
 		return false
 	end
 
-	local charges = item:getCustomAttribute("charges")
+	local charges = boxObject:getCustomAttribute("charges")
 	local title = player:Localizer(LOCALIZERS.Universal):Get("ExerciseWeaponBoxTitle")
 	local message = player:Localizer(LOCALIZERS.Universal):Context({ charges = charges }):Get("ExerciseWeaponBoxMessage")
 	local window = ModalWindow({ title = title, message = message })
@@ -62,6 +71,7 @@ function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition,
 		local choice = window:addChoice(name)
 		choice.charges = charges
 		choice.id = id
+		choice.boxObject = boxObject
 	end
 
 	window:sendToPlayer(player)

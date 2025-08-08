@@ -665,20 +665,14 @@ void Game::setGameState(GameState_t newState) {
 			g_globalEvents().shutdown();
 
 			// kick all players that are still online
-			auto it = players.begin();
-			while (it != players.end()) {
-				for (const auto &[_, player] : players) {
-					it->second->removePlayer(true);
-					player->client->logout(false, true);
-					it = players.begin();
-				}
+			for (const auto &[_, player] : players) {
+				player->client->logout(false, true);
+				player->removePlayer(true);
 			}
-
 			saveMotdNum();
 			g_saveManager().saveAll();
 
 			g_dispatcher().addEvent([this] { shutdown(); }, __FUNCTION__);
-
 			break;
 		}
 
@@ -1081,6 +1075,7 @@ std::shared_ptr<Player> Game::getPlayerByName(const std::string &s, bool allowOf
 			}
 			return nullptr;
 		}
+		addPlayer(tmpPlayer);
 		tmpPlayer->setOnline(false);
 		return tmpPlayer;
 	}
@@ -1225,6 +1220,11 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 		return false;
 	}
 
+	auto player = creature->getPlayer();
+	if (player){
+		player->setLoggingOut(true);
+	}
+
 	std::shared_ptr<Tile> tile = creature->getTile();
 	if (!tile) {
 		g_logger().error("[{}] tile on position '{}' for creature '{}' not exist", __FUNCTION__, creature->getPosition().toString(), creature->getName());
@@ -1256,6 +1256,7 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 
 		// event method
 		for (const auto &spectator : spectators) {
+			spectator->onRemoveCreature(creature, isLogout);
 			spectator->onRemoveCreature(creature, isLogout);
 		}
 	}

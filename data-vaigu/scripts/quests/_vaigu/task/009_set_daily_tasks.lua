@@ -7,7 +7,7 @@ local function getLevelBracketDailyTasks()
 	return result
 end
 
-function getDailyTasksLevelBrackets()
+local function getDailyTasksLevelBrackets()
 	local result = {}
 	local mem = {}
 	for _, dailyTask in pairs(GetAllDailyTasks()) do
@@ -44,7 +44,10 @@ end
 local function logDailyTasks()
 	local logString = "Daily tasks: "
 	for slotIndex = 1, DAILY_TASKS_LEVEL_BRACKETS_COUNT do
-		logString = logString .. T(":name:, ", { name = GetDailyTaskByIndex(slotIndex).name })
+		local dailyTask = GetDailyTaskByIndex(slotIndex)
+		if dailyTask then
+			logString = logString .. T(":name:, ", { name = dailyTask.name })
+		end
 	end
 	logger.info(logString)
 end

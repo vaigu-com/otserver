@@ -12,10 +12,10 @@
 
 LogWithSpdLog::LogWithSpdLog() {
 	setLevel("info");
-	spdlog::set_pattern("[%Y-%d-%m %H:%M:%S.%e] [%^%l%$] %v ");
+	spdlog::set_pattern("[%P %t] [%^%l%$] %v ");
 
 #ifdef DEBUG_LOG
-	spdlog::set_pattern("[%Y-%d-%m %H:%M:%S.%e] [thread %t] [%^%l%$] %v ");
+	spdlog::set_pattern("[%P %t] [thread %t] [%^%l%$] %v ");
 #endif
 }
 

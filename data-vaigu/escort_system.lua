@@ -14,6 +14,7 @@ function EscortData:New(context)
 	for key, value in pairs(context) do
 		newObj[key] = value
 	end
+	newObj.AfterStart = newObj.AfterStart or function() end
 
 	newObj.timeLimitSeconds = context.timeLimitSeconds or (15 * 60)
 	newObj.startAfterSeconds = context.startAfterSeconds or 2
@@ -121,7 +122,8 @@ function ActiveEscort.New(context, player)
 	end
 
 	if not newObj.escortData then
-		logger.warn("[ActiveEscort.New] no escortData object provided.")
+		logger.warn("[ActiveEscort.New] no escortData object provided. Escort cannot be started.")
+		return
 	end
 	if not newObj.player then
 		logger.warn("[ActiveEscort.New] no player object provided.")
@@ -291,21 +293,20 @@ function ActiveEscort:Start()
 			return
 		end
 
-		local name = self.npc:getName()
+		local displayName = self.npc:getName()
 		local outfit = self.npc:getOutfit()
 		local pos = self.npc:getPosition()
 
-		local escortee = Game.createMonster(BASE_ESCORT_MONSTER_NAME, pos)
+		local escortee = Game.createMonster(BASE_ESCORT_MONSTER_NAME, pos, false, true, nil, displayName)
 		self.escortee = escortee
 
 		--hpbar name and onlook name
-		escortee:setName(name, name)
 		escortee:setOutfit(outfit)
 		if self:GetEscortData().escorteeIsInvulnerable then
 			escortee:setInvulnerable()
 		end
 
-		self.npcName = name
+		self.npcName = displayName
 		self.npcPos = pos
 		self.npc:remove()
 		if not escortee then
@@ -313,6 +314,7 @@ function ActiveEscort:Start()
 		end
 		self.deadline = os.time() + self:GetEscortData().timeLimitSeconds + self:GetEscortData().startAfterSeconds
 
+		self:GetEscortData().AfterStart(self)
 		self:Loop()
 	end, self:GetEscortData().startAfterSeconds * 1000)
 end

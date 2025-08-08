@@ -23,6 +23,24 @@ function Zone:getRandomPlayer()
 	return table.random(self:getPlayers())
 end
 
+function Zone:getWalkableSize()
+	local positions = self:getPositions()
+	if #positions == 0 then
+		logger.error(debug.traceback(T("Zone:randomPosition() - Zone :name: has no positions", { name = self:getName() })))
+		return nil
+	end
+
+	local walkablePositions = {}
+	for _, position in ipairs(positions) do
+		local tile = position:getTile()
+		if tile and tile:isWalkable(false, false, false, false, true) then
+			table.insert(walkablePositions, position)
+		end
+	end
+
+	return #walkablePositions
+end
+
 function Zone:randomPosition(ignoreWalkability)
 	local positions = self:getPositions()
 	if #positions == 0 then

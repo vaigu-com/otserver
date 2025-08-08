@@ -856,11 +856,7 @@ bool Houses::loadHousesXML(const std::string &filename) {
 			house->setGuildhall(static_cast<bool>(guildhallAttr.as_bool()));
 		}
 
-		auto maxBedsAttr = houseNode.attribute("beds");
-		int32_t maxBeds = -1;
-		if (!maxBedsAttr.empty()) {
-			maxBeds = pugi::cast<int32_t>(maxBedsAttr.value());
-		}
+		int32_t maxBeds = std::max<int32_t>(3, std::floor(house->getSize() / 5));
 		house->setMaxBeds(maxBeds);
 
 		house->setOwner(0, false);

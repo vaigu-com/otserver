@@ -144,7 +144,7 @@ return {
 	["Xenon"] = "Zenon",
 	["Brallin of the beech wall unit"] = "Zwalin z rodu Bukowej Mebloscianki",
 	["Jew"] = "Zyd",
-	["Amee"] = "Amee",
+	["4M-33 Mk II"] = "4M-33 Mk II",
 	["Apollo"] = "Apollo",
 	["Betatm"] = "Betabankomat",
 	["Blantix"] = "Blantix",
@@ -273,4 +273,6 @@ return {
 	["Za'Qir"] = "Za'Qir",
 	["Gnomenursey"] = "Gnomenursey",
 	["Conference Triss"] = "Triss",
+	["Celebimber"] = "Celebimber",
+	["Mary"] = "Maria",
 }

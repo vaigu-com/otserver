@@ -30962,7 +30962,6 @@
 		<attribute key="weight" value="80" />
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ring" />
-			<attribute key="vocation" value="None;true" />
 		</attribute>
 	</item>
 	<item id="12670" article="a" name="star ring">
@@ -30971,13 +30970,16 @@
 			value="If you wear it on your ring slot, it will boost your health regeneration when you're not hungry" />
 		<attribute key="showduration" value="1" />
 		<attribute key="showAttributes" value="1" />
-		<attribute key="duration" value="600" />
+		<attribute key="manaticks" value="6000" />
+		<attribute key="managain" value="4" />
+		<attribute key="healthticks" value="6000" />
+		<attribute key="healthgain" value="3" />
+		<attribute key="duration" value="1800" />
 		<attribute key="transformdeequipto" value="12669" />
 		<attribute key="decayTo" value="0" />
 		<attribute key="weight" value="80" />
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ring" />
-			<attribute key="vocation" value="None;true" />
 		</attribute>
 	</item>
 	<item id="12671" name="sack of herbs">
@@ -67024,7 +67026,9 @@ former students at the Noodles Academy. Awarded by TibiaLabs.com" />
 		<attribute key="weight" value="1700" />
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="right-hand" />
+			<!--
 			<attribute key="vocation" value="None;true, Paladin;true, Royal Paladin" />
+			-->
 		</attribute>
 	</item>
 	<item id="35563" article="a" name="magic shield potion">

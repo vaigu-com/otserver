@@ -138,8 +138,8 @@ quest
 					text = "Oohh, from Arnie? For sure, he is so handsome. I will spray them with my perfumes. Greet him from me and take this necklace.",
 					textNoRequiredItems = "I'm not able to make any necklace out of that..",
 					requiredItems = {
-						{ id = 10196, count = 5 },
-						{ id = 10275, count = 5 },
+						{ id = 10196, count = 3 },
+						{ id = 10275, count = 3 },
 						{ id = 9685, count = 1 },
 					},
 					rewards = {
@@ -163,7 +163,7 @@ quest
 					rewards = {
 						[9605] = {
 							{ id = 3370 },
-							{ id = 3098, count = 3 },
+							{ id = 3039 },
 						},
 					},
 					nextState = {
@@ -181,7 +181,7 @@ quest
 					text = "Of course I have a mission for you. You will become the soldier of MirkoTown, like I am.\nRecently, I have heard rumors of some illegal business conduted in a bandit village. Someone has not gotten fucked around for a long time.\nCheck it out, the village is to the east. Apparently they are smuggling using their basement tunnels.",
 					textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 					requiredState = {
-						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
+						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
 					nextState = {
 						[Storage.ToCarryThePigs.HalfTurnKick] = QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves,
@@ -287,7 +287,7 @@ quest
 					text = "I need to finally lose weight. I heard that somewhere to the south, witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
 					textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 					requiredState = {
-						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
+						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
 					nextState = {
 						[Storage.ToCarryThePigs.BalancedDiet] = QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus,
@@ -346,7 +346,7 @@ quest
 						[Storage.ToCarryThePigs.KitzDominando] = QuestState.ToCarryThePigs.KitzDominando.ArrangeBowFromLegolas,
 					},
 					requiredState = {
-						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
+						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
 				},
 			})

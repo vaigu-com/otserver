@@ -175,7 +175,7 @@ bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> &look) {
 			// Register key in the look key map
 			setKey(key, look);
 			tmpVector.emplace_back(key);
-		} else {
+	} else {
 			g_logger().warn(
 				"[{}] duplicate registered script with range key: {}, for script: {}",
 				__FUNCTION__,
@@ -187,6 +187,18 @@ bool Looks::registerLuaKeyEvent(const std::shared_ptr<Look> &look) {
 
 	keysVector = std::move(tmpVector);
 	return !keysVector.empty();
+}
+
+bool Looks::luaAnyEventIsRegistered(const std::shared_ptr<Look> &look) {
+	const auto checkAny = [](const auto &vec, auto &&predicate) {
+		return std::any_of(vec.begin(), vec.end(), std::forward<decltype(predicate)>(predicate));
+	};
+
+	return checkAny(look->getItemIdsVector(), [this](auto id) { return hasItemId(id); })
+		|| checkAny(look->getUniqueIdsVector(), [this](auto id) { return hasUniqueId(id); })
+		|| checkAny(look->getActionIdsVector(), [this](auto id) { return hasActionId(id); })
+		|| checkAny(look->getPositionsVector(), [this](auto pos) { return hasPosition(pos); })
+		|| checkAny(look->getKeysVector(), [this](auto key) { return hasKey(key); });
 }
 
 bool Looks::registerLuaEvent(const std::shared_ptr<Look> &look) {

@@ -1,13 +1,10 @@
-local quest = Quest(LOCALIZERS.FatMyrrusEncounters)
+local quest = Quest(LOCALIZERS.NONE)
 
 quest
 	:Storage(function()
 		Storage.OrcFortress = {
 			DoorAccess = {},
 			GrantDoorAccess = {},
-		}
-		QuestTopics.FatMyrrusEncounters = {
-			SayEncounterName = NextTopic(),
 		}
 	end)
 	:NoQuestlog()
@@ -18,7 +15,7 @@ quest
 				return false
 			end
 
-			player:setStorageValue(Storage.OrcFortress.DoorAccess, ACCESS_GRANTED)
+			player:setStorageValueByKey(Storage.OrcFortress.DoorAccess, ACCESS_GRANTED)
 		end
 		circleTile:key(Storage.OrcFortress.GrantDoorAccess)
 		circleTile:type("stepin")

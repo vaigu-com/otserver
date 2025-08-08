@@ -24,7 +24,13 @@ quest
 
 			RadioFreeHirschberg = {},
 			OldRadioContainer = {},
-			OldRadio = {},
+			OldRadioBroken = {},
+			OldRadioWorking = {},
+			RadioMessageState = {},
+			AmeeEscort = {},
+			AmeeMap = {},
+			HouseTile = {},
+			Monument = {},
 		}
 		QuestState.ArielsFriend = {
 			HumbleRequest = {
@@ -53,7 +59,13 @@ quest
 				ChooseYalahariPiece = 4,
 			},
 			RadioFreeHirschberg = {
-				BringRadioToAriel = 1,
+				FindRadio = 1,
+				BringRadioToAriel = 2,
+				RepairRadioAtCelebimber = 3,
+				ListenToRadio = 4,
+				EscortAmee = 5,
+				FindHouse = 6,
+				FindMonument = 7,
 			},
 		}
 		QuestTopics.ArielsFriend = {
@@ -61,6 +73,8 @@ quest
 			AcceptLoveQuest = NextTopic(),
 			AcceptVodkaQuest = NextTopic(),
 			AcceptReward = NextTopic(),
+			AcceptStartAmeeEsort = NextTopic(),
+			AcceptHandInRadioToAmee = NextTopic(),
 		}
 	end)
 	:Constant(function()
@@ -69,8 +83,28 @@ quest
 			LoveElixirRaw = { id = elixirId, key = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" },
 			LoveElixirEnchanted = { id = elixirId, key = Storage.ArielsFriend.LoveElixirEnchanted },
 			LiquorItem = { id = 6106, key = Storage.ArielsFriend.LiquorItem },
-			OldRadio = { id = 12813, key = Storage.ArielsFriend.OldRadio, desc = "made in Hirschberg Manufacture LLC" },
+			OldRadioBroken = { id = 12813, key = Storage.ArielsFriend.OldRadioBroken, desc = "made in Hirschberg Manufacture LLC" },
+			OldRadioWorking = { id = 12813, key = Storage.ArielsFriend.OldRadioWorking, desc = "made in Hirschberg Manufacture LLC" },
+			AmeeMap = { id = 22107, key = Storage.ArielsFriend.AmeeMap },
 		}
+		local ameeEscort = EscortData({
+			key = Storage.ArielsFriend.AmeeEscort,
+			timeLimitSeconds = 600,
+			startAfterSeconds = 2,
+			destinationPos = Position(7478, 1163, 4),
+			proximityToSucceed = 3,
+			requiredState = {
+				[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee,
+			},
+			nextState = {
+				[Storage.ArielsFriend.RadioFreeHirschberg] = MISSION_FINISHED,
+			},
+			rewards = {
+				QuestKeyItems.ArielsFriend.AmeeMap,
+			},
+			expReward = 900000,
+		})
+		EscortRegistry:Register(ameeEscort)
 	end)
 	:Questlog(function(localizer)
 		table.insert(Quests, {
@@ -97,7 +131,7 @@ quest
 						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel] = "Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel.",
-						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel] = "Turns out that the “wine” worked as intended. Tell Ariel about it.",
+						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel] = 'Turns out that the "wine" worked as intended. Tell Ariel about it.',
 						[MISSION_FINISHED] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
 					},
 				},
@@ -122,17 +156,20 @@ quest
 						[MISSION_FINISHED] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
 					},
 				},
-				--FUTURE_PATCH_TODO: finish new quest
-				--[[
-	{
+				{
 					name = "Mission 5: Radio free Hirschberg",
 					storage = Storage.ArielsFriend.RadioFreeHirschberg,
 					state = {
-						[QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel] = "Bring the old Radio to Ariel.",
-						[MISSION_FINISHED] = "Ariel rewarded you for finding his grandgrandfather's radio.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.FindRadio] = "Konmuld mentioned to search the Retro Knurow for a lost radio of old.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel] = "Bring the radio to Ariel.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.RepairRadioAtCelebimber] = "Ariel told you that Celebimber could have the skills requied to repair the radio. Try to find him in Kongo.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio] = "Try to listen to radio.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee] = "You gave your radio to 4M-33. Rescue it now.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse] = 'You helped 4M-33 get out. It gave you its map and the password "chamek athra thull zathroth". On its way to carpet it also mentioned that you shall find a monument before which you shall utter this password.',
+						[QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it.",
+						[MISSION_FINISHED] = "You found your way to the secret library.",
 					},
 				},
-	]]
 			},
 		})
 	end)
@@ -162,7 +199,6 @@ quest
 			}),
 			QuestFactory.Script(function(missionState)
 				local friendGrave = Action()
-
 				function friendGrave.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					if not player:HasExactMissionState(missionState) then
 						return false
@@ -173,7 +209,6 @@ quest
 					end
 					return true
 				end
-
 				friendGrave:key(Storage.ArielsFriend.FriendGrave)
 				friendGrave:register()
 			end)
@@ -377,9 +412,16 @@ quest
 					"wodka",
 				}] = {
 					text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Hirschberg.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
-					requiredItems = { { id = 6106, remove = false } },
+					requiredItems = { { id = QuestKeyItems.ArielsFriend.LiquorItem.id, key = QuestKeyItems.ArielsFriend.LiquorItem.key, remove = false } },
 					nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
 					expReward = 150000,
+				},
+			}),
+			QuestFactory.OnUseDeclarations({
+				{
+					key = Storage.ArielsFriend.LiquorChest,
+					rewards = { QuestKeyItems.ArielsFriend.LiquorItem },
+					requiredState = {},
 				},
 			})
 	end)
@@ -483,65 +525,302 @@ quest
 					nextTopic = QuestTopics.ArielsFriend.AcceptReward,
 				},
 				[{ "mask", "maska" }] = {
-					text = "Heres your reward!",
+					text = "Heres your reward! I guess i can trust you now. I might have another {mission} for you.",
 					rewards = {
 						{ id = 8864 },
 					},
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = MISSION_FINISHED,
-						[Storage.Finished.ArielsFriend] = MISSION_FINISHED,
 					},
 				},
 				[{ "legs", "spodnie" }] = {
-					text = "Heres your reward!",
+					text = "Heres your reward! I guess i can trust you now. I might have another {mission} for you.",
 					rewards = {
 						{ id = 8863 },
 					},
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = MISSION_FINISHED,
-						[Storage.Finished.ArielsFriend] = MISSION_FINISHED,
 					},
 				},
 				[{ "armor" }] = {
-					text = "Heres your reward!",
+					text = "Heres your reward! I guess i can trust you now. I might have another {mission} for you.",
 					rewards = {
 						{ id = 8862 },
 					},
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = MISSION_FINISHED,
-						[Storage.Finished.ArielsFriend] = MISSION_FINISHED,
 					},
 				},
 			})
 	end)
-	--FUTURE_PATCH_TODO: finish new quest
-	--[[
 	:Mission(Storage.ArielsFriend.RadioFreeHirschberg)
 	:State(function()
 		return MISSION_NOT_STARTED,
-			QuestFactory.OnUseDeclarations({
-				{
-					key = Storage.ArielsFriend.OldRadioContainer,
-					rewards = {
-						{ id = 12814, key = Storage.ArielsFriend.OldRadio },
-					},
+			QuestFactory.Dialog("Konmuld", {
+				[{ "mission", "misja", "aloha" }] = {
+					text = "Before we migrated here, Ariel had a grandpa who was an inventor. His magic skills are nothing compared to mine, but his engineering skills were something else.. Long story short: i was in Retro Knurowo - scrapping some valubles with my metal detector - i encountered some weird signals, similar to ones from our radios. Should you find this radio, you should consult Ariel.",
 					nextState = {
-						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel,
+						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindRadio,
 					},
 				},
-			}),
-			QuestFactory.Dialog("Ariel", {
-				[{ "radio", "old radio" }] = {
-					text = "This radio looks very similar to ones we had back in Hirschberg. I cannot make it {work} again, its just some buzzing.",
-					textNoRequiredItems = "Back in the times we lived in Hirschberg, we had those things called radio. It allowed us to communicate on great distances. I haven't met anyone using it ever since.",
-					requiredItems = {
-						{ QuestKeyItems.ArielsFriend.OldRadio, remove = false },
-					},
-				},
-				[{"sraken"}] = {
-					text = "Sraken pierdaken123"
-				}
 			})
 	end)
-	]]
+	:State(function()
+		return QuestState.ArielsFriend.RadioFreeHirschberg.FindRadio, QuestFactory.OnUseDeclarations({
+			{
+				key = Storage.ArielsFriend.OldRadioContainer,
+				rewards = {
+					QuestKeyItems.ArielsFriend.OldRadioBroken,
+				},
+				nextState = {
+					[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel,
+				},
+			},
+		})
+	end)
+	:State(function()
+		return QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel,
+			QuestFactory.Dialog("Ariel", {
+				[{ "radio", "old radio", "stare radio" }] = {
+					text = "This radio looks very similar to ones we had back in Hirschberg. I cannot make it {work} again, its just some buzzing.",
+				},
+				[{ "work", "naprawic" }] = {
+					text = "I heard about this elvish engineer who tinkers with things like this one. You can ask him for help. His name is Celebimber. You shall find him in the jungle of Kongo.",
+					requiredItems = {
+						QuestKeyItems.ArielsFriend.OldRadioBroken,
+					},
+					rewards = {
+						QuestKeyItems.ArielsFriend.OldRadioBroken,
+					},
+					nextState = {
+						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.RepairRadioAtCelebimber,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.ArielsFriend.RadioFreeHirschberg.RepairRadioAtCelebimber,
+			QuestFactory.Dialog("Celebimber", {
+				[{ "radio", "old radio", "stare radio" }] = {
+					text = "Here you go",
+					textNoRequiredItems = "Sure, i can repair it.. It seems like its missing its core. Bring me one spark sphere and i will repair it.",
+					requiredItems = {
+						{ id = 23518 },
+						QuestKeyItems.ArielsFriend.OldRadioBroken,
+					},
+					rewards = {
+						QuestKeyItems.ArielsFriend.OldRadioWorking,
+					},
+					nextState = {
+						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio,
+						[Storage.ArielsFriend.RadioMessageState] = 1,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio,
+			QuestFactory.Script(function(missionState)
+				local destinationPos = Position(7661, 1611, 7)
+
+				local function getDistanceMessage(player)
+					local dist = player:getPosition():EuclideanDistance(destinationPos)
+					if dist < 50 then
+						return "Help me! Im trapped in this dungeon full of Spectres! Somebody help me!"
+					elseif dist < 250 then
+						return "shhelp shshkshsh sshpectreshhkshk"
+					elseif dist < 500 then
+						return "shshshei khahkhkr shpesh"
+					elseif dist < 1000 then
+						return "kshkskksshhhshh"
+					else
+						return "Complete silence"
+					end
+				end
+
+				local radioUse = Action()
+				function radioUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					player:say(getDistanceMessage(player), TALKTYPE_ORANGE_1)
+					return true
+				end
+				radioUse:key(Storage.ArielsFriend.OldRadioWorking)
+				radioUse:register()
+			end),
+			QuestFactory.Dialog("4M-33 Mk II", {
+				[{ "mission", "misja" }] = {
+					text = "I see you heard me through your radio and came to help me. I cannot move, as they removed my core.. altough your {radio} may just be a fine substitute.",
+					nextTopic = QuestTopics.ArielsFriend.AcceptHandInRadioToAmee,
+				},
+				[{ "radio", "radiu" }] = {
+					text = "Yes, its working. I can move on my own. You might be wondering how i ended up down there. I was designed to steal the map and password to secret library. I managed to do both of those, but my creator forgot to implement my logic after that. Didnt hear from him ever since. Just escort me to the abandoned flying carpet, south west from here, and i will give those to you. Are you ready to go now?",
+					requiredTopic = QuestTopics.ArielsFriend.AcceptHandInRadioToAmee,
+					nextTopic = QuestTopics.ArielsFriend.AcceptStartAmeeEsort,
+					requiredItems = {
+						QuestKeyItems.ArielsFriend.OldRadioWorking,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee,
+			QuestFactory.Dialog("4M-33 Mk II", {
+				[{ "mission", "misja" }] = {
+					text = "Can you help me get out of here now?",
+					nextTopic = QuestTopics.ArielsFriend.AcceptStartAmeeEsort,
+				},
+				[{ "yes", "yes" }] = {
+					text = "Lets go.",
+					requiredTopic = QuestTopics.ArielsFriend.AcceptStartAmeeEsort,
+					specialActionsOnSuccess = {
+						{
+							action = SPECIAL_ACTIONS_UNIVERSAL.startEscort,
+							escortData = EscortRegistry:Get(Storage.ArielsFriend.AmeeEscort),
+						},
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse,
+			QuestFactory.Script(function()
+				local destination = Position(7661, 1611, 7)
+				local map = Action()
+				function map.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					local vectorBetween = Vector.BetweenPositions(player:getPosition(), destination)
+					local direction = vectorBetween:ToDirection()
+					local announcement = player:Localizer(LOCALIZERS.Universal):Context({ direction = direction }):Get("GO_IN_DIRECTION")
+
+					doCreatureSay(player, announcement, TALKTYPE_ORANGE_1)
+				end
+				map:key(Storage.ArielsFriend.AmeeMap)
+				map:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local nextState = {
+					[Storage.ArielsFriend.RadioFreeHirschberg] = MISSION_FINISHED,
+				}
+
+				local tileBeforeHouse = MoveEvent()
+				function tileBeforeHouse.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return
+					end
+					if player:HasItems({ QuestKeyItems.ArielsFriend.AmeeMap }) then
+						player:RemoveItems({ QuestKeyItems.ArielsFriend.AmeeMap })
+						player:getPosition():sendMagicEffect(CONST_ME_HITBYFIRE)
+						player:NextState(nextState)
+					end
+				end
+				tileBeforeHouse:key(Storage.ArielsFriend.HouseTile)
+				tileBeforeHouse:type("stepin")
+				tileBeforeHouse:register()
+			end)
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Monument door")
+		local monster = {}
+
+		monster.description = "a mountain"
+		monster.experience = 0
+		monster.outfit = {
+			lookType = 305,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 500
+		monster.maxHealth = 500
+		monster.race = "undead"
+		monster.speed = 10
+		monster.manaCost = 0
+
+		monster.changeTarget = { interval = 3717, chance = 10 }
+
+		monster.strategiesTarget = { nearest = 70, health = 10, damage = 10, random = 10 }
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = false,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = false,
+			canPushCreatures = true,
+			staticAttackChance = 20,
+			targetDistance = 1,
+			runHealth = 0,
+			healthHidden = true,
+			isBlockable = false,
+			canWalkOnEnergy = true,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+		}
+
+		monster.light = { level = 0, color = 0 }
+
+		monster.voices = { interval = 4999, chance = 10 }
+
+		monster.loot = {}
+
+		monster.attacks = {}
+
+		monster.defenses = { defense = 25, armor = 25 }
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 100 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+			{ type = COMBAT_FIREDAMAGE, percent = 100 },
+			{ type = COMBAT_LIFEDRAIN, percent = 100 },
+			{ type = COMBAT_MANADRAIN, percent = 100 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 100 },
+			{ type = COMBAT_ICEDAMAGE, percent = 100 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 100 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		local insideLibrary = Position(7229, 2399, 9)
+		local outsideStandingPosition = Position(7683, 1637, 9)
+		mType.onSay = function(listener, talker, type, message)
+			local player = talker:getPlayer()
+			if not player then
+				return
+			end
+
+			if isPlayerPzLocked(player) then
+				SendPlayerIsPzLocked(player)
+				return false
+			end
+
+			if player:getPosition() ~= outsideStandingPosition then
+				return
+			end
+
+			if player:getStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg) == QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument then
+				player:setStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg, MISSION_FINISHED)
+			end
+
+			if message:lower() == "chamek athra thull zathroth" then
+				player:teleportTo(insideLibrary)
+			end
+		end
+
+		mType.onAppear = function(monster, creature)
+			monster:setOutfit({ lookTypeEx = 470 })
+		end
+		mType:register(monster)
+	end)
 	:Register()

@@ -263,12 +263,12 @@ SPECIAL_REQUIREMENTS_BANK = {
 		local pilesCount = crystalPiles + platinumPiles + goldPiles
 
 		local player = context.player
-		local hasCap, noCapMessage = player:HasEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
+		local hasCap, noCapMessage = player:ErrorIfHasNotEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
 		if not hasCap then
 			player:sendTextMessage(MESSAGE_FAILURE, noCapMessage)
 			return false
 		end
-		local hasSlots, noSlotsMessage = player:HasEnoughSlots({ requiredSlots = pilesCount })
+		local hasSlots, noSlotsMessage = player:ErrorIfHasNotEnoughSlots({ requiredSlots = pilesCount })
 		if not hasSlots then
 			player:sendTextMessage(MESSAGE_FAILURE, noSlotsMessage)
 			return false

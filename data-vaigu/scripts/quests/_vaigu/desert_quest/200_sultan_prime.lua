@@ -494,7 +494,7 @@ quest
 				[{ GREET }] = {
 					text = "My favorite follower, |PLAYERNAME|. You came for new {mission}?",
 				},
-				[{ "mission", "yes", "tak" }] = {
+				[{ "mission", "yes", "tak", "zadanie" }] = {
 					text = "I don't think I told you about this, but I have a plan to take over and rule the world. That amulet will surely help me, but I still would not mind gaining new allies. I'm currently trying to convince mages, warriors, animals and other inferior beings. Your first task will be to poison magicians' water source. They rejected my will and ridiculed my proposal for an alliance.",
 					nextState = {
 						[Storage.SultanPrime.Mission02] = QuestState.SultanPrime.Mission02.PoisonMagiciansWell,
@@ -767,6 +767,7 @@ quest
 						[Storage.SultanPrime.Mission02] = MISSION_FINISHED,
 						[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.OpenCoffins,
 						[Storage.SultanPrime.CoffinCount] = 0,
+						[Storage.SultanPrime.RetroLever] = ACCESS_GRANTED,
 					},
 				},
 			})
@@ -783,7 +784,7 @@ quest
 					if not player:isPlayer() then
 						return false
 					end
-					if player:getStorageValueByKey(Storage.SultanPrime.Mission03) == MISSION_NOT_STARTED then
+					if player:getStorageValueByKey(Storage.SultanPrime.RetroLever) ~= ACCESS_GRANTED then
 						return true
 					end
 

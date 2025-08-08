@@ -45,7 +45,7 @@ return {
 	-- Cave Explorer
 	["Cave Explorer on Shield"] = "Grotolaz na Tarczy",
 	["First Mission"] = "Misja pierwsza",
-	["Find the page."] = "Znajdz strone.",
+	["Find the journal page."] = "Znajdz strone dziennika.",
 	["You found the page. Show it to Germi."] = "Znalazles strone, pokaz ja Germiemu.",
 	["Talk to Germi to get him to open the door for you."] = "Porozmawiaj z Germim, aby otworzyl ci drzwi.",
 	["Find the Engineer's Ghost and help him."] = "Znajdz Ducha Inzyniera i pomoz mu.",

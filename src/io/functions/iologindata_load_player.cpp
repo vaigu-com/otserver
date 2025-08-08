@@ -191,6 +191,7 @@ bool IOLoginDataLoad::loadPlayerBasicInfo(const std::shared_ptr<Player> &player,
 				if (townId != 0 && currentTown) {
 					player->town = currentTown;
 					g_logger().warn("Assigned first valid town {} (id: {}) to player {}", currentTown->getName(), townId, player->name);
+					break;
 				}
 			}
 

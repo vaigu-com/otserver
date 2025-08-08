@@ -337,6 +337,74 @@ function QuestRegistry:RunScripts()
 	end
 end
 
+local function normalizeItem(item)
+	local normalized = {}
+	normalized.id = item.id
+	normalized.aid = item.aid or item.actionid or item.actionId
+	normalized.uid = item.uid or item.uniqueid or item.uniqueId
+	normalized.key = item.key
+	normalized.pos = item.pos or item.position
+	return normalized
+end
+
+local function hasIdAction(item)
+	local dummyIdAction = Action()
+	function dummyIdAction.onUse(_, _, _, _, _, _)
+		return false
+	end
+	dummyIdAction:id(item.id)
+	return dummyIdAction:isRegistered()
+end
+
+local function generateDummyAction(keyItem)
+	local dummyAction = Action()
+	function dummyAction.onUse(_, _, _, _, _, _)
+		return false
+	end
+	local normalized = normalizeItem(keyItem)
+	if normalized.id then
+		if table.contains(keysID, normalized.id) then
+			return nil
+		end
+		if hasIdAction(normalized) then
+			logger.debug(T("Registering dummy action for aid/uid/pos/key for item with id :id:", { id = normalized.id }))
+		end
+	end
+	if normalized.aid then
+		dummyAction:aid(normalized.aid)
+	end
+	if normalized.uid then
+		dummyAction:uid(normalized.uid)
+	end
+	if normalized.pos then
+		dummyAction:position(normalized.pos)
+	end
+	if normalized.key then
+		dummyAction:key(normalized.key)
+	end
+
+	if not normalized.aid and not normalized.uid and not normalized.pos and not normalized.key then
+		return nil
+	end
+
+	return dummyAction
+end
+
+local function registerDummyActions()
+	local registerDummyActionsStartup = GlobalEvent("Quest/registerDummyActions")
+	function registerDummyActionsStartup.onStartup()
+		for quest, keyItems in pairs(QuestKeyItems) do
+			for itemName, keyItem in pairs(keyItems) do
+				local dummyAction = generateDummyAction(keyItem)
+				if dummyAction and not dummyAction:isRegistered() then
+					dummyAction:register()
+				end
+			end
+		end
+	end
+	registerDummyActionsStartup:register()
+end
+
 function QuestRegistry:RegisterQuestData()
 	self:UnpackStateData()
 	self:CreateQuestlog()
@@ -348,6 +416,7 @@ function QuestRegistry:RegisterQuestData()
 	self:RunScripts()
 	self.NormalizeQuestlog()
 	questlogLookups()
+	registerDummyActions()
 end
 
 function QuestRegistry:Register(quest)
@@ -431,4 +500,18 @@ function NpcRegistry:RegisterNpcDefinitions()
 		npc.dialogs = self:ExtractDialogs(npc)
 		RegisterNpcDefinition(npc)
 	end
+end
+
+MISSING_NPCS = {}
+function NpcRegistry:ValidateNpcsArePlacedOnMap()
+	local validateNpcsArePlacedOnMapStartup = GlobalEvent("NpcRegistry/ValidateNpcsArePlacedOnMap")
+	function validateNpcsArePlacedOnMapStartup.onStartup()
+		for npcName, data in pairs(self.registry) do
+			if data.spawnedByScript ~= true and not Npc(npcName) then
+				logger.warn(T("[NpcRegistry::ValidateNpcsArePlacedOnMap] Npc :npcName: is not placed on map.", { npcName = npcName }))
+				table.insert(MISSING_NPCS, npcName)
+			end
+		end
+	end
+	validateNpcsArePlacedOnMapStartup:register()
 end

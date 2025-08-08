@@ -193,6 +193,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getStorageValueByKey(Storage.TheApeCity.CampfireMission) == 2 then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Ratujesz nasza sytuacje, przyjacielu. Mam nadzieje, ze szalenstwo jeszcze nie rozprzestrzeni sie. Pewnie jest gotowy na kolejna misje." or "You do please Hairycles again, friend. Me hope madness will not spread further now. Perhaps you are ready for other mission.", npc, creature)
 				player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 14)
+				AddExperienceWithAnnouncement(player, 30000)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze, przeszkodz im jakos w tych rytualach. Ja tam niczego szczegolnego nie widzialem." or "Please destroy their mystical campfire, so my people will come to senses again.", npc, creature)
 			end

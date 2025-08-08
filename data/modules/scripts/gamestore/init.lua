@@ -1678,6 +1678,7 @@ function GameStore.processHouseRelatedPurchase(player, offer)
 					decoKit:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, "You bought this item in the Store.\nUnwrap it in your own house to create a <" .. ItemType(itemId):getName() .. ">.")
 					decoKit:setCustomAttribute("unWrapId", itemId)
 					decoKit:setAttribute(ITEM_ATTRIBUTE_DATE, offer.count)
+					decoKit:setCustomAttribute(HOUSE_DECORATION_STATUS, IS_HOUSE_DECORATION)
 
 					if not offer.movable then
 						decoKit:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
@@ -1689,6 +1690,7 @@ function GameStore.processHouseRelatedPurchase(player, offer)
 					if decoKit then
 						decoKit:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, "You bought this item in the Store.\nUnwrap it in your own house to create a <" .. ItemType(itemId):getName() .. ">.")
 						decoKit:setCustomAttribute("unWrapId", itemId)
+						decoKit:setCustomAttribute(HOUSE_DECORATION_STATUS, IS_HOUSE_DECORATION)
 
 						if not offer.movable then
 							decoKit:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())

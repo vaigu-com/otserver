@@ -589,6 +589,33 @@ function Player:removeAll(itemId)
 	return count
 end
 
+local function bossKVScope(bossNameOrId)
+	local mType = MonsterType(bossNameOrId)
+	if not mType then
+		logger.error("bossKVScope - Invalid boss name or id: " .. bossNameOrId)
+		return false
+	end
+	return "boss.cooldown." .. toKey(tostring(mType:raceId()))
+end
+
+function Player:getBossCooldown(bossNameOrId)
+	local scope = bossKVScope(bossNameOrId)
+	if not scope then
+		return false
+	end
+	return self:kv():get(scope) or 0
+end
+
+function Player:setBossCooldown(bossNameOrId, time)
+	local scope = bossKVScope(bossNameOrId)
+	if not scope then
+		return false
+	end
+	local result = self:kv():set(scope, time)
+	self:sendBosstiaryCooldownTimer()
+	return result
+end
+
 local encounterCooldownScope = Scope("encounter", "cooldown")
 ---@param encounterData EncounterData
 ---@return unknown

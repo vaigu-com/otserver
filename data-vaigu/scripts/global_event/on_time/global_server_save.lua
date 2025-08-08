@@ -1,3 +1,4 @@
+--[[
 local function ServerSave()
 	if configManager.getBoolean(configKeys.GLOBAL_SERVER_SAVE_CLEAN_MAP) then
 		cleanMap()
@@ -45,3 +46,4 @@ end
 
 serverSaveEvent:time(configManager.getString(configKeys.GLOBAL_SERVER_SAVE_TIME))
 serverSaveEvent:register()
+]]

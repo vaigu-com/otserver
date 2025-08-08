@@ -16,7 +16,7 @@ local voices = {
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
 local dialogs = {
-	[{ "sail", "plynac" }] = {
+	[TRAVEL_KEYWORDS[TRANSPORT_TYPE.SHIP]] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
@@ -40,6 +40,7 @@ local dialogs = {
 		text = "Ask Woody about the wood supply.",
 	},
 }
+
 local context = {
 	name = name,
 	outfit = outfit,

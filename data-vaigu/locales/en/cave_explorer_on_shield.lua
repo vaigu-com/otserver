@@ -45,7 +45,7 @@ return {
 	-- Cave Explorer
 	["Cave Explorer on Shield"] = "Cave Explorer on Shield",
 	["First Mission"] = "First Mission",
-	["Find the page."] = "Find the page.",
+	["Find the journal page."] = "Find the journal page.",
 	["You found the page. Show it to Germi."] = "You found the page. Show it to Germi.",
 	["Talk to Germi to get him to open the door for you."] = "Talk to Germi to get him to open the door for you.",
 	["Find the Engineer's Ghost and help him."] = "Find the Engineer's Ghost and help him.",

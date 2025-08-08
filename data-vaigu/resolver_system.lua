@@ -44,7 +44,6 @@ local goesToActions = {
 	addDialogData = true,
 	text = true,
 	interactOnGreet = true,
-	preycardReward = true,
 }
 
 function ResolutionContext:Append(tab)
@@ -52,7 +51,7 @@ function ResolutionContext:Append(tab)
 	return self
 end
 
----@return ResolutionContext ResolutionContext
+---@return ResolutionContext
 function ResolutionContext.FromDialogContext(context, data)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
@@ -62,7 +61,7 @@ function ResolutionContext.FromDialogContext(context, data)
 	return newObj
 end
 
----@return ResolutionContext ResolutionContext
+---@return ResolutionContext
 function ResolutionContext.FromAnyTable(context)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
@@ -357,11 +356,11 @@ end
 
 function ResolutionContext:AddWildcard()
 	local actions = self.actionsOnSuccess
-	if not actions.preycardReward then
+	if not actions.wildcardReward then
 		return
 	end
 
-	self.player:addPreyCards(actions.preycardReward)
+	self.player:addPreyCards(actions.wildcardReward)
 end
 
 function ResolutionContext:UpdatePlayerState()

@@ -1,4 +1,4 @@
-local dailyTaskData = {
+local dailyTasksData = {
 	{
 		name = "Undeads",
 		items = {
@@ -880,29 +880,29 @@ function GetDailyTaskByCreatureName(creatureName)
 	return creatureNameToDailyTask[creatureName]
 end
 function GetAllDailyTasks()
-	return dailyTaskData
+	return dailyTasksData
 end
 local function setAuxillaryMaps(dailyTask, i)
-	storageToDailyTask[dailyTask.storage] = dailyTaskData[i]
+	storageToDailyTask[dailyTask.storage] = dailyTasksData[i]
 	for _, creatureName in pairs(dailyTask.creatures) do
-		creatureNameToDailyTask[creatureName] = dailyTaskData[i]
+		creatureNameToDailyTask[creatureName] = dailyTasksData[i]
 	end
 end
 
 local taskTaskNameScope = Scope("DailyTask", "TaskName")
 local taskCurrentKillsScope = Scope("DailyTask", "CurrentKills")
 function RegisterDailyTasksInQuestsTable()
-	for i, dailyTask in pairs(dailyTaskData) do
+	for i, dailyTask in pairs(dailyTasksData) do
 		local storage = taskTaskNameScope:Get(dailyTask.name)
 		local currentKills = taskCurrentKillsScope:Get(dailyTask.name)
 
 		dailyTask.storage = storage
-		dailyTaskData[i].storage = storage
+		dailyTasksData[i].storage = storage
 		dailyTask.currentKills = currentKills
 
 		local dailyTaskMission = {
 			name = "DAILY_TASK_MISSION_NAME",
-			dailyTask = dailyTaskData[i],
+			dailyTask = dailyTasksData[i],
 			storage = storage,
 			minValue = 0,
 			description = "DAILY_TASK_MISSION_DESCRIPTION",

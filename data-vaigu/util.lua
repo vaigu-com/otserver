@@ -1,3 +1,9 @@
+function SecondsToMinSec(seconds)
+	local minutes = math.floor(seconds / 60)
+	local remainingSeconds = seconds % 60
+	return minutes, remainingSeconds
+end
+
 function FirstCharToUpper(str)
 	return str:gsub("^%l", string.upper)
 end
@@ -41,6 +47,14 @@ function Player:setStorageValueByKey(key, nextValue)
 	self:kv():set(key, nextValue)
 	self:updateStorage(key, nextValue, previousValue, os.time())
 end
+---using key types other than string/number is not recommended
+---@param key string|number|any
+function Player:removeStorageValueByKey(key)
+	local previousValue = self:getStorageValueByKey(key)
+	self:kv():remove(key)
+	self:updateStorage(key, nil, previousValue, os.time())
+end
+
 function Player:incrementStorageByKey(key, addend)
 	addend = addend or 1
 	local currentValue = self:getStorageValueByKey(key)

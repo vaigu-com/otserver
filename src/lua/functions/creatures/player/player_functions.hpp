@@ -175,7 +175,9 @@ class PlayerFunctions {
 	static int luaPlayerGetStorageValueByName(lua_State* L);
 	static int luaPlayerSetStorageValueByName(lua_State* L);
 
+	static int luaPlayerCanAddItem(lua_State* L); // Vaigu custom
 	static int luaPlayerAddItem(lua_State* L);
+	static int luaPlayerCanAddItemEx(lua_State* L); // Vaigu custom
 	static int luaPlayerAddItemEx(lua_State* L);
 	static int luaPlayerAddItemStash(lua_State* L);
 	static int luaPlayerRemoveStashItem(lua_State* L);
@@ -283,7 +285,7 @@ class PlayerFunctions {
 	static int luaPlayerSetStaminaXpBoost(lua_State* L);
 	static int luaPlayerGetXpBoostTime(lua_State* L);
 	static int luaPlayerSetXpBoostTime(lua_State* L);
-	static int luaPlayerAddXpBoostTime(lua_State* L); // Wykopots custom
+	static int luaPlayerAddXpBoostTime(lua_State* L); // Vaigu custom
 
 	static int luaPlayerGetIdleTime(lua_State* L);
 	static int luaPlayerGetFreeBackpackSlots(lua_State* L);

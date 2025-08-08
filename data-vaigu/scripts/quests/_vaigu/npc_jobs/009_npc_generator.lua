@@ -92,7 +92,7 @@ function RegisterNpcDefinition(npcData)
 	npcConfig.health = 100
 	npcConfig.maxHealth = npcConfig.health
 	npcConfig.walkInterval = npcData.walkInterval or 2000
-	npcConfig.walkRadius = npcData.walkInterval or 2
+	npcConfig.walkRadius = npcData.walkRadius or 2
 
 	npcConfig.outfit = outfit
 

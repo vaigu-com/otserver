@@ -16,10 +16,18 @@ local incomprehensibleStringPool = {
 	"Nie wiem o czym mowisz.",
 	"Ze co?",
 }
+
+local toOrdinalGrandPlace = {
+	[1] = "pierwsze",
+	[2] = "drugie",
+	[3] = "trzecie",
+}
+
 return {
+	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hej. Ja jestem Zong! Chcialbys, aby Cie gdzies {poswiezc}?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Dzien dobry! Wygladasz na glodnego.. Wpisz {trade} aby zobaczyc oferte.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!"] = "Witaj |PLAYERNAME|. Mozesz zaopatrzyc sie u mnie w przedmioty magiczne. Sprzedaje takze {wildcard}, pomagajacy w modlitwach!",
-	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}."] = "",
+	["Welcome to my workshop. If you would like to see my furniture and other wares, just ask me for {trade}."] = "Witam w moim warsztacie. Jesli interesuje cie zakup mebli, to zapytaj mnie o handel.",
 	["Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors."] = "Witaj |PLAYERNAME|. Widziales dzisiejsze {ogloszenie}? Jesli chcesz, to mozesz z niego {zrezygnowac}. Posiadam takze pewnien {stroj} do zaoferowania.",
 	["Hello! You want to trade or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Dzien dobry! Pohandlujemy, a moze naprawie Ci zuzyte {soft boots}? Przebuje takze {medicine pouch}, zglos sie jesli zdobedziesz jakies.",
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Siemaneczko, widze ze zadanie o ktore cie prosilem zostalo wykonane. Nalezy ci sie {nagroda}!",
@@ -46,6 +54,17 @@ return {
 	["NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!"] = "AAAAAMUULETY ZA DWA ZLOTA, PIERSCIONECZKI DLA PIEKNYCH DZIEWCZYYYYN, WYMIANA {LIFE CRYSTAL}. Zapraszam do straganuuu!",
 	["Bye, be aware of pickpockets!"] = "Nara, uwazaj zeby cie ktos nie ocyganil.",
 	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one."] = "Moj stary jest fanatykiem wedkarstwa. Pol mieszkania zajebane wedkami najgorsze. Ostatnio kaze dorabiac mi plywajac lodka, dlatego moge zabrac cie w pobliskie rejony, lub opchnac jakies {wedki}. Jesli masz chwile, to moge ci opowiedziec jakies {historie}.",
+	[MINIGAMES_BROADCAST_TOP_PARTICIPANTS] = function(context)
+		local min, sec = SecondsToMinSec(context.timeTakenSeconds)
+		context.min = min
+		context.sec = sec
+		context.ordinal = toOrdinalGrandPlace[context.grandPlace]
+		if context.competitionType == MINIGAME_COMPETITION_TYPE.SPEEDRUN then
+			return T("Gracz :playerName: ukonczyl :minigameName: z czasem :min: minut i :sec: sekund zajmujac :ordinal: miejsce. Gratulacje!", context)
+		else
+			return T("Gracz :playerName: ukonczyl :minigameName:, przezywajac :min: minut i :sec: sekund i zajmujac :ordinal: miejsce. Gratulacje!", context)
+		end
+	end,
 	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "Nie wybrales trudnosi dla tego starcia!",
 	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "Oto dzwignia starcia. Ukonczenie starcia odblokowuje wyzszy poziom trudnosci. Mozesz wybrac poziom trudnosci patrzac na dzwignie.\n\nWyzszy poziom trudnosci oznacza wiecej nagrod, ale takze zwieksza obrazenia i zycie przeciwnikow, a takze moze dodac dodatkowe mechaniki do walki.\n\n20% addytywnych nagrod za poziom\n\n20% multiplikatywnych obrazen/zycia za poziom",
 	["Select difficulty:"] = "Wybierz trudnosc:",

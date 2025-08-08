@@ -113,6 +113,7 @@ public:
 	bool registerLuaKeyEvent(const std::shared_ptr<MoveEvent> &moveEvent); // Vaigu custom
 	bool registerLuaEvent(const std::shared_ptr<MoveEvent> &event);
 	bool registerEvent(const std::shared_ptr<MoveEvent> &moveEvent, std::string key, std::map<std::string, MoveEventList> &moveListMap) const;
+	
 	void clear();
 
 private:

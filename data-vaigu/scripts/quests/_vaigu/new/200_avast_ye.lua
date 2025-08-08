@@ -268,6 +268,7 @@ quest
 					requiredItems = {
 						{ id = 10282, remove = false },
 					},
+					expReward = 100000,
 					nextState = {
 						[Storage.AvastYe.Mission01] = QuestState.AvastYe.Mission01.TalkToIronhook,
 						[Storage.AvastYe.ShipDestinations.PortLouse] = ACCESS_GRANTED,

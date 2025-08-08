@@ -36,6 +36,8 @@ private:
 	void saveMap();
 	void saveKV();
 
+	void setSuccesfulSaveTimestamp();
+
 	void schedulePlayer(std::weak_ptr<Player> player);
 	bool doSavePlayer(std::shared_ptr<Player> player);
 
@@ -46,6 +48,9 @@ private:
 	KVStore &kv;
 	Logger &logger;
 	Game &game;
+	#ifndef OS_WINDOWS
+	pid_t child_saver_pid;
+	#endif
 };
 
 constexpr auto g_saveManager = SaveManager::getInstance;

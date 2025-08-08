@@ -40,7 +40,7 @@ local config = {
 	exit = Position(33597, 30994, 14),
 	onUseExtra = function(creature)
 		if creature and creature:isPlayer() then
-			creature:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable, 0)
+			creature:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable, 0)
 		end
 	end,
 }

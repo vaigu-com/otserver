@@ -29,6 +29,9 @@ quest
 		}
 	end)
 	:Constant(function()
+		QuestConstants.EnterTheDrunkTank = {
+			PotionAccessLevel = 200
+		}
 		local vocationToMission = {
 			[VOCATION.BASE_ID.DRUID] = Storage.EnterTheDrunkTank.UltimateManaPotion,
 			[VOCATION.BASE_ID.KNIGHT] = Storage.EnterTheDrunkTank.MediumManaPotion,
@@ -116,7 +119,7 @@ quest
 					specialRequirements = {
 						{
 							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerHasLevel,
-							minLevel = 200,
+							minLevel = QuestConstants.EnterTheDrunkTank.PotionAccessLevel,
 							requiredOutcome = true,
 							textOnFail = "I see that Fisher vouched for you, but i cannot teach you yet. Come back when you are at least level 200.",
 						},

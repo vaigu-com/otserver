@@ -66,7 +66,7 @@ function spell.onCastSpell(creature, var)
 	if creature:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Malofur) ~= 1 then
 		creature:say("RAAAARGH! I'M MASHING YE TO DUST!", TALKTYPE_MONSTER_SAY)
 		creature:say("BOOM!", TALKTYPE_MONSTER_SAY)
-		creature:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.Malofur, 1)
+		creature:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Malofur, 1)
 
 		addEvent(function(cid)
 			local c = Creature(cid)
@@ -107,7 +107,7 @@ function spell.onCastSpell(creature, var)
 		addEvent(function(cid)
 			local c = Creature(cid)
 			if c then
-				c:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.Malofur, 0)
+				c:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Malofur, 0)
 			end
 		end, exaust * 1000, creature:getId())
 	end

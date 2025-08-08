@@ -44,7 +44,7 @@ pseudoQuest
 		end
 		sharedLobbyAppearPositionStartup:register()
 
-		local speeds = {
+		local entitySpeeds = {
 			150,
 			200,
 			350,
@@ -53,33 +53,36 @@ pseudoQuest
 			600,
 			700,
 		}
-		--Requies changes in otbm
-		local topItems = {
-			log = 3922,
-			minecart = 7131,
-			horseWagon = 7906,
-		}
-		local topItemToMaxStripes = {
-			[topItems.log] = 4,
-			[topItems.minecart] = 2,
-			[topItems.horseWagon] = 2,
-		}
-		local minGapLength = 2
-		local maxGapLength = 5
 
 		--Requires changes in otbm
 		local gameHeight = 260
 		local laneWidth = 107
 
-		local speedsPerDifficulty = 2
+		--Requies changes in otbm
+		local entityIdentifier = {
+			log = 3922,
+			minecart = 7131,
+			horseWagon = 7906,
+		}
+
+		local entityIdentifierToMaxStripes = {
+			[entityIdentifier.log] = 4,
+			[entityIdentifier.minecart] = 2,
+			[entityIdentifier.horseWagon] = 2,
+		}
+
+		local minGapBetweenEntities = 2
+		local maxGapBetweenEntities = 5
+
+		local uniqueSpeedsPerDifficulty = 2
 		--#endegion EDITABLE
 
-		local difficultiesCount = math.floor(gameHeight / #speeds)
+		local difficultiesCount = math.floor(gameHeight / #entitySpeeds)
 
 		local blockageId = 2187
 		local elevationId = 25602
 
-		local skipGap = 2
+		local skipInitialGap = 2
 		local skipTeleportTile = 1
 
 		---@param pos Position
@@ -218,8 +221,8 @@ pseudoQuest
 			local lastPos = edgePosition:Moved(1, -gameHeight, -1)
 			IterateBetweenPositions(edgePosition, lastPos, function(context)
 				local currentPos = context.pos
-				local westToEastTpPos = currentPos:Moved(skipGap, 0, 0)
-				local eastToWestTpPos = currentPos:Moved(skipGap + laneWidth - 1, 0, 0)
+				local westToEastTpPos = currentPos:Moved(skipInitialGap, 0, 0)
+				local eastToWestTpPos = currentPos:Moved(skipInitialGap + laneWidth - 1, 0, 0)
 				local eastTile = Tile(eastToWestTpPos)
 				local westTile = Tile(westToEastTpPos)
 				if not (eastTile and westTile) then
@@ -229,7 +232,7 @@ pseudoQuest
 				westTile:getGround():setKey(scopes.teleportWestToEast:Get())
 			end)
 		end
-		function CrossroadOrchestrator.InitializeAllCreatureTeleports()
+		function CrossroadOrchestrator.InitializeCreatureTeleports()
 			for _, edgePosition in ipairs(CrossroadOrchestrator.edgePositions) do
 				CrossroadOrchestrator.InitializeInstanceCreatureTeleport(edgePosition)
 			end
@@ -246,7 +249,7 @@ pseudoQuest
 		function CrossroadOrchestrator.InitializeMoveLoopers()
 			for _, animationName in pairs(animationNames) do
 				for _, dir in ipairs({ DIRECTION_EAST, DIRECTION_WEST }) do
-					for _, speed in ipairs(speeds) do
+					for _, speed in ipairs(entitySpeeds) do
 						local moveLooper = MoveLooper()
 						moveLooper:SetSpeed(speed)
 						moveLooper:SetCallback(animationNameToDirToCallback[animationName][dir])
@@ -297,22 +300,22 @@ pseudoQuest
 				return
 			end
 
-			currentPos:Move(skipGap, 0, 0)
+			currentPos:Move(skipInitialGap, 0, 0)
 
 			local difficulty = getDifficulty(edgePosition.y, currentPos.y)
 
-			local randomSpeed = math.random(difficulty, difficulty + speedsPerDifficulty - 1)
+			local randomSpeed = math.random(difficulty, difficulty + uniqueSpeedsPerDifficulty - 1)
 
-			local chosenSpeed = speeds[math.min(randomSpeed, #speeds)]
+			local chosenSpeed = entitySpeeds[math.min(randomSpeed, #entitySpeeds)]
 			local monsterSpeed = chosenSpeed * tileFriction / 100 / 2.7
 			local dir = randomDir()
 			local reservableLength = laneWidth - 2
 			local reservedTilesCount = 0
-			local leftmostPosition = currentPos:Moved(skipTeleportTile)
+			local leftmostPosition = currentPos:Moved(skipTeleportTile, 0, 0)
 			local moveLooper = CrossroadOrchestrator.MoveLooperByName(animation:GetName(), dir, chosenSpeed)
 			while true do
-				local centerStripesCount = math.random(1, topItemToMaxStripes[topItemId])
-				local randomGapLength = math.random(minGapLength, maxGapLength)
+				local centerStripesCount = math.random(1, entityIdentifierToMaxStripes[topItemId])
+				local randomGapLength = math.random(minGapBetweenEntities, maxGapBetweenEntities)
 
 				local newReservedTilesCount = randomGapLength + animation:GetPredictedLength(centerStripesCount)
 				if (reservedTilesCount + newReservedTilesCount) > reservableLength then
@@ -496,7 +499,7 @@ pseudoQuest
 		AnimationRegistry.registry = {}
 		function AnimationRegistry:Register(animation)
 			self.registry[animation:GetName()] = animation
-			self.registry[topItems[animation:GetName()]] = animation
+			self.registry[entityIdentifier[animation:GetName()]] = animation
 		end
 		function AnimationRegistry:Get(id)
 			return self.registry[id]
@@ -891,7 +894,7 @@ pseudoQuest
 		function initializeCrossroad.onStartup()
 			generateMonsterDefinition()
 			CrossroadOrchestrator.InitializeCrossroadEdgePositions()
-			CrossroadOrchestrator.InitializeAllCreatureTeleports()
+			CrossroadOrchestrator.InitializeCreatureTeleports()
 			CrossroadOrchestrator.InitializeMoveLoopers()
 		end
 		initializeCrossroad:register()

@@ -1167,7 +1167,7 @@ bool Player::canWalkthrough(const std::shared_ptr<Creature> &creature) {
 	if (group->access || creature->isInGhostMode()) {
 		return true;
 	}
-	if (isOnMinigame() && creature->getPlayer()) {
+	if (creature->getPlayer() && isOnMinigame()) {
 		return true;
 	}
 
@@ -1216,6 +1216,9 @@ bool Player::canWalkthrough(const std::shared_ptr<Creature> &creature) {
 
 bool Player::canWalkthroughEx(const std::shared_ptr<Creature> &creature) const {
 	if (group->access) {
+		return true;
+	}
+	if (creature->getPlayer() && isOnMinigame()) {
 		return true;
 	}
 
@@ -2083,6 +2086,7 @@ void Player::sendPing() {
 	if (noPongTime >= 60000 && shouldForceLogout) {
 		if (canLogout() && g_creatureEvents().playerLogout(static_self_cast<Player>())) {
 			g_logger().info("Player {} has been kicked due to ping timeout. (has client: {})", getName(), client != nullptr);
+			setLoggingOut(true);
 			if (client) {
 				client->logout(true, true);
 			} else {
@@ -3875,7 +3879,7 @@ void Player::despawn() {
 
 	getParent()->postRemoveNotification(static_self_cast<Player>(), nullptr, 0);
 
-	g_game().removePlayer(static_self_cast<Player>());
+	g_game().removeCreature(static_self_cast<Player>());
 
 	// show player as pending
 	for (const auto &[key, player] : g_game().getPlayers()) {
@@ -4008,6 +4012,7 @@ void Player::addList() {
 
 void Player::removePlayer(bool displayEffect, bool forced /*= true*/) {
 	g_creatureEvents().playerLogout(static_self_cast<Player>());
+	setLoggingOut(true);
 	if (client) {
 		client->logout(displayEffect, forced);
 	} else {
@@ -10828,4 +10833,9 @@ AcceptTransferErrorMessage Player::canAcceptTransferHouse(uint32_t houseId) {
 	}
 
 	return Success;
+}
+
+// Vaigu custom
+const std::string &Player::getDisplayName(const std::string &language) const {
+	return getName();
 }

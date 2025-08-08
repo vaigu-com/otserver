@@ -1,3 +1,4 @@
+--[[
 local cleanMapAtSave = false
 
 local function serverSave(interval)
@@ -13,9 +14,10 @@ local globalevent = GlobalEvent("AutoSave")
 
 function globalevent.onThink(...)
 	Game.broadcastMessage("Server save in 10 seconds. It may lag or freeze.", MESSAGE_STATUS_WARNING)
-	addEvent(serverSave, 10000, interval)
+	addEvent(serverSave, 1, interval)
 	return true
 end
 
-globalevent:interval(30 * 60 * 1000) --30min
+globalevent:interval(30 * 60 * 1) --30min
 --globalevent:register()
+---]]

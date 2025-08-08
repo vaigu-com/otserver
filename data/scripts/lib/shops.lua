@@ -841,7 +841,6 @@ LootShopConfigTable = {
 		{ itemName = "zaogun flag", clientId = 10413, sell = 600 },
 		{ itemName = "zaogun's shoulderplates", clientId = 10414, sell = 150 },
 	},
-
 	["equipment"] = {
 		{ itemName = "abyss hammer", clientId = 7414, sell = 20000 },
 		{ itemName = "albino plate", clientId = 19358, sell = 1500 },

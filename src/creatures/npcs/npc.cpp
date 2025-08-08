@@ -86,7 +86,11 @@ void Npc::addList() {
 	g_game().addNpc(static_self_cast<Npc>());
 }
 
-const std::string &Npc::getTranslatedName(std::string language) const {
+const std::string &Npc::getDisplayName(const std::string &language) const {
+	return getTranslatedName(language);
+}
+
+const std::string &Npc::getTranslatedName(const std::string &language) const {
 	auto it = translatedNames.find(language);
 	if (it != translatedNames.end()) {
 		return it->second;

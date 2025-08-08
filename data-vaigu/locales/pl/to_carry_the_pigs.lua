@@ -42,7 +42,7 @@ return {
 	["Turns out elvish bow sucks. Kitz now wishes to rook the elves. In return for your efforts you received his old bow."] = "Luk okazal sie chujowy, wiec Kitz pragnie zrobic Dominando elfom. W zamian jednak dal ci jego wlasny luk.",
 	["Arrange a special elvish bow for Kitz."] = "Zdobadz specjalny luk dla kitza",
 	["You have received the bow from Legolas. Go give it to Kitz."] = "Otrzymales specjalny luk od Legolasa. Wroc teraz do Kitza z jego zamowieniem",
-	["Madame Malkin gladly made this necklace for Arni. Report to Arni."] = "Madame Malkin z checia splecie naszyjnik Arniemu.",
+	["Madame Malkin gladly made this necklace for Arni. Report to Arni."] = "Madame Malkin z checia splotla naszyjnik Arniemu.",
 	["You found a some weird document in Hero hideout. Report to Cordell."] = "Znalazles dziwny dokument w kryjowce przemytnikow. Zdaj raport do Cordell.",
 	["Cordell asked you to investigate further. Look for the legendary dragon scale legs in lost caves."] = "Cordell powiedzial abys badal te sprawe dalej. Szukaj legendranych smoczych nogawic w jaskiniach zagubionych krasnoludow.",
 	["You found disfigured legs. Report your finding to Cordell."] = "Znalazles podrobione i zniszczone gacie, ktore imituja smocze nogawice. Wroc do Cordella.",

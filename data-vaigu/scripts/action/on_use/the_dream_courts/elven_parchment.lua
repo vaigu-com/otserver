@@ -24,7 +24,7 @@ function parchmentread.onUse(player, item, fromPosition, itemEx, toPosition)
 	return true
 end
 parchmentread:id(22865)
-parchmentread:register()
+--parchmentread:register()
 
 local anatomybook = Action()
 function anatomybook.onUse(player, item, fromPosition, itemEx, toPosition)

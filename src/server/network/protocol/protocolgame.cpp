@@ -729,13 +729,16 @@ void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingS
 		player->loginProtectionTime = OTSYS_TIME() + g_configManager().getNumber(LOGIN_PROTECTION_TIME);
 		acceptPackets = true;
 	} else {
-		if (eventConnect != 0 || !g_configManager().getBoolean(REPLACE_KICK_ON_LOGIN)) {
+		if (!g_configManager().getBoolean(REPLACE_KICK_ON_LOGIN)) {
 			// Already trying to connect
 			disconnectClient("You are already logged in.");
 			return;
 		}
 		if (foundPlayer->isLoggingOut()) {
-			disconnectClient("Your character is being saved. Try again in few seconds.");
+			eventConnect = g_dispatcher().scheduleEvent(
+				1000,
+				[self = getThis(), playerName = foundPlayer->getName(), accountId, operatingSystem] { self->login(playerName, accountId, operatingSystem); }, "ProtocolGame::login"
+			);
 			return;
 		}
 
@@ -814,8 +817,8 @@ ReturnValue ProtocolGame::messageIfCannotLogout(const std::shared_ptr<Player> pl
 void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
-	}
-
+	}	
+	
 	bool removePlayer = !player->isRemoved() && !forced;
 	auto errorMessage = messageIfCannotLogout(player, removePlayer);
 	if (errorMessage != RETURNVALUE_NOERROR) {
@@ -832,8 +835,8 @@ void ProtocolGame::logout(bool displayEffect, bool forced) {
 	}
 
 	player->client->sendSessionEndInformation(SESSION_END_LOGOUT);
+	player->loginPosition = player->getPosition();
 	g_game().removeCreature(player, true);
-	player->setLoggingOut(true);
 }
 
 void ProtocolGame::onRecvFirstMessage(NetworkMessage &msg) {
@@ -6459,7 +6462,7 @@ void ProtocolGame::sendCreatureSay(const std::shared_ptr<Creature> &creature, Sp
 	static uint32_t statementId = 0;
 	msg.add<uint32_t>(++statementId);
 
-	msg.addString(creature->getTranslatedName(language));
+	msg.addString(creature->getDisplayName(language));
 
 	if (!oldProtocol) {
 		msg.addByte(0x00); // Show (Traded)
@@ -7980,8 +7983,7 @@ void ProtocolGame::AddCreature(NetworkMessage &msg, const std::shared_ptr<Creatu
 		if (!oldProtocol && creature->isHealthHidden()) {
 			msg.addString(""); // ProtocolGame::AddCreature - empty
 		} else {
-			const std::string creatureName = TryTranslate(creature->getName(), "npc_name", player);
-			msg.addString(creatureName); // ProtocolGame::AddCreature - creature->getName()
+			msg.addString(creature->getDisplayName(player->getLanguage()));
 		}
 	}
 

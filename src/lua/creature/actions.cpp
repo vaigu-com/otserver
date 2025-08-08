@@ -191,6 +191,18 @@ bool Actions::registerLuaKeyEvent(const std::shared_ptr<Action> &action) {
 	return !keysVector.empty();
 }
 
+bool Actions::luaAnyEventIsRegistered(const std::shared_ptr<Action> &action) {
+	const auto checkAny = [](const auto &vec, auto &&predicate) {
+		return std::any_of(vec.begin(), vec.end(), std::forward<decltype(predicate)>(predicate));
+	};
+
+	return checkAny(action->getItemIdsVector(), [this](auto id) { return hasItemId(id); })
+		|| checkAny(action->getUniqueIdsVector(), [this](auto id) { return hasUniqueId(id); })
+		|| checkAny(action->getActionIdsVector(), [this](auto id) { return hasActionId(id); })
+		|| checkAny(action->getPositionsVector(), [this](auto pos) { return hasPosition(pos); })
+		|| checkAny(action->getKeysVector(), [this](auto key) { return hasKey(key); });
+}
+
 bool Actions::registerLuaEvent(const std::shared_ptr<Action> &action) {
 	std::vector<std::function<bool(const std::shared_ptr<Action> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<Action> &action) { return registerLuaItemEvent(action); },

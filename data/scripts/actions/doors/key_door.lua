@@ -222,6 +222,9 @@ local function keyNameIfInCollection(player, door)
 end
 local doorLook = Look()
 function doorLook.onLook(player, door)
+	if (door:getAttribute(ITEM_ATTRIBUTE_DOORID) or 0) > 0 then
+		return DO_SHOW_ONLOOK
+	end
 	local youSee = T("You see a :doorName:.", { doorName = door:getName() })
 
 	local locked = ""

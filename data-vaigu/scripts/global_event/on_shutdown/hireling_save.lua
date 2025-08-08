@@ -5,4 +5,4 @@ function hirelingSave.onShutdown()
 	return true
 end
 
-hirelingSave:register()
+--hirelingSave:register()

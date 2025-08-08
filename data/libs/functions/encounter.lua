@@ -1175,14 +1175,6 @@ function EncounterData:addRemovePlayers()
 	})
 end
 
-function SetMinigameLock(player)
-	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, ACCESS_GRANTED)
-end
-
-function ResetMinigameLock(player)
-	player:setStorageValueByKey(Storage.Minigames.IsOnMinigame, ACCESS_NOT_GRANTED)
-end
-
 function EncounterData:AfterEnterMinigame(player)
 	player:registerEvent("MinigamePlayerDeath")
 

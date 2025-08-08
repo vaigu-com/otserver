@@ -56,7 +56,7 @@ quest
 					name = "First Mission",
 					storage = Storage.CaveExplorerOnShield.Mission01,
 					states = {
-						[QuestState.CaveExplorerOnShield.Mission01.FindThePage] = "Find the page.",
+						[QuestState.CaveExplorerOnShield.Mission01.FindThePage] = "Find the journal page.",
 						[QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi] = "You found the page. Show it to Germi.",
 						[QuestState.CaveExplorerOnShield.Mission01.TalkToGermiAboutDoor] = "Talk to Germi to get him to open the door for you.",
 						[QuestState.CaveExplorerOnShield.Mission01.FindAndHelpEngineer] = "Find the Engineer's Ghost and help him.",

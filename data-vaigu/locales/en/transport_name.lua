@@ -30,4 +30,9 @@ return {
 	["Cyclops Hills"] = "Cyclops Hills",
 	["Januszex"] = "Januszex",
 	["Hurghada underground"] = "Hurghada underground",
+	["Draw well"] = "Draw well",
+	["Water elemental cave"] = "Water elemental cave",
+	["Mareesha camp"] = "Mareesha camp",
+	["Hurghada outskirts"] = "Hurghada outskirts",
+	["Celebimber's Post"] = "Celebimber's Post",
 }

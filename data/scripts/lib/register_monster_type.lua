@@ -150,7 +150,7 @@ local nameToNewExp = {
 	["Bog Raider"] = 1000,
 	["Bones"] = 10000,
 	["Bragrumol"] = 40000,
-	["Braindeath"] = 1100,
+	["Braindeath"] = 1400,
 	["Bretzecutioner"] = 6000,
 	["Crawler"] = 1300,
 	["Crystalcrusher"] = 700,
@@ -230,9 +230,9 @@ local nameToNewExp = {
 	["Stabilizing Reality Reaver"] = 2350,
 	["Boar"] = 90,
 	["Clomp"] = 690,
-	["Gloom Wolf"] = 100,
+	["Gloom Wolf"] = 160,
 	["Gnarlhound"] = 110,
-	["Roaring Lion"] = 700,
+	["Roaring Lion"] = 600,
 	["Stone Rhino"] = 2480,
 	["Barkless Devotee"] = 2330,
 	["Barkless Fanatic"] = 2780,
@@ -245,13 +245,6 @@ local nameToNewExp = {
 	["Shadowpelt"] = 10000,
 	["Undead Elite Gladiator"] = 8000,
 	["Skeleton Elite Warrior"] = 6000,
-
-	
-
-
-	
-	
-	
 }
 
 local function countMonsters(filePath)

@@ -14,11 +14,6 @@ local voices = {
 	{ text = "Jesli szukasz magicznej rozdzki to u mnie masz pelen wybor." },
 }
 
-local additionalJob = nil
-if DAYS_SINCE_START >= 7 then
-	additionalJob = JOB_EXERCISE
-end
-
 local dialogs = {}
 
 local outfit = {
@@ -32,7 +27,7 @@ local outfit = {
 local context = {
 	name = "Fstab",
 	greetJob = JOB_MAGIC_WILDCARD,
-	jobs = { JOB_WILDCARD, JOB_MAGIC, additionalJob },
+	jobs = { JOB_WILDCARD, JOB_MAGIC },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,

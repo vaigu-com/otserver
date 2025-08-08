@@ -161,6 +161,10 @@ public:
 	bool registerLuaPositionEvent(const std::shared_ptr<Look> &look);
 	bool registerLuaKeyEvent(const std::shared_ptr<Look> &look);
 	bool registerLuaEvent(const std::shared_ptr<Look> &look);
+	
+	// Vaigu custom
+	bool luaAnyEventIsRegistered(const std::shared_ptr<Look> &look);
+
 	// Clear maps for reloading
 	void clear();
 

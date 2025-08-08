@@ -1293,6 +1293,52 @@ void ConditionRegeneration::serialize(PropWriteStream &propWriteStream) {
 	propWriteStream.write<uint32_t>(manaGain);
 }
 
+bool canRegenerateHealthCondition(const std::shared_ptr<Creature> &creature) {
+	const auto &player = creature->getPlayer();
+	int32_t dailyStreak = 0;
+	if (player) {
+		if (player->isOnMinigame()) {
+			return false;
+		}
+		auto dailyStreakStored = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreakEndless");
+		if (dailyStreakStored > 0) {
+			dailyStreak = dailyStreakStored;
+		}
+	}
+
+	if (creature->getZoneType() != ZONE_PROTECTION) {
+		return true;
+	}
+	if (dailyStreak >= DAILY_REWARD_HP_REGENERATION) {
+		return true;
+	}
+
+	return false;
+}
+
+bool canRegenerateManaCondition(const std::shared_ptr<Creature> &creature) {
+	const auto &player = creature->getPlayer();
+	int32_t dailyStreak = 0;
+	if (player) {
+		if (player->isOnMinigame()) {
+			return false;
+		}
+		auto dailyStreakStored = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreakEndless");
+		if (dailyStreakStored > 0) {
+			dailyStreak = dailyStreakStored;
+		}
+	}
+
+	if (creature->getZoneType() != ZONE_PROTECTION) {
+		return true;
+	}
+	if (dailyStreak >= DAILY_REWARD_MP_REGENERATION) {
+		return true;
+	}
+
+	return false;
+}
+
 bool ConditionRegeneration::executeCondition(const std::shared_ptr<Creature> &creature, int32_t interval) {
 	internalHealthTicks += interval;
 	internalManaTicks += interval;
@@ -1304,7 +1350,7 @@ bool ConditionRegeneration::executeCondition(const std::shared_ptr<Creature> &cr
 			dailyStreak = dailyStreakStored;
 		}
 	}
-	if (creature->getZoneType() != ZONE_PROTECTION || dailyStreak >= DAILY_REWARD_HP_REGENERATION) {
+	if (canRegenerateHealthCondition(creature)) {
 		if (internalHealthTicks >= getHealthTicks(creature)) {
 			internalHealthTicks = 0;
 
@@ -1340,7 +1386,7 @@ bool ConditionRegeneration::executeCondition(const std::shared_ptr<Creature> &cr
 		}
 	}
 
-	if (creature->getZoneType() != ZONE_PROTECTION || dailyStreak >= DAILY_REWARD_MP_REGENERATION) {
+	if (canRegenerateManaCondition(creature)) {
 		if (internalManaTicks >= getManaTicks(creature)) {
 			internalManaTicks = 0;
 			if (creature->getZoneType() == ZONE_PROTECTION && dailyStreak >= DAILY_REWARD_DOUBLE_MP_REGENERATION) {

@@ -186,9 +186,7 @@ public:
 	static MuteCountMap muteCountMap;
 
 	// Vaigu custom
-	const std::string &getTranslatedName(std::string language) const override {
-		return name;
-	}
+	const std::string &getDisplayName(const std::string &language) const override;
 
 	const std::string &getName() const override {
 		return name;
@@ -1337,7 +1335,7 @@ public:
 	void setLanguage(std::string language);
 
 	// Vaigu custom
-	bool isOnMinigame() {
+	bool isOnMinigame() const {
 		return getStorageValueByKey(KEY_IS_ON_MINIGAME) == 1;
 	}
 	bool isOnMinigame(bool nextState) {

@@ -44,7 +44,7 @@ local storeItemID = {
 	29416, -- overcooked noodles
 }
 
-BOOSTED_CREATURE_EXP_MULTIPLIER = 1.0
+BOOSTED_CREATURE_EXP_MULTIPLIER = 1.5
 
 -- Players cannot throw items on teleports if set to true
 local blockTeleportTrashing = true
@@ -278,6 +278,7 @@ do
 	ImmovableKeys:Add(IMMOVABLE_KEY)
 end
 
+local zStackTop = 255
 local function isImmovable(item, fromPosition, toPosition)
 	if immovableAid[item:getActionId()] then
 		return true
@@ -286,30 +287,38 @@ local function isImmovable(item, fromPosition, toPosition)
 	if ImmovableKeys:Has(item:getKey()) then
 		return true
 	end
-	return false
-end
 
-local exhaust = {}
-function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
-	if isImmovable(item, fromPosition, toPosition) then
-		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+	if item:getCustomAttribute(HOUSE_DECORATION_STATUS) == IS_HOUSE_DECORATION then 
 		return false
 	end
 
 	if isInStoreinbox(item) then
 		--Dont allow moving items from storeinbox inner containers to storeinbox main container
 		if toPosition.y ~= fromPosition.y then
-			return false
+			return true
 		end
 		--Dont allow moving items from storeinbox main container to inner storeinbox containers
-		if toPosition.z ~= 255 then
-			return false
+		if toPosition.z ~= zStackTop then
+			return true
 		end
 	else
 		local key = item:getKey()
 		if key and key ~= "" then
-			return false
+			return true
 		end
+	end
+
+	return false
+end
+
+HOUSE_DECORATION_STATUS = "HOUSE_DECORATION_STATUS"
+IS_HOUSE_DECORATION = true
+
+local exhaust = {}
+function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
+	if isImmovable(item, fromPosition, toPosition) then
+		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+		return false
 	end
 
 	-- No move if item count > 30 items
@@ -635,9 +644,9 @@ function Player:onGainExperience(target, exp, rawExp)
 	useConcoctionTime(self)
 
 	-- Apply Boosted Creature Bonus
-	local boostedCreaturePercentage = 0
+	local boostedCreatureMultiplier = 1
 	if target:isBoosted() then
-		boostedCreaturePercentage = BOOSTED_CREATURE_EXP_MULTIPLIER
+		boostedCreatureMultiplier = BOOSTED_CREATURE_EXP_MULTIPLIER
 	end
 
 	-- Prey System
@@ -673,7 +682,7 @@ function Player:onGainExperience(target, exp, rawExp)
 	local baseRateExp = self:getFinalBaseRateExperience()
 
 	-- Return final experience value
-	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * (1 + boostedCreaturePercentage) * soulwarMultiplier
+	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * boostedCreatureMultiplier * soulwarMultiplier
 end
 
 function Player:onLoseExperience(exp)

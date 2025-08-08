@@ -135,6 +135,7 @@ int CanaryServer::run() {
 	}
 
 	logger.info("{} {}", g_configManager().getString(SERVER_NAME), "server online!");
+	//g_saveManager().scheduleAll();
 	g_logger().setLevel(g_configManager().getString(LOGLEVEL));
 
 	serviceManager.run();

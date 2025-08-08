@@ -164,7 +164,7 @@ function ItemExList:FilterByKey(key)
 	end
 	local result = ItemExList()
 	for _, item in pairs(self.items) do
-		if item:getKey() == key then
+		if (item:getKey() or "") == key then
 			result:Add(item)
 		end
 	end
@@ -221,6 +221,7 @@ local nonCustomAttributes = {
 	text = true,
 	uid = true,
 	key = true,
+	dontAnnounce = true,
 }
 
 local setableAtribute = {

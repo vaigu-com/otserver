@@ -136,7 +136,7 @@ bool MoveEvents::registerLuaKeyEvent(const std::shared_ptr<MoveEvent> &moveEvent
 	return !keyVector.empty();
 }
 
-// Vaigu custo
+// Vaigu custom
 bool MoveEvents::registerLuaEvent(const std::shared_ptr<MoveEvent> &moveEvent) {
 	std::vector<std::function<bool(const std::shared_ptr<MoveEvent> &)>> luaEventCallbacks = {
 		[this](const std::shared_ptr<MoveEvent> &moveEvent) { return registerLuaItemEvent(moveEvent); },

@@ -7,14 +7,14 @@ function deathSomewhatBeatable.onDeath(creature, target)
 		if spec:isPlayer() then
 			if creature:getName():lower() == "somewhat beatable" then
 				if spec:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable) < 5 then
-					spec:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable, spec:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable) + 1)
+					spec:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable, spec:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable) + 1)
 				end
 			end
 			if spec:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable) == 5 then
 				for b = 1, 6 do
 					Game.createMonster("dragon essence", Position(math.random(33609, 33624), math.random(31017, 31028), 14), true, true)
 				end
-				spec:setStorageValue(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable, 0)
+				spec:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.SomewhatBeatable, 0)
 			end
 		end
 	end

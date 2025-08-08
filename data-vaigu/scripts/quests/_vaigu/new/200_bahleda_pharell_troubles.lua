@@ -89,7 +89,7 @@ quest
 					end
 
 					visitedPositions[posId] = true
-					if TableSize(visitedPositions) >= 11 then
+					if TableSize(visitedPositions) >= 4 then
 						if player:TryAddItems({ QuestKeyItems.BahledaPharellTroubles.LostCarrot }) then
 							player:NextState(nextState)
 						end
@@ -109,6 +109,9 @@ quest
 			QuestFactory.Dialog("Bahleda Pharell", {
 				[{ "mission", "misja" }] = {
 					text = "Thank you for help. Would you mind escorting me to my lovers' abode? If so, tell me you are {ready}.",
+					requiredItems = {
+						QuestKeyItems.BahledaPharellTroubles.LostCarrot,
+					},
 					nextState = {
 						[Storage.BahledaPharellTroubles.Mission01] = MISSION_FINISHED,
 						[Storage.BahledaPharellTroubles.Mission02] = QuestState.BahledaPharellTroubles.Mission02.EscortBahledaToYeti,

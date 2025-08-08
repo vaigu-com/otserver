@@ -25,4 +25,7 @@ private:
 	static int luaActionAllowFarUse(lua_State* L);
 	static int luaActionBlockWalls(lua_State* L);
 	static int luaActionCheckFloor(lua_State* L);
+
+	// Vaigu custom
+	static int luaLuaAnyEventIsRegistered(lua_State* L);
 };

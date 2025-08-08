@@ -1,3 +1,5 @@
+--[[
+
 local quest = Quest(LOCALIZERS.NONE)
 
 quest
@@ -9,3 +11,4 @@ quest
 	end)
 	:NoQuestlog()
 	:Register()
+]]--

@@ -144,7 +144,7 @@ return {
 	["Xenon"] = "Xenon",
 	["Brallin of the beech wall unit"] = "Brallin of the beech wall unit",
 	["Jew"] = "Jew",
-	["Amee"] = "Amee",
+	["4M-33 Mk II"] = "4M-33 Mk II",
 	["Apollo"] = "Apollo",
 	["Betatm"] = "Betatm",
 	["Blantix"] = "Blantix",
@@ -273,4 +273,6 @@ return {
 	["Za'Qir"] = "Za'Qir",
 	["Gnomenursey"] = "Gnomenursey",
 	["Conference Triss"] = "Triss",
+	["Celebimber"] = "Celebimber",
+	["Mary"] = "Mary",
 }
