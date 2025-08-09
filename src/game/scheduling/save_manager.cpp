@@ -77,7 +77,7 @@ void SaveManager::saveAll() {
 		if (player->isLoggingOut()) {
 			player->setLoggingOut(false);
 			player->setOnline(false);
-		} else {
+		} else if (!player->isOffline()) {
 			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
@@ -136,7 +136,7 @@ void SaveManager::saveAll() {
 		if (player->isLoggingOut()) {
 			player->setLoggingOut(false);
 			player->setOnline(false);
-		} else {
+		} else if(!player->isOffline()) {
 			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
@@ -155,19 +155,28 @@ void SaveManager::saveAll() {
 	}
 
 	DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
+		logger.info("[SaveManager::saveAll] before save players");
 		for (const auto &[_, player] : players) {
+			logger.info("[SaveManager::saveAll] before save player");
 			doSavePlayer(player);
+			logger.info("[SaveManager::saveAll] before save account");
 			const auto account = player->account->save();
 		}
 
+		logger.info("[SaveManager::saveAll] before save guilds");
 		for (const auto &[_, guild] : guilds) {
 			saveGuild(guild);
 		}
 
+		logger.info("[SaveManager::saveAll] before save map");
 		saveMap();
+		logger.info("[SaveManager::saveAll] before save KV");
 		saveKV();
+		logger.info("[SaveManager::saveAll] before save coins");
 		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
+		logger.info("[SaveManager::saveAll] before set timestamp");
 		setSuccesfulSaveTimestamp();
+		logger.info("[SaveManager::saveAll] after set timestamp");
 		return true;
 	});
 
