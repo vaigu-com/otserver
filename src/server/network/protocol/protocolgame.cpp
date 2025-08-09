@@ -782,6 +782,14 @@ void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t oper
 	player->isConnecting = false;
 
 	player->client = getThis();
+	if (!player->isOnline()) {
+		player->online = true;
+		if (!g_game().placeCreature(player, player->getLoginPosition()) && !g_game().placeCreature(player, player->getTemplePosition(), false, true)) {
+			disconnectClient("Temple position is wrong. Please, contact the administrator. 2");
+			g_logger().warn("Player {} temple position is wrong 2", player->getName());
+			return;
+		}
+	}
 	sendAddCreature(player, player->getPosition(), 0, true);
 	player->lastIP = player->getIP();
 	player->lastLoginSaved = std::max<time_t>(time(nullptr), player->lastLoginSaved + 1);
