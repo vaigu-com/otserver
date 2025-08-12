@@ -5797,19 +5797,36 @@ void Game::sendLootMessageWithCooldown(const std::shared_ptr<Player> &player, co
 	player->lastQuickLootNotification = now;
 }
 
-void Game::playerLootAllCorpses(const std::shared_ptr<Player> &player, const Position &pos, bool lootAllCorpses) {
-	if (lootAllCorpses) {
-		std::shared_ptr<Tile> tile = g_game().map.getTile(pos.x, pos.y, pos.z);
-		if (!tile) {
-			tile = g_game().map.getTile(player->getPosition());
+static std::vector<Position> getSquareRadiusPositions(const Position &center, int radius) {
+	std::vector<Position> positions;
+	for (int dx = -radius; dx <= radius; ++dx) {
+		for (int dy = -radius; dy <= radius; ++dy) {
+			Position p(center.x + dx, center.y + dy, center.z);
+			positions.push_back(p);
 		}
+	}
+	return positions;
+}
+
+void Game::playerLootAllCorpses(const std::shared_ptr<Player> &player, const Position &pos, bool alsoLootNearbyTiles) {
+	std::vector<Position> positionsToCheck;
+
+	if (alsoLootNearbyTiles) {
+		// Loot from a 3x3 area (radius = 1)
+		positionsToCheck = getSquareRadiusPositions(pos, 1);
+	} else {
+		positionsToCheck.push_back(pos);
+	}
+
+	uint16_t corpses = 0;
+
+	for (const Position &checkPos : positionsToCheck) {
+		std::shared_ptr<Tile> tile = g_game().map.getTile(checkPos.x, checkPos.y, checkPos.z);
 		if (!tile) {
-			player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
-			return;
+			continue;
 		}
 
 		const TileItemVector* itemVector = tile->getItemList();
-		uint16_t corpses = 0;
 		for (auto &tileItem : *itemVector) {
 			if (!tileItem) {
 				continue;
@@ -5835,15 +5852,18 @@ void Game::playerLootAllCorpses(const std::shared_ptr<Player> &player, const Pos
 			}
 		}
 
-		if (corpses > 0) {
-			if (corpses > 1) {
-				std::stringstream string;
-				string << "You looted " << corpses << " corpses.";
-				player->sendTextMessage(MESSAGE_LOOT, string.str());
-			}
-
-			return;
+		if (corpses >= 30) {
+			break;
 		}
+	}
+
+	if (corpses > 0) {
+		if (corpses > 1) {
+			std::stringstream string;
+			string << "You looted " << corpses << " corpses.";
+			player->sendTextMessage(MESSAGE_LOOT, string.str());
+		}
+		return;
 	}
 
 	browseField = false;

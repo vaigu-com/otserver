@@ -1966,17 +1966,6 @@ void ProtocolGame::parseLookInBattleList(NetworkMessage &msg) {
 	g_game().playerLookInBattleList(player->getID(), creatureId);
 }
 
-static std::vector<Position> getSquareRadiusPositions(const Position &center, int radius) {
-	std::vector<Position> positions;
-	for (int dx = -radius; dx <= radius; ++dx) {
-		for (int dy = -radius; dy <= radius; ++dy) {
-			Position p(center.x + dx, center.y + dy, center.z);
-			positions.push_back(p);
-		}
-	}
-	return positions;
-}
-
 void ProtocolGame::parseQuickLoot(NetworkMessage &msg) {
 	if (oldProtocol) {
 		return;
@@ -1991,11 +1980,7 @@ void ProtocolGame::parseQuickLoot(NetworkMessage &msg) {
 		bool autoLoot = false;
 		g_logger().debug("[{}] variant {}, clickedPos {}, itemId {}, stackPos {}", __FUNCTION__, variant, clickedPos.toString(), itemId, stackpos);
 		const auto playerPos = player->getPosition();
-		auto positions = getSquareRadiusPositions(playerPos, 1); // radius 1 → 3x3
-
-		for (const auto &pos : positions) {
-			g_game().playerQuickLoot(player->getID(), pos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
-		}
+		g_game().playerQuickLoot(player->getID(), playerPos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
 	} else {
 		const Position clickedPos = msg.getPosition();
 		auto itemId = msg.get<uint16_t>();
