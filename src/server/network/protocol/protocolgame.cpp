@@ -825,8 +825,8 @@ ReturnValue ProtocolGame::messageIfCannotLogout(const std::shared_ptr<Player> pl
 void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
-	}	
-	
+	}
+
 	bool removePlayer = !player->isRemoved() && !forced;
 	auto errorMessage = messageIfCannotLogout(player, removePlayer);
 	if (errorMessage != RETURNVALUE_NOERROR) {
@@ -1966,28 +1966,45 @@ void ProtocolGame::parseLookInBattleList(NetworkMessage &msg) {
 	g_game().playerLookInBattleList(player->getID(), creatureId);
 }
 
+static std::vector<Position> getSquareRadiusPositions(const Position &center, int radius) {
+	std::vector<Position> positions;
+	for (int dx = -radius; dx <= radius; ++dx) {
+		for (int dy = -radius; dy <= radius; ++dy) {
+			Position p(center.x + dx, center.y + dy, center.z);
+			positions.push_back(p);
+		}
+	}
+	return positions;
+}
+
 void ProtocolGame::parseQuickLoot(NetworkMessage &msg) {
 	if (oldProtocol) {
 		return;
 	}
 
 	uint8_t variant = msg.getByte();
-	const Position pos = msg.getPosition();
-	auto itemId = 0;
-	uint8_t stackpos = 0;
-	bool lootAllCorpses = true;
-	bool autoLoot = true;
-
 	if (variant == 2) {
-		// Loot player nearby (13.40)
+		const Position clickedPos = msg.getPosition();
+		auto itemId = 0;
+		uint8_t stackpos = 0;
+		bool lootAllCorpses = true;
+		bool autoLoot = false;
+		g_logger().debug("[{}] variant {}, clickedPos {}, itemId {}, stackPos {}", __FUNCTION__, variant, clickedPos.toString(), itemId, stackpos);
+		const auto playerPos = player->getPosition();
+		auto positions = getSquareRadiusPositions(playerPos, 1); // radius 1 → 3x3
+
+		for (const auto &pos : positions) {
+			g_game().playerQuickLoot(player->getID(), pos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
+		}
 	} else {
-		itemId = msg.get<uint16_t>();
-		stackpos = msg.getByte();
-		lootAllCorpses = variant == 1;
-		autoLoot = false;
+		const Position clickedPos = msg.getPosition();
+		auto itemId = msg.get<uint16_t>();
+		uint8_t stackpos = msg.getByte();
+		bool lootAllCorpses = variant == 1;
+		bool autoLoot = false;
+		g_logger().debug("[{}] variant {}, clickedPos {}, itemId {}, stackPos {}", __FUNCTION__, variant, clickedPos.toString(), itemId, stackpos);
+		g_game().playerQuickLoot(player->getID(), clickedPos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
 	}
-	g_logger().debug("[{}] variant {}, pos {}, itemId {}, stackPos {}", __FUNCTION__, variant, pos.toString(), itemId, stackpos);
-	g_game().playerQuickLoot(player->getID(), pos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
 }
 
 void ProtocolGame::parseLootContainer(NetworkMessage &msg) {
