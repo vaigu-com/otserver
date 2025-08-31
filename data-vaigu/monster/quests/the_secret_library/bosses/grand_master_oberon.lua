@@ -26,7 +26,7 @@ monster.speed = 115
 monster.manaCost = 0
 
 monster.events = {
-	"killingLibrary",
+	
 	"oberonImmune",
 }
 

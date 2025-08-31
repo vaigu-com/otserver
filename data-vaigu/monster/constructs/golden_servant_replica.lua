@@ -14,7 +14,7 @@ monster.outfit = {
 }
 
 monster.events = {
-	"ReplicaServantDeath",
+	
 }
 
 monster.raceId = 1327

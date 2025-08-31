@@ -14,7 +14,7 @@ monster.outfit = {
 }
 
 monster.events = {
-	"BragrumolDeath",
+	
 }
 
 monster.health = 38000
