@@ -369,7 +369,6 @@ Storage.DeeplingBosses = { -- Reserved 50070 - 50080
 	Jaul = {},
 	Tanjis = {},
 	Obujos = {},
-	DeeplingStatus = {},
 	DailyDeeplingKill = {},
 }
 Storage.Ferumbras = { -- Reserved 60011 - 60028
