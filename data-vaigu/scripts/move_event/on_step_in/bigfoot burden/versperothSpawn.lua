@@ -1,9 +1,10 @@
-local roomCorner1 = Position(6454, 2485, 12)
-local roomCorner2 = Position(6469, 2498, 12)
+local roomCorner1 = Position(33065, 31868, 12)
+local roomCorner2 = Position(33088, 31888, 12)
 local roomArea = Area(roomCorner1, roomCorner2)
 
-local vesperothSpawnPosition = Position(6461, 2492, 12)
-local vesperothHidePosition = Position(6461, 2492, 13)
+local vesperothSpawnPosition = Position(33075, 31878, 12)
+local vesperothHidePosition = Position(33075, 31878, 13)
+local abyssadorSpawnPosition = Position(33088, 31914, 12)
 
 local minMinionsPerWave = 8
 local maxMinionsPerWave = 10
@@ -49,7 +50,6 @@ function VesperothHideLoop()
 end
 
 local spawnLock = SpawnLocks.BigfootsBurden.Warzone3
-local bossSpawnPosition = Position(6476, 2524, 12)
 
 local movement = MoveEvent()
 function movement.onStepIn(creature, veperothHole, toPosition, fromPosition)
@@ -62,7 +62,7 @@ function movement.onStepIn(creature, veperothHole, toPosition, fromPosition)
 	if spawnLock:IsSet() then
 		return
 	else
-		spawnLock:Set(Game.createMonster("abyssador", bossSpawnPosition))
+		spawnLock:Set(Game.createMonster("abyssador", abyssadorSpawnPosition))
 		player:teleportTo(fromPosition)
 		vesperothMonster = Game.createMonster("versperoth", vesperothSpawnPosition)
 		veperothHole:remove()

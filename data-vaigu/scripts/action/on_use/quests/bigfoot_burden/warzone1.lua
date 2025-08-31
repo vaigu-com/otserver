@@ -1,9 +1,9 @@
-local teleportSpawnPosition = Position(6490, 2523, 10)
-local deathstrikeSpawnPosition = Position(6494, 2581, 10)
+local teleportSpawnPosition = Position(33104, 31909, 10)
+local deathstrikeSpawnPosition = Position(33108, 31966, 10)
 
 local spawnLock = SpawnLocks.BigfootsBurden.Warzone1
 
-local addsSpawnArea = Area(Position(6475, 2513, 10), Position(6486, 2530, 10))
+local addsSpawnArea = Area(Position(33088, 31897, 10), Position(33100, 31916, 10))
 local creatures = {
 	"humongous fungus",
 	"hideous fungus",

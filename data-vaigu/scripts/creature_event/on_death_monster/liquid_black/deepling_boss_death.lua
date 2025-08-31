@@ -1,44 +1,18 @@
 local bosses = {
-	["jaul"] = { status = 2, storage = Storage.DeeplingBosses.Jaul, centerPosition = Position(6893, 995, 11), fromPosition = Position(6910, 1009, 11) },
-	["tanjis"] = { status = 3, storage = Storage.DeeplingBosses.Tanjis, centerPosition = Position(6893, 995, 11), fromPosition = Position(6998, 988, 11) },
-	["obujos"] = { status = 4, storage = Storage.DeeplingBosses.Obujos, centerPosition = Position(6784, 991, 9), fromPosition = Position(6791, 974, 9) },
+	["jaul"] = { storage = Storage.DeeplingBosses.Jaul },
+	["tanjis"] = { storage = Storage.DeeplingBosses.Tanjis },
+	["obujos"] = { storage = Storage.DeeplingBosses.Obujos },
 }
-
-function clearDeeplingBossRoom(centerPosition, rangeX, rangeY, exitPosition)
-	local spectators, spectator = Game.getSpectators(centerPosition, false, true, 10, 10)
-	for i = 1, #spectators do
-		spectator = spectators[i]
-		if spectator:isPlayer() then
-			if os.time() < spectator:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill) then
-				spectator:teleportTo(exitPosition)
-				exitPosition:sendMagicEffect(CONST_ME_TELEPORT)
-			end
-		end
-	end
-end
 
 local deeplingBosses = CreatureEvent("DeeplingBossDeath")
 function deeplingBosses.onDeath(creature)
-	local targetMonster = creature:getMonster()
-	if not targetMonster or targetMonster:getMaster() then
-		return true
-	end
-
-	local bossName = targetMonster:getName()
-	local bossConfig = bosses[bossName:lower()]
+	local bossConfig = bosses[creature:getName():lower()]
 	if not bossConfig then
 		return true
 	end
-
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		if player:getStorageValueByKey(Storage.DeeplingBosses.DeeplingStatus) < bossConfig.status then
-			player:setStorageValueByKey(Storage.DeeplingBosses.DeeplingStatus, bossConfig.status)
-		end
-		player:setStorageValueByKey(bossConfig.storage, 1)
-		player:setStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill, NextDayEpochTime())
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Masz 5 minut na opuszczenie pokoju.")
+		player:incrementStorageByKeyClampZero(bossConfig.storage, 1)
 	end)
-	addEvent(clearDeeplingBossRoom, 60 * 5 * 1000, bossConfig.centerPosition, 15, 15, bossConfig.fromPosition) --1 min
 end
 
 deeplingBosses:register()

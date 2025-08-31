@@ -1,7 +1,7 @@
 local destination = {
-	[3140] = { position = Position(6383, 2536, 10), cooldownStorage = Storage.BigfootsBurden.Warzone1Cooldown }, --WARZONE 1 7409, 1422, 9
-	[3141] = { position = Position(6398, 2557, 11), cooldownStorage = Storage.BigfootsBurden.Warzone2Cooldown }, --WARZONE 2 7424, 1443, 10
-	[3142] = { position = Position(6376, 2523, 12), cooldownStorage = Storage.BigfootsBurden.Warzone3Cooldown }, --WARZONE 3 7402, 1409, 11
+	[3140] = { position = Position(32997, 31922, 10), cooldownStorage = Storage.BigfootsBurden.Warzone1Cooldown },
+	[3141] = { position = Position(33012, 31943, 11), cooldownStorage = Storage.BigfootsBurden.Warzone2Cooldown },
+	[3142] = { position = Position(32990, 31909, 12), cooldownStorage = Storage.BigfootsBurden.Warzone3Cooldown },
 }
 
 local movement = MoveEvent()

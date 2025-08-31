@@ -35,7 +35,7 @@ quest
 		})
 	end)
 	:Script(function()
-		local insidePos = Position(6716, 2521, 14)
+		local insidePos = Position(33452, 31282, 14)
 		local shortcutToInside = MoveEvent()
 		function shortcutToInside.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
 			local player = creature:getPlayer()
