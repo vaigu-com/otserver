@@ -7,7 +7,7 @@ local rewards = {
 			{ itemId = 16102 },
 			{ itemId = 3043, count = 3 },
 			{ itemId = 16121, count = 7 },
-			{ itemId = 16129, count = 2 },
+			{ itemId = 16129, count = 10 },
 		},
 		rewardsRandom = {
 			16102,
@@ -25,7 +25,7 @@ local rewards = {
 			{ itemId = 16102 },
 			{ itemId = 3043, count = 4 },
 			{ itemId = 16119, count = 10 },
-			{ itemId = 16129, count = 2 },
+			{ itemId = 16129, count = 10 },
 		},
 		rewardsRandom = {
 			16237,
@@ -43,7 +43,7 @@ local rewards = {
 			{ itemId = 16102 },
 			{ itemId = 3043, count = 5 },
 			{ itemId = 16120, count = 12 },
-			{ itemId = 16129, count = 2 },
+			{ itemId = 16129, count = 10 },
 		},
 		rewardsRandom = {
 			16229,
@@ -71,14 +71,8 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			return true
 		end
 
-		if player:getStorageValueByKey(boxData.storage) ~= 1 then
+		if player:getStorageValueByKey(boxData.storage) < 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, boxData.bossName .. " czuwa nad swoim skarbem i nie pozwoli ci go wykrasc.")
-			return true
-		end
-
-		local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)
-		if backpack and backpack:getEmptySlots(true) < 1 or player:getFreeCapacity() < 100 then
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Upewnij sie ze masz wolne miejsce i uniesiesz conajmniej 100 oz.")
 			return true
 		end
 
@@ -99,9 +93,11 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				table.insert(rolledLoot, { id = 15276 })
 			end
 		end
-		player:AddItems({ [2864] = rolledLoot })
+		if not player:TryAddItems({ [2864] = rolledLoot }) then
+			return
+		end
 
-		player:setStorageValueByKey(boxData.storage, -1)
+		player:incrementStorageByKey(boxData.storage, -1)
 		--player:addAchievement(reward.achievement[1])
 		player:addAchievementProgress(boxData.achievement[2], 50)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
