@@ -1,7 +1,7 @@
 local teleportData = {
-	[45701] = Position(6482, 2569, 10),
-	[45702] = Position(6491, 2568, 11),
-	[45703] = Position(6468, 2517, 12),
+	[45701] = Position(33098, 31954, 10),
+	[45702] = Position(33106, 31955, 11),
+	[45703] = Position(33081, 31907, 12),
 }
 
 local spawnLockData = {

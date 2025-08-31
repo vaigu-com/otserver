@@ -1,4 +1,4 @@
-local gnomebaseAlphaPosition = Position(6394, 2506, 9)
+local gnomebaseAlphaPosition = Position(33001, 31900, 9)
 
 local bosses = {
 	["deathstrike"] = {
@@ -39,10 +39,9 @@ function creatureevent.onDeath(creature)
 		player:setStorageValueByKey(bossConfig.rewardStorage, 1)
 	end)
 
+	local players = CreatureList.FromDamageMap(creature:getDamageMap()):FilterByPlayer():Get()
 	addEvent(function()
-		local zone = Zone(bossConfig.bossRoomZoneName)
-		zone:refresh()
-		for _, player in pairs(zone:getPlayers()) do
+		for _, player in pairs(players) do
 			player:teleportTo(gnomebaseAlphaPosition)
 		end
 		bossConfig.spawnLock:Reset()

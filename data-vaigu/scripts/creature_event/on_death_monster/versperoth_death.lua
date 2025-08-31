@@ -1,4 +1,4 @@
-local teleportPosition = Position(6461, 2492, 12)
+local teleportPosition = Position(33075, 31878, 12)
 local spawnLock = SpawnLocks.BigfootsBurden.Warzone3
 
 local creatureevent = CreatureEvent("VersperothDeath")
