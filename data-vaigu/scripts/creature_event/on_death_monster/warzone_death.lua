@@ -36,7 +36,7 @@ function creatureevent.onDeath(creature)
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
 		player:setStorageValueByKey(bossConfig.cooldownStorage, NextWednesdayEpochTime())
-		player:setStorageValueByKey(bossConfig.rewardStorage, 1)
+		player:incrementStorageByKeyClampZero(bossConfig.rewardStorage, 1)
 	end)
 
 	local players = CreatureList.FromDamageMap(creature:getDamageMap()):FilterByPlayer():Get()
