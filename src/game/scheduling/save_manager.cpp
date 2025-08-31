@@ -31,10 +31,12 @@
 
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
 	threadPool(threadPool), kv(kvStore), logger(logger), game(game)
-	#ifndef OS_WINDOWS
-	, child_saver_pid(-1)
-	#endif
-{ }
+#ifndef OS_WINDOWS
+	,
+	child_saver_pid(-1)
+#endif
+{
+}
 
 SaveManager &SaveManager::getInstance() {
 	return inject<SaveManager>();
@@ -136,7 +138,7 @@ void SaveManager::saveAll() {
 		if (player->isLoggingOut()) {
 			player->setLoggingOut(false);
 			player->setOnline(false);
-		} else if(!player->isOffline()) {
+		} else if (!player->isOffline()) {
 			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
@@ -155,28 +157,19 @@ void SaveManager::saveAll() {
 	}
 
 	DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
-		logger.info("[SaveManager::saveAll] before save players");
 		for (const auto &[_, player] : players) {
-			logger.info("[SaveManager::saveAll] before save player");
-			doSavePlayer(player);
-			logger.info("[SaveManager::saveAll] before save account");
+			savePlayer(player);
 			const auto account = player->account->save();
 		}
 
-		logger.info("[SaveManager::saveAll] before save guilds");
 		for (const auto &[_, guild] : guilds) {
 			saveGuild(guild);
 		}
 
-		logger.info("[SaveManager::saveAll] before save map");
 		saveMap();
-		logger.info("[SaveManager::saveAll] before save KV");
 		saveKV();
-		logger.info("[SaveManager::saveAll] before save coins");
 		g_accountRepository().saveCoinTransactionEntries(newCoinTransactions);
-		logger.info("[SaveManager::saveAll] before set timestamp");
 		setSuccesfulSaveTimestamp();
-		logger.info("[SaveManager::saveAll] after set timestamp");
 		return true;
 	});
 
@@ -205,40 +198,7 @@ void SaveManager::scheduleAll() {
 	});
 }
 
-void SaveManager::schedulePlayer(std::weak_ptr<Player> playerPtr) {
-	auto playerToSave = playerPtr.lock();
-	if (!playerToSave) {
-		logger.debug("Skipping save for player because player is no longer online.");
-		return;
-	}
-
-	// Disable save async if the config is set to false
-	if (!g_configManager().getBoolean(TOGGLE_SAVE_ASYNC)) {
-		if (g_game().getGameState() == GAME_STATE_NORMAL) {
-			logger.debug("Saving player {}.", playerToSave->getName());
-		}
-		doSavePlayer(playerToSave);
-		return;
-	}
-
-	logger.debug("Scheduling player {} for saving.", playerToSave->getName());
-	auto scheduledAt = std::chrono::steady_clock::now();
-	m_playerMap[playerToSave->getGUID()] = scheduledAt;
-	threadPool.detach_task([this, playerPtr, scheduledAt]() {
-		auto player = playerPtr.lock();
-		if (!player) {
-			logger.debug("Skipping save for player because player is no longer online.");
-			return;
-		}
-		if (m_playerMap[player->getGUID()] != scheduledAt) {
-			logger.warn("Skipping save for player because another save has been scheduled.");
-			return;
-		}
-		doSavePlayer(player);
-	});
-}
-
-bool SaveManager::doSavePlayer(std::shared_ptr<Player> player) {
+bool SaveManager::savePlayer(std::shared_ptr<Player> player) {
 	if (!player) {
 		logger.debug("Failed to save player because player is null.");
 		return false;
@@ -259,14 +219,6 @@ bool SaveManager::doSavePlayer(std::shared_ptr<Player> player) {
 	auto duration = bm_savePlayer.duration();
 	logger.debug("Saving player {} took {} milliseconds.", player->getName(), duration);
 	return saveSuccess;
-}
-
-bool SaveManager::savePlayer(std::shared_ptr<Player> player) {
-	if (player->isOnline() && g_game().getGameState() != GAME_STATE_SHUTDOWN) {
-		schedulePlayer(player);
-		return true;
-	}
-	return doSavePlayer(player);
 }
 
 void SaveManager::saveGuild(std::shared_ptr<Guild> guild) {

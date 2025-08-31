@@ -29,17 +29,13 @@ public:
 	void saveAll();
 	void scheduleAll();
 
-	bool savePlayer(std::shared_ptr<Player> player);
-	void saveGuild(std::shared_ptr<Guild> guild);
-
 private:
 	void saveMap();
 	void saveKV();
+	void saveGuild(std::shared_ptr<Guild> guild);
+	bool savePlayer(std::shared_ptr<Player> player);
 
 	void setSuccesfulSaveTimestamp();
-
-	void schedulePlayer(std::weak_ptr<Player> player);
-	bool doSavePlayer(std::shared_ptr<Player> player);
 
 	std::atomic<std::chrono::steady_clock::time_point> m_scheduledAt;
 	phmap::parallel_flat_hash_map<uint32_t, std::chrono::steady_clock::time_point> m_playerMap;
@@ -48,9 +44,9 @@ private:
 	KVStore &kv;
 	Logger &logger;
 	Game &game;
-	#ifndef OS_WINDOWS
+#ifndef OS_WINDOWS
 	pid_t child_saver_pid;
-	#endif
+#endif
 };
 
 constexpr auto g_saveManager = SaveManager::getInstance;
