@@ -88,6 +88,17 @@ function CreatureList:Count()
 	return TableSize(self.creatures)
 end
 
+function CreatureList.FromDamageMap(damageMap)
+	local creatureList = CreatureList()
+	for key in pairs(damageMap) do
+		local creature = Creature(key)
+		if creature then
+			creatureList:Add(creature)
+		end
+	end
+	return creatureList
+end
+
 function CreatureList:Add(creature)
 	if table.contains(self.creatures, creature) then
 		return self
