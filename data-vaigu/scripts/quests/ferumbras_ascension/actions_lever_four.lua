@@ -1,10 +1,10 @@
 local ferumbrasAscendantLevelFour = Action()
 function ferumbrasAscendantLevelFour.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active) < 1 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active) < 1 then
 		return false
 	end
 	if item.itemid == 9110 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) < 4 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) < 4 then
 			local spectators = Game.getSpectators(item:getPosition(), false, false, 9, 9, 6, 6)
 			for i = 1, #spectators do
 				if spectators[i]:isPlayer() then
@@ -16,7 +16,7 @@ function ferumbrasAscendantLevelFour.onUse(player, item, fromPosition, target, t
 			revertStorages()
 			return true
 		end
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) >= 4 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) >= 4 then
 			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done, 4)
 		end
 		item:transform(9111)

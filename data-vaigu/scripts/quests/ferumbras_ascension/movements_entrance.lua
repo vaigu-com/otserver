@@ -26,7 +26,7 @@ function entrance.onStepIn(creature, item, position, fromPosition)
 	local complete = true
 	for i = 1, #config do
 		local storage = config[i].storage
-		if player:getStorageValue(storage) ~= 1 then
+		if player:getStorageValueByKey(storage) ~= 1 then
 			complete = false
 			break
 		end
@@ -43,7 +43,7 @@ function entrance.onStepIn(creature, item, position, fromPosition)
 			return true
 		end
 	elseif item:getActionId() == 24838 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Access) < 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Access) < 1 then
 			player:teleportTo(Position(33275, 32390, 8))
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "This portal is not yet strong enough to breach the destination dimension.")

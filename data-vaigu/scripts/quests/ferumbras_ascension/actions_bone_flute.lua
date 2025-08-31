@@ -3,7 +3,7 @@ function ferumbrasAscendantBoneFlute.onUse(player, item, fromPosition, target, t
 	if target:isItem() then
 		return false
 	end
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.BoneFlute) >= 1 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.BoneFlute) >= 1 then
 		return false
 	end
 	if not target:getPosition():isInRange(Position(33477, 32775, 11), Position(33493, 32781, 11)) then

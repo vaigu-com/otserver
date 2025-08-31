@@ -26,7 +26,7 @@ function lastTeleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.FirstDragonTimer) < os.time() then
+	if player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.FirstDragonTimer) < os.time() then
 		position:sendMagicEffect(CONST_ME_TELEPORT)
 		player:teleportTo(destination)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)

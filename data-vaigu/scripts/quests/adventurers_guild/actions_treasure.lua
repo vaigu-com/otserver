@@ -17,7 +17,7 @@ local items = {
 local adventurersTreasure = Action()
 
 function adventurersTreasure.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter) >= 50 then
+	if player:getStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter) >= 50 then
 		local treasure = items[math.random(#items)]
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is impossible to take along all of the treasures here. But you pick out " .. treasure.description)
 		for _, item in ipairs(treasure.items) do
@@ -26,7 +26,7 @@ function adventurersTreasure.onUse(player, item, fromPosition, target, toPositio
 
 		player:setStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter, 0)
 
-		local times = player:getStorageValue(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement)
+		local times = player:getStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement)
 		if times < 0 then
 			times = 0
 		end

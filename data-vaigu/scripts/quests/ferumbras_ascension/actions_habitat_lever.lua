@@ -1,6 +1,6 @@
 local ferumbrasAscendantHabitatLever = Action()
 function ferumbrasAscendantHabitatLever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.HabitatsAccess) >= 1 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.HabitatsAccess) >= 1 then
 		return false
 	end
 

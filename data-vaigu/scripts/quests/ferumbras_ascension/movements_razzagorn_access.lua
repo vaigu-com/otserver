@@ -6,7 +6,7 @@ function razzagornAccess.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.TheShatterer) >= 1 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.TheShatterer) >= 1 then
 		player:teleportTo(Position(33437, 32443, 15))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

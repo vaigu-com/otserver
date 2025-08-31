@@ -12,9 +12,9 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 	end
 
 	onDeathForParty(creature, mostDamageKiller, function(creature, player)
-		local enfeebledKills = player:getStorageValue(ThreatenedDreams.Mission02.EnfeebledCount)
-		local frazzlemawsKills = player:getStorageValue(ThreatenedDreams.Mission02.FrazzlemawsCount)
-		if player:getStorageValue(ThreatenedDreams.Mission02[1]) == 1 then
+		local enfeebledKills = player:getStorageValueByKey(ThreatenedDreams.Mission02.EnfeebledCount)
+		local frazzlemawsKills = player:getStorageValueByKey(ThreatenedDreams.Mission02.FrazzlemawsCount)
+		if player:getStorageValueByKey(ThreatenedDreams.Mission02[1]) == 1 then
 			player:setStorageValueByKey(ThreatenedDreams.Mission02[1], 1)
 			if creature:getName():lower() == nightmareMonsters[1] then
 				player:setStorageValueByKey(ThreatenedDreams.Mission02.EnfeebledCount, enfeebledKills + 1)

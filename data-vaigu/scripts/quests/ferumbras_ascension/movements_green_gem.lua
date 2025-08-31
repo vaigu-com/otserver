@@ -46,7 +46,7 @@ local greenGem = MoveEvent()
 
 function greenGem.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
-	if not player or player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active) >= 1 then
+	if not player or player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active) >= 1 then
 		position:sendMagicEffect(CONST_ME_TELEPORT)
 		return true
 	end

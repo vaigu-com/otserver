@@ -62,7 +62,7 @@ function seal.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	local cooldownTime = player:getStorageValue(setting.cooldownStorage)
+	local cooldownTime = player:getStorageValueByKey(setting.cooldownStorage)
 	if cooldownTime > os.time() then
 		local remainingTime = cooldownTime - os.time()
 		local days = math.floor(remainingTime / (24 * 3600))
@@ -75,7 +75,7 @@ function seal.onStepIn(creature, item, position, fromPosition)
 	end
 
 	if item.actionid == 24844 then -- Mazoran
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) >= 4 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Done) >= 4 then
 			if player:canFightBoss(setting.boss) then
 				player:teleportTo(setting.toPosition)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -94,7 +94,7 @@ function seal.onStepIn(creature, item, position, fromPosition)
 			return true
 		end
 	elseif item.actionid == 24845 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer) >= 1 then
 			if player:canFightBoss(setting.boss) then
 				player:teleportTo(setting.toPosition)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)

@@ -6,7 +6,7 @@ function plagirathAccess.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.TheLordOfTheLiceAccess) < 1 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.TheLordOfTheLiceAccess) < 1 then
 		local pos = player:getPosition()
 		pos.x = pos.x - 2
 		player:teleportTo(pos)

@@ -6,7 +6,7 @@ function shulgraxLever.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer) >= 1 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer) >= 1 then
 		player:teleportTo(Position(33436, 32800, 13))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else

@@ -50,7 +50,7 @@ function bossTeleport.onStepIn(creature, item, position, fromPosition)
 
 	local cooldownStorage = teleportConfig.cooldownStorage
 	local bossName = teleportConfig.bossName
-	local cooldownTime = player:getStorageValue(cooldownStorage)
+	local cooldownTime = player:getStorageValueByKey(cooldownStorage)
 
 	if cooldownTime > os.time() then
 		local remainingTime = cooldownTime - os.time()
@@ -61,7 +61,7 @@ function bossTeleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(teleportConfig.storage) ~= 1 then
+	if player:getStorageValueByKey(teleportConfig.storage) ~= 1 then
 		player:teleportTo(fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		return true

@@ -46,7 +46,7 @@ local redGem = MoveEvent()
 
 function redGem.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
-	if not player or player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active) >= 1 then
+	if not player or player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active) >= 1 then
 		position:sendMagicEffect(CONST_ME_TELEPORT)
 		return true
 	end
@@ -67,9 +67,9 @@ function redGem.onStepIn(creature, item, position, fromPosition)
 		if not leverFirst or not leverSecond or not leverThird or not leverFour then
 			return false
 		end
-		leverFirst:setActionId(53820 + player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.First))
-		leverSecond:setActionId(53820 + player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Second))
-		leverThird:setActionId(53820 + player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Elements.Third))
+		leverFirst:setActionId(53820 + player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.First))
+		leverSecond:setActionId(53820 + player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Second))
+		leverThird:setActionId(53820 + player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Third))
 		leverFour:setActionId(53824)
 	end
 	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Elements.Active, 1)
