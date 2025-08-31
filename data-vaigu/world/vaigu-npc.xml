@@ -726,6 +726,9 @@
 	<npc centerx="5466" centery="1546" centerz="10" radius="1">
 		<npc name="GM Romek" x="0" y="0" z="10" spawntime="60" />
 	</npc>
+	<npc centerx="6445" centery="1841" centerz="10" radius="1">
+		<npc name="Xelvar" x="0" y="0" z="10" spawntime="60" />
+	</npc>
 	<npc centerx="7656" centery="1006" centerz="11" radius="1">
 		<npc name="Mick" x="0" y="0" z="11" spawntime="60" />
 	</npc>

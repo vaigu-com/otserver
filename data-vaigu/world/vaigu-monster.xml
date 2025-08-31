@@ -6212,8 +6212,17 @@
 	<monster centerx="5807" centery="1708" centerz="4" radius="1">
 		<monster name="Cyclops Smith" x="0" y="0" z="4" spawntime="60" />
 	</monster>
+	<monster centerx="7634" centery="1709" centerz="4" radius="1">
+		<monster name="Braindeath" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7616" centery="1710" centerz="4" radius="1">
+		<monster name="Braindeath" x="0" y="0" z="4" spawntime="60" />
+	</monster>
 	<monster centerx="5808" centery="1712" centerz="4" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7595" centery="1712" centerz="4" radius="1">
+		<monster name="Braindeath" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="5781" centery="1713" centerz="4" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="4" spawntime="60" />
@@ -6238,6 +6247,9 @@
 	</monster>
 	<monster centerx="5814" centery="1720" centerz="4" radius="1">
 		<monster name="Wyvern" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7609" centery="1720" centerz="4" radius="1">
+		<monster name="Braindeath" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="5817" centery="1723" centerz="4" radius="1">
 		<monster name="Cyclops Smith" x="0" y="0" z="4" spawntime="60" />
@@ -11426,11 +11438,11 @@
 		<monster name="Rat" x="-1" y="-1" z="5" spawntime="60" />
 		<monster name="Rat" x="0" y="0" z="5" spawntime="60" />
 	</monster>
-	<monster centerx="7646" centery="1569" centerz="5" radius="1">
-		<monster name="Elf Arcanist" x="0" y="0" z="5" spawntime="60" />
-	</monster>
 	<monster centerx="7034" centery="1571" centerz="5" radius="1">
 		<monster name="Elf" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7647" centery="1571" centerz="5" radius="1">
+		<monster name="Elf Arcanist" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="7040" centery="1572" centerz="5" radius="1">
 		<monster name="Elf" x="0" y="0" z="5" spawntime="60" />
@@ -11895,6 +11907,9 @@
 	</monster>
 	<monster centerx="5956" centery="1724" centerz="5" radius="1">
 		<monster name="Goblin Assassin" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7589" centery="1724" centerz="5" radius="1">
+		<monster name="Braindeath" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="5953" centery="1726" centerz="5" radius="1">
 		<monster name="Goblin Assassin" x="0" y="0" z="5" spawntime="60" />
@@ -20356,7 +20371,6 @@
 		<monster name="Elf Arcanist" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7635" centery="1541" centerz="6" radius="1">
-		<monster name="Slime" x="1" y="-1" z="6" spawntime="60" />
 		<monster name="Slime" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7642" centery="1541" centerz="6" radius="1">
@@ -21057,9 +21071,6 @@
 	<monster centerx="5840" centery="1734" centerz="6" radius="1">
 		<monster name="Cyclops" x="0" y="0" z="6" spawntime="60" />
 	</monster>
-	<monster centerx="7595" centery="1734" centerz="6" radius="1">
-		<monster name="Elder Bonelord" x="0" y="0" z="6" spawntime="60" />
-	</monster>
 	<monster centerx="5674" centery="1735" centerz="6" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -21092,9 +21103,6 @@
 		<monster name="Goblin" x="3" y="-1" z="6" spawntime="60" />
 		<monster name="Goblin Assassin" x="-4" y="2" z="6" spawntime="60" />
 		<monster name="Goblin" x="-6" y="3" z="6" spawntime="60" />
-	</monster>
-	<monster centerx="7594" centery="1737" centerz="6" radius="1">
-		<monster name="Elder Bonelord" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5651" centery="1738" centerz="6" radius="1">
 		<monster name="Misguided Thief" x="0" y="0" z="6" spawntime="60" />
@@ -34021,15 +34029,6 @@
 	<monster centerx="7157" centery="1145" centerz="7" radius="1">
 		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7458" centery="1145" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7460" centery="1145" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7462" centery="1145" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7626" centery="1145" centerz="7" radius="1">
 		<monster name="Poacher" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -34222,11 +34221,6 @@
 		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Bug" x="1" y="1" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7424" centery="1151" centerz="7" radius="1">
-		<monster name="War Wolf" x="1" y="-1" z="7" spawntime="60" />
-		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
-		<monster name="War Wolf" x="-1" y="1" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5818" centery="1152" centerz="7" radius="1">
 		<monster name="Minotaur Amazon" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -34268,9 +34262,6 @@
 	<monster centerx="7339" centery="1153" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7427" centery="1153" centerz="7" radius="1">
-		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7610" centery="1153" centerz="7" radius="1">
 		<monster name="Poacher" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -34297,9 +34288,6 @@
 	</monster>
 	<monster centerx="7271" centery="1154" centerz="7" radius="1">
 		<monster name="Toad" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7424" centery="1154" centerz="7" radius="1">
-		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7615" centery="1154" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
@@ -34350,9 +34338,6 @@
 		<monster name="Swamp Troll" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Swamp Troll" x="-1" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7432" centery="1155" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7498" centery="1155" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
@@ -34430,9 +34415,6 @@
 	<monster centerx="6951" centery="1157" centerz="7" radius="1">
 		<monster name="Lion" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7446" centery="1157" centerz="7" radius="1">
-		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7483" centery="1157" centerz="7" radius="1">
 		<monster name="Blue Butterfly" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -34476,9 +34458,6 @@
 	</monster>
 	<monster centerx="7338" centery="1158" centerz="7" radius="1">
 		<monster name="Wisp" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7448" centery="1158" centerz="7" radius="1">
-		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7460" centery="1158" centerz="7" radius="1">
 		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
@@ -35264,11 +35243,8 @@
 	<monster centerx="7270" centery="1181" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7453" centery="1181" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7458" centery="1181" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
+	<monster centerx="7456" centery="1181" centerz="7" radius="1">
+		<monster name="Gozzler" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6272" centery="1182" centerz="7" radius="1">
 		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
@@ -35284,9 +35260,6 @@
 	</monster>
 	<monster centerx="7309" centery="1182" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7450" centery="1182" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6311" centery="1183" centerz="7" radius="1">
 		<monster name="Scarab" x="0" y="0" z="7" spawntime="60" />
@@ -35448,9 +35421,6 @@
 	<monster centerx="7220" centery="1188" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7464" centery="1188" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7811" centery="1188" centerz="7" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -35522,8 +35492,8 @@
 	<monster centerx="7233" centery="1190" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7464" centery="1190" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
+	<monster centerx="7469" centery="1190" centerz="7" radius="1">
+		<monster name="Gozzler" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7812" centery="1190" centerz="7" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
@@ -35543,6 +35513,9 @@
 	<monster centerx="7310" centery="1191" centerz="7" radius="1">
 		<monster name="Swamp Troll" x="1" y="-1" z="7" spawntime="60" />
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7451" centery="1191" centerz="7" radius="1">
+		<monster name="Gozzler" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6241" centery="1192" centerz="7" radius="1">
 		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
@@ -35592,9 +35565,6 @@
 	</monster>
 	<monster centerx="7176" centery="1193" centerz="7" radius="1">
 		<monster name="Centipede" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7455" centery="1193" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7540" centery="1193" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
@@ -35711,9 +35681,6 @@
 	<monster centerx="7216" centery="1197" centerz="7" radius="1">
 		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7618" centery="1197" centerz="7" radius="1">
-		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7779" centery="1197" centerz="7" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -35768,9 +35735,6 @@
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7605" centery="1199" centerz="7" radius="1">
-		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7619" centery="1199" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7652" centery="1199" centerz="7" radius="1">
@@ -35843,7 +35807,6 @@
 	</monster>
 	<monster centerx="7619" centery="1201" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7661" centery="1201" centerz="7" radius="1">
 		<monster name="Feverish Citizen" x="0" y="0" z="7" spawntime="60" />
@@ -35877,7 +35840,6 @@
 	</monster>
 	<monster centerx="7600" centery="1202" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7602" centery="1202" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -35980,8 +35942,6 @@
 	</monster>
 	<monster centerx="7625" centery="1205" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="-1" y="1" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7797" centery="1205" centerz="7" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
@@ -36242,7 +36202,6 @@
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7615" centery="1211" centerz="7" radius="1">
-		<monster name="Mutated Human" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7623" centery="1211" centerz="7" radius="1">
@@ -36427,12 +36386,9 @@
 	</monster>
 	<monster centerx="7571" centery="1215" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="-1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7583" centery="1215" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7585" centery="1215" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -36475,7 +36431,6 @@
 	</monster>
 	<monster centerx="7567" centery="1216" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7578" centery="1216" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -36514,7 +36469,6 @@
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7569" centery="1217" centerz="7" radius="1">
-		<monster name="Mutated Human" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7661" centery="1217" centerz="7" radius="1">
@@ -36596,7 +36550,6 @@
 	</monster>
 	<monster centerx="7594" centery="1219" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7610" centery="1219" centerz="7" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="7" spawntime="60" />
@@ -36669,7 +36622,6 @@
 	</monster>
 	<monster centerx="7601" centery="1221" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7650" centery="1221" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -36702,7 +36654,6 @@
 		<monster name="Dark Apprentice" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7593" centery="1222" centerz="7" radius="1">
-		<monster name="Mutated Human" x="1" y="-1" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7657" centery="1222" centerz="7" radius="1">
@@ -36756,9 +36707,7 @@
 		<monster name="Swamp Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7602" centery="1224" centerz="7" radius="1">
-		<monster name="Mutated Human" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7666" centery="1224" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="-1" z="7" spawntime="60" />
@@ -37167,11 +37116,9 @@
 	</monster>
 	<monster centerx="7598" centery="1236" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7601" centery="1236" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="-1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7628" centery="1236" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -37336,9 +37283,7 @@
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7589" centery="1240" centerz="7" radius="1">
-		<monster name="Mutated Human" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7600" centery="1240" centerz="7" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="7" spawntime="60" />
@@ -37770,9 +37715,6 @@
 	</monster>
 	<monster centerx="7589" centery="1249" centerz="7" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="-1" y="1" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="0" y="1" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7779" centery="1249" centerz="7" radius="1">
 		<monster name="Orc Rider" x="0" y="0" z="7" spawntime="60" />
@@ -37817,7 +37759,6 @@
 	</monster>
 	<monster centerx="7583" centery="1250" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7745" centery="1250" centerz="7" radius="1">
 		<monster name="Orc Rider" x="0" y="0" z="7" spawntime="60" />
@@ -37912,7 +37853,6 @@
 		<monster name="Amazon" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7585" centery="1252" centerz="7" radius="1">
-		<monster name="Mutated Human" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7661" centery="1252" centerz="7" radius="1">
@@ -38012,13 +37952,11 @@
 	</monster>
 	<monster centerx="7566" centery="1254" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Mutated Human" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7576" centery="1254" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7592" centery="1254" centerz="7" radius="1">
-		<monster name="Mutated Human" x="-1" y="0" z="7" spawntime="60" />
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7628" centery="1254" centerz="7" radius="1">
@@ -38080,9 +38018,6 @@
 	</monster>
 	<monster centerx="7391" centery="1255" centerz="7" radius="1">
 		<monster name="Cyclops Drone" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7568" centery="1255" centerz="7" radius="1">
-		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7586" centery="1255" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="60" />
@@ -48622,9 +48557,6 @@
 	<monster centerx="7541" centery="1654" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7589" centery="1654" centerz="7" radius="1">
-		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5715" centery="1655" centerz="7" radius="1">
 		<monster name="Elf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -48675,9 +48607,6 @@
 	<monster centerx="7588" centery="1656" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7607" centery="1656" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="5576" centery="1657" centerz="7" radius="1">
 		<monster name="War Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -48710,9 +48639,6 @@
 	<monster centerx="7523" centery="1657" centerz="7" radius="1">
 		<monster name="Bug" x="1" y="-1" z="7" spawntime="60" />
 		<monster name="Bug" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7592" centery="1657" centerz="7" radius="1">
-		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5722" centery="1658" centerz="7" radius="1">
 		<monster name="Elf" x="0" y="0" z="7" spawntime="60" />
@@ -48771,12 +48697,6 @@
 	</monster>
 	<monster centerx="7591" centery="1660" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7600" centery="1660" centerz="7" radius="1">
-		<monster name="Demon Skeleton" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7611" centery="1660" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5680" centery="1661" centerz="7" radius="1">
 		<monster name="Slug" x="0" y="0" z="7" spawntime="60" />
@@ -48855,9 +48775,6 @@
 	<monster centerx="7363" centery="1664" centerz="7" radius="1">
 		<monster name="Swampling" x="0" y="0" z="7" spawntime="60" />
 		<monster name="Swampling" x="1" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7605" centery="1664" centerz="7" radius="1">
-		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5622" centery="1665" centerz="7" radius="1">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="60" />
@@ -50179,6 +50096,9 @@
 	<monster centerx="7569" centery="1721" centerz="7" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="7600" centery="1721" centerz="7" radius="1">
+		<monster name="Elder Bonelord" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5584" centery="1722" centerz="7" radius="1">
 		<monster name="Hunter" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -50335,9 +50255,6 @@
 	</monster>
 	<monster centerx="7554" centery="1727" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7602" centery="1727" centerz="7" radius="1">
-		<monster name="Elder Bonelord" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5711" centery="1728" centerz="7" radius="1">
 		<monster name="Pooka" x="0" y="0" z="7" spawntime="60" />
@@ -50715,6 +50632,9 @@
 	<monster centerx="7597" centery="1742" centerz="7" radius="1">
 		<monster name="Bonelord" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="7621" centery="1742" centerz="7" radius="1">
+		<monster name="Giant Spider" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5664" centery="1743" centerz="7" radius="1">
 		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -50762,6 +50682,9 @@
 	</monster>
 	<monster centerx="6617" centery="1744" centerz="7" radius="1">
 		<monster name="Arctic Faun" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7638" centery="1744" centerz="7" radius="1">
+		<monster name="Giant Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5585" centery="1745" centerz="7" radius="1">
 		<monster name="Misguided Thief" x="0" y="0" z="7" spawntime="60" />
@@ -50843,9 +50766,6 @@
 	</monster>
 	<monster centerx="7498" centery="1747" centerz="7" radius="1">
 		<monster name="Emerald Damselfly" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7601" centery="1747" centerz="7" radius="1">
-		<monster name="Bonelord" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5613" centery="1748" centerz="7" radius="1">
 		<monster name="Misguided Bully" x="0" y="0" z="7" spawntime="60" />
@@ -64797,9 +64717,6 @@
 	<monster centerx="5540" centery="1650" centerz="8" radius="1">
 		<monster name="War Wolf" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="7596" centery="1650" centerz="8" radius="1">
-		<monster name="Haunted Treeling" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="5729" centery="1652" centerz="8" radius="1">
 		<monster name="Elf Arcanist" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -73024,9 +72941,6 @@
 		<monster name="Pirate Ghost" x="0" y="0" z="9" spawntime="60" />
 		<monster name="Pirate Ghost" x="0" y="1" z="9" spawntime="60" />
 	</monster>
-	<monster centerx="7516" centery="1326" centerz="9" radius="1">
-		<monster name="Banshee" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="6598" centery="1328" centerz="9" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -75890,9 +75804,6 @@
 	<monster centerx="5929" centery="1643" centerz="9" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="9" spawntime="60" direction="2" />
 	</monster>
-	<monster centerx="7587" centery="1643" centerz="9" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="9" spawntime="60" />
-	</monster>
 	<monster centerx="7640" centery="1643" centerz="9" radius="1">
 		<monster name="Infernalist" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -75908,6 +75819,9 @@
 	<monster centerx="5963" centery="1644" centerz="9" radius="1">
 		<monster name="Dragon Lord Hatchling" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="7587" centery="1644" centerz="9" radius="1">
+		<monster name="Haunted Treeling" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7623" centery="1644" centerz="9" radius="1">
 		<monster name="Infernalist" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -75919,9 +75833,6 @@
 	</monster>
 	<monster centerx="5895" centery="1645" centerz="9" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="9" spawntime="60" direction="2" />
-	</monster>
-	<monster centerx="7575" centery="1645" centerz="9" radius="1">
-		<monster name="Skeleton" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7681" centery="1646" centerz="9" radius="1">
 		<monster name="Warlock" x="0" y="0" z="9" spawntime="60" />
@@ -76419,7 +76330,6 @@
 	</monster>
 	<monster centerx="7592" centery="1712" centerz="9" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="9" spawntime="60" />
-		<monster name="Haunted Treeling" x="1" y="1" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7427" centery="1714" centerz="9" radius="1">
 		<monster name="Corym Charlatan" x="0" y="0" z="9" spawntime="60" />
@@ -81917,18 +81827,6 @@
 	<monster centerx="6913" centery="1312" centerz="10" radius="1">
 		<monster name="Destroyer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="7493" centery="1312" centerz="10" radius="1">
-		<monster name="Banshee" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="7495" centery="1313" centerz="10" radius="1">
-		<monster name="Spectre" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="7501" centery="1313" centerz="10" radius="1">
-		<monster name="Banshee" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="7510" centery="1313" centerz="10" radius="1">
-		<monster name="Banshee" x="0" y="0" z="10" spawntime="60" />
-	</monster>
 	<monster centerx="6938" centery="1314" centerz="10" radius="1">
 		<monster name="Nightmare" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -81944,9 +81842,6 @@
 	<monster centerx="6884" centery="1315" centerz="10" radius="1">
 		<monster name="Hellspawn" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="7492" centery="1315" centerz="10" radius="1">
-		<monster name="Spectre" x="0" y="0" z="10" spawntime="60" />
-	</monster>
 	<monster centerx="7811" centery="1315" centerz="10" radius="1">
 		<monster name="Dragon Lord Hatchling" x="0" y="0" z="10" spawntime="60" />
 		<monster name="Dragon Lord Hatchling" x="1" y="0" z="10" spawntime="60" />
@@ -81959,9 +81854,6 @@
 	</monster>
 	<monster centerx="6907" centery="1316" centerz="10" radius="1">
 		<monster name="Nightmare" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="7516" centery="1316" centerz="10" radius="1">
-		<monster name="Banshee" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="7570" centery="1316" centerz="10" radius="1">
 		<monster name="Vampire" x="0" y="0" z="10" spawntime="60" />
@@ -82074,9 +81966,6 @@
 	</monster>
 	<monster centerx="6965" centery="1324" centerz="10" radius="1">
 		<monster name="Destroyer" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="7492" centery="1324" centerz="10" radius="1">
-		<monster name="Banshee" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="5869" centery="1325" centerz="10" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="10" spawntime="60" />
@@ -85309,129 +85198,6 @@
 	</monster>
 	<monster centerx="6039" centery="1989" centerz="10" radius="1">
 		<monster name="Infernalist" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6685" centery="2468" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6722" centery="2469" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6703" centery="2470" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6714" centery="2473" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6698" centery="2474" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Guard" x="-1" y="1" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6730" centery="2477" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="-1" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6698" centery="2478" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2480" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6791" centery="2481" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2483" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="-1" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6793" centery="2483" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6685" centery="2484" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6688" centery="2485" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6708" centery="2485" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2485" centerz="10" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6756" centery="2488" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-1" y="1" z="10" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="0" y="1" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6747" centery="2492" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="10" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="1" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2511" centerz="10" radius="3">
-		<monster name="Deepling Spellsinger" x="-2" y="-3" z="10" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-3" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6800" centery="2514" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2516" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2518" centerz="10" radius="3">
-		<monster name="Deepling Spellsinger" x="-3" y="2" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6800" centery="2518" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2519" centerz="10" radius="1">
-		<monster name="Deepling Elite" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6810" centery="2520" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2521" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6795" centery="2524" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2524" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6814" centery="2527" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6792" centery="2529" centerz="10" radius="1">
-		<monster name="Deepling Elite" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6786" centery="2530" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2533" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6784" centery="2534" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2537" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6805" centery="2537" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2538" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6768" centery="2539" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2539" centerz="10" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="10" spawntime="60" />
-	</monster>
-	<monster centerx="6795" centery="2540" centerz="10" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6781" centery="569" centerz="11" radius="1">
 		<monster name="Hellspawn" x="0" y="0" z="11" spawntime="60" />
@@ -90051,6 +89817,9 @@
 	<monster centerx="7587" centery="1824" centerz="11" radius="1">
 		<monster name="Ghoul" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="7491" centery="1825" centerz="11" radius="1">
+		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="7642" centery="1825" centerz="11" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -90129,9 +89898,6 @@
 	<monster centerx="7548" centery="1832" centerz="11" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="7482" centery="1833" centerz="11" radius="1">
-		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="7559" centery="1833" centerz="11" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -90206,8 +89972,6 @@
 	</monster>
 	<monster centerx="7467" centery="1842" centerz="11" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Carrion Worm" x="-1" y="1" z="11" spawntime="60" />
-		<monster name="Carrion Worm" x="0" y="1" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7487" centery="1842" centerz="11" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
@@ -90318,9 +90082,6 @@
 	<monster centerx="7476" centery="1850" centerz="11" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="7497" centery="1850" centerz="11" radius="1">
-		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="7559" centery="1850" centerz="11" radius="1">
 		<monster name="Ghoul" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -90357,9 +90118,6 @@
 		<monster name="Defiler" x="-2" y="-2" z="11" spawntime="60" />
 		<monster name="Defiler" x="1" y="2" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="7498" centery="1855" centerz="11" radius="1">
-		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="6648" centery="1856" centerz="11" radius="4">
 		<monster name="Phantasm" x="-3" y="-3" z="11" spawntime="60" />
 		<monster name="Phantasm" x="2" y="0" z="11" spawntime="60" />
@@ -90386,9 +90144,6 @@
 	<monster centerx="6836" centery="1857" centerz="11" radius="3">
 		<monster name="Blightwalker" x="-3" y="-3" z="11" spawntime="60" />
 		<monster name="Plaguesmith" x="2" y="-1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="7496" centery="1857" centerz="11" radius="1">
-		<monster name="Rotworm" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6709" centery="1858" centerz="11" radius="3">
 		<monster name="Phantasm" x="-1" y="0" z="11" spawntime="60" />
@@ -90713,479 +90468,6 @@
 	</monster>
 	<monster centerx="6510" centery="1962" centerz="11" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2414" centerz="11" radius="1">
-		<monster name="Fish" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Fish" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Fish" x="0" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6712" centery="2415" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6715" centery="2415" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6725" centery="2415" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6733" centery="2415" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6734" centery="2416" centerz="11" radius="1">
-		<monster name="Fish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6740" centery="2416" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2417" centerz="11" radius="1">
-		<monster name="Fish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6707" centery="2418" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2419" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6747" centery="2422" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6748" centery="2423" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6749" centery="2423" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2426" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6748" centery="2427" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="0" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6720" centery="2428" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6776" centery="2428" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Jellyfish" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Jellyfish" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2431" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2432" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6723" centery="2432" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6738" centery="2433" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2433" centerz="11" radius="1">
-		<monster name="Jellyfish" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6782" centery="2434" centerz="11" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6738" centery="2436" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="-1" z="11" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2437" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Jellyfish" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2438" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6738" centery="2438" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6740" centery="2438" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6738" centery="2439" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6779" centery="2441" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="-1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6780" centery="2442" centerz="11" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2444" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6774" centery="2446" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6783" centery="2450" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6769" centery="2451" centerz="11" radius="1">
-		<monster name="Deepling Elite" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6781" centery="2455" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6779" centery="2458" centerz="11" radius="1">
-		<monster name="Fish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6771" centery="2461" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6776" centery="2461" centerz="11" radius="1">
-		<monster name="Fish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6763" centery="2463" centerz="11" radius="1">
-		<monster name="Deepling Elite" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2463" centerz="11" radius="1">
-		<monster name="Fish" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2466" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6764" centery="2467" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2468" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Fish" x="0" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6690" centery="2469" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6696" centery="2469" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6720" centery="2469" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6774" centery="2470" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-		<monster name="Fish" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6873" centery="2471" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6687" centery="2472" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6786" centery="2472" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6876" centery="2472" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6765" centery="2473" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6788" centery="2473" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6848" centery="2474" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6881" centery="2474" centerz="11" radius="1">
-		<monster name="Deepling Elite" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6699" centery="2476" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6768" centery="2476" centerz="11" radius="1">
-		<monster name="Shark" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6788" centery="2476" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6718" centery="2477" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2477" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6688" centery="2478" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6782" centery="2479" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6785" centery="2479" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6885" centery="2479" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6910" centery="2479" centerz="11" radius="1">
-		<monster name="Tanjis" x="0" y="-1" z="11" spawntime="1800" />
-	</monster>
-	<monster centerx="6878" centery="2480" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6702" centery="2481" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6768" centery="2481" centerz="11" radius="1">
-		<monster name="Shark" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2481" centerz="11" radius="1">
-		<monster name="Shark" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6704" centery="2482" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6718" centery="2482" centerz="11" radius="1">
-		<monster name="Deepling Elite" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6771" centery="2482" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2482" centerz="11" radius="1">
-		<monster name="Shark" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6890" centery="2482" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6703" centery="2484" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6718" centery="2484" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6809" centery="2484" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6708" centery="2485" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2485" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="-1" z="11" spawntime="60" />
-		<monster name="Deepling Guard" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6814" centery="2485" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2486" centerz="11" radius="1">
-		<monster name="Shark" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6806" centery="2486" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2487" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6817" centery="2487" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6700" centery="2488" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6773" centery="2488" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2488" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6827" centery="2488" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2489" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6851" centery="2489" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6706" centery="2490" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6707" centery="2490" centerz="11" radius="1">
-		<monster name="Deepling Elite" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6727" centery="2490" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6767" centery="2490" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2492" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6831" centery="2492" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2492" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2493" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6740" centery="2494" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6767" centery="2494" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="-1" z="11" spawntime="60" />
-		<monster name="Deepling Tyrant" x="-1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6842" centery="2494" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2495" centerz="11" radius="1">
-		<monster name="Deepling Tyrant" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6723" centery="2496" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2497" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6726" centery="2499" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6734" centery="2500" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6897" centery="2500" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6837" centery="2501" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6877" centery="2501" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6730" centery="2503" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6838" centery="2504" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6907" centery="2504" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6702" centery="2505" centerz="11" radius="1">
-		<monster name="Obujos" x="0" y="-1" z="11" spawntime="1800" />
-	</monster>
-	<monster centerx="6738" centery="2507" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6843" centery="2507" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-		<monster name="Deepling Elite" x="1" y="1" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2507" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2508" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6810" centery="2514" centerz="11" radius="1">
-		<monster name="Jaul" x="0" y="-1" z="11" spawntime="1800" />
-	</monster>
-	<monster centerx="6824" centery="2521" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6827" centery="2524" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2525" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6832" centery="2525" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6769" centery="2526" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2526" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6776" centery="2528" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6761" centery="2529" centerz="11" radius="1">
-		<monster name="Deepling Tyrant" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2529" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6821" centery="2529" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6836" centery="2529" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6800" centery="2530" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6761" centery="2531" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6808" centery="2531" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2531" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6837" centery="2531" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6760" centery="2533" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6813" centery="2533" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2534" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2534" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6796" centery="2536" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6818" centery="2537" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2538" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6842" centery="2538" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6760" centery="2539" centerz="11" radius="1">
-		<monster name="Deepling Tyrant" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2541" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6822" centery="2543" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6839" centery="2543" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2545" centerz="11" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2547" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6838" centery="2549" centerz="11" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6832" centery="2551" centerz="11" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6795" centery="565" centerz="12" radius="1">
 		<monster name="Hellspawn" x="0" y="0" z="12" spawntime="60" />
@@ -97201,158 +96483,6 @@
 	<monster centerx="6522" centery="1971" centerz="12" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="12" spawntime="60" />
 	</monster>
-	<monster centerx="6719" centery="2415" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6716" centery="2416" centerz="12" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2418" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6725" centery="2422" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6727" centery="2422" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6730" centery="2422" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2423" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="0" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2424" centerz="12" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2424" centerz="12" radius="1">
-		<monster name="Deepling Warrior" x="-1" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6716" centery="2428" centerz="12" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2429" centerz="12" radius="1">
-		<monster name="Northern Pike" x="0" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Northern Pike" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2429" centerz="12" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2429" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2430" centerz="12" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6710" centery="2431" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6723" centery="2431" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6733" centery="2431" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2433" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="0" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6712" centery="2434" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2434" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2434" centerz="12" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-1" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2435" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6720" centery="2439" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2458" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2461" centerz="12" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6773" centery="2461" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6714" centery="2462" centerz="12" radius="1">
-		<monster name="Deepling Warrior" x="-1" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Scout" x="0" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6765" centery="2462" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6768" centery="2463" centerz="12" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6768" centery="2466" centerz="12" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2466" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2470" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="-1" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2470" centerz="12" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6779" centery="2478" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6781" centery="2482" centerz="12" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6783" centery="2483" centerz="12" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2485" centerz="12" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6786" centery="2485" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6783" centery="2486" centerz="12" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6779" centery="2487" centerz="12" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6789" centery="2491" centerz="12" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="1" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6786" centery="2492" centerz="12" radius="1">
-		<monster name="Deepling Guard" x="0" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="0" z="12" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2583" centerz="12" radius="11">
-		<monster name="Deepling Scout" x="0" y="-10" z="12" spawntime="60" />
-		<monster name="Deepling Scout" x="0" y="-7" z="12" spawntime="60" />
-		<monster name="Deepling Scout" x="-6" y="-2" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="10" y="-2" z="12" spawntime="60" />
-		<monster name="Fish" x="6" y="-1" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-9" y="0" z="12" spawntime="60" />
-		<monster name="Fish" x="-7" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Scout" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Scout" x="3" y="0" z="12" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="8" y="0" z="12" spawntime="60" />
-		<monster name="Fish" x="10" y="1" z="12" spawntime="60" />
-		<monster name="Fish" x="-6" y="2" z="12" spawntime="60" />
-		<monster name="Deepling Scout" x="6" y="3" z="12" spawntime="60" />
-	</monster>
 	<monster centerx="6461" centery="574" centerz="13" radius="1">
 		<monster name="Medusa" x="1" y="0" z="13" spawntime="60" />
 	</monster>
@@ -100761,441 +99891,6 @@
 		<monster name="Lost Soul" x="3" y="0" z="13" spawntime="60" />
 		<monster name="Lost Soul" x="-1" y="2" z="13" spawntime="60" />
 	</monster>
-	<monster centerx="6722" centery="2432" centerz="13" radius="11">
-		<monster name="Deepling Guard" x="-9" y="-8" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="-8" y="-8" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="2" y="-8" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="-1" y="-6" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="7" y="-6" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-11" y="-5" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-6" y="-5" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="0" y="-5" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="7" y="-4" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-11" y="-3" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="-1" y="-3" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="5" y="-3" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-9" y="-2" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-3" y="-2" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="-1" y="-2" z="13" spawntime="60" />
-		<monster name="Deepling Guard" x="3" y="-2" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="8" y="-2" z="13" spawntime="60" />
-		<monster name="Deepling Guard" x="10" y="-2" z="13" spawntime="60" />
-		<monster name="Deepling Master Librarian" x="3" y="-1" z="13" spawntime="60" />
-		<monster name="Deepling Guard" x="-3" y="0" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="5" y="0" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="-1" y="1" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="10" y="1" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-8" y="2" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="-2" y="2" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="2" y="2" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="5" y="2" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="9" y="3" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-11" y="4" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-6" y="4" z="13" spawntime="60" />
-		<monster name="Deepling Master Librarian" x="-3" y="4" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="3" y="4" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="7" y="4" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="5" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="9" y="5" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="-10" y="6" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="-6" y="8" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-1" y="8" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="3" y="8" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2463" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6818" centery="2497" centerz="13" radius="1">
-		<monster name="Shark" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6793" centery="2498" centerz="13" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2499" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6817" centery="2499" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6820" centery="2500" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6796" centery="2501" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2502" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2502" centerz="13" radius="1">
-		<monster name="Shark" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6799" centery="2503" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2504" centerz="13" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Jellyfish" x="-1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2505" centerz="13" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2507" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2508" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6827" centery="2508" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2510" centerz="13" radius="1">
-		<monster name="Fish" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6748" centery="2510" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6813" centery="2510" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6760" centery="2511" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6829" centery="2511" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6753" centery="2512" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2512" centerz="13" radius="1">
-		<monster name="Fish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6806" centery="2512" centerz="13" radius="1">
-		<monster name="Fish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6808" centery="2513" centerz="13" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6740" centery="2514" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2514" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6805" centery="2515" centerz="13" radius="1">
-		<monster name="Fish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2517" centerz="13" radius="1">
-		<monster name="Fish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6807" centery="2517" centerz="13" radius="1">
-		<monster name="Deepling Tyrant" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Fish" x="1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6745" centery="2518" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6828" centery="2518" centerz="13" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2519" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6764" centery="2519" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6768" centery="2519" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6740" centery="2521" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6829" centery="2521" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2522" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6750" centery="2522" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6755" centery="2523" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2523" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6821" centery="2523" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="0" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6740" centery="2525" centerz="13" radius="1">
-		<monster name="Fish" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6766" centery="2525" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2526" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6750" centery="2527" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6760" centery="2527" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2528" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6755" centery="2529" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2530" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2530" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6737" centery="2530" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6761" centery="2530" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6767" centery="2530" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6817" centery="2530" centerz="13" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Northern Pike" x="0" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6699" centery="2531" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Fish" x="0" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6724" centery="2531" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2531" centerz="13" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6702" centery="2532" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6707" centery="2532" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6814" centery="2534" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2535" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6710" centery="2536" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6815" centery="2536" centerz="13" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6701" centery="2537" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2537" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2538" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6730" centery="2538" centerz="13" radius="1">
-		<monster name="Shark" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6737" centery="2538" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6814" centery="2538" centerz="13" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2539" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2542" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="-1" z="13" spawntime="60" />
-		<monster name="Calamary" x="0" y="0" z="13" spawntime="60" />
-		<monster name="Calamary" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6829" centery="2545" centerz="13" radius="1">
-		<monster name="Deepling Tyrant" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2546" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6832" centery="2547" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6693" centery="2550" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2550" centerz="13" radius="1">
-		<monster name="Manta Ray" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6829" centery="2550" centerz="13" radius="1">
-		<monster name="Calamary" x="1" y="-1" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6832" centery="2550" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="-1" z="13" spawntime="60" />
-		<monster name="Calamary" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6692" centery="2554" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6729" centery="2556" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6696" centery="2557" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6700" centery="2557" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2558" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6692" centery="2559" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2559" centerz="13" radius="1">
-		<monster name="Fish" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6737" centery="2559" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="0" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6722" centery="2560" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6696" centery="2562" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2562" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6701" centery="2563" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6691" centery="2564" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6694" centery="2567" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6711" centery="2570" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="-1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6709" centery="2573" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6724" centery="2575" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6712" centery="2576" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2576" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6714" centery="2577" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6723" centery="2581" centerz="13" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6738" centery="2581" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6729" centery="2583" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6721" centery="2584" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6837" centery="2600" centerz="13" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2600" centerz="13" radius="1">
-		<monster name="Calamary" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6834" centery="2605" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="0" y="-1" z="13" spawntime="60" />
-		<monster name="Deepling Scout" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6851" centery="2607" centerz="13" radius="1">
-		<monster name="Shark" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2609" centerz="13" radius="3">
-		<monster name="Deepling Warrior" x="-2" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6846" centery="2609" centerz="13" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2616" centerz="13" radius="3">
-		<monster name="Deepling Warrior" x="1" y="-2" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2623" centerz="13" radius="3">
-		<monster name="Calamary" x="-3" y="-3" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2630" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="2" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2637" centerz="13" radius="3">
-		<monster name="Deathling Scout" x="3" y="3" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2637" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="2" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2644" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="2" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2644" centerz="13" radius="3">
-		<monster name="Deathling Scout" x="-1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2658" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="3" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2665" centerz="13" radius="3">
-		<monster name="Deathling Scout" x="1" y="-1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2665" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="-2" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2672" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="0" y="-1" z="13" spawntime="60" />
-		<monster name="Deathling Scout" x="-2" y="0" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2686" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="2" y="2" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2686" centerz="13" radius="3">
-		<monster name="Deathling Scout" x="-2" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2686" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2686" centerz="13" radius="3">
-		<monster name="Deathling Scout" x="1" y="-1" z="13" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-1" y="1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2693" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="-1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2700" centerz="13" radius="3">
-		<monster name="Deathling Scout" x="3" y="-1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2700" centerz="13" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="-2" z="13" spawntime="60" />
-	</monster>
 	<monster centerx="4980" centery="614" centerz="14" radius="1">
 		<monster name="Demon" x="1" y="-1" z="14" spawntime="60" />
 		<monster name="Old Warlock" x="0" y="0" z="14" spawntime="60" />
@@ -102404,572 +101099,6 @@
 	<monster centerx="6104" centery="1927" centerz="14" radius="2">
 		<monster name="Demon" x="2" y="-2" z="14" spawntime="60" />
 		<monster name="Demon" x="-1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6757" centery="2358" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6748" centery="2360" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6764" centery="2360" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6746" centery="2362" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6767" centery="2363" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6748" centery="2367" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2368" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6744" centery="2368" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="-1" z="14" spawntime="60" />
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6771" centery="2373" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6725" centery="2374" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6727" centery="2376" centerz="14" radius="1">
-		<monster name="Shark" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6757" centery="2377" centerz="14" radius="1">
-		<monster name="Fish" x="0" y="-1" z="14" spawntime="60" />
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6756" centery="2379" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6724" centery="2380" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2380" centerz="14" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6752" centery="2383" centerz="14" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6754" centery="2385" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6752" centery="2389" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Jellyfish" x="1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6832" centery="2421" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2423" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2424" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6710" centery="2426" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6714" centery="2426" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2426" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6725" centery="2426" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6831" centery="2426" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2426" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6797" centery="2428" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6729" centery="2429" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6832" centery="2430" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6710" centery="2431" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2432" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Tyrant" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Tyrant" x="1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6817" centery="2432" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6787" centery="2434" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6818" centery="2434" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6725" centery="2435" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2443" centerz="14" radius="1">
-		<monster name="Shark" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2448" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6725" centery="2449" centerz="14" radius="1">
-		<monster name="Shark" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6733" centery="2450" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6797" centery="2454" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6829" centery="2454" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6711" centery="2455" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6795" centery="2457" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2457" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6718" centery="2460" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6822" centery="2461" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2463" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6726" centery="2469" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6820" centery="2473" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6800" centery="2477" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6825" centery="2479" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6799" centery="2482" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2482" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Worker" x="-1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6818" centery="2486" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2487" centerz="14" radius="1">
-		<monster name="Deepling Brawler" x="1" y="-1" z="14" spawntime="60" />
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6841" centery="2489" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6817" centery="2490" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6841" centery="2495" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2497" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6846" centery="2501" centerz="14" radius="1">
-		<monster name="Deepling Brawler" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6845" centery="2505" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6813" centery="2509" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6744" centery="2510" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2512" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="0" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6752" centery="2513" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6770" centery="2513" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6741" centery="2516" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6756" centery="2519" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6766" centery="2519" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6738" centery="2520" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6846" centery="2520" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6749" centery="2521" centerz="14" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2522" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6818" centery="2522" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6765" centery="2526" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6747" centery="2527" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6755" centery="2527" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2527" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6750" centery="2529" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6749" centery="2531" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6761" centery="2535" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6763" centery="2535" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6827" centery="2535" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6822" centery="2536" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2537" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6830" centery="2538" centerz="14" radius="1">
-		<monster name="Deepling Brawler" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6838" centery="2538" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="0" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6845" centery="2539" centerz="14" radius="1">
-		<monster name="Deepling Worker" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6699" centery="2544" centerz="14" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6720" centery="2544" centerz="14" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6708" centery="2551" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6691" centery="2553" centerz="14" radius="1">
-		<monster name="Badger" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6691" centery="2556" centerz="14" radius="1">
-		<monster name="Rabbit" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Rabbit" x="1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6703" centery="2559" centerz="14" radius="1">
-		<monster name="Fish" x="0" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6712" centery="2559" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6712" centery="2567" centerz="14" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6711" centery="2573" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Deepling Scout" x="1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2574" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6718" centery="2577" centerz="14" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2579" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2598" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2601" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2603" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6795" centery="2604" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6839" centery="2606" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6813" centery="2607" centerz="14" radius="1">
-		<monster name="Fish" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6793" centery="2608" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2608" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6815" centery="2608" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6820" centery="2608" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2608" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6836" centery="2610" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2613" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2613" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6744" centery="2616" centerz="14" radius="1">
-		<monster name="Jellyfish" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6804" centery="2617" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2617" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-		<monster name="Fish" x="-1" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2618" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2618" centerz="14" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2620" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6745" centery="2630" centerz="14" radius="1">
-		<monster name="Jellyfish" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6750" centery="2635" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6756" centery="2636" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2637" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-2" y="1" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="2" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2637" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2637" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-1" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6760" centery="2638" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6778" centery="2643" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6760" centery="2644" centerz="14" radius="1">
-		<monster name="Fish" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6766" centery="2644" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2644" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="2" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2644" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2644" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2644" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="1" y="-1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2644" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="-1" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="3" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6771" centery="2645" centerz="14" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6776" centery="2646" centerz="14" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6762" centery="2647" centerz="14" radius="1">
-		<monster name="Fish" x="0" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2651" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="2" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2651" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-2" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2651" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2658" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="-1" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-1" y="-1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2658" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="2" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2658" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-2" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2658" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="1" y="2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2658" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-2" y="2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2658" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6805" centery="2665" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2665" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-3" y="-1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2665" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="-1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2665" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2672" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="-3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2672" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="1" z="14" spawntime="60" />
-		<monster name="Deathling Scout" x="3" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2672" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2679" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2679" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="0" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2686" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="-1" z="14" spawntime="60" />
-		<monster name="Deathling Scout" x="1" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2686" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="0" y="-1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2686" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-3" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2693" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="0" y="-3" z="14" spawntime="60" />
-		<monster name="Deathling Scout" x="3" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2693" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="0" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6805" centery="2700" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2700" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="1" y="2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2700" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2700" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-3" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="1" y="-3" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-2" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="-3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-1" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-1" y="-3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="2" y="-1" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="3" y="1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="-2" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-3" y="-1" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="3" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2707" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-1" y="-1" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2714" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-3" y="-3" z="14" spawntime="60" />
-		<monster name="Deathling Scout" x="3" y="-3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6805" centery="2714" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="-1" y="-2" z="14" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="3" y="-2" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2714" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="3" y="0" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2714" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2714" centerz="14" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="3" z="14" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2714" centerz="14" radius="3">
-		<monster name="Deathling Scout" x="1" y="-1" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="5864" centery="702" centerz="15" radius="1">
 		<monster name="Nightmare of Gaz'haragoth" x="0" y="0" z="15" spawntime="60" />
@@ -104676,566 +102805,5 @@
 		<monster name="Plaguethrower" x="2" y="2" z="15" spawntime="60" />
 		<monster name="Flamethrower" x="-1" y="3" z="15" spawntime="60" />
 		<monster name="Flamethrower" x="1" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6806" centery="2380" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6809" centery="2386" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6757" centery="2391" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6774" centery="2391" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6780" centery="2392" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6756" centery="2393" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6777" centery="2394" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6789" centery="2394" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6813" centery="2396" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="1" y="-1" z="15" spawntime="60" />
-		<monster name="Jellyfish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6802" centery="2397" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6806" centery="2397" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6758" centery="2401" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6793" centery="2401" centerz="15" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6821" centery="2401" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6785" centery="2402" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6779" centery="2405" centerz="15" radius="1">
-		<monster name="Calamary" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6757" centery="2407" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6784" centery="2407" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6796" centery="2407" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6792" centery="2408" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6816" centery="2408" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="-1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2408" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6809" centery="2409" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6755" centery="2411" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6745" centery="2412" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6755" centery="2413" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6767" centery="2413" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6774" centery="2413" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6821" centery="2414" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6828" centery="2414" centerz="15" radius="1">
-		<monster name="Shark" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="-1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6780" centery="2415" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2415" centerz="15" radius="1">
-		<monster name="Shark" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6735" centery="2416" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6749" centery="2416" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="-1" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="0" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2416" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6777" centery="2416" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2416" centerz="15" radius="1">
-		<monster name="Shark" x="0" y="0" z="15" spawntime="60" />
-		<monster name="Shark" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2417" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6763" centery="2418" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6736" centery="2419" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2420" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6745" centery="2422" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6752" centery="2422" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6830" centery="2445" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6827" centery="2447" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6829" centery="2448" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6830" centery="2448" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6811" centery="2451" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6800" centery="2458" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2462" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6828" centery="2464" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6796" centery="2468" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6797" centery="2477" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6800" centery="2481" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6692" centery="2482" centerz="15" radius="1">
-		<monster name="Fish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6690" centery="2485" centerz="15" radius="1">
-		<monster name="Calamary" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6807" centery="2486" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6654" centery="2488" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Deepling Scout" x="-1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6684" centery="2488" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6745" centery="2489" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6784" centery="2489" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6776" centery="2491" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6651" centery="2492" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="0" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6671" centery="2494" centerz="15" radius="1">
-		<monster name="Fish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6687" centery="2495" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6650" centery="2497" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6670" centery="2498" centerz="15" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6763" centery="2498" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6649" centery="2499" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6670" centery="2500" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6673" centery="2500" centerz="15" radius="1">
-		<monster name="Calamary" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6681" centery="2500" centerz="15" radius="1">
-		<monster name="Northern Pike" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6654" centery="2501" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6655" centery="2502" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6679" centery="2503" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6669" centery="2504" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6658" centery="2507" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6667" centery="2508" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6681" centery="2509" centerz="15" radius="1">
-		<monster name="Shark" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6675" centery="2511" centerz="15" radius="1">
-		<monster name="Northern Pike" x="0" y="0" z="15" spawntime="60" />
-		<monster name="Northern Pike" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6687" centery="2514" centerz="15" radius="1">
-		<monster name="Calamary" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6659" centery="2515" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6669" centery="2515" centerz="15" radius="1">
-		<monster name="Jellyfish" x="0" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6677" centery="2515" centerz="15" radius="1">
-		<monster name="Shark" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6685" centery="2515" centerz="15" radius="1">
-		<monster name="Deepling Guard" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6680" centery="2516" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6697" centery="2516" centerz="15" radius="1">
-		<monster name="Jellyfish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6671" centery="2517" centerz="15" radius="1">
-		<monster name="Jellyfish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6687" centery="2517" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6682" centery="2518" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6692" centery="2518" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6699" centery="2519" centerz="15" radius="1">
-		<monster name="Fish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6681" centery="2521" centerz="15" radius="1">
-		<monster name="Deepling Elite" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6686" centery="2523" centerz="15" radius="1">
-		<monster name="Deepling Elite" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6699" centery="2525" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6682" centery="2527" centerz="15" radius="1">
-		<monster name="Fish" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6684" centery="2529" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6690" centery="2531" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2575" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6715" centery="2577" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Fish" x="-1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2582" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6717" centery="2593" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6727" centery="2595" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6788" centery="2595" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6789" centery="2596" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2597" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2597" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6842" centery="2598" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6733" centery="2599" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2599" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6722" centery="2600" centerz="15" radius="1">
-		<monster name="Calamary" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6764" centery="2600" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6715" centery="2601" centerz="15" radius="1">
-		<monster name="Deepling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6719" centery="2601" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6844" centery="2602" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6731" centery="2603" centerz="15" radius="1">
-		<monster name="Shark" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6828" centery="2603" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6713" centery="2604" centerz="15" radius="1">
-		<monster name="Calamary" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2604" centerz="15" radius="1">
-		<monster name="Jellyfish" x="-1" y="-1" z="15" spawntime="60" />
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6837" centery="2604" centerz="15" radius="1">
-		<monster name="Shark" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2605" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6773" centery="2606" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Fish" x="0" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6783" centery="2606" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6803" centery="2606" centerz="15" radius="1">
-		<monster name="Northern Pike" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6807" centery="2606" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2606" centerz="15" radius="1">
-		<monster name="Shark" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6838" centery="2607" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6846" centery="2607" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-		<monster name="Deepling Scout" x="0" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2609" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6802" centery="2610" centerz="15" radius="1">
-		<monster name="Calamary" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6838" centery="2610" centerz="15" radius="1">
-		<monster name="Jellyfish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6772" centery="2614" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6823" centery="2616" centerz="15" radius="1">
-		<monster name="Deepling Warrior" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6821" centery="2618" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6825" centery="2618" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6824" centery="2621" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6774" centery="2624" centerz="15" radius="1">
-		<monster name="Deepling Scout" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2630" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6775" centery="2632" centerz="15" radius="1">
-		<monster name="Fish" x="1" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2637" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="2" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2637" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="-3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2637" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-2" y="2" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="0" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2644" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="-1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2644" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2651" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="0" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6854" centery="2658" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-1" y="3" z="15" spawntime="60" />
-		<monster name="Deathling Scout" x="3" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6889" centery="2658" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2665" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2665" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="1" y="-3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6889" centery="2665" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-3" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2672" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="-3" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-3" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2672" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="3" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2672" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="0" y="-2" z="15" spawntime="60" />
-		<monster name="Deathling Scout" x="-1" y="2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2679" centerz="15" radius="3">
-		<monster name="Neutral Deepling Warrior" x="1" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6756" centery="2679" centerz="15" radius="3">
-		<monster name="Neutral Deepling Warrior" x="-2" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6826" centery="2679" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="2" y="-1" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2679" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="2" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6840" centery="2679" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="1" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-1" y="2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6742" centery="2686" centerz="15" radius="3">
-		<monster name="Neutral Deepling Warrior" x="3" y="-3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6798" centery="2686" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="0" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2686" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-2" y="-2" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="-1" y="-1" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="2" y="-1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6875" centery="2686" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-1" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2686" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="3" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6889" centery="2686" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-2" y="-3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6812" centery="2693" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6819" centery="2693" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="0" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6805" centery="2700" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="1" z="15" spawntime="60" />
-		<monster name="Deathling Scout" x="-1" y="2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6833" centery="2700" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="2" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2700" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-3" y="3" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2700" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-2" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2700" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6882" centery="2700" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="3" y="2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2707" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-1" y="-2" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6847" centery="2714" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="-2" y="-2" z="15" spawntime="60" />
-		<monster name="Deathling Spellsinger" x="0" y="0" z="15" spawntime="60" />
-		<monster name="Deathling Scout" x="-1" y="1" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6861" centery="2714" centerz="15" radius="3">
-		<monster name="Deathling Spellsinger" x="-3" y="-1" z="15" spawntime="60" />
-		<monster name="Deathling Scout" x="3" y="0" z="15" spawntime="60" />
-	</monster>
-	<monster centerx="6868" centery="2714" centerz="15" radius="3">
-		<monster name="Deathling Scout" x="0" y="-1" z="15" spawntime="60" />
 	</monster>
 </monsters>
