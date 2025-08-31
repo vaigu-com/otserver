@@ -313,6 +313,7 @@ return {
 	["Hi, Im buying all kinds of creature products. Ask me for {trade} to browse through my offer."] = "Witaj. Skupuje szczatki potworow. Zapytaj mnie o {handel}, jesli jestes zainteresowany moja oferta.",
 	["You need to tell me the number of wildcards you'd like to buy."] = "Podaj liczbe wildcardow ktore chcesz kupic.",
 	["Here are your wildcards!"] = "Prosze, oto twoje wildcardy!",
+	["Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Siemano siemanko, |PLAYERNAME| ja jestem Jurek i sprzedaje zabezpieczenie przed zbyt ostrym imprezowaniem! Napisz {trade} to zobaczysz o co mi chodzi!",
 	["Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}."] = "Witam witam 100% pozytywnych transakcji, zapraszam do zakupow!",
 	["Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}"] = "Jako wlasciciel sklepu z bizuteria moge sporzadzic ladne blyskotki albo kupic od ciebie bizuterie. ktorej juz nie potrzebujesz.",
 	["Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested."] = "Witam. W mojej ofercie znajdziesz narzedzia, bez ktorych zaden poszukiacz przygod nie powinien wychodzic z domu!",
@@ -341,5 +342,4 @@ return {
 	["Rats are gone, thanks again."] = "Szczury przepedzone, jeszcze raz dzieki.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "Podobno przynosi szczescie, jesli zlapiesz do niej swietlika z magicznego drzewka.",
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "No witam, mam do zaoferowania {sprzet wedkarski} oraz skupuje ryby.",
-	["Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Siemano siemanko, |PLAYERNAME| ja jestem Jurek i sprzedaje zabezpieczenie przed zbyt ostrym imprezowaniem! Napisz {trade} to zobaczysz o co mi chodzi!",
 }

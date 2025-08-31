@@ -71,6 +71,10 @@ return {
 	["Go away, or even better: flip off."] = "Go away, or even better: flip off.",
 	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
 		local townName = context.townName
+		--local genderText = "Zostales"
+		--if context.player:getSex() == PLAYERSEX_FEMALE then
+		--	genderText = "Zostalas"
+		--end
 		return T("You are now a citizen of :townName:.", { townName = townName })
 	end,
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Hello, |PLAYERNAME|! Lately hardly any people come to visit me",
@@ -338,5 +342,4 @@ return {
 	["Rats are gone, thanks again."] = "Rats are gone, thanks again.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
-	["Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 }

@@ -78,17 +78,6 @@ local function translatedFromSpecificQuest(str, localizer, langauge)
 	end
 end
 
-local missingStrings = {}
-local stringsWithWrongLocalizer = {}
-for _, language in pairs(LANGUAGES) do
-	missingStrings[language] = {}
-	stringsWithWrongLocalizer[language] = {}
-	for _, localizer in pairs(LOCALIZERS) do
-		missingStrings[language][localizer] = {}
-		stringsWithWrongLocalizer[language][localizer] = {}
-	end
-end
-
 local notFoundSuffix = " //Translation unavailable"
 local function translationNotFound(language, localizer, str)
 	local loggerCompatibleString = str
