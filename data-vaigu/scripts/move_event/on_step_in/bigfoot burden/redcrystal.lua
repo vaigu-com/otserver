@@ -16,10 +16,10 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return
 	end
 
-	if player:getStorageValueByKey(teleportData.cooldownStorage) >= os.time() then
+	if IsLockoutExpired(player, teleportData.cooldownStorage) then
 		player:teleportTo(fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already killed this boss this week")
+		SendLockoutError(player, teleportData.cooldownStorage)
 	else
 		player:teleportTo(teleportData.position)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)

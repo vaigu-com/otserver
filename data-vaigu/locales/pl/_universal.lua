@@ -102,9 +102,6 @@ return {
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
 		return T("Ty albo czlonek twojego zespolu nie moze jeszcze wejsc na :displayName:.", { displayName = context.displayName })
 	end,
-	[ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT] = function(context)
-		return T("Musisz jeszcze odczekac :timeLeftString: aby wejsc na :displayName:.", { displayName = context.displayName, timeLeftString = context.timeLeftString })
-	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
 		return T("Ty albo czlonek twojego zespolu nie ma dostepu na :displayName:.", { displayName = context.displayName })
 	end,

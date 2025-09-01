@@ -12,14 +12,14 @@ function deeplingBosses.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if os.time() < player:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill) then
+	if not IsLockoutExpired(player, Storage.DeeplingBosses.DailyBossLockout) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
 		player:sendCancelMessage("Try another day.")
 		return true
 	end
 
-	local bossRoomData = uidToBossRoomData[item:getKey()]
+	local bossRoomData = uidToBossRoomData[item:getUniqueId()]
 	player:teleportTo(bossRoomData.playerSpawnPosition, true)
 	player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
 	return true

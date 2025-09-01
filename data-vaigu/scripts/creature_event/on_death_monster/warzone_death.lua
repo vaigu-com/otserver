@@ -35,7 +35,7 @@ function creatureevent.onDeath(creature)
 	end
 
 	onDeathForDamagingPlayers(creature, function(creature, player)
-		player:setStorageValueByKey(bossConfig.cooldownStorage, NextWednesdayEpochTime())
+		player:setLockoutExpiry(bossConfig.cooldownStorage, LOCKOUT_EXPIRY_TIME.WEEKLY)
 		player:incrementStorageByKeyClampZero(bossConfig.rewardStorage, 1)
 	end)
 

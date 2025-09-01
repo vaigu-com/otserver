@@ -10,8 +10,10 @@ function deeplingBosses.onDeath(creature)
 	if not bossConfig then
 		return true
 	end
+
 	onDeathForDamagingPlayers(creature, function(creature, player)
 		player:incrementStorageByKeyClampZero(bossConfig.storage, 1)
+		player:setLockoutExpiry(Storage.DeeplingBosses.DailyBossLockout, LOCKOUT_EXPIRY_TIME.DAILY)
 	end)
 end
 

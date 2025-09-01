@@ -41,5 +41,5 @@ function save.onTime(interval)
 	saveServer()
 	return true
 end
-save:interval(2000)
-save:register()
+--save:interval(2000)
+--save:register()

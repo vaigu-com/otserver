@@ -54,8 +54,8 @@ pseudoQuest
 		---@field private disabled boolean?
 		---@field public disableLockout boolean does not apply cooldown on kill/entry
 		---@field private requiredState table?
-		---@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
-		---@field private lockoutType LOCKOUT_TYPE?
+		---@field private lockoutExpiryTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
+		---@field private lockoutTriggerCriterion LOCKOUT_TRIGGER_TYPE?
 		---@field private timeToDefeat number?
 		---@field private ejectAfterCompletionSeconds number?
 		---@field private requiredLevel number?
@@ -329,8 +329,8 @@ pseudoQuest
 		---@field private disabled boolean?
 		---@field public disableLockout boolean does not apply cooldown on kill/entry
 		---@field private requiredState table?
-		---@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
-		---@field private lockoutType LOCKOUT_TYPE?
+		---@field private lockoutExpiryTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
+		---@field private lockoutTriggerCriterion LOCKOUT_TRIGGER_CRITERION?
 		---@field private timeToComplete number?
 		---@field private ejectAfterCompletionSeconds number?
 		---@field private requiredLevel number?
@@ -901,7 +901,7 @@ end
 				player:takeScreenshot(SCREENSHOT_TYPE_BOSSDEFEATED)
 			end
 
-			if self.lockoutType == LOCKOUT_TYPE.ON_KILL then
+			if self.lockoutTriggerCriterion == LOCKOUT_TRIGGER_CRITERION.ON_KILL then
 				self:SetLockouts(participants)
 			end
 

@@ -102,9 +102,6 @@ return {
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
 		return T("You or a member in your team still has a cooldown for the :displayName: encounter.", { displayName = context.displayName })
 	end,
-	[ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT] = function(context)
-		return T("You still have to wait :timeLeftString: to enter the :displayName: encounter.", { displayName = context.displayName, timeLeftString = context.timeLeftString })
-	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
 		return T("You or a member in your team does not have the required access to enter :displayName: encounter.", { displayName = context.displayName })
 	end,

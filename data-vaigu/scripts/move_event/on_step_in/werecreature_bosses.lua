@@ -1,9 +1,9 @@
 WEREBOSS_DATA = {
-	[28580] = { value = 13, bossName = "Black Vixen" }, -- {x = 6210, y = 1085, z = 7}
-	[28581] = { value = 13, bossName = "Sharpclaw" }, --
-	[28582] = { value = 13, bossName = "Darkfang" }, --
-	[28583] = { value = 13, bossName = "Bloodback" }, --
-	[28584] = { value = 13, bossName = "Shadowpelt" }, --
+	[28580] = { bossName = "Black Vixen" }, -- {x = 6210, y = 1085, z = 7}
+	[28581] = { bossName = "Sharpclaw" }, --
+	[28582] = { bossName = "Darkfang" }, --
+	[28583] = { bossName = "Bloodback" }, --
+	[28584] = { bossName = "Shadowpelt" }, --
 }
 
 local bossRoomCenter = Position(6205, 1082, 7)
@@ -17,7 +17,6 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 	end
 
 	local function roomIsOccupied()
-		local setting = WEREBOSS_DATA[item.actionid]
 		local spectators = Game.getSpectators(bossRoomCenter, false, true, 9, 9)
 		if #spectators ~= 0 then
 			return true
@@ -31,10 +30,10 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if os.time() < player:getStorageValueByKey(Storage.WereBossKill) then
+	if not IsLockoutExpired(player, Storage.WereBossKill) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:sendCancelMessage("You can fight today wereboss every 6 hours.")
+		SendLockoutError(player, Storage.WereBossKill)
 		return true
 	end
 

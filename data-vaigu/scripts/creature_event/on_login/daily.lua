@@ -1,13 +1,13 @@
 local function wereDailyResetToday(player)
-	local nextReset = player:kv():get(Storage.NextDailyReset) or 0
-	return os.time() <= nextReset
+	return IsLockoutExpired(player, Storage.NextDailyReset)
 end
 
 local function wereWeeklyResetThisWeek(player)
-	local nextReset = player:kv():get(Storage.NextWeeklyReset) or 0
-	return NextWednesdayEpochTime() <= nextReset
+	return IsLockoutExpired(player, Storage.NextWeeklyReset)
 end
 
+-- key: storage to be reset
+-- value: storage reset target value
 local dailyStorages = {
 	[Storage.GameStore.ExpBoostCount] = 0,
 }
@@ -22,7 +22,7 @@ local function tryResetDaily(player)
 		player:kv():set(k, v)
 	end
 
-	player:kv():set(Storage.NextDailyReset, NextDayEpochTime())
+	player:setLockoutExpiry(Storage.NextDailyReset, LOCKOUT_EXPIRY_TIME.DAILY)
 end
 
 local function tryResetWeekly(player)
@@ -34,7 +34,7 @@ local function tryResetWeekly(player)
 		player:kv():set(k, v)
 	end
 
-	player:kv():set(Storage.NextWeeklyReset, NextDayEpochTime())
+	player:setLockoutExpiry(Storage.NextWeeklyReset, LOCKOUT_EXPIRY_TIME.WEEKLY)
 end
 
 local playerLogin = CreatureEvent("DailyResetPlayer")

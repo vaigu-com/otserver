@@ -1558,8 +1558,8 @@ quest
 
 			requiredState = { [Storage.PerIustitiaAdAstra.RukcaAccess] = ACCESS_GRANTED },
 
-			lockoutTime = LOCKOUT_TIME.WEEKLY,
-			lockoutType = LOCKOUT_TYPE.ON_KILL,
+			lockoutExpiryTime = LOCKOUT_EXPIRY_TIME.WEEKLY,
+			lockoutTriggerCriterion = LOCKOUT_TRIGGER_CRITERION.ON_KILL,
 		})
 		rukcaEncounter:addStage({})
 

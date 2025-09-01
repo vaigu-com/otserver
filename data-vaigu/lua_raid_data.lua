@@ -1119,13 +1119,15 @@ local weekdayRaids = {
 		["21:00"] = { "Piracimirko" },
 	},
 	["Sunday"] = {
-		["21:00"] = { "barbarian" },
+		["21:00"] = { "Barbarian" },
 	},
 }
 
 local monthDayRaids = {
 	["31/10"] = {
-		["21:00"] = { "wolfy" },
+		["21:00"] = { 
+			-- "wolfy" 
+		},
 	},
 }
 
