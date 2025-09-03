@@ -1233,9 +1233,6 @@
 	<npc centerx="33913" centery="31530" centerz="7" radius="1">
 		<npc name="Narsai" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="32856" centery="31549" centerz="7" radius="1">
-		<npc name="Harlow (Vengoth)" x="0" y="0" z="7" spawntime="60" />
-	</npc>
 	<npc centerx="32045" centery="31580" centerz="7" radius="1">
 		<npc name="Svenson" x="0" y="0" z="7" spawntime="60" />
 	</npc>
