@@ -511,6 +511,21 @@ function Position:GetTopCreature()
 	return tile:getTopCreature()
 end
 
+---@return Player|nil creature
+function Position:GetTopPlayer()
+	local tile = Tile(self)
+	if not tile then
+		return nil
+	end
+
+	local creature = tile:getTopCreature()
+	if not creature then
+		return nil
+	end
+
+	return creature:getPlayer()
+end
+
 function Position:GetItemById(id)
 	local tile = Tile(self)
 	if not tile then
@@ -698,7 +713,7 @@ function Position:GetTopItem()
 	if not topThing:isItem() then
 		return nil
 	end
-	
+
 	return topThing
 end
 
