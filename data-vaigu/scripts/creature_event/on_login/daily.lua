@@ -1,11 +1,3 @@
-local function wereDailyResetToday(player)
-	return IsLockoutExpired(player, Storage.NextDailyReset)
-end
-
-local function wereWeeklyResetThisWeek(player)
-	return IsLockoutExpired(player, Storage.NextWeeklyReset)
-end
-
 -- key: storage to be reset
 -- value: storage reset target value
 local dailyStorages = {
@@ -14,7 +6,7 @@ local dailyStorages = {
 local weeklyStorages = {}
 
 local function tryResetDaily(player)
-	if wereDailyResetToday(player) then
+	if not player:isLockoutExpired(Storage.NextDailyReset) then
 		return
 	end
 
@@ -26,7 +18,7 @@ local function tryResetDaily(player)
 end
 
 local function tryResetWeekly(player)
-	if wereWeeklyResetThisWeek(player) then
+	if not player:isLockoutExpired(Storage.NextWeeklyReset) then
 		return
 	end
 

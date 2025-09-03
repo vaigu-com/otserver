@@ -1227,7 +1227,7 @@ quest
 					end
 
 					
-					if not IsLockoutExpired(player, Storage.LocalSupport.OldManFrostPickaxe) then
+					if not player:isLockoutExpired(Storage.LocalSupport.OldManFrostPickaxe) then
 						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Magic effects of this pickaxe have dissipated. It should be ready to use in few days.")
 						return false
 					end

@@ -16,7 +16,7 @@ function movement.onStepIn(creature, item, toPosition, fromPosition)
 		return
 	end
 
-	if IsLockoutExpired(player, teleportData.cooldownStorage) then
+	if not player:isLockoutExpired(teleportData.cooldownStorage) then
 		player:teleportTo(fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		SendLockoutError(player, teleportData.cooldownStorage)

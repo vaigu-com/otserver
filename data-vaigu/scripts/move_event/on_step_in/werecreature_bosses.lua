@@ -30,7 +30,7 @@ function wereBosses.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if not IsLockoutExpired(player, Storage.WereBossKill) then
+	if not player:isLockoutExpired(Storage.WereBossKill) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		SendLockoutError(player, Storage.WereBossKill)

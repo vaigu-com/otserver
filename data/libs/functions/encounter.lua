@@ -600,9 +600,9 @@ function Player:setLockoutExpiry(storage, lockoutExpiryTime)
 	self:sendBosstiaryCooldownTimer()
 end
 
-function IsLockoutExpired(player, storage)
-	local playerLockoutExpiry = player:getStorageValueByKey(storage) or 0
-	return playerLockoutExpiry > os.time(), playerLockoutExpiry
+function Player:isLockoutExpired(storage)
+	local playerLockoutExpiry = self:getStorageValueByKey(storage) or 0
+	return os.time() > playerLockoutExpiry, playerLockoutExpiry
 end
 
 function EncounterData:calculateLockoutExpiry()
@@ -650,7 +650,7 @@ function EncounterData:checkLockout(players, leverUser)
 
 	local checkStatus = ENCOUNTER_ERROR_CODES.NO_ERROR
 	for _, currentPlayer in pairs(players) do
-		local isExpired = IsLockoutExpired(currentPlayer, self:GetLockoutStorage())
+		local isExpired = currentPlayer:isLockoutExpired(self:GetLockoutStorage())
 		if not isExpired then
 			SendLockoutError(currentPlayer, self:GetLockoutStorage(), self:GetDisplayName())
 

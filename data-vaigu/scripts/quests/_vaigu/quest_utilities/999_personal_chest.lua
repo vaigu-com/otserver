@@ -29,7 +29,7 @@ end
 
 local personalChestUse = Action()
 function personalChestUse.onUse(player, chest, fromPosition, target, toPosition, isHotkey)
-	if not IsLockoutExpired(player, getChestStorage(chest)) then
+	if not player:isLockoutExpired(getChestStorage(chest)) then
 		SendChestIsEmpty(player, chest:getId())
 		return true
 	end

@@ -12,10 +12,10 @@ function deeplingBosses.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if not IsLockoutExpired(player, Storage.DeeplingBosses.DailyBossLockout) then
+	if not player:isLockoutExpired(Storage.DeeplingBosses.DailyBossLockout) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
-		player:sendCancelMessage("Try another day.")
+		SendLockoutError(player, Storage.DeeplingBosses.DailyBossLockout)
 		return true
 	end
 
