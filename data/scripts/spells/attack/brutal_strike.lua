@@ -20,7 +20,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(61)
 spell:name("Brutal Strike")
 spell:words("exori ico")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_BRUTAL_STRIKE)

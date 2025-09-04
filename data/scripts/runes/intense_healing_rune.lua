@@ -25,7 +25,6 @@ function rune.onCastSpell(creature, var, isHotkey)
 	end
 end
 
-rune:id(4)
 rune:group("healing")
 rune:name("intense healing rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

@@ -21,7 +21,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(106)
 spell:name("Groundshaker")
 spell:words("exori mas")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_GROUNDSHAKER)

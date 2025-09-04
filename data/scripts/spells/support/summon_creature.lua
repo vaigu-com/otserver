@@ -47,7 +47,6 @@ function spell.onCastSpell(player, variant)
 end
 
 spell:group("support")
-spell:id(9)
 spell:name("Summon Creature")
 spell:words("utevo res")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_SUMMON_CREATURE)

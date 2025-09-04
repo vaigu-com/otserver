@@ -26,7 +26,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(267)
 spell:name("Avatar of Nature")
 spell:words("uteta res dru")
 spell:level(50)

@@ -10,7 +10,6 @@ function rune.onCastSpell(creature, var, isHotkey)
 	return combat:execute(creature, var)
 end
 
-rune:id(26)
 rune:group("attack")
 rune:name("poison field rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

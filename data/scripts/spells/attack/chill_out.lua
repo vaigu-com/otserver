@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(173)
 spell:name("Chill Out")
 spell:words("exevo infir frigo hur")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_CHILL_OUT)

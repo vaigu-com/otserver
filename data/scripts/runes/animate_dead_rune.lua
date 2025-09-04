@@ -30,7 +30,6 @@ function rune.onCastSpell(player, variant)
 	return false
 end
 
-rune:id(83)
 rune:group("support")
 rune:name("animate dead rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

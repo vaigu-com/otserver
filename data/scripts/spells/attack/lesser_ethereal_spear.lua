@@ -19,8 +19,7 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(NextSpellId())
-spell:name("Ethereal Spear")
+--spell:name("Ethereal Spear")
 spell:words("exori infir con")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
 spell:impactSound(SOUND_EFFECT_TYPE_SPELL_ETHEREAL_SPEAR)

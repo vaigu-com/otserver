@@ -20,7 +20,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(59)
 spell:name("Front Sweep")
 spell:words("exori infir min")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_FRONT_SWEEP)

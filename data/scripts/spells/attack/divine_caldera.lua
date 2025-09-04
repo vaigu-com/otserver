@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(124)
 spell:name("Divine Caldera")
 spell:words("exevo mas san")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_DIVINE_CALDERA)

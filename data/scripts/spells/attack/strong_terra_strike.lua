@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "special")
-spell:id(153)
 spell:name("Strong Terra Strike")
 spell:words("exori gran tera")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

@@ -67,7 +67,6 @@ function spell.onCastSpell(creature, var, isHotkey)
 end
 
 spell:group("support", "crippling")
-spell:id(244)
 spell:name("Sap Strength")
 spell:words("exori kor")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_SAP_STRENGTH)

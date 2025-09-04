@@ -38,7 +38,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "greatbeams")
-spell:id(260)
 spell:name("Great Death Beam")
 spell:words("exevo max mort")
 spell:level(50)

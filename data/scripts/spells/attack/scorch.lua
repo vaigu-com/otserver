@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(178)
 spell:name("Scorch")
 spell:words("exevo infir flam hur")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_SCORCH)

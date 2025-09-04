@@ -6,7 +6,6 @@ function spell.onCastSpell(player, variant)
 end
 
 spell:group("support")
-spell:id(spellId)
 spell:name("Knight familiar")
 spell:words("utevo gran res eq")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_SUMMON_KNIGHT_FAMILIAR)

@@ -18,7 +18,6 @@ function rune.onCastSpell(creature, var)
 	return true
 end
 
-rune:id(54)
 rune:group("support")
 rune:name("paralyze rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

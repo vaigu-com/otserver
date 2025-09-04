@@ -6,7 +6,6 @@ function spell.onCastSpell(player, variant)
 end
 
 spell:group("support")
-spell:id(spellId)
 spell:name("Sorcerer familiar")
 spell:words("utevo gran res ven")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_SUMMON_SORCERER_FAMILIAR)

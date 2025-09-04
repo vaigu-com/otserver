@@ -15,7 +15,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(140)
 spell:name("Electrify")
 spell:words("utori vis")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
