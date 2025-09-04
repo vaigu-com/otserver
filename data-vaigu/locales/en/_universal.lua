@@ -339,4 +339,6 @@ return {
 	["Rats are gone, thanks again."] = "Rats are gone, thanks again.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
+	["I can exchange your red gems for a three rings of healing. Is that what youre interested in?"] = "I can exchange your red gems for a three rings of healing. Is that what youre interested in?",
+	["Nothing there."] = "Nothing there.",
 }
