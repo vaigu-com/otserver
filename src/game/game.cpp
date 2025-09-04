@@ -2956,6 +2956,10 @@ void Game::playerQuickLootCorpse(const std::shared_ptr<Player> &player, const st
 		return;
 	}
 
+	if (corpse->hasAttribute(ItemAttribute_t::KEY)) {
+		return;
+	}
+
 	std::vector<std::shared_ptr<Item>> itemList;
 	bool ignoreListItems = (player->quickLootFilter == QUICKLOOTFILTER_SKIPPEDLOOT);
 
