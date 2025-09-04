@@ -21,6 +21,7 @@ function sweetMangonaiseElixir.onUse(player, item, fromPosition, target, toPosit
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	local playerRing = player:getSlotItem(CONST_SLOT_RING)

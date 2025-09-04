@@ -135,7 +135,7 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 	if self:hasExhaustion(cooldownKV) then
 		return "You need to wait before using this again."
 	end
-	return true
+	return nil
 end
 
 function RegisterOnLook(callback, stringIdentifier, questId)

@@ -11,6 +11,7 @@ function tropicalFriedTerrorbird.onUse(player, item, fromPosition, target, toPos
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addCondition(magicLevelCondition)
