@@ -132,6 +132,11 @@ end
 local function withoutStoragePrefix(str)
 	return str:gsub("^Storage%-", "")
 end
+
+local function withoutStandardPrefixes(str)
+	return str:gsub("^Storage%-", ""):gsub("^DoorKeys%-", "")
+end
+
 local function addToCollection(player, doorKeyStorage, collectionStorage)
 	local unlockedKeys = player:getStorageValueByKey(collectionStorage)
 	local desc = withoutStoragePrefix(doorKeyStorage)
@@ -236,7 +241,7 @@ function doorLook.onLook(player, door)
 	local itRequires = ""
 	local key = door:getKey()
 	if key and key ~= PERMANENTLY_CLOSED then
-		itRequires = T(" It requires key :keyDesc:.", { keyDesc = withoutStoragePrefix(door:getKey()) })
+		itRequires = T(" It requires key :keyDesc:.", { keyDesc = withoutStandardPrefixes(door:getKey()) })
 	end
 
 	local name = keyNameIfInCollection(player, door)
@@ -263,7 +268,7 @@ function doorKeyLook.onLook(player, doorKey)
 	local itUnlocks = ""
 	local key = doorKey:getKey()
 	if key and key ~= PERMANENTLY_CLOSED then
-		itUnlocks = T("It unlocks :keyDesc:.", { keyDesc = withoutStoragePrefix(key) })
+		itUnlocks = T("It unlocks :keyDesc:.", { keyDesc = withoutStandardPrefixes(key) })
 	end
 
 	local itWeights = "It weight 1.00 oz."
