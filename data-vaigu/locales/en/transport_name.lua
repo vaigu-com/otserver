@@ -35,4 +35,5 @@ return {
 	["Mareesha camp"] = "Mareesha camp",
 	["Hurghada outskirts"] = "Hurghada outskirts",
 	["Celebimber's Post"] = "Celebimber's Post",
+	["Waterfall"] = "Waterfall",
 }
