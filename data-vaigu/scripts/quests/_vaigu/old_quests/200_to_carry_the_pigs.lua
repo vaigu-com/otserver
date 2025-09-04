@@ -330,7 +330,7 @@ quest
 					},
 					expReward = 30000,
 					requiredState = {
-						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
+						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
 				},
 			})

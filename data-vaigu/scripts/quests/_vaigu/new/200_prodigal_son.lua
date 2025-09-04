@@ -763,7 +763,6 @@ quest
 		end
 
 		spell:name("pol plus beam")
-		spell:words(NextSpellId())
 		spell:isAggressive(true)
 		spell:blockWalls(true)
 		spell:needLearn(true)

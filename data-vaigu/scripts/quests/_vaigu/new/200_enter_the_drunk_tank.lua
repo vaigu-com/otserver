@@ -30,7 +30,7 @@ quest
 	end)
 	:Constant(function()
 		QuestConstants.EnterTheDrunkTank = {
-			PotionAccessLevel = 200
+			PotionAccessLevel = 200,
 		}
 		local vocationToMission = {
 			[VOCATION.BASE_ID.DRUID] = Storage.EnterTheDrunkTank.UltimateManaPotion,
@@ -81,7 +81,7 @@ quest
 						{
 							requirement = function(context)
 								local finishedCount = 0
-								local leeway = 1
+								local leeway = 2
 								local player = context.player
 								for _, storage in pairs(QuestConstants.LocalSupport.LocalSupportMissionStorages) do
 									local state = player:getStorageValueByKey(storage)
@@ -121,7 +121,7 @@ quest
 							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.playerHasLevel,
 							minLevel = QuestConstants.EnterTheDrunkTank.PotionAccessLevel,
 							requiredOutcome = true,
-							textOnFail = "I see that Fisher vouched for you, but i cannot teach you yet. Come back when you are at least level 200.",
+							textFailedRequirement = "I see that Fisher vouched for you, but i cannot teach you yet. Come back when you are at least level 200.",
 						},
 					},
 				},
@@ -223,7 +223,7 @@ quest
 						QuestKeyItems.EnterTheDrunkTank.Hallucinogen,
 					},
 					rewards = {
-						{ id = 43948 },
+						{ id = 43948, addToStore = true },
 					},
 					actionsOnSuccess = {
 						{ action = QuestActions.EnterTheDrunkTank.grantVocationPotionAccess },

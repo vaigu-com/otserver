@@ -301,6 +301,7 @@ Storage.TheApeCity = { -- Reserved 12120 - 12152
 	Casks = {},
 	SnakeDestroyer = {},
 	ShamanOutfit = {},
+	DeepBanutaDoor = {}
 }
 Storage.TheDreamCourts = { -- 12200-12300
 	QuestLine = {},

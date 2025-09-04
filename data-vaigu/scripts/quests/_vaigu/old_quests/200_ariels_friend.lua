@@ -127,7 +127,7 @@ quest
 					states = {
 						[QuestState.ArielsFriend.LoveIsInTheAir.HandInvitationToMadame] = "Ariel asked you to hand over a party invitation to Madame Malkin.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.AskPostmanForHelp] = "Madame Malkin refused Ariel's request to go out with him. Perhaps Ariel's friend, Old Postman, knows a way to influence Madame Malkin.",
-						[QuestState.ArielsFriend.LoveIsInTheAir.StealElixir] = "Old Postman had a disgraceful idea to steal an elixir of love. He told you to fill this vial he gave you. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown.",
+						[QuestState.ArielsFriend.LoveIsInTheAir.StealElixir] = "Old Postman had a disgraceful idea to steal an elixir of love. You can probably find supplies of love elixir at Alchemists' quarters, north of MirkoTown.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToPostman] = "Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel] = "Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel.",

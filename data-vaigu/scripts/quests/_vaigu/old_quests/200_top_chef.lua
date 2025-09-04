@@ -275,7 +275,7 @@ quest
 				[{ GREET }] = {
 					text = "HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH",
 				},
-				[{ "yes", "tak" }] = {
+				[{ "yes", "tak", "przyrzadzic", "done" }] = {
 					text = "Lets begin then!\nA sprinkle of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish! Ask me for {recipe} if you are ready to prepare the next dish.",
 					specialRequirements = {
 						{

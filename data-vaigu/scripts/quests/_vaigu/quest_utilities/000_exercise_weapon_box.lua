@@ -6,13 +6,14 @@ local confirmChoice = function(player, button, choice)
 	if not choice then
 		return true
 	end
+
 	local boxObject = choice.boxObject
 	if not boxObject then
 		return
 	end
 
 	if not player:CanAddItems({ { id = choice.id } }) then
-		player:say("Please wait for the fighters come out of the arena.", TALKTYPE_MONSTER_SAY)
+		player:say("You cannot open this box now.", TALKTYPE_MONSTER_SAY)
 		return true
 	end
 

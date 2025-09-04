@@ -167,7 +167,7 @@ quest
 			QuestFactory.Script(function()
 				local waterWell = Action()
 				function waterWell.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					local localizer = Player:Localizer(LOCALIZERS.WayOfTheDruid)
+					local localizer = player:Localizer(LOCALIZERS.WayOfTheDruid)
 					if player:getStorageValueByKey(Storage.WayOfTheDruid.CouncilOfDruids) < 3 then
 						doCreatureSay(player, localizer:Get("You are not worthy to gather the sacred water!"), TALKTYPE_ORANGE_1)
 						return
@@ -214,7 +214,7 @@ quest
 			QuestFactory.Script(function()
 				local flower = Action()
 				function flower.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					local localizer = Player:Localizer(LOCALIZERS.WayOfTheDruid)
+					local localizer = player:Localizer(LOCALIZERS.WayOfTheDruid)
 					if player:getStorageValueByKey(Storage.WayOfTheDruid.CouncilOfDruids) < 5 then
 						doCreatureSay(player, localizer:Get("You are not worthy to gather the sacred flower!"), TALKTYPE_ORANGE_1)
 						return
