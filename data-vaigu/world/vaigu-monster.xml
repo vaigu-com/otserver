@@ -55452,9 +55452,6 @@
 		<monster name="Dworc Fleshhunter" x="0" y="0" z="8" spawntime="60" />
 		<monster name="Dworc Fleshhunter" x="0" y="1" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="6987" centery="727" centerz="8" radius="1">
-		<monster name="Salamander" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6247" centery="728" centerz="8" radius="1">
 		<monster name="Lost Soul" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55552,9 +55549,6 @@
 	<monster centerx="6847" centery="737" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="6978" centery="737" centerz="8" radius="1">
-		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6845" centery="738" centerz="8" radius="1">
 		<monster name="Poison Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55591,9 +55585,6 @@
 	<monster centerx="6976" centery="742" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="6994" centery="742" centerz="8" radius="1">
-		<monster name="Orc" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7005" centery="742" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55611,9 +55602,6 @@
 	</monster>
 	<monster centerx="6832" centery="743" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="6973" centery="743" centerz="8" radius="1">
-		<monster name="Orc" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6970" centery="745" centerz="8" radius="1">
 		<monster name="Orc" x="0" y="0" z="8" spawntime="60" />
@@ -55642,9 +55630,6 @@
 	<monster centerx="6919" centery="749" centerz="8" radius="1">
 		<monster name="Corym Charlatan" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="6992" centery="749" centerz="8" radius="1">
-		<monster name="Orc Spearman" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6708" centery="750" centerz="8" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55664,9 +55649,6 @@
 	<monster centerx="6830" centery="751" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="6987" centery="751" centerz="8" radius="1">
-		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="7022" centery="751" centerz="8" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="8" spawntime="60" />
 		<monster name="Orc Berserker" x="-1" y="1" z="8" spawntime="60" />
@@ -55676,9 +55658,6 @@
 	</monster>
 	<monster centerx="6839" centery="752" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="6993" centery="753" centerz="8" radius="1">
-		<monster name="Rotworm" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6820" centery="754" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
@@ -89112,8 +89091,8 @@
 	<monster centerx="6629" centery="1727" centerz="11" radius="1">
 		<monster name="Young Sea Serpent" x="0" y="0" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="6617" centery="1728" centerz="11" radius="1">
-		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
+	<monster centerx="6622" centery="1730" centerz="11" radius="1">
+		<monster name="Seacrest Serpent" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6495" centery="1731" centerz="11" radius="1">
 		<monster name="Adept of the Cult" x="0" y="0" z="11" spawntime="60" />
@@ -89123,9 +89102,6 @@
 	</monster>
 	<monster centerx="6596" centery="1731" centerz="11" radius="1">
 		<monster name="Young Sea Serpent" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6627" centery="1731" centerz="11" radius="1">
-		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6616" centery="1732" centerz="11" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
@@ -89406,9 +89382,6 @@
 	<monster centerx="6037" centery="1769" centerz="11" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="6617" centery="1769" centerz="11" radius="1">
-		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="6012" centery="1770" centerz="11" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -89435,6 +89408,9 @@
 	</monster>
 	<monster centerx="6599" centery="1772" centerz="11" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="6619" centery="1772" centerz="11" radius="1">
+		<monster name="Seacrest Serpent" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6605" centery="1773" centerz="11" radius="1">
 		<monster name="Young Sea Serpent" x="0" y="0" z="11" spawntime="60" />
@@ -95233,8 +95209,7 @@
 	<monster centerx="6619" centery="1744" centerz="12" radius="1">
 		<monster name="Sea Serpent" x="-1" y="0" z="12" spawntime="60" />
 		<monster name="Sea Serpent" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Sea Serpent" x="-1" y="1" z="12" spawntime="60" />
-		<monster name="Sea Serpent" x="0" y="1" z="12" spawntime="60" />
+		<monster name="Seacrest Serpent" x="1" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="7665" centery="1744" centerz="12" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="12" spawntime="60" />
@@ -95250,7 +95225,6 @@
 	</monster>
 	<monster centerx="6619" centery="1746" centerz="12" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="12" spawntime="60" />
-		<monster name="Sea Serpent" x="1" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="7648" centery="1746" centerz="12" radius="1">
 		<monster name="Banshee" x="0" y="0" z="12" spawntime="60" />
@@ -95293,6 +95267,9 @@
 	<monster centerx="6547" centery="1756" centerz="12" radius="1">
 		<monster name="Hellhound" x="0" y="0" z="12" spawntime="60" />
 	</monster>
+	<monster centerx="6586" centery="1757" centerz="12" radius="1">
+		<monster name="Seacrest Serpent" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="7654" centery="1757" centerz="12" radius="1">
 		<monster name="Banshee" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -95315,7 +95292,7 @@
 		<monster name="Sea Serpent" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6593" centery="1761" centerz="12" radius="1">
-		<monster name="Sea Serpent" x="0" y="0" z="12" spawntime="60" />
+		<monster name="Seacrest Serpent" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6511" centery="1763" centerz="12" radius="1">
 		<monster name="Massive Fire Elemental" x="0" y="0" z="12" spawntime="60" />

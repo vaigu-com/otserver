@@ -396,6 +396,9 @@
 	<npc centerx="6880" centery="764" centerz="7" radius="1">
 		<npc name="Mundral" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="6640" centery="773" centerz="7" radius="1">
+		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="7017" centery="787" centerz="7" radius="1">
 		<npc name="Xelvar" x="0" y="0" z="7" spawntime="60" />
 	</npc>
