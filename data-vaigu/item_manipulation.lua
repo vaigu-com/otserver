@@ -31,10 +31,11 @@ local function extractItemData(item)
 	local actionid = item:getActionId()
 	local uniqueid = item:getUniqueId()
 	local key = item:getKey()
-	if forceUntradeability[id] and actionid == 0 then
-		actionid = 1000
+	local addToStore = false
+	if forceUntradeability[id] then
+		addToStore = true
 	end
-	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key }
+	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore }
 end
 local function extractBagItems(items)
 	local result = {}
@@ -47,6 +48,7 @@ local function extractBagItems(items)
 	end
 	return result
 end
+
 local bagId = 2853
 local backpackId = 2854
 function ExtractChestContent(chest)
