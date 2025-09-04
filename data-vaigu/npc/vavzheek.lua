@@ -8,13 +8,13 @@ local outfit = {
 	lookAddons = 0,
 }
 local dialogs = {
-	[TRAVEL_KEYWORDS[TRANSPORT_TYPE.TRAIN]] = {
+	[TRAVEL_KEYWORDS[TRAVEL_METHOD.TRAIN]] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
-				action = CreateTransportWindow,
-				transports = TRANSPORT_ROUTES.VAVZHEEK_TRAIN,
-				transportType = TRANSPORT_TYPE.SHIP,
+				action = CreateTravelWindow,
+				travelRoutes = TRAVEL_ROUTES.VAVZHEEK_TRAIN,
+				travelMethod = TRAVEL_METHOD.SHIP,
 			},
 		},
 		specialRequirements = {

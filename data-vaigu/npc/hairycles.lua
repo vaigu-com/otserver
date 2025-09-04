@@ -519,6 +519,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if table.contains({ "yes", "tak" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hairycles jest pewien, ze ci sie uda. Po prostu rozwal ta glowe tego jaszczuroludzia. Powiedz Hairyclesowi jesli uda ci sie ukonczyc misje." or "Hairycles sure you will make it. Just use hammer on all that looks like snake or lizard. Tell Hairycles if you succeed with mission.", npc, creature)
 			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 17)
+			player:setStorageValueByKey(Storage.TheApeCity.DeepBanutaDoor, ACCESS_GRANTED)
 			player:AddCustomItem({ id = 4835, addToStore = true })
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Hmmm. Rozwaz to jeszcze raz." or "Me sad. Please reconsider.", npc, creature)

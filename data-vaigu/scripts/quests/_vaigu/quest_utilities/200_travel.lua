@@ -5,18 +5,19 @@ pseudoQuest
 	:Constant(function()
 		FREE_TRAVELS_COUNT = 10
 
-		TRANSPORT_TYPE = {
-			SHIP = "TRANSPORT_TYPE.SHIP",
-			CARPET = "TRANSPORT_TYPE.CARPET",
-			TRAIN = "TRANSPORT_TYPE.TRAIN",
-			CAMEL = "TRANSPORT_TYPE.CAMEL",
+		TRAVEL_METHOD = {
+			SHIP = "TRAVEL_METHOD.SHIP",
+			CARPET = "TRAVEL_METHOD.CARPET",
+			TRAIN = "TRAVEL_METHOD.TRAIN",
+			CAMEL = "TRAVEL_METHOD.CAMEL",
 		}
 
+		UNIVERSAL_TRAVEL_KEYWORD = "travel"
+
 		TRAVEL_KEYWORDS = {
-			[TRANSPORT_TYPE.SHIP] = {
-				"travel",
+			[TRAVEL_METHOD.SHIP] = {
+				UNIVERSAL_TRAVEL_KEYWORD,
 				"podroz",
-				"sail",
 				"ship",
 				"plynac",
 				"statek",
@@ -25,33 +26,33 @@ pseudoQuest
 				"zegluj",
 				"zegluga",
 			},
-			[TRANSPORT_TYPE.CARPET] = {
-				"travel",
+			[TRAVEL_METHOD.CARPET] = {
+				UNIVERSAL_TRAVEL_KEYWORD,
 				"podroz",
 				"fly",
 				"poleciec",
 			},
-			[TRANSPORT_TYPE.TRAIN] = {
-				"travel",
+			[TRAVEL_METHOD.TRAIN] = {
+				UNIVERSAL_TRAVEL_KEYWORD,
 				"podroz",
 				"pojechac",
 				"jazda",
 				"jedziemy",
 				"ride",
 			},
-			[TRANSPORT_TYPE.CAMEL] = {
-				"travel",
+			[TRAVEL_METHOD.CAMEL] = {
+				UNIVERSAL_TRAVEL_KEYWORD,
 				"podroz",
 				"pojechac",
 				"jazda",
 				"jedziemy",
 				"ride",
-				"poswiezc",
+				"podwiezc",
 			},
 		}
 
-		DEFAULT_TRANSPORT_COST = 200
-		TRANSPORT_ROUTES = {
+		DEFAULT_TRAVEL_COST = 200
+		TRAVEL_ROUTES = {
 			ALI_BABA_CARPET = {
 				{ toPos = Position(7273, 1104, 3), name = "Maioor'ka" },
 				{ toPos = Position(7027, 1201, 2), name = "Cairo Fornia" },
@@ -92,6 +93,7 @@ pseudoQuest
 				{ toPos = Position(6879, 743, 7), name = "Mundral Daycare" },
 				{ toPos = Position(6436, 792, 7), name = "Stankass", minLevel = 60 },
 				{ toPos = Position(6693, 676, 7), name = "Celebimber's Post" },
+				{ toPos = Position(6640, 771, 7), name = "Waterfall" },
 			},
 			FISHERMAN_SHIP = {
 				{ toPos = Position(5801, 1649, 7), name = "Mirkotown Slums" },
@@ -148,7 +150,7 @@ pseudoQuest
 				return
 			end
 
-			if not chargeForTravel(player, choice.price or DEFAULT_TRANSPORT_COST) then
+			if not chargeForTravel(player, choice.price or DEFAULT_TRAVEL_COST) then
 				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Get("You dont have enough money."))
 				return
 			end
@@ -156,51 +158,50 @@ pseudoQuest
 			teleportToDestination(player, choice)
 		end
 
-		local transportTypeToWindowTitle = {
-			[TRANSPORT_TYPE.SHIP] = "ShipWindowTitle",
-			[TRANSPORT_TYPE.CARPET] = "CarpetWindowTitle",
-			[TRANSPORT_TYPE.TRAIN] = "TrainWindowTitle",
+		local travelMethodToWindowTitle = {
+			[TRAVEL_METHOD.SHIP] = "ShipWindowTitle",
+			[TRAVEL_METHOD.CARPET] = "CarpetWindowTitle",
+			[TRAVEL_METHOD.TRAIN] = "TrainWindowTitle",
 		}
-		local transportTypeToWindowMessage = {
-			[TRANSPORT_TYPE.SHIP] = "ShipWindowMessage",
-			[TRANSPORT_TYPE.CARPET] = "CarpetWindowMessage",
-			[TRANSPORT_TYPE.TRAIN] = "TraintWindowMessage",
+		local travelMethodToWindowMessage = {
+			[TRAVEL_METHOD.SHIP] = "ShipWindowMessage",
+			[TRAVEL_METHOD.CARPET] = "CarpetWindowMessage",
+			[TRAVEL_METHOD.TRAIN] = "TraintWindowMessage",
 		}
-		local function hasAccess(player, transport)
-			if transport.requiredState and not player:HasRequiredStates(transport.requiredState) then
+		local function hasAccess(player, travel)
+			if travel.requiredState and not player:HasRequiredStates(travel.requiredState) then
 				return false
 			end
 
-			--[[
-			local minLevel = transport.minLevel or 0
+			local minLevel = travel.minLevel or 0
 			if player:getLevel() < minLevel then
 				return false
 			end
-			]]
 
 			return true
 		end
-		function CreateTransportWindow(context)
+		function CreateTravelWindow(context)
 			local player = context.player
-			local transports = context.transports
-			local transportType = context.transportType
+			local travelRoutes = context.travelRoutes
+			local travelMethod = context.travelMethod
 
-			local title = player:Localizer(LOCALIZERS.Universal):Get(transportTypeToWindowTitle[transportType])
-			local message = player:Localizer(LOCALIZERS.Universal):Get(transportTypeToWindowMessage[transportType])
+			local title = player:Localizer(LOCALIZERS.Universal):Get(travelMethodToWindowTitle[travelMethod])
+			local message = player:Localizer(LOCALIZERS.Universal):Get(travelMethodToWindowMessage[travelMethod])
 			local window = ModalWindow({ title = title, message = message })
 
-			for _, transportConfig in pairs(transports) do
-				if hasAccess(player, transportConfig) then
-					local translatedName = player:Localizer(LOCALIZERS.TransportName):Get(transportConfig.name)
-					if not translatedName then
-						translatedName = transportConfig.name
-					end
-					local choice = window:addChoice(translatedName)
-					choice.minLevel = transportConfig.minLevel
-					choice.toPos = transportConfig.toPos
-					choice.price = transportConfig.price
-					choice.transportType = transportType
+			for _, travelData in pairs(travelRoutes) do
+				local translatedName = player:Localizer(LOCALIZERS.TravelName):Get(travelData.name)
+				if not translatedName then
+					translatedName = travelData.name
 				end
+				if not hasAccess(player, travelData) then
+					translatedName = "(-) " .. translatedName
+				end
+				local choice = window:addChoice(translatedName)
+				choice.minLevel = travelData.minLevel
+				choice.toPos = travelData.toPos
+				choice.price = travelData.price
+				choice.travelMethod = travelMethod
 			end
 
 			window:addButton(player:Localizer(LOCALIZERS.Universal):Get("Select"), confirmDestination)

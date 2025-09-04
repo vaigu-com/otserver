@@ -12,9 +12,9 @@ local dialogs = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
-				action = CreateTransportWindow,
-				transports = TRANSPORT_ROUTES.ALI_BABA_CARPET,
-				transportType = TRANSPORT_TYPE.CARPET,
+				action = CreateTravelWindow,
+				travelRoutes = TRAVEL_ROUTES.ALI_BABA_CARPET,
+				travelMethod = TRAVEL_METHOD.CARPET,
 			},
 		},
 		specialRequirements = {
