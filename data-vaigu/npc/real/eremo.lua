@@ -224,7 +224,7 @@ npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
 npcConfig.shop = {
-	{ itemName = "amulet of loss", clientId = 3057, buy = 50000, sell = 45000 },
+	-- { itemName = "amulet of loss", clientId = 3057, buy = 50000, sell = 45000 },
 	{ itemName = "broken amulet", clientId = 3080, sell = 50000 },
 	{ itemName = "protection amulet", clientId = 3084, buy = 700, count = 250 },
 }
