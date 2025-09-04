@@ -26,7 +26,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(266)
 spell:name("Avatar of Storm")
 spell:words("uteta res ven")
 spell:level(50)

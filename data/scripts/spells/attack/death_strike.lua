@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(87)
 spell:name("Death Strike")
 spell:words("exori mort")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

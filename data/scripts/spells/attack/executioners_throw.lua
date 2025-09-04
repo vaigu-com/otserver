@@ -48,7 +48,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(261)
 spell:name("Executioner's Throw")
 spell:words("exori amp kor")
 spell:level(50)

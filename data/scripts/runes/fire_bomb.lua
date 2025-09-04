@@ -11,7 +11,6 @@ function rune.onCastSpell(creature, var, isHotkey)
 	return combat:execute(creature, var)
 end
 
-rune:id(17)
 rune:group("attack")
 rune:name("firebomb rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

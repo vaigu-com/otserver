@@ -816,7 +816,7 @@ quest
 	:State(function()
 		return QuestState.LocalSupport.WoodDelivery.TakeFstabReward,
 			QuestFactory.Dialog("Fstab", {
-				[{ "nagroda", "reward" }] = {
+				[{ "nagroda", "reward", "przydzial", "potions", "potion", "potionow", "potiony" }] = {
 					text = "Well, thank you on behalf of our City for your help, get some of these potions.",
 					nextState = {
 						[Storage.LocalSupport.WoodDelivery] = MISSION_FINISHED,
@@ -1226,15 +1226,12 @@ quest
 						return false
 					end
 
-					local cooldownExpiry = player:getStorageValueByKey(Storage.LocalSupport.OldManFrostPickaxe)
-					local now = os.time()
-					if cooldownExpiry > now then
+					if not player:isLockoutExpired(Storage.LocalSupport.OldManFrostPickaxe) then
 						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Magic effects of this pickaxe have dissipated. It should be ready to use in few days.")
 						return false
 					end
 
-					local nextCooldownExpiry = NextWednesdayEpochTime()
-					player:setStorageValueByKey(Storage.LocalSupport.OldManFrostPickaxe, nextCooldownExpiry)
+					player:setLockoutExpiry(Storage.LocalSupport.OldManFrostPickaxe, LOCKOUT_EXPIRY_TIME.WEEKLY)
 					player:addCharmPoints(charmPoints)
 					local bonusExp = math.floor(player:ExpForNextlevel() * 0.15 + 50000)
 					AddExperienceWithAnnouncement(player, bonusExp)

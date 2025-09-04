@@ -19,7 +19,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("healing")
-spell:id(241)
 spell:name("Restoration")
 spell:words("exura max vita")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_RESTORATION)

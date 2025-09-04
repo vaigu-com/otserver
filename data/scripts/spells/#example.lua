@@ -1,3 +1,4 @@
+--[[
 local combat = Combat()
 combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_HEALING)
 combat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MAGIC_BLUE)
@@ -50,3 +51,4 @@ conjureRune:groupCooldown(2000)
 conjureRune:needLearn(false)
 conjureRune:vocation("sorcerer", "master sorcerer;true")
 conjureRune:register()
+]]

@@ -63,7 +63,7 @@ function spell.onCastSpell(creature, var)
 
 	local exaust = math.random(11, 41)
 
-	if creature:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Malofur) ~= 1 then
+	if creature:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Malofur) ~= 1 then
 		creature:say("RAAAARGH! I'M MASHING YE TO DUST!", TALKTYPE_MONSTER_SAY)
 		creature:say("BOOM!", TALKTYPE_MONSTER_SAY)
 		creature:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Malofur, 1)

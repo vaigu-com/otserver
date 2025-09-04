@@ -85,6 +85,9 @@ quest
 		}
 		QuestTopics.TheaterOfCheapThrills = {
 			ConfirmCampDestination = 1,
+			RevealKingPowers = 2,
+			AnswerKingIsAlso = 3,
+			TranslateCustodian = 4,
 		}
 	end)
 	:Constant(function()
@@ -699,15 +702,21 @@ quest
 				},
 				[{ "yes", "tak" }] = {
 					text = "Who is the King of Rats, and what is his power?",
+					nextTopic = QuestTopics.TheaterOfCheapThrills.RevealKingPowers,
 				},
-				[{ "vortex stinker", "wir smierdzielu", "fuck off retard" }] = {
+				[{ ANY_MESSAGE }] = {
 					text = "Now, the next question: The King of Rats is a ruler who is aggressive but ...?",
+					requiredTopic = QuestTopics.TheaterOfCheapThrills.RevealKingPowers,
+					nextTopic = QuestTopics.TheaterOfCheapThrills.AnswerKingIsAlso,
 				},
-				[{ "just", "sprawiedliwym" }] = {
+				[{ ANY_MESSAGE }] = {
 					text = "You're doing well. Now it's time for the third and final task. Translate 'Custodian' to Polish.",
+					requiredTopic = QuestTopics.TheaterOfCheapThrills.AnswerKingIsAlso,
+					nextTopic = QuestTopics.TheaterOfCheapThrills.TranslateCustodian,
 				},
 				[{ "kurator", "kustosz", "custodian", "curator" }] = {
 					text = "I appoint you as a rat that there are many! Come back in some time, and I'll surely find a responsible task for you.",
+					requiredTopic = QuestTopics.TheaterOfCheapThrills.TranslateCustodian,
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission03] = QuestState.TheaterOfCheapThrills.Mission03.AskRomekForMission,
 						[Storage.TheaterOfCheapThrills.Mission02] = MISSION_FINISHED,
@@ -784,7 +793,7 @@ quest
 				[{ "mission", "misja", "klatwa", "curse" }] = {
 					text = "Yes, I'm somewhat knowledgeable about lifting curses, but which curse are you specifically referring to?",
 				},
-				[{ "ytong" }] = {
+				[{ "ytong", "nie wiem", "i dont know", "idk", "nwm" }] = {
 					text = "Particularly nasty, indeed. I'll have to ask you to go to a certain place. To lift the curse, you'll need to provide the cursed one with a secret passphrase. Unfortunately, I don't know that passphrase, but a special spell {book} might assist you.",
 				},
 				[{ "ksiega", "book" }] = {

@@ -1,20 +1,17 @@
----@enum LOCKOUT_TIME
-LOCKOUT_TIME = {
+---@enum LOCKOUT_EXPIRY_TIME
+LOCKOUT_EXPIRY_TIME = {
 	DAILY = "DAILY",
+	DAY_AFTER_TOMORROW = "DAY_AFTER_TOMORROW",
 	WEEKLY = "WEEKLY",
 	FOREVER = "FOREVER",
+	ANTI_GRIEF = "ANTI_GRIEF",
 }
+DEFAULT_LOCKOUT_EXPIRY_TIME = LOCKOUT_EXPIRY_TIME.WEEKLY
 
----@enum LOCKOUT_TYPE
-LOCKOUT_TYPE = {
+---@enum LOCKOUT_TRIGGER_CRITERION
+LOCKOUT_TRIGGER_CRITERION = {
 	ON_KILL = "ON_KILL",
 	ON_ENTER = "ON_ENTER",
-}
-
----@enum LOCKOUT_STATUS
-LOCKOUT_STATUS = {
-	ACTIVE = "ACTIVE",
-	INACTIVE = "INACTIVE",
 }
 
 DEFAULT_LEVER_ID = 2772
@@ -25,10 +22,6 @@ DAY_RESET_TIME_LOCAL = 5
 ENCOUNTER_STAGE = {
 	UNSTARTED = -100,
 	FIRST_STAGE = 1,
-}
-
-EncounterNames = {
-	SkurwiwijLair = "skurwiwij-lair",
 }
 
 ---@class EncounterStage
@@ -104,8 +97,8 @@ end
 ---@field private disabled boolean?
 ---@field public disableLockout boolean does not apply cooldown on kill/entry
 ---@field private requiredState table?
----@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
----@field private lockoutType LOCKOUT_TYPE?
+---@field private lockoutExpiryTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
+---@field private lockoutTriggerCriterion LOCKOUT_TRIGGER_CRITERION?
 ---@field private timeToDefeat number?
 ---@field private ejectAfterCompletionSeconds number?
 ---@field private requiredLevel number?
@@ -129,8 +122,8 @@ EncounterDataContext = EncounterDataContext
 ---@field private disabled boolean?
 ---@field public disableLockout boolean does not apply cooldown on kill/entry
 ---@field private requiredState table?
----@field private lockoutTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
----@field private lockoutType LOCKOUT_TYPE?
+---@field private lockoutExpiryTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
+---@field private lockoutTriggerCriterion LOCKOUT_TRIGGER_CRITERION?
 ---@field private timeToDefeat number?
 ---@field private ejectAfterCompletionSeconds number?
 ---@field private requiredLevel number?
@@ -379,8 +372,8 @@ function EncounterData:SetupScopes()
 	self.scope = encounterScope
 	self.eventScope = Scope("Encounter", self.encounterId, "GlobalEvent")
 
-	local lockoutScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.LockoutScope)
-	self.lockoutStorage = lockoutScope
+	local lockoutStorage = encounterScope:Get(ENCOUNTER_SCOPE_NAME.LockoutScope)
+	self.lockoutStorage = lockoutStorage
 
 	local bossSpawnPositionScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.BossSpawnPosition)
 	self.bossSpawnPosition = Zone(bossSpawnPositionScope):randomPosition()
@@ -495,8 +488,8 @@ function EncounterData:Data(context)
 	self.requiredState = context.requiredState or {} --Required quest state; Usually just one access storage
 	self.nextState = context.nextState or {} --Quest state udate
 
-	self.lockoutTime = context.lockoutTime or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN)
-	self.lockoutType = context.lockoutType or LOCKOUT_TYPE.ON_ENTER
+	self.lockoutExpiryTime = context.lockoutExpiryTime or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN)
+	self.lockoutTriggerCriterion = context.lockoutTriggerCriterion or LOCKOUT_TRIGGER_CRITERION.ON_ENTER
 
 	self.timeToDefeat = context.timeToDefeat or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_DEFEAT)
 	self.ejectAfterCompletionSeconds = context.ejectAfterCompletionSeconds or 60
@@ -528,6 +521,34 @@ local secondsInDay = 24 * 3600
 local secondsInHour = 3600
 local secondsInMinute = 60
 
+local function formatTime(seconds)
+	local days = math.floor(seconds / secondsInDay)
+	local hours = math.floor((seconds % secondsInDay) / secondsInHour)
+	local minutes = math.floor((seconds % secondsInHour) / secondsInMinute)
+	local secs = seconds % secondsInMinute
+
+	local parts = {}
+
+	if days > 0 then
+		table.insert(parts, days .. " " .. (days == 1 and "day" or "days"))
+	end
+	if hours > 0 then
+		table.insert(parts, hours .. " " .. (hours == 1 and "hour" or "hours"))
+	end
+	if minutes > 0 then
+		table.insert(parts, minutes .. " " .. (minutes == 1 and "minute" or "minutes"))
+	end
+	if secs > 0 or #parts == 0 then
+		table.insert(parts, secs .. " " .. (secs == 1 and "second" or "seconds"))
+	end
+
+	if #parts > 1 then
+		return table.concat(parts, ", ", 1, #parts - 1) .. " and " .. parts[#parts]
+	else
+		return parts[1]
+	end
+end
+
 function NextDayEpochTime()
 	local universalNow = os.time()
 	local timezoneNow = os.date("*t")
@@ -549,39 +570,43 @@ function NextWednesdayEpochTime()
 	return nextWednesday
 end
 
-function EncounterData:calculateLockoutExpiry()
-	local cooldownExpiry = 0
-	if self.lockoutTime == LOCKOUT_TIME.DAILY then
-		cooldownExpiry = NextDayEpochTime()
-	elseif self.lockoutTime == LOCKOUT_TIME.WEEKLY then
-		cooldownExpiry = NextWednesdayEpochTime()
-	else
-		return self.lockoutTime
-	end
-
-	return cooldownExpiry + DAY_RESET_TIME_LOCAL * 3600
+function WeeklyLockoutExpiryTime()
+	return NextWednesdayEpochTime() + DAY_RESET_TIME_LOCAL * 3600
 end
 
----@param self Player
----@param encounter EncounterData
----@return LOCKOUT_STATUS
----@return integer|nil timeLeft
-function Player:getLockoutStatus(encounter)
-	if not self or encounter.disableLockout then
-		return LOCKOUT_STATUS.ACTIVE
-	end
+function DailyLockoutExpiryTime()
+	return NextDayEpochTime() + DAY_RESET_TIME_LOCAL * 3600
+end
 
-	local lockoutExpiry = self:getEncounterLockout(encounter)
-	local currentTime = os.time()
-	if not lockoutExpiry then
-		return LOCKOUT_STATUS.INACTIVE
-	end
-	if currentTime >= lockoutExpiry then
-		return LOCKOUT_STATUS.INACTIVE
-	end
+function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
+	lockoutExpiryTime = lockoutExpiryTime or DEFAULT_LOCKOUT_EXPIRY_TIME
 
-	local timeLeft = lockoutExpiry - currentTime
-	return LOCKOUT_STATUS.ACTIVE, timeLeft
+	if lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.DAILY then
+		return DailyLockoutExpiryTime()
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.DAY_AFTER_TOMORROW then
+		return DailyLockoutExpiryTime() + secondsInDay
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.WEEKLY then
+		return WeeklyLockoutExpiryTime()
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.FOREVER then
+		return os.time() * 2
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.ANTI_GRIEF then
+		return os.time() + 60
+	end
+end
+
+function Player:setLockoutExpiry(storage, lockoutExpiryTime)
+	local expiryTimestamp = LockoutExpiryTypeTimestamp(lockoutExpiryTime)
+	self:setStorageValueByKey(storage, expiryTimestamp)
+	self:sendBosstiaryCooldownTimer()
+end
+
+function Player:isLockoutExpired(storage)
+	local playerLockoutExpiry = self:getStorageValueByKey(storage) or 0
+	return os.time() > playerLockoutExpiry, playerLockoutExpiry
+end
+
+function EncounterData:calculateLockoutExpiry()
+	return LockoutExpiryTypeTimestamp(self.lockoutExpiryTime)
 end
 
 function EncounterData:checkEncounterDisabled(players, leverUser)
@@ -623,19 +648,17 @@ function EncounterData:checkLockout(players, leverUser)
 		return ENCOUNTER_ERROR_CODES.NO_ERROR
 	end
 
-	local status = ENCOUNTER_ERROR_CODES.NO_ERROR
+	local checkStatus = ENCOUNTER_ERROR_CODES.NO_ERROR
 	for _, currentPlayer in pairs(players) do
-		local getLockoutStatus, timeLeft = currentPlayer:getLockoutStatus(self)
-		if getLockoutStatus ~= LOCKOUT_STATUS.INACTIVE then
-			local timeLeftString = Game.getTimeInWords(timeLeft)
+		local isExpired = currentPlayer:isLockoutExpired(self:GetLockoutStorage())
+		if not isExpired then
+			SendLockoutError(currentPlayer, self:GetLockoutStorage(), self:GetDisplayName())
 
-			local translatedMessage = currentPlayer:Localizer():Context({ displayName = self.displayName, timeLeftString = timeLeftString }):Get(ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT)
-			currentPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 			currentPlayer:getPosition():sendMagicEffect(CONST_ME_POFF)
-			status = ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT
+			checkStatus = ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT
 		end
 	end
-	return status
+	return checkStatus
 end
 function EncounterData:checkAccess(players, leverUser)
 	if leverUser:getGroup():getId() >= GROUP_TYPE_GOD then
@@ -720,19 +743,10 @@ function EncounterData:GetLockoutStorage()
 	return self.lockoutStorage
 end
 
-function EncounterData:SetAntiGriefLockout(player)
-	local currentExpiry = player:getStorageValueByKey(self:GetLockoutStorage())
-	local newExpiry = os.time() + 60
-	if currentExpiry > newExpiry then
-		return
-	end
-	player:setEncounterLockout(self, newExpiry)
-end
-
-function EncounterData:SetLockouts(players)
-	local newExpiry = self:calculateLockoutExpiry()
+function EncounterData:SetLockouts(players, lockoutExpiryTime)
+	lockoutExpiryTime = lockoutExpiryTime or self.lockoutExpiryTime
 	for _, player in pairs(players) do
-		player:setEncounterLockout(self, newExpiry)
+		player:setLockoutExpiry(self:GetLockoutStorage(), self.lockoutExpiryTime)
 	end
 end
 
@@ -752,7 +766,7 @@ function EncounterData:OnSuccessfulCompletion(participants)
 		player:takeScreenshot(SCREENSHOT_TYPE_BOSSDEFEATED)
 	end
 
-	if self.lockoutType == LOCKOUT_TYPE.ON_KILL then
+	if self.lockoutTriggerCriterion == LOCKOUT_TRIGGER_CRITERION.ON_KILL then
 		self:SetLockouts(participants)
 	end
 
@@ -856,7 +870,7 @@ function EncounterData:tryEnter(leverUser)
 
 	self:teleportPlayersToEncounterRoom(playersOnEntrance)
 
-	if self.lockoutType == LOCKOUT_TYPE.ON_ENTER then
+	if self.lockoutTriggerCriterion == LOCKOUT_TRIGGER_CRITERION.ON_ENTER then
 		self:SetLockouts(playersOnEntrance)
 	end
 
@@ -1222,7 +1236,7 @@ function EncounterData:ConfigureOnEnterLeave()
 		if player:hasGroupFlag(IgnoredByMonsters) then
 			return
 		end
-		self:SetAntiGriefLockout(player)
+		self:SetLockouts({ player }, LOCKOUT_EXPIRY_TIME.ANTI_GRIEF)
 
 		if self:countPlayers() == 0 then
 			self:reset()
@@ -1272,4 +1286,13 @@ end
 function ActiveEncounterRegistry:MapCreature(encounterData, creature)
 	self.creatureToEncounter[creature:getId()] = self.registry[encounterData:GetDisplayName()]
 	return self
+end
+
+function SendLockoutError(player, lockoutStorage, encounterName)
+	encounterName = "this boss"
+
+	local lockoutExpiry = player:getStorageValueByKey(lockoutStorage)
+	local timeDiff = lockoutExpiry - os.time()
+	local timeFormatted = formatTime(timeDiff)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You need to wait another :time: to fight :encounterName: again.", { time = timeFormatted, encounterName = encounterName }))
 end

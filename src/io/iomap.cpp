@@ -255,9 +255,14 @@ void IOMap::parseTowns(FileStream &stream, Map &map) {
 		const uint16_t y = stream.getU16();
 		const uint8_t z = stream.getU8();
 
-		auto town = map.towns.getOrCreateTown(townId);
-		town->setName(townName);
-		town->setTemplePos(Position(x, y, z));
+		auto existingTown = map.towns.getTown(townId);
+		if (existingTown) {
+			g_logger().warn("[IOMap::parseTowns] Cannot add town: {} with id: {} because there already exists town: {} with id: {}", townName, townId, existingTown->getName(), townId);
+		} else {
+			auto town = map.towns.getOrCreateTown(townId);
+			town->setName(townName);
+			town->setTemplePos(Position(x, y, z));
+		}
 
 		if (!stream.endNode()) {
 			throw IOMapException("Could not end node.");

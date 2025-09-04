@@ -26,7 +26,6 @@ spell:words("utamo vita")
 spell:group("support")
 spell:vocation("druid;true", "elder druid;true", "sorcerer;true", "master sorcerer;true")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_MAGIC_SHIELD)
-spell:id(44)
 -- Vaigu custom
 spell:cooldown(2 * 1000)
 spell:groupCooldown(2 * 1000)

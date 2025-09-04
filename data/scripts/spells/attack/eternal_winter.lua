@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "focus")
-spell:id(118)
 spell:name("Eternal Winter")
 spell:words("exevo gran mas frigo")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_ETERNAL_WINTER)

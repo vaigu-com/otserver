@@ -92,7 +92,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(258)
 spell:name("Divine Grenade")
 spell:words("exevo tempo mas san")
 spell:level(50)

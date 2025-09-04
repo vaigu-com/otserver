@@ -47,7 +47,7 @@ LOCALIZERS = {
 	ThreeSramatiansAndTheDragon = "three_sramatians_and_the_dragon",
 	ToCarryThePigs = "to_carry_the_pigs",
 	TopChef = "top_chef",
-	TransportName = "transport_name",
+	TravelName = "travel_name",
 	WayOfTheDruid = "way_of_the_druid",
 
 	NONE = "",
@@ -61,7 +61,7 @@ for _, language in pairs(LANGUAGES) do
 			local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
 			local success, fileContent = pcall(require, filePath)
 			if not success then
-				logger.warn(T("File :filePath: does not exist", { filePath = filePath }))
+				logger.warn(T("[TRANSLATION_TABLES init] File :filePath: does not exist", { filePath = filePath }))
 			end
 			TRANSLATION_TABLES[language][localizer] = fileContent
 		end
@@ -71,21 +71,10 @@ end
 -- this registers TRANSLATION_TABLES on cpp side
 Game.initializeTranslationTable()
 
-local function translatedFromSpecificQuest(str, localizer, langauge)
-	local questConf = TRANSLATION_TABLES[langauge][localizer]
+local function translatedFromSpecificQuest(str, localizer, language)
+	local questConf = TRANSLATION_TABLES[language][localizer]
 	if questConf then
 		return questConf[str]
-	end
-end
-
-local missingStrings = {}
-local stringsWithWrongLocalizer = {}
-for _, language in pairs(LANGUAGES) do
-	missingStrings[language] = {}
-	stringsWithWrongLocalizer[language] = {}
-	for _, localizer in pairs(LOCALIZERS) do
-		missingStrings[language][localizer] = {}
-		stringsWithWrongLocalizer[language][localizer] = {}
 	end
 end
 

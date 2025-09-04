@@ -35,7 +35,6 @@ function rune.onCastSpell(creature, variant, isHotkey)
 	return combat:execute(creature, variant)
 end
 
-rune:id(86)
 rune:name("Magic Wall Rune")
 rune:group("attack")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

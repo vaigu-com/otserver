@@ -21,7 +21,7 @@ monster.speed = 210
 monster.manaCost = 0
 
 monster.events = {
-	"killingLibrary",
+	
 }
 
 monster.changeTarget = {

@@ -10,7 +10,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("support")
-spell:id(245)
 spell:name("Cancel Magic Shield")
 spell:words("exana vita")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_CANCEL_MAGIC_SHIELD)

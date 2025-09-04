@@ -782,6 +782,14 @@ void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t oper
 	player->isConnecting = false;
 
 	player->client = getThis();
+	if (!player->isOnline()) {
+		player->online = true;
+		if (!g_game().placeCreature(player, player->getLoginPosition()) && !g_game().placeCreature(player, player->getTemplePosition(), false, true)) {
+			disconnectClient("Temple position is wrong. Please, contact the administrator. 2");
+			g_logger().warn("Player {} temple position is wrong 2", player->getName());
+			return;
+		}
+	}
 	sendAddCreature(player, player->getPosition(), 0, true);
 	player->lastIP = player->getIP();
 	player->lastLoginSaved = std::max<time_t>(time(nullptr), player->lastLoginSaved + 1);
@@ -817,8 +825,8 @@ ReturnValue ProtocolGame::messageIfCannotLogout(const std::shared_ptr<Player> pl
 void ProtocolGame::logout(bool displayEffect, bool forced) {
 	if (!player) {
 		return;
-	}	
-	
+	}
+
 	bool removePlayer = !player->isRemoved() && !forced;
 	auto errorMessage = messageIfCannotLogout(player, removePlayer);
 	if (errorMessage != RETURNVALUE_NOERROR) {
@@ -1964,22 +1972,24 @@ void ProtocolGame::parseQuickLoot(NetworkMessage &msg) {
 	}
 
 	uint8_t variant = msg.getByte();
-	const Position pos = msg.getPosition();
-	auto itemId = 0;
-	uint8_t stackpos = 0;
-	bool lootAllCorpses = true;
-	bool autoLoot = true;
-
 	if (variant == 2) {
-		// Loot player nearby (13.40)
+		const Position clickedPos = msg.getPosition();
+		auto itemId = 0;
+		uint8_t stackpos = 0;
+		bool lootAllCorpses = true;
+		bool autoLoot = false;
+		g_logger().debug("[{}] variant {}, clickedPos {}, itemId {}, stackPos {}", __FUNCTION__, variant, clickedPos.toString(), itemId, stackpos);
+		const auto playerPos = player->getPosition();
+		g_game().playerQuickLoot(player->getID(), playerPos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
 	} else {
-		itemId = msg.get<uint16_t>();
-		stackpos = msg.getByte();
-		lootAllCorpses = variant == 1;
-		autoLoot = false;
+		const Position clickedPos = msg.getPosition();
+		auto itemId = msg.get<uint16_t>();
+		uint8_t stackpos = msg.getByte();
+		bool lootAllCorpses = variant == 1;
+		bool autoLoot = false;
+		g_logger().debug("[{}] variant {}, clickedPos {}, itemId {}, stackPos {}", __FUNCTION__, variant, clickedPos.toString(), itemId, stackpos);
+		g_game().playerQuickLoot(player->getID(), clickedPos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
 	}
-	g_logger().debug("[{}] variant {}, pos {}, itemId {}, stackPos {}", __FUNCTION__, variant, pos.toString(), itemId, stackpos);
-	g_game().playerQuickLoot(player->getID(), pos, itemId, stackpos, nullptr, lootAllCorpses, autoLoot);
 }
 
 void ProtocolGame::parseLootContainer(NetworkMessage &msg) {

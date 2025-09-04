@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "special")
-spell:id(149)
 spell:name("Lightning")
 spell:words("exori amp vis")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_LIGHTNING)

@@ -12,5 +12,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
+	spawnedByScript = true
 }
 NpcRegistry:AppendNpcData(context)

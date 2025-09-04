@@ -38,7 +38,6 @@ function spell.onCastSpell(creature, var, isHotkey)
 end
 
 spell:group("support", "crippling")
-spell:id(243)
 spell:name("Expose Weakness")
 spell:words("exori moe")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_EXPOSE_WEAKNESS)

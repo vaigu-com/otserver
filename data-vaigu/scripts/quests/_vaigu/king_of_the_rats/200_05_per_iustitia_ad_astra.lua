@@ -369,7 +369,6 @@ quest
 		end
 
 		spell:name("hugo house guard turn")
-		spell:words(NextSpellId())
 		spell:needTarget(true)
 		spell:isAggressive(true)
 		spell:blockWalls(true)
@@ -409,7 +408,6 @@ quest
 		end
 
 		spell:name("hugo house guard scan")
-		spell:words(NextSpellId())
 		spell:needTarget(true)
 		spell:isAggressive(true)
 		spell:blockWalls(true)
@@ -1558,8 +1556,8 @@ quest
 
 			requiredState = { [Storage.PerIustitiaAdAstra.RukcaAccess] = ACCESS_GRANTED },
 
-			lockoutTime = LOCKOUT_TIME.WEEKLY,
-			lockoutType = LOCKOUT_TYPE.ON_KILL,
+			lockoutExpiryTime = LOCKOUT_EXPIRY_TIME.WEEKLY,
+			lockoutTriggerCriterion = LOCKOUT_TRIGGER_CRITERION.ON_KILL,
 		})
 		rukcaEncounter:addStage({})
 

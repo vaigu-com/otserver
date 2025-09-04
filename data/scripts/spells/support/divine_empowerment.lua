@@ -42,7 +42,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("support")
-spell:id(268)
 spell:name("Divine Empowerment")
 spell:words("utevo grav san")
 spell:level(50)

@@ -28,7 +28,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	if target.itemid == config.item1 or target.itemid == config.item2 or target.itemid == config.item3 then
-		if player:getStorageValue(config.storageKey) > 0 then
+		if player:getStorageValueByKey(config.storageKey) > 0 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already have the obedience of ursagrodon.")
 			return true
 		end

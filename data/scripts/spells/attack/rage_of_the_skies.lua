@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "focus")
-spell:id(119)
 spell:name("Rage of the Skies")
 spell:words("exevo gran mas vis")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_RAGE_OF_THE_SKIES)

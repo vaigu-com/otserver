@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(57)
 spell:name("Strong Ethereal Spear")
 spell:words("exori gran con")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

@@ -35,7 +35,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(22)
 spell:name("Energy Beam")
 spell:words("exevo vis lux")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_ENERGY_BEAM)

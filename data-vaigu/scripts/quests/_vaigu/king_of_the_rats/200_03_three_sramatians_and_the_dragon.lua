@@ -1297,8 +1297,8 @@ quest
 
 			requiredState = { [Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = ACCESS_GRANTED },
 
-			lockoutTime = LOCKOUT_TIME.WEEKLY,
-			lockoutType = LOCKOUT_TYPE.ON_KILL,
+			lockoutExpiryType = LOCKOUT_EXPIRY_TIME.WEEKLY,
+			lockoutTriggerCriterion = LOCKOUT_TRIGGER_CRITERION.ON_KILL,
 		})
 		hfpxEncounter:addStage({
 			start = function() end,

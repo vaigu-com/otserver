@@ -1,68 +1,67 @@
 local rewards = {
-	[25610] = {
+	[9302] = {
 		storage = Storage.DeeplingBosses.Jaul,
 		bossName = "Jaul",
 		items = {
-			{ rand = true, itemId = { 14224, 14042, 14043 } }, -- trophy, warriors shield, guardian axe, necklace of the deep
 			{ rand = true, itemId = { 13990, 14021 } },
-			{ itemId = 3035, count = 30 }, -- platinum coin
+			{ itemId = 3035, count = 50 },
+			{ itemId = 14224 },
+			{ itemId = 14042 },
 		},
 	},
-	[25611] = {
+	[9303] = {
 		storage = Storage.DeeplingBosses.Tanjis,
 		bossName = "Tanjis",
 		items = {
-			{ rand = true, itemId = { 14223, 14042, 13990 } }, -- trophy of tanjis, warriors shield, necklace, sight, pearl
-			{ rand = true, itemId = { 14022, 3027 } }, -- trophy of tanjis, warriors shield, necklace, sight, pearl
-			{ itemId = 3035, count = 30 }, -- platinum coin
+			{ rand = true, itemId = { 14022, 3027 } },
+			{ itemId = 14223 },
+			{ itemId = 3035, count = 20 },
+			{ itemId = 13990 },
+			{ itemId = 14042 },
 		},
 	},
-	[25612] = {
+	[9304] = {
 		storage = Storage.DeeplingBosses.Obujos,
 		bossName = "Obujos",
 		items = {
-			{ rand = true, itemId = { 14222, 13987 } }, -- trophy, deepling staff, axe, shell
-			{ rand = true, itemId = { 14043, 14023 } }, -- trophy, deepling staff, axe, shell
-			{ itemId = 3035, count = 30 }, -- platinum coin
-			{ itemId = 281, count = 1 }, -- pearl
+			{ rand = true, itemId = { 14023, 281 } },
+			{ itemId = 14222 },
+			{ itemId = 14043 },
+			{ itemId = 3035, count = 30 },
+			{ itemId = 13987 },
 		},
 	},
 }
 
-local deeplingRewards = Action()
-function deeplingRewards.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if item.uid >= 25610 and item.uid <= 25612 then
+local bossesReward = Action()
+
+function bossesReward.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	if item.uid >= 9302 and item.uid <= 9304 then
 		local reward = rewards[item.uid]
 		if not reward then
-			return false
-		end
-
-		if player:getStorageValueByKey(reward.storage) ~= 1 then
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, reward.bossName .. " defends his belongings and will not let you open his chest.")
 			return true
 		end
 
-		local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)
-		if backpack and backpack:getEmptySlots(false) < 2 or player:getFreeCapacity() < 100 then
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Please make sure that you have at least 2 free inventory slots and that you can carry on additional 100 oz.")
+		if player:getStorageValueByKey(reward.storage) <= 0 then
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, reward.bossName .. " defends his belongings and will not let you open his chest.")
 			return true
 		end
 
 		for i = 1, #reward.items do
 			local items = reward.items[i]
 			if items.rand then
-				if math.random(2) == 1 then
-					player:AddCustomItem({ id = items.itemId[math.random(#items.itemId)], count = 1 })
+				if math.random(10) == 1 then
+					player:addItem(items.itemId[math.random(#items.itemId)], 1)
 				end
 			else
-				player:AddCustomItem({ id = items.itemId, count = items.count or 1 })
+				player:addItem(items.itemId, items.count or 1)
 			end
 		end
 
-		player:setStorageValueByKey(reward.storage, 0)
+		player:incrementStorageByKey(reward.storage, -1)
 	end
 	return true
 end
 
-deeplingRewards:uid(25610, 25611, 25612)
-deeplingRewards:register()
+bossesReward:uid(9302, 9303, 9304)
+bossesReward:register()

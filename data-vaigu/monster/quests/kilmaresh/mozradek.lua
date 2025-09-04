@@ -14,7 +14,7 @@ monster.outfit = {
 }
 
 monster.events = {
-	"MozradekDeath",
+	
 }
 
 monster.bosstiary = {

@@ -16,13 +16,13 @@ local voices = {
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
 local dialogs = {
-	[TRAVEL_KEYWORDS[TRANSPORT_TYPE.SHIP]] = {
+	[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
-				action = CreateTransportWindow,
-				transports = TRANSPORT_ROUTES.JACK_SPARROW_SHIP,
-				transportType = TRANSPORT_TYPE.SHIP,
+				action = CreateTravelWindow,
+				travelRoutes = TRAVEL_ROUTES.JACK_SPARROW_SHIP,
+				travelMethod = TRAVEL_METHOD.SHIP,
 			},
 		},
 		specialRequirements = {

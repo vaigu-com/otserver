@@ -41,7 +41,7 @@ GrandMasterOberonConfig = {
 }
 
 local function healOberon(monster)
-	local storage = monster:getStorageValue(GrandMasterOberonConfig.Storage.Life)
+	local storage = monster:getStorageValueByKey(GrandMasterOberonConfig.Storage.Life)
 	monster:setStorageValueByKey(GrandMasterOberonConfig.Storage.Life, storage + 1)
 	monster:addHealth(monster:getMaxHealth())
 end

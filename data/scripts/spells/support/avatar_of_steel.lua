@@ -26,7 +26,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(264)
 spell:name("Avatar of Steel")
 spell:words("uteta res eq")
 spell:level(50)

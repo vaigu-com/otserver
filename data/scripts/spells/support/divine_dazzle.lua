@@ -62,7 +62,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(238)
 spell:name("Divine Dazzle")
 spell:words("exana amp res")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_DIVINE_DAZZLE)

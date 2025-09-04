@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "ultimatestrikes")
-spell:id(157)
 spell:name("Ultimate Terra Strike")
 spell:words("exori max tera")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

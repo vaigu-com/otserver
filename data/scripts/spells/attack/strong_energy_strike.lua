@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "special")
-spell:id(151)
 spell:name("Strong Energy Strike")
 spell:words("exori gran vis")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

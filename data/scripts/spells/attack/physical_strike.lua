@@ -19,7 +19,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(148)
 spell:name("Physical Strike")
 spell:words("exori moe ico")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

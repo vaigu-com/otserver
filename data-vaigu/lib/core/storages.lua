@@ -301,6 +301,7 @@ Storage.TheApeCity = { -- Reserved 12120 - 12152
 	Casks = {},
 	SnakeDestroyer = {},
 	ShamanOutfit = {},
+	DeepBanutaDoor = {}
 }
 Storage.TheDreamCourts = { -- 12200-12300
 	QuestLine = {},
@@ -369,8 +370,7 @@ Storage.DeeplingBosses = { -- Reserved 50070 - 50080
 	Jaul = {},
 	Tanjis = {},
 	Obujos = {},
-	DeeplingStatus = {},
-	DailyDeeplingKill = {},
+	DailyBossLockout = {},
 }
 Storage.Ferumbras = { -- Reserved 60011 - 60028
 	Plagirath48 = {},

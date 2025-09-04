@@ -270,8 +270,8 @@ DailyReward.afterPickingReward = function(playerId)
 	player:setDayStreak(nextWeekDay % 7)
 
 	player:setStorageValueByKey(Storage.DailyRewardShrine.PreviousCollectionTimestamp, os.time())
-	player:setStorageValueByKey(Storage.DailyRewardShrine.NextCollectTimestamp, NextDayEpochTime())
-	player:setStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp, NextDayEpochTime() + oneDay)
+	player:setLockoutExpiry(Storage.DailyRewardShrine.NextCollectTimestamp, LOCKOUT_EXPIRY_TIME.DAILY)
+	player:setLockoutExpiry(Storage.DailyRewardShrine.StreakExpiryTimestamp, LOCKOUT_EXPIRY_TIME.DAY_AFTER_TOMORROW)
 
 	player:setDailyReward(DAILY_REWARD_COLLECTED)
 	player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_YELLOW)
@@ -307,7 +307,7 @@ DailyReward.init = function(playerId)
 	if (os.time() > streakExpiryTimestamp) and (player:getLastLoginSaved() > 0) then
 		local jokersCount = player:getJokerTokens()
 		if jokersCount > 0 then
-			player:setStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp, NextDayEpochTime() + oneDay)
+			player:setLockoutExpiry(Storage.DailyRewardShrine.StreakExpiryTimestamp, LOCKOUT_EXPIRY_TIME.DAY_AFTER_TOMORROW)
 			player:setJokerTokens(jokersCount - 1)
 			player:sendTextMessage(MESSAGE_LOGIN, "You lost a joker token to prevent loosing your streak.")
 		else
@@ -472,7 +472,6 @@ function Player.selectDailyReward(self, msg)
 		end
 		dailyRewardMessage = "Picked items: " .. description
 	elseif dailyTable.type == DAILY_REWARD_TYPE_XP_BOOST then
-
 		self:setXpBoostTime(self:getXpBoostTime() + (rewardCount * 60))
 		self:kv():set("daily-reward-xp-boost", rewardCount)
 		self:setXpBoostPercent(50)

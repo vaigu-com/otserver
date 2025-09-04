@@ -1,3 +1,36 @@
+SpellRepository = {}
+SpellRepository.__index = SpellRepository
+SpellRepository.registry = {}
+SpellRepository.duplicateRegisted = {}
+
+local function pad_right(s, countChars)
+	if #s > countChars then
+		s = s:sub(1, countChars)
+	end
+
+	return s .. string.rep(" ", countChars - #s)
+end
+function SpellRepository:Add(spell)
+	local id = spell:getId()
+	if self.registry[id] then
+		self.duplicateRegisted[id] = true
+		logger.error(T("[SpellRepository::Add] Spell with id :id: is already registered. Existing name: :existingName: New name: :newName:", { id = pad_right(tostring(id), 10), existingName = pad_right(self.registry[id]:getName(), 35), newName = pad_right(spell:getName(), 35) }))
+	end
+	self.registry[id] = spell
+end
+
+local proxy = Spell.register
+Spell.register = function(self)
+	if self:getId() == 0 then
+		self:id(NextSpellId())
+	end
+	if self:getWords() == nil or self:getWords() == "" then
+		self:words(NextSpellWords())
+	end
+	SpellRepository:Add(self)
+	proxy(self)
+end
+
 --Pre-made areas
 --Waves
 AREA_SHORTWAVE3 = {

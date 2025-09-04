@@ -27,7 +27,7 @@ return {
 		local dishName = dishData.dishName
 		local currentDishNumber = numberStrings[state]
 
-		local translatedMessage = T("The :currentDishNumber: dish we are going to prepare together is called {:dishName:}. Bring me the following ingredients and I'll show you how it's done.", {
+		local translatedMessage = T("The :currentDishNumber: dish we are going to prepare together is called {:dishName:}. Bring me the following ingredients and I'll show you how it's {done}.", {
 			dishName = dishName,
 			currentDishNumber = currentDishNumber,
 		})

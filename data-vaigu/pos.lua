@@ -88,6 +88,17 @@ function CreatureList:Count()
 	return TableSize(self.creatures)
 end
 
+function CreatureList.FromDamageMap(damageMap)
+	local creatureList = CreatureList()
+	for key in pairs(damageMap) do
+		local creature = Creature(key)
+		if creature then
+			creatureList:Add(creature)
+		end
+	end
+	return creatureList
+end
+
 function CreatureList:Add(creature)
 	if table.contains(self.creatures, creature) then
 		return self
@@ -500,6 +511,21 @@ function Position:GetTopCreature()
 	return tile:getTopCreature()
 end
 
+---@return Player|nil creature
+function Position:GetTopPlayer()
+	local tile = Tile(self)
+	if not tile then
+		return nil
+	end
+
+	local creature = tile:getTopCreature()
+	if not creature then
+		return nil
+	end
+
+	return creature:getPlayer()
+end
+
 function Position:GetItemById(id)
 	local tile = Tile(self)
 	if not tile then
@@ -687,7 +713,7 @@ function Position:GetTopItem()
 	if not topThing:isItem() then
 		return nil
 	end
-	
+
 	return topThing
 end
 
@@ -881,7 +907,7 @@ ZUL_SZCZUROW_ANCHOR = Position(6006, 1382, 13)
 
 USHAYAAN_FORGE_ANCHOR = Position(6657, 1066, 15)
 STARSHIP_ANCHOR = Position(7356, 789, 7)
-DEEPLING_TEMPLE_ANCHOR = Position(6717, 2417, 14)
+DEEPLING_TEMPLE_ANCHOR = Position(33452, 31178, 14)
 FUEL_SHOP_ANCHOR = Position(7369, 671, 6)
 GANYMEDE_ANCHOR = Position(7910, 295, 6)
 HUGO_TAR_PLANET_ANCHOR = Position(7717, 244, 7)

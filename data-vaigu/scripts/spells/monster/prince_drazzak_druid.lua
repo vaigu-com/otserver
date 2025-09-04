@@ -70,7 +70,7 @@ end
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
-	local value = Game.getStorageValue(storage)
+	local value = Game.getStorageValueByKey(storage)
 	if os.time() - value >= 4 then
 		creature:say("All DRUIDS must DIE!", TALKTYPE_MONSTER_SAY)
 		addEvent(delayedCastSpell, 4000, creature:getId(), var)

@@ -1,20 +1,19 @@
 local monsterIdToSpawnTimestamp = {}
 local multiplierPerTimeUnit = 0.1
--- Total exp for kill is up to baseExp*(1 + maximumBonusMultiplier)
 local maximumBonusMultiplier = 1.5
 
 local function timeNow()
 	return math.floor(tonumber(os.time()))
 end
 
---Bonus increases each interval below. For example, when time unit is 600, there is same bonus for 12 minutes and 19 minutes.
-local timeUnit = 60 * 10
---Bonus is only calculated and distributed if this amount of time units passed since last death. For example 4 means 40 minutes had to pass.
-local minimumTimeUnitsElapsed = 4
---Bonus is only calculated above the specified value. For example, if 30 minutes passed, bonus is 0. if 50 minutes passed, bonus is 2.
-local countBonusAfter = minimumTimeUnitsElapsed - 1
+-- Bonus increases each interval below.
+-- For example, when time unit is 600, it increases every 10 minutes. This means bonus for 12 and 19 minutes is the same.
+--local timeUnit = 60 * 10
+local timeUnit = 1
+-- Bonus is only calculated and distributed if this amount of time passed since last death. For example minimumTimeUnitsElapsed=40*60 means 40 minutes had to pass.
+local minimumTimeElapsed = 40*60
 
-local function bonusExpByMonsterId(monster)
+local function bonusExpByMonster(monster)
 	local monsterId = monster:getId()
 	local spawnTime = monsterIdToSpawnTimestamp[monsterId]
 	if spawnTime == nil then
@@ -23,12 +22,13 @@ local function bonusExpByMonsterId(monster)
 
 	monsterIdToSpawnTimestamp[monsterId] = nil
 	local currentTime = timeNow()
-	local timeUnitsElapsed = (currentTime - spawnTime) / timeUnit
-	if timeUnitsElapsed < minimumTimeUnitsElapsed then
+	local timeElapsed = currentTime - spawnTime
+	if timeElapsed < minimumTimeElapsed then
 		return 0
 	end
 
-	local bonusMultiplier = multiplierPerTimeUnit * (timeUnitsElapsed - countBonusAfter)
+	local timeUnitsElapsed = timeElapsed / timeUnit
+	local bonusMultiplier = multiplierPerTimeUnit * timeUnitsElapsed
 	if bonusMultiplier <= 0 then
 		return 0
 	end
@@ -75,23 +75,17 @@ function bonusExpKill.onDeath(creature, corpse, lasthitkiller, mostdamagekiller,
 		return true
 	end
 
-	local baseBonusExp = bonusExpByMonsterId(targetMonster)
+	local baseBonusExp = bonusExpByMonster(targetMonster)
 	if baseBonusExp <= 0 then
 		return
 	end
 
-	local damageMap = targetMonster:getDamageMap()
-	local playerCount = TableSize(damageMap)
+	local players = CreatureList.FromDamageMap(creature:getDamageMap()):FilterByPlayer()
+	local playerCount = players:Count()
 	local expPerPlayer = math.floor(baseBonusExp / playerCount)
 
-	for playerid in pairs(damageMap) do
-		local attackerPlayer = Player(playerid)
-		if not attackerPlayer then
-			goto continue
-		end
-		addPlayerBonusExperience(attackerPlayer, expPerPlayer)
-
-		::continue::
+	for _, player in pairs(players:Get()) do
+		addPlayerBonusExperience(player, expPerPlayer)
 	end
 
 	return true

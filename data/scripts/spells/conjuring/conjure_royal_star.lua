@@ -5,7 +5,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(191)
 spell:name("Conjure Royal Star")
 spell:words("exevo gran con grav")
 spell:cooldown(2 * 1000)

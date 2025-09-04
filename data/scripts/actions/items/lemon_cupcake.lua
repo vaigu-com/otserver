@@ -10,6 +10,7 @@ function lemonCupcake.onUse(player, item, fromPosition, target, toPosition, isHo
 	local errorMessage = player:errorIfCannotUseCooldownItem("lemon-cupcake-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addCondition(distanceCondition)

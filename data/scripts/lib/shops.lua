@@ -1214,7 +1214,7 @@ LootShopConfigTable = {
 	},
 
 	["amulets"] = {
-		{ itemName = "amulet of loss", clientId = 3057, sell = 45000 },
+		--{ itemName = "amulet of loss", clientId = 3057, sell = 45000 },
 		{ itemName = "ancient amulet", clientId = 3025, sell = 200 },
 		{ itemName = "collar of blue plasma", clientId = 23542, sell = 6000 },
 		{ itemName = "collar of green plasma", clientId = 23543, sell = 6000 },

@@ -15,7 +15,7 @@ function ferumbrasAscendantTeleportation.onUse(player, item, fromPosition, targe
 	if not targetItem then
 		return false
 	end
-	if player:getStorageValue(targetItem.storageKey) == 1 then
+	if player:getStorageValueByKey(targetItem.storageKey) == 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already teleported this part of the Godbreaker to Mazarius.")
 		return true
 	end

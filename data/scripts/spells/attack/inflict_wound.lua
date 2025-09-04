@@ -17,7 +17,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(141)
 spell:name("Inflict Wound")
 spell:words("utori kor")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

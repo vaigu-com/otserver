@@ -8,13 +8,13 @@ local outfit = {
 	lookAddons = 1,
 }
 local dialogs = {
-	[TRAVEL_KEYWORDS[TRANSPORT_TYPE.CAMEL]] = {
+	[TRAVEL_KEYWORDS[TRAVEL_METHOD.CAMEL]] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
-				action = CreateTransportWindow,
-				transports = TRANSPORT_ROUTES.ZONG_CAMEL,
-				transportType = TRANSPORT_TYPE.CAMEL,
+				action = CreateTravelWindow,
+				travelRoutes = TRAVEL_ROUTES.ZONG_CAMEL,
+				travelMethod = TRAVEL_METHOD.CAMEL,
 			},
 		},
 		specialRequirements = {

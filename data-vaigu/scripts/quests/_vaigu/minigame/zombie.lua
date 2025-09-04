@@ -73,7 +73,6 @@ pseudoQuest
 		end
 
 		spell:name("minigame zombie melee swing")
-		spell:words(NextSpellId())
 		spell:needTarget(true)
 		spell:isAggressive(true)
 		spell:blockWalls(true)

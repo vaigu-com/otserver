@@ -833,7 +833,6 @@ quest
 			return true
 		end
 		spell:name("undead crypt king death lasers")
-		spell:words(NextSpellId())
 		spell:isAggressive(true)
 		spell:blockWalls(true)
 		spell:needLearn(true)
@@ -1010,7 +1009,6 @@ quest
 		end
 
 		spell:name("undead crypt king anti tank stacks")
-		spell:words(NextSpellId())
 		spell:needTarget(true)
 		spell:isAggressive(true)
 		spell:blockWalls(true)
@@ -1033,7 +1031,6 @@ quest
 		end
 
 		spell:name("undead crypt king summon laga dyga")
-		spell:words(NextSpellId())
 		spell:isAggressive(true)
 		spell:blockWalls(true)
 		spell:needLearn(true)

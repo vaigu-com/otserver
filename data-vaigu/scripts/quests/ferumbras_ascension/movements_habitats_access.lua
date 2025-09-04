@@ -20,8 +20,8 @@ function habitatsAccess.onStepIn(creature, item, position, fromPosition)
 	end
 
 	if item.actionid == 34323 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.HabitatsAccess) >= 1 then
-			if player:getStorageValue(setting.timer) < os.time() then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.HabitatsAccess) >= 1 then
+			if player:getStorageValueByKey(setting.timer) < os.time() then
 				player:teleportTo(setting.toPosition)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			else

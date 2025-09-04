@@ -12,9 +12,9 @@ local dialogs = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
-				action = CreateTransportWindow,
-				transports = TRANSPORT_ROUTES.TARZAN_SHIP,
-				transportType = TRANSPORT_TYPE.SHIP,
+				action = CreateTravelWindow,
+				travelRoutes = TRAVEL_ROUTES.TARZAN_SHIP,
+				travelMethod = TRAVEL_METHOD.SHIP,
 			},
 		},
 		specialRequirements = {

@@ -1,45 +1,31 @@
-local keyToBossRoomData = {
-	[28574] = { storage = Storage.DeeplingsWorldChange.Crystal, value = 13, playerSpawnPosition = Position(6905, 2472, 11), centerPosition = Position(6998, 969, 11) },
-	[28575] = { storage = Storage.DeeplingsWorldChange.Crystal, value = 13, playerSpawnPosition = Position(6811, 2502, 11), centerPosition = Position(6893, 995, 11) },
-	[28576] = { storage = Storage.DeeplingsWorldChange.Crystal, value = 13, playerSpawnPosition = Position(6685, 2494, 11), centerPosition = Position(6784, 991, 9) },
+local uidToBossRoomData = {
+	[28574] = { playerSpawnPosition = Position(33641, 31236, 11) },
+	[28575] = { playerSpawnPosition = Position(33421, 31255, 11) },
+	[28576] = { playerSpawnPosition = Position(33543, 31263, 11)},
 }
 
-local function roomIsFull(setting)
-	local spectators = Game.getSpectators(setting.centerPosition, false, true, 15, 15)
-	if #spectators >= 5 then
-		return false
-	end
-	return true
-end
+local deeplingBosses = MoveEvent()
 
-local deeplingBossesEntranceTeleport = MoveEvent()
-function deeplingBossesEntranceTeleport.onStepIn(creature, item, position, fromPosition)
+function deeplingBosses.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
 		return true
 	end
 
-	if os.time() < player:getStorageValueByKey(Storage.DeeplingBosses.DailyDeeplingKill) then
+	if not player:isLockoutExpired(Storage.DeeplingBosses.DailyBossLockout) then
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
-		player:sendCancelMessage("Try another day.")
+		SendLockoutError(player, Storage.DeeplingBosses.DailyBossLockout)
 		return true
 	end
 
-	local bossRoomData = keyToBossRoomData[item:getKey()]
-	if roomIsFull(bossRoomData) then
-		player:teleportTo(fromPosition, true)
-		player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
-		player:sendCancelMessage("Room is occupied.")
-		return true
-	end
-
-	player:teleportTo(bossRoomData.playerSpawnPosition)
+	local bossRoomData = uidToBossRoomData[item:getUniqueId()]
+	player:teleportTo(bossRoomData.playerSpawnPosition, true)
 	player:getPosition():sendMagicEffect(CONST_ME_WATERSPLASH)
 	return true
 end
 
-for key in pairs(keyToBossRoomData) do
-	deeplingBossesEntranceTeleport:key(key)
+for key in pairs(uidToBossRoomData) do
+	deeplingBosses:uid(key)
 end
-deeplingBossesEntranceTeleport:register()
+deeplingBosses:register()

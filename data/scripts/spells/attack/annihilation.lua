@@ -20,7 +20,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(62)
 spell:name("Annihilation")
 spell:words("exori gran ico")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

@@ -57,7 +57,7 @@ function spell.onCastSpell(creature, var)
 
 	local monster = Game.createMonster("Outburst", Position(32234, 31284, 14), false, true)
 	if monster then
-		local outburstHealth = Game.getStorageValue(GlobalStorage.HeartOfDestruction.OutburstHealth) > 0 and Game.getStorageValue(GlobalStorage.HeartOfDestruction.OutburstHealth) or 0
+		local outburstHealth = Game.getStorageValueByKey(GlobalStorage.HeartOfDestruction.OutburstHealth) > 0 and Game.getStorageValueByKey(GlobalStorage.HeartOfDestruction.OutburstHealth) or 0
 		monster:addHealth(-monster:getHealth() + outburstHealth, COMBAT_PHYSICALDAMAGE)
 	end
 	return true

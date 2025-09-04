@@ -65,7 +65,7 @@ function entranceTeleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.Questline) < 1 or player:getStorageValue(setting.storage) < setting.value then
+	if player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.Questline) < 1 or player:getStorageValueByKey(setting.storage) < setting.value then
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		player:teleportTo(fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -73,7 +73,7 @@ function entranceTeleport.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(setting.storage) >= setting.value then
+	if player:getStorageValueByKey(setting.storage) >= setting.value then
 		local monster = Game.createMonster(setting.bossName, setting.bossPos, true, true)
 		if not monster then
 			return true

@@ -7,35 +7,35 @@ local fount = {
 
 local ferumbrasAscendantSacrifice = Action()
 function ferumbrasAscendantSacrifice.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if not target.actionid == 53805 or Tile(Position(33415, 32379, 12)):getItemById(22163) or player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Fount) >= 4 then
+	if not target.actionid == 53805 or Tile(Position(33415, 32379, 12)):getItemById(22163) or player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount) >= 4 then
 		return false
 	end
 	if item.itemid == 22158 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Bone) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Bone) >= 1 then
 			player:say("You already put the bones on the blood well.", TALKTYPE_MONSTER_SAY)
 			return true
 		end
 		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Bone, 1)
 	elseif item.itemid == 22170 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Ring2) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Ring2) >= 1 then
 			player:say("You already put the signet ring on the blood well.", TALKTYPE_MONSTER_SAY)
 			return true
 		end
 		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Ring2, 1)
 	elseif item.itemid == 9685 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Vampire) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Vampire) >= 1 then
 			player:say("You already put the vampire teeth on the blood well.", TALKTYPE_MONSTER_SAY)
 			return true
 		end
 		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Vampire, 1)
 	elseif item.itemid == 3661 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Flower) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Flower) >= 1 then
 			player:say("You already put the grave flower on the blood well.", TALKTYPE_MONSTER_SAY)
 			return true
 		end
 		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Flower, 1)
 	end
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Fount) == 3 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount) == 3 then
 		for i = 1, #fount do
 			local fount = fount[i]
 			local founts = Tile(fount.pos):getItemById(fount.revert)
@@ -47,10 +47,10 @@ function ferumbrasAscendantSacrifice.onUse(player, item, fromPosition, target, t
 			statue:transform(22161)
 		end
 	end
-	if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Fount) < 0 then
+	if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount) < 0 then
 		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount, 0)
 	end
-	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Fount) + 1)
+	player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount, player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Fount) + 1)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You put the " .. item:getName() .. " into the dried well.")
 	toPosition:sendMagicEffect(CONST_ME_DRAWBLOOD)
 	item:remove(1)

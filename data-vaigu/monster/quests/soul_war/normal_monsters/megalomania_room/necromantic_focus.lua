@@ -16,7 +16,7 @@ monster.manaCost = 100
 monster.maxSummons = 0
 
 monster.events = {
-	"NecromanticFocusDeath",
+	
 }
 
 monster.changeTarget = {

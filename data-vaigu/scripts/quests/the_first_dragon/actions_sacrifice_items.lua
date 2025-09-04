@@ -13,17 +13,17 @@ function sacrificeItems.onUse(player, item, fromPosition, target, toPosition, is
 		return true
 	end
 
-	if player:getStorageValue(setting.storage) >= 1 then
+	if player:getStorageValueByKey(setting.storage) >= 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You already sacrificed this item to pass.")
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.AccessCave) >= 4 then
+	if player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.AccessCave) >= 4 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You're plunging " .. item:getName() .. " into the lava. You are now worthy to enter The First Dragon's Lair. Touch the lava pool again.")
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.AccessCave) < 0 then
+	if player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.AccessCave) < 0 then
 		player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.AccessCave, 0)
 	end
 	local targetPosition = Position(33047, 32712, 3)
@@ -31,7 +31,7 @@ function sacrificeItems.onUse(player, item, fromPosition, target, toPosition, is
 		local targetId = Tile(targetPosition):getItemById(25160)
 		if targetId then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You're plunging " .. item:getName() .. " into the lava.")
-			player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.AccessCave, player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.AccessCave) + 1)
+			player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.AccessCave, player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.AccessCave) + 1)
 			player:setStorageValueByKey(setting.storage, 1)
 			item:remove(1)
 			return true

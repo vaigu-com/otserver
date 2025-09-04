@@ -690,8 +690,8 @@ quest
 
 			requiredState = { [Storage.ProdigalSon.PolAccess] = ACCESS_GRANTED },
 
-			lockoutTime = LOCKOUT_TIME.WEEKLY,
-			lockoutType = LOCKOUT_TYPE.ON_KILL,
+			lockoutExpiryTime = LOCKOUT_EXPIRY_TIME.WEEKLY,
+			lockoutTriggerCriterion = LOCKOUT_TRIGGER_CRITERION.ON_KILL,
 		})
 
 		function polEncounter:beforeStart()
@@ -763,7 +763,6 @@ quest
 		end
 
 		spell:name("pol plus beam")
-		spell:words(NextSpellId())
 		spell:isAggressive(true)
 		spell:blockWalls(true)
 		spell:needLearn(true)

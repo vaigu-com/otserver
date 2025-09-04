@@ -25,7 +25,6 @@ function rune.onCastSpell(creature, variant, isHotkey)
 	return false
 end
 
-rune:id(30)
 rune:group("support")
 rune:name("destroy field rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

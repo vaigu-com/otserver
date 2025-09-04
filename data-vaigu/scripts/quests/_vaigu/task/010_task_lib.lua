@@ -7,9 +7,8 @@ DAILY_TASK_NOT_STARTED = -1
 DAILY_TASK_LIMIT = 3
 
 function Player:TryResetDailyTaskCounter()
-	local lastResetTimestamp = self:getStorageValueByKey(Storage.DailyTasks.LastResetTimestamp)
-	if os.time() > lastResetTimestamp then
-		self:setStorageValueByKey(Storage.DailyTasks.LastResetTimestamp, NextDayEpochTime())
+	if self:isLockoutExpired(Storage.DailyTasks.LastResetTimestamp) then
+		self:setLockoutExpiry(Storage.DailyTasks.DailyTasks, LOCKOUT_EXPIRY_TIME.DAILY)
 		self:setStorageValueByKey(Storage.DailyTasks.DailyLimit, 0)
 	end
 end

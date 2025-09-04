@@ -19,7 +19,7 @@ function stair.onStepIn(creature, item, position, fromPosition)
 		local complete = false
 		for i = 1, #config do
 			local storage = config[i].storage
-			if player:getStorageValue(storage) ~= 1 then
+			if player:getStorageValueByKey(storage) ~= 1 then
 				complete = false
 			else
 				complete = true

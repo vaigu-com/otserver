@@ -14,7 +14,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(143)
 spell:name("Holy Flash")
 spell:words("utori san")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

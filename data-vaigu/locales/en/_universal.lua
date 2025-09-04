@@ -71,6 +71,10 @@ return {
 	["Go away, or even better: flip off."] = "Go away, or even better: flip off.",
 	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
 		local townName = context.townName
+		--local genderText = "Zostales"
+		--if context.player:getSex() == PLAYERSEX_FEMALE then
+		--	genderText = "Zostalas"
+		--end
 		return T("You are now a citizen of :townName:.", { townName = townName })
 	end,
 	["Hello, |PLAYERNAME|! Lately hardly any people come to visit me"] = "Hello, |PLAYERNAME|! Lately hardly any people come to visit me",
@@ -97,9 +101,6 @@ return {
 	["You can report ingame bugs using ctrl+z."] = "You can report ingame bugs using ctrl+z.",
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
 		return T("You or a member in your team still has a cooldown for the :displayName: encounter.", { displayName = context.displayName })
-	end,
-	[ENCOUNTER_ERROR_CODES.YOU_HAVE_LOCKOUT] = function(context)
-		return T("You still have to wait :timeLeftString: to enter the :displayName: encounter.", { displayName = context.displayName, timeLeftString = context.timeLeftString })
 	end,
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_NO_ACCESS] = function(context)
 		return T("You or a member in your team does not have the required access to enter :displayName: encounter.", { displayName = context.displayName })
@@ -338,5 +339,6 @@ return {
 	["Rats are gone, thanks again."] = "Rats are gone, thanks again.",
 	["I heard that it brings you luck, if you catch one of fireflies from magical tree into that."] = "I heard that it brings you luck, if you catch one of fireflies from magical tree into that.",
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
-	["Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!"] = "Hello hello, |PLAYERNAME| I am Owsiak and I sell some.. protection thing.. Ask about {trade} if you want to see!",
+	["I can exchange your red gems for a three rings of healing. Is that what youre interested in?"] = "I can exchange your red gems for a three rings of healing. Is that what youre interested in?",
+	["Nothing there."] = "Nothing there.",
 }

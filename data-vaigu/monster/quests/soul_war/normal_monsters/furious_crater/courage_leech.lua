@@ -27,7 +27,7 @@ monster.Bestiary = {
 }
 
 monster.events = {
-	"FourthTaintBossesPrepareDeath",
+	
 }
 
 monster.health = 27000

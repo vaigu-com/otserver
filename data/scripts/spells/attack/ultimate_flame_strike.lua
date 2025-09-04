@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "ultimatestrikes")
-spell:id(154)
 spell:name("Ultimate Flame Strike")
 spell:words("exori max flam")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

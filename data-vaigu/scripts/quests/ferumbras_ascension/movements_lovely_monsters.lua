@@ -31,10 +31,10 @@ function lovelyMonsters.onStepIn(creature, item, position, fromPosition)
 		for _, spectator in pairs(spectators) do
 			if spectator:isPlayer() then
 				local player = spectator
-				if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports) < 0 then
+				if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports) < 0 then
 					player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports, 0)
 				end
-				player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports) + 1)
+				player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports, player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.ZamuloshTeleports) + 1)
 			end
 		end
 		return true

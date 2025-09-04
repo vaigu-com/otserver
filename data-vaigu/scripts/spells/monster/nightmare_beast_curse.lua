@@ -1,7 +1,7 @@
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
-	local hasCasted = Game.getStorageValue(Storage.Quest.U12_00.TheDreamCourts.DreamScarGlobal.LastBossCurse)
+	local hasCasted = Game.getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.DreamScarGlobal.LastBossCurse)
 
 	if hasCasted == 0 then
 		local players = Game.getSpectators(cid:getPosition(), false, true, 14, 14, 14, 14)

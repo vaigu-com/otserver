@@ -35,7 +35,7 @@ function ferumbrasAscendantFlowerPuzzle.onUse(player, item, fromPosition, target
 				return true
 			end
 		end
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer) >= 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The portal still activated.")
 		else
 			player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.FlowerPuzzleTimer, 1)

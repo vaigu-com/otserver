@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "focus")
-spell:id(56)
 spell:name("Wrath of Nature")
 spell:words("exevo gran mas tera")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_WRATH_OF_NATURE)

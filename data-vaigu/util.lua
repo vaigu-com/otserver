@@ -135,7 +135,7 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 	if self:hasExhaustion(cooldownKV) then
 		return "You need to wait before using this again."
 	end
-	return true
+	return nil
 end
 
 function RegisterOnLook(callback, stringIdentifier, questId)
@@ -218,11 +218,17 @@ function Game.startCountdown(position, totalSeconds)
 	addEvent(Game.startCountdown, 1000, position, seconds - 1)
 end
 
-local nextAvailableSpellId = 40000
+local nextSpellId = 1000000
 function NextSpellId()
-	nextAvailableSpellId = nextAvailableSpellId + 1
-	local nextAvailableSpellIdString = "###" .. nextAvailableSpellId
-	return nextAvailableSpellIdString
+	nextSpellId = nextSpellId + 1
+	return nextSpellId
+end
+
+local nextWordId = 2000000
+function NextSpellWords()
+	nextWordId = nextWordId + 1
+	local nextWord = "###" .. nextWordId
+	return nextWord
 end
 
 local maxSearchDepth = 10

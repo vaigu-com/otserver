@@ -25,7 +25,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "burstsofnature")
-spell:id(262)
 spell:name("Ice Burst")
 spell:words("exevo ulus frigo")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_ETERNAL_WINTER)

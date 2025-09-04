@@ -4,6 +4,7 @@ function blueberryCupcake.onUse(player, item, fromPosition, target, toPosition, 
 	local errorMessage = player:errorIfCannotUseCooldownItem("blueberry-cupcake-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addMana(player:getMaxMana())

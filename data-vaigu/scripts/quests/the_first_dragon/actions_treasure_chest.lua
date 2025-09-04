@@ -91,22 +91,22 @@ function treasureChest.onUse(player, item, fromPosition, target, toPosition, isH
 		return false
 	end
 
-	local storageValue = player:getStorageValue(item.uid)
+	local storageValue = player:getStorageValueByKey(item.uid)
 	if storageValue > 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The " .. item:getName() .. " is empty.")
 		return true
 	end
 
-	if player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) >= 19 then
+	if player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) >= 19 then
 		player:addAchievement("Treasure Hunter")
 		player:AddCustomItem({ id = setting.name or setting.itemId, count = setting.count })
 		player:setStorageValueByKey(item.uid, 1)
-		player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter, player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) + 1)
+		player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter, player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) + 1)
 		return true
 	end
 
 	player:setStorageValueByKey(item.uid, 1)
-	player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter, player:getStorageValue(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) + 1)
+	player:setStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter, player:getStorageValueByKey(Storage.Quest.U11_02.TheFirstDragon.ChestCounter) + 1)
 
 	if setting.name then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You found " .. setting.count .. " " .. setting.name .. ".")

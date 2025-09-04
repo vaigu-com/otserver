@@ -438,7 +438,7 @@ local ferumbrasAscendantHabitatGlass = Action()
 
 function ferumbrasAscendantHabitatGlass.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == 9125 then
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Grass) >= 1 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Grass) >= 1 then
 			player:say("The lever are stuck, need some time to it can be movable again.", TALKTYPE_MONSTER_SAY)
 			return true
 		end
@@ -451,9 +451,9 @@ function ferumbrasAscendantHabitatGlass.onUse(player, item, fromPosition, target
 			basin:transform(22196)
 		end
 		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.Grass, 1)
-		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats, player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) + 1)
+		player:setStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats, player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) + 1)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The room transforms into a completely different landscape.")
-		if player:getStorageValue(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) >= 7 then
+		if player:getStorageValueByKey(Storage.Quest.U10_90.FerumbrasAscension.Habitats.AllHabitats) >= 7 then
 			addEvent(function()
 				resetFerumbrasAscendantHabitats(player)
 				local basin = Tile(Position(33631, 32667, 12)):getItemById(22196)
