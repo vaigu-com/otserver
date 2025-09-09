@@ -5814,7 +5814,7 @@ void ProtocolGame::sendOpenForge() {
 		auto donorCountPosition = msg.getBufferPosition();
 		msg.skipBytes(2); // Donor count
 		for (const auto &[itemId, tierAndCountMap] : itemMap) {
-			for (const auto [tier, itemCount] : tierAndCountMap) {
+			for (const auto &[tier, itemCount] : tierAndCountMap) {
 				if (tier >= 1) {
 					donorCount++;
 					msg.add<uint16_t>(itemId);
@@ -5836,7 +5836,7 @@ void ProtocolGame::sendOpenForge() {
 		msg.setBufferPosition(receiverCountPosition);
 		msg.add<uint16_t>(receiverCount);
 		for (const auto &[itemId, tierAndCountMap] : itemMap) {
-			for (const auto [tier, itemCount] : tierAndCountMap) {
+			for (const auto &[tier, itemCount] : tierAndCountMap) {
 				if (tier == 0) {
 					msg.add<uint16_t>(itemId);
 					msg.add<uint16_t>(itemCount);
@@ -7245,7 +7245,7 @@ void ProtocolGame::sendInventoryIds() {
 
 	uint16_t totalItemsCount = 0;
 	for (const auto &[itemId, item] : items) {
-		for (const auto [tier, count] : item) {
+		for (const auto &[tier, count] : item) {
 			msg.add<uint16_t>(itemId);
 			msg.addByte(tier);
 			msg.add<uint16_t>(static_cast<uint16_t>(count));
