@@ -1703,12 +1703,12 @@ private:
 	friend class PlayerVIP;
 	friend class PlayerAttachedEffects;
 
+	PlayerVIP m_playerVIP;
 	PlayerWheel m_wheelPlayer;
 	PlayerAchievement m_playerAchievement;
 	PlayerBadge m_playerBadge;
 	PlayerCyclopedia m_playerCyclopedia;
 	PlayerTitle m_playerTitle;
-	PlayerVIP m_playerVIP;
 	AnimusMastery m_animusMastery;
 	PlayerAttachedEffects m_playerAttachedEffects;
 
