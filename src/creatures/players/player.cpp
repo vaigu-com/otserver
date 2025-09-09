@@ -3879,11 +3879,11 @@ void Player::despawn() {
 
 	getParent()->postRemoveNotification(static_self_cast<Player>(), nullptr, 0);
 
-	g_game().removeCreature(static_self_cast<Player>());
+	g_game().removeCreature(static_self_cast<Player>(), true, false);
 
 	// show player as pending
 	for (const auto &[key, player] : g_game().getPlayers()) {
-		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Pending, false);
+		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline, false);
 	}
 
 	if (m_party && g_configManager().getBoolean(LEAVE_PARTY_ON_DEATH)) {
@@ -3995,7 +3995,8 @@ void Player::setDailyReward(uint8_t reward) {
 }
 
 void Player::removeList() {
-	g_game().removePlayer(static_self_cast<Player>());
+	setLoggingOut(true);
+	//g_game().removePlayer(static_self_cast<Player>());
 
 	for (const auto &[key, player] : g_game().getPlayers()) {
 		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline);

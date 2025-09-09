@@ -1214,7 +1214,7 @@ bool Game::placeCreature(const std::shared_ptr<Creature> &creature, const Positi
 	return true;
 }
 
-bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout /* = true*/) {
+bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout /* = true*/, bool removeFromTile /* = true*/) {
 	metrics::method_latency measure(__METRICS_METHOD_NAME__);
 	if (!creature || creature->isRemoved()) {
 		return false;
@@ -1242,7 +1242,9 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 			}
 		}
 
-		tile->removeCreature(creature);
+		if (removeFromTile == true){
+			tile->removeCreature(creature);
+		}
 
 		const Position &tilePosition = tile->getPosition();
 
@@ -1268,9 +1270,7 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 	creature->getParent()->postRemoveNotification(creature, nullptr, 0);
 	afterCreatureZoneChange(creature, fromZones, {});
 
-	if (!creature->getPlayer() && isLogout) {
-		creature->removeList();
-	}
+	creature->removeList();
 	creature->setRemoved();
 
 	removeCreatureCheck(creature);

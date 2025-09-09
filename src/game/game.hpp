@@ -181,7 +181,7 @@ public:
 
 	bool placeCreature(const std::shared_ptr<Creature> &creature, const Position &pos, bool extendedPos = false, bool force = false);
 
-	bool removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout = true);
+	bool removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout = true, bool removeFromTile = true);
 
 	void addCreatureCheck(const std::shared_ptr<Creature> &creature);
 	static void removeCreatureCheck(const std::shared_ptr<Creature> &creature);
