@@ -343,7 +343,6 @@ bool Looks::lookItemEx(std::shared_ptr<Player> player, const Position &fromPos, 
 	if (item == nullptr) {
 		return false;
 	}
-	const ItemType &it = Item::items[item->getID()];
 
 	const std::shared_ptr<Look> look = getLook(item);
 	if (look == nullptr) {
