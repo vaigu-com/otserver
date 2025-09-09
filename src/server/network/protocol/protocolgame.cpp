@@ -816,7 +816,7 @@ ReturnValue ProtocolGame::messageIfCannotLogout(const std::shared_ptr<Player> pl
 	}
 
 	if (removePlayer && !g_creatureEvents().playerLogout(player)) {
-		RETURNVALUE_YOUCANNOTLOGOUTHERE;
+		return RETURNVALUE_YOUCANNOTLOGOUTHERE;
 	}
 
 	return RETURNVALUE_NOERROR;
