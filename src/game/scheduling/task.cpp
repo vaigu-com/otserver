@@ -60,7 +60,10 @@ bool Task::execute() const {
 		}
 	}
 
+	isExecuting = true;
 	func();
+	isExecuting = false;
+
 	return true;
 }
 
