@@ -196,10 +196,10 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "getStorageValueByName", PlayerFunctions::luaPlayerGetStorageValueByName);
 	Lua::registerMethod(L, "Player", "setStorageValueByName", PlayerFunctions::luaPlayerSetStorageValueByName);
 
-	Lua::registerMethod(L, "Player", "canAddItem", PlayerFunctions::luaPlayerCanAddItem);
+	Lua::registerMethod(L, "Player", "canAddItem", PlayerFunctions::luaPlayerCanAddItem); // Vaigu custom
 	Lua::registerMethod(L, "Player", "addItem", PlayerFunctions::luaPlayerAddItem);
 	Lua::registerMethod(L, "Player", "addItemEx", PlayerFunctions::luaPlayerAddItemEx);
-	Lua::registerMethod(L, "Player", "canAddItemEx", PlayerFunctions::luaPlayerCanAddItemEx);
+	Lua::registerMethod(L, "Player", "canAddItemEx", PlayerFunctions::luaPlayerCanAddItemEx); // Vaigu custom
 	Lua::registerMethod(L, "Player", "addItemStash", PlayerFunctions::luaPlayerAddItemStash);
 	Lua::registerMethod(L, "Player", "removeStashItem", PlayerFunctions::luaPlayerRemoveStashItem);
 	Lua::registerMethod(L, "Player", "removeItem", PlayerFunctions::luaPlayerRemoveItem);
