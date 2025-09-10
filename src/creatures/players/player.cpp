@@ -5951,7 +5951,11 @@ void Player::onGainExperience(uint64_t gainExp, const std::shared_ptr<Creature> 
 	if (hasFlag(PlayerFlags_t::NotGainExperience)) {
 		return;
 	}
+	
 	std::shared_ptr<Monster> monster = target->getMonster();
+	if (!monster){
+		return;
+	}
 
 	double expPreyPercentage = 0;
 	if (target && !target->getPlayer() && m_party && m_party->isSharedExperienceActive() && m_party->isSharedExperienceEnabled()) {
