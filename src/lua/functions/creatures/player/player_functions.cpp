@@ -5173,7 +5173,10 @@ int PlayerFunctions::luaPlayerReloadKnownNpcs(lua_State* L) {
 		return 1;
 	}
 	for(const auto& creatureId : player->getKnownCreatureSet() ){
-		player->reloadCreature(g_game().getNpcByID(creatureId)->getCreature());
+		const auto& npc = g_game().getNpcByID(creatureId);
+		if (npc) {
+			player->reloadCreature(npc->getCreature());
+		}
 	}
 	Lua::pushBoolean(L, true);
 	return 1;
