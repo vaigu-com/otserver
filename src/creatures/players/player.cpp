@@ -10842,6 +10842,6 @@ const std::string &Player::getDisplayName(const std::string &language) const {
 }
 
 //Vaigu custom
-const std::unordered_set<uint32_t>& Player::getKnownCreatureSet() {
+const std::unordered_set<uint32_t>& Player::getKnownCreatureSet() const {
 	return client->knownCreatureSet;
 }
