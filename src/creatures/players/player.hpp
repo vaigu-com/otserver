@@ -173,7 +173,7 @@ public:
 	}
 
 	void setLoggingOut(bool nextState) {
-		loggingOut = true;
+		loggingOut = nextState;
 	}
 
 	bool isLoggingOut() const {
