@@ -463,8 +463,10 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 		}
 	}
 
+	std::vector<BoostedMonsterData> randomBoostedMonsters;
 	if (boostableMonsters.size() < count) {
 		g_logger().warn("[Game::initializeBoostedCreatures] - Not enough monsters available to boost.");
+		return randomBoostedMonsters;
 	}
 
 	std::random_device rd;
@@ -472,7 +474,6 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 	std::shuffle(boostableMonsters.begin(), boostableMonsters.end(), g);
 	monsterNames.clear();
 
-	std::vector<BoostedMonsterData> randomBoostedMonsters;
 	for (uint32_t i = 1; i <= count; ++i) {
 		auto &selectedMonster = boostableMonsters[i];
 		const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
