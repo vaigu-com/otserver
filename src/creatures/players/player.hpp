@@ -173,6 +173,9 @@ public:
 	}
 
 	void setLoggingOut(bool nextState) {
+		if (nextState){
+			vip().setStatus(VipStatus_t::Offline);
+		}
 		loggingOut = nextState;
 	}
 
