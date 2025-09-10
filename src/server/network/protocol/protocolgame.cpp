@@ -933,8 +933,8 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage &msg) {
 	const auto &foundPlayer = !onlinePlayer ? g_game().getDeadPlayer(characterName) : onlinePlayer;
 	if (foundPlayer && foundPlayer->client) {
 		if (foundPlayer->isDead()) {
-			disconnectClient("You are already logged in.");
-			return;
+			//disconnectClient("You are already logged in.");
+			//return;
 		}
 
 		auto message = fmt::format("You are already connected through another client. Please use only one client at a time!");
