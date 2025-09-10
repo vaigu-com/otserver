@@ -188,6 +188,9 @@ public:
 	// Vaigu custom
 	const std::string &getDisplayName(const std::string &language) const override;
 
+	// Vaigu custom
+	const std::unordered_set<uint32_t>& getKnownCreatureSet() const;
+
 	const std::string &getName() const override {
 		return name;
 	}

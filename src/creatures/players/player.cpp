@@ -10840,3 +10840,8 @@ AcceptTransferErrorMessage Player::canAcceptTransferHouse(uint32_t houseId) {
 const std::string &Player::getDisplayName(const std::string &language) const {
 	return getName();
 }
+
+//Vaigu custom
+const std::unordered_set<uint32_t>& Player::getKnownCreatureSet() {
+	return client->knownCreatureSet;
+}

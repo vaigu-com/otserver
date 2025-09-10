@@ -406,5 +406,8 @@ class PlayerFunctions {
 	static int luaPlayerAddCustomOutfit(lua_State* L);
 	static int luaPlayerRemoveCustomOutfit(lua_State* L);
 
+	// Vaigu custom
+	static int luaPlayerReloadKnownNpcs(lua_State* L);
+
 	friend class CreatureFunctions;
 };
