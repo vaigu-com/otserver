@@ -1771,7 +1771,7 @@ quest
 					local puzzlesCompleted, puzzlesCount = GetDQ2completedPuzzleCount(player)
 					if puzzlesCompleted < puzzlesCount then
 						player:teleportTo(fromPosition)
-						local errorString = player:Localizer(Storage.DesertQuestTwo.Mission01):Get("You need to complete all the puzzle challenges first. Your current progress: ")
+						local errorString = player:Localizer(LOCALIZERS.DesertQuestTwo):Get("You need to complete all the puzzle challenges first. Your current progress: ")
 						local finalString = errorString .. puzzlesCompleted .. "/" .. puzzlesCount
 						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, finalString)
 						return
@@ -1821,7 +1821,7 @@ quest
 						return false
 					end
 
-					local localizer = player:Localizer(Storage.DesertQuestTwo.Mission01)
+					local localizer = player:Localizer(LOCALIZERS.DesertQuestTwo)
 					if player:isPaladin() then
 						local resultReal = localizer:Get("DO NOT ROPE HERE! THIS SIGN WILL TRY TO TRICK AND KILL YOUR TEAMMATES")
 						local resultTrick = localizer:Get("the sign says that knight and druid should use rope")
@@ -1841,7 +1841,7 @@ quest
 					if not player:isPlayer() then
 						return false
 					end
-					local localizer = player:Localizer(Storage.DesertQuestTwo.Mission01)
+					local localizer = player:Localizer(LOCALIZERS.DesertQuestTwo)
 					local hereWillLie = localizer:Get("Here will lie ")
 					local dateOfDeath = localizer:Get("Date of death")
 					local name = player:getName()

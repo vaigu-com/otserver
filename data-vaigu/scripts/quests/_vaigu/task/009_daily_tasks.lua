@@ -35,9 +35,9 @@ quest
 		end
 
 		local function onDailyTaskboardUse(player)
-			player:setStorageValueByKey(Storage.DailyTasks.DailyTaskInfo, 0)
+			player:setStorageValueByKey(Storage.DailyTasks.DailyTaskInfo, MISSION_FINISHED)
 			if not playerCanTakeAnyDailyTask(player) then
-				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(Storage.DailyTasks.DailyTaskInfo):Get("YOU_TAKEN_ALL_AVAILABLE_DAILY_TASKS"))
+				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(LOCALIZERS.DailyTasks):Get("YOU_TAKEN_ALL_AVAILABLE_DAILY_TASKS"))
 				return false
 			end
 
@@ -67,7 +67,7 @@ quest
 		local function onPamphlet(player, item)
 			local key = item:getKey()
 			local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
-			local translatedText = player:Localizer(nil):Context({ key = key }):Get(text)
+			local translatedText = player:Localizer(LOCALIZERS.DailyTasks):Context({ key = key }):Get(text)
 			SimpleTextDisplay(player, translatedText)
 		end
 

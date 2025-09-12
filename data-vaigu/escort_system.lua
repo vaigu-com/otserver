@@ -254,13 +254,13 @@ function ActiveEscort:Loop()
 
 	if os.time() > self.deadline then
 		canProceed = false
-		local translatedMessage = self.player:Localizer(nil):Get("You failed to complete the rescue in time.")
+		local translatedMessage = self.player:Localizer(LOCALIZERS.Universal):Get("You failed to complete the rescue in time.")
 		self.player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
 	end
 
 	if not Creature(self.escortee) then
 		canProceed = false
-		local translatedMessage = self.player:Localizer(nil):Get("You failed to complete the escort because rescuee died.")
+		local translatedMessage = self.player:Localizer(LOCALIZERS.Universal):Get("You failed to complete the escort because rescuee died.")
 		self.player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
 	end
 

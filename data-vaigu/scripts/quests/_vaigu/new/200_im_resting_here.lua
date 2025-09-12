@@ -110,7 +110,7 @@ quest
 						return
 					end
 
-					local translatedMessage = player:Localizer(Storage.ImRestingHere.Localizer):Get(message)
+					local translatedMessage = player:Localizer(LOCALIZERS.ImRestingHere):Get(message)
 					player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
 					player:setStorageValueByKey(Storage.ImRestingHere.Coffin, coffinState + 1)
 					return true
@@ -127,7 +127,7 @@ quest
 
 					local coffinState = player:getStorageValueByKey(Storage.ImRestingHere.Coffin)
 					if coffinState <= #coffinMessages then
-						local translatedMessage = player:Localizer(Storage.ImRestingHere.Localizer):Get("The lid of this coffin won't move at all.")
+						local translatedMessage = player:Localizer(LOCALIZERS.ImRestingHere):Get("The lid of this coffin won't move at all.")
 						player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
 					elseif player:TryTradeInItems({ QuestKeyItems.ImRestingHere.Crowbar }, { QuestKeyItems.ImRestingHere.LastWill }) then
 						player:NextState(updateStorages)

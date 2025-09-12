@@ -660,7 +660,7 @@ quest
 			end
 
 			if player:getStorageValueByKey(actionid) ~= ACCESS_GRANTED then
-				local transaltedMessage = player:Localizer(Storage.ProdigalSon.Localizer):Get(errorMessage)
+				local transaltedMessage = player:Localizer(LOCALIZERS.ProdigalSon):Get(errorMessage)
 				player:sendTextMessage(MESSAGE_INFO_DESCR, transaltedMessage)
 				player:teleportTo(fromPosition, true)
 			end
@@ -1063,7 +1063,7 @@ quest
 				local function announceLeaderYielded(fromPosition)
 					local spectators = Game.getSpectators(fromPosition, true, true, 7, 7, 5, 5)
 					for i = 1, #spectators do
-						local translatedMessage = spectators[i]:Localizer(Storage.ProdigalSon.Localizer):Get("Alright! I YIELD! We will disband our union. Now give me some peace, im sick.")
+						local translatedMessage = spectators[i]:Localizer(LOCALIZERS.ProdigalSon):Get("Alright! I YIELD! We will disband our union. Now give me some peace, im sick.")
 						spectators[i]:say(translatedMessage, TALKTYPE_MONSTER_SAY, true, spectators[i], fromPosition)
 					end
 				end

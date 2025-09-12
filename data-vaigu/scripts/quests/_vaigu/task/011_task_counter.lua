@@ -9,14 +9,14 @@ function Player:AddTaskKill(task)
 	self:IncrementStorage(task.currentKills)
 	self:RefreshStorage(task.storage)
 
-	local currentKillsString = self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_CURRENT_KILLS")
+	local currentKillsString = self:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_CURRENT_KILLS")
 	self:sendTextMessage(MESSAGE_EXPERIENCE, currentKillsString)
 
 	if self:getStorageValueByKey(task.currentKills) >= task.requiredKills then
 		self:setStorageValueByKey(task.storage, REPORT_TASK_TO_NPC)
 		self:setStorageValueByKey(task.currentKills, task.requiredKills)
 
-		local translatedMessageWhenFinished = self:Localizer(Storage.Tasks.TaskInfo):Context({ task = task }):Get("TASK_READY_TO_TURN_IN")
+		local translatedMessageWhenFinished = self:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_READY_TO_TURN_IN")
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessageWhenFinished)
 
 		local bossAdmits = math.max(self:getStorageValueByKey(task.bossAdmitCounter), 0)

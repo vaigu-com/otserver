@@ -512,7 +512,7 @@ quest
 
 					player:teleportTo(fromPosition)
 					player:getPosition():sendMagicEffect(CONST_ME_STUN)
-					player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Localizer):Get("A magical force brought you back to the solid ground."), TALKTYPE_MONSTER_SAY)
+					player:say(player:Localizer(LOCALIZERS.AssassinsCreedSquurvaali):Get("A magical force brought you back to the solid ground."), TALKTYPE_MONSTER_SAY)
 					return false
 				end
 				path:key(Storage.AssassinsCreedSquurvaali.HeavenPath)
@@ -561,7 +561,7 @@ quest
 					local groundKey = Tile(player:getPosition()):getGround():getKey()
 					local itemKey = item:getKey()
 					if groundKey ~= itemKey then
-						player:say(player:Localizer(Storage.AssassinsCreedSquurvaali.Localizer):Get("You have to be standing just outside the Ghasstly Princess's cave in order to use this flare."), TALKTYPE_MONSTER_SAY)
+						player:say(player:Localizer(LOCALIZERS.AssassinsCreedSquurvaali):Get("You have to be standing just outside the Ghasstly Princess's cave in order to use this flare."), TALKTYPE_MONSTER_SAY)
 						return false
 					end
 

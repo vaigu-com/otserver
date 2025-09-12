@@ -27,14 +27,14 @@ function Player:AddDailyTaskKill(dailyTask)
 	self:IncrementStorage(dailyTask.currentKills)
 	self:RefreshStorage(dailyTask.storage)
 
-	local currentKillsString = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Context({ dailyTask = dailyTask }):Get("DAILY_TASK_CURRENT_KILLS")
+	local currentKillsString = self:Localizer(LOCALIZERS.DailyTasks):Context({ dailyTask = dailyTask }):Get("DAILY_TASK_CURRENT_KILLS")
 	self:sendTextMessage(MESSAGE_EXPERIENCE, currentKillsString)
 
 	if self:getStorageValueByKey(dailyTask.currentKills) >= dailyTask.requiredKills then
 		self:setStorageValueByKey(dailyTask.storage, REPORT_TASK_TO_NPC)
 		self:setStorageValueByKey(dailyTask.currentKills, dailyTask.requiredKills)
 
-		local translatedMessageWhenFinished = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Context({ dailyTask = dailyTask }):Get("DAILY_TASK_READY_TO_TURN_IN")
+		local translatedMessageWhenFinished = self:Localizer(LOCALIZERS.DailyTasks):Context({ dailyTask = dailyTask }):Get("DAILY_TASK_READY_TO_TURN_IN")
 		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessageWhenFinished)
 	end
 	return true

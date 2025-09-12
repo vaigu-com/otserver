@@ -694,7 +694,7 @@ quest
 							end
 						end
 					end)()
-					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get(message)
+					local translatedMessage = player:Localizer(LOCALIZERS.DesertQuestOne):Get(message)
 					local title = "You read the following."
 
 					local window = ModalWindow(book:getKey(), title, translatedMessage)
@@ -739,7 +739,7 @@ quest
 				local function givePuzzleCredit(player, key)
 					player:setStorageValueByKey(key, MISSION_FINISHED)
 
-					local localizer = player:Localizer(Storage.DesertQuestOne.Mission01)
+					local localizer = player:Localizer(LOCALIZERS.DesertQuestOne)
 					local mysteriandoString = localizer:Get(config["puzzle"])
 					local grantedString = localizer:Get(config["granted"])
 
@@ -1052,7 +1052,7 @@ quest
 
 				local bagSignLook = Look()
 				function bagSignLook.onLook(player, item)
-					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
+					local translatedMessage = player:Localizer(LOCALIZERS.DesertQuestOne):Get("You can safely exit to the surface. \n\n~")
 					local randIndex = math.random(1, #badNames)
 					local randomTrickster = badNames[randIndex]
 					local finalMessage = translatedMessage .. randomTrickster
@@ -1065,7 +1065,7 @@ quest
 
 				local goodSignLook = Look()
 				function goodSignLook.onLook(player, item)
-					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("You can safely exit to the surface. \n\n~")
+					local translatedMessage = player:Localizer(LOCALIZERS.DesertQuestOne):Get("You can safely exit to the surface. \n\n~")
 					local randIndex = math.random(1, #goodNames)
 					local randomHelper = goodNames[randIndex]
 					local finalMessage = translatedMessage .. randomHelper
@@ -1078,7 +1078,7 @@ quest
 
 				local shortcutSignLook = Look()
 				function shortcutSignLook.onLook(player, item)
-					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("Shortcut for people who already did this part of the quest.")
+					local translatedMessage = player:Localizer(LOCALIZERS.DesertQuestOne):Get("Shortcut for people who already did this part of the quest.")
 					player:sendTextMessage(MESSAGE_LOOK, translatedMessage)
 					return DONT_SHOW_ONLOOK
 				end
@@ -1087,7 +1087,7 @@ quest
 
 				local toStartSignLook = Look()
 				function toStartSignLook.onLook(player, item)
-					local translatedMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get("Changed your mind? - return to the gate of expertise at the start of the quest.")
+					local translatedMessage = player:Localizer(LOCALIZERS.DesertQuestOne):Get("Changed your mind? - return to the gate of expertise at the start of the quest.")
 					player:sendTextMessage(MESSAGE_LOOK, translatedMessage)
 					return DONT_SHOW_ONLOOK
 				end
@@ -1171,8 +1171,8 @@ quest
 					end
 					stairs:transform(DESERT_QUEST_ONE_BASIN_OPENING.stairsId)
 
-					local stairsMessage = player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["stairsAreGonna"]) .. stairTimer .. player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["stairsSeconds"])
-					player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(stairsMessage), TALKTYPE_MONSTER_SAY)
+					local stairsMessage = player:Localizer(LOCALIZERS.DesertQuestOne):Get(config["stairsAreGonna"]) .. stairTimer .. player:Localizer(LOCALIZERS.DesertQuestOne):Get(config["stairsSeconds"])
+					player:say(player:Localizer(LOCALIZERS.DesertQuestOne):Get(stairsMessage), TALKTYPE_MONSTER_SAY)
 					addEvent(function()
 						stairs = Tile(pos):getItemById(DESERT_QUEST_ONE_BASIN_OPENING.stairsId)
 						stairs:transform(DESERT_QUEST_ONE_BASIN_OPENING.sealedId)
@@ -1224,7 +1224,7 @@ quest
 					RemoveItems(DESERT_QUEST_ONE_IRON_WALL, DESERT_QUEST_ONE_ANCHOR)
 					CreateItems(DESERT_QUEST_ONE_KEY_BOW_HORIZONTAL, DESERT_QUEST_ONE_ANCHOR)
 
-					player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config["youHaveSeconds"]), TALKTYPE_MONSTER_SAY)
+					player:say(player:Localizer(LOCALIZERS.DesertQuestOne):Get(config["youHaveSeconds"]), TALKTYPE_MONSTER_SAY)
 
 					addEvent(function()
 						RemoveItems(DESERT_QUEST_ONE_KEY_BOW_HORIZONTAL, DESERT_QUEST_ONE_ANCHOR)
@@ -1868,7 +1868,7 @@ quest
 						openGateTemporarily()
 					end
 
-					player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config[message]), TALKTYPE_MONSTER_SAY)
+					player:say(player:Localizer(LOCALIZERS.DesertQuestOne):Get(config[message]), TALKTYPE_MONSTER_SAY)
 					return false
 				end
 
@@ -1948,7 +1948,7 @@ quest
 					local cooldown = DESERT_QUEST_ONE_WATER_FLOW.pipe_cooldown
 
 					if Tile(pipe_pos):getItemById(cooldown) then
-						player:say(player:Localizer(Storage.DesertQuestOne.Mission01):Get(config.text), TALKTYPE_MONSTER_SAY)
+						player:say(player:Localizer(LOCALIZERS.DesertQuestOne):Get(config.text), TALKTYPE_MONSTER_SAY)
 						return false
 					end
 

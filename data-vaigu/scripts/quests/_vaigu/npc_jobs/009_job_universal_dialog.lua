@@ -83,7 +83,7 @@ pseudoQuest
 			local playerId = player:getGuid()
 			local errorMessage = getEngageError(context)
 			if errorMessage then
-				local translatedMessage = player:Localizer(nil):Get(errorMessage)
+				local translatedMessage = player:Localizer(LOCALIZERS.Priest):Get(errorMessage)
 				return false, translatedMessage
 			end
 
@@ -93,13 +93,13 @@ pseudoQuest
 			if candidateSpouseId == playerId then
 				setPlayerMarriageStatus(player:getGuid(), PROPOSED_STATUS)
 				setPlayerSpouse(player:getGuid(), candidateId)
-				local translatedMessage = player:Localizer(nil):Get("INITIATE_PROPOSAL")
+				local translatedMessage = player:Localizer(LOCALIZERS.Priest):Get("INITIATE_PROPOSAL")
 				return false, translatedMessage
 			end
 
 			local candidate = Player(candidateId)
 			if not canPerformProaccept({ candidate, player }) then
-				local translatedMessage = player:Localizer(nil):Get("At least one of you doens't have their wedding ring or wedding outfit box.")
+				local translatedMessage = player:Localizer(LOCALIZERS.Priest):Get("At least one of you doens't have their wedding ring or wedding outfit box.")
 				return false, translatedMessage
 			end
 
@@ -117,20 +117,20 @@ pseudoQuest
 
 			player:AddCustomItem({
 				id = 7370,
-				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(nil):Get("MARRIAGE_TROPHY_DESC"),
+				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(LOCALIZERS.Priest):Get("MARRIAGE_TROPHY_DESC"),
 			})
 			candidate:AddCustomItem({
 				id = 7370,
-				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(nil):Get("MARRIAGE_TROPHY_DESC"),
+				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(LOCALIZERS.Priest):Get("MARRIAGE_TROPHY_DESC"),
 			})
 
 			player:AddCustomItem({
 				id = ITEM_ENGRAVED_WEDDING_RING,
-				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(nil):Get("MARRIAGE_MARRIAGE_RING_DESC"),
+				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(LOCALIZERS.Priest):Get("MARRIAGE_MARRIAGE_RING_DESC"),
 			})
 			candidate:AddCustomItem({
 				id = ITEM_ENGRAVED_WEDDING_RING,
-				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(nil):Get("MARRIAGE_MARRIAGE_RING_DESC"),
+				ITEM_ATTRIBUTE_DESCRIPTION = player:Localizer(LOCALIZERS.Priest):Get("MARRIAGE_MARRIAGE_RING_DESC"),
 			})
 		end
 

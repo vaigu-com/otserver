@@ -138,10 +138,10 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 	return nil
 end
 
-function RegisterOnLook(callback, stringIdentifier, questId)
-	questId = questId or LOCALIZERS.Universal
-	for language, quests in pairs(TRANSLATION_TABLES) do
-		quests[questId][stringIdentifier] = callback
+function RegisterOnLook(callback, stringIdentifier, localizer)
+	localizer = localizer or LOCALIZERS.Universal
+	for language, localizerToStrIdentifier in pairs(TRANSLATION_TABLES) do
+		localizerToStrIdentifier[localizer][stringIdentifier] = callback
 	end
 end
 

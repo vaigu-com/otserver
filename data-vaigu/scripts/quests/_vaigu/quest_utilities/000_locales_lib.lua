@@ -105,16 +105,19 @@ end
 
 ---@class Localizer
 ---@field player Player
----@field questId integer
+---@field localizer integer
 ---@field context table?
 Localizer = {}
 Localizer.__index = Localizer
-function Localizer:New(player, questId)
+function Localizer:New(player, localizer)
 	local newObj = {}
 	newObj.player = player
-	newObj.questId = questId
+	newObj.localizer = localizer
+	if not LOCALIZERS[newObj.localizer] then
+		logger.warn(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer }))
+	end
 	newObj.translated = nil
-	newObj.context = { player = player, questId = questId }
+	newObj.context = { player = player, localizer = localizer }
 	self.__index = self
 	setmetatable(newObj, self)
 	return newObj
@@ -136,7 +139,7 @@ function Localizer:Get(translateMe)
 	end
 
 	local targetLanguage = self.player:getLanguage()
-	local translated = translatedFromSpecificQuest(translateMe, self.questId, targetLanguage) or TranslatedFromAnyQuest(translateMe, targetLanguage)
+	local translated = translatedFromSpecificQuest(translateMe, self.localizer, targetLanguage) or TranslatedFromAnyQuest(translateMe, targetLanguage)
 	self.translated = Evaluate(translated, self.context)
 	return self.translated
 end
@@ -144,13 +147,13 @@ end
 function Localizer:Context(context)
 	context = context or {}
 	context.player = self.player
-	context.questId = self.questId
+	context.localizer = self.localizer
 	self.context = context
 	return self
 end
 
-function Player:Localizer(questId)
-	return Localizer(self, questId)
+function Player:Localizer(localizer)
+	return Localizer(self, localizer)
 end
 
 MissingStrings = {}

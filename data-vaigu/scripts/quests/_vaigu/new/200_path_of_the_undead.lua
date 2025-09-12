@@ -1131,7 +1131,7 @@ quest
 						player:getPosition():sendMagicEffect(CONST_ME_THUNDER)
 					end
 
-					local message = player:Localizer(Storage.PathOfTheUndead.Mission01):Context({ visitedCount = #visitedPositions, visitableCount = QuestConstants.PathOfTheUndead.VisitableCirclesCount }):Get("STEPPED_ON_CIRCLE")
+					local message = player:Localizer(LOCALIZERS.PathOfTheUndead):Context({ visitedCount = #visitedPositions, visitableCount = QuestConstants.PathOfTheUndead.VisitableCirclesCount }):Get("STEPPED_ON_CIRCLE")
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
 				end
 				circleTile:key(Storage.PathOfTheUndead.VisitedCircles)

@@ -115,7 +115,7 @@ local function selectDailyTaskFromList(player, button, choice)
 		text = "DAILY_TASK_PAMPHLET_DESCRIPTION",
 		addToStore = false,
 	})
-	local dailyTaskActiveMessage = player:Localizer(Storage.DailyTasks.DailyTaskInfo):Get("YOU_RECEIVED_DAILY_TASK")
+	local dailyTaskActiveMessage = player:Localizer(LOCALIZERS.DailyTasks):Get("YOU_RECEIVED_DAILY_TASK")
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, dailyTaskActiveMessage)
 end
 
@@ -135,12 +135,12 @@ local function canceDailyTaskFromList(player, button, choice)
 end
 
 local function showDailyTaskHelpWindow(player)
-	local translatedMessage = player:Localizer(Storage.Tasks.TaskInfo):Get("DAILY_TASKS_HELP_WINDOW_INFO")
+	local translatedMessage = player:Localizer(LOCALIZERS.Tasks):Get("DAILY_TASKS_HELP_WINDOW_INFO")
 	player:showTextDialog(2819, translatedMessage)
 end
 
 local function showTaskHelpWindow(player)
-	local translatedMessage = player:Localizer(Storage.Tasks.TaskInfo):Get("TASKS_HELP_WINDOW_INFO")
+	local translatedMessage = player:Localizer(LOCALIZERS.Tasks):Get("TASKS_HELP_WINDOW_INFO")
 	player:showTextDialog(7397, translatedMessage)
 end
 
@@ -207,7 +207,7 @@ end
 function OpenTaskWindow(context)
 	local player = context.player
 
-	local localizer = player:Localizer(Storage.Tasks.TaskInfo)
+	local localizer = player:Localizer(LOCALIZERS.Tasks)
 	local message = localizer:Get("Select task you're interested in: ")
 	local title = localizer:Get("Available Task list")
 	local modalWindow = ModalWindow({ title = title, message = message })
@@ -245,8 +245,8 @@ end
 function OpenDailyTaskWindow(context)
 	local player = context.player
 
-	local localizerTasks = player:Localizer(Storage.Tasks.TaskInfo)
-	local localizerDailyTasks = player:Localizer(Storage.DailyTasks.DailyTaskInfo)
+	local localizerTasks = player:Localizer(LOCALIZERS.Tasks)
+	local localizerDailyTasks = player:Localizer(LOCALIZERS.DailyTasks)
 	local message = localizerTasks:Get("Select task you're interested in: ")
 	local title = localizerDailyTasks:Get("Daily tasks")
 	local modalWindow = ModalWindow({ title = title, message = message })
@@ -273,7 +273,7 @@ end
 function OpenTaskCancelWindow(context)
 	local player = context.player
 
-	local localizer = player:Localizer(Storage.Tasks.TaskInfo)
+	local localizer = player:Localizer(LOCALIZERS.Tasks)
 	local message = localizer:Get("Select task you want to cancel: ")
 	local title = localizer:Get("Ongoing tasks list:")
 	local modalWindow = ModalWindow({ title = title, message = message })
@@ -300,7 +300,7 @@ end
 function OpenDailyTaskCancelWindow(context)
 	local player = context.player
 
-	local localizer = player:Localizer(Storage.Tasks.TaskInfo)
+	local localizer = player:Localizer(LOCALIZERS.Tasks)
 	local message = localizer:Get("Select task you want to cancel: ")
 	local title = localizer:Get("Ongoing tasks list:")
 	local modalWindow = ModalWindow({ title = title, message = message })
@@ -386,7 +386,7 @@ function Player:TryAddDailyTaskRewards(context, dailyTask)
 		return ""
 	end
 
-	local localizer = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Context({
+	local localizer = self:Localizer(LOCALIZERS.Tasks):Context({
 		dailyTask = dailyTask,
 	})
 
@@ -422,7 +422,7 @@ function Player:GrantRewardsForAllDailyTasks(context)
 		end
 	end
 	if translatedMessage == "" then
-		translatedMessage = self:Localizer(Storage.DailyTasks.DailyTaskInfo):Get("YOU_DONT_HAVE_ONGOING_DAILY_TASK")
+		translatedMessage = self:Localizer(LOCALIZERS.DailyTasks):Get("YOU_DONT_HAVE_ONGOING_DAILY_TASK")
 	end
 	context.npcHandler:say(translatedMessage, context.npc, context.player)
 end
