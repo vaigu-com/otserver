@@ -29,6 +29,16 @@ end
 NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
 		[LOCALIZERS.Tasks] = {
+			[Storage.Tasks.TaskInfo] = {
+				[MISSION_NOT_STARTED] = {
+					[GREET] = {
+						text = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
+						nextState = {
+							[Storage.Tasks.TaskInfo] = MISSION_FINISHED,
+						},
+					},
+				},
+			},
 			[Storage.Tasks.TaskPoints] = {
 				[{ max = 0 }] = {
 					[{ "punkt", "point", "punktow", "points", "punkty" }] = {
