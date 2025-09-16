@@ -339,9 +339,6 @@
 	<npc centerx="7497" centery="1788" centerz="6" radius="1">
 		<npc name="Wasik" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="7477" centery="1807" centerz="6" radius="1">
-		<npc name="FejsFak" x="0" y="0" z="6" spawntime="60" />
-	</npc>
 	<npc centerx="6575" centery="1875" centerz="6" radius="1">
 		<npc name="Ruprecht" x="0" y="0" z="6" spawntime="60" />
 	</npc>
@@ -654,8 +651,8 @@
 	<npc centerx="7468" centery="1776" centerz="7" radius="1">
 		<npc name="Kaminski" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="7474" centery="1806" centerz="7" radius="1">
-		<npc name="Glapa" x="0" y="0" z="7" spawntime="60" />
+	<npc centerx="7475" centery="1807" centerz="7" radius="1">
+		<npc name="FejsFak" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6559" centery="1824" centerz="7" radius="1">
 		<npc name="Old Man Frost" x="0" y="0" z="7" spawntime="60" />
@@ -689,6 +686,9 @@
 	</npc>
 	<npc centerx="7417" centery="1789" centerz="8" radius="1">
 		<npc name="Thomas Diaxon" x="0" y="0" z="8" spawntime="60" />
+	</npc>
+	<npc centerx="7428" centery="1792" centerz="8" radius="1">
+		<npc name="Glapa" x="0" y="0" z="8" spawntime="60" />
 	</npc>
 	<npc centerx="7487" centery="232" centerz="9" radius="1">
 		<npc name="Json" x="0" y="0" z="9" spawntime="60" />
