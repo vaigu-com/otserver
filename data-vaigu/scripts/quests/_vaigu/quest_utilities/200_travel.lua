@@ -56,7 +56,7 @@ pseudoQuest
 			ALI_BABA_CARPET = {
 				{ toPos = Position(7273, 1104, 3), name = "Maioor'ka" },
 				{ toPos = Position(7027, 1201, 2), name = "Cairo Fornia" },
-				{ toPos = Position(7477, 1775, 6), name = "Orshaawa" },
+				{ toPos = Position(7493, 1731, 6), name = "Orshaawa" },
 				{ toPos = Position(6739, 1280, 4), name = "Hurghada" },
 				{ toPos = Position(6972, 784, 4), name = "Kongo" },
 				{ toPos = Position(6044, 1282, 3), name = "Zasrane", requiredState = { [Storage.GrapplingHook] = ACCESS_GRANTED } },
