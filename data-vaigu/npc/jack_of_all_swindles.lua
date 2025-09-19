@@ -1,5 +1,5 @@
 local dialogs = {
-	[GREET] = {
+	[{ GREET }] = {
 		text = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 	},
 }
@@ -13,7 +13,6 @@ local voices = {
 	{ text = "Jak masz na sprzedaz rozne dodatki to zapraszam, najlepsze ceny !" },
 	{ text = "Grazina przerwe mam, nalej mnie tej kapucziny ! " },
 }
-
 local outfit = {
 	lookType = 160,
 	lookHead = 57,
@@ -22,13 +21,12 @@ local outfit = {
 	lookFeet = 114,
 	lookAddons = 0,
 }
+
 local context = {
 	name = "Jack of all Swindles",
-	greetJob = JOB_CREATURE_PRODUCT,
 	jobs = { JOB_CREATURE_PRODUCT },
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
 }
-
 NpcRegistry:AppendNpcData(context)

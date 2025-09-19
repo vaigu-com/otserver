@@ -25,7 +25,7 @@ local dialogs = {
 			},
 		},
 	},
-	[GREET] = {
+	[{ GREET }] = {
 		text = "Hello, traveler. Would you like me to {fly} you somewhere?",
 	},
 }

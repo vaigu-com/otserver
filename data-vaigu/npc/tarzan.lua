@@ -25,7 +25,7 @@ local dialogs = {
 			},
 		},
 	},
-	[GREET] = { "You you like me to sail you anywhere?" },
+	[{ GREET }] = { "You you like me to sail you anywhere?" },
 }
 local context = {
 	name = name,
