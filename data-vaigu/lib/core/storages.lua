@@ -87,6 +87,7 @@ Storage.DailyRewardShrine = {
 	NextCollectTimestamp = {},
 	PreviousCollectionTimestamp = {},
 	StreakExpiryTimestamp = {},
+	StreakExpiryNextNotifyTimestamp = {}
 }
 
 -- General storages

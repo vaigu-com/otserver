@@ -5,6 +5,7 @@ LOCKOUT_EXPIRY_TIME = {
 	WEEKLY = "WEEKLY",
 	FOREVER = "FOREVER",
 	ANTI_GRIEF = "ANTI_GRIEF",
+	NOW = "NOW",
 }
 DEFAULT_LOCKOUT_EXPIRY_TIME = LOCKOUT_EXPIRY_TIME.WEEKLY
 
@@ -591,6 +592,8 @@ function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 		return os.time() * 2
 	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.ANTI_GRIEF then
 		return os.time() + 60
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.NOW then
+		return os.time()
 	end
 end
 
