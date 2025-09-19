@@ -1,3 +1,4 @@
+--TODO: use zones instead of hardcoding positions
 local raidData = {
 	LuaRaid("Ancient_Spawn_Of_Morgathla"):Context({
 		perday = 0.1872,
@@ -21,7 +22,7 @@ local raidData = {
 				:Creature("Marid", Area(Position(6656, 1285, 7), Position(6705, 1332, 7)), 15)
 				:Creature("Efreet", Area(Position(6656, 1285, 7), Position(6705, 1332, 7)), 15)
 				:Notification(-30, "Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad?"),
-		},	
+		},
 		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
@@ -245,10 +246,7 @@ local raidData = {
 	LuaRaid("Midnight_Panther"):Context({
 		perDay = 2.304,
 		waves = {
-			Wave(10000)
-			:Creature("Midnight Panther", Area(Position(6673, 943, 10), Position(6673, 943, 10)), 1, false)
-			:Creature("Midnight Panther", Area(Position(6687, 948, 10), Position(6687, 948, 10)), 1, false)
-			:Creature("Midnight Panther", Area(Position(6692, 921, 10), Position(6692, 921, 10)), 1, false),
+			Wave(10000):Creature("Midnight Panther", Area(Position(6673, 943, 10), Position(6673, 943, 10)), 1, false):Creature("Midnight Panther", Area(Position(6687, 948, 10), Position(6687, 948, 10)), 1, false):Creature("Midnight Panther", Area(Position(6692, 921, 10), Position(6692, 921, 10)), 1, false),
 		},
 		cooldown = 7200,
 		minPlayersOnline = 1,
@@ -777,11 +775,7 @@ local raidData = {
 	LuaRaid("Manta_Ray"):Context({
 		perDay = 2.304,
 		waves = {
-			Wave(10000)
-			:Creature("Manta Ray", Area(Position(6491, 743, 10), Position(6491, 743, 10)), 1, false)
-			:Creature("Manta Ray", Area(Position(6471, 745, 10), Position(6471, 745, 10)), 1, false)
-			:Creature("Manta Ray", Area(Position(6485, 728, 10), Position(6485, 728, 10)), 1, false)
-			:Creature("Manta Ray", Area(Position(6451, 753, 10), Position(6451, 753, 10)), 1, false),
+			Wave(10000):Creature("Manta Ray", Area(Position(6491, 743, 10), Position(6491, 743, 10)), 1, false):Creature("Manta Ray", Area(Position(6471, 745, 10), Position(6471, 745, 10)), 1, false):Creature("Manta Ray", Area(Position(6485, 728, 10), Position(6485, 728, 10)), 1, false):Creature("Manta Ray", Area(Position(6451, 753, 10), Position(6451, 753, 10)), 1, false),
 		},
 		cooldown = 7200,
 		minPlayersOnline = 1,
@@ -1125,8 +1119,8 @@ local weekdayRaids = {
 
 local monthDayRaids = {
 	["31/10"] = {
-		["21:00"] = { 
-			-- "wolfy" 
+		["21:00"] = {
+			-- "wolfy"
 		},
 	},
 }
