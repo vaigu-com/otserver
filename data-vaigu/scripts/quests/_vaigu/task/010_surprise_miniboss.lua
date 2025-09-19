@@ -1,35 +1,37 @@
 ---@class SurpriseMinibossData
----@field regularMonsters string[]
----@field minibosses string[]
----@field spawnLock SpawnLock
+---@field regularMonsters string[] kill those to spawn minibosses
+---@field minibosses string[] one of those bosses will be spawned upon killing regular monsters
 ---@field chance number between epsilon and 1
-SurpriseMinibossData = {}
-SurpriseMinibossData.__index = SurpriseMinibossData
-function SurpriseMinibossData.New(context)
+---@field private spawnLock SpawnLock
+SurpriseMiniboss = {}
+SurpriseMiniboss.__index = SurpriseMiniboss
+function SurpriseMiniboss.New(context)
 	local newObj = {
 		regularMonsters = context.regularMonsters,
 		minibosses = context.minibosses,
 		chance = context.chance,
 		spawnLock = SpawnLock(),
 	}
-	setmetatable(newObj, SurpriseMinibossData)
+	setmetatable(newObj, SurpriseMiniboss)
 	return newObj
 end
-setmetatable(SurpriseMinibossData, {
+setmetatable(SurpriseMiniboss, {
 	__call = function(_, ...)
-		return SurpriseMinibossData.New(...)
+		return SurpriseMiniboss.New(...)
 	end,
 })
-function SurpriseMinibossData:GetRegularMonsters()
+function SurpriseMiniboss:GetRegularMonsters()
 	return self.regularMonsters
 end
-local baseAlignment = 100 --allows for chances to be defined up to 1%
-local alignmentMultiplier = 100 --allows for chances to be defined up to 0.01%
-local alignment = baseAlignment * alignmentMultiplier
+
+local effect = CONST_ME_TELEPORT
+local effectCount = 3
+local delayBetweenEffectsSeconds = 1
+
 ---@param spawnPosition Position
-function SurpriseMinibossData:TrySpawnBoss(spawnPosition)
-	local requiredRoll = self.chance * 100 * alignment
-	local roll = math.random(1, 100 * alignment)
+function SurpriseMiniboss:TrySpawnBoss(spawnPosition)
+	local requiredRoll = self.chance
+	local roll = math.random()
 	if roll > requiredRoll then
 		return
 	end
@@ -38,22 +40,21 @@ function SurpriseMinibossData:TrySpawnBoss(spawnPosition)
 		return
 	end
 
+	Game.createDelayedEffects(position, effect, effectCount, delayBetweenEffectsSeconds)
 	addEvent(function()
-		local monster = Game.createMonster(table.random(self.minibosses), spawnPosition)
-		if monster then
-			self.spawnLock:Set(monster)
-		end
-	end, 5000)
+		local monster = Game.createMonster(table.random(self.minibosses), position)
+		self.spawnLock:Set(monster)
+	end, (effectCount + 1) * delayBetweenEffectsSeconds * 1000)
 end
 
 ---@class SurpriseMinibossDataRegistry
-SurpriseMinibossDataRegistry = {}
-SurpriseMinibossDataRegistry.__index = SurpriseMinibossDataRegistry
-SurpriseMinibossDataRegistry.registry = {}
+SurpriseMinibossRegistry = {}
+SurpriseMinibossRegistry.__index = SurpriseMinibossRegistry
+SurpriseMinibossRegistry.registry = {}
 
 ---@param surpriseMinibossData SurpriseMinibossData
 ---@return SurpriseMinibossDataRegistry
-function SurpriseMinibossDataRegistry:Add(surpriseMinibossData)
+function SurpriseMinibossRegistry:Add(surpriseMinibossData)
 	for _, regularMonsterName in pairs(surpriseMinibossData:GetRegularMonsters()) do
 		self.registry[regularMonsterName] = surpriseMinibossData
 	end
@@ -61,53 +62,52 @@ function SurpriseMinibossDataRegistry:Add(surpriseMinibossData)
 end
 ---@param monsterName string
 ---@return SurpriseMinibossData
-function SurpriseMinibossDataRegistry:Get(monsterName)
+function SurpriseMinibossRegistry:Get(monsterName)
 	return self.registry[monsterName]
 end
 
 local surpriseMinibossesDatas = {
-	SurpriseMinibossData({ regularMonsters = { "Lizard Chosen" }, minibosses = { "The Voice of Ruin" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Killer Caiman" }, minibosses = { "Dreadmaw" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Warlock" }, minibosses = { "Zarabustor" }, chance = 0.008 }),
-	SurpriseMinibossData({ regularMonsters = { "Ice Witch" }, minibosses = { "Yakchal" }, chance = 0.008 }),
-	SurpriseMinibossData({ regularMonsters = { "Lizard Dragon Priest" }, minibosses = { "Flamecaller Zazrak" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Lich" }, minibosses = { "Gravelord Oshuran" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Lizard High Guard" }, minibosses = { "Lizard Gate Guardian" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Dragon" }, minibosses = { "Grand Mother Foulscale" }, chance = 0.009 }),
-	SurpriseMinibossData({ regularMonsters = { "Faun", "Dark Faun" }, minibosses = { "Raxias" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Cyclops Smith" }, minibosses = { "The Old Whopper" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Dworc Venomsniper", "Dworc Fleshhunter", "Dworc Voodoomaster" }, minibosses = { "Oodok Witchmaster" }, chance = 0.04 }),
-	SurpriseMinibossData({ regularMonsters = { "Haunted Treeling" }, minibosses = { "Bane Lord" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Orc Marauder" }, minibosses = { "Cublarc the Plunderer" }, chance = 0.03 }),
-	SurpriseMinibossData({ regularMonsters = { "Carrion Worm" }, minibosses = { "White Pale" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Witch" }, minibosses = { "Yaga the Crone" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Lion" }, minibosses = { "Zomba" }, chance = 0.05 }),
-	SurpriseMinibossData({ regularMonsters = { "Wasp" }, minibosses = { "Willi Wasp" }, chance = 0.03 }),
-	SurpriseMinibossData({ regularMonsters = { "Wereboar" }, minibosses = { "Owin" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Serpent Spawn" }, minibosses = { "Srezz Yellow Eyes" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Werewolf" }, minibosses = { "Darkfang" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Werebadger" }, minibosses = { "Sharpclaw" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Orc Warlord" }, minibosses = { "Bibby Bloodbath" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Hellflayer" }, minibosses = { "Bragrumol" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Medusa" }, minibosses = { "Gorgo" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Kollos" }, minibosses = { "Maw" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Spidris" }, minibosses = { "Fleshslicer" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Spitter" }, minibosses = { "Rotspit" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Waspoid" }, minibosses = { "Chopper" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Insectoid Worker" }, minibosses = { "Mindmasher" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Giant Spider" }, minibosses = { "Mamma Longlegs" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Bog Raider" }, minibosses = { "Weakened Shlorg" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Brimstone Bug" }, minibosses = { "Sulphur Scuttler" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Crystal Spider" }, minibosses = { "The Bloodweb" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Destroyer" }, minibosses = { "Bretzecutioner" }, chance = 0.02 }),
-	SurpriseMinibossData({ regularMonsters = { "Undead Dragon" }, minibosses = { "Bones" }, chance = 0.01 }),
-	SurpriseMinibossData({ regularMonsters = { "Hunter", "Poacher" }, minibosses = { "Arthom the Hunter" }, chance = 0.02 }),
-	SurpriseMinibossData({ regularMonsters = { "Pirate Corsair" }, minibosses = { "Brutus Bloodbeard" }, chance = 0.006 }),
-	SurpriseMinibossData({ regularMonsters = { "Mutated Bat" }, minibosses = { "Bruise Payne" }, chance = 0.008 }),
-
+	SurpriseMiniboss({ regularMonsters = { "Lizard Chosen" }, minibosses = { "The Voice of Ruin" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Killer Caiman" }, minibosses = { "Dreadmaw" }, chance = 0.004 }),
+	SurpriseMiniboss({ regularMonsters = { "Warlock" }, minibosses = { "Zarabustor" }, chance = 0.008 }),
+	SurpriseMiniboss({ regularMonsters = { "Ice Witch" }, minibosses = { "Yakchal" }, chance = 0.008 }),
+	SurpriseMiniboss({ regularMonsters = { "Lizard Dragon Priest" }, minibosses = { "Flamecaller Zazrak" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Lich" }, minibosses = { "Gravelord Oshuran" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Lizard High Guard" }, minibosses = { "Lizard Gate Guardian" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Dragon" }, minibosses = { "Grand Mother Foulscale" }, chance = 0.009 }),
+	SurpriseMiniboss({ regularMonsters = { "Faun", "Dark Faun" }, minibosses = { "Raxias" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Cyclops Smith" }, minibosses = { "The Old Whopper" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Dworc Venomsniper", "Dworc Fleshhunter", "Dworc Voodoomaster" }, minibosses = { "Oodok Witchmaster" }, chance = 0.04 }),
+	SurpriseMiniboss({ regularMonsters = { "Haunted Treeling" }, minibosses = { "Bane Lord" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Orc Marauder" }, minibosses = { "Cublarc the Plunderer" }, chance = 0.03 }),
+	SurpriseMiniboss({ regularMonsters = { "Carrion Worm" }, minibosses = { "White Pale" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Witch" }, minibosses = { "Yaga the Crone" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Lion" }, minibosses = { "Zomba" }, chance = 0.05 }),
+	SurpriseMiniboss({ regularMonsters = { "Wasp" }, minibosses = { "Willi Wasp" }, chance = 0.03 }),
+	SurpriseMiniboss({ regularMonsters = { "Wereboar" }, minibosses = { "Owin" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Serpent Spawn" }, minibosses = { "Srezz Yellow Eyes" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Werewolf" }, minibosses = { "Darkfang" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Werebadger" }, minibosses = { "Sharpclaw" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Orc Warlord" }, minibosses = { "Bibby Bloodbath" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Hellflayer" }, minibosses = { "Bragrumol" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Medusa" }, minibosses = { "Gorgo" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Kollos" }, minibosses = { "Maw" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Spidris" }, minibosses = { "Fleshslicer" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Spitter" }, minibosses = { "Rotspit" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Waspoid" }, minibosses = { "Chopper" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Insectoid Worker" }, minibosses = { "Mindmasher" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Giant Spider" }, minibosses = { "Mamma Longlegs" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Bog Raider" }, minibosses = { "Weakened Shlorg" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Brimstone Bug" }, minibosses = { "Sulphur Scuttler" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Crystal Spider" }, minibosses = { "The Bloodweb" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Destroyer" }, minibosses = { "Bretzecutioner" }, chance = 0.02 }),
+	SurpriseMiniboss({ regularMonsters = { "Undead Dragon" }, minibosses = { "Bones" }, chance = 0.01 }),
+	SurpriseMiniboss({ regularMonsters = { "Hunter", "Poacher" }, minibosses = { "Arthom the Hunter" }, chance = 0.002 }),
+	SurpriseMiniboss({ regularMonsters = { "Pirate Corsair" }, minibosses = { "Brutus Bloodbeard" }, chance = 0.006 }),
+	SurpriseMiniboss({ regularMonsters = { "Mutated Bat" }, minibosses = { "Bruise Payne" }, chance = 0.008 }),
 }
 for _, surpriseMinibossesData in pairs(surpriseMinibossesDatas) do
-	SurpriseMinibossDataRegistry:Add(surpriseMinibossesData)
+	SurpriseMinibossRegistry:Add(surpriseMinibossesData)
 end
 
 local surpriseMiniboss = CreatureEvent("MinibossFromRegularMonster")
@@ -123,14 +123,14 @@ function surpriseMiniboss.onDeath(killedCreature, corpse, lastHitKiller, mostDam
 		return
 	end
 
-	local surpriseMinibossData = SurpriseMinibossDataRegistry:Get(deadMonsterName)
+	local surpriseMinibossData = SurpriseMinibossRegistry:Get(deadMonsterName)
 	surpriseMinibossData:TrySpawnBoss(deadMonsterPos)
 end
 surpriseMiniboss:register()
 
 local taskMonsterDeathStartup = GlobalEvent("SurpriseMinibossStartup")
 function taskMonsterDeathStartup.onStartup()
-	for monsterName in pairs(SurpriseMinibossDataRegistry.registry) do
+	for monsterName in pairs(SurpriseMinibossRegistry.registry) do
 		local mType = MonsterType(monsterName)
 		if not mType then
 			logger.error("[SurpriseMinibossStartup] monster with name {} is not a valid MonsterType", monsterName)
