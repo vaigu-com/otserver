@@ -15,16 +15,17 @@ pseudoQuest
 			["Sunday"] = "Vashresamun",
 		}
 
+		local pharaohSpawnPositions = Zone("PharaohSpawnPositions")
 		local pharaoh = GlobalEvent("PharaohSummonHurghada")
 		function pharaoh.onTime(interval)
 			if SpawnLocks.PharaohHurghada:IsSet() then
 				return true
 			end
 
+			local chosenSpawnPosition = pharaohSpawnPositions:randomPosition()
 			local day = os.date("%A")
 			local bossName = bossNames[day]
-			local position = Zone("PharaohSpawnPositions"):randomPosition()
-			local boss = Game.createMonster(bossName, position, true, true)
+			local boss = Game.createMonster(bossName, chosenSpawnPosition, true, true)
 
 			SpawnLocks.PharaohHurghada:Set(boss)
 			return true
