@@ -155,6 +155,7 @@ public:
 	const std::string &getName() const {
 		return name;
 	}
+	void addPositions(const std::vector<Position> &positions); // Vaigu custom
 	void addArea(Area area);
 	void subtractArea(Area area);
 	void addPosition(const Position &position) {

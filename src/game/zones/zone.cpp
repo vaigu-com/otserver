@@ -27,7 +27,14 @@ std::shared_ptr<Zone> Zone::addZone(const std::string &name, uint32_t zoneID /* 
 	}
 	if (zoneID != 0 && zonesByID.contains(zoneID)) {
 		g_logger().trace("[Zone::addZone] Found with ID {} while adding {}, linking them together...", zoneID, name);
-		auto zone = zonesByID[zoneID];
+		auto &zone = zonesByID[zoneID];
+		if (zones[name] && zones[name] != zone) {
+			const auto& previousZone = zones[name];
+			previousZone->id = zoneID;
+			previousZone->addPositions(zone->getPositions());
+			return zone;
+		}
+
 		zone->name = name;
 		zones[name] = zone;
 		return zone;
@@ -42,6 +49,14 @@ std::shared_ptr<Zone> Zone::addZone(const std::string &name, uint32_t zoneID /* 
 		zonesByID[zoneID] = zones[name];
 	}
 	return zones[name];
+}
+
+// Vaigu custom
+void Zone::addPositions(const std::vector<Position>& positions) {
+	for (const auto &pos : positions) {
+		addPosition(pos);
+	}
+	refresh();
 }
 
 void Zone::addArea(Area area) {
