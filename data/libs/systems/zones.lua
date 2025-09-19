@@ -26,7 +26,7 @@ end
 function Zone:getWalkableSize()
 	local positions = self:getPositions()
 	if #positions == 0 then
-		logger.error(debug.traceback(T("Zone:randomPosition() - Zone :name: has no positions", { name = self:getName() })))
+		logger.error(debug.traceback(T("Zone:getWalkableSize() - Zone :name: has no positions", { name = self:getName() })))
 		return nil
 	end
 
@@ -39,6 +39,22 @@ function Zone:getWalkableSize()
 	end
 
 	return #walkablePositions
+end
+
+function Zone:getSinglePosition()
+	local positions = self:getPositions()
+	if #positions < 1 then
+		logger.error(debug.traceback(T("Zone:getSinglePosition() - Zone :name: has no positions", { name = self:getName() })))
+		return nil
+	end
+
+	if #positions > 1 then
+		logger.error(debug.traceback(T("Zone:getSinglePosition() - Zone :name: has more than 1 position", { name = self:getName() })))
+		return nil
+	end
+
+	local position = positions[1]
+	return position
 end
 
 function Zone:randomPosition(ignoreWalkability)
@@ -63,7 +79,7 @@ function Zone:randomPosition(ignoreWalkability)
 		return nil
 	end
 
-	local destination = validPositions[math.random(1, #validPositions)]
+	local destination = table.random(validPositions)
 	logger.debug("Zone:randomPosition() - Selected valid position: {}", destination)
 	return destination
 end
