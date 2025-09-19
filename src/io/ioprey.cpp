@@ -41,7 +41,7 @@ void IOPrey::initializePreyMonsters() {
 			continue;
 		}
 		auto it = monsterCounts.find(name);
-		if (it == monsterCounts.end() || it->second <= 20) {
+		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
 			continue;
 		}
 
@@ -80,7 +80,7 @@ void PreyMonsterBuilder::filterByLevel(uint32_t level) {
 		if (minDifficulty <= difficulty && difficulty <= maxDifficulty) {
 			result.push_back(preyMonster);
 		}
-		if (result.size() >= 36) {
+		if (result.size() >= (PreyGridSize * 4)) {
 			break;
 		}
 	}

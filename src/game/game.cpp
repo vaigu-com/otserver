@@ -454,7 +454,7 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 		// Vaigu custom
 		// Only monsters with count of at least 10 on the whole map can become boosted
 		auto it = monsterCounts.find(_name);
-		if (it == monsterCounts.end() || it->second <= 10) {
+		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
 			continue;
 		}
 
