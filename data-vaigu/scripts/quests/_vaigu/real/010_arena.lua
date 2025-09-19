@@ -8,7 +8,7 @@ quest
 	:Storage(function() end)
 	:Constant(function() end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Arena",
 			localizer = localizer,
 			missions = {

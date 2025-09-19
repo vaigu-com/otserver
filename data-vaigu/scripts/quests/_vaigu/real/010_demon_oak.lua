@@ -31,7 +31,7 @@ quest
 		DEMON_OAK_REWARDROOM_POSITION = Position(6093, 1876, 8)
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Demon Oak",
 			localizer = localizer,
 			missions = {

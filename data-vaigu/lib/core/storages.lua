@@ -94,7 +94,6 @@ Storage.DailyRewardShrine = {
 -- EmoteSpells Storage cannot be changed, it is set in source code
 Storage.WarCooldown = {}
 Storage.EmoteSpells = {}
-Storage.TrainRoom = {}
 
 -- Promotion Storage cannot be changed, it is set in source code
 Storage.Promotion = {}

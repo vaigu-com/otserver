@@ -194,7 +194,7 @@ quest
 		cooking:register()
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Top Chef",
 			localizer = localizer,
 			missions = {

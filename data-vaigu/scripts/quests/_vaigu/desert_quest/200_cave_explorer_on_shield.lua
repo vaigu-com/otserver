@@ -48,7 +48,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Cave Explorer on Shield",
 			localizer = localizer,
 			missions = {

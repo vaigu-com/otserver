@@ -161,27 +161,9 @@ SPECIAL_REQUIREMENTS_WILDCARD = {
 	end,
 }
 
-SPECIAL_REQUIREMENTS_TASKS = {
-	canTakeAnotherTask = function(context)
-		local player = context.player
-		return player:CanTakeAnotherTask()
-	end,
-	hasAnyOngoingTask = function(context)
-		local player = context.player
-		return player:HasAnyOngoingTask()
-	end,
-	hasDoneAnyTask = function(context)
-		local player = context.player
-		return player:DoneAnyTask()
-	end,
-}
+SPECIAL_REQUIREMENTS_TASKS = {}
 
-SPECIAL_REQUIREMENTS_DAILY_TASK = {
-	hasAnyOngoingDailyTask = function(context)
-		local player = context.player
-		return player:HasAnyOngoingDailyTask()
-	end,
-}
+SPECIAL_REQUIREMENTS_DAILY_TASK = {}
 
 local function parseMoneyWithdraw(context)
 	local declaredMoneyAnyType = context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount or PlayerDialogDataRegistry:Get(context.player):Previous().amount

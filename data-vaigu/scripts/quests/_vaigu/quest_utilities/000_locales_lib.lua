@@ -2,6 +2,8 @@ local mainDir = DATA_DIRECTORY .. "/locales"
 
 LOCALIZERS = {
 	Universal = "_universal",
+	Sign = "_sign",
+
 	Arena = "arena",
 	ArielsFriend = "ariels_friend",
 	AssassinsCreedSquurvaali = "assassins_creed_squurvaali",
@@ -61,7 +63,7 @@ for _, language in pairs(LANGUAGES) do
 			local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
 			local success, fileContent = pcall(require, filePath)
 			if not success then
-				logger.warn(T("[TRANSLATION_TABLES init] File :filePath: does not exist", { filePath = filePath }))
+				logger.warn(T("[TRANSLATION_TABLES init] File :filePath: does not exist\n:trace:", { filePath = filePath, trace = debug.traceback() }))
 			end
 			TRANSLATION_TABLES[language][localizer] = fileContent
 		end
@@ -103,6 +105,8 @@ function TranslatedFromAnyQuest(str, language, localizer)
 	return translationNotFound(language, localizer, str)
 end
 
+local localizerToId = SwappedKeyValue(LOCALIZERS)
+
 ---@class Localizer
 ---@field player Player
 ---@field localizer integer
@@ -113,7 +117,7 @@ function Localizer:New(player, localizer)
 	local newObj = {}
 	newObj.player = player
 	newObj.localizer = localizer
-	if not LOCALIZERS[newObj.localizer] then
+	if not localizerToId[newObj.localizer] then
 		logger.warn(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer }))
 	end
 	newObj.translated = nil
@@ -188,14 +192,15 @@ end
 
 -- usage in-game: /lua MissingStrings:Serialize()
 function MissingStrings:Serialize()
-	local missing_strings = DATA_DIRECTORY .. "\\missing_strings"
-	os.execute("mkdir " .. missing_strings)
+	local missingStringsPath = "utility_scripts" .. "\\missing_strings"
+	os.execute("rmdir /S /Q " ..missingStringsPath)
+	os.execute("mkdir " .. missingStringsPath)
 	for language, questIdToStr in pairs(self.registry) do
-		local missing_strings_lang = missing_strings .. "\\" .. language
-		os.execute("mkdir " .. missing_strings_lang)
+		local missingStringsLanguagePath = missingStringsPath .. "\\" .. language
+		os.execute("mkdir " .. missingStringsLanguagePath)
 		for localizer, strToPresence in pairs(questIdToStr) do
-			local missing_strings_lang_localizer_path = missing_strings_lang .. "\\" .. localizer .. ".lua"
-			local file, err = io.open(missing_strings_lang_localizer_path, "a+")
+			local missingStringsLanguageLocalizerPath = missingStringsLanguagePath .. "\\" .. localizer .. ".lua"
+			local file, err = io.open(missingStringsLanguageLocalizerPath, "a+")
 			if not file then
 				logger.warn("[MissingStrings::Serialize] Error opening file: " .. err)
 				return false

@@ -265,7 +265,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Prodigal Son",
 			localizer = localizer,
 			missions = {

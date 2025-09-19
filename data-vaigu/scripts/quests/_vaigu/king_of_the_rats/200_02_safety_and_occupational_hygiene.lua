@@ -121,7 +121,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Safety and Occupational Hygiene",
 			localizer = localizer,
 			missions = {

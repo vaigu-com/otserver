@@ -49,7 +49,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Chester the Dwarf",
 			localizer = localizer,
 			missions = {

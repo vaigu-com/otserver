@@ -217,7 +217,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Local Support",
 			localizer = localizer,
 			missions = {

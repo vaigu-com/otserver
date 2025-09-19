@@ -14,7 +14,7 @@ quest
 		end
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Bigfoot's Burden",
 			localizer = localizer,
 			missions = {

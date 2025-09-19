@@ -53,7 +53,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Path of the Undead",
 			localizer = localizer,
 			missions = {
@@ -461,16 +461,6 @@ quest
 			{ type = "invisible", condition = true },
 			{ type = "bleed", condition = false },
 		}
-
-		mType.onThink = function(monster, interval) end
-
-		mType.onAppear = function(monster, creature) end
-
-		mType.onDisappear = function(monster, creature) end
-
-		mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-		mType.onSay = function(monster, creature, type, message) end
 
 		mType:register(monster)
 	end)
@@ -1180,7 +1170,7 @@ quest
 					text = "Before you start, you must summon three guards whose skeletons are blocking access to the ritual site. You'll probably have to defeat them to get further. To summon each of them, you will show perseverance to people unknown to this world. This will require you to have fourteen different {effects}. Somewhere in the depths of the dungeons you will find a circle made of stones. It is where the ritual of summoning the Crypt King will take place.",
 				},
 				[{ "effects", "efektow", "efekty" }] = {
-					text = "I managed to extract this knowledge from the ancient collections in the library of the Lvivversity of Archmages. If you think you can read these notes - I hid the scroll under the bush to the right. And remember, not all of the effects listed there are real - apparently this document was written on the knee.",
+					text = "I managed to extract this knowledge from the ancient collections in the library of the Lubusz University of Archmages. If you think you can read these notes - I hid the scroll under the bush to the right. And remember, not all of the effects listed there are real - apparently this document was written on the knee.",
 				},
 			}),
 			QuestFactory.Dialog("Grave Digger", {

@@ -1,4 +1,3 @@
---TODO
 local quest = Quest(LOCALIZERS.OneTimeEscorts)
 
 quest
@@ -41,7 +40,7 @@ quest
 		EscortRegistry:Register(maryEscort)
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "One Time Escorts",
 			localizer = localizer,
 			missions = {

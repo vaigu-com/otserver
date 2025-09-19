@@ -210,31 +210,9 @@ SPECIAL_ACTIONS_JEWELER = {
 	end,
 }
 
-SPECIAL_ACTIONS_TASKS = {
-	grantTaskRewards = function(context)
-		local player = context.player
-		player:GrantRewardsForAllTasks(context)
-	end,
-	openTaskWindow = function(context)
-		OpenTaskWindow(context)
-	end,
-	openTaskCancelWindow = function(context)
-		OpenTaskCancelWindow(context)
-	end,
-}
+SPECIAL_ACTIONS_TASKS = {}
 
-SPECIAL_ACTIONS_DAILY_TASK = {
-	grantDailyTaskRewards = function(context)
-		local player = context.player
-		player:GrantRewardsForAllDailyTasks(context)
-	end,
-	openDailyTaskCancelWindow = function(context)
-		OpenDailyTaskCancelWindow(context)
-	end,
-	openDailyTaskWindow = function(context)
-		OpenDailyTaskWindow(context)
-	end,
-}
+SPECIAL_ACTIONS_DAILY_TASK = {}
 
 SPECIAL_ACTIONS_IMBUING = {
 	addproductsRemovemoneypoints = function(context)

@@ -99,7 +99,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Four Act Tragedy",
 			localizer = localizer,
 			missions = {
@@ -991,10 +991,6 @@ quest
 			{ type = "bleed", condition = false },
 		}
 
-		mType.onAppear = function(monster, creature) end
-
-		mType.onDisappear = function(monster, creature) end
-
 		mType:register(monster)
 	end)
 	:State(function()
@@ -1201,15 +1197,8 @@ quest
 			{ type = "bleed", condition = true },
 		}
 
-		local function setOutfit(creature, itemId)
-			local condition = Condition(CONDITION_OUTFIT)
-			condition:setTicks(15 * 60 * 1000)
-			condition:setOutfit({ lookTypeEx = itemId })
-			creature:addCondition(condition)
-		end
-
-		mType.onAppear = function(monster, creature)
-			setOutfit(monster, 11351)
+		mType.onSpawn = function(monster, creature)
+			monster:setOutfit({ lookTypeEx = 11351 })
 		end
 
 		mType:register(monster)
@@ -1245,7 +1234,7 @@ quest
 
 		local maxHealthLoss = 0.9
 		local encounterScope = leviathanEncounter:GetScope()
-		local p2AppearPositions = Zone(encounterScope:Get("P2-PlayerAppearPositions"))
+		local p2playerSpawnZone = Zone(encounterScope:Get("P2-PlayerAppearPositions"))
 		local p2 = leviathanEncounter:addStage({
 			start = function()
 				addEvent(function()
@@ -1265,7 +1254,7 @@ quest
 
 					local participants = leviathanEncounter:GetCurrentParticipants()
 					for _, player in pairs(participants) do
-						local randomAppearPos = p2AppearPositions:randomPosition()
+						local randomAppearPos = p2playerSpawnZone:randomPosition()
 						player:teleportTo(randomAppearPos)
 					end
 				end, 2000)

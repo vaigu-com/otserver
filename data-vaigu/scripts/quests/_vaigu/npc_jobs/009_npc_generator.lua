@@ -74,14 +74,19 @@ function RegisterNpcDefinition(npcData)
 	local jobStateDialogs = getJobStateDialogs(jobs)
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
-	if JOB_GREETINGS[greetJob] then
-		allDialogs[LOCALIZERS.Universal][GREET] = JOB_GREETINGS[greetJob]
+	if JOB_GREETING[greetJob] then
+		allDialogs[LOCALIZERS.Universal][{ GREET }] = JOB_GREETING[greetJob]
 	end
-	if JOB_TRADE_REQUESTS[greetJob] then
-		allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUESTS[greetJob]
-	elseif TableSize(npcConfig.shop) == 0 then
+	if TableSize(npcConfig.shop) == 0 then
 		allDialogs[LOCALIZERS.Universal][SENDTRADE] = { text = "Sorry, I'm not offering anything." }
+	else
+		if JOB_TRADE_REQUEST_RESPONSE[greetJob] then
+			allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUEST_RESPONSE[greetJob]
+		else
+			allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUEST_RESPONSE[JOB_NONE]
+		end
 	end
+
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 	npcConfig.dialogs = allDialogs

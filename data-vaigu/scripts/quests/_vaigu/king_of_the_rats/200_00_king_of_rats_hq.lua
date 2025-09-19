@@ -84,7 +84,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "King of Rats Headquarters",
 			localizer = localizer,
 			missions = {
@@ -292,7 +292,7 @@ quest
 					end
 
 					if isPlayerPzLocked(player) then
-						player:sendTextMessage(MESSAGE_FAILURE, "You can not enter a protection zone after attacking another player.")
+						player:sendTextMessage(MESSAGE_FAILURE, "You cannot enter a protection zone after attacking another player.")
 						return false
 					end
 

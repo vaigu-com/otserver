@@ -19,7 +19,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Im Resting Here",
 			localizer = localizer,
 			missions = {

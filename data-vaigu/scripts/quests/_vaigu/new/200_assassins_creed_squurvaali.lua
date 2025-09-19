@@ -45,7 +45,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Assassins's Creed: Squurva'ali",
 			localizer = localizer,
 			missions = {
