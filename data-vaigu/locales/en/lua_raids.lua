@@ -8,7 +8,7 @@ return {
 	["Loud tremors can be heard from the salt mine north of Mirko Town. Rumor has it that the golem working class has started a rebellion against the city authorities over the lack of a 15th paycheck."] = "Loud tremors can be heard from the salt mine north of Mirko Town. Rumor has it that the golem working class has started a rebellion against the city authorities over the lack of a 15th paycheck.",
 	["The brotherhoods of the blue and green Djinns are organizing Islamic harvest festivals near their palaces. Be careful, they do not tolerate infidels."] = "The brotherhoods of the blue and green Djinns are organizing Islamic harvest festivals near their palaces. Be careful, they do not tolerate infidels.",
 	["Hordes of Djinns have arrived at the festival. Caution! They won't let anyone through who doesn't worship the Great Allah or secure them a visa to Germany!"] = "Hordes of Djinns have arrived at the festival. Caution! They won't let anyone through who doesn't worship the Great Allah or secure them a visa to Germany!",
-	["Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad"] = "Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad",
+	["Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad?"] = "Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad?",
 	["Goblins are coming to rob the city!"] = "Goblins are coming to rob the city!",
 	["The goblins have come to rob the city!"] = "The goblins have come to rob the city!",
 	["Pirates have attacked Kongo!"] = "Pirates have attacked Kongo!",
@@ -64,4 +64,7 @@ return {
 	["Werewolves are trying to summon their Queen regent!"] = "Werewolves are trying to summon their Queen regent!",
 	["Feroxa has appeared in the werewolf's underground!"] = "Feroxa has appeared in the werewolf's underground!",
 	["The Mad Mage has been sighted sneaking into his lair located in the deep underground on the east of Orshaawa."] = "The Mad Mage has been sighted sneaking into his lair located in the deep underground on the east of  Orshaawa.",
+	["Morgathla sent her legate to inspect the breeding grounds."] = "Morgathla sent her legate to inspect the breeding grounds.",
+	["Ancient Spawn of Morgathla is present in ancient scarab caves."] = "Ancient Spawn of Morgathla is present in ancient scarab caves.",
+	["Gaz'haragoth will shatter your dreams in a barrage of nightmares!"] = "Gaz'haragoth will shatter your dreams in a barrage of nightmares!",
 }
