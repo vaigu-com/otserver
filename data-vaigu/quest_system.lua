@@ -210,7 +210,7 @@ end
 
 local storageToMaxState = {}
 local function questlogLookups()
-	for _, quest in pairs(Quests) do
+	for _, quest in pairs(Questlog) do
 		for _, mission in pairs(quest.missions) do
 			storageToMaxState[mission.storage] = mission.maxState
 		end
@@ -251,7 +251,7 @@ end
 function QuestRegistry.NormalizeQuestlog()
 	local normalizeQuestlogStartup = GlobalEvent("Quest/NormalizeQuestlog")
 	function normalizeQuestlogStartup.onStartup()
-		for _, quest in pairs(Quests) do
+		for _, quest in pairs(Questlog) do
 			quest.questId = NextQuestId()
 			IdToQuest[quest.questId] = quest
 			for _, mission in pairs(quest.missions) do
