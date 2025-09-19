@@ -1463,7 +1463,7 @@ JOB_SHOPS = {
 		{ itemName = "mage hat", clientId = 7992, buy = 50 },
 		{ itemName = "ethno coat", clientId = 8064, buy = 750 },
 		{ itemName = "spirit cloak", clientId = 8042, buy = 1000 },
-		
+
 		{ itemName = "ethno coat", clientId = 8064, sell = 200 },
 		{ itemName = "spirit cloak", clientId = 8042, sell = 350 },
 		{ itemName = "focus cape", clientId = 8043, sell = 6000 },

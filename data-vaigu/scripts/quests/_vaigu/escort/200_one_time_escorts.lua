@@ -33,9 +33,9 @@ quest
 				{ id = 48424 },
 			},
 			expReward = 200000,
-			AfterStart = function (activeEscort)
+			AfterStart = function(activeEscort)
 				activeEscort.escortee:teleportTo(activeEscort.player:getPosition())
-			end
+			end,
 		})
 		EscortRegistry:Register(maryEscort)
 	end)

@@ -28,7 +28,6 @@ monster.changeTarget = {
 monster.bosstiary = {
 	bossRaceId = 1129,
 	bossRace = RARITY_NEMESIS,
-
 }
 
 monster.strategiesTarget = {

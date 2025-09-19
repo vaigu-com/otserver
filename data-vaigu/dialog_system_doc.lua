@@ -241,8 +241,8 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	--[[
 	in setGameTime, context contains nextTime, player, npc, playerWord, etc.
 	in anotherFunction, context contains player, npc, playerWord, etc.
-	]] 
-	
+	]]
+
 	specialActionsOnSucess = {
 		[setGameTime] = { nextTime = "22:00" },
 		[anotherFunction] = {},

@@ -206,7 +206,6 @@ function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, unjustifi
 	local playerGuid = player:getGuid()
 	saveDeathRecord(playerGuid, player, killerName, byPlayer, mostDamageName, byPlayerMostDamage, unjustified, mostDamageUnjustified, participants)
 
-
 	Webhook.sendMessage(":skull_crossbones: " .. player:getMarkdownLink() .. " has died. Killed at level _" .. player:getLevel() .. "_ by **" .. killerName .. "**.", announcementChannels["player-kills"])
 	handleGuildWar(player, killer, mostDamageKiller, killerName, mostDamageName)
 end

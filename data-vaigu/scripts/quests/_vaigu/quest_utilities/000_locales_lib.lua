@@ -193,7 +193,7 @@ end
 -- usage in-game: /lua MissingStrings:Serialize()
 function MissingStrings:Serialize()
 	local missingStringsPath = "utility_scripts" .. "\\missing_strings"
-	os.execute("rmdir /S /Q " ..missingStringsPath)
+	os.execute("rmdir /S /Q " .. missingStringsPath)
 	os.execute("mkdir " .. missingStringsPath)
 	for language, questIdToStr in pairs(self.registry) do
 		local missingStringsLanguagePath = missingStringsPath .. "\\" .. language

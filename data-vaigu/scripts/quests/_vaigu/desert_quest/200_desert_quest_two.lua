@@ -345,7 +345,7 @@ quest
 						return
 					end
 
-						piece:moveTo(emptySpacePos)
+					piece:moveTo(emptySpacePos)
 					emptySpacePos = nextPiecePos
 					emptySpacePos:sendMagicEffect(CONST_ME_POFF)
 					return true

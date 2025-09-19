@@ -115,7 +115,7 @@ pseudoQuest
 			},
 		}
 		local function createHelpDialog(player, _, _)
-			player:showTextDialog(2994, player:Localizer(LOCALIZERS.Universal):Context({price = DEFAULT_TRAVEL_PRICE}):Get("TravelHelpDialog"))
+			player:showTextDialog(2994, player:Localizer(LOCALIZERS.Universal):Context({ price = DEFAULT_TRAVEL_PRICE }):Get("TravelHelpDialog"))
 		end
 
 		local function chargeForTravel(player, price)

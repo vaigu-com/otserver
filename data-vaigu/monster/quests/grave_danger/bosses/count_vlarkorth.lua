@@ -15,7 +15,6 @@ monster.outfit = {
 
 monster.events = {
 	"count_vlarkorth_transform",
-	
 }
 
 monster.health = 75000

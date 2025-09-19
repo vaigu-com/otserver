@@ -56,7 +56,7 @@ function Wave:Notification(delay, text)
 	})
 
 	MissingStrings:TestAllLanaguages(text, LOCALIZERS.LuaRaids)
-	
+
 	return self
 end
 
@@ -72,7 +72,7 @@ local function canSpawn(pos, monsterData)
 	if tile:getCreatureCount() ~= 0 then
 		return false
 	end
-	return true 
+	return true
 end
 
 local function trySpawnRaidMonster(pos, monsterData, additionalLootTable)

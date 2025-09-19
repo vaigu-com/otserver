@@ -87,7 +87,7 @@ Storage.DailyRewardShrine = {
 	NextCollectTimestamp = {},
 	PreviousCollectionTimestamp = {},
 	StreakExpiryTimestamp = {},
-	StreakExpiryNextNotifyTimestamp = {}
+	StreakExpiryNextNotifyTimestamp = {},
 }
 
 -- General storages
@@ -301,7 +301,7 @@ Storage.TheApeCity = { -- Reserved 12120 - 12152
 	Casks = {},
 	SnakeDestroyer = {},
 	ShamanOutfit = {},
-	DeepBanutaDoor = {}
+	DeepBanutaDoor = {},
 }
 Storage.TheDreamCourts = { -- 12200-12300
 	QuestLine = {},

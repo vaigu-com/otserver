@@ -8,7 +8,6 @@ local teleportsData = {
 	{ stepInPosition = Position(7016, 786, 7), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(5570, 1606, 7), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 
-
 	{ stepInPosition = Position(32330, 32173, 9), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(32403, 32818, 6), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(33187, 32384, 8), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },

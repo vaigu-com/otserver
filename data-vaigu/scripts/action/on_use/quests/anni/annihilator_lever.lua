@@ -65,7 +65,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		config.newPositions[i]:sendMagicEffect(CONST_ME_ENERGYAREA)
 		players:setDirection(DIRECTION_EAST)
 	end
-	
+
 	FlipLever(item)
 
 	return true

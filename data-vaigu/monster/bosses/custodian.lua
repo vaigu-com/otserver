@@ -25,9 +25,7 @@ monster.corpse = 31923
 monster.speed = 105
 monster.manaCost = 0
 
-monster.events = {
-	
-}
+monster.events = {}
 
 monster.changeTarget = {
 	interval = 4000,

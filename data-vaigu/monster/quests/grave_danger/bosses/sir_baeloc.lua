@@ -23,7 +23,6 @@ monster.manaCost = 0
 monster.events = {
 	"sir_baeloc_health",
 	"brothers_summon",
-	
 }
 
 monster.changeTarget = {

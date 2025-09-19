@@ -16,7 +16,6 @@ monster.outfit = {
 monster.bosstiary = {
 	bossRaceId = 857,
 	bossRace = RARITY_BANE,
-
 }
 monster.health = 7800
 monster.maxHealth = 7800
