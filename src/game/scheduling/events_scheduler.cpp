@@ -165,7 +165,7 @@ bool EventsScheduler::generateWeekendEventsXml() {
 			sunday.tm_mday += 2;
 			mktime(&sunday);
 
-			char startDateStr[20], endDateStr[20];
+			char startDateStr[32], endDateStr[32];
 			snprintf(startDateStr, sizeof(startDateStr), "%d/%d/%d", friday.tm_mon + 1, friday.tm_mday, friday.tm_year + 1900);
 			snprintf(endDateStr, sizeof(endDateStr), "%d/%d/%d", sunday.tm_mon + 1, sunday.tm_mday, sunday.tm_year + 1900);
 

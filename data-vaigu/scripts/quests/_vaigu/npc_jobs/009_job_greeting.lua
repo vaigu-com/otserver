@@ -1,4 +1,4 @@
-JOB_GREETINGS = {
+JOB_GREETING = {
 	[JOB_DISTANCE_SOULORB] = { text = "Hello, |PLAYERNAME|. My offers are bows, crossbows and ammunition. If you'd like to see, ask me for a {trade}. I can also exchange your {soul orbs}." },
 	[JOB_ARMOR_WEAPON] = { text = "Hello, I buy various equipment like armors, weapons, and.. well ask about {trade} to see my whole offer." },
 	[JOB_MAGIC_WILDCARD] = { text = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard}, which will increase your prey powers!" },

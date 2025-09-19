@@ -76,7 +76,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "The Way of a Druid",
 			localizer = localizer,
 			missions = {

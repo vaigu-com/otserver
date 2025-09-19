@@ -7,7 +7,7 @@ return {
 	["DAILY_TASK_PAMPHLET_DESCRIPTION"] = function(context)
 		local dailyTask = GetDailyTaskByStorage(context.key)
 		context.dailyTask = dailyTask
-		return context.player:Localizer(context.questId):Context(context):Get("DAILY_TASK_MISSION_DESCRIPTION")
+		return context.player:Localizer(context.localizer):Context(context):Get("DAILY_TASK_MISSION_DESCRIPTION")
 	end,
 	["DAILY_TASK_MISSION_DESCRIPTION"] = function(context)
 		local player = context.player

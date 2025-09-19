@@ -107,7 +107,7 @@ quest
 		EscortRegistry:Register(ameeEscort)
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Ariel's Friend",
 			localizer = localizer,
 			missions = {
@@ -818,7 +818,7 @@ quest
 			end
 		end
 
-		mType.onAppear = function(monster, creature)
+		mType.onSpawn = function(monster)
 			monster:setOutfit({ lookTypeEx = 470 })
 		end
 		mType:register(monster)

@@ -20,7 +20,7 @@ local dialogs = {
 			{ action = SPECIAL_ACTIONS_UNIVERSAL.npcSay, talkType = TALKTYPE_SAY, text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived." },
 		},
 	},
-	[GREET] = {
+	[{ GREET }] = {
 		text = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived.",
 		specialActionsOnSuccess = {
 			{
@@ -42,6 +42,6 @@ local context = {
 	outfit = outfit,
 	dialogs = dialogs,
 	voices = voices,
-	spawnedByScript = true
+	spawnedByScript = true,
 }
 NpcRegistry:AppendNpcData(context)

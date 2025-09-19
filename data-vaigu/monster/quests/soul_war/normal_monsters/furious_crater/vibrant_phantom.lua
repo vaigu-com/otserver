@@ -26,9 +26,7 @@ monster.Bestiary = {
 	Locations = "Furious Crater.",
 }
 
-monster.events = {
-	
-}
+monster.events = {}
 
 monster.health = 27000
 monster.maxHealth = 27000

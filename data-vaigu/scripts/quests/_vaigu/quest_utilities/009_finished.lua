@@ -8,7 +8,7 @@ quest
 			PitsOfInferno = {},
 			OrcFortress = {},
 			DwarvenLegs = {},
-			
+
 			TheInquisition = {},
 			HeartOfDestruction = {},
 			TheApeCity = {},

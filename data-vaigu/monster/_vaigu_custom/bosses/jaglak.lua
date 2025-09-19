@@ -1,8 +1,8 @@
 local mType = Game.createMonsterType("Jaglak")
 local monster = {}
 
-monster.description = "an jaglak"
-monster.experience = 200000
+monster.description = "a jaglak"
+monster.experience = 30000
 monster.outfit = {
 	lookType = 857,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 100000
-monster.maxHealth = 100000
+monster.health = 10000
+monster.maxHealth = 10000
 monster.race = "blood"
 monster.corpse = 22143
 monster.speed = 35
@@ -113,8 +113,8 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -1200, maxDamage = -2500 },
-	{ name = "groundshaker", interval = 2000, chance = 25, minDamage = -800, maxDamage = -1300, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -12, maxDamage = -25 },
+	{ name = "groundshaker", interval = 2000, chance = 25, minDamage = -8, maxDamage = -13, target = false },
 	{ name = "phantasm drown", interval = 2000, chance = 15, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = -650, range = 6, shootEffect = CONST_ANI_WHIRLWINDAXE, target = true, duration = 10000 },
 }
@@ -122,7 +122,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 71,
 	armor = 71,
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 3000, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 10, maxDamage = 30, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
@@ -147,7 +147,7 @@ monster.immunities = {
 
 mType.onThink = function(monster, interval) end
 
-mType.onAppear = function(monster, creature)
+mType.onSpawn = function(monster, creature)
 	if monster:getType():isRewardBoss() then
 		monster:setReward(true)
 	end

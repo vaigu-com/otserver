@@ -48,7 +48,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Cave Explorer on Shield",
 			localizer = localizer,
 			missions = {
@@ -390,7 +390,7 @@ quest
 
 					player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
 					player:setStorageValueByKey(Storage.CaveExplorerOnShield.Mission01, QuestState.CaveExplorerOnShield.Mission01.ReportToEngineer)
-					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(Storage.CaveExplorerOnShield.Mission01):Get("You succeeded in opening the gate! Talk back to engineer ghost and tell him about your success. Dont worry about closing gates - you can use shortcut door."))
+					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(LOCALIZERS.CaveExplorerOnShield):Get("You succeeded in opening the gate! Talk back to engineer ghost and tell him about your success. Dont worry about closing gates - you can use shortcut door."))
 					return true
 				end
 

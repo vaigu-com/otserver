@@ -53,8 +53,6 @@ pseudoQuest
 		InstantTravel({ positions = { Position(7468, 1014, 7), Position(7645, 974, 7) } }):Register()
 		--Nomad city, Amazon camp, Swamp trolls shore
 		InstantTravel({ positions = { Position(7122, 1323, 7), Position(7181, 1272, 7), Position(7256, 1146, 8) } }):Register()
-		--Elf docks, Haunted treeling forest
-		InstantTravel({ positions = { Position(7619, 1569, 7), Position(7606, 1654, 7) } }):Register()
 		--Orc port, Orc fortress
 		InstantTravel({ positions = { Position(7804, 1381, 7), Position(7775, 1299, 7) } }):Register()
 		--Warlocks, Dark Magician ruins

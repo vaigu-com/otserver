@@ -17,6 +17,7 @@ pseudoQuest
 		TRAVEL_KEYWORDS = {
 			[TRAVEL_METHOD.SHIP] = {
 				UNIVERSAL_TRAVEL_KEYWORD,
+				"sail",
 				"podroz",
 				"ship",
 				"plynac",
@@ -51,12 +52,12 @@ pseudoQuest
 			},
 		}
 
-		DEFAULT_TRAVEL_COST = 200
+		DEFAULT_TRAVEL_PRICE = 200
 		TRAVEL_ROUTES = {
 			ALI_BABA_CARPET = {
 				{ toPos = Position(7273, 1104, 3), name = "Maioor'ka" },
 				{ toPos = Position(7027, 1201, 2), name = "Cairo Fornia" },
-				{ toPos = Position(7477, 1775, 6), name = "Orshaawa" },
+				{ toPos = Position(7493, 1731, 6), name = "Orshaawa" },
 				{ toPos = Position(6739, 1280, 4), name = "Hurghada" },
 				{ toPos = Position(6972, 784, 4), name = "Kongo" },
 				{ toPos = Position(6044, 1282, 3), name = "Zasrane", requiredState = { [Storage.GrapplingHook] = ACCESS_GRANTED } },
@@ -114,7 +115,7 @@ pseudoQuest
 			},
 		}
 		local function createHelpDialog(player, _, _)
-			player:showTextDialog(2994, player:Localizer(LOCALIZERS.Universal):Get("TravelHelpDialog"))
+			player:showTextDialog(2994, player:Localizer(LOCALIZERS.Universal):Context({ price = DEFAULT_TRAVEL_PRICE }):Get("TravelHelpDialog"))
 		end
 
 		local function chargeForTravel(player, price)
@@ -146,11 +147,16 @@ pseudoQuest
 
 			local minLevel = choice.minLevel or 0
 			if player:getLevel() < minLevel then
-				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Context({ minLevel = minLevel }):Get("MINIMUM_LEVEL_TO_TRAVEL"))
+				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Context({ minLevel = minLevel }):Get("TRAVEL_YOU_NEED_LEVEL"))
 				return
 			end
 
-			if not chargeForTravel(player, choice.price or DEFAULT_TRAVEL_COST) then
+			if choice.requiredState and not player:HasRequiredStates(choice.requiredState) then
+				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Get("TRAVEL_YOU_NEED_ACCESS"))
+				return false
+			end
+
+			if not chargeForTravel(player, choice.price or DEFAULT_TRAVEL_PRICE) then
 				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Get("You dont have enough money."))
 				return
 			end

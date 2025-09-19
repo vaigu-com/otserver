@@ -61,7 +61,6 @@ monster.light = {
 monster.voices = {
 	interval = 5000,
 	chance = 10,
-	
 }
 
 monster.loot = {

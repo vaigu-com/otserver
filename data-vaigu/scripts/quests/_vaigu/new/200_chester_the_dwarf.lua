@@ -49,7 +49,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Chester the Dwarf",
 			localizer = localizer,
 			missions = {
@@ -267,7 +267,7 @@ quest
 
 					if player:getStorageValueByKey(Storage.ChesterTheDwarf.Mission03) == MISSION_FINISHED then
 						player:teleportTo(fromPosition, true)
-						player:say(player:Localizer(Storage.ChesterTheDwarf.Questline):Get("Chester's house is vacant right now. Therefore it would be impolite to tresspass."), TALKTYPE_MONSTER_SAY)
+						player:say(player:Localizer(LOCALIZERS.ChesterTheDwarf):Get("Chester's house is vacant right now. Therefore it would be impolite to tresspass."), TALKTYPE_MONSTER_SAY)
 					end
 					return true
 				end

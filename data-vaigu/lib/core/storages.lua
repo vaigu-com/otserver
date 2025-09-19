@@ -87,13 +87,13 @@ Storage.DailyRewardShrine = {
 	NextCollectTimestamp = {},
 	PreviousCollectionTimestamp = {},
 	StreakExpiryTimestamp = {},
+	StreakExpiryNextNotifyTimestamp = {},
 }
 
 -- General storages
 -- EmoteSpells Storage cannot be changed, it is set in source code
 Storage.WarCooldown = {}
 Storage.EmoteSpells = {}
-Storage.TrainRoom = {}
 
 -- Promotion Storage cannot be changed, it is set in source code
 Storage.Promotion = {}
@@ -301,7 +301,7 @@ Storage.TheApeCity = { -- Reserved 12120 - 12152
 	Casks = {},
 	SnakeDestroyer = {},
 	ShamanOutfit = {},
-	DeepBanutaDoor = {}
+	DeepBanutaDoor = {},
 }
 Storage.TheDreamCourts = { -- 12200-12300
 	QuestLine = {},

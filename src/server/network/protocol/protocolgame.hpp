@@ -121,14 +121,22 @@ public:
 		return version;
 	}
 
-	// Vaigu custom
 	void sendSessionEndInformation(SessionEndInformations information);
-
 
 private:
 	ProtocolGame_ptr getThis() {
 		return std::static_pointer_cast<ProtocolGame>(shared_from_this());
 	}
+
+	// Vaigu custom
+	// login
+    void handleClientFeatures(OperatingSystem_t operatingSystem);
+    void logPlayerLogin();
+    bool loadOrCreatePlayer(const std::string& name, uint32_t accountId, OperatingSystem_t operatingSystem);
+    bool validatePlayer(std::shared_ptr<Player>& player, uint32_t accountId, OperatingSystem_t operatingSystem);
+    bool placePlayerInGame(std::shared_ptr<Player>& player, OperatingSystem_t operatingSystem);
+    void handleExistingPlayer(std::shared_ptr<Player>& foundPlayer, uint32_t accountId, OperatingSystem_t operatingSystem);
+
 	void connect(const std::string &playerName, OperatingSystem_t operatingSystem);
 	void disconnectClient(const std::string &message) const;
 	void writeToOutputBuffer(NetworkMessage &msg);
@@ -545,7 +553,6 @@ private:
 	std::unordered_set<uint32_t> knownCreatureSet;
 	std::shared_ptr<Player> player = nullptr;
 
-	uint32_t eventConnect = 0;
 	uint32_t challengeTimestamp = 0;
 	uint16_t version = 0;
 	int32_t clientVersion = 0;

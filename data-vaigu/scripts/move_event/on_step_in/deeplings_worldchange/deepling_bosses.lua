@@ -1,7 +1,7 @@
 local uidToBossRoomData = {
 	[28574] = { playerSpawnPosition = Position(33641, 31236, 11) },
 	[28575] = { playerSpawnPosition = Position(33421, 31255, 11) },
-	[28576] = { playerSpawnPosition = Position(33543, 31263, 11)},
+	[28576] = { playerSpawnPosition = Position(33543, 31263, 11) },
 }
 
 local deeplingBosses = MoveEvent()

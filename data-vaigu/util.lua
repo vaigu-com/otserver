@@ -1,3 +1,67 @@
+function Class()
+	local class = {}
+	class.index = class
+	setmetatable(class, {
+		call = function(class, ...)
+			return class:_new(...)
+		end,
+	})
+	class._new = function(obj, ...)
+		local newObj = class:New(...)
+		setmetatable(newObj, class)
+		return newObj
+	end
+	return class
+end
+
+function Game.createDelayedEffects(position, effect, effectCount, delayBetweenEffectsSeconds)
+	effect = effect or CONST_ME_TELEPORT
+	effectCount = effectCount or 3
+	for i = 1, effectCount do
+		addEvent(function()
+			position:sendMagicEffect(effect)
+		end, i * delayBetweenEffectsSeconds * 1000)
+	end
+end
+
+TRANSFERABLE_COINS_GAIN_MULTIPLIER = 10
+function Player:AddAllCoins(coins)
+	self:addTibiaCoins(coins)
+	self:addTransferableCoins(coins * TRANSFERABLE_COINS_GAIN_MULTIPLIER)
+end
+
+---@param damageMap table
+---@param lastHitKiller nil|Creature
+---@return table topKillers -- lastHitKiller is considered the to have top damage regardles of actual damage
+function GetTopKillers(damageMap, lastHitKiller)
+	if not (lastHitKiller and lastHitKiller:getPlayer()) then
+		lastHitKiller = nil
+	end
+
+	local damageMapSorted = {}
+	for playerId, damage in pairs(damageMap) do
+		local player = Player(playerId)
+		if not player then
+			goto continue
+		end
+		if player == lastHitKiller then
+			goto continue
+		end
+		table.insert(damageMapSorted, { player = player, damage = damage.total })
+		::continue::
+	end
+
+	table.sort(damageMapSorted, function(a, b)
+		return a.damage > b.damage
+	end)
+
+	local topKillers = { lastHitKiller }
+	for _, playerDamage in pairs(damageMapSorted) do
+		table.insert(topKillers, playerDamage.player)
+	end
+	return topKillers
+end
+
 function SecondsToMinSec(seconds)
 	local minutes = math.floor(seconds / 60)
 	local remainingSeconds = seconds % 60
@@ -34,10 +98,16 @@ end
 
 ---using key types other than string/number is not recommended
 ---@param key string|number|any
----@return any
+---@return any any If present, returns value in player kv store, else returns default value
 function Player:getStorageValueByKey(key)
 	return self:kv():get(key) or MISSION_NOT_STARTED
 end
+---@param key string|number|any
+---@return any any If present, returns value in player kv store, else returns nil
+function Player:getStorageValueByKeyRaw(key, type)
+	return self:kv():get(key)
+end
+
 ---using key types other than string/number is not recommended
 ---@param key string|number|any
 ---@param nextValue any
@@ -138,10 +208,10 @@ function Player:errorIfCannotUseCooldownItem(cooldownKV)
 	return nil
 end
 
-function RegisterOnLook(callback, stringIdentifier, questId)
-	questId = questId or LOCALIZERS.Universal
-	for language, quests in pairs(TRANSLATION_TABLES) do
-		quests[questId][stringIdentifier] = callback
+function RegisterOnLook(callback, stringIdentifier, localizer)
+	localizer = localizer or LOCALIZERS.Universal
+	for language, localizerToStrIdentifier in pairs(TRANSLATION_TABLES) do
+		localizerToStrIdentifier[localizer][stringIdentifier] = callback
 	end
 end
 

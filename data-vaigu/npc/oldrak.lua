@@ -8,7 +8,7 @@ local outfit = {
 }
 local shop = { { itemName = "the holy tible", clientId = 2836, buy = 1000 } }
 local dialogs = {
-	[GREET] = {
+	[{ GREET }] = {
 		text = "Hello, |PLAYERNAME|! Lately hardly any people come to visit me",
 	},
 }

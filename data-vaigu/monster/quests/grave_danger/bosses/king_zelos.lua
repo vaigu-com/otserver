@@ -22,7 +22,6 @@ monster.speed = 212
 monster.events = {
 	"zelos_damage",
 	"zelos_init",
-	
 }
 
 monster.bosstiary = {

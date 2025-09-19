@@ -173,7 +173,10 @@ public:
 	}
 
 	void setLoggingOut(bool nextState) {
-		loggingOut = true;
+		if (nextState){
+			vip().setStatus(VipStatus_t::Offline);
+		}
+		loggingOut = nextState;
 	}
 
 	bool isLoggingOut() const {
@@ -187,6 +190,9 @@ public:
 
 	// Vaigu custom
 	const std::string &getDisplayName(const std::string &language) const override;
+
+	// Vaigu custom
+	const std::unordered_set<uint32_t>& getKnownCreatureSet() const;
 
 	const std::string &getName() const override {
 		return name;
@@ -1703,12 +1709,12 @@ private:
 	friend class PlayerVIP;
 	friend class PlayerAttachedEffects;
 
+	PlayerVIP m_playerVIP;
 	PlayerWheel m_wheelPlayer;
 	PlayerAchievement m_playerAchievement;
 	PlayerBadge m_playerBadge;
 	PlayerCyclopedia m_playerCyclopedia;
 	PlayerTitle m_playerTitle;
-	PlayerVIP m_playerVIP;
 	AnimusMastery m_animusMastery;
 	PlayerAttachedEffects m_playerAttachedEffects;
 

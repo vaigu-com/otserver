@@ -11,7 +11,7 @@ end
 --local timeUnit = 60 * 10
 local timeUnit = 1
 -- Bonus is only calculated and distributed if this amount of time passed since last death. For example minimumTimeUnitsElapsed=40*60 means 40 minutes had to pass.
-local minimumTimeElapsed = 40*60
+local minimumTimeElapsed = 40 * 60
 
 local function bonusExpByMonster(monster)
 	local monsterId = monster:getId()

@@ -455,7 +455,7 @@ minDelayBetweenConditions = 0
 -- configure maximum value of critical imbuement
 criticalChance = 10
 inventoryGlowOnFiveBless = true
-adventurersBlessingLevel = 21
+adventurersBlessingLevel = 8
 skulledDeathLoseStoreItem = false
 experienceDisplayRates = true
 -- configure attack base on Fist Fighting skill/experience

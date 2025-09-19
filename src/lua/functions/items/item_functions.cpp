@@ -880,7 +880,6 @@ int ItemFunctions::luaItemGetNameDescription(lua_State* L) {
 	// item:getNameDescription(distance)
 	const auto &item = Lua::getUserdataShared<Item>(L, 1, "Item");
 	if (item) {
-		const int32_t distance = Lua::getNumber<int32_t>(L, 2);
 		Lua::pushString(L, item->getNameDescription());
 	} else {
 		lua_pushnil(L);

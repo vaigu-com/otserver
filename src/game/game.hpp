@@ -72,6 +72,8 @@ static constexpr std::chrono::minutes CACHE_EXPIRATION_TIME { 10 }; // 10min
 static constexpr std::chrono::minutes HIGHSCORE_CACHE_EXPIRATION_TIME { 10 }; // 10min
 static constexpr int32_t UPDATE_PLAYERS_ONLINE_DB = 60000 * 10; // 10min
 
+static constexpr uint8_t BOOST_PREY_ELIGIBILITY_THERSHOLD = 20; // Vaigu custom
+
 struct QueryHighscoreCacheEntry {
 	std::string query;
 	uint32_t page;
@@ -181,7 +183,7 @@ public:
 
 	bool placeCreature(const std::shared_ptr<Creature> &creature, const Position &pos, bool extendedPos = false, bool force = false);
 
-	bool removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout = true);
+	bool removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout = true, bool removeFromTile = true);
 
 	void addCreatureCheck(const std::shared_ptr<Creature> &creature);
 	static void removeCreatureCheck(const std::shared_ptr<Creature> &creature);

@@ -1,8 +1,8 @@
 Storage.GrapplingHook = {}
 Storage.GrapplingBook = {}
 
-local exerciseWeaponBox = Action()
-function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+local grapphlingBook = Action()
+function grapphlingBook.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if not player:isPlayer() then
 		return false
 	end
@@ -12,6 +12,5 @@ function exerciseWeaponBox.onUse(player, item, fromPosition, target, toPosition,
 	fromPosition:sendMagicEffect(CONST_ME_STUN)
 	item:remove()
 end
-
-exerciseWeaponBox:key(Storage.GrapplingBook)
-exerciseWeaponBox:register()
+grapphlingBook:key(Storage.GrapplingBook)
+grapphlingBook:register()

@@ -16,7 +16,6 @@ monster.outfit = {
 monster.bosstiary = {
 	bossRaceId = 637,
 	bossRace = RARITY_NEMESIS,
-
 }
 
 monster.health = 2690
@@ -65,7 +64,6 @@ monster.summon = {
 	summons = {
 		{ name = "Dragon Hatchling", chance = 20, interval = 2000, count = 2 },
 		{ name = "lizard legionnaire", chance = 20, interval = 2000, count = 1 },
-
 	},
 }
 

@@ -232,5 +232,5 @@
 	<zone name="Task-Wyverns-BossRoom" zoneid="130" />
 	<zone name="Task-Wyverns-BossSpawnPosition" zoneid="132" />
 	<zone name="Task-Wyverns-PlayerSpawnPosition" zoneid="131" />
-	<zone name="TrainingRoom" zoneid="193" />
+	<zone name="TrainingRoom-WholeRoom" zoneid="193" />
 </zones>

@@ -8,13 +8,12 @@ local outfit = {
 	lookAddons = 2,
 }
 local dialogs = {
-	[GREET] = {
+	[{ GREET }] = {
 		text = "As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 	},
 }
 local context = {
 	name = name,
-	greetJob = JOB_BANK,
 	jobs = { JOB_POST, JOB_BANK },
 	outfit = outfit,
 	dialogs = dialogs,

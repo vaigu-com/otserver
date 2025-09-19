@@ -8,8 +8,7 @@ return {
 	["Loud tremors can be heard from the salt mine north of Mirko Town. Rumor has it that the golem working class has started a rebellion against the city authorities over the lack of a 15th paycheck."] = "Silne tapniecia slychac z kopalni soli na polnoc od Mirko Town. Plotki glosza, ze klasa robotnicza golemow rozpoczela rebelie na wladze miasta za brak pietnastej pensji.",
 	["The brotherhoods of the blue and green Djinns are organizing Islamic harvest festivals near their palaces. Be careful, they do not tolerate infidels."] = "Bractwa niebieskich i zielonych Djinnow organizuja islamskie dozynki w poblizu swoich palacow. Uwazaj, bo nie toleruja innowiercow!",
 	["Hordes of Djinns have arrived at the festival. Caution! They won't let anyone through who doesn't worship the Great Allah or secure them a visa to Germany!"] = "Na dozynkach zjawily sie hordy Djinnow. Ostroznie! Nie przepuszcza nikogo kto nie wyznaje Wielkiego Allaha lub nie zalatwi im Visy do Niemiec!",
-	["Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad"] = "Alarm! Do pustynnej imprezy dolaczaja potezni przywodcy Kalifatu (Marid + Efreet) i chca rozroby. Trwa ewakuacja Hurghady, czy znajda sie smialkowie by powstrzymac terror Djinnhadu?",
-
+	["Alarm! Powerful leaders of the Caliphate (Marid + Efreet) are joining the desert party and are looking for a fight. Hurghada is being evacuated — will there be any brave souls to stop the terror of the Djinnhad?"] = "Alarm! Do pustynnej imprezy dolaczaja potezni przywodcy Kalifatu (Marid + Efreet) i chca rozroby. Trwa ewakuacja Hurghady, czy znajda sie smialkowie by powstrzymac terror Djinnhadu?",
 	["Goblins are coming to rob the city!"] = "Gobliny nadchodza okrasc miasto!",
 	["The goblins have come to rob the city!"] = "Gobliny przyszly okrasc miasto!",
 	["Pirates have attacked Kongo!"] = "Piraci zaatakowali Kongo!",
@@ -65,4 +64,7 @@ return {
 	["Werewolves are trying to summon their Queen regent!"] = "Wilkolaki probuja przyzwac swoja wladczynie!",
 	["Feroxa has appeared in the werewolf's underground!"] = "Feroxa pojawila sie w wilkolackich podziemiach!",
 	["The Mad Mage has been sighted sneaking into his lair located in the deep underground on the east of Orshaawa."] = "Wsciekniety czarodziej zostal dostrzezony we wschodniej czesci Orshaawy. Zapewne wrocil do swojej kryjowki gleboko w podziemiach.",
+	["Morgathla sent her legate to inspect the breeding grounds."] = "Wyslannik Morgathly wyruszyl na inspekcje dziury.",
+	["Ancient Spawn of Morgathla is present in ancient scarab caves."] = "Pradawne potomstwo Morgathly pojawilo sie w jaskini skarabeuszy.",
+	["Gaz'haragoth will shatter your dreams in a barrage of nightmares!"] = "Gaz'Haragoth i jego koszmary zastapia wasze sny i marzenia!",
 }

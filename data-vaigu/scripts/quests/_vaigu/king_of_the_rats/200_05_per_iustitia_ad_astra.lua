@@ -174,7 +174,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Per Iustitia Ad Astra",
 			localizer = localizer,
 			missions = {
@@ -344,7 +344,7 @@ quest
 			end
 		end
 
-		mType.onAppear = function(monster, creature)
+		mType.onSpawn = function(monster, creature)
 			monster:setOutfit({ lookTypeEx = 470 })
 		end
 		mType:register(monster)

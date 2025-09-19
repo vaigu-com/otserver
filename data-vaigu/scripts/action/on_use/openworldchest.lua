@@ -26,7 +26,7 @@ local specificOpenworldchestScopes = {
 	Cyclops = openworldchestScope:Get("Cyclops"),
 	Lizard = openworldchestScope:Get("Lizard"),
 	Corym = openworldchestScope:Get("Corym"),
-	Pirate =  openworldchestScope:Get("Pirate"),
+	Pirate = openworldchestScope:Get("Pirate"),
 }
 
 if not table.find then
@@ -406,7 +406,7 @@ local openWorldChestRewardCategories = {
 		{ id = 2905, chance = 5000, count = 1 }, -- plate
 		{ id = 22763, chance = 500, count = 1 },
 	},
-	[specificOpenworldchestScopes.Pirate]={
+	[specificOpenworldchestScopes.Pirate] = {
 		{ id = ItemId.PIRATE_S_SURPRISE, chance = 5000, count = 1 },
 		{ id = 3120, chance = 5000, count = 1 },
 		{ id = 11652, chance = 500, count = 1 },
@@ -423,7 +423,7 @@ local openWorldChestRewardCategories = {
 		{ id = 901, chance = 2000, count = 1 },
 		{ id = 2875, chance = 5000, count = 1 },
 		{ id = 3031, chance = 12000, count = 30 },
-	}
+	},
 }
 
 local function worldChestIdentifier(chest)

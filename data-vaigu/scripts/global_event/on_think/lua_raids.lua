@@ -11,7 +11,7 @@ pseudoQuest
 
 		for key, luaRaid in pairs(LuaRaidRegistry.registry) do
 			for key, value in pairs(luaRaid.waves) do
-				for key, creature in pairs(value.creatures) do
+				for key, creature in pairs(value.monsters) do
 					validateCreature(creature.name)
 				end
 			end
@@ -21,14 +21,14 @@ pseudoQuest
 
 ---@class Wave
 ---@field delay number
----@field creatures table
+---@field monsters table
 ---@field notifications table
 Wave = {}
 Wave.__index = Wave
 function Wave.New(delay)
 	local newObj = {}
 	newObj.delay = delay
-	newObj.creatures = {}
+	newObj.monsters = {}
 	newObj.notifications = {}
 	setmetatable(newObj, Wave)
 	return newObj
@@ -40,7 +40,7 @@ setmetatable(Wave, {
 })
 
 function Wave:Creature(name, area, amount, forceSpawn)
-	table.insert(self.creatures, {
+	table.insert(self.monsters, {
 		name = name,
 		area = area,
 		amount = amount,
@@ -54,11 +54,14 @@ function Wave:Notification(delay, text)
 		delay = self.delay + delay,
 		text = text,
 	})
+
+	MissingStrings:TestAllLanaguages(text, LOCALIZERS.LuaRaids)
+
 	return self
 end
 
-local function canSpawn(pos, creature)
-	if creature.force then
+local function canSpawn(pos, monsterData)
+	if monsterData.force then
 		return true
 	end
 
@@ -66,37 +69,40 @@ local function canSpawn(pos, creature)
 	if not tile then
 		return false
 	end
-	return tile:getCreatureCount() == 0
+	if tile:getCreatureCount() ~= 0 then
+		return false
+	end
+	return true
 end
 
-local function trySpawnRaidMonster(pos, creature, additionalLootTable)
-	if not canSpawn(pos, creature) then
+local function trySpawnRaidMonster(pos, monsterData, additionalLootTable)
+	if not canSpawn(pos, monsterData) then
 		return
 	end
 
-	local monsterObj = Game.createMonster(creature.name, pos, false, creature.force)
-	if monsterObj then
+	local monster = Game.createMonster(monsterData.name, pos, false, monsterData.force)
+	if monster then
 		for _, loot in pairs(additionalLootTable) do
-			monsterObj:addLoot(loot)
+			monster:addLoot(loot)
 		end
 		return
 	end
 
-	if not monsterObj and creature.force then
-		logger.warn(debug.traceback(T("[trySpawnRaidMonster] Cannot create monster :name:, on position :pos:", { name = creature.name, pos = pos:ToString() })))
+	if not monster and monsterData.force then
+		logger.warn(debug.traceback(T("[trySpawnRaidMonster] Cannot create monster :name:, on position :pos:", { name = monsterData.name, pos = pos:ToString() })))
 	end
 end
 
 function Wave:EnqueueCreatureSpawns(difficultyTier)
 	local additionalLoot = LUA_RAID_DIFFICULTY_TIER_LOOT[difficultyTier]
-	addEvent(function(creatures)
-		for _, creature in pairs(creatures) do
-			for _ = 1, creature.amount do
-				local pos = creature.area:RandomPosition()
-				trySpawnRaidMonster(pos, creature, additionalLoot)
+	addEvent(function(monsters)
+		for _, monsterData in pairs(monsters) do
+			for _ = 1, monsterData.amount do
+				local pos = monsterData.area:RandomPosition()
+				trySpawnRaidMonster(pos, monsterData, additionalLoot)
 			end
 		end
-	end, self.delay, self.creatures)
+	end, self.delay, self.monsters)
 end
 
 function Wave:EnqueueNotifications()
@@ -274,7 +280,7 @@ if DAYS_SINCE_START >= DAYS_TO_RUN_LUARAIDS then
 end
 
 local function handleWave(wave, waveIndex, raidName)
-	for creatureIndex, waveCreature in pairs(wave.creatures) do
+	for creatureIndex, waveCreature in pairs(wave.monsters) do
 		local atLeastOneCorrectPosition = false
 		local corner1, corner2 = waveCreature.area:GetCorners()
 		IterateBetweenPositions(corner1, corner2, function(context)

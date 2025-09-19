@@ -8,14 +8,14 @@ return {
 	["BLESS_PRICE_TEXT"] = function(context)
 		local player = context.player
 		local finalString = T("Blessing for you will cost :blessPrice: gold. It will protect you from losing equipment after death, and will reduce your death penatly. So, you want to get blessed?", {
-			blessPrice = player:getFiveBlessingsCost()
+			blessPrice = player:getFiveBlessingsCost(),
 		})
 		return finalString
 	end,
 	["BLESS_INSUFFICIENT_MONEY"] = function(context)
 		local player = context.player
 		local finalString = T("Sorry, but you need just.. :blessPrice: of gold for that.", {
-			blessPrice = player:getFiveBlessingsCost()
+			blessPrice = player:getFiveBlessingsCost(),
 		})
 		return finalString
 	end,

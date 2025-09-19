@@ -9,7 +9,7 @@ local outfit = {
 	lookMount = 438,
 }
 local dialogs = {
-	[GREET] = {
+	[{ GREET }] = {
 		text = "Hello. What brings you here?",
 	},
 }

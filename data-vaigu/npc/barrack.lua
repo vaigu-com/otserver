@@ -17,13 +17,12 @@ local voices = {
 	{ text = "Co ten Trump teraz odwala to ja nawet nie..." },
 }
 local dialogs = {
-	[GREET] = {
+	[{ GREET }] = {
 		text = "Ooga Booga, |PLAYERNAME|. I heard you looking for some loud. {Trade} if you need some, playa. If you good then bounce lil nigga, we be tryin' to hustle",
 	},
 }
 local context = {
 	name = name,
-	greetJob = JOB_POST,
 	jobs = { JOB_POST, JOB_BANK },
 	outfit = outfit,
 	dialogs = dialogs,

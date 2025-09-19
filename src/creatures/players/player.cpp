@@ -3879,11 +3879,11 @@ void Player::despawn() {
 
 	getParent()->postRemoveNotification(static_self_cast<Player>(), nullptr, 0);
 
-	g_game().removeCreature(static_self_cast<Player>());
+	g_game().removeCreature(static_self_cast<Player>(), true, false);
 
 	// show player as pending
 	for (const auto &[key, player] : g_game().getPlayers()) {
-		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Pending, false);
+		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline, false);
 	}
 
 	if (m_party && g_configManager().getBoolean(LEAVE_PARTY_ON_DEATH)) {
@@ -3995,7 +3995,8 @@ void Player::setDailyReward(uint8_t reward) {
 }
 
 void Player::removeList() {
-	g_game().removePlayer(static_self_cast<Player>());
+	setLoggingOut(true);
+	//g_game().removePlayer(static_self_cast<Player>());
 
 	for (const auto &[key, player] : g_game().getPlayers()) {
 		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline);
@@ -5950,7 +5951,11 @@ void Player::onGainExperience(uint64_t gainExp, const std::shared_ptr<Creature> 
 	if (hasFlag(PlayerFlags_t::NotGainExperience)) {
 		return;
 	}
+	
 	std::shared_ptr<Monster> monster = target->getMonster();
+	if (!monster){
+		return;
+	}
 
 	double expPreyPercentage = 0;
 	if (target && !target->getPlayer() && m_party && m_party->isSharedExperienceActive() && m_party->isSharedExperienceEnabled()) {
@@ -10838,4 +10843,9 @@ AcceptTransferErrorMessage Player::canAcceptTransferHouse(uint32_t houseId) {
 // Vaigu custom
 const std::string &Player::getDisplayName(const std::string &language) const {
 	return getName();
+}
+
+//Vaigu custom
+const std::unordered_set<uint32_t>& Player::getKnownCreatureSet() const {
+	return client->knownCreatureSet;
 }

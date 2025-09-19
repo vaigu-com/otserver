@@ -272,6 +272,7 @@ DailyReward.afterPickingReward = function(playerId)
 	player:setStorageValueByKey(Storage.DailyRewardShrine.PreviousCollectionTimestamp, os.time())
 	player:setLockoutExpiry(Storage.DailyRewardShrine.NextCollectTimestamp, LOCKOUT_EXPIRY_TIME.DAILY)
 	player:setLockoutExpiry(Storage.DailyRewardShrine.StreakExpiryTimestamp, LOCKOUT_EXPIRY_TIME.DAY_AFTER_TOMORROW)
+	player:setLockoutExpiry(Storage.DailyRewardShrine.StreakExpiryNextNotifyTimestamp, LOCKOUT_EXPIRY_TIME.NOW)
 
 	player:setDailyReward(DAILY_REWARD_COLLECTED)
 	player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_YELLOW)
@@ -302,16 +303,15 @@ DailyReward.init = function(playerId)
 		return false
 	end
 
-	local streakExpiryTimestamp = player:getStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp)
-
-	if (os.time() > streakExpiryTimestamp) and (player:getLastLoginSaved() > 0) then
+	if player:isLockoutExpired(Storage.DailyRewardShrine.StreakExpiryTimestamp) and (player:getLastLoginSaved() > 0) then
 		local jokersCount = player:getJokerTokens()
 		if jokersCount > 0 then
 			player:setLockoutExpiry(Storage.DailyRewardShrine.StreakExpiryTimestamp, LOCKOUT_EXPIRY_TIME.DAY_AFTER_TOMORROW)
 			player:setJokerTokens(jokersCount - 1)
 			player:sendTextMessage(MESSAGE_LOGIN, "You lost a joker token to prevent loosing your streak.")
-		else
+		elseif player:isLockoutExpired(Storage.DailyRewardShrine.StreakExpiryNextNotifyTimestamp) then
 			player:setStorageValueByKey(Storage.DailyRewardShrine.StreakExpiryTimestamp, -1)
+			player:setLockoutExpiry(Storage.DailyRewardShrine.StreakExpiryNextNotifyTimestamp, LOCKOUT_EXPIRY_TIME.FOREVER)
 			player:sendTextMessage(MESSAGE_LOGIN, "You just lost your daily reward streak.")
 			player:setStreakLevel(0)
 		end

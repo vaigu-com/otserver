@@ -56,7 +56,7 @@ return {
 	["Success! You filled the vial with an elixir. Go back to the postman and ask him for further directions."] = "Udalo ci sie napelnic fiolke eliksirem, wroc do postmana po dalsze wskazowki.",
 	["Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin."] = "Old Postman wspomnial, ze aby mikstura zdzialala, potrzeba w niej rozpuscic wlos Ariela, na pewno znajdzesz jakis w jego chacie. Pozniej przekaz eliksir Madame Malkin.",
 	["Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel."] = "Madame Malkin wypila eliksir, dzieki ktoremu pokocha Ariela. Odwiedz ja za jakis czas, i wspomnij o nim.",
-	["Turns out that the \"wine\" worked as intended. Tell Ariel about it."] = "Wino najwidoczniej zadzialalo, przekaz wiesci Arielowi.",
+	['Turns out that the "wine" worked as intended. Tell Ariel about it.'] = "Wino najwidoczniej zadzialalo, przekaz wiesci Arielowi.",
 	["Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now."] = "Ariel ucieszyl sie, i podal ci tajemne haslo powitalne Yalaharian: Aloha. Mozesz teraz odwiedzic Gertrude lub Konmulda.",
 	["Mission 3: A Killer Liquor"] = "Misja 3: Zabojczy trunek",
 	["Find an immensely strong vodka in the lizard headquarters, and bring it to Gertrude."] = "Znajdz mega mocna wodke w siedzibie jaszczurow i przynies butelke do Gertrudy.",

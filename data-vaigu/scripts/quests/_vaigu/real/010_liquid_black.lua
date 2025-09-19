@@ -17,7 +17,7 @@ quest
 	end)
 	:Constant(function() end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Liquid Black",
 			localizer = localizer,
 			missions = {

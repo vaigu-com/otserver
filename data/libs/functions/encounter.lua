@@ -5,6 +5,7 @@ LOCKOUT_EXPIRY_TIME = {
 	WEEKLY = "WEEKLY",
 	FOREVER = "FOREVER",
 	ANTI_GRIEF = "ANTI_GRIEF",
+	NOW = "NOW",
 }
 DEFAULT_LOCKOUT_EXPIRY_TIME = LOCKOUT_EXPIRY_TIME.WEEKLY
 
@@ -376,10 +377,10 @@ function EncounterData:SetupScopes()
 	self.lockoutStorage = lockoutStorage
 
 	local bossSpawnPositionScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.BossSpawnPosition)
-	self.bossSpawnPosition = Zone(bossSpawnPositionScope):randomPosition()
+	self.bossSpawnPosition = Zone(bossSpawnPositionScope):getSinglePosition()
 
 	local exitTeleportDestinationScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.ExitTeleportDestination)
-	self.exitTeleportDestination = Zone(exitTeleportDestinationScope):randomPosition()
+	self.exitTeleportDestination = Zone(exitTeleportDestinationScope):getSinglePosition()
 	local exitTeleportItemScope = encounterScope:Get(ENCOUNTER_SCOPE_NAME.ExitTeleport)
 	self.exitTeleportDestinationKey = exitTeleportItemScope
 
@@ -591,6 +592,8 @@ function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 		return os.time() * 2
 	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.ANTI_GRIEF then
 		return os.time() + 60
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.NOW then
+		return os.time()
 	end
 end
 

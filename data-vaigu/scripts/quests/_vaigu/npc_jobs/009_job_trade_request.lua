@@ -1,4 +1,5 @@
-JOB_TRADE_REQUESTS = {
+JOB_TRADE_REQUEST_RESPONSE = {
+	[JOB_NONE] = { text = "Of course, just browse through my wares." },
 	[JOB_DISTANCE_SOULORB] = { text = "Of course, just browse through my wares." },
 	[JOB_ARMOR_WEAPON] = { text = "Of course, just browse through my wares." },
 	[JOB_MAGIC_WILDCARD] = { text = "Of course, just browse through my wares." },

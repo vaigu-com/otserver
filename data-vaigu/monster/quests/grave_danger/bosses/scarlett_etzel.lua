@@ -16,7 +16,6 @@ monster.outfit = {
 monster.events = {
 	"scarlettThink",
 	"scarlettHealth",
-	
 }
 
 monster.bosstiary = {

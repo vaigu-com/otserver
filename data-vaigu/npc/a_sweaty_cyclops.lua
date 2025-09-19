@@ -20,19 +20,19 @@ local voices = {
 }
 local dialogs = {
 	[{ GREET }] = {
-		text = "A Sweaty Cyclops: Hum Humm! Welcume {here} li'l Player.",
+		text = "Hum Humm! Welcume {here} li'l Player.",
 	},
 	[{ "job", "here" }] = {
-		text = "A Sweaty Cyclops: I am {smith}.",
+		text = "I am {smith}.",
 	},
 	[{ "smith" }] = {
-		text = "A Sweaty Cyclops: Working {steel} is my profession. Me too {melts} gold, {iron ore} and {soul orbs}.",
+		text = "Working {steel} is my profession. Me too {melts} gold, {iron ore} and {soul orbs}.",
 	},
 	[{ "steel" }] = {
-		text = "A Sweaty Cyclops: Many kinds of. Some I {forge}. But not ancient steel.",
+		text = "Many kinds of. Some I {forge}. But not ancient steel.",
 	},
 	[{ "forge" }] = {
-		text = "A Sweaty Cyclops: Me can forge equipment back to steel. Like {Za'Ralator}, {Uth'Kean}, {Uth'Lokr}, {Uth'Prta}.",
+		text = "Me can forge equipment back to steel. Like {Za'Ralator}, {Uth'Kean}, {Uth'Lokr}, {Uth'Prta}.",
 	},
 
 	[{ "melt", "melts" }] = {

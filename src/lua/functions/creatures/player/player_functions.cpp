@@ -38,6 +38,8 @@
 #include "enums/player_icons.hpp"
 #include "lua/functions/lua_functions_loader.hpp"
 
+#include <creatures/npcs/npc.hpp>
+
 void PlayerFunctions::init(lua_State* L) {
 	Lua::registerSharedClass(L, "Player", "Creature", PlayerFunctions::luaPlayerCreate);
 	Lua::registerMetaMethod(L, "Player", "__eq", Lua::luaUserdataCompare);
@@ -194,10 +196,10 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "getStorageValueByName", PlayerFunctions::luaPlayerGetStorageValueByName);
 	Lua::registerMethod(L, "Player", "setStorageValueByName", PlayerFunctions::luaPlayerSetStorageValueByName);
 
-	Lua::registerMethod(L, "Player", "canAddItem", PlayerFunctions::luaPlayerCanAddItem);
+	Lua::registerMethod(L, "Player", "canAddItem", PlayerFunctions::luaPlayerCanAddItem); // Vaigu custom
 	Lua::registerMethod(L, "Player", "addItem", PlayerFunctions::luaPlayerAddItem);
 	Lua::registerMethod(L, "Player", "addItemEx", PlayerFunctions::luaPlayerAddItemEx);
-	Lua::registerMethod(L, "Player", "canAddItemEx", PlayerFunctions::luaPlayerCanAddItemEx);
+	Lua::registerMethod(L, "Player", "canAddItemEx", PlayerFunctions::luaPlayerCanAddItemEx); // Vaigu custom
 	Lua::registerMethod(L, "Player", "addItemStash", PlayerFunctions::luaPlayerAddItemStash);
 	Lua::registerMethod(L, "Player", "removeStashItem", PlayerFunctions::luaPlayerRemoveStashItem);
 	Lua::registerMethod(L, "Player", "removeItem", PlayerFunctions::luaPlayerRemoveItem);
@@ -425,6 +427,9 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "setMapShader", PlayerFunctions::luaPlayerSetMapShader);
 	Lua::registerMethod(L, "Player", "removeCustomOutfit", PlayerFunctions::luaPlayerRemoveCustomOutfit);
 	Lua::registerMethod(L, "Player", "addCustomOutfit", PlayerFunctions::luaPlayerAddCustomOutfit);
+
+	// Vaigu custom
+	Lua::registerMethod(L, "Player", "reloadKnownNpcs", PlayerFunctions::luaPlayerReloadKnownNpcs);
 
 	GroupFunctions::init(L);
 	GuildFunctions::init(L);
@@ -5156,5 +5161,23 @@ int PlayerFunctions::luaPlayerRemoveCustomOutfit(lua_State* L) {
 	}
 
 	Lua::pushBoolean(L, player->attachedEffects().removeCustomOutfit(type, idOrName));
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerReloadKnownNpcs(lua_State* L) {
+	// player:reloadKnownNpcs()
+	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+	for(const auto& creatureId : player->getKnownCreatureSet() ){
+		const auto& npc = g_game().getNpcByID(creatureId);
+		if (npc) {
+			player->reloadCreature(npc->getCreature());
+		}
+	}
+	Lua::pushBoolean(L, true);
 	return 1;
 }

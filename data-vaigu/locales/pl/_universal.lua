@@ -195,12 +195,13 @@ return {
 	["What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived."] = "A ty kurwa co!? Zamknij morde poki nie dojedziemy do celu!",
 	["Yeah, you got it!"] = "Tak, wlasnie tak.",
 	["Goldblum is a very cunning one. He likes to play the riddles game. If he asks you about the valuation of structured bonds, say exactly these words: {It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument}"] = "Goldblum to bardzo szczwany lis. Jezeli zapyta cie o wycene obliacji strukturyzowanych, powiedz dokladnie te slowa: {Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy}",
-	["MinimumLevelToTravel"] = function(context)
-		return T("Potrzebujesz co najmniej :minLevel: poziom, abym cie tam wyslal.", { minLevel = context.minLevel })
+	["TRAVEL_YOU_NEED_LEVEL"] = function(context)
+		return T("You need :minLevel: level to travel there", { minLevel = context.minLevel })
 	end,
+	["TRAVEL_YOU_NEED_ACCESS"] = "You did not unlock access to this location yet",
 	["TravelHelpDialog"] = function(context)
-		return T("Mozesz podrozowac miedzy miastami, jesli masz wystarczjaca ilosc pieniedzy. Aktualnie usluga transportu kosztuje :transportCost:. Aktualnie posiadasz :money:.", {
-			transportCost = TRANSPORT_COST,
+		return T("Mozesz podrozowac miedzy miastami, jesli masz wystarczjaca ilosc pieniedzy. Aktualnie usluga transportu kosztuje :transportPrice:. Aktualnie posiadasz :money:.", {
+			transportPrice = context.price,
 			money = context.player:getMoney(),
 		})
 	end,
@@ -341,4 +342,24 @@ return {
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "No witam, mam do zaoferowania {sprzet wedkarski} oraz skupuje ryby.",
 	["I can exchange your red gems for a three rings of healing. Is that what youre interested in?"] = "Moge wymienic twoje czerwone krysztaly na trzy ring of healing, zgoda?",
 	["Nothing there."] = "Nic tu nie ma.",
+	["Hum Humm! Welcume {here} li'l Player."] = "Hum Humm! Witaj w moich {progach}, maly Graczu.",
+	["I am {smith}."] = "Ja byc {kowal}.",
+	["Working {steel} is my profession. Me too {melts} gold, {iron ore} and {soul orbs}."] = "Praca przy {stal} to moj fach. Ja tez {przetapiac} zloto, {iron ore} i {soul orb}y.",
+	["Many kinds of. Some I {forge}. But not ancient steel."] = "Wiele rodzajow jest. Niektore ja {kuje}. Ale nie starozytna stal.",
+	["Me can forge equipment back to steel. Like {Za'Ralator}, {Uth'Kean}, {Uth'Lokr}, {Uth'Prta}."] = "Ja moge kuc sprzet z powrotem w stal. Jak {Za'Ralator}, {Uth'Kean}, {Uth'Lokr}, {Uth'Prta}.",
+	["Can melt gold ingot for lil' one. You want?"] = "Ja moge przetopic sztabke zlota dla malego. Chcesz?",
+	["Very noble. Shiny. Me like. But breaks so fast. Me can make from shiny armour. Lil' one want to trade?"] = "Bardzo szlachetne. Blyszczace. Ja lubic. Ale psuje sie szybko. Ja moge zrobic ze swiecacej zbroi. Maly chce wymienic?",
+	["Firy steel it is. Need green ones' breath to melt. Or red even better. Me can make from shield. Lil' one want to trade?"] = "Ognista stal to jest. Potrzeba oddechu zielonych, by stopic. Albo czerwonych, lepiej. Ja moge zrobic z tarczy. Maly chce wymienic?",
+	["Good iron is. Me friends use it much for fight. Me can make from weapon. Lil' one want to trade?"] = "Dobre zelazo to jest. Moi przyjaciele duzo uzywac do walki. Ja moge zrobic z broni. Maly chce wymienic?",
+	["Hellsteel is. Cursed and evil. Dangerous to work with. Me can make from evil helmet. Lil' one want to trade?"] = "Piekielna stal to jest. Przekleta i zla. Niebezpieczna do roboty. Ja moge zrobic ze zlego helmu. Maly chce wymienic?",
+	["Uh. Me can make some nasty lil' bolt from soul orbs. Lil' one want to trade all?"] = "Uh. Ja moge zrobic wredne male belty z {soul orb}ow. Maly chce oddac wszystkie?",
+	["Uh. Me can make some gear wheel from iron ores. Lil' one want to trade?"] = "Uh. Ja moge zrobic kolko zebate z {iron ore}. Maly chce wymienic?",
+	["whoooosh There!"] = "Prosze bardzo",
+	["There is no gold ingot with you."] = "Nie masz sztabki zlota.",
+	["You dont have a crown armor!"] = "Ty nie masz koronnego pancerza!",
+	["You dont have a devil helmet!"] = "Ty nie masz diabelskiego helmu!",
+	["You dont have a giant sword!"] = "Ty nie masz wielkiego miecza!",
+	["Lil' one does not have any iron ores."] = "Maly nie ma zadnych {iron ore}.",
+	["You dont have soul orbs!"] = "Ty nie masz {soul orbs}!",
+	["Cling clang!"] = "Brzdek brzdek!",
 }

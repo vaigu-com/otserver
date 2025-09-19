@@ -1,3 +1,7 @@
+local rme_dir = "../rme/"
+local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
+local baseOutputDir = "utility_scripts/"
+
 MonsterTypeRepository = {}
 MonsterTypeRepository.__index = MonsterTypeRepository
 MonsterTypeRepository.registry = {}
@@ -5,8 +9,67 @@ function MonsterTypeRepository:Add(name, data)
 	self.registry[name] = data
 end
 
-local rme_dir = "../rme/"
-local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
+local function countMonsters(filePath)
+	local monsterCounts = {}
+
+	local xml = io.open(filePath, "r")
+	if not xml then
+		logger.warn("[countMonsters] file not found: " .. filePath)
+		return {}
+	end
+
+	for name in xml:read("*a"):gmatch('<monster%s+[^>]-name="(.-)"') do
+		monsterCounts[name] = (monsterCounts[name] or 0) + 1
+	end
+	xml:close()
+
+	return monsterCounts
+end
+
+local monsterCountsPath = baseOutputDir .. "monster_counts.txt"
+function MonsterTypeRepository:SerializeCounts()
+	local monsterCounts = countMonsters(DATA_DIRECTORY .. "/world/vaigu-monster.xml")
+
+	local monsterCountsStr = ""
+	for name, count in pairs(monsterCounts) do
+		local monsterRow = name .. "###" .. tostring(count) .. "\n"
+		monsterCountsStr = monsterCountsStr .. monsterRow
+	end
+
+	local file = io.open(monsterCountsPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SerializeCounts] Cannot open file :path:. Counts have NOT been serialized.", { path = monsterCountsPath }))
+		return
+	end
+	file:write(monsterCountsStr)
+	file:close()
+	logger.info("[MonsterTypeRepository::SerializeRareSpawns] Serialization succesful.")
+end
+
+local rareSpawnsPath = baseOutputDir .. "rares.txt"
+function MonsterTypeRepository:SerializeRareSpawns()
+	local rareNames = {}
+	for name, data in pairs(self.registry) do
+		local toKill = 0
+		if data.Bestiary and data.Bestiary.toKill and data.Bestiary.toKill == 5 then
+			table.insert(rareNames, name)
+		end
+	end
+
+	local rareNamesStr = ""
+	for key, value in pairs(rareNames) do
+		rareNamesStr = rareNamesStr .. value .. "\n"
+	end
+
+	local file = io.open(rareSpawnsPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SerializeRareSpawns] Cannot open file :path:. Rares have NOT been serialized.", { path = rareSpawnsPath }))
+		return
+	end
+	file:write(rareNamesStr)
+	file:close()
+	logger.info("[MonsterTypeRepository::SerializeRareSpawns] Serialization succesful.")
+end
 
 local function extractCorpseData(firstStageId)
 	local firstStageitem = ItemType(firstStageId)
@@ -26,6 +89,7 @@ local function extractCorpseData(firstStageId)
 	return firstStageId, secondStageId
 end
 
+local corpseIdsPath = baseOutputDir .. "corpse_ids.txt"
 function MonsterTypeRepository:SerializeCorpses()
 	local corpseIds = {}
 	for name, data in pairs(self.registry) do
@@ -44,9 +108,9 @@ function MonsterTypeRepository:SerializeCorpses()
 		corpseIdsStr = corpseIdsStr .. "\n" .. key .. ", " .. value
 	end
 
-	local file = io.open("corpseIds.txt", "w+")
+	local file = io.open(corpseIdsPath, "w+")
 	if not file then
-		logger.error(T("[MonsterTypeRepository::SerializeCorpses] Cannot open file :path:. Cropses have NOT been serialized.", { path = monstersXmlPath }))
+		logger.error(T("[MonsterTypeRepository::SerializeCorpses] Cannot open file :path:. Corpses have NOT been serialized.", { path = corpseIdsPath }))
 		return
 	end
 	file:write(corpseIdsStr)
@@ -247,23 +311,6 @@ local nameToNewExp = {
 	["Skeleton Elite Warrior"] = 6000,
 }
 
-local function countMonsters(filePath)
-	local monsterCounts = {}
-
-	local xml = io.open(filePath, "r")
-	if not xml then
-		logger.warn("[countMonsters] file not found: " .. filePath)
-		return {}
-	end
-
-	for name in xml:read("*a"):gmatch('<monster%s+[^>]-name="(.-)"') do
-		monsterCounts[name] = (monsterCounts[name] or 0) + 1
-	end
-	xml:close()
-
-	return monsterCounts
-end
-
 local function applyCustomExp(mask)
 	if not mask.name then
 		return mask
@@ -352,7 +399,15 @@ local function applyCustomAttributes(mask, monsterType)
 	return mask
 end
 
+local function validateFields(mask)
+	if mask.description == nil then
+		print("[MosnterType::register]->validateFields 'description' MISSING")
+		PrintAnything(mask)
+	end
+end
+
 MonsterType.register = function(self, mask)
+	validateFields(mask)
 	mask = applyCustomAttributes(mask, self)
 	registerMonsterType(self, mask)
 	MonsterTypeRepository:Add(self:getUniqueName(), mask)

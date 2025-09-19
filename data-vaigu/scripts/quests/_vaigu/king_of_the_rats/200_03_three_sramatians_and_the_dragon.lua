@@ -112,7 +112,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "The Three Sramatians and the Dragon",
 			localizer = localizer,
 			missions = {
@@ -1283,10 +1283,6 @@ quest
 			{ type = "invisible", condition = true },
 			{ type = "bleed", condition = false },
 		}
-
-		mType.onAppear = function(monster, creature) end
-
-		mType.onDisappear = function(monster, creature) end
 		mType:register(monster)
 	end)
 	:EncounterData(function()

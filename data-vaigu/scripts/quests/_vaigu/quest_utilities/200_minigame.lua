@@ -410,7 +410,7 @@ pseudoQuest
 
 		local sharedLobbySpawnPositionStartup = GlobalEvent(sharedLobbySpawnPositionScope)
 		function sharedLobbySpawnPositionStartup.onStartup()
-			sharedLobbySpawnPosition = Zone(sharedLobbySpawnPositionScope):randomPosition()
+			sharedLobbySpawnPosition = Zone(sharedLobbySpawnPositionScope):getSinglePosition()
 			MinigameData.ConfigureSharedLobby()
 		end
 		sharedLobbySpawnPositionStartup:register()
@@ -558,10 +558,7 @@ pseudoQuest
 					return false
 				end
 
-				local lastEnterPos = player:getStorageValueByKey(Storage.Minigames.LastSharedLobbyEnterFromPostion)
-
-				player:teleportTo(lastEnterPos)
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+				player:teleportToStoredOrTemple(Storage.Minigames.LastSharedLobbyEnterFromPostion)
 				return true
 			end
 			teleport:key(Storage.Minigames.SharedLobbyExitTeleport)

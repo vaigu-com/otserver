@@ -454,7 +454,7 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 		// Vaigu custom
 		// Only monsters with count of at least 10 on the whole map can become boosted
 		auto it = monsterCounts.find(_name);
-		if (it == monsterCounts.end() || it->second <= 10) {
+		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
 			continue;
 		}
 
@@ -463,8 +463,10 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 		}
 	}
 
+	std::vector<BoostedMonsterData> randomBoostedMonsters;
 	if (boostableMonsters.size() < count) {
 		g_logger().warn("[Game::initializeBoostedCreatures] - Not enough monsters available to boost.");
+		return randomBoostedMonsters;
 	}
 
 	std::random_device rd;
@@ -472,7 +474,6 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 	std::shuffle(boostableMonsters.begin(), boostableMonsters.end(), g);
 	monsterNames.clear();
 
-	std::vector<BoostedMonsterData> randomBoostedMonsters;
 	for (uint32_t i = 1; i <= count; ++i) {
 		auto &selectedMonster = boostableMonsters[i];
 		const auto monsterType = g_monsters().getMonsterType(selectedMonster.name);
@@ -1214,7 +1215,7 @@ bool Game::placeCreature(const std::shared_ptr<Creature> &creature, const Positi
 	return true;
 }
 
-bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout /* = true*/) {
+bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogout /* = true*/, bool removeFromTile /* = true*/) {
 	metrics::method_latency measure(__METRICS_METHOD_NAME__);
 	if (!creature || creature->isRemoved()) {
 		return false;
@@ -1242,7 +1243,9 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 			}
 		}
 
-		tile->removeCreature(creature);
+		if (removeFromTile == true){
+			tile->removeCreature(creature);
+		}
 
 		const Position &tilePosition = tile->getPosition();
 
@@ -1268,9 +1271,7 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 	creature->getParent()->postRemoveNotification(creature, nullptr, 0);
 	afterCreatureZoneChange(creature, fromZones, {});
 
-	if (!creature->getPlayer() && isLogout) {
-		creature->removeList();
-	}
+	creature->removeList();
 	creature->setRemoved();
 
 	removeCreatureCheck(creature);

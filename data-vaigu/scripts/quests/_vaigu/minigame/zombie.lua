@@ -16,12 +16,12 @@ pseudoQuest
 			for i = 1, context.effectsCount do
 				addEvent(function()
 					context.position:sendMagicEffect(context.effectEnum)
-				end, i * context.delayBetweenEffectsSecods * 1000)
+				end, i * context.delayBetweenEffectsSeconds * 1000)
 			end
 
 			addEvent(function()
 				Game.createMonster(context.monsterName, context.position)
-			end, (context.effectsCount + 1) * context.delayBetweenEffectsSecods * 1000)
+			end, (context.effectsCount + 1) * context.delayBetweenEffectsSeconds * 1000)
 		end
 		local minigameZombieName = "Zombie Minigame"
 		local effectsBeforeSpawn = 2
@@ -33,7 +33,7 @@ pseudoQuest
 				monsterName = minigameZombieName,
 				effectsCount = effectsBeforeSpawn,
 				effectEnum = CONST_ME_TELEPORT,
-				delayBetweenEffectsSecods = delayBetweenEffects,
+				delayBetweenEffectsSeconds = delayBetweenEffects,
 			}
 			for i = 1, math.floor(gameAreaZone:getWalkableSize() / 2) do
 				context.position = gameAreaZone:randomPosition()

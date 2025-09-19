@@ -195,12 +195,13 @@ return {
 	["What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived."] = "What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived.",
 	["Yeah, you got it!"] = "Yeah, you got it!",
 	["Goldblum is a very cunning one. He likes to play the riddles game. If he asks you about the valuation of structured bonds, say exactly these words: {It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument}"] = "Goldblum is a very cunning one. He likes to play the riddles game. If he asks you about the valuation of structured bonds, say exactly these words: {It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument}",
-	["MINIMUM_LEVEL_TO_TRAVEL"] = function(context)
+	["TRAVEL_YOU_NEED_LEVEL"] = function(context)
 		return T("You need :minLevel: level to travel there", { minLevel = context.minLevel })
 	end,
+	["TRAVEL_YOU_NEED_ACCESS"] = "You did not unlock access to this location yet",
 	["TravelHelpDialog"] = function(context)
-		return T("You can travel between cities if you have enough money. Also, you cannot be a suspect in any illegal activity. Current cost is :transportCost:. You currently have :money: gold.", {
-			transportCost = TRANSPORT_COST,
+		return T("You can travel between cities if you have enough money. Also, you cannot be a suspect in any illegal activity. Current cost is :transportPrice:. You currently have :money: gold.", {
+			transportPrice = context.price,
 			money = context.player:getMoney(),
 		})
 	end,
@@ -341,4 +342,24 @@ return {
 	["Hello, I {trade} with fishing equipment, take a look at my offer if you want."] = "Hello, I {trade} with fishing equipment, take a look at my offer if you want.",
 	["I can exchange your red gems for a three rings of healing. Is that what youre interested in?"] = "I can exchange your red gems for a three rings of healing. Is that what youre interested in?",
 	["Nothing there."] = "Nothing there.",
+	["Hum Humm! Welcume {here} li'l Player."] = "Hum Humm! Welcume {here} li'l Player.",
+	["I am {smith}."] = "I am {smith}.",
+	["Working {steel} is my profession. Me too {melts} gold, {iron ore} and {soul orbs}."] = "Working {steel} is my profession. Me too {melts} gold, {iron ore} and {soul orbs}.",
+	["Many kinds of. Some I {forge}. But not ancient steel."] = "Many kinds of. Some I {forge}. But not ancient steel.",
+	["Me can forge equipment back to steel. Like {Za'Ralator}, {Uth'Kean}, {Uth'Lokr}, {Uth'Prta}."] = "Me can forge equipment back to steel. Like {Za'Ralator}, {Uth'Kean}, {Uth'Lokr}, {Uth'Prta}.",
+	["Can melt gold ingot for lil' one. You want?"] = "Can melt gold ingot for lil' one. You want?",
+	["Very noble. Shiny. Me like. But breaks so fast. Me can make from shiny armour. Lil' one want to trade?"] = "Very noble. Shiny. Me like. But breaks so fast. Me can make from shiny armour. Lil' one want to trade?",
+	["Firy steel it is. Need green ones' breath to melt. Or red even better. Me can make from shield. Lil' one want to trade?"] = "Firy steel it is. Need green ones' breath to melt. Or red even better. Me can make from shield. Lil' one want to trade?",
+	["Good iron is. Me friends use it much for fight. Me can make from weapon. Lil' one want to trade?"] = "Good iron is. Me friends use it much for fight. Me can make from weapon. Lil' one want to trade?",
+	["Hellsteel is. Cursed and evil. Dangerous to work with. Me can make from evil helmet. Lil' one want to trade?"] = "Hellsteel is. Cursed and evil. Dangerous to work with. Me can make from evil helmet. Lil' one want to trade?",
+	["Uh. Me can make some nasty lil' bolt from soul orbs. Lil' one want to trade all?"] = "Uh. Me can make some nasty lil' bolt from soul orbs. Lil' one want to trade all?",
+	["Uh. Me can make some gear wheel from iron ores. Lil' one want to trade?"] = "Uh. Me can make some gear wheel from iron ores. Lil' one want to trade?",
+	["whoooosh There!"] = "whoooosh There!",
+	["There is no gold ingot with you."] = "There is no gold ingot with you.",
+	["You dont have a crown armor!"] = "You dont have a crown armor!",
+	["You dont have a devil helmet!"] = "You dont have a devil helmet!",
+	["You dont have a giant sword!"] = "You dont have a giant sword!",
+	["Lil' one does not have any iron ores."] = "Lil' one does not have any iron ores.",
+	["You dont have soul orbs!"] = "You dont have soul orbs!",
+	["Cling clang!"] = "Cling clang!",
 }

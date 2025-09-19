@@ -1,5 +1,4 @@
---FUTURE_PATCH_TODO
---add markers for training statue
+--ToDo add markers for training statue
 
 local jobToMarkId = {
 	[JOB_DISTANCE_SOULORB] = MAPMARK_BAG,
@@ -183,6 +182,7 @@ local function onAcceptLanguage(player, button, choice)
 
 	player:setLanguage(nextLang)
 	player:sendTrackedMissions()
+	player:reloadKnownNpcs()
 	return true
 end
 

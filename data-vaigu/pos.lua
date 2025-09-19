@@ -14,6 +14,41 @@ function Position.isPosition(obj)
 	return getmetatable(obj) == getmetatable(Position)
 end
 
+function Position.hasValidCoords(obj)
+	if not obj or type(obj) ~= "table" then
+		return false
+	end
+
+	if not (obj.x and obj.y and obj.z) then
+		return false
+	end
+
+	if obj.x <= 0 or obj.y <= 0 then
+		return false
+	end
+
+	if obj.z < 0 then
+		return false
+	end
+
+	return true
+end
+
+function Player:teleportToStoredOrTemple(storage, sendMagicEffect)
+	local posTab = self:getStorageValueByKeyRaw(storage)
+	if not Position.hasValidCoords(posTab) then
+		self:teleportTo(self:getTown():getTemplePosition(), true)
+		return false
+	end
+
+	local pos = Position(posTab)
+	self:teleportTo(pos)
+	if sendMagicEffect ~= false then
+		pos:sendMagicEffect(CONST_ME_TELEPORT)
+	end
+	return true
+end
+
 ---@class Area
 ---@field positions Position[]
 ---@field corner1 Position

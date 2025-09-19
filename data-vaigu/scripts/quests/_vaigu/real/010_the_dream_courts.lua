@@ -3,7 +3,7 @@ local quest = Quest(LOCALIZERS.TheApeCity)
 quest
 	:Storage(function() end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "The Dream Courts",
 			localizer = localizer,
 			missions = {

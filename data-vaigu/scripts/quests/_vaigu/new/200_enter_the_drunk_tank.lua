@@ -53,7 +53,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Enter the Drunk Tank",
 			localizer = localizer,
 			missions = {

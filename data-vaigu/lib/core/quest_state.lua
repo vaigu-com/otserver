@@ -5,6 +5,6 @@ QuestTopics = {} --Enum topics
 QuestActions = {} --Functions to perform. Usually on successful dialog, item use, encounter finish etc
 QuestRequirements = {} --Functions to check if can proceed. Usually a dialog requirement.
 QuestConstants = {}
-Quests = {} --Questlog
+Questlog = {} --Questlog
 GlobalFunctions = {} --Ooga booga
 QuestCombat = {}

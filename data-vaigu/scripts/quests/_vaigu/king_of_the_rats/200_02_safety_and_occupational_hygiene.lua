@@ -121,7 +121,7 @@ quest
 		}
 	end)
 	:Questlog(function(localizer)
-		table.insert(Quests, {
+		table.insert(Questlog, {
 			name = "Safety and Occupational Hygiene",
 			localizer = localizer,
 			missions = {
@@ -556,7 +556,7 @@ quest
 				local document = Action()
 				function document.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					local key = item:getKey()
-					local translatedText = player:Localizer(nil):Get(item:getAttribute(ITEM_ATTRIBUTE_TEXT), { player = player, key = key })
+					local translatedText = player:Localizer(LOCALIZERS.SafetyAndOccupationalHygiene):Get(item:getAttribute(ITEM_ATTRIBUTE_TEXT), { player = player, key = key })
 					SimpleTextDisplay(player, translatedText)
 					return true
 				end

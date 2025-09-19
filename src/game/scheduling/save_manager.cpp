@@ -108,7 +108,7 @@ void SaveManager::saveAll() {
 		DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
 			for (const auto &[_, player] : players) {
 				savePlayer(player);
-				const auto account = player->account->save();
+				player->account->save();
 			}
 
 			for (const auto &[_, guild] : guilds) {

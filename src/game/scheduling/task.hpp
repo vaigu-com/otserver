@@ -52,6 +52,9 @@ public:
 	}
 
 	void cancel() {
+		if (isExecuting) {
+			return;
+		}
 		func = nullptr;
 	}
 
@@ -109,6 +112,7 @@ private:
 	uint32_t delay = 0;
 	bool cycle = false;
 	bool log = true;
+	mutable bool isExecuting = false;
 
 	friend class Dispatcher;
 };
