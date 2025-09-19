@@ -106,7 +106,7 @@ monster.heals = {
 
 mType.onThink = function(monster, interval) end
 
-mType.onAppear = function(monster, creature)
+mType.onSpawn = function(monster, creature)
 	if monster:getType():isRewardBoss() then
 		monster:setReward(true)
 	end

@@ -115,7 +115,6 @@ mType.onSay = function(listener, talker, type, message)
 	npcLock:Set(Game.createNpc("Diogenes", Position(6237, 1027, 5)))
 end
 
-mType.onAppear = function(monster, creature) end
 mType:register(monster)
 
 Storage.Diogenes = {
