@@ -1,40 +1,58 @@
 function onUpdateDatabase()
-	logger.info("Updating database to version 50 (vaigu custom)")
+	logger.info("Updating database to version 50 (feat: support to 14.12)")
 
-	logger.info("(add language to player)")
 	db.query([[
-		ALTER TABLE players ADD COLUMN language VARCHAR(2) DEFAULT 'EN';
+		ALTER TABLE `player_charms`
+		DROP `rune_wound`,
+		DROP `rune_enflame`,
+		DROP `rune_poison`,
+		DROP `rune_freeze`,
+		DROP `rune_zap`,
+		DROP `rune_curse`,
+		DROP `rune_cripple`,
+		DROP `rune_parry`,
+		DROP `rune_dodge`,
+		DROP `rune_adrenaline`,
+		DROP `rune_numb`,
+		DROP `rune_cleanse`,
+		DROP `rune_bless`,
+		DROP `rune_scavenge`,
+		DROP `rune_gut`,
+		DROP `rune_low_blow`,
+		DROP `rune_divine`,
+		DROP `rune_vamp`,
+		DROP `rune_void`
 	]])
 
-	logger.info("(allow multiple boosted monsters for one day)")
 	db.query([[
-		ALTER TABLE boosted_creature DROP PRIMARY KEY;
+		ALTER TABLE `player_charms`
+		ADD `minor_charm_echoes` SMALLINT NOT NULL DEFAULT '0',
+		ADD `max_charm_points` SMALLINT NOT NULL DEFAULT '0',
+		ADD `max_minor_charm_echoes` SMALLINT NOT NULL DEFAULT '0',
+		ADD `charms` BLOB NULL
 	]])
 
-	logger.info("(add failstack to preyslot)")
 	db.query([[
-		ALTER TABLE player_prey ADD failstack blob;
+		ALTER TABLE `player_charms`
+		MODIFY COLUMN `charm_points` SMALLINT NOT NULL DEFAULT '0',
+		MODIFY COLUMN `UsedRunesBit` INT NOT NULL DEFAULT '0',
+		MODIFY COLUMN `UnlockedRunesBit` INT NOT NULL DEFAULT '0',
+		MODIFY COLUMN `charm_expansion` BOOLEAN NOT NULL DEFAULT 0,
+		CHANGE COLUMN `player_guid` `player_id` int(11) NOT NULL
 	]])
 
-	logger.info("(add start date)")
 	db.query([[
-			INSERT INTO `server_config` (`config`, `value`) VALUES ('start_date', '2025-06-01 20:00:01');
-		]])
+		ALTER TABLE player_charms
+		ADD CONSTRAINT player_charms_players_fk
+		FOREIGN KEY (player_id) REFERENCES players (id)
+	]])
 
-	logger.info("(change default town to id 1)")
 	db.query([[
-				UPDATE players 
-				SET
-					town_id = 1,
-					level = 1,
-					health = 150,
-					healthmax = 150,
-					mana = 55,
-					manamax = 55,
-					cap = 400
-				WHERE LOWER(name) LIKE "%sample%";
-			]])
-
-	logger.info("Updated database to version 50 (vaigu custom)")
-	return true
+		UPDATE `player_charms` pc
+		JOIN `players` p ON pc.player_id = p.id
+		SET 
+			pc.minor_charm_echoes = 100,
+			pc.max_minor_charm_echoes = 100
+		WHERE p.vocation >= 5
+	]])
 end
