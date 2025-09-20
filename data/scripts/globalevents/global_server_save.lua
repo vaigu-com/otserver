@@ -12,7 +12,13 @@ local function ServerSave()
 	end
 
 	-- Update daily reward next server save timestamp
-	UpdateDailyRewardStorage(DailyReward.storages.lastServerSave, os.time())
+	UpdateDailyRewardGlobalStorage(DailyReward.storages.lastServerSave, os.time())
+
+	-- Reset raid daily counters
+	for name, raid in pairs(Raid.registry) do
+		raid.kv:set("checks-today", 0)
+		raid.kv:set("last-check-date", os.date("%Y%m%d"))
+	end
 end
 
 local function ServerSaveWarning(time)

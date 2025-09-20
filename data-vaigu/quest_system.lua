@@ -142,7 +142,6 @@ function Quest:AddDialog(context)
 		self.npcs[name].missions[mission] = self.npcs[name].missions[mission] or {}
 		self.npcs[name].missions[mission].states = self.npcs[name].missions[mission].states or {}
 		self.npcs[name].missions[mission].states[state] = dialogs
-		self.npcs[name].missions[mission].localizer = self.localizer
 	end
 
 	return self
@@ -264,6 +263,7 @@ function QuestRegistry.NormalizeQuestlog()
 				mission.finishedState = mission.finishedState or MISSION_FINISHED
 				mission.missionId = NextMissionId()
 				mission.localizer = mission.localizer or quest.localizer
+				mission.questId = quest.questId
 				for _, desc in pairs(mission.states or {}) do
 					if type(desc) == "string" then
 						MissingStrings:TestAllLanaguages(desc, quest.localizer)

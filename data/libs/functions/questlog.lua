@@ -143,6 +143,7 @@ function Player.resetTrackedMissions(self, missionIds)
 		if Game.isQuestStorage(mission.storage) and self:isMissionOngoing(mission) then
 			table.insert(trackedMissionStorages, mission.storage)
 			local data = {
+				questId = questId,
 				missionId = mission.missionId,
 				questName = self:getTranslatedQuestName(quest),
 				missionName = self:getTranslatedMissionName(mission),
@@ -325,11 +326,12 @@ function Player.sendQuestLogMainPage(self)
 		if self:isQuestOngoing(quest) then
 			msg:addU16(quest.questId)
 			local translatedQuestName = self:Localizer(quest.localizer):Get(quest.name)
-			if self:isQuestCompleted(quest) then
-				translatedQuestName = translatedQuestName .. completedSuffix(self)
-			end
 			msg:addString(translatedQuestName)
-			msg:addByte(self:isQuestCompleted(quest))
+			local completedByte = 0x00
+			if self:isQuestCompleted(quest) then
+				completedByte = 0x01
+			end
+			msg:addByte(completedByte)
 		end
 	end
 	msg:sendToPlayer(self)
@@ -368,6 +370,7 @@ function Player.sendTrackedQuests(self, remainingTrackingSlots, missions)
 	msg:addByte(remainingTrackingSlots)
 	msg:addByte(#missions)
 	for _, mission in ipairs(missions) do
+		msg:addU16(mission.questId)
 		msg:addU16(mission.missionId)
 		msg:addString(mission.questName, "Player.sendTrackedQuests - mission.questName")
 		msg:addString(mission.missionName, "Player.sendTrackedQuests - mission.missionName")
@@ -381,7 +384,9 @@ function Player.sendTrackedMission(self, mission)
 	local msg = NetworkMessage()
 	msg:addByte(0xD0)
 	msg:addByte(0x00)
+	msg:addU16(mission.questId)
 	msg:addU16(mission.missionId)
+	msg:addString(mission.questName)
 	msg:addString(mission.missionName, "Player.sendTrackedMission - mission.missionName")
 	msg:addString(mission.missionDesc, "Player.sendTrackedMission - mission.missionDesc")
 	msg:sendToPlayer(self)

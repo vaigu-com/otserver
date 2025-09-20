@@ -347,6 +347,10 @@ public:
 	uint16_t secondReward = 0;
 };
 
+static const std::unique_ptr<PreySlot> &PreySlotNull {};
+static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
+static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
+
 class IOPrey {
 public:
 	IOPrey() = default;

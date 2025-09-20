@@ -402,6 +402,8 @@ database_backup
 cmake-build-*
 out
 
+compile_commands.json
+
 # RME backups
 data-vaigu/world/backups/*
 data-vaigu/world/custom/backups/*
