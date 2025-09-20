@@ -1,3 +1,4 @@
+--[[
 -- Vaigu custom
 local maxDmg = 12
 
@@ -38,3 +39,4 @@ scorcher:id(21348)
 scorcher:mana(1)
 scorcher:range(3)
 scorcher:register()
+]]
