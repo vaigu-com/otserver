@@ -12,7 +12,7 @@ local context = {
 	name = name,
 	displayName = displayName,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

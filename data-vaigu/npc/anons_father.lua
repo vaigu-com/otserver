@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 115,
 	lookAddons = 1,
 }
-local dialogs = {
+local customDialogs = {
 	[{ "sprzet", "sprzet wedkarski", "oferta", "ofert" }] = {
 		text = "Say {trade} if you want to see my offer.",
 	},
@@ -15,7 +15,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

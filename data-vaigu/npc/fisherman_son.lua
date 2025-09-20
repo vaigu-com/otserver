@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 95,
 	lookAddons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one.",
 	},
@@ -80,7 +80,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	checkInteraction = false,
 	isTransportNpc = true,

@@ -27,7 +27,7 @@ local shop = {
 	{ itemName = "Mug of wine", clientId = 2880, subType = 2, buy = 10 },
 	{ itemName = "Empty mead horn", clientId = 7140, buy = 320 },
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some {rice}.",
 	},
@@ -36,7 +36,7 @@ local context = {
 	name = name,
 	shop = shop,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

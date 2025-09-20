@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 121,
 	lookAddons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[{ "konmuld" }] = {
 		text = "Just a common drunkard... if you don't give him a drink, he won't talk to you.",
 	},
@@ -20,7 +20,7 @@ local shop = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	shop = shop,
 }

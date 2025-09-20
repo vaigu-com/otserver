@@ -21,7 +21,7 @@ local voices = {
 		text = "Ehhh, gdyby tylko te cholerne malpy zostawily nasze magazyny w spokoju! Niech ktos pogada z przywodca malp.",
 	},
 }
-local dialogs = {
+local customDialogs = {
 	[{ "syrop", "plyn", "fluid", "kaszel", "syrup" }] = {
 		text = "At the moment we're almost out of syrup. Those monkeys keep pestering us about it. That's why we charge 1000 gold for each bottle, do you have such money?",
 		nextTopic = QuestTopics.TheApeCity.ConfirmBuyCoughSyrup,
@@ -55,7 +55,7 @@ local context = {
 	greetJob = JOB_MAGIC_WILDCARD,
 	jobs = { JOB_MAGIC, JOB_MAGIC_WILDCARD },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

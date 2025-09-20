@@ -1,4 +1,4 @@
-local dialogs = {}
+local customDialogs = {}
 local voices = {
 	interval = 15000,
 	chance = 50,
@@ -19,7 +19,7 @@ local outfit = {
 local context = {
 	name = "Mary",
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 

@@ -21,7 +21,7 @@ local context = {
 	greetJob = JOB_ARMOR_WEAPON,
 	jobs = { JOB_ARMOR_WEAPON },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

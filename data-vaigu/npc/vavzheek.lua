@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 131,
 	lookAddons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[TRAVEL_KEYWORDS[TRAVEL_METHOD.TRAIN]] = {
 		text = "",
 		specialActionsOnSuccess = {
@@ -33,7 +33,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	checkInteraction = false,
 	isTransportNpc = true,

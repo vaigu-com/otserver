@@ -36,6 +36,23 @@ local function getJobsOnBuyItem(jobs, greetJob)
 	return JOB_ON_BUY[greetJob]
 end
 
+local function hasGREETkeywordInCustomDialogs(npcData)
+	local dialogs = npcData.customDialogs or {}
+	for keywords in pairs(dialogs) do
+		if type(keywords) ~= "table"then
+			logger.warn("[hasGREETkeywordInCustomDialogs] keywords arent table")
+			PrintAnything(keywords)
+			logger.warn("\n")
+			PrintAnything(npcData)
+		end
+ 		if table.contains(keywords, GREET) then
+			return true
+		end
+	end
+
+	return false
+end
+
 ---@param internalNpcName string string REQUIRED
 ---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
 ---@param npcDescription string? optional - greentext when using look on npc, Default: "a " + internalNpcName
@@ -52,8 +69,8 @@ function RegisterNpcDefinition(npcData)
 	if npcData.greetJob and not npcData.jobs then
 		logger.warn(T("[RegisterNpcDefinition] npc :name: has greetJob but no jobs.", { name = name }))
 	end
-	if npcData.jobs and not npcData.greetJob then
-		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob.", { name = name }))
+	if npcData.jobs and not npcData.greetJob and not hasGREETkeywordInCustomDialogs(npcData) then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob and does not have GREET as keyword in its custom dialogs.", { name = name }))
 	end
 
 	local greetJob = npcData.greetJob

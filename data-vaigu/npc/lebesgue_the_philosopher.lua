@@ -1,4 +1,4 @@
-local dialogs = {}
+local customDialogs = {}
 local voices = {
 	interval = 15000,
 	chance = 50,
@@ -21,7 +21,7 @@ local context = {
 	greetJob = JOB_DISTANCE_SOULORB,
 	jobs = { JOB_SOULORB, JOB_DISTANCE },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 

@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 1,
 	lookMount = 438,
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "Hello. What brings you here?",
 	},
@@ -17,6 +17,6 @@ local dialogs = {
 local context = {
 	name = "Gandalf",
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 }
 NpcRegistry:AppendNpcData(context)

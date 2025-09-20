@@ -13,7 +13,7 @@ local context = {
 	greetJob = JOB_BANK,
 	jobs = { JOB_BANK, JOB_POST },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

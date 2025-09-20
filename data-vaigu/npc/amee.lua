@@ -11,7 +11,7 @@ local outfit = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	walkRadius = 0,
 }

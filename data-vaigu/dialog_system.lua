@@ -289,6 +289,7 @@ end
 ---@field localizer number
 ---@field greetContext nil|table
 ---@field requirements table
+---@field incomprehensibleError string
 DialogContext = {}
 DialogContext.__index = DialogContext
 setmetatable(DialogContext, {
@@ -322,14 +323,9 @@ function DialogContext:SendIncomprehensibleError()
 	local player = self.player
 	local npc = self.npc
 	local npcHandler = self.npcHandler
-	local npcDialogData = self.npcDialogData
+	local incomprehensibleError = self.incomprehensibleError or INCOMPREHENSIBLE
 
-	local errorMessageIdentifier = INCOMPREHENSIBLE
-	if npcDialogData[LOCALIZERS.Universal] and npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE] then
-		errorMessageIdentifier = npcDialogData[LOCALIZERS.Universal][INCOMPREHENSIBLE].text
-	end
-
-	local errorMessage = player:Localizer(LOCALIZERS.Universal):Context(self):Get(errorMessageIdentifier)
+	local errorMessage = player:Localizer(LOCALIZERS.Universal):Context(self):Get(incomprehensibleError)
 	npcHandler:say(errorMessage, npc, player)
 	return true
 end

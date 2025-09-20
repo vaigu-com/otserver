@@ -19,7 +19,7 @@ local voices = {
 	{ text = "VIP z Biedronki? Te siki? Pfff" },
 	{ text = "Wymiana pustych fiolek- butelek po miksturach!" },
 }
-local dialogs = {
+local customDialogs = {
 	[{
 		"butelki",
 		"vials",
@@ -54,7 +54,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

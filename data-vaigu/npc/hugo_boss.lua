@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 0,
 	lookAddons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[{ "hitler", "auschwitz", "holocaust" }] = {
 		text = "I know nothing about it.",
 	},
@@ -15,7 +15,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

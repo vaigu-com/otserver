@@ -17,7 +17,7 @@ local voices = {
 	{ text = "Cooo? Yyyy no tego, mial kurde" },
 	{ text = "Byla sakwa z hajsem, nie ma sakwy" },
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!",
 	},
@@ -30,7 +30,7 @@ local context = {
 	greetJob = JOB_JEWELLER,
 	jobs = { JOB_JEWELLER },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

@@ -7,13 +7,12 @@ local outfit = {
 	lookFeet = 114,
 	lookAddons = 0,
 }
-local dialogs = {
-	[INCOMPREHENSIBLE] = { text = "Go away, or even better: flip off." },
-}
+
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
+	incomprehensibleError = "Go away, or even better: flip off.",
 }
 NpcRegistry:AppendNpcData(context)

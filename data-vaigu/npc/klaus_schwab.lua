@@ -7,11 +7,10 @@ local outfit = {
 	lookFeet = 114,
 	lookAddons = 0,
 }
-local dialogs = {
-	[WALKAWAY] = { text = "Lebewohl." },
-	[FAREWELL] = { text = "Auf wiedersehen." },
+local customDialogs = {
+	[{ WALKAWAY }] = { text = "Lebewohl." },
+	[{ FAREWELL }] = { text = "Auf wiedersehen." },
 	[{ GREET }] = { text = "Strammstehen!" },
-	[INCOMPREHENSIBLE] = { text = "Ich verstehe kein einziges wort." },
 	[{ "hitler", "auschwitz", "holocaust" }] = {
 		text = "Ich weiss nichts daruber.",
 	},
@@ -19,7 +18,8 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
+	incomprehensibleError = "Ich verstehe kein einziges wort."
 }
 NpcRegistry:AppendNpcData(context)

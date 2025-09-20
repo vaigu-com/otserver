@@ -24,7 +24,7 @@ local context = {
 	greetJob = JOB_SOFT_BOOTS_RECHARGE,
 	jobs = { JOB_SOFT_BOOTS_RECHARGE },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)
