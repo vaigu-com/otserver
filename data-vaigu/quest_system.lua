@@ -263,8 +263,12 @@ function QuestRegistry.NormalizeQuestlog()
 				mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
 				mission.finishedState = mission.finishedState or MISSION_FINISHED
 				mission.missionId = NextMissionId()
+
+				-- 14.x protocol compliance
 				mission.localizer = mission.localizer or quest.localizer
 				mission.questId = quest.questId
+				mission.questName = quest.name
+
 				for _, desc in pairs(mission.states or {}) do
 					if type(desc) == "string" then
 						MissingStrings:TestAllLanaguages(desc, quest.localizer)

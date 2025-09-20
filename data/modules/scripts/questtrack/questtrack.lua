@@ -1,9 +1,9 @@
-local playerIdFirstLoginSinceStart = {}
+local playerLoggedInEarlier = {}
 
 function onRecvbyte(player, msg, byte)
 	if byte == 0xD0 then
-		if not playerIdFirstLoginSinceStart[player:getId()] then
-			playerIdFirstLoginSinceStart[player:getId()] = true
+		if not playerLoggedInEarlier[player:getId()] then
+			playerLoggedInEarlier[player:getId()] = true
 			player:resetTrackedMissions(player:getTrackedMissionIds())
 			player:sendQuestLogMainPage()
 			return
