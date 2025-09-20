@@ -383,8 +383,4 @@ public:
 	std::vector<PreyMonster> preyMonsters;
 };
 
-static const std::unique_ptr<PreySlot> &PreySlotNull {};
-static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
-static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
-
 constexpr auto g_ioprey = IOPrey::getInstance;

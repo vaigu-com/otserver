@@ -155,12 +155,6 @@ void SaveManager::saveAll() {
 	if (!Database::getInstance().connect()) {
 		throw std::runtime_error("Failed to connect to database.");
 	}
-	double duration_guilds = bm_guilds.duration();
-	if (duration_guilds > 1000.0) {
-		logger.info("Guilds saved in {:.2f} seconds.", duration_guilds / 1000.0);
-	} else {
-		logger.info("Guilds saved in {} milliseconds.", duration_guilds);
-	}
 
 	DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
 		for (const auto &[_, player] : players) {

@@ -129,7 +129,6 @@ protected:
 	virtual std::vector<std::string> loadPrefix(const std::string &prefix = "") = 0;
 
 private:
-	void setLocked(const std::string &key, const ValueWrapper &value);
 	void processEvictions();
 
 	phmap::parallel_flat_hash_map<std::string, std::pair<ValueWrapper, std::list<std::string>::iterator>> store_;
