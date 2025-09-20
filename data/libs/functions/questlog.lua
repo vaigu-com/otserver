@@ -143,7 +143,7 @@ function Player.resetTrackedMissions(self, missionIds)
 		if Game.isQuestStorage(mission.storage) and self:isMissionOngoing(mission) then
 			table.insert(trackedMissionStorages, mission.storage)
 			local data = {
-				questId = questId,
+				questId = mission.questId,
 				missionId = mission.missionId,
 				questName = self:getTranslatedQuestName(quest),
 				missionName = self:getTranslatedMissionName(mission),
@@ -370,8 +370,8 @@ function Player.sendTrackedQuests(self, remainingTrackingSlots, missions)
 	msg:addByte(remainingTrackingSlots)
 	msg:addByte(#missions)
 	for _, mission in ipairs(missions) do
-		msg:addU16(mission.questId)
 		msg:addU16(mission.missionId)
+		msg:addU16(mission.questId)
 		msg:addString(mission.questName, "Player.sendTrackedQuests - mission.questName")
 		msg:addString(mission.missionName, "Player.sendTrackedQuests - mission.missionName")
 		msg:addString(mission.missionDesc, "Player.sendTrackedQuests - mission.missionDesc")
