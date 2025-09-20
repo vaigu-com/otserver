@@ -183,7 +183,7 @@ function Game.calculateOngoingQuestsCount(player)
 	return count
 end
 
-function Game.calculateOngoingMissionsByQuest(player, quest)
+function Game.countOngoingMissionsByQuest(player, quest)
 	local count = 0
 	if not quest then
 		return count
@@ -324,13 +324,14 @@ function Player.sendQuestLogMainPage(self)
 	msg:addU16(Game.calculateOngoingQuestsCount(self))
 	for _, quest in pairs(Questlog) do
 		if self:isQuestOngoing(quest) then
-			msg:addU16(quest.questId)
 			local translatedQuestName = self:Localizer(quest.localizer):Get(quest.name)
-			msg:addString(translatedQuestName)
 			local completedByte = 0x00
 			if self:isQuestCompleted(quest) then
 				completedByte = 0x01
 			end
+
+			msg:addU16(quest.questId)
+			msg:addString(translatedQuestName)
 			msg:addByte(completedByte)
 		end
 	end
@@ -348,7 +349,7 @@ function Player.sendQuestline(self, questId)
 	local msg = NetworkMessage()
 	msg:addByte(0xF1)
 	msg:addU16(questId)
-	msg:addByte(Game.calculateOngoingMissionsByQuest(self, quest))
+	msg:addByte(Game.countOngoingMissionsByQuest(self, quest))
 	for _, mission in pairs(missions) do
 		if self:isMissionOngoing(mission) then
 			if self:getClient().version >= 1200 then
