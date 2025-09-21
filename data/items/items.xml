@@ -30591,7 +30591,7 @@
 		<attribute key="weight" value="80"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ring"/>
-			<attribute key="vocation" value="None;true"/>
+			<!-- Vaigu custom <attribute key="vocation" value="None;true"/>--> 
 		</attribute>
 	</item>
 	<item id="12670" article="a" name="star ring">
