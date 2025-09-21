@@ -1,4 +1,4 @@
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "Hello, hello! Hundred percent recommended seller here. Take a look at my offer, say {trade}.",
 	},
@@ -26,7 +26,7 @@ local context = {
 	name = "Jack of all Swindles",
 	jobs = { JOB_CREATURE_PRODUCT },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

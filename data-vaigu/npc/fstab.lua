@@ -14,7 +14,7 @@ local voices = {
 	{ text = "Jesli szukasz magicznej rozdzki to u mnie masz pelen wybor." },
 }
 
-local dialogs = {}
+local customDialogs = {}
 
 local outfit = {
 	lookType = 130,
@@ -29,7 +29,7 @@ local context = {
 	greetJob = JOB_MAGIC_WILDCARD,
 	jobs = { JOB_WILDCARD, JOB_MAGIC },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

@@ -22,7 +22,7 @@ local context = {
 	greetJob = JOB_MAGIC_WILDCARD,
 	jobs = { JOB_MAGIC, JOB_WILDCARD },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

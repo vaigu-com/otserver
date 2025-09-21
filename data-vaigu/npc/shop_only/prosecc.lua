@@ -13,7 +13,7 @@ local context = {
 	greetJob = JOB_DISTANCE_SOULORB,
 	jobs = { JOB_DISTANCE, JOB_SOULORB },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

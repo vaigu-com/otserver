@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 95,
 	lookAddons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[{ "sail", "plynac" }] = {
 		text = "",
 		specialActionsOnSuccess = {
@@ -32,7 +32,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	checkInteraction = false,
 	isTransportNpc = true,

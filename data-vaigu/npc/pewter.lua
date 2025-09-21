@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 116,
 	lookAddons = 1,
 }
-local dialogs = {
+local customDialogs = {
 	[{ "bug milk" }] = {
 		text = "My friend from this village can provide you wih it.",
 	},
@@ -31,7 +31,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

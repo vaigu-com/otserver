@@ -16,7 +16,7 @@ local voices = {
 	{ text = "Jak mnie denerwuja te limity na wpisy ehh" },
 	{ text = "W moim sercu tylko guwnowpis!" },
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
 	},
@@ -35,7 +35,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

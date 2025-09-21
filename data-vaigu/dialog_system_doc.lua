@@ -46,7 +46,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 		confirmBuyingCake = 1,
 		confirmBuyingBread = 2,
 	}
-	local dialogs = {
+	local customDialogs = {
 		[{ "cake" }] = {
 			text = "Would you like to buy a cake?",
 			nextTopic = topics.confirmBuyingCake,
@@ -408,7 +408,7 @@ local function exampleNpc()
 	-- If a requirement is not met, then either:
 	--  If this failed requirement has text on fail(eg. textFailedRequirement, textNoRequiredState, textNoRequiredItems), then the npc will say it and dialog is considered fail-resolved
 	--  Else if this requirement has no text on fail, dialog will be discarded and quest system will try to process the next dialog.
-	local dialogs = {
+	local customDialogs = {
 		[LOCALIZERS.Universal] = {
 			-- This dialog can always be accessed, regardless of main quest state. This means it will be processed lasd (Order of processing dialogs)
 			-- In case of conflicting keywords you should use topic to differentiate
@@ -527,7 +527,7 @@ local function exampleNpc()
 		greetJob = JOB_FOOD,
 		jobs = { JOB_FOOD },
 		outfit = outfit,
-		dialogs = dialogs,
+		customDialogs = customDialogs,
 		voices = voices,
 	}
 	RegisterNpcDefinition(context)
@@ -535,9 +535,9 @@ end
 
 -- Example of npc that is generated using this npc-specific dialogs (quests etc.) combined with job from a template
 -- In this example the JOB_FOOD is used, so npc will have all dialogs and shop offer defined in JOB_FOOD template
--- Dialogs defined in "local dialogs = {" cannot override the job's template dialogs in case of conflicts. Example of overcoming this below
+-- Dialogs defined in "local customDialogs = {" cannot override the job's template dialogs in case of conflicts. Example of overcoming this below
 local function exampleNpcFromGenerator()
-	local dialogs = {
+	local customDialogs = {
 		[LOCALIZERS.Universal] = {
 			-- Warning! This wont override the greet dialog from template
 			-- Set context.greetJob below to nil if you want custom greet and define it yourself like below
@@ -565,7 +565,7 @@ local function exampleNpcFromGenerator()
 		greetJob = JOB_FOOD,
 		jobs = { JOB_FOOD },
 		outfit = outfit,
-		dialogs = dialogs,
+		customDialogs = customDialogs,
 		voices = voices,
 	}
 

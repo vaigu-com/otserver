@@ -18,7 +18,7 @@ local voices = {
 	{ text = "Hum hum, huhum" },
 	{ text = "Silly lil' human" },
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "Hum Humm! Welcume {here} li'l Player.",
 	},
@@ -144,7 +144,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

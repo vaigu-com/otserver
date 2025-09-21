@@ -7,7 +7,7 @@ local outfit = {
 	lookAddons = 3,
 }
 
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "Hello hello, |PLAYERNAME| I am Jurek and I sell some.. protection thing.. Ask about {trade} if you want to see!",
 	},
@@ -25,7 +25,7 @@ local context = {
 	name = "Owsiak",
 	jobs = { JOB_AOL },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 

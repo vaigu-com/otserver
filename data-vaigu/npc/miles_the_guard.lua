@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 19,
 	lookAddons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[{ "camp", "obozu", "oboz" }] = {
 		text = "Nearest bandit camp is located east from here. Moustachilles is the leader there.",
 	},
@@ -15,7 +15,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

@@ -1,4 +1,4 @@
-local dialogs = {
+local customDialogs = {
 	[{ "backpack", "plecak" }] = {
 		text = "Some time ago orcs stole my old red backpack. Maybe you have found it?",
 		nextTopic = 2,
@@ -41,7 +41,7 @@ local context = {
 	greetJob = JOB_ARMOR_WEAPON,
 	jobs = { JOB_ARMOR_WEAPON },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 

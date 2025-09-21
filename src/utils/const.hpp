@@ -75,5 +75,6 @@ static const std::string PERMANENTLY_CLOSED = "PERMANENTLY_CLOSED";
 static const std::string KEY_IS_ON_MINIGAME = "KEY_IS_ON_MINIGAME";
 static const std::string KEY_MOUNT_BONUS_SPEED = "KEY_MOUNT_BONUS_SPEED";
 
-#define IS_IN_KEYRANGE(key, range) \
-	(key >= PSTRG_##range##_START && ((key - PSTRG_##range##_START) <= PSTRG_##range##_SIZE))
+constexpr bool isStorageKeyInRange(uint32_t k, uint32_t start, uint32_t size) {
+	return k >= start && (k - start) <= size;
+}

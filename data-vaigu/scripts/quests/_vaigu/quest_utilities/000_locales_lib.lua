@@ -117,7 +117,7 @@ function Localizer:New(player, localizer)
 	local newObj = {}
 	newObj.player = player
 	newObj.localizer = localizer
-	if not localizerToId[newObj.localizer] then
+	if not Localizer.isLocalizer(newObj.localizer) then
 		logger.warn(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer }))
 	end
 	newObj.translated = nil
@@ -131,6 +131,11 @@ setmetatable(Localizer, {
 		return class:New(...)
 	end,
 })
+
+---@return boolean isLocalizer
+function Localizer.isLocalizer(localizer)
+	return localizerToId[localizer] ~= nil
+end
 
 ---@param translateMe string|table
 function Localizer:Get(translateMe)

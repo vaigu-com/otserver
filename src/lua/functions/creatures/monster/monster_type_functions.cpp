@@ -856,6 +856,7 @@ int MonsterTypeFunctions::luaMonsterTypeCombatImmunities(lua_State* L) {
 		                "Unknown immunity name {} for monster: {}",
 		                immunity, monsterType->name);
 		lua_pushnil(L);
+		return 1;
 	}
 
 	monsterType->info.m_damageImmunities.set(combatTypeToIndex(combatType), true);
@@ -914,6 +915,7 @@ int MonsterTypeFunctions::luaMonsterTypeConditionImmunities(lua_State* L) {
 		                "Unknown immunity name: {} for monster: {}",
 		                immunity, monsterType->name);
 		lua_pushnil(L);
+		return 1;
 	}
 
 	monsterType->info.m_conditionImmunities[static_cast<size_t>(conditionType)] = true;
@@ -1371,6 +1373,10 @@ int MonsterTypeFunctions::luaMonsterTypeRace(lua_State* L) {
 				monsterType->info.race = RACE_ENERGY;
 			} else if (race == "ink") {
 				monsterType->info.race = RACE_INK;
+			} else if (race == "chocolate") {
+				monsterType->info.race = RACE_CHOCOLATE;
+			} else if (race == "candy") {
+				monsterType->info.race = RACE_CANDY;
 			} else {
 				g_logger().warn("[MonsterTypeFunctions::luaMonsterTypeRace] - "
 				                "Unknown race type {}",

@@ -7,15 +7,15 @@ local outfit = {
 	lookFeet = 94,
 	addons = 0,
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = { text = "Waddup, G?" },
-	[WALKAWAY] = { text = "Peace God." },
-	[FAREWELL] = { text = "Seeee yaaa." },
+	[{ WALKAWAY }] = { text = "Peace God." },
+	[{ FAREWELL }] = { text = "Seeee yaaa." },
 }
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

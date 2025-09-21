@@ -513,6 +513,10 @@ void Creature::onDeath() {
 		lastHitCreature->deprecatedOnKilledCreature(thisCreature, true);
 		lastHitUnjustified = lastHitCreature->onKilledPlayer(thisPlayer, true);
 		lastHitCreatureMaster = lastHitCreature->getMaster();
+		if (getZoneType() == ZONE_PVP) {
+			setDropLoot(false);
+			setSkillLoss(false);
+		}
 	} else {
 		lastHitCreatureMaster = nullptr;
 	}
@@ -669,6 +673,14 @@ bool Creature::dropCorpse(const std::shared_ptr<Creature> &lastHitCreature, cons
 
 			case RACE_INK:
 				splash = Item::CreateItem(ITEM_FULLSPLASH, FLUID_INK);
+				break;
+
+			case RACE_CHOCOLATE:
+				splash = Item::CreateItem(ITEM_FULLSPLASH, FLUID_CHOCOLATE);
+				break;
+
+			case RACE_CANDY:
+				splash = Item::CreateItem(ITEM_FULLSPLASH, FLUID_CANDY);
 				break;
 
 			default:
@@ -1375,6 +1387,30 @@ std::shared_ptr<Condition> Creature::getCondition(ConditionType_t type, Conditio
 	return nullptr;
 }
 
+std::vector<std::shared_ptr<Condition>> Creature::getCleansableConditions() const {
+	std::vector<std::shared_ptr<Condition>> cleansableConditions;
+	for (const auto &condition : conditions) {
+		switch (condition->getType()) {
+			case CONDITION_POISON:
+			case CONDITION_FIRE:
+			case CONDITION_ENERGY:
+			case CONDITION_FREEZING:
+			case CONDITION_CURSED:
+			case CONDITION_DAZZLED:
+			case CONDITION_BLEEDING:
+			case CONDITION_PARALYZE:
+			case CONDITION_ROOTED:
+			case CONDITION_FEARED:
+				cleansableConditions.emplace_back(condition);
+				break;
+
+			default:
+				break;
+		}
+	}
+	return cleansableConditions;
+}
+
 std::vector<std::shared_ptr<Condition>> Creature::getConditionsByType(ConditionType_t type) const {
 	std::vector<std::shared_ptr<Condition>> conditionsVec;
 	for (const auto &condition : conditions) {
@@ -1915,6 +1951,7 @@ void Creature::detachEffectById(uint16_t id) {
 	g_game().sendDetachEffect(static_self_cast<Creature>(), id);
 }
 
+// Vaigu custom
 void Creature::updateCalculatedStepSpeed() {
 	auto stepSpeed = getStepSpeed();
 	std::shared_ptr<Player> player = getPlayer();

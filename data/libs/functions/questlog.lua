@@ -114,11 +114,10 @@ function Player.setMissionAsTracked(self, mission)
 	trackedMissionStorages[mission.storage] = mission.storage
 	self:setStorageValueByKey(Storage.TrackedMissionsStorages, trackedMissionStorages)
 
-	local quest = Game.getQuestByMission(mission)
-
 	local missionData = {
+		questId = mission.questId,
 		missionId = mission.missionId,
-		questName = self:getTranslatedQuestName(quest),
+		questName = self:getTranslatedQuestName(mission.questName, mission.localizer),
 		missionName = self:getTranslatedMissionName(mission),
 		missionDesc = self:getTranslatedMissionDescription(mission),
 	}
@@ -135,16 +134,16 @@ function Player.resetTrackedMissions(self, missionIds)
 
 	for _, missionId in pairs(missionIds) do
 		local mission = Game.getMissionById(missionId)
-		local quest = Game.getQuestByMission(mission)
 		if not mission then
-			logger.warn(T("[Player::resetTrackedMissions] Player :name: is sending missionId of non-existant missionId: :missionId:", { name = self:getName(), missionId = missionId }))
+			logger.warn(T("[Player::resetTrackedMissions] Player :name: is sending missionId of non-existant missionId: :missionId:,", { name = self:getName(), missionId = missionId }))
 			break
 		end
 		if Game.isQuestStorage(mission.storage) and self:isMissionOngoing(mission) then
 			table.insert(trackedMissionStorages, mission.storage)
 			local data = {
+				questId = mission.questId,
 				missionId = mission.missionId,
-				questName = self:getTranslatedQuestName(quest),
+				questName = self:getTranslatedQuestName(mission.questName, mission.localizer),
 				missionName = self:getTranslatedMissionName(mission),
 				missionDesc = self:getTranslatedMissionDescription(mission),
 			}
@@ -182,7 +181,7 @@ function Game.calculateOngoingQuestsCount(player)
 	return count
 end
 
-function Game.calculateOngoingMissionsByQuest(player, quest)
+function Game.countOngoingMissionsByQuest(player, quest)
 	local count = 0
 	if not quest then
 		return count
@@ -269,22 +268,14 @@ function Player.isMissionCompleted(self, mission)
 	return false
 end
 
-local function completedSuffix(player)
-	local suffix = player:Localizer(LOCALIZERS.Universal):Get("QUEST_MISSION_COMPLETE_SUFFIX")
-	return suffix
-end
-
-function Player.getTranslatedQuestName(self, quest)
-	if not quest then
+function Player.getTranslatedQuestName(self, questName, localizer)
+	if not questName then
 		return "[Player::getTranslatedQuestName] An error has occurred, please contact a gamemaster."
 	end
-	local result = ""
 
+	local result = ""
 	local context = { player = self }
-	result = result .. self:Localizer(quest.localizer):Context(context):Get(quest.name)
-	if self:isQuestCompleted(quest) then
-		result = result .. completedSuffix(self)
-	end
+	result = result .. self:Localizer(localizer):Context(context):Get(questName)
 	return result
 end
 
@@ -296,9 +287,6 @@ function Player.getTranslatedMissionName(self, mission)
 
 	local context = { player = self, storage = mission.storage, task = mission.task, dailyTask = mission.dailyTask }
 	result = result .. self:Localizer(mission.localizer):Context(context):Get(mission.name)
-	if self:isMissionCompleted(mission) then
-		result = result .. completedSuffix(self)
-	end
 	return result
 end
 
@@ -323,13 +311,15 @@ function Player.sendQuestLogMainPage(self)
 	msg:addU16(Game.calculateOngoingQuestsCount(self))
 	for _, quest in pairs(Questlog) do
 		if self:isQuestOngoing(quest) then
-			msg:addU16(quest.questId)
 			local translatedQuestName = self:Localizer(quest.localizer):Get(quest.name)
+			local completedByte = 0x00
 			if self:isQuestCompleted(quest) then
-				translatedQuestName = translatedQuestName .. completedSuffix(self)
+				completedByte = 0x01
 			end
+
+			msg:addU16(quest.questId)
 			msg:addString(translatedQuestName)
-			msg:addByte(self:isQuestCompleted(quest))
+			msg:addByte(completedByte)
 		end
 	end
 	msg:sendToPlayer(self)
@@ -346,7 +336,7 @@ function Player.sendQuestline(self, questId)
 	local msg = NetworkMessage()
 	msg:addByte(0xF1)
 	msg:addU16(questId)
-	msg:addByte(Game.calculateOngoingMissionsByQuest(self, quest))
+	msg:addByte(Game.countOngoingMissionsByQuest(self, quest))
 	for _, mission in pairs(missions) do
 		if self:isMissionOngoing(mission) then
 			if self:getClient().version >= 1200 then
@@ -369,6 +359,7 @@ function Player.sendTrackedQuests(self, remainingTrackingSlots, missions)
 	msg:addByte(#missions)
 	for _, mission in ipairs(missions) do
 		msg:addU16(mission.missionId)
+		msg:addU16(mission.questId)
 		msg:addString(mission.questName, "Player.sendTrackedQuests - mission.questName")
 		msg:addString(mission.missionName, "Player.sendTrackedQuests - mission.missionName")
 		msg:addString(mission.missionDesc, "Player.sendTrackedQuests - mission.missionDesc")
@@ -382,6 +373,8 @@ function Player.sendTrackedMission(self, mission)
 	msg:addByte(0xD0)
 	msg:addByte(0x00)
 	msg:addU16(mission.missionId)
+	msg:addU16(mission.questId)
+	msg:addString(mission.questName)
 	msg:addString(mission.missionName, "Player.sendTrackedMission - mission.missionName")
 	msg:addString(mission.missionDesc, "Player.sendTrackedMission - mission.missionDesc")
 	msg:sendToPlayer(self)
@@ -438,7 +431,9 @@ function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTi
 	for _, linkedMission in pairs(linkedMissions) do
 		if self:isTrackingMissionState(linkedMission) and self:isMissionOngoing(linkedMission) then
 			local translatedMission = {
+				questId = linkedMission.questId,
 				missionId = linkedMission.missionId,
+				questName = self:getTranslatedQuestName(linkedMission.questName, linkedMission.localizer),
 				missionName = self:getTranslatedMissionName(linkedMission),
 				missionDesc = self:getTranslatedMissionDescription(linkedMission),
 			}
@@ -459,7 +454,9 @@ function Player.updateStorage(self, storage, nextValue, oldValue, currentFrameTi
 
 	if self:isTrackingMissionState(mission) and self:isMissionOngoing(mission) then
 		local translatedMission = {
+			questId = mission.questId,
 			missionId = mission.missionId,
+			questName = self:getTranslatedQuestName(mission.questName, mission.localizer),
 			missionName = self:getTranslatedMissionName(mission),
 			missionDesc = self:getTranslatedMissionDescription(mission),
 		}
@@ -474,7 +471,9 @@ function Player.sendTrackedMissions(self)
 		for _, mission in pairs(quest.missions) do
 			if self:isTrackingMissionState(mission) then
 				local translatedMission = {
+					questId = mission.questId,
 					missionId = mission.missionId,
+					questName = self:getTranslatedQuestName(mission.questName, mission.localizer),
 					missionName = self:getTranslatedMissionName(mission),
 					missionDesc = self:getTranslatedMissionDescription(mission),
 				}

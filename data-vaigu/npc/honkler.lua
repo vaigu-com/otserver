@@ -24,7 +24,7 @@ local context = {
 	greetJob = JOB_CREATURE_PRODUCT,
 	jobs = { JOB_CREATURE_PRODUCT },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

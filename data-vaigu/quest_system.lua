@@ -263,7 +263,12 @@ function QuestRegistry.NormalizeQuestlog()
 				mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
 				mission.finishedState = mission.finishedState or MISSION_FINISHED
 				mission.missionId = NextMissionId()
+
+				-- 14.x protocol compliance
 				mission.localizer = mission.localizer or quest.localizer
+				mission.questId = quest.questId
+				mission.questName = quest.name
+
 				for _, desc in pairs(mission.states or {}) do
 					if type(desc) == "string" then
 						MissingStrings:TestAllLanaguages(desc, quest.localizer)
@@ -491,7 +496,7 @@ function NpcRegistry:ExtractDialogs(npc)
 			extractedDialogs[mission.localizer][missionState][requiredState] = stateData
 		end
 	end
-	extractedDialogs[LOCALIZERS.Universal] = npc.dialogs
+	extractedDialogs[LOCALIZERS.Universal] = npc.customDialogs or {}
 
 	return extractedDialogs
 end
@@ -509,7 +514,7 @@ function NpcRegistry:ValidateNpcsArePlacedOnMap()
 	function validateNpcsArePlacedOnMapStartup.onStartup()
 		for npcName, data in pairs(self.registry) do
 			if data.spawnedByScript ~= true and not Npc(npcName) then
-				logger.warn(T("[NpcRegistry::ValidateNpcsArePlacedOnMap] Npc :npcName: is not placed on map.", { npcName = npcName }))
+				logger.warn(T("[NpcRegistry::ValidateNpcsArePlacedOnMap] Npc :npcName: is not placed on map and has no spawnedByScript flag.", { npcName = npcName }))
 				table.insert(MISSING_NPCS, npcName)
 			end
 		end

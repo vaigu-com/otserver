@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 76,
 	lookAddons = 2,
 }
-local dialogs = {
+local customDialogs = {
 	[{ ANY_MESSAGE }] = {
 		specialActionsOnSuccess = {
 			{
@@ -40,7 +40,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	spawnedByScript = true,
 }

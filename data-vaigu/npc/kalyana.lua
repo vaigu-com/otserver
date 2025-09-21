@@ -7,7 +7,7 @@ local outfit = {
 	lookFeet = 114,
 	lookAddons = 2,
 }
-local dialogs = {
+local customDialogs = {
 	[{ GREET }] = {
 		text = "As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 	},
@@ -16,7 +16,7 @@ local context = {
 	name = name,
 	jobs = { JOB_POST, JOB_BANK },
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

@@ -15,7 +15,7 @@ local voices = {
 	{ text = "Zapraszam na poklad, poplyniemy w miejsca o ktorych nie sniles..." },
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
-local dialogs = {
+local customDialogs = {
 	[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
 		text = "",
 		specialActionsOnSuccess = {
@@ -44,7 +44,7 @@ local dialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
-	dialogs = dialogs,
+	customDialogs = customDialogs,
 	voices = voices,
 	checkInteraction = false,
 	isTransportNpc = true,
