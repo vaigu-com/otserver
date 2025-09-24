@@ -444,6 +444,9 @@ void Game::resetNpcs() const {
 	}
 }
 
+// Vaigu custom
+// Only monsters with count of at least BOOST_PREY_ELIGIBILITY_THERSHOLD on the whole map can become boosted
+// Dont boost monsters with 0 exp (0 difficulty index)
 std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t count) {
 	std::vector<std::string> monsterNames;
 
@@ -451,10 +454,18 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 	auto &monsterCounts = g_game().map.spawnsMonster.getMonsterCounts();
 	std::vector<BoostedMonsterData> boostableMonsters;
 	for (const auto &[raceId, _name] : BestiaryList) {
-		// Vaigu custom
-		// Only monsters with count of at least 10 on the whole map can become boosted
 		auto it = monsterCounts.find(_name);
 		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
+			continue;
+		}
+
+		const auto monsterType = g_monsters().getMonsterType(_name);
+		if (!monsterType) {
+			continue;
+		}
+
+		double difficulty = monsterType->calculateDifficultyIndex();
+		if (difficulty <= 0){
 			continue;
 		}
 
@@ -3085,6 +3096,7 @@ void Game::playerQuickLootCorpse(const std::shared_ptr<Player> &player, const st
 		ss.str(std::string());
 		ss << "Attention! The container assigned to category " << getObjectCategoryName(shouldNotifyNotEnoughRoom) << " is full.";
 	} else {
+		player->removeMagicEffect(position, CONST_ME_LOOT_HIGHLIGHT);
 		return;
 	}
 

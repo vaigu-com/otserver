@@ -46,9 +46,7 @@ void IOPrey::initializePreyMonsters() {
 		}
 
 		double raceid = monsterInfo.raceid;
-		double healthMax = monsterInfo.healthMax;
-		double experience = monsterInfo.experience;
-		double difficulty = floor((1 + experience / healthMax) * healthMax);
+		double difficulty = monsterType->calculateDifficultyIndex();
 
 		PreyMonster preyMonster;
 		preyMonster.name = name;
