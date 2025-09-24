@@ -189,7 +189,7 @@ local function generateCollectionMessage(player, keyId, collectionStorage)
 		unlockedKeys = { "---None---" }
 	end
 	for storage, desc in pairs(unlockedKeys) do
-		message = message .. "\n" .. desc
+		message = message .. "\n" .. withoutStandardPrefixes(desc)
 	end
 	return message
 end
@@ -232,10 +232,12 @@ function doorLook.onLook(player, door)
 	end
 	local youSee = T("You see a :doorName:.", { doorName = door:getName() })
 
-	local locked = ""
+	local lockedStatus = ""
 	local id = door:getId()
-	if lockedToUnlocked[id] and door:getPosition():EuclideanDistance(player:getPosition()) <= 1.42 then
-		locked = " It is locked."
+	if lockedToUnlocked[id] and door:getPosition():ChebyshevDistance(player:getPosition()) <= 1 then
+		lockedStatus = " It is locked."
+	else
+		lockedStatus = " It is unlocked."
 	end
 
 	local itRequires = ""
@@ -250,7 +252,7 @@ function doorLook.onLook(player, door)
 		youCanUnlock = T(" You can unlock this door with your :name:.", { name = name })
 	end
 
-	player:sendTextMessage(MESSAGE_LOOK, T(":youSee::status::itRequires::youCanUnlock:", { youSee = youSee, status = locked, itRequires = itRequires, youCanUnlock = youCanUnlock }))
+	player:sendTextMessage(MESSAGE_LOOK, T(":youSee::status::itRequires::youCanUnlock:", { youSee = youSee, status = lockedStatus, itRequires = itRequires, youCanUnlock = youCanUnlock }))
 	return DONT_SHOW_ONLOOK
 end
 for key, value in pairs(KeyDoorTable) do
