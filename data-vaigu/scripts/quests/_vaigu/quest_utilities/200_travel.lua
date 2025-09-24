@@ -15,41 +15,23 @@ pseudoQuest
 		UNIVERSAL_TRAVEL_KEYWORD = "travel"
 
 		TRAVEL_KEYWORDS = {
-			[TRAVEL_METHOD.SHIP] = {
-				UNIVERSAL_TRAVEL_KEYWORD,
-				"sail",
-				"podroz",
-				"ship",
-				"plynac",
-				"statek",
-				"zegluje",
-				"statku",
-				"zegluj",
-				"zegluga",
-			},
-			[TRAVEL_METHOD.CARPET] = {
-				UNIVERSAL_TRAVEL_KEYWORD,
-				"podroz",
-				"fly",
-				"poleciec",
-			},
-			[TRAVEL_METHOD.TRAIN] = {
-				UNIVERSAL_TRAVEL_KEYWORD,
-				"podroz",
-				"pojechac",
-				"jazda",
-				"jedziemy",
-				"ride",
-			},
-			[TRAVEL_METHOD.CAMEL] = {
-				UNIVERSAL_TRAVEL_KEYWORD,
-				"podroz",
-				"pojechac",
-				"jazda",
-				"jedziemy",
-				"ride",
-				"podwiezc",
-			},
+			UNIVERSAL_TRAVEL_KEYWORD,
+			"sail",
+			"ship",
+			"ride",
+			"fly",
+			"podroz",
+			"plynac",
+			"statek",
+			"zegluje",
+			"statku",
+			"zegluj",
+			"zegluga",
+			"poleciec",
+			"pojechac",
+			"jazda",
+			"jedziemy",
+			"podwiezc",
 		}
 
 		DEFAULT_TRAVEL_PRICE = 200
@@ -135,33 +117,44 @@ pseudoQuest
 			toPos:sendMagicEffect(CONST_ME_TELEPORT)
 		end
 
-		local function confirmDestination(player, _, choice)
-			if not choice then
-				return true
+		local function errorMessageIfHasNoAccess(player, travelData)
+			if travelData.requiredState and not player:HasRequiredStates(travelData.requiredState) then
+				return "TRAVEL_YOU_NEED_ACCESS"
 			end
 
+			local minLevel = travelData.minLevel or 0
+			if player:getLevel() < minLevel then
+				return "TRAVEL_YOU_NEED_LEVEL"
+			end
+
+			return nil
+		end
+
+		local function confirmDestination(player, _, choice)
+			if not (choice and choice.travelData) then
+				player:sendCancelMessage("An error has occurred, please contact your administrator.")
+				return true
+			end
+			local travelData = choice.travelData
+
 			if player:isPzLocked() then
+				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Context({ minLevel = travelData.minLevel }):Get("TRAVEL_YOU_NEED_LEVEL"))
 				createHelpDialog(player, "ship")
 				return
 			end
 
-			local minLevel = choice.minLevel or 0
-			if player:getLevel() < minLevel then
-				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Context({ minLevel = minLevel }):Get("TRAVEL_YOU_NEED_LEVEL"))
+			local errorMessage = errorMessageIfHasNoAccess(player, travelData)
+			if errorMessage then
+				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Context({ minLevel = travelData.minLevel }):Get(errorMessage))
 				return
 			end
 
-			if choice.requiredState and not player:HasRequiredStates(choice.requiredState) then
-				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Get("TRAVEL_YOU_NEED_ACCESS"))
-				return false
-			end
-
-			if not chargeForTravel(player, choice.price or DEFAULT_TRAVEL_PRICE) then
+			if not chargeForTravel(player, travelData.price or DEFAULT_TRAVEL_PRICE) then
 				player:sendCancelMessage(player:Localizer(LOCALIZERS.Universal):Get("You dont have enough money."))
 				return
 			end
 
-			teleportToDestination(player, choice)
+			teleportToDestination(player, travelData)
 		end
 
 		local travelMethodToWindowTitle = {
@@ -174,18 +167,6 @@ pseudoQuest
 			[TRAVEL_METHOD.CARPET] = "CarpetWindowMessage",
 			[TRAVEL_METHOD.TRAIN] = "TraintWindowMessage",
 		}
-		local function hasAccess(player, travel)
-			if travel.requiredState and not player:HasRequiredStates(travel.requiredState) then
-				return false
-			end
-
-			local minLevel = travel.minLevel or 0
-			if player:getLevel() < minLevel then
-				return false
-			end
-
-			return true
-		end
 		function CreateTravelWindow(context)
 			local player = context.player
 			local travelRoutes = context.travelRoutes
@@ -200,14 +181,11 @@ pseudoQuest
 				if not translatedName then
 					translatedName = travelData.name
 				end
-				if not hasAccess(player, travelData) then
+				if errorMessageIfHasNoAccess(player, travelData) then
 					translatedName = "(-) " .. translatedName
 				end
 				local choice = window:addChoice(translatedName)
-				choice.minLevel = travelData.minLevel
-				choice.toPos = travelData.toPos
-				choice.price = travelData.price
-				choice.travelMethod = travelMethod
+				choice.travelData = travelData
 			end
 
 			window:addButton(player:Localizer(LOCALIZERS.Universal):Get("Select"), confirmDestination)

@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local customDialogs = {
-	[{ "sail", "plynac" }] = {
+	[TRAVEL_KEYWORDS] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{

@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local customDialogs = {
-	[TRAVEL_KEYWORDS[TRAVEL_METHOD.TRAIN]] = {
+	[TRAVEL_KEYWORDS] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{

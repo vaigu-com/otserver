@@ -95,7 +95,7 @@ quest
 				[{ GREET }] = {
 					text = "Back again, eh? I knew ye had some guts in ye. If ye be needin' a {ship}, I can make it happen. Ain't no safer way than ridin' with me! Just say the word, and we be off.",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -129,7 +129,7 @@ quest
 				[{ GREET }] = {
 					text = "Ahoy there, matey! Good to see a proper sea dog returnin' to these waters. Ye need a ship to sail? - no trouble. Just say the word, and we'll set {sail}!",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -163,7 +163,7 @@ quest
 				[{ GREET }] = {
 					text = "Har har! If it ain't me favorite beast hunter! Ye lookin' fer a ride? Lucky ye - me ship {sail}s the seas. Just give the word, and I'll get us anywhere faster than a shark on fresh prey.",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -197,7 +197,7 @@ quest
 				[{ GREET }] = {
 					text = "The sea whispers yer name now, aye. If it's Naga Island ye be seekin', I can ferry ye there through waters few dare to tread. But be warned - the spirits be watchin' always. Speak, and we set sail.",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{

@@ -37,6 +37,7 @@ LOCALIZERS = {
 	PerIustitiaAdAstra = "per_iustitia_ad_astra",
 	Priest = "priest",
 	ProdigalSon = "prodigal_son",
+	RetroRulez = "retro_rulez",
 	RubelsteinLegacy = "rubelstein_legacy",
 	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
 	SilenceOfTheLambs = "silence_of_the_lambs",

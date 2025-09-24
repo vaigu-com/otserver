@@ -251,7 +251,7 @@ local raidData = {
 		cooldown = 7200,
 		minPlayersOnline = 1,
 	}),
-	LuaRaid("Piracimirko"):Context({
+	LuaRaid("Pirates_Mirkotown"):Context({
 		perDay = 0.288,
 		waves = {
 			Wave(10000):Creature("Pirate Buccaneer", Area(Position(5966, 1495, 7), Position(6019, 1542, 7)), 12, true):Creature("Pirate Marauder", Area(Position(5966, 1495, 7), Position(6019, 1542, 7)), 10, true),
@@ -1110,7 +1110,7 @@ local weekdayRaids = {
 		["21:00"] = { "Lizardape" },
 	},
 	["Saturday"] = {
-		["21:00"] = { "Piracimirko" },
+		["21:00"] = { "Pirates_Mirkotown" },
 	},
 	["Sunday"] = {
 		["21:00"] = { "Barbarian" },

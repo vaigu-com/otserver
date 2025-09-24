@@ -1,5 +1,5 @@
 local destinations = {
-	[2002] = Position(6093, 1896, 10),
+	[2000] = Position(6093, 1896, 10),
 	[2001] = Position(6093, 1892, 10),
 }
 

@@ -11,7 +11,7 @@ end
 local creatureevent = CreatureEvent("freebless")
 function creatureevent.onLogin(player)
 	if player:getLevel() > MAX_LVL_TO_GET_FREE_BLESS then
-		return
+		return true
 	end
 	notifyPlayerCanGetFreeBless(player)
 	return LOGIN_OK

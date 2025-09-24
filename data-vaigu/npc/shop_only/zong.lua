@@ -8,7 +8,7 @@ local outfit = {
 	lookAddons = 1,
 }
 local customDialogs = {
-	[TRAVEL_KEYWORDS[TRAVEL_METHOD.CAMEL]] = {
+	[TRAVEL_KEYWORDS] = {
 		text = "",
 		specialActionsOnSuccess = {
 			{
