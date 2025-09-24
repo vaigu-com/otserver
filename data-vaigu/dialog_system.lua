@@ -459,7 +459,7 @@ function DialogContext:ResolveUniversalQuest()
 	if not universalKeywordToDialog then
 		return
 	end
-	self.localizer = nil
+	self.localizer = LOCALIZERS.Universal
 	self.keywordToDialog = universalKeywordToDialog
 	self:ResolveKeyword()
 	if self:IsResolved() then
