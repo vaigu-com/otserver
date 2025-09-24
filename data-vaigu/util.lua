@@ -1,3 +1,16 @@
+function Player:teleportToReflectedPoint(midpoint)
+	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
+	local reflectedPoint = midpoint:Moved(vectorToMidpoint)
+	self:teleportTo(reflectedPoint)
+end
+
+function Player:teleportToOtherSideIfNonDiagonal(midpoint)
+	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
+	if not vectorToMidpoint:IsFacingDiagonalSnap() then
+		self:teleportTo(midpoint:MovedByVector(vectorToMidpoint))
+	end
+end
+
 function Class()
 	local class = {}
 	class.index = class

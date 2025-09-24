@@ -115,6 +115,24 @@ function CreatureList:Get()
 	return self.creatures
 end
 
+function reverse_pairs(t)
+	local i = #t + 1
+	return function()
+		i = i - 1
+		if i > 0 then
+			return i, t[i]
+		end
+	end
+end
+function CreatureList:Flip()
+	local flipped = {}
+	for _, value in reverse_pairs(self:Get()) do
+		table.insert(flipped, value)
+	end
+	self.creatures = flipped
+	return self
+end
+
 function CreatureList:GetRandom()
 	return table.random(self.creatures)
 end
@@ -483,9 +501,9 @@ function IsMoveDiagonal(fromPos, toPos)
 end
 
 function Position:VectorTo(dest)
-	local dx = self.x - dest.x
-	local dy = self.y - dest.y
-	local dz = self.z - dest.z
+	local dx = dest.x - self.x
+	local dy = dest.y - self.y
+	local dz = dest.z - self.z
 	return Vector(dx, dy, dz)
 end
 
@@ -648,7 +666,7 @@ end
 
 ---@param pos1 Position
 ---@param pos2 Position
----@param callback function
+---@param callback fun(context: table): any
 ---@param context table|nil
 ---@return any, table|nil
 function IterateBetweenPositions(pos1, pos2, callback, context)
@@ -698,6 +716,14 @@ function Position:ManhattanDistance(dest)
 	local y = math.abs(self.y - dest.y)
 	local z = math.abs(self.z - dest.z)
 	local distance = x + y + z
+	return distance
+end
+
+function Position:ChebyshevDistance(dest)
+	local x = math.abs(self.x - dest.x)
+	local y = math.abs(self.y - dest.y)
+	local z = math.abs(self.z - dest.z)
+	local distance = math.max(x, y, z)
 	return distance
 end
 
@@ -846,7 +872,6 @@ function ExtractCoords(...)
 		z = arg[3]
 	end
 
-	-- x, y, z = calculateOverflow(x, y, z)
 	return { x = x, y = y, z = z }
 end
 
@@ -912,13 +937,7 @@ function Position:ToNumber()
 end
 
 function Position:MovedByVector(vector)
-	local offset = ExtractCoords(vector)
-	local temp = Position(self)
-	local pos = { x = temp.x, y = temp.y, z = temp.z }
-	pos.x = pos.x + (offset.x or 0)
-	pos.y = pos.y + (offset.y or 0)
-	pos.z = pos.z + (offset.z or 0)
-	return Position(pos)
+	return self:Moved(vector)
 end
 
 DESERT_QUEST_HUB_ANCHOR = Position(6795, 1275, 9)
