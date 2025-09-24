@@ -5,6 +5,9 @@ local baseOutputDir = "utility_scripts/"
 MonsterTypeRepository = {}
 MonsterTypeRepository.__index = MonsterTypeRepository
 MonsterTypeRepository.registry = {}
+
+---@param name string
+---@param data table mask
 function MonsterTypeRepository:Add(name, data)
 	self.registry[name] = data
 end
@@ -26,6 +29,26 @@ local function countMonsters(filePath)
 	return monsterCounts
 end
 
+local monsterHpExpPath = baseOutputDir .. "monster_hp_exp.txt"
+function MonsterTypeRepository:SerializeHpExp()
+	local mTypes = Game.getMonsterTypes()
+
+	local healthExpStr = ""
+	for _, mType in pairs(mTypes) do
+		local monsterRow = mType:getName() .. "###" .. tostring(mType:maxHealth()) .. "###" .. tostring(mType:experience()) .. "\n"
+		healthExpStr = healthExpStr .. monsterRow
+	end
+
+	local file = io.open(monsterHpExpPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SerializeHpExp] Cannot open file :path:. Hp/exp have NOT been serialized.", { path = monsterHpExpPath }))
+		return
+	end
+	file:write(healthExpStr)
+	file:close()
+	logger.info("[MonsterTypeRepository::SerializeHpExp] Serialization succesful.")
+end
+
 local monsterCountsPath = baseOutputDir .. "monster_counts.txt"
 function MonsterTypeRepository:SerializeCounts()
 	local monsterCounts = countMonsters(DATA_DIRECTORY .. "/world/vaigu-monster.xml")
@@ -43,7 +66,7 @@ function MonsterTypeRepository:SerializeCounts()
 	end
 	file:write(monsterCountsStr)
 	file:close()
-	logger.info("[MonsterTypeRepository::SerializeRareSpawns] Serialization succesful.")
+	logger.info("[MonsterTypeRepository::SerializeCounts] Serialization succesful.")
 end
 
 local rareSpawnsPath = baseOutputDir .. "rares.txt"
@@ -122,7 +145,7 @@ function MonsterTypeRepository:Get()
 	return self.registry
 end
 
-function MonsterTypeRepository:Serialize()
+function MonsterTypeRepository:SerializeForRme()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
 	for name, data in
 		sortedkeypairs(self.registry, function(a, b)
