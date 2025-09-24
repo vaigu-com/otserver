@@ -77,6 +77,8 @@ pseudoQuest
 		InstantTravel({ positions = { Position(5983, 1412, 10), Position(6155, 1454, 8) } }):Register()
 		--Drillworms, Hellspawns
 		InstantTravel({ positions = { Position(6179, 1390, 8), Position(6074, 1284, 10) } }):Register()
+		--Retro mirko blood pool, Retro south orc fortress
+		InstantTravel({positions = {Position(4705, 891, 7), Position(4897, 1243, 7)}}):Register()
 
 		--Grappling hook north
 		InstantTravel({ positions = { Position(6041, 1253, 5), Position(6032, 1254, 5) }, requiredState = { [Storage.GrapplingHook] = ACCESS_GRANTED } }):Register()
