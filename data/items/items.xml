@@ -3987,7 +3987,12 @@
 		<attribute key="floorchange" value="west"/>
 	</item>
 	<item id="1979" article="a" name="sanctified grave"/>
-	<item fromid="1980" toid="1982" article="a" name="grave stone"/>
+	<!-- Vaigu custom start -->
+	<item fromid="1980" toid="1982" article="a" name="grave stone">
+		<attribute key="primarytype" value="signs"/> 
+		<attribute key="allowdistread" value="1"/>
+	</item>
+	<!-- Vaigu custom end -->
 	<item id="1983" article="a" name="stone coffin">
 		<attribute key="primarytype" value="coffins"/>
 		<attribute key="containersize" value="10"/>
