@@ -12,7 +12,6 @@ local context = {
 	greetJob = nil,
 	jobs = nil,
 	outfit = outfit,
-	dialogs = nil,
 	voices = voices,
 	spawnedByScript = true,
 }

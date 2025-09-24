@@ -122,6 +122,8 @@ function RegisterNpcDefinition(npcData)
 
 	npcConfig.flags = { floorchange = npcData.floorchange or false }
 
+	npcConfig.jobs = jobs
+
 	local keywordHandler = KeywordHandler:new()
 	local npcHandler = NpcHandler:new(keywordHandler)
 

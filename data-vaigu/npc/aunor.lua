@@ -9,7 +9,6 @@ local outfit = {
 local context = {
 	name = "Aunor",
 	outfit = outfit,
-	dialogs = nil,
 	voices = nil,
 }
 
