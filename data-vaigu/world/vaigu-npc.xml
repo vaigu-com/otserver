@@ -9,6 +9,9 @@
 	<npc centerx="7367" centery="1474" centerz="2" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="2" spawntime="60" />
 	</npc>
+	<npc centerx="7355" centery="1475" centerz="2" radius="1">
+		<npc name="Chrissy" x="0" y="0" z="2" spawntime="60" />
+	</npc>
 	<npc centerx="7353" centery="1514" centerz="2" radius="1">
 		<npc name="Ali Baba" x="0" y="0" z="2" spawntime="60" />
 	</npc>
@@ -333,7 +336,7 @@
 	<npc centerx="7437" centery="1734" centerz="6" radius="1">
 		<npc name="Dejo-Nara" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="7513" centery="1744" centerz="6" radius="1">
+	<npc centerx="7513" centery="1745" centerz="6" radius="1">
 		<npc name="Wasik" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="6575" centery="1875" centerz="6" radius="1">
@@ -388,6 +391,7 @@
 		<npc name="Tarzan" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6880" centery="764" centerz="7" radius="1">
+		<npc name="Leon" x="-1" y="0" z="7" spawntime="60" />
 		<npc name="Mundral" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6640" centery="773" centerz="7" radius="1">
@@ -435,7 +439,13 @@
 	<npc centerx="5764" centery="1175" centerz="7" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="5737" centery="1179" centerz="7" radius="1">
+	<npc centerx="5736" centery="1179" centerz="7" radius="1">
+		<npc name="Marrow" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="5761" centery="1185" centerz="7" radius="1">
+		<npc name="Dorian" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="5743" centery="1186" centerz="7" radius="1">
 		<npc name="Greg" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="7036" centery="1189" centerz="7" radius="1">
@@ -558,8 +568,14 @@
 	<npc centerx="5557" centery="1512" centerz="7" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="5531" centery="1527" centerz="7" radius="1">
+		<npc name="Leonel" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="5514" centery="1531" centerz="7" radius="3">
 		<npc name="Woody" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="5549" centery="1531" centerz="7" radius="1">
+		<npc name="Ignatz" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5817" centery="1539" centerz="7" radius="1">
 		<npc name="Guardsman of the State" x="0" y="0" z="7" spawntime="60" />
@@ -770,6 +786,9 @@
 	</npc>
 	<npc centerx="7579" centery="981" centerz="12" radius="1">
 		<npc name="Kiara" x="0" y="0" z="12" spawntime="60" />
+	</npc>
+	<npc centerx="7675" centery="1021" centerz="12" radius="1">
+		<npc name="Stephen" x="0" y="0" z="12" spawntime="60" />
 	</npc>
 	<npc centerx="5997" centery="1388" centerz="12" radius="1">
 		<npc name="Grazhena" x="0" y="0" z="12" spawntime="60" />
