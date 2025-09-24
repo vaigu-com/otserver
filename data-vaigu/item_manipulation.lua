@@ -4,6 +4,13 @@ local forceUntradeability = {
 	[43948] = true,
 	[43949] = true,
 	[43950] = true,
+	[2967] = true,
+	[2968] = true,
+	[2969] = true,
+	[2970] = true,
+	[2971] = true,
+	[2972] = true,
+	[2973] = true,
 }
 
 local leverSwapMap = {
@@ -12,7 +19,7 @@ local leverSwapMap = {
 }
 function FlipLever(item)
 	if not item then
-		logger.warn(debug.traceback("[FlipLever] not item provided"))
+		logger.warn(debug.traceback("[FlipLever] item not provided"))
 		return
 	end
 
