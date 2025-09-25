@@ -159,6 +159,7 @@ local function trySetMarks(player)
 	for pos, mark in pairs(positionToMarkData) do
 		local translatedDescription = playerLocalizer:Get(mark.markDescription)
 		player:addMapMark(pos, mark.markIcon, translatedDescription)
+		player:addMapMark(pos, mark.markIcon, translatedDescription)
 	end
 end
 
