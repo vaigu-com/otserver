@@ -86662,6 +86662,9 @@
 	<monster centerx="6639" centery="1204" centerz="11" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="4956" centery="1205" centerz="11" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="5833" centery="1205" centerz="11" radius="1">
 		<monster name="Eternal Guardian" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -86719,11 +86722,17 @@
 	<monster centerx="6635" centery="1214" centerz="11" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="4946" centery="1215" centerz="11" radius="1">
+		<monster name="Old Adventurer" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="5841" centery="1215" centerz="11" radius="1">
 		<monster name="Glooth Blob" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6645" centery="1215" centerz="11" radius="1">
 		<monster name="Lich" x="0" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="4965" centery="1216" centerz="11" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="5804" centery="1216" centerz="11" radius="1">
 		<monster name="Devourer" x="0" y="-1" z="11" spawntime="60" />
@@ -86743,6 +86752,9 @@
 	<monster centerx="5826" centery="1218" centerz="11" radius="1">
 		<monster name="Blood Beast" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="4947" centery="1219" centerz="11" radius="1">
+		<monster name="Old Adventurer" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="5830" centery="1219" centerz="11" radius="1">
 		<monster name="Bog Raider" x="0" y="0" z="11" spawntime="60" />
 		<monster name="Devourer" x="1" y="1" z="11" spawntime="60" />
@@ -86759,6 +86771,9 @@
 	<monster centerx="6648" centery="1219" centerz="11" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="4950" centery="1220" centerz="11" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="5803" centery="1221" centerz="11" radius="1">
 		<monster name="Eternal Guardian" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -86768,12 +86783,19 @@
 	<monster centerx="6650" centery="1221" centerz="11" radius="1">
 		<monster name="Putrid Mummy" x="0" y="0" z="11" spawntime="60" />
 	</monster>
+	<monster centerx="4946" centery="1223" centerz="11" radius="1">
+		<monster name="Old Adventurer" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="5854" centery="1223" centerz="11" radius="1">
 		<monster name="Blood Beast" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6651" centery="1223" centerz="11" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="11" spawntime="60" />
 		<monster name="Tarantula" x="1" y="0" z="11" spawntime="60" />
+	</monster>
+	<monster centerx="4949" centery="1224" centerz="11" radius="1">
+		<monster name="Old Warlock" x="1" y="-1" z="11" spawntime="60" />
+		<monster name="Old Skeleton" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="5800" centery="1225" centerz="11" radius="1">
 		<monster name="Glooth Anemone" x="0" y="0" z="11" spawntime="60" />
@@ -89839,9 +89861,6 @@
 		<monster name="Phantasm" x="2" y="0" z="11" spawntime="60" />
 		<monster name="Giant Spider" x="2" y="3" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="6077" centery="1918" centerz="11" radius="1">
-		<monster name="Adventurer" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="6522" centery="1919" centerz="11" radius="1">
 		<monster name="Massive Fire Elemental" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -89851,9 +89870,6 @@
 	<monster centerx="6512" centery="1922" centerz="11" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="6077" centery="1923" centerz="11" radius="1">
-		<monster name="Adventurer" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="6492" centery="1924" centerz="11" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="11" spawntime="60" />
 	</monster>
@@ -89861,14 +89877,8 @@
 		<monster name="Giant Spider" x="1" y="-2" z="11" spawntime="60" />
 		<monster name="Giant Spider" x="3" y="2" z="11" spawntime="60" />
 	</monster>
-	<monster centerx="6077" centery="1927" centerz="11" radius="1">
-		<monster name="Adventurer" x="0" y="0" z="11" spawntime="60" />
-	</monster>
 	<monster centerx="6533" centery="1928" centerz="11" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="6081" centery="1929" centerz="11" radius="1">
-		<monster name="Hellflayer" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6509" centery="1934" centerz="11" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="11" spawntime="60" />
