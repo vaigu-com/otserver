@@ -161,7 +161,10 @@ void LuaEnums::initOthersEnums(lua_State* L) {
 	registerEnum(L, IMMOVABLE_ACTION_ID);
 
 	Lua::registerGlobalString(L, "IMMOVABLE_KEY", IMMOVABLE_KEY);
+	Lua::registerGlobalString(L, "UNUSABLE_KEY", UNUSABLE_KEY);
 	Lua::registerGlobalString(L, "PERMANENTLY_CLOSED", PERMANENTLY_CLOSED);
+	Lua::registerGlobalString(L, "KEY_IS_ON_MINIGAME", KEY_IS_ON_MINIGAME);
+	Lua::registerGlobalString(L, "KEY_MOUNT_BONUS_SPEED", KEY_MOUNT_BONUS_SPEED);
 
 	registerEnum(L, MAX_LOOTCHANCE);
 
