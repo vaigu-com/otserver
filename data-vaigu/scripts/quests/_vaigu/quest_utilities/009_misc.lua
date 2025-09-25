@@ -24,5 +24,12 @@ quest
 		noDiagonal:type("stepin")
 		noDiagonal:key(Storage.SpecialStepins.DontAllowDiagonal)
 		noDiagonal:register()
+
+		local dontAllowUse = Action()
+		function dontAllowUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+			return false
+		end
+		dontAllowUse:key(KEY_UNUSABLE)
+		dontAllowUse:register()
 	end)
 	:Register()
