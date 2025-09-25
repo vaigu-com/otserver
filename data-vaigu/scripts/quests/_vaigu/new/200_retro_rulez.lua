@@ -23,8 +23,6 @@ quest
 
 			InfiniteCoalChest = {},
 			InfiniteCoal = {},
-
-			DarkLaboratoryStone = {},
 		}
 		QuestState.PitsOfInfernoRetro = {
 			CoalForPrzemek = {
@@ -58,13 +56,12 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("GOD Przemek", {
 				[{ GREET }] = {
-					text = "Hello. Are are not finished with rewards room yet. Also we have {issues} with infinite petrol lamps and unpickable locks for those rooms.",
+					text = "Hello. We are are not finished with rewards room yet. We are short on unpickable locks, and out sculptor is late with the order. Also we have {issues} with infinite petrol lamps.",
 				},
 				[{ "issues", "problemy" }] = {
-					text = "I left some of the supply with other fabulous items in warehouse at start of the dungeon. The warehouse is curently locked and the only way in is using a key. You shall find clues in dark lord' laboratory both in the past and future. I just granted you access throught admin terminal. Touch the stones blocking the entrance and you will be let in.",
+					text = "I left some of the supply with other fabulous items in warehouse at start of the dungeon. The warehouse is curently locked and the only way in is using a key. If you have problem with getting into the lab, i will leave a tip for you there later.",
 					nextState = {
 						[Storage.PitsOfInfernoRetro.CoalForPrzemek] = QuestState.PitsOfInfernoRetro.CoalForPrzemek.BringCoalToPrzemek,
-						[Storage.PitsOfInfernoRetro.DarkLaboratoryStone] = ACCESS_GRANTED,
 					},
 				},
 			})
@@ -90,7 +87,7 @@ quest
 					expReward = 1000000,
 				},
 				[{ "no", "nie" }] = {
-					text = "I left some of the supply with other fabulous items in warehouse at start of the dungeon. The warehouse is curently locked and the only way in is using a key. You shall find clues in dark lord' laboratory both in the past and future. I just granted you access throught admin terminal. Touch the stones blocking the entrance and you will be let in.",
+					text = "I left some of the supply with other fabulous items in warehouse at start of the dungeon. The warehouse is curently locked and the only way in is using a key. If you have problem with getting into the lab, i will leave a tip for you there later.",
 				},
 			})
 	end)
@@ -180,7 +177,7 @@ quest
 		end
 		loadOrderStartup:register()
 
-		local stepOrderPuzzlePortalDest = Position(6156, 1822, 11)
+		local stepOrderPuzzlePortalDest = Position(5025, 1118, 11)
 		local stepOrderCenter = MoveEvent()
 		function stepOrderCenter.onStepIn(creature, item, toPosition, fromPosition)
 			local player = creature:getPlayer()
@@ -217,8 +214,8 @@ quest
 		end
 		loadLeverOrderStartup:register()
 
-		local corner1 = Position(6159, 1820, 11)
-		local corner2 = Position(6159, 1825, 11)
+		local corner1 = Position(5028, 1116, 11)
+		local corner2 = Position(5028, 1121, 11)
 		local function leversAreSetCorrectly()
 			local detectedLevers = {}
 			IterateBetweenPositions(corner1, corner2, function(context)
@@ -235,8 +232,8 @@ quest
 			return true
 		end
 
-		local puzzlesReturnDestination = Position(6148, 1821, 11)
-		local nextPuzzleDestination = Position(6159, 1819, 11)
+		local puzzlesReturnDestination = Position(5017, 1117, 11)
+		local nextPuzzleDestination = Position(5028, 1115, 11)
 		local leverPuzzleTeleport = MoveEvent()
 		function leverPuzzleTeleport.onStepIn(creature, item, toPosition, fromPosition)
 			local player = creature:getPlayer()
@@ -279,7 +276,7 @@ quest
 		grantLavaRoomAccessLever:key(Storage.PitsOfInfernoRetro.GrantLavaRoomAccess)
 		grantLavaRoomAccessLever:register()
 
-		local teleportPuzzleDestination = Position(6157, 1817, 11)
+		local teleportPuzzleDestination = Position(5026, 1113, 11)
 		local leverPuzzleFinishLever = Action()
 		function leverPuzzleFinishLever.onUse(player, item, frompos, item2, topos)
 			if player:getStorageValueByKey(Storage.PitsOfInfernoRetro.GrantLavaRoomAccess) == ACCESS_GRANTED then
@@ -304,17 +301,5 @@ quest
 		end
 		retroOutfitChest:key(Storage.PitsOfInfernoRetro.InfiniteCoalChest)
 		retroOutfitChest:register()
-
-		local darkLaboratoryStoneUse = Action()
-		function darkLaboratoryStoneUse.onUse(player, item, frompos, item2, topos)
-			if player:getStorageValueByKey(Storage.PitsOfInfernoRetro.DarkLaboratoryStone) ~= ACCESS_GRANTED then
-				return true
-			end
-
-			player:teleportToOtherSideIfNonDiagonal(item:getPosition())
-			return true
-		end
-		darkLaboratoryStoneUse:key(Storage.PitsOfInfernoRetro.DarkLaboratoryStone)
-		darkLaboratoryStoneUse:register()
 	end)
 	:Register()
