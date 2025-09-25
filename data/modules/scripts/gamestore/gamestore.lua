@@ -5769,9 +5769,26 @@ GameStore.Categories = {
 		icons = { "Category_Extras.png" },
 		name = "Extras",
 		rookgaard = true,
-		subclasses = { "Extra Services", "Useful Things" },
+		subclasses = { "Tools", "Extra Services", "Useful Things" },
 	},
 	-- Extras ~ Extras Services
+	{
+		icons = { "Category_Tools.png" },
+		name = "Tools",
+		parent = "Extras",
+		rookgaard = true,
+		state = GameStore.States.STATE_NONE,
+		offers = {
+			{
+				icons = { "Squeezing_Gear_of_Girlpower.png" },
+				name = "Squeezing Gear of Girlpower",
+				price = 100,
+				itemtype = 9596,
+				description = "This nifty gadget can be used for many vital and less vital purposes. If it's not jammed, that is.",
+				type = GameStore.OfferTypes.OFFER_TYPE_HOUSE,
+			},
+		},
+	},
 	{
 		icons = { "Category_ExtraServices.png" },
 		name = "Extra Services",
