@@ -109,8 +109,8 @@ end
 ---@private
 function Quest:AddDialog(context)
 	local names, dialogs = context.names, context.dialogs
-	local mission, state = context.mission, context.state
-	if not mission then
+	local missionKey, state = context.mission, context.state
+	if not missionKey then
 		logger.debug(T(":quest: missing mission for dialog", { quest = self.name }))
 	end
 	if not state then
@@ -136,13 +136,16 @@ function Quest:AddDialog(context)
 		names = { names }
 	end
 
-	for _, name in pairs(names) do
-		self.npcs[name] = self.npcs[name] or {}
-		self.npcs[name].missions = self.npcs[name].missions or {}
-		self.npcs[name].missions[mission] = self.npcs[name].missions[mission] or {}
-		self.npcs[name].missions[mission].states = self.npcs[name].missions[mission].states or {}
-		self.npcs[name].missions[mission].states[state] = dialogs
-		self.npcs[name].missions[mission].localizer = self.localizer
+	for _, npcName in pairs(names) do
+		self.npcs[npcName] = self.npcs[npcName] or {}
+		self.npcs[npcName].missions = self.npcs[npcName].missions or {}
+		self.npcs[npcName].missions[missionKey] = self.npcs[npcName].missions[missionKey] or {}
+		self.npcs[npcName].missions[missionKey].states = self.npcs[npcName].missions[missionKey].states or {}
+		self.npcs[npcName].missions[missionKey].states[state] = dialogs
+		self.npcs[npcName].missions[missionKey].localizer = self.localizer
+		if state == MISSION_NOT_STARTED then
+			QuestRegistry:AppendStartingNpcs(self.name, missionKey, npcName)
+		end
 	end
 
 	return self
@@ -246,6 +249,33 @@ function QuestRegistry:UnpackStateData()
 			end
 		end
 	end
+end
+
+local questMissionNpc = {}
+function QuestRegistry:AppendStartingNpcs(questName, missionKey, npcName)
+	questMissionNpc[questName] = questMissionNpc[questName] or {}
+	if questMissionNpc[questName][missionKey] then
+		logger.warn(T("[QuestRegistry:AppendStartingNpcs] Duplicate starting npc for quest :quest:, mission :mission:. Previous npc: :previousNpc:, next npc: :nextNpc:", { quest = questName, mission = missionKey, previousNpc = questMissionNpc[questName][missionKey], nextNpc = npcName }))
+	end
+	questMissionNpc[questName][missionKey] = npcName
+end
+
+function QuestRegistry:SerializeStartingNpcs()
+	local serializable = ""
+	for questName, missions in pairs(questMissionNpc) do
+		serializable = serializable .. T(":questName:\n", { questName = questName })
+		for missionName, npcName in pairs(missions) do
+			local positionString = ""
+			local npc = Creature(npcName)
+			if npc then
+				positionString = T("// Npc position: :pos:", {pos = npc:getPosition():ToString()})
+			else
+				positionString = "// Spawned via script"
+			end
+			serializable = serializable .. T("\t:missionName:\tStartingNpcName: :startingNpcName::positionString:\n", { missionName = missionName, startingNpcName = npcName,positionString=positionString })
+		end
+	end
+	SerializeToUtilFolder(serializable, "starting_npcs.txt")
 end
 
 function QuestRegistry.NormalizeQuestlog()

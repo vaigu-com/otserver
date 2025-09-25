@@ -1,3 +1,24 @@
+function who_called_me()
+	local info = debug.getinfo(2, "n")
+	if info and info.name then
+		return info.name
+	else
+		return "<unknown>"
+	end
+end
+
+function SerializeToUtilFolder(str, filename)
+	local file, err = io.open(filename, "a+")
+	if not file then
+		logger.warn("[SerializeToUtilFolder] Error opening file: " .. err)
+		return false
+	end
+	file:write(str)
+	file:flush()
+	file:close()
+	logger.warn(T("[SerializeToUtilFolder][:caller: caller] serialized file :filename: ", { caller = who_called_me(), filename = filename }))
+end
+
 function Player:teleportToReflectedPoint(midpoint)
 	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
 	local reflectedPoint = midpoint:Moved(vectorToMidpoint)
