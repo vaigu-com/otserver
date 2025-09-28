@@ -182,7 +182,7 @@ local function onAcceptLanguage(player, button, choice)
 	player:sendTextMessage(MESSAGE_TRADE, choseNewLanguage[nextLang])
 
 	player:setLanguage(nextLang)
-	player:sendTrackedMissions()
+	player:updateTrackedMissions()
 	player:reloadKnownNpcs()
 	return true
 end
