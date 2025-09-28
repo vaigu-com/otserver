@@ -1,3 +1,30 @@
+local defaultSeparator = ",\n"
+function RequiredItemNamesCountToString(items, separator)
+	local text = ""
+	if TableSize(items) == 0 then
+		logger.warn("[RequiredItemNamesCountToString] items size is 0")
+		return text
+	end
+	separator = separator or defaultSeparator
+	for _, item in pairs(items) do
+		text = text .. T(":count: :name::separator:", { count = item.count, name = ItemType(item.id):getName(), separator = separator })
+	end
+	return text:sub(1, -3)
+end
+
+function RequiredItemNamesToString(items, separator)
+	local text = ""
+	if TableSize(items) == 0 then
+		logger.warn("[RequiredItemNamesToString] items size is 0")
+		return text
+	end
+	separator = separator or defaultSeparator
+	for _, item in pairs(items) do
+		text = text .. T(":name::separator:", {name = ItemType(item.id):getName(), separator = separator })
+	end
+	return text:sub(1, -3)
+end
+
 function who_called_me()
 	local info = debug.getinfo(2, "n")
 	if info and info.name then
@@ -142,7 +169,6 @@ function Player:getStorageValueByKeyRaw(key, type)
 	return self:kv():get(key)
 end
 
----using key types other than string/number is not recommended
 ---@param key string|number|any
 ---@param nextValue any
 ---@return any
@@ -151,7 +177,7 @@ function Player:setStorageValueByKey(key, nextValue)
 	self:kv():set(key, nextValue)
 	self:updateStorage(key, nextValue, previousValue, os.time())
 end
----using key types other than string/number is not recommended
+
 ---@param key string|number|any
 function Player:removeStorageValueByKey(key)
 	local previousValue = self:getStorageValueByKey(key)
