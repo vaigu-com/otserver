@@ -367,20 +367,21 @@ local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 	end
 end
 local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
-	if player:getStorageValueByKey(Storage.SilenceOfTheLambs.RubMeatWithLecter) ~= QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter then
+	local reward = table.random(corpseData)
+	
+	if player:getStorageValueByKey(Storage.SilenceOfTheLambs.RubMeatWithLecter) == QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter then
 		if roll <= 50000 then
 			player:say("Ehh, I still need to pracise.", TALKTYPE_MONSTER_SAY)
 			corpse:getPosition():sendMagicEffect(CONST_ME_POFF)
 		else
 			player:AddCustomItem(QuestKeyItems.SilenceOfTheLambs.HumanHeart)
-			player:say("Ehh, I still need to pracise.", TALKTYPE_MONSTER_SAY)
+			player:say("I got it!", TALKTYPE_MONSTER_SAY)
 			corpse:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 		end
-		corpse:transform(corpseData.nextCorpseId)
-		return
+		corpse:transform(reward.nextCorpseId)
+		return SKINNING_SPECIAL_ACTION_PERFORMED
 	end
 
-	local reward = corpseData[math.random(1, #corpseData)]
 	player:AddCustomItem({ id = reward.rewardId, count = reward.amount or 1 })
 	local effect = CONST_ME_HITAREA
 	corpse:getPosition():sendMagicEffect(effect)
@@ -516,10 +517,12 @@ local function tryPerformSpecialCorpseAction(player, corpse, corpseData, roll, t
 	if not specialCorpseIdAction then
 		return SKINNING_SPECIAL_ACTION_NOT_PERFORMED
 	end
+
 	local status = specialCorpseIdAction(player, corpse, corpseId, corpseData, roll)
 	if status == SKINNING_SPECIAL_ACTION_PERFORMED then
 		return SKINNING_SPECIAL_ACTION_PERFORMED
 	end
+
 	return SKINNING_SPECIAL_ACTION_NOT_PERFORMED
 end
 
