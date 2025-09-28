@@ -4,7 +4,7 @@ function onRecvbyte(player, msg, byte)
 	if byte == 0xD0 then
 		if not playerLoggedInEarlier[player:getId()] then
 			playerLoggedInEarlier[player:getId()] = true
-			player:resetTrackedMissions(player:getTrackedMissionIds())
+			player:onRequestedMissions(player:getTrackedMissionIds())
 			player:sendQuestLogMainPage()
 			return
 		end
@@ -14,6 +14,6 @@ function onRecvbyte(player, msg, byte)
 		for _ = 1, missionsCount do
 			missionStorages[#missionStorages + 1] = msg:getU16()
 		end
-		player:resetTrackedMissions(missionStorages)
+		player:onRequestedMissions(missionStorages)
 	end
 end
