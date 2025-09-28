@@ -35422,6 +35422,9 @@
 	<monster centerx="7812" centery="1190" centerz="7" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="4950" centery="1191" centerz="7" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6263" centery="1191" centerz="7" radius="1">
 		<monster name="Scarab" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -35556,6 +35559,9 @@
 	</monster>
 	<monster centerx="7818" centery="1195" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="4939" centery="1196" centerz="7" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6256" centery="1196" centerz="7" radius="1">
 		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
@@ -36190,6 +36196,9 @@
 	<monster centerx="4869" centery="1213" centerz="7" radius="1">
 		<monster name="Old Bear" x="0" y="0" z="7" spawntime="60" />
 	</monster>
+	<monster centerx="4951" centery="1213" centerz="7" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7207" centery="1213" centerz="7" radius="1">
 		<monster name="Toad" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -36347,6 +36356,9 @@
 	</monster>
 	<monster centerx="4876" centery="1216" centerz="7" radius="1">
 		<monster name="Old Bug" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="4963" centery="1216" centerz="7" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5983" centery="1216" centerz="7" radius="1">
 		<monster name="Corym Charlatan" x="0" y="0" z="7" spawntime="60" />
@@ -59136,6 +59148,9 @@
 	<monster centerx="6621" centery="1198" centerz="8" radius="1">
 		<monster name="Mummy" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4957" centery="1199" centerz="8" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="5773" centery="1199" centerz="8" radius="1">
 		<monster name="Metal Gargoyle" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -59254,6 +59269,10 @@
 		<monster name="Crypt Shambler" x="2" y="-4" z="8" spawntime="60" />
 		<monster name="Mummy" x="-5" y="0" z="8" spawntime="60" />
 		<monster name="Ghoul" x="-1" y="3" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4955" centery="1210" centerz="8" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Old Skeleton" x="1" y="0" z="8" spawntime="-1102957824" />
 	</monster>
 	<monster centerx="6221" centery="1210" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="60" />
@@ -71111,6 +71130,9 @@
 	<monster centerx="7295" centery="1184" centerz="9" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="4967" centery="1186" centerz="9" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6612" centery="1186" centerz="9" radius="1">
 		<monster name="Mummy" x="0" y="0" z="9" spawntime="60" />
 	</monster>
@@ -71301,6 +71323,12 @@
 	</monster>
 	<monster centerx="6265" centery="1205" centerz="9" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="4964" centery="1206" centerz="9" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="4966" centery="1206" centerz="9" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6047" centery="1207" centerz="9" radius="1">
 		<monster name="Lost Husher" x="0" y="0" z="9" spawntime="60" />
