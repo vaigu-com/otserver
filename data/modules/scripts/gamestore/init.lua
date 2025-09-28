@@ -35,6 +35,7 @@ GameStore.OfferTypes = {
 	OFFER_TYPE_HUNTINGSLOT = 25,
 	OFFER_TYPE_ITEM_BED = 26,
 	OFFER_TYPE_ITEM_UNIQUE = 27,
+	OFFER_TYPE_TRADEABLE_ITEM = 28,
 }
 
 GameStore.SubActions = {
@@ -100,6 +101,7 @@ function convertType(type)
 		[GameStore.OfferTypes.OFFER_TYPE_HIRELING] = GameStore.ConverType.SHOW_HIRELING,
 		[GameStore.OfferTypes.OFFER_TYPE_ITEM_BED] = GameStore.ConverType.SHOW_NONE,
 		[GameStore.OfferTypes.OFFER_TYPE_ITEM_UNIQUE] = GameStore.ConverType.SHOW_ITEM,
+		[GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM] = GameStore.ConverType.SHOW_ITEM,
 	}
 
 	if not types[type] then
@@ -530,6 +532,8 @@ function parseBuyStoreOffer(playerId, msg)
 			GameStore.processHirelingSkillPurchase(player, offer)
 		elseif offer.type == GameStore.OfferTypes.OFFER_TYPE_HIRELING_OUTFIT then
 			GameStore.processHirelingOutfitPurchase(player, offer)
+		elseif offer.type == GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM then
+			GameStore.processTradeableItemPurchase(player, offer)
 		else
 			-- This should never happen by our convention, but just in case the guarding condition is messed up...
 			error({ code = 0, message = "This offer is unavailable [2]" })
@@ -557,6 +561,10 @@ function parseBuyStoreOffer(playerId, msg)
 		end
 
 		local message = string.format("You have purchased %s for %d coins.", offer.name, offerPrice)
+		if (offer.type or -1) == GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM then
+			message = message .. "\nThis tradeable item was sent to your normal inbox."
+		end
+		
 		sendUpdatedStoreBalances(playerId)
 		return addPlayerEvent(sendStorePurchaseSuccessful, 650, playerId, message)
 	end
@@ -1785,6 +1793,7 @@ function GameStore.processNameChangePurchase(player, offer, productType, newName
 		else
 			message = "Your character has been renamed successfully."
 		end
+
 		addPlayerEvent(sendStorePurchaseSuccessful, 500, player:getId(), message)
 
 		player:changeName(newName)
@@ -2023,6 +2032,29 @@ function GameStore.processHirelingOutfitPurchase(player, offer)
 	player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	player:enableHirelingOutfit(outfitName)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A new hireling outfit has been added to all your hirelings")
+end
+
+function GameStore.processTradeableItemPurchase(player, offer)
+	local id = offer.itemtype
+	local count = offer.count
+
+	local itemData = { id = id, count = count, flags = FLAG_NOLIMIT }
+	local canProceed, message = player:CanAddItems({ itemData })
+	if not canProceed then
+		return error({
+			code = 1,
+			message = message,
+		})
+	end
+
+	local inbox = player:getInbox()
+	if not inbox then
+		return error({
+			code = 1,
+			message = "You cannot buy this item because your mail inbox cannot be found. Please contact an admin.",
+		})
+	end
+	player:AddCustomItem(itemData, inbox)
 end
 
 --==Player==--

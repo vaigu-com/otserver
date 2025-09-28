@@ -132,6 +132,7 @@ local foods = {
 	[48509] = { 120, "Yum." }, -- resinous fish fin
 	[48511] = { 120, "Yum." }, -- resin parasite
 	[48544] = { 124, "Yum." }, -- wad of fairy floss
+	[32043] = { 70, "Munch." }, -- bass
 }
 
 local food = Action()
