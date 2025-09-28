@@ -62,6 +62,7 @@ quest
 		}
 		QuestState.LocalSupport = {
 			Discernment = {
+				AfterFirstLogin = 0,
 				VisitDealers = 1,
 			},
 			PotionConveyorJourneyman = {
@@ -107,7 +108,7 @@ quest
 				BringOldManFrostItems = 1,
 			},
 			TwoMarlinQuest = {
-				--none
+				BringMarlinsToFishermanSon = 1,
 			},
 			OcellatusXD = {
 				FindTicket = 1,
@@ -225,7 +226,7 @@ quest
 					name = "Discernment",
 					storage = Storage.LocalSupport.Discernment,
 					states = {
-						[MISSION_NOT_STARTED] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
+						[QuestState.LocalSupport.Discernment.AfterFirstLogin] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 						[1] = "VISIT_DEALERS_STATUS",
 						[2] = "VISIT_DEALERS_STATUS",
 						[3] = "VISIT_DEALERS_STATUS",
@@ -316,6 +317,7 @@ quest
 					name = "Two Marlins",
 					storage = Storage.LocalSupport.TwoMarlinQuest,
 					states = {
+						[QuestState.LocalSupport.TwoMarlinQuest.BringMarlinsToFishermanSon] = "Bring two marlins to Fisherman Son.",
 						[MISSION_FINISHED] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 					},
 				},
@@ -1246,7 +1248,18 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Fisherman Son", {
 				[{ "marlin", "ryba", "rybka", "fish", "merlin", "marlina" }] = {
-					text = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
+					text = "I can make a nice marlin trophy. If you agree to bring me two marlins i will have them for both of us.",
+					nextState = {
+						[Storage.LocalSupport.TwoMarlinQuest] = QuestState.LocalSupport.TwoMarlinQuest.BringMarlinsToFishermanSon,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.TwoMarlinQuest.BringMarlinsToFishermanSon,
+			QuestFactory.Dialog("Fisherman Son", {
+				[{ "marlin", "ryba", "rybka", "fish", "merlin", "marlina" }] = {
+					text = "Wow! You have merlin! Would you like to bring me also a second one, so i can make a nice trophy for you?",
 					textNoRequiredItems = "Find two marlins for me and i will craft you a trophy that you can hang on your house walls.",
 					requiredItems = {
 						{ id = 901, remove = false },
@@ -1339,7 +1352,7 @@ quest
 	:State(function()
 		return QuestState.LocalSupport.OcellatusXD.BringFoodToOcellatus,
 			QuestFactory.Dialog("Ocellatus", {
-				[{ "rotworm stew", "roasted dragon wings", "zupe rotowrmowa", "zupa rotwormowa", "pieczone smocze skrzydelka" }] = {
+				[{ "rotworm stew", "roasted dragon wings", "zupe rotwormowa", "zupa rotwormowa", "pieczone smocze skrzydelka" }] = {
 					text = "Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you.",
 				},
 				[{ "mission", "misja", "food", "soup", "order", "zupa" }] = {

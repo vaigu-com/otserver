@@ -100,7 +100,8 @@ return {
 	["Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on."] = "Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on.",
 	["I like to sew something when I am bored but slowly I am lack of colorful fabrics."] = "I like to sew something when I am bored but slowly I am lack of colorful fabrics.",
 	["I love {rotworm stew} and {roasted dragon wings} from Mickey Dicks. If you make this for me, I will certainly pay you back."] = "I love {rotworm stew} and {roasted dragon wings} from Mickey Dicks. If you make this for me, I will certainly pay you back.",
-	["Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?"] = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
+	["I can make a nice marlin trophy. If you agree to bring me two marlins i will have them for both of us."] = "I can make a nice marlin trophy. If you agree to bring me two marlins i will have them for both of us.",
+	["Wow! You have merlin! Would you like to bring me also a second one, so i can make a nice trophy for you?"] = "Wow! You have merlin! Would you like to bring me also a second one, so i can make a nice trophy for you?",
 	["Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied"] = "Yeah! Lets see.. <bonk blonk> Here you go. Hope you are satisfied",
 	["Find two marlins for me and i will craft you a trophy that you can hang on your house walls."] = "Find two marlins for me and i will craft you a trophy that you can hang on your house walls.",
 	["Bring me exactly two marlins"] = "Bring me exactly two marlins",
@@ -125,6 +126,7 @@ return {
 	--Questlog
 	["Local Support"] = "Local Support",
 	["Two Marlins"] = "Two Marlins",
+	["Bring two marlins to Fisherman Son."]= "Bring two marlins to Fisherman Son.",
 	["You delivered two marlins to Fisherman son and were rewarded for it."] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 	["Discernment"] = "Discernment",
 	["Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown."] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",

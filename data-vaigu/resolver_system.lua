@@ -302,7 +302,7 @@ function ResolutionContext:AddRewards()
 		return
 	end
 
-	self.player:AddItems(actions.rewards, nil, self.localizer)
+	self.player:AddItemsWithLocalizer(actions.rewards, nil, self.localizer)
 end
 
 function ResolutionContext:RemoveRequiredMoney()

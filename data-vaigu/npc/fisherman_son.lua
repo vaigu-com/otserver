@@ -47,7 +47,7 @@ local customDialogs = {
 	[{ "leviathan", "Leviathan" }] = {
 		text = "The biggest one of them all serpents. If i could escape this life, i will face him.",
 	},
-	[{ "quary", "quara", "quaras", "Quary" }] = {
+	[{ "quary", "quara", "quaras", "Quary", "Quara" }] = {
 		text = "Big family of sea creatures. I saw their sketches made by adventurers visiting city marketplace. I saw so many of them, i can now differentiate every {species}. Maybe not with closed eyes, but i roughly know this subject.",
 	},
 	[{ "rodzaje", "rodzaj", "species" }] = {
@@ -59,7 +59,7 @@ local customDialogs = {
 	[{ "ocean", "oceanie" }] = {
 		text = "A puddle of water that someone sprinkled salt over.",
 	},
-	[{ "leech", "pijawki" }] = { text = "The Water Buffalos love them." },
+	[{ "leech", "pijawki", "leeches" }] = { text = "The Water Buffalos love them." },
 	[{ "larw", "larwa", "larva", "larvae", "larvaes" }] = {
 		text = "You sometimes find them inside a gooey mass.",
 	},

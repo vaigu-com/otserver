@@ -100,6 +100,7 @@ function firstLogin.onLogin(player)
 	-- CreateChooseLanguageWindow(player)
 
 	player:setStorageValueByKey(Storage.FirstLogin, ACCESS_GRANTED)
+	player:setStorageValueByKey(Storage.LocalSupport.Discernment, QuestState.LocalSupport.Discernment.AfterFirstLogin)
 	return true
 end
 
