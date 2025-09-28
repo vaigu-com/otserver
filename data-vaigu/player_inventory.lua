@@ -266,18 +266,60 @@ function Player:ErrorIfHasNotEnoughSlots(requiredSlots)
 	return true
 end
 
+---@nodiscard
+local function hasAnyStoreAttribute(item)
+	local aid = item.aid
+	if aid and aid > 0 then
+		return true
+	end
+	local key = item.key
+	if key and key ~= "" then
+		return true
+	end
+	return false
+end
+
+---@nodiscard
+local function shouldAddToStore(item)
+	if item.addToStore == false then
+		return false
+	elseif item.addToStore == true then
+		return true
+	elseif item.addToStore == nil then
+		return hasAnyStoreAttribute(item)
+	end
+	return false
+end
+
+local function parseDestinationSlotId(item)
+	do
+		return nil
+	end
+	if shouldAddToStore(item) then
+		return CONST_SLOT_STORE_INBOX
+	end
+
+	return CONST_SLOT_WHEREEVER
+end
+
+local function parseSubtype(item)
+	return item.subtype or item.subType or item.count or item.fluidType or item.fluid or item.charges
+end
+
+local cantDropOnMap = false
+local subtypeNone = nil
+local tierNone = nil
 function Player:CanAddItemsCpp(items)
-	local totalWeight = 0
 	for containerId, item in pairs(items) do
 		if ItemType(containerId):isContainer() then
-			local status = self:canAddItem(containerId, 1, false, nil, nil, nil, true)
+			local status = self:canAddItem(containerId, 1, cantDropOnMap, subtypeNone, parseDestinationSlotId(item), tierNone)
 			if status ~= RETURNVALUE_NOERROR then
-				return status
+				return status, containerId
 			end
 		else
-			local status = self:canAddItem(item.id, item.count, false, nil, nil, nil, true)
+			local status = self:canAddItem(item.id, item.count, cantDropOnMap, parseSubtype(item), parseDestinationSlotId(item), item.tier)
 			if status ~= RETURNVALUE_NOERROR then
-				return status
+				return status, item.id
 			end
 		end
 	end
@@ -297,7 +339,7 @@ function Player:CanAddItems(items)
 		return false, slotMessage
 	end
 
-	local status = self:CanAddItemsCpp(items)
+	local status, lastitemId = self:CanAddItemsCpp(items)
 	if status ~= RETURNVALUE_NOERROR then
 		return false, T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status: :status:. Please contact an admin.", { playerName = self:getName(), status = status, lastitemId = lastitemId })
 	end
@@ -305,40 +347,23 @@ function Player:CanAddItems(items)
 	return true, RETURNVALUE_NOERROR
 end
 
-function Player:AddItems(items, bag, localizer)
+function Player:AddItemsWithLocalizer(items, bag, localizer)
+	for _, item in pairs(items) do
+		item.localizer = localizer
+	end
+	return self:AddItems(items, bag)
+end
+
+function Player:AddItems(items, bag)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
 			local nextBag = (bag or self):addItem(containerId, 1)
-			self:AddItems(itemOrItems, nextBag, localizer)
+			self:AddItems(itemOrItems, nextBag)
 		else
-			self:AddCustomItem(itemOrItems, bag, localizer)
+			self:AddCustomItem(itemOrItems, bag)
 		end
 	end
 	return true
-end
-
----@nodiscard
-local function hasAnyStoreAttribute(item)
-	local aid = item.aid
-	if aid and aid > 0 then
-		return true
-	end
-	local key = item.key
-	if key and key ~= "" then
-		return true
-	end
-	return false
-end
-
-local function shouldAddToStore(item)
-	if item.addToStore == false then
-		return false
-	elseif item.addToStore == true then
-		return true
-	elseif item.addToStore == nil then
-		return hasAnyStoreAttribute(item)
-	end
-	return false
 end
 
 local function normalizedItem(item)
@@ -391,6 +416,7 @@ function Player:AddCustomItem(itemData, container, localizer)
 	local uid = itemData.uid
 	local fluidType = itemData.fluidType
 	local tier = itemData.tier
+	local flags = itemData.flags
 
 	local actionOnAdd = customItemActionContainer[id]
 	if actionOnAdd then
@@ -454,9 +480,9 @@ function Player:AddCustomItem(itemData, container, localizer)
 		else
 			-- container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
 			if container then
-				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER)
+				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER, flags)
 			else
-				lastErrorCode = self:addItemEx(addedItem, false, CONST_SLOT_WHEREEVER)
+				lastErrorCode = self:addItemEx(addedItem, false, CONST_SLOT_WHEREEVER, flags)
 			end
 		end
 
