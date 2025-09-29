@@ -33,7 +33,7 @@ private:
 	void saveMap();
 	void saveKV();
 	void saveGuild(std::shared_ptr<Guild> guild);
-	bool savePlayer(std::shared_ptr<Player> player);
+	void savePlayer(std::shared_ptr<Player> player);
 
 	void setSuccesfulSaveTimestamp();
 

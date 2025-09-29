@@ -95,6 +95,7 @@ find_package(
 )
 
 find_path(BOOST_DI_INCLUDE_DIRS "boost/di.hpp")
+find_path(BOOST_MULTI_INDEX_INCLUDE_DIRS "boost/multi_index_container.hpp")
 
 # *****************************************************************************
 # Sanity Checks

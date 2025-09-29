@@ -11,6 +11,7 @@
 
 #include "account/account_repository_db.hpp"
 #include "account/account_info.hpp"
+#include "database/database.hpp"
 #include "security/argon.hpp"
 #include "utils/tools.hpp"
 #include "enums/account_coins.hpp"
@@ -64,15 +65,15 @@ AccountErrors_t Account::reload() {
 	return load();
 }
 
-AccountErrors_t Account::save() const {
+void Account::save() const {
 	using enum AccountErrors_t;
 	if (!m_accLoaded) {
-		return NotInitialized;
+		throw DatabaseException("Could not save not loaded account in function: " + std::string(__FUNCTION__));
 	}
-	if (!g_accountRepository().save(m_account)) {
-		return Storage;
+	const auto success = g_accountRepository().save(m_account);
+	if (!success) {
+		throw DatabaseException("Failed saving account in function: " + std::string(__FUNCTION__));
 	}
-	return Ok;
 }
 
 std::tuple<uint32_t, AccountErrors_t> Account::getCoins(CoinType type) const {

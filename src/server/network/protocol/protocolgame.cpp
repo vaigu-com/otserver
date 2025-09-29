@@ -36,7 +36,6 @@
 #include "io/io_bosstiary.hpp"
 #include "io/iobestiary.hpp"
 #include "io/iologindata.hpp"
-#include "io/iomarket.hpp"
 #include "io/ioprey.hpp"
 #include "items/items_classification.hpp"
 #include "items/weapons/weapons.hpp"
@@ -634,193 +633,186 @@ void ProtocolGame::release() {
 	Protocol::release();
 }
 
-void ProtocolGame::login(const std::string& name, uint32_t accountId, OperatingSystem_t operatingSystem) {
-    handleClientFeatures(operatingSystem);
-    logPlayerLogin();
+void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingSystem_t operatingSystem) {
+	handleClientFeatures(operatingSystem);
+	logPlayerLogin();
 
-    auto foundPlayer = g_game().getPlayerByName(name);
-    if (!foundPlayer) {
-        if (!loadOrCreatePlayer(name, accountId, operatingSystem)) {
-            return;
-        }
-    } else {
-        handleExistingPlayer(foundPlayer, accountId, operatingSystem);
-    }
+	auto foundPlayer = g_game().getPlayerByName(name);
+	if (!foundPlayer) {
+		if (!loadOrCreatePlayer(name, accountId, operatingSystem)) {
+			return;
+		}
+	} else {
+		handleExistingPlayer(foundPlayer, accountId, operatingSystem);
+	}
 
-    OutputMessagePool::getInstance().addProtocolToAutosend(shared_from_this());
-    sendBosstiaryCooldownTimer();
+	OutputMessagePool::getInstance().addProtocolToAutosend(shared_from_this());
+	sendBosstiaryCooldownTimer();
 }
 
 void ProtocolGame::handleClientFeatures(OperatingSystem_t operatingSystem) {
-    if (otclientV8 > 0) {
-        sendFeatures();
-    }
-    if (operatingSystem < CLIENTOS_OTCLIENT_LINUX) {
-        return;
-    }
+	if (otclientV8 > 0) {
+		sendFeatures();
+	}
+	if (operatingSystem < CLIENTOS_OTCLIENT_LINUX) {
+		return;
+	}
 
-    isOTC = true;
-    if (otclientV8 == 0) {
-        sendOTCRFeatures();
-    }
+	isOTC = true;
+	if (otclientV8 == 0) {
+		sendOTCRFeatures();
+	}
 
-    NetworkMessage opcodeMessage;
-    opcodeMessage.addByte(0x32);
-    opcodeMessage.addByte(0x00);
-    opcodeMessage.add<uint16_t>(0x00);
-    writeToOutputBuffer(opcodeMessage);
+	NetworkMessage opcodeMessage;
+	opcodeMessage.addByte(0x32);
+	opcodeMessage.addByte(0x00);
+	opcodeMessage.add<uint16_t>(0x00);
+	writeToOutputBuffer(opcodeMessage);
 }
 
 void ProtocolGame::logPlayerLogin() {
-    g_logger().debug("Player logging in in version '{}' and oldProtocol '{}'", getVersion(), oldProtocol);
+	g_logger().debug("Player logging in in version '{}' and oldProtocol '{}'", getVersion(), oldProtocol);
 }
 
-bool ProtocolGame::loadOrCreatePlayer(const std::string& name, uint32_t accountId, OperatingSystem_t operatingSystem) {
-    player = std::make_shared<Player>(getThis());
-    player->setName(name);
-    player->setID();
+bool ProtocolGame::loadOrCreatePlayer(const std::string &name, uint32_t accountId, OperatingSystem_t operatingSystem) {
+	player = std::make_shared<Player>(getThis());
+	player->setName(name);
+	player->setID();
 
-    if (!validatePlayer(player, accountId, operatingSystem)) {
-        return false;
-    }
+	if (!validatePlayer(player, accountId, operatingSystem)) {
+		return false;
+	}
 
-    return placePlayerInGame(player, operatingSystem);
+	return placePlayerInGame(player, operatingSystem);
 }
 
-bool ProtocolGame::validatePlayer(std::shared_ptr<Player>& player, uint32_t accountId, OperatingSystem_t operatingSystem) {
-    if (!IOLoginDataLoad::preLoadPlayer(player, player->getName())) {
-        disconnectClient("Your character could not be loaded.");
-        return false;
-    }
+bool ProtocolGame::validatePlayer(std::shared_ptr<Player> &player, uint32_t accountId, OperatingSystem_t operatingSystem) {
+	if (!IOLoginDataLoad::preLoadPlayer(player, player->getName())) {
+		disconnectClient("Your character could not be loaded.");
+		return false;
+	}
 
-    if (IOBan::isPlayerNamelocked(player->getGUID())) {
-        disconnectClient("Your character has been namelocked.");
-        return false;
-    }
+	if (IOBan::isPlayerNamelocked(player->getGUID())) {
+		disconnectClient("Your character has been namelocked.");
+		return false;
+	}
 
-    if (g_game().getGameState() == GAME_STATE_CLOSING && !player->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
-        disconnectClient("The game is just going down.\nPlease try again later.");
-        return false;
-    }
+	if (g_game().getGameState() == GAME_STATE_CLOSING && !player->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
+		disconnectClient("The game is just going down.\nPlease try again later.");
+		return false;
+	}
 
-    if (g_game().getGameState() == GAME_STATE_CLOSED && !player->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
-        auto maintainMessage = g_configManager().getString(MAINTAIN_MODE_MESSAGE);
-        disconnectClient(maintainMessage.empty() ? "Server is currently closed.\nPlease try again later." : maintainMessage);
-        return false;
-    }
+	if (g_game().getGameState() == GAME_STATE_CLOSED && !player->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
+		auto maintainMessage = g_configManager().getString(MAINTAIN_MODE_MESSAGE);
+		disconnectClient(maintainMessage.empty() ? "Server is currently closed.\nPlease try again later." : maintainMessage);
+		return false;
+	}
 
-    if (g_configManager().getBoolean(ONLY_PREMIUM_ACCOUNT) && !player->isPremium() &&
-        (player->getGroup()->id < GROUP_TYPE_GAMEMASTER || player->getAccountType() < ACCOUNT_TYPE_GAMEMASTER)) {
-        disconnectClient("Your premium time for this account is out.\n\nTo play please buy additional premium time from our website");
-        return false;
-    }
+	if (g_configManager().getBoolean(ONLY_PREMIUM_ACCOUNT) && !player->isPremium() && (player->getGroup()->id < GROUP_TYPE_GAMEMASTER || player->getAccountType() < ACCOUNT_TYPE_GAMEMASTER)) {
+		disconnectClient("Your premium time for this account is out.\n\nTo play please buy additional premium time from our website");
+		return false;
+	}
 
-    auto onlineCount = g_game().getPlayersByAccount(player->getAccount()).size();
-    auto maxOnline = g_configManager().getNumber(MAX_PLAYERS_PER_ACCOUNT);
-    if (player->getAccountType() < ACCOUNT_TYPE_GAMEMASTER && onlineCount >= maxOnline) {
-        disconnectClient(fmt::format("You may only login with {} character{}\nof your account at the same time.", maxOnline, maxOnline > 1 ? "s" : ""));
-        return false;
-    }
+	auto onlineCount = g_game().getPlayersByAccount(player->getAccount()).size();
+	auto maxOnline = g_configManager().getNumber(MAX_PLAYERS_PER_ACCOUNT);
+	if (player->getAccountType() < ACCOUNT_TYPE_GAMEMASTER && onlineCount >= maxOnline) {
+		disconnectClient(fmt::format("You may only login with {} character{}\nof your account at the same time.", maxOnline, maxOnline > 1 ? "s" : ""));
+		return false;
+	}
 
-    if (!player->hasFlag(PlayerFlags_t::CannotBeBanned)) {
-        BanInfo banInfo;
-        if (IOBan::isAccountBanned(accountId, banInfo)) {
-            if (banInfo.reason.empty()) {
-                banInfo.reason = "(none)";
-            }
+	if (!player->hasFlag(PlayerFlags_t::CannotBeBanned)) {
+		BanInfo banInfo;
+		if (IOBan::isAccountBanned(accountId, banInfo)) {
+			if (banInfo.reason.empty()) {
+				banInfo.reason = "(none)";
+			}
 
-            std::ostringstream ss;
-            if (banInfo.expiresAt > 0) {
-                ss << "Your account has been banned until " << formatDateShort(banInfo.expiresAt) << " by " << banInfo.bannedBy << ".\n\nReason specified:\n"
-                   << banInfo.reason;
-            } else {
-                ss << "Your account has been permanently banned by " << banInfo.bannedBy << ".\n\nReason specified:\n"
-                   << banInfo.reason;
-            }
-            disconnectClient(ss.str());
-            return false;
-        }
-    }
+			std::ostringstream ss;
+			if (banInfo.expiresAt > 0) {
+				ss << "Your account has been banned until " << formatDateShort(banInfo.expiresAt) << " by " << banInfo.bannedBy << ".\n\nReason specified:\n"
+				   << banInfo.reason;
+			} else {
+				ss << "Your account has been permanently banned by " << banInfo.bannedBy << ".\n\nReason specified:\n"
+				   << banInfo.reason;
+			}
+			disconnectClient(ss.str());
+			return false;
+		}
+	}
 
-    if (!WaitingList::getInstance().clientLogin(player)) {
-        auto slot = static_cast<uint32_t>(WaitingList::getInstance().getClientSlot(player));
-        auto retryTime = static_cast<uint32_t>(WaitingList::getTime(slot));
+	if (!WaitingList::getInstance().clientLogin(player)) {
+		auto slot = static_cast<uint32_t>(WaitingList::getInstance().getClientSlot(player));
+		auto retryTime = static_cast<uint32_t>(WaitingList::getTime(slot));
 
-        auto output = OutputMessagePool::getOutputMessage();
-        output->addByte(0x16);
-        output->addString(fmt::format("Too many players online.\nYou are at place {} on the waiting list.", slot));
-        output->addByte(retryTime);
-        send(output);
-        disconnect();
-        return false;
-    }
+		auto output = OutputMessagePool::getOutputMessage();
+		output->addByte(0x16);
+		output->addString(fmt::format("Too many players online.\nYou are at place {} on the waiting list.", slot));
+		output->addByte(retryTime);
+		send(output);
+		disconnect();
+		return false;
+	}
 
-    if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
-        disconnectClient("Your character could not be loaded, please contact an administrator.");
-        g_logger().warn("Player {} could not be loaded", player->getName());
-        return false;
-    }
+	if (!IOLoginData::loadPlayerById(player, player->getGUID(), false)) {
+		disconnectClient("Your character could not be loaded, please contact an administrator.");
+		g_logger().warn("Player {} could not be loaded", player->getName());
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
-bool ProtocolGame::placePlayerInGame(std::shared_ptr<Player>& player, OperatingSystem_t operatingSystem) {
-    player->setOperatingSystem(operatingSystem);
+bool ProtocolGame::placePlayerInGame(std::shared_ptr<Player> &player, OperatingSystem_t operatingSystem) {
+	player->setOperatingSystem(operatingSystem);
 
-    auto tile = g_game().map.getOrCreateTile(player->getLoginPosition());
-    auto maxOnline = g_configManager().getNumber(MAX_PLAYERS_PER_ACCOUNT);
+	auto tile = g_game().map.getOrCreateTile(player->getLoginPosition());
+	auto maxOnline = g_configManager().getNumber(MAX_PLAYERS_PER_ACCOUNT);
 
-    if (maxOnline > 1 && player->getAccountType() < ACCOUNT_TYPE_GAMEMASTER && !tile->hasFlag(TILESTATE_PROTECTIONZONE)) {
-        auto maxOutsidePZ = g_configManager().getNumber(MAX_PLAYERS_OUTSIDE_PZ_PER_ACCOUNT);
-        int countOutsidePZ = 0;
-        for (const auto& accountPlayer : g_game().getPlayersByAccount(player->getAccount())) {
-            if (accountPlayer != player && accountPlayer->getTile() && !accountPlayer->getTile()->hasFlag(TILESTATE_PROTECTIONZONE)) {
-                ++countOutsidePZ;
-            }
-        }
-        if (countOutsidePZ >= maxOutsidePZ) {
-            disconnectClient(fmt::format("You can only have {} character{} from your account outside of a protection zone.",
-                                         maxOutsidePZ == 1 ? "one" : std::to_string(maxOutsidePZ),
-                                         maxOutsidePZ > 1 ? "s" : ""));
-            return false;
-        }
-    }
+	if (maxOnline > 1 && player->getAccountType() < ACCOUNT_TYPE_GAMEMASTER && !tile->hasFlag(TILESTATE_PROTECTIONZONE)) {
+		auto maxOutsidePZ = g_configManager().getNumber(MAX_PLAYERS_OUTSIDE_PZ_PER_ACCOUNT);
+		int countOutsidePZ = 0;
+		for (const auto &accountPlayer : g_game().getPlayersByAccount(player->getAccount())) {
+			if (accountPlayer != player && accountPlayer->getTile() && !accountPlayer->getTile()->hasFlag(TILESTATE_PROTECTIONZONE)) {
+				++countOutsidePZ;
+			}
+		}
+		if (countOutsidePZ >= maxOutsidePZ) {
+			disconnectClient(fmt::format("You can only have {} character{} from your account outside of a protection zone.", maxOutsidePZ == 1 ? "one" : std::to_string(maxOutsidePZ), maxOutsidePZ > 1 ? "s" : ""));
+			return false;
+		}
+	}
 
-    if (!g_game().placeCreature(player, player->getLoginPosition()) &&
-        !g_game().placeCreature(player, player->getTemplePosition(), false, true)) {
-        disconnectClient("Temple position is wrong. Please, contact the administrator.");
-        g_logger().warn("Player {} temple position is wrong", player->getName());
-        return false;
-    }
+	if (!g_game().placeCreature(player, player->getLoginPosition()) && !g_game().placeCreature(player, player->getTemplePosition(), false, true)) {
+		disconnectClient("Temple position is wrong. Please, contact the administrator.");
+		g_logger().warn("Player {} temple position is wrong", player->getName());
+		return false;
+	}
 
-    player->lastIP = player->getIP();
-    player->lastLoginSaved = std::max<time_t>(time(nullptr), player->lastLoginSaved + 1);
-    player->loginProtectionTime = OTSYS_TIME() + g_configManager().getNumber(LOGIN_PROTECTION_TIME);
-    acceptPackets = true;
-    return true;
+	player->lastIP = player->getIP();
+	player->lastLoginSaved = std::max<time_t>(time(nullptr), player->lastLoginSaved + 1);
+	player->loginProtectionTime = OTSYS_TIME() + g_configManager().getNumber(LOGIN_PROTECTION_TIME);
+	acceptPackets = true;
+	return true;
 }
 
-void ProtocolGame::handleExistingPlayer(std::shared_ptr<Player>& foundPlayer, uint32_t accountId, OperatingSystem_t operatingSystem) {
-    if (!g_configManager().getBoolean(REPLACE_KICK_ON_LOGIN)) {
-        disconnectClient("You are already logged in.");
-        return;
-    }
+void ProtocolGame::handleExistingPlayer(std::shared_ptr<Player> &foundPlayer, uint32_t accountId, OperatingSystem_t operatingSystem) {
+	if (!g_configManager().getBoolean(REPLACE_KICK_ON_LOGIN)) {
+		disconnectClient("You are already logged in.");
+		return;
+	}
 
-    if (foundPlayer->isLoggingOut()) {
-        g_dispatcher().scheduleEvent(1000, [self = getThis(), playerName = foundPlayer->getName(), accountId, operatingSystem] {
+	if (foundPlayer->isLoggingOut()) {
+		g_dispatcher().scheduleEvent(1000, [self = getThis(), playerName = foundPlayer->getName(), accountId, operatingSystem] {
             if (!self->isConnectionExpired()) {
                 self->login(playerName, accountId, operatingSystem);
-            }
-        }, "ProtocolGame::connect");
-    } else if (foundPlayer->client) {
-        foundPlayer->disconnect();
-        foundPlayer->isConnecting = true;
-        g_dispatcher().scheduleEvent(1000, [self = getThis(), playerName = foundPlayer->getName(), operatingSystem] {
-            self->connect(playerName, operatingSystem);
-        }, "ProtocolGame::connect");
-    } else {
-        connect(foundPlayer->getName(), operatingSystem);
-    }
+            } }, "ProtocolGame::connect");
+	} else if (foundPlayer->client) {
+		foundPlayer->disconnect();
+		foundPlayer->isConnecting = true;
+		g_dispatcher().scheduleEvent(1000, [self = getThis(), playerName = foundPlayer->getName(), operatingSystem] { self->connect(playerName, operatingSystem); }, "ProtocolGame::connect");
+	} else {
+		connect(foundPlayer->getName(), operatingSystem);
+	}
 }
 
 void ProtocolGame::connect(const std::string &playerName, OperatingSystem_t operatingSystem) {
@@ -5447,7 +5439,7 @@ void ProtocolGame::sendMarketEnter(uint32_t depotId) {
 		msg.add<uint64_t>(player->getBankBalance());
 	}
 
-	msg.addByte(static_cast<uint8_t>(std::min<uint32_t>(IOMarket::getPlayerOfferCount(player->getGUID()), std::numeric_limits<uint8_t>::max())));
+	msg.addByte(static_cast<uint8_t>(std::min<uint32_t>(g_iomarket().countPlayerActiveOffers(player->getGUID()), std::numeric_limits<uint8_t>::max())));
 
 	std::shared_ptr<DepotLocker> depotLocker = player->getDepotLocker(depotId);
 	if (!depotLocker) {
@@ -5538,7 +5530,7 @@ void ProtocolGame::sendMarketLeave() {
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &buyOffers, const MarketOfferList &sellOffers, uint8_t tier) {
+void ProtocolGame::sendMarketBrowseItem(uint16_t itemId, const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers, uint8_t tier) {
 	NetworkMessage msg;
 
 	msg.addByte(0xF9);
@@ -5552,8 +5544,8 @@ void ProtocolGame::sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &
 	}
 
 	msg.add<uint32_t>(buyOffers.size());
-	for (const MarketOffer &offer : buyOffers) {
-		msg.add<uint32_t>(offer.timestamp);
+	for (const MarketActiveOffer &offer : buyOffers) {
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
 		msg.add<uint16_t>(offer.amount);
 		if (oldProtocol) {
@@ -5565,8 +5557,8 @@ void ProtocolGame::sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &
 	}
 
 	msg.add<uint32_t>(sellOffers.size());
-	for (const MarketOffer &offer : sellOffers) {
-		msg.add<uint32_t>(offer.timestamp);
+	for (const MarketActiveOffer &offer : sellOffers) {
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
 		msg.add<uint16_t>(offer.amount);
 		if (oldProtocol) {
@@ -5581,7 +5573,7 @@ void ProtocolGame::sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendMarketAcceptOffer(const MarketOfferEx &offer) {
+void ProtocolGame::sendMarketAcceptOffer(const MarketActiveOffer &offer, const uint32_t newAmount) {
 	NetworkMessage msg;
 	msg.addByte(0xF9);
 	if (!oldProtocol) {
@@ -5593,11 +5585,11 @@ void ProtocolGame::sendMarketAcceptOffer(const MarketOfferEx &offer) {
 		msg.addByte(offer.tier);
 	}
 
-	if (offer.type == MARKETACTION_BUY) {
+	if (offer.marketAction == ACCEPT_BUY) {
 		msg.add<uint32_t>(0x01);
-		msg.add<uint32_t>(offer.timestamp);
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
-		msg.add<uint16_t>(offer.amount);
+		msg.add<uint16_t>(newAmount);
 		if (oldProtocol) {
 			msg.add<uint32_t>(offer.price);
 		} else {
@@ -5605,12 +5597,12 @@ void ProtocolGame::sendMarketAcceptOffer(const MarketOfferEx &offer) {
 		}
 		msg.addString(offer.playerName);
 		msg.add<uint32_t>(0x00);
-	} else {
+	} else if (offer.marketAction == ACCEPT_SELL) {
 		msg.add<uint32_t>(0x00);
 		msg.add<uint32_t>(0x01);
-		msg.add<uint32_t>(offer.timestamp);
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
-		msg.add<uint16_t>(offer.amount);
+		msg.add<uint16_t>(newAmount);
 		if (oldProtocol) {
 			msg.add<uint32_t>(offer.price);
 		} else {
@@ -5622,7 +5614,7 @@ void ProtocolGame::sendMarketAcceptOffer(const MarketOfferEx &offer) {
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, const MarketOfferList &sellOffers) {
+void ProtocolGame::sendMarketBrowseOwnOffers(const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers) {
 	NetworkMessage msg;
 	msg.addByte(0xF9);
 	if (oldProtocol) {
@@ -5632,8 +5624,8 @@ void ProtocolGame::sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, c
 	}
 
 	msg.add<uint32_t>(buyOffers.size());
-	for (const MarketOffer &offer : buyOffers) {
-		msg.add<uint32_t>(offer.timestamp);
+	for (const MarketActiveOffer &offer : buyOffers) {
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
 		msg.add<uint16_t>(offer.itemId);
 		if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
@@ -5648,8 +5640,8 @@ void ProtocolGame::sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, c
 	}
 
 	msg.add<uint32_t>(sellOffers.size());
-	for (const MarketOffer &offer : sellOffers) {
-		msg.add<uint32_t>(offer.timestamp);
+	for (const MarketActiveOffer &offer : sellOffers) {
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
 		msg.add<uint16_t>(offer.itemId);
 		if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
@@ -5666,7 +5658,7 @@ void ProtocolGame::sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, c
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendMarketCancelOffer(const MarketOfferEx &offer) {
+void ProtocolGame::sendMarketCancelOffer(const MarketActiveOffer &offer) {
 	NetworkMessage msg;
 	msg.addByte(0xF9);
 	if (oldProtocol) {
@@ -5675,9 +5667,9 @@ void ProtocolGame::sendMarketCancelOffer(const MarketOfferEx &offer) {
 		msg.addByte(MARKETREQUEST_OWN_OFFERS);
 	}
 
-	if (offer.type == MARKETACTION_BUY) {
+	if (offer.marketAction == CANCEL_BUY) {
 		msg.add<uint32_t>(0x01);
-		msg.add<uint32_t>(offer.timestamp);
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
 		msg.add<uint16_t>(offer.itemId);
 		if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
@@ -5690,10 +5682,10 @@ void ProtocolGame::sendMarketCancelOffer(const MarketOfferEx &offer) {
 			msg.add<uint64_t>(static_cast<uint64_t>(offer.price));
 		}
 		msg.add<uint32_t>(0x00);
-	} else {
+	} else if (offer.marketAction == CANCEL_SELL) {
 		msg.add<uint32_t>(0x00);
 		msg.add<uint32_t>(0x01);
-		msg.add<uint32_t>(offer.timestamp);
+		msg.add<uint32_t>(offer.expiryTimestamp);
 		msg.add<uint16_t>(offer.counter);
 		msg.add<uint16_t>(offer.itemId);
 		if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
@@ -5710,9 +5702,9 @@ void ProtocolGame::sendMarketCancelOffer(const MarketOfferEx &offer) {
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendMarketBrowseOwnHistory(const HistoryMarketOfferList &buyOffers, const HistoryMarketOfferList &sellOffers) {
-	uint32_t i = 0;
+void ProtocolGame::sendMarketBrowseOwnHistory(const MarketHistoricOfferList &buyOffers, const MarketHistoricOfferList &sellOffers) {
 	std::map<uint32_t, uint16_t> counterMap;
+
 	uint32_t buyOffersToSend = std::min<uint32_t>(buyOffers.size(), 810 + std::max<int32_t>(0, 810 - sellOffers.size()));
 	uint32_t sellOffersToSend = std::min<uint32_t>(sellOffers.size(), 810 + std::max<int32_t>(0, 810 - buyOffers.size()));
 
@@ -5725,36 +5717,48 @@ void ProtocolGame::sendMarketBrowseOwnHistory(const HistoryMarketOfferList &buyO
 	}
 
 	msg.add<uint32_t>(buyOffersToSend);
-	for (auto it = buyOffers.begin(); i < buyOffersToSend; ++it, ++i) {
-		msg.add<uint32_t>(it->timestamp);
-		msg.add<uint16_t>(counterMap[it->timestamp]++);
-		msg.add<uint16_t>(it->itemId);
-		if (!oldProtocol && Item::items[it->itemId].upgradeClassification > 0) {
-			msg.addByte(it->tier);
+	{
+		uint32_t count = 0;
+		for (const MarketHistoricOffer &offer : buyOffers) {
+			if (count++ >= buyOffersToSend) {
+				break;
+			}
+
+			msg.add<uint32_t>(offer.expiryTimestamp);
+			msg.add<uint16_t>(counterMap[offer.expiryTimestamp]++);
+			msg.add<uint16_t>(offer.itemId);
+			if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
+				msg.addByte(offer.tier);
+			}
+			msg.add<uint16_t>(offer.amount);
+			if (oldProtocol) {
+				msg.add<uint32_t>(offer.price);
+			} else {
+				msg.add<uint64_t>(static_cast<uint64_t>(offer.price));
+			}
+			msg.addByte(offer.offerState);
 		}
-		msg.add<uint16_t>(it->amount);
-		if (oldProtocol) {
-			msg.add<uint32_t>(it->price);
-		} else {
-			msg.add<uint64_t>(static_cast<uint64_t>(it->price));
-		}
-		msg.addByte(it->state);
 	}
 
 	counterMap.clear();
-	i = 0;
-
 	msg.add<uint32_t>(sellOffersToSend);
-	for (auto it = sellOffers.begin(); i < sellOffersToSend; ++it, ++i) {
-		msg.add<uint32_t>(it->timestamp);
-		msg.add<uint16_t>(counterMap[it->timestamp]++);
-		msg.add<uint16_t>(it->itemId);
-		if (Item::items[it->itemId].upgradeClassification > 0) {
-			msg.addByte(it->tier);
+	{
+		uint32_t count = 0;
+		for (const MarketHistoricOffer &offer : sellOffers) {
+			if (count++ >= sellOffersToSend) {
+				break;
+			}
+
+			msg.add<uint32_t>(offer.expiryTimestamp);
+			msg.add<uint16_t>(counterMap[offer.expiryTimestamp]++);
+			msg.add<uint16_t>(offer.itemId);
+			if (Item::items[offer.itemId].upgradeClassification > 0) {
+				msg.addByte(offer.tier);
+			}
+			msg.add<uint16_t>(offer.amount);
+			msg.add<uint64_t>(offer.price);
+			msg.addByte(offer.offerState);
 		}
-		msg.add<uint16_t>(it->amount);
-		msg.add<uint64_t>(it->price);
-		msg.addByte(it->state);
 	}
 
 	writeToOutputBuffer(msg);
@@ -6562,7 +6566,7 @@ void ProtocolGame::sendMarketDetail(uint16_t itemId, uint8_t tier) {
 		}
 	}
 
-	const auto &purchaseStatsMap = IOMarket::getInstance().getPurchaseStatistics();
+	const auto &purchaseStatsMap = g_iomarket().getPurchaseStatistics();
 	auto purchaseIterator = purchaseStatsMap.find(itemId);
 	if (purchaseIterator != purchaseStatsMap.end()) {
 		const auto &tierStatsMap = purchaseIterator->second;
@@ -6587,7 +6591,7 @@ void ProtocolGame::sendMarketDetail(uint16_t itemId, uint8_t tier) {
 		msg.addByte(0x00); // send to old protocol ?
 	}
 
-	const auto &saleStatsMap = IOMarket::getInstance().getSaleStatistics();
+	const auto &saleStatsMap = g_iomarket().getSaleStatistics();
 	auto saleIterator = saleStatsMap.find(itemId);
 	if (saleIterator != saleStatsMap.end()) {
 		const auto &tierStatsMap = saleIterator->second;

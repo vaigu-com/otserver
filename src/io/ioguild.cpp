@@ -41,7 +41,10 @@ void IOGuild::saveGuild(const std::shared_ptr<Guild> &guild) {
 	updateQuery << "UPDATE `guilds` SET ";
 	updateQuery << "`balance` = " << guild->getBankBalance();
 	updateQuery << " WHERE `id` = " << guild->getId();
-	db.executeQuery(updateQuery.str());
+	const auto success = db.executeQuery(updateQuery.str());
+	if (!success) {
+		throw DatabaseException("Could not save guilds in function: " + std::string(__FUNCTION__));
+	}
 }
 
 uint32_t IOGuild::getGuildIdByName(const std::string &name) {

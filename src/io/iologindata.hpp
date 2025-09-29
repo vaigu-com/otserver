@@ -40,7 +40,7 @@ public:
 	 */
 	static void loadOnlyDataForOnlinePlayer(const std::shared_ptr<Player> &player, const std::shared_ptr<DBResult> &result);
 
-	static bool savePlayer(const std::shared_ptr<Player> &player);
+	static void savePlayer(const std::shared_ptr<Player> &player);
 
 	/**
 	 * @brief Saves data components that are only relevant when the player is online.
@@ -77,5 +77,5 @@ public:
 	static void removeGuidVIPGroupEntry(uint32_t accountId, uint32_t guid);
 
 private:
-	static bool savePlayerGuard(const std::shared_ptr<Player> &player);
+	static void savePlayerGuard(const std::shared_ptr<Player> &player);
 };

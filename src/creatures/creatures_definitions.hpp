@@ -295,9 +295,19 @@ enum SpeechBubble_t {
 	SPEECHBUBBLE_HIRELING = 7,
 };
 
+// Vaigu custom
 enum MarketAction_t {
-	MARKETACTION_BUY = 0,
-	MARKETACTION_SELL = 1,
+	CREATE_BUY = 1,
+	CREATE_SELL = 0,
+
+	ACCEPT_SELL = 1,
+	ACCEPT_BUY = 0,
+
+	CANCEL_BUY = 0,
+	CANCEL_SELL = 1,
+
+	CREATE_BUY__ACCEPT_SELL = 1,
+	CREATE_SELL__ACCEPT_BUY = 0
 };
 
 enum MarketRequest_t {
@@ -1501,6 +1511,7 @@ struct MarketOffer {
 	std::string playerName;
 };
 
+/*
 struct MarketOfferEx {
 	MarketOfferEx() = default;
 	MarketOfferEx(MarketOfferEx &&other) noexcept :
@@ -1538,6 +1549,7 @@ struct HistoryMarketOffer {
 
 using MarketOfferList = std::list<MarketOffer>;
 using HistoryMarketOfferList = std::list<HistoryMarketOffer>;
+*/
 using StashItemList = std::map<uint16_t, uint32_t>;
 
 using ItemsTierCountList = std::map<uint16_t, std::map<uint8_t, uint32_t>>;

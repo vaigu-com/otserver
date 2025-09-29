@@ -216,6 +216,16 @@ private:
 	size_t length;
 };
 
+enum TransactionStatus_t {
+	COMMITTED = 0,
+	ROLLED_BACK = 1,
+};
+
+struct TransactionContext {
+	TransactionStatus_t status;
+	bool callbackResult = false;
+};
+
 class DBTransaction {
 public:
 	explicit DBTransaction() = default;
@@ -231,26 +241,24 @@ public:
 	DBTransaction &operator=(const DBTransaction &&) = delete;
 
 	template <typename Func>
-	static bool executeWithinTransaction(const Func &callback)
+	static TransactionContext executeWithinTransaction(const Func &callback)
 		requires std::invocable<Func>
 	{
+		TransactionContext context;
 		DBTransaction transaction;
 		try {
 			transaction.begin();
-			const bool shouldCommit = callback();
-
-			if (shouldCommit) {
-				transaction.commit();
-			} else {
-				transaction.rollback();
-			}
-
-			return shouldCommit;
+			const bool callbackResult = callback();
+			context.callbackResult = callbackResult;
+			transaction.commit();
+			context.status = COMMITTED;
 		} catch (const std::exception &exception) {
+			g_logger().error("[{}] Error occurred during transaction. error: {}", __FUNCTION__, exception.what());
 			transaction.rollback();
-			g_logger().error("[{}] Error occurred during transaction, error: {}", __FUNCTION__, exception.what());
-			return false;
+			g_logger().error("[{}] Transaction was rolled back.", __FUNCTION__);
+			context.status = ROLLED_BACK;
 		}
+		return context;
 	}
 
 private:

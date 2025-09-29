@@ -133,17 +133,18 @@ void Map::loadHouseInfo() {
 	IOMapSerialize::loadHouseItems(this);
 }
 
-bool Map::save() {
+void Map::save() {
 	bool saved = false;
 	for (uint32_t tries = 0; tries < 6; tries++) {
 		if (IOMapSerialize::saveHouseInfo()) {
 			saved = true;
 		}
 		if (saved && IOMapSerialize::saveHouseItems()) {
-			return true;
+			return;
 		}
 	}
-	return false;
+
+	throw DatabaseException("Could not save houses in function: " + std::string(__FUNCTION__));
 }
 
 std::shared_ptr<Tile> Map::getOrCreateTile(uint16_t x, uint16_t y, uint8_t z, bool isDynamic) {

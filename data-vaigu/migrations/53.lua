@@ -35,6 +35,25 @@ function onUpdateDatabase()
 				WHERE LOWER(name) LIKE "%sample%";
 	]])
 
+	logger.info("(market refactor I)")
+    db.query([[
+        ALTER TABLE market_history
+            ADD COLUMN active_offer_id INT(11) AFTER id,
+            CHANGE COLUMN sale market_action TINYINT(1) NOT NULL DEFAULT 0,
+            CHANGE COLUMN itemtype item_id INT(10) UNSIGNED NOT NULL,
+            CHANGE COLUMN expires_at expiry_timestamp BIGINT(20) UNSIGNED NOT NULL,
+            CHANGE COLUMN state offer_state TINYINT(1) UNSIGNED NOT NULL,
+            DROP COLUMN inserted;
+    ]])
+
+	logger.info("(market refactor II)")
+    db.query([[
+        ALTER TABLE market_offers
+            CHANGE COLUMN sale market_action TINYINT(1) NOT NULL DEFAULT 0,
+            CHANGE COLUMN itemtype item_id INT(10) UNSIGNED NOT NULL,
+            CHANGE COLUMN created expiry_timestamp BIGINT(20) UNSIGNED NOT NULL;
+    ]])
+
 	logger.info("Updated database to version 53 (vaigu custom)")
 	return true
 end

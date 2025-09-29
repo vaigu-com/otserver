@@ -191,17 +191,11 @@ void IOLoginData::loadOnlyDataForOnlinePlayer(const std::shared_ptr<Player> &pla
 	IOLoginDataLoad::loadPlayerUpdateSystem(player);
 }
 
-bool IOLoginData::savePlayer(const std::shared_ptr<Player> &player) {
-	bool success = savePlayerGuard(player);
-
-	if (!success) {
-		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);
-	}
-
-	return success;
+void IOLoginData::savePlayer(const std::shared_ptr<Player> &player) {
+	savePlayerGuard(player);
 }
 
-bool IOLoginData::savePlayerGuard(const std::shared_ptr<Player> &player) {
+void IOLoginData::savePlayerGuard(const std::shared_ptr<Player> &player) {
 	if (!player) {
 		throw DatabaseException("Player nullptr in function: " + std::string(__FUNCTION__));
 	}
@@ -253,8 +247,6 @@ bool IOLoginData::savePlayerGuard(const std::shared_ptr<Player> &player) {
 	// Saves data components that are only valid if the player is online.
 	// Skips execution entirely if the player is offline to avoid overwriting unloaded data.
 	saveOnlyDataForOnlinePlayer(player);
-
-	return true;
 }
 
 void IOLoginData::saveOnlyDataForOnlinePlayer(const std::shared_ptr<Player> &player) {

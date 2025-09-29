@@ -17,6 +17,7 @@
 #include "game/movement/position.hpp"
 #include "creatures/creatures_definitions.hpp"
 #include "utils/const.hpp"
+#include "io/iomarket.hpp"
 
 // Player components are decoupled to reduce complexity. Keeping includes here aids in clarity and maintainability, but avoid including player.hpp in headers to prevent circular dependencies.
 #include "creatures/players/animus_mastery/animus_mastery.hpp"
@@ -948,12 +949,12 @@ public:
 	void sendCloseShop() const;
 	void sendMarketEnter(uint32_t depotId) const;
 	void sendMarketLeave();
-	void sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &buyOffers, const MarketOfferList &sellOffers, uint8_t tier) const;
-	void sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, const MarketOfferList &sellOffers) const;
-	void sendMarketBrowseOwnHistory(const HistoryMarketOfferList &buyOffers, const HistoryMarketOfferList &sellOffers) const;
+	void sendMarketBrowseItem(uint16_t itemId, const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers, uint8_t tier) const;
+	void sendMarketBrowseOwnOffers(const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers) const;
+	void sendMarketBrowseOwnHistory(const MarketHistoricOfferList &buyOffers, const MarketHistoricOfferList &sellOffers) const;
 	void sendMarketDetail(uint16_t itemId, uint8_t tier) const;
-	void sendMarketAcceptOffer(const MarketOfferEx &offer) const;
-	void sendMarketCancelOffer(const MarketOfferEx &offer) const;
+	void sendMarketAcceptOffer(const MarketActiveOffer &offer, const uint32_t newAmount) const;
+	void sendMarketCancelOffer(const MarketActiveOffer &offer) const;
 	void sendTradeItemRequest(const std::string &traderName, const std::shared_ptr<Item> &item, bool ack) const;
 	void sendTradeClose() const;
 	void sendWorldLight(LightInfo lightInfo) const;

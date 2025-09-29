@@ -80,6 +80,7 @@ int CanaryServer::run() {
 				initializeDatabase();
 				loadModules();
 				setWorldType();
+				g_iomarket().initialize();
 				loadMaps();
 
 				logger.info("Initializing gamestate...");
@@ -88,8 +89,7 @@ int CanaryServer::run() {
 				setupHousesRent();
 				g_game().transferHouseItemsToDepot();
 
-				IOMarket::checkExpiredOffers();
-				IOMarket::getInstance().updateStatistics();
+				g_iomarket().updateStatistics();
 
 				logger.info("Loaded all modules, server starting up...");
 

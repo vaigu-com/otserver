@@ -2373,19 +2373,18 @@ void Player::sendMarketLeave() {
 	}
 }
 
-void Player::sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &buyOffers, const MarketOfferList &sellOffers, uint8_t tier) const {
+void Player::sendMarketBrowseItem(uint16_t itemId, const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers, uint8_t tier) const {
 	if (client) {
 		client->sendMarketBrowseItem(itemId, buyOffers, sellOffers, tier);
 	}
 }
-
-void Player::sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, const MarketOfferList &sellOffers) const {
+void Player::sendMarketBrowseOwnOffers(const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers) const {
 	if (client) {
 		client->sendMarketBrowseOwnOffers(buyOffers, sellOffers);
 	}
 }
 
-void Player::sendMarketBrowseOwnHistory(const HistoryMarketOfferList &buyOffers, const HistoryMarketOfferList &sellOffers) const {
+void Player::sendMarketBrowseOwnHistory(const MarketHistoricOfferList &buyOffers, const MarketHistoricOfferList &sellOffers) const {
 	if (client) {
 		client->sendMarketBrowseOwnHistory(buyOffers, sellOffers);
 	}
@@ -2397,13 +2396,13 @@ void Player::sendMarketDetail(uint16_t itemId, uint8_t tier) const {
 	}
 }
 
-void Player::sendMarketAcceptOffer(const MarketOfferEx &offer) const {
+void Player::sendMarketAcceptOffer(const MarketActiveOffer &offer, const uint32_t newAmount) const {
 	if (client) {
-		client->sendMarketAcceptOffer(offer);
+		client->sendMarketAcceptOffer(offer, newAmount);
 	}
 }
 
-void Player::sendMarketCancelOffer(const MarketOfferEx &offer) const {
+void Player::sendMarketCancelOffer(const MarketActiveOffer &offer) const {
 	if (client) {
 		client->sendMarketCancelOffer(offer);
 	}

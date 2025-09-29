@@ -77,7 +77,7 @@ public:
 	 *
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	AccountErrors_t save() const;
+	void save() const;
 
 	/**
 	 * @brief Load Account Information.

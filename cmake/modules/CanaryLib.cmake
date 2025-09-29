@@ -77,6 +77,7 @@ endif()
 target_include_directories(
     ${PROJECT_NAME}_lib
     PUBLIC ${BOOST_DI_INCLUDE_DIRS}
+           ${BOOST_MULTI_INDEX_INCLUDE_DIRS}
            ${CMAKE_SOURCE_DIR}/src
            ${GMP_INCLUDE_DIRS}
            ${LUAJIT_INCLUDE_DIRS}
