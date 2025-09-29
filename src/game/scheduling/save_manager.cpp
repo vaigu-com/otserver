@@ -138,6 +138,15 @@ void SaveManager::saveAll() {
 
 #ifdef OS_WINDOWS
 void SaveManager::saveAll() {
+	static bool saving = false;
+	if (saving) {
+		g_game().broadcastMessage(fmt::format("{} - OS_WINDOWS - cannot save during another save", __FUNCTION__), MESSAGE_ADMINISTRATOR);
+		g_logger().warn("{} - OS_WINDOWS - cannot save during another save", __FUNCTION__);
+		return;
+	} else {
+		saving = true;
+	}
+	
 	const auto players = game.getPlayers();
 	for (const auto &[_, player] : players) {
 		if (player->isLoggingOut()) {
@@ -182,6 +191,7 @@ void SaveManager::saveAll() {
 	if (result.status == COMMITTED) {
 		g_iomarket().cleanAfterSave();
 	}
+	saving = false;
 
 	logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 
