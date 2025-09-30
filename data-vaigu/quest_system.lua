@@ -284,6 +284,7 @@ function QuestRegistry.NormalizeQuestlog()
 		for _, quest in pairs(Questlog) do
 			quest.questId = NextQuestId()
 			IdToQuest[quest.questId] = quest
+			NameToQuest[quest.name] = quest
 			for _, mission in pairs(quest.missions) do
 				local min, max
 				if mission.states then

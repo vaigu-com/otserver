@@ -32,6 +32,10 @@ function Game.getQuestByMission(mission)
 	end
 end
 
+NameToQuest = {}
+function Game.getQuestByName(name)
+	return NameToQuest[name]
+end
 IdToQuest = {}
 function Game.getQuestById(id)
 	return IdToQuest[id]
