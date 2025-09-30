@@ -317,7 +317,7 @@ bool ConfigManager::load() {
 	loadIntConfig(L, RATE_SPAWN, "rateSpawn", 1);
 	loadIntConfig(L, RED_SKULL_DURATION, "redSkullDuration", 30);
 	loadIntConfig(L, REWARD_CHEST_MAX_COLLECT_ITEMS, "rewardChestMaxCollectItems", 200);
-	loadIntConfig(L, SAVE_INTERVAL_TIME, "saveIntervalTime", 1);
+	loadIntConfig(L, SAVE_INTERVAL_TIME_SECONDS, "saveIntervalTimeSeconds", 0);
 	loadIntConfig(L, STAIRHOP_DELAY, "stairJumpExhaustion", 2000);
 	loadIntConfig(L, STAMINA_GREEN_DELAY, "staminaGreenDelay", 5);
 	loadIntConfig(L, STAMINA_ORANGE_DELAY, "staminaOrangeDelay", 1);
