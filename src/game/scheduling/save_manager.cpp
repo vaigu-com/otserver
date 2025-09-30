@@ -166,10 +166,6 @@ void SaveManager::saveAll() {
 
 	logger.info("Saving server...");
 
-	if (!Database::getInstance().connect()) {
-		throw std::runtime_error("Failed to connect to database.");
-	}
-
 	const auto result = DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
 		for (const auto &[_, player] : players) {
 			savePlayer(player);
