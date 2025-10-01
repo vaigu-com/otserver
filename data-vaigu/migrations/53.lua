@@ -33,28 +33,29 @@ function onUpdateDatabase()
 
 	logger.info("(re-create player samples III set default values)")
 	db.query([[
-	ALTER TABLE players 
-    	ALTER COLUMN town_id SET DEFAULT 1,
-    	ALTER COLUMN level SET DEFAULT 1,
-    	ALTER COLUMN health SET DEFAULT 150,
-    	ALTER COLUMN healthmax SET DEFAULT 150,
-    	ALTER COLUMN mana SET DEFAULT 55,
-    	ALTER COLUMN manamax SET DEFAULT 55,
-    	ALTER COLUMN cap SET DEFAULT 400,
-    	ALTER COLUMN maglevel SET DEFAULT 0,
-    	ALTER COLUMN experience SET DEFAULT 0,
-    	ALTER COLUMN manaspent SET DEFAULT 0,
-    	ALTER COLUMN group_id SET DEFAULT 1,
-    	ALTER COLUMN conditions SET DEFAULT '',
-    	ALTER COLUMN sex SET DEFAULT 1,
-    	ALTER COLUMN skill_club SET DEFAULT 10,
-    	ALTER COLUMN skill_club_tries SET DEFAULT 0,
-    	ALTER COLUMN skill_sword SET DEFAULT 10,
-    	ALTER COLUMN skill_sword_tries SET DEFAULT 0,
-    	ALTER COLUMN skill_axe SET DEFAULT 10,
-    	ALTER COLUMN skill_axe_tries SET DEFAULT 0,
-    	ALTER COLUMN skill_dist SET DEFAULT 10,
-    	ALTER COLUMN skill_dist_tries SET DEFAULT 0;
+		ALTER TABLE players 
+    		ALTER COLUMN town_id SET DEFAULT 1,
+    		ALTER COLUMN level SET DEFAULT 1,
+    		ALTER COLUMN health SET DEFAULT 150,
+    		ALTER COLUMN healthmax SET DEFAULT 150,
+    		ALTER COLUMN mana SET DEFAULT 55,
+    		ALTER COLUMN manamax SET DEFAULT 55,
+    		ALTER COLUMN cap SET DEFAULT 400,
+    		ALTER COLUMN maglevel SET DEFAULT 0,
+    		ALTER COLUMN experience SET DEFAULT 0,
+    		ALTER COLUMN manaspent SET DEFAULT 0,
+    		ALTER COLUMN group_id SET DEFAULT 1,
+    		ALTER COLUMN conditions SET DEFAULT '',
+    		ALTER COLUMN sex SET DEFAULT 1,
+    		ALTER COLUMN skill_club SET DEFAULT 10,
+    		ALTER COLUMN skill_club_tries SET DEFAULT 0,
+    		ALTER COLUMN skill_sword SET DEFAULT 10,
+    		ALTER COLUMN skill_sword_tries SET DEFAULT 0,
+    		ALTER COLUMN skill_axe SET DEFAULT 10,
+    		ALTER COLUMN skill_axe_tries SET DEFAULT 0,
+    		ALTER COLUMN skill_dist SET DEFAULT 10,
+    		ALTER COLUMN skill_dist_tries SET DEFAULT 0,
+			ALTER COLUMN comment SET DEFAULT '';
 	]])
 
 	logger.info("(re-create player samples IV create new samples)")
