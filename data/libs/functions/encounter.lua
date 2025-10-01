@@ -597,7 +597,7 @@ function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 	end
 end
 
-function Game.setLockoutExpired(storage)
+function Game.setLockoutExpiry(storage)
 	local expiryTimestamp = LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 	Game.setStorageValueByKey(storage, expiryTimestamp)
 end
