@@ -288,7 +288,7 @@ local function isImmovable(item, fromPosition, toPosition)
 		return true
 	end
 
-	if item:getCustomAttribute(HOUSE_DECORATION_STATUS) == IS_HOUSE_DECORATION then 
+	if item:isHouseDecoration() then
 		return false
 	end
 
@@ -311,8 +311,14 @@ local function isImmovable(item, fromPosition, toPosition)
 	return false
 end
 
-HOUSE_DECORATION_STATUS = "HOUSE_DECORATION_STATUS"
-IS_HOUSE_DECORATION = true
+IS_HOUSE_DECORATION = "IS_HOUSE_DECORATION"
+
+function Item:isHouseDecoration()
+    return self:getCustomAttribute(IS_HOUSE_DECORATION)
+end
+function Item:setIsHouseDecoration(nextState)
+    self:setCustomAttribute(IS_HOUSE_DECORATION, nextState)
+end
 
 local exhaust = {}
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)

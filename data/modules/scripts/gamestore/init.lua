@@ -1710,6 +1710,7 @@ function GameStore.processHouseRelatedPurchase(player, offer)
 					if not offer.movable then
 						decoKit:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 					end
+                    decoKit:setIsHouseDecoration(true)
 				end
 			else
 				for i = 1, offer.count do
@@ -1721,6 +1722,7 @@ function GameStore.processHouseRelatedPurchase(player, offer)
 						if not offer.movable then
 							decoKit:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 						end
+                        decoKit:setIsHouseDecoration(true)
 					end
 				end
 			end
