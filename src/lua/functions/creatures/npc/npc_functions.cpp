@@ -432,7 +432,7 @@ int NpcFunctions::luaNpcOpenShopWindowTable(lua_State* L) {
 
 		auto buyPrice = Lua::getField<uint32_t>(L, tableIndex, "buy");
 		auto sellPrice = Lua::getField<uint32_t>(L, tableIndex, "sell");
-		auto storageKey = Lua::getField<int32_t>(L, tableIndex, "storageKey");
+		auto storageKey = Lua::getField<std::string>(L, tableIndex, "storageKey");
 		auto storageValue = Lua::getField<int32_t>(L, tableIndex, "storageValue");
 		auto itemName = Lua::getFieldString(L, tableIndex, "itemName");
 		if (itemName.empty()) {

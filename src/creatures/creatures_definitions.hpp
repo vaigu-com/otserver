@@ -1664,13 +1664,14 @@ struct ShopBlock {
 	int32_t itemSubType {};
 	uint32_t itemBuyPrice {};
 	uint32_t itemSellPrice {};
-	int32_t itemStorageKey {};
+	std::string itemStorageKey {}; // Vaigu custom
 	int32_t itemStorageValue {};
 
 	std::vector<ShopBlock> childShop;
 	ShopBlock() = default;
 
-	explicit ShopBlock(uint16_t newItemId, std::string newName = "", int32_t newSubType = 0, uint32_t newBuyPrice = 0, uint32_t newSellPrice = 0, int32_t newStorageKey = 0, int32_t newStorageValue = 0) :
+	// Vaigu custom
+	explicit ShopBlock(uint16_t newItemId, std::string newName = "", int32_t newSubType = 0, uint32_t newBuyPrice = 0, uint32_t newSellPrice = 0, std::string newStorageKey = "", int32_t newStorageValue = 0) :
 		itemId(newItemId), itemName(std::move(newName)), itemSubType(newSubType), itemBuyPrice(newBuyPrice), itemSellPrice(newSellPrice), itemStorageKey(newStorageKey), itemStorageValue(newStorageValue) { }
 
 	bool operator==(const ShopBlock &other) const {

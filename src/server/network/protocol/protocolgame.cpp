@@ -9019,7 +9019,7 @@ void ProtocolGame::AddHiddenShopItem(NetworkMessage &msg) {
 
 void ProtocolGame::AddShopItem(NetworkMessage &msg, const ShopBlock &shopBlock) {
 	// Sends the item information empty if the player doesn't have the storage to buy/sell a certain item
-	if (shopBlock.itemStorageKey != 0 && player->getStorageValueByKey(shopBlock.itemStorageKey) < shopBlock.itemStorageValue) {
+	if (!shopBlock.itemStorageKey.empty() && player->getStorageValueByKey(shopBlock.itemStorageKey) < shopBlock.itemStorageValue) { // Vaigu custom
 		AddHiddenShopItem(msg);
 		return;
 	}
