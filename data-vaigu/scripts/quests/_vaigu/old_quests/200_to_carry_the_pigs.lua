@@ -61,7 +61,7 @@ quest
 					name = "To be like the Schwarzenegger",
 					storage = Storage.ToCarryThePigs.BeLikeSchwarzenegger,
 					states = {
-						[QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace] = "Arni asks you to collect the following items: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
+						[QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace] = "Arni asks you to collect the following items: 3 orc tooth, 3 carrion worm fangs, and 1 vampire teeth.",
 						[QuestState.ToCarryThePigs.BeLikeSchwarzenegger.BringNecklaceToArni] = "Madame Malkin gladly made this necklace for Arni. Report to Arni.",
 						[MISSION_FINISHED] = "In exchange for the teeth necklace, Arni gave u his old armour and a ring.",
 					},

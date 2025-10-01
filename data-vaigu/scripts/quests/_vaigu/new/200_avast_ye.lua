@@ -90,6 +90,13 @@ quest
 	end)
 	:Mission(Storage.AvastYe.TrustedWith.Morgram)
 	:State(function()
+		return ACCESS_NOT_GRANTED, QuestFactory.Dialog("Morgram", {
+			[TRAVEL_KEYWORDS] = {
+				text = "Har har! Ye think I do business with any scrappy deckhand that washes up here?",
+			},
+		})
+	end)
+	:State(function()
 		return ACCESS_GRANTED,
 			QuestFactory.Dialog("Morgram", {
 				[{ GREET }] = {
@@ -118,6 +125,10 @@ quest
 	:State(function()
 		return ACCESS_NOT_GRANTED, QuestFactory.Dialog("Redbeard", {
 			[{ GREET }] = {
+				text = "Oh, ye must be mistaken - I don't deal with half-done sailing.",
+				interactOnGreet = false,
+			},
+			[TRAVEL_KEYWORDS] = {
 				text = "Oh, ye must be mistaken - I don't deal with half-done sailing.",
 				interactOnGreet = false,
 			},
@@ -155,6 +166,10 @@ quest
 				text = "Ain't no foolin' these old bones! I ain't dealin' with no privateers!",
 				interactOnGreet = false,
 			},
+			[TRAVEL_KEYWORDS] = {
+				text = "Ain't no foolin' these old bones! I ain't dealin' with no privateers!",
+				interactOnGreet = false,
+			},
 		})
 	end)
 	:State(function()
@@ -186,6 +201,10 @@ quest
 	:State(function()
 		return ACCESS_NOT_GRANTED, QuestFactory.Dialog("Chris the Tailor", {
 			[{ GREET }] = {
+				text = "Har har! Ye think I do business with any scrappy deckhand that washes up here?",
+				interactOnGreet = false,
+			},
+			[TRAVEL_KEYWORDS] = {
 				text = "Har har! Ye think I do business with any scrappy deckhand that washes up here?",
 				interactOnGreet = false,
 			},

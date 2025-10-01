@@ -25,7 +25,7 @@ return {
 	--Questlog
 	["To Carry the Pigs"] = "To Carry the Pigs",
 	["To be like the Schwarzenegger"] = "To be like the Schwarzenegger",
-	["Arni asks you to collect the following items: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth."] = "Arni asks you to collect the following items: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
+	["Arni asks you to collect the following items: 3 orc tooth, 3 carrion worm fangs, and 1 vampire teeth."] = "Arni asks you to collect the following items: 3 orc tooth, 3 carrion worm fangs, and 1 vampire teeth.",
 	["Arni glanced at these teeth, and asked you to find someone who can make them into necklace."] = "Arni glanced at these teeth, and asked you to find someone who can make them into necklace.",
 	["Madame Malkin gladly made this necklace for Arni."] = "Madame Malkin gladly made this necklace for Arni.",
 	["In exchange for the teeth necklace, Arni gave u his old armour and a ring."] = "In exchange for the teeth necklace, Arni gave u his old armour and a ring.",

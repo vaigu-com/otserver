@@ -225,7 +225,7 @@ quest
 					rewards = {
 						{ id = 43948, addToStore = true },
 					},
-					actionsOnSuccess = {
+					specialActionsOnSuccess = {
 						{ action = QuestActions.EnterTheDrunkTank.grantVocationPotionAccess },
 					},
 					nextState = {

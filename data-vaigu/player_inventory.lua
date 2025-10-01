@@ -347,20 +347,13 @@ function Player:CanAddItems(items)
 	return true, RETURNVALUE_NOERROR
 end
 
-function Player:AddItemsWithLocalizer(items, bag, localizer)
-	for _, item in pairs(items) do
-		item.localizer = localizer
-	end
-	return self:AddItems(items, bag)
-end
-
-function Player:AddItems(items, bag)
+function Player:AddItems(items, bag, localizer)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
 			local nextBag = (bag or self):addItem(containerId, 1)
-			self:AddItems(itemOrItems, nextBag)
+			self:AddItems(itemOrItems, nextBag,localizer)
 		else
-			self:AddCustomItem(itemOrItems, bag)
+			self:AddCustomItem(itemOrItems, bag, localizer)
 		end
 	end
 	return true
