@@ -5,8 +5,9 @@ quest
 		Storage.DailyTasks = {
 			DailyTaskInfo = {},
 			DailyLimit = {},
-			LastResetTimestamp = {},
+			RandomTasksExpiry = {},
 			Board = {},
+			DailyLimitExpiry= {},
 		}
 	end)
 	:Constant(function()
@@ -1218,11 +1219,11 @@ quest
 		end
 
 		local function wereDailyTasksSetToday(currentTimestamp)
-			local lastResetTimestamp = Game.getStorageValueByKey(Storage.DailyTasks.LastResetTimestamp)
-			if not lastResetTimestamp then
+			local LockoutExpiry = Game.getStorageValueByKey(Storage.DailyTasks.RandomTasksExpiry)
+			if not LockoutExpiry then
 				return false
 			end
-			if currentTimestamp <= lastResetTimestamp then
+			if currentTimestamp <= LockoutExpiry then
 				return true
 			end
 			return false
@@ -1246,25 +1247,25 @@ quest
 			for i, task in ipairs(newDailyTasks) do
 				setDailyTaskDatabase(i, task)
 			end
-			Game.setStorageValueByKey(Storage.DailyTasks.LastResetTimestamp, currentTimestamp)
 		end
-		local dailyQuest = GlobalEvent("dailyQuest")
-		function dailyQuest.onStartup()
+		local initializeRandomDailyTasks = GlobalEvent("InitializeRandomDailyTasks")
+		function initializeRandomDailyTasks.onStartup()
 			local todayDate = calculateTodayDate()
-			if not wereDailyTasksSetToday(todayDate) then
+			if Game.isLockoutExpired(Storage.DailyTasks.RandomTasksExpiry) then
 				setTodayDailyTasksDatabase(todayDate)
+				Game.setLockoutExpiry(Storage.DailyTasks.RandomTasksExpiry, LOCKOUT_EXPIRY_TIME.DAILY)
 			end
 
 			loadTodayDailyTasksDatabase()
 
 			logDailyTasks()
 		end
-		dailyQuest:register()
+		initializeRandomDailyTasks:register()
 	end)
 	:Script(function() -- task window and completion at npc
 		function Player:TryResetDailyTaskCounter()
-			if self:isLockoutExpired(Storage.DailyTasks.LastResetTimestamp) then
-				self:setLockoutExpiry(Storage.DailyTasks.DailyTasks, LOCKOUT_EXPIRY_TIME.DAILY)
+			if self:isLockoutExpired(Storage.DailyTasks.DailyLimitExpiry) then
+				self:setLockoutExpiry(Storage.DailyTasks.DailyLimitExpiry, LOCKOUT_EXPIRY_TIME.DAILY)
 				self:setStorageValueByKey(Storage.DailyTasks.DailyLimit, 0)
 			end
 		end

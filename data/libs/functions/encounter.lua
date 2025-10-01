@@ -597,6 +597,16 @@ function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 	end
 end
 
+function Game.setLockoutExpired(storage)
+	local expiryTimestamp = LockoutExpiryTypeTimestamp(lockoutExpiryTime)
+	Game.setStorageValueByKey(storage, expiryTimestamp)
+end
+
+function Game.isLockoutExpired(storage)
+	local lockoutExpiry = Game.getStorageValueByKey(storage) or 0
+	return os.time() > lockoutExpiry, lockoutExpiry
+end
+
 function Player:setLockoutExpiry(storage, lockoutExpiryTime)
 	local expiryTimestamp = LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 	self:setStorageValueByKey(storage, expiryTimestamp)
