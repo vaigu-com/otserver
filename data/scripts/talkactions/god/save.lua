@@ -8,7 +8,7 @@ function save.onSay(player, words, param)
 		return
 	end
 
-	player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Server server...")
+	player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Saving server...")
 	saveServer()
 	player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Server was saved!")
 

@@ -20,7 +20,7 @@ function RequiredItemNamesToString(items, separator)
 	end
 	separator = separator or defaultSeparator
 	for _, item in pairs(items) do
-		text = text .. T(":name::separator:", {name = ItemType(item.id):getName(), separator = separator })
+		text = text .. T(":name::separator:", { name = ItemType(item.id):getName(), separator = separator })
 	end
 	return text:sub(1, -3)
 end
@@ -169,10 +169,26 @@ function Player:getStorageValueByKeyRaw(key, type)
 	return self:kv():get(key)
 end
 
+local function validateKey(key)
+	if key == nil then
+		logger.error(debug.traceback("[Player:setStorageValueByKey] key is nil"))
+	end
+	local components = key:split("-")
+	if not components then
+		logger.error(debug.traceback("[Player:setStorageValueByKey] key has no components"))
+	end
+	for i, component in ipairs(components) do
+		if component == "" then
+			logger.error(debug.traceback(T("[Player:setStorageValueByKey] key :key: component :i: is empty string", { key = key, i = i })))
+		end
+	end
+end
+
 ---@param key string|number|any
 ---@param nextValue any
 ---@return any
 function Player:setStorageValueByKey(key, nextValue)
+	validateKey(key)
 	local previousValue = self:getStorageValueByKey(key)
 	self:kv():set(key, nextValue)
 	self:updateStorage(key, nextValue, previousValue, os.time())
