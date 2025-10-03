@@ -42218,9 +42218,6 @@
 		<monster name="Snake" x="1" y="0" z="7" spawntime="60" />
 		<monster name="Snake" x="1" y="1" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7295" centery="1371" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7355" centery="1371" centerz="7" radius="1">
 		<monster name="Glooth Brigand" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42283,9 +42280,6 @@
 	</monster>
 	<monster centerx="6813" centery="1373" centerz="7" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7306" centery="1373" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7496" centery="1373" centerz="7" radius="1">
 		<monster name="Ghost" x="1" y="-1" z="7" spawntime="60" />
@@ -42693,9 +42687,6 @@
 	<monster centerx="7291" centery="1384" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7301" centery="1384" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7421" centery="1384" centerz="7" radius="1">
 		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -42992,9 +42983,6 @@
 	<monster centerx="6465" centery="1394" centerz="7" radius="1">
 		<monster name="Clay Guardian" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7288" centery="1394" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7312" centery="1394" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -43116,9 +43104,6 @@
 	<monster centerx="6427" centery="1399" centerz="7" radius="1">
 		<monster name="Sandstone Scorpion" x="0" y="0" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="7334" centery="1399" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="7752" centery="1399" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -43133,9 +43118,6 @@
 	</monster>
 	<monster centerx="7301" centery="1400" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7316" centery="1400" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7527" centery="1400" centerz="7" radius="1">
 		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
@@ -43216,9 +43198,6 @@
 	</monster>
 	<monster centerx="6182" centery="1403" centerz="7" radius="1">
 		<monster name="Fox" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7290" centery="1403" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7861" centery="1403" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="60" />
@@ -43350,9 +43329,6 @@
 	</monster>
 	<monster centerx="6469" centery="1408" centerz="7" radius="1">
 		<monster name="Blood Crab" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="7339" centery="1408" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7443" centery="1408" centerz="7" radius="1">
 		<monster name="Glooth Bandit" x="0" y="0" z="7" spawntime="60" />
@@ -44350,9 +44326,6 @@
 	</monster>
 	<monster centerx="6041" centery="1445" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="6155" centery="1445" centerz="7" radius="1">
-		<monster name="Drillworm" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6185" centery="1445" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="60" />
