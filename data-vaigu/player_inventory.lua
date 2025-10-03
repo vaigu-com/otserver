@@ -465,11 +465,13 @@ function Player:AddCustomItem(itemData, container, localizer)
 			addedItem:setTier(tier)
 		end
 
+		local storeInboxSuffix = ""
 		if shouldAddToStore(itemData) then
 			addedItem:setOwner(self)
 			addedItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
 			local inbox = self:getStoreInbox()
 			lastErrorCode = inbox:addItemEx(addedItem)
+			storeInboxSuffix = " (Your Store Inbox)"
 		else
 			-- container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
 			if container then
