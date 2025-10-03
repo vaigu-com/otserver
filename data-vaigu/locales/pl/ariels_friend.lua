@@ -73,8 +73,8 @@ return {
 	["Bring the radio to Ariel."] = "Przynies radio do Ariela.",
 	["Ariel told you that Celebimber could have the skills requied to repair the radio. Try to find him in Kongo."] = "Ariel wskazal ci, ze Celebimber moze znac sposob na naprawe radia. Znajdziesz go w Kongo.",
 	["Try to listen to radio."] = "Sprobuj posluchac radia.",
-	["You gave your radio to 4M-33. Rescue it now."] = "Oddales radio dla 4M-33. Mozesz to teraz wyprowadzic z lochow.",
+	["You gave your radio to 4M-33. Rescue it now. It said that you should escort it to carpet, southwest from here."] = "Oddales radio dla 4M-33. Mozesz teraz to wyprowadzic z lochow. 4M-33 wspominalo, zebys odprowadzil je na dywan, ktory znajduje sie na poludniowych zachodzie stad.",
 	['You helped 4M-33 get out. It gave you its map and the password "chamek athra thull zathroth". On its way to carpet it also mentioned that you shall find a monument before which you shall utter this password.'] = 'Pomogles 4M-33 w wydostaniu sie. Po drodze na dywan wyjawilo ci, ze tajne haslo to "chamek athra thull zathroth", a droge do bilbioteki wskaze ci mapa.',
-	["You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it."] = 'Znalazles opusczony dom, o ktorym wspomnialo 4M-33. Sprobuj znalezc monument i wypowiedziec przed nim haslo "chamek athra thull zathroth".',
+	["You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it. You recall password as 'chamek athra thull zathroth'"] = 'Znalazles opusczony dom, o ktorym wspomnialo 4M-33. Sprobuj znalezc monument i wypowiedziec przed nim haslo "chamek athra thull zathroth".',
 	["You found your way to the secret library."] = "Odnalazles wejscie do tajemnej biblioteki.",
 }

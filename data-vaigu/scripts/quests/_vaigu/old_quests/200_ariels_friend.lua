@@ -97,7 +97,7 @@ quest
 				[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee,
 			},
 			nextState = {
-				[Storage.ArielsFriend.RadioFreeHirschberg] = MISSION_FINISHED,
+				[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse,
 			},
 			rewards = {
 				QuestKeyItems.ArielsFriend.AmeeMap,
@@ -164,9 +164,9 @@ quest
 						[QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel] = "Bring the radio to Ariel.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.RepairRadioAtCelebimber] = "Ariel told you that Celebimber could have the skills requied to repair the radio. Try to find him in Kongo.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio] = "Try to listen to radio.",
-						[QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee] = "You gave your radio to 4M-33. Rescue it now.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee] = "You gave your radio to 4M-33. Rescue it now. It said that you should escort it to carpet, southwest from here.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse] = 'You helped 4M-33 get out. It gave you its map and the password "chamek athra thull zathroth". On its way to carpet it also mentioned that you shall find a monument before which you shall utter this password.',
-						[QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it. You recall password as 'chamek athra thull zathroth'",
 						[MISSION_FINISHED] = "You found your way to the secret library.",
 					},
 				},
@@ -624,7 +624,7 @@ quest
 	:State(function()
 		return QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio,
 			QuestFactory.Script(function(missionState)
-				local destinationPos = Position(7661, 1611, 7)
+				local destinationPos = Position(7534, 1048, 6)
 
 				local function getDistanceMessage(player)
 					local dist = player:getPosition():EuclideanDistance(destinationPos)
@@ -660,6 +660,9 @@ quest
 					nextTopic = QuestTopics.ArielsFriend.AcceptStartAmeeEsort,
 					requiredItems = {
 						QuestKeyItems.ArielsFriend.OldRadioWorking,
+					},
+					nextState = {
+						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee,
 					},
 				},
 			})
@@ -700,7 +703,7 @@ quest
 			end),
 			QuestFactory.Script(function(missionState)
 				local nextState = {
-					[Storage.ArielsFriend.RadioFreeHirschberg] = MISSION_FINISHED,
+					[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument,
 				}
 
 				local tileBeforeHouse = MoveEvent()
@@ -795,7 +798,7 @@ quest
 			{ type = "bleed", condition = false },
 		}
 
-		local insideLibrary = Position(7229, 2399, 9)
+		local insideLibrary = Position(32515, 32537, 12)
 		local outsideStandingPosition = Position(7683, 1637, 9)
 		mType.onSay = function(listener, talker, type, message)
 			local player = talker:getPlayer()

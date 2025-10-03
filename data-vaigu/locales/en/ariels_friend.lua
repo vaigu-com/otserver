@@ -73,8 +73,8 @@ return {
 	["Bring the radio to Ariel."] = "Bring the radio to Ariel.",
 	["Ariel told you that Celebimber could have the skills requied to repair the radio. Try to find him in Kongo."] = "Ariel told you that Celebimber could have the skills requied to repair the radio. Try to find him in Kongo.",
 	["Try to listen to radio."] = "Try to listen to radio.",
-	["You gave your radio to 4M-33. Rescue it now."] = "You gave your radio to 4M-33. Rescue it now.",
+	["You gave your radio to 4M-33. Rescue it now. It said that you should escort it to carpet, southwest from here."] = "You gave your radio to 4M-33. Rescue it now. It said that you should escort it to carpet, southwest from here.",
 	['You helped 4M-33 get out. It gave you its map and the password "chamek athra thull zathroth". On its way to carpet it also mentioned that you shall find a monument before which you shall utter this password.'] = 'You helped 4M-33 get out. It gave you its map and the password "chamek athra thull zathroth". On its way to carpet it also mentioned that you shall find a monument before which you shall utter this password.',
-	["You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it."] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it.",
+	["You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it. You recall password as 'chamek athra thull zathroth'"] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it. You recall password as 'chamek athra thull zathroth'",
 	["You found your way to the secret library."] = "You found your way to the secret library.",
 }
