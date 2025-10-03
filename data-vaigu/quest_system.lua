@@ -309,6 +309,9 @@ function QuestRegistry.NormalizeQuestlog()
 				StorageToMission[mission.storage] = mission
 				IdToMission[mission.missionId] = mission
 				Game.linkMissionToStorages(mission.storage, mission.linkedStorages or {})
+				if not (mission.states or mission.description) then
+					logger.warn(T("[QuestRegistry.NormalizeQuestlog] Mission :missionName: of quest :questName: has no states and no description", { missionName = mission.name, questName = quest.name }))
+				end
 			end
 		end
 	end
