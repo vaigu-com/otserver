@@ -31,7 +31,7 @@ return {
 	["In exchange for the teeth necklace, Arni gave u his old armour and a ring."] = "In exchange for the teeth necklace, Arni gave u his old armour and a ring.",
 	["Half turn Kick"] = "Half turn Kick",
 	["Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment."] = "Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment.",
-	["He was right. Now go to the Price Kebab and ask Shivganesh for translation."] = "He was right. Now go to the Price Kebab and ask Shivganesh for translation.",
+	["He was right. Now go to the Prince Kebab and ask Shivganesh for translation."] = "He was right. Now go to the Prince Kebab and ask Shivganesh for translation.",
 	["It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker."] = "It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker.",
 	["You have received MirkoTown guard hat for your help."] = "You have received MirkoTown guard hat for your help.",
 	["A Balanced Diet"] = "A Balanced Diet",

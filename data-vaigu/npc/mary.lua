@@ -9,7 +9,7 @@ local voices = {
 	{ text = "Kusza czy luk? Zapraszam do debaty..." },
 }
 local outfit = {
-	lookType = 134,
+	lookType = 142,
 	lookHead = 57,
 	lookBody = 59,
 	lookLegs = 40,

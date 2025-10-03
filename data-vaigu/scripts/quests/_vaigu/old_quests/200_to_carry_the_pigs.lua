@@ -72,7 +72,7 @@ quest
 					states = {
 						[QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves] = "Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.BringDocumentToCordell] = "You found a some weird document in Hero hideout. Report to Cordell.",
-						[QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation] = "He was right. Now go to the Price Kebab and ask Shivganesh for translation.",
+						[QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation] = "He was right. Now go to the Prince Kebab and ask Shivganesh for translation.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.BringTranslationToCordell] = "It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs] = "Cordell asked you to investigate further. Look for the legendary dragon scale legs in lost caves.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.ReportFounterfeitLegs] = "You found disfigured legs. Report your finding to Cordell.",

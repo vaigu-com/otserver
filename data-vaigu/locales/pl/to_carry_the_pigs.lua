@@ -31,7 +31,7 @@ return {
 	["In exchange for the teeth necklace, Arni gave u his old armour and a ring."] = "Arni w zamian dal ci swoj stary pancerz oraz pierscionek.",
 	["Half turn Kick"] = "Kopniak z polobrotu",
 	["Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment."] = "Walker ma podejrzenia, ze gdzies w wiosce bandytow sa krecone nielegalne deale.",
-	["He was right. Now go to the Price Kebab and ask Shivganesh for translation."] = "Mial racje. Idz do Prince Kebab i przetlumacz List.",
+	["He was right. Now go to the Prince Kebab and ask Shivganesh for translation."] = "Mial racje. Idz do Prince Kebab i przetlumacz List.",
 	["It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker."] = "Wcale nie bylo to takie trudne dla Shivganesha, odnies przetlumaczony list do Walkera.",
 	["You have received MirkoTown guard hat for your help."] = "W zamian za pomoc dostales Kapelusz straznika MirkoTown.",
 	["A Balanced Diet"] = "Dieta Grubego Mirka",
