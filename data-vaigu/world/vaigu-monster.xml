@@ -75122,6 +75122,9 @@
 		<monster name="Dark Magician" x="0" y="0" z="9" spawntime="60" />
 		<monster name="Dark Apprentice" x="1" y="1" z="9" spawntime="60" />
 	</monster>
+	<monster centerx="7681" centery="1634" centerz="9" radius="1">
+		<monster name="Monument door" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7707" centery="1634" centerz="9" radius="1">
 		<monster name="Infernalist" x="0" y="0" z="9" spawntime="60" />
 	</monster>

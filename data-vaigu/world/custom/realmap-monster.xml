@@ -85175,10 +85175,7 @@
 		<monster name="Rotworm" x="1" y="-1" z="9" spawntime="90" />
 		<monster name="Rotworm" x="0" y="1" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33012" centery="31996" centerz="9" radius="3">
-		<monster name="Rotworm" x="-1" y="-1" z="9" spawntime="90" />
-		<monster name="Rotworm" x="1" y="1" z="9" spawntime="90" />
-	</monster>
+	<monster centerx="33012" centery="31996" centerz="9" radius="3" />
 	<monster centerx="32421" centery="31997" centerz="9" radius="3">
 		<monster name="Skeleton" x="-1" y="-3" z="9" spawntime="90" />
 		<monster name="Skeleton" x="1" y="-1" z="9" spawntime="90" />
