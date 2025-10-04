@@ -29,7 +29,7 @@ quest
 		function dontAllowUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			return false
 		end
-		dontAllowUse:key(KEY_UNUSABLE)
+		dontAllowUse:key(UNUSABLE_KEY)
 		dontAllowUse:register()
 	end)
 	:Register()

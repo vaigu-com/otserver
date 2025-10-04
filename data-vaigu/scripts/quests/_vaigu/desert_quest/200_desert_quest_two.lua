@@ -81,11 +81,11 @@ quest
 
 		monster.changeTarget = {
 			interval = 4000,
-			chance = 10,
+			chance = 50,
 		}
 
 		monster.strategiesTarget = {
-			nearest = 100,
+			random = 100,
 		}
 
 		monster.flags = {
@@ -93,7 +93,7 @@ quest
 			attackable = true,
 			hostile = false,
 			convinceable = false,
-			pushable = false,
+			pushable = true,
 			rewardBoss = false,
 			illusionable = false,
 			canPushItems = true,

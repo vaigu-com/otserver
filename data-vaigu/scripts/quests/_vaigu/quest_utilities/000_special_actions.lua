@@ -219,7 +219,7 @@ SPECIAL_ACTIONS_IMBUING = {
 		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 
 		local player = context.player
-		player:AddItems(bundleData.items)
+		player:AddItemsAnnounce(bundleData.items)
 		player:removeMoney(bundleData.moneyPrice)
 		player:IncrementStorage(Storage.Tasks.TaskPoints, -bundleData.taskPointsCost)
 	end,

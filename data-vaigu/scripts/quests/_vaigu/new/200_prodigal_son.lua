@@ -19,6 +19,7 @@ quest
 			MainGateAccess = {},
 			NorthMinesAccess = {},
 			TileBeforeChesterCompartment = {},
+			FindJanuszexTile = {},
 			HammerMaking = { Lever = {}, Paint = {} },
 			CalculatorMaking = {
 				Lever = {},
@@ -788,11 +789,33 @@ quest
 			})
 	end)
 	:State(function()
-		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex, QuestFactory.Dialog("Chester the Dwarf", {
-			[{ "train", "pociagiem" }] = {
-				text = "Just ask the conductor to see the schedules of the train.",
-			},
-		})
+		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex,
+			QuestFactory.Dialog("Chester the Dwarf", {
+				[{ "train", "pociagiem" }] = {
+					text = "Just ask the conductor to see the schedules of the train.",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local nextState = {
+					[Storage.ProdigalSon.Mission01] = MISSION_FINISHED,
+					[Storage.ProdigalSon.Mission02] = QuestState.ProdigalSon.Mission02.FindForeman,
+				}
+
+				local grantFoundJanuszexTile = MoveEvent()
+				function grantFoundJanuszexTile.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return
+					end
+
+					if not player:HasExactMissionState(missionState) then
+						return
+					end
+
+					player:NextState(nextState)
+				end
+				grantFoundJanuszexTile:key(Storage.ProdigalSon.FindJanuszexTile)
+				grantFoundJanuszexTile:register()
+			end)
 	end)
 	:Mission(Storage.ProdigalSon.Mission02)
 	:State(function()

@@ -226,7 +226,7 @@ SPECIAL_REQUIREMENTS_BANK = {
 	end,
 	hasMoneyinbank = function(context)
 		local withdrawnMoney = parseMoneyWithdraw(context)
-		if not withdrawnMoney then
+		if not withdrawnMoney or withdrawnMoney <= 0 then
 			return false
 		end
 
@@ -245,12 +245,13 @@ SPECIAL_REQUIREMENTS_BANK = {
 		local pilesCount = crystalPiles + platinumPiles + goldPiles
 
 		local player = context.player
-		local hasCap, noCapMessage = player:ErrorIfHasNotEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
+		local hasCap, noCapMessage = player:ErrorIfHasNotEnoughCapacity(getMoneyWeight(amount))
 		if not hasCap then
 			player:sendTextMessage(MESSAGE_FAILURE, noCapMessage)
 			return false
 		end
-		local hasSlots, noSlotsMessage = player:ErrorIfHasNotEnoughSlots({ requiredSlots = pilesCount })
+
+		local hasSlots, noSlotsMessage = player:ErrorIfHasNotEnoughSlots(pilesCount)
 		if not hasSlots then
 			player:sendTextMessage(MESSAGE_FAILURE, noSlotsMessage)
 			return false

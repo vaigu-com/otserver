@@ -1,7 +1,7 @@
 local chayenneReward = Action()
 function chayenneReward.onUse(player, item, fromPosition, itemEx, toPosition)
 	if player:getStorageValueByKey(Storage.ChayenneReward) < 1 then
-		player:AddItems({
+		player:AddItemsAnnounce({
 			[5949] = {
 				{ id = 16244 },
 				{ id = 3659 },

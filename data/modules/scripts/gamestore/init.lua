@@ -2040,7 +2040,7 @@ function GameStore.processTradeableItemPurchase(player, offer)
 	local id = offer.itemtype
 	local count = offer.count
 
-	local itemData = { id = id, count = count, flags = FLAG_NOLIMIT }
+	local itemData = { id = id, count = count, flags = FLAG_NOLIMIT, goesToStore = true }
 	local canProceed, message = player:CanAddItems({ itemData })
 	if not canProceed then
 		return error({
@@ -2056,7 +2056,7 @@ function GameStore.processTradeableItemPurchase(player, offer)
 			message = "You cannot buy this item because your mail inbox cannot be found. Please contact an admin.",
 		})
 	end
-	player:AddCustomItem(itemData, inbox)
+	player:AddCustomItem(itemData)
 end
 
 --==Player==--

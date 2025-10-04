@@ -130,13 +130,14 @@ function ResolutionContext.FromActiveEncounter(activeEncounter, player)
 	return newObj
 end
 
-function ResolutionContext.FromCustomItemState(item, player)
+---@param itemData table
+---@return ResolutionContext
+function ResolutionContext.FromCustomItemState(itemData)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
-	newObj.localizer = item.localizer
-	newObj.player = player
+	newObj.localizer = itemData.localizer
 	newObj.__index = ResolutionContext
-	newObj:ParseRequirementsActionsOther(item)
+	newObj:ParseRequirementsActionsOther(itemData)
 	return newObj
 end
 
@@ -222,7 +223,7 @@ function ResolutionContext:CheckCanAddRewards()
 		return REQUIREMENT_STATUS.REQUIREMENT_PASSED
 	end
 
-	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizer)
+	local result, errorMessage = self.player:CanAddItems(actions.rewards)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
 		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
@@ -241,7 +242,7 @@ function ResolutionContext:CheckRequiredMoney()
 	local playerMoney = self.player:getMoney()
 	local totalPlayerMoney = balance + playerMoney
 	if totalPlayerMoney < requirements.requiredMoney then
-		self.errorMessage = requirements.textNoRequiredMoney
+		self.errorMessage = self.textNoRequiredMoney
 		return REQUIREMENT_STATUS.REQUIREMENT_NOT_PASSED
 	end
 	return REQUIREMENT_STATUS.REQUIREMENT_PASSED
@@ -302,7 +303,7 @@ function ResolutionContext:AddRewards()
 		return
 	end
 
-	self.player:AddItems(actions.rewards, nil, self.localizer)
+	self.player:AddItemsAnnounce(actions.rewards)
 end
 
 function ResolutionContext:RemoveRequiredMoney()

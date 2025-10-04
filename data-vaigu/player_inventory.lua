@@ -119,7 +119,7 @@ end
 ---@param items table item list
 ---@param quantifier string? Default: REQUIRE_ALL
 ---@return boolean hasItems
----@return ItemExList|nil takenItems
+---@return table|nil takenItems
 function Player:HasItems(items, quantifier)
 	quantifier = quantifier or REQUIRE_ALL
 	local hasItems = false
@@ -153,9 +153,10 @@ function Player:HasItems(items, quantifier)
 	return hasItems, takeableItems:Get()
 end
 
+---@return table
 function Player:ParseRemovalCriteria(items)
-	local _, removalCriteria = self:HasItems(items)
-	return removalCriteria
+	local _, removableItems = self:HasItems(items)
+	return removableItems
 end
 
 function Player:TryRemoveItems(items)
@@ -200,8 +201,8 @@ function Player:RemoveEquippedItemByCriteria(removalCriteria)
 end
 
 function Player:RemoveItem(itemData)
-	local removalCriteria = self:ParseRemovalCriteria({ itemData })
-	for _, removalCriterion in pairs(removalCriteria) do
+	local takeableItems = self:ParseRemovalCriteria({ itemData })
+	for _, removalCriterion in pairs(takeableItems) do
 		if removalCriterion.remove ~= false then
 			self:RemoveEquippedItemByCriteria(removalCriterion)
 		end
@@ -228,7 +229,7 @@ function Player:TryTradeInItems(givenUpItems, addedItems)
 	end
 	-- success
 	self:RemoveItems(givenUpItems)
-	self:AddItems(addedItems)
+	self:AddItemsAnnounce(addedItems)
 	return true
 end
 
@@ -238,16 +239,16 @@ function Player:TryAddItems(items)
 		self:sendTextMessage(MESSAGE_FAILURE, status)
 		return canAdd
 	end
-	return self:AddItems(items)
+	return self:AddItemsAnnounce(items)
 end
 
 ---@param requiredCap number
 ---@return boolean hasEnoughCap
 ---@return string|nil errorMessageIfHasNoCap
 function Player:ErrorIfHasNotEnoughCapacity(requiredCap)
-	local playerFreeCap = self:getFreeCapacity() / 100
+	local playerFreeCap = self:getFreeCapacity()
 	if requiredCap > playerFreeCap then
-		local lackingCap = tostring(math.abs(playerFreeCap - requiredCap))
+		local lackingCap = tostring(math.abs(playerFreeCap - requiredCap)) / 100
 		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap, lackingCap = lackingCap })
 	end
 	return true
@@ -291,288 +292,190 @@ local function shouldAddToStore(item)
 	return false
 end
 
-local function parseDestinationSlotId(item)
-	do
-		return nil
+local function setFields(addedItems, itemData, localizer)
+	local aid = itemData.aid
+	local key = itemData.key
+	local desc = itemData.desc
+	local text = itemData.text
+	local uid = itemData.uid
+	local tier = itemData.tier
+	localizer = itemData.localizer or localizer
+
+	if type(addedItems) ~= "table" then
+		addedItems = { addedItems }
 	end
-	if shouldAddToStore(item) then
-		return CONST_SLOT_STORE_INBOX
-	end
 
-	return CONST_SLOT_WHEREEVER
-end
-
-local function parseSubtype(item)
-	return item.subtype or item.subType or item.count or item.fluidType or item.fluid or item.charges
-end
-
-local cantDropOnMap = false
-local subtypeNone = nil
-local tierNone = nil
-function Player:CanAddItemsCpp(items)
-	for containerId, item in pairs(items) do
-		if ItemType(containerId):isContainer() then
-			local status = self:canAddItem(containerId, 1, cantDropOnMap, subtypeNone, parseDestinationSlotId(item), tierNone)
-			if status ~= RETURNVALUE_NOERROR then
-				return status, containerId
+	for _, addedItem in pairs(addedItems) do
+		for k, v in pairs(itemData) do
+			if IsCustomAttribute(k) then
+				addedItem:setCustomAttribute(k, v)
 			end
+			if IsSetableAttribute(k) then
+				addedItem:setAttribute(k, v)
+			end
+		end
+		if uid ~= 0 then
+			addedItem:setUniqueId(uid)
+		end
+		if desc then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
+		end
+		if text then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_TEXT, text)
+		end
+		if key then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
+		end
+		addedItem:setActionId(aid)
+		if aid == 0 then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
+		end
+		if tier then
+			addedItem:setTier(tier)
+		end
+		if addedItem:hasAttribute(ITEM_ATTRIBUTE_DURATION) then
+			addedItem:decay()
+		end
+
+		if localizer then
+			addedItem:setCustomAttribute("localizer", localizer)
+		end
+		if key == "" then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
+		end
+	end
+end
+
+local function createPermanentItemsInner(items, destinationContainerEx)
+	for containerId, itemOrItems in pairs(items) do
+		if ItemType(containerId):isContainer() then
+			local containerEx = Game.createItem(containerId)
+			createPermanentItemsInner(itemOrItems, containerEx)
 		else
-			local status = self:canAddItem(item.id, item.count, cantDropOnMap, parseSubtype(item), parseDestinationSlotId(item), item.tier)
-			if status ~= RETURNVALUE_NOERROR then
-				return status, item.id
+			if shouldAddToStore(itemOrItems) then
+				local normalizedData = normalizedItemData(itemOrtems)
+				local storeItemEx = destinationContainerEx:addItem(normalizedData.id, normalizedData.count)
+				setFields(storeItemEx, normalizedData)
+				logger.warn(debug.traceback(T("Item :id: that is determined to go to store was put inside inner container :containerId:", { id = itemOrItems.id, containerId = destinationContainerEx:getId() })))
+			else
+				local normalizedData = normalizedItemData(itemOrtems)
+				local normalItemEx = destinationContainerEx:addItem(normalizedData.id, normalizedData.count)
+				setFields(normalItemEx)
 			end
 		end
 	end
-	return RETURNVALUE_NOERROR
+end
+
+local function generateItemsPermanent(items, player)
+	local itemsToAdd = ItemExList()
+	local itemsToAddStore = ItemExList()
+
+	for containerId, itemOrItems in pairs(items) do
+		if ItemType(containerId):isContainer() then
+			local containerEx = player:addItem(containerId)
+			itemsToAdd:AddItemOrTable(containerEx)
+			createPermanentItemsInner(itemOrItems, containerEx)
+		else
+			if shouldAddToStore(itemOrItems) then
+				local normalizedData = normalizedItemData(itemOrItems)
+				local storeInbox = player:getStoreInbox()
+				local addedItems = storeInbox:addItem(normalizedData.id, normalizedData.count)
+				setFields(addedItems, normalizedData)
+				if normalizedData.dontAnnounce ~= true then
+					itemsToAddStore:AddItemOrTable(addedItems)
+				end
+			else
+				local normalizedData = normalizedItemData(itemOrItems)
+				local addedItems = player:addItem(normalizedData.id, normalizedData.count)
+				setFields(addedItems, normalizedData)
+				if normalizedData.dontAnnounce ~= true then
+					itemsToAdd:AddItemOrTable(addedItems)
+				end
+			end
+		end
+	end
+	return itemsToAdd, itemsToAddStore
+end
+
+local function createTemporaryItemsInner(items, destinationContainerEx)
+	for containerId, itemOrItems in pairs(items) do
+		if ItemType(containerId):isContainer() then
+			local containerEx = Game.createItem(containerId)
+			createTemporaryItemsInner(itemOrItems, containerEx)
+		else
+			if shouldAddToStore(itemOrItems) then
+				logger.warn(debug.traceback(T("Item :id: that is determined to go to store was put inside inner container :containerId:", { id = itemOrItems.id, containerId = destinationContainerEx:getId() })))
+				local storeItemEx = Game.createItem(itemOrItems.id, itemOrItems.count or 1)
+				destinationContainerEx:addItemEx(storeItemEx, INDEX_WHEREEVER)
+			else
+				local normalItemEx = Game.createItem(itemOrItems.id, itemOrItems.count or 1)
+				destinationContainerEx:addItemEx(normalItemEx, INDEX_WHEREEVER)
+			end
+		end
+	end
+end
+
+local function generateItemsTemporary(items)
+	local itemsToAddNonStore = ItemExList()
+	local itemsToAddStore = ItemExList()
+
+	for containerId, itemOrItems in pairs(items) do
+		if ItemType(containerId):isContainer() then
+			local containerEx = Game.createItem(containerId)
+			itemsToAddNonStore:AddItemOrTable(containerEx)
+			createTemporaryItemsInner(itemOrItems, containerEx)
+		else
+			if shouldAddToStore(itemOrItems) then
+				local storeItemEx = Game.createItem(itemOrItems.id, itemOrItems.count or 1)
+				itemsToAddStore:AddItemOrTable(storeItemEx)
+			else
+				local normalItemEx = Game.createItem(itemOrItems.id, itemOrItems.count or 1)
+				itemsToAddNonStore:AddItemOrTable(normalItemEx)
+			end
+		end
+	end
+	return itemsToAddNonStore, itemsToAddStore
 end
 
 function Player:CanAddItems(items)
-	local requiredCap = CalculateItemsWeight(items)
+	local itemsToAddNonStore, itemsToAddStore = generateItemsTemporary(items)
+
+	local requiredCap = itemsToAddNonStore:CalculateRequiredCap()
 	local hasCap, capMessage = self:ErrorIfHasNotEnoughCapacity(requiredCap)
 	if not hasCap then
 		return false, capMessage
 	end
 
-	local requiredSlots = CalculateItemsRequiredSlots(items)
+	local requiredSlots = #itemsToAddNonStore:Get()
 	local hasSlots, slotMessage = self:ErrorIfHasNotEnoughSlots(requiredSlots)
 	if not hasSlots then
 		return false, slotMessage
 	end
+	print("cap", requiredCap, self:getFreeCapacity())
+	print("slots", requiredSlots, self:getFreeBackpackSlots())
 
-	local status, lastitemId = self:CanAddItemsCpp(items)
-	if status ~= RETURNVALUE_NOERROR then
-		return false, T("[Player::CanAddItems] Cannot add items to player :playerName:. Last item id: :lastitemId: Status: :status:. Please contact an admin.", { playerName = self:getName(), status = status, lastitemId = lastitemId })
-	end
-
-	return true, RETURNVALUE_NOERROR
-end
-
-function Player:AddItems(items, bag, localizer)
-	for containerId, itemOrItems in pairs(items) do
-		if ItemType(containerId):isContainer() then
-			local nextBag = (bag or self):addItem(containerId, 1)
-			self:AddItems(itemOrItems, nextBag,localizer)
-		else
-			self:AddCustomItem(itemOrItems, bag, localizer)
-		end
-	end
 	return true
 end
 
-local function normalizedItem(item)
-	item.count = item.count or 1
-	item.aid = item.aid or item.actionid or 0
-	item.desc = item.desc or item.description
-	item.uid = item.uid or item.uniqueid or 0
-	item.key = item.key or ""
-	return item
+function Player:AnnounceAddedItemsNonStore(addedItemsNonStore)
+	for _, item in pairs(addedItemsNonStore) do
+		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have found :name:.", { name = item:getName() }))
+	end
+end
+function Player:AnnounceAddedItemsStore(addedItemsStore)
+	for _, item in pairs(addedItemsStore) do
+		self:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have found :name:. (Your Store Inbox)", { name = item:getName() }))
+	end
 end
 
-DONT_ADD_ITEM_TO_INVENTORY = "DONT_ADD_ITEM_TO_INVENTORY"
-
-local explodingCookie = 130
-local function onAddExplodingcookie(context)
-	local exp = tonumber(context.item.key or 1000)
-	if not exp then
-		logger.error(T("[onAddExplodingcookie] Exp cookie key (:key:) cannot be converted to number. Chest position :pos:", { key = context.item:getKey(), pos = context.item:getPosition():ToString() }))
-	end
-	AddExperienceWithAnnouncement(context.player, exp)
-	return DONT_ADD_ITEM_TO_INVENTORY
-end
-
-local customItemActionContainer = {
-	[explodingCookie] = onAddExplodingcookie,
-}
-
-function CountNotAddableItems(items)
-	local count = 0
-	for _, item in pairs(items) do
-		if customItemActionContainer[item.id] then
-			count = count + 1
-		end
-	end
-	return count
+function Player:AddItemsAnnounce(items)
+	local addedItemsNonStore, addedItemsStore = generateItemsPermanent(items, self)
+	self:AnnounceAddedItemsNonStore(addedItemsNonStore:Get())
+	self:AnnounceAddedItemsStore(addedItemsStore:Get())
 end
 
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param itemData table
----@param container Container|nil
-function Player:AddCustomItem(itemData, container, localizer)
-	itemData = normalizedItem(itemData)
-	local id = itemData.id
-	local count = itemData.count
-	local aid = itemData.aid
-	local key = itemData.key
-	local showCustomDescOnAcquire = itemData.showCustomDescOnAcquire
-	local desc = itemData.desc
-	local text = itemData.text
-	local uid = itemData.uid
-	local fluidType = itemData.fluidType
-	local tier = itemData.tier
-	local flags = itemData.flags
-
-	local actionOnAdd = customItemActionContainer[id]
-	if actionOnAdd then
-		local context = { player = self, item = itemData }
-		if actionOnAdd(context) == DONT_ADD_ITEM_TO_INVENTORY then
-			return
-		end
-	end
-
-	local addedItems = Game.createItem(id, count)
-	if type(addedItems) ~= "table" then
-		addedItems = { addedItems }
-	end
-
-	local lastErrorCode = RETURNVALUE_NOERROR
-	for _, addedItem in pairs(addedItems) do
-		for key, value in pairs(itemData) do
-			if IsCustomAttribute(key) then
-				addedItem:setCustomAttribute(key, value)
-			end
-			if IsSetableAttribute(key) then
-				addedItem:setAttribute(key, value)
-			end
-		end
-
-		local iType = ItemType(id)
-		if iType and iType:isFluidContainer() then
-			addedItem:transform(id, 0)
-		end
-
-		addedItem:setActionId(aid)
-		if uid ~= 0 then
-			addedItem:setUniqueId(uid)
-		end
-		if desc and count == 1 then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
-		end
-		if text and count == 1 then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_TEXT, text)
-		end
-		if key and count == 1 then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
-		end
-		if fluidType then
-			addedItem:transform(id, fluidType)
-		end
-
-		if text or desc then
-			addedItem:setCustomAttribute("localizer", localizer)
-		end
-
-		if tier then
-			addedItem:setTier(tier)
-		end
-
-		local storeInboxSuffix = ""
-		if shouldAddToStore(itemData) then
-			addedItem:setOwner(self)
-			addedItem:setAttribute(ITEM_ATTRIBUTE_STORE, systemTime())
-			local inbox = self:getStoreInbox()
-			lastErrorCode = inbox:addItemEx(addedItem)
-			storeInboxSuffix = " (Your Store Inbox)"
-		else
-			-- container = container or self:getSlotItem(CONST_SLOT_BACKPACK)
-			if container then
-				lastErrorCode = container:addItemEx(addedItem, INDEX_WHEREEVER, flags)
-			else
-				lastErrorCode = self:addItemEx(addedItem, false, CONST_SLOT_WHEREEVER, flags)
-			end
-		end
-
-		if aid == 0 then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
-		end
-		if key == "" then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
-		end
-
-		if addedItem:hasAttribute(ITEM_ATTRIBUTE_DURATION) then
-			addedItem:decay()
-		end
-
-		local name = addedItem:getName()
-		if showCustomDescOnAcquire then
-			name = desc
-		end
-
-		if name and itemData.dontAnnounce ~= true and lastErrorCode == RETURNVALUE_NOERROR then
-			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found " .. name .. ".")
-		end
-	end
-	return lastErrorCode
-end
-
-function CalculateItemsRequiredSlots(items)
-	local slotsCount = 0
-	local storeSlotsCount = 0
-	for containerId, item in pairs(items) do
-		local takenSlots = 1
-		local stackable = false
-		local chargesPerItem = 1
-		if ItemType(containerId):isContainer() then
-			takenSlots = CalculateItemsRequiredSlots(item)
-			takenSlots = takenSlots + 1
-		else
-			takenSlots = item.count or takenSlots
-			stackable = ItemType(item.id):isStackable()
-			chargesPerItem = ItemType(item.id):getCharges()
-		end
-
-		local requiredSlots = 0
-		if stackable then
-			requiredSlots = math.ceil(takenSlots / 100)
-		elseif chargesPerItem > 1 then
-			requiredSlots = math.ceil(takenSlots / chargesPerItem)
-		else
-			requiredSlots = takenSlots
-		end
-
-		if shouldAddToStore(item) then
-			storeSlotsCount = storeSlotsCount + requiredSlots
-		else
-			slotsCount = slotsCount + requiredSlots
-		end
-	end
-	return slotsCount, storeSlotsCount
-end
-
-function CalculateItemsWeight(items)
-	local totalWeight = 0
-	for containerId, item in pairs(items) do
-		local count = 1
-		local weight = 0
-		local chargesPerItem = 1
-		if ItemType(containerId):isContainer() then
-			weight = CalculateItemsWeight(item)
-			weight = weight + getItemWeight(tonumber(containerId))
-		else
-			count = item.count or count
-			chargesPerItem = ItemType(item.id):getCharges()
-
-			count = item.count or count
-			local chargesPerItem = ItemType(item.id):getCharges()
-			if chargesPerItem > 1 then
-				count = math.ceil(count / chargesPerItem)
-			end
-			weight = getItemWeight(item.id) or weight
-		end
-
-		local requiredWeight = 0
-		-- Do not set weight to 0 if its store item
-		--[[
-		if shouldAddToStore(item) then
-			requiredWeight = 0
-		elseif chargesPerItem > 1 then
-		]]
-		if chargesPerItem > 1 then
-			requiredWeight = weight * math.ceil(count / chargesPerItem)
-		else
-			requiredWeight = weight * count
-		end
-
-		totalWeight = totalWeight + requiredWeight
-	end
-	return totalWeight
+function Player:AddCustomItem(itemData)
+	self:AddItemsAnnounce({ itemData })
 end

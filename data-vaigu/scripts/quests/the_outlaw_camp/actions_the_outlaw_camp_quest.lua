@@ -14,7 +14,7 @@ function outlawQuest.onUse(player, item, fromPosition, target, toPosition, isHot
 		end
 	end
 
-	player:AddItems({
+	player:AddItemsAnnounce({
 		[bagId] = rewards,
 	})
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a bag.")

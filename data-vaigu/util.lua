@@ -572,3 +572,35 @@ function ReverseTable(tab)
 		tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
 	end
 end
+
+function normalizedItemData(itemData, localizer)
+	local normalized = {}
+	for key, value in pairs(itemData) do
+		normalized[key] = value
+	end
+
+	normalized.id = itemData.id
+	normalized.count = itemData.count or 1
+	normalized.aid = itemData.actionid or itemData.aid or itemData.actionId
+	normalized.uid = itemData.uniqueid or itemData.uid or itemData.uniqueId
+	normalized.key = itemData.key
+	normalized.desc = itemData.description or itemData.desc
+	normalized.text = itemData.text
+	normalized.rewards = itemData.rewards
+	normalized.requiredState = itemData.requiredState
+	normalized.nextState = itemData.nextState
+	normalized.expReward = itemData.expReward or itemData.exp or itemData.experience
+	normalized.specialActionsOnSuccess = itemData.specialActionsOnSuccess
+	normalized.specialActionsOnFail = itemData.specialActionsOnFail
+	normalized.onLook = itemData.onLook or itemData.onlook
+	normalized.immovable = itemData.immovable
+	local pos = itemData.pos or itemData.offset or itemData.position or itemData.offpos or itemData.vector
+	if pos then
+		logger.warn("[normalizedItemData] pos is deprecated")
+	end
+	normalized.pos = pos
+	normalized.source = itemData.source
+
+	normalized.localizer = itemData.localizer or localizer
+	return normalized
+end

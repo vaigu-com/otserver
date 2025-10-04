@@ -143,26 +143,26 @@ pseudoQuest
 
 			local container = Container(usedPotionEx:getParent().uid)
 			if not container then
+				print("not container")
 				Game.createItem(potionData.flask, 1, fromPosition)
 				return
 			end
 
 			local storeInbox = player:getSlotItem(CONST_SLOT_STORE_INBOX)
 			local parent = usedPotionEx:getParent()
-			if parent == storeInbox then
-				Game.createItem(potionData.flask, 1, fromPosition)
-				return
-			end
 
-			local emptyFlaskEx = { id = potionData.flask, count = 1, dontAnnounce = true }
-			if player:CanAddItems({ emptyFlaskEx }) then
-				if container:getEmptySlots() ~= 0 or container:getItemCountById(potionData.flask) > 0 then
-					player:AddCustomItem(emptyFlaskEx, parent)
+			local emptyFlaskData = { id = potionData.flask, count = 1, dontAnnounce = true }
+			if player:CanAddItems({ emptyFlaskData }) then
+				print("can add")
+				if parent ~= storeInbox and container:getEmptySlots() ~= 0 or container:getItemCountById(potionData.flask) > 0 then
+					container:addItem(potionData.flask)
 				else
-					player:AddItems({ emptyFlaskEx })
+					player:AddCustomItem(emptyFlaskData)
 				end
 			else
-				Game.createItem(potionData.flask, 1, fromPosition)
+				print("cannot add")
+				print("playerpos", player:getPosition())
+				Game.createItem(potionData.flask, 1, player:getPosition())
 			end
 		end
 

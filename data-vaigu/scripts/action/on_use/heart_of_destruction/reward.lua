@@ -2,7 +2,7 @@ local heartDestructionReward = Action()
 function heartDestructionReward.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.uid == 1038 then
 		if player:getStorageValueByKey(14337) < 1 then
-			player:AddItems({
+			player:AddItemsAnnounce({
 				[23525] = {
 					{ id = 23512, count = 1 },
 					{ id = 23538, count = 1 },

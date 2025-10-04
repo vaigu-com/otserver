@@ -331,7 +331,7 @@ quest
 						QuestKeyItems.ArielsFriend.LoveElixirRaw,
 						QuestKeyItems.ArielsFriend.HairStrand,
 					}) then
-						player:AddItems({ QuestKeyItems.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" })
+						player:AddItemsAnnounce({ QuestKeyItems.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" })
 						player:getPosition():sendMagicEffect(CONST_ME_SOUND_GREEN)
 					end
 					return true

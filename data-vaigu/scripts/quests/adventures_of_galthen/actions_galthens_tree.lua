@@ -2,7 +2,7 @@ local galthensTree = Action()
 function galthensTree.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local hasExhaustion, message = player:kv():get("galthens-satchel") or 0, "Empty."
 	if hasExhaustion < os.time() then
-		player:AddItems({
+		player:AddItemsAnnounce({
 			[36813] = {
 				{ id = 36810 },
 			},

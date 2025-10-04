@@ -94,15 +94,15 @@ end
 function QuestFactory.Script(script)
 	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
 end
-function QuestFactory.OnUseDeclarations(items)
-	return { items = items, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
+function QuestFactory.OnUseDeclarations(contexts)
+	return { contexts = contexts, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
 end
 function Quest:Script(script)
 	table.insert(self.scripts, { script = script })
 	return self
 end
-function Quest:OnUseDeclaration(items, anchor) --Unused
-	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
+function Quest:OnUseDeclaration(contexts) --Unused
+	table.insert(self.onUseDeclarations, { contexts = contexts })
 	return self
 end
 
@@ -158,12 +158,13 @@ function Quest:AddScript(context)
 	table.insert(self.scripts, { script = script, mission = mission, state = state })
 	return self
 end
----@private
-function Quest:AddOnUseDeclaration(context)
-	local items, anchor = context.items, context.anchor
-	local mission, state = context.mission, context.state
 
-	for _, item in pairs(items) do
+---@private
+function Quest:AddOnUseDeclaration(onUseDeclaration)
+	local contexts = onUseDeclaration.contexts
+	local mission, state = onUseDeclaration.mission, onUseDeclaration.state
+
+	for _, item in pairs(contexts) do
 		-- default: onUse requiredState is exact mission state it was declared in
 		if not item.requiredState then
 			item.requiredState = {}
@@ -177,7 +178,7 @@ function Quest:AddOnUseDeclaration(context)
 		end
 	end
 
-	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
+	table.insert(self.onUseDeclarations, { contexts = contexts })
 	return self
 end
 --#endregion
@@ -261,21 +262,33 @@ function QuestRegistry:AppendStartingNpcs(questName, missionKey, npcName)
 end
 
 function QuestRegistry:SerializeStartingNpcs()
-	local serializable = ""
+	local serializableStr = ""
 	for questName, missions in pairs(questMissionNpc) do
-		serializable = serializable .. T(":questName:\n", { questName = questName })
+		serializableStr = serializableStr .. T(":questName:\n", { questName = questName })
 		for missionName, npcName in pairs(missions) do
 			local positionString = ""
 			local npc = Creature(npcName)
 			if npc then
-				positionString = T("// Npc position: :pos:", {pos = npc:getPosition():ToString()})
+				positionString = T("// Npc position: :pos:", { pos = npc:getPosition():ToString() })
 			else
 				positionString = "// Spawned via script"
 			end
-			serializable = serializable .. T("\t:missionName:\tStartingNpcName: :startingNpcName::positionString:\n", { missionName = missionName, startingNpcName = npcName,positionString=positionString })
+			serializableStr = serializableStr .. T("\t:missionName:\tStartingNpcName: :startingNpcName::positionString:\n", { missionName = missionName, startingNpcName = npcName, positionString = positionString })
 		end
 	end
-	SerializeToUtilFolder(serializable, "starting_npcs.txt")
+	SerializeToUtilFolder(serializableStr, "starting_npcs.txt")
+end
+
+function QuestRegistry:SerializeQuestMissions()
+	local serializableStr = ""
+	for _, quest in pairs(Questlog) do
+		serializableStr = serializableStr .. quest.name .. "\n"
+		local missions = quest.missions
+		for _, mission in pairs(missions) do
+			serializableStr = serializableStr .. "_#" .. mission.name .. "#" .. mission.storage .. "\n"
+		end
+	end
+	SerializeToUtilFolder(serializableStr, "quest_missions.txt")
 end
 
 function QuestRegistry.NormalizeQuestlog()
@@ -361,8 +374,8 @@ function QuestRegistry:RegisterOnUseDeclarations()
 	local onUseDeclarations = GlobalEvent("Quest/RegisterOnUseDeclarations")
 	function onUseDeclarations.onStartup()
 		for _, quest in pairs(self.registry) do
-			for _, itemsData in pairs(quest.onUseDeclarations) do
-				RegisterOnUseDeclaration(itemsData.items, itemsData.anchor)
+			for _, onUseDeclaration in pairs(quest.onUseDeclarations) do
+				RegisterOnUseDeclarations(onUseDeclaration.contexts)
 			end
 		end
 	end

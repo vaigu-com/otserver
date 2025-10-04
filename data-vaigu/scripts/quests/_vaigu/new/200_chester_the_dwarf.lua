@@ -147,7 +147,7 @@ quest
 			}),
 			QuestFactory.Dialog("Ornuld", {
 				[{ "mission", "misja", "document", "documents", "dokument", "identity", "tozsamosc" }] = {
-					text = "As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 10,000 gp. Do you already have all {materials} and the payment?",
+					text = "As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 100 gp. Do you already have all {materials} and the payment?",
 				},
 				[{ "yes", "tak", "materials", "skladniki" }] = {
 					text = "Here's the document for you.",
@@ -163,7 +163,7 @@ quest
 					},
 					requiredMoney = 100,
 					textNoRequiredItems = "Get back when you get all the items.",
-					textNoRequiredMoney = "Get back when you get all the items.",
+					textNoRequiredMoney = "You dont have enough money.",
 				},
 			})
 	end)

@@ -20,6 +20,8 @@ quest
 			Jaw = {},
 			DoorAfterRyba = {},
 			RetroLever = {},
+
+			RemoveRetroOutfit = {},
 		}
 		QuestState.SultanPrime = {
 			Mission01 = {
@@ -669,16 +671,16 @@ quest
 					text = "Given my visa was temporary i didnt expect for it to be extended. I decreatureed to take it from there and live in this place, not Kansas.",
 				},
 				[{ "stado", "herd" }] = {
-					text = "Now its just six of them. {Date} and {Guci} aren't there anymore. Long time ago, a wild creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply with his will and {join} his quest to take over the world.",
+					text = "Now its just six of them. {date} and {guci} aren't there anymore. Long time ago, a wild creature appeared on my farm. It resembled some weird amalgamation of flowers and vines floating above ground. This thing demanded me to comply with his will and {join} his quest to take over the world.",
 				},
 				[{ "pomogl", "join" }] = {
 					text = "He didnt tolerate my refusal and with one swing it killed {Date} and {Gucci}",
 				},
-				[{ "gucia", "gucci" }] = {
+				[{ "gucia", "gucc" }] = {
 					text = "Gucci was my favorite one. He was exceptionally intelligenc and he was capable of painting with brush by holding between it's teeth. With his experience he could fill children coloring books.",
 				},
 				[{ "daktyl", "date" }] = {
-					text = "If i recall correctly, Date was the fastest dromedary i ever saw. I think that i was to compete in equestrian competition, i would pick him.",
+					text = "If i recall correctly, Date was the fastest dromedary i ever saw. I think if i ever were to compete in equestrian competition, i would pick him.",
 				},
 			}),
 			QuestFactory.Script(function(missionState)
@@ -776,6 +778,13 @@ quest
 	:State(function()
 		return QuestState.SultanPrime.Mission03.OpenCoffins,
 			QuestFactory.Script(function(missionState)
+				local outfitEffectMale = Condition(CONDITION_OUTFIT)
+				outfitEffectMale:setTicks(-1)
+				outfitEffectMale:setOutfit({ lookType = 948 })
+				local outfitEffectFemale = Condition(CONDITION_OUTFIT)
+				outfitEffectFemale:setTicks(-1)
+				outfitEffectFemale:setOutfit({ lookType = 949 })
+			
 				local retroMirkoPos = RETRO_MIRKO_ANCHOR:Moved({ x = -46, y = -68, z = -2 })
 
 				local lever = Action()
@@ -790,10 +799,30 @@ quest
 
 					player:teleportTo(retroMirkoPos)
 					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+					if player:isMale() then
+						player:addCondition(outfitEffectMale)
+					else
+						player:addCondition(outfitEffectFemale)
+					end
 					return true
 				end
 				lever:key(Storage.SultanPrime.RetroLever)
 				lever:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local removeRetroOutfitTie = MoveEvent()
+				function removeRetroOutfitTie.onStepIn(creature, item, toPosition, fromPosition)
+					local player = creature:getPlayer()
+					if not player then
+						return true
+					end
+
+					player:removeCondition(CONDITION_OUTFIT)
+					return true
+				end
+				removeRetroOutfitTie:type("stepin")
+				removeRetroOutfitTie:key(Storage.SultanPrime.RemoveRetroOutfit)
+				removeRetroOutfitTie:register()
 			end),
 			QuestFactory.Dialog("Sultan of Phantasms", {
 				[{ GREET }] = {

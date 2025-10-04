@@ -1,3 +1,11 @@
+local function nameToId(name)
+	local itemTypeId = ItemType(name):getId()
+	if itemTypeId == 0 then
+		return nil
+	end
+	return itemTypeId
+end
+
 local createItem = TalkAction("/i")
 
 function createItem.onSay(player, words, param)
@@ -6,101 +14,28 @@ function createItem.onSay(player, words, param)
 
 	local split = param:split(",")
 
-	local itemType = ItemType(split[1])
-	if itemType:getId() == 0 then
-		itemType = ItemType(tonumber(split[1]))
-		if not tonumber(split[1]) or itemType:getId() == 0 then
-			player:sendCancelMessage("There is no item with that id or name.")
-			return true
-		end
-	end
+	local nameOrId = split[1]
+	local count = tonumber(split[2])
+	local tier = tonumber(split[3])
 
-	if itemType:getId() < 100 then
+	local id = nameToId(nameOrId) or tonumber(nameOrId)
+
+	if not id then
+		player:sendCancelMessage("There is no item with that id or name.")
 		return true
 	end
 
-	local charges = itemType:getCharges()
-	local count = tonumber(split[2] or 1)
-	if count then
-		if itemType:isStackable() then
-			local mainContainer = player:getSlotItem(CONST_SLOT_BACKPACK)
-			if not mainContainer then
-				player:addItemEx(Game.createItem(2854), CONST_SLOT_BACKPACK)
-				mainContainer = player:getSlotItem(CONST_SLOT_BACKPACK)
-			end
-			local remainingCount = count
-			local stackSize = itemType:getStackSize()
-
-			while remainingCount > 0 do
-				local freeSlots = mainContainer and (mainContainer:getCapacity() - mainContainer:getSize()) or 0
-				if freeSlots <= 1 and mainContainer:getSize() ~= 0 then
-					mainContainer = Game.createItem(2854)
-					player:addItemEx(mainContainer)
-				end
-
-				local countToAdd = math.min(remainingCount, stackSize)
-				local status = player:canAddItem(itemType:getId(), countToAdd)
-				if status == RETURNVALUE_NOERROR then
-					local tmpItem = mainContainer:addItem(itemType:getId(), countToAdd)
-					if tmpItem then
-						remainingCount = remainingCount - countToAdd
-					else
-						player:sendCancelMessage(T("Failed to add item:."))
-						logger.warn("Failed to add item: {}, to container", itemType:getName())
-						break
-					end
-				else
-					player:sendCancelMessage(T("Failed to add item:. Status: :status:.", { item = itemType:getName(), status = status }))
-					logger.warn("Failed to add item: {}, to container. Status: {}", itemType:getName(), status)
-					break
-				end
-			end
-
-			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
-			return true
-		elseif not itemType:isFluidContainer() then
-			local min = 100
-			if charges > 0 then
-				min = charges
-			end
-			count = math.min(min, math.max(1, count))
-		else
-			count = math.max(0, count)
-		end
-	else
-		if not itemType:isFluidContainer() then
-			if charges > 0 then
-				player:AddCustomItem({ id = itemType:getId(), fluidType = 0 })
-				return true
-			else
-				count = 1
-			end
-		else
-			count = 0
-		end
-	end
-
-	local tier = tonumber(split[3])
-	local fluidType = nil
-	if itemType:isFluidContainer() then
-		fluidType = count
-		count = 1
-	end
-
-	if player:AddCustomItem({ id = itemType:getId(), fluidType = fluidType, count = count, tier = tier }) ~= RETURNVALUE_NOERROR then
-		local item = Game.createItem(itemType:getId(), count, player:getPosition())
-		if tier then
-			item:setTier(tier)
-		end
-		if fluidType then
-			item:transform(itemType:getId(), fluidType)
-		end
+	if id < 100 then
+		player:sendCancelMessage("Item id <100 are reserved.")
+		return true
 	end
 
 	if tier and (tier <= 0 or tier > 10) then
-		player:sendCancelMessage("Invalid tier count.")
+		player:sendCancelMessage("Tier has to be between 0 and 10.")
 		return true
 	end
+
+	player:AddCustomItem({ id = id, count = count, fluidtype = count, tier = tier })
 
 	player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	return true

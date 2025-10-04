@@ -92,7 +92,7 @@ quest
 			})
 	end)
 	:Script(function()
-		local tileOrder = {}
+		tileOrder = {}
 		local coinIds = {
 			ItemId.GOLD_COIN,
 			ItemId.PLATINUM_COIN,
@@ -101,8 +101,8 @@ quest
 		local maxCoinStack = 5
 		local function loadTileOrder()
 			tileOrder = {}
-			local corner1 = Position(5019, 1117, 11)
-			local corner2 = Position(5023, 1121, 11)
+			local corner1 = Position(6150, 1821, 11)
+			local corner2 = Position(6154, 1825, 11)
 
 			local coinToCountToGroundkey = {}
 			for _, coinId in pairs(coinIds) do
@@ -291,11 +291,11 @@ quest
 
 		local retroOutfitChest = Action()
 		function retroOutfitChest.onUse(player, item, frompos, item2, topos)
-			if player:getStorageValueByKey(InfiniteCoalChest) == MISSION_FINISHED then
+			if player:getStorageValueByKey(Storage.PitsOfInfernoRetro.InfiniteCoalChest) == MISSION_FINISHED then
 				return true
 			end
 
-			player:setStorageValueByKey(InfiniteCoalChest, MISSION_FINISHED)
+			player:setStorageValueByKey(Storage.PitsOfInfernoRetro.InfiniteCoalChest, MISSION_FINISHED)
 			player:TryAddItems({ QuestKeyItems.PitsOfInfernoRetro.InfiniteCoal })
 			return true
 		end

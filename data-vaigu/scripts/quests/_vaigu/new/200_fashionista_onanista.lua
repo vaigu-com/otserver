@@ -58,7 +58,6 @@ quest
 			SecretiveLetter = {
 				id = 3506,
 				key = Storage.FashionistaOnanista.SecretiveLetter,
-				addToStore = false,
 			},
 			MetamphetamineCrystal = {
 				id = 22694,
@@ -94,7 +93,9 @@ quest
 			sendSecretiveLetter = function(context)
 				local player = context.player
 				local inbox = player:getInbox()
-				player:AddCustomItem(QuestKeyItems.FashionistaOnanista.SecretiveLetter, inbox)
+				local itemEx = Game.createItem(QuestKeyItems.FashionistaOnanista.SecretiveLetter.id)
+				itemEx:setKey(QuestKeyItems.FashionistaOnanista.SecretiveLetter)
+				inbox:addItemEx(letter, INDEX_WHEREEVER, FLAG_NOLIMIT)
 			end,
 		}
 	end)

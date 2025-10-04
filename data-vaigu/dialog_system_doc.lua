@@ -255,7 +255,6 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	-- id = argument, Required
 	-- count = argument, Default: 1
 	-- aid = argument, Default: 0
-	-- showCustomDescOnAcquire = argument, Default: false
 	-- desc = argument, Default = nil
 	-- text = argument, Default = nil
 	-- uid = argument, Default = nil //this will create an unmovable item in player inventory!
