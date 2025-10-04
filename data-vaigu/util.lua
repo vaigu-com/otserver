@@ -1,3 +1,7 @@
+function Player:isMale()
+	return self:getSex() == PLAYERSEX_MALE
+end
+
 local defaultSeparator = ",\n"
 function RequiredItemNamesCountToString(items, separator)
 	local text = ""
@@ -35,7 +39,7 @@ function who_called_me()
 end
 
 function SerializeToUtilFolder(str, filename)
-	local file, err = io.open(filename, "a+")
+	local file, err = io.open(filename, "w+")
 	if not file then
 		logger.warn("[SerializeToUtilFolder] Error opening file: " .. err)
 		return false
@@ -172,6 +176,7 @@ end
 local function validateKey(key)
 	if key == nil then
 		logger.error(debug.traceback("[Player:setStorageValueByKey] key is nil"))
+		error("[Player:setStorageValueByKey] key is nil")
 	end
 	local components = key:split("-")
 	if not components then
