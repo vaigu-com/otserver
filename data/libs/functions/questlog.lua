@@ -158,6 +158,7 @@ function Player.onRequestedMissions(self, missionIds)
 		end
 	end
 
+	self:setStorageValueByKey(Storage.TrackedMissionsStorages, trackedMissionStorages)
 	PlayerTrackedMissionsData[self:getId()] = trackedMissions
 	local playersTrackedCount = #trackedMissions
 	local remainingSlots = maxAllowedTrackedCount - playersTrackedCount
