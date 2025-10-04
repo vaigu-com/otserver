@@ -27,7 +27,6 @@ private:
 	static int luaContainerGetItem(lua_State* L);
 	static int luaContainerHasItem(lua_State* L);
 	static int luaContainerAddItem(lua_State* L);
-	static int luaContainerCanAddItemEx(lua_State* L); // Vaigu custom
 	static int luaContainerAddItemEx(lua_State* L);
 
 	static int luaContainerGetCorpseOwner(lua_State* L);

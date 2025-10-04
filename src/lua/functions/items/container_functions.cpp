@@ -29,7 +29,6 @@ void ContainerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Container", "getItem", ContainerFunctions::luaContainerGetItem);
 	Lua::registerMethod(L, "Container", "hasItem", ContainerFunctions::luaContainerHasItem);
 	Lua::registerMethod(L, "Container", "addItem", ContainerFunctions::luaContainerAddItem);
-	Lua::registerMethod(L, "Container", "canAddItemEx", ContainerFunctions::luaContainerCanAddItemEx); // Vaigu custom
 	Lua::registerMethod(L, "Container", "addItemEx", ContainerFunctions::luaContainerAddItemEx);
 	Lua::registerMethod(L, "Container", "getCorpseOwner", ContainerFunctions::luaContainerGetCorpseOwner);
 	Lua::registerMethod(L, "Container", "registerReward", ContainerFunctions::luaContainerRegisterReward);
@@ -193,36 +192,6 @@ int ContainerFunctions::luaContainerAddItem(lua_State* L) {
 	return 1;
 }
 
-// Vaigu custom
-int ContainerFunctions::luaContainerCanAddItemEx(lua_State* L) {
-	// container:canAddItemEx(item[, index = INDEX_WHEREEVER[, flags = 0]])
-	const auto &item = Lua::getUserdataShared<Item>(L, 2, "Item");
-	if (!item) {
-		lua_pushnil(L);
-		return 1;
-	}
-
-	const auto &container = Lua::getUserdataShared<Container>(L, 1, "Container");
-	if (!container) {
-		lua_pushnil(L);
-		return 1;
-	}
-
-	if (item->getParent() != VirtualCylinder::virtualCylinder) {
-		Lua::reportErrorFunc("Item already has a parent");
-		lua_pushnil(L);
-		return 1;
-	}
-
-	const auto index = Lua::getNumber<int32_t>(L, 3, INDEX_WHEREEVER);
-	const auto flags = Lua::getNumber<uint32_t>(L, 4, 0);
-	ReturnValue ret = g_game().internalAddItem(container, item, index, flags, true);
-	if (ret == RETURNVALUE_NOERROR) {
-		ScriptEnvironment::removeTempItem(item);
-	}
-	lua_pushnumber(L, ret);
-	return 1;
-}
 
 int ContainerFunctions::luaContainerAddItemEx(lua_State* L) {
 	// container:addItemEx(item[, index = INDEX_WHEREEVER[, flags = 0]])
