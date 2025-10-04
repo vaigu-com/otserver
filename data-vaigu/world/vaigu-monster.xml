@@ -96296,6 +96296,65 @@
 	<monster centerx="7593" centery="863" centerz="13" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="13" spawntime="60" />
 	</monster>
+	<monster centerx="5220" centery="886" centerz="13" radius="1">
+		<monster name="Banshee" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5193" centery="890" centerz="13" radius="1">
+		<monster name="Banshee" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5217" centery="890" centerz="13" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5224" centery="890" centerz="13" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="13" spawntime="60" />
+		<monster name="Tarantula" x="1" y="0" z="13" spawntime="-852710144" />
+	</monster>
+	<monster centerx="5226" centery="892" centerz="13" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5213" centery="893" centerz="13" radius="1">
+		<monster name="Tarantula" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5249" centery="894" centerz="13" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5258" centery="894" centerz="13" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5229" centery="896" centerz="13" radius="1">
+		<monster name="Banshee" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5253" centery="896" centerz="13" radius="1">
+		<monster name="Deaththrower" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5211" centery="897" centerz="13" radius="1">
+		<monster name="Banshee" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5255" centery="898" centerz="13" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5216" centery="899" centerz="13" radius="1">
+		<monster name="Mummy" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5265" centery="899" centerz="13" radius="1">
+		<monster name="Flamethrower" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5193" centery="900" centerz="13" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5216" centery="902" centerz="13" radius="1">
+		<monster name="Mummy" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5223" centery="902" centerz="13" radius="1">
+		<monster name="Mummy" x="0" y="0" z="13" spawntime="60" />
+		<monster name="Mummy" x="1" y="0" z="13" spawntime="-852710144" />
+	</monster>
+	<monster centerx="5244" centery="902" centerz="13" radius="1">
+		<monster name="Flamethrower" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="5250" centery="908" centerz="13" radius="1">
+		<monster name="Deaththrower" x="0" y="0" z="13" spawntime="60" />
+	</monster>
 	<monster centerx="5208" centery="926" centerz="13" radius="1">
 		<monster name="Phantasm" x="0" y="0" z="13" spawntime="60" />
 	</monster>
@@ -99477,6 +99536,9 @@
 	</monster>
 	<monster centerx="7608" centery="841" centerz="14" radius="1">
 		<monster name="Water Elemental" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="5187" centery="899" centerz="14" radius="1">
+		<monster name="Phantasm" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="7682" centery="930" centerz="14" radius="1">
 		<monster name="Lava Lurker" x="0" y="0" z="14" spawntime="60" />
