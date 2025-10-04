@@ -172,7 +172,7 @@ function Player.onRequestedMissions(self, missionIds)
 	msg:addByte(#trackedMissions)
 	for _, trackedMission in ipairs(trackedMissions) do
 		msg:addU16(trackedMission.missionId)
-		msg:addU16(0x01)
+		msg:addU16(trackedMission.questId)
 		msg:addString(trackedMission.questName, "Player.sendTrackedQuests - mission.questName")
 		msg:addString(trackedMission.missionName, "Player.sendTrackedQuests - mission.missionName")
 		msg:addString(trackedMission.missionDesc, "Player.sendTrackedQuests - mission.missionDesc")
