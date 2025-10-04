@@ -8,6 +8,7 @@
 #include "boost/multi_index/member.hpp"
 #include "creatures/creatures_definitions.hpp"
 #include "boost/multi_index/sequenced_index.hpp"
+#include "database/database.hpp"
 
 #include <google/protobuf/stubs/port.h>
 
