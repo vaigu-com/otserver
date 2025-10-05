@@ -664,9 +664,13 @@ local function processPosition(context)
 	return lastResult, false
 end
 
+---@class IterateContext
+---@field pos Position
+---@field i integer
+
 ---@param pos1 Position
 ---@param pos2 Position
----@param callback fun(context: table): any
+---@param callback fun(context: IterateContext): any
 ---@param context table|nil
 ---@return any, table|nil
 function IterateBetweenPositions(pos1, pos2, callback, context)

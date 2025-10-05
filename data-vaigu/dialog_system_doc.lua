@@ -299,7 +299,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 
 	---outfitRewards
 	-- Specifies outfit rewards to be granted on success-resolve
-	outfitRewards = { { outfitId = 574, addon = 1 }, { outfitId = 575, addon = 1 } }
+	outfitRewards = { { outfitId = 574, addons = 1 }, { outfitId = 575, addons = 1 } }
 
 	---mountRewards
 	-- Specifies mount rewards to be granted on success-resolve

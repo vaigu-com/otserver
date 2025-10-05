@@ -82,7 +82,7 @@ function NpcTypeRepository:GenerateTownMissingJobs()
 
 	local firstLine = "\t"
 	for job in pairs(possibleJobs) do
-		firstLine = firstLine .."," ..job
+		firstLine = firstLine .. "," .. job
 	end
 	logger.warn(firstLine)
 
