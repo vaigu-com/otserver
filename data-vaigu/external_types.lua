@@ -41,7 +41,7 @@ LIGHT_TIME = LIGHT_TIME
 ---@field register fun(self: GlobalEvent): boolean
 ---@field onThink fun(intervalMilliseconds: integer): boolean|nil
 ---@field onTime fun(intervalMilliseconds: integer): boolean|nil
----@field time fun(self: GlobalEvent, timestamp: integer): nil
+---@field time fun(self: GlobalEvent, timestamp: string): nil
 ---@field onStartup fun(): boolean|nil
 ---@field onShutdown fun(): boolean|nil
 ---@field onRecord fun(currentPlayerCount: integer, topPlayerCountEver): boolean|nil
