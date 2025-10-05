@@ -99,4 +99,7 @@ private:
 
 	static int luaGameGetMonstersByRace(lua_State* L);
 	static int luaGameGetMonstersByBestiaryStars(lua_State* L);
+
+	// Vaigu custom
+	static int luaGameGetOutfitNameByLookType(lua_State* L);
 };

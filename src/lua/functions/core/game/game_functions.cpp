@@ -115,6 +115,8 @@ void GameFunctions::init(lua_State* L) {
 
 	Lua::registerMethod(L, "Game", "getMonstersByRace", GameFunctions::luaGameGetMonstersByRace);
 	Lua::registerMethod(L, "Game", "getMonstersByBestiaryStars", GameFunctions::luaGameGetMonstersByBestiaryStars);
+
+	Lua::registerMethod(L, "Game", "getOutfitNameByLookType", GameFunctions::luaGameGetOutfitNameByLookType);
 }
 
 // Game
@@ -1142,6 +1144,19 @@ int GameFunctions::luaGameGetMonstersByBestiaryStars(lua_State* L) {
 		Lua::pushUserdata<MonsterType>(L, monsterType);
 		Lua::setMetatable(L, -1, "MonsterType");
 		lua_rawseti(L, -2, ++index);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int GameFunctions::luaGameGetOutfitNameByLookType(lua_State* L) {
+	// Game.getOutfitNameByLookType(lookType)
+	const uint16_t lookType = Lua::getNumber<uint16_t>(L, 1);
+	const auto& name = Outfits::getInstance().getOutfitNameByLookType(lookType);
+	if (!name.empty()){
+		Lua::pushString(L, name);
+	} else {
+		lua_pushnil(L);
 	}
 	return 1;
 }
