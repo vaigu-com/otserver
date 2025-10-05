@@ -113,7 +113,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -12, maxDamage = -25 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -12, maxDamage = -170 },
 	{ name = "groundshaker", interval = 2000, chance = 25, minDamage = -8, maxDamage = -13, target = false },
 	{ name = "phantasm drown", interval = 2000, chance = 15, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = -650, range = 6, shootEffect = CONST_ANI_WHIRLWINDAXE, target = true, duration = 10000 },
@@ -146,12 +146,6 @@ monster.immunities = {
 }
 
 mType.onThink = function(monster, interval) end
-
-mType.onSpawn = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
 
 mType.onDisappear = function(monster, creature) end
 
