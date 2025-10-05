@@ -362,4 +362,7 @@ return {
 	["Lil' one does not have any iron ores."] = "Maly nie ma zadnych {iron ore}.",
 	["You dont have soul orbs!"] = "Ty nie masz {soul orbs}!",
 	["Cling clang!"] = "Brzdek brzdek!",
+	["SERVER_RESTART_NOTIFY"] = function(context)
+		return T("[SERWER] Restart za :formattedTime:", { formattedTime = context.formattedTime })
+	end,
 }

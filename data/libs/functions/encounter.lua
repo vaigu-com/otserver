@@ -1,30 +1,3 @@
----@enum LOCKOUT_EXPIRY_TIME
-LOCKOUT_EXPIRY_TIME = {
-	DAILY = "DAILY",
-	DAY_AFTER_TOMORROW = "DAY_AFTER_TOMORROW",
-	WEEKLY = "WEEKLY",
-	FOREVER = "FOREVER",
-	ANTI_GRIEF = "ANTI_GRIEF",
-	NOW = "NOW",
-}
-DEFAULT_LOCKOUT_EXPIRY_TIME = LOCKOUT_EXPIRY_TIME.WEEKLY
-
----@enum LOCKOUT_TRIGGER_CRITERION
-LOCKOUT_TRIGGER_CRITERION = {
-	ON_KILL = "ON_KILL",
-	ON_ENTER = "ON_ENTER",
-}
-
-DEFAULT_LEVER_ID = 2772
-
--- Daily/Weekly encounters will reset at this hour local server time
-DAY_RESET_TIME_LOCAL = 5
-
-ENCOUNTER_STAGE = {
-	UNSTARTED = -100,
-	FIRST_STAGE = 1,
-}
-
 ---@class EncounterStage
 ---@field encounter EncounterData
 ---@field start function
@@ -49,7 +22,6 @@ setmetatable(EncounterStage, {
 ---@type AutoAdvanceConfig
 ---@field delay Delay
 ---@field monstersKilled boolean
-
 ---Automatically advances to the next stage after the given delay
 ---@param config AutoAdvanceConfig|Delay The configuration for the auto advance
 function EncounterStage:autoAdvance(config)
@@ -572,11 +544,11 @@ function NextWednesdayEpochTime()
 end
 
 function WeeklyLockoutExpiryTime()
-	return NextWednesdayEpochTime() + DAY_RESET_TIME_LOCAL * 3600
+	return NextWednesdayEpochTime() + DAY_RESET_HOUR_LOCAL * 3600
 end
 
 function DailyLockoutExpiryTime()
-	return NextDayEpochTime() + DAY_RESET_TIME_LOCAL * 3600
+	return NextDayEpochTime() + DAY_RESET_HOUR_LOCAL * 3600
 end
 
 function LockoutExpiryTypeTimestamp(lockoutExpiryTime)

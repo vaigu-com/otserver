@@ -1,3 +1,32 @@
+---#region lockout
+---@enum LOCKOUT_EXPIRY_TIME
+LOCKOUT_EXPIRY_TIME = {
+	DAILY = "DAILY",
+	DAY_AFTER_TOMORROW = "DAY_AFTER_TOMORROW",
+	WEEKLY = "WEEKLY",
+	FOREVER = "FOREVER",
+	ANTI_GRIEF = "ANTI_GRIEF",
+	NOW = "NOW",
+}
+DEFAULT_LOCKOUT_EXPIRY_TIME = LOCKOUT_EXPIRY_TIME.WEEKLY
+
+---@enum LOCKOUT_TRIGGER_CRITERION
+LOCKOUT_TRIGGER_CRITERION = {
+	ON_KILL = "ON_KILL",
+	ON_ENTER = "ON_ENTER",
+}
+
+DEFAULT_LEVER_ID = 2772
+
+-- Daily/Weekly encounters will reset at this hour local server time
+DAY_RESET_HOUR_LOCAL = tonumber(configManager.getString(configKeys.SERVER_RESTART_HOUR))
+---#endregion lockout
+
+ENCOUNTER_STAGE = {
+	UNSTARTED = -100,
+	FIRST_STAGE = 1,
+}
+
 NO_MAX_LEVEL_LIMIT = 5000
 O_NAMELOCK = -1
 

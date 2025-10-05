@@ -488,6 +488,7 @@ globalServerSaveCleanMap = false
 globalServerSaveClose = false
 globalServerSaveShutdown = true
 globalServerSaveTime = "04:59:59"
+serverShutdownHour = 5 -- Vaigu custom
 
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
