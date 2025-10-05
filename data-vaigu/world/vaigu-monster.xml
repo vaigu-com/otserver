@@ -6966,7 +6966,7 @@
 		<monster name="Hydra" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="4901" centery="647" centerz="5" radius="1">
-		<monster name="Dark Magician" x="0" y="0" z="5" spawntime="60" />
+		<monster name="Old Dark Magician" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="4895" centery="651" centerz="5" radius="1">
 		<monster name="Old Dark Magician" x="0" y="0" z="5" spawntime="60" />
@@ -28652,6 +28652,12 @@
 	</monster>
 	<monster centerx="7062" centery="935" centerz="7" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="4486" centery="936" centerz="7" radius="1">
+		<monster name="Old Bandit" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="4499" centery="936" centerz="7" radius="1">
+		<monster name="Old Bug" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="4544" centery="936" centerz="7" radius="1">
 		<monster name="Old Spider" x="0" y="0" z="7" spawntime="60" />
@@ -55463,6 +55469,9 @@
 	<monster centerx="6400" centery="832" centerz="8" radius="1">
 		<monster name="Rhindeer" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4461" centery="835" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6423" centery="835" centerz="8" radius="1">
 		<monster name="Boar Man" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55534,9 +55543,6 @@
 	<monster centerx="6853" centery="850" centerz="8" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4457" centery="851" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6812" centery="851" centerz="8" radius="1">
 		<monster name="Lizard Templar" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55545,6 +55551,9 @@
 	</monster>
 	<monster centerx="6391" centery="852" centerz="8" radius="1">
 		<monster name="Crape Man" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4460" centery="853" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6288" centery="853" centerz="8" radius="5">
 		<monster name="Lizard Chosen" x="-5" y="-2" z="8" spawntime="60" />
@@ -55556,6 +55565,9 @@
 	</monster>
 	<monster centerx="6982" centery="853" centerz="8" radius="1">
 		<monster name="Snake" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4457" centery="854" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6271" centery="854" centerz="8" radius="5">
 		<monster name="Ghastly Dragon" x="-1" y="0" z="8" spawntime="60" />
@@ -55605,9 +55617,6 @@
 	<monster centerx="7050" centery="861" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4449" centery="863" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6253" centery="864" centerz="8" radius="5">
 		<monster name="Ghastly Dragon" x="-1" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55622,6 +55631,9 @@
 	</monster>
 	<monster centerx="7014" centery="865" centerz="8" radius="1">
 		<monster name="Slime" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4447" centery="866" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6832" centery="866" centerz="8" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="8" spawntime="60" />
@@ -55710,11 +55722,8 @@
 	<monster centerx="7087" centery="876" centerz="8" radius="1">
 		<monster name="Poison Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4435" centery="878" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4446" centery="878" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
+	<monster centerx="4436" centery="877" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6239" centery="878" centerz="8" radius="5">
 		<monster name="Ghastly Dragon" x="-4" y="-1" z="8" spawntime="60" />
@@ -55746,6 +55755,9 @@
 		<monster name="Slime" x="-1" y="0" z="8" spawntime="60" />
 		<monster name="Acid Blob" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4444" centery="883" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="7088" centery="883" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55762,9 +55774,6 @@
 	</monster>
 	<monster centerx="7013" centery="885" centerz="8" radius="1">
 		<monster name="Slime" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4442" centery="886" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6246" centery="886" centerz="8" radius="1">
 		<monster name="Lizard Chosen" x="0" y="0" z="8" spawntime="60" />
@@ -55784,24 +55793,20 @@
 	<monster centerx="7092" centery="887" centerz="8" radius="1">
 		<monster name="Sacred Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4459" centery="888" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6252" centery="888" centerz="8" radius="5">
 		<monster name="Ghastly Dragon" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6973" centery="888" centerz="8" radius="1">
 		<monster name="Toad" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4459" centery="889" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6993" centery="889" centerz="8" radius="1">
 		<monster name="Slime" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7099" centery="889" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4458" centery="890" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Tarantula" x="1" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6372" centery="891" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
@@ -55816,10 +55821,6 @@
 	</monster>
 	<monster centerx="7072" centery="893" centerz="8" radius="1">
 		<monster name="Poison Spider" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4444" centery="894" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Tarantula" x="0" y="1" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6377" centery="894" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
@@ -55854,9 +55855,6 @@
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7059" centery="898" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4452" centery="899" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6336" centery="899" centerz="8" radius="1">
@@ -55902,6 +55900,9 @@
 		<monster name="Slime" x="0" y="-1" z="8" spawntime="60" />
 		<monster name="Toad" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4450" centery="902" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6351" centery="902" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55928,9 +55929,6 @@
 	<monster centerx="6975" centery="903" centerz="8" radius="1">
 		<monster name="Azure Frog" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4455" centery="904" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6368" centery="904" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -55943,9 +55941,8 @@
 	<monster centerx="6327" centery="905" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4471" centery="906" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Tarantula" x="1" y="0" z="8" spawntime="60" />
+	<monster centerx="4472" centery="906" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="4522" centery="906" centerz="8" radius="1">
 		<monster name="Swamp Troll" x="1" y="-1" z="8" spawntime="60" />
@@ -55961,16 +55958,8 @@
 	<monster centerx="6319" centery="908" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4478" centery="909" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Tarantula" x="0" y="1" z="8" spawntime="60" />
-		<monster name="Tarantula" x="1" y="1" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6336" centery="909" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4480" centery="910" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6423" centery="910" centerz="8" radius="1">
 		<monster name="Shaburak Prince" x="0" y="0" z="8" spawntime="60" />
@@ -56022,9 +56011,6 @@
 	<monster centerx="7074" centery="912" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4491" centery="913" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6368" centery="913" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56052,6 +56038,9 @@
 	<monster centerx="7037" centery="914" centerz="8" radius="1">
 		<monster name="Bonelord" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4493" centery="915" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6345" centery="915" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56064,14 +56053,14 @@
 	<monster centerx="7027" centery="915" centerz="8" radius="1">
 		<monster name="Terramite" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4468" centery="916" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6336" centery="916" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6993" centery="916" centerz="8" radius="1">
 		<monster name="Acid Blob" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4475" centery="917" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="4517" centery="917" centerz="8" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="8" spawntime="60" />
@@ -56151,13 +56140,6 @@
 	<monster centerx="7026" centery="920" centerz="8" radius="1">
 		<monster name="Carniphila" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4467" centery="921" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Tarantula" x="1" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4469" centery="921" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6369" centery="921" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56186,11 +56168,6 @@
 	<monster centerx="6994" centery="923" centerz="8" radius="1">
 		<monster name="Acid Blob" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4472" centery="924" centerz="8" radius="1">
-		<monster name="Tarantula" x="1" y="-1" z="8" spawntime="60" />
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-		<monster name="Tarantula" x="1" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6286" centery="924" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56218,9 +56195,6 @@
 	<monster centerx="6323" centery="928" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4484" centery="929" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6302" centery="929" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56243,6 +56217,9 @@
 	<monster centerx="7086" centery="931" centerz="8" radius="1">
 		<monster name="Deepsea Blood Crab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4488" centery="932" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6333" centery="933" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56251,9 +56228,6 @@
 	</monster>
 	<monster centerx="7147" centery="933" centerz="8" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4491" centery="934" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6339" centery="934" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="60" />
@@ -56336,9 +56310,6 @@
 	<monster centerx="7126" centery="942" centerz="8" radius="1">
 		<monster name="Deepsea Blood Crab" x="0" y="0" z="8" spawntime="60" />
 	</monster>
-	<monster centerx="4513" centery="943" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
-	</monster>
 	<monster centerx="6293" centery="943" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -56347,9 +56318,6 @@
 	</monster>
 	<monster centerx="7133" centery="943" centerz="8" radius="1">
 		<monster name="Toad" x="0" y="0" z="8" spawntime="60" />
-	</monster>
-	<monster centerx="4508" centery="944" centerz="8" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6330" centery="944" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
@@ -56365,6 +56333,9 @@
 	</monster>
 	<monster centerx="7104" centery="944" centerz="8" radius="1">
 		<monster name="Salamander" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4519" centery="945" centerz="8" radius="1">
+		<monster name="Old Giant Spider" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6282" centery="945" centerz="8" radius="1">
 		<monster name="Brimstone Bug" x="0" y="0" z="8" spawntime="60" />
@@ -58990,6 +58961,9 @@
 	<monster centerx="6661" centery="1188" centerz="8" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4954" centery="1189" centerz="8" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="5731" centery="1189" centerz="8" radius="1">
 		<monster name="Killer Caiman" x="0" y="0" z="8" spawntime="60" />
 	</monster>
@@ -59136,6 +59110,9 @@
 	<monster centerx="7307" centery="1199" centerz="8" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="8" spawntime="60" />
 	</monster>
+	<monster centerx="4939" centery="1200" centerz="8" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6228" centery="1200" centerz="8" radius="1">
 		<monster name="Scarab" x="-1" y="0" z="8" spawntime="60" />
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="60" />
@@ -59194,6 +59171,9 @@
 	</monster>
 	<monster centerx="6795" centery="1205" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4953" centery="1206" centerz="8" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6242" centery="1206" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="60" />
@@ -59277,6 +59257,9 @@
 	</monster>
 	<monster centerx="6958" centery="1213" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="4944" centery="1215" centerz="8" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6374" centery="1215" centerz="8" radius="1">
 		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="60" />
@@ -67346,9 +67329,6 @@
 	</monster>
 	<monster centerx="6404" centery="829" centerz="9" radius="1">
 		<monster name="Liodile" x="0" y="0" z="9" spawntime="60" />
-	</monster>
-	<monster centerx="4465" centery="830" centerz="9" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6425" centery="830" centerz="9" radius="1">
 		<monster name="Rhindeer" x="0" y="0" z="9" spawntime="60" />
@@ -77796,9 +77776,6 @@
 	<monster centerx="6819" centery="831" centerz="10" radius="1">
 		<monster name="Lizard High Guard" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="4465" centery="833" centerz="10" radius="1">
-		<monster name="Tarantula" x="0" y="0" z="10" spawntime="60" />
-	</monster>
 	<monster centerx="6832" centery="835" centerz="10" radius="1">
 		<monster name="Lizard Snakecharmer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -80119,6 +80096,9 @@
 		<monster name="Swamp Troll" x="1" y="-1" z="10" spawntime="60" />
 		<monster name="Swamp Troll" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="4936" centery="1194" centerz="10" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="7298" centery="1194" centerz="10" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -80130,6 +80110,9 @@
 	</monster>
 	<monster centerx="7140" centery="1195" centerz="10" radius="1">
 		<monster name="Necromancer" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="4946" centery="1196" centerz="10" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="7293" centery="1196" centerz="10" radius="1">
 		<monster name="Swamp Troll" x="0" y="0" z="10" spawntime="60" />
@@ -80168,6 +80151,9 @@
 	<monster centerx="6938" centery="1205" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="4942" centery="1206" centerz="10" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6980" centery="1206" centerz="10" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -80183,6 +80169,9 @@
 	<monster centerx="6985" centery="1207" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="4969" centery="1208" centerz="10" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6943" centery="1208" centerz="10" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -80195,6 +80184,9 @@
 	<monster centerx="7104" centery="1208" centerz="10" radius="1">
 		<monster name="Necromancer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="4953" centery="1209" centerz="10" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6952" centery="1210" centerz="10" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="10" spawntime="60" />
 	</monster>
@@ -80204,8 +80196,14 @@
 	<monster centerx="7103" centery="1210" centerz="10" radius="1">
 		<monster name="Necromancer" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="4927" centery="1211" centerz="10" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6984" centery="1211" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="4924" centery="1212" centerz="10" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6877" centery="1213" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="-1" y="1" z="10" spawntime="60" />
@@ -80215,6 +80213,9 @@
 	</monster>
 	<monster centerx="7001" centery="1214" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="4962" centery="1215" centerz="10" radius="1">
+		<monster name="Old Skeleton" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6646" centery="1215" centerz="10" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="10" spawntime="60" />
@@ -80240,8 +80241,14 @@
 	<monster centerx="6982" centery="1217" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="10" spawntime="60" />
 	</monster>
+	<monster centerx="4925" centery="1218" centerz="10" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6960" centery="1218" centerz="10" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="4953" centery="1219" centerz="10" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6215" centery="1219" centerz="10" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="10" spawntime="60" />
@@ -80254,6 +80261,9 @@
 	</monster>
 	<monster centerx="6962" centery="1219" centerz="10" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="4974" centery="1220" centerz="10" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6637" centery="1220" centerz="10" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="10" spawntime="60" />
@@ -80381,6 +80391,9 @@
 	</monster>
 	<monster centerx="6947" centery="1233" centerz="10" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="4964" centery="1234" centerz="10" radius="1">
+		<monster name="Old Beholder" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="5908" centery="1234" centerz="10" radius="1">
 		<monster name="Worker Golem" x="0" y="0" z="10" spawntime="60" />
@@ -86786,9 +86799,6 @@
 	</monster>
 	<monster centerx="6650" centery="1221" centerz="11" radius="1">
 		<monster name="Putrid Mummy" x="0" y="0" z="11" spawntime="60" />
-	</monster>
-	<monster centerx="4946" centery="1223" centerz="11" radius="1">
-		<monster name="Old Adventurer" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="5854" centery="1223" centerz="11" radius="1">
 		<monster name="Blood Beast" x="0" y="0" z="11" spawntime="60" />
