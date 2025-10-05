@@ -1914,6 +1914,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>Winged Druids are figures of both grace and menace. Wings that cut through the air like blades and an aura of unshakable determination make them a true force to be reckoned with. Harness the raw fury of nature and unleash its vengeance upon those who threaten it!</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			--[[
 			{
 				icons = { "Outfit_Retro_Citizen_Male.png", "Outfit_Retro_Citizen_Female.png" },
 				name = "Retro Citizen",
@@ -1970,6 +1971,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n\n<i>You are fearless and strong as a behemoth but have problems finding the right outfit for your adventures? The Retro Warrior outfit is a must-have for all fashion-conscious old-school Tibians out there.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
 		},
 	},
 	-- House
@@ -5769,7 +5771,7 @@ GameStore.Categories = {
 		icons = { "Category_Extras.png" },
 		name = "Extras",
 		rookgaard = true,
-		subclasses = { "Tools","Containers", "Foods", "Extra Services", "Useful Things" },
+		subclasses = { "Tools", "Containers", "Foods", "Extra Services", "Useful Things" },
 	},
 	-- Extras ~ Extras Services
 	{
