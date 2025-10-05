@@ -2,18 +2,18 @@ local quest = Quest(LOCALIZERS.RetroRulez)
 
 quest
 	:Storage(function()
-		Storage.PitsOfInfernoRetro = {
+		Storage.RetroRulez = {
 			CoalForPrzemek = {},
 			Tile1 = {},
 			Tile2 = {},
 			Tile3 = {},
 			Tile4 = {},
+			CenterTile = {},
 			Tile6 = {},
 			Tile7 = {},
 			Tile8 = {},
 			Tile9 = {},
 			PuzzleTilesState = {},
-			CenterTile = {},
 
 			LeverTile = {},
 			LeverTeleportToNext = {},
@@ -21,18 +21,20 @@ quest
 			BetweenTwoLeversToNext = {},
 			GrantLavaRoomAccess = {},
 
+			BugsOnLever = {},
+
 			InfiniteCoalChest = {},
 			InfiniteCoal = {},
 		}
-		QuestState.PitsOfInfernoRetro = {
+		QuestState.RetroRulez = {
 			CoalForPrzemek = {
 				BringCoalToPrzemek = 1,
 			},
 		}
 	end)
 	:Constant(function()
-		QuestKeyItems.PitsOfInfernoRetro = {
-			InfiniteCoal = { id = 11334, key = Storage.PitsOfInfernoRetro.InfiniteCoal },
+		QuestKeyItems.RetroRulez = {
+			InfiniteCoal = { id = 11334, key = Storage.RetroRulez.InfiniteCoal },
 		}
 	end)
 	:Questlog(function(localizer)
@@ -42,16 +44,16 @@ quest
 			missions = {
 				{
 					name = "Coal for Przemek",
-					storage = Storage.PitsOfInfernoRetro.CoalForPrzemek,
+					storage = Storage.RetroRulez.CoalForPrzemek,
 					states = {
-						[QuestState.PitsOfInfernoRetro.CoalForPrzemek.BringCoalToPrzemek] = "Przemek asked you to find infinite coal in fabulous items room inside pits of inferno. Start by discovering dark lord's laboratory.",
+						[QuestState.RetroRulez.CoalForPrzemek.BringCoalToPrzemek] = "Przemek asked you to find infinite coal in fabulous items room inside pits of inferno. Start by discovering dark lord's laboratory.",
 						[MISSION_FINISHED] = "You finished this mission.",
 					},
 				},
 			},
 		})
 	end)
-	:Mission(Storage.PitsOfInfernoRetro.CoalForPrzemek)
+	:Mission(Storage.RetroRulez.CoalForPrzemek)
 	:State(function()
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("GOD Przemek", {
@@ -61,13 +63,13 @@ quest
 				[{ "issues", "problemy" }] = {
 					text = "I left some of the supply with other fabulous items in warehouse at start of the dungeon. The warehouse is curently locked and the only way in is using a key. If you have problem with getting into the lab, i will leave a tip for you there later.",
 					nextState = {
-						[Storage.PitsOfInfernoRetro.CoalForPrzemek] = QuestState.PitsOfInfernoRetro.CoalForPrzemek.BringCoalToPrzemek,
+						[Storage.RetroRulez.CoalForPrzemek] = QuestState.RetroRulez.CoalForPrzemek.BringCoalToPrzemek,
 					},
 				},
 			})
 	end)
 	:State(function()
-		return QuestState.PitsOfInfernoRetro.CoalForPrzemek.BringCoalToPrzemek,
+		return QuestState.RetroRulez.CoalForPrzemek.BringCoalToPrzemek,
 			QuestFactory.Dialog("GOD Przemek", {
 				[{ GREET }] = {
 					text = "Did you manage to find the coal?",
@@ -75,10 +77,10 @@ quest
 				[{ "yes", "tak", "mission", "misja" }] = {
 					text = "Good job. Take this outfit as your reward.",
 					requiredItems = {
-						QuestKeyItems.PitsOfInfernoRetro.InfiniteCoal,
+						QuestKeyItems.RetroRulez.InfiniteCoal,
 					},
 					nextState = {
-						[Storage.PitsOfInfernoRetro.CoalForPrzemek] = MISSION_FINISHED,
+						[Storage.RetroRulez.CoalForPrzemek] = MISSION_FINISHED,
 					},
 					outfitRewards = {
 						{ outfitId = 963 },
@@ -156,28 +158,28 @@ quest
 				return true
 			end
 
-			local state = math.max(player:getStorageValueByKey(Storage.PitsOfInfernoRetro.PuzzleTilesState), 1)
+			local state = math.max(player:getStorageValueByKey(Storage.RetroRulez.PuzzleTilesState), 1)
 			local requiredKey = tileOrder[state]
 			local nextState = 1
 			if item:getKey() == requiredKey then
 				nextState = state + 1
 			end
-			player:setStorageValueByKey(Storage.PitsOfInfernoRetro.PuzzleTilesState, nextState)
+			player:setStorageValueByKey(Storage.RetroRulez.PuzzleTilesState, nextState)
 			return true
 		end
 		stepOrderPuzzle:type("stepin")
 		for _, key in pairs({
-			Storage.PitsOfInfernoRetro.Tile1,
-			Storage.PitsOfInfernoRetro.Tile2,
-			Storage.PitsOfInfernoRetro.Tile3,
+			Storage.RetroRulez.Tile1,
+			Storage.RetroRulez.Tile2,
+			Storage.RetroRulez.Tile3,
 
-			Storage.PitsOfInfernoRetro.Tile4,
-			--Storage.PitsOfInfernoRetro.Tile5,
-			Storage.PitsOfInfernoRetro.Tile6,
+			Storage.RetroRulez.Tile4,
 
-			Storage.PitsOfInfernoRetro.Tile7,
-			Storage.PitsOfInfernoRetro.Tile8,
-			Storage.PitsOfInfernoRetro.Tile9,
+			Storage.RetroRulez.Tile6,
+
+			Storage.RetroRulez.Tile7,
+			Storage.RetroRulez.Tile8,
+			Storage.RetroRulez.Tile9,
 		}) do
 			stepOrderPuzzle:key(key)
 		end
@@ -197,14 +199,14 @@ quest
 				return true
 			end
 
-			local state = player:getStorageValueByKey(Storage.PitsOfInfernoRetro.PuzzleTilesState)
+			local state = player:getStorageValueByKey(Storage.RetroRulez.PuzzleTilesState)
 			if state > #tileOrder then
 				player:teleportTo(stepOrderPuzzlePortalDest)
 			end
 			return true
 		end
 		stepOrderCenter:type("stepin")
-		stepOrderCenter:key(Storage.PitsOfInfernoRetro.CenterTile)
+		stepOrderCenter:key(Storage.RetroRulez.CenterTile)
 		stepOrderCenter:register()
 
 		local leversOrder = {}
@@ -261,7 +263,7 @@ quest
 			return true
 		end
 		leverPuzzleTeleport:type("stepin")
-		leverPuzzleTeleport:key(Storage.PitsOfInfernoRetro.LeverTeleportToNext)
+		leverPuzzleTeleport:key(Storage.RetroRulez.LeverTeleportToNext)
 		leverPuzzleTeleport:register()
 
 		local leverPuzzle = MoveEvent()
@@ -277,41 +279,68 @@ quest
 			return true
 		end
 		leverPuzzle:type("stepin")
-		leverPuzzle:key(Storage.PitsOfInfernoRetro.LeverTile)
+		leverPuzzle:key(Storage.RetroRulez.LeverTile)
 		leverPuzzle:register()
 
 		local grantLavaRoomAccessLever = Action()
 		function grantLavaRoomAccessLever.onUse(player, item, frompos, item2, topos)
-			player:setStorageValueByKey(Storage.PitsOfInfernoRetro.GrantLavaRoomAccess, ACCESS_GRANTED)
+			player:setStorageValueByKey(Storage.RetroRulez.GrantLavaRoomAccess, ACCESS_GRANTED)
 			return true
 		end
-		grantLavaRoomAccessLever:key(Storage.PitsOfInfernoRetro.GrantLavaRoomAccess)
+		grantLavaRoomAccessLever:key(Storage.RetroRulez.GrantLavaRoomAccess)
 		grantLavaRoomAccessLever:register()
 
 		local teleportPuzzleDestination = Position(5026, 1113, 11)
 		local leverPuzzleFinishLever = Action()
 		function leverPuzzleFinishLever.onUse(player, item, frompos, item2, topos)
-			if player:getStorageValueByKey(Storage.PitsOfInfernoRetro.GrantLavaRoomAccess) == ACCESS_GRANTED then
+			if player:getStorageValueByKey(Storage.RetroRulez.GrantLavaRoomAccess) == ACCESS_GRANTED then
 				player:teleportTo(teleportPuzzleDestination)
 			else
 				player:teleportTo(puzzlesReturnDestination)
 			end
 			return true
 		end
-		leverPuzzleFinishLever:key(Storage.PitsOfInfernoRetro.BetweenTwoLeversToNext)
+		leverPuzzleFinishLever:key(Storage.RetroRulez.BetweenTwoLeversToNext)
 		leverPuzzleFinishLever:register()
 
 		local retroOutfitChest = Action()
 		function retroOutfitChest.onUse(player, item, frompos, item2, topos)
-			if player:getStorageValueByKey(Storage.PitsOfInfernoRetro.InfiniteCoalChest) == MISSION_FINISHED then
+			if player:getStorageValueByKey(Storage.RetroRulez.InfiniteCoalChest) == MISSION_FINISHED then
 				return true
 			end
 
-			player:setStorageValueByKey(Storage.PitsOfInfernoRetro.InfiniteCoalChest, MISSION_FINISHED)
-			player:TryAddItems({ QuestKeyItems.PitsOfInfernoRetro.InfiniteCoal })
+			player:setStorageValueByKey(Storage.RetroRulez.InfiniteCoalChest, MISSION_FINISHED)
+			player:TryAddItems({ QuestKeyItems.RetroRulez.InfiniteCoal })
 			return true
 		end
-		retroOutfitChest:key(Storage.PitsOfInfernoRetro.InfiniteCoalChest)
+		retroOutfitChest:key(Storage.RetroRulez.InfiniteCoalChest)
 		retroOutfitChest:register()
+
+		local bugableItemIds = {
+			24516,
+			24517,
+			24518,
+			24519,
+		}
+		local bugsOnLever = Action()
+		function bugsOnLever.onUse(player, item, frompos, item2, topos)
+			local playerPos = player:getPosition()
+			IterateBetweenPositions(playerPos:Moved(-3, -3, 0), playerPos:Moved(3, 3, 0), function(context)
+				local pos = context.pos
+				local topItem = pos:GetTopItem()
+				if not topItem then
+					return
+				end
+
+				local topItemId = topItem:getId()
+				if table.contains(bugableItemIds, topItemId) then
+					Game.createMonster("Bug", pos):setOutfit({ lookTypeEx = topItemId })
+					topItem:remove()
+				end
+			end)
+			return true
+		end
+		bugsOnLever:key(Storage.RetroRulez.BugsOnLever)
+		bugsOnLever:register()
 	end)
 	:Register()

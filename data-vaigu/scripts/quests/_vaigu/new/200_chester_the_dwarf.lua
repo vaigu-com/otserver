@@ -115,8 +115,8 @@ quest
 					textNoRequiredItems = "Come back when you've collected all the items.",
 					expReward = 26000,
 					outfitRewards = {
-						{ outfitId = 574, addon = 1 },
-						{ outfitId = 575, addon = 1 },
+						{ outfitId = 574, addons = 1 },
+						{ outfitId = 575, addons = 1 },
 					},
 				},
 			})
@@ -180,8 +180,8 @@ quest
 						[Storage.ChesterTheDwarf.Mission03] = QuestState.ChesterTheDwarf.Mission03.AskChesterForMission,
 					},
 					outfitRewards = {
-						{ outfitId = 574, addon = 3 },
-						{ outfitId = 575, addon = 3 },
+						{ outfitId = 574, addons = 3 },
+						{ outfitId = 575, addons = 3 },
 					},
 					rewards = { { id = 3035, count = 7 } },
 					expReward = 85000,

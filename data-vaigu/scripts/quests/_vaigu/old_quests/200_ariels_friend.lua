@@ -508,8 +508,8 @@ quest
 					text = "GREAT! I will create a virgin from that soul just for myself!\nAs I promised, you can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
 					expReward = 750000,
 					outfitRewards = {
-						{ outfit = 324, addons = 3 },
-						{ outfit = 325, addons = 3 },
+						{ outfitId = 324, addons = 3 },
+						{ outfitId = 325, addons = 3 },
 					},
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,

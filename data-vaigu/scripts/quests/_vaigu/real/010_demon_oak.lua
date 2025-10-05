@@ -346,8 +346,8 @@ quest
 						[Storage.DemonOak.Mission01] = QuestState.DemonOak.Mission01.FindRewardChest,
 					},
 					outfitRewards = {
-						{ outfitId = 542, addon = 2 },
-						{ outfitId = 541, addon = 2 },
+						{ outfitId = 542, addons = 2 },
+						{ outfitId = 541, addons = 2 },
 					},
 				},
 			})

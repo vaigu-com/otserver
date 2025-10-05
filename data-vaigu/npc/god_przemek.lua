@@ -1,5 +1,5 @@
 local outfit = {
-	lookType = 266,
+	lookType = 1469,
 	lookHead = 0,
 	lookBody = 0,
 	lookLegs = 0,

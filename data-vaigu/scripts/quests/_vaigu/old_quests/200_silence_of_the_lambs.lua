@@ -157,8 +157,8 @@ quest
 						{ id = 17829 },
 					},
 					outfitRewards = {
-						{ outfit = 366, addons = 0 },
-						{ outfit = 367, addons = 0 },
+						{ outfitId = 366, addons = 0 },
+						{ outfitId = 367, addons = 0 },
 					},
 					nextState = {
 						[Storage.SilenceOfTheLambs.RubMeatWithLecter] = MISSION_FINISHED,

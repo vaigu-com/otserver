@@ -522,15 +522,28 @@ function PrintAnything(thing)
 	PrintTableRecursive(thing)
 end
 
+local addonToStr = {
+	[0] = "No addons",
+	[1] = "First addon only",
+	[2] = "Second addon only",
+	[3] = "First and Second addon",
+}
+
+local function announceReceivedOutfit(player, outfitId, addons)
+	local addonStr = addonToStr[addons]
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained the :outfitName: outfit! (:addonStr:)", { outfitName = Game.getOutfitNameByLookType(outfitId), addonStr = addonStr }))
+end
+
 function Player:AddOutfitsAndAddons(outfitsAndAddons)
 	for _, data in pairs(outfitsAndAddons) do
-		local outfit = data.outfitId or data.outfit or data.id
-		local addon = data.addon
+		local outfitId = data.outfitId or data.outfit or data.id
+		local addons = data.addon or data.addons or 0
 
-		self:addOutfit(outfit)
-		if addon then
-			self:addOutfitAddon(outfit, addon)
+		self:addOutfit(outfitId)
+		if addons then
+			self:addOutfitAddon(outfitId, addons)
 		end
+		announceReceivedOutfit(self, outfitId, addons)
 	end
 	self:addOutfit()
 end

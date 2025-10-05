@@ -1364,8 +1364,8 @@ quest
 						{ id = 9079, remove = false },
 					},
 					outfitRewards = {
-						{ outfit = 619, addons = 0 },
-						{ outfit = 620, addons = 0 },
+						{ outfitId = 619, addons = 0 },
+						{ outfitId = 620, addons = 0 },
 					},
 					nextState = {
 						[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
@@ -1862,8 +1862,8 @@ quest
 						{ id = 12807 },
 					},
 					outfitRewards = {
-						{ outfit = 157, addons = 0 },
-						{ outfit = 153, addons = 0 },
+						{ outfitId = 157, addons = 0 },
+						{ outfitId = 153, addons = 0 },
 					},
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = QuestState.LocalSupport.SettledDownFishmonger.FindAndDevilerAnonFatherMissingItems,
@@ -1897,8 +1897,8 @@ quest
 					},
 					expReward = 12000,
 					outfitRewards = {
-						{ outfit = 157, addons = 1 },
-						{ outfit = 153, addons = 1 },
+						{ outfitId = 157, addons = 1 },
+						{ outfitId = 153, addons = 1 },
 					},
 				},
 				[{ "float", "splawik" }] = {
@@ -1946,8 +1946,8 @@ quest
 						{ id = 3033, count = 5 },
 					},
 					outfitRewards = {
-						{ outfitId = 157, addon = 3 },
-						{ outfitId = 153, addon = 3 },
+						{ outfitId = 157, addons = 3 },
+						{ outfitId = 153, addons = 3 },
 					},
 					expReward = 80000,
 					nextState = {

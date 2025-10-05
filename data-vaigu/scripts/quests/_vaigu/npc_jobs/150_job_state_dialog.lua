@@ -188,8 +188,8 @@ NPC_STATE_DIALOGS = {
 							},
 						},
 						outfitRewards = {
-							{ outfitId = 1211, addon = 0 },
-							{ outfitId = 1210, addon = 0 },
+							{ outfitId = 1211, addons = 0 },
+							{ outfitId = 1210, addons = 0 },
 						},
 					},
 					[{ "yes", "tak" }] = {
@@ -201,8 +201,8 @@ NPC_STATE_DIALOGS = {
 							[Storage.GoldenOutfit.Helmet] = 1,
 						},
 						outfitRewards = {
-							{ outfitId = 1211, addon = 2 },
-							{ outfitId = 1210, addon = 2 },
+							{ outfitId = 1211, addons = 2 },
+							{ outfitId = 1210, addons = 2 },
 						},
 					},
 					[{ "yes", "tak" }] = {
@@ -215,8 +215,8 @@ NPC_STATE_DIALOGS = {
 							[Storage.GoldenOutfit.Full] = 1,
 						},
 						outfitRewards = {
-							{ outfitId = 1211, addon = 3 },
-							{ outfitId = 1210, addon = 3 },
+							{ outfitId = 1211, addons = 3 },
+							{ outfitId = 1210, addons = 3 },
 						},
 					},
 				},

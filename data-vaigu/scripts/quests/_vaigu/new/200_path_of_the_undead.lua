@@ -1496,6 +1496,10 @@ quest
 						[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.FindChester,
 					},
 					expReward = 25000000,
+					outfitRewards = {
+						{outfitId = 1270, addons = 3},
+						{outfitId = 1271, addons = 3},
+					}
 				},
 			})
 	end)
