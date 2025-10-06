@@ -1,3 +1,4 @@
+--[[
 local config = {
 	{ position = { x = 32419, y = 32458, z = 7 }, destination = { x = 32528, y = 32489, z = 11 } },
 	{ position = { x = 32528, y = 32488, z = 11 }, destination = { x = 32418, y = 32458, z = 7 } },
@@ -28,3 +29,4 @@ for value in pairs(config) do
 	entranceYselda:position(config[value].position)
 end
 entranceYselda:register()
+]]

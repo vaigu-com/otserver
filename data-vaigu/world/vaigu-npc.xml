@@ -183,6 +183,9 @@
 	<npc centerx="7046" centery="773" centerz="6" radius="3">
 		<npc name="Barrack" x="0" y="0" z="6" spawntime="60" />
 	</npc>
+	<npc centerx="7036" centery="786" centerz="6" radius="1">
+		<npc name="Mazarinn" x="0" y="0" z="6" spawntime="60" />
+	</npc>
 	<npc centerx="7076" centery="801" centerz="6" radius="3">
 		<npc name="Jack Sparrow" x="0" y="0" z="6" spawntime="60" />
 	</npc>
@@ -768,6 +771,9 @@
 	</npc>
 	<npc centerx="7718" centery="1049" centerz="11" radius="1">
 		<npc name="Apollo" x="0" y="0" z="11" spawntime="60" />
+	</npc>
+	<npc centerx="4991" centery="1095" centerz="11" radius="1">
+		<npc name="GOD Przemek" x="0" y="0" z="11" spawntime="60" />
 	</npc>
 	<npc centerx="5949" centery="1417" centerz="11" radius="1">
 		<npc name="Goldblum" x="0" y="0" z="11" spawntime="60" />
