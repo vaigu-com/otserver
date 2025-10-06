@@ -24,6 +24,7 @@ local toOrdinalGrandPlace = {
 }
 
 return {
+	[NO_TEXT] = NO_TEXT,
 	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hej. Ja jestem Zong! Chcialbys, aby Cie gdzies {podwiezc}?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Dzien dobry! Wygladasz na glodnego.. Wpisz {trade} aby zobaczyc oferte.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!"] = "Witaj |PLAYERNAME|. Mozesz zaopatrzyc sie u mnie w przedmioty magiczne. Sprzedaje takze {wildcard}, pomagajacy w modlitwach!",
@@ -365,4 +366,13 @@ return {
 	["SERVER_RESTART_NOTIFY"] = function(context)
 		return T("[SERWER] Restart za :formattedTime:", { formattedTime = context.formattedTime })
 	end,
+	["Say {trade} if you want to see my offer."] = "Powiedz {handel} jesli chcesz zobaczyc moja oferte.",
+	["Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some rice."] = "Witaj |PLAYERNAME|. Dzisiaj jest tak goraco, pewnie bardzo chce ci sie pic. Mozesz kupic schlodzone napoje tam albo zjesc troche ryzu.",
+	["Ooga Booga, |PLAYERNAME|. I heard you looking for some loud. {Trade} if you need some, playa. If you good then bounce lil nigga, we be tryin' to hustle."] = "Ooga Booga, |PLAYERNAME|. Slyszalem, ze szukasz czegos glosnego, {handel} jesli potrzebujesz, ziomek. Jesli jestes spoko, to spadaj, mali czarni probujemy zarobic.",
+	["Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}."] = "Witaj |PLAYERNAME|. Jako wlasciciel sklepu z bizuteria moge stworzyc cenne prezenty albo kupic twoje niechciane ozdoby. Po prostu zapytaj mnie o {handel}.",
+	["Hello, im the conductor of this train. Do you need a {ride}?"] = "Witaj, jestem konduktorem tego pociagu. Potrzebujesz aby cie {podwiezc}?",
+	["Here you are. There are your soft boots."] = "Prosze bardzo. Oto twoje miekkie buty.",
+	["They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = "Nazywaja mnie pozeraczem rebornow, bo mam mozdzierz na reborny w spodniach, jesli wiesz, o co chodzi. Przynies mi swiezego chlopaka Reborna, a pozwole ci odejsc.",
+	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. Chcesz kupic paczke, list, albo zrobic przelew bankowy? Jestem tu, by ci pomoc.",
+	["You you like me to {sail} you anywhere?"] = "Chcesz gdzies {popylanac}?",
 }

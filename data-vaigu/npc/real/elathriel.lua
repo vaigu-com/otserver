@@ -167,7 +167,7 @@ keywordHandler:addKeyword({ "thais" }, StdModule.say, {
 })
 keywordHandler:addKeyword({ "carlin" }, StdModule.say, {
 	npcHandler = npcHandler,
-	text = "",
+	text = NO_TEXT,
 })
 keywordHandler:addKeyword({ "offer" }, StdModule.say, {
 	npcHandler = npcHandler,

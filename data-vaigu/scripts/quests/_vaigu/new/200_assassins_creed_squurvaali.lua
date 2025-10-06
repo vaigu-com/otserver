@@ -90,7 +90,7 @@ quest
 						[QuestState.AssassinsCreedSquurvaali.Mission04.GoToHighestMountain] = "Go to the top of the highest mountain in the Caribbean, get on the enchanted carpet, and...",
 						[QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare] = "Standing in front of the cave, ignite the flare given to you by the guardian to help the ghost.",
 						[QuestState.AssassinsCreedSquurvaali.Mission04.ReportToGhasstlyPrincess] = "You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost.",
-						[QuestState.AssassinsCreedSquurvaali.Mission04.ReportToFatherNatanek] = "At the moment when the undead king of the crypt was about to finish you, an angel arrived who managed to avoid the traps and teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek.",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.ReportToFatherNatanek] = "At the moment when the undead king of the crypt was about to finish you, an angel arrived and managed to teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek.",
 						[MISSION_FINISHED] = "Father Natanek informed you about the dire consequences of the King of the Crypt victory.",
 					},
 				},
@@ -248,7 +248,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission01.FindFatherNatanek,
 			QuestFactory.Dialog("Father Natanek", {
-				[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess" }] = {
+				[{ "mission", "duch", "Ghasstly Princess", "ghasstly princess", "duch dupy" }] = {
 					text = "If what you're saying is true - and I have no reason to doubt the words of my faithful |PLAYERNAME| - go to {Oldrak}. He will surely know how to help you.",
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission01] = QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
@@ -489,15 +489,15 @@ quest
 			}),
 			QuestFactory.Script(function(missionState)
 				local function canEnterPath(player)
-					if player:HasExactMissionState(missionState) then
-						return true
+					if not player:HasExactMissionState(missionState) then
+						return false
 					end
 
-					if player:getOutfit().lookMount == 689 then
-						return true
+					if player:getOutfit().lookMount ~= 689 then
+						return false
 					end
 
-					return false
+					return true
 				end
 
 				local path = MoveEvent()
@@ -506,13 +506,13 @@ quest
 						return false
 					end
 
-					if canEnterPath(player) then
+					if not canEnterPath(player) then
+						player:teleportTo(fromPosition)
+						player:getPosition():sendMagicEffect(CONST_ME_STUN)
+						player:say(player:Localizer(LOCALIZERS.AssassinsCreedSquurvaali):Get("A magical force brought you back to the solid ground."), TALKTYPE_MONSTER_SAY)
 						return
 					end
 
-					player:teleportTo(fromPosition)
-					player:getPosition():sendMagicEffect(CONST_ME_STUN)
-					player:say(player:Localizer(LOCALIZERS.AssassinsCreedSquurvaali):Get("A magical force brought you back to the solid ground."), TALKTYPE_MONSTER_SAY)
 					return false
 				end
 				path:key(Storage.AssassinsCreedSquurvaali.HeavenPath)
@@ -523,7 +523,7 @@ quest
 					text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
 				},
 				[{ "seeing", "zegnaj" }] = {
-					text = "",
+					text = NO_TEXT,
 					rewards = { QuestKeyItems.AssassinsCreedSquurvaali.AunorFlare },
 					specialActionsOnSuccess = {
 						{
@@ -586,7 +586,7 @@ quest
 					},
 				},
 				[{ "anything", "nic" }] = {
-					text = "",
+					text = NO_TEXT,
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission04] = QuestState.AssassinsCreedSquurvaali.Mission04.ReportToFatherNatanek,
 					},

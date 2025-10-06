@@ -83,7 +83,7 @@ local unusedDialogs = {
 		-- UNUSED: Tak, to ostatecznie potwierdza, ze ktos podszywal sie pod Szczura Krolow, a pozniej udawal, ze zmienil sie w Janusza Gwiezdnego. Pamietasz jak wyslal cie na planete Hugo Bossa? Mysle, ze robil wtedy cos wymagajacego dyskrecji, dlatego wyslal cie tak daleko. Chwila.. przeciez Krol Jaszczurow wspominal cos o Hoecruxach. Byc moze zajmowal sie tworzeniem ich w tym czasie?
 		[7] = {
 			[{ "" }] = {
-				text = "",
+				text = NO_TEXT,
 			},
 		},
 	},

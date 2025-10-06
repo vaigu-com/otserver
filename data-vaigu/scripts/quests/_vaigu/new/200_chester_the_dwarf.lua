@@ -255,6 +255,9 @@ quest
 				[{ "oprocz tego ludzie", "aside from that people" }] = {
 					text = "Yeah, its our key.",
 				},
+				[{ "passphrase", "haslo" }] = {
+					text = "This is our secret passphrase: {aside from that people}.",
+				},
 			}),
 			QuestFactory.Script(function(missionState)
 				local tile = MoveEvent()

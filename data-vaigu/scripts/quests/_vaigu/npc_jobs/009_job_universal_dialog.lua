@@ -163,7 +163,7 @@ pseudoQuest
 		}
 		JOB_UNIVERSAL_DIALOGS[JOB_WILDCARD] = {
 			[{ "wildcard", "wildcards" }] = {
-				text = "ok",
+				text = "Here you go",
 				specialActionsOnSuccess = {
 					{
 						action = function(context)
@@ -432,7 +432,7 @@ pseudoQuest
 				},
 			},
 			[{ "begin", "rozpocznijmy" }] = {
-				text = "",
+				text = NO_TEXT,
 				requiredTopic = QuestTopics.JOB_TOPICS.confirmBeginCelebration,
 				specialActionsOnSuccess = {
 					{

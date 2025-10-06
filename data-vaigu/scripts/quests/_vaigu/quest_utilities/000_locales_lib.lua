@@ -51,7 +51,7 @@ LOCALIZERS = {
 	ToCarryThePigs = "to_carry_the_pigs",
 	TopChef = "top_chef",
 	TravelName = "travel_name",
-	WayOfTheDruid = "way_of_the_druid",
+	TheWayOfADruid = "the_way_of_a_druid",
 
 	NONE = "",
 }
@@ -179,20 +179,31 @@ for key, value in pairs(LANGUAGES) do
 	MissingStrings.registry[value] = {}
 end
 
-function MissingStrings:TestAllLanaguages(str, localizer)
-	for _, language in pairs(LANGUAGES) do
-		local allStrings = TRANSLATION_TABLES[language]
-		if allStrings[LOCALIZERS.Universal][str] then
-			return allStrings[LOCALIZERS.Universal][str]
+function MissingStrings:TestLanguage(language, strToTest)
+	local allStrings = TRANSLATION_TABLES[language]
+	if allStrings[LOCALIZERS.Universal][strToTest] then
+		return allStrings[LOCALIZERS.Universal][strToTest]
+	end
+	for _, questStrings in pairs(allStrings) do
+		if questStrings[strToTest] then
+			return questStrings[strToTest]
 		end
-		for _, questStrings in pairs(allStrings) do
-			if questStrings[str] then
-				return questStrings[str]
-			end
-		end
+	end
 
-		localizer = localizer or LOCALIZERS.Universal
-		MissingStrings:Add(language, localizer, str)
+	localizer = localizer or LOCALIZERS.Universal
+	MissingStrings:Add(language, localizer, strToTest)
+end
+
+function MissingStrings:TestAllLanaguages(strOrTable, localizer)
+	local strings = strOrTable
+	if type(strOrTable) ~= "table" then
+		strings = { strOrTable }
+	end
+
+	for _, language in pairs(LANGUAGES) do
+		for _, string in pairs(strings) do
+			self:TestLanguage(language, string)
+		end
 	end
 end
 

@@ -18,7 +18,7 @@ local voices = {
 }
 local customDialogs = {
 	[{ GREET }] = {
-		text = "Ooga Booga, |PLAYERNAME|. I heard you looking for some loud. {Trade} if you need some, playa. If you good then bounce lil nigga, we be tryin' to hustle",
+		text = "Ooga Booga, |PLAYERNAME|. I heard you looking for some loud. {Trade} if you need some, playa. If you good then bounce lil nigga, we be tryin' to hustle.",
 	},
 }
 local context = {

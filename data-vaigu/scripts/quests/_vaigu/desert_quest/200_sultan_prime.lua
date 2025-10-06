@@ -784,7 +784,7 @@ quest
 				local outfitEffectFemale = Condition(CONDITION_OUTFIT)
 				outfitEffectFemale:setTicks(-1)
 				outfitEffectFemale:setOutfit({ lookType = 949 })
-			
+
 				local retroMirkoPos = RETRO_MIRKO_ANCHOR:Moved({ x = -46, y = -68, z = -2 })
 
 				local lever = Action()
@@ -951,7 +951,7 @@ quest
 				[{ GREET }] = {
 					text = "Whaaat, Ryba escaped? Undead king perished? What kind of villain are you?",
 				},
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "What else? Take this amulet and stick it up in your ass.",
 					nextState = {
 						[Storage.SultanPrime.Mission03] = QuestState.SultanPrime.Mission03.AskNatanekForHelp,

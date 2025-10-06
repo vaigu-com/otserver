@@ -1131,6 +1131,7 @@ quest
 	:State(function()
 		return ACCESS_GRANTED, QuestFactory.Dialog("Swagger", {
 			[{ "fuel", "rod", "paliwo", "pret" }] = {
+				text = NO_TEXT,
 				specialActionsOnSuccess = {
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.openTradeWindow,

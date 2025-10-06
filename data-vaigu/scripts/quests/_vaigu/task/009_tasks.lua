@@ -1328,6 +1328,7 @@ quest
 
 		JOB_UNIVERSAL_DIALOGS[JOB_TASKS] = {
 			[{ "zadanie", "zadania", "nagroda", "wykonane", "reward" }] = {
+				text = "NO_TEXT",
 				specialRequirements = {
 					{
 						requirement = hasAnyTaskDone,
@@ -1342,7 +1343,7 @@ quest
 				},
 			},
 			[{ "tasks", "taski", "biore", "task", "taskow" }] = {
-				text = "",
+				text = "NO_TEXT",
 				specialRequirements = {
 					{
 						requirement = canTakeAnotherTask,
@@ -1353,7 +1354,7 @@ quest
 				specialActionsOnSuccess = { { action = openTaskWindow } },
 			},
 			[{ "zakoncz", "koniec", "cancel", "anuluj", "Anuluj" }] = {
-				text = "",
+				text = "NO_TEXT",
 				specialActionsOnSuccess = { { action = openTaskCancelWindow } },
 				specialRequirements = {
 					{

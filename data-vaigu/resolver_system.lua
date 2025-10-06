@@ -1,3 +1,5 @@
+NO_TEXT = "NO_TEXT"
+
 NO_REQUIREMENT_FAIL_TEXT = "NO_REQUIREMENT_FAIL_TEXT"
 
 ---@class ResolutionContext
@@ -405,7 +407,7 @@ function ResolutionContext:AppendLastDialogToRegistry()
 end
 
 function ResolutionContext:TrySendTranslateSuccessMessage()
-	if not self.actionsOnSuccess.text then
+	if not self.actionsOnSuccess.text or self.actionsOnSuccess.text == NO_TEXT then
 		return
 	end
 

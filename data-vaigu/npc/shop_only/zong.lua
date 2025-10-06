@@ -9,7 +9,7 @@ local outfit = {
 }
 local customDialogs = {
 	[TRAVEL_KEYWORDS] = {
-		text = "",
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = CreateTravelWindow,

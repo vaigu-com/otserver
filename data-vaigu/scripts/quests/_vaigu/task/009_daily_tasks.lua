@@ -1411,6 +1411,7 @@ quest
 
 		JOB_UNIVERSAL_DIALOGS[JOB_DAILYTASK] = {
 			[{ "anuluj", "zrezygnowac", "cancel" }] = {
+				text = NO_TEXT,
 				specialActionsOnSuccess = {
 					{
 						action = openDailyTaskCancelWindow,
@@ -1425,6 +1426,7 @@ quest
 				},
 			},
 			[{ "ogloszenie", "task", "nagroda", "reward" }] = {
+				text = NO_TEXT,
 				specialActionsOnSuccess = {
 					{
 						action = grantRewardsForAllDailyTasks,

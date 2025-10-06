@@ -1376,7 +1376,7 @@ quest
 		return QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission,
 			QuestFactory.Dialog("GM Romek", {
 				[{ "trial", "probe" }] = {
-					text = "",
+					text = NO_TEXT,
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission10] = QuestState.TheaterOfCheapThrills.Mission10.CommitRatocide,
 					},

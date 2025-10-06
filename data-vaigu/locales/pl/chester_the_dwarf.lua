@@ -24,6 +24,7 @@ return {
 	["Here's the document for you."] = "Masz, oto twoj dokument.",
 	["Get back when you get all the items."] = "Wroc ze wszystkimi przedmiotami.",
 	["So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have a crystal coin with you."] = "A wiec chcesz wiedziec jak zdobyc nowa tozsamosc? Aha, pytasz dla przyjaciela? Pogadaj z Ornuldem w dzungli, on zajmuje sie takimi interesami.\nMozliwe, ze bedziesz potrzebowac czegos do pisania i papieru, najlepiej z bardzo pospolitej ksiegi, oraz oczywiscie slona zaplata.\nJezeli milczenie jest zlotem, to wyrabianie dokumentow jest krysztalem. Co ja pierdole - od wody mieszaja mi sie zmysly. Tak czy siak miej ze soba crystal coina.",
+	["This is our secret passphrase: {aside from that people}."] = "To bylo nasze haslo: {oprocz tego ludzie}",
 	-- Chester the Dwarf
 	["Chester the Dwarf"] = "Czeslaw Krasnolud",
 	["Fortune Teller 3000"] = "Wrozbita 3000",

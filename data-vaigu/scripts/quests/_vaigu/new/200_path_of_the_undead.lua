@@ -1038,14 +1038,13 @@ quest
 					},
 					requiredState = {
 						[Storage.Finished.AssassinsCreedSquurvaali] = MISSION_FINISHED,
-						[Storage.Finished.ImRestingHere] = MISSION_FINISHED,
 						[Storage.Finished.SultanPrime] = MISSION_FINISHED,
 						[Storage.ChesterTheDwarf.Mission03] = MISSION_FINISHED,
 					},
 					textNoRequiredState = "It's interesting that you know our password. Nevertheless, I have no task for you or anything to interest you with.",
 				},
 				[{ "king", "crypt king", "king of the crypt", "krol krypty", "krol" }] = {
-					text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth.",
+					text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth. Try to as him for out special passphrase.",
 				},
 			})
 	end)
@@ -1063,10 +1062,13 @@ quest
 						[Storage.PathOfTheUndead.VisitedCircles] = {},
 					},
 					requiredState = {
-						[Storage.PitsOfInferno.OneThrone] = { min = 1 },
-						[Storage.Finished.WayOfTheDruid] = MISSION_FINISHED,
+						[Storage.WayOfTheDruid.DeerSeason] = MISSION_FINISHED,
+						[Storage.WayOfTheDruid.TakenBenek] = MISSION_FINISHED,
+						[Storage.WayOfTheDruid.RudeEviction] = MISSION_FINISHED,
+						[Storage.WayOfTheDruid.SecretIngredient] = MISSION_FINISHED,
+						[Storage.WayOfTheDruid.SingingCrystal] = MISSION_FINISHED,
 					},
-					textNoRequiredState = "I need you to help all other druids of this world. Only if they vouch for you, shall you return here. Additionally, you must visit at least one POI throne. If you are ready, ask me again about {conditions}.",
+					textNoRequiredState = "I need you to help all other druids of this world. Only if they vouch for you, shall you return here. If you are ready, ask me again about {conditions}.",
 				},
 			})
 	end)
@@ -1129,17 +1131,17 @@ quest
 				circleTile:register()
 			end),
 			QuestFactory.Dialog("Fstab", {
-				[{ "krag", "kregi", "circles", "cromlech" }] = {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
 					text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow.",
 				},
 			}),
 			QuestFactory.Dialog("Funfel", {
-				[{ "krag", "kregi", "circles", "cromlech" }] = {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
 					text = "This cromlech is located behind the orc hill in the west of the city. There's also corym village nearby. The other one is to the west, beyond lizard village.",
 				},
 			}),
 			QuestFactory.Dialog("Nadia France", {
-				[{ "krag", "kregi", "circles", "cromlech" }] = {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
 					text = "I understand, the stone cromlech is located on a peninsula to the southwest of here.",
 				},
 			})
@@ -1497,9 +1499,9 @@ quest
 					},
 					expReward = 25000000,
 					outfitRewards = {
-						{outfitId = 1270, addons = 3},
-						{outfitId = 1271, addons = 3},
-					}
+						{ outfitId = 1270, addons = 3 },
+						{ outfitId = 1271, addons = 3 },
+					},
 				},
 			})
 	end)

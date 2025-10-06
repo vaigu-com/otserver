@@ -24,6 +24,7 @@ local toOrdinalGrandPlace = {
 }
 
 return {
+	[NO_TEXT] = NO_TEXT,
 	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hey, Im Zong! Would you like to {ride} somewhere?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Hello! You look really hungry.. Ask about {trade} to see my offer.",
 	["Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!"] = "Hello |PLAYERNAME|. My offer mainly contains supplies for mages. Im also selling {wildcard} which will increase your prey powers!",
@@ -365,4 +366,13 @@ return {
 	["SERVER_RESTART_NOTIFY"] = function(context)
 		return T("[SERVER] Restart in :formattedTime:", { formattedTime = context.formattedTime })
 	end,
+	["Say {trade} if you want to see my offer."] = "Say {trade} if you want to see my offer.",
+	["Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some rice."] = "Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some rice.",
+	["Ooga Booga, |PLAYERNAME|. I heard you looking for some loud. {Trade} if you need some, playa. If you good then bounce lil nigga, we be tryin' to hustle."] = "Ooga Booga, |PLAYERNAME|. I heard you looking for some loud. {Trade} if you need some, playa. If you good then bounce lil nigga, we be tryin' to hustle.",
+	["Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}."] = "Hello |PLAYERNAME|. As a jewellery store owner i can either craft some valuable gifts or buy your unwated ornaments. Just ask me for {trade}.",
+	["Hello, im the conductor of this train. Do you need a {ride}?"] = "Hello, im the conductor of this train. Do you need a {ride}?",
+	["Here you are. There are your soft boots."] = "Here you are. There are your soft boots.",
+	["They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = "They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go.",
+	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
+	["You you like me to {sail} you anywhere?"] = "You you like me to {sail} you anywhere?",
 }

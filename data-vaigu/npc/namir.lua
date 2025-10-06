@@ -29,7 +29,7 @@ local shop = {
 }
 local customDialogs = {
 	[{ GREET }] = {
-		text = "Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some {rice}.",
+		text = "Hello |PLAYERNAME|. Its so hot today, youre probably really thirsty. You can buy chilled drinks there or eat some rice.",
 	},
 }
 local context = {
