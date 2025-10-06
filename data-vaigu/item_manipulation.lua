@@ -62,7 +62,7 @@ local backpackId = 2854
 function ExtractChestContent(chest)
 	local chestItems = chest:getItems()
 	local addItems = extractBagItems(chestItems)
-	local addItemsSize = TableSize(addItems) - CountNotAddableItems(addItems)
+	local addItemsSize = TableSize(addItems)
 	local wrapId = nil
 	if addItemsSize > 1 then
 		wrapId = bagId
