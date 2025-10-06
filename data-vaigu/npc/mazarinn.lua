@@ -7,16 +7,10 @@ local outfit = {
 	lookFeet = 76,
 	lookAddons = 1,
 }
-local voices = {
-	interval = 15000,
-	chance = 50,
-	{ text = "Przesylki kurierskie z Aliexpress tanio !" },
-	{ text = "Przez te internety ludzie wysylaja coraz mniej listow..." },
-}
 local context = {
 	name = name,
-	greetJob = JOB_POST,
-	jobs = { JOB_POST, JOB_BANK },
+	greetJob = JOB_UTILITY,
+	jobs = { JOB_UTILITY },
 	outfit = outfit,
 	customDialogs = customDialogs,
 	voices = voices,

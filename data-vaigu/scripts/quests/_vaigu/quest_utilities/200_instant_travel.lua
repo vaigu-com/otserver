@@ -32,13 +32,14 @@ local function initializeRoutes(routes)
 			local toPos = route.positions[i + 1] or route.positions[1] -- Loop back to 1 if out of bounds
 
 			local travelItem = fromPos:GetTopItem()
-			if not travelItem then
-				PrintPosition(fromPos)
-			end
-			travelItem:setKey(Storage.InstantTravel)
-			travelItem:setUniqueId(1000)
+			if travelItem then
+				travelItem:setKey(Storage.InstantTravel)
+				travelItem:setUniqueId(1000)
 
-			posToData[fromPos:ToString()] = { toPos = toPos, requiredState = route.requiredState }
+				posToData[fromPos:ToString()] = { toPos = toPos, requiredState = route.requiredState }
+			else
+				logger.warn(T("[instantTravelInit] Cannot find travel item at position :pos:", { pos = fromPos:ToString() }))
+			end
 		end
 	end
 end
@@ -78,7 +79,9 @@ pseudoQuest
 		--Drillworms, Hellspawns
 		InstantTravel({ positions = { Position(6179, 1390, 8), Position(6074, 1284, 10) } }):Register()
 		--Retro mirko blood pool, Retro south orc fortress
-		InstantTravel({positions = {Position(4705, 891, 7), Position(4897, 1243, 7)}}):Register()
+		InstantTravel({ positions = { Position(4705, 891, 7), Position(4897, 1243, 7) } }):Register()
+		--Steppes cave, Carnisylvan
+		InstantTravel({ positions = { Position(32529, 32489, 11), Position(6167, 992, 8) } }):Register()
 
 		--Grappling hook north
 		InstantTravel({ positions = { Position(6041, 1253, 5), Position(6032, 1254, 5) }, requiredState = { [Storage.GrapplingHook] = ACCESS_GRANTED } }):Register()

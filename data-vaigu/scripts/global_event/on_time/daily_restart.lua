@@ -56,7 +56,6 @@ for _, seconds in ipairs(notifySeconds) do
 	end
 
 	local notifyTime = getNotifyTime(serverRestart, seconds)
-	logger.warn("Scheduling notify at " .. notifyTime)
 	notifyEvent:time(notifyTime)
 	notifyEvent:register()
 end
