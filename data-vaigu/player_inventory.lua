@@ -451,8 +451,6 @@ function Player:CanAddItems(items)
 	if not hasSlots then
 		return false, slotMessage
 	end
-	print("cap", requiredCap, self:getFreeCapacity())
-	print("slots", requiredSlots, self:getFreeBackpackSlots())
 
 	return true
 end
