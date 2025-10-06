@@ -233,18 +233,16 @@ function Shop:setStorageValueByKey(key, value)
 	return self:kv():set(key, value)
 end
 
----@class DataClass
-DataClass = DataClass
-
 function T(template, variables)
 	if not variables then
 		logger.warn(debug.traceback("[T] no variables table provided"))
 	end
-	local result = template
+
+	local filledTemplate = template
 	for key, value in pairs(variables) do
-		result = result:gsub(":" .. key .. ":", value)
+		filledTemplate = filledTemplate:gsub(":" .. key .. ":", value)
 	end
-	return result
+	return filledTemplate
 end
 
 NUMBER_TO_ORDINAL_STRING = {

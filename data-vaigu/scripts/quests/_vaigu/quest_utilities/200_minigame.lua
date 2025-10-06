@@ -50,7 +50,7 @@ pseudoQuest
 		})
 
 		--[[
-		---@class MinigameDataContext:DataClass
+		---@class MinigameDataContext
 		---@field private disabled boolean?
 		---@field public disableLockout boolean does not apply cooldown on kill/entry
 		---@field private requiredState table?
