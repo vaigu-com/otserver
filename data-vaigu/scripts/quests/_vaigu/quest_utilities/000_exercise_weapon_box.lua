@@ -52,12 +52,12 @@ function Player:TryCoalesceNewExerciseWeapon(id, newWeaponCharges, boxObject)
 end
 
 local exerciseWeaponChoice = {
-	["sword"] = 28552,
-	["axe"] = 28553,
-	["club"] = 28554,
-	["bow"] = 28555,
-	["rod"] = 28556,
-	["wand"] = 28557,
+	{ name = "wand", itemId = 28557 },
+	{ name = "rod", itemId = 28556 },
+	{ name = "bow", itemId = 28555 },
+	{ name = "sword", itemId = 28552 },
+	{ name = "axe", itemId = 28553 },
+	{ name = "club", itemId = 28554 },
 }
 
 ---@param charges number
@@ -78,7 +78,9 @@ function exerciseWeaponBox.onUse(player, boxObject, fromPosition, target, toPosi
 	local window = ModalWindow({ title = title, message = message })
 	window:addButton(player:Localizer(LOCALIZERS.Universal):Get("ModalWindowOk"), confirmChoice)
 
-	for name, id in pairs(exerciseWeaponChoice) do
+	for _, weapon in pairs(exerciseWeaponChoice) do
+		local name = weapon.name
+		local id = weapon.itemId
 		local choice = window:addChoice(name)
 		choice.charges = charges
 		choice.id = id
