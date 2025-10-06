@@ -525,6 +525,7 @@ quest
 						{ id = 268, count = 15, addToStore = true },
 						{ id = 266, count = 5, addToStore = true },
 						{ id = 21400 },
+						{ ExerciseWeaponBox(20) },
 					},
 				},
 				[{ ANY_MESSAGE }] = {
