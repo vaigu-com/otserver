@@ -375,4 +375,5 @@ return {
 	["They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = "Nazywaja mnie pozeraczem rebornow, bo mam mozdzierz na reborny w spodniach, jesli wiesz, o co chodzi. Przynies mi swiezego chlopaka Reborna, a pozwole ci odejsc.",
 	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. Chcesz kupic paczke, list, albo zrobic przelew bankowy? Jestem tu, by ci pomoc.",
 	["You you like me to {sail} you anywhere?"] = "Chcesz gdzies {popylanac}?",
+	["Hello. I can help you with acquiring {addons} for your outfits. Are you interested?"] = "Czesc. Moge ci pomoc z uszyciem {dodatkow} do twoich strojow. Jestes zainteresowany?",
 }

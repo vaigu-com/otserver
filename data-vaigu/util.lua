@@ -527,21 +527,29 @@ local addonToStr = {
 	[3] = "First and Second addon",
 }
 
-local function announceReceivedOutfit(player, outfitId, addons)
+local function announceReceivedOutfit(player, outfitId, addons, sex)
 	local addonStr = addonToStr[addons]
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained the :outfitName: outfit! (:addonStr:)", { outfitName = Game.getOutfitNameByLookType(outfitId), addonStr = addonStr }))
+	local sexStr = ""
+	if sex == PLAYERSEX_MALE then
+		sexStr = " (male)"
+	end
+	if sex == PLAYERSEX_FEMALE then
+		sexStr = " (female)"
+	end
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained the :outfitName: outfit:sexStr:! (:addonStr:)", { outfitName = Game.getOutfitNameByLookType(outfitId), sexStr = sexStr, addonStr = addonStr }))
 end
 
 function Player:AddOutfitsAndAddons(outfitsAndAddons)
 	for _, data in pairs(outfitsAndAddons) do
-		local outfitId = data.outfitId or data.outfit or data.id
-		local addons = data.addon or data.addons or 0
+		local outfitId = data.outfitId or data.outfit or data.id or data.lookType or data.looktype
+		local addon = data.addon or data.addons or 0
+		local sex = data.sex
 
 		self:addOutfit(outfitId)
-		if addons then
-			self:addOutfitAddon(outfitId, addons)
+		if addon then
+			self:addOutfitAddon(outfitId, addon)
 		end
-		announceReceivedOutfit(self, outfitId, addons)
+		announceReceivedOutfit(self, outfitId, addon, sex)
 	end
 	self:addOutfit()
 end

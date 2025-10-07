@@ -375,4 +375,5 @@ return {
 	["They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = "They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go.",
 	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 	["You you like me to {sail} you anywhere?"] = "You you like me to {sail} you anywhere?",
+	["Hello. I can help you with acquiring {addons} for your outfits. Are you interested?"] = "Hello. I can help you with acquiring {addons} for your outfits. Are you interested?",
 }
