@@ -9,7 +9,7 @@ local outfit = {
 }
 local customDialogs = {
 	[{ GREET }] = {
-		text = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one.",
+		text = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one. I can also provide you with information on fishing {hotspots}.",
 	},
 	[TRAVEL_KEYWORDS] = {
 		text = NO_TEXT,
@@ -27,6 +27,9 @@ local customDialogs = {
 				textFailedRequirement = "Looks like you have fought someone.. Better step away, I can't trust you.",
 			},
 		},
+	},
+	[{ "hotspots", "lawicach" }] = {
+		text = "Fishing hotspot move every now and then from city to city. You can find nearest hotspot bu using a dowser. You can probably find it in the wilderness.",
 	},
 	[{ "story", "stories", "historia", "historie" }] = {
 		text = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",

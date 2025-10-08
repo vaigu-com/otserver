@@ -7,7 +7,7 @@ local outfit = {
 	lookAddons = 0,
 }
 local context = {
-	name = "Hash'Ish",
+	name = "Y'Hua'Ri",
 	greetJob = JOB_DAILYTASKS_GOLDENOUTFIT,
 	jobs = { JOB_DAILYTASK, JOB_GOLDENOUTFIT },
 	outfit = outfit,
