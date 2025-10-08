@@ -93,6 +93,8 @@ monster.loot = {
 	{ name = "terra boots", chance = 4550 },
 	{ name = "bone fetish", chance = 2270 },
 	{ name = "sacred tree amulet", chance = 1140 },
+	{ id = 32009, chance = 100 },
+	{ id = 32100, chance = 300 },
 }
 
 monster.attacks = {
