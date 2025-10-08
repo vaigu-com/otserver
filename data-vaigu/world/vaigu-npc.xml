@@ -114,11 +114,11 @@
 	<npc centerx="7243" centery="1092" centerz="5" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="5" spawntime="60" />
 	</npc>
+	<npc centerx="7043" centery="1180" centerz="5" radius="1">
+		<npc name="Quu'Pta" x="0" y="0" z="5" spawntime="60" />
+	</npc>
 	<npc centerx="6061" centery="1183" centerz="5" radius="1">
 		<npc name="Dampreefer" x="0" y="0" z="5" spawntime="60" />
-	</npc>
-	<npc centerx="7042" centery="1183" centerz="5" radius="1">
-		<npc name="Hash'Ish" x="0" y="0" z="5" spawntime="60" />
 	</npc>
 	<npc centerx="6005" centery="1276" centerz="5" radius="1">
 		<npc name="Groover" x="0" y="0" z="5" spawntime="60" />
@@ -234,10 +234,10 @@
 	<npc centerx="5756" centery="1174" centerz="6" radius="1">
 		<npc name="Euroboros" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="7036" centery="1189" centerz="6" radius="1">
-		<npc name="Quu'Pta" x="0" y="0" z="6" spawntime="60" />
+	<npc centerx="7037" centery="1189" centerz="6" radius="1">
+		<npc name="Y'Hua'Ri" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="7052" centery="1194" centerz="6" radius="1">
+	<npc centerx="7052" centery="1193" centerz="6" radius="1">
 		<npc name="Ha'Shish" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="7043" centery="1202" centerz="6" radius="1">
@@ -451,7 +451,7 @@
 	<npc centerx="5743" centery="1186" centerz="7" radius="1">
 		<npc name="Greg" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="7036" centery="1189" centerz="7" radius="1">
+	<npc centerx="7037" centery="1190" centerz="7" radius="1">
 		<npc name="Ny'Alai" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="7042" centery="1200" centerz="7" radius="1">
