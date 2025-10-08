@@ -163,6 +163,16 @@ function EncounterData:GetCurrentPhase()
 	return self.stages[self.currentStage]
 end
 
+function EncounterData:FixEnounterStages()
+	local stagesCount = TableSize(self.stages)
+	if stagesCount == 0 then
+		self:addStage({
+			start = function() end,
+		})
+	end
+	return self
+end
+
 ENCOUNTER_SCOPE_NAME = {
 	BossSpawnPosition = "BossSpawnPosition",
 	ExitTeleportDestination = "ExitTeleportDestination",
@@ -415,12 +425,18 @@ function EncounterData:SetupCompletion()
 			return true
 		end
 
-		local participants = creature:getDamageMap()
+		local participants = {}
+		for creatureId in pairs(creature:getDamageMap()) do
+			local player = Player(creatureId)
+			if player then
+				table.insert(participants, player)
+			end
+		end
 		self:OnSuccessfulCompletion(participants)
 		return true
 	end
 	bossDeath:register()
-	bossMonsterType:registerEvent("EncounterOnSuccessfulCompletion")
+	bossMonsterType:registerEvent(self.encounterOnCompleteCreatureEventId)
 
 	--[[
 	local function SomeOtherCondition()
@@ -731,16 +747,11 @@ end
 function EncounterData:SetLockouts(players, lockoutExpiryTime)
 	lockoutExpiryTime = lockoutExpiryTime or self.lockoutExpiryTime
 	for _, player in pairs(players) do
-		player:setLockoutExpiry(self:GetLockoutStorage(), self.lockoutExpiryTime)
+		player:setLockoutExpiry(self:GetLockoutStorage(), lockoutExpiryTime)
 	end
 end
 
 function EncounterData:OnSuccessfulCompletion(participants)
-	local zone = self:GetEncounterZone()
-	if not zone then
-		return true
-	end
-
 	if self.timeoutEvent then
 		stopEvent(self.timeoutEvent)
 		self.timeoutEvent = nil
@@ -749,12 +760,17 @@ function EncounterData:OnSuccessfulCompletion(participants)
 	for _, player in pairs(participants) do
 		ResolutionContext.FromActiveEncounter(self, player):Resolve()
 		player:takeScreenshot(SCREENSHOT_TYPE_BOSSDEFEATED)
+		player:setStorageValueByKey(self.chosenDifficultyStorage, MISSION_NOT_STARTED)
 	end
 
 	if self.lockoutTriggerCriterion == LOCKOUT_TRIGGER_CRITERION.ON_KILL then
 		self:SetLockouts(participants)
 	end
 
+	local zone = self:GetEncounterZone()
+	if not zone then
+		return true
+	end
 	if self.ejectAfterCompletionSeconds > 0 then
 		zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, T(":formattedName: is finished. You have :time: seconds to leave the room.", { formattedName = formatEncounterName(self.displayName), time = self.ejectAfterCompletionSeconds }))
 
@@ -781,7 +797,7 @@ function EncounterData:everyoneCanEnter(players, leverUser)
 	for _, check in pairs(leverUseConditions) do
 		local errorCode = check(self, players, leverUser)
 		if errorCode ~= ENCOUNTER_ERROR_CODES.NO_ERROR then
-			local translatedMessage = leverUser:Localizer():Context(self):Get(errorCode)
+			local translatedMessage = leverUser:Localizer(LOCALIZERS.Universal):Context(self):Get(errorCode)
 			leverUser:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)
 			return false
 		end
@@ -924,6 +940,7 @@ function EncounterData:enterStage(stageNumber, abort)
 	self:cancelEvents()
 
 	if stageNumber == ENCOUNTER_STAGE.UNSTARTED then
+		ActiveEncounterRegistry:Unregister(self)
 		self.currentStage = ENCOUNTER_STAGE.UNSTARTED
 		return true
 	end
@@ -1221,7 +1238,11 @@ function EncounterData:ConfigureOnEnterLeave()
 		if player:hasGroupFlag(IgnoredByMonsters) then
 			return
 		end
-		self:SetLockouts({ player }, LOCKOUT_EXPIRY_TIME.ANTI_GRIEF)
+
+		local lockoutStorage = self:GetLockoutStorage()
+		if player:isLockoutExpired(lockoutStorage) then
+			player:setLockoutExpiry(lockoutStorage, LOCKOUT_EXPIRY_TIME.ANTI_GRIEF)
+		end
 
 		if self:countPlayers() == 0 then
 			self:reset()
@@ -1247,7 +1268,7 @@ ActiveEncounterRegistry.creatureToEncounter = {}
 ---@param encounterData EncounterData
 function ActiveEncounterRegistry:Register(encounterData)
 	if self.registry[encounterData:GetDisplayName()] then
-		logger.error(T("EncounterData :name: already registered", { name = encounterData:GetDisplayName() }))
+		logger.error(T("[ActiveEncounterRegistry:Register] EncounterData :name: already registered", { name = encounterData:GetDisplayName() }))
 	end
 	self.registry[encounterData:GetDisplayName()] = encounterData
 	return self
@@ -1274,7 +1295,7 @@ function ActiveEncounterRegistry:MapCreature(encounterData, creature)
 end
 
 function SendLockoutError(player, lockoutStorage, encounterName)
-	encounterName = "this boss"
+	encounterName = encounterName or "this boss"
 
 	local lockoutExpiry = player:getStorageValueByKey(lockoutStorage)
 	local timeDiff = lockoutExpiry - os.time()
