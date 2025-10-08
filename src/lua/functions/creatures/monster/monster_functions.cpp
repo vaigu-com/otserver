@@ -92,6 +92,7 @@ void MonsterFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Monster", "isBoosted", MonsterFunctions::luaMonsterIsBoosted);
 	Lua::registerMethod(L, "Monster", "setEncounterDifficulty", MonsterFunctions::luaMonsterSetEncounterDifficulty);
 	Lua::registerMethod(L, "Monster", "setDisplayName", MonsterFunctions::luaMonsterSetDisplayName);
+	Lua::registerMethod(L, "Monster", "getDisplayName", MonsterFunctions::luaMonsterGetDisplayName);
 }
 
 // Vaigu custom
@@ -981,5 +982,24 @@ int MonsterFunctions::luaMonsterSetDisplayName(lua_State* L) {
 	monster->setDisplayName(Lua::getString(L, 2));
 
 	Lua::pushBoolean(L, true);
+	return 1;
+}
+
+// Vaigu custom
+int MonsterFunctions::luaMonsterGetDisplayName(lua_State* L) {
+	// monster:getDisplayName()
+	const auto &monster = Lua::getUserdataShared<Monster>(L, 1, "Monster");
+	if (!monster) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_MONSTER_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+		return 0;
+	}
+
+	const auto &displayName = monster->getDisplayName("EN");
+	if (displayName.empty()) {
+		Lua::pushBoolean(L, false);
+	} else {
+		Lua::pushString(L, displayName);
+	}
 	return 1;
 }
