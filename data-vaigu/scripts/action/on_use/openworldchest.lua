@@ -368,6 +368,8 @@ local openWorldChestRewardCategories = {
 		{ id = 3032, chance = 25000, count = 1 }, -- small emerald
 		{ id = 3029, chance = 25000, count = 1 }, -- small sapphire
 		{ id = 22763, chance = 500, count = 1 },
+		{ id = 22516, chance = 1000, count = 1 }, -- silver token
+		{ id = 22721, chance = 1000, count = 1 }, -- gold token
 	},
 	[specificOpenworldchestScopes.Trash] = {
 		{ id = 3031, chance = 15000, count = 50 }, -- gold coin
