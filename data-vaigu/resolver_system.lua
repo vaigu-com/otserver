@@ -125,7 +125,6 @@ function ResolutionContext.FromActiveEncounter(activeEncounter, player)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
 	newObj:ParseRequirementsActionsOther(activeEncounter)
-	newObj:ParseRequirementsActionsOther(activeEncounter:GetEscortData())
 	newObj.localizer = activeEncounter.localizer
 	newObj.player = player
 	newObj.__index = ResolutionContext
@@ -528,4 +527,39 @@ function ResolutionContext:Resolve()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
 	end
+end
+
+RewardsRegistry = {}
+RewardsRegistry.__index = RewardsRegistry
+RewardsRegistry.registry = {
+	outfitAddons = {},
+}
+
+function RewardsRegistry:AddOutfitsAndAddons(outfitsAndAddons, npcName, missionOrLocalizer, state)
+	state = state or "NONE"
+
+	for _, outfitAndAddon in pairs(outfitsAndAddons) do
+		local str = ""
+		local outfitId = outfitAndAddon.outfitId
+		local addons = outfitAndAddon.addons
+		if not outfitId then
+			logger.warn(debug.traceback(T("[outfitsAndAddonsToString] missing outfitId. Npc: :npcName:, mission: :mission:, state: :state:", { npcName = npcName, mission = missionOrLocalizer, state = state })))
+		end
+		if not addons then
+			logger.warn(debug.traceback(T("[outfitsAndAddonsToString] missing addons. Npc: :npcName:, mission: :mission:, state: :state:", { npcName = npcName, mission = missionOrLocalizer, state = state })))
+		end
+		str = str .. T("{ outfitId = :outfitId:, addons = :addons:},\n", { outfitId = outfitId, addons = addons })
+		table.insert(self.registry.outfitAddons, str)
+	end
+end
+
+function RewardsRegistry:SerializeAll()
+	local combinedStr = ""
+	for category, categoryStrings in pairs(self.registry) do
+		combinedStr = combinedStr .. category .. "\n"
+		for _, str in pairs(categoryStrings) do
+			combinedStr = combinedStr .. "\t" .. str
+		end
+	end
+	SerializeToUtilFolder(combinedStr, "obtainable_rewards.lua")
 end

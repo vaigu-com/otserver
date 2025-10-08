@@ -122,6 +122,7 @@ setmetatable(LootboxReward, {
 	end,
 })
 
+NO_LOOTBOX_ID = 0
 local realLootboxData = {
 	LootboxData({
 		lootboxId = ItemId.BELONGINGS_OF_A_DECEASED, -- belonging of a deceased

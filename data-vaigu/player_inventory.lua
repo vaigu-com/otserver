@@ -346,21 +346,19 @@ local function setFields(addedItems, itemData, localizer)
 	end
 end
 
-local function createPermanentItemsInner(items, destinationContainerEx)
+local function createPermanentItemsInner(items, destinationContainerEx, storeInbox)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
 			local containerEx = Game.createItem(containerId)
-			createPermanentItemsInner(itemOrItems, containerEx)
+			createPermanentItemsInner(itemOrItems, containerEx, storeInbox)
 		else
-			if shouldAddToStore(itemOrItems) then
-				local normalizedData = normalizedItemData(itemOrtems)
-				local storeItemEx = destinationContainerEx:addItem(normalizedData.id, normalizedData.count)
+			local normalizedData = normalizedItemData(itemOrItems)
+			if shouldAddToStore(normalizedData) then
+				local storeItemEx = storeInbox:addItem(normalizedData.id, normalizedData.count)
 				setFields(storeItemEx, normalizedData)
-				logger.warn(debug.traceback(T("Item :id: that is determined to go to store was put inside inner container :containerId:", { id = itemOrItems.id, containerId = destinationContainerEx:getId() })))
 			else
-				local normalizedData = normalizedItemData(itemOrtems)
 				local normalItemEx = destinationContainerEx:addItem(normalizedData.id, normalizedData.count)
-				setFields(normalItemEx)
+				setFields(normalItemEx, normalizedData)
 			end
 		end
 	end
@@ -374,10 +372,10 @@ local function generateItemsPermanent(items, player)
 		if ItemType(containerId):isContainer() then
 			local containerEx = player:addItem(containerId)
 			itemsToAdd:AddItemOrTable(containerEx)
-			createPermanentItemsInner(itemOrItems, containerEx)
+			createPermanentItemsInner(itemOrItems, containerEx, storeInbox)
 		else
-			if shouldAddToStore(itemOrItems) then
-				local normalizedData = normalizedItemData(itemOrItems)
+			local normalizedData = normalizedItemData(itemOrItems)
+			if shouldAddToStore(normalizedData) then
 				local storeInbox = player:getStoreInbox()
 				local addedItems = storeInbox:addItem(normalizedData.id, normalizedData.count)
 				setFields(addedItems, normalizedData)
@@ -385,7 +383,6 @@ local function generateItemsPermanent(items, player)
 					itemsToAddStore:AddItemOrTable(addedItems)
 				end
 			else
-				local normalizedData = normalizedItemData(itemOrItems)
 				local addedItems = player:addItem(normalizedData.id, normalizedData.count)
 				setFields(addedItems, normalizedData)
 				if normalizedData.dontAnnounce ~= true then
@@ -470,10 +467,12 @@ function Player:AddItemsAnnounce(items)
 	local addedItemsNonStore, addedItemsStore = generateItemsPermanent(items, self)
 	self:AnnounceAddedItemsNonStore(addedItemsNonStore:Get())
 	self:AnnounceAddedItemsStore(addedItemsStore:Get())
+	return true
 end
 
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param itemData table
 function Player:AddCustomItem(itemData)
 	self:AddItemsAnnounce({ itemData })
+	return true
 end
