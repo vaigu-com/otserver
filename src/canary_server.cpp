@@ -33,6 +33,7 @@
 #include "server/network/protocol/protocolstatus.hpp"
 #include "server/network/webhook/webhook.hpp"
 #include "creatures/players/vocations/vocation.hpp"
+#include "game/scheduling/save_manager.hpp"
 
 CanaryServer::CanaryServer(
 	Logger &logger,
@@ -228,6 +229,9 @@ void CanaryServer::setupHousesRent() {
 	}
 
 	g_game().map.houses.payHouses(rentPeriod);
+	#ifdef OS_WINDOWS
+		SaveManager::getInstance().saveAll();
+	#endif
 }
 
 void CanaryServer::logInfos() {
