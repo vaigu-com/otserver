@@ -54,7 +54,8 @@ return {
 	["Temple"] = "Temple",
 	["NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!"] = "NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!",
 	["Bye, be aware of pickpockets!"] = "Bye, be aware of pickpockets!",
-	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one."] = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one.",
+	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one. I can also provide you with information on fishing {hotspots}."] = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one. I can also provide you with information on fishing {hotspots}.",
+	["Fishing hotspot move every now and then from city to city. You can find nearest hotspot bu using a dowser. You can probably find it in the wilderness."] = "Fishing hotspot move every now and then from city to city. You can find nearest hotspot bu using a dowser. You can probably find it in the wilderness.",
 	[MINIGAMES_BROADCAST_TOP_PARTICIPANTS] = function(context)
 		local min, sec = SecondsToMinSec(context.timeTakenSeconds)
 		context.min = min
@@ -66,8 +67,8 @@ return {
 			return T("Player :playerName: finished :minigameName: with :ordinal: place lasting :min: minutes and :sec: seconds. Congratulations!", context)
 		end
 	end,
-	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "You didn't choose difficulty for this encounter!",
-	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "This is an encounter lever. You can unlock encounter difficulties by completing them. Looking at lever lets you choose difficulty.\n\nHigher difficulty gives you more loot, but also scales monster damage and healing, and might also add additional mechanics to the fight.\n\n20% additive loot per level\n\n20% multiplicative damage/health per level",
+	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "You didn't choose difficulty for this encounter! Look at encounter lever to choose one.",
+	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "This is an encounter lever. You can unlock higher encounter difficulties by completing lower ones. Looking at lever lets you choose difficulty.\n\nHigher difficulty gives you more loot, but also scales monster damage and healing, and might also add additional mechanics to the fight.\n\n20% additive loot per level\n\n20% multiplicative damage and health per level",
 	["Select difficulty:"] = "Select difficulty:",
 	["Go away, or even better: flip off."] = "Go away, or even better: flip off.",
 	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
@@ -209,6 +210,7 @@ return {
 	["ShipWindowTitle"] = "Ship",
 	["CarpetWindowTitle"] = "Carpet",
 	["TrainWindowTitle"] = "Train",
+	["CamelWindowTitle"] = "Camel",
 	["ShipWindowMessage"] = function(context)
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
@@ -228,6 +230,15 @@ return {
 		return finalString
 	end,
 	["TrainWindowMessage"] = "Where would you like to ride?",
+	["CamelWindowMessage"] = function(context)
+		local finalString = ""
+		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
+		if freeTravels > 0 then
+			finalString = finalString .. T("As a novice, you are entitled to free Camel rides. Remaining admits :freeTravels:.\n", { freeTravels = freeTravels })
+		end
+		finalString = finalString .. "Where would you like to ride?"
+		return finalString
+	end,
 	["Looks like you have fought someone.. Better step away, I can't trust you."] = "Looks like you have fought someone.. Better step away, I can't trust you.",
 	["Welcome to my ship. Where would you like to {sail}?"] = "Welcome to my ship. Where would you like to {sail}?",
 	["Hello, traveler. Would you like me to {fly} you somewhere?"] = "Hello, traveler. Would you like me to {fly} you somewhere?",
@@ -376,4 +387,10 @@ return {
 	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you.",
 	["You you like me to {sail} you anywhere?"] = "You you like me to {sail} you anywhere?",
 	["Hello. I can help you with acquiring {addons} for your outfits. Are you interested?"] = "Hello. I can help you with acquiring {addons} for your outfits. Are you interested?",
+	[YOU_NEED_TO_BRING_THE_FOLLOWING_ITEMS] = function(context)
+		local requiredItems = context.requirements.requiredItems
+		local str = "You need to bring the following items:\n" .. RequiredItemNamesCountToString(requiredItems)
+		return str
+	end,
+	["Hello, are you interested in trading some gems? Or perhaps you want to help me with my {outfit} collection?"] = "Hello, are you interested in trading some gems? Or perhaps you want to help me with my {outfit} collection?",
 }

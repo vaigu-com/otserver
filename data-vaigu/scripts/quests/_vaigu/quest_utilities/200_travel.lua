@@ -161,11 +161,13 @@ pseudoQuest
 			[TRAVEL_METHOD.SHIP] = "ShipWindowTitle",
 			[TRAVEL_METHOD.CARPET] = "CarpetWindowTitle",
 			[TRAVEL_METHOD.TRAIN] = "TrainWindowTitle",
+			[TRAVEL_METHOD.CAMEL] = "CamelWindowTitle",
 		}
 		local travelMethodToWindowMessage = {
 			[TRAVEL_METHOD.SHIP] = "ShipWindowMessage",
 			[TRAVEL_METHOD.CARPET] = "CarpetWindowMessage",
 			[TRAVEL_METHOD.TRAIN] = "TraintWindowMessage",
+			[TRAVEL_METHOD.CAMEL] = "CamelWindowMessage",
 		}
 		function CreateTravelWindow(context)
 			local player = context.player

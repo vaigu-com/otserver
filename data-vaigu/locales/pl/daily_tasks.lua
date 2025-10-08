@@ -63,6 +63,7 @@ return {
 			requiredKills = requiredKills,
 		})
 	end,
+	["YOU_DONT_HAVE_ONGOING_DAILY_TASK"] = "Nie zajmujesz sie teraz zadnym dziennym zadaniem.",
 	--Questlog
 	["DAILY_TASK_MISSION_NAME"] = function(context)
 		local dailyTask = context.dailyTask

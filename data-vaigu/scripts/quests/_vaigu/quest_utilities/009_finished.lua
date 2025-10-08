@@ -81,7 +81,7 @@ quest
 			PerIustitiaAdAstra = {},
 
 			--way of the druid
-			WayOfTheDruid = {},
+			TheWayOfADruid = {},
 			DeerSeason = {},
 			TakenBenek = {},
 			RudeEviction = {},

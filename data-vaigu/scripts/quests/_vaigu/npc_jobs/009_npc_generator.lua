@@ -141,7 +141,7 @@ function RegisterNpcDefinition(npcData)
 	local jobStateDialogs = getJobStateDialogs(jobs)
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
-	if JOB_GREETING[greetJob] then
+	if JOB_GREETING[greetJob] and not hasGREETkeywordInCustomDialogs(npcData) then
 		allDialogs[LOCALIZERS.Universal][{ GREET }] = JOB_GREETING[greetJob]
 	end
 	if TableSize(npcConfig.shop) == 0 then

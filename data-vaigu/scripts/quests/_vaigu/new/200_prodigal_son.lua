@@ -177,24 +177,13 @@ quest
 		SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS = {
 			frediIsNearby = function(context)
 				local npcPos = context.npc:getPosition()
-				local topLeft = npcPos:Moved(-7, -7, 0)
-				local downRight = npcPos:Moved(7, 7, 0)
-				local result = IterateBetweenPositions(topLeft, downRight, function(args2)
-					local pos = args2.pos
-					local tile = Tile(pos)
-					if not tile then
-						return false
-					end
-					local oldCreature = tile:getTopCreature()
-					if not oldCreature then
-						return false
-					end
-					if oldCreature:getName():lower() == "fredi kamionka" then
+				local monsters = CreatureList():RadiusSquare(npcPos, 7, 7):FilterByMonster():Get()
+				for _, value in pairs(monsters) do
+					if value:getDisplayName():lower() == "fredi kamionka" then
 						return true
 					end
-					return false
-				end, { stopCondition = STOP_CONDITIONS.isTrue })
-				return result
+				end
+				return false
 			end,
 			saidCorrectPassword = function(context)
 				local player = context.player
@@ -748,9 +737,6 @@ quest
 		local spell = Spell("instant")
 
 		function spell.onCastSpell(creature, var)
-			do
-				return
-			end
 			if not creature or not creature:isMonster() then
 				return true
 			end

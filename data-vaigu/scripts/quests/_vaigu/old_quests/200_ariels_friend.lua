@@ -800,6 +800,11 @@ quest
 
 		local insideLibrary = Position(32515, 32537, 12)
 		local outsideStandingPosition = Position(7683, 1637, 9)
+
+		local outfitRewards = {
+			{ outfitId = 1069, addons = 0 },
+			{ outfitId = 1070, addons = 0 },
+		}
 		mType.onSay = function(listener, talker, type, message)
 			local player = talker:getPlayer()
 			if not player then

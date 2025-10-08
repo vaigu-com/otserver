@@ -1,39 +1,4 @@
 return {
-	["DAILY_TASK_MISSION_NAME"] = function(context)
-		local dailyTask = context.dailyTask
-		local name = dailyTask.name
-		return T("Hunting of :name:", { name = name })
-	end,
-	["DAILY_TASK_PAMPHLET_DESCRIPTION"] = function(context)
-		local dailyTask = GetDailyTaskByStorage(context.key)
-		context.dailyTask = dailyTask
-		return context.player:Localizer(context.localizer):Context(context):Get("DAILY_TASK_MISSION_DESCRIPTION")
-	end,
-	["DAILY_TASK_MISSION_DESCRIPTION"] = function(context)
-		local player = context.player
-		local dailyTask = context.dailyTask
-		local name = dailyTask.name
-		local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
-		local requiredKills = dailyTask.requiredKills
-		local requiredItems = dailyTask.items
-		local dailyTaskDescription = T("Daily task for :name:!\n\n", { name = name })
-		dailyTaskDescription = dailyTaskDescription .. T("You have killed :currentKills:/:requiredKills: :name:.", {
-			name = name,
-			currentKills = currentKills,
-			requiredKills = requiredKills,
-		})
-		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n" .. ItemsToString(requiredItems)
-		end
-		dailyTaskDescription = dailyTaskDescription .. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
-			money = dailyTask.money,
-			tibiaCoins = dailyTask.tibiaCoins,
-		})
-
-		return dailyTaskDescription
-	end,
-	["Daily task"] = "Daily task",
-	["Daily tasks information"] = "Daily tasks information",
 	["You don't have any active daily tasks. You can sign up for daily task on the daily task board. Please report me if you finish one of them."] = "You don't have any active daily tasks. You can sign up for daily task on the daily task board. Please report me if you finish one of them.",
 	["Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors."] = "Hello |PLAYERNAME|. You already finished a daily {task} from the notice board? You can {cancel} it whenever you want. I also have some {outfit} for the most generous donors.",
 	["DAILY_TASKS_HELP_WINDOW_INFO"] = function()
@@ -98,4 +63,41 @@ return {
 			requiredKills = requiredKills,
 		})
 	end,
+	["YOU_DONT_HAVE_ONGOING_DAILY_TASK"] = "You dont have any ognoing daily tasks.",
+	--Questlog
+	["DAILY_TASK_MISSION_NAME"] = function(context)
+		local dailyTask = context.dailyTask
+		local name = dailyTask.name
+		return T("Hunting of :name:", { name = name })
+	end,
+	["DAILY_TASK_PAMPHLET_DESCRIPTION"] = function(context)
+		local dailyTask = GetDailyTaskByStorage(context.key)
+		context.dailyTask = dailyTask
+		return context.player:Localizer(context.localizer):Context(context):Get("DAILY_TASK_MISSION_DESCRIPTION")
+	end,
+	["DAILY_TASK_MISSION_DESCRIPTION"] = function(context)
+		local player = context.player
+		local dailyTask = context.dailyTask
+		local name = dailyTask.name
+		local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
+		local requiredKills = dailyTask.requiredKills
+		local requiredItems = dailyTask.items
+		local dailyTaskDescription = T("Daily task for :name:!\n\n", { name = name })
+		dailyTaskDescription = dailyTaskDescription .. T("You have killed :currentKills:/:requiredKills: :name:.", {
+			name = name,
+			currentKills = currentKills,
+			requiredKills = requiredKills,
+		})
+		if requiredItems then
+			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n" .. ItemsToString(requiredItems)
+		end
+		dailyTaskDescription = dailyTaskDescription .. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
+			money = dailyTask.money,
+			tibiaCoins = dailyTask.tibiaCoins,
+		})
+
+		return dailyTaskDescription
+	end,
+	["Daily task"] = "Daily task",
+	["Daily tasks information"] = "Daily tasks information",
 }

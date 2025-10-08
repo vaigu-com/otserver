@@ -54,7 +54,8 @@ return {
 	["Temple"] = "Swiatynia",
 	["NECK NECK NEEEECKLACES ONLY FOR TWO BUCKS, CHEAP RINGS FOR PRETTY LADIEEES, {LIFE CRYSTAL} EXCHANGE! Take a look at my offer!"] = "AAAAAMUULETY ZA DWA ZLOTA, PIERSCIONECZKI DLA PIEKNYCH DZIEWCZYYYYN, WYMIANA {LIFE CRYSTAL}. Zapraszam do straganuuu!",
 	["Bye, be aware of pickpockets!"] = "Nara, uwazaj zeby cie ktos nie ocyganil.",
-	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one."] = "Moj stary jest fanatykiem wedkarstwa. Pol mieszkania zajebane wedkami najgorsze. Ostatnio kaze dorabiac mi plywajac lodka, dlatego moge zabrac cie w pobliskie rejony, lub opchnac jakies {wedki}. Jesli masz chwile, to moge ci opowiedziec jakies {historie}.",
+	["My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one. I can also provide you with information on fishing {hotspots}."] = "Moj stary jest fanatykiem wedkarstwa. Pol mieszkania zajebane wedkami najgorsze. Ostatnio kaze dorabiac mi plywajac lodka, dlatego moge zabrac cie w pobliskie rejony, lub opchnac jakies {wedki}. Udzielam rowniez informacji o {lawicach}. Jesli masz chwile, to moge ci opowiedziec jakies {historie}.",
+	["Fishing hotspot move every now and then from city to city. You can find nearest hotspot bu using a dowser. You can probably find it in the wilderness."] = "Lawice ryb przemiszczeja sie co jakis czas miedzy miastami. Jesli uda ci sie znalezc rozdzke radiestezyjna, to wskaze ci najblizsza lawice.",
 	[MINIGAMES_BROADCAST_TOP_PARTICIPANTS] = function(context)
 		local min, sec = SecondsToMinSec(context.timeTakenSeconds)
 		context.min = min
@@ -66,8 +67,8 @@ return {
 			return T("Gracz :playerName: ukonczyl :minigameName:, przezywajac :min: minut i :sec: sekund i zajmujac :ordinal: miejsce. Gratulacje!", context)
 		end
 	end,
-	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "Nie wybrales trudnosi dla tego starcia!",
-	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "Oto dzwignia starcia. Ukonczenie starcia odblokowuje wyzszy poziom trudnosci. Mozesz wybrac poziom trudnosci patrzac na dzwignie.\n\nWyzszy poziom trudnosci oznacza wiecej nagrod, ale takze zwieksza obrazenia i zycie przeciwnikow, a takze moze dodac dodatkowe mechaniki do walki.\n\n20% addytywnych nagrod za poziom\n\n20% multiplikatywnych obrazen/zycia za poziom",
+	[ENCOUNTER_ERROR_CODES.NO_DIFFICULTY_CHOSEN] = "Nie wybrales trudnosci dla tego starcia! Spojrz na dzwignie aby wybrac trudnosc.",
+	[ENCOUNTER_LEVER_HELP_WINDOW_TEXT] = "Oto dzwignia starcia. Ukonczenie starcia odblokowuje wyzszy poziom trudnosci. Mozesz wybrac poziom trudnosci patrzac na dzwignie.\n\nWyzszy poziom trudnosci oznacza wiecej nagrod, ale takze zwieksza obrazenia i zycie przeciwnikow, a takze moze dodac dodatkowe mechaniki do walki.\n\n20% addytywnych nagrod za poziom\n\n20% multiplikatywnych obrazen i zycia za poziom",
 	["Select difficulty:"] = "Wybierz trudnosc:",
 	["Go away, or even better: flip off."] = "Jak nie masz nic madrego do powiedzenia to stad spieprzaj.",
 	["YOU_ARE_NOW_CITIZEN_OF"] = function(context)
@@ -209,6 +210,7 @@ return {
 	["ShipWindowTitle"] = "Statek",
 	["CarpetWindowTitle"] = "Dywan",
 	["TrainWindowTitle"] = "Pociag",
+	["CamelWindowTitle"] = "Wielblad",
 	["ShipWindowMessage"] = function(context)
 		local finalString = ""
 		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
@@ -228,6 +230,15 @@ return {
 		return finalString
 	end,
 	["TrainWindowMessage"] = "Gdzie chcialbys pojechac?",
+	["CamelWindowMessage"] = function(context)
+		local finalString = ""
+		local freeTravels = context.player:getStorageValueByKey(Storage.FreeTravels)
+		if freeTravels > 0 then
+			finalString = finalString .. T("Jako nowicjusz przysluguja ci darmowe przejazdy wielbladem w ilosci :freeTravels:.\n", { freeTravels = freeTravels })
+		end
+		finalString = finalString .. "Gdzie chcialbys pojechac?"
+		return finalString
+	end,
 	["Looks like you have fought someone.. Better step away, I can't trust you."] = "Wygladasz jakbys sie przed chwila z kims bil... Lepiej odejdz.",
 	["Welcome to my ship. Where would you like to {sail}?"] = "Witam na moim statku. Czyzbys chcial gdzies {popylnac}?",
 	["Hello, traveler. Would you like me to {fly} you somewhere?"] = "Czesc. Czy przychodzisz tu aby gdzies {poleciec}?",
@@ -376,4 +387,10 @@ return {
 	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. Chcesz kupic paczke, list, albo zrobic przelew bankowy? Jestem tu, by ci pomoc.",
 	["You you like me to {sail} you anywhere?"] = "Chcesz gdzies {popylanac}?",
 	["Hello. I can help you with acquiring {addons} for your outfits. Are you interested?"] = "Czesc. Moge ci pomoc z uszyciem {dodatkow} do twoich strojow. Jestes zainteresowany?",
+	[YOU_NEED_TO_BRING_THE_FOLLOWING_ITEMS] = function(context)
+		local requiredItems = context.requiredItems
+		local str = "Najpierw przynies mi nastepujace przedmioty:\n" .. RequiredItemNamesCountToString(requiredItems)
+		return str
+	end,
+	["Hello, are you interested in trading some gems? Or perhaps you want to help me with my {outfit} collection?"] = "Hej. Jestes zainteresowany moimi klejnotami? A moze przyszedles tu aby pomoc mi z z moimi nowymi {strojami}?",
 }

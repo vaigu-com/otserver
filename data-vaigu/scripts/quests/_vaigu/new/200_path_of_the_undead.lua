@@ -1062,11 +1062,11 @@ quest
 						[Storage.PathOfTheUndead.VisitedCircles] = {},
 					},
 					requiredState = {
-						[Storage.WayOfTheDruid.DeerSeason] = MISSION_FINISHED,
-						[Storage.WayOfTheDruid.TakenBenek] = MISSION_FINISHED,
-						[Storage.WayOfTheDruid.RudeEviction] = MISSION_FINISHED,
-						[Storage.WayOfTheDruid.SecretIngredient] = MISSION_FINISHED,
-						[Storage.WayOfTheDruid.SingingCrystal] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.DeerSeason] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.TakenBenek] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.RudeEviction] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.SecretIngredient] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.SingingCrystal] = MISSION_FINISHED,
 					},
 					textNoRequiredState = "I need you to help all other druids of this world. Only if they vouch for you, shall you return here. If you are ready, ask me again about {conditions}.",
 				},
@@ -1150,7 +1150,7 @@ quest
 	:State(function()
 		return QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing,
 			QuestFactory.Dialog("Konmuld", {
-				[{ "mission", "misja", "krol krypty", "crypt king", "the king of the crypt", "king", "krol" }] = {
+				[{ "krol krypty", "crypt king", "the king of the crypt", "king", "krol" }] = {
 					text = "Gandalf sent you here, right? If you want to go to the down pyramid, you need to know that there is an Undead Crypt King waiting, and that {encounter} him will not be easy by any means. To summon him, you will need a few ingredients. Take the most necessary things: wood, cauldron, vial and lighter. For the ritual you will need {bones} so foul that they lower the wavelength of the light around. Plus the {signet ring} of an undead lord, and a {cloak} made of the skin of unbaptized children. If you're going to collect these items, ask me about the {ritual}.",
 				},
 				[{ "walka", "encounter", "fight" }] = {
@@ -1159,7 +1159,7 @@ quest
 				[{ "kosci", "bone", "bones" }] = {
 					text = "It's called Unholy Bone.",
 				},
-				[{ "sygnet", "signet", "pierscien", "seal" }] = {
+				[{ "sygnet", "signet", "pierscien", "seal", "signet ring" }] = {
 					text = "This ring has vanished somewhere, maybe Grave Digger will tell you more about it.",
 				},
 				[{ "grave digger" }] = {
