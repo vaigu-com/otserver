@@ -35,7 +35,6 @@ void KVStore::set(const std::string &key, const ValueWrapper &value) {
 		std::scoped_lock lock(mutex_);
 		setLocked(key, value);
 	}
-	processEvictions();
 }
 
 void KVStore::setLocked(const std::string &key, const ValueWrapper &value) {
@@ -44,26 +43,8 @@ void KVStore::setLocked(const std::string &key, const ValueWrapper &value) {
 		it->second.first = value;
 		lruQueue_.splice(lruQueue_.begin(), lruQueue_, it->second.second);
 	} else {
-		std::string evictKey;
-		ValueWrapper evictValue;
-		bool needsEviction = false;
-
-		if (store_.size() >= MAX_SIZE && !lruQueue_.empty()) {
-			logger.debug("KVStore::set() - MAX_SIZE reached, removing last element");
-			auto last = std::prev(lruQueue_.end());
-			evictKey = *last;
-			evictValue = store_[*last].first;
-			needsEviction = true;
-			store_.erase(*last);
-			lruQueue_.pop_back();
-		}
-
 		lruQueue_.push_front(key);
 		store_.try_emplace(key, std::make_pair(value, lruQueue_.begin()));
-
-		if (needsEviction) {
-			pendingEvictions_.emplace_back(evictKey, evictValue);
-		}
 	}
 }
 
@@ -83,6 +64,7 @@ std::optional<ValueWrapper> KVStore::get(const std::string &key, bool forceLoad 
 				lruQueue_.splice(lruQueue_.begin(), lruQueue_, lruIt);
 				return value;
 			}
+			return std::nullopt;
 		}
 	}
 
@@ -92,7 +74,6 @@ std::optional<ValueWrapper> KVStore::get(const std::string &key, bool forceLoad 
 			std::scoped_lock lock(mutex_);
 			setLocked(key, *value);
 		}
-		processEvictions();
 	}
 	return value;
 }
@@ -126,17 +107,45 @@ std::shared_ptr<KV> KVStore::scoped(const std::string &scope) {
 	return std::make_shared<ScopedKV>(logger, *this, scope);
 }
 
-void KVStore::processEvictions() {
-	std::vector<std::pair<std::string, ValueWrapper>> evictions;
-	{
-		std::scoped_lock lock(mutex_);
-		if (!pendingEvictions_.empty()) {
-			evictions = std::move(pendingEvictions_);
-			pendingEvictions_.clear();
+void KVStore::loadByPlayerGUID(uint32_t playerGUID) {
+	const auto playerDotGuidPrefix = playerPrefix.data() + std::to_string(playerGUID);
+	const auto &playerKeys = keys(playerDotGuidPrefix);
+	for (const auto playerKey : playerKeys) {
+		auto value = load(playerDotGuidPrefix + playerKey);
+		if (value) {
+			{
+				std::scoped_lock lock(mutex_);
+				setLocked(playerDotGuidPrefix + playerKey, *value);
+			}
 		}
 	}
+}
 
-	for (const auto &[key, value] : evictions) {
-		save(key, value);
+void KVStore::eraseOfflineKv(const std::vector<std::string> &justLoggedOutPlayerGuids) {
+	if (justLoggedOutPlayerGuids.empty()) {
+		return;
+	}
+
+	std::vector<std::string> keys_to_remove;
+
+	store_.for_each([&](const auto& kv) {
+		const std::string& key = kv.first;
+		if (key.rfind(playerPrefix, 0) != 0) {
+			return;
+		}
+
+		size_t dot = key.find('.', playerPrefix.size());
+		if (dot == std::string::npos) {
+			return;
+		}
+
+		std::string_view guid(key.data() + playerPrefix.size(), dot - playerPrefix.size());
+		if (std::find(justLoggedOutPlayerGuids.begin(), justLoggedOutPlayerGuids.end(), guid) != justLoggedOutPlayerGuids.end()){
+			keys_to_remove.push_back(key);
+		}
+	});
+
+	for (const auto& key : keys_to_remove) {
+		store_.erase(key);
 	}
 }

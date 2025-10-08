@@ -106,6 +106,10 @@ bool IOLoginData::loadPlayer(const std::shared_ptr<Player> &player, const DBResu
 			return false;
 		}
 
+		// Vaigu custom
+		// KV load
+		IOLoginDataLoad::loadPlayerKV(player, result);
+
 		// Experience load
 		IOLoginDataLoad::loadPlayerExperience(player, result);
 

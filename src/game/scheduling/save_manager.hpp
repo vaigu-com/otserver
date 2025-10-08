@@ -17,6 +17,18 @@ class Game;
 class Player;
 class Guild;
 
+struct SaveContext {
+	const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players;
+	const std::vector<CoinTransactionEntry> &newCoinTransactions;
+	const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Guild>> &guilds;
+	SaveContext(
+		const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players_,
+		const std::vector<CoinTransactionEntry> &newCoinTransactions_,
+		const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Guild>> &guilds_
+	) :
+		players(players_), newCoinTransactions(newCoinTransactions_), guilds(guilds_) { }
+};
+
 class SaveManager {
 public:
 	explicit SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game);
@@ -30,6 +42,8 @@ public:
 	void scheduleAll();
 
 private:
+	void saveAllInner(const SaveContext &saveContext);
+
 	void saveMap();
 	void saveKV();
 	void saveGuild(std::shared_ptr<Guild> guild);
@@ -44,6 +58,7 @@ private:
 	KVStore &kv;
 	Logger &logger;
 	Game &game;
+
 #ifndef OS_WINDOWS
 	pid_t child_saver_pid;
 #endif

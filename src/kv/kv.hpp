@@ -36,19 +36,11 @@ public:
 		return true;
 	}
 
-	virtual bool savePlayer(uint32_t playerId) {
-		return true;
-	}
-
 	virtual std::shared_ptr<KV> scoped(const std::string &scope) = 0;
 
 	virtual std::unordered_set<std::string> keys(const std::string &prefix = "") = 0;
 
 	void remove(const std::string &key);
-
-	virtual void flush() {
-		saveAll();
-	}
 
 	static std::string generateUUID() {
 		std::lock_guard<std::mutex> lock(mutex_);
@@ -78,7 +70,6 @@ private:
 
 class KVStore : public KV {
 public:
-	static constexpr size_t MAX_SIZE = 1000000;
 	static KVStore &getInstance();
 
 	explicit KVStore(Logger &logger) :
@@ -90,25 +81,11 @@ public:
 
 	std::optional<ValueWrapper> get(const std::string &key, bool forceLoad = false) override;
 
-	void flush() override {
-		std::vector<std::pair<std::string, ValueWrapper>> snapshot;
-		{
-			std::scoped_lock lock(mutex_);
-			snapshot.reserve(store_.size() + pendingEvictions_.size());
-			for (const auto &[k, v] : store_) {
-				snapshot.emplace_back(k, v.first);
-			}
-			snapshot.insert(snapshot.end(), pendingEvictions_.begin(), pendingEvictions_.end());
-			store_.clear();
-			pendingEvictions_.clear();
-		}
-		for (const auto &[k, v] : snapshot) {
-			save(k, v);
-		}
-	}
-
 	std::shared_ptr<KV> scoped(const std::string &scope) final;
 	std::unordered_set<std::string> keys(const std::string &prefix = "") override;
+	void loadByPlayerGUID(uint32_t playerGUID);
+
+	void eraseOfflineKv(const std::vector<std::string>& offline_guids);
 
 protected:
 	phmap::parallel_flat_hash_map<std::string, std::pair<ValueWrapper, std::list<std::string>::iterator>> getStore() {
@@ -125,17 +102,12 @@ protected:
 	void setLocked(const std::string &key, const ValueWrapper &value);
 
 	virtual std::optional<ValueWrapper> load(const std::string &key) = 0;
-	virtual bool save(const std::string &key, const ValueWrapper &value) = 0;
 	virtual std::vector<std::string> loadPrefix(const std::string &prefix = "") = 0;
 
 private:
-	void processEvictions();
-
 	phmap::parallel_flat_hash_map<std::string, std::pair<ValueWrapper, std::list<std::string>::iterator>> store_;
 	std::list<std::string> lruQueue_;
 	std::mutex mutex_;
-	// Evicted entries pending persistence; accessed under mutex_
-	std::vector<std::pair<std::string, ValueWrapper>> pendingEvictions_;
 };
 
 class ScopedKV final : public KV {
@@ -189,4 +161,5 @@ private:
 	std::string prefix_;
 };
 
+constexpr std::string_view playerPrefix = "player.";
 constexpr auto g_kv = KVStore::getInstance;

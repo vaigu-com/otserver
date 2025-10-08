@@ -80,12 +80,6 @@ std::vector<std::string> KVSQL::loadPrefix(const std::string &prefix /* = ""*/) 
 	return keys;
 }
 
-bool KVSQL::save(const std::string &key, const ValueWrapper &value) {
-	auto update = dbUpdate();
-	prepareSave(key, value, update);
-	return update.execute();
-}
-
 bool KVSQL::prepareSave(const std::string &key, const ValueWrapper &value, DBInsert &update) const {
 	const auto protoValue = ProtoSerializable::toProto(value);
 	std::string data;
@@ -117,35 +111,10 @@ bool KVSQL::saveAll() {
 		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);
 		return false;
 	} else {
-		return update.execute();
+		return true;
 	}
 }
 
-bool KVSQL::savePlayer(uint32_t playerId) {
-	auto store = getStore();
-	auto update = dbUpdate();
-
-	if (!std::ranges::all_of(store, [this, &update, playerId](const auto &kv) {
-			const auto &[key, value] = kv;
-			std::string playerPrefix = "player." + std::to_string(playerId);
-			std::string keyStr = key;
-
-			if (keyStr.compare(0, playerPrefix.size(), playerPrefix) == 0) {
-				return prepareSave(key, value.first, update);
-			}
-			return true;
-		})) {
-		return false;
-	}
-	bool success = update.execute();
-
-	if (!success) {
-		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);
-		return false;
-	} else {
-		return update.execute();
-	}
-}
 
 DBInsert KVSQL::dbUpdate() {
 	auto insert = DBInsert("INSERT INTO `kv_store` (`key_name`, `timestamp`, `value`) VALUES");
