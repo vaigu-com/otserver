@@ -1,4 +1,5 @@
 ItemId = {
+	EXP_COOKIE = GeneratedItemId.EXPLODING_COOKIE_0,
 	LEVER_LEFT = GeneratedItemId.LEVER_0,
 	LEVER_RIGHT = GeneratedItemId.LEVER_1,
 	FLASK_OF_DEMONIC_BLOOD = GeneratedItemId.FLASK_OF_DEMONIC_BLOOD_0,
@@ -200,4 +201,6 @@ ItemId = {
 	CRYSTAL_COIN = GeneratedItemId.CRYSTAL_COIN_0,
 
 	TALL_STONE = GeneratedItemId.STONE_45,
+
+	DOWSER = GeneratedItemId.DOWSER_0,
 }

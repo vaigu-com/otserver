@@ -220,16 +220,16 @@ function Player:RemoveItems(itemsData)
 	return true
 end
 
-function Player:TryTradeInItems(givenUpItems, addedItems)
+function Player:TryTradeInItems(givenUpItems, receivedItems)
 	if not self:HasItems(givenUpItems) then
 		return false
 	end
-	if not self:CanAddItems(addedItems) then
+	if not self:CanAddItems(receivedItems) then
 		return false
 	end
 	-- success
 	self:RemoveItems(givenUpItems)
-	self:AddItemsAnnounce(addedItems)
+	self:AddItemsAnnounce(receivedItems)
 	return true
 end
 

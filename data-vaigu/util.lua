@@ -1,3 +1,13 @@
+function math.clamp(value, min, max)
+	if value < min then
+		return min
+	end
+	if value > max then
+		return max
+	end
+	return value
+end
+
 function Player:isMale()
 	return self:getSex() == PLAYERSEX_MALE
 end
@@ -38,8 +48,11 @@ function who_called_me()
 	end
 end
 
+---@param str string
+---@param filename string eg. output.lua
+---@return boolean success
 function SerializeToUtilFolder(str, filename)
-	local file, err = io.open(filename, "w+")
+	local file, err = io.open("utility_scripts/" .. filename, "w+")
 	if not file then
 		logger.warn("[SerializeToUtilFolder] Error opening file: " .. err)
 		return false
@@ -48,6 +61,7 @@ function SerializeToUtilFolder(str, filename)
 	file:flush()
 	file:close()
 	logger.warn(T("[SerializeToUtilFolder][:caller: caller] serialized file :filename: ", { caller = who_called_me(), filename = filename }))
+	return true
 end
 
 function Player:teleportToReflectedPoint(midpoint)

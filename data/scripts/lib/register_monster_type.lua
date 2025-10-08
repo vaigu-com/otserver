@@ -49,7 +49,7 @@ function MonsterTypeRepository:SerializeHpExp()
 	logger.info("[MonsterTypeRepository::SerializeHpExp] Serialization succesful.")
 end
 
-local monsterCountsPath = baseOutputDir .. "monster_counts.txt"
+local monsterCountsPath = "monster_counts.txt"
 function MonsterTypeRepository:SerializeCounts()
 	local monsterCounts = countMonsters(DATA_DIRECTORY .. "/world/vaigu-monster.xml")
 
@@ -59,14 +59,7 @@ function MonsterTypeRepository:SerializeCounts()
 		monsterCountsStr = monsterCountsStr .. monsterRow
 	end
 
-	local file = io.open(monsterCountsPath, "w+")
-	if not file then
-		logger.error(T("[MonsterTypeRepository::SerializeCounts] Cannot open file :path:. Counts have NOT been serialized.", { path = monsterCountsPath }))
-		return
-	end
-	file:write(monsterCountsStr)
-	file:close()
-	logger.info("[MonsterTypeRepository::SerializeCounts] Serialization succesful.")
+	SerializeToUtilFolder(monsterCountsStr, monsterCountsPath)
 end
 
 local rareSpawnsPath = baseOutputDir .. "rares.txt"

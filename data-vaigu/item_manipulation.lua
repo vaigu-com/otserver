@@ -45,16 +45,16 @@ local function extractItemData(item)
 	end
 	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore }
 end
-local function extractBagItems(items)
-	local result = {}
-	for _, item in pairs(items) do
+local function extractBagItems(bagItemsEx)
+	local extractedItems = {}
+	for _, item in pairs(bagItemsEx) do
 		if item:isContainer() then
-			result[item:getId()] = extractBagItems(item:getItems())
+			extractedItems[item:getId()] = extractBagItems(item:getItems())
 		else
-			result[#result + 1] = extractItemData(item)
+			table.insert(extractedItems, extractItemData(item))
 		end
 	end
-	return result
+	return extractedItems
 end
 
 local bagId = 2853

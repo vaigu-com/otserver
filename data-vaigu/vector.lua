@@ -175,7 +175,7 @@ function Vector:IsFacingPartially(otherDirection)
 	return false
 end
 
-function Vector:IsFacingExactlyEitherSnap(...)
+function Vector:IsFacingSnap(...)
 	local vectorDirection = self:ToDirectionSnap()
 	if type(...) == "table" then
 		return table.contains(..., vectorDirection)
@@ -185,5 +185,5 @@ function Vector:IsFacingExactlyEitherSnap(...)
 end
 
 function Vector:IsFacingDiagonalSnap()
-	return self:IsFacingExactlyEitherSnap(DIRECTION_NORTHEAST, DIRECTION_SOUTHEAST, DIRECTION_SOUTHWEST, DIRECTION_NORTHWEST)
+	return self:IsFacingSnap(DIRECTION_NORTHEAST, DIRECTION_SOUTHEAST, DIRECTION_SOUTHWEST, DIRECTION_NORTHWEST)
 end

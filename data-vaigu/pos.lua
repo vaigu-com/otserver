@@ -55,7 +55,6 @@ end
 ---@field corner2 Position
 Area = {}
 Area.__index = Area
----comment
 ---@param corner1 Position
 ---@param corner2 Position
 ---@return Area newObj
@@ -577,6 +576,21 @@ function Position:GetTopPlayer()
 	end
 
 	return creature:getPlayer()
+end
+
+---@return Monster|nil creature
+function Position:GetTopMonster()
+	local tile = Tile(self)
+	if not tile then
+		return nil
+	end
+
+	local creature = tile:getTopCreature()
+	if not creature then
+		return nil
+	end
+
+	return creature:getMonster()
 end
 
 function Position:GetItemById(id)
