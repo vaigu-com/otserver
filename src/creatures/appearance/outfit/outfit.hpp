@@ -53,4 +53,5 @@ public:
 	std::shared_ptr<Outfit> getOutfitByName(PlayerSex_t sex, const std::string &name) const;
 
 	[[nodiscard]] std::string getOutfitNameByLookType(uint16_t lookType) const; // Vaigu custom
+	[[nodiscard]] PlayerSex_t getOutfitSexByLookType(uint16_t lookType) const; // Vaigu custom
 };

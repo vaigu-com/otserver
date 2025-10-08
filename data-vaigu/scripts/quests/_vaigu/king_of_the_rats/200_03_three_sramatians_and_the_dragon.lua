@@ -1444,6 +1444,10 @@ quest
 						[Storage.Finished.ThreeSramatiansAndTheDragon] = MISSION_FINISHED,
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.AskRomekForMission,
 					},
+					outfitRewards = {
+						{ outfitId = 1371, addons = 3 },
+						{ outfitId = 1372, addons = 3 },
+					},
 				},
 			})
 	end)

@@ -1407,6 +1407,10 @@ quest
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 					},
 					rewards = { ExerciseWeaponBox(400) },
+					outfitRewards = {
+						{ outfitId = 1371, addons = 0 },
+						{ outfitId = 1372, addons = 0 },
+					},
 				},
 			})
 	end)

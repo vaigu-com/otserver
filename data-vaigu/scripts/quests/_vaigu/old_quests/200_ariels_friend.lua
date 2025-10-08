@@ -817,6 +817,7 @@ quest
 
 			if player:getStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg) == QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument then
 				player:setStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg, MISSION_FINISHED)
+				player:AddOutfitsAndAddons(outfitRewards)
 			end
 
 			if message:lower() == "chamek athra thull zathroth" then

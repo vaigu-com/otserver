@@ -102,4 +102,5 @@ private:
 
 	// Vaigu custom
 	static int luaGameGetOutfitNameByLookType(lua_State* L);
+	static int luaGameGetOutfitSexByLookType(lua_State* L);
 };

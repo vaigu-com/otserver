@@ -116,7 +116,9 @@ void GameFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Game", "getMonstersByRace", GameFunctions::luaGameGetMonstersByRace);
 	Lua::registerMethod(L, "Game", "getMonstersByBestiaryStars", GameFunctions::luaGameGetMonstersByBestiaryStars);
 
+	// Vaigu custom
 	Lua::registerMethod(L, "Game", "getOutfitNameByLookType", GameFunctions::luaGameGetOutfitNameByLookType);
+	Lua::registerMethod(L, "Game", "getOutfitSexByLookType", GameFunctions::luaGameGetOutfitSexByLookType);
 }
 
 // Game
@@ -1152,11 +1154,20 @@ int GameFunctions::luaGameGetMonstersByBestiaryStars(lua_State* L) {
 int GameFunctions::luaGameGetOutfitNameByLookType(lua_State* L) {
 	// Game.getOutfitNameByLookType(lookType)
 	const uint16_t lookType = Lua::getNumber<uint16_t>(L, 1);
-	const auto& name = Outfits::getInstance().getOutfitNameByLookType(lookType);
-	if (!name.empty()){
+	const auto &name = Outfits::getInstance().getOutfitNameByLookType(lookType);
+	if (!name.empty()) {
 		Lua::pushString(L, name);
 	} else {
 		lua_pushnil(L);
 	}
+	return 1;
+}
+
+// Vaigu custom
+int GameFunctions::luaGameGetOutfitSexByLookType(lua_State* L) {
+	// Game.getOutfitSexByLookType(lookType)
+	const uint16_t lookType = Lua::getNumber<uint16_t>(L, 1);
+	const auto sex = Outfits::getInstance().getOutfitSexByLookType(lookType);
+	Lua::pushNumber(L, sex);
 	return 1;
 }

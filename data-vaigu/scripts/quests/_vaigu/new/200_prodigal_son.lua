@@ -985,6 +985,10 @@ quest
 						[Storage.ProdigalSon.Mission03] = QuestState.ProdigalSon.Mission03.TalkToHearAboutDuties,
 						[Storage.ProdigalSon.MainGateAccess] = ACCESS_GRANTED,
 					},
+					outfitRewards = {
+						{ outfitId = 1042, addons = 0 },
+						{ outfitId = 1043, addons = 0 },
+					},
 					requiredItems = {
 						{ id = PRODIGAL_SON_NORMAL_ITEMS.donePliers, count = 5 },
 					},
@@ -1294,6 +1298,10 @@ quest
 						[Storage.ProdigalSon.Mission03] = MISSION_FINISHED,
 						[Storage.ProdigalSon.Mission04] = QuestState.ProdigalSon.Mission04.AskForMission,
 					},
+					outfitRewards = {
+						{ outfitId = 1042, addons = 1 },
+						{ outfitId = 1043, addons = 1 },
+					},
 				},
 			})
 	end)
@@ -1420,6 +1428,10 @@ quest
 						[Storage.ProdigalSon.Mission04] = MISSION_FINISHED,
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.AskForNewMission,
 						[Storage.ProdigalSon.NorthMinesAccess] = ACCESS_GRANTED,
+					},
+					outfitRewards = {
+						{ outfitId = 1042, addons = 3 },
+						{ outfitId = 1043, addons = 3 },
 					},
 				},
 			})

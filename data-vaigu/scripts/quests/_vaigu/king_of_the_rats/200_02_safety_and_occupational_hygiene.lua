@@ -669,7 +669,13 @@ quest
 						[Storage.ThreeSramatiansAndTheDragon.Mission01] = QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek,
 						[Storage.Finished.SafetyAndOccupationalHygiene] = MISSION_FINISHED,
 					},
-					rewards = { ExerciseWeaponBox(1337) },
+					rewards = {
+						ExerciseWeaponBox(1337),
+					},
+					outfitRewards = {
+						{ outfitId = 1371, addons = 1 },
+						{ outfitId = 1372, addons = 1 },
+					},
 				},
 			})
 	end)

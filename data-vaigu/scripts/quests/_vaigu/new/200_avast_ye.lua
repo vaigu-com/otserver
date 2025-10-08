@@ -264,6 +264,10 @@ quest
 						[Storage.AvastYe.TrustedWith.Redbeard] = ACCESS_GRANTED,
 						[Storage.AvastYe.TrustedWith.Morgram] = ACCESS_GRANTED,
 					},
+					outfitRewards = {
+						{ outfitId = 151, addons = 0 },
+						{ outfitId = 155, addons = 0 },
+					},
 				},
 			})
 	end)

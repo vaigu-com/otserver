@@ -57,7 +57,7 @@ function warnNoTextInDialog(keywordsStr, npcName)
 	logger.warn(T("[RegisterNpcDefinition] No text found for dialog with keywords :keywords:, for npc :npcName:. Define 'text = NO_TEXT' for that dialog to suppress this warning.", { keywords = keywordsStr, npcName = npcName }))
 end
 
-local function testMissingStrings(allDialogs, npcName)
+local function appendStatistics(allDialogs, npcName)
 	for keyWords, dialog in pairs(allDialogs[LOCALIZERS.Universal]) do
 		if not dialog.text then
 			local keywordsStr = (function(keywords)
@@ -70,6 +70,9 @@ local function testMissingStrings(allDialogs, npcName)
 			warnNoTextInDialog(keywordsStr, npcName)
 		else
 			MissingStrings:TestAllLanaguages(dialog.text, LOCALIZERS.Universal)
+		end
+		if dialog.outfitRewards then
+			RewardsRegistry:AddOutfitsAndAddons(dialog.outfitRewards, npcName, LOCALIZERS.Universal)
 		end
 	end
 
@@ -89,6 +92,9 @@ local function testMissingStrings(allDialogs, npcName)
 							warnNoTextInDialog(keywordsStr, npcName)
 						else
 							MissingStrings:TestAllLanaguages(dialog.text, localizer)
+						end
+						if dialog.outfitRewards then
+							RewardsRegistry:AddOutfitsAndAddons(dialog.outfitRewards, npcName, missionStorage, state)
 						end
 					end
 				end
@@ -151,7 +157,7 @@ function RegisterNpcDefinition(npcData)
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
 
-	testMissingStrings(allDialogs, npcName)
+	appendStatistics(allDialogs, npcName)
 
 	npcConfig.dialogs = allDialogs
 

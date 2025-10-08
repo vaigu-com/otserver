@@ -121,15 +121,34 @@ std::string Outfits::getOutfitNameByLookType(uint16_t lookType) const {
 		return outfit->lookType == lookType;
 	});
 	if (maleOutfit != outfits[PLAYERSEX_MALE].end()) {
-		return (*maleOutfit)->name;;
+		return (*maleOutfit)->name;
+		;
 	}
 
 	auto femaleOutfit = std::ranges::find_if(outfits[PLAYERSEX_FEMALE], [&lookType](const auto &outfit) {
 		return outfit->lookType == lookType;
 	});
 	if (femaleOutfit != outfits[PLAYERSEX_FEMALE].end()) {
-		return (*femaleOutfit)->name;;
+		return (*femaleOutfit)->name;
 	}
 
 	return "";
+}
+
+PlayerSex_t Outfits::getOutfitSexByLookType(uint16_t lookType) const {
+	auto maleOutfit = std::ranges::find_if(outfits[PLAYERSEX_MALE], [&lookType](const auto &outfit) {
+		return outfit->lookType == lookType;
+	});
+	if (maleOutfit != outfits[PLAYERSEX_MALE].end()) {
+		return PlayerSex_t::PLAYERSEX_MALE;
+	}
+
+	auto femaleOutfit = std::ranges::find_if(outfits[PLAYERSEX_FEMALE], [&lookType](const auto &outfit) {
+		return outfit->lookType == lookType;
+	});
+	if (femaleOutfit != outfits[PLAYERSEX_FEMALE].end()) {
+		return PlayerSex_t::PLAYERSEX_FEMALE;
+	}
+
+	return PlayerSex_t::PLAYERSEX_MALE;
 }
