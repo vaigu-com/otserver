@@ -119,7 +119,7 @@ function Localizer:New(player, localizer)
 	newObj.player = player
 	newObj.localizer = localizer
 	if not Localizer.isLocalizer(newObj.localizer) then
-		logger.warn(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer }))
+		logger.warn(debug.traceback(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer })))
 	end
 	newObj.translated = nil
 	newObj.context = { player = player, localizer = localizer }
