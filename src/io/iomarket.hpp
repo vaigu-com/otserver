@@ -15,6 +15,19 @@
 #include "lib/di/container.hpp"
 #include "config/configmanager.hpp"
 
+class IOMarketException : public std::exception {
+public:
+	explicit IOMarketException(const std::string &msg) :
+		message(msg) { }
+
+	const char* what() const noexcept override {
+		return message.c_str();
+	}
+
+private:
+	std::string message;
+};
+
 class IOMarket {
 public:
 	IOMarket() = default;
@@ -52,7 +65,7 @@ private:
 	StatisticsMap saleStatistics;
 
 	MarketActiveOfferList newActive;
-	MarketActiveOfferList getNewActive() {
+	const MarketActiveOfferList getNewActive() const {
 		return newActive;
 	}
 	bool initialized = false;
@@ -70,19 +83,28 @@ private:
 		return tier;
 	}
 
+	const MarketOfferNewContainer &getActiveOfferContainer() const {
+		return activeOffers;
+	}
 	MarketOfferNewContainer &getActiveOfferContainer() {
 		return activeOffers;
+	}
+	const HistoricMarketOfferContainer &getHistoricOfferContainer() const {
+		return historicOffers;
 	}
 	HistoricMarketOfferContainer &getHistoricOfferContainer() {
 		return historicOffers;
 	}
 
-	void commitNewHistory();
-	void commitModifiedActive();
-	void commitNewActive();
+	void commitNewHistory() const;
+	void commitDeleteBoughtoutCancelledActive() const;
+	void resetModifiedStatus();
+	void commitModifiedActive() const;
+	void commitNewActive() const;
 
 	void initializeActive();
 	void initializeHistoric();
+	void addRemainingItemToOwner(const MarketHistoricOffer &historicOffer);
 
 	void moveExpiredActiveToNewHistoric();
 	static void dropZeroAmountOffers();
@@ -112,11 +134,12 @@ private:
 		return index.equal_range(std::make_tuple(playerId, action));
 	}
 
-	const MarketHistoricOfferList getNewHistoric() {
+	const MarketHistoricOfferList getNewHistoric() const {
 		return newHistoric;
 	}
 
 	MarketHistoricOfferList newHistoric;
+	MarketActiveOfferList boughtoutCancelledActive;
 };
 
 constexpr auto g_iomarket = IOMarket::getInstance;

@@ -297,6 +297,9 @@ enum SpeechBubble_t {
 
 // Vaigu custom
 enum MarketAction_t {
+	CREATE_BUY__ACCEPT_SELL = 1,
+	CREATE_SELL__ACCEPT_BUY = 0,
+
 	CREATE_BUY = 1,
 	CREATE_SELL = 0,
 
@@ -304,10 +307,7 @@ enum MarketAction_t {
 	ACCEPT_BUY = 0,
 
 	CANCEL_BUY = 0,
-	CANCEL_SELL = 1,
-
-	CREATE_BUY__ACCEPT_SELL = 1,
-	CREATE_SELL__ACCEPT_BUY = 0
+	CANCEL_SELL = 1
 };
 
 enum MarketRequest_t {

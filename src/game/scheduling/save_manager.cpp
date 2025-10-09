@@ -43,6 +43,27 @@ SaveManager &SaveManager::getInstance() {
 	return inject<SaveManager>();
 }
 
+std::vector<std::string> SaveManager::flushOffline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>>& players){
+	std::vector<std::string> justLoggedOutPlayerGuids;
+	for (const auto &[_, player] : players) {
+		logger.warn("after save - handling player {}", player->getName());
+		if (player->isLoggingOut()) {
+			logger.warn("player {} is logging out",player->getName());
+			player->setLoggingOut(false);
+			player->setOnline(false);
+		} else if (!player->isOffline()) {
+			player->loginPosition = player->getPosition();
+		}
+		if (!player->isOnline()) {
+			logger.warn("player {} is not online");
+			g_game().removePlayer(player);
+			player->setRemoved();
+			justLoggedOutPlayerGuids.push_back(std::to_string(player->getGUID()));
+		}
+	}
+	return justLoggedOutPlayerGuids;
+}
+
 #ifndef OS_WINDOWS
 void SaveManager::saveAll() {
 
@@ -76,11 +97,11 @@ void SaveManager::saveAll() {
 	}
 
 	const auto players = game.getPlayers();
-	auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
-	auto guilds = game.getGuilds();
+	const auto offlinePlayerGuids = flushOffline(players);
+	const auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+	const auto guilds = game.getGuilds();
 
 	pid_t pid = fork();
-
 	if (pid < 0) {
 		perror("Fork failed");
 		throw std::runtime_error("Fork failed");
@@ -91,7 +112,7 @@ void SaveManager::saveAll() {
 			throw std::runtime_error("Failed to connect to database.");
 		}
 
-		saveAllInner({ players, newCoinTransactions, guilds });
+		saveAllInner({newCoinTransactions, players, offlinePlayerGuids, guilds});
 
 		fflush(stdout);
 	} else {
@@ -108,9 +129,13 @@ void SaveManager::saveAll() {
 		g_logger().warn("{} - OS_WINDOWS - cannot save during another save", __FUNCTION__);
 		return;
 	}
-
 	saving = true;
-	saveAllInner({ game.getPlayers(), g_accountRepository().flushCoinTransactionEntries(), game.getGuilds() });
+	const auto players = game.getPlayers();
+	const auto offlinePlayerGuids = flushOffline(players);
+	const auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
+	const auto guilds = game.getGuilds();
+
+	saveAllInner({newCoinTransactions, players, offlinePlayerGuids, guilds});
 	saving = false;
 
 	fflush(stdout);
@@ -120,17 +145,19 @@ void SaveManager::saveAll() {
 void SaveManager::saveAllInner(const SaveContext &context) {
 	Benchmark bm_saveAll;
 	logger.info("Saving server...");
+	const auto newCoinTransactions = context.newCoinTransactions;
 	const auto players = context.players;
-	auto newCoinTransactions = context.newCoinTransactions;
-	auto guilds = context.guilds;
+	const auto offlinePlayerGuids = context.offlinePlayerGuids;
+	const auto guilds = context.guilds;
 
 	for (const auto &[_, player] : players) {
 		if (!player->isLoggingOut() && !player->isOffline()) {
 			player->loginPosition = player->getPosition();
 		}
 	}
-	const auto result = DBTransaction::executeWithinTransaction([this, players, newCoinTransactions, guilds] {
+	const auto result = DBTransaction::executeWithinTransaction([this, newCoinTransactions, players, offlinePlayerGuids, guilds] {
 		for (const auto &[_, player] : players) {
+			logger.warn("saving player {}",player->getName());
 			savePlayer(player);
 			player->account->save();
 		}
@@ -147,29 +174,17 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 		setSuccesfulSaveTimestamp();
 		return true;
 	});
+	logger.info("{} - callbackResult: {}, status: {}", __FUNCTION__, result.callbackResult, result.status);
 	if (result.status == COMMITTED) {
-		std::vector<std::string> justLoggedOutPlayerGuidsStr;
-		for (const auto &[_, player] : players) {
-			if (player->isLoggingOut()) {
-				player->setLoggingOut(false);
-				player->setOnline(false);
-			} else if (!player->isOffline()) {
-				player->loginPosition = player->getPosition();
-			}
-			if (!player->isOnline()) {
-				g_game().removePlayer(std::shared_ptr<Player>(player));
-				player->setRemoved();
-				justLoggedOutPlayerGuidsStr.push_back(std::to_string(player->getGUID()));
-			}
-			m_playerMap.erase(player->getGUID());
-		}
-		kv.eraseOfflineKv(justLoggedOutPlayerGuidsStr);
-
+		kv.eraseOfflineKv(offlinePlayerGuids);
 		g_iomarket().cleanAfterSave();
 		logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 	} else {
 		logger.error("{} - Server save failed after {} seconds", __FUNCTION__, bm_saveAll.duration());
 		logger.info("{} - callbackResult: {}, status: {}", __FUNCTION__, result.callbackResult, result.status);
+		while(true){
+
+		}
 	}
 }
 

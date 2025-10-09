@@ -19,38 +19,38 @@
 #include "creatures/players/player.hpp"
 
 const MarketActiveOfferList IOMarket::getOffers(MarketAction_t action, uint32_t playerId) {
-	MarketActiveOfferList activeOffersVector;
+	MarketActiveOfferList activeOffers;
 	auto &range = _getActiveOffersIndex(playerId, action);
 	for (auto it = range.first; it != range.second; ++it) {
-		activeOffersVector.push_back(*it);
+		activeOffers.push_back(*it);
 	}
-	return activeOffersVector;
+	return activeOffers;
 }
 MarketActiveOfferList IOMarket::getOffers(MarketAction_t action, uint16_t itemId, uint8_t tier) {
-	MarketActiveOfferList activeOffersVector;
+	MarketActiveOfferList activeOffers;
 	auto &range = _getActiveOffersIndex(action, itemId, tier);
 	for (auto it = range.first; it != range.second; ++it) {
-		activeOffersVector.push_back(*it);
+		activeOffers.push_back(*it);
 	}
-	return activeOffersVector;
+	return activeOffers;
 }
 
 MarketActiveOfferList IOMarket::getOffers(MarketAction_t action) {
-	MarketActiveOfferList activeOffersVector;
+	MarketActiveOfferList activeOffers;
 	auto &range = _getActiveOffersIndex(action);
 	for (auto it = range.first; it != range.second; ++it) {
-		activeOffersVector.push_back(*it);
+		activeOffers.push_back(*it);
 	}
-	return activeOffersVector;
+	return activeOffers;
 }
 
 const MarketHistoricOfferList IOMarket::getHistoricOffers(MarketAction_t action, uint32_t playerId) {
-	MarketHistoricOfferList playerHistory;
+	MarketHistoricOfferList historicOffers;
 	auto range = _getHistoricOffers(playerId, action);
 	for (auto it = range.first; it != range.second; ++it) {
-		playerHistory.push_back(*it);
+		historicOffers.push_back(*it);
 	}
-	return playerHistory;
+	return historicOffers;
 }
 
 const MarketActiveOffer IOMarket::getOfferByCounter(uint32_t expiryTimestamp, uint16_t counter) {
@@ -104,7 +104,7 @@ void IOMarket::updateStatistics() {
 	} while (result->next());
 }
 
-void IOMarket::commitNewHistory() {
+void IOMarket::commitNewHistory() const {
 	const auto &newHistory = getNewHistoric();
 	if (newHistory.empty()) {
 		return;
@@ -139,8 +139,46 @@ void IOMarket::commitNewHistory() {
 	}
 }
 
-void IOMarket::commitModifiedActive() {
+void IOMarket::commitDeleteBoughtoutCancelledActive() const {
+	if (boughtoutCancelledActive.empty()) {
+		return;
+	}
+
+	std::ostringstream query;
+	query << "DELETE FROM market_offers WHERE id IN (";
+
+	bool first = true;
+	for (const auto &offer : boughtoutCancelledActive) {
+		if (!first) {
+			query << ", ";
+		}
+		query << offer.id;
+		first = false;
+	}
+
+	query << ")";
+
+	if (!Database::getInstance().executeQuery(query.str())) {
+		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to delete bought-out active offers");
+	}
+}
+
+void IOMarket::resetModifiedStatus() {
 	auto &index = getActiveOfferContainer().get<by_modified>();
+	auto range = index.equal_range(true);
+	if (range.first == range.second) {
+		return;
+	}
+
+	for (auto it = range.first; it != range.second; ++it) {
+		index.modify(it, [](MarketActiveOffer &offer) {
+			offer.modified = false;
+		});
+	}
+}
+
+void IOMarket::commitModifiedActive() const {
+	const auto &index = getActiveOfferContainer().get<by_modified>();
 	auto range = index.equal_range(true);
 	if (range.first == range.second) {
 		return;
@@ -176,15 +214,9 @@ void IOMarket::commitModifiedActive() {
 	if (!Database::getInstance().executeQuery(query.str())) {
 		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to save active modified offers");
 	}
-
-	for (auto it = range.first; it != range.second; ++it) {
-		index.modify(it, [](MarketActiveOffer &offer) {
-			offer.modified = false;
-		});
-	}
 }
 
-void IOMarket::commitNewActive() {
+void IOMarket::commitNewActive() const {
 	const auto &newActive = getNewActive();
 	if (newActive.empty()) {
 		return;
@@ -300,6 +332,64 @@ void IOMarket::initializeHistoric() {
 	} while (result->next());
 }
 
+void IOMarket::addRemainingItemToOwner(const MarketHistoricOffer &historicOffer) {
+	const auto &player = g_game().getPlayerByGUID(historicOffer.playerId);
+	if (!player) {
+		g_logger().error("{} - cannot add item {} to unexisting player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId);
+		throw IOMarketException(fmt::format("{} - cannot add item {} to unexisting player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId));
+	}
+
+	if (historicOffer.marketAction == MarketAction_t::CANCEL_SELL) {
+		const ItemType &itemType = Item::items[historicOffer.itemId];
+		if (itemType.id == 0) {
+			g_logger().error("{} - cannot add unexisting itemType {} to player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId);
+			throw IOMarketException(fmt::format("{} - cannot add unexisting itemType {} to player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId));
+		}
+
+		const auto &playerInbox = player->getInbox();
+
+		if (itemType.stackable) {
+			uint16_t tmpAmount = historicOffer.amount;
+			while (tmpAmount > 0) {
+				uint16_t stackCount = std::min<uint16_t>(100, tmpAmount);
+				const auto &item = Item::CreateItem(itemType.id, stackCount);
+				if (g_game().internalAddItem(playerInbox, item, INDEX_WHEREEVER, FLAG_NOLIMIT) != RETURNVALUE_NOERROR) {
+					g_logger().error("[{}] Ocurred an error to add item with id {} to player {}", __FUNCTION__, itemType.id, player->getName());
+
+					break;
+				}
+
+				if (historicOffer.tier != 0) {
+					item->setAttribute(ItemAttribute_t::TIER, historicOffer.tier);
+				}
+
+				tmpAmount -= stackCount;
+			}
+		} else {
+			int32_t subType;
+			if (itemType.charges != 0) {
+				subType = itemType.charges;
+			} else {
+				subType = -1;
+			}
+
+			for (uint16_t i = 0; i < historicOffer.amount; ++i) {
+				const auto &item = Item::CreateItem(itemType.id, subType);
+				if (g_game().internalAddItem(playerInbox, item, INDEX_WHEREEVER, FLAG_NOLIMIT) != RETURNVALUE_NOERROR) {
+					break;
+				}
+
+				if (historicOffer.tier != 0) {
+					item->setAttribute(ItemAttribute_t::TIER, historicOffer.tier);
+				}
+			}
+		}
+	} else if (historicOffer.marketAction == MarketAction_t::CANCEL_BUY) {
+		uint64_t totalPrice = historicOffer.price * historicOffer.amount;
+		player->setBankBalance(player->getBankBalance() + totalPrice);
+	}
+}
+
 void IOMarket::moveExpiredActiveToNewHistoric() {
 	auto &index = getActiveOfferContainer().get<by_state>();
 	auto range = index.equal_range(OFFERSTATE_EXPIRED);
@@ -316,6 +406,7 @@ void IOMarket::moveExpiredActiveToNewHistoric() {
 			it->tier,
 			getCurrentTimestamp()
 		);
+		addRemainingItemToOwner(historicOffer);
 		newHistoric.push_back(historicOffer);
 		it = index.erase(it);
 	}
@@ -365,6 +456,7 @@ void IOMarket::decrementAndAppendToHistory(const MarketActiveOffer &boughtOutOff
 			getCurrentTimestamp()
 		);
 		newHistoric.push_back(historicOfferCreator);
+		getHistoricOfferContainer().insert(historicOfferCreator);
 
 		if (acceptingPlayerId != 0) {
 			const auto historicOfferAcceptor = MarketHistoricOffer(
@@ -380,6 +472,7 @@ void IOMarket::decrementAndAppendToHistory(const MarketActiveOffer &boughtOutOff
 				getCurrentTimestamp()
 			);
 			newHistoric.push_back(historicOfferAcceptor);
+			getHistoricOfferContainer().insert(historicOfferCreator);
 		}
 
 		index.modify(it, [boughtAmount = boughtAmount](MarketActiveOffer &offer) {
@@ -387,7 +480,8 @@ void IOMarket::decrementAndAppendToHistory(const MarketActiveOffer &boughtOutOff
 			offer.modified = true;
 		});
 
-		if (it->amount == boughtAmount) {
+		if (it->amount - boughtAmount <= 0) {
+			boughtoutCancelledActive.push_back(*it);
 			getActiveOfferContainer().erase(it);
 		}
 	}
@@ -413,8 +507,10 @@ void IOMarket::cancelAndAppendToHistory(const MarketActiveOffer &cancelledOffer)
 			it->tier,
 			getCurrentTimestamp()
 		);
+		addRemainingItemToOwner(historicOffer);
 		newHistoric.push_back(historicOffer);
-
+		getHistoricOfferContainer().insert(historicOffer);
+		boughtoutCancelledActive.push_back(cancelledOffer);
 		getActiveOfferContainer().erase(it);
 	}
 }
@@ -422,8 +518,12 @@ void IOMarket::cancelAndAppendToHistory(const MarketActiveOffer &cancelledOffer)
 void IOMarket::save() {
 	commitNewHistory();
 
+	commitDeleteBoughtoutCancelledActive();
+
 	commitNewActive();
+
 	commitModifiedActive();
+	resetModifiedStatus();
 }
 
 void IOMarket::cleanAfterSave() {

@@ -18,15 +18,22 @@ class Player;
 class Guild;
 
 struct SaveContext {
-	const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players;
 	const std::vector<CoinTransactionEntry> &newCoinTransactions;
+	const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players;
+	const std::vector<std::string>& offlinePlayerGuids;
 	const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Guild>> &guilds;
+
 	SaveContext(
-		const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players_,
 		const std::vector<CoinTransactionEntry> &newCoinTransactions_,
+		const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players_,
+		const std::vector<std::string>& offlinePlayerGuids_,
 		const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Guild>> &guilds_
 	) :
-		players(players_), newCoinTransactions(newCoinTransactions_), guilds(guilds_) { }
+		newCoinTransactions(newCoinTransactions_),
+		players(players_),
+		offlinePlayerGuids(offlinePlayerGuids_),
+		guilds(guilds_)
+		{ }
 };
 
 class SaveManager {
@@ -42,6 +49,7 @@ public:
 	void scheduleAll();
 
 private:
+	std::vector<std::string> flushOffline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>>& players);
 	void saveAllInner(const SaveContext &saveContext);
 
 	void saveMap();

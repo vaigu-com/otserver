@@ -5675,7 +5675,7 @@ void ProtocolGame::sendMarketCancelOffer(const MarketActiveOffer &offer) {
 		if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
 			msg.addByte(offer.tier);
 		}
-		msg.add<uint16_t>(offer.amount);
+		msg.add<uint16_t>(0);
 		if (oldProtocol) {
 			msg.add<uint32_t>(offer.price);
 		} else {
@@ -5691,7 +5691,7 @@ void ProtocolGame::sendMarketCancelOffer(const MarketActiveOffer &offer) {
 		if (!oldProtocol && Item::items[offer.itemId].upgradeClassification > 0) {
 			msg.addByte(offer.tier);
 		}
-		msg.add<uint16_t>(offer.amount);
+		msg.add<uint16_t>(0);
 		if (oldProtocol) {
 			msg.add<uint32_t>(offer.price);
 		} else {
