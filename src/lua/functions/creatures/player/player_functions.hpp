@@ -411,5 +411,10 @@ class PlayerFunctions {
 	// Vaigu custom
 	static int luaPlayerReloadKnownNpcs(lua_State* L);
 
+	// Vaigu custom
+	static int luaPlayerSendMagicEffect(lua_State* L);
+	static int luaPlayerRemoveMagicEffect(lua_State* L);
+
+
 	friend class CreatureFunctions;
 };

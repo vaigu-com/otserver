@@ -432,6 +432,10 @@ void PlayerFunctions::init(lua_State* L) {
 	// Vaigu custom
 	Lua::registerMethod(L, "Player", "reloadKnownNpcs", PlayerFunctions::luaPlayerReloadKnownNpcs);
 
+	// Vaigu custom
+	Lua::registerMethod(L, "Player", "sendMagicEffect", PlayerFunctions::luaPlayerSendMagicEffect);
+	Lua::registerMethod(L, "Player", "removeMagicEffect", PlayerFunctions::luaPlayerRemoveMagicEffect);
+
 	GroupFunctions::init(L);
 	GuildFunctions::init(L);
 	MountFunctions::init(L);
@@ -5113,6 +5117,40 @@ int PlayerFunctions::luaPlayerResetOldCharms(lua_State* L) {
 	}
 
 	player->resetOldCharms();
+	Lua::pushBoolean(L, true);
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerSendMagicEffect(lua_State* L) {
+	// player:sendMagicEffect(pos, effect)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+	const auto &position = Lua::getPosition(L, 2);
+	const auto effect = Lua::getNumber<MagicEffectClasses>(L, 3, CONST_ME_NONE);
+
+	player->sendMagicEffect(position, effect);
+
+	Lua::pushBoolean(L, true);
+	return 1;
+}
+
+// Vaigu custom
+int PlayerFunctions::luaPlayerRemoveMagicEffect(lua_State* L) {
+	// player:removeMagicEffect(pos, effect)
+	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+	const auto &position = Lua::getPosition(L, 2);
+	const auto effect = Lua::getNumber<MagicEffectClasses>(L, 3, CONST_ME_NONE);
+
+	player->removeMagicEffect(position, effect);
+
 	Lua::pushBoolean(L, true);
 	return 1;
 }

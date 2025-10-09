@@ -582,6 +582,8 @@ function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 		return os.time() + 60
 	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.NOW then
 		return os.time()
+	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.EXPIRED_TODAY then
+		return DailyLockoutExpiryTime() - secondsInDay
 	end
 end
 
