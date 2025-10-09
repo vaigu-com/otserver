@@ -1306,7 +1306,7 @@ quest
 				if not boss then
 					return
 				end
-				local targets = CreatureList():Area(slammerPosition:MovedInDirection(direction, 2), slammerPosition:MovedInDirection(direction, 4)):Get()
+				local targets = CreatureList():Area(Area(slammerPosition:MovedInDirection(direction, 2), slammerPosition:MovedInDirection(direction, 4))):Get()
 				table.insert(targets, leviathanEncounter.shipHealth)
 				local damagePerTarget = slammerDamage / #targets
 				combat:setFormula(COMBAT_FORMULA_DAMAGE, -damagePerTarget, 0, -damagePerTarget, 0)

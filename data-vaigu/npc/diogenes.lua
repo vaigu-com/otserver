@@ -10,8 +10,9 @@ local outfit = {
 
 local spawnLock = SpawnLocks.Steppes.TestNpc
 local roomCorner1, roomCorner2 = Position(6235, 1026, 5), Position(6238, 1029, 5)
+local roomArea = Area(roomCorner1, roomCorner2)
 local onThink = function(npc, interval)
-	local players = CreatureList():Area(roomCorner1, roomCorner2):FilterByPlayer():Get()
+	local players = CreatureList():Area(roomArea):FilterByPlayer():Get()
 	if TableSize(players) > 0 then
 		spawnLock:Refresh()
 	end
