@@ -496,6 +496,9 @@
 	<npc centerx="6724" centery="1367" centerz="7" radius="1">
 		<npc name="Hoghunter" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="5911" centery="1389" centerz="7" radius="1">
+		<npc name="Andrew" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="6812" centery="1418" centerz="7" radius="1">
 		<npc name="Whelp" x="0" y="0" z="7" spawntime="60" />
 	</npc>

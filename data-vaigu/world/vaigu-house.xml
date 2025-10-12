@@ -225,7 +225,7 @@
 	<house name="Wykleta 8/4" houseid="377" entryx="5585" entryy="1540" entryz="7" rent="1000" townid="4" size="15" clientid="0" beds="0" />
 	<house name="Wykleta 8/5" houseid="378" entryx="5581" entryy="1539" entryz="6" rent="1400" townid="4" size="19" clientid="0" beds="0" />
 	<house name="Wykleta 8/6" houseid="379" entryx="5582" entryy="1539" entryz="6" rent="2900" townid="4" size="42" clientid="0" beds="0" />
-	<house name="Palac 1" houseid="380" entryx="6705" entryy="1345" entryz="7" rent="1900" townid="2" size="51" clientid="0" beds="0" />
+	<house name="Palac 1" houseid="380" entryx="6705" entryy="1345" entryz="7" rent="1900" townid="2" size="47" clientid="0" beds="0" />
 	<house name="Palac 2" houseid="381" entryx="6707" entryy="1345" entryz="7" rent="2400" townid="2" size="49" clientid="0" beds="0" />
 	<house name="Palac 3" houseid="382" entryx="6705" entryy="1348" entryz="7" rent="1900" townid="2" size="51" clientid="0" beds="0" />
 	<house name="Palac 4" houseid="383" entryx="6707" entryy="1348" entryz="7" rent="2400" townid="2" size="58" clientid="0" beds="0" />
