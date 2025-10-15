@@ -99,8 +99,8 @@
 	<npc centerx="6230" centery="1004" centerz="5" radius="1">
 		<npc name="Namir" x="0" y="0" z="5" spawntime="90" />
 	</npc>
-	<npc centerx="6246" centery="1006" centerz="5" radius="3">
-		<npc name="Oldrak" x="0" y="0" z="5" spawntime="90" direction="2" />
+	<npc centerx="6244" centery="1007" centerz="5" radius="3">
+		<npc name="Oldrak" x="1" y="-1" z="5" spawntime="90" direction="2" />
 	</npc>
 	<npc centerx="6220" centery="1022" centerz="5" radius="1">
 		<npc name="Pewter" x="0" y="0" z="5" spawntime="90" />
@@ -341,6 +341,9 @@
 	</npc>
 	<npc centerx="7513" centery="1745" centerz="6" radius="1">
 		<npc name="Wasik" x="0" y="0" z="6" spawntime="60" />
+	</npc>
+	<npc centerx="6584" centery="1863" centerz="6" radius="1">
+		<npc name="Jack of all Swindles" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="6575" centery="1875" centerz="6" radius="1">
 		<npc name="Ruprecht" x="0" y="0" z="6" spawntime="60" />
