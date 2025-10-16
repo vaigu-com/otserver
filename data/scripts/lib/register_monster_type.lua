@@ -62,11 +62,10 @@ function MonsterTypeRepository:SerializeCounts()
 	SerializeToUtilFolder(monsterCountsStr, monsterCountsPath)
 end
 
-local rareSpawnsPath = baseOutputDir .. "rares.txt"
-function MonsterTypeRepository:SerializeRareSpawns()
+local rareNamesFilePath = "rare_monster_name.txt"
+function MonsterTypeRepository:SerializeRareMonsterNames()
 	local rareNames = {}
 	for name, data in pairs(self.registry) do
-		local toKill = 0
 		if data.Bestiary and data.Bestiary.toKill and data.Bestiary.toKill == 5 then
 			table.insert(rareNames, name)
 		end
@@ -77,14 +76,7 @@ function MonsterTypeRepository:SerializeRareSpawns()
 		rareNamesStr = rareNamesStr .. value .. "\n"
 	end
 
-	local file = io.open(rareSpawnsPath, "w+")
-	if not file then
-		logger.error(T("[MonsterTypeRepository::SerializeRareSpawns] Cannot open file :path:. Rares have NOT been serialized.", { path = rareSpawnsPath }))
-		return
-	end
-	file:write(rareNamesStr)
-	file:close()
-	logger.info("[MonsterTypeRepository::SerializeRareSpawns] Serialization succesful.")
+	SerializeToUtilFolder(rareNamesStr, rareNamesFilePath)
 end
 
 local function extractCorpseData(firstStageId)
@@ -138,7 +130,7 @@ function MonsterTypeRepository:Get()
 	return self.registry
 end
 
-function MonsterTypeRepository:SerializeForRme()
+function MonsterTypeRepository:SerializeForRME()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
 	for name, data in
 		sortedkeypairs(self.registry, function(a, b)

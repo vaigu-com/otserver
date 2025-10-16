@@ -164,7 +164,7 @@ function getRealTime()
 	return hours .. ":" .. minutes
 end
 
--- Marry
+-- TODO: make spouse/status a player field
 function getPlayerSpouse(id)
 	local resultQuery = db.storeQuery("SELECT `marriage_spouse` FROM `players` WHERE `id` = " .. db.escapeString(id))
 	if resultQuery ~= false then

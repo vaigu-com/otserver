@@ -14,7 +14,7 @@ end
 local rme_dir = "../rme/"
 local npcXmlPath = rme_dir .. "data/creatures/npcs.xml"
 
-function NpcTypeRepository:Serialize()
+function NpcTypeRepository:SerializeForRME()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<npcs>\n'
 	for name, data in
 		sortedkeypairs(self.registry, function(a, b)

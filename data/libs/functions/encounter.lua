@@ -864,6 +864,7 @@ function EncounterData:tryEnter(leverUser)
 		monsterObject:setHealth(monsterObject:getMaxHealth())
 		monsterObject:setEncounterDifficulty(self.difficulty)
 	end
+	
 	local bossObject = Game.createMonster(self.bossName, self.bossSpawnPosition)
 	bossObject:setMaxHealth(bossObject:getMaxHealth() * self:GetHealthMultiplier() * participantsCount)
 	bossObject:setHealth(bossObject:getMaxHealth())

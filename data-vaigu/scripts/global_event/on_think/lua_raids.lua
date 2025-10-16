@@ -10,8 +10,8 @@ pseudoQuest
 		end
 
 		for key, luaRaid in pairs(LuaRaidRegistry.registry) do
-			for key, value in pairs(luaRaid.waves) do
-				for key, creature in pairs(value.monsters) do
+			for key, wave in pairs(luaRaid.waves) do
+				for key, creature in pairs(wave.monsters) do
 					validateCreature(creature.name)
 				end
 			end
