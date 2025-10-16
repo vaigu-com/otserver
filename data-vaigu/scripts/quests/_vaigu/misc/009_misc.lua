@@ -19,7 +19,32 @@ quest
 			Bydgoshch = {},
 		}
 	end)
+	:Constant(function()
+		TELEPORT_TO_OTHER_SIDE_VERTICAL = "TELEPORT_TO_OTHER_SIDE_VERTICAL"
+	end)
 	:NoQuestlog()
+	:Script(function()
+		local teleportToOtherSide = Action()
+		function teleportToOtherSide.onUse(player, usedItem, fromPosition, target, toPosition, isHotkey)
+			if isPlayerPzLocked(player) then
+				SendPlayerIsPzLocked(player)
+				return false
+			end
+
+			local playerPosition = player:getPosition()
+			local usedItemPosition = usedItem:getPosition()
+			local directionVector = playerPosition:VectorTo(usedItemPosition)
+			if not directionVector:IsFacingVerticalPartially() then
+				return false
+			end
+
+			local destination = playerPosition:Moved(directionVector:Scaled(2))
+			player:teleportTo(destination)
+			return true
+		end
+		teleportToOtherSide:key(TELEPORT_TO_OTHER_SIDE_VERTICAL)
+		teleportToOtherSide:register()
+	end)
 	:Script(function(missionState)
 		local noDiagonal = MoveEvent()
 		function noDiagonal.onStepIn(creature, item, toPosition, fromPosition)
@@ -49,7 +74,7 @@ quest
 	:Script(function()
 		local cookieUse = Action()
 		function cookieUse.onUse(player, cookie, fromPosition, target, toPosition, isHotkey)
-			AddExperienceWithAnnouncement(player, tonumber(cookie:geKey()))
+			AddExperienceWithAnnouncement(player, tonumber(cookie:getKey()))
 			cookie:remove(1)
 			return true
 		end

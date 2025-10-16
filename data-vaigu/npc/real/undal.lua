@@ -53,6 +53,18 @@ end
 
 npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
+local outfitRewardsBase = {
+	{ outfitId = 1146, addons = 0 },
+	{ outfitId = 1147, addons = 0 },
+}
+local outfitRewardsAddonOne = {
+	{ outfitId = 1146, addons = 1 },
+	{ outfitId = 1147, addons = 1 },
+}
+local outfitRewardsAddonTwo = {
+	{ outfitId = 1146, addons = 2 },
+	{ outfitId = 1147, addons = 2 },
+}
 local function creatureSayCallback(npc, creature, type, message)
 	local player = Player(creature)
 	local playerId = player:getId()
@@ -60,8 +72,6 @@ local function creatureSayCallback(npc, creature, type, message)
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
-
-	local dreamTalisman = 30132
 
 	if MsgContains(message, "talk") then
 		npcHandler:say("So do you want to learn the {story} behind of this or rather talk about the {task} at hand? ", npc, creature)
@@ -81,21 +91,26 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:setTopic(playerId, 4)
 	elseif npcHandler:getTopic(playerId) == 4 or npcHandler:getTopic(playerId) == 2 then
 		if MsgContains(message, "task") then
-			if player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) >= 3 and player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) == 1 and not (player:hasOutfit(1146) or player:hasOutfit(1147)) then
+			if player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) >= 3 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) == 1 and not (player:hasOutfit(1146) or player:hasOutfit(1147)) then
 				npcHandler:say("The Nightmare Beast is slain. You have done well. The Courts of Summer and Winter will be forever grateful. For your efforts I want to reward you with our traditional dream warrior outfit. May it suit you well!", npc, creature)
-				for i = 1146, 1147 do
-					player:addOutfit(i)
-				end
+				player:AddOutfitsAndAddons(outfitRewardsBase)
 				npcHandler:setTopic(playerId, 0)
-			elseif player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count) >= 8 and player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) == 1 and player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) == 1 then
+			elseif player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count) >= 8 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) == 1 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) == 1 then
+				if not player:TryTradeInItems({
+					QuestKeyItems.TheDreamCourts.DreamTalismanUntradeable,
+				}, {
+					QuestKeyItems.TheDreamCourts.DreamTalismanTradeable,
+				}) then
+					return
+				end
 				npcHandler:say({
 					"You empowered all eight ward stones. Well done! You may now enter the Dream Labyrinth via the portal here in the Court. Beneath it you will find the Nightmare Beast's lair. But the labyrinth is protected by seven so called Dream Doors. ...",
 					"You have to find the Seven {Keys} to unlock the Seven Dream Doors down there. Only then you will be able to enter the Nightmare Beast's lair.",
 				}, npc, creature)
-				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline, 2)
-				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.TheSevenKeys.Questline, 1)
+				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline, 2)
+				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.TheSevenKeys.Questline, 1)
 				npcHandler:setTopic(playerId, 5)
-			elseif player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) < 1 and player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.TheSummerCourt) < 1 and player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) < 1 then
+			elseif player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) < 1 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheSummerCourt) < 1 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) < 1 then
 				npcHandler:say({
 					"You have to empower eight ward stones. Once charged with arcane energy, they will strengthen the Nightmare Beast's prison and at the same time weaken this terrible creature. We know about the specific location of six of those stones. ...",
 					"You can find them in the mountains of the island Okolnir, in a water elemental cave beneath Folda, in the depths of Calassa, in the forests of Feyrist and on the islands Meriana and Cormaya. ...",
@@ -103,13 +118,13 @@ local function creatureSayCallback(npc, creature, type, message)
 					"The other stone seems to be somewhere in Tiquanda. Search for a small stone building south-west of Banuta. Take this talisman to empower the ward stones. It will work with the six stones at the known locations. ...",
 					"However, the empowering of the two hidden stones could be a bit more complicated. But you have to find out on yourself what to do with those stones.",
 				}, npc, creature)
-				if player:getStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.Questline) < 1 then
-					player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.Questline, 1)
+				if player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.Questline) < 1 then
+					player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.Questline, 1)
 				end
-				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt, 1)
-				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline, 1)
-				player:setStorageValue(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count, 0)
-				player:addItem(dreamTalisman, 1)
+				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt, 1)
+				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline, 1)
+				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count, 0)
+				player:AddCustomItem(QuestKeyItems.TheDreamCourts.DreamTalismanUntradeable)
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("I already gave your task.", npc, creature)
@@ -138,9 +153,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getItemCount(30169) >= 5 then
 				npcHandler:say("Very good! You gained the second addon to the dream warrior outfit.", npc, creature)
 				player:removeItem(30169, 5)
-				for i = 1146, 1147 do
-					player:addOutfitAddon(i, 2)
-				end
+				player:AddOutfitsAndAddons(outfitRewardsAddonTwo)
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("You do not have enough items.", npc, creature)
@@ -150,9 +163,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getItemCount(30168) >= 1 then
 				npcHandler:say("Very good! You gained the first addon to the dream warrior outfit.", npc, creature)
 				player:removeItem(30168, 1)
-				for i = 1146, 1147 do
-					player:addOutfitAddon(i, 1)
-				end
+				player:AddOutfitsAndAddons(outfitRewardsAddonOne)
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("You do not have enough items.", npc, creature)

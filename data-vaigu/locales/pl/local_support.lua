@@ -9,7 +9,7 @@ return {
 	["Now this is a cooperation! Here is your reward."] = "Nooo - i to sie nazywa wspolraca; masz - zasluzyles. Wroc do mnie jeszcze kiedys, a moze bede potrzebowal twojej pomocy.",
 	["So you are back. I got a new hustle for you. Bring me items from questlog. Their purpose is to no interest to you, so i wont be bothering you with that."] = "Jednak wrociles. Jest sprawa, ale tym razem nie bedzie latwo. Musze cos odjebac, bo mi sie nudzi, ale nie moga stad sie ruszyc. Potrzebuje kilku przedmiotow, co celow chytrych, acz tajnych. Szczegoly zamiescilem w twoim questlogu.",
 	["Yo, whats good? I see you got all things i needed. Take this reward."] = "Mooordo - nie wierzylem, ze ci sie uda. Wielkie dzieki; na pewno nie polazujesz. Lap i nikomu ani slowa.",
-	["I have some grim news - for myself at least. Plot owner raised rent prices and i might be out of business soon with that walmart prospering.. I heard he likes exotic items used for black magic. Bring me those and i will reward you."] = 'Nie bede owijal w bawelne - nie jest ciekawie. Wlasciciel tej rudery chce mnie zaplacic, bo "nie place za czynsz", czy cos takiego. Mysle, ze jestem w stanie przekupic go tymi trzema przedmiotami do okultyzmu. Przynies mi przedmioty, ktore wypisalem w twoim questlogu, a cie nagrodze.',
+	["I have some grim news - for myself at least. Plot owner raised rent prices and i might be out of business soon with that walmart prospering.. I heard he likes exotic items used for black magic. Bring me those and i will reward you."] = 'Nie bede owijal w bawelne - nie jest ciekawie. Wlasciciel tej rudery chce mnie wyrzucic, bo "nie place za czynsz", czy cos takiego. Mysle, ze jestem w stanie przekupic go tymi trzema przedmiotami do okultyzmu. Przynies mi przedmioty, ktore wypisalem w twoim questlogu, a cie nagrodze.',
 	["I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!"] = "To to jestes. Wiedzialem, ze moge na ciebie liczyc. Oto twoja nagroda. Nabrales duzo doswiadczenia i pewnie zwiedziles wiele krain w swoich poszukiwanniach. Wiecej nie bede kombinowac, bo jeszcze straznikow na karku bede mial za te akcje. Powodzonka trzym sie!",
 	["Potion Conveyor Journeyman"] = "Montownia Potionow",
 	["Ask fstab about a new mission."] = "Zapytaj fstaba o nowa misje.",
@@ -126,7 +126,7 @@ return {
 	--Questlog
 	["Local Support"] = "Pomoc Miejscowym",
 	["Two Marlins"] = "Dwa marliny",
-	["Bring two marlins to Fisherman Son."]= "Przynies dwa marliny do syna wedkarza.",
+	["Bring two marlins to Fisherman Son."] = "Przynies dwa marliny do syna wedkarza.",
 	["You delivered two marlins to Fisherman son and were rewarded for it."] = "Dostarczyles marliny do syna wedkarza, za co zostales nagrodzony.",
 	["Discernment"] = "Rozeznanie",
 	["Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown."] = "Komisarz Ryba chce sie z toba widziec, aby pokazac ci miasto. Jego koszary znajduja sie na poludniowym zachodzie miasta, obok oczka wodnego.",

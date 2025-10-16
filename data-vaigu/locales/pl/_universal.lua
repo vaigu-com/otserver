@@ -393,4 +393,7 @@ return {
 		return str
 	end,
 	["Hello, are you interested in trading some gems? Or perhaps you want to help me with my {outfit} collection?"] = "Hej. Jestes zainteresowany moimi klejnotami? A moze przyszedles tu aby pomoc mi z z moimi nowymi {strojami}?",
+	["Hello |PLAYERNAME|. You want {help} with some grinding?"] = "Witam |PLAYERNAME|. Moge ci {pomoc} z mieleniem kamieni?",
+	["Y'Hua'Ri"] = "Y'Hua'Ri",
+	["If you have some small enchanted sapphires, I can turn them into sapphire {dust} for you."] = "Jesli masz jakies male zaczarowane szafiry, to chetnie ci pomoge w starciu ich na {proch}.",
 }

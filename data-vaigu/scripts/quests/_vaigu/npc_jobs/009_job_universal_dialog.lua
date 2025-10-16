@@ -111,12 +111,18 @@ pseudoQuest
 
 		local function confirmWedding(context)
 			local player = context.player
-			local candidateId = getPlayerSpouse(player:getGuid())
-			local candidate = Player(candidateId)
-			setPlayerMarriageStatus(player:getGuid(), MARRIED_STATUS)
-			setPlayerMarriageStatus(candidateId, MARRIED_STATUS)
-			setPlayerSpouse(player:getGuid(), candidateId)
-			setPlayerSpouse(candidateId, player:getGuid())
+			local playerGuid = player:getGuid()
+			local candidateGuid = getPlayerSpouse(playerGuid)
+			local candidate = Player(candidateGuid)
+
+			setPlayerMarriageStatus(playerGuid, MARRIED_STATUS)
+			setPlayerMarriageStatus(candidateGuid, MARRIED_STATUS)
+
+			setPlayerSpouse(playerGuid, candidateGuid)
+			setPlayerSpouse(candidateGuid, playerGuid)
+
+			player:sendMagicEffect(CONST_ME_POWERFUL_HEARTS)
+			candidate:sendMagicEffect(CONST_ME_POWERFUL_HEARTS)
 
 			player:AddCustomItem({
 				id = 7370,

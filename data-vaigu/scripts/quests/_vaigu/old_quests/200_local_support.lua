@@ -1068,6 +1068,7 @@ quest
 				},
 			})
 	end)
+	--TODO
 	:Mission(Storage.LocalSupport.LostCrystalBall)
 	:State(function()
 		return MISSION_NOT_STARTED, QuestFactory.Dialog("Gypsy", {

@@ -1,3 +1,27 @@
+local dirToOpposite = {
+	[DIRECTION_NORTH] = DIRECTION_SOUTH,
+	[DIRECTION_EAST] = DIRECTION_WEST,
+	[DIRECTION_SOUTH] = DIRECTIODIRECTION_EASTN_NORTH,
+	[DIRECTION_WEST] = DIRECTION_EAST,
+
+	[DIRECTION_NORTHEAST] = DIRECTION_SOUTHWEST,
+	[DIRECTION_SOUTHEAST] = DIRECTION_NORTHWEST,
+	[DIRECTION_SOUTHWEST] = DIRECTION_NORTHEAST,
+	[DIRECTION_NORTHWEST] = DIRECTION_SOUTHEAST,
+}
+
+function CalculateOppositeDirection(dir)
+	return dirToOpposite[dir]
+end
+
+function extractKeySuffix(key)
+	if key == nil or type(key) ~= "string" then
+		return key
+	end
+	local lastmatch = key:match("([^.]+)$")
+	return lastmatch
+end
+
 function math.clamp(value, min, max)
 	if value < min then
 		return min

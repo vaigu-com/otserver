@@ -219,6 +219,27 @@ function ItemExList:FilterById(id)
 	return result
 end
 
+function ItemExList:FilterByIds(ids)
+	if not ids then
+		return self
+	end
+
+	local result = ItemExList()
+	for _, item in pairs(self.items) do
+		local itemId = item:getId()
+		if table.contains(ids, itemId) then
+			result:Add(item)
+		end
+	end
+	return result
+end
+
+function ItemExList:ForEach(callback)
+	for _, item in pairs(self.items) do
+		callback(item)
+	end
+end
+
 function ItemExList:Copied(destination)
 	local copiedList = ItemExList()
 	for _, item in pairs(self.items) do

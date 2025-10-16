@@ -1045,7 +1045,7 @@ quest
 				local doorItems = {}
 				local doorItemsInit = GlobalEvent("PerIustitiaAdAstra/CpnDoorItemsInit")
 				function doorItemsInit.onStartup()
-					doorItems = ItemExList():Area(Position(7368, 652, 6), Position(7369, 653, 6)):Get()
+					doorItems = ItemExList():Area(Area(Position(7368, 652, 6), Position(7369, 653, 6))):Get()
 				end
 				doorItemsInit:register()
 

@@ -37,7 +37,7 @@ quest
 	:Script(function()
 		local insidePos = Position(33452, 31282, 14)
 		local shortcutToInside = MoveEvent()
-		function shortcutToInside.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
+		function shortcutToInside.onStepIn(creature, item, position, fromPosition)
 			local player = creature:getPlayer()
 			if not player then
 				return true
@@ -56,7 +56,7 @@ quest
 
 		local outsidePos = Position(6777, 2548, 4)
 		local shortcutToOutside = MoveEvent()
-		function shortcutToOutside.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
+		function shortcutToOutside.onStepIn(creature, item, position, fromPosition)
 			local player = creature:getPlayer()
 			if not player then
 				return true

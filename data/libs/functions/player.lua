@@ -592,33 +592,6 @@ function Player:removeAll(itemId)
 	return count
 end
 
-local function bossKVScope(bossNameOrId)
-	local mType = MonsterType(bossNameOrId)
-	if not mType then
-		logger.error("bossKVScope - Invalid boss name or id: " .. bossNameOrId)
-		return false
-	end
-	return "boss.cooldown." .. toKey(tostring(mType:raceId()))
-end
-
-function Player:getBossCooldown(bossNameOrId)
-	local scope = bossKVScope(bossNameOrId)
-	if not scope then
-		return false
-	end
-	return self:kv():get(scope) or 0
-end
-
-function Player:setBossCooldown(bossNameOrId, time)
-	local scope = bossKVScope(bossNameOrId)
-	if not scope then
-		return false
-	end
-	local result = self:kv():set(scope, time)
-	self:sendBosstiaryCooldownTimer()
-	return result
-end
-
 local encounterCooldownScope = Scope("encounter", "cooldown")
 ---@param encounterData EncounterData
 ---@return unknown
@@ -648,8 +621,34 @@ function Player:setEncounterLockout(encounterData, expiry)
 	return true
 end
 
-function Player:canFightBoss(bossNameOrId)
-	local cooldown = self:getEncounterLockout(bossNameOrId)
+local function bossKVScope(bossNameOrId)
+	local mType = MonsterType(bossNameOrId)
+	if not mType then
+		logger.error("bossKVScope - Invalid boss name or id: " .. bossNameOrId)
+		return false
+	end
+	return "boss.cooldown." .. toKey(tostring(mType:uniqueName()))
+end
+function Player:getBossCooldown(bossNameOrId)
+	local scope = bossKVScope(bossNameOrId)
+	if not scope then
+		return 0
+	end
+	print("Player:getBossCooldown", scope)
+	return math.max(self:getStorageValueByKey(scope), 0)
+end
+function Player:setBossCooldown(bossNameOrId, time)
+	local scope = bossKVScope(bossNameOrId)
+	if not scope then
+		return false
+	end
+	local result = self:setStorageValueByKey(scope, time)
+	self:sendBosstiaryCooldownTimer()
+	print("Player:setBossCooldown", scope)
+	return result
+end
+function Player:canFightBoss(bossName)
+	local cooldown = self:getBossCooldown(bossName)
 	return cooldown <= os.time()
 end
 

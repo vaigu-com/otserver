@@ -187,3 +187,7 @@ end
 function Vector:IsFacingDiagonalSnap()
 	return self:IsFacingSnap(DIRECTION_NORTHEAST, DIRECTION_SOUTHEAST, DIRECTION_SOUTHWEST, DIRECTION_NORTHWEST)
 end
+
+function Vector:IsFacingVerticalPartially()
+	return self:IsFacingPartially(DIRECTION_NORTH) or self:IsFacingPartially(DIRECTION_SOUTH)
+end

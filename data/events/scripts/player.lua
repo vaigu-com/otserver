@@ -265,26 +265,21 @@ local immovableAid = {
 	[IMMOVABLE_ACTION_ID] = true,
 }
 
-ImmovableKeys = {}
-ImmovableKeys.__index = ImmovableKeys
-ImmovableKeys.registry = {}
-function ImmovableKeys:Add(key)
+--Items with key are immovable by default, except when inside store inbox.
+--Adding key to MovableKeys will allow item to be moved in-game, but will also allow moving it out and into the store inbox.
+MovableKeys = {}
+MovableKeys.__index = MovableKeys
+MovableKeys.registry = {}
+function MovableKeys:Add(key)
 	self.registry[key] = true
 end
-function ImmovableKeys:Has(key)
+function MovableKeys:Has(key)
 	return self.registry[key] ~= nil
-end
-do
-	ImmovableKeys:Add(IMMOVABLE_KEY)
 end
 
 local zStackTop = 255
 local function isImmovable(item, fromPosition, toPosition)
 	if immovableAid[item:getActionId()] then
-		return true
-	end
-
-	if ImmovableKeys:Has(item:getKey()) then
 		return true
 	end
 
@@ -301,10 +296,12 @@ local function isImmovable(item, fromPosition, toPosition)
 		if toPosition.z ~= zStackTop then
 			return true
 		end
-	else
+	end
+
+	if not isInStoreinbox(item) then
 		local key = item:getKey()
-		if key and key ~= "" then
-			return true
+		if key and key ~="" then
+			return not MovableKeys:Has(key) 
 		end
 	end
 

@@ -4,11 +4,6 @@ PersonalChest = {
 	Daily = PersonalChestScope:Get("Daily"),
 	Weekly = PersonalChestScope:Get("Weekly"),
 }
-do
-	for _, key in pairs(PersonalChest) do
-		ImmovableKeys:Add(key)
-	end
-end
 
 local keyToExpiryType = {
 	[PersonalChest.OneTime] = LOCKOUT_EXPIRY_TIME.FOREVER,

@@ -121,7 +121,7 @@ monster.defenses = {
 	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 2000, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 20, speedChange = 600, effect = CONST_ME_MAGIC_GREEN, target = false, duration = 4000 },
-	{ name = "ragiaz transform", interval = 2000, chance = 8, target = false },
+	{ name = "ragiaz transform", interval = 2000, chance = 3, target = false },
 }
 
 monster.elements = {

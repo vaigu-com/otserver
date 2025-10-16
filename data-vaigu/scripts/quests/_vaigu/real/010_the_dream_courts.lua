@@ -1,7 +1,30 @@
-local quest = Quest(LOCALIZERS.TheApeCity)
+local quest = Quest(LOCALIZERS.TheDreamCourts)
 
 quest
 	:Storage(function() end)
+	:Constant(function()
+		QuestConstants.TheDreamCourts = {
+			UnlockableWardstones = {
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.Knurow,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.Desolation,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.Syberia,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.Caribbean,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.OgreVillage,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.BonebeastIsthmus,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.DemonSkeletonCave,
+				Storage.Quest.U12_00.TheDreamCourts.WardStones.PirateIsland,
+			},
+		}
+		QuestKeyItems.TheDreamCourts = {
+			DreamTalismanUntradeable = {
+				id = ItemId.DREAM_TALISMAN,
+				key = Storage.Quest.U12_00.TheDreamCourts.DreamTalisman,
+			},
+			DreamTalismanTradeable = {
+				id = ItemId.DREAM_TALISMAN,
+			},
+		}
+	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
 			name = "The Dream Courts",
@@ -9,40 +32,67 @@ quest
 			missions = {
 				{
 					name = "The Dream Courts",
-					storage = 12200,
-					description = "Find and talk to Vanys in order to help him. He stays in Summer Court in the huge forest located far south from Mirko Town.",
-					endValue = 5,
+					storage = Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline,
 					states = {
-						[1] = "Vanys gave you a dream talisman that you'll need to empower eight ward stones located around the world. Ward stone locations you were told about are: mountains of Pirate Island, bonebast coast in the desert, water elemental cave beneath Kongo, depths of Seacrest Serpent lair, west coast of Sybir and Barbarian camp, Nightmare Island, Buried Cathedral beneath Karaiby.",
-						[2] = "Vanys let you enter the dream labyrinth. Find a way to enter the Nightmare Beast's lair and defeat him. Elven Parchment from Vanys chest may help you.",
-						[3] = "You have defeated The Nightmare Beast. Talk about this to Vanys.",
-						[4] = "Vanys gifted you with a traditional dream warrior outfit.",
+						[1] = "Court legate asked you to charge eight wardstones that will weaken the Nightmare Beast. Look at your dream talisman to see which wardtones you already visited.",
+						[2] = "You must kill the Nightmare Beast.",
+						[3] = "By defeating the dreadful Nightmare Beast you did the Winter Court and the Summer Court alike a great favor. From now on, the dream elves will regard you as a friend.",
 					},
 				},
 				{
-					name = "Helping of Stricken Soul",
-					storage = 12232,
-					description = "Restore connection and open this nexus to access the buried cathedral. You need to find a way to pass the entrance in the cellar.",
-					endValue = 4,
+					name = "Haunted House",
+					storage = Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.Questline,
 					states = {
-						[1] = "You successfully passed the cellar entrance. Find a way to restore the portal to the buried cathedral.",
-						[2] = "You restored a portal and successfully entered the buried cathedral. Try to find and defeat the Faceless Bane. You'll need to gain some knowledge in order to enter her nest. Maybe there are some documents around...",
-						[3] = "You successfully defeated the Faceless Bane.",
+						[1] = "A tormented soul trusted you with the secret of this house. Reveal a hidden portal within!",
+						[2] = "You have gained an access to the deepest mysteries of the dream courts. You can now activate ward stone and fight Faceless Bane.",
 					},
 				},
 				{
-					name = "Empowered Wardstones",
-					storage = 12209,
-					endValue = 8,
-					description = "Empowered Wardstones",
-				},
-				{
-					name = "Documents Read",
-					storage = 12214,
-					endValue = 4,
-					description = "Documents Read",
+					name = "The Keys",
+					storage = Storage.Quest.U12_00.TheDreamCourts.TheSevenKeys.Questline,
+					endValue = 2,
+					states = {
+						[1] = "Find all keys to unlock the Dream Doors.",
+						[2] = "You found the keys to unlock the Dream Doors in the Labyrinth of Summer's and Winter's Dreams.",
+					},
 				},
 			},
 		})
+	end)
+	:Script(function()
+		local lookEvent = Look()
+		function lookEvent.onLook(player, item)
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, player:Localizer(LOCALIZERS.TheDreamCourts):Get("DREAM_TALISMAN_STATUS"))
+			return DONT_SHOW_ONLOOK
+		end
+		lookEvent:key(Storage.Quest.U12_00.TheDreamCourts.DreamTalisman)
+		lookEvent:register()
+
+		local unlitToLit = {
+			[29336] = 29337,
+			[29334] = 29335,
+		}
+		local function lightUpStoneTemporarily(item)
+			local unlitId = item:getId()
+			local litId = unlitToLit[unlitId]
+			item:transform(litId)
+			addEvent(function()
+				item:transform(unlitId)
+			end, 5000)
+		end
+		local actions_dreamTalisman = Action()
+		function actions_dreamTalisman.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+			local key = target:getKey()
+			if player:getStorageValueByKey(key) == ACCESS_GRANTED then
+				return
+			end
+			player:setStorageValueByKey(key, ACCESS_GRANTED)
+			local currentCount = math.max(0, player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count))
+			player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count, currentCount + 1)
+			lightUpStoneTemporarily(target)
+			return true
+		end
+		actions_dreamTalisman:key(Storage.Quest.U12_00.TheDreamCourts.DreamTalisman)
+		actions_dreamTalisman:register()
 	end)
 	:Register()

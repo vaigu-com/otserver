@@ -21,6 +21,7 @@ LOCALIZERS = {
 	DesertQuestTwo = "desert_quest_two",
 	EnterTheDrunkTank = "enter_the_drunk_tank",
 	FatMyrrusEncounters = "fat_myrrus_encounters",
+	FerumbrasAscension = "ferumbras_ascension",
 	Firestarter = "firestarter",
 	FourActTragedy = "four_act_tragedy",
 	GoldenOutfit = "golden_outfit",

@@ -9,8 +9,8 @@ Storage.FlamingOrchid = {
 }
 
 local bossRoomStates = {
-	cannotBeOpened = -1,
-	canBeOpened = 1,
+	waitingForNextBossSpawn = -1,
+	useCracksToUnlock = 1,
 	canBeEntered = 2,
 }
 local crackStates = {
@@ -18,10 +18,19 @@ local crackStates = {
 	unlocked = 1,
 }
 
+local function tryUnlockDoor()
+	for _, key in pairs(Storage.FlamingOrchid.Cracks) do
+		if getStorageValueByKey(key) == crackStates.notUnlocked then
+			return
+		end
+	end
+	setStorageValueByKey(Storage.FlamingOrchid.BossRoom, bossRoomStates.canBeEntered)
+end
+
 local crackUse = Action()
 function crackUse.onUse(player, crack, fromPosition, target, toPosition, isHotkey)
-	local bossRoomState = getStorageValueByKey(Storage.FlamingOrchid)
-	if bossRoomState ~= bossRoomStates.canBeOpened then
+	local bossRoomState = getStorageValueByKey(Storage.FlamingOrchid.BossRoom)
+	if bossRoomState ~= bossRoomStates.useCracksToUnlock then
 		doCreatureSay(player, "That was close. I nearly fell down!", TALKTYPE_ORANGE_1)
 		return true
 	end
@@ -31,7 +40,7 @@ function crackUse.onUse(player, crack, fromPosition, target, toPosition, isHotke
 		setStorageValueByKey(key, crackStates.unlocked)
 		player:teleportTo(player:getPosition():Moved(0, 0, 1))
 	end
-
+	tryUnlockDoor()
 	return true
 end
 for _, key in pairs(Storage.FlamingOrchid.Cracks) do
@@ -41,7 +50,7 @@ crackUse:register()
 
 local flamingOrchidDeath = CreatureEvent("FlamingOrchidDeath")
 function flamingOrchidDeath.onDeath(creature)
-	setStorageValueByKey(Storage.FlamingOrchid.BossRoom, bossRoomStates.cannotBeOpened)
+	setStorageValueByKey(Storage.FlamingOrchid.BossRoom, bossRoomStates.waitingForNextBossSpawn)
 	for key, value in pairs(Storage.FlamingOrchid.Cracks) do
 		setStorageValueByKey(key, crackStates.notUnlocked)
 	end
@@ -50,7 +59,7 @@ flamingOrchidDeath:register()
 
 local doorUse = Action()
 function doorUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local bossRoomState = getStorageValueByKey(Storage.FlamingOrchid)
+	local bossRoomState = getStorageValueByKey(Storage.FlamingOrchid.BossRoom)
 
 	local playerPos = player:getPosition()
 	local doorPosition = item:getPosition()
@@ -75,12 +84,12 @@ doorUse:register()
 
 local globalevent = GlobalEvent("FlamingOrchidCycle")
 function globalevent.onThink(...)
-	if getStorageValueByKey(Storage.FlamingOrchid.BossRoom) ~= bossRoomStates.canBeOpened then
+	if getStorageValueByKey(Storage.FlamingOrchid.BossRoom) ~= bossRoomStates.useCracksToUnlock then
 		return GLOBAL_EVENT_OK
 	end
 
 	Game.createMonster("The Flaming Orchid", Position(6615, 997, 3))
-	setStorageValueByKey(Storage.FlamingOrchid.BossRoom, bossRoomStates.canBeOpened)
+	setStorageValueByKey(Storage.FlamingOrchid.BossRoom, bossRoomStates.useCracksToUnlock)
 	return GLOBAL_EVENT_OK
 end
 globalevent:interval(30 * 60 * 1000) --30min

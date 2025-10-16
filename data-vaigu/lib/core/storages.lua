@@ -3087,17 +3087,19 @@ Storage.Quest = {
 				TheSummerCourt = {},
 				TheWinterCourt = {},
 			},
+			DreamTalisman = {},
 			WardStones = {
 				Questline = {},
-				Count = {},
-				OkolnirStone = {},
-				FoldaStone = {},
-				CalassaStone = {},
-				FeyristStone = {},
-				MerianaStone = {},
-				CormayaStone = {},
-				PortHopeStone = {},
-				CatedralStone = {},
+				Count ={},
+				Knurow = {},
+				Desolation = {},
+				Syberia = {},
+				Caribbean = {},
+				
+				OgreVillage = {},
+				BonebeastIsthmus = {},
+				DemonSkeletonCave = {},
+				PirateIsland = {},
 			},
 			UnsafeRelease = {
 				Questline = {},
@@ -3111,6 +3113,9 @@ Storage.Quest = {
 				Temple = {},
 				Tomb = {},
 				IdolCount = {},
+
+				FacelessBaneAccess = {},
+				FacelessBaneBook = {},
 			},
 			BurriedCatedral = {
 				FishingRod = {},
@@ -3138,6 +3143,8 @@ Storage.Quest = {
 				Painting = {},
 				SequenceSkulls = {},
 				Count = {},
+				SkullRoom = {},
+				OldLockRoom = {}
 			},
 			DreamScar = {
 				Permission = {},

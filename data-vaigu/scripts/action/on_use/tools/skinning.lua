@@ -305,7 +305,7 @@ local toolToCorpseToData = {
 			nextCorpseId = 6337,
 		},
 		[6336] = {
-			successChance = 12000,
+			successChance = 20000,
 			rewardId = 6499,
 			nextCorpseId = 6337,
 		},
