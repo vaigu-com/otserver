@@ -85151,7 +85151,6 @@
 		<monster name="Rotworm" x="1" y="-1" z="9" spawntime="90" />
 		<monster name="Rotworm" x="1" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33071" centery="31993" centerz="9" radius="3" />
 	<monster centerx="33337" centery="31993" centerz="9" radius="3">
 		<monster name="Haunted Treeling" x="-1" y="-3" z="9" spawntime="60" />
 	</monster>
@@ -85175,7 +85174,6 @@
 		<monster name="Rotworm" x="1" y="-1" z="9" spawntime="90" />
 		<monster name="Rotworm" x="0" y="1" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="33012" centery="31996" centerz="9" radius="3" />
 	<monster centerx="32421" centery="31997" centerz="9" radius="3">
 		<monster name="Skeleton" x="-1" y="-3" z="9" spawntime="90" />
 		<monster name="Skeleton" x="1" y="-1" z="9" spawntime="90" />
@@ -156155,9 +156153,6 @@
 		<monster name="Ripper Spectre" x="0" y="3" z="13" spawntime="60" />
 		<monster name="Ripper Spectre" x="1" y="3" z="13" spawntime="60" />
 	</monster>
-	<monster centerx="33582" centery="32518" centerz="13" radius="3">
-		<monster name="Arachnophobica" x="3" y="3" z="13" spawntime="60" />
-	</monster>
 	<monster centerx="33610" centery="32518" centerz="13" radius="3">
 		<monster name="Gazer Spectre" x="3" y="2" z="13" spawntime="60" />
 	</monster>
@@ -156326,10 +156321,6 @@
 	<monster centerx="33645" centery="32532" centerz="13" radius="3">
 		<monster name="Ripper Spectre" x="0" y="-3" z="13" spawntime="60" />
 		<monster name="Gazer Spectre" x="-1" y="-1" z="13" spawntime="60" />
-	</monster>
-	<monster centerx="33659" centery="32532" centerz="13" radius="3">
-		<monster name="Gazer Spectre" x="-1" y="1" z="13" spawntime="60" />
-		<monster name="Gazer Spectre" x="0" y="2" z="13" spawntime="60" />
 	</monster>
 	<monster centerx="32784" centery="32534" centerz="13" radius="1">
 		<monster name="Medusa" x="0" y="1" z="13" spawntime="90" />
@@ -167965,14 +167956,23 @@
 		<monster name="Hellflayer" x="2" y="-1" z="14" spawntime="90" />
 		<monster name="Demon" x="1" y="3" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="33832" centery="32359" centerz="14" radius="1">
+		<monster name="Makeshift Home" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="33058" centery="32361" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
 		<monster name="Wyrm" x="2" y="-2" z="14" spawntime="90" />
 		<monster name="Wyrm" x="3" y="3" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="33821" centery="32361" centerz="14" radius="1">
+		<monster name="Lost Exile" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="32802" centery="32362" centerz="14" radius="2">
 		<monster name="Demon" x="2" y="-2" z="14" spawntime="90" />
 		<monster name="Demon" x="-1" y="0" z="14" spawntime="90" />
+	</monster>
+	<monster centerx="33836" centery="32363" centerz="14" radius="1">
+		<monster name="Lost Exile" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="33078" centery="32364" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="1" y="-1" z="14" spawntime="90" />
@@ -167992,12 +167992,27 @@
 	<monster centerx="33950" centery="32364" centerz="14" radius="5">
 		<monster name="Lava Lurker" x="0" y="-3" z="14" spawntime="60" />
 	</monster>
+	<monster centerx="33846" centery="32365" centerz="14" radius="1">
+		<monster name="Makeshift Home" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="33304" centery="32366" centerz="14" radius="3">
 		<monster name="Hellflayer" x="-2" y="-2" z="14" spawntime="90" />
 		<monster name="Vexclaw" x="0" y="3" z="14" spawntime="90" />
 	</monster>
 	<monster centerx="33350" centery="32366" centerz="14" radius="1">
 		<monster name="Vexclaw" x="0" y="0" z="14" spawntime="90" />
+	</monster>
+	<monster centerx="33843" centery="32366" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33838" centery="32367" centerz="14" radius="1">
+		<monster name="Diremaw" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33864" centery="32367" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33830" centery="32370" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="33905" centery="32370" centerz="14" radius="5">
 		<monster name="Lava Lurker" x="-1" y="-2" z="14" spawntime="60" />
@@ -168031,6 +168046,9 @@
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
 		<monster name="Wyrm" x="2" y="-2" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="33820" centery="32372" centerz="14" radius="1">
+		<monster name="Diremaw" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="33325" centery="32373" centerz="14" radius="3">
 		<monster name="Vexclaw" x="-3" y="1" z="14" spawntime="90" />
 		<monster name="Demon" x="3" y="3" z="14" spawntime="90" />
@@ -168040,8 +168058,20 @@
 		<monster name="Grimeleech" x="2" y="-3" z="14" spawntime="90" />
 		<monster name="Grimeleech" x="1" y="-1" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="33840" centery="32374" centerz="14" radius="1">
+		<monster name="Diremaw" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="33928" centery="32374" centerz="14" radius="5">
 		<monster name="Lava Lurker" x="-1" y="3" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33842" centery="32375" centerz="14" radius="1">
+		<monster name="Lost Exile" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33866" centery="32376" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33824" centery="32377" centerz="14" radius="1">
+		<monster name="Makeshift Home" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="33050" centery="32378" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
@@ -168060,9 +168090,21 @@
 		<monster name="Hellflayer" x="1" y="1" z="14" spawntime="90" />
 		<monster name="Fire Elemental" x="2" y="1" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="33835" centery="32378" centerz="14" radius="1">
+		<monster name="Lost Exile" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33850" centery="32378" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="33947" centery="32380" centerz="14" radius="5">
 		<monster name="Lava Lurker" x="3" y="-5" z="14" spawntime="60" />
 		<monster name="Lava Lurker" x="-5" y="5" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33822" centery="32381" centerz="14" radius="1">
+		<monster name="Lost Exile" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33824" centery="32381" centerz="14" radius="1">
+		<monster name="Diremaw" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="33097" centery="32382" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
@@ -168073,10 +168115,21 @@
 	<monster centerx="33078" centery="32385" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="1" y="1" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="33831" centery="32385" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="33064" centery="32386" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
 		<monster name="Wyrm" x="2" y="-2" z="14" spawntime="90" />
 		<monster name="Wyrm" x="-1" y="3" z="14" spawntime="90" />
+	</monster>
+	<monster centerx="33857" centery="32386" centerz="14" radius="1">
+		<monster name="Deepworm" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33861" centery="32386" centerz="14" radius="1">
+		<monster name="Diremaw" x="-1" y="0" z="14" spawntime="851931136" />
+		<monster name="Diremaw" x="0" y="0" z="14" spawntime="60" />
+		<monster name="Lost Exile" x="1" y="1" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="33088" centery="32387" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
@@ -168084,6 +168137,9 @@
 	</monster>
 	<monster centerx="33915" centery="32388" centerz="14" radius="5">
 		<monster name="Lava Lurker" x="-2" y="-2" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="33855" centery="32390" centerz="14" radius="1">
+		<monster name="Diremaw" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="33052" centery="32391" centerz="14" radius="3">
 		<monster name="Elder Wyrm" x="-2" y="-2" z="14" spawntime="90" />
