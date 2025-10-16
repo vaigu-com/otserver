@@ -1,11 +1,11 @@
 import xml.etree.ElementTree as ET
 
 # Load rare monster names into a set
-with open("rares.txt", "r", encoding="utf-8") as f:
+with open("./utility_scripts/rare_monster_name.txt", "r", encoding="utf-8") as f:
     rare_monsters = {line.strip() for line in f if line.strip()}
 
 # Parse the XML file
-tree = ET.parse("vaigu-monsters.xml")
+tree = ET.parse("./data-vaigu/world/vaigu-monster.xml")
 root = tree.getroot()
 
 # Loop through all monster tags
@@ -20,6 +20,6 @@ for monster in root.findall(".//monster"):
         monster.set("spawntime", "90")    # Normal monsters
 
 # Save updated XML
-tree.write("vaigu-monsters-updated.xml", encoding="utf-8", xml_declaration=True)
+tree.write("./data-vaigu/world/vaigu-monster.xml", encoding="utf-8", xml_declaration=True)
 
-print("✅ Updated XML saved as vaigu-monsters-updated.xml")
+print("✅ XML was updated!")
