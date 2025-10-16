@@ -552,6 +552,11 @@ function Position:FindAnyUnoccupiedSpot(radius)
 		logger.warn("[Position:FindAnyUnoccupiedSpot] radius less than 0")
 	end
 
+	local selfTile = Tile(self)
+	if selfTile and selfTile:isWalkable(false, false, true, false, false) then
+		return self
+	end
+
 	local pos1, pos2 = self:GetBoundariesByRadius(radius)
 
 	local unoccupiedPos = IterateBetweenPositions(pos1, pos2, function(context)
