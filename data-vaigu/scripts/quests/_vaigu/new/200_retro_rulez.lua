@@ -337,8 +337,11 @@ quest
 
 				local topItemId = topItem:getId()
 				if table.contains(bugableItemIds, topItemId) then
-					Game.createMonster("Bug", pos):setOutfit({ lookTypeEx = topItemId })
-					topItem:remove()
+					local monster = Game.createMonster("Bug", pos)
+					if monster then
+						topItem:remove()
+						monster:setOutfit({ lookTypeEx = topItemId })
+					end
 				end
 			end)
 			return true

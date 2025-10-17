@@ -114,6 +114,12 @@ function CreatureList:Get()
 	return self.creatures
 end
 
+function CreatureList:ForEach(callback)
+	for _, creature in pairs(self:Get()) do
+		callback(creature)
+	end
+end
+
 function reverse_pairs(t)
 	local i = #t + 1
 	return function()

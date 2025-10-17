@@ -69,6 +69,7 @@
 	<zone name="Storage-Minigames-SharedLobbyPlayerSpawn" zoneid="7" />
 	<zone name="Storage-OneTimeEscorts-MegadragonCliffs-RopeThrowFromTiles" zoneid="194" />
 	<zone name="Storage-PathOfTheUndead-BossArea" zoneid="16" />
+	<zone name="Storage-PathOfTheUndead-BossBombsPositions" zoneid="246" />
 	<zone name="Storage-PathOfTheUndead-GuardianSkullsPositions" zoneid="15" />
 	<zone name="Task-Ancient-Scarabs-BossRoom" zoneid="91" />
 	<zone name="Task-Ancient-Scarabs-BossSpawnPosition" zoneid="92" />
