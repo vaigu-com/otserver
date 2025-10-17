@@ -11590,6 +11590,9 @@
 		<monster name="Crypt Shambler" x="0" y="0" z="5" spawntime="90" />
 		<monster name="Rat" x="-1" y="1" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="7342" centery="1442" centerz="5" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="5726" centery="1443" centerz="5" radius="1">
 		<monster name="Rat" x="0" y="0" z="5" spawntime="90" />
 		<monster name="Skeleton" x="1" y="0" z="5" spawntime="90" />
@@ -20255,11 +20258,18 @@
 	<monster centerx="5848" centery="1430" centerz="6" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7342" centery="1430" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="5805" centery="1431" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5831" centery="1432" centerz="6" radius="1">
 		<monster name="Salamander" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="7342" centery="1432" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
+		<monster name="Young Goanna" x="1" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5730" centery="1433" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="90" />
@@ -20273,6 +20283,9 @@
 	<monster centerx="5838" centery="1433" centerz="6" radius="1">
 		<monster name="Undead Mine Worker" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7338" centery="1433" centerz="6" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="5732" centery="1434" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -20285,8 +20298,14 @@
 	<monster centerx="5845" centery="1434" centerz="6" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7354" centery="1434" centerz="6" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="5813" centery="1435" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="7281" centery="1435" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5713" centery="1436" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
@@ -20306,6 +20325,9 @@
 	</monster>
 	<monster centerx="5854" centery="1437" centerz="6" radius="1">
 		<monster name="Leaf Golem" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="7357" centery="1437" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7549" centery="1437" centerz="6" radius="1">
 		<monster name="War Wolf" x="0" y="0" z="6" spawntime="90" />
@@ -20331,6 +20353,9 @@
 	<monster centerx="5711" centery="1441" centerz="6" radius="1">
 		<monster name="Rat" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7284" centery="1441" centerz="6" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="5726" centery="1442" centerz="6" radius="1">
 		<monster name="Bat" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -20346,17 +20371,28 @@
 	<monster centerx="5864" centery="1443" centerz="6" radius="1">
 		<monster name="Leaf Golem" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="7295" centery="1444" centerz="6" radius="1">
-		<monster name="Undead Elite Gladiator" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="7297" centery="1443" centerz="6" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7294" centery="1444" centerz="6" radius="1">
+		<monster name="Young Goanna" x="1" y="-1" z="6" spawntime="60" />
+		<monster name="Adult Goanna" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7300" centery="1444" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5834" centery="1445" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="7273" centery="1445" centerz="6" radius="1">
 		<monster name="Exotic Bat" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Young Goanna" x="-1" y="1" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5760" centery="1446" centerz="6" radius="1">
 		<monster name="Rat" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="7285" centery="1446" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="7896" centery="1446" centerz="6" radius="1">
 		<monster name="Poodle" x="0" y="0" z="6" spawntime="90" />
@@ -20381,6 +20417,9 @@
 	</monster>
 	<monster centerx="7270" centery="1449" centerz="6" radius="1">
 		<monster name="Undead Elite Gladiator" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="7282" centery="1450" centerz="6" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="5759" centery="1451" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="90" />
@@ -44471,6 +44510,9 @@
 	<monster centerx="6469" centery="1408" centerz="7" radius="1">
 		<monster name="Blood Crab" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7286" centery="1408" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7335" centery="1408" centerz="7" radius="1">
 		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -44552,6 +44594,12 @@
 	<monster centerx="6561" centery="1410" centerz="7" radius="1">
 		<monster name="Flamingo" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7286" centery="1410" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7288" centery="1410" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7906" centery="1410" centerz="7" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -44616,6 +44664,10 @@
 	</monster>
 	<monster centerx="6831" centery="1412" centerz="7" radius="1">
 		<monster name="Cobra" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="7290" centery="1412" centerz="7" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Young Goanna" x="-1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7517" centery="1412" centerz="7" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="7" spawntime="90" />
@@ -44779,7 +44831,11 @@
 		<monster name="Pirate Marauder" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7279" centery="1417" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="1" y="-1" z="7" spawntime="60" />
 		<monster name="Young Goanna" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="7335" centery="1417" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7850" centery="1417" centerz="7" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="7" spawntime="90" />
@@ -44827,6 +44883,9 @@
 	<monster centerx="6162" centery="1419" centerz="7" radius="1">
 		<monster name="Barbarian Skullhunter" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7341" centery="1419" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="5716" centery="1420" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -44844,6 +44903,9 @@
 	</monster>
 	<monster centerx="6209" centery="1420" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="7276" centery="1420" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7521" centery="1420" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="90" />
@@ -44997,6 +45059,14 @@
 	</monster>
 	<monster centerx="7051" centery="1426" centerz="7" radius="1">
 		<monster name="Rogue Naga" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="7306" centery="1426" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Adult Goanna" x="0" y="1" z="7" spawntime="1774617344" />
+	</monster>
+	<monster centerx="7346" centery="1426" centerz="7" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Young Goanna" x="1" y="0" z="7" spawntime="1774617344" />
 	</monster>
 	<monster centerx="7705" centery="1426" centerz="7" radius="1">
 		<monster name="Leaf Golem" x="0" y="0" z="7" spawntime="90" />
@@ -45182,6 +45252,12 @@
 	<monster centerx="6130" centery="1432" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7297" centery="1432" centerz="7" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7299" centery="1432" centerz="7" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7543" centery="1432" centerz="7" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="7" spawntime="90" />
 		<monster name="Banshee" x="1" y="0" z="7" spawntime="90" />
@@ -45317,6 +45393,9 @@
 	</monster>
 	<monster centerx="7048" centery="1436" centerz="7" radius="1">
 		<monster name="Naga Archer" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="7329" centery="1436" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7606" centery="1436" centerz="7" radius="1">
 		<monster name="Spider" x="0" y="0" z="7" spawntime="90" />
@@ -45492,8 +45571,8 @@
 	<monster centerx="6816" centery="1443" centerz="7" radius="1">
 		<monster name="Bug" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7298" centery="1443" centerz="7" radius="1">
-		<monster name="Exotic Cave Spider" x="0" y="0" z="7" spawntime="90" />
+	<monster centerx="7312" centery="1443" centerz="7" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7507" centery="1443" centerz="7" radius="1">
 		<monster name="Novice of the Cult" x="0" y="0" z="7" spawntime="90" />
@@ -58023,10 +58102,6 @@
 		<monster name="Slug" x="0" y="0" z="8" spawntime="90" />
 		<monster name="Slug" x="-1" y="1" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6190" centery="987" centerz="8" radius="1">
-		<monster name="Mutated Rat" x="0" y="0" z="8" spawntime="90" />
-		<monster name="Mutated Rat" x="1" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6453" centery="987" centerz="8" radius="1">
 		<monster name="Killer Caiman" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -58035,7 +58110,6 @@
 	</monster>
 	<monster centerx="6182" centery="989" centerz="8" radius="1">
 		<monster name="Mutated Rat" x="0" y="0" z="8" spawntime="90" />
-		<monster name="Mutated Rat" x="1" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6177" centery="990" centerz="8" radius="1">
 		<monster name="Mutated Rat" x="0" y="0" z="8" spawntime="90" />
@@ -63352,6 +63426,9 @@
 	<monster centerx="6588" centery="1409" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="7292" centery="1409" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="7560" centery="1409" centerz="8" radius="1">
 		<monster name="Skeleton Warrior" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -63392,6 +63469,9 @@
 	<monster centerx="6605" centery="1411" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="7289" centery="1411" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="7929" centery="1411" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -63405,6 +63485,9 @@
 		<monster name="Larva" x="-1" y="-1" z="8" spawntime="90" />
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="7296" centery="1412" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6551" centery="1413" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -63413,9 +63496,6 @@
 	</monster>
 	<monster centerx="6623" centery="1413" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="7297" centery="1413" centerz="8" radius="1">
-		<monster name="Skeleton Elite Warrior" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7926" centery="1413" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
@@ -63441,6 +63521,9 @@
 	</monster>
 	<monster centerx="6601" centery="1415" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7302" centery="1415" centerz="8" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7937" centery="1415" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="90" />
@@ -63496,6 +63579,12 @@
 	<monster centerx="6602" centery="1418" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="7311" centery="1418" centerz="8" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="7317" centery="1418" centerz="8" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="5899" centery="1419" centerz="8" radius="1">
 		<monster name="Dwarf Soldier" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -63520,11 +63609,14 @@
 	<monster centerx="6585" centery="1420" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="7320" centery="1420" centerz="8" radius="1">
-		<monster name="Skeleton Elite Warrior" x="0" y="0" z="8" spawntime="90" />
+	<monster centerx="7311" centery="1420" centerz="8" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="5669" centery="1421" centerz="8" radius="1">
 		<monster name="Banshee" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7326" centery="1421" centerz="8" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7938" centery="1421" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
@@ -63547,6 +63639,9 @@
 	</monster>
 	<monster centerx="6585" centery="1423" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7332" centery="1423" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7534" centery="1423" centerz="8" radius="1">
 		<monster name="Ghost Wolf" x="0" y="0" z="8" spawntime="90" />
@@ -63572,8 +63667,8 @@
 	<monster centerx="5888" centery="1425" centerz="8" radius="1">
 		<monster name="Dwarf" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="7335" centery="1425" centerz="8" radius="1">
-		<monster name="Skeleton Elite Warrior" x="0" y="0" z="8" spawntime="90" />
+	<monster centerx="7337" centery="1425" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7533" centery="1425" centerz="8" radius="1">
 		<monster name="Ghost Wolf" x="0" y="0" z="8" spawntime="90" />
@@ -63599,6 +63694,12 @@
 	<monster centerx="7279" centery="1426" centerz="8" radius="1">
 		<monster name="Skeleton Elite Warrior" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="7309" centery="1426" centerz="8" radius="1">
+		<monster name="Adult Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="7333" centery="1426" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="5681" centery="1427" centerz="8" radius="1">
 		<monster name="Banshee" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -63607,6 +63708,9 @@
 	</monster>
 	<monster centerx="6107" centery="1427" centerz="8" radius="1">
 		<monster name="Drillworm" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7349" centery="1427" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="5858" centery="1428" centerz="8" radius="1">
 		<monster name="Dwarf" x="0" y="0" z="8" spawntime="90" />
@@ -63659,6 +63763,9 @@
 	</monster>
 	<monster centerx="7095" centery="1431" centerz="8" radius="1">
 		<monster name="Naga Archer" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7298" centery="1431" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7958" centery="1431" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="90" />
@@ -63724,6 +63831,9 @@
 	<monster centerx="5671" centery="1435" centerz="8" radius="1">
 		<monster name="Banshee" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="7293" centery="1435" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="7813" centery="1435" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -63736,9 +63846,6 @@
 	</monster>
 	<monster centerx="7108" centery="1436" centerz="8" radius="1">
 		<monster name="Naga Warrior" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="7293" centery="1436" centerz="8" radius="1">
-		<monster name="Skeleton Elite Warrior" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7530" centery="1436" centerz="8" radius="1">
 		<monster name="War Wolf" x="0" y="0" z="8" spawntime="90" />
@@ -63763,6 +63870,9 @@
 	</monster>
 	<monster centerx="7095" centery="1437" centerz="8" radius="1">
 		<monster name="Naga Archer" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7290" centery="1437" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7815" centery="1437" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
@@ -63804,6 +63914,9 @@
 	</monster>
 	<monster centerx="7114" centery="1439" centerz="8" radius="1">
 		<monster name="Naga Warrior" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="7289" centery="1439" centerz="8" radius="1">
+		<monster name="Young Goanna" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="7945" centery="1439" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="90" />
