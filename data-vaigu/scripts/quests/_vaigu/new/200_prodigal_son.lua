@@ -174,7 +174,7 @@ quest
 			end
 		end
 
-		SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS = {
+		PRODIGAL_SON_SPECIAL_REQUIREMENTS = {
 			frediIsNearby = function(context)
 				local npcPos = context.npc:getPosition()
 				local monsters = CreatureList():RadiusSquare(npcPos, 7, 7):FilterByMonster():Get()
@@ -1535,7 +1535,7 @@ quest
 					},
 					specialRequirements = {
 						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.frediIsNearby,
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.frediIsNearby,
 							requiredOutcome = true,
 							textFailedRequirement = "Come back with Fredi.",
 						},
@@ -1695,7 +1695,7 @@ quest
 					},
 					specialRequirements = {
 						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.frediIsNearby,
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.frediIsNearby,
 							requiredOutcome = false,
 							textFailedRequirement = "Give us a moment.",
 						},
@@ -1704,6 +1704,33 @@ quest
 			})
 	end)
 	:Mission(Storage.ProdigalSon.Mission06)
+	:State(function()
+		return ANY_STATE,
+			QuestFactory.Dialog("Access-O-Bot", {
+				[{ GREET }] = {
+					text = "Password:",
+				},
+				[{ "mission", "misja", "entry", "enter", "wejsc", "passage", "access", "dostep", "teleport" }] = {
+					text = "Password:",
+				},
+				[{ "<password>" }] = {
+					text = "Correct password. Come in.",
+					specialRequirements = {
+						{
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.saidCorrectPassword,
+							requiredOutcome = true,
+							textFailedRequirement = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
+						},
+					},
+					specialActionsOnSuccess = {
+						{
+							action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
+							pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
+						},
+					},
+				},
+			})
+	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission06.FindPasswordAndKillImperator,
 			QuestFactory.Script(function(missionState)
@@ -1765,33 +1792,9 @@ quest
 					text = "Yeah, thats it! Go and get rid of our imperator!",
 					specialRequirements = {
 						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.saidCorrectPassword,
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.saidCorrectPassword,
 							requiredOutcome = true,
 							textFailedRequirement = "No. Im sure its not the password. Try looking behind the waterfall.",
-						},
-					},
-				},
-			}),
-			QuestFactory.Dialog("Access-O-Bot", {
-				[{ GREET }] = {
-					text = "Password:",
-				},
-				[{ "mission", "misja", "entry", "enter", "wejsc", "passage", "access", "dostep", "teleport" }] = {
-					text = "Password:",
-				},
-				[{ "<password>" }] = {
-					text = "Correct password. Come in.",
-					specialRequirements = {
-						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.saidCorrectPassword,
-							requiredOutcome = true,
-							textFailedRequirement = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
-						},
-					},
-					specialActionsOnSuccess = {
-						{
-							action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
-							pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
 						},
 					},
 				},

@@ -132,7 +132,7 @@ pseudoQuest
 
 		local realRoutes = {
 			--Steppes cave, Carnisylvan
-			InstantTravel({ positions = { Position(), Position(32529, 32489, 11) } }),
+			InstantTravel({ positions = { Position(6186, 994, 8), Position(32529, 32489, 11) } }),
 			--Januszex, Claustrophobic inferno
 			InstantTravel({ positions = { Position(7780, 749, 15), Position(34011, 31010, 9) } }),
 			--Warzone 4,5,6 hub south, Warzone 7,8,9 hub

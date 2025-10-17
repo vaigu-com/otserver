@@ -39,11 +39,12 @@ local function extractItemData(item)
 	local actionid = item:getActionId()
 	local uniqueid = item:getUniqueId()
 	local key = item:getKey()
+	local text = item:getText()
 	local addToStore = nil
 	if forceUntradeability[id] then
 		addToStore = true
 	end
-	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore }
+	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore, text = text }
 end
 local function extractBagItems(bagItemsEx)
 	local extractedItems = {}

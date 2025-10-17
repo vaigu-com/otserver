@@ -301,6 +301,7 @@ local function setFields(addedItems, itemData, localizer)
 	local tier = itemData.tier
 	localizer = itemData.localizer or localizer
 
+	--cpp Player::addItems will return table of ItemEx when count > 100; this makes sure single item and table is handled the same way
 	if type(addedItems) ~= "table" then
 		addedItems = { addedItems }
 	end
@@ -346,6 +347,22 @@ local function setFields(addedItems, itemData, localizer)
 	end
 end
 
+---@param cylinder Cylinder
+---@param normalizedData table
+---@return ItemEx[]
+local function addItemHandleFluid(cylinder, normalizedData)
+	local addedItems = {}
+	if IsFluidContainer(normalizedData.id) then
+		for _ = 1, normalizedData.count do
+			addedItems = cylinder:addItem(normalizedData.id, normalizedData.fluidType)
+		end
+	else
+		addedItems = cylinder:addItem(normalizedData.id, normalizedData.count)
+	end
+
+	return addedItems
+end
+
 local function createPermanentItemsInner(items, destinationContainerEx, storeInbox)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
@@ -354,11 +371,11 @@ local function createPermanentItemsInner(items, destinationContainerEx, storeInb
 		else
 			local normalizedData = normalizedItemData(itemOrItems)
 			if shouldAddToStore(normalizedData) then
-				local storeItemEx = storeInbox:addItem(normalizedData.id, normalizedData.count)
-				setFields(storeItemEx, normalizedData)
+				local addedItems = addItemHandleFluid(storeInbox, normalizedData)
+				setFields(addedItems, normalizedData)
 			else
-				local normalItemEx = destinationContainerEx:addItem(normalizedData.id, normalizedData.count)
-				setFields(normalItemEx, normalizedData)
+				local addedItems = addItemHandleFluid(destinationContainerEx, normalizedData)
+				setFields(addedItems, normalizedData)
 			end
 		end
 	end
@@ -377,13 +394,13 @@ local function generateItemsPermanent(items, player)
 			local normalizedData = normalizedItemData(itemOrItems)
 			if shouldAddToStore(normalizedData) then
 				local storeInbox = player:getStoreInbox()
-				local addedItems = storeInbox:addItem(normalizedData.id, normalizedData.count)
+				local addedItems = addItemHandleFluid(storeInbox, normalizedData)
 				setFields(addedItems, normalizedData)
 				if normalizedData.dontAnnounce ~= true then
 					itemsToAddStore:AddItemOrTable(addedItems)
 				end
 			else
-				local addedItems = player:addItem(normalizedData.id, normalizedData.count)
+				local addedItems = addItemHandleFluid(player, normalizedData)
 				setFields(addedItems, normalizedData)
 				if normalizedData.dontAnnounce ~= true then
 					itemsToAdd:AddItemOrTable(addedItems)

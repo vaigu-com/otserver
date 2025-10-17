@@ -7,6 +7,7 @@ local outfit = {
 	lookFeet = 114,
 	lookAddons = 2,
 }
+
 local context = {
 	name = name,
 	outfit = outfit,

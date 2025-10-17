@@ -1,3 +1,17 @@
+function Item:getText()
+	if self:hasAttribute(ITEM_ATTRIBUTE_TEXT) then
+		return self:getAttribute(ITEM_ATTRIBUTE_TEXT)
+	end
+end
+
+function IsFluidContainer(id)
+	local itemType = ItemType(id)
+	if not itemType then
+		return false
+	end
+	return itemType:isFluidContainer()
+end
+
 local dirToOpposite = {
 	[DIRECTION_NORTH] = DIRECTION_SOUTH,
 	[DIRECTION_EAST] = DIRECTION_WEST,
