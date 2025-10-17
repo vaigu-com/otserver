@@ -10,6 +10,7 @@
 #pragma once
 
 #include "lib/thread/thread_pool.hpp"
+#include "account/account.hpp"
 
 class KVStore;
 class Logger;
