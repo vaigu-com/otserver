@@ -119,6 +119,7 @@ void GameFunctions::init(lua_State* L) {
 	// Vaigu custom
 	Lua::registerMethod(L, "Game", "getOutfitNameByLookType", GameFunctions::luaGameGetOutfitNameByLookType);
 	Lua::registerMethod(L, "Game", "getOutfitSexByLookType", GameFunctions::luaGameGetOutfitSexByLookType);
+	Lua::registerMethod(L, "Game", "getMountNameByLookType", GameFunctions::luaGameGetMountNameByLookType);
 }
 
 // Game

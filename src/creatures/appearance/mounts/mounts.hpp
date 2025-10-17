@@ -29,6 +29,7 @@ public:
 	std::shared_ptr<Mount> getMountByID(uint8_t id);
 	std::shared_ptr<Mount> getMountByName(const std::string &name);
 	std::shared_ptr<Mount> getMountByClientID(uint16_t clientId);
+	std::string getMountNameByLookType(uint8_t lookType);
 
 	[[nodiscard]] const phmap::parallel_flat_hash_set<std::shared_ptr<Mount>> &getMounts() const {
 		return mounts;
