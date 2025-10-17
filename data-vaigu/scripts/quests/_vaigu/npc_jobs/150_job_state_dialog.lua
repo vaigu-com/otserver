@@ -29,6 +29,7 @@ end
 QuestRewards.OutfitsAddons.Universal.Golden0 = { { outfitId = 1211, addons = 0 }, { outfitId = 1210, addons = 0 } }
 QuestRewards.OutfitsAddons.Universal.Golden1 = { { outfitId = 1211, addons = 1 }, { outfitId = 1210, addons = 1 } }
 QuestRewards.OutfitsAddons.Universal.Golden2 = { { outfitId = 1211, addons = 2 }, { outfitId = 1210, addons = 2 } }
+QuestRewards.Mounts.Universal.Antelope = { antelopeMountId }
 
 NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
@@ -105,7 +106,7 @@ NPC_STATE_DIALOGS = {
 					[{ "yes", "tak" }] = {
 						text = "Here you are.",
 						requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyAntelope,
-						mountRewards = { antelopeMountId },
+						mountRewards = QuestRewards.Mounts.Universal.Antelope,
 						nextState = {
 							[Storage.Tasks.TaskPoints] = T("-:cost:", { cost = antelopeCost }),
 						},

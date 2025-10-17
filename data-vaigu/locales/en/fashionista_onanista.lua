@@ -45,4 +45,5 @@ return {
 	["Thanks for your help. For your reward, take this magical carrot."] = "Thanks for your help. For your reward, take this magical carrot.",
 	["Alright! Look like the business is going well. Here is your reward. You should check on Ocellatus, i heard he is doing the meat beating competition again."] = "Alright! Look like the business is going well. Here is your reward. You should check on Ocellatus, i heard he is doing the meat beating competition again.",
 	["Come back when you have my money."] = "Come back when you have my money.",
+	["Whats good, slime? You got any of that cosmic {fent}?"] = "Whats good, slime? You got any of that cosmic {fent}?",
 }

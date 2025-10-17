@@ -16,24 +16,14 @@ setmetatable(UnlockableOutfitAddon, {
 	end,
 })
 
-local maxNameLength = {
-	[PLAYERSEX_MALE] = 0,
-	[PLAYERSEX_FEMALE] = 0,
-}
-local function tryUpdateMaxLenName(name, sex)
-	if #name > maxNameLength[sex] then
-		maxNameLength[sex] = #name
-	end
-end
-
-function UnlockableOutfitAddon:Male(name, lookType)
-	tryUpdateMaxLenName(name, PLAYERSEX_MALE)
+function UnlockableOutfitAddon:Male(lookType)
+	local name = Game.getOutfitNameByLookType(lookType)
 	self.name[PLAYERSEX_MALE] = name
 	self.lookType[PLAYERSEX_MALE] = lookType
 	return self
 end
-function UnlockableOutfitAddon:Female(name, lookType)
-	tryUpdateMaxLenName(name, PLAYERSEX_FEMALE)
+function UnlockableOutfitAddon:Female(lookType)
+	local name = Game.getOutfitNameByLookType(lookType)
 	self.name[PLAYERSEX_FEMALE] = name
 	self.lookType[PLAYERSEX_FEMALE] = lookType
 	return self
@@ -67,9 +57,9 @@ end
 
 local unlockableOutfitAddons = {
 	-- Outfits unlocked by default
-	UnlockableOutfitAddon()
-		:Male("Mage", 130)
-		:Female("Summoner", 141)
+	UnlockableOutfitAddon("Summoner(F)/Mage(M)")
+		:Male(130)
+		:Female(141)
 		:AddonOne({
 			{ id = 3066, count = 1 },
 			{ id = 3070, count = 1 },
@@ -86,32 +76,33 @@ local unlockableOutfitAddons = {
 			{ id = 5904, count = 10 },
 		})
 		:AddonTwo({ { id = 5903, count = 1 } }),
-	UnlockableOutfitAddon():Male("Summoner", 133):Female("Mage", 138):AddonOne({ { id = 5958, count = 1 } }):AddonTwo({ { id = 5894, count = 70 }, { id = 5911, count = 20 }, { id = 5883, count = 40 }, { id = 5922, count = 35 }, { id = 5881, count = 60 }, { id = 5882, count = 40 }, { id = 5905, count = 30 }, { id = 5904, count = 15 }, { id = 5886, count = 10 } }),
-	UnlockableOutfitAddon():Male("Citizen", 128):Female("Citizen", 136):AddonOne({ { id = 5878, count = 100 } }):AddonTwo({ { id = 3374, count = 1 }, { id = 5902, count = 50 }, { id = 5890, count = 100 } }),
-	UnlockableOutfitAddon():Male("Hunter", 129):Female("Hunter", 137):AddonOne({ { id = 5876, count = 100 }, { id = 5948, count = 100 }, { id = 5891, count = 5 }, { id = 5887, count = 1 }, { id = 5889, count = 1 }, { id = 5888, count = 1 } }):AddonTwo({ { id = 5875, count = 1 } }),
-	UnlockableOutfitAddon():Male("Knight", 131):Female("Knight", 139):AddonOne({ { id = 5880, count = 100 }, { id = 5892, count = 1 } }):AddonTwo({ { id = 5893, count = 100 }, { id = 5887, count = 1 }, { id = 5924, count = 1 }, { id = 5885, count = 1 } }),
-	UnlockableOutfitAddon():Male("Nobleman", 132):Female("Noblewoman", 140):AddonOne({ { id = 3043, count = 15 } }):AddonTwo({ { id = 3043, count = 15 } }),
-	UnlockableOutfitAddon():Male("Warrior", 134):Female("Warrior", 142):AddonOne({ { id = 5925, count = 100 }, { id = 5899, count = 100 }, { id = 5919, count = 1 }, { id = 5884, count = 1 } }):AddonTwo({ { id = 5880, count = 100 }, { id = 5887, count = 1 } }),
-	UnlockableOutfitAddon():Male("Barbarian", 143):Female("Barbarian", 147):AddonOne({ { id = 5884, count = 1 }, { id = 5885, count = 1 }, { id = 5911, count = 50 }, { id = 5910, count = 50 }, { id = 5886, count = 10 } }):AddonTwo({ { id = 5880, count = 100 }, { id = 5876, count = 50 }, { id = 5893, count = 50 }, { id = 5892, count = 1 } }),
-	UnlockableOutfitAddon():Male("Druid", 144):Female("Druid", 148):AddonOne({ { id = 5896, count = 50 }, { id = 5897, count = 50 } }):AddonTwo({ { id = 5906, count = 100 }, { id = 5940, count = 1 }, { id = 5937, count = 1 }, { id = 5938, count = 1 } }),
-	UnlockableOutfitAddon():Male("Wizard", 145):Female("Wizard", 149):AddonOne({ { id = 5922, count = 50 } }):AddonTwo({ { id = 3436, count = 1 }, { id = 3386, count = 1 }, { id = 3382, count = 1 }, { id = 3006, count = 1 } }),
-	UnlockableOutfitAddon():Male("Oriental", 146):Female("Oriental", 150):AddonOne({ { id = 5945, count = 1 } }):AddonTwo({ { id = 5883, count = 100 }, { id = 5895, count = 100 }, { id = 5912, count = 100 }, { id = 5891, count = 2 } }),
+	UnlockableOutfitAddon("Mage(F)/Summoner(M)"):Female(138):Male(133):AddonOne({ { id = 5958, count = 1 } }):AddonTwo({ { id = 5894, count = 70 }, { id = 5911, count = 20 }, { id = 5883, count = 40 }, { id = 5922, count = 35 }, { id = 5881, count = 60 }, { id = 5882, count = 40 }, { id = 5905, count = 30 }, { id = 5904, count = 15 }, { id = 5886, count = 10 } }),
+	UnlockableOutfitAddon("Citizen"):Female(136):Male(128):AddonOne({ { id = 5878, count = 100 } }):AddonTwo({ { id = 3374, count = 1 }, { id = 5902, count = 50 }, { id = 5890, count = 100 } }),
+	UnlockableOutfitAddon("Hunter"):Female(137):Male(129):AddonOne({ { id = 5876, count = 100 }, { id = 5948, count = 100 }, { id = 5891, count = 5 }, { id = 5887, count = 1 }, { id = 5889, count = 1 }, { id = 5888, count = 1 } }):AddonTwo({ { id = 5875, count = 1 } }),
+	UnlockableOutfitAddon("Knight"):Female(139):Male(131):AddonOne({ { id = 5880, count = 100 }, { id = 5892, count = 1 } }):AddonTwo({ { id = 5893, count = 100 }, { id = 5887, count = 1 }, { id = 5924, count = 1 }, { id = 5885, count = 1 } }),
+	UnlockableOutfitAddon("Noblewman(F)/Nobleman(M)"):Female(140):Male(132):AddonOne({ { id = 3043, count = 15 } }):AddonTwo({ { id = 3043, count = 15 } }),
+	UnlockableOutfitAddon("Warrior"):Female(142):Male(134):AddonOne({ { id = 5925, count = 100 }, { id = 5899, count = 100 }, { id = 5919, count = 1 }, { id = 5884, count = 1 } }):AddonTwo({ { id = 5880, count = 100 }, { id = 5887, count = 1 } }),
+	UnlockableOutfitAddon("Barbarian"):Female(147):Male(143):AddonOne({ { id = 5884, count = 1 }, { id = 5885, count = 1 }, { id = 5911, count = 50 }, { id = 5910, count = 50 }, { id = 5886, count = 10 } }):AddonTwo({ { id = 5880, count = 100 }, { id = 5876, count = 50 }, { id = 5893, count = 50 }, { id = 5892, count = 1 } }),
+	UnlockableOutfitAddon("Druid"):Female(148):Male(144):AddonOne({ { id = 5896, count = 50 }, { id = 5897, count = 50 } }):AddonTwo({ { id = 5906, count = 100 }, { id = 5940, count = 1 }, { id = 5937, count = 1 }, { id = 5938, count = 1 } }),
+	UnlockableOutfitAddon("Wizard"):Female(149):Male(145):AddonOne({ { id = 5922, count = 50 } }):AddonTwo({ { id = 3436, count = 1 }, { id = 3386, count = 1 }, { id = 3382, count = 1 }, { id = 3006, count = 1 } }),
+	UnlockableOutfitAddon("Oriental"):Female(150):Male(146):AddonOne({ { id = 5945, count = 1 } }):AddonTwo({ { id = 5883, count = 100 }, { id = 5895, count = 100 }, { id = 5912, count = 100 }, { id = 5891, count = 2 } }),
 
 	-- Requires pre-quest for outfit
-	UnlockableOutfitAddon():Male("Assassin", 152):Female("Assassin", 156):AddonOne({ { id = 5910, count = 50 }, { id = 5912, count = 50 }, { id = 5886, count = 10 }, { id = 5909, count = 50 }, { id = 5913, count = 50 }, { id = 5914, count = 50 }, { id = 5911, count = 50 } }):AddonTwo({ { id = 5930, count = 1 }, { id = 5804, count = 1 } }),
-	UnlockableOutfitAddon():Male("Pirate", 151):Female("Pirate", 155):AddonOne({ { id = 6098, count = 100 }, { id = 6126, count = 100 }, { id = 6097, count = 100 } }):AddonTwo({ { id = 6101, count = 1 }, { id = 6102, count = 1 }, { id = 6100, count = 1 }, { id = 6099, count = 1 } }),
-	--UnlockableOutfitAddon():Male("Beggar", 153):Female("Beggar", 157):AddonOne({ { id = 5913, count = 20 }, { id = 5878, count = 50 }, { id = 5894, count = 10 }, { id = 5921, count = 30 } }):AddonTwo({ { id = 5883, count = 100 } }),
-	UnlockableOutfitAddon():Male("Shaman", 154):Female("Shaman", 158):AddonOne({ { id = 3348, count = 5 }, { id = 3403, count = 5 } }):AddonTwo({ { id = 5810, count = 5 }, { id = 3002, count = 5 }, { id = 5014, count = 1 } }),
-	--UnlockableOutfitAddon():Male("Makeshift Warrior", 1042):Female("Makeshift Warrior", 1043):AddonOne({ { id = 19082, count = 5 } }):AddonTwo({ { id = 19082, count = 5 } }),
-	UnlockableOutfitAddon():Male("Battle Mage", 1069):Female("Battle Mage", 1070):AddonOne({ { id = 19082, count = 5 } }):AddonTwo({ { id = 19082, count = 5 } }),
-	UnlockableOutfitAddon():Male("Death Herald", 667):Female("Death Herald", 666):AddonOne({ { id = 8082, count = 1 } }):AddonTwo({ { id = 3203, count = 1 }, { id = 5727, count = 1 } }),
-	UnlockableOutfitAddon():Male("Field Surgeon", 1814):Female("Field Surgeon", 1815):AddonOne({ { id = 7419, count = 1 }, { id = 11473, count = 50 } }):AddonTwo({ { id = 3210, count = 1 }, { id = 12517, count = 10 } }),
-	UnlockableOutfitAddon():Male("Beastmaster", 637):Female("Beastmaster", 636):AddonOne({ { id = 24937, count = 30 } }):AddonTwo({ { id = 32073, count = 1 } }),
-	UnlockableOutfitAddon():Male("Jouster", 1331):Female("Jouster", 1332):AddonOne({ { id = 22652, count = 1 }, { id = 14683, count = 1 } }):AddonTwo({ { id = 7461, count = 1 } }),
-	UnlockableOutfitAddon():Male("Frost Tracer", 1612):Female("Frost Tracer", 1613):AddonOne({ { id = 16118, count = 1 } }):AddonTwo({ { id = 7446, count = 1 } }),
-	UnlockableOutfitAddon():Male("Forest Warden", 1415):Female("Forest Warden", 1416):AddonOne({ { id = 3130, count = 30 } }):AddonTwo({ { id = 830, count = 1 } }),
-	UnlockableOutfitAddon():Male("Winged Druid", 1831):Female("Winged Druid", 1832):AddonOne({ { id = 3038, count = 10 }, { id = 22183, count = 1 }, { id = 25742, count = 100 } }):AddonTwo({ { id = 3345, count = 1 }, { id = 5741, count = 1 } }),
-	UnlockableOutfitAddon():Male("Norseman", 251):Female("Norsewoman", 252):AddonOne({ { id = 12683, count = 1 } }):AddonTwo({ { id = 7459, count = 1 } }),
+	UnlockableOutfitAddon("Assassin"):Female(156):Male(152):AddonOne({ { id = 5910, count = 50 }, { id = 5912, count = 50 }, { id = 5886, count = 10 }, { id = 5909, count = 50 }, { id = 5913, count = 50 }, { id = 5914, count = 50 }, { id = 5911, count = 50 } }):AddonTwo({ { id = 5930, count = 1 }, { id = 5804, count = 1 } }),
+	UnlockableOutfitAddon("Pirate"):Female(155):Male(151):AddonOne({ { id = 6098, count = 100 }, { id = 6126, count = 100 }, { id = 6097, count = 100 } }):AddonTwo({ { id = 6101, count = 1 }, { id = 6102, count = 1 }, { id = 6100, count = 1 }, { id = 6099, count = 1 } }),
+	--UnlockableOutfitAddon("Beggar"):Female(157):Male(153):AddonOne({ { id = 5913, count = 20 }, { id = 5878, count = 50 }, { id = 5894, count = 10 }, { id = 5921, count = 30 } }):AddonTwo({ { id = 5883, count = 100 } }),
+	UnlockableOutfitAddon("Shaman"):Female(158):Male(154):AddonOne({ { id = 3348, count = 5 }, { id = 3403, count = 5 } }):AddonTwo({ { id = 5810, count = 5 }, { id = 3002, count = 5 }, { id = 5014, count = 1 } }),
+	--UnlockableOutfitAddon("Makeshift Warrior"):Female(1043):Male(1042):AddonOne({ { id = 19082, count = 5 } }):AddonTwo({ { id = 19082, count = 5 } }),
+	UnlockableOutfitAddon("Battle Mage"):Female(1070):Male(1069):AddonOne({ { id = 19082, count = 5 } }):AddonTwo({ { id = 19082, count = 5 } }),
+	UnlockableOutfitAddon("Death Herald"):Female(666):Male(667):AddonOne({ { id = 8082, count = 1 } }):AddonTwo({ { id = 3203, count = 1 }, { id = 5727, count = 1 } }),
+	UnlockableOutfitAddon("Field Surgeon"):Female(1815):Male(1814):AddonOne({ { id = 7419, count = 1 }, { id = 11473, count = 50 } }):AddonTwo({ { id = 3210, count = 1 }, { id = 12517, count = 10 } }),
+	UnlockableOutfitAddon("Beastmaster"):Female(636):Male(637):AddonOne({ { id = 24937, count = 30 } }):AddonTwo({ { id = 32073, count = 1 } }),
+	UnlockableOutfitAddon("Jouster"):Female(1332):Male(1331):AddonOne({ { id = 22652, count = 1 }, { id = 14683, count = 1 } }):AddonTwo({ { id = 7461, count = 1 } }),
+	UnlockableOutfitAddon("Frost Tracer"):Female(1613):Male(1612):AddonOne({ { id = 16118, count = 1 } }):AddonTwo({ { id = 7446, count = 1 } }),
+	UnlockableOutfitAddon("Forest Warden"):Female(1416):Male(1415):AddonOne({ { id = 3130, count = 30 } }):AddonTwo({ { id = 830, count = 1 } }),
+	UnlockableOutfitAddon("Winged Druid"):Female(1832):Male(1831):AddonOne({ { id = 3038, count = 10 }, { id = 22183, count = 1 }, { id = 25742, count = 100 } }):AddonTwo({ { id = 3345, count = 1 }, { id = 5741, count = 1 } }),
+	UnlockableOutfitAddon("Norsewoman(F)/Norseman(M)"):Female(252):Male(251):AddonOne({ { id = 12683, count = 1 } }):AddonTwo({ { id = 7459, count = 1 } }),
+	UnlockableOutfitAddon("Celestial Avenger"):Female(1726):Male(1725):AddonOne({ { id = 7438, count = 1 }, { id = 25694, count = 100 } }):AddonTwo({ { id = 8103, count = 1 }, { id = 5922, count = 30 } }),
 }
 
 UnlockableOutfitAddonRegistry = {}

@@ -606,9 +606,14 @@ function Player:AddOutfitsAndAddons(outfitsAndAddons)
 	self:addOutfit()
 end
 
+local function annonceReceivedMount(player, mountId)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { outfitName = Game.getMountNameByLookType(mountId) }))
+end
+
 function Player:AddMounts(mounts)
 	for _, mountId in pairs(mounts) do
 		self:addMount(mountId)
+		annonceReceivedMount(self, mountId)
 	end
 end
 

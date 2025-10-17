@@ -536,26 +536,48 @@ RewardsRegistry.registry = {
 	outfitAddons = {},
 }
 
-function RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore()
-	local gamestoreOutfitIds = {}
-	for key, category in pairs(GameStore.Categories) do
-		for key, offer in pairs(category.offers or {}) do
-			for key, outfitId in pairs(offer.sexId or {}) do
-				table.insert(gamestoreOutfitIds, outfitId)
+function RewardsRegistry:ValidateQuestRewardsVsGamestore()
+	local validateNpcsArePlacedOnMapStartup = GlobalEvent("RewardsRegistry/ValidateQuestRewardsVsGamestore")
+	function validateNpcsArePlacedOnMapStartup.onStartup()
+		local gamestoreOutfitIds = {}
+		local gamestoreMountIds = {}
+		for key, category in pairs(GameStore.Categories) do
+			for key, offer in pairs(category.offers or {}) do
+				if offer.type == GameStore.OfferTypes.OFFER_TYPE_OUTFIT then
+					for key, outfitId in pairs(offer.sexId) do
+						table.insert(gamestoreOutfitIds, outfitId)
+					end
+				end
+				if offer.type == GameStore.OfferTypes.OFFER_TYPE_MOUNT then
+					local mountId = offer.id
+					table.insert(gamestoreMountIds, mountId)
+				end
 			end
 		end
-	end
-	for quest, questOufits in pairs(QuestRewards.OutfitsAddons) do
-		for outfitNameAddon, outfitData in pairs(questOufits) do
-			for key, sexOutfitData in pairs(outfitData) do
-				local outfitId = sexOutfitData.outfitId
-				if table.contains(gamestoreOutfitIds, outfitId) then
-					local name = Game.getOutfitNameByLookType(outfitId)
-					logger.warn(T("[RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore] Outfit :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = outfitId }))
+
+		for quest, questOufits in pairs(QuestRewards.OutfitsAddons) do
+			for outfitNameAddon, outfitData in pairs(questOufits) do
+				for key, sexOutfitData in pairs(outfitData) do
+					local outfitId = sexOutfitData.outfitId
+					if table.contains(gamestoreOutfitIds, outfitId) then
+						local name = Game.getOutfitNameByLookType(outfitId)
+						logger.warn(T("[RewardsRegistry:ValidateQuestRewardsVsGamestore] Outfit :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = outfitId }))
+					end
+				end
+			end
+		end
+		for questName, allQuestMountPacks in pairs(QuestRewards.Mounts) do
+			for key, questMountPack in pairs(allQuestMountPacks) do
+				for key, mountId in pairs(questMountPack) do
+					if table.contains(gamestoreMountIds, mountId) then
+						local name = Game.getMountNameByLookType(mountId)
+						logger.warn(T("[RewardsRegistry:ValidateQuestRewardsVsGamestore] Mount :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = mountId }))
+					end
 				end
 			end
 		end
 	end
+	validateNpcsArePlacedOnMapStartup:register()
 end
 
 function RewardsRegistry:SerializeAll()

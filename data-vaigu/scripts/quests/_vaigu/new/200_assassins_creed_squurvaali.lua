@@ -128,10 +128,6 @@ quest
 					Game.createNpc("gm tomek", pos, false, false)
 				end
 			end,
-			addCarpetMount = function(context)
-				local player = context.player
-				player:addMount(66)
-			end,
 			aunorTeleportOut = function(context)
 				local player = context.player
 				if player then
@@ -169,6 +165,16 @@ quest
 				key = Storage.AssassinsCreedSquurvaali.KeyItems.Flare,
 				id = 30209,
 				desc = "Flare from Aunor. Use it before Ghasstly Princess's cave entrance",
+			},
+		}
+
+		QuestRewards.Mounts.AssassinsCreedSquurvaali = {
+			CarpetGreen = { 66 },
+		}
+		QuestRewards.OutfitsAddons.AssassinsCreedSquurvaali = {
+			CelestialAvenger0 = {
+				{ outfitId = 1726, addons = 0 },
+				{ outfitId = 1725, addons = 0 },
 			},
 		}
 	end)
@@ -378,11 +384,7 @@ quest
 						[Storage.AssassinsCreedSquurvaali.Mission02] = MISSION_FINISHED,
 						[Storage.AssassinsCreedSquurvaali.Mission03] = QuestState.AssassinsCreedSquurvaali.Mission03.ReportToGhasstlyPrincess,
 					},
-					specialActionsOnSuccess = {
-						{
-							action = ASSASSINS_CREED_SKURWOALA_SPECIAL_ACTIONS.addCarpetMount,
-						},
-					},
+					mountRewards = QuestRewards.Mounts.AssassinsCreedSquurvaali.CarpetGreen,
 				},
 			})
 	end)
@@ -533,6 +535,7 @@ quest
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission04] = QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.AssassinsCreedSquurvaali.CelestialAvenger0,
 				},
 			})
 	end)

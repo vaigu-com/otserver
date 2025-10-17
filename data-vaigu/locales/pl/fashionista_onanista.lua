@@ -45,4 +45,5 @@ return {
 	["Thanks for your help. For your reward, take this magical carrot."] = "Dzieki za pomoc. W nagrode wez te magiczna marchewke.",
 	["Alright! Look like the business is going well. Here is your reward. You should check on Ocellatus, i heard he is doing the meat beating competition again."] = "No dobra! Wyglada na to, ze interes sie kreci. Oto twoja nagroda. Powinienes sprawdzic, co u Oskarka - slyszalem, ze znowu robi zawody w Waleniu Konia.",
 	["Come back when you have my money."] = "Wroc, gdy bedziesz mial moja kase.",
+	["Whats good, slime? You got any of that cosmic {fent}?"] = "Eluwina. Masz jakis {fent} kurwa ten?",
 }

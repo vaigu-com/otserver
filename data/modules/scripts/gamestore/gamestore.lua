@@ -913,6 +913,7 @@ GameStore.Categories = {
 				description = "{character}\n{speedboost}\n\n<i>You are fascinated by insectoid creatures and can picture yourself riding one during combat or just for travelling? The Leafscuttler will carry you through the Tibian wilderness with ease.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_MOUNT,
 			},
+			--[[
 			{
 				icons = { "Magic_Carpet.png" },
 				name = "Magic Carpet",
@@ -921,6 +922,7 @@ GameStore.Categories = {
 				description = "{character}\n{speedboost}\n\n<i>The Magic Carpet is the perfect mount for those who are too busy to take care of an animal mount or simply like to travel on a beautiful, magic hand-woven carpet.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_MOUNT,
 			},
+			]]
 			{
 				icons = { "Magma_Skull.png" },
 				name = "Magma Skull",
