@@ -24,6 +24,20 @@ quest
 				id = ItemId.DREAM_TALISMAN,
 			},
 		}
+		QuestRewards.OutfitsAddons.TheDreamCourts = {
+			DreamWarrior0 = {
+				{ outfitId = 1146, addons = 0 },
+				{ outfitId = 1147, addons = 0 },
+			},
+			DreamWarrior1 = {
+				{ outfitId = 1146, addons = 1 },
+				{ outfitId = 1147, addons = 1 },
+			},
+			DreamWarrior2 = {
+				{ outfitId = 1146, addons = 2 },
+				{ outfitId = 1147, addons = 2 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {

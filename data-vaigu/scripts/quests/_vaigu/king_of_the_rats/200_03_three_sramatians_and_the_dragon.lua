@@ -85,7 +85,7 @@ quest
 		SpawnLocks.ThreeSramatiansAndTheDragon = {
 			RatOfKings = SpawnLock(),
 		}
-		TRZEJ_SRAMACI_I_SMOK_SPECIAL_REQUIREMENTS = {
+		THREE_SRAMATIANS_AND_THE_DRAGON_SPECIAL_REQUIREMENTS = {
 			playerIsDrunk = function(context)
 				local player = context.player
 				if not player then
@@ -108,6 +108,12 @@ quest
 				key = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
 				id = 7281,
 				desc = "Deep sea crystal",
+			},
+		}
+		QuestRewards.OutfitsAddons.ThreeSramatiansAndTheDragon = {
+			Raccoon2 = {
+				{ outfitId = 1371, addons = 2 },
+				{ outfitId = 1372, addons = 2 },
 			},
 		}
 	end)
@@ -818,7 +824,7 @@ quest
 					text = "Let's head to the private docks of the vampire lords. They receive a daily supply of wine for the nobility. We'll sneak in there unnoticed. No one will figure out few bottles or barrels missing.",
 					specialRequirements = {
 						{
-							requirement = TRZEJ_SRAMACI_I_SMOK_SPECIAL_REQUIREMENTS.playerIsDrunk,
+							requirement = THREE_SRAMATIANS_AND_THE_DRAGON_SPECIAL_REQUIREMENTS.playerIsDrunk,
 							requiredOutcome = true,
 							textFailedRequirement = "I have a great idea, but I won't tell you while you are sober. I'm already tipsy, now it's your turn.",
 						},
@@ -1444,10 +1450,7 @@ quest
 						[Storage.Finished.ThreeSramatiansAndTheDragon] = MISSION_FINISHED,
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.AskRomekForMission,
 					},
-					outfitRewards = {
-						{ outfitId = 1371, addons = 3 },
-						{ outfitId = 1372, addons = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ThreeSramatiansAndTheDragon.Raccoon2,
 				},
 			})
 	end)

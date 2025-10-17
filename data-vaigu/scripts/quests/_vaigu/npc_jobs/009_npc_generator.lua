@@ -71,9 +71,6 @@ local function appendStatistics(allDialogs, npcName)
 		else
 			MissingStrings:TestAllLanaguages(dialog.text, LOCALIZERS.Universal)
 		end
-		if dialog.outfitRewards then
-			RewardsRegistry:AddOutfitsAndAddons(dialog.outfitRewards, npcName, LOCALIZERS.Universal)
-		end
 	end
 
 	for localizer, missionToState in pairs(allDialogs) do
@@ -92,9 +89,6 @@ local function appendStatistics(allDialogs, npcName)
 							warnNoTextInDialog(keywordsStr, npcName)
 						else
 							MissingStrings:TestAllLanaguages(dialog.text, localizer)
-						end
-						if dialog.outfitRewards then
-							RewardsRegistry:AddOutfitsAndAddons(dialog.outfitRewards, npcName, missionStorage, state)
 						end
 					end
 				end

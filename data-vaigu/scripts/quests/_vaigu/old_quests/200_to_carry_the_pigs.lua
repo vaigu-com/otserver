@@ -51,6 +51,12 @@ quest
 			EcoCarrot = { id = 3250, key = Storage.ToCarryThePigs.EcoCarrot },
 			NewBow = { id = 9378, key = Storage.ToCarryThePigs.NewBow },
 		}
+		QuestRewards.OutfitsAddons.ToCarryThePigs = {
+			Norse0 = {
+				{ outfitId = 252, addons = 0 },
+				{ outfitId = 251, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -332,10 +338,7 @@ quest
 					requiredState = {
 						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
-					outfitRewards = {
-						{ outfitId = 252, addons = 0 },
-						{ outfitId = 251, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ToCarryThePigs.Norse0
 				},
 			})
 	end)

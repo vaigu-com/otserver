@@ -37,6 +37,12 @@ quest
 				{ id = 11479, count = 2 },
 			},
 		}
+		QuestRewards.OutfitsAddons.SilenceOfTheLambs = {
+			Wayfarer0 = {
+				{ outfitId = 366, addons = 0 },
+				{ outfitId = 367, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -156,10 +162,7 @@ quest
 					rewards = {
 						{ id = 17829 },
 					},
-					outfitRewards = {
-						{ outfitId = 366, addons = 0 },
-						{ outfitId = 367, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.SilenceOfTheLambs.Wayfarer0,
 					nextState = {
 						[Storage.SilenceOfTheLambs.RubMeatWithLecter] = MISSION_FINISHED,
 						[Storage.Finished.SilenceOfTheLambs] = MISSION_FINISHED,

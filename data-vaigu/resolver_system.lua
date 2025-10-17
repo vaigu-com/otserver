@@ -545,30 +545,16 @@ function RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore()
 			end
 		end
 	end
-	for questRewardOutfitId, _  in pairs(self.questRewardOutfitIds) do
-		if table.contains(gamestoreOutfitIds, questRewardOutfitId) then
-			local name = Game.getOutfitNameByLookType(questRewardOutfitId)
-			logger.warn(T("[RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore] Outfit :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.",{ name = name, id = questRewardOutfitId }))
+	for quest, questOufits in pairs(QuestRewards.OutfitsAddons) do
+		for outfitNameAddon, outfitData in pairs(questOufits) do
+			for key, sexOutfitData in pairs(outfitData) do
+				local outfitId = sexOutfitData.outfitId
+				if table.contains(gamestoreOutfitIds, outfitId) then
+					local name = Game.getOutfitNameByLookType(outfitId)
+					logger.warn(T("[RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore] Outfit :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = outfitId }))
+				end
+			end
 		end
-	end
-end
-
-function RewardsRegistry:AddOutfitsAndAddons(outfitsAndAddons, npcName, missionOrLocalizer, state)
-	state = state or "NONE"
-
-	for _, outfitAndAddon in pairs(outfitsAndAddons) do
-		local str = ""
-		local outfitId = outfitAndAddon.outfitId
-		local addons = outfitAndAddon.addons
-		if not outfitId then
-			logger.warn(debug.traceback(T("[outfitsAndAddonsToString] missing outfitId. Npc: :npcName:, mission: :mission:, state: :state:", { npcName = npcName, mission = missionOrLocalizer, state = state })))
-		end
-		if not addons then
-			logger.warn(debug.traceback(T("[outfitsAndAddonsToString] missing addons. Npc: :npcName:, mission: :mission:, state: :state:", { npcName = npcName, mission = missionOrLocalizer, state = state })))
-		end
-		str = str .. T("{ outfitId = :outfitId:, addons = :addons:},\n", { outfitId = outfitId, addons = addons })
-		table.insert(self.registry.outfitAddons, str)
-		self.questRewardOutfitIds[outfitId] = true
 	end
 end
 

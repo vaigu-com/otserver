@@ -55,6 +55,12 @@ quest
 				key = Storage.ImRestingHere.Crowbar,
 			},
 		}
+		QuestRewards.OutfitsAddons.ImRestingHere = {
+			DeathHerald0 = {
+				{ outfitId = 666, addons = 0 },
+				{ outfitId = 667, addons = 0 },
+			},
+		}
 	end)
 	:Mission(Storage.ImRestingHere.Mission01)
 	:State(function()
@@ -131,10 +137,7 @@ quest
 						player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
 					elseif player:TryTradeInItems({ QuestKeyItems.ImRestingHere.Crowbar }, { QuestKeyItems.ImRestingHere.LastWill }) then
 						player:NextState(updateStorages)
-						player:AddOutfitsAndAddons({
-							{ outfitId = 666, addons = 0 },
-							{ outfitId = 667, addons = 0 },
-						})
+						player:AddOutfitsAndAddons(QuestRewards.OutfitsAddons.ImRestingHere.DeathHerald0)
 					end
 
 					return true

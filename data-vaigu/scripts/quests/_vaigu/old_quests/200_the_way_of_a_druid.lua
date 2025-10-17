@@ -74,6 +74,24 @@ quest
 			OrnuldMedicine = { id = 8819, key = Storage.TheWayOfADruid.OrnuldMedicine },
 			RadaghastFirebug = { id = 5467, key = Storage.TheWayOfADruid.RadaghastFirebug },
 		}
+		QuestRewards.OutfitsAddons.TheWayOfADruid = {
+			WingedDruid0 = {
+				{ outfitId = 1832, addons = 0 },
+				{ outfitId = 1831, addons = 0 },
+			},
+			ForestWarden0 = {
+				{ outfitId = 1416, addons = 0 },
+				{ outfitId = 1415, addons = 0 },
+			},
+			BeastMaster0 = {
+				{ outfitId = 636, addons = 0 },
+				{ outfitId = 637, addons = 0 },
+			},
+			FieldSurgeon0 = {
+				{ outfitId = 1815, addons = 0 },
+				{ outfitId = 1814, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -209,10 +227,7 @@ quest
 						[Storage.TheWayOfADruid.CouncilOfDruids] = MISSION_FINISHED,
 						[Storage.Finished.TheWayOfADruid] = MISSION_FINISHED,
 					},
-					outfitRewards = {
-						{ outfitId = 1832, addons = 0 },
-						{ outfitId = 1831, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.TheWayOfADruid.WingedDruid0,
 				},
 			}),
 			QuestFactory.Script(function()
@@ -298,10 +313,7 @@ quest
 						[Storage.Finished.DeerSeason] = MISSION_FINISHED,
 						[Storage.TheWayOfADruid.RadaghastBoat] = ACCESS_GRANTED,
 					},
-					outfitRewards = {
-						{ outfitId = 1416, addons = 0 },
-						{ outfitId = 1415, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.TheWayOfADruid.ForestWarden0,
 				},
 			})
 	end)
@@ -455,10 +467,7 @@ quest
 						[Storage.Finished.TakenBenek] = MISSION_FINISHED,
 						[Storage.TheWayOfADruid.CouncilOfDruids] = "+1",
 					},
-					outfitRewards = {
-						{ outfitId = 636, addons = 0 },
-						{ outfitId = 637, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.TheWayOfADruid.BeastMaster0,
 				},
 			})
 	end)
@@ -538,10 +547,7 @@ quest
 					requiredItems = {
 						QuestKeyItems.TheWayOfADruid.OrnuldMedicine,
 					},
-					outfitRewards = {
-						{ outfitId = 1815, addons = 0 },
-						{ outfitId = 1814, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.TheWayOfADruid.FieldSurgeon0,
 				},
 			})
 	end)

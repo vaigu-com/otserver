@@ -30,7 +30,14 @@ quest
 			},
 		}
 	end)
-	:Constant(function() end)
+	:Constant(function()
+		QuestRewards.OutfitsAddons.AvastYe = {
+			Pirate0 = {
+				{ outfitId = 151, addons = 0 },
+				{ outfitId = 155, addons = 0 },
+			},
+		}
+	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
 			name = "Avast Ye!",
@@ -264,10 +271,7 @@ quest
 						[Storage.AvastYe.TrustedWith.Redbeard] = ACCESS_GRANTED,
 						[Storage.AvastYe.TrustedWith.Morgram] = ACCESS_GRANTED,
 					},
-					outfitRewards = {
-						{ outfitId = 151, addons = 0 },
-						{ outfitId = 155, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.AvastYe.Pirate0
 				},
 			})
 	end)

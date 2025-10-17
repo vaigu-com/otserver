@@ -98,6 +98,12 @@ quest
 				inbox:addItemEx(letter, INDEX_WHEREEVER, FLAG_NOLIMIT)
 			end,
 		}
+		QuestRewards.OutfitsAddons.FashionistaOnanista = {
+			Jouster0 = {
+				{ outfitId = 1332, addons = 0 },
+				{ outfitId = 1331, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -191,10 +197,7 @@ quest
 						[Storage.FashionistaOnanista.Mission01] = MISSION_FINISHED,
 						[Storage.FashionistaOnanista.Mission02] = QuestState.FashionistaOnanista.Mission02.AskOcellatusForNewMission,
 					},
-					outfitRewards = {
-						{ outfitId = 1332, addons = 0 },
-						{ outfitId = 1331, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.FashionistaOnanista.Jouster0,
 				},
 			}),
 			QuestFactory.Script(function()

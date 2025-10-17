@@ -100,7 +100,7 @@ quest
 		SpawnLocks.ProdigalSon = {
 			ArechekLock = SpawnLock(),
 		}
-		SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
+		PRODIGAL_SON_SPECIAL_ACTIONS = {
 			setPersonalBlackboardPassword = function(context)
 				local player = context.player
 				player:setStorageValueByKey(Storage.ProdigalSon.Blackboard, tostring(math.random(10 ^ 6, 10 ^ 7 - 1)))
@@ -225,7 +225,7 @@ quest
 				end, 2000)
 			end,
 		}
-		SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
+		PRODIGAL_SON_SPECIAL_ACTIONS = {
 			setPersonalBlackboardPassword = function(context)
 				local player = context.player
 				player:setStorageValueByKey(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
@@ -252,6 +252,20 @@ quest
 			southMachine = 845,
 			donePliers = 22680,
 			toiletSoap = 35595,
+		}
+		QuestRewards.OutfitsAddons.ProdigalSon = {
+			MakeshiftWarrior0 = {
+				{ outfitId = 1042, addons = 0 },
+				{ outfitId = 1043, addons = 0 },
+			},
+			MakeshiftWarrior1 = {
+				{ outfitId = 1042, addons = 1 },
+				{ outfitId = 1043, addons = 1 },
+			},
+			MakeshiftWarrior2 = {
+				{ outfitId = 1042, addons = 2 },
+				{ outfitId = 1043, addons = 2 },
+			},
 		}
 	end)
 	:Questlog(function(localizer)
@@ -768,7 +782,7 @@ quest
 					},
 					specialActionsOnSuccess = {
 						{
-							action = SYN_MARNOTRAWNY_SPECIAL_ACTIONS.setPersonalBlackboardPassword,
+							action = PRODIGAL_SON_SPECIAL_ACTIONS.setPersonalBlackboardPassword,
 						},
 					},
 				},
@@ -971,10 +985,7 @@ quest
 						[Storage.ProdigalSon.Mission03] = QuestState.ProdigalSon.Mission03.TalkToHearAboutDuties,
 						[Storage.ProdigalSon.MainGateAccess] = ACCESS_GRANTED,
 					},
-					outfitRewards = {
-						{ outfitId = 1042, addons = 0 },
-						{ outfitId = 1043, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ProdigalSon.MakeshiftWarrior0,
 					requiredItems = {
 						{ id = PRODIGAL_SON_NORMAL_ITEMS.donePliers, count = 5 },
 					},
@@ -1284,10 +1295,7 @@ quest
 						[Storage.ProdigalSon.Mission03] = MISSION_FINISHED,
 						[Storage.ProdigalSon.Mission04] = QuestState.ProdigalSon.Mission04.AskForMission,
 					},
-					outfitRewards = {
-						{ outfitId = 1042, addons = 1 },
-						{ outfitId = 1043, addons = 1 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ProdigalSon.MakeshiftWarrior1,
 				},
 			})
 	end)
@@ -1415,10 +1423,7 @@ quest
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.AskForNewMission,
 						[Storage.ProdigalSon.NorthMinesAccess] = ACCESS_GRANTED,
 					},
-					outfitRewards = {
-						{ outfitId = 1042, addons = 3 },
-						{ outfitId = 1043, addons = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ProdigalSon.MakeshiftWarrior2,
 				},
 			})
 	end)

@@ -29,6 +29,13 @@ quest
 		DEMON_OAK_KICK_POSITION = Position(6101, 1061, 7)
 		DEMON_OAK_ENTER_POSITION = Position(6101, 1068, 7)
 		DEMON_OAK_REWARDROOM_POSITION = Position(6093, 1876, 8)
+
+		QuestRewards.OutfitsAddons.DemonOak = {
+			Demon3 = {
+				{ outfitId = 542, addons = 3 },
+				{ outfitId = 541, addons = 3 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -345,10 +352,7 @@ quest
 					nextState = {
 						[Storage.DemonOak.Mission01] = QuestState.DemonOak.Mission01.FindRewardChest,
 					},
-					outfitRewards = {
-						{ outfitId = 542, addons = 2 },
-						{ outfitId = 541, addons = 2 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.DemonOak.Demon3
 				},
 			})
 	end)

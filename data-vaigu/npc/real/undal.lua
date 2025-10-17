@@ -53,18 +53,6 @@ end
 
 npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
 
-local outfitRewardsBase = {
-	{ outfitId = 1146, addons = 0 },
-	{ outfitId = 1147, addons = 0 },
-}
-local outfitRewardsAddonOne = {
-	{ outfitId = 1146, addons = 1 },
-	{ outfitId = 1147, addons = 1 },
-}
-local outfitRewardsAddonTwo = {
-	{ outfitId = 1146, addons = 2 },
-	{ outfitId = 1147, addons = 2 },
-}
 local function creatureSayCallback(npc, creature, type, message)
 	local player = Player(creature)
 	local playerId = player:getId()
@@ -93,7 +81,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		if MsgContains(message, "task") then
 			if player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) >= 3 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) == 1 and not (player:hasOutfit(1146) or player:hasOutfit(1147)) then
 				npcHandler:say("The Nightmare Beast is slain. You have done well. The Courts of Summer and Winter will be forever grateful. For your efforts I want to reward you with our traditional dream warrior outfit. May it suit you well!", npc, creature)
-				player:AddOutfitsAndAddons(outfitRewardsBase)
+				player:AddOutfitsAndAddons(QuestRewards.OutfitsAddons.TheDreamCourts.DreamWarrior0)
 				npcHandler:setTopic(playerId, 0)
 			elseif player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Count) >= 8 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.TheWinterCourt) == 1 and player:getStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.WardStones.Questline) == 1 then
 				if not player:TryTradeInItems({
@@ -153,7 +141,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getItemCount(30169) >= 5 then
 				npcHandler:say("Very good! You gained the second addon to the dream warrior outfit.", npc, creature)
 				player:removeItem(30169, 5)
-				player:AddOutfitsAndAddons(outfitRewardsAddonTwo)
+				player:AddOutfitsAndAddons(QuestRewards.OutfitsAddons.TheDreamCourts.DreamWarrior2)
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("You do not have enough items.", npc, creature)
@@ -163,7 +151,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getItemCount(30168) >= 1 then
 				npcHandler:say("Very good! You gained the first addon to the dream warrior outfit.", npc, creature)
 				player:removeItem(30168, 1)
-				player:AddOutfitsAndAddons(outfitRewardsAddonOne)
+				player:AddOutfitsAndAddons(QuestRewards.OutfitsAddons.TheDreamCourts.DreamWarrior1)
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("You do not have enough items.", npc, creature)

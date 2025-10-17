@@ -87,10 +87,16 @@ quest
 		})
 	end)
 	:Constant(function()
-		GUARDIAN_SKULLS_APPEAR_SPOTS_POOL = {
+		GUARDIAN_SKULLS_APPEAR_SPOTS = {
 			["Cipociamkacz"] = { x = -12, y = 15, z = 1 },
 			["PatriotaPL"] = { x = -11, y = 15, z = 1 },
 			["CalaNapszut"] = { x = -10, y = 15, z = 1 },
+		}
+		QuestRewards.OutfitsAddons.PathOfTheUndead = {
+			Poltergeist3 = {
+				{ outfitId = 1270, addons = 3 },
+				{ outfitId = 1271, addons = 3 },
+			},
 		}
 	end)
 	:Monster(function()
@@ -1498,10 +1504,7 @@ quest
 						[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.FindChester,
 					},
 					expReward = 25000000,
-					outfitRewards = {
-						{ outfitId = 1270, addons = 3 },
-						{ outfitId = 1271, addons = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.PathOfTheUndead.Poltergeist3,
 				},
 			})
 	end)

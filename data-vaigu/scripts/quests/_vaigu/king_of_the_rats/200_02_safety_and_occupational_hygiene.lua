@@ -39,7 +39,7 @@ quest
 		SpawnLocks.SafetyAndOccupationalHygiene = {
 			Petrus = SpawnLock(),
 		}
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_REQUIREMENTS = {
+		SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_REQUIREMENTS = {
 			timeIsNight = function(context)
 				local timeOfDay = getTibiaTimerDayOrNight()
 				if timeOfDay == "night" then
@@ -57,7 +57,7 @@ quest
 			},
 		}
 
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS = {
+		SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_ACTIONS = {
 			turdstinAttack = function(context)
 				local pos = context.player:getPosition()
 				SpawnMonstersAtPos("Gang Member", pos, 1)
@@ -66,7 +66,7 @@ quest
 				end, 5 * 1000)
 				addEvent(function()
 					SpawnMonstersAtPos("Gang Member", pos, 2)
-					if BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_REQUIREMENTS.timeIsNight() == false then
+					if SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_REQUIREMENTS.timeIsNight() == false then
 						SpawnMonstersAtPos("Crazed Beggar", pos, 1)
 					end
 				end, 1000 * 15)
@@ -115,9 +115,16 @@ quest
 			end,
 		}
 
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS = {
+		SAFETY_AND_OCCUPATIONAL_HYGIENE_PORTALS = {
 			[Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown] = MIRKO_MAGICIANS_ANCHOR:Moved(17, 12, -5),
 			[Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus] = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 0, 0),
+		}
+
+		QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene = {
+			Raccoon1 = {
+				{ outfitId = 1371, addons = 1 },
+				{ outfitId = 1372, addons = 1 },
+			},
 		}
 	end)
 	:Questlog(function(localizer)
@@ -383,7 +390,7 @@ quest
 						return true
 					end
 
-					player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getKey()])
+					player:teleportTo(SAFETY_AND_OCCUPATIONAL_HYGIENE_PORTALS[item:getKey()])
 					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
@@ -401,7 +408,7 @@ quest
 						return true
 					end
 
-					player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getKey()])
+					player:teleportTo(SAFETY_AND_OCCUPATIONAL_HYGIENE_PORTALS[item:getKey()])
 					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
@@ -509,7 +516,7 @@ quest
 					text = "Oh wow, they are swarming!",
 					specialActionsOnSuccess = {
 						{
-							action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.turdstinAttack,
+							action = SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_ACTIONS.turdstinAttack,
 						},
 						{
 							action = SPECIAL_ACTIONS_UNIVERSAL.endDialog,
@@ -547,7 +554,7 @@ quest
 					},
 					specialActionsOnSuccess = {
 						{
-							action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.feministCake,
+							action = SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_ACTIONS.feministCake,
 						},
 					},
 				},
@@ -672,10 +679,7 @@ quest
 					rewards = {
 						ExerciseWeaponBox(1337),
 					},
-					outfitRewards = {
-						{ outfitId = 1371, addons = 1 },
-						{ outfitId = 1372, addons = 1 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene.Raccoon1
 				},
 			})
 	end)

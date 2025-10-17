@@ -121,6 +121,12 @@ quest
 			},
 			book = { lit = 28139, unlit = 28888, pos = { x = -3, y = -12, z = 0 } },
 		}
+		QuestRewards.OutfitsAddons.ThreaterOfCheapThrills = {
+			Raccoon1 = {
+				{ outfitId = 1371, addons = 0 },
+				{ outfitId = 1372, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -1407,10 +1413,7 @@ quest
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 					},
 					rewards = { ExerciseWeaponBox(400) },
-					outfitRewards = {
-						{ outfitId = 1371, addons = 0 },
-						{ outfitId = 1372, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ThreaterOfCheapThrills.Raccoon1
 				},
 			})
 	end)

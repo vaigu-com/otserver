@@ -105,6 +105,17 @@ quest
 			expReward = 900000,
 		})
 		EscortRegistry:Register(ameeEscort)
+
+		QuestRewards.OutfitsAddons.ArielsFriend = {
+			Yalaharian3 = {
+				{ outfitId = 324, addons = 3 },
+				{ outfitId = 325, addons = 3 },
+			},
+			BattleMage0 = {
+				{ outfitId = 1069, addons = 0 },
+				{ outfitId = 1070, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -507,10 +518,7 @@ quest
 				[{ "mission", "misja", "dusza", "gertruda" }] = {
 					text = "GREAT! I will create a virgin from that soul just for myself!\nAs I promised, you can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
 					expReward = 750000,
-					outfitRewards = {
-						{ outfitId = 324, addons = 3 },
-						{ outfitId = 325, addons = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ArielsFriend.Yalaharian3,
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
 					},
@@ -801,10 +809,6 @@ quest
 		local insideLibrary = Position(32515, 32537, 12)
 		local outsideStandingPosition = Position(7683, 1637, 9)
 
-		local outfitRewards = {
-			{ outfitId = 1069, addons = 0 },
-			{ outfitId = 1070, addons = 0 },
-		}
 		mType.onSay = function(listener, talker, type, message)
 			local player = talker:getPlayer()
 			if not player then
@@ -822,7 +826,7 @@ quest
 
 			if player:getStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg) == QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument then
 				player:setStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg, MISSION_FINISHED)
-				player:AddOutfitsAndAddons(outfitRewards)
+				player:AddOutfitsAndAddons(QuestRewards.OutfitsAddons.ArielsFriend.BattleMage0)
 			end
 
 			if message:lower() == "chamek athra thull zathroth" then

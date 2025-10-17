@@ -8,3 +8,14 @@ QuestConstants = {}
 Questlog = {} --Questlog
 GlobalFunctions = {} --Ooga booga
 QuestCombat = {}
+QuestRewards = {
+	OutfitsAddons = {
+		Universal = {},
+	},
+	Items = {
+		Universal = {},
+	},
+	Mounts = {
+		Universal = {},
+	},
+}

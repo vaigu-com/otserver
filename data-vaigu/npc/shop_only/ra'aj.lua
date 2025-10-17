@@ -1,4 +1,8 @@
 Storage.RaajAssassinOutfit = {}
+QuestRewards.OutfitsAddons.Universal.Assassin0 = {
+	{ outfitId = 152, addons = 0 },
+	{ outfitId = 156, addons = 0 },
+}
 
 local name = "Ra'Aj"
 local outfit = {
@@ -41,10 +45,7 @@ local customDialogs = {
 		nextState = {
 			[Storage.RaajAssassinOutfit] = MISSION_FINISHED,
 		},
-		outfitRewards = {
-			{ outfitId = 152, addons = 0 },
-			{ outfitId = 156, addons = 0 },
-		},
+		outfitRewards = QuestRewards.OutfitsAddons.Universal.Assassin0,
 	},
 }
 

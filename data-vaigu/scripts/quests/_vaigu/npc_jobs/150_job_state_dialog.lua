@@ -26,6 +26,10 @@ local function buyTrophy(context)
 	player:IncrementStorage(Storage.Tasks.TaskPoints, -trophyCost)
 end
 
+QuestRewards.OutfitsAddons.Universal.Golden0 = { { outfitId = 1211, addons = 0 }, { outfitId = 1210, addons = 0 } }
+QuestRewards.OutfitsAddons.Universal.Golden1 = { { outfitId = 1211, addons = 1 }, { outfitId = 1210, addons = 1 } }
+QuestRewards.OutfitsAddons.Universal.Golden2 = { { outfitId = 1211, addons = 2 }, { outfitId = 1210, addons = 2 } }
+
 NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
 		[LOCALIZERS.Tasks] = {
@@ -187,10 +191,7 @@ NPC_STATE_DIALOGS = {
 								[ITEM_ATTRIBUTE_DESCRIPTION] = T("Unwrap it in your own house to create a :name:.", { name = ItemType(31510):getName() }),
 							},
 						},
-						outfitRewards = {
-							{ outfitId = 1211, addons = 0 },
-							{ outfitId = 1210, addons = 0 },
-						},
+						outfitRewards = QuestRewards.OutfitsAddons.Universal.Golden0,
 					},
 					[{ "yes", "tak" }] = {
 						text = "Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!",
@@ -200,10 +201,7 @@ NPC_STATE_DIALOGS = {
 						nextState = {
 							[Storage.GoldenOutfit.Helmet] = 1,
 						},
-						outfitRewards = {
-							{ outfitId = 1211, addons = 2 },
-							{ outfitId = 1210, addons = 2 },
-						},
+						outfitRewards = QuestRewards.OutfitsAddons.Universal.Golden2,
 					},
 					[{ "yes", "tak" }] = {
 						text = "Take these boots as a token of great gratitude. Let us forever remember this day, my friend!",
@@ -214,10 +212,7 @@ NPC_STATE_DIALOGS = {
 							[Storage.GoldenOutfit.Boots] = 1,
 							[Storage.GoldenOutfit.Full] = 1,
 						},
-						outfitRewards = {
-							{ outfitId = 1211, addons = 3 },
-							{ outfitId = 1210, addons = 3 },
-						},
+						outfitRewards = QuestRewards.OutfitsAddons.Universal.Golden1,
 					},
 				},
 			},

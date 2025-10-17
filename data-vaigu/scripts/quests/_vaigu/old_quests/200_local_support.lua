@@ -216,6 +216,28 @@ quest
 				[Storage.LocalSupport.VendorsAsked.GypsyAsked] = "Gypsy",
 			},
 		}
+		QuestRewards.OutfitsAddons.LocalSupport = {
+			FrostTracer0 = {
+				{ outfitId = 1613, addons = 0 },
+				{ outfitId = 1612, addons = 0 },
+			},
+			Jersey0 = {
+				{ outfitId = 619, addons = 0 },
+				{ outfitId = 620, addons = 0 },
+			},
+			Beggar0 = {
+				{ outfitId = 157, addons = 0 },
+				{ outfitId = 153, addons = 0 },
+			},
+			Beggar1 = {
+				{ outfitId = 157, addons = 1 },
+				{ outfitId = 153, addons = 1 },
+			},
+			Beggar2 = {
+				{ outfitId = 157, addons = 2 },
+				{ outfitId = 153, addons = 2 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -1209,10 +1231,7 @@ quest
 						[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
 						[Storage.Finished.UnwantedGuests] = MISSION_FINISHED,
 					},
-					outfitRewards = {
-						{ outfitId = 1613, addons = 0 },
-						{ outfitId = 1612, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.FrostTracer0,
 				},
 			}),
 			QuestFactory.Script(function()
@@ -1369,10 +1388,7 @@ quest
 						{ id = 9081 },
 						{ id = 9079, remove = false },
 					},
-					outfitRewards = {
-						{ outfitId = 619, addons = 0 },
-						{ outfitId = 620, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Jersey0,
 					nextState = {
 						[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
 						[Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED,
@@ -1867,10 +1883,7 @@ quest
 					rewards = {
 						{ id = 12807 },
 					},
-					outfitRewards = {
-						{ outfitId = 157, addons = 0 },
-						{ outfitId = 153, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar0,
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = QuestState.LocalSupport.SettledDownFishmonger.FindAndDevilerAnonFatherMissingItems,
 					},
@@ -1902,10 +1915,7 @@ quest
 						{ id = 7457 },
 					},
 					expReward = 12000,
-					outfitRewards = {
-						{ outfitId = 157, addons = 1 },
-						{ outfitId = 153, addons = 1 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar1,
 				},
 				[{ "float", "splawik" }] = {
 					text = "It fell into the small pond nearby once. I hope you find it.",
@@ -1951,10 +1961,7 @@ quest
 						{ id = 7250, count = 2 },
 						{ id = 3033, count = 5 },
 					},
-					outfitRewards = {
-						{ outfitId = 157, addons = 3 },
-						{ outfitId = 153, addons = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar2,
 					expReward = 80000,
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = MISSION_FINISHED,

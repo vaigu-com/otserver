@@ -36,6 +36,24 @@ quest
 		QuestKeyItems.RetroRulez = {
 			InfiniteCoal = { id = 11334, key = Storage.RetroRulez.InfiniteCoal },
 		}
+		QuestRewards.OutfitsAddons.RetroRulez = {
+			AllRetro0 = {
+				{ outfitId = 963, addons = 0 },
+				{ outfitId = 965, addons = 0 },
+				{ outfitId = 967, addons = 0 },
+				{ outfitId = 969, addons = 0 },
+				{ outfitId = 971, addons = 0 },
+				{ outfitId = 973, addons = 0 },
+				{ outfitId = 975, addons = 0 },
+				{ outfitId = 962, addons = 0 },
+				{ outfitId = 964, addons = 0 },
+				{ outfitId = 966, addons = 0 },
+				{ outfitId = 968, addons = 0 },
+				{ outfitId = 970, addons = 0 },
+				{ outfitId = 972, addons = 0 },
+				{ outfitId = 974, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -82,22 +100,7 @@ quest
 					nextState = {
 						[Storage.RetroRulez.CoalForPrzemek] = MISSION_FINISHED,
 					},
-					outfitRewards = {
-						{ outfitId = 963, addons = 0 },
-						{ outfitId = 965, addons = 0 },
-						{ outfitId = 967, addons = 0 },
-						{ outfitId = 969, addons = 0 },
-						{ outfitId = 971, addons = 0 },
-						{ outfitId = 973, addons = 0 },
-						{ outfitId = 975, addons = 0 },
-						{ outfitId = 962, addons = 0 },
-						{ outfitId = 964, addons = 0 },
-						{ outfitId = 966, addons = 0 },
-						{ outfitId = 968, addons = 0 },
-						{ outfitId = 970, addons = 0 },
-						{ outfitId = 972, addons = 0 },
-						{ outfitId = 974, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.RetroRulez.AllRetro0,
 					expReward = 1000000,
 				},
 				[{ "no", "nie" }] = {
