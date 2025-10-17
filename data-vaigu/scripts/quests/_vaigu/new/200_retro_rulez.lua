@@ -58,7 +58,7 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("GOD Przemek", {
 				[{ GREET }] = {
-					text = "Hello. We are are not finished with rewards room yet. We are short on unpickable locks, and out sculptor is late with the order. Also we have {issues} with infinite petrol lamps.",
+					text = "Hello. We are are not finished with rewards room yet. We are short on unpickable locks, and our sculptor is late with the order. Also we have {issues} with infinite petrol lamps.",
 				},
 				[{ "issues", "problemy" }] = {
 					text = "I left some of the supply with other fabulous items in warehouse at start of the dungeon. The warehouse is curently locked and the only way in is using a key. If you have problem with getting into the lab, i will leave a tip for you there later.",
@@ -113,7 +113,7 @@ quest
 			ItemId.CRYSTAL_COIN,
 		}
 		local maxCoinStack = 5
-		local function loadTileOrder()
+		function loadTileOrder()
 			tileOrder = {}
 			local corner1 = Position(6150, 1821, 11)
 			local corner2 = Position(6154, 1825, 11)

@@ -35,7 +35,7 @@ return {
 	["It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker."] = "Wcale nie bylo to takie trudne dla Shivganesha, odnies przetlumaczony list do Walkera.",
 	["You have received MirkoTown guard hat for your help."] = "W zamian za pomoc dostales Kapelusz straznika MirkoTown.",
 	["A Balanced Diet"] = "Dieta Grubego Mirka",
-	["The carrot was dogshit, and u received chocolate slush in for your effort."] = "Marchewka byla chujowa, ale dostales czekoladowa papke w zamian.",
+	["The carrot was dogshit, and u received some chocolate slush for your effort."] = "Marchewka byla chujowa, ale dostales czekoladowa papke w zamian.",
 	["Kitz's Dominando"] = "Dominando Kitza",
 	["Arrange a special bow from elf abode."] = "Zalatw specjalny luk z siedziby elfow.",
 	["You have received the item from Legolas. Go give it to Kitz."] = "Otrzymales luk od Legolasa, przekaz go Kitzowi.",

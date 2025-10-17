@@ -191,6 +191,10 @@ quest
 						[Storage.FashionistaOnanista.Mission01] = MISSION_FINISHED,
 						[Storage.FashionistaOnanista.Mission02] = QuestState.FashionistaOnanista.Mission02.AskOcellatusForNewMission,
 					},
+					outfitRewards = {
+						{ outfitId = 1332, addons = 0 },
+						{ outfitId = 1331, addons = 0 },
+					},
 				},
 			}),
 			QuestFactory.Script(function()
@@ -412,7 +416,7 @@ quest
 					specialActionsOnSuccess = {
 						{
 							action = function(context)
-								context.player:addMoney(context.amount * 100)
+								context.player:addMoney(tonumber(context.amount) * 100)
 							end,
 						},
 					},

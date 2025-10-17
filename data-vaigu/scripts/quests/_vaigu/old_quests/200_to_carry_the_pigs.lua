@@ -84,7 +84,7 @@ quest
 					storage = Storage.ToCarryThePigs.BalancedDiet,
 					states = {
 						[QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus] = "Collect 1 slimming carrot and bring it to Fat Myrrus.",
-						[MISSION_FINISHED] = "The carrot was dogshit, and u received chocolate slush in for your effort.",
+						[MISSION_FINISHED] = "The carrot was dogshit, and u received some chocolate slush for your effort.",
 					},
 				},
 				{
@@ -331,6 +331,10 @@ quest
 					expReward = 30000,
 					requiredState = {
 						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
+					},
+					outfitRewards = {
+						{ outfitId = 252, addons = 0 },
+						{ outfitId = 251, addons = 0 },
 					},
 				},
 			})

@@ -104,6 +104,14 @@ local unlockableOutfitAddons = {
 	UnlockableOutfitAddon():Male("Shaman", 154):Female("Shaman", 158):AddonOne({ { id = 3348, count = 5 }, { id = 3403, count = 5 } }):AddonTwo({ { id = 5810, count = 5 }, { id = 3002, count = 5 }, { id = 5014, count = 1 } }),
 	--UnlockableOutfitAddon():Male("Makeshift Warrior", 1042):Female("Makeshift Warrior", 1043):AddonOne({ { id = 19082, count = 5 } }):AddonTwo({ { id = 19082, count = 5 } }),
 	UnlockableOutfitAddon():Male("Battle Mage", 1069):Female("Battle Mage", 1070):AddonOne({ { id = 19082, count = 5 } }):AddonTwo({ { id = 19082, count = 5 } }),
+	UnlockableOutfitAddon():Male("Death Herald", 667):Female("Death Herald", 666):AddonOne({ { id = 8082, count = 1 } }):AddonTwo({ { id = 3203, count = 1 }, { id = 5727, count = 1 } }),
+	UnlockableOutfitAddon():Male("Field Surgeon", 1814):Female("Field Surgeon", 1815):AddonOne({ { id = 7419, count = 1 }, { id = 11473, count = 50 } }):AddonTwo({ { id = 3210, count = 1 }, { id = 12517, count = 10 } }),
+	UnlockableOutfitAddon():Male("Beastmaster", 637):Female("Beastmaster", 636):AddonOne({ { id = 24937, count = 30 } }):AddonTwo({ { id = 32073, count = 1 } }),
+	UnlockableOutfitAddon():Male("Jouster", 1331):Female("Jouster", 1332):AddonOne({ { id = 22652, count = 1 }, { id = 14683, count = 1 } }):AddonTwo({ { id = 7461, count = 1 } }),
+	UnlockableOutfitAddon():Male("Frost Tracer", 1612):Female("Frost Tracer", 1613):AddonOne({ { id = 16118, count = 1 } }):AddonTwo({ { id = 7446, count = 1 } }),
+	UnlockableOutfitAddon():Male("Forest Warden", 1415):Female("Forest Warden", 1416):AddonOne({ { id = 3130, count = 30 } }):AddonTwo({ { id = 830, count = 1 } }),
+	UnlockableOutfitAddon():Male("Winged Druid", 1831):Female("Winged Druid", 1832):AddonOne({ { id = 3038, count = 10 }, { id = 22183, count = 1 }, { id = 25742, count = 100 } }):AddonTwo({ { id = 3345, count = 1 }, { id = 5741, count = 1 } }),
+	UnlockableOutfitAddon():Male("Norseman", 251):Female("Norsewoman", 252):AddonOne({ { id = 12683, count = 1 } }):AddonTwo({ { id = 7459, count = 1 } }),
 }
 
 UnlockableOutfitAddonRegistry = {}

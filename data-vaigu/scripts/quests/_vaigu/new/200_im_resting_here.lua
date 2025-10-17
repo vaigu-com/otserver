@@ -131,6 +131,10 @@ quest
 						player:say(translatedMessage, TALKTYPE_MONSTER_SAY)
 					elseif player:TryTradeInItems({ QuestKeyItems.ImRestingHere.Crowbar }, { QuestKeyItems.ImRestingHere.LastWill }) then
 						player:NextState(updateStorages)
+						player:AddOutfitsAndAddons({
+							{ outfitId = 666, addons = 0 },
+							{ outfitId = 667, addons = 0 },
+						})
 					end
 
 					return true

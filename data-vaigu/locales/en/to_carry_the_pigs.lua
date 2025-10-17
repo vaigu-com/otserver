@@ -35,7 +35,7 @@ return {
 	["It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker."] = "It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker.",
 	["You have received MirkoTown guard hat for your help."] = "You have received MirkoTown guard hat for your help.",
 	["A Balanced Diet"] = "A Balanced Diet",
-	["The carrot was dogshit, and u received chocolate slush in for your effort."] = "The carrot was dogshit, and u received chocolate slush in for your effort.",
+	["The carrot was dogshit, and u received some chocolate slush for your effort."] = "The carrot was dogshit, and u received some chocolate slush for your effort.",
 	["Kitz's Dominando"] = "Kitz's Dominando",
 	["Arrange a special elvish bow for Kitz."] = "Arrange a special elvish bow for Kitz.",
 	["You have received the bow from Legolas. Go give it to Kitz."] = "You have received the bow from Legolas. Go give it to Kitz.",

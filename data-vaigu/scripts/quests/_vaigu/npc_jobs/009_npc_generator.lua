@@ -60,13 +60,13 @@ end
 local function appendStatistics(allDialogs, npcName)
 	for keyWords, dialog in pairs(allDialogs[LOCALIZERS.Universal]) do
 		if not dialog.text then
-			local keywordsStr = (function(keywords)
+			local keywordsStr = (function()
 				local result = ""
 				for key, value in pairs(keyWords) do
 					result = result .. value .. ", "
 				end
 				return result
-			end)(keywords)
+			end)()
 			warnNoTextInDialog(keywordsStr, npcName)
 		else
 			MissingStrings:TestAllLanaguages(dialog.text, LOCALIZERS.Universal)

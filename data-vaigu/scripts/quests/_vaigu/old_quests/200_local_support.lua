@@ -1209,6 +1209,10 @@ quest
 						[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
 						[Storage.Finished.UnwantedGuests] = MISSION_FINISHED,
 					},
+					outfitRewards = {
+						{ outfitId = 1613, addons = 0 },
+						{ outfitId = 1612, addons = 0 },
+					},
 				},
 			}),
 			QuestFactory.Script(function()

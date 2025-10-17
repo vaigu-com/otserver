@@ -531,9 +531,27 @@ end
 
 RewardsRegistry = {}
 RewardsRegistry.__index = RewardsRegistry
+RewardsRegistry.questRewardOutfitIds = {}
 RewardsRegistry.registry = {
 	outfitAddons = {},
 }
+
+function RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore()
+	local gamestoreOutfitIds = {}
+	for key, category in pairs(GameStore.Categories) do
+		for key, offer in pairs(category.offers or {}) do
+			for key, outfitId in pairs(offer.sexId or {}) do
+				table.insert(gamestoreOutfitIds, outfitId)
+			end
+		end
+	end
+	for questRewardOutfitId, _  in pairs(self.questRewardOutfitIds) do
+		if table.contains(gamestoreOutfitIds, questRewardOutfitId) then
+			local name = Game.getOutfitNameByLookType(questRewardOutfitId)
+			logger.warn(T("[RewardsRegistry:ValidateOutfitsQuestRewardsVsGamestore] Outfit :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.",{ name = name, id = questRewardOutfitId }))
+		end
+	end
+end
 
 function RewardsRegistry:AddOutfitsAndAddons(outfitsAndAddons, npcName, missionOrLocalizer, state)
 	state = state or "NONE"
@@ -550,6 +568,7 @@ function RewardsRegistry:AddOutfitsAndAddons(outfitsAndAddons, npcName, missionO
 		end
 		str = str .. T("{ outfitId = :outfitId:, addons = :addons:},\n", { outfitId = outfitId, addons = addons })
 		table.insert(self.registry.outfitAddons, str)
+		self.questRewardOutfitIds[outfitId] = true
 	end
 end
 
