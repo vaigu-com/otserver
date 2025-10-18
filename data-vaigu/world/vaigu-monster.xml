@@ -37,6 +37,30 @@
 	<monster centerx="4905" centery="655" centerz="0" radius="1">
 		<monster name="Old Dark Magician" x="0" y="0" z="0" spawntime="90" />
 	</monster>
+	<monster centerx="6541" centery="732" centerz="0" radius="1">
+		<monster name="Serpent Spawn" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6539" centery="733" centerz="0" radius="1">
+		<monster name="Serpent Spawn" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6545" centery="733" centerz="0" radius="1">
+		<monster name="Serpent Spawn" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6543" centery="736" centerz="0" radius="1">
+		<monster name="Medusa" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6537" centery="737" centerz="0" radius="1">
+		<monster name="Medusa" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6545" centery="737" centerz="0" radius="1">
+		<monster name="Medusa" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6545" centery="739" centerz="0" radius="1">
+		<monster name="Behemoth" x="0" y="0" z="0" spawntime="60" />
+	</monster>
+	<monster centerx="6545" centery="741" centerz="0" radius="1">
+		<monster name="Serpent Spawn" x="0" y="0" z="0" spawntime="60" />
+	</monster>
 	<monster centerx="6816" centery="992" centerz="0" radius="3">
 		<monster name="Cobra Assassin" x="-1" y="0" z="0" spawntime="90" />
 		<monster name="Cobra Vizier" x="0" y="0" z="0" spawntime="90" />
@@ -6935,12 +6959,8 @@
 	<monster centerx="6806" centery="456" centerz="5" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
 	</monster>
-	<monster centerx="6812" centery="458" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="-1" y="-1" z="5" spawntime="90" />
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="6773" centery="461" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
+	<monster centerx="6806" centery="458" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6804" centery="462" centerz="5" radius="1">
 		<monster name="Parder" x="0" y="0" z="5" spawntime="90" />
@@ -6949,9 +6969,6 @@
 		<monster name="Parder" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6772" centery="468" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="6778" centery="468" centerz="5" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6851" centery="469" centerz="5" radius="1">
@@ -6963,24 +6980,11 @@
 	<monster centerx="6782" centery="472" centerz="5" radius="1">
 		<monster name="Parder" x="0" y="0" z="5" spawntime="90" />
 	</monster>
-	<monster centerx="6792" centery="473" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
+	<monster centerx="6786" centery="473" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
 	</monster>
-	<monster centerx="6773" centery="474" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="6785" centery="476" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="6769" centery="477" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
-		<monster name="Jungle Moa" x="1" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="6792" centery="480" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="6770" centery="481" centerz="5" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="5" spawntime="90" />
+	<monster centerx="6770" centery="480" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6680" centery="489" centerz="5" radius="1">
 		<monster name="Serpent Spawn" x="0" y="0" z="5" spawntime="90" />
@@ -13192,14 +13196,11 @@
 	<monster centerx="7718" centery="247" centerz="6" radius="1">
 		<monster name="Hugo House Guard" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="6807" centery="428" centerz="6" radius="1">
+		<monster name="Parder" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6807" centery="431" centerz="6" radius="1">
 		<monster name="Parder" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="6807" centery="433" centerz="6" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="6808" centery="435" centerz="6" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6815" centery="436" centerz="6" radius="1">
 		<monster name="Parder" x="0" y="0" z="6" spawntime="90" />
@@ -13234,9 +13235,6 @@
 	<monster centerx="6740" centery="454" centerz="6" radius="1">
 		<monster name="Parder" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="6738" centery="455" centerz="6" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6782" centery="455" centerz="6" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -13260,11 +13258,11 @@
 		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6713" centery="462" centerz="6" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Parder" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6729" centery="463" centerz="6" radius="1">
 		<monster name="Jungle Moa" x="-1" y="-1" z="6" spawntime="90" />
-		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Parder" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6711" centery="464" centerz="6" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
@@ -13289,7 +13287,7 @@
 		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6717" centery="479" centerz="6" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Parder" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6846" centery="487" centerz="6" radius="1">
 		<monster name="Lizard Zaogun" x="0" y="0" z="6" spawntime="90" />
@@ -23530,6 +23528,12 @@
 	<monster centerx="6735" centery="446" centerz="7" radius="1">
 		<monster name="Parder" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="6722" centery="447" centerz="7" radius="1">
+		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="6729" centery="448" centerz="7" radius="1">
+		<monster name="Parder" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6761" centery="450" centerz="7" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -23537,12 +23541,6 @@
 		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6831" centery="452" centerz="7" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="6722" centery="453" centerz="7" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="6727" centery="454" centerz="7" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6823" centery="454" centerz="7" radius="1">
@@ -23606,9 +23604,6 @@
 		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6879" centery="487" centerz="7" radius="1">
-		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="6750" centery="494" centerz="7" radius="1">
 		<monster name="Jungle Moa" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6683" centery="495" centerz="7" radius="1">
@@ -55056,21 +55051,61 @@
 	<monster centerx="6319" centery="473" centerz="8" radius="1">
 		<monster name="Undead Dragon" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6843" centery="481" centerz="8" radius="1">
-		<monster name="Snake God Follower" x="-1" y="-1" z="8" spawntime="90" />
-		<monster name="Lizard Abomination" x="0" y="-1" z="8" spawntime="90" />
+	<monster centerx="6739" centery="478" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6752" centery="480" centerz="8" radius="1">
+		<monster name="Parder" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6740" centery="481" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6314" centery="482" centerz="8" radius="2">
 		<monster name="Betrayed Wraith" x="-2" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="6771" centery="482" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6765" centery="484" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6777" centery="485" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Jungle Moa" x="0" y="1" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6781" centery="485" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+		<monster name="Jungle Moa" x="-1" y="1" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6721" centery="486" centerz="8" radius="1">
+		<monster name="Parder" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6752" centery="487" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6728" centery="490" centerz="8" radius="1">
+		<monster name="Parder" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6777" centery="491" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6299" centery="497" centerz="8" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="6735" centery="497" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6743" centery="499" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6298" centery="500" centerz="8" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6305" centery="500" centerz="8" radius="1">
 		<monster name="Hellspawn" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="6722" centery="500" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6319" centery="501" centerz="8" radius="5">
 		<monster name="Grim Reaper" x="1" y="-1" z="8" spawntime="90" />
@@ -55091,8 +55126,18 @@
 	<monster centerx="6274" centery="509" centerz="8" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="6732" centery="509" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
+	<monster centerx="6737" centery="509" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6318" centery="511" centerz="8" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="6734" centery="511" centerz="8" radius="1">
+		<monster name="Jungle Moa" x="-1" y="0" z="8" spawntime="60" />
+		<monster name="Jungle Moa" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6270" centery="513" centerz="8" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="8" spawntime="90" />
@@ -56132,6 +56177,10 @@
 	</monster>
 	<monster centerx="6387" centery="707" centerz="8" radius="1">
 		<monster name="Enfeebled Silencer" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="6514" centery="707" centerz="8" radius="1">
+		<monster name="Snake God Follower" x="-1" y="-1" z="8" spawntime="90" />
+		<monster name="Lizard Abomination" x="0" y="-1" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6604" centery="707" centerz="8" radius="1">
 		<monster name="Corym Skirmisher" x="0" y="0" z="8" spawntime="90" />
@@ -68116,11 +68165,40 @@
 	<monster centerx="6286" centery="468" centerz="9" radius="1">
 		<monster name="Undead Dragon" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="6756" centery="472" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Jungle Moa" x="1" y="1" z="9" spawntime="-897357312" />
+	</monster>
 	<monster centerx="6283" centery="473" centerz="9" radius="3">
 		<monster name="Dark Torturer" x="3" y="-1" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="6760" centery="473" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Jungle Moa" x="0" y="1" z="9" spawntime="-897357312" />
+	</monster>
+	<monster centerx="6739" centery="474" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Jungle Moa" x="1" y="0" z="9" spawntime="-897357312" />
+		<monster name="Jungle Moa" x="1" y="1" z="9" spawntime="-897357312" />
+	</monster>
+	<monster centerx="6741" centery="475" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="-897357312" />
+	</monster>
+	<monster centerx="6758" centery="478" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6318" centery="480" centerz="9" radius="3">
 		<monster name="Betrayed Wraith" x="1" y="1" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="6722" centery="480" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="-897357312" />
+		<monster name="Jungle Moa" x="0" y="1" z="9" spawntime="-897357312" />
+	</monster>
+	<monster centerx="6744" centery="480" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6721" centery="482" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6293" centery="483" centerz="9" radius="1">
 		<monster name="Floating Savant" x="0" y="0" z="9" spawntime="90" />
@@ -68131,14 +68209,37 @@
 	<monster centerx="6318" centery="487" centerz="9" radius="3">
 		<monster name="Fury" x="1" y="2" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="6750" centery="487" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6295" centery="493" centerz="9" radius="1">
 		<monster name="Floating Savant" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="6730" centery="493" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6767" centery="493" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6728" centery="495" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6741" centery="496" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6627" centery="497" centerz="9" radius="1">
 		<monster name="Hydra" x="0" y="0" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="6633" centery="498" centerz="9" radius="1">
 		<monster name="Medusa" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="6778" centery="499" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="-1" y="0" z="9" spawntime="-897357312" />
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Jungle Moa" x="-1" y="1" z="9" spawntime="-897357312" />
+	</monster>
+	<monster centerx="6776" centery="500" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="-897357312" />
 	</monster>
 	<monster centerx="6318" centery="501" centerz="9" radius="3">
 		<monster name="Undead Dragon" x="-3" y="-3" z="9" spawntime="90" />
@@ -68147,6 +68248,12 @@
 	</monster>
 	<monster centerx="6626" centery="501" centerz="9" radius="1">
 		<monster name="Serpent Spawn" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="6742" centery="503" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6744" centery="503" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6631" centery="505" centerz="9" radius="1">
 		<monster name="Eternal Guardian" x="0" y="0" z="9" spawntime="90" />
@@ -68157,11 +68264,28 @@
 	<monster centerx="6604" centery="507" centerz="9" radius="1">
 		<monster name="Serpent Spawn" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="6737" centery="507" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="6766" centery="507" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="6610" centery="508" centerz="9" radius="1">
 		<monster name="Hydra" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="6759" centery="508" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Jungle Moa" x="1" y="0" z="9" spawntime="-897357312" />
+	</monster>
+	<monster centerx="6761" centery="510" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
+		<monster name="Jungle Moa" x="0" y="1" z="9" spawntime="-897357312" />
+	</monster>
 	<monster centerx="6603" centery="511" centerz="9" radius="1">
 		<monster name="Medusa" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="6762" centery="512" centerz="9" radius="1">
+		<monster name="Jungle Moa" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6296" centery="514" centerz="9" radius="3">
 		<monster name="Fury" x="2" y="-2" z="9" spawntime="90" />
@@ -93515,6 +93639,9 @@
 	<monster centerx="6700" centery="1080" centerz="12" radius="1">
 		<monster name="Dragon Lord" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="6503" centery="1083" centerz="12" radius="1">
+		<monster name="Bog Raider" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6511" centery="1083" centerz="12" radius="1">
 		<monster name="Giant Spider" x="0" y="0" z="12" spawntime="90" />
 	</monster>
@@ -93543,7 +93670,7 @@
 		<monster name="Dragonling" x="0" y="0" z="12" spawntime="90" />
 	</monster>
 	<monster centerx="6504" centery="1096" centerz="12" radius="1">
-		<monster name="Giant Spider" x="0" y="0" z="12" spawntime="90" />
+		<monster name="Bog Raider" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6625" centery="1096" centerz="12" radius="1">
 		<monster name="Fire Elemental" x="0" y="0" z="12" spawntime="90" />
@@ -93699,7 +93826,7 @@
 	<monster centerx="7712" centery="1129" centerz="12" radius="1">
 		<monster name="Behemoth" x="0" y="0" z="12" spawntime="90" />
 	</monster>
-	<monster centerx="6604" centery="1130" centerz="12" radius="1">
+	<monster centerx="6596" centery="1130" centerz="12" radius="1">
 		<monster name="Dragon Lord" x="0" y="0" z="12" spawntime="90" />
 	</monster>
 	<monster centerx="7068" centery="1130" centerz="12" radius="1">
@@ -102037,6 +102164,15 @@
 	<monster centerx="6484" centery="1083" centerz="14" radius="1">
 		<monster name="Bog Raider" x="0" y="0" z="14" spawntime="90" />
 	</monster>
+	<monster centerx="6528" centery="1083" centerz="14" radius="1">
+		<monster name="Bog Raider" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6524" centery="1095" centerz="14" radius="1">
+		<monster name="Bog Raider" x="0" y="0" z="14" spawntime="60" />
+	</monster>
+	<monster centerx="6529" centery="1095" centerz="14" radius="1">
+		<monster name="Bog Raider" x="0" y="0" z="14" spawntime="60" />
+	</monster>
 	<monster centerx="6643" centery="1096" centerz="14" radius="1">
 		<monster name="Massive Fire Elemental" x="0" y="0" z="14" spawntime="90" />
 	</monster>
@@ -102048,6 +102184,9 @@
 	</monster>
 	<monster centerx="6641" centery="1102" centerz="14" radius="1">
 		<monster name="Massive Fire Elemental" x="0" y="0" z="14" spawntime="90" />
+	</monster>
+	<monster centerx="6517" centery="1108" centerz="14" radius="1">
+		<monster name="Bog Raider" x="0" y="0" z="14" spawntime="60" />
 	</monster>
 	<monster centerx="6550" centery="1118" centerz="14" radius="1">
 		<monster name="Drillworm" x="0" y="0" z="14" spawntime="90" />
