@@ -5329,9 +5329,13 @@ QuickLootFilter_t Player::getQuickLootFilter() const {
 	return quickLootFilter;
 }
 
-std::vector<std::shared_ptr<Item>> Player::getInventoryItemsFromId(uint16_t itemId, bool ignore /*= true*/) const {
+std::vector<std::shared_ptr<Item>> Player::getInventoryItemsFromId(uint16_t itemId, bool ignore /*= true*/, bool ignoreStoreInbox /*= false*/) const {
 	std::vector<std::shared_ptr<Item>> itemVector;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
+		if (ignoreStoreInbox && i == CONST_SLOT_STORE_INBOX) {
+			continue;
+		}
+
 		const auto &item = inventory[i];
 		if (!item) {
 			continue;
@@ -5464,9 +5468,12 @@ ItemsTierCountList Player::getDepotInboxItemsId() const {
 	return itemMap;
 }
 
-std::vector<std::shared_ptr<Item>> Player::getAllInventoryItems(bool ignoreEquiped /*= false*/, bool ignoreItemWithTier /* false*/) const {
+std::vector<std::shared_ptr<Item>> Player::getAllInventoryItems(bool ignoreEquiped /*= false*/, bool ignoreItemWithTier /* false*/, bool ignoreStoreInbox /* false*/) const {
 	std::vector<std::shared_ptr<Item>> itemVector;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
+		if (ignoreStoreInbox && i == CONST_SLOT_STORE_INBOX) {
+			continue;
+		}
 		const auto &item = inventory[i];
 		if (!item) {
 			continue;
@@ -5553,7 +5560,7 @@ std::map<uint32_t, uint32_t> &Player::getAllItemTypeCount(std::map<uint32_t, uin
 }
 
 std::map<uint16_t, uint16_t> &Player::getAllSaleItemIdAndCount(std::map<uint16_t, uint16_t> &countMap) const {
-	for (const auto &item : getAllInventoryItems(false, true)) {
+	for (const auto &item : getAllInventoryItems(false, true, true)) {
 		if (item->getID() != ITEM_GOLD_POUCH) {
 			if (!item->hasMarketAttributes()) {
 				continue;

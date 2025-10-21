@@ -1313,7 +1313,7 @@ public:
 	QuickLootFilter_t getQuickLootFilter() const;
 
 	// Get specific inventory item from itemid
-	std::vector<std::shared_ptr<Item>> getInventoryItemsFromId(uint16_t itemId, bool ignore = true) const;
+	std::vector<std::shared_ptr<Item>> getInventoryItemsFromId(uint16_t itemId, bool ignore = true, bool ignoreStoreInbox = false) const;
 
 	// this get all player store inbox items and return as ItemsTierCountList
 	ItemsTierCountList getStoreInboxItemsId() const;
@@ -1323,7 +1323,7 @@ public:
 	ItemsTierCountList getDepotInboxItemsId() const;
 
 	// This get all player inventory items
-	std::vector<std::shared_ptr<Item>> getAllInventoryItems(bool ignoreEquiped = false, bool ignoreItemWithTier = false) const;
+	std::vector<std::shared_ptr<Item>> getAllInventoryItems(bool ignoreEquiped = false, bool ignoreItemWithTier = false, bool ignoreStoreInbox = false) const;
 
 	// This get all players slot items
 	phmap::flat_hash_map<uint8_t, std::shared_ptr<Item>> getAllSlotItems() const;

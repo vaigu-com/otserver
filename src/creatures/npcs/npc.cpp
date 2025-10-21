@@ -483,6 +483,11 @@ void Npc::onPlayerSellAllLoot(uint32_t playerId, uint16_t itemId, bool ignore, u
 			if (!item) {
 				continue;
 			}
+			if (!item->getAttribute<std::string>(ItemAttribute_t::KEY).empty()) {
+				g_logger().error("{} Player with id {} has item with key '{}' inside gold pouch and they tried to sell it.", __FUNCTION__, playerId, item->getAttribute<std::string>(ItemAttribute_t::KEY));
+				continue;
+			}
+
 			toSell[item->getID()] += item->getItemAmount();
 			if (item->isStackable()) {
 				toSellCount++;
@@ -536,7 +541,7 @@ void Npc::onPlayerSellItem(const std::shared_ptr<Player> &player, uint16_t itemI
 	}
 
 	auto toRemove = amount;
-	for (const auto &item : player->getInventoryItemsFromId(itemId, ignore)) {
+	for (const auto &item : player->getInventoryItemsFromId(itemId, ignore, true)) {
 		if (!item || item->getTier() > 0 || item->hasImbuements()) {
 			continue;
 		}
