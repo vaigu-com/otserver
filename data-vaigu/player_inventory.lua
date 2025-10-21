@@ -248,8 +248,8 @@ end
 function Player:ErrorIfHasNotEnoughCapacity(requiredCap)
 	local playerFreeCap = self:getFreeCapacity()
 	if requiredCap > playerFreeCap then
-		local lackingCap = tostring(math.abs(playerFreeCap - requiredCap)) / 100
-		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap, lackingCap = lackingCap })
+		local lackingCap = math.abs(playerFreeCap - requiredCap)
+		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap/100, lackingCap = lackingCap/100 })
 	end
 	return true
 end

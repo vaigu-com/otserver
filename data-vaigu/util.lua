@@ -595,7 +595,7 @@ function Player:AddOutfitsAndAddons(outfitsAndAddons)
 	for _, data in pairs(outfitsAndAddons) do
 		local outfitId = data.outfitId or data.outfit or data.id or data.lookType or data.looktype
 		local addon = data.addon or data.addons or 0
-		local sex = data.sex or Game.getOutfitSexByLookType(lookType)
+		local sex = Game.getOutfitSexByLookType(outfitId)
 
 		self:addOutfit(outfitId)
 		if addon then
