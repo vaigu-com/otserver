@@ -145,7 +145,7 @@ int ContainerFunctions::luaContainerHasItem(lua_State* L) {
 }
 
 int ContainerFunctions::luaContainerAddItem(lua_State* L) {
-	// container:addItem(itemId[, count/subType = 1[, index = INDEX_WHEREEVER[, flags = 0]]])
+	// container:addItem(itemId[, count/subType = 1[, index = INDEX_WHEREEVER[, flags = 0[, key = ""]]]])
 	const auto &container = Lua::getUserdataShared<Container>(L, 1, "Container");
 	if (!container) {
 		lua_pushnil(L);
@@ -180,6 +180,10 @@ int ContainerFunctions::luaContainerAddItem(lua_State* L) {
 
 	const auto index = Lua::getNumber<int32_t>(L, 4, INDEX_WHEREEVER);
 	const auto flags = Lua::getNumber<uint32_t>(L, 5, 0);
+	const auto key = Lua::getString(L, 6, "");
+	if (!key.empty()) {
+		item->setAttribute(ItemAttribute_t::KEY,key);
+	}
 
 	ReturnValue ret = g_game().internalAddItem(container, item, index, flags);
 	if (ret == RETURNVALUE_NOERROR) {

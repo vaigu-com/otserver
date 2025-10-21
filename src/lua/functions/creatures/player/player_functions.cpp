@@ -2237,7 +2237,7 @@ int PlayerFunctions::luaPlayerSetStorageValue(lua_State* L) {
 }
 
 int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
-	// player:addItem(itemId, count = 1, canDropOnMap = true, subType = 1, slot = CONST_SLOT_WHEREEVER, tier = 0)
+	// player:addItem(itemId, count = 1, canDropOnMap = true, subType = 1, slot = CONST_SLOT_WHEREEVER, tier = 0, key = "")
 	const auto &player = Lua::getUserdataShared<Player>(L, 1, "Player");
 	if (!player) {
 		Lua::pushBoolean(L, false);
@@ -2262,9 +2262,7 @@ int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
 
 	int32_t itemCount = 1;
 	const int parameters = lua_gettop(L);
-	if (parameters >= 4) {
-		itemCount = std::max<int32_t>(1, count);
-	} else if (it.hasSubType()) {
+	if (it.hasSubType()) {
 		if (it.stackable) {
 			itemCount = std::ceil(count / static_cast<float_t>(it.stackSize));
 		}
@@ -2285,6 +2283,7 @@ int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
 	const bool canDropOnMap = Lua::getBoolean(L, 4, true);
 	const auto slot = Lua::getNumber<Slots_t>(L, 6, CONST_SLOT_WHEREEVER);
 	const auto tier = Lua::getNumber<uint8_t>(L, 7, 0);
+	const auto key = Lua::getString(L, 8, "");
 	for (int32_t i = 1; i <= itemCount; ++i) {
 		int32_t stackCount = subType;
 		if (it.stackable) {
@@ -2302,6 +2301,10 @@ int PlayerFunctions::luaPlayerAddItem(lua_State* L) {
 
 		if (tier > 0) {
 			item->setTier(tier);
+		}
+
+		if (!key.empty()) {
+			item->setAttribute(ItemAttribute_t::KEY, key);
 		}
 
 		ReturnValue ret = g_game().internalPlayerAddItem(player, item, canDropOnMap, slot);
