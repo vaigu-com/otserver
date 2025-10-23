@@ -61,8 +61,8 @@ function GlobalEvent(eventName) end
 ---@field onAdvance fun(player:Player, skill: skills_t, oldLevel: integer, newLevel: integer): boolean|nil
 ---@field onModalWindow fun(player: Player, modalWindowId: integer, buttonId: integer, choiceId: integer): boolean|nil
 ---@field onTextEdit fun(player: Player, item: Item, text: string): boolean|nil
----@field onHealthChange fun(victim: Creature, attacker: Creature|nil, primaryDamage: integer, primaryType:CombatType_t,secondaryDamage:integer, secondaryType:CombatType_t, origin:): boolean|nil
----@field onManaChange fun(victim: Creature, attacker: Creature|nil, primaryDamage: integer, primaryType:CombatType_t,secondaryDamage:integer, secondaryType:CombatType_t, origin:): boolean|nil
+---@field onHealthChange fun(victim: Creature, attacker: Creature|nil, primaryDamage: integer, primaryType:CombatType_t,secondaryDamage:integer, secondaryType:CombatType_t, origin): integer,CombatType_t,integer,CombatType_t
+---@field onManaChange fun(victim: Creature, attacker: Creature|nil, primaryDamage: integer, primaryType:CombatType_t,secondaryDamage:integer, secondaryType:CombatType_t, origin): boolean|nil
 ---@field onExtendedOpcode fun(player: Player, opcode: integer, buffer: string): boolean|nil
 ---@param eventname any
 ---@return CreatureEvent
