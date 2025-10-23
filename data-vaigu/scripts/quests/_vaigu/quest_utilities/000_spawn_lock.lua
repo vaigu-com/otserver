@@ -115,8 +115,8 @@ end
 function SpawnLock:Reset()
 	self.state = SPAWN_LOCK_STATE.NOT_SET
 
-	self:onReset()
 	SpawnLockRegistry:Remove(self)
+	self:onReset()
 	return self
 end
 
