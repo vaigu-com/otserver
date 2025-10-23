@@ -354,10 +354,26 @@ local function addItemContainerHandleFluid(container, normalizedData)
 	local addedItems = {}
 	if IsFluidContainer(normalizedData.id) then
 		for _ = 1, normalizedData.count do
-			addedItems = container:addItem(normalizedData.id, normalizedData.fluidType,nil,nil,normalizedData.key)
+			table.insert(addedItems, container:addItem(normalizedData.id, normalizedData.fluidType,nil,nil,normalizedData.key))
 		end
 	else
 		addedItems = container:addItem(normalizedData.id, normalizedData.count,nil,nil,normalizedData.key)
+	end
+
+	return addedItems
+end
+
+---@param container Container
+---@param normalizedData table
+---@return ItemEx[]
+local function addItemStoreInboxHandleFluid(container, normalizedData)
+	local addedItems = {}
+	if IsFluidContainer(normalizedData.id) then
+		for _ = 1, normalizedData.count do
+			table.insert(addedItems, container:addItem(normalizedData.id, normalizedData.fluidType, INDEX_WHEREEVER, FLAG_NOLIMIT, normalizedData.key))
+		end
+	else
+		addedItems = container:addItem(normalizedData.id, normalizedData.count, INDEX_WHEREEVER, FLAG_NOLIMIT, normalizedData.key)
 	end
 
 	return addedItems
@@ -370,7 +386,7 @@ function addItemPlayerHandleFluid(player, normalizedData)
 	local addedItems = {}
 	if IsFluidContainer(normalizedData.id) then
 		for _ = 1, normalizedData.count do
-			addedItems = player:addItem(normalizedData.id, normalizedData.fluidType,nil,nil,nil,nil,normalizedData.key)
+			table.insert(addedItems, player:addItem(normalizedData.id, normalizedData.fluidType,nil,nil,nil,nil,normalizedData.key))
 		end
 	else
 		addedItems = player:addItem(normalizedData.id, normalizedData.count,nil,nil,nil,nil,normalizedData.key)
@@ -379,15 +395,15 @@ function addItemPlayerHandleFluid(player, normalizedData)
 	return addedItems
 end
 
-local function createPermanentItemsInner(items, destinationContainerEx, storeInbox)
+local function createPermanentItemsInner(items, destinationContainerEx, storeInbox, localizer)
 	for containerId, itemOrItems in pairs(items) do
 		if ItemType(containerId):isContainer() then
 			local containerEx = Game.createItem(containerId)
 			createPermanentItemsInner(itemOrItems, containerEx, storeInbox)
 		else
-			local normalizedData = normalizedItemData(itemOrItems)
+			local normalizedData = normalizedItemData(itemOrItems, localizer)
 			if shouldAddToStore(normalizedData) then
-				local addedItems = addItemContainerHandleFluid(storeInbox, normalizedData)
+				local addedItems = addItemStoreInboxHandleFluid(storeInbox, normalizedData)
 				setFields(addedItems, normalizedData)
 			else
 				local addedItems = addItemContainerHandleFluid(destinationContainerEx, normalizedData)
@@ -397,7 +413,7 @@ local function createPermanentItemsInner(items, destinationContainerEx, storeInb
 	end
 end
 
-local function generateItemsPermanent(items, player)
+local function generateItemsPermanent(items, player, localizer)
 	local itemsToAdd = ItemExList()
 	local itemsToAddStore = ItemExList()
 	local storeInbox = player:getStoreInbox()
@@ -406,11 +422,11 @@ local function generateItemsPermanent(items, player)
 		if ItemType(containerId):isContainer() then
 			local containerEx = player:addItem(containerId)
 			itemsToAdd:AddItemOrTable(containerEx)
-			createPermanentItemsInner(itemOrItems, containerEx, storeInbox)
+			createPermanentItemsInner(itemOrItems, containerEx, storeInbox, localizer)
 		else
-			local normalizedData = normalizedItemData(itemOrItems)
+			local normalizedData = normalizedItemData(itemOrItems, localizer)
 			if shouldAddToStore(normalizedData) then
-				local addedItems = addItemContainerHandleFluid(storeInbox, normalizedData)
+				local addedItems = addItemStoreInboxHandleFluid(storeInbox, normalizedData)
 				setFields(addedItems, normalizedData)
 				if normalizedData.dontAnnounce ~= true then
 					itemsToAddStore:AddItemOrTable(addedItems)
@@ -496,8 +512,8 @@ function Player:AnnounceAddedItemsStore(addedItemsStore)
 	end
 end
 
-function Player:AddItemsAnnounce(items)
-	local addedItemsNonStore, addedItemsStore = generateItemsPermanent(items, self)
+function Player:AddItemsAnnounce(items, localizer)
+	local addedItemsNonStore, addedItemsStore = generateItemsPermanent(self, items, localizer)
 	self:AnnounceAddedItemsNonStore(addedItemsNonStore:Get())
 	self:AnnounceAddedItemsStore(addedItemsStore:Get())
 	return true
@@ -505,7 +521,7 @@ end
 
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param itemData table
-function Player:AddCustomItem(itemData)
-	self:AddItemsAnnounce({ itemData })
+function Player:AddCustomItem(itemData, localizer)
+	self:AddItemsAnnounce({ itemData }, localizer)
 	return true
 end
