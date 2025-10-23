@@ -293,7 +293,7 @@ end
 DialogContext = {}
 DialogContext.__index = DialogContext
 setmetatable(DialogContext, {
-	__call = function(class, player, msg, npcDialogData, npcHandler, npc, specialMessageType)
+	__call = function(class, player, msg, npcDialogData, npcHandler, npc, specialMessageType, incomprehensibleError)
 		local instance = setmetatable({}, class)
 		instance.player = player
 		instance.cid = player:getId()
@@ -308,6 +308,7 @@ setmetatable(DialogContext, {
 		instance.requirements = nil
 		instance.resolvedStatus = nil
 		instance.patternFields = {}
+		instance.incomprehensibleError = incomprehensibleError
 		return instance
 	end,
 })
@@ -448,9 +449,9 @@ function DialogContext:PlayerSaidRequiredWord()
 end
 
 -- refer to quest_system_doc.lua for guidelines
-function TryResolveDialog(player, msg, npcDialogData, npcHandler, npc, messageType)
+function TryResolveDialog(player, msg, npcDialogData, npcHandler, npc, messageType, incomprehensibleError)
 	player = Player(player)
-	local dialogContext = DialogContext(player, msg, npcDialogData, npcHandler, npc, messageType)
+	local dialogContext = DialogContext(player, msg, npcDialogData, npcHandler, npc, messageType, incomprehensibleError)
 	return dialogContext:TryResolveDialog():IsResolved()
 end
 
