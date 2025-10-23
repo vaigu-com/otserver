@@ -46,16 +46,13 @@ SaveManager &SaveManager::getInstance() {
 std::vector<std::string> SaveManager::flushOffline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>>& players){
 	std::vector<std::string> justLoggedOutPlayerGuids;
 	for (const auto &[_, player] : players) {
-		logger.warn("after save - handling player {}", player->getName());
 		if (player->isLoggingOut()) {
-			logger.warn("player {} is logging out",player->getName());
 			player->setLoggingOut(false);
 			player->setOnline(false);
 		} else if (!player->isOffline()) {
 			player->loginPosition = player->getPosition();
 		}
 		if (!player->isOnline()) {
-			logger.warn("player {} is not online");
 			g_game().removePlayer(player);
 			player->setRemoved();
 			justLoggedOutPlayerGuids.push_back(std::to_string(player->getGUID()));
@@ -178,7 +175,7 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 		logger.error("{} - Server save failed after {} seconds", __FUNCTION__, bm_saveAll.duration());
 		logger.info("{} - callbackResult: {}, status: {}", __FUNCTION__, result.callbackResult, result.status);
 		while(true){
-
+			logger.info("{} not releasing resource lock. Awaiting main process termination.", __FUNCTION__);
 		}
 	}
 }

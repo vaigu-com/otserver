@@ -97,6 +97,13 @@ setmetatable(ItemExList, {
 	end,
 })
 
+function ItemExList:Moved(x,y,z)
+	for _, itemEx in pairs(self:Get()) do
+		itemEx:moveTo(itemEx:getPosition():Moved(x,y,z))
+	end
+	return self
+end
+
 function ItemExList:CalculateRequiredCap()
 	local totalCap = 0
 	for _, itemEx in pairs(self:Get()) do
@@ -127,7 +134,8 @@ function ItemExList:RadiusSquare(pos, radius)
 	return self
 end
 
-function ItemExList:Area(pos1, pos2)
+function ItemExList:Area(area)
+	local pos1,pos2 = area:GetCorners()
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then

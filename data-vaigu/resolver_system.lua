@@ -304,7 +304,7 @@ function ResolutionContext:AddRewards()
 		return
 	end
 
-	self.player:AddItemsAnnounce(actions.rewards)
+	self.player:AddItemsAnnounce(actions.rewards, self.localizer)
 end
 
 function ResolutionContext:RemoveRequiredMoney()

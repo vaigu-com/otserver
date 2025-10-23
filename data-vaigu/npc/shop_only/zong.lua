@@ -34,6 +34,7 @@ local context = {
 	name = name,
 	outfit = outfit,
 	customDialogs = customDialogs,
+	jobs = { JOB_JEWELLER },
 	voices = voices,
 	checkInteraction = false,
 	isTransportNpc = true,

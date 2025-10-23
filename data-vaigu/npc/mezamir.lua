@@ -226,7 +226,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:setTopic(playerId, 0)
 	end
 
-	if (MsgContains(message, "machine") or MsgContains(message, "maszyna")) and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+	if (MsgContains(message, "machine") or MsgContains(message, "maszyna") or MsgContains(message, "teleport")) and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
 			"Ah, maszyna, ktora znalazles na tej wyspie. Coz, zbudowalem to urzadzenie, aby zapuscic sie daleko pod sama ziemie, po ktorej chodzimy. Podejrzewalem cos tam. Cos gleboko pod nami. Cos zlego. Nawet bardziej niz przeklete owady, ktore pelzaly po moim gabinecie. ...",
 			"Wiercilem otwor za otworem, tylko po to, by ponownie utknac w twardym, nie do przebicia osadzie, raz po raz. Bylem gotow zrezygnowac z tego bezsensownego przedsiewziecia. ...",
