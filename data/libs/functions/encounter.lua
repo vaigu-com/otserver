@@ -872,13 +872,14 @@ function EncounterData:tryEnter(leverUser)
 	self.bossObject = bossObject
 	self.participantsCount = participantsCount
 
+	self:start()
+
 	self:teleportPlayersToEncounterRoom(playersOnEntrance)
 
 	if self.lockoutTriggerCriterion == LOCKOUT_TRIGGER_CRITERION.ON_ENTER then
 		self:SetLockouts(playersOnEntrance)
 	end
 
-	self:start()
 	ActiveEncounterRegistry:Register(self)
 	self:handleTimeEvent(zone)
 
