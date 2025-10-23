@@ -127,7 +127,7 @@ function Quest:AddDialog(context)
 		for requredKeywords, actionsAndRequirements in pairs(dialogs) do
 			for key, value in pairs(actionsAndRequirements) do
 				if type(value) == "string" then
-					MissingStrings:TestAllLanaguages(value, self.localizer)
+					MissingStrings:TestAllLanguages(value, self.localizer)
 				end
 			end
 		end
@@ -298,6 +298,7 @@ function QuestRegistry.NormalizeQuestlog()
 			quest.questId = NextQuestId()
 			IdToQuest[quest.questId] = quest
 			NameToQuest[quest.name] = quest
+			MissingStrings:TestAllLanguages(quest.name, quest.localizer)
 			for _, mission in pairs(quest.missions) do
 				local min, max
 				if mission.states then
@@ -313,9 +314,10 @@ function QuestRegistry.NormalizeQuestlog()
 				mission.questId = quest.questId
 				mission.questName = quest.name
 
-				for _, desc in pairs(mission.states or {}) do
-					if type(desc) == "string" then
-						MissingStrings:TestAllLanaguages(desc, quest.localizer)
+				MissingStrings:TestAllLanguages(mission.name, quest.localizer)
+				for state, stateDescription in pairs(mission.states or {}) do
+					if type(stateDescription) == "string" then
+						MissingStrings:TestAllLanguages(stateDescription, quest.localizer)
 					end
 				end
 

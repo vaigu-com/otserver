@@ -1,3 +1,7 @@
+-- WARNING: cpp-side translations can only load string values
+-- loaded in cpp: ["Sample key 1"] = "sample string 1"
+-- ignored in cpp:  ["Sample key 2"] = function(context) return "You have " .. tostring(context.player:getBankBalance()) .. " gold in bank." end
+
 local mainDir = DATA_DIRECTORY .. "/locales"
 
 LOCALIZERS = {
@@ -180,7 +184,7 @@ for key, value in pairs(LANGUAGES) do
 	MissingStrings.registry[value] = {}
 end
 
-function MissingStrings:TestLanguage(language, strToTest)
+function MissingStrings:TestLanguage(language, strToTest, localizer)
 	local allStrings = TRANSLATION_TABLES[language]
 	if allStrings[LOCALIZERS.Universal][strToTest] then
 		return allStrings[LOCALIZERS.Universal][strToTest]
@@ -195,7 +199,7 @@ function MissingStrings:TestLanguage(language, strToTest)
 	MissingStrings:Add(language, localizer, strToTest)
 end
 
-function MissingStrings:TestAllLanaguages(strOrTable, localizer)
+function MissingStrings:TestAllLanguages(strOrTable, localizer)
 	local strings = strOrTable
 	if type(strOrTable) ~= "table" then
 		strings = { strOrTable }
@@ -203,33 +207,72 @@ function MissingStrings:TestAllLanaguages(strOrTable, localizer)
 
 	for _, language in pairs(LANGUAGES) do
 		for _, string in pairs(strings) do
-			self:TestLanguage(language, string)
+			self:TestLanguage(language, string, localizer)
 		end
 	end
 end
 
--- usage in-game: /lua MissingStrings:Serialize()
-function MissingStrings:Serialize()
-	local missingStringsPath = "utility_scripts" .. "\\missing_strings"
-	os.execute("rmdir /S /Q " .. missingStringsPath)
-	os.execute("mkdir " .. missingStringsPath)
+local function is_windows()
+	return package.config:sub(1,1) == '\\'
+end
+
+function MissingStrings:SerializeWindows()
+	local basePath = "utility_scripts\\missing_strings"
+	os.execute('rmdir /S /Q "' .. basePath .. '"')
+	os.execute('mkdir "' .. basePath .. '"')
+
 	for language, questIdToStr in pairs(self.registry) do
-		local missingStringsLanguagePath = missingStringsPath .. "\\" .. language
-		os.execute("mkdir " .. missingStringsLanguagePath)
+		local langPath = basePath .. "\\" .. language
+		os.execute('mkdir "' .. langPath .. '"')
+
 		for localizer, strToPresence in pairs(questIdToStr) do
-			local missingStringsLanguageLocalizerPath = missingStringsLanguagePath .. "\\" .. localizer .. ".lua"
-			local file, err = io.open(missingStringsLanguageLocalizerPath, "a+")
+			local filePath = langPath .. "\\" .. localizer .. ".lua"
+			local file, err = io.open(filePath, "a+")
 			if not file then
-				logger.warn("[MissingStrings::Serialize] Error opening file: " .. err)
+				logger.warn("[MissingStrings::SerializeWindows] Error opening file: " .. err)
 				return false
 			end
-			local formattedStrToSerialize = ""
+
 			for str in pairs(strToPresence) do
-				formattedStrToSerialize = formattedStrToSerialize .. string.gsub(str, "\n", "\\n") .. "\n"
+				file:write(string.gsub(str, "\n", "\\n") .. "\n")
 			end
-			file:write(formattedStrToSerialize)
 			file:flush()
 			file:close()
 		end
+	end
+end
+
+function MissingStrings:SerializeLinux()
+	local basePath = "utility_scripts/missing_strings"
+	os.execute('rm -rf "' .. basePath .. '"')
+	os.execute('mkdir -p "' .. basePath .. '"')
+
+	for language, questIdToStr in pairs(self.registry) do
+		local langPath = basePath .. "/" .. language
+		os.execute('mkdir -p "' .. langPath .. '"')
+
+		for localizer, strToPresence in pairs(questIdToStr) do
+			local filePath = langPath .. "/" .. localizer .. ".lua"
+			local file, err = io.open(filePath, "a+")
+			if not file then
+				logger.warn("[MissingStrings::SerializeLinux] Error opening file: " .. err)
+				return false
+			end
+
+			for str in pairs(strToPresence) do
+				file:write(string.gsub(str, "\n", "\\n") .. "\n")
+			end
+			file:flush()
+			file:close()
+		end
+	end
+end
+
+-- Entry point
+function MissingStrings:Serialize()
+	if is_windows() then
+		return self:SerializeWindows()
+	else
+		return self:SerializeLinux()
 	end
 end

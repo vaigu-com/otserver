@@ -3,7 +3,7 @@ NpcTypeRepository.__index = NpcTypeRepository
 NpcTypeRepository.registry = {}
 NpcTypeRepository.duplicateRegisted = {}
 function NpcTypeRepository:Add(name, data)
-	MissingStrings:TestAllLanaguages(name, LOCALIZERS.NpcName)
+	MissingStrings:TestAllLanguages(name, LOCALIZERS.NpcName)
 	if self.registry[name] then
 		self.duplicateRegisted[name] = true
 		logger.error(T("[NpcTypeRepository::Add] Npc :name: registered more than once!", { name = name }))

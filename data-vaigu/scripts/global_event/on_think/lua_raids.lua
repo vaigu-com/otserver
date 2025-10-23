@@ -55,7 +55,7 @@ function Wave:Notification(delay, text)
 		text = text,
 	})
 
-	MissingStrings:TestAllLanaguages(text, LOCALIZERS.LuaRaids)
+	MissingStrings:TestAllLanguages(text, LOCALIZERS.LuaRaids)
 
 	return self
 end
