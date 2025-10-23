@@ -536,6 +536,11 @@ quest
 			QuestFactory.Script(function(missionState)
 				local astralJanusPos = Position(7320, 1475, 0)
 				local astralJanusLock = SpawnLocks.PerIustitiaAdAstra.AstralJanus
+				astralJanusLock.onReset = function(self)
+					if self.creature then
+						self.creature:remove()
+					end
+				end
 				local requiredState = {
 					[Storage.PerIustitiaAdAstra.AstralJanusSpawnTileAccess] = ACCESS_GRANTED,
 				}
@@ -608,8 +613,8 @@ quest
 						{
 							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasTransferableCoins,
 							requiredOutcome = true,
-							coins = 15,
-							textFailedRequirement = "Come back with 15 coins.",
+							coins = 3,
+							textFailedRequirement = "Come back with 3 coins.",
 						},
 					},
 					specialActionsOnSuccess = {
@@ -1042,32 +1047,28 @@ quest
 				},
 			}),
 			QuestFactory.Script(function(missionState)
-				local doorItems = {}
+				local doorLeft = {}
+				local doorRight = {}
 				local doorItemsInit = GlobalEvent("PerIustitiaAdAstra/CpnDoorItemsInit")
 				function doorItemsInit.onStartup()
-					doorItems = ItemExList():Area(Area(Position(7368, 652, 6), Position(7369, 653, 6))):Get()
+					doorLeft = ItemExList():Area(Area(Position(7368, 652, 6), Position(7368, 653, 6)))
+					doorRight = ItemExList():Area(Area(Position(7369, 652, 6), Position(7369, 653, 6)))
 				end
 				doorItemsInit:register()
 
 				local function openDoor()
-					for _, item in pairs(doorItems) do
-						item:moveTo(item:getPosition():Moved(0, 0, -1))
-					end
+					doorLeft:Moved(-1, 0, 0)
+					doorRight:Moved(1, 0, 0)
 				end
 
 				local function closeDoor()
-					for _, item in pairs(doorItems) do
-						item:moveTo(item:getPosition():Moved(0, 0, 1))
-					end
+					doorLeft:Moved(1,0 , 0)
+					doorRight:Moved(-1,0, 0)
 				end
 
 				local scheduledClosingTime = 0
-				local function canCloseDoor()
-					return os.time() > scheduledClosingTime
-				end
-
 				local function closeDoorDelayed()
-					if canCloseDoor() then
+					if os.time() > scheduledClosingTime then
 						closeDoor()
 					else
 						addEvent(function()
@@ -1488,7 +1489,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = true,
 			canPushCreatures = true,
@@ -1673,15 +1674,38 @@ quest
 		end
 		rukca:register()
 	end)
+	:Script(function ()
+		local saltyTileStepIn = MoveEvent()
+		function saltyTileStepIn.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
+			if creature:isPlayer() then
+				return false
+			end
+			
+			creature:getPosition(CONST_ME_CRITICAL_DAMAGE)
+		end
+		saltyTileStepIn:key(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
+		saltyTileStepIn:register()
+	end)
 	:MonsterEvent(function()
 		local saltId = 22694
 		local saltMultiplier = 10
 
+		local function standsOnSaltyTile(creature)
+			local salt = creature:getPosition():GetItemById(saltId)
+			if not salt then
+				return false 
+			end
+			if salt:getKey() ~= Storage.PerIustitiaAdAstra.SaltyTile then
+				return false
+			end
+
+			return true
+		end
+
 		local rukcaHealthChange = CreatureEvent("RukcaHealth")
 		rukcaHealthChange:type("healthchange")
 		function rukcaHealthChange.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType)
-			local salt = creature:getPosition():GetItemById(saltId)
-			if not salt then
+			if not standsOnSaltyTile(creature) then
 				return primaryDamage, primaryType, secondaryDamage, secondaryType
 			end
 			return primaryDamage * saltMultiplier, primaryType, secondaryDamage * saltMultiplier, secondaryType

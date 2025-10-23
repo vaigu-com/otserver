@@ -388,7 +388,7 @@ quest
 	end)
 	:Mission(Storage.LocalSupport.Discernment)
 	:State(function()
-		return MISSION_NOT_STARTED,
+		return { max = QuestState.LocalSupport.Discernment.AfterFirstLogin },
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ ANY_MESSAGE }] = {
 					text = "New recruit? Great! Another cannon fodd.. I mean potential soldier.\nAt your first mission, visit all of the main sellers in MirkoTown and ask them if they need some help, after that come back to me to report.\nDon't do anything without consulting me. And now go, there's no time to lose.",

@@ -1,5 +1,5 @@
 return {
-	["Rod synthesis succesful."] = "Rod synthesis succesful.",
+	["Rod synthesis successful."] = "Rod synthesis successful.",
 	["You don't have any fuel rods."] = "You don't have any fuel rods.",
 	["You dont have any fuel."] = "You dont have any fuel.",
 	["You refilled the fuel tank."] = "You refilled the fuel tank.",
@@ -89,9 +89,7 @@ return {
 	["ShipDestGanymede"] = "Ganymede",
 	["ShipDestHugoTarPlanet"] = "Hugo summer house",
 	["ShipDestHugoBeachPlanet"] = "Hugo Palace",
-	["So you would like to know the password? I can {reveal} it for a small fee of 3 transferable coins. I really need that gold converter.."] = "So you would like to know the password? I can {reveal} it for a small fee of 3 transferable coins. I really need that gold converter..",
 	["Very well done! I have another task for you. You've probably noticed that the castle is overrun by partygoers. They're no nobles, so they don't know how to behave. They recently damaged part of the castle in the east wing. I hired no one other than Boguslaw Lecina to repair it. Now, not only do I have a damaged wall, but there are also grooves from the sanding. Or maybe it's just residue from his cigarettes that settled on the wall? It's not important. Find his toolbox and take one hammer from it. Then go to the waterworks and loosen the valve in the lower part. There's so much mess and I dont even know what else, that we can't flush corpses down the toilet anymore."] = "Very well done! I have another task for you. You've probably noticed that the castle is overrun by partygoers. They're no nobles, so they don't know how to behave. They recently damaged part of the castle in the east wing. I hired no one other than Boguslaw Lecina to repair it. Now, not only do I have a damaged wall, but there are also grooves from the sanding. Or maybe it's just residue from his cigarettes that settled on the wall? It's not important. Find his toolbox and take one hammer from it. Then go to the waterworks and loosen the valve in the lower part. There's so much mess and I dont even know what else, that we can't flush corpses down the toilet anymore.",
-	["The password is 'Ali Baba', same as my name. Hope this helps."] = "The password is 'Ali Baba', same as my name. Hope this helps.",
 	["I have another task for you. You've probably noticed that the castle is overrun by partygoers. They're no nobles, so they don't know how to behave. They recently damaged part of the castle in the east wing. I hired no one other than Boguslaw Lecina to repair it. Now, not only do I have a damaged wall, but there are also grooves from the sanding. Or maybe it's just residue from his cigarettes that settled on the wall? It's not important. Find his toolbox and take one hammer from it. Then go to the waterworks and loosen the valve in the lower part. There's so much mess and I dont even know what else, that we can't flush corpses down the toilet anymore."] = "I have another task for you. You've probably noticed that the castle is overrun by partygoers. They're no nobles, so they don't know how to behave. They recently damaged part of the castle in the east wing. I hired no one other than Boguslaw Lecina to repair it. Now, not only do I have a damaged wall, but there are also grooves from the sanding. Or maybe it's just residue from his cigarettes that settled on the wall? It's not important. Find his toolbox and take one hammer from it. Then go to the waterworks and loosen the valve in the lower part. There's so much mess and I dont even know what else, that we can't flush corpses down the toilet anymore.",
 	-- Per Iustitia Ad Astra
 	["Per Iustitia Ad Astra"] = "Per Iustitia Ad Astra",
@@ -131,5 +129,8 @@ return {
 	["05. I Don't Brush My Teeth. How Did You Know?"] = "05. I Don't Brush My Teeth. How Did You Know?",
 	["You killed the monster menacing the beach. Report to Hugo."] = "You killed the monster menacing the beach. Report to Hugo.",
 	["Your job is finished. Report to Astral Janus."] = "Your job is finished. Report to Astral Janus.",
+	["So you would like to know the password? I can {reveal} it for a small fee of 3 transferable coins. I really need that gold converter.."] = "So you would like to know the password? I can {reveal} it for a small fee of 3 transferable coins. I really need that gold converter..",
+	["The password is 'Ali Baba', same as my name. Hope this helps."] = "The password is 'Ali Baba', same as my name. Hope this helps.",
+	["Come back with 3 coins."] = "Come back with 3 coins..",
 	["You completed this chapter."] = "You completed this chapter.",
 }

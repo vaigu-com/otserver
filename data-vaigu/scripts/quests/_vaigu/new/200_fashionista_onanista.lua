@@ -93,8 +93,8 @@ quest
 			sendSecretiveLetter = function(context)
 				local player = context.player
 				local inbox = player:getInbox()
-				local itemEx = Game.createItem(QuestKeyItems.FashionistaOnanista.SecretiveLetter.id)
-				itemEx:setKey(QuestKeyItems.FashionistaOnanista.SecretiveLetter)
+				local letter = Game.createItem(QuestKeyItems.FashionistaOnanista.SecretiveLetter.id)
+				letter:setKey(QuestKeyItems.FashionistaOnanista.SecretiveLetter.key)
 				inbox:addItemEx(letter, INDEX_WHEREEVER, FLAG_NOLIMIT)
 			end,
 		}
@@ -174,7 +174,7 @@ quest
 		return QuestState.FashionistaOnanista.Mission01.AskOcellatusForNewMission,
 			QuestFactory.Dialog("Ocellatus", {
 				[{ GREET, "mission", "misja" }] = {
-					text = "Me and my friends are hosting a meat beating competition. We need 10 medals of honour for that. Come back when you have them.",
+					text = "Me and my friends are hosting a meat beating competition. We need 2 medals of honour for that. Come back when you have them.",
 					nextState = {
 						[Storage.FashionistaOnanista.Mission01] = QuestState.FashionistaOnanista.Mission01.BringMedalsToOcellatus,
 					},

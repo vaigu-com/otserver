@@ -69,7 +69,15 @@ local function appendStatistics(allDialogs, npcName)
 			end)()
 			warnNoTextInDialog(keywordsStr, npcName)
 		else
-			MissingStrings:TestAllLanaguages(dialog.text, LOCALIZERS.Universal)
+			for _, value in pairs({
+				dialog.text,
+				dialog.textNoRequiredItems,
+				dialog.textNoRequiredMoney,
+				dialog.textNoRequiredState,
+				dialog.textNoRequiredGlobalState,
+			}) do
+				MissingStrings:TestAllLanguages(value, LOCALIZERS.Universal)
+			end
 		end
 	end
 
@@ -79,16 +87,24 @@ local function appendStatistics(allDialogs, npcName)
 				for state, keyWordsToDialog in pairs(stateToKeywords) do
 					for keyWords, dialog in pairs(keyWordsToDialog) do
 						if not dialog.text then
-							local keywordsStr = (function(keywords)
+							local keywordsStr = (function()
 								local result = ""
 								for key, value in pairs(keyWords) do
 									result = result .. value .. ", "
 								end
 								return result
-							end)(keywords)
+							end)()
 							warnNoTextInDialog(keywordsStr, npcName)
 						else
-							MissingStrings:TestAllLanaguages(dialog.text, localizer)
+							for _, value in pairs({
+								dialog.text,
+								dialog.textNoRequiredItems,
+								dialog.textNoRequiredMoney,
+								dialog.textNoRequiredState,
+								dialog.textNoRequiredGlobalState,
+							}) do
+								MissingStrings:TestAllLanguages(value, LOCALIZERS.Universal)
+							end
 						end
 					end
 				end
@@ -213,6 +229,7 @@ function RegisterNpcDefinition(npcData)
 	-- On look at npc shop item
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
+
 	local greetCallback = npcData.greetCallback or function(npc, creature, type, message)
 		if npcData.ignoreGreet then
 			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
@@ -221,11 +238,12 @@ function RegisterNpcDefinition(npcData)
 		return InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
 	end
 
+	local incomprehensibleError = npcData.incomprehensibleError
 	local creatureSayCallback = npcData.creatureSayCallback or function(npc, creature, type, msg)
 		if npcData.checkInteraction ~= false and not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end
-		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc)
+		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc, nil, incomprehensibleError)
 	end
 
 	local tradeCallback = npcData.tradeCallback

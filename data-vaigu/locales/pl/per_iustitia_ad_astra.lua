@@ -1,5 +1,5 @@
 return {
-	["Rod synthesis succesful."] = "Synteza pretu pomyslna.",
+	["Rod synthesis successful."] = "Synteza pretu pomyslna.",
 	["You don't have any fuel rods."] = "Nie masz przy sobie zadnych pretow.",
 	["You dont have any fuel."] = "Nie masz przy sobie paliwa",
 	["You refilled the fuel tank."] = "Doladowales zbiornik",
@@ -131,6 +131,6 @@ return {
 	["Your job is finished. Report to Astral Janus."] = "Zakonczyles swoja robote. Wroc teraz do janusza gwiezdnego.",
 	["So you would like to know the password? I can {reveal} it for a small fee of 3 transferable coins. I really need that gold converter.."] = "Moge sprzedac Ci to haslo za 15 coinow. Potrzebuje pieniedzy na nowy konwerter do monet..",
 	["The password is 'Ali Baba', same as my name. Hope this helps."] = "Haslo to 'Ali Baba', takie samo jak moje imie. Mam nadzieje, ze to pomoze.",
-	["Come back with 15 coins."] = "Wroc gdy zdobedziesz 15 coinow.",
+	["Come back with 3 coins."] = "Wroc gdy zdobedziesz 3 coinow.",
 	["You completed this chapter."] = "Ukonczyles te misje.",
 }

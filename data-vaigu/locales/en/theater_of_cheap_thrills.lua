@@ -99,7 +99,7 @@ return {
 	["GM Romek will be waiting for donations until his death. It's better to support him."] = "GM Romek will be waiting for donations until his death. It's better to support him.",
 	["GM Romek has accepted your donation. Return to him when the festival is over."] = "GM Romek has accepted your donation. Return to him when the festival is over.",
 	["Chorus of Januses: Iuvenes inconsiderate patrum suorum errata repetunt. Canem me rape cum cacat."] = "Chorus of Januses: Iuvenes inconsiderate patrum suorum errata repetunt. Canem me rape cum cacat.",
-	["09. Abyssal Chasms of Decadence"] = "09. Abyssal Chasms of Decadence",
+	["08. Abyssal Chasms of Decadence"] = "08. Abyssal Chasms of Decadence",
 	["GM Romek needs help with a new problem, go to him."] = "GM Romek needs help with a new problem, go to him.",
 	["GM Romek is starting a new minecraft server. Tell Vislav, a frequent visitor to old school servers, about Romek's known scams and acts of corruption."] = "GM Romek is starting a new minecraft server. Tell Vislav, a frequent visitor to old school servers, about Romek's known scams and acts of corruption.",
 	["You tipped off Vislav. Now return to Romek and observe his reaction."] = "You tipped off Vislav. Now return to Romek and observe his reaction.",

@@ -515,7 +515,7 @@ quest
 	:State(function()
 		return QuestState.TheWayOfADruid.SecretIngredient.BringEggToOrnuld,
 			QuestFactory.Dialog("Ornuld", {
-				[{ "mission", "misja" }] = {
+				[{ "mission", "misja","jajo","jajko","egg","lekarstwo","medicine" }] = {
 					text = "It a bit cracked here and there, but it's still great! I am really grateful to you. Here is the medicine.",
 					requiredItems = {
 						QuestKeyItems.TheWayOfADruid.OrnuldWyrmEgg,

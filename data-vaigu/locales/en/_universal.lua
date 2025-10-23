@@ -396,4 +396,7 @@ return {
 	["Hello |PLAYERNAME|. You want {help} with some grinding?"] = "Hello |PLAYERNAME|. You want {help} with some grinding?",
 	["Y'Hua'Ri"] = "Y'Hua'Ri",
 	["If you have some small enchanted sapphires, I can turn them into sapphire {dust} for you."] = "If you have some small enchanted sapphires, I can turn them into sapphire {dust} for you.",
+	["Yeah, yeah. Come back when you have it."]  = "Yeah, yeah. Come back when you have it.",
+	["Yeah, maybe if you had some."]  = "Yeah, maybe if you had some.",
+	["You dont have a dragon shield!"]  = "You dont have a dragon shield!",
 }

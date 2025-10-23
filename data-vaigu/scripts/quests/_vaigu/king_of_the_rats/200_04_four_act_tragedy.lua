@@ -146,7 +146,7 @@ quest
 					},
 				},
 				{
-					name = "06. Sic transit gloria mundi",
+					name = "05. Sic transit gloria mundi",
 					storage = Storage.FourActTragedy.Mission05,
 					states = {
 						[QuestState.FourActTragedy.Mission05.FindXena] = "Ask Xena for possible usage of Grazhenacore.",
@@ -408,7 +408,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = true,
 			canPushCreatures = true,
@@ -673,7 +673,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission01.AskRomekForMission,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission", "misja" }] = {
+				[{ "mission", "misja","task","zadanie" }] = {
 					text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
 					nextState = {
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
@@ -882,7 +882,7 @@ quest
 		return QuestState.FourActTragedy.Mission02.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
 				[{ "mission" }] = {
-					text = "So, it's Rat Bum. Hmm, but in the memes, it said that Rat Bum can't do anything. I know his origin. I would like to tell you where to find him, but currently, he is protected by a narrative armor. So, I suggest you go get some beer at Lewiatan now.",
+					text = "So, it's Rat Bum. Hmm, but in the memes, it said that Rat Bum can't do anything. I know his origin. I would like to tell you where to find him, but currently he is protected by a narrative armor. So, I suggest you go get some beer at Lewiatan now.",
 					nextState = {
 						[Storage.FourActTragedy.Mission02] = MISSION_FINISHED,
 						[Storage.FourActTragedy.Mission03] = QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
@@ -908,8 +908,8 @@ quest
 			lookMount = 0,
 		}
 
-		monster.health = 200000
-		monster.maxHealth = 200000
+		monster.health = 100000
+		monster.maxHealth = 100000
 		monster.race = "blood"
 		monster.speed = 0
 		monster.manaCost = 0
@@ -929,7 +929,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = false,
 			canPushCreatures = true,

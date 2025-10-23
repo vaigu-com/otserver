@@ -152,7 +152,7 @@ quest
 
 					toPosition:sendMagicEffect(CONST_ME_POFF)
 					item:remove()
-					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledVial)
+					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledVial, quest.localizer)
 				end
 				glowingVial:key(Storage.EnterTheDrunkTank.GlowingWaterVial)
 				glowingVial:register()
@@ -170,7 +170,7 @@ quest
 
 					toPosition:sendMagicEffect(CONST_ME_POFF)
 					item:remove()
-					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledChurn)
+					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledChurn, quest.localizer)
 				end
 				spoogeChurn:key(Storage.EnterTheDrunkTank.BullSpoogeChurn)
 				spoogeChurn:register()

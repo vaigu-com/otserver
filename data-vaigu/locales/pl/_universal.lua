@@ -196,7 +196,7 @@ return {
 	["Waddup, G?"] = "Elo, |PLAYERNAME|.",
 	["What in the? I say what in the fuck are those discussions!? Shut the hell up until we have arrived."] = "A ty kurwa co!? Zamknij morde poki nie dojedziemy do celu!",
 	["Yeah, you got it!"] = "Tak, wlasnie tak.",
-	["Goldblum is a very cunning one. He likes to play the riddles game. If he asks you about the valuation of structured bonds, say exactly these words: {It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument}"] = "Goldblum to bardzo szczwany lis. Jezeli zapyta cie o wycene obliacji strukturyzowanych, powiedz dokladnie te slowa: {Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy}",
+	["Goldblum is a very cunning one. He likes to play the riddles game. If he asks you about the valuation of structured bonds, say exactly these words: {It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument}"] = "Goldblum to bardzo szczwany lis. Jezeli zapyta cie o wycene obligacji strukturyzowanych, powiedz dokladnie te slowa: {Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy}",
 	["TRAVEL_YOU_NEED_LEVEL"] = function(context)
 		return T("You need :minLevel: level to travel there", { minLevel = context.minLevel })
 	end,
@@ -396,4 +396,7 @@ return {
 	["Hello |PLAYERNAME|. You want {help} with some grinding?"] = "Witam |PLAYERNAME|. Moge ci {pomoc} z mieleniem kamieni?",
 	["Y'Hua'Ri"] = "Y'Hua'Ri",
 	["If you have some small enchanted sapphires, I can turn them into sapphire {dust} for you."] = "Jesli masz jakies male zaczarowane szafiry, to chetnie ci pomoge w starciu ich na {proch}.",
+	["Yeah, yeah. Come back when you have it."]  = "Ta jasne. Wroc jak bedziesz go miec.",
+	["Yeah, maybe if you had some."]  = "Gdybys tylko rzeczywiscie mial troche kamieni..",
+	["You dont have a dragon shield!"]  = "Nie posiadasz smoczej tarczy!",
 }

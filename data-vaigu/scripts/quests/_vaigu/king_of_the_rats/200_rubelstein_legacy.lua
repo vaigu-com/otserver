@@ -57,6 +57,17 @@ quest
 				},
 			})
 	end)
+	:Script(function ()
+		
+local rubelsteinScroll = Look()
+function rubelsteinScroll.onLook(player, doorKey)
+	player:sendTextMessage(MESSAGE_LOOK, tostring(player:getStorageValueByKey(Storage.RubelsteinLegacy.RubelsteinChecksum)))
+	return DO_SHOW_ONLOOK
+end
+rubelsteinScroll:key(QuestKeyItems.RubelsteinLegacy.RubelsteinScroll.key)
+rubelsteinScroll:register()
+
+	end)
 	:State(function()
 		return QuestState.RubelsteinLegacy.Mission01.TalkToMareesha,
 			QuestFactory.Dialog("Mareesha", {

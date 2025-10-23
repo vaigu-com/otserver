@@ -81,7 +81,7 @@ quest
 		QuestKeyItems.ArielsFriend = {
 			HairStrand = { id = 36809, key = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." },
 			LoveElixirRaw = { id = elixirId, key = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" },
-			LoveElixirEnchanted = { id = elixirId, key = Storage.ArielsFriend.LoveElixirEnchanted },
+			LoveElixirEnchanted = { id = elixirId, key = Storage.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" },
 			LiquorItem = { id = 6106, key = Storage.ArielsFriend.LiquorItem },
 			OldRadioBroken = { id = 12813, key = Storage.ArielsFriend.OldRadioBroken, desc = "made in Hirschberg Manufacture LLC" },
 			OldRadioWorking = { id = 12813, key = Storage.ArielsFriend.OldRadioWorking, desc = "made in Hirschberg Manufacture LLC" },
@@ -298,7 +298,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Old Postman", {
-				[{ "eliksir", "madame", "mikstura", "elixir", "milosc", "love", "zaproszenie", "invitation" }] = {
+				[{ "eliksir", "madame", "mikstura", "elixir", "milosc", "love", "zaproszenie", "invitation", "potion", "ariel" }] = {
 					text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
 					nextState = {
 						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
@@ -331,26 +331,24 @@ quest
 	end)
 	:State(function()
 		return QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
-			QuestFactory.Script(function(missionState)
-				local hair = Action()
-				function hair.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					if not player:HasExactMissionState(missionState) then
-						return false
-					end
-
-					if player:TryRemoveItems({
+			QuestFactory.OnUseDeclarations({
+				{
+					key = Storage.ArielsFriend.HairStrand,
+					requiredItems = {
 						QuestKeyItems.ArielsFriend.LoveElixirRaw,
 						QuestKeyItems.ArielsFriend.HairStrand,
-					}) then
-						player:AddItemsAnnounce({ QuestKeyItems.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" })
-						player:getPosition():sendMagicEffect(CONST_ME_SOUND_GREEN)
-					end
-					return true
-				end
-
-				hair:key(Storage.ArielsFriend.HairStrand)
-				hair:register()
-			end),
+					},
+					rewards = {
+						QuestKeyItems.ArielsFriend.LoveElixirEnchanted,
+					},
+					specialActionsOnSuccess = {
+						{
+							action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer,
+							effect = CONST_ME_SOUND_GREEN,
+						},
+					},
+				},
+			}),
 			QuestFactory.Dialog("Madame Malkin", {
 				[{ "mission", "misja", "wino", "wine", "ariel" }] = {
 					text = "Ahh, I love these exotic ones from Old Postman, I'll taste them immediately at the spot.\nArrrgh, disgusting. Tell him that he should never order this one again.",

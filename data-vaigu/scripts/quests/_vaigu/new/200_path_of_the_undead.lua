@@ -859,7 +859,7 @@ quest
 			latentBombPositions = bombsZone:getPositions()
 			latentBombCount = #latentBombPositions
 			latentBombDamage = math.floor(totalDamage / latentBombCount)
-			bigLaser:setFormula(COMBAT_FORMULA_DAMAGE, latentBombDamage, 0, latentBombDamage, 0)
+			latentBombCombat:setFormula(COMBAT_FORMULA_DAMAGE, latentBombDamage, 0, latentBombDamage, 0)
 			return true
 		end
 		initializeBombsZone:register()

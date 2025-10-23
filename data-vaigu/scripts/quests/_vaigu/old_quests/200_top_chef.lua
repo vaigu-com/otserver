@@ -44,7 +44,7 @@ local function addDish(context)
 	if not dishData then
 		return false
 	end
-	player:AddItemsAnnounce({ { id = ItemType(dishData.dishName):getId() } })
+	player:AddCustomItem({  id = ItemType(dishData.dishName):getId()  })
 end
 
 local function grantExpForDish(context)

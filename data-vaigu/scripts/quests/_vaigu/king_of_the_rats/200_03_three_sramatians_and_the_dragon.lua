@@ -193,7 +193,7 @@ quest
 					},
 				},
 				{
-					name = "09. Artificial Intelligence and Euthanasia",
+					name = "08. Artificial Intelligence and Euthanasia",
 					storage = Storage.ThreeSramatiansAndTheDragon.Mission08,
 					states = {
 						[QuestState.ThreeSramatiansAndTheDragon.Mission08.FindAndDefeatHfpx] = "The Rat of Kings took the runes from you and unsealed the door. Now find HF-P/X.",
@@ -637,7 +637,7 @@ quest
 					text = "Three months have passed since the last letter, and I used to receive them at monthly intervals. That's why I got worried about their current condition. I can't leave my kingdom, but if you're determined, I can help you find them. Let me know when you're {ready}. In the meantime, I'll try to estimate their last location and possibly their current direction.",
 				},
 				[{ "ready", "gotowy" }] = {
-					text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus.",
+					text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Fat Myrrus.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission01] = MISSION_FINISHED,
 						[Storage.ThreeSramatiansAndTheDragon.Mission02] = QuestState.ThreeSramatiansAndTheDragon.Mission02.FollowCompany,
@@ -650,7 +650,7 @@ quest
 		return QuestState.ThreeSramatiansAndTheDragon.Mission02.FollowCompany,
 			QuestFactory.Dialog("GM Romek", {
 				[{ "goldbluma", "goldblum", "mission" }] = {
-					text = "Seriusly, talk to Far Myrrus about Goldblum.",
+					text = "Seriusly, talk to Fat Myrrus about Goldblum.",
 				},
 			}),
 			QuestFactory.Dialog("Goldblum", {
@@ -677,7 +677,7 @@ quest
 				},
 				[{
 					"Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy",
-					"It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate or other market indicator that serves as their underlying instrument",
+					"It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument",
 				}] = {
 					text = "CUT THE CRAP! HOW DID YOU KNOW, YOU STUPID IDIOT!! Never mind. Ask your question - there's no question that will surprise my devious, vile mind.",
 					nextState = {
@@ -871,7 +871,7 @@ quest
 		return QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
-					text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were tio separate, seek help from her.",
+					text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were to separate, seek help from her.",
 				},
 			}),
 			QuestFactory.Dialog("Gertrude", {
@@ -1025,6 +1025,7 @@ quest
 					text = "I have a feeling that Jan Kockodan got ahead of us. Maybe he's hiding somewhere in this hellish cave. Watch out for him! From the notes given to me by Hairycles, it appears that somewhere in this temple are enchanted doors. The key to opening them is to collect three different magical runes. Fortunately, all the runes are in the temple... if no one has stolen them.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindThreeMagicRunes,
+						[Storage.ThreeSramatiansAndTheDragon.KingOfRatsTileAccess] = ACCESS_GRANTED,
 					},
 				},
 			})
@@ -1107,7 +1108,6 @@ quest
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = MISSION_FINISHED,
 						[Storage.ThreeSramatiansAndTheDragon.Mission08] = QuestState.ThreeSramatiansAndTheDragon.Mission08.FindAndDefeatHfpx,
 						[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = ACCESS_GRANTED,
-						[Storage.ThreeSramatiansAndTheDragon.KingOfRatsTileAccess] = ACCESS_GRANTED,
 					},
 				},
 			})
@@ -1129,13 +1129,18 @@ quest
 				local ratOfKingsPos = Position(6792, 558, 11)
 				local ratOfKingsNpc = {}
 				local ratOfKingsLock = SpawnLocks.ThreeSramatiansAndTheDragon.RatOfKings
+				ratOfKingsLock.onReset = function(self)
+					if self.creature then
+						self.creature:remove()
+					end
+				end
 
 				local function trySpawnRatOfKings()
 					if ratOfKingsLock:IsSet() then
 						return
 					end
 
-					ratOfKingsLock:Set(Game.createNpc("Rat of Kings", ratOfKingsPos, false, false))
+					ratOfKingsLock:Set(Game.createNpc("Rat of Kings", ratOfKingsPos, true, true))
 					ratOfKingsPos:sendMagicEffect(CONST_ME_TELEPORT)
 				end
 
@@ -1158,7 +1163,6 @@ quest
 						return
 					end
 
-					ratOfKingsNpc:remove()
 					ratOfKingsLock:Reset()
 					ratOfKingsPos:sendMagicEffect(CONST_ME_TELEPORT)
 				end
@@ -1210,7 +1214,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = true,
 			canPushCreatures = false,
