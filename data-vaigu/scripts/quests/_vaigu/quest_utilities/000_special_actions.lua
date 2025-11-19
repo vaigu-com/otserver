@@ -4,12 +4,16 @@ local additionalBoltsNumber = 6
 local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
 
 SPECIAL_ACTIONS_UNIVERSAL = {
-	removeTransferableCoins =  function(context)
-		if not context.player then return false end
+	removeTransferableCoins = function(context)
+		if not context.player then
+			return false
+		end
 		return context.player:removeTransferableCoinsBalance(context.amount)
 	end,
 	hasTransferableCoins = function(context)
-		if not context.player then return false end
+		if not context.player then
+			return false
+		end
 		return context.player:canRemoveTransferableCoins(context.amount)
 	end,
 	startEscort = function(context)
