@@ -95,7 +95,7 @@ return {
 	["Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway."] = "Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway.",
 	["Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Help me get it back."] = "Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Help me get it back.",
 	["Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on."] = "Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on.",
-	["I think you missed some colour, bring me all six"] = "I think you missed some colour, bring me all six",
+	["I think you missed some colour, bring me all six clothes."] = "I think you missed some colour, bring me all six clothes.",
 	["My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any."] = "My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any.",
 	["Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on."] = "Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on.",
 	["I like to sew something when I am bored but slowly I am lack of colorful fabrics."] = "I like to sew something when I am bored but slowly I am lack of colorful fabrics.",
@@ -126,7 +126,7 @@ return {
 	--Questlog
 	["Local Support"] = "Local Support",
 	["Two Marlins"] = "Two Marlins",
-	["Bring two marlins to Fisherman Son."]= "Bring two marlins to Fisherman Son.",
+	["Bring two marlins to Fisherman Son."] = "Bring two marlins to Fisherman Son.",
 	["You delivered two marlins to Fisherman son and were rewarded for it."] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 	["Discernment"] = "Discernment",
 	["Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown."] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
@@ -219,4 +219,14 @@ return {
 	["Unwanted Guests"] = "Unwanted Guests",
 	["Bring Brutetamers Staff and Fur Boots to Old Man Frost."] = "Bring Brutetamers Staff and Fur Boots to Old Man Frost.",
 	["You completed Old Man Frost's request."] = "You completed Old Man Frost's request.",
+	["I will change your {mystic turban}, {red robe}, {green tunic} for corresponding cloth of similar colour."] = "I will change your {mystic turban}, {red robe}, {green tunic} for corresponding cloth of similar colour.",
+	["I will need EXCHANGE_RATE turbans to sew one blue cloth. Would you like to exchange?"] = function(context)
+		return T("I will need :EXCHANGE_RATE: turbans to sew one blue cloth. Would you like to exchange?", { EXCHANGE_RATE = context.exchangeRate })
+	end,
+	["I will need EXCHANGE_RATE robes to sew one red cloth. Would you like to exchange?"] = function(context)
+		return T("I will need :EXCHANGE_RATE: robes to sew one red cloth. Would you like to exchange?", { EXCHANGE_RATE = context.exchangeRate })
+	end,
+	["I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?"] = function(context)
+		return T("I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?", { EXCHANGE_RATE = context.exchangeRate })
+	end,
 }

@@ -329,7 +329,7 @@ return {
 	["Hello. My offer constists of tools that any cave explorer has to have to get around. Ask me for {trade} if you are interested."] = "Witam. W mojej ofercie znajdziesz narzedzia, bez ktorych zaden poszukiacz przygod nie powinien wychodzic z domu!",
 	["Hello, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "Uszanowanie, |PLAYERNAME|. Roznosze listy i paczki. Jesli chcesz cos kupic, napisz {trade}.",
 	["I am local postman, ask about {trade} if you want to buy some parcel or letter."] = "Zajmuje sie zarzadzaniem poczta w tym miescie. Byc moze chcesz wyslac list albo nadac paczke?",
-	["Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Dzien dobry! Pohandlujemy, a moze naprawie Ci zuzyte {soft boots}? Przebuje takze {medicine pouch}, zglos sie jesli zdobedziesz jakies.",
+	["Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Dzien dobry! Pohandlujemy, a moze naprawie Ci zuzyte {soft boots}? Potrzebuje takze {medicine pouch}, zglos sie jesli zdobedziesz jakies.",
 	["Oh hello! Check out my new recipes, we can {trade} a little."] = "Czesc! Sprawdz moje nowe receptury i skladniki, wpisujac {trade}.",
 	["I can exchange your life crystals for a life rings. Is that what youre interested in?"] = "Potrafie wytwarzac pierscienie z {life crystal}, nauczyla mnie tego mama. Czy chcesz, abym przetworzyl twoje krysztaly?",
 	["Here you go."] = "Prosze bardzo, oto Twoje buty.",

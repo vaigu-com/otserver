@@ -1,5 +1,9 @@
 local quest = Quest(LOCALIZERS.LocalSupport)
 
+local mysticTurbanExchangeRate = 1
+local redRobeExchangeRate = 1
+local greenTunicExchangeRate = 2
+
 quest
 	:Storage(function()
 		Storage.LocalSupport = {
@@ -27,6 +31,7 @@ quest
 			PoisonedCheese = {},
 
 			BudgetRecycling = {},
+			BudgetRecyclingClothExchange = {},
 
 			LostCrystalBall = {},
 			RedGemExchange = {},
@@ -152,6 +157,9 @@ quest
 			ConfirmBuyingShimmerSwimmer = NextTopic(),
 			ConfirmTradeInTwomarlins = NextTopic(),
 			ConfirmPinataQuestSecret = NextTopic(),
+			ConfirmDesiredTurbanClothAmount = NextTopic(),
+			ConfirmDesiredRobeClothAmount = NextTopic(),
+			ConfirmDesiredTunicClothAmount = NextTopic(),
 		}
 	end)
 	:Constant(function()
@@ -1073,10 +1081,11 @@ quest
 		return QuestState.LocalSupport.BudgetRecycling.BringPieceOfEachClothToMadame,
 			QuestFactory.Dialog("Madame Malkin", {
 				[{ "mission", "misja", "tkaninie", "cloth", "tailor" }] = {
-					text = "Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on.",
-					textNoRequiredItems = "I think you missed some colour, bring me all six",
+					text = "Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of {cloth} from now on.",
+					textNoRequiredItems = "I think you missed some colour, bring me all six clothes.",
 					nextState = {
 						[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
+						[Storage.LocalSupport.BudgetRecyclingClothExchange] = ACCESS_GRANTED,
 						[Storage.Finished.BudgetRecycling] = MISSION_FINISHED,
 					},
 					requiredItems = {
@@ -1086,6 +1095,65 @@ quest
 						{ id = 5912 },
 						{ id = 5913 },
 						{ id = 5914 },
+					},
+				},
+			})
+	end)
+	:Mission(Storage.LocalSupport.BudgetRecyclingClothExchange)
+	:State(function()
+		return ACCESS_GRANTED,
+			QuestFactory.Dialog("Madame Malkin", {
+				[{ GREET }] = {
+					text = "Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch} or {cloth}.",
+				},
+				[{ "cloth", "szmatki" }] = {
+					text = "I will change your {mystic turban}, {red robe}, {green tunic} for corresponding cloth of similar colour.",
+				},
+
+				[{ "mystic turban", "mistyczny turban" }] = {
+					text = "I will need EXCHANGE_RATE turbans to sew one blue cloth. Would you like to exchange?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					exchangeRate = mysticTurbanExchangeRate,
+				},
+				[{ "red robe", "czerwona szate" }] = {
+					text = "I will need EXCHANGE_RATE robes to sew one red cloth. Would you like to exchange?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmDesiredRobeClothAmount,
+					exchangeRate = redRobeExchangeRate,
+				},
+				[{ "green tunic", "zielona tunike" }] = {
+					text = "I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmDesiredTunicClothAmount,
+					exchangeRate = greenTunicExchangeRate,
+				},
+
+				[{ "one" }] = {
+					text = "Here you go.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					requiredItems = {
+						{ id = ItemId.MYSTIC_TURBAN, count = mysticTurbanExchangeRate },
+					},
+					rewards = {
+						{ id = ItemId.BLUE_PIECE_OF_CLOTH, count = 1 },
+					},
+				},
+				[{ "one" }] = {
+					text = "Here you go.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					requiredItems = {
+						{ id = ItemId.MYSTIC_TURBAN, count = redRobeExchangeRate },
+					},
+					rewards = {
+						{ id = ItemId.RED_PIECE_OF_CLOTH, count = 1 },
+					},
+				},
+				[{ "one" }] = {
+					text = "Here you go.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					requiredItems = {
+						{ id = ItemId.MYSTIC_TURBAN, count = greenTunicExchangeRate },
+					},
+					rewards = {
+						{ id = ItemId.GREEN_PIECE_OF_CLOTH, count = 1 },
 					},
 				},
 			})

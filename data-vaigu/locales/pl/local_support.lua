@@ -95,7 +95,7 @@ return {
 	["Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway."] = "Zajebiscie, dzieki. Udko sobie wezme, ale na zupe jednak nie mam ochoty. Mozesz poplywac sobie moja lodka jesli chcesz. Wez to przebranko legii, na mnie i tak za maly rozmiar.",
 	["Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Help me get it back."] = "No tak, mialem isc na mecz legii, ale przyszli onrowcy i podjebali mi bilet. Pomoz mi go odzyskac.",
 	["Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on."] = "Dziekuje ci, moze nie sa najlepszej jakosci, ale w koncu jestem Madame Malkin.",
-	["I think you missed some colour, bring me all six"] = "Mysle ze pominales jakis kolor, przynies wszystkie 6 za jednym razem.",
+	["I think you missed some colour, bring me all six clothes."] = "Mysle ze pominales jakis kolor, przynies wszystkie 6 za jednym razem.",
 	["My fortune telling ball! Probably it got stolen, maybe youll help me to find a new one? Come back to show me if you find any."] = "Moja kula wrozbiarska! Prawdopodobnie zostala skradziona, moze uda ci sie znalezc nowa aby ja zastapic, zglos sie wtedy do mnie!",
 	["Well, the previous one was better, but this one is fine too. Thank you!\nYou can exchange your {red gem}s for a ring of healing from now on."] = "Hmm, poprzednia byla lepsza, ale tez jest super. Dzieki wielkie!\nW podziece pozwole ci wymieniac u mnie {red gem}y na Ring of Healing.",
 	["I like to sew something when I am bored but slowly I am lack of colorful fabrics."] = "Lubie cos uszyc w wolnym czasie, ale powoli brakuje mi kolorowych tkanin. Przynies mi po jednej z kazdego koloru, a na pewno ci sie odwdziecze.",
@@ -219,4 +219,14 @@ return {
 	["Unwanted Guests"] = "Zasrani Barbarzyncy",
 	["Bring Brutetamers Staff and Fur Boots to Old Man Frost."] = "Przynies dziadkowi Brutetamers Staff oraz Fur Boots, na dowod pokonania barbarzyncow.",
 	["You completed Old Man Frost's request."] = "Wypleniles zadania Dziadka Mroza.",
+	["I will change your {mystic turban}, {red robe}, {green tunic} for corresponding cloth of similar colour."] = "Wymienie twoj {mistyczny turban}, {czerwona szate}, {zielona tunike} na kawalek materialu o podobnym kolorze.",
+	["I will need EXCHANGE_RATE turbans to sew one blue cloth. Would you like to exchange?"] = function(context)
+		return T("Aby uszyc jedna niebieska szmatke bede potrzebowac turbany w liczbie EXCHANGE_RATE. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
+	end,
+	["I will need EXCHANGE_RATE robes to sew one red cloth. Would you like to exchange?"] = function(context)
+		return T("Aby uszyc jedna czerwona szmatke bede potrzebowac szat w liczbie EXCHANGE_RATE. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
+	end,
+	["I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?"] = function(context)
+		return T("Aby uszyc jedna zielona szmatke bede potrzebowac tunik w liczbie EXCHANGE_RATE. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
+	end,
 }
