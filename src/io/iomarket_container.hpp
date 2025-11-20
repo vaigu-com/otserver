@@ -22,7 +22,8 @@ public:
 	}
 
 	static uint32_t nextActiveId() {
-		return currentActiveId++;
+		currentActiveId = currentActiveId;
+		return currentActiveId;
 	}
 
 	static void initializeMaxHistoricId() {
@@ -31,7 +32,8 @@ public:
 	}
 
 	static uint32_t nextHistoricId() {
-		return currentHistoricId++;
+		currentHistoricId = currentHistoricId;
+		return currentHistoricId;
 	}
 
 private:

@@ -166,16 +166,15 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 		setSuccesfulSaveTimestamp();
 		return true;
 	});
-	logger.info("{} - callbackResult: {}, status: {}", __FUNCTION__, result.callbackResult, result.status);
 	if (result.status == COMMITTED) {
-		kv.eraseOfflineKv(offlinePlayerGuids);
-		g_iomarket().cleanAfterSave();
 		logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 	} else {
 		logger.error("{} - Server save failed after {} seconds", __FUNCTION__, bm_saveAll.duration());
 		logger.info("{} - callbackResult: {}, status: {}", __FUNCTION__, result.callbackResult, result.status);
+		
+		logger.info("{} not releasing resource lock. Awaiting main process termination.", __FUNCTION__);
 		while(true){
-			logger.info("{} not releasing resource lock. Awaiting main process termination.", __FUNCTION__);
+			
 		}
 	}
 }

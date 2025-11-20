@@ -133,9 +133,11 @@ void IOMarket::commitNewHistory() const {
 			  << static_cast<uint32_t>(offer.tier)
 			  << ")";
 	}
+	query << " ON DUPLICATE KEY UPDATE id = id";
+
 	Database &db = Database::getInstance();
 	if (!db.executeQuery(query.str())) {
-		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to save active modified offers");
+		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to save new historic offers");
 	}
 }
 
@@ -242,9 +244,11 @@ void IOMarket::commitNewActive() const {
 			  << static_cast<uint32_t>(offer.tier) << ") ";
 		first = false;
 	}
+	query << " ON DUPLICATE KEY UPDATE id = id";
+	
 	Database &db = Database::getInstance();
 	if (!db.executeQuery(query.str())) {
-		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to save active modified offers");
+		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to save active new offers");
 	}
 }
 
@@ -336,7 +340,8 @@ void IOMarket::addRemainingItemToOwner(const MarketHistoricOffer &historicOffer)
 	const auto &player = g_game().getPlayerByGUID(historicOffer.playerId);
 	if (!player) {
 		g_logger().error("{} - cannot add item {} to unexisting player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId);
-		throw IOMarketException(fmt::format("{} - cannot add item {} to unexisting player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId));
+		return;
+		//throw IOMarketException(fmt::format("{} - cannot add item {} to unexisting player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId));
 	}
 
 	if (historicOffer.marketAction == MarketAction_t::CANCEL_SELL) {
@@ -417,7 +422,7 @@ void IOMarket::dropZeroAmountOffers() {
 	query << "DELETE FROM `market_offers` WHERE `amount` = 0";
 	Database &db = Database::getInstance();
 	if (!db.executeQuery(query.str())) {
-		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to save active modified offers");
+		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to drop zero amount offers");
 	}
 }
 
