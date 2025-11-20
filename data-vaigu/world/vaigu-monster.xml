@@ -8189,6 +8189,12 @@
 	<monster centerx="7165" centery="917" centerz="5" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="6229" centery="920" centerz="5" radius="1">
+		<monster name="Mutated Tiger" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="6234" centery="920" centerz="5" radius="1">
+		<monster name="Mutated Tiger" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="7119" centery="920" centerz="5" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -17723,6 +17729,12 @@
 		<monster name="Bonebeast" x="-1" y="-1" z="6" spawntime="90" />
 		<monster name="Mummy" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="6112" centery="1235" centerz="6" radius="1">
+		<monster name="Crawler" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="6116" centery="1235" centerz="6" radius="1">
+		<monster name="Crawler" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6722" centery="1235" centerz="6" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -17785,9 +17797,6 @@
 	</monster>
 	<monster centerx="7743" centery="1238" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="6117" centery="1239" centerz="6" radius="1">
-		<monster name="Werefox" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6357" centery="1239" centerz="6" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="6" spawntime="90" />
@@ -18000,12 +18009,6 @@
 	<monster centerx="5997" centery="1251" centerz="6" radius="1">
 		<monster name="Corym Skirmisher" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="6089" centery="1251" centerz="6" radius="1">
-		<monster name="Werefox" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="6103" centery="1251" centerz="6" radius="1">
-		<monster name="Werefox" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6110" centery="1251" centerz="6" radius="1">
 		<monster name="Gnarlhound" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -18034,6 +18037,9 @@
 	</monster>
 	<monster centerx="5935" centery="1252" centerz="6" radius="1">
 		<monster name="Mummy" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="6089" centery="1252" centerz="6" radius="1">
+		<monster name="Crawler" x="0" y="0" z="6" spawntime="60" />
 	</monster>
 	<monster centerx="6125" centery="1252" centerz="6" radius="1">
 		<monster name="Insect Swarm" x="0" y="0" z="6" spawntime="90" />
@@ -18108,6 +18114,9 @@
 	<monster centerx="7101" centery="1257" centerz="6" radius="1">
 		<monster name="Nomad" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="6090" centery="1258" centerz="6" radius="1">
+		<monster name="Crawler" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6140" centery="1258" centerz="6" radius="1">
 		<monster name="Cobra" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -18160,9 +18169,6 @@
 	</monster>
 	<monster centerx="7544" centery="1260" centerz="6" radius="1">
 		<monster name="Tarnished Spirit" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="6095" centery="1261" centerz="6" radius="1">
-		<monster name="Werefox" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6361" centery="1261" centerz="6" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="6" spawntime="90" />
@@ -53103,9 +53109,6 @@
 	<monster centerx="6007" centery="1799" centerz="7" radius="1">
 		<monster name="Amazon" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="6051" centery="1799" centerz="7" radius="1">
-		<monster name="Giant Spider" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="6561" centery="1799" centerz="7" radius="1">
 		<monster name="Crystal Spider" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -65916,9 +65919,6 @@
 	<monster centerx="5809" centery="1612" centerz="8" radius="1">
 		<monster name="Troll" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="5951" centery="1613" centerz="8" radius="1">
-		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="90" direction="2" />
-	</monster>
 	<monster centerx="7546" centery="1613" centerz="8" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -65967,15 +65967,15 @@
 	<monster centerx="5924" centery="1626" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="90" direction="2" />
 	</monster>
+	<monster centerx="5946" centery="1630" centerz="8" radius="1">
+		<monster name="Snake" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6049" centery="1630" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6065" centery="1630" centerz="8" radius="1">
 		<monster name="Smuggler" x="-1" y="0" z="8" spawntime="90" />
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="5948" centery="1631" centerz="8" radius="1">
-		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="90" direction="2" />
 	</monster>
 	<monster centerx="6051" centery="1631" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="90" />
@@ -65991,6 +65991,9 @@
 	</monster>
 	<monster centerx="5887" centery="1635" centerz="8" radius="1">
 		<monster name="Lancer Beetle" x="0" y="0" z="8" spawntime="90" direction="2" />
+	</monster>
+	<monster centerx="5934" centery="1635" centerz="8" radius="1">
+		<monster name="Snake" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="5729" centery="1638" centerz="8" radius="1">
 		<monster name="Elf Arcanist" x="0" y="0" z="8" spawntime="90" />
@@ -66631,6 +66634,9 @@
 	<monster centerx="7262" centery="1751" centerz="8" radius="1">
 		<monster name="Little Corym Charlatan" x="0" y="0" z="8" spawntime="90" />
 	</monster>
+	<monster centerx="5921" centery="1752" centerz="8" radius="1">
+		<monster name="Goblin" x="0" y="0" z="8" spawntime="60" />
+	</monster>
 	<monster centerx="6030" centery="1752" centerz="8" radius="1">
 		<monster name="Ghoul" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -66764,6 +66770,9 @@
 	</monster>
 	<monster centerx="6522" centery="1763" centerz="8" radius="1">
 		<monster name="Crystal Spider" x="0" y="0" z="8" spawntime="90" />
+	</monster>
+	<monster centerx="5930" centery="1764" centerz="8" radius="1">
+		<monster name="Goblin" x="0" y="0" z="8" spawntime="60" />
 	</monster>
 	<monster centerx="6039" centery="1764" centerz="8" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="8" spawntime="90" />
