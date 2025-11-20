@@ -40425,7 +40425,7 @@
 		<monster name="Bug" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6411" centery="1282" centerz="7" radius="1">
-		<monster name="Wyrm" x="0" y="0" z="7" spawntime="90" />
+		<monster name="Wyvern" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6477" centery="1282" centerz="7" radius="1">
 		<monster name="Nomad Female" x="0" y="0" z="7" spawntime="90" />
@@ -61119,9 +61119,6 @@
 	<monster centerx="6291" centery="1212" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6360" centery="1212" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6907" centery="1212" centerz="8" radius="1">
 		<monster name="Elder Wyrm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61134,9 +61131,7 @@
 	<monster centerx="4944" centery="1215" centerz="8" radius="1">
 		<monster name="Old Beholder" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6374" centery="1215" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
+	<monster centerx="6374" centery="1215" centerz="8" radius="1" />
 	<monster centerx="6783" centery="1215" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61162,9 +61157,6 @@
 	<monster centerx="6250" centery="1217" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6381" centery="1217" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6785" centery="1217" centerz="8" radius="1">
 		<monster name="Bandit" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61180,26 +61172,14 @@
 	<monster centerx="6255" centery="1219" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6363" centery="1219" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6968" centery="1219" centerz="8" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6246" centery="1220" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6380" centery="1222" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6258" centery="1223" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6392" centery="1223" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6403" centery="1223" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6979" centery="1224" centerz="8" radius="1">
 		<monster name="Gravedigger" x="0" y="0" z="8" spawntime="90" />
@@ -61210,17 +61190,8 @@
 	<monster centerx="6254" centery="1226" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6371" centery="1227" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6260" centery="1228" centerz="8" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6356" centery="1228" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6409" centery="1228" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6805" centery="1229" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="90" />
@@ -61228,23 +61199,14 @@
 	<monster centerx="6903" centery="1229" centerz="8" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6396" centery="1230" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6984" centery="1231" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6353" centery="1234" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6935" centery="1235" centerz="8" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7812" centery="1235" centerz="8" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6371" centery="1236" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6800" centery="1236" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="90" />
@@ -61255,20 +61217,11 @@
 	<monster centerx="6990" centery="1236" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6388" centery="1237" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="7808" centery="1238" centerz="8" radius="1">
 		<monster name="Orc Leader" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7816" centery="1238" centerz="8" radius="1">
 		<monster name="Orc Warlord" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6339" centery="1239" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6346" centery="1239" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="8151" centery="1239" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
@@ -61276,26 +61229,17 @@
 	<monster centerx="8153" centery="1239" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6355" centery="1240" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6809" centery="1240" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7001" centery="1240" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6394" centery="1241" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6911" centery="1241" centerz="8" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="8155" centery="1241" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6407" centery="1242" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6810" centery="1242" centerz="8" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="8" spawntime="90" />
@@ -61335,12 +61279,6 @@
 	<monster centerx="6242" centery="1245" centerz="8" radius="1">
 		<monster name="Acolyte of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6348" centery="1245" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6383" centery="1245" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="7012" centery="1245" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61369,21 +61307,12 @@
 	<monster centerx="8155" centery="1246" centerz="8" radius="1">
 		<monster name="Bug" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6358" centery="1247" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6368" centery="1247" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="7288" centery="1247" centerz="8" radius="1">
 		<monster name="Spider" x="0" y="0" z="8" spawntime="90" />
 		<monster name="Spider" x="0" y="1" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="8150" centery="1247" centerz="8" radius="1">
 		<monster name="Centipede" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6403" centery="1248" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7270" centery="1248" centerz="8" radius="1">
 		<monster name="Poison Spider" x="0" y="0" z="8" spawntime="90" />
@@ -61397,9 +61326,6 @@
 	</monster>
 	<monster centerx="6215" centery="1249" centerz="8" radius="1">
 		<monster name="Acolyte of the Cult" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6343" centery="1249" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6938" centery="1249" centerz="8" radius="1">
 		<monster name="Wyrm" x="0" y="0" z="8" spawntime="90" />
@@ -61455,12 +61381,6 @@
 	<monster centerx="6250" centery="1253" centerz="8" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6347" centery="1253" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6376" centery="1253" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6685" centery="1253" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61494,9 +61414,6 @@
 	<monster centerx="6238" centery="1256" centerz="8" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6412" centery="1256" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="8098" centery="1256" centerz="8" radius="1">
 		<monster name="Carrion Worm" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61505,12 +61422,6 @@
 	</monster>
 	<monster centerx="5688" centery="1257" centerz="8" radius="1">
 		<monster name="Quara Predator Scout" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6374" centery="1257" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6402" centery="1257" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="8117" centery="1257" centerz="8" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="8" spawntime="90" />
@@ -61547,9 +61458,6 @@
 		<monster name="Acolyte of the Cult" x="-1" y="0" z="8" spawntime="90" />
 		<monster name="Adept of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6348" centery="1259" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6647" centery="1259" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61576,9 +61484,6 @@
 	</monster>
 	<monster centerx="6272" centery="1260" centerz="8" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6382" centery="1260" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6669" centery="1260" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
@@ -61629,12 +61534,6 @@
 	<monster centerx="6274" centery="1262" centerz="8" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6395" centery="1262" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6419" centery="1262" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6603" centery="1262" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61677,9 +61576,6 @@
 	<monster centerx="6248" centery="1264" centerz="8" radius="1">
 		<monster name="Adept of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6410" centery="1264" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6650" centery="1264" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61697,9 +61593,6 @@
 	</monster>
 	<monster centerx="6263" centery="1265" centerz="8" radius="1">
 		<monster name="Acolyte of the Cult" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6361" centery="1265" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7136" centery="1265" centerz="8" radius="1">
 		<monster name="Slug" x="0" y="0" z="8" spawntime="90" />
@@ -61735,12 +61628,6 @@
 	</monster>
 	<monster centerx="6254" centery="1267" centerz="8" radius="1">
 		<monster name="Acolyte of the Cult" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6341" centery="1267" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6375" centery="1267" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6773" centery="1267" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
@@ -61787,9 +61674,6 @@
 	<monster centerx="6213" centery="1269" centerz="8" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6349" centery="1269" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6656" centery="1269" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61817,9 +61701,6 @@
 	<monster centerx="5669" centery="1270" centerz="8" radius="1">
 		<monster name="Quara Constrictor Scout" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6389" centery="1270" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6684" centery="1270" centerz="8" radius="1">
 		<monster name="Larva" x="-1" y="0" z="8" spawntime="90" />
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
@@ -61838,9 +61719,6 @@
 	</monster>
 	<monster centerx="6293" centery="1271" centerz="8" radius="1">
 		<monster name="Adept of the Cult" x="0" y="1" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6392" centery="1271" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6648" centery="1271" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
@@ -61916,9 +61794,6 @@
 	<monster centerx="7003" centery="1275" centerz="8" radius="1">
 		<monster name="Bonebeast" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6387" centery="1276" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6694" centery="1276" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -61933,9 +61808,6 @@
 	</monster>
 	<monster centerx="6249" centery="1277" centerz="8" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6360" centery="1277" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6661" centery="1277" centerz="8" radius="1">
 		<monster name="Larva" x="0" y="0" z="8" spawntime="90" />
@@ -61968,12 +61840,6 @@
 	<monster centerx="6248" centery="1279" centerz="8" radius="1">
 		<monster name="Acolyte of the Cult" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="6350" centery="1279" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6376" centery="1279" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="5729" centery="1281" centerz="8" radius="1">
 		<monster name="Quara Pincher" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -62004,9 +61870,6 @@
 	</monster>
 	<monster centerx="6046" centery="1284" centerz="8" radius="1">
 		<monster name="Dwarf Guard" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6368" centery="1284" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6819" centery="1284" centerz="8" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="8" spawntime="90" />
@@ -62041,9 +61904,6 @@
 	<monster centerx="7150" centery="1286" centerz="8" radius="1">
 		<monster name="Witch" x="1" y="-1" z="8" spawntime="90" />
 		<monster name="Valkyrie" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="6392" centery="1287" centerz="8" radius="1">
-		<monster name="Damaged Worker Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6675" centery="1287" centerz="8" radius="1">
 		<monster name="Scarab" x="0" y="0" z="8" spawntime="90" />
