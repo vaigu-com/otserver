@@ -413,7 +413,7 @@ local function createPermanentItemsInner(items, destinationContainerEx, storeInb
 	end
 end
 
-local function generateItemsPermanent(items, player, localizer)
+local function generateItemsPermanent(player, items, localizer)
 	local itemsToAdd = ItemExList()
 	local itemsToAddStore = ItemExList()
 	local storeInbox = player:getStoreInbox()
