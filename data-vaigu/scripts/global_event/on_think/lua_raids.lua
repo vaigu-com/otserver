@@ -102,14 +102,14 @@ function Wave:EnqueueCreatureSpawns(difficultyTier)
 				trySpawnRaidMonster(pos, monsterData, additionalLoot)
 			end
 		end
-	end, self.delay, self.monsters)
+	end, self.delay * 1000, self.monsters)
 end
 
 function Wave:EnqueueNotifications()
 	for _, notification in pairs(self.notifications) do
 		addEvent(function()
 			Game.broadcastMessage(notification.text, MESSAGE_STATUS_WARNING, true)
-		end, notification.delay)
+		end, notification.delay * 1000)
 	end
 end
 
