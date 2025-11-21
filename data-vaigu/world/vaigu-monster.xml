@@ -13347,6 +13347,238 @@
 	<monster centerx="7718" centery="247" centerz="6" radius="1">
 		<monster name="Hugo House Guard" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7854" centery="301" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7853" centery="303" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7851" centery="306" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7821" centery="308" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7817" centery="309" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7819" centery="312" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7814" centery="313" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7823" centery="313" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7817" centery="315" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7811" centery="316" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7831" centery="317" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7842" centery="317" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7809" centery="318" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7815" centery="318" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7873" centery="320" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7826" centery="322" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7823" centery="323" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7810" centery="324" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7856" centery="325" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7833" centery="326" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7852" centery="327" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7854" centery="329" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7861" centery="329" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7868" centery="333" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7858" centery="335" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7880" centery="336" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7919" centery="339" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7887" centery="340" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7895" centery="341" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7835" centery="342" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7918" centery="342" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7853" centery="343" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7920" centery="343" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7923" centery="343" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7833" centery="344" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7905" centery="344" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7828" centery="346" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+		<monster name="Lizard Abomination" x="-1" y="1" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7843" centery="346" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7886" centery="346" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7834" centery="347" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7880" centery="347" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7828" centery="349" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7885" centery="350" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7893" centery="350" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7881" centery="351" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7883" centery="351" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7904" centery="352" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7907" centery="353" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7831" centery="354" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7834" centery="358" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7835" centery="360" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7856" centery="360" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7904" centery="361" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7888" centery="364" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7861" centery="365" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7893" centery="366" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7884" centery="367" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7868" centery="369" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7881" centery="369" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7865" centery="370" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7912" centery="371" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7882" centery="373" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7910" centery="373" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7916" centery="373" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7918" centery="376" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7920" centery="376" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7881" centery="377" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7910" centery="377" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7920" centery="381" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7873" centery="383" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7874" centery="385" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7877" centery="385" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7879" centery="387" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7905" centery="388" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7889" centery="389" centerz="6" radius="1">
+		<monster name="Lizard Abomination" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7883" centery="390" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
+	<monster centerx="7895" centery="391" centerz="6" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="6807" centery="428" centerz="6" radius="1">
 		<monster name="Parder" x="0" y="0" z="6" spawntime="60" />
 	</monster>
@@ -23846,6 +24078,9 @@
 	<monster centerx="7549" centery="294" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7860" centery="294" centerz="7" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7473" centery="296" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -23859,13 +24094,7 @@
 	<monster centerx="7861" centery="297" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7872" centery="297" centerz="7" radius="1">
-		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="7890" centery="299" centerz="7" radius="1">
-		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7882" centery="300" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7867" centery="301" centerz="7" radius="1">
@@ -23883,6 +24112,9 @@
 	<monster centerx="7863" centery="306" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7866" centery="306" centerz="7" radius="1">
+		<monster name="Snake God Follower" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7913" centery="306" centerz="7" radius="1">
 		<monster name="Acid Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -23895,12 +24127,6 @@
 	<monster centerx="7914" centery="309" centerz="7" radius="1">
 		<monster name="Acid Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7870" centery="312" centerz="7" radius="1">
-		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7874" centery="312" centerz="7" radius="1">
-		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="7884" centery="314" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -23908,9 +24134,7 @@
 		<monster name="Acid Blob" x="-1" y="-1" z="7" spawntime="90" />
 		<monster name="Acid Blob" x="0" y="-1" z="7" spawntime="90" />
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7895" centery="316" centerz="7" radius="1">
-		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
+		<monster name="Snake God Follower" x="1" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7909" centery="316" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
@@ -23936,17 +24160,11 @@
 	<monster centerx="7909" centery="331" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7890" centery="332" centerz="7" radius="1">
-		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="7846" centery="335" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7850" centery="336" centerz="7" radius="1">
 		<monster name="Lizard Abomination" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7895" centery="336" centerz="7" radius="1">
-		<monster name="Acid Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7900" centery="336" centerz="7" radius="1">
 		<monster name="Acid Blob" x="0" y="0" z="7" spawntime="90" />
@@ -24007,9 +24225,6 @@
 	<monster centerx="7868" centery="358" centerz="7" radius="1">
 		<monster name="Lizard Abomination" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7875" centery="358" centerz="7" radius="1">
-		<monster name="Acid Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="7920" centery="359" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -24045,9 +24260,6 @@
 	</monster>
 	<monster centerx="7923" centery="368" centerz="7" radius="1">
 		<monster name="Acid Blob" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7894" centery="369" centerz="7" radius="1">
-		<monster name="Lizard Abomination" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7902" centery="369" centerz="7" radius="1">
 		<monster name="Death Blob" x="0" y="0" z="7" spawntime="90" />
