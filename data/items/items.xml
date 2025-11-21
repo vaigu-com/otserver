@@ -2671,7 +2671,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentpoison" value="20"/>
+		<attribute key="absorbpercentpoison" value="25"/>
 		<attribute key="absorbpercentfire" value="-10"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
@@ -2684,7 +2684,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentice" value="20"/>
+		<attribute key="absorbpercentice" value="25"/>
 		<attribute key="absorbpercentenergy" value="-10"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
@@ -2698,7 +2698,7 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="-10"/>
-		<attribute key="absorbpercentenergy" value="20"/>
+		<attribute key="absorbpercentenergy" value="25"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent">
@@ -2711,7 +2711,7 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentice" value="-10"/>
-		<attribute key="absorbpercentfire" value="20"/>
+		<attribute key="absorbpercentfire" value="25"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent">
@@ -6856,7 +6856,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentenergy" value="10"/>
+		<attribute key="absorbpercentenergy" value="15"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="290"/>
 		<attribute key="script" value="moveevent">
@@ -6969,7 +6969,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentmanadrain" value="20"/>
+		<attribute key="absorbpercentmanadrain" value="30"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent">
@@ -7272,7 +7272,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentlifedrain" value="20"/>
+		<attribute key="absorbpercentlifedrain" value="25"/>
 		<attribute key="charges" value="150"/>
 		<attribute key="weight" value="380"/>
 		<attribute key="script" value="moveevent">
@@ -7283,8 +7283,8 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentphysical" value="6"/>
-		<attribute key="charges" value="250"/>
+		<attribute key="absorbpercentphysical" value="5"/>
+		<attribute key="charges" value="500"/>
 		<attribute key="weight" value="550"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -7294,7 +7294,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentfire" value="8"/>
+		<attribute key="absorbpercentfire" value="10"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="630"/>
 		<attribute key="script" value="moveevent">
@@ -7358,8 +7358,8 @@
 	</item>
 	<item id="3090" article="a" name="time ring">
 		<attribute key="primarytype" value="rings"/>
-		<attribute key="speed" value="30"/>
-		<attribute key="duration" value="600"/>
+		<attribute key="speed" value="50"/>
+		<attribute key="duration" value="1200"/>
 		<attribute key="transformdeequipto" value="3053"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="weight" value="90"/>
@@ -20766,7 +20766,7 @@
 	</item>
 	<item id="7532" name="Koshei's ancient amulet">
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentdeath" value="8"/>
+		<attribute key="absorbpercentdeath" value="10"/>
 		<attribute key="absorbpercentholy" value="-50"/>
 		<attribute key="weight" value="550"/>
 		<attribute key="script" value="moveevent">
@@ -25084,7 +25084,7 @@
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="60"/>
 		<attribute key="absorbpercentfire" value="40"/>
-		<attribute key="charges" value="5"/>
+		<attribute key="charges" value="50"/>
 		<attribute key="weight" value="700"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="80"/>
@@ -25098,7 +25098,7 @@
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="60"/>
 		<attribute key="absorbpercentpoison" value="40"/>
-		<attribute key="charges" value="5"/>
+		<attribute key="charges" value="50"/>
 		<attribute key="weight" value="700"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="80"/>
@@ -25111,7 +25111,7 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="absorbpercentphysical" value="60"/>
 		<attribute key="absorbpercentice" value="40"/>
-		<attribute key="charges" value="5"/>
+		<attribute key="charges" value="50"/>
 		<attribute key="weight" value="700"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="80"/>
@@ -25125,7 +25125,7 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="absorbpercentphysical" value="60"/>
 		<attribute key="absorbpercentenergy" value="40"/>
-		<attribute key="charges" value="5"/>
+		<attribute key="charges" value="50"/>
 		<attribute key="weight" value="700"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="80"/>
@@ -27670,7 +27670,7 @@
 	<item id="10457" article="a" name="beetle necklace">
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="speed" value="2"/>
+		<attribute key="speed" value="5"/>
 		<attribute key="weight" value="820"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -29073,8 +29073,8 @@
 	<item id="11686" article="a" name="royal draken mail">
 		<attribute key="primarytype" value="armors"/>
 		<attribute key="absorbpercentphysical" value="5"/>
-		<attribute key="skillshield" value="3"/>
-		<attribute key="armor" value="16"/>
+		<attribute key="skillshield" value="5"/>
+		<attribute key="armor" value="18"/>
 		<attribute key="weight" value="13000"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="100"/>
@@ -29084,8 +29084,8 @@
 	</item>
 	<item id="11687" article="a" name="royal scale robe">
 		<attribute key="primarytype" value="armors"/>
-		<attribute key="absorbpercentfire" value="5"/>
-		<attribute key="magiclevelpoints" value="2"/>
+		<attribute key="absorbpercentfire" value="10"/>
+		<attribute key="magiclevelpoints" value="3"/>
 		<attribute key="armor" value="12"/>
 		<attribute key="weight" value="4500"/>
 		<attribute key="script" value="moveevent">
@@ -29120,9 +29120,9 @@
 	</item>
 	<item id="11689" article="an" name="elite draken helmet">
 		<attribute key="primarytype" value="helmets"/>
-		<attribute key="absorbpercentdeath" value="3"/>
-		<attribute key="skilldist" value="1"/>
-		<attribute key="armor" value="9"/>
+		<attribute key="absorbpercentdeath" value="5"/>
+		<attribute key="skilldist" value="2"/>
+		<attribute key="armor" value="10"/>
 		<attribute key="weight" value="4300"/>
 		<attribute key="imbuementslot" value="1">
 			<attribute key="mana leech" value="3"/>
@@ -44275,8 +44275,8 @@ Awarded by TibiaMagazine.com.ve"/>
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showduration" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentphysical" value="6"/>
-		<attribute key="duration" value="3600"/>
+		<attribute key="absorbpercentphysical" value="8"/>
+		<attribute key="duration" value="7200"/>
 		<attribute key="decayTo" value="22060"/>
 		<attribute key="transformDeEquipTo" value="22061"/>
 		<attribute key="armor" value="3"/>
