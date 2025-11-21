@@ -317,6 +317,10 @@ local nameToNewExp = {
 	["Shadowpelt"] = 10000,
 	["Undead Elite Gladiator"] = 8000,
 	["Skeleton Elite Warrior"] = 6000,
+	["Chizzoron the Distorter"] = 40000,
+	["Cobra Vizier"] = 8420,
+	["Misguided Thief"] = 1600,
+	["Misguided Bully"] = 1750,
 }
 
 local function applyCustomExp(mask)
