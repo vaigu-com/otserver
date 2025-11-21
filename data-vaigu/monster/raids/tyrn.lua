@@ -91,6 +91,7 @@ monster.loot = {
 	{ id = 3029, chance = 15000, maxCount = 5 }, -- small sapphire
 	{ id = 9057, chance = 15000, maxCount = 5 }, -- small topaz
 	{ id = 3030, chance = 15000, maxCount = 5 }, -- small ruby
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

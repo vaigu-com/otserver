@@ -98,6 +98,7 @@ monster.loot = {
 	{ name = "boots of haste", chance = 400 },
 	{ name = "dragon lance", chance = 290 },
 	{ name = "piggy bank", chance = 120 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

@@ -110,6 +110,7 @@ monster.loot = {
 	{ id = 12549, chance = 3000 },
 	{ id = 12550, chance = 3000 },
 	{ id = 5907, chance = 3000 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

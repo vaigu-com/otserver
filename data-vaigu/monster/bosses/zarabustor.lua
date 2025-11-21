@@ -88,6 +88,7 @@ monster.loot = {
 	{ id = 825, chance = 3040 }, -- lightning robe
 	{ id = 3006, chance = 2420 }, -- ring of the sky
 	{ id = 3360, chance = 2240 }, -- golden armor
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

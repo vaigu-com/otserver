@@ -103,6 +103,8 @@ monster.loot = {
 	{ id = 5944, chance = 14560 }, -- soul orb
 	{ id = 8074, chance = 80 }, -- spellbook of mind control
 	{ id = 3071, chance = 910 }, -- wand of inferno
+	{ id = 9301, chance = 910 }
+
 }
 
 monster.attacks = {
