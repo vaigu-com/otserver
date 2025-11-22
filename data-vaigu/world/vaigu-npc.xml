@@ -649,7 +649,7 @@
 	<npc centerx="5884" centery="1621" centerz="7" radius="1">
 		<npc name="xXxTurdstinxXx" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="5673" centery="1626" centerz="7" radius="1">
+	<npc centerx="5665" centery="1633" centerz="7" radius="1">
 		<npc name="Narro" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="5800" centery="1649" centerz="7" radius="3">
