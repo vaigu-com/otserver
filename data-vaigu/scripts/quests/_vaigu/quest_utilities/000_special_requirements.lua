@@ -161,8 +161,6 @@ SPECIAL_REQUIREMENTS_WILDCARD = {
 	end,
 }
 
-SPECIAL_REQUIREMENTS_TASKS = {}
-
 SPECIAL_REQUIREMENTS_DAILY_TASK = {}
 
 local function parseMoneyWithdraw(context)

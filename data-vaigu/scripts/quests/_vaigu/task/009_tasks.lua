@@ -1365,5 +1365,10 @@ quest
 				},
 			},
 		}
+		SPECIAL_REQUIREMENTS_TASKS = {
+			PlayerHasAtLeastOneTaskToTurnIn = function(context)
+				return hasAnyTaskDone(context)			
+			end	
+		}
 	end)
 	:Register()

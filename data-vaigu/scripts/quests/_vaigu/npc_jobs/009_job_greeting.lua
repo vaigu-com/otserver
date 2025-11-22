@@ -15,7 +15,7 @@ JOB_GREETING = {
 		text = "Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!",
 		specialRequirements = {
 			{
-				requirement = SPECIAL_REQUIREMENTS_TASKS.hasDoneAnyTask,
+				requirement = SPECIAL_REQUIREMENTS_TASKS.PlayerHasAtLeastOneTaskToTurnIn,
 				requiredOutcome = true,
 				textFailedRequirement = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
 			},
