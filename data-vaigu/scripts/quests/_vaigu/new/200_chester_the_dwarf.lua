@@ -336,7 +336,7 @@ quest
 					},
 					rewards = { { id = 11687 } },
 				},
-				[{ "Elite Draken Helmet", "elite darken helmet" }] = {
+				[{ "Elite Draken Helmet", "elite draken helmet" }] = {
 					requiredItems = { QuestKeyItems.ChesterTheDwarf.GandalfBag },
 					text = "Right, it was the Elite Draken Helmet. Here's your reward.",
 					nextState = {
