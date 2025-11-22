@@ -8797,7 +8797,7 @@
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="absorbpercentpoison" value="25"/>
-		<attribute key="elementpoison" value="8"/>
+		<attribute key="elementearth" value="8"/>
 		<attribute key="attack" value="52"/>
 		<attribute key="defense" value="28"/>
 		<attribute key="weight" value="9000"/>
@@ -19584,7 +19584,7 @@
 		<attribute key="primarytype" value="sword weapons"/>
 		<attribute key="weaponType" value="sword"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="elementpoison" value="5"/>
+		<attribute key="elementearth" value="5"/>
 		<attribute key="attack" value="45"/>
 		<attribute key="defense" value="29"/>
 		<attribute key="weight" value="6100"/>
@@ -19728,7 +19728,7 @@
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="absorbpercentpoison" value="12"/>
 		<attribute key="absorbpercentdeath" value="-30"/>
-		<attribute key="elementpoison" value="6"/>
+		<attribute key="elementearth" value="6"/>
 		<attribute key="attack" value="49"/>
 		<attribute key="defense" value="34"/>
 		<attribute key="weight" value="7200"/>
@@ -20317,7 +20317,7 @@
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="absorbpercentpoison" value="15"/>
-		<attribute key="elementpoison" value="6"/>
+		<attribute key="elementearth" value="6"/>
 		<attribute key="attack" value="49"/>
 		<attribute key="extradef" value="-5"/>
 		<attribute key="defense" value="25"/>
@@ -29141,7 +29141,7 @@
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="20"/>
 		<attribute key="absorbpercentice" value="-40"/>
-		<attribute key="elementpoison" value="2"/>
+		<attribute key="elementearth" value="2"/>
 		<attribute key="attack" value="48"/>
 		<attribute key="extradef" value="3"/>
 		<attribute key="defense" value="22"/>
