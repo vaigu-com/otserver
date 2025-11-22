@@ -1296,6 +1296,7 @@ JOB_SHOPS = {
 		{ itemName = "young lich worm", clientId = 31590, sell = 25000 },
 		{ itemName = "zaogun flag", clientId = 10413, sell = 600 },
 		{ itemName = "zaogun shoulderplates", clientId = 10414, sell = 150 },
+		{ itemName = "grave flower", clientId = 3663, sell = 25 },
 	},
 	[JOB_FOOD] = {
 		{ itemName = "orange mushroom", clientId = 3726, sell = 150 },

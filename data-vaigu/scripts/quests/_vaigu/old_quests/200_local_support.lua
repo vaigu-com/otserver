@@ -157,9 +157,9 @@ quest
 			ConfirmBuyingShimmerSwimmer = NextTopic(),
 			ConfirmTradeInTwomarlins = NextTopic(),
 			ConfirmPinataQuestSecret = NextTopic(),
-			ConfirmDesiredTurbanClothAmount = NextTopic(),
-			ConfirmDesiredRobeClothAmount = NextTopic(),
-			ConfirmDesiredTunicClothAmount = NextTopic(),
+			ConfirmExchangeTurban = NextTopic(),
+			ConfirmExchangeRobe = NextTopic(),
+			ConfirmExchangeTunic = NextTopic(),
 		}
 	end)
 	:Constant(function()
@@ -1112,23 +1112,22 @@ quest
 
 				[{ "mystic turban", "mistyczny turban" }] = {
 					text = "I will need EXCHANGE_RATE turbans to sew one blue cloth. Would you like to exchange?",
-					nextTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					nextTopic = QuestTopics.LocalSupport.ConfirmExchangeTurban,
 					exchangeRate = mysticTurbanExchangeRate,
 				},
 				[{ "red robe", "czerwona szate" }] = {
 					text = "I will need EXCHANGE_RATE robes to sew one red cloth. Would you like to exchange?",
-					nextTopic = QuestTopics.LocalSupport.ConfirmDesiredRobeClothAmount,
+					nextTopic = QuestTopics.LocalSupport.ConfirmExchangeRobe,
 					exchangeRate = redRobeExchangeRate,
 				},
 				[{ "green tunic", "zielona tunike" }] = {
 					text = "I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?",
-					nextTopic = QuestTopics.LocalSupport.ConfirmDesiredTunicClothAmount,
+					nextTopic = QuestTopics.LocalSupport.ConfirmExchangeTunic,
 					exchangeRate = greenTunicExchangeRate,
 				},
-
-				[{ "one" }] = {
+				[{ "yes", "tak" }] = {
 					text = "Here you go.",
-					requiredTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					requiredTopic = QuestTopics.LocalSupport.ConfirmExchangeTurban,
 					requiredItems = {
 						{ id = ItemId.MYSTIC_TURBAN, count = mysticTurbanExchangeRate },
 					},
@@ -1136,21 +1135,21 @@ quest
 						{ id = ItemId.BLUE_PIECE_OF_CLOTH, count = 1 },
 					},
 				},
-				[{ "one" }] = {
+				[{ "yes", "tak" }] = {
 					text = "Here you go.",
-					requiredTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					requiredTopic = QuestTopics.LocalSupport.ConfirmExchangeRobe,
 					requiredItems = {
-						{ id = ItemId.MYSTIC_TURBAN, count = redRobeExchangeRate },
+						{ id = ItemId.RED_ROBE, count = redRobeExchangeRate },
 					},
 					rewards = {
 						{ id = ItemId.RED_PIECE_OF_CLOTH, count = 1 },
 					},
 				},
-				[{ "one" }] = {
+				[{ "yes", "tak" }] = {
 					text = "Here you go.",
-					requiredTopic = QuestTopics.LocalSupport.ConfirmDesiredTurbanClothAmount,
+					requiredTopic = QuestTopics.LocalSupport.ConfirmExchangeTunic,
 					requiredItems = {
-						{ id = ItemId.MYSTIC_TURBAN, count = greenTunicExchangeRate },
+						{ id = ItemId.GREEN_TUNIC, count = greenTunicExchangeRate },
 					},
 					rewards = {
 						{ id = ItemId.GREEN_PIECE_OF_CLOTH, count = 1 },
