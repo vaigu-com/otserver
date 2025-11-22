@@ -8664,7 +8664,6 @@
 		<attribute key="primarytype" value="sword weapons"/>
 		<attribute key="description" value="The blade shimmers in light blue"/>
 		<attribute key="weaponType" value="sword"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="15"/>
 		<attribute key="absorbpercentdeath" value="-35"/>
 		<attribute key="elementholy" value="4"/>
@@ -8797,7 +8796,6 @@
 		<attribute key="description" value="A masterpiece of a dwarven smith"/>
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="25"/>
 		<attribute key="elementpoison" value="8"/>
 		<attribute key="attack" value="52"/>
@@ -8878,7 +8876,6 @@
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="description" value="It is blessed by the gods of Tibia"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="-25"/>
 		<attribute key="absorbpercentice" value="-25"/>
 		<attribute key="elementfire" value="13"/>
@@ -9306,7 +9303,6 @@
 	<item id="3334" article="a" name="pharaoh sword">
 		<attribute key="primarytype" value="sword weapons"/>
 		<attribute key="weaponType" value="sword"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="25"/>
 		<attribute key="magiclevelpoints" value="1"/>
         <attribute key="absorbpercentmanadrain" value="25"/>
@@ -19535,7 +19531,6 @@
 	<item id="7388" article="a" name="vile axe">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentenergy" value="10"/>
 		<attribute key="elementenergy" value="7"/>
 		<attribute key="attack" value="43"/>
@@ -19731,7 +19726,6 @@
 		<attribute key="primarytype" value="sword weapons"/>
 		<attribute key="weaponType" value="sword"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="12"/>
 		<attribute key="absorbpercentdeath" value="-30"/>
 		<attribute key="elementpoison" value="6"/>
@@ -19778,7 +19772,6 @@
 		<attribute key="primarytype" value="sword weapons"/>
 		<attribute key="weaponType" value="sword"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentenergy" value="5"/>
 		<attribute key="elementdeath" value="3"/>
 		<attribute key="attack" value="40"/>
@@ -19822,7 +19815,6 @@
 	<item id="7409" article="a" name="northern star">
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentice" value="5"/>
 		<attribute key="magiclevelpoints" value="1"/>
         <attribute key="absorbpercentmanadrain" value="5"/>
@@ -19863,7 +19855,6 @@
 	<item id="7411" article="an" name="ornamented axe">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="10"/>
 		<attribute key="elementholy" value="11"/>
 		<attribute key="attack" value="44"/>
@@ -19916,7 +19907,6 @@
 		<attribute key="description" value="Floating stones form the tip of this strange weapon, held in place by unspeakable magic"/>
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentenergy" value="15"/>
         <attribute key="elementenergy" value="3"/>
 		<attribute key="attack" value="47"/>
@@ -19983,7 +19973,6 @@
 	<item id="7417" article="a" name="runed sword">
 		<attribute key="primarytype" value="sword weapons"/>
 		<attribute key="weaponType" value="sword"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="-20"/>
 		<attribute key="elementholy" value="5"/>
 		<attribute key="attack" value="45"/>
@@ -20101,7 +20090,6 @@
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentlifedrain" value="25"/>
 		<attribute key="elementdeath" value="8"/>
 		<attribute key="attack" value="45"/>
@@ -20125,7 +20113,6 @@
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="10"/>
 		<attribute key="elementenergy" value="3"/>
 		<attribute key="attack" value="40"/>
@@ -20182,7 +20169,6 @@
 		<attribute key="description" value="Only those who have descended to the deepest depths may wield this hammer without it cursing them"/>
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="-30"/>
 		<attribute key="elementdeath" value="5"/>
 		<attribute key="attack" value="44"/>
@@ -20255,7 +20241,6 @@
 	<item id="7431" article="a" name="demonbone">
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="25"/>
 		<attribute key="elementfire" value="20"/>
 		<attribute key="attack" value="30"/>
@@ -20293,7 +20278,6 @@
 	<item id="7433" article="a" name="ravenwing">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="5"/>
 		<attribute key="elementdeath" value="3"/>
 		<attribute key="attack" value="45"/>
@@ -20332,7 +20316,6 @@
 	<item id="7435" article="an" name="impaler">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="15"/>
 		<attribute key="elementpoison" value="6"/>
 		<attribute key="attack" value="49"/>
@@ -20371,7 +20354,6 @@
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="description" value="A beautiful gem is embedded in this weapon"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="10"/>
 		<attribute key="elementholy" value="3"/>
 		<attribute key="attack" value="37"/>
@@ -20525,7 +20507,6 @@
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="-25"/>
 		<attribute key="elementdeath" value="4"/>
 		<attribute key="attack" value="51"/>
@@ -20562,7 +20543,6 @@
 	<item id="7455" article="a" name="mythril axe">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentenergy" value="10"/>
 		<attribute key="elementenergy" value="2"/>
 		<attribute key="attack" value="48"/>
@@ -22355,7 +22335,6 @@
 	<item id="8096" article="a" name="hellforged axe">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="10"/>
 		<attribute key="absorbpercentfire" value="10"/>
 		<attribute key="elementfire" value="4"/>
@@ -22403,7 +22382,6 @@
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentenergy" value="20"/>
 		<attribute key="absorbpercentholy" value="-60"/>
 		<attribute key="elementenergy" value="7"/>
@@ -39699,7 +39677,6 @@
 	<item id="19399" name="RESERVED SPRITE"/>
 	<item id="19400" name="arcane staff">
 		<attribute key="primarytype" value="club weapons"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="magiclevelpoints" value="1"/>
         <attribute key="elementenergy" value="3"/>
 		<attribute key="attack" value="50"/>
@@ -41985,7 +41962,6 @@
 	<item id="21171" article="a" name="metal bat">
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="-40"/>
         <attribute key="elementdeath" value="3"/>
 		<attribute key="attack" value="44"/>
@@ -42001,7 +41977,6 @@
 	<item id="21172" article="a" name="glooth whip">
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="5"/>
 		<attribute key="magiclevelpoints" value="1"/>
         <attribute key="absorbpercentmanadrain" value="5"/>
