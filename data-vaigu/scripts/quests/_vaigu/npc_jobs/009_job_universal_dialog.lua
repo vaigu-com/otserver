@@ -265,12 +265,12 @@ pseudoQuest
 				text = "Here you are.",
 				requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 				requiredState = {
-					[Storage.Tasks.TaskPoints] = powerfulImbueUnlockCost,
+					[Storage.Task.TaskPoints] = powerfulImbueUnlockCost,
 					[Storage.powerfulImbue] = { max = 0 },
 				},
 				nextState = {
 					[Storage.powerfulImbue] = 1,
-					[Storage.Tasks.TaskPoints] = "-" .. tostring(powerfulImbueUnlockCost),
+					[Storage.Task.TaskPoints] = "-" .. tostring(powerfulImbueUnlockCost),
 				},
 				textNoRequiredState = "YOU_DONT_HAVE_ENOUGH_TASK_POINTS",
 				cost = powerfulImbueUnlockCost,

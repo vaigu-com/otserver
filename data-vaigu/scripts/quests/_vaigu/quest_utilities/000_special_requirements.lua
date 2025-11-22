@@ -162,6 +162,11 @@ SPECIAL_REQUIREMENTS_WILDCARD = {
 }
 
 SPECIAL_REQUIREMENTS_DAILY_TASK = {}
+SPECIAL_REQUIREMENTS_TASKS = {
+	PlayerHasAtLeastOneTaskToTurnIn = function(context)
+		return hasAnyTaskDone(context)
+	end,
+}
 
 local function parseMoneyWithdraw(context)
 	local declaredMoneyAnyType = context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount or PlayerDialogDataRegistry:Get(context.player):Previous().amount

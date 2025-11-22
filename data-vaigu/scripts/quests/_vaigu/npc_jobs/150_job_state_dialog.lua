@@ -23,7 +23,7 @@ local function buyTrophy(context)
 	}
 
 	player:AddCustomItem(decoKit)
-	player:IncrementStorage(Storage.Tasks.TaskPoints, -trophyCost)
+	player:IncrementStorage(Storage.Task.TaskPoints, -trophyCost)
 end
 
 QuestRewards.OutfitsAddons.Universal.Golden0 = { { outfitId = 1211, addons = 0 }, { outfitId = 1210, addons = 0 } }
@@ -33,18 +33,18 @@ QuestRewards.Mounts.Universal.Antelope = { antelopeMountId }
 
 NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
-		[LOCALIZERS.Tasks] = {
-			[Storage.Tasks.TaskInfo] = {
+		[LOCALIZERS.Task] = {
+			[Storage.Task.TaskInfo] = {
 				[MISSION_NOT_STARTED] = {
 					[{ GREET }] = {
 						text = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
 						nextState = {
-							[Storage.Tasks.TaskInfo] = MISSION_FINISHED,
+							[Storage.Task.TaskInfo] = MISSION_FINISHED,
 						},
 					},
 				},
 			},
-			[Storage.Tasks.TaskPoints] = {
+			[Storage.Task.TaskPoints] = {
 				[{ max = 0 }] = {
 					[{ "punkt", "point", "punktow", "points", "punkty" }] = {
 						text = "You don't have any points. You'll get some after finishing the {tasks}. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.",
@@ -108,7 +108,7 @@ NPC_STATE_DIALOGS = {
 						requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyAntelope,
 						mountRewards = QuestRewards.Mounts.Universal.Antelope,
 						nextState = {
-							[Storage.Tasks.TaskPoints] = T("-:cost:", { cost = antelopeCost }),
+							[Storage.Task.TaskPoints] = T("-:cost:", { cost = antelopeCost }),
 						},
 						specialRequirements = {
 							{

@@ -985,14 +985,14 @@ quest
 		end
 
 		local function showDailyTaskHelpWindow(player)
-			local translatedMessage = player:Localizer(LOCALIZERS.Tasks):Get("DAILY_TASKS_HELP_WINDOW_INFO")
+			local translatedMessage = player:Localizer(LOCALIZERS.Task):Get("DAILY_TASKS_HELP_WINDOW_INFO")
 			player:showTextDialog(2819, translatedMessage)
 		end
 
 		local function openDailyTaskWindow(context)
 			local player = context.player
 
-			local localizerTasks = player:Localizer(LOCALIZERS.Tasks)
+			local localizerTasks = player:Localizer(LOCALIZERS.Task)
 			local localizerDailyTasks = player:Localizer(LOCALIZERS.DailyTasks)
 			local message = localizerTasks:Get("Select task you're interested in: ")
 			local title = localizerDailyTasks:Get("Daily tasks")
@@ -1324,7 +1324,7 @@ quest
 		local function openDailyTaskCancelWindow(context)
 			local player = context.player
 
-			local localizer = player:Localizer(LOCALIZERS.Tasks)
+			local localizer = player:Localizer(LOCALIZERS.Task)
 			local message = localizer:Get("Select task you want to cancel: ")
 			local title = localizer:Get("Ongoing tasks list:")
 			local modalWindow = ModalWindow({ title = title, message = message })
@@ -1355,7 +1355,7 @@ quest
 
 			player:addMoney(money)
 			player:AddAllCoins(coins)
-			player:IncrementStorage(Storage.Tasks.TaskPoints, coins)
+			player:IncrementStorage(Storage.Task.TaskPoints, coins)
 			player:addExperience(exp, true)
 			return true
 		end
@@ -1367,7 +1367,7 @@ quest
 				return ""
 			end
 
-			local localizer = self:Localizer(LOCALIZERS.Tasks):Context({
+			local localizer = self:Localizer(LOCALIZERS.Task):Context({
 				dailyTask = dailyTask,
 			})
 

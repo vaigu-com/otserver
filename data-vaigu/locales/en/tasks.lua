@@ -9,7 +9,7 @@ return {
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!",
 	["Finish one of {tasks}, then we can talk about reward."] = "Finish one of {tasks}, then we can talk about reward.",
 	["TASKS_HELP_WINDOW_INFO"] = function()
-		return T("Finishing tasks grants you experience points, money, store coins and after each task you can face the corresponding boss.\n\nYou can have up to :maxTasks: active tasks at the time.", { maxTasks = #Storage.Tasks.PlayerOngoingTasks })
+		return T("Finishing tasks grants you experience points, money, store coins and after each task you can face the corresponding boss.\n\nYou can have up to :maxTasks: active tasks at the time.", { maxTasks = #Storage.Task.PlayerOngoingTasks })
 	end,
 	["TASK_REWARDS_DIALOG"] = function(context)
 		local task = context.task
@@ -25,7 +25,7 @@ return {
 		return T("Task for :name: is finshed! You can now face the boss and go to The Great Tracker for reward!", { name = context.task.name })
 	end,
 	["YOU_HAVE_MAX_ONGOING_TASKS"] = function()
-		local maxOngoingTasks = #Storage.Tasks.PlayerOngoingTasks
+		local maxOngoingTasks = #Storage.Task.PlayerOngoingTasks
 		return T("You have :maxOngoingTasks: already. You can {cancel} one of them if you want.", { maxOngoingTasks = maxOngoingTasks })
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
@@ -53,7 +53,7 @@ return {
 	end,
 	--Task Points
 	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local points = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		return T("Currently you have :points: task points. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -63,7 +63,7 @@ return {
 		return T("Would you like to buy :name: for :cost: Task Poins?", { name = context.msg:lower(), cost = context.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local current = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		local required = context.cost or PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("You dont have enough points. You need :required: points to buy that. You currently have :current: points meaning you need to accumulate :diff: more points.", { current = current, required = required, diff = diff })
@@ -152,7 +152,7 @@ return {
 		return T("Fight with :bossName:", { bossName = context.task.bossName })
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION"] = function(context)
-		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Tasks):Get(context.task.name)
+		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Task):Get(context.task.name)
 		local bossAdmits = math.max(context.player:getStorageValueByKey(context.task.bossAdmitCounter), 0)
 		local admitsCountSuffix = T(" \nYou can fight with the boss :bossAdmits: times.", { bossAdmits = bossAdmits })
 		return bossLocationDescription .. admitsCountSuffix

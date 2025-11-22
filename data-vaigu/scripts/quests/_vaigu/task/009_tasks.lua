@@ -1,8 +1,8 @@
-local quest = Quest(LOCALIZERS.Tasks)
+local quest = Quest(LOCALIZERS.Task)
 
 quest
 	:Storage(function()
-		Storage.Tasks = {
+		Storage.Task = {
 			TaskInfo = {},
 			TaskPoints = {},
 			PlayerOngoingTasks = {
@@ -721,7 +721,7 @@ quest
 			missions = {
 				{
 					name = "Task informations",
-					storage = Storage.Tasks.TaskInfo,
+					storage = Storage.Task.TaskInfo,
 					description = "TASKS_HELP_WINDOW_INFO",
 				},
 			},
@@ -836,7 +836,7 @@ quest
 		local function clearBossRoom(task)
 			local players = task.bossRoomZone:getPlayers()
 			for _, player in pairs(players) do
-				player:teleportToStoredOrTemple(Storage.Tasks.LastBossRoomEnterPosition)
+				player:teleportToStoredOrTemple(Storage.Task.LastBossRoomEnterPosition)
 			end
 		end
 
@@ -861,7 +861,7 @@ quest
 				monster:remove()
 			end
 
-			player:setStorageValueByKey(Storage.Tasks.LastBossRoomEnterPosition, fromPosition)
+			player:setStorageValueByKey(Storage.Task.LastBossRoomEnterPosition, fromPosition)
 
 			stopEvent(task.clearRoomEvent)
 
@@ -939,11 +939,11 @@ quest
 					return
 				end
 
-				player:teleportToStoredOrTemple(Storage.Tasks.LastBossRoomEnterPosition)
+				player:teleportToStoredOrTemple(Storage.Task.LastBossRoomEnterPosition)
 				return true
 			end
 			bossRoomExit:type("stepin")
-			bossRoomExit:key(Storage.Tasks.BossRoomExitPortal)
+			bossRoomExit:key("Task-BossRoomExitPortal")
 			bossRoomExit:register()
 		end
 		registerTasksBossTp()
@@ -960,14 +960,14 @@ quest
 			self:IncrementStorage(task.currentKills)
 			self:RefreshStorage(task.storage)
 
-			local currentKillsString = self:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_CURRENT_KILLS")
+			local currentKillsString = self:Localizer(LOCALIZERS.Task):Context({ task = task }):Get("TASK_CURRENT_KILLS")
 			self:sendTextMessage(MESSAGE_EXPERIENCE, currentKillsString)
 
 			if self:getStorageValueByKey(task.currentKills) >= task.requiredKills then
 				self:setStorageValueByKey(task.storage, REPORT_TASK_TO_NPC)
 				self:setStorageValueByKey(task.currentKills, task.requiredKills)
 
-				local translatedMessageWhenFinished = self:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_READY_TO_TURN_IN")
+				local translatedMessageWhenFinished = self:Localizer(LOCALIZERS.Task):Context({ task = task }):Get("TASK_READY_TO_TURN_IN")
 				self:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessageWhenFinished)
 
 				local bossAdmits = math.max(self:getStorageValueByKey(task.bossAdmitCounter), 0)
@@ -1099,9 +1099,9 @@ quest
 			return false
 		end
 
-		local function hasAnyTaskDone(context)
+		function hasAnyTaskDone(context)
 			local player = context.player
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
 				local taskStorage = player:getStorageValueByKey(taskSlot)
 				if slotHasInvalidStorage(taskStorage) then
 					player:setStorageValueByKey(taskSlot, TASK_SLOT_UNOCCUPIED)
@@ -1115,8 +1115,8 @@ quest
 		local function canTakeAnotherTask(context)
 			local player = context.player
 			local activeTasks = 0
-			local maximumAllowedOngoingTasks = #Storage.Tasks.PlayerOngoingTasks
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
+			local maximumAllowedOngoingTasks = #Storage.Task.PlayerOngoingTasks
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
 				local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 				if ongoingTaskStorage ~= TASK_SLOT_UNOCCUPIED then
 					activeTasks = activeTasks + 1
@@ -1128,7 +1128,7 @@ quest
 
 		local function hasAnyOngoingTask(context)
 			local player = context.player
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
 				local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 				if ongoingTaskStorage ~= TASK_SLOT_UNOCCUPIED then
 					return true
@@ -1139,7 +1139,7 @@ quest
 		end
 
 		function Player:AddOngoingTask(task)
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
 				local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
 				if ongoingTaskStorage == TASK_SLOT_UNOCCUPIED then
 					self:setStorageValueByKey(task.currentKills, 0)
@@ -1166,7 +1166,7 @@ quest
 		end
 
 		local function showTaskHelpWindow(player)
-			local translatedMessage = player:Localizer(LOCALIZERS.Tasks):Get("TASKS_HELP_WINDOW_INFO")
+			local translatedMessage = player:Localizer(LOCALIZERS.Task):Get("TASKS_HELP_WINDOW_INFO")
 			player:showTextDialog(7397, translatedMessage)
 		end
 
@@ -1188,7 +1188,7 @@ quest
 		end
 
 		local function playerHasThisTaskTaken(player, task)
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
 				local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 				if ongoingTaskStorage == task.storage then
 					return true
@@ -1213,7 +1213,7 @@ quest
 		local function openTaskWindow(context)
 			local player = context.player
 
-			local localizer = player:Localizer(LOCALIZERS.Tasks)
+			local localizer = player:Localizer(LOCALIZERS.Task)
 			local message = localizer:Get("Select task you're interested in: ")
 			local title = localizer:Get("Available Task list")
 			local modalWindow = ModalWindow({ title = title, message = message })
@@ -1251,11 +1251,11 @@ quest
 		local function openTaskCancelWindow(context)
 			local player = context.player
 
-			local localizer = player:Localizer(LOCALIZERS.Tasks)
+			local localizer = player:Localizer(LOCALIZERS.Task)
 			local message = localizer:Get("Select task you want to cancel: ")
 			local title = localizer:Get("Ongoing tasks list:")
 			local modalWindow = ModalWindow({ title = title, message = message })
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
 				local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 				local task = GetTaskByStorage(ongoingTaskStorage)
 				if task then
@@ -1287,7 +1287,7 @@ quest
 
 			player:addMoney(money)
 			player:AddAllCoins(coins)
-			player:IncrementStorage(Storage.Tasks.TaskPoints, coins)
+			player:IncrementStorage(Storage.Task.TaskPoints, coins)
 			player:addExperience(exp, true)
 			return true
 		end
@@ -1311,18 +1311,18 @@ quest
 		local function grantRewardsForAllTasks(context)
 			local player = context.player
 			local translatedMessage = ""
-			for _, taskSlot in pairs(Storage.Tasks.PlayerOngoingTasks) do
-				local ongoingTaskStorage = self:getStorageValueByKey(taskSlot)
+			for _, taskSlot in pairs(Storage.Task.PlayerOngoingTasks) do
+				local ongoingTaskStorage = player:getStorageValueByKey(taskSlot)
 				local task = GetTaskByStorage(ongoingTaskStorage)
 				if task then
 					local grantedRewardForThisTask = player:TryAddTaskRewards(context, task, taskSlot)
 					if grantedRewardForThisTask then
-						translatedMessage = translatedMessage .. player:Localizer(LOCALIZERS.Tasks):Context({ task = task }):Get("TASK_REWARDS_DIALOG") .. "\n"
+						translatedMessage = translatedMessage .. player:Localizer(LOCALIZERS.Task):Context({ task = task }):Get("TASK_REWARDS_DIALOG") .. "\n"
 					end
 				end
 			end
 
-			translatedMessage = translatedMessage .. player:Localizer(LOCALIZERS.Tasks):Get("Great job!")
+			translatedMessage = translatedMessage .. player:Localizer(LOCALIZERS.Task):Get("Great job!")
 			context.npcHandler:say(translatedMessage, context.npc, context.player)
 		end
 
@@ -1364,11 +1364,6 @@ quest
 					},
 				},
 			},
-		}
-		SPECIAL_REQUIREMENTS_TASKS = {
-			PlayerHasAtLeastOneTaskToTurnIn = function(context)
-				return hasAnyTaskDone(context)			
-			end	
 		}
 	end)
 	:Register()

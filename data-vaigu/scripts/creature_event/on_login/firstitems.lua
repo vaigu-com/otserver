@@ -67,7 +67,7 @@ local function addKeyRing(player)
 end
 
 local initialStorages = {
-	[Storage.Tasks.TaskPoints] = 0,
+	[Storage.Task.TaskPoints] = 0,
 }
 
 Storage.FirstLogin = {}
