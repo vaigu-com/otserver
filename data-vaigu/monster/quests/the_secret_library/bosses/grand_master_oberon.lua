@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Grand Master Oberon")
 local monster = {}
 
 monster.description = "Grand Master Oberon"
-monster.experience = 20000
+monster.experience = 120000
 monster.outfit = {
 	lookType = 1072,
 	lookHead = 21,
@@ -70,20 +70,20 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3115, chance = 3000, maxCount = 1 }, -- bone
-	{ name = "spatial warp almanac", chance = 5000, maxCount = 1 },
-	{ name = "falcon battleaxe", chance = 600, maxCount = 1 },
-	{ name = "falcon longsword", chance = 600, maxCount = 1 },
-	{ name = "falcon mace", chance = 600, maxCount = 1 },
-	{ name = "grant of arms", chance = 800, maxCount = 1 },
-	{ name = "falcon bow", chance = 600, maxCount = 1 },
-	{ name = "falcon circlet", chance = 600, maxCount = 1 },
-	{ name = "falcon coif", chance = 500, maxCount = 1 },
-	{ name = "falcon rod", chance = 600, maxCount = 1 },
-	{ name = "falcon wand", chance = 600, maxCount = 1 },
-	{ name = "falcon shield", chance = 800, maxCount = 1 },
-	{ name = "falcon greaves", chance = 500, maxCount = 1 },
-	{ name = "falcon plate", chance = 500, maxCount = 1 },
+	{ id = 3115, chance = 15000, maxCount = 1 }, -- bone
+	{ name = "spatial warp almanac", chance = 25000, maxCount = 1 },
+	{ name = "falcon battleaxe", chance = 3000, maxCount = 1 },
+	{ name = "falcon longsword", chance = 3000, maxCount = 1 },
+	{ name = "falcon mace", chance = 3000, maxCount = 1 },
+	{ name = "grant of arms", chance = 4000, maxCount = 1 },
+	{ name = "falcon bow", chance = 3000, maxCount = 1 },
+	{ name = "falcon circlet", chance = 3000, maxCount = 1 },
+	{ name = "falcon coif", chance = 2500, maxCount = 1 },
+	{ name = "falcon rod", chance = 3000, maxCount = 1 },
+	{ name = "falcon wand", chance = 3000, maxCount = 1 },
+	{ name = "falcon shield", chance = 4000, maxCount = 1 },
+	{ name = "falcon greaves", chance = 2500, maxCount = 1 },
+	{ name = "falcon plate", chance = 2500, maxCount = 1 },
 }
 
 monster.attacks = {

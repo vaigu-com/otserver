@@ -1062,8 +1062,8 @@ quest
 				end
 
 				local function closeDoor()
-					doorLeft:Moved(1,0 , 0)
-					doorRight:Moved(-1,0, 0)
+					doorLeft:Moved(1, 0, 0)
+					doorRight:Moved(-1, 0, 0)
 				end
 
 				local scheduledClosingTime = 0
@@ -1674,13 +1674,13 @@ quest
 		end
 		rukca:register()
 	end)
-	:Script(function ()
+	:Script(function()
 		local saltyTileStepIn = MoveEvent()
 		function saltyTileStepIn.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
 			if creature:isPlayer() then
 				return false
 			end
-			
+
 			creature:getPosition(CONST_ME_CRITICAL_DAMAGE)
 		end
 		saltyTileStepIn:key(Storage.PerIustitiaAdAstra.SaltyTile)
@@ -1693,7 +1693,7 @@ quest
 		local function standsOnSaltyTile(creature)
 			local salt = creature:getPosition():GetItemById(saltId)
 			if not salt then
-				return false 
+				return false
 			end
 			if salt:getKey() ~= Storage.PerIustitiaAdAstra.SaltyTile then
 				return false
@@ -1770,5 +1770,63 @@ quest
 					rewards = { ExerciseWeaponBox(5000) },
 				},
 			})
+	end)
+	:EncounterData(function()
+		local oberonEncounter = EncounterData({
+			displayName = "Grand Master Oberon",
+			encounterId = "Oberon",
+			bossName = "Grand Master Oberon",
+
+			lockoutExpiryTime = LOCKOUT_EXPIRY_TIME.WEEKLY,
+			lockoutTriggerCriterion = LOCKOUT_TRIGGER_CRITERION.ON_KILL,
+		})
+
+		local falconMonsterNames = {
+			"Falcon Knight",
+			"Falcon Paladin",
+		}
+
+		local monsterSpawnZone = Zone(oberonEncounter:GetScope():Get("MonsterSpawnPositions"))
+		local function trySpawnFalconMonster()
+			local pos = monsterSpawnZone:randomPosition()
+			local randomSeaMonsterName = table.random(falconMonsterNames)
+			Game.createMonster(randomSeaMonsterName, pos)
+		end
+
+		local monsterSpawnerAdmitsScope = oberonEncounter:GetEventScope():Get("MonstersAdmits")
+
+		local admitIncrementInterval = 25000
+
+		local admitsCount = 0
+		local monsterAdmits = GlobalEvent(monsterSpawnerAdmitsScope)
+		function monsterAdmits.onThink()
+			if not oberonEncounter:IsActive() then
+				return GLOBAL_EVENT_OK
+			end
+
+			admitsCount = admitsCount + oberonEncounter:GetParticipantsCount() / (60000 / admitIncrementInterval)
+
+			return GLOBAL_EVENT_OK
+		end
+		monsterAdmits:interval(admitIncrementInterval)
+		monsterAdmits:register()
+
+		local monsterSpawnerScope = oberonEncounter:GetEventScope():Get("MonstersSpawner")
+		local monsterSpawner = GlobalEvent(monsterSpawnerScope)
+		function monsterSpawner.onThink()
+			if not oberonEncounter:IsActive() then
+				return GLOBAL_EVENT_OK
+			end
+
+			if admitsCount >= 1 then
+				trySpawnFalconMonster()
+				admitsCount = 0
+			end
+			return GLOBAL_EVENT_OK
+		end
+		monsterSpawner:interval(1000)
+		monsterSpawner:register()
+
+		EncounterDataRegistry:Register(oberonEncounter)
 	end)
 	:Register()
