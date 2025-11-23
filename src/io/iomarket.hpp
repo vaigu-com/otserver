@@ -107,6 +107,7 @@ private:
 	void addRemainingItemToOwner(const MarketHistoricOffer &historicOffer);
 
 	void moveExpiredActiveToNewHistoric();
+	static void dropExpiredActive();
 	static void dropZeroAmountOffers();
 
 	void appendToNewActive(const MarketActiveOffer &offer);

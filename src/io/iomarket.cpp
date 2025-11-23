@@ -417,12 +417,21 @@ void IOMarket::moveExpiredActiveToNewHistoric() {
 	}
 }
 
+void IOMarket::dropExpiredActive(){
+	std::ostringstream query;
+	query << "DELETE FROM `market_offers` WHERE UNIX_TIMESTAMP() > `expiry_timestamp`";
+	Database &db = Database::getInstance();
+	if (!db.executeQuery(query.str())) {
+		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to drop expired active offers");
+	}
+}
+
 void IOMarket::dropZeroAmountOffers() {
 	std::ostringstream query;
 	query << "DELETE FROM `market_offers` WHERE `amount` = 0";
 	Database &db = Database::getInstance();
 	if (!db.executeQuery(query.str())) {
-		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to drop zero amount offers");
+		throw DatabaseException("[" + std::string(__FUNCTION__) + "] - Failed to drop zero amount active offers");
 	}
 }
 
@@ -440,6 +449,7 @@ void IOMarket::initialize() {
 	IOMarketContainerHelper::initializeMaxHistoricId();
 
 	moveExpiredActiveToNewHistoric();
+	dropExpiredActive();
 
 	initialized = true;
 }
