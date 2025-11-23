@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Hoodinion")
 local monster = {}
 
 monster.description = "Hoodinion"
-monster.experience = 0
+monster.experience = 550
 monster.outfit = {
 	lookType = 1424,
 }
@@ -10,8 +10,8 @@ monster.outfit = {
 monster.health = 800
 monster.maxHealth = 800
 monster.race = "undead"
-monster.corpse = 36906
-monster.speed = 180
+monster.corpse = 6323
+monster.speed = 130
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -52,12 +52,29 @@ monster.light = {
 
 monster.voices = {}
 
+monster.loot = {
+	{ name = "platinum coin", chance = 30000, maxCount = 2 },
+	{ name = "gold coin", chance = 30000, maxCount = 112 },
+	{ name = "small enchanted emerald", chance = 492, maxCount = 2 },
+	{ name = "green mushroom", chance = 492, maxCount = 2 },
+	{ name = "opal", chance = 492, maxCount = 2 },
+	{ name = "strong mana potion", chance = 6800 },
+	{ name = "clerical mace", chance = 5155 },
+	{ name = "great mana potion", chance = 591 },
+	{ name = "diamond sceptre", chance = 3400 },
+	{ name = "silver brooch", chance = 3400 },
+	{ name = "fern", chance = 30100 },
+	{ name = "opal", chance = 5155 },
+	{ name = "strong health potion", chance = 719 },
+	{ name = "orange mushroom", chance = 10000 },
+}
+
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -100 },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -100, maxDamage = -100, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
-	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 6, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICETORNADO, target = true },
-	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_ICEDAMAGE, minDamage = -100, maxDamage = -100, range = 7, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ANI_TARSALARROW, target = true },
-	{ name = "combat", interval = 3000, chance = 16, type = COMBAT_HOLYDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 6, effect = CONST_ME_HITBYFIRE, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
+	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -270, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 6, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICETORNADO, target = true },
+	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -270, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ANI_TARSALARROW, target = true },
+	{ name = "combat", interval = 3000, chance = 16, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 6, effect = CONST_ME_HITBYFIRE, target = false },
 }
 
 monster.defenses = {

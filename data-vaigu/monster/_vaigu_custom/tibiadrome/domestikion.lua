@@ -2,16 +2,16 @@ local mType = Game.createMonsterType("Domestikion")
 local monster = {}
 
 monster.description = "Domestikion"
-monster.experience = 0
+monster.experience = 500
 monster.outfit = {
 	lookType = 1426,
 }
 
-monster.health = 800
-monster.maxHealth = 800
+monster.health = 750
+monster.maxHealth = 750
 monster.race = "undead"
-monster.corpse = 36914
-monster.speed = 180
+monster.corpse = 6323
+monster.speed = 130
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -52,11 +52,36 @@ monster.light = {
 
 monster.voices = {}
 
+monster.loot = {
+	{ name = "white pearl", chance = 3000 },
+	{ id = 3098, chance = 1000 }, -- ring of healing
+	{ name = "orichalcum pearl", chance = 6000, maxCount = 4 },
+}
+
+monster.loot = {
+	{ name = "platinum coin", chance = 30000, maxCount = 2 },
+	{ name = "gold coin", chance = 30000, maxCount = 112 },
+	{ name = "wood cape", chance = 492 },
+	{ name = "wand of dimensions", chance = 10 },
+	{ name = "mandrake", chance = 50 },
+	{ name = "leaf legs", chance = 492 },
+	{ name = "small stone", chance = 492, maxCount = 4 },
+	{ name = "small enchanted sapphire", chance = 492, maxCount = 2 },
+	{ name = "cave turnip", chance = 55000, maxCount = 4 },
+	{ name = "leaf legs", chance = 719 },
+	{ name = "dark mushroom", chance = 719 },
+	{ name = "prismatic quartz", chance = 719 },
+	{ name = "leaf star", chance = 10000, maxCount = 8 },
+	{ name = "strong health potion", chance = 6800, maxCount = 2 },
+	{ name = "goat grass", chance = 5155 },
+	{ name = "great health potion", chance = 591 },
+}
+
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -100 },
-	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 3, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = true },
-	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_HOLYDAMAGE, minDamage = -100, maxDamage = -100, range = 7, length = 3, effect = CONST_ME_HOLYAREA, target = true },
-	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 4, effect = CONST_ME_ENERGYAREA, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
+	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 3, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = true },
+	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, length = 3, effect = CONST_ME_HOLYAREA, target = true },
+	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 4, effect = CONST_ME_ENERGYAREA, target = false },
 }
 
 monster.defenses = {

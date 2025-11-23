@@ -66,15 +66,42 @@ monster.voices = {
 	chance = 10,
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "Crystal Coin", chance = 23440, minCount = 1, maxCount = 2 },
+	{ name = "Great Spirit Potion", chance = 20760 },
+	{ name = "Small Diamond", chance = 6020, minCount = 1, maxCount = 3 },
+	{ name = "Rusted Armor", chance = 5580 },
+	{ name = "Green Crystal Fragment", chance = 4290 },
+	{ name = "Terra Boots", chance = 4290 },
+	{ name = "Protection Amulet", chance = 2270 },
+	{ name = "Violet Gem", chance = 1250 },
+	{ name = "Gold Ring", chance = 600 },
+	{ name = "Green Gem", chance = 420 },
+	{ name = "Ring of the Sky", chance = 210 },
+	{ name = "great spirit potion", chance = 31180, maxCount = 5 },
+	{ name = "sacred tree amulet", chance = 3590 },
+	{ name = "underworld rod", chance = 3030 },
+	{ id = 281, chance = 2690 }, -- giant shimmering pearl
+	{ name = "titan axe", chance = 2500 },
+	{ name = "terra amulet", chance = 1900 },
+	{ name = "mercenary sword", chance = 1900 },
+	{ name = "war axe", chance = 1560 },
+	{ name = "giant sword", chance = 1540 },
+	{ name = "fur armor", chance = 990 },
+	{ name = "wood cape", chance = 920 },
+	{ name = "stone skin amulet", chance = 740 },
+	{ name = "terra mantle", chance = 510 },
+	{ name = "rubber cap", chance = 430 },
+	{ name = "bag you desire", chance = 15 },
+}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -850 },
-	{ name = "melee", interval = 2000, chance = 4, minDamage = 0, maxDamage = -390, condition = { type = CONDITION_POISON, totalDamage = 11500, interval = 1000 } },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -410, maxDamage = -695, range = 5, radius = 5, effect = CONST_ME_FIREAREA, target = true },
+	{ name = "melee", interval = 2000, chance = 4, minDamage = 0, maxDamage = -190, condition = { type = CONDITION_FIRE, totalDamage = 11500, interval = 1000 } },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -310, maxDamage = -395, range = 5, radius = 5, effect = CONST_ME_FIREAREA, target = true },
 	{ name = "speed", interval = 2000, chance = 20, speedChange = -600, radius = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 10000 },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -1010, maxDamage = -1995, length = 9, spread = 3, effect = CONST_ME_FIREAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -410, maxDamage = -595, radius = 7, effect = CONST_ME_HITBYFIRE, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -110, maxDamage = -695, length = 9, spread = 3, effect = CONST_ME_FIREAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -210, maxDamage = -595, radius = 7, effect = CONST_ME_HITBYFIRE, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_LIFEDRAIN, minDamage = -150, maxDamage = -280, radius = 6, effect = CONST_ME_MAGIC_RED, target = false },
 }
 

@@ -2,16 +2,16 @@ local mType = Game.createMonsterType("Scissorion")
 local monster = {}
 
 monster.description = "Scissorion"
-monster.experience = 0
+monster.experience = 600
 monster.outfit = {
 	lookType = 1423,
 }
 
-monster.health = 800
-monster.maxHealth = 800
+monster.health = 950
+monster.maxHealth = 950
 monster.race = "undead"
-monster.corpse = 36902
-monster.speed = 180
+monster.corpse = 6323
+monster.speed = 130
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -52,11 +52,29 @@ monster.light = {
 
 monster.voices = {}
 
+monster.loot = {
+	{ name = "platinum coin", chance = 30000, maxCount = 2 },
+	{ name = "gold coin", chance = 30000, maxCount = 136 },
+	{ name = "grapes", chance = 30100, maxCount = 2 },
+	{ name = "small enchanted sapphire", chance = 492, maxCount = 2 },
+	{ name = "panpipes", chance = 172 },
+	{ name = "cookie", chance = 55000, maxCount = 5 },
+	{ name = "great health potion", chance = 6400, maxCount = 2 },
+	{ name = "wooden spellbook", chance = 92 },
+	{ name = "strong health potion", chance = 6800, maxCount = 2 },
+	{ name = "rainbow quartz", chance = 1086, maxCount = 4 },
+	{ name = "small stone", chance = 492, maxCount = 3 },
+	{ name = "wood cape", chance = 492 },
+	{ id = 5792, chance = 80 }, -- die
+	{ name = "assassin dagger", chance = 15 },
+}
+
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -100 },
-	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_EARTHDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 4, effect = CONST_ME_GREENSMOKE, target = false },
-	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_FIREDAMAGE, minDamage = -100, maxDamage = -100, range = 7, effect = CONST_ME_CRITICAL_DAMAGE, target = true },
-	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_FIREDAMAGE, minDamage = -100, maxDamage = -100, range = 7, length = 3, effect = CONST_ME_FIREATTACK, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
+	{ name = "melee", interval = 2000, chance = 16, minDamage = 0, maxDamage = -10, condition = { type = CONDITION_POISON, totalDamage = 500, interval = 2000 } },
+	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_EARTHDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 4, effect = CONST_ME_GREENSMOKE, target = false },
+	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_FIREDAMAGE, minDamage = -20, maxDamage = -270, range = 7, effect = CONST_ME_CRITICAL_DAMAGE, target = true },
+	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_FIREDAMAGE, minDamage = -20, maxDamage = -270, range = 7, length = 3, effect = CONST_ME_FIREATTACK, target = false },
 }
 
 monster.defenses = {

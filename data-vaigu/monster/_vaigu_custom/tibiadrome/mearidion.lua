@@ -2,16 +2,16 @@ local mType = Game.createMonsterType("Mearidion")
 local monster = {}
 
 monster.description = "Mearidion"
-monster.experience = 0
+monster.experience = 600
 monster.outfit = {
 	lookType = 1425,
 }
 
-monster.health = 800
-monster.maxHealth = 800
+monster.health = 850
+monster.maxHealth = 850
 monster.race = "undead"
-monster.corpse = 36910
-monster.speed = 180
+monster.corpse = 6323
+monster.speed = 130
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -52,12 +52,26 @@ monster.light = {
 
 monster.voices = {}
 
+monster.loot = {
+	{ name = "platinum coin", chance = 30000, maxCount = 2 },
+	{ id = 3659, chance = 400 }, -- blue rose
+	{ id = 3010, chance = 1800 }, -- emerald bangle
+	{ id = 3031, chance = 65000, maxCount = 110 }, -- gold coin
+	{ id = 238, chance = 3000 }, -- great mana potion
+	{ id = 9302, chance = 1000 }, -- sacred tree amulet
+	{ id = 678, chance = 2000, maxCount = 2 }, -- small enchanted amethyst
+	{ id = 9057, chance = 2500, maxCount = 2 }, -- small topaz
+	{ id = 237, chance = 1000 }, -- strong mana potion
+	{ name = "rainbow quartz", chance = 719, maxCount = 8 },
+	{ name = "Yol's bow", chance = 10 },
+}
+
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -100 },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_FIREDAMAGE, minDamage = -100, maxDamage = -100, range = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_HITBYFIRE, target = true },
-	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -100, range = 7, shootEffect = CONST_ANI_BOLT, effect = CONST_ME_BLACKSMOKE, target = true },
-	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 7, effect = CONST_ME_BLACKSMOKE, target = false },
-	{ name = "combat", interval = 3000, chance = 15, type = COMBAT_HOLYDAMAGE, minDamage = -100, maxDamage = -100, range = 7, radius = 2, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_MORTAREA, target = true },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
+	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_FIREDAMAGE, minDamage = -20, maxDamage = -270, range = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_HITBYFIRE, target = true },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -20, maxDamage = -270, range = 7, shootEffect = CONST_ANI_BOLT, effect = CONST_ME_BLACKSMOKE, target = true },
+	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_DEATHDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 7, effect = CONST_ME_BLACKSMOKE, target = false },
+	{ name = "combat", interval = 3000, chance = 15, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 2, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_MORTAREA, target = true },
 }
 
 monster.defenses = {
