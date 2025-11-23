@@ -644,6 +644,16 @@ void Game::setGameState(GameState_t newState) {
 			loadItemsPrice();
 
 			groups.load();
+			const auto context = DBTransaction::executeWithinTransaction(
+				[]{
+     			   g_iomarket().initialize();
+				   return true;
+    			}
+			);
+			if (!context.status != COMMITTED) {
+				g_logger().error("[Game::setGameState] GAME_STATE_INIT Failed to initialize market:{}, status: {}",context.callbackResult, context.status);
+			}
+
 			g_chat().load();
 
 			// Load monsters and npcs stored by the "loadFromXML" function

@@ -81,7 +81,6 @@ int CanaryServer::run() {
 				initializeDatabase();
 				loadModules();
 				setWorldType();
-				g_iomarket().initialize();
 				loadMaps();
 
 				logger.info("Initializing gamestate...");
