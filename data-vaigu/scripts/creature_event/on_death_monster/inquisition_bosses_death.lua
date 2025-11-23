@@ -1,3 +1,4 @@
+--[[
 local bosses = {
 	["ushuriel"] = Storage.ushurielTimer,
 	["zugurosh"] = Storage.zuguroshTimer,
@@ -41,3 +42,4 @@ function creatureevent.onDeath(creature)
 end
 
 creatureevent:register()
+]]

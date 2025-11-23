@@ -1,3 +1,4 @@
+--[[
 local rewards = {
 	[1300] = 8062,
 	[1301] = 8090,
@@ -35,3 +36,4 @@ for i, _ in pairs(rewards) do
 	action:uid(i)
 end
 action:register()
+]]

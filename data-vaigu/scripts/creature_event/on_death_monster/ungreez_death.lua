@@ -1,3 +1,4 @@
+--[[
 local creatureevent = CreatureEvent("UngreezDeath")
 
 function creatureevent.onDeath(creature)
@@ -11,3 +12,4 @@ function creatureevent.onDeath(creature)
 end
 
 creatureevent:register()
+]]
