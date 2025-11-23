@@ -114,11 +114,11 @@ quest
 				[{ "mission", "demon oak", "misja", "demoniczny dab" }] = {
 					text = "You better don't return here until you've defeated the Demon Oak. Perhaps you lost your {axe}?",
 				},
-				[{ "axe", "topor" }] = {
+				[{ "axe", "topor", "hallowed axe" }] = {
 					text = "Ahh, you've got an axe. Very good. I can make a hallowed axe out of it. It will cost you... er... a donation of 1,000 gold. Alright?",
 					nextTopic = topics.confirmBuyingAxe,
 				},
-				[{ "yes", "tak" }] = {
+				[{ "yes", "tak", "alright" }] = {
 					text = "Let's see....<mumbles a prayer>....here we go. The blessing on this axe will be absorbed by all the demonic energy around here. I presume it will not last very long, so better hurry. Actually, I can refresh the blessing as often as you like.",
 					requiredTopic = topics.confirmBuyingAxe,
 					requiredMoney = 1000,
@@ -281,7 +281,7 @@ quest
 					if isDefeated then
 						player:teleportTo(DEMON_OAK_KICK_POSITION)
 						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Powiedz Oldrakowi o swoim wielkim zwyciestwie przeciw Debowi.")
-						player:setStorageValueByKey(Storage.DemonOak.Mission01, QuestState.DemonOak.KilledOak_Report_ToOldrak)
+						player:setStorageValueByKey(Storage.DemonOak.Mission01, QuestState.DemonOak.Mission01.ReportOakKillToOldrak)
 						player:setStorageValueByKey(Storage.DemonOak.KilledOak, 1)
 						return true
 					end
@@ -352,7 +352,7 @@ quest
 					nextState = {
 						[Storage.DemonOak.Mission01] = QuestState.DemonOak.Mission01.FindRewardChest,
 					},
-					outfitRewards = QuestRewards.OutfitsAddons.DemonOak.Demon3
+					outfitRewards = QuestRewards.OutfitsAddons.DemonOak.Demon3,
 				},
 			})
 	end)

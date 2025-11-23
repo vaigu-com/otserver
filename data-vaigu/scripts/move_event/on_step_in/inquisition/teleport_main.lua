@@ -1,3 +1,4 @@
+--[[
 local teleports = {
 	[2150] = { text = "Entering Ushuriel's ward.", newPos = Position(6764, 1824, 10), storage = 0, alwaysSetStorage = true }, -- to ushuriel ward {x = 6730, y = 1788, z = 10} {x = 6764, y = 1824, z = 10}
 	[2151] = { text = "Entering the Crystal Caves.", bossStorage = Storage.ushurielTimer, newPos = Position(6675, 1878, 12), storage = 1 }, -- from ushuriel ward {x = 6675, y = 1878, z = 12}
@@ -81,3 +82,4 @@ for uniqueRange = 2150, 2180 do
 	movement:uid(uniqueRange)
 end
 movement:register()
+]]

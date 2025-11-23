@@ -1,6 +1,8 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	print("rewarddoor onuse")
+	print(item.uid)
 	if item.uid == 9021 then
 		if player:isPzLocked() then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nie wejdziesz tu podczas walki.")

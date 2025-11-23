@@ -19,7 +19,7 @@ local function hasTouchedOneThrone(player)
 end
 
 local config = {
-	{ position = { x = 33192, y = 31691, z = 14 }, destination = { x = 33168, y = 31683, z = 15 } },
+	{ position = Position(6517, 1685, 10), destination = { x = 33168, y = 31683, z = 15 } },
 }
 
 local entrance = MoveEvent()

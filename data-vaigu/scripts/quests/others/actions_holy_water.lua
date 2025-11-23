@@ -1,16 +1,8 @@
-local doorPosition = Position(32260, 32791, 7)
 local shadowNexusPosition = Position(33115, 31702, 12)
 local effectPositions = {
 	Position(33113, 31702, 12),
 	Position(33116, 31702, 12),
 }
-
-local function revertItem(position, itemId, transformId)
-	local item = Tile(position):getItemById(itemId)
-	if item then
-		item:transform(transformId)
-	end
-end
 
 local function nexusMessage(player, message)
 	local spectators = Game.getSpectators(shadowNexusPosition, false, true, 3, 3)
@@ -59,26 +51,21 @@ function othersHolyWater.onUse(player, item, fromPosition, target, toPosition, i
 	elseif target.actionid == 2000 then
 		item:remove(1)
 		toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-		player:setStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Mission02, 2)
-		player:setStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Questline, 5)
+		player:setStorageValueByKey(Storage.TheInquisition.Mission02, 2)
+		player:setStorageValueByKey(Storage.TheInquisition.Questline, 5)
 		return true
 
 		-- Haunted Ruin Quest
 	elseif target.actionid == 2003 then
-		if player:getStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Questline) ~= 12 then
+		if player:getStorageValueByKey(Storage.TheInquisition.Questline) ~= 12 then
 			return true
 		end
 
 		Game.createMonster("Pirate Ghost", toPosition)
 		item:remove(1)
-		player:setStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Questline, 13)
-		player:setStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Mission04, 2)
+		player:setStorageValueByKey(Storage.TheInquisition.Questline, 13)
+		player:setStorageValueByKey(Storage.TheInquisition.Mission04, 2)
 
-		local doorItem = Tile(doorPosition):getItemById(7869)
-		if doorItem then
-			doorItem:transform(7868)
-		end
-		addEvent(revertItem, 10 * 1000, doorPosition, 7868, 7869)
 		return true
 
 		-- Rest in Hallowed Ground Quest
@@ -120,9 +107,9 @@ function othersHolyWater.onUse(player, item, fromPosition, target, toPosition, i
 	elseif target.itemid == 7931 then
 		if Game.getStorageValueByKey(Storage.Inquisition) > 0 then
 			Game.setStorageValueByKey(Storage.Inquisition, (Game.getStorageValueByKey(Storage.Inquisition) - 1))
-			if player:getStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Questline) < 22 then
-				player:setStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Mission07, 2)
-				player:setStorageValueByKey(Storage.Quest.U8_2.TheInquisitionQuest.Questline, 22)
+			if player:getStorageValueByKey(Storage.TheInquisition.Questline) < 22 then
+				player:setStorageValueByKey(Storage.TheInquisition.Mission07, 2)
+				player:setStorageValueByKey(Storage.TheInquisition.Questline, 22)
 			end
 			for i = 1, #effectPositions do
 				effectPositions[i]:sendMagicEffect(CONST_ME_HOLYAREA)
