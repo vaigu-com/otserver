@@ -319,7 +319,7 @@
 		<monster name="Midnight Asura" x="0" y="0" z="1" spawntime="90" />
 	</monster>
 	<monster centerx="6610" centery="999" centerz="1" radius="1">
-		<monster name="Medusa" x="0" y="0" z="1" spawntime="90" />
+		<monster name="Dragonjade Asura" x="0" y="0" z="1" spawntime="60" />
 		<monster name="Frost Flower Asura" x="0" y="1" z="1" spawntime="90" />
 	</monster>
 	<monster centerx="6600" centery="1000" centerz="1" radius="1">
@@ -331,14 +331,20 @@
 	</monster>
 	<monster centerx="6622" centery="1000" centerz="1" radius="1">
 		<monster name="Massive Energy Elemental" x="0" y="0" z="1" spawntime="90" />
+		<monster name="Dragonjade Asura" x="0" y="1" z="1" spawntime="60" />
 	</monster>
 	<monster centerx="6620" centery="1001" centerz="1" radius="1">
 		<monster name="Midnight Asura" x="0" y="0" z="1" spawntime="90" />
 		<monster name="Frost Flower Asura" x="-1" y="1" z="1" spawntime="90" />
 	</monster>
 	<monster centerx="6630" centery="1001" centerz="1" radius="1">
+		<monster name="Dragonjade Asura" x="-1" y="-1" z="1" spawntime="60" />
+		<monster name="Dragonjade Asura" x="-1" y="0" z="1" spawntime="60" />
 		<monster name="Hellspawn" x="0" y="0" z="1" spawntime="90" />
 		<monster name="Frost Flower Asura" x="0" y="1" z="1" spawntime="90" />
+	</monster>
+	<monster centerx="6622" centery="1003" centerz="1" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="1" spawntime="60" />
 	</monster>
 	<monster centerx="6631" centery="1003" centerz="1" radius="1">
 		<monster name="Midnight Asura" x="0" y="0" z="1" spawntime="90" />
@@ -814,7 +820,7 @@
 		<monster name="Midnight Asura" x="0" y="0" z="2" spawntime="90" />
 	</monster>
 	<monster centerx="6630" centery="997" centerz="2" radius="1">
-		<monster name="Dawnfire Asura" x="0" y="0" z="2" spawntime="90" />
+		<monster name="Dragonjade Asura" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="6604" centery="998" centerz="2" radius="1">
 		<monster name="Midnight Asura" x="0" y="0" z="2" spawntime="90" />
@@ -904,6 +910,9 @@
 	<monster centerx="6599" centery="1012" centerz="2" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="2" spawntime="90" />
 	</monster>
+	<monster centerx="6645" centery="1012" centerz="2" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="2" spawntime="60" />
+	</monster>
 	<monster centerx="6602" centery="1014" centerz="2" radius="1">
 		<monster name="Midnight Asura" x="0" y="0" z="2" spawntime="90" />
 	</monster>
@@ -916,6 +925,9 @@
 	</monster>
 	<monster centerx="6807" centery="1015" centerz="2" radius="3">
 		<monster name="Cobra Assassin" x="1" y="-2" z="2" spawntime="90" />
+	</monster>
+	<monster centerx="6638" centery="1017" centerz="2" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="6642" centery="1018" centerz="2" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="2" spawntime="90" />
@@ -2223,14 +2235,14 @@
 	<monster centerx="6636" centery="1001" centerz="3" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="3" spawntime="90" />
 	</monster>
-	<monster centerx="6621" centery="1002" centerz="3" radius="1">
-		<monster name="Midnight Asura" x="0" y="0" z="3" spawntime="90" />
-	</monster>
 	<monster centerx="6631" centery="1002" centerz="3" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="3" spawntime="90" />
 	</monster>
 	<monster centerx="6600" centery="1004" centerz="3" radius="1">
 		<monster name="Frost Flower Asura" x="0" y="0" z="3" spawntime="90" />
+	</monster>
+	<monster centerx="6621" centery="1005" centerz="3" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="6598" centery="1006" centerz="3" radius="1">
 		<monster name="Midnight Asura" x="0" y="0" z="3" spawntime="90" />
@@ -2240,6 +2252,9 @@
 	</monster>
 	<monster centerx="6596" centery="1011" centerz="3" radius="1">
 		<monster name="Midnight Asura" x="0" y="0" z="3" spawntime="90" />
+	</monster>
+	<monster centerx="6646" centery="1011" centerz="3" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="6598" centery="1012" centerz="3" radius="1">
 		<monster name="Hellspawn" x="0" y="0" z="3" spawntime="90" />
@@ -4388,11 +4403,11 @@
 	<monster centerx="6607" centery="1004" centerz="4" radius="1">
 		<monster name="Hellspawn" x="0" y="0" z="4" spawntime="90" />
 	</monster>
-	<monster centerx="6596" centery="1005" centerz="4" radius="1">
-		<monster name="Hydra" x="0" y="0" z="4" spawntime="90" />
-	</monster>
 	<monster centerx="6611" centery="1005" centerz="4" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="4" spawntime="90" />
+	</monster>
+	<monster centerx="6595" centery="1006" centerz="4" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="6603" centery="1007" centerz="4" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="4" spawntime="90" />
@@ -8645,6 +8660,9 @@
 	<monster centerx="6299" centery="997" centerz="5" radius="1">
 		<monster name="Werebadger" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="6619" centery="997" centerz="5" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="7626" centery="997" centerz="5" radius="1">
 		<monster name="Mercury Blob" x="1" y="-1" z="5" spawntime="90" />
 		<monster name="Mercury Blob" x="0" y="0" z="5" spawntime="90" />
@@ -8680,6 +8698,9 @@
 	</monster>
 	<monster centerx="6319" centery="1001" centerz="5" radius="1">
 		<monster name="Werebadger" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="6599" centery="1001" centerz="5" radius="1">
+		<monster name="Dragonjade Asura" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6610" centery="1001" centerz="5" radius="1">
 		<monster name="Dawnfire Asura" x="0" y="0" z="5" spawntime="90" />
@@ -11009,6 +11030,9 @@
 	<monster centerx="6504" centery="1308" centerz="5" radius="1">
 		<monster name="Exotic Bat" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="7298" centery="1308" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="7411" centery="1308" centerz="5" radius="1">
 		<monster name="Bulltaur Brute" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -11027,6 +11051,12 @@
 	</monster>
 	<monster centerx="5814" centery="1311" centerz="5" radius="1">
 		<monster name="Orc" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="7280" centery="1311" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7283" centery="1311" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="7032" centery="1313" centerz="5" radius="1">
 		<monster name="Nomad Female" x="0" y="0" z="5" spawntime="90" />
@@ -11078,6 +11108,9 @@
 	<monster centerx="7050" centery="1318" centerz="5" radius="1">
 		<monster name="Grave Robber" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="7285" centery="1318" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="6319" centery="1319" centerz="5" radius="1">
 		<monster name="Pirate Marauder" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -11093,6 +11126,9 @@
 	</monster>
 	<monster centerx="6297" centery="1320" centerz="5" radius="1">
 		<monster name="Pirate Buccaneer" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="7292" centery="1320" centerz="5" radius="1">
+		<monster name="Parder" x="0" y="0" z="5" spawntime="60" />
 	</monster>
 	<monster centerx="6805" centery="1321" centerz="5" radius="1">
 		<monster name="Grim Reaper" x="0" y="0" z="5" spawntime="90" />
@@ -31192,9 +31228,6 @@
 	<monster centerx="6527" centery="946" centerz="7" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="6554" centery="946" centerz="7" radius="1">
-		<monster name="Corym Charlatan" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="6759" centery="946" centerz="7" radius="1">
 		<monster name="Cobra Assassin" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -31676,8 +31709,6 @@
 	</monster>
 	<monster centerx="6549" centery="967" centerz="7" radius="1">
 		<monster name="Skunk" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Skunk" x="1" y="0" z="7" spawntime="90" />
-		<monster name="Skunk" x="1" y="1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6673" centery="967" centerz="7" radius="1">
 		<monster name="Hydra" x="0" y="0" z="7" spawntime="90" />
@@ -83605,11 +83636,23 @@
 	<monster centerx="6224" centery="911" centerz="10" radius="1">
 		<monster name="Mutated Bat" x="0" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="6668" centery="911" centerz="10" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
+	<monster centerx="6672" centery="912" centerz="10" radius="1">
+		<monster name="Pure Jade Drake" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6801" centery="912" centerz="10" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="10" spawntime="90" />
 	</monster>
+	<monster centerx="6676" centery="913" centerz="10" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="10" spawntime="60" />
+	</monster>
 	<monster centerx="6815" centery="913" centerz="10" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="10" spawntime="90" />
+	</monster>
+	<monster centerx="6666" centery="914" centerz="10" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="6827" centery="914" centerz="10" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="10" spawntime="90" />
@@ -83711,17 +83754,13 @@
 	<monster centerx="6838" centery="929" centerz="10" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="6644" centery="931" centerz="10" radius="1">
-		<monster name="Pure Jade Drake" x="-1" y="1" z="10" spawntime="90" />
-		<monster name="True Dragonjade Asura" x="0" y="1" z="10" spawntime="90" />
-	</monster>
+	<monster centerx="6644" centery="931" centerz="10" radius="1" />
 	<monster centerx="6778" centery="932" centerz="10" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="6799" centery="932" centerz="10" radius="1">
 		<monster name="Iks Ahpututu" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="6644" centery="933" centerz="10" radius="1" />
 	<monster centerx="6826" centery="934" centerz="10" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -91393,6 +91432,9 @@
 	<monster centerx="5207" centery="906" centerz="11" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6620" centery="907" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6807" centery="907" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -91422,6 +91464,9 @@
 		<monster name="Fury" x="-2" y="-4" z="11" spawntime="90" />
 		<monster name="Fury" x="2" y="-1" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6681" centery="912" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6800" centery="912" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -91433,6 +91478,9 @@
 	</monster>
 	<monster centerx="6226" centery="916" centerz="11" radius="1">
 		<monster name="Nightmare" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6618" centery="916" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6734" centery="916" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
@@ -91455,6 +91503,9 @@
 	</monster>
 	<monster centerx="5231" centery="919" centerz="11" radius="1">
 		<monster name="Stone Golem" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6610" centery="919" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6742" centery="919" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
@@ -91487,6 +91538,9 @@
 	<monster centerx="6809" centery="923" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6618" centery="924" centerz="11" radius="1">
+		<monster name="Pure Jade Drake" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6764" centery="924" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -91495,6 +91549,9 @@
 	</monster>
 	<monster centerx="6819" centery="925" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6612" centery="926" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6775" centery="926" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
@@ -91520,8 +91577,14 @@
 	<monster centerx="6820" centery="928" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6683" centery="929" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6805" centery="929" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6624" centery="930" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6786" centery="930" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
@@ -91568,6 +91631,9 @@
 	<monster centerx="6788" centery="939" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6685" centery="940" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6811" centery="940" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -91595,6 +91661,9 @@
 	<monster centerx="6825" centery="943" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6630" centery="944" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6766" centery="944" centerz="11" radius="1">
 		<monster name="Iks Pututu" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -91603,6 +91672,9 @@
 	</monster>
 	<monster centerx="5270" centery="947" centerz="11" radius="1">
 		<monster name="Scorpion" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6691" centery="947" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6754" centery="947" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
@@ -91622,14 +91694,23 @@
 	<monster centerx="6842" centery="948" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6643" centery="949" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6822" centery="949" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6673" centery="950" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6767" centery="950" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="6805" centery="950" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6617" centery="951" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="6802" centery="951" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
@@ -91643,6 +91724,9 @@
 	<monster centerx="6819" centery="953" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
 	</monster>
+	<monster centerx="6680" centery="954" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
+	</monster>
 	<monster centerx="6796" centery="954" centerz="11" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -91651,6 +91735,9 @@
 	</monster>
 	<monster centerx="6795" centery="956" centerz="11" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6627" centery="960" centerz="11" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="11" spawntime="60" />
 	</monster>
 	<monster centerx="7604" centery="974" centerz="11" radius="1">
 		<monster name="Cockroach" x="0" y="0" z="11" spawntime="90" />
@@ -96784,14 +96871,27 @@
 		<monster name="Destroyer" x="-1" y="-4" z="12" spawntime="90" />
 		<monster name="Grim Reaper" x="2" y="-3" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="6645" centery="912" centerz="12" radius="1">
+		<monster name="Pure Jade Drake" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="6654" centery="913" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
+		<monster name="True Dragonjade Asura" x="0" y="1" z="12" spawntime="1644381952" />
+	</monster>
 	<monster centerx="6202" centery="916" centerz="12" radius="5">
 		<monster name="Destroyer" x="0" y="-3" z="12" spawntime="90" />
 		<monster name="Fury" x="-3" y="-2" z="12" spawntime="90" />
 		<monster name="Fury" x="3" y="-1" z="12" spawntime="90" />
 		<monster name="Grim Reaper" x="1" y="2" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="6660" centery="916" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5226" centery="919" centerz="12" radius="1">
 		<monster name="Phantasm" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="6651" centery="922" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6255" centery="923" centerz="12" radius="5">
 		<monster name="Destroyer" x="-2" y="-3" z="12" spawntime="90" />
@@ -96803,8 +96903,20 @@
 		<monster name="Destroyer" x="-4" y="-1" z="12" spawntime="90" />
 		<monster name="Fury" x="-5" y="3" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="6648" centery="926" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="6667" centery="936" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="6647" centery="938" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5206" centery="939" centerz="12" radius="1">
 		<monster name="Phantasm" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="6662" centery="939" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6362" centery="946" centerz="12" radius="1">
 		<monster name="Muddy Earth Elemental" x="1" y="0" z="12" spawntime="90" />
@@ -96833,6 +96945,9 @@
 	<monster centerx="6347" centery="952" centerz="12" radius="1">
 		<monster name="Muddy Earth Elemental" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="6650" centery="952" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5256" centery="956" centerz="12" radius="1">
 		<monster name="Zombie" x="0" y="0" z="12" spawntime="90" />
 	</monster>
@@ -96844,6 +96959,9 @@
 	</monster>
 	<monster centerx="6337" centery="957" centerz="12" radius="1">
 		<monster name="Muddy Earth Elemental" x="1" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="6638" centery="960" centerz="12" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="5252" centery="961" centerz="12" radius="1">
 		<monster name="Mummy" x="0" y="0" z="12" spawntime="90" />
@@ -102851,11 +102969,36 @@
 	<monster centerx="5244" centery="902" centerz="13" radius="1">
 		<monster name="Flamethrower" x="0" y="0" z="13" spawntime="90" />
 	</monster>
+	<monster centerx="6631" centery="904" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+	</monster>
 	<monster centerx="5250" centery="908" centerz="13" radius="1">
 		<monster name="Deaththrower" x="0" y="0" z="13" spawntime="90" />
 	</monster>
+	<monster centerx="6644" centery="909" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="6656" centery="910" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="6623" centery="914" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="6633" centery="915" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="6653" centery="917" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+	</monster>
+	<monster centerx="6623" centery="923" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
+		<monster name="Pure Jade Drake" x="1" y="1" z="13" spawntime="60" />
+	</monster>
 	<monster centerx="5208" centery="926" centerz="13" radius="1">
 		<monster name="Phantasm" x="0" y="0" z="13" spawntime="90" />
+	</monster>
+	<monster centerx="6656" centery="928" centerz="13" radius="1">
+		<monster name="True Dragonjade Asura" x="0" y="0" z="13" spawntime="60" />
 	</monster>
 	<monster centerx="5205" centery="937" centerz="13" radius="1">
 		<monster name="Phantasm" x="0" y="0" z="13" spawntime="90" />
