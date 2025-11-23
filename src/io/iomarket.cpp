@@ -337,7 +337,7 @@ void IOMarket::initializeHistoric() {
 }
 
 void IOMarket::addRemainingItemToOwner(const MarketHistoricOffer &historicOffer) {
-	const auto &player = g_game().getPlayerByGUID(historicOffer.playerId);
+	const auto &player = g_game().getPlayerByGUID(historicOffer.playerId, true);
 	if (!player) {
 		g_logger().error("{} - cannot add item {} to unexisting player id {}", __FUNCTION__, historicOffer.itemId, historicOffer.playerId);
 		return;
