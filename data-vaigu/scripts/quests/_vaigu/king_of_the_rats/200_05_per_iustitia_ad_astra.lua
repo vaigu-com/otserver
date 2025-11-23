@@ -1683,7 +1683,7 @@ quest
 			
 			creature:getPosition(CONST_ME_CRITICAL_DAMAGE)
 		end
-		saltyTileStepIn:key(Storage.PerIustitiaAdAstra.AstralJanusSpawnTile)
+		saltyTileStepIn:key(Storage.PerIustitiaAdAstra.SaltyTile)
 		saltyTileStepIn:register()
 	end)
 	:MonsterEvent(function()
