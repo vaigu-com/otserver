@@ -38689,7 +38689,6 @@
 	<monster centerx="7644" centery="1211" centerz="7" radius="1">
 		<monster name="Mutated Human" x="-1" y="-1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7662" centery="1211" centerz="7" radius="1" />
 	<monster centerx="7719" centery="1211" centerz="7" radius="1">
 		<monster name="War Wolf" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -38970,7 +38969,6 @@
 	<monster centerx="7569" centery="1217" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7661" centery="1217" centerz="7" radius="1" />
 	<monster centerx="7667" centery="1217" centerz="7" radius="1">
 		<monster name="Mutated Human" x="1" y="-1" z="7" spawntime="90" />
 	</monster>
@@ -39970,7 +39968,6 @@
 	<monster centerx="7656" centery="1243" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7659" centery="1243" centerz="7" radius="1" />
 	<monster centerx="7664" centery="1243" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="1" z="7" spawntime="90" />
 	</monster>
@@ -40452,7 +40449,6 @@
 	<monster centerx="7571" centery="1253" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7667" centery="1253" centerz="7" radius="1" />
 	<monster centerx="8068" centery="1253" centerz="7" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -40702,7 +40698,6 @@
 	<monster centerx="7635" centery="1258" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7637" centery="1258" centerz="7" radius="1" />
 	<monster centerx="7645" centery="1258" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -71616,7 +71611,6 @@
 		<monster name="Crape Man" x="0" y="0" z="9" spawntime="90" />
 		<monster name="Crape Man" x="1" y="0" z="9" spawntime="90" />
 	</monster>
-	<monster centerx="6311" centery="814" centerz="9" radius="1" />
 	<monster centerx="6737" centery="816" centerz="9" radius="1">
 		<monster name="Slime" x="0" y="0" z="9" spawntime="90" />
 	</monster>
@@ -83754,7 +83748,6 @@
 	<monster centerx="6838" centery="929" centerz="10" radius="1">
 		<monster name="Iks Chuka" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="6644" centery="931" centerz="10" radius="1" />
 	<monster centerx="6778" centery="932" centerz="10" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -101606,6 +101599,12 @@
 	<monster centerx="7573" centery="1825" centerz="12" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5966" centery="1826" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5976" centery="1826" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5978" centery="1828" centerz="12" radius="1">
 		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -101645,6 +101644,9 @@
 		<monster name="Flamethrower" x="-3" y="1" z="12" spawntime="90" />
 		<monster name="Flamethrower" x="3" y="1" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5912" centery="1836" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6008" centery="1836" centerz="12" radius="1">
 		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -101666,6 +101668,15 @@
 	<monster centerx="7644" centery="1838" centerz="12" radius="1">
 		<monster name="Massive Fire Elemental" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5881" centery="1839" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5884" centery="1839" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5886" centery="1839" centerz="12" radius="1">
+		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6184" centery="1839" centerz="12" radius="3">
 		<monster name="Lost Soul" x="1" y="0" z="12" spawntime="90" />
 	</monster>
@@ -101682,6 +101693,10 @@
 	<monster centerx="7647" centery="1840" centerz="12" radius="1">
 		<monster name="Fire Elemental" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5888" centery="1841" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="-1" z="12" spawntime="729509120" />
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5915" centery="1841" centerz="12" radius="1">
 		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -101690,6 +101705,13 @@
 	</monster>
 	<monster centerx="7641" centery="1841" centerz="12" radius="1">
 		<monster name="Fire Elemental" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5882" centery="1842" centerz="12" radius="1">
+		<monster name="Mearidion" x="0" y="-1" z="12" spawntime="729509120" />
+		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5890" centery="1842" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="5911" centery="1842" centerz="12" radius="1">
 		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
@@ -101705,11 +101727,14 @@
 	<monster centerx="7647" centery="1843" centerz="12" radius="1">
 		<monster name="Fire Elemental" x="0" y="0" z="12" spawntime="90" />
 	</monster>
-	<monster centerx="5919" centery="1844" centerz="12" radius="1">
-		<monster name="Murmillion" x="0" y="0" z="12" spawntime="60" />
-	</monster>
 	<monster centerx="7552" centery="1844" centerz="12" radius="1">
 		<monster name="Demon Skeleton" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5909" centery="1845" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5923" centery="1845" centerz="12" radius="1">
+		<monster name="Murmillion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6859" centery="1845" centerz="12" radius="2">
 		<monster name="Massive Water Elemental" x="-2" y="1" z="12" spawntime="90" />
@@ -101730,11 +101755,17 @@
 	<monster centerx="7649" centery="1847" centerz="12" radius="1">
 		<monster name="Fire Devil" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5922" centery="1848" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5965" centery="1848" centerz="12" radius="1">
 		<monster name="Scissorion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="7644" centery="1848" centerz="12" radius="1">
 		<monster name="Fire Elemental" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5926" centery="1849" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6815" centery="1849" centerz="12" radius="2">
 		<monster name="Quara Hydromancer" x="1" y="1" z="12" spawntime="90" />
@@ -101806,6 +101837,9 @@
 		<monster name="Quara Predator" x="1" y="-1" z="12" spawntime="90" />
 		<monster name="Quara Hydromancer" x="-1" y="1" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5978" centery="1854" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6151" centery="1854" centerz="12" radius="4">
 		<monster name="Plaguesmith" x="-2" y="-4" z="12" spawntime="90" />
 		<monster name="Plaguesmith" x="4" y="-3" z="12" spawntime="90" />
@@ -101829,10 +101863,17 @@
 	<monster centerx="7649" centery="1854" centerz="12" radius="1">
 		<monster name="Fire Elemental" x="0" y="0" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="6010" centery="1855" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+		<monster name="Domestikion" x="1" y="1" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6790" centery="1855" centerz="12" radius="3">
 		<monster name="Quara Hydromancer" x="-2" y="-1" z="12" spawntime="90" />
 		<monster name="Quara Hydromancer" x="0" y="2" z="12" spawntime="90" />
 		<monster name="Quara Hydromancer" x="3" y="2" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5986" centery="1857" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6010" centery="1857" centerz="12" radius="1">
 		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
@@ -101866,6 +101907,9 @@
 	<monster centerx="5981" centery="1859" centerz="12" radius="1">
 		<monster name="Scissorion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
+	<monster centerx="6010" centery="1859" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6199" centery="1859" centerz="12" radius="2">
 		<monster name="Plaguesmith" x="0" y="0" z="12" spawntime="90" />
 	</monster>
@@ -101874,6 +101918,12 @@
 	</monster>
 	<monster centerx="7585" centery="1859" centerz="12" radius="1">
 		<monster name="Banshee" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5903" centery="1860" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5989" centery="1861" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6687" centery="1861" centerz="12" radius="3">
 		<monster name="Ice Golem" x="1" y="-2" z="12" spawntime="90" />
@@ -101890,6 +101940,9 @@
 	<monster centerx="6746" centery="1861" centerz="12" radius="4">
 		<monster name="Spectre" x="2" y="-1" z="12" spawntime="90" />
 		<monster name="Ice Golem" x="-1" y="2" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5909" centery="1862" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6162" centery="1862" centerz="12" radius="2">
 		<monster name="Hellfire Fighter" x="1" y="-2" z="12" spawntime="90" />
@@ -101913,6 +101966,9 @@
 	<monster centerx="6784" centery="1863" centerz="12" radius="3">
 		<monster name="Quara Pincher" x="0" y="-2" z="12" spawntime="90" />
 		<monster name="Quara Predator" x="2" y="1" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5913" centery="1864" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="5965" centery="1864" centerz="12" radius="1">
 		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
@@ -102013,6 +102069,9 @@
 	<monster centerx="5928" centery="1881" centerz="12" radius="1">
 		<monster name="Murmillion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
+	<monster centerx="5932" centery="1881" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6721" centery="1881" centerz="12" radius="3">
 		<monster name="Spectre" x="2" y="-1" z="12" spawntime="90" />
 	</monster>
@@ -102032,6 +102091,9 @@
 	<monster centerx="6750" centery="1882" centerz="12" radius="4">
 		<monster name="Crystal Spider" x="-1" y="1" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5932" centery="1884" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5976" centery="1884" centerz="12" radius="1">
 		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -102042,8 +102104,14 @@
 		<monster name="Spectre" x="0" y="-1" z="12" spawntime="90" />
 		<monster name="Destroyer" x="3" y="2" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5926" centery="1885" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="6532" centery="1885" centerz="12" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5933" centery="1886" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="5986" centery="1886" centerz="12" radius="1">
 		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
@@ -102121,6 +102189,9 @@
 	<monster centerx="5903" centery="1897" centerz="12" radius="1">
 		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
+	<monster centerx="5989" centery="1897" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5951" centery="1898" centerz="12" radius="1">
 		<monster name="Mearidion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
@@ -102138,6 +102209,12 @@
 	<monster centerx="6147" centery="1899" centerz="12" radius="4">
 		<monster name="Destroyer" x="-2" y="-1" z="12" spawntime="90" />
 		<monster name="Destroyer" x="3" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5907" centery="1900" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5955" centery="1900" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6111" centery="1900" centerz="12" radius="2">
 		<monster name="Dragon" x="1" y="0" z="12" spawntime="90" />
@@ -102168,8 +102245,14 @@
 	<monster centerx="6097" centery="1905" centerz="12" radius="2">
 		<monster name="Dragon Lord" x="1" y="-1" z="12" spawntime="90" />
 	</monster>
+	<monster centerx="5905" centery="1906" centerz="12" radius="1">
+		<monster name="Hoodinion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
 	<monster centerx="5907" centery="1906" centerz="12" radius="1">
 		<monster name="Murmillion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5930" centery="1906" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="5934" centery="1906" centerz="12" radius="1">
 		<monster name="Murmillion" x="0" y="0" z="12" spawntime="60" />
@@ -102185,6 +102268,9 @@
 	</monster>
 	<monster centerx="6527" centery="1906" centerz="12" radius="1">
 		<monster name="Hellfire Fighter" x="0" y="0" z="12" spawntime="90" />
+	</monster>
+	<monster centerx="5950" centery="1908" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="5954" centery="1908" centerz="12" radius="1">
 		<monster name="Scissorion" x="0" y="0" z="12" spawntime="60" />
@@ -102288,6 +102374,9 @@
 	</monster>
 	<monster centerx="5993" centery="1922" centerz="12" radius="1">
 		<monster name="Murmillion" x="0" y="0" z="12" spawntime="60" />
+	</monster>
+	<monster centerx="5990" centery="1923" centerz="12" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="12" spawntime="60" />
 	</monster>
 	<monster centerx="6171" centery="1923" centerz="12" radius="2">
 		<monster name="Plaguesmith" x="1" y="0" z="12" spawntime="90" />
@@ -105986,6 +106075,9 @@
 	<monster centerx="7390" centery="1844" centerz="13" radius="1">
 		<monster name="Dark Torturer" x="0" y="0" z="13" spawntime="90" />
 	</monster>
+	<monster centerx="5918" centery="1845" centerz="13" radius="1">
+		<monster name="Domestikion" x="0" y="0" z="13" spawntime="60" />
+	</monster>
 	<monster centerx="6000" centery="1845" centerz="13" radius="1">
 		<monster name="Hoodinion" x="0" y="0" z="13" spawntime="60" />
 	</monster>
@@ -106075,7 +106167,7 @@
 		<monster name="Ghastly Dragon" x="0" y="0" z="13" spawntime="90" />
 	</monster>
 	<monster centerx="5913" centery="1859" centerz="13" radius="1">
-		<monster name="Hoodinion" x="0" y="0" z="13" spawntime="60" />
+		<monster name="Domestikion" x="0" y="0" z="13" spawntime="60" />
 	</monster>
 	<monster centerx="5973" centery="1861" centerz="13" radius="1">
 		<monster name="Scissorion" x="0" y="0" z="13" spawntime="60" />
@@ -106116,7 +106208,7 @@
 		<monster name="Son of Verminor" x="0" y="0" z="13" spawntime="90" />
 	</monster>
 	<monster centerx="5908" centery="1879" centerz="13" radius="1">
-		<monster name="Hoodinion" x="0" y="0" z="13" spawntime="60" />
+		<monster name="Domestikion" x="0" y="0" z="13" spawntime="60" />
 	</monster>
 	<monster centerx="6084" centery="1880" centerz="13" radius="2">
 		<monster name="Nightmare" x="1" y="1" z="13" spawntime="90" />
