@@ -135,7 +135,7 @@ pseudoQuest
 		end
 		generateAuxiliaryFields()
 
-		local function tryAddToSameContainer(parent, storeInbox,container, potionData)
+		local function tryAddToSameContainer(parent, storeInbox, container, potionData)
 			if parent == storeInbox then
 				return false
 			end
@@ -149,7 +149,7 @@ pseudoQuest
 			end
 
 			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) > 0) then
-				container:addItem(potionData.flask,nil,nil,FLAG_NOLIMIT)
+				container:addItem(potionData.flask, nil, nil, FLAG_NOLIMIT)
 				return true
 			end
 		end
@@ -221,15 +221,12 @@ pseudoQuest
 
 		local flaskPotion = Action()
 		function flaskPotion.onUse(player, usedPotionEx, fromPosition, target, toPosition, isHotkey)
-			if not target or not player then
-				return false
-			end
-			if not target:isPlayer() or not player:isPlayer() then
-				return
-			end
-
 			local potionData = potions[usedPotionEx:getId()]
 			if not potionData then
+				return false
+			end
+
+			if (potionData.health or potionData.mana or potionData.combat) and not (target and target.isPlayer and target:isPlayer()) then
 				return false
 			end
 

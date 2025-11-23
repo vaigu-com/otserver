@@ -25,16 +25,16 @@ function uglyMonsterSpawn.onHealthChange(creature, attacker, primaryDamage, prim
 		return primaryDamage, primaryType, secondaryDamage, secondaryType
 	end
 	local chance = math.random(1, 1000000)
-	if chance < (primaryDamage + secondaryDamage) and Game.getStorageValue(GlobalStorage.UglyMonster) ~= 1 then
+	if chance < (primaryDamage + secondaryDamage) and Game.getStorageValueByKey(GlobalStorage.UglyMonster) ~= 1 then
 		uglyMonster = Game.createMonster("Ugly Monster", creature:getPosition())
 		creatureToSpawn[creature:getId()] = true
 		removeEvent = addEvent(function()
 			if uglyMonster then
 				uglyMonster:remove()
-				Game.setStorageValue(GlobalStorage.UglyMonster, 0)
+				Game.setStorageValueByKey(GlobalStorage.UglyMonster, 0)
 			end
 		end, 60 * 1000)
-		Game.setStorageValue(GlobalStorage.UglyMonster, 1)
+		Game.setStorageValueByKey(GlobalStorage.UglyMonster, 1)
 	end
 	return primaryDamage, primaryType, secondaryDamage, secondaryType
 end
@@ -60,7 +60,7 @@ function uglyMonsterDeath.onDeath(creature, corpse, killer, mostDamage, unjustif
 	if removeEvent then
 		stopEvent(removeEvent)
 	end
-	Game.setStorageValue(GlobalStorage.UglyMonster, 0)
+	Game.setStorageValueByKey(GlobalStorage.UglyMonster, 0)
 end
 
 uglyMonsterDeath:register()
