@@ -202,6 +202,9 @@
 	<monster centerx="7487" centery="213" centerz="1" radius="1">
 		<monster name="Falcon Paladin" x="0" y="0" z="1" spawntime="90" />
 	</monster>
+	<monster centerx="7469" centery="221" centerz="1" radius="1">
+		<monster name="Preceptor Lazare" x="0" y="0" z="1" spawntime="60" />
+	</monster>
 	<monster centerx="4918" centery="643" centerz="1" radius="1">
 		<monster name="Old Dark Apprentice" x="0" y="0" z="1" spawntime="90" />
 	</monster>
@@ -635,6 +638,9 @@
 	</monster>
 	<monster centerx="7518" centery="204" centerz="2" radius="1">
 		<monster name="Usurper Archer" x="0" y="0" z="2" spawntime="90" />
+	</monster>
+	<monster centerx="7469" centery="207" centerz="2" radius="1">
+		<monster name="Grand Chaplain Gaunder" x="0" y="0" z="2" spawntime="60" />
 	</monster>
 	<monster centerx="7472" centery="222" centerz="2" radius="1">
 		<monster name="Usurper Commander" x="0" y="0" z="2" spawntime="90" />
@@ -1805,8 +1811,14 @@
 	<monster centerx="7472" centery="224" centerz="3" radius="1">
 		<monster name="Usurper Archer" x="0" y="0" z="3" spawntime="90" />
 	</monster>
+	<monster centerx="7508" centery="225" centerz="3" radius="1">
+		<monster name="Usurper Commander" x="0" y="0" z="3" spawntime="60" />
+	</monster>
 	<monster centerx="7470" centery="226" centerz="3" radius="1">
 		<monster name="Usurper Archer" x="0" y="0" z="3" spawntime="90" />
+	</monster>
+	<monster centerx="7505" centery="226" centerz="3" radius="1">
+		<monster name="Usurper Warlock" x="0" y="0" z="3" spawntime="60" />
 	</monster>
 	<monster centerx="7713" centery="245" centerz="3" radius="1">
 		<monster name="Hugo House Guard" x="0" y="0" z="3" spawntime="90" />
@@ -3780,6 +3792,12 @@
 	<monster centerx="7514" centery="179" centerz="4" radius="1">
 		<monster name="Usurper Warlock" x="0" y="0" z="4" spawntime="90" />
 	</monster>
+	<monster centerx="7467" centery="211" centerz="4" radius="1">
+		<monster name="Usurper Warlock" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7472" centery="211" centerz="4" radius="1">
+		<monster name="Usurper Warlock" x="0" y="0" z="4" spawntime="60" />
+	</monster>
 	<monster centerx="7473" centery="216" centerz="4" radius="1">
 		<monster name="Usurper Knight" x="0" y="0" z="4" spawntime="90" />
 	</monster>
@@ -3798,8 +3816,20 @@
 	<monster centerx="7506" centery="221" centerz="4" radius="1">
 		<monster name="Usurper Commander" x="0" y="0" z="4" spawntime="90" />
 	</monster>
+	<monster centerx="7469" centery="222" centerz="4" radius="1">
+		<monster name="Grand Canon Dominus" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7467" centery="223" centerz="4" radius="1">
+		<monster name="Usurper Commander" x="0" y="0" z="4" spawntime="60" />
+	</monster>
+	<monster centerx="7471" centery="224" centerz="4" radius="1">
+		<monster name="Usurper Commander" x="0" y="0" z="4" spawntime="60" />
+	</monster>
 	<monster centerx="7508" centery="225" centerz="4" radius="1">
 		<monster name="Usurper Archer" x="0" y="0" z="4" spawntime="90" />
+	</monster>
+	<monster centerx="7470" centery="226" centerz="4" radius="1">
+		<monster name="Usurper Knight" x="0" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="7504" centery="226" centerz="4" radius="1">
 		<monster name="Usurper Archer" x="0" y="0" z="4" spawntime="90" />
@@ -23944,6 +23974,9 @@
 	<monster centerx="7442" centery="205" centerz="7" radius="1">
 		<monster name="Wisp" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7483" centery="205" centerz="7" radius="1">
+		<monster name="Falcon Knight" x="0" y="0" z="7" spawntime="90" />
+	</monster>
 	<monster centerx="7473" centery="208" centerz="7" radius="1">
 		<monster name="Falcon Knight" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -23952,9 +23985,6 @@
 	</monster>
 	<monster centerx="7564" centery="209" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7485" centery="211" centerz="7" radius="1">
-		<monster name="Falcon Knight" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7489" centery="211" centerz="7" radius="1">
 		<monster name="Falcon Paladin" x="0" y="0" z="7" spawntime="90" />
@@ -56587,6 +56617,7 @@
 		<monster name="Falcon Knight" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7497" centery="170" centerz="8" radius="1">
+		<monster name="Grand Commander Soeren" x="-1" y="-1" z="8" spawntime="60" />
 		<monster name="Bug" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="7508" centery="170" centerz="8" radius="1">

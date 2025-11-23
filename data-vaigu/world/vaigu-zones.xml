@@ -17,6 +17,12 @@
 	<zone name="Encounter-LEVIATHAN-P1-DynamicTentanclePositionsUpper" zoneid="25" />
 	<zone name="Encounter-LEVIATHAN-P2-PlayerAppearPositions" zoneid="33" />
 	<zone name="Encounter-LEVIATHAN-PlayerAppearPositions" zoneid="30" />
+	<zone name="Encounter-Oberon-BossSpawnPosition" zoneid="248" />
+	<zone name="Encounter-Oberon-EncounterAreaPositions" zoneid="249" />
+	<zone name="Encounter-Oberon-EntranceLeverPositions" zoneid="251" />
+	<zone name="Encounter-Oberon-ExitTeleportDestination" zoneid="250" />
+	<zone name="Encounter-Oberon-MonsterSpawnPosition" zoneid="252" />
+	<zone name="Encounter-Oberon-PlayerAppearPositions" zoneid="247" />
 	<zone name="Encounter-Pol-BossSpawnPosition" zoneid="4" />
 	<zone name="Encounter-Pol-EncounterAreaPositions" zoneid="1" />
 	<zone name="Encounter-Pol-EntranceLeverPositions" zoneid="5" />
