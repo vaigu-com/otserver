@@ -63,7 +63,7 @@ quest
 				tibiaCoins = 8,
 				min = 121,
 				max = NO_MAX_LEVEL_LIMIT,
-				bossName = "Falconius Grandus",
+				bossName = "Falcon Eesko",
 			},
 			{
 				name = "Metal Gargoyles",

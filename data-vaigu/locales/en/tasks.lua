@@ -172,7 +172,7 @@ return {
 	["Dragons"] = "The old dragon lives around the volcano to the north of Mirko Town.",
 	["Drakens"] = "If you manage to make it through the Draken Towers, the teleport will lead you to the plain ruled by their commander - Paiz the Pauperizer.",
 	["Dwarves"] = "Their so-called leader resides in a hidden place between rocks, just outside their caves.",
-	["Falcons"] = "Falconius Grandus - he is the one if it comes to strength. His chambers are located somewhere in their castle. Dont know much more - noone made it out alive from there.",
+	["Falcons"] = "Falcon Eesko - he is the one if it comes to strength. His chambers are located somewhere in their castle. Dont know much more - noone made it out alive from there.",
 	["Frost Dragons"] = "Frosty is hiding inside one of the mountains in Sybir.",
 	["Furies"] = "Irashae claimed a land at the very depths of dark dungeon. My scouts reported that its somewhere near mutated cratures and vampire village.",
 	["Gargoyles"] = "The gargoyle cave is located at the top of the mountains inhabited by cyclops.",

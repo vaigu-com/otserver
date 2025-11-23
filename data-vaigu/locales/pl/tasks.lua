@@ -172,7 +172,7 @@ return {
 	["Dragons"] = "Stara smoczyca przesiaduje w wulkanie na polnocy Mirko Town.",
 	["Drakens"] = "Jesli uda ci sie przedostac przez wieze Drakenow, teleport poprowadzi cie do siedziby ich wladcy - Paiz the Pauperizera.",
 	["Dwarves"] = "Pseudo Wodz tych malych istot z brodami zaszyl sie w domku w skalach tuz przy wejsciu do kopalni.",
-	["Falcons"] = "Falconius Grandus - najpotezniejszy ze slugusow Oberona ma swoja komnate gdzies w ich wielkim zamku.Wiecej nie wiem - nikt nie wrocil zywy.",
+	["Falcons"] = "Falcon Eesko - najpotezniejszy ze slugusow Oberona ma swoja komnate gdzies w ich wielkim zamku.Wiecej nie wiem - nikt nie wrocil zywy.",
 	["Frost Dragons"] = "Frosty ukrywa sie w jednej z gor na Sybirze.",
 	["Furies"] = "Irahsae ma swoj kawalek podlogi na najnizszym poziomie legowiska tych mrocznych istot. Jeden z moich zwiadowcow mowil, ze to pod wioska wampirow obok zmutowanych zwierzat.",
 	["Gargoyles"] = "Grota gargulca znajduje sie na szczycie gor zamieszkalych przez cyklopy.",
