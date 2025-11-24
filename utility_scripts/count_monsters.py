@@ -3,8 +3,8 @@ from collections import Counter
 import os
 
 # Path to your large XML file
-#xml_file = "../data-vaigu/world/vaigu-monster.xml"
-xml_file = "../data-vaigu/world/custom/realmap-monster.xml"
+xml_file = "../data-vaigu/world/vaigu-monster.xml"
+#xml_file = "../data-vaigu/world/custom/realmap-monster.xml"
 
 # Output file will have the same name but with "_counts.txt"
 base, _ = os.path.splitext(xml_file)

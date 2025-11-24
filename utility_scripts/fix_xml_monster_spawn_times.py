@@ -3,6 +3,8 @@ import xml.etree.ElementTree as ET
 # Load rare monster names into a set
 with open("./utility_scripts/rare_monster_name.txt", "r", encoding="utf-8") as f:
     rare_monsters = {line.strip() for line in f if line.strip()}
+with open("./utility_scripts/miniboss_name.txt", "r", encoding="utf-8") as f:
+    miniboss_monsters = {line.strip() for line in f if line.strip()}
 
 # Parse the XML file
 tree = ET.parse("./data-vaigu/world/vaigu-monster.xml")
@@ -16,6 +18,8 @@ for monster in root.findall(".//monster"):
 
     if name in rare_monsters:
         monster.set("spawntime", "3600")  # Rare monsters
+    elif name in miniboss_monsters:
+        monster.set("spawntime", "1200")  # Miniboss
     else:
         monster.set("spawntime", "90")    # Normal monsters
 
