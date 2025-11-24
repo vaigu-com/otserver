@@ -7,8 +7,8 @@ function playerLoginVaigu.onLogin(player)
 	local afterLoginStr = player:Localizer(LOCALIZERS.Universal):Get("YOUR_LAST_VISIT")
 	local commandStr = player:Localizer(LOCALIZERS.Universal):Get("LIST_AVAILABLE_COMMANDS")
 	local welcomeStr = player:Localizer(LOCALIZERS.Universal):Get("WELCOME_TO_SERVER")
-	player:sendTextMessage(MESSAGE_LOGIN, welcomeStr)
-	player:sendTextMessage(MESSAGE_LOGIN, afterLoginStr)
+	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, welcomeStr)
+	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, afterLoginStr)
 	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, commandStr)
 
 	-- Promotion
@@ -30,8 +30,8 @@ function playerLoginVaigu.onLogin(player)
 		names = names .. name .. ", "
 	end
 	names = names:sub(1, -3)
-	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, T("Today's boosted creatures: :names:.\nBoosted creatures yield more experience points, carry more loot than usual, and respawn at a faster rate.", { names = names }))
-	player:sendTextMessage(MESSAGE_BOOSTED_CREATURE, string.format("Today's boosted boss: %s.\nBoosted bosses contain more loot and count more kills for your Bosstiary.", Game.getBoostedBoss()))
+	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, T("Today's boosted creatures: :names:.\nBoosted creatures yield more experience points, carry more loot than usual, and respawn at a faster rate.", { names = names }))
+	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, string.format("Today's boosted boss: %s.\nBoosted bosses contain more loot and count more kills for your Bosstiary.", Game.getBoostedBoss()))
 
 	-- Rewards
 	local rewards = #player:getRewardList()

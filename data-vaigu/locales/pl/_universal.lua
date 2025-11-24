@@ -92,7 +92,7 @@ return {
 	["Choose your starter weapon:"] = "Wybierz swoja bron startowa:",
 	["Fine, i will choose your starter weapon then..."] = "Skoro nie chcesz broni, sam wybiore...",
 	["WELCOME_TO_SERVER"] = function()
-		return T("Witaj to :serverName:!", { serverName = configManager.getString(configKeys.SERVER_NAME) })
+		return T("Witaj na :serverName:!", { serverName = configManager.getString(configKeys.SERVER_NAME) })
 	end,
 	["YOUR_LAST_VISIT"] = function(context)
 		return T("Twoja ostatnia wizyta byla :lastLogin:.", { lastLogin = os.date("%d-%m-%Y %X", context.player:getLastLoginSaved()) })
