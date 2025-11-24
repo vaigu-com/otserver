@@ -764,6 +764,9 @@ function EncounterData:OnSuccessfulCompletion(participants)
 		ResolutionContext.FromActiveEncounter(self, player):Resolve()
 		player:takeScreenshot(SCREENSHOT_TYPE_BOSSDEFEATED)
 		player:setStorageValueByKey(self.chosenDifficultyStorage, MISSION_NOT_STARTED)
+
+		local highestCompleted = player:getStorageValueByKey(self.highestDifficultyCompletedStorage)
+		player:setStorageValueByKey(self.highestDifficultyCompletedStorage, math.max(highestCompleted, self.difficulty))
 	end
 
 	if self.lockoutTriggerCriterion == LOCKOUT_TRIGGER_CRITERION.ON_KILL then
@@ -865,7 +868,7 @@ function EncounterData:tryEnter(leverUser)
 		monsterObject:setHealth(monsterObject:getMaxHealth())
 		monsterObject:setEncounterDifficulty(self.difficulty)
 	end
-	
+
 	local bossObject = Game.createMonster(self.bossName, self.bossSpawnPosition)
 	bossObject:setMaxHealth(bossObject:getMaxHealth() * self:GetHealthMultiplier() * participantsCount)
 	bossObject:setHealth(bossObject:getMaxHealth())
