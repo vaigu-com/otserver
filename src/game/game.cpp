@@ -650,8 +650,9 @@ void Game::setGameState(GameState_t newState) {
 				   return true;
     			}
 			);
-			if (!context.status != COMMITTED) {
-				g_logger().error("[Game::setGameState] GAME_STATE_INIT Failed to initialize market:{}, status: {}",context.callbackResult, context.status);
+			if (context.callbackResult != true) {
+				g_logger().error("[Game::setGameState] GAME_STATE_INIT Failed to initialize market:{}, status: {}", context.callbackResult, context.status);
+				throw DatabaseException("Failed to initialize market!");
 			}
 
 			g_chat().load();
