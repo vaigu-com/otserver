@@ -90,6 +90,7 @@ void MonsterFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Monster", "getLoot", MonsterFunctions::luaMonsterGetLoot);
 	Lua::registerMethod(L, "Monster", "addLoot", MonsterFunctions::luaMonsterAddLoot);
 	Lua::registerMethod(L, "Monster", "isBoosted", MonsterFunctions::luaMonsterIsBoosted);
+	Lua::registerMethod(L, "Monster", "getEncounterDifficulty", MonsterFunctions::luaMonsterGetEncounterDifficulty);
 	Lua::registerMethod(L, "Monster", "setEncounterDifficulty", MonsterFunctions::luaMonsterSetEncounterDifficulty);
 	Lua::registerMethod(L, "Monster", "setDisplayName", MonsterFunctions::luaMonsterSetDisplayName);
 	Lua::registerMethod(L, "Monster", "getDisplayName", MonsterFunctions::luaMonsterGetDisplayName);
@@ -954,6 +955,17 @@ int MonsterFunctions::luaMonsterImmune(lua_State* L) {
 	}
 
 	Lua::pushBoolean(L, monster->isImmune());
+	return 1;
+}
+
+int MonsterFunctions::luaMonsterGetEncounterDifficulty(lua_State* L) {
+	// monster:getEncounterDifficulty()
+	const auto &monster = Lua::getUserdataShared<Monster>(L, 1, "Monster");
+	if (monster) {
+		lua_pushnumber(L, monster->getEncounterDifficulty());
+	} else {
+		lua_pushnil(L);
+	}
 	return 1;
 }
 

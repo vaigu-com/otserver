@@ -107,6 +107,10 @@ function bossDeath.onDeath(boss, corpse, killer, mostDamageKiller, lastHitUnjust
 			end
 		end
 
+		local difficulty = boss:getEncounterDifficulty()
+		local difficultyBonus = 0.2 * difficulty
+		rolls = rolls * (1 + difficultyBonus)
+
 		-- decide if we get an extra roll
 		if math.random(0, 100) < (rolls % 1) * 100 then
 			rolls = math.ceil(rolls)
