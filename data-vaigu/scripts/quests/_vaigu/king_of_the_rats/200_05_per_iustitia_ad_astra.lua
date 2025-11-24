@@ -1795,7 +1795,8 @@ quest
 
 		local monsterSpawnerAdmitsScope = oberonEncounter:GetEventScope():Get("MonstersAdmits")
 
-		local admitIncrementInterval = 25000
+		local admitIncrementIntervalMiliseconds = 1000
+		local monstersPerMinute = 0.6
 
 		local admitsCount = 0
 		local monsterAdmits = GlobalEvent(monsterSpawnerAdmitsScope)
@@ -1804,11 +1805,11 @@ quest
 				return GLOBAL_EVENT_OK
 			end
 
-			admitsCount = admitsCount + oberonEncounter:GetParticipantsCount() / (60000 / admitIncrementInterval)
+			admitsCount = admitsCount + oberonEncounter:GetParticipantsCount() * monstersPerMinute / (60000 / admitIncrementIntervalMiliseconds)
 
 			return GLOBAL_EVENT_OK
 		end
-		monsterAdmits:interval(admitIncrementInterval)
+		monsterAdmits:interval(admitIncrementIntervalMiliseconds)
 		monsterAdmits:register()
 
 		local monsterSpawnerScope = oberonEncounter:GetEventScope():Get("MonstersSpawner")

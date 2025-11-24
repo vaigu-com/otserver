@@ -185,6 +185,7 @@ ENCOUNTER_SCOPE_NAME = {
 	EncounterOnComplete = "EncounterOnComplete",
 	HighestDifficultyCompleted = "HighestDifficultyCompleted",
 	ChosenDifficulty = "ChosenDifficulty",
+	LockoutScope = "Lockout",
 }
 
 local requiredZones = {
