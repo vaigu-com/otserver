@@ -75,10 +75,10 @@ monster.loot = {
 	{ id = 3097, chance = 21210 }, -- dwarven ring
 	{ id = 9654, chance = 31900 },
 	{ id = 3554, chance = 6200 }, -- steel boots
-	{ id = 7403, chance = 500 }, -- berserker
-	{ id = 7422, chance = 1200 }, -- jade hammer
+	{ id = 7403, chance = 1500 }, -- berserker
+	{ id = 7422, chance = 2200 }, -- jade hammer
 	{ id = 7428, chance = 7700 }, -- bonebreaker
-	{ id = 3061, chance = 1000 }, -- life crystal
+	{ id = 3061, chance = 10000 }, -- life crystal
 	{ id = 12305, chance = 7000 }, -- tin key
 	{ id = 22756, chance = 4000 },
 }

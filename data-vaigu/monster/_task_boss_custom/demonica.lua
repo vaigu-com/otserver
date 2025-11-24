@@ -76,7 +76,7 @@ monster.loot = {
 	{ id = 3281, chance = 33000 },
 	{ id = 3420, chance = 7400 },
 	{ id = 5954, chance = 19740 },
-	{ name = "golden legs", chance = 430 },
+	{ name = "golden legs", chance = 5430 },
 	{ id = 3414, chance = 5800 },
 	{ id = 3048, chance = 76800 },
 	{ id = 3366, chance = 1100 },
@@ -88,7 +88,7 @@ monster.loot = {
 	{ id = 9057, chance = 26230, maxCount = 15 },
 	{ id = 3039, chance = 29020 },
 	{ id = 8023, chance = 18111 },
-	{ id = 8058, chance = 8882 },
+	{ id = 8058, chance = 12882 },
 	{ id = 7431, chance = 14000 },
 	{ id = 3309, chance = 13000 },
 }

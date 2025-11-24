@@ -70,8 +70,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 19083, chance = 5000 }, -- silver raid token
-	{ id = 19361, chance = 3000 }, -- sun mirror
+	{ id = 19083, chance = 50000 }, -- silver raid token
+	{ id = 19361, chance = 83000 }, -- sun mirror
 	{ id = 3583, chance = 55000, maxCount = 3 }, -- dragon ham
 	{ id = 3155, chance = 15000 }, -- sudden death rune
 	{ id = 3031, chance = 100000, maxCount = 50 }, -- gold coin
@@ -91,7 +91,7 @@ monster.loot = {
 	{ id = 3029, chance = 15000, maxCount = 5 }, -- small sapphire
 	{ id = 9057, chance = 15000, maxCount = 5 }, -- small topaz
 	{ id = 3030, chance = 15000, maxCount = 5 }, -- small ruby
-	{ id = 9301, chance = 910 }
+	{ id = 9301, chance = 2910 }
 }
 
 monster.attacks = {

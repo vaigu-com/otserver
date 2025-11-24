@@ -72,14 +72,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 100000, maxCount = 20 }, -- platinum coin
-	{ id = 16119, chance = 10000, maxCount = 3 }, -- blue crystal shard
-	{ id = 238, chance = 10000, maxCount = 5 }, -- great mana potion
-	{ id = 7642, chance = 10000, maxCount = 5 }, -- great spirit potion
-	{ id = 16121, chance = 10000, maxCount = 3 }, -- green crystal shard
-	{ id = 7643, chance = 10000, maxCount = 5 }, -- ultimate health potion
-	{ id = 16120, chance = 10000, maxCount = 3 }, -- violet crystal shard
+	{ id = 3035, chance = 100000, maxCount = 200 }, -- platinum coin
+	{ id = 16119, chance = 10000, maxCount = 30 }, -- blue crystal shard
+	{ id = 238, chance = 10000, maxCount = 15 }, -- great mana potion
+	{ id = 7642, chance = 10000, maxCount = 15 }, -- great spirit potion
+	{ id = 16121, chance = 10000, maxCount = 30 }, -- green crystal shard
+	{ id = 7643, chance = 10000, maxCount = 15 }, -- ultimate health potion
+	{ id = 16120, chance = 10000, maxCount = 30 }, -- violet crystal shard
 	{ id = 23507, chance = 10000 }, -- crystallized anger
 	{ id = 23508, chance = 10000 }, -- energy vein
 	{ id = 281, chance = 5000 }, -- giant shimmering pearl (green)

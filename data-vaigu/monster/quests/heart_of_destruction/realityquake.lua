@@ -66,8 +66,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
 	{ id = 238, chance = 8000, maxCount = 5 }, -- great mana potion
+	{ id = 22721, chance = 100000, maxCount = 4 }, -- gold token
+	{ id = 23509, chance = 100000 }, -- mysterious remains
 	{ id = 7642, chance = 8000, maxCount = 5 }, -- great spirit potion
 	{ id = 7643, chance = 8000, maxCount = 5 }, -- ultimate health potion
 	{ id = 23535, chance = 8000, maxCount = 5 }, -- energy bar
@@ -87,6 +88,8 @@ monster.loot = {
 	{ id = 3073, chance = 8000 }, -- wand of cosmic energy
 	{ id = 23531, chance = 6000 }, -- ring of green plasma
 	{ id = 23533, chance = 6000 }, -- ring of red plasma
+	{ id = 23542, chance = 3500 }, -- collar of blue plasma
+	{ id = 23529, chance = 3500 }, -- ring of blue plasma
 }
 
 monster.attacks = {
