@@ -624,6 +624,7 @@ void LuaEnums::initConstMeEnums(lua_State* L) {
 	registerEnum(L, CONST_ME_DIVINE_EMPOWERMENT);
 	registerEnum(L, CONST_ME_WATER_FLOATING_THRASH);
 	registerEnum(L, CONST_ME_AGONY);
+	registerEnum(L, CONST_ME_LOOT_HIGHLIGHT);
 	registerEnum(L, CONST_ME_MELTING_CREAM);
 	registerEnum(L, CONST_ME_REAPER);
 	registerEnum(L, CONST_ME_POWERFUL_HEARTS);
