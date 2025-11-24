@@ -21,7 +21,7 @@
 	<zone name="Encounter-Oberon-EncounterAreaPositions" zoneid="249" />
 	<zone name="Encounter-Oberon-EntranceLeverPositions" zoneid="251" />
 	<zone name="Encounter-Oberon-ExitTeleportDestination" zoneid="250" />
-	<zone name="Encounter-Oberon-MonsterSpawnPosition" zoneid="252" />
+	<zone name="Encounter-Oberon-MonsterSpawnPositions" zoneid="252" />
 	<zone name="Encounter-Oberon-PlayerAppearPositions" zoneid="247" />
 	<zone name="Encounter-Pol-BossSpawnPosition" zoneid="4" />
 	<zone name="Encounter-Pol-EncounterAreaPositions" zoneid="1" />

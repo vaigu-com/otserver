@@ -7071,6 +7071,18 @@
 	<monster centerx="7564" centery="163" centerz="5" radius="1">
 		<monster name="Terramite" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="7487" centery="188" centerz="5" radius="1">
+		<monster name="Falcon Paladin" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7487" centery="195" centerz="5" radius="1">
+		<monster name="Falcon Paladin" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7480" centery="204" centerz="5" radius="1">
+		<monster name="Falcon Knight" x="0" y="0" z="5" spawntime="60" />
+	</monster>
+	<monster centerx="7495" centery="204" centerz="5" radius="1">
+		<monster name="Falcon Knight" x="0" y="0" z="5" spawntime="60" />
+	</monster>
 	<monster centerx="7709" centery="244" centerz="5" radius="1">
 		<monster name="Hugo House Guard" x="0" y="0" z="5" spawntime="90" />
 	</monster>
