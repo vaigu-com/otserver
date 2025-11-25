@@ -52,8 +52,9 @@ quest
 		QuestKeyItems.SafetyAndOccupationalHygiene = {
 			GrazhenaDocument = {
 				id = 2815,
-				text = "scp420text",
+				text = "scp88text",
 				addToStore = false,
+				localizer = LOCALIZERS.SafetyAndOccupationalHygiene,
 			},
 		}
 
@@ -679,7 +680,7 @@ quest
 					rewards = {
 						ExerciseWeaponBox(1337),
 					},
-					outfitRewards = QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene.Raccoon1
+					outfitRewards = QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene.Raccoon1,
 				},
 			})
 	end)
