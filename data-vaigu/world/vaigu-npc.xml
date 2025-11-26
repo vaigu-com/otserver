@@ -114,6 +114,9 @@
 	<npc centerx="7243" centery="1092" centerz="5" radius="1">
 		<npc name="Father Natanek" x="0" y="0" z="5" spawntime="60" />
 	</npc>
+	<npc centerx="7241" centery="1100" centerz="5" radius="1">
+		<npc name="Owsiak" x="0" y="0" z="5" spawntime="60" />
+	</npc>
 	<npc centerx="7043" centery="1180" centerz="5" radius="1">
 		<npc name="Quu'Pta" x="0" y="0" z="5" spawntime="60" />
 	</npc>
@@ -131,6 +134,9 @@
 	</npc>
 	<npc centerx="7941" centery="1471" centerz="5" radius="1">
 		<npc name="Betatm" x="0" y="0" z="5" spawntime="60" />
+	</npc>
+	<npc centerx="7875" centery="1490" centerz="5" radius="1">
+		<npc name="Owsiak" x="0" y="0" z="5" spawntime="60" />
 	</npc>
 	<npc centerx="5740" centery="1498" centerz="5" radius="1">
 		<npc name="Xe'na" x="0" y="0" z="5" spawntime="60" />
