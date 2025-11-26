@@ -7672,7 +7672,7 @@ bool Player::addOfflineTrainingTries(skills_t skill, uint64_t tries) {
 }
 
 void Player::addOfflineTrainingTime(int32_t addTime) {
-	offlineTrainingTime = std::min<int32_t>(12 * 3600 * 1000, offlineTrainingTime + addTime);
+	offlineTrainingTime = std::min<int32_t>(24 * 3600 * 1000  * 7, offlineTrainingTime + addTime);
 }
 
 void Player::removeOfflineTrainingTime(int32_t removeTime) {
