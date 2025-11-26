@@ -7552,11 +7552,12 @@ void ProtocolGame::sendTextWindow(uint32_t windowTextId, const std::shared_ptr<I
 	msg.add<uint32_t>(windowTextId);
 	AddItem(msg, item);
 
+	const auto translated = TryTranslate(item->getAttribute<std::string>(ItemAttribute_t::TEXT), item, player);
 	if (canWrite) {
 		msg.add<uint16_t>(maxlen);
-		msg.addString(item->getAttribute<std::string>(ItemAttribute_t::TEXT));
+		msg.addString(translated);
 	} else {
-		const std::string &text = item->getAttribute<std::string>(ItemAttribute_t::TEXT);
+		const std::string &text = translated;
 		msg.add<uint16_t>(text.size());
 		msg.addString(text);
 	}
