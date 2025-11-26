@@ -42,7 +42,7 @@ function SurpriseMiniboss:TrySpawnBoss(spawnPosition)
 
 	Game.createDelayedEffects(spawnPosition, effect, effectCount, delayBetweenEffectsSeconds)
 	addEvent(function()
-		local monster = Game.createMonster(table.random(self.minibosses), position, true, true)
+		local monster = Game.createMonster(table.random(self.minibosses), spawnPosition, true, true)
 		if not monster then
 			return
 		end
