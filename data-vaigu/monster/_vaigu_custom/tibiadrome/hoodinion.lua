@@ -70,11 +70,11 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -270, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
-	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 6, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICETORNADO, target = true },
-	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -270, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ANI_TARSALARROW, target = true },
-	{ name = "combat", interval = 3000, chance = 16, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 6, effect = CONST_ME_HITBYFIRE, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -20 },
+	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -130, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -130, range = 7, radius = 6, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICETORNADO, target = true },
+	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_ICEDAMAGE, minDamage = -20, maxDamage = -130, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ANI_TARSALARROW, target = true },
+	{ name = "combat", interval = 3000, chance = 16, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -130, range = 7, radius = 6, effect = CONST_ME_HITBYFIRE, target = false },
 }
 
 monster.defenses = {

@@ -78,10 +78,10 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
-	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 3, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = true },
-	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, length = 3, effect = CONST_ME_HOLYAREA, target = true },
-	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 4, effect = CONST_ME_ENERGYAREA, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -20, maxDamage = -170, range = 7, radius = 3, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = true },
+	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -170, range = 7, length = 3, effect = CONST_ME_HOLYAREA, target = true },
+	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_ENERGYDAMAGE, minDamage = -20, maxDamage = -170, range = 7, radius = 4, effect = CONST_ME_ENERGYAREA, target = false },
 }
 
 monster.defenses = {

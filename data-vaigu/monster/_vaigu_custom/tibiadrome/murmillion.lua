@@ -70,10 +70,10 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
-	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -270, radius = 4, effect = CONST_ME_SLASH, target = false },
-	{ name = "combat", interval = 2500, chance = 13, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -270, range = 5, radius = 7, effect = CONST_ME_EXPLOSIONAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 8, type = COMBAT_DEATHDAMAGE, minDamage = -20, maxDamage = -270, range = 7, length = 3, effect = CONST_ME_GROUNDSHAKER, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -270 },
+	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -170, radius = 4, effect = CONST_ME_SLASH, target = false },
+	{ name = "combat", interval = 2500, chance = 13, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -170, range = 5, radius = 7, effect = CONST_ME_EXPLOSIONAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 8, type = COMBAT_DEATHDAMAGE, minDamage = -20, maxDamage = -170, range = 7, length = 3, effect = CONST_ME_GROUNDSHAKER, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = -100, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 15000 },
 }
 

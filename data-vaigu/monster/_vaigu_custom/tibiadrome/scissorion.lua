@@ -70,11 +70,11 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -170 },
 	{ name = "melee", interval = 2000, chance = 16, minDamage = 0, maxDamage = -10, condition = { type = CONDITION_POISON, totalDamage = 500, interval = 2000 } },
-	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_EARTHDAMAGE, minDamage = -20, maxDamage = -270, range = 7, radius = 4, effect = CONST_ME_GREENSMOKE, target = false },
+	{ name = "combat", interval = 1000, chance = 8, type = COMBAT_EARTHDAMAGE, minDamage = -20, maxDamage = -70, range = 7, radius = 4, effect = CONST_ME_GREENSMOKE, target = false },
 	{ name = "combat", interval = 3000, chance = 13, type = COMBAT_FIREDAMAGE, minDamage = -20, maxDamage = -270, range = 7, effect = CONST_ME_CRITICAL_DAMAGE, target = true },
-	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_FIREDAMAGE, minDamage = -20, maxDamage = -270, range = 7, length = 3, effect = CONST_ME_FIREATTACK, target = false },
+	{ name = "combat", interval = 3000, chance = 8, type = COMBAT_FIREDAMAGE, minDamage = -20, maxDamage = -70, range = 7, length = 3, effect = CONST_ME_FIREATTACK, target = false },
 }
 
 monster.defenses = {
