@@ -89,6 +89,11 @@ function onUpdateDatabase()
             CHANGE COLUMN created expiry_timestamp BIGINT(20) UNSIGNED NOT NULL;
     ]])
 
+	logger.info("(longer offline training)")
+	db.query([[
+		ALTER TABLE players MODIFY offlinetraining_time MEDIUMINT(10);
+	]])
+
 	logger.info("Updated database to version 53 (vaigu custom)")
 	return true
 end
