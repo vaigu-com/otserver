@@ -557,7 +557,7 @@ void Npc::onPlayerSellItem(const std::shared_ptr<Player> &player, uint16_t itemI
 			continue;
 		}
 
-		if (!item->hasMarketAttributes()) {
+		if (!item->isSellableToNpc()) {
 			continue;
 		}
 
