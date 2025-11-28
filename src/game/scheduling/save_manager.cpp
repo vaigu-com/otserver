@@ -149,7 +149,6 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 
 	const auto result = DBTransaction::executeWithinTransaction([this, newCoinTransactions, players, offlinePlayerGuids, guilds] {
 		for (const auto &[_, player] : players) {
-			logger.warn("saving player {}",player->getName());
 			savePlayer(player);
 			player->account->save();
 		}

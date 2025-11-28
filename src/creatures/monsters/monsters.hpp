@@ -186,7 +186,7 @@ public:
 
 	bool canSpawn(const Position &pos) const;
 
-	const double calculateDifficultyIndex() const {
+	double calculateDifficultyIndex() const {
 		const double healthMax = info.healthMax;
 		const double experience = info.experience;
 		const double difficulty = floor((1 + experience / healthMax) * healthMax);

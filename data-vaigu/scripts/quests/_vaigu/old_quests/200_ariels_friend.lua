@@ -400,7 +400,7 @@ quest
 					textNoRequiredState = "I don't know who told you this password. Go away please.",
 				},
 				[{ "yes", "tak", "story", "mission", "misja", "historii", "historie", "historia" }] = {
-					text = "Can you see the lizard village west to my hut? They have a strange plant that they use to produce vodka most potent. Once, i took two sips of this beverage... i dont remember much after, as i slept for next two days. \nIm now getting ready to visit my friend Konmuld. Hes not very talkative outside of the time he is drunk.\n\nPlease steal some of this liquor from lizards if you want me to continue out story.",
+					text = "Can you see the lizard village south to my hut? They have a strange plant that they use to produce vodka most potent. Once, i took two sips of this beverage... i dont remember much after, as i slept for next two days. \nIm now getting ready to visit my friend Konmuld. Hes not very talkative outside of the time he is drunk.\n\nPlease steal some of this liquor from lizards if you want me to continue out story.",
 					requiredTopic = QuestTopics.ArielsFriend.AcceptVodkaQuest,
 					nextState = {
 						[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude,

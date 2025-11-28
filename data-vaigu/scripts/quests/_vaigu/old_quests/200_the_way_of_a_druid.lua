@@ -186,7 +186,7 @@ quest
 				local waterWell = Action()
 				function waterWell.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					local localizer = player:Localizer(LOCALIZERS.TheWayOfADruid)
-					if player:getStorageValueByKey(Storage.TheWayOfADruid.CouncilOfDruids) < 3 then
+					if player:getStorageValueByKey(Storage.TheWayOfADruid.CouncilOfDruids) < 2 then
 						doCreatureSay(player, localizer:Get("You are not worthy to gather the sacred water!"), TALKTYPE_ORANGE_1)
 						return
 					end
@@ -234,7 +234,7 @@ quest
 				local flower = Action()
 				function flower.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					local localizer = player:Localizer(LOCALIZERS.TheWayOfADruid)
-					if player:getStorageValueByKey(Storage.TheWayOfADruid.CouncilOfDruids) < 5 then
+					if player:getStorageValueByKey(Storage.TheWayOfADruid.CouncilOfDruids) < 4 then
 						doCreatureSay(player, localizer:Get("You are not worthy to gather the sacred flower!"), TALKTYPE_ORANGE_1)
 						return
 					end

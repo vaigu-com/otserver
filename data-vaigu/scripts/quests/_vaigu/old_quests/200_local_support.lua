@@ -275,7 +275,7 @@ quest
 					name = "Wood Delivery",
 					storage = Storage.LocalSupport.WoodDelivery,
 					states = {
-						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery.",
+						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port on northeast part of the town.",
 						[QuestState.LocalSupport.WoodDelivery.InvestigateCamp] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 						[QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia] = "Tell Commissioner that Narro and his mafia stole all of the wood delivery.",
 						[QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
@@ -640,7 +640,7 @@ quest
 		return QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia,
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -657,7 +657,7 @@ quest
 					},
 				},
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -674,7 +674,7 @@ quest
 					},
 				},
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -690,7 +690,7 @@ quest
 					},
 				},
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -1191,7 +1191,7 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Old Postman", {
 				[{ "szlakiem", "pass", "route", "mission", "misja" }] = {
-					text = "The waterway begins at their rock to the west. Then it flows under the bridge, passes by the orc fortress, and enters a larger lake. From that lake, it flows to the Syn Anona. Somewhere along this waterway, my shipment got stuck.",
+					text = "The waterway begins at their rock to the west. Then it flows under the bridge, passes by the orc fortress, and enters a larger lake. From that lake, it flows to the Fisherman Son. Somewhere along this waterway, my shipment got stuck.",
 					nextState = {
 						[Storage.LocalSupport.Biodegradable] = QuestState.LocalSupport.Biodegradable.FindPostmanPackage,
 					},

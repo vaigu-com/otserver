@@ -1172,7 +1172,7 @@ quest
 				},
 				[{ "mission", "misja", "kwote","amount" }] = {
 					text = "Ytong is Ytong.",
-					requiredItems = { { id = 3035, count = 10 } },
+					requiredItems = { { id = 3031, count = 100 } },
 					textNoRequiredItems = "Then come back when I finish the fundraiser. The organization of the festival alone was worth at least 8 coronas extra.",
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission07] = QuestState.TheaterOfCheapThrills.Mission07.WaitForFestivalToEnd,
