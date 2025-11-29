@@ -83,6 +83,7 @@
     <ClInclude Include="..\src\io\iomap.hpp" />
     <ClInclude Include="..\src\io\iomapserialize.hpp" />
     <ClInclude Include="..\src\io\iomarket.hpp" />
+    <ClInclude Include="..\src\io\iomarket_container.hpp" />
     <ClInclude Include="..\src\io\ioprey.hpp" />
     <ClInclude Include="..\src\io\io_bosstiary.hpp" />
     <ClInclude Include="..\src\io\io_definitions.hpp" />
@@ -301,6 +302,7 @@
     <ClCompile Include="..\src\io\iomap.cpp" />
     <ClCompile Include="..\src\io\iomapserialize.cpp" />
     <ClCompile Include="..\src\io\iomarket.cpp" />
+    <ClCompile Include="..\src\io\iomarket_container.cpp" />
     <ClCompile Include="..\src\io\ioprey.cpp" />
     <ClCompile Include="..\src\io\io_bosstiary.cpp" />
     <ClCompile Include="..\src\io\player_storage_repository_db.cpp" />
