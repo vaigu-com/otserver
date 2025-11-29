@@ -120,11 +120,11 @@ augmentStrongImpactPercent = 10
 -- NOTE: preyFreeRerollTime: Time in seconds that players will have to wait to get a new free prey list.
 preySystemEnabled = true
 preyFreeThirdSlot = false
-preyRerollPricePerLevel = 200
-preySelectListPrice = 5
+preyRerollPricePerLevel = 30
+preySelectListPrice = 10
 preyBonusRerollPrice = 1
 preyBonusTime = 2 * 60 * 60
-preyFreeRerollTime = 20 * 60 * 60
+preyFreeRerollTime = 1 * 60 * 60
 
 -- Task hunting system
 -- NOTE: taskHuntingLimitedTasksExhaust: Time to wait to select a new creature on the task hunting slot after claiming the reward.
@@ -234,13 +234,13 @@ wheelSystemEnabled = true
 wheelPointsPerLevel = 3
 
 -- Gem Atelier
-wheelAtelierRotateLesserCost = 1250
-wheelAtelierRotateRegularCost = 2500
-wheelAtelierRotateGreaterCost = 5000
+wheelAtelierRotateLesserCost = 125000 / 100
+wheelAtelierRotateRegularCost = 250000 / 100
+wheelAtelierRotateGreaterCost = 500000 / 100
 
-wheelAtelierRevealLesserCost = 1250
-wheelAtelierRevealRegularCost = 10000
-wheelAtelierRevealGreaterCost = 60000
+wheelAtelierRevealLesserCost = 125000 / 100
+wheelAtelierRevealRegularCost = 1000000 / 100
+wheelAtelierRevealGreaterCost = 6000000 / 100
 
 -- Familiar system
 -- NOTE: the time will be divided by 2 to get half the value, the familiar lasts 15 minutes by default and the cooldown of the spell is 30 minutes
@@ -310,7 +310,7 @@ teleportSummons = false
 -- NOTE: true will allow the /reload command to be used
 -- NOTE: Using this script might cause unwanted changes
 -- This script forces a reload in the entire server, this means that everything that is stored in memory might stop to work properly and/or completely, this script should be used in test environments only
-allowReload = false
+allowReload = true
 
 -- Stamina in Trainers
 staminaTrainer = false

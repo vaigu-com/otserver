@@ -23,6 +23,9 @@ function playerLoginVaigu.onLogin(player)
 		player:setVocation(vocation:getDemotion())
 	end
 
+	-- Atelier
+	player:sendTextMessage(MESSAGE_STATUS_DEFAULT, T("Notice: Gem Atelier displayed prices are 100x higher than the real cost. Also, the higher account balance you see is cosmetic and prevents the client from blocking purchases; purchases are always charged at the lower price.", { names = names }))
+
 	-- Boosted
 	local booostedCreatures = Game.getBoostedCreatures()
 	local names = ""

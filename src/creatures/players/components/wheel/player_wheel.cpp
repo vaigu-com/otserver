@@ -1486,8 +1486,8 @@ void PlayerWheel::sendOpenWheelWindow(NetworkMessage &msg, uint32_t ownerId) {
 	const auto totalLesserFragment = m_player.getItemTypeCount(ITEM_LESSER_FRAGMENT) + m_player.getStashItemCount(ITEM_LESSER_FRAGMENT);
 	const auto totalGreaterFragment = m_player.getItemTypeCount(ITEM_GREATER_FRAGMENT) + m_player.getStashItemCount(ITEM_GREATER_FRAGMENT);
 
-	m_player.client->sendResourceBalance(RESOURCE_BANK, m_player.getBankBalance());
-	m_player.client->sendResourceBalance(RESOURCE_INVENTORY_MONEY, m_player.getMoney());
+	m_player.client->sendResourceBalance(RESOURCE_BANK, 500 * 1000 * 1000 + m_player.getBankBalance());
+	m_player.client->sendResourceBalance(RESOURCE_INVENTORY_MONEY, 500 * 1000 * 1000 + m_player.getMoney());
 	m_player.client->sendResourceBalance(RESOURCE_LESSER_GEMS, m_player.getItemTypeCount(voc->getWheelGemId(WheelGemQuality_t::Lesser)));
 	m_player.client->sendResourceBalance(RESOURCE_REGULAR_GEMS, m_player.getItemTypeCount(voc->getWheelGemId(WheelGemQuality_t::Regular)));
 	m_player.client->sendResourceBalance(RESOURCE_GREATER_GEMS, m_player.getItemTypeCount(voc->getWheelGemId(WheelGemQuality_t::Greater)));
