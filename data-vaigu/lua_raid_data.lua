@@ -170,11 +170,11 @@ local raidData = {
 	LuaRaid("Ghazbaran"):Context({
 		perDay = 0.1728,
 		waves = {
-			Wave(800000):Creature("Deathslicer", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 12, true):Notification(-799000, "Primordial evil is awakening deep in the mines of Siberia."):Notification(-200000, "Demonic entities begin to appear in the deepest mines of Siberia."),
-			Wave(900000):Creature("Juggernaut", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true):Notification(-1, "Demonic entities begin to appear in the deepest mines of Siberia."),
-			Wave(1000000):Creature("Fury", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
-			Wave(1100000):Creature("Demon", Area(Position(6421, 1722, 14), Position(6449, 1741, 14)), 1, true),
-			Wave(1200000):Creature("Ghazbaran", Area(Position(6436, 1734, 14), Position(6436, 1734, 14)), 1, true):Notification(-1, "The Demonic Master has revealed himself in the mines of Siberia."),
+			Wave(800000):Creature("Deathslicer", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 12, true):Notification(-799000, "Primordial evil is awakening deep in the mines of Bydgoshch."):Notification(-200000, "Demonic entities begin to appear in the deepest mines of Bydgoshch."),
+			Wave(900000):Creature("Juggernaut", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 1, true):Notification(-1, "Demonic entities begin to appear in the deepest mines of Bydgoshch."),
+			Wave(1000000):Creature("Fury", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 1, true),
+			Wave(1100000):Creature("Demon", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 1, true),
+			Wave(1200000):Creature("Ghazbaran", Area(Position(7673, 1379, 15), Position(7673, 1379, 15)), 1, true):Notification(-1, "The Demonic Master has revealed himself in the mines of Bydgoshch"),
 		},
 		cooldown = 144000,
 		minPlayersOnline = 5,
