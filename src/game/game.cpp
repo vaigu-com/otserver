@@ -645,10 +645,10 @@ void Game::setGameState(GameState_t newState) {
 
 			groups.load();
 			const auto context = DBTransaction::executeWithinTransaction(
-				[]{
-     			   g_iomarket().initialize();
-				   return true;
-    			}
+				[] {
+					g_iomarket().initialize();
+					return true;
+				}
 			);
 			if (context.callbackResult != true) {
 				g_logger().error("[Game::setGameState] GAME_STATE_INIT Failed to initialize market:{}, status: {}", context.callbackResult, context.status);
@@ -8030,14 +8030,14 @@ void Game::applyManaLeech(
 
 	uint16_t manaChance = attackerPlayer->getSkillLevel(SKILL_MANA_LEECH_CHANCE) + wheelLeechChance + damage.manaLeechChance;
 	uint16_t manaSkill = attackerPlayer->getSkillLevel(SKILL_MANA_LEECH_AMOUNT) + wheelLeechAmount + damage.manaLeech;
-	if (normal_random(0, 100) >= manaChance) {
-		return;
-	}
 	// Void charm rune
 	if (targetMonster && attackerPlayer->parseRacebyCharm(CHARM_VOID) == targetMonster->getRaceId()) {
 		if (const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_VOID)) {
 			manaSkill += charm->chance[attackerPlayer->getCharmTier(CHARM_VOID)] * 100;
 		}
+	}
+	if (manaSkill <= 0) {
+		return;
 	}
 
 	CombatParams tmpParams;
@@ -8060,13 +8060,13 @@ void Game::applyLifeLeech(
 	auto wheelLeechAmount = attackerPlayer->wheel().checkDrainBodyLeech(target, SKILL_LIFE_LEECH_AMOUNT);
 	uint16_t lifeChance = attackerPlayer->getSkillLevel(SKILL_LIFE_LEECH_CHANCE) + wheelLeechChance + damage.lifeLeechChance;
 	uint16_t lifeSkill = attackerPlayer->getSkillLevel(SKILL_LIFE_LEECH_AMOUNT) + wheelLeechAmount + damage.lifeLeech;
-	if (normal_random(0, 100) >= lifeChance) {
-		return;
-	}
 	if (targetMonster && attackerPlayer->parseRacebyCharm(CHARM_VAMP) == targetMonster->getRaceId()) {
 		if (const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_VAMP)) {
 			lifeSkill += charm->chance[attackerPlayer->getCharmTier(CHARM_VAMP)] * 100;
 		}
+	}
+	if (lifeSkill <= 0) {
+		return;
 	}
 
 	CombatParams tmpParams;
