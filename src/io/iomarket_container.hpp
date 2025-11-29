@@ -22,7 +22,7 @@ public:
 	}
 
 	static uint32_t nextActiveId() {
-		currentActiveId = currentActiveId;
+		currentActiveId = currentActiveId + 1;
 		return currentActiveId;
 	}
 
@@ -32,7 +32,7 @@ public:
 	}
 
 	static uint32_t nextHistoricId() {
-		currentHistoricId = currentHistoricId;
+		currentHistoricId = currentHistoricId + 1;
 		return currentHistoricId;
 	}
 
