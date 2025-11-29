@@ -209,7 +209,7 @@ changeLanguage:groupType("normal")
 changeLanguage:register()
 
 for abbreviation, full in pairs(LANG_ABBREVIATION_TO_FULL_NAME) do
-	local setLanguage = TalkAction("!" .. full, "!" .. abbreviation, "!", "!" .. full:lower(), "!" .. abbreviation:lower(), "!" .. full:upper(), "!" .. abbreviation:upper())
+	local setLanguage = TalkAction("!" .. full, "!" .. abbreviation, "!" .. full:lower(), "!" .. abbreviation:lower(), "!" .. full:upper(), "!" .. abbreviation:upper())
 	function setLanguage.onSay(player, words, param)
 		onAcceptLanguage(player, nil, { text = abbreviation })
 	end

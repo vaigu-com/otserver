@@ -68,7 +68,7 @@ function converterOnLogin.onLogin(player)
 	if not player then
 		return false
 	end
-	startConverter(player:getId(), 33299)
+	startConverter(player:getId(), 28526)
 	return true
 end
 converterOnLogin:register()

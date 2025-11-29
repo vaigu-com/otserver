@@ -77,5 +77,16 @@ function MoveEvent() end
 
 ---@class Action
 ---@field onUse fun(player: Player, ...): boolean|nil
+---@field id fun(self, id: number): nil
+---@field key fun(self, key: string): nil
+---@field register fun(): nil
 ---@return Action
 function Action() end
+
+---@class Look
+---@field onLook fun(player: Player, ...): boolean|nil
+---@field id fun(self, id: number): nil
+---@field key fun(self, key: string): nil
+---@field register fun(): nil
+---@return Look
+function Look() end

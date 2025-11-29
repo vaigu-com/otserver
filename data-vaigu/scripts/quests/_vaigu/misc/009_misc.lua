@@ -80,6 +80,15 @@ quest
 		end
 		cookieUse:id(ItemId.EXP_COOKIE)
 		cookieUse:register()
+
+		local cookieLook = Look()
+		function cookieLook.onLook(player)
+			local exp = tonumber(cookie:getKey())
+			player:sendTextMessage(MESSAGE_LOOK, T("Usage: eat me. (:exp: experience)", { exp = exp }))
+			return DONT_SHOW_ONLOOK
+		end
+		cookieLook:id(ItemId.EXP_COOKIE)
+		cookieLook:register()
 	end)
 	:Script(function()
 		---@class FishingHotspot

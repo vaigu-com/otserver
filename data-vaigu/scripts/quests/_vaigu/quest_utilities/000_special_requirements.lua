@@ -132,7 +132,7 @@ SPECIAL_REQUIREMENTS_IMBUING = {
 	hasEnoughTaskPoints = function(context)
 		local bundleLevelData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 		local requiredTaskPoints = bundleLevelData.taskPointsCost
-		local playerTaskPoints = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local playerTaskPoints = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		local playerHasPoints = playerTaskPoints >= requiredTaskPoints
 		if not playerHasPoints then
 			PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints = requiredTaskPoints

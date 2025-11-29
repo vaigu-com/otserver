@@ -51,7 +51,7 @@ NPC_STATE_DIALOGS = {
 					},
 				},
 				[{ min = 1 }] = {
-					[{ "punkt", "point", "punktow", "points", "punkty" }] = {
+					[{ "punkt", "point", "punktow", "points", "punkty", "task points", "punkty taskowe" }] = {
 						text = "YOU_CURRENTLY_HAVE_N_TASK_POINTS",
 					},
 				},
