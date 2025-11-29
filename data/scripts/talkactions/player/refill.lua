@@ -1,3 +1,4 @@
+--[[
 -- Usage talkaction: "!refill will refill all your amulets and rings for silver tokens"
 local refill = TalkAction("!refill")
 
@@ -42,3 +43,4 @@ end
 refill:separator(" ")
 refill:groupType("normal")
 refill:register()
+]]

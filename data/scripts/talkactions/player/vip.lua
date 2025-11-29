@@ -1,3 +1,4 @@
+--[[
 local vip = TalkAction("!checkvip", "!vip")
 
 function vip.onSay(player, words, param)
@@ -11,3 +12,4 @@ end
 
 vip:groupType("normal")
 vip:register()
+]]

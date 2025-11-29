@@ -1,3 +1,4 @@
+--[[
 local feature = TalkAction("!autoloot")
 
 local validValues = {
@@ -37,3 +38,4 @@ end
 feature:separator(" ")
 feature:groupType("normal")
 feature:register()
+]]
