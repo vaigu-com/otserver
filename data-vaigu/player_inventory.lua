@@ -6,17 +6,12 @@ function Player:canRemoveMoney(amount)
 	return (balance + playerMoney) >= amount
 end
 
+local maxPricePerCard = 1500
 function Player:GetWildcardPrice()
 	local level = self:getLevel()
-	local price = level * 75
-	if level < 80 then
-		price = price * (100 + level) / 100
-		price = price * 5 / 9
-	end
-	if level >= 200 then
-		price = 15000
-	end
-	return math.floor(price)
+
+	local price = 90 * level / math.log(400 - level, 2)
+	return math.floor(math.min(price, maxPricePerCard))
 end
 
 function Player:GetTotalMoney()
@@ -249,7 +244,7 @@ function Player:ErrorIfHasNotEnoughCapacity(requiredCap)
 	local playerFreeCap = self:getFreeCapacity()
 	if requiredCap > playerFreeCap then
 		local lackingCap = math.abs(playerFreeCap - requiredCap)
-		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap/100, lackingCap = lackingCap/100 })
+		return false, T("The total weight of the items You are trying to pick up is :requiredCap: oz. Therefore You need another :lackingCap: oz.", { requiredCap = requiredCap / 100, lackingCap = lackingCap / 100 })
 	end
 	return true
 end
@@ -354,10 +349,10 @@ local function addItemContainerHandleFluid(container, normalizedData)
 	local addedItems = {}
 	if IsFluidContainer(normalizedData.id) then
 		for _ = 1, normalizedData.count do
-			table.insert(addedItems, container:addItem(normalizedData.id, normalizedData.fluidType,nil,nil,normalizedData.key))
+			table.insert(addedItems, container:addItem(normalizedData.id, normalizedData.fluidType, nil, nil, normalizedData.key))
 		end
 	else
-		addedItems = container:addItem(normalizedData.id, normalizedData.count,nil,nil,normalizedData.key)
+		addedItems = container:addItem(normalizedData.id, normalizedData.count, nil, nil, normalizedData.key)
 	end
 
 	return addedItems
@@ -386,10 +381,10 @@ function addItemPlayerHandleFluid(player, normalizedData)
 	local addedItems = {}
 	if IsFluidContainer(normalizedData.id) then
 		for _ = 1, normalizedData.count do
-			table.insert(addedItems, player:addItem(normalizedData.id, normalizedData.fluidType,nil,nil,nil,nil,normalizedData.key))
+			table.insert(addedItems, player:addItem(normalizedData.id, normalizedData.fluidType, nil, nil, nil, nil, normalizedData.key))
 		end
 	else
-		addedItems = player:addItem(normalizedData.id, normalizedData.count,nil,nil,nil,nil,normalizedData.key)
+		addedItems = player:addItem(normalizedData.id, normalizedData.count, nil, nil, nil, nil, normalizedData.key)
 	end
 
 	return addedItems
