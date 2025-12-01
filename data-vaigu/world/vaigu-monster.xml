@@ -39983,6 +39983,9 @@
 	<monster centerx="6180" centery="1226" centerz="7" radius="1">
 		<monster name="Insect Swarm" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="6222" centery="1226" centerz="7" radius="1">
+		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="6570" centery="1226" centerz="7" radius="1">
 		<monster name="Cobra" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -40041,6 +40044,10 @@
 	</monster>
 	<monster centerx="5985" centery="1228" centerz="7" radius="1">
 		<monster name="Crypt Shambler" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="6219" centery="1228" centerz="7" radius="1">
+		<monster name="Skeleton" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Skeleton" x="1" y="0" z="7" spawntime="-32412160" />
 	</monster>
 	<monster centerx="6286" centery="1228" centerz="7" radius="1">
 		<monster name="Zombie" x="0" y="0" z="7" spawntime="90" />
@@ -41689,7 +41696,6 @@
 	</monster>
 	<monster centerx="6249" centery="1264" centerz="7" radius="5">
 		<monster name="Bonebeast" x="-3" y="-3" z="7" spawntime="90" />
-		<monster name="Bonebeast" x="2" y="1" z="7" spawntime="90" />
 		<monster name="Demon Skeleton" x="0" y="2" z="7" spawntime="90" />
 		<monster name="Bonebeast" x="2" y="4" z="7" spawntime="90" />
 	</monster>
@@ -41771,9 +41777,6 @@
 	</monster>
 	<monster centerx="5940" centery="1266" centerz="7" radius="1">
 		<monster name="Crypt Shambler" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="6189" centery="1266" centerz="7" radius="1">
-		<monster name="Bonebeast" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6465" centery="1266" centerz="7" radius="1">
 		<monster name="Crab" x="0" y="0" z="7" spawntime="90" />
@@ -42364,7 +42367,6 @@
 	</monster>
 	<monster centerx="6217" centery="1278" centerz="7" radius="5">
 		<monster name="Crypt Shambler" x="2" y="-3" z="7" spawntime="90" />
-		<monster name="Bonebeast" x="-2" y="-1" z="7" spawntime="90" />
 		<monster name="Bonebeast" x="2" y="2" z="7" spawntime="90" />
 		<monster name="Demon Skeleton" x="4" y="2" z="7" spawntime="90" />
 	</monster>
