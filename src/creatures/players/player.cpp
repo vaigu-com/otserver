@@ -11009,15 +11009,14 @@ void Player::sendMessageDialog(const std::string &message) const {
 
 // Account
 // Account
-
 bool Player::setAccount(uint32_t accountId) {
 	if (account) {
-		g_logger().warn("Account was already set!");
+		g_logger().warn("Account already set!");
 		return true;
 	}
 
-	account = std::make_shared<Account>(accountId);
-	return AccountErrors_t::Ok == account->load();
+	account = AccountManager::getAccount(accountId);
+	return account != nullptr;
 }
 
 uint8_t Player::getAccountType() const {

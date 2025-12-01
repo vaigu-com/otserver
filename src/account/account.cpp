@@ -328,3 +328,20 @@ uint32_t Account::getHouseBidId() const {
 void Account::setHouseBidId(uint32_t houseId) {
 	m_account->houseBidId = houseId;
 }
+
+std::shared_ptr<Account>  AccountManager::getAccount(uint32_t accountId) {
+	std::lock_guard<std::mutex> lock(mutex_);
+
+	auto it = accounts_.find(accountId);
+	if (it != accounts_.end()) {
+		return it->second;
+	}
+
+	auto acc = std::make_shared<Account>(accountId);
+	if (acc->load() != AccountErrors_t::Ok) {
+		return nullptr;
+	}
+
+	accounts_[accountId] = acc;
+	return acc;
+}
