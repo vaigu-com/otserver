@@ -634,7 +634,6 @@ function Player:getBossCooldown(bossNameOrId)
 	if not scope then
 		return 0
 	end
-	print("Player:getBossCooldown", scope)
 	return math.max(self:getStorageValueByKey(scope), 0)
 end
 function Player:setBossCooldown(bossNameOrId, time)
@@ -644,7 +643,6 @@ function Player:setBossCooldown(bossNameOrId, time)
 	end
 	local result = self:setStorageValueByKey(scope, time)
 	self:sendBosstiaryCooldownTimer()
-	print("Player:setBossCooldown", scope)
 	return result
 end
 function Player:canFightBoss(bossName)
