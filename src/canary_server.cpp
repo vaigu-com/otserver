@@ -127,8 +127,8 @@ int CanaryServer::run() {
 		__FUNCTION__
 	);
 
-	constexpr auto timeout = std::chrono::minutes(10);
-	constexpr auto warnEvery = std::chrono::seconds(120);
+	constexpr auto timeout = std::chrono::minutes(20);
+	constexpr auto warnEvery = std::chrono::seconds(10);
 	auto start = std::chrono::steady_clock::now();
 	auto lastLog = start;
 
