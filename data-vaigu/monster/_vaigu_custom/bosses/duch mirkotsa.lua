@@ -105,16 +105,16 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 40, attack = 90 },
+	{ name = "melee", interval = 2000, chance = 100, skill = 4, attack = 40 },
 	{ name = "effect", interval = 2000, chance = 12, length = 7, spread = 3, target = false, effect = CONST_ME_POISONAREA },
-	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -110, maxDamage = -220, radius = 6, effect = CONST_ME_INSECTS, target = false },
-	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -250, length = 6, spread = 2, effect = CONST_ME_POISONAREA, target = false },
+	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -10, maxDamage = -20, radius = 6, effect = CONST_ME_INSECTS, target = false },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -10, maxDamage = -20, length = 6, spread = 2, effect = CONST_ME_POISONAREA, target = false },
 	{ name = "drunk", interval = 2000, chance = 20, radius = 8, effect = CONST_ME_STUN, target = false, duration = 5000 },
 	{ name = "effect", interval = 2000, chance = 14, length = 6, spread = 3, effect = CONST_ME_SOUND_RED, target = false },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "rat" },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "rotworm" },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "snake" },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -50, maxDamage = -100, radius = 8, effect = CONST_ME_MAGIC_GREEN, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -5, maxDamage = -15, radius = 8, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.defenses = {

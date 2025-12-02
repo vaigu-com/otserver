@@ -13,10 +13,6 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.events = {
-	"ZalamonDeath",
-}
-
 monster.health = 6500
 monster.maxHealth = 6500
 monster.race = "blood"
