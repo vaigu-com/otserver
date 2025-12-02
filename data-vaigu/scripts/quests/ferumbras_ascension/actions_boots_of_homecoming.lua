@@ -1,25 +1,32 @@
+Storage.BootsOfHomecoming = {}
+
 local ferumbrasAscendantHomeComing = Action()
-function ferumbrasAscendantHomeComing.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local boots = player:getSlotItem(CONST_SLOT_FEET)
-	if boots ~= item or boots ~= item then
+function ferumbrasAscendantHomeComing.onUse(player, usedItem, fromPosition, target, toPosition, isHotkey)
+	local equippedBoots = player:getSlotItem(CONST_SLOT_FEET)
+	if equippedBoots ~= usedItem then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to equip the boot to try use it.")
-		return true
+		return false
 	end
-	if item.itemid == 22773 then
-		if Tile(player:getPosition()):hasFlag(TILESTATE_PROTECTIONZONE) then
-			item:transform(22774)
-			item:decay()
-			player:getPosition():sendMagicEffect(CONST_ME_POFF)
-			player:teleportTo(Position(32121, 32708, 7))
-			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Magical sparks whirl around the boots and suddenly you are somewhere else.")
-		else
-			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "If you want to wear this boots you need to stay in a protection zone.")
-			return true
-		end
-	elseif item.itemid == 22774 then
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are tired of the last use of the boots, you must wait for one hour to use it again.")
+	if not player:isLockoutExpired(Storage.BootsOfHomecoming) then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are tired of the last use of the boots. Try again tomorrow.")
+		return false
 	end
+	if isPlayerPzLocked(player) then
+		SendPlayerIsPzLocked(player)
+		return false
+	end
+	if player:getCondition(CONDITION_INFIGHT, CONDITIONID_DEFAULT) then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are tired of the last use of the boots. Try again tomorrow.")
+		player:sendCancelMessage("You cant use temple scroll while in fight.")
+		return false
+	end
+
+	player:setLockoutExpiry(Storage.BootsOfHomecoming, LOCKOUT_EXPIRY_TIME.DAILY)
+	player:getPosition():sendMagicEffect(CONST_ME_POFF)
+	local templePos = player:getTown():getTemplePosition()
+	player:teleportTo(templePos)
+	templePos:sendMagicEffect(CONST_ME_TELEPORT)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Magical sparks whirl around the boots and suddenly you are somewhere else.")
 	return true
 end
 
