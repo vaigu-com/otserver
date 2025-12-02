@@ -213,19 +213,11 @@ function ItemsToString(items)
 	return str
 end
 
----using key types other than string/number is not recommended
----@param key string|number|any
----@return any any If present, returns value in player kv store, else returns default value
-function Player:getStorageValueByKey(key)
-	return self:kv():get(key) or MISSION_NOT_STARTED
-end
----@param key string|number|any
----@return any any If present, returns value in player kv store, else returns nil
-function Player:getStorageValueByKeyRaw(key, type)
-	return self:kv():get(key)
-end
-
 local function validateKey(key)
+	if type(key) ~= "string" then
+		logger.error(debug.traceback("[validateKey] key is not string"))
+		key = tostring(key)
+	end
 	if key == nil then
 		logger.error(debug.traceback("[Player:setStorageValueByKey] key is nil"))
 		error("[Player:setStorageValueByKey] key is nil")
@@ -239,6 +231,19 @@ local function validateKey(key)
 			logger.error(debug.traceback(T("[Player:setStorageValueByKey] key :key: component :i: is empty string", { key = key, i = i })))
 		end
 	end
+end
+
+---using key types other than string/number is not recommended
+---@param key string|number|any
+---@return any any If present, returns value in player kv store, else returns default value
+function Player:getStorageValueByKey(key)
+	validateKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+---@param key string|number|any
+---@return any any If present, returns value in player kv store, else returns nil
+function Player:getStorageValueByKeyRaw(key, type)
+	return self:kv():get(key)
 end
 
 ---@param key string|number|any

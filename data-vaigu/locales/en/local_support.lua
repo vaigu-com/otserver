@@ -151,7 +151,7 @@ return {
 	end,
 	["You visited all dealers in mirkotown and got rewarded by the Commissioner."] = "You visited all dealers in mirkotown and got rewarded by the Commissioner.",
 	["Wood Delivery"] = "Wood Delivery",
-	["Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port on northeast part of the town."] = "Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port on northeast part of the town.",
+	["Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port in northeast part of the town."] = "Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port in northeast part of the town.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 	["Tell Commissioner that Narro and his mafia stole all of the wood delivery."] = "Tell Commissioner that Narro and his mafia stole all of the wood delivery.",
 	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",

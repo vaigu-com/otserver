@@ -16,7 +16,7 @@ end
 local function buildAvailableCommandsText(talkActionsData)
 	local text = "Available commands:\n\n"
 	for key, talkActionData in pairs(talkActionsData) do
-		text = text .. talkActionData.name .. talkActionData.description
+		text = text .. talkActionData.name .. talkActionData.description .. "\n\n"
 	end
 	return text
 end

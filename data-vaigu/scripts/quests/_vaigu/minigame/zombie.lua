@@ -96,7 +96,6 @@ pseudoQuest
 			lookMount = 0,
 		}
 
-		monster.raceId = 512
 		monster.Bestiary = {
 			class = "Undead",
 			race = BESTY_RACE_UNDEAD,

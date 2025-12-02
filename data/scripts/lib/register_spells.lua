@@ -784,8 +784,8 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 		return false
 	end
 
-	local status = self:AddCustomItem({ id = conjureId, count = conjureCount })
-	if status ~= RETURNVALUE_NOERROR then
+	local success = self:AddCustomItem({ id = conjureId, count = conjureCount })
+	if not success then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false

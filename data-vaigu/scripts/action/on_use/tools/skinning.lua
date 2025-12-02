@@ -263,10 +263,6 @@ local toolToCorpseToData = {
 			},
 			{ successChance = 60000, rewardId = 10427, desc = "This shoddy work was made by |PLAYERNAME|." },
 		},
-		[7441] = { successChance = 22344, rewardId = 7442 },
-		[7442] = { successChance = 22344, rewardId = 7444 },
-		[7444] = { successChance = 22344, rewardId = 7445 },
-		[7445] = { successChance = 22344, rewardId = 7446 },
 	},
 	[5942] = {
 		[6339] = {

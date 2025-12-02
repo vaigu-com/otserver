@@ -151,7 +151,7 @@ return {
 	end,
 	["You visited all dealers in mirkotown and got rewarded by the Commissioner."] = "Odwiedziles wszystkich sprzedawcow w Mirkotown, za co zostales nagrodzony.",
 	["Wood Delivery"] = "Dostawa Drewna",
-	["Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port on northeast part of the town."] = "Idz do knurowskiego portu dowiedziec sie co z dostawa drewna. Mozesz doplynac do knurowa statkiem, ktory odplywa z portu Mirkotown znajdujacego sie w polnocno-wschodniej czesci miasta.",
+	["Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port in northeast part of the town."] = "Idz do knurowskiego portu dowiedziec sie co z dostawa drewna. Mozesz doplynac do knurowa statkiem, ktory odplywa z portu Mirkotown znajdujacego sie w polnocno-wschodniej czesci miasta.",
 	["Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this."] = "Rasiak jest pewny, ze drewno zostalo wyslane karawana, poprosil cie o zbadanie sprawy.",
 	["Tell Commissioner that Narro and his mafia stole all of the wood delivery."] = "Przekaz Komisarzowi Rybie, ze Waski i jego mafia zabrali drewno.",
 	["Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia."] = "Komisarz nakazal ci odzyskanie drewna, lecz ostrzegal przed mafia Waskiego.",
