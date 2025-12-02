@@ -8,7 +8,7 @@ end
 ---@class Thing
 Thing = Thing
 
----@class Cylinder :Thing
+---@class Cylinder : Thing
 Cylinder = Cylinder
 ---@class Item : Thing
 Item = Item
@@ -21,7 +21,7 @@ Container = Container
 Player = Player
 ---@class Monster : Creature
 Creature = Creature
----@class Npc : CreatureList
+---@class Npc : Creature
 Npc = Npc
 
 ---@class Teleport : Item, Cylinder
@@ -77,8 +77,8 @@ function MoveEvent() end
 
 ---@class Action
 ---@field onUse fun(player: Player, ...): boolean|nil
----@field id fun(self, id: number): nil
----@field key fun(self, key: string): nil
+---@field id fun(self, id: number, ...): nil
+---@field key fun(self, key: string, ...): nil
 ---@field register fun(): nil
 ---@return Action
 function Action() end
