@@ -29,6 +29,10 @@ PreySlot::PreySlot(PreySlot_t id) :
 }
 
 void IOPrey::initializePreyMonsters() {
+	if (initialized) {
+		return;
+	}
+	initialized = true;
 	auto &monsterCounts = g_game().map.spawnsMonster.getMonsterCounts();
 
 	std::map<std::string, std::shared_ptr<MonsterType>> monsters = g_monsters().monsters;
@@ -41,7 +45,7 @@ void IOPrey::initializePreyMonsters() {
 			continue;
 		}
 		auto it = monsterCounts.find(name);
-		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
+		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THRESHOLD) {
 			continue;
 		}
 
@@ -78,7 +82,7 @@ void PreyMonsterBuilder::filterByLevel(uint32_t level) {
 		if (minDifficulty <= difficulty && difficulty <= maxDifficulty) {
 			result.push_back(preyMonster);
 		}
-		if (result.size() >= (PreyGridSize * 4)) {
+		if (result.size() >= (PreyGridSize * 4)) { // Blacklist max size is 27 (3*9), so no need to scan for more
 			break;
 		}
 	}
@@ -89,7 +93,7 @@ void PreyMonsterBuilder::trim(uint16_t newSize) {
 	std::vector<PreyMonster> result;
 	for (PreyMonster preyMonster : monsters) {
 		result.push_back(preyMonster);
-		if (result.size() >= 9) {
+		if (result.size() >= newSize) {
 			break;
 		}
 	}
@@ -101,9 +105,6 @@ void PreyMonsterBuilder::filterByBlacklist(std::vector<uint16_t> raceIdBlacklist
 	for (PreyMonster preyMonster : monsters) {
 		if (std::find(raceIdBlacklist.begin(), raceIdBlacklist.end(), preyMonster.raceid) == raceIdBlacklist.end()) {
 			result.push_back(preyMonster);
-		}
-		if (result.size() >= PreyGridSize) {
-			break;
 		}
 	}
 	monsters = result;
@@ -456,7 +457,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			return;
 		}
 
-		player->sendMessageDialog("Changing prey monster with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
+		player->sendMessageDialog("Changing prey monster this way will always reduce bonus by 3 stars. Rerolling the grid with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
 
 		rerollType = true;
 		nextRaceId = raceId;

@@ -445,7 +445,7 @@ void Game::resetNpcs() const {
 }
 
 // Vaigu custom
-// Only monsters with count of at least BOOST_PREY_ELIGIBILITY_THERSHOLD on the whole map can become boosted
+// Only monsters with count of at least BOOST_PREY_ELIGIBILITY_THRESHOLD on the whole map can become boosted
 // Dont boost monsters with 0 exp (0 difficulty index)
 std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t count) {
 	std::vector<std::string> monsterNames;
@@ -455,7 +455,7 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 	std::vector<BoostedMonsterData> boostableMonsters;
 	for (const auto &[raceId, _name] : BestiaryList) {
 		auto it = monsterCounts.find(_name);
-		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
+		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THRESHOLD) {
 			continue;
 		}
 

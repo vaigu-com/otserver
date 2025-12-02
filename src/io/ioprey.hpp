@@ -381,6 +381,7 @@ public:
 
 	// Vaigu custom
 	std::vector<PreyMonster> preyMonsters;
+	bool initialized = false;
 };
 
 constexpr auto g_ioprey = IOPrey::getInstance;
