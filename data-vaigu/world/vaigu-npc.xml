@@ -427,6 +427,9 @@
 	<npc centerx="6391" centery="912" centerz="7" radius="3">
 		<npc name="Gertrude" x="-1" y="0" z="7" spawntime="90" direction="2" />
 	</npc>
+	<npc centerx="6108" centery="1011" centerz="7" radius="1">
+		<npc name="Messenger of Heaven" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="7209" centery="1048" centerz="7" radius="1">
 		<npc name="Xelvar" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -510,6 +513,9 @@
 	</npc>
 	<npc centerx="5911" centery="1389" centerz="7" radius="1">
 		<npc name="Andrew" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="6459" centery="1412" centerz="7" radius="1">
+		<npc name="Messenger of Heaven" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="6812" centery="1418" centerz="7" radius="1">
 		<npc name="Whelp" x="0" y="0" z="7" spawntime="60" />
@@ -705,6 +711,9 @@
 	</npc>
 	<npc centerx="6028" centery="1945" centerz="7" radius="3">
 		<npc name="Fisherman Son" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="6063" centery="1950" centerz="7" radius="1">
+		<npc name="Messenger of Heaven" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="7500" centery="226" centerz="8" radius="1">
 		<npc name="Mackerel" x="0" y="0" z="8" spawntime="60" />
