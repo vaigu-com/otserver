@@ -134,11 +134,10 @@ function playerDeathByCow.onPrepareDeath(player, killer)
 	end, 12000)
 	return false
 end
-
-playerDeathByCow:register()
+--playerDeathByCow:register()
 
 local cowDeathInit = GlobalEvent("cowDeathInit")
 function cowDeathInit.onStartup()
-	--loadGuillotine()
+	loadGuillotine()
 end
-cowDeathInit:register()
+--cowDeathInit:register()
