@@ -225,6 +225,8 @@ quest
 					"orc spearman",
 					"orc warlord",
 					"orc warrior",
+					"orc marauder",
+					"rorc",
 				},
 				exp = 52000,
 				money = 5000,

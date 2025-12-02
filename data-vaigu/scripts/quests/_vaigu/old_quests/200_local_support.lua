@@ -275,7 +275,7 @@ quest
 					name = "Wood Delivery",
 					storage = Storage.LocalSupport.WoodDelivery,
 					states = {
-						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port on northeast part of the town.",
+						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port in northeast part of the town.",
 						[QuestState.LocalSupport.WoodDelivery.InvestigateCamp] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 						[QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia] = "Tell Commissioner that Narro and his mafia stole all of the wood delivery.",
 						[QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
@@ -1087,6 +1087,9 @@ quest
 						[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
 						[Storage.LocalSupport.BudgetRecyclingClothExchange] = ACCESS_GRANTED,
 						[Storage.Finished.BudgetRecycling] = MISSION_FINISHED,
+					},
+					rewards = {
+						{ id = 8040 },
 					},
 					requiredItems = {
 						{ id = 5909 },

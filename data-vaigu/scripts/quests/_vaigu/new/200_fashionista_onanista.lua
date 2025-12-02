@@ -392,7 +392,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.FashionistaOnanista.Mission03.SellFentToBarrack,
-			QuestFactory.Dialog("Barrack", {
+			QuestFactory.Dialog("xXxTurdstinxXx", {
 				[{GREET}] = {
 					text = "Whats good, slime? You got any of that cosmic {fent}?"
 				},
