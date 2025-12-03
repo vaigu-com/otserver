@@ -4236,7 +4236,11 @@
 	</item>
 	<item id="2120" article="a" name="fire field">
 		<attribute key="type" value="magicfield"/>
-		<attribute key="field" value="fire"/>
+		<attribute key="field" value="fire">
+			<attribute key="ticks" value="10000"/>
+			<attribute key="count" value="7"/>
+			<attribute key="damage" value="1"/>
+		</attribute>
 		<attribute key="duration" value="98"/>
 		<attribute key="decayTo" value="0"/>
 		<attribute key="script" value="moveevent">

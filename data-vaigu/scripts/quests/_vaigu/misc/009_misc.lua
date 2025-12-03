@@ -176,7 +176,7 @@ quest
 			for _, fishingHotspot in pairs(self.registry) do
 				if fishingHotspot.active and os.time() > fishingHotspot.expiry then
 					fishingHotspot.active = false
-					fishingHotspot.zone:sendTextMessage(MESSAGE_FAILURE, "The fishing hotspot in this area has just expired.")
+					fishingHotspot.zone:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The fishing hotspot in this area has just expired.")
 				end
 			end
 		end
