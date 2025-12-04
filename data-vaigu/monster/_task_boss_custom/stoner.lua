@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 2250
-monster.maxHealth = 2250
+monster.health = 2050
+monster.maxHealth = 2050
 monster.race = "undead"
 monster.corpse = 6027
 monster.speed = 100
@@ -63,20 +63,20 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "platinum coin", chance = 88000, minCount = 2, maxCount = 5 },
-	{ id = 3413, chance = 56000 },
 	{ id = 10426, chance = 16300 },
 	{ id = 1781, chance = 35800, maxCount = 30 },
 	{ id = 16125, chance = 33000 },
 	{ id = 16121, chance = 35000 },
 	{ id = 3351, chance = 85000 },
-	{ id = 9057, chance = 26500, maxCount = 2 },
+	{ id = 9057, chance = 26500, maxCount = 4 },
 	{ id = 10310, chance = 15190 },
 	{ id = 10278, chance = 91730 },
+	{ id = 9079, chance = 5000 },
 	{ id = 5880, chance = 15000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 55, attack = 20 },
+	{ name = "melee", interval = 2000, chance = 100, skill = 55, attack = 40 },
 	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -120, range = 7, radius = 2, shootEffect = CONST_ANI_LARGEROCK, effect = CONST_ME_POFF, target = true },
 	{ name = "combat", interval = 4000, chance = 40, type = COMBAT_EARTHDAMAGE, minDamage = -72, maxDamage = -150, range = 7, shootEffect = CONST_ANI_SMALLEARTH, effect = CONST_ME_GREEN_RINGS, target = true },
 	{ name = "combat", interval = 2000, chance = 39, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -60, range = 7, shootEffect = CONST_ANI_SMALLSTONE, effect = CONST_ME_POFF, target = true },
@@ -89,15 +89,15 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 40 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 30 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
 	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -20 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 1 },
 }
 

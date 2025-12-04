@@ -64,17 +64,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small ruby", chance = 150 },
-	{ name = "dragon necklace", chance = 3000 },
-	{ name = "bow", chance = 5770 },
+	{ name = "small ruby", chance = 11550 },
+	{ name = "dragon necklace", chance = 13000 },
+	{ name = "bow", chance = 15770 },
 	{ id = 3449, chance = 45360, maxCount = 23 }, -- burst arrow
 	{ name = "orange", chance = 20300, maxCount = 2 },
 	{ name = "roll", chance = 11370, maxCount = 2 },
-	{ name = "sniper gloves", chance = 8540 },
+	{ name = "sniper gloves", chance = 5540 },
 	{ name = "slingshot", chance = 2120 },
 	{ id = 7394, chance = 5190 }, -- wolf trophy
 	{ id = 7397, chance = 4520 }, -- deer trophy
-	{ id = 7400, chance = 370 }, -- lion trophy
+	{ id = 7400, chance = 1370 }, -- lion trophy
 	{ name = "hunter's quiver", chance = 70240 },
 }
 

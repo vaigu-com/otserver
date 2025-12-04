@@ -31,7 +31,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -60,19 +60,18 @@ monster.loot = {
 	{ name = "platinum coin", chance = 100000, minCount = 5, maxCount = 8 },
 	{ id = 5678, chance = 45000, maxCount = 6 },
 	{ id = 9643, chance = 100000, minCount = 3, maxCount = 6 },
-	{ id = 3026, chance = 16000 },
 	{ id = 5899, chance = 100000, minCount = 4, maxCount = 6 },
-	{ id = 3027, chance = 16000 },
 	{ id = 6131, chance = 29000 },
 	{ id = 3065, chance = 15000 },
 	{ id = 830, chance = 75090 },
+	{ id = 9086, chance = 5090 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 45, attack = 70, condition = { type = CONDITION_POISON, totalDamage = 90, interval = 4000 } },
 	{ name = "serpent spawn paralyze", interval = 2000, chance = 17, range = 7, target = false },
-	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_EARTHDAMAGE, minDamage = -66, maxDamage = -170, length = 8, spread = 3, effect = CONST_ME_CARNIPHILA, target = false },
-	{ name = "combat", interval = 2000, chance = 27, type = COMBAT_PHYSICALDAMAGE, minDamage = -50, maxDamage = -150, range = 7, radius = 2, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POFF, target = true },
+	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_EARTHDAMAGE, minDamage = -66, maxDamage = -140, length = 8, spread = 3, effect = CONST_ME_CARNIPHILA, target = false },
+	{ name = "combat", interval = 2000, chance = 27, type = COMBAT_PHYSICALDAMAGE, minDamage = -50, maxDamage = -130, range = 7, radius = 2, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POFF, target = true },
 }
 
 monster.defenses = {
@@ -81,16 +80,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 45 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 25 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
-	{ type = COMBAT_FIREDAMAGE, percent = -10 },
+	{ type = COMBAT_FIREDAMAGE, percent = -15 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 20 },
+	{ type = COMBAT_ICEDAMAGE, percent = -20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = -10 },
 }
 
 monster.immunities = {

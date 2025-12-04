@@ -42,7 +42,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -73,11 +73,11 @@ monster.loot = {
 	{ name = "red mushroom", chance = 17700 },
 	{ name = "haunted piece of wood", chance = 4950 },
 	{ name = "orange mushroom", chance = 31800 },
-	{ id = 3097, chance = 8660 }, -- dwarven ring
+	{ id = 3097, chance = 18660 }, -- dwarven ring
 	{ name = "small emerald", chance = 620 },
-	{ name = "bullseye potion", chance = 10000 },
-	{ id = 12519, chance = 1660 },
-	{ id = 12550, chance = 960 },
+	{ name = "bullseye potion", chance = 20000 },
+	{ id = 12519, chance = 2660 },
+	{ id = 12550, chance = 1960 },
 }
 
 monster.attacks = {

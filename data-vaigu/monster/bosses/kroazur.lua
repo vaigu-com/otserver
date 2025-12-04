@@ -57,7 +57,7 @@ monster.flags = {
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = false,
-	canWalkOnFire = false,
+	canWalkOnFire = true,
 	canWalkOnPoison = false,
 }
 
@@ -72,22 +72,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "fairy wings", chance = 100000 },
-	{ name = "gold coin", chance = 100000, maxCount = 365 },
 	{ name = "platinum coin", chance = 100000, maxCount = 7 },
-	{ name = "strong health potion", chance = 91460, maxCount = 2 },
 	{ name = "great health potion", chance = 76330, maxCount = 3 },
 	{ name = "small enchanted amethyst", chance = 53560, maxCount = 5 },
 	{ name = "ancient coin", chance = 46980, maxCount = 3 },
 	{ name = "gemmed figurine", chance = 32030 },
 	{ name = "small enchanted emerald", chance = 11003, maxCount = 5 },
 	{ name = "small enchanted ruby", chance = 2000 },
-	{ name = "silver token", chance = 10140 },
-	{ name = "cluster of solace", chance = 19960 },
+	{ name = "silver token", chance = 13140 },
+	{ name = "cluster of solace", chance = 23960 },
 	{ name = "red crystal fragment", chance = 9960 },
 	{ name = "small enchanted sapphire", chance = 8900 },
 	{ name = "assassin star", chance = 8540 },
-	{ name = "gold token", chance = 6580 },
+	{ name = "gold token", chance = 8580 },
 	{ name = "gold ingot", chance = 6410 },
 	{ name = "nightmare blade", chance = 3020 },
 }

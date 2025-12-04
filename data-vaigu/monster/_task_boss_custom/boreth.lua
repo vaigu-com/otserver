@@ -42,7 +42,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -62,7 +62,7 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 3,
+	maxSummons = 4,
 	summons = {
 		{ name = "Banshee", chance = 50, interval = 4000, count = 1 },
 		{ name = "Vampire", chance = 50, interval = 2000, count = 1 },
@@ -76,9 +76,11 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3043, chance = 20000, maxCount = 2 },
-	{ id = 22516, chance = 15000 },
-	{ id = 8045, chance = 22000 },
-	{ id = 3434, chance = 35000 },
+	{ id = 22516, chance = 12000 },
+	{ id = 8045, chance = 21000 },
+	{ id = 3434, chance = 31000 },
+	{ id = 12669, chance = 37000 },
+	{ id = 3079, chance = 9000 },
 }
 
 monster.attacks = {
@@ -90,21 +92,21 @@ monster.defenses = {
 	defense = 30,
 	armor = 30,
 	--	mitigation = ???,
-	{ name = "combat", interval = 1000, chance = 25, type = COMBAT_HEALING, minDamage = 100, maxDamage = 195, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 3000, chance = 30, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "combat", interval = 1000, chance = 20, type = COMBAT_HEALING, minDamage = 100, maxDamage = 195, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "invisible", interval = 3000, chance = 20, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 60 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 40 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 80 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -1 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+	{ type = COMBAT_ICEDAMAGE, percent = -10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 90 },
 }
 
 monster.immunities = {

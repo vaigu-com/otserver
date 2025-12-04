@@ -57,24 +57,25 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "platinum coin", chance = 76000, minCount = 5, maxCount = 7 },
 	{ id = 3030, chance = 68000, maxCount = 4 },
 	{ id = 3732, chance = 3208 },
-	{ id = 10412, chance = 55000 },
-	{ id = 10406, chance = 25010 },
-	{ id = 9636, chance = 95070 },
-	{ id = 3071, chance = 29450 },
-	{ id = 3280, chance = 18140 },
-	{ id = 817, chance = 35300 },
-	{ id = 818, chance = 14600 },
+	{ id = 10412, chance = 35000 },
+	{ id = 10406, chance = 21010 },
+	{ id = 9636, chance = 85070 },
+	{ id = 3071, chance = 27450 },
+	{ id = 3280, chance = 17140 },
+	{ id = 817, chance = 32300 },
+	{ id = 818, chance = 12600 },
 	{ id = 3428, chance = 9500 },
+	{ id = 12669, chance = 9500 },
+	
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 50, attack = 60, condition = { type = CONDITION_FIRE, totalDamage = 30, interval = 9000 } },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 3, shootEffect = CONST_ANI_FIRE, target = false },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -40, maxDamage = -170, radius = 3, effect = CONST_ME_MAGIC_RED, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -40, maxDamage = -170, radius = 3, effect = CONST_ME_MAGIC_RED, target = true },
 	{ name = "combat", interval = 2000, chance = 24, type = COMBAT_FIREDAMAGE, minDamage = -60, maxDamage = -170, range = 7, shootEffect = CONST_ANI_FIRE, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -92, maxDamage = -350, length = 8, spread = 0, effect = CONST_ME_FIREATTACK, target = false },
 	{ name = "hellfire fighter soulfire", interval = 2000, chance = 15, target = false },

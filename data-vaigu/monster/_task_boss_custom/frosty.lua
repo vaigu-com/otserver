@@ -68,14 +68,14 @@ monster.loot = {
 	{ id = 3029, chance = 35400, maxCount = 4 },
 	{ id = 7441, chance = 64000, maxCount = 3 },
 	{ id = 3051, chance = 25000 },
-	{ id = 7290, chance = 95550 },
-	{ id = 3061, chance = 75580 },
+	{ id = 7290, chance = 91550 },
+	{ id = 3061, chance = 71580 },
 	{ id = 3386, chance = 4910 },
-	{ id = 3373, chance = 44450 },
+	{ id = 3373, chance = 41450 },
 	{ id = 3392, chance = 2200 },
-	{ id = 3428, chance = 32000 },
+	{ id = 3428, chance = 28000 },
 	{ id = 7402, chance = 11000 },
-	{ id = 3284, chance = 35000 },
+	{ id = 3284, chance = 32000 },
 }
 
 monster.attacks = {
@@ -90,19 +90,19 @@ monster.defenses = {
 	defense = 37,
 	armor = 29,
 	{ name = "combat", interval = 2000, chance = 16, type = COMBAT_HEALING, minDamage = 150, maxDamage = 250, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "speed", interval = 2000, chance = 12, speedChange = 360, effect = CONST_ME_MAGIC_RED, target = false, duration = 3000 },
+	{ name = "speed", interval = 2000, chance = 12, speedChange = 360, effect = CONST_ME_MAGIC_RED, target = false, duration = 2000 },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 7 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 100 },
+	{ type = COMBAT_FIREDAMAGE, percent = 80 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 100 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 20 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 10 },
 }
 

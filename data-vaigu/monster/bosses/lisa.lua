@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 55000
-monster.maxHealth = 55000
+monster.health = 15000
+monster.maxHealth = 15000
 monster.race = "venom"
 monster.corpse = 20988
 monster.speed = 100
@@ -87,8 +87,8 @@ monster.loot = {
 	{ name = "glooth blade", chance = 7000 },
 	{ name = "glooth cape", chance = 6000 },
 	{ id = 3039, chance = 2600 }, -- red gem
-	{ name = "yellow gem", chance = 2500 },
-	{ name = "lisa's doll", chance = 300 },
+	{ name = "yellow gem", chance = 22500 },
+	{ name = "lisa's doll", chance = 3300 },
 }
 
 monster.attacks = {

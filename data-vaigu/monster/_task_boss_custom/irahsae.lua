@@ -43,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -81,15 +81,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 7368, chance = 50000, maxCount = 50 },
+	{ id = 7368, chance = 50000, maxCount = 30 },
 	{ id = 8016, chance = 50000, maxCount = 20 }, -- jalapeno pepper
 	{ id = 6499, chance = 30000, maxCount = 5 }, -- demonic essence
-	{ id = 5944, chance = 25000, maxCount = 30 }, -- soul orb
-	{ id = 3439, chance = 30000 }, -- phoenix shield
+	{ id = 5944, chance = 35000, maxCount = 30 }, -- soul orb
+	{ id = 3439, chance = 20000 }, -- phoenix shield
 	{ id = 8039, chance = 25000 },
 	{ id = 3034, chance = 30000, maxCount = 20 },
 	{ id = 22516, chance = 50000 },
-	{ id = 19391, chance = 15000 }, -- furious frock
+	{ id = 19391, chance = 13000 }, -- furious frock
 }
 
 monster.attacks = {

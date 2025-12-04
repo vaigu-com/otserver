@@ -38,7 +38,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -64,7 +64,7 @@ monster.loot = {
 	{ id = 3097, chance = 50001 },
 	{ id = 5880, chance = 50000, maxCount = 5 },
 	{ id = 9057, chance = 50000, maxCount = 10 },
-	{ id = 3396, chance = 10000 },
+	{ id = 3396, chance = 8000 },
 	{ id = 8049, chance = 15000 },
 	{ id = 3550, chance = 20000 },
 }
@@ -72,12 +72,11 @@ monster.loot = {
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -400 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -150, maxDamage = -300, length = 6, spread = 0, effect = CONST_ME_BLACKSMOKE, target = false },
-	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 10, minDamage = -520, maxDamage = -780, range = 5, effect = CONST_ME_SMALLCLOUDS, target = true },
+	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 10, minDamage = -420, maxDamage = -680, range = 5, effect = CONST_ME_SMALLCLOUDS, target = true },
 	{ name = "drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_ENERGY, target = false, duration = 5000 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -80, maxDamage = -230, range = 7, effect = CONST_ME_MAGIC_RED, target = true },
-	{ name = "invisible", interval = 2000, chance = 15, effect = CONST_ME_TELEPORT },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_DEATHDAMAGE, minDamage = -110, maxDamage = -180, radius = 4, effect = CONST_ME_MORTAREA, target = false },
-	{ name = "speed", interval = 2000, chance = 20, speedChange = -800, range = 7, effect = CONST_ME_SMALLCLOUDS, target = true, duration = 30000 },
+	{ name = "speed", interval = 2000, chance = 20, speedChange = -800, range = 7, effect = CONST_ME_SMALLCLOUDS, target = true, duration = 20000 },
 }
 
 monster.defenses = {

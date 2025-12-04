@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Grorlam")
 local monster = {}
 
 monster.description = "Grorlam"
-monster.experience = 2400
+monster.experience = 8400
 monster.outfit = {
 	lookType = 205,
 	lookHead = 0,
@@ -65,10 +65,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 20 }, -- gold coin
-	{ id = 3377, chance = 10000 }, -- scale armor
+	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
 	{ id = 1781, chance = 20000, maxCount = 5 }, -- small stone
-	{ id = 3283, chance = 2500 }, -- carlin sword
+	{ id = 3283, chance = 20500 }, -- carlin sword
+	{ id = 9081, chance = 20500 },
+	{ id = 9084, chance = 20500 },
+	{ id = 12670, chance = 20500 },
+	{ id = 5880, chance = 20000, maxCount = 10 },
 }
 
 monster.attacks = {

@@ -321,6 +321,8 @@ local nameToNewExp = {
 	["Cobra Vizier"] = 8420,
 	["Misguided Thief"] = 1600,
 	["Misguided Bully"] = 1750,
+	["Lizard Magistratus"] = 5000,
+	["Lizard Noble"] = 5000,
 }
 
 local function applyCustomExp(mask)

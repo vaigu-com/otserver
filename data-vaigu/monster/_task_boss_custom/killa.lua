@@ -57,25 +57,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 100 },
 	{ name = "platinum coin", chance = 85000, minCount = 5, maxCount = 9 },
 	{ id = 10279, chance = 95430, maxCount = 5 },
-	{ id = 281, chance = 71300 },
-	{ id = 3032, chance = 95150, maxCount = 5 },
-	{ id = 3556, chance = 35100 },
-	{ id = 3313, chance = 25975 },
-	{ id = 812, chance = 24200 },
+	{ id = 281, chance = 61300 },
+	{ id = 3032, chance = 92150, maxCount = 5 },
+	{ id = 3556, chance = 22100 },
+	{ id = 3313, chance = 21975 },
+	{ id = 812, chance = 20200 },
 	{ id = 7413, chance = 11600 },
-	{ id = 811, chance = 8700 },
+	{ id = 811, chance = 18700 },
 	{ id = 9302, chance = 18500 },
-	{ id = 813, chance = 78500 },
+	{ id = 813, chance = 68500 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 50, attack = 80 },
+	{ name = "melee", interval = 2000, chance = 100, skill = 70, attack = 80 },
 	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_EARTHDAMAGE, minDamage = -66, maxDamage = -320, length = 8, spread = 3, effect = CONST_ME_CARNIPHILA, target = false },
-	{ name = "combat", interval = 2000, chance = 16, type = COMBAT_EARTHDAMAGE, minDamage = -72, maxDamage = -105, range = 7, shootEffect = CONST_ANI_SMALLEARTH, effect = CONST_ME_GREEN_RINGS, target = true },
-	{ name = "combat", interval = 2000, chance = 35, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -150, length = 4, spread = 2, effect = CONST_ME_POFF, target = false },
+	{ name = "combat", interval = 2000, chance = 16, type = COMBAT_EARTHDAMAGE, minDamage = -72, maxDamage = -155, range = 7, shootEffect = CONST_ANI_SMALLEARTH, effect = CONST_ME_GREEN_RINGS, target = true },
+	{ name = "combat", interval = 2000, chance = 35, type = COMBAT_PHYSICALDAMAGE, minDamage = -20, maxDamage = -170, length = 4, spread = 2, effect = CONST_ME_POFF, target = false },
 }
 
 monster.defenses = {

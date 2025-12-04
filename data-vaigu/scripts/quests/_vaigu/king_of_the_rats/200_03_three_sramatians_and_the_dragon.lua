@@ -1242,25 +1242,25 @@ quest
 		monster.loot = {
 			{ id = 3025, chance = 13500 }, -- ancient amulet
 			{ name = "black pearl", chance = 15000, maxCount = 35 },
-			{ name = "boots of haste", chance = 14000 },
+			{ name = "boots of haste", chance = 12000 },
 			{ name = "crystal necklace", chance = 21500 },
-			{ name = "devil helmet", chance = 11000 },
-			{ name = "dragon hammer", chance = 34500 },
 			{ id = 3051, chance = 13500 }, -- energy ring
-			{ name = "fire axe", chance = 17000 },
-			{ name = "giant sword", chance = 12500 },
+			{ name = "giant sword", chance = 10500 },
 			{ name = "platinum coin", chance = 69900, maxCount = 100 },
-			{ name = "platinum coin", chance = 68800, maxCount = 100 },
-			{ name = "gold ring", chance = 28000 },
-			{ name = "golden legs", chance = 15000 },
+			{ name = "gold ring", chance = 23000 },
+			{ name = "golden legs", chance = 12000 },
 			{ name = "giant ruby", chance = 31500 },
 			{ name = "giant sapphire", chance = 31500 },
 			{ name = "giant emerald", chance = 31500 },
 			{ name = "purple tome", chance = 12600 },
 			{ name = "silver dagger", chance = 15500 },
-			{ name = "skull staff", chance = 25000 },
 			{ name = "talon", chance = 14000, maxCount = 27 },
 			{ name = "white pearl", chance = 12500, maxCount = 35 },
+			{ id = 14000, chance = 500 },
+			{ id = 29427, chance = 500 },
+			{ id = 8099, chance = 300 },
+			{ id = 8030, chance = 700 },
+			{ id = 22721, chance = 4000 },
 		}
 
 		monster.attacks = {

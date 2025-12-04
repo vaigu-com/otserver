@@ -57,9 +57,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 4,
+	maxSummons = 3,
 	summons = {
-		{ name = "Poison Spider", chance = 10, interval = 2000, count = 4 },
+		{ name = "Tarantula", chance = 20, interval = 2000, count = 1 },
 	},
 }
 
@@ -69,15 +69,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3053, chance = 7710 }, -- time ring
+	{ id = 3053, chance = 17710 }, -- time ring
 	{ id = 5886, chance = 3710 },
 	{ id = 7416, chance = 1710 },
 	{ id = 7419, chance = 1710 },
 	{ name = "platinum amulet", chance = 5280 },
 	{ name = "plate armor", chance = 19980 },
-	{ name = "knight armor", chance = 1500 },
+	{ name = "knight armor", chance = 1900 },
 	{ name = "knight legs", chance = 1840 },
-	{ name = "spider silk", chance = 21990 },
+	{ name = "spider silk", chance = 24990 },
 }
 
 monster.attacks = {

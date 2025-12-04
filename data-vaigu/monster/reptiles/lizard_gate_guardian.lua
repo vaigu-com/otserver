@@ -67,13 +67,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small emerald", chance = 2520, maxCount = 4 },
+	{ name = "small emerald", chance = 12520, maxCount = 4 },
 	{ name = "platinum coin", chance = 24900, maxCount = 4 },
 	{ name = "lizard leather", chance = 31000 },
 	{ name = "lizard scale", chance = 2970 },
 	{ name = "zaoan armor", chance = 180 },
-	{ name = "zaoan shoes", chance = 1700 },
-	{ name = "zaoan legs", chance = 1720 },
+	{ name = "zaoan shoes", chance = 3700 },
+	{ name = "zaoan legs", chance = 2720 },
 	{ name = "spiked iron ball", chance = 17000 },
 	{ name = "high guard flag", chance = 12990 },
 	{ name = "high guard shoulderplates", chance = 8150 },

@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_ARCHFOE,
 }
 
-monster.health = 26000
-monster.maxHealth = 26000
+monster.health = 16000
+monster.maxHealth = 16000
 monster.race = "blood"
 monster.corpse = 31646
 monster.speed = 115
@@ -71,29 +71,22 @@ monster.loot = {
 	{ name = "guardian halberd", chance = 1139 },
 	{ id = 3097, chance = 886 }, -- dwarven ring
 	{ name = "mastermind potion", chance = 823 },
-	{ name = "doublet", chance = 633 },
-	{ name = "knight armor", chance = 570 },
 	{ id = 23529, chance = 506 }, -- ring of blue plasma
-	{ name = "epee", chance = 443 },
-	{ name = "underworld rod", chance = 443 },
-	{ name = "knight axe", chance = 380 },
-	{ name = "springsprout rod", chance = 380 },
-	{ name = "wand of cosmic energy", chance = 316 },
-	{ name = "wand of inferno", chance = 316 },
 	{ id = 281, chance = 253 }, -- giant shimmering pearl (green)
-	{ name = "spellbook of warding", chance = 253 },
 	{ name = "violet gem", chance = 253 },
 	{ name = "wand of starstorm", chance = 253 },
 	{ name = "amber staff", chance = 190 },
-	{ name = "assassin dagger", chance = 190 },
 	{ name = "blue gem", chance = 190 },
 	{ name = "eye-embroidered veil", chance = 190 },
 	{ name = "warrior's axe", chance = 190 },
-	{ name = "focus cape", chance = 127 },
-	{ name = "noble axe", chance = 127 },
 	{ name = "sacred tree amulet", chance = 127 },
 	{ name = "golden mask", chance = 63 },
 	{ name = "mercenary sword", chance = 63 },
+	{ id = 25361, chance = 7886 },
+	{ id = 9301, chance = 66886 },
+	{ id = 12669, chance = 18986 },
+	{ id = 3097, chance = 886 },
+	{ id = 23509, chance = 25886 },
 }
 
 monster.attacks = {
@@ -111,16 +104,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 15 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -30 },
+	{ type = COMBAT_FIREDAMAGE, percent = 35 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = -20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = -20 },
 }
 
 monster.immunities = {

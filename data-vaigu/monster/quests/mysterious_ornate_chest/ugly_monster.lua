@@ -40,7 +40,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -65,18 +65,18 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "cobra crossbow", chance = 300 },
-	{ name = "cobra hood", chance = 300 },
+	{ name = "cobra crossbow", chance = 500 },
+	{ name = "cobra hood", chance = 400 },
 	{ name = "cobra axe", chance = 300 },
-	{ name = "cobra boots", chance = 300 },
+	{ name = "cobra boots", chance = 400 },
 	{ name = "cobra sword", chance = 300 },
-	{ name = "cobra wand", chance = 300 },
-	{ name = "cobra rod", chance = 300 },
+	{ name = "cobra wand", chance = 350 },
+	{ name = "cobra rod", chance = 350 },
 	{ name = "cobra club", chance = 300 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -120 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -200, maxDamage = -320 },
 	{ name = "outfit", interval = 2000, chance = 10, range = 5, shootEffect = CONST_ANI_EARTH, target = false, duration = 10000, outfitMonster = "Ugly Monster" },
 	{ name = "drunk", interval = 2000, chance = 10, range = 5, shootEffect = CONST_ANI_EARTH, target = false, duration = 5000 },
 }
@@ -89,15 +89,15 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 20 },
+	{ type = COMBAT_FIREDAMAGE, percent = -8 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 20 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -20 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -25 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }
 

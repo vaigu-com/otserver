@@ -67,14 +67,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "emerald bangle", chance = 12040 },
-	{ name = "black pearl", chance = 14230 },
+	{ name = "emerald bangle", chance = 22040 },
+	{ name = "black pearl", chance = 34230 },
 	{ name = "platinum coin", chance = 40430 },
-	{ name = "yellow gem", chance = 11040 },
+	{ name = "yellow gem", chance = 15040 },
 	{ name = "waspoid claw", chance = 19096 },
-	{ name = "waspoid wing", chance = 13890 },
-	{ name = "compound eye", chance = 16060 },
-	{ name = "grasshopper legs", chance = 1230 },
+	{ name = "waspoid wing", chance = 17890 },
+	{ name = "compound eye", chance = 19060 },
+	{ name = "grasshopper legs", chance = 2230 },
 	{ name = "carapace shield", chance = 1120 },
 	{ name = "hive scythe", chance = 1330 },
 }

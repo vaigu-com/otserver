@@ -43,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -69,7 +69,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 676, chance = 5000, maxCount = 2 }, -- small enchanted ruby
+	{ id = 676, chance = 5000, maxCount = 12 }, -- small enchanted ruby
 	{ id = 3725, chance = 50000 }, -- brown mushroom
 	{ id = 7643, chance = 42210 }, -- ultimate health potion
 	{ id = 22053, chance = 12900 }, -- wereboar hooves
@@ -82,7 +82,8 @@ monster.loot = {
 	{ id = 22085, chance = 1200 }, -- fur armor
 	{ id = 22102, chance = 7700 }, -- wereboar trophy
 	{ id = 22060, chance = 400 }, -- werewolf amulet
-	{ id = 22083, chance = 5900 }, -- moonlight crystals
+	{ id = 22083, chance = 15900 }, -- moonlight crystals
+	{ id = 22516, chance = 10600 },
 }
 
 monster.attacks = {

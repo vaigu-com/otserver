@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 48500
-monster.maxHealth = 48500
+monster.health = 18500
+monster.maxHealth = 18500
 monster.race = "blood"
 monster.corpse = 31307
 monster.speed = 95
@@ -93,14 +93,13 @@ monster.loot = {
 	{ id = 281, chance = 14520 }, -- giant shimmering pearl (green)
 	{ name = "gold ingot", chance = 14500 },
 	{ name = "spellbook of warding", chance = 6500 },
-	{ id = 3098, chance = 5400 }, -- ring of healing
+	{ id = 3098, chance = 51400 }, -- ring of healing
 	{ name = "terra hood", chance = 1600 },
-	{ name = "amulet of loss", chance = 3400 },
-	{ name = "wand of everblazing", chance = 2900 },
-	{ name = "cobra wand", chance = 100 },
-	{ name = "cobra axe", chance = 100 },
-	{ name = "cobra rod", chance = 100 },
-	{ name = "cobra crest", chance = 100 },
+	{ name = "amulet of loss", chance = 13400 },
+	{ name = "wand of everblazing", chance = 12900 },
+	{ name = "cobra wand", chance = 1100 },
+	{ name = "cobra rod", chance = 1100 },
+	{ name = "cobra crest", chance = 1100 },
 }
 
 monster.attacks = {

@@ -69,18 +69,18 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 7643, chance = 80080 }, -- ultimate health potion
+	{ id = 7643, chance = 80080, maxCount = 5 }, -- ultimate health potion
 	{ id = 5880, chance = 60920, maxCount = 10 }, -- iron ore
 	{ id = 3326, chance = 6400 }, -- epee
 	{ id = 3097, chance = 21210 }, -- dwarven ring
 	{ id = 9654, chance = 31900 },
-	{ id = 3554, chance = 6200 }, -- steel boots
+	{ id = 3554, chance = 8200 }, -- steel boots
 	{ id = 7403, chance = 1500 }, -- berserker
 	{ id = 7422, chance = 2200 }, -- jade hammer
 	{ id = 7428, chance = 7700 }, -- bonebreaker
 	{ id = 3061, chance = 10000 }, -- life crystal
-	{ id = 12305, chance = 7000 }, -- tin key
-	{ id = 22756, chance = 4000 },
+	{ id = 12305, chance = 5000 }, -- tin key
+	{ id = 22756, chance = 3000 },
 }
 
 monster.attacks = {

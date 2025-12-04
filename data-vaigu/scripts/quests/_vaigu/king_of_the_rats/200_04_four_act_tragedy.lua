@@ -433,7 +433,19 @@ quest
 
 		monster.voices = {}
 
-		monster.loot = {}
+		monster.loot = {
+			{ id = 32620, chance = 9000 },
+			{ id = 22721, chance = 33000, maxCount = 3 },
+			{ id = 19357, chance = 7000 },
+			{ id = 23527, chance = 19000 },
+			{ id = 30323, chance = 3000 },
+			{ id = 35521, chance = 3000 },
+			{ id = 35522, chance = 3000 },
+			{ id = 35518, chance = 3000 },
+			{ id = 35515, chance = 4500 },
+			{ id = 20086, chance = 4000 },
+			{ id = 9019, chance = 2000 },
+		}
 
 		monster.attacks = {
 			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -700 },
@@ -954,7 +966,18 @@ quest
 
 		monster.voices = {}
 
-		monster.loot = {}
+		monster.loot = {
+			{ id = 8853, chance = 25000 },
+			{ id = 14142, chance = 2500 },
+			{ id = 12318, chance = 3000 },
+			{ id = 32043, chance = 37000, maxCount = 5 },
+			{ id = 901, chance = 14000 },
+			{ id = 902, chance = 11000 },
+			{ id = 32621, chance = 10000 },
+			{ id = 8056, chance = 8000 },
+			{ id = 9303, chance = 28000 },
+			{ id = 39235, chance = 2000 },
+		}
 
 		monster.attacks = {
 			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -700 },

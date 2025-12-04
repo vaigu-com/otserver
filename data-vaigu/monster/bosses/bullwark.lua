@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 72000
-monster.maxHealth = 72000
+monster.health = 27000
+monster.maxHealth = 27000
 monster.race = "blood"
 monster.corpse = 20996
 monster.speed = 150
@@ -81,18 +81,18 @@ monster.loot = {
 	{ name = "small emerald", chance = 16350, maxCount = 5 },
 	{ name = "small ruby", chance = 15500, maxCount = 5 },
 	{ name = "small sapphire", chance = 14200, maxCount = 5 },
-	{ name = "giant pacifier", chance = 1920 },
-	{ name = "moohtant cudgel", chance = 1800 },
-	{ name = "red piece of cloth", chance = 1500 },
+	{ name = "giant pacifier", chance = 21920 },
+	{ name = "moohtant cudgel", chance = 21800 },
+	{ name = "red piece of cloth", chance = 81500 },
 	{ name = "yellow gem", chance = 1200 },
-	{ name = "one hit wonder", chance = 350 },
+	{ name = "one hit wonder", chance = 9350 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 180, attack = 200 },
-	{ name = "combat", interval = 2000, chance = 19, type = COMBAT_LIFEDRAIN, minDamage = -200, maxDamage = -400, radius = 6, effect = CONST_ME_MAGIC_RED, target = false },
+	{ name = "combat", interval = 2000, chance = 19, type = COMBAT_LIFEDRAIN, minDamage = -200, maxDamage = -300, radius = 6, effect = CONST_ME_MAGIC_RED, target = false },
 	-- bleed
-	{ name = "condition", type = CONDITION_BLEEDING, interval = 2000, chance = 9, minDamage = -400, maxDamage = -600, radius = 8, effect = CONST_ME_ICEATTACK, target = false },
+	{ name = "condition", type = CONDITION_BLEEDING, interval = 2000, chance = 9, minDamage = -200, maxDamage = -400, radius = 8, effect = CONST_ME_ICEATTACK, target = false },
 	{ name = "combat", interval = 2000, chance = 8, type = COMBAT_PHYSICALDAMAGE, minDamage = -250, maxDamage = -400, range = 7, radius = 6, shootEffect = CONST_ANI_LARGEROCK, effect = CONST_ME_STONES, target = true },
 	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_PHYSICALDAMAGE, minDamage = -200, maxDamage = -400, range = 7, radius = 4, shootEffect = CONST_ANI_WHIRLWINDCLUB, effect = CONST_ME_EXPLOSIONHIT, target = true },
 	{ name = "bullwark paralyze", interval = 2000, chance = 6, target = false },
