@@ -6906,7 +6906,7 @@ void ProtocolGame::sendRestingStatus(uint8_t protection) {
 	msg.addByte(protection); // 1 / 0
 
 	uint8_t dailyStreak = 0;
-	auto dailyRewardKV = player->kv()->scoped("daily-reward")->get("streak");
+	auto dailyRewardKV = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreakEndless");
 	if (dailyRewardKV && dailyRewardKV.has_value()) {
 		dailyStreak = static_cast<uint8_t>(dailyRewardKV->getNumber());
 	}

@@ -672,7 +672,7 @@ function Player.setDayStreak(self, streakDays)
 	self:setStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreak, streakDays)
 end
 
--- Endless streak; impacts pz bonuses; no effect beyond cosmetic beyond 7
+-- Endless streak; impacts pz bonuses; no effect except cosmetic beyond 7
 function Player.getStreakLevel(self)
 	local streak = math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreakEndless) or 0, 0)
 	return streak
