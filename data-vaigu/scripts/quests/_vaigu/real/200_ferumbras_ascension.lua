@@ -64,25 +64,25 @@ quest
 				[{ GREET }] = {
 					text = "Greetings, dear visitor. Please tell me what {brings} you here, to my humble adobe.",
 				},
-				[{ "brings" }] = {
+				[{ "brings", "sprowadza" }] = {
 					text = "Ah, you have heard about my search for experienced help. And indeed your reputation for solving certain {problems} has preceded you.",
 				},
-				[{ "problems" }] = {
+				[{ "problems", "problemow" }] = {
 					text = "My problems are, so to say, dire news for the whole world. <sigh> I don't want to confuse you with overly complicated and lengthy stories, so long story {short}..",
 				},
-				[{ "short" }] = {
+				[{ "short", "skrocie" }] = {
 					text = "My studies indicate that without all doubt Ferumbras the fiendish is in the process of accumulating nearly godlike powers. We have to stop him.\nTherefore I need you to enter a hellish dimension and acquire the parts of a weapon, the godbreaker, powerful enough to stop him once and for all. Are you willing to help me in this dire mission?",
 					nextTopic = QuestTopics.FerumbrasAscensionCustom.ConfirmWantToHelp,
 				},
-				[{ "yes" }] = {
+				[{ "yes", "tak" }] = {
 					text = "Good!, but I need 30 {demonic essences} to exchange with the demonic messenger for a ticket for you to enter the Abodes of Torments.",
 					requiredTopic = QuestTopics.FerumbrasAscensionCustom.ConfirmWantToHelp,
 				},
-				[{ "demonic essence", "essence" }] = {
+				[{ "demonic essence", "demonic essences", "essence", "demonicznych esencji" }] = {
 					text = "Do you have 30 demonic essences to offer to the demonic messenger?",
 					nextTopic = QuestTopics.FerumbrasAscensionCustom.ConfirmTradeInEssences,
 				},
-				[{ "yes" }] = {
+				[{ "yes", "tak" }] = {
 					text = "Excellent! This will empower possibilty to create a breach is enough to let you pass into that hellish hiding place. ...",
 					requiredItems = {
 						{ id = ItemId.DEMONIC_ESSENCE, count = 30 },
@@ -113,16 +113,16 @@ quest
 					},
 					textNoRequiredState = "Greetings, dear visitor. Please tell me what {brings} you here, to my humble adobe.",
 				},
-				[{ "brings" }] = {
+				[{ "brings", "sprowadza" }] = {
 					text = "To my horror I had to recognise that Ferumbras had already made significant progress, and his final bid for ascension is imminent! ...\nHis power levels are already too high for there to be any hope of stopping him with conventional means. ...\nBut not all is lost yet. During my studies about godhood, I learned that the dark Zathroth himself had created a weapon so powerful that it could actually slay a god. ...\nYet even he deemed this so-called '{godbreaker}' too dangerous, and split it into seven parts. These were at some point entrusted to his powerful minions, known as the Ruthless Seven. ...",
 				},
-				[{ "godbreaker" }] = {
+				[{ "godbreaker", "lamacz bogow" }] = {
 					text = "For a long time, I thought the godbreaker to be some apocryphal myth. But apparently others had learned about the godbreaker in the aeons past and lusted for its power. ...\nThey had gathered hint after hint - until, ultimately, they were squashed by the Seven or their minions; which only made the leads that hinted at them all the more probable. ...\nWhat Zathroth hoped to accomplish with the creation of such a weapon can only be subject to speculation. Assumedly he already had slain Tibiasula, so the godbreaker might have been even more powerful, more absolute. ...\nHowever, it has to be assumed that in the end the sheer power of his creation scared Zathroth, who had to fear the weapon could one day be used against him. So he disassembled it. ...\nHe kept the parts hidden and guarded, and if the resources can be trusted and my interpretation is right, moved them again and again, never satisfied with a hiding place. In the end he entrusted the parts to the {Ruthless Seven}. ...\nKnowing that they would never, ever allow one of their own to come in possession of all parts. Since then, the parts have been hidden in a {demi-plane} shared by the Seven.",
 				},
-				[{ "ruthless seven", "Ruthless Seven" }] = {
+				[{ "ruthless seven", "Ruthless Seven", "Bezlitosna Siodemka", "Siodemke", "Bezlitosnej Siodemce" }] = {
 					text = "Given the internal power plays amongst the Seven, they are the ideal keepers for individual parts of an powerful artefact. Not one of them would allow his compatriots to hold such a power, and neither would trust the other.",
 				},
-				[{ "demi-plane" }] = {
+				[{ "demi-plane", "polwymiarze" }] = {
 					text = "It is a place, so to say, not completely of this world. It is separate of, yet strongly connected to, our own world. I would imagine it is quite limited in size and its laws of physics and magic should be roughly the same as ours. ...\nBeing home to a host of demons for a while, I expect it to be a hostile and dangerous environment.",
 				},
 			})

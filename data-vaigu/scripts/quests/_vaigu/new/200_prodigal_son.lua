@@ -410,8 +410,6 @@ quest
 		monster.speed = 250
 		monster.corpse = 111
 
-		monster.enemyFactions = { FACTION_LION }
-
 		monster.changeTarget = {
 			interval = 4000,
 			chance = 10,
@@ -513,9 +511,7 @@ quest
 		monster.health = 900
 		monster.maxHealth = 900
 		monster.corpse = 4240
-		monster.speed = 250
-
-		monster.faction = FACTION_PLAYER
+		monster.speed = 120
 
 		monster.changeTarget = {
 			interval = 4000,
@@ -537,7 +533,7 @@ quest
 			canPushItems = true,
 			canPushCreatures = true,
 			staticAttackChance = 90,
-			targetDistance = 6,
+			targetDistance = 0,
 			runHealth = 0,
 			healthHidden = false,
 			isBlockable = false,
@@ -561,11 +557,11 @@ quest
 		}
 
 		monster.attacks = {
-			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -120 },
-			{ name = "combat", interval = 2000, chance = 30, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -140, range = 7, shootEffect = CONST_ANI_BURSTARROW, target = true },
-			{ name = "combat", interval = 6000, chance = 22, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -290, range = 7, radius = 4, effect = CONST_ME_HOLYAREA, target = true },
-			{ name = "combat", interval = 4000, chance = 12, type = COMBAT_HOLYDAMAGE, minDamage = -40, maxDamage = -190, range = 7, effect = CONST_ME_HOLYDAMAGE, target = true },
-			{ name = "combat", interval = 4000, chance = 17, type = COMBAT_ICEDAMAGE, minDamage = -40, maxDamage = -190, radius = 4, effect = CONST_ME_ICEAREA, target = false },
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -12 },
+			{ name = "combat", interval = 2000, chance = 30, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -14, range = 7, shootEffect = CONST_ANI_BURSTARROW, target = true },
+			{ name = "combat", interval = 6000, chance = 22, type = COMBAT_HOLYDAMAGE, minDamage = -2, maxDamage = -29, range = 7, radius = 4, effect = CONST_ME_HOLYAREA, target = true },
+			{ name = "combat", interval = 4000, chance = 12, type = COMBAT_HOLYDAMAGE, minDamage = -4, maxDamage = -19, range = 7, effect = CONST_ME_HOLYDAMAGE, target = true },
+			{ name = "combat", interval = 4000, chance = 17, type = COMBAT_ICEDAMAGE, minDamage = -4, maxDamage = -19, radius = 4, effect = CONST_ME_ICEAREA, target = false },
 		}
 
 		monster.defenses = {
@@ -1180,7 +1176,7 @@ quest
 				chance = 100,
 				type = COMBAT_PHYSICALDAMAGE,
 				minDamage = 0,
-				maxDamage = -400,
+				maxDamage = -20,
 				range = 7,
 				shootEffect = CONST_ANI_BURSTARROW,
 				target = true,
@@ -1190,8 +1186,8 @@ quest
 				interval = 6000,
 				chance = 22,
 				type = COMBAT_HOLYDAMAGE,
-				minDamage = -200,
-				maxDamage = -900,
+				minDamage = -10,
+				maxDamage = -200,
 				range = 7,
 				radius = 4,
 				effect = CONST_ME_HOLYAREA,
@@ -1202,8 +1198,8 @@ quest
 				interval = 4000,
 				chance = 12,
 				type = COMBAT_HOLYDAMAGE,
-				minDamage = -400,
-				maxDamage = -900,
+				minDamage = -50,
+				maxDamage = -120,
 				range = 7,
 				effect = CONST_ME_HOLYDAMAGE,
 				target = true,
@@ -1213,8 +1209,8 @@ quest
 				interval = 4000,
 				chance = 17,
 				type = COMBAT_ICEDAMAGE,
-				minDamage = -400,
-				maxDamage = -900,
+				minDamage = -140,
+				maxDamage = -300,
 				radius = 4,
 				effect = CONST_ME_ICEAREA,
 				target = false,

@@ -106,11 +106,12 @@ end
 local offlineTraining = CreatureEvent("OfflineTraining")
 function offlineTraining.onLogin(player)
 	local offlineTimeSeconds = getOfflineTimeSeconds(player)
+	local selectedSkill = player:getOfflineTrainingSkill()
 	if not selectedAnySkill(player, offlineTimeSeconds) then
 		return true
 	end
-	if trainedForMinimumTime(offlineTimeSeconds) then
-		player:sendTextMessage(MESSAGE_OFFLINE_TRAINING, T("You must be logged out for more than 10 minutes to start offline training."))
+	if not trainedForMinimumTime(offlineTimeSeconds) then
+		player:sendTextMessage(MESSAGE_OFFLINE_TRAINING, "You must be logged out for more than 10 minutes to start offline training.")
 		return true
 	end
 
@@ -128,7 +129,7 @@ function offlineTraining.onLogin(player)
 	end
 
 	player:sendTextMessage(MESSAGE_OFFLINE_TRAINING, buildDurationText(trainingTimeSeconds))
-	applySkillTries(player, player:getOfflineTrainingSkill(), trainingTimeSeconds)
+	applySkillTries(player, selectedSkill, trainingTimeSeconds)
 
 	return true
 end

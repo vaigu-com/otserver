@@ -11,6 +11,9 @@ local data = {
 }
 
 local function findAndConvertCoins(player, container, converter)
+	if not container then
+		return
+	end
 	for i = 0, container:getSize() - 1 do
 		local item = container:getItem(i)
 		if item:isContainer() then
