@@ -180,6 +180,9 @@
 	<npc centerx="6551" centery="660" centerz="6" radius="1">
 		<npc name="Malfurion" x="0" y="0" z="6" spawntime="90" />
 	</npc>
+	<npc centerx="7357" centery="670" centerz="6" radius="1">
+		<npc name="Mayor" x="0" y="0" z="6" spawntime="60" />
+	</npc>
 	<npc centerx="6974" centery="759" centerz="6" radius="3">
 		<npc name="Grof, The Guard" x="0" y="0" z="6" spawntime="60" />
 	</npc>
@@ -350,6 +353,9 @@
 	</npc>
 	<npc centerx="7513" centery="1745" centerz="6" radius="1">
 		<npc name="Wasik" x="0" y="0" z="6" spawntime="60" />
+	</npc>
+	<npc centerx="5864" centery="1824" centerz="6" radius="1">
+		<npc name="Myzzi" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="6584" centery="1863" centerz="6" radius="1">
 		<npc name="Jack of all Swindles" x="0" y="0" z="6" spawntime="60" />
@@ -730,7 +736,7 @@
 	<npc centerx="5567" centery="1576" centerz="8" radius="1">
 		<npc name="Ryan" x="0" y="0" z="8" spawntime="60" />
 	</npc>
-	<npc centerx="7433" centery="1745" centerz="8" radius="1">
+	<npc centerx="7434" centery="1748" centerz="8" radius="1">
 		<npc name="Thomas Diaxon" x="0" y="0" z="8" spawntime="60" />
 	</npc>
 	<npc centerx="7444" centery="1748" centerz="8" radius="1">
