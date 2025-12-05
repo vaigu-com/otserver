@@ -19,7 +19,9 @@ npcConfig.outfit = {
 	lookAddons = 0,
 }
 
-npcConfig.flags = { floorchange = false }
+npcConfig.flags = {
+	floorchange = false,
+}
 
 local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
@@ -59,21 +61,21 @@ local newAddon = "Here you are, enjoy your brand new addon!"
 local noItems = "You do not have all the required items."
 local alreadyHaveAddon = "It seems you already have this addon, don't you try to mock me son!"
 
-local dialog = {
+local Config = {
 	Create = {
 		Clusters = 20,
 		DreamMatter = 1,
-		Chance = 80, -- 70%
+		Chance = 70, --70%
 	},
 	Improve = {
 		Clusters = 75,
-		Chance = 75, -- 55%
-		BreakChance = 50, -- 50% of chance that when failing the improvement, the weapons is destroyed but you keep the clusters. Else, you keep the weapon and lose the clusters
+		Chance = 55, --55%
+		BreakChance = 50, --50% of chance that when failing the improvement, the weapons is destroyed but you keep the clusters. Else, you keep the weapon and lose the clusters
 	},
 	Transform = {
 		Clusters = 150,
-		Chance = 50, -- 45%
-		BreakChance = 50, -- 50% of chance that when failing the transforming, the weapon is destroyed but you keep all the clusters. Else, the weapon is downgraded to crude piece and you lose half of clusters.
+		Chance = 45, --45%
+		BreakChance = 50, --50% of chance that when failing the transforming, the weapon is destroyed but you keep all the clusters. Else, the weapon is downgraded to crude piece and you lose half of clusters.
 	},
 }
 
@@ -81,7 +83,7 @@ local IDS = {
 	DREAM_MATTER = 20063,
 	CLUSTER_OF_SOLACE = 20062,
 
-	-- weapons
+	--weapons
 	CRUDE_UMBRAL_BLADE = 20064,
 	UMBRAL_BLADE = 20065,
 	UMBRAL_MASTER_BLADE = 20066,
@@ -140,19 +142,28 @@ local SUB_TYPES = {
 	SPELLBOOK = 9,
 }
 
-local ACTION = { CREATE = 1, IMPROVE = 2, TRANSFORM = 3 }
+local ACTION = {
+	CREATE = 1,
+	IMPROVE = 2,
+	TRANSFORM = 3,
+}
 
 -- dream START --
 local function dreamFirst(npc, creature, message, keywords, parameters, node)
-	if isPremium(creature) then
-		if getPlayerStorageValue(creature, storage + 1) == -1 then
-			if getPlayerItemCount(creature, 20276) >= 1 then
-				if doPlayerRemoveItem(creature, 20276, 1) then
+	local player = Player(creature)
+	if not player then
+		return
+	end
+
+	if player:isPremium() then
+		if player:getStorageValue(storage + 1) < 1 then
+			if player:getItemCount(20276) > 0 then
+				if player:removeItem(20276, 1) then
 					npcHandler:say(newAddon, npc, creature)
-					doSendMagicEffect(getCreaturePosition(creature), 13)
-					doPlayerAddOutfit(creature, 577, 1)
-					doPlayerAddOutfit(creature, 578, 1)
-					setPlayerStorageValue(creature, storage + 1, 1)
+					player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+					player:addOutfitAddon(577, 1)
+					player:addOutfitAddon(577, 1)
+					player:setStorageValue(storage + 1, 1)
 				end
 			else
 				npcHandler:say(noItems, npc, creature)
@@ -164,15 +175,20 @@ local function dreamFirst(npc, creature, message, keywords, parameters, node)
 end
 
 local function dreamSecond(npc, creature, message, keywords, parameters, node)
-	if isPremium(creature) then
-		if getPlayerStorageValue(creature, storage) == -1 then
-			if getPlayerItemCount(creature, 20275) >= 1 then
-				if doPlayerRemoveItem(creature, 20275, 1) then
+	local player = Player(creature)
+	if not player then
+		return
+	end
+
+	if player:isPremium() then
+		if player:getStorageValue(storage) < 1 then
+			if player:getItemCount(20275) > 0 then
+				if player:removeItem(20275, 1) then
 					npcHandler:say(newAddon, npc, creature)
-					doSendMagicEffect(getCreaturePosition(creature), 13)
-					doPlayerAddOutfit(creature, 577, 2)
-					doPlayerAddOutfit(creature, 578, 2)
-					setPlayerStorageValue(creature, storage, 1)
+					player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+					player:addOutfitAddon(577, 2)
+					player:addOutfitAddon(577, 2)
+					player:setStorageValue(storage, 1)
 				end
 			else
 				npcHandler:say(noItems, npc, creature)
@@ -186,24 +202,30 @@ end
 
 local function greetCallback(npc, creature)
 	local player = Player(creature)
-	local playerId = player:getId()
+	if not player then
+		return true
+	end
 
-	if player:getStorageValueByKey(Storage.EruaranGreeting) > 0 then
+	if player:getStorageValue(Storage.EruaranGreeting) > 0 then
 		npcHandler:setMessage(MESSAGE_GREET, "Ashari Lillithy, so we meet {again}! What brings you here this time, general {information}, {transform}, {improve}, {create}, {outfit}, or {talk}?")
 	else
 		npcHandler:setMessage(MESSAGE_GREET, "Welcome |PLAYERNAME|.")
-		player:setStorageValueByKey(Storage.EruaranGreeting, 1)
+		player:setStorageValue(Storage.EruaranGreeting, 1)
 	end
 	return true
 end
 
 local function creatureSayCallback(npc, creature, type, message)
-	local player = Player(creature)
-	local playerId = player:getId()
-
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
 	end
+
+	local player = Player(creature)
+	if not player then
+		return true
+	end
+
+	local playerId = player:getId()
 
 	if MsgContains(message, "create") then
 		npcHandler:say("You can try to create {sword}s, {axe}s, {club}s, {bow}s, {crossbow}s and {spellbook}s.", npc, creature)
@@ -326,34 +348,41 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 3)
 		end
 	elseif MsgContains(message, "yes") and npcHandler:getTopic(playerId) == 3 then
-		if action[playerId] == ACTION.CREATE then -- create
-			if player:getItemCount(IDS.DREAM_MATTER) >= 1 and player:getItemCount(IDS.CLUSTER_OF_SOLACE) >= Config.Create.Clusters then
-				if math.random(100) <= Config.Create.Chance then
-					local newItemId = (
-						weapon[playerId] == TYPES.SWORD and (weapon_sub[playerId] == SUB_TYPES.BLADE and IDS.CRUDE_UMBRAL_BLADE or IDS.CRUDE_UMBRAL_SLAYER)
-						or weapon[playerId] == TYPES.AXE and (weapon_sub[playerId] == SUB_TYPES.AXE and IDS.CRUDE_UMBRAL_AXE or IDS.CRUDE_UMBRAL_CHOPPER)
-						or weapon[playerId] == TYPES.CLUB and (weapon_sub[playerId] == SUB_TYPES.MACE and IDS.CRUDE_UMBRAL_MACE or IDS.CRUDE_UMBRAL_HAMMER)
-						or weapon[playerId] == TYPES.BOW and IDS.CRUDE_UMBRAL_BOW
-						or weapon[playerId] == TYPES.CROSSBOW and IDS.CRUDE_UMBRAL_CROSSBOW
-						or weapon[playerId] == TYPES.SPELLBOOK and IDS.CRUDE_UMBRAL_SPELLBOOK
-						or false
-					)
-					if newItemId then
-						player:AddCustomItem({ id = newItemId })
-						player:removeItem(IDS.DREAM_MATTER, Config.Create.DreamMatter)
-						player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Create.Clusters)
-						npcHandler:say("Your dreams are strong, the creation was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
-					else
-						npcHandler:say("Something weird happened! You should contact a gamemaster.", npc, creature)
-					end
-				else
-					npcHandler:say("Oh no! The process failed.", npc, creature)
-					player:removeItem(IDS.DREAM_MATTER, 1)
-				end
-			else
-				npcHandler:say("Sorry, you don't have the required ingredients.", npc, creature)
+		if action[playerId] == ACTION.CREATE then --create
+			local givenUpItems = {
+				{ id = IDS.DREAM_MATTER },
+				{ id = ID.CLUSTER_OF_SOLACE, count = Config.Create.Clusters },
+			}
+			local newItemId = (
+				weapon[playerId] == TYPES.SWORD and (weapon_sub[playerId] == SUB_TYPES.BLADE and IDS.CRUDE_UMBRAL_BLADE or IDS.CRUDE_UMBRAL_SLAYER)
+				or weapon[playerId] == TYPES.AXE and (weapon_sub[playerId] == SUB_TYPES.AXE and IDS.CRUDE_UMBRAL_AXE or IDS.CRUDE_UMBRAL_CHOPPER)
+				or weapon[playerId] == TYPES.CLUB and (weapon_sub[playerId] == SUB_TYPES.MACE and IDS.CRUDE_UMBRAL_MACE or IDS.CRUDE_UMBRAL_HAMMER)
+				or weapon[playerId] == TYPES.BOW and IDS.CRUDE_UMBRAL_BOW
+				or weapon[playerId] == TYPES.CROSSBOW and IDS.CRUDE_UMBRAL_CROSSBOW
+				or weapon[playerId] == TYPES.SPELLBOOK and IDS.CRUDE_UMBRAL_SPELLBOOK
+				or false
+			)
+			if not newItemId then
+				npcHandler:say("Something weird happened! You should contact a gamemaster.", npc, creature)
+				return
 			end
-		elseif action[playerId] == ACTION.IMPROVE then -- improve
+			if not player:CanRemoveItems(givenUpItems) then
+				npcHandler:say("Sorry, you don't have the required ingredients.", npc, creature)
+				return
+			end
+			if not player:CanAddItems({ { id = newItemId } }) then
+				return
+			end
+
+			if math.random(100) <= Config.Create.Chance then
+				player:RemoveItems(givenUpItems)
+				player:AddItems({ { id = newItemId } })
+				npcHandler:say("Your dreams are strong, the creation was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
+			else
+				npcHandler:say("Oh no! The process failed.", npc, creature)
+				player:removeItem(IDS.DREAM_MATTER, 1)
+			end
+		elseif action[playerId] == ACTION.IMPROVE then --improve
 			local oldItemId = (
 				weapon[playerId] == TYPES.SWORD and (weapon_sub[playerId] == SUB_TYPES.BLADE and IDS.CRUDE_UMBRAL_BLADE or IDS.CRUDE_UMBRAL_SLAYER)
 				or weapon[playerId] == TYPES.AXE and (weapon_sub[playerId] == SUB_TYPES.AXE and IDS.CRUDE_UMBRAL_AXE or IDS.CRUDE_UMBRAL_CHOPPER)
@@ -364,27 +393,40 @@ local function creatureSayCallback(npc, creature, type, message)
 				or false
 			)
 			local newItemId = (oldItemId and oldItemId + 1 or false)
-			if player:getItemCount(IDS.CLUSTER_OF_SOLACE) >= Config.Improve.Clusters then
-				if newItemId and oldItemId then
-					if player:getItemCount(oldItemId) > 0 then
-						if math.random(100) <= Config.Improve.Chance then
-							player:removeItem(oldItemId, 1)
-							player:AddCustomItem({ id = newItemId })
-							player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Improve.Clusters)
-							npcHandler:say("Your dreams are strong, the improvement was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
-						else
-							npcHandler:say("Oh no! The process failed.", npc, creature)
-							local rand = math.random(100)
-							player:removeItem((rand <= Config.Improve.BreakChance and oldItemId or IDS.CLUSTER_OF_SOLACE), (rand <= Config.Improve.BreakChance and 1 or Config.Improve.Clusters))
-						end
-					else
-						npcHandler:say("You do not have " .. ItemType(oldItemId):getArticle() .. " " .. ItemType(oldItemId):getName() .. " with you.", npc, creature)
-					end
-				else
-					npcHandler:say("Something weird happened! You should contact a gamemaster.", npc, creature)
-				end
+			if player:getItemCount(IDS.CLUSTER_OF_SOLACE) < Config.Improve.Clusters then
+				npcHandler:say("Something weird happened! You should contact a gamemaster.", npc, creature)
+				return
 			end
-		elseif action[playerId] == ACTION.TRANSFORM then -- transform
+			if not (newItemId and oldItemId) then
+				return
+			end
+			if player:getItemCount(oldItemId) <= 0 then
+				npcHandler:say("You do not have " .. ItemType(oldItemId):getArticle() .. " " .. ItemType(oldItemId):getName() .. " with you.", npc, creature)
+				return
+			end
+			local givenUpItems = {
+				{ id = oldItemId },
+				{ id = IDS.CLUSTER_OF_SOLACE, Config.Improve.Clusters },
+			}
+			local reward = { id = newItemId }
+			if not player:CanRemoveItems(givenUpItems) then
+				npcHandler:say("Sorry, you don't have the required ingredients.", npc, creature)
+				return
+			end
+			if not player:CanAddItems({ reward }) then
+				return
+			end
+
+			if math.random(100) <= Config.Improve.Chance then
+				player:RemoveItems(givenUpItems)
+				player:AddItems({ reward })
+				npcHandler:say("Your dreams are strong, the improvement was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
+			else
+				npcHandler:say("Oh no! The process failed.", npc, creature)
+				local rand = math.random(100)
+				player:removeItem((rand <= Config.Improve.BreakChance and oldItemId or IDS.CLUSTER_OF_SOLACE), (rand <= Config.Improve.BreakChance and 1 or Config.Improve.Clusters))
+			end
+		elseif action[playerId] == ACTION.TRANSFORM then --transform
 			local oldItemId = (
 				weapon[playerId] == TYPES.SWORD and (weapon_sub[playerId] == SUB_TYPES.BLADE and IDS.UMBRAL_BLADE or IDS.UMBRAL_SLAYER)
 				or weapon[playerId] == TYPES.AXE and (weapon_sub[playerId] == SUB_TYPES.AXE and IDS.UMBRAL_AXE or IDS.UMBRAL_CHOPPER)
@@ -394,79 +436,58 @@ local function creatureSayCallback(npc, creature, type, message)
 				or weapon[playerId] == TYPES.SPELLBOOK and IDS.UMBRAL_SPELLBOOK
 				or false
 			)
+			if not oldItemId then
+				npcHandler:say("Something weird happened! You should contact a gamemaster.", npc, creature)
+				return
+			end
+
+			local givenUpItems = {
+				{ id = oldItemId },
+				{ id = IDS.CLUSTER_OF_SOLACE, count = Config.Transform.Clusters },
+			}
 			local newItemId = (oldItemId and oldItemId + 1 or false)
-			if player:getItemCount(IDS.CLUSTER_OF_SOLACE) >= Config.Transform.Clusters then
-				if newItemId and oldItemId then
-					if player:getItemCount(oldItemId) > 0 then
-						if math.random(100) <= Config.Transform.Chance then
-							player:removeItem(oldItemId, 1)
-							player:AddCustomItem({ id = newItemId })
-							player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Transform.Clusters)
-							npcHandler:say("Your dreams are strong, the transforming was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
-						else
-							npcHandler:say("Oh no! The process failed.", npc, creature)
-							local rand = math.random(100)
-							if Config.Transform.BreakChance <= rand then
-								player:removeItem(oldItemId, 1)
-							else
-								player:removeItem(oldItemId, 1)
-								player:AddCustomItem({ id = oldItemId - 1, count = 1 })
-								player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Transform.Clusters / 2)
-							end
-						end
-					else
-						npcHandler:say("You do not have " .. ItemType(oldItemId):getArticle() .. " " .. ItemType(oldItemId):getName() .. " with you.", npc, creature)
-					end
+			if not player:CanRemoveItems(givenUpItems) then
+				npcHandler:say("You do not have " .. ItemType(oldItemId):getArticle() .. " " .. ItemType(oldItemId):getName() .. " with you.", npc, creature)
+				return
+			end
+			if not player:CanAddItems({ { id = newItemId } }) then
+				return
+			end
+
+			if math.random(100) <= Config.Transform.Chance then
+				player:RemoveItems(givenUpItems)
+				player:AddItems({ { id = newItemId } })
+				player:removeItem(IDS.CLUSTER_OF_SOLACE, Config.Transform.Clusters)
+				npcHandler:say("Your dreams are strong, the transforming was successful. Take your " .. ItemType(newItemId):getName() .. ".", npc, creature)
+			else
+				npcHandler:say("Oh no! The process failed.", npc, creature)
+				local rand = math.random(100)
+				if Config.Transform.BreakChance <= rand then
+					player:RemoveItems({ { id = oldItemId } })
 				else
-					npcHandler:say("Something weird happened! You should contact a gamemaster.", npc, creature)
+					player:RemoveItems({ { id = oldItemId }, { id = IDS.CLUSTER_OF_SOLACE, Config.Transform.Clusters / 2 } })
+					player:AddItems({ { id = oldItemId - 1 } })
 				end
 			end
 		end
 		npcHandler:removeInteraction(npc, creature)
-		npcHandler:resetNpc()
+		npcHandler:resetNpc(creature)
 	end
 end
 
-keywordHandler:addKeyword({ "outfit" }, StdModule.say, {
-	npcHandler = npcHandler,
-	text = "What addon you are looking? I need for first addon: {dream warden mask} and for second {dream warden claw}.",
-})
-local node1 = keywordHandler:addKeyword({ "dream warden mask" }, StdModule.say, {
-	npcHandler = npcHandler,
-	onlyFocus = true,
-	text = "To achieve the first dream addon you need to give me 1 dream warden mask. Do you have them with you?",
-})
+keywordHandler:addKeyword({ "outfit" }, StdModule.say, { npcHandler = npcHandler, text = "What addon you are looking? I need for first addon: {dream warden mask} and for second {dream warden claw}." })
+local node1 = keywordHandler:addKeyword({ "dream warden mask" }, StdModule.say, { npcHandler = npcHandler, onlyFocus = true, text = "To achieve the first dream addon you need to give me 1 dream warden mask. Do you have them with you?" })
 node1:addChildKeyword({ "yes" }, dreamFirst, {})
-node1:addChildKeyword({ "no" }, StdModule.say, {
-	npcHandler = npcHandler,
-	onlyFocus = true,
-	text = "Alright then. Come back when you got all neccessary items.",
-	reset = true,
-})
+node1:addChildKeyword({ "no" }, StdModule.say, { npcHandler = npcHandler, onlyFocus = true, text = "Alright then. Come back when you got all neccessary items.", reset = true })
 
-local node2 = keywordHandler:addKeyword({ "dream warden claw" }, StdModule.say, {
-	npcHandler = npcHandler,
-	onlyFocus = true,
-	text = "To achieve the second dream addon you need to give me 1 dream warden claw. Do you have them with you?",
-})
+local node2 = keywordHandler:addKeyword({ "dream warden claw" }, StdModule.say, { npcHandler = npcHandler, onlyFocus = true, text = "To achieve the second dream addon you need to give me 1 dream warden claw. Do you have them with you?" })
 node2:addChildKeyword({ "yes" }, dreamSecond, {})
-node2:addChildKeyword({ "no" }, StdModule.say, {
-	npcHandler = npcHandler,
-	onlyFocus = true,
-	text = "Alright then. Come back when you got all neccessary items.",
-	reset = true,
-})
+node2:addChildKeyword({ "no" }, StdModule.say, { npcHandler = npcHandler, onlyFocus = true, text = "Alright then. Come back when you got all neccessary items.", reset = true })
 
 -- Greeting message
-keywordHandler:addGreetKeyword({ "ashari" }, {
-	npcHandler = npcHandler,
-	text = "Greetings, |PLAYERNAME|.",
-})
--- Farewell message
-keywordHandler:addFarewellKeyword({ "asgha thrazi" }, {
-	npcHandler = npcHandler,
-	text = "Goodbye, |PLAYERNAME|.",
-})
+keywordHandler:addGreetKeyword({ "ashari" }, { npcHandler = npcHandler, text = "|PLAYERNAME|, so we meet again! What brings you here this time, general information, transform, improve, create, outfit or talk?" })
+--Farewell message
+keywordHandler:addFarewellKeyword({ "asgha thrazi" }, { npcHandler = npcHandler, text = "Goodbye, |PLAYERNAME|." })
 
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 
