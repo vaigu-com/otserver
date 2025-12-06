@@ -16611,6 +16611,9 @@
 		<monster name="Spectre" x="0" y="0" z="6" spawntime="90" />
 		<monster name="Gravedigger" x="0" y="1" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7009" centery="1039" centerz="6" radius="1">
+		<monster name="Water Elemental" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="7524" centery="1039" centerz="6" radius="1">
 		<monster name="Spectre" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -75347,6 +75350,9 @@
 	<monster centerx="6954" centery="1035" centerz="9" radius="1">
 		<monster name="Ancient Scarab" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="6977" centery="1035" centerz="9" radius="1">
+		<monster name="Ancient Scarab" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7013" centery="1035" centerz="9" radius="1">
 		<monster name="Scarab" x="0" y="0" z="9" spawntime="90" />
 	</monster>
@@ -75395,6 +75401,9 @@
 	</monster>
 	<monster centerx="6478" centery="1038" centerz="9" radius="1">
 		<monster name="Draken Warmaster" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="6973" centery="1038" centerz="9" radius="1">
+		<monster name="Ancient Scarab" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="7130" centery="1038" centerz="9" radius="1">
 		<monster name="Vampire" x="0" y="0" z="9" spawntime="90" />
