@@ -38,6 +38,40 @@ bool AccountRepositoryDB::loadBySession(const std::string &sessionKey, std::uniq
 	return load(query, acc);
 };
 
+uint32_t AccountRepositoryDB::getNewDonationCoins(const uint32_t &id) {
+	auto result = g_database().storeQuery(fmt::format("SELECT `coins_donation` FROM `accounts` WHERE `id` = {}", id));
+	if (!result) {
+		g_logger().error("Failed to get account:[{}] new donation coins!", id);
+		throw DatabaseException("Could not SELECT donation coins from in function: " + std::string(__FUNCTION__));
+	}
+
+	uint32_t newDonationCoins = result->getNumber<uint32_t>("coins_donation");
+	return newDonationCoins;
+};
+
+void AccountRepositoryDB::flushNewDonationCoins(const uint32_t &id) {
+	auto result = g_database().storeQuery(fmt::format("SELECT `coins_donation` FROM `accounts` WHERE `id` = {}", id));
+	if (!result) {
+		g_logger().error("Failed to get account:[{}] new donation coins!", id);
+		throw DatabaseException("Could not SELECT donation coins from in function: " + std::string(__FUNCTION__));
+	}
+
+	uint32_t newDonationCoins = result->getNumber<uint32_t>("coins_donation");
+	if (newDonationCoins > 0) {
+		bool successful = g_database().executeQuery(
+			fmt::format(
+				"UPDATE `accounts` SET `coins_donation` = 0 WHERE `id` = {}",
+				id
+			)
+		);
+
+		if (!successful) {
+			g_logger().error("Failed to flush donation coins on account:[{}]", id);
+			throw DatabaseException("Could not flush new donation coins in function: " + std::string(__FUNCTION__));
+		}
+	}
+};
+
 bool AccountRepositoryDB::save(const std::unique_ptr<AccountInfo> &accInfo) {
 	bool successful = g_database().executeQuery(
 		fmt::format(
