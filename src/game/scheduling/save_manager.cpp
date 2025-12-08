@@ -165,6 +165,7 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 		setSuccesfulSaveTimestamp();
 		return true;
 	});
+	g_game().updatePlayersOnline(players);
 	if (result.status == COMMITTED) {
 		logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 	} else {
