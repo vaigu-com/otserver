@@ -457,7 +457,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			return;
 		}
 
-		player->sendMessageDialog("Changing prey monster this way will always reduce bonus by 3 stars. Rerolling the grid with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
+		player->sendMessageDialog("Changing prey monster this way will always reduce bonus by 3 stars. Rerolling the grid with gold reduces by 1 star.");
 
 		rerollType = true;
 		nextRaceId = raceId;
@@ -488,9 +488,9 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		}
 
 		if (option == PreyOption_AutomaticReroll) {
-			player->sendMessageDialog("Refreshing prey with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
+			player->sendMessageDialog("Refreshing prey with this option checked will reduce bonus by 3 stars. Rerolling with gold reduces by 1 star.");
 		} else if (option == PreyOption_Locked) {
-			player->sendMessageDialog("Refreshing prey with this option checked will reduce bonus by 2 stars. Rerolling with gold reduces by 1 star. Selecting from list doesn't reduce stars.");
+			player->sendMessageDialog("Refreshing prey with this option checked will reduce bonus by 2 stars. Rerolling with gold reduces by 1 star..");
 		}
 
 		rerollType = false;

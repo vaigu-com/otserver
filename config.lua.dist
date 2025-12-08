@@ -46,6 +46,7 @@ dayKillsToRedSkull = 6
 weekKillsToRedSkull = 10
 monthKillsToRedSkull = 20
 redSkullDuration = 2
+redSkullLength = redSkullDuration
 blackSkullDuration = 3
 orangeSkullDuration = 3
 loginProtectionTime = 10 * 1000
@@ -57,7 +58,7 @@ cleanProtectionZones = false
 -- NOTE: maxPlayers set to 0 means no limit
 -- NOTE: MaxPacketsPerSeconds if you change you will be subject to bugs by WPE, keep the default value of 25,
 -- It's recommended to use a range like min 50 in this function, otherwise you will be disconnected after equipping two-handed distance weapons.
-ip = "127.0.0.1"
+ip = "vaigu.com"
 allowOldProtocol = false
 bindOnlyGlobalAddress = false
 loginProtocolPort = 7171
@@ -121,7 +122,7 @@ augmentStrongImpactPercent = 10
 preySystemEnabled = true
 preyFreeThirdSlot = false
 preyRerollPricePerLevel = 30
-preySelectListPrice = 10
+preySelectListPrice = 5
 preyBonusRerollPrice = 1
 preyBonusTime = 2 * 60 * 60
 preyFreeRerollTime = 1 * 60 * 60
