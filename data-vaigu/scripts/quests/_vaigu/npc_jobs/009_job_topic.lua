@@ -32,6 +32,7 @@ QuestTopics.JOB_TOPICS = {
 	-- JOB_BLESS
 	confirmBuyAllregularblessings = NextTopic(),
 	confirmBuyPromotion = NextTopic(),
+	confirmBuyTwistoffate = NextTopic(),
 	-- JOB_BANK
 	confirmDeposit = NextTopic(),
 	declareAmountdeposit = NextTopic(),

@@ -99,6 +99,7 @@ quest
 					},
 					nextState = {
 						[Storage.RetroRulez.CoalForPrzemek] = MISSION_FINISHED,
+						[Storage.Finished.RetroRulez] = MISSION_FINISHED,
 					},
 					outfitRewards = QuestRewards.OutfitsAddons.RetroRulez.AllRetro0,
 					expReward = 1000000,
