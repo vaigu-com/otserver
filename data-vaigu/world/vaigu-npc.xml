@@ -181,7 +181,7 @@
 		<npc name="Malfurion" x="0" y="0" z="6" spawntime="90" />
 	</npc>
 	<npc centerx="7357" centery="670" centerz="6" radius="1">
-		<npc name="Mayor" x="0" y="0" z="6" spawntime="60" />
+		<npc name="Cossmonaut" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="6974" centery="759" centerz="6" radius="3">
 		<npc name="Grof, The Guard" x="0" y="0" z="6" spawntime="60" />
