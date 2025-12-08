@@ -89,7 +89,7 @@ return {
 			requiredKills = requiredKills,
 		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przedmioty do Pani Burmistrz:\n" .. ItemsToString(requiredItems)
+			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przedmioty do przywodcy dowolnego miasta:\n" .. ItemsToString(requiredItems)
 		end
 		dailyTaskDescription = dailyTaskDescription .. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
 			money = dailyTask.money,
