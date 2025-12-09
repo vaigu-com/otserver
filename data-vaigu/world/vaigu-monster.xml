@@ -55730,7 +55730,6 @@
 	</monster>
 	<monster centerx="5795" centery="1795" centerz="7" radius="1">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Pixie" x="1" y="1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5803" centery="1795" centerz="7" radius="1">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="90" />
@@ -55862,8 +55861,6 @@
 	</monster>
 	<monster centerx="5797" centery="1802" centerz="7" radius="1">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Pixie" x="0" y="1" z="7" spawntime="90" />
-		<monster name="Pixie" x="1" y="1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6010" centery="1802" centerz="7" radius="1">
 		<monster name="Witch" x="0" y="0" z="7" spawntime="90" />
@@ -55993,7 +55990,6 @@
 	</monster>
 	<monster centerx="5794" centery="1810" centerz="7" radius="1">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Pixie" x="1" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5796" centery="1810" centerz="7" radius="1">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="90" />
@@ -56184,9 +56180,6 @@
 	<monster centerx="5673" centery="1820" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5696" centery="1820" centerz="7" radius="1">
-		<monster name="Orc Warlord" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5842" centery="1820" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -56226,9 +56219,6 @@
 	<monster centerx="5670" centery="1822" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5691" centery="1822" centerz="7" radius="1">
-		<monster name="Orc Warlord" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5833" centery="1822" centerz="7" radius="1">
 		<monster name="Forest Fury" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -56246,6 +56236,9 @@
 	</monster>
 	<monster centerx="5682" centery="1823" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="5692" centery="1823" centerz="7" radius="1">
+		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5740" centery="1823" centerz="7" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="7" spawntime="90" />
@@ -56383,9 +56376,6 @@
 	<monster centerx="6574" centery="1828" centerz="7" radius="1">
 		<monster name="Penguin" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5689" centery="1829" centerz="7" radius="1">
-		<monster name="Orc Warlord" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5870" centery="1829" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
 	</monster>
@@ -56415,6 +56405,9 @@
 	</monster>
 	<monster centerx="6561" centery="1830" centerz="7" radius="1">
 		<monster name="Penguin" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="5697" centery="1831" centerz="7" radius="1">
+		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5839" centery="1831" centerz="7" radius="1">
 		<monster name="Haunted Treeling" x="0" y="0" z="7" spawntime="60" />
@@ -56509,12 +56502,6 @@
 	<monster centerx="6404" centery="1836" centerz="7" radius="1">
 		<monster name="Crazed Dwarf" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5687" centery="1837" centerz="7" radius="1">
-		<monster name="Orc Warlord" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5690" centery="1837" centerz="7" radius="1">
-		<monster name="Orc Warlord" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5774" centery="1837" centerz="7" radius="1">
 		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -56580,6 +56567,9 @@
 	</monster>
 	<monster centerx="6576" centery="1842" centerz="7" radius="1">
 		<monster name="Penguin" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="5687" centery="1843" centerz="7" radius="1">
+		<monster name="Orc Leader" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5919" centery="1843" centerz="7" radius="1">
 		<monster name="Wilting Leaf Golem" x="0" y="0" z="7" spawntime="90" />
@@ -71202,9 +71192,6 @@
 	<monster centerx="5835" centery="1809" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="5880" centery="1809" centerz="8" radius="1">
-		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="5887" centery="1809" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -71263,9 +71250,6 @@
 		<monster name="Twisted Pooka" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="5857" centery="1814" centerz="8" radius="1">
-		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="5887" centery="1814" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6098" centery="1814" centerz="8" radius="1">
@@ -71451,7 +71435,6 @@
 	</monster>
 	<monster centerx="5898" centery="1826" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
-		<monster name="Dark Faun" x="0" y="1" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="5901" centery="1826" centerz="8" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="8" spawntime="90" />
@@ -71504,17 +71487,11 @@
 	<monster centerx="6488" centery="1830" centerz="8" radius="1">
 		<monster name="Ice Golem" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="5853" centery="1831" centerz="8" radius="1">
-		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6084" centery="1831" centerz="8" radius="1">
 		<monster name="Tarantula" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6606" centery="1831" centerz="8" radius="1">
 		<monster name="Young Sea Serpent" x="0" y="0" z="8" spawntime="90" />
-	</monster>
-	<monster centerx="5855" centery="1833" centerz="8" radius="1">
-		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6087" centery="1833" centerz="8" radius="1">
 		<monster name="Giant Spider" x="0" y="0" z="8" spawntime="90" />
@@ -71549,10 +71526,6 @@
 	<monster centerx="5853" centery="1837" centerz="8" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="5889" centery="1837" centerz="8" radius="1">
-		<monster name="Twisted Pooka" x="1" y="-1" z="8" spawntime="90" />
-		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6465" centery="1837" centerz="8" radius="1">
 		<monster name="Crystal Spider" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -71565,9 +71538,6 @@
 	<monster centerx="5887" centery="1839" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="5889" centery="1839" centerz="8" radius="1">
-		<monster name="Twisted Pooka" x="0" y="0" z="8" spawntime="90" />
-	</monster>
 	<monster centerx="6539" centery="1839" centerz="8" radius="1">
 		<monster name="Frost Giantess" x="0" y="0" z="8" spawntime="90" />
 	</monster>
@@ -71576,7 +71546,6 @@
 	</monster>
 	<monster centerx="5881" centery="1841" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
-		<monster name="Dark Faun" x="0" y="1" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="6481" centery="1841" centerz="8" radius="1">
 		<monster name="Crystal Spider" x="0" y="0" z="8" spawntime="90" />
@@ -75774,6 +75743,9 @@
 	</monster>
 	<monster centerx="5671" centery="1058" centerz="9" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="5691" centery="1058" centerz="9" radius="1">
+		<monster name="Shark" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6293" centery="1058" centerz="9" radius="1">
 		<monster name="Sea Serpent" x="0" y="0" z="9" spawntime="90" />
@@ -82896,6 +82868,9 @@
 	<monster centerx="7251" centery="1765" centerz="9" radius="1">
 		<monster name="Little Corym Charlatan" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="5776" centery="1766" centerz="9" radius="1">
+		<monster name="Boogy" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="5794" centery="1766" centerz="9" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="9" spawntime="90" />
 	</monster>
@@ -82957,6 +82932,12 @@
 	</monster>
 	<monster centerx="6529" centery="1773" centerz="9" radius="1">
 		<monster name="Ice Golem" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="5747" centery="1774" centerz="9" radius="1">
+		<monster name="Boogy" x="0" y="0" z="9" spawntime="60" />
+	</monster>
+	<monster centerx="5762" centery="1774" centerz="9" radius="1">
+		<monster name="Boogy" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="5775" centery="1774" centerz="9" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="9" spawntime="90" />
@@ -83098,6 +83079,9 @@
 	<monster centerx="5782" centery="1790" centerz="9" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="9" spawntime="90" />
 	</monster>
+	<monster centerx="5793" centery="1790" centerz="9" radius="1">
+		<monster name="Boogy" x="0" y="0" z="9" spawntime="60" />
+	</monster>
 	<monster centerx="7475" centery="1790" centerz="9" radius="1">
 		<monster name="Spectre" x="0" y="0" z="9" spawntime="90" />
 	</monster>
@@ -83162,6 +83146,9 @@
 	</monster>
 	<monster centerx="7538" centery="1802" centerz="9" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="5765" centery="1804" centerz="9" radius="1">
+		<monster name="Boogy" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="5727" centery="1805" centerz="9" radius="1">
 		<monster name="Nymph" x="0" y="0" z="9" spawntime="90" />
@@ -83229,6 +83216,9 @@
 	</monster>
 	<monster centerx="5778" centery="1811" centerz="9" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="9" spawntime="90" />
+	</monster>
+	<monster centerx="5792" centery="1811" centerz="9" radius="1">
+		<monster name="Boogy" x="0" y="0" z="9" spawntime="60" />
 	</monster>
 	<monster centerx="6403" centery="1813" centerz="9" radius="1">
 		<monster name="Dwarf Soldier" x="0" y="0" z="9" spawntime="90" />

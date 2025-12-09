@@ -798,14 +798,8 @@
 	<npc centerx="32200" centery="32304" centerz="6" radius="1">
 		<npc name="Yana" x="0" y="0" z="6" spawntime="60" />
 	</npc>
-	<npc centerx="33628" centery="32344" centerz="6" radius="1">
-		<npc name="Morax" x="0" y="0" z="6" spawntime="60" />
-	</npc>
 	<npc centerx="32345" centery="32363" centerz="6" radius="1">
 		<npc name="Norf" x="0" y="0" z="6" spawntime="60" />
-	</npc>
-	<npc centerx="33515" centery="32363" centerz="6" radius="1">
-		<npc name="Zedrulon The Fallen" x="0" y="0" z="6" spawntime="60" />
 	</npc>
 	<npc centerx="32056" centery="32368" centerz="6" radius="1">
 		<npc name="Captain Tiberius" x="0" y="0" z="6" spawntime="60" />
@@ -1752,9 +1746,6 @@
 	<npc centerx="32450" centery="32226" centerz="7" radius="1">
 		<npc name="Palomino" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="33492" centery="32227" centerz="7" radius="1">
-		<npc name="Taegen" x="0" y="0" z="7" spawntime="60" />
-	</npc>
 	<npc centerx="32342" centery="32229" centerz="7" radius="1">
 		<npc name="Naji" x="0" y="0" z="7" spawntime="60" />
 	</npc>
@@ -1767,20 +1758,11 @@
 	<npc centerx="32342" centery="32235" centerz="7" radius="1">
 		<npc name="Elane" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="33485" centery="32236" centerz="7" radius="1">
-		<npc name="Maelyrra" x="0" y="0" z="7" spawntime="60" />
-	</npc>
 	<npc centerx="32391" centery="32237" centerz="7" radius="1">
 		<npc name="Sherry McRonald" x="0" y="0" z="7" spawntime="60" />
 	</npc>
-	<npc centerx="33530" centery="32238" centerz="7" radius="1">
-		<npc name="Peaceful Pooka" x="0" y="0" z="7" spawntime="60" />
-	</npc>
 	<npc centerx="32368" centery="32240" centerz="7" radius="1">
 		<npc name="Quentin" x="0" y="0" z="7" spawntime="60" />
-	</npc>
-	<npc centerx="33450" centery="32246" centerz="7" radius="1">
-		<npc name="Gerimor" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="32321" centery="32258" centerz="7" radius="1">
 		<npc name="Suzy" x="0" y="0" z="7" spawntime="60" />
@@ -1817,9 +1799,6 @@
 	</npc>
 	<npc centerx="32190" centery="32293" centerz="7" radius="1">
 		<npc name="Cledwyn" x="0" y="0" z="7" spawntime="60" />
-	</npc>
-	<npc centerx="33456" centery="32296" centerz="7" radius="1">
-		<npc name="Dancing Fairy" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="32209" centery="32297" centerz="7" radius="1">
 		<npc name="Rotem Valos" x="0" y="0" z="7" spawntime="60" />

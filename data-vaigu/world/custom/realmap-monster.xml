@@ -6612,8 +6612,8 @@
 	<monster centerx="33071" centery="32175" centerz="4" radius="3">
 		<monster name="Dragon" x="3" y="-3" z="4" spawntime="90" />
 	</monster>
-	<monster centerx="33533" centery="32301" centerz="4" radius="3">
-		<monster name="Faun" x="-1" y="0" z="4" spawntime="60" />
+	<monster centerx="33531" centery="32301" centerz="4" radius="3">
+		<monster name="Faun" x="1" y="0" z="4" spawntime="60" />
 	</monster>
 	<monster centerx="32659" centery="32353" centerz="4" radius="3">
 		<monster name="Skeleton" x="-1" y="-3" z="4" spawntime="90" />
@@ -37355,7 +37355,7 @@
 		<monster name="Gingerbread Man" x="1" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33540" centery="32154" centerz="7" radius="3">
-		<monster name="Dark Faun" x="3" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33547" centery="32154" centerz="7" radius="3">
 		<monster name="Pixie" x="0" y="0" z="7" spawntime="60" />
@@ -37466,7 +37466,6 @@
 	</monster>
 	<monster centerx="33554" centery="32161" centerz="7" radius="3">
 		<monster name="Pixie" x="-2" y="1" z="7" spawntime="60" />
-		<monster name="Boogy" x="0" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32823" centery="32163" centerz="7" radius="4">
 		<monster name="Dragon" x="-1" y="1" z="7" spawntime="90" />
@@ -37589,9 +37588,6 @@
 	</monster>
 	<monster centerx="33540" centery="32168" centerz="7" radius="3">
 		<monster name="Pixie" x="-2" y="-3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33554" centery="32168" centerz="7" radius="3">
-		<monster name="Boogy" x="-2" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32168" centerz="7" radius="3">
 		<monster name="Pixie" x="-1" y="3" z="7" spawntime="60" />
@@ -37719,24 +37715,23 @@
 	</monster>
 	<monster centerx="33547" centery="32175" centerz="7" radius="3">
 		<monster name="Pixie" x="1" y="1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="3" y="1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="0" y="2" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="3" y="2" z="7" spawntime="60" />
-		<monster name="Faun" x="0" y="3" z="7" spawntime="60" />
+		<monster name="Nymph" x="3" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="2" z="7" spawntime="60" />
+		<monster name="Pooka" x="3" y="2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="0" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32175" centerz="7" radius="3">
-		<monster name="Dark Faun" x="3" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32175" centerz="7" radius="3">
 		<monster name="Nymph" x="-3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32175" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="1" y="-1" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="0" y="2" z="7" spawntime="60" />
-		<monster name="Boogy" x="1" y="2" z="7" spawntime="60" />
+		<monster name="Pooka" x="1" y="-1" z="7" spawntime="60" />
+		<monster name="Pooka" x="0" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32175" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="-2" y="3" z="7" spawntime="60" />
+		<monster name="Pooka" x="-2" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33603" centery="32175" centerz="7" radius="3">
 		<monster name="Butterfly" x="-2" y="3" z="7" spawntime="60" />
@@ -37832,19 +37827,19 @@
 		<monster name="Pixie" x="3" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33540" centery="32182" centerz="7" radius="3">
-		<monster name="Faun" x="-3" y="-3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32182" centerz="7" radius="3">
 		<monster name="Pixie" x="-1" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32182" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="2" y="-3" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="1" y="-2" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="-1" y="-1" z="7" spawntime="60" />
+		<monster name="Pooka" x="2" y="-3" z="7" spawntime="60" />
+		<monster name="Pooka" x="1" y="-2" z="7" spawntime="60" />
+		<monster name="Pooka" x="-1" y="-1" z="7" spawntime="60" />
 		<monster name="Wisp" x="1" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32182" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="-2" y="-3" z="7" spawntime="60" />
+		<monster name="Pooka" x="-2" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33589" centery="32182" centerz="7" radius="3">
 		<monster name="Nymph" x="3" y="3" z="7" spawntime="60" />
@@ -37958,12 +37953,12 @@
 	<monster centerx="33533" centery="32189" centerz="7" radius="3">
 		<monster name="Pixie" x="-2" y="1" z="7" spawntime="60" />
 		<monster name="Pooka" x="1" y="1" z="7" spawntime="60" />
-		<monster name="Faun" x="0" y="3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="0" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32189" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="0" y="-1" z="7" spawntime="60" />
+		<monster name="Pooka" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Butterfly" x="1" y="0" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="-2" y="3" z="7" spawntime="60" />
+		<monster name="Pooka" x="-2" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33582" centery="32189" centerz="7" radius="3">
 		<monster name="Pixie" x="3" y="-1" z="7" spawntime="60" />
@@ -38056,33 +38051,27 @@
 		<monster name="Pixie" x="0" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33519" centery="32196" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="2" y="1" z="7" spawntime="60" />
+		<monster name="Pooka" x="2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33526" centery="32196" centerz="7" radius="3">
 		<monster name="Pixie" x="-3" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33533" centery="32196" centerz="7" radius="3">
-		<monster name="Boogy" x="-2" y="-1" z="7" spawntime="60" />
-		<monster name="Faun" x="-2" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33540" centery="32196" centerz="7" radius="3">
-		<monster name="Boogy" x="-1" y="-1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32196" centerz="7" radius="3">
-		<monster name="Boogy" x="2" y="-3" z="7" spawntime="60" />
-		<monster name="Faun" x="-1" y="2" z="7" spawntime="60" />
-		<monster name="Faun" x="1" y="3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-1" y="2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="1" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32196" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-3" y="0" z="7" spawntime="60" />
-		<monster name="Boogy" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Faun" x="2" y="0" z="7" spawntime="60" />
+		<monster name="Nymph" x="-3" y="0" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="2" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32196" centerz="7" radius="3">
-		<monster name="Faun" x="-2" y="-3" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="-2" y="-2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-2" y="-3" z="7" spawntime="60" />
+		<monster name="Pooka" x="-2" y="-2" z="7" spawntime="60" />
 		<monster name="Pooka" x="1" y="0" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="-3" y="2" z="7" spawntime="60" />
+		<monster name="Pooka" x="-3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33589" centery="32196" centerz="7" radius="3">
 		<monster name="Pixie" x="1" y="-1" z="7" spawntime="60" />
@@ -38160,8 +38149,8 @@
 	</monster>
 	<monster centerx="33428" centery="32203" centerz="7" radius="3">
 		<monster name="Butterfly" x="2" y="2" z="7" spawntime="60" />
-		<monster name="Faun" x="0" y="3" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="3" y="3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="0" y="3" z="7" spawntime="60" />
+		<monster name="Pooka" x="3" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33442" centery="32203" centerz="7" radius="3">
 		<monster name="Pixie" x="1" y="-2" z="7" spawntime="60" />
@@ -38173,13 +38162,13 @@
 		<monster name="Wisp" x="1" y="-3" z="7" spawntime="60" />
 		<monster name="Wisp" x="1" y="-2" z="7" spawntime="60" />
 		<monster name="Nymph" x="-3" y="-1" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="3" y="1" z="7" spawntime="60" />
+		<monster name="Pooka" x="3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33477" centery="32203" centerz="7" radius="3">
 		<monster name="Pixie" x="-1" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33498" centery="32203" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-3" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33505" centery="32203" centerz="7" radius="3">
 		<monster name="Butterfly" x="0" y="3" z="7" spawntime="60" />
@@ -38187,22 +38176,15 @@
 	<monster centerx="33512" centery="32203" centerz="7" radius="3">
 		<monster name="Nymph" x="-2" y="-3" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="33533" centery="32203" centerz="7" radius="3">
-		<monster name="Boogy" x="3" y="1" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="33540" centery="32203" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-2" y="-2" z="7" spawntime="60" />
-		<monster name="Faun" x="-3" y="-1" z="7" spawntime="60" />
-		<monster name="Boogy" x="-3" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="-2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32203" centerz="7" radius="3">
 		<monster name="Pixie" x="2" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33582" centery="32203" centerz="7" radius="3">
-		<monster name="Faun" x="-3" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33596" centery="32203" centerz="7" radius="3">
-		<monster name="Boogy" x="-1" y="-3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33673" centery="32203" centerz="7" radius="3">
 		<monster name="Crazed Summer Rearguard" x="2" y="2" z="7" spawntime="60" />
@@ -38300,7 +38282,7 @@
 	<monster centerx="33428" centery="32210" centerz="7" radius="3">
 		<monster name="Wisp" x="1" y="-3" z="7" spawntime="60" />
 		<monster name="Nymph" x="1" y="1" z="7" spawntime="60" />
-		<monster name="Faun" x="2" y="1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33442" centery="32210" centerz="7" radius="3">
 		<monster name="Pixie" x="0" y="2" z="7" spawntime="60" />
@@ -38312,28 +38294,25 @@
 		<monster name="Butterfly" x="2" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33491" centery="32210" centerz="7" radius="3">
-		<monster name="Faun" x="2" y="1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33519" centery="32210" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-2" y="-3" z="7" spawntime="60" />
-		<monster name="Faun" x="-1" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="-3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-1" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33533" centery="32210" centerz="7" radius="3">
-		<monster name="Dark Faun" x="1" y="2" z="7" spawntime="60" />
-		<monster name="Faun" x="3" y="3" z="7" spawntime="60" />
+		<monster name="Nymph" x="1" y="2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="3" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33540" centery="32210" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-2" y="-3" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32210" centerz="7" radius="3">
 		<monster name="Butterfly" x="3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32210" centerz="7" radius="3">
-		<monster name="Boogy" x="1" y="-2" z="7" spawntime="60" />
-		<monster name="Boogy" x="2" y="-2" z="7" spawntime="60" />
 		<monster name="Pixie" x="3" y="-2" z="7" spawntime="60" />
 		<monster name="Swan Maiden" x="3" y="0" z="7" spawntime="60" />
-		<monster name="Boogy" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33589" centery="32210" centerz="7" radius="3">
 		<monster name="Swan Maiden" x="3" y="-3" z="7" spawntime="60" />
@@ -38512,15 +38491,14 @@
 		<monster name="Pixie" x="-3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33470" centery="32217" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="0" y="1" z="7" spawntime="60" />
+		<monster name="Pooka" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33477" centery="32217" centerz="7" radius="3">
 		<monster name="Butterfly" x="3" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33484" centery="32217" centerz="7" radius="3">
-		<monster name="Dark Faun" x="0" y="-1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Boogy" x="-2" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="-1" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33519" centery="32217" centerz="7" radius="3">
 		<monster name="Butterfly" x="-2" y="1" z="7" spawntime="60" />
@@ -38532,7 +38510,7 @@
 		<monster name="Pixie" x="-2" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32217" centerz="7" radius="3">
-		<monster name="Dark Faun" x="0" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32217" centerz="7" radius="3">
 		<monster name="Pixie" x="3" y="-2" z="7" spawntime="60" />
@@ -38571,6 +38549,9 @@
 	<monster centerx="32671" centery="32221" centerz="7" radius="1">
 		<monster name="Rabbit" x="1" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33491" centery="32221" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32581" centery="32222" centerz="7" radius="1">
 		<monster name="Smuggler" x="1" y="0" z="7" spawntime="90" />
 	</monster>
@@ -38585,6 +38566,9 @@
 	</monster>
 	<monster centerx="32701" centery="32223" centerz="7" radius="2">
 		<monster name="Tarantula" x="1" y="-1" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="33509" centery="32223" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="31979" centery="32224" centerz="7" radius="3">
 		<monster name="Snake" x="-1" y="2" z="7" spawntime="90" />
@@ -38626,19 +38610,15 @@
 		<monster name="Pixie" x="1" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33421" centery="32224" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-3" y="-2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-3" y="-2" z="7" spawntime="60" />
 		<monster name="Pooka" x="0" y="-1" z="7" spawntime="60" />
 		<monster name="Nymph" x="2" y="0" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="3" y="0" z="7" spawntime="60" />
+		<monster name="Nymph" x="3" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33428" centery="32224" centerz="7" radius="3">
 		<monster name="Nymph" x="-3" y="-3" z="7" spawntime="60" />
-		<monster name="Boogy" x="-1" y="0" z="7" spawntime="60" />
-		<monster name="Faun" x="1" y="1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="0" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33442" centery="32224" centerz="7" radius="3">
-		<monster name="Boogy" x="-1" y="2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="1" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33456" centery="32224" centerz="7" radius="3">
 		<monster name="Pixie" x="2" y="3" z="7" spawntime="60" />
@@ -38647,10 +38627,13 @@
 		<monster name="Pixie" x="1" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33470" centery="32224" centerz="7" radius="3">
-		<monster name="Dark Faun" x="0" y="-2" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="-2" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33492" centery="32224" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33526" centery="32224" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-1" y="3" z="7" spawntime="60" />
+		<monster name="Nymph" x="-1" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33533" centery="32224" centerz="7" radius="3">
 		<monster name="Pixie" x="3" y="1" z="7" spawntime="60" />
@@ -38659,16 +38642,16 @@
 		<monster name="Butterfly" x="3" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32224" centerz="7" radius="3">
-		<monster name="Faun" x="-3" y="-3" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="-2" y="-1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="-3" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32224" centerz="7" radius="3">
 		<monster name="Pooka" x="0" y="-3" z="7" spawntime="60" />
-		<monster name="Faun" x="-3" y="1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="3" y="1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32224" centerz="7" radius="3">
-		<monster name="Faun" x="-3" y="-3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33575" centery="32224" centerz="7" radius="3">
 		<monster name="Pixie" x="-2" y="2" z="7" spawntime="60" />
@@ -38682,6 +38665,9 @@
 	<monster centerx="32714" centery="32225" centerz="7" radius="2">
 		<monster name="Tarantula" x="1" y="-1" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33508" centery="32225" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32464" centery="32227" centerz="7" radius="4">
 		<monster name="Poison Spider" x="4" y="-4" z="7" spawntime="60" />
 		<monster name="Poison Spider" x="-1" y="-1" z="7" spawntime="60" />
@@ -38692,6 +38678,12 @@
 	</monster>
 	<monster centerx="32656" centery="32227" centerz="7" radius="1">
 		<monster name="Rabbit" x="1" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="33494" centery="32227" centerz="7" radius="1">
+		<monster name="Butterfly" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33499" centery="32227" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32788" centery="32228" centerz="7" radius="2">
 		<monster name="Minotaur Archer" x="2" y="-1" z="7" spawntime="90" />
@@ -38766,7 +38758,7 @@
 		<monster name="Swampling" x="-2" y="-3" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="33393" centery="32231" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="0" y="-2" z="7" spawntime="60" />
+		<monster name="Pooka" x="0" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33407" centery="32231" centerz="7" radius="3">
 		<monster name="Swan Maiden" x="1" y="3" z="7" spawntime="60" />
@@ -38775,10 +38767,9 @@
 		<monster name="Pooka" x="3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33435" centery="32231" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-3" y="-1" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="0" y="-1" z="7" spawntime="60" />
-		<monster name="Boogy" x="3" y="0" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="3" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-3" y="-1" z="7" spawntime="60" />
+		<monster name="Pooka" x="0" y="-1" z="7" spawntime="60" />
+		<monster name="Pooka" x="3" y="2" z="7" spawntime="60" />
 		<monster name="Wisp" x="-1" y="3" z="7" spawntime="60" />
 		<monster name="Butterfly" x="1" y="3" z="7" spawntime="60" />
 	</monster>
@@ -38786,30 +38777,30 @@
 		<monster name="Butterfly" x="0" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33449" centery="32231" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-2" y="-2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33463" centery="32231" centerz="7" radius="3">
 		<monster name="Pooka" x="2" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33470" centery="32231" centerz="7" radius="3">
-		<monster name="Dark Faun" x="0" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33540" centery="32231" centerz="7" radius="3">
-		<monster name="Dark Faun" x="0" y="-3" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="-1" y="-2" z="7" spawntime="60" />
-		<monster name="Faun" x="1" y="0" z="7" spawntime="60" />
+		<monster name="Nymph" x="0" y="-3" z="7" spawntime="60" />
+		<monster name="Nymph" x="-1" y="-2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33547" centery="32231" centerz="7" radius="3">
-		<monster name="Faun" x="3" y="-3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="3" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32231" centerz="7" radius="3">
 		<monster name="Swan Maiden" x="0" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32231" centerz="7" radius="3">
-		<monster name="Faun" x="3" y="2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33568" centery="32231" centerz="7" radius="3">
-		<monster name="Faun" x="-3" y="1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32713" centery="32233" centerz="7" radius="2">
 		<monster name="Tarantula" x="0" y="1" z="7" spawntime="90" />
@@ -38827,6 +38818,12 @@
 	<monster centerx="32918" centery="32234" centerz="7" radius="1">
 		<monster name="Adventurer" x="1" y="1" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33492" centery="32234" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33507" centery="32234" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32442" centery="32235" centerz="7" radius="5">
 		<monster name="Horse" x="-4" y="-4" z="7" spawntime="60" />
 		<monster name="Brown Horse" x="-2" y="-2" z="7" spawntime="90" />
@@ -38842,6 +38839,9 @@
 	<monster centerx="32617" centery="32236" centerz="7" radius="1">
 		<monster name="Boar" x="1" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33510" centery="32236" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32406" centery="32237" centerz="7" radius="2">
 		<monster name="Sheep" x="-1" y="-1" z="7" spawntime="90" />
 		<monster name="Sheep" x="1" y="-1" z="7" spawntime="90" />
@@ -38850,6 +38850,9 @@
 	</monster>
 	<monster centerx="32498" centery="32237" centerz="7" radius="2">
 		<monster name="Troll" x="2" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33485" centery="32237" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32000" centery="32238" centerz="7" radius="3">
 		<monster name="Snake" x="2" y="2" z="7" spawntime="90" />
@@ -38900,16 +38903,15 @@
 		<monster name="Pixie" x="3" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33463" centery="32238" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="-2" y="2" z="7" spawntime="60" />
+		<monster name="Pooka" x="-2" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33470" centery="32238" centerz="7" radius="3">
 		<monster name="Pooka" x="-2" y="-3" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="1" y="1" z="7" spawntime="60" />
-		<monster name="Faun" x="2" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="1" y="1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33477" centery="32238" centerz="7" radius="3">
 		<monster name="Pooka" x="-3" y="3" z="7" spawntime="60" />
-		<monster name="Boogy" x="-1" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32238" centerz="7" radius="3">
 		<monster name="Butterfly" x="-2" y="1" z="7" spawntime="60" />
@@ -38922,10 +38924,19 @@
 		<monster name="Minotaur" x="-1" y="-2" z="7" spawntime="90" />
 		<monster name="Minotaur" x="2" y="1" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33490" centery="32239" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33514" centery="32239" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32398" centery="32240" centerz="7" radius="2">
 		<monster name="Chicken" x="2" y="-2" z="7" spawntime="90" />
 		<monster name="Chicken" x="1" y="-1" z="7" spawntime="90" />
 		<monster name="Chicken" x="2" y="2" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="33501" centery="32240" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32825" centery="32241" centerz="7" radius="2">
 		<monster name="Tarantula" x="-1" y="1" z="7" spawntime="90" />
@@ -38959,6 +38970,9 @@
 		<monster name="Scorpion" x="2" y="-1" z="7" spawntime="90" />
 		<monster name="Scorpion" x="-2" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33514" centery="32244" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32021" centery="32245" centerz="7" radius="3">
 		<monster name="Wolf" x="3" y="0" z="7" spawntime="90" />
 	</monster>
@@ -38987,10 +39001,7 @@
 		<monster name="Pixie" x="-3" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33435" centery="32245" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="3" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33449" centery="32245" centerz="7" radius="3">
-		<monster name="Pixie" x="0" y="3" z="7" spawntime="60" />
+		<monster name="Pooka" x="3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33456" centery="32245" centerz="7" radius="3">
 		<monster name="Butterfly" x="1" y="1" z="7" spawntime="60" />
@@ -39003,7 +39014,7 @@
 		<monster name="Butterfly" x="-2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33477" centery="32245" centerz="7" radius="3">
-		<monster name="Faun" x="-1" y="-2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-1" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33542" centery="32245" centerz="7" radius="1">
 		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
@@ -39011,9 +39022,6 @@
 	<monster centerx="33561" centery="32245" centerz="7" radius="3">
 		<monster name="Pixie" x="1" y="-3" z="7" spawntime="60" />
 		<monster name="Pixie" x="0" y="-2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33568" centery="32245" centerz="7" radius="3">
-		<monster name="Boogy" x="-2" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32508" centery="32246" centerz="7" radius="2">
 		<monster name="Orc" x="-1" y="-1" z="7" spawntime="90" />
@@ -39027,6 +39035,9 @@
 	<monster centerx="32831" centery="32246" centerz="7" radius="2">
 		<monster name="Tarantula" x="0" y="-2" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33485" centery="32246" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32064" centery="32247" centerz="7" radius="1">
 		<monster name="Red Butterfly" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -39038,6 +39049,12 @@
 	<monster centerx="32479" centery="32247" centerz="7" radius="3">
 		<monster name="Troll" x="0" y="-3" z="7" spawntime="90" />
 		<monster name="Troll" x="-1" y="2" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="33505" centery="32247" centerz="7" radius="1">
+		<monster name="Butterfly" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33502" centery="32248" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32055" centery="32249" centerz="7" radius="1">
 		<monster name="Blue Butterfly" x="0" y="0" z="7" spawntime="90" />
@@ -39061,6 +39078,12 @@
 	<monster centerx="32840" centery="32250" centerz="7" radius="2">
 		<monster name="Skeleton" x="-1" y="-1" z="7" spawntime="90" />
 		<monster name="Skeleton" x="1" y="2" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="33502" centery="32250" centerz="7" radius="1">
+		<monster name="Swan Maiden" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="33520" centery="32250" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32098" centery="32252" centerz="7" radius="3">
 		<monster name="Rabbit" x="0" y="-1" z="7" spawntime="90" />
@@ -39102,16 +39125,11 @@
 		<monster name="Pixie" x="3" y="-3" z="7" spawntime="60" />
 		<monster name="Nymph" x="3" y="3" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="33463" centery="32252" centerz="7" radius="3">
-		<monster name="Boogy" x="3" y="0" z="7" spawntime="60" />
-		<monster name="Boogy" x="1" y="2" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="33470" centery="32252" centerz="7" radius="3">
 		<monster name="Butterfly" x="-1" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33477" centery="32252" centerz="7" radius="3">
-		<monster name="Boogy" x="-1" y="1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="-1" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-1" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32252" centerz="7" radius="3">
 		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
@@ -39148,6 +39166,9 @@
 		<monster name="Minotaur" x="2" y="-1" z="7" spawntime="90" />
 		<monster name="Minotaur" x="0" y="2" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="33522" centery="32257" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="32091" centery="32259" centerz="7" radius="3">
 		<monster name="Rabbit" x="-3" y="-1" z="7" spawntime="90" />
 		<monster name="Rabbit" x="1" y="1" z="7" spawntime="90" />
@@ -39180,16 +39201,13 @@
 		<monster name="Butterfly" x="-2" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33484" centery="32259" centerz="7" radius="3">
-		<monster name="Faun" x="0" y="-2" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="0" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33491" centery="32259" centerz="7" radius="3">
 		<monster name="Butterfly" x="0" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33512" centery="32259" centerz="7" radius="3">
-		<monster name="Faun" x="-3" y="-2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33526" centery="32259" centerz="7" radius="3">
-		<monster name="Boogy" x="1" y="3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="-3" y="-2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33533" centery="32259" centerz="7" radius="3">
 		<monster name="Butterfly" x="2" y="-1" z="7" spawntime="60" />
@@ -39264,11 +39282,11 @@
 		<monster name="Butterfly" x="-3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33477" centery="32266" centerz="7" radius="3">
-		<monster name="Dark Faun" x="2" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="2" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33512" centery="32266" centerz="7" radius="3">
-		<monster name="Dark Faun" x="-2" y="-3" z="7" spawntime="60" />
-		<monster name="Twisted Pooka" x="-3" y="2" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="-3" z="7" spawntime="60" />
+		<monster name="Pooka" x="-3" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33533" centery="32266" centerz="7" radius="3">
 		<monster name="Swan Maiden" x="-3" y="-3" z="7" spawntime="60" />
@@ -39279,7 +39297,7 @@
 	<monster centerx="33547" centery="32266" centerz="7" radius="3">
 		<monster name="Swan Maiden" x="-2" y="-3" z="7" spawntime="60" />
 		<monster name="Swan Maiden" x="1" y="0" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="-2" y="3" z="7" spawntime="60" />
+		<monster name="Nymph" x="-2" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33561" centery="32266" centerz="7" radius="3">
 		<monster name="Enfeebled Silencer" x="1" y="2" z="7" spawntime="60" />
@@ -39292,6 +39310,9 @@
 	</monster>
 	<monster centerx="32843" centery="32267" centerz="7" radius="2">
 		<monster name="Giant Spider" x="-1" y="1" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="33524" centery="32267" centerz="7" radius="1">
+		<monster name="Nymph" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32742" centery="32268" centerz="7" radius="2">
 		<monster name="Giant Spider" x="1" y="0" z="7" spawntime="90" />
@@ -39348,27 +39369,10 @@
 		<monster name="Pixie" x="3" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33512" centery="32273" centerz="7" radius="3">
-		<monster name="Twisted Pooka" x="-3" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33519" centery="32273" centerz="7" radius="3">
-		<monster name="Boogy" x="3" y="2" z="7" spawntime="60" />
+		<monster name="Pooka" x="-3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33554" centery="32273" centerz="7" radius="3">
 		<monster name="Weakened Frazzlemaw" x="1" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33610" centery="32273" centerz="7" radius="3">
-		<monster name="Retching Horror" x="3" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33617" centery="32273" centerz="7" radius="3">
-		<monster name="Silencer" x="2" y="-3" z="7" spawntime="60" />
-		<monster name="Silencer" x="-2" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33673" centery="32273" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="2" z="7" spawntime="90" />
-		<monster name="Retching Horror" x="2" y="3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33701" centery="32273" centerz="7" radius="3">
-		<monster name="Choking Fear" x="0" y="2" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32783" centery="32274" centerz="7" radius="2">
 		<monster name="Wasp" x="-1" y="-2" z="7" spawntime="90" />
@@ -39415,46 +39419,14 @@
 		<monster name="Pooka" x="-3" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33505" centery="32280" centerz="7" radius="3">
-		<monster name="Dark Faun" x="1" y="-1" z="7" spawntime="60" />
-		<monster name="Dark Faun" x="2" y="1" z="7" spawntime="60" />
+		<monster name="Nymph" x="1" y="-1" z="7" spawntime="60" />
+		<monster name="Nymph" x="2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33512" centery="32280" centerz="7" radius="3">
 		<monster name="Pixie" x="2" y="-3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33547" centery="32280" centerz="7" radius="3">
 		<monster name="Weakened Frazzlemaw" x="-1" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33561" centery="32280" centerz="7" radius="3">
-		<monster name="Weakened Frazzlemaw" x="-2" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33596" centery="32280" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-1" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33603" centery="32280" centerz="7" radius="3">
-		<monster name="Choking Fear" x="3" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33610" centery="32280" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-2" y="0" z="7" spawntime="60" />
-		<monster name="Silencer" x="1" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33673" centery="32280" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-1" y="-2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33680" centery="32280" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-2" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33694" centery="32280" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33701" centery="32280" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="-3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33708" centery="32280" centerz="7" radius="3">
-		<monster name="Retching Horror" x="2" y="2" z="7" spawntime="90" />
-		<monster name="Choking Fear" x="3" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33715" centery="32280" centerz="7" radius="3">
-		<monster name="Choking Fear" x="0" y="1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32364" centery="32282" centerz="7" radius="2">
 		<monster name="Snake" x="-2" y="-1" z="7" spawntime="90" />
@@ -39544,10 +39516,10 @@
 	</monster>
 	<monster centerx="33484" centery="32287" centerz="7" radius="3">
 		<monster name="Pixie" x="1" y="-2" z="7" spawntime="60" />
-		<monster name="Faun" x="3" y="0" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="3" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33491" centery="32287" centerz="7" radius="3">
-		<monster name="Faun" x="1" y="3" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="1" y="3" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33498" centery="32287" centerz="7" radius="3">
 		<monster name="Pixie" x="-1" y="-3" z="7" spawntime="60" />
@@ -39558,44 +39530,6 @@
 	</monster>
 	<monster centerx="33540" centery="32287" centerz="7" radius="3">
 		<monster name="Enfeebled Silencer" x="3" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33554" centery="32287" centerz="7" radius="3">
-		<monster name="Enfeebled Silencer" x="0" y="-2" z="7" spawntime="60" />
-		<monster name="Weakened Frazzlemaw" x="1" y="-1" z="7" spawntime="60" />
-		<monster name="Enfeebled Silencer" x="-2" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33561" centery="32287" centerz="7" radius="3">
-		<monster name="Enfeebled Silencer" x="0" y="-3" z="7" spawntime="60" />
-		<monster name="Weakened Frazzlemaw" x="0" y="-2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33589" centery="32287" centerz="7" radius="3">
-		<monster name="Silencer" x="3" y="-2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33596" centery="32287" centerz="7" radius="3">
-		<monster name="Choking Fear" x="0" y="-1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33603" centery="32287" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-1" y="3" z="7" spawntime="60" />
-		<monster name="Choking Fear" x="2" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33610" centery="32287" centerz="7" radius="3">
-		<monster name="Silencer" x="-3" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33617" centery="32287" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="1" z="7" spawntime="60" />
-		<monster name="Silencer" x="1" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33659" centery="32287" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-2" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33694" centery="32287" centerz="7" radius="3">
-		<monster name="Choking Fear" x="0" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33708" centery="32287" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="-3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33715" centery="32287" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="-3" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32302" centery="32288" centerz="7" radius="3">
 		<monster name="Skunk" x="-1" y="-2" z="7" spawntime="90" />
@@ -39676,12 +39610,6 @@
 	<monster centerx="32780" centery="32293" centerz="7" radius="3">
 		<monster name="Wyvern" x="0" y="-1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33574" centery="32293" centerz="7" radius="1">
-		<monster name="Sight of Surrender" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33671" centery="32293" centerz="7" radius="1">
-		<monster name="Choking Fear" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32063" centery="32294" centerz="7" radius="3">
 		<monster name="Rabbit" x="-2" y="-3" z="7" spawntime="90" />
 	</monster>
@@ -39716,29 +39644,6 @@
 	<monster centerx="33540" centery="32294" centerz="7" radius="3">
 		<monster name="Enfeebled Silencer" x="1" y="0" z="7" spawntime="60" />
 		<monster name="Enfeebled Silencer" x="3" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33547" centery="32294" centerz="7" radius="3">
-		<monster name="Weakened Frazzlemaw" x="3" y="-1" z="7" spawntime="60" />
-		<monster name="Enfeebled Silencer" x="3" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33610" centery="32294" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="0" z="7" spawntime="60" />
-		<monster name="Silencer" x="2" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33617" centery="32294" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-1" y="-2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33645" centery="32294" centerz="7" radius="3">
-		<monster name="Choking Fear" x="2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33666" centery="32294" centerz="7" radius="3">
-		<monster name="Choking Fear" x="2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33680" centery="32294" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-1" y="-2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33729" centery="32294" centerz="7" radius="3">
-		<monster name="Choking Fear" x="0" y="3" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32801" centery="32295" centerz="7" radius="1">
 		<monster name="Giant Spider" x="0" y="0" z="7" spawntime="60" />
@@ -39794,7 +39699,7 @@
 		<monster name="Wisp" x="-2" y="-1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33512" centery="32301" centerz="7" radius="3">
-		<monster name="Faun" x="2" y="1" z="7" spawntime="60" />
+		<monster name="Swan Maiden" x="2" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="33540" centery="32301" centerz="7" radius="3">
 		<monster name="Weakened Frazzlemaw" x="3" y="2" z="7" spawntime="60" />
@@ -39802,37 +39707,6 @@
 	</monster>
 	<monster centerx="33547" centery="32301" centerz="7" radius="3">
 		<monster name="Weakened Frazzlemaw" x="-3" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33554" centery="32301" centerz="7" radius="3">
-		<monster name="Weakened Frazzlemaw" x="-1" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33568" centery="32301" centerz="7" radius="3">
-		<monster name="Sight of Surrender" x="-1" y="-3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33603" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33617" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="0" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33638" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33645" centery="32301" centerz="7" radius="3">
-		<monster name="Silencer" x="3" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33673" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33680" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="3" y="-2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33687" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="3" y="-2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33729" centery="32301" centerz="7" radius="3">
-		<monster name="Retching Horror" x="2" y="0" z="7" spawntime="90" />
-		<monster name="Retching Horror" x="3" y="1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32375" centery="32302" centerz="7" radius="2">
 		<monster name="Deer" x="0" y="1" z="7" spawntime="90" />
@@ -39879,26 +39753,6 @@
 	<monster centerx="33215" centery="32308" centerz="7" radius="2">
 		<monster name="Sandcrawler" x="1" y="-1" z="7" spawntime="90" />
 		<monster name="Sandcrawler" x="1" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33547" centery="32308" centerz="7" radius="3">
-		<monster name="Weakened Frazzlemaw" x="2" y="-1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33561" centery="32308" centerz="7" radius="3">
-		<monster name="Sight of Surrender" x="-2" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33624" centery="32308" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33631" centery="32308" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-3" y="-2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33645" centery="32308" centerz="7" radius="3">
-		<monster name="Choking Fear" x="2" y="-3" z="7" spawntime="90" />
-		<monster name="Retching Horror" x="2" y="-2" z="7" spawntime="90" />
-		<monster name="Silencer" x="1" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33687" centery="32308" centerz="7" radius="3">
-		<monster name="Retching Horror" x="0" y="3" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32623" centery="32309" centerz="7" radius="3">
 		<monster name="Bandit" x="0" y="-3" z="7" spawntime="90" />
@@ -39964,25 +39818,6 @@
 		<monster name="Weakened Frazzlemaw" x="-1" y="-3" z="7" spawntime="60" />
 		<monster name="Weakened Frazzlemaw" x="-1" y="2" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="33540" centery="32315" centerz="7" radius="3">
-		<monster name="Weakened Frazzlemaw" x="0" y="0" z="7" spawntime="60" />
-		<monster name="Weakened Frazzlemaw" x="0" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33575" centery="32315" centerz="7" radius="3">
-		<monster name="Sight of Surrender" x="-1" y="1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33603" centery="32315" centerz="7" radius="3">
-		<monster name="Retching Horror" x="0" y="-3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33610" centery="32315" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-1" y="-3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33617" centery="32315" centerz="7" radius="3">
-		<monster name="Retching Horror" x="0" y="2" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33638" centery="32315" centerz="7" radius="3">
-		<monster name="Silencer" x="1" y="-1" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32320" centery="32316" centerz="7" radius="1">
 		<monster name="Wolf" x="1" y="-1" z="7" spawntime="90" />
 	</monster>
@@ -39995,18 +39830,11 @@
 	<monster centerx="33229" centery="32316" centerz="7" radius="2">
 		<monster name="Sandcrawler" x="2" y="1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33646" centery="32316" centerz="7" radius="1">
-		<monster name="Choking Fear" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32325" centery="32318" centerz="7" radius="1">
 		<monster name="Spider" x="1" y="1" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32762" centery="32318" centerz="7" radius="2">
 		<monster name="Scorpion" x="1" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33704" centery="32318" centerz="7" radius="1">
-		<monster name="Retching Horror" x="0" y="-1" z="7" spawntime="14219" />
-		<monster name="Retching Horror" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32341" centery="32319" centerz="7" radius="1">
 		<monster name="Wolf" x="-1" y="-1" z="7" spawntime="90" />
@@ -40062,9 +39890,6 @@
 	<monster centerx="33526" centery="32322" centerz="7" radius="3">
 		<monster name="Weakened Frazzlemaw" x="1" y="1" z="7" spawntime="60" />
 	</monster>
-	<monster centerx="33701" centery="32322" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="-2" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32341" centery="32323" centerz="7" radius="1">
 		<monster name="Wolf" x="-1" y="0" z="7" spawntime="90" />
 	</monster>
@@ -40076,13 +39901,6 @@
 	<monster centerx="33191" centery="32323" centerz="7" radius="1">
 		<monster name="Nomad" x="0" y="1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33623" centery="32323" centerz="7" radius="1">
-		<monster name="Retching Horror" x="0" y="0" z="7" spawntime="1768" />
-	</monster>
-	<monster centerx="33656" centery="32323" centerz="7" radius="2">
-		<monster name="Silencer" x="0" y="-1" z="7" spawntime="60" />
-		<monster name="Choking Fear" x="2" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32324" centery="32324" centerz="7" radius="1">
 		<monster name="Spider" x="0" y="1" z="7" spawntime="90" />
 	</monster>
@@ -40092,9 +39910,6 @@
 	<monster centerx="32461" centery="32324" centerz="7" radius="2">
 		<monster name="Spider" x="-2" y="0" z="7" spawntime="90" />
 		<monster name="Spider" x="2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33550" centery="32324" centerz="7" radius="1">
-		<monster name="Sight of Surrender" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32445" centery="32325" centerz="7" radius="2">
 		<monster name="Spider" x="0" y="-2" z="7" spawntime="90" />
@@ -40116,12 +39931,6 @@
 	<monster centerx="33239" centery="32325" centerz="7" radius="1">
 		<monster name="Lion" x="1" y="1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33666" centery="32325" centerz="7" radius="3">
-		<monster name="Choking Fear" x="2" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33567" centery="32326" centerz="7" radius="1">
-		<monster name="Sight of Surrender" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32344" centery="32327" centerz="7" radius="1">
 		<monster name="Wolf" x="-1" y="1" z="7" spawntime="90" />
 	</monster>
@@ -40135,9 +39944,6 @@
 		<monster name="Wolf" x="-2" y="-2" z="7" spawntime="90" />
 		<monster name="Wolf" x="-1" y="2" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33580" centery="32328" centerz="7" radius="1">
-		<monster name="Choking Fear" x="1" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32330" centery="32329" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="1" z="7" spawntime="90" />
 	</monster>
@@ -40148,16 +39954,9 @@
 	<monster centerx="33216" centery="32329" centerz="7" radius="1">
 		<monster name="Nomad" x="0" y="-1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33673" centery="32329" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-2" y="-2" z="7" spawntime="60" />
-		<monster name="Retching Horror" x="0" y="0" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32804" centery="32330" centerz="7" radius="3">
 		<monster name="Elf Scout" x="-1" y="-2" z="7" spawntime="90" />
 		<monster name="Elf Scout" x="2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33583" centery="32330" centerz="7" radius="1">
-		<monster name="Retching Horror" x="1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32245" centery="32331" centerz="7" radius="4">
 		<monster name="Deer" x="2" y="-4" z="7" spawntime="90" />
@@ -40227,33 +40026,6 @@
 	</monster>
 	<monster centerx="33254" centery="32336" centerz="7" radius="2">
 		<monster name="Deer" x="1" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33554" centery="32336" centerz="7" radius="3">
-		<monster name="Sight of Surrender" x="2" y="3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33589" centery="32336" centerz="7" radius="3">
-		<monster name="Silencer" x="2" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33596" centery="32336" centerz="7" radius="3">
-		<monster name="Choking Fear" x="3" y="-3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33603" centery="32336" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33617" centery="32336" centerz="7" radius="3">
-		<monster name="Retching Horror" x="3" y="-3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33631" centery="32336" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-2" y="3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33673" centery="32336" centerz="7" radius="2">
-		<monster name="Choking Fear" x="0" y="-1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33684" centery="32336" centerz="7" radius="2">
-		<monster name="Retching Horror" x="0" y="-1" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33694" centery="32336" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="1" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32298" centery="32337" centerz="7" radius="1">
 		<monster name="Spider" x="1" y="1" z="7" spawntime="90" />
@@ -40354,27 +40126,6 @@
 	<monster centerx="33110" centery="32343" centerz="7" radius="1">
 		<monster name="Wasp" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33575" centery="32343" centerz="7" radius="3">
-		<monster name="Choking Fear" x="1" y="-3" z="7" spawntime="60" />
-		<monster name="Retching Horror" x="1" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33589" centery="32343" centerz="7" radius="3">
-		<monster name="Retching Horror" x="0" y="3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33596" centery="32343" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33617" centery="32343" centerz="7" radius="3">
-		<monster name="Choking Fear" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Choking Fear" x="3" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33624" centery="32343" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-1" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33673" centery="32343" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-3" y="-3" z="7" spawntime="60" />
-		<monster name="Retching Horror" x="0" y="2" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32288" centery="32345" centerz="7" radius="1">
 		<monster name="Poison Spider" x="-1" y="1" z="7" spawntime="90" />
 	</monster>
@@ -40459,22 +40210,6 @@
 	<monster centerx="33298" centery="32350" centerz="7" radius="1">
 		<monster name="Nomad" x="1" y="-1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33568" centery="32350" centerz="7" radius="3">
-		<monster name="Silencer" x="1" y="-3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33575" centery="32350" centerz="7" radius="3">
-		<monster name="Choking Fear" x="1" y="3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33596" centery="32350" centerz="7" radius="3">
-		<monster name="Silencer" x="0" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33638" centery="32350" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33659" centery="32350" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="-2" z="7" spawntime="60" />
-		<monster name="Choking Fear" x="-1" y="1" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32272" centery="32351" centerz="7" radius="3">
 		<monster name="Rabbit" x="-1" y="-1" z="7" spawntime="90" />
 		<monster name="Rabbit" x="2" y="2" z="7" spawntime="90" />
@@ -40494,12 +40229,6 @@
 	<monster centerx="33302" centery="32351" centerz="7" radius="1">
 		<monster name="Nomad" x="0" y="1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33553" centery="32351" centerz="7" radius="1">
-		<monster name="Sight of Surrender" x="0" y="0" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33688" centery="32351" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-1" y="1" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32301" centery="32352" centerz="7" radius="1">
 		<monster name="Spider" x="1" y="-1" z="7" spawntime="90" />
 	</monster>
@@ -40515,10 +40244,6 @@
 	</monster>
 	<monster centerx="33237" centery="32352" centerz="7" radius="2">
 		<monster name="Sandcrawler" x="-1" y="-2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33669" centery="32352" centerz="7" radius="5">
-		<monster name="Choking Fear" x="-2" y="-5" z="7" spawntime="60" />
-		<monster name="Choking Fear" x="2" y="2" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32248" centery="32353" centerz="7" radius="3">
 		<monster name="Incredibly Old Witch" x="-1" y="0" z="7" spawntime="90" />
@@ -40577,16 +40302,6 @@
 	</monster>
 	<monster centerx="33141" centery="32357" centerz="7" radius="3">
 		<monster name="Larva" x="-2" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33533" centery="32357" centerz="7" radius="3">
-		<monster name="Sight of Surrender" x="1" y="-3" z="7" spawntime="60" />
-	</monster>
-	<monster centerx="33645" centery="32357" centerz="7" radius="3">
-		<monster name="Retching Horror" x="-3" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33701" centery="32357" centerz="7" radius="3">
-		<monster name="Choking Fear" x="-3" y="-2" z="7" spawntime="60" />
-		<monster name="Retching Horror" x="2" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32293" centery="32358" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="-1" z="7" spawntime="90" />
@@ -40649,19 +40364,9 @@
 	<monster centerx="33215" centery="32364" centerz="7" radius="2">
 		<monster name="Sandcrawler" x="1" y="1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33596" centery="32364" centerz="7" radius="3">
-		<monster name="Choking Fear" x="3" y="-3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33603" centery="32364" centerz="7" radius="3">
-		<monster name="Retching Horror" x="1" y="-3" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="32269" centery="32365" centerz="7" radius="3">
 		<monster name="Bear" x="-3" y="0" z="7" spawntime="90" />
 		<monster name="Bear" x="2" y="2" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33654" centery="32365" centerz="7" radius="2">
-		<monster name="Retching Horror" x="1" y="-1" z="7" spawntime="60" />
-		<monster name="Choking Fear" x="-1" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="32196" centery="32366" centerz="7" radius="1">
 		<monster name="Seagull" x="-1" y="0" z="7" spawntime="90" />
@@ -40680,12 +40385,6 @@
 	<monster centerx="33315" centery="32366" centerz="7" radius="1">
 		<monster name="Nomad" x="1" y="-1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33572" centery="32366" centerz="7" radius="1">
-		<monster name="Silencer" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33667" centery="32366" centerz="7" radius="2">
-		<monster name="Retching Horror" x="2" y="-1" z="7" spawntime="60" />
-	</monster>
 	<monster centerx="32325" centery="32369" centerz="7" radius="1">
 		<monster name="Snake" x="1" y="1" z="7" spawntime="90" />
 	</monster>
@@ -40698,9 +40397,6 @@
 	<monster centerx="33072" centery="32369" centerz="7" radius="3">
 		<monster name="Nomad" x="3" y="-1" z="7" spawntime="90" />
 		<monster name="Nomad" x="-1" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33693" centery="32369" centerz="7" radius="1">
-		<monster name="Guzzlemaw" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="32205" centery="32370" centerz="7" radius="1">
 		<monster name="Wolf" x="1" y="0" z="7" spawntime="90" />
@@ -40731,12 +40427,8 @@
 	<monster centerx="33596" centery="32371" centerz="7" radius="3">
 		<monster name="Choking Fear" x="-3" y="1" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="33659" centery="32371" centerz="7" radius="3">
-		<monster name="Choking Fear" x="3" y="-3" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="33680" centery="32371" centerz="7" radius="3">
-		<monster name="Choking Fear" x="1" y="-2" z="7" spawntime="90" />
-	</monster>
+	<monster centerx="33659" centery="32371" centerz="7" radius="3" />
+	<monster centerx="33680" centery="32371" centerz="7" radius="3" />
 	<monster centerx="33701" centery="32371" centerz="7" radius="3">
 		<monster name="Retching Horror" x="-2" y="1" z="7" spawntime="90" />
 	</monster>
