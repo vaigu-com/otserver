@@ -6905,11 +6905,7 @@ void ProtocolGame::sendRestingStatus(uint8_t protection) {
 	msg.addByte(0xA9);
 	msg.addByte(protection); // 1 / 0
 
-	uint8_t dailyStreak = 0;
-	auto dailyRewardKV = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreakEndless");
-	if (dailyRewardKV && dailyRewardKV.has_value()) {
-		dailyStreak = static_cast<uint8_t>(dailyRewardKV->getNumber());
-	}
+	auto dailyStreak = player->getStorageValueByKey("Storage-DailyRewardShrine-ConsecutiveDaysStreakEndless");
 
 	msg.addByte(dailyStreak < 2 ? 0 : 1);
 	if (dailyStreak < 2) {

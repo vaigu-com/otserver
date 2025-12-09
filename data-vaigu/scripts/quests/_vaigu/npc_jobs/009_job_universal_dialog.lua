@@ -512,7 +512,7 @@ pseudoQuest
 				text = "Hello, you need some help? Check {services} that I offer...",
 			},
 			[{ "pomoc", "uslug", "uslugi", "help", "services" }] = {
-				text = "You are in the MirkoTown temple. If you wish, I can {bless} you, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
+				text = "You are in a temple. If you wish, I can {bless} you with regular blessings or a {twist of fate}, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
 			},
 
 			--Automatic on language change
@@ -550,7 +550,8 @@ pseudoQuest
 					},
 					{
 						requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasBlessings,
-						count = ALL_BLESSINGS_COUNT,
+						min = 2,
+						max = 6,
 						requiredOutcome = false,
 						textFailedRequirement = "You have been blessed already.",
 					},
@@ -563,6 +564,36 @@ pseudoQuest
 					},
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.chargeForBless,
+					},
+				},
+			},
+			[{ "twist of fate" }] = {
+				text = "TWIST_OF_FATE_PRICE_TEXT",
+				nextTopic = QuestTopics.JOB_TOPICS.confirmBuyTwistoffate,
+			},
+			[{ "yes", "tak" }] = {
+				text = "Here you go.",
+				requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyTwistoffate,
+				specialRequirements = {
+					{
+						requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.canAffordTwistOfFate,
+						requiredOutcome = true,
+						textFailedRequirement = "TWIST_OF_FATE_INSUFFICIENT_MONEY",
+					},
+					{
+						requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasTwistOfFate,
+						requiredOutcome = false,
+						textFailedRequirement = "You have already been blessed with twist of fate.",
+					},
+				},
+				specialActionsOnSuccess = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.grantBless,
+						min = 1,
+						max = 1,
+					},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.chargeForTwistOfFate,
 					},
 				},
 			},

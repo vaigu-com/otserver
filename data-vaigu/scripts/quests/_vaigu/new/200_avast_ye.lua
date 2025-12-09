@@ -271,7 +271,7 @@ quest
 						[Storage.AvastYe.TrustedWith.Redbeard] = ACCESS_GRANTED,
 						[Storage.AvastYe.TrustedWith.Morgram] = ACCESS_GRANTED,
 					},
-					outfitRewards = QuestRewards.OutfitsAddons.AvastYe.Pirate0
+					outfitRewards = QuestRewards.OutfitsAddons.AvastYe.Pirate0,
 				},
 			})
 	end)
@@ -355,6 +355,7 @@ quest
 					nextState = {
 						[Storage.AvastYe.Mission01] = MISSION_FINISHED,
 						[Storage.AvastYe.ShipDestinations.NagaIsland] = ACCESS_GRANTED,
+						[Storage.Finished.AvastYe] = MISSION_FINISHED,
 					},
 				},
 			})

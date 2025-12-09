@@ -89,6 +89,11 @@ function onUpdateDatabase()
             CHANGE COLUMN created expiry_timestamp BIGINT(20) UNSIGNED NOT NULL;
     ]])
 
+	logger.info("(donation points)")
+	db.query([[
+		ALTER TABLE accounts ADD COLUMN coins_donation INT(12) UNSIGNED NOT NULL DEFAULT 0;
+	]])
+
 	logger.info("Updated database to version 53 (vaigu custom)")
 	return true
 end

@@ -1,6 +1,6 @@
 return {
 	["Hello, you need some help? Check {services} that I offer..."] = "Witaj, potrzebujesz pomocy? Przysluguje mi wykonywanie kaplanskich {uslug}.",
-	["You are in the MirkoTown temple. If you wish, I can {bless} you, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here."] = "Znajdujesz sie w swiatyni miasta. Jezeli chcesz, moge {uleczyc} Twoje rany, {poblogoslawic} Cie, {awansowac} lub {zaznaczyc} na mapie najwazniejszych NPC. ...\nPrzeprowadzam takze obrzed zawarcia {malzenstwa}.",
+	["You are in a temple. If you wish, I can {bless} you with regular blessings or a {twist of fate}, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here."] = "Znajdujesz sie w swiatyni miasta. Jezeli chcesz, moge {uleczyc} Twoje rany, {poblogoslawic} Cie zwyczajnie albo za pomoca {twist of fate}, {awansowac} lub {zaznaczyc} na mapie najwazniejszych NPC. ...\nPrzeprowadzam takze obrzed zawarcia {malzenstwa}.",
 	["I marked few points of interest on your map."] = "Prosze bardzo. Zagladnij do mnie za jakis czas, mozliwe ze pojawia sie nowi NPC.",
 	["Thank you."] = "Dzieki Ci za ofiare. Idz w pokoju i badz blogoslawiony.",
 	["You have been blessed already."] = "Juz Cie poblogoslawilem. Odezwij sie, gdy stracisz moja moc.",
@@ -16,6 +16,13 @@ return {
 		local player = context.player
 		local finalString = T("Wybacz, ale abym Cie poblogoslawil musisz wpierw zlozyc ofiare na tace... skromne :blessPrice: sztuk zlota.", {
 			blessPrice = player:getFiveBlessingsCost(),
+		})
+		return finalString
+	end,
+	["TWIST_OF_FATE_INSUFFICIENT_MONEY"] = function(context)
+		local player = context.player
+		local finalString = T("Wybacz, ale abym Cie poblogoslawil musisz wpierw zlozyc ofiare na tace... skromne :blessPrice: sztuk zlota.", {
+			blessPrice = Blessings.getPvpBlessingCost(player:getLevel()),
 		})
 		return finalString
 	end,

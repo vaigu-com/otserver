@@ -89,7 +89,7 @@ return {
 			requiredKills = requiredKills,
 		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to the Mayor:\n" .. ItemsToString(requiredItems)
+			dailyTaskDescription = dailyTaskDescription .. "\n\nYou will also need to bring the following creature products to any town ruler:\n" .. ItemsToString(requiredItems)
 		end
 		dailyTaskDescription = dailyTaskDescription .. T("\nYou will get :money: gold and :tibiaCoins: store coins!", {
 			money = dailyTask.money,

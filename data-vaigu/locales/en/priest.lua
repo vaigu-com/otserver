@@ -1,6 +1,6 @@
 return {
 	["Hello, you need some help? Check {services} that I offer..."] = "Hello, you need some help? Check {services} that I offer...",
-	["You are in the MirkoTown temple. If you wish, I can {bless} you, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here."] = "You are in the MirkoTown temple. If you wish, I can {bless} you, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
+	["You are in a temple. If you wish, I can {bless} you with regular blessings or a {twist of fate}, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here."] = "You are in a temple. If you wish, I can {bless} you with regular blessings or a {twist of fate}, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
 	["I marked few points of interest on your map."] = "I marked few points of interest on your map.",
 	["Thank you."] = "Thank you.",
 	["You have been blessed already."] = "You have been blessed already.",
@@ -14,8 +14,15 @@ return {
 	end,
 	["BLESS_INSUFFICIENT_MONEY"] = function(context)
 		local player = context.player
-		local finalString = T("Sorry, but you need just.. :blessPrice: of gold for that.", {
+		local finalString = T("Sorry, but you need just.. :blessPrice: gold for that.", {
 			blessPrice = player:getFiveBlessingsCost(),
+		})
+		return finalString
+	end,
+	["TWIST_OF_FATE_INSUFFICIENT_MONEY"] = function(context)
+		local player = context.player
+		local finalString = T("Sorry, but you need just.. :blessPrice: gold for that.", {
+			blessPrice = Blessings.getPvpBlessingCost(player:getLevel()),
 		})
 		return finalString
 	end,

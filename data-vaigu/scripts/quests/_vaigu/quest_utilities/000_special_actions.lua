@@ -103,7 +103,13 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		if level <= MAX_LVL_TO_GET_FREE_BLESS then
 			return
 		end
+		
 		player:removeMoney(player:getFiveBlessingsCost())
+	end,
+	chargeForTwistOfFate = function(context)
+		local player = context.player
+		local level = player:getLevel()
+		player:removeMoney(Blessings.getPvpBlessingCost(level))
 	end,
 	removeMoneyBank = function(context)
 		local player = context.player

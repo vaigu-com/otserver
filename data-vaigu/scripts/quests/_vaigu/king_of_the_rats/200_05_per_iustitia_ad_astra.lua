@@ -1620,7 +1620,9 @@ quest
 		end
 		local function createBabySealsSalt()
 			for key, pos in pairs(saltPositions) do
-				Game.createItem(saltId, 1, pos):setUniqueId(1000)
+				local saltItem = Game.createItem(saltId, 1, pos)
+				saltItem:setUniqueId(1000)
+				saltItem:setKey(Storage.PerIustitiaAdAstra.SaltyTile)
 			end
 			for key, pos in pairs(babySealPositions) do
 				Game.createItem(babySealId, 1, pos):setUniqueId(1000)
@@ -1705,8 +1707,6 @@ quest
 	end)
 	:MonsterEvent(function()
 		local saltId = 22694
-		local saltMultiplier = 10
-
 		local function standsOnSaltyTile(creature)
 			local salt = creature:getPosition():GetItemById(saltId)
 			if not salt then
@@ -1719,6 +1719,7 @@ quest
 			return true
 		end
 
+		local saltMultiplier = 10
 		local rukcaHealthChange = CreatureEvent("RukcaHealth")
 		rukcaHealthChange:type("healthchange")
 		function rukcaHealthChange.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType)

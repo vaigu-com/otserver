@@ -46,14 +46,13 @@ quest
 			ProdigalSon = {},
 			--#endregion
 
-			--#region 2024
+			--#region Desert quest
 			CaveExplorerOnShield = {},
 			DesertQuestOne = {},
 			DesertQuestTwo = {},
-			--#endregion
+			--#endregion 2024
 
 			--local support
-			EnterTheDrunkTank = {},
 			Discernment = {},
 			WoodDelivery = {},
 			PotionConveyorJourneyman = {},
@@ -87,6 +86,12 @@ quest
 			RudeEviction = {},
 			SecretIngredient = {},
 			SingingCrystal = {},
+
+			--#region 2025
+			AvastYe = {},
+			EnterTheDrunkTank = {},
+			RetroRulez = {},
+			--#endregion 2025
 		}
 	end)
 	:NoQuestlog()

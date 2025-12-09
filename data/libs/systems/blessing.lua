@@ -18,7 +18,7 @@ Blessings.Config = {
 -- Vaigu custom
 -- Disable twist of fate
 do
-	Blessings.Config.HasToF = false
+	Blessings.Config.HasToF = true
 end
 
 Blessings.Types = {

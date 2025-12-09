@@ -6,12 +6,18 @@ function Player:canRemoveMoney(amount)
 	return (balance + playerMoney) >= amount
 end
 
-local maxPricePerCard = 1500
+local minPreycardPrice = 200
+local maxPreycardPrice = 20000
 function Player:GetWildcardPrice()
 	local level = self:getLevel()
 
-	local price = 90 * level / math.log(400 - level, 2)
-	return math.floor(math.min(price, maxPricePerCard))
+	if level <= 150 then
+		price = math.floor(10 * level ^ 1.4 / math.log(level + 5, 9))
+	elseif level > 150 then
+		price = level * 33
+	end
+
+	return math.clamp(price, minPreycardPrice, maxPreycardPrice)
 end
 
 function Player:GetTotalMoney()

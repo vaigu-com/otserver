@@ -30,6 +30,8 @@ public:
 	virtual bool loadByID(const uint32_t &id, std::unique_ptr<AccountInfo> &acc) = 0;
 	virtual bool loadByEmailOrName(bool oldProtocol, const std::string &emailOrName, std::unique_ptr<AccountInfo> &acc) = 0;
 	virtual bool loadBySession(const std::string &email, std::unique_ptr<AccountInfo> &acc) = 0;
+	virtual	uint32_t getNewDonationCoins(const uint32_t &id) = 0;
+	virtual	void flushNewDonationCoins(const uint32_t &id) = 0;
 	virtual bool save(const std::unique_ptr<AccountInfo> &accInfo) = 0;
 
 	virtual bool getCharacterByAccountIdAndName(const uint32_t &id, const std::string &name) = 0;

@@ -29,6 +29,7 @@
 #include "server/network/protocol/protocolgame.hpp"
 #include "account/account.hpp"
 #include "io/iomarket.hpp"
+#include "enums/account_coins.hpp"
 
 SaveManager::SaveManager(ThreadPool &threadPool, KVStore &kvStore, Logger &logger, Game &game) :
 	threadPool(threadPool), kv(kvStore), logger(logger), game(game)
@@ -98,6 +99,15 @@ void SaveManager::saveAll() {
 	const auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
 	const auto guilds = game.getGuilds();
 
+	std::unordered_set<std::shared_ptr<Account>> accounts;
+	for (const auto &[_, player] : players) {
+		accounts.insert(player->account);
+	}
+	for (std::shared_ptr<Account> account : accounts) {
+		const auto newDonationCoins = g_accountRepository().getNewDonationCoins(account->getID());
+		account->addCoins(CoinType::Transferable, newDonationCoins, std::format("DONATION; COINS:", newDonationCoins));
+	}
+
 	pid_t pid = fork();
 	if (pid < 0) {
 		perror("Fork failed");
@@ -131,8 +141,17 @@ void SaveManager::saveAll() {
 	const auto offlinePlayerGuids = flushOffline(players);
 	const auto newCoinTransactions = g_accountRepository().flushCoinTransactionEntries();
 	const auto guilds = game.getGuilds();
+	
+	std::unordered_set<std::shared_ptr<Account>> accounts;
+	for (const auto &[_, player] : players) {
+		accounts.insert(player->account);
+	}
+	for (std::shared_ptr<Account> account : accounts) {
+		const auto newDonationCoins = g_accountRepository().getNewDonationCoins(account->getID());
+		account->addCoins(CoinType::Transferable, newDonationCoins, std::format("DONATION; COINS:", newDonationCoins));
+	}
 
-	saveAllInner({newCoinTransactions, players, offlinePlayerGuids, guilds});
+	saveAllInner({ newCoinTransactions, players, offlinePlayerGuids, guilds });
 	saving = false;
 
 	fflush(stdout);
@@ -148,11 +167,17 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 	const auto guilds = context.guilds;
 
 	const auto result = DBTransaction::executeWithinTransaction([this, newCoinTransactions, players, offlinePlayerGuids, guilds] {
+		std::unordered_set<std::shared_ptr<Account>> accounts;
+
 		for (const auto &[_, player] : players) {
 			savePlayer(player);
-			player->account->save();
+			accounts.insert(player->account);
 		}
 
+		for (std::shared_ptr<Account> account : accounts) {
+			g_accountRepository().flushNewDonationCoins(account->getID());
+			account->save();
+		}
 		for (const auto &[_, guild] : guilds) {
 			saveGuild(guild);
 		}
@@ -165,6 +190,7 @@ void SaveManager::saveAllInner(const SaveContext &context) {
 		setSuccesfulSaveTimestamp();
 		return true;
 	});
+	g_game().updatePlayersOnline(players);
 	if (result.status == COMMITTED) {
 		logger.info("Server saved in {} milliseconds.", bm_saveAll.duration());
 	} else {

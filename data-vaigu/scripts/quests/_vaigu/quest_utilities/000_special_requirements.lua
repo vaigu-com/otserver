@@ -63,6 +63,20 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 		end
 		return false
 	end,
+	canAffordTwistOfFate = function(context)
+		local player = context.player
+		local level = player:getLevel()
+
+		local price = Blessings.getPvpBlessingCost(level)
+		context.price = price
+		if SPECIAL_REQUIREMENTS_UNIVERSAL.hasMoney(context) then
+			return true
+		end
+		return false
+	end,
+	hasTwistOfFate = function(context)
+		return context.player:hasBlessing(1)
+	end,
 	hasMoney = function(context)
 		local requiredMoney = context.price or context.money or context.requiredMoney
 		return context.player:canRemoveMoney(requiredMoney), "You dont have enough money."
@@ -90,7 +104,12 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 		return context.player:hasMount(context.mountId)
 	end,
 	hasBlessings = function(context)
-		return context.player:hasBlessing(context.count or 1)
+		for i = context.min, context.max do
+			if not context.player:hasBlessing(i) then
+				return false
+			end
+		end
+		return true
 	end,
 	isPromoted = function(context)
 		return context.player:isPromoted()
