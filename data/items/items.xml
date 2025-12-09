@@ -2672,7 +2672,7 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="25"/>
-		<attribute key="absorbpercentfire" value="-10"/>
+		<attribute key="absorbpercentfire" value="-40"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent">
@@ -2685,7 +2685,7 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentice" value="25"/>
-		<attribute key="absorbpercentenergy" value="-10"/>
+		<attribute key="absorbpercentenergy" value="-40"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent">
@@ -2697,7 +2697,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentpoison" value="-10"/>
+		<attribute key="absorbpercentpoison" value="-40"/>
 		<attribute key="absorbpercentenergy" value="25"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
@@ -2710,7 +2710,7 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentice" value="-10"/>
+		<attribute key="absorbpercentice" value="-40"/>
 		<attribute key="absorbpercentfire" value="25"/>
 		<attribute key="charges" value="200"/>
 		<attribute key="weight" value="500"/>
@@ -6698,6 +6698,11 @@
 	</item>
 	<item id="3014" article="a" name="star amulet">
 		<attribute key="primarytype" value="amulets and necklaces"/>
+		<attribute key="armor" value="1"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="magiclevelpoints" value="1"/>
+		<attribute key="skilldist" value="1"/>
+		<attribute key="absorbpercentholy" value="7"/>
 		<attribute key="weight" value="610"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -6730,6 +6735,12 @@
 	</item>
 	<item id="3019" article="a" name="demonbone amulet">
 		<attribute key="primarytype" value="amulets and necklaces"/>
+		<attribute key="armor" value="2"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentphysical" value="1"/>
+		<attribute key="absorbpercentdeath" value="6"/>
+		<attribute key="absorbpercentlifedrain" value="10"/>
+		<attribute key="absorbpercentholy" value="-15"/>
 		<attribute key="weight" value="690"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -6741,6 +6752,10 @@
 	</item>
 	<item id="3021" article="a" name="sapphire amulet">
 		<attribute key="primarytype" value="amulets and necklaces"/>
+		<attribute key="armor" value="3"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentice" value="14"/>
+		<attribute key="absorbpercentfire" value="-30"/>
 		<attribute key="weight" value="680"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -7259,14 +7274,14 @@
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentphysical" value="5"/>
-		<attribute key="absorbpercentfire" value="5"/>
-		<attribute key="absorbpercentpoison" value="5"/>
-		<attribute key="absorbpercentenergy" value="5"/>
-		<attribute key="absorbpercentice" value="5"/>
-		<attribute key="absorbpercentholy" value="5"/>
-		<attribute key="absorbpercentdeath" value="5"/>
-		<attribute key="charges" value="50"/>
+		<attribute key="absorbpercentphysical" value="-10"/>
+		<attribute key="absorbpercentfire" value="8"/>
+		<attribute key="absorbpercentpoison" value="-10"/>
+		<attribute key="absorbpercentenergy" value="8"/>
+		<attribute key="absorbpercentice" value="8"/>
+		<attribute key="absorbpercentholy" value="20"/>
+		<attribute key="absorbpercentdeath" value="15"/>
+		<attribute key="charges" value="100"/>
 		<attribute key="weight" value="270"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -7492,6 +7507,7 @@
 	</item>
 	<item id="3102" article="a" name="paw amulet">
 		<attribute key="primarytype" value="amulets and necklaces"/>
+		<attribute key="armor" value="2"/>
 		<attribute key="weight" value="420"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -8726,7 +8742,7 @@
 		<attribute key="attack" value="25"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="7"/>
+			<attribute key="breakChance" value="4"/>
 			<attribute key="weaponType" value="missile"/>
 			<attribute key="slot" value="hand"/>
 		</attribute>
@@ -9757,7 +9773,7 @@
 	<item id="3368" article="a" name="winged helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="description" value="It's the Helmet of Hermes"/>
-		<attribute key="armor" value="10"/>
+		<attribute key="armor" value="15"/>
 		<attribute key="weight" value="1200"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -9984,6 +10000,9 @@
 	<item id="3388" article="a" name="demon armor">
 		<attribute key="primarytype" value="armors"/>
 		<attribute key="armor" value="16"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="magiclevelpoints" value="1"/>
+        <attribute key="absorbpercentmanadrain" value="20"/>
 		<attribute key="weight" value="8000"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3"/>
@@ -10011,7 +10030,9 @@
 	</item>
 	<item id="3390" article="a" name="horned helmet">
 		<attribute key="primarytype" value="helmets"/>
-		<attribute key="armor" value="11"/>
+		<attribute key="armor" value="13"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentphysical" value="8"/>
 		<attribute key="weight" value="5100"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -10094,7 +10115,15 @@
 	</item>
 	<item id="3395" article="a" name="ceremonial mask">
 		<attribute key="primarytype" value="helmets"/>
-		<attribute key="armor" value="9"/>
+		<attribute key="armor" value="11"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentphysical" value="2"/>
+		<attribute key="absorbpercentenergy" value="-32"/>
+		<attribute key="absorbpercentfire" value="-32"/>
+		<attribute key="magiclevelpoints" value="2"/>
+		<attribute key="holymagiclevelpoints" value="2"/>
+		<attribute key="absorbpercentdeath" value="10"/>
+		<attribute key="skillshield" value="2"/>
 		<attribute key="weight" value="4000"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -10102,7 +10131,7 @@
 	</item>
 	<item id="3396" article="a" name="dwarven helmet">
 		<attribute key="primarytype" value="helmets"/>
-		<attribute key="absorbpercentphysical" value="2"/>
+		<attribute key="absorbpercentphysical" value="4"/>
 		<attribute key="armor" value="6"/>
 		<attribute key="weight" value="4200"/>
 		<attribute key="imbuementslot" value="2">
@@ -10137,7 +10166,7 @@
 	</item>
 	<item id="3398" name="dwarven legs">
 		<attribute key="primarytype" value="legs"/>
-		<attribute key="absorbpercentphysical" value="3"/>
+		<attribute key="absorbpercentphysical" value="4"/>
 		<attribute key="armor" value="7"/>
 		<attribute key="weight" value="4900"/>
 		<attribute key="script" value="moveevent">
@@ -10147,9 +10176,13 @@
 	<item id="3399" article="an" name="elven mail">
 		<attribute key="primarytype" value="armors"/>
 		<attribute key="armor" value="9"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="magiclevelpoints" value="1"/>
+		<attribute key="skillshield" value="1"/>
 		<attribute key="weight" value="9000"/>
 		<attribute key="imbuementslot" value="3">
 			<attribute key="life leech" value="3"/>
+			<attribute key="mana leech" value="3"/>
 			<attribute key="elemental protection death" value="3"/>
 			<attribute key="elemental protection earth" value="3"/>
 			<attribute key="elemental protection fire" value="3"/>
@@ -10164,7 +10197,7 @@
 	<item id="3400" article="a" name="dragon scale helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="description" value="It's made of dragon scales."/>
-		<attribute key="armor" value="9"/>
+		<attribute key="armor" value="15"/>
 		<attribute key="weight" value="3250"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -10180,7 +10213,10 @@
 	</item>
 	<item id="3402" article="a" name="native armor">
 		<attribute key="primarytype" value="armors"/>
-		<attribute key="armor" value="7"/>
+		<attribute key="armor" value="12"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentphysical" value="3"/>
+		<attribute key="reflectdamage" value="5"/>
 		<attribute key="weight" value="8000"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="armor"/>
@@ -10214,6 +10250,12 @@
 	<item id="3405" article="a" name="horseman helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="armor" value="6"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="speed" value="15"/>
+		<attribute key="absorbpercentphysical" value="-5"/>
+		<attribute key="earthmagiclevelpoints" value="1"/>
+		<attribute key="skilldist" value="1"/>
+		<attribute key="skillaxe" value="1"/>
 		<attribute key="weight" value="4200"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -11240,6 +11282,10 @@
 	<item id="3564" article="a" name="red tunic">
 		<attribute key="primarytype" value="armors"/>
 		<attribute key="armor" value="2"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentfire" value="30"/>
+		<attribute key="absorbpercentphysical" value="-15"/>
+		<attribute key="firemagiclevelpoints" value="3"/>
 		<attribute key="weight" value="1400"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="armor"/>
@@ -21796,7 +21842,7 @@
 	</item>
 	<item id="8046" article="a" name="summer dress">
 		<attribute key="primarytype" value="armors"/>
-		<attribute key="absorbpercentdeath" value="5"/>
+		<attribute key="absorbpercentdeath" value="10"/>
 		<attribute key="weight" value="1000"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="armor"/>
@@ -28359,6 +28405,11 @@
 	<item id="11468" article="an" name="ornamented brooch">
 		<attribute key="primarytype" value="amulets and necklaces"/>
 		<attribute key="armor" value="2"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentearth" value="5"/>
+		<attribute key="absorbpercentholy" value="5"/>
+		<attribute key="earthmagiclevelpoints" value="2"/>
+		<attribute key="holymagiclevelpoints" value="2"/>
 		<attribute key="weight" value="840"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="necklace"/>
@@ -29221,7 +29272,8 @@
 	<item id="11701" article="an" name="old cape">
 		<attribute key="primarytype" value="armors"/>
 		<attribute key="description" value="This old cape might be worth more than what it looks like"/>
-		<attribute key="armor" value="1"/>
+		<attribute key="armor" value="10"/>
+		<attribute key="speed" value="20"/>
 		<attribute key="weight" value="3500"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="armor"/>
@@ -34228,7 +34280,8 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="15"/>
-		<attribute key="absorbpercentpoison" value="10"/>
+		<attribute key="absorbpercentpoison" value="30"/>
+		<attribute key="absorbpercentfire" value="-50"/>
 		<attribute key="charges" value="750"/>
 		<attribute key="weight" value="410"/>
 		<attribute key="script" value="moveevent">
@@ -34302,7 +34355,8 @@
 		<attribute key="showCharges" value="1"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="10"/>
-		<attribute key="absorbpercentenergy" value="15"/>
+		<attribute key="absorbpercentenergy" value="25"/>
+		<attribute key="absorbpercentdeath" value="-42"/>
 		<attribute key="charges" value="750"/>
 		<attribute key="weight" value="650"/>
 		<attribute key="script" value="moveevent">
@@ -41851,10 +41905,11 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="shootType" value="gloothspear"/>
 		<attribute key="range" value="3"/>
+		<attribute key="elementearth" value="3"/>
 		<attribute key="attack" value="55"/>
 		<attribute key="weight" value="2600"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="2"/>
+			<attribute key="breakChance" value="1"/>
 			<attribute key="level" value="60"/>
 			<attribute key="unproperly" value="true"/>
 			<attribute key="weaponType" value="missile"/>
@@ -42129,7 +42184,7 @@
 		<attribute key="absorbpercentice" value="10"/>
 		<attribute key="absorbpercentholy" value="10"/>
 		<attribute key="absorbpercentdeath" value="10"/>
-		<attribute key="charges" value="20"/>
+		<attribute key="charges" value="100"/>
 		<attribute key="weight" value="220"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="75"/>
@@ -43486,6 +43541,11 @@ Awarded by TibiaMagazine.com.ve"/>
 	</item>
 	<item id="21955" article="a" name="sweetheart ring">
 		<attribute key="primarytype" value="rings"/>
+		<attribute key="armor" value="1"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentlifedrain" value="30"/>
+		<attribute key="healthticks" value="8000"/>
+		<attribute key="healthgain" value="2"/>
 		<attribute key="weight" value="90"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ring"/>
@@ -45351,6 +45411,10 @@ Awarded by TibiaMisterios.com.br"/>
 	</item>
 	<item id="22754" article="a" name="visage of the end days">
 		<attribute key="armor" value="10"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentenergy" value="13"/>
+		<attribute key="skillshield" value="2"/>
+		<attribute key="speed" value="-40"/>
 		<attribute key="weight" value="3800"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3"/>
@@ -48230,7 +48294,7 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 	</item>
 	<item id="25088" name="porcelain mask">
 		<attribute key="primarytype" value="helmets"/>
-		<attribute key="absorbpercentmanadrain" value="10"/>
+		<attribute key="absorbpercentmanadrain" value="50"/>
 		<attribute key="armor" value="1"/>
 		<attribute key="weight" value="450"/>
 		<attribute key="script" value="moveevent">
@@ -49091,10 +49155,10 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 		<attribute key="elementfire" value="2"/>
 		<attribute key="maxhitchance" value="100"/>
 		<attribute key="range" value="5"/>
-		<attribute key="attack" value="64"/>
+		<attribute key="attack" value="65"/>
 		<attribute key="weight" value="220"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="30"/>
+			<attribute key="breakChance" value="20"/>
 			<attribute key="level" value="120"/>
 			<attribute key="unproperly" value="true"/>
 			<attribute key="weaponType" value="missile"/>
@@ -50266,6 +50330,7 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 		<attribute key="primarytype" value="quest items"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="10"/>
+		<attribute key="absorbpercentholy" value="-20"/>
 		<attribute key="weight" value="200"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ammo"/>
@@ -50284,6 +50349,7 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 		<attribute key="primarytype" value="quest items"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentfire" value="12"/>
+		<attribute key="absorbpercentice" value="-20"/>
 		<attribute key="weight" value="200"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ammo"/>
@@ -52317,8 +52383,8 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 	<item id="27564" name="RESERVED SPRITE"/>
 	<item id="27565" article="a" name="foxtail amulet">
 		<attribute key="primarytype" value="amulets and necklaces"/>
-		<attribute key="absorbpercentphysical" value="5"/>
-		<attribute key="armor" value="2"/>
+		<attribute key="absorbpercentphysical" value="6"/>
+		<attribute key="armor" value="3"/>
 		<attribute key="weight" value="500"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="100"/>
@@ -59397,7 +59463,7 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 		<attribute key="primarytype" value="rings"/>
 		<attribute key="showduration" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentfire" value="6"/>
+		<attribute key="absorbpercentfire" value="16"/>
 		<attribute key="duration" value="3600"/>
 		<attribute key="transformdeequipto" value="31557"/>
 		<attribute key="decayTo" value="31621"/>
@@ -59410,9 +59476,9 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 	<item id="31617" name="winged boots">
 		<attribute key="primarytype" value="boots"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentpoison" value="7"/>
-		<attribute key="skilldist" value="1"/>
-		<attribute key="speed" value="15"/>
+		<attribute key="absorbpercentpoison" value="9"/>
+		<attribute key="skilldist" value="2"/>
+		<attribute key="speed" value="20"/>
 		<attribute key="armor" value="2"/>
 		<attribute key="weight" value="1200"/>
 		<attribute key="imbuementslot" value="1">
@@ -61967,8 +62033,8 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 	<item id="32635" article="a" name="enchanted ring of souls">
 		<attribute key="showduration" value="1"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentphysical" value="2"/>
-		<attribute key="absorbpercentlifedrain" value="10"/>
+		<attribute key="absorbpercentphysical" value="3"/>
+		<attribute key="absorbpercentlifedrain" value="30"/>
 		<attribute key="duration" value="7200"/>
 		<attribute key="transformdeequipto" value="32621"/>
 		<attribute key="decayTo" value="32636"/>
@@ -64065,6 +64131,9 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 	</item>
 	<item id="34080" article="a" name="lion ring">
 		<attribute key="primarytype" value="rings"/>
+		<attribute key="armor" value="3"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentphysical" value="3"/>
 		<attribute key="weight" value="40"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ring"/>
@@ -75352,7 +75421,7 @@ Granted by TibiaGoals.com"/>
 		<attribute key="primarytype" value="quest items"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="description" value="It has a turquoise shimmer and was made from a real scarab shell."/>
-		<attribute key="absorbpercentearth" value="2"/>
+		<attribute key="absorbpercentearth" value="4"/>
 		<attribute key="weight" value="120"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ammo"/>
@@ -75678,7 +75747,7 @@ Granted by TibiaGoals.com"/>
 	<item id="43863" article="a" name="conch shell horn">
 		<attribute key="primarytype" value="quest items"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentice" value="5"/>
+		<attribute key="absorbpercentice" value="4"/>
 		<attribute key="weight" value="150"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="ammo"/>
