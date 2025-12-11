@@ -56,15 +56,15 @@ monster.loot = {
 	{ name = "platinum coin", chance = 30000, maxCount = 3 },
 	{ id = 24390, chance = 3000, maxCount = 3 }, -- ancient coin
 	{ id = 7439, chance = 1500 }, -- berserk potion
-	{ id = 9067, chance = 100 }, -- crystal of power
-	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
+	{ id = 9067, chance = 300 }, -- crystal of power
+	{ id = 3031, chance = 80000, maxCount = 120 }, -- gold coin
 	{ id = 3306, chance = 900 }, -- golden sickle
 	{ id = 5014, chance = 100 }, -- mandrake
 	{ id = 16126, chance = 3600, maxCount = 2 }, -- red crystal fragment
 	{ id = 3738, chance = 3200 }, -- sling herb
 	{ id = 677, chance = 3000, maxCount = 3 }, -- small enchanted emerald
 	{ id = 236, chance = 15000 }, -- strong health potion
-	{ id = 814, chance = 3200 }, -- terra amulet
+	{ id = 814, chance = 2200 }, -- terra amulet
 	{ id = 3727, chance = 4500 }, -- wood mushroom
 	{ id = 9301, chance = 910 },
 }
@@ -83,16 +83,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -20 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 10 },
 }
 
 monster.immunities = {

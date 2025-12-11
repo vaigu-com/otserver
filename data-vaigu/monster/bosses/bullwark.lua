@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 27000
-monster.maxHealth = 27000
+monster.health = 17000
+monster.maxHealth = 17000
 monster.race = "blood"
 monster.corpse = 20996
 monster.speed = 150
@@ -69,23 +69,26 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 100000, maxCount = 200 },
-	{ name = "platinum coin", chance = 80000, maxCount = 5 },
-	{ name = "great health potion", chance = 40000, maxCount = 5 },
-	{ name = "great mana potion", chance = 40000, maxCount = 5 },
-	{ name = "great spirit potion", chance = 40000, maxCount = 5 },
+	{ name = "platinum coin", chance = 80000, maxCount = 50 },
+	{ name = "great health potion", chance = 40000, maxCount = 25 },
+	{ name = "great mana potion", chance = 40000, maxCount = 25 },
+	{ name = "great spirit potion", chance = 40000, maxCount = 25 },
 	{ name = "ham", chance = 35250, maxCount = 5 },
 	{ name = "meat", chance = 35250, maxCount = 5 },
 	{ name = "minotaur leather", chance = 26500, maxCount = 2 },
 	{ name = "moohtant horn", chance = 21000, maxCount = 2 },
-	{ name = "small diamond", chance = 17900, maxCount = 5 },
-	{ name = "small emerald", chance = 16350, maxCount = 5 },
-	{ name = "small ruby", chance = 15500, maxCount = 5 },
-	{ name = "small sapphire", chance = 14200, maxCount = 5 },
+	{ name = "small diamond", chance = 17900, maxCount = 15 },
+	{ name = "small emerald", chance = 16350, maxCount = 15 },
+	{ name = "small ruby", chance = 15500, maxCount = 15 },
+	{ name = "small sapphire", chance = 14200, maxCount = 15 },
 	{ name = "giant pacifier", chance = 21920 },
 	{ name = "moohtant cudgel", chance = 21800 },
 	{ name = "red piece of cloth", chance = 81500 },
 	{ name = "yellow gem", chance = 1200 },
 	{ name = "one hit wonder", chance = 9350 },
+	{ id = 12669, chance = 22600 },
+	{ id = 11701, chance = 2900 },
+	{ id = 3399, chance = 2900 },
 }
 
 monster.attacks = {
@@ -102,9 +105,9 @@ monster.defenses = {
 	defense = 66,
 	armor = 48,
 	--	mitigation = ???,
-	{ name = "combat", interval = 2000, chance = 1, type = COMBAT_HEALING, minDamage = 4000, maxDamage = 6000, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 3, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 3000, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 11, speedChange = 660, effect = CONST_ME_HITAREA, target = false, duration = 7000 },
-	{ name = "bullwark summon", interval = 2000, chance = 9, target = false },
+	{ name = "bullwark summon", interval = 2000, chance = 6, target = false },
 }
 
 monster.elements = {

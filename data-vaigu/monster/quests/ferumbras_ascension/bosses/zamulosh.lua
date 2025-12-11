@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Zamulosh")
 local monster = {}
 
 monster.description = "Zamulosh"
-monster.experience = 500000
+monster.experience = 2000000
 monster.outfit = {
 	lookType = 862,
 	lookHead = 16,
@@ -80,30 +80,26 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 22516, chance = 1000000 }, -- silver token
-	{ id = 3031, chance = 98000, maxCount = 200 }, -- gold coin
+	{ id = 22516, chance = 100000 }, -- silver token
+	{ id = 3390, chance = 8000 },
 	{ id = 281, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (green)
 	{ id = 282, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (brown)
-	{ id = 3029, chance = 12000, maxCount = 9 }, -- small sapphire
-	{ id = 3026, chance = 12000, maxCount = 8 }, -- white pearl
 	{ id = 3033, chance = 10000, maxCount = 5 }, -- small amethyst
 	{ id = 9057, chance = 10000, maxCount = 8 }, -- small topaz
 	{ id = 3035, chance = 8000, maxCount = 58 }, -- platinum coin
-	{ id = 6499, chance = 11000 }, -- demonic essence
+	{ id = 6499, chance = 91000 }, -- demonic essence
 	{ id = 16122, chance = 10000, maxCount = 6 }, -- green crystal splinter
 	{ id = 16123, chance = 10000, maxCount = 6 }, -- brown crystal splinter
 	{ id = 16124, chance = 10000, maxCount = 6 }, -- blue crystal splinter
-	{ id = 3039, chance = 1000 }, -- red gem
-	{ id = 3037, chance = 1000 }, -- yellow gem
-	{ id = 3038, chance = 1000 }, -- green gem
 	{ id = 3041, chance = 1000 }, -- blue gem
 	{ id = 3053, chance = 6000 }, -- time ring
 	{ id = 3098, chance = 6000 }, -- ring of healing
-	{ id = 22867, chance = 770 }, -- rift crossbow
-	{ id = 8050, chance = 770 }, -- crystalline armor
-	{ id = 22726, chance = 670 }, -- rift shield
-	{ id = 22762, chance = 500, unique = true }, -- maimer
-	{ id = 22555, chance = 500, unique = true }, -- stone wall
+	{ id = 8050, chance = 1770 }, -- crystalline armor
+	{ id = 22726, chance = 3670 }, -- rift shield
+	{ id = 22762, chance = 1500, unique = true }, -- maimer
+	{ id = 34080, chance = 2500 },
+	{ id = 3013, chance = 2500 },
+	{ id = 22755, chance = 5500 },
 }
 
 monster.attacks = {

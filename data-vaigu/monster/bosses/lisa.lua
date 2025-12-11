@@ -68,19 +68,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "bowl of glooth soup", chance = 55000, maxCount = 5 },
-	{ name = "glooth sandwich", chance = 34500, maxCount = 5 },
-	{ name = "great health potion", chance = 33000, maxCount = 5 },
-	{ name = "great mana potion", chance = 33000, maxCount = 5 },
-	{ name = "great spirit potion", chance = 33000, maxCount = 5 },
-	{ name = "glooth steak", chance = 28000, maxCount = 5 },
+	{ name = "bowl of glooth soup", chance = 55000, maxCount = 15 },
+	{ name = "glooth sandwich", chance = 34500, maxCount = 15 },
+	{ name = "great health potion", chance = 33000, maxCount = 15 },
+	{ name = "great mana potion", chance = 33000, maxCount = 15 },
+	{ name = "great spirit potion", chance = 33000, maxCount = 15 },
+	{ name = "glooth steak", chance = 28000, maxCount = 15 },
 	{ name = "slimy leaf tentacle", chance = 22000, maxCount = 3 },
-	{ name = "small amethyst", chance = 21000, maxCount = 5 },
-	{ name = "small diamond", chance = 18000, maxCount = 5 },
-	{ name = "small ruby", chance = 16000, maxCount = 5 },
-	{ name = "small topaz", chance = 14800, maxCount = 5 },
+	{ name = "small amethyst", chance = 21000, maxCount = 15 },
+	{ name = "small diamond", chance = 18000, maxCount = 15 },
+	{ name = "small ruby", chance = 16000, maxCount = 15 },
+	{ name = "small topaz", chance = 14800, maxCount = 15 },
 	{ name = "glooth club", chance = 10500 },
-	{ name = "glooth spear", chance = 9900 },
+	{ name = "glooth spear", chance = 19900 },
 	{ name = "glooth whip", chance = 9500 },
 	{ name = "glooth amulet", chance = 9000 },
 	{ name = "glooth axe", chance = 8000 },
@@ -89,6 +89,8 @@ monster.loot = {
 	{ id = 3039, chance = 2600 }, -- red gem
 	{ name = "yellow gem", chance = 22500 },
 	{ name = "lisa's doll", chance = 3300 },
+	{ id = 12669, chance = 22600 },
+	{ id = 11701, chance = 2900 },
 }
 
 monster.attacks = {

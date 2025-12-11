@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Plagirath")
 local monster = {}
 
 monster.description = "Plagirath"
-monster.experience = 500000
+monster.experience = 1500000
 monster.outfit = {
 	lookType = 862,
 	lookHead = 84,
@@ -76,7 +76,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 22516, chance = 1000000 }, -- silver token
+	{ id = 22516, chance = 90000 }, -- silver token
 	{ id = 10389, chance = 3000 }, -- sai
 	{ id = 16117, chance = 1820 }, -- muck rod
 	{ id = 16125, chance = 23000, maxCount = 6 }, -- cyan crystal fragment
@@ -85,19 +85,17 @@ monster.loot = {
 	{ id = 3026, chance = 12000, maxCount = 8 }, -- white pearl
 	{ id = 3029, chance = 12000, maxCount = 9 }, -- small sapphire
 	{ id = 3031, chance = 98000, maxCount = 200 }, -- gold coin
-	{ id = 3033, chance = 10000, maxCount = 5 }, -- small amethyst
+	{ id = 3033, chance = 10000, maxCount = 15 }, -- small amethyst
 	{ id = 3035, chance = 8000, maxCount = 58 }, -- platinum coin
-	{ id = 22727, chance = 800 }, -- rift lance
-	{ id = 22759, chance = 500, unique = true }, -- plague bite
-	{ id = 22866, chance = 800 }, -- rift bow
-	{ id = 22867, chance = 800 }, -- rift crossbow
-	{ id = 6499, chance = 11000 }, -- demonic essence
-	{ id = 7386, chance = 5000 }, -- mercenary sword
+	{ id = 3393, chance = 800 },
+	{ id = 22759, chance = 2500, unique = true }, -- plague bite
+	{ id = 22866, chance = 4800 }, -- rift bow
+	{ id = 22867, chance = 8800 }, -- rift crossbow
+	{ id = 6499, chance = 71000 }, -- demonic essence
+	{ id = 3021, chance = 5000 },
 	{ id = 281, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (green)
 	{ id = 282, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (brown)
-	{ id = 814, chance = 5000 }, -- terra amulet
 	{ id = 7643, chance = 23000, maxCount = 15 }, -- ultimate health potion
-	{ id = 8073, chance = 4000 }, -- spellbook of warding
 	{ id = 9057, chance = 10000, maxCount = 8 }, -- small topaz
 }
 

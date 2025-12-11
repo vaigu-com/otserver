@@ -54,14 +54,13 @@ monster.voices = {}
 
 monster.loot = {
 	{ name = "platinum coin", chance = 30000, maxCount = 2 },
-	{ name = "gold coin", chance = 30000, maxCount = 112 },
-	{ name = "small enchanted emerald", chance = 492, maxCount = 2 },
-	{ name = "green mushroom", chance = 492, maxCount = 2 },
-	{ name = "opal", chance = 492, maxCount = 2 },
-	{ name = "strong mana potion", chance = 6800 },
+	{ name = "gold coin", chance = 20000, maxCount = 112 },
+	{ name = "small enchanted emerald", chance = 1492, maxCount = 2 },
+	{ name = "green mushroom", chance = 4492, maxCount = 2 },
+	{ name = "strong mana potion", chance = 9800 },
 	{ name = "clerical mace", chance = 5155 },
-	{ name = "great mana potion", chance = 591 },
-	{ name = "diamond sceptre", chance = 3400 },
+	{ name = "great mana potion", chance = 4591 },
+	{ name = "diamond sceptre", chance = 1400 },
 	{ name = "silver brooch", chance = 3400 },
 	{ name = "fern", chance = 30100 },
 	{ name = "opal", chance = 5155 },
@@ -90,8 +89,8 @@ monster.elements = {
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 50 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 20 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
