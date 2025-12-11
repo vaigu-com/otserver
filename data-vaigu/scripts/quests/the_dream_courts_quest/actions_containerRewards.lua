@@ -37,7 +37,11 @@ local dailyGuaranteedSilverToken = GlobalEvent("InitializeDreamCourtsContainers"
 function dailyGuaranteedSilverToken.onStartup()
 	for _, containerData in pairs(containersData) do
 		local topItem = containerData.containerPosition:GetTopItem()
+		if not topItem then
+			logger.warn("[InitializeDreamCourtsContainers] top item not found at " .. containerData.containerPosition:ToString())
+		end
 		local key = containerData.containerPosition:ToString()
+
 		topItem:setKey(key)
 		local containerUse = Action()
 		function containerUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
