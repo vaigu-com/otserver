@@ -1,3 +1,4 @@
+--[[
 local config = {
 	[940] = { targetId = 7742, transformId = 7746, effect = CONST_ME_BIGPLANTS },
 	[941] = { targetId = 7743, transformId = 7745 },
@@ -36,3 +37,4 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 action:id(940, 941, 944, 945)
 action:register()
+]]

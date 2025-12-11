@@ -27,13 +27,13 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	for i = 1, #config do
 		local creature = Tile(config[i].position):getTopCreature()
 		if not creature or not creature:isPlayer() then
-			player:say("Potrzebujesz przedstawicieli wszystkich profesji, ktorzy posiadaja odpowiednia skoncentrowana czastke zywiolu.", TALKTYPE_MONSTER_SAY, false, 0, Position(6230, 1011, 10))
+			player:say("Potrzebujesz przedstawicieli wszystkich profesji, ktorzy posiadaja odpowiednia skoncentrowana czastke zywiolu1." .. creature:getName(), TALKTYPE_MONSTER_SAY, false, 0, Position(6230, 1011, 10))
 			return true
 		end
 
 		local vocationId = creature:getVocation():getBase():getId()
 		if vocationId ~= config[i].vocationId or creature:getItemCount(config[i].itemid) < 1 or creature:getStorageValueByKey(Storage.ElementalSphere.QuestLine) < 1 then --{x = 6230, y = 1011, z = 10}
-			player:say("Potrzebujesz przedstawicieli wszystkich profesji, ktorzy posiadaja odpowiednia skoncentrowana czastke zywiolu.", TALKTYPE_MONSTER_SAY, false, 0, Position(6230, 1011, 10))
+			player:say("Potrzebujesz przedstawicieli wszystkich profesji, ktorzy posiadaja odpowiednia skoncentrowana czastke zywiolu2." .. creature:getName(), TALKTYPE_MONSTER_SAY, false, 0, Position(6230, 1011, 10))
 			return true
 		end
 
@@ -42,6 +42,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	for i = 1, #players do
 		players[i]:teleportTo(config[i].toPosition)
+		players[i]:removeItem(config[i].itemid, 1)
 		config[i].position:sendMagicEffect(CONST_ME_TELEPORT)
 		config[i].toPosition:sendMagicEffect(CONST_ME_TELEPORT)
 	end

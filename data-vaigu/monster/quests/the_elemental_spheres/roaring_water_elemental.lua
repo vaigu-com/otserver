@@ -70,6 +70,7 @@ monster.loot = {
 	{ name = "gold coin", chance = 27000, maxCount = 87 },
 	{ name = "iced soil", chance = 9000 },
 	{ name = "northwind rod", chance = 750 },
+	{ id = 942, chance = 100 },
 }
 
 monster.attacks = {

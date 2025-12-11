@@ -1,5 +1,4 @@
--- 25% probability
-local CREATURE_SKINNING_CHANCE = 25000
+local CREATURE_SKINNING_CHANCE = 25000 -- 25000 = 25% success chance
 SKINNING_SPECIAL_ACTION_NOT_PERFORMED = "SKINNING_SPECIAL_ACTION_NOT_PERFORMED"
 SKINNING_SPECIAL_ACTION_PERFORMED = "SKINNING_SPECIAL_ACTION_PERFORMED"
 local toolToCorpseToData = {
@@ -364,7 +363,7 @@ local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 end
 local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
 	local reward = table.random(corpseData)
-	
+
 	if player:getStorageValueByKey(Storage.SilenceOfTheLambs.RubMeatWithLecter) == QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter then
 		if roll <= 50000 then
 			player:say("Ehh, I still need to pracise.", TALKTYPE_MONSTER_SAY)
@@ -428,19 +427,19 @@ local toolToCorpseIdToSpecialAction = {
 			end
 		end,
 		[8181] = function(player, corpse, corpseId, corpseData, roll)
-			if player:getStorageValueByKey(789100) <= 1 then
+			if player:getStorageValueByKey("789100") <= 1 then
 				player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
 				player:AddCustomItem({ id = 954, count = 1 })
-				player:setStorageValueByKey(789100, 1)
-				return true
+				player:setStorageValueByKey("789100", 2)
+				return SKINNING_SPECIAL_ACTION_PERFORMED
 			end
 		end,
 		[8182] = function(player, corpse, corpseId, corpseData, roll)
-			if player:getStorageValueByKey(789100) <= 1 then
+			if player:getStorageValueByKey("789100") <= 1 then
 				player:say("You got Neutral matter.", TALKTYPE_MONSTER_SAY)
 				player:AddCustomItem({ id = 954, count = 1 })
-				player:setStorageValueByKey(789100, 2)
-				return true
+				player:setStorageValueByKey("789100", 2)
+				return SKINNING_SPECIAL_ACTION_PERFORMED
 			end
 		end,
 		[301] = function(player, corpse, corpseId, corpseData, roll)
@@ -546,8 +545,9 @@ function skinning.onUse(player, skinningTool, usePosition, corpse, corpsePositio
 
 	local maxRoll = calculateMaxRoll(player, corpseId)
 	local roll = math.random(1, maxRoll)
-	if tryPerformSpecialCorpseAction(player, corpse, corpseData, roll, toolId, corpseId) == SKINNING_SPECIAL_ACTION_PERFORMED then
-		return
+	local status = tryPerformSpecialCorpseAction(player, corpse, corpseData, roll, toolId, corpseId)
+	if status == SKINNING_SPECIAL_ACTION_PERFORMED then
+		return true
 	end
 
 	if not corpseData then

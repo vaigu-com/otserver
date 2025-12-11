@@ -281,6 +281,7 @@ Storage.ElementalSphere = { -- Reserved 10200 - 10203
 	BossStorage = {},
 	MachineGemCount = {},
 	LordSkin = {},
+	HuntingGroundMachine = {}
 }
 Storage.TheApeCity = { -- Reserved 12120 - 12152
 	Started = {},
