@@ -29130,10 +29130,7 @@
 	<item id="11688" article="a" name="shield of corruption">
 		<attribute key="weaponType" value="shield"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentdeath" value="-5"/>
 		<attribute key="skillsword" value="3"/>
-		<attribute key="skillaxe" value="3"/>
-		<attribute key="skillclub" value="3"/>
 		<attribute key="defense" value="36"/>
 		<attribute key="weight" value="4900"/>
 		<attribute key="imbuementslot" value="1">
@@ -29217,13 +29214,9 @@
 	</item>
 	<item id="11693" article="a" name="blade of corruption">
 		<attribute key="weaponType" value="sword"/>
-		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentdeath" value="5"/>
-		<attribute key="absorbpercentholy" value="-30"/>
-		<attribute key="elementdeath" value="28"/>
-		<attribute key="attack" value="21"/>
-		<attribute key="extradef" value="3"/>
-		<attribute key="defense" value="25"/>
+		<attribute key="attack" value="48"/>
+		<attribute key="extradef" value="2"/>
+		<attribute key="defense" value="29"/>
 		<attribute key="weight" value="6400"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="elemental damage" value="3"/>
@@ -45473,9 +45466,6 @@ Awarded by TibiaMisterios.com.br"/>
 	<item id="22758" article="a" name="death gaze">
 		<attribute key="primarytype" value="shields"/>
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentholy" value="-50"/>
-		<attribute key="absorbpercentphysical" value="3"/>
 		<attribute key="defense" value="38"/>
 		<attribute key="weight" value="7900"/>
 		<attribute key="imbuementslot" value="1">
