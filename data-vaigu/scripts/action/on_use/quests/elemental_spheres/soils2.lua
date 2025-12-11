@@ -19,7 +19,7 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		return false
 	end
 
-	if not isInRange(toPosition, { x = 6198, y = 980, z = 11 }, { x = 6260, y = 1042, z = 11 }) then --{x = 6198, y = 980, z = 11}{x = 6260, y = 1042, z = 11}
+	if not toPosition:isInRange({ x = 6198, y = 980, z = 11 }, { x = 6260, y = 1042, z = 11 }) then --{x = 6198, y = 980, z = 11}{x = 6260, y = 1042, z = 11}
 		return false
 	end
 

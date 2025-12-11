@@ -1,7 +1,7 @@
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if not isInRange(toPosition, Position(6198, 980, 11), Position(6260, 1042, 11)) then --{x = 6198, y = 980, z = 11}{x = 6260, y = 1042, z = 11}
+	if not toPosition:isInRange(Position(6198, 980, 11), Position(6260, 1042, 11)) then --{x = 6198, y = 980, z = 11}{x = 6260, y = 1042, z = 11}
 		return false
 	end
 

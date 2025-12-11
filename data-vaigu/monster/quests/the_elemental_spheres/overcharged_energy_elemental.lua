@@ -70,6 +70,7 @@ monster.loot = {
 	{ name = "berserk potion", chance = 2173 },
 	{ name = "great health potion", chance = 10000 },
 	{ name = "energy soil", chance = 14285 },
+	{ id = 948, chance = 100 },
 }
 
 monster.attacks = {

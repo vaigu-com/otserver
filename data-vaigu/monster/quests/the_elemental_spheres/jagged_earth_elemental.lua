@@ -72,6 +72,7 @@ monster.loot = {
 	{ name = "iron ore", chance = 800, maxCount = 2 },
 	{ name = "seeds", chance = 1600 },
 	{ name = "natural soil", chance = 9000 },
+	{ id = 947, chance = 100 },
 }
 
 monster.attacks = {

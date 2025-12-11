@@ -1,3 +1,4 @@
+--[[
 local config = {
 	[1] = Position(6186, 1066, 12), --{x = 6186, y = 1066, z = 12}
 	[2] = Position(6334, 945, 12), --{x = 6334, y = 945, z = 12}
@@ -41,3 +42,4 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 action:id(842, 843, 846, 847)
 action:register()
+]]
