@@ -70,4 +70,5 @@ private:
 	void loadMaps() const;
 	void setupHousesRent();
 	void modulesLoadHelper(bool loaded, std::string moduleName);
+	int32_t getDaysSinceStart();
 };
