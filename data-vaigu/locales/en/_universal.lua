@@ -99,7 +99,7 @@ return {
 	end,
 	["Please choose your outfit."] = "Please choose your outfit.",
 	["Premade action bars for every vocation are available in options."] = "Premade action bars for every vocation are available in options.",
-	["LIST_AVAILABLE_COMMANDS"] = "List of available commands: !serverinfo - !language - !faq. Rest of commands is available under !commands",
+	["LIST_AVAILABLE_COMMANDS"] = "Change your language with: !language, frequenty asked questions: !faq. Rest of commands is available under !commands",
 	["You can report ingame bugs using ctrl+z."] = "You can report ingame bugs using ctrl+z.",
 	[ENCOUNTER_ERROR_CODES.SOMEONE_HAS_LOCKOUT] = function(context)
 		return T("You or a member in your team still has a cooldown for the :displayName: encounter.", { displayName = context.displayName })

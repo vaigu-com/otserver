@@ -53,12 +53,6 @@ monster.light = {
 monster.voices = {}
 
 monster.loot = {
-	{ name = "white pearl", chance = 3000 },
-	{ id = 3098, chance = 1000 }, -- ring of healing
-	{ name = "orichalcum pearl", chance = 6000, maxCount = 4 },
-}
-
-monster.loot = {
 	{ name = "platinum coin", chance = 30000, maxCount = 2 },
 	{ name = "gold coin", chance = 30000, maxCount = 112 },
 	{ name = "wood cape", chance = 492 },

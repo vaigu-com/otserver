@@ -12,7 +12,7 @@ function spell.onCastSpell(creature, var)
 	local summoncount = creature:getSummons()
 	if #summoncount < 4 then
 		for i = 1, maxsummons - #summoncount do
-			local mid = Game.createMonster("Glooth Anemone2", creature:getPosition())
+			local mid = Game.createMonster("Glooth Anemone", creature:getPosition())
 			if not mid then
 				return
 			end

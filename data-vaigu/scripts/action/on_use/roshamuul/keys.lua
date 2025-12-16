@@ -2,11 +2,11 @@ local config = {
 	[20272] = {
 		targetId = 20302, -- Target ID.
 		bossName = "Zavarash", -- boss name
-		keyPlayerPosition = Position(6207, 714, 11), -- Where the player should be. {x = 6207, y = 714, z = 11}
-		newPosition = Position(6172, 741, 12), -- Position to teleport {x = 6172, y = 741, z = 12}
-		bossPosition = Position(6163, 741, 12), -- Boss Position {x = 6163, y = 741, z = 12}
-		centerPosition = Position(6166, 741, 12), -- Center Room {x = 6166, y = 741, z = 12}
-		exitPosition = Position(6208, 698, 11), -- Exit Position
+		keyPlayerPosition = Position(6207, 715, 11), -- Where the player should be. {x = 6207, y = 714, z = 11}
+		newPosition = Position(6172, 742, 12), -- Position to teleport {x = 6172, y = 741, z = 12}
+		bossPosition = Position(6163, 742, 12), -- Boss Position {x = 6163, y = 741, z = 12}
+		centerPosition = Position(6166, 742, 12), -- Center Room {x = 6166, y = 741, z = 12}
+		exitPosition = Position(6208, 699, 11), -- Exit Position
 		rangeX = 20, -- Range in X
 		rangeY = 20, -- Range in Y
 		time = 15, -- time in minutes to remove the player
@@ -14,11 +14,11 @@ local config = {
 	[20271] = {
 		targetId = 20300, -- Target ID.
 		bossName = "Horadron", -- boss name
-		keyPlayerPosition = Position(6202, 714, 11), -- Where the player should be. {x = 6202, y = 714, z = 11}
-		newPosition = Position(6130, 741, 12), -- Position to teleport {x = 6130, y = 741, z = 12}
-		bossPosition = Position(6121, 741, 12), -- Boss Position {x = 6121, y = 741, z = 12}
-		centerPosition = Position(6125, 741, 12), -- Center Room {x = 6125, y = 741, z = 12}
-		exitPosition = Position(6208, 698, 11), -- Exit Position
+		keyPlayerPosition = Position(6202, 715, 11), -- Where the player should be. {x = 6202, y = 714, z = 11}
+		newPosition = Position(6130, 742, 12), -- Position to teleport {x = 6130, y = 741, z = 12}
+		bossPosition = Position(6121, 742, 12), -- Boss Position {x = 6121, y = 741, z = 12}
+		centerPosition = Position(6125, 742, 12), -- Center Room {x = 6125, y = 741, z = 12}
+		exitPosition = Position(6208, 699, 11), -- Exit Position
 		rangeX = 20,
 		rangeY = 20,
 		time = 15, -- time in minutes to remove the player
@@ -26,11 +26,11 @@ local config = {
 	[20270] = {
 		targetId = 20304, -- Target ID.
 		bossName = "Terofar", -- boss name
-		keyPlayerPosition = Position(6213, 714, 11), -- Where the player should be.{x = 6213, y = 714, z = 11}
-		newPosition = Position(6212, 741, 12), -- Position to teleport {x = 6212, y = 741, z = 12}
-		bossPosition = Position(6202, 741, 12), -- Boss Position {x = 6202, y = 741, z = 12}
-		centerPosition = Position(6206, 741, 12), -- Center Room {x = 6206, y = 741, z = 12}
-		exitPosition = Position(6208, 698, 11), -- Exit Position
+		keyPlayerPosition = Position(6213, 715, 11), -- Where the player should be.{x = 6213, y = 714, z = 11}
+		newPosition = Position(6212, 742, 12), -- Position to teleport {x = 6212, y = 741, z = 12}
+		bossPosition = Position(6202, 742, 12), -- Boss Position {x = 6202, y = 741, z = 12}
+		centerPosition = Position(6206, 742, 12), -- Center Room {x = 6206, y = 741, z = 12}
+		exitPosition = Position(6208, 699, 11), -- Exit Position
 		rangeX = 20,
 		rangeY = 20,
 		time = 15, -- time in minutes to remove the player
@@ -106,26 +106,26 @@ keys:register()
 local setting = {
 	timeToFightAgain = 20,
 	clearRoomTime = 60, -- In hour
-	centerRoom = { x = 6127, y = 654, z = 12 },
+	centerRoom = { x = 6127, y = 655, z = 12 },
 	range = 10,
 	storage = Storage.PrinceDrazzakTime,
 	clearRoomStorage = Storage.PrinceDrazzakEventTime,
 	bossName = "prince drazzak",
-	bossPosition = { x = 6121, y = 654, z = 12 },
+	bossPosition = { x = 6121, y = 655, z = 12 },
 }
 
 local entranceTiles = {
-	{ fromPos = { x = 6206, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
-	{ fromPos = { x = 6207, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
-	{ fromPos = { x = 6208, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
-	{ fromPos = { x = 6209, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
-	{ fromPos = { x = 6210, y = 682, z = 11 }, toPos = { x = 6133, y = 653, z = 12 } },
+	{ fromPos = { x = 6206, y = 683, z = 11 }, toPos = { x = 6133, y = 654, z = 12 } },
+	{ fromPos = { x = 6207, y = 683, z = 11 }, toPos = { x = 6133, y = 654, z = 12 } },
+	{ fromPos = { x = 6208, y = 683, z = 11 }, toPos = { x = 6133, y = 654, z = 12 } },
+	{ fromPos = { x = 6209, y = 683, z = 11 }, toPos = { x = 6133, y = 654, z = 12 } },
+	{ fromPos = { x = 6210, y = 683, z = 11 }, toPos = { x = 6133, y = 654, z = 12 } },
 }
 
 local golden = Action()
 
 function golden.onUse(player, item, fromPosition, target, toPosition, monster, isHotkey)
-	if toPosition == Position(6205, 682, 11) then
+	if toPosition == Position(6205, 683, 11) then
 		for i = 1, #entranceTiles do
 			local creature = Tile(entranceTiles[i].fromPos):getTopCreature()
 			if not creature then
@@ -135,7 +135,7 @@ function golden.onUse(player, item, fromPosition, target, toPosition, monster, i
 		end
 	end
 
-	if toPosition == Position(6205, 682, 11) then
+	if toPosition == Position(6205, 683, 11) then
 		if roomIsOccupied(setting.centerRoom, setting.range, setting.range) or Game.getStorageValueByKey(setting.clearRoomStorage) == 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Someone is fighting against the boss! You need wait awhile.")
 			return true
