@@ -150,11 +150,11 @@ pseudoQuest
 			--Mirkotown far south, Otherworld
 			InstantTravel({ positions = { Position(6043, 1950, 8), Position(32015, 31357, 11) } }),
 			--Elf fortress strong, Summer court
-			InstantTravel({ positions = { Position(6025, 1912, 7), Position(33672, 32227, 7) } }),
+			InstantTravel({ positions = { Position(6025, 1912, 7), Position(33672, 32227, 7) }, requiredState = { [Storage.Quest.U12_00.TheDreamCourts.CourtTeleportAccess] = ACCESS_GRANTED } }),
 			--Syberia north golems hill, Winter court
-			InstantTravel({ positions = { Position(6580, 1775, 3), Position(33675, 32147, 7) } }),
-			--Bydgosch hut, Tormented Soul dungeon
-			InstantTravel({ positions = { Position(7824, 1388, 7), Position(32688, 32235, 8) } }),
+			InstantTravel({ positions = { Position(6580, 1775, 3), Position(33675, 32147, 7) }, requiredState = { [Storage.Quest.U12_00.TheDreamCourts.CourtTeleportAccess] = ACCESS_GRANTED } }),
+			--Bydgosch hut, Tormented Soul dungeon - fake normal stairs
+			InstantTravel({ positions = { Position(7824, 1388, 7), Position(32688, 32235, 8) }, sendMagicEffect = false }),
 			--Caribbean, Faceless Bane dungeon
 			InstantTravel({ positions = { Position(32720, 32270, 8), Position(33618, 32546, 13) }, requiredState = { [Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.FacelessBaneAccess] = ACCESS_GRANTED } }),
 		}
@@ -180,7 +180,8 @@ pseudoQuest
 	end)
 	:Register()
 
-local function tryPerformInstantTravel(player, sourceItemPosition, shouldSendMagicEffect)
+local defaultSendMagicEffectBehavior = true
+local function tryPerformInstantTravel(player, sourceItemPosition)
 	if isPlayerPzLocked(player) then
 		SendPlayerIsPzLocked(player)
 		return false
@@ -189,8 +190,12 @@ local function tryPerformInstantTravel(player, sourceItemPosition, shouldSendMag
 	local travelItemData = posToData[sourceItemPosition:ToString()]
 	local requiredStorages = travelItemData.requiredState
 	if requiredStorages and not player:HasRequiredStates(requiredStorages) then
-		player:sendTextMessage(MESSAGE_FAILURE, "You cannot use this yet.")
 		return false
+	end
+
+	local shouldSendMagicEffect = travelItemData.sendMagicEffect
+	if shouldSendMagicEffect == nil then
+		shouldSendMagicEffect = defaultSendMagicEffectBehavior
 	end
 
 	local toPos = travelItemData.toPos
@@ -201,7 +206,7 @@ local function tryPerformInstantTravel(player, sourceItemPosition, shouldSendMag
 			player:teleportTo(toPos:MovedInDirection(travelItemData.direction, 1))
 			player:setDirection(travelItemData.direction)
 		else
-			player:teleportTo(toPos)
+			player:teleportTo(toPos, false)
 		end
 	else
 		local anyWalkablePos = toPos:FindAnyUnoccupiedSpot()
@@ -211,11 +216,15 @@ local function tryPerformInstantTravel(player, sourceItemPosition, shouldSendMag
 	if shouldSendMagicEffect then
 		toPos:sendMagicEffect(CONST_ME_TELEPORT)
 	end
+
+	return true
 end
 
 local travelItemUse = Action()
 function travelItemUse.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	tryPerformInstantTravel(player, item:getPosition(), true)
+	if not tryPerformInstantTravel(player, item:getPosition()) then
+		player:sendTextMessage(MESSAGE_FAILURE, "You cannot use this yet.")
+	end
 end
 travelItemUse:key(Storage.InstantTravel)
 travelItemUse:blockWalls()
@@ -226,8 +235,10 @@ function travelItemLook.onLook(player, item, fromPosition, target, toPosition)
 	if fromPosition:ChebyshevDistance(toPosition) > 1 then
 		return DO_SHOW_ONLOOK
 	end
-	tryPerformInstantTravel(player, item:getPosition(), true)
-	return DONT_SHOW_ONLOOK
+	
+	if not tryPerformInstantTravel(player, item:getPosition()) then
+		return DONT_SHOW_ONLOOK
+	end
 end
 travelItemLook:key(Storage.InstantTravel)
 travelItemLook:blockWalls()
@@ -244,7 +255,11 @@ function travelItemStepIn.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	tryPerformInstantTravel(player, item:getPosition(), false)
+	if not tryPerformInstantTravel(player, item:getPosition()) then
+		player:teleportTo(fromPosition)
+		fromPosition:sendMagicEffect(CONST_ME_TELEPORT)
+		player:say("You don't have access to this teleport yet.", TALKTYPE_MONSTER_SAY)
+	end
 	return true
 end
 travelItemStepIn:type("stepin")

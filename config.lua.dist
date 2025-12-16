@@ -46,7 +46,7 @@ dayKillsToRedSkull = 6
 weekKillsToRedSkull = 10
 monthKillsToRedSkull = 20
 redSkullDuration = 2
-redSkullLength = redSkullDuration
+redSkullLength = redSkullDuration * 24 * 60 * 60
 blackSkullDuration = 3
 orangeSkullDuration = 3
 loginProtectionTime = 10 * 1000
@@ -365,7 +365,7 @@ toggleCyclopediaHouseAuction = false
 daysToCloseBid = 7
 housePriceRentMultiplier = 0.0
 housePriceEachSQM = 2500
-houseRentPeriod = "monthly"
+houseRentPeriod = "weekly"
 houseRentRate = 1.0
 houseOwnedByAccount = false
 houseBuyLevel = 20
@@ -490,6 +490,7 @@ globalServerSaveClose = false
 globalServerSaveShutdown = true
 globalServerSaveTime = "04:59:59"
 serverShutdownHour = 5 -- Vaigu custom
+serverRestartHour = 5 -- Vaigu custom
 
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
@@ -503,6 +504,7 @@ sortLootByChance = false
 -- To configure rates see file data/stages.lua
 -- lowLevelBonusExp works up to level 50
 rateUseStages = true
+experienceStages = true
 lowLevelBonusExp = 0
 rateExp = 1
 rateSkill = 7

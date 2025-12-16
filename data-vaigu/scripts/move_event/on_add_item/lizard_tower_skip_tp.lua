@@ -37,4 +37,5 @@ function tombCoalBasin.onAddItem(moveitem, tileitem, position)
 end
 tombCoalBasin:type("additem")
 tombCoalBasin:key(Storage.LizardTower.BasinToInside)
+tombCoalBasin:key(Storage.LizardTower.BasinToOutside)
 tombCoalBasin:register()

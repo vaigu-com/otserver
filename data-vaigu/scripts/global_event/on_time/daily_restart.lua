@@ -43,7 +43,6 @@ local function getNotifyTime(hour, offsetSeconds)
 end
 
 local serverRestart = tonumber(configManager.getString(configKeys.SERVER_RESTART_HOUR))
-serverRestart = 21
 for _, seconds in ipairs(notifySeconds) do
 	local notifyEvent = GlobalEvent("notifyRestart_" .. seconds)
 	function notifyEvent.onTime(interval)

@@ -3088,6 +3088,7 @@ Storage.Quest = {
 				TheSummerCourt = {},
 				TheWinterCourt = {},
 			},
+			CourtTeleportAccess = {},
 			DreamTalisman = {},
 			WardStones = {
 				Questline = {},

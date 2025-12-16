@@ -75,6 +75,10 @@ public:
 		return maxPacketSize;
 	}
 
+	bool hasHandle() const {
+		return handle;
+	}
+
 private:
 	bool beginTransaction();
 	bool rollback();
