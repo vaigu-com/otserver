@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Terofar")
 local monster = {}
 
 monster.description = "Terofar"
-monster.experience = 24000
+monster.experience = 240000
 monster.outfit = {
 	lookType = 12,
 	lookHead = 19,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 40000
-monster.maxHealth = 40000
+monster.health = 30000
+monster.maxHealth = 30000
 monster.race = "blood"
 monster.corpse = 6068
 monster.speed = 220
@@ -85,26 +85,30 @@ monster.loot = {
 	{ id = 281, chance = 38890 }, -- giant shimmering pearl (green)
 	{ id = 282, chance = 38890 }, -- giant shimmering pearl (brown)
 	{ id = 3420, chance = 11110 }, -- demon shield
-	{ id = 3415, chance = 22220 }, -- guardian shield
-	{ id = 3419, chance = 11110 }, -- crown shield
 	{ id = 3414, chance = 960 }, -- mastermind shield
 	{ id = 8063, chance = 5560 }, -- paladin armor
 	{ id = 8051, chance = 11110 }, -- voltage armor
 	{ id = 8049, chance = 6110 }, -- lavos armor
-	{ id = 3038, chance = 16670 }, -- green gem
 	{ id = 3041, chance = 11110 }, -- blue gem
 	{ id = 8054, chance = 410 }, -- earthborn titan armor
 	{ id = 3366, chance = 610 }, -- magic plate armor
 	{ id = 3554, chance = 910 }, -- steel boots
 	{ id = 3392, chance = 910 }, -- royal helmet
-	{ id = 813, chance = 2910 }, -- terra boots
 	{ id = 3079, chance = 1910 }, -- boots of haste
 	{ id = 5741, chance = 1910 }, -- skull helmet
+	{ id = 34080, chance = 6510 },
+	{ id = 3021, chance = 9110 },
+	{ id = 3014, chance = 11510 },
+	{ id = 3390, chance = 110 },
+	{ id = 27654, chance = 17240 },
+
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 180, attack = 100 },
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_DEATHDAMAGE, minDamage = -700, maxDamage = -1500, length = 8, spread = 0, effect = CONST_ME_SMALLCLOUDS, target = false },
+	{ name = "omrafir wave", interval = 2000, chance = 17, minDamage = -500, maxDamage = -1000, target = false },
+	{ name = "combat", interval = 3000, chance = 15, type = COMBAT_ICEDAMAGE, minDamage = -900, maxDamage = -1100, range = 7, radius = 7, shootEffect = CONST_ANI_ICE, effect = CONST_ME_ICEAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -700, maxDamage = -1500, length = 8, spread = 0, effect = CONST_ME_SMALLCLOUDS, target = false },
 	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -750, range = 7, radius = 1, shootEffect = CONST_ANI_WHIRLWINDAXE, target = true },
 }
 
