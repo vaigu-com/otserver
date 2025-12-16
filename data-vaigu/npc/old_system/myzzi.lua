@@ -87,6 +87,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if MsgContains(message, "yes") then
 				npcHandler:say({ "You are a true hero! Here, take my enchantment and you will be able to pass the portals. Now hurry, my friends are waiting." }, npc, creature)
 				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.Main.Questline, 1)
+				player:setStorageValueByKey(Storage.Quest.U12_00.TheDreamCourts.CourtTeleportAccess, ACCESS_GRANTED)
 				npcHandler:setTopic(playerId, 0)
 			else
 				npcHandler:say("What?!", npc, creature)
