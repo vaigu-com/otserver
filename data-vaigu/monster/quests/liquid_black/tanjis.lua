@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Tanjis")
 local monster = {}
 
 monster.description = "Tanjis"
-monster.experience = 15000
+monster.experience = 150000
 monster.outfit = {
 	lookType = 446,
 	lookHead = 0,
@@ -76,6 +76,9 @@ monster.loot = {
 	{ name = "depth ocrea", chance = 1200 },
 	{ name = "ornate mace", chance = 1100, unique = true },
 	{ name = "ornate shield", chance = 1100 },
+	{ name = "Giant Shrimp", chance = 100 },
+	{ name = "Bass", chance = 10000 },
+	{ name = "Necklace of the Deep", chance = 7000 },
 }
 
 monster.attacks = {
