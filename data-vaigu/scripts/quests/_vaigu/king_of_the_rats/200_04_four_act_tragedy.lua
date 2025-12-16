@@ -690,7 +690,6 @@ quest
 					nextState = {
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
 					},
-					rewards = { ExerciseWeaponBox(3000) },
 				},
 			})
 	end)

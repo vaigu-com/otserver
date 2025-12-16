@@ -500,7 +500,7 @@ quest
 					},
 					textNoRequiredItems = "Come back when you have collected 100 small vials.",
 					expReward = 30000,
-					rewards = { ExerciseWeaponBox(500) },
+					rewards = { ExerciseWeaponBox(400) },
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
 					},
@@ -534,7 +534,7 @@ quest
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(300) },
 				},
 			})
 	end)
@@ -678,7 +678,7 @@ quest
 						[Storage.Finished.SafetyAndOccupationalHygiene] = MISSION_FINISHED,
 					},
 					rewards = {
-						ExerciseWeaponBox(1337),
+						ExerciseWeaponBox(600),
 					},
 					outfitRewards = QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene.Raccoon1,
 				},

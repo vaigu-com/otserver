@@ -914,7 +914,7 @@ quest
 					text = "Now this is a cooperation! Here is your reward.",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.PinataIngredients,
 					rewards = {
-						ExerciseWeaponBox(200),
+						ExerciseWeaponBox(160),
 						{ id = ItemId.MANA_POTION, count = 30 },
 						{ id = ItemId.MAGICAL_TORCH },
 					},
@@ -944,7 +944,7 @@ quest
 					text = "Yo, whats good? I see you got all things i needed. Take this reward.",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.UnknownCauseIngredients,
 					rewards = {
-						ExerciseWeaponBox(400),
+						ExerciseWeaponBox(300),
 						{ id = ItemId.BEETLE_NECKLACE },
 					},
 					wildcardReward = 3,
@@ -973,7 +973,7 @@ quest
 					text = "I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.CombatIngredients,
 					rewards = {
-						ExerciseWeaponBox(700),
+						ExerciseWeaponBox(1000),
 						{ id = ItemId.SWAN_FEATHER_CLOAK },
 					},
 					wildcardReward = 10,

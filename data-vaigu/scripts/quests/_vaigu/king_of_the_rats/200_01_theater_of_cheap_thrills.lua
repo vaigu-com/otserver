@@ -771,7 +771,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission03] = QuestState.TheaterOfCheapThrills.Mission03.AskGravedigger_FindBook,
 						[Storage.TheaterOfCheapThrills.PlusShapePuzzle.AccessDoor] = ACCESS_GRANTED,
 					},
-					rewards = { ExerciseWeaponBox(500) },
+					rewards = { ExerciseWeaponBox(250) },
 				},
 			})
 	end)
@@ -963,7 +963,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission03] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission04] = QuestState.TheaterOfCheapThrills.Mission04.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(200) },
 				},
 			})
 	end)
@@ -1025,7 +1025,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission04] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission05] = QuestState.TheaterOfCheapThrills.Mission05.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(200) },
 				},
 			})
 	end)
@@ -1148,7 +1148,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission06] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission07] = QuestState.TheaterOfCheapThrills.Mission07.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(200) },
+					rewards = { ExerciseWeaponBox(150) },
 				},
 			})
 	end)
@@ -1361,7 +1361,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission10] = QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission,
 						[Storage.TheaterOfCheapThrills.Mission09] = MISSION_FINISHED,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(200) },
 				},
 			})
 	end)
@@ -1400,7 +1400,7 @@ quest
 						[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = ACCESS_GRANTED,
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(300) },
 					outfitRewards = QuestRewards.OutfitsAddons.ThreaterOfCheapThrills.Raccoon1
 				},
 			})
