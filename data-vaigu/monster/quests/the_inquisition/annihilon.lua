@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Annihilon")
 local monster = {}
 
 monster.description = "Annihilon"
-monster.experience = 15000
+monster.experience = 150000
 monster.outfit = {
 	lookType = 12,
 	lookHead = 3,
@@ -75,45 +75,35 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "emerald bangle", chance = 20000 },
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
 	{ name = "platinum coin", chance = 16666, maxCount = 30 },
 	{ name = "violet gem", chance = 16666 },
 	{ name = "yellow gem", chance = 20000 },
 	{ name = "green gem", chance = 12500 },
 	{ id = 3039, chance = 20000 }, -- red gem
 	{ name = "blue gem", chance = 20000 },
-	{ name = "halberd", chance = 20000 },
 	{ name = "guardian halberd", chance = 20000 },
 	{ name = "heavy mace", chance = 25000 },
 	{ name = "mastermind shield", chance = 4166 },
-	{ name = "guardian shield", chance = 7692 },
 	{ name = "crown shield", chance = 11111 },
 	{ name = "demon shield", chance = 4166 },
-	{ name = "tower shield", chance = 9090 },
-	{ name = "power bolt", chance = 16666, maxCount = 94 },
-	{ name = "soul orb", chance = 20000, maxCount = 5 },
+	{ name = "soul orb", chance = 20000, maxCount = 50 },
 	{ name = "demon horn", chance = 12500, maxCount = 2 },
-	{ name = "infernal bolt", chance = 20000, maxCount = 46 },
-	{ name = "viper star", chance = 16666, maxCount = 70 },
+	{ name = "infernal bolt", chance = 40000, maxCount = 46 },
 	{ name = "assassin star", chance = 16666, maxCount = 50 },
-	{ name = "diamond sceptre", chance = 7142 },
 	{ name = "onyx flail", chance = 14285 },
 	{ name = "demonbone", chance = 1234 },
 	{ name = "berserk potion", chance = 16666 },
 	{ name = "mastermind potion", chance = 14285 },
-	{ name = "great mana potion", chance = 11111 },
-	{ name = "great health potion", chance = 14285 },
 	{ id = 281, chance = 33333, maxCount = 2 }, -- giant shimmering pearl (green)
-	{ name = "flaming arrow", chance = 20000, maxCount = 46 },
-	{ name = "great spirit potion", chance = 14285 },
 	{ name = "ultimate health potion", chance = 14285 },
 	{ name = "lavos armor", chance = 1851 },
 	{ name = "paladin armor", chance = 10000 },
 	{ name = "obsidian truncheon", chance = 1234 },
-	{ id = 8894, chance = 1234 }, -- heavily rusted armor
 	{ id = 8896, chance = 50000 }, -- slightly rusted armor
 	{ name = "gold ingot", chance = 20000 },
+	{ id = 9097, chance = 13333 },
+	{ id = 36741, chance = 13333 },
+	{ id = 36734, chance = 13333 },
 }
 
 monster.attacks = {
@@ -134,9 +124,9 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 95 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 15 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
