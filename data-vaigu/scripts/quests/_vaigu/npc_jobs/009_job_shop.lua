@@ -1777,7 +1777,6 @@ JOB_SHOPS = {
 		{ itemName = "heart backpack", clientId = 10202, buy = 500 },
 		{ itemName = "orange bag", clientId = 9603, buy = 5 },
 		{ itemName = "present", clientId = 2856, buy = 10 },
-		{ itemName = "present", clientId = 3218, buy = 10 },
 		{ itemName = "purple bag", clientId = 2860, buy = 5 },
 		{ itemName = "red bag", clientId = 2859, buy = 5 },
 		{ itemName = "yellow bag", clientId = 2858, buy = 4 },

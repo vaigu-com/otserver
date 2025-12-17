@@ -1,10 +1,17 @@
 Storage.LizardTower = {
-	Basin = {},
+	BasinToInside = {},
+	BasinToOutside = {},
 }
 
 local offering = 11673
 
 local drakenHuntingPlace = Position(6571, 990, 9)
+local justOutsideTheTower = Position(6423, 932, 4)
+
+local basinToDestination = {
+	[Storage.LizardTower.BasinToInside] = drakenHuntingPlace,
+	[Storage.LizardTower.BasinToOutside] = justOutsideTheTower,
+}
 
 local tombCoalBasin = MoveEvent()
 function tombCoalBasin.onAddItem(moveitem, tileitem, position)
@@ -25,9 +32,10 @@ function tombCoalBasin.onAddItem(moveitem, tileitem, position)
 
 	moveitem:remove(1)
 	position:sendMagicEffect(CONST_ME_HITBYFIRE)
-	topPlayer:teleportTo(drakenHuntingPlace)
+	topPlayer:teleportTo(basinToDestination[tileitem:getKey()])
 	return true
 end
 tombCoalBasin:type("additem")
-tombCoalBasin:key(Storage.LizardTower.Basin)
+tombCoalBasin:key(Storage.LizardTower.BasinToInside)
+tombCoalBasin:key(Storage.LizardTower.BasinToOutside)
 tombCoalBasin:register()

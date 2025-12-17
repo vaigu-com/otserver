@@ -1454,6 +1454,7 @@ quest
 						[Storage.Finished.ThreeSramatiansAndTheDragon] = MISSION_FINISHED,
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.AskRomekForMission,
 					},
+					rewards = { ExerciseWeaponBox(3000) },
 					outfitRewards = QuestRewards.OutfitsAddons.ThreeSramatiansAndTheDragon.Raccoon2,
 				},
 			})

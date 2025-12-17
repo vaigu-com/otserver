@@ -1,3 +1,5 @@
+MAX_CHARGES = -1
+
 NO_REWARD = -1
 
 ---@class LootboxDataRegistry
@@ -108,9 +110,14 @@ function LootboxReward.New(context)
 		logger.warn(debug.traceback("[Lootbox::New] No weight specified for the LootboxReward."))
 		return
 	end
+
+	if newObj.count == MAX_CHARGES then
+		local maxDefaultCharges = ItemType(newObj.rewardItemId):getCharges()
+		newObj.count = maxDefaultCharges
+	end
+
 	if not newObj.count then
-		logger.warn(debug.traceback("[Lootbox::New] No count specified for the LootboxReward."))
-		return
+		logger.warn(debug.traceback("[Lootbox::New] No count specified for the LootboxReward"))
 	end
 
 	setmetatable(newObj, LootboxReward)
@@ -133,7 +140,7 @@ local realLootboxData = {
 			LootboxReward({ rewardItemId = 5899, weight = 424, count = 1 }),
 			LootboxReward({ rewardItemId = 5894, weight = 401, count = 1 }),
 			LootboxReward({ rewardItemId = 5902, weight = 299, count = 1 }),
-			LootboxReward({ rewardItemId = 3083, weight = 100, count = 1 }),
+			LootboxReward({ rewardItemId = 3083, weight = 100, count = MAX_CHARGES }),
 			LootboxReward({ rewardItemId = 12787, weight = 57, count = 1 }),
 			LootboxReward({ rewardItemId = 3026, weight = 79, count = 1 }),
 			LootboxReward({ rewardItemId = 5879, weight = 72, count = 1 }),
@@ -298,7 +305,7 @@ local realLootboxData = {
 		},
 	}),
 	LootboxData({
-		lootboxId = ItemId.SURPRISE_BAG_RED,
+		lootboxId = ItemId.SURPRISE_BAG_BLUE,
 		rewards = {
 			LootboxReward({ rewardItemId = 6572, weight = 111, count = 1 }),
 			LootboxReward({ rewardItemId = 6569, weight = 105, count = 3 }),
