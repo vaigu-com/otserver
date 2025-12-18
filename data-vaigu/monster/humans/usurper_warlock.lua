@@ -56,7 +56,7 @@ monster.flags = {
 	canPushItems = true,
 	canPushCreatures = true,
 	staticAttackChance = 70,
-	targetDistance = 1,
+	targetDistance = 3,
 	runHealth = 0,
 	healthHidden = false,
 	isBlockable = false,
@@ -84,16 +84,13 @@ monster.loot = {
 	{ name = "lion crest", chance = 8222 },
 	{ name = "black pearl", chance = 5778 },
 	{ id = 281, chance = 5556 }, -- giant shimmering pearl (green)
-	{ name = "terra hood", chance = 4667 },
-	{ name = "lightning headband", chance = 3778 },
 	{ name = "green gem", chance = 3556 },
-	{ name = "springsprout rod", chance = 2667 },
 	{ name = "ham", chance = 2444 },
-	{ name = "magma monocle", chance = 1778 },
-	{ name = "wand of cosmic energy", chance = 1778 },
 	{ name = "underworld rod", chance = 1333 },
-	{ name = "knight legs", chance = 1111 },
-	{ name = "wand of starstorm", chance = 667 },
+	{ name = "lion spellbook", chance = 30 },
+	{ name = "lion wand", chance = 20 },
+	{ name = "lion amulet", chance = 50 },
+	{ name = "lion rod", chance = 20 },
 }
 
 monster.attacks = {
