@@ -135,8 +135,8 @@ pseudoQuest
 			InstantTravel({ positions = { Position(6186, 994, 8), Position(32529, 32489, 11) } }),
 			--Januszex, Claustrophobic inferno
 			InstantTravel({ positions = { Position(7780, 749, 15), Position(34011, 31010, 9) } }),
-			--Warzone 4,5,6 hub south, Warzone 7,8,9 hub
-			InstantTravel({ positions = { Position(33844, 32395, 14), Position(32666, 31829, 10) } }),
+			--Syberia mines, Warzone 7,8,9 hub
+			InstantTravel({ positions = { Position(6313, 1882, 13), Position(32666, 31829, 10) } }),
 			--Pirate island, Deepling
 			InstantTravel({ positions = { Position(6779, 2562, 7), Position(33514, 31323, 8) } }),
 			--Steppes, Otherworld
