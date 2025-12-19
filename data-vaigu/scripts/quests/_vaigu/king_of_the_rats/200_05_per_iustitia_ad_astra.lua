@@ -650,7 +650,7 @@ quest
 					text = "Finding such a device won't be easy. It's possible it will be where Glooth creatures are created. Try your luck in the underground swamps.",
 				},
 				[{ "mission" }] = {
-					text = "Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Bydgoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle.",
+					text = "Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Byggoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle.",
 					requiredItems = {
 						{ id = 8775, count = 20 },
 						{ id = 5892, count = 3 },

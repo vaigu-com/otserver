@@ -1089,7 +1089,7 @@ quest
 					text = "Don't wait for the sramatians. They're slacking on purpose to avoid having to fight {HF-P/X}. Besides, do you have all the {runes}?",
 				},
 				[{ "hfpx", "hf-p/x", "HF-P/X" }] = {
-					text = "While you were traveling the world, I went to the library in Bydgoshch. I found information that HF-P/X terrorized an ancient temple where the treasury of Passats was located. For uncounted years, it's been hiding somewhere in the underground of that temple. I think he might want to use Passats in a fight. Perhaps he possesses necromantic abilities and can animate inanimate objects. Or maybe he'll use Passats as kamikaze projectiles? Don't wait for the sramats; they won't come.",
+					text = "While you were traveling the world, I went to the library in Byggoshch. I found information that HF-P/X terrorized an ancient temple where the treasury of Passats was located. For uncounted years, it's been hiding somewhere in the underground of that temple. I think he might want to use Passats in a fight. Perhaps he possesses necromantic abilities and can animate inanimate objects. Or maybe he'll use Passats as kamikaze projectiles? Don't wait for the sramats; they won't come.",
 				},
 				[{ "runy", "runes" }] = {
 					text = "Yes, those are all the needed runes. You can now try to use the enchanted lever. Maybe we'll find HF-P/X here.",

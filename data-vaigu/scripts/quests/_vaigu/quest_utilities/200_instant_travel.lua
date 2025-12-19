@@ -103,7 +103,7 @@ pseudoQuest
 			InstantTravel({ positions = { Position(7633, 1613, 8), Position(7724, 1629, 8) } }),
 			--Tarnished spirit rocks, Feverish citizen peninsula, Stone Golem mountain
 			InstantTravel({ positions = { Position(7578, 1268, 7), Position(7701, 1206, 7), Position(7682, 1178, 7) } }),
-			--Orshaawa deep underground, Magicians dungeon southwest of Bydgoshch
+			--Orshaawa deep underground, Magicians dungeon southwest of Byggoshch
 			InstantTravel({ positions = { Position(7644, 1837, 12), Position(7659, 1635, 14) } }),
 			--Hidden Caribbean cave, Megadragon cliffs cave
 			InstantTravel({ positions = { Position(7426, 1463, 7), Position(7429, 1427, 7) } }),
@@ -153,7 +153,7 @@ pseudoQuest
 			InstantTravel({ positions = { Position(6025, 1912, 7), Position(33672, 32227, 7) }, requiredState = { [Storage.Quest.U12_00.TheDreamCourts.CourtTeleportAccess] = ACCESS_GRANTED } }),
 			--Syberia north golems hill, Winter court
 			InstantTravel({ positions = { Position(6580, 1775, 3), Position(33675, 32147, 7) }, requiredState = { [Storage.Quest.U12_00.TheDreamCourts.CourtTeleportAccess] = ACCESS_GRANTED } }),
-			--Bydgosch hut, Tormented Soul dungeon - fake normal stairs
+			--Byggosch hut, Tormented Soul dungeon - fake normal stairs
 			InstantTravel({ positions = { Position(7824, 1388, 7), Position(32688, 32235, 8) }, sendMagicEffect = false }),
 			--Caribbean, Faceless Bane dungeon
 			InstantTravel({ positions = { Position(32720, 32270, 8), Position(33618, 32546, 13) }, requiredState = { [Storage.Quest.U12_00.TheDreamCourts.HauntedHouse.FacelessBaneAccess] = ACCESS_GRANTED } }),

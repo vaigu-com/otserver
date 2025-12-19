@@ -52,7 +52,7 @@ quest
 			TrainDestinations = {
 				ToHurghada = {},
 				ToJanuszex = {},
-				ToBydgoshch = {},
+				ToByggoshch = {},
 			},
 			Rewards = { ToiletSoap = {} },
 			PortalAfterPol = {},

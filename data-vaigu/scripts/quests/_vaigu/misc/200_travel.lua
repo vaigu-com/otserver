@@ -67,7 +67,7 @@ pseudoQuest
 				{ toPos = Position(6602, 1877, 7), name = "Syberia" },
 				{ toPos = Position(6421, 727, 7), name = "Prague North", minLevel = 60 },
 				{ toPos = Position(7311, 1082, 6), name = "Maioor'ka" },
-				{ toPos = Position(7933, 1546, 6), name = "Bydgoshch" },
+				{ toPos = Position(7933, 1546, 6), name = "Byggoshch" },
 			},
 			TARZAN_SHIP = {
 				{ toPos = Position(7038, 837, 7), name = "Kongo" },
@@ -85,7 +85,7 @@ pseudoQuest
 			},
 			VAVZHEEK_TRAIN = {
 				{ toPos = Position(7550, 962, 13), name = "Januszex", requiredState = { [Storage.ProdigalSon.TrainDestinations.ToJanuszex] = ACCESS_GRANTED } },
-				{ toPos = Position(7876, 1434, 9), name = "Bydgoshch" },
+				{ toPos = Position(7876, 1434, 9), name = "Byggoshch" },
 				{ toPos = Position(6462, 1125, 14), name = "Hurghada underground" },
 			},
 			ZONG_CAMEL = {

@@ -16,7 +16,7 @@ quest
 			Knurowo = {},
 			Hurghada = {},
 			HugoBossVilla = {},
-			Bydgoshch = {},
+			Byggoshch = {},
 		}
 	end)
 	:Constant(function()
