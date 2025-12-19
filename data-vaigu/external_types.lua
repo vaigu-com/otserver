@@ -69,7 +69,7 @@ function GlobalEvent(eventName) end
 function CreatureEvent(eventname) end
 
 ---@class MoveEvent
----@field key fun(self, key: table): nil key is table because Storage keys are converted to string later. This prevents putting hardcoded strings.
+---@field key fun(self, key: string|table): nil key is table because Storage keys are converted to string later. This prevents putting hardcoded strings.
 ---@field register fun(self): nil
 ---@field onStepIn fun(player: Player, item: Item, toPosition: Position, fromPosition: Position): nil
 ---@return MoveEvent
@@ -78,7 +78,7 @@ function MoveEvent() end
 ---@class Action
 ---@field onUse fun(player: Player, ...): boolean|nil
 ---@field id fun(self, id: number, ...): nil
----@field key fun(self, key: string, ...): nil
+---@field key fun(self, key: string|table, ...): nil
 ---@field register fun(): nil
 ---@return Action
 function Action() end
@@ -86,7 +86,7 @@ function Action() end
 ---@class Look
 ---@field onLook fun(player: Player, ...): boolean|nil
 ---@field id fun(self, id: number): nil
----@field key fun(self, key: string): nil
+---@field key fun(self, key: string|table): nil
 ---@field register fun(): nil
 ---@return Look
 function Look() end

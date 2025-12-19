@@ -135,6 +135,18 @@ function Quest:AddDialog(context)
 	if type(names) ~= "table" then
 		names = { names }
 	end
+	QuestRewards.Items[self.localizer] = QuestRewards.Items[self.localizer] or {}
+	for key, dialog in pairs(context.dialogs) do
+		if dialog.rewards then
+			for key, itemData in pairs(dialog.rewards) do
+				if type(itemData) ~= "table" then
+					logger.warn("[Quest::AddDialog] itemData", itemData, type(itemData))
+					PrintAnything(dialog)
+				end
+				table.insert(QuestRewards.Items[self.localizer], itemData)
+			end
+		end
+	end
 
 	for _, npcName in pairs(names) do
 		self.npcs[npcName] = self.npcs[npcName] or {}
@@ -175,6 +187,24 @@ function Quest:AddOnUseDeclaration(onUseDeclaration)
 
 			item.nextState = item.nextState or {}
 			item.nextState[item.key] = item.nextState[item.key] or MISSION_FINISHED
+		end
+
+		for _, context in pairs(contexts) do
+			for key, itemData in pairs(context.rewards or {}) do
+				local id = itemData.id
+				if not id and key > 100 then
+					id = key
+				end
+				if not id then
+					id = 0
+				end
+				for key, innerItem in pairs(itemData) do
+					if type(innerItem) == "table" and innerItem.id then
+						RewardsRegistry.registry.items[innerItem.id] = (RewardsRegistry.registry.items[innerItem.id] or 0) + 1
+					end
+				end
+				RewardsRegistry.registry.items[id] = (RewardsRegistry.registry.items[id] or 0) + 1
+			end
 		end
 	end
 

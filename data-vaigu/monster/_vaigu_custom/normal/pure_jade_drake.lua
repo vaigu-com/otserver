@@ -67,7 +67,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "Crystal Coin", chance = 23440, minCount = 1, maxCount = 2 },
+	{ name = "Crystal Coin", chance = 83440, minCount = 1, maxCount = 2 },
 	{ name = "Great Spirit Potion", chance = 20760 },
 	{ name = "Small Diamond", chance = 6020, minCount = 1, maxCount = 3 },
 	{ name = "Rusted Armor", chance = 5580 },
@@ -109,7 +109,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 64,
 	armor = 52,
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 1500, maxDamage = 4500, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 150, maxDamage = 450, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {

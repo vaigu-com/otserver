@@ -585,6 +585,10 @@ function LockoutExpiryTypeTimestamp(lockoutExpiryTime)
 		return os.time()
 	elseif lockoutExpiryTime == LOCKOUT_EXPIRY_TIME.EXPIRED_TODAY then
 		return DailyLockoutExpiryTime() - secondsInDay
+	else
+		logger.error("[LockoutExpiryTypeTimestamp] unknown lockoutExpiryTime:", lockoutExpiryTime)
+		logger.error(debug.traceback())
+		return nil
 	end
 end
 

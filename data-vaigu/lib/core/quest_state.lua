@@ -13,7 +13,6 @@ QuestRewards = {
 		Universal = {},
 	},
 	Items = {
-		Universal = {},
 	},
 	Mounts = {
 		Universal = {},

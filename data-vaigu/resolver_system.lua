@@ -534,6 +534,7 @@ RewardsRegistry.__index = RewardsRegistry
 RewardsRegistry.questRewardOutfitIds = {}
 RewardsRegistry.registry = {
 	outfitAddons = {},
+	items = {},
 }
 
 function RewardsRegistry:ValidateQuestRewardsVsGamestore()
@@ -541,6 +542,7 @@ function RewardsRegistry:ValidateQuestRewardsVsGamestore()
 	function validateNpcsArePlacedOnMapStartup.onStartup()
 		local gamestoreOutfitIds = {}
 		local gamestoreMountIds = {}
+		local questItemRewardIds = {}
 		for key, category in pairs(GameStore.Categories) do
 			for key, offer in pairs(category.offers or {}) do
 				if offer.type == GameStore.OfferTypes.OFFER_TYPE_OUTFIT then
@@ -574,6 +576,24 @@ function RewardsRegistry:ValidateQuestRewardsVsGamestore()
 						logger.warn(T("[RewardsRegistry:ValidateQuestRewardsVsGamestore] Mount :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = mountId }))
 					end
 				end
+			end
+		end
+		for questName, allQuestItemPacks in pairs(QuestRewards.Items) do
+			for key, itemData in pairs(allQuestItemPacks) do
+				PrintAnything(itemData)
+				local id = itemData.id
+				if not id and key > 100 then
+					id = key
+				end
+				if not id then
+				id = 0
+				end
+				for key, innerItem in pairs(itemData) do
+					if type(innerItem) == "table" and innerItem.id then
+						self.registry.items[innerItem.id] = (self.registry.items[innerItem.id] or 0) + 1
+					end
+				end
+				self.registry.items[id] = (self.registry.items[id] or 0) + 1
 			end
 		end
 	end
