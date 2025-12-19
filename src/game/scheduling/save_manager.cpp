@@ -115,7 +115,7 @@ void SaveManager::saveAll() {
 	} else if (pid == 0) {
 		ResourceGuard guard;
 
-		if(!Database::getInstance().hasHandle() && !Database::getInstance().connect()) {
+		if(!Database::getInstance().connect()) {
 			throw std::runtime_error("Failed to connect to database.");
 		}
 
