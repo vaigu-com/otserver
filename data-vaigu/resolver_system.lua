@@ -580,7 +580,6 @@ function RewardsRegistry:ValidateQuestRewardsVsGamestore()
 		end
 		for questName, allQuestItemPacks in pairs(QuestRewards.Items) do
 			for key, itemData in pairs(allQuestItemPacks) do
-				PrintAnything(itemData)
 				local id = itemData.id
 				if not id and key > 100 then
 					id = key

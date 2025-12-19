@@ -139,10 +139,6 @@ function Quest:AddDialog(context)
 	for key, dialog in pairs(context.dialogs) do
 		if dialog.rewards then
 			for key, itemData in pairs(dialog.rewards) do
-				if type(itemData) ~= "table" then
-					logger.warn("[Quest::AddDialog] itemData", itemData, type(itemData))
-					PrintAnything(dialog)
-				end
 				table.insert(QuestRewards.Items[self.localizer], itemData)
 			end
 		end

@@ -252,17 +252,9 @@ function Player.isMissionOngoing(self, mission)
 	end
 	if not (mission.minState and mission.maxState) then
 		logger.warn("[Player.isMissionOngoing] Corrupted mission - no minState/maxState")
-		PrintAnything(state)
-		print("state", state, type(state))
-		PrintAnything(mission)
-		print(debug.traceback())
 	end
 	if type(state) ~= type(mission.minState) then
 		logger.warn("[Player.isMissionOngoing] Corrupted mission - state type is different from mission.minState")
-		PrintAnything(state)
-		print("state", state, type(state))
-		PrintAnything(mission)
-		print(debug.traceback())
 	end
 	if state < mission.minState then
 		return false
