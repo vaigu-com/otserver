@@ -170,11 +170,29 @@ local raidData = {
 	LuaRaid("Ghazbaran"):Context({
 		perDay = 0.1728,
 		waves = {
-			Wave(800000):Creature("Deathslicer", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 12, true):Notification(-799000, "Primordial evil is awakening deep in the mines of Bydgoshch."):Notification(-200000, "Demonic entities begin to appear in the deepest mines of Bydgoshch."),
-			Wave(900000):Creature("Juggernaut", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 1, true):Notification(-1, "Demonic entities begin to appear in the deepest mines of Bydgoshch."),
-			Wave(1000000):Creature("Fury", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 1, true),
-			Wave(1100000):Creature("Demon", Area(Position(7658, 1372, 15), Position(7701, 1420, 15)), 1, true),
-			Wave(1200000):Creature("Ghazbaran", Area(Position(7673, 1379, 15), Position(7673, 1379, 15)), 1, true):Notification(-1, "The Demonic Master has revealed himself in the mines of Bydgoshch"),
+			Wave(800000):Creature("Deathslicer", Area(Position(6349, 1763, 14), Position(6401, 1809, 14)), 12, true):Notification(-799000, "Primordial evil is awakening deep in the mines of Syberia."):Notification(-200000, "Demonic entities begin to appear in the deepest mines of Syberia."),
+			Wave(900000):Creature("Juggernaut", Area(Position(6349, 1763, 14), Position(6401, 1809, 14)), 1, true):Notification(-1, "Demonic entities begin to appear in the deepest mines of Syberia."),
+			Wave(1000000):Creature("Fury", Area(Position(6349, 1763, 14), Position(6401, 1809, 14)), 1, true),
+			Wave(1100000):Creature("Demon", Area(Position(6349, 1763, 14), Position(6401, 1809, 14)), 1, true),
+			Wave(1200000):Creature("Ghazbaran", Area(Position(6377, 1774, 14), Position(6377, 1774, 14)), 1, true):Notification(-1, "The Demonic Master has revealed himself in the mines of Syberia"),
+		},
+		cooldown = 144000,
+		minPlayersOnline = 5,
+	}),
+	LuaRaid("Morgaroth"):Context({
+		perDay = 0.1872,
+		waves = {
+			Wave(360000):Creature("Demon", Area(Position(6713, 1143, 10), Position(6749, 1173, 10)), 7, true):Notification(-359000, "Strange footsteps can be heard in the north of the Hurghada desert."),
+			Wave(720000):Creature("Morgaroth", Area(Position(6728, 1158, 10), Position(6728, 1158, 10)), 1, true):Notification(-360000, "The presence of mythical evil can be sensed near the extinct volcano in the desert."):Notification(-1, "Morgaroth has activated the volcano and revealed himself in its depths!"),
+		},
+		cooldown = 144000,
+		minPlayersOnline = 5,
+	}),
+	LuaRaid("Zoralurk"):Context({
+		perDay = 0.1872,
+		waves = {
+			Wave(360000):Creature("Demon", Area(Position(7677, 1370, 15), Position(7719, 1418, 15)), 7, true):Notification(-359000, ""),
+			Wave(720000):Creature("Zoralurk", Area(Position(7700, 1396, 15), Position(7700, 1396, 15)), 1, true):Notification(-360000, ""):Notification(-1, ""),
 		},
 		cooldown = 144000,
 		minPlayersOnline = 5,
@@ -512,15 +530,6 @@ local raidData = {
 		},
 		cooldown = 43200,
 		minPlayersOnline = 1,
-	}),
-	LuaRaid("Morgaroth"):Context({
-		perDay = 0.1872,
-		waves = {
-			Wave(360000):Creature("Demon", Area(Position(6713, 1143, 10), Position(6749, 1173, 10)), 7, true):Notification(-359000, "Strange footsteps can be heard in the north of the desert."),
-			Wave(720000):Creature("Morgaroth", Area(Position(6728, 1158, 10), Position(6728, 1158, 10)), 1, true):Notification(-360000, "The presence of mythical evil can be sensed near the extinct volcano in the desert."):Notification(-1, "Morgaroth has activated the volcano and revealed himself in its depths!"),
-		},
-		cooldown = 144000,
-		minPlayersOnline = 5,
 	}),
 	LuaRaid("Jaglak"):Context({
 		perDay = 0.0144,
