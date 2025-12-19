@@ -59,7 +59,7 @@ def generate_xml(stages, output_path: str):
 
 def main():
     input_lua = "../data/stages.lua"
-    output_xml = "./stages.xml"
+    output_xml = "../data/XML/stages.xml"
 
     stages = load_experience_stages(input_lua)
     generate_xml(stages, output_xml)
