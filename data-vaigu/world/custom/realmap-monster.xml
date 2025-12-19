@@ -104539,7 +104539,7 @@
 	<monster centerx="34085" centery="31800" centerz="10" radius="1">
 		<monster name="Iks Aucar" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="32603" centery="31801" centerz="10" radius="1">
+	<monster centerx="32604" centery="31801" centerz="10" radius="1">
 		<monster name="Blemished Spawn" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="32622" centery="31801" centerz="10" radius="1">
@@ -104554,7 +104554,7 @@
 	<monster centerx="32647" centery="31801" centerz="10" radius="1">
 		<monster name="Afflicted Strider" x="0" y="0" z="10" spawntime="60" />
 	</monster>
-	<monster centerx="32654" centery="31801" centerz="10" radius="1">
+	<monster centerx="32655" centery="31801" centerz="10" radius="1">
 		<monster name="Afflicted Strider" x="0" y="0" z="10" spawntime="60" />
 	</monster>
 	<monster centerx="33098" centery="31801" centerz="10" radius="2">
