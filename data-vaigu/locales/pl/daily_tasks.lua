@@ -63,6 +63,7 @@ return {
 			requiredKills = requiredKills,
 		})
 	end,
+	["YOU_DONT_HAVE_ONGOING_DAILY_TASK"] = "Nie zajmujesz sie teraz zadnym dziennym zadaniem.",
 	--Questlog
 	["DAILY_TASK_MISSION_NAME"] = function(context)
 		local dailyTask = context.dailyTask
@@ -88,7 +89,7 @@ return {
 			requiredKills = requiredKills,
 		})
 		if requiredItems then
-			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przedmioty do Pani Burmistrz:\n" .. ItemsToString(requiredItems)
+			dailyTaskDescription = dailyTaskDescription .. "\n\nBedziesz rowniez musial przyniesc nastepujace przedmioty do przywodcy dowolnego miasta:\n" .. ItemsToString(requiredItems)
 		end
 		dailyTaskDescription = dailyTaskDescription .. T("\nZaplata w wyokosci :money: zlota oraz :tibiaCoins: coinow!", {
 			money = dailyTask.money,

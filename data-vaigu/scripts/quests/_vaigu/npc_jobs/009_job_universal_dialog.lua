@@ -111,12 +111,18 @@ pseudoQuest
 
 		local function confirmWedding(context)
 			local player = context.player
-			local candidateId = getPlayerSpouse(player:getGuid())
-			local candidate = Player(candidateId)
-			setPlayerMarriageStatus(player:getGuid(), MARRIED_STATUS)
-			setPlayerMarriageStatus(candidateId, MARRIED_STATUS)
-			setPlayerSpouse(player:getGuid(), candidateId)
-			setPlayerSpouse(candidateId, player:getGuid())
+			local playerGuid = player:getGuid()
+			local candidateGuid = getPlayerSpouse(playerGuid)
+			local candidate = Player(candidateGuid)
+
+			setPlayerMarriageStatus(playerGuid, MARRIED_STATUS)
+			setPlayerMarriageStatus(candidateGuid, MARRIED_STATUS)
+
+			setPlayerSpouse(playerGuid, candidateGuid)
+			setPlayerSpouse(candidateGuid, playerGuid)
+
+			player:sendMagicEffect(CONST_ME_POWERFUL_HEARTS)
+			candidate:sendMagicEffect(CONST_ME_POWERFUL_HEARTS)
 
 			player:AddCustomItem({
 				id = 7370,
@@ -163,7 +169,7 @@ pseudoQuest
 		}
 		JOB_UNIVERSAL_DIALOGS[JOB_WILDCARD] = {
 			[{ "wildcard", "wildcards" }] = {
-				text = "ok",
+				text = "Here you go",
 				specialActionsOnSuccess = {
 					{
 						action = function(context)
@@ -259,12 +265,12 @@ pseudoQuest
 				text = "Here you are.",
 				requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 				requiredState = {
-					[Storage.Tasks.TaskPoints] = powerfulImbueUnlockCost,
+					[Storage.Task.TaskPoints] = powerfulImbueUnlockCost,
 					[Storage.powerfulImbue] = { max = 0 },
 				},
 				nextState = {
 					[Storage.powerfulImbue] = 1,
-					[Storage.Tasks.TaskPoints] = "-" .. tostring(powerfulImbueUnlockCost),
+					[Storage.Task.TaskPoints] = "-" .. tostring(powerfulImbueUnlockCost),
 				},
 				textNoRequiredState = "YOU_DONT_HAVE_ENOUGH_TASK_POINTS",
 				cost = powerfulImbueUnlockCost,
@@ -432,7 +438,7 @@ pseudoQuest
 				},
 			},
 			[{ "begin", "rozpocznijmy" }] = {
-				text = "",
+				text = NO_TEXT,
 				requiredTopic = QuestTopics.JOB_TOPICS.confirmBeginCelebration,
 				specialActionsOnSuccess = {
 					{
@@ -506,7 +512,7 @@ pseudoQuest
 				text = "Hello, you need some help? Check {services} that I offer...",
 			},
 			[{ "pomoc", "uslug", "uslugi", "help", "services" }] = {
-				text = "You are in the MirkoTown temple. If you wish, I can {bless} you, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
+				text = "You are in a temple. If you wish, I can {bless} you with regular blessings or a {twist of fate}, {heal}, {promote} and {mark} most important civilians of this city on your map.\nYou can also get a {marriage} here.",
 			},
 
 			--Automatic on language change
@@ -544,7 +550,8 @@ pseudoQuest
 					},
 					{
 						requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasBlessings,
-						count = ALL_BLESSINGS_COUNT,
+						min = 2,
+						max = 6,
 						requiredOutcome = false,
 						textFailedRequirement = "You have been blessed already.",
 					},
@@ -557,6 +564,36 @@ pseudoQuest
 					},
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.chargeForBless,
+					},
+				},
+			},
+			[{ "twist of fate" }] = {
+				text = "TWIST_OF_FATE_PRICE_TEXT",
+				nextTopic = QuestTopics.JOB_TOPICS.confirmBuyTwistoffate,
+			},
+			[{ "yes", "tak" }] = {
+				text = "Here you go.",
+				requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyTwistoffate,
+				specialRequirements = {
+					{
+						requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.canAffordTwistOfFate,
+						requiredOutcome = true,
+						textFailedRequirement = "TWIST_OF_FATE_INSUFFICIENT_MONEY",
+					},
+					{
+						requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasTwistOfFate,
+						requiredOutcome = false,
+						textFailedRequirement = "You have already been blessed with twist of fate.",
+					},
+				},
+				specialActionsOnSuccess = {
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.grantBless,
+						min = 1,
+						max = 1,
+					},
+					{
+						action = SPECIAL_ACTIONS_UNIVERSAL.chargeForTwistOfFate,
 					},
 				},
 			},

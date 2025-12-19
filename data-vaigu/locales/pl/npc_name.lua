@@ -1255,5 +1255,6 @@ return {
 	["Conference Triss"] = "Triss",
 	["Celebimber"] = "Celebimber",
 	["Mary"] = "Maria",
+	["GOD Przemek"] = "GOD Przemek",
 	--#endregion vaigu
 }

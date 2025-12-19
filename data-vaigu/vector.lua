@@ -106,7 +106,7 @@ local directions = {
 }
 local anglePerDir = 360 / #directions
 
-function Vector:ToDirection()
+function Vector:ToDirectionByAngle()
 	if self.x == 0 and self.y == 0 then
 		return DIRECTION_NONE
 	end
@@ -115,4 +115,79 @@ function Vector:ToDirection()
 	angle = (angle + 90 + 180) % 360
 	local dirId = math.floor((angle + anglePerDir / 2) / anglePerDir) % 8 + 1
 	return directions[dirId]
+end
+
+function Vector:ToDirectionSnap()
+	if self.x == 0 and self.y == 0 then
+		return DIRECTION_NONE
+	end
+
+	if self.x == 0 then
+		if self.y > 0 then
+			return DIRECTION_SOUTH
+		else
+			return DIRECTION_NORTH
+		end
+	elseif self.y == 0 then
+		if self.x > 0 then
+			return DIRECTION_EAST
+		else
+			return DIRECTION_WEST
+		end
+	else
+		if self.x > 0 and self.y > 0 then
+			return DIRECTION_SOUTHEAST
+		elseif self.x > 0 and self.y < 0 then
+			return DIRECTION_NORTHEAST
+		elseif self.x < 0 and self.y > 0 then
+			return DIRECTION_SOUTHWEST
+		else
+			return DIRECTION_NORTHWEST
+		end
+	end
+end
+
+local facingDirectionToQualifiedDirections = {
+	[DIRECTION_NORTH] = { DIRECTION_NORTHWEST, DIRECTION_NORTH, DIRECTION_NORTHEAST },
+	[DIRECTION_EAST] = { DIRECTION_NORTHEAST, DIRECTION_EAST, DIRECTION_SOUTHEAST },
+	[DIRECTION_SOUTH] = { DIRECTION_SOUTHEAST, DIRECTION_SOUTH, DIRECTION_SOUTHWEST },
+	[DIRECTION_WEST] = { DIRECTION_SOUTHWEST, DIRECTION_WEST, DIRECTION_NORTHWEST },
+
+	[DIRECTION_NORTHEAST] = { DIRECTION_NORTH, DIRECTION_EAST, DIRECTION_NORTHEAST },
+	[DIRECTION_SOUTHEAST] = { DIRECTION_SOUTH, DIRECTION_EAST, DIRECTION_SOUTHEAST },
+	[DIRECTION_SOUTHWEST] = { DIRECTION_SOUTH, DIRECTION_WEST, DIRECTION_SOUTHWEST },
+	[DIRECTION_NORTHWEST] = { DIRECTION_NORTH, DIRECTION_WEST, DIRECTION_NORTHWEST },
+
+	[DIRECTION_NONE] = { DIRECTION_NONE },
+}
+function Vector:IsFacingPartially(otherDirection)
+	local vectorDirection = self:ToDirectionByAngle()
+	local qualifiedDirections = facingDirectionToQualifiedDirections[otherDirection]
+	if not qualifiedDirections then
+		return false
+	end
+
+	for _, qualifiedDirection in pairs(qualifiedDirections) do
+		if vectorDirection == qualifiedDirection then
+			return true
+		end
+	end
+	return false
+end
+
+function Vector:IsFacingSnap(...)
+	local vectorDirection = self:ToDirectionSnap()
+	if type(...) == "table" then
+		return table.contains(..., vectorDirection)
+	else
+		return table.contains({ ... }, vectorDirection)
+	end
+end
+
+function Vector:IsFacingDiagonalSnap()
+	return self:IsFacingSnap(DIRECTION_NORTHEAST, DIRECTION_SOUTHEAST, DIRECTION_SOUTHWEST, DIRECTION_NORTHWEST)
+end
+
+function Vector:IsFacingVerticalPartially()
+	return self:IsFacingPartially(DIRECTION_NORTH) or self:IsFacingPartially(DIRECTION_SOUTH)
 end

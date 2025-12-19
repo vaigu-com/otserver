@@ -133,6 +133,7 @@ monster.loot = {
 	{ name = "dragon robe", chance = 4500 },
 	{ name = "molten plate", chance = 4500 },
 	{ name = "great shield", chance = 500 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

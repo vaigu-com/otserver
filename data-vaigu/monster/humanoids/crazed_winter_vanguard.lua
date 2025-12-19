@@ -74,7 +74,7 @@ monster.voices = {
 	interval = 5000,
 	chance = 10,
 	{ text = "Nobody will ever escape from this place, muwahaha!!!", yell = false },
-	{ text = "These voices… they never stop!", yell = false },
+	{ text = "These voices... they never stop!", yell = false },
 	{ text = " I am getting crazy here...Wa wa wahhh!!!", yell = false },
 }
 

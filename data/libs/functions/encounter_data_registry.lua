@@ -4,6 +4,7 @@ EncounterDataRegistry.registry = {}
 
 ---@param encounter EncounterData
 function EncounterDataRegistry:Register(encounter)
+	encounter:FixEnounterStages()
 	self.registry[encounter.displayName] = encounter
 	self.registry[encounter.encounterId] = encounter
 	return self

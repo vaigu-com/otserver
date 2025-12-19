@@ -62,7 +62,14 @@ monster.voices = {
 	chance = 10,
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "blue crystal shard", chance = 3000 },
+	{ name = "blue crystal splinter", chance = 3000 },
+	{ name = "cyan crystal fragment", chance = 7000 },
+	{ name = "trapped bad dream monster", chance = 3000 },
+	{ name = "bowl of terror sweat", chance = 8000 },
+	{ name = "white piece of cloth", chance = 4520 },
+}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -450 },
@@ -78,13 +85,13 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 75 },
 	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = -10 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -20 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 

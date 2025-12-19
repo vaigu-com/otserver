@@ -12,7 +12,7 @@ quest
 			MetamphetamineCrystal = {},
 			Mission03 = {},
 			FentBagCyclops = {},
-			FentBagTurdstin = {},
+			FentBagBarrack = {},
 			Mission04 = {},
 			SpeedCarrot = {},
 			CarrotsMade = {},
@@ -32,7 +32,7 @@ quest
 			Mission03 = {
 				AskMoustachillesForNewMission = 1,
 				SellFentToCyclops = 2,
-				SellFentToTurdstin = 3,
+				SellFentToBarrack = 3,
 				ReportToMoustachilles = 4,
 			},
 			Mission04 = {
@@ -58,7 +58,6 @@ quest
 			SecretiveLetter = {
 				id = 3506,
 				key = Storage.FashionistaOnanista.SecretiveLetter,
-				addToStore = false,
 			},
 			MetamphetamineCrystal = {
 				id = 22694,
@@ -72,9 +71,9 @@ quest
 				id = 6570,
 				key = Storage.FashionistaOnanista.FentBagCyclops,
 			},
-			FentBagTurdstin = {
+			FentBagBarrack = {
 				id = 6570,
-				key = Storage.FashionistaOnanista.FentBagTurdstin,
+				key = Storage.FashionistaOnanista.FentBagBarrack,
 			},
 			SpeedCarrot = {
 				id = 3595,
@@ -94,8 +93,16 @@ quest
 			sendSecretiveLetter = function(context)
 				local player = context.player
 				local inbox = player:getInbox()
-				player:AddCustomItem(QuestKeyItems.FashionistaOnanista.SecretiveLetter, inbox)
+				local letter = Game.createItem(QuestKeyItems.FashionistaOnanista.SecretiveLetter.id)
+				letter:setKey(QuestKeyItems.FashionistaOnanista.SecretiveLetter.key)
+				inbox:addItemEx(letter, INDEX_WHEREEVER, FLAG_NOLIMIT)
 			end,
+		}
+		QuestRewards.OutfitsAddons.FashionistaOnanista = {
+			Jouster0 = {
+				{ outfitId = 1332, addons = 0 },
+				{ outfitId = 1331, addons = 0 },
+			},
 		}
 	end)
 	:Questlog(function(localizer)
@@ -130,7 +137,7 @@ quest
 					states = {
 						[QuestState.FashionistaOnanista.Mission03.AskMoustachillesForNewMission] = "Ask Moustachilles about new mission",
 						[QuestState.FashionistaOnanista.Mission03.SellFentToCyclops] = "Moustachilles trusted you with his bags of fent. Deliver those to his new clients. Moustachilles didnt tell you their names, but hinted that one is a soccer fan living in the south slums and other has a very big nose. Find the one with big nose first.",
-						[QuestState.FashionistaOnanista.Mission03.SellFentToTurdstin] = "Moustachilles trusted you with his bags of fent. Deliver the other bag to second client - the soccer fan. Moustachilles hinted the south slums.",
+						[QuestState.FashionistaOnanista.Mission03.SellFentToBarrack] = "Moustachilles trusted you with his bags of fent. Deliver the other bag to second client - the soccer fan. Moustachilles hinted the south slums.",
 						[QuestState.FashionistaOnanista.Mission03.ReportToMoustachilles] = "Report to moustachilles and bring him his money.",
 						[MISSION_FINISHED] = "You completed this mission.",
 					},
@@ -167,7 +174,7 @@ quest
 		return QuestState.FashionistaOnanista.Mission01.AskOcellatusForNewMission,
 			QuestFactory.Dialog("Ocellatus", {
 				[{ GREET, "mission", "misja" }] = {
-					text = "Me and my friends are hosting a meat beating competition. We need 10 medals of honour for that. Come back when you have them.",
+					text = "Me and my friends are hosting a meat beating competition. We need 2 medals of honour for that. Come back when you have them.",
 					nextState = {
 						[Storage.FashionistaOnanista.Mission01] = QuestState.FashionistaOnanista.Mission01.BringMedalsToOcellatus,
 					},
@@ -190,6 +197,7 @@ quest
 						[Storage.FashionistaOnanista.Mission01] = MISSION_FINISHED,
 						[Storage.FashionistaOnanista.Mission02] = QuestState.FashionistaOnanista.Mission02.AskOcellatusForNewMission,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.FashionistaOnanista.Jouster0,
 				},
 			}),
 			QuestFactory.Script(function()
@@ -347,7 +355,7 @@ quest
 					text = "Take those bags and sell them to two of my clients. One is a soccer fan living in southern slums, and other one has biggest nose around. I expect you not to look inside those bags. The rate is 50 platinum coins per bag.",
 					rewards = {
 						QuestKeyItems.FashionistaOnanista.FentBagCyclops,
-						QuestKeyItems.FashionistaOnanista.FentBagTurdstin,
+						QuestKeyItems.FashionistaOnanista.FentBagBarrack,
 					},
 					nextState = {
 						[Storage.FashionistaOnanista.Mission03] = QuestState.FashionistaOnanista.Mission03.SellFentToCyclops,
@@ -359,7 +367,7 @@ quest
 					key = QuestKeyItems.FashionistaOnanista.FentBagCyclops.key,
 				},
 				{
-					key = QuestKeyItems.FashionistaOnanista.FentBagTurdstin.key,
+					key = QuestKeyItems.FashionistaOnanista.FentBagBarrack.key,
 				},
 			})
 	end)
@@ -377,14 +385,17 @@ quest
 						{ QuestKeyItems.FashionistaOnanista.FentBagCyclops },
 					},
 					nextState = {
-						[Storage.FashionistaOnanista.Mission03] = QuestState.FashionistaOnanista.Mission03.SellFentToTurdstin,
+						[Storage.FashionistaOnanista.Mission03] = QuestState.FashionistaOnanista.Mission03.SellFentToBarrack,
 					},
 				},
 			})
 	end)
 	:State(function()
-		return QuestState.FashionistaOnanista.Mission03.SellFentToTurdstin,
+		return QuestState.FashionistaOnanista.Mission03.SellFentToBarrack,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
+				[{GREET}] = {
+					text = "Whats good, slime? You got any of that cosmic {fent}?"
+				},
 				[{ "fent" }] = {
 					text = "Finally.. How much platinum' for this?",
 					nextTopic = QuestTopics.FashionistaOnanista.Mission03.ConfirmBagPrice,
@@ -393,7 +404,7 @@ quest
 					text = "Alright, here is the guap, i counted it.",
 					requiredTopic = QuestTopics.FashionistaOnanista.Mission03.ConfirmBagPrice,
 					requiredItems = {
-						{ QuestKeyItems.FashionistaOnanista.FentBagTurdstin },
+						{ QuestKeyItems.FashionistaOnanista.FentBagBarrack },
 					},
 					specialRequirements = {
 						{
@@ -411,7 +422,7 @@ quest
 					specialActionsOnSuccess = {
 						{
 							action = function(context)
-								context.player:addMoney(context.amount * 100)
+								context.player:addMoney(tonumber(context.amount) * 100)
 							end,
 						},
 					},

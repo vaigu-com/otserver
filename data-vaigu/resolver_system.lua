@@ -1,3 +1,5 @@
+NO_TEXT = "NO_TEXT"
+
 NO_REQUIREMENT_FAIL_TEXT = "NO_REQUIREMENT_FAIL_TEXT"
 
 ---@class ResolutionContext
@@ -123,20 +125,20 @@ function ResolutionContext.FromActiveEncounter(activeEncounter, player)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
 	newObj:ParseRequirementsActionsOther(activeEncounter)
-	newObj:ParseRequirementsActionsOther(activeEncounter:GetEscortData())
 	newObj.localizer = activeEncounter.localizer
 	newObj.player = player
 	newObj.__index = ResolutionContext
 	return newObj
 end
 
-function ResolutionContext.FromCustomItemState(item, player)
+---@param itemData table
+---@return ResolutionContext
+function ResolutionContext.FromCustomItemState(itemData)
 	local newObj = {}
 	setmetatable(newObj, ResolutionContext)
-	newObj.localizer = item.localizer
-	newObj.player = player
+	newObj.localizer = itemData.localizer
 	newObj.__index = ResolutionContext
-	newObj:ParseRequirementsActionsOther(item)
+	newObj:ParseRequirementsActionsOther(itemData)
 	return newObj
 end
 
@@ -222,7 +224,7 @@ function ResolutionContext:CheckCanAddRewards()
 		return REQUIREMENT_STATUS.REQUIREMENT_PASSED
 	end
 
-	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.localizer)
+	local result, errorMessage = self.player:CanAddItems(actions.rewards)
 	if result ~= true then
 		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
 		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
@@ -241,7 +243,7 @@ function ResolutionContext:CheckRequiredMoney()
 	local playerMoney = self.player:getMoney()
 	local totalPlayerMoney = balance + playerMoney
 	if totalPlayerMoney < requirements.requiredMoney then
-		self.errorMessage = requirements.textNoRequiredMoney
+		self.errorMessage = self.textNoRequiredMoney
 		return REQUIREMENT_STATUS.REQUIREMENT_NOT_PASSED
 	end
 	return REQUIREMENT_STATUS.REQUIREMENT_PASSED
@@ -302,7 +304,7 @@ function ResolutionContext:AddRewards()
 		return
 	end
 
-	self.player:AddItems(actions.rewards, nil, self.localizer)
+	self.player:AddItemsAnnounce(actions.rewards, self.localizer)
 end
 
 function ResolutionContext:RemoveRequiredMoney()
@@ -404,7 +406,7 @@ function ResolutionContext:AppendLastDialogToRegistry()
 end
 
 function ResolutionContext:TrySendTranslateSuccessMessage()
-	if not self.actionsOnSuccess.text then
+	if not self.actionsOnSuccess.text or self.actionsOnSuccess.text == NO_TEXT then
 		return
 	end
 
@@ -525,4 +527,85 @@ function ResolutionContext:Resolve()
 		self:ActionsOnSuccess()
 		return SUCCESS_RESOLVE
 	end
+end
+
+RewardsRegistry = {}
+RewardsRegistry.__index = RewardsRegistry
+RewardsRegistry.questRewardOutfitIds = {}
+RewardsRegistry.registry = {
+	outfitAddons = {},
+	items = {},
+}
+
+function RewardsRegistry:ValidateQuestRewardsVsGamestore()
+	local validateNpcsArePlacedOnMapStartup = GlobalEvent("RewardsRegistry/ValidateQuestRewardsVsGamestore")
+	function validateNpcsArePlacedOnMapStartup.onStartup()
+		local gamestoreOutfitIds = {}
+		local gamestoreMountIds = {}
+		local questItemRewardIds = {}
+		for key, category in pairs(GameStore.Categories) do
+			for key, offer in pairs(category.offers or {}) do
+				if offer.type == GameStore.OfferTypes.OFFER_TYPE_OUTFIT then
+					for key, outfitId in pairs(offer.sexId) do
+						table.insert(gamestoreOutfitIds, outfitId)
+					end
+				end
+				if offer.type == GameStore.OfferTypes.OFFER_TYPE_MOUNT then
+					local mountId = offer.id
+					table.insert(gamestoreMountIds, mountId)
+				end
+			end
+		end
+
+		for quest, questOufits in pairs(QuestRewards.OutfitsAddons) do
+			for outfitNameAddon, outfitData in pairs(questOufits) do
+				for key, sexOutfitData in pairs(outfitData) do
+					local outfitId = sexOutfitData.outfitId
+					if table.contains(gamestoreOutfitIds, outfitId) then
+						local name = Game.getOutfitNameByLookType(outfitId)
+						logger.warn(T("[RewardsRegistry:ValidateQuestRewardsVsGamestore] Outfit :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = outfitId }))
+					end
+				end
+			end
+		end
+		for questName, allQuestMountPacks in pairs(QuestRewards.Mounts) do
+			for key, questMountPack in pairs(allQuestMountPacks) do
+				for key, mountId in pairs(questMountPack) do
+					if table.contains(gamestoreMountIds, mountId) then
+						local name = Game.getMountNameByLookType(mountId)
+						logger.warn(T("[RewardsRegistry:ValidateQuestRewardsVsGamestore] Mount :name:, id :id:, is obtainable in both quest and in store. Remove item from store to suppress this warning.", { name = name, id = mountId }))
+					end
+				end
+			end
+		end
+		for questName, allQuestItemPacks in pairs(QuestRewards.Items) do
+			for key, itemData in pairs(allQuestItemPacks) do
+				local id = itemData.id
+				if not id and key > 100 then
+					id = key
+				end
+				if not id then
+				id = 0
+				end
+				for key, innerItem in pairs(itemData) do
+					if type(innerItem) == "table" and innerItem.id then
+						self.registry.items[innerItem.id] = (self.registry.items[innerItem.id] or 0) + 1
+					end
+				end
+				self.registry.items[id] = (self.registry.items[id] or 0) + 1
+			end
+		end
+	end
+	validateNpcsArePlacedOnMapStartup:register()
+end
+
+function RewardsRegistry:SerializeAll()
+	local combinedStr = ""
+	for category, categoryStrings in pairs(self.registry) do
+		combinedStr = combinedStr .. category .. "\n"
+		for _, str in pairs(categoryStrings) do
+			combinedStr = combinedStr .. "\t" .. str
+		end
+	end
+	SerializeToUtilFolder(combinedStr, "obtainable_rewards.lua")
 end

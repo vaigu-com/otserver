@@ -156,6 +156,9 @@ function table.merged(table1, table2)
 	return result
 end
 
+---@param tbl table
+---@return any randomValue
+---@return nil
 function table.random(tbl)
 	local keys = {}
 	for k in pairs(tbl) do

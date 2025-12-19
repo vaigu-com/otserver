@@ -113,7 +113,7 @@ function OnLookMessageBuilder:ParseCreatureDescription()
 	return "You see " .. descriptionText
 end
 
-function OnLookMessageBuilder:ParseAdminDetails()
+function OnLookMessageBuilder:ParseHiddenDetails()
 	local descriptionText = ""
 	local inspectedThing = self.inspectedThing
 	local inspectedPosition = self.inspectedPosition
@@ -188,7 +188,7 @@ function OnLookMessageBuilder:Build()
 	end
 
 	if self.player:getGroup():getAccess() or self.player:getStorageValueByKey(Storage.DebugOnLook) == ACCESS_GRANTED then
-		self.adminDescription = self:ParseAdminDetails()
+		self.adminDescription = self:ParseHiddenDetails()
 	end
 	return self
 end

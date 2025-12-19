@@ -8,8 +8,8 @@ local outfit = {
 	lookAddons = 1,
 }
 local customDialogs = {
-	[TRAVEL_KEYWORDS[TRAVEL_METHOD.CAMEL]] = {
-		text = "",
+	[TRAVEL_KEYWORDS] = {
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = CreateTravelWindow,
@@ -34,6 +34,7 @@ local context = {
 	name = name,
 	outfit = outfit,
 	customDialogs = customDialogs,
+	jobs = { JOB_JEWELLER },
 	voices = voices,
 	checkInteraction = false,
 	isTransportNpc = true,

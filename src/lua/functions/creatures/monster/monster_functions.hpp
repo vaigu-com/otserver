@@ -82,13 +82,11 @@ private:
 	// Vaigu custom
 	static int luaMonsterGetLoot(lua_State* L);
 	static int luaMonsterAddLoot(lua_State* L);
-
-	// Vaigu custom
 	static int luaMonsterIsBoosted(lua_State* L);
+	static int luaMonsterGetEncounterDifficulty(lua_State* L);
 	static int luaMonsterSetEncounterDifficulty(lua_State* L);
-
-	// Vaigu custom
 	static int luaMonsterSetDisplayName(lua_State* L);
+	static int luaMonsterGetDisplayName(lua_State* L);
 
 	static int luaMonsterSoulPit(lua_State* L);
 

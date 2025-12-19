@@ -39,9 +39,9 @@
 	<outfit type="0" looktype="620" name="Jersey" premium="yes" unlocked="no" enabled="yes" />
 	<outfit type="0" looktype="632" name="Champion" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="635" name="Conjurer" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="636" name="Beastmaster" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="636" name="Beastmaster" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="664" name="Chaos Acolyte" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="666" name="Death Herald" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="666" name="Death Herald" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="683" name="Ranger" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="694" name="Ceremonial Garb" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="696" name="Puppeteer" premium="no" unlocked="no" enabled="yes" from="store" />
@@ -60,13 +60,13 @@
 	<outfit type="0" looktype="929" name="Festive" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="956" name="Pharaoh" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="958" name="Trophy Hunter" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="963" name="Retro Warrior" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="965" name="Retro Summoner" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="967" name="Retro Noblewoman" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="969" name="Retro Mage" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="971" name="Retro Knight" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="973" name="Retro Hunter" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="0" looktype="975" name="Retro Citizen" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="963" name="Retro Warrior" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="965" name="Retro Summoner" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="967" name="Retro Noblewoman" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="969" name="Retro Mage" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="971" name="Retro Knight" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="973" name="Retro Hunter" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="975" name="Retro Citizen" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1020" name="Herbalist" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1024" name="Sun Priest" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1043" name="Makeshift Warrior" premium="yes" unlocked="no" enabled="yes" from="quest" />
@@ -99,7 +99,7 @@
 	<outfit type="0" looktype="1383" name="Merry Garb" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1385" name="Rune Master" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1387" name="Citizen of Issavi" premium="yes" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="0" looktype="1416" name="Forest Warden" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="1416" name="Forest Warden" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1437" name="Royal Bounacean Advisor" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1445" name="Dragon Knight" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1450" name="Arbalester" premium="no" unlocked="no" enabled="yes" from="store" />
@@ -108,22 +108,24 @@
 	<outfit type="0" looktype="1490" name="Ghost Blade" premium="yes" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1501" name="Nordic Chieftain" premium="yes" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1569" name="Fire-Fighter" premium="yes" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="0" looktype="1576" name="Fencer" premium="yes" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="1576" name="Fencer" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1582" name="Shadowlotus Disciple" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1598" name="Ancient Aucar" premium="yes" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="0" looktype="1613" name="Frost Tracer" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="1613" name="Frost Tracer" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1619" name="Armoured Archer" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1663" name="Decaying Defender" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1676" name="Darklight Evoker" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1681" name="Flamefury Mage" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1714" name="Doom Knight" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1723" name="Draccoon Herald" premium="no" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="0" looktype="1726" name="Celestial Avenger" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="1726" name="Celestial Avenger" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1746" name="Blade Dancer" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1775" name="Rootwalker" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="0" looktype="1777" name="Beekeeper" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="0" looktype="1808" name="Fiend Slayer" premium="no" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="0" looktype="1832" name="Winged Druid" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="0" looktype="1832" name="Winged Druid" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="949" name="Retro Citizen as You remember it" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="0" looktype="1815" name="Field Surgeon" premium="no" unlocked="no" enabled="yes" from="quest" />
 
 	<!-- Male -->
 	<outfit type="1" looktype="128" name="Citizen" premium="no" unlocked="yes" enabled="yes" />
@@ -164,9 +166,9 @@
 	<outfit type="1" looktype="619" name="Jersey" premium="yes" unlocked="no" enabled="yes" />
 	<outfit type="1" looktype="633" name="Champion" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="634" name="Conjurer" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="637" name="Beastmaster" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="637" name="Beastmaster" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="665" name="Chaos Acolyte" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="667" name="Death Herald" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="667" name="Death Herald" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="684" name="Ranger" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="695" name="Ceremonial Garb" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="697" name="Puppeteer" premium="no" unlocked="no" enabled="yes" from="store" />
@@ -185,13 +187,13 @@
 	<outfit type="1" looktype="931" name="Festive" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="955" name="Pharaoh" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="957" name="Trophy Hunter" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="962" name="Retro Warrior" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="964" name="Retro Summoner" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="966" name="Retro Nobleman" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="968" name="Retro Mage" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="970" name="Retro Knight" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="972" name="Retro Hunter" premium="no" unlocked="no" enabled="yes" from="store" />
-	<outfit type="1" looktype="974" name="Retro Citizen" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="962" name="Retro Warrior" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="964" name="Retro Summoner" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="966" name="Retro Nobleman" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="968" name="Retro Mage" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="970" name="Retro Knight" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="972" name="Retro Hunter" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="974" name="Retro Citizen" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1021" name="Herbalist" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1023" name="Sun Priest" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1042" name="Makeshift Warrior" premium="yes" unlocked="no" enabled="yes" from="quest" />
@@ -224,7 +226,7 @@
 	<outfit type="1" looktype="1382" name="Merry Garb" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1384" name="Rune Master" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1386" name="Citizen of Issavi" premium="yes" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="1" looktype="1415" name="Forest Warden" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="1415" name="Forest Warden" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1436" name="Royal Bounacean Advisor" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1444" name="Dragon Knight" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1449" name="Arbalester" premium="no" unlocked="no" enabled="yes" from="store" />
@@ -233,20 +235,22 @@
 	<outfit type="1" looktype="1489" name="Ghost Blade" premium="yes" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1500" name="Nordic Chieftain" premium="yes" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1568" name="Fire-Fighter" premium="yes" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="1" looktype="1575" name="Fencer" premium="yes" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="1575" name="Fencer" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1581" name="Shadowlotus Disciple" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1597" name="Ancient Aucar" premium="yes" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="1" looktype="1612" name="Frost Tracer" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="1612" name="Frost Tracer" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1618" name="Armoured Archer" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1662" name="Decaying Defender" premium="yes" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1675" name="Darklight Evoker" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1680" name="Flamefury Mage" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1713" name="Doom Knight" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1722" name="Draccoon Herald" premium="no" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="1" looktype="1725" name="Celestial Avenger" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="1725" name="Celestial Avenger" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1745" name="Blade Dancer" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1774" name="Rootwalker" premium="no" unlocked="no" enabled="yes" from="quest" />
 	<outfit type="1" looktype="1776" name="Beekeeper" premium="no" unlocked="no" enabled="yes" from="store" />
 	<outfit type="1" looktype="1809" name="Fiend Slayer" premium="no" unlocked="no" enabled="yes" from="quest" />
-	<outfit type="1" looktype="1831" name="Winged Druid" premium="no" unlocked="no" enabled="yes" from="store" />
+	<outfit type="1" looktype="1831" name="Winged Druid" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="948" name="Retro Citizen as You remember it" premium="no" unlocked="no" enabled="yes" from="quest" />
+	<outfit type="1" looktype="1814" name="Field Surgeon" premium="no" unlocked="no" enabled="yes" from="quest" />
 </outfits>

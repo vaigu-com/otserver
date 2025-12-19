@@ -94,6 +94,7 @@ monster.loot = {
 	{ name = "wooden spellbook", chance = 3440 },
 	{ name = "leaf star", chance = 3440, maxCount = 7 },
 	{ id = 3727, chance = 4500 }, -- wood mushroom
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

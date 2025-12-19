@@ -1,3 +1,7 @@
+-- WARNING: cpp-side translations can only load string values
+-- loaded in cpp: ["Sample key 1"] = "sample string 1"
+-- ignored in cpp:  ["Sample key 2"] = function(context) return "You have " .. tostring(context.player:getBankBalance()) .. " gold in bank." end
+
 local mainDir = DATA_DIRECTORY .. "/locales"
 
 LOCALIZERS = {
@@ -21,6 +25,7 @@ LOCALIZERS = {
 	DesertQuestTwo = "desert_quest_two",
 	EnterTheDrunkTank = "enter_the_drunk_tank",
 	FatMyrrusEncounters = "fat_myrrus_encounters",
+	FerumbrasAscension = "ferumbras_ascension",
 	Firestarter = "firestarter",
 	FourActTragedy = "four_act_tragedy",
 	GoldenOutfit = "golden_outfit",
@@ -37,11 +42,12 @@ LOCALIZERS = {
 	PerIustitiaAdAstra = "per_iustitia_ad_astra",
 	Priest = "priest",
 	ProdigalSon = "prodigal_son",
+	RetroRulez = "retro_rulez",
 	RubelsteinLegacy = "rubelstein_legacy",
 	SafetyAndOccupationalHygiene = "safety_and_occupational_hygiene",
 	SilenceOfTheLambs = "silence_of_the_lambs",
 	SultanPrime = "sultan_prime",
-	Tasks = "tasks",
+	Task = "tasks",
 	TheApeCity = "the_ape_city",
 	TheaterOfCheapThrills = "theater_of_cheap_thrills",
 	TheDreamCourts = "the_dream_courts",
@@ -50,7 +56,7 @@ LOCALIZERS = {
 	ToCarryThePigs = "to_carry_the_pigs",
 	TopChef = "top_chef",
 	TravelName = "travel_name",
-	WayOfTheDruid = "way_of_the_druid",
+	TheWayOfADruid = "the_way_of_a_druid",
 
 	NONE = "",
 }
@@ -118,7 +124,7 @@ function Localizer:New(player, localizer)
 	newObj.player = player
 	newObj.localizer = localizer
 	if not Localizer.isLocalizer(newObj.localizer) then
-		logger.warn(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer }))
+		logger.warn(debug.traceback(T("[Localizer::New] incorrect localizer :localizer: was used.", { localizer = localizer })))
 	end
 	newObj.translated = nil
 	newObj.context = { player = player, localizer = localizer }
@@ -178,45 +184,95 @@ for key, value in pairs(LANGUAGES) do
 	MissingStrings.registry[value] = {}
 end
 
-function MissingStrings:TestAllLanaguages(str, localizer)
-	for _, language in pairs(LANGUAGES) do
-		local allStrings = TRANSLATION_TABLES[language]
-		if allStrings[LOCALIZERS.Universal][str] then
-			return allStrings[LOCALIZERS.Universal][str]
+function MissingStrings:TestLanguage(language, strToTest, localizer)
+	local allStrings = TRANSLATION_TABLES[language]
+	if allStrings[LOCALIZERS.Universal][strToTest] then
+		return allStrings[LOCALIZERS.Universal][strToTest]
+	end
+	for _, questStrings in pairs(allStrings) do
+		if questStrings[strToTest] then
+			return questStrings[strToTest]
 		end
-		for _, questStrings in pairs(allStrings) do
-			if questStrings[str] then
-				return questStrings[str]
-			end
-		end
+	end
 
-		localizer = localizer or LOCALIZERS.Universal
-		MissingStrings:Add(language, localizer, str)
+	localizer = localizer or LOCALIZERS.Universal
+	MissingStrings:Add(language, localizer, strToTest)
+end
+
+function MissingStrings:TestAllLanguages(strOrTable, localizer)
+	local strings = strOrTable
+	if type(strOrTable) ~= "table" then
+		strings = { strOrTable }
+	end
+
+	for _, language in pairs(LANGUAGES) do
+		for _, string in pairs(strings) do
+			self:TestLanguage(language, string, localizer)
+		end
 	end
 end
 
--- usage in-game: /lua MissingStrings:Serialize()
-function MissingStrings:Serialize()
-	local missingStringsPath = "utility_scripts" .. "\\missing_strings"
-	os.execute("rmdir /S /Q " .. missingStringsPath)
-	os.execute("mkdir " .. missingStringsPath)
+local function is_windows()
+	return package.config:sub(1,1) == '\\'
+end
+
+function MissingStrings:SerializeWindows()
+	local basePath = "utility_scripts\\missing_strings"
+	os.execute('rmdir /S /Q "' .. basePath .. '"')
+	os.execute('mkdir "' .. basePath .. '"')
+
 	for language, questIdToStr in pairs(self.registry) do
-		local missingStringsLanguagePath = missingStringsPath .. "\\" .. language
-		os.execute("mkdir " .. missingStringsLanguagePath)
+		local langPath = basePath .. "\\" .. language
+		os.execute('mkdir "' .. langPath .. '"')
+
 		for localizer, strToPresence in pairs(questIdToStr) do
-			local missingStringsLanguageLocalizerPath = missingStringsLanguagePath .. "\\" .. localizer .. ".lua"
-			local file, err = io.open(missingStringsLanguageLocalizerPath, "a+")
+			local filePath = langPath .. "\\" .. localizer .. ".lua"
+			local file, err = io.open(filePath, "a+")
 			if not file then
-				logger.warn("[MissingStrings::Serialize] Error opening file: " .. err)
+				logger.warn("[MissingStrings::SerializeWindows] Error opening file: " .. err)
 				return false
 			end
-			local formattedStrToSerialize = ""
+
 			for str in pairs(strToPresence) do
-				formattedStrToSerialize = formattedStrToSerialize .. string.gsub(str, "\n", "\\n") .. "\n"
+				file:write(string.gsub(str, "\n", "\\n") .. "\n")
 			end
-			file:write(formattedStrToSerialize)
 			file:flush()
 			file:close()
 		end
+	end
+end
+
+function MissingStrings:SerializeLinux()
+	local basePath = "utility_scripts/missing_strings"
+	os.execute('rm -rf "' .. basePath .. '"')
+	os.execute('mkdir -p "' .. basePath .. '"')
+
+	for language, questIdToStr in pairs(self.registry) do
+		local langPath = basePath .. "/" .. language
+		os.execute('mkdir -p "' .. langPath .. '"')
+
+		for localizer, strToPresence in pairs(questIdToStr) do
+			local filePath = langPath .. "/" .. localizer .. ".lua"
+			local file, err = io.open(filePath, "a+")
+			if not file then
+				logger.warn("[MissingStrings::SerializeLinux] Error opening file: " .. err)
+				return false
+			end
+
+			for str in pairs(strToPresence) do
+				file:write(string.gsub(str, "\n", "\\n") .. "\n")
+			end
+			file:flush()
+			file:close()
+		end
+	end
+end
+
+-- Entry point
+function MissingStrings:Serialize()
+	if is_windows() then
+		return self:SerializeWindows()
+	else
+		return self:SerializeLinux()
 	end
 end

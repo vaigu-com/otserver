@@ -94,6 +94,7 @@ monster.loot = {
 	{ id = 6300, chance = 60 }, -- death ring
 	{ id = 3439, chance = 100 }, -- phoenix shield
 	{ id = 19391, chance = 100 }, -- furious frock
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

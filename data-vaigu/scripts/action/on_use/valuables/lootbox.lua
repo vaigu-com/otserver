@@ -1,3 +1,5 @@
+MAX_CHARGES = -1
+
 NO_REWARD = -1
 
 ---@class LootboxDataRegistry
@@ -108,9 +110,14 @@ function LootboxReward.New(context)
 		logger.warn(debug.traceback("[Lootbox::New] No weight specified for the LootboxReward."))
 		return
 	end
+
+	if newObj.count == MAX_CHARGES then
+		local maxDefaultCharges = ItemType(newObj.rewardItemId):getCharges()
+		newObj.count = maxDefaultCharges
+	end
+
 	if not newObj.count then
-		logger.warn(debug.traceback("[Lootbox::New] No count specified for the LootboxReward."))
-		return
+		logger.warn(debug.traceback("[Lootbox::New] No count specified for the LootboxReward"))
 	end
 
 	setmetatable(newObj, LootboxReward)
@@ -122,6 +129,7 @@ setmetatable(LootboxReward, {
 	end,
 })
 
+NO_LOOTBOX_ID = 0
 local realLootboxData = {
 	LootboxData({
 		lootboxId = ItemId.BELONGINGS_OF_A_DECEASED, -- belonging of a deceased
@@ -132,7 +140,7 @@ local realLootboxData = {
 			LootboxReward({ rewardItemId = 5899, weight = 424, count = 1 }),
 			LootboxReward({ rewardItemId = 5894, weight = 401, count = 1 }),
 			LootboxReward({ rewardItemId = 5902, weight = 299, count = 1 }),
-			LootboxReward({ rewardItemId = 3083, weight = 100, count = 1 }),
+			LootboxReward({ rewardItemId = 3083, weight = 100, count = MAX_CHARGES }),
 			LootboxReward({ rewardItemId = 12787, weight = 57, count = 1 }),
 			LootboxReward({ rewardItemId = 3026, weight = 79, count = 1 }),
 			LootboxReward({ rewardItemId = 5879, weight = 72, count = 1 }),
@@ -198,7 +206,7 @@ local realLootboxData = {
 			LootboxReward({ rewardItemId = 3036, weight = 89, count = 1 }),
 			LootboxReward({ rewardItemId = 9304, weight = 89, count = 1 }),
 			LootboxReward({ rewardItemId = 36810, weight = 99, count = 1 }),
-			LootboxReward({ rewardItemId = 9058, weight = 157, count = 3 }),
+			LootboxReward({ rewardItemId = 9058, weight = 157, count = 2 }),
 			LootboxReward({ rewardItemId = 22737, weight = 136, count = 1 }),
 			LootboxReward({ rewardItemId = 23536, weight = 129, count = 1 }),
 			LootboxReward({ rewardItemId = 22731, weight = 143, count = 1 }),
@@ -209,10 +217,10 @@ local realLootboxData = {
 		lootboxId = ItemId.SURPRISE_JAR, -- surprise jar
 		rewards = {
 			LootboxReward({ rewardItemId = 3041, weight = 2501, count = 1 }),
-			LootboxReward({ rewardItemId = 3036, weight = 2501, count = 1 }),
+			LootboxReward({ rewardItemId = 3036, weight = 2101, count = 1 }),
 			LootboxReward({ rewardItemId = 22721, weight = 1667, count = 1 }),
 			LootboxReward({ rewardItemId = 22516, weight = 1668, count = 1 }),
-			LootboxReward({ rewardItemId = 27653, weight = 1666, count = 1 }),
+			LootboxReward({ rewardItemId = 27653, weight = 2766, count = 1 }),
 		},
 		effect = CONST_ME_CRAPS,
 	}),
@@ -266,13 +274,13 @@ local realLootboxData = {
 	LootboxData({
 		lootboxId = ItemId.UNREALIZED_DREAM, -- unrealized dream
 		rewards = {
-			LootboxReward({ rewardItemId = 2995, weight = 488, count = 1 }),
-			LootboxReward({ rewardItemId = 5929, weight = 391, count = 1 }),
+			LootboxReward({ rewardItemId = 2995, weight = 288, count = 1 }),
+			LootboxReward({ rewardItemId = 5929, weight = 371, count = 1 }),
 			LootboxReward({ rewardItemId = 20271, weight = 208, count = 1 }),
 			LootboxReward({ rewardItemId = 22516, weight = 219, count = 1 }),
 			LootboxReward({ rewardItemId = 20272, weight = 204, count = 1 }),
 			LootboxReward({ rewardItemId = 20270, weight = 192, count = 1 }),
-			LootboxReward({ rewardItemId = 20062, weight = 131, count = 1 }),
+			LootboxReward({ rewardItemId = 20062, weight = 431, count = 1 }),
 			LootboxReward({ rewardItemId = 7459, weight = 62, count = 1 }),
 			LootboxReward({ rewardItemId = 20275, weight = 52, count = 1 }),
 			LootboxReward({ rewardItemId = 20273, weight = 52, count = 1 }),
@@ -291,23 +299,21 @@ local realLootboxData = {
 			LootboxReward({ rewardItemId = 6569, weight = 835, count = 10 }),
 			LootboxReward({ rewardItemId = 6574, weight = 798, count = 1 }),
 			LootboxReward({ rewardItemId = 4839, weight = 168, count = 1 }),
-			LootboxReward({ rewardItemId = 6570, weight = 81, count = 1 }),
-			LootboxReward({ rewardItemId = 6571, weight = 8, count = 1 }),
+			LootboxReward({ rewardItemId = 6570, weight = 101, count = 1 }),
+			LootboxReward({ rewardItemId = 6571, weight = 63, count = 1 }),
 			LootboxReward({ rewardItemId = 3215, weight = 6, count = 1 }),
 		},
 	}),
 	LootboxData({
-		lootboxId = ItemId.SURPRISE_BAG_RED,
+		lootboxId = ItemId.SURPRISE_BAG_BLUE,
 		rewards = {
 			LootboxReward({ rewardItemId = 6572, weight = 111, count = 1 }),
-			LootboxReward({ rewardItemId = 6575, weight = 105, count = 1 }),
 			LootboxReward({ rewardItemId = 6569, weight = 105, count = 3 }),
 			LootboxReward({ rewardItemId = 6279, weight = 99, count = 1 }),
 			LootboxReward({ rewardItemId = 6576, weight = 104, count = 1 }),
 			LootboxReward({ rewardItemId = 6393, weight = 95, count = 1 }),
 			LootboxReward({ rewardItemId = 2995, weight = 89, count = 1 }),
 			LootboxReward({ rewardItemId = 6578, weight = 84, count = 1 }),
-			LootboxReward({ rewardItemId = 6577, weight = 84, count = 1 }),
 			LootboxReward({ rewardItemId = 6574, weight = 79, count = 1 }),
 			LootboxReward({ rewardItemId = 3598, weight = 70, count = 10 }),
 		},
@@ -343,7 +349,6 @@ local realLootboxData = {
 			LootboxReward({ rewardItemId = 6574, weight = 62, count = 1 }),
 			LootboxReward({ rewardItemId = 6393, weight = 41, count = 1 }),
 			LootboxReward({ rewardItemId = 7377, weight = 15, count = 1 }),
-			LootboxReward({ rewardItemId = 906, weight = 10, count = 1 }),
 			LootboxReward({ rewardItemId = 123, weight = 2, count = 1 }),
 			LootboxReward({ rewardItemId = 8778, weight = 1, count = 1 }),
 		},

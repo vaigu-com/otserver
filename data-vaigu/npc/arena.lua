@@ -107,7 +107,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Powodzenia!" or "Good luck!", npc, creature)
 				local level = npcHandler:getTopic(playerId)
-				player:setStorageValueByKey(300 + level, 1)
+				player:setStorageValueByKey(tostring(300 + level), 1)
 				local room = player:getStorageValueByKey(300 + level)
 				local boss = arena_bosses[level == 1 and room or level == 2 and 10 + room or 20 + room]
 				local arenaroom = 0
@@ -117,11 +117,11 @@ local function creatureSayCallback(npc, creature, type, message)
 						arenaroom = i
 					end
 				end
-				player:setStorageValueByKey(300, arenaroom)
+				player:setStorageValueByKey("300", arenaroom)
 				local monster = Game.createMonster(boss, rooms[arenaroom].centerPosition, true, true)
 				player:teleportTo(rooms[arenaroom].teleportPosition)
 				local event_id = addEvent(clearArena, 10 * 60 * 1000, player.uid, monster.uid, arenaroom)
-				player:setStorageValueByKey(299, event_id)
+				player:setStorageValueByKey("299", event_id)
 				if getPlayerLanguage(player) == "PL" then
 					player:say("Masz 7 minut na pokonanie kazdego przeciwnika.", TALKTYPE_MONSTER_SAY)
 				else

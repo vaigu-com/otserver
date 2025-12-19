@@ -12,7 +12,7 @@ pseudoQuest
 		}
 	end)
 	:Script(function()
-		local trainingAttackSpeedReduction = 0.6
+		local trainingAttackSpeedReduction = 0.4
 		local wholeRoomZone = Zone(wholeRoomZoneScope)
 		local trainRoomSetup = GlobalEvent("TrainRoomSetup")
 		function trainRoomSetup.onStartup()
@@ -23,7 +23,7 @@ pseudoQuest
 					return true
 				end
 
-				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Sweaty vapors of the training room hinder your agility. Your attack speed was reduced by 60%.")
+				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Sweaty vapors of the training room hinder your agility. Your attack speed was reduced by 40%.")
 				player:setAttackSpeed(player:getVocation():getAttackSpeed() * 1 / (1 - trainingAttackSpeedReduction))
 			end
 			function zoneEvents.afterLeave(zone, creature)

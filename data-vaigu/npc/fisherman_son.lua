@@ -9,10 +9,10 @@ local outfit = {
 }
 local customDialogs = {
 	[{ GREET }] = {
-		text = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one.",
+		text = "My father is a fishing fanatic. Half of our home filled with fishing rods. Recently he let me use his boat, I can {sail} you to some nearby places or sell some of those {rods}. If you are interested in some {stories}, ask me for one. I can also provide you with information on fishing {hotspots}.",
 	},
-	[{ "sail", "plynac" }] = {
-		text = "",
+	[TRAVEL_KEYWORDS] = {
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = CreateTravelWindow,
@@ -27,6 +27,9 @@ local customDialogs = {
 				textFailedRequirement = "Looks like you have fought someone.. Better step away, I can't trust you.",
 			},
 		},
+	},
+	[{ "hotspots", "lawicach" }] = {
+		text = "Fishing hotspot move every now and then from city to city. You can find nearest hotspot bu using a dowser. You can probably find it in the wilderness.",
 	},
 	[{ "story", "stories", "historia", "historie" }] = {
 		text = "When i was still a kid, my father would tell me stories about {mythical} creatures inhabiting the {ocean}. The more stories i heard, the more i wanted to have some of this world in my {house}.\nI would really like to find a giant fish like in the stories. But im a simple man - adventures are not for me. Ehhh, i really wish i could face the legendary {Thul}, perhaps some day..",
@@ -47,7 +50,7 @@ local customDialogs = {
 	[{ "leviathan", "Leviathan" }] = {
 		text = "The biggest one of them all serpents. If i could escape this life, i will face him.",
 	},
-	[{ "quary", "quara", "quaras", "Quary" }] = {
+	[{ "quary", "quara", "quaras", "Quary", "Quara" }] = {
 		text = "Big family of sea creatures. I saw their sketches made by adventurers visiting city marketplace. I saw so many of them, i can now differentiate every {species}. Maybe not with closed eyes, but i roughly know this subject.",
 	},
 	[{ "rodzaje", "rodzaj", "species" }] = {
@@ -59,7 +62,7 @@ local customDialogs = {
 	[{ "ocean", "oceanie" }] = {
 		text = "A puddle of water that someone sprinkled salt over.",
 	},
-	[{ "leech", "pijawki" }] = { text = "The Water Buffalos love them." },
+	[{ "leech", "pijawki", "leeches" }] = { text = "The Water Buffalos love them." },
 	[{ "larw", "larwa", "larva", "larvae", "larvaes" }] = {
 		text = "You sometimes find them inside a gooey mass.",
 	},

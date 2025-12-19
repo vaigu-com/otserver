@@ -64,3 +64,15 @@ std::shared_ptr<Mount> Mounts::getMountByClientID(uint16_t clientId) {
 
 	return it != mounts.end() ? *it : nullptr; // Returning the shared_ptr to the Mount object
 }
+
+std::string Mounts::getMountNameByLookType(uint8_t lookType) {
+	auto it = std::find_if(mounts.begin(), mounts.end(), [lookType](const std::shared_ptr<Mount> &mount) {
+		return mount->id == lookType; // Note the use of -> operator to access the members of the Mount object
+	});
+
+	if (it != mounts.end()) {
+		return (*it)->name;
+	}
+
+	return "";
+}

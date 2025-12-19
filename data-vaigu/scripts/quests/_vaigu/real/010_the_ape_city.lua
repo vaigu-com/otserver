@@ -6,6 +6,12 @@ quest
 		QuestTopics.TheApeCity = {
 			ConfirmBuyCoughSyrup = NextTopic(),
 		}
+		QuestRewards.OutfitsAddons.TheApeCity = {
+			Shaman0 = {
+				{ id = 154, addons = 0 },
+				{ id = 158, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {

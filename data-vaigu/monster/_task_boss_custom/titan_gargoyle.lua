@@ -67,7 +67,7 @@ monster.voices = {
 monster.loot = {
 	{ id = 21193, chance = 37160 }, -- metal jaw
 	{ id = 3035, chance = 43280, maxCount = 2 }, -- platinum coin
-	{ id = 237, chance = 9700, maxCount = 2 }, -- strong mana potion
+	{ id = 237, chance = 9700, maxCount = 12 }, -- strong mana potion
 	{ id = 21171, chance = 8490 }, -- metal bat
 	{ id = 8082, chance = 7490 }, -- underworld rod
 	{ id = 3051, chance = 2240 }, -- energy ring
@@ -75,6 +75,9 @@ monster.loot = {
 	{ id = 10310, chance = 22240 }, -- shiny stone
 	{ id = 21169, chance = 21490 }, -- metal spats
 	{ id = 21168, chance = 21490 }, -- alloy legs
+	{ id = 21170, chance = 12990 },
+	{ id = 9081, chance = 32680 },
+	{ id = 22721, chance = 22790 },
 	{ id = 8896, chance = 32990 }, -- slightly rusted armor
 }
 

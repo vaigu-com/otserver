@@ -6,6 +6,7 @@ local outfit = {
 	lookLegs = 114,
 	lookFeet = 97,
 	lookAddons = 3,
+	lookMount = 438,
 }
 local voices = {
 	interval = 15000,

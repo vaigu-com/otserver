@@ -55,7 +55,6 @@ end
 ---@field corner2 Position
 Area = {}
 Area.__index = Area
----comment
 ---@param corner1 Position
 ---@param corner2 Position
 ---@return Area newObj
@@ -115,6 +114,30 @@ function CreatureList:Get()
 	return self.creatures
 end
 
+function CreatureList:ForEach(callback)
+	for _, creature in pairs(self:Get()) do
+		callback(creature)
+	end
+end
+
+function reverse_pairs(t)
+	local i = #t + 1
+	return function()
+		i = i - 1
+		if i > 0 then
+			return i, t[i]
+		end
+	end
+end
+function CreatureList:Flip()
+	local flipped = {}
+	for _, value in reverse_pairs(self:Get()) do
+		table.insert(flipped, value)
+	end
+	self.creatures = flipped
+	return self
+end
+
 function CreatureList:GetRandom()
 	return table.random(self.creatures)
 end
@@ -154,7 +177,8 @@ function CreatureList:Pos(pos)
 	return self
 end
 
-function CreatureList:Area(pos1, pos2)
+function CreatureList:Area(area)
+	local pos1, pos2 = area:GetCorners()
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then
@@ -172,7 +196,7 @@ function CreatureList:RadiusSquare(pos, radiusX, radiusY)
 	radiusY = radiusY or radiusX
 	local pos1 = pos:Moved(radiusX, radiusY)
 	local pos2 = pos:Moved(-radiusX, -radiusY)
-	self:Area(pos1, pos2)
+	self:Area(Area(pos1, pos2))
 	return self
 end
 
@@ -207,6 +231,15 @@ end
 function CreatureList:First()
 	local _, result = next(self.creatures, nil)
 	return result
+end
+
+function CreatureList:Filter(predicate, requiredOutcome)
+	for key, creature in pairs(self.creatures) do
+		if predicate(creature) ~= requiredOutcome then
+			self.creatures[key] = nil
+		end
+	end
+	return self
 end
 
 function CreatureList:FilterByPlayer()
@@ -246,42 +279,42 @@ function CreatureList:FilterByVocation(vocation)
 end
 
 function Position:CreaturesBetween(destination, name)
-	local creatures = CreatureList():Area(self, destination):FilterByName(name)
+	local creatures = CreatureList():Area(Area(self, destination)):FilterByName(name)
 	return creatures
 end
 
 function Position:PlayersBetween(destination, name)
-	local players = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer()
+	local players = CreatureList():Area(Area(self, destination)):FilterByName(name):FilterByPlayer()
 	return players
 end
 
 function Position:MonstersBetween(destination, name)
-	local monsters = CreatureList():Area(self, destination):FilterByName(name):FilterByMonster()
+	local monsters = CreatureList():Area(Area(self, destination)):FilterByName(name):FilterByMonster()
 	return monsters
 end
 
 function Position:NpcsBetween(destination, name)
-	local npcs = CreatureList():Area(self, destination):FilterByName(name):FilterByNpc()
+	local npcs = CreatureList():Area(Area(self, destination)):FilterByName(name):FilterByNpc()
 	return npcs
 end
 
 function Position:FirstCreatureBetween(destination, name)
-	local creature = CreatureList():Area(self, destination):FilterByName(name):First()
+	local creature = CreatureList():Area(Area(self, destination)):FilterByName(name):First()
 	return creature
 end
 
 function Position:FirstPlayerBetween(destination, name)
-	local player = CreatureList():Area(self, destination):FilterByName(name):FilterByPlayer():First()
+	local player = CreatureList():Area(Area(self, destination)):FilterByName(name):FilterByPlayer():First()
 	return player
 end
 
 function Position:FirstMonsterBetween(destination, name)
-	local monster = CreatureList():Area(self, destination):FilterByName(name):FilterByMonster():First()
+	local monster = CreatureList():Area(Area(self, destination)):FilterByName(name):FilterByMonster():First()
 	return monster
 end
 
 function Position:FirstNpcBetween(destination, name)
-	local npc = CreatureList():Area(self, destination):FilterByName(name):FilterByNpc():First()
+	local npc = CreatureList():Area(Area(self, destination)):FilterByName(name):FilterByNpc():First()
 	return npc
 end
 
@@ -295,19 +328,19 @@ function Position:MoveThings(destination)
 end
 
 function Position:MoveCreatures(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):MovedToPos(destination)
+	CreatureList():Area(Area(self, self)):FilterByName(name):MovedToPos(destination)
 end
 
 function Position:MovePlayers(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilterByPlayer():MovedToPos(destination)
+	CreatureList():Area(Area(self, self)):FilterByName(name):FilterByPlayer():MovedToPos(destination)
 end
 
 function Position:MoveMonsters(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilterByMonster():MovedToPos(destination)
+	CreatureList():Area(Area(self, self)):FilterByName(name):FilterByMonster():MovedToPos(destination)
 end
 
 function Position:MoveNpcs(destination, name)
-	CreatureList():Area(self, self):FilterByName(name):FilterByNpc():MovedToPos(destination)
+	CreatureList():Area(Area(self, self)):FilterByName(name):FilterByNpc():MovedToPos(destination)
 end
 
 function Position:MoveItems(destination)
@@ -483,9 +516,9 @@ function IsMoveDiagonal(fromPos, toPos)
 end
 
 function Position:VectorTo(dest)
-	local dx = self.x - dest.x
-	local dy = self.y - dest.y
-	local dz = self.z - dest.z
+	local dx = dest.x - self.x
+	local dy = dest.y - self.y
+	local dz = dest.z - self.z
 	return Vector(dx, dy, dz)
 end
 
@@ -525,6 +558,11 @@ function Position:FindAnyUnoccupiedSpot(radius)
 		logger.warn("[Position:FindAnyUnoccupiedSpot] radius less than 0")
 	end
 
+	local selfTile = Tile(self)
+	if selfTile and selfTile:isWalkable(false, false, true, false, false) then
+		return self
+	end
+
 	local pos1, pos2 = self:GetBoundariesByRadius(radius)
 
 	local unoccupiedPos = IterateBetweenPositions(pos1, pos2, function(context)
@@ -559,6 +597,21 @@ function Position:GetTopPlayer()
 	end
 
 	return creature:getPlayer()
+end
+
+---@return Monster|nil creature
+function Position:GetTopMonster()
+	local tile = Tile(self)
+	if not tile then
+		return nil
+	end
+
+	local creature = tile:getTopCreature()
+	if not creature then
+		return nil
+	end
+
+	return creature:getMonster()
 end
 
 function Position:GetItemById(id)
@@ -646,9 +699,13 @@ local function processPosition(context)
 	return lastResult, false
 end
 
+---@class IterateContext
+---@field pos Position
+---@field i integer
+
 ---@param pos1 Position
 ---@param pos2 Position
----@param callback function
+---@param callback fun(context: IterateContext): any
 ---@param context table|nil
 ---@return any, table|nil
 function IterateBetweenPositions(pos1, pos2, callback, context)
@@ -698,6 +755,14 @@ function Position:ManhattanDistance(dest)
 	local y = math.abs(self.y - dest.y)
 	local z = math.abs(self.z - dest.z)
 	local distance = x + y + z
+	return distance
+end
+
+function Position:ChebyshevDistance(dest)
+	local x = math.abs(self.x - dest.x)
+	local y = math.abs(self.y - dest.y)
+	local z = math.abs(self.z - dest.z)
+	local distance = math.max(x, y, z)
 	return distance
 end
 
@@ -816,7 +881,7 @@ end
 ---@param name string?
 function Position:GetFirstNpcInRadius(radius, name)
 	local corner1, corner2 = self:GetBoundariesByRadius(radius)
-	return CreatureList():Area(corner1, corner2):First()
+	return CreatureList():Area(Area(corner1, corner2)):First()
 end
 
 function PlayersPresentAtAllPositions(positions, anchor)
@@ -846,7 +911,6 @@ function ExtractCoords(...)
 		z = arg[3]
 	end
 
-	-- x, y, z = calculateOverflow(x, y, z)
 	return { x = x, y = y, z = z }
 end
 
@@ -912,13 +976,7 @@ function Position:ToNumber()
 end
 
 function Position:MovedByVector(vector)
-	local offset = ExtractCoords(vector)
-	local temp = Position(self)
-	local pos = { x = temp.x, y = temp.y, z = temp.z }
-	pos.x = pos.x + (offset.x or 0)
-	pos.y = pos.y + (offset.y or 0)
-	pos.z = pos.z + (offset.z or 0)
-	return Position(pos)
+	return self:Moved(vector)
 end
 
 DESERT_QUEST_HUB_ANCHOR = Position(6795, 1275, 9)

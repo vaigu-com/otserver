@@ -79,19 +79,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small ruby", chance = 7100, maxCount = 5 },
+	{ name = "small ruby", chance = 7100, maxCount = 7 },
 	{ name = "gold coin", chance = 91300, maxCount = 100 },
 	{ name = "platinum coin", chance = 10000, maxCount = 20 },
-	{ name = "lizard leather", chance = 220 },
-	{ name = "lizard scale", chance = 650 },
-	{ name = "strong health potion", chance = 2550 },
-	{ name = "great health potion", chance = 2900 },
+	{ name = "lizard leather", chance = 2220 },
+	{ name = "lizard scale", chance = 4650 },
+	{ name = "strong health potion", chance = 22550 },
+	{ name = "great health potion", chance = 32900 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -30 },
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_EARTHDAMAGE, minDamage = -120, maxDamage = -250, range = 7, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = 0, maxDamage = -100, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -230 },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_EARTHDAMAGE, minDamage = -120, maxDamage = -350, range = 7, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = 0, maxDamage = -200, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.defenses = {

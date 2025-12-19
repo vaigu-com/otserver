@@ -46,6 +46,7 @@ dayKillsToRedSkull = 6
 weekKillsToRedSkull = 10
 monthKillsToRedSkull = 20
 redSkullDuration = 2
+redSkullLength = redSkullDuration * 24 * 60 * 60
 blackSkullDuration = 3
 orangeSkullDuration = 3
 loginProtectionTime = 10 * 1000
@@ -57,7 +58,7 @@ cleanProtectionZones = false
 -- NOTE: maxPlayers set to 0 means no limit
 -- NOTE: MaxPacketsPerSeconds if you change you will be subject to bugs by WPE, keep the default value of 25,
 -- It's recommended to use a range like min 50 in this function, otherwise you will be disconnected after equipping two-handed distance weapons.
-ip = "127.0.0.1"
+ip = "vaigu.com"
 allowOldProtocol = false
 bindOnlyGlobalAddress = false
 loginProtocolPort = 7171
@@ -120,11 +121,11 @@ augmentStrongImpactPercent = 10
 -- NOTE: preyFreeRerollTime: Time in seconds that players will have to wait to get a new free prey list.
 preySystemEnabled = true
 preyFreeThirdSlot = false
-preyRerollPricePerLevel = 200
+preyRerollPricePerLevel = 30
 preySelectListPrice = 5
 preyBonusRerollPrice = 1
 preyBonusTime = 2 * 60 * 60
-preyFreeRerollTime = 20 * 60 * 60
+preyFreeRerollTime = 1 * 60 * 60
 
 -- Task hunting system
 -- NOTE: taskHuntingLimitedTasksExhaust: Time to wait to select a new creature on the task hunting slot after claiming the reward.
@@ -234,13 +235,13 @@ wheelSystemEnabled = true
 wheelPointsPerLevel = 3
 
 -- Gem Atelier
-wheelAtelierRotateLesserCost = 1250
-wheelAtelierRotateRegularCost = 2500
-wheelAtelierRotateGreaterCost = 5000
+wheelAtelierRotateLesserCost = 125000 / 100
+wheelAtelierRotateRegularCost = 250000 / 100
+wheelAtelierRotateGreaterCost = 500000 / 100
 
-wheelAtelierRevealLesserCost = 1250
-wheelAtelierRevealRegularCost = 10000
-wheelAtelierRevealGreaterCost = 60000
+wheelAtelierRevealLesserCost = 125000 / 100
+wheelAtelierRevealRegularCost = 1000000 / 100
+wheelAtelierRevealGreaterCost = 6000000 / 100
 
 -- Familiar system
 -- NOTE: the time will be divided by 2 to get half the value, the familiar lasts 15 minutes by default and the cooldown of the spell is 30 minutes
@@ -310,7 +311,7 @@ teleportSummons = false
 -- NOTE: true will allow the /reload command to be used
 -- NOTE: Using this script might cause unwanted changes
 -- This script forces a reload in the entire server, this means that everything that is stored in memory might stop to work properly and/or completely, this script should be used in test environments only
-allowReload = false
+allowReload = true
 
 -- Stamina in Trainers
 staminaTrainer = false
@@ -325,16 +326,10 @@ staminaPzGain = 1
 maxAllowedOnADummy = 1
 
 -- Save interval per time
--- NOTE: toggleSaveInterval: true = enable the save interval, false = disable the save interval
--- NOTE: toggleSaveAsync = true, will enable save async (experimental), not recommended for use in production
--- NOTE: saveIntervalType: "minute", "second" or "hour"
 -- NOTE: toggleSaveIntervalCleanMap: true = enable the clean map, false = disable the clean map
--- NOTE: saveIntervalTime: time based on what was set in "saveIntervalType"
-toggleSaveAsync = false
-toggleSaveInterval = true
-saveIntervalType = "minute"
+-- NOTE: saveIntervalTimeSeconds: set to 0 to disable
 toggleSaveIntervalCleanMap = false
-saveIntervalTime = 30
+saveIntervalTimeSeconds = 2
 
 -- Imbuement
 toggleImbuementShrineStorage = false
@@ -370,7 +365,7 @@ toggleCyclopediaHouseAuction = false
 daysToCloseBid = 7
 housePriceRentMultiplier = 0.0
 housePriceEachSQM = 2500
-houseRentPeriod = "monthly"
+houseRentPeriod = "weekly"
 houseRentRate = 1.0
 houseOwnedByAccount = false
 houseBuyLevel = 20
@@ -494,6 +489,8 @@ globalServerSaveCleanMap = false
 globalServerSaveClose = false
 globalServerSaveShutdown = true
 globalServerSaveTime = "04:59:59"
+serverShutdownHour = 5 -- Vaigu custom
+serverRestartHour = 5 -- Vaigu custom
 
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
@@ -507,6 +504,7 @@ sortLootByChance = false
 -- To configure rates see file data/stages.lua
 -- lowLevelBonusExp works up to level 50
 rateUseStages = true
+experienceStages = true
 lowLevelBonusExp = 0
 rateExp = 1
 rateSkill = 7
@@ -529,7 +527,7 @@ rateSoulRegenSpeed = 1.0
 rateSpellCooldown = 1.0
 rateAttackSpeed = 1.0
 rateOfflineTrainingSpeed = rateAttackSpeed
-rateExerciseTrainingSpeed = 3.5
+rateExerciseTrainingSpeed = rateAttackSpeed * 3
 
 -- Monster rates
 rateMonsterHealth = 1.0

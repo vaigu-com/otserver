@@ -81,7 +81,7 @@ quest
 		QuestKeyItems.ArielsFriend = {
 			HairStrand = { id = 36809, key = Storage.ArielsFriend.HairStrand, desc = "Ariel's strand of hair. It might prove useful later." },
 			LoveElixirRaw = { id = elixirId, key = Storage.ArielsFriend.LoveElixirRaw, desc = "Raw magical elixir. Use with caution!" },
-			LoveElixirEnchanted = { id = elixirId, key = Storage.ArielsFriend.LoveElixirEnchanted },
+			LoveElixirEnchanted = { id = elixirId, key = Storage.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" },
 			LiquorItem = { id = 6106, key = Storage.ArielsFriend.LiquorItem },
 			OldRadioBroken = { id = 12813, key = Storage.ArielsFriend.OldRadioBroken, desc = "made in Hirschberg Manufacture LLC" },
 			OldRadioWorking = { id = 12813, key = Storage.ArielsFriend.OldRadioWorking, desc = "made in Hirschberg Manufacture LLC" },
@@ -97,7 +97,7 @@ quest
 				[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee,
 			},
 			nextState = {
-				[Storage.ArielsFriend.RadioFreeHirschberg] = MISSION_FINISHED,
+				[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse,
 			},
 			rewards = {
 				QuestKeyItems.ArielsFriend.AmeeMap,
@@ -105,6 +105,17 @@ quest
 			expReward = 900000,
 		})
 		EscortRegistry:Register(ameeEscort)
+
+		QuestRewards.OutfitsAddons.ArielsFriend = {
+			Yalaharian3 = {
+				{ outfitId = 324, addons = 3 },
+				{ outfitId = 325, addons = 3 },
+			},
+			BattleMage0 = {
+				{ outfitId = 1069, addons = 0 },
+				{ outfitId = 1070, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -132,15 +143,15 @@ quest
 						[QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame] = "Old Postman mentioned that in order for the elixir to properly work, you need to dilute Ariel's string of hair in it. After you do this, bring the elixir to Madame Malkin.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.AskMadameAboutAriel] = "Madame Malkin chugged the elixir which will make her love Ariel. Talk to her again after some time and mention Ariel.",
 						[QuestState.ArielsFriend.LoveIsInTheAir.ReportToAriel] = 'Turns out that the "wine" worked as intended. Tell Ariel about it.',
-						[MISSION_FINISHED] = "Ariel rejoices to know about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
+						[MISSION_FINISHED] = "Ariel rejoices knowing about Madame's feelings. He also revealed the secret Hirschberg greeting to you: Aloha. You can visit Gertrdue or Konmuld now.",
 					},
 				},
 				{
 					name = "Mission 3: A Killer Liquor",
 					storage = Storage.ArielsFriend.KillerLiquor,
 					states = {
-						[QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude] = "Find an immensely strong vodka in the lizard headquarters, and bring it to Gertrude.",
-						[QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld] = "In exchange for your help with finding the beverage, Gertruda is willing to help you with preparing concoctions and special rodenticides.",
+						[QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude] = "Find an immensely strong vodka in the lizard spiral tower, and bring it to Gertrude.",
+						[QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld] = "In exchange for your help with finding the beverage, Gertruda is willing to lead you to konmuld. Look for him in the southern steppes.",
 						[QuestState.ArielsFriend.KillerLiquor.AskKonmuldForMission] = "After treating Konmuld with vodka, he agreed to talk with you.",
 						[MISSION_FINISHED] = "You finished this mission.",
 					},
@@ -159,14 +170,14 @@ quest
 				{
 					name = "Mission 5: Radio free Hirschberg",
 					storage = Storage.ArielsFriend.RadioFreeHirschberg,
-					state = {
+					states = {
 						[QuestState.ArielsFriend.RadioFreeHirschberg.FindRadio] = "Konmuld mentioned to search the Retro Knurow for a lost radio of old.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.BringRadioToAriel] = "Bring the radio to Ariel.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.RepairRadioAtCelebimber] = "Ariel told you that Celebimber could have the skills requied to repair the radio. Try to find him in Kongo.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio] = "Try to listen to radio.",
-						[QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee] = "You gave your radio to 4M-33. Rescue it now.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee] = "You gave your radio to 4M-33. Rescue it now. It said that you should escort it to carpet, southwest from here.",
 						[QuestState.ArielsFriend.RadioFreeHirschberg.FindHouse] = 'You helped 4M-33 get out. It gave you its map and the password "chamek athra thull zathroth". On its way to carpet it also mentioned that you shall find a monument before which you shall utter this password.',
-						[QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it.",
+						[QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument] = "You found the abandoned house 4M-33 mentioned. Try finding the monument it was talking about and say the password before it. You recall password as 'chamek athra thull zathroth'",
 						[MISSION_FINISHED] = "You found your way to the secret library.",
 					},
 				},
@@ -287,7 +298,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Old Postman", {
-				[{ "eliksir", "madame", "mikstura", "elixir", "milosc", "love", "zaproszenie", "invitation" }] = {
+				[{ "eliksir", "madame", "mikstura", "elixir", "milosc", "love", "zaproszenie", "invitation", "potion", "ariel" }] = {
 					text = "So Madame Malkin still doesn't want to accept a meeting with Ariel... I have an idea. Ariel won't like it but he doesn't have to know anything. ...\nIn the north of the city, there is a village of alchemists. Apparently, they have a laboratory there in which they created love elixirs. Try to steal it, and I will tell you what's next.",
 					nextState = {
 						[Storage.ArielsFriend.LoveIsInTheAir] = QuestState.ArielsFriend.LoveIsInTheAir.StealElixir,
@@ -320,26 +331,24 @@ quest
 	end)
 	:State(function()
 		return QuestState.ArielsFriend.LoveIsInTheAir.EnchantElixirWithHair_DrugMadame,
-			QuestFactory.Script(function(missionState)
-				local hair = Action()
-				function hair.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					if not player:HasExactMissionState(missionState) then
-						return false
-					end
-
-					if player:TryRemoveItems({
+			QuestFactory.OnUseDeclarations({
+				{
+					key = Storage.ArielsFriend.HairStrand,
+					requiredItems = {
 						QuestKeyItems.ArielsFriend.LoveElixirRaw,
 						QuestKeyItems.ArielsFriend.HairStrand,
-					}) then
-						player:AddItems({ QuestKeyItems.ArielsFriend.LoveElixirEnchanted, desc = "Enchanted magical elixir" })
-						player:getPosition():sendMagicEffect(CONST_ME_SOUND_GREEN)
-					end
-					return true
-				end
-
-				hair:key(Storage.ArielsFriend.HairStrand)
-				hair:register()
-			end),
+					},
+					rewards = {
+						QuestKeyItems.ArielsFriend.LoveElixirEnchanted,
+					},
+					specialActionsOnSuccess = {
+						{
+							action = SPECIAL_ACTIONS_UNIVERSAL.sendMagicEffectPlayer,
+							effect = CONST_ME_SOUND_GREEN,
+						},
+					},
+				},
+			}),
 			QuestFactory.Dialog("Madame Malkin", {
 				[{ "mission", "misja", "wino", "wine", "ariel" }] = {
 					text = "Ahh, I love these exotic ones from Old Postman, I'll taste them immediately at the spot.\nArrrgh, disgusting. Tell him that he should never order this one again.",
@@ -391,7 +400,7 @@ quest
 					textNoRequiredState = "I don't know who told you this password. Go away please.",
 				},
 				[{ "yes", "tak", "story", "mission", "misja", "historii", "historie", "historia" }] = {
-					text = "Can you see the lizard village west to my hut? They have a strange plant that they use to produce vodka most potent. Once, i took two sips of this beverage... i dont remember much after, as i slept for next two days. \nIm now getting ready to visit my friend Konmuld. Hes not very talkative outside of the time he is drunk.\n\nPlease steal some of this liquor from lizards if you want me to continue out story.",
+					text = "Can you see the lizard village south to my hut? They have a strange plant that they use to produce vodka most potent. Once, i took two sips of this beverage... i dont remember much after, as i slept for next two days. \nIm now getting ready to visit my friend Konmuld. Hes not very talkative outside of the time he is drunk.\n\nPlease steal some of this liquor from lizards if you want me to continue out story.",
 					requiredTopic = QuestTopics.ArielsFriend.AcceptVodkaQuest,
 					nextState = {
 						[Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.FindVodkaForGertrude,
@@ -411,7 +420,7 @@ quest
 					"butelka",
 					"wodka",
 				}] = {
-					text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Hirschberg.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
+					text = "Uuuu, I can smell it through the cork, you did great. I'll tell you how it went.\nI was an apprentice to the great alchemist, the one who, as you probably know, blew up the whole island. But do not trust those who say that he was mad.\nIn fact, he was constructing a mechanism that would enclose the whole island in a force field and force the rulers to surrender. He wanted everyone to live in harmony.\nUnfortunately, the government found out thanks to their spies, and forced him to change his plans. Initially it was supposed to be 2 small bombs, to destroy the strongest districts.\nBut it was not enough for them...  They wanted a bigger bomb, which would destroy the whole island. Now there are only ruins left, but I still believe that one day we will rebuild Hirschberg. You might wanna visit him in the southern steppes.\nIn addition, at the alchemist's I dealt with the creation of various decoctions for everyday problems, if you have a problem and need any effective remedy, I will be here for you.",
 					requiredItems = { { id = QuestKeyItems.ArielsFriend.LiquorItem.id, key = QuestKeyItems.ArielsFriend.LiquorItem.key, remove = false } },
 					nextState = { [Storage.ArielsFriend.KillerLiquor] = QuestState.ArielsFriend.KillerLiquor.BringVodkaToKonmuld },
 					expReward = 150000,
@@ -449,7 +458,7 @@ quest
 				[{ "aloha" }] = {
 					text = "Im not in the mood to talk with you.",
 				},
-				[{ "mission", "misja", "dusza", "gertruda" }] = {
+				[{ "mission", "misja", "dusza", "gertruda", "virgin", "soul", "dziewica" }] = {
 					text = "I'll tell you what we will do. For a few years I have been studying the art of secret black magic. Still the soul of the virgin is missing.\nI don't know how to get it, but {someone} will know for sure. Try to find out and bring me at least one soul. I'll give you one piece of my old set.",
 					nextState = {
 						[Storage.ArielsFriend.KillerLiquor] = MISSION_FINISHED,
@@ -462,7 +471,7 @@ quest
 	:State(function()
 		return QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
 			QuestFactory.Dialog("Grave Digger", {
-				[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "mission", "misja", "someone" }] = {
+				[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "someone" }] = {
 					text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is a shovel in my hand and digging {graves}, which is what I like best!",
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
@@ -485,14 +494,14 @@ quest
 						return false
 					end
 
-					local requiredRoll = 100 - player:getStorageValueByKey(Storage.ArielsFriend.GravesSoulChance)
+					local requiredRoll = 100 - (player:getStorageValueByKey(Storage.ArielsFriend.GravesSoulChance) or 0)
 					local roll = math.random(1, 100)
 					if roll >= requiredRoll then
 						Game.createMonster("Ghost", player:getPosition())
 						player:setStorageValueByKey(Storage.ArielsFriend.PreludeToThaumaturgy, QuestState.ArielsFriend.PreludeToThaumaturgy.ReportToKonmuld)
 					else
 						Game.createMonster("Ghoul", player:getPosition())
-						player:incrementStorage(Storage.ArielsFriend.GravesSoulChance, 10)
+						player:incrementStorageByKeyClampZero(Storage.ArielsFriend.GravesSoulChance, 10)
 					end
 					return true
 				end
@@ -507,10 +516,7 @@ quest
 				[{ "mission", "misja", "dusza", "gertruda" }] = {
 					text = "GREAT! I will create a virgin from that soul just for myself!\nAs I promised, you can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
 					expReward = 750000,
-					outfitRewards = {
-						{ outfit = 324, addons = 3 },
-						{ outfit = 325, addons = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ArielsFriend.Yalaharian3,
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
 					},
@@ -561,6 +567,9 @@ quest
 					text = "Before we migrated here, Ariel had a grandpa who was an inventor. His magic skills are nothing compared to mine, but his engineering skills were something else.. Long story short: i was in Retro Knurowo - scrapping some valubles with my metal detector - i encountered some weird signals, similar to ones from our radios. Should you find this radio, you should consult Ariel.",
 					nextState = {
 						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindRadio,
+					},
+					requiredState = {
+						[Storage.ArielsFriend.PreludeToThaumaturgy] = MISSION_FINISHED,
 					},
 				},
 			})
@@ -621,7 +630,7 @@ quest
 	:State(function()
 		return QuestState.ArielsFriend.RadioFreeHirschberg.ListenToRadio,
 			QuestFactory.Script(function(missionState)
-				local destinationPos = Position(7661, 1611, 7)
+				local destinationPos = Position(7534, 1048, 6)
 
 				local function getDistanceMessage(player)
 					local dist = player:getPosition():EuclideanDistance(destinationPos)
@@ -658,6 +667,9 @@ quest
 					requiredItems = {
 						QuestKeyItems.ArielsFriend.OldRadioWorking,
 					},
+					nextState = {
+						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.EscortAmee,
+					},
 				},
 			})
 	end)
@@ -687,7 +699,7 @@ quest
 				local map = Action()
 				function map.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					local vectorBetween = Vector.BetweenPositions(player:getPosition(), destination)
-					local direction = vectorBetween:ToDirection()
+					local direction = vectorBetween:ToDirectionByAngle()
 					local announcement = player:Localizer(LOCALIZERS.Universal):Context({ direction = direction }):Get("GO_IN_DIRECTION")
 
 					doCreatureSay(player, announcement, TALKTYPE_ORANGE_1)
@@ -697,7 +709,7 @@ quest
 			end),
 			QuestFactory.Script(function(missionState)
 				local nextState = {
-					[Storage.ArielsFriend.RadioFreeHirschberg] = MISSION_FINISHED,
+					[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument,
 				}
 
 				local tileBeforeHouse = MoveEvent()
@@ -792,8 +804,9 @@ quest
 			{ type = "bleed", condition = false },
 		}
 
-		local insideLibrary = Position(7229, 2399, 9)
+		local insideLibrary = Position(32515, 32537, 12)
 		local outsideStandingPosition = Position(7683, 1637, 9)
+
 		mType.onSay = function(listener, talker, type, message)
 			local player = talker:getPlayer()
 			if not player then
@@ -811,6 +824,7 @@ quest
 
 			if player:getStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg) == QuestState.ArielsFriend.RadioFreeHirschberg.FindMonument then
 				player:setStorageValueByKey(Storage.ArielsFriend.RadioFreeHirschberg, MISSION_FINISHED)
+				player:AddOutfitsAndAddons(QuestRewards.OutfitsAddons.ArielsFriend.BattleMage0)
 			end
 
 			if message:lower() == "chamek athra thull zathroth" then

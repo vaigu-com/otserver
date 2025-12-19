@@ -1,3 +1,120 @@
+function Item:getText()
+	if self:hasAttribute(ITEM_ATTRIBUTE_TEXT) then
+		return self:getAttribute(ITEM_ATTRIBUTE_TEXT)
+	end
+end
+
+function IsFluidContainer(id)
+	local itemType = ItemType(id)
+	if not itemType then
+		return false
+	end
+	return itemType:isFluidContainer()
+end
+
+local dirToOpposite = {
+	[DIRECTION_NORTH] = DIRECTION_SOUTH,
+	[DIRECTION_EAST] = DIRECTION_WEST,
+	[DIRECTION_SOUTH] = DIRECTIODIRECTION_EASTN_NORTH,
+	[DIRECTION_WEST] = DIRECTION_EAST,
+
+	[DIRECTION_NORTHEAST] = DIRECTION_SOUTHWEST,
+	[DIRECTION_SOUTHEAST] = DIRECTION_NORTHWEST,
+	[DIRECTION_SOUTHWEST] = DIRECTION_NORTHEAST,
+	[DIRECTION_NORTHWEST] = DIRECTION_SOUTHEAST,
+}
+
+function CalculateOppositeDirection(dir)
+	return dirToOpposite[dir]
+end
+
+function extractKeySuffix(key)
+	if key == nil or type(key) ~= "string" then
+		return key
+	end
+	local lastmatch = key:match("([^.]+)$")
+	return lastmatch
+end
+
+function math.clamp(value, min, max)
+	if value < min then
+		return min
+	end
+	if value > max then
+		return max
+	end
+	return value
+end
+
+function Player:isMale()
+	return self:getSex() == PLAYERSEX_MALE
+end
+
+local defaultSeparator = ",\n"
+function RequiredItemNamesCountToString(items, separator)
+	local text = ""
+	if TableSize(items) == 0 then
+		logger.warn("[RequiredItemNamesCountToString] items size is 0")
+		return text
+	end
+	separator = separator or defaultSeparator
+	for _, item in pairs(items) do
+		text = text .. T(":count: :name::separator:", { count = item.count, name = ItemType(item.id):getName(), separator = separator })
+	end
+	return text:sub(1, -3)
+end
+
+function RequiredItemNamesToString(items, separator)
+	local text = ""
+	if TableSize(items) == 0 then
+		logger.warn("[RequiredItemNamesToString] items size is 0")
+		return text
+	end
+	separator = separator or defaultSeparator
+	for _, item in pairs(items) do
+		text = text .. T(":name::separator:", { name = ItemType(item.id):getName(), separator = separator })
+	end
+	return text:sub(1, -3)
+end
+
+function who_called_me()
+	local info = debug.getinfo(2, "n")
+	if info and info.name then
+		return info.name
+	else
+		return "<unknown>"
+	end
+end
+
+---@param str string
+---@param filename string eg. output.lua
+---@return boolean success
+function SerializeToUtilFolder(str, filename)
+	local file, err = io.open("utility_scripts/" .. filename, "w+")
+	if not file then
+		logger.warn("[SerializeToUtilFolder] Error opening file: " .. err)
+		return false
+	end
+	file:write(str)
+	file:flush()
+	file:close()
+	logger.warn(T("[SerializeToUtilFolder][:caller: caller] serialized file :filename: ", { caller = who_called_me(), filename = filename }))
+	return true
+end
+
+function Player:teleportToReflectedPoint(midpoint)
+	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
+	local reflectedPoint = midpoint:Moved(vectorToMidpoint)
+	self:teleportTo(reflectedPoint)
+end
+
+function Player:teleportToOtherSideIfNonDiagonal(midpoint)
+	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
+	if not vectorToMidpoint:IsFacingDiagonalSnap() then
+		self:teleportTo(midpoint:MovedByVector(vectorToMidpoint))
+	end
+end
+
 function Class()
 	local class = {}
 	class.index = class
@@ -96,10 +213,31 @@ function ItemsToString(items)
 	return str
 end
 
+local function validateKey(key)
+	if type(key) ~= "string" then
+		logger.error(debug.traceback("[validateKey] key is not string"))
+		key = tostring(key)
+	end
+	if key == nil then
+		logger.error(debug.traceback("[Player:setStorageValueByKey] key is nil"))
+		error("[Player:setStorageValueByKey] key is nil")
+	end
+	local components = key:split("-")
+	if not components then
+		logger.error(debug.traceback("[Player:setStorageValueByKey] key has no components"))
+	end
+	for i, component in ipairs(components) do
+		if component == "" then
+			logger.error(debug.traceback(T("[Player:setStorageValueByKey] key :key: component :i: is empty string", { key = key, i = i })))
+		end
+	end
+end
+
 ---using key types other than string/number is not recommended
 ---@param key string|number|any
 ---@return any any If present, returns value in player kv store, else returns default value
 function Player:getStorageValueByKey(key)
+	validateKey(key)
 	return self:kv():get(key) or MISSION_NOT_STARTED
 end
 ---@param key string|number|any
@@ -108,16 +246,16 @@ function Player:getStorageValueByKeyRaw(key, type)
 	return self:kv():get(key)
 end
 
----using key types other than string/number is not recommended
 ---@param key string|number|any
 ---@param nextValue any
 ---@return any
 function Player:setStorageValueByKey(key, nextValue)
+	validateKey(key)
 	local previousValue = self:getStorageValueByKey(key)
 	self:kv():set(key, nextValue)
 	self:updateStorage(key, nextValue, previousValue, os.time())
 end
----using key types other than string/number is not recommended
+
 ---@param key string|number|any
 function Player:removeStorageValueByKey(key)
 	local previousValue = self:getStorageValueByKey(key)
@@ -152,18 +290,16 @@ function Shop:setStorageValueByKey(key, value)
 	return self:kv():set(key, value)
 end
 
----@class DataClass
-DataClass = DataClass
-
 function T(template, variables)
 	if not variables then
 		logger.warn(debug.traceback("[T] no variables table provided"))
 	end
-	local result = template
+
+	local filledTemplate = template
 	for key, value in pairs(variables) do
-		result = result:gsub(":" .. key .. ":", value)
+		filledTemplate = filledTemplate:gsub(":" .. key .. ":", value)
 	end
-	return result
+	return filledTemplate
 end
 
 NUMBER_TO_ORDINAL_STRING = {
@@ -441,22 +577,48 @@ function PrintAnything(thing)
 	PrintTableRecursive(thing)
 end
 
+local addonToStr = {
+	[0] = "No addons",
+	[1] = "First addon only",
+	[2] = "Second addon only",
+	[3] = "First and Second addon",
+}
+
+local function announceReceivedOutfit(player, outfitId, addons, sex)
+	local addonStr = addonToStr[addons]
+	local sexStr = ""
+	if sex == PLAYERSEX_MALE then
+		sexStr = " (male)"
+	end
+	if sex == PLAYERSEX_FEMALE then
+		sexStr = " (female)"
+	end
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained the :outfitName: outfit:sexStr:! (:addonStr:)", { outfitName = Game.getOutfitNameByLookType(outfitId), sexStr = sexStr, addonStr = addonStr }))
+end
+
 function Player:AddOutfitsAndAddons(outfitsAndAddons)
 	for _, data in pairs(outfitsAndAddons) do
-		local outfit = data.outfitId or data.outfit or data.id
-		local addon = data.addon
+		local outfitId = data.outfitId or data.outfit or data.id or data.lookType or data.looktype
+		local addon = data.addon or data.addons or 0
+		local sex = Game.getOutfitSexByLookType(outfitId)
 
-		self:addOutfit(outfit)
+		self:addOutfit(outfitId)
 		if addon then
-			self:addOutfitAddon(outfit, addon)
+			self:addOutfitAddon(outfitId, addon)
 		end
+		announceReceivedOutfit(self, outfitId, addon, sex)
 	end
 	self:addOutfit()
+end
+
+local function annonceReceivedMount(player, mountId)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { outfitName = Game.getMountNameByLookType(mountId) }))
 end
 
 function Player:AddMounts(mounts)
 	for _, mountId in pairs(mounts) do
 		self:addMount(mountId)
+		annonceReceivedMount(self, mountId)
 	end
 end
 
@@ -495,4 +657,36 @@ function ReverseTable(tab)
 	for i = 1, math.floor(n / 2) do
 		tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
 	end
+end
+
+function normalizedItemData(itemData, localizer)
+	local normalized = {}
+	for key, value in pairs(itemData) do
+		normalized[key] = value
+	end
+
+	normalized.id = itemData.id
+	normalized.count = itemData.count or 1
+	normalized.aid = itemData.actionid or itemData.aid or itemData.actionId
+	normalized.uid = itemData.uniqueid or itemData.uid or itemData.uniqueId
+	normalized.key = itemData.key
+	normalized.desc = itemData.description or itemData.desc
+	normalized.text = itemData.text
+	normalized.rewards = itemData.rewards
+	normalized.requiredState = itemData.requiredState
+	normalized.nextState = itemData.nextState
+	normalized.expReward = itemData.expReward or itemData.exp or itemData.experience
+	normalized.specialActionsOnSuccess = itemData.specialActionsOnSuccess
+	normalized.specialActionsOnFail = itemData.specialActionsOnFail
+	normalized.onLook = itemData.onLook or itemData.onlook
+	normalized.immovable = itemData.immovable
+	local pos = itemData.pos or itemData.offset or itemData.position or itemData.offpos or itemData.vector
+	if pos then
+		logger.warn("[normalizedItemData] pos is deprecated")
+	end
+	normalized.pos = pos
+	normalized.source = itemData.source
+
+	normalized.localizer = itemData.localizer or localizer
+	return normalized
 end

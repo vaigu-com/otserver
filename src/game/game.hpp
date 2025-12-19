@@ -72,7 +72,7 @@ static constexpr std::chrono::minutes CACHE_EXPIRATION_TIME { 10 }; // 10min
 static constexpr std::chrono::minutes HIGHSCORE_CACHE_EXPIRATION_TIME { 10 }; // 10min
 static constexpr int32_t UPDATE_PLAYERS_ONLINE_DB = 60000 * 10; // 10min
 
-static constexpr uint8_t BOOST_PREY_ELIGIBILITY_THERSHOLD = 20; // Vaigu custom
+static constexpr uint8_t BOOST_PREY_ELIGIBILITY_THRESHOLD = 20; // Vaigu custom
 
 struct QueryHighscoreCacheEntry {
 	std::string query;
@@ -411,7 +411,7 @@ public:
 	void playerBrowseMarketOwnHistory(uint32_t playerId);
 	void playerCreateMarketOffer(uint32_t playerId, uint8_t type, uint16_t itemId, uint16_t amount, uint64_t price, uint8_t tier, bool anonymous);
 	void playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter);
-	void playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter, uint16_t amount);
+	void playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter, uint16_t buyingAmount);
 
 	void parsePlayerExtendedOpcode(uint32_t playerId, uint8_t opcode, const std::string &buffer);
 
@@ -727,6 +727,9 @@ public:
 	 * @return Pointer to the managed container or nullptr if not found.
 	 */
 	std::shared_ptr<Container> findManagedContainer(const std::shared_ptr<Player> &player, bool &fallbackConsumed, ObjectCategory_t category, bool isLootContainer);
+	
+	// Vaigu custom
+	void updatePlayersOnline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players) const;
 
 private:
 	std::map<uint16_t, Achievement> m_achievements;
@@ -1018,8 +1021,6 @@ private:
 	);
 	std::string generateHighscoreOrGetCachedQueryForEntries(const std::string &categoryName, uint32_t page, uint8_t entriesPerPage, uint32_t vocation);
 	std::string generateHighscoreOrGetCachedQueryForOurRank(const std::string &categoryName, uint8_t entriesPerPage, uint32_t playerGUID, uint32_t vocation);
-
-	void updatePlayersOnline() const;
 };
 
 constexpr auto g_game = Game::getInstance;

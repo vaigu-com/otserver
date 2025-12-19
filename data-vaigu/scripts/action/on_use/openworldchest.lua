@@ -53,6 +53,8 @@ local openWorldChestRewardCategories = {
 		{ id = 3582, chance = 20000, count = 3 }, -- meat
 		{ id = 3577, chance = 20000, count = 3 }, -- ham
 		{ id = 3725, chance = 12000, count = 10 }, -- brown mushroom
+		{ id = 3577, chance = 2000, count = 1 },
+		{ id = 24382, chance = 8000, count = 2 }, 
 	},
 	[specificOpenworldchestScopes.Rural] = {
 		{ id = 3606, chance = 20000, count = 3 }, -- egg
@@ -67,6 +69,7 @@ local openWorldChestRewardCategories = {
 		{ id = 3291, chance = 500, count = 1 }, -- knife
 		{ id = 3471, chance = 6000, count = 1 }, -- cleaver
 		{ id = 3460, chance = 10000, count = 1 }, -- hammer
+		{ id = 27654, chance = 100, count = 1 },
 	},
 	[specificOpenworldchestScopes.Armours] = {
 		{ id = 3552, chance = 1000, count = 1 }, -- leather boots
@@ -96,6 +99,7 @@ local openWorldChestRewardCategories = {
 		{ id = 7378, chance = 8000, count = 3 }, -- royal spear
 		{ id = 2894, chance = 15000, count = 1 }, -- broken flask
 		{ id = 2996, chance = 14000, count = 1 }, -- broken piggy bank
+		{ id = 25759, chance = 500, count = 7 },
 	},
 	[specificOpenworldchestScopes.Elf] = {
 		{ id = 3600, chance = 26000, count = 2 }, -- bread
@@ -186,6 +190,7 @@ local openWorldChestRewardCategories = {
 		{ id = 3113, chance = 13000, count = 1 }, -- broken pottery
 		{ id = 3003, chance = 15000, count = 1 }, -- rope
 		{ id = 22763, chance = 500, count = 1 },
+		{ id = 12669, chance = 300, count = 1 },
 	},
 	[specificOpenworldchestScopes.Lizard] = {
 		{ id = 3031, chance = 60000, count = 80 }, -- gold coin
@@ -281,6 +286,7 @@ local openWorldChestRewardCategories = {
 		{ id = 12802, chance = 7000, count = 1 }, -- sugar oat
 		{ id = 3028, chance = 600, count = 1 }, -- small diamond
 		{ id = 3026, chance = 600, count = 1 }, -- white pearl
+		{ id = 12669, chance = 300, count = 1 },
 	},
 	[specificOpenworldchestScopes.Coffin] = {
 		{ id = 3031, chance = 60000, count = 55 }, -- gold coin
@@ -296,18 +302,19 @@ local openWorldChestRewardCategories = {
 		{ id = 3119, chance = 15000, count = 1 }, -- broken sword
 		{ id = 953, chance = 5000, count = 2 }, -- nail
 		{ id = 3124, chance = 17000, count = 1 }, -- burnt scroll
+		{ id = 12669, chance = 500, count = 1 },
 	},
 	[specificOpenworldchestScopes.Sarcophagus] = {
 		{ id = 3031, chance = 33000, count = 100 }, -- gold coin
 		{ id = 3048, chance = 8000, count = 20 }, -- might ring
 		{ id = 3440, chance = 200, count = 1 }, -- scarab shield
-		{ id = 3049, chance = 1000, count = 1 }, -- stealth ring
-		{ id = 2933, chance = 16000, count = 1 }, -- small oil lamp
+		{ id = 3049, chance = 600, count = 1 }, -- stealth ring
+		{ id = 2933, chance = 12000, count = 1 }, -- small oil lamp
 		{ id = 9057, chance = 1000, count = 2 }, -- small topaz
 		{ id = 3037, chance = 800, count = 1 }, -- yellow gem
 		{ id = 2903, chance = 3000, count = 1 }, -- golden mug
 		{ id = 3042, chance = 16000, count = 2 }, -- scarab coin
-		{ id = 3018, chance = 20000, count = 1 }, -- scarab amulet
+		{ id = 3018, chance = 10000, count = 1 }, -- scarab amulet
 	},
 	[specificOpenworldchestScopes.Tools] = {
 		{ id = 3003, chance = 6000, count = 1 }, -- rope
@@ -327,6 +334,7 @@ local openWorldChestRewardCategories = {
 		{ id = 7363, chance = 3000, count = 8 }, -- piercing bolt
 		{ id = 953, chance = 15000, count = 2 }, -- nail
 		{ id = 22763, chance = 500, count = 1 },
+		{ id = 27654, chance = 100, count = 1 },
 	},
 	[specificOpenworldchestScopes.Weapons] = {
 		{ id = 3264, chance = 12000, count = 1 }, -- sword
@@ -368,6 +376,8 @@ local openWorldChestRewardCategories = {
 		{ id = 3032, chance = 25000, count = 1 }, -- small emerald
 		{ id = 3029, chance = 25000, count = 1 }, -- small sapphire
 		{ id = 22763, chance = 500, count = 1 },
+		{ id = 22516, chance = 1000, count = 1 }, -- silver token
+		{ id = 22721, chance = 1000, count = 1 }, -- gold token
 	},
 	[specificOpenworldchestScopes.Trash] = {
 		{ id = 3031, chance = 15000, count = 50 }, -- gold coin
@@ -405,6 +415,7 @@ local openWorldChestRewardCategories = {
 		{ id = 3473, chance = 5000, count = 1 }, -- rolling pin
 		{ id = 2905, chance = 5000, count = 1 }, -- plate
 		{ id = 22763, chance = 500, count = 1 },
+		{ id = 14751, chance = 300, count = 1 },
 	},
 	[specificOpenworldchestScopes.Pirate] = {
 		{ id = ItemId.PIRATE_S_SURPRISE, chance = 5000, count = 1 },
@@ -423,6 +434,7 @@ local openWorldChestRewardCategories = {
 		{ id = 901, chance = 2000, count = 1 },
 		{ id = 2875, chance = 5000, count = 1 },
 		{ id = 3031, chance = 12000, count = 30 },
+		{ id = 14751, chance = 4000, count = 1 },
 	},
 }
 

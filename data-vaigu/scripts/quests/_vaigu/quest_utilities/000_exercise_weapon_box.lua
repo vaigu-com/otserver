@@ -20,8 +20,13 @@ local confirmChoice = function(player, button, choice)
 	player:TryCoalesceNewExerciseWeapon(choice.id, choice.charges, boxObject)
 end
 
+local chargesLimitPerItem = 50000 -- still below uint16_t max value
 function Player:TryCoalesceNewExerciseWeapon(id, newWeaponCharges, boxObject)
-	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
+	if newWeaponCharges > chargesLimitPerItem then
+		self:sendTextMessage(MESSAGE_GAME_HIGHLIGHT, "[ExerciseWeaponBox] You cannot create this exercise weapon, beacuse charges are higher than the 50k limit. Please contact an admin.")
+		return
+	end
+
 	local oldWeapon = self:getItemById(id, true)
 	local oldWeaponCharges = 0
 	if oldWeapon then
@@ -29,7 +34,12 @@ function Player:TryCoalesceNewExerciseWeapon(id, newWeaponCharges, boxObject)
 	end
 
 	local totalCharges = oldWeaponCharges + newWeaponCharges
+	if totalCharges > chargesLimitPerItem then
+		self:sendTextMessage(MESSAGE_GAME_HIGHLIGHT, "[ExerciseWeaponBox] You cannot coalesce this exercise weapon, beacuse total charges are higher than the 50k limit.")
+		return
+	end
 
+	local inbox = self:getSlotItem(CONST_SLOT_STORE_INBOX)
 	local inboxItem = inbox:addItem(id, totalCharges)
 	if inboxItem then
 		boxObject:remove()
@@ -42,12 +52,12 @@ function Player:TryCoalesceNewExerciseWeapon(id, newWeaponCharges, boxObject)
 end
 
 local exerciseWeaponChoice = {
-	["sword"] = 28552,
-	["axe"] = 28553,
-	["club"] = 28554,
-	["bow"] = 28555,
-	["rod"] = 28556,
-	["wand"] = 28557,
+	{ name = "wand", itemId = 28557 },
+	{ name = "rod", itemId = 28556 },
+	{ name = "bow", itemId = 28555 },
+	{ name = "sword", itemId = 28552 },
+	{ name = "axe", itemId = 28553 },
+	{ name = "club", itemId = 28554 },
 }
 
 ---@param charges number
@@ -68,7 +78,9 @@ function exerciseWeaponBox.onUse(player, boxObject, fromPosition, target, toPosi
 	local window = ModalWindow({ title = title, message = message })
 	window:addButton(player:Localizer(LOCALIZERS.Universal):Get("ModalWindowOk"), confirmChoice)
 
-	for name, id in pairs(exerciseWeaponChoice) do
+	for _, weapon in pairs(exerciseWeaponChoice) do
+		local name = weapon.name
+		local id = weapon.itemId
 		local choice = window:addChoice(name)
 		choice.charges = charges
 		choice.id = id

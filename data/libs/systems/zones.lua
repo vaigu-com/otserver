@@ -41,6 +41,26 @@ function Zone:getWalkableSize()
 	return #walkablePositions
 end
 
+function Zone:firstPosition(ignoreWalkability)
+	local positions = self:getPositions()
+	if #positions == 0 then
+		logger.error(debug.traceback(T("Zone:firstPosition() - Zone :name: has no positions", { name = self:getName() })))
+		return nil
+	end
+
+	for _, position in ipairs(positions) do
+		local tile = position:getTile()
+		if tile and (ignoreWalkability or tile:isWalkable(false, false, false, false, true)) then
+			return position
+		else
+			logger.debug("Zone:firstPosition() - Position {} is invalid (Tile: {}, Walkable: {})", position, tile or "nil", tile and tile:isWalkable(false, false, false, false, true) or "false")
+		end
+	end
+
+	logger.error("Zone:firstPosition() - No valid positions in Zone {}", self:getName())
+	return nil
+end
+
 function Zone:getSinglePosition()
 	local positions = self:getPositions()
 	if #positions < 1 then

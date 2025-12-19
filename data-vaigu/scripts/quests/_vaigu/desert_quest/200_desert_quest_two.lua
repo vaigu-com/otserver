@@ -81,11 +81,11 @@ quest
 
 		monster.changeTarget = {
 			interval = 4000,
-			chance = 10,
+			chance = 50,
 		}
 
 		monster.strategiesTarget = {
-			nearest = 100,
+			random = 100,
 		}
 
 		monster.flags = {
@@ -93,7 +93,7 @@ quest
 			attackable = true,
 			hostile = false,
 			convinceable = false,
-			pushable = false,
+			pushable = true,
 			rewardBoss = false,
 			illusionable = false,
 			canPushItems = true,
@@ -438,7 +438,7 @@ quest
 				local topLeft = DESERT_QUEST_TWO_ANCHOR:Moved(-118, -54, 0)
 				local downRight = DESERT_QUEST_TWO_ANCHOR:Moved(-51, 13, 0)
 
-				local vector = topLeft:VectorTo(downRight:Moved(1, 1, 0)):Abs()
+				local vector = downRight:Moved(1, 1, 0):VectorTo(topLeft):Abs()
 				local sideSize = 4
 				local dx = vector.x
 				local dy = vector.y

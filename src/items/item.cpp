@@ -3517,6 +3517,21 @@ std::shared_ptr<Item> Item::transform(uint16_t itemId, uint16_t itemCount /*= -1
 	return newItem;
 }
 
+// Vaigu custom
+bool Item::isSellableToNpc() const {
+	if (!isInitializedAttributePtr()) {
+		return true;
+	}
+
+	for (const auto &attribute : getAttributeVector()) {
+		if (attribute.getAttributeType() == ItemAttribute_t::TIER && static_cast<uint8_t>(attribute.getInteger()) != getTier()) {
+			return false;
+		}
+	}
+
+	return !hasImbuements() && !isStoreItem() && !hasOwner();
+}
+
 bool Item::hasMarketAttributes() const {
 	if (!isInitializedAttributePtr()) {
 		return true;

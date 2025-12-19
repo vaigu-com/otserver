@@ -256,14 +256,20 @@ DailyReward.loadDailyReward = function(playerId, target)
 	return true
 end
 
-local oneDay = 24 * 60 * 60
 DailyReward.afterPickingReward = function(playerId)
 	local player = Player(playerId)
 	if not player then
 		return false
 	end
 
+	--[[
 	local nextStreakLevel = player:getStreakLevel() + 1
+	player:setStreakLevel(nextStreakLevel)
+	]]
+	local nextStreakLevel = player:getStreakLevel() + 1
+	if nextStreakLevel < 7 then
+		nextStreakLevel = 7
+	end
 	player:setStreakLevel(nextStreakLevel)
 
 	local nextWeekDay = player:getDayStreak() + 1

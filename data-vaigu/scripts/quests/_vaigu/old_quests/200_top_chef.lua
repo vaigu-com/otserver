@@ -44,7 +44,7 @@ local function addDish(context)
 	if not dishData then
 		return false
 	end
-	player:AddItems({ { id = ItemType(dishData.dishName):getId() } })
+	player:AddCustomItem({  id = ItemType(dishData.dishName):getId()  })
 end
 
 local function grantExpForDish(context)
@@ -60,7 +60,6 @@ quest
 	:Storage(function()
 		Storage.TopChef = {
 			Mission01 = {},
-			CanMakeAllDishes = {},
 			MeadVial = {},
 		}
 		QuestState.TopChef = {
@@ -154,20 +153,10 @@ quest
 			return ingredientStrings[dishData.storage]
 		end
 
-		local cookBook = Action()
-		function cookBook.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-			local fullText = {}
-			for _, dishText in pairs(ingredientStrings) do
-				table.insert(fullText, dishText)
-			end
-			player:showTextDialog(item.itemid, table.concat(fullText))
-			return true
-		end
-		cookBook:id(9093)
-		cookBook:register()
-
+		local cookBookText = ""
 		local function generateCookingAuxillaryData()
-			for storage, dishData in pairs(COOKING_INGREDIENT_DATA) do
+			for questState, dishData in pairs(COOKING_INGREDIENT_DATA) do
+				cookBookText = cookBookText .. dishData.dishName
 				local requiredItemsString = ""
 				for _, item in pairs(dishData.items) do
 					local id = item.id
@@ -181,10 +170,11 @@ quest
 						requiredItemsString = requiredItemsString .. T(" of :fluidName:", { fluidName = fluidName })
 					end
 				end
-				ingredientStrings[storage] = requiredItemsString
-				COOKING_INGREDIENT_DATA[storage].storage = storage
-				COOKING_DISH_NAMES[dishData.dishName] = storage
-				COOKING_DISH_NAMES[dishData.dishName:lower()] = storage
+				cookBookText = cookBookText .. requiredItemsString .. "\n"
+				ingredientStrings[questState] = requiredItemsString
+				COOKING_INGREDIENT_DATA[questState].storage = questState
+				COOKING_DISH_NAMES[dishData.dishName] = questState
+				COOKING_DISH_NAMES[dishData.dishName:lower()] = questState
 			end
 		end
 		local cooking = GlobalEvent("generateCookingAuxillaryData")
@@ -192,6 +182,14 @@ quest
 			generateCookingAuxillaryData()
 		end
 		cooking:register()
+
+		local cookBook = Action()
+		function cookBook.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+			player:showTextDialog(item.itemid, cookBookText)
+			return true
+		end
+		cookBook:id(9093)
+		cookBook:register()
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -275,6 +273,15 @@ quest
 				[{ GREET }] = {
 					text = "HAVE_YOU_PREPARED_INGREDIENTS_FOR_CURRENT_DISH",
 				},
+				[{ ANY_MESSAGE }] = {
+					text = "DESCRIBE_CURRENT_DISH",
+					specialRequirements = {
+						{
+							requirement = saidDishName,
+							requiredOutcome = true,
+						},
+					},
+				},
 				[{ "yes", "tak", "przyrzadzic", "done" }] = {
 					text = "Lets begin then!\nA sprinkle of this.. Mince that.. Add this..\nHere it is!\nI think it was all clear. There is your dish! Ask me for {recipe} if you are ready to prepare the next dish.",
 					specialRequirements = {
@@ -312,9 +319,12 @@ quest
 			QuestFactory.Dialog("Pewter", {
 				[{ ANY_MESSAGE }] = {
 					text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
-					rewards = { { id = 11541 }, { id = 9093 } },
+					rewards = {
+						--{ id = 11541 },
+						{id = 9093 },
+					},
 					nextState = {
-						[Storage.TopChef.Mission01] = Storage.TopChef.CanMakeAllDishes,
+						[Storage.TopChef.Mission01] = QuestState.TopChef.CanMakeAllDishes,
 						[Storage.Finished.TopChef] = MISSION_FINISHED,
 					},
 				},

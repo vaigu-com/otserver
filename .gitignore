@@ -408,3 +408,6 @@ compile_commands.json
 data-vaigu/world/backups/*
 data-vaigu/world/custom/backups/*
 data-vaigu/world/custom/realmap.otbm
+
+# Generated events
+data/XML/events.xml

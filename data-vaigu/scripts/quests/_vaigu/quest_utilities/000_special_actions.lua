@@ -4,6 +4,18 @@ local additionalBoltsNumber = 6
 local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
 
 SPECIAL_ACTIONS_UNIVERSAL = {
+	removeTransferableCoins = function(context)
+		if not context.player then
+			return false
+		end
+		return context.player:removeTransferableCoinsBalance(context.amount)
+	end,
+	hasTransferableCoins = function(context)
+		if not context.player then
+			return false
+		end
+		return context.player:canRemoveTransferableCoins(context.amount)
+	end,
 	startEscort = function(context)
 		local activeEscort = ActiveEscort({
 			escortData = context.escortData or context.escort,
@@ -91,7 +103,13 @@ SPECIAL_ACTIONS_UNIVERSAL = {
 		if level <= MAX_LVL_TO_GET_FREE_BLESS then
 			return
 		end
+		
 		player:removeMoney(player:getFiveBlessingsCost())
+	end,
+	chargeForTwistOfFate = function(context)
+		local player = context.player
+		local level = player:getLevel()
+		player:removeMoney(Blessings.getPvpBlessingCost(level))
 	end,
 	removeMoneyBank = function(context)
 		local player = context.player
@@ -219,9 +237,9 @@ SPECIAL_ACTIONS_IMBUING = {
 		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 
 		local player = context.player
-		player:AddItems(bundleData.items)
+		player:AddItemsAnnounce(bundleData.items)
 		player:removeMoney(bundleData.moneyPrice)
-		player:IncrementStorage(Storage.Tasks.TaskPoints, -bundleData.taskPointsCost)
+		player:IncrementStorage(Storage.Task.TaskPoints, -bundleData.taskPointsCost)
 	end,
 }
 

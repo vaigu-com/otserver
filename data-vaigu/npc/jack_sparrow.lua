@@ -16,8 +16,8 @@ local voices = {
 	{ text = "...Przy wtorze klatw bosmana..." },
 }
 local customDialogs = {
-	[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
-		text = "",
+	[TRAVEL_KEYWORDS] = {
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = CreateTravelWindow,

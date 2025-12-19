@@ -39,18 +39,78 @@ end
 local function hasGREETkeywordInCustomDialogs(npcData)
 	local dialogs = npcData.customDialogs or {}
 	for keywords in pairs(dialogs) do
-		if type(keywords) ~= "table"then
+		if type(keywords) ~= "table" then
 			logger.warn("[hasGREETkeywordInCustomDialogs] keywords arent table")
 			PrintAnything(keywords)
 			logger.warn("\n")
 			PrintAnything(npcData)
 		end
- 		if table.contains(keywords, GREET) then
+		if table.contains(keywords, GREET) then
 			return true
 		end
 	end
 
 	return false
+end
+
+function warnNoTextInDialog(keywordsStr, npcName)
+	logger.warn(T("[RegisterNpcDefinition] No text found for dialog with keywords :keywords:, for npc :npcName:. Define 'text = NO_TEXT' for that dialog to suppress this warning.", { keywords = keywordsStr, npcName = npcName }))
+end
+
+local function appendStatistics(allDialogs, npcName)
+	for keyWords, dialog in pairs(allDialogs[LOCALIZERS.Universal]) do
+		if not dialog.text then
+			local keywordsStr = (function()
+				local result = ""
+				for key, value in pairs(keyWords) do
+					result = result .. value .. ", "
+				end
+				return result
+			end)()
+			warnNoTextInDialog(keywordsStr, npcName)
+		else
+			for _, value in pairs({
+				dialog.text,
+				dialog.textNoRequiredItems,
+				dialog.textNoRequiredMoney,
+				dialog.textNoRequiredState,
+				dialog.textNoRequiredGlobalState,
+			}) do
+				MissingStrings:TestAllLanguages(value, LOCALIZERS.Universal)
+			end
+		end
+	end
+
+	for localizer, missionToState in pairs(allDialogs) do
+		if localizer ~= LOCALIZERS.Universal then
+			for missionStorage, stateToKeywords in pairs(missionToState) do
+				for state, keyWordsToDialog in pairs(stateToKeywords) do
+					for keyWords, dialog in pairs(keyWordsToDialog) do
+						if not dialog.text then
+							local keywordsStr = (function()
+								local result = ""
+								for key, value in pairs(keyWords) do
+									result = result .. value .. ", "
+								end
+								return result
+							end)()
+							warnNoTextInDialog(keywordsStr, npcName)
+						else
+							for _, value in pairs({
+								dialog.text,
+								dialog.textNoRequiredItems,
+								dialog.textNoRequiredMoney,
+								dialog.textNoRequiredState,
+								dialog.textNoRequiredGlobalState,
+							}) do
+								MissingStrings:TestAllLanguages(value, LOCALIZERS.Universal)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
 end
 
 ---@param internalNpcName string string REQUIRED
@@ -62,15 +122,15 @@ end
 ---@param dialogs table? custom dialogs that can override job dialogs
 ---@param voices table? orange color text that npc may or may not say from time to time
 function RegisterNpcDefinition(npcData)
-	local name = npcData.internalNpcName or npcData.name
-	local displayName = npcData.npcName or npcData.displayname or npcData.displayName or name
-	local onlookName = npcData.npcDescription or npcData.onlookname or ("a " .. name)
+	local npcName = npcData.internalNpcName or npcData.name
+	local displayName = npcData.npcName or npcData.displayname or npcData.displayName or npcName
+	local onlookName = npcData.npcDescription or npcData.onlookname or ("a " .. npcName)
 
 	if npcData.greetJob and not npcData.jobs then
-		logger.warn(T("[RegisterNpcDefinition] npc :name: has greetJob but no jobs.", { name = name }))
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has greetJob but no jobs.", { name = npcName }))
 	end
 	if npcData.jobs and not npcData.greetJob and not hasGREETkeywordInCustomDialogs(npcData) then
-		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob and does not have GREET as keyword in its custom dialogs.", { name = name }))
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob and does not have GREET as keyword in its custom dialogs.", { name = npcName }))
 	end
 
 	local greetJob = npcData.greetJob
@@ -91,7 +151,7 @@ function RegisterNpcDefinition(npcData)
 	local jobStateDialogs = getJobStateDialogs(jobs)
 	local allDialogs = {}
 	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
-	if JOB_GREETING[greetJob] then
+	if JOB_GREETING[greetJob] and not hasGREETkeywordInCustomDialogs(npcData) then
 		allDialogs[LOCALIZERS.Universal][{ GREET }] = JOB_GREETING[greetJob]
 	end
 	if TableSize(npcConfig.shop) == 0 then
@@ -106,10 +166,13 @@ function RegisterNpcDefinition(npcData)
 
 	allDialogs = MergedTable(allDialogs, jobStateDialogs)
 	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
+
+	appendStatistics(allDialogs, npcName)
+
 	npcConfig.dialogs = allDialogs
 
-	npcConfig.name = displayName or name
-	npcConfig.description = onlookName or ("a " .. name)
+	npcConfig.name = displayName or npcName
+	npcConfig.description = onlookName or ("a " .. npcName)
 
 	npcConfig.health = 100
 	npcConfig.maxHealth = npcConfig.health
@@ -122,10 +185,12 @@ function RegisterNpcDefinition(npcData)
 
 	npcConfig.flags = { floorchange = npcData.floorchange or false }
 
+	npcConfig.jobs = jobs
+
 	local keywordHandler = KeywordHandler:new()
 	local npcHandler = NpcHandler:new(keywordHandler)
 
-	local npcType = Game.createNpcType(name)
+	local npcType = Game.createNpcType(npcName)
 
 	npcType.onThink = npcData.onThink or function(npc, interval)
 		npcHandler:onThink(npc, interval)
@@ -164,6 +229,7 @@ function RegisterNpcDefinition(npcData)
 	-- On look at npc shop item
 	npcType.onCheckItem = function(npc, player, clientId, subType) end
 
+
 	local greetCallback = npcData.greetCallback or function(npc, creature, type, message)
 		if npcData.ignoreGreet then
 			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
@@ -172,11 +238,12 @@ function RegisterNpcDefinition(npcData)
 		return InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
 	end
 
+	local incomprehensibleError = npcData.incomprehensibleError
 	local creatureSayCallback = npcData.creatureSayCallback or function(npc, creature, type, msg)
 		if npcData.checkInteraction ~= false and not npcHandler:checkInteraction(npc, creature) then
 			return false
 		end
-		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc)
+		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc, nil, incomprehensibleError)
 	end
 
 	local tradeCallback = npcData.tradeCallback

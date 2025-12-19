@@ -21,7 +21,7 @@ function tombCoalBasin.onAddItem(moveitem, tileitem, position)
 		return true
 	end
 
-	moveitem:remove()
+	moveitem:remove(1)
 	position:sendMagicEffect(CONST_ME_HITBYFIRE)
 	topPlayer:teleportTo(innerSanctum)
 	return true

@@ -40,51 +40,12 @@ function LoadStartupMonsters(monsters, anchor)
 	end
 end
 
-local function normalizeItemData(itemData, anchor)
-	local context = {}
-	for key, value in pairs(itemData) do
-		context[key] = value
-	end
-
-	context.id = itemData.id
-	context.count = itemData.count or 1
-	context.aid = itemData.actionid or itemData.aid or itemData.actionId
-	context.uid = itemData.uniqueid or itemData.uid or itemData.uniqueId
-	context.key = itemData.key
-	context.desc = itemData.description or itemData.desc
-	context.text = itemData.text
-	context.rewards = itemData.rewards
-	context.requiredState = itemData.requiredState
-	context.nextState = itemData.nextState
-	context.expReward = itemData.expReward or itemData.exp or itemData.experience
-	context.specialActionsOnSuccess = itemData.specialActionsOnSuccess
-	context.specialActionsOnFail = itemData.specialActionsOnFail
-	context.onLook = itemData.onLook or itemData.onlook
-	context.immovable = itemData.immovable
-	local pos = itemData.pos or itemData.offset or itemData.position or itemData.offpos or itemData.vector
-	if pos then
-		if anchor then
-			pos = anchor:Moved(pos)
-		else
-			pos = ExtractCoords(pos)
-		end
-		if pos.x == 0 or pos.y == 0 then
-			logger.warn("[normalizeItemData] Resulting pos has x or y equal to 0")
-		end
-	end
-	context.pos = pos
-	context.source = itemData.source
-	return context
-end
-
-local function registerOnUseDeclaration(context, anchor)
-	context = normalizeItemData(context, anchor)
+local function registerOnUseDeclaration(context)
+	context = normalizedItemData(context)
 	local action = Action()
 	function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		local resolutionContext = ResolutionContext.FromCustomItemState(context)
-		resolutionContext:SetPlayer(player)
-		resolutionContext:SetTargetItem(item)
-		resolutionContext:SetTargetCreature(target)
+		resolutionContext:SetPlayer(player):SetTargetItem(item):SetTargetCreature(target)
 		local status = resolutionContext:Resolve()
 		if status ~= SUCCESS_RESOLVE then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("The :itemName: is empty.", { itemName = ItemType(item:getId()):getName() }))
@@ -95,8 +56,8 @@ local function registerOnUseDeclaration(context, anchor)
 	action:register()
 end
 
-function RegisterOnUseDeclaration(items, anchor)
-	for _, itemData in pairs(items) do
-		registerOnUseDeclaration(itemData, anchor)
+function RegisterOnUseDeclarations(contexts)
+	for _, context in pairs(contexts) do
+		registerOnUseDeclaration(context)
 	end
 end

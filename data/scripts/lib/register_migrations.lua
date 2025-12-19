@@ -86,4 +86,4 @@ function serverstartup.onStartup()
 	end
 end
 
-serverstartup:register()
+--serverstartup:register()

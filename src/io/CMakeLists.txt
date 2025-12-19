@@ -12,6 +12,7 @@ target_sources(
             iomap.cpp
             iomapserialize.cpp
             iomarket.cpp
+            iomarket_container.cpp
             ioprey.cpp
             player_storage_repository_db.cpp
 )

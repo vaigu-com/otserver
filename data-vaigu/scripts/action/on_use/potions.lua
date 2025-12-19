@@ -126,14 +126,33 @@ pseudoQuest
 			--Mana shield
 			-- [35563] = { vocations = { VOCATION.BASE_ID.SORCERER, VOCATION.BASE_ID.DRUID }, requiredLevel = 14, func = magicshield, effect = CONST_ME_ENERGYAREA },
 		}
-		local function gernerateAuxillaryFields()
+		local function generateAuxiliaryFields()
 			for _, potion in pairs(potions) do
 				potion.vocations = potion.vocations or {}
 				potion.accessVocations = potion.accessVocations or {}
 				potion.noLevelVocationError = generateVocationLevelError(potion)
 			end
 		end
-		gernerateAuxillaryFields()
+		generateAuxiliaryFields()
+
+		local function tryAddToSameContainer(parent, storeInbox, container, potionData)
+			if parent == storeInbox then
+				return false
+			end
+			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) == 0) then
+				return false
+			end
+
+			if container:getEmptySlots() > 0 then
+				container:addItem(potionData.flask)
+				return true
+			end
+
+			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) > 0) then
+				container:addItem(potionData.flask, nil, nil, FLAG_NOLIMIT)
+				return true
+			end
+		end
 
 		local function tryCreateEmptyFlask(player, usedPotionEx, potionData, fromPosition)
 			local deactivatedFlasks = player:kv():get("talkaction.potions.flask") or false
@@ -149,20 +168,14 @@ pseudoQuest
 
 			local storeInbox = player:getSlotItem(CONST_SLOT_STORE_INBOX)
 			local parent = usedPotionEx:getParent()
-			if parent == storeInbox then
-				Game.createItem(potionData.flask, 1, fromPosition)
-				return
-			end
 
-			local emptyFlaskEx = { id = potionData.flask, count = 1, dontAnnounce = true }
-			if player:CanAddItems({ emptyFlaskEx }) then
-				if container:getEmptySlots() ~= 0 or container:getItemCountById(potionData.flask) > 0 then
-					player:AddCustomItem(emptyFlaskEx, parent)
-				else
-					player:AddItems({ emptyFlaskEx })
+			local emptyFlaskData = { id = potionData.flask, count = 1, dontAnnounce = true }
+			if player:CanAddItems({ emptyFlaskData }) then
+				if not tryAddToSameContainer(parent, storeInbox, container, potionData) then
+					player:AddCustomItem(emptyFlaskData)
 				end
 			else
-				Game.createItem(potionData.flask, 1, fromPosition)
+				Game.createItem(potionData.flask, 1, player:getPosition())
 			end
 		end
 
@@ -208,15 +221,12 @@ pseudoQuest
 
 		local flaskPotion = Action()
 		function flaskPotion.onUse(player, usedPotionEx, fromPosition, target, toPosition, isHotkey)
-			if not target or not player then
-				return false
-			end
-			if not target:isPlayer() or not player:isPlayer() then
-				return
-			end
-
 			local potionData = potions[usedPotionEx:getId()]
 			if not potionData then
+				return false
+			end
+
+			if (potionData.health or potionData.mana or potionData.combat) and not (target and target.isPlayer and target:isPlayer()) then
 				return false
 			end
 

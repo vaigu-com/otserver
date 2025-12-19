@@ -4,11 +4,6 @@ PersonalChest = {
 	Daily = PersonalChestScope:Get("Daily"),
 	Weekly = PersonalChestScope:Get("Weekly"),
 }
-do
-	for _, key in pairs(PersonalChest) do
-		ImmovableKeys:Add(key)
-	end
-end
 
 local keyToExpiryType = {
 	[PersonalChest.OneTime] = LOCKOUT_EXPIRY_TIME.FOREVER,
@@ -34,8 +29,8 @@ function personalChestUse.onUse(player, chest, fromPosition, target, toPosition,
 		return true
 	end
 
-	local rewards = ExtractChestContent(chest)
-	if player:TryAddItems(rewards) then
+	local chestContent = ExtractChestContent(chest)
+	if player:TryAddItems(chestContent) then
 		setLockout(player, chest)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)
 	end

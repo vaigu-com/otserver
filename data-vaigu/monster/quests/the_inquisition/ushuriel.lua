@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ushuriel")
 local monster = {}
 
 monster.description = "Ushuriel"
-monster.experience = 10000
+monster.experience = 100000
 monster.outfit = {
 	lookType = 12,
 	lookHead = 0,
@@ -76,41 +76,30 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 50000, maxCount = 190 },
-	{ name = "platinum coin", chance = 20000, maxCount = 26 },
+	{ name = "platinum coin", chance = 20000, maxCount = 46 },
 	{ name = "orb", chance = 16666 },
-	{ name = "life crystal", chance = 16666 },
-	{ name = "mind stone", chance = 20000 },
-	{ name = "spike sword", chance = 9090 },
-	{ name = "fire sword", chance = 14285 },
-	{ name = "giant sword", chance = 7692 },
-	{ id = 3307, chance = 11111 }, -- scimitar
-	{ name = "warrior helmet", chance = 20000 },
-	{ name = "strange helmet", chance = 8333 },
-	{ name = "crown helmet", chance = 6250 },
+	{ name = "life crystal", chance = 86666 },
 	{ name = "royal helmet", chance = 20000 },
-	{ name = "brown mushroom", chance = 50000, maxCount = 30 },
-	{ name = "mysterious voodoo skull", chance = 12500 },
+	{ name = "brown mushroom", chance = 50000, maxCount = 50 },
+	{ name = "mysterious voodoo skull", chance = 32500 },
 	{ name = "skull helmet", chance = 20000 },
 	{ name = "iron ore", chance = 33333 },
 	{ id = 5884, chance = 4761 }, -- spirit container
-	{ name = "flask of warrior's sweat", chance = 5555 },
-	{ name = "enchanted chicken wing", chance = 7692 },
+	{ name = "flask of warrior's sweat", chance = 55555 },
+	{ name = "enchanted chicken wing", chance = 17692 },
 	{ name = "huge chunk of crude iron", chance = 14285 },
 	{ name = "hardened bone", chance = 25000, maxCount = 20 },
 	{ name = "demon horn", chance = 8333, maxCount = 2 },
-	{ id = 6103, chance = 2063 }, -- unholy book
+	{ id = 6103, chance = 12063 }, -- unholy book
 	{ name = "demonic essence", chance = 100000 },
-	{ id = 7385, chance = 10000 }, -- crimson sword
 	{ name = "thaian sword", chance = 25000 },
-	{ name = "dragon slayer", chance = 8333 },
-	{ name = "runed sword", chance = 6666 },
-	{ name = "great mana potion", chance = 20000 },
-	{ name = "great health potion", chance = 20000 },
-	{ name = "great spirit potion", chance = 20000 },
-	{ name = "ultimate health potion", chance = 20000 },
-	{ id = 8894, chance = 20000 }, -- heavily rusted armor
+	{ name = "runed sword", chance = 16666 },
 	{ name = "gold ingot", chance = 16666 },
+	{ id = 29415, chance = 14761 },
+	{ id = 36730, chance = 23264 },
+	{ id = 7455, chance = 3454 },
+	{ id = 12308, chance = 2761 },
+	
 }
 
 monster.attacks = {

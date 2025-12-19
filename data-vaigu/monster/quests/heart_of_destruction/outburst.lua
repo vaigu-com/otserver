@@ -82,7 +82,7 @@ monster.loot = {
 	{ id = 3029, chance = 8000, maxCount = 5 }, -- small sapphire
 	{ id = 7643, chance = 8000, maxCount = 5 }, -- ultimate health potion
 	{ id = 16120, chance = 8000, maxCount = 3 }, -- violet crystal shard
-	{ id = 22721, chance = 100000 }, -- gold token
+	{ id = 22721, chance = 100000, maxCount = 7 }, -- gold token
 	{ id = 23509, chance = 100000 }, -- mysterious remains
 	{ id = 3038, chance = 8000 }, -- green gem
 	{ id = 7427, chance = 6000 }, -- chaos mace
@@ -90,6 +90,11 @@ monster.loot = {
 	{ id = 23474, chance = 2000, unique = true }, -- tiara of power
 	{ id = 23477, chance = 2000, unique = true }, -- void boots
 	{ id = 16160, chance = 2000, unique = true }, -- crystalline sword
+	{ id = 23542, chance = 13500 }, -- collar of blue plasma
+	{ id = 23529, chance = 13500 }, -- ring of blue plasma
+	{ id = 23531, chance = 13500 }, -- ring of green plasma
+	{ id = 16164, chance = 7900 },
+	{ id = 12669, chance = 28900 },
 }
 
 monster.attacks = {

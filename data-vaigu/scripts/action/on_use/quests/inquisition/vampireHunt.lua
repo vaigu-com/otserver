@@ -1,3 +1,4 @@
+--[[
 local altars = {
 	Position(6056, 1786, 12),
 	Position(6054, 1791, 12),
@@ -29,3 +30,4 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 action:aid(2002)
 action:register()
+]]

@@ -536,6 +536,11 @@ quest
 			QuestFactory.Script(function(missionState)
 				local astralJanusPos = Position(7320, 1475, 0)
 				local astralJanusLock = SpawnLocks.PerIustitiaAdAstra.AstralJanus
+				astralJanusLock.onReset = function(self)
+					if self.creature then
+						self.creature:remove()
+					end
+				end
 				local requiredState = {
 					[Storage.PerIustitiaAdAstra.AstralJanusSpawnTileAccess] = ACCESS_GRANTED,
 				}
@@ -608,8 +613,8 @@ quest
 						{
 							requirement = SPECIAL_REQUIREMENTS_UNIVERSAL.hasTransferableCoins,
 							requiredOutcome = true,
-							coins = 15,
-							textFailedRequirement = "Come back with 15 coins.",
+							coins = 3,
+							textFailedRequirement = "Come back with 3 coins.",
 						},
 					},
 					specialActionsOnSuccess = {
@@ -645,7 +650,7 @@ quest
 					text = "Finding such a device won't be easy. It's possible it will be where Glooth creatures are created. Try your luck in the underground swamps.",
 				},
 				[{ "mission" }] = {
-					text = "Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Bydgoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle.",
+					text = "Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Byggoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle.",
 					requiredItems = {
 						{ id = 8775, count = 20 },
 						{ id = 5892, count = 3 },
@@ -1042,32 +1047,28 @@ quest
 				},
 			}),
 			QuestFactory.Script(function(missionState)
-				local doorItems = {}
+				local doorLeft = {}
+				local doorRight = {}
 				local doorItemsInit = GlobalEvent("PerIustitiaAdAstra/CpnDoorItemsInit")
 				function doorItemsInit.onStartup()
-					doorItems = ItemExList():Area(Position(7368, 652, 6), Position(7369, 653, 6)):Get()
+					doorLeft = ItemExList():Area(Area(Position(7368, 652, 6), Position(7368, 653, 6)))
+					doorRight = ItemExList():Area(Area(Position(7369, 652, 6), Position(7369, 653, 6)))
 				end
 				doorItemsInit:register()
 
 				local function openDoor()
-					for _, item in pairs(doorItems) do
-						item:moveTo(item:getPosition():Moved(0, 0, -1))
-					end
+					doorLeft:Moved(-1, 0, 0)
+					doorRight:Moved(1, 0, 0)
 				end
 
 				local function closeDoor()
-					for _, item in pairs(doorItems) do
-						item:moveTo(item:getPosition():Moved(0, 0, 1))
-					end
+					doorLeft:Moved(1, 0, 0)
+					doorRight:Moved(-1, 0, 0)
 				end
 
 				local scheduledClosingTime = 0
-				local function canCloseDoor()
-					return os.time() > scheduledClosingTime
-				end
-
 				local function closeDoorDelayed()
-					if canCloseDoor() then
+					if os.time() > scheduledClosingTime then
 						closeDoor()
 					else
 						addEvent(function()
@@ -1131,6 +1132,7 @@ quest
 	:State(function()
 		return ACCESS_GRANTED, QuestFactory.Dialog("Swagger", {
 			[{ "fuel", "rod", "paliwo", "pret" }] = {
+				text = NO_TEXT,
 				specialActionsOnSuccess = {
 					{
 						action = SPECIAL_ACTIONS_UNIVERSAL.openTradeWindow,
@@ -1487,7 +1489,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = true,
 			canPushCreatures = true,
@@ -1513,7 +1515,24 @@ quest
 
 		monster.voices = {}
 
-		monster.loot = {}
+		monster.loot = {
+			{ id = 40590, chance = 500 },
+			{ id = 31578, chance = 1000 },
+			{ id = 31583, chance = 1400 },
+			{ id = 29423, chance = 2100 },
+			{ id = 9079, chance = 7900 },
+			{ id = 9080, chance = 18100 },
+			{ id = 9081, chance = 31100 },
+			{ id = 9087, chance = 25300 },
+			{ id = 39693, chance = 9050 },
+			{ id = 20075, chance = 900 },
+			{ id = 25759, chance = 19000, maxcount = 20 },
+			{ id = 34254, chance = 400 },
+			{ id = 22762, chance = 3150 },
+			{ id = 27651, chance = 3220 },
+			{ id = 32618, chance = 2270 },
+
+		}
 
 		monster.attacks = {
 			{ name = "melee", interval = 2000, chance = 100, minDamage = -200, maxDamage = -400 },
@@ -1601,7 +1620,9 @@ quest
 		end
 		local function createBabySealsSalt()
 			for key, pos in pairs(saltPositions) do
-				Game.createItem(saltId, 1, pos):setUniqueId(1000)
+				local saltItem = Game.createItem(saltId, 1, pos)
+				saltItem:setUniqueId(1000)
+				saltItem:setKey(Storage.PerIustitiaAdAstra.SaltyTile)
 			end
 			for key, pos in pairs(babySealPositions) do
 				Game.createItem(babySealId, 1, pos):setUniqueId(1000)
@@ -1672,15 +1693,37 @@ quest
 		end
 		rukca:register()
 	end)
+	:Script(function()
+		local saltyTileStepIn = MoveEvent()
+		function saltyTileStepIn.onStepIn(creature, item, fromPosition, target, toPosition, isHotkey)
+			if creature:isPlayer() then
+				return false
+			end
+
+			creature:getPosition(CONST_ME_CRITICAL_DAMAGE)
+		end
+		saltyTileStepIn:key(Storage.PerIustitiaAdAstra.SaltyTile)
+		saltyTileStepIn:register()
+	end)
 	:MonsterEvent(function()
 		local saltId = 22694
-		local saltMultiplier = 10
+		local function standsOnSaltyTile(creature)
+			local salt = creature:getPosition():GetItemById(saltId)
+			if not salt then
+				return false
+			end
+			if salt:getKey() ~= Storage.PerIustitiaAdAstra.SaltyTile then
+				return false
+			end
 
+			return true
+		end
+
+		local saltMultiplier = 10
 		local rukcaHealthChange = CreatureEvent("RukcaHealth")
 		rukcaHealthChange:type("healthchange")
 		function rukcaHealthChange.onHealthChange(creature, attacker, primaryDamage, primaryType, secondaryDamage, secondaryType)
-			local salt = creature:getPosition():GetItemById(saltId)
-			if not salt then
+			if not standsOnSaltyTile(creature) then
 				return primaryDamage, primaryType, secondaryDamage, secondaryType
 			end
 			return primaryDamage * saltMultiplier, primaryType, secondaryDamage * saltMultiplier, secondaryType
@@ -1745,5 +1788,64 @@ quest
 					rewards = { ExerciseWeaponBox(5000) },
 				},
 			})
+	end)
+	:EncounterData(function()
+		local oberonEncounter = EncounterData({
+			displayName = "Grand Master Oberon",
+			encounterId = "Oberon",
+			bossName = "Grand Master Oberon",
+
+			lockoutExpiryTime = LOCKOUT_EXPIRY_TIME.WEEKLY,
+			lockoutTriggerCriterion = LOCKOUT_TRIGGER_CRITERION.ON_KILL,
+		})
+
+		local falconMonsterNames = {
+			"Falcon Knight",
+			"Falcon Paladin",
+		}
+
+		local monsterSpawnZone = Zone(oberonEncounter:GetScope():Get("MonsterSpawnPositions"))
+		local function trySpawnFalconMonster()
+			local pos = monsterSpawnZone:randomPosition()
+			local randomSeaMonsterName = table.random(falconMonsterNames)
+			Game.createMonster(randomSeaMonsterName, pos)
+		end
+
+		local monsterSpawnerAdmitsScope = oberonEncounter:GetEventScope():Get("MonstersAdmits")
+
+		local admitIncrementIntervalMiliseconds = 1000
+		local monstersPerMinute = 0.6
+
+		local admitsCount = 0
+		local monsterAdmits = GlobalEvent(monsterSpawnerAdmitsScope)
+		function monsterAdmits.onThink()
+			if not oberonEncounter:IsActive() then
+				return GLOBAL_EVENT_OK
+			end
+
+			admitsCount = admitsCount + oberonEncounter:GetParticipantsCount() * monstersPerMinute / (60000 / admitIncrementIntervalMiliseconds)
+
+			return GLOBAL_EVENT_OK
+		end
+		monsterAdmits:interval(admitIncrementIntervalMiliseconds)
+		monsterAdmits:register()
+
+		local monsterSpawnerScope = oberonEncounter:GetEventScope():Get("MonstersSpawner")
+		local monsterSpawner = GlobalEvent(monsterSpawnerScope)
+		function monsterSpawner.onThink()
+			if not oberonEncounter:IsActive() then
+				return GLOBAL_EVENT_OK
+			end
+
+			if admitsCount >= 1 then
+				trySpawnFalconMonster()
+				admitsCount = 0
+			end
+			return GLOBAL_EVENT_OK
+		end
+		monsterSpawner:interval(1000)
+		monsterSpawner:register()
+
+		EncounterDataRegistry:Register(oberonEncounter)
 	end)
 	:Register()

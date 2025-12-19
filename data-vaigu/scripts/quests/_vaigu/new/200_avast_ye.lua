@@ -30,7 +30,14 @@ quest
 			},
 		}
 	end)
-	:Constant(function() end)
+	:Constant(function()
+		QuestRewards.OutfitsAddons.AvastYe = {
+			Pirate0 = {
+				{ outfitId = 151, addons = 0 },
+				{ outfitId = 155, addons = 0 },
+			},
+		}
+	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
 			name = "Avast Ye!",
@@ -90,12 +97,19 @@ quest
 	end)
 	:Mission(Storage.AvastYe.TrustedWith.Morgram)
 	:State(function()
+		return ACCESS_NOT_GRANTED, QuestFactory.Dialog("Morgram", {
+			[TRAVEL_KEYWORDS] = {
+				text = "Har har! Ye think I do business with any scrappy deckhand that washes up here?",
+			},
+		})
+	end)
+	:State(function()
 		return ACCESS_GRANTED,
 			QuestFactory.Dialog("Morgram", {
 				[{ GREET }] = {
 					text = "Back again, eh? I knew ye had some guts in ye. If ye be needin' a {ship}, I can make it happen. Ain't no safer way than ridin' with me! Just say the word, and we be off.",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -121,6 +135,10 @@ quest
 				text = "Oh, ye must be mistaken - I don't deal with half-done sailing.",
 				interactOnGreet = false,
 			},
+			[TRAVEL_KEYWORDS] = {
+				text = "Oh, ye must be mistaken - I don't deal with half-done sailing.",
+				interactOnGreet = false,
+			},
 		})
 	end)
 	:State(function()
@@ -129,7 +147,7 @@ quest
 				[{ GREET }] = {
 					text = "Ahoy there, matey! Good to see a proper sea dog returnin' to these waters. Ye need a ship to sail? - no trouble. Just say the word, and we'll set {sail}!",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -155,6 +173,10 @@ quest
 				text = "Ain't no foolin' these old bones! I ain't dealin' with no privateers!",
 				interactOnGreet = false,
 			},
+			[TRAVEL_KEYWORDS] = {
+				text = "Ain't no foolin' these old bones! I ain't dealin' with no privateers!",
+				interactOnGreet = false,
+			},
 		})
 	end)
 	:State(function()
@@ -163,7 +185,7 @@ quest
 				[{ GREET }] = {
 					text = "Har har! If it ain't me favorite beast hunter! Ye lookin' fer a ride? Lucky ye - me ship {sail}s the seas. Just give the word, and I'll get us anywhere faster than a shark on fresh prey.",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -189,6 +211,10 @@ quest
 				text = "Har har! Ye think I do business with any scrappy deckhand that washes up here?",
 				interactOnGreet = false,
 			},
+			[TRAVEL_KEYWORDS] = {
+				text = "Har har! Ye think I do business with any scrappy deckhand that washes up here?",
+				interactOnGreet = false,
+			},
 		})
 	end)
 	:State(function()
@@ -197,7 +223,7 @@ quest
 				[{ GREET }] = {
 					text = "The sea whispers yer name now, aye. If it's Naga Island ye be seekin', I can ferry ye there through waters few dare to tread. But be warned - the spirits be watchin' always. Speak, and we set sail.",
 				},
-				[TRAVEL_KEYWORDS[TRAVEL_METHOD.SHIP]] = {
+				[TRAVEL_KEYWORDS] = {
 					text = "Where we goin'?",
 					specialActionsOnSuccess = {
 						{
@@ -245,6 +271,7 @@ quest
 						[Storage.AvastYe.TrustedWith.Redbeard] = ACCESS_GRANTED,
 						[Storage.AvastYe.TrustedWith.Morgram] = ACCESS_GRANTED,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.AvastYe.Pirate0,
 				},
 			})
 	end)
@@ -328,6 +355,7 @@ quest
 					nextState = {
 						[Storage.AvastYe.Mission01] = MISSION_FINISHED,
 						[Storage.AvastYe.ShipDestinations.NagaIsland] = ACCESS_GRANTED,
+						[Storage.Finished.AvastYe] = MISSION_FINISHED,
 					},
 				},
 			})

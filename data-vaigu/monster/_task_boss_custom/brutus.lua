@@ -31,7 +31,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = true,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -60,34 +60,32 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 92000, maxCount = 130 },
 	{ name = "platinum coin", chance = 92000, minCount = 8, maxCount = 13 },
 	{ id = 3577, chance = 6200 },
-	{ id = 3030, chance = 25000, maxCount = 4 },
+	{ id = 3030, chance = 22000, maxCount = 4 },
 	{ id = 3026, chance = 24000 },
 	{ id = 11447, chance = 56200 },
-	{ id = 1781, chance = 4990, maxCount = 2 },
 	{ id = 22188, chance = 95720 },
 	{ id = 22189, chance = 95310 },
 	{ id = 22193, chance = 21870, maxCount = 2 },
 	{ id = 22194, chance = 21580, maxCount = 2 },
 	{ id = 3050, chance = 1580 },
 	{ id = 22191, chance = 4130 },
-	{ id = 236, chance = 72430, maxCount = 8 },
 	{ id = 7428, chance = 2400 },
-	{ id = 22171, chance = 25000 },
-	{ id = 22172, chance = 25000 },
-	{ id = 22183, chance = 25620 },
-	{ id = 22192, chance = 190 },
+	{ id = 22171, chance = 12000 },
+	{ id = 22172, chance = 12000 },
+	{ id = 22183, chance = 20620 },
+	{ id = 12669, chance = 8190 },
+	{ id = 22192, chance = 8190 },
 	{ name = "butcher's axe", chance = 5000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -250, condition = { type = CONDITION_FIRE, totalDamage = 20, interval = 9000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -250, condition = { type = CONDITION_FIRE, totalDamage = 20, interval = 9000 } },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -70, maxDamage = -180, range = 7, shootEffect = CONST_ANI_POISON, target = false },
 	{ name = "drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_TELEPORT, target = false, duration = 2000 },
 	{ name = "combat", interval = 4000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = -180, maxDamage = -350, range = 7, radius = 4, shootEffect = CONST_ANI_EXPLOSION, effect = CONST_ME_GROUNDSHAKER, target = true },
-	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_FIREDAMAGE, minDamage = -50, maxDamage = -250, range = 7, radius = 4, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_FIREAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_FIREDAMAGE, minDamage = -50, maxDamage = -250, range = 7, radius = 5, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_FIREAREA, target = true },
 }
 
 monster.defenses = {

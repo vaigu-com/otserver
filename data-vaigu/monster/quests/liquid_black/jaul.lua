@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Jaul")
 local monster = {}
 
 monster.description = "Jaul"
-monster.experience = 30000
+monster.experience = 300000
 monster.outfit = {
 	lookType = 444,
 	lookHead = 0,
@@ -82,6 +82,8 @@ monster.loot = {
 	{ name = "ornate legs", chance = 740 },
 	{ name = "ornate mace", chance = 1500 },
 	{ name = "ornate shield", chance = 1400 },
+	{ name = "Delicatessen Salad", chance = 5400 },
+	{ name = "Eldritch Quiver", chance = 200 },
 }
 
 monster.attacks = {
@@ -104,15 +106,15 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 1 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 10 },
 	{ type = COMBAT_FIREDAMAGE, percent = 100 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 100 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 90 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 15 },
 }
 

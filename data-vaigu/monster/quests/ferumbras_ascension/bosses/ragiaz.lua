@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ragiaz")
 local monster = {}
 
 monster.description = "Ragiaz"
-monster.experience = 500000
+monster.experience = 900000
 monster.outfit = {
 	lookType = 862,
 	lookHead = 76,
@@ -72,38 +72,33 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 22516, chance = 1000000 }, -- silver token
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 3037, chance = 1000 }, -- yellow gem
+	{ id = 22516, chance = 95000 }, -- silver token
+	{ id = 3102, chance = 2000 },
+	{ id = 3395, chance = 3000 },
+	{ id = 6558, chance = 80000 }, -- flask of demonic blood
 	{ id = 16125, chance = 3000, maxCount = 5 }, -- cyan crystal fragment
 	{ id = 16126, chance = 3000, maxCount = 5 }, -- red crystal fragment
 	{ id = 16127, chance = 3000, maxCount = 5 }, -- green crystal fragment
 	{ id = 3026, chance = 3000, maxCount = 8 }, -- white pearl
 	{ id = 3029, chance = 3000, maxCount = 9 }, -- small sapphire
-	{ id = 3031, chance = 98000, maxCount = 200 }, -- gold coin
 	{ id = 3033, chance = 3000, maxCount = 5 }, -- small amethyst
 	{ id = 3035, chance = 8000, maxCount = 58 }, -- platinum coin
 	{ id = 3038, chance = 1000 }, -- green gem
 	{ id = 3039, chance = 1000 }, -- red gem
 	{ id = 3041, chance = 1000 }, -- blue gem
-	{ id = 3324, chance = 4000 }, -- skull staff
-	{ id = 22758, chance = 100, unique = true }, -- death gaze
-	{ id = 22866, chance = 700 }, -- rift bow
-	{ id = 22867, chance = 700 }, -- rift crossbow
+	{ id = 22758, chance = 1100, unique = true }, -- death gaze
+	{ id = 22866, chance = 6700 }, -- rift bow
+	{ id = 22867, chance = 4700 }, -- rift crossbow
 	{ id = 6499, chance = 11000 }, -- demonic essence
-	{ id = 7420, chance = 500 }, -- reaper's axe
-	{ id = 7426, chance = 4000 }, -- amber staff
-	{ id = 238, chance = 3000, maxCount = 5 }, -- great mana potion
-	{ id = 239, chance = 3100, maxCount = 5 }, -- great health potion
+	{ id = 7420, chance = 2500 }, -- reaper's axe
+	{ id = 7426, chance = 9000 }, -- amber staff
+	{ id = 238, chance = 3000, maxCount = 30 }, -- great mana potion
+	{ id = 239, chance = 3100, maxCount = 50 }, -- great health potion
 	{ id = 281, chance = 3000, maxCount = 5 }, -- giant shimmering pearl (green)
 	{ id = 282, chance = 3000, maxCount = 5 }, -- giant shimmering pearl (brown)
-	{ id = 7642, chance = 3100, maxCount = 5 }, -- great spirit potion
-	{ id = 7643, chance = 3000, maxCount = 5 }, -- ultimate health potion
-	{ id = 9057, chance = 3000, maxCount = 8 }, -- small topaz
+	{ id = 7642, chance = 3100, maxCount = 20 }, -- great spirit potion
+	{ id = 7643, chance = 3000, maxCount = 20 }, -- ultimate health potion
+	{ id = 9057, chance = 3000, maxCount = 18 }, -- small topaz
 }
 
 monster.attacks = {
@@ -121,7 +116,7 @@ monster.defenses = {
 	--	mitigation = ???,
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 2000, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 20, speedChange = 600, effect = CONST_ME_MAGIC_GREEN, target = false, duration = 4000 },
-	{ name = "ragiaz transform", interval = 2000, chance = 8, target = false },
+	{ name = "ragiaz transform", interval = 2000, chance = 3, target = false },
 }
 
 monster.elements = {

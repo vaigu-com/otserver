@@ -913,6 +913,7 @@ GameStore.Categories = {
 				description = "{character}\n{speedboost}\n\n<i>You are fascinated by insectoid creatures and can picture yourself riding one during combat or just for travelling? The Leafscuttler will carry you through the Tibian wilderness with ease.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_MOUNT,
 			},
+			--[[
 			{
 				icons = { "Magic_Carpet.png" },
 				name = "Magic Carpet",
@@ -921,6 +922,7 @@ GameStore.Categories = {
 				description = "{character}\n{speedboost}\n\n<i>The Magic Carpet is the perfect mount for those who are too busy to take care of an animal mount or simply like to travel on a beautiful, magic hand-woven carpet.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_MOUNT,
 			},
+			]]
 			{
 				icons = { "Magma_Skull.png" },
 				name = "Magma Skull",
@@ -1497,6 +1499,7 @@ GameStore.Categories = {
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 				home = true,
 			},
+			--[[
 			{
 				icons = { "Outfit_Beastmaster_Male_Addon_3.png", "Outfit_Beastmaster_Female_Addon_3.png" },
 				name = "Full Beastmaster Outfit",
@@ -1506,6 +1509,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>Do you have enough authority to make wild animals subservient to you? Become a Beastmaster and surround yourself with fearsome companions. When your beasts bare their teeth, your enemies will turn tails and run.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
 			{
 				icons = { "Outfit_Breezy_Garb_Male_Addon_3.png", "Outfit_Breezy_Garb_Female_Addon_3.png" },
 				name = "Full Breezy Garb Outfit",
@@ -1551,6 +1555,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>You recently graduated from the Magic Academy and want to bring your knowledge to good use? Congratulations, you are now an honourable disciple of magic! Open up a bottle of well-aged mana and treat yourself with the fashionable Conjurer outfit.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			--[[
 			{
 				icons = { "Outfit_Death_Herald_Male_Addon_3.png", "Outfit_Death_Herald_Female_Addon_3.png" },
 				name = "Full Death Herald Outfit",
@@ -1560,6 +1565,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>Death and decay are your ever-present companions? Your enemies are dropping like flies and your path is covered with their bodies? However, as decency demands, you want to at least give them a proper funeral? Then the Death Herald is just the right outfit for you.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
 			{
 				icons = { "Outfit_Dragon_Knight_Male_Addon_3.png", "Outfit_Dragon_Knight_Female_Addon_3.png" },
 				name = "Full Dragon Knight Outfit",
@@ -1605,6 +1611,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>Flame fury mages not only embraced the fury to fire, they became it! Relishing in purging destruction they don't just want to see the world burn, but be an active part in it. They just love the smell of sulphur in the morning!</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			--[[
 			{
 				icons = { "Outfit_Forest_Warden_Male_Addon_3.png", "Outfit_Forest_Warden_Female_Addon_3.png" },
 				name = "Full Forest Warden Outfit",
@@ -1614,6 +1621,8 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>The Forest Warden watches over all living things in the woods, be they plants or beasts. They have a special connection to the earth they tread on, the air they breathe, and the wind which whispers around them. Naturally, the suit that they don is not made out of dead vegetation, but is a living being itself.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
+			--[[
 			{
 				icons = { "Outfit_Frost_Tracer_Male_Addon_3.png", "Outfit_Frost_Tracer_Female_Addon_3.png" },
 				name = "Full Frost Tracer Outfit",
@@ -1623,6 +1632,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>Their imposing appearance alone made many experienced warriors shudder. Frost Tracers are true giants that are used to survive even under the most inhospitable circumstances. Tough, strong and untamable, they follow their own path through roughness and obscurity. Nobody wants to mess with one of their kind.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
 			{
 				icons = { "Outfit_Ghost_Blade_Male_Addon_3.png", "Outfit_Ghost_Blade_Female_Addon_3.png" },
 				name = "Full Ghost Blade Outfit",
@@ -1668,6 +1678,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>The Herder is one with nature, being outside all day, watching carefully over his flock. If you like to spend time on picturesque meadows and are always looking for greener pastures, then this outfit is for you.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			--[[
 			{
 				icons = { "Outfit_Jouster_Male_Addon_3.png", "Outfit_Jouster_Female_Addon_3.png" },
 				name = "Full Jouster Outfit",
@@ -1677,6 +1688,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n\n<i>The Jouster is all geared up for a tournament, ready to partake in festive activities involving friendly competition to prove their chivalry. However, being well-armoured, they are also a force to be reckoned with on the battlefield, especially with a trusty steed at their service.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
 			{
 				icons = { "Outfit_Lupine_Warden_Male_Addon_3.png", "Outfit_Lupine_Warden_Female_Addon_3.png" },
 				name = "Full Lupine Warden Outfit",
@@ -1905,6 +1917,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>The warm and cosy cloak of the Winter Warden outfit will keep you warm in every situation. Best thing, it is not only comfortable but fashionable as well. You will be the envy of any snow queen or king, guaranteed!</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			--[[
 			{
 				icons = { "Outfit_Winged_Druid_Male_Addon_3.png", "Outfit_Winged_Druid_Female_Addon_3.png" },
 				name = "Full Winged Druid Outfit",
@@ -1914,6 +1927,8 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>Winged Druids are figures of both grace and menace. Wings that cut through the air like blades and an aura of unshakable determination make them a true force to be reckoned with. Harness the raw fury of nature and unleash its vengeance upon those who threaten it!</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
+			--[[
 			{
 				icons = { "Outfit_Retro_Citizen_Male.png", "Outfit_Retro_Citizen_Female.png" },
 				name = "Retro Citizen",
@@ -1970,6 +1985,7 @@ GameStore.Categories = {
 				description = "{character}\n{info} colours can be changed using the Outfit dialog\n\n<i>You are fearless and strong as a behemoth but have problems finding the right outfit for your adventures? The Retro Warrior outfit is a must-have for all fashion-conscious old-school Tibians out there.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_OUTFIT,
 			},
+			]]
 		},
 	},
 	-- House
@@ -5769,9 +5785,180 @@ GameStore.Categories = {
 		icons = { "Category_Extras.png" },
 		name = "Extras",
 		rookgaard = true,
-		subclasses = { "Extra Services", "Useful Things" },
+		subclasses = { "Tools", "Containers", "Foods", "Extra Services", "Useful Things" },
 	},
 	-- Extras ~ Extras Services
+	{
+		icons = { "Category_Tools.png" },
+		name = "Tools",
+		parent = "Extras",
+		rookgaard = true,
+		state = GameStore.States.STATE_NONE,
+		offers = {
+			{
+				icons = { "Placeholder.png" },
+				name = "Squeezing Gear of Girlpower",
+				price = 100,
+				itemtype = 9596,
+				description = "This nifty gadget can be used for many vital and less vital purposes. If it's not jammed, that is.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Sneaky Stabber of Eliteness",
+				price = 100,
+				itemtype = 9594,
+				description = "This nifty gadget can be used for many vital and less vital purposes. If it's not jammed, that is.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Whacking Driller of Fate",
+				price = 100,
+				itemtype = 9598,
+				description = "This nifty gadget can be used for many vital and less vital purposes. If it's not jammed, that is.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+		},
+	},
+	{
+		icons = { "Category_Foods.png" },
+		name = "Foods",
+		parent = "Extras",
+		rookgaard = true,
+		state = GameStore.States.STATE_NONE,
+		offers = {
+			{
+				icons = { "Placeholder.png" },
+				name = "Sandfish",
+				price = 5,
+				itemtype = 13992,
+				description = "Not a fish, not sand, but definitely gritty about being carried around.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Bass",
+				price = 10,
+				itemtype = 32043,
+				description = "Deep storage, deeper vibes. Thumps when you walk.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Birthday Cake",
+				price = 20,
+				itemtype = 24396,
+				description = "It was created by Tibia's finest bakers for the celebration of 20 years of Tibia.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+		},
+	},
+	{
+		icons = { "Category_Containers.png" },
+		name = "Containers",
+		parent = "Extras",
+		rookgaard = true,
+		state = GameStore.States.STATE_NONE,
+		offers = {
+			{
+				icons = { "Placeholder.png" },
+				name = "Heart Backpack",
+				price = 10,
+				itemtype = 10202,
+				description = "Carries your books and your emotional baggage, equally well.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Demon Backpack",
+				price = 10,
+				itemtype = 9601,
+				description = "Looks evil, but really just guards your snacks with unholy dedication.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Pannier Backpack",
+				price = 10,
+				itemtype = 19159,
+				description = "Half bike accessory, half bag, full identity crisis.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Raccoon Backpack",
+				price = 50,
+				itemtype = 35577,
+				description = "Comes pre-programmed to steal shiny objects and live off leftovers.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Feedbag",
+				price = 50,
+				itemtype = 21292,
+				description = "Technically for storage, but honestly feels like it wants you to be the horse.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Santa Backpack",
+				price = 30,
+				itemtype = 10346,
+				description = "Infinite capacity but only for socks and disappointment.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Dragon Backpack",
+				price = 30,
+				itemtype = 10326,
+				description = "Breathes fire at anyone who tries to unzip it without permission.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Crown Backpack",
+				price = 30,
+				itemtype = 9605,
+				description = "Heavy lies the backpack that carries the crown.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Birthday Backpack",
+				price = 40,
+				itemtype = 24395,
+				description = "You never know what's inside: cake, confetti, or regret.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Energetic Backpack",
+				price = 250,
+				itemtype = 23525,
+				description = "Bounces more than you do on Monday mornings.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Pillow Backpack",
+				price = 250,
+				itemtype = 24393,
+				description = "The only bag that encourages you to nap instead of hustle.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+			{
+				icons = { "Placeholder.png" },
+				name = "Lilypad Backpack",
+				price = 300,
+				itemtype = 39754,
+				description = "Lightweight and chill.",
+				type = GameStore.OfferTypes.OFFER_TYPE_TRADEABLE_ITEM,
+			},
+		},
+	},
 	{
 		icons = { "Category_ExtraServices.png" },
 		name = "Extra Services",

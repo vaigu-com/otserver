@@ -85,7 +85,7 @@ quest
 		SpawnLocks.ThreeSramatiansAndTheDragon = {
 			RatOfKings = SpawnLock(),
 		}
-		TRZEJ_SRAMACI_I_SMOK_SPECIAL_REQUIREMENTS = {
+		THREE_SRAMATIANS_AND_THE_DRAGON_SPECIAL_REQUIREMENTS = {
 			playerIsDrunk = function(context)
 				local player = context.player
 				if not player then
@@ -108,6 +108,12 @@ quest
 				key = Storage.ThreeSramatiansAndTheDragon.KeyItems.DeepCrystal,
 				id = 7281,
 				desc = "Deep sea crystal",
+			},
+		}
+		QuestRewards.OutfitsAddons.ThreeSramatiansAndTheDragon = {
+			Raccoon2 = {
+				{ outfitId = 1371, addons = 2 },
+				{ outfitId = 1372, addons = 2 },
 			},
 		}
 	end)
@@ -187,7 +193,7 @@ quest
 					},
 				},
 				{
-					name = "09. Artificial Intelligence and Euthanasia",
+					name = "08. Artificial Intelligence and Euthanasia",
 					storage = Storage.ThreeSramatiansAndTheDragon.Mission08,
 					states = {
 						[QuestState.ThreeSramatiansAndTheDragon.Mission08.FindAndDefeatHfpx] = "The Rat of Kings took the runes from you and unsealed the door. Now find HF-P/X.",
@@ -631,7 +637,7 @@ quest
 					text = "Three months have passed since the last letter, and I used to receive them at monthly intervals. That's why I got worried about their current condition. I can't leave my kingdom, but if you're determined, I can help you find them. Let me know when you're {ready}. In the meantime, I'll try to estimate their last location and possibly their current direction.",
 				},
 				[{ "ready", "gotowy" }] = {
-					text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Far Myrrus.",
+					text = "I've placed their possible location in your quest log. Good luck. And as for the Janusz choir... aside from that people. I can lend you my scroll with various poems. Oh, and one more thing. Based on my estimates, the company may have passed near Goldblum's burrow. He's known for posing very difficult riddles, and failing to solve them ends, the very least, badly. You might want to go to someone who's escaped his clutches before - Fat Myrrus.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission01] = MISSION_FINISHED,
 						[Storage.ThreeSramatiansAndTheDragon.Mission02] = QuestState.ThreeSramatiansAndTheDragon.Mission02.FollowCompany,
@@ -644,7 +650,7 @@ quest
 		return QuestState.ThreeSramatiansAndTheDragon.Mission02.FollowCompany,
 			QuestFactory.Dialog("GM Romek", {
 				[{ "goldbluma", "goldblum", "mission" }] = {
-					text = "Seriusly, talk to Far Myrrus about Goldblum.",
+					text = "Seriusly, talk to Fat Myrrus about Goldblum.",
 				},
 			}),
 			QuestFactory.Dialog("Goldblum", {
@@ -671,7 +677,7 @@ quest
 				},
 				[{
 					"Od aktualnego poziomu indeksu gieldowego, kursu akcji, ceny surowca, kursu waluty lub innego wskaznika rynkowego, ktory stanowi ich instrument bazowy",
-					"It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate or other market indicator that serves as their underlying instrument",
+					"It depends on the current level of the stock market index, stock price, commodity price, currency exchange rate, or other market indicator that serves as their underlying instrument",
 				}] = {
 					text = "CUT THE CRAP! HOW DID YOU KNOW, YOU STUPID IDIOT!! Never mind. Ask your question - there's no question that will surprise my devious, vile mind.",
 					nextState = {
@@ -818,7 +824,7 @@ quest
 					text = "Let's head to the private docks of the vampire lords. They receive a daily supply of wine for the nobility. We'll sneak in there unnoticed. No one will figure out few bottles or barrels missing.",
 					specialRequirements = {
 						{
-							requirement = TRZEJ_SRAMACI_I_SMOK_SPECIAL_REQUIREMENTS.playerIsDrunk,
+							requirement = THREE_SRAMATIANS_AND_THE_DRAGON_SPECIAL_REQUIREMENTS.playerIsDrunk,
 							requiredOutcome = true,
 							textFailedRequirement = "I have a great idea, but I won't tell you while you are sober. I'm already tipsy, now it's your turn.",
 						},
@@ -865,7 +871,7 @@ quest
 		return QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
 			QuestFactory.Dialog("Bilbeus", {
 				[{ "mission" }] = {
-					text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were tio separate, seek help from her.",
+					text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were to separate, seek help from her.",
 				},
 			}),
 			QuestFactory.Dialog("Gertrude", {
@@ -1019,6 +1025,7 @@ quest
 					text = "I have a feeling that Jan Kockodan got ahead of us. Maybe he's hiding somewhere in this hellish cave. Watch out for him! From the notes given to me by Hairycles, it appears that somewhere in this temple are enchanted doors. The key to opening them is to collect three different magical runes. Fortunately, all the runes are in the temple... if no one has stolen them.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindThreeMagicRunes,
+						[Storage.ThreeSramatiansAndTheDragon.KingOfRatsTileAccess] = ACCESS_GRANTED,
 					},
 				},
 			})
@@ -1082,7 +1089,7 @@ quest
 					text = "Don't wait for the sramatians. They're slacking on purpose to avoid having to fight {HF-P/X}. Besides, do you have all the {runes}?",
 				},
 				[{ "hfpx", "hf-p/x", "HF-P/X" }] = {
-					text = "While you were traveling the world, I went to the library in Bydgoshch. I found information that HF-P/X terrorized an ancient temple where the treasury of Passats was located. For uncounted years, it's been hiding somewhere in the underground of that temple. I think he might want to use Passats in a fight. Perhaps he possesses necromantic abilities and can animate inanimate objects. Or maybe he'll use Passats as kamikaze projectiles? Don't wait for the sramats; they won't come.",
+					text = "While you were traveling the world, I went to the library in Byggoshch. I found information that HF-P/X terrorized an ancient temple where the treasury of Passats was located. For uncounted years, it's been hiding somewhere in the underground of that temple. I think he might want to use Passats in a fight. Perhaps he possesses necromantic abilities and can animate inanimate objects. Or maybe he'll use Passats as kamikaze projectiles? Don't wait for the sramats; they won't come.",
 				},
 				[{ "runy", "runes" }] = {
 					text = "Yes, those are all the needed runes. You can now try to use the enchanted lever. Maybe we'll find HF-P/X here.",
@@ -1101,7 +1108,6 @@ quest
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = MISSION_FINISHED,
 						[Storage.ThreeSramatiansAndTheDragon.Mission08] = QuestState.ThreeSramatiansAndTheDragon.Mission08.FindAndDefeatHfpx,
 						[Storage.ThreeSramatiansAndTheDragon.HfpxAccess] = ACCESS_GRANTED,
-						[Storage.ThreeSramatiansAndTheDragon.KingOfRatsTileAccess] = ACCESS_GRANTED,
 					},
 				},
 			})
@@ -1123,13 +1129,18 @@ quest
 				local ratOfKingsPos = Position(6792, 558, 11)
 				local ratOfKingsNpc = {}
 				local ratOfKingsLock = SpawnLocks.ThreeSramatiansAndTheDragon.RatOfKings
+				ratOfKingsLock.onReset = function(self)
+					if self.creature then
+						self.creature:remove()
+					end
+				end
 
 				local function trySpawnRatOfKings()
 					if ratOfKingsLock:IsSet() then
 						return
 					end
 
-					ratOfKingsLock:Set(Game.createNpc("Rat of Kings", ratOfKingsPos, false, false))
+					ratOfKingsLock:Set(Game.createNpc("Rat of Kings", ratOfKingsPos, true, true))
 					ratOfKingsPos:sendMagicEffect(CONST_ME_TELEPORT)
 				end
 
@@ -1152,7 +1163,6 @@ quest
 						return
 					end
 
-					ratOfKingsNpc:remove()
 					ratOfKingsLock:Reset()
 					ratOfKingsPos:sendMagicEffect(CONST_ME_TELEPORT)
 				end
@@ -1204,7 +1214,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = true,
 			canPushCreatures = false,
@@ -1232,25 +1242,25 @@ quest
 		monster.loot = {
 			{ id = 3025, chance = 13500 }, -- ancient amulet
 			{ name = "black pearl", chance = 15000, maxCount = 35 },
-			{ name = "boots of haste", chance = 14000 },
+			{ name = "boots of haste", chance = 12000 },
 			{ name = "crystal necklace", chance = 21500 },
-			{ name = "devil helmet", chance = 11000 },
-			{ name = "dragon hammer", chance = 34500 },
 			{ id = 3051, chance = 13500 }, -- energy ring
-			{ name = "fire axe", chance = 17000 },
-			{ name = "giant sword", chance = 12500 },
+			{ name = "giant sword", chance = 10500 },
 			{ name = "platinum coin", chance = 69900, maxCount = 100 },
-			{ name = "platinum coin", chance = 68800, maxCount = 100 },
-			{ name = "gold ring", chance = 28000 },
-			{ name = "golden legs", chance = 15000 },
+			{ name = "gold ring", chance = 23000 },
+			{ name = "golden legs", chance = 12000 },
 			{ name = "giant ruby", chance = 31500 },
 			{ name = "giant sapphire", chance = 31500 },
 			{ name = "giant emerald", chance = 31500 },
 			{ name = "purple tome", chance = 12600 },
 			{ name = "silver dagger", chance = 15500 },
-			{ name = "skull staff", chance = 25000 },
 			{ name = "talon", chance = 14000, maxCount = 27 },
 			{ name = "white pearl", chance = 12500, maxCount = 35 },
+			{ id = 14000, chance = 500 },
+			{ id = 29427, chance = 500 },
+			{ id = 8099, chance = 300 },
+			{ id = 8030, chance = 700 },
+			{ id = 22721, chance = 4000 },
 		}
 
 		monster.attacks = {
@@ -1444,6 +1454,8 @@ quest
 						[Storage.Finished.ThreeSramatiansAndTheDragon] = MISSION_FINISHED,
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.AskRomekForMission,
 					},
+					rewards = { ExerciseWeaponBox(3000) },
+					outfitRewards = QuestRewards.OutfitsAddons.ThreeSramatiansAndTheDragon.Raccoon2,
 				},
 			})
 	end)

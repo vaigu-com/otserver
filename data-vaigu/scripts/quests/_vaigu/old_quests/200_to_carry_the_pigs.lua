@@ -51,6 +51,12 @@ quest
 			EcoCarrot = { id = 3250, key = Storage.ToCarryThePigs.EcoCarrot },
 			NewBow = { id = 9378, key = Storage.ToCarryThePigs.NewBow },
 		}
+		QuestRewards.OutfitsAddons.ToCarryThePigs = {
+			Norse0 = {
+				{ outfitId = 252, addons = 0 },
+				{ outfitId = 251, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -61,7 +67,7 @@ quest
 					name = "To be like the Schwarzenegger",
 					storage = Storage.ToCarryThePigs.BeLikeSchwarzenegger,
 					states = {
-						[QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace] = "Arni asks you to collect the following items: 5 orc tooth, 5 carrion worm fangs, and 1 vampire teeth.",
+						[QuestState.ToCarryThePigs.BeLikeSchwarzenegger.CollectTeeth_CreateNecklace] = "Arni asks you to collect the following items: 3 orc tooth, 3 carrion worm fangs, and 1 vampire teeth.",
 						[QuestState.ToCarryThePigs.BeLikeSchwarzenegger.BringNecklaceToArni] = "Madame Malkin gladly made this necklace for Arni. Report to Arni.",
 						[MISSION_FINISHED] = "In exchange for the teeth necklace, Arni gave u his old armour and a ring.",
 					},
@@ -72,7 +78,7 @@ quest
 					states = {
 						[QuestState.ToCarryThePigs.HalfTurnKick.InvestigateHeroCaves] = "Cordell Walker is suspecting bandits of commissioning illegal transactions in their encampment.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.BringDocumentToCordell] = "You found a some weird document in Hero hideout. Report to Cordell.",
-						[QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation] = "He was right. Now go to the Price Kebab and ask Shivganesh for translation.",
+						[QuestState.ToCarryThePigs.HalfTurnKick.AskShivganeshForTranslation] = "He was right. Now go to the Prince Kebab and ask Shivganesh for translation.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.BringTranslationToCordell] = "It wasn't hard at all for Shivganesh. Take the list and translation back to Cordell Walker.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.InvestigateDwarfs] = "Cordell asked you to investigate further. Look for the legendary dragon scale legs in lost caves.",
 						[QuestState.ToCarryThePigs.HalfTurnKick.ReportFounterfeitLegs] = "You found disfigured legs. Report your finding to Cordell.",
@@ -84,7 +90,7 @@ quest
 					storage = Storage.ToCarryThePigs.BalancedDiet,
 					states = {
 						[QuestState.ToCarryThePigs.BalancedDiet.FindAndBringCarrotToFatMyrrus] = "Collect 1 slimming carrot and bring it to Fat Myrrus.",
-						[MISSION_FINISHED] = "The carrot was dogshit, and u received chocolate slush in for your effort.",
+						[MISSION_FINISHED] = "The carrot was dogshit, and u received some chocolate slush for your effort.",
 					},
 				},
 				{
@@ -332,6 +338,7 @@ quest
 					requiredState = {
 						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.ToCarryThePigs.Norse0
 				},
 			})
 	end)

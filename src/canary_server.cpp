@@ -33,6 +33,7 @@
 #include "server/network/protocol/protocolstatus.hpp"
 #include "server/network/webhook/webhook.hpp"
 #include "creatures/players/vocations/vocation.hpp"
+#include "game/scheduling/save_manager.hpp"
 
 CanaryServer::CanaryServer(
 	Logger &logger,
@@ -88,8 +89,7 @@ int CanaryServer::run() {
 				setupHousesRent();
 				g_game().transferHouseItemsToDepot();
 
-				IOMarket::checkExpiredOffers();
-				IOMarket::getInstance().updateStatistics();
+				g_iomarket().updateStatistics();
 
 				logger.info("Loaded all modules, server starting up...");
 
@@ -127,8 +127,8 @@ int CanaryServer::run() {
 		__FUNCTION__
 	);
 
-	constexpr auto timeout = std::chrono::minutes(10);
-	constexpr auto warnEvery = std::chrono::seconds(120);
+	constexpr auto timeout = std::chrono::minutes(20);
+	constexpr auto warnEvery = std::chrono::seconds(10);
 	auto start = std::chrono::steady_clock::now();
 	auto lastLog = start;
 
@@ -228,6 +228,9 @@ void CanaryServer::setupHousesRent() {
 	}
 
 	g_game().map.houses.payHouses(rentPeriod);
+	#ifdef OS_WINDOWS
+		SaveManager::getInstance().saveAll();
+	#endif
 }
 
 void CanaryServer::logInfos() {
@@ -375,6 +378,23 @@ void CanaryServer::initializeDatabase() {
 	g_logger().info("Database connection established!");
 }
 
+int32_t CanaryServer::getDaysSinceStart()
+{
+	auto result = g_database().storeQuery(
+		"SELECT DATEDIFF(CURDATE(), DATE(`value`)) "
+		"- IF(TIME(NOW()) < '05:00:00', 1, 0) AS days_since_start "
+		"FROM `server_config` "
+		"WHERE `server_config`.`config` = 'start_date'"
+	);
+
+	if (!result) {
+		g_logger().error("Failed to fetch days since start");
+		return 0;
+	}
+
+	return result->getNumber<int32_t>("days_since_start");
+}
+
 void CanaryServer::loadModules() {
 	logger.info("Initializing lua environment...");
 	if (!g_luaEnvironment().getLuaState()) {
@@ -389,7 +409,11 @@ void CanaryServer::loadModules() {
 
 	// Load XML folder dependencies (order matters)
 	modulesLoadHelper(g_vocations().loadFromXml(), "XML/vocations.xml");
-	modulesLoadHelper(g_eventsScheduler().generateWeekendEventsXml(), "XML/events.xml");
+	auto daysSinceStart = getDaysSinceStart();
+	g_logger().info("{} Days since start: {}", __FUNCTION__, daysSinceStart);
+	if (daysSinceStart > DAYS_SINCE_START_TO_ENABLE_WEEKEND_EXP) {
+		modulesLoadHelper(g_eventsScheduler().generateWeekendEventsXml(), "XML/events.xml");
+	}
 	modulesLoadHelper(g_eventsScheduler().loadScheduleEventFromXml(), "XML/events.xml");
 	modulesLoadHelper(Outfits::getInstance().loadFromXml(), "XML/outfits.xml");
 	modulesLoadHelper(Familiars::getInstance().loadFromXml(), "XML/familiars.xml");

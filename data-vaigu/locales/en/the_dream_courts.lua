@@ -1,22 +1,36 @@
+local wardstoneKeyToName = {
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.Knurow] = "South of knurow",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.Desolation] = "Desolation near hive",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.Syberia] = "West Syberia",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.Caribbean] = "Caribbean",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.OgreVillage] = "Ogre village",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.BonebeastIsthmus] = "Bonebeast Isthmus",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.DemonSkeletonCave] = "Mutated town cave",
+	[Storage.Quest.U12_00.TheDreamCourts.WardStones.PirateIsland] = "Pirate island",
+}
+
 return {
 	--Questlog
+	["DREAM_TALISMAN_STATUS"] = function(context)
+		local player = context.player
+		local str = "You already got those ward stones energized:"
+		for _, key in pairs(QuestConstants.TheDreamCourts.UnlockableWardstones) do
+			local status = "-"
+			if player:getStorageValueByKey(key) == ACCESS_GRANTED then
+				status = "energized!"
+			end
+			str = str .. T("\n:name:: :status:", { name = wardstoneKeyToName[key], status = status })
+		end
+		return str
+	end,
 	["The Dream Courts"] = "The Dream Courts",
-	["Find and talk to Vanys in order to help him. He stays in Summer Court in the huge forest located far south from Mirko Town."] = "Find and talk to Vanys in order to help him. He stays in Summer Court in the huge forest located far south from Mirko Town.",
-	["Vanys gave you a dream talisman that you'll need to empower eight ward stones located around the world. Ward stone locations you were told about are: mountains of Pirate Island, bonebast coast in the desert, water elemental cave beneath Kongo, depths of Seacrest Serpent lair, west coast of Sybir and Barbarian camp, Nightmare Island, Buried Cathedral beneath Karaiby."] = "Vanys gave you a dream talisman that you'll need to empower eight ward stones located around the world. Ward stone locations you were told about are: mountains of Pirate Island, bonebast coast in the desert, water elemental cave beneath Kongo, depths of Seacrest Serpent lair, west coast of Sybir and Barbarian camp, Nightmare Island, Buried Cathedral beneath Karaiby.",
-	["Vanys let you enter the dream labyrinth. Find a way to enter the Nightmare Beast's lair and defeat him. Elven Parchment from Vanys chest may help you."] = "Vanys let you enter the dream labyrinth. Find a way to enter the Nightmare Beast's lair and defeat him. Elven Parchment from Vanys chest may help you.",
-	["You have defeated The Nightmare Beast. Talk about this to Vanys."] = "You have defeated The Nightmare Beast. Talk about this to Vanys.",
-	["Vanys gifted you with a traditional dream warrior outfit."] = "Vanys gifted you with a traditional dream warrior outfit.",
-	["Helping of Stricken Soul"] = "Helping of Stricken Soul",
-	["Restore connection and open this nexus to access the buried cathedral. You need to find a way to pass the entrance in the cellar."] = "Restore connection and open this nexus to access the buried cathedral. You need to find a way to pass the entrance in the cellar.",
-	["You successfully passed the cellar entrance. Find a way to restore the portal to the buried cathedral."] = "You successfully passed the cellar entrance. Find a way to restore the portal to the buried cathedral.",
-	["You restored a portal and successfully entered the buried cathedral. Try to find and defeat the Faceless Bane. You'll need to gain some knowledge in order to enter her nest. Maybe there are some documents around..."] = "You restored a portal and successfully entered the buried cathedral. Try to find and defeat the Faceless Bane. You'll need to gain some knowledge in order to enter her nest. Maybe there are some documents around...",
-	["You successfully defeated the Faceless Bane."] = "You successfully defeated the Faceless Bane.",
-	["Empowered Wardstones"] = "Empowered Wardstones",
-	["Empowered Wardstones Status"] = function(context)
-		return string.format("Empowered Wardstones: %d / 8.", (math.max(context.player:getStorageValueByKey(12209), 0)))
-	end,
-	["Documents Read"] = "Documents Read",
-	["Documents Read Status"] = function(context)
-		return string.format("Documents Read: %d / 4", (math.max(context.player:getStorageValueByKey(12214), 0)))
-	end,
+	["Court legate asked you to charge eight wardstones that will weaken the Nightmare Beast. Look at your dream talisman to see which wardtones you already visited."] = "Court legate asked you to charge eight wardstones that will weaken the Nightmare Beast. Look at your dream talisman to see which wardtones you already visited.",
+	["You must kill the Nightmare Beast."] = "You must kill the Nightmare Beast.",
+	["By defeating the dreadful Nightmare Beast you did the Winter Court and the Summer Court alike a great favor. From now on, the dream elves will regard you as a friend."] = "By defeating the dreadful Nightmare Beast you did the Winter Court and the Summer Court alike a great favor. From now on, the dream elves will regard you as a friend.",
+	["Haunted House"] = "Haunted House",
+	["A tormented soul trusted you with the secret of this house. Reveal a hidden portal within!"] = "A tormented soul trusted you with the secret of this house. Reveal a hidden portal within!",
+	["You have gained an access to the deepest mysteries of the dream courts. You can now activate ward stone and fight Faceless Bane."] = "You have gained an access to the deepest mysteries of the dream courts. You can now activate ward stone and fight Faceless Bane.",
+	["The Keys"] = "The Keys",
+	["Find all keys to unlock the Dream Doors."] = "Find all keys to unlock the Dream Doors.",
+	["You found the keys to unlock the Dream Doors in the Labyrinth of Summer's and Winter's Dreams."] = "You found the keys to unlock the Dream Doors in the Labyrinth of Summer's and Winter's Dreams.",
 }

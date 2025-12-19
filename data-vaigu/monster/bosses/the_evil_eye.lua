@@ -80,7 +80,7 @@ monster.loot = {
 	{ name = "gold coin", chance = 100000, maxCount = 100 },
 	{ name = "gold coin", chance = 100000, maxCount = 29 },
 	{ name = "bonelord shield", chance = 13640 },
-	{ name = "bonelord helmet", chance = 500 },
+	{ name = "bonelord helmet", chance = 5000 },
 }
 
 monster.attacks = {

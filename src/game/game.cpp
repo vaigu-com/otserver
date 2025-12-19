@@ -444,6 +444,9 @@ void Game::resetNpcs() const {
 	}
 }
 
+// Vaigu custom
+// Only monsters with count of at least BOOST_PREY_ELIGIBILITY_THRESHOLD on the whole map can become boosted
+// Dont boost monsters with 0 exp (0 difficulty index)
 std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t count) {
 	std::vector<std::string> monsterNames;
 
@@ -451,10 +454,18 @@ std::vector<BoostedMonsterData> Game::generateRandomBoostedMonsters(uint32_t cou
 	auto &monsterCounts = g_game().map.spawnsMonster.getMonsterCounts();
 	std::vector<BoostedMonsterData> boostableMonsters;
 	for (const auto &[raceId, _name] : BestiaryList) {
-		// Vaigu custom
-		// Only monsters with count of at least 10 on the whole map can become boosted
 		auto it = monsterCounts.find(_name);
-		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THERSHOLD) {
+		if (it == monsterCounts.end() || it->second <= BOOST_PREY_ELIGIBILITY_THRESHOLD) {
+			continue;
+		}
+
+		const auto monsterType = g_monsters().getMonsterType(_name);
+		if (!monsterType) {
+			continue;
+		}
+
+		double difficulty = monsterType->calculateDifficultyIndex();
+		if (difficulty <= 0) {
 			continue;
 		}
 
@@ -583,9 +594,11 @@ void Game::start(ServiceManager* manager) {
 		);
 	}
 
+	/*
 	g_dispatcher().cycleEvent(
 		UPDATE_PLAYERS_ONLINE_DB, [this] { updatePlayersOnline(); }, "Game::updatePlayersOnline"
 	);
+	*/
 }
 
 GameState_t Game::getGameState() const {
@@ -633,6 +646,17 @@ void Game::setGameState(GameState_t newState) {
 			loadItemsPrice();
 
 			groups.load();
+			const auto context = DBTransaction::executeWithinTransaction(
+				[] {
+					g_iomarket().initialize();
+					return true;
+				}
+			);
+			if (context.callbackResult != true) {
+				g_logger().error("[Game::setGameState] GAME_STATE_INIT Failed to initialize market:{}, status: {}", context.callbackResult, context.status);
+				throw DatabaseException("Failed to initialize market!");
+			}
+
 			g_chat().load();
 
 			// Load monsters and npcs stored by the "loadFromXML" function
@@ -696,15 +720,19 @@ void Game::setGameState(GameState_t newState) {
 		}
 
 		default:
+			auto offers = g_iomarket().getOffers(CREATE_SELL__ACCEPT_BUY);
+			for (const auto &offer : offers) {
+				itemsPriceMap[offer.itemId][offer.tier] = std::max(itemsPriceMap[offer.itemId][offer.tier], offer.price);
+			}
 			break;
 	}
 }
 
 void Game::loadItemsPrice() {
-	IOMarket::getInstance().updateStatistics();
+	g_iomarket().updateStatistics();
 
 	// Update purchased offers (market_history)
-	const auto &stats = IOMarket::getInstance().getPurchaseStatistics();
+	const auto &stats = g_iomarket().getPurchaseStatistics();
 	for (const auto &[itemId, itemStats] : stats) {
 		std::map<uint8_t, uint64_t> tierToPrice;
 		for (const auto &[tier, tierStats] : itemStats) {
@@ -715,7 +743,7 @@ void Game::loadItemsPrice() {
 	}
 
 	// Update active buy offers (market_offers)
-	auto offers = IOMarket::getActiveOffers(MARKETACTION_BUY);
+	auto offers = g_iomarket().getOffers(CREATE_SELL__ACCEPT_BUY);
 	for (const auto &offer : offers) {
 		itemsPriceMap[offer.itemId][offer.tier] = std::max(itemsPriceMap[offer.itemId][offer.tier], offer.price);
 	}
@@ -1243,7 +1271,7 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 			}
 		}
 
-		if (removeFromTile == true){
+		if (removeFromTile == true) {
 			tile->removeCreature(creature);
 		}
 
@@ -1259,7 +1287,6 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 
 		// event method
 		for (const auto &spectator : spectators) {
-			spectator->onRemoveCreature(creature, isLogout);
 			spectator->onRemoveCreature(creature, isLogout);
 		}
 	}
@@ -3085,6 +3112,7 @@ void Game::playerQuickLootCorpse(const std::shared_ptr<Player> &player, const st
 		ss.str(std::string());
 		ss << "Attention! The container assigned to category " << getObjectCategoryName(shouldNotifyNotEnoughRoom) << " is full.";
 	} else {
+		player->removeMagicEffect(position, CONST_ME_LOOT_HIGHLIGHT);
 		return;
 	}
 
@@ -5811,6 +5839,9 @@ void Game::playerLootAllCorpses(const std::shared_ptr<Player> &player, const Pos
 		}
 
 		const TileItemVector* itemVector = tile->getItemList();
+		if (!itemVector) {
+			continue;
+		}
 		for (auto &tileItem : *itemVector) {
 			if (!tileItem) {
 				continue;
@@ -7996,19 +8027,17 @@ void Game::applyManaLeech(
 	const std::shared_ptr<Player> &attackerPlayer, const std::shared_ptr<Monster> &targetMonster, const std::shared_ptr<Creature> &target, const CombatDamage &damage, const int32_t &realDamage
 ) const {
 	// Wheel of destiny bonus - mana leech chance and amount
-	auto wheelLeechChance = attackerPlayer->wheel().checkDrainBodyLeech(target, SKILL_MANA_LEECH_CHANCE);
 	auto wheelLeechAmount = attackerPlayer->wheel().checkDrainBodyLeech(target, SKILL_MANA_LEECH_AMOUNT);
 
-	uint16_t manaChance = attackerPlayer->getSkillLevel(SKILL_MANA_LEECH_CHANCE) + wheelLeechChance + damage.manaLeechChance;
 	uint16_t manaSkill = attackerPlayer->getSkillLevel(SKILL_MANA_LEECH_AMOUNT) + wheelLeechAmount + damage.manaLeech;
-	if (normal_random(0, 100) >= manaChance) {
-		return;
-	}
 	// Void charm rune
 	if (targetMonster && attackerPlayer->parseRacebyCharm(CHARM_VOID) == targetMonster->getRaceId()) {
 		if (const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_VOID)) {
 			manaSkill += charm->chance[attackerPlayer->getCharmTier(CHARM_VOID)] * 100;
 		}
+	}
+	if (manaSkill <= 0) {
+		return;
 	}
 
 	CombatParams tmpParams;
@@ -8027,17 +8056,15 @@ void Game::applyLifeLeech(
 	const std::shared_ptr<Player> &attackerPlayer, const std::shared_ptr<Monster> &targetMonster, const std::shared_ptr<Creature> &target, const CombatDamage &damage, const int32_t &realDamage
 ) const {
 	// Wheel of destiny bonus - life leech chance and amount
-	auto wheelLeechChance = attackerPlayer->wheel().checkDrainBodyLeech(target, SKILL_LIFE_LEECH_CHANCE);
 	auto wheelLeechAmount = attackerPlayer->wheel().checkDrainBodyLeech(target, SKILL_LIFE_LEECH_AMOUNT);
-	uint16_t lifeChance = attackerPlayer->getSkillLevel(SKILL_LIFE_LEECH_CHANCE) + wheelLeechChance + damage.lifeLeechChance;
 	uint16_t lifeSkill = attackerPlayer->getSkillLevel(SKILL_LIFE_LEECH_AMOUNT) + wheelLeechAmount + damage.lifeLeech;
-	if (normal_random(0, 100) >= lifeChance) {
-		return;
-	}
 	if (targetMonster && attackerPlayer->parseRacebyCharm(CHARM_VAMP) == targetMonster->getRaceId()) {
 		if (const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_VAMP)) {
 			lifeSkill += charm->chance[attackerPlayer->getCharmTier(CHARM_VAMP)] * 100;
 		}
+	}
+	if (lifeSkill <= 0) {
+		return;
 	}
 
 	CombatParams tmpParams;
@@ -9210,8 +9237,8 @@ void Game::playerBrowseMarket(uint32_t playerId, uint16_t itemId, uint8_t tier) 
 		return;
 	}
 
-	const MarketOfferList &buyOffers = IOMarket::getActiveOffers(MARKETACTION_BUY, it.id, tier);
-	const MarketOfferList &sellOffers = IOMarket::getActiveOffers(MARKETACTION_SELL, it.id, tier);
+	const auto &buyOffers = g_iomarket().getOffers(ACCEPT_BUY, it.id, tier);
+	const auto &sellOffers = g_iomarket().getOffers(ACCEPT_SELL, it.id, tier);
 	player->sendMarketBrowseItem(it.id, buyOffers, sellOffers, tier);
 	player->sendMarketDetail(it.id, tier);
 }
@@ -9226,8 +9253,8 @@ void Game::playerBrowseMarketOwnOffers(uint32_t playerId) {
 		return;
 	}
 
-	const MarketOfferList &buyOffers = IOMarket::getOwnOffers(MARKETACTION_BUY, player->getGUID());
-	const MarketOfferList &sellOffers = IOMarket::getOwnOffers(MARKETACTION_SELL, player->getGUID());
+	const auto &buyOffers = g_iomarket().getOffers(ACCEPT_BUY, player->getGUID());
+	const auto &sellOffers = g_iomarket().getOffers(ACCEPT_SELL, player->getGUID());
 	player->sendMarketBrowseOwnOffers(buyOffers, sellOffers);
 }
 
@@ -9241,27 +9268,29 @@ void Game::playerBrowseMarketOwnHistory(uint32_t playerId) {
 		return;
 	}
 
-	const HistoryMarketOfferList &buyOffers = IOMarket::getOwnHistory(MARKETACTION_BUY, player->getGUID());
-	const HistoryMarketOfferList &sellOffers = IOMarket::getOwnHistory(MARKETACTION_SELL, player->getGUID());
+	const auto &buyOffers = g_iomarket().getHistoricOffers(ACCEPT_BUY, player->getGUID());
+	const auto &sellOffers = g_iomarket().getHistoricOffers(ACCEPT_SELL, player->getGUID());
 	player->sendMarketBrowseOwnHistory(buyOffers, sellOffers);
 }
 
 namespace {
 	bool removeOfferItems(const std::shared_ptr<Player> &player, const std::shared_ptr<DepotLocker> &depotLocker, const ItemType &itemType, uint16_t amount, uint8_t tier, std::ostringstream &offerStatus) {
 		uint16_t removeAmount = amount;
-		if (
-			// Init-statement
-			auto stashItemCount = player->getStashItemCount(itemType.wareId);
-			// Condition
-			stashItemCount > 0
-		) {
-			if (removeAmount > stashItemCount && player->withdrawItem(itemType.wareId, stashItemCount)) {
-				removeAmount -= stashItemCount;
-			} else if (player->withdrawItem(itemType.wareId, removeAmount)) {
-				removeAmount = 0;
-			} else {
-				offerStatus << "Failed to remove stash items from player " << player->getName();
-				return false;
+		if (tier == 0) {
+			if (
+				// Init-statement
+				auto stashItemCount = player->getStashItemCount(itemType.wareId);
+				// Condition
+				stashItemCount > 0
+			) {
+				if (removeAmount > stashItemCount && player->withdrawItem(itemType.wareId, stashItemCount)) {
+					removeAmount -= stashItemCount;
+				} else if (player->withdrawItem(itemType.wareId, removeAmount)) {
+					removeAmount = 0;
+				} else {
+					offerStatus << "Failed to remove stash items from player " << player->getName();
+					return false;
+				}
 			}
 		}
 
@@ -9359,7 +9388,7 @@ bool checkCanInitCreateMarketOffer(const std::shared_ptr<Player> &player, uint8_
 		return false;
 	}
 
-	if (type != MARKETACTION_BUY && type != MARKETACTION_SELL) {
+	if (type != CREATE_BUY && type != CREATE_SELL) {
 		offerStatus << "Failed to process type " << type << "for player " << player->getName();
 		return false;
 	}
@@ -9387,7 +9416,7 @@ bool checkCanInitCreateMarketOffer(const std::shared_ptr<Player> &player, uint8_
 	}
 
 	const uint32_t maxOfferCount = g_configManager().getNumber(MAX_MARKET_OFFERS_AT_A_TIME_PER_PLAYER);
-	if (maxOfferCount != 0 && IOMarket::getPlayerOfferCount(player->getGUID()) >= maxOfferCount) {
+	if (maxOfferCount != 0 && g_iomarket().countPlayerActiveOffers(player->getGUID()) >= maxOfferCount) {
 		offerStatus << "Player " << player->getName() << "excedeed max offer count " << maxOfferCount;
 		return false;
 	}
@@ -9419,7 +9448,7 @@ void Game::playerCreateMarketOffer(uint32_t playerId, uint8_t type, uint16_t ite
 
 	uint64_t fee = std::clamp(totalFee, uint64_t(20), maxFee); // Limit between 20 and maxFee
 
-	if (type == MARKETACTION_SELL) {
+	if (type == ACCEPT_SELL) {
 		if (fee > (player->getMoney() + player->getBankBalance())) {
 			offerStatus << "Fee is greater than player money";
 			return;
@@ -9477,10 +9506,11 @@ void Game::playerCreateMarketOffer(uint32_t playerId, uint8_t type, uint16_t ite
 		return;
 	}
 
-	IOMarket::createOffer(player->getGUID(), static_cast<MarketAction_t>(type), it.id, amount, price, tier, anonymous);
+	auto &ioMarket = g_iomarket();
+	ioMarket.createOffer(player->getGUID(), static_cast<MarketAction_t>(type), it.id, amount, price, tier, anonymous, player->getName());
 
-	const MarketOfferList &buyOffers = IOMarket::getActiveOffers(MARKETACTION_BUY, it.id, tier);
-	const MarketOfferList &sellOffers = IOMarket::getActiveOffers(MARKETACTION_SELL, it.id, tier);
+	const auto &buyOffers = ioMarket.getOffers(ACCEPT_BUY, it.id, tier);
+	const auto &sellOffers = ioMarket.getOffers(ACCEPT_SELL, it.id, tier);
 	player->sendMarketBrowseItem(it.id, buyOffers, sellOffers, tier);
 
 	// Exhausted for create offert in the market
@@ -9502,18 +9532,18 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		return;
 	}
 
-	MarketOfferEx offer = IOMarket::getOfferByCounter(timestamp, counter);
+	const MarketActiveOffer &offer = g_iomarket().getOfferByCounter(timestamp, counter);
 	if (offer.id == 0 || offer.playerId != player->getGUID()) {
 		return;
 	}
 
 	const auto &playerInbox = player->getInbox();
-	if (offer.type == MARKETACTION_BUY) {
+	if (offer.marketAction == CANCEL_SELL) {
 		player->setBankBalance(player->getBankBalance() + offer.price * offer.amount);
 		g_metrics().addCounter("balance_decrease", offer.price * offer.amount, { { "player", player->getName() }, { "context", "market_purchase" } });
 		// Send market window again for update stats
 		player->sendMarketEnter(player->getLastDepotId());
-	} else {
+	} else if (offer.marketAction == CANCEL_BUY) {
 		const ItemType &it = Item::items[offer.itemId];
 		if (it.id == 0) {
 			return;
@@ -9559,10 +9589,8 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		}
 	}
 
-	IOMarket::moveOfferToHistory(offer.id, OFFERSTATE_CANCELLED);
+	g_iomarket().cancelAndAppendToHistory(offer);
 
-	offer.amount = 0;
-	offer.timestamp += g_configManager().getNumber(MARKET_OFFER_DURATION);
 	player->sendMarketCancelOffer(offer);
 	// Send market window again for update stats
 	player->sendMarketEnter(player->getLastDepotId());
@@ -9570,7 +9598,7 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 	player->updateUIExhausted();
 }
 
-void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter, uint16_t amount) {
+void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16_t counter, uint16_t buyingAmount) {
 	std::ostringstream offerStatus;
 	const auto &player = getPlayerByID(playerId);
 	if (!player || !player->getAccount()) {
@@ -9588,7 +9616,7 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		return;
 	}
 
-	MarketOfferEx offer = IOMarket::getOfferByCounter(timestamp, counter);
+	const MarketActiveOffer &offer = g_iomarket().getOfferByCounter(timestamp, counter);
 	if (offer.id == 0) {
 		offerStatus << "Failed to load offer id";
 		return;
@@ -9600,18 +9628,18 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		return;
 	}
 
-	if (amount == 0 || (!it.stackable && amount > 2000) || (it.stackable && amount > 64000) || amount > offer.amount) {
-		offerStatus << "Invalid offer amount " << amount << " for player " << player->getName();
+	if (buyingAmount == 0 || (!it.stackable && buyingAmount > 2000) || (it.stackable && buyingAmount > 64000) || buyingAmount > offer.amount) {
+		offerStatus << "Invalid offer amount " << buyingAmount << " for player " << player->getName();
 		return;
 	}
 
 	const auto &playerInbox = player->getInbox();
 
-	uint64_t totalPrice = offer.price * amount;
+	uint64_t totalPrice = offer.price * buyingAmount;
 
 	// The player has an offer to by something and someone is going to sell to item type
 	// so the market action is 'buy' as who created the offer is buying.
-	if (offer.type == MARKETACTION_BUY) {
+	if (offer.marketAction == ACCEPT_BUY) {
 		const std::shared_ptr<DepotLocker> &depotLocker = player->getDepotLocker(player->getLastDepotId());
 		if (depotLocker == nullptr) {
 			offerStatus << "Depot locker is nullptr";
@@ -9646,18 +9674,18 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 				return;
 			}
 
-			if (amount > transferableCoins) {
+			if (buyingAmount > transferableCoins) {
 				offerStatus << "Amount is greater than coins";
 				return;
 			}
 
 			playerAccount->removeCoins(
 				CoinType::Transferable,
-				amount,
+				buyingAmount,
 				"Sold on Market"
 			);
 		} else {
-			if (!removeOfferItems(player, depotLocker, it, amount, offer.tier, offerStatus)) {
+			if (!removeOfferItems(player, depotLocker, it, buyingAmount, offer.tier, offerStatus)) {
 				g_logger().error("[{}] failed to remove item with id {}, from player {}, errorcode: {}", __FUNCTION__, it.id, player->getName(), offerStatus.str());
 				return;
 			}
@@ -9680,18 +9708,18 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		g_metrics().addCounter("balance_increase", totalPrice, { { "player", player->getName() }, { "context", "market_sale" } });
 
 		if (it.id == ITEM_STORE_COIN) {
-			buyerPlayer->getAccount()->addCoins(CoinType::Transferable, amount, "Purchased on Market");
+			buyerPlayer->getAccount()->addCoins(CoinType::Transferable, buyingAmount, "Purchased on Market");
 		} else {
-			uint16_t processedAmount = amount;
+			uint16_t processedAmount = buyingAmount;
 			uint64_t effectivePrice = offer.price * processedAmount;
 			processItemInsertion(buyerPlayer, it.id, processedAmount, offer.tier, effectivePrice, offer.price);
-			amount = processedAmount;
+			buyingAmount = processedAmount;
 			totalPrice = effectivePrice;
 		}
 
 		if (buyerPlayer->isOffline()) {
 		}
-	} else if (offer.type == MARKETACTION_SELL) {
+	} else if (offer.marketAction == ACCEPT_SELL) {
 		std::shared_ptr<Player> sellerPlayer = getPlayerByGUID(offer.playerId, true);
 		if (!sellerPlayer) {
 			offerStatus << "Failed to load seller player";
@@ -9719,19 +9747,19 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		g_metrics().addCounter("balance_decrease", totalPrice, { { "player", player->getName() }, { "context", "market_purchase" } });
 
 		if (it.id == ITEM_STORE_COIN) {
-			player->getAccount()->addCoins(CoinType::Transferable, amount, "Purchased on Market");
+			player->getAccount()->addCoins(CoinType::Transferable, buyingAmount, "Purchased on Market");
 		} else {
-			uint16_t processedAmount = amount;
+			uint16_t processedAmount = buyingAmount;
 			uint64_t effectivePrice = offer.price * processedAmount;
 			processItemInsertion(player, it.id, processedAmount, offer.tier, effectivePrice, offer.price);
-			amount = processedAmount;
+			buyingAmount = processedAmount;
 			totalPrice = effectivePrice;
 		}
 
 		sellerPlayer->setBankBalance(sellerPlayer->getBankBalance() + totalPrice);
 		g_metrics().addCounter("balance_increase", totalPrice, { { "player", sellerPlayer->getName() }, { "context", "market_sale" } });
 		if (it.id == ITEM_STORE_COIN) {
-			sellerPlayer->getAccount()->registerCoinTransaction(CoinTransactionType::Remove, CoinType::Transferable, amount, "Sold on Market");
+			sellerPlayer->getAccount()->registerCoinTransaction(CoinTransactionType::Remove, CoinType::Transferable, buyingAmount, "Sold on Market");
 		}
 
 		if (it.id != ITEM_STORE_COIN) {
@@ -9751,22 +9779,10 @@ void Game::playerAcceptMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		return;
 	}
 
-	const int32_t marketOfferDuration = g_configManager().getNumber(MARKET_OFFER_DURATION);
+	g_iomarket().decrementAndAppendToHistory(offer, buyingAmount, player->getGUID());
 
-	IOMarket::appendHistory(player->getGUID(), (offer.type == MARKETACTION_BUY ? MARKETACTION_SELL : MARKETACTION_BUY), offer.itemId, amount, offer.price, time(nullptr), offer.tier, OFFERSTATE_ACCEPTEDEX);
-
-	IOMarket::appendHistory(offer.playerId, offer.type, offer.itemId, amount, offer.price, time(nullptr), offer.tier, OFFERSTATE_ACCEPTED);
-
-	offer.amount -= amount;
-
-	if (offer.amount == 0) {
-		IOMarket::deleteOffer(offer.id);
-	} else {
-		IOMarket::acceptOffer(offer.id, amount);
-	}
-
-	offer.timestamp += marketOfferDuration;
-	player->sendMarketAcceptOffer(offer);
+	const auto newAmount = offer.amount - buyingAmount;
+	player->sendMarketAcceptOffer(offer, newAmount);
 	// Exhausted for accept offer in the market
 	player->updateUIExhausted();
 }
@@ -11212,51 +11228,38 @@ const std::unordered_map<uint16_t, std::string> &Game::getHirelingOutfits() {
 	return m_hirelingOutfits;
 }
 
-void Game::updatePlayersOnline() const {
+// Vaigu custom
+void Game::updatePlayersOnline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &m_players) const {
 	// Function to be executed within the transaction
-	auto updateOperation = [this]() {
-		const auto &m_players = getPlayers();
-		bool changesMade = false;
+	// g_metrics().addUpDownCounter("players_online", 1);
+	// g_metrics().addUpDownCounter("players_online", -1);
 
-		// g_metrics().addUpDownCounter("players_online", 1);
-		// g_metrics().addUpDownCounter("players_online", -1);
-
-		if (m_players.empty()) {
-			std::string query = "SELECT COUNT(*) AS count FROM players_online;";
-			auto result = g_database().storeQuery(query);
-			int count = result->getNumber<int>("count");
-			if (count > 0) {
-				g_database().executeQuery("DELETE FROM `players_online`;");
-				changesMade = true;
-			}
-		} else {
-			// Insert the current players
-			DBInsert stmt("INSERT IGNORE INTO `players_online` (player_id) VALUES ");
-			for (const auto &[key, player] : m_players) {
-				std::ostringstream playerQuery;
-				playerQuery << "(" << player->getGUID() << ")";
-				stmt.addRow(playerQuery.str());
-			}
-			stmt.execute();
-			changesMade = true;
-
-			// Remove players who are no longer online
-			std::ostringstream cleanupQuery;
-			cleanupQuery << "DELETE FROM `players_online` WHERE `player_id` NOT IN (";
-			for (const auto &[key, player] : m_players) {
-				cleanupQuery << player->getGUID() << ",";
-			}
-			cleanupQuery.seekp(-1, std::ostringstream::cur); // Remove the last comma
-			cleanupQuery << ");";
-			g_database().executeQuery(cleanupQuery.str());
+	if (m_players.empty()) {
+		std::string query = "SELECT COUNT(*) AS count FROM players_online;";
+		auto result = g_database().storeQuery(query);
+		int count = result->getNumber<int>("count");
+		if (count > 0) {
+			g_database().executeQuery("DELETE FROM `players_online`;");
 		}
+	} else {
+		// Insert the current players
+		DBInsert stmt("INSERT IGNORE INTO `players_online` (player_id) VALUES ");
+		for (const auto &[key, player] : m_players) {
+			std::ostringstream playerQuery;
+			playerQuery << "(" << player->getGUID() << ")";
+			stmt.addRow(playerQuery.str());
+		}
+		stmt.execute();
 
-		return changesMade;
-	};
-
-	const bool success = DBTransaction::executeWithinTransaction(updateOperation);
-	if (!success) {
-		g_logger().error("[Game::updatePlayersOnline] Failed to update players online.");
+		// Remove players who are no longer online
+		std::ostringstream cleanupQuery;
+		cleanupQuery << "DELETE FROM `players_online` WHERE `player_id` NOT IN (";
+		for (const auto &[key, player] : m_players) {
+			cleanupQuery << player->getGUID() << ",";
+		}
+		cleanupQuery.seekp(-1, std::ostringstream::cur); // Remove the last comma
+		cleanupQuery << ");";
+		g_database().executeQuery(cleanupQuery.str());
 	}
 }
 

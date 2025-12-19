@@ -1,3 +1,4 @@
+--[[
 local config = {
 	items = {
 		{ id = 35284, charges = 64400 },
@@ -67,3 +68,4 @@ end
 exerciseRewardModal:separator(" ")
 exerciseRewardModal:groupType("normal")
 exerciseRewardModal:register()
+]]

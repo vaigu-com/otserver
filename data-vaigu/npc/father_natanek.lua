@@ -24,7 +24,6 @@ local context = {
 	greetJob = JOB_MARRIAGE_BLESS,
 	jobs = { JOB_MARRIAGE, JOB_BLESS },
 	outfit = outfit,
-	dialogs = nil,
 	voices = voices,
 }
 NpcRegistry:AppendNpcData(context)

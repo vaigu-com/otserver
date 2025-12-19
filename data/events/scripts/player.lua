@@ -265,17 +265,16 @@ local immovableAid = {
 	[IMMOVABLE_ACTION_ID] = true,
 }
 
-ImmovableKeys = {}
-ImmovableKeys.__index = ImmovableKeys
-ImmovableKeys.registry = {}
-function ImmovableKeys:Add(key)
+--Items with key are immovable by default, except when inside store inbox.
+--Adding key to MovableKeys will allow item to be moved in-game, but will also allow moving it out and into the store inbox.
+MovableKeys = {}
+MovableKeys.__index = MovableKeys
+MovableKeys.registry = {}
+function MovableKeys:Add(key)
 	self.registry[key] = true
 end
-function ImmovableKeys:Has(key)
+function MovableKeys:Has(key)
 	return self.registry[key] ~= nil
-end
-do
-	ImmovableKeys:Add(IMMOVABLE_KEY)
 end
 
 local zStackTop = 255
@@ -284,11 +283,7 @@ local function isImmovable(item, fromPosition, toPosition)
 		return true
 	end
 
-	if ImmovableKeys:Has(item:getKey()) then
-		return true
-	end
-
-	if item:getCustomAttribute(HOUSE_DECORATION_STATUS) == IS_HOUSE_DECORATION then 
+	if item:isHouseDecoration() then
 		return false
 	end
 
@@ -301,18 +296,26 @@ local function isImmovable(item, fromPosition, toPosition)
 		if toPosition.z ~= zStackTop then
 			return true
 		end
-	else
+	end
+
+	if not isInStoreinbox(item) then
 		local key = item:getKey()
-		if key and key ~= "" then
-			return true
+		if key and key ~="" then
+			return not MovableKeys:Has(key) 
 		end
 	end
 
 	return false
 end
 
-HOUSE_DECORATION_STATUS = "HOUSE_DECORATION_STATUS"
-IS_HOUSE_DECORATION = true
+IS_HOUSE_DECORATION = "IS_HOUSE_DECORATION"
+
+function Item:isHouseDecoration()
+    return self:getCustomAttribute(IS_HOUSE_DECORATION)
+end
+function Item:setIsHouseDecoration(nextState)
+    self:setCustomAttribute(IS_HOUSE_DECORATION, nextState)
+end
 
 local exhaust = {}
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)

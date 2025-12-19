@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 55000
-monster.maxHealth = 55000
+monster.health = 25000
+monster.maxHealth = 25000
 monster.race = "blood"
 monster.corpse = 31654
 monster.speed = 92
@@ -71,20 +71,19 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "platinum coin", chance = 100000, maxCount = 20 },
-	{ name = "leaf star", chance = 73000, maxCount = 2 },
-	{ name = "throwing star", chance = 65000, maxCount = 6 },
+	{ name = "leaf star", chance = 73000, maxCount = 20 },
 	{ name = "hunting spear", chance = 62000 },
 	{ name = "gold ingot", chance = 48000 },
 	{ name = "blue gem", chance = 31000 },
 	{ name = "yellow gem", chance = 31000 },
 	{ name = "green crystal shard", chance = 8600 },
 	{ id = 281, chance = 28000 }, -- giant shimmering pearl (green)
-	{ name = "skull helmet", chance = 7500 },
-	{ id = 23542, chance = 7200 }, -- collar of blue plasma
+	{ name = "skull helmet", chance = 17500 },
+	{ id = 23542, chance = 77200 }, -- collar of blue plasma
 	{ name = "cobra crest", chance = 11000 },
-	{ name = "cobra boots", chance = 115 },
-	{ name = "cobra hood", chance = 120 },
-	{ name = "cobra crossbow", chance = 50 },
+	{ name = "cobra boots", chance = 2115 },
+	{ name = "cobra hood", chance = 2120 },
+	{ name = "cobra crossbow", chance = 3350 },
 }
 
 monster.attacks = {

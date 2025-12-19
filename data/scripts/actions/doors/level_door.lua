@@ -79,9 +79,9 @@ function stepInOpenDoor.onStepIn(creature, door, position, fromPosition)
 		return
 	end
 
-	local requiredLevel = tonumber(door:getKey())
+	local requiredLevel = extractRequiredLevel(door)
 	local playerLevel = creature:getLevel()
-	if playerLevel >= requiredLevel then
+	if not requiredLevel or (playerLevel >= requiredLevel) then
 		return true
 	end
 

@@ -97,6 +97,8 @@ monster.loot = {
 	{ id = 3465, chance = 500 }, -- pot
 	{ name = "rusted helmet", chance = 220 },
 	{ id = 22192, chance = 300 }, -- shamanic mask
+	{ id = 32009, chance = 100 },
+	{ id = 32100, chance = 300 },
 }
 
 monster.attacks = {

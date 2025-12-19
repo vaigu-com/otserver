@@ -10,8 +10,8 @@ pseudoQuest
 		end
 
 		for key, luaRaid in pairs(LuaRaidRegistry.registry) do
-			for key, value in pairs(luaRaid.waves) do
-				for key, creature in pairs(value.monsters) do
+			for key, wave in pairs(luaRaid.waves) do
+				for key, creature in pairs(wave.monsters) do
 					validateCreature(creature.name)
 				end
 			end
@@ -55,7 +55,7 @@ function Wave:Notification(delay, text)
 		text = text,
 	})
 
-	MissingStrings:TestAllLanaguages(text, LOCALIZERS.LuaRaids)
+	MissingStrings:TestAllLanguages(text, LOCALIZERS.LuaRaids)
 
 	return self
 end
@@ -102,14 +102,14 @@ function Wave:EnqueueCreatureSpawns(difficultyTier)
 				trySpawnRaidMonster(pos, monsterData, additionalLoot)
 			end
 		end
-	end, self.delay, self.monsters)
+	end, self.delay * 1000, self.monsters)
 end
 
 function Wave:EnqueueNotifications()
 	for _, notification in pairs(self.notifications) do
 		addEvent(function()
 			Game.broadcastMessage(notification.text, MESSAGE_STATUS_WARNING, true)
-		end, notification.delay)
+		end, notification.delay * 1000)
 	end
 end
 

@@ -132,6 +132,7 @@ local foods = {
 	[48509] = { 120, "Yum." }, -- resinous fish fin
 	[48511] = { 120, "Yum." }, -- resin parasite
 	[48544] = { 124, "Yum." }, -- wad of fairy floss
+	[32043] = { 70, "Munch." }, -- bass
 }
 
 local food = Action()
@@ -143,7 +144,7 @@ function food.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	local condition = player:getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
-	if condition and math.floor(condition:getTicks() / 1000 + (itemFood[1] * 12)) >= 1200 then
+	if condition and math.floor(condition:getTicks() / 1000 + (itemFood[1] * 12)) >= 3600 then
 		player:sendTextMessage(MESSAGE_FAILURE, "You are full.")
 		return true
 	end

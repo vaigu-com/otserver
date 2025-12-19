@@ -1,3 +1,4 @@
+--[[
 local talkaction = TalkAction("!lowloot")
 
 FORCED_BASE_LOOT = 1
@@ -20,3 +21,4 @@ end
 talkaction:separator(" ")
 talkaction:groupType("normal")
 talkaction:register()
+]]

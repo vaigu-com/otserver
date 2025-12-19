@@ -295,9 +295,19 @@ enum SpeechBubble_t {
 	SPEECHBUBBLE_HIRELING = 7,
 };
 
+// Vaigu custom
 enum MarketAction_t {
-	MARKETACTION_BUY = 0,
-	MARKETACTION_SELL = 1,
+	CREATE_BUY__ACCEPT_SELL = 1,
+	CREATE_SELL__ACCEPT_BUY = 0,
+
+	CREATE_BUY = 1,
+	CREATE_SELL = 0,
+
+	ACCEPT_SELL = 1,
+	ACCEPT_BUY = 0,
+
+	CANCEL_BUY = 0,
+	CANCEL_SELL = 1
 };
 
 enum MarketRequest_t {
@@ -1501,6 +1511,7 @@ struct MarketOffer {
 	std::string playerName;
 };
 
+/*
 struct MarketOfferEx {
 	MarketOfferEx() = default;
 	MarketOfferEx(MarketOfferEx &&other) noexcept :
@@ -1538,6 +1549,7 @@ struct HistoryMarketOffer {
 
 using MarketOfferList = std::list<MarketOffer>;
 using HistoryMarketOfferList = std::list<HistoryMarketOffer>;
+*/
 using StashItemList = std::map<uint16_t, uint32_t>;
 
 using ItemsTierCountList = std::map<uint16_t, std::map<uint8_t, uint32_t>>;
@@ -1652,13 +1664,14 @@ struct ShopBlock {
 	int32_t itemSubType {};
 	uint32_t itemBuyPrice {};
 	uint32_t itemSellPrice {};
-	int32_t itemStorageKey {};
+	std::string itemStorageKey {}; // Vaigu custom
 	int32_t itemStorageValue {};
 
 	std::vector<ShopBlock> childShop;
 	ShopBlock() = default;
 
-	explicit ShopBlock(uint16_t newItemId, std::string newName = "", int32_t newSubType = 0, uint32_t newBuyPrice = 0, uint32_t newSellPrice = 0, int32_t newStorageKey = 0, int32_t newStorageValue = 0) :
+	// Vaigu custom
+	explicit ShopBlock(uint16_t newItemId, std::string newName = "", int32_t newSubType = 0, uint32_t newBuyPrice = 0, uint32_t newSellPrice = 0, std::string newStorageKey = "", int32_t newStorageValue = 0) :
 		itemId(newItemId), itemName(std::move(newName)), itemSubType(newSubType), itemBuyPrice(newBuyPrice), itemSellPrice(newSellPrice), itemStorageKey(newStorageKey), itemStorageValue(newStorageValue) { }
 
 	bool operator==(const ShopBlock &other) const {

@@ -62,13 +62,14 @@ monster.loot = {
 	{ name = "platinum coin", chance = 97520, minCount = 5, maxCount = 9 },
 	{ id = 10454, chance = 74880, minCount = 2, maxCount = 3 },
 	{ id = 10453, chance = 74680, minCount = 3, maxCount = 6 },
-	{ id = 763, chance = 80000, minCount = 25, maxCount = 35 },
+	{ id = 763, chance = 80000, minCount = 25, maxCount = 30 },
 	{ id = 3030, chance = 88000, maxCount = 4 },
 	{ id = 10452, chance = 99730 },
 	{ name = "demonic essence", chance = 19500 },
 	{ id = 9636, chance = 95475 },
 	{ id = 818, chance = 14000 },
 	{ id = 3071, chance = 28045 },
+	{ id = 12670, chance = 28045 },
 }
 
 monster.attacks = {

@@ -77,7 +77,7 @@ public:
 	 *
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	AccountErrors_t save() const;
+	void save() const;
 
 	/**
 	 * @brief Load Account Information.
@@ -146,4 +146,17 @@ private:
 	std::string m_descriptor;
 	std::unique_ptr<AccountInfo> m_account;
 	bool m_accLoaded = false;
+};
+
+class AccountManager {
+public:
+	static std::shared_ptr<Account> getAccount(uint32_t accountId);
+
+	static void releaseAccount(uint32_t accountId) {
+		std::lock_guard<std::mutex> lock(mutex_);
+	}
+
+private:
+	static inline std::unordered_map<uint32_t, std::shared_ptr<Account>> accounts_;
+	static inline std::mutex mutex_;
 };

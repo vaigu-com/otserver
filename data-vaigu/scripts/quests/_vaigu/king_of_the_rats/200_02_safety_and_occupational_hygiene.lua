@@ -39,7 +39,7 @@ quest
 		SpawnLocks.SafetyAndOccupationalHygiene = {
 			Petrus = SpawnLock(),
 		}
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_REQUIREMENTS = {
+		SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_REQUIREMENTS = {
 			timeIsNight = function(context)
 				local timeOfDay = getTibiaTimerDayOrNight()
 				if timeOfDay == "night" then
@@ -52,12 +52,13 @@ quest
 		QuestKeyItems.SafetyAndOccupationalHygiene = {
 			GrazhenaDocument = {
 				id = 2815,
-				text = "scp420text",
+				text = "scp88text",
 				addToStore = false,
+				localizer = LOCALIZERS.SafetyAndOccupationalHygiene,
 			},
 		}
 
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS = {
+		SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_ACTIONS = {
 			turdstinAttack = function(context)
 				local pos = context.player:getPosition()
 				SpawnMonstersAtPos("Gang Member", pos, 1)
@@ -66,7 +67,7 @@ quest
 				end, 5 * 1000)
 				addEvent(function()
 					SpawnMonstersAtPos("Gang Member", pos, 2)
-					if BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_REQUIREMENTS.timeIsNight() == false then
+					if SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_REQUIREMENTS.timeIsNight() == false then
 						SpawnMonstersAtPos("Crazed Beggar", pos, 1)
 					end
 				end, 1000 * 15)
@@ -115,9 +116,16 @@ quest
 			end,
 		}
 
-		BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS = {
+		SAFETY_AND_OCCUPATIONAL_HYGIENE_PORTALS = {
 			[Storage.SafetyAndOccupationalHygiene.Portals.ToMagicianTown] = MIRKO_MAGICIANS_ANCHOR:Moved(17, 12, -5),
 			[Storage.SafetyAndOccupationalHygiene.Portals.ToPetrus] = PETRUS_CIEMIEZCA_ANCHOR:Moved(0, 0, 0),
+		}
+
+		QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene = {
+			Raccoon1 = {
+				{ outfitId = 1371, addons = 1 },
+				{ outfitId = 1372, addons = 1 },
+			},
 		}
 	end)
 	:Questlog(function(localizer)
@@ -383,7 +391,7 @@ quest
 						return true
 					end
 
-					player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getKey()])
+					player:teleportTo(SAFETY_AND_OCCUPATIONAL_HYGIENE_PORTALS[item:getKey()])
 					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
@@ -401,7 +409,7 @@ quest
 						return true
 					end
 
-					player:teleportTo(BEZPIECZENSTWO_I_HIEGIENA_PRACY_PORTALS[item:getKey()])
+					player:teleportTo(SAFETY_AND_OCCUPATIONAL_HYGIENE_PORTALS[item:getKey()])
 					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					return true
 				end
@@ -492,7 +500,7 @@ quest
 					},
 					textNoRequiredItems = "Come back when you have collected 100 small vials.",
 					expReward = 30000,
-					rewards = { ExerciseWeaponBox(500) },
+					rewards = { ExerciseWeaponBox(400) },
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
 					},
@@ -509,7 +517,7 @@ quest
 					text = "Oh wow, they are swarming!",
 					specialActionsOnSuccess = {
 						{
-							action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.turdstinAttack,
+							action = SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_ACTIONS.turdstinAttack,
 						},
 						{
 							action = SPECIAL_ACTIONS_UNIVERSAL.endDialog,
@@ -526,7 +534,7 @@ quest
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(300) },
 				},
 			})
 	end)
@@ -547,7 +555,7 @@ quest
 					},
 					specialActionsOnSuccess = {
 						{
-							action = BEZPIECZENSTWO_I_HIEGIENA_PRACY_SPECIAL_ACTIONS.feministCake,
+							action = SAFETY_AND_OCCUPATIONAL_HYGIENE_SPECIAL_ACTIONS.feministCake,
 						},
 					},
 				},
@@ -669,7 +677,10 @@ quest
 						[Storage.ThreeSramatiansAndTheDragon.Mission01] = QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek,
 						[Storage.Finished.SafetyAndOccupationalHygiene] = MISSION_FINISHED,
 					},
-					rewards = { ExerciseWeaponBox(1337) },
+					rewards = {
+						ExerciseWeaponBox(600),
+					},
+					outfitRewards = QuestRewards.OutfitsAddons.SafetyAndOccupationalHygiene.Raccoon1,
 				},
 			})
 	end)

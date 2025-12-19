@@ -81,10 +81,10 @@ monster.loot = {
 	{ id = 3027, chance = 15960 }, -- black pearl
 	{ id = 3026, chance = 15000 }, -- white pearl
 	{ id = 3098, chance = 15040 }, -- ring of healing
-	{ id = 3567, chance = 500 }, -- blue robe
-	{ id = 820, chance = 900 }, -- lightning boots
-	{ id = 8076, chance = 300 }, -- spellscroll of prophecies
-	{ id = 3059, chance = 4650 }, -- spellbook
+	{ id = 3567, chance = 5000 }, -- blue robe
+	{ id = 820, chance = 2900 }, -- lightning boots
+	{ id = 8076, chance = 3200 }, -- spellscroll of prophecies
+	{ id = 12304, chance = 1200 },
 }
 
 monster.attacks = {

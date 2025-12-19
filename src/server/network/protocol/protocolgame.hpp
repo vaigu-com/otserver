@@ -11,6 +11,7 @@
 
 #include "server/network/protocol/protocol.hpp"
 #include "game/movement/position.hpp"
+#include "io/iomarket.hpp"
 #include "utils/utils_definitions.hpp"
 
 enum class PlayerIcon : uint8_t;
@@ -403,11 +404,11 @@ private:
 	void sendMarketEnter(uint32_t depotId);
 	void updateCoinBalance();
 	void sendMarketLeave();
-	void sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &buyOffers, const MarketOfferList &sellOffers, uint8_t tier);
-	void sendMarketAcceptOffer(const MarketOfferEx &offer);
-	void sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, const MarketOfferList &sellOffers);
-	void sendMarketCancelOffer(const MarketOfferEx &offer);
-	void sendMarketBrowseOwnHistory(const HistoryMarketOfferList &buyOffers, const HistoryMarketOfferList &sellOffers);
+	void sendMarketBrowseItem(uint16_t itemId, const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers, uint8_t tier);
+	void sendMarketAcceptOffer(const MarketActiveOffer &offer, const uint32_t newAmount);
+	void sendMarketBrowseOwnOffers(const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers);
+	void sendMarketCancelOffer(const MarketActiveOffer &offer);
+	void sendMarketBrowseOwnHistory(const MarketHistoricOfferList &buyOffers, const MarketHistoricOfferList &sellOffers);
 	void sendMarketDetail(uint16_t itemId, uint8_t tier);
 	void sendTradeItemRequest(const std::string &traderName, const std::shared_ptr<Item> &item, bool ack);
 	void sendCloseTrade();

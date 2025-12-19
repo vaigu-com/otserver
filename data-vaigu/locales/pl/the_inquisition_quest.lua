@@ -17,7 +17,7 @@ return {
 	["Go back to Storkus and ask for a mission."] = "Wroc do Storkusa i popros o misje.",
 	["Now Storkus wants you to kill a vampire lord, The Count. The Count is located deep under the forgotten cemetery near the hunter camp. To summon The Count, you must use the coffin in the center of the room. Kill him and bring The Ring of the Count to Storkus."] = "Teraz Storkus chce, abys zabil Wampirzego Lorda - The Count. The Count znajduje sie gleboko pod zapomnianym cmentarzem niedaleko obozu hunterow. Aby przywolac The Count, musisz uzyc trumny na srodku pomieszczenia. Zabij go i przynies Ring of the Count Storkusowi.",
 	["Kill The Count and bring his ring to Storkus, and then ask for a mission."] = "Zabij The Count i przynies Storkusowi jego pierscien, a nastepnie popros o misje.",
-	["Return to Henricus and tell him that you've finished your job here."] = "Wroc do Henricusa i powiedz mu, ze skonczyles robote.",
+	["Return to Storkus and tell him that you've finished your job here."] = "Wroc do Henricusa i powiedz mu, ze skonczyles robote.",
 	["Get back to Sybir and report your mission to Henricus."] = "Wroc na Sybir i zareportuj misje Henricusowi.",
 	["Mission 4: The Haunted Ruin"] = "Misja 4: Nawiedzony Zamek",
 	["Henricus will give you a Special Flask (vial of holy water). You can find some abandoned pirate ruins near hero village in the jungle. Use this vial of holy water on some spot in the haunted ruin to drive out the evil being."] = "Henricus da ci Special Flask. Znajdz opuszczone ruiny piratow niedaleko wioski Herosow w dzungli. Uzyj tej fiolki swietej wody w nawiedzonej ruinie, aby wygonic zlego ducha.",

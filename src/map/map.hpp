@@ -67,7 +67,7 @@ public:
 	 * Save a map.
 	 * \returns true if the map was saved successfully
 	 */
-	static bool save();
+	static void save();
 
 	/**
 	 * Get a single tile.

@@ -821,7 +821,7 @@ quest
 				local E = EAST
 				local S = SOUTH
 
-				local progressStorage = Storage.DesertQuestOne.DirectionalPortal
+				local progressStorage = Storage.DesertQuestOne.Puzzles.DirectionalPortalPuzzle.Tile
 				local labyrinthCenter = DESERT_QUEST_ONE_ANCHOR:Moved({ x = -115, y = 138, z = 2 })
 				local moveOrder = { E, N, W, N, W, S, W, S, E, S, E }
 
@@ -1341,13 +1341,15 @@ quest
 
 						if tile then
 							tile:remove()
-							Game.createItem(swapid, 1, pos)
+							id = swapid
 						elseif swaptile then
 							swaptile:remove()
-							Game.createItem(id, 1, pos)
-						elseif not swaptile and not tile then
-							Game.createItem(id, 1, pos)
 						end
+
+						if id == 0 then
+							return
+						end
+						Game.createItem(id, 1, pos)
 					end
 					return true
 				end

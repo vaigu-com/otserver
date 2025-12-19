@@ -79,49 +79,42 @@ monster.loot = {
 	{ name = "great spirit potion", chance = 60000, minCount = 10, maxCount = 35 },
 	{ name = "strong mana potion", chance = 60000, minCount = 20, maxCount = 35 },
 
-	--[[{ name = "small diamond", chance = 25000, minCount = 3, maxCount = 9 },
-	{ name = "small emerald", chance = 25000, minCount = 3, maxCount = 9 },
-	{ name = "small ruby", chance = 25000, minCount = 3, maxCount = 9 },
-	{ name = "small sapphire", chance = 25000, minCount = 3, maxCount = 9 },
-	{ name = "small amethyst", chance = 25000, minCount = 3, maxCount = 9 },]]
-
 	{ name = "blue gem", chance = 12000 },
 	{ id = 3039, chance = 12000 }, -- red gem
 	{ name = "violet gem", chance = 12000 },
 	{ name = "green gem", chance = 12000 },
 
 	-- Specific loot
-	{ id = 6569, chance = 60000, maxCount = 20 }, --candy -->
-	{ id = 5710, chance = 20000 }, --light shovel -->
-	{ id = 646, chance = 20000 }, --elvenhair rope -->
-	{ id = 8177, chance = 60000, maxCount = 10 }, -- yummi worms -->
-	{ id = 3599, chance = 60000, maxCount = 10 }, -- candy cane -->
-	{ id = 12519, chance = 10000 }, -- slug drug -->
-	{ id = 12548, chance = 20000 }, -- bag of apple slices -->
-	{ id = 12549, chance = 12000 }, -- bamboo leaves -->
-	{ id = 12550, chance = 6000 }, -- golden fir cone -->
-	{ id = 5907, chance = 20000 }, -- slingshot -->
-	{ id = 17858, chance = 6000 }, -- pijawka -->
-	{ id = 9605, chance = 15000 }, -- bp -->
-	{ id = 10202, chance = 15000 }, -- bp -->
-	{ id = 16100, chance = 15000 }, -- bp -->
-	{ id = 9604, chance = 15000 }, -- bp -->
-	{ id = 2991, chance = 10000 }, -- lalka -->
-	{ id = 3553, chance = 10000 }, -- bunny -->
+	{ id = 6569, chance = 60000, maxCount = 20 }, 
+	{ id = 5710, chance = 20000 }, 
+	{ id = 646, chance = 20000 }, 
+	{ id = 8177, chance = 60000, maxCount = 10 }, 
+	{ id = 3599, chance = 60000, maxCount = 10 }, 
+	{ id = 12519, chance = 10000 }, 
+	{ id = 12548, chance = 20000 }, 
+	{ id = 12549, chance = 12000 }, 
+	{ id = 12550, chance = 6000 }, 
+	{ id = 5907, chance = 20000 }, 
+	{ id = 17858, chance = 6000 }, 
+	{ id = 9605, chance = 15000 }, 
+	{ id = 10202, chance = 15000 }, 
+	{ id = 16100, chance = 15000 }, 
+	{ id = 9604, chance = 15000 }, 
+	{ id = 2991, chance = 10000 }, 
+	{ id = 3553, chance = 10000 }, 
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 40, attack = 90 },
+	{ name = "melee", interval = 2000, chance = 100, skill = 4, attack = 40 },
 	{ name = "effect", interval = 2000, chance = 12, length = 7, spread = 3, target = false, effect = CONST_ME_POISONAREA },
-	-- poison
-	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -1100, maxDamage = -2200, radius = 6, effect = CONST_ME_INSECTS, target = false },
-	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -250, length = 6, spread = 2, effect = CONST_ME_POISONAREA, target = false },
+	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -10, maxDamage = -20, radius = 6, effect = CONST_ME_INSECTS, target = false },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -10, maxDamage = -20, length = 6, spread = 2, effect = CONST_ME_POISONAREA, target = false },
 	{ name = "drunk", interval = 2000, chance = 20, radius = 8, effect = CONST_ME_STUN, target = false, duration = 5000 },
 	{ name = "effect", interval = 2000, chance = 14, length = 6, spread = 3, effect = CONST_ME_SOUND_RED, target = false },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "rat" },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "rotworm" },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "snake" },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -50, maxDamage = -100, radius = 8, effect = CONST_ME_MAGIC_GREEN, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -5, maxDamage = -15, radius = 8, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.defenses = {
@@ -153,12 +146,6 @@ monster.immunities = {
 }
 
 mType.onThink = function(monster, interval) end
-
-mType.onSpawn = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
 
 mType.onDisappear = function(monster, creature) end
 

@@ -592,33 +592,6 @@ function Player:removeAll(itemId)
 	return count
 end
 
-local function bossKVScope(bossNameOrId)
-	local mType = MonsterType(bossNameOrId)
-	if not mType then
-		logger.error("bossKVScope - Invalid boss name or id: " .. bossNameOrId)
-		return false
-	end
-	return "boss.cooldown." .. toKey(tostring(mType:raceId()))
-end
-
-function Player:getBossCooldown(bossNameOrId)
-	local scope = bossKVScope(bossNameOrId)
-	if not scope then
-		return false
-	end
-	return self:kv():get(scope) or 0
-end
-
-function Player:setBossCooldown(bossNameOrId, time)
-	local scope = bossKVScope(bossNameOrId)
-	if not scope then
-		return false
-	end
-	local result = self:kv():set(scope, time)
-	self:sendBosstiaryCooldownTimer()
-	return result
-end
-
 local encounterCooldownScope = Scope("encounter", "cooldown")
 ---@param encounterData EncounterData
 ---@return unknown
@@ -648,8 +621,32 @@ function Player:setEncounterLockout(encounterData, expiry)
 	return true
 end
 
-function Player:canFightBoss(bossNameOrId)
-	local cooldown = self:getEncounterLockout(bossNameOrId)
+local function bossKVScope(bossNameOrId)
+	local mType = MonsterType(bossNameOrId)
+	if not mType then
+		logger.error("bossKVScope - Invalid boss name or id: " .. bossNameOrId)
+		return false
+	end
+	return "boss.cooldown." .. toKey(tostring(mType:uniqueName()))
+end
+function Player:getBossCooldown(bossNameOrId)
+	local scope = bossKVScope(bossNameOrId)
+	if not scope then
+		return 0
+	end
+	return math.max(self:getStorageValueByKey(scope), 0)
+end
+function Player:setBossCooldown(bossNameOrId, time)
+	local scope = bossKVScope(bossNameOrId)
+	if not scope then
+		return false
+	end
+	local result = self:setStorageValueByKey(scope, time)
+	self:sendBosstiaryCooldownTimer()
+	return result
+end
+function Player:canFightBoss(bossName)
+	local cooldown = self:getBossCooldown(bossName)
 	return cooldown <= os.time()
 end
 
@@ -667,7 +664,7 @@ function Player.setCollectionTokens(self, value)
 	self:setStorageValueByKey(Storage.DailyRewardShrine.CollectionTokensCount, value)
 end
 
--- Up to 6 days; impacts pz bonuses
+-- 0 through 6, determines next reward
 function Player.getDayStreak(self)
 	return math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreak), 0)
 end
@@ -675,7 +672,7 @@ function Player.setDayStreak(self, streakDays)
 	self:setStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreak, streakDays)
 end
 
--- Endless streak; just cosmetic number
+-- Endless streak; impacts pz bonuses; no effect except cosmetic beyond 7
 function Player.getStreakLevel(self)
 	local streak = math.max(self:getStorageValueByKey(Storage.DailyRewardShrine.ConsecutiveDaysStreakEndless) or 0, 0)
 	return streak

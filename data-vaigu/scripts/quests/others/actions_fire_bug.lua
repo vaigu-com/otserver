@@ -14,10 +14,10 @@ local action = Action()
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local removeItem = true
 	-- Sezon na Jelenie
-	if target.itemid == 2742 and player:getStorageValueByKey(Storage.WayOfTheDruid.DeerSeason) == 1 then
+	if target.itemid == 2742 and player:getStorageValueByKey(Storage.TheWayOfADruid.DeerSeason) == 1 then
 		if target.uid == 11008 or target.uid == 11009 then
 			toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-			player:setStorageValueByKey(Storage.WayOfTheDruid.DeerSeason, 2)
+			player:setStorageValueByKey(Storage.TheWayOfADruid.DeerSeason, 2)
 		else
 			removeItem = false
 			player:say("To nie te.", TALKTYPE_MONSTER_SAY)

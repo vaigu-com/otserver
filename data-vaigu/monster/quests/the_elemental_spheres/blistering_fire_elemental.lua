@@ -67,6 +67,7 @@ monster.loot = {
 	{ name = "gold coin", chance = 12500, maxCount = 60 },
 	{ name = "glimmering soil", chance = 2500 },
 	{ name = "wand of draconia", chance = 1250 },
+	{ id = 946, chance = 100 },
 }
 
 monster.attacks = {

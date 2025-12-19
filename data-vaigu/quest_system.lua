@@ -94,23 +94,23 @@ end
 function QuestFactory.Script(script)
 	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
 end
-function QuestFactory.OnUseDeclarations(items)
-	return { items = items, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
+function QuestFactory.OnUseDeclarations(contexts)
+	return { contexts = contexts, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
 end
 function Quest:Script(script)
 	table.insert(self.scripts, { script = script })
 	return self
 end
-function Quest:OnUseDeclaration(items, anchor) --Unused
-	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
+function Quest:OnUseDeclaration(contexts) --Unused
+	table.insert(self.onUseDeclarations, { contexts = contexts })
 	return self
 end
 
 ---@private
 function Quest:AddDialog(context)
 	local names, dialogs = context.names, context.dialogs
-	local mission, state = context.mission, context.state
-	if not mission then
+	local missionKey, state = context.mission, context.state
+	if not missionKey then
 		logger.debug(T(":quest: missing mission for dialog", { quest = self.name }))
 	end
 	if not state then
@@ -127,7 +127,7 @@ function Quest:AddDialog(context)
 		for requredKeywords, actionsAndRequirements in pairs(dialogs) do
 			for key, value in pairs(actionsAndRequirements) do
 				if type(value) == "string" then
-					MissingStrings:TestAllLanaguages(value, self.localizer)
+					MissingStrings:TestAllLanguages(value, self.localizer)
 				end
 			end
 		end
@@ -135,14 +135,25 @@ function Quest:AddDialog(context)
 	if type(names) ~= "table" then
 		names = { names }
 	end
+	QuestRewards.Items[self.localizer] = QuestRewards.Items[self.localizer] or {}
+	for key, dialog in pairs(context.dialogs) do
+		if dialog.rewards then
+			for key, itemData in pairs(dialog.rewards) do
+				table.insert(QuestRewards.Items[self.localizer], itemData)
+			end
+		end
+	end
 
-	for _, name in pairs(names) do
-		self.npcs[name] = self.npcs[name] or {}
-		self.npcs[name].missions = self.npcs[name].missions or {}
-		self.npcs[name].missions[mission] = self.npcs[name].missions[mission] or {}
-		self.npcs[name].missions[mission].states = self.npcs[name].missions[mission].states or {}
-		self.npcs[name].missions[mission].states[state] = dialogs
-		self.npcs[name].missions[mission].localizer = self.localizer
+	for _, npcName in pairs(names) do
+		self.npcs[npcName] = self.npcs[npcName] or {}
+		self.npcs[npcName].missions = self.npcs[npcName].missions or {}
+		self.npcs[npcName].missions[missionKey] = self.npcs[npcName].missions[missionKey] or {}
+		self.npcs[npcName].missions[missionKey].states = self.npcs[npcName].missions[missionKey].states or {}
+		self.npcs[npcName].missions[missionKey].states[state] = dialogs
+		self.npcs[npcName].missions[missionKey].localizer = self.localizer
+		if state == MISSION_NOT_STARTED then
+			QuestRegistry:AppendStartingNpcs(self.name, missionKey, npcName)
+		end
 	end
 
 	return self
@@ -155,12 +166,13 @@ function Quest:AddScript(context)
 	table.insert(self.scripts, { script = script, mission = mission, state = state })
 	return self
 end
----@private
-function Quest:AddOnUseDeclaration(context)
-	local items, anchor = context.items, context.anchor
-	local mission, state = context.mission, context.state
 
-	for _, item in pairs(items) do
+---@private
+function Quest:AddOnUseDeclaration(onUseDeclaration)
+	local contexts = onUseDeclaration.contexts
+	local mission, state = onUseDeclaration.mission, onUseDeclaration.state
+
+	for _, item in pairs(contexts) do
 		-- default: onUse requiredState is exact mission state it was declared in
 		if not item.requiredState then
 			item.requiredState = {}
@@ -172,9 +184,27 @@ function Quest:AddOnUseDeclaration(context)
 			item.nextState = item.nextState or {}
 			item.nextState[item.key] = item.nextState[item.key] or MISSION_FINISHED
 		end
+
+		for _, context in pairs(contexts) do
+			for key, itemData in pairs(context.rewards or {}) do
+				local id = itemData.id
+				if not id and key > 100 then
+					id = key
+				end
+				if not id then
+					id = 0
+				end
+				for key, innerItem in pairs(itemData) do
+					if type(innerItem) == "table" and innerItem.id then
+						RewardsRegistry.registry.items[innerItem.id] = (RewardsRegistry.registry.items[innerItem.id] or 0) + 1
+					end
+				end
+				RewardsRegistry.registry.items[id] = (RewardsRegistry.registry.items[id] or 0) + 1
+			end
+		end
 	end
 
-	table.insert(self.onUseDeclarations, { items = items, anchor = anchor })
+	table.insert(self.onUseDeclarations, { contexts = contexts })
 	return self
 end
 --#endregion
@@ -248,12 +278,53 @@ function QuestRegistry:UnpackStateData()
 	end
 end
 
+local questMissionNpc = {}
+function QuestRegistry:AppendStartingNpcs(questName, missionKey, npcName)
+	questMissionNpc[questName] = questMissionNpc[questName] or {}
+	if questMissionNpc[questName][missionKey] then
+		logger.warn(T("[QuestRegistry:AppendStartingNpcs] Duplicate starting npc for quest :quest:, mission :mission:. Previous npc: :previousNpc:, next npc: :nextNpc:", { quest = questName, mission = missionKey, previousNpc = questMissionNpc[questName][missionKey], nextNpc = npcName }))
+	end
+	questMissionNpc[questName][missionKey] = npcName
+end
+
+function QuestRegistry:SerializeStartingNpcs()
+	local serializableStr = ""
+	for questName, missions in pairs(questMissionNpc) do
+		serializableStr = serializableStr .. T(":questName:\n", { questName = questName })
+		for missionName, npcName in pairs(missions) do
+			local positionString = ""
+			local npc = Creature(npcName)
+			if npc then
+				positionString = T("// Npc position: :pos:", { pos = npc:getPosition():ToString() })
+			else
+				positionString = "// Spawned via script"
+			end
+			serializableStr = serializableStr .. T("\t:missionName:\tStartingNpcName: :startingNpcName::positionString:\n", { missionName = missionName, startingNpcName = npcName, positionString = positionString })
+		end
+	end
+	SerializeToUtilFolder(serializableStr, "starting_npcs.txt")
+end
+
+function QuestRegistry:SerializeQuestMissions()
+	local serializableStr = ""
+	for _, quest in pairs(Questlog) do
+		serializableStr = serializableStr .. quest.name .. "\n"
+		local missions = quest.missions
+		for _, mission in pairs(missions) do
+			serializableStr = serializableStr .. "_#" .. mission.name .. "#" .. mission.storage .. "\n"
+		end
+	end
+	SerializeToUtilFolder(serializableStr, "quest_missions.txt")
+end
+
 function QuestRegistry.NormalizeQuestlog()
 	local normalizeQuestlogStartup = GlobalEvent("Quest/NormalizeQuestlog")
 	function normalizeQuestlogStartup.onStartup()
 		for _, quest in pairs(Questlog) do
 			quest.questId = NextQuestId()
 			IdToQuest[quest.questId] = quest
+			NameToQuest[quest.name] = quest
+			MissingStrings:TestAllLanguages(quest.name, quest.localizer)
 			for _, mission in pairs(quest.missions) do
 				local min, max
 				if mission.states then
@@ -269,15 +340,19 @@ function QuestRegistry.NormalizeQuestlog()
 				mission.questId = quest.questId
 				mission.questName = quest.name
 
-				for _, desc in pairs(mission.states or {}) do
-					if type(desc) == "string" then
-						MissingStrings:TestAllLanaguages(desc, quest.localizer)
+				MissingStrings:TestAllLanguages(mission.name, quest.localizer)
+				for state, stateDescription in pairs(mission.states or {}) do
+					if type(stateDescription) == "string" then
+						MissingStrings:TestAllLanguages(stateDescription, quest.localizer)
 					end
 				end
 
 				StorageToMission[mission.storage] = mission
 				IdToMission[mission.missionId] = mission
 				Game.linkMissionToStorages(mission.storage, mission.linkedStorages or {})
+				if not (mission.states or mission.description) then
+					logger.warn(T("[QuestRegistry.NormalizeQuestlog] Mission :missionName: of quest :questName: has no states and no description", { missionName = mission.name, questName = quest.name }))
+				end
 			end
 		end
 	end
@@ -327,8 +402,8 @@ function QuestRegistry:RegisterOnUseDeclarations()
 	local onUseDeclarations = GlobalEvent("Quest/RegisterOnUseDeclarations")
 	function onUseDeclarations.onStartup()
 		for _, quest in pairs(self.registry) do
-			for _, itemsData in pairs(quest.onUseDeclarations) do
-				RegisterOnUseDeclaration(itemsData.items, itemsData.anchor)
+			for _, onUseDeclaration in pairs(quest.onUseDeclarations) do
+				RegisterOnUseDeclarations(onUseDeclaration.contexts)
 			end
 		end
 	end

@@ -20,7 +20,7 @@ return {
 	["Syberia"] = "Sybir",
 	["Prague North"] = "Praga Polnoc",
 	["Maioor'ka"] = "Maioor'ka",
-	["Bydgoshch"] = "Bydgoshch",
+	["Byggoshch"] = "Byggoshch",
 	["Ornuld Camp"] = "Oboz Ornulda",
 	["Heart of the Jungle"] = "Serce Dzungli",
 	["Mundral Daycare"] = "Folwark Mundrala",

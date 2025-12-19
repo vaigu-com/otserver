@@ -179,9 +179,7 @@ class PlayerFunctions {
 	static int luaPlayerGetStorageValue(lua_State* L);
 	static int luaPlayerSetStorageValue(lua_State* L);
 
-	static int luaPlayerCanAddItem(lua_State* L); // Vaigu custom
 	static int luaPlayerAddItem(lua_State* L);
-	static int luaPlayerCanAddItemEx(lua_State* L); // Vaigu custom
 	static int luaPlayerAddItemEx(lua_State* L);
 	static int luaPlayerAddItemStash(lua_State* L);
 	static int luaPlayerRemoveStashItem(lua_State* L);
@@ -412,6 +410,11 @@ class PlayerFunctions {
 
 	// Vaigu custom
 	static int luaPlayerReloadKnownNpcs(lua_State* L);
+
+	// Vaigu custom
+	static int luaPlayerSendMagicEffect(lua_State* L);
+	static int luaPlayerRemoveMagicEffect(lua_State* L);
+
 
 	friend class CreatureFunctions;
 };

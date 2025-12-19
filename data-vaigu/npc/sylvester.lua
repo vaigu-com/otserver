@@ -8,11 +8,13 @@ local outfit = {
 	lookAddons = 3,
 }
 local shop = { { itemName = "fireworks rocket", 6576, buy = 3 } }
+
 local context = {
 	name = name,
 	shop = shop,
 	outfit = outfit,
 	customDialogs = customDialogs,
 	voices = voices,
+	spawnedByScript = true,
 }
 NpcRegistry:AppendNpcData(context)

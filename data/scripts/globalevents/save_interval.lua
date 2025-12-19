@@ -28,7 +28,7 @@ function save.onTime(interval)
 	end
 	return not configManager.getBoolean(configKeys.TOGGLE_SAVE_INTERVAL)
 end
-if SAVE_INTERVAL_TIME ~= 0 then
+if SAVE_INTERVAL_TIME_SECONDS ~= 0 then
 	save:interval(2000)
 else
 	return logger.error(string.format("[save.onTime] - Save interval type '%s' is not valid, use 'second', 'minute' or 'hour'", SAVE_INTERVAL_TYPE))
@@ -36,10 +36,19 @@ end
 save:register()
 ]]
 
-local save = GlobalEvent("save")
-function save.onTime(interval)
-	saveServer()
-	return true
+local registerAutoSave = GlobalEvent("save_interval.lua")
+function registerAutoSave.onStartup()
+	if SAVE_INTERVAL_TIME_SECONDS <= 0 then
+		logger.warn("[registerAutoSave.onStartup] saving each interval is disabled because: SAVE_INTERVAL_TIME_SECONDS is <= 0")
+		return
+	end
+
+	local save = GlobalEvent("save")
+	function save.onTime(interval)
+		saveServer()
+		return true
+	end
+	save:interval(SAVE_INTERVAL_TIME_SECONDS * 1000)
+	save:register()
 end
---save:interval(2000)
---save:register()
+registerAutoSave:register()

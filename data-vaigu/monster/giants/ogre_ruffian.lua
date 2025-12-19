@@ -87,6 +87,8 @@ monster.loot = {
 	{ name = "metal spats", chance = 1440 },
 	{ name = "skull fetish", chance = 1440 },
 	{ name = "stone skin amulet", chance = 4320 },
+	{ id = 32009, chance = 100 },
+	{ id = 32100, chance = 300 },
 }
 
 monster.attacks = {

@@ -84,6 +84,7 @@ monster.loot = {
 	{ name = "crystal coin", chance = 1000 },
 	{ id = 3036, chance = 2000 },
 	{ id = 11514, chance = 25000, maxCount = 5 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

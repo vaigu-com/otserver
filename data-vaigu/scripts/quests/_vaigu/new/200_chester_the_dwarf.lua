@@ -47,6 +47,16 @@ quest
 				desc = "This bag is sealed with the power of light. Gandalf is the only one who can reach into it.",
 			},
 		}
+		QuestRewards.OutfitsAddons.ChesterTheDwarf = {
+			CaveExplorer1 = {
+				{ outfitId = 574, addons = 1 },
+				{ outfitId = 575, addons = 1 },
+			},
+			CaveExplorer2 = {
+				{ outfitId = 574, addons = 2 },
+				{ outfitId = 575, addons = 2 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -114,10 +124,7 @@ quest
 					},
 					textNoRequiredItems = "Come back when you've collected all the items.",
 					expReward = 26000,
-					outfitRewards = {
-						{ outfitId = 574, addon = 1 },
-						{ outfitId = 575, addon = 1 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ChesterTheDwarf.CaveExplorer1,
 				},
 			})
 	end)
@@ -147,7 +154,7 @@ quest
 			}),
 			QuestFactory.Dialog("Ornuld", {
 				[{ "mission", "misja", "document", "documents", "dokument", "identity", "tozsamosc" }] = {
-					text = "As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 10,000 gp. Do you already have all {materials} and the payment?",
+					text = "As usual: Fairly good quality paper, may be a spellbook. Additionally an inkwell and a fee of 100 gp. Do you already have all {materials} and the payment?",
 				},
 				[{ "yes", "tak", "materials", "skladniki" }] = {
 					text = "Here's the document for you.",
@@ -163,7 +170,7 @@ quest
 					},
 					requiredMoney = 100,
 					textNoRequiredItems = "Get back when you get all the items.",
-					textNoRequiredMoney = "Get back when you get all the items.",
+					textNoRequiredMoney = "You dont have enough money.",
 				},
 			})
 	end)
@@ -179,10 +186,7 @@ quest
 						[Storage.ChesterTheDwarf.Mission02] = MISSION_FINISHED,
 						[Storage.ChesterTheDwarf.Mission03] = QuestState.ChesterTheDwarf.Mission03.AskChesterForMission,
 					},
-					outfitRewards = {
-						{ outfitId = 574, addon = 3 },
-						{ outfitId = 575, addon = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.ChesterTheDwarf.CaveExplorer2,
 					rewards = { { id = 3035, count = 7 } },
 					expReward = 85000,
 					textNoRequiredItems = "Don't you have a new document for me yet? I'll wait then.",
@@ -254,6 +258,9 @@ quest
 			QuestFactory.Dialog("Chester the Dwarf", {
 				[{ "oprocz tego ludzie", "aside from that people" }] = {
 					text = "Yeah, its our key.",
+				},
+				[{ "passphrase", "haslo" }] = {
+					text = "This is our secret passphrase: {aside from that people}.",
 				},
 			}),
 			QuestFactory.Script(function(missionState)
@@ -329,7 +336,7 @@ quest
 					},
 					rewards = { { id = 11687 } },
 				},
-				[{ "Elite Draken Helmet", "elite darken helmet" }] = {
+				[{ "Elite Draken Helmet", "elite draken helmet" }] = {
 					requiredItems = { QuestKeyItems.ChesterTheDwarf.GandalfBag },
 					text = "Right, it was the Elite Draken Helmet. Here's your reward.",
 					nextState = {

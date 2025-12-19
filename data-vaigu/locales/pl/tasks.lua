@@ -9,7 +9,7 @@ return {
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Siemaneczko, widze ze zadanie o ktore cie prosilem zostalo wykonane. Nalezy ci sie {nagroda}!",
 	["Finish one of {tasks}, then we can talk about reward."] = "Ukoncz jakis z {taskow}, to porozmawiamy o nagrodzie.",
 	["TASKS_HELP_WINDOW_INFO"] = function()
-		return T("Za wykonywanie taskow dostajesz nagrody w postaci: expa, pieniedzy, osiagniec od CV oraz mozliwosci walki z bossami.\n\nMozesz posiadac jednoczesnie :maxTasks: zadania.", { maxTasks = #Storage.Tasks.PlayerOngoingTasks })
+		return T("Za wykonywanie taskow dostajesz nagrody w postaci: expa, pieniedzy, osiagniec od CV oraz mozliwosci walki z bossami.\n\nMozesz posiadac jednoczesnie :maxTasks: zadania.", { maxTasks = #Storage.Task.PlayerOngoingTasks })
 	end,
 	["TASK_REWARDS_DIALOG"] = function(context)
 		local task = context.task
@@ -25,7 +25,7 @@ return {
 		return T("Task na :name: zostal zakonczony! Mozesz zmierzyc sie z bossem oraz udac do npc po nagrode.", { name = context.task.name })
 	end,
 	["YOU_HAVE_MAX_ONGOING_TASKS"] = function()
-		local maxOngoingTasks = #Storage.Tasks.PlayerOngoingTasks
+		local maxOngoingTasks = #Storage.Task.PlayerOngoingTasks
 		return T("Posiadasz :maxOngoingTasks: zadania. {Anuluj} je, aby wziac nowe.", { maxOngoingTasks = maxOngoingTasks })
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
@@ -53,7 +53,7 @@ return {
 	end,
 	--Task Points
 	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local points = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		return T("Aktualnie posiadasz :points: punktow taskow.  Mozesz wymienic je na kilka {trofeow}, {wierzchowca} oraz {mozliwosc} nasycania na najwyzszy poziom.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -63,7 +63,7 @@ return {
 		return T("Czy chcesz kupic :name: za :cost: punktow taskowych?", { name = context.msg:lower(), cost = context.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local current = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		local required = context.cost or PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("Nie posiadasz odpowiedniej liczby punktow taskowych. Potrzebuejsz :required: punktow aby to kupic. Posiadasz :current: punktow, co oznacza, ze potrzebuejesz jeszcze :diff: punktow.", { current = current, required = required, diff = diff })
@@ -152,59 +152,67 @@ return {
 		return T("Walka z :bossName:", { bossName = context.task.bossName })
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION"] = function(context)
-		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Tasks):Get(context.task.name)
+		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Task):Get(context.task.name)
 		local bossAdmits = math.max(context.player:getStorageValueByKey(context.task.bossAdmitCounter), 0)
 		local admitsCountSuffix = T(" \nMozesz zmierzyc sie z bossem :bossAdmits: razy.", { bossAdmits = bossAdmits })
 		return bossLocationDescription .. admitsCountSuffix
 	end,
+	["Ancient Scarabs"] = "Najgrozniejszy z skarabeuszy swoje legowisko posiada pod wysuszonymi polami na poludniu stepow.",
 	["Apes"] = "Golira mieszka w malej osadzie malp na wschodniej czesci pasma gor w dzungli.",
+	["Barbarians"] = "Z tego co slyszalem, Szefowa Klanu Barbarzyncow kitra sie na pietrze w ktorejs z chat w ich wiosce na Syberii.",
+	["Behemoths"] = "Grota olbrzymich Behemothow znajduje sie pod bagnami na zachodzie dzungli. Jesli nie brak ci odwagi mozesz poszukac tam Stonecrackera.",
+	["Bonebeasts"] = "Podobno wejscia do jego kryjowki strzega pustynne Wyrmy, jednak zdaje sie, ze to tylko pogloski.",
+	["Brimstone Bug"] = "W podziemiach pod terenami skazonymi kwasem na polnocy Stepu radioaktywne Brimstone Bugi czuja sie doskonale, Sulphur Scuttler musi sie tam ukrywac.",
 	["Carniphilas"] = "Deathbine ulokowal sie gdzies przy skalach na bambusowej polanie, ktora jest siedliskiem Terror Birdow oraz Carniphili.",
 	["Crocodiles"] = "Jego legowisko podobno znajduje sie pod wodospadem, a w okolicy kreci sie sporo krokodyli.",
-	["Cyclops"] = "Stary cyklop widywany byl w jaskini przy polnocnej bramie Mirko Town.",
-	["Dragons"] = "Stara smoczyca przesiaduje w wulkanie na polnocy Mirko Town.",
-	["Gargoyles"] = "Grota gargulca znajduje sie na szczycie gor zamieszkalych przez cyklopy.",
-	["Mammoths"] = "Wejscie do groty Bloodtuska znajduje sie na powierzchni Sybiru.",
-	["Minotaurs"] = "Jeden z przywodcow minotaurow podobno ukrywa sie w ich osadzie na polnoc od Mirko Town.",
-	["Mutated Humans"] = "Jego kryjowka znajduje sie pod cmentarzem we wiosce zmutowancow.",
-	["Orcs"] = "Bibby najczesciej przesiadywal w polnocnej fortecy orkow, zapewne nadal tam jast.",
-	["Rotworms"] = "Odnajdz legowisko White Pale pod MirkoTown.",
-	["Stone Golems"] = "Grorlam ukrywa sie w malej jaskini zasiedlonej przez zwyiolaki na polnocny wschod od Hurghady.",
-	["Tarantulas"] = "W pewnych ruinach na zachod Kongo zaleglo sie sporo tarantul, Hide sie tam schowal.",
-	["Terramites"] = "Thermite ukrywa sie w malej dziurze na wschodzie pustyni.",
-	["Tortoises"] = "Thorner swoja kryjowke posiada w polnocno zachodniej czesci dzunglii.",
-	["Weak undeads"] = "Cmentarz na wschodzie Mirko Town jest czasem nawiedzany przez Rippera. Pewnie gdzies tam sie ukrywa.",
-	["Ancient Scarabs"] = "Najgrozniejszy z skarabeuszy swoje legowisko posiada pod wysuszonymi polami na poludniu stepow.",
-	["Bonebeasts"] = "Podobno wejscia do jego kryjowki strzega pustynne Wyrmy, jednak zdaje sie, ze to tylko pogloski.",
 	["Crystal Spiders"] = "Legowisko Bloodweba znajduje sie na pewnych skalach lezacych na polnocy Sybiru.",
-	["Giant Spiders"] = "Na poludnie od Knurowa zaleglo sie sporo pajakow, byc moze tam znajduje sie najgrozniejszy z nich.",
-	["Ice Golems"] = "Teleport do komnaty Shardheada znajduje sie na polnocy Sybiru, w okolicy kreca sie Crystal Spidery oraz Ice Golemy.",
-	["Lancer Beetles"] = "Smiercionosny robal ukrywa sie pod skazonym terenem na polnocy stepow.",
-	["Mutated Bats"] = "Skazone gory staly sie legowiskiem zmutowanych nietoperzy oraz szczurow, Bruise Payne ukrywa sie w skalach.",
-	["Mutated Rats"] = "Wejscie do kryjowki Esmeraldy znajduje sie gdzies na skalach zamieszkalych przez zmutowane sczury w centrum stepow.",
-	["Mutated Tigers"] = "Wejscie do tygrysiej nory znajduje sie w jednej z gor zasiedlonych przez tygrysy na stepach.",
-	["Necromancers"] = "Komnata wladcy nekromantow znajduje sie gdzies pod cmentarzem mirko town.",
-	["Ogres"] = "Mistrz ogrow mieszka w ich najwiekszej wiosce na stepie.",
-	["Pirates"] = "Kapitan piratow z pewnoscia ukrywa sie gdzies na ich wyspie.",
-	["Stampors"] = "Tromphonyte ukrywa sie w jaskiniach zasiedlonych przez Stampory.",
-	["Wailing Widows"] = "Plomienista pajeczyca posiada swoja grote pod poludniowo zachodnim kancem pustyni.",
-	["Wyverns"] = "Reptilie pokonac mozna na jednej z gor zasiedlonych przez wyverny w dzungli.",
-	["Behemoths"] = "Grota olbrzymich Behemothow znajduje sie pod bagnami na zachodzie dzungli. Jesli nie brak ci odwagi mozesz poszukac tam Stonecrackera.",
-	["Brimstone Bug"] = "W podziemiach pod terenami skazonymi kwasem na polnocy Stepu radioaktywne Brimstone Bugi czuja sie doskonale, Sulphur Scuttler musi sie tam ukrywac.",
+	["Cyclops"] = "Stary cyklop widywany byl w jaskini przy polnocnej bramie Mirko Town.",
 	["Demons"] = "Teleport znajduje sie gdzies na mapie, znajdz go!",
 	["Destroyers"] = "Sporo niszczycieli znajduje sie w podziemiach na wschodzie pustyni, mozesz rozejrzec sie tam w poszukiwaniu Bretzecutionera.",
+	["Dragons"] = "Stara smoczyca przesiaduje w wulkanie na polnocy Mirko Town.",
 	["Drakens"] = "Jesli uda ci sie przedostac przez wieze Drakenow, teleport poprowadzi cie do siedziby ich wladcy - Paiz the Pauperizera.",
+	["Dwarves"] = "Pseudo Wodz tych malych istot z brodami zaszyl sie w domku w skalach tuz przy wejsciu do kopalni.",
+	["Falcons"] = "Falcon Eesko - najpotezniejszy ze slugusow Oberona ma swoja komnate gdzies w ich wielkim zamku.Wiecej nie wiem - nikt nie wrocil zywy.",
 	["Frost Dragons"] = "Frosty ukrywa sie w jednej z gor na Sybirze.",
+	["Furies"] = "Irahsae ma swoj kawalek podlogi na najnizszym poziomie legowiska tych mrocznych istot. Jeden z moich zwiadowcow mowil, ze to pod wioska wampirow obok zmutowanych zwierzat.",
+	["Gargoyles"] = "Grota gargulca znajduje sie na szczycie gor zamieszkalych przez cyklopy.",
 	["Ghastly Dragons"] = "Legowisko upiornych smokow znajduje sie w poziemiach pomiedzy pustynia a dzungla, Ethershreck takze sie tam zagniezdzil.",
+	["Giant Spiders"] = "Na poludnie od Knurowa zaleglo sie sporo pajakow, byc moze tam znajduje sie najgrozniejszy z nich.",
 	["Hellhound"] = "Dostep do piekielnego Kerberosa strzezony jest przez Demony oraz Hellhoundy, jednak to tylko legendy...",
 	["Hellspawns"] = "Pomiedzy wodospadami w dzungli znajduje sie zejscie do zapomnianych ruin. Zaleglo sie tam wiele Hellspawnow, Flameborn pewnie sie tam ukrywa.",
 	["High Class Lizards"] = "Komnata przywodcy jaszczuroludzi - Fazzraha znajduje sie w ich wiosce na stepach.",
 	["Hydras"] = "Na poludniu bagien w dzungli zamieszkalo kilka hydr, The Many przebywa tam najczesciej.",
+	["Ice Golems"] = "Teleport do komnaty Shardheada znajduje sie na polnocy Sybiru, w okolicy kreca sie Crystal Spidery oraz Ice Golemy.",
+	["Infernalists"] = "Arcymag Infernalistow ma swoj ukryty pokoj, w ktorym tworzy firestarterow w jednej z mrocznych bibliotek. Doszly mnie sluchy ze to pod pomnikami zmarlych elfow.",
 	["Killer Caimans"] = "Najgrozniejszy z krokodyli ukrywa sie pod rzeka na wschodnim krancu stepow.",
-	["Medusa"] = "Grota przywodczyni Meduz - Gorgo znajduje sie w podziemnych ruinach, ktorch strzega jej podopieczne.",
+	["Lancer Beetles"] = "Smiercionosny robal ukrywa sie pod skazonym terenem na polnocy stepow.",
+	["Lost Dwarves"] = "Lost Extrohusher, czyli hybryda wszystkich zagubionych Dwarfow, posiada swoja kryjowke w ich szybach Kopalnianych, gdzies w polowie drogi na stepy.",
+	["Medusas"] = "Grota przywodczyni Meduz - Gorgo znajduje sie w podziemnych ruinach, ktorch strzega jej podopieczne.",
+	["Metal Gargoyles"] = "Tytanowy Gargolec utknal w kanalach na Bornholmie.",
+	["Minotaurs"] = "Jeden z przywodcow minotaurow podobno ukrywa sie w ich osadzie na polnoc od Mirko Town.",
+	["Mutated Bats"] = "Skazone gory staly sie legowiskiem zmutowanych nietoperzy oraz szczurow, Bruise Payne ukrywa sie w skalach.",
+	["Mutated Humans"] = "Jego kryjowka znajduje sie pod cmentarzem we wiosce zmutowancow.",
+	["Mutated Rats"] = "Wejscie do kryjowki Esmeraldy znajduje sie gdzies na skalach zamieszkalych przez zmutowane sczury w centrum stepow.",
+	["Mutated Tigers"] = "Wejscie do tygrysiej nory znajduje sie w jednej z gor zasiedlonych przez tygrysy na stepach.",
+	["Necromancers"] = "Komnata wladcy nekromantow znajduje sie gdzies pod cmentarzem mirko town.",
 	["Nightmares"] = "Komnata Tromentora znajduje sie w miejscu, gdzie bohaterowie walcza z koszmarami.",
+	["Ogres"] = "Mistrz ogrow mieszka w ich najwiekszej wiosce na stepie.",
+	["Orcs"] = "Bibby najczesciej przesiadywal w polnocnej fortecy orkow, zapewne nadal tam jast.",
+	["Pirates"] = "Kapitan piratow z pewnoscia ukrywa sie gdzies na ich wyspie.",
 	["Quaras"] = "Na wyspe, gdzie przesiaduje Thul, trzeba dostac sie przeplywajac statkiem.",
+	["Rotworms"] = "Odnajdz legowisko White Pale pod MirkoTown.",
 	["Sea Serpents"] = "Dno wielkiego jeziora zasiedlone jest przez Morskie Weze, w jego glebinach mieszka legendarny Leviathan.",
 	["Serpent Spawns"] = "Na zachodzie dzunglii jedne ze wzgorzy zamieszkale sa przez Serpent Spawny, The Noxious Spawn mogl sie tam ukryc.",
+	["Stampors"] = "Tromphonyte ukrywa sie w jaskiniach zasiedlonych przez Stampory.",
+	["Stone Golems"] = "Grorlam ukrywa sie w malej jaskini zasiedlonej przez zwyiolaki na polnocny wschod od Hurghady.",
+	["Tarantulas"] = "W pewnych ruinach na zachod Kongo zaleglo sie sporo tarantul, Hide sie tam schowal.",
+	["Terramites"] = "Thermite ukrywa sie w malej dziurze na wschodzie pustyni.",
+	["Tortoises"] = "Thorner swoja kryjowke posiada w polnocno zachodniej czesci dzunglii.",
 	["Undead Dragons"] = "W podziemnych ruinach, do ktorych dojscia strzega Meduzy oraz Serpent Spawny znajduja sie nieumarle smoki broniace swojego przywodcy - Zanekepha.",
+	["Vampires"] = "Boreth wraz ze swoimi slugami, ktore przyzywa do walki u jego boku, znajduje sie w podziemnych katakumbach na poludnie od wioski lowcow i mysliwych.",
+	["Wailing Widows"] = "Plomienista pajeczyca posiada swoja grote pod poludniowo zachodnim kancem pustyni.",
+	["War Golems"] = "Ponoc pod kopalniami dwarfow, worker golemy powiekszaja rozlamy w tunelach. Stacjonuje tam Golem Deez - Przywodca War Golemow.",
+	["Weak undeads"] = "Cmentarz na wschodzie Mirko Town jest czasem nawiedzany przez Rippera. Pewnie gdzies tam sie ukrywa.",
 	["Werewolves"] = "W jaskiniach za miastem w ktorym strasza nocni przesladowcy przesiaduja wilkolaki, zapewne ukrywaja tam Hemminga.",
+	["Wyverns"] = "Reptilie pokonac mozna na jednej z gor zasiedlonych przez wyverny w dzungli.",
 }

@@ -23,30 +23,35 @@ local function buyTrophy(context)
 	}
 
 	player:AddCustomItem(decoKit)
-	player:IncrementStorage(Storage.Tasks.TaskPoints, -trophyCost)
+	player:IncrementStorage(Storage.Task.TaskPoints, -trophyCost)
 end
+
+QuestRewards.OutfitsAddons.Universal.Golden0 = { { outfitId = 1211, addons = 0 }, { outfitId = 1210, addons = 0 } }
+QuestRewards.OutfitsAddons.Universal.Golden1 = { { outfitId = 1211, addons = 1 }, { outfitId = 1210, addons = 1 } }
+QuestRewards.OutfitsAddons.Universal.Golden2 = { { outfitId = 1211, addons = 2 }, { outfitId = 1210, addons = 2 } }
+QuestRewards.Mounts.Universal.Antelope = { antelopeMountId }
 
 NPC_STATE_DIALOGS = {
 	[JOB_TASKS] = {
-		[LOCALIZERS.Tasks] = {
-			[Storage.Tasks.TaskInfo] = {
+		[LOCALIZERS.Task] = {
+			[Storage.Task.TaskInfo] = {
 				[MISSION_NOT_STARTED] = {
 					[{ GREET }] = {
 						text = "Hello, I have some {tasks} for you. You can also ask for {trade}, if you want to take a look at my offer. And I'm also selling {creature product} bundles and exchanging task {points}.",
 						nextState = {
-							[Storage.Tasks.TaskInfo] = MISSION_FINISHED,
+							[Storage.Task.TaskInfo] = MISSION_FINISHED,
 						},
 					},
 				},
 			},
-			[Storage.Tasks.TaskPoints] = {
+			[Storage.Task.TaskPoints] = {
 				[{ max = 0 }] = {
 					[{ "punkt", "point", "punktow", "points", "punkty" }] = {
 						text = "You don't have any points. You'll get some after finishing the {tasks}. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.",
 					},
 				},
 				[{ min = 1 }] = {
-					[{ "punkt", "point", "punktow", "points", "punkty" }] = {
+					[{ "punkt", "point", "punktow", "points", "punkty", "task points", "punkty taskowe" }] = {
 						text = "YOU_CURRENTLY_HAVE_N_TASK_POINTS",
 					},
 				},
@@ -101,9 +106,9 @@ NPC_STATE_DIALOGS = {
 					[{ "yes", "tak" }] = {
 						text = "Here you are.",
 						requiredTopic = QuestTopics.JOB_TOPICS.confirmBuyAntelope,
-						mountRewards = { antelopeMountId },
+						mountRewards = QuestRewards.Mounts.Universal.Antelope,
 						nextState = {
-							[Storage.Tasks.TaskPoints] = T("-:cost:", { cost = antelopeCost }),
+							[Storage.Task.TaskPoints] = T("-:cost:", { cost = antelopeCost }),
 						},
 						specialRequirements = {
 							{
@@ -187,10 +192,7 @@ NPC_STATE_DIALOGS = {
 								[ITEM_ATTRIBUTE_DESCRIPTION] = T("Unwrap it in your own house to create a :name:.", { name = ItemType(31510):getName() }),
 							},
 						},
-						outfitRewards = {
-							{ outfitId = 1211, addon = 0 },
-							{ outfitId = 1210, addon = 0 },
-						},
+						outfitRewards = QuestRewards.OutfitsAddons.Universal.Golden0,
 					},
 					[{ "yes", "tak" }] = {
 						text = "Take this helmet as a token of great gratitude. Let us forever remember this day, my friend!",
@@ -200,10 +202,7 @@ NPC_STATE_DIALOGS = {
 						nextState = {
 							[Storage.GoldenOutfit.Helmet] = 1,
 						},
-						outfitRewards = {
-							{ outfitId = 1211, addon = 2 },
-							{ outfitId = 1210, addon = 2 },
-						},
+						outfitRewards = QuestRewards.OutfitsAddons.Universal.Golden2,
 					},
 					[{ "yes", "tak" }] = {
 						text = "Take these boots as a token of great gratitude. Let us forever remember this day, my friend!",
@@ -214,10 +213,7 @@ NPC_STATE_DIALOGS = {
 							[Storage.GoldenOutfit.Boots] = 1,
 							[Storage.GoldenOutfit.Full] = 1,
 						},
-						outfitRewards = {
-							{ outfitId = 1211, addon = 3 },
-							{ outfitId = 1210, addon = 3 },
-						},
+						outfitRewards = QuestRewards.OutfitsAddons.Universal.Golden1,
 					},
 				},
 			},

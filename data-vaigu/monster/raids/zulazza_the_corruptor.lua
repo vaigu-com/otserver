@@ -95,6 +95,7 @@ monster.loot = {
 	{ id = 3010, chance = 10500 }, -- emerald bangle
 	{ id = 8063, chance = 5500 }, -- paladin armor
 	{ id = 3415, chance = 5500 }, -- guardian shield
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

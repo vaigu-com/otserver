@@ -28,6 +28,20 @@ quest
 				id = 5943,
 				key = Storage.SilenceOfTheLambs.HumanHeart,
 			},
+			Skins = {
+				{ id = 5876, count = 2 },
+				{ id = 5877, count = 2 },
+				{ id = 5878, count = 2 },
+				{ id = 5948, count = 2 },
+				{ id = 10279, count = 2 },
+				{ id = 11479, count = 2 },
+			},
+		}
+		QuestRewards.OutfitsAddons.SilenceOfTheLambs = {
+			Wayfarer0 = {
+				{ outfitId = 366, addons = 0 },
+				{ outfitId = 367, addons = 0 },
+			},
 		}
 	end)
 	:Questlog(function(localizer)
@@ -57,7 +71,7 @@ quest
 					name = "Rub Meat With Lecter",
 					storage = Storage.SilenceOfTheLambs.RubMeatWithLecter,
 					states = {
-						[QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter] = "LECTER_WANTS_HUMAN_HEARTS_STATUS",
+						[QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter] = "Lecter wants you to hoard 15 human hearts. He needs them for his cannibals party.",
 						[MISSION_FINISHED] = "In exchange for this favor you have been introduced to the cannibal club. You also received their outfits.",
 					},
 				},
@@ -99,7 +113,7 @@ quest
 		return QuestState.SilenceOfTheLambs.TestOfStrength.AskLecterForNewMission,
 			QuestFactory.Dialog("Lecter", {
 				[{ "mission", "misja" }] = {
-					text = "So you want to help me again? Listen, recently I've been sewing a little bit, but human skin itself its not enough.\nI will need some different colours and materials. Bring me 20 pieces of {skin} of each type.\nIf you do that I will teach you everything about skinning.",
+					text = "So you want to help me again? Listen, recently I've been sewing a little bit, but human skin itself its not enough.\nI will need some different colours and materials. Bring me 2 pieces of {skin} of each type.\nIf you do that I will teach you everything about skinning.",
 					nextState = {
 						[Storage.SilenceOfTheLambs.TestOfStrength] = MISSION_FINISHED,
 						[Storage.SilenceOfTheLambs.FashionableClothes] = QuestState.SilenceOfTheLambs.FashionableClothes.BringLeatherToLecter,
@@ -111,18 +125,11 @@ quest
 	:State(function()
 		return QuestState.SilenceOfTheLambs.FashionableClothes.BringLeatherToLecter,
 			QuestFactory.Dialog("Lecter", {
-				[{ "mission", "misja" }] = {
+				[{ "mission", "misja", "skin", "skins", "skora", "skory" }] = {
 					text = "Yes! Now I have a proper assortment. Maybe I will sew something for you.\nAbout skinning... it didn't go very well. I assume it was your first time skinning.\nRemember, you must start cutting from armpit and cut straight down.\nSo if you know now how to skin people, go and train a little bit. If you want anything else just come back to me for different task.",
-					textNoRequiredItems = "You don't have all of the skins. I need 2 skins from green and red dragon, lizard, minotaur, orc and crocodile.",
+					textNoRequiredItems = "LECTER_LISTS_REQUIRED_SKINS",
 					expReward = 300000,
-					reqiredItems = {
-						{ id = 5876, count = 2 },
-						{ id = 5877, count = 2 },
-						{ id = 5878, count = 2 },
-						{ id = 5948, count = 2 },
-						{ id = 10279, count = 2 },
-						{ id = 11479, count = 2 },
-					},
+					requiredItems = QuestKeyItems.SilenceOfTheLambs.Skins,
 					nextState = {
 						[Storage.SilenceOfTheLambs.FashionableClothes] = QuestState.SilenceOfTheLambs.FashionableClothes.AskLecterForNewMission,
 					},
@@ -135,7 +142,8 @@ quest
 				[{ "mission", "misja" }] = {
 					text = "Ahh yes, something to do? I'm going for annual meeting for cannibals and I need to prepare some meals, so I won't come empty handed.\nSo If you know secret skinning techniques already you can help me to gather ingredients. Bring me 15 human hearts.",
 					nextState = {
-						[Storage.SilenceOfTheLambs.FashionableClothes] = QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter,
+						[Storage.SilenceOfTheLambs.RubMeatWithLecter] = QuestState.SilenceOfTheLambs.RubMeatWithLecter.BringHeartsToLecter,
+						[Storage.SilenceOfTheLambs.FashionableClothes] = MISSION_FINISHED,
 					},
 				},
 			})
@@ -149,15 +157,12 @@ quest
 					textNoRequiredItems = "Come back when you get 15 hearts",
 					expReward = 500000,
 					requiredItems = {
-						{ id = QuestKeyItems.SilenceOfTheLambs.HumanHeart.id, count = 15, key = QuestKeyItems.SilenceOfTheLambs.HumanHeart.key },
+						{ id = QuestKeyItems.SilenceOfTheLambs.HumanHeart.id, count = 15, key = QuestKeyItems.SilenceOfTheLambs.HumanHeart.key, take = TAKE_ALL_AVAILABLE },
 					},
 					rewards = {
 						{ id = 17829 },
 					},
-					outfitRewards = {
-						{ outfit = 366, addons = 0 },
-						{ outfit = 367, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.SilenceOfTheLambs.Wayfarer0,
 					nextState = {
 						[Storage.SilenceOfTheLambs.RubMeatWithLecter] = MISSION_FINISHED,
 						[Storage.Finished.SilenceOfTheLambs] = MISSION_FINISHED,

@@ -13,7 +13,7 @@ local documentName = "Famous Inhabitants of Darashia, Page 2"
 local kosheiBag = Action()
 function kosheiBag.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if player:getStorageValueByKey(483293) == -1 then
-		player:AddItems({
+		player:AddItemsAnnounce({
 			[2853] = {
 				{ id = 2834, [ITEM_ATTRIBUTE_TEXT] = documentContent, [ITEM_ATTRIBUTE_NAME] = documentName },
 			},

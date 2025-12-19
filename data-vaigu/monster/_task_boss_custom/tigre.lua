@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Tigre")
 local monster = {}
 
 monster.description = "a tigre"
-monster.experience = 2750
+monster.experience = 3750
 monster.outfit = {
 	lookType = 318,
 	lookHead = 0,
@@ -59,10 +59,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, minCount = 250, maxCount = 370 },
-	{ id = 10293, chance = 100000, minCount = 2, maxCount = 4 },
-	{ id = 3577, chance = 29500, maxCount = 2 },
-	{ id = 10311, chance = 100000, maxCount = 2 },
+	{ name = "gold coin", chance = 90000, minCount = 50, maxCount = 170 },
+	{ id = 10293, chance = 80000, minCount = 2, maxCount = 8 },
+	{ id = 3577, chance = 29500, maxCount = 4 },
+	{ id = 10311, chance = 100000, maxCount = 5 },
 	{ id = 3052, chance = 100000 },
 	{ id = 236, chance = 6000 },
 	{ id = 3415, chance = 38000 },

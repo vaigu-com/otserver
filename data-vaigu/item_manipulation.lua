@@ -4,6 +4,14 @@ local forceUntradeability = {
 	[43948] = true,
 	[43949] = true,
 	[43950] = true,
+	[2967] = true,
+	[2968] = true,
+	[2969] = true,
+	[2970] = true,
+	[2971] = true,
+	[2972] = true,
+	[2973] = true,
+	[130] = true,
 }
 
 local leverSwapMap = {
@@ -12,7 +20,7 @@ local leverSwapMap = {
 }
 function FlipLever(item)
 	if not item then
-		logger.warn(debug.traceback("[FlipLever] not item provided"))
+		logger.warn(debug.traceback("[FlipLever] item not provided"))
 		return
 	end
 
@@ -31,22 +39,23 @@ local function extractItemData(item)
 	local actionid = item:getActionId()
 	local uniqueid = item:getUniqueId()
 	local key = item:getKey()
-	local addToStore = false
+	local text = item:getText()
+	local addToStore = nil
 	if forceUntradeability[id] then
 		addToStore = true
 	end
-	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore }
+	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore, text = text }
 end
-local function extractBagItems(items)
-	local result = {}
-	for _, item in pairs(items) do
+local function extractBagItems(bagItemsEx)
+	local extractedItems = {}
+	for _, item in pairs(bagItemsEx) do
 		if item:isContainer() then
-			result[item:getId()] = extractBagItems(item:getItems())
+			extractedItems[item:getId()] = extractBagItems(item:getItems())
 		else
-			result[#result + 1] = extractItemData(item)
+			table.insert(extractedItems, extractItemData(item))
 		end
 	end
-	return result
+	return extractedItems
 end
 
 local bagId = 2853
@@ -54,7 +63,7 @@ local backpackId = 2854
 function ExtractChestContent(chest)
 	local chestItems = chest:getItems()
 	local addItems = extractBagItems(chestItems)
-	local addItemsSize = TableSize(addItems) - CountNotAddableItems(addItems)
+	local addItemsSize = TableSize(addItems)
 	local wrapId = nil
 	if addItemsSize > 1 then
 		wrapId = bagId
@@ -88,10 +97,28 @@ setmetatable(ItemExList, {
 	end,
 })
 
+function ItemExList:Moved(x,y,z)
+	for _, itemEx in pairs(self:Get()) do
+		itemEx:moveTo(itemEx:getPosition():Moved(x,y,z))
+	end
+	return self
+end
+
+function ItemExList:CalculateRequiredCap()
+	local totalCap = 0
+	for _, itemEx in pairs(self:Get()) do
+		totalCap = totalCap + itemEx:getWeight()
+	end
+	return totalCap
+end
+
 function ItemExList:Get()
 	return self.items
 end
 function ItemExList:First()
+	return self.items[1]
+end
+function ItemExList:Last()
 	return self.items[#self.items]
 end
 
@@ -107,7 +134,8 @@ function ItemExList:RadiusSquare(pos, radius)
 	return self
 end
 
-function ItemExList:Area(pos1, pos2)
+function ItemExList:Area(area)
+	local pos1,pos2 = area:GetCorners()
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then
@@ -118,7 +146,7 @@ function ItemExList:Area(pos1, pos2)
 	return self
 end
 
-function ItemExList:AddAnyAmount(itemEx)
+function ItemExList:AddItemOrTable(itemEx)
 	if type(itemEx) == "table" then
 		self:AddMultiple(itemEx)
 	else
@@ -200,6 +228,27 @@ function ItemExList:FilterById(id)
 	return result
 end
 
+function ItemExList:FilterByIds(ids)
+	if not ids then
+		return self
+	end
+
+	local result = ItemExList()
+	for _, item in pairs(self.items) do
+		local itemId = item:getId()
+		if table.contains(ids, itemId) then
+			result:Add(item)
+		end
+	end
+	return result
+end
+
+function ItemExList:ForEach(callback)
+	for _, item in pairs(self.items) do
+		callback(item)
+	end
+end
+
 function ItemExList:Copied(destination)
 	local copiedList = ItemExList()
 	for _, item in pairs(self.items) do
@@ -235,116 +284,6 @@ end
 
 function IsSetableAttribute(key)
 	return setableAtribute[key]
-end
-
-function Container:AddItems(items, bag, localizer, addedItems)
-	addedItems = addedItems or ItemExList()
-	for containerId, itemOrItems in pairs(items) do
-		if ItemType(containerId):isContainer() then
-			local nextBag = (bag or self):addItem(containerId, 1)
-			self:AddItems(itemOrItems, nextBag, localizer, addedItems) --Item table
-		else
-			addedItems:AddAnyAmount(self:AddCustomItem(itemOrItems, localizer)) -- one item
-		end
-	end
-	return addedItems:Get()
-end
-
-local function normalizedItem(item)
-	item.count = item.count or 1
-	item.aid = item.aid or item.actionid or 0
-	item.desc = item.desc or item.description
-	item.uid = item.uid or item.uniqueid or 0
-	item.key = item.key or ""
-	return item
-end
-
-local customItemAction = {}
-
-local function setItemAttributes(addedItem, itemAttributes, localizer)
-	local id = itemAttributes.id
-	local count = itemAttributes.count
-	local aid = itemAttributes.aid
-	local key = itemAttributes.key
-	local desc = itemAttributes.desc
-	local text = itemAttributes.text
-	local uid = itemAttributes.uid
-	local fluidType = itemAttributes.fluidType
-
-	for k, value in pairs(itemAttributes) do
-		if IsCustomAttribute(k) then
-			addedItem:setCustomAttribute(k, value)
-		end
-		if IsSetableAttribute(k) then
-			addedItem:setAttribute(k, value)
-		end
-	end
-
-	local iType = ItemType(id)
-	if iType and iType:isFluidContainer() then
-		addedItem:transform(id, 0)
-	end
-
-	addedItem:setActionId(aid)
-	if uid ~= 0 then
-		addedItem:setUniqueId(uid)
-	end
-	if desc and count == 1 then
-		addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
-	end
-	if text and count == 1 then
-		addedItem:setText(ITEM_ATTRIBUTE_TEXT, text)
-	end
-	if key and count == 1 then
-		addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
-	end
-	if fluidType then
-		addedItem:transform(id, fluidType)
-	end
-
-	if text or desc then
-		addedItem:setCustomAttribute("localizer", localizer)
-	end
-end
-
----@param itemAttributes table
----@param localizer string
-function Container:AddCustomItem(itemAttributes, localizer)
-	itemAttributes = normalizedItem(itemAttributes)
-	local id = itemAttributes.id
-	local aid = itemAttributes.aid
-	local key = itemAttributes.key
-	local count = itemAttributes.count
-
-	local actionOnAdd = customItemAction[id]
-	if actionOnAdd then
-		local context = { item = itemAttributes, localizer = localizer }
-		if actionOnAdd(context) == DONT_ADD_ITEM_TO_INVENTORY then
-			return
-		end
-	end
-
-	local addedItem = Game.createItem(id, count)
-	local itemPile = {}
-	if type(addedItem) ~= "table" then
-		itemPile = { addedItem }
-	else
-		itemPile = addedItem
-	end
-
-	for _, itemEx in pairs(itemPile) do
-		setItemAttributes(itemEx, itemAttributes, localizer)
-
-		self:addItemEx(itemEx)
-		if aid == 0 then
-			itemEx:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
-		end
-		if key == "" then
-			itemEx:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
-		end
-	end
-
-	return addedItem
 end
 
 -- Old dependency

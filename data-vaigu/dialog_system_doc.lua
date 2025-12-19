@@ -255,7 +255,6 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 	-- id = argument, Required
 	-- count = argument, Default: 1
 	-- aid = argument, Default: 0
-	-- showCustomDescOnAcquire = argument, Default: false
 	-- desc = argument, Default = nil
 	-- text = argument, Default = nil
 	-- uid = argument, Default = nil //this will create an unmovable item in player inventory!
@@ -300,7 +299,7 @@ local function exampleDialog(text, requiredTopic, requiredItems, removeRequiredI
 
 	---outfitRewards
 	-- Specifies outfit rewards to be granted on success-resolve
-	outfitRewards = { { outfitId = 574, addon = 1 }, { outfitId = 575, addon = 1 } }
+	outfitRewards = { { outfitId = 574, addons = 1 }, { outfitId = 575, addons = 1 } }
 
 	---mountRewards
 	-- Specifies mount rewards to be granted on success-resolve

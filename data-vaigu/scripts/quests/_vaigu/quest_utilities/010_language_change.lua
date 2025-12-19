@@ -159,6 +159,7 @@ local function trySetMarks(player)
 	for pos, mark in pairs(positionToMarkData) do
 		local translatedDescription = playerLocalizer:Get(mark.markDescription)
 		player:addMapMark(pos, mark.markIcon, translatedDescription)
+		player:addMapMark(pos, mark.markIcon, translatedDescription)
 	end
 end
 
@@ -181,7 +182,7 @@ local function onAcceptLanguage(player, button, choice)
 	player:sendTextMessage(MESSAGE_TRADE, choseNewLanguage[nextLang])
 
 	player:setLanguage(nextLang)
-	player:sendTrackedMissions()
+	player:updateTrackedMissions()
 	player:reloadKnownNpcs()
 	return true
 end
@@ -208,7 +209,7 @@ changeLanguage:groupType("normal")
 changeLanguage:register()
 
 for abbreviation, full in pairs(LANG_ABBREVIATION_TO_FULL_NAME) do
-	local setLanguage = TalkAction("!" .. full, "!" .. abbreviation, "!", "!" .. full:lower(), "!" .. abbreviation:lower(), "!" .. full:upper(), "!" .. abbreviation:upper())
+	local setLanguage = TalkAction("!" .. full, "!" .. abbreviation, "!" .. full:lower(), "!" .. abbreviation:lower(), "!" .. full:upper(), "!" .. abbreviation:upper())
 	function setLanguage.onSay(player, words, param)
 		onAcceptLanguage(player, nil, { text = abbreviation })
 	end

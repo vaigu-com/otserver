@@ -1,5 +1,9 @@
 local quest = Quest(LOCALIZERS.LocalSupport)
 
+local mysticTurbanExchangeRate = 1
+local redRobeExchangeRate = 1
+local greenTunicExchangeRate = 2
+
 quest
 	:Storage(function()
 		Storage.LocalSupport = {
@@ -27,6 +31,7 @@ quest
 			PoisonedCheese = {},
 
 			BudgetRecycling = {},
+			BudgetRecyclingClothExchange = {},
 
 			LostCrystalBall = {},
 			RedGemExchange = {},
@@ -62,6 +67,7 @@ quest
 		}
 		QuestState.LocalSupport = {
 			Discernment = {
+				AfterFirstLogin = 0,
 				VisitDealers = 1,
 			},
 			PotionConveyorJourneyman = {
@@ -107,7 +113,7 @@ quest
 				BringOldManFrostItems = 1,
 			},
 			TwoMarlinQuest = {
-				--none
+				BringMarlinsToFishermanSon = 1,
 			},
 			OcellatusXD = {
 				FindTicket = 1,
@@ -151,6 +157,9 @@ quest
 			ConfirmBuyingShimmerSwimmer = NextTopic(),
 			ConfirmTradeInTwomarlins = NextTopic(),
 			ConfirmPinataQuestSecret = NextTopic(),
+			ConfirmExchangeTurban = NextTopic(),
+			ConfirmExchangeRobe = NextTopic(),
+			ConfirmExchangeTunic = NextTopic(),
 		}
 	end)
 	:Constant(function()
@@ -215,6 +224,28 @@ quest
 				[Storage.LocalSupport.VendorsAsked.GypsyAsked] = "Gypsy",
 			},
 		}
+		QuestRewards.OutfitsAddons.LocalSupport = {
+			FrostTracer0 = {
+				{ outfitId = 1613, addons = 0 },
+				{ outfitId = 1612, addons = 0 },
+			},
+			Jersey0 = {
+				{ outfitId = 619, addons = 0 },
+				{ outfitId = 620, addons = 0 },
+			},
+			Beggar0 = {
+				{ outfitId = 157, addons = 0 },
+				{ outfitId = 153, addons = 0 },
+			},
+			Beggar1 = {
+				{ outfitId = 157, addons = 1 },
+				{ outfitId = 153, addons = 1 },
+			},
+			Beggar2 = {
+				{ outfitId = 157, addons = 2 },
+				{ outfitId = 153, addons = 2 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -225,7 +256,7 @@ quest
 					name = "Discernment",
 					storage = Storage.LocalSupport.Discernment,
 					states = {
-						[MISSION_NOT_STARTED] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
+						[QuestState.LocalSupport.Discernment.AfterFirstLogin] = "Commissioner fisher wants to see you, the new recruit, so he can show you your way around the city. Find his quarters in the southern west part of this city, the Mirkotown.",
 						[1] = "VISIT_DEALERS_STATUS",
 						[2] = "VISIT_DEALERS_STATUS",
 						[3] = "VISIT_DEALERS_STATUS",
@@ -244,7 +275,7 @@ quest
 					name = "Wood Delivery",
 					storage = Storage.LocalSupport.WoodDelivery,
 					states = {
-						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery.",
+						[QuestState.LocalSupport.WoodDelivery.TalkWithWoody] = "Go to Knurowo's port and find out what happened to the wood delivery. You can sail there from Mirkotown port in northeast part of the town.",
 						[QuestState.LocalSupport.WoodDelivery.InvestigateCamp] = "Woody is sure that the wood was shipped on a caravan leaving Knurowo. He asked you to investigate this.",
 						[QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia] = "Tell Commissioner that Narro and his mafia stole all of the wood delivery.",
 						[QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia] = "Commissioner Fisher ordered you to recover the stolen wood, but he also warned you about the Narro's mafia.",
@@ -316,6 +347,7 @@ quest
 					name = "Two Marlins",
 					storage = Storage.LocalSupport.TwoMarlinQuest,
 					states = {
+						[QuestState.LocalSupport.TwoMarlinQuest.BringMarlinsToFishermanSon] = "Bring two marlins to Fisherman Son.",
 						[MISSION_FINISHED] = "You delivered two marlins to Fisherman son and were rewarded for it.",
 					},
 				},
@@ -364,7 +396,7 @@ quest
 	end)
 	:Mission(Storage.LocalSupport.Discernment)
 	:State(function()
-		return MISSION_NOT_STARTED,
+		return { max = QuestState.LocalSupport.Discernment.AfterFirstLogin },
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ ANY_MESSAGE }] = {
 					text = "New recruit? Great! Another cannon fodd.. I mean potential soldier.\nAt your first mission, visit all of the main sellers in MirkoTown and ask them if they need some help, after that come back to me to report.\nDon't do anything without consulting me. And now go, there's no time to lose.",
@@ -523,6 +555,7 @@ quest
 						{ id = 268, count = 15, addToStore = true },
 						{ id = 266, count = 5, addToStore = true },
 						{ id = 21400 },
+						{ ExerciseWeaponBox(20) },
 					},
 				},
 				[{ ANY_MESSAGE }] = {
@@ -607,7 +640,7 @@ quest
 		return QuestState.LocalSupport.WoodDelivery.TellCommissionerAboutMafia,
 			QuestFactory.Dialog("Commissioner Fisher", {
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -624,7 +657,7 @@ quest
 					},
 				},
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -641,7 +674,7 @@ quest
 					},
 				},
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -657,7 +690,7 @@ quest
 					},
 				},
 				[{ "narro", "waski", "mission", "misja", "wood", "drewno" }] = {
-					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you a better shield because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
+					text = "What?! Narro, that moron? He is a wanna gangster now? I'll show him who is the real deal here.\nIt might be a difficult mission for you but I believe that you can make it. I'll give you some better gear because yours looks like crap. If you were to reclaim the wood I'll reward you.\nAnd also you can visit Komor, hes in some trouble recently.",
 					nextState = {
 						[Storage.LocalSupport.IKEAForTheBold] = QuestState.LocalSupport.IKEAForTheBold.OfferHelpToKomor,
 						[Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.DealWithNarroMafia,
@@ -881,7 +914,7 @@ quest
 					text = "Now this is a cooperation! Here is your reward.",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.PinataIngredients,
 					rewards = {
-						ExerciseWeaponBox(200),
+						ExerciseWeaponBox(160),
 						{ id = ItemId.MANA_POTION, count = 30 },
 						{ id = ItemId.MAGICAL_TORCH },
 					},
@@ -911,7 +944,7 @@ quest
 					text = "Yo, whats good? I see you got all things i needed. Take this reward.",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.UnknownCauseIngredients,
 					rewards = {
-						ExerciseWeaponBox(400),
+						ExerciseWeaponBox(300),
 						{ id = ItemId.BEETLE_NECKLACE },
 					},
 					wildcardReward = 3,
@@ -940,7 +973,7 @@ quest
 					text = "I knew i could count on you. Take this as your reward. Thats all for now, i dont want to attract any more attention to my totally legal fluids. See you around!",
 					requiredItems = QuestConstants.LocalSupport.PotionConveyorJourneyman.CombatIngredients,
 					rewards = {
-						ExerciseWeaponBox(700),
+						ExerciseWeaponBox(1000),
 						{ id = ItemId.SWAN_FEATHER_CLOAK },
 					},
 					wildcardReward = 10,
@@ -1048,11 +1081,15 @@ quest
 		return QuestState.LocalSupport.BudgetRecycling.BringPieceOfEachClothToMadame,
 			QuestFactory.Dialog("Madame Malkin", {
 				[{ "mission", "misja", "tkaninie", "cloth", "tailor" }] = {
-					text = "Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of cloth from now on.",
-					textNoRequiredItems = "I think you missed some colour, bring me all six",
+					text = "Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of {cloth} from now on.",
+					textNoRequiredItems = "I think you missed some colour, bring me all six clothes.",
 					nextState = {
 						[Storage.LocalSupport.BudgetRecycling] = MISSION_FINISHED,
+						[Storage.LocalSupport.BudgetRecyclingClothExchange] = ACCESS_GRANTED,
 						[Storage.Finished.BudgetRecycling] = MISSION_FINISHED,
+					},
+					rewards = {
+						{ id = 8040 },
 					},
 					requiredItems = {
 						{ id = 5909 },
@@ -1065,6 +1102,65 @@ quest
 				},
 			})
 	end)
+	:Mission(Storage.LocalSupport.BudgetRecyclingClothExchange)
+	:State(function()
+		return ACCESS_GRANTED,
+			QuestFactory.Dialog("Madame Malkin", {
+				[{ GREET }] = {
+					text = "Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch} or {cloth}.",
+				},
+				[{ "cloth", "szmatki" }] = {
+					text = "I will change your {mystic turban}, {red robe}, {green tunic} for corresponding cloth of similar colour.",
+				},
+
+				[{ "mystic turban", "mistyczny turban" }] = {
+					text = "I will need EXCHANGE_RATE turbans to sew one blue cloth. Would you like to exchange?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmExchangeTurban,
+					exchangeRate = mysticTurbanExchangeRate,
+				},
+				[{ "red robe", "czerwona szate" }] = {
+					text = "I will need EXCHANGE_RATE robes to sew one red cloth. Would you like to exchange?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmExchangeRobe,
+					exchangeRate = redRobeExchangeRate,
+				},
+				[{ "green tunic", "zielona tunike" }] = {
+					text = "I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?",
+					nextTopic = QuestTopics.LocalSupport.ConfirmExchangeTunic,
+					exchangeRate = greenTunicExchangeRate,
+				},
+				[{ "yes", "tak" }] = {
+					text = "Here you go.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmExchangeTurban,
+					requiredItems = {
+						{ id = ItemId.MYSTIC_TURBAN, count = mysticTurbanExchangeRate },
+					},
+					rewards = {
+						{ id = ItemId.BLUE_PIECE_OF_CLOTH, count = 1 },
+					},
+				},
+				[{ "yes", "tak" }] = {
+					text = "Here you go.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmExchangeRobe,
+					requiredItems = {
+						{ id = ItemId.RED_ROBE, count = redRobeExchangeRate },
+					},
+					rewards = {
+						{ id = ItemId.RED_PIECE_OF_CLOTH, count = 1 },
+					},
+				},
+				[{ "yes", "tak" }] = {
+					text = "Here you go.",
+					requiredTopic = QuestTopics.LocalSupport.ConfirmExchangeTunic,
+					requiredItems = {
+						{ id = ItemId.GREEN_TUNIC, count = greenTunicExchangeRate },
+					},
+					rewards = {
+						{ id = ItemId.GREEN_PIECE_OF_CLOTH, count = 1 },
+					},
+				},
+			})
+	end)
+	--TODO
 	:Mission(Storage.LocalSupport.LostCrystalBall)
 	:State(function()
 		return MISSION_NOT_STARTED, QuestFactory.Dialog("Gypsy", {
@@ -1098,7 +1194,7 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Old Postman", {
 				[{ "szlakiem", "pass", "route", "mission", "misja" }] = {
-					text = "The waterway begins at their rock to the west. Then it flows under the bridge, passes by the orc fortress, and enters a larger lake. From that lake, it flows to the Syn Anona. Somewhere along this waterway, my shipment got stuck.",
+					text = "The waterway begins at their rock to the west. Then it flows under the bridge, passes by the orc fortress, and enters a larger lake. From that lake, it flows to the Fisherman Son. Somewhere along this waterway, my shipment got stuck.",
 					nextState = {
 						[Storage.LocalSupport.Biodegradable] = QuestState.LocalSupport.Biodegradable.FindPostmanPackage,
 					},
@@ -1205,6 +1301,7 @@ quest
 						[Storage.LocalSupport.UnwantedGuests] = MISSION_FINISHED,
 						[Storage.Finished.UnwantedGuests] = MISSION_FINISHED,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.FrostTracer0,
 				},
 			}),
 			QuestFactory.Script(function()
@@ -1246,7 +1343,18 @@ quest
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Fisherman Son", {
 				[{ "marlin", "ryba", "rybka", "fish", "merlin", "marlina" }] = {
-					text = "Wow! You have merlin! Will I get this fish from you if we agree that I will make a nice trophy for you from second one you bring me?",
+					text = "I can make a nice marlin trophy. If you agree to bring me two marlins i will have them for both of us.",
+					nextState = {
+						[Storage.LocalSupport.TwoMarlinQuest] = QuestState.LocalSupport.TwoMarlinQuest.BringMarlinsToFishermanSon,
+					},
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.LocalSupport.TwoMarlinQuest.BringMarlinsToFishermanSon,
+			QuestFactory.Dialog("Fisherman Son", {
+				[{ "marlin", "ryba", "rybka", "fish", "merlin", "marlina" }] = {
+					text = "Wow! You have merlin! Would you like to bring me also a second one, so i can make a nice trophy for you?",
 					textNoRequiredItems = "Find two marlins for me and i will craft you a trophy that you can hang on your house walls.",
 					requiredItems = {
 						{ id = 901, remove = false },
@@ -1339,7 +1447,7 @@ quest
 	:State(function()
 		return QuestState.LocalSupport.OcellatusXD.BringFoodToOcellatus,
 			QuestFactory.Dialog("Ocellatus", {
-				[{ "rotworm stew", "roasted dragon wings", "zupe rotowrmowa", "zupa rotwormowa", "pieczone smocze skrzydelka" }] = {
+				[{ "rotworm stew", "roasted dragon wings", "zupe rotwormowa", "zupa rotwormowa", "pieczone smocze skrzydelka" }] = {
 					text = "Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you.",
 				},
 				[{ "mission", "misja", "food", "soup", "order", "zupa" }] = {
@@ -1350,10 +1458,7 @@ quest
 						{ id = 9081 },
 						{ id = 9079, remove = false },
 					},
-					outfitRewards = {
-						{ outfit = 619, addons = 0 },
-						{ outfit = 620, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Jersey0,
 					nextState = {
 						[Storage.LocalSupport.OcellatusXD] = MISSION_FINISHED,
 						[Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED,
@@ -1848,10 +1953,7 @@ quest
 					rewards = {
 						{ id = 12807 },
 					},
-					outfitRewards = {
-						{ outfit = 157, addons = 0 },
-						{ outfit = 153, addons = 0 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar0,
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = QuestState.LocalSupport.SettledDownFishmonger.FindAndDevilerAnonFatherMissingItems,
 					},
@@ -1883,10 +1985,7 @@ quest
 						{ id = 7457 },
 					},
 					expReward = 12000,
-					outfitRewards = {
-						{ outfit = 157, addons = 1 },
-						{ outfit = 153, addons = 1 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar1,
 				},
 				[{ "float", "splawik" }] = {
 					text = "It fell into the small pond nearby once. I hope you find it.",
@@ -1932,10 +2031,7 @@ quest
 						{ id = 7250, count = 2 },
 						{ id = 3033, count = 5 },
 					},
-					outfitRewards = {
-						{ outfitId = 157, addon = 3 },
-						{ outfitId = 153, addon = 3 },
-					},
+					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar2,
 					expReward = 80000,
 					nextState = {
 						[Storage.LocalSupport.SettledDownFishmonger] = MISSION_FINISHED,

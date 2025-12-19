@@ -19,6 +19,7 @@ quest
 			MainGateAccess = {},
 			NorthMinesAccess = {},
 			TileBeforeChesterCompartment = {},
+			FindJanuszexTile = {},
 			HammerMaking = { Lever = {}, Paint = {} },
 			CalculatorMaking = {
 				Lever = {},
@@ -51,7 +52,7 @@ quest
 			TrainDestinations = {
 				ToHurghada = {},
 				ToJanuszex = {},
-				ToBydgoshch = {},
+				ToByggoshch = {},
 			},
 			Rewards = { ToiletSoap = {} },
 			PortalAfterPol = {},
@@ -99,7 +100,7 @@ quest
 		SpawnLocks.ProdigalSon = {
 			ArechekLock = SpawnLock(),
 		}
-		SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
+		PRODIGAL_SON_SPECIAL_ACTIONS = {
 			setPersonalBlackboardPassword = function(context)
 				local player = context.player
 				player:setStorageValueByKey(Storage.ProdigalSon.Blackboard, tostring(math.random(10 ^ 6, 10 ^ 7 - 1)))
@@ -173,27 +174,16 @@ quest
 			end
 		end
 
-		SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS = {
+		PRODIGAL_SON_SPECIAL_REQUIREMENTS = {
 			frediIsNearby = function(context)
 				local npcPos = context.npc:getPosition()
-				local topLeft = npcPos:Moved(-7, -7, 0)
-				local downRight = npcPos:Moved(7, 7, 0)
-				local result = IterateBetweenPositions(topLeft, downRight, function(args2)
-					local pos = args2.pos
-					local tile = Tile(pos)
-					if not tile then
-						return false
-					end
-					local oldCreature = tile:getTopCreature()
-					if not oldCreature then
-						return false
-					end
-					if oldCreature:getName():lower() == "fredi kamionka" then
+				local monsters = CreatureList():RadiusSquare(npcPos, 7, 7):FilterByMonster():Get()
+				for _, value in pairs(monsters) do
+					if value:getDisplayName():lower() == "fredi kamionka" then
 						return true
 					end
-					return false
-				end, { stopCondition = STOP_CONDITIONS.isTrue })
-				return result
+				end
+				return false
 			end,
 			saidCorrectPassword = function(context)
 				local player = context.player
@@ -235,7 +225,7 @@ quest
 				end, 2000)
 			end,
 		}
-		SYN_MARNOTRAWNY_SPECIAL_ACTIONS = {
+		PRODIGAL_SON_SPECIAL_ACTIONS = {
 			setPersonalBlackboardPassword = function(context)
 				local player = context.player
 				player:setStorageValueByKey(Storage.ProdigalSon.Blackboard, math.random(10 ^ 6, 10 ^ 7 - 1))
@@ -262,6 +252,20 @@ quest
 			southMachine = 845,
 			donePliers = 22680,
 			toiletSoap = 35595,
+		}
+		QuestRewards.OutfitsAddons.ProdigalSon = {
+			MakeshiftWarrior0 = {
+				{ outfitId = 1042, addons = 0 },
+				{ outfitId = 1043, addons = 0 },
+			},
+			MakeshiftWarrior1 = {
+				{ outfitId = 1042, addons = 1 },
+				{ outfitId = 1043, addons = 1 },
+			},
+			MakeshiftWarrior2 = {
+				{ outfitId = 1042, addons = 2 },
+				{ outfitId = 1043, addons = 2 },
+			},
 		}
 	end)
 	:Questlog(function(localizer)
@@ -377,7 +381,7 @@ quest
 
 		monster.name = "Arechek"
 		monster.description = "an Arechek"
-		monster.experience = 9900
+		monster.experience = 990
 		monster.outfit = {
 			lookType = 1042,
 			lookHead = 0,
@@ -401,8 +405,8 @@ quest
 			Locations = "Arechek is your usual Januszex inhabitant.",
 		}
 
-		monster.health = 7500
-		monster.maxHealth = 7500
+		monster.health = 750
+		monster.maxHealth = 750
 		monster.speed = 250
 		monster.corpse = 111
 
@@ -451,17 +455,17 @@ quest
 		}
 
 		monster.attacks = {
-			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -700, effect = CONST_ME_DRAWBLOOD },
-			{ name = "combat", interval = 2000, chance = 100, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -400, range = 7, shootEffect = CONST_ANI_BURSTARROW, target = true },
-			{ name = "combat", interval = 6000, chance = 22, type = COMBAT_HOLYDAMAGE, minDamage = -200, maxDamage = -900, range = 7, radius = 4, effect = CONST_ME_HOLYAREA, target = true },
-			{ name = "combat", interval = 4000, chance = 12, type = COMBAT_HOLYDAMAGE, minDamage = -400, maxDamage = -900, range = 7, effect = CONST_ME_HOLYDAMAGE, target = true },
-			{ name = "combat", interval = 4000, chance = 17, type = COMBAT_ICEDAMAGE, minDamage = -400, maxDamage = -900, radius = 4, effect = CONST_ME_ICEAREA, target = false },
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -120 },
+			{ name = "combat", interval = 2000, chance = 30, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -140, range = 7, shootEffect = CONST_ANI_BURSTARROW, target = true },
+			{ name = "combat", interval = 6000, chance = 22, type = COMBAT_HOLYDAMAGE, minDamage = -20, maxDamage = -290, range = 7, radius = 4, effect = CONST_ME_HOLYAREA, target = true },
+			{ name = "combat", interval = 4000, chance = 12, type = COMBAT_HOLYDAMAGE, minDamage = -40, maxDamage = -190, range = 7, effect = CONST_ME_HOLYDAMAGE, target = true },
+			{ name = "combat", interval = 4000, chance = 17, type = COMBAT_ICEDAMAGE, minDamage = -40, maxDamage = -190, radius = 4, effect = CONST_ME_ICEAREA, target = false },
 		}
 
 		monster.defenses = {
 			defense = 86,
 			armor = 86,
-			{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 10, maxDamage = 220, effect = CONST_ME_MAGIC_BLUE, target = false },
+			{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 10, maxDamage = 120, effect = CONST_ME_MAGIC_BLUE, target = false },
 		}
 
 		monster.elements = {
@@ -493,7 +497,7 @@ quest
 
 		monster.name = "Arechek"
 		monster.description = "an Arechek"
-		monster.experience = 12000
+		monster.experience = 1200
 		monster.outfit = {
 			lookType = 1042,
 			lookHead = 0,
@@ -504,12 +508,10 @@ quest
 			lookMount = 0,
 		}
 
-		monster.health = 9000
-		monster.maxHealth = 9000
+		monster.health = 900
+		monster.maxHealth = 900
 		monster.corpse = 4240
-		monster.speed = 250
-
-		monster.faction = FACTION_PLAYER
+		monster.speed = 120
 
 		monster.changeTarget = {
 			interval = 4000,
@@ -531,7 +533,7 @@ quest
 			canPushItems = true,
 			canPushCreatures = true,
 			staticAttackChance = 90,
-			targetDistance = 6,
+			targetDistance = 0,
 			runHealth = 0,
 			healthHidden = false,
 			isBlockable = false,
@@ -555,51 +557,11 @@ quest
 		}
 
 		monster.attacks = {
-			{
-				name = "combat",
-				interval = 2000,
-				chance = 100,
-				type = COMBAT_PHYSICALDAMAGE,
-				minDamage = 0,
-				maxDamage = -400,
-				range = 7,
-				shootEffect = CONST_ANI_BURSTARROW,
-				target = true,
-			},
-			{
-				name = "combat",
-				interval = 6000,
-				chance = 22,
-				type = COMBAT_HOLYDAMAGE,
-				minDamage = -200,
-				maxDamage = -900,
-				range = 7,
-				radius = 4,
-				effect = CONST_ME_HOLYAREA,
-				target = true,
-			},
-			{
-				name = "combat",
-				interval = 4000,
-				chance = 12,
-				type = COMBAT_HOLYDAMAGE,
-				minDamage = -400,
-				maxDamage = -900,
-				range = 7,
-				effect = CONST_ME_HOLYDAMAGE,
-				target = true,
-			},
-			{
-				name = "combat",
-				interval = 4000,
-				chance = 17,
-				type = COMBAT_ICEDAMAGE,
-				minDamage = -400,
-				maxDamage = -900,
-				radius = 4,
-				effect = CONST_ME_ICEAREA,
-				target = false,
-			},
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -12 },
+			{ name = "combat", interval = 2000, chance = 30, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -14, range = 7, shootEffect = CONST_ANI_BURSTARROW, target = true },
+			{ name = "combat", interval = 6000, chance = 22, type = COMBAT_HOLYDAMAGE, minDamage = -2, maxDamage = -29, range = 7, radius = 4, effect = CONST_ME_HOLYAREA, target = true },
+			{ name = "combat", interval = 4000, chance = 12, type = COMBAT_HOLYDAMAGE, minDamage = -4, maxDamage = -19, range = 7, effect = CONST_ME_HOLYDAMAGE, target = true },
+			{ name = "combat", interval = 4000, chance = 17, type = COMBAT_ICEDAMAGE, minDamage = -4, maxDamage = -19, radius = 4, effect = CONST_ME_ICEAREA, target = false },
 		}
 
 		monster.defenses = {
@@ -747,9 +709,6 @@ quest
 		local spell = Spell("instant")
 
 		function spell.onCastSpell(creature, var)
-			do
-				return
-			end
 			if not creature or not creature:isMonster() then
 				return true
 			end
@@ -781,18 +740,40 @@ quest
 					},
 					specialActionsOnSuccess = {
 						{
-							action = SYN_MARNOTRAWNY_SPECIAL_ACTIONS.setPersonalBlackboardPassword,
+							action = PRODIGAL_SON_SPECIAL_ACTIONS.setPersonalBlackboardPassword,
 						},
 					},
 				},
 			})
 	end)
 	:State(function()
-		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex, QuestFactory.Dialog("Chester the Dwarf", {
-			[{ "train", "pociagiem" }] = {
-				text = "Just ask the conductor to see the schedules of the train.",
-			},
-		})
+		return QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex,
+			QuestFactory.Dialog("Chester the Dwarf", {
+				[{ "train", "pociagiem" }] = {
+					text = "Just ask the conductor to see the schedules of the train.",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local nextState = {
+					[Storage.ProdigalSon.Mission01] = MISSION_FINISHED,
+					[Storage.ProdigalSon.Mission02] = QuestState.ProdigalSon.Mission02.FindForeman,
+				}
+
+				local grantFoundJanuszexTile = MoveEvent()
+				function grantFoundJanuszexTile.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return
+					end
+
+					if not player:HasExactMissionState(missionState) then
+						return
+					end
+
+					player:NextState(nextState)
+				end
+				grantFoundJanuszexTile:key(Storage.ProdigalSon.FindJanuszexTile)
+				grantFoundJanuszexTile:register()
+			end)
 	end)
 	:Mission(Storage.ProdigalSon.Mission02)
 	:State(function()
@@ -962,6 +943,7 @@ quest
 						[Storage.ProdigalSon.Mission03] = QuestState.ProdigalSon.Mission03.TalkToHearAboutDuties,
 						[Storage.ProdigalSon.MainGateAccess] = ACCESS_GRANTED,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.ProdigalSon.MakeshiftWarrior0,
 					requiredItems = {
 						{ id = PRODIGAL_SON_NORMAL_ITEMS.donePliers, count = 5 },
 					},
@@ -1194,7 +1176,7 @@ quest
 				chance = 100,
 				type = COMBAT_PHYSICALDAMAGE,
 				minDamage = 0,
-				maxDamage = -400,
+				maxDamage = -20,
 				range = 7,
 				shootEffect = CONST_ANI_BURSTARROW,
 				target = true,
@@ -1204,8 +1186,8 @@ quest
 				interval = 6000,
 				chance = 22,
 				type = COMBAT_HOLYDAMAGE,
-				minDamage = -200,
-				maxDamage = -900,
+				minDamage = -10,
+				maxDamage = -200,
 				range = 7,
 				radius = 4,
 				effect = CONST_ME_HOLYAREA,
@@ -1216,8 +1198,8 @@ quest
 				interval = 4000,
 				chance = 12,
 				type = COMBAT_HOLYDAMAGE,
-				minDamage = -400,
-				maxDamage = -900,
+				minDamage = -50,
+				maxDamage = -120,
 				range = 7,
 				effect = CONST_ME_HOLYDAMAGE,
 				target = true,
@@ -1227,8 +1209,8 @@ quest
 				interval = 4000,
 				chance = 17,
 				type = COMBAT_ICEDAMAGE,
-				minDamage = -400,
-				maxDamage = -900,
+				minDamage = -140,
+				maxDamage = -300,
 				radius = 4,
 				effect = CONST_ME_ICEAREA,
 				target = false,
@@ -1271,6 +1253,7 @@ quest
 						[Storage.ProdigalSon.Mission03] = MISSION_FINISHED,
 						[Storage.ProdigalSon.Mission04] = QuestState.ProdigalSon.Mission04.AskForMission,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.ProdigalSon.MakeshiftWarrior1,
 				},
 			})
 	end)
@@ -1398,6 +1381,7 @@ quest
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.AskForNewMission,
 						[Storage.ProdigalSon.NorthMinesAccess] = ACCESS_GRANTED,
 					},
+					outfitRewards = QuestRewards.OutfitsAddons.ProdigalSon.MakeshiftWarrior2,
 				},
 			})
 	end)
@@ -1514,7 +1498,7 @@ quest
 					},
 					specialRequirements = {
 						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.frediIsNearby,
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.frediIsNearby,
 							requiredOutcome = true,
 							textFailedRequirement = "Come back with Fredi.",
 						},
@@ -1674,7 +1658,7 @@ quest
 					},
 					specialRequirements = {
 						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.frediIsNearby,
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.frediIsNearby,
 							requiredOutcome = false,
 							textFailedRequirement = "Give us a moment.",
 						},
@@ -1683,6 +1667,33 @@ quest
 			})
 	end)
 	:Mission(Storage.ProdigalSon.Mission06)
+	:State(function()
+		return ANY_STATE,
+			QuestFactory.Dialog("Access-O-Bot", {
+				[{ GREET }] = {
+					text = "Password:",
+				},
+				[{ "mission", "misja", "entry", "enter", "wejsc", "passage", "access", "dostep", "teleport" }] = {
+					text = "Password:",
+				},
+				[{ "<password>" }] = {
+					text = "Correct password. Come in.",
+					specialRequirements = {
+						{
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.saidCorrectPassword,
+							requiredOutcome = true,
+							textFailedRequirement = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
+						},
+					},
+					specialActionsOnSuccess = {
+						{
+							action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
+							pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
+						},
+					},
+				},
+			})
+	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission06.FindPasswordAndKillImperator,
 			QuestFactory.Script(function(missionState)
@@ -1744,33 +1755,9 @@ quest
 					text = "Yeah, thats it! Go and get rid of our imperator!",
 					specialRequirements = {
 						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.saidCorrectPassword,
+							requirement = PRODIGAL_SON_SPECIAL_REQUIREMENTS.saidCorrectPassword,
 							requiredOutcome = true,
 							textFailedRequirement = "No. Im sure its not the password. Try looking behind the waterfall.",
-						},
-					},
-				},
-			}),
-			QuestFactory.Dialog("Access-O-Bot", {
-				[{ GREET }] = {
-					text = "Password:",
-				},
-				[{ "mission", "misja", "entry", "enter", "wejsc", "passage", "access", "dostep", "teleport" }] = {
-					text = "Password:",
-				},
-				[{ "<password>" }] = {
-					text = "Correct password. Come in.",
-					specialRequirements = {
-						{
-							requirement = SYN_MARNOTRAWNY_SPECIAL_REQUIREMENTS.saidCorrectPassword,
-							requiredOutcome = true,
-							textFailedRequirement = "~BZZT~ WRONG PASSWORD. INITIATE: ERADICATION MODE.",
-						},
-					},
-					specialActionsOnSuccess = {
-						{
-							action = SPECIAL_ACTIONS_UNIVERSAL.teleportPlayer,
-							pos = JANUSZEX_ANCHOR:Moved(54, 18, -1),
 						},
 					},
 				},

@@ -134,7 +134,7 @@ int ShopFunctions::luaShopSetSellPrice(lua_State* L) {
 int ShopFunctions::luaShopSetStorageKey(lua_State* L) {
 	// shop:setStorageKey(storage)
 	if (const auto &shop = Lua::getUserdataShared<Shop>(L, 1, "Shop")) {
-		shop->shopBlock.itemStorageKey = Lua::getNumber<uint32_t>(L, 2);
+		shop->shopBlock.itemStorageKey = Lua::getString(L, 2); // Vaigu custom
 		Lua::pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);

@@ -29,6 +29,7 @@
 #include "lua/scripts/lua_environment.hpp"
 #include "map/spectators.hpp"
 #include "lua/functions/lua_functions_loader.hpp"
+#include "creatures/appearance/mounts/mounts.hpp"
 
 void GameFunctions::init(lua_State* L) {
 	Lua::registerTable(L, "Game");
@@ -115,6 +116,11 @@ void GameFunctions::init(lua_State* L) {
 
 	Lua::registerMethod(L, "Game", "getMonstersByRace", GameFunctions::luaGameGetMonstersByRace);
 	Lua::registerMethod(L, "Game", "getMonstersByBestiaryStars", GameFunctions::luaGameGetMonstersByBestiaryStars);
+
+	// Vaigu custom
+	Lua::registerMethod(L, "Game", "getOutfitNameByLookType", GameFunctions::luaGameGetOutfitNameByLookType);
+	Lua::registerMethod(L, "Game", "getOutfitSexByLookType", GameFunctions::luaGameGetOutfitSexByLookType);
+	Lua::registerMethod(L, "Game", "getMountNameByLookType", GameFunctions::luaGameGetMountNameByLookType);
 }
 
 // Game
@@ -1142,6 +1148,41 @@ int GameFunctions::luaGameGetMonstersByBestiaryStars(lua_State* L) {
 		Lua::pushUserdata<MonsterType>(L, monsterType);
 		Lua::setMetatable(L, -1, "MonsterType");
 		lua_rawseti(L, -2, ++index);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int GameFunctions::luaGameGetOutfitNameByLookType(lua_State* L) {
+	// Game.getOutfitNameByLookType(lookType)
+	const uint16_t lookType = Lua::getNumber<uint16_t>(L, 1);
+	const auto &name = Outfits::getInstance().getOutfitNameByLookType(lookType);
+	if (!name.empty()) {
+		Lua::pushString(L, name);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+// Vaigu custom
+int GameFunctions::luaGameGetOutfitSexByLookType(lua_State* L) {
+	// Game.getOutfitSexByLookType(lookType)
+	const uint16_t lookType = Lua::getNumber<uint16_t>(L, 1);
+	const auto sex = Outfits::getInstance().getOutfitSexByLookType(lookType);
+	Lua::pushNumber(L, sex);
+	return 1;
+}
+
+// Vaigu custom
+int GameFunctions::luaGameGetMountNameByLookType(lua_State* L) {
+	// Game.getMountNameByLookType(id)
+	const uint8_t id = Lua::getNumber<uint8_t>(L, 1);
+	const auto &name = g_game().mounts->getMountNameByLookType(id);
+	if (!name.empty()) {
+		Lua::pushString(L, name);
+	} else {
+		lua_pushnil(L);
 	}
 	return 1;
 }

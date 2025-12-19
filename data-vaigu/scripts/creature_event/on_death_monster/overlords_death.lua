@@ -6,7 +6,7 @@ local overlords = {
 	["lord of the elements"] = {},
 }
 
-local creatureevent = CreatureEvent("ElementalSpheresOverlordDeath")
+local creatureevent = CreatureEvent("ElementalOverlordDeath")
 
 function creatureevent.onDeath(creature)
 	local targetMonster = creature:getMonster()

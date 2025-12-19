@@ -1,3 +1,4 @@
+--[[
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -13,3 +14,4 @@ function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 end
 action:aid(1004)
 action:register()
+]]

@@ -18,6 +18,7 @@ quest
 			TpToBossRoom = {},
 			BossArea = {},
 			BossBook = {},
+			BossBombsPositions = {},
 			BossRoomExit = {},
 
 			SkipDoor = {},
@@ -87,10 +88,16 @@ quest
 		})
 	end)
 	:Constant(function()
-		GUARDIAN_SKULLS_APPEAR_SPOTS_POOL = {
+		GUARDIAN_SKULLS_APPEAR_SPOTS = {
 			["Cipociamkacz"] = { x = -12, y = 15, z = 1 },
 			["PatriotaPL"] = { x = -11, y = 15, z = 1 },
 			["CalaNapszut"] = { x = -10, y = 15, z = 1 },
+		}
+		QuestRewards.OutfitsAddons.PathOfTheUndead = {
+			Poltergeist3 = {
+				{ outfitId = 1270, addons = 3 },
+				{ outfitId = 1271, addons = 3 },
+			},
 		}
 	end)
 	:Monster(function()
@@ -499,7 +506,7 @@ quest
 			hostile = true,
 			convinceable = false,
 			pushable = false,
-			rewardBoss = false,
+			rewardBoss = true,
 			illusionable = false,
 			canPushItems = true,
 			canPushCreatures = false,
@@ -577,7 +584,7 @@ quest
 			},
 			{
 				name = "undead crypt king summon laga dyga",
-				interval = 20000,
+				interval = 10000,
 				chance = 100,
 				minDamage = 0,
 				maxDamage = 0,
@@ -722,53 +729,55 @@ quest
 	end)
 	:MonsterEvent(function()
 		local guardian = CreatureEvent("CalaNapszutDeath")
-
 		function guardian.onDeath(creature)
 			QuestActions.PathOfTheUndead.spawnSkull()
 		end
-
 		guardian:register()
 	end)
 	:MonsterEvent(function()
 		local guardian = CreatureEvent("CipociamkaczDeath")
-
 		function guardian.onDeath(creature)
 			QuestActions.PathOfTheUndead.spawnSkull()
 		end
-
 		guardian:register()
 	end)
 	:MonsterEvent(function()
-		local kingDeath = CreatureEvent("UndeadCryptKingDeath")
+		local nextState = {
+			[Storage.PathOfTheUndead.Mission03] = QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
+		}
 
+		local kingDeath = CreatureEvent("UndeadCryptKingDeath")
 		function kingDeath.onDeath(creature)
 			local targetMonster = creature:getMonster()
 			if not targetMonster or targetMonster:getMaster() then
 				return true
 			end
 
+			CreatureList.FromDamageMap(creature:getDamageMap()):FilterByPlayer():ForEach(function(player)
+				if player:getStorageValueByKey(Storage.PathOfTheUndead.Mission03) == QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing then
+					player:NextState(nextState)
+				end
+			end)
+
 			local pos = targetMonster:getPosition()
 			local portal = Game.createItem(27590, 1, pos)
 			portal:setKey(Storage.PathOfTheUndead.BossRoomExit)
 		end
-
 		kingDeath:register()
 	end)
 	:MonsterEvent(function()
 		local guardian = CreatureEvent("PatriotaPLDeath")
-
 		function guardian.onDeath(creature)
 			QuestActions.PathOfTheUndead.spawnSkull()
 		end
-
 		guardian:register()
 	end)
 	:MonsterEvent(function()
-		local smallArea = createCombatArea(AREA_PLUS3)
+		local lagaDygaDeathArea = createCombatArea(AREA_CIRCLE5X5)
 		local plusShapeCombat = Combat()
 		plusShapeCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
 		plusShapeCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MORTAREA)
-		plusShapeCombat:setArea(smallArea)
+		plusShapeCombat:setArea(lagaDygaDeathArea)
 		plusShapeCombat:setFormula(COMBAT_FORMULA_DAMAGE, -1500, 0, -1500, 0)
 
 		local lagaDygadeath = CreatureEvent("LagaDygaDeath")
@@ -776,6 +785,7 @@ quest
 			if not creature or not creature:isMonster() then
 				return true
 			end
+
 			plusShapeCombat:execute(creature, { type = 2, pos = creature:getPosition() })
 			return true
 		end
@@ -830,164 +840,144 @@ quest
 		spell:register()
 	end)
 	:MonsterEvent(function()
-		local textOnPlacement = "The Undead King conjured a bomb! Cover it with your bodies!"
+		latentBombCombat = Combat()
+		latentBombCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_FIREDAMAGE)
+		latentBombCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_FIREAREA)
+		latentBombCombat:setArea(createCombatArea(AREA_CIRCLE6X6))
+
+		local bombsZone = Zone(Storage.PathOfTheUndead.BossBombsPositions)
+		local bossAreaZone = Zone(Storage.PathOfTheUndead.BossArea)
+
+		local latentBombCount = 0
+		local latentBombPositions = {}
+		local latentBombDamage = 0
+
 		local totalDamage = 5000
-		local combatBomb = Combat()
-		combatBomb:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-		combatBomb:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_NONE)
 
-		local area = createCombatArea(AREA_BEAM1)
-		combatBomb:setArea(area)
+		local initializeBombsZone = GlobalEvent("PathOfTheUndead/InitializeBombsZone")
+		function initializeBombsZone.onStartup()
+			latentBombPositions = bombsZone:getPositions()
+			latentBombCount = #latentBombPositions
+			latentBombDamage = math.floor(totalDamage / latentBombCount)
+			latentBombCombat:setFormula(COMBAT_FORMULA_DAMAGE, latentBombDamage, 0, latentBombDamage, 0)
+			return true
+		end
+		initializeBombsZone:register()
 
-		local function sendPositionsWarning(topLeft, downRight, magicEffect)
-			IterateBetweenPositions(topLeft, downRight, function(context)
-				local pos = context.pos
-				pos:sendMagicEffect(magicEffect)
-			end)
+		local function explodeLatentBomb(latentBomb)
+			local bombPosition = latentBomb:getPosition()
+			local lagaDyga = Game.createMonster("Laga Dyga", bombPosition)
+			latentBombCombat:execute(lagaDyga, { type = 2, pos = bombPosition })
 		end
 
-		local function damageAllPlayers(topLeft, downRight)
-			IterateBetweenPositions(topLeft, downRight, function(context)
-				local pos = context.pos
-				local tile = Tile(pos)
-				if not tile then
-					return
-				end
-				local creature = tile:getTopCreature()
-				if not creature then
-					return
-				end
-				doTargetCombatHealth(0, creature, COMBAT_FIREDAMAGE, totalDamage, totalDamage, CONST_ME_NONE)
-			end)
-		end
-
-		local function trySplitDamageBetweenPlayers(topLeft, downRight)
-			local players = topLeft:PlayersBetween(downRight):Get()
-			if #players < 1 then
-				return false
+		local function explodeLatentBombs(latentBombs)
+			for _, latentBomb in pairs(latentBombs) do
+				addEvent(function()
+					explodeLatentBomb(latentBomb)
+					latentBomb:getPosition():sendMagicEffect(CONST_ME_POFF)
+					latentBomb:remove()
+				end, math.random(1, 8000))
 			end
+		end
 
-			sendPositionsWarning(topLeft, downRight, CONST_ME_FIREAREA)
+		local function splitDamageBetweenPlayers(activeBombPosition)
+			local players = activeBombPosition:Moved(-1, -1, 0):PlayersBetween(activeBombPosition:Moved(1, 1, 0)):Get()
 
 			local splitdmg = totalDamage / #players
-			for _, value in pairs(players) do
-				doTargetCombatHealth(0, value, COMBAT_FIREDAMAGE, splitdmg, splitdmg, CONST_ME_NONE)
+			for _, player in pairs(players) do
+				doTargetCombatHealth(0, player, COMBAT_FIREDAMAGE, splitdmg, splitdmg, CONST_ME_NONE)
+				player:getPosition():sendMagicEffect(CONST_ME_FIREATTACK)
 			end
 			return true
 		end
 
-		local function randomBombTarget(bossCid)
-			local creatures = CreatureList():RadiusSquare(Creature(bossCid):getPosition(), 7, 5):FilterByPlayer()
-			local target = creatures:GetRandom()
-			creatures:FilterByVocation(VOCATION.ID.KNIGHT)
-			local targetNonKnight = creatures:GetRandom()
-			return targetNonKnight or target
-		end
+		local latentBombId = 23485
+		local activeBombId = 23486
 
-		local function sendPlacementWarning(topLeft, downRight, target)
-			target:say(textOnPlacement, TALKTYPE_MONSTER_SAY)
-			sendPositionsWarning(topLeft, downRight, CONST_ME_FIREAREA)
-		end
-
-		local explosionDelay = 10000
-		local function sendWarningsBeforeExplosion(topLeft, downRight)
-			for i = 1, 3 do
-				addEvent(function()
-					sendPositionsWarning(topLeft, downRight, CONST_ME_HITBYFIRE)
-				end, explosionDelay - i * 650)
+		local function generateLatentBombs()
+			local bombs = {}
+			for _, position in pairs(latentBombPositions) do
+				local bomb = Game.createItem(latentBombId, 1, position)
+				table.insert(bombs, bomb)
 			end
+			return bombs
+		end
+		local function generateActiveBomb()
+			return Game.createItem(activeBombId, 1, bombsZone:randomPosition())
 		end
 
-		local function getNewBombPosition(target)
-			local targetPos = target:getPosition()
-			local topLeft, downRight = targetPos:GetBoundariesByRadius(1)
-			local newPos = IterateBetweenPositions(topLeft, downRight, function(context)
-				if context.pos:IsPathable() then
-					return context.pos
-				end
-			end, { stopCondition = STOP_CONDITIONS.isNotNull })
-			return Position(newPos)
-		end
-
-		local function placeBomb(pos)
-			local bomb = Game.createItem(23486, 1, pos)
-			bomb:setUniqueId(1000)
-			return bomb
-		end
-
-		local function createBombTextures(soakTopLeft, soakDownRight, centerPos)
-			local textures = {}
-			IterateBetweenPositions(soakTopLeft, soakDownRight, function(context)
+		local function countNearbyPlayers(activeBombPos)
+			local nearbyPlayerCount = 0
+			IterateBetweenPositions(activeBombPos:Moved(-1, -1, 0), activeBombPos:Moved(1, 1, 9), function(context)
 				local pos = context.pos
-				textures[#textures + 1] = Game.createItem(23483, 1, pos)
-			end)
-			textures[#textures + 1] = placeBomb(centerPos)
-			return textures
-		end
-
-		local function removeBombTextures(textures)
-			for _, texture in pairs(textures) do
-				texture:remove()
-			end
-		end
-
-		local bombTimerSeconds = 10
-		local soakRadius = 1
-		local unsoakedExplosionRadius = 22
-		local function conjureBomb(casterCid)
-			local target = randomBombTarget(casterCid)
-			if not target then
-				return
-			end
-
-			local pos = getNewBombPosition(target)
-			if not pos then
-				return
-			end
-
-			local soakTopLeft, soakDownRight = pos:GetBoundariesByRadius(soakRadius)
-			local arenaTopLeft, arenaDownRight = pos:GetBoundariesByRadius(unsoakedExplosionRadius)
-
-			local bombTextures = createBombTextures(soakTopLeft, soakDownRight, pos)
-			addEvent(function()
-				removeBombTextures(bombTextures)
-			end, bombTimerSeconds * 1000)
-
-			sendPlacementWarning(soakTopLeft, soakDownRight, target)
-			sendWarningsBeforeExplosion(soakTopLeft, soakDownRight)
-			Game.startCountdown(pos, bombTimerSeconds)
-
-			addEvent(function()
-				if trySplitDamageBetweenPlayers(soakTopLeft, soakDownRight) then
-				else
-					damageAllPlayers()
-					sendPositionsWarning(arenaTopLeft, arenaDownRight, CONST_ME_FIREAREA)
+				local player = pos:GetTopPlayer()
+				if player then
+					nearbyPlayerCount = nearbyPlayerCount + 1
 				end
-			end, explosionDelay)
+			end)
+			return nearbyPlayerCount
+		end
+
+		local function removeLatentBombs(latentBombs)
+			for _, latentBomb in pairs(latentBombs) do
+				latentBomb:getPosition():sendMagicEffect(CONST_ME_POFF)
+				latentBomb:remove()
+			end
+		end
+
+		local function onActiveBombExplode(activeBomb, latentBombs)
+			local activeBombPos = activeBomb:getPosition()
+
+			local nearbyPlayerCount = countNearbyPlayers(activeBombPos)
+			if nearbyPlayerCount > 0 then
+				splitDamageBetweenPlayers(activeBombPos)
+				removeLatentBombs(latentBombs)
+			elseif nearbyPlayerCount == 0 then
+				explodeLatentBombs(latentBombs)
+			end
+
+			activeBomb:remove()
+		end
+
+		local explosionDelaySeconds = 15
+		local function conjureBombs()
+			local latentBombs = generateLatentBombs()
+			local activeBomb = generateActiveBomb()
+
+			addEvent(function()
+				onActiveBombExplode(activeBomb, latentBombs)
+			end, explosionDelaySeconds * 1000)
 			return true
 		end
 
-		local config = { lastTargetId = 0, stacks = 0, damagePerStack = -30, baseDamage = 100 }
+		local bombCooldown = 25
+		local cooldownExpiry = 0
+
+		local antiTankSpellData = { previousTargetId = nil, stacks = 0, damagePerStack = -30, baseDamage = -100 }
+
 		local combatAntiTankStacks = Combat()
 		combatAntiTankStacks:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
 		combatAntiTankStacks:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_SUDDENDEATH)
-		function onGetFormulaValues(creature, target)
-			local targetId = target:getId()
-			if targetId ~= config.lastTargetId then
-				if config.lastTargetId ~= nil then
-					conjureBomb(creature)
+		function onGetFormulaValues(boss, target)
+			local currentTargetId = target:getId()
+			local previousTargetId = antiTankSpellData.previousTargetId
+			if previousTargetId and previousTargetId ~= currentTargetId then
+				if os.time() > cooldownExpiry then
+					conjureBombs()
+					cooldownExpiry = os.time() + bombCooldown
 				end
-				config.lastTargetId = targetId
-				config.stacks = 0
+				antiTankSpellData.stacks = 0
 			end
 
-			local damage = math.floor(config.damagePerStack * config.stacks) + config.baseDamage
+			local damage = math.floor(antiTankSpellData.damagePerStack * antiTankSpellData.stacks) + antiTankSpellData.baseDamage
 			if not target:isPlayer() then
 				damage = damage * 10
 			end
 			doTargetCombatHealth(0, target, COMBAT_ENERGYDAMAGE, damage, damage, CONST_ME_NONE)
 
-			config.stacks = config.stacks + 1
+			antiTankSpellData.stacks = antiTankSpellData.stacks + 1
+
+			antiTankSpellData.previousTargetId = currentTargetId
 			return true
 		end
 
@@ -1038,14 +1028,13 @@ quest
 					},
 					requiredState = {
 						[Storage.Finished.AssassinsCreedSquurvaali] = MISSION_FINISHED,
-						[Storage.Finished.ImRestingHere] = MISSION_FINISHED,
 						[Storage.Finished.SultanPrime] = MISSION_FINISHED,
 						[Storage.ChesterTheDwarf.Mission03] = MISSION_FINISHED,
 					},
 					textNoRequiredState = "It's interesting that you know our password. Nevertheless, I have no task for you or anything to interest you with.",
 				},
 				[{ "king", "crypt king", "king of the crypt", "krol krypty", "krol" }] = {
-					text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth.",
+					text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth. Try to as him for out special passphrase.",
 				},
 			})
 	end)
@@ -1063,10 +1052,13 @@ quest
 						[Storage.PathOfTheUndead.VisitedCircles] = {},
 					},
 					requiredState = {
-						[Storage.PitsOfInferno.OneThrone] = { min = 1 },
-						[Storage.Finished.WayOfTheDruid] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.DeerSeason] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.TakenBenek] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.RudeEviction] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.SecretIngredient] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.SingingCrystal] = MISSION_FINISHED,
 					},
-					textNoRequiredState = "I need you to help all other druids of this world. Only if they vouch for you, shall you return here. Additionally, you must visit at least one POI throne. If you are ready, ask me again about {conditions}.",
+					textNoRequiredState = "I need you to help all other druids of this world. Only if they vouch for you, shall you return here. If you are ready, ask me again about {conditions}.",
 				},
 			})
 	end)
@@ -1129,17 +1121,17 @@ quest
 				circleTile:register()
 			end),
 			QuestFactory.Dialog("Fstab", {
-				[{ "krag", "kregi", "circles", "cromlech" }] = {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
 					text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow.",
 				},
 			}),
 			QuestFactory.Dialog("Funfel", {
-				[{ "krag", "kregi", "circles", "cromlech" }] = {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
 					text = "This cromlech is located behind the orc hill in the west of the city. There's also corym village nearby. The other one is to the west, beyond lizard village.",
 				},
 			}),
 			QuestFactory.Dialog("Nadia France", {
-				[{ "krag", "kregi", "circles", "cromlech" }] = {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
 					text = "I understand, the stone cromlech is located on a peninsula to the southwest of here.",
 				},
 			})
@@ -1148,7 +1140,7 @@ quest
 	:State(function()
 		return QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing,
 			QuestFactory.Dialog("Konmuld", {
-				[{ "mission", "misja", "krol krypty", "crypt king", "the king of the crypt", "king", "krol" }] = {
+				[{ "krol krypty", "crypt king", "the king of the crypt", "king", "krol" }] = {
 					text = "Gandalf sent you here, right? If you want to go to the down pyramid, you need to know that there is an Undead Crypt King waiting, and that {encounter} him will not be easy by any means. To summon him, you will need a few ingredients. Take the most necessary things: wood, cauldron, vial and lighter. For the ritual you will need {bones} so foul that they lower the wavelength of the light around. Plus the {signet ring} of an undead lord, and a {cloak} made of the skin of unbaptized children. If you're going to collect these items, ask me about the {ritual}.",
 				},
 				[{ "walka", "encounter", "fight" }] = {
@@ -1157,7 +1149,7 @@ quest
 				[{ "kosci", "bone", "bones" }] = {
 					text = "It's called Unholy Bone.",
 				},
-				[{ "sygnet", "signet", "pierscien", "seal" }] = {
+				[{ "sygnet", "signet", "pierscien", "seal", "signet ring" }] = {
 					text = "This ring has vanished somewhere, maybe Grave Digger will tell you more about it.",
 				},
 				[{ "grave digger" }] = {
@@ -1496,6 +1488,7 @@ quest
 						[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.FindChester,
 					},
 					expReward = 25000000,
+					outfitRewards = QuestRewards.OutfitsAddons.PathOfTheUndead.Poltergeist3,
 				},
 			})
 	end)

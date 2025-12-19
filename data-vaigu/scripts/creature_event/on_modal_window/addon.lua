@@ -1,3 +1,4 @@
+--[[
 local creatureEvent = CreatureEvent("addon")
 function creatureEvent.onModalWindow(player, modalWindowId, buttonId, choiceId)
 	local player = Player(player)
@@ -96,9 +97,6 @@ function creatureEvent.onModalWindow(player, modalWindowId, buttonId, choiceId)
 
 	if modalWindowId == 100 and buttonId == 3 then --pomoc
 		player:showTextDialog(5903, "Mozesz wymienic odpowiednie przedmioty na dodatki do outfitow. Po wybraniu dodatku, kliknij przycisk pomoc, aby dowiedziec sie jakie przedmioty sa wymagane. Jezeli jeszcze nie jestes zdecydowany na dodatek, za 300gp przetestuj go. \n\nPo zdobyciu wszystkich dodatkow, otrzymasz ode mnie nagrode.")
-	--[[elseif modalWindowId == 100 and buttonId == 1 then --testuj	
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Opcja wylaczona.")
-			return false]]
 	elseif modalWindowId == 100 and buttonId == 2 then --wybierz
 		local looktypee = 100
 		local modale = ModalWindow(101, "Addon", "Wybierz opcje dodatku ktory cie interesuje: ")
@@ -185,3 +183,4 @@ function creatureEvent.onModalWindow(player, modalWindowId, buttonId, choiceId)
 end
 
 creatureEvent:register()
+]]

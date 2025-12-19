@@ -101,23 +101,11 @@ function fluid.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		local fluidSource = targetType:getFluidSource()
 		if fluidSource ~= 0 then
 			item:transform(item.itemid, fluidSource)
-		elseif item.type == 0 then
+		elseif item.type == FLUID_NONE then
 			player:sendTextMessage(MESSAGE_FAILURE, "It is empty.")
 		else
-			if item.type == 5 and target.actionid == 2023 then
-				toPosition.y = toPosition.y + 1
-				local creatures, destination = Tile(toPosition):getCreatures(), Position(6093, 1899, 10)
-				if #creatures == 0 then
-					graveStoneTeleport(player.uid, fromPosition, destination)
-				else
-					local creature
-					for i = 1, #creatures do
-						creature = creatures[i]
-						if creature and creature:isPlayer() then
-							graveStoneTeleport(creature.uid, toPosition, destination)
-						end
-					end
-				end
+			if item.type == FLUID_BLOOD and target.actionid == 2023 then
+				graveStoneTeleport(player.uid, fromPosition, player:getPosition():Moved(0, 0, 1))
 			else
 				if toPosition.x == CONTAINER_POSITION then
 					toPosition = player:getPosition()

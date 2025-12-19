@@ -1,4 +1,18 @@
 return {
+	["YOU_INVESTIGATED_N_GUARDS__REPORT_TO_HENRICUS"] = function(context)
+		local player = context.player
+		local visitedCount = 0
+		for _, storage in pairs(QuestConstants.TheInquisition.GuardsVisitedStorages) do
+			if player:getStorageValueByKey(storage) == ACCESS_GRANTED then
+				visitedCount = visitedCount + 1
+			end
+		end
+		if visitedCount < QuestConstants.TheInquisition.GuardsCount then
+			return T("You visited :visitedCount: of :maxCount: guards so far.", { visitedCount = visitedCount, maxCount = QuestConstants.TheInquisition.GuardsCount })
+		elseif visitedCount == QuestConstants.TheInquisition.GuardsCount then
+			return "You visited all guards. Report to Henricus."
+		end
+	end,
 	--Questlog
 	["The Inquisition"] = "The Inquisition",
 	["Mission 1: Interrogation"] = "Mission 1: Interrogation",
@@ -18,7 +32,7 @@ return {
 	["Go back to Storkus and ask for a mission."] = "Go back to Storkus and ask for a mission.",
 	["Now Storkus wants you to kill a vampire lord, The Count. The Count is located deep under the forgotten cemetery near the hunter camp. To summon The Count, you must use the coffin in the center of the room. Kill him and bring The Ring of the Count to Storkus."] = "Now Storkus wants you to kill a vampire lord, The Count. The Count is located deep under the forgotten cemetery near the hunter camp. To summon The Count, you must use the coffin in the center of the room. Kill him and bring The Ring of the Count to Storkus.",
 	["Kill The Count and bring his ring to Storkus, and then ask for a mission."] = "Kill The Count and bring his ring to Storkus, and then ask for a mission.",
-	["Return to Henricus and tell him that you've finished your job here."] = "Return to Henricus and tell him that you've finished your job here.",
+	["Return to Storkus and tell him that you've finished your job here."] = "Return to Storkus and tell him that you've finished your job here.",
 	["Get back to Sybir and report your mission to Henricus."] = "Get back to Sybir and report your mission to Henricus.",
 	["Mission 4: The Haunted Ruin"] = "Mission 4: The Haunted Ruin",
 	["Henricus will give you a Special Flask (vial of holy water). You can find some abandoned pirate ruins near hero village in the jungle. Use this vial of holy water on some spot in the haunted ruin to drive out the evil being."] = "Henricus will give you a Special Flask (vial of holy water). You can find some abandoned pirate ruins near hero village in the jungle. Use this vial of holy water on some spot in the haunted ruin to drive out the evil being.",

@@ -75,16 +75,16 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "small amethyst", chance = 54900, maxCount = 3 },
-	{ name = "yellow gem", chance = 21000 },
-	{ id = 3052, chance = 17770 }, -- life ring
+	{ name = "yellow gem", chance = 31000 },
+	{ id = 3052, chance = 47770 }, -- life ring
 	{ name = "terra rod", chance = 1001 },
 	{ name = "wand of inferno", chance = 11480 },
 	{ name = "lizard leather", chance = 33980 },
 	{ name = "lizard scale", chance = 21130 },
-	{ name = "strong mana potion", chance = 12110 },
-	{ name = "great mana potion", chance = 7940 },
-	{ name = "focus cape", chance = 1660 },
-	{ name = "zaoan shoes", chance = 450 },
+	{ name = "strong mana potion", chance = 22110 },
+	{ name = "great mana potion", chance = 27940 },
+	{ name = "focus cape", chance = 3660 },
+	{ name = "zaoan shoes", chance = 8450 },
 	{ name = "zaoan robe", chance = 3300 },
 	{ name = "dragon priest's wandtip", chance = 29910 },
 }

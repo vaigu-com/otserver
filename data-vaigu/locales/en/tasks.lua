@@ -9,7 +9,7 @@ return {
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!",
 	["Finish one of {tasks}, then we can talk about reward."] = "Finish one of {tasks}, then we can talk about reward.",
 	["TASKS_HELP_WINDOW_INFO"] = function()
-		return T("Finishing tasks grants you experience points, money, store coins and after each task you can face the corresponding boss.\n\nYou can have up to :maxTasks: active tasks at the time.", { maxTasks = #Storage.Tasks.PlayerOngoingTasks })
+		return T("Finishing tasks grants you experience points, money, store coins and after each task you can face the corresponding boss.\n\nYou can have up to :maxTasks: active tasks at the time.", { maxTasks = #Storage.Task.PlayerOngoingTasks })
 	end,
 	["TASK_REWARDS_DIALOG"] = function(context)
 		local task = context.task
@@ -25,7 +25,7 @@ return {
 		return T("Task for :name: is finshed! You can now face the boss and go to The Great Tracker for reward!", { name = context.task.name })
 	end,
 	["YOU_HAVE_MAX_ONGOING_TASKS"] = function()
-		local maxOngoingTasks = #Storage.Tasks.PlayerOngoingTasks
+		local maxOngoingTasks = #Storage.Task.PlayerOngoingTasks
 		return T("You have :maxOngoingTasks: already. You can {cancel} one of them if you want.", { maxOngoingTasks = maxOngoingTasks })
 	end,
 	["TASK_CURRENT_KILLS"] = function(context)
@@ -53,7 +53,7 @@ return {
 	end,
 	--Task Points
 	["YOU_CURRENTLY_HAVE_N_TASK_POINTS"] = function(context)
-		local points = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local points = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		return T("Currently you have :points: task points. You can exchange them for {trophies}, {mount} and {ability} to make powerful imbues.", { points = points })
 	end,
 	["THIS_TROPHY_WILL_COST_YOU_N"] = function(context)
@@ -63,7 +63,7 @@ return {
 		return T("Would you like to buy :name: for :cost: Task Poins?", { name = context.msg:lower(), cost = context.cost })
 	end,
 	["YOU_DONT_HAVE_ENOUGH_TASK_POINTS"] = function(context)
-		local current = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local current = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		local required = context.cost or PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints
 		local diff = required - current
 		return T("You dont have enough points. You need :required: points to buy that. You currently have :current: points meaning you need to accumulate :diff: more points.", { current = current, required = required, diff = diff })
@@ -152,59 +152,67 @@ return {
 		return T("Fight with :bossName:", { bossName = context.task.bossName })
 	end,
 	["FIGHT_WITH_TASK_BOSS_MISSION_DESCRIPTION"] = function(context)
-		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Tasks):Get(context.task.name)
+		local bossLocationDescription = context.player:Localizer(LOCALIZERS.Task):Get(context.task.name)
 		local bossAdmits = math.max(context.player:getStorageValueByKey(context.task.bossAdmitCounter), 0)
 		local admitsCountSuffix = T(" \nYou can fight with the boss :bossAdmits: times.", { bossAdmits = bossAdmits })
 		return bossLocationDescription .. admitsCountSuffix
 	end,
+	["Ancient Scarabs"] = "The most vicious scarab has its lair located underneath dry plains in the south of steppes.",
 	["Apes"] = "The Golira lives in monkey camp on eastern side of the mountain range in the jungle.",
+	["Barbarians"] = "As far as I know, their lady boss lives on the cabin upper floor in their village in Syberia.",
+	["Behemoths"] = "The grotto of the humongous behemoths is located underneath the swamp in the west of the jungle. If you dare, you can wander there and look for Stonecracker.",
+	["Bonebeasts"] = "Rumours mention that desert Wyrms are guarding entrance to his lair, but this time it would really seem it's just rumours",
+	["Brimstone Bug"] = "In the subterranean grounds under acid-tainted area of steppes, the Brimstone Bugs are feeling at home. The Sulphur Scuttler has to be hiding there.",
 	["Carniphilas"] = "Deathbine settled down somewhere near rocks on a bamboo clearing. The area is known from their crowdedness of Terror Birds and Carniphilas.",
 	["Crocodiles"] = "His lair is said to be under a waterfall teeming with crocodiles.",
-	["Cyclops"] = "The old cyclops was seen in the depths of a cave at the northern gate of MirkoTown.",
-	["Dragons"] = "The old dragon lives around the volcano to the north of Mirko Town.",
-	["Gargoyles"] = "The gargoyle cave is located at the top of the mountains inhabited by cyclops.",
-	["Mammoths"] = "The entrance to the Bloodtusk cave is somewhere on the Siberian surface.",
-	["Minotaurs"] = "The rumors says that one of the minotaur leaders is hiding in their settlement north of MirkoTown.",
-	["Mutated Humans"] = "His hideout is located under the cemetery in the village of mutants.",
-	["Orcs"] = "Bibby spent most of his time in the northern orc fortress, probably still there.",
-	["Rotworms"] = "The White Pale lair lays somewhere in eastern undergrounds of MirkoTown",
-	["Stone Golems"] = "Grorlam is hiding in a small cave inhabited by elementals to the northeast of Hurghada.",
-	["Tarantulas"] = "In ruins to the west of Kongo there were quite a few tarantulas, Hide might hid there.",
-	["Terramites"] = "Thermite is hiding in a small hole in the eastern part of the desert.",
-	["Tortoises"] = "There is a hovel in the north-east of jungle, where Thorner resides.",
-	["Weak undeads"] = "The cemetery on east of Mirko Town is haunted by Ripper now and again. He is probably hiding there.",
-	["Ancient Scarabs"] = "The most vicious scarab has its lair located underneath dry plains in the south of steppes.",
-	["Bonebeasts"] = "Rumours mention that desert Wyrms are guarding entrance to his lair, but this time it would really seem it's just rumours",
 	["Crystal Spiders"] = "Bloodweb's hiding place is located underneath certain rocks, in the northern part of Sybir.",
-	["Giant Spiders"] = "South of Knurowo is a place swarming with spiders. Perhaps the most dangerous one is there as well.",
-	["Ice Golems"] = "The teleport to the Shardhead's chamber is in the north of Sybir. There are Crystal Spiders and Ice Golems hanging around in its vicinity",
-	["Lancer Beetles"] = "The murderous worm is hiding under the contaminated area in the north of steppes",
-	["Mutated Bats"] = "The contaminated mountains have become a home to mutated bats and rats. Bruise Payne is hiding in these rocks",
-	["Mutated Rats"] = "The entrance to Esmeralda's hideout is somewhere near cliffs inhabited by mutated rats, in the heart of steppes.",
-	["Mutated Tigers"] = "The entrance to the tiger's den is located near a mountain inhabited by tigers of the steppes.",
-	["Necromancers"] = "The lord of necromancers is located somewhere near Mirko Town cemetery",
-	["Ogres"] = "The master of ogres lives in their biggest settlement on steppes",
-	["Pirates"] = "The pirate's captain is hiding somewhere on their island for sure",
-	["Stampors"] = "Tromphonyte is hiding in the Stampors den.",
-	["Wailing Widows"] = "Fiery widow has its own cave in the southern-west ends of desert.",
-	["Wyverns"] = "Reptilia can be bested at the mountain inhabited by jungle wyverns.",
-	["Behemoths"] = "The grotto of the humongous behemoths is located underneath the swamp in the west of the jungle. If you dare, you can wander there and look for Stonecracker.",
-	["Brimstone Bug"] = "In the subterranean grounds under acid-tainted area of steppes, the Brimstone Bugs are feeling at home. The Sulphur Scuttler has to be hiding there.",
+	["Cyclops"] = "The old cyclops was seen in the depths of a cave at the northern gate of MirkoTown.",
 	["Demons"] = "Demonica is hiding in the unholy depths under the undead village.",
 	["Destroyers"] = "A whole lot of destroyers are inside caves at the eastern part of desert. You can search these for Bretzecutioner.",
+	["Dragons"] = "The old dragon lives around the volcano to the north of Mirko Town.",
 	["Drakens"] = "If you manage to make it through the Draken Towers, the teleport will lead you to the plain ruled by their commander - Paiz the Pauperizer.",
+	["Dwarves"] = "Their so-called leader resides in a hidden place between rocks, just outside their caves.",
+	["Falcons"] = "Falcon Eesko - he is the one if it comes to strength. His chambers are located somewhere in their castle. Dont know much more - noone made it out alive from there.",
 	["Frost Dragons"] = "Frosty is hiding inside one of the mountains in Sybir.",
+	["Furies"] = "Irashae claimed a land at the very depths of dark dungeon. My scouts reported that its somewhere near mutated cratures and vampire village.",
+	["Gargoyles"] = "The gargoyle cave is located at the top of the mountains inhabited by cyclops.",
 	["Ghastly Dragons"] = "Den of Ghastly Dragons is located in the caves between desert and jungle. Ethershreck also has made this place his home.",
+	["Giant Spiders"] = "South of Knurowo is a place swarming with spiders. Perhaps the most dangerous one is there as well.",
 	["Hellhound"] = "The path to the hellish Kerberos is guarded by Demons and Hellhounds. However this is only a myth..",
 	["Hellspawns"] = "Between two waterfalls in the jungle there is a path to the primordial ruins. A lot of Hellspawns are nesting there, Flameborn may be lurking there as well.",
 	["High Class Lizards"] = "The chamber of lizard's commander - Fazzrah is located in their village in steppes.",
 	["Hydras"] = "A bunch of Hydras inhabit the southern part of jungle's marshes. The Many usually resides here.",
+	["Ice Golems"] = "The teleport to the Shardhead's chamber is in the north of Sybir. There are Crystal Spiders and Ice Golems hanging around in its vicinity",
+	["Infernalists"] = "The archmage of infernalist clique has claimed his hidden room in which he produces firestarters. I heard a rumor its somehwere near dead elvish graves.",
 	["Killer Caimans"] = "The deadliest of crocodiles is hiding under a river on eastern end of the steppes.",
-	["Medusa"] = "Madeusae leader's Gorgo has its grotto located in subterranean ruins, which are guarded by her children.",
+	["Lancer Beetles"] = "The murderous worm is hiding under the contaminated area in the north of steppes",
+	["Lost Dwarves"] = "The Lost Extrohusher - a hybrid between other lost dwarves - has its den located inside mining shaft, somewhere in the middle on the way to the steppes.",
+	["Medusas"] = "Madeusae leader's Gorgo has its grotto located in subterranean ruins, which are guarded by her children.",
+	["Metal Gargoyles"] = "Titan Gargoyle is stuck somwhere in Bornholm sewers.",
+	["Minotaurs"] = "The rumors says that one of the minotaur leaders is hiding in their settlement north of MirkoTown.",
+	["Mutated Bats"] = "The contaminated mountains have become a home to mutated bats and rats. Bruise Payne is hiding in these rocks",
+	["Mutated Humans"] = "His hideout is located under the cemetery in the village of mutants.",
+	["Mutated Rats"] = "The entrance to Esmeralda's hideout is somewhere near cliffs inhabited by mutated rats, in the heart of steppes.",
+	["Mutated Tigers"] = "The entrance to the tiger's den is located near a mountain inhabited by tigers of the steppes.",
+	["Necromancers"] = "The lord of necromancers is located somewhere near Mirko Town cemetery",
 	["Nightmares"] = "The chamber of Tormentor is located in in a place where heroes have to face their nightmares.",
+	["Ogres"] = "The master of ogres lives in their biggest settlement on steppes",
+	["Orcs"] = "Bibby spent most of his time in the northern orc fortress, probably still there.",
+	["Pirates"] = "The pirate's captain is hiding somewhere on their island for sure",
 	["Quaras"] = "The only way to travel to the island where Thul resides, is to sail there by ship.",
+	["Rotworms"] = "The White Pale lair lays somewhere in eastern undergrounds of MirkoTown",
 	["Sea Serpents"] = "The rock bottom of the great lake is infested by Sea Serpents. In the depths, there lives the legendary Leviathan.",
 	["Serpent Spawns"] = "In the western part of the jungle, one of the hills is inhabited by Serpent Spawns. The Noxious Spawn could be hiding there.",
+	["Stampors"] = "Tromphonyte is hiding in the Stampors den.",
+	["Stone Golems"] = "Grorlam is hiding in a small cave inhabited by elementals to the northeast of Hurghada.",
+	["Tarantulas"] = "In ruins to the west of Kongo there were quite a few tarantulas, Hide might hid there.",
+	["Terramites"] = "Thermite is hiding in a small hole in the eastern part of the desert.",
+	["Tortoises"] = "There is a hovel in the north-east of jungle, where Thorner resides.",
 	["Undead Dragons"] = "In the underground ruins, which entrance is guarded by Medusae and Serpent Spawns, there are Undead Dragons guarding their leader.",
+	["Vampires"] = "Boreth and his brood, which he summons to aid him in fight, is located in the catacombs, south of hunters' shack.",
+	["Wailing Widows"] = "Fiery widow has its own cave in the southern-west ends of desert.",
+	["War Golems"] = "It is said that deep under the dwarf mines, worker golems are digging tirelessly. Golem Deez rocks.",
+	["Weak undeads"] = "The cemetery on east of Mirko Town is haunted by Ripper now and again. He is probably hiding there.",
 	["Werewolves"] = "Beyond the caves haunted by nightstalkers, there is a place occupied by werewolves. They may be hiding The Hemming there.",
+	["Wyverns"] = "Reptilia can be bested at the mountain inhabited by jungle wyverns.",
 }

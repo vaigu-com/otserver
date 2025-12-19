@@ -642,6 +642,8 @@ public:
 		return !loadedFromMap && canRemove() && isPickupable() && !hasAttribute(ItemAttribute_t::UNIQUEID) && !hasAttribute(ItemAttribute_t::ACTIONID);
 	}
 
+	bool isSellableToNpc() const; // Vaigu custom
+
 	bool hasMarketAttributes() const;
 
 	std::shared_ptr<Cylinder> getParent() override {

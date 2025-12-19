@@ -39,7 +39,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -66,12 +66,12 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small ruby", chance = 8180, maxCount = 2 },
-	{ id = 3098, chance = 3270 }, -- ring of healing
-	{ name = "steel boots", chance = 130 },
-	{ name = "great mana potion", chance = 8950, maxCount = 4 },
+	{ name = "small ruby", chance = 8180, maxCount = 20 },
+	{ id = 3098, chance = 31270 }, -- ring of healing
+	{ name = "steel boots", chance = 1130 },
+	{ name = "great mana potion", chance = 18950, maxCount = 14 },
 	{ id = 281, chance = 2600 }, -- giant shimmering pearl (green)
-	{ name = "ultimate health potion", chance = 4000, maxCount = 3 },
+	{ name = "ultimate health potion", chance = 14000, maxCount = 13 },
 	{ name = "gold ingot", chance = 5160 },
 	{ name = "kollos shell", chance = 15390 },
 	{ name = "compound eye", chance = 15720 },

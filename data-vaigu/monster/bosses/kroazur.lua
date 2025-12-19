@@ -57,7 +57,7 @@ monster.flags = {
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = false,
-	canWalkOnFire = false,
+	canWalkOnFire = true,
 	canWalkOnPoison = false,
 }
 
@@ -72,31 +72,28 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "fairy wings", chance = 100000 },
-	{ name = "gold coin", chance = 100000, maxCount = 365 },
 	{ name = "platinum coin", chance = 100000, maxCount = 7 },
-	{ name = "strong health potion", chance = 91460, maxCount = 2 },
 	{ name = "great health potion", chance = 76330, maxCount = 3 },
 	{ name = "small enchanted amethyst", chance = 53560, maxCount = 5 },
 	{ name = "ancient coin", chance = 46980, maxCount = 3 },
 	{ name = "gemmed figurine", chance = 32030 },
 	{ name = "small enchanted emerald", chance = 11003, maxCount = 5 },
 	{ name = "small enchanted ruby", chance = 2000 },
-	{ name = "silver token", chance = 10140 },
-	{ name = "cluster of solace", chance = 19960 },
+	{ name = "silver token", chance = 13140 },
+	{ name = "cluster of solace", chance = 23960 },
 	{ name = "red crystal fragment", chance = 9960 },
 	{ name = "small enchanted sapphire", chance = 8900 },
 	{ name = "assassin star", chance = 8540 },
-	{ name = "gold token", chance = 6580 },
+	{ name = "gold token", chance = 8580 },
 	{ name = "gold ingot", chance = 6410 },
 	{ name = "nightmare blade", chance = 3020 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 200, chance = 20, minDamage = 0, maxDamage = -650 },
-	{ name = "combat", interval = 200, chance = 20, type = COMBAT_DEATHDAMAGE, minDamage = -300, maxDamage = -500, target = false },
-	{ name = "combat", interval = 500, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -200, maxDamage = -300, length = 8, spread = 0, effect = CONST_ME_MORTAREA, target = true },
-	{ name = "combat", interval = 500, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -250, maxDamage = -300, radius = 8, effect = CONST_ME_MORTAREA, target = false },
+	{ name = "melee", interval = 2000, chance = 20, minDamage = 0, maxDamage = -650 },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_DEATHDAMAGE, minDamage = -300, maxDamage = -500, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -200, maxDamage = -300, length = 8, spread = 0, effect = CONST_ME_MORTAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -250, maxDamage = -300, radius = 8, effect = CONST_ME_MORTAREA, target = false },
 }
 
 monster.defenses = {

@@ -188,7 +188,7 @@ quest
 						[Storage.KingOfRatsHQ.CollectibleArtifacts.Bottomless] = MISSION_FINISHED,
 					},
 				},
-				[{ "bribeslippers", "kapcie", "kapcie przekupstwa" }] = {
+				[{ "bribeslippers","slippers of bribery", "kapcie", "kapcie przekupstwa" }] = {
 					text = "Now that i see them myself, they remind me of some other slippers... can't really put my finger on it though.",
 					requiredItems = { QuestKeyItems.KingOfRatsHQ.Bribeslippers },
 					nextState = {

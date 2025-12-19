@@ -7,18 +7,19 @@ local christmasbundleToPossibleReward = {
 local christmasBundle = Action()
 
 function christmasBundle.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local targetItem = christmasbundleToPossibleReward[item.itemid]
-	if not targetItem then
+	local possibleRewards = christmasbundleToPossibleReward[item.itemid]
+	if not possibleRewards then
 		return true
 	end
 
 	local selectedRewards = {}
 	while #selectedRewards < 7 do
-		table.insert(selectedRewards, table.random(christmasbundleToPossibleReward))
+		table.insert(selectedRewards, table.random(possibleRewards))
 	end
 
 	for _, reward in ipairs(selectedRewards) do
-		player:AddCustomItem({ id = reward.id, count = reward.count })
+		print(reward, reward.id, reward.count)
+		player:AddCustomItem(reward)
 	end
 
 	player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)

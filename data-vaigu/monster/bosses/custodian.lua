@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 47000
-monster.maxHealth = 47000
+monster.health = 27000
+monster.maxHealth = 27000
 monster.race = "blood"
 monster.corpse = 31923
 monster.speed = 105
@@ -70,16 +70,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "throwing star", chance = 65000, maxCount = 6 },
-	{ name = "hunting spear", chance = 62000 },
 	{ name = "gold ingot", chance = 48000 },
 	{ name = "blue gem", chance = 31000 },
 	{ name = "yellow gem", chance = 31000 },
 	{ name = "green crystal shard", chance = 8600 },
 	{ id = 281, chance = 28000 }, -- giant shimmering pearl (green)
 	{ name = "cobra crest", chance = 11000 },
-	{ name = "skull helmet", chance = 7500 },
-	{ name = "cobra club", chance = 100 },
+	{ name = "skull helmet", chance = 17500 },
+	{ name = "cobra club", chance = 1010 },
+	{ name = "cobra axe", chance = 1100 },
+	{ name = "cobra sword", chance = 900 },
 }
 
 monster.attacks = {

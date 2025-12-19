@@ -185,6 +185,13 @@ public:
 	void loadLoot(const std::shared_ptr<MonsterType> &monsterType, LootBlock lootblock) const;
 
 	bool canSpawn(const Position &pos) const;
+
+	double calculateDifficultyIndex() const {
+		const double healthMax = info.healthMax;
+		const double experience = info.experience;
+		const double difficulty = floor((1 + experience / healthMax) * healthMax);
+		return difficulty;
+	}
 };
 
 class MonsterSpell {

@@ -8,8 +8,8 @@ local outfit = {
 	lookAddons = 0,
 }
 local customDialogs = {
-	[{ "sail", "plynac" }] = {
-		text = "",
+	[TRAVEL_KEYWORDS] = {
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = CreateTravelWindow,

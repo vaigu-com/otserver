@@ -63,6 +63,20 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 		end
 		return false
 	end,
+	canAffordTwistOfFate = function(context)
+		local player = context.player
+		local level = player:getLevel()
+
+		local price = Blessings.getPvpBlessingCost(level)
+		context.price = price
+		if SPECIAL_REQUIREMENTS_UNIVERSAL.hasMoney(context) then
+			return true
+		end
+		return false
+	end,
+	hasTwistOfFate = function(context)
+		return context.player:hasBlessing(1)
+	end,
 	hasMoney = function(context)
 		local requiredMoney = context.price or context.money or context.requiredMoney
 		return context.player:canRemoveMoney(requiredMoney), "You dont have enough money."
@@ -90,7 +104,12 @@ SPECIAL_REQUIREMENTS_UNIVERSAL = {
 		return context.player:hasMount(context.mountId)
 	end,
 	hasBlessings = function(context)
-		return context.player:hasBlessing(context.count or 1)
+		for i = context.min, context.max do
+			if not context.player:hasBlessing(i) then
+				return false
+			end
+		end
+		return true
 	end,
 	isPromoted = function(context)
 		return context.player:isPromoted()
@@ -132,7 +151,7 @@ SPECIAL_REQUIREMENTS_IMBUING = {
 	hasEnoughTaskPoints = function(context)
 		local bundleLevelData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
 		local requiredTaskPoints = bundleLevelData.taskPointsCost
-		local playerTaskPoints = context.player:getStorageValueByKey(Storage.Tasks.TaskPoints)
+		local playerTaskPoints = context.player:getStorageValueByKey(Storage.Task.TaskPoints)
 		local playerHasPoints = playerTaskPoints >= requiredTaskPoints
 		if not playerHasPoints then
 			PlayerCustomDialogDataRegistry:Get(context.player).requiredTaskPoints = requiredTaskPoints
@@ -161,9 +180,12 @@ SPECIAL_REQUIREMENTS_WILDCARD = {
 	end,
 }
 
-SPECIAL_REQUIREMENTS_TASKS = {}
-
 SPECIAL_REQUIREMENTS_DAILY_TASK = {}
+SPECIAL_REQUIREMENTS_TASKS = {
+	PlayerHasAtLeastOneTaskToTurnIn = function(context)
+		return hasAnyTaskDone(context)
+	end,
+}
 
 local function parseMoneyWithdraw(context)
 	local declaredMoneyAnyType = context.amount or PlayerDialogDataRegistry:Get(context.player):Latest().amount or PlayerDialogDataRegistry:Get(context.player):Previous().amount
@@ -226,7 +248,7 @@ SPECIAL_REQUIREMENTS_BANK = {
 	end,
 	hasMoneyinbank = function(context)
 		local withdrawnMoney = parseMoneyWithdraw(context)
-		if not withdrawnMoney then
+		if not withdrawnMoney or withdrawnMoney <= 0 then
 			return false
 		end
 
@@ -245,12 +267,13 @@ SPECIAL_REQUIREMENTS_BANK = {
 		local pilesCount = crystalPiles + platinumPiles + goldPiles
 
 		local player = context.player
-		local hasCap, noCapMessage = player:ErrorIfHasNotEnoughCapacity({ requiredCap = getMoneyWeight(amount) })
+		local hasCap, noCapMessage = player:ErrorIfHasNotEnoughCapacity(getMoneyWeight(amount))
 		if not hasCap then
 			player:sendTextMessage(MESSAGE_FAILURE, noCapMessage)
 			return false
 		end
-		local hasSlots, noSlotsMessage = player:ErrorIfHasNotEnoughSlots({ requiredSlots = pilesCount })
+
+		local hasSlots, noSlotsMessage = player:ErrorIfHasNotEnoughSlots(pilesCount)
 		if not hasSlots then
 			player:sendTextMessage(MESSAGE_FAILURE, noSlotsMessage)
 			return false

@@ -1,11 +1,11 @@
 local name = "Za'Qir"
 local outfit = {
-	lookType = 1490,
-	lookHead = 0,
-	lookBody = 91,
-	lookLegs = 83,
-	lookFeet = 79,
-	lookAddons = 3,
+	lookType = 1489,
+	lookHead = 51,
+	lookBody = 114,
+	lookLegs = 112,
+	lookFeet = 94,
+	lookAddons = 2,
 }
 
 local context = {

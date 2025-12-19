@@ -121,6 +121,12 @@ quest
 			},
 			book = { lit = 28139, unlit = 28888, pos = { x = -3, y = -12, z = 0 } },
 		}
+		QuestRewards.OutfitsAddons.ThreaterOfCheapThrills = {
+			Raccoon1 = {
+				{ outfitId = 1371, addons = 0 },
+				{ outfitId = 1372, addons = 0 },
+			},
+		}
 	end)
 	:Questlog(function(localizer)
 		table.insert(Questlog, {
@@ -346,7 +352,7 @@ quest
 			summons = {
 				{ name = "Snake", chance = 50, interval = 2000, count = 4 },
 				{ name = "Cobra", chance = 50, interval = 2000, count = 3 },
-				{ name = "Wyvern", chance = 20, interval = 2000, count = 3 },
+				{ name = "Wyvern", chance = 10, interval = 2000, count = 1 },
 			},
 		}
 
@@ -355,14 +361,14 @@ quest
 		monster.loot = {}
 
 		monster.attacks = {
-			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -140 },
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
 			{
 				name = "combat",
 				interval = 2000,
 				chance = 70,
 				type = COMBAT_ENERGYDAMAGE,
-				minDamage = -130,
-				maxDamage = -60,
+				minDamage = -70,
+				maxDamage = -20,
 				range = 1,
 				shootEffect = CONST_ANI_ENERGY,
 				target = false,
@@ -370,23 +376,10 @@ quest
 			{
 				name = "combat",
 				interval = 2000,
-				chance = 40,
-				type = COMBAT_FIREDAMAGE,
-				minDamage = -150,
-				maxDamage = -70,
-				range = 7,
-				radius = 7,
-				shootEffect = CONST_ANI_FIRE,
-				effect = CONST_ME_FIREAREA,
-				target = true,
-			},
-			{
-				name = "combat",
-				interval = 2000,
 				chance = 60,
 				type = COMBAT_LIFEDRAIN,
-				minDamage = -130,
-				maxDamage = -50,
+				minDamage = -50,
+				maxDamage = -20,
 				length = 8,
 				spread = 0,
 				effect = CONST_ME_PURPLEENERGY,
@@ -688,6 +681,7 @@ quest
 				},
 				[{ "yes", "tak", "pomocnika", "assistant" }] = {
 					text = "Who is the King of Rats, and what is his power?",
+					nextTopic = QuestTopics.TheaterOfCheapThrills.RevealKingPowers,
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission02] = QuestState.TheaterOfCheapThrills.Mission02.PassTheTest,
 					},
@@ -777,7 +771,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission03] = QuestState.TheaterOfCheapThrills.Mission03.AskGravedigger_FindBook,
 						[Storage.TheaterOfCheapThrills.PlusShapePuzzle.AccessDoor] = ACCESS_GRANTED,
 					},
-					rewards = { ExerciseWeaponBox(500) },
+					rewards = { ExerciseWeaponBox(250) },
 				},
 			})
 	end)
@@ -969,7 +963,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission03] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission04] = QuestState.TheaterOfCheapThrills.Mission04.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(600) },
+					rewards = { ExerciseWeaponBox(200) },
 				},
 			})
 	end)
@@ -1031,7 +1025,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission04] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission05] = QuestState.TheaterOfCheapThrills.Mission05.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(800) },
+					rewards = { ExerciseWeaponBox(200) },
 				},
 			})
 	end)
@@ -1154,7 +1148,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission06] = MISSION_FINISHED,
 						[Storage.TheaterOfCheapThrills.Mission07] = QuestState.TheaterOfCheapThrills.Mission07.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(200) },
+					rewards = { ExerciseWeaponBox(150) },
 				},
 			})
 	end)
@@ -1176,9 +1170,9 @@ quest
 				[{ GREET }] = {
 					text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 platinum coins?",
 				},
-				[{ "mission", "misja", "kwote" }] = {
+				[{ "mission", "misja", "kwote","amount" }] = {
 					text = "Ytong is Ytong.",
-					requiredItems = { { id = 3035, count = 100 } },
+					requiredItems = { { id = 3031, count = 100 } },
 					textNoRequiredItems = "Then come back when I finish the fundraiser. The organization of the festival alone was worth at least 8 coronas extra.",
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission07] = QuestState.TheaterOfCheapThrills.Mission07.WaitForFestivalToEnd,
@@ -1367,7 +1361,7 @@ quest
 						[Storage.TheaterOfCheapThrills.Mission10] = QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission,
 						[Storage.TheaterOfCheapThrills.Mission09] = MISSION_FINISHED,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(200) },
 				},
 			})
 	end)
@@ -1376,7 +1370,7 @@ quest
 		return QuestState.TheaterOfCheapThrills.Mission10.AskRomekForMission,
 			QuestFactory.Dialog("GM Romek", {
 				[{ "trial", "probe" }] = {
-					text = "",
+					text = NO_TEXT,
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission10] = QuestState.TheaterOfCheapThrills.Mission10.CommitRatocide,
 					},
@@ -1406,7 +1400,8 @@ quest
 						[Storage.KingOfRatsHQ.Portals.SweatyCyclops] = ACCESS_GRANTED,
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 					},
-					rewards = { ExerciseWeaponBox(400) },
+					rewards = { ExerciseWeaponBox(300) },
+					outfitRewards = QuestRewards.OutfitsAddons.ThreaterOfCheapThrills.Raccoon1
 				},
 			})
 	end)

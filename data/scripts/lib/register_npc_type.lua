@@ -3,10 +3,10 @@ NpcTypeRepository.__index = NpcTypeRepository
 NpcTypeRepository.registry = {}
 NpcTypeRepository.duplicateRegisted = {}
 function NpcTypeRepository:Add(name, data)
-	MissingStrings:TestAllLanaguages(name, LOCALIZERS.NpcName)
+	MissingStrings:TestAllLanguages(name, LOCALIZERS.NpcName)
 	if self.registry[name] then
 		self.duplicateRegisted[name] = true
-		logger.error(T("[NpcTypeRepository::Add] Npc :name: registered more than once!", {name=name}))
+		logger.error(T("[NpcTypeRepository::Add] Npc :name: registered more than once!", { name = name }))
 	end
 	self.registry[name] = data
 end
@@ -14,7 +14,7 @@ end
 local rme_dir = "../rme/"
 local npcXmlPath = rme_dir .. "data/creatures/npcs.xml"
 
-function NpcTypeRepository:Serialize()
+function NpcTypeRepository:SerializeForRME()
 	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<npcs>\n'
 	for name, data in
 		sortedkeypairs(self.registry, function(a, b)
@@ -42,6 +42,61 @@ function NpcTypeRepository:Serialize()
 	file:write(xml)
 	file:close()
 	logger.info("[NpcTypeRepository::Serialize] Serialization succesful.")
+end
+
+local townNameToTemplePos = {}
+local function getNearestTownName(pos)
+	local closestTownName = nil
+	local closestDistance = 99999
+	for townName, templePos in pairs(townNameToTemplePos) do
+		local distance = pos:EuclideanDistance(templePos)
+		if distance < closestDistance then
+			closestDistance = distance
+			closestTownName = townName
+		end
+	end
+	return closestTownName
+end
+function NpcTypeRepository:GenerateTownMissingJobs()
+	local towns = Game.getTowns()
+	local townNameToJobs = {}
+	for key, town in pairs(towns) do
+		local templePos = town:getTemplePosition()
+		local townName = town:getName()
+		townNameToTemplePos[townName] = templePos
+		townNameToJobs[townName] = {}
+	end
+
+	local possibleJobs = {}
+	for name, value in pairs(self.registry) do
+		local npc = Creature(name)
+		if npc then
+			local nearestTownName = getNearestTownName(npc:getPosition())
+			local jobs = value.jobs
+			for _, job in pairs(jobs or {}) do
+				townNameToJobs[nearestTownName][job] = true
+				possibleJobs[job] = true
+			end
+		end
+	end
+
+	local firstLine = "\t"
+	for job in pairs(possibleJobs) do
+		firstLine = firstLine .. "," .. job
+	end
+	logger.warn(firstLine)
+
+	for townName, jobs in pairs(townNameToJobs) do
+		local line = townName .. "\t"
+		for job in pairs(possibleJobs) do
+			if jobs[job] then
+				line = line .. "," .. "X"
+			else
+				line = line .. "," .. " "
+			end
+		end
+		logger.warn(line)
+	end
 end
 
 function NpcTypeRepository:GetNpcsNotOnMap()
@@ -203,7 +258,6 @@ registerNpcType.events = function(npcType, mask)
 	end
 end
 
-
 --#region ItemTypeSellPriceRegistry
 ---@class ItemTypeSellPriceRegistry
 ItemTypeSellPriceRegistry = {}
@@ -224,7 +278,7 @@ function ItemTypeSellPriceRegistry:IsValuable(itemId)
 end
 ---@param itemId number
 ---@param price number
----@return ItemTypeSellPriceRegistry 
+---@return ItemTypeSellPriceRegistry
 function ItemTypeSellPriceRegistry:AddIfHigherPrice(itemId, price)
 	local existingPrice = self.registry[itemId]
 	if not existingPrice or existingPrice < price then
@@ -290,7 +344,7 @@ registerNpcType.shop = function(npcType, mask)
 				parent:setStorageKey(shopItems.storageKey or shopItems.storagekey)
 			end
 			if shopItems.storageValue or shopItems.storagevalue then
-				parent:setStorageValueByKey(tostring(parent), shopItems.storageValue or shopItems.storagevalue)
+				parent:setStorageValue(shopItems.storageValue or shopItems.storagevalue)
 			end
 			if shopItems.child then
 				for _, children in pairs(shopItems.child) do
@@ -314,7 +368,7 @@ registerNpcType.shop = function(npcType, mask)
 						child:setStorageKey(children.storageKey or children.storagekey)
 					end
 					if children.storageValue or children.storagevalue then
-						child:setStorageValueByKey(tostring(child), children.storageValue or children.storagevalue)
+						child:setStorageValue(children.storageValue or children.storagevalue)
 					end
 					parent:addChildShop(child)
 				end

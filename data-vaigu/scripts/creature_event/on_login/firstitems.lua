@@ -30,6 +30,8 @@ local starterItems = {
 			{ id = 8015, count = 5, dontAnnounce = true },
 			{ id = 7879, count = 1, dontAnnounce = true },
 			{ id = 3003, count = 1, dontAnnounce = true },
+			
+			{ id = 3267, count = 1 },
 		},
 	},
 	[VOCATION.ID.KNIGHT] = {
@@ -65,7 +67,7 @@ local function addKeyRing(player)
 end
 
 local initialStorages = {
-	[Storage.Tasks.TaskPoints] = 0,
+	[Storage.Task.TaskPoints] = 0,
 }
 
 Storage.FirstLogin = {}
@@ -100,6 +102,7 @@ function firstLogin.onLogin(player)
 	-- CreateChooseLanguageWindow(player)
 
 	player:setStorageValueByKey(Storage.FirstLogin, ACCESS_GRANTED)
+	player:setStorageValueByKey(Storage.LocalSupport.Discernment, QuestState.LocalSupport.Discernment.AfterFirstLogin)
 	return true
 end
 

@@ -9,6 +9,7 @@ local outfit = {
 }
 local customDialogs = {
 	[{ ANY_MESSAGE }] = {
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = SPECIAL_ACTIONS_UNIVERSAL.dealDamageNonLethal,

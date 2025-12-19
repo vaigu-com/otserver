@@ -1,3 +1,4 @@
+--[[
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, variant)
@@ -17,3 +18,4 @@ spell:isAggressive(false)
 spell:isPremium(true)
 spell:needLearn(false)
 spell:register()
+]]

@@ -99,7 +99,7 @@ quest
 				},
 				[{ "tactical task", "zadanie bojowe" }] = {
 					text = "If you would like to expand your vocation expertise, you should meet Vislav Shivka. While he is a master imbiber of magical elixirs himself, he is also capable of teaching his 'craft' to others. Ask him about tactical task and he will surely guide you. Tell him that i sent u there or he might not want to share this knowledge with you. Also take this experience as your reward.",
-					expReward = 1000000,
+					expReward = 400000,
 					requiredTopic = QuestTopics.EnterTheDrunkTank.AcceptTacticalTask,
 					nextState = {
 						[Storage.EnterTheDrunkTank.Mission01] = QuestState.EnterTheDrunkTank.Mission01.AskVislavAboutTask,
@@ -152,7 +152,7 @@ quest
 
 					toPosition:sendMagicEffect(CONST_ME_POFF)
 					item:remove()
-					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledVial)
+					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledVial, quest.localizer)
 				end
 				glowingVial:key(Storage.EnterTheDrunkTank.GlowingWaterVial)
 				glowingVial:register()
@@ -170,7 +170,7 @@ quest
 
 					toPosition:sendMagicEffect(CONST_ME_POFF)
 					item:remove()
-					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledChurn)
+					player:AddCustomItem(QuestKeyItems.EnterTheDrunkTank.FilledChurn, quest.localizer)
 				end
 				spoogeChurn:key(Storage.EnterTheDrunkTank.BullSpoogeChurn)
 				spoogeChurn:register()
@@ -225,7 +225,7 @@ quest
 					rewards = {
 						{ id = 43948, addToStore = true },
 					},
-					actionsOnSuccess = {
+					specialActionsOnSuccess = {
 						{ action = QuestActions.EnterTheDrunkTank.grantVocationPotionAccess },
 					},
 					nextState = {

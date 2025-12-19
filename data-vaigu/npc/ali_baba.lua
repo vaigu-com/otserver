@@ -8,8 +8,8 @@ local outfit = {
 	lookAddons = 2,
 }
 local customDialogs = {
-	[{ "fly", "poleciec", "yes", "tak" }] = {
-		text = "",
+	[TRAVEL_KEYWORDS] = {
+		text = NO_TEXT,
 		specialActionsOnSuccess = {
 			{
 				action = CreateTravelWindow,

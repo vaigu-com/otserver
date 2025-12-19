@@ -2373,19 +2373,18 @@ void Player::sendMarketLeave() {
 	}
 }
 
-void Player::sendMarketBrowseItem(uint16_t itemId, const MarketOfferList &buyOffers, const MarketOfferList &sellOffers, uint8_t tier) const {
+void Player::sendMarketBrowseItem(uint16_t itemId, const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers, uint8_t tier) const {
 	if (client) {
 		client->sendMarketBrowseItem(itemId, buyOffers, sellOffers, tier);
 	}
 }
-
-void Player::sendMarketBrowseOwnOffers(const MarketOfferList &buyOffers, const MarketOfferList &sellOffers) const {
+void Player::sendMarketBrowseOwnOffers(const MarketActiveOfferList &buyOffers, const MarketActiveOfferList &sellOffers) const {
 	if (client) {
 		client->sendMarketBrowseOwnOffers(buyOffers, sellOffers);
 	}
 }
 
-void Player::sendMarketBrowseOwnHistory(const HistoryMarketOfferList &buyOffers, const HistoryMarketOfferList &sellOffers) const {
+void Player::sendMarketBrowseOwnHistory(const MarketHistoricOfferList &buyOffers, const MarketHistoricOfferList &sellOffers) const {
 	if (client) {
 		client->sendMarketBrowseOwnHistory(buyOffers, sellOffers);
 	}
@@ -2397,13 +2396,13 @@ void Player::sendMarketDetail(uint16_t itemId, uint8_t tier) const {
 	}
 }
 
-void Player::sendMarketAcceptOffer(const MarketOfferEx &offer) const {
+void Player::sendMarketAcceptOffer(const MarketActiveOffer &offer, const uint32_t newAmount) const {
 	if (client) {
-		client->sendMarketAcceptOffer(offer);
+		client->sendMarketAcceptOffer(offer, newAmount);
 	}
 }
 
-void Player::sendMarketCancelOffer(const MarketOfferEx &offer) const {
+void Player::sendMarketCancelOffer(const MarketActiveOffer &offer) const {
 	if (client) {
 		client->sendMarketCancelOffer(offer);
 	}
@@ -5330,9 +5329,13 @@ QuickLootFilter_t Player::getQuickLootFilter() const {
 	return quickLootFilter;
 }
 
-std::vector<std::shared_ptr<Item>> Player::getInventoryItemsFromId(uint16_t itemId, bool ignore /*= true*/) const {
+std::vector<std::shared_ptr<Item>> Player::getInventoryItemsFromId(uint16_t itemId, bool ignore /*= true*/, bool ignoreStoreInbox /*= false*/) const {
 	std::vector<std::shared_ptr<Item>> itemVector;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
+		if (ignoreStoreInbox && i == CONST_SLOT_STORE_INBOX) {
+			continue;
+		}
+
 		const auto &item = inventory[i];
 		if (!item) {
 			continue;
@@ -5465,9 +5468,12 @@ ItemsTierCountList Player::getDepotInboxItemsId() const {
 	return itemMap;
 }
 
-std::vector<std::shared_ptr<Item>> Player::getAllInventoryItems(bool ignoreEquiped /*= false*/, bool ignoreItemWithTier /* false*/) const {
+std::vector<std::shared_ptr<Item>> Player::getAllInventoryItems(bool ignoreEquiped /*= false*/, bool ignoreItemWithTier /* false*/, bool ignoreStoreInbox /* false*/) const {
 	std::vector<std::shared_ptr<Item>> itemVector;
 	for (int i = CONST_SLOT_FIRST; i <= CONST_SLOT_LAST; ++i) {
+		if (ignoreStoreInbox && i == CONST_SLOT_STORE_INBOX) {
+			continue;
+		}
 		const auto &item = inventory[i];
 		if (!item) {
 			continue;
@@ -5554,9 +5560,9 @@ std::map<uint32_t, uint32_t> &Player::getAllItemTypeCount(std::map<uint32_t, uin
 }
 
 std::map<uint16_t, uint16_t> &Player::getAllSaleItemIdAndCount(std::map<uint16_t, uint16_t> &countMap) const {
-	for (const auto &item : getAllInventoryItems(false, true)) {
+	for (const auto &item : getAllInventoryItems(false, true, true)) {
 		if (item->getID() != ITEM_GOLD_POUCH) {
-			if (!item->hasMarketAttributes()) {
+			if (!item->isSellableToNpc()) {
 				continue;
 			}
 
@@ -11003,15 +11009,14 @@ void Player::sendMessageDialog(const std::string &message) const {
 
 // Account
 // Account
-
 bool Player::setAccount(uint32_t accountId) {
 	if (account) {
-		g_logger().warn("Account was already set!");
+		g_logger().warn("Account already set!");
 		return true;
 	}
 
-	account = std::make_shared<Account>(accountId);
-	return AccountErrors_t::Ok == account->load();
+	account = AccountManager::getAccount(accountId);
+	return account != nullptr;
 }
 
 uint8_t Player::getAccountType() const {

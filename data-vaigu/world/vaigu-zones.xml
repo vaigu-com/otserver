@@ -17,6 +17,12 @@
 	<zone name="Encounter-LEVIATHAN-P1-DynamicTentanclePositionsUpper" zoneid="25" />
 	<zone name="Encounter-LEVIATHAN-P2-PlayerAppearPositions" zoneid="33" />
 	<zone name="Encounter-LEVIATHAN-PlayerAppearPositions" zoneid="30" />
+	<zone name="Encounter-Oberon-BossSpawnPosition" zoneid="248" />
+	<zone name="Encounter-Oberon-EncounterAreaPositions" zoneid="249" />
+	<zone name="Encounter-Oberon-EntranceLeverPositions" zoneid="251" />
+	<zone name="Encounter-Oberon-ExitTeleportDestination" zoneid="250" />
+	<zone name="Encounter-Oberon-MonsterSpawnPositions" zoneid="252" />
+	<zone name="Encounter-Oberon-PlayerAppearPositions" zoneid="247" />
 	<zone name="Encounter-Pol-BossSpawnPosition" zoneid="4" />
 	<zone name="Encounter-Pol-EncounterAreaPositions" zoneid="1" />
 	<zone name="Encounter-Pol-EntranceLeverPositions" zoneid="5" />
@@ -52,11 +58,24 @@
 	<zone name="Storage-BigfootsBurden-Warzone1BossRoom" zoneid="198" />
 	<zone name="Storage-BigfootsBurden-Warzone2BossRoom" zoneid="199" />
 	<zone name="Storage-BigfootsBurden-Warzone3BossRoom" zoneid="200" />
+	<zone name="Storage-FishingHotspot-Bydgoshch" zoneid="239" />
+	<zone name="Storage-FishingHotspot-HugoBossVilla" zoneid="241" />
+	<zone name="Storage-FishingHotspot-Hurghada" zoneid="235" />
+	<zone name="Storage-FishingHotspot-Knurowo" zoneid="237" />
+	<zone name="Storage-FishingHotspot-Kongo" zoneid="236" />
+	<zone name="Storage-FishingHotspot-Maioorka" zoneid="238" />
+	<zone name="Storage-FishingHotspot-Mirkotown" zoneid="234" />
+	<zone name="Storage-FishingHotspot-MirkotownSlums" zoneid="245" />
+	<zone name="Storage-FishingHotspot-OrnuldCamp" zoneid="243" />
+	<zone name="Storage-FishingHotspot-Orshaawa" zoneid="240" />
+	<zone name="Storage-FishingHotspot-Steppes" zoneid="242" />
+	<zone name="Storage-FishingHotspot-Syberia" zoneid="244" />
 	<zone name="Storage-LocalSupport-CaravanZone" zoneid="201" />
 	<zone name="Storage-Minigames-SharedLobbyArea" zoneid="196" />
 	<zone name="Storage-Minigames-SharedLobbyPlayerSpawn" zoneid="7" />
 	<zone name="Storage-OneTimeEscorts-MegadragonCliffs-RopeThrowFromTiles" zoneid="194" />
 	<zone name="Storage-PathOfTheUndead-BossArea" zoneid="16" />
+	<zone name="Storage-PathOfTheUndead-BossBombsPositions" zoneid="246" />
 	<zone name="Storage-PathOfTheUndead-GuardianSkullsPositions" zoneid="15" />
 	<zone name="Task-Ancient-Scarabs-BossRoom" zoneid="91" />
 	<zone name="Task-Ancient-Scarabs-BossSpawnPosition" zoneid="92" />

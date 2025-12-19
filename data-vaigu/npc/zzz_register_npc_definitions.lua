@@ -2,3 +2,4 @@
 NpcRegistry:RegisterNpcDefinitions()
 InitializeNpcMarkers()
 NpcRegistry:ValidateNpcsArePlacedOnMap()
+RewardsRegistry:ValidateQuestRewardsVsGamestore()

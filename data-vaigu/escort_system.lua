@@ -236,8 +236,10 @@ function ActiveEscort:TryFinish()
 		self:TryGrantCredit(player)
 	end
 
-	local translatedThanksmessage = self.player:Localizer(self:GetEscortData().localizer):Get(self:GetEscortData().finishMessage)
-	self.player:say(translatedThanksmessage, TALKTYPE_MONSTER_SAY, true, self.player, escorteePos)
+	if self:GetEscortData().finishMessage then
+		local translatedThanksmessage = self.player:Localizer(self:GetEscortData().localizer):Get(self:GetEscortData().finishMessage)
+		self.player:say(translatedThanksmessage, TALKTYPE_MONSTER_SAY, true, self.player, escorteePos)
+	end
 
 	self:Reset()
 end

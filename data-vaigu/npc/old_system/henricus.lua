@@ -48,6 +48,16 @@ npcType.onCloseChannel = function(npc, creature)
 	npcHandler:onCloseChannel(npc, creature)
 end
 
+local function countVisitedGuards(player)
+	local visitedCount = 0
+	for _, storage in pairs(QuestConstants.TheInquisition.GuardsVisitedStorages) do
+		if player:getStorageValue(storage) == ACCESS_GRANTED then
+			visitedCount = visitedCount + 1
+		end
+	end
+	return visitedCount
+end
+
 local flaskCost = 1000
 
 local function creatureSayCallback(npc, creature, type, message)
@@ -119,7 +129,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			player:setStorageValueByKey(Storage.TheInquisition.Mission02, 1) -- The Inquisition Questlog- "Mission 2: Eclipse"
 			player:AddCustomItem({ id = 133, count = 1 })
 			npcHandler:setTopic(playerId, 0)
-		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 5 then
+		elseif player:getStorageValueByKey(Storage.TheInquisition.Questline) == 4 or player:getStorageValueByKey(Storage.TheInquisition.Questline) == 5 then
 			if player:removeItem(7874, 1) then
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Pora sprawdzic twoje mozliwosci. Jeden z naszych sojusznikow potrzebuje wsparcia. Mysle, ze jestes odpowiednia osoba aby mu pomoc ...",
@@ -314,6 +324,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Oto twoj ostatni dodatek, gratulacje!" or "Here is the final addon for your demon hunter outfit. Congratulations!", npc, creature)
 			player:setStorageValueByKey(Storage.TheInquisition.Questline, 24)
 			player:setStorageValueByKey(Storage.TheInquisition.Mission07, 4) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
+			player:setStorageValueByKey(Storage.TheInquisition.RewardRoomAccess, ACCESS_GRANTED)
 			player:addOutfitAddon(288, 2)
 			player:addOutfitAddon(289, 2)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
