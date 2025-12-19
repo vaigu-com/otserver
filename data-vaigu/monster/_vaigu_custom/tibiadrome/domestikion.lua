@@ -53,22 +53,19 @@ monster.light = {
 monster.voices = {}
 
 monster.loot = {
-	{ name = "platinum coin", chance = 30000, maxCount = 2 },
+	{ name = "white pearl", chance = 3000 },
+	{ id = 3098, chance = 1000 }, -- ring of healing
+	{ name = "orichalcum pearl", chance = 6000, maxCount = 4 },
+	{ name = "platinum coin", chance = 10000, maxCount = 2 },
 	{ name = "gold coin", chance = 30000, maxCount = 112 },
-	{ name = "wood cape", chance = 492 },
-	{ name = "wand of dimensions", chance = 10 },
-	{ name = "mandrake", chance = 50 },
-	{ name = "leaf legs", chance = 492 },
-	{ name = "small stone", chance = 492, maxCount = 4 },
+	{ name = "wand of dimensions", chance = 100 },
+	{ name = "leaf legs", chance = 2492 },
 	{ name = "small enchanted sapphire", chance = 492, maxCount = 2 },
 	{ name = "cave turnip", chance = 55000, maxCount = 4 },
-	{ name = "leaf legs", chance = 719 },
 	{ name = "dark mushroom", chance = 719 },
 	{ name = "prismatic quartz", chance = 719 },
 	{ name = "leaf star", chance = 10000, maxCount = 8 },
-	{ name = "strong health potion", chance = 6800, maxCount = 2 },
 	{ name = "goat grass", chance = 5155 },
-	{ name = "great health potion", chance = 591 },
 }
 
 monster.attacks = {
@@ -85,14 +82,14 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 30 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 

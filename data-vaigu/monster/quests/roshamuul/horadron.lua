@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Horadron")
 local monster = {}
 
 monster.description = "Horadron"
-monster.experience = 18000
+monster.experience = 180000
 monster.outfit = {
 	lookType = 12,
 	lookHead = 78,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 30000
-monster.maxHealth = 30000
+monster.health = 20000
+monster.maxHealth = 20000
 monster.race = "blood"
 monster.corpse = 6068
 monster.speed = 160
@@ -84,18 +84,14 @@ monster.loot = {
 	{ id = 8075, chance = 5130 }, -- spellbook of lost souls
 	{ id = 8073, chance = 35900 }, -- spellbook of warding
 	{ id = 8074, chance = 10260 }, -- spellbook of mind control
-	{ id = 3344, chance = 33330 }, -- beastslayer axe
 	{ id = 7456, chance = 12820 }, -- noble axe
 	{ id = 7453, chance = 2560 }, -- executioner
 	{ id = 7388, chance = 2560 }, -- vile axe
 	{ id = 3360, chance = 1220 }, -- golden armor
 	{ id = 3567, chance = 1220 }, -- blue robe
-	{ id = 3381, chance = 17950 }, -- crown armor
 	{ id = 3364, chance = 250 }, -- golden legs
 	{ id = 3303, chance = 90 }, -- great axe
 	{ id = 8098, chance = 90 }, -- demonwing axe
-	{ id = 822, chance = 1750 }, -- lightning legs
-	{ id = 3371, chance = 1750 }, -- knight legs
 	{ id = 3382, chance = 20510 }, -- crown legs
 	{ id = 3554, chance = 15380 }, -- steel boots
 	{ id = 3028, chance = 17950, maxCount = 25 }, -- small diamond
@@ -104,6 +100,9 @@ monster.loot = {
 	{ id = 3029, chance = 28210, maxCount = 25 }, -- small sapphire
 	{ id = 9057, chance = 15380, maxCount = 25 }, -- small topaz
 	{ id = 3030, chance = 20510, maxCount = 25 }, -- small ruby
+	{ id = 3399, chance = 10320 },
+	{ id = 11701, chance = 18490 },
+	{ id = 27654, chance = 12140 },
 }
 
 monster.attacks = {
@@ -120,7 +119,7 @@ monster.defenses = {
 	defense = 65,
 	armor = 72,
 	--	mitigation = ???,
-	{ name = "combat", interval = 2000, chance = 35, type = COMBAT_HEALING, minDamage = 400, maxDamage = 700, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 400, maxDamage = 700, target = false },
 }
 
 monster.elements = {

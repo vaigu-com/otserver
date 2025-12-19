@@ -54,19 +54,16 @@ monster.voices = {}
 
 monster.loot = {
 	{ name = "platinum coin", chance = 30000, maxCount = 2 },
-	{ name = "gold coin", chance = 30000, maxCount = 136 },
+	{ name = "gold coin", chance = 60000, maxCount = 136 },
 	{ name = "grapes", chance = 30100, maxCount = 2 },
 	{ name = "small enchanted sapphire", chance = 492, maxCount = 2 },
-	{ name = "panpipes", chance = 172 },
 	{ name = "cookie", chance = 55000, maxCount = 5 },
-	{ name = "great health potion", chance = 6400, maxCount = 2 },
-	{ name = "wooden spellbook", chance = 92 },
 	{ name = "strong health potion", chance = 6800, maxCount = 2 },
-	{ name = "rainbow quartz", chance = 1086, maxCount = 4 },
-	{ name = "small stone", chance = 492, maxCount = 3 },
+	{ name = "rainbow quartz", chance = 1086, maxCount = 2 },
+	{ name = "small stone", chance = 8492, maxCount = 3 },
 	{ name = "wood cape", chance = 492 },
-	{ id = 5792, chance = 80 }, -- die
-	{ name = "assassin dagger", chance = 15 },
+	{ id = 5792, chance = 800 }, -- die
+	{ name = "assassin dagger", chance = 150 },
 }
 
 monster.attacks = {
@@ -84,14 +81,14 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
+	{ type = COMBAT_FIREDAMAGE, percent = 30 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 

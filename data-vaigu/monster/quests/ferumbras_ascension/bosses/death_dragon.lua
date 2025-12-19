@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Death Dragon")
 local monster = {}
 
 monster.description = "a death dragon"
-monster.experience = 350
+monster.experience = 22350
 monster.outfit = {
 	lookType = 231,
 	lookHead = 0,
@@ -68,13 +68,13 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 6499, chance = 14580 }, -- demonic essence
-	{ id = 3031, chance = 100000, maxCount = 198 }, -- gold coin
-	{ id = 239, chance = 23740, maxCount = 3 }, -- great health potion
-	{ id = 238, chance = 25660, maxCount = 3 }, -- great mana potion
+	{ id = 3402, chance = 1000},
+	{ id = 239, chance = 23740, maxCount = 13 }, -- great health potion
+	{ id = 238, chance = 25660, maxCount = 30 }, -- great mana potion
 	{ id = 5925, chance = 14580 }, -- hardened bone
 	{ id = 3035, chance = 49790, maxCount = 5 }, -- platinum coin
 	{ id = 9058, chance = 1630 }, -- gold ingot
-	{ id = 10316, chance = 32260 }, -- unholy bone
+	{ id = 10316, chance = 72260 }, -- unholy bone
 	{ id = 3061, chance = 1140 }, -- life crystal
 	{ id = 7430, chance = 4290 }, -- dragonbone staff
 	{ id = 3342, chance = 1630 }, -- war axe
@@ -113,13 +113,13 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 1 - 1 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 1 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 1 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -1 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }
 

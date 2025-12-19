@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Gaz'Haragoth")
 local monster = {}
 
 monster.description = "Gaz'Haragoth"
-monster.experience = 1000000
+monster.experience = 3500000
 monster.outfit = {
 	lookType = 591,
 	lookHead = 0,
@@ -81,7 +81,7 @@ monster.loot = {
 	{ id = 3043, chance = 10000, maxCount = 6 }, -- crystal coin
 	{ id = 16124, chance = 10000, maxCount = 15 }, -- blue crystal splinter
 	{ id = 7368, chance = 10000, maxCount = 100 }, -- assassin star
-	{ id = 20264, chance = 7000, maxCount = 3 }, -- unrealized dream
+	{ id = 20264, chance = 17000, maxCount = 3 }, -- unrealized dream
 	{ id = 6499, chance = 1000, maxCount = 2 }, -- demonic essence
 	{ id = 7643, chance = 10000, maxCount = 100 }, -- ultimate health potion
 	{ id = 238, chance = 10000, maxCount = 100 }, -- great mana potion
@@ -91,18 +91,18 @@ monster.loot = {
 	{ id = 3041, chance = 10000, maxCount = 2 }, -- blue gem
 	{ id = 16122, chance = 10000, maxCount = 10 }, -- green crystal splinter
 	{ id = 16120, chance = 10000, maxCount = 15 }, -- violet crystal shard
-	{ id = 6528, chance = 6000 }, -- infernal bolt
-	{ id = 20278, chance = 6000 }, -- demonic tapestry
+	{ id = 6528, chance = 26000, maxCount = 100 }, -- infernal bolt
+	{ id = 20278, chance = 16000 }, -- demonic tapestry
 	{ id = 5914, chance = 6000 }, -- yellow piece of cloth
 	{ id = 5911, chance = 6000 }, -- red piece of cloth
 	{ id = 20276, chance = 1100 }, -- dream warden mask
 	{ id = 281, chance = 6000 }, -- giant shimmering pearl (green)
-	{ id = 5954, chance = 6000 }, -- demon horn
+	{ id = 5954, chance = 16000 }, -- demon horn
 	{ id = 20274, chance = 6000, unique = true }, -- nightmare horn
-	{ id = 3052, chance = 6000 }, -- life ring
+	{ id = 3052, chance = 60000 }, -- life ring
 	{ id = 20280, chance = 6000 }, -- nightmare beacon
 	{ id = 20279, chance = 6000 }, -- eye pod
-	{ id = 20277, chance = 6000 }, -- psychedelic tapestry
+	{ id = 20277, chance = 16000 }, -- psychedelic tapestry
 	{ id = 20064, chance = 800 }, -- crude umbral blade
 	{ id = 20067, chance = 1000 }, -- crude umbral slayer
 	{ id = 20070, chance = 1000 }, -- crude umbral axe
@@ -135,6 +135,8 @@ monster.loot = {
 	{ id = 10343, chance = 6000 }, -- spiritual charm
 	{ id = 10342, chance = 6000 }, -- unity charm
 	{ id = 10341, chance = 6000 }, -- phoenix charm
+	{ id = 3395, chance = 500 },
+	{ id = 3390, chance = 50 },
 }
 
 monster.attacks = {

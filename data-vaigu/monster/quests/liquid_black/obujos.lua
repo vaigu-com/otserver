@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Obujos")
 local monster = {}
 
 monster.description = "Obujos"
-monster.experience = 20000
+monster.experience = 200000
 monster.outfit = {
 	lookType = 445,
 	lookHead = 0,
@@ -77,6 +77,10 @@ monster.loot = {
 	{ name = "deepling axe", chance = 1300 },
 	{ name = "depth scutum", chance = 1185 },
 	{ name = "ornate legs", chance = 700, unique = true },
+	{ id = 9303, chance = 5000 },
+	{ id = 12308, chance = 300 },
+	{ id = 13994, chance = 500 },
+	{ id = 11584, chance = 5000 },
 }
 
 monster.attacks = {

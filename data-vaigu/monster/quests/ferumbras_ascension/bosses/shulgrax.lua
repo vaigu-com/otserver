@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Shulgrax")
 local monster = {}
 
 monster.description = "Shulgrax"
-monster.experience = 500000
+monster.experience = 700000
 monster.outfit = {
 	lookType = 842,
 	lookHead = 0,
@@ -17,8 +17,8 @@ monster.events = {
 	"AscendantBossesDeath",
 }
 
-monster.health = 40000
-monster.maxHealth = 40000
+monster.health = 240000
+monster.maxHealth = 240000
 monster.race = "undead"
 monster.corpse = 22495
 monster.speed = 160
@@ -75,43 +75,35 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 22516, chance = 1000000 }, -- silver token
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 6558, chance = 10000 }, -- flask of demonic blood
-	{ id = 3019, chance = 1000 }, -- demonbone amulet
+	{ id = 22516, chance = 90000 }, -- silver token
+	{ id = 11701, chance = 3000 },
+	{ id = 6558, chance = 70000 }, -- flask of demonic blood
+	{ id = 3019, chance = 2000 }, -- demonbone amulet
 	{ id = 3026, chance = 12000, maxCount = 8 }, -- white pearl
 	{ id = 3029, chance = 12000, maxCount = 9 }, -- small sapphire
-	{ id = 3031, chance = 98000, maxCount = 200 }, -- gold coin
 	{ id = 3033, chance = 10000, maxCount = 5 }, -- small amethyst
 	{ id = 3035, chance = 8000, maxCount = 58 }, -- platinum coin
 	{ id = 3036, chance = 1000 }, -- violet gem
 	{ id = 3037, chance = 1000 }, -- yellow gem
-	{ id = 3038, chance = 1000 }, -- green gem
-	{ id = 3039, chance = 1000 }, -- red gem
-	{ id = 3366, chance = 700 }, -- magic plate armor
+	{ id = 3366, chance = 1700 }, -- magic plate armor
 	{ id = 22193, chance = 46100, maxCount = 5 }, -- onyx chip
 	{ id = 22194, chance = 46100, maxCount = 5 }, -- opal
 	{ id = 22726, chance = 700 }, -- rift shield
-	{ id = 22727, chance = 700 }, -- rift lance
-	{ id = 22756, chance = 500, unique = true }, -- treader of torment
-	{ id = 22867, chance = 700 }, -- rift crossbow
+	{ id = 3399, chance = 2700 },
+	{ id = 22756, chance = 1500, unique = true }, -- treader of torment
 	{ id = 5021, chance = 46100, maxCount = 5 }, -- orichalcum pearl
 	{ id = 6299, chance = 1300 }, -- death ring
 	{ id = 6499, chance = 11000 }, -- demonic essence
 	{ id = 7416, chance = 1000 }, -- bloody edge
 	{ id = 7419, chance = 1300 }, -- dreaded cleaver
 	{ id = 7427, chance = 1000 }, -- chaos mace
-	{ id = 7451, chance = 1900 }, -- shadow sceptre
-	{ id = 238, chance = 23000, maxCount = 5 }, -- great mana potion
+	{ id = 238, chance = 23000, maxCount = 25 }, -- great mana potion
 	{ id = 281, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (green)
 	{ id = 282, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (brown)
 	{ id = 816, chance = 1000 }, -- lightning pendant
 	{ id = 822, chance = 1000 }, -- lightning legs
-	{ id = 7642, chance = 46100, maxCount = 10 }, -- great spirit potion
-	{ id = 7643, chance = 23000, maxCount = 5 }, -- ultimate health potion
+	{ id = 7642, chance = 46100, maxCount = 30 }, -- great spirit potion
+	{ id = 7643, chance = 23000, maxCount = 15 }, -- ultimate health potion
 	{ id = 9057, chance = 10000, maxCount = 5 }, -- small topaz
 }
 

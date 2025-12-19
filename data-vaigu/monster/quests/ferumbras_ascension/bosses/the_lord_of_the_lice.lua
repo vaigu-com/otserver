@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("The Lord of the Lice")
 local monster = {}
 
 monster.description = "The Lord of the Lice"
-monster.experience = 0
+monster.experience = 159000
 monster.outfit = {
 	lookType = 305,
 	lookHead = 0,
@@ -86,6 +86,8 @@ monster.loot = {
 	{ id = 3098, chance = 100000 }, -- ring of healing
 	{ id = 3326, chance = 25860 }, -- epee
 	{ id = 811, chance = 86200 }, -- terra mantle
+	{ id = 27565, chance = 2860 },
+	{ id = 21955, chance = 3740 },
 }
 
 monster.attacks = {

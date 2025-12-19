@@ -62,8 +62,8 @@ monster.loot = {
 	{ id = 678, chance = 2000, maxCount = 2 }, -- small enchanted amethyst
 	{ id = 9057, chance = 2500, maxCount = 2 }, -- small topaz
 	{ id = 237, chance = 1000 }, -- strong mana potion
-	{ name = "rainbow quartz", chance = 719, maxCount = 8 },
-	{ name = "Yol's bow", chance = 10 },
+	{ name = "rainbow quartz", chance = 719, maxCount = 4 },
+	{ name = "Yol's bow", chance = 100 },
 }
 
 monster.attacks = {
@@ -80,16 +80,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -20 },
+	{ type = COMBAT_FIREDAMAGE, percent = 20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 20 },
 }
 
 monster.immunities = {

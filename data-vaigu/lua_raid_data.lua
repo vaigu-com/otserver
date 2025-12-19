@@ -138,7 +138,7 @@ local raidData = {
 	LuaRaid("Horestis"):Context({
 		perDay = 0.36,
 		waves = {
-			Wave(10000):Creature("Horestis", Area(Position(67119, 1074, 10), Position(7119, 1074, 10)), 1, false),
+			Wave(10000):Creature("Horestis", Area(Position(7119, 1074, 10), Position(7119, 1074, 10)), 1, false),
 		},
 		cooldown = 43200,
 		minPlayersOnline = 1,
@@ -264,7 +264,7 @@ local raidData = {
 	LuaRaid("Midnight_Panther"):Context({
 		perDay = 2.304,
 		waves = {
-			Wave(10000):Creature("Midnight Panther", Area(Position(6673, 943, 10), Position(6673, 943, 10)), 1, false):Creature("Midnight Panther", Area(Position(6687, 948, 10), Position(6687, 948, 10)), 1, false):Creature("Midnight Panther", Area(Position(6692, 921, 10), Position(6692, 921, 10)), 1, false),
+			Wave(10000):Creature("Midnight Panther", Area(Position(6620, 923, 8), Position(6620, 923, 8)), 1, false):Creature("Midnight Panther", Area(Position(6633, 926, 7), Position(6633, 926, 7)), 1, false):Creature("Midnight Panther", Area(Position(6529, 935, 7), Position(6529, 935, 7)), 1, false),
 		},
 		cooldown = 7200,
 		minPlayersOnline = 1,
@@ -311,7 +311,7 @@ local raidData = {
 	LuaRaid("Dragonling"):Context({
 		perDay = 0.504,
 		waves = {
-			Wave(1000):Creature("Dragonling", Area(Position(6531, 1721, 13), Position(6590, 1769, 14)), 6, true),
+			Wave(1000):Creature("Dragonling", Area(Position(6532, 1723, 12), Position(6525, 1699, 12)), 6, true),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 1,
@@ -353,7 +353,7 @@ local raidData = {
 		waves = {
 			Wave(10000):Creature("Giant Spider", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 15, true):Creature("Tarantula", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 20, true):Notification(-9000, "Giant spiders have been noticed around the tarantulas' lair!"),
 			Wave(240000):Creature("Giant Spider", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 30, true):Creature("Tarantula", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 40, true):Notification(-230000, "We advise against going to the hunters' camp!"),
-			Wave(360000):Creature("The Old Widow", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 1, true):Creature("Giant Spider", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 15, true):Creature("Tarantula", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 20, true),
+			Wave(360000):Creature("The Old Widow", Area(Position(5939, 1644, 7), Position(6039, 1712, 7)), 1, true):Creature("Giant Spider", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 15, true):Creature("Tarantula", Area(Position(5939, 1644, 7), Position(6039, 1712, 8)), 20, true),
 		},
 		cooldown = 43200,
 		minPlayersOnline = 5,
@@ -361,7 +361,7 @@ local raidData = {
 	LuaRaid("Supply_2"):Context({
 		perDay = 0.648,
 		waves = {
-			Wave(1000):Creature("Supply Dragon", Area(Position(6519, 1067, 7), Position(6939, 1414, 7)), 1, false),
+			Wave(1000):Creature("Supply Dragon", Area(Position(6519, 1067, 7), Position(6944, 1341, 7)), 1, false),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 0,
@@ -369,7 +369,7 @@ local raidData = {
 	LuaRaid("Supply_6"):Context({
 		perDay = 0.648,
 		waves = {
-			Wave(1000):Creature("Supply Dragon", Area(Position(6380, 1731, 7), Position(6597, 1911, 7)), 1, false),
+			Wave(1000):Creature("Supply Dragon", Area(Position(6390, 1751, 7), Position(6549, 1889, 7)), 1, false),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 0,
@@ -592,7 +592,7 @@ local raidData = {
 	LuaRaid("Crystalwolves"):Context({
 		perDay = 0.72,
 		waves = {
-			Wave(1000):Creature("Crystal Wolf", Area(Position(6379, 1844, 5), Position(6474, 1875, 7)), 8, true),
+			Wave(1000):Creature("Crystal Wolf", Area(Position(6379, 1844, 7), Position(6474, 1875, 7)), 8, true),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 1,
@@ -730,9 +730,9 @@ local raidData = {
 				:Creature("Orc Warlord", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 20, false)
 				:Notification(-10000, "Orcs have sent additional reinforcements!"),
 			Wave(280000)
-				:Creature("Orc Helmet", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 1, true)
-				:Creature("Orc Shield", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 1, true)
-				:Creature("Orc Armor", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 1, true)
+				:Creature("Orc Helmet", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 5, true)
+				:Creature("Orc Shield", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 5, true)
+				:Creature("Orc Armor", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 5, true)
 				:Creature("Orc Leader", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 8, false)
 				:Creature("Orc Berserker", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 8, false)
 				:Creature("Orc Warlord", Area(Position(5829, 1613, 7), Position(5959, 1661, 7)), 8, false),
@@ -955,7 +955,7 @@ local raidData = {
 	LuaRaid("Hatebreeder"):Context({
 		perDay = 0.36,
 		waves = {
-			Wave(10000):Creature("Hatebreeder", Area(Position(6674, 928, 11), Position(6674, 928, 11)), 1, false),
+			Wave(10000):Creature("Hatebreeder", Area(Position(6609, 926, 9), Position(6609, 926, 9)), 1, false),
 		},
 		cooldown = 14400,
 		minPlayersOnline = 1,

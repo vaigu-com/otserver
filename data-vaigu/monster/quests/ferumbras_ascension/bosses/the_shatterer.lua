@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("The Shatterer")
 local monster = {}
 
 monster.description = "The Shatterer"
-monster.experience = 58000
+monster.experience = 558000
 monster.outfit = {
 	lookType = 842,
 	lookHead = 77,
@@ -47,7 +47,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -78,7 +78,8 @@ monster.loot = {
 	{ id = 7643, chance = 46100, maxCount = 10 }, -- ultimate health potion
 	{ id = 3030, chance = 12000, maxCount = 12 }, -- small ruby
 	{ id = 3035, chance = 8000, maxCount = 10 }, -- platinum coin
-	{ id = 3031, chance = 30000, maxCount = 200 }, -- gold coin
+	{ id = 3564, chance = 7000 },
+	{ id = 3014, chance = 5000 },
 }
 
 monster.attacks = {
