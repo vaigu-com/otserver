@@ -65,22 +65,22 @@ monster.voices = {
 monster.loot = {
 	{ name = "gold coin", chance = 99000, minCount = 50, maxCount = 280 },
 	{ id = 3492, chance = 7110, maxCount = 2 },
-	{ id = 3111, chance = 10050 },
-	{ id = 3045, chance = 4980 },
+	{ id = 3045, chance = 49080 },
 	{ id = 10308, chance = 79940 },
-	{ id = 8894, chance = 190 },
+	{ id = 8894, chance = 11190 },
 	{ id = 3737, chance = 4200 },
-	{ id = 3054, chance = 70 },
+	{ id = 3054, chance = 70000 },
 	{ id = 3415, chance = 68000 },
 	{ id = 7454, chance = 16700 },
 	{ id = 3033, chance = 79000, maxCount = 4 },
+	{ id = 11701, chance = 6700 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 50, attack = 50, condition = { type = CONDITION_POISON, totalDamage = 160, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 16, type = COMBAT_DEATHDAMAGE, minDamage = -70, maxDamage = -160, length = 3, spread = 2, effect = CONST_ME_POFF, target = false },
 	-- poison
-	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -280, maxDamage = -480, length = 1, spread = 0, effect = CONST_ME_HITBYPOISON, target = true },
+	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -280, maxDamage = -280, length = 1, spread = 0, effect = CONST_ME_HITBYPOISON, target = true },
 	{ name = "speed", interval = 2000, chance = 13, speedChange = -700, range = 7, effect = CONST_ME_STUN, target = true, duration = 30000 },
 	{ name = "combat", interval = 2000, chance = 17, type = COMBAT_EARTHDAMAGE, minDamage = -10, maxDamage = -150, range = 7, effect = CONST_ME_CARNIPHILA, target = true },
 }
@@ -94,7 +94,7 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 75 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
