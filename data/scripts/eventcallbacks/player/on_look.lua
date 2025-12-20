@@ -1,7 +1,7 @@
-DONT_SHOW_ONLOOK = "DONT_SHOW_ONLOOK"
+Storage.DebugOnLook = {}
 
-local OnLookMessage = {}
-function OnLookMessage:new(player, inspectedThing, inspectedPosition, lookDistance)
+local OnLookMessageBuilder = {}
+function OnLookMessageBuilder:new(player, inspectedThing, inspectedPosition, lookDistance)
 	local newObj = {}
 	self.player = player
 	self.inspectedThing = inspectedThing
@@ -11,24 +11,29 @@ function OnLookMessage:new(player, inspectedThing, inspectedPosition, lookDistan
 	setmetatable(newObj, self)
 	return newObj
 end
-setmetatable(OnLookMessage, {
+setmetatable(OnLookMessageBuilder, {
 	__call = function(class, ...)
 		return class:new(...)
 	end,
 })
 
-function SimpleTextDisplay(player, item, message)
+local _nextModalWindowId = 1000
+local function nextModalWindowId()
+	_nextModalWindowId = _nextModalWindowId + 1
+	return _nextModalWindowId
+end
+
+function SimpleTextDisplay(player, message)
 	local title = "You read the following."
 	if message == nil then
-		message = message or ("Report this bug to the gamemaster. Debug info: AID:" .. item:getActionId())
-		logger.debug(T("[SimpleTextDisplay] Trying to display nil message. item: :item:, aid: :aid:", { item = item, aid = item:getActionId() }))
+		logger.error(debug.traceback(T("[SimpleTextDisplay] Trying to display nil message :message:"), { message = message }))
+		return
 	end
 	local close = "Close"
-	local aid = item:getActionId()
 
 	player:registerEvent("SimpleDisplayOnLook")
 
-	local window = ModalWindow(aid, title, message)
+	local window = ModalWindow(nextModalWindowId(), title, message)
 	window:addButton(101, close)
 	window:setDefaultEscapeButton(101)
 
@@ -54,51 +59,13 @@ local aidToCustomDesc = {
 	[11092] = "Anon's father's stool.",
 }
 
-local function tryFindAnyDescription(player, item)
-	local description = aidToCustomDesc[item:getActionId()] or item:getAttribute(ITEM_ATTRIBUTE_DESCRIPTION)
-	local translatedDescription = player:Localizer(nil):Context({ item = item }):Get(description)
-	if translatedDescription and translatedDescription ~= "" then
-		return translatedDescription
-	end
-	if description and description ~= "" then
-		return description
-	end
-end
-
--- This allows to display translated text on "look" for items with overriden onUse
-local function tryDisplayItemText(player, item)
-	local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
-	if text == nil or text == "" then
-		return
-	end
-
-	local translatedText = player:Localizer(nil):Context({ item = item }):Get(text)
-	if translatedText and translatedText ~= "" then
-		SimpleTextDisplay(player, item, translatedText)
-		return DONT_SHOW_ONLOOK
-	end
-	return text
-end
-
-local function shouldDisplayReadableContent(item)
-	local itemType = ItemType(item:getId())
-	if itemType:getAllowDistRead() then
-		return true
-	end
-	if itemType:isKey() then
-		return true
-	end
-
-	return false
-end
-
 local specialItemRanges = {
 	{ rangeStart = ITEM_HEALTH_CASK_START, rangeEnd = ITEM_HEALTH_CASK_END },
 	{ rangeStart = ITEM_MANA_CASK_START, rangeEnd = ITEM_MANA_CASK_END },
 	{ rangeStart = ITEM_SPIRIT_CASK_START, rangeEnd = ITEM_SPIRIT_CASK_END },
 	{ rangeStart = ITEM_KEG_START, rangeEnd = ITEM_KEG_END },
 }
-local function isSpecialItem(itemId)
+local function isRefiller(itemId)
 	for _, range in ipairs(specialItemRanges) do
 		if itemId >= range.rangeStart and itemId <= range.rangeEnd then
 			return true
@@ -115,71 +82,22 @@ local function getPositionDescription(position)
 	end
 end
 
-function OnLookMessage:ParseCustomOnLook()
-	local inspectedThing = self.inspectedThing
-	local player = self.player
-	local aid = inspectedThing:getActionId()
-	if not aid or aid <= 0 then
-		return nil
-	end
-
-	local itemConfig = CustomItemRegistry():GetState(aid)
-	if itemConfig and itemConfig.onLook then
-		local onLookFunc = itemConfig.onLook
-		local result = onLookFunc({ player = player, aid = aid, item = inspectedThing })
-		if result == DONT_SHOW_ONLOOK then
-			self.dontShowOnLook = true
-			return
-		end
-	end
-
-	if tryDisplayItemText(player, inspectedThing) == DONT_SHOW_ONLOOK then
-		self.dontShowOnLook = true
-		return
-	end
-
-	local finalDescription = tryFindAnyDescription(player, inspectedThing)
-	if not finalDescription or finalDescription == "" then
-		return nil
-	end
-
-	return finalDescription
-end
-
-function OnLookMessage:ParseCustomDescription(customDescription)
-	if shouldDisplayReadableContent(self.inspectedThing) then
-		return T("You see :name:. You read: :customDescription:", { name = self.inspectedThing:getNameDescription(), customDescription = customDescription })
-	end
-	return T("You see :name:.", { name = self.inspectedThing:getNameDescription() })
-end
-
-function OnLookMessage:ParseItemDescription()
+function OnLookMessageBuilder:ParseItemDescription()
 	local inspectedThing = self.inspectedThing
 	local lookDistance = self.lookDistance
-	local customDescription = self:ParseCustomOnLook()
-	if self.dontShowOnLook then
-		return
-	end
+	local player = self.player
 
-	if customDescription then
-		return self:ParseCustomDescription(customDescription)
-	end
-
-	local descriptionText = inspectedThing:getDescription(lookDistance)
-
-	if isSpecialItem(inspectedThing.itemid) then
+	local descriptionText = inspectedThing:getDescription(lookDistance, player) --player for translation
+	if isRefiller(inspectedThing.itemid) then
 		local itemCharges = inspectedThing:getCharges()
 		if itemCharges > 0 then
-			return string.format("You see %s\nIt has %d refillings left.", descriptionText, itemCharges)
+			return T("You see :descriptionText:\nIt has :charges: refillings left.", { descriptionText = descriptionText, charges = itemCharges })
 		end
-	else
-		return "You see " .. descriptionText
 	end
-
-	return descriptionText
+	return "You see " .. descriptionText
 end
 
-function OnLookMessage:ParseCreatureDescription()
+function OnLookMessageBuilder:ParseCreatureDescription()
 	local inspectedThing = self.inspectedThing
 	local lookDistance = self.lookDistance
 	local descriptionText = inspectedThing:getDescription(lookDistance)
@@ -188,14 +106,14 @@ function OnLookMessage:ParseCreatureDescription()
 		local monsterMaster = inspectedThing:getMaster()
 		if monsterMaster and table.contains({ "sorcerer familiar", "knight familiar", "druid familiar", "paladin familiar" }, inspectedThing:getName():lower()) then
 			local summonTimeRemaining = monsterMaster:kv():get("familiar-summon-time") or 0
-			descriptionText = string.format("%s (Master: %s). It will disappear in %s", descriptionText, monsterMaster:getName(), getTimeInWords(summonTimeRemaining - os.time()))
+			descriptionText = string.format("%s (Master: %s). It will disappear in %s", descriptionText, monsterMaster:getName(), Game.getTimeInWords(summonTimeRemaining - os.time()))
 		end
 	end
 
 	return "You see " .. descriptionText
 end
 
-function OnLookMessage:ParseAdminDetails()
+function OnLookMessageBuilder:ParseHiddenDetails()
 	local descriptionText = ""
 	local inspectedThing = self.inspectedThing
 	local inspectedPosition = self.inspectedPosition
@@ -210,6 +128,11 @@ function OnLookMessage:ParseAdminDetails()
 		local itemUniqueId = inspectedThing:getUniqueId()
 		if itemUniqueId > 0 and itemUniqueId < 65536 then
 			descriptionText = string.format("%s, Unique ID: %d", descriptionText, itemUniqueId)
+		end
+
+		local itemKey = inspectedThing:getAttribute("key")
+		if itemKey and itemKey ~= "" then
+			descriptionText = string.format("%s, Key: %s", descriptionText, itemKey)
 		end
 
 		local itemType = inspectedThing:getType()
@@ -249,27 +172,28 @@ function OnLookMessage:ParseAdminDetails()
 		descriptionText = string.format("%s\nSpeed Base: %d\nSpeed: %d", descriptionText, creatureBaseSpeed, creatureCurrentSpeed)
 
 		if inspectedThing:isPlayer() then
-			descriptionText = string.format("%s\nIP: %s", descriptionText, Game.convertIpToString(inspectedThing:getIp()))
+			-- RODO?
+			-- descriptionText = string.format("%s\nIP: %s", descriptionText, Game.convertIpToString(inspectedThing:getIp()))
 		end
 	end
 
 	return descriptionText
 end
 
-function OnLookMessage:Build()
+function OnLookMessageBuilder:Build()
 	if self.inspectedThing:isItem() then
 		self.normalDescription = self:ParseItemDescription()
 	elseif self.inspectedThing:isCreature() then
 		self.normalDescription = self:ParseCreatureDescription()
 	end
 
-	if self.player:getGroup():getAccess() then
-		self.adminDescription = self:ParseAdminDetails()
+	if self.player:getGroup():getAccess() or self.player:getStorageValueByKey(Storage.DebugOnLook) == ACCESS_GRANTED then
+		self.adminDescription = self:ParseHiddenDetails()
 	end
 	return self
 end
 
-function OnLookMessage:Get()
+function OnLookMessageBuilder:Get()
 	local finalMessage = ""
 	if self.normalDescription and self.dontShowOnLook ~= true then
 		finalMessage = finalMessage .. self.normalDescription
@@ -280,9 +204,12 @@ function OnLookMessage:Get()
 	return finalMessage
 end
 
-local callback = EventCallback()
+-- Item description is always treated as potential string identifier
+-- If no matching translation is found, then the description is shown normally
+-- Else the translation is put in description place
+local callback = EventCallback("playerOnLook")
 function callback.playerOnLook(player, inspectedThing, inspectedPosition, lookDistance)
-	local onLookDescriptionBuilder = OnLookMessage(player, inspectedThing, inspectedPosition, lookDistance)
+	local onLookDescriptionBuilder = OnLookMessageBuilder(player, inspectedThing, inspectedPosition, lookDistance)
 	local message = onLookDescriptionBuilder:Build():Get()
 
 	if message and message ~= "" then

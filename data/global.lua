@@ -1,19 +1,8 @@
 math.randomseed(os.time())
 
 dofile(DATA_DIRECTORY .. "/load_miscellaneous.lua")
-
 dofile(DATA_DIRECTORY .. "/lib/lib.lua")
-dofile(DATA_DIRECTORY .. "/zombieEvent.lua")
-dofile(DATA_DIRECTORY .. "/grimEvent.lua")
-dofile(DATA_DIRECTORY .. "/lmsEvent.lua")
-dofile(DATA_DIRECTORY .. "/luaraids.lua")
-dofile(DATA_DIRECTORY .. "/arena.lua")
-dofile(DATA_DIRECTORY .. "/imbuproducts.lua")
-dofile(DATA_DIRECTORY .. "/demonOakQuest.lua")
-dofile(DATA_DIRECTORY .. "/load_configs.lua")
-dofile(DATA_DIRECTORY .. "/locales/_locales_lib.lua")
-
-local startupFile=io.open(DATA_DIRECTORY.. "/startup/startup.lua", "r")
+local startupFile = io.open(DATA_DIRECTORY .. "/startup/startup.lua", "r")
 if startupFile ~= nil then
 	io.close(startupFile)
 	dofile(DATA_DIRECTORY .. "/startup/startup.lua")
@@ -59,32 +48,11 @@ DIRECTIONS_TABLE = {
 	DIRECTION_NORTHEAST,
 }
 
-BONUS_LOOT = 1.3 -- 30% increased loot
-STORAGEVALUE_PROMOTION = 30018
-DAY_SINCE_START = 0
-local resultId = db.storeQuery("SELECT `value` FROM `server_config` WHERE `config` = 'day_since_start'")
-if resultId then
-	DAY_SINCE_START = Result.getNumber(resultId, "value")
-	logger.info("Day since start: " .. DAY_SINCE_START)
-end
 
 SERVER_NAME = configManager.getString(configKeys.SERVER_NAME)
 SERVER_MOTD = configManager.getString(configKeys.SERVER_MOTD)
 
 AUTH_TYPE = configManager.getString(configKeys.AUTH_TYPE)
-
--- Bestiary charm
-GLOBAL_CHARM_GUT = 120 -- 20% more chance to get creature products from looting
-GLOBAL_CHARM_SCAVENGE = 125 -- 25% more chance to get creature products from skinning
-
---WEATHER
-weatherConfig = {
-	groundEffect = CONST_ME_LOSEENERGY,
-	fallEffect = CONST_ANI_SMALLICE,
-	thunderEffect = configManager.getBoolean(configKeys.WEATHER_THUNDER),
-	minDMG = 1,
-	maxDMG = 5,
-}
 
 -- Event Schedule
 SCHEDULE_LOOT_RATE = 100
@@ -107,7 +75,9 @@ SCARLETT_MAY_DIE = 0
 
 ropeSpots = { 386, 421, 386, 7762, 12202, 12936, 14238, 17238, 23363, 21965, 21966, 21967, 21968 }
 specialRopeSpots = { 12935 }
-swimmingTiles = { 629, 630, 631, 632, 633, 634, 4809, 4810, 4811, 4812, 4813, 4814 }
+--swimmingTiles = { 629, 630, 631, 632, 633, 634, 4809, 4810, 4811, 4812, 4813, 4814 }
+-- Vaigu custom
+swimmingTiles = { 629, 630, 631, 632, 633, 634 }
 
 -- Global tables for systems
 if not _G.GlobalBosses then
@@ -123,11 +93,6 @@ if not _G.NextUseStaminaTime then
 	_G.NextUseStaminaTime = {}
 end
 
--- Prey stamina
-if not _G.NextUsePreysTime then
-	_G.NextUsePreysTime = {}
-end
-
 if not _G.NextUseXpStamina then
 	_G.NextUseXpStamina = {}
 end
@@ -136,32 +101,24 @@ if not _G.NextUseConcoctionTime then
 	_G.NextUseConcoctionTime = {}
 end
 
+-- Vaigu custom
+-- Prey stamina
+if not _G.NextUsePreysTime then
+	_G.NextUsePreysTime = {}
+end
+
 
 -- for use of: data\scripts\globalevents\customs\save_interval.lua
 SAVE_INTERVAL_TYPE = configManager.getString(configKeys.SAVE_INTERVAL_TYPE)
-SAVE_INTERVAL_CONFIG_TIME = configManager.getNumber(configKeys.SAVE_INTERVAL_TIME)
-SAVE_INTERVAL_TIME = 0
-if SAVE_INTERVAL_TYPE == "second" then
-	SAVE_INTERVAL_TIME = 1000
-elseif SAVE_INTERVAL_TYPE == "minute" then
-	SAVE_INTERVAL_TIME = 60 * 1000
-elseif SAVE_INTERVAL_TYPE == "hour" then
-	SAVE_INTERVAL_TIME = 60 * 60 * 1000
-end
+SAVE_INTERVAL_TIME_SECONDS = configManager.getNumber(configKeys.SAVE_INTERVAL_TIME_SECONDS)
 
--- Increase Stamina & Soul when Attacking Trainer
+-- Increase Stamina when Attacking Trainer
 staminaBonus = {
-	target = "Training Dummy",
+	target = "Training Machine",
 	period = configManager.getNumber(configKeys.STAMINA_TRAINER_DELAY) * 60 * 1000, -- time on miliseconds trainers
 	bonus = configManager.getNumber(configKeys.STAMINA_TRAINER_GAIN), -- gain stamina trainers
 	eventsTrainer = {}, -- stamina in trainers
 	eventsPz = {}, -- stamina in Pz
-}
-
-soulBonus = {
-	target = "Training Dummy",
-	period = 1 * 75 * 1000, -- time on miliseconds trainers
-	eventsTrainer = {}, -- stamina in trainers
 }
 
 FAMILIARSNAME = {
@@ -170,41 +127,6 @@ FAMILIARSNAME = {
 	"druid familiar",
 	"paladin familiar",
 }
-
-function addSoulTrainingDummy(playerId, ...)
-	if not playerId then
-		return false
-	end
-	
-	if not configManager.getBoolean(configKeys.STAMINA_TRAINER) then
-		return false
-	end
-	
-	local player = Player(playerId)
-	
-	if not player then
-		soulBonus.eventsTrainer[playerId] = nil
-		return true
-	end
-	
-	local target = player:getTarget()
-	
-	if not target or target:getName() ~= soulBonus.target then
-		soulBonus.eventsTrainer[playerId] = nil
-		return true
-	end
-	
-	local maxsoul = player:isPremium() and 200 or 100
-	
-	if player:getSoul() < maxsoul then
-		player:addSoul(1)
-		player:sendTextMessage(MESSAGE_FAILURE, "One soul point has been restored.")
-	end
-	
-	soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.period, playerId)
-	return true
-end
-
 
 function addStamina(playerId, ...)
 	-- Creature:onTargetCombat
@@ -244,7 +166,7 @@ function addStamina(playerId, ...)
 
 		local actualStamina = player:getStamina()
 
-		if actualStamina > 2400 and actualStamina < 2520 then
+		if actualStamina > 2340 and actualStamina < 2520 then
 			delay = configManager.getNumber(configKeys.STAMINA_GREEN_DELAY) * 60 * 1000 -- Stamina Green 12 min.
 		elseif actualStamina == 2520 then
 			player:sendTextMessage(

@@ -9,7 +9,8 @@ coreDirectory = "data"
 
 -- Set log level
 -- It can be trace, debug, info, warning, error, critical, off (default: info).
--- NOTE: Will only display logs with level higher or equal the one set.
+-- NOTE: It will only be valid after the server starts up and only display logs with level higher or equal the one set.
+-- NOTE: Debug and trace logs are only available if compiled in debug mode.
 logLevel = "info"
 
 --- Toggles the server's maintenance mode.
@@ -25,6 +26,7 @@ maintainModeMessage = ""
 -- NOTE: valid values for worldType are: "pvp", "no-pvp" and "pvp-enforced"
 -- NOTE: removeBeginningWeaponAmmunition: spears, arrows, bolt have endless ammo (allows training for paladins)
 -- NOTE: refundManaOnBeginningWeapons: wand of vortex and snakebite refund mana used (allows training for mages)
+-- NOTE: loginProtectionTime in MS
 worldType = "pvp"
 hotkeyAimbotEnabled = true
 protectionLevel = 7
@@ -44,17 +46,19 @@ dayKillsToRedSkull = 6
 weekKillsToRedSkull = 10
 monthKillsToRedSkull = 20
 redSkullDuration = 2
+redSkullLength = redSkullDuration * 24 * 60 * 60
 blackSkullDuration = 3
 orangeSkullDuration = 3
+loginProtectionTime = 10 * 1000
 
 cleanProtectionZones = false
 
 -- Connection Config
 -- NOTE: allowOldProtocol can allow login on 10x protocol. (11.00)
 -- NOTE: maxPlayers set to 0 means no limit
--- NOTE: MaxPacketsPerSeconds if you change you will be subject to bugs by WPE, keep the default value of 25, 
+-- NOTE: MaxPacketsPerSeconds if you change you will be subject to bugs by WPE, keep the default value of 25,
 -- It's recommended to use a range like min 50 in this function, otherwise you will be disconnected after equipping two-handed distance weapons.
-ip = "127.0.0.1"
+ip = "vaigu.com"
 allowOldProtocol = false
 bindOnlyGlobalAddress = false
 loginProtocolPort = 7171
@@ -65,9 +69,7 @@ serverName = "OTServBR-Global"
 serverMotd = "Welcome to the OTServBR-Global!"
 statusTimeout = 5 * 1000
 replaceKickOnLogin = true
-maxPacketsPerSecond = 35
-maxItem = 2000
-maxContainer = 100
+maxPacketsPerSecond = 25
 maxPlayersOnlinePerAccount = 1
 maxPlayersOutsidePZPerAccount = 1
 
@@ -80,6 +82,25 @@ packetCompressionLevel = 6
 freeDepotLimit = 2000
 premiumDepotLimit = 10000
 depotBoxes = 20
+
+-- Item and containers limit
+-- NOTE: 'maxContainerDepth' defines the maximum depth to which containers can be nested
+-- NOTE: 'maxInboxItems' defines the maximum items allowed in inbox, set to 0 for limit it to uint32_t max limit (4.294.967.295)
+maxItem = 5000
+maxContainer = 500
+maxContainerDepth = 200
+maxInboxItems = 0
+
+-- Animus Mastery - SoulPit (Get more info in: https://github.com/opentibiabr/canary/pull/3230)
+-- NOTE: animusMasteryMaxMonsterXpMultiplier is the maximum experience the multiplier can be.
+-- NOTE: animusMasteryMonsterXpMultiplier is the monster experience multiplier that has the animus mastery unlocked.
+-- NOTE: animusMasteryMonstersXpMultiplier is the multiplier for each 'animusMasteryMonstersToIncreaseXpMultiplier' monsters that
+-- the player has the animus mastery unlocked.
+-- NOTE: animusMasteryMonstersToIncreaseXpMultiplier is the amount of monster to increase the experience multiplier by 'animusMasteryMonstersXpMultiplier'.
+animusMasteryMaxMonsterXpMultiplier = 4.0
+animusMasteryMonsterXpMultiplier = 2.0
+animusMasteryMonstersXpMultiplier = 0.1
+animusMasteryMonstersToIncreaseXpMultiplier = 10
 
 -- Augments System (Get more info in: https://github.com/opentibiabr/canary/pull/2602)
 -- NOTE: the following values are for all weapons and equipments that have type of "increase damage", "powerful impact" and "strong impact".
@@ -100,11 +121,11 @@ augmentStrongImpactPercent = 10
 -- NOTE: preyFreeRerollTime: Time in seconds that players will have to wait to get a new free prey list.
 preySystemEnabled = true
 preyFreeThirdSlot = false
-preyRerollPricePerLevel = 200
+preyRerollPricePerLevel = 30
 preySelectListPrice = 5
 preyBonusRerollPrice = 1
 preyBonusTime = 2 * 60 * 60
-preyFreeRerollTime = 20 * 60 * 60
+preyFreeRerollTime = 1 * 60 * 60
 
 -- Task hunting system
 -- NOTE: taskHuntingLimitedTasksExhaust: Time to wait to select a new creature on the task hunting slot after claiming the reward.
@@ -141,7 +162,7 @@ forgeAmountMultiplier = 3
 forgeMinSlivers = 3
 forgeMaxSlivers = 7
 forgeInfluencedLimit = 300
-forgeFiendishLimit = 3
+forgeFiendishLimit = 4
 forgeFiendishIntervalType = "hour"
 forgeFiendishIntervalTime = "1"
 
@@ -157,11 +178,15 @@ momentumChanceFormulaA = 0.05
 momentumChanceFormulaB = 1.9
 momentumChanceFormulaC = 0.05
 
-transcendanceChanceFormulaA = 0.0127
-transcendanceChanceFormulaB = 0.1070
-transcendanceChanceFormulaC = 0.0073
+transcendenceChanceFormulaA = 0.0127
+transcendenceChanceFormulaB = 0.1070
+transcendenceChanceFormulaC = 0.0073
 
-transcendanceAvatarDuration = 7000
+amplificationChanceFormulaA = 0.4
+amplificationChanceFormulaB = 1.7
+amplificationChanceFormulaC = 0.4
+
+transcendenceAvatarDuration = 7000
 
 -- Bestiary & Bosstiary system
 -- NOTE: bestiaryKillMultiplier, multiplier value of monster killed, default 1
@@ -210,13 +235,13 @@ wheelSystemEnabled = true
 wheelPointsPerLevel = 3
 
 -- Gem Atelier
-wheelAtelierRotateLesserCost = 125000
-wheelAtelierRotateRegularCost = 250000
-wheelAtelierRotateGreaterCost = 500000
+wheelAtelierRotateLesserCost = 125000 / 100
+wheelAtelierRotateRegularCost = 250000 / 100
+wheelAtelierRotateGreaterCost = 500000 / 100
 
-wheelAtelierRevealLesserCost = 125000
-wheelAtelierRevealRegularCost = 1000000
-wheelAtelierRevealGreaterCost = 6000000
+wheelAtelierRevealLesserCost = 125000 / 100
+wheelAtelierRevealRegularCost = 1000000 / 100
+wheelAtelierRevealGreaterCost = 6000000 / 100
 
 -- Familiar system
 -- NOTE: the time will be divided by 2 to get half the value, the familiar lasts 15 minutes by default and the cooldown of the spell is 30 minutes
@@ -238,8 +263,6 @@ tibiadromeConcoctionTickType = "online" -- "online" | "experience"
 onlyPremiumAccount = false
 
 -- Customs
--- NOTE: stashMoving = true, stow an container inside your stash
--- NOTE: stashItemCount, the maximum items quantity in stash
 -- NOTE: depotChest, the non-stackable items will be moved to the selected depot chest(I - XVIII).
 -- NOTE: autoBank = true, the dropped coins from monsters will be automatically deposited to your bank account.
 -- NOTE: toggleGoldPouchAllowAnything will allow players to move items or gold to gold pouch
@@ -254,10 +277,8 @@ onlyPremiumAccount = false
 -- NOTE: enablePlayerPutItemInAmmoSlot = true, will enable players to put any items on ammo slot, more used in custom shopping system
 -- NOTE: startStreakLevel will make a reward streak level for new players who never logged in
 -- NOTE: if showLootsInBestiary is true, will cause all loots to be shown in the bestiary even if the player has not reached the required number of kills
--- NOTE: minTownIdToBankTransfer blocks towns less than defined from receiving money transfers
+-- NOTE: minTownIdToBankTransferFromMain blocks towns less than defined from receiving money transfers
 -- NOTE: enableSupportOutfit enable GODS and GMS to select support outfit (gamemaster, customer support or community manager)
-stashMoving = false
-stashItemCount = 5000
 depotChest = 4
 autoLoot = false
 autoBank = false
@@ -275,8 +296,13 @@ storeInboxMaxLimit = 2000
 enablePlayerPutItemInAmmoSlot = false
 startStreakLevel = 0
 showLootsInBestiary = false
-minTownIdToBankTransfer = 3
+minTownIdToBankTransferFromMain = 4
 enableSupportOutfit = true
+
+-- NOTE: stashMoving = true, stow an container inside your stash
+-- NOTE: stashManageAmount = max items add/remove from stash at once
+stashMoving = false
+stashManageAmount = 100000
 
 -- Teleport summon
 -- Set to true will never remove the summon
@@ -285,7 +311,7 @@ teleportSummons = false
 -- NOTE: true will allow the /reload command to be used
 -- NOTE: Using this script might cause unwanted changes
 -- This script forces a reload in the entire server, this means that everything that is stored in memory might stop to work properly and/or completely, this script should be used in test environments only
-allowReload = false
+allowReload = true
 
 -- Stamina in Trainers
 staminaTrainer = false
@@ -300,16 +326,10 @@ staminaPzGain = 1
 maxAllowedOnADummy = 1
 
 -- Save interval per time
--- NOTE: toggleSaveInterval: true = enable the save interval, false = disable the save interval
--- NOTE: toggleSaveAsync = true, will enable save async (experimental), not recommended for use in production
--- NOTE: saveIntervalType: "minute", "second" or "hour"
 -- NOTE: toggleSaveIntervalCleanMap: true = enable the clean map, false = disable the clean map
--- NOTE: saveIntervalTime: time based on what was set in "saveIntervalType"
-toggleSaveAsync = false
-toggleSaveInterval = true
-saveIntervalType = "minute"
+-- NOTE: saveIntervalTimeSeconds: set to 0 to disable
 toggleSaveIntervalCleanMap = false
-saveIntervalTime = 30
+saveIntervalTimeSeconds = 2
 
 -- Imbuement
 toggleImbuementShrineStorage = false
@@ -328,6 +348,7 @@ freeQuestStage = 1
 -- death penalty formula. For the old formula, set it to 10. For
 -- no skill/experience loss, set it to 0.
 deathLosePercent = -1
+leavePartyOnDeath = false
 
 -- Houses
 -- NOTE: set housePriceEachSQM to -1 to disable the ingame buy house functionality
@@ -337,11 +358,14 @@ deathLosePercent = -1
 Setting this to false may pose risks; if a house is abandoned and contains a large number of items on the floor, those items will be transferred to the player's depot instantly.
 • This could potentially freeze the server due to the heavy operation. It's advised to keep this setting enabled (true) to minimize risks.
 ]]
+-- NOTE: When toggleCyclopediaHouseAuction = true, the !buyhouse commmand does not work.
 -- Periods: daily/weekly/monthly/yearly/never
 -- Base: sqm,rent,sqm+rent
+toggleCyclopediaHouseAuction = false
+daysToCloseBid = 7
 housePriceRentMultiplier = 0.0
-housePriceEachSQM = 1000
-houseRentPeriod = "never"
+housePriceEachSQM = 2500
+houseRentPeriod = "weekly"
 houseRentRate = 1.0
 houseOwnedByAccount = false
 houseBuyLevel = 20
@@ -368,7 +392,7 @@ pushWhenAttacking = false
 -- Note: If a map with the same name already exists in the world folder, the map will not be downloaded, even if toggleDownloadMap is set to true.
 toggleDownloadMap = false
 mapName = "vaigu"
-mapDownloadUrl = "https://github.com/opentibiabr/canary/releases/download/v3.0.0/otservbr.otbm"
+mapDownloadUrl = "https://github.com/opentibiabr/canary/releases/download/v3.2.0/otservbr.otbm"
 mapAuthor = "GDPR"
 
 -- Party List limitations
@@ -394,6 +418,7 @@ mysqlHost = "127.0.0.1"
 mysqlUser = "root"
 mysqlPass = "new_password"
 mysqlDatabase = "vaigu"
+mysqlDatabaseBackup = false
 mysqlPort = 3306
 mysqlSock = ""
 passwordType = "sha1"
@@ -432,7 +457,7 @@ minDelayBetweenConditions = 0
 -- configure maximum value of critical imbuement
 criticalChance = 10
 inventoryGlowOnFiveBless = true
-adventurersBlessingLevel = 21
+adventurersBlessingLevel = 8
 skulledDeathLoseStoreItem = false
 experienceDisplayRates = true
 -- configure attack base on Fist Fighting skill/experience
@@ -464,6 +489,8 @@ globalServerSaveCleanMap = false
 globalServerSaveClose = false
 globalServerSaveShutdown = true
 globalServerSaveTime = "04:59:59"
+serverShutdownHour = 5 -- Vaigu custom
+serverRestartHour = 5 -- Vaigu custom
 
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
@@ -477,6 +504,7 @@ sortLootByChance = false
 -- To configure rates see file data/stages.lua
 -- lowLevelBonusExp works up to level 50
 rateUseStages = true
+experienceStages = true
 lowLevelBonusExp = 0
 rateExp = 1
 rateSkill = 7
@@ -499,7 +527,7 @@ rateSoulRegenSpeed = 1.0
 rateSpellCooldown = 1.0
 rateAttackSpeed = 1.0
 rateOfflineTrainingSpeed = rateAttackSpeed
-rateExerciseTrainingSpeed = rateAttackSpeed
+rateExerciseTrainingSpeed = rateAttackSpeed * 3
 
 -- Monster rates
 rateMonsterHealth = 1.0
@@ -588,3 +616,17 @@ metricsOstreamInterval = 1000
 weatherRain = false
 thunderEffect = false
 allConsoleLog = false
+
+-- OTC Features
+-- NOTE: Features added in this list will be forced to be used on OTCR
+-- These features can be found in "modules/gamelib/const.lua"
+OTCRFeatures = {
+    enableFeature = { 
+        101, -- g_game.enableFeature(GameItemShader)
+        102, -- g_game.enableFeature(GameCreatureAttachedEffect)
+        103, -- g_game.enableFeature(GameCreatureShader)
+        118  -- g_game.enableFeature(GameWingsAurasEffectsShader)
+    },
+    disableFeature = {
+    }
+}

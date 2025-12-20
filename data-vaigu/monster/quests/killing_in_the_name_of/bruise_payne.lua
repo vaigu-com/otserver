@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Bruise Payne")
 local monster = {}
 
 monster.description = "Bruise Payne"
-monster.experience = 1000
+monster.experience = 3000
 monster.outfit = {
 	lookType = 307,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 1600
-monster.maxHealth = 1600
+monster.health = 1900
+monster.maxHealth = 1900
 monster.race = "blood"
 monster.corpse = 8915
 monster.speed = 105
@@ -63,25 +63,25 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 5894, chance = 100000, maxCount = 2 }, -- bat wing
-	{ id = 3051, chance = 100000 }, -- energy ring
-	{ id = 3031, chance = 100000, maxCount = 99 }, -- gold coin
-	{ id = 9662, chance = 100000 }, -- mutated bat ear
-	{ id = 3033, chance = 100000, maxCount = 5 }, -- small amethyst
-	{ id = 3736, chance = 100000 }, -- star herb
-	{ id = 3429, chance = 92000 }, -- black shield
+	{ id = 5894, chance = 80000, maxCount = 2 }, -- bat wing
+	{ id = 3051, chance = 8000 }, -- energy ring
+	{ id = 3031, chance = 80000, maxCount = 99 }, -- gold coin
+	{ id = 9662, chance = 90000 }, -- mutated bat ear
+	{ id = 3033, chance = 90000, maxCount = 5 }, -- small amethyst
+	{ id = 3736, chance = 10000 }, -- star herb
+	{ id = 3429, chance = 12000 }, -- black shield
 	{ id = 3027, chance = 85000, maxCount = 5 }, -- black pearl
-	{ id = 7386, chance = 25000 }, -- mercenary sword
+	{ id = 7386, chance = 21000 }, -- mercenary sword
 	{ id = 9103, chance = 16000 }, -- batwing hat
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -240, condition = { type = CONDITION_POISON, totalDamage = 6, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -70, maxDamage = -180, range = 7, shootEffect = CONST_ANI_POISON, target = false },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_DROWNDAMAGE, minDamage = -130, maxDamage = -237, radius = 6, effect = CONST_ME_SOUND_WHITE, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_DROWNDAMAGE, minDamage = -130, maxDamage = -337, radius = 6, effect = CONST_ME_SOUND_WHITE, target = false },
 	{ name = "mutated bat curse", interval = 2000, chance = 10, target = false },
 	-- poison
-	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -12, maxDamage = -12, length = 4, spread = 0, effect = CONST_ME_POISONAREA, target = false },
+	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -12, maxDamage = -52, length = 4, spread = 0, effect = CONST_ME_POISONAREA, target = false },
 }
 
 monster.defenses = {
@@ -95,12 +95,12 @@ monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 65 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = -20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 20 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -20 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }
 

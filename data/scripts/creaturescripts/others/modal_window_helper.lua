@@ -15,9 +15,9 @@ function creatureEvent.onModalWindow(player, modalWindowId, buttonId, choiceId)
 	local button = modalWindow.buttons[buttonId] or {}
 	local choice = modalWindow.choices[choiceId] or {}
 	if button.callback then
-		button.callback(player, button, choice)
+		button.callback(player, button, choice, modalWindow.context)
 	elseif choice.callback then
-		choice.callback(player, button, choice)
+		choice.callback(player, button, choice, modalWindow.context)
 	elseif modalWindow.defaultCallback then
 		modalWindow.defaultCallback(player, button, choice)
 	end

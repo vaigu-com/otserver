@@ -88,7 +88,7 @@ monster.loot = {
 	{ id = 3728, chance = 4000, maxCount = 3 }, -- dark mushroom
 	{ id = 5911, chance = 5000 }, -- red piece of cloth
 	{ id = 3033, chance = 4000, maxCount = 3 }, -- small amethyst
-	{ id = 12599, chance = 1680, unique = true }, -- mage's cap
+	{ id = 12599, chance = 8680, unique = true }, -- mage's cap
 	{ id = 7443, chance = 1100 }, -- bullseye potion
 	{ id = 9027, chance = 740 }, -- crystal of focus
 	{ id = 3079, chance = 2370 }, -- boots of haste
@@ -132,19 +132,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

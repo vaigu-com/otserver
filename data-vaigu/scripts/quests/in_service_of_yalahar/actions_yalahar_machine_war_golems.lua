@@ -20,7 +20,7 @@ local config = {
 }
 
 local function disableMachine(storage)
-	Game.setStorageValue(storage, -1)
+	Game.setStorageValueByKey(storage, -1)
 end
 
 local inServiceYalaharWarGolem = Action()
@@ -30,7 +30,7 @@ function inServiceYalaharWarGolem.onUse(player, item, fromPosition, target, toPo
 		return true
 	end
 
-	if Game.getStorageValue(machineGroup.storage) == 1 then
+	if Game.getStorageValueByKey(machineGroup.storage) == 1 then
 		return true
 	end
 
@@ -39,7 +39,7 @@ function inServiceYalaharWarGolem.onUse(player, item, fromPosition, target, toPo
 		return true
 	end
 
-	Game.setStorageValue(machineGroup.storage, 1)
+	Game.setStorageValueByKey(machineGroup.storage, 1)
 	addEvent(disableMachine, 60 * 60 * 1000, machineGroup.storage)
 	player:removeItem(8775, 4)
 	for i = 1, #machineGroup.machines do

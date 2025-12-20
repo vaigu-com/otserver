@@ -1,6 +1,6 @@
 local yielothaxKill = CreatureEvent("YielothaxDeath")
 function yielothaxKill.onDeath(creature)
-	setGlobalStorageValue(673003, getGlobalStorageValue(673003) + 1)
+	setStorageValueByKey(673003, getStorageValueByKey(673003) + 1)
 	return true
 end
 

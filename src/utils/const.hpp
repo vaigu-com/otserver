@@ -25,15 +25,17 @@ static constexpr int32_t CHANNEL_PRIVATE = 0xFFFF;
 static constexpr int32_t EVENT_IMBUEMENT_INTERVAL = 1000;
 static constexpr uint8_t IMBUEMENT_MAX_TIER = 3;
 
-static constexpr int32_t STORAGEVALUE_EMOTE = 30008;
-static constexpr int32_t STORAGEVALUE_PODIUM = 30020;
-static constexpr int32_t STORAGEVALUE_BESTIARYKILLCOUNT = 61305000; // Can get up to 2000 storages!
+static const std::string STORAGEVALUE_EMOTE = "Storage-Emote";
+static const std::string STORAGEVALUE_PODIUM = "Storage-Podium";
+static const std::string STORAGEVALUE_BESTIARYKILLCOUNT = "Storage-BestiaryKillCount";
 
 // Hazard system storage
 static constexpr int32_t STORAGEVALUE_HAZARDCOUNT = 112550;
 
 // Wheel of destiny
-static constexpr int32_t STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD = 43200;
+static const std::string STORAGEVALUE_GIFT_OF_LIFE_COOLDOWN_WOD = "Storage-wheel-of-destiny-giftOfLifeCooldown";
+
+constexpr double SCALING_BASE = 10.0;
 
 // Reserved player storage key ranges;
 // [10000000 - 20000000];
@@ -46,14 +48,35 @@ static constexpr int32_t PSTRG_OUTFITS_RANGE_SIZE = 500;
 static constexpr int32_t PSTRG_MOUNTS_RANGE_START = (PSTRG_RESERVED_RANGE_START + 2001);
 static constexpr int32_t PSTRG_MOUNTS_RANGE_SIZE = 10;
 static constexpr int32_t PSTRG_MOUNTS_CURRENTMOUNT = (PSTRG_MOUNTS_RANGE_START + 10);
+//[2012 - 2022];
+static constexpr int32_t PSTRG_WING_RANGE_START = (PSTRG_RESERVED_RANGE_START + 2012);
+static constexpr int32_t PSTRG_WING_RANGE_SIZE = 10;
+static constexpr int32_t PSTRG_WING_CURRENTWING = (PSTRG_WING_RANGE_START + 10);
+//[2023 - 2033];
+static constexpr int32_t PSTRG_EFFECT_RANGE_START = (PSTRG_RESERVED_RANGE_START + 2023);
+static constexpr int32_t PSTRG_EFFECT_RANGE_SIZE = 10;
+static constexpr int32_t PSTRG_EFFECT_CURRENTEFFECT = (PSTRG_EFFECT_RANGE_START + 10);
+//[2034 - 2044];
+static constexpr int32_t PSTRG_AURA_RANGE_START = (PSTRG_RESERVED_RANGE_START + 2034);
+static constexpr int32_t PSTRG_AURA_RANGE_SIZE = 10;
+static constexpr int32_t PSTRG_AURA_CURRENTAURA = (PSTRG_AURA_RANGE_START + 10);
+//[2045 - 2055];
+static constexpr int32_t PSTRG_SHADER_RANGE_START = (PSTRG_RESERVED_RANGE_START + 2045);
+static constexpr int32_t PSTRG_SHADER_RANGE_SIZE = 10;
+static constexpr int32_t PSTRG_SHADER_CURRENTSHADER = (PSTRG_SHADER_RANGE_START + 10);
 // [3000 - 3500];
 static constexpr int32_t PSTRG_FAMILIARS_RANGE_START = (PSTRG_RESERVED_RANGE_START + 3000);
 static constexpr int32_t PSTRG_FAMILIARS_RANGE_SIZE = 500;
 
-static constexpr int32_t IMMOVABLE_ACTION_ID = 100;
-
 // Vaigu custom
-static constexpr int32_t STORAGEVALUE_HASTELOCK = 30059;
+static constexpr int32_t IMMOVABLE_ACTION_ID = 100;
+static const std::string IMMOVABLE_KEY = "IMMOVABLE";
+static const std::string UNUSABLE_KEY = "UNUSABLE";
+static const std::string PERMANENTLY_CLOSED = "PERMANENTLY_CLOSED";
+static const std::string KEY_IS_ON_MINIGAME = "KEY_IS_ON_MINIGAME";
+static const std::string KEY_MOUNT_BONUS_SPEED = "KEY_MOUNT_BONUS_SPEED";
+static constexpr int32_t DAYS_SINCE_START_TO_ENABLE_WEEKEND_EXP = 7;
 
-#define IS_IN_KEYRANGE(key, range) \
-	(key >= PSTRG_##range##_START && ((key - PSTRG_##range##_START) <= PSTRG_##range##_SIZE))
+constexpr bool isStorageKeyInRange(uint32_t k, uint32_t start, uint32_t size) {
+	return k >= start && (k - start) <= size;
+}

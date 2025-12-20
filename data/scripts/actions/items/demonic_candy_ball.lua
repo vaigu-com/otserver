@@ -41,6 +41,7 @@ function demonicCandyBall.onUse(player, item, fromPosition, target, toPosition, 
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	local availableConditions = { defenseCondition, magicLevelCondition, meleeCondition, distanceCondition, speedCondition }

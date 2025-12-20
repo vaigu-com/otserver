@@ -1,3 +1,119 @@
+NpcTypeRepository = {}
+NpcTypeRepository.__index = NpcTypeRepository
+NpcTypeRepository.registry = {}
+NpcTypeRepository.duplicateRegisted = {}
+function NpcTypeRepository:Add(name, data)
+	MissingStrings:TestAllLanguages(name, LOCALIZERS.NpcName)
+	if self.registry[name] then
+		self.duplicateRegisted[name] = true
+		logger.error(T("[NpcTypeRepository::Add] Npc :name: registered more than once!", { name = name }))
+	end
+	self.registry[name] = data
+end
+
+local rme_dir = "../rme/"
+local npcXmlPath = rme_dir .. "data/creatures/npcs.xml"
+
+function NpcTypeRepository:SerializeForRME()
+	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<npcs>\n'
+	for name, data in
+		sortedkeypairs(self.registry, function(a, b)
+			return a:lower() < b:lower()
+		end)
+	do
+		xml = xml
+			.. T('\t<npc name=":name:" looktype=":looktype:" lookhead=":lookhead:" lookbody=":lookbody:" looklegs=":looklegs:" lookfeet=":lookfeet:" lookaddon=":lookaddon:" lookitem = ":lookitem:"/>\n', {
+				name = name,
+				looktype = data.outfit.lookType or 0,
+				lookhead = data.outfit.lookHead or 0,
+				lookbody = data.outfit.lookBody or 0,
+				looklegs = data.outfit.lookLegs or 0,
+				lookfeet = data.outfit.lookFeet or 0,
+				lookaddon = data.outfit.lookAddons or 0,
+				lookitem = data.outfit.lookTypeEx or 0,
+			})
+	end
+	xml = xml .. "</npcs>\n"
+	local file = io.open(npcXmlPath, "w+")
+	if not file then
+		logger.error(T("[NpcTypeRepository:::Serialize] Cannot open file :path:. Npcs have NOT been serialized.", { path = npcXmlPath }))
+		return
+	end
+	file:write(xml)
+	file:close()
+	logger.info("[NpcTypeRepository::Serialize] Serialization succesful.")
+end
+
+local townNameToTemplePos = {}
+local function getNearestTownName(pos)
+	local closestTownName = nil
+	local closestDistance = 99999
+	for townName, templePos in pairs(townNameToTemplePos) do
+		local distance = pos:EuclideanDistance(templePos)
+		if distance < closestDistance then
+			closestDistance = distance
+			closestTownName = townName
+		end
+	end
+	return closestTownName
+end
+function NpcTypeRepository:GenerateTownMissingJobs()
+	local towns = Game.getTowns()
+	local townNameToJobs = {}
+	for key, town in pairs(towns) do
+		local templePos = town:getTemplePosition()
+		local townName = town:getName()
+		townNameToTemplePos[townName] = templePos
+		townNameToJobs[townName] = {}
+	end
+
+	local possibleJobs = {}
+	for name, value in pairs(self.registry) do
+		local npc = Creature(name)
+		if npc then
+			local nearestTownName = getNearestTownName(npc:getPosition())
+			local jobs = value.jobs
+			for _, job in pairs(jobs or {}) do
+				townNameToJobs[nearestTownName][job] = true
+				possibleJobs[job] = true
+			end
+		end
+	end
+
+	local firstLine = "\t"
+	for job in pairs(possibleJobs) do
+		firstLine = firstLine .. "," .. job
+	end
+	logger.warn(firstLine)
+
+	for townName, jobs in pairs(townNameToJobs) do
+		local line = townName .. "\t"
+		for job in pairs(possibleJobs) do
+			if jobs[job] then
+				line = line .. "," .. "X"
+			else
+				line = line .. "," .. " "
+			end
+		end
+		logger.warn(line)
+	end
+end
+
+function NpcTypeRepository:GetNpcsNotOnMap()
+	local namesNotOnMap = {}
+	for name in
+		sortedkeypairs(self.registry, function(a, b)
+			return a:lower() < b:lower()
+		end)
+	do
+		if not Creature(name) then
+			table.insert(namesNotOnMap, name)
+		end
+	end
+
+	return namesNotOnMap
+end
+
 registerNpcType = {}
 setmetatable(registerNpcType, {
 	__call = function(self, npcType, mask)
@@ -8,7 +124,8 @@ setmetatable(registerNpcType, {
 })
 
 NpcType.register = function(self, mask)
-	return registerNpcType(self, mask)
+	registerNpcType(self, mask)
+	NpcTypeRepository:Add(self:getUniqueName(), mask)
 end
 
 registerNpcType.name = function(npcType, mask)
@@ -141,6 +258,36 @@ registerNpcType.events = function(npcType, mask)
 	end
 end
 
+--#region ItemTypeSellPriceRegistry
+---@class ItemTypeSellPriceRegistry
+ItemTypeSellPriceRegistry = {}
+ItemTypeSellPriceRegistry.__index = ItemTypeSellPriceRegistry
+ItemTypeSellPriceRegistry.registry = {}
+---@param itemId number
+function ItemTypeSellPriceRegistry:GetPrice(itemId)
+	return self.registry[itemId]
+end
+local valuablePrice = 5000
+---@param itemId number
+---@return boolean
+function ItemTypeSellPriceRegistry:IsValuable(itemId)
+	if not self.registry[itemId] then
+		return false
+	end
+	return self.registry[itemId] >= valuablePrice
+end
+---@param itemId number
+---@param price number
+---@return ItemTypeSellPriceRegistry
+function ItemTypeSellPriceRegistry:AddIfHigherPrice(itemId, price)
+	local existingPrice = self.registry[itemId]
+	if not existingPrice or existingPrice < price then
+		self.registry[itemId] = price
+	end
+	return self
+end
+--#endregion ItemTypeSellPriceRegistry
+
 -- Global item tracker to track buy and sell prices across all NPCs
 NpcPriceChecker = NpcPriceChecker or {}
 
@@ -183,6 +330,7 @@ registerNpcType.shop = function(npcType, mask)
 				if sellPrice then
 					NpcPriceChecker[clientId].sell = sellPrice
 					NpcPriceChecker[clientId].sellNpc = npcName
+					ItemTypeSellPriceRegistry:AddIfHigherPrice(clientId, sellPrice)
 				end
 
 				if NpcPriceChecker[clientId].buy and NpcPriceChecker[clientId].sell then

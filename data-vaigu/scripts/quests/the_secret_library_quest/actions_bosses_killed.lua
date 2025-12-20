@@ -14,16 +14,16 @@ function bossesSecretLibrary.onDeath(creature)
 	end
 	onDeathForDamagingPlayers(creature, function(creature, player)
 		if bossConfig.storage then
-			player:setStorageValue(bossConfig.storage, 1)
+			player:setStorageValueByKey(bossConfig.storage, 1)
 		end
 		local bossesKilled = 0
 		for value in pairs(bosses) do
-			if player:getStorageValue(bosses[value].storage) > 0 then
+			if player:getStorageValueByKey(bosses[value].storage) > 0 then
 				bossesKilled = bossesKilled + 1
 			end
 		end
 		if bossesKilled >= 4 then -- number of mini bosses
-			player:setStorageValue(Storage.Quest.U11_80.TheSecretLibrary.ScourgeOfOblivionDoor, 1)
+			player:setStorageValueByKey(Storage.Quest.U11_80.TheSecretLibrary.ScourgeOfOblivionDoor, 1)
 		end
 	end)
 	return true

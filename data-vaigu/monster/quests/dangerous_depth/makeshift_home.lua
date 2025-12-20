@@ -14,9 +14,7 @@ monster.corpse = 0
 monster.speed = 0
 monster.manaCost = 0
 
-monster.events = {
-	"MakeshiftHomeDeath",
-}
+monster.events = {}
 
 monster.changeTarget = {
 	interval = 5000,

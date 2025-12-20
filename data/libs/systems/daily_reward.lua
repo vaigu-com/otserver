@@ -86,7 +86,7 @@ function GetDailyRewardLastServerSave()
 	return RetrieveGlobalStorage(DailyReward.storages.lastServerSave)
 end
 
-function UpdateDailyRewardGlobalStorage(key, value)
+function UpdateDailyRewardStorage(key, value)
 	db.query("INSERT INTO `global_storage` (`key`, `value`) VALUES (" .. key .. ", " .. value .. ") ON DUPLICATE KEY UPDATE `value` = " .. value)
 end
 
@@ -97,5 +97,5 @@ function RetrieveGlobalStorage(key)
 		Result.free(resultId)
 		return val
 	end
-	return 1
+	return -1
 end

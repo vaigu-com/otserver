@@ -70,7 +70,7 @@ end
 
 function Hazard:getPlayerCurrentLevel(player)
 	if self.storageCurrent then
-		local fromStorage = player:getStorageValue(self.storageCurrent)
+		local fromStorage = player:getStorageValueByKey(self.storageCurrent)
 		return fromStorage <= 0 and self.minLevel or fromStorage
 	end
 	local fromKV = player:kv():scoped(self.name):get("current-level") or self.minLevel
@@ -88,7 +88,7 @@ function Hazard:setPlayerCurrentLevel(player, level)
 		return false
 	end
 	if self.storageCurrent then
-		player:setStorageValue(self.storageCurrent, level)
+		player:setStorageValueByKey(self.storageCurrent, level)
 	else
 		player:kv():scoped(self.name):set("current-level", level)
 		local maxEver = player:kv():scoped(self.name):get("max-level-set") or self.minLevel
@@ -106,7 +106,7 @@ end
 
 function Hazard:getPlayerMaxLevel(player)
 	if self.storageMax then
-		local fromStorage = player:getStorageValue(self.storageMax)
+		local fromStorage = player:getStorageValueByKey(self.storageMax)
 		return fromStorage <= 0 and self.minLevel or fromStorage
 	end
 	local fromKV = player:kv():scoped(self.name):get("max-level") or self.minLevel
@@ -127,7 +127,7 @@ function Hazard:setPlayerMaxLevel(player, level)
 	end
 
 	if self.storageMax then
-		player:setStorageValue(self.storageMax, level)
+		player:setStorageValueByKey(self.storageMax, level)
 		return
 	end
 	player:kv():scoped(self.name):set("max-level", level)
@@ -193,16 +193,16 @@ function HazardMonster.onSpawn(monster, position)
 	if not zones then
 		return true
 	end
+
+	logger.debug("Monster {} spawned in hazard zone, position {}", monster:getName(), position:toString())
 	for _, zone in ipairs(zones) do
 		local hazard = Hazard.getByName(zone:getName())
 		if hazard then
 			monster:hazard(true)
-			if hazard then
-				monster:hazardCrit(hazard.crit)
-				monster:hazardDodge(hazard.dodge)
-				monster:hazardDamageBoost(hazard.damageBoost)
-				monster:hazardDefenseBoost(hazard.defenseBoost)
-			end
+			monster:hazardCrit(hazard.crit)
+			monster:hazardDodge(hazard.dodge)
+			monster:hazardDamageBoost(hazard.damageBoost)
+			monster:hazardDefenseBoost(hazard.defenseBoost)
 		end
 	end
 	return true

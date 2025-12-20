@@ -5,9 +5,9 @@ function kosheiBoss.onUse(player, item, fromPosition, target, toPosition, isHotk
 		return false
 	end
 
-	if player:getStorageValue(Storage.SweetyCyclops.AmuletStatus) == 2 and player:getStorageValue(Storage.Quest.U8_1.KosheiTheDeathless.RewardDoor) ~= 1 then
+	if player:getStorageValueByKey(Storage.SweetyCyclops.AmuletStatus) == 2 and player:getStorageValueByKey(Storage.Quest.U8_1.KosheiTheDeathless.RewardDoor) ~= 1 then
 		player:removeItem(7532, 1)
-		player:setStorageValue(Storage.Quest.U8_1.KosheiTheDeathless.RewardDoor, 1)
+		player:setStorageValueByKey(Storage.Quest.U8_1.KosheiTheDeathless.RewardDoor, 1)
 		toPosition:sendMagicEffect(CONST_ME_MAGIC_RED)
 		player:say("At last.. I have it back, my precious amulet. I am glad you didn't use it! I allow you to ...ahh... enter door ...ahh", TALKTYPE_MONSTER_SAY, false, player, toPosition)
 	end

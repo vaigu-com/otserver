@@ -93,23 +93,21 @@ monster.voices = {
 monster.loot = {
 	{ name = "white pearl", chance = 5000 },
 	{ name = "black pearl", chance = 5960, maxCount = 3 },
-	{ name = "gold coin", chance = 100000, maxCount = 139 },
 	{ name = "small emerald", chance = 2230, maxCount = 3 },
 	{ name = "platinum coin", chance = 19720 },
 	{ name = "yellow gem", chance = 690 },
 	{ name = "platinum amulet", chance = 450 },
-	{ id = 3059, chance = 10000 }, -- spellbook
 	{ name = "mind stone", chance = 350 },
-	{ id = 3098, chance = 1540 }, -- ring of healing
-	{ name = "skull staff", chance = 550 },
-	{ name = "strange helmet", chance = 740 },
+	{ id = 3098, chance = 3540 }, -- ring of healing
+	{ name = "skull staff", chance = 1550 },
+	{ name = "strange helmet", chance = 1740 },
 	{ name = "ancient shield", chance = 2422 },
-	{ name = "castle shield", chance = 350 },
-	{ name = "blue robe", chance = 150 },
-	{ name = "strong mana potion", chance = 7500 },
-	{ name = "lightning boots", chance = 200 },
+	{ name = "castle shield", chance = 850 },
+	{ name = "blue robe", chance = 1150 },
+	{ name = "strong mana potion", chance = 17500 },
+	{ name = "lightning boots", chance = 1200 },
 	{ name = "small topaz", chance = 2430, maxCount = 3 },
-	{ name = "maxilla maximus", chance = 100 },
+	{ name = "maxilla maximus", chance = 300 },
 }
 
 monster.attacks = {

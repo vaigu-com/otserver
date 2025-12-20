@@ -1,10 +1,10 @@
 local isVipStorage = 150001
 
 local function migrateIsVipSystem(player)
-	local isVipValue = player:getStorageValue(isVipStorage)
+	local isVipValue = player:getStorageValueByKey(isVipStorage)
 	if isVipValue > 0 then
 		player:kv():scoped("account"):set("vip-system", true)
-		player:setStorageValue(isVipStorage, -1)
+		player:setStorageValueByKey(isVipStorage, -1)
 	end
 end
 

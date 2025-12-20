@@ -20,6 +20,7 @@
     <ClInclude Include="..\src\core.hpp" />
     <ClInclude Include="..\src\creatures\appearance\mounts\mounts.hpp" />
     <ClInclude Include="..\src\creatures\appearance\outfit\outfit.hpp" />
+    <ClInclude Include="..\src\creatures\appearance\attached_effects\attached_effects.hpp" />
     <ClInclude Include="..\src\creatures\combat\combat.hpp" />
     <ClInclude Include="..\src\creatures\combat\condition.hpp" />
     <ClInclude Include="..\src\creatures\combat\spells.hpp" />
@@ -43,13 +44,16 @@
     <ClInclude Include="..\src\creatures\players\storages\storages.hpp" />
     <ClInclude Include="..\src\creatures\players\player.hpp" />
     <ClInclude Include="..\src\creatures\players\vocations\vocation.hpp" />
-    <ClInclude Include="..\src\creatures\players\wheel\wheel_gems.hpp" />
-    <ClInclude Include="..\src\creatures\players\achievement\player_achievement.hpp" />
-    <ClInclude Include="..\src\creatures\players\cyclopedia\player_badge.hpp" />
-    <ClInclude Include="..\src\creatures\players\cyclopedia\player_cyclopedia.hpp" />
-    <ClInclude Include="..\src\creatures\players\cyclopedia\player_title.hpp" />
-    <ClInclude Include="..\src\creatures\players\vip\player_vip.hpp" />
-    <ClInclude Include="..\src\creatures\players\wheel\player_wheel.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\wheel\wheel_gems.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_achievement.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_attached_effects.hpp" />
+    <ClInclude Include="..\src\creatures\players\animus_mastery\animus_mastery.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_badge.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_cyclopedia.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_storage.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_title.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\player_vip.hpp" />
+    <ClInclude Include="..\src\creatures\players\components\wheel\player_wheel.hpp" />
     <ClInclude Include="..\src\creatures\players\wheel\wheel_definitions.hpp" />
     <ClInclude Include="..\src\database\database.hpp" />
     <ClInclude Include="..\src\database\databasemanager.hpp" />
@@ -79,9 +83,12 @@
     <ClInclude Include="..\src\io\iomap.hpp" />
     <ClInclude Include="..\src\io\iomapserialize.hpp" />
     <ClInclude Include="..\src\io\iomarket.hpp" />
+    <ClInclude Include="..\src\io\iomarket_container.hpp" />
     <ClInclude Include="..\src\io\ioprey.hpp" />
     <ClInclude Include="..\src\io\io_bosstiary.hpp" />
     <ClInclude Include="..\src\io\io_definitions.hpp" />
+    <ClInclude Include="..\src\io\player_storage_repository.hpp" />
+    <ClInclude Include="..\src\io\player_storage_repository_db.hpp" />
     <ClInclude Include="..\src\items\bed.hpp" />
     <ClInclude Include="..\src\items\containers\container.hpp" />
     <ClInclude Include="..\src\items\containers\depot\depotchest.hpp" />
@@ -125,6 +132,7 @@
     <ClInclude Include="..\src\lua\creature\actions.hpp" />
     <ClInclude Include="..\src\lua\creature\creatureevent.hpp" />
     <ClInclude Include="..\src\lua\creature\events.hpp" />
+    <ClInclude Include="..\src\lua\creature\looks.hpp" />
     <ClInclude Include="..\src\lua\creature\movement.hpp" />
     <ClInclude Include="..\src\lua\creature\raids.hpp" />
     <ClInclude Include="..\src\lua\creature\talkaction.hpp" />
@@ -137,7 +145,6 @@
     <ClInclude Include="..\src\lua\functions\core\game\zone_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\core\game\lua_enums.hpp" />
     <ClInclude Include="..\src\lua\functions\core\game\modal_window_functions.hpp" />
-    <ClInclude Include="..\src\lua\functions\core\libs\bit_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\core\libs\core_libs_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\core\libs\kv_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\core\libs\db_functions.hpp" />
@@ -172,6 +179,7 @@
     <ClInclude Include="..\src\lua\functions\events\events_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\events_scheduler_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\global_event_functions.hpp" />
+    <ClInclude Include="..\src\lua\functions\events\look_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\move_event_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\events\talk_action_functions.hpp" />
     <ClInclude Include="..\src\lua\functions\items\container_functions.hpp" />
@@ -237,6 +245,7 @@
     <ClCompile Include="..\src\config\configmanager.cpp" />
     <ClCompile Include="..\src\creatures\appearance\mounts\mounts.cpp" />
     <ClCompile Include="..\src\creatures\appearance\outfit\outfit.cpp" />
+    <ClCompile Include="..\src\creatures\appearance\attached_effects\attached_effects.cpp" />
     <ClCompile Include="..\src\creatures\combat\combat.cpp" />
     <ClCompile Include="..\src\creatures\combat\condition.cpp" />
     <ClCompile Include="..\src\creatures\combat\spells.cpp" />
@@ -259,13 +268,16 @@
     <ClCompile Include="..\src\creatures\players\storages\storages.cpp" />
     <ClCompile Include="..\src\creatures\players\player.cpp" />
     <ClCompile Include="..\src\creatures\players\vocations\vocation.cpp" />
-    <ClCompile Include="..\src\creatures\players\wheel\wheel_gems.cpp" />
-    <ClCompile Include="..\src\creatures\players\achievement\player_achievement.cpp" />
-    <ClCompile Include="..\src\creatures\players\cyclopedia\player_badge.cpp" />
-    <ClCompile Include="..\src\creatures\players\cyclopedia\player_cyclopedia.cpp" />
-    <ClCompile Include="..\src\creatures\players\cyclopedia\player_title.cpp" />
-    <ClCompile Include="..\src\creatures\players\vip\player_vip.cpp" />
-    <ClCompile Include="..\src\creatures\players\wheel\player_wheel.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\wheel\wheel_gems.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_achievement.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_attached_effects.cpp" />
+    <ClCompile Include="..\src\creatures\players\animus_mastery\animus_mastery.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_badge.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_cyclopedia.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_storage.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_title.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\player_vip.cpp" />
+    <ClCompile Include="..\src\creatures\players\components\wheel\player_wheel.cpp" />
     <ClCompile Include="..\src\database\database.cpp" />
     <ClCompile Include="..\src\database\databasemanager.cpp" />
     <ClCompile Include="..\src\database\databasetasks.cpp" />
@@ -290,8 +302,10 @@
     <ClCompile Include="..\src\io\iomap.cpp" />
     <ClCompile Include="..\src\io\iomapserialize.cpp" />
     <ClCompile Include="..\src\io\iomarket.cpp" />
+    <ClCompile Include="..\src\io\iomarket_container.cpp" />
     <ClCompile Include="..\src\io\ioprey.cpp" />
     <ClCompile Include="..\src\io\io_bosstiary.cpp" />
+    <ClCompile Include="..\src\io\player_storage_repository_db.cpp" />
     <ClCompile Include="..\src\items\bed.cpp" />
     <ClCompile Include="..\src\items\containers\container.cpp" />
     <ClCompile Include="..\src\items\containers\depot\depotchest.cpp" />
@@ -316,6 +330,7 @@
     <ClCompile Include="..\src\kv\kv_sql.cpp" />
     <ClCompile Include="..\src\kv\kv.cpp" />
     <ClCompile Include="..\src\lib\di\soft_singleton.cpp" />
+    <ClCompile Include="..\src\lib\logging\logger.cpp" />
     <ClCompile Include="..\src\lib\logging\log_with_spd_log.cpp" />
     <ClCompile Include="..\src\lib\metrics\metrics.cpp" />
     <ClCompile Include="..\src\lib\thread\thread_pool.cpp" />
@@ -325,6 +340,7 @@
     <ClCompile Include="..\src\lua\creature\actions.cpp" />
     <ClCompile Include="..\src\lua\creature\creatureevent.cpp" />
     <ClCompile Include="..\src\lua\creature\events.cpp" />
+    <ClCompile Include="..\src\lua\creature\looks.cpp" />
     <ClCompile Include="..\src\lua\creature\movement.cpp" />
     <ClCompile Include="..\src\lua\creature\raids.cpp" />
     <ClCompile Include="..\src\lua\creature\talkaction.cpp" />
@@ -335,7 +351,6 @@
     <ClCompile Include="..\src\lua\functions\core\game\zone_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\core\game\lua_enums.cpp" />
     <ClCompile Include="..\src\lua\functions\core\game\modal_window_functions.cpp" />
-    <ClCompile Include="..\src\lua\functions\core\libs\bit_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\core\libs\kv_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\core\libs\db_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\core\libs\result_functions.cpp" />
@@ -367,6 +382,7 @@
     <ClCompile Include="..\src\lua\functions\events\event_callback_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\events_scheduler_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\global_event_functions.cpp" />
+    <ClCompile Include="..\src\lua\functions\events\look_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\move_event_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\events\talk_action_functions.cpp" />
     <ClCompile Include="..\src\lua\functions\items\container_functions.cpp" />
@@ -409,14 +425,17 @@
     <ClCompile Include="..\src\server\network\webhook\webhook.cpp" />
     <ClCompile Include="..\src\server\server.cpp" />
     <ClCompile Include="..\src\server\signals.cpp" />
+    <ClCompile Include="..\src\utils\benchmark.cpp" />
+    <ClCompile Include="..\src\utils\counter_pointer.cpp" />
     <ClCompile Include="..\src\utils\pugicast.cpp" />
     <ClCompile Include="..\src\utils\tools.cpp" />
     <ClCompile Include="..\src\utils\wildcardtree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\pch.hpp">
+    <ClCompile Include="..\src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,15 +527,17 @@
       <WarningLevel>Level1</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeaderFile />
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <SupportJustMyCode>true</SupportJustMyCode>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <IncludeInUnityFile>true</IncludeInUnityFile>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard_C>Default</LanguageStandard_C>
-      <AdditionalOptions>/Zc:__cplusplus /fsanitize=address %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zc:__cplusplus /fsanitize=address /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DISABLE_VECTOR_ANNOTATION;_DISABLE_STRING_ANNOTATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ForcedIncludeFiles>pch.hpp;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -544,14 +565,16 @@
       <WarningLevel>Level1</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeaderFile />
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <SupportJustMyCode>true</SupportJustMyCode>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <IncludeInUnityFile>true</IncludeInUnityFile>
       <OpenMPSupport>true</OpenMPSupport>
-      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zc:__cplusplus /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DISABLE_VECTOR_ANNOTATION;_DISABLE_STRING_ANNOTATION;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ForcedIncludeFiles>pch.hpp;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -594,9 +617,11 @@
     <ItemGroup>
       <ClCompile Include="generated\%(ProtoFiles.Filename).pb.cc">
         <IncludeInUnityFile>false</IncludeInUnityFile>
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
       </ClCompile>
       <ClInclude Include="generated\%(ProtoFiles.Filename).pb.h">
         <IncludeInUnityFile>false</IncludeInUnityFile>
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
       </ClInclude>
     </ItemGroup>
   </Target>
@@ -604,4 +629,3 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
-

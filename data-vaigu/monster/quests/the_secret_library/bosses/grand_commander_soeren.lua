@@ -25,9 +25,7 @@ monster.corpse = 28726
 monster.speed = 105
 monster.manaCost = 0
 
-monster.events = {
-	"GrandCommanderSoerenDeath",
-}
+monster.events = {}
 
 monster.changeTarget = {
 	interval = 5000,
@@ -75,14 +73,13 @@ monster.loot = {
 	{ name = "platinum coin", chance = 50000, maxCount = 3 },
 	{ name = "great health potion", chance = 50000, maxCount = 3 },
 	{ name = "small ruby", chance = 12700, maxCount = 3 },
-	{ name = "onyx arrow", chance = 30000, maxCount = 3 },
 	{ name = "golden armor", chance = 1000 },
 	{ name = "green gem", chance = 1300 },
 	{ name = "damaged armor plates", chance = 1800, maxCount = 3 },
 	{ name = "falcon crest", chance = 400, maxCount = 3 },
 	{ name = "patch of fine cloth", chance = 2500 },
-	{ name = "falcon coif", chance = 200 },
-	{ name = "falcon bow", chance = 200 },
+	{ name = "falcon coif", chance = 400 },
+	{ name = "falcon bow", chance = 400 },
 }
 
 monster.attacks = {
@@ -117,19 +114,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

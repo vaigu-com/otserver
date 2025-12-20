@@ -1,3 +1,4 @@
+--[[
 -- Usage talkaction: "!refill will refill all your amulets and rings for silver tokens"
 local refill = TalkAction("!refill")
 
@@ -27,7 +28,7 @@ function refill.onSay(player, words, param)
 			table.insert(refilledItems, itemName)
 			player:removeItem(silverTokenID, itemData.cost)
 			player:removeItem(itemData.noChargeID, 1)
-			player:addItem(itemData.ChargeID, 1)
+			player:AddCustomItem({ id = itemData.ChargeID, count = 1 })
 		end
 	end
 	if #refilledItems == 0 then
@@ -42,3 +43,4 @@ end
 refill:separator(" ")
 refill:groupType("normal")
 refill:register()
+]]

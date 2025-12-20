@@ -17,12 +17,11 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(141)
 spell:name("Inflict Wound")
 spell:words("utori kor")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
 spell:impactSound(SOUND_EFFECT_TYPE_SPELL_INFLICT_WOUND)
-spell:level(40)
+spell:level(26)
 spell:mana(30)
 spell:isAggressive(true)
 spell:range(1)

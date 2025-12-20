@@ -26,10 +26,9 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(267)
 spell:name("Avatar of Nature")
 spell:words("uteta res dru")
-spell:level(300)
+spell:level(50)
 spell:mana(2200)
 spell:isPremium(true)
 spell:cooldown(2 * 60 * 60 * 1000) -- Default cooldown = 2 hours

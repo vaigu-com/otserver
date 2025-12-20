@@ -11,9 +11,9 @@ function lowerSpikeKill.onDeath(creature, _corpse, _lastHitKiller, mostDamageKil
 	end
 
 	onDeathForParty(creature, mostDamageKiller, function(creature, player)
-		if not table.contains({ -1, 7 }, player:getStorageValue(SPIKE_LOWER_KILL_MAIN)) then
-			local sum = player:getStorageValue(SPIKE_LOWER_KILL_MAIN) + 1
-			player:setStorageValue(SPIKE_LOWER_KILL_MAIN, sum)
+		if not table.contains({ -1, 7 }, player:getStorageValueByKey(SPIKE_LOWER_KILL_MAIN)) then
+			local sum = player:getStorageValueByKey(SPIKE_LOWER_KILL_MAIN) + 1
+			player:setStorageValueByKey(SPIKE_LOWER_KILL_MAIN, sum)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have slayed " .. sum .. " out of 7 Drillworms.")
 			if sum == 7 then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Report the task to Gnomargery.")

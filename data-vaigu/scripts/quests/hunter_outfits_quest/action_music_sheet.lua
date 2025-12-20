@@ -13,8 +13,8 @@ function hunterMusic.onUse(player, item, fromPosition, target, toPosition, isHot
 	end
 
 	local cStorage = useItem.storage
-	if player:getStorageValue(cStorage) ~= 1 then
-		player:setStorageValue(cStorage, 1)
+	if player:getStorageValueByKey(cStorage) ~= 1 then
+		player:setStorageValueByKey(cStorage, 1)
 		player:sendTextMessage(MESSAGE_GAME_HIGHLIGHT, "You have learned the " .. useItem.text .. " part of a hymn.")
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 		item:remove(1)

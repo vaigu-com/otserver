@@ -6,7 +6,7 @@ function corruptionhole.onStepIn(player, item, position, fromPosition)
 	if not player then
 		return true
 	end
-	if player:getStorageValue(TheNewFrontier.CorruptionHole) < 1 then
+	if player:getStorageValueByKey(TheNewFrontier.CorruptionHole) < 1 then
 		player:teleportTo(fromPosition)
 		fromPosition:sendMagicEffect(CONST_ME_TELEPORT)
 	end

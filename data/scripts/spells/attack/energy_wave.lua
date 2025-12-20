@@ -38,7 +38,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(13)
 spell:name("Energy Wave")
 spell:words("exevo vis hur")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_ENERGY_WAVE)

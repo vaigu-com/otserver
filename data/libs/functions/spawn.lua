@@ -21,14 +21,14 @@ setmetatable(Spawn, {
 			functions = {
 				["onSpawn"] = {
 					["MonsterDeath"] = function(s, monster)
-						monster:setStorageValue(s.storage.object, s)
+						monster:setStorageValueByKey(s.storage.object, s)
 						monster:registerEvent("monsterDeath")
 					end,
 				},
 				["onDeath"] = {
 					["Respawn"] = function(s, monster)
-						if monster:getStorageValue(s.storage.info) > 0 then
-							s:spawnMonsterIndex(monster:getStorageValue(s.storage.info))
+						if monster:getStorageValueByKey(s.storage.info) > 0 then
+							s:spawnMonsterIndex(monster:getStorageValueByKey(s.storage.info))
 						end
 					end,
 				},
@@ -163,7 +163,7 @@ function Spawn.spawnMonsterIndex(self, index)
 			pos = table.pos,
 		}
 		local func = function(s, monster)
-			monster:setStorageValue(s.storage.info, index)
+			monster:setStorageValueByKey(s.storage.info, index)
 			s:addMonster(monster)
 		end
 		self:addFunctionMonster("onSpawn", func, "MonsterIndex")

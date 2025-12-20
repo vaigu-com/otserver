@@ -21,7 +21,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(107)
 spell:name("Whirlwind Throw")
 spell:words("exori hur")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

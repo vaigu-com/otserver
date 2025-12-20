@@ -87,6 +87,8 @@ monster.loot = {
 	{ name = "wand of draconia", chance = 2150 },
 	{ name = "wand of everblazing", chance = 1080 },
 	{ name = "ogre choppa", chance = 540 },
+	{ id = 32009, chance = 100 },
+	{ id = 32100, chance = 300 },
 }
 
 monster.attacks = {

@@ -35,7 +35,7 @@ local explodeGrenade = function(position, playerId)
 	end
 
 	local var = {}
-	var.instantName = "Divine Grenade Explode"
+	var.instantName = "Divine Grenade"
 	var.runeName = ""
 	var.type = 2 -- VARIANT_POSITION
 	var.pos = position
@@ -92,10 +92,9 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(258)
 spell:name("Divine Grenade")
 spell:words("exevo tempo mas san")
-spell:level(300)
+spell:level(50)
 spell:mana(160)
 spell:isPremium(true)
 spell:range(7)

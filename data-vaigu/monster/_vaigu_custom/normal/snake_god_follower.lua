@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Snake God Follower")
 local monster = {}
 
 monster.description = "a snake god follower"
-monster.experience = 1950
+monster.experience = 6950
 monster.outfit = {
 	lookType = 356,
 	lookHead = 0,
@@ -13,6 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+--[[
 monster.raceId = 2583
 monster.Bestiary = {
 	class = "Magical",
@@ -25,9 +26,10 @@ monster.Bestiary = {
 	Occurrence = 0,
 	Locations = "Vaux Mach mountain range on Ganymede.",
 }
+]]
 
-monster.health = 2500
-monster.maxHealth = 2500
+monster.health = 6500
+monster.maxHealth = 6500
 monster.race = "blood"
 monster.corpse = 6061
 monster.speed = 150
@@ -86,19 +88,29 @@ monster.loot = {
 	{ name = "wand of voodoo", chance = 1020 },
 	{ name = "small topaz", chance = 2900, maxCount = 4 },
 	{ name = "luminous orb", chance = 2580 },
-	{ name = "green gem", chance = 1290 },
-	{ name = "focus cape", chance = 740 },
-	{ name = "spellweaver's robe", chance = 740 },
-	{ name = "ring of the sky", chance = 120 },
-	{ name = "snake god's wristguard", chance = 10 },
-	{ name = "snake god's sceptre", chance = 10 },
-	{ name = "snake god trophy", chance = 10}
+	{ name = "green gem", chance = 3290 },
+	{ name = "focus cape", chance = 2740 },
+	{ name = "spellweaver's robe", chance = 1740 },
+	{ name = "ring of the sky", chance = 520 },
+	{ name = "snake god's wristguard", chance = 100 },
+	{ name = "snake god's sceptre", chance = 100 },
+	{ name = "snake god trophy", chance = 100 },
+	{ id = 8054, chance = 500 }, -- earthborn titan armor
+	{ id = 281, chance = 8000, maxCount = 2 }, -- giant shimmering pearl (green)
+	{ id = 10201, chance = 500 }, -- dragon scale boots
+
+
+
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -150 },
-	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_LIFEDRAIN, minDamage = 0, maxDamage = -150, length = 8, spread = 0, effect = CONST_ME_MAGIC_RED, target = false },
-	{ name = "combat", interval = 2000, chance = 50, type = COMBAT_EARTHDAMAGE, minDamage = -120, maxDamage = -170, radius = 6, effect = CONST_ME_MAGIC_GREEN, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -450 },
+	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_LIFEDRAIN, minDamage = 0, maxDamage = -550, length = 8, spread = 0, effect = CONST_ME_MAGIC_RED, target = false },
+	{ name = "combat", interval = 2000, chance = 50, type = COMBAT_EARTHDAMAGE, minDamage = -120, maxDamage = -770, radius = 6, effect = CONST_ME_MAGIC_GREEN, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -180, maxDamage = -220, range = 6, length = 6, spread = 7, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -60, maxDamage = -340, range = 5, effect = CONST_ME_SMALLPLANTS, target = false },
+
+
 }
 
 monster.defenses = {
@@ -107,16 +119,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 40 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = -10 },
+	{ type = COMBAT_FIREDAMAGE, percent = -15 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 20 },
 }
 
 monster.immunities = {

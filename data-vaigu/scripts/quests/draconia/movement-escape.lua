@@ -13,8 +13,8 @@ function escape.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.Dragonfetish) == 1 then
-		player:setStorageValue(Storage.Dragonfetish, 0)
+	if player:getStorageValueByKey(Storage.Dragonfetish) == 1 then
+		player:setStorageValueByKey(Storage.Dragonfetish, 0)
 	end
 	player:teleportTo({ x = 32701, y = 31639, z = 6 })
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)

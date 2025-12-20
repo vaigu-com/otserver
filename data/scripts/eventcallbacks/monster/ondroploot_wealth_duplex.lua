@@ -1,4 +1,7 @@
-local callback = EventCallback()
+local lootFactor = 1.0
+local lootLayer = MONSTER_LOOT_LAYER.wealthDuplex
+
+local callback = EventCallback("MonsterOnDropLootWealthDuplex")
 
 function callback.monsterOnDropLoot(monster, corpse)
 	local player = Player(corpse:getCorpseOwner())
@@ -10,8 +13,6 @@ function callback.monsterOnDropLoot(monster, corpse)
 		return
 	end
 
-	local factor = 1.0
-	local msgSuffix = ""
 	local participants = { player }
 	if configManager.getBoolean(configKeys.PARTY_SHARE_LOOT_BOOSTS) then
 		local party = player:getParty()
@@ -26,6 +27,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 		logger.debug("[Monster:onDropLoot] - Could not find WealthDuplex concoction.")
 		return
 	end
+
 	local chance = 0
 	local wealthActivators = {}
 	for _, participant in ipairs(participants) do
@@ -37,7 +39,7 @@ function callback.monsterOnDropLoot(monster, corpse)
 
 	if #wealthActivators > 0 then
 		local numActivators = #wealthActivators
-		chance = chance / numActivators ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR)
+		chance = (chance / numActivators) ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR)
 	end
 
 	local rolls = chance / 100
@@ -51,20 +53,13 @@ function callback.monsterOnDropLoot(monster, corpse)
 		return
 	end
 
-	if configManager.getBoolean(configKeys.PARTY_SHARE_LOOT_BOOSTS) and rolls > 1 then
-		msgSuffix = msgSuffix .. " (active wealth duplex, " .. rolls .. " extra rolls)"
-	else
-		msgSuffix = msgSuffix .. " (active wealth duplex)"
-	end
-
-	local lootTable = {}
+	local totalLoot = {}
 	for _ = 1, rolls do
-		lootTable = mType:generateLootRoll({ factor = factor, gut = false }, lootTable, player)
+		totalLoot = table.merged(totalLoot, TryGenerateLootRoll(MONSTER_LOOT_LAYER.wealthDuplex, monster, player, lootFactor, applyGut, filter))
 	end
-	corpse:addLoot(lootTable)
 
-	local existingSuffix = corpse:getAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX) or ""
-	corpse:setAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX, existingSuffix .. msgSuffix)
+	local monsterId = monster:getId()
+	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)
 end
 
 callback:register()

@@ -2,13 +2,13 @@ local oldAutolootStorage = 30063
 local flasksStorage = "talkaction.potions.flask"
 
 local function migrate(player)
-	local isAutoLoot = player:getStorageValue(oldAutolootStorage)
+	local isAutoLoot = player:getStorageValueByKey(oldAutolootStorage)
 	if isAutoLoot > 0 then
 		player:setFeature(Features.AutoLoot, 1)
-		player:setStorageValue(oldAutolootStorage, -1)
+		player:setStorageValueByKey(oldAutolootStorage, -1)
 	end
 
-	local getOldFlasksStorage = player:getStorageValueByName(flasksStorage)
+	local getOldFlasksStorage = player:getStorageValueByKey(flasksStorage)
 	if getOldFlasksStorage > 0 then
 		player:kv():set("talkaction.potions.flask", true)
 		player:setStorageValueByName(flasksStorage, -1)

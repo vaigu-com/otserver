@@ -7,9 +7,13 @@ local config = {
 
 local lionCommanderDeath = CreatureEvent("LionCommanderDeath")
 function lionCommanderDeath.onPrepareDeath(creature)
-	local totalCommanders = Game.getStorageValue(GlobalStorage.TheOrderOfTheLion.Drume.TotalLionCommanders)
+	-- Vaigu custom
+	do
+		return
+	end
+	local totalCommanders = Game.getStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalLionCommanders)
 	if totalCommanders > 1 then
-		Game.setStorageValue(GlobalStorage.TheOrderOfTheLion.Drume.TotalLionCommanders, totalCommanders - 1)
+		Game.setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalLionCommanders, totalCommanders - 1)
 	else
 		local spectators = Game.getSpectators(config.centerPosition, false, false, config.rangeX, config.rangeX, config.rangeY, config.rangeY)
 		for _, spectator in pairs(spectators) do
@@ -29,9 +33,14 @@ lionCommanderDeath:register()
 
 local usurperCommanderDeath = CreatureEvent("UsurperCommanderDeath")
 function usurperCommanderDeath.onPrepareDeath(creature)
-	local totalCommanders = Game.getStorageValue(GlobalStorage.TheOrderOfTheLion.Drume.TotalUsurperCommanders)
+	-- Vaigu custom
+	do
+		return
+	end
+
+	local totalCommanders = Game.getStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalUsurperCommanders)
 	if totalCommanders > 0 then
-		Game.setStorageValue(GlobalStorage.TheOrderOfTheLion.Drume.TotalUsurperCommanders, totalCommanders - 1)
+		Game.setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalUsurperCommanders, totalCommanders - 1)
 		if totalCommanders == 1 then
 			Game.createMonster("Kesar", Position(32444, 32515, 7), false, true)
 			Game.createMonster("Drume", Position(32444, 32516, 7), false, true)
@@ -39,7 +48,6 @@ function usurperCommanderDeath.onPrepareDeath(creature)
 	end
 	return true
 end
-
 usurperCommanderDeath:register()
 
 local kesarHealthChange = CreatureEvent("KesarImmortal")

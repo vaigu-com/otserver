@@ -19,7 +19,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("healing")
-spell:id(239)
 spell:name("Fair Wound Cleansing")
 spell:words("exura med ico")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_FAIR_WOUND_CLEANSING)

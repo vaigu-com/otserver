@@ -1,5 +1,7 @@
 -- Store player kills
-do return end
+do
+	return
+end
 if zombieKillCount == nil then
 	zombieKillCount = {}
 end
@@ -17,16 +19,16 @@ ze_zombieJacked = "Zombie Event Jacked" -- Zombie name
 ze_timeToStartInvasion = 5 -- When should the first zombie be summoned [seconds]
 ze_zombieSpawnInerval = 6 -- The interval of each zombie that will get summoned
 ze_zombieMaxSpawn = 70 -- Max zombies in the arena
-ze_zombieCountGlobalStorage = 100 -- Use empty global storage
+ze_zombieCountStorage = 100 -- Use empty global storage
 
 -- Player Variables
 ze_joinStorage = 1000 -- Storage that will be added, when player join
 ze_minPlayers = 3 -- Minimum players that have to join
 ze_maxPlayers = 40 -- Maximum players that can join
-ze_joinCountGlobalStorage = 101 -- licznik ludzi
+ze_joinCountStorage = 101 -- licznik ludzi
 
 -- States
-ze_stateGlobalStorage = 102 -- storage eventu
+ze_stateStorage = 102 -- storage eventu
 ze_EVENT_CLOSED = 0
 ze_EVENT_STATE_STARTUP = 1
 ze_EVENT_STARTED = 2
@@ -79,38 +81,30 @@ zombieRandArenaPostions = {
 }
 -- Get methods
 function getZombieEventZombieCount()
-	return Game.getStorageValue(ze_zombieCountGlobalStorage)
+	return Game.getStorageValueByKey(ze_zombieCountStorage)
 end
 
 function getZombieEventJoinedCount()
-	return Game.getStorageValue(ze_joinCountGlobalStorage)
+	return Game.getStorageValueByKey(ze_joinCountStorage)
 end
 
 function setZombieEventState(value)
-	Game.setStorageValue(ze_stateGlobalStorage, value)
+	Game.setStorageValueByKey(ze_stateStorage, value)
 end
 
 function getZombieEventState()
-	return Game.getStorageValue(ze_stateGlobalStorage) or ze_EVENT_CLOSED
+	return Game.getStorageValueByKey(ze_stateStorage) or ze_EVENT_CLOSED
 end
 
 function resetZombieEvent()
 	-- Reset variables
-	Game.setStorageValue(ze_zombieCountGlobalStorage, 0)
-	Game.setStorageValue(ze_joinCountGlobalStorage, 0)
-	Game.setStorageValue(GlobalStorage.ZombieTimer, -1)
+	Game.setStorageValueByKey(ze_zombieCountStorage, 0)
+	Game.setStorageValueByKey(ze_joinCountStorage, 0)
+	Game.setStorageValueByKey(Storage.ZombieTimer, -1)
 	setZombieEventState(ze_EVENT_CLOSED)
 
 	-- Clear the arena from zombies
-	local spectator = Game.getSpectators(
-		ze_arenaCenterPosition,
-		ze_arenaRoomMultifloor,
-		false,
-		20,
-		ze_arenaRoomRadiusX,
-		20,
-		ze_arenaRoomRadiusY
-	)
+	local spectator = Game.getSpectators(ze_arenaCenterPosition, ze_arenaRoomMultifloor, false, 20, ze_arenaRoomRadiusX, 20, ze_arenaRoomRadiusY)
 	for i = 1, #spectator do
 		if spectator[i]:isMonster() then
 			spectator[i]:remove()
@@ -119,20 +113,12 @@ function resetZombieEvent()
 end
 
 function startZombieEvent()
-	local spectator = Game.getSpectators(
-		ze_waitingRoomCenterPosition,
-		ze_arenaRoomMultifloor,
-		false,
-		0,
-		ze_waitingRoomRadiusX,
-		0,
-		ze_waitingRoomRadiusY
-	)
+	local spectator = Game.getSpectators(ze_waitingRoomCenterPosition, ze_arenaRoomMultifloor, false, 0, ze_waitingRoomRadiusX, 0, ze_waitingRoomRadiusY)
 	if getZombieEventJoinedCount() < ze_minPlayers then
 		for i = 1, #spectator do
 			spectator[i]:teleportTo(Position(5893, 1548, 9))
 			if spectator[i]:isPlayer() then
-				spectator[i]:setStorageValue(ze_joinStorage, 0)
+				spectator[i]:setStorageValueByKey(ze_joinStorage, 0)
 			end
 		end
 
@@ -146,19 +132,16 @@ function startZombieEvent()
 			randZ = math.random(zombieRandArenaPostions[1].z, zombieRandArenaPostions[2].z)
 			spectator[i]:teleportTo(Position(randX, randY, randZ))
 			if spectator[i]:isPlayer() then
-				spectator[i]:setStorageValue(Storage.hasteLock, ze_playerSpeed)
+				spectator[i]:setStorageValueByKey(Storage.hasteLock, ze_playerSpeed)
 				spectator[i]:changeSpeed()
 				spectator[i]:addHealth(spectator[i]:getMaxHealth())
-				spectator[i]:addHealth(
-					-(spectator[i]:getMaxHealth() - spectator[i]:getMaxBaseHealth()),
-					COMBAT_UNDEFINEDDAMAGE
-				)
+				spectator[i]:addHealth(-(spectator[i]:getMaxHealth() - spectator[i]:getMaxBaseHealth()), COMBAT_UNDEFINEDDAMAGE)
 				local maxMana = spectator[i]:getMaxMana()
 				spectator[i]:addMana(-maxMana)
 				spectator[i]:registerEvent("ZombiePlayerDeath")
-				spectator[i]:setStorageValue(Storage.healLock, 1)
-				spectator[i]:setStorageValue(Storage.mwLock, 1)
-				spectator[i]:setStorageValue(ze_storageSpeedBoost, 0)
+				spectator[i]:setStorageValueByKey(Storage.healLock, 1)
+				spectator[i]:setStorageValueByKey(Storage.mwLock, 1)
+				spectator[i]:setStorageValueByKey(ze_storageSpeedBoost, 0)
 				incrementStorage(spectator[i]:getId(), Storage.overallMatches, 1)
 				incrementStorage(spectator[i]:getId(), Storage.zombieMatches, 1)
 				setupStorage(spectator[i]:getId(), Storage.overallPoints)
@@ -184,7 +167,7 @@ function startZombieEvent()
 		end
 
 		Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = zombieEventData.eventName })
-		Game.setStorageValue(GlobalStorage.ZombieTimer, os.time())
+		Game.setStorageValueByKey(Storage.ZombieTimer, os.time())
 		setZombieEventState(ze_EVENT_STARTED)
 		addEvent(startZombieInvasion, ze_timeToStartInvasion * 1000)
 	end
@@ -197,14 +180,14 @@ function startZombieEvent()
 end
 
 local function delayedZombieSpawn(position, n)
-	if Game.getStorageValue(ze_stateGlobalStorage) <= 1 then
+	if Game.getStorageValueByKey(ze_stateStorage) <= 1 then
 		return false
 	end
 	if n <= 0 then
 		position:sendMagicEffect(CONST_ME_ENERGYAREA)
 		local zombie = Game.createMonster(ze_zombieName, position)
 		if zombie then
-			Game.setStorageValue(ze_zombieCountGlobalStorage, getZombieEventZombieCount() + 1)
+			Game.setStorageValueByKey(ze_zombieCountStorage, getZombieEventZombieCount() + 1)
 		end
 		return
 	end
@@ -215,11 +198,7 @@ end
 function startZombieInvasion()
 	if getZombieEventState() == ze_EVENT_STARTED then
 		local random = math.random
-		local position = Position(
-			random(ze_arenaFromPosition.x, ze_arenaToPosition.x),
-			random(ze_arenaFromPosition.y, ze_arenaToPosition.y),
-			random(ze_arenaFromPosition.z, ze_arenaToPosition.z)
-		)
+		local position = Position(random(ze_arenaFromPosition.x, ze_arenaToPosition.x), random(ze_arenaFromPosition.y, ze_arenaToPosition.y), random(ze_arenaFromPosition.z, ze_arenaToPosition.z))
 		local tile = Tile(position)
 		if tile and tile:isWalkable() then
 			delayedZombieSpawn(position, ze_spawnDelay)
@@ -246,16 +225,9 @@ function setupZombieEvent(minPlayers, maxPlayers, waitTime)
 	ze_waitTime = waitTime
 
 	-- Set the counts, state, broadcast and delay the start of the event.
-	Game.setStorageValue(ze_zombieCountGlobalStorage, 0)
-	Game.setStorageValue(ze_joinCountGlobalStorage, 0)
+	Game.setStorageValueByKey(ze_zombieCountStorage, 0)
+	Game.setStorageValueByKey(ze_joinCountStorage, 0)
 	setZombieEventState(ze_EVENT_STATE_STARTUP)
-	Game.broadcastMessage(
-		string.format(
-			"Zombie Event startuje! Wymagane jest przynajmniej %d na %d graczy, pozostalo %d minut aby dolaczyc.",
-			minPlayers,
-			maxPlayers,
-			waitTime
-		)
-	)
+	Game.broadcastMessage(string.format("Zombie Event startuje! Wymagane jest przynajmniej %d na %d graczy, pozostalo %d minut aby dolaczyc.", minPlayers, maxPlayers, waitTime))
 	addEvent(startZombieEvent, waitTime * 60 * 1000)
 end

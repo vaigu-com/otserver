@@ -53,7 +53,7 @@ function ModalWindow:addButton(name, callback)
 	local button = { id = id, name = name, callback = callback }
 	self.buttons[id] = button
 	self.buttons[name] = button
-	return true
+	return button
 end
 
 function ModalWindow:removeButton(name)
@@ -89,7 +89,7 @@ function ModalWindow:callButton(name, player, button, choice)
 		io.write("ModalWindow: Button with name '" .. name .. "' has no callback.")
 		return false
 	end
-	return newButton.callback(player, button, choice)
+	return newButton.callback(player, button, choice, self.context)
 end
 
 function ModalWindow:clearButtons()
@@ -158,7 +158,7 @@ function ModalWindow:callChoice(text, player, button, choice)
 		io.write("ModalWindow: Choice with text '" .. text .. "' has no callback.")
 		return false
 	end
-	return newChoice.callback(player, button, choice)
+	return newChoice.callback(player, button, choice, self.context)
 end
 
 function ModalWindow:clearChoices()

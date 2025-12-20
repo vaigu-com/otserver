@@ -18,8 +18,8 @@ function magmaBubbleDeath.onDeath(creature, corpse, killer, mostDamage, unjustif
 				player:addOutfit(1569, 0)
 				player:addOutfit(1568, 0)
 			end
-			if player:getStorageValue(Storage.Quest.U12_90.PrimalOrdeal.Bosses.MagmaBubbleKilled) < 1 then
-				player:setStorageValue(Storage.Quest.U12_90.PrimalOrdeal.Bosses.MagmaBubbleKilled, 1) -- Access to The primal menace boss fight
+			if player:getStorageValueByKey(Storage.Quest.U12_90.PrimalOrdeal.Bosses.MagmaBubbleKilled) < 1 then
+				player:setStorageValueByKey(Storage.Quest.U12_90.PrimalOrdeal.Bosses.MagmaBubbleKilled, 1) -- Access to The primal menace boss fight
 			end
 		end
 	end

@@ -4,6 +4,7 @@ function bananaChocolateShake.onUse(player, item, fromPosition, target, toPositi
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You don't really know what this did to you, but suddenly you feel very happy.")

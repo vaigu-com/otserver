@@ -11,6 +11,7 @@
 
 #ifndef USE_PRECOMPILED_HEADERS
 	#include <string>
+	#include <utility>
 	#include <vector>
 	#include <map>
 	#include <list>
@@ -104,7 +105,7 @@ enum ConditionType_t : uint8_t {
 	CONDITION_DAZZLED = 22,
 	CONDITION_CURSED = 23,
 	CONDITION_EXHAUST_COMBAT = 24, // unused
-	CONDITION_EXHAUST_HEAL = 25, // unused
+	CONDITION_EXHAUST_HEAL = 25,
 	CONDITION_PACIFIED = 26,
 	CONDITION_SPELLCOOLDOWN = 27,
 	CONDITION_SPELLGROUPCOOLDOWN = 28,
@@ -113,15 +114,12 @@ enum ConditionType_t : uint8_t {
 	CONDITION_LESSERHEX = 31,
 	CONDITION_INTENSEHEX = 32,
 	CONDITION_GREATERHEX = 33,
-	CONDITION_GOSHNAR1 = 34,
-	CONDITION_GOSHNAR2 = 35,
-	CONDITION_GOSHNAR3 = 36,
-	CONDITION_GOSHNAR4 = 37,
-	CONDITION_GOSHNAR5 = 38,
-	CONDITION_BAKRAGORE = 39,
+	CONDITION_BAKRAGORE = 34,
+	CONDITION_GOSHNARTAINT = 35,
+	CONDITION_POWERLESS = 36,
 
 	// Need the last ever
-	CONDITION_COUNT = 39
+	CONDITION_COUNT
 };
 
 // constexpr definiting suppressible conditions
@@ -225,6 +223,7 @@ enum ConditionParam_t {
 	CONDITION_PARAM_INCREASE_MANADRAINPERCENT = 80,
 	CONDITION_PARAM_INCREASE_DROWNPERCENT = 81,
 	CONDITION_PARAM_CHARM_CHANCE_MODIFIER = 82,
+	CONDITION_PARAM_BUFF_HEALINGRECEIVED = 83,
 };
 
 enum stats_t {
@@ -287,13 +286,6 @@ enum CallBackParam_t {
 	CALLBACK_PARAM_CHAINPICKER,
 };
 
-enum charm_t {
-	CHARM_UNDEFINED = 0,
-	CHARM_OFFENSIVE = 1,
-	CHARM_DEFENSIVE = 2,
-	CHARM_PASSIVE = 3,
-};
-
 enum SpeechBubble_t {
 	SPEECHBUBBLE_NONE = 0,
 	SPEECHBUBBLE_NORMAL = 1,
@@ -303,9 +295,19 @@ enum SpeechBubble_t {
 	SPEECHBUBBLE_HIRELING = 7,
 };
 
+// Vaigu custom
 enum MarketAction_t {
-	MARKETACTION_BUY = 0,
-	MARKETACTION_SELL = 1,
+	CREATE_BUY__ACCEPT_SELL = 1,
+	CREATE_SELL__ACCEPT_BUY = 0,
+
+	CREATE_BUY = 1,
+	CREATE_SELL = 0,
+
+	ACCEPT_SELL = 1,
+	ACCEPT_BUY = 0,
+
+	CANCEL_BUY = 0,
+	CANCEL_SELL = 1
 };
 
 enum MarketRequest_t {
@@ -349,6 +351,19 @@ enum Slots_t : uint8_t {
 	CONST_SLOT_LAST = CONST_SLOT_STORE_INBOX,
 };
 
+enum charmCategory_t {
+	CHARM_ALL = 0,
+	CHARM_MAJOR = 1,
+	CHARM_MINOR = 2,
+};
+
+enum charm_t {
+	CHARM_UNDEFINED = 0,
+	CHARM_OFFENSIVE = 1,
+	CHARM_DEFENSIVE = 2,
+	CHARM_PASSIVE = 3,
+};
+
 enum charmRune_t : int8_t {
 	CHARM_NONE = -1,
 	CHARM_WOUND = 0,
@@ -370,8 +385,12 @@ enum charmRune_t : int8_t {
 	CHARM_DIVINE = 16,
 	CHARM_VAMP = 17,
 	CHARM_VOID = 18,
-
-	CHARM_LAST = CHARM_VOID,
+	CHARM_SAVAGE = 19,
+	CHARM_FATAL = 20,
+	CHARM_VOIDINVERSION = 21,
+	CHARM_CARNAGE = 22,
+	CHARM_OVERPOWER = 23,
+	CHARM_OVERFLUX = 24,
 };
 
 enum ConditionId_t : int8_t {
@@ -453,6 +472,8 @@ enum RaceType_t : uint8_t {
 	RACE_FIRE,
 	RACE_ENERGY,
 	RACE_INK,
+	RACE_CHOCOLATE,
+	RACE_CANDY,
 };
 
 enum BlockType_t : uint8_t {
@@ -492,12 +513,14 @@ enum BestiaryType_t : uint8_t {
 };
 
 enum MonstersEvent_t : uint8_t {
-	MONSTERS_EVENT_NONE = 0,
-	MONSTERS_EVENT_THINK = 1,
-	MONSTERS_EVENT_APPEAR = 2,
-	MONSTERS_EVENT_DISAPPEAR = 3,
-	MONSTERS_EVENT_MOVE = 4,
-	MONSTERS_EVENT_SAY = 5,
+	MONSTERS_EVENT_NONE,
+	MONSTERS_EVENT_THINK,
+	MONSTERS_EVENT_APPEAR,
+	MONSTERS_EVENT_DISAPPEAR,
+	MONSTERS_EVENT_MOVE,
+	MONSTERS_EVENT_SAY,
+	MONSTERS_EVENT_ATTACKED_BY_PLAYER,
+	MONSTERS_EVENT_ON_SPAWN,
 };
 
 enum NpcsEvent_t : uint8_t {
@@ -707,6 +730,8 @@ enum SpellGroup_t : uint8_t {
 	SPELLGROUP_CRIPPLING = 6,
 	SPELLGROUP_FOCUS = 7,
 	SPELLGROUP_ULTIMATESTRIKES = 8,
+	SPELLGROUP_BURSTS_OF_NATURE = 9,
+	SPELLGROUP_GREAT_BEAMS = 10,
 };
 
 enum ChannelEvent_t : uint8_t {
@@ -1331,6 +1356,7 @@ enum class CreatureIconModifications_t {
 	Influenced,
 	Fiendish,
 	ReducedHealth,
+	ReducedHealthExclamation,
 };
 
 enum class CreatureIconQuests_t {
@@ -1370,7 +1396,7 @@ struct CreatureIcon {
 	explicit constexpr CreatureIcon(CreatureIconQuests_t quest, uint16_t count = 0) :
 		category(CreatureIconCategory_t::Quests), quest(quest), count(count) { }
 
-	CreatureIconCategory_t category;
+	CreatureIconCategory_t category {};
 	CreatureIconModifications_t modification = CreatureIconModifications_t::None;
 	CreatureIconQuests_t quest = CreatureIconQuests_t::None;
 	uint16_t count = 0;
@@ -1399,7 +1425,7 @@ struct CreatureIcon {
 struct Position;
 
 struct VIPEntry {
-	VIPEntry(uint32_t initGuid, const std::string &initName, const std::string &initDescription, uint32_t initIcon, bool initNotify) :
+	VIPEntry(uint32_t initGuid, std::string initName, std::string initDescription, uint32_t initIcon, bool initNotify) :
 		guid(initGuid),
 		name(std::move(initName)),
 		description(std::move(initDescription)),
@@ -1407,20 +1433,20 @@ struct VIPEntry {
 		notify(initNotify) { }
 
 	uint32_t guid = 0;
-	std::string name = "";
-	std::string description = "";
+	std::string name;
+	std::string description;
 	uint32_t icon = 0;
 	bool notify = false;
 };
 
 struct VIPGroupEntry {
-	VIPGroupEntry(uint8_t initId, const std::string &initName, bool initCustomizable) :
+	VIPGroupEntry(uint8_t initId, std::string initName, bool initCustomizable) :
 		id(initId),
 		name(std::move(initName)),
 		customizable(initCustomizable) { }
 
 	uint8_t id = 0;
-	std::string name = "";
+	std::string name;
 	bool customizable = false;
 };
 
@@ -1485,9 +1511,10 @@ struct MarketOffer {
 	std::string playerName;
 };
 
+/*
 struct MarketOfferEx {
 	MarketOfferEx() = default;
-	MarketOfferEx(MarketOfferEx &&other) :
+	MarketOfferEx(MarketOfferEx &&other) noexcept :
 		id(other.id),
 		playerId(other.playerId),
 		timestamp(other.timestamp),
@@ -1499,15 +1526,15 @@ struct MarketOfferEx {
 		tier(other.tier),
 		playerName(std::move(other.playerName)) { }
 
-	uint32_t id;
-	uint32_t playerId;
-	uint32_t timestamp;
-	uint64_t price;
-	uint16_t amount;
-	uint16_t counter;
-	uint16_t itemId;
-	MarketAction_t type;
-	uint8_t tier;
+	uint32_t id {};
+	uint32_t playerId {};
+	uint32_t timestamp {};
+	uint64_t price {};
+	uint16_t amount {};
+	uint16_t counter {};
+	uint16_t itemId {};
+	MarketAction_t type {};
+	uint8_t tier {};
 	std::string playerName;
 };
 
@@ -1522,6 +1549,7 @@ struct HistoryMarketOffer {
 
 using MarketOfferList = std::list<MarketOffer>;
 using HistoryMarketOfferList = std::list<HistoryMarketOffer>;
+*/
 using StashItemList = std::map<uint16_t, uint32_t>;
 
 using ItemsTierCountList = std::map<uint16_t, std::map<uint8_t, uint32_t>>;
@@ -1562,6 +1590,7 @@ struct CombatDamage {
 	bool extension = false;
 	std::string exString;
 	bool fatal = false;
+	bool hazardDodge = false;
 
 	int32_t criticalDamage = 0;
 	int32_t criticalChance = 0;
@@ -1578,14 +1607,16 @@ struct CombatDamage {
 	std::string runeSpellName;
 
 	CombatDamage() = default;
+
+	bool isEmpty() const {
+		return primary.type == COMBAT_NONE && primary.value == 0 && secondary.type == COMBAT_NONE && secondary.value == 0 && origin == ORIGIN_NONE && critical == false && affected == 1 && extension == false && exString.empty() && fatal == false && criticalDamage == 0 && criticalChance == 0 && damageMultiplier == 0 && damageReductionMultiplier == 0 && healingMultiplier == 0 && manaLeech == 0 && manaLeechChance == 0 && lifeLeech == 0 && lifeLeechChance == 0 && healingLink == 0 && instantSpellName.empty() && runeSpellName.empty();
+	}
 };
 
 struct RespawnType {
 	RespawnPeriod_t period;
 	bool underground;
 };
-
-struct LootBlock;
 
 struct LootBlock {
 	uint16_t id;
@@ -1597,6 +1628,7 @@ struct LootBlock {
 	int32_t subType;
 	int32_t actionId;
 	std::string text;
+	std::string key;
 	std::string name;
 	std::string article;
 	int32_t attack;
@@ -1627,19 +1659,19 @@ struct LootBlock {
 };
 
 struct ShopBlock {
-	uint16_t itemId;
+	uint16_t itemId {};
 	std::string itemName;
-	int32_t itemSubType;
-	uint32_t itemBuyPrice;
-	uint32_t itemSellPrice;
-	int32_t itemStorageKey;
-	int32_t itemStorageValue;
+	int32_t itemSubType {};
+	uint32_t itemBuyPrice {};
+	uint32_t itemSellPrice {};
+	std::string itemStorageKey {}; // Vaigu custom
+	int32_t itemStorageValue {};
 
 	std::vector<ShopBlock> childShop;
-	ShopBlock() :
-		itemId(0), itemName(""), itemSubType(0), itemBuyPrice(0), itemSellPrice(0), itemStorageKey(0), itemStorageValue(0) { }
+	ShopBlock() = default;
 
-	explicit ShopBlock(uint16_t newItemId, std::string newName = "", int32_t newSubType = 0, uint32_t newBuyPrice = 0, uint32_t newSellPrice = 0, int32_t newStorageKey = 0, int32_t newStorageValue = 0) :
+	// Vaigu custom
+	explicit ShopBlock(uint16_t newItemId, std::string newName = "", int32_t newSubType = 0, uint32_t newBuyPrice = 0, uint32_t newSellPrice = 0, std::string newStorageKey = "", int32_t newStorageValue = 0) :
 		itemId(newItemId), itemName(std::move(newName)), itemSubType(newSubType), itemBuyPrice(newBuyPrice), itemSellPrice(newSellPrice), itemStorageKey(newStorageKey), itemStorageValue(newStorageValue) { }
 
 	bool operator==(const ShopBlock &other) const {
@@ -1669,6 +1701,10 @@ struct Outfit_t {
 	uint8_t lookMountLegs = 0;
 	uint8_t lookMountFeet = 0;
 	uint16_t lookFamiliarsType = 0;
+	uint16_t lookWing = 0;
+	uint16_t lookAura = 0;
+	uint16_t lookEffect = 0;
+	uint16_t lookShader = 0;
 };
 
 struct voiceBlock_t {

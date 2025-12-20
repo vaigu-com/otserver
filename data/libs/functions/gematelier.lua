@@ -78,11 +78,12 @@ function Monster:generateGemAtelierLoot()
 				if not itemType then
 					goto continue
 				end
-				if loot[itemType:getId()] then
-					loot[itemType:getId()].count = loot[itemType:getId()].count + 1
-				else
-					loot[itemType:getId()] = { count = 1 }
+				local itemId = itemType:getId()
+				if not loot[itemId] then
+					loot[itemId] = { id = itemId, count = 1 }
 				end
+
+				loot[itemId].count = loot[itemType:getId()].count + 1
 			end
 		end
 		::continue::

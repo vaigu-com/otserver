@@ -14,8 +14,8 @@ local iceYakchal = Action()
 function iceYakchal.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local sarcophagus = Position(32205, 31002, 14)
 	if toPosition.x == sarcophagus.x and toPosition.y == sarcophagus.y and toPosition.z == sarcophagus.z and target.itemid == 7362 and item.itemid == 3249 then
-		if Game.getStorageValue(GlobalStorage.Yakchal) < os.time() then
-			Game.setStorageValue(GlobalStorage.Yakchal, os.time() + 24 * 60 * 60)
+		if Game.getStorageValueByKey(Storage.Yakchal) < os.time() then
+			Game.setStorageValueByKey(Storage.Yakchal, os.time() + 24 * 60 * 60)
 			if math.random(2) == 2 then
 				player:say("You have awoken the icewitch Yakchal from her slumber! She seems not amused...", TALKTYPE_MONSTER_SAY)
 			else

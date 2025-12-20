@@ -65,7 +65,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{ name = "Wereboar", chance = 20, interval = 2000, count = 2 },
+		{ name = "Wereboar", chance = 20, interval = 2000, count = 1 },
 	},
 }
 
@@ -76,25 +76,24 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 13600000, maxCount = 100 },
-	{ name = "gold coin", chance = 13600000, maxCount = 100 },
-	{ name = "platinum coin", chance = 13600000, maxCount = 10 },
-	{ name = "great health potion", chance = 13600000, maxCount = 10 },
-	{ name = "red crystal fragment", chance = 13600000, maxCount = 2 },
-	{ name = "small enchanted ruby", chance = 13600000, maxCount = 3 },
-	{ name = "furry club", chance = 13600000 },
-	{ id = 3039, chance = 13600000 }, -- red gem
-	{ name = "spiked squelcher", chance = 13600000 },
-	{ name = "stone skin amulet", chance = 13600000 },
-	{ name = "wereboar hooves", chance = 13600000, maxCount = 2 },
-	{ name = "wereboar loincloth", chance = 13600000, maxCount = 2 },
-	{ name = "wereboar tusks", chance = 13600000, maxCount = 2 },
-	{ name = "dreaded cleaver", chance = 400 },
-	{ name = "fur armor", chance = 400 },
-	{ name = "fur boots", chance = 400 },
-	{ id = 22102, chance = 250 }, -- wereboar trophy
-	{ name = "silver token", chance = 250 },
-	{ name = "wolf backpack", chance = 100 },
+	{ name = "gold coin", chance = 13600, maxCount = 100 },
+	{ name = "gold coin", chance = 13600, maxCount = 100 },
+	{ name = "platinum coin", chance = 13110, maxCount = 10 },
+	{ name = "great health potion", chance = 13600, maxCount = 10 },
+	{ name = "red crystal fragment", chance = 13600, maxCount = 2 },
+	{ name = "small enchanted ruby", chance = 13600, maxCount = 3 },
+	{ id = 3039, chance = 13600 }, -- red gem
+	{ name = "spiked squelcher", chance = 1360 },
+	{ name = "stone skin amulet", chance = 13600 },
+	{ name = "wereboar hooves", chance = 4136, maxCount = 2 },
+	{ name = "wereboar loincloth", chance = 13600, maxCount = 2 },
+	{ name = "wereboar tusks", chance = 5130, maxCount = 2 },
+	{ name = "dreaded cleaver", chance = 1400 },
+	{ name = "fur armor", chance = 4400 },
+	{ name = "fur boots", chance = 7400 },
+	{ id = 22102, chance = 2250 }, -- wereboar trophy
+	{ name = "silver token", chance = 1250 },
+	{ name = "wolf backpack", chance = 1100 },
 }
 
 monster.attacks = {
@@ -115,7 +114,7 @@ monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 15 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 40 },
-	{ type = COMBAT_FIREDAMAGE, percent = -5 },
+	{ type = COMBAT_FIREDAMAGE, percent = -15 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
@@ -130,19 +129,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

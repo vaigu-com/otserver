@@ -21,6 +21,7 @@ function sweetMangonaiseElixir.onUse(player, item, fromPosition, target, toPosit
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	local playerRing = player:getSlotItem(CONST_SLOT_RING)
@@ -38,7 +39,7 @@ function sweetMangonaiseElixir.onUse(player, item, fromPosition, target, toPosit
 	end
 
 	for i = 1, 10 do
-		player:addItem(ringId)
+		player:AddCustomItem({ id = ringId })
 	end
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your ring has been multiplied.")

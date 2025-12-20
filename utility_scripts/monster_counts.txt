@@ -1,0 +1,649 @@
+Bonebeast: 474
+Skeleton: 439
+Ghoul: 403
+Tarantula: 387
+Bug: 384
+Stone Golem: 383
+Snake: 379
+Demon Skeleton: 358
+Mummy: 344
+Giant Spider: 342
+Rotworm: 341
+Elf: 335
+Sea Serpent: 319
+Roaring Lion: 305
+Vampire: 290
+Behemoth: 285
+Hydra: 285
+Mutated Human: 278
+Orc: 262
+Swamp Troll: 256
+Dragon Lord: 253
+Earth Elemental: 251
+Dark Torturer: 250
+Carrion Worm: 248
+Wolf: 240
+Sandcrawler: 239
+Wyrm: 239
+Necromancer: 232
+Island Troll: 230
+Rat: 225
+Slime: 218
+Banshee: 217
+Scorpion: 215
+Ancient Scarab: 211
+Nightmare: 210
+Orc Warrior: 207
+Foam Stalker: 206
+Gargoyle: 203
+Spider: 203
+Wyvern: 196
+Grim Reaper: 194
+Spectre: 189
+Hellspawn: 188
+Plaguesmith: 186
+Demon: 184
+Tortoise: 177
+Deer: 175
+Rabbit: 174
+Corym Skirmisher: 171
+Larva: 170
+Corym Charlatan: 169
+Vampire Bride: 165
+Cyclops: 164
+Massive Fire Elemental: 164
+Mutated Rat: 164
+Hellfire Fighter: 162
+Gozzler: 161
+Souleater: 160
+Bandit: 156
+Centipede: 154
+Destroyer: 151
+Scarab: 148
+Wasp: 148
+Lost Soul: 147
+Elf Scout: 145
+Orc Spearman: 145
+Water Elemental: 144
+Cobra Assassin: 143
+Minotaur: 143
+Crocodile: 142
+Toad: 142
+Amazon: 141
+Smuggler: 140
+Worker Golem: 139
+Frazzlemaw: 138
+Dragon: 137
+Blightwalker: 136
+Demon Outcast: 136
+Phantasm: 134
+Lich: 132
+Dragon Hatchling: 129
+Killer Caiman: 129
+Putrid Mummy: 127
+War Wolf: 127
+Young Sea Serpent: 127
+Sibang: 126
+Jungle Moa: 125
+Lizard Sentinel: 124
+Parder: 124
+Draken Warmaster: 123
+Rot Elemental: 123
+Cobra Scout: 122
+Dwarf: 122
+Rustheap Golem: 122
+Crypt Shambler: 121
+Cobra: 119
+Goblin: 117
+Hunter: 117
+Lancer Beetle: 117
+Dwarf Guard: 116
+Hellhound: 115
+Crawler: 114
+Medusa: 114
+Serpent Spawn: 114
+Valkyrie: 114
+Skeleton Warrior: 113
+Swampling: 111
+Dark Apprentice: 110
+Energy Elemental: 110
+Lizard Legionnaire: 108
+Orc Leader: 108
+Twisted Pooka: 107
+Bat: 106
+Cyclops Drone: 106
+Nomad: 106
+Poison Spider: 106
+Warlock: 106
+Betrayed Wraith: 105
+Haunted Treeling: 105
+Wild Warrior: 105
+Devourer: 104
+Gazer Spectre: 104
+Elder Wyrm: 103
+Hero: 103
+Mercury Blob: 102
+Nightstalker: 102
+Dark Faun: 101
+Dragon Lord Hatchling: 101
+Lizard Templar: 101
+Drillworm: 100
+Iks Chuka: 100
+Cyclops Smith: 99
+Massive Water Elemental: 98
+Assassin: 96
+Bonelord: 96
+Death Blob: 96
+Zombie: 96
+Bog Raider: 95
+Skunk: 95
+Ghost: 94
+Vicious Squire: 92
+Fire Elemental: 91
+Lizard High Guard: 91
+Poacher: 90
+Fury: 89
+Gang Member: 89
+Iks Aucar: 89
+Pirate Marauder: 89
+Acid Blob: 88
+Crystal Spider: 88
+Two-Headed Turtle: 88
+Little Corym Charlatan: 87
+Mutated Tiger: 87
+Swarmer: 87
+Dwarf Soldier: 86
+Gladiator: 86
+Iks Pututu: 86
+Glooth Golem: 82
+Orc Warlord: 82
+Insect Swarm: 81
+Pirate Buccaneer: 80
+Werepanther: 80
+Adept of the Cult: 79
+Crypt Defiler: 79
+Goblin Assassin: 79
+Retching Horror: 79
+Arechek calm: 78
+Corym Vanguard: 78
+Exotic Bat: 78
+Pirate Cutthroat: 77
+Werewolf: 77
+Hyaena: 76
+Iks Ahpututu: 76
+Witch: 76
+Yielothax: 76
+Elf Arcanist: 75
+Grave Robber: 75
+Stampor: 74
+Nightmare Scion: 73
+Choking Fear: 72
+Ghastly Dragon: 72
+Glooth Bandit: 72
+Spitter: 72
+Minotaur Guard: 71
+Mutated Bat: 71
+Terramite: 71
+Wilting Leaf Golem: 71
+Chicken: 70
+Renegade Knight: 70
+Carniphila: 69
+Slug: 69
+Dark Monk: 68
+Frost Troll: 68
+Misguided Thief: 68
+Lizard Abomination: 67
+Undead Dragon: 67
+Acolyte of the Cult: 66
+Glooth Brigand: 66
+Goblin Scavenger: 66
+Vampire Viscount: 66
+Arctic Faun: 65
+Cobra Vizier: 65
+Leaf Golem: 65
+Pirate Skeleton: 65
+Cave Rat: 64
+Gazer: 64
+Waspoid: 64
+Weakened Frazzlemaw: 64
+Braindeath: 63
+Elder Bonelord: 63
+Pixie: 63
+Silencer: 63
+Monk: 62
+Nomad Female: 62
+Pirate Ghost: 62
+Furious Troll: 61
+Misguided Bully: 61
+Quara Predator: 61
+Metal Gargoyle: 60
+Enlightened of the Cult: 59
+Glooth Blob: 59
+Green Djinn: 59
+Ice Golem: 59
+Ice Witch: 58
+Insectoid Worker: 58
+Blue Djinn: 57
+Dark Magician: 57
+Guzzlemaw: 57
+Mad Scientist: 57
+Nymph: 57
+Priestess: 57
+Werehyaena: 57
+Old Dark Apprentice: 56
+Stalker: 56
+Vile Grandmaster: 56
+Crape Man: 55
+Cursed Ape: 55
+War Golem: 55
+Burning Gladiator: 54
+Cunning Werepanther: 54
+Enfeebled Silencer: 54
+Muddy Earth Elemental: 54
+Ogre Brute: 54
+Old Adventurer: 54
+Orc Berserker: 54
+Snake God Follower: 54
+Kongra: 53
+Merlkin: 53
+Bear: 51
+Frost Dragon: 51
+Lizard Dragon Priest: 51
+Blood Beast: 50
+Glooth Anemone: 50
+Juggernaut: 50
+Juvenile Bashmu: 50
+Young Goanna: 50
+Boogy: 49
+Defiler: 49
+Draken Spellweaver: 49
+Midnight Asura: 49
+Stonerefiner: 49
+Wereboar: 49
+Boar: 48
+Brimstone Bug: 48
+Son of Verminor: 48
+Diabolic Imp: 47
+Fire Devil: 46
+Forest Fury: 46
+Hand of Cursed Fate: 46
+Marsh Stalker: 46
+Minotaur Archer: 46
+Boar Man: 45
+Feversleep: 45
+Menacing Carnivor: 45
+Crab: 44
+Emerald Damselfly: 44
+Adult Goanna: 43
+Crazed Summer Vanguard: 43
+Rhindeer: 43
+Salamander: 43
+Sandstone Scorpion: 43
+Undead Gladiator: 43
+Arechek Enraged: 42
+Eternal Guardian: 42
+Manticore: 42
+Percht: 42
+Spiky Carnivor: 42
+Thornback Tortoise: 42
+Askarak Demon: 41
+Goldhanded Cultist: 41
+Hoodinion: 41
+Lamassu: 41
+Pig: 41
+Seacrest Serpent: 41
+Spidris: 41
+Clay Guardian: 40
+Orc Shaman: 40
+Terrorsleep: 40
+Faun: 39
+Liodile: 39
+Lumbering Carnivor: 39
+Pirat Mate: 39
+Crazed Summer Rearguard: 38
+Gnarlhound: 38
+Lizard Chosen: 38
+Seagull: 38
+Weretiger: 38
+Dawnfire Asura: 37
+Gravedigger: 37
+Priestess of the Wild Sun: 37
+Tomb Servant: 37
+Barkless Devotee: 36
+Blood Crab: 36
+Mole: 36
+Ogre Savage: 36
+True Dragonjade Asura: 36
+Werehyaena Shaman: 36
+Barbarian Skullhunter: 35
+Marid: 35
+Orc Rider: 35
+White Weretiger: 35
+Bashmu: 34
+Firestarter: 34
+Infernalist: 34
+Werecrocodile: 34
+Black Sphinx Acolyte: 33
+Lion: 33
+Massive Energy Elemental: 33
+Naga Warrior: 33
+Old Giant Spider: 33
+Schiach: 33
+Spit Nettle: 33
+Cat: 32
+Domestikion: 32
+Harpy: 32
+Kollos: 32
+Lizard Snakecharmer: 32
+Werebadger: 32
+Ghost Wolf: 31
+Girtablilu Warrior: 31
+Gloom Wolf: 31
+Tarnished Spirit: 31
+Winter Wolf: 31
+Barbarian Headsplitter: 30
+Carnivostrich: 30
+Feverish Citizen: 30
+Wailing Widow: 30
+Wisp: 30
+Enslaved Dwarf: 29
+Falcon Knight: 29
+Lost Husher: 29
+Pirate Corsair: 29
+Quara Hydromancer Scout: 29
+Quara Predator Scout: 29
+Swan Maiden: 29
+Venerable Girtablilu: 29
+Charged Energy Elemental: 28
+Deepsea Blood Crab: 28
+Dworc Fleshhunter: 28
+Rogue Naga: 28
+Scissorion: 28
+Werefox: 28
+Askarak Prince: 27
+Chakoya Tribewarden: 27
+Cult Enforcer: 27
+Dog: 27
+Naga Archer: 27
+Sheep: 27
+Stone Devourer: 27
+White Shade: 27
+Barkless Fanatic: 26
+Bulltaur Brute: 26
+Dragonling: 26
+Old Warlock: 26
+Troll: 26
+Barbarian Brutetamer: 25
+Demon Goblin: 25
+Ironblight: 25
+Old Wasp: 25
+Pirat Cutthroat: 25
+Quara Pincher: 25
+Rorc: 25
+Tiger: 25
+Werebear: 25
+Corrupt Naga: 24
+Exotic Cave Spider: 24
+Falcon Paladin: 24
+Frost Giant: 24
+Lava Lurker: 24
+Pirat Bombardier: 24
+Pooka: 24
+Askarak Lord: 23
+Chakoya Toolshaper: 23
+Jellyfish: 23
+Old Bug: 23
+Old Bandit: 22
+Quara Pincher Scout: 22
+Shadow Pupil: 22
+Werelion: 22
+Blood Hand: 21
+Dromedary: 21
+Feral Werecrocodile: 21
+Makara: 21
+Massive Earth Elemental: 21
+Pirat Scoundrel: 21
+Quara Mantassin Scout: 21
+Yellow Butterfly: 21
+Arachnophobica: 20
+Efreet: 20
+Elephant: 20
+Magicthrower: 20
+Mearidion: 20
+Old Poacher: 20
+Old Skeleton: 20
+Omnivora: 20
+Quara Hydromancer: 20
+Slick Water Elemental: 20
+Crimson Frog: 19
+Cult Believer: 19
+Old Dark Magician: 19
+Old Hunter: 19
+Old Wild Warrior: 19
+Red Butterfly: 19
+Blood Priest: 18
+Cave Devourer: 18
+Crypt Warden: 18
+Dworc Venomsniper: 18
+Enraged Crystal Golem: 18
+Eye of the Seven: 18
+Frost Dragon Hatchling: 18
+Lizard Zaogun: 18
+Minotaur Amazon: 18
+Minotaur Hunter: 18
+Orewalker: 18
+Quara Mantassin: 18
+Worm Priestess: 18
+Chakoya Windcaller: 17
+Floating Savant: 17
+Novice of the Cult: 17
+Old Bear: 17
+Penguin: 17
+Squirrel: 17
+Stone Rhino: 17
+Vulcongra: 17
+Azure Frog: 16
+Deepling Worker: 16
+Dworc Voodoomaster: 16
+Flamingo: 16
+Roaring Water Elemental: 16
+Werelioness: 16
+Bulltaur Alchemist: 15
+Bulltaur Forgepriest: 15
+Clomp: 15
+Deepworm: 15
+Diremaw: 15
+Hell Hole: 15
+Hellflayer: 15
+Jagged Earth Elemental: 15
+Shaburak Lord: 15
+Shock Head: 15
+Sky Shadow: 15
+Blazing Fire Elemental: 14
+Cult Scholar: 14
+Deepling Spellsinger: 14
+Ogre Shaman: 14
+Old Spider: 14
+Shaburak Demon: 14
+Cliff Strider: 13
+Dragonjade Asura: 13
+Execowtioner: 13
+Frost Flower Asura: 13
+Lost Basher: 13
+Murmillion: 13
+Sight of Surrender: 13
+Sphinx: 13
+Usurper Archer: 13
+Broken Shaper: 12
+Coral Frog: 12
+Hugo House Guard: 12
+Ice Dragon: 12
+Mooh'Tah Warrior: 12
+Old Wolf: 12
+Orclops Doomhauler: 12
+Overcharged Energy Elemental: 12
+Training Dummy: 12
+True Frost Flower Asura: 12
+Baleful Bunny: 11
+Misguided Shadow: 11
+Moohtant: 11
+Old Beholder: 11
+Orchid Frog: 11
+Quara Constrictor: 11
+Shaper Matriarch: 11
+Shark: 11
+Twisted Shaper: 11
+Usurper Commander: 11
+Badger: 10
+Black Knight: 10
+Blue Butterfly: 10
+Calamary: 10
+Crazed Beggar: 10
+Deaththrower: 10
+Dwarf Geomancer: 10
+Flamethrower: 10
+Minotaur Mage: 10
+Pigeon: 10
+Pink Butterfly: 10
+Purple Butterfly: 10
+Tunnel Tyrant: 10
+Wild Horse: 10
+Armadile: 9
+Breach Brood: 9
+Butterfly: 9
+Chasm Spawn: 9
+Cursed Prospector: 9
+Orc Marauder: 9
+Shaburak Prince: 9
+Silver Rabbit: 9
+Sparkion: 9
+White Tiger: 9
+Barbarian Bloodwalker: 8
+Deepling Guard: 8
+Draken Elite: 8
+Frost Giantess: 8
+Lava Golem: 8
+Lost Berserker: 8
+Mammoth: 8
+Nightmare of Gaz'haragoth: 8
+Orclops Ravager: 8
+Parrot: 8
+Terror Bird: 8
+True Midnight Asura: 8
+Deepling Tyrant: 7
+Dwarf Miner: 7
+Horse: 7
+Killer Rabbit: 7
+Lizard Magistratus: 7
+Polar Bear: 7
+Troll Champion: 7
+Usurper Knight: 7
+Usurper Warlock: 7
+Weeper: 7
+Damaged Worker Golem: 6
+Dampreefer Dromedary: 6
+Deepling Master Librarian: 6
+Draken Abomination: 6
+Instable Breach Brood: 6
+Lavafungus: 6
+Lost Thrower: 6
+Magma Crawler: 6
+Noble Lion: 6
+Plaguethrower: 6
+Undead Elite Gladiator: 6
+Water Buffalo: 6
+White Lion: 6
+Deepling Warrior: 5
+Demon Summoner: 5
+Feral Sphinx: 5
+Hideous Fungus: 5
+Humongous Fungus: 5
+Lizard Noble: 5
+Nightfiend: 5
+Nomad Blue: 5
+Pillar: 5
+Reality Reaver: 5
+Tainted Soul: 5
+True Dawnfire Asura: 5
+Walker: 5
+Abyssal Calamary: 4
+Cave Parrot: 4
+Crazed Dwarf: 4
+Death Priest: 4
+Demon Parrot: 4
+Dwarf Henchman: 4
+Hive Overseer: 4
+Husky: 4
+Insectoid Scout: 4
+Instable Sparkion: 4
+Old Mad Scientist: 4
+Old Pig: 4
+Poodle: 4
+Pure Jade Drake: 4
+Sacred Spider: 4
+Undead Cavebear: 4
+Wiggler: 4
+a carved stone tile: 4
+Brown Horse: 3
+Deepling Scout: 3
+Donkey: 3
+Dread Intruder: 3
+Flying Book: 3
+Gryphon: 3
+Old Amazon: 3
+Quara Constrictor Scout: 3
+Starving Wolf: 3
+Undead Mine Worker: 3
+Vampire Pig: 3
+White Deer: 3
+Adventurer: 2
+Bog Frog: 2
+Crystalcrusher: 2
+Damaged Crystal Golem: 2
+Deepling Elite: 2
+Fish: 2
+Ladybug: 2
+Panda: 2
+Skeleton Elite Warrior: 2
+Spidris Elite: 2
+Troll Legionnaire: 2
+Ali baba door: 1
+Annihilon: 1
+Aspirant Ryba: 1
+Cezary Baryka: 1
+Cockroach: 1
+Custodian: 1
+Deepling Brawler: 1
+DiogenesProxy: 1
+Dire Penguin: 1
+Draptor: 1
+Elf Overseer: 1
+Fast Moa: 1
+Fox: 1
+Gaffir: 1
+Goblin Leader: 1
+Golgordan: 1
+Grand Canon Dominus: 1
+Grand Chaplain Gaunder: 1
+Grand Commander Soeren: 1
+Grimeleech: 1
+Guard Captain Quaid: 1
+Hellgorak: 1
+Hibernal Moth: 1
+Lacewing Moth: 1
+Latrivan: 1
+Lost Exile: 1
+Madareth: 1
+Midnight Panther: 1
+Modified Gnarlhound: 1
+Monument door: 1
+Preceptor Lazare: 1
+Rat Bum: 1
+Tentacly Jaw: 1
+Thanatursus: 1
+Thornfire Wolf: 1
+Troll Guard: 1
+Ungreez: 1
+Ushuriel: 1
+Yeti: 1
+Zugurosh: 1

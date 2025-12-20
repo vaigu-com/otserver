@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(89)
 spell:name("Flame Strike")
 spell:words("exori flam")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

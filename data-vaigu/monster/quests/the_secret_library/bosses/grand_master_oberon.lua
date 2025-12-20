@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Grand Master Oberon")
 local monster = {}
 
 monster.description = "Grand Master Oberon"
-monster.experience = 20000
+monster.experience = 120000
 monster.outfit = {
 	lookType = 1072,
 	lookHead = 21,
@@ -24,6 +24,11 @@ monster.race = "blood"
 monster.corpse = 28625
 monster.speed = 115
 monster.manaCost = 0
+
+monster.events = {
+
+	"oberonImmune",
+}
 
 monster.changeTarget = {
 	interval = 4000,
@@ -65,22 +70,20 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3115, chance = 30000, maxCount = 1 }, -- bone
-	{ name = "brass shield", chance = 30000, maxCount = 1 },
+	{ id = 3115, chance = 15000, maxCount = 1 }, -- bone
 	{ name = "spatial warp almanac", chance = 25000, maxCount = 1 },
-	{ name = "viking helmet", chance = 23000, maxCount = 1 },
-	{ name = "falcon battleaxe", chance = 500, maxCount = 1 },
-	{ name = "falcon longsword", chance = 500, maxCount = 1 },
-	{ name = "falcon mace", chance = 500, maxCount = 1 },
-	{ name = "grant of arms", chance = 500, maxCount = 1 },
-	{ name = "falcon bow", chance = 350, maxCount = 1 },
-	{ name = "falcon circlet", chance = 350, maxCount = 1 },
-	{ name = "falcon coif", chance = 350, maxCount = 1 },
-	{ name = "falcon rod", chance = 350, maxCount = 1 },
-	{ name = "falcon wand", chance = 350, maxCount = 1 },
-	{ name = "falcon shield", chance = 200, maxCount = 1 },
-	{ name = "falcon greaves", chance = 200, maxCount = 1 },
-	{ name = "falcon plate", chance = 200, maxCount = 1 },
+	{ name = "falcon battleaxe", chance = 3000, maxCount = 1 },
+	{ name = "falcon longsword", chance = 3000, maxCount = 1 },
+	{ name = "falcon mace", chance = 3000, maxCount = 1 },
+	{ name = "grant of arms", chance = 4000, maxCount = 1 },
+	{ name = "falcon bow", chance = 3000, maxCount = 1 },
+	{ name = "falcon circlet", chance = 3000, maxCount = 1 },
+	{ name = "falcon coif", chance = 2500, maxCount = 1 },
+	{ name = "falcon rod", chance = 3000, maxCount = 1 },
+	{ name = "falcon wand", chance = 3000, maxCount = 1 },
+	{ name = "falcon shield", chance = 4000, maxCount = 1 },
+	{ name = "falcon greaves", chance = 2500, maxCount = 1 },
+	{ name = "falcon plate", chance = 2500, maxCount = 1 },
 }
 
 monster.attacks = {
@@ -116,51 +119,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval)
-	if monster:getStorageValue(GrandMasterOberonConfig.Storage.Life) <= GrandMasterOberonConfig.AmountLife then
-		local percentageHealth = (monster:getHealth() * 100) / monster:getMaxHealth()
-		if percentageHealth <= 20 then
-			SendOberonAsking(monster)
-		end
-	end
-end
-
-mType.onAppear = function(monster, creature)
-	if monster:getId() == creature:getId() then
-		monster:setStorageValue(GrandMasterOberonConfig.Storage.Asking, 1)
-		monster:setStorageValue(GrandMasterOberonConfig.Storage.Life, 1)
-	end
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message)
-	if type ~= TALKTYPE_SAY then
-		return false
-	end
-	local exhaust = GrandMasterOberonConfig.Storage.Exhaust
-	if creature:isPlayer() and monster:getStorageValue(exhaust) <= os.time() then
-		message = message:lower()
-
-		monster:setStorageValue(exhaust, os.time() + 1)
-		local asking_storage = monster:getStorageValue(GrandMasterOberonConfig.Storage.Asking)
-		local oberonMessagesTable = GrandMasterOberonResponses[asking_storage]
-
-		if oberonMessagesTable then
-			if message == oberonMessagesTable.msg:lower() or message == oberonMessagesTable.msg2:lower() then
-				monster:say("GRRRAAANNGH!", TALKTYPE_MONSTER_SAY)
-				monster:unregisterEvent("OberonImmunity")
-			else
-				monster:say("HAHAHAHA!", TALKTYPE_MONSTER_SAY)
-			end
-		end
-	end
-end
 
 mType:register(monster)

@@ -1,35 +1,107 @@
 ---@class Zone
----@field getByEncounter function
----@field getName function
----@field addArea function
----@field getPositions function
----@field getTiles function
----@field getCreatures function
----@field getPlayers function
----@field getMonsters function
----@field getNpcs function
----@field getItems function
+---@method getName
+---@method addArea
+---@method getPositions
+---@method getTiles
+---@method getCreatures
+---@method getPlayers
+---@method getMonsters
+---@method getNpcs
+---@method getItems
 Zone = Zone
+
+function Zone:isMinigameZone()
+	return string.find(self:getName():lower(), "minigame")
+end
 
 ---@param encounterData EncounterData
 function Zone.getByEncounter(encounterData)
-	return Zone("encounter." .. toKey(encounterData.encounterName))
+	return Zone("encounter." .. toKey(encounterData.displayName))
 end
 
-function Zone:randomPosition()
-	local walkable = {}
-	for _, pos in pairs(self:getPositions()) do
-		if pos:IsWalkable(false, false, false, false, true) then
-			table.insert(walkable, pos)
-		end
-	end
+function Zone:getRandomPlayer()
+	return table.random(self:getPlayers())
+end
 
-	if #walkable == 0 then
-		logger.error("Zone:randomPosition() - Zone {} has no walkable positions", self:getName())
+function Zone:getWalkableSize()
+	local positions = self:getPositions()
+	if #positions == 0 then
+		logger.error(debug.traceback(T("Zone:getWalkableSize() - Zone :name: has no positions", { name = self:getName() })))
 		return nil
 	end
 
-	return walkable[math.random(1, #walkable)]
+	local walkablePositions = {}
+	for _, position in ipairs(positions) do
+		local tile = position:getTile()
+		if tile and tile:isWalkable(false, false, false, false, true) then
+			table.insert(walkablePositions, position)
+		end
+	end
+
+	return #walkablePositions
+end
+
+function Zone:firstPosition(ignoreWalkability)
+	local positions = self:getPositions()
+	if #positions == 0 then
+		logger.error(debug.traceback(T("Zone:firstPosition() - Zone :name: has no positions", { name = self:getName() })))
+		return nil
+	end
+
+	for _, position in ipairs(positions) do
+		local tile = position:getTile()
+		if tile and (ignoreWalkability or tile:isWalkable(false, false, false, false, true)) then
+			return position
+		else
+			logger.debug("Zone:firstPosition() - Position {} is invalid (Tile: {}, Walkable: {})", position, tile or "nil", tile and tile:isWalkable(false, false, false, false, true) or "false")
+		end
+	end
+
+	logger.error("Zone:firstPosition() - No valid positions in Zone {}", self:getName())
+	return nil
+end
+
+function Zone:getSinglePosition()
+	local positions = self:getPositions()
+	if #positions < 1 then
+		logger.error(debug.traceback(T("Zone:getSinglePosition() - Zone :name: has no positions", { name = self:getName() })))
+		return nil
+	end
+
+	if #positions > 1 then
+		logger.error(debug.traceback(T("Zone:getSinglePosition() - Zone :name: has more than 1 position", { name = self:getName() })))
+		return nil
+	end
+
+	local position = positions[1]
+	return position
+end
+
+function Zone:randomPosition(ignoreWalkability)
+	local positions = self:getPositions()
+	if #positions == 0 then
+		logger.error(debug.traceback(T("Zone:randomPosition() - Zone :name: has no positions", { name = self:getName() })))
+		return nil
+	end
+
+	local validPositions = {}
+	for _, position in ipairs(positions) do
+		local tile = position:getTile()
+		if tile and (ignoreWalkability or tile:isWalkable(false, false, false, false, true)) then
+			table.insert(validPositions, position)
+		else
+			logger.debug("Zone:randomPosition() - Position {} is invalid (Tile: {}, Walkable: {})", position, tile or "nil", tile and tile:isWalkable(false, false, false, false, true) or "false")
+		end
+	end
+
+	if #validPositions == 0 then
+		logger.error("Zone:randomPosition() - No valid positions in Zone {}", self:getName())
+		return nil
+	end
+
+	local destination = table.random(validPositions)
+	logger.debug("Zone:randomPosition() - Selected valid position: {}", destination)
+	return destination
 end
 
 function Zone:sendTextMessage(...)
@@ -115,6 +187,7 @@ function ZoneEvent:register()
 			end
 			return self.beforeEnter(zone, creature)
 		end
+
 		beforeEnter:register()
 	end
 

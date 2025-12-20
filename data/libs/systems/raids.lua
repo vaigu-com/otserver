@@ -17,11 +17,11 @@ Raid = {
 
 -- Set the metatable so that Raid inherits from Encounter
 setmetatable(Raid, {
-	__index = Encounter,
+	__index = EncounterData,
 	---@param config { name: string, global: boolean, allowedDays: Weekday|Weekday[], minActivePlayers: number, targetChancePerDay: number, maxChancePerCheck: number, minGapBetween: string|number, initialChance: number, maxChecksPerDay: number }
 	__call = function(self, name, config)
 		config.global = true
-		local raid = setmetatable(Encounter(name, config), { __index = Raid })
+		local raid = setmetatable(EncounterData(name, config), { __index = Raid })
 		raid.allowedDays = config.allowedDays
 		raid.minActivePlayers = config.minActivePlayers
 		raid.targetChancePerDay = config.targetChancePerDay
@@ -38,7 +38,7 @@ setmetatable(Raid, {
 ---@param self Raid The raid to register
 ---@return boolean True if the raid is registered successfully, false otherwise
 function Raid:register()
-	Encounter.register(self)
+	EncounterData.register(self)
 	Raid.registry[self.name] = self
 	self.registered = true
 	return true
@@ -61,7 +61,7 @@ end
 ---@param self Raid The raid to check
 ---@return boolean True if the raid can be started, false otherwise
 function Raid:canStart()
-	if self.currentStage ~= Encounter.unstarted then
+	if self.currentStage ~= EncounterData.unstarted then
 		logger.debug("Raid {} is already running", self.name)
 		return false
 	end
@@ -79,14 +79,24 @@ function Raid:canStart()
 			return false
 		end
 
-		local checksToday = tonumber(self.kv:get("checks-today") or 0)
+		-- Check if we need to reset daily counters
+		local checksToday
+		local lastCheckDate = self.kv:get("last-check-date")
+		local currentDate = os.date("%Y%m%d")
+		if lastCheckDate ~= currentDate then
+			self.kv:set("checks-today", 0)
+			self.kv:set("last-check-date", currentDate)
+			checksToday = 0
+		else
+			checksToday = math.max(0, tonumber(self.kv:get("checks-today")) or 0)
+		end
 		if self.maxChecksPerDay and checksToday >= self.maxChecksPerDay then
 			logger.debug("Raid {} has already checked today (checks today: {}, max: {})", self.name, checksToday, self.maxChecksPerDay)
 			return false
 		end
 		self.kv:set("checks-today", checksToday + 1)
 
-		local failedAttempts = self.kv:get("failed-attempts") or 0
+		local failedAttempts = math.max(0, tonumber(self.kv:get("failed-attempts")) or 0)
 		local checksPerDay = ParseDuration("23h") / ParseDuration(Raid.checkInterval)
 		local initialChance = self.initialChance or (self.targetChancePerDay / checksPerDay)
 		local chanceIncrease = math.max((self.targetChancePerDay - initialChance) / checksPerDay, 0)

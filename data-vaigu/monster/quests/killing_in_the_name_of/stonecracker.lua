@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Stonecracker")
 local monster = {}
 
 monster.description = "Stonecracker"
-monster.experience = 3500
+monster.experience = 11200
 monster.outfit = {
 	lookType = 55,
 	lookHead = 0,
@@ -65,14 +65,13 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3031, chance = 76225, maxCount = 100 }, -- gold coin
-	{ id = 5893, chance = 64800 }, -- perfect behemoth fang
+	{ id = 5893, chance = 84800 }, -- perfect behemoth fang
 	{ id = 3577, chance = 36200 }, -- meat
-	{ id = 5930, chance = 50500 }, -- behemoth claw
-	{ id = 7368, chance = 11225, maxCount = 2 }, -- assassin star
-	{ id = 3383, chance = 7650 }, -- dark armor
-	{ id = 3304, chance = 14800 }, -- crowbar
-	{ id = 3033, chance = 7650, maxCount = 2 }, -- small amethyst
-	{ id = 3275, chance = 7650 }, -- double axe
+	{ id = 5930, chance = 70500 }, -- behemoth claw
+	{ id = 9081, chance = 70500 },
+	{ id = 22516, chance = 70500 },
+	{ id = 3303, chance = 2000 },
+	{ id = 3033, chance = 7650, maxCount = 5 }, -- small amethyst
 }
 
 monster.attacks = {
@@ -89,7 +88,7 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 1 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 5 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 30 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 75 },
 	{ type = COMBAT_FIREDAMAGE, percent = 40 },
@@ -97,8 +96,8 @@ monster.elements = {
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 1 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = -10 },
 }
 
 monster.immunities = {

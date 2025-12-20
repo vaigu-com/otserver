@@ -3,9 +3,9 @@
 -- Handle avoid spam (message and arrow) in mission tiles
 function isTutorialNotificationDelayed(player)
 	-- Check delay
-	if player:getStorageValue(Storage.Quest.U9_1.TheRookieGuard.TutorialDelay) - os.time() <= 0 then
+	if player:getStorageValueByKey(Storage.Quest.U9_1.TheRookieGuard.TutorialDelay) - os.time() <= 0 then
 		-- Reset delay
-		player:setStorageValue(Storage.Quest.U9_1.TheRookieGuard.TutorialDelay, os.time() + 4)
+		player:setStorageValueByKey(Storage.Quest.U9_1.TheRookieGuard.TutorialDelay, os.time() + 4)
 		return false
 	end
 	return true
@@ -218,8 +218,8 @@ function missionGuide.onStepIn(creature, item, position, fromPosition)
 	local tile = missionTiles[item.actionid]
 	-- Check mission cases for the tile
 	for i = 1, #tile do
-		local missionState = player:getStorageValue(tile[i].mission)
-		local extraState = tile[i].extra == nil or player:getStorageValue(tile[i].extra.storage) == tile[i].extra.state
+		local missionState = player:getStorageValueByKey(tile[i].mission)
+		local extraState = tile[i].extra == nil or player:getStorageValueByKey(tile[i].extra.storage) == tile[i].extra.state
 		-- Check if the tile is active
 		if missionState ~= -1 and table.find(tile[i].states, missionState) and extraState then
 			-- Check delayed notifications (message/arrow)

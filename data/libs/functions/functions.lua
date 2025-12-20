@@ -57,7 +57,7 @@ function getTitle(uid)
 	end
 
 	for i = #titles, 1, -1 do
-		if player:getStorageValue(titles[i].storageID) == 1 then
+		if player:getStorageValueByKey(titles[i].storageID) == 1 then
 			return titles[i].title
 		end
 	end
@@ -65,40 +65,9 @@ function getTitle(uid)
 	return false
 end
 
-function getTimeInWords(secsParam)
-	local secs = tonumber(secsParam)
-	local hours, minutes, seconds = getHours(secs), getMinutes(secs), getSeconds(secs)
-	local timeStr = ""
-
-	if hours > 0 then
-		timeStr = hours .. (hours > 1 and " hours" or " hour")
-	end
-
-	if minutes > 0 then
-		if timeStr ~= "" then
-			timeStr = timeStr .. ", "
-		end
-		timeStr = timeStr .. minutes .. (minutes > 1 and " minutes" or " minute")
-	end
-
-	if seconds > 0 then
-		if timeStr ~= "" then
-			timeStr = timeStr .. " and "
-		end
-		timeStr = timeStr .. seconds .. (seconds > 1 and " seconds" or " second")
-	end
-
-	return timeStr
-end
-
-function getLootRandom(modifier)
-	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * BONUS_LOOT) * (modifier or 1)
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
-end
-
-function getLootRandom13(modifier)
-	local multi = (configManager.getNumber(configKeys.RATE_LOOT) * SCHEDULE_LOOT_RATE * 1.3) * (modifier or 1)
-	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(1, multi)
+local epsilon = 0.000001
+function randomLootRoll(lootMultiplier)
+	return math.random(0, MAX_LOOTCHANCE) * 100 / math.max(epsilon, lootMultiplier * 100)
 end
 
 local start = os.time()
@@ -121,7 +90,7 @@ function getJackLastMissionState(player)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TibiaTales.JackFutureQuest.LastMissionState) == 1 then
+	if player:getStorageValueByKey(Storage.TibiaTales.JackFutureQuest.LastMissionState) == 1 then
 		return "You told Jack the truth about his personality. You also explained that you and Spectulus \z
 		made a mistake by assuming him as the real Jack."
 	else
@@ -139,21 +108,6 @@ function getRateFromTable(t, level, default)
 		end
 	end
 	return default
-end
-
-function getAccountNumberByPlayerName(name)
-	local player = Player(name)
-	if player ~= nil then
-		return player:getAccountId()
-	end
-
-	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(name))
-	if resultId ~= false then
-		local accountId = Result.getNumber(resultId, "account_id")
-		Result.free(resultId)
-		return accountId
-	end
-	return 0
 end
 
 function getMoneyCount(string)
@@ -181,7 +135,7 @@ function getMoneyWeight(money)
 	gold = gold - crystal * 10000
 	local platinum = math.floor(gold / 100)
 	gold = gold - platinum * 100
-	return (ItemType(3043):getWeight() * crystal) + (ItemType(3035):getWeight() * platinum) + (ItemType(3031):getWeight() * gold)
+	return (ItemType(3043):getWeight() * crystal) + (ItemType(3035):getWeight() * platinum) + (ItemType(3031):getWeight() * gold)/100
 end
 
 function getRealDate()
@@ -210,7 +164,7 @@ function getRealTime()
 	return hours .. ":" .. minutes
 end
 
--- Marry
+-- TODO: make spouse/status a player field
 function getPlayerSpouse(id)
 	local resultQuery = db.storeQuery("SELECT `marriage_spouse` FROM `players` WHERE `id` = " .. db.escapeString(id))
 	if resultQuery ~= false then
@@ -262,9 +216,7 @@ function checkBoss(centerPosition, rangeX, rangeY, bossName, bossPos)
 	end
 	if not found then
 		local boss = Game.createMonster(bossName, bossPos, true, true)
-		if boss then
-			boss:setReward(true)
-		end
+		boss:setReward(true)
 	end
 	return found
 end
@@ -292,8 +244,8 @@ function clearRoom(centerPosition, rangeX, rangeY, resetGlobalStorage)
 			spectator:remove()
 		end
 	end
-	if resetGlobalStorage ~= nil and Game.getStorageValue(resetGlobalStorage) == 1 then
-		Game.setStorageValue(resetGlobalStorage, -1)
+	if resetGlobalStorage ~= nil and Game.getStorageValueByKey(resetGlobalStorage) == 1 then
+		Game.setStorageValueByKey(resetGlobalStorage, -1)
 	end
 end
 
@@ -324,7 +276,7 @@ function clearForgotten(fromPosition, toPosition, exitPosition, storage)
 			end
 		end
 	end
-	Game.setStorageValue(storage, 0)
+	Game.setStorageValueByKey(storage, 0)
 end
 
 function isValidMoney(money)
@@ -342,15 +294,15 @@ function iterateArea(func, from, to)
 end
 
 function resetFerumbrasAscendantHabitats()
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Corrupted, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Desert, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Dimension, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Grass, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Ice, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Mushroom, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Roshamuul, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.Venom, 0)
-	Game.setStorageValue(GlobalStorage.FerumbrasAscendant.Habitats.AllHabitats, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Corrupted, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Desert, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Dimension, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Grass, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Ice, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Mushroom, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Roshamuul, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.Venom, 0)
+	Game.setStorageValueByKey(Storage.FerumbrasAscendant.Habitats.AllHabitats, 0)
 
 	for _, spec in pairs(Game.getSpectators(Position(33629, 32693, 12), false, false, 25, 25, 85, 85)) do
 		if spec:isPlayer() then
@@ -455,7 +407,7 @@ function placeSpawnRandom(fromPositon, toPosition, monsterName, ammount, hasCall
 						tile:getTopCreature():remove()
 					end
 				else
-					if tile and tile:getTopCreature() and tile:getTopCreature():isMonster() and tile:getTopCreature():getStorageValue(storage) == value then
+					if tile and tile:getTopCreature() and tile:getTopCreature():isMonster() and tile:getTopCreature():getStorageValueByKey(storage) == value then
 						tile:getTopCreature():remove()
 					end
 				end
@@ -595,7 +547,7 @@ function cleanAreaQuest(frompos, topos, itemtable, blockmonsters)
 	return true
 end
 
-function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, firstCall, itemtable, blockmonsters)
+function kickerPlayerRoomAfterMin(playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, firstCall, itemtable, blockmonsters)
 	local players = false
 	if type(playername) == table then
 		players = true
@@ -616,7 +568,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 			if monsterName ~= "" then
 				for _, pid in pairs(monster) do
 					if pid:isMonster() then
-						if pid:getStorageValue("playername") == playername then
+						if pid:getStorageValueByKey("playername") == playername then
 							pid:remove()
 						end
 					end
@@ -639,7 +591,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 			if monsterName ~= "" then
 				for _, pid in pairs(monster) do
 					if pid:isMonster() then
-						if pid:getStorageValue("playername") == playername then
+						if pid:getStorageValueByKey("playername") == playername then
 							pid:remove()
 						end
 					end
@@ -665,7 +617,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 	end
 	local min = 60 -- Use the 60 for 1 minute
 	if firstCall then
-		addEvent(kickerPlayerRoomAfferMin, 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, false, itemtable, blockmonsters)
+		addEvent(kickerPlayerRoomAfterMin, 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, minutes, false, itemtable, blockmonsters)
 	else
 		local subt = minutes - 1
 		if monsterName ~= "" then
@@ -673,7 +625,7 @@ function kickerPlayerRoomAfferMin(playername, fromPosition, toPosition, teleport
 				subt = 2
 			end
 		end
-		addEvent(kickerPlayerRoomAfferMin, min * 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, subt, false, itemtable, blockmonsters)
+		addEvent(kickerPlayerRoomAfterMin, min * 1000, playername, fromPosition, toPosition, teleportPos, message, monsterName, subt, false, itemtable, blockmonsters)
 	end
 end
 
@@ -945,31 +897,6 @@ function SetInfluenced(monsterType, monster, player, influencedLevel)
 	monster:setForgeStack(influencedLevel)
 end
 
-function getHours(seconds)
-	return math.floor((seconds / 60) / 60)
-end
-
-function getMinutes(seconds)
-	return math.floor(seconds / 60) % 60
-end
-
-function getSeconds(seconds)
-	return seconds % 60
-end
-
-function getTime(seconds)
-	local hours, minutes = getHours(seconds), getMinutes(seconds)
-	if minutes > 59 then
-		minutes = minutes - hours * 60
-	end
-
-	if minutes < 10 then
-		minutes = "0" .. minutes
-	end
-
-	return hours .. ":" .. minutes .. "h"
-end
-
 function ReloadDataEvent(cid)
 	local player = Player(cid)
 	if not player then
@@ -1004,9 +931,8 @@ end
 ---@param timeStr string The time string in the format HH:MM:SS
 ---@return number|nil The timestamp of the next occurrence, or nil if the string is invalid
 function GetNextOccurrence(timeStr)
-	local hours, minutes, seconds = string.match(timeStr, "(%d%d):(%d%d):?(%d?%d?)")
-	seconds = seconds or "00"
-	if not hours or not minutes then
+	local hours, minutes, seconds = string.match(timeStr, "(%d+):(%d+):(%d+)")
+	if not hours or not minutes or not seconds then
 		error("Invalid time string format.")
 		return nil
 	end
@@ -1033,7 +959,7 @@ end
 
 --- Parse a duration string into milliseconds
 ---@param duration string|number The duration string to parse or a number of milliseconds (for idempotency)
----@return number result The duration in milliseconds, or nil if the string is invalid
+---@return number|nil The duration in milliseconds, or nil if the string is invalid
 function ParseDuration(duration)
 	if not duration then
 		return nil
@@ -1128,5 +1054,26 @@ function toboolean(value)
 		return true
 	elseif value == "false" then
 		return false
+	end
+end
+
+-- Utility to combine onDeath event with a "kill" event for a player with a party (or not).
+function onDeathForParty(creature, player, func)
+	if not player or not player:isPlayer() then
+		return
+	end
+
+	local participants = Participants(player, true)
+	for _, participant in ipairs(participants) do
+		func(creature, participant)
+	end
+end
+
+function onDeathForDamagingPlayers(creature, func)
+	for key, value in pairs(creature:getDamageMap()) do
+		local player = Player(key)
+		if player then
+			func(creature, player)
+		end
 	end
 end

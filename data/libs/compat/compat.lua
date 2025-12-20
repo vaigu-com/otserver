@@ -385,7 +385,7 @@ end
 
 function getPlayerStorageValue(cid, key)
 	local p = Player(cid)
-	return p and p:getStorageValue(key) or false
+	return p and p:getStorageValueByKey(key) or false
 end
 
 function getPlayerBalance(cid)
@@ -572,8 +572,8 @@ function isPremium(cid)
 	return p ~= nil and p:isPremium() or false
 end
 
-function getBlessingsCost(level, byCommand)
-	return Blessings.getBlessingsCost(level, byCommand)
+function getBlessingCost(level, byCommand, blessId)
+	return Blessings.getBlessingCost(level, byCommand, blessId)
 end
 
 function getPvpBlessingCost(level, byCommand)
@@ -618,18 +618,7 @@ function getPlayerGUIDByName(name)
 end
 
 function getAccountNumberByPlayerName(name)
-	local player = Player(name)
-	if player then
-		return player:getAccountId()
-	end
-
-	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(name))
-	if resultId ~= false then
-		local accountId = Result.getNumber(resultId, "account_id")
-		Result.free(resultId)
-		return accountId
-	end
-	return 0
+	return Game.getPlayerAccountId(name)
 end
 
 getPlayerAccountBalance = getPlayerBalance
@@ -637,7 +626,7 @@ getIpByName = getIPByPlayerName
 
 function setPlayerStorageValue(cid, key, value)
 	local p = Player(cid)
-	return p and p:setStorageValue(key, value) or false
+	return p and p:setStorageValueByKey(key, value) or false
 end
 
 function doPlayerSetBalance(cid, balance)
@@ -1452,12 +1441,12 @@ end
 
 saveData = saveServer
 
-function getGlobalStorageValue(key)
-	return Game.getStorageValue(key) or -1
+function getStorageValueByKey(key)
+	return Game.getStorageValueByKey(key) or -1
 end
 
-function setGlobalStorageValue(key, value)
-	Game.setStorageValue(key, value)
+function setStorageValueByKey(key, value)
+	Game.setStorageValueByKey(key, value)
 	return true
 end
 

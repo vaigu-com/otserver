@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(122)
 spell:name("Divine Missile")
 spell:words("exori san")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

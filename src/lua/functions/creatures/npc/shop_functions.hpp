@@ -9,22 +9,9 @@
 
 #pragma once
 
-#include "lua/scripts/luascript.hpp"
-
-class ShopFunctions final : LuaScriptInterface {
+class ShopFunctions {
 public:
-	static void init(lua_State* L) {
-		registerSharedClass(L, "Shop", "", ShopFunctions::luaCreateShop);
-		registerMethod(L, "Shop", "setId", ShopFunctions::luaShopSetId);
-		registerMethod(L, "Shop", "setIdFromName", ShopFunctions::luaShopSetIdFromName);
-		registerMethod(L, "Shop", "setNameItem", ShopFunctions::luaShopSetNameItem);
-		registerMethod(L, "Shop", "setCount", ShopFunctions::luaShopSetCount);
-		registerMethod(L, "Shop", "setBuyPrice", ShopFunctions::luaShopSetBuyPrice);
-		registerMethod(L, "Shop", "setSellPrice", ShopFunctions::luaShopSetSellPrice);
-		registerMethod(L, "Shop", "setStorageKey", ShopFunctions::luaShopSetStorageKey);
-		registerMethod(L, "Shop", "setStorageValue", ShopFunctions::luaShopSetStorageValue);
-		registerMethod(L, "Shop", "addChildShop", ShopFunctions::luaShopAddChildShop);
-	}
+	static void init(lua_State* L);
 
 private:
 	static int luaCreateShop(lua_State* L);
@@ -37,4 +24,5 @@ private:
 	static int luaShopSetStorageKey(lua_State* L);
 	static int luaShopSetStorageValue(lua_State* L);
 	static int luaShopAddChildShop(lua_State* L);
+	static int luaShopKV(lua_State* L);
 };

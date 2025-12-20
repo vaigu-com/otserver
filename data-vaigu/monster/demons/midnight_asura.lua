@@ -80,7 +80,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3031, chance = 70980, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 80500, maxCount = 6 }, -- platinum coin
+	{ id = 3035, chance = 80500, maxCount = 2 }, -- platinum coin
 	{ id = 7368, chance = 6640, maxCount = 5 }, -- assassin star
 	{ id = 3027, chance = 3670, maxCount = 2 }, -- black pearl
 	{ id = 3007, chance = 440 }, -- crystal ring
@@ -104,7 +104,7 @@ monster.loot = {
 	{ id = 8061, chance = 180 }, -- skullcracker armor
 	{ id = 3017, chance = 3650 }, -- silver brooch
 	{ id = 3054, chance = 1050 }, -- silver amulet
-	{ id = 5944, chance = 14580 }, -- soul orb
+	{ id = 5944, chance = 18580 }, -- soul orb
 	{ id = 8074, chance = 150 }, -- spellbook of mind control
 	{ id = 3403, chance = 2030 }, -- tribal mask
 	{ id = 8082, chance = 760 }, -- underworld rod

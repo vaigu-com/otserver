@@ -76,7 +76,6 @@ monster.loot = {
 	{ id = 22721, chance = 100000, maxCount = 4 }, -- gold token
 	{ id = 23509, chance = 100000 }, -- mysterious remains
 	{ id = 23510, chance = 100000 }, -- odd organ
-	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
 	{ id = 3035, chance = 100000, maxCount = 30 }, -- platinum coin
 	{ id = 16119, chance = 8000, maxCount = 3 }, -- blue crystal shard
 	{ id = 16120, chance = 8000, maxCount = 3 }, -- violet crystal shard
@@ -91,22 +90,19 @@ monster.loot = {
 	{ id = 3037, chance = 8000 }, -- yellow gem
 	{ id = 3041, chance = 6000 }, -- blue gem
 	{ id = 3038, chance = 6000 }, -- green gem
-	{ id = 23542, chance = 3500 }, -- collar of blue plasma
+	{ id = 23542, chance = 8500 }, -- collar of blue plasma
 	{ id = 23529, chance = 3500 }, -- ring of blue plasma
 	{ id = 23531, chance = 3500 }, -- ring of green plasma
 	{ id = 23511, chance = 8000 }, -- curious matter
 	{ id = 23519, chance = 8000 }, -- frozen lightning
-	{ id = 16160, chance = 4000, unique = true }, -- crystalline sword
 	{ id = 828, chance = 4000 }, -- lightning headband
 	{ id = 7427, chance = 3000 }, -- chaos mace
-	{ id = 7451, chance = 3000 }, -- shadow sceptre
-	{ id = 8073, chance = 3000 }, -- spellbook of warding
 	{ id = 822, chance = 2500 }, -- lightning legs
 	{ id = 825, chance = 2500 }, -- lightning robe
-	{ id = 23474, chance = 1600, unique = true }, -- tiara of power
-	{ id = 23477, chance = 1600, unique = true }, -- void boots
+	{ id = 23474, chance = 16000, unique = true }, -- tiara of power
+	{ id = 23477, chance = 16000, unique = true }, -- void boots
 	{ id = 6553, chance = 1600, unique = true }, -- ruthless axe
-	{ id = 282, chance = 1600, maxCount = 3 }, -- giant shimmering pearl (brown)
+	{ id = 282, chance = 25600, maxCount = 3 }, -- giant shimmering pearl (brown)
 }
 
 monster.attacks = {
@@ -144,19 +140,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

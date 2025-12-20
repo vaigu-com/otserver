@@ -14,12 +14,11 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(143)
 spell:name("Holy Flash")
 spell:words("utori san")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
 spell:impactSound(SOUND_EFFECT_TYPE_SPELL_HOLY_FLASH)
-spell:level(70)
+spell:level(26)
 spell:mana(30)
 spell:isAggressive(true)
 spell:range(3)

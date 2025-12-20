@@ -74,7 +74,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
+	{ id = 22721, chance = 100000, maxCount = 4 }, -- gold token
+	{ id = 23509, chance = 100000 }, -- mysterious remains
 	{ id = 3035, chance = 100000, maxCount = 10 }, -- platinum coin
 	{ id = 7643, chance = 8000, maxCount = 5 }, -- ultimate health potion
 	{ id = 16119, chance = 8000, maxCount = 3 }, -- blue crystal shard
@@ -91,8 +92,8 @@ monster.loot = {
 	{ id = 7427, chance = 6000 }, -- chaos mace
 	{ id = 23531, chance = 4000 }, -- ring of green plasma
 	{ id = 23533, chance = 4000 }, -- ring of red plasma
-	{ id = 23474, chance = 2000, unique = true }, -- tiara of power
-	{ id = 23477, chance = 2000, unique = true }, -- void boots
+	{ id = 23474, chance = 10000, unique = true }, -- tiara of power
+	{ id = 23477, chance = 10000, unique = true }, -- void boots
 }
 
 monster.attacks = {
@@ -130,19 +131,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

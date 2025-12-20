@@ -1,0 +1,14 @@
+NEXT_QUEST_ID = NEXT_QUEST_ID or 0
+function NextQuestId()
+	NEXT_QUEST_ID = NEXT_QUEST_ID + 1
+	return NEXT_QUEST_ID
+end
+
+NEXT_MISSION_ID = NEXT_MISSION_ID or 0
+function NextMissionId()
+	NEXT_MISSION_ID = NEXT_MISSION_ID + 1
+	return NEXT_MISSION_ID
+end
+
+TASK_QUEST_ID = NextMissionId()
+DAILY_TASK_QUEST_ID = NextMissionId()

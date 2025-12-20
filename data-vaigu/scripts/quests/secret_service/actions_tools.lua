@@ -11,7 +11,7 @@ function secretServiceTools.onUse(player, item, fromPosition, target, toPosition
 		return true
 	end
 
-	player:addItem(useItem)
+	player:AddCustomItem({ id = useItem })
 	player:say("You've found a useful little tool for secret agents in the parcel.", TALKTYPE_MONSTER_SAY)
 
 	item:remove()

@@ -63,7 +63,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(237)
 spell:name("Chivalrous Challenge")
 spell:words("exeta amp res")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_CHIVALROUS_CHALLENGE)

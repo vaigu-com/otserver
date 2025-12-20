@@ -72,7 +72,7 @@ function lowerRoshamuulChamber.onUse(cid, item, fromPosition, itemEx, toPosition
 		return true
 	end
 
-	if Game.getStorageValue(config.storage) <= 0 then
+	if Game.getStorageValueByKey(config.storage) <= 0 then
 		if math.random(0, 10000) < 7000 then
 			player:say("PRRRR...*crackle*", TALKTYPE_MONSTER_SAY)
 			item:remove(1)
@@ -87,14 +87,14 @@ function lowerRoshamuulChamber.onUse(cid, item, fromPosition, itemEx, toPosition
 			while i <= #x do
 				time = time + config.timeBetweenraid
 				for j = 1, x[i + 1] do
-					Game.setStorageValue(config.storage, x[i + 1])
+					Game.setStorageValueByKey(config.storage, x[i + 1])
 					addEvent(raids, time, x[i])
 				end
 				i = i + 2
 			end
 		end
 
-		addEvent(Game.setStorageValue, config.globalEventTime, config.storage, 0)
+		addEvent(Game.setStorageValueByKey, config.globalEventTime, config.storage, 0)
 		if config.cleanraid then
 			addEvent(cleanRaid, config.globalEventTime)
 		end

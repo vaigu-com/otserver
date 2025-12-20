@@ -8,13 +8,13 @@ function StdModule.travelDiscount(npc, player, discounts)
 	local discount = 0
 	if type(discounts) == "string" then
 		discount = travelDiscounts[discounts]
-		if discount and player:getStorageValue(discount.storage) >= discount.value then
+		if discount and player:getStorageValueByKey(discount.storage) >= discount.value then
 			return discount.price
 		end
 	else
 		for i = 1, #discounts do
 			discount = travelDiscounts[discounts[i]]
-			if discount and player:getStorageValue(discount.storage) >= discount.value then
+			if discount and player:getStorageValueByKey(discount.storage) >= discount.value then
 				discountPrice = discountPrice + discount.price
 			end
 		end
@@ -199,12 +199,12 @@ function StdModule.rookgaardHints(npc, player, message, keywords, parameters, no
 		return false
 	end
 
-	local hintId = player:getStorageValue(Storage.RookgaardHints)
+	local hintId = player:getStorageValueByKey(Storage.RookgaardHints)
 	npcHandler:say(hints[hintId], npc, player)
 	if hintId >= #hints then
-		player:setStorageValue(Storage.RookgaardHints, -1)
+		player:setStorageValueByKey(Storage.RookgaardHints, -1)
 	else
-		player:setStorageValue(Storage.RookgaardHints, hintId + 1)
+		player:setStorageValueByKey(Storage.RookgaardHints, hintId + 1)
 	end
 	return true
 end

@@ -1,3 +1,6 @@
+do
+	return
+end
 local config = {
 	bossName = "The Monster",
 	encounterName = "The Monster",
@@ -17,7 +20,7 @@ local config = {
 
 local encounterData = EncounterData(config)
 encounterData:position({ x = 33813, y = 32584, z = 12 })
-encounterData:register()
+--encounterData:register()
 
 -- Entrance to lever room
 SimpleTeleport({ x = 33792, y = 32581, z = 12 }, { x = 33806, y = 32584, z = 12 })

@@ -1,69 +1,48 @@
 local function checkFlowers(player)
 	local heaven_blossoms = { 11012, 11013, 11014, 11015, 11016 }
 	for key, value in pairs(heaven_blossoms) do -- sprawdznie czy alles wziete
-		if player:getStorageValue(value) < 1 then
+		if player:getStorageValueByKey(value) < 1 then
 			return false
 		end
 	end
-	player:setStorageValue(Storage.Firestarter.Mission3, 2)
+	player:setStorageValueByKey(Storage.Firestarter.Mission03, 2)
 	return true
-end
-
--- The Ape City Quest --
-local campfirePosition = Position(6501, 592, 7)
-local function revertCampfire(position)
-	local tile = Tile(position)
-	if tile then
-		local campfire = tile:getItemById(1998)
-		if campfire then
-			campfire:transform(1997)
-		end
-	end
 end
 
 local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local removeItem = true
-	-- The Ape City
-	if (toPosition == campfirePosition) and (target.itemid == 1997) and (player:getStorageValue(Storage.TheApeCity.CampfireMission) == 1) then
-		target:transform(1998)
-		Game.createMonster("Draken Spellweaver", Position(6499, 589, 7))
-		Game.createMonster("Draken Spellweaver", Position(6497, 593, 7))
-		player:setStorageValue(Storage.TheApeCity.CampfireMission, 2)
-		player:say("Kto?! Kto osmielil sie rozpalic przedwczesnie ogien?", TALKTYPE_MONSTER_SAY, false, player, toPosition)
-		addEvent(revertCampfire, 1000 * 60, campfirePosition)
-	end
 	-- Sezon na Jelenie
-	if target.itemid == 2742 and player:getStorageValue(Storage.SciezkaDruida.SezonNaJelenie) == 1 then
+	if target.itemid == 2742 and player:getStorageValueByKey(Storage.TheWayOfADruid.DeerSeason) == 1 then
 		if target.uid == 11008 or target.uid == 11009 then
 			toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-			player:setStorageValue(Storage.SciezkaDruida.SezonNaJelenie, 2)
+			player:setStorageValueByKey(Storage.TheWayOfADruid.DeerSeason, 2)
 		else
 			removeItem = false
 			player:say("To nie te.", TALKTYPE_MONSTER_SAY)
 		end
 	end
 	-- Firestarter
-	if target.itemid == 5546 and player:getStorageValue(Storage.Firestarter.Mission1) == 1 and target.uid == 11010 then
+	if target.itemid == 5546 and player:getStorageValueByKey(Storage.Firestarter.Mission01) == 1 and target.uid == 11010 then
 		removeItem = false
 		toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-		player:setStorageValue(Storage.Firestarter.Mission1, 2)
+		player:setStorageValueByKey(Storage.Firestarter.Mission01, 2)
 	end
-	if target.itemid == 3954 and player:getStorageValue(Storage.Firestarter.Mission2) == 1 and target.uid == 11011 then
+	if target.itemid == 3954 and player:getStorageValueByKey(Storage.Firestarter.Mission02) == 1 and target.uid == 11011 then
 		removeItem = false
 		toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-		player:setStorageValue(Storage.Firestarter.Mission2, 2)
+		player:setStorageValueByKey(Storage.Firestarter.Mission02, 2)
 	end
-	if target.itemid == 3657 and player:getStorageValue(Storage.Firestarter.Mission3) == 1 then
+	if target.itemid == 3657 and player:getStorageValueByKey(Storage.Firestarter.Mission03) == 1 then
 		removeItem = false
 		if target.uid >= 11012 and target.uid <= 11016 then
-			if player:getStorageValue(target.uid) < 1 then
+			if player:getStorageValueByKey(target.uid) < 1 then
 				local drunk = Condition(CONDITION_DRUNK)
 				drunk:setParameter(CONDITION_PARAM_TICKS, 60 * 1000)
 				player:addCondition(drunk)
 				toPosition:sendMagicEffect(CONST_ME_HITBYFIRE)
-				player:setStorageValue(target.uid, 1)
+				player:setStorageValueByKey(target.uid, 1)
 			else
 				player:say("Ten juz sie wyraznie jara.", TALKTYPE_MONSTER_SAY)
 			end
@@ -114,8 +93,6 @@ end
 action:id(5467)
 action:register()
 
-
-
 --[[
 local function revert(position, itemId, transformId)
 	local item = Tile(position):getItemById(itemId)
@@ -148,19 +125,19 @@ local positions = {
 local othersFireBug = Action()
 function othersFireBug.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.actionid == 54387 and target.itemid == 22875 then
-		if player:getStorageValue(Storage.FerumbrasAscension.BasinCounter) >= 8 or player:getStorageValue(Storage.FerumbrasAscension.BoneFlute) < 1 then
+		if player:getStorageValueByKey(Storage.FerumbrasAscension.BasinCounter) >= 8 or player:getStorageValueByKey(Storage.FerumbrasAscension.BoneFlute) < 1 then
 			return false
 		end
-		if player:getStorageValue(Storage.FerumbrasAscension.BasinCounter) < 0 then
-			player:setStorageValue(Storage.FerumbrasAscension.BasinCounter, 0)
+		if player:getStorageValueByKey(Storage.FerumbrasAscension.BasinCounter) < 0 then
+			player:setStorageValueByKey(Storage.FerumbrasAscension.BasinCounter, 0)
 		end
-		if player:getStorageValue(Storage.FerumbrasAscension.BasinCounter) == 7 then
+		if player:getStorageValueByKey(Storage.FerumbrasAscension.BasinCounter) == 7 then
 			player:say("You ascended the last basin.", TALKTYPE_MONSTER_SAY)
 			item:remove()
-			player:setStorageValue(Storage.FerumbrasAscension.MonsterDoor, 1)
+			player:setStorageValueByKey(Storage.FerumbrasAscension.MonsterDoor, 1)
 		end
 		target:transform(22876)
-		player:setStorageValue(Storage.FerumbrasAscension.BasinCounter, player:getStorageValue(Storage.FerumbrasAscension.BasinCounter) + 1)
+		player:setStorageValueByKey(Storage.FerumbrasAscension.BasinCounter, player:getStorageValueByKey(Storage.FerumbrasAscension.BasinCounter) + 1)
 		toPosition:sendMagicEffect(CONST_ME_FIREAREA)
 		addEvent(revert, 2 * 60 * 1000, toPosition, 22876, 22875)
 		return true
@@ -176,9 +153,9 @@ function othersFireBug.onUse(player, item, fromPosition, target, toPosition, isH
 		createTeleport:setDestination(Position(32857, 32234, 11))
 		return true
 	elseif target.uid == 2273 then
-		if player:getStorageValue(Storage.Quest.U7_8.TheShatteredIsles.RaysMission2) == 1 and player:getStorageValue(Storage.Quest.U7_8.TheShatteredIsles.ReputationInSabrehaven) == 15 then
-			player:setStorageValue(Storage.Quest.U7_8.TheShatteredIsles.RaysMission2, 2)
-			player:setStorageValue(Storage.Quest.U7_8.TheShatteredIsles.ReputationInSabrehaven, 16)
+		if player:getStorageValueByKey(Storage.Quest.U7_8.TheShatteredIsles.RaysMission2) == 1 and player:getStorageValueByKey(Storage.Quest.U7_8.TheShatteredIsles.ReputationInSabrehaven) == 15 then
+			player:setStorageValueByKey(Storage.Quest.U7_8.TheShatteredIsles.RaysMission2, 2)
+			player:setStorageValueByKey(Storage.Quest.U7_8.TheShatteredIsles.ReputationInSabrehaven, 16)
 			toPosition:sendMagicEffect(CONST_ME_HITBYFIRE)
 			return true
 		else
@@ -211,9 +188,9 @@ function othersFireBug.onUse(player, item, fromPosition, target, toPosition, isH
 			target:transform(2113)
 			return true
 		elseif target.actionid == 12550 or target.actionid == 12551 then -- Secret Service Quest
-			if player:getStorageValue(Storage.Quest.U8_1.SecretService.TBIMission01) == 1 then
+			if player:getStorageValueByKey(Storage.Quest.U8_1.SecretService.TBIMission01) == 1 then
 				Game.createItem(2118, 1, Position(32893, 32012, 6))
-				player:setStorageValue(Storage.Quest.U8_1.SecretService.TBIMission01, 2)
+				player:setStorageValueByKey(Storage.Quest.U8_1.SecretService.TBIMission01, 2)
 			end
 		end
 		return true

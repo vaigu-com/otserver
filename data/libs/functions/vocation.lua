@@ -37,3 +37,19 @@ function Vocation.getBase(self)
 	end
 	return base
 end
+
+-- Vaigu custom
+-- If player if of vocation
+VOCATION_CHECKER = {
+	[VOCATION.ID.DRUID] = Player.isDruid,
+	[VOCATION.ID.ELDER_DRUID] = Player.isDruid,
+	[VOCATION.ID.KNIGHT] = Player.isKnight,
+	[VOCATION.ID.ELITE_KNIGHT] = Player.isKnight,
+	[VOCATION.ID.SORCERER] = Player.isSorcerer,
+	[VOCATION.ID.MASTER_SORCERER] = Player.isSorcerer,
+	[VOCATION.ID.PALADIN] = Player.isPaladin,
+	[VOCATION.ID.ROYAL_PALADIN] = Player.isPaladin,
+}
+function Player:isVocation(vocation)
+	return VOCATION_CHECKER[vocation](self)
+end

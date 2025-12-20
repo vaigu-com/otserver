@@ -1,9 +1,12 @@
+do
+	return
+end
 local bossZone = Zone("boss.the-monster")
 
 local puddleId = 42075
 local jailBarsId = 2184
 
-local encounter = Encounter("The Monster", {
+local encounter = EncounterData("The Monster", {
 	zone = bossZone,
 	timeToSpawnMonsters = "10ms",
 	zoneArea = {
@@ -90,7 +93,7 @@ encounter:addStage({
 	end,
 })
 
-EncounterDefinitionRegistry():Register(encounter)
+EncounterDefinitionRegistry:Register(encounter)
 
 local spawnContainers = GlobalEvent("fight.the-monster.containers.onThink")
 function spawnContainers.onThink(interval, lastExecution)

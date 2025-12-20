@@ -63,6 +63,7 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = false,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -77,13 +78,13 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3031, chance = 100000, maxCount = 185 }, -- gold coin
-	{ id = 761, chance = 100000, maxCount = 20 }, -- flash arrow
-	{ id = 237, chance = 7142 }, -- strong mana potion
-	{ id = 3033, chance = 7142, maxCount = 2 }, -- small amethyst
+	{ id = 761, chance = 70000, maxCount = 10 }, -- flash arrow
+	{ id = 237, chance = 17142 }, -- strong mana potion
+	{ id = 3033, chance = 17142, maxCount = 5 }, -- small amethyst
 	{ id = 3007, chance = 7142 }, -- crystal ring
 	{ id = 3313, chance = 4761 }, -- obsidian lance
-	{ id = 268, chance = 4761 }, -- mana potion
-	{ id = 7449, chance = 4761 }, -- crystal sword
+	{ id = 268, chance = 40761 }, -- mana potion
+	{ id = 7449, chance = 8761 }, -- crystal sword
 }
 
 monster.attacks = {

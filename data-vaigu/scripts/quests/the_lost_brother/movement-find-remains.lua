@@ -6,9 +6,9 @@ function findRemains.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.AdventurersGuild.TheLostBrother) == 1 then
+	if player:getStorageValueByKey(Storage.AdventurersGuild.TheLostBrother) == 1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You stumble over some old bones. Something is carved into the stone wall here: 'Tarun, my brother, you were right. She's evil.'")
-		player:setStorageValue(Storage.AdventurersGuild.TheLostBrother, 2)
+		player:setStorageValueByKey(Storage.AdventurersGuild.TheLostBrother, 2)
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	end
 

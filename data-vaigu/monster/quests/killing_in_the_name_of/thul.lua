@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Thul")
 local monster = {}
 
 monster.description = "Thul"
-monster.experience = 2700
+monster.experience = 9700
 monster.outfit = {
 	lookType = 46,
 	lookHead = 0,
@@ -60,7 +60,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{ name = "Massive Water Elemental", chance = 10, interval = 2000, count = 2 },
+		{ name = "Massive Water Elemental", chance = 10, interval = 2000, count = 1 },
 	},
 }
 
@@ -76,16 +76,19 @@ monster.loot = {
 	{ id = 3035, chance = 88000, maxCount = 10 }, -- platinum coin
 	{ id = 901, chance = 67000 }, -- marlin
 	{ id = 238, chance = 46000 }, -- great mana potion
-	{ id = 3033, chance = 38000, maxCount = 4 }, -- small amethyst
+	{ id = 3033, chance = 38000, maxCount = 8 }, -- small amethyst
 	{ id = 7383, chance = 35000 }, -- relic sword
 	{ id = 3391, chance = 16000 }, -- crusader helmet
 	{ id = 3381, chance = 10000 }, -- crown armor
+	{ id = 9088, chance = 10000 },
+	{ id = 12670, chance = 10000 },
+	{ id = 22516, chance = 10000 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -285 },
-	{ name = "combat", interval = 2000, chance = 7, type = COMBAT_ICEDAMAGE, minDamage = -108, maxDamage = -137, radius = 4, effect = CONST_ME_ICEAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -170, radius = 3, effect = CONST_ME_HITAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 7, type = COMBAT_ICEDAMAGE, minDamage = -108, maxDamage = -237, radius = 4, effect = CONST_ME_ICEAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -270, radius = 3, effect = CONST_ME_HITAREA, target = false },
 	{ name = "poisonfield", interval = 2000, chance = 19, radius = 3, shootEffect = CONST_ANI_POISON, target = false },
 	{ name = "speed", interval = 2000, chance = 18, speedChange = -360, range = 7, shootEffect = CONST_ANI_SNOWBALL, target = false, duration = 5000 },
 }
@@ -94,7 +97,7 @@ monster.defenses = {
 	defense = 25,
 	armor = 25,
 	mitigation = 1.46,
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 25, maxDamage = 75, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 25, maxDamage = 175, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {

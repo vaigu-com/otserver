@@ -1,10 +1,19 @@
+local playerLoggedInEarlier = {}
+
 function onRecvbyte(player, msg, byte)
 	if byte == 0xD0 then
-		local quests = {}
-		local missions = msg:getByte()
-		for i = 1, missions do
-			quests[#quests + 1] = msg:getU16()
+		if not playerLoggedInEarlier[player:getId()] then
+			playerLoggedInEarlier[player:getId()] = true
+			player:onRequestedMissions(player:getTrackedMissionIds())
+			player:sendQuestLogMainPage()
+			return
 		end
-		player:resetTrackedMissions(quests)
+
+		local missionStorages = {}
+		local missionsCount = msg:getByte()
+		for _ = 1, missionsCount do
+			missionStorages[#missionStorages + 1] = msg:getU16()
+		end
+		player:onRequestedMissions(missionStorages)
 	end
 end

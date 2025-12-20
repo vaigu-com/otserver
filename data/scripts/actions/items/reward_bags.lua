@@ -63,7 +63,7 @@ function randomItems.onUse(player, item, fromPosition, target, toPosition, isHot
 
 	local randomIndex = math.random(1, #rewardBag)
 	local rewardItem = rewardBag[randomIndex]
-	player:addItem(rewardItem.id, 1)
+	player:AddCustomItem({ id = rewardItem.id, count = 1 })
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You received a " .. rewardItem.name .. ".")
 
 	local text = player:getName() .. " received a " .. rewardItem.name .. " from a " .. item:getName() .. "."

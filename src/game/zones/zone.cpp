@@ -7,14 +7,14 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "pch.hpp"
+#include "game/zones/zone.hpp"
 
-#include "zone.hpp"
 #include "game/game.hpp"
 #include "creatures/monsters/monster.hpp"
 #include "creatures/npcs/npc.hpp"
 #include "creatures/players/player.hpp"
 #include "utils/pugicast.hpp"
+#include "kv/kv.hpp"
 
 phmap::parallel_flat_hash_map<std::string, std::shared_ptr<Zone>> Zone::zones = {};
 phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Zone>> Zone::zonesByID = {};
@@ -27,7 +27,14 @@ std::shared_ptr<Zone> Zone::addZone(const std::string &name, uint32_t zoneID /* 
 	}
 	if (zoneID != 0 && zonesByID.contains(zoneID)) {
 		g_logger().trace("[Zone::addZone] Found with ID {} while adding {}, linking them together...", zoneID, name);
-		auto zone = zonesByID[zoneID];
+		auto &zone = zonesByID[zoneID];
+		if (zones[name] && zones[name] != zone) {
+			const auto& previousZone = zones[name];
+			previousZone->id = zoneID;
+			previousZone->addPositions(zone->getPositions());
+			return zone;
+		}
+
 		zone->name = name;
 		zones[name] = zone;
 		return zone;
@@ -42,6 +49,14 @@ std::shared_ptr<Zone> Zone::addZone(const std::string &name, uint32_t zoneID /* 
 		zonesByID[zoneID] = zones[name];
 	}
 	return zones[name];
+}
+
+// Vaigu custom
+void Zone::addPositions(const std::vector<Position>& positions) {
+	for (const auto &pos : positions) {
+		addPosition(pos);
+	}
+	refresh();
 }
 
 void Zone::addArea(Area area) {
@@ -122,6 +137,10 @@ std::vector<std::shared_ptr<Item>> Zone::getItems() {
 void Zone::removePlayers() {
 	for (const auto &player : getPlayers()) {
 		g_game().internalTeleport(player, getRemoveDestination(player));
+		// Remove icon from player (soul war quest)
+		if (player->hasIcon("goshnars-hatred-damage")) {
+			player->removeIcon("goshnars-hatred-damage");
+		}
 	}
 }
 
@@ -250,11 +269,11 @@ void Zone::refresh() {
 void Zone::setMonsterVariant(const std::string &variant) {
 	monsterVariant = variant;
 	g_logger().debug("Zone {} monster variant set to {}", name, variant);
-	for (auto &spawnMonster : g_game().map.spawnsMonster.getspawnMonsterList()) {
-		if (!contains(spawnMonster.getCenterPos())) {
+	for (const auto &spawnMonster : g_game().map.spawnsMonster.getspawnMonsterList()) {
+		if (!contains(spawnMonster->getCenterPos())) {
 			continue;
 		}
-		spawnMonster.setMonsterVariant(variant);
+		spawnMonster->setMonsterVariant(variant);
 	}
 
 	removeMonsters();

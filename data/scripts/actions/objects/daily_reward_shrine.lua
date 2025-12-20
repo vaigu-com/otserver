@@ -1,6 +1,7 @@
 local dailyRewardShrine = Action()
 
 function dailyRewardShrine.onUse(player, item, fromPosition, itemEx, toPosition)
+	item:getPosition():removeMagicEffect(CONST_ME_LOOT_HIGHLIGHT)
 	DailyReward.loadDailyReward(player, 0)
 	return true
 end

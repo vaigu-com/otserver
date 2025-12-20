@@ -1,3 +1,4 @@
+--[[
 local trapDoors = {
 	{ Position(33385, 31139, 8) },
 	{ Position(33385, 31134, 8) },
@@ -38,3 +39,4 @@ end
 
 toggleTrapDoors:interval(10000) -- 10 seconds
 toggleTrapDoors:register()
+]]

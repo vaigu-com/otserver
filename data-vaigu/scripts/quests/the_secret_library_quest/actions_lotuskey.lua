@@ -1,10 +1,10 @@
 local lotusKey = Action()
 
 function lotusKey.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheSecretLibrary.TheLament) == 3 then
+	if player:getStorageValueByKey(Storage.TheSecretLibrary.TheLament) == 3 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a lotus key.")
-		player:addItem(28476, 1)
-		player:setStorageValue(Storage.TheSecretLibrary.TheLament, 4)
+		player:AddCustomItem({ id = 28476, count = 1 })
+		player:setStorageValueByKey(Storage.TheSecretLibrary.TheLament, 4)
 		return true
 	end
 	return false

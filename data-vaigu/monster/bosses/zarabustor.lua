@@ -79,46 +79,47 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 32000, maxCount = 80 }, -- gold coin
-	{ id = 3299, chance = 9600 }, -- poison dagger
+	{ id = 3031, chance = 72000, maxCount = 180 }, -- gold coin
 	{ id = 3324, chance = 8330 }, -- skull staff
-	{ id = 7368, chance = 5500, maxCount = 4 }, -- assassin star
-	{ id = 3567, chance = 3390 }, -- blue robe
-	{ id = 3029, chance = 3190 }, -- small sapphire
-	{ id = 825, chance = 3040 }, -- lightning robe
-	{ id = 3006, chance = 2420 }, -- ring of the sky
-	{ id = 3360, chance = 2240 }, -- golden armor
+	{ id = 7368, chance = 35500, maxCount = 20 }, -- assassin star
+	{ id = 3567, chance = 13390 }, -- blue robe
+	{ id = 3029, chance = 43190 }, -- small sapphire
+	{ id = 825, chance = 13040 }, -- lightning robe
+	{ id = 3006, chance = 5420 }, -- ring of the sky
+	{ id = 3360, chance = 8240 }, -- golden armor
+	{ id = 9301, chance = 9910 },
+	{ id = 9085, chance = 12910 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -130 },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = 0, maxDamage = -250, range = 7, radius = 3, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_FIREAREA, target = true },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 2, shootEffect = CONST_ANI_FIRE, target = true },
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -250, range = 7, shootEffect = CONST_ANI_ENERGY, target = false },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ENERGYDAMAGE, minDamage = -130, maxDamage = -350, length = 8, spread = 0, effect = CONST_ME_BIGCLOUDS, target = false },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -250, range = 6, shootEffect = CONST_ANI_ENERGY, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ENERGYDAMAGE, minDamage = -130, maxDamage = -350, length = 5, spread = 0, effect = CONST_ME_BIGCLOUDS, target = false },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = 0, maxDamage = -250, range = 7, target = false },
-	{ name = "speed", interval = 2000, chance = 15, speedChange = -330, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 20000 },
-	{ name = "warlock skill reducer", interval = 2000, chance = 5, range = 5, target = false },
+	{ name = "speed", interval = 2000, chance = 15, speedChange = -430, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 10000 },
+	{ name = "warlock skill reducer", interval = 2000, chance = 15, range = 5, target = true },
 }
 
 monster.defenses = {
 	defense = 20,
 	armor = 20,
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 100, maxDamage = 225, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 2000, chance = 20, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "invisible", interval = 2000, chance = 10, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -15 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 95 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 85 },
 	{ type = COMBAT_FIREDAMAGE, percent = 100 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 100 },
+	{ type = COMBAT_ICEDAMAGE, percent = -80 },
 	{ type = COMBAT_HOLYDAMAGE, percent = -5 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = -10 },
 }
 
 monster.immunities = {
@@ -127,19 +128,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

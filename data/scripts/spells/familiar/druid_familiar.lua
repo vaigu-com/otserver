@@ -6,7 +6,6 @@ function spell.onCastSpell(player, variant)
 end
 
 spell:group("support")
-spell:id(spellId)
 spell:name("Druid familiar")
 spell:words("utevo gran res dru")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_SUMMON_DRUID_FAMILIAR)

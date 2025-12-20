@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 55000
-monster.maxHealth = 55000
+monster.health = 15000
+monster.maxHealth = 15000
 monster.race = "venom"
 monster.corpse = 20988
 monster.speed = 100
@@ -68,27 +68,29 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "bowl of glooth soup", chance = 55000, maxCount = 5 },
-	{ name = "glooth sandwich", chance = 34500, maxCount = 5 },
-	{ name = "great health potion", chance = 33000, maxCount = 5 },
-	{ name = "great mana potion", chance = 33000, maxCount = 5 },
-	{ name = "great spirit potion", chance = 33000, maxCount = 5 },
-	{ name = "glooth steak", chance = 28000, maxCount = 5 },
+	{ name = "bowl of glooth soup", chance = 55000, maxCount = 15 },
+	{ name = "glooth sandwich", chance = 34500, maxCount = 15 },
+	{ name = "great health potion", chance = 33000, maxCount = 15 },
+	{ name = "great mana potion", chance = 33000, maxCount = 15 },
+	{ name = "great spirit potion", chance = 33000, maxCount = 15 },
+	{ name = "glooth steak", chance = 28000, maxCount = 15 },
 	{ name = "slimy leaf tentacle", chance = 22000, maxCount = 3 },
-	{ name = "small amethyst", chance = 21000, maxCount = 5 },
-	{ name = "small diamond", chance = 18000, maxCount = 5 },
-	{ name = "small ruby", chance = 16000, maxCount = 5 },
-	{ name = "small topaz", chance = 14800, maxCount = 5 },
+	{ name = "small amethyst", chance = 21000, maxCount = 15 },
+	{ name = "small diamond", chance = 18000, maxCount = 15 },
+	{ name = "small ruby", chance = 16000, maxCount = 15 },
+	{ name = "small topaz", chance = 14800, maxCount = 15 },
 	{ name = "glooth club", chance = 10500 },
-	{ name = "glooth spear", chance = 9900 },
+	{ name = "glooth spear", chance = 19900 },
 	{ name = "glooth whip", chance = 9500 },
 	{ name = "glooth amulet", chance = 9000 },
 	{ name = "glooth axe", chance = 8000 },
 	{ name = "glooth blade", chance = 7000 },
 	{ name = "glooth cape", chance = 6000 },
 	{ id = 3039, chance = 2600 }, -- red gem
-	{ name = "yellow gem", chance = 2500 },
-	{ name = "lisa's doll", chance = 300 },
+	{ name = "yellow gem", chance = 22500 },
+	{ name = "lisa's doll", chance = 3300 },
+	{ id = 12669, chance = 22600 },
+	{ id = 11701, chance = 2900 },
 }
 
 monster.attacks = {
@@ -129,19 +131,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

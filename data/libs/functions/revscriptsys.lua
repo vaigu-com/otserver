@@ -90,6 +90,30 @@ do
 	rawgetmetatable("Action").__newindex = ActionNewIndex
 end
 
+do
+	local function LookNewIndex(self, key, value)
+		if key == "onLook" then
+			self:onLook(value)
+			return
+		end
+		rawset(self, key, value)
+	end
+	rawgetmetatable("Look").__newindex = LookNewIndex
+end
+
+--[[
+do
+	local function TargetNewIndex(self, key, value)
+		if key == "onTarget" then
+			self:onTarget(value)
+			return
+		end
+		rawset(self, key, value)
+	end
+	rawgetmetatable("Target").__newindex = TargetNewIndex
+end
+]]
+
 -- TalkAction revscriptsys
 do
 	local function TalkActionNewIndex(self, key, value)
@@ -289,6 +313,14 @@ do
 		elseif key == "onSay" then
 			self:eventType(MONSTERS_EVENT_SAY)
 			self:onSay(value)
+			return
+		elseif key == "onPlayerAttack" then
+			self:eventType(MONSTERS_EVENT_ATTACKED_BY_PLAYER)
+			self:onPlayerAttack(value)
+			return
+		elseif key == "onSpawn" then
+			self:eventType(MONSTERS_EVENT_ON_SPAWN)
+			self:onSpawn(value)
 			return
 		end
 		rawset(self, key, value)

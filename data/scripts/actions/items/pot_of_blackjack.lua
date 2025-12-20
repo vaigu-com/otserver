@@ -4,6 +4,7 @@ function potOfBlackjack.onUse(player, item, fromPosition, target, toPosition, is
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	local remainingGulps = player:kv():get("pot-of-blackjack") or math.random(2, 4)

@@ -1,3 +1,4 @@
+--[[
 local config = {
 	items = {
 		{ id = 35284, charges = 64400 },
@@ -37,7 +38,7 @@ local function sendExerciseRewardModal(player)
 						return
 					end
 					player:sendTextMessage(MESSAGE_LOOK, string.format("Congratulations, you received a %s with %i charges in your store inbox.", iType:getName(), it.charges))
-					player:setStorageValue(config.storage, 1)
+					player:setStorageValueByKey(config.storage, 1)
 				else
 					player:sendTextMessage(MESSAGE_LOOK, "You need to have capacity and empty slots to receive.")
 				end
@@ -56,7 +57,7 @@ function exerciseRewardModal.onSay(player, words, param)
 	if not configManager.getBoolean(configKeys.TOGGLE_RECEIVE_REWARD) or player:getTown():getId() < TOWNS_LIST.AB_DENDRIEL then
 		return true
 	end
-	if player:getStorageValue(config.storage) > 0 then
+	if player:getStorageValueByKey(config.storage) > 0 then
 		player:sendTextMessage(MESSAGE_LOOK, "You already received your exercise weapon reward!")
 		return true
 	end
@@ -67,3 +68,4 @@ end
 exerciseRewardModal:separator(" ")
 exerciseRewardModal:groupType("normal")
 exerciseRewardModal:register()
+]]

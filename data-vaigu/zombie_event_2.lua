@@ -1,5 +1,4 @@
 local config = {
-	bossName = "zombie",
 	encounterName = "zombie",
 	requiredLevel = 250,
 
@@ -25,7 +24,7 @@ do
 	return
 end
 
-local zombieMinigame = Encounter("zombie", {
+local zombieMinigame = EncounterData("zombie", {
 	timeToSpawnMonsters = "1000ms",
 	jackedChance = 0,
 	playerSpeed = 400,
@@ -43,8 +42,6 @@ function zombieMinigame:onReset()
 end
 
 zombieMinigame:addRemoveMonsters():autoAdvance()
-
-EncounterDefinitionRegistry():Register(zombieMinigame)
 
 local zombieSpawns = GlobalEvent("encounter.zombie.spawn-zombies")
 function zombieSpawns.onThink()

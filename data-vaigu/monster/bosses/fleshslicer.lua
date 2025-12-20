@@ -53,7 +53,7 @@ monster.flags = {
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = false,
-	canWalkOnFire = false,
+	canWalkOnFire = true,
 	canWalkOnPoison = true,
 }
 
@@ -67,16 +67,20 @@ monster.voices = {
 	chance = 10,
 }
 
-monster.loot = {}
+monster.loot = {
+	{ id = 14246, chance = 5190 },
+	{ id = 14082, chance = 55470 },
+	{ id = 3057, chance = 5540 },
+	{ id = 16114, chance = 8360 },
+}
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -99 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -200, maxDamage = -799 },
 }
 
 monster.defenses = {
-	defense = 20,
-	armor = 12,
-	--	mitigation = ???,
+	defense = 50,
+	armor = 62,
 }
 
 monster.elements = {
@@ -98,19 +102,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

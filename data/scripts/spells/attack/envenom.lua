@@ -15,12 +15,11 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(142)
 spell:name("Envenom")
 spell:words("utori pox")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
 spell:impactSound(SOUND_EFFECT_TYPE_SPELL_ENVENOM)
-spell:level(50)
+spell:level(26)
 spell:mana(30)
 spell:range(3)
 spell:isAggressive(true)

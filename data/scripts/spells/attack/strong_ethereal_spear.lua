@@ -5,8 +5,12 @@ combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_ETHEREALSPEAR)
 combat:setParameter(COMBAT_PARAM_BLOCKARMOR, 1)
 
 function onGetFormulaValues(player, skill, attack, factor)
-	local levelTotal = player:getLevel() / 5
-	return -(((2 * skill + attack / 2500) * 2.30) + levelTotal + 7), -(((2 * skill + attack / 1875) * 3.30) + levelTotal + 13)
+	local distanceSkill = player:getEffectiveSkillLevel(SKILL_DISTANCE)
+	
+	local min = (player:getLevel() / 5) + distanceSkill + 7
+	local max = (player:getLevel() / 5) + (distanceSkill * 1.5) + 13
+
+	return -min, -max
 end
 
 combat:setCallback(CALLBACK_PARAM_SKILLVALUE, "onGetFormulaValues")
@@ -18,7 +22,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(57)
 spell:name("Strong Ethereal Spear")
 spell:words("exori gran con")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

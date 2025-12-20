@@ -5,7 +5,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(92)
 spell:name("Conjure Wand of Darkness")
 spell:words("exevo gran mort")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_CONJURE_WAND_OF_DARKNESS)

@@ -10,13 +10,13 @@ local foods = {
 
 local spell = Spell("instant")
 
-function spell.onCastSpell(creature, variant)
+function spell.onCastSpell(player, variant)
 	if math.random(0, 1) == 1 then
-		creature:addItem(foods[math.random(#foods)])
+		player:AddCustomItem({ id = foods[math.random(#foods)] })
 	end
 
-	creature:addItem(foods[math.random(#foods)])
-	creature:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
+	player:AddCustomItem({ id = foods[math.random(#foods)] })
+	player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 	return true
 end
 
@@ -25,11 +25,10 @@ spell:words("exevo pan")
 spell:group("support")
 spell:vocation("druid;true", "elder druid;true")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_FOOD)
-spell:id(42)
 spell:cooldown(2 * 1000)
 spell:groupCooldown(2 * 1000)
-spell:level(14)
-spell:mana(120)
+spell:level(1)
+spell:mana(30)
 spell:soul(1)
 spell:isAggressive(false)
 spell:needLearn(false)

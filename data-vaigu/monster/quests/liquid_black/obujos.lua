@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Obujos")
 local monster = {}
 
 monster.description = "Obujos"
-monster.experience = 20000
+monster.experience = 200000
 monster.outfit = {
 	lookType = 445,
 	lookHead = 0,
@@ -77,6 +77,10 @@ monster.loot = {
 	{ name = "deepling axe", chance = 1300 },
 	{ name = "depth scutum", chance = 1185 },
 	{ name = "ornate legs", chance = 700, unique = true },
+	{ id = 9303, chance = 5000 },
+	{ id = 12308, chance = 300 },
+	{ id = 13994, chance = 500 },
+	{ id = 11584, chance = 5000 },
 }
 
 monster.attacks = {
@@ -114,19 +118,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

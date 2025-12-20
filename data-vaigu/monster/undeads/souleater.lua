@@ -94,10 +94,10 @@ monster.loot = {
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -210 },
-	{ name = "combat", interval = 2000, chance = 100, type = COMBAT_ICEDAMAGE, minDamage = -50, maxDamage = -100, range = 7, shootEffect = CONST_ANI_SMALLICE, target = true },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ICEDAMAGE, minDamage = -60, maxDamage = -100, range = 7, shootEffect = CONST_ANI_SMALLICE, target = true },
 	{ name = "souleater drown", interval = 2000, chance = 10, target = false },
 	{ name = "souleater wave", interval = 2000, chance = 10, minDamage = -100, maxDamage = -200, target = false },
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_LIFEDRAIN, minDamage = -30, maxDamage = -60, radius = 4, effect = CONST_ME_MAGIC_RED, target = false },
+	{ name = "combat", interval = 2000, chance = 14, type = COMBAT_LIFEDRAIN, minDamage = -0, maxDamage = -60, radius = 4, effect = CONST_ME_MAGIC_RED, target = false },
 }
 
 monster.defenses = {
@@ -105,7 +105,7 @@ monster.defenses = {
 	armor = 30,
 	mitigation = 0.51,
 	{ name = "invisible", interval = 2000, chance = 5, effect = CONST_ME_MAGIC_BLUE },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 120, maxDamage = 125, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 75, maxDamage = 202, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {

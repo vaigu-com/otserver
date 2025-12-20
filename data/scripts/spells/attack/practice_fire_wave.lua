@@ -16,7 +16,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("attack")
-spell:id(167)
 spell:name("Practise Fire Wave")
 spell:words("exevo dis flam hur")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_PRACTISE_FIRE_WAVE)

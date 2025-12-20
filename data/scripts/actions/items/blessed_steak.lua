@@ -4,6 +4,7 @@ function blessedSteak.onUse(player, item, fromPosition, target, toPosition, isHo
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addMana(player:getMaxMana())

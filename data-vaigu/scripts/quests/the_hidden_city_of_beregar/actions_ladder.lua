@@ -1,6 +1,6 @@
 local dwarvenLadder = Action()
 function dwarvenLadder.onUse(player, item, fromPosition, itemEx, toPosition)
-	if player:getStorageValue(Storage.DwarvenLegs) < 1 then
+	if player:getStorageValueByKey(Storage.DwarvenLegs) < 1 then
 		player:teleportTo({ x = 32681, y = 31507, z = 10 })
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		return true

@@ -14,6 +14,9 @@
 struct WebhookTask {
 	std::string payload;
 	std::string url;
+
+	WebhookTask(std::string p, std::string u) :
+		payload(std::move(p)), url(std::move(u)) { }
 };
 
 class Webhook {
@@ -30,7 +33,7 @@ public:
 
 	void run();
 
-	void sendPayload(const std::string &payload, std::string url);
+	void sendPayload(const std::string &payload, const std::string &url);
 	void sendMessage(const std::string &title, const std::string &message, int color, std::string url = "", bool embed = true);
 	void sendMessage(const std::string &message, std::string url = "");
 

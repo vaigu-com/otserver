@@ -31,7 +31,7 @@ function Player.onRemoveVip(self)
 		self:setOutfit(playerOutfit)
 	end
 
-	self:setStorageValue(Storage.VipSystem.IsVip, 0)
+	self:setStorageValueByKey(Storage.VipSystem.IsVip, 0)
 end
 
 function Player.onAddVip(self, days, silent)
@@ -47,7 +47,7 @@ function Player.onAddVip(self, days, silent)
 		self:addMount(mount)
 	end
 
-	self:setStorageValue(Storage.VipSystem.IsVip, 1)
+	self:setStorageValueByKey(Storage.VipSystem.IsVip, 1)
 end
 
 function CheckPremiumAndPrint(player, msgType)

@@ -1,0 +1,294 @@
+local baseBoltsPerOrb = 1
+local additionalBoltsChance = 0.1
+local additionalBoltsNumber = 6
+local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
+
+SPECIAL_ACTIONS_UNIVERSAL = {
+	removeTransferableCoins = function(context)
+		if not context.player then
+			return false
+		end
+		return context.player:removeTransferableCoinsBalance(context.amount)
+	end,
+	hasTransferableCoins = function(context)
+		if not context.player then
+			return false
+		end
+		return context.player:canRemoveTransferableCoins(context.amount)
+	end,
+	startEscort = function(context)
+		local activeEscort = ActiveEscort({
+			escortData = context.escortData or context.escort,
+			player = context.player,
+			npc = context.npc,
+		})
+		ActiveEscortRegistry:Register(activeEscort)
+		activeEscort:Start()
+	end,
+	clearConditions = function(context)
+		local player = context.player
+		local conditions = context.conditions or ALL_CONDITIONS
+		for _, condition in pairs(conditions) do
+			player:removeCondition(condition)
+		end
+	end,
+	endDialog = function(context)
+		local player = context.player
+		local npcHandler = context.npcHandler
+		local npc = context.npc
+		if not (player and npcHandler) then
+			return
+		end
+		addEvent(function()
+			npcHandler:removeInteraction(npc, player)
+		end, 10)
+	end,
+	dealDamageNonLethal = function(context)
+		local target = context.target or context.monster or context.player
+		local minDmg = context.minDMG or context.dmg or context.damage
+		local maxDmg = context.maxDMG or context.dmg or context.damage
+		if maxDmg >= target:getHealth() then
+			return
+		end
+		local damageType = context.damageType or COMBAT_ENERGYDAMAGE
+		local magicEffect = context.magicEffect or context.me or CONST_ME_NONE
+		doTargetCombatHealth(0, target, damageType, -minDmg, -maxDmg, magicEffect)
+	end,
+	npcSay = function(context)
+		local talkType = context.talkType or context.npc
+		local player = context.player
+		local key = context.localizerName
+		local text = context.text
+		local npc = context.npc
+		local npcHandler = context.npcHandler
+
+		local translatedMessage = player:Localizer(key):Get(text)
+
+		addEvent(function()
+			npcHandler:say(translatedMessage, npc, player, nil, talkType)
+		end, 50)
+	end,
+	teleportToTemple = function(context)
+		local player = context.player
+		player:teleportTo(player:getTown():getTemplePosition(), true)
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+	end,
+	createMonstersAtPlayer = function(context)
+		local player = context.player
+		local monsters = context.monsters
+		for _, monsterconfig in pairs(monsters) do
+			SpawnMonstersAtPlayer(monsterconfig.name, player, monsterconfig.count or 1)
+		end
+	end,
+	teleportPlayer = function(context)
+		local player = context.player
+		local toPos = context.pos or context.toPos or context.topos or context.destination
+		player:teleportTo(toPos)
+	end,
+	-- twist is 1
+	-- first regular is 2
+	-- last regular is 6
+	-- two new are 7 and 8 (blood and heart of the mountain)
+	grantBless = function(context)
+		local player = context.player
+		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
+		local min, max = context.min, context.max
+		for i = min, max do
+			player:addBlessing(i, 1)
+		end
+	end,
+	chargeForBless = function(context)
+		local player = context.player
+		local level = player:getLevel()
+		if level <= MAX_LVL_TO_GET_FREE_BLESS then
+			return
+		end
+		
+		player:removeMoney(player:getFiveBlessingsCost())
+	end,
+	chargeForTwistOfFate = function(context)
+		local player = context.player
+		local level = player:getLevel()
+		player:removeMoney(Blessings.getPvpBlessingCost(level))
+	end,
+	removeMoneyBank = function(context)
+		local player = context.player
+		local price = context.price
+		player:removeMoneyBank(price)
+	end,
+	freezeEscortee = function(context)
+		local activeEscort = ActiveEscortRegistry:GetByEscortData(context.escort)
+		if not activeEscort then
+			return
+		end
+		activeEscort:FreezeEscortee()
+	end,
+	despawnEscortee = function(context)
+		local despawnAfterSeconds = context.despawnAfterSeconds
+		addEvent(function()
+			local activeEscort = ActiveEscortRegistry:GetByEscortData(context.escort)
+			if not activeEscort then
+				return
+			end
+			activeEscort:Reset()
+		end, despawnAfterSeconds * 1000)
+	end,
+	buyPromotion = function(context)
+		local player = context.player
+		local vocation = player:getVocation()
+		local promotion = vocation:getPromotion()
+		if player:removeMoney(15000) then
+			player:setVocation(promotion)
+			player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
+		end
+	end,
+	heal = function(context)
+		local player = context.player
+		player:addHealth(20000)
+		player:getPosition():sendMagicEffect(CONST_ME_HOLYAREA)
+	end,
+	SetCustomDialogDataAsNumber = function(context)
+		PlayerCustomDialogDataRegistry:Get(context.player)[context.key] = tonumber(context.msg)
+	end,
+	cancelMarriage = function(context)
+		local player = context.player
+		setPlayerMarriageStatus(player:getGuid(), 0)
+		setPlayerSpouse(player:getGuid(), -1)
+	end,
+	divorce = function(context)
+		local player = context.player
+		local spouse = getPlayerSpouse(player:getGuid())
+		setPlayerMarriageStatus(player:getGuid(), 0)
+		setPlayerSpouse(player:getGuid(), -1)
+		setPlayerMarriageStatus(spouse, 0)
+		setPlayerSpouse(spouse, -1)
+	end,
+	setStorageRandomNumber = function(context)
+		local randomVal = math.random(context.min, context.max)
+		context.player:setStorageValueByKey(context.storage, randomVal)
+	end,
+	openTradeWindow = function(context)
+		context.npcHandler:onTradeRequest(context.npc, context.player, context.msg)
+	end,
+	sendMagicEffectPlayer = function(context)
+		local player = context.player
+		if player then
+			player:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
+		end
+	end,
+	sendMagicEffectNpc = function(context)
+		local npc = context.npc
+		if npc then
+			npc:getPosition():sendMagicEffect(context.effect or CONST_ME_HOLYAREA)
+		end
+	end,
+}
+
+SPECIAL_ACTIONS_SOULORB = {
+	soulOrbToInfernalBolt = function(context)
+		local player = context.player
+		local count = player:CountItem({ id = 5944 })
+		local totalBoltsGranted = (count - count % additionalBoltsNumber) * averageAdditionalBoltsMultiplier
+		local uncertainBolts = count - totalBoltsGranted
+		for _ = 1, uncertainBolts do
+			if math.random(1, 100) < additionalBoltsChance * 100 then
+				totalBoltsGranted = totalBoltsGranted + additionalBoltsNumber
+			else
+				totalBoltsGranted = totalBoltsGranted + baseBoltsPerOrb
+			end
+		end
+		player:AddCustomItem({ id = 6528, count = totalBoltsGranted })
+	end,
+}
+
+SPECIAL_ACTIONS_WILDCARD = {
+	addWilcard = function(context)
+		local player = context.player
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
+		player:addPreyCards(orderedCards)
+	end,
+	removeMoneyPreycards = function(context)
+		local player = context.player
+		local orderedCards = PlayerCustomDialogDataRegistry:Get(context.player).orderedCards
+		local requiredMoney = player:GetWildcardPrice() * orderedCards
+		player:removeMoney(requiredMoney)
+	end,
+}
+
+SPECIAL_ACTIONS_JEWELER = {
+	exchangeLifeCrystal = function(context)
+		local player = context.player
+		local crystalCount = player:CountItem({ id = 3061 })
+		player:AddCustomItem({ id = 3052, count = crystalCount })
+	end,
+	exchangeRedGems = function(context)
+		local player = context.player
+		local gemCount = player:CountItem({ id = 3039 })
+		player:AddCustomItem({ id = 3098, count = gemCount * 3 })
+	end,
+}
+
+SPECIAL_ACTIONS_TASKS = {}
+
+SPECIAL_ACTIONS_DAILY_TASK = {}
+
+SPECIAL_ACTIONS_IMBUING = {
+	addproductsRemovemoneypoints = function(context)
+		local bundleData = PlayerCustomDialogDataRegistry:Get(context.player).bundleLevelData
+
+		local player = context.player
+		player:AddItemsAnnounce(bundleData.items)
+		player:removeMoney(bundleData.moneyPrice)
+		player:IncrementStorage(Storage.Task.TaskPoints, -bundleData.taskPointsCost)
+	end,
+}
+
+SPECIAL_ACTIONS_COOK = {
+	setDishData = function(context)
+		local dishName = context.msg
+		local dishStorage = COOKING_DISH_NAMES[dishName]
+		local dishData = COOKING_INGREDIENT_DATA[dishStorage]
+		PlayerCustomDialogDataRegistry:Get(context.player).dishData = dishData
+	end,
+}
+
+SPECIAL_ACTIONS_BANK = {
+	setAmountDeposit = function(context)
+		local amount = nil
+		if type(context.amount) == "string" and context.amount == "all" then
+			amount = context.player:getMoney()
+		else
+			amount = tonumber(context.amount)
+		end
+		local data = PlayerCustomDialogDataRegistry:Get(context.player)
+		data.amount = amount
+	end,
+	setAmountWithdrawTransfer = function(context)
+		local amount = nil
+		if type(context.amount) == "string" and context.amount == "all" then
+			amount = Bank.balance(context.player)
+		else
+			amount = tonumber(context.amount)
+		end
+		local data = PlayerCustomDialogDataRegistry:Get(context.player)
+		data.amount = amount
+	end,
+	setRecipient = function(context)
+		local recipient = SPECIAL_REQUIREMENTS_BANK.extractRecipientName(context)
+		local data = PlayerCustomDialogDataRegistry:Get(context.player)
+		data.recipient = recipient
+	end,
+	depositMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
+		context.player:depositMoney(amount)
+	end,
+	withdrawMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
+		context.player:withdrawMoney(amount)
+	end,
+	transferMoney = function(context)
+		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
+		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
+		context.player:transferMoneyTo(recipient, amount)
+	end,
+}

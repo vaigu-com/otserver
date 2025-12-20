@@ -20,7 +20,7 @@ local config = {
 
 local currentEvent = nil
 
-local function clearRoomDrume(centerPosition, rangeX, rangeY, resetGlobalStorage)
+local function clearRoomDrume(centerPosition, rangeX, rangeY, resetStorage)
 	local spectators, spectator = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
 	for i = 1, #spectators do
 		spectator = spectators[i]
@@ -32,8 +32,8 @@ local function clearRoomDrume(centerPosition, rangeX, rangeY, resetGlobalStorage
 			spectator:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your time is over.")
 		end
 	end
-	if Game.getStorageValue(resetGlobalStorage) == 1 then
-		Game.setStorageValue(resetGlobalStorage, -1)
+	if Game.getStorageValueByKey(resetStorage) == 1 then
+		Game.setStorageValueByKey(resetStorage, -1)
 	end
 	currentEvent = nil
 end
@@ -108,11 +108,11 @@ function drumeAction.onUse(player, item, fromPosition, target, toPosition, isHot
 	if currentEvent then
 		stopEvent(currentEvent)
 	end
-	currentEvent = addEvent(clearRoomDrume, config.timeToKill * 60 * 1000, config.centerPosition, config.rangeX, config.rangeY, resetGlobalStorage)
+	currentEvent = addEvent(clearRoomDrume, config.timeToKill * 60 * 1000, config.centerPosition, config.rangeX, config.rangeY, resetStorage)
 	config.newPosition:sendMagicEffect(CONST_ME_TELEPORT)
 	toPosition:sendMagicEffect(CONST_ME_POFF)
-	Game.setStorageValue(GlobalStorage.TheOrderOfTheLion.Drume.TotalLionCommanders, totalLion)
-	Game.setStorageValue(GlobalStorage.TheOrderOfTheLion.Drume.TotalUsurperCommanders, totalUsurper)
+	Game.setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalLionCommanders, totalLion)
+	Game.setStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalUsurperCommanders, totalUsurper)
 	return true
 end
 

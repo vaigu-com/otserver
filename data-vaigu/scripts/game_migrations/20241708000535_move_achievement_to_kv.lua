@@ -4,16 +4,16 @@ local achievementStorage = 30000
 local function migrateAchievementProgress(player)
 	for id, achievement in pairs(ACHIEVEMENTS) do
 		local oldStorageKey = achievementProgressStorage + id
-		local progressNumber = player:getStorageValue(oldStorageKey)
+		local progressNumber = player:getStorageValueByKey(oldStorageKey)
 		if progressNumber > 0 then
 			local achievScopeName = tostring(achievement.name .. "-progress")
 			player:kv():scoped(achievScopeName, progressNumber)
-			player:setStorageValue(oldStorageKey, -1)
+			player:setStorageValueByKey(oldStorageKey, -1)
 		end
-		local oldAchievement = player:getStorageValue(achievementStorage + id)
+		local oldAchievement = player:getStorageValueByKey(achievementStorage + id)
 		if oldAchievement > 0 then
 			player:addAchievement(achievement.name)
-			player:setStorageValue(achievementStorage + id, -1)
+			player:setStorageValueByKey(achievementStorage + id, -1)
 		end
 	end
 	local points = 0
