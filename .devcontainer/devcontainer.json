@@ -1,0 +1,28 @@
+{
+  "name": "VCPKG Docker",
+  "runArgs": [
+    "--network=host"
+  ],
+  "containerUser": "${localEnv:USER}",
+  "remoteUser": "${localEnv:USER}",
+  "build": {
+    "dockerfile": "../docker/Dockerfile.dev",
+    "context": "..",
+    "args": {
+      "REMOTE_USER": "${localEnv:USER}",
+      "REMOTE_UID": "${localEnv:REMOTE_UID:1000}",
+      "REMOTE_GID": "${localEnv:REMOTE_GID:1000}"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cmake-tools",
+        "fredericbonnet.cmake-test-adapter",
+        "twxs.cmake",
+        "ms-vscode.cpptools-extension-pack",
+        "eamodio.gitlens"
+      ]
+    }
+  }
+}

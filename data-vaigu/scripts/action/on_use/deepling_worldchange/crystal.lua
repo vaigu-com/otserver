@@ -1,0 +1,21 @@
+local crystaldeepling = Action()
+function crystaldeepling.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	local posMonster = player:getPosition()
+	if player:getStorageValueByKey(Storage.DeeplingsWorldChange.Crystal) == 1 then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Suddenly a guard jumps at you from behind!")
+		Game.createMonster("Deepling Guard", posMonster)
+		player:setStorageValueByKey(Storage.DeeplingsWorldChange.Crystal, 2)
+	elseif player:getStorageValueByKey(Storage.DeeplingsWorldChange.Crystal) == 2 then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You gathered nothing more than some small chips of red gem.")
+		player:setStorageValueByKey(Storage.DeeplingsWorldChange.Crystal, 3)
+	elseif player:getStorageValueByKey(Storage.DeeplingsWorldChange.Crystal) == 3 then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "With considerable effort you manage to knock a largely unscathed rough gem out of the rocks.")
+		player:AddCustomItem({ id = 14162, count = 1 })
+		player:setStorageValueByKey(Storage.DeeplingsWorldChange.Crystal, 4)
+	else
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Sorry.")
+	end
+	return true
+end
+crystaldeepling:aid(28570)
+crystaldeepling:register()

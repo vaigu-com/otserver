@@ -1,0 +1,39 @@
+{
+  "name": "canary",
+  "version-string": "1.0.0",
+  "dependencies": [
+    "abseil",
+    "argon2",
+    "asio",
+    "bext-di",
+    "bext-ut",
+    "boost-multi-index",
+    "curl",
+    "eventpp",
+    "libmariadb",
+    "luajit",
+    "magic-enum",
+    "mio",
+    "parallel-hashmap",
+    "protobuf",
+    "pugixml",
+    "spdlog",
+    "zlib",
+    "bshoshany-thread-pool",
+    "atomic-queue",
+    {
+      "name": "opentelemetry-cpp",
+      "default-features": true,
+      "features": ["otlp-http", "prometheus"]
+    },
+    {
+      "name": "gmp",
+      "platform": "linux | osx"
+    },
+    {
+      "name": "mpir",
+      "platform": "windows"
+    }
+  ],
+  "builtin-baseline": "d6995a0cf3cafda5e9e52749fad075dd62bfd90c"
+}

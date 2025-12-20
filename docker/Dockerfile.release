@@ -1,0 +1,16 @@
+FROM kuyoh/vcpkg:latest AS build
+WORKDIR /workspace
+COPY . .
+RUN mkdir out
+RUN vcpkg install
+RUN cmake \
+    -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake" \
+    --preset linux-release \
+    -B out \
+    && cmake --build out
+
+
+FROM ubuntu:24.04
+WORKDIR /app
+COPY --from=build /workspace/out/bin/ .
+CMD ["./canary"]

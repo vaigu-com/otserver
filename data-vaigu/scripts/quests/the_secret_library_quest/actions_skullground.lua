@@ -1,0 +1,15 @@
+local skeleton = Action()
+
+function skeleton.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	if player:getStorageValueByKey(Storage.TheSecretLibrary.TheLament) == 2 then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found an old letter.")
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have discovered a skeleton. It seems to hold an old letter and its skull is missing.")
+		player:AddCustomItem({ id = 28518, count = 1 })
+		player:setStorageValueByKey(Storage.TheSecretLibrary.TheLament, 3)
+		return true
+	end
+	return false
+end
+
+skeleton:uid(1092)
+skeleton:register()

@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Lua attach",
+            "processId": "${command:pickProcess}",
+            "request": "attach",
+            "stopOnEntry": false,
+            "type": "lua"
+        },
+        {
+            "name": "Launch (Lua debugger)",
+            "type": "lua",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln.exe",
+            "cwd": "${fileDirname}/../",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C++ attach",
+            "type": "cppvsdbg",
+            "request": "attach",
+        },
+        {
+            "name": "C++ launch release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/",
+            "environment": [],
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C++ launch debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln-dbg.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/",
+            "environment": [],
+            "console": "externalTerminal"
+        },
+    ]
+}

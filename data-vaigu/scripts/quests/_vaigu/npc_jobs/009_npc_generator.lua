@@ -1,0 +1,279 @@
+local function getJobStateDialogs(jobs)
+	local totalDialogs = {}
+	for _, job in pairs(jobs) do
+		totalDialogs = MergedTable(totalDialogs, NPC_STATE_DIALOGS[job])
+	end
+	return totalDialogs
+end
+
+local function getJobConfigs(jobs, customShop)
+	local totalShop = {}
+	for _, job in pairs(jobs) do
+		local jobShop = JOB_SHOPS[job]
+		for _, item in pairs(jobShop or {}) do
+			table.insert(totalShop, item)
+		end
+	end
+	for _, item in pairs(customShop or {}) do
+		table.insert(totalShop, item)
+	end
+
+	local totalDialogs = {}
+	for _, job in pairs(jobs) do
+		totalDialogs = MergedTable(totalDialogs, JOB_UNIVERSAL_DIALOGS[job])
+	end
+
+	return totalShop, totalDialogs
+end
+
+local function getJobsOnBuyItem(jobs, greetJob)
+	for key, value in pairs(jobs) do
+		if JOB_ON_BUY[value] then
+			return JOB_ON_BUY[value]
+		end
+	end
+
+	return JOB_ON_BUY[greetJob]
+end
+
+local function hasGREETkeywordInCustomDialogs(npcData)
+	local dialogs = npcData.customDialogs or {}
+	for keywords in pairs(dialogs) do
+		if type(keywords) ~= "table" then
+			logger.warn("[hasGREETkeywordInCustomDialogs] keywords arent table")
+			PrintAnything(keywords)
+			logger.warn("\n")
+			PrintAnything(npcData)
+		end
+		if table.contains(keywords, GREET) then
+			return true
+		end
+	end
+
+	return false
+end
+
+function warnNoTextInDialog(keywordsStr, npcName)
+	logger.warn(T("[RegisterNpcDefinition] No text found for dialog with keywords :keywords:, for npc :npcName:. Define 'text = NO_TEXT' for that dialog to suppress this warning.", { keywords = keywordsStr, npcName = npcName }))
+end
+
+local function appendStatistics(allDialogs, npcName)
+	for keyWords, dialog in pairs(allDialogs[LOCALIZERS.Universal]) do
+		if not dialog.text then
+			local keywordsStr = (function()
+				local result = ""
+				for key, value in pairs(keyWords) do
+					result = result .. value .. ", "
+				end
+				return result
+			end)()
+			warnNoTextInDialog(keywordsStr, npcName)
+		else
+			for _, value in pairs({
+				dialog.text,
+				dialog.textNoRequiredItems,
+				dialog.textNoRequiredMoney,
+				dialog.textNoRequiredState,
+				dialog.textNoRequiredGlobalState,
+			}) do
+				MissingStrings:TestAllLanguages(value, LOCALIZERS.Universal)
+			end
+		end
+	end
+
+	for localizer, missionToState in pairs(allDialogs) do
+		if localizer ~= LOCALIZERS.Universal then
+			for missionStorage, stateToKeywords in pairs(missionToState) do
+				for state, keyWordsToDialog in pairs(stateToKeywords) do
+					for keyWords, dialog in pairs(keyWordsToDialog) do
+						if not dialog.text then
+							local keywordsStr = (function()
+								local result = ""
+								for key, value in pairs(keyWords) do
+									result = result .. value .. ", "
+								end
+								return result
+							end)()
+							warnNoTextInDialog(keywordsStr, npcName)
+						else
+							for _, value in pairs({
+								dialog.text,
+								dialog.textNoRequiredItems,
+								dialog.textNoRequiredMoney,
+								dialog.textNoRequiredState,
+								dialog.textNoRequiredGlobalState,
+							}) do
+								MissingStrings:TestAllLanguages(value, LOCALIZERS.Universal)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+---@param internalNpcName string string REQUIRED
+---@param npcName string? optional - display name on screen/battle window, Default: same as internalNpcName
+---@param npcDescription string? optional - greentext when using look on npc, Default: "a " + internalNpcName
+---@param greetJob string? sets default greet message based on this job
+---@param jobs table? jobs that will determine dialogs and shop content
+---@param outfit table outfit
+---@param dialogs table? custom dialogs that can override job dialogs
+---@param voices table? orange color text that npc may or may not say from time to time
+function RegisterNpcDefinition(npcData)
+	local npcName = npcData.internalNpcName or npcData.name
+	local displayName = npcData.npcName or npcData.displayname or npcData.displayName or npcName
+	local onlookName = npcData.npcDescription or npcData.onlookname or ("a " .. npcName)
+
+	if npcData.greetJob and not npcData.jobs then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has greetJob but no jobs.", { name = npcName }))
+	end
+	if npcData.jobs and not npcData.greetJob and not hasGREETkeywordInCustomDialogs(npcData) then
+		logger.warn(T("[RegisterNpcDefinition] npc :name: has jobs but not greetJob and does not have GREET as keyword in its custom dialogs.", { name = npcName }))
+	end
+
+	local greetJob = npcData.greetJob
+	local jobs = npcData.jobs or {}
+	local onBuyItem = npcData.onBuyItem or getJobsOnBuyItem(jobs, greetJob)
+	local outfit = npcData.outfit or { lookType = 136, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1, lookAddons = 0 }
+	local npcSpecificDialogs = npcData.dialogs
+	local customShop = npcData.shop
+	local voices = npcData.voices
+	local currency = npcData.currency or npcData.shopCurrency
+
+	local npcConfig = {}
+
+	local totalShop, jobUniversalDialogs = getJobConfigs(jobs, customShop)
+	npcConfig.shop = totalShop
+	npcConfig.currency = currency
+
+	local jobStateDialogs = getJobStateDialogs(jobs)
+	local allDialogs = {}
+	allDialogs[LOCALIZERS.Universal] = jobUniversalDialogs
+	if JOB_GREETING[greetJob] and not hasGREETkeywordInCustomDialogs(npcData) then
+		allDialogs[LOCALIZERS.Universal][{ GREET }] = JOB_GREETING[greetJob]
+	end
+	if TableSize(npcConfig.shop) == 0 then
+		allDialogs[LOCALIZERS.Universal][SENDTRADE] = { text = "Sorry, I'm not offering anything." }
+	else
+		if JOB_TRADE_REQUEST_RESPONSE[greetJob] then
+			allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUEST_RESPONSE[greetJob]
+		else
+			allDialogs[LOCALIZERS.Universal][SENDTRADE] = JOB_TRADE_REQUEST_RESPONSE[JOB_NONE]
+		end
+	end
+
+	allDialogs = MergedTable(allDialogs, jobStateDialogs)
+	allDialogs = MergedTable(allDialogs, npcSpecificDialogs)
+
+	appendStatistics(allDialogs, npcName)
+
+	npcConfig.dialogs = allDialogs
+
+	npcConfig.name = displayName or npcName
+	npcConfig.description = onlookName or ("a " .. npcName)
+
+	npcConfig.health = 100
+	npcConfig.maxHealth = npcConfig.health
+	npcConfig.walkInterval = npcData.walkInterval or 2000
+	npcConfig.walkRadius = npcData.walkRadius or 2
+
+	npcConfig.outfit = outfit
+
+	npcConfig.voices = voices
+
+	npcConfig.flags = { floorchange = npcData.floorchange or false }
+
+	npcConfig.jobs = jobs
+
+	local keywordHandler = KeywordHandler:new()
+	local npcHandler = NpcHandler:new(keywordHandler)
+
+	local npcType = Game.createNpcType(npcName)
+
+	npcType.onThink = npcData.onThink or function(npc, interval)
+		npcHandler:onThink(npc, interval)
+	end
+
+	npcType.onAppear = npcData.onAppear or function(npc, creature)
+		npcHandler:onAppear(npc, creature)
+	end
+
+	npcType.onDisappear = npcData.onDisappear or function(npc, creature)
+		npcHandler:onDisappear(npc, creature)
+	end
+
+	npcType.onMove = npcData.onMove or function(npc, creature, fromPosition, toPosition)
+		npcHandler:onMove(npc, creature, fromPosition, toPosition)
+	end
+
+	npcType.onSay = npcData.onSay or function(npc, creature, type, message)
+		npcHandler:onSay(npc, creature, type, message)
+	end
+
+	npcType.onCloseChannel = npcData.onCloseChannel or function(npc, creature)
+		npcHandler:onCloseChannel(npc, creature)
+	end
+
+	-- On buy npc shop message
+	npcType.onBuyItem = onBuyItem or function(npc, player, itemId, subType, amount, ignore, inBackpacks, totalCost)
+		npc:sellItem(player, itemId, amount, subType, 0, ignore, inBackpacks)
+	end
+
+	-- On sell npc shop message
+	npcType.onSellItem = function(npc, player, itemId, subtype, amount, ignore, itemName, totalCost)
+		player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("Sold %ix %s for %i gold.", amount, itemName, totalCost))
+	end
+
+	-- On look at npc shop item
+	npcType.onCheckItem = function(npc, player, clientId, subType) end
+
+
+	local greetCallback = npcData.greetCallback or function(npc, creature, type, message)
+		if npcData.ignoreGreet then
+			return GreetCallbackContext():MessageOnGreet(false):InteractOnGreet(false)
+		end
+
+		return InitializeSpecialMessages(creature, npcConfig.dialogs, npcHandler, npc)
+	end
+
+	local incomprehensibleError = npcData.incomprehensibleError
+	local creatureSayCallback = npcData.creatureSayCallback or function(npc, creature, type, msg)
+		if npcData.checkInteraction ~= false and not npcHandler:checkInteraction(npc, creature) then
+			return false
+		end
+		return TryResolveDialog(creature, msg, npcConfig.dialogs, npcHandler, npc, nil, incomprehensibleError)
+	end
+
+	local tradeCallback = npcData.tradeCallback
+		or function(npc, creature, type, msg)
+			local player = Player(creature)
+			if not player then
+				return false
+			end
+
+			local messageId = 0
+			if npc:isMerchant() then
+				messageId = MESSAGE_SENDTRADE
+			else
+				messageId = MESSAGE_NOSHOP
+			end
+			local translatedMessage = player:Localizer(LOCALIZERS.NONE):Get(NpcHandler.messages[messageId])
+			npcHandler:say(translatedMessage, npc, player)
+
+			return true
+		end
+
+	npcHandler:setCallback(CALLBACK_GREET, greetCallback)
+	npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
+	npcHandler:setCallback(CALLBACK_ON_TRADE_REQUEST, tradeCallback)
+
+	npcHandler:addModule(FocusModule:new(), npcConfig.name, true, true, true)
+
+	if npcData.isTransportNpc then
+		npcType:isTransportNpc(true)
+	end
+
+	npcType:register(npcConfig)
+end
