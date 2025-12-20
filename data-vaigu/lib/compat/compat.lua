@@ -356,7 +356,7 @@ end
 
 function getPlayerStorageValue(cid, key)
 	local p = Player(cid)
-	return p and p:getStorageValue(key) or false
+	return p and p:getStorageValueByKey(key) or false
 end
 
 function getPlayerBalance(cid)
@@ -544,7 +544,7 @@ function isPremium(cid)
 end
 
 function getBlessingsCost(level, byCommand)
-	return Blessings.getBlessingsCost(level, byCommand)
+	return Blessings.getBlessingCost(level, byCommand)
 end
 
 function getPvpBlessingCost(level, byCommand)
@@ -608,7 +608,7 @@ getIpByName = getIPByPlayerName
 
 function setPlayerStorageValue(cid, key, value)
 	local p = Player(cid)
-	return p and p:setStorageValue(key, value) or false
+	return p and p:setStorageValueByKey(key, value) or false
 end
 
 function doPlayerSetBalance(cid, balance)
@@ -1423,12 +1423,12 @@ end
 
 saveData = saveServer
 
-function getGlobalStorageValue(key)
-	return Game.getStorageValue(key) or -1
+function getStorageValueByKey(key)
+	return Game.getStorageValueByKey(key) or -1
 end
 
-function setGlobalStorageValue(key, value)
-	Game.setStorageValue(key, value)
+function setStorageValueByKey(key, value)
+	Game.setStorageValueByKey(key, value)
 	return true
 end
 
@@ -1610,7 +1610,7 @@ end
 
 function GetNpcOriginalName(translatedName)
 	for _, lang in pairs(LANGUAGE_NAMES) do
-		for englishName, translation in pairs(TRANSLATION_TABLES[lang][LOCALIZER_NPC_NAME]) do
+		for englishName, translation in pairs(TRANSLATION_TABLES[lang][LOCALIZERS.NpcName]) do
 			if string.lower(translation) == string.lower(translatedName) then
 				return englishName
 			end

@@ -64,6 +64,7 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -79,18 +80,18 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small ruby", chance = 8970, maxCount = 5 },
+	{ name = "small ruby", chance = 8970, maxCount = 8 },
 	{ name = "gold coin", chance = 77230, maxCount = 50 },
 	{ name = "platinum coin", chance = 13400, maxCount = 19 },
-	{ name = "lizard leather", chance = 220 },
-	{ name = "lizard scale", chance = 450 },
-	{ name = "strong mana potion", chance = 6280 },
-	{ name = "great mana potion", chance = 4480 },
+	{ name = "lizard leather", chance = 1220 },
+	{ name = "lizard scale", chance = 2450 },
+	{ name = "strong mana potion", chance = 16280 },
+	{ name = "great mana potion", chance = 14480 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -60 },
-	{ name = "lizard magistratus curse", interval = 2000, chance = 10, range = 5, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -360 },
+	{ name = "lizard magistratus curse", interval = 2000, chance = 20, range = 5, target = false },
 }
 
 monster.defenses = {

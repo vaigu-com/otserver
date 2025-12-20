@@ -21,7 +21,7 @@ function wrathEmperorMiss2FirstContact.onUse(player, item, fromPosition, target,
 		player:say("You carefully mix the clay with the sacred earth.", TALKTYPE_MONSTER_SAY)
 		item:remove()
 		target:remove()
-		player:addItem(11344, 1)
+		player:AddCustomItem({ id = 11344, count = 1 })
 		-- sacred clay
 	elseif item.itemid == 11344 and target.itemid == 11331 then
 		player:say("You carefully coat the inside of the wooden bowl with the sacred clay.", TALKTYPE_MONSTER_SAY)
@@ -39,9 +39,9 @@ function wrathEmperorMiss2FirstContact.onUse(player, item, fromPosition, target,
 	elseif item.itemid == 11334 and target.actionid == 8025 then
 		player:say("As you give the coal into the pool the corrupted fluid begins to dissolve, leaving purified, refreshing water.", TALKTYPE_MONSTER_SAY)
 		item:remove()
-		if player:getStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline) == 4 then
-			player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 5)
-			player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Mission02, 2) --Questlog, Wrath of the Emperor "Mission 02: First Contact"
+		if player:getStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Questline) == 4 then
+			player:setStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Questline, 5)
+			player:setStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Mission02, 2) --Questlog, Wrath of the Emperor "Mission 02: First Contact"
 		end
 		for i = 1, 4 do
 			waterpos[i]:sendMagicEffect(CONST_ME_GREEN_RINGS)

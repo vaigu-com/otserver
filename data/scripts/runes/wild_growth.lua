@@ -1,16 +1,29 @@
 function onCreateWildGrowth(creature, position)
 	local tile = Tile(position)
-	if tile and tile:getTopCreature() and not tile:getTopCreature():isPlayer() then
+	if not tile then
 		return false
 	end
+
+	if tile:hasFlag(TILESTATE_FLOORCHANGE) then
+		return false
+	end
+
+	if tile:getTopCreature() and not tile:getTopCreature():isPlayer() then
+		return false
+	end
+
 	local wildGrowth
 	if Game.getWorldType() == WORLD_TYPE_NO_PVP then
 		wildGrowth = ITEM_WILDGROWTH_SAFE
 	else
 		wildGrowth = ITEM_WILDGROWTH
 	end
+
 	local item = Game.createItem(wildGrowth, 1, position)
-	item:setDuration(30, 60)
+	if item then
+		item:setDuration(30)
+		item:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, string.format("Casted by: %s", creature:getName()))
+	end
 end
 
 local combat = Combat()
@@ -22,7 +35,6 @@ function rune.onCastSpell(creature, variant, isHotkey)
 	return combat:execute(creature, variant)
 end
 
-rune:id(94)
 rune:name("Wild Growth Rune")
 rune:group("attack")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

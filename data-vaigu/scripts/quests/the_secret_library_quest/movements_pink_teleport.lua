@@ -6,7 +6,7 @@ function pinkTeleport.onStepIn(creature, item, toPosition, fromPosition)
 		return true
 	end
 
-	if player:getStorageValue(Storage.TheSecretLibrary.Peacock) == 2 then
+	if player:getStorageValueByKey(Storage.TheSecretLibrary.Peacock) == 2 then
 		player:teleportTo(Position(32880, 32828, 11))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	end

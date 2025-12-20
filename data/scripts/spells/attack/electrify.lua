@@ -15,12 +15,11 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(140)
 spell:name("Electrify")
 spell:words("utori vis")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
 spell:impactSound(SOUND_EFFECT_TYPE_SPELL_ELECTRIFY)
-spell:level(34)
+spell:level(26)
 spell:mana(30)
 spell:isAggressive(true)
 spell:range(3)

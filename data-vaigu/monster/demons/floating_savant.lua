@@ -90,6 +90,7 @@ monster.loot = {
 	{ name = "demonic essence", chance = 10000, maxCount = 5 },
 	{ id = 3456, chance = 10000 }, -- pick
 	{ name = "sample of monster blood", chance = 10000, maxCount = 5 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

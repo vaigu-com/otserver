@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack", "special")
-spell:id(152)
 spell:name("Strong Ice Strike")
 spell:words("exori gran frigo")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

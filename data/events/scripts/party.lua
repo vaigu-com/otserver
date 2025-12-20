@@ -65,35 +65,15 @@ function Party:onDisband()
 	return true
 end
 
-local vocationCountToBonus = {
-	[1] = 1.25,
-	[2] = 1.35,
-	[3] = 1.65,
-	[4] = 1.8,
-	--[[
-	[5] = 2.0,
-	[6] = 2.1,
-	[7] = 2.2,
-	[8] = 2.3,
-	[9] = 2.4,
-	]]
-}
-
 function Party:onShareExperience(exp)
-	local distinctVocationsTable = {}
-	local partyPlayers = self:getPlayers()
+	local uniqueVocationsCount = self:getUniqueVocationsCount()
+	local partySize = self:getMemberCount() + 1
 
-	for _, member in pairs(partyPlayers) do
-		local vocationId = member:getVocation():getBase():getId()
-		distinctVocationsTable[vocationId] = true
-	end
+	-- Formula to calculate the % based on the vocations amount
+	local sharedExperienceMultiplier = ((0.1 * (uniqueVocationsCount ^ 2)) - (0.2 * uniqueVocationsCount) + 1.3)
+	-- Since the formula its non linear, we need to subtract 0.1 if all vocations are present,
+	-- because on all vocations the multiplier is 2.1 and it should be 2.0
+	sharedExperienceMultiplier = partySize < 4 and sharedExperienceMultiplier or sharedExperienceMultiplier - 0.1
 
-	local distintVocationsCount = TableSize(distinctVocationsTable)
-	if distintVocationsCount > 4 then
-		distintVocationsCount = 4
-	end
-
-	local partyBonusMultiplier = vocationCountToBonus[distintVocationsCount]
-	local bonusPerMember = math.ceil(partyBonusMultiplier / (#self:getMembers() + 1))
-	return bonusPerMember
+	return math.ceil((exp * sharedExperienceMultiplier) / partySize)
 end

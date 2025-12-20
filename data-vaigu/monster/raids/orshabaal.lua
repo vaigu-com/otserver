@@ -93,7 +93,6 @@ monster.loot = {
 	{ name = "platinum coin", chance = 100000, maxCount = 69 },
 	{ name = "green gem", chance = 6666 },
 	{ name = "blue gem", chance = 20000 },
-	{ id = 3046, chance = 6666 }, -- magic light wand
 	{ name = "might ring", chance = 6666 },
 	{ name = "silver amulet", chance = 20000 },
 	{ name = "platinum amulet", chance = 12500 },
@@ -126,6 +125,7 @@ monster.loot = {
 	{ name = "great spirit potion", chance = 12500 },
 	{ name = "ultimate health potion", chance = 33333 },
 	{ name = "gold ingot", chance = 6666 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {
@@ -166,19 +166,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

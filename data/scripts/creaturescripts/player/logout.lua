@@ -1,5 +1,4 @@
 local playerLogout = CreatureEvent("PlayerLogout")
-
 function playerLogout.onLogout(player)
 	local playerId = player:getId()
 
@@ -27,5 +26,4 @@ function playerLogout.onLogout(player)
 	end
 	return true
 end
-
 playerLogout:register()

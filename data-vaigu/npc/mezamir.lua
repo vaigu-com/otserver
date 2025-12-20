@@ -114,9 +114,9 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "misja", "quest", "misje", "mission" }, message) then
-		local value = player:getStorageValue(Storage.ElementalSphere.QuestLine)
+		local value = player:getStorageValueByKey(Storage.ElementalSphere.QuestLine)
 		if value < 1 then -- poczatek questa
-			if player:getLevel() >= 80 then
+			if player:getLevel() >= 40 then
 				if player:isSorcerer() then
 					npcHandler:say(getPlayerLanguage(player) == "PL" and {
 						"No dobra, sluchaj wiec: Po pierwsze potrzebujesz zebrac 20 zaczarowanych rubinow jesli chcesz udac sie do ognistej sfery. Jesli udasz sie kilka pieter w glab mojej piwnicy znajdziesz tam teleporter, ktora przeniesie cie do niej. Aby ja uruchomic musisz wlozyc w nia wszystkie rubiny. ...",
@@ -174,7 +174,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			npcHandler:setTopic(playerId, 1)
 		elseif value == 1 then -- jak oddamy item z minibosa
 			if player:getItemCount(player:isSorcerer() and 946 or player:isDruid() and 947 or player:isPaladin() and 942 or player:isKnight() and 945) > 0 then
-				player:setStorageValue(Storage.ElementalSphere.QuestLine, 2)
+				player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 2)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and {
 					"Niesamowite! Niech spojrze.. Ach!, "
 						.. (
@@ -198,8 +198,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 			else
 				npcHandler:say(
-					getPlayerLanguage(player) == "PL"
-							and "Potrzebujesz czastke zywiolu " .. (player:isSorcerer() and "Ognistego" or player:isDruid() and "Ziemnego" or player:isPaladin() and "Lodowego" or player:isKnight() and "Energetycznego") .. " Pana Zywiolow. Wroc do mnie jesli ja zdobedziesz."
+					getPlayerLanguage(player) == "PL" and "Potrzebujesz czastke zywiolu " .. (player:isSorcerer() and "Ognistego" or player:isDruid() and "Ziemnego" or player:isPaladin() and "Lodowego" or player:isKnight() and "Energetycznego") .. " Pana Zywiolow. Wroc do mnie jesli ja zdobedziesz."
 						or "You need some kind of pure elemental soil from the " .. (player:isSorcerer() and "Fire" or player:isDruid() and "Earth" or player:isPaladin() and "Ice" or player:isKnight() and "Energy") .. " Overlord. Come back when you've got it.",
 					npc,
 					creature
@@ -217,17 +216,17 @@ local function creatureSayCallback(npc, creature, type, message)
 					"One more thing! I can tell you a secret after all of this.. Did you come across a hidden teleport in the underground? It was secured with a magic spell, but I can lat you pass there.",
 					"There you will find my friend who has been guarding the passage to the {hellish abyss} for years. Perhaps he will let you get there and defeat the most powerful of the mages..",
 				}, npc, creature)
-				player:addItem(player:isSorcerer() and 8039 or player:isDruid() and 8041 or player:isPaladin() and 8025 or player:isKnight() and 8055, 1)
-				player:setStorageValue(Storage.ElementalSphere.QuestLine, 3)
+				player:AddCustomItem({ id = player:isSorcerer() and 8039 or player:isDruid() and 8041 or player:isPaladin() and 8025 or player:isKnight() and 8055, count = 1 })
+				player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 3)
 			end
 		end
 	elseif npcHandler:getTopic(playerId) == 1 and (MsgContains(message, "yes") or MsgContains(message, "tak")) then
-		player:setStorageValue(Storage.ElementalSphere.QuestLine, 1)
+		player:setStorageValueByKey(Storage.ElementalSphere.QuestLine, 1)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Swietnie, nie trac czasu! Wroc do mnie jesli zdobedziesz czastke zywiolu!" or "Good, don't waste time! Come back here when you have the elemental object!", npc, creature)
 		npcHandler:setTopic(playerId, 0)
 	end
 
-	if (MsgContains(message, "machine") or MsgContains(message, "maszyna")) and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
+	if (MsgContains(message, "machine") or MsgContains(message, "maszyna") or MsgContains(message, "teleport")) and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and {
 			"Ah, maszyna, ktora znalazles na tej wyspie. Coz, zbudowalem to urzadzenie, aby zapuscic sie daleko pod sama ziemie, po ktorej chodzimy. Podejrzewalem cos tam. Cos gleboko pod nami. Cos zlego. Nawet bardziej niz przeklete owady, ktore pelzaly po moim gabinecie. ...",
 			"Wiercilem otwor za otworem, tylko po to, by ponownie utknac w twardym, nie do przebicia osadzie, raz po raz. Bylem gotow zrezygnowac z tego bezsensownego przedsiewziecia. ...",
@@ -240,50 +239,46 @@ local function creatureSayCallback(npc, creature, type, message)
 			"I am well aware that this may sound laughable now - at this part all of my colleagues burst into laughter anyway - but suddenly there were stairs. Incredibly large stairs that led to the underworld. A world deep under the sea - can you believe this?",
 		}, npc, creature)
 		npcHandler:setTopic(playerId, 21)
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 21 and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-		if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-			npcHandler:say(getPlayerLanguage(player) == "PL" and {
-				"Rozumiesz? Coz, koniec tej historii byl taki, ze musialem opuscic to miejsce. ...",
-				"Nie moglem zbadac tego, co lezy pod schodami, poniewaz byl tam nieprzewidywalny prad. Zanurzenie sie w tych wodach byloby niekontrolowanym ryzykiem, nawet majac srodki do przezycia bez powietrza. ...",
-				"Wiec skorzystalem z przenosnego urzadzenia teleportacyjnego, ktore zainstalowalem w mojej maszynie na wypadek naglej potrzeby, i wrocilem do domu. Moglem zabrac tylko najwazniejsze dokumenty badawcze i musialem zostawic wiekszosc mojego sprzetu w jaskini. ...",
-				"Oczywiscie zostawilem tam tez moje ostatnie notatki z koordynatami. I chocbym mial wyzionac ducha, nie moge sobie przypomniec, gdzie wykopalem te glupia dziure. ...",
-				"Kiedy dotarlem do domu, od razu zaczalem szukac sposobu na poruszanie sie w tych chaotycznych warunkach, gdyby przypadkiem udalo mi sie odnalezc utracone wejscie. Nigdy go nie zapamietalem, ale wyglada na to, ze je znalazles, skoro rzeczywiscie masz moje pierwotne notatki. ...",
-				"Aha, i jesli masz ochote dokonczyc to, co zaczalem - smialo. Masz na to ochote?",
-			} or {
-				"You do? Well, the end of this story was that I had to leave the place. ...",
-				"I couldnt explore what lies below the stairs as there was an unpredictable stream. Diving into these waters would have been an uncontrollable risk, even with the means to survive without any air. ...",
-				"So I used the portable teleporting device I installed into my machine in case of an emergency and went home. I could only take the most important research documents with me and had to leave most of my equipment in the cave. ...",
-				"Of course I also left my final notes with the coordinates there. And for the life of me I cannot remember where I dug that stupid hole. ...",
-				"When I arrived at home I immediately started looking for a way to manoeuvre in these chaotic conditions once I rediscovered the lost entrance. I never remembered it, but it seems you found it as you indeed have my original notes. ...",
-				"Oh and just in case you want to complete what I have started - feel free to do so. Up to it?",
-			}, npc, creature)
-			npcHandler:setTopic(playerId, 22)
-		end
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 22 and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-		if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-			npcHandler:say(getPlayerLanguage(player) == "PL" and {
-				"Coz, jesli naprawde chcesz zglebic te sprawe - moglbym przyjac troche pomocy. Zatem znalazles moja maszyne na tej wyspie? I znalazles notatki z koordynatami? W takim razie mozesz odnalezc wejscie! ...",
-				"Po prostu szukaj wielkiej klatki schodowej z rozleglymi stopniami. Tam jest potezny strumien, ktory uniemozliwi ci dalsze penetrowanie. Ale nie boj sie, faktycznie mozesz tam sie udac - z tymi malymi ulepszeniami, ktore stworzylem. ...",
-				"Najpierw wroc na Piracka Wyspe, z ktorej rozpoczalem swoja ekspedycje wiele lat temu. ...",
-				"Umieszcze to pod twoim obuwiem. Prosze bardzo. A to w twoim nosie. Tak. I nie bedzie juz dla ciebie tam zadnych dalszych problemow. O, no coz, sam sie przekonasz, prawda?",
-			} or {
-				"Well, if you really want to delve into this - I could use some help. So you have found my machine on that island? And you found the notes with the coordinates? Then you can find the entrance! ...",
-				"Just look for a large staircase with sprawling steps. There is an unpassable stream there that will prevent you from venturing further on. But fear not, you can indeed travel down there - with these small enhancements I created. ...",
-				"At first, return to the Pirate Island from where I started my expedition many years ago. ...",
-				"I will put this under your footgear. Here you go. And this in your nose. There. And there will be no further problems for you down there. Except- ah, well youll find out yourself soon enough, wont you?",
-			}, npc, creature)
-			npcHandler:setTopic(playerId, 23)
-		end
-	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 23 and player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-		if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 3 then
-			npcHandler:say(getPlayerLanguage(player) == "PL" and {
-				"No to ruszaj! Przykro mi, ze nie moge zaoferowac ci wiecej pomocy, ale jestem pewien, ze znajdziesz wsparcie w drodze. I - badz ostrozny. Morze bedzie sie czarne jak smola tam na dole.",
-			} or {
-				"Then off you go! Im sorry that I cannot offer you any further help but Im sure you will find support along your way. And - be careful. The sea can appear pitch black down there.",
-			}, npc, creature)
-			player:setStorageValue(Storage.LiquidBlackQuest.Visitor, 4)
-			npcHandler:setTopic(playerId, 24)
-		end
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 21 and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+		npcHandler:say(getPlayerLanguage(player) == "PL" and {
+			"Rozumiesz? Coz, koniec tej historii byl taki, ze musialem opuscic to miejsce. ...",
+			"Nie moglem zbadac tego, co lezy pod schodami, poniewaz byl tam nieprzewidywalny prad. Zanurzenie sie w tych wodach byloby niekontrolowanym ryzykiem, nawet majac srodki do przezycia bez powietrza. ...",
+			"Wiec skorzystalem z przenosnego urzadzenia teleportacyjnego, ktore zainstalowalem w mojej maszynie na wypadek naglej potrzeby, i wrocilem do domu. Moglem zabrac tylko najwazniejsze dokumenty badawcze i musialem zostawic wiekszosc mojego sprzetu w jaskini. ...",
+			"Oczywiscie zostawilem tam tez moje ostatnie notatki z koordynatami. I chocbym mial wyzionac ducha, nie moge sobie przypomniec, gdzie wykopalem te glupia dziure. ...",
+			"Kiedy dotarlem do domu, od razu zaczalem szukac sposobu na poruszanie sie w tych chaotycznych warunkach, gdyby przypadkiem udalo mi sie odnalezc utracone wejscie. Nigdy go nie zapamietalem, ale wyglada na to, ze je znalazles, skoro rzeczywiscie masz moje pierwotne notatki. ...",
+			"Aha, i jesli masz ochote dokonczyc to, co zaczalem - smialo. Masz na to ochote?",
+		} or {
+			"You do? Well, the end of this story was that I had to leave the place. ...",
+			"I couldnt explore what lies below the stairs as there was an unpredictable stream. Diving into these waters would have been an uncontrollable risk, even with the means to survive without any air. ...",
+			"So I used the portable teleporting device I installed into my machine in case of an emergency and went home. I could only take the most important research documents with me and had to leave most of my equipment in the cave. ...",
+			"Of course I also left my final notes with the coordinates there. And for the life of me I cannot remember where I dug that stupid hole. ...",
+			"When I arrived at home I immediately started looking for a way to manoeuvre in these chaotic conditions once I rediscovered the lost entrance. I never remembered it, but it seems you found it as you indeed have my original notes. ...",
+			"Oh and just in case you want to complete what I have started - feel free to do so. Up to it?",
+		}, npc, creature)
+		npcHandler:setTopic(playerId, 22)
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 22 and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+		npcHandler:say(getPlayerLanguage(player) == "PL" and {
+			"Coz, jesli naprawde chcesz zglebic te sprawe - moglbym przyjac troche pomocy. Zatem znalazles moja maszyne na tej wyspie? I znalazles notatki z koordynatami? W takim razie mozesz odnalezc wejscie! ...",
+			"Po prostu szukaj wielkiej klatki schodowej z rozleglymi stopniami. Tam jest potezny strumien, ktory uniemozliwi ci dalsze penetrowanie. Ale nie boj sie, faktycznie mozesz tam sie udac - z tymi malymi ulepszeniami, ktore stworzylem. ...",
+			"Najpierw wroc na Piracka Wyspe, z ktorej rozpoczalem swoja ekspedycje wiele lat temu. ...",
+			"Umieszcze to pod twoim obuwiem. Prosze bardzo. A to w twoim nosie. Tak. I nie bedzie juz dla ciebie tam zadnych dalszych problemow. O, no coz, sam sie przekonasz, prawda?",
+		} or {
+			"Well, if you really want to delve into this - I could use some help. So you have found my machine on that island? And you found the notes with the coordinates? Then you can find the entrance! ...",
+			"Just look for a large staircase with sprawling steps. There is an unpassable stream there that will prevent you from venturing further on. But fear not, you can indeed travel down there - with these small enhancements I created. ...",
+			"At first, return to the Pirate Island from where I started my expedition many years ago. ...",
+			"I will put this under your footgear. Here you go. And this in your nose. There. And there will be no further problems for you down there. Except- ah, well youll find out yourself soon enough, wont you?",
+		}, npc, creature)
+		npcHandler:setTopic(playerId, 23)
+	elseif (MsgContains(message, "yes") or MsgContains(message, "tak")) and npcHandler:getTopic(playerId) == 23 and player:getStorageValueByKey(Storage.LiquidBlack.Visitor) == QuestState.LiquidBlack.TalkToMezamir then
+		npcHandler:say(getPlayerLanguage(player) == "PL" and {
+			"No to ruszaj! Przykro mi, ze nie moge zaoferowac ci wiecej pomocy, ale jestem pewien, ze znajdziesz wsparcie w drodze. I - badz ostrozny. Morze bedzie sie czarne jak smola tam na dole.",
+		} or {
+			"Then off you go! Im sorry that I cannot offer you any further help but Im sure you will find support along your way. And - be careful. The sea can appear pitch black down there.",
+		}, npc, creature)
+		player:setStorageValueByKey(Storage.LiquidBlack.Visitor, QuestState.LiquidBlack.MezamirLetYouUseShortcut)
+		player:setStorageValueByKey(Storage.LiquidBlack.ShortcutAccess, ACCESS_GRANTED)
+		AddExperienceWithAnnouncement(player, 100000)
+		npcHandler:setTopic(playerId, 24)
 	end
 	return true
 end

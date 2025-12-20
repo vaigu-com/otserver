@@ -13,6 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
+--[[
 monster.raceId = 2581
 monster.Bestiary = {
 	class = "Undead",
@@ -25,11 +26,12 @@ monster.Bestiary = {
 	Occurrence = 0,
 	Locations = "Unknown.",
 }
+]]
 
 monster.health = 3000
 monster.maxHealth = 3000
 monster.race = "blood"
-monster.corpse = 26125
+monster.corpse = 12840
 monster.speed = 120
 monster.manaCost = 0
 
@@ -82,6 +84,7 @@ monster.loot = {
 	{ name = "crystal coin", chance = 1000 },
 	{ id = 3036, chance = 2000 },
 	{ id = 11514, chance = 25000, maxCount = 5 },
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {

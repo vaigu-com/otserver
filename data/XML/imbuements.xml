@@ -1,7 +1,10 @@
 <imbuements>
-	<base id="1" name="Basic" price="5000" protectionPrice="10000" percent="90" removecost="15000" duration="72000" />
-	<base id="2" name="Intricate" price="25000" protectionPrice="30000" percent="70" removecost="15000" duration="72000" />
-	<base id="3" name="Powerful" price="100000" protectionPrice="50000" percent="50" removecost="15000" duration="72000" />
+	<base id="1" name="Basic" price="5000" protectionPrice="10000" percent="90" removecost="15000"
+		duration="72000" />
+	<base id="2" name="Intricate" price="30000" protectionPrice="30000" percent="70"
+		removecost="15000" duration="72000" />
+	<base id="3" name="Powerful" price="200000" protectionPrice="50000" percent="50"
+		removecost="15000" duration="72000" />
 
 	<!-- Category Names -->
 	<category id="0" name="Elemental Damage" agressive="1" />
@@ -24,90 +27,105 @@
 	<category id="17" name="Increase Capacity" agressive="0" />
 
 	<!-- Damage Imbuement -->
-	<imbuement name="Scorch" base="1" subgroup=" (Fire)" category="0" iconid="13" premium="0" storage="0" sound="2002">
+	<imbuement name="Scorch" base="1" subgroup=" (Fire)" category="0" iconid="13" premium="0"
+		storage="0" sound="2002">
 		<attribute key="description" value="Converts 10% of the physical damage to fire damage." />
 		<attribute key="effect" type="damage" combat="fire" value="10" />
 		<attribute key="item" value="9636" count="25" />
 	</imbuement>
-	<imbuement name="Scorch" base="2" subgroup=" (Fire)" category="0" iconid="13" premium="1" storage="0">
+	<imbuement name="Scorch" base="2" subgroup=" (Fire)" category="0" iconid="13" premium="1"
+		storage="0">
 		<attribute key="description" value="Converts 25% of the physical damage to fire damage." />
 		<attribute key="effect" type="damage" combat="fire" value="25" />
 		<attribute key="item" value="9636" count="25" />
 		<attribute key="item" value="5920" count="5" />
 	</imbuement>
-	<imbuement name="Scorch" base="3" subgroup=" (Fire)" category="0" iconid="13" premium="1" storage="50494">
+	<imbuement name="Scorch" base="3" subgroup=" (Fire)" category="0" iconid="13" premium="1"
+		storage="50494">
 		<attribute key="description" value="Converts 50% of the physical damage to fire damage." />
 		<attribute key="effect" type="damage" combat="fire" value="50" />
 		<attribute key="item" value="9636" count="25" />
 		<attribute key="item" value="5920" count="5" />
 		<attribute key="item" value="5954" count="5" />
 	</imbuement>
-	<imbuement name="Venom" base="1" subgroup=" (Earth)" category="0" iconid="7" premium="0" storage="0">
+	<imbuement name="Venom" base="1" subgroup=" (Earth)" category="0" iconid="7" premium="0"
+		storage="0">
 		<attribute key="description" value="Converts 10% of the physical damage to earth damage." />
 		<attribute key="effect" type="damage" combat="earth" value="10" />
 		<attribute key="item" value="9686" count="25" />
 	</imbuement>
-	<imbuement name="Venom" base="2" subgroup=" (Earth)" category="0" iconid="7" premium="1" storage="0">
+	<imbuement name="Venom" base="2" subgroup=" (Earth)" category="0" iconid="7" premium="1"
+		storage="0">
 		<attribute key="description" value="Converts 25% of the physical damage to earth damage." />
 		<attribute key="effect" type="damage" combat="earth" value="25" />
 		<attribute key="item" value="9686" count="25" />
 		<attribute key="item" value="9640" count="20" />
 	</imbuement>
-	<imbuement name="Venom" base="3" subgroup=" (Earth)" category="0" iconid="7" premium="1" storage="50492">
+	<imbuement name="Venom" base="3" subgroup=" (Earth)" category="0" iconid="7" premium="1"
+		storage="50492">
 		<attribute key="description" value="Converts 50% of the physical damage to earth damage." />
 		<attribute key="effect" type="damage" combat="earth" value="50" />
 		<attribute key="item" value="9686" count="25" />
 		<attribute key="item" value="9640" count="20" />
 		<attribute key="item" value="21194" count="2" />
 	</imbuement>
-	<imbuement name="Frost" base="1" subgroup=" (Ice)" category="0" iconid="19" premium="0" storage="0">
+	<imbuement name="Frost" base="1" subgroup=" (Ice)" category="0" iconid="19" premium="0"
+		storage="0">
 		<attribute key="description" value="Converts 10% of the physical damage to ice damage." />
 		<attribute key="effect" type="damage" combat="ice" value="10" />
 		<attribute key="item" value="9661" count="25" />
 	</imbuement>
-	<imbuement name="Frost" base="2" subgroup=" (Ice)" category="0" iconid="19" premium="1" storage="0">
+	<imbuement name="Frost" base="2" subgroup=" (Ice)" category="0" iconid="19" premium="1"
+		storage="0">
 		<attribute key="description" value="Converts 25% of the physical damage to ice damage." />
 		<attribute key="effect" type="damage" combat="ice" value="25" />
 		<attribute key="item" value="9661" count="25" />
 		<attribute key="item" value="21801" count="10" />
 	</imbuement>
-	<imbuement name="Frost" base="3" subgroup=" (Ice)" category="0" iconid="19" premium="1" storage="50496">
+	<imbuement name="Frost" base="3" subgroup=" (Ice)" category="0" iconid="19" premium="1"
+		storage="50496">
 		<attribute key="description" value="Converts 50% of the physical damage to ice damage." />
 		<attribute key="effect" type="damage" combat="ice" value="50" />
 		<attribute key="item" value="9661" count="25" />
 		<attribute key="item" value="21801" count="10" />
 		<attribute key="item" value="9650" count="5" />
 	</imbuement>
-	<imbuement name="Electrify" base="1" subgroup=" (Energy)" category="0" iconid="10" premium="0" storage="0">
+	<imbuement name="Electrify" base="1" subgroup=" (Energy)" category="0" iconid="10" premium="0"
+		storage="0">
 		<attribute key="description" value="Converts 10% of the physical damage to energy damage." />
 		<attribute key="effect" type="damage" combat="energy" value="10" />
 		<attribute key="item" value="18993" count="25" />
 	</imbuement>
-	<imbuement name="Electrify" base="2" subgroup=" (Energy)" category="0" iconid="10" premium="1" storage="0">
+	<imbuement name="Electrify" base="2" subgroup=" (Energy)" category="0" iconid="10" premium="1"
+		storage="0">
 		<attribute key="description" value="Converts 25% of the physical damage to energy damage." />
 		<attribute key="effect" type="damage" combat="energy" value="25" />
 		<attribute key="item" value="18993" count="25" />
 		<attribute key="item" value="21975" count="5" />
 	</imbuement>
-	<imbuement name="Electrify" base="3" subgroup=" (Energy)" category="0" iconid="10" premium="1" storage="50490">
+	<imbuement name="Electrify" base="3" subgroup=" (Energy)" category="0" iconid="10" premium="1"
+		storage="50490">
 		<attribute key="description" value="Converts 50% of the physical damage to energy damage." />
 		<attribute key="effect" type="damage" combat="energy" value="50" />
 		<attribute key="item" value="18993" count="25" />
 		<attribute key="item" value="21975" count="5" />
 		<attribute key="item" value="23508" count="1" />
 	</imbuement>
-	<imbuement name="Reap" base="1" subgroup=" (Death)" category="0" iconid="4" premium="0" storage="0">
+	<imbuement name="Reap" base="1" subgroup=" (Death)" category="0" iconid="4" premium="0"
+		storage="0">
 		<attribute key="description" value="Converts 10% of the physical damage to death damage." />
 		<attribute key="effect" type="damage" combat="death" value="10" />
 		<attribute key="item" value="11484" count="25" />
 	</imbuement>
-	<imbuement name="Reap" base="2" subgroup=" (Death)" category="0" iconid="4" premium="1" storage="0">
+	<imbuement name="Reap" base="2" subgroup=" (Death)" category="0" iconid="4" premium="1"
+		storage="0">
 		<attribute key="description" value="Converts 25% of the physical damage to death damage." />
 		<attribute key="effect" type="damage" combat="death" value="25" />
 		<attribute key="item" value="11484" count="25" />
 		<attribute key="item" value="9647" count="20" />
 	</imbuement>
-	<imbuement name="Reap" base="3" subgroup=" (Death)" category="0" iconid="4" premium="1" storage="50488">
+	<imbuement name="Reap" base="3" subgroup=" (Death)" category="0" iconid="4" premium="1"
+		storage="50488">
 		<attribute key="description" value="Converts 50% of the physical damage to death damage." />
 		<attribute key="effect" type="damage" combat="death" value="50" />
 		<attribute key="item" value="11484" count="25" />
@@ -154,18 +172,21 @@
 	</imbuement>
 	<!-- Critical Imbuement -->
 	<imbuement name="Strike" base="1" category="3" iconid="1" premium="0" storage="0">
-		<attribute key="description" value="Raises crit hit damage by 15% and crit hit chance by 10%." />
+		<attribute key="description"
+			value="Raises crit hit damage by 15% and crit hit chance by 10%." />
 		<attribute key="effect" type="skill" value="critical" bonus="1500" chance="1000" />
 		<attribute key="item" value="11444" count="20" />
 	</imbuement>
 	<imbuement name="Strike" base="2" category="3" iconid="1" premium="1" storage="0">
-		<attribute key="description" value="Raises crit hit damage by 25% and crit hit chance by 10%." />
+		<attribute key="description"
+			value="Raises crit hit damage by 25% and crit hit chance by 10%." />
 		<attribute key="effect" type="skill" value="critical" bonus="2500" chance="1000" />
 		<attribute key="item" value="11444" count="20" />
 		<attribute key="item" value="10311" count="25" />
 	</imbuement>
 	<imbuement name="Strike" base="3" category="3" iconid="1" premium="1" storage="50501">
-		<attribute key="description" value="Raises crit hit damage by 50% and crit hit chance by 10%." />
+		<attribute key="description"
+			value="Raises crit hit damage by 50% and crit hit chance by 10%." />
 		<attribute key="effect" type="skill" value="critical" bonus="5000" chance="1000" />
 		<attribute key="item" value="11444" count="20" />
 		<attribute key="item" value="10311" count="25" />

@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_BANE,
 }
 
-monster.health = 59000
-monster.maxHealth = 59000
+monster.health = 12500
+monster.maxHealth = 12500
 monster.race = "blood"
 monster.corpse = 20972
 monster.speed = 130
@@ -69,31 +69,33 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3031, chance = 100000, maxCount = 199 }, -- gold coin
-	{ id = 3035, chance = 37170, maxCount = 14 }, -- platinum coin
-	{ id = 21103, chance = 14630 }, -- glooth injection tube
-	{ id = 238, chance = 11270 }, -- great mana potion
-	{ id = 21143, chance = 10550 }, -- glooth sandwich
-	{ id = 9057, chance = 4320, maxCount = 2 }, -- small topaz
-	{ id = 3032, chance = 3600, maxCount = 2 }, -- small emerald
-	{ id = 21183, chance = 2400 }, -- glooth amulet
-	{ id = 8775, chance = 1920 }, -- gear wheel
-	{ id = 21180, chance = 1200 }, -- glooth axe
-	{ id = 21158, chance = 1200 }, -- glooth spear
-	{ id = 21167, chance = 1200 }, -- heat core
-	{ id = 3037, chance = 960 }, -- yellow gem
-	{ id = 21179, chance = 720 }, -- glooth blade
-	{ id = 21178, chance = 480 }, -- glooth club
-	{ id = 21165, chance = 480 }, -- rubber cap
-	{ id = 3039, chance = 980 }, -- red gem
-	{ id = 21292, chance = 480 }, -- feedbag
-	{ id = 5880, chance = 980 }, -- iron ore
-	{ id = 21144, chance = 280 }, -- bowl of glooth soup
+	{ id = 3035, chance = 47170, maxCount = 14 }, -- platinum coin
+	{ id = 21103, chance = 44630 }, -- glooth injection tube
+	{ id = 238, chance = 71270 }, -- great mana potion
+	{ id = 21143, chance = 80550 }, -- glooth sandwich
+	{ id = 9057, chance = 14320, maxCount = 20 }, -- small topaz
+	{ id = 3032, chance = 13600, maxCount = 20 }, -- small emerald
+	{ id = 21183, chance = 22400 }, -- glooth amulet
+	{ id = 8775, chance = 5920 }, -- gear wheel
+	{ id = 21180, chance = 11200 }, -- glooth axe
+	{ id = 21158, chance = 41200 }, -- glooth spear
+	{ id = 21167, chance = 2200 }, -- heat core
+	{ id = 3037, chance = 14960 }, -- yellow gem
+	{ id = 21179, chance = 14720 }, -- glooth blade
+	{ id = 21178, chance = 14480 }, -- glooth club
+	{ id = 21165, chance = 8480 }, -- rubber cap
+	{ id = 3039, chance = 88980 }, -- red gem
+	{ id = 21292, chance = 19480 }, -- feedbag
+	{ id = 5880, chance = 88980 }, -- iron ore
+	{ id = 21144, chance = 77280 }, -- bowl of glooth soup
+	{ id = 9304, chance = 77280 },
+	{ id = 16114, chance = 27280 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -1900 },
-	{ name = "combat", interval = 1000, chance = 7, type = COMBAT_ENERGYDAMAGE, minDamage = -300, maxDamage = -4000, radius = 6, effect = CONST_ME_ENERGYHIT, target = false }, -- blue energy ultimate explosion
-	{ name = "war golem skill reducer", interval = 2000, chance = 10, target = false }, -- reduces shield "yellow stars beam"
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -1200 },
+	{ name = "combat", interval = 1000, chance = 7, type = COMBAT_ENERGYDAMAGE, minDamage = -300, maxDamage = -2000, radius = 6, effect = CONST_ME_ENERGYHIT, target = false }, -- blue energy ultimate explosion
+	{ name = "war golem skill reducer", interval = 2000, chance = 20, target = false }, -- reduces shield "yellow stars beam"
 	{ name = "glooth fairy skill reducer", interval = 2000, chance = 5, target = false }, -- reduces magic level "great energy beam"
 	{ name = "speed", interval = 2000, chance = 20, speedChange = -400, radius = 6, effect = CONST_ME_POISONAREA, target = true, duration = 60000 }, -- paralyze, poison ultimate explosion
 }
@@ -103,7 +105,7 @@ monster.defenses = {
 	armor = 165,
 	mitigation = 2.37,
 	{ name = "combat", interval = 1000, chance = 10, type = COMBAT_HEALING, minDamage = 200, maxDamage = 250, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "combat", interval = 1000, chance = 1, type = COMBAT_HEALING, minDamage = 7500, maxDamage = 8000, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 1000, chance = 2, type = COMBAT_HEALING, minDamage = 1500, maxDamage = 4000, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {

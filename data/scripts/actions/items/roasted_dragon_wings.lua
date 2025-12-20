@@ -11,6 +11,7 @@ function roastedDragonWings.onUse(player, item, fromPosition, target, toPosition
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addCondition(defenseCondition)

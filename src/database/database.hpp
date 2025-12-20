@@ -10,11 +10,11 @@
 #pragma once
 
 #include "declarations.hpp"
-#include "lib/logging/log_with_spd_log.hpp"
 
 #ifndef USE_PRECOMPILED_HEADERS
 	#include <mysql/mysql.h>
 	#include <mutex>
+	#include <utility>
 #endif
 
 class DBResult;
@@ -24,7 +24,7 @@ class Database {
 public:
 	static const size_t MAX_QUERY_SIZE = 8 * 1024 * 1024; // 8 Mb -- half the default MySQL max_allowed_packet size
 
-	Database() = default;
+	Database();
 	~Database();
 
 	// Singleton - ensures we don't accidentally copy it.
@@ -37,10 +37,27 @@ public:
 
 	bool connect(const std::string* host, const std::string* user, const std::string* password, const std::string* database, uint32_t port, const std::string* sock);
 
-	bool retryQuery(const std::string_view &query, int retries);
-	bool executeQuery(const std::string_view &query);
+	/**
+	 * @brief Creates a backup of the database.
+	 *
+	 * This function generates a backup of the database, with options for compression.
+	 * The backup can be triggered periodically or during specific events like server loading.
+	 *
+	 * The backup operation will only execute if the configuration option `MYSQL_DB_BACKUP`
+	 * is set to true in the `config.lua` file. If this configuration is disabled, the function
+	 * will return without performing any action.
+	 *
+	 * @param compress Indicates whether the backup should be compressed.
+	 * - If `compress` is true, the backup is created during an interval-based save, which occurs every 2 hours.
+	 *   This helps prevent excessive growth in the number of backup files.
+	 * - If `compress` is false, the backup is created during the global save, which is triggered once a day when the server loads.
+	 */
+	void createDatabaseBackup(bool compress) const;
 
-	DBResult_ptr storeQuery(const std::string_view &query);
+	bool retryQuery(std::string_view query, int retries);
+	bool executeQuery(std::string_view query);
+
+	DBResult_ptr storeQuery(std::string_view query);
 
 	std::string escapeString(const std::string &s) const;
 
@@ -58,12 +75,16 @@ public:
 		return maxPacketSize;
 	}
 
+	bool hasHandle() const {
+		return handle;
+	}
+
 private:
 	bool beginTransaction();
 	bool rollback();
 	bool commit();
 
-	bool isRecoverableError(unsigned int error) const;
+	static bool isRecoverableError(unsigned int error);
 
 	MYSQL* handle = nullptr;
 	std::recursive_mutex databaseLock;
@@ -95,8 +116,19 @@ public:
 			return T();
 		}
 
-		T data = 0;
+		T data {};
 		try {
+			// Check if the type T is a enum
+			if constexpr (std::is_enum_v<T>) {
+				using underlying_type = std::underlying_type_t<T>;
+				underlying_type value = 0;
+				if constexpr (std::is_signed_v<underlying_type>) {
+					value = static_cast<underlying_type>(std::stoll(row[it->second]));
+				} else {
+					value = static_cast<underlying_type>(std::stoull(row[it->second]));
+				}
+				return static_cast<T>(value);
+			}
 			// Check if the type T is signed or unsigned
 			if constexpr (std::is_signed_v<T>) {
 				// Check if the type T is int8_t or int16_t
@@ -112,6 +144,11 @@ public:
 				// Check if the type T is int64_t
 				else if constexpr (std::is_same_v<T, int64_t>) {
 					// Use std::stoll to convert string to int64_t
+					data = static_cast<T>(std::stoll(row[it->second]));
+				}
+				// Check if the type T is time_t
+				else if constexpr (std::is_same_v<T, time_t>) {
+					// Use std::stoll to convert string to time_t (usually long long)
 					data = static_cast<T>(std::stoll(row[it->second]));
 				} else {
 					// Throws exception indicating that type T is invalid
@@ -149,8 +186,8 @@ public:
 
 	std::string getString(const std::string &s) const;
 	const char* getStream(const std::string &s, unsigned long &size) const;
-	uint8_t getU8FromString(const std::string &string, const std::string &function) const;
-	int8_t getInt8FromString(const std::string &string, const std::string &function) const;
+	static uint8_t getU8FromString(const std::string &string, const std::string &function);
+	static int8_t getInt8FromString(const std::string &string, const std::string &function);
 
 	size_t countResults() const;
 	bool hasNext() const;
@@ -172,7 +209,7 @@ class DBInsert {
 public:
 	explicit DBInsert(std::string query);
 	void upsert(const std::vector<std::string> &columns);
-	bool addRow(const std::string_view row);
+	bool addRow(std::string_view row);
 	bool addRow(std::ostringstream &row);
 	bool execute();
 
@@ -181,6 +218,16 @@ private:
 	std::string query;
 	std::string values;
 	size_t length;
+};
+
+enum TransactionStatus_t {
+	COMMITTED = 0,
+	ROLLED_BACK = 1,
+};
+
+struct TransactionContext {
+	TransactionStatus_t status;
+	bool callbackResult = false;
 };
 
 class DBTransaction {
@@ -198,18 +245,24 @@ public:
 	DBTransaction &operator=(const DBTransaction &&) = delete;
 
 	template <typename Func>
-	static bool executeWithinTransaction(const Func &toBeExecuted) {
+	static TransactionContext executeWithinTransaction(const Func &callback)
+		requires std::invocable<Func>
+	{
+		TransactionContext context;
 		DBTransaction transaction;
 		try {
 			transaction.begin();
-			bool result = toBeExecuted();
+			const bool callbackResult = callback();
+			context.callbackResult = callbackResult;
 			transaction.commit();
-			return result;
+			context.status = COMMITTED;
 		} catch (const std::exception &exception) {
+			g_logger().error("[{}] Error occurred during transaction. error: {}", __FUNCTION__, exception.what());
 			transaction.rollback();
-			g_logger().error("[{}] Error occurred committing transaction, error: {}", __FUNCTION__, exception.what());
-			return false;
+			g_logger().error("[{}] Transaction was rolled back.", __FUNCTION__);
+			context.status = ROLLED_BACK;
 		}
+		return context;
 	}
 
 private:
@@ -280,10 +333,10 @@ private:
 
 class DatabaseException : public std::exception {
 public:
-	explicit DatabaseException(const std::string &message) :
-		message(message) { }
+	explicit DatabaseException(std::string message) :
+		message(std::move(message)) { }
 
-	virtual const char* what() const throw() {
+	const char* what() const noexcept override {
 		return message.c_str();
 	}
 

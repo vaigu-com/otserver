@@ -25,9 +25,7 @@ monster.corpse = 28643
 monster.speed = 105
 monster.manaCost = 0
 
-monster.events = {
-	"PreceptorLazareDeath",
-}
+monster.events = {}
 
 monster.changeTarget = {
 	interval = 2000,
@@ -72,13 +70,11 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 100000, maxCount = 90 },
-	{ name = "gold coin", chance = 100000, maxCount = 45 },
 	{ name = "platinum coin", chance = 100000, maxCount = 3 },
 	{ name = "great mana potion", chance = 100000, maxCount = 3 },
 	{ name = "demonic essence", chance = 100000, maxCount = 5 },
 	{ id = 3039, chance = 700, maxCount = 3 }, -- red gem
 	{ name = "assassin star", chance = 100000, maxCount = 5 },
-	{ name = "flask of demonic blood", chance = 100000, maxCount = 3 },
 	{ name = "ham", chance = 100000, maxCount = 2 },
 	{ name = "small emerald", chance = 100000, maxCount = 5 },
 	{ name = "small diamond", chance = 100000, maxCount = 4 },
@@ -87,13 +83,13 @@ monster.loot = {
 	{ name = "golden armor", chance = 2200 },
 	{ name = "patch of fine cloth", chance = 1800, maxCount = 3 },
 	{ name = "violet gem", chance = 1800 },
-	{ name = "titan axe", chance = 1600 },
 	{ name = "war axe", chance = 1400 },
-	{ name = "demonbone amulet", chance = 800 },
+	{ name = "demonbone amulet", chance = 1800 },
 	{ name = "heavy mace", chance = 600 },
-	{ name = "mastermind shield", chance = 500 },
-	{ name = "falcon rod", chance = 200 },
-	{ name = "falcon greaves", chance = 110 },
+	{ name = "mastermind shield", chance = 1500 },
+	{ name = "falcon rod", chance = 250 },
+	{ name = "falcon wand", chance = 250 },
+	{ name = "falcon greaves", chance = 400 },
 }
 
 monster.attacks = {
@@ -129,19 +125,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

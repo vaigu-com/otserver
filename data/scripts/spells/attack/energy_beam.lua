@@ -28,15 +28,13 @@ local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
 	local player = creature:getPlayer()
-	if creature and player and player:instantSkillWOD("Beam Mastery") then
-		var.runeName = "Beam Mastery"
-		return combatWOD:execute(creature, var)
+	if not creature or not player then
+		return false
 	end
-	return combat:execute(creature, var)
+	return player:instantSkillWOD("Beam Mastery") and combatWOD:execute(creature, var) or combat:execute(creature, var)
 end
 
 spell:group("attack")
-spell:id(22)
 spell:name("Energy Beam")
 spell:words("exevo vis lux")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_ENERGY_BEAM)

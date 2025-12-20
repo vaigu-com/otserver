@@ -1,4 +1,3 @@
---[[
 local mType = Game.createMonsterType("Pinata Dragon")
 local monster = {}
 
@@ -52,12 +51,7 @@ monster.light = {
 	color = 0,
 }
 
-monster.summon = {
-	maxSummons = 3,
-	summons = {
-		{ name = "Demon", chance = 7, interval = 2000, count = 3 },
-	},
-}
+monster.summon = {}
 
 monster.voices = {
 	interval = 5000,
@@ -70,27 +64,47 @@ monster.voices = {
 	{ text = "Bring it on!", yell = false },
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "silver raid token", chance = 100000, maxCount = 5 },
+	{ name = "candy", chance = 100000, maxCount = 5 },
+	{ id = 6570, maxCount = 2, chance = 50000 }, -- surprise bag
+	{ name = "cookie", maxCount = 5, chance = 50000 },
+	{ name = "winterberry liquor", chance = 14000 },
+	{ name = "meringue cake", chance = 10000 },
+	{ name = "bar of chocolate", chance = 7000 },
+	{ name = "pinata", chance = 6000 },
+	{ id = 653, chance = 20000 },
+	{ id = 655, chance = 4000 },
+	{ id = 654, chance = 6000 },
+	{ id = 24949, chance = 5000 },
+	{ name = "festive backpack", chance = 5000 },
+	{ name = "party cake", chance = 5000 },
+	{ name = "chocolatey dragon scale legs", chance = 3000 },
+	{ name = "ferumbras' candy hat", chance = 2000 },
+	{ id = 2991, chance = 800 }, -- doll
+	{ name = "toy mouse", chance = 300 },
+	{ name = "ferumbras puppet", chance = 250 },
+	{ id = 5791, chance = 30 }, -- stuffed dragon
+}
 
 monster.attacks = {}
 
 monster.defenses = {
 	defense = 1,
 	armor = 1,
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_HEALING, effect = CONST_ME_MORTAREA, target = false },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 100 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 100 },
-	{ type = COMBAT_LIFEDRAIN, percent = 100 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
-	{ type = COMBAT_DROWNDAMAGE, percent = 100 },
-	{ type = COMBAT_ICEDAMAGE, percent = 100 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 100 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 
 monster.immunities = {
@@ -101,4 +115,3 @@ monster.immunities = {
 }
 
 mType:register(monster)
-]]

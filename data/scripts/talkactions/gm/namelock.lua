@@ -23,20 +23,20 @@ function namelock.onSay(player, words, param)
 		return true
 	end
 
-	local target = Player(name)
+	local targetPlayer = Player(name)
 	local online = true
-	if not target then
-		target = Game.getOfflinePlayer(name)
+	if not targetPlayer then
+		targetPlayer = Game.getOfflinePlayer(name)
 		online = false
 	end
-	if target and target:isPlayer() then
-		target:kv():set("namelock", reason)
-		local text = target:getName() .. " has been namelocked"
+	if targetPlayer and targetPlayer:isPlayer() then
+		targetPlayer:setStorageValueByKey(Storage.Namelock, reason)
+		local text = targetPlayer:getName() .. " has been namelocked"
 		logger.info(text .. ", reason: " .. reason)
 		player:sendTextMessage(MESSAGE_ADMINISTRATOR, text)
 		Webhook.sendMessage("Player Namelocked", text .. " reason: " .. reason .. ".", WEBHOOK_COLOR_YELLOW, announcementChannels["serverAnnouncements"])
 		if online then
-			CheckNamelock(target)
+			CheckNamelock(targetPlayer)
 		end
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, name .. " was not found.")

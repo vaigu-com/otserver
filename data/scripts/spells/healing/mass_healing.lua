@@ -1,7 +1,7 @@
 local function targetFunction(creature, target)
 	local player = creature:getPlayer()
-	local min = ((player:getLevel() / 5) + (player:getMagicLevel() * 5.7) + 26)
-	local max = ((player:getLevel() / 5) + (player:getMagicLevel() * 10.43) + 62)
+	local min = ((player:getLevel() / 5) + (player:getMagicLevel() * 5.7) + 100)
+	local max = ((player:getLevel() / 5) + (player:getMagicLevel() * 10.43) + 125)
 
 	local bosses = { "leiden", "ravennous hunger", "dorokoll the mystic", "eshtaba the conjurer", "eliz the unyielding", "mezlon the defiler", "malkhar deathbringer", "containment crystal" }
 	local master = target:getMaster()
@@ -35,7 +35,7 @@ local function createCombat(area, combatFunc)
 end
 
 local combat = createCombat(AREA_CIRCLE3X3, "onTargetCreature")
-local combatWOD = createCombat(AREA_CIRCLE5X5, "onTargetCreatureWOD")
+local combatWOD = createCombat(AREA_CIRCLE3X4, "onTargetCreatureWOD")
 
 local spell = Spell("instant")
 
@@ -53,7 +53,6 @@ spell:name("Mass Healing")
 spell:words("exura gran mas res")
 spell:group("healing")
 spell:vocation("druid;true", "elder druid;true")
-spell:id(82)
 spell:cooldown(2 * 1000)
 spell:groupCooldown(1 * 1000)
 spell:level(36)

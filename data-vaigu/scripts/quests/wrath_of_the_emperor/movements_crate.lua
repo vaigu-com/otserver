@@ -219,7 +219,7 @@ local positions = {
 function catchPlayer(player)
 	player:removeCondition(CONDITION_OUTFIT)
 	player:removeItem(11328, 1)
-	player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.GuardcaughtYou, 1)
+	player:setStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.GuardcaughtYou, 1)
 	player:teleportTo({ x = 33361, y = 31206, z = 8 }, false)
 	player:say("The guards have spotted you. You were forcibly dragged into a small cell. It looks like you need to build another disguise.", TALKTYPE_MONSTER_SAY)
 	return true
@@ -257,9 +257,9 @@ function crate.onStepIn(creature, item, position, fromPosition, toPosition)
 				end
 			end
 		elseif j >= 21 and j <= 25 then
-			if player:getPosition() == Position(positions[j]) and player:getStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Message) ~= 1 then
+			if player:getPosition() == Position(positions[j]) and player:getStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Message) ~= 1 then
 				player:say("Guards heavily patrol this area. Try to stay hidden and do not draw any attention to yourself by trying to attack.", TALKTYPE_MONSTER_SAY)
-				player:setStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Message, 1)
+				player:setStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Message, 1)
 			end
 		elseif j >= 26 and j <= 175 then
 			if player:getPosition() == Position(positions[j]) then
@@ -267,19 +267,19 @@ function crate.onStepIn(creature, item, position, fromPosition, toPosition)
 			end
 		elseif j >= 176 and j <= 183 then
 			if player:getPosition() == Position(positions[j]) then
-				if Game.getStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Light01) ~= 1 then
+				if Game.getStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Light01) ~= 1 then
 					catchPlayer(player)
 				end
 			end
 		elseif j >= 184 and j <= 197 then
 			if player:getPosition() == Position(positions[j]) then
-				if Game.getStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Light02) ~= 1 then
+				if Game.getStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Light02) ~= 1 then
 					catchPlayer(player)
 				end
 			end
 		elseif j >= 198 and j <= 204 then
 			if player:getPosition() == Position(positions[j]) then
-				if Game.getStorageValue(Storage.Quest.U8_6.WrathOfTheEmperor.Light03) ~= 1 then
+				if Game.getStorageValueByKey(Storage.Quest.U8_6.WrathOfTheEmperor.Light03) ~= 1 then
 					catchPlayer(player)
 				end
 			end

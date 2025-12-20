@@ -8,6 +8,7 @@ function filledJalapenoPeppers.onUse(player, item, fromPosition, target, toPosit
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addCondition(speedCondition)

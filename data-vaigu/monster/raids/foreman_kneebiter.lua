@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Foreman Kneebiter")
 local monster = {}
 
 monster.description = "Foreman Kneebiter"
-monster.experience = 445
+monster.experience = 1445
 monster.outfit = {
 	lookType = 70,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 570
-monster.maxHealth = 570
+monster.health = 870
+monster.maxHealth = 870
 monster.race = "blood"
 monster.corpse = 6013
 monster.speed = 100
@@ -69,9 +69,10 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 5880, chance = 2500, maxCount = 2 }, -- iron ore
-	{ id = 3031, chance = 90000, maxCount = 100 }, -- gold coin
-	{ id = 3413, chance = 6666 }, -- battle shield
+	{ id = 5880, chance = 25000, maxCount = 10 }, -- iron ore
+	{ id = 3035, chance = 90000, maxCount = 10 }, -- platinum coin
+	{ id = 3415, chance = 6666 }, -- guardian shield
+	{ id = 9084, chance = 7866 },
 }
 
 monster.attacks = {

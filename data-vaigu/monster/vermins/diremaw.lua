@@ -13,9 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.events = {
-	"WarzoneWormDeath",
-}
+monster.events = {}
 
 monster.raceId = 1532
 monster.Bestiary = {

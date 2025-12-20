@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 25000
-monster.maxHealth = 25000
+monster.health = 15000
+monster.maxHealth = 15000
 monster.race = "blood"
 monster.corpse = 31419
 monster.speed = 115
@@ -40,7 +40,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -65,38 +65,30 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "dagger", chance = 5052 },
 	{ name = "crystal coin", chance = 4323, maxCount = 1 },
 	{ name = "sacred tree amulet", chance = 781 },
-	{ name = "gold ingot", chance = 677, maxCount = 1 },
+	{ name = "gold ingot", chance = 1677, maxCount = 5 },
 	{ name = "lightning headband", chance = 469 },
-	{ name = "underworld rod", chance = 469 },
 	{ name = "violet gem", chance = 469 },
-	{ name = "wand of cosmic energy", chance = 469 },
-	{ name = "onyx chip", chance = 417 },
+	{ name = "onyx chip", chance = 22417 },
 	{ name = "rainbow quartz", chance = 417 },
 	{ name = "small diamond", chance = 417 },
-	{ name = "wand of inferno", chance = 417 },
-	{ name = "knight armor", chance = 365 },
 	{ name = "lightning pendant", chance = 365 },
 	{ name = "small emerald", chance = 365 },
-	{ name = "focus cape", chance = 313 },
 	{ name = "magma coat", chance = 313 },
-	{ id = 3098, chance = 313 }, -- ring of healing
-	{ name = "wand of starstorm", chance = 313 },
+	{ id = 3098, chance = 77313 }, -- ring of healing
 	{ name = "magma boots", chance = 260 },
 	{ name = "metal spats", chance = 260 },
-	{ name = "warrior's shield", chance = 260 },
-	{ id = 3097, chance = 208 }, -- dwarven ring
-	{ name = "golden mask", chance = 208 },
-	{ name = "terra hood", chance = 208 },
-	{ name = "eye-embroidered veil", chance = 156 },
-	{ id = 23531, chance = 156 }, -- ring of green plasma
-	{ name = "terra boots", chance = 156 },
+	{ id = 3097, chance = 44208 }, -- dwarven ring
+	{ name = "golden mask", chance = 3208 },
+	{ name = "eye-embroidered veil", chance = 4156 },
+	{ id = 23531, chance = 27156 }, -- ring of green plasma
 	{ name = "yellow gem", chance = 156 },
 	{ name = "lightning legs", chance = 104 },
 	{ name = "sea horse figurine", chance = 104 },
 	{ name = "tagralt-inlaid scabbard", chance = 52 },
+	{ id = 36810, chance = 8156 },
+	{ id = 18339, chance = 8156 },
 }
 
 monster.attacks = {
@@ -112,16 +104,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 5 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 15 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -15 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 10 },
+	{ type = COMBAT_FIREDAMAGE, percent = 80 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = -25 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -45 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 40 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 30 },
 }
 
 monster.immunities = {

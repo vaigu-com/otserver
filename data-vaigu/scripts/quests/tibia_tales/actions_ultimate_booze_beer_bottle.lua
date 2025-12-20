@@ -4,11 +4,11 @@ function ultimateBoozer.onUse(player, item, fromPosition, target, toPosition, is
 		return false
 	end
 
-	if player:getStorageValue(Storage.TibiaTales.UltimateBoozeQuest) == 1 then
-		player:setStorageValue(Storage.TibiaTales.UltimateBoozeQuest, 2)
+	if player:getStorageValueByKey(Storage.TibiaTales.UltimateBoozeQuest) == 1 then
+		player:setStorageValueByKey(Storage.TibiaTales.UltimateBoozeQuest, 2)
 	end
 	player:removeItem(138, 1)
-	player:addItem(136, 1)
+	player:AddCustomItem({ id = 136, count = 1 })
 	player:say("GULP, GULP, GULP", TALKTYPE_MONSTER_SAY, false, 0, toPosition)
 	toPosition:sendMagicEffect(CONST_ME_SOUND_YELLOW)
 	return true

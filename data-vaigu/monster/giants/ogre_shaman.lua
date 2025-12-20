@@ -108,6 +108,8 @@ monster.loot = {
 	{ id = 22192, chance = 300 }, -- shamanic mask
 	{ id = 3002, chance = 100 }, -- voodoo doll
 	{ id = 2965, chance = 100, maxCount = 2 }, -- didgeridoo
+	{ id = 32009, chance = 100 },
+	{ id = 32100, chance = 300 },
 }
 
 monster.attacks = {

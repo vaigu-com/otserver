@@ -209,12 +209,6 @@ local playerFunctions = {
 			return player:setBankBalance(target + player:getBankBalance())
 		end,
 	},
-	["save"] = {
-		isActive = true,
-		targetFunction = function(player, target)
-			return player:save()
-		end,
-	},
 	["type"] = {
 		isActive = true,
 		targetFunction = function(player, target)
@@ -242,7 +236,7 @@ local playerFunctions = {
 	["addItem"] = {
 		isActive = true,
 		targetFunction = function(player, target)
-			return player:addItem(target, 1)
+			return player:AddCustomItem({ id = target })
 		end,
 	},
 	["removeItem"] = {

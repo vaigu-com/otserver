@@ -13,9 +13,7 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.events = {
-	"CarlinVortexDeath",
-}
+monster.events = {}
 
 monster.raceId = 1514
 monster.Bestiary = {
@@ -81,6 +79,7 @@ monster.voices = {
 }
 
 monster.loot = {
+	{ name = "platinum coin", chance = 50000, maxCount = 9 },
 	{ id = 3446, chance = 90450, maxCount = 10 }, -- bolt
 	{ id = 3031, chance = 75410, maxCount = 30 }, -- gold coin
 	{ id = 3592, chance = 15400 }, -- grapes

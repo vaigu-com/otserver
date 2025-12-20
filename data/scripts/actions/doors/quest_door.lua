@@ -1,38 +1,44 @@
-local doorIds = {}
-for index, value in ipairs(QuestDoorTable) do
-	if not table.contains(doorIds, value.openDoor) then
-		table.insert(doorIds, value.openDoor)
-	end
-
-	if not table.contains(doorIds, value.closedDoor) then
-		table.insert(doorIds, value.closedDoor)
-	end
+local closedToOpen = {}
+local openToClosed = {}
+for _, value in pairs(QuestDoorTable) do
+	closedToOpen[value.closedDoor] = value.openDoor
+	closedToOpen[value.openDoor] = value.closedDoor
 end
 
-local questDoor = Action()
-function questDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	for index, value in ipairs(QuestDoorTable) do
-		if value.closedDoor == item.itemid then
-			if item.actionid > 0 and player:getStorageValue(item.actionid) ~= -1 then
-				item:transform(value.openDoor)
-				item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
-				player:teleportTo(toPosition, true)
-				return true
-			else
-				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The door seems to be sealed against unwanted intruders.")
-				return true
-			end
-		end
+local closedDoor = Action()
+function closedDoor.onUse(player, door, fromPosition, target, toPosition, isHotkey)
+	local key = door:getKey()
+	if player:getStorageValueByKey(key) == ACCESS_NOT_GRANTED then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The door seems to be sealed against unwanted intruders.")
+		return true
 	end
+	door:transform(closedToOpen[door:getId()])
+	door:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
+	player:teleportTo(toPosition, true)
+
+	return true
+end
+for _, value in pairs(QuestDoorTable) do
+	closedDoor:id(value.closedDoor)
+end
+closedDoor:register()
+
+local openDoor = Action()
+function openDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	local key = item:getKey()
+	if player:getStorageValueByKey(key) == ACCESS_NOT_GRANTED then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The door seems to be sealed against unwanted intruders.")
+		return true
+	end
+	item:transform(openToClosed[item:getId()])
+	item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
 
 	if Creature.checkCreatureInsideDoor(player, toPosition) then
 		return true
 	end
 	return true
 end
-
-for index, value in ipairs(doorIds) do
-	questDoor:id(value)
+for _, value in pairs(QuestDoorTable) do
+	openDoor:id(value.openDoor)
 end
-
-questDoor:register()
+openDoor:register()

@@ -1,3 +1,307 @@
+function Item:getText()
+	if self:hasAttribute(ITEM_ATTRIBUTE_TEXT) then
+		return self:getAttribute(ITEM_ATTRIBUTE_TEXT)
+	end
+end
+
+function IsFluidContainer(id)
+	local itemType = ItemType(id)
+	if not itemType then
+		return false
+	end
+	return itemType:isFluidContainer()
+end
+
+local dirToOpposite = {
+	[DIRECTION_NORTH] = DIRECTION_SOUTH,
+	[DIRECTION_EAST] = DIRECTION_WEST,
+	[DIRECTION_SOUTH] = DIRECTIODIRECTION_EASTN_NORTH,
+	[DIRECTION_WEST] = DIRECTION_EAST,
+
+	[DIRECTION_NORTHEAST] = DIRECTION_SOUTHWEST,
+	[DIRECTION_SOUTHEAST] = DIRECTION_NORTHWEST,
+	[DIRECTION_SOUTHWEST] = DIRECTION_NORTHEAST,
+	[DIRECTION_NORTHWEST] = DIRECTION_SOUTHEAST,
+}
+
+function CalculateOppositeDirection(dir)
+	return dirToOpposite[dir]
+end
+
+function extractKeySuffix(key)
+	if key == nil or type(key) ~= "string" then
+		return key
+	end
+	local lastmatch = key:match("([^.]+)$")
+	return lastmatch
+end
+
+function math.clamp(value, min, max)
+	if value < min then
+		return min
+	end
+	if value > max then
+		return max
+	end
+	return value
+end
+
+function Player:isMale()
+	return self:getSex() == PLAYERSEX_MALE
+end
+
+local defaultSeparator = ",\n"
+function RequiredItemNamesCountToString(items, separator)
+	local text = ""
+	if TableSize(items) == 0 then
+		logger.warn("[RequiredItemNamesCountToString] items size is 0")
+		return text
+	end
+	separator = separator or defaultSeparator
+	for _, item in pairs(items) do
+		text = text .. T(":count: :name::separator:", { count = item.count, name = ItemType(item.id):getName(), separator = separator })
+	end
+	return text:sub(1, -3)
+end
+
+function RequiredItemNamesToString(items, separator)
+	local text = ""
+	if TableSize(items) == 0 then
+		logger.warn("[RequiredItemNamesToString] items size is 0")
+		return text
+	end
+	separator = separator or defaultSeparator
+	for _, item in pairs(items) do
+		text = text .. T(":name::separator:", { name = ItemType(item.id):getName(), separator = separator })
+	end
+	return text:sub(1, -3)
+end
+
+function who_called_me()
+	local info = debug.getinfo(2, "n")
+	if info and info.name then
+		return info.name
+	else
+		return "<unknown>"
+	end
+end
+
+---@param str string
+---@param filename string eg. output.lua
+---@return boolean success
+function SerializeToUtilFolder(str, filename)
+	local file, err = io.open("utility_scripts/" .. filename, "w+")
+	if not file then
+		logger.warn("[SerializeToUtilFolder] Error opening file: " .. err)
+		return false
+	end
+	file:write(str)
+	file:flush()
+	file:close()
+	logger.warn(T("[SerializeToUtilFolder][:caller: caller] serialized file :filename: ", { caller = who_called_me(), filename = filename }))
+	return true
+end
+
+function Player:teleportToReflectedPoint(midpoint)
+	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
+	local reflectedPoint = midpoint:Moved(vectorToMidpoint)
+	self:teleportTo(reflectedPoint)
+end
+
+function Player:teleportToOtherSideIfNonDiagonal(midpoint)
+	local vectorToMidpoint = self:getPosition():VectorTo(midpoint)
+	if not vectorToMidpoint:IsFacingDiagonalSnap() then
+		self:teleportTo(midpoint:MovedByVector(vectorToMidpoint))
+	end
+end
+
+function Class()
+	local class = {}
+	class.index = class
+	setmetatable(class, {
+		call = function(class, ...)
+			return class:_new(...)
+		end,
+	})
+	class._new = function(obj, ...)
+		local newObj = class:New(...)
+		setmetatable(newObj, class)
+		return newObj
+	end
+	return class
+end
+
+function Game.createDelayedEffects(position, effect, effectCount, delayBetweenEffectsSeconds)
+	effect = effect or CONST_ME_TELEPORT
+	effectCount = effectCount or 3
+	for i = 1, effectCount do
+		addEvent(function()
+			position:sendMagicEffect(effect)
+		end, i * delayBetweenEffectsSeconds * 1000)
+	end
+end
+
+TRANSFERABLE_COINS_GAIN_MULTIPLIER = 10
+function Player:AddAllCoins(coins)
+	self:addTibiaCoins(coins)
+	self:addTransferableCoins(coins * TRANSFERABLE_COINS_GAIN_MULTIPLIER)
+end
+
+---@param damageMap table
+---@param lastHitKiller nil|Creature
+---@return table topKillers -- lastHitKiller is considered the to have top damage regardles of actual damage
+function GetTopKillers(damageMap, lastHitKiller)
+	if not (lastHitKiller and lastHitKiller:getPlayer()) then
+		lastHitKiller = nil
+	end
+
+	local damageMapSorted = {}
+	for playerId, damage in pairs(damageMap) do
+		local player = Player(playerId)
+		if not player then
+			goto continue
+		end
+		if player == lastHitKiller then
+			goto continue
+		end
+		table.insert(damageMapSorted, { player = player, damage = damage.total })
+		::continue::
+	end
+
+	table.sort(damageMapSorted, function(a, b)
+		return a.damage > b.damage
+	end)
+
+	local topKillers = { lastHitKiller }
+	for _, playerDamage in pairs(damageMapSorted) do
+		table.insert(topKillers, playerDamage.player)
+	end
+	return topKillers
+end
+
+function SecondsToMinSec(seconds)
+	local minutes = math.floor(seconds / 60)
+	local remainingSeconds = seconds % 60
+	return minutes, remainingSeconds
+end
+
+function FirstCharToUpper(str)
+	return str:gsub("^%l", string.upper)
+end
+
+function Player:getFiveBlessingsCost()
+	local level = self:getLevel()
+	if level <= MAX_LVL_TO_GET_FREE_BLESS then
+		return 0
+	end
+	return getBlessingsCost(level) * 5
+end
+
+function ItemsToString(items)
+	items = items or {}
+
+	local str = ""
+	for _, item in pairs(items) do
+		local id = item.id
+		local itemName = ItemType(id):getName()
+		local count = item.count
+		str = str .. T(":count: :itemName:\n", {
+			count = count,
+			itemName = itemName,
+		})
+	end
+	return str
+end
+
+local function validateKey(key)
+	if type(key) ~= "string" then
+		logger.error(debug.traceback("[validateKey] key is not string"))
+		key = tostring(key)
+	end
+	if key == nil then
+		logger.error(debug.traceback("[Player:setStorageValueByKey] key is nil"))
+		error("[Player:setStorageValueByKey] key is nil")
+	end
+	local components = key:split("-")
+	if not components then
+		logger.error(debug.traceback("[Player:setStorageValueByKey] key has no components"))
+	end
+	for i, component in ipairs(components) do
+		if component == "" then
+			logger.error(debug.traceback(T("[Player:setStorageValueByKey] key :key: component :i: is empty string", { key = key, i = i })))
+		end
+	end
+end
+
+---using key types other than string/number is not recommended
+---@param key string|number|any
+---@return any any If present, returns value in player kv store, else returns default value
+function Player:getStorageValueByKey(key)
+	validateKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+---@param key string|number|any
+---@return any any If present, returns value in player kv store, else returns nil
+function Player:getStorageValueByKeyRaw(key, type)
+	return self:kv():get(key)
+end
+
+---@param key string|number|any
+---@param nextValue any
+---@return any
+function Player:setStorageValueByKey(key, nextValue)
+	validateKey(key)
+	local previousValue = self:getStorageValueByKey(key)
+	self:kv():set(key, nextValue)
+	self:updateStorage(key, nextValue, previousValue, os.time())
+end
+
+---@param key string|number|any
+function Player:removeStorageValueByKey(key)
+	local previousValue = self:getStorageValueByKey(key)
+	self:kv():remove(key)
+	self:updateStorage(key, nil, previousValue, os.time())
+end
+
+function Player:incrementStorageByKey(key, addend)
+	addend = addend or 1
+	local currentValue = self:getStorageValueByKey(key)
+	local nextValue = currentValue + addend
+	self:setStorageValueByKey(key, nextValue)
+end
+function Player:incrementStorageByKeyClampZero(key, addend)
+	addend = addend or 1
+	local currentValue = self:getStorageValueByKey(key)
+	local nextValue = math.max(currentValue, 0) + addend
+	self:setStorageValueByKey(key, nextValue)
+end
+
+function Game.getStorageValueByKey(key)
+	return kv.get(key) or MISSION_NOT_STARTED
+end
+function Game.setStorageValueByKey(key, value)
+	return kv.set(key, value)
+end
+
+function Shop:getStorageValueByKey(key)
+	return self:kv():get(key) or MISSION_NOT_STARTED
+end
+function Shop:setStorageValueByKey(key, value)
+	return self:kv():set(key, value)
+end
+
+function T(template, variables)
+	if not variables then
+		logger.warn(debug.traceback("[T] no variables table provided"))
+	end
+
+	local filledTemplate = template
+	for key, value in pairs(variables) do
+		filledTemplate = filledTemplate:gsub(":" .. key .. ":", value)
+	end
+	return filledTemplate
+end
+
 NUMBER_TO_ORDINAL_STRING = {
 	[1] = "first",
 	[2] = "second",
@@ -18,7 +322,12 @@ NUMBER_TO_ORDINAL_STRING = {
 
 ---@deprecated
 RegisterEncounter = function()
-	logger.error("[RegisterEncounter] is deprecated. Use EncounterData and Encounter")
+	logger.error("[RegisterEncounter] is deprecated. Use EncounterData()")
+end
+
+function Player:ExpForNextlevel()
+	local nextLevel = self:getLevel() + 1
+	return Game.getExperienceForLevel(nextLevel) - self:getExperience()
 end
 
 function SendPlayerIsPzLocked(player)
@@ -26,37 +335,19 @@ function SendPlayerIsPzLocked(player)
 end
 
 function Player:errorIfCannotUseCooldownItem(cooldownKV)
-	if self:isOnEvent() then
+	if self:isOnMinigame() then
 		return "You cannot use this item on events."
 	end
 	if self:hasExhaustion(cooldownKV) then
 		return "You need to wait before using this again."
 	end
-	return true
+	return nil
 end
 
-function Player:isOnEvent()
-	if
-		self:getStorageValue(Storage.GrimEvent.Joined) >= 1
-		or self:getStorageValue(Storage.hasteLock) == 1
-		or self:getStorageValue(Storage.healLock) == 1
-	then
-		return true
-	end
-end
-
-function T(template, variables)
-	local result = template
-	for key, value in pairs(variables) do
-		result = result:gsub(":" .. key .. ":", value)
-	end
-	return result
-end
-
-function RegisterOnLook(callback, stringIdentifier, questId)
-	questId = questId or LOCALIZER_UNIVERSAL
-	for language, quests in pairs(TRANSLATION_TABLES) do
-		quests[questId][stringIdentifier] = callback
+function RegisterOnLook(callback, stringIdentifier, localizer)
+	localizer = localizer or LOCALIZERS.Universal
+	for language, localizerToStrIdentifier in pairs(TRANSLATION_TABLES) do
+		localizerToStrIdentifier[localizer][stringIdentifier] = callback
 	end
 end
 
@@ -130,106 +421,20 @@ function Game.startCountdown(position, totalSeconds)
 		spectator:say(output, TALKTYPE_MONSTER_SAY, true, spectator, position)
 	end
 
-	addEvent(Game.setCountdown, 1000, position, seconds - 1)
+	addEvent(Game.startCountdown, 1000, position, seconds - 1)
 end
 
-local nextAvailableSpellId = 40000
+local nextSpellId = 1000000
 function NextSpellId()
-	nextAvailableSpellId = nextAvailableSpellId + 1
-	local nextAvailableSpellIdString = "###" .. nextAvailableSpellId
-	return nextAvailableSpellIdString
+	nextSpellId = nextSpellId + 1
+	return nextSpellId
 end
 
-function SimpleTextDisplay(player, item, string)
-	local title = "You read the following."
-	local message = string or ("Report this bug to the gamemaster. Debug info: AID:" .. item:getActionId())
-	local close = "Close"
-	local aid = item:getActionId()
-
-	player:registerEvent("SimpleDisplayOnLook")
-
-	local window = ModalWindow(aid, title, message)
-	window:addButton(101, close)
-	window:setDefaultEscapeButton(101)
-
-	window:sendToPlayer(player)
-	player:unregisterEvent("SimpleDisplayOnLook")
-	return DONT_SHOW_ONLOOK
-end
-
--- usage: [storage] = "english description",
-local aidToCustomDesc = {
-	-- keys
-	[5003] = "Don't let the skeletons out!",
-	-- misc
-	[5640] = "a honeyflower patch.",
-	[5641] = "a banana palm.",
-	[5642] = "a gargoyle statue.\n You read: \n\n Either loved or hated \n\nCitizen Honoris Causa\n\nPtaaq",
-	[11082] = "Map of burried spell.",
-	[11083] = "Map of brasilian Ratland.",
-	[11085] = "Overdue package.\nThis is a big parcel with lot of orders. The recipient is the Mirkotown depot, 2nd floor",
-	[11086] = "Bait in a can.",
-	[11088] = "Anon's father's float.",
-	[11090] = "Anon's father's fishing reel.",
-	[11092] = "Anon's father's stool.",
-}
-
-local function tryFindAnyDescription(onLookContext)
-	local player = onLookContext.player
-	local item = onLookContext.item
-	local description = aidToCustomDesc[item:getActionId()] or item:getAttribute(ITEM_ATTRIBUTE_DESCRIPTION)
-	local translatedDescription = player:Localizer(nil):Context({ item = item, player = player }):Get(description)
-	if translatedDescription and translatedDescription ~= "" then
-		return nil, translatedDescription
-	end
-	if description and description ~= "" then
-		return nil, description
-	end
-end
-
-local function tryDisplayItemText(onLookContext)
-	local player = onLookContext.player
-	local item = onLookContext.item
-	local text = item:getAttribute(ITEM_ATTRIBUTE_TEXT)
-	if text == nil or text == "" then
-		return
-	end
-
-	local translatedText = player:Localizer(nil):Context({ item = item }):Get(text)
-	if translatedText and translatedText ~= "" then
-		SimpleTextDisplay(player, item, translatedText)
-		return DONT_SHOW_ONLOOK
-	end
-	return text
-end
-
-local function tryInvokeCustomFunction(onLookContext)
-	return onLookContext.onLook(onLookContext)
-end
-
-local displayFuctions = {
-	tryDisplayItemText,
-	tryInvokeCustomFunction,
-	tryFindAnyDescription,
-}
-
-function ParseCustomOnLook(item, player)
-	local aid = item:getActionId()
-	if not aid or aid <= 0 then
-		return nil
-	end
-
-	local itemConfig = CustomItemRegistry():GetState(aid)
-	local onLookContext = { player = player, aid = aid, item = item, onLook = itemConfig.onLook }
-	for _, check in pairs(displayFuctions) do
-		local status, description = check(onLookContext)
-		if status == DONT_SHOW_ONLOOK then
-			return DONT_SHOW_ONLOOK
-		end
-		if description then
-			return description
-		end
-	end
+local nextWordId = 2000000
+function NextSpellWords()
+	nextWordId = nextWordId + 1
+	local nextWord = "###" .. nextWordId
+	return nextWord
 end
 
 local maxSearchDepth = 10
@@ -271,20 +476,41 @@ function Player:ClearConditions(conditions)
 	end
 end
 
+local safeLowValue = -2e+300
+local safeHighValue = 2e+300
+
 function FindMinMaxKey(table)
-	local max = -1
-	local min = 2e+300
+	local max = safeLowValue
+	local min = safeHighValue
+	local numericValues = 0
 	for key, _ in pairs(table) do
-		if type(key) ~= "number" then
-			goto continue
+		if type(key) == "number" then
+			max = math.max(max, key)
+			min = math.min(min, key)
+			numericValues = numericValues + 1
 		end
-		if key > max then
-			max = key
+	end
+
+	if numericValues == 0 then
+		return nil, nil
+	end
+	return min, max
+end
+
+function FindMinMaxValue(table)
+	local max = safeLowValue
+	local min = safeHighValue
+	local numericValues = 0
+	for _, value in pairs(table) do
+		if type(value) == "number" then
+			max = math.max(max, value)
+			min = math.min(min, value)
+			numericValues = numericValues + 1
 		end
-		if key < min then
-			min = key
-		end
-		::continue::
+	end
+
+	if numericValues == 0 then
+		return nil, nil
 	end
 	return min, max
 end
@@ -349,4 +575,118 @@ function PrintAnything(thing)
 		return
 	end
 	PrintTableRecursive(thing)
+end
+
+local addonToStr = {
+	[0] = "No addons",
+	[1] = "First addon only",
+	[2] = "Second addon only",
+	[3] = "First and Second addon",
+}
+
+local function announceReceivedOutfit(player, outfitId, addons, sex)
+	local addonStr = addonToStr[addons]
+	local sexStr = ""
+	if sex == PLAYERSEX_MALE then
+		sexStr = " (male)"
+	end
+	if sex == PLAYERSEX_FEMALE then
+		sexStr = " (female)"
+	end
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained the :outfitName: outfit:sexStr:! (:addonStr:)", { outfitName = Game.getOutfitNameByLookType(outfitId), sexStr = sexStr, addonStr = addonStr }))
+end
+
+function Player:AddOutfitsAndAddons(outfitsAndAddons)
+	for _, data in pairs(outfitsAndAddons) do
+		local outfitId = data.outfitId or data.outfit or data.id or data.lookType or data.looktype
+		local addon = data.addon or data.addons or 0
+		local sex = Game.getOutfitSexByLookType(outfitId)
+
+		self:addOutfit(outfitId)
+		if addon then
+			self:addOutfitAddon(outfitId, addon)
+		end
+		announceReceivedOutfit(self, outfitId, addon, sex)
+	end
+	self:addOutfit()
+end
+
+local function annonceReceivedMount(player, mountId)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { outfitName = Game.getMountNameByLookType(mountId) }))
+end
+
+function Player:AddMounts(mounts)
+	for _, mountId in pairs(mounts) do
+		self:addMount(mountId)
+		annonceReceivedMount(self, mountId)
+	end
+end
+
+function AddExperienceWithAnnouncement(player, exp)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have gained :exp: experience!", { exp = exp }))
+	player:addExperience(exp)
+	player:getPosition():sendMagicEffect(CONST_ME_STUN)
+end
+
+function PredictNetHealthgain(primaryDamage, primaryType, secondaryDamage, secondaryType)
+	local primaryMultiplier = -1
+	if primaryType == COMBAT_HEALING then
+		primaryMultiplier = 1
+	end
+
+	local secondaryMultiplier = -1
+	if secondaryType == COMBAT_HEALING then
+		secondaryMultiplier = 1
+	end
+
+	return primaryDamage * primaryMultiplier + secondaryDamage * secondaryMultiplier
+end
+
+function TryReverseTable(tab)
+	if not tab then
+		return
+	end
+	local n = #tab
+	for i = 1, math.floor(n / 2) do
+		tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
+	end
+end
+
+function ReverseTable(tab)
+	local n = #tab
+	for i = 1, math.floor(n / 2) do
+		tab[i], tab[n - i + 1] = tab[n - i + 1], tab[i]
+	end
+end
+
+function normalizedItemData(itemData, localizer)
+	local normalized = {}
+	for key, value in pairs(itemData) do
+		normalized[key] = value
+	end
+
+	normalized.id = itemData.id
+	normalized.count = itemData.count or 1
+	normalized.aid = itemData.actionid or itemData.aid or itemData.actionId
+	normalized.uid = itemData.uniqueid or itemData.uid or itemData.uniqueId
+	normalized.key = itemData.key
+	normalized.desc = itemData.description or itemData.desc
+	normalized.text = itemData.text
+	normalized.rewards = itemData.rewards
+	normalized.requiredState = itemData.requiredState
+	normalized.nextState = itemData.nextState
+	normalized.expReward = itemData.expReward or itemData.exp or itemData.experience
+	normalized.specialActionsOnSuccess = itemData.specialActionsOnSuccess
+	normalized.specialActionsOnFail = itemData.specialActionsOnFail
+	normalized.onLook = itemData.onLook or itemData.onlook
+	normalized.immovable = itemData.immovable
+	local pos = itemData.pos or itemData.offset or itemData.position or itemData.offpos or itemData.vector
+	if pos then
+		logger.warn("[normalizedItemData] pos is deprecated")
+	end
+	normalized.pos = pos
+	normalized.source = itemData.source
+
+	normalized.localizer = itemData.localizer or localizer
+	return normalized
 end

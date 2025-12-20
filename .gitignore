@@ -395,5 +395,19 @@ canary.old
 # VCPKG
 vcpkg_installed
 
+# DB Backups
+database_backup
+
 # CLION
 cmake-build-*
+out
+
+compile_commands.json
+
+# RME backups
+data-vaigu/world/backups/*
+data-vaigu/world/custom/backups/*
+data-vaigu/world/custom/realmap.otbm
+
+# Generated events
+data/XML/events.xml

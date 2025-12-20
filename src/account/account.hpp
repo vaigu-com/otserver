@@ -9,12 +9,27 @@
 
 #pragma once
 
-#include "account/account_info.hpp"
+struct AccountInfo;
+
+enum class CoinType : uint8_t;
+enum class CoinTransactionType : uint8_t;
+enum class AccountErrors_t : uint8_t;
+enum AccountType : uint8_t;
+
+struct CoinTransactionEntry {
+	const uint32_t id;
+	const CoinTransactionType transactionType;
+	const uint32_t amount;
+	const CoinType coinType;
+	const std::string description;
+};
 
 class Account {
 public:
 	explicit Account(const uint32_t &id);
 	explicit Account(std::string descriptor);
+
+	~Account() = default;
 
 	/** Coins
 	 * @brief Get the amount of coins that the account has from database.
@@ -24,7 +39,7 @@ public:
 	 * @return uint32_t Number of coins
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	[[nodiscard]] std::tuple<uint32_t, uint8_t> getCoins(const uint8_t &type) const;
+	[[nodiscard]] std::tuple<uint32_t, AccountErrors_t> getCoins(CoinType type) const;
 
 	/**
 	 * @brief Add coins to the account.
@@ -33,7 +48,7 @@ public:
 	 * @param amount Amount of coins to be added
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	uint8_t addCoins(const uint8_t &type, const uint32_t &amount, const std::string &detail = "ADD Coins");
+	AccountErrors_t addCoins(CoinType type, const uint32_t &amount, const std::string &detail = "ADD Coins");
 
 	/**
 	 * @brief Removes coins from the account.
@@ -42,7 +57,7 @@ public:
 	 * @param amount Amount of coins to be removed
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	uint8_t removeCoins(const uint8_t &type, const uint32_t &amount, const std::string &detail = "REMOVE Coins");
+	AccountErrors_t removeCoins(CoinType type, const uint32_t &amount, const std::string &detail = "REMOVE Coins");
 
 	/**
 	 * @brief Registers a coin transaction.
@@ -51,7 +66,7 @@ public:
 	 * @param amount Amount of coins to be added
 	 * @param detail Detail of the transaction
 	 */
-	void registerCoinTransaction(const uint8_t &transactionType, const uint8_t &type, const uint32_t &amount, const std::string &detail);
+	void registerCoinTransaction(CoinTransactionType transactionType, CoinType type, const uint32_t &amount, const std::string &detail);
 
 	/***************************************************************************
 	 * Account Load/Save
@@ -62,14 +77,14 @@ public:
 	 *
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	uint8_t save();
+	void save() const;
 
 	/**
 	 * @brief Load Account Information.
 	 *
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	uint8_t load();
+	AccountErrors_t load();
 
 	/**
 	 * @brief Re-Load Account Information to get update information(mainly the
@@ -77,7 +92,7 @@ public:
 	 *
 	 * @return AccountErrors_t AccountErrors_t::Ok(0) Success, otherwise Fail.
 	 */
-	uint8_t reload();
+	AccountErrors_t reload();
 
 	/***************************************************************************
 	 * Setters and Getters
@@ -105,12 +120,15 @@ public:
 
 	[[nodiscard]] time_t getPremiumLastDay() const;
 
-	uint8_t setAccountType(const uint8_t &accountType);
-	[[nodiscard]] uint8_t getAccountType() const;
+	AccountErrors_t setAccountType(AccountType accountType);
+	[[nodiscard]] AccountType getAccountType() const;
 
 	void updatePremiumTime();
 
-	std::tuple<phmap::flat_hash_map<std::string, uint64_t>, uint8_t> getAccountPlayers() const;
+	std::tuple<phmap::flat_hash_map<std::string, uint64_t>, AccountErrors_t> getAccountPlayers() const;
+
+	void setHouseBidId(uint32_t houseId);
+	uint32_t getHouseBidId() const;
 
 	// Old protocol compat
 	void setProtocolCompat(bool toggle);
@@ -126,6 +144,19 @@ public:
 
 private:
 	std::string m_descriptor;
-	AccountInfo m_account;
+	std::unique_ptr<AccountInfo> m_account;
 	bool m_accLoaded = false;
+};
+
+class AccountManager {
+public:
+	static std::shared_ptr<Account> getAccount(uint32_t accountId);
+
+	static void releaseAccount(uint32_t accountId) {
+		std::lock_guard<std::mutex> lock(mutex_);
+	}
+
+private:
+	static inline std::unordered_map<uint32_t, std::shared_ptr<Account>> accounts_;
+	static inline std::mutex mutex_;
 };

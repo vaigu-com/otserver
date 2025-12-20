@@ -120,6 +120,19 @@ local foods = {
 	[37531] = { 5, "Mmmm." }, -- candy floss
 	[37532] = { 15, "Mmmm." }, -- ice cream cone
 	[37533] = { 60, "Mmmm." }, -- birthday layer cake
+	[48116] = { 35, "Yum." }, -- gummy rotworms
+	[48251] = { 25, "Yum." }, -- wafer paper flower
+	[48252] = { 45, "Yum." }, -- brigadeiro
+	[48253] = { 45, "Yum." }, -- beijinho
+	[48254] = { 65, "Yum." }, -- churro heart
+	[48255] = { 125, "Yum." }, -- lime tart
+	[48256] = { 605, "Yum." }, -- pastry dragon
+	[48273] = { 185, "Yum." }, -- taiyaki ice cream
+	[48508] = { 125, "Yum." }, -- amber souvenir
+	[48509] = { 120, "Yum." }, -- resinous fish fin
+	[48511] = { 120, "Yum." }, -- resin parasite
+	[48544] = { 124, "Yum." }, -- wad of fairy floss
+	[32043] = { 70, "Munch." }, -- bass
 }
 
 local food = Action()
@@ -131,7 +144,7 @@ function food.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	local condition = player:getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT)
-	if condition and math.floor(condition:getTicks() / 1000 + (itemFood[1] * 12)) >= 1200 then
+	if condition and math.floor(condition:getTicks() / 1000 + (itemFood[1] * 12)) >= 3600 then
 		player:sendTextMessage(MESSAGE_FAILURE, "You are full.")
 		return true
 	end

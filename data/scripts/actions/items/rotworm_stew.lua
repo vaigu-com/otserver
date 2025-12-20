@@ -4,8 +4,9 @@ function rotwormStew.onUse(player, item, fromPosition, target, toPosition, isHot
 	local errorMessage = player:errorIfCannotUseCooldownItem("special-foods-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
-	
+
 	player:addHealth(player:getMaxHealth())
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your health has been refilled.")
 	player:say("Gulp.", TALKTYPE_MONSTER_SAY)

@@ -1,5 +1,164 @@
-local smallAreaRadius = 3
-local superDrunkDuration = 4000
+local rme_dir = "../rme/"
+local monstersXmlPath = rme_dir .. "data/creatures/monsters.xml"
+local baseOutputDir = "utility_scripts/"
+
+MonsterTypeRepository = {}
+MonsterTypeRepository.__index = MonsterTypeRepository
+MonsterTypeRepository.registry = {}
+
+---@param name string
+---@param data table mask
+function MonsterTypeRepository:Add(name, data)
+	self.registry[name] = data
+end
+
+local function countMonsters(filePath)
+	local monsterCounts = {}
+
+	local xml = io.open(filePath, "r")
+	if not xml then
+		logger.warn("[countMonsters] file not found: " .. filePath)
+		return {}
+	end
+
+	for name in xml:read("*a"):gmatch('<monster%s+[^>]-name="(.-)"') do
+		monsterCounts[name] = (monsterCounts[name] or 0) + 1
+	end
+	xml:close()
+
+	return monsterCounts
+end
+
+local monsterHpExpPath = baseOutputDir .. "monster_hp_exp.txt"
+function MonsterTypeRepository:SerializeHpExp()
+	local mTypes = Game.getMonsterTypes()
+
+	local healthExpStr = ""
+	for _, mType in pairs(mTypes) do
+		local monsterRow = mType:getName() .. "###" .. tostring(mType:maxHealth()) .. "###" .. tostring(mType:experience()) .. "\n"
+		healthExpStr = healthExpStr .. monsterRow
+	end
+
+	local file = io.open(monsterHpExpPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SerializeHpExp] Cannot open file :path:. Hp/exp have NOT been serialized.", { path = monsterHpExpPath }))
+		return
+	end
+	file:write(healthExpStr)
+	file:close()
+	logger.info("[MonsterTypeRepository::SerializeHpExp] Serialization succesful.")
+end
+
+local monsterCountsPath = "monster_counts.txt"
+function MonsterTypeRepository:SerializeCounts()
+	local monsterCounts = countMonsters(DATA_DIRECTORY .. "/world/vaigu-monster.xml")
+
+	local monsterCountsStr = ""
+	for name, count in pairs(monsterCounts) do
+		local monsterRow = name .. "###" .. tostring(count) .. "\n"
+		monsterCountsStr = monsterCountsStr .. monsterRow
+	end
+
+	SerializeToUtilFolder(monsterCountsStr, monsterCountsPath)
+end
+
+local rareNamesFilePath = "rare_monster_name.txt"
+function MonsterTypeRepository:SerializeRareMonsterNames()
+	local rareNames = {}
+	for name, data in pairs(self.registry) do
+		if data.Bestiary and data.Bestiary.toKill and data.Bestiary.toKill == 5 then
+			table.insert(rareNames, name)
+		end
+	end
+
+	local rareNamesStr = ""
+	for key, value in pairs(rareNames) do
+		rareNamesStr = rareNamesStr .. value .. "\n"
+	end
+
+	SerializeToUtilFolder(rareNamesStr, rareNamesFilePath)
+end
+
+local function extractCorpseData(firstStageId)
+	local firstStageitem = ItemType(firstStageId)
+	if not firstStageitem then
+		return
+	end
+	local secondStageId = firstStageitem:getDecayId()
+	if not secondStageId or (secondStageId == 0) or (secondStageId == -1) then
+		return
+	end
+
+	local secondStageItem = ItemType(secondStageId)
+	if not secondStageItem or (not secondStageItem:isContainer()) then
+		return
+	end
+
+	return firstStageId, secondStageId
+end
+
+local corpseIdsPath = baseOutputDir .. "corpse_ids.txt"
+function MonsterTypeRepository:SerializeCorpses()
+	local corpseIds = {}
+	for name, data in pairs(self.registry) do
+		local firstStageId, secondStageId = extractCorpseData(data.corpse)
+		if firstStageId and secondStageId then
+			local previousId = corpseIds[firstStageId]
+			if previousId ~= secondStageId and previousId ~= nil then
+				print(firstStageId, ":", previousId, secondStageId)
+			end
+			corpseIds[firstStageId] = secondStageId
+		end
+	end
+
+	local corpseIdsStr = ""
+	for key, value in pairs(corpseIds) do
+		corpseIdsStr = corpseIdsStr .. "\n" .. key .. ", " .. value
+	end
+
+	local file = io.open(corpseIdsPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::SerializeCorpses] Cannot open file :path:. Corpses have NOT been serialized.", { path = corpseIdsPath }))
+		return
+	end
+	file:write(corpseIdsStr)
+	file:close()
+	logger.info("[MonsterTypeRepository::SerializeCorpses] Serialization succesful.")
+end
+
+function MonsterTypeRepository:Get()
+	return self.registry
+end
+
+function MonsterTypeRepository:SerializeForRME()
+	local xml = '<?xml version="1.0" encoding="UTF-8"?>\n<monsters>\n'
+	for name, data in
+		sortedkeypairs(self.registry, function(a, b)
+			return a:lower() < b:lower()
+		end)
+	do
+		xml = xml
+			.. T('\t<monster name=":name:" looktype=":looktype:" lookhead=":lookhead:" lookbody=":lookbody:" looklegs=":looklegs:" lookfeet=":lookfeet:" lookaddon=":lookaddon:" lookitem = ":lookitem:"/>\n', {
+				name = name,
+				looktype = data.outfit.lookType or 0,
+				lookhead = data.outfit.lookHead or 0,
+				lookbody = data.outfit.lookBody or 0,
+				looklegs = data.outfit.lookLegs or 0,
+				lookfeet = data.outfit.lookFeet or 0,
+				lookaddon = data.outfit.lookAddons or 0,
+				lookitem = data.outfit.lookTypeEx or 0,
+			})
+	end
+	xml = xml .. "</monsters>\n"
+	local file = io.open(monstersXmlPath, "w+")
+	if not file then
+		logger.error(T("[MonsterTypeRepository::Serialize] Cannot open file :path:. Monsters have NOT been serialized.", { path = monstersXmlPath }))
+		return
+	end
+	file:write(xml)
+	file:close()
+	logger.info("[MonsterTypeRepository::Serialize] Serialization succesful.")
+end
 
 registerMonsterType = {}
 setmetatable(registerMonsterType, {
@@ -10,13 +169,274 @@ setmetatable(registerMonsterType, {
 	end,
 })
 
-MonsterType.register = function(self, mask)
-	return registerMonsterType(self, mask)
+local bestiarykillcountRealToVaigu = {
+	[5000] = {
+		toKill = 2500,
+		FirstUnlock = 500,
+		SecondUnlock = 1000,
+		CharmsPoints = 100,
+	},
+	[2500] = {
+		toKill = 1000,
+		FirstUnlock = 50,
+		SecondUnlock = 500,
+		CharmsPoints = 50,
+	},
+	[1000] = {
+		toKill = 500,
+		FirstUnlock = 100,
+		SecondUnlock = 250,
+		CharmsPoints = 25,
+	},
+	[500] = {
+		toKill = 250,
+		FirstUnlock = 50,
+		SecondUnlock = 100,
+		CharmsPoints = 15,
+	},
+	[250] = {
+		toKill = 100,
+		FirstUnlock = 25,
+		SecondUnlock = 50,
+		CharmsPoints = 5,
+	},
+	[25] = {
+		toKill = 25,
+		FirstUnlock = 5,
+		SecondUnlock = 15,
+		CharmsPoints = 1,
+	},
+	[5] = {
+		toKill = 5,
+		FirstUnlock = 2,
+		SecondUnlock = 3,
+		CharmsPoints = 50,
+	},
+}
+
+local nameToNewExp = {
+	["Anomaly"] = 200000,
+	["Behemoth"] = 3000,
+	["Blightwalker"] = 7500,
+	["Blue Djinn"] = 300,
+	["Bog Raider"] = 1000,
+	["Bones"] = 10000,
+	["Bragrumol"] = 40000,
+	["Braindeath"] = 1400,
+	["Bretzecutioner"] = 6000,
+	["Crawler"] = 1300,
+	["Crystalcrusher"] = 700,
+	["Deepworm"] = 2900,
+	["Diremaw"] = 3200,
+	["Dreadmaw"] = 4000,
+	["Drillworm"] = 1400,
+	["Elder Wyrm"] = 2700,
+	["Eradicator"] = 200000,
+	["Falcon Knight"] = 8000,
+	["Falcon Paladin"] = 8000,
+	["Ferumbras"] = 100000,
+	["Flamecaller Zazrak"] = 6000,
+	["Frost Giant"] = 220,
+	["Frost Giantess"] = 220,
+	["Furyosa"] = 20000,
+	["Gravelord Oshuran"] = 4000,
+	["Green Djinn"] = 300,
+	["Hellflayer"] = 14000,
+	["Ironblight"] = 6100,
+	["Jaul"] = 70000,
+	["Juggernaut"] = 15000,
+	["Kollos"] = 3000,
+	["Lizard Gate Guardian"] = 5000,
+	["Lost Exile"] = 2000,
+	["Lost Husher"] = 2000,
+	["Mawhawk"] = 33000,
+	["Obujos"] = 40000,
+	["Ogre Brute"] = 1000,
+	["Orc Leader"] = 340,
+	["Orewalker"] = 6700,
+	["Outburst"] = 200000,
+	["Owin"] = 10000,
+	["Plaguesmith"] = 6000,
+	["Rotspit"] = 7000,
+	["Shock Head"] = 4000,
+	["Spidris"] = 3300,
+	["Spitter"] = 1400,
+	["Stampor"] = 1000,
+	["The Voice of Ruin"] = 8000,
+	["War Golem"] = 3700,
+	["Wiggler"] = 1100,
+	["Worker Golem"] = 1700,
+	["Yakchal"] = 7000,
+	["Zulazza the Corruptor"] = 50000,
+	["Spit Nettle"] = 70,
+	["Quara Pincher"] = 1700,
+	["Pirate Cutthroat"] = 230,
+	["Sibang"] = 150,
+	["Pirate Ghost"] = 350,
+	["Quara Hydromancer"] = 1350,
+	["Young Sea Serpent"] = 900,
+	["Quara Predator"] = 2380,
+	["Lizard Zaogun"] = 2570,
+	["Lancer Beetle"] = 300,
+	["Draken Abomination"] = 5200,
+	["Askarak Lord"] = 2070,
+	["Askarak Prince"] = 2230,
+	["Shaburak Prince"] = 2650,
+	["Shaburak Lord"] = 2100,
+	["Enslaved Dwarf"] = 3500,
+	["Sight of Surrender"] = 35000,
+	["Feversleep"] = 6500,
+	["Shiversleep"] = 4500,
+	["Execowtioner"] = 3200,
+	["Sea Serpent"] = 2000,
+	["Deepling Tyrant"] = 5200,
+	["Fire Devil"] = 180,
+	["Hellhound"] = 6000,
+	["Breach Brood"] = 2700,
+	["Dread Intruder"] = 3400,
+	["Instable Breach Brood"] = 1700,
+	["Instable Sparkion"] = 1650,
+	["Reality Reaver"] = 3700,
+	["Sparkion"] = 2200,
+	["Stabilizing Dread Intruder"] = 2300,
+	["Stabilizing Reality Reaver"] = 2350,
+	["Boar"] = 90,
+	["Clomp"] = 690,
+	["Gloom Wolf"] = 160,
+	["Gnarlhound"] = 110,
+	["Roaring Lion"] = 600,
+	["Stone Rhino"] = 2480,
+	["Barkless Devotee"] = 2330,
+	["Barkless Fanatic"] = 2780,
+	["Corrupt Naga"] = 5300,
+	["Rogue Naga"] = 5500,
+	["Ghoulish Hyaena"] = 280,
+	["Son of Verminor"] = 8000,
+	["Bloodback"] = 10000,
+	["Black Vixen"] = 10000,
+	["Shadowpelt"] = 10000,
+	["Undead Elite Gladiator"] = 8000,
+	["Skeleton Elite Warrior"] = 6000,
+	["Chizzoron the Distorter"] = 40000,
+	["Cobra Vizier"] = 8420,
+	["Misguided Thief"] = 1600,
+	["Misguided Bully"] = 1750,
+	["Lizard Magistratus"] = 5000,
+	["Lizard Noble"] = 5000,
+}
+
+local function applyCustomExp(mask)
+	if not mask.name then
+		return mask
+	end
+
+	local newExp = nameToNewExp[mask.name]
+	if not newExp then
+		return mask
+	end
+
+	mask.experience = newExp
+	return mask
 end
+
+local countToMultiplier = {
+	--impossible
+	--[0] = 1,
+
+	[1] = 0.25,
+	[2] = 0.25,
+	[3] = 0.25,
+	[4] = 0.25,
+	[5] = 0.25,
+
+	[6] = 0.5,
+	[7] = 0.5,
+	[8] = 0.5,
+	[9] = 0.5,
+	[10] = 0.5,
+
+	[11] = 0.75,
+	[12] = 0.75,
+	[13] = 0.75,
+	[14] = 0.75,
+	[15] = 0.75,
+	[16] = 0.75,
+	[17] = 0.75,
+	[18] = 0.75,
+	[19] = 0.75,
+	[20] = 0.75,
+}
+
+local monsterNameToCountOnMap = nil
+local function applyCustomBestiaryKillCounts(mask, monsterType)
+	monsterNameToCountOnMap = monsterNameToCountOnMap or countMonsters(DATA_DIRECTORY .. "/world/vaigu-monster.xml")
+	if mask.Bestiary and mask.Bestiary.toKill then
+		local newData = bestiarykillcountRealToVaigu[mask.Bestiary.toKill]
+		if not newData then
+			logger.warn(T("[applyCustomBestiaryKillCounts] Unknown realtibia 'toKill' :toKill:. No modifications were applied.", { toKill = mask.Bestiary.toKill }))
+			return mask
+		end
+
+		mask.Bestiary.toKill = newData.toKill
+		mask.Bestiary.FirstUnlock = newData.FirstUnlock
+		mask.Bestiary.SecondUnlock = newData.SecondUnlock
+		mask.Bestiary.CharmsPoints = newData.CharmsPoints
+		if mask.Bestiary.toKill > 25 then
+			local monsterName = monsterType:name()
+			local monsterCount = monsterNameToCountOnMap[monsterName]
+			local bestiaryMultiplier = countToMultiplier[monsterCount]
+			if monsterCount and bestiaryMultiplier then
+				logger.trace(T("Monster :name: has only :count: spawn points! Its bestiary kill counts have been reduced accordingly.", { name = monsterName, count = monsterCount }))
+			end
+			bestiaryMultiplier = bestiaryMultiplier or 1
+			mask.Bestiary.toKill = math.ceil(mask.Bestiary.toKill * bestiaryMultiplier)
+			mask.Bestiary.FirstUnlock = math.ceil(mask.Bestiary.FirstUnlock * bestiaryMultiplier)
+			mask.Bestiary.SecondUnlock = math.ceil(mask.Bestiary.SecondUnlock * bestiaryMultiplier)
+
+			bestiaryMultiplier = bestiaryMultiplier or 1
+			--logger.warn(monsterType:name(), monsterCount, countToMultiplier[monsterCount])
+		end
+	end
+
+	return mask
+end
+
+local customAttributeCallbacks = {
+	applyCustomBestiaryKillCounts,
+	applyCustomExp,
+}
+local function applyCustomAttributes(mask, monsterType)
+	for _, callback in pairs(customAttributeCallbacks) do
+		mask = callback(mask, monsterType)
+		break
+	end
+	return mask
+end
+
+local function validateFields(mask)
+	if mask.description == nil then
+		print("[MosnterType::register]->validateFields 'description' MISSING")
+		PrintAnything(mask)
+	end
+end
+
+MonsterType.register = function(self, mask)
+	validateFields(mask)
+	mask = applyCustomAttributes(mask, self)
+	registerMonsterType(self, mask)
+	MonsterTypeRepository:Add(self:getUniqueName(), mask)
+end
+
+local smallAreaRadius = 3
+local superDrunkDuration = 4000
 
 registerMonsterType.name = function(mtype, mask)
 	if mask.name then
 		mtype:name(mask.name)
+		-- Try register hazard monsters
+		mtype.onSpawn = function(monster, spawnPosition)
+			HazardMonster.onSpawn(monster, spawnPosition)
+		end
 	end
 end
 registerMonsterType.description = function(mtype, mask)
@@ -188,6 +608,9 @@ registerMonsterType.flags = function(mtype, mask)
 		end
 		if mask.flags.rewardBoss then
 			mtype:isRewardBoss(mask.flags.rewardBoss)
+			mtype.onSpawn = function(monster, spawnPosition)
+				monster:setReward(true)
+			end
 		end
 		if mask.flags.familiar then
 			mtype:familiar(mask.flags.familiar)
@@ -224,6 +647,9 @@ registerMonsterType.flags = function(mtype, mask)
 		end
 		if mask.flags.isForgeCreature ~= nil then
 			mtype:isForgeCreature(mask.flags.isForgeCreature)
+		end
+		if mask.flags.ignoreCreatures ~= nil then
+			mtype:ignoreCreatures(mask.flags.ignoreCreatures)
 		end
 	end
 end
@@ -338,136 +764,145 @@ function SortLootByChance(loot)
 	end)
 end
 
+function Loot.fromItem(loot)
+	local lootError = false
+	local parent = Loot()
+	if loot.name then
+		if not parent:setIdFromName(loot.name) then
+			lootError = true
+		end
+	else
+		if not isInteger(loot.id) or loot.id < 1 then
+			lootError = true
+		end
+		parent:setId(loot.id)
+	end
+	if loot.subType or loot.charges then
+		parent:setSubType(loot.subType or loot.charges)
+	else
+		local lType = ItemType(loot.name and loot.name or loot.id)
+		if lType and lType:getCharges() > 1 then
+			parent:setSubType(lType:getCharges())
+		end
+	end
+	if loot.chance then
+		parent:setChance(loot.chance)
+	end
+	if loot.minCount then
+		parent:setMinCount(loot.minCount)
+	end
+	if loot.maxCount then
+		parent:setMaxCount(loot.maxCount)
+	end
+	if loot.aid or loot.actionId then
+		parent:setActionId(loot.aid or loot.actionId)
+	end
+	if loot.text or loot.description then
+		parent:setText(loot.text or loot.description)
+	end
+	if loot.name then
+		parent:setNameItem(loot.name)
+	end
+	if loot.article then
+		parent:setArticle(loot.article)
+	end
+	if loot.attack then
+		parent:setAttack(loot.attack)
+	end
+	if loot.defense then
+		parent:setDefense(loot.defense)
+	end
+	if loot.extraDefense or loot.extraDef then
+		parent:setExtraDefense(loot.extraDefense or loot.extraDef)
+	end
+	if loot.armor then
+		parent:setArmor(loot.armor)
+	end
+	if loot.shootRange or loot.range then
+		parent:setShootRange(loot.shootRange or loot.range)
+	end
+	if loot.unique then
+		parent:setUnique(loot.unique)
+	end
+	if loot.child then
+		SortLootByChance(loot.child)
+		for _, children in pairs(loot.child) do
+			local child = Loot()
+			if children.name then
+				if not child:setIdFromName(children.name) then
+					lootError = true
+				end
+			else
+				if not isInteger(children.id) or children.id < 1 then
+					lootError = true
+				end
+				child:setId(children.id)
+			end
+			if children.subType or children.charges then
+				child:setSubType(children.subType or children.charges)
+			else
+				local cType = ItemType(children.name and children.name or children.id)
+				if cType and cType:getCharges() > 1 then
+					child:setSubType(cType:getCharges())
+				end
+			end
+			if children.chance then
+				child:setChance(children.chance)
+			end
+			if children.minCount then
+				child:setMinCount(children.minCount)
+			end
+			if children.maxCount then
+				child:setMaxCount(children.maxCount)
+			end
+			if children.aid or children.actionId then
+				child:setActionId(children.aid or children.actionId)
+			end
+			if children.text or children.description then
+				child:setText(children.text or children.description)
+			end
+			if loot.name then
+				child:setNameItem(loot.name)
+			end
+			if children.article then
+				child:setArticle(children.article)
+			end
+			if children.attack then
+				child:setAttack(children.attack)
+			end
+			if children.defense then
+				child:setDefense(children.defense)
+			end
+			if children.extraDefense or children.extraDef then
+				child:setExtraDefense(children.extraDefense or children.extraDef)
+			end
+			if children.armor then
+				child:setArmor(children.armor)
+			end
+			if children.shootRange or children.range then
+				child:setShootRange(children.shootRange or children.range)
+			end
+			if children.unique then
+				child:setUnique(children.unique)
+			end
+			parent:addChildLoot(child)
+		end
+	end
+	return parent, lootError
+end
+
 registerMonsterType.loot = function(mtype, mask)
 	if type(mask.loot) == "table" then
 		SortLootByChance(mask.loot)
-		local lootError = false
-		for _, loot in pairs(mask.loot) do
-			local parent = Loot()
-			if loot.name then
-				if not parent:setIdFromName(loot.name) then
-					lootError = true
-				end
-			else
-				if not isInteger(loot.id) or loot.id < 1 then
-					lootError = true
-				end
-				parent:setId(loot.id)
-			end
-			if loot.subType or loot.charges then
-				parent:setSubType(loot.subType or loot.charges)
-			else
-				local lType = ItemType(loot.name and loot.name or loot.id)
-				if lType and lType:getCharges() > 1 then
-					parent:setSubType(lType:getCharges())
-				end
-			end
-			if loot.chance then
-				parent:setChance(loot.chance)
-			end
-			if loot.minCount then
-				parent:setMinCount(loot.minCount)
-			end
-			if loot.maxCount then
-				parent:setMaxCount(loot.maxCount)
-			end
-			if loot.aid or loot.actionId then
-				parent:setActionId(loot.aid or loot.actionId)
-			end
-			if loot.text or loot.description then
-				parent:setText(loot.text or loot.description)
-			end
-			if loot.name then
-				parent:setNameItem(loot.name)
-			end
-			if loot.article then
-				parent:setArticle(loot.article)
-			end
-			if loot.attack then
-				parent:setAttack(loot.attack)
-			end
-			if loot.defense then
-				parent:setDefense(loot.defense)
-			end
-			if loot.extraDefense or loot.extraDef then
-				parent:setExtraDefense(loot.extraDefense or loot.extraDef)
-			end
-			if loot.armor then
-				parent:setArmor(loot.armor)
-			end
-			if loot.shootRange or loot.range then
-				parent:setShootRange(loot.shootRange or loot.range)
-			end
-			if loot.unique then
-				parent:setUnique(loot.unique)
-			end
-			if loot.child then
-				SortLootByChance(loot.child)
-				for _, children in pairs(loot.child) do
-					local child = Loot()
-					if children.name then
-						if not child:setIdFromName(children.name) then
-							lootError = true
-						end
-					else
-						if not isInteger(children.id) or children.id < 1 then
-							lootError = true
-						end
-						child:setId(children.id)
-					end
-					if children.subType or children.charges then
-						child:setSubType(children.subType or children.charges)
-					else
-						local cType = ItemType(children.name and children.name or children.id)
-						if cType and cType:getCharges() > 1 then
-							child:setSubType(cType:getCharges())
-						end
-					end
-					if children.chance then
-						child:setChance(children.chance)
-					end
-					if children.minCount then
-						child:setMinCount(children.minCount)
-					end
-					if children.maxCount then
-						child:setMaxCount(children.maxCount)
-					end
-					if children.aid or children.actionId then
-						child:setActionId(children.aid or children.actionId)
-					end
-					if children.text or children.description then
-						child:setText(children.text or children.description)
-					end
-					if loot.name then
-						child:setNameItem(loot.name)
-					end
-					if children.article then
-						child:setArticle(children.article)
-					end
-					if children.attack then
-						child:setAttack(children.attack)
-					end
-					if children.defense then
-						child:setDefense(children.defense)
-					end
-					if children.extraDefense or children.extraDef then
-						child:setExtraDefense(children.extraDefense or children.extraDef)
-					end
-					if children.armor then
-						child:setArmor(children.armor)
-					end
-					if children.shootRange or children.range then
-						child:setShootRange(children.shootRange or children.range)
-					end
-					if children.unique then
-						child:setUnique(children.unique)
-					end
-					parent:addChildLoot(child)
-				end
-			end
+		local atLeastOneError = false
+		for _, item in pairs(mask.loot) do
+			local parent, lootError = Loot.fromItem(item)
 			mtype:addLoot(parent)
+			if lootError then
+				atLeastOneError = true
+			end
 		end
-		if lootError then
+		if atLeastOneError then
 			logger.warn("[registerMonsterType.loot] - Monster: {} loot could not correctly be load", mtype:name())
 		end
 	end
@@ -934,8 +1369,8 @@ function readSpell(incomingLua, mtype)
 			if incomingLua.effect then
 				spell:setCombatEffect(incomingLua.effect)
 			end
-			if incomingLua.shootEffect then
-				spell:setCombatShootEffect(incomingLua.shootEffect)
+			if incomingLua.shootEffect or incomingLua.shooteffect then
+				spell:setCombatShootEffect(incomingLua.shootEffect or incomingLua.shooteffect)
 			end
 		end
 

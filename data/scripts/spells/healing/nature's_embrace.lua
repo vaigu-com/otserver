@@ -15,17 +15,10 @@ combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
-	if creature:isPlayer() and var:getNumber() == creature:getId() then
-		creature:sendCancelMessage("You can't cast this spell to yourself.")
-		creature:getPosition():sendMagicEffect(CONST_ME_POFF)
-		return false
-	else
-		return combat:execute(creature, var)
-	end
+	return combat:execute(creature, var)
 end
 
 spell:group("healing")
-spell:id(242)
 spell:name("Nature's Embrace")
 spell:words("exura gran sio")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_NATURES_EMBRACE)
@@ -39,6 +32,7 @@ spell:isAggressive(false)
 spell:isBlockingWalls(true)
 spell:hasParams(true)
 spell:hasPlayerNameParam(true)
+spell:allowOnSelf(true)
 spell:vocation("druid;true", "elder druid;true")
 spell:needLearn(false)
 spell:register()

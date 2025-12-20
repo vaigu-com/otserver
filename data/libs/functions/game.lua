@@ -1,4 +1,4 @@
-function getGlobalStorage(key)
+function getStorage(key)
 	local keyNumber = tonumber(key)
 	if not keyNumber then
 		key = "'" .. key .. "'"
@@ -19,7 +19,7 @@ function getGlobalStorage(key)
 	return -1
 end
 
-function setGlobalStorage(key, value)
+function setStorage(key, value)
 	local keyNumber = tonumber(key)
 	if not keyNumber then
 		key = "'" .. key .. "'"
@@ -36,13 +36,17 @@ function Game.broadcastMessage(message, messageType, translate, context)
 	if not messageType then
 		messageType = MESSAGE_GAME_HIGHLIGHT
 	end
+	local langToMessage = {}
+	for _, language in pairs(LANGUAGES) do
+		if translate then
+			langToMessage[language] = Evaluate(TranslatedFromAnyQuest(message, language), context)
+		else
+			langToMessage[language] = message
+		end
+	end
 
 	for _, player in ipairs(Game.getPlayers()) do
-		local translatedMessage = message
-		if translate then
-			translatedMessage = player:Localizer(nil):Context(context):Get(message)
-		end
-		player:sendTextMessage(messageType, translatedMessage)
+		player:sendTextMessage(messageType, langToMessage[player:getLanguage()])
 	end
 end
 
@@ -119,22 +123,149 @@ if not globalStorageTable then
 	globalStorageTable = {}
 end
 
-function Game.getStorageValue(key)
-	return globalStorageTable[key] or -1
+function Game.getTimeInWords(seconds)
+	local days = math.floor(seconds / (24 * 3600))
+	seconds = seconds % (24 * 3600)
+	local hours = math.floor(seconds / 3600)
+	seconds = seconds % 3600
+	local minutes = math.floor(seconds / 60)
+	seconds = seconds % 60
+
+	local timeParts = {}
+
+	if days > 0 then
+		table.insert(timeParts, days .. (days > 1 and " days" or " day"))
+	end
+
+	if hours > 0 then
+		table.insert(timeParts, hours .. (hours > 1 and " hours" or " hour"))
+	end
+
+	if minutes > 0 then
+		table.insert(timeParts, minutes .. (minutes > 1 and " minutes" or " minute"))
+	end
+
+	if seconds > 0 or #timeParts == 0 then
+		table.insert(timeParts, seconds .. (seconds > 1 and " seconds" or " second"))
+	end
+
+	local timeStr = table.concat(timeParts, ", ")
+	local lastComma = timeStr:find(", [%a%d]+$")
+	if lastComma then
+		timeStr = timeStr:sub(1, lastComma - 1) .. " and" .. timeStr:sub(lastComma + 1)
+	end
+	return timeStr
 end
 
-function Game.setStorageValue(key, value)
-	if key == nil then
-		logger.error("[Game.setStorageValue] Key is nil")
-		return
+function Game.getPlayerAccountId(name)
+	local player = Player(name)
+	if player then
+		return player:getAccountId()
 	end
 
-	if value == -1 then
-		if globalStorageTable[key] then
-			globalStorageTable[key] = nil
-		end
-		return
+	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(name))
+	if resultId then
+		local accountId = result.getNumber(resultId, "account_id")
+		result.free(resultId)
+		return accountId
+	end
+	return 0
+end
+
+function Game.getTimeInWords(seconds)
+	local days = math.floor(seconds / (24 * 3600))
+	seconds = seconds % (24 * 3600)
+	local hours = math.floor(seconds / 3600)
+	seconds = seconds % 3600
+	local minutes = math.floor(seconds / 60)
+	seconds = seconds % 60
+
+	local timeParts = {}
+
+	if days > 0 then
+		table.insert(timeParts, days .. (days > 1 and " days" or " day"))
 	end
 
-	globalStorageTable[key] = value
+	if hours > 0 then
+		table.insert(timeParts, hours .. (hours > 1 and " hours" or " hour"))
+	end
+
+	if minutes > 0 then
+		table.insert(timeParts, minutes .. (minutes > 1 and " minutes" or " minute"))
+	end
+
+	if seconds > 0 or #timeParts == 0 then
+		table.insert(timeParts, seconds .. (seconds > 1 and " seconds" or " second"))
+	end
+
+	local timeStr = table.concat(timeParts, ", ")
+	local lastComma = timeStr:find(", [%a%d]+$")
+	if lastComma then
+		timeStr = timeStr:sub(1, lastComma - 1) .. " and" .. timeStr:sub(lastComma + 1)
+	end
+	return timeStr
+end
+
+function Game.getPlayerAccountId(name)
+	local player = Player(name)
+	if player then
+		return player:getAccountId()
+	end
+
+	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(name))
+	if resultId then
+		local accountId = result.getNumber(resultId, "account_id")
+		result.free(resultId)
+		return accountId
+	end
+	return 0
+end
+
+function Game.getTimeInWords(seconds)
+	local days = math.floor(seconds / (24 * 3600))
+	seconds = seconds % (24 * 3600)
+	local hours = math.floor(seconds / 3600)
+	seconds = seconds % 3600
+	local minutes = math.floor(seconds / 60)
+	seconds = seconds % 60
+
+	local timeParts = {}
+
+	if days > 0 then
+		table.insert(timeParts, days .. (days > 1 and " days" or " day"))
+	end
+
+	if hours > 0 then
+		table.insert(timeParts, hours .. (hours > 1 and " hours" or " hour"))
+	end
+
+	if minutes > 0 then
+		table.insert(timeParts, minutes .. (minutes > 1 and " minutes" or " minute"))
+	end
+
+	if seconds > 0 or #timeParts == 0 then
+		table.insert(timeParts, seconds .. (seconds > 1 and " seconds" or " second"))
+	end
+
+	local timeStr = table.concat(timeParts, ", ")
+	local lastComma = timeStr:find(", [%a%d]+$")
+	if lastComma then
+		timeStr = timeStr:sub(1, lastComma - 1) .. " and" .. timeStr:sub(lastComma + 1)
+	end
+	return timeStr
+end
+
+function Game.getPlayerAccountId(name)
+	local player = Player(name)
+	if player then
+		return player:getAccountId()
+	end
+
+	local resultId = db.storeQuery("SELECT `account_id` FROM `players` WHERE `name` = " .. db.escapeString(name))
+	if resultId then
+		local accountId = result.getNumber(resultId, "account_id")
+		result.free(resultId)
+		return accountId
+	end
+	return 0
 end

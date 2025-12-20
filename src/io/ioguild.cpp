@@ -7,11 +7,10 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "pch.hpp"
+#include "io/ioguild.hpp"
 
 #include "database/database.hpp"
 #include "creatures/players/grouping/guild.hpp"
-#include "io/ioguild.hpp"
 
 std::shared_ptr<Guild> IOGuild::loadGuild(uint32_t guildId) {
 	Database &db = Database::getInstance();
@@ -33,7 +32,7 @@ std::shared_ptr<Guild> IOGuild::loadGuild(uint32_t guildId) {
 	return nullptr;
 }
 
-void IOGuild::saveGuild(const std::shared_ptr<Guild> guild) {
+void IOGuild::saveGuild(const std::shared_ptr<Guild> &guild) {
 	if (!guild) {
 		return;
 	}
@@ -42,7 +41,10 @@ void IOGuild::saveGuild(const std::shared_ptr<Guild> guild) {
 	updateQuery << "UPDATE `guilds` SET ";
 	updateQuery << "`balance` = " << guild->getBankBalance();
 	updateQuery << " WHERE `id` = " << guild->getId();
-	db.executeQuery(updateQuery.str());
+	const auto success = db.executeQuery(updateQuery.str());
+	if (!success) {
+		throw DatabaseException("Could not save guilds in function: " + std::string(__FUNCTION__));
+	}
 }
 
 uint32_t IOGuild::getGuildIdByName(const std::string &name) {
@@ -68,7 +70,7 @@ void IOGuild::getWarList(uint32_t guildId, GuildWarVector &guildWarVector) {
 	}
 
 	do {
-		uint32_t guild1 = result->getNumber<uint32_t>("guild1");
+		auto guild1 = result->getNumber<uint32_t>("guild1");
 		if (guildId != guild1) {
 			guildWarVector.push_back(guild1);
 		} else {

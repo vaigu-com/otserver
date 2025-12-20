@@ -89,16 +89,16 @@ function wagons.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			railCheck = Tile(Position(32688, 31469, 13)):getItemById(7123) and Tile(Position(32695, 31464, 13)):getItemById(7123),
 		},
 	}
-	local getstory = player:getStorageValue(Storage.Quest.U8_4.TheHiddenCityOfBeregar.RoyalRescue)
+	local getstory = player:getStorageValueByKey(Storage.Quest.U8_4.TheHiddenCityOfBeregar.RoyalRescue)
 	local story = Storage.Quest.U8_4.TheHiddenCityOfBeregar.RoyalRescue
 	local position = (Position(32571, 31508, 9))
 	local tile = Tile(position)
 	local tile2 = Tile(Position(32619, 31514, 9))
 	for i = 1, #travel do
 		local table = travel[i]
-		if fromPosition == table.wagon and player:getStorageValue(Storage.Quest.U8_4.TheHiddenCityOfBeregar.OreWagon) == 1 then
+		if fromPosition == table.wagon and player:getStorageValueByKey(Storage.Quest.U8_4.TheHiddenCityOfBeregar.OreWagon) == 1 then
 			if travel[i] == travel[1] then
-				local targetPosition = checkpoint[player:getStorageValue(story)]
+				local targetPosition = checkpoint[player:getStorageValueByKey(story)]
 				if not targetPosition then
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You don't have permission to use this yet.")
 					return true
@@ -113,7 +113,7 @@ function wagons.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					player:say("You need to build a bridge to pass the gap.", TALKTYPE_MONSTER_SAY)
 					return true
 				end
-				player:setStorageValue(story, 2)
+				player:setStorageValueByKey(story, 2)
 				player:teleportTo(table.destination2)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				player:say("You safely passed the gap but your bridge collapsed behind you.", TALKTYPE_MONSTER_SAY)
@@ -123,7 +123,7 @@ function wagons.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				return true
 			elseif travel[i] == travel[10] then
 				if not tile2:getItemById(5709) then
-					player:setStorageValue(story, 3)
+					player:setStorageValueByKey(story, 3)
 					player:teleportTo(table.destination2)
 					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 					player:say("You safely passed the tunnel.", TALKTYPE_MONSTER_SAY)
@@ -147,14 +147,14 @@ function wagons.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 				end
 			elseif travel[i] == travel[15] then
 				if getstory == 3 then
-					player:setStorageValue(story, 4)
+					player:setStorageValueByKey(story, 4)
 				end
 				player:teleportTo(table.destination)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				return true
 			elseif travel[i] == travel[18] then
 				if getstory == 4 then
-					player:setStorageValue(story, 5)
+					player:setStorageValueByKey(story, 5)
 				end
 				player:teleportTo(table.destination)
 				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
@@ -172,7 +172,7 @@ function wagons.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			player:teleportTo(table.destination)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		end
-		if player:getStorageValue(Storage.Quest.U8_4.TheHiddenCityOfBeregar.OreWagon) < 1 then
+		if player:getStorageValueByKey(Storage.Quest.U8_4.TheHiddenCityOfBeregar.OreWagon) < 1 then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You don't know how to use this yet.")
 			return true
 		end

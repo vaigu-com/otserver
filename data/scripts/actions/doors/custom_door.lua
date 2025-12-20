@@ -1,39 +1,29 @@
-local doorIds = {}
-for index, value in ipairs(CustomDoorTable) do
-	if not table.contains(doorIds, value.openDoor) then
-		table.insert(doorIds, value.openDoor)
-	end
-
-	if not table.contains(doorIds, value.closedDoor) then
-		table.insert(doorIds, value.closedDoor)
-	end
+local keyClosedToOpen = {}
+local keyOpenToClosed = {}
+for _, value in pairs(CustomDoorTable) do
+	keyClosedToOpen[value.closedDoor] = value.openDoor
+	keyOpenToClosed[value.openDoor] = value.closedDoor
 end
 
-local customDoor = Action()
-function customDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if Creature.checkCreatureInsideDoor(player, toPosition) then
-		return true
-	end
-
-	for index, value in ipairs(CustomDoorTable) do
-		if value.closedDoor == item.itemid then
-			item:transform(value.openDoor)
-			item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
-			return true
-		end
-	end
-	for index, value in ipairs(CustomDoorTable) do
-		if value.openDoor == item.itemid then
-			item:transform(value.closedDoor)
-			item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_CLOSE_DOOR)
-			return true
-		end
-	end
+local closedDoor = Action()
+function closedDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	item:transform(keyClosedToOpen[item:getId()])
+	item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
 	return true
 end
-
-for index, value in ipairs(doorIds) do
-	customDoor:id(value)
+for key, value in pairs(CustomDoorTable) do
+	closedDoor:id(value.closedDoor)
 end
+closedDoor:register()
 
-customDoor:register()
+local openDoor = Action()
+function openDoor.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	item:transform(keyOpenToClosed[item:getId()])
+	item:getPosition():sendSingleSoundEffect(SOUND_EFFECT_TYPE_ACTION_OPEN_DOOR)
+	Creature.checkCreatureInsideDoor(player, toPosition)
+	return true
+end
+for _, value in pairs(CustomDoorTable) do
+	openDoor:id(value.openDoor)
+end
+openDoor:register()

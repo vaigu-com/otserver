@@ -119,7 +119,7 @@ struct Position {
 namespace std {
 	template <>
 	struct hash<Position> {
-		std::size_t operator()(const Position &p) const {
+		std::size_t operator()(const Position &p) const noexcept {
 			return static_cast<std::size_t>(p.x) | (static_cast<std::size_t>(p.y) << 16) | (static_cast<std::size_t>(p.z) << 32);
 		}
 	};
@@ -127,3 +127,15 @@ namespace std {
 
 std::ostream &operator<<(std::ostream &, const Position &);
 std::ostream &operator<<(std::ostream &, const Direction &);
+
+template <>
+struct fmt::formatter<Position> {
+	constexpr auto parse(format_parse_context &ctx) {
+		return ctx.begin();
+	}
+
+	template <typename FormatContext>
+	auto format(const Position &pos, FormatContext &ctx) const {
+		return format_to(ctx.out(), "({}, {}, {})", pos.x, pos.y, pos.z);
+	}
+};

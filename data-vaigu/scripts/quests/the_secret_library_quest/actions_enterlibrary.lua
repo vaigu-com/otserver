@@ -1,7 +1,7 @@
 local blacktp = Action()
 
 function blacktp.onUse(player, item, frompos, item2, topos)
-	if player:getStorageValue(Storage.TheSecretLibrary.HighDry) == 5 then
+	if player:getStorageValueByKey(Storage.TheSecretLibrary.HighDry) == 5 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Welcome to the Secret Library.")
 		player:teleportTo(Position(32516, 32537, 12))
 	else

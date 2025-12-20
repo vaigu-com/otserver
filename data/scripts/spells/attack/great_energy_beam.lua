@@ -28,16 +28,13 @@ local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
 	local player = creature:getPlayer()
-	if creature and player and player:instantSkillWOD("Beam Mastery") then
-		var.runeName = "Beam Mastery"
-		return combatWOD:execute(creature, var)
+	if not creature or not player then
+		return false
 	end
-
-	return combat:execute(creature, var)
+	return player:instantSkillWOD("Beam Mastery") and combatWOD:execute(creature, var) or combat:execute(creature, var)
 end
 
-spell:group("attack")
-spell:id(23)
+spell:group("attack", "greatbeams")
 spell:name("Great Energy Beam")
 spell:words("exevo gran vis lux")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_GREAT_ENERGY_BEAM)
@@ -47,7 +44,7 @@ spell:isPremium(false)
 spell:needDirection(true)
 spell:blockWalls(true)
 spell:cooldown(6 * 1000)
-spell:groupCooldown(2 * 1000)
+spell:groupCooldown(2 * 1000, 6 * 1000)
 spell:needLearn(false)
 spell:vocation("sorcerer;true", "master sorcerer;true")
 spell:register()

@@ -11,7 +11,7 @@ function cupOfMoltenGold.onUse(player, cup, fromPosition, target, toPosition, is
 		if targetId == 19111 then
 			cup:transform(goldenFirConeId)
 		else
-			player:addItem(goldenFirConeId, 1)
+			player:AddCustomItem({ id = goldenFirConeId, count = 1 })
 		end
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Drizzling all over a fir cone you picked from the tree, the molten gold only covers about half of it - not enough.")

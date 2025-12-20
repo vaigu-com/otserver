@@ -1,5 +1,5 @@
 --[[ 
-	Vaigu custom:
+	-- Vaigu custom:
 	- Store inbox items can be moved within inbox
 	- Prey monster timers only decay on killing that prey target
 	- Multiple immovable aid can exist
@@ -44,7 +44,7 @@ local storeItemID = {
 	29416, -- overcooked noodles
 }
 
-BOOSTED_CREATURE_EXP_MULTIPLIER = 0.7
+BOOSTED_CREATURE_EXP_MULTIPLIER = 1.5
 
 -- Players cannot throw items on teleports if set to true
 local blockTeleportTrashing = true
@@ -114,12 +114,13 @@ local function usePreyStamina(player, intervalSeconds, raceId)
 	end
 end
 
+local stamineUseInterval = 60
 local function useStamina(player, isStaminaEnabled, raceId)
 	if not player then
 		return false
 	end
 
-	usePreyStamina(player, 120, raceId)
+	usePreyStamina(player, stamineUseInterval, raceId)
 
 	local staminaMinutes = player:getStamina()
 	if staminaMinutes == 0 then
@@ -137,7 +138,7 @@ local function useStamina(player, isStaminaEnabled, raceId)
 		return
 	end
 
-	if timePassed < 60 or not isStaminaEnabled then
+	if timePassed < stamineUseInterval or not isStaminaEnabled then
 		return
 	end
 
@@ -231,7 +232,7 @@ function Player:onLookInBattleList(creature, distance)
 		if master and table.contains(summons, creature:getName():lower()) then
 			local familiarSummonTime = master:kv():get("familiar-summon-time") or 0
 			description = description .. " (Master: " .. master:getName() .. "). \z
-				It will disappear in " .. getTimeInWords(familiarSummonTime - os.time())
+				It will disappear in " .. Game.getTimeInWords(familiarSummonTime - os.time())
 		end
 	end
 	if self:getGroup():getAccess() then
@@ -252,34 +253,75 @@ function Player:onLookInBattleList(creature, distance)
 end
 
 local storeInboxName = "your store inbox"
-local function itemIsInStoreInbox(item)
+local function isInStoreinbox(item)
 	local maybeStoreInbox = item:getParent()
+	if not maybeStoreInbox or not maybeStoreInbox.getName then
+		return false
+	end
 	return maybeStoreInbox:getName() == storeInboxName
 end
 
 local immovableAid = {
 	[IMMOVABLE_ACTION_ID] = true,
-	[POSITIONCHEST_ACTION_ID] = true,
 }
 
-local function isImmovable(item)
-	return immovableAid[item:getActionId()]
+--Items with key are immovable by default, except when inside store inbox.
+--Adding key to MovableKeys will allow item to be moved in-game, but will also allow moving it out and into the store inbox.
+MovableKeys = {}
+MovableKeys.__index = MovableKeys
+MovableKeys.registry = {}
+function MovableKeys:Add(key)
+	self.registry[key] = true
+end
+function MovableKeys:Has(key)
+	return self.registry[key] ~= nil
+end
+
+local zStackTop = 255
+local function isImmovable(item, fromPosition, toPosition)
+	if immovableAid[item:getActionId()] then
+		return true
+	end
+
+	if item:isHouseDecoration() then
+		return false
+	end
+
+	if isInStoreinbox(item) then
+		--Dont allow moving items from storeinbox inner containers to storeinbox main container
+		if toPosition.y ~= fromPosition.y then
+			return true
+		end
+		--Dont allow moving items from storeinbox main container to inner storeinbox containers
+		if toPosition.z ~= zStackTop then
+			return true
+		end
+	end
+
+	if not isInStoreinbox(item) then
+		local key = item:getKey()
+		if key and key ~="" then
+			return not MovableKeys:Has(key) 
+		end
+	end
+
+	return false
+end
+
+IS_HOUSE_DECORATION = "IS_HOUSE_DECORATION"
+
+function Item:isHouseDecoration()
+    return self:getCustomAttribute(IS_HOUSE_DECORATION)
+end
+function Item:setIsHouseDecoration(nextState)
+    self:setCustomAttribute(IS_HOUSE_DECORATION, nextState)
 end
 
 local exhaust = {}
 function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
-	if isImmovable(item) then
-		if toPosition.x ~= CONTAINER_POSITION then
-			local thing = Tile(toPosition):getItemByType(ITEM_TYPE_TRASHHOLDER)
-			if not thing then
-				self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-				return false
-			end
-			item:remove()
-		else
-			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-			return false
-		end
+	if isImmovable(item, fromPosition, toPosition) then
+		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+		return false
 	end
 
 	-- No move if item count > 30 items
@@ -313,12 +355,18 @@ function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, 
 		return true
 	end
 
-	-- Bath tube
 	local toTile = Tile(toCylinder:getPosition())
 	if toTile then
 		local topDownItem = toTile:getTopDownItem()
-		if topDownItem and table.contains({ BATHTUB_EMPTY, BATHTUB_FILLED }, topDownItem:getId()) then
-			return false
+		if topDownItem then
+			local topDownItemItemId = topDownItem:getId()
+			if table.contains({ BATHTUB_EMPTY, BATHTUB_FILLED }, topDownItemItemId) then -- Bath tube
+				return false
+			elseif ItemType(topDownItemItemId):isPodium() then -- Podium
+				self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+				self:getPosition():sendMagicEffect(CONST_ME_POFF)
+				return false
+			end
 		end
 	end
 
@@ -353,7 +401,8 @@ function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, 
 	end
 
 	-- Reward System
-	if toPosition.x == CONTAINER_POSITION then
+	local containerThing = tile and tile:getItemByType(ITEM_TYPE_CONTAINER)
+	if containerThing and toPosition.x == CONTAINER_POSITION then
 		local containerId = toPosition.y - 64
 		local container = self:getContainerById(containerId)
 		if not container then
@@ -385,19 +434,20 @@ function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, 
 		return false
 	end
 
-	-- Players cannot throw items on reward chest
-	local tileChest = Tile(toPosition)
-	if tileChest and tileChest:getItemById(ITEM_REWARD_CHEST) then
-		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-		self:getPosition():sendMagicEffect(CONST_ME_POFF)
-		return false
-	end
+	if tile then
+		-- Players cannot throw items on reward chest
+		if tile:getItemById(ITEM_REWARD_CHEST) then
+			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+			self:getPosition():sendMagicEffect(CONST_ME_POFF)
+			return false
+		end
 
-	if tile and tile:getItemById(370) then
 		-- Trapdoor
-		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-		self:getPosition():sendMagicEffect(CONST_ME_POFF)
-		return false
+		if tile:getItemById(370) then
+			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+			self:getPosition():sendMagicEffect(CONST_ME_POFF)
+			return false
+		end
 	end
 
 	if not antiPush(self, item, count, fromPosition, toPosition, fromCylinder, toCylinder) then
@@ -409,9 +459,17 @@ end
 
 function Player:onItemMoved(item, count, fromPosition, toPosition, fromCylinder, toCylinder)
 	if IsRunningGlobalDatapack() then
+		-- The Secret Library Quest
+		if toPosition == Position(32460, 32928, 7) and item.itemid == 3578 then
+			toPosition:sendMagicEffect(CONST_ME_HEARTS)
+			self:say("You feed the turtle, now you may pass.", TALKTYPE_MONSTER_SAY)
+			Game.setStorageValueByKey(Storage.Quest.U11_80.TheSecretLibrary.SmallIslands.Turtle, os.time() + 10 * 60)
+			item:remove(1)
+		end
+
 		-- Cults of Tibia begin
-		local frompos = Position(33023, 31904, 14) -- Checagem
-		local topos = Position(33052, 31932, 15) -- Checagem
+		local frompos = Position(33023, 31904, 14)
+		local topos = Position(33052, 31932, 15)
 		local removeItem = false
 		if self:getPosition():isInRange(frompos, topos) and item:getId() == 23729 then
 			local tile = Tile(toPosition)
@@ -427,12 +485,12 @@ function Player:onItemMoved(item, count, fromPosition, toPosition, fromCylinder,
 						end
 						removeItem = true
 						monster:registerEvent("CheckTile")
-						if Game.getStorageValue("healthSoul") > 0 then
-							monster:addHealth(-(monster:getHealth() - Game.getStorageValue("healthSoul")))
+						if Game.getStorageValueByKey("healthSoul") > 0 then
+							monster:addHealth(-(monster:getHealth() - Game.getStorageValueByKey("healthSoul")))
 						end
-						Game.setStorageValue("CheckTile", os.time() + 30)
+						Game.setStorageValueByKey("CheckTile", os.time() + 30)
 					elseif tileBoss:getName():lower() == "the corruptor of souls" then
-						Game.setStorageValue("CheckTile", os.time() + 30)
+						Game.setStorageValueByKey("CheckTile", os.time() + 30)
 						removeItem = true
 					end
 				end
@@ -535,8 +593,8 @@ function Player:onTurn(direction)
 end
 
 local function isQuestItem(item)
-	local aid = item:getActionId()
-	if aid and aid > 0 and itemIsInStoreInbox(item) then
+	local aid = item:getKey()
+	if aid and aid ~= "" and isInStoreinbox(item) then
 		return true
 	end
 	return false
@@ -570,54 +628,64 @@ function Player:onGainExperience(target, exp, rawExp)
 		self:addCondition(soulCondition)
 	end
 
-	-- XP Boost Bonus -- From daily shrine, event or store
+	-- Apply XP Boost (Store or Daily Reward)
 	useStaminaXpBoost(self)
-	local xpBoostTimeLeft = self:getXpBoostTime()
-	local stillHasXpBoost = xpBoostTimeLeft > 0
-	local xpboostPercentage = stillHasXpBoost and self:getXpBoostPercent() or 0
 
-	self:setXpBoostPercent(xpboostPercentage)
+	local xpBoostTimeLeft = self:getXpBoostTime()
+	local hasXpBoost = xpBoostTimeLeft > 0
+	local xpBoostPercent = hasXpBoost and self:getXpBoostPercent() or 0
 
 	-- Stamina Bonus
-	local staminaMultiplier = 1
-	local isStaminaEnabled = configManager.getBoolean(configKeys.STAMINA_SYSTEM)
-	useStamina(self, isStaminaEnabled, raceId)
-	if isStaminaEnabled then
-		staminaMultiplier = self:getFinalBonusStamina()
-		self:setStaminaXpBoost(staminaMultiplier * 100)
+	local staminaBonusXp = 1
+	if configManager.getBoolean(configKeys.STAMINA_SYSTEM) then
+		useStamina(self, true, raceId)
+		staminaBonusXp = self:getFinalBonusStamina()
+		self:setStaminaXpBoost(staminaBonusXp * 100)
 	end
 
 	-- Concoction System
 	useConcoctionTime(self)
 
-	-- Boosted creature
-	local boostedcreaturePercentage = 0
+	-- Apply Boosted Creature Bonus
+	local boostedCreatureMultiplier = 1
 	if target:isBoosted() then
-		boostedcreaturePercentage = BOOSTED_CREATURE_EXP_MULTIPLIER
+		boostedCreatureMultiplier = BOOSTED_CREATURE_EXP_MULTIPLIER
 	end
 
-	-- Vip system
-	--[[
-	local vipBonusPercentage = 0
-	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
-		vipBonusPercentage = configManager.getNumber(configKeys.VIP_BONUS_EXP)
-		if self:isVip() and vipBonusPercentage > 0 then
-			vipBonusPercentage = (vipBonusPercentage > 100 and 100) or vipBonusPercentage
-			vipBonusPercentage = vipBonusPercentage / 100
+	-- Prey System
+	if configManager.getBoolean(configKeys.PREY_ENABLED) then
+		local monsterType = target:getType()
+		if monsterType and monsterType:raceId() > 0 then
+			exp = math.ceil((exp * self:getPreyExperiencePercentage(monsterType:raceId())) / 100)
 		end
 	end
-	]]
 
-	local playerexpstageMultiplier = self:getFinalBaseRateExperience()
-
-	local finalExp = exp * playerexpstageMultiplier * staminaMultiplier * (1 + boostedcreaturePercentage) * (1 + xpboostPercentage)
-
-	-- Server protection
-	if Game.getStorageValue(GlobalStorage.Protection) == 1 then
-		finalExp = finalExp / 2
+	-- VIP Bonus Experience
+	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
+		local vipBonusExp = configManager.getNumber(configKeys.VIP_BONUS_EXP)
+		if vipBonusExp > 0 and self:isVip() then
+			exp = exp * (1 + math.min(vipBonusExp, 100) / 100)
+		end
 	end
 
-	return finalExp
+	local soulwarMultiplier = 1
+	if SoulWarQuest then
+		local monsterType = target:getType()
+		if monsterType and monsterType:getName() and table.contains(SoulWarQuest.bagYouDesireMonsters, monsterType:getName()) then
+			local taintLevel = self:getTaintLevel() or 0
+			if taintLevel > 0 then
+				local taintBoost = SoulWarQuest.taintExperienceBoostMap[taintLevel] and SoulWarQuest.taintExperienceBoostMap[taintLevel].boost or 0
+				soulwarMultiplier =  (1 + taintBoost / 100)
+			end
+		end
+	end
+
+	-- Final Adjustments: Low Level Bonus and Base Rate
+	local lowLevelBonusExp = self:getFinalLowLevelBonus()
+	local baseRateExp = self:getFinalBaseRateExperience()
+
+	-- Return final experience value
+	return (exp * (1 + xpBoostPercent / 100 + lowLevelBonusExp / 100)) * staminaBonusXp * baseRateExp * boostedCreatureMultiplier * soulwarMultiplier
 end
 
 function Player:onLoseExperience(exp)
@@ -629,42 +697,35 @@ function Player:onGainSkillTries(skill, tries)
 	if IsRunningGlobalDatapack() and isSkillGrowthLimited(self, skill) then
 		return 0
 	end
+
 	if not APPLY_SKILL_MULTIPLIER then
 		return tries
 	end
 
-	-- Event scheduler skill rate
-	local STAGES_DEFAULT = nil
-	if configManager.getBoolean(configKeys.RATE_USE_STAGES) then
-		STAGES_DEFAULT = skillsStages
-	end
-	local SKILL_DEFAULT = self:getSkillLevel(skill)
-	local RATE_DEFAULT = configManager.getNumber(configKeys.RATE_SKILL)
+	-- Default skill rate settings
+	local rateSkillStages = configManager.getBoolean(configKeys.RATE_USE_STAGES) and skillsStages or nil
+	local currentSkillLevel = self:getSkillLevel(skill)
+	local baseRate = configManager.getNumber(configKeys.RATE_SKILL)
 
+	-- Special case for magic level
 	if skill == SKILL_MAGLEVEL then
-		-- Magic Level
-		if configManager.getBoolean(configKeys.RATE_USE_STAGES) then
-			STAGES_DEFAULT = magicLevelStages
-		end
-		SKILL_DEFAULT = self:getBaseMagicLevel()
-		RATE_DEFAULT = configManager.getNumber(configKeys.RATE_MAGIC)
+		rateSkillStages = configManager.getBoolean(configKeys.RATE_USE_STAGES) and magicLevelStages or nil
+		currentSkillLevel = self:getBaseMagicLevel()
+		baseRate = configManager.getNumber(configKeys.RATE_MAGIC)
 	end
 
-	local skillOrMagicRate = getRateFromTable(STAGES_DEFAULT, SKILL_DEFAULT, RATE_DEFAULT)
+	-- Calculate skill rate from stages and schedule
+	local skillRate = getRateFromTable(rateSkillStages, currentSkillLevel, baseRate)
+	skillRate = (SCHEDULE_SKILL_RATE ~= 100) and (skillRate * SCHEDULE_SKILL_RATE / 100) or skillRate
 
-	if SCHEDULE_SKILL_RATE ~= 100 then
-		skillOrMagicRate = math.max(0, (skillOrMagicRate * SCHEDULE_SKILL_RATE) / 100)
+	-- Apply VIP boost if applicable
+	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) and self:isVip() then
+		local vipBonusSkill = math.min(configManager.getNumber(configKeys.VIP_BONUS_SKILL), 100)
+		skillRate = skillRate + (skillRate * (vipBonusSkill / 100))
 	end
 
-	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
-		local vipBoost = configManager.getNumber(configKeys.VIP_BONUS_SKILL)
-		if vipBoost > 0 and self:isVip() then
-			vipBoost = (vipBoost > 100 and 100) or vipBoost
-			skillOrMagicRate = skillOrMagicRate + (skillOrMagicRate * (vipBoost / 100))
-		end
-	end
-
-	return tries / 100 * (skillOrMagicRate * 100)
+	-- Calculate and return the final experience gain
+	return tries * skillRate
 end
 
 function Player:onCombat(target, item, primaryDamage, primaryType, secondaryDamage, secondaryType)
@@ -715,24 +776,3 @@ function Player:onChangeZone(zone)
 end
 
 function Player:onInventoryUpdate(item, slot, equip) end
-
-function Player:getURL()
-	local playerLink = string.gsub(self:getName(), "%s+", "+")
-	local serverURL = configManager.getString(configKeys.URL)
-	return serverURL .. "/characters/" .. playerLink
-end
-
-function Player:getMarkdownLink()
-	local vocation = self:vocationAbbrev()
-	local emoji = ":school_satchel:"
-	if self:isKnight() then
-		emoji = ":crossed_swords:"
-	elseif self:isPaladin() then
-		emoji = ":bow_and_arrow:"
-	elseif self:isDruid() then
-		emoji = ":herb:"
-	elseif self:isSorcerer() then
-		emoji = ":crystal_ball:"
-	end
-	return "**[" .. self:getName() .. "](" .. self:getURL() .. ")** " .. emoji .. " [_" .. vocation .. "_]"
-end

@@ -7,29 +7,52 @@
  * Website: https://docs.opentibiabr.com/
  */
 
-#include "pch.hpp"
-
 #include "kv/kv_sql.hpp"
+
+#include "database/database.hpp"
 #include "kv/value_wrapper_proto.hpp"
 #include "utils/tools.hpp"
 
 #include <kv.pb.h>
 
-std::optional<ValueWrapper> KVSQL::load(const std::string &key) {
-	auto query = fmt::format("SELECT `key_name`, `timestamp`, `value` FROM `kv_store` WHERE `key_name` = {}", db.escapeString(key));
+KVSQL::KVSQL(Database &db, Logger &logger) :
+	KVStore(logger), db(db) { }
+
+void KVSQL::loadAll() {
+	auto query = fmt::format("SELECT `key_name`, `timestamp`, `value` FROM `kv_store`");
 	auto result = db.storeQuery(query);
+	do {
+		unsigned long size;
+		auto data = result->getStream("value", size);
+		if (data == nullptr) {
+			continue;
+		}
+		ValueWrapper valueWrapper;
+		auto timestamp = result->getNumber<uint64_t>("timestamp");
+		Canary::protobuf::kv::ValueWrapper protoValue;
+		if (protoValue.ParseFromArray(data, static_cast<int>(size))) {
+			valueWrapper = ProtoSerializable::fromProto(protoValue, timestamp);
+		}
+		auto key = result->getString("key");
+		setLocked(key, valueWrapper);
+	} while (result->next());
+}
+
+std::optional<ValueWrapper> KVSQL::load(const std::string &key) {
+	const auto query = fmt::format("SELECT `key_name`, `timestamp`, `value` FROM `kv_store` WHERE `key_name` = {}", db.escapeString(key));
+	const auto result = db.storeQuery(query);
 	if (result == nullptr) {
 		return std::nullopt;
 	}
 
 	unsigned long size;
-	auto data = result->getStream("value", size);
+	const auto data = result->getStream("value", size);
 	if (data == nullptr) {
 		return std::nullopt;
 	}
 
 	ValueWrapper valueWrapper;
-	auto timestamp = result->getNumber<uint64_t>("timestamp");
+	const auto timestamp = result->getNumber<uint64_t>("timestamp");
 	Canary::protobuf::kv::ValueWrapper protoValue;
 	if (protoValue.ParseFromArray(data, static_cast<int>(size))) {
 		valueWrapper = ProtoSerializable::fromProto(protoValue, timestamp);
@@ -42,8 +65,8 @@ std::optional<ValueWrapper> KVSQL::load(const std::string &key) {
 std::vector<std::string> KVSQL::loadPrefix(const std::string &prefix /* = ""*/) {
 	std::vector<std::string> keys;
 	std::string keySearch = db.escapeString(prefix + "%");
-	auto query = fmt::format("SELECT `key_name` FROM `kv_store` WHERE `key_name` LIKE {}", keySearch);
-	auto result = db.storeQuery(query);
+	const auto query = fmt::format("SELECT `key_name` FROM `kv_store` WHERE `key_name` LIKE {}", keySearch);
+	const auto result = db.storeQuery(query);
 	if (result == nullptr) {
 		return keys;
 	}
@@ -57,20 +80,14 @@ std::vector<std::string> KVSQL::loadPrefix(const std::string &prefix /* = ""*/) 
 	return keys;
 }
 
-bool KVSQL::save(const std::string &key, const ValueWrapper &value) {
-	auto update = dbUpdate();
-	prepareSave(key, value, update);
-	return update.execute();
-}
-
-bool KVSQL::prepareSave(const std::string &key, const ValueWrapper &value, DBInsert &update) {
-	auto protoValue = ProtoSerializable::toProto(value);
+bool KVSQL::prepareSave(const std::string &key, const ValueWrapper &value, DBInsert &update) const {
+	const auto protoValue = ProtoSerializable::toProto(value);
 	std::string data;
 	if (!protoValue.SerializeToString(&data)) {
 		return false;
 	}
 	if (value.isDeleted()) {
-		auto query = fmt::format("DELETE FROM `kv_store` WHERE `key_name` = {}", db.escapeString(key));
+		const auto query = fmt::format("DELETE FROM `kv_store` WHERE `key_name` = {}", db.escapeString(key));
 		return db.executeQuery(query);
 	}
 
@@ -80,20 +97,27 @@ bool KVSQL::prepareSave(const std::string &key, const ValueWrapper &value, DBIns
 
 bool KVSQL::saveAll() {
 	auto store = getStore();
-	bool success = DBTransaction::executeWithinTransaction([this, &store]() {
-		auto update = dbUpdate();
-		if (!std::ranges::all_of(store, [this, &update](const auto &kv) {
-				const auto &[key, value] = kv;
-				return prepareSave(key, value.first, update);
-			})) {
-			return false;
-		}
-		return update.execute();
-	});
+	auto update = dbUpdate();
+	if (!std::ranges::all_of(store, [this, &update](const auto &kv) {
+			const auto &[key, value] = kv;
+			return prepareSave(key, value.first, update);
+		})) {
+		return false;
+	}
+
+	bool success = update.execute();
 
 	if (!success) {
 		g_logger().error("[{}] Error occurred saving player", __FUNCTION__);
+		return false;
+	} else {
+		return true;
 	}
+}
 
-	return success;
+
+DBInsert KVSQL::dbUpdate() {
+	auto insert = DBInsert("INSERT INTO `kv_store` (`key_name`, `timestamp`, `value`) VALUES");
+	insert.upsert({ "key_name", "timestamp", "value" });
+	return insert;
 }

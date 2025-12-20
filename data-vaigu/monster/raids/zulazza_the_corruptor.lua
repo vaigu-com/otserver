@@ -95,6 +95,7 @@ monster.loot = {
 	{ id = 3010, chance = 10500 }, -- emerald bangle
 	{ id = 8063, chance = 5500 }, -- paladin armor
 	{ id = 3415, chance = 5500 }, -- guardian shield
+	{ id = 9301, chance = 910 }
 }
 
 monster.attacks = {
@@ -131,19 +132,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

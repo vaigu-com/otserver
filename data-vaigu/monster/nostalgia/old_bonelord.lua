@@ -58,7 +58,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 6,
 	summons = {
-		{ name = "Skeleton", chance = 20, interval = 2000, count = 6 },
+		{ name = "Old Skeleton", chance = 20, interval = 2000, count = 6 },
 	},
 }
 

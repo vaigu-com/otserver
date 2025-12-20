@@ -2,7 +2,7 @@ if not monsterStorage then
 	monsterStorage = { [0] = { [0] = 0 } }
 end
 
-function Monster.getStorageValue(self, key)
+function Monster.getStorageValueByKey(self, key)
 	if not self:isMonster() then
 		return -1
 	end
@@ -20,7 +20,7 @@ function Monster.getStorageValue(self, key)
 	return ret
 end
 
-function Monster.setStorageValue(self, key, value)
+function Monster.setStorageValueByKey(self, key, value)
 	if not self:isMonster() then
 		return false
 	end
@@ -36,11 +36,11 @@ function Monster.setStorageValue(self, key, value)
 end
 
 function Monster.getStorage(self, key)
-	return self:getStorageValue(key)
+	return self:getStorageValueByKey(key)
 end
 
 function Monster.setStorage(self, key, value)
-	return self:setStorageValue(key, value)
+	return self:setStorageValueByKey(key, value)
 end
 
 if not hpCompartilhada then
@@ -55,14 +55,14 @@ function Monster.beginSharedLife(self, hpid)
 		hpCompartilhada[hpid] = { hp = self:getMaxHealth(), monsters = {} }
 	end
 	table.insert(hpCompartilhada[hpid].monsters, self:getId())
-	self:setStorageValue("shared_storage", hpid)
+	self:setStorageValueByKey("shared_storage", hpid)
 end
 
 function Monster.inSharedLife(self)
 	if not self:isMonster() then
 		return false
 	end
-	local storage = self:getStorageValue("shared_storage")
+	local storage = self:getStorageValueByKey("shared_storage")
 	if storage < 1 then
 		return false
 	end
@@ -108,7 +108,7 @@ function Monster.onReceivDamageSL(self, damage, tp, killer)
 	if not self:inSharedLife() then
 		return true
 	end
-	local storage = self:getStorageValue("shared_storage")
+	local storage = self:getStorageValueByKey("shared_storage")
 	if storage < 1 then
 		return false
 	end
@@ -140,7 +140,7 @@ function Monster.setFiendish(self, position, player)
 	if fiendishMonster then
 		Game.removeFiendishMonster(fiendishMonster:getId())
 	end
-	if Game.makeFiendishMonster(self:getId(), true) ~= 0 then
+	if Game.makeFiendishMonster(self:getId(), false) ~= 0 then
 		success = "set sucessfully a new fiendish monster"
 	else
 		success = "have error to set fiendish monster"
@@ -174,6 +174,7 @@ function Monster:setRewardBoss()
 	end
 end
 
+--[[
 local equipmentBags = {
 	BAG_YOU_DESIRE,
 	PRIMAL_BAG,
@@ -204,7 +205,7 @@ do
 		return table.contains(equipmentTypes, t)
 	end
 
-	function MonsterType.getBossReward(self, lootFactor, topScore, equipmentOnly, lootTable)
+	function MonsterType.getBossReward(self, lootFactor, topScore, equipmentOnly, lootTable, player)
 		if configManager.getNumber(configKeys.RATE_LOOT) <= 0 then
 			return lootTable or {}
 		end
@@ -221,6 +222,7 @@ do
 				end
 				return true
 			end,
-		}, lootTable)
+		}, lootTable, player)
 	end
 end
+	]]

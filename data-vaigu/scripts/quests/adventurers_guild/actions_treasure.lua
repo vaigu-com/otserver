@@ -15,30 +15,26 @@ local items = {
 }
 
 local adventurersTreasure = Action()
+
 function adventurersTreasure.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter) >= 50 then
+	if player:getStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter) >= 50 then
 		local treasure = items[math.random(#items)]
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is impossible to take along all of the treasures here. Buy you pick out " .. treasure.description)
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "It is impossible to take along all of the treasures here. But you pick out " .. treasure.description)
 		for _, item in ipairs(treasure.items) do
 			player:addItem(item.id, item.count)
 		end
 
-		-- reset dragon counter
-		player:setStorageValue(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter, 0)
+		player:setStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.DragonCounter, 0)
 
-		-- hoard of the dragon achievement
-		local achievement = getAchievementInfoByName("Hoard of the Dragon")
-		if not achievement or player:hasAchievement(achievement.id) then
-			return true
+		local times = player:getStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement)
+		if times < 0 then
+			times = 0
 		end
+		times = times + 1
+		player:setStorageValueByKey(Storage.Quest.U10_80.TheGreatDragonHunt.Achievement, times)
 
-		local times = player:getStorageValue(achievement.actionStorage)
-		if times < 10 then
-			player:setStorageValue(achievement.actionStorage, times + 1)
-		end
-
-		if times + 1 == 10 then
-			player:addAchievement(achievement.id)
+		if times == 10 then
+			player:addAchievement("Hoard of the Dragon")
 		end
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You try to pick a treasure, but you hear further dragons approaching. You should kill some more before picking out something.")

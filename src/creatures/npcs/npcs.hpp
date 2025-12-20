@@ -9,8 +9,12 @@
 
 #pragma once
 
-#include "creatures/creature.hpp"
-#include "lib/di/container.hpp"
+#include "creatures/creatures_definitions.hpp"
+#include "utils/utils_definitions.hpp"
+
+#include "kv/kv.hpp"
+
+class LuaScriptInterface;
 
 class Shop {
 public:
@@ -21,9 +25,13 @@ public:
 	Shop &operator=(const Shop &) = delete;
 
 	ShopBlock shopBlock;
+
+	std::shared_ptr<KV> kv() const {
+		return g_kv().scoped("shop");
+	}
 };
 
-class NpcType : public SharedObject {
+class NpcType final : public SharedObject {
 	struct NpcInfo {
 		LuaScriptInterface* scriptInterface {};
 
@@ -31,6 +39,9 @@ class NpcType : public SharedObject {
 		RespawnType respawnType = {};
 
 		LightInfo light = {};
+
+		// Vaigu custom
+		bool isTransportNpc = false;
 
 		uint8_t speechBubble = SPEECHBUBBLE_NORMAL;
 
@@ -75,14 +86,14 @@ class NpcType : public SharedObject {
 
 public:
 	NpcType() = default;
-	explicit NpcType(const std::string &initName) :
-		name(initName), typeName(initName), nameDescription(initName) {};
+	explicit NpcType(const std::string &initName);
 
 	// non-copyable
 	NpcType(const NpcType &) = delete;
 	NpcType &operator=(const NpcType &) = delete;
 
 	std::string name;
+	std::string m_lowerName;
 	std::string typeName;
 	std::string nameDescription;
 	NpcInfo info;
@@ -90,7 +101,7 @@ public:
 	void loadShop(const std::shared_ptr<NpcType> &npcType, ShopBlock shopBlock);
 
 	bool loadCallback(LuaScriptInterface* scriptInterface);
-	bool canSpawn(const Position &pos);
+	bool canSpawn(const Position &pos) const;
 };
 
 class Npcs {
@@ -100,9 +111,7 @@ public:
 	Npcs(const Npcs &) = delete;
 	Npcs &operator=(const Npcs &) = delete;
 
-	static Npcs &getInstance() {
-		return inject<Npcs>();
-	}
+	static Npcs &getInstance();
 
 	std::shared_ptr<NpcType> getNpcType(const std::string &name, bool create = false);
 

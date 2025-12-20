@@ -75,7 +75,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		"wazwania",
 	}, message) then
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Mam do zaoferowania 3 poziomy trudnosci areny, {latwa}, {srednia} oraz {trudna}. Ktorej chcesz sie podjac?" or "There are three difficulties: {greenhorn}, {scrapper} and {warlord}. Which one are you interested in?", npc, creature)
-		if player:getStorageValue(26100) > 0 and player:getStorageValue(26101) > 0 and player:getStorageValue(26102) > 0 and not player:hasOutfit(884) then
+		if player:getStorageValueByKey(26100) > 0 and player:getStorageValueByKey(26101) > 0 and player:getStorageValueByKey(26102) > 0 and not player:hasOutfit(884) then
 			player:addOutfitAddon(885, 3)
 			player:addOutfitAddon(884, 3)
 			if getPlayerLanguage(player) == "PL" then
@@ -94,7 +94,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Czy jestes {pewny}, ze poradzisz sobie na tej arenie?" or "Are you {sure}?", npc, creature)
 		npcHandler:setTopic(playerId, 3)
 	elseif table.contains({ "yes", "tak", "pewny", "pewna", "sure" }, message) and (npcHandler:getTopic(playerId) == 1 or npcHandler:getTopic(playerId) == 2 or npcHandler:getTopic(playerId) == 3) then
-		if player:getStorageValue(26099 + npcHandler:getTopic(playerId)) > 0 then
+		if player:getStorageValueByKey(26099 + npcHandler:getTopic(playerId)) > 0 then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Ta arena zostala zakonczona, ale mozesz wejsc do sali po nagrode." or "You already finished that difficulty, but you can go get your reward.", npc, creature)
 			npcHandler:removeInteraction(npc, creature)
 			npcHandler:resetNpc(creature)
@@ -107,8 +107,8 @@ local function creatureSayCallback(npc, creature, type, message)
 			else
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Powodzenia!" or "Good luck!", npc, creature)
 				local level = npcHandler:getTopic(playerId)
-				player:setStorageValue(300 + level, 1)
-				local room = player:getStorageValue(300 + level)
+				player:setStorageValueByKey(tostring(300 + level), 1)
+				local room = player:getStorageValueByKey(300 + level)
 				local boss = arena_bosses[level == 1 and room or level == 2 and 10 + room or 20 + room]
 				local arenaroom = 0
 				for i = 1, 10 do
@@ -117,11 +117,11 @@ local function creatureSayCallback(npc, creature, type, message)
 						arenaroom = i
 					end
 				end
-				player:setStorageValue(300, arenaroom)
+				player:setStorageValueByKey("300", arenaroom)
 				local monster = Game.createMonster(boss, rooms[arenaroom].centerPosition, true, true)
 				player:teleportTo(rooms[arenaroom].teleportPosition)
 				local event_id = addEvent(clearArena, 10 * 60 * 1000, player.uid, monster.uid, arenaroom)
-				player:setStorageValue(299, event_id)
+				player:setStorageValueByKey("299", event_id)
 				if getPlayerLanguage(player) == "PL" then
 					player:say("Masz 7 minut na pokonanie kazdego przeciwnika.", TALKTYPE_MONSTER_SAY)
 				else

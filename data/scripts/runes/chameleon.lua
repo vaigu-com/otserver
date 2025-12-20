@@ -28,7 +28,6 @@ function rune.onCastSpell(creature, variant, isHotkey)
 	return true
 end
 
-rune:id(14)
 rune:group("support")
 rune:name("chameleon rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

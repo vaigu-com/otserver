@@ -41,8 +41,8 @@ GrandMasterOberonConfig = {
 }
 
 local function healOberon(monster)
-	local storage = monster:getStorageValue(GrandMasterOberonConfig.Storage.Life)
-	monster:setStorageValue(GrandMasterOberonConfig.Storage.Life, storage + 1)
+	local storage = monster:getStorageValueByKey(GrandMasterOberonConfig.Storage.Life)
+	monster:setStorageValueByKey(GrandMasterOberonConfig.Storage.Life, storage + 1)
 	monster:addHealth(monster:getMaxHealth())
 end
 
@@ -50,7 +50,7 @@ function SendOberonAsking(monster)
 	monster:registerEvent("OberonImmunity")
 	local random = math.random(#GrandMasterOberonAsking)
 	monster:say(GrandMasterOberonAsking[random].msg, TALKTYPE_MONSTER_SAY)
-	monster:setStorageValue(GrandMasterOberonConfig.Storage.Asking, random)
+	monster:setStorageValueByKey(GrandMasterOberonConfig.Storage.Asking, random)
 
 	healOberon(monster)
 

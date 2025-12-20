@@ -94,6 +94,8 @@ monster.loot = {
 	{ id = 236, chance = 2200, maxCount = 3 }, -- strong health potion
 	{ id = 3279, chance = 600 }, -- war hammer
 	{ id = 22192, chance = 300 }, -- shamanic mask
+	{ id = 32009, chance = 100 },
+	{ id = 32100, chance = 300 },
 }
 
 monster.attacks = {

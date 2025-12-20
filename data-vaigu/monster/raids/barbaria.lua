@@ -63,7 +63,7 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 1,
+	maxSummons = 2,
 	summons = {
 		{ name = "War Wolf", chance = 40, interval = 2000, count = 1 },
 	},
@@ -79,18 +79,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 48000, maxCount = 35 }, -- gold coin
-	{ id = 3358, chance = 11000 }, -- chain armor
+	{ id = 3031, chance = 48000, maxCount = 135 }, -- gold coin
 	{ id = 3347, chance = 12500 }, -- hunting spear
-	{ id = 7343, chance = 1000 }, -- fur bag
-	{ id = 2920, chance = 25000 }, -- torch
-	{ id = 2824, chance = 15000 }, -- book
+	{ id = 7343, chance = 10000 }, -- fur bag
+	{ id = 12669, chance = 45000 }, -- star ring
+	{ id = 7363, chance = 10000 },
+	{ id = 9082, chance = 10000 },
+	{ id = 7444, chance = 10000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 60, attack = 20 },
-	{ name = "combat", interval = 2000, chance = 34, type = COMBAT_PHYSICALDAMAGE, minDamage = -30, maxDamage = -80, range = 7, radius = 1, shootEffect = CONST_ANI_SNOWBALL, target = true },
-	{ name = "combat", interval = 3000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -35, maxDamage = -70, range = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_ENERGYHIT, target = false },
+	{ name = "melee", interval = 2000, chance = 100, skill = 60, attack = 30 },
+	{ name = "combat", interval = 2000, chance = 34, type = COMBAT_PHYSICALDAMAGE, minDamage = -30, maxDamage = -90, range = 7, radius = 1, shootEffect = CONST_ANI_SNOWBALL, target = true },
+	{ name = "combat", interval = 3000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -35, maxDamage = -80, range = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_ENERGYHIT, target = false },
 }
 
 monster.defenses = {

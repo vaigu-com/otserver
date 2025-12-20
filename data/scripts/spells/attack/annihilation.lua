@@ -6,9 +6,9 @@ combat:setParameter(COMBAT_PARAM_BLOCKARMOR, 1)
 combat:setParameter(COMBAT_PARAM_USECHARGES, 1)
 
 function onGetFormulaValues(player, skill, attack, factor)
-	local skillTotal = skill * attack
-	local levelTotal = player:getLevel() / 5
-	return -(((skillTotal * 0.17) + 13) + levelTotal) * 1.28, -(((skillTotal * 0.20) + 34) + levelTotal) * 1.28 -- TODO : Use New Real Formula instead of an %
+	local min = (player:getLevel() / 5) + (skill * attack * 0.06) + 13
+	local max = (player:getLevel() / 5) + (skill * attack * 0.14) + 34
+	return -min, -max
 end
 
 combat:setCallback(CALLBACK_PARAM_SKILLVALUE, "onGetFormulaValues")
@@ -20,7 +20,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(62)
 spell:name("Annihilation")
 spell:words("exori gran ico")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
@@ -33,7 +32,7 @@ spell:needTarget(true)
 spell:blockWalls(true)
 spell:needWeapon(true)
 spell:cooldown(30 * 1000)
-spell:groupCooldown(4 * 1000)
+spell:groupCooldown(2 * 1000)
 spell:needLearn(false)
 spell:vocation("knight;true", "elite knight;true")
 spell:register()

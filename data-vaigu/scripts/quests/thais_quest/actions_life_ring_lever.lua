@@ -1,3 +1,4 @@
+--[[
 local config = {
 	bridgePositions = {
 		Position(32410, 32232, 10),
@@ -35,3 +36,4 @@ end
 
 othersLifeRing:aid(30007)
 othersLifeRing:register()
+]]

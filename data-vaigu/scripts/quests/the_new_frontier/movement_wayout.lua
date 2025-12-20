@@ -8,9 +8,9 @@ function wayOut.onStepIn(creature, item, position, fromPosition)
 		return false
 	end
 
-	if player:getStorageValue(TheNewFrontier.Questline) == 1 then
-		player:setStorageValue(TheNewFrontier.Mission01, 2) -- Questlog, Quest "Mission 01: New Land"
-		player:setStorageValue(TheNewFrontier.Questline, 2)
+	if player:getStorageValueByKey(TheNewFrontier.Questline) == 1 then
+		player:setStorageValueByKey(TheNewFrontier.Mission01, 2) -- Questlog, Quest "Mission 01: New Land"
+		player:setStorageValueByKey(TheNewFrontier.Questline, 2)
 		player:say("You have found the passage through the mountains and can report about your success.", TALKTYPE_MONSTER_SAY)
 	end
 	return true

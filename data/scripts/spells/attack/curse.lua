@@ -32,12 +32,11 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(139)
 spell:name("Curse")
 spell:words("utori mort")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)
 spell:impactSound(SOUND_EFFECT_TYPE_SPELL_CURSE)
-spell:level(75)
+spell:level(26)
 spell:mana(30)
 spell:isAggressive(true)
 spell:range(3)

@@ -1,0 +1,1495 @@
+local quest = Quest(LOCALIZERS.PathOfTheUndead)
+
+quest
+	:Storage(function()
+		Storage.PathOfTheUndead = {
+			Mission01 = {},
+			Mission02 = {},
+			Mission03 = {},
+			VisitedCircles = {},
+			KonmuldBush = {},
+			UpperLever = {},
+			CursedChest = {},
+			GuardianSkull = {},
+			GuardianGateTile = {},
+			GuardianSkullsPositions = {},
+
+			RitualLocus = {},
+			TpToBossRoom = {},
+			BossArea = {},
+			BossBook = {},
+			BossBombsPositions = {},
+			BossRoomExit = {},
+
+			SkipDoor = {},
+			GrantSkipDoorAccess = {},
+		}
+		QuestState.PathOfTheUndead = {
+			Mission01 = {
+				ConsultGandalf = 1,
+			},
+			Mission02 = {
+				VisitMagicalCircles = 1,
+			},
+			Mission03 = {
+				DefeatUndeadKing = 1,
+				ReturnToGandalf = 2,
+			},
+		}
+		QuestConstants.PathOfTheUndead = {
+			VisitableCirclesCount = 5,
+			GuardianSkullId = 11965,
+		}
+		QuestActions.PathOfTheUndead = {
+			spawnSkull = function()
+				local zone = Zone(Storage.PathOfTheUndead.GuardianSkullsPositions)
+				for _, position in pairs(zone:getPositions()) do
+					local skull = position:GetItemById(QuestConstants.PathOfTheUndead.GuardianSkullId)
+					if not skull then
+						Game.createItem(QuestConstants.PathOfTheUndead.GuardianSkullId, 1, position)
+						return
+					end
+				end
+			end,
+		}
+	end)
+	:Questlog(function(localizer)
+		table.insert(Questlog, {
+			name = "Path of the Undead",
+			localizer = localizer,
+			missions = {
+				{
+					name = "Test of Strength",
+					storage = Storage.PathOfTheUndead.Mission01,
+					states = {
+						[QuestState.PathOfTheUndead.Mission01.ConsultGandalf] = "Gandalf told you about the history of Mirkotown. Now, ask him what conditions you need to fulfill to get his help.",
+						[MISSION_FINISHED] = "VISITED_CIRCLES_STATUS_QUESTLOG",
+					},
+				},
+				{
+					name = "Endurance Test",
+					storage = Storage.PathOfTheUndead.Mission02,
+					states = {
+						[QuestState.PathOfTheUndead.Mission02.VisitMagicalCircles] = "VISITED_CIRCLES_STATUS_QUESTLOG",
+						[MISSION_FINISHED] = "Gandalf has blessed you and advised you to go to Konmuld for further instructions.",
+					},
+					linkedStorages = { Storage.PathOfTheUndead.VisitedCircles },
+				},
+				{
+					name = "The Final Battle",
+					storage = Storage.PathOfTheUndead.Mission03,
+					states = {
+						[QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing] = "Gather the necessary items, summon, and ultimately defeat the Undead Crypt King.",
+						[QuestState.PathOfTheUndead.Mission03.ReturnToGandalf] = "You have defeated the Undead Crypt King. Return to Gandalf for your reward.",
+						[MISSION_FINISHED] = "Gandalf misplaced a certain item intended as a reward, but you have received his other gifts.",
+					},
+				},
+			},
+		})
+	end)
+	:Constant(function()
+		GUARDIAN_SKULLS_APPEAR_SPOTS = {
+			["Cipociamkacz"] = { x = -12, y = 15, z = 1 },
+			["PatriotaPL"] = { x = -11, y = 15, z = 1 },
+			["CalaNapszut"] = { x = -10, y = 15, z = 1 },
+		}
+		QuestRewards.OutfitsAddons.PathOfTheUndead = {
+			Poltergeist3 = {
+				{ outfitId = 1270, addons = 3 },
+				{ outfitId = 1271, addons = 3 },
+			},
+		}
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("CalaNapszut")
+		local monster = {}
+
+		monster.description = "a CalaNapszut"
+		monster.experience = 5600
+		monster.outfit = {
+			lookType = 351,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 9500
+		monster.maxHealth = 9500
+		monster.race = "undead"
+		monster.corpse = 10445
+		monster.speed = 160
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 4000,
+			chance = 5,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 70,
+			health = 10,
+			damage = 10,
+			random = 10,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = true,
+			canPushCreatures = true,
+			staticAttackChance = 70,
+			targetDistance = 1,
+			runHealth = 366,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = false,
+			canWalkOnFire = false,
+			canWalkOnPoison = false,
+		}
+
+		monster.events = {
+			"CalaNapszutDeath",
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+			{ text = "EMBRACE MY GIFTS!", yell = true },
+		}
+
+		monster.loot = {
+			{ id = 10449, chance = 10000 },
+			{ id = 3031, chance = 10000, maxCount = 230 },
+			{ id = 3035, chance = 10000, maxCount = 15 },
+			{ id = 10450, chance = 10000 },
+			{ id = 6499, chance = 9700 },
+			{ id = 281, chance = 4500 },
+			{ id = 282, chance = 4500 },
+			{ id = 9057, chance = 9700, maxCount = 10 },
+			{ id = 10406, chance = 7600 },
+			{ id = 7643, chance = 6000 },
+			{ id = 10310, chance = 4500 },
+			{ id = 10451, chance = 3700 },
+			{ id = 239, chance = 3400, maxCount = 3 },
+			{ id = 10386, chance = 3000 },
+			{ id = 238, chance = 2600, maxCount = 3 },
+			{ id = 7642, chance = 2600, maxCount = 3 },
+			{ id = 10438, chance = 2100 },
+			{ id = 10387, chance = 1500 },
+			{ id = 10384, chance = 1300 },
+			{ id = 10385, chance = 1300 },
+			{ id = 10389, chance = 1000 },
+			{ id = 10388, chance = 870 },
+			{ id = 12801, chance = 217 },
+		}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, skill = 80, attack = 100 },
+			{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -80, maxDamage = -230, range = 7, effect = CONST_ME_MAGIC_RED, target = true },
+			-- poison
+			{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 10, minDamage = -920, maxDamage = -1260, range = 7, shootEffect = CONST_ANI_DEATH, effect = CONST_ME_SMALLCLOUDS, target = false },
+			{ name = "combat", interval = 2000, chance = 20, type = COMBAT_LIFEDRAIN, minDamage = -90, maxDamage = -350, range = 7, effect = CONST_ME_MAGIC_RED, target = true },
+			{ name = "combat", interval = 2000, chance = 13, type = COMBAT_DEATHDAMAGE, minDamage = -70, maxDamage = -180, radius = 4, effect = CONST_ME_MORTAREA, target = false },
+		}
+
+		monster.defenses = {
+			defense = 35,
+			armor = 45,
+			{ name = "combat", interval = 2000, chance = 9, type = COMBAT_HEALING, minDamage = 70, maxDamage = 300, effect = CONST_ME_MAGIC_GREEN, target = false },
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+			{ type = COMBAT_FIREDAMAGE, percent = 10 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 50 },
+			{ type = COMBAT_HOLYDAMAGE, percent = -15 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		mType:register(monster)
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Cipociamkacz")
+		local monster = {}
+
+		monster.description = "a Cipociamkacz"
+		monster.experience = 6500
+		monster.outfit = {
+			lookType = 231,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 6500
+		monster.maxHealth = 6500
+		monster.race = "undead"
+		monster.corpse = 6305
+		monster.speed = 140
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 4000,
+			chance = 10,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 70,
+			health = 10,
+			damage = 10,
+			random = 10,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = true,
+			canPushItems = true,
+			canPushCreatures = true,
+			staticAttackChance = 70,
+			targetDistance = 1,
+			runHealth = 0,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = false,
+			canWalkOnFire = false,
+			canWalkOnPoison = true,
+		}
+
+		monster.events = {
+			"CipociamkaczDeath",
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+		}
+
+		monster.loot = {
+			{ name = "black pearl", chance = 22780, maxCount = 2 },
+			{ name = "small sapphire", chance = 28370, maxCount = 2 },
+			{ name = "gold coin", chance = 355000, maxCount = 10 },
+			{ name = "gold coin", chance = 55500, maxCount = 98 },
+			{ name = "platinum coin", chance = 52000, maxCount = 5 },
+			{ name = "life crystal", chance = 2500 },
+			{ name = "hardened bone", chance = 14180 },
+			{ id = 6299, chance = 1150 },
+			{ name = "demonic essence", chance = 12460 },
+			{ name = "assassin star", chance = 26650, maxCount = 5 },
+			{ name = "dragon slayer", chance = 860 },
+			{ name = "dragonbone staff", chance = 4000 },
+			{ name = "great mana potion", chance = 21490 },
+			{ name = "great health potion", chance = 21200 },
+			{ name = "skullcracker armor", chance = 290 },
+			{ name = "gold ingot", chance = 570 },
+			{ name = "unholy bone", chance = 33380 },
+			{ name = "spellweaver's robe", chance = 860 },
+		}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -480 },
+			{ name = "combat", interval = 2000, chance = 5, type = COMBAT_PHYSICALDAMAGE, minDamage = -300, maxDamage = -400, range = 7, radius = 4, effect = CONST_ME_HITAREA, target = true },
+			{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -125, maxDamage = -600, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_SMALLCLOUDS, target = false },
+			{ name = "combat", interval = 2000, chance = 5, type = COMBAT_EARTHDAMAGE, minDamage = -100, maxDamage = -390, range = 7, radius = 4, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = true },
+			{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = 0, maxDamage = -180, range = 7, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = true },
+			{ name = "combat", interval = 2000, chance = 10, type = COMBAT_EARTHDAMAGE, minDamage = -150, maxDamage = -690, length = 8, spread = 3, effect = CONST_ME_POISONAREA, target = false },
+			{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -300, maxDamage = -700, length = 8, spread = 3, effect = CONST_ME_MAGIC_RED, target = false },
+			{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -100, maxDamage = -200, radius = 3, effect = CONST_ME_MAGIC_RED, target = false },
+			{ name = "undead dragon curse", interval = 2000, chance = 10, target = false },
+		}
+
+		monster.defenses = {
+			defense = 40,
+			armor = 40,
+			{ name = "combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 200, maxDamage = 250, effect = CONST_ME_MAGIC_BLUE, target = false },
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 5 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+			{ type = COMBAT_FIREDAMAGE, percent = 100 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 100 },
+			{ type = COMBAT_ICEDAMAGE, percent = 50 },
+			{ type = COMBAT_HOLYDAMAGE, percent = -25 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		mType:register(monster)
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("PatriotaPL")
+		local monster = {}
+
+		monster.description = "a PatriotaPL"
+		monster.experience = 21000
+		monster.outfit = {
+			lookType = 1077,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 9000
+		monster.maxHealth = 9000
+		monster.race = "fire"
+		monster.corpse = 28639
+		monster.speed = 115
+		monster.manaCost = 0
+
+		monster.changeTarget = {
+			interval = 4000,
+			chance = 0,
+		}
+
+		monster.strategiesTarget = {
+			nearest = 100,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = true,
+			rewardBoss = false,
+			illusionable = false,
+			canPushItems = false,
+			canPushCreatures = false,
+			staticAttackChance = 90,
+			targetDistance = 1,
+			runHealth = 0,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = true,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+		}
+
+		monster.events = {
+			"PatriotaPLDeath",
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+		}
+
+		monster.loot = {
+			{ id = 9058, chance = 50000, maxCount = 4 },
+			{ id = 7741, chance = 5560 },
+			{ id = 7377, chance = 5560 },
+			{ id = 14112, chance = 50 },
+		}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -300 },
+			{ name = "ice crystal bomb", interval = 2000, chance = 30, minDamage = -600, maxDamage = -700, target = true },
+			{ name = "fire wave", interval = 2000, chance = 30, minDamage = -800, maxDamage = -1200, length = 1, spread = 1, effect = CONST_ME_FIREAREA, target = true },
+			{ name = "speed", interval = 1000, chance = 12, speedChange = -250, radius = 6, effect = CONST_ME_HITBYFIRE, target = false, duration = 60000 },
+			{ name = "firefield", interval = 1000, chance = 10, range = 7, radius = 4, shootEffect = CONST_ANI_FIRE, target = true },
+		}
+
+		monster.defenses = {
+			defense = 40,
+			armor = 80,
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 100 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 40 },
+			{ type = COMBAT_HOLYDAMAGE, percent = 50 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 50 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		mType:register(monster)
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Undead Crypt King")
+		local monster = {}
+
+		monster.description = "Undead Crypt King"
+		monster.experience = 500000
+		monster.outfit = {
+			lookType = 12,
+			lookHead = 1,
+			lookBody = 95,
+			lookLegs = 90,
+			lookFeet = 90,
+			lookAddons = 3,
+			lookMount = 0,
+		}
+
+		monster.health = 60000
+		monster.maxHealth = 60000
+		monster.race = "undead"
+		monster.corpse = 6068
+		monster.speed = 300
+		monster.manaCost = 0
+
+		monster.changeTarget = {}
+
+		monster.strategiesTarget = {
+			nearest = 100,
+		}
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = true,
+			illusionable = false,
+			canPushItems = true,
+			canPushCreatures = false,
+			staticAttackChance = 80,
+			targetDistance = 1,
+			runHealth = 300,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = true,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+		}
+
+		monster.events = {
+			"UndeadCryptKingDeath",
+		}
+
+		monster.light = {
+			level = 0,
+			color = 0,
+		}
+
+		monster.voices = {
+			interval = 5000,
+			chance = 10,
+			{ text = "GRRR", yell = true },
+			{ text = "GRROARR", yell = true },
+		}
+
+		monster.loot = {
+			{ id = 3025, chance = 13500 }, -- ancient amulet
+			{ id = 3116, chance = 19000 }, -- big bone
+			{ name = "black pearl", chance = 15000, maxCount = 35 },
+			{ name = "boots of haste", chance = 14000 },
+			{ id = 3076, chance = 22500 }, -- crystal ball
+			{ name = "crystal necklace", chance = 21500 },
+			{ id = 3007, chance = 15500 }, -- crystal ring
+			{ name = "demon shield", chance = 15500 },
+			{ name = "devil helmet", chance = 11000 },
+			{ name = "dragon hammer", chance = 34500 },
+			{ id = 3051, chance = 13500 }, -- energy ring
+			{ name = "fire axe", chance = 17000 },
+			{ name = "giant sword", chance = 12500 },
+			{ name = "platinum coin", chance = 69900, maxCount = 100 },
+			{ name = "platinum coin", chance = 68800, maxCount = 100 },
+			{ name = "crystal coin", chance = 100000, maxCount = 3 },
+			{ name = "gold ring", chance = 28000 },
+			{ name = "golden legs", chance = 15000 },
+			{ name = "giant ruby", chance = 31500 },
+			{ name = "giant sapphire", chance = 31500 },
+			{ name = "giant emerald", chance = 31500 },
+			{ name = "ice rapier", chance = 27500 },
+			{ name = "magic plate armor", chance = 13000 },
+			{ name = "mastermind shield", chance = 17500 },
+			{ name = "purple tome", chance = 12600 },
+			{ name = "ring of the sky", chance = 13500 },
+			{ name = "silver dagger", chance = 15500 },
+			{ name = "skull staff", chance = 25000 },
+			{ name = "talon", chance = 14000, maxCount = 27 },
+			{ name = "teddy bear", chance = 10500 },
+			{ name = "thunder hammer", chance = 3500 },
+			{ id = 3002, chance = 5100 }, -- voodoo doll
+			{ name = "white pearl", chance = 12500, maxCount = 35 },
+		}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -350 },
+			{ name = "undead crypt king anti tank stacks", interval = 1000, chance = 100, range = 7, target = true },
+			{
+				name = "undead crypt king death lasers",
+				interval = 8000,
+				chance = 100,
+				target = false,
+				range = 7,
+			},
+			{
+				name = "undead crypt king summon laga dyga",
+				interval = 10000,
+				chance = 100,
+				minDamage = 0,
+				maxDamage = 0,
+				target = false,
+			},
+		}
+
+		monster.defenses = {
+			defense = 40,
+			armor = 40,
+			{
+				name = "combat",
+				interval = 2000,
+				chance = 15,
+				type = COMBAT_HEALING,
+				minDamage = 120,
+				maxDamage = 225,
+				effect = CONST_ME_MAGIC_GREEN,
+				target = false,
+			},
+			{
+				name = "speed",
+				interval = 2000,
+				chance = 15,
+				speedChange = 400,
+				range = 7,
+				effect = CONST_ME_SOUND_PURPLE,
+				target = false,
+				duration = 5000,
+			},
+		}
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 5 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 65 },
+			{ type = COMBAT_FIREDAMAGE, percent = -5 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = -5 },
+			{ type = COMBAT_HOLYDAMAGE, percent = -5 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 50 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = true },
+			{ type = "outfit", condition = true },
+			{ type = "invisible", condition = true },
+			{ type = "bleed", condition = false },
+		}
+
+		mType:register(monster)
+	end)
+	:Monster(function()
+		local mType = Game.createMonsterType("Laga Dyga")
+		local monster = {}
+
+		monster.description = "a skeleton"
+		monster.experience = 500
+		monster.outfit = {
+			lookType = 33,
+			lookHead = 0,
+			lookBody = 0,
+			lookLegs = 0,
+			lookFeet = 0,
+			lookAddons = 0,
+			lookMount = 0,
+		}
+
+		monster.health = 1200
+		monster.maxHealth = 1000
+		monster.race = "undead"
+		monster.corpse = 5972
+		monster.speed = 150
+		monster.manaCost = 300
+
+		monster.changeTarget = { interval = 4000, chance = 0 }
+
+		monster.strategiesTarget = { nearest = 100 }
+
+		monster.flags = {
+			summonable = false,
+			attackable = true,
+			hostile = true,
+			convinceable = false,
+			pushable = false,
+			rewardBoss = false,
+			illusionable = true,
+			canPushItems = false,
+			canPushCreatures = false,
+			staticAttackChance = 90,
+			targetDistance = 1,
+			runHealth = 0,
+			healthHidden = false,
+			isBlockable = false,
+			canWalkOnEnergy = false,
+			canWalkOnFire = true,
+			canWalkOnPoison = true,
+		}
+
+		monster.events = {
+			"LagaDygaDeath",
+		}
+
+		monster.light = { level = 0, color = 0 }
+
+		monster.voices = { interval = 5000, chance = 10 }
+
+		monster.loot = {}
+
+		monster.attacks = {
+			{ name = "melee", interval = 2000, chance = 100, minDamage = -300, maxDamage = -700 },
+			{ name = "combat", interval = 3500, chance = 60, type = COMBAT_PHYSICALDAMAGE, minDamage = -200, maxDamage = -480, range = 7, radius = 5, effect = CONST_ME_MAGIC_GREEN, target = false },
+			{ name = "combat", interval = 2000, chance = 100, type = COMBAT_LIFEDRAIN, minDamage = -120, maxDamage = -250, range = 1, target = false },
+			{ name = "berserk", interval = 2000, chance = 10, minDamage = 0, maxDamage = -700, range = 1, target = false },
+		}
+
+		monster.defenses = { defense = 10, armor = 10 }
+
+		monster.elements = {
+			{ type = COMBAT_PHYSICALDAMAGE, percent = -100 },
+			{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+			{ type = COMBAT_FIREDAMAGE, percent = 0 },
+			{ type = COMBAT_LIFEDRAIN, percent = 0 },
+			{ type = COMBAT_MANADRAIN, percent = 0 },
+			{ type = COMBAT_DROWNDAMAGE, percent = 0 },
+			{ type = COMBAT_ICEDAMAGE, percent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, percent = -50 },
+			{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+		}
+
+		monster.immunities = {
+			{ type = "paralyze", condition = false },
+			{ type = "outfit", condition = false },
+			{ type = "invisible", condition = false },
+			{ type = "bleed", condition = false },
+		}
+
+		mType:register(monster)
+	end)
+	:MonsterEvent(function()
+		local guardian = CreatureEvent("CalaNapszutDeath")
+		function guardian.onDeath(creature)
+			QuestActions.PathOfTheUndead.spawnSkull()
+		end
+		guardian:register()
+	end)
+	:MonsterEvent(function()
+		local guardian = CreatureEvent("CipociamkaczDeath")
+		function guardian.onDeath(creature)
+			QuestActions.PathOfTheUndead.spawnSkull()
+		end
+		guardian:register()
+	end)
+	:MonsterEvent(function()
+		local nextState = {
+			[Storage.PathOfTheUndead.Mission03] = QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
+		}
+
+		local kingDeath = CreatureEvent("UndeadCryptKingDeath")
+		function kingDeath.onDeath(creature)
+			local targetMonster = creature:getMonster()
+			if not targetMonster or targetMonster:getMaster() then
+				return true
+			end
+
+			CreatureList.FromDamageMap(creature:getDamageMap()):FilterByPlayer():ForEach(function(player)
+				if player:getStorageValueByKey(Storage.PathOfTheUndead.Mission03) == QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing then
+					player:NextState(nextState)
+				end
+			end)
+
+			local pos = targetMonster:getPosition()
+			local portal = Game.createItem(27590, 1, pos)
+			portal:setKey(Storage.PathOfTheUndead.BossRoomExit)
+		end
+		kingDeath:register()
+	end)
+	:MonsterEvent(function()
+		local guardian = CreatureEvent("PatriotaPLDeath")
+		function guardian.onDeath(creature)
+			QuestActions.PathOfTheUndead.spawnSkull()
+		end
+		guardian:register()
+	end)
+	:MonsterEvent(function()
+		local lagaDygaDeathArea = createCombatArea(AREA_CIRCLE5X5)
+		local plusShapeCombat = Combat()
+		plusShapeCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
+		plusShapeCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MORTAREA)
+		plusShapeCombat:setArea(lagaDygaDeathArea)
+		plusShapeCombat:setFormula(COMBAT_FORMULA_DAMAGE, -1500, 0, -1500, 0)
+
+		local lagaDygadeath = CreatureEvent("LagaDygaDeath")
+		function lagaDygadeath.onDeath(creature)
+			if not creature or not creature:isMonster() then
+				return true
+			end
+
+			plusShapeCombat:execute(creature, { type = 2, pos = creature:getPosition() })
+			return true
+		end
+
+		lagaDygadeath:register()
+	end)
+	:MonsterEvent(function()
+		local textCharging = "I shall zap you with my beam-inator!"
+
+		local smallLaser = Combat()
+		smallLaser:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
+		smallLaser:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MORTAREA)
+		local smallArea = createCombatArea(AREA_SIDEBEAMS1)
+		smallLaser:setArea(smallArea)
+		smallLaser:setFormula(COMBAT_FORMULA_DAMAGE, -300, 0, -300, 0)
+
+		local bigLaser = Combat()
+		bigLaser:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
+		bigLaser:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MORTAREA)
+		local bigArea = createCombatArea(AREA_SIDEBEAMS2)
+		bigLaser:setArea(bigArea)
+		bigLaser:setFormula(COMBAT_FORMULA_DAMAGE, -500, 0, -500, 0)
+
+		local spell = Spell("instant")
+		function spell.onCastSpell(boss, var)
+			local hpPercentage = boss:getHealth() / boss:getMaxHealth()
+
+			local laserCombat = nil
+			if hpPercentage >= 0.5 then
+				laserCombat = smallLaser
+			else
+				laserCombat = bigLaser
+			end
+
+			boss:say(textCharging, TALKTYPE_MONSTER_SAY)
+			local timer = 1500
+			local interval = 180
+
+			for _ = 1, 7 do
+				addEvent(function()
+					laserCombat:execute(boss, var)
+				end, timer)
+				timer = timer + interval
+			end
+			return true
+		end
+		spell:name("undead crypt king death lasers")
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(true)
+		spell:needDirection(true)
+		spell:register()
+	end)
+	:MonsterEvent(function()
+		latentBombCombat = Combat()
+		latentBombCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_FIREDAMAGE)
+		latentBombCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_FIREAREA)
+		latentBombCombat:setArea(createCombatArea(AREA_CIRCLE6X6))
+
+		local bombsZone = Zone(Storage.PathOfTheUndead.BossBombsPositions)
+		local bossAreaZone = Zone(Storage.PathOfTheUndead.BossArea)
+
+		local latentBombCount = 0
+		local latentBombPositions = {}
+		local latentBombDamage = 0
+
+		local totalDamage = 5000
+
+		local initializeBombsZone = GlobalEvent("PathOfTheUndead/InitializeBombsZone")
+		function initializeBombsZone.onStartup()
+			latentBombPositions = bombsZone:getPositions()
+			latentBombCount = #latentBombPositions
+			latentBombDamage = math.floor(totalDamage / latentBombCount)
+			latentBombCombat:setFormula(COMBAT_FORMULA_DAMAGE, latentBombDamage, 0, latentBombDamage, 0)
+			return true
+		end
+		initializeBombsZone:register()
+
+		local function explodeLatentBomb(latentBomb)
+			local bombPosition = latentBomb:getPosition()
+			local lagaDyga = Game.createMonster("Laga Dyga", bombPosition)
+			latentBombCombat:execute(lagaDyga, { type = 2, pos = bombPosition })
+		end
+
+		local function explodeLatentBombs(latentBombs)
+			for _, latentBomb in pairs(latentBombs) do
+				addEvent(function()
+					explodeLatentBomb(latentBomb)
+					latentBomb:getPosition():sendMagicEffect(CONST_ME_POFF)
+					latentBomb:remove()
+				end, math.random(1, 8000))
+			end
+		end
+
+		local function splitDamageBetweenPlayers(activeBombPosition)
+			local players = activeBombPosition:Moved(-1, -1, 0):PlayersBetween(activeBombPosition:Moved(1, 1, 0)):Get()
+
+			local splitdmg = totalDamage / #players
+			for _, player in pairs(players) do
+				doTargetCombatHealth(0, player, COMBAT_FIREDAMAGE, splitdmg, splitdmg, CONST_ME_NONE)
+				player:getPosition():sendMagicEffect(CONST_ME_FIREATTACK)
+			end
+			return true
+		end
+
+		local latentBombId = 23485
+		local activeBombId = 23486
+
+		local function generateLatentBombs()
+			local bombs = {}
+			for _, position in pairs(latentBombPositions) do
+				local bomb = Game.createItem(latentBombId, 1, position)
+				table.insert(bombs, bomb)
+			end
+			return bombs
+		end
+		local function generateActiveBomb()
+			return Game.createItem(activeBombId, 1, bombsZone:randomPosition())
+		end
+
+		local function countNearbyPlayers(activeBombPos)
+			local nearbyPlayerCount = 0
+			IterateBetweenPositions(activeBombPos:Moved(-1, -1, 0), activeBombPos:Moved(1, 1, 9), function(context)
+				local pos = context.pos
+				local player = pos:GetTopPlayer()
+				if player then
+					nearbyPlayerCount = nearbyPlayerCount + 1
+				end
+			end)
+			return nearbyPlayerCount
+		end
+
+		local function removeLatentBombs(latentBombs)
+			for _, latentBomb in pairs(latentBombs) do
+				latentBomb:getPosition():sendMagicEffect(CONST_ME_POFF)
+				latentBomb:remove()
+			end
+		end
+
+		local function onActiveBombExplode(activeBomb, latentBombs)
+			local activeBombPos = activeBomb:getPosition()
+
+			local nearbyPlayerCount = countNearbyPlayers(activeBombPos)
+			if nearbyPlayerCount > 0 then
+				splitDamageBetweenPlayers(activeBombPos)
+				removeLatentBombs(latentBombs)
+			elseif nearbyPlayerCount == 0 then
+				explodeLatentBombs(latentBombs)
+			end
+
+			activeBomb:remove()
+		end
+
+		local explosionDelaySeconds = 15
+		local function conjureBombs()
+			local latentBombs = generateLatentBombs()
+			local activeBomb = generateActiveBomb()
+
+			addEvent(function()
+				onActiveBombExplode(activeBomb, latentBombs)
+			end, explosionDelaySeconds * 1000)
+			return true
+		end
+
+		local bombCooldown = 25
+		local cooldownExpiry = 0
+
+		local antiTankSpellData = { previousTargetId = nil, stacks = 0, damagePerStack = -30, baseDamage = -100 }
+
+		local combatAntiTankStacks = Combat()
+		combatAntiTankStacks:setParameter(COMBAT_PARAM_TYPE, COMBAT_ENERGYDAMAGE)
+		combatAntiTankStacks:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_SUDDENDEATH)
+		function onGetFormulaValues(boss, target)
+			local currentTargetId = target:getId()
+			local previousTargetId = antiTankSpellData.previousTargetId
+			if previousTargetId and previousTargetId ~= currentTargetId then
+				if os.time() > cooldownExpiry then
+					conjureBombs()
+					cooldownExpiry = os.time() + bombCooldown
+				end
+				antiTankSpellData.stacks = 0
+			end
+
+			local damage = math.floor(antiTankSpellData.damagePerStack * antiTankSpellData.stacks) + antiTankSpellData.baseDamage
+			if not target:isPlayer() then
+				damage = damage * 10
+			end
+			doTargetCombatHealth(0, target, COMBAT_ENERGYDAMAGE, damage, damage, CONST_ME_NONE)
+
+			antiTankSpellData.stacks = antiTankSpellData.stacks + 1
+
+			antiTankSpellData.previousTargetId = currentTargetId
+			return true
+		end
+
+		combatAntiTankStacks:setCallback(CALLBACK_PARAM_TARGETCREATURE, "onGetFormulaValues")
+
+		local spell = Spell("instant")
+		function spell.onCastSpell(creature, var, isHotkey)
+			return combatAntiTankStacks:execute(creature, var)
+		end
+
+		spell:name("undead crypt king anti tank stacks")
+		spell:needTarget(true)
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(false)
+		spell:needDirection(true)
+		spell:register()
+	end)
+	:MonsterEvent(function()
+		local smallLaser = Combat()
+		smallLaser:setParameter(COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
+		smallLaser:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_MORTAREA)
+		local smallArea = createCombatArea(AREA_SIDEBEAMS1)
+		smallLaser:setArea(smallArea)
+
+		local spell = Spell("instant")
+
+		function spell.onCastSpell(creature, var)
+			Game.createMonster("Laga Dyga", creature:getPosition():Moved(1, 1, 0), true, true)
+			return true
+		end
+
+		spell:name("undead crypt king summon laga dyga")
+		spell:isAggressive(true)
+		spell:blockWalls(true)
+		spell:needLearn(true)
+		spell:needDirection(true)
+		spell:register()
+	end)
+	:Mission(Storage.PathOfTheUndead.Mission01)
+	:State(function()
+		return MISSION_NOT_STARTED,
+			QuestFactory.Dialog("Gandalf", {
+				[{ "oprocz tego ludzie", "aside from that people" }] = {
+					text = "It was many years ago. One day, in Mirkotown, the Undead King of the Crypt appeared, causing havoc among our residents. The city slowly turned into a ruin until 9:37 PM when one of the houses was blown up using dark magic. In that same house, there was a laundry basket, and inside it, a holy relic - socks with John Paul, which flew and landed in the hands of the Crypt King. At that moment, he howled with a demonic voice, 'ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ' and immediately became paralyzed. Without a second thought, all defenders gathered to seal his soul. On the same day, we locked his soul in the banshee cave. The remains of his body were scattered across the desert to prevent any attempts at reanimation. I thought his spirit would be neutralized in the cave, but as I recently found out, he managed to escape from there. I don't know how strong he is right now, but he will surely try to regenerate. We must ultimately destroy him! It won't be an easy task, and before I entrust it to you, you will need to prove to me that you are worthy of leading this crusade. Return to me when you fulfill all my {conditions}.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission01] = QuestState.PathOfTheUndead.Mission01.ConsultGandalf,
+					},
+					requiredState = {
+						[Storage.Finished.AssassinsCreedSquurvaali] = MISSION_FINISHED,
+						[Storage.Finished.SultanPrime] = MISSION_FINISHED,
+						[Storage.ChesterTheDwarf.Mission03] = MISSION_FINISHED,
+					},
+					textNoRequiredState = "It's interesting that you know our password. Nevertheless, I have no task for you or anything to interest you with.",
+				},
+				[{ "king", "crypt king", "king of the crypt", "krol krypty", "krol" }] = {
+					text = "If you really know what danger he is, deal with his ally first - Sultan of Phantasms. Also deal with that swindler, Chester, who tried to fuck me over in Down's Labyrinth. Try to as him for out special passphrase.",
+				},
+			})
+	end)
+	:State(function()
+		return QuestState.PathOfTheUndead.Mission01.ConsultGandalf,
+			QuestFactory.Dialog("Gandalf", {
+				[{ GREET }] = {
+					text = "Welcome again. Are you ready to accept my {conditions}?",
+				},
+				[{ "conditions", "warunki" }] = {
+					text = "Allakhazam!!!1. Oh, wait, that's not all. I forgot that you also need to visit the magic circles. Each circle consists of 6 stones in 3 different colors, with a special grid in the middle. Stand on all five grids, and I will be able to bless you. I won't tell you where the circles are because you can ask the owners of magic shops in towns about it. Talk to them, and they will guide you to the circles. Just write 'circle' to them, and they will explain everything to you.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission01] = MISSION_FINISHED,
+						[Storage.PathOfTheUndead.Mission02] = QuestState.PathOfTheUndead.Mission02.VisitMagicalCircles,
+						[Storage.PathOfTheUndead.VisitedCircles] = {},
+					},
+					requiredState = {
+						[Storage.TheWayOfADruid.DeerSeason] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.TakenBenek] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.RudeEviction] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.SecretIngredient] = MISSION_FINISHED,
+						[Storage.TheWayOfADruid.SingingCrystal] = MISSION_FINISHED,
+					},
+					textNoRequiredState = "I need you to help all other druids of this world. Only if they vouch for you, shall you return here. If you are ready, ask me again about {conditions}.",
+				},
+			})
+	end)
+	:Mission(Storage.PathOfTheUndead.Mission02)
+	:State(function()
+		return QuestState.PathOfTheUndead.Mission02.VisitMagicalCircles,
+			QuestFactory.Dialog("Gandalf", {
+				[{ "mission" }] = {
+					text = "Hocus Pocus! Now everything should work. Something very dark lurks in the pyramid's underground. Ask Konmuld for advice, and maybe you will escape from there alive. Oh, I almost forgot: from now on, you can now use the sealed doors in the pyramid.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission02] = MISSION_FINISHED,
+						[Storage.PathOfTheUndead.Mission03] = QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing,
+					},
+					specialRequirements = {
+						{
+							requirement = function(context)
+								return #context.player:getStorageValueByKey(Storage.PathOfTheUndead.VisitedCircles) >= QuestConstants.PathOfTheUndead.VisitableCirclesCount
+							end,
+							requiredOutcome = true,
+							textFailedRequirement = "Ask the individual owners of magic shops about the locations of the circles.",
+						},
+					},
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local circleStorage = Storage.PathOfTheUndead.VisitedCircles
+
+				local function visitedThisOne(toPosition, player)
+					local visitedPositions = player:getStorageValueByKey(circleStorage)
+					for _, visitedPosition in pairs(visitedPositions) do
+						if Position.__eq(visitedPosition, toPosition) then
+							return true
+						end
+					end
+					return false
+				end
+
+				local circleTile = MoveEvent()
+				function circleTile.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return false
+					end
+
+					if not player:HasExactMissionState(missionState) then
+						return false
+					end
+
+					local visitedPositions = player:getStorageValueByKey(circleStorage)
+					if not visitedThisOne(toPosition, player) then
+						table.insert(visitedPositions, toPosition)
+						player:setStorageValueByKey(circleStorage, visitedPositions)
+						player:getPosition():sendMagicEffect(CONST_ME_THUNDER)
+					end
+
+					local message = player:Localizer(LOCALIZERS.PathOfTheUndead):Context({ visitedCount = #visitedPositions, visitableCount = QuestConstants.PathOfTheUndead.VisitableCirclesCount }):Get("STEPPED_ON_CIRCLE")
+					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message)
+				end
+				circleTile:key(Storage.PathOfTheUndead.VisitedCircles)
+				circleTile:type("stepin")
+				circleTile:register()
+			end),
+			QuestFactory.Dialog("Fstab", {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
+					text = "Well, the stone cromlech is on top of the mountain neat Mirko Town's north gate. The second cromlech is somewhere south of Knurow.",
+				},
+			}),
+			QuestFactory.Dialog("Funfel", {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
+					text = "This cromlech is located behind the orc hill in the west of the city. There's also corym village nearby. The other one is to the west, beyond lizard village.",
+				},
+			}),
+			QuestFactory.Dialog("Nadia France", {
+				[{ "krag", "kregi", "circles", "cromlech", "circle" }] = {
+					text = "I understand, the stone cromlech is located on a peninsula to the southwest of here.",
+				},
+			})
+	end)
+	:Mission(Storage.PathOfTheUndead.Mission03)
+	:State(function()
+		return QuestState.PathOfTheUndead.Mission03.DefeatUndeadKing,
+			QuestFactory.Dialog("Konmuld", {
+				[{ "krol krypty", "crypt king", "the king of the crypt", "king", "krol" }] = {
+					text = "Gandalf sent you here, right? If you want to go to the down pyramid, you need to know that there is an Undead Crypt King waiting, and that {encounter} him will not be easy by any means. To summon him, you will need a few ingredients. Take the most necessary things: wood, cauldron, vial and lighter. For the ritual you will need {bones} so foul that they lower the wavelength of the light around. Plus the {signet ring} of an undead lord, and a {cloak} made of the skin of unbaptized children. If you're going to collect these items, ask me about the {ritual}.",
+				},
+				[{ "walka", "encounter", "fight" }] = {
+					text = "You have to ask Fat Myrrus. He is an expert on boss fights.",
+				},
+				[{ "kosci", "bone", "bones" }] = {
+					text = "It's called Unholy Bone.",
+				},
+				[{ "sygnet", "signet", "pierscien", "seal", "signet ring" }] = {
+					text = "This ring has vanished somewhere, maybe Grave Digger will tell you more about it.",
+				},
+				[{ "grave digger" }] = {
+					text = "He sells equipment in Mirko, I think you know him.",
+				},
+				[{ "plaszcz", "cape", "cloak" }] = {
+					text = "Only the one group could create such a thing - piss cultists from Sybir.",
+				},
+				[{ "rytual", "ritual" }] = {
+					text = "Before you start, you must summon three guards whose skeletons are blocking access to the ritual site. You'll probably have to defeat them to get further. To summon each of them, you will show perseverance to people unknown to this world. This will require you to have fourteen different {effects}. Somewhere in the depths of the dungeons you will find a circle made of stones. It is where the ritual of summoning the Crypt King will take place.",
+				},
+				[{ "effects", "efektow", "efekty" }] = {
+					text = "I managed to extract this knowledge from the ancient collections in the library of the Lubusz University of Archmages. If you think you can read these notes - I hid the scroll under the bush to the right. And remember, not all of the effects listed there are real - apparently this document was written on the knee.",
+				},
+			}),
+			QuestFactory.Dialog("Grave Digger", {
+				[{ "sygnet", "signet", "piescien", "seal" }] = {
+					text = "I don't know how you know about this ring, but if you want to find it, listen. It was in the Diremaw caves under the cultist swamp. As I approached the Fire Fucker's cave, he roared so hard that I shit myself and started running away as fast as I could. In this haste, one of the dummy atifacts I used for... never mind, fell out of my backpack. Inside the dummy I had dropped there was a ring. If I remember correctly, this dummy was supposed to imitate a precious miniature of the ship. Coming back to how I escaped, all I remember is waking up in the temple. If you want, you can look for that ring, I don't need it anymore.",
+				},
+			}),
+			QuestFactory.Script(function(missionState)
+				local updateStorages = {
+					[Storage.PathOfTheUndead.Mission03] = QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
+				}
+
+				local exitPos = PATH_OF_THE_UNDEAD_ANCHOR:Moved({ x = 4, y = -32, z = -2 })
+
+				local portal = MoveEvent()
+				function portal.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return false
+					end
+
+					if player:HasExactMissionState(missionState) then
+						player:NextState(updateStorages)
+					end
+
+					player:teleportTo(exitPos)
+					player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+				end
+
+				portal:key(Storage.PathOfTheUndead.BossRoomExit)
+				portal:type("stepin")
+				portal:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local bushMessage =
+					"enum ConditionType_t {\nCONDITION_NONE,\n    \nCONDITION_POISON = 1 << 0,\nCONDITION_FIRE = 1 << 1,\nCONDITION_ENERGY = 1 << 2,\nCONDITION_BLEEDING = 1 << 3,\nCONDITION_HASTE = 1 << 4,\nCONDITION_PARALYZE = 1 << 5,\nCONDITION_OUTFIT = 1 << 6,\nCONDITION_INVISIBLE = 1 << 7,\nCONDITION_LIGHT = 1 << 8,\nCONDITION_MANASHIELD = 1 << 9,\nCONDITION_INFIGHT = 1 << 10,\nCONDITION_DRUNK = 1 << 11,\nCONDITION_EXHAUST = 1 << 12, // unused\nCONDITION_REGENERATION = 1 << 13,\nCONDITION_SOUL = 1 << 14,\nCONDITION_DROWN = 1 << 15,\nCONDITION_MUTED = 1 << 16,\nCONDITION_CHANNELMUTEDTICKS = 1 << 17,\nCONDITION_YELLTICKS = 1 << 18,\nCONDITION_ATTRIBUTES = 1 << 19,\nCONDITION_FREEZING = 1 << 20,\nCONDITION_DAZZLED = 1 << 21,\nCONDITION_CURSED = 1 << 22,\nCONDITION_EXHAUST_COMBAT = 1 << 23, // unused\nCONDITION_EXHAUST_HEAL = 1 << 24, // unused\nCONDITION_PACIFIED = 1 << 25,\nCONDITION_SPELLCOOLDOWN = 1 << 26,\nCONDITION_SPELLGROUPCOOLDOWN = 1 << 27,\nCONDITION_ROOTED = 1 << 28,\n"
+
+				local bush = Action()
+
+				function bush.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:isPlayer() then
+						return true
+					end
+
+					local storageval = player:getStorageValueByKey(Storage.PathOfTheUndead.Mission01)
+					if storageval < 3 then
+						return false
+					end
+
+					player:registerEvent("konmuldBushModalWindow")
+
+					local title = "You read the following."
+					local message = bushMessage
+
+					local window = ModalWindow(item.actionid, title, message)
+					window:addButton(101, "Close")
+					window:setDefaultEscapeButton(101)
+					window:sendToPlayer(player)
+					player:unregisterEvent("konmuldBushModalWindow")
+					return true
+				end
+
+				bush:key(Storage.PathOfTheUndead.KonmuldBush)
+				bush:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local beforeGate = MoveEvent()
+				function beforeGate.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return false
+					end
+
+					local zone = Zone(Storage.PathOfTheUndead.GuardianSkullsPositions)
+					for _, position in pairs(zone:getPositions()) do
+						local skull = position:GetItemById(QuestConstants.PathOfTheUndead.GuardianSkullId)
+						if not skull then
+							return
+						end
+					end
+					player:teleportTo(toPosition:MovedInDirection(DIRECTION_NORTH, 2))
+				end
+
+				beforeGate:key(Storage.PathOfTheUndead.GuardianGateTile)
+				beforeGate:type("stepin")
+				beforeGate:register()
+			end),
+			QuestFactory.Script(function()
+				local stairsAfterGate = MoveEvent()
+				function stairsAfterGate.onStepIn(player, item, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return false
+					end
+					player:setStorageValueByKey(Storage.PathOfTheUndead.SkipDoor, ACCESS_GRANTED)
+				end
+				stairsAfterGate:key(Storage.PathOfTheUndead.GrantSkipDoorAccess)
+				stairsAfterGate:type("stepin")
+				stairsAfterGate:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local ritualPot = nil
+
+				local workingTeleportId = 23483
+				local function openPortal(pos)
+					local portal = Game.createItem(workingTeleportId, 1, pos)
+					portal:setKey(Storage.PathOfTheUndead.TpToBossRoom)
+					ritualPot:remove()
+				end
+
+				local ritualState = 1
+				local ritualStateToPotId = { [2] = 1997, [3] = 2002, [4] = 2003 }
+				local function tryProgressRitualPot(pos)
+					local nextRitualPotId = ritualStateToPotId[ritualState]
+					if nextRitualPotId then
+						ritualPot:transform(nextRitualPotId)
+					else
+						pos:sendMagicEffect(CONST_ME_WATERSPLASH)
+					end
+				end
+
+				local requiredThrowItems = { 5901, 3465, 5467, 10316, 18935, 7993 }
+				local openPortalAt = #requiredThrowItems
+				local ritualLocus = MoveEvent()
+				function ritualLocus.onAddItem(thrownItem, tileitem, position)
+					if not thrownItem then
+						return false
+					end
+
+					if ritualPot == nil then
+						ritualPot = position:Moved(-1, -1, 1):GetItemById(1996)
+					end
+
+					local requiredThrownItemId = requiredThrowItems[ritualState]
+					local thrownItemId = thrownItem:getId()
+					if thrownItemId ~= requiredThrownItemId then
+						return false
+					end
+
+					ritualState = ritualState + 1
+					thrownItem:remove()
+					tryProgressRitualPot(tileitem:getPosition())
+					if ritualState > openPortalAt then
+						openPortal(position)
+					end
+					return true
+				end
+
+				ritualLocus:type("additem")
+				ritualLocus:key(Storage.PathOfTheUndead.RitualLocus)
+				ritualLocus:register()
+
+				local step_tile = MoveEvent()
+				function step_tile.onStepIn(player, stepInItem, toPosition, fromPosition)
+					if not player:isPlayer() then
+						return false
+					end
+
+					player:teleportTo(Zone(Storage.PathOfTheUndead.BossArea):randomPosition())
+				end
+				step_tile:key(Storage.PathOfTheUndead.TpToBossRoom)
+				step_tile:type("stepin")
+				step_tile:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local gatePositions = {
+					{ x = -12, y = 37, z = -2 },
+					{ x = -11, y = 37, z = -2 },
+				}
+				local gateId = 2182
+
+				local lever = Action()
+
+				function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					for _, relativePos in pairs(gatePositions) do
+						local pos = Position(PATH_OF_THE_UNDEAD_ANCHOR:Moved(relativePos))
+						local tile = Tile(pos)
+						local gate = tile:getItemById(gateId)
+						if gate then
+							gate:remove()
+						else
+							Game.createItem(gateId, 1, pos)
+						end
+						toPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
+					end
+					return true
+				end
+
+				lever:key(Storage.PathOfTheUndead.UpperLever)
+				lever:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local book = Action()
+
+				function book.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					local pos = item:getPosition()
+					pos:sendMagicEffect(CONST_ME_THUNDER)
+					pos:sendMagicEffect(CONST_ME_TELEPORT)
+					Game.createMonster("Undead Crypt King", pos, true, true)
+					item:remove()
+					return true
+				end
+
+				book:key(Storage.PathOfTheUndead.BossBook)
+				book:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local conditions = {}
+
+				do
+					local condition = Condition(CONDITION_FREEZING)
+					condition:setParameter(CONDITION_PARAM_DELAYED, 1)
+					condition:addDamage(5000, 3000, -50)
+
+					conditions[#conditions + 1] = condition
+				end
+
+				do
+					local condition = Condition(CONDITION_DROWN)
+					condition:setParameter(CONDITION_PARAM_DELAYED, 1)
+					condition:addDamage(5000, 2000, -50)
+
+					conditions[#conditions + 1] = condition
+				end
+
+				local chest = Action()
+
+				function chest.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:isPlayer() then
+						return true
+					end
+					for _, condition in pairs(conditions) do
+						player:addCondition(condition)
+					end
+					player:getPosition():sendMagicEffect(CONST_ME_MORTAREA)
+					return true
+				end
+
+				chest:key(Storage.PathOfTheUndead.CursedChest)
+				chest:register()
+			end),
+			QuestFactory.Script(function(missionState)
+				local conditions = {
+					CONDITION_POISON, --utori pox
+					CONDITION_FIRE, --utori flam
+					CONDITION_ENERGY, --utori vis
+
+					CONDITION_BLEEDING, --utori kor
+					CONDITION_HASTE, --utani hur
+					CONDITION_INVISIBLE, --utana vid/stealth ring
+
+					CONDITION_MANASHIELD, --utamo vita/ering
+					CONDITION_INFIGHT, -- any attack spell
+					CONDITION_DRUNK, -- drink beer
+
+					CONDITION_DROWN, -- special chest
+					CONDITION_MUTED, -- spam
+					CONDITION_FREEZING, -- special chest
+
+					CONDITION_DAZZLED, --utori san
+					CONDITION_CURSED, --utori mort
+				}
+
+				function Player:countConditions()
+					local counter = 0
+
+					for _, condition in pairs(conditions) do
+						if self:hasCondition(condition) then
+							counter = counter + 1
+						end
+					end
+
+					if not self:hasCondition(CONDITION_REGENERATION) then
+						counter = counter + 1
+					end
+					return counter
+				end
+
+				local idToCreatureName = {
+					[7575] = "Cipociamkacz",
+					[7568] = "PatriotaPL",
+					[7574] = "CalaNapszut",
+				}
+
+				local skull = Action()
+
+				local spawnstates = {
+					[7575] = 0,
+					[7568] = 0,
+					[7574] = 0,
+				}
+
+				local requiredCount = #conditions - 1
+
+				requiredCount = 12
+
+				function skull.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+					local id = item:getId()
+					if spawnstates[id] == 1 then
+						return false
+					end
+
+					local conditionsCount = player:countConditions()
+					if conditionsCount >= requiredCount then
+						for _, condition in pairs(conditions) do
+							player:removeCondition(condition)
+						end
+						spawnstates[id] = 1
+						Game.createMonster(idToCreatureName[id], player:getPosition(), true, true)
+					end
+					return false
+				end
+
+				skull:key(Storage.PathOfTheUndead.GuardianSkull)
+				skull:register()
+			end)
+	end)
+	:State(function()
+		return QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
+			QuestFactory.Dialog("Gandalf", {
+				[{ "mission" }] = {
+					text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
+					nextState = {
+						[Storage.PathOfTheUndead.Mission03] = MISSION_FINISHED,
+						[Storage.Finished.PathOfTheUndead] = MISSION_FINISHED,
+						[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.FindChester,
+					},
+					expReward = 25000000,
+					outfitRewards = QuestRewards.OutfitsAddons.PathOfTheUndead.Poltergeist3,
+				},
+			})
+	end)
+	:Register()

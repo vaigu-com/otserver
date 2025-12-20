@@ -23,7 +23,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(105)
 spell:name("Fierce Berserk")
 spell:words("exori gran")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_FIERCE_BERSERK)

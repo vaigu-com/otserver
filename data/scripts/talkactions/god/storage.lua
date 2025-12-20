@@ -1,12 +1,12 @@
 local storage = TalkAction("/storage")
 
 local function parseStorageId(input)
-	if type(input) == "number" then
-		return input
+	if tonumber(input) then
+		return tonumber(input)
 	end
 
 	if type(input) == "string" then
-		return _G[input]
+		return input
 	end
 
 	logger.debug("[/storage] wrong storage id/name")
@@ -16,18 +16,18 @@ function storage.onSay(caster, words, paramsString)
 	local params = string.split(paramsString, ",")
 	local player = Player(params[1])
 	local storageId = parseStorageId(params[2])
-	local nextStorageValue = params[3]
-	if nextStorageValue then
-		player:setStorageValue(storageId, nextStorageValue)
-		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: set to :nextStorageValue:", { playerName = player:getName(), storageId = storageId, nextStorageValue = nextStorageValue }))
+	local nextState = params[3]
+	if nextState then
+		player:setStorageValueByKey(storageId, nextState)
+		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: set to :nextState:", { playerName = player:getName(), storageId = storageId, nextState = nextState }))
 	else
-		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: value is :nextStorageValue:", { playerName = player:getName(), storageId = storageId, nextStorageValue = nextStorageValue }))
+		player:sendTextMessage(MESSAGE_ADMINISTRATOR, T("Player :playerName: storage :storageId: value is :currentState:", { playerName = player:getName(), storageId = storageId, currentState = player:getStorageValueByKey(storageId) }))
 	end
 
 	return false
 end
 
 storage:separator(" ")
-storage:setDescription("[Get]: /storage playerName, storage [Set]: /storage playerName, storage, nextStorageValue")
+storage:setDescription("[Get]: /storage playerName, storage [Set]: /storage playerName, storage, nextState")
 storage:groupType("god")
 storage:register()

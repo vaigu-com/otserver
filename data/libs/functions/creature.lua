@@ -172,28 +172,40 @@ function Creature:addDamageCondition(target, type, list, damage, period, rounds)
 end
 
 function Creature.checkCreatureInsideDoor(player, toPosition)
-	local creature = Tile(toPosition):getTopCreature()
+	local tile = Tile(toPosition)
+
+	if not tile then
+		player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+		return true
+	end
+
+	local creature = tile:getTopCreature()
 	if creature then
 		toPosition.x = toPosition.x + 1
 		local query = Tile(toPosition):queryAdd(creature, bit.bor(FLAG_IGNOREBLOCKCREATURE, FLAG_PATHFINDING))
+
 		if query ~= RETURNVALUE_NOERROR then
 			toPosition.x = toPosition.x - 1
 			toPosition.y = toPosition.y + 1
 			query = Tile(toPosition):queryAdd(creature, bit.bor(FLAG_IGNOREBLOCKCREATURE, FLAG_PATHFINDING))
 		end
+
 		if query ~= RETURNVALUE_NOERROR then
 			toPosition.y = toPosition.y - 2
 			query = Tile(toPosition):queryAdd(creature, bit.bor(FLAG_IGNOREBLOCKCREATURE, FLAG_PATHFINDING))
 		end
+
 		if query ~= RETURNVALUE_NOERROR then
 			toPosition.x = toPosition.x - 1
 			toPosition.y = toPosition.y + 1
 			query = Tile(toPosition):queryAdd(creature, bit.bor(FLAG_IGNOREBLOCKCREATURE, FLAG_PATHFINDING))
 		end
+
 		if query ~= RETURNVALUE_NOERROR then
 			player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 			return true
 		end
+
 		creature:teleportTo(toPosition, true)
 	end
 end
@@ -208,7 +220,7 @@ end
 function Creature.getKillers(self, onlyPlayers)
 	local killers = {}
 	local inFightTicks = configManager.getNumber(configKeys.PZ_LOCKED)
-	local timeNow = os.mtime()
+	local timeNow = systemTime()
 	local getCreature = onlyPlayers and Player or Creature
 	for cid, cb in pairs(self:getDamageMap()) do
 		local creature = getCreature(cid)
@@ -230,6 +242,46 @@ function Creature.getKillers(self, onlyPlayers)
 end
 
 -- Vaigu custom
+local soulBonus = {
+	trainingDummyName = "Training Dummy",
+	interval = 1 * 75 * 1000,
+	eventsTrainer = {},
+}
+
+local function addSoulTrainingDummy(playerId, ...)
+	if not playerId then
+		return false
+	end
+
+	if not configManager.getBoolean(configKeys.STAMINA_TRAINER) then
+		return false
+	end
+
+	local player = Player(playerId)
+
+	if not player then
+		soulBonus.eventsTrainer[playerId] = nil
+		return true
+	end
+
+	local target = player:getTarget()
+
+	if not target or target:getName() ~= soulBonus.trainingDummyName then
+		soulBonus.eventsTrainer[playerId] = nil
+		return true
+	end
+
+	local maxsoul = player:isPremium() and 200 or 100
+
+	if player:getSoul() < maxsoul then
+		player:addSoul(1)
+		player:sendTextMessage(MESSAGE_FAILURE, "One soul point has been restored.")
+	end
+
+	soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.interval, playerId)
+	return true
+end
+
 function Creature:addEventStamina(target)
 	local player = self:getPlayer()
 	local monster = target:getMonster()
@@ -238,8 +290,9 @@ function Creature:addEventStamina(target)
 		if not staminaBonus.eventsTrainer[playerId] then
 			staminaBonus.eventsTrainer[playerId] = addEvent(addStamina, staminaBonus.period, playerId)
 		end
+		-- Vaigu custom
 		if not soulBonus.eventsTrainer[playerId] then
-			soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.period, playerId)
+			soulBonus.eventsTrainer[playerId] = addEvent(addSoulTrainingDummy, soulBonus.interval, playerId)
 		end
 	end
 end

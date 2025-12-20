@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Madareth")
 local monster = {}
 
 monster.description = "Madareth"
-monster.experience = 10000
+monster.experience = 200000
 monster.outfit = {
 	lookType = 12,
 	lookHead = 77,
@@ -76,23 +76,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 150 }, -- gold coin
 	{ id = 8899, chance = 59000 }, -- slightly rusted legs
 	{ id = 8896, chance = 40000 }, -- slightly rusted armor
 	{ id = 7443, chance = 33000 }, -- bullseye potion
-	{ id = 239, chance = 30000 }, -- great health potion
-	{ id = 7642, chance = 30000 }, -- great spirit potion
-	{ id = 7440, chance = 28000 }, -- mastermind potion
-	{ id = 7439, chance = 23000 }, -- berserk potion
-	{ id = 238, chance = 21000 }, -- great mana potion
 	{ id = 6299, chance = 19000 }, -- death ring
 	{ id = 3067, chance = 19000 }, -- hailstorm rod
 	{ id = 2950, chance = 19000 }, -- lute
 	{ id = 3035, chance = 19000, maxCount = 26 }, -- platinum coin
-	{ id = 3265, chance = 19000 }, -- two handed sword
 	{ id = 7404, chance = 16000 }, -- assassin dagger
 	{ id = 3092, chance = 16000 }, -- axe ring
-	{ id = 7643, chance = 16000 }, -- ultimate health potion
 	{ id = 8082, chance = 16000 }, -- underworld rod
 	{ id = 3093, chance = 14000 }, -- club ring
 	{ id = 6499, chance = 14000 }, -- demonic essence
@@ -101,13 +93,10 @@ monster.loot = {
 	{ id = 7418, chance = 14000 }, -- nightmare blade
 	{ id = 8084, chance = 14000 }, -- springsprout rod
 	{ id = 2966, chance = 14000 }, -- war drum
-	{ id = 3071, chance = 11000 }, -- wand of inferno
 	{ id = 8094, chance = 11000 }, -- wand of voodoo
-	{ id = 7416, chance = 9500 }, -- bloody edge
 	{ id = 7449, chance = 9500 }, -- crystal sword
-	{ id = 3098, chance = 9500 }, -- ring of healing
+	{ id = 3098, chance = 19500 }, -- ring of healing
 	{ id = 5954, chance = 7000, maxCount = 2 }, -- demon horn
-	{ id = 3052, chance = 7000 }, -- life ring
 	{ id = 7383, chance = 7000 }, -- relic sword
 	{ id = 3053, chance = 7000 }, -- time ring
 	{ id = 8092, chance = 7000 }, -- wand of starstorm
@@ -118,6 +107,10 @@ monster.loot = {
 	{ id = 3284, chance = 4700 }, -- ice rapier
 	{ id = 7386, chance = 4700 }, -- mercenary sword
 	{ id = 3091, chance = 4700 }, -- sword ring
+	{ id = 11586, chance = 5000 },
+	{ id = 36732, chance = 5000 },
+	{ id = 3389, chance = 500 },
+	{ id = 8097, chance = 500 },
 }
 
 monster.attacks = {
@@ -137,15 +130,15 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 99 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 75 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = -1 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 1 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 95 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 75 },
 }
 
 monster.immunities = {

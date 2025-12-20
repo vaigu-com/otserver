@@ -1,10 +1,10 @@
 local backTp = Action()
 
 function backTp.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheSecretLibrary.BlackTel) == -1 then
+	if player:getStorageValueByKey(Storage.TheSecretLibrary.BlackTel) == -1 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a skull.")
-		player:addItem(28489, 1)
-		player:setStorageValue(Storage.TheSecretLibrary.BlackTel, 1)
+		player:AddCustomItem({ id = 28489, count = 1 })
+		player:setStorageValueByKey(Storage.TheSecretLibrary.BlackTel, 1)
 		return true
 	end
 	return false

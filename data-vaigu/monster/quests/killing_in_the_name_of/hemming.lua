@@ -87,6 +87,7 @@ monster.loot = {
 	{ id = 7419, chance = 9800 }, -- dreaded cleaver
 	{ id = 3053, chance = 6000 }, -- time ring
 	{ id = 7428, chance = 2000 }, -- bonebreaker
+	{ id = 22516, chance = 2000 },
 }
 
 monster.attacks = {

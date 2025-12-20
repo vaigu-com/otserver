@@ -25,9 +25,7 @@ monster.corpse = 28737
 monster.speed = 105
 monster.manaCost = 0
 
-monster.events = {
-	"GrandCanonDominusDeath",
-}
+monster.events = {}
 
 monster.changeTarget = {
 	interval = 4000,
@@ -78,9 +76,9 @@ monster.loot = {
 	{ name = "patch of fine cloth", chance = 1000 },
 	{ id = 3039, chance = 1800 }, -- red gem
 	{ name = "violet gem", chance = 1850 },
-	{ name = "falcon bow", chance = 180 },
-	{ name = "falcon wand", chance = 180 },
-	{ name = "falcon plate", chance = 100 },
+	{ name = "falcon bow", chance = 300 },
+	{ name = "falcon wand", chance = 300 },
+	{ name = "falcon plate", chance = 300 },
 }
 
 monster.attacks = {
@@ -118,19 +116,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

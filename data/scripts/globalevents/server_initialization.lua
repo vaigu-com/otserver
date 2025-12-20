@@ -6,11 +6,12 @@ local function cleanupDatabase()
 	db.asyncQuery("DELETE FROM `guild_wars` WHERE `status` IN (0, 2, 3) OR (`status` = 0 AND (`started` + 72 * 60 * 60) <= " .. currentTime .. ")")
 	db.asyncQuery("DELETE FROM `players` WHERE `deletion` != 0 AND `deletion` < " .. currentTime)
 	db.asyncQuery("DELETE FROM `ip_bans` WHERE `expires_at` != 0 AND `expires_at` <= " .. currentTime)
-	db.asyncQuery("DELETE FROM `market_history` WHERE `inserted` <= " .. (currentTime - configManager.getNumber(configKeys.MARKET_OFFER_DURATION)))
+	--db.asyncQuery("DELETE FROM `market_history` WHERE `expiry_timestamp` <= " .. (currentTime - configManager.getNumber(configKeys.MARKET_OFFER_DURATION)))
 	db.query("DELETE FROM `player_storage` WHERE `key` IN (" .. Global.Storage.FamiliarSummonEvent10 .. ", " .. Global.Storage.FamiliarSummonEvent60 .. ")")
 
 	db.query("UPDATE `players` SET `isreward` = " .. DAILY_REWARD_NOTCOLLECTED)
-	db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = 51052")
+	-- db.query("UPDATE `player_storage` SET `value` = 0 WHERE `player_storage`.`key` = 51052")
+	db.query("DELETE FROM `kv_store` WHERE `key_name` LIKE 'player%.exp-boost-count'")
 end
 
 -- Function to move expired bans to ban history
@@ -21,29 +22,6 @@ local function moveExpiredBansToHistory()
 			local accountId = Result.getNumber(resultId, "account_id")
 			db.asyncQuery("INSERT INTO `account_ban_history` (`account_id`, `reason`, `banned_at`, `expired_at`, `banned_by`) VALUES (" .. accountId .. ", " .. db.escapeString(Result.getString(resultId, "reason")) .. ", " .. Result.getNumber(resultId, "banned_at") .. ", " .. Result.getNumber(resultId, "expires_at") .. ", " .. Result.getNumber(resultId, "banned_by") .. ")")
 			db.asyncQuery("DELETE FROM `account_bans` WHERE `account_id` = " .. accountId)
-		until not Result.next(resultId)
-
-		Result.free(resultId)
-	end
-end
-
--- Function to check and process house auctions
-local function processHouseAuctions()
-	local resultId = db.storeQuery("SELECT `id`, `highest_bidder`, `last_bid`, " .. "(SELECT `balance` FROM `players` WHERE `players`.`id` = `highest_bidder`) AS `balance` " .. "FROM `houses` WHERE `owner` = 0 AND `bid_end` != 0 AND `bid_end` < " .. os.time())
-	if resultId then
-		repeat
-			local house = House(Result.getNumber(resultId, "id"))
-			if house then
-				local highestBidder = Result.getNumber(resultId, "highest_bidder")
-				local balance = Result.getNumber(resultId, "balance")
-				local lastBid = Result.getNumber(resultId, "last_bid")
-				if balance >= lastBid then
-					db.query("UPDATE `players` SET `balance` = " .. (balance - lastBid) .. " WHERE `id` = " .. highestBidder)
-					house:setHouseOwner(highestBidder)
-				end
-
-				db.asyncQuery("UPDATE `houses` SET `last_bid` = 0, `bid_end` = 0, `highest_bidder` = 0, `bid` = 0 " .. "WHERE `id` = " .. house:getId())
-			end
 		until not Result.next(resultId)
 
 		Result.free(resultId)
@@ -150,9 +128,8 @@ function serverInitialization.onStartup()
 
 	cleanupDatabase()
 	moveExpiredBansToHistory()
-	processHouseAuctions()
 	storeTownsInDatabase()
-	checkAndLogDuplicateValues({ "Global", "GlobalStorage", "Storage" })
+	checkAndLogDuplicateValues({ "Global", "Storage" })
 	updateEventRates()
 	HirelingsInit()
 	resetAccountSessions()

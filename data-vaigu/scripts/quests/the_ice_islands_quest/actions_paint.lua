@@ -12,14 +12,14 @@ function icePaint.onUse(player, item, fromPosition, target, toPosition, isHotkey
 		return false
 	end
 
-	if player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline) == 8 then
+	if player:getStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Questline) == 8 then
 		toPosition:sendMagicEffect(CONST_ME_GREEN_RINGS)
-		player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.PaintSeal, player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.PaintSeal) + 1)
-		if player:getStorageValue(Storage.Quest.U8_0.TheIceIslands.PaintSeal) == 2 then
-			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Questline, 9)
-			player:setStorageValue(Storage.Quest.U8_0.TheIceIslands.Mission04, 2) -- Questlog The Ice Islands Quest, Nibelor 3: Artful Sabotage
+		player:setStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.PaintSeal, player:getStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.PaintSeal) + 1)
+		if player:getStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.PaintSeal) == 2 then
+			player:setStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Questline, 9)
+			player:setStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Mission04, 2) -- Questlog The Ice Islands Quest, Nibelor 3: Artful Sabotage
 			player:removeItem(7253, 1)
-			if player:getStorageValue(Storage.Quest.U7_8.TheShatteredIsles.TortoiseEggNargorDoor) >= 2 then
+			if player:getStorageValueByKey(Storage.Quest.U7_8.TheShatteredIsles.TortoiseEggNargorDoor) >= 2 then
 				player:addAchievement("Animal Activist")
 			end
 		end

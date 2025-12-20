@@ -83,10 +83,11 @@ monster.loot = {
 	{ name = "health potion", chance = 500, maxCount = 1 },
 	{ id = 3050, chance = 380 }, -- power ring
 	{ id = 3093, chance = 250 }, -- club ring
+	{ id = 5785, chance = 3000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -498 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -217 },
 	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_DEATHDAMAGE, minDamage = -210, maxDamage = -225, radius = 2, effect = CONST_ME_MORTAREA, target = false },
 }
 

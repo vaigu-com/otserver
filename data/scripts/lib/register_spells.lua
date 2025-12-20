@@ -1,3 +1,171 @@
+SpellRepository = {}
+SpellRepository.__index = SpellRepository
+SpellRepository.registry = {}
+SpellRepository.duplicateRegisted = {}
+
+local function pad_right(s, countChars)
+	if #s > countChars then
+		s = s:sub(1, countChars)
+	end
+
+	return s .. string.rep(" ", countChars - #s)
+end
+function SpellRepository:Add(spell)
+	local id = spell:getId()
+	if self.registry[id] then
+		self.duplicateRegisted[id] = true
+		logger.warn(T("[SpellRepository::Add] Spell with id :id: is already registered. Existing name: :existingName: New name: :newName:", { id = pad_right(tostring(id), 10), existingName = pad_right(self.registry[id]:getName(), 35), newName = pad_right(spell:getName(), 35) }))
+	end
+	self.registry[id] = spell
+end
+
+local spellnameToIdWords = {
+	["Annihilation"] = { id = 62, words = "exori gran ico" },
+	["Apprentice's Strike"] = { id = 169, words = "exori min flam" },
+	["Berserk"] = { id = 80, words = "exori" },
+	["Brutal Strike"] = { id = 61, words = "exori ico" },
+	["Buzz"] = { id = 177, words = "exori infir vis" },
+	["Chill Out"] = { id = 173, words = "exevo infir frigo hur" },
+	["Curse"] = { id = 139, words = "utori mort" },
+	["Death Strike"] = { id = 87, words = "exori mort" },
+	["Divine Caldera"] = { id = 124, words = "exevo mas san" },
+	["Divine Grenade"] = { id = 258, words = "exevo tempo mas san" },
+	["Divine Missile"] = { id = 122, words = "exori san" },
+	["Electrify"] = { id = 140, words = "utori vis" },
+	["Energy Beam"] = { id = 22, words = "exevo vis lux" },
+	["Energy Strike"] = { id = 88, words = "exori vis" },
+	["Energy Wave"] = { id = 13, words = "exevo vis hur" },
+	["Envenom"] = { id = 142, words = "utori pox" },
+	["Eternal Winter"] = { id = 118, words = "exevo gran mas frigo" },
+	["Ethereal Spear"] = { id = 111, words = "exori con" },
+	["Executioner's Throw"] = { id = 261, words = "exori amp kor" },
+	["Fierce Berserk"] = { id = 105, words = "exori gran" },
+	["Fire Wave"] = { id = 19, words = "exevo flam hur" },
+	["Flame Strike"] = { id = 89, words = "exori flam" },
+	["Front Sweep"] = { id = 59, words = "exori min" },
+	["Great Death Beam"] = { id = 260, words = "exevo max mort" },
+	["Great Energy Beam"] = { id = 23, words = "exevo gran vis lux" },
+	["Great Fire Wave"] = { id = 240, words = "exevo gran flam hur" },
+	["Groundshaker"] = { id = 106, words = "exori mas" },
+	["Hell's Core"] = { id = 24, words = "exevo gran mas flam" },
+	["Holy Flash"] = { id = 143, words = "utori san" },
+	["Ice Burst"] = { id = 262, words = "exevo ulus frigo" },
+	["Ice Strike"] = { id = 112, words = "exori frigo" },
+	["Ice Wave"] = { id = 121, words = "exevo frigo hur" },
+	["Ignite"] = { id = 138, words = "utori flam" },
+	["Inflict Wound"] = { id = 141, words = "utori kor" },
+	--["Lesser Front Sweep"] = { id = unknown, words = "exori min" },
+	["Lightning"] = { id = 149, words = "exori amp vis" },
+	["Mud Attack"] = { id = 175, words = "exori infir tera" },
+	["Physical Strike"] = { id = 148, words = "exori moe ico" },
+	["Practise Fire Wave"] = { id = 167, words = "exevo dis flam hur" },
+	["Rage of the Skies"] = { id = 119, words = "exevo gran mas vis" },
+	["Scorch"] = { id = 178, words = "exevo infir flam hur" },
+	["Strong Energy Strike"] = { id = 151, words = "exori gran vis" },
+	["Strong Ethereal Spear"] = { id = 57, words = "exori gran con" },
+	["Strong Flame Strike"] = { id = 150, words = "exori gran flam" },
+	["Strong Ice Strike"] = { id = 152, words = "exori gran frigo" },
+	["Strong Ice Wave"] = { id = 43, words = "exevo gran frigo hur" },
+	["Strong Terra Strike"] = { id = 153, words = "exori gran tera" },
+	["Terra Burst"] = { id = 263, words = "exevo ulus tera" },
+	["Terra Strike"] = { id = 113, words = "exori tera" },
+	["Terra Wave"] = { id = 120, words = "exevo tera hur" },
+	["Ultimate Energy Strike"] = { id = 155, words = "exori max vis" },
+	["Ultimate Flame Strike"] = { id = 154, words = "exori max flam" },
+	["Ultimate Ice Strike"] = { id = 156, words = "exori max frigo" },
+	["Ultimate Terra Strike"] = { id = 157, words = "exori max tera" },
+	["Whirlwind Throw"] = { id = 107, words = "exori hur" },
+	["Wrath of Nature"] = { id = 56, words = "exevo gran mas tera" },
+	["Arrow Call"] = { id = 176, words = "exevo infir con" },
+	["Conjure Arrow"] = { id = 51, words = "exevo con" },
+	["Conjure Bolt"] = { id = 79, words = "exevo con mort" },
+	["Conjure Explosive Arrow"] = { id = 49, words = "exevo con flam" },
+	["Conjure Piercing Bolt"] = { id = 109, words = "exevo con grav" },
+	["Conjure Poisoned Arrow"] = { id = 48, words = "exevo con pox" },
+	["Conjure Power Bolt"] = { id = 95, words = "exevo con vis" },
+	["Conjure Royal Star"] = { id = 191, words = "exevo gran con grav" },
+	["Conjure Sniper Arrow"] = { id = 108, words = "exevo con hur" },
+	["Conjure Wand of Darkness"] = { id = 92, words = "exevo gran mort" },
+	["Enchant Spear"] = { id = 110, words = "exeta con" },
+	["Bruise Bane"] = { id = 170, words = "exura infir ico" },
+	["Cure Bleeding"] = { id = 144, words = "exana kor" },
+	["Cure Burning"] = { id = 145, words = "exana flam" },
+	["Cure Curse"] = { id = 147, words = "exana mort" },
+	["Cure Electrification"] = { id = 146, words = "exana vis" },
+	["Cure Poison"] = { id = 29, words = "exana pox" },
+	["Divine Healing"] = { id = 125, words = "exura san" },
+	["Fair Wound Cleansing"] = { id = 239, words = "exura med ico" },
+	["Heal Friend"] = { id = 84, words = "exura sio" },
+	["Intense Healing"] = { id = 2, words = "exura gran" },
+	["Intense Recovery"] = { id = 160, words = "utura gran" },
+	["Intense Wound Cleansing"] = { id = 158, words = "exura gran ico" },
+	["Light Healing"] = { id = 1, words = "exura" },
+	["Magic Patch"] = { id = 174, words = "exura infir" },
+	["Mass Healing"] = { id = 82, words = "exura gran mas res" },
+	["Nature's Embrace"] = { id = 242, words = "exura gran sio" },
+	["Practice Healing"] = { id = 166, words = "exura dis" },
+	["Recovery"] = { id = 159, words = "utura" },
+	["Restoration"] = { id = 241, words = "exura max vita" },
+	["Salvation"] = { id = 36, words = "exura gran san" },
+	["Ultimate Healing"] = { id = 3, words = "exura vita" },
+	["Wound Cleansing"] = { id = 123, words = "exura ico" },
+	["Enchant Party"] = { id = 129, words = "utori mas sio" },
+	["Heal Party"] = { id = 128, words = "utura mas sio" },
+	["Protect Party"] = { id = 127, words = "utamo mas sio" },
+	["Train Party"] = { id = 126, words = "utito mas sio" },
+	["Avatar of Light"] = { id = 265, words = "uteta res sac" },
+	["Avatar of Nature"] = { id = 267, words = "uteta res dru" },
+	["Avatar of Steel"] = { id = 264, words = "uteta res eq" },
+	["Avatar of Storm"] = { id = 266, words = "uteta res ven" },
+	["Blood Rage"] = { id = 133, words = "utito tempo" },
+	["Cancel Invisibility"] = { id = 90, words = "exana ina" },
+	["Cancel Magic Shield"] = { id = 245, words = "exana vita" },
+	["Challenge"] = { id = 93, words = "exeta res" },
+	["Charge"] = { id = 131, words = "utani tempo hur" },
+	["Chivalrous Challenge"] = { id = 237, words = "exeta amp res" },
+	["Creature Illusion"] = { id = 38, words = "utevo res ina" },
+	["Divine Dazzle"] = { id = 238, words = "exana amp res" },
+	["Divine Empowerment"] = { id = 268, words = "utevo grav san" },
+	["Expose Weakness"] = { id = 243, words = "exori moe" },
+	--["Find Fiend"] = { id = 20, words = "exiva moe res" },
+	["Find Person"] = { id = 20, words = "exiva" },
+	["Food"] = { id = 42, words = "exevo pan" },
+	["Great Light"] = { id = 11, words = "utevo gran lux" },
+	["Haste"] = { id = 6, words = "utani hur" },
+	["Invisibility"] = { id = 45, words = "utana vid" },
+	["Levitate"] = { id = 81, words = "exani hur" },
+	["Light"] = { id = 10, words = "utevo lux" },
+	["Magic Rope"] = { id = 76, words = "exani tera" },
+	["Magic Shield"] = { id = 44, words = "utamo vita" },
+	["Protector"] = { id = 132, words = "utamo tempo" },
+	["Sap Strength"] = { id = 244, words = "exori kor" },
+	["Sharpshooter"] = { id = 135, words = "utito tempo san" },
+	["Strong Haste"] = { id = 39, words = "utani gran hur" },
+	["Summon Creature"] = { id = 9, words = "utevo res" },
+	["Swift Foot"] = { id = 134, words = "utamo tempo san" },
+	["Ultimate Light"] = { id = 75, words = "utevo vis lux" },
+}
+
+local function tryUpdateIdWords(spell)
+	local name = spell:getName()
+	if spellnameToIdWords[name] then
+		spell:id(spellnameToIdWords[name].id)
+	elseif spell:getId() == 0 then
+		spell:id(NextSpellId())
+	end
+
+	if spell:getWords() == nil or spell:getWords() == "" then
+		spell:words(NextSpellWords())
+	end
+end
+
+local proxy = Spell.register
+Spell.register = function(self)
+	tryUpdateIdWords(self)
+	SpellRepository:Add(self)
+	proxy(self)
+end
+
 --Pre-made areas
 --Waves
 AREA_SHORTWAVE3 = {
@@ -276,6 +444,18 @@ AREA_CIRCLE3X33 = {
 	{ 1, 1, 1, 1, 1, 1, 1 },
 }
 
+AREA_CIRCLE3X4 = {
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 1, 1, 1, 1, 1, 0, 0 },
+	{ 0, 1, 1, 1, 1, 1, 1, 1, 0 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 3, 1, 1, 1, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 0, 1, 1, 1, 1, 1, 1, 1, 0 },
+	{ 0, 0, 1, 1, 1, 1, 1, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+}
+
 -- Crosses
 AREA_CIRCLE1X1 = {
 	{ 0, 1, 0 },
@@ -386,11 +566,43 @@ AREA_RING1_BURST3 = {
 	{ 0, 0, 1, 1, 1, 1, 1, 0, 0 },
 	{ 0, 1, 1, 1, 1, 1, 1, 1, 0 },
 	{ 1, 1, 1, 0, 0, 0, 1, 1, 1 },
-	{ 1, 1, 1, 0, 3, 0, 1, 1, 1 },
+	{ 1, 1, 1, 0, 2, 0, 1, 1, 1 },
 	{ 1, 1, 1, 0, 0, 0, 1, 1, 1 },
 	{ 0, 1, 1, 1, 1, 1, 1, 1, 0 },
 	{ 0, 0, 1, 1, 1, 1, 1, 0, 0 },
 	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+}
+
+CrossBeamArea3X2 = {
+	{ 1, 1, 1 },
+	{ 0, 1, 0 },
+	{ 0, 3, 0 },
+}
+
+AREA_FEAR_OPRESSOR = {
+	{ 0, 1, 1, 1, 0 },
+	{ 1, 1, 1, 1, 1 },
+	{ 1, 1, 3, 1, 1 },
+	{ 1, 1, 1, 1, 1 },
+	{ 0, 1, 1, 1, 0 },
+}
+
+AREA_ROOT_OPRESSOR = {
+	{ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+	{ 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0 },
+	{ 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0 },
+	{ 1, 1, 1, 1, 1, 0, 0, 3, 0, 0, 1, 1, 1, 1, 1 },
+	{ 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0 },
+	{ 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0 },
+	{ 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
 }
 
 -- The numbered-keys represents the damage values, and their table
@@ -552,6 +764,7 @@ function Player:addPartyCondition(combat, variant, condition, baseMana)
 	return true
 end
 
+local defaultEffect = CONST_ME_MAGIC_RED
 function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 	if not conjureCount and conjureId ~= 0 then
 		local itemType = ItemType(conjureId)
@@ -571,17 +784,16 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 		return false
 	end
 
-	local item = self:addItem(conjureId, conjureCount)
-	if not item then
+	local success = self:AddCustomItem({ id = conjureId, count = conjureCount })
+	if not success then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false
 	end
 
-	if item:hasAttribute(ITEM_ATTRIBUTE_DURATION) then
-		item:decay()
+	if ItemType(id) and ItemType(id):isRune() then
+		effect = CONST_ME_MAGIC_RED
 	end
-
-	self:getPosition():sendMagicEffect(item:getType():isRune() and CONST_ME_MAGIC_RED or effect)
+	self:getPosition():sendMagicEffect(effect or defaultEffect)
 	return true
 end

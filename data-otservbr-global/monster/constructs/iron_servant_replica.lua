@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Iron Servant Replica")
 local monster = {}
 
 monster.description = "an iron servant replica"
-monster.experience = 210
+monster.experience = 600
 monster.outfit = {
 	lookType = 395,
 	lookHead = 0,
@@ -60,6 +60,7 @@ monster.flags = {
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -74,7 +75,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 8775, chance = 4840 }, -- gear wheel
-	{ id = 3031, chance = 82190, maxCount = 55 }, -- gold coin
+	{ id = 3031, chance = 82190, maxCount = 130 }, -- gold coin
 	{ id = 266, chance = 1980 }, -- health potion
 	{ id = 3269, chance = 1000 }, -- halberd
 	{ id = 12601, chance = 310 }, -- slime mould
@@ -111,5 +112,28 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
+
+mType.onSpawn = function(monster)
+	local chance = math.random(100)
+	if Game.getStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.MechanismDiamond) >= 1 and Game.getStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.MechanismGolden) >= 1 then
+		if chance > 30 then
+			local monsterType = math.random(2) == 1 and "diamond servant replica" or "golden servant replica"
+			Game.createMonster(monsterType, monster:getPosition(), false, true)
+			monster:remove()
+		end
+		return
+	end
+
+	if Game.getStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.MechanismDiamond) >= 1 and chance > 30 then
+		Game.createMonster("diamond servant replica", monster:getPosition(), false, true)
+		monster:remove()
+		return
+	end
+
+	if Game.getStorageValue(Storage.Quest.U11_02.ForgottenKnowledge.MechanismGolden) >= 1 and chance > 30 then
+		Game.createMonster("golden servant replica", monster:getPosition(), false, true)
+		monster:remove()
+	end
+end
 
 mType:register(monster)

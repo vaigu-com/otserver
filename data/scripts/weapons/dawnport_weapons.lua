@@ -1,47 +1,42 @@
--- the chille
-local dawnportWeapon = Weapon(WEAPON_WAND)
+--[[
+-- Vaigu custom
+local maxDmg = 12
 
-local combat = Combat()
-combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ICEDAMAGE)
-combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_ICE)
-
+-- the chiller
+local chiller = Weapon(WEAPON_WAND)
+local chillerCombat = Combat()
+chillerCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ICEDAMAGE)
+chillerCombat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_ICE)
 function onGetFormulaValues(player, level, maglevel)
 	local min = (level / 5) + (maglevel * 0.4) + 3
 	local max = (level / 5) + (maglevel * 0.7) + 7
-	return -min, -max
+	return -(math.min(maxDmg, min)), -(math.min(maxDmg, max))
 end
-
-combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
-
-dawnportWeapon.onUseWeapon = function(player, variant)
-	return combat:execute(player, variant)
+chillerCombat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
+chiller.onUseWeapon = function(player, variant)
+	return chillerCombat:execute(player, variant)
 end
-
-dawnportWeapon:id(21350)
-dawnportWeapon:mana(1)
-dawnportWeapon:range(3)
-dawnportWeapon:register()
+chiller:id(21350)
+chiller:mana(1)
+chiller:range(3)
+chiller:register()
 
 -- the scorcher
-local dawnportWeapon = Weapon(WEAPON_WAND)
-
-local combat = Combat()
-combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_FIREDAMAGE)
-combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_FIRE)
-
+local scorcher = Weapon(WEAPON_WAND)
+local scorcherCombat = Combat()
+scorcherCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_FIREDAMAGE)
+scorcherCombat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_FIRE)
 function onGetFormulaValues(player, level, maglevel)
 	local min = (level / 5) + (maglevel * 0.4) + 3
 	local max = (level / 5) + (maglevel * 0.7) + 7
-	return -min, -max
+	return -(math.min(maxDmg, min)), -(math.min(maxDmg, max))
 end
-
-combat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
-
-dawnportWeapon.onUseWeapon = function(player, variant)
-	return combat:execute(player, variant)
+scorcherCombat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
+scorcher.onUseWeapon = function(player, variant)
+	return scorcherCombat:execute(player, variant)
 end
-
-dawnportWeapon:id(21348)
-dawnportWeapon:mana(1)
-dawnportWeapon:range(3)
-dawnportWeapon:register()
+scorcher:id(21348)
+scorcher:mana(1)
+scorcher:range(3)
+scorcher:register()
+]]

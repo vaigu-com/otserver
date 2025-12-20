@@ -1,10 +1,10 @@
 local sealedBook = Action()
 
 function sealedBook.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if player:getStorageValue(Storage.TheSecretLibrary.PinkTel) == 2 then
+	if player:getStorageValueByKey(Storage.TheSecretLibrary.PinkTel) == 2 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have found a scribbled notes.")
-		player:addItem(28515, 1)
-		player:setStorageValue(Storage.TheSecretLibrary.HighDry, 1)
+		player:AddCustomItem({ id = 28515, count = 1 })
+		player:setStorageValueByKey(Storage.TheSecretLibrary.HighDry, 1)
 		return true
 	end
 	return false

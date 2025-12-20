@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("attack", "focus")
-spell:id(24)
 spell:name("Hell's Core")
 spell:words("exevo gran mas flam")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_HELL_SCORE)

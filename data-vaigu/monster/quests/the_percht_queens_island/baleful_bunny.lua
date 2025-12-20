@@ -60,6 +60,7 @@ monster.flags = {
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
+	isPreyExclusive = true,
 }
 
 monster.light = {
@@ -74,14 +75,14 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 100000 },
-	{ name = "terra amulet", chance = 8480 },
-	{ name = "snakebite rod", chance = 7420 },
-	{ name = "leaf star", chance = 7120, maxCount = 2 },
-	{ name = "lightning pendant", chance = 6820 },
-	{ name = "strange talisman", chance = 5760 },
-	{ name = "sacred tree amulet", chance = 2730 },
-	{ name = "yetislippers", chance = 450 },
+	{ name = "platinum coin", chance = 10000 },
+	{ name = "terra amulet", chance = 848 },
+	{ name = "snakebite rod", chance = 742 },
+	{ name = "leaf star", chance = 712, maxCount = 2 },
+	{ name = "lightning pendant", chance = 682 },
+	{ name = "strange talisman", chance = 576 },
+	{ name = "sacred tree amulet", chance = 273 },
+	{ name = "yetislippers", chance = 45 },
 }
 
 monster.attacks = {

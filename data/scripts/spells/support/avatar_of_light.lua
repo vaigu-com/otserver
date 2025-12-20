@@ -26,10 +26,9 @@ function spell.onCastSpell(creature, variant)
 end
 
 spell:group("support")
-spell:id(265)
 spell:name("Avatar of Light")
 spell:words("uteta res sac")
-spell:level(300)
+spell:level(50)
 spell:mana(1500)
 spell:isPremium(true)
 spell:cooldown(2 * 60 * 60 * 1000) -- Default cooldown = 2 hours

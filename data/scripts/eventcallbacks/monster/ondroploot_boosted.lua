@@ -1,31 +1,27 @@
-local callback = EventCallback()
+local lootFactor = 1.0
+local lootLayer = MONSTER_LOOT_LAYER.boosted
 
+local callback = EventCallback("MonsterOnDropLootBoosted")
 function callback.monsterOnDropLoot(monster, corpse)
-	if not monster or not corpse then
+	local player = Player(corpse:getCorpseOwner())
+	if not player then
 		return
 	end
+
 	if not monster:isBoosted() then
 		return
 	end
-	local mType = monster:getType()
-	if mType:isRewardBoss() then
-		return
-	end
-	local player = Player(corpse:getCorpseOwner())
-	if not player or not player:canReceiveLoot() then
-		return
-	end
+
 	local mType = monster:getType()
 	if not mType then
 		return
 	end
+	if mType:isRewardBoss() then
+		return
+	end
 
-	local factor = 1.0
-	local msgSuffix = " (boosted loot)"
-	corpse:addLoot(mType:generateLootRoll({ factor = factor, gut = false }, {}, player))
-
-	local existingSuffix = corpse:getAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX) or ""
-	corpse:setAttribute(ITEM_ATTRIBUTE_LOOTMESSAGE_SUFFIX, existingSuffix .. msgSuffix)
+	local totalLoot = TryGenerateLootRoll(lootLayer, monster, player, lootFactor, applyGut, filter)
+	local monsterId = monster:getId()
+	LootTableRegistry:Append(totalLoot, monsterId, lootLayer)
 end
-
 callback:register()

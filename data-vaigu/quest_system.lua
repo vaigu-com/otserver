@@ -1,1048 +1,598 @@
--- quest system
-PROMOTION_PRICE = 15000
-PROMOTION_LEVEL = 20
-ALL_BLESSINGS_COUNT = 5
-ALL_CONDITIONS = {
-	CONDITION_POISON,
-	CONDITION_FIRE,
-	CONDITION_ENERGY,
-	CONDITION_BLEEDING,
-	CONDITION_PARALYZE,
-	CONDITION_DROWN,
-	CONDITION_FREEZING,
-	CONDITION_DAZZLED,
-	CONDITION_CURSED,
-}
--- Todo: make "data\npclib\npc_system\npc_handler.lua" load from lua; fix npc's after server reload
-TOPIC_DEFAULT = 0
+---@class Quest
+---@field name string
+---@field monsterEvents table
+---@field encounters table
+---@field monsters table
+---@field scripts table
+---@field npcs table
+---@field onUseDeclarations table
+---@field questlog function
+---@field currentMission integer
+---@field missions table
+---@field state integer
+---@field localizer string
+Quest = {}
+Quest.__index = Quest
+function Quest:New(name)
+	local newObj = {
+		name = name,
+		localizer = name,
+		missions = {},
+		currentMission = 0,
+		monsterEvents = {},
+		encounters = {},
+		monsters = {},
+		scripts = {},
+		npcs = {},
+		onUseDeclarations = {},
+		questlog = nil,
+	}
 
-MESSAGE_GREET = 1
-MESSAGE_FAREWELL = 2
-MESSAGE_WALKAWAY = 16
-
-ANY_MESSAGE = "ANY_MESSAGE"
-NOT_ENOUGH_CAP_OR_SLOTS = "NOT_ENOUGH_CAP_OR_SLOTS"
-
-LOCALIZER_UNIVERSAL = "LOCALIZER_UNIVERSAL"
-LOCALIZER_PRIEST = "LOCALIZER_PRIEST"
-LOCALIZER_LUA_RAIDS = "LOCALIZER_LUA_RAIDS"
-LOCALIZER_TASK_BOSS_LOCATIONS = "LOCALIZER_TASK_BOSS_LOCATIONS"
-LOCALIZER_QUESTLOG = "LOCALIZER_QUESTLOG"
-LOCALIZER_NPC_NAME = "LOCALIZER_NPC_NAME" -- modify cpp definition in case of changes
-LOCALIZER_BANK_SYSTEM = "LOCALIZER_BANK_SYSTEM"
-GREET = "LOCALIZER_GREET"
-FAREWELL = "LOCALIZER_FAREWELL"
-WALKAWAY = "LOCALIZER_WALKAWAY"
-
-QUEST_NOT_STARTED = -1
-
-CONDITION_STATUS = {
-	CONDITION_PASSED = "CONDITION_PASSED",
-	CONDITION_NOT_PASSED = "CONDITION_NOT_PASSED",
-	AT_LEAST_ONE_CONDITION_NOT_PASSED = "AT_LEAST_ONE_CONDITION_NOT_PASSED",
-	ALL_CONDITIONS_PASSED = "ALL_CONDITIONS_PASSED",
-}
-
-DISCARD_DIALOG = "DISCARD_DIALOG"
-SUCCESS_RESOLVE = "SUCCESS_RESOLVE"
-FAIL_RESOLVE = "FAIL_RESOLVE"
-
-local defaultMaxState = 99999
-
-local specialMessageTypes = { MESSAGE_GREET, MESSAGE_FAREWELL, MESSAGE_WALKAWAY }
-local specialMessageTypeToMessage = {
-	[MESSAGE_GREET] = "LOCALIZER_GREET",
-	[MESSAGE_FAREWELL] = "LOCALIZER_FAREWELL",
-	[MESSAGE_WALKAWAY] = "LOCALIZER_WALKAWAY",
-}
-
--- ToDo: storage keys will be converted to kv, therefore this function will no longer be needed
-local FIRST_AVAILABLE_STORAGE = 8100
-NEXT_STORAGE = NEXT_STORAGE or FIRST_AVAILABLE_STORAGE
-function NextStorage()
-	NEXT_STORAGE = NEXT_STORAGE + 1
-	return NEXT_STORAGE
+	setmetatable(newObj, self)
+	return newObj
 end
-
-function GrantPlayerExpByAid(player, actionId)
-	local expValue = CustomItemRegistry():GetState(actionId).expReward
-	if not expValue then
-		return
-	end
-	AddExperienceWithAnnouncement(player, expValue)
-end
-
-function string:contains(patterns)
-	if type(patterns) ~= "table" then
-		return MsgContains(self, patterns)
-	end
-	for _, pattern in pairs(patterns) do
-		if MsgContains(self, pattern) then
-			return true
-		end
-	end
-	return false
-end
-
-function Player:IncrementStorages(storages, addend)
-	addend = addend or 1
-	for _, storage in pairs(storages) do
-		self:IncrementStorage(storage, addend)
-	end
-end
-
-function Player:IncrementStorage(storage, addend)
-	self:setStorageValue(storage, self:getStorageValue(storage) + (addend or 1))
-	return self:getStorageValue(storage)
-end
-
-function UpdateStorages(player, storages)
-	for storage, newValue in pairs(storages) do
-		player:setStorageValue(storage, newValue)
-	end
-end
-
-function Player:UpdateStorages(storages)
-	if not storages then
-		return false
-	end
-	for storage, newValue in pairs(storages) do
-		if type(newValue) == "string" then
-			self:IncrementStorage(storage, tonumber(newValue))
-		else
-			self:setStorageValue(storage, newValue)
-		end
-	end
-end
-
-function Player:RefreshStorage(storage)
-	local currentValue = self:getStorageValue(storage)
-	self:setStorageValue(storage, currentValue)
-end
-
-function Player:RefreshStorages(storages)
-	for storage, _ in pairs(storages) do
-		self:RefreshStorage(storage)
-	end
-end
-
-local function parseRequiredState(requiredState)
-	local min
-	local max
-	local neq
-	local errorMessage
-
-	if type(requiredState) == "number" then
-		min = requiredState
-		max = defaultMaxState
-		neq = nil
-		errorMessage = ""
-	elseif type(requiredState) == "table" then
-		min = requiredState.min or QUEST_NOT_STARTED
-		max = requiredState.max or defaultMaxState
-		neq = requiredState.neq
-		errorMessage = requiredState.errorMessage or ""
-	end
-
-	return min, max, neq, errorMessage
-end
-
-function Player:HasCorrectStorageValues(storages)
-	if not storages then
-		return true
-	end
-	for storage, requiredState in pairs(storages) do
-		local min, max, neq = parseRequiredState(requiredState)
-
-		local currentState = self:getStorageValue(storage)
-		if currentState < min then
-			return false
-		end
-		if currentState > max then
-			return false
-		end
-		if neq ~= nil and neq == currentState then
-			return false
-		end
-	end
-	return true
-end
-
--- First matched incorrect value returns error
-function Player:ErrorMessageIfHasIncorrectStorageValues(storages)
-	if not storages then
-		return true
-	end
-	for storage, requiredState in pairs(storages) do
-		local min, max, neq, errorMessage = parseRequiredState(requiredState)
-
-		local currentState = self:getStorageValue(storage)
-		if currentState < min then
-			return errorMessage
-		end
-		if currentState > max then
-			return errorMessage
-		end
-		if neq ~= nil and neq == currentState then
-			return errorMessage
-		end
-	end
-	return nil
-end
-
-function UpdateGlobalStorages(storages)
-	for storage, newValue in pairs(storages) do
-		Game.setStorageValue(storage, newValue)
-	end
-end
-
-function SpawnMonstersAtPos(monsterName, pos, count)
-	count = count or 1
-	for _ = 1, count do
-		Game.createMonster(monsterName, pos)
-	end
-end
-
-function SpawnMonstersAtPlayer(monsterName, player, count)
-	if not player then
-		return true
-	end
-	count = count or 1
-	local pos = player:getPosition()
-	for _ = 1, count do
-		Game.createMonster(monsterName, pos)
-	end
-end
-
-function Player:AddOutfitsAndAddons(outfitsAndAddons)
-	for _, var in pairs(outfitsAndAddons) do
-		local addon = var.addon
-		local outfit = var.outfitId
-
-		self:addOutfit(outfit)
-		if addon then
-			self:addOutfitAddon(outfit, addon)
-		end
-	end
-	self:addOutfit()
-end
-
-function Player:AddMounts(mounts)
-	for _, mountId in pairs(mounts) do
-		self:addMount(mountId)
-	end
-end
-
-function AddExperienceWithAnnouncement(player, exp)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You received :exp: experience!", { exp = exp }))
-	player:addExperience(exp)
-	player:getPosition():sendMagicEffect(CONST_ME_STUN)
-end
-
----@class DialogContext
----@field player Player player object
----@field cid number player id
----@field msg string player message
----@field npcDialogData table Dialog and dialogs
----@field npcHandler table
----@field npc userdata npc object
----@field specialMessageType string
----@field questlineAid number
----@field dialogs table
----@field requirements table
----@alias Player table
-DialogContext = {}
-DialogContext.__index = DialogContext
-setmetatable(DialogContext, {
-	__call = function(class, player, msg, npcDialogData, npcHandler, npc, specialMessageType)
-		local instance = setmetatable({}, class)
-		instance.player = player
-		instance.cid = player:getId()
-		instance.msg = msg
-		if specialMessageType then
-			instance.msg = specialMessageTypeToMessage[specialMessageType]
-		end
-		instance.npcDialogData = npcDialogData
-		instance.npcHandler = npcHandler
-		instance.npc = npc
-		instance.specialMessageType = specialMessageType
-		instance.requirements = nil
-		instance.resolvedStatus = nil
-		return instance
-	end,
-})
-
-local requirementsWhitelist = {
-	requiredTopic = true,
-	requiredItems = true,
-	requiredState = true,
-	requiredGlobalState = true,
-	requiredMoney = true,
-	specialConditions = true,
-}
-local actionsWhitelist = {
-	specialActionsOnSuccess = true,
-	removeRequiredItems = true,
-	rewards = true,
-	spawnMonstersOnSuccess = true,
-	outfitRewards = true,
-	mountRewards = true,
-	expReward = true,
-	nextState = true,
-	nextGlobalState = true,
-	nextTopic = true,
-	preserveTopic = true,
-	addDialogData = true,
-	text = true,
-}
-
----@class ResolutionContext
----@field requirements table
----@field actionsOnSuccess table
----@field player Player
----@field cid integer?
----@field npc Npc?
----@field specialMessageType string?
----@field questlineAid integer
----@field npcHandler NpcHandler?
----@field topic integer?
-ResolutionContext = {}
-ResolutionContext.__index = ResolutionContext
-setmetatable(ResolutionContext, {
+setmetatable(Quest, {
+	---@return Quest Quest
 	__call = function(class, ...)
 		return class:New(...)
 	end,
 })
 
-function ResolutionContext.FromDialogContext(context, data)
-	local newObj = {}
-	setmetatable(newObj, ResolutionContext)
-	newObj:ParseRequirementsActionsOther(context)
-	newObj:ParseRequirementsActionsOther(data)
-	newObj.__index = newObj
-	return newObj
-end
-
-function ResolutionContext:ParseRequirementsActionsOther(table)
-	self.otherFields = {}
-	self.requirements = {}
-	self.actionsOnSuccess = {}
-	for key, value in pairs(table) do
-		if requirementsWhitelist[key] then
-			self.requirements[key] = value
-		elseif actionsWhitelist[key] then
-			self.actionsOnSuccess[key] = value
-		else
-			self[key] = value
-		end
-	end
-end
-
-function ResolutionContext:New()
-	local newObj = {}
-	newObj.__index = ResolutionContext
-	setmetatable(newObj, ResolutionContext)
-	return newObj
-end
-
-function ResolutionContext.FromEncounter(encounterData, player)
-	local newObj = {}
-	setmetatable(newObj, ResolutionContext)
-	newObj:ParseRequirementsActionsOther(encounterData)
-	newObj.questlineAid = encounterData.questlineAid
-	newObj.player = player
-	newObj.__index = ResolutionContext
-	return newObj
-end
-
-function ResolutionContext.FromCustomItemState(item, player)
-	local newObj = {}
-	setmetatable(newObj, ResolutionContext)
-	newObj.questlineAid = item.questlineAid
-	newObj.player = player
-	newObj.__index = ResolutionContext
-	newObj:ParseRequirementsActionsOther(item)
-	return newObj
-end
-
-function DialogContext:SendIncomprehensibleError()
-	local player = self.player
-	local npc = self.npc
-	local npcHandler = self.npcHandler
-	local npcDialogData = self.npcDialogData
-	local errorMessageIdentifier = npcDialogData["INCOMPREHENSIBLE"] or "INCOMPREHENSIBLE"
-	local errorMessage = player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(errorMessageIdentifier)
-	npcHandler:say(errorMessage, npc, player)
-	return true
-end
-
-local function hasRequiredQuestlineState(state, requiredState)
-	if type(requiredState) == "table" then
-		local min = requiredState.min or -1
-		local max = requiredState.max or defaultMaxState
-		if state < min then
-			return false
-		end
-		if state > max then
-			return false
-		end
-	elseif type(requiredState) == "number" then
-		if state ~= requiredState then
-			return false
-		end
-	end
-	return true
-end
-
-local function isPattern(pattern)
-	do
-		return true
-	end
-	if pattern:gmatch("<[^%s]->")() then
-		return true
-	end
-	if pattern:gmatch("%[[^%s]-%]")() then
-		return true
-	end
-	return false
-end
-
-PATTERN_MESSAGE_TYPE = {
-	REQUIRED = "REQUIRED",
-	OPTIONAL = "OPTIONAL",
-	KEYWORD = "KEYWORD",
+QUEST_SCRIPT_TYPE = {
+	DIALOG = "DIALOG",
+	CUSTOM_SCRIPT = "CUSTOM_SCRIPT",
+	ON_USE_DECLARATION = "ON_USE_DECLARATION",
 }
 
-function DialogContext:ExtractPatternFields()
-	local playerWords = {}
-	local requiredFields = 0
-	for k in self.pattern:gmatch("[^%s]+") do
-		local wordData = {
-			word = k,
-			messageType = PATTERN_MESSAGE_TYPE.KEYWORD,
-		}
-		if k:gmatch("<.*>")() then
-			wordData.word = k:gmatch("[^<>]+")()
-			wordData.messageType = PATTERN_MESSAGE_TYPE.REQUIRED
-			requiredFields = requiredFields + 1
-		end
-		if k:gmatch("%[.*%]")() then
-			wordData.word = k:gmatch("[^%[%]]+")()
-			wordData.messageType = PATTERN_MESSAGE_TYPE.OPTIONAL
-		end
-
-		table.insert(playerWords, wordData)
-	end
-	return playerWords, requiredFields
+function Quest:GetName()
+	return self.name
 end
 
-function DialogContext:IfPlayerMessageConformsToPattern(playerWords, requiredFields)
-	local i = 1
-	local requiredWordsSet = 0
-	for k in self.msg:gmatch("[^%s]+") do
-		local playerWordData = playerWords[i]
-		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.KEYWORD then
-			if playerWordData.word ~= k then
-				return false
+--#region Immediate execution
+function Quest:Storage(storages)
+	storages()
+	return self
+end
+function Quest:Constant(constant)
+	constant()
+	return self
+end
+--#endregion
+
+--#region Not quest state dependant
+function Quest:Questlog(questlog)
+	self.questlog = questlog
+	return self
+end
+function Quest:NoQuestlog()
+	self.questlog = function() end
+	return self
+end
+--#endregion
+
+--#region Not quest state dependant, but related to quest state
+function Quest:MonsterEvent(MonsterEvent)
+	table.insert(self.monsterEvents, MonsterEvent)
+	return self
+end
+function Quest:EncounterData(data)
+	table.insert(self.encounters, data)
+	return self
+end
+function Quest:Monster(monster)
+	table.insert(self.monsters, monster)
+	return self
+end
+--#endregion
+
+--#reqion Quest state dependant
+QuestFactory = {}
+QuestFactory.__index = QuestFactory
+function QuestFactory.Dialog(names, dialogs)
+	return { names = names, dialogs = dialogs, scriptType = QUEST_SCRIPT_TYPE.DIALOG }
+end
+function QuestFactory.Script(script)
+	return { script = script, scriptType = QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT }
+end
+function QuestFactory.OnUseDeclarations(contexts)
+	return { contexts = contexts, scriptType = QUEST_SCRIPT_TYPE.ON_USE_DECLARATION }
+end
+function Quest:Script(script)
+	table.insert(self.scripts, { script = script })
+	return self
+end
+function Quest:OnUseDeclaration(contexts) --Unused
+	table.insert(self.onUseDeclarations, { contexts = contexts })
+	return self
+end
+
+---@private
+function Quest:AddDialog(context)
+	local names, dialogs = context.names, context.dialogs
+	local missionKey, state = context.mission, context.state
+	if not missionKey then
+		logger.debug(T(":quest: missing mission for dialog", { quest = self.name }))
+	end
+	if not state then
+		logger.debug(T(":quest: missing state for dialog", { quest = self.name }))
+	end
+	if not dialogs then
+		logger.debug(T(":quest: missing dialog for dialog", { quest = self.name }))
+	end
+	if not names then
+		logger.debug(T(":quest: missing name for dialog", { quest = self.name }))
+	end
+
+	for _, lang in pairs(LANGUAGES) do
+		for requredKeywords, actionsAndRequirements in pairs(dialogs) do
+			for key, value in pairs(actionsAndRequirements) do
+				if type(value) == "string" then
+					MissingStrings:TestAllLanguages(value, self.localizer)
+				end
 			end
 		end
-		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.REQUIRED then
-			self[playerWordData.word] = k
-			requiredWordsSet = requiredWordsSet + 1
-		end
-		if playerWordData.messageType == PATTERN_MESSAGE_TYPE.OPTIONAL then
-			self[playerWordData.word] = k
-		end
-		i = i + 1
 	end
-	if requiredWordsSet < requiredFields then
+	if type(names) ~= "table" then
+		names = { names }
+	end
+	QuestRewards.Items[self.localizer] = QuestRewards.Items[self.localizer] or {}
+	for key, dialog in pairs(context.dialogs) do
+		if dialog.rewards then
+			for key, itemData in pairs(dialog.rewards) do
+				table.insert(QuestRewards.Items[self.localizer], itemData)
+			end
+		end
+	end
+
+	for _, npcName in pairs(names) do
+		self.npcs[npcName] = self.npcs[npcName] or {}
+		self.npcs[npcName].missions = self.npcs[npcName].missions or {}
+		self.npcs[npcName].missions[missionKey] = self.npcs[npcName].missions[missionKey] or {}
+		self.npcs[npcName].missions[missionKey].states = self.npcs[npcName].missions[missionKey].states or {}
+		self.npcs[npcName].missions[missionKey].states[state] = dialogs
+		self.npcs[npcName].missions[missionKey].localizer = self.localizer
+		if state == MISSION_NOT_STARTED then
+			QuestRegistry:AppendStartingNpcs(self.name, missionKey, npcName)
+		end
+	end
+
+	return self
+end
+---@private
+function Quest:AddScript(context)
+	local script = context.script
+	local mission, state = context.mission, context.state
+
+	table.insert(self.scripts, { script = script, mission = mission, state = state })
+	return self
+end
+
+---@private
+function Quest:AddOnUseDeclaration(onUseDeclaration)
+	local contexts = onUseDeclaration.contexts
+	local mission, state = onUseDeclaration.mission, onUseDeclaration.state
+
+	for _, item in pairs(contexts) do
+		-- default: onUse requiredState is exact mission state it was declared in
+		if not item.requiredState then
+			item.requiredState = {}
+			item.requiredState[mission] = state
+		end
+		if item.key then
+			item.requiredState[item.key] = MISSION_NOT_STARTED
+
+			item.nextState = item.nextState or {}
+			item.nextState[item.key] = item.nextState[item.key] or MISSION_FINISHED
+		end
+
+		for _, context in pairs(contexts) do
+			for key, itemData in pairs(context.rewards or {}) do
+				local id = itemData.id
+				if not id and key > 100 then
+					id = key
+				end
+				if not id then
+					id = 0
+				end
+				for key, innerItem in pairs(itemData) do
+					if type(innerItem) == "table" and innerItem.id then
+						RewardsRegistry.registry.items[innerItem.id] = (RewardsRegistry.registry.items[innerItem.id] or 0) + 1
+					end
+				end
+				RewardsRegistry.registry.items[id] = (RewardsRegistry.registry.items[id] or 0) + 1
+			end
+		end
+	end
+
+	table.insert(self.onUseDeclarations, { contexts = contexts })
+	return self
+end
+--#endregion
+
+function Quest:Mission(mission)
+	if self.missions[mission] then
+		logger.error(T("[Quest:Mission] Mission :storage: was already registered!!!", { storage = mission }))
+		return
+	end
+
+	self.currentMission = mission
+	self.missions[self.currentMission] = {}
+	return self
+end
+local scriptTypeToCallback = {
+	[QUEST_SCRIPT_TYPE.DIALOG] = Quest.AddDialog,
+	[QUEST_SCRIPT_TYPE.CUSTOM_SCRIPT] = Quest.AddScript,
+	[QUEST_SCRIPT_TYPE.ON_USE_DECLARATION] = Quest.AddOnUseDeclaration,
+}
+
+function Quest:State(stateDataCallback)
+	table.insert(self.missions[self.currentMission], stateDataCallback)
+	return self
+end
+
+function Quest:Register()
+	if not self.questlog then
+		logger.error(debug.traceback(T("Quest :name: has no questlog. Define questlog with Quest::Questlog or explicitly declare no questlog with Quest::NoQuestlog", { name = self:GetName() })))
+	end
+
+	QuestRegistry:Register(self)
+end
+
+local storageToMaxState = {}
+local function questlogLookups()
+	for _, quest in pairs(Questlog) do
+		for _, mission in pairs(quest.missions) do
+			storageToMaxState[mission.storage] = mission.maxState
+		end
+	end
+end
+
+function Player:setMissionFinishedByStorage(storage)
+	local finishedState = storageToMaxState[storage]
+	self:setStorageValueByKey(storage, finishedState)
+end
+
+---@class QuestRegistry
+---@field private registry table
+QuestRegistry = {}
+QuestRegistry.__index = QuestRegistry
+QuestRegistry.registry = {}
+
+function QuestRegistry:UnpackStateData()
+	for _, quest in pairs(self.registry) do
+		for missionStorage, states in pairs(quest.missions) do
+			for _, stateData in pairs(states) do
+				local context = { stateData() }
+				local state = context[1]
+
+				for i, data in ipairs(context) do
+					if i ~= 1 then
+						local callback = scriptTypeToCallback[data.scriptType]
+						data.mission = missionStorage
+						data.state = state
+						callback(quest, data)
+					end
+				end
+			end
+		end
+	end
+end
+
+local questMissionNpc = {}
+function QuestRegistry:AppendStartingNpcs(questName, missionKey, npcName)
+	questMissionNpc[questName] = questMissionNpc[questName] or {}
+	if questMissionNpc[questName][missionKey] then
+		logger.warn(T("[QuestRegistry:AppendStartingNpcs] Duplicate starting npc for quest :quest:, mission :mission:. Previous npc: :previousNpc:, next npc: :nextNpc:", { quest = questName, mission = missionKey, previousNpc = questMissionNpc[questName][missionKey], nextNpc = npcName }))
+	end
+	questMissionNpc[questName][missionKey] = npcName
+end
+
+function QuestRegistry:SerializeStartingNpcs()
+	local serializableStr = ""
+	for questName, missions in pairs(questMissionNpc) do
+		serializableStr = serializableStr .. T(":questName:\n", { questName = questName })
+		for missionName, npcName in pairs(missions) do
+			local positionString = ""
+			local npc = Creature(npcName)
+			if npc then
+				positionString = T("// Npc position: :pos:", { pos = npc:getPosition():ToString() })
+			else
+				positionString = "// Spawned via script"
+			end
+			serializableStr = serializableStr .. T("\t:missionName:\tStartingNpcName: :startingNpcName::positionString:\n", { missionName = missionName, startingNpcName = npcName, positionString = positionString })
+		end
+	end
+	SerializeToUtilFolder(serializableStr, "starting_npcs.txt")
+end
+
+function QuestRegistry:SerializeQuestMissions()
+	local serializableStr = ""
+	for _, quest in pairs(Questlog) do
+		serializableStr = serializableStr .. quest.name .. "\n"
+		local missions = quest.missions
+		for _, mission in pairs(missions) do
+			serializableStr = serializableStr .. "_#" .. mission.name .. "#" .. mission.storage .. "\n"
+		end
+	end
+	SerializeToUtilFolder(serializableStr, "quest_missions.txt")
+end
+
+function QuestRegistry.NormalizeQuestlog()
+	local normalizeQuestlogStartup = GlobalEvent("Quest/NormalizeQuestlog")
+	function normalizeQuestlogStartup.onStartup()
+		for _, quest in pairs(Questlog) do
+			quest.questId = NextQuestId()
+			IdToQuest[quest.questId] = quest
+			NameToQuest[quest.name] = quest
+			MissingStrings:TestAllLanguages(quest.name, quest.localizer)
+			for _, mission in pairs(quest.missions) do
+				local min, max
+				if mission.states then
+					min, max = FindMinMaxKey(mission.states)
+				end
+				mission.minState = mission.minState or min or DEFAULT_MIN_STATE
+				mission.maxState = mission.maxState or max or DEFAULT_MAX_STATE
+				mission.finishedState = mission.finishedState or MISSION_FINISHED
+				mission.missionId = NextMissionId()
+
+				-- 14.x protocol compliance
+				mission.localizer = mission.localizer or quest.localizer
+				mission.questId = quest.questId
+				mission.questName = quest.name
+
+				MissingStrings:TestAllLanguages(mission.name, quest.localizer)
+				for state, stateDescription in pairs(mission.states or {}) do
+					if type(stateDescription) == "string" then
+						MissingStrings:TestAllLanguages(stateDescription, quest.localizer)
+					end
+				end
+
+				StorageToMission[mission.storage] = mission
+				IdToMission[mission.missionId] = mission
+				Game.linkMissionToStorages(mission.storage, mission.linkedStorages or {})
+				if not (mission.states or mission.description) then
+					logger.warn(T("[QuestRegistry.NormalizeQuestlog] Mission :missionName: of quest :questName: has no states and no description", { missionName = mission.name, questName = quest.name }))
+				end
+			end
+		end
+	end
+	normalizeQuestlogStartup:register()
+end
+
+function QuestRegistry:CreateQuestlog()
+	for _, quest in pairs(self.registry) do
+		quest.questlog(quest.localizer)
+	end
+end
+function QuestRegistry:CreateMonstersEvents()
+	for _, quest in pairs(self.registry) do
+		for _, monsterEvent in pairs(quest.monsterEvents) do
+			monsterEvent()
+		end
+	end
+end
+function QuestRegistry:CreateEncounters()
+	local encountersStartup = GlobalEvent("Quest/CreateEncounters")
+	function encountersStartup.onStartup()
+		for _, quest in pairs(self.registry) do
+			for _, encounter in pairs(quest.encounters) do
+				encounter()
+			end
+		end
+	end
+	encountersStartup:register()
+end
+function QuestRegistry:CreateMonsters()
+	for _, quest in pairs(self.registry) do
+		for _, monster in pairs(quest.monsters) do
+			monster()
+		end
+	end
+end
+function QuestRegistry:RegisterNpcData()
+	for _, quest in pairs(self.registry) do
+		for name, data in pairs(quest.npcs) do
+			data.name = data.name or name
+			data.localizer = data.localizer or quest.localizer
+			NpcRegistry:AppendNpcData(data)
+		end
+	end
+end
+function QuestRegistry:RegisterOnUseDeclarations()
+	local onUseDeclarations = GlobalEvent("Quest/RegisterOnUseDeclarations")
+	function onUseDeclarations.onStartup()
+		for _, quest in pairs(self.registry) do
+			for _, onUseDeclaration in pairs(quest.onUseDeclarations) do
+				RegisterOnUseDeclarations(onUseDeclaration.contexts)
+			end
+		end
+	end
+	onUseDeclarations:register()
+end
+function QuestRegistry:RunScripts()
+	for _, quest in pairs(self.registry) do
+		for _, scriptData in pairs(quest.scripts) do
+			local script = scriptData.script
+			script({ mission = scriptData.mission, state = scriptData.state })
+		end
+	end
+end
+
+local function normalizeItem(item)
+	local normalized = {}
+	normalized.id = item.id
+	normalized.aid = item.aid or item.actionid or item.actionId
+	normalized.uid = item.uid or item.uniqueid or item.uniqueId
+	normalized.key = item.key
+	normalized.pos = item.pos or item.position
+	return normalized
+end
+
+local function hasIdAction(item)
+	local dummyIdAction = Action()
+	function dummyIdAction.onUse(_, _, _, _, _, _)
 		return false
 	end
-	return true
+	dummyIdAction:id(item.id)
+	return dummyIdAction:isRegistered()
 end
 
-function DialogContext:MatchPattern()
-	local allPatternFields, patternRequiredFields = self:ExtractPatternFields()
-	return self:IfPlayerMessageConformsToPattern(allPatternFields, patternRequiredFields)
-end
-
-function DialogContext:PlayerSaidRequiredWord()
-	local msg = self.msg
-	local pattern = self.keyword
-	if type(pattern) ~= "table" then
-		pattern = { pattern }
+local function generateDummyAction(keyItem)
+	local dummyAction = Action()
+	function dummyAction.onUse(_, _, _, _, _, _)
+		return false
 	end
-	if not isPattern(pattern) then
-		return table.contains(pattern, msg)
-	end
-
-	for _, value in pairs(pattern) do
-		self.pattern = value
-		if self:MatchPattern() then
-			return true
+	local normalized = normalizeItem(keyItem)
+	if normalized.id then
+		if table.contains(keysID, normalized.id) then
+			return nil
+		end
+		if hasIdAction(normalized) then
+			logger.debug(T("Registering dummy action for aid/uid/pos/key for item with id :id:", { id = normalized.id }))
 		end
 	end
-
-	return false
-end
-
--- refer to quest_system_doc.lua for guidelines
-function TryResolveDialog(player, msg, npcDialogData, npcHandler, npc, messageType)
-	player = Player(player)
-	local dialogContext = DialogContext(player, msg, npcDialogData, npcHandler, npc, messageType)
-	return dialogContext:TryResolveDialog():IsResolved()
-end
-
-function DialogContext:ResolveUniversalQuest()
-	local universalKeywordToDialog = self.npcDialogData[LOCALIZER_UNIVERSAL]
-	if not universalKeywordToDialog then
-		return
+	if normalized.aid then
+		dummyAction:aid(normalized.aid)
 	end
-	self.questlineAid = nil
-	self.keywordToDialog = universalKeywordToDialog
-	self:ResolveQuestState()
-	if self:IsResolved() then
-		return
+	if normalized.uid then
+		dummyAction:uid(normalized.uid)
 	end
-end
-
-function DialogContext:ResolveQuests()
-	for questlineAid, stateToKeywords in pairs(self.npcDialogData) do
-		if questlineAid == LOCALIZER_UNIVERSAL then
-			goto continue
-		end
-		if type(stateToKeywords) ~= "table" then
-			return
-		end
-		self.questlineAid = questlineAid
-		self.stateToKeywords = stateToKeywords
-		self:ResolveQuest()
-		if self:IsResolved() then
-			return
-		end
-		::continue::
+	if normalized.pos then
+		dummyAction:position(normalized.pos)
 	end
-	self:ResolveUniversalQuest()
-end
-
-function DialogContext:ResolveQuestsAnyMsg()
-	self.msg = ANY_MESSAGE
-	self:ResolveQuests()
-end
-
-function DialogContext:SetDefaultGreetFarewellWalkaway()
-	if not self.specialMessageType then
-		return
-	end
-	local translatedMessage = self.player:Localizer(LOCALIZER_UNIVERSAL):Context(self):Get(self.msg)
-	self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
-	self.resolvedStatus = SUCCESS_RESOLVE
-end
-
-local dialogResolvers = {
-	DialogContext.ResolveQuests,
-	DialogContext.SetDefaultGreetFarewellWalkaway,
-	DialogContext.ResolveQuestsAnyMsg,
-}
-
-function DialogContext:TryResolveDialog()
-	if not self.msg then
-		return self
+	if normalized.key then
+		dummyAction:key(normalized.key)
 	end
 
-	for _, resolver in pairs(dialogResolvers) do
-		resolver(self)
-		if self:IsResolved() then
-			return self
+	if not normalized.aid and not normalized.uid and not normalized.pos and not normalized.key then
+		return nil
+	end
+
+	return dummyAction
+end
+
+local function registerDummyActions()
+	local registerDummyActionsStartup = GlobalEvent("Quest/registerDummyActions")
+	function registerDummyActionsStartup.onStartup()
+		for quest, keyItems in pairs(QuestKeyItems) do
+			for itemName, keyItem in pairs(keyItems) do
+				local dummyAction = generateDummyAction(keyItem)
+				if dummyAction and not dummyAction:isRegistered() then
+					dummyAction:register()
+				end
+			end
 		end
 	end
-	self:SendIncomprehensibleError()
+	registerDummyActionsStartup:register()
+end
+
+function QuestRegistry:RegisterQuestData()
+	self:UnpackStateData()
+	self:CreateQuestlog()
+	self:CreateMonstersEvents()
+	self:CreateMonsters()
+	self:CreateEncounters()
+	self:RegisterNpcData()
+	self:RegisterOnUseDeclarations()
+	self:RunScripts()
+	self.NormalizeQuestlog()
+	questlogLookups()
+	registerDummyActions()
+end
+
+function QuestRegistry:Register(quest)
+	table.insert(self.registry, quest)
 	return self
 end
 
-function DialogContext:ResolveQuest()
-	local state = self.player:getStorageValue(self.questlineAid)
-	self.state = state
-	for requiredState, keywordToDialog in pairs(self.stateToKeywords) do
-		local canProceed = hasRequiredQuestlineState(state, requiredState)
-		if not canProceed then
-			goto continue
-		end
-		self.keywordToDialog = keywordToDialog
-		self:ResolveQuestState()
-		if self:IsResolved() then
-			return
-		end
-		::continue::
-	end
-end
-
-function DialogContext:ResolveQuestState()
-	if not self.keywordToDialog then
-		return
-	end
-
-	for keyword, data in pairs(self.keywordToDialog) do
-		self.keyword = keyword
-		if not self:PlayerSaidRequiredWord() then
-			goto continue
-		end
-		local resolutionContext = ResolutionContext.FromDialogContext(self, data)
-		self.resolvedStatus = resolutionContext:Resolve()
-		if self:IsResolved() then
-			return
-		end
-		::continue::
-	end
-end
-
-function DialogContext:IsResolved()
-	return self.resolvedStatus == SUCCESS_RESOLVE or self.resolvedStatus == FAIL_RESOLVE
-end
-
-function ParseTopicMinMax(config)
-	local min = 0
-	local max = 2 ^ 15
-
-	local requiredTopic = config.requiredTopic
-	if type(requiredTopic) == "number" then
-		min = requiredTopic
-		max = requiredTopic
-	elseif type(requiredTopic) == "table" then
-		min = requiredTopic.min
-		max = requiredTopic.max
-	end
-	return min, max
-end
-
--- Dialog requirements
-function ResolutionContext:CheckTopic()
-	local requirements = self.requirements
-	if not requirements.requiredTopic then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	local topic = self.npcHandler.topic[self.cid]
-	local min, max = ParseTopicMinMax(requirements)
-	if topic < min or topic > max then
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
-function ResolutionContext:CheckRequiredItems()
-	local requirements = self.requirements
-	if not requirements.requiredItems then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	if not self.player:HasItems(requirements.requiredItems) then
-		self.errorMessage = requirements.textNoRequiredItems
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
-function ResolutionContext:CheckRequiredState()
-	local requirements = self.requirements
-	if not requirements.requiredState then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	local errorMessage = self.player:ErrorMessageIfHasIncorrectStorageValues(requirements.requiredState)
-	if errorMessage then
-		self.errorMessage = errorMessage or requirements.textNoRequiredState
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
-function ResolutionContext:CheckGlobalState()
-	local requirements = self.requirements
-	if not requirements.requiredGlobalState then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	for key, value in pairs(requirements.requiredGlobalState) do
-		if Game.getStorageValue(key) ~= value then
-			self.errorMessage = requirements.textNoRequiredGlobalState
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
-		end
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
-function ResolutionContext:CheckCanAddRewards()
-	local actions = self.actionsOnSuccess
-	if not actions.rewards then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	local result, errorMessage = self.player:CanAddItems(actions.rewards, self.questlineAid)
-	if result ~= true then
-		self.player:sendTextMessage(MESSAGE_FAILURE, errorMessage) -- DO NOT TRANSLATE
-		self.errorMessage = NOT_ENOUGH_CAP_OR_SLOTS
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
-function ResolutionContext:CheckRequiredMoney()
-	local requirements = self.requirements
-	if not requirements.requiredMoney then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	local balance = Bank.balance(self.player)
-	local playerMoney = self.player:getMoney()
-	local totalPlayerMoney = balance + playerMoney
-	if totalPlayerMoney < requirements.requiredMoney then
-		self.errorMessage = requirements.textNoRequiredMoney
-		return CONDITION_STATUS.CONDITION_NOT_PASSED
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
-function ResolutionContext:CheckSpecialConditions()
-	local requirements = self.requirements
-	if not requirements.specialConditions then
-		return CONDITION_STATUS.CONDITION_PASSED
-	end
-
-	for _, context in pairs(requirements.specialConditions) do
-		local conditionContext = MergedTable(context, self)
-		local condition = conditionContext.condition
-		local outcome, errorMessage = condition(conditionContext)
-		if outcome ~= conditionContext.requiredOutcome then
-			self.errorMessage = errorMessage or conditionContext.textNoRequiredCondition
-			return CONDITION_STATUS.CONDITION_NOT_PASSED
-		end
-	end
-	return CONDITION_STATUS.CONDITION_PASSED
-end
-
--- Dialog actions (on success)
-function ResolutionContext:TriggerSpecialActions()
-	local actions = self.actionsOnSuccess
-	if not actions.specialActionsOnSuccess then
-		return
-	end
-
-	for _, context in pairs(actions.specialActionsOnSuccess) do
-		local action = context.action
-		local actionContext = MergedTable(action, self)
-		action(actionContext)
-	end
-end
-
-function ResolutionContext:RemoveRequiredItems()
-	local requirements = self.requirements
-	local actions = self.actionsOnSuccess
-
-	if not requirements.requiredItems then
-		return
-	end
-
-	if actions.removeRequiredItems ~= false then
-		self.player:RemoveItems(actions.requiredItems)
-	end
-end
-
-function ResolutionContext:AddRewards()
-	local actions = self.actionsOnSuccess
-	if not actions.rewards then
-		return
-	end
-
-	self.player:AddItems(actions.rewards)
-end
-
-function ResolutionContext:RemoveRequiredMoney()
-	local requirements = self.requirements
-	if not requirements.requiredMoney then
-		return
-	end
-
-	self.player:removeMoneyBank(requirements.requiredMoney)
-end
-
-function ResolutionContext:SpawnMonsters()
-	local actions = self.actionsOnSuccess
-	if not actions.spawnMonstersOnSuccess then
-		return
-	end
-
-	for monsterName, count in pairs(actions.spawnMonstersOnSuccess) do
-		for _ = 1, count do
-			Game.createMonster(monsterName, self.player:getPosition())
-		end
-	end
-end
-
-function ResolutionContext:AddOutfits()
-	local actions = self.actionsOnSuccess
-	if not actions.outfitRewards then
-		return
-	end
-
-	self.player:AddOutfitsAndAddons(actions.outfitRewards)
-end
-
-function ResolutionContext:AddMounts()
-	local actions = self.actionsOnSuccess
-	if not actions.mountRewards then
-		return
-	end
-
-	self.player:AddMounts(actions.mountRewards)
-end
-
-function ResolutionContext:AddExperience()
-	local actions = self.actionsOnSuccess
-	if not actions.expReward then
-		return
-	end
-
-	AddExperienceWithAnnouncement(self.player, actions.expReward)
-end
-
-function ResolutionContext:UpdatePlayerState()
-	local actions = self.actionsOnSuccess
-	if not actions.nextState then
-		return
-	end
-
-	self.player:UpdateStorages(actions.nextState)
-end
-
-function ResolutionContext:UpdateGlobalState()
-	local actions = self.actionsOnSuccess
-	if not actions.nextGlobalState then
-		return
-	end
-
-	UpdateGlobalStorages(actions.nextGlobalState)
-end
-
-function ResolutionContext:SetNextTopic()
-	local actions = self.actionsOnSuccess
-	if actions.preserveTopic == true then
-		return
-	end
-
-	self.npcHandler.topic[self.cid] = actions.nextTopic or 0
-	addEvent(function()
-		self.npcHandler.topic[self.cid] = actions.nextTopic or 0
-	end, 5)
-end
-
-function ResolutionContext:AddDialogData()
-	local actions = self.actionsOnSuccess
-	if actions.addDialogData ~= false then
-		PlayerDialogDataRegistry:Get(self.player):Add(self)
-	end
-end
-
-function ResolutionContext:TrySendTranslateSuccessMessage()
-	if not self.actionsOnSuccess.text then
-		return
-	end
-
-	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.actionsOnSuccess.text)
-	if not translatedMessage then
-		return
-	end
-
-	if self.specialMessageType then
-		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
-	else
-		self.npcHandler:say(translatedMessage, self.npc, self.player)
-	end
-end
-
-function ResolutionContext:TrySendTranslateFailMessage()
-	if not self.actionsOnSuccess.text then
-		return
-	end
-
-	local translatedMessage = self.player:Localizer(self.questlineAid):Context(self):Get(self.errorMessage)
-	if not translatedMessage then
-		return
-	end
-
-	if self.specialMessageType then
-		self.npcHandler:setMessage(self.specialMessageType, translatedMessage)
-	else
-		self.npcHandler:say(translatedMessage, self.npc, self.player)
-	end
-end
-
-local resolutionConditions = {
-	ResolutionContext.CheckTopic,
-	ResolutionContext.CheckRequiredItems,
-	ResolutionContext.CheckRequiredState,
-	ResolutionContext.CheckGlobalState,
-	ResolutionContext.CheckCanAddRewards,
-	ResolutionContext.CheckRequiredMoney,
-	ResolutionContext.CheckSpecialConditions,
-}
-
-local actionsOnSuccessfulResolution = {
-	ResolutionContext.TriggerSpecialActions,
-	ResolutionContext.RemoveRequiredItems,
-	ResolutionContext.AddRewards,
-	ResolutionContext.RemoveRequiredMoney,
-	ResolutionContext.SpawnMonsters,
-	ResolutionContext.AddOutfits,
-	ResolutionContext.AddMounts,
-	ResolutionContext.AddExperience,
-	ResolutionContext.UpdatePlayerState,
-	ResolutionContext.UpdateGlobalState,
-	ResolutionContext.SetNextTopic,
-	ResolutionContext.AddDialogData,
-	ResolutionContext.TrySendTranslateSuccessMessage,
-}
-
-function ResolutionContext:ConditionsArePassable()
-	for _, condition in pairs(resolutionConditions) do
-		local status = condition(self)
-		if status == CONDITION_STATUS.CONDITION_NOT_PASSED then
-			return CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED
-		end
-	end
-	return CONDITION_STATUS.ALL_CONDITIONS_PASSED
-end
-
-function ResolutionContext:ActionsOnSuccess()
-	for _, action in pairs(actionsOnSuccessfulResolution) do
-		action(self)
-	end
-end
-
-function ResolutionContext:Resolve()
-	local status = self:ConditionsArePassable()
-	if status == CONDITION_STATUS.AT_LEAST_ONE_CONDITION_NOT_PASSED then
-		if self.errorMessage then
-			self:TrySendTranslateFailMessage()
-			return FAIL_RESOLVE
-		end
-		return DISCARD_DIALOG
-	end
-
-	if status == CONDITION_STATUS.ALL_CONDITIONS_PASSED then
-		self.lastDialogData = PlayerDialogDataRegistry:Get(self.player):Latest()
-		self:ActionsOnSuccess()
-		return SUCCESS_RESOLVE
-	end
-end
-
-function InitializeResponses(player, config, npcHandler, npc, msg)
-	player = Player(player)
-
-	PlayerDialogDataRegistry:Register(player)
-	local cid = player:getId()
-
-	--ToDo: does it work? or should it be done with addEvent?
-	npcHandler.topic[cid] = 0
-
-	for _, specialMessageType in pairs(specialMessageTypes) do
-		local dialogContext = DialogContext(player, msg, config, npcHandler, npc, specialMessageType)
-		if not dialogContext:TryResolveDialog():IsResolved() then
-			local message = player:Localizer(LOCALIZER_UNIVERSAL):Get(config[specialMessageType])
-				or player:Localizer(LOCALIZER_UNIVERSAL):Get(specialMessageType)
-			npcHandler:setMessage(specialMessageType, message)
-		end
-	end
-end
-
-PlayerDialogData = {}
-PlayerDialogDataRegistry = {}
-PlayerDialogDataRegistry.__index = PlayerDialogDataRegistry
-PlayerCustomDialogDataRegistry = {}
-PlayerCustomDialogDataRegistry.__index = PlayerCustomDialogDataRegistry
-local playerDialogDataRegistrySingleton = nil
-local playerCustomnDialogDataRegistrySingleton = nil
-setmetatable(PlayerDialogData, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
-function PlayerDialogData:New()
+--[[
+---@class NpcContext
+---@field public name string
+---@field public greetJob string
+---@field public jobs string[]
+---@field public outfit number[]
+---@field public dialogues table
+---@field public voices string[]
+---@field public pos Position
+NpcContext = {}
+NpcContext.__index = NpcContext
+function NpcContext:New(...)
 	local newObj = {}
-	setmetatable(newObj, PlayerDialogData)
-	newObj.data = {}
+	for key, value in pairs({ ... }) do
+		newObj[key] = value
+	end
 	self.__index = self
+	setmetatable(newObj, self)
 	return newObj
 end
-setmetatable(PlayerDialogDataRegistry, {
+setmetatable(NpcContext, {
 	__call = function(class, ...)
-		return class:New(...)
+		return NpcContext:New(...)
 	end,
 })
-function PlayerDialogDataRegistry:New()
-	if playerDialogDataRegistrySingleton then
-		return playerDialogDataRegistrySingleton
-	end
-	playerDialogDataRegistrySingleton = {}
-	setmetatable(playerDialogDataRegistrySingleton, PlayerDialogDataRegistry)
-	self.__index = self
-	playerDialogDataRegistrySingleton.registry = {}
+]]
+--
 
-	return playerDialogDataRegistrySingleton
-end
-setmetatable(PlayerCustomDialogDataRegistry, {
-	__call = function(class, ...)
-		return class:New(...)
-	end,
-})
-function PlayerCustomDialogDataRegistry:New()
-	if playerCustomnDialogDataRegistrySingleton then
-		return playerCustomnDialogDataRegistrySingleton
-	end
-	playerCustomnDialogDataRegistrySingleton = {}
-	setmetatable(playerCustomnDialogDataRegistrySingleton, PlayerCustomDialogDataRegistry)
-	self.__index = self
-	playerCustomnDialogDataRegistrySingleton.registry = {}
-	return playerCustomnDialogDataRegistrySingleton
+---@class NpcRegistry
+---@field private registry table
+---@field private CreateNpcDefinitions function
+NpcRegistry = {}
+NpcRegistry.__index = NpcRegistry
+NpcRegistry.registry = {}
+
+---@package
+function NpcRegistry:Register(name)
+	self.registry[name] = { name = name, missions = {} }
+	return self.registry[name]
 end
 
-function PlayerDialogData:Add(data)
-	table.insert(self.data, data)
-	return self
-end
-function PlayerDialogData:Latest()
-	return self.data[#self.data]
-end
-function PlayerDialogData:ByIndex(index)
-	return self.data[index]
+---@package
+function NpcRegistry:Get(name)
+	return self.registry[name] or self:Register(name)
 end
 
-function PlayerDialogDataRegistry:Register(player)
-	self.registry = {}
-	self.registry[player:getId()] = PlayerDialogData()
-	return self.registry[player:getId()]
-end
-function PlayerDialogDataRegistry:Get(player)
-	return self.registry[player:getId()]
+function NpcRegistry:GetAll()
+	return self.registry
 end
 
-function PlayerCustomDialogDataRegistry:Register(player)
-	self.registry[player:getId()] = PlayerDialogData()
-	return self.registry[player:getId()]
+function NpcRegistry:AppendNpcData(data)
+	local npc = self:Get(data.name)
+	npc = MergedTable(npc, data)
+	self.registry[data.name] = npc
 end
 
-function PlayerCustomDialogDataRegistry:Get(player)
-	return self.registry[player:getId()]
-end
+function NpcRegistry:ExtractDialogs(npc)
+	local extractedDialogs = {}
 
-function dump2(object)
-	if type(object) == "table" then
-		local partialResult = "{ "
-		for key, value in pairs(object) do
-			partialResult = partialResult .. "[" .. tostring(key) .. "] = " .. dump2(value) .. ","
+	for missionState, mission in pairs(npc.missions) do
+		extractedDialogs[mission.localizer] = extractedDialogs[mission.localizer] or {}
+		extractedDialogs[mission.localizer][missionState] = mission.states or {}
+		for requiredState, stateData in pairs(mission.states or {}) do
+			extractedDialogs[mission.localizer][missionState][requiredState] = stateData
 		end
-		return partialResult .. "} "
-	else
-		return tostring(object)
 	end
+	extractedDialogs[LOCALIZERS.Universal] = npc.customDialogs or {}
+
+	return extractedDialogs
+end
+
+function NpcRegistry:RegisterNpcDefinitions()
+	for _, npc in pairs(self.registry) do
+		npc.dialogs = self:ExtractDialogs(npc)
+		RegisterNpcDefinition(npc)
+	end
+end
+
+MISSING_NPCS = {}
+function NpcRegistry:ValidateNpcsArePlacedOnMap()
+	local validateNpcsArePlacedOnMapStartup = GlobalEvent("NpcRegistry/ValidateNpcsArePlacedOnMap")
+	function validateNpcsArePlacedOnMapStartup.onStartup()
+		for npcName, data in pairs(self.registry) do
+			if data.spawnedByScript ~= true and not Npc(npcName) then
+				logger.warn(T("[NpcRegistry::ValidateNpcsArePlacedOnMap] Npc :npcName: is not placed on map and has no spawnedByScript flag.", { npcName = npcName }))
+				table.insert(MISSING_NPCS, npcName)
+			end
+		end
+	end
+	validateNpcsArePlacedOnMapStartup:register()
 end

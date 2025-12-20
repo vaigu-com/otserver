@@ -1,23 +1,17 @@
-local savingEvent = 0
-
 local save = TalkAction("/save")
 
 function save.onSay(player, words, param)
 	-- create log
 	logCommand(player, words, param)
-
-	if isNumber(param) then
-		stopEvent(savingEvent)
-		local delay = tonumber(param) * 60 * 1000
-		savingEvent = addEvent(function()
-			saveServer()
-			SaveHirelings()
-		end, delay, delay)
-	else
-		saveServer()
-		SaveHirelings()
-		player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Server has been saved.")
+	if SAVE_INTERVAL_TIME_SECONDS > 0 then
+		player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Cannot manually save server with /save, beacause: SAVE_INTERVAL_TIME_SECONDS is > 0")
+		return
 	end
+
+	player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Saving server...")
+	saveServer()
+	player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Server was saved!")
+
 	return true
 end
 

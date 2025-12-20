@@ -74,6 +74,7 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 3031, chance = 100000, maxCount = 200 }, -- gold coin
+	{ id = 22721, chance = 100000, maxCount = 7 }, -- gold token
 	{ id = 3035, chance = 100000, maxCount = 25 }, -- platinum coin
 	{ id = 16121, chance = 8000, maxCount = 3 }, -- green crystal shard
 	{ id = 238, chance = 8000, maxCount = 5 }, -- great mana potion
@@ -86,7 +87,6 @@ monster.loot = {
 	{ id = 23535, chance = 8000 }, -- energy bar
 	{ id = 23520, chance = 8000 }, -- plasmatic lightning
 	{ id = 23516, chance = 8000 }, -- instable proto matter
-	{ id = 22721, chance = 100000 }, -- gold token
 	{ id = 23509, chance = 100000 }, -- mysterious remains
 	{ id = 23510, chance = 100000 }, -- odd organ
 	{ id = 3041, chance = 6000 }, -- blue gem
@@ -99,6 +99,8 @@ monster.loot = {
 	{ id = 3554, chance = 5000, unique = true }, -- steel boots
 	{ id = 8075, chance = 3000, unique = true }, -- spellbook of lost souls
 	{ name = "spark sphere", chance = 100000 },
+	{ id = 23474, chance = 16000, unique = true }, -- tiara of power
+	{ id = 23477, chance = 16000, unique = true }, -- void boots
 }
 
 monster.attacks = {
@@ -136,19 +138,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)

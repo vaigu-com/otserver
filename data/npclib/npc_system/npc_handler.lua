@@ -1,4 +1,36 @@
 -- Advanced NPC System by Jiddo
+DEFAULT_TOPIC = 0
+
+GreetCallbackContext = {}
+GreetCallbackContext.__index = GreetCallbackContext
+function GreetCallbackContext.New()
+	local newObj = {}
+	newObj.interactOnGreet = true
+	newObj.messageOnGreet = true
+	setmetatable(newObj, GreetCallbackContext)
+	return newObj
+end
+setmetatable(GreetCallbackContext, {
+	__call = function(_, ...)
+		return GreetCallbackContext.New(...)
+	end,
+})
+
+function GreetCallbackContext:InteractOnGreet(nextState)
+	self.interactOnGreet = nextState
+	return self
+end
+function GreetCallbackContext:MessageOnGreet(nextState)
+	self.messageOnGreet = nextState
+	return self
+end
+
+function GreetCallbackContext:ShouldMessageOnGreet()
+	return self.messageOnGreet
+end
+function GreetCallbackContext:ShouldInteractOnGreet()
+	return self.interactOnGreet
+end
 
 if NpcHandler == nil then
 	-- Constant talkdelay behaviors.
@@ -207,7 +239,7 @@ if NpcHandler == nil then
 			return false
 		end
 
-		self:setTopic(playerId, 0)
+		self:setTopic(playerId, DEFAULT_TOPIC)
 		local callback = self:getCallback(CALLBACK_SET_INTERACTION)
 		if callback == nil or callback(npc, player) then
 			self:processModuleCallback(CALLBACK_SET_INTERACTION, npc, player)
@@ -395,13 +427,29 @@ if NpcHandler == nil then
 	end
 
 	-- Greets the player, thus initiating the direct interaction between the npc and the player
+	-- Vaigu custom
 	function NpcHandler:greet(npc, player, message)
 		if self:checkInteraction(npc, player) then
 			return
 		end
 
 		local callback = self:getCallback(CALLBACK_GREET)
-		if callback == nil or callback(npc, player, message) then
+		local result = nil
+		if callback ~= nil then
+			result = callback(npc, player, message)
+		end
+
+		-- Vaigu custom
+		local greetCallbackContext = GreetCallbackContext()
+		if type(result) == "table" and (getmetatable(result) == GreetCallbackContext) then
+			greetCallbackContext = result
+		elseif result == nil then
+			greetCallbackContext:InteractOnGreet(true):MessageOnGreet(true)
+		else
+			greetCallbackContext:InteractOnGreet(result):MessageOnGreet(result)
+		end
+
+		if greetCallbackContext:ShouldMessageOnGreet() then
 			if self:processModuleCallback(CALLBACK_GREET, npc, player) then
 				local msg = self:getMessage(MESSAGE_GREET)
 				local playerName = player:getName() or -1
@@ -410,7 +458,10 @@ if NpcHandler == nil then
 				self:say(msg, npc, player)
 			end
 		end
-		self:setInteraction(npc, player)
+
+		if greetCallbackContext:ShouldInteractOnGreet() then
+			self:setInteraction(npc, player)
+		end
 	end
 
 	-- Handles onAppear events. If you with to handle this yourself, please use the CALLBACK_ON_APPEAR callback.
@@ -511,13 +562,7 @@ if NpcHandler == nil then
 		local callback = self:getCallback(CALLBACK_ON_MOVE)
 		if callback == nil or callback(npc, player, fromPosition, toPosition) then
 			if self:processModuleCallback(CALLBACK_ON_MOVE, npc, player, fromPosition, toPosition) then
-				if self:checkInteraction(npc, player) then
-					if not self:isInRange(npc, player) then
-						self:onWalkAway(npc, player)
-					else
-						self:updateInteraction(npc, player)
-					end
-				end
+				return true
 			end
 		end
 	end

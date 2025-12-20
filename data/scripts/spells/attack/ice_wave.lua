@@ -18,7 +18,6 @@ function spell.onCastSpell(creature, var)
 end
 
 spell:group("attack")
-spell:id(121)
 spell:name("Ice Wave")
 spell:words("exevo frigo hur")
 spell:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

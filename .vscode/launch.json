@@ -5,29 +5,46 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "lua",
-            "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/data-vaigu/lib/npc/npc_generator.lua"
-        },
-        {
-            "address": "127.0.0.1:4278",
-            "name": "attach",
-            "request": "attach",
-            "stopOnEntry": true,
-            "type": "lua"
-        },
-        {
-            "name": "attach",
+            "name": "Lua attach",
             "processId": "${command:pickProcess}",
             "request": "attach",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "type": "lua"
         },
         {
-            "name": "(Windows) Attach",
+            "name": "Launch (Lua debugger)",
+            "type": "lua",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln.exe",
+            "cwd": "${fileDirname}/../",
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C++ attach",
             "type": "cppvsdbg",
             "request": "attach",
-        }
+        },
+        {
+            "name": "C++ launch release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/",
+            "environment": [],
+            "console": "externalTerminal"
+        },
+        {
+            "name": "C++ launch debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/canary-sln-dbg.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/",
+            "environment": [],
+            "console": "externalTerminal"
+        },
     ]
 }

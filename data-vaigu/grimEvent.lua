@@ -8,16 +8,16 @@ ge_grimName = "Grim Event" -- Grim name
 ge_timeToStartInvasion = 1 -- When should the first grim be summoned [seconds]
 ge_grimSpawnInerval = 2 -- The interval of each grim that will get summoned
 ge_grimMaxSpawn = 150 -- Max grim in the arena
-ge_grimCountGlobalStorage = 105 -- Use empty global storage
+ge_grimCountStorage = 105 -- Use empty global storage
 
 -- Player Variables
 ge_joinStorage = 1005 -- Storage that will be added, when player join
 ge_minPlayers = 3 -- Minimum players that have to join
 ge_maxPlayers = 70 -- Maximum players that can join
-ge_joinCountGlobalStorage = 106 -- licznik ludzi
+ge_joinCountStorage = 106 -- licznik ludzi
 
 -- States
-ge_stateGlobalStorage = 107 -- storage eventu
+ge_stateStorage = 107 -- storage eventu
 ge_EVENT_CLOSED = 0
 ge_EVENT_STATE_STARTUP = 1
 ge_EVENT_STARTED = 2
@@ -71,25 +71,25 @@ grimRandArenaPostions = {
 -- Get methods
 
 function getGrimEventGrimCount()
-	return Game.getStorageValue(ge_grimCountGlobalStorage)
+	return Game.getStorageValueByKey(ge_grimCountStorage)
 end
 
 function getGrimEventJoinedCount()
-	return Game.getStorageValue(ge_joinCountGlobalStorage)
+	return Game.getStorageValueByKey(ge_joinCountStorage)
 end
 
 function setGrimEventState(value)
-	Game.setStorageValue(ge_stateGlobalStorage, value)
+	Game.setStorageValueByKey(ge_stateStorage, value)
 end
 
 function getGrimEventState()
-	return Game.getStorageValue(ge_stateGlobalStorage) or ge_EVENT_CLOSED
+	return Game.getStorageValueByKey(ge_stateStorage) or ge_EVENT_CLOSED
 end
 
 function resetGrimEvent()
 	-- Reset variables
-	Game.setStorageValue(ge_grimCountGlobalStorage, 0)
-	Game.setStorageValue(ge_joinCountGlobalStorage, 0)
+	Game.setStorageValueByKey(ge_grimCountStorage, 0)
+	Game.setStorageValueByKey(ge_joinCountStorage, 0)
 	setGrimEventState(ge_EVENT_CLOSED)
 
 	-- Clear the arena from grim
@@ -107,7 +107,7 @@ function startGrimEvent()
 		for i = 1, #spectator do
 			spectator[i]:teleportTo(Position(5893, 1548, 9))
 			if spectator[i]:isPlayer() then
-				spectator[i]:setStorageValue(ge_joinStorage, 0)
+				spectator[i]:setStorageValueByKey(ge_joinStorage, 0)
 			end
 		end
 
@@ -130,7 +130,7 @@ function startGrimEvent()
 		end
 
 		Game.broadcastMessage("Grim Event wystartowal, powodzenia!")
-		Game.setStorageValue(GlobalStorage.GrimTimer, os.time())
+		Game.setStorageValueByKey(Storage.GrimTimer, os.time())
 		setGrimEventState(ge_EVENT_STARTED)
 		addEvent(startGrimInvasion, ge_timeToStartInvasion * 1000)
 		addEvent(cursePlayers, 1000 * 60 * 7)
@@ -148,7 +148,7 @@ function startGrimInvasion()
 		local random = math.random
 		local grim = Game.createMonster(ge_grimName, Position(random(ge_arenaFromPosition.x, ge_arenaToPosition.x), random(ge_arenaFromPosition.y, ge_arenaToPosition.y), random(ge_arenaFromPosition.z, ge_arenaToPosition.z)))
 		if grim then
-			Game.setStorageValue(ge_grimCountGlobalStorage, getGrimEventGrimCount() + 1)
+			Game.setStorageValueByKey(ge_grimCountStorage, getGrimEventGrimCount() + 1)
 		end
 
 		addEvent(startGrimInvasion, ge_grimSpawnInerval * 1000)
@@ -188,8 +188,8 @@ function setupGrimEvent(minPlayers, maxPlayers, waitTime)
 	ge_waitTime = waitTime
 
 	-- Set the counts, state, broadcast and delay the start of the event.
-	Game.setStorageValue(ge_grimCountGlobalStorage, 0)
-	Game.setStorageValue(ge_joinCountGlobalStorage, 0)
+	Game.setStorageValueByKey(ge_grimCountStorage, 0)
+	Game.setStorageValueByKey(ge_joinCountStorage, 0)
 	setGrimEventState(ge_EVENT_STATE_STARTUP)
 	Game.broadcastMessage(string.format("Grim Event startuje! Wymagane jest przynajmniej %d na %d graczy, pozostalo %d minut aby dolaczyc.", minPlayers, maxPlayers, waitTime))
 	addEvent(startGrimEvent, waitTime * 60 * 1000)

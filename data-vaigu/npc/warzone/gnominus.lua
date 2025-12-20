@@ -60,7 +60,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	end
 
 	if MsgContains(message, "recruitment") then
-		if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 3 then
+		if player:getStorageValueByKey(Storage.BigfootsBurden.QuestLine) == 3 then
 			npcHandler:say("Your examination is quite easy. Just step through the green crystal apparatus in the south! We will examine you with what we call g-rays. Where g stands for gnome of course ...", npc, creature)
 			npcHandler:say("Afterwards walk up to Gnomedix for your ear examination.", npc, creature)
 			npcHandler:setTopic(playerId, 1)
@@ -73,7 +73,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif npcHandler:getTopic(playerId) == 1 then
 		if MsgContains(message, "apparatus") then
 			npcHandler:say("Don't be afraid. It won't hurt! Just step in!", npc, creature)
-			player:setStorageValue(Storage.BigfootBurden.QuestLine, 4)
+			player:setStorageValueByKey(Storage.BigfootsBurden.QuestLine, 4)
 			npcHandler:setTopic(playerId, 0)
 		end
 	elseif npcHandler:getTopic(playerId) == 2 then
@@ -81,10 +81,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			if player:getMoney() >= 10 then
 				npcHandler:say("And here it is! Drink it quick, it gets stale quite fast!", npc, creature)
 				player:removeMoney(10)
-				local beerItem = player:addItem(15794)
-				if beerItem then
-					beerItem:decay()
-				end
+				player:AddCustomItem({ id = 15794 })
 			else
 				npcHandler:say("You do not have enough money.", npc, creature)
 			end

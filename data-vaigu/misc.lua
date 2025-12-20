@@ -1,0 +1,68 @@
+function randomPairs(tbl)
+	local keys = {}
+	for key in pairs(tbl) do
+		table.insert(keys, key)
+	end
+
+	for i = #keys, 2, -1 do
+		local j = math.random(i)
+		keys[i], keys[j] = keys[j], keys[i]
+	end
+
+	local i = 0
+	return function()
+		i = i + 1
+		if i <= #keys then
+			return keys[i], tbl[keys[i]]
+		end
+	end
+end
+
+function pairssorted(t, predicate)
+	local keys = {}
+
+	for k in pairs(t) do
+		table.insert(keys, k)
+	end
+
+	table.sort(keys, function(a, b)
+		return predicate(t[a], t[b])
+	end)
+
+	local i = 0
+	return function()
+		i = i + 1
+		if i <= #keys then
+			local key = keys[i]
+			return key, t[key]
+		end
+	end
+end
+
+function sortedkeypairs(tbl, predicate)
+	local keys = {}
+	for k in pairs(tbl) do
+		table.insert(keys, k)
+	end
+
+	table.sort(keys, predicate or function(a, b)
+		return a < b
+	end)
+
+	local i = 0
+	return function()
+		i = i + 1
+		local key = keys[i]
+		if key then
+			return key, tbl[key]
+		end
+	end
+end
+
+-- Days since start
+DAYS_SINCE_START = 0
+local resultId = db.storeQuery("SELECT DATEDIFF( CURDATE(), DATE(`value`) ) - IF(TIME(NOW()) < '05:00:00', 1, 0) AS days_since_start FROM `server_config` WHERE `server_config`.`config` = 'start_date'")
+if resultId then
+	DAYS_SINCE_START = Result.getNumber(resultId, "days_since_start")
+	logger.info("Day since start: " .. DAYS_SINCE_START)
+end

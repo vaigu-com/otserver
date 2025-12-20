@@ -4,6 +4,7 @@ function strawberryCupcake.onUse(player, item, fromPosition, target, toPosition,
 	local errorMessage = player:errorIfCannotUseCooldownItem("strawberry-cupcake-cooldown")
 	if errorMessage then
 		player:say(errorMessage)
+		return
 	end
 
 	player:addHealth(player:getMaxHealth())

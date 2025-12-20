@@ -9,16 +9,18 @@
 
 #pragma once
 
-#include "lib/di/container.hpp"
-#include "server/network/protocol/protocolgame.hpp"
+// TODO: Remove circular includes (maybe shared_ptr?)
+#include "server/network/message/networkmessage.hpp"
+
+#include "config/configmanager.hpp"
+
+#include "utils/tools.hpp"
 
 class PreySlot;
 class TaskHuntingSlot;
 class TaskHuntingOption;
-
-static const std::unique_ptr<PreySlot> &PreySlotNull {};
-static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
-static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
+class NetworkMessage;
+class Player;
 
 static const uint8_t PreyGridSize = 9;
 
@@ -166,6 +168,7 @@ public:
 		bool maintainOption = true,
 		bool maintainState = true,
 		bool maintainMonster = true,
+		bool maintainTime = true,
 
 		PreyOption_t nextOption = PreyOption_None,
 		PreyDataState_t nextState = PreyDataState_Selection,
@@ -189,7 +192,7 @@ public:
 		}
 
 		if (rarityPenalty > 0) {
-			if (rarityPenalty > bonusRarity){
+			if (rarityPenalty > bonusRarity) {
 				rarityPenalty = bonusRarity;
 			}
 			bonusRarity = bonusRarity - rarityPenalty;
@@ -200,7 +203,9 @@ public:
 			bonus = PreyBonus_None;
 		}
 		if (refreshTime) {
-			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME, __FUNCTION__));
+			bonusTimeLeft = static_cast<uint16_t>(g_configManager().getNumber(PREY_BONUS_TIME));
+		} else if (maintainTime) {
+			bonusTimeLeft = bonusTimeLeft;
 		} else {
 			bonusTimeLeft = 0;
 		}
@@ -222,9 +227,9 @@ public:
 		{ PreyStars_4, 70 },
 		{ PreyStars_5, 50 },
 		{ PreyStars_6, 50 },
-		{ PreyStars_7, 50 },
-		{ PreyStars_8, 50 },
-		{ PreyStars_9, 50 },
+		{ PreyStars_7, 40 },
+		{ PreyStars_8, 40 },
+		{ PreyStars_9, 40 },
 		{ PreyStars_Max, 100 },
 	};
 
@@ -232,7 +237,7 @@ public:
 	void rerollBonusRarity() {
 		const uint8_t roll = uniform_random(1, 100) + failstack.at(bonusRarity);
 		const uint8_t requiredRollForUpgrade = 100 - starsToUpgradeChance.at(bonusRarity);
-		if ((roll) >= requiredRollForUpgrade) {
+		if (roll >= requiredRollForUpgrade) {
 			failstack.at(bonusRarity) = 0;
 			bonusRarity++;
 		} else {
@@ -245,7 +250,11 @@ public:
 	}
 
 	void rerollBonusType() {
-		bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+		if (bonusRarity >= PreyStars_Max) {
+			bonus = static_cast<PreyBonus_t>((bonus + 1) % static_cast<int>(PreyBonus_Last + 1));
+		} else {
+			bonus = static_cast<PreyBonus_t>(uniform_random(PreyBonus_First, PreyBonus_Last));
+		}
 	}
 
 	void removeMonsterType(uint16_t raceId) {
@@ -338,6 +347,10 @@ public:
 	uint16_t secondReward = 0;
 };
 
+static const std::unique_ptr<PreySlot> &PreySlotNull {};
+static const std::unique_ptr<TaskHuntingSlot> &TaskHuntingSlotNull {};
+static const std::unique_ptr<TaskHuntingOption> &TaskHuntingOptionNull {};
+
 class IOPrey {
 public:
 	IOPrey() = default;
@@ -346,9 +359,7 @@ public:
 	IOPrey(const IOPrey &) = delete;
 	void operator=(const IOPrey &) = delete;
 
-	static IOPrey &getInstance() {
-		return inject<IOPrey>();
-	}
+	static IOPrey &getInstance();
 
 	// Vaigu custom
 	std::unordered_set<std::string> loadWhitelist();
@@ -358,187 +369,19 @@ public:
 	void updatePlayerPreyStatus(std::shared_ptr<Player> player) const;
 	void parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyAction_t action, PreyOption_t option, int8_t index, uint16_t raceId) const;
 
-	void parseTaskHuntingAction(std::shared_ptr<Player> player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
+	void parseTaskHuntingAction(const std::shared_ptr<Player> &player, PreySlot_t slotId, PreyTaskAction_t action, bool upgrade, uint16_t raceId) const;
 
 	void initializeTaskHuntOptions();
 	const std::unique_ptr<TaskHuntingOption> &getTaskRewardOption(const std::unique_ptr<TaskHuntingSlot> &slot) const;
 
-	NetworkMessage getTaskHuntingBaseDate() const {
-		return baseDataMessage;
-	}
+	NetworkMessage getTaskHuntingBaseDate() const;
 
-	NetworkMessage baseDataMessage;
+	NetworkMessage m_baseDataMessage;
 	std::vector<std::unique_ptr<TaskHuntingOption>> taskOption;
 
 	// Vaigu custom
 	std::vector<PreyMonster> preyMonsters;
-	std::unordered_set<std::string> whitelist = {
-		"Rotworm", "Carrion Worm",
-		"Skeleton", "Ghoul", "Skeleton Warrior", "Mummy", "Crypt Shambler", "Zombie", "Demon Skeleton",
-		"Rat", "Cave Rat", "Badger", "Snake", "Bat", "Wolf", "Winter Wolf", "Bug", "Sandcrawler", "Wasp",
-		"Hyaena", "Bear", "Lion", "Larva", "Scorpion", "Toad", "Boar",
-		"Salamander", "Marsh Stalker", "Emerald Damselfly",
-		"Troll", "Troll Champion", "Swamp Troll",
-		"Cyclops", "Cyclops Drone", "Cyclops Smith",
-		"Frost Giant", "Frost Giantess",
-		"Dark Magician", "Dark Apprentice",
-		"Monk",
-		"Bonelord",
-		"Dworc Venomsniper", "Dworc Voodoomaster", "Dworc Fleshhunter",
-		"Dragon", "Dragon Hatchling", "Dragon Lord Hatchling",
-		"Dwarf", "Dwarf Guard", "Dwarf Geomancer", "Dwarf Soldier",
-		"Elf", "Elf Scout", "Elf Arcanist",
-		"Goblin", "Goblin Scavenger", "Goblin Assassin",
-		"Earth Elemental", "Fire Elemental", "Water Elemental", "Energy Elemental",
-		"Gargoyle",
-		"Stone Golem",
-		"Corym Charlatan", "Corym Skirmisher", "Corym Vanguard",
-		"Merlkin", "Kongra", "Sibang",
-		"Minotaur", "Minotaur Guard", "Minotaur Mage", "Minotaur Archer",
-		"Nomad",
-		"Amazon", "Valkyrie", "Witch",
-		"Hunter", "Poacher",
-		"Orc", "Orc Berserker", "Orc Leader", "Orc Shaman", "Orc Spearman", "Orc Warlord", "Orc Rider", "Orc Warrior",
-		"Rotworm Queen",
-		"Tarantula", "Spider", "Poison Spider",
-		"Giant Spider", "Crystal Spider", "Wailing Widow",
-		"Terramite",
-		"Lizard Templar", "Lizard Sentinel", "Lizard Snakecharmer",
-		"Tortoise", "Thornback Tortoise",
-		"Ancient Scarab", "Scarab",
-		"Smuggler", "Wild Warrior", "Bandit", "Stalker",
-		"Carniphila", "Centipede", "Elephant",
-		"Crocodile",
-		"Mammoth",
-		"Blood Crab",
-		"Mutated Human", "Mutated Rat", "Mutated Tiger",
-		"Lancer Beetle",
-		"Necromancer", "Vampire", "Blood Hand", "Blood Priest", "Priestess",
-		"Swarmer", "Spitter", "Insectoid Worker", "Crawler", "Waspoid",
-		"Stampor",
-		"Forest Fury",
-		"Roaring Lion",
-		"Wyvern",
-		"Bonebeast",
-		"Pirate Buccaneer", "Pirate Ghost", "Pirate Marauder", "Pirate Skeleton", "Pirate Cutthroat",
-		"Blue Djinn", "Green Djinn", "Efreet", "Marid",
-		"Ghoulish Hyaena", "Sandstone Scorpion", "Shadow Pupil", "Putrid Mummy",
-		"Carniphila",
-		"Souleater",
-		"Pirate Buccaneer", "Pirate Ghost", "Pirate Marauder", "Pirate Skeleton", "Pirate Cutthroat", "Pirate Corsair",
-		"Blue Djinn", "Green Djinn", "Efreet", "Marid",
-		"Dragon", "Dragon Hatchling", "Dragon Lord Hatchling", "Frost Dragon Hatchling", "Dragon Lord", "Frost Dragon",
-		"Corym Charlatan", "Corym Skirmisher", "Corym Vanguard",
-		"Killer Caiman",
-		"Bonelord", "Elder Bonelord",
-		"Hydra",
-		"Medusa",
-		"Wyrm", "Elder Wyrm",
-		"Wyvern",
-		"Tarantula", "Giant Spider", "Crystal Spider", "Wailing Widow",
-		"Ghastly Dragon",
-		"Ancient Scarab", "Scarab",
-		"Bonebeast",
-		"Ice Golem",
-		"Hero", "Vicious Squire", "Renegade Knight", "Vile Grandmaster", "Cult Enforcer", "Cult Scholar", "Cult Believer",
-		"Enlightened Of The Cult", "Acolyte Of The Cult", "Adept Of The Cult",
-		"Behemoth",
-		"Serpent Spawn",
-		"Demon", "Destroyer", "Plaguesmith",
-		"Warlock",
-		"Infernalist",
-		"Bog Raider",
-		"Lich",
-		"Faun", "Dark Faun", "Boogy", "Nymph", "Pixie", "Pooka", "Swan Maiden", "Twisted Pooka",
-		"Deepling Brawler", "Deepling Guard", "Deepling Master Librarian", "Deepling Warrior",
-		"Lizard Chosen", "Lizard Dragon Priest", "Lizard High Guard", "Lizard Legionnaire", "Lizard Zaogun",
-		"Earth Elemental", "Fire Elemental", "Water Elemental", "Energy Elemental",
-		"Massive Energy Elemental", "Massive Fire Elemental", "Massive Water Elemental", "Massive Earth Elemental",
-		"Minotaur Amazon", "Minotaur Hunter", "Mooh'Tah Warrior", "Worm Priestess",
-		"Mutated Bat", "Mutated Human", "Mutated Rat", "Mutated Tiger",
-		"Necromancer", "Vampire", "Blood Hand", "Blood Priest", "Priestess",
-		"Blood Crab",
-		"Nightmare", "Nightmare Scion",
-		"Ogre Brute", "Ogre Savage", "Ogre Shaman", "Clomp",
-		"Quara Constrictor", "Quara Hydromancer", "Quara Mantassin", "Quara Pincher", "Quara Predator",
-		"Sea Serpent", "Young Sea Serpent", "Seacrest Serpent",
-		"Silencer", "Shock Head", "Frazzlemaw",
-		"Enfeebled Silencer", "Weakened Frazzlemaw",
-		"Swarmer", "Spitter", "Insectoid Worker", "Crawler", "Waspoid", "Spidris", "Kollos",
-		"Lancer Beetle", "Brimstone Bug",
-		"Draken Spellweaver", "Draken Warmaster",
-		"Stampor",
-		"Grim Reaper", "Fury",
-		"Roaring Lion",
-		"Worker Golem", "War Golem",
-		"Werewolf", "Werebear", "Wereboar", "Werebadger", "Werefox",
-		"Hellspawn",
-		"Vampire Bride", "Vampire Viscount",
-		"Yielothax",
-		"Drillworm", "Deepworm", "Diremaw",
-		"Barbarian Bloodwalker", "Barbarian Brutetamer", "Barbarian Headsplitter", "Barbarian Skullhunter", "Ice Witch",
-		"Nightstalker",
-		"Metal Gargoyle",
-		"Elder Mummy", "Putrid Mummy", "Shaburak Demon", "Askarak Demon",
-		"Metal Gargoyle",
-		"Souleater",
-		"Vampire Bride",
-		"Ancient Scarab",
-		"Killer Caiman",
-		"Spitter", "Crawler", "Waspoid", "Spidris", "Kollos",
-		"Dragon Lord Hatchling", "Frost Dragon Hatchling", "Dragon Lord", "Frost Dragon",
-		"Hydra", "Serpent Spawn", "Medusa",
-		"Wyrm", "Elder Wyrm",
-		"Giant Spider", "Wailing Widow", "Crystal Spider",
-		"Hero", "Vicious Squire", "Renegade Knight", "Vile Grandmaster", "Cult Enforcer", "Cult Scholar", "Cult Believer",
-		"Enlightened Of The Cult", "Acolyte Of The Cult", "Adept Of The Cult",
-		"Behemoth",
-		"Warlock",
-		"Infernalist",
-		"Bog Raider",
-		"Faun", "Dark Faun", "Boogy", "Nymph", "Pixie", "Pooka", "Swan Maiden", "Twisted Pooka",
-		"Lizard Chosen", "Lizard Dragon Priest", "Lizard High Guard", "Lizard Legionnaire", "Lizard Zaogun",
-		"Earth Elemental", "Water Elemental", "Energy Elemental",
-		"Massive Energy Elemental", "Massive Fire Elemental", "Massive Water Elemental", "Massive Earth Elemental",
-		"Minotaur Amazon", "Execowtioner", "Minotaur Hunter", "Mooh'Tah Warrior", "Worm Priestess", "Execowtioner",
-		"Blood Beast", "Rot Elemental", "Devourer", "Glooth Anemone",
-		"Glooth Bandit", "Glooth Brigand", "Glooth Golem",
-		"Nightmare", "Nightmare Scion",
-		"Ogre Brute", "Ogre Savage", "Ogre Shaman", "Clomp",
-		"Quara Constrictor", "Quara Hydromancer", "Quara Mantassin", "Quara Pincher", "Quara Predator",
-		"Sea Serpent", "Young Sea Serpent", "Seacrest Serpent",
-		"Worker Golem", "War Golem",
-		"Werewolf", "Werebear", "Wereboar", "Werebadger", "Werefox",
-		"Hellspawn",
-		"Lost Berserker", "Lost Basher", "Lost Husher", "Lost Thrower",
-		"Cliff Strider", "Orewalker", "Weeper", "Ironblight", "Lava Golem",
-		"Humongous Fungus", "Hideous Fungus",
-		"Tunnel Tyrant", "Cave Devourer", "Chasm Spawn", "Deepworm", "Diremaw",
-		"Plaguesmith", "Demon", "Defiler", "Destroyer", "Hand of Cursed Fate", "Hellhound", "Juggernaut", "Dark Torturer", "Blightwalker",
-		"Hellfire Fighter", "Grim Reaper", "Fury",
-		"Phantasm",
-		"Undead Dragon", "Ghastly Dragon",
-		"Draken Elite", "Draken Spellweaver", "Draken Warmaster", "Draken Abomination",
-		"Silencer", "Shock Head", "Guzzlemaw", "Frazzlemaw",
-		"Enfeebled Silencer", "Weakened Frazzlemaw",
-		"Retching Horror", "Choking Fear",
-		"Shiversleep", "Sight Of Surrender", "Demon Outcast",
-		"Sparkion", "Yielothax", "Reality Reaver", "Breach Brood", "Dread Intruder",
-		"Deepling Brawler", "Deepling Elite", "Deepling Guard", "Deepling Master Librarian", "Deepling Tyrant", "Deepling Warrior",
-		"Grimeleech", "Vexclaw", "Hellflayer",
-		"Thantaursus", "Insane Siren", "Soul-broken Harbinger", "Crazed Winter Vanguard", "Crazed Summer Vanguard", "Crazed Summer Rearguard", "Crazed Winter Rearguard", "Arachnophobica",
-		"Burster Spectre", "Gazer Spectre", "Ripper Spectre",
-		"Dawnfire Asura", "Midnight Asura", "Frost Flower Asura", "True Dawnfire Asura", "True Frost Flower Asura", "True Midnight Asura",
-		"Floating Savant",
-		"Adult Goanna", "Young Goanna", "Black Sphinx Acolyte", "Burning Gladiator", "Crypt Warden", "Feral Sphinx", "Lamassu", "Priestess of the Wild Sun", "Sphinx",
-		"Ogre Ruffian", "Ogre Sage", "Ogre Rowdy",
-		"Cobra Vizier", "Cobra Assassin", "Cobra Scout",
-		"Falcon Paladin", "Falcon Knight",
-		"Skeleton Elite Warrior", "Undead Elite Gladiator",
-		"Deathling Spellsinger", "Deathling Scout",
-		"Moohtant", "Shaburak Demon", "Askarak Demon",
-		"White Lion", "Werelion", "Werelioness"
-	};
+	bool initialized = false;
 };
 
 constexpr auto g_ioprey = IOPrey::getInstance;

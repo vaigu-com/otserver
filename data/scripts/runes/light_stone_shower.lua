@@ -20,7 +20,6 @@ function rune.onCastSpell(creature, var, isHotkey)
 	return combat:execute(creature, var)
 end
 
-rune:id(116)
 rune:group("attack")
 rune:name("light stone shower rune")
 rune:castSound(SOUND_EFFECT_TYPE_SPELL_OR_RUNE)

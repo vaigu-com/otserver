@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Zavarash")
 local monster = {}
 
 monster.description = "Zavarash"
-monster.experience = 21000
+monster.experience = 210000
 monster.outfit = {
 	lookType = 12,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 35000
-monster.maxHealth = 35000
+monster.health = 25000
+monster.maxHealth = 25000
 monster.race = "blood"
 monster.corpse = 6068
 monster.speed = 220
@@ -60,7 +60,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{ name = "dark torturer", chance = 100, interval = 1000, count = 2 },
+		{ name = "dark torturer", chance = 20, interval = 2000, count = 1 },
 	},
 }
 
@@ -84,34 +84,34 @@ monster.loot = {
 	{ id = 7642, chance = 34440, maxCount = 5 }, -- great spirit potion
 	{ id = 16119, chance = 30000, maxCount = 8 }, -- blue crystal shard
 	{ id = 16121, chance = 30000, maxCount = 8 }, -- green crystal shard
-	{ id = 3038, chance = 20000 }, -- green gem
-	{ id = 3415, chance = 15030 }, -- guardian shield
 	{ id = 3315, chance = 15030 }, -- guardian halberd
 	{ id = 3041, chance = 15030 }, -- blue gem
 	{ id = 9058, chance = 15030 }, -- gold ingot
 	{ id = 7428, chance = 15030 }, -- bonebreaker
 	{ id = 3340, chance = 12940 }, -- heavy mace
-	{ id = 3419, chance = 11540 }, -- crown shield
 	{ id = 20276, chance = 10000 }, -- dream warden mask
 	{ id = 8063, chance = 9620 }, -- paladin armor
-	{ id = 7387, chance = 8390 }, -- diamond sceptre
 	{ id = 3420, chance = 6290 }, -- demon shield
 	{ id = 3414, chance = 1400 }, -- mastermind shield
 	{ id = 7431, chance = 700 }, -- demonbone
 	{ id = 8049, chance = 350 }, -- lavos armor
 	{ id = 8100, chance = 170 }, -- obsidian truncheon
+	{ id = 27565, chance = 11380 },
+	{ id = 3402, chance = 10260 },
+	{ id = 3395, chance = 9420 },
+	{ id = 3390, chance = 80 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -600 },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -6000, range = 7, shootEffect = CONST_ANI_THROWINGKNIFE, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -1600, range = 7, shootEffect = CONST_ANI_THROWINGKNIFE, target = false },
 }
 
 monster.defenses = {
 	defense = 65,
 	armor = 55,
 	--	mitigation = ???,
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_HEALING, minDamage = 400, maxDamage = 600, radius = 8, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 400, maxDamage = 600, radius = 8, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 18, speedChange = 784, effect = CONST_ME_MAGIC_GREEN, target = false, duration = 7000 },
 	{ name = "invisible", interval = 2000, chance = 20, effect = CONST_ME_MAGIC_BLUE },
 }
@@ -135,19 +135,5 @@ monster.immunities = {
 	{ type = "invisible", condition = true },
 	{ type = "bleed", condition = false },
 }
-
-mType.onThink = function(monster, interval) end
-
-mType.onAppear = function(monster, creature)
-	if monster:getType():isRewardBoss() then
-		monster:setReward(true)
-	end
-end
-
-mType.onDisappear = function(monster, creature) end
-
-mType.onMove = function(monster, creature, fromPosition, toPosition) end
-
-mType.onSay = function(monster, creature, type, message) end
 
 mType:register(monster)
