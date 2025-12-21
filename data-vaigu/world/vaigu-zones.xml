@@ -41,6 +41,13 @@
 	<zone name="Encounter-SKURWIWIJ-ExitTeleportDestination" zoneid="38" />
 	<zone name="Encounter-SKURWIWIJ-MonsterSpawnPositions" zoneid="39" />
 	<zone name="Encounter-SKURWIWIJ-PlayerAppearPositions" zoneid="35" />
+	<zone name="Minigames-Bomberman-GameArea" zoneid="257" />
+	<zone name="Minigames-Bomberman-GameAreaCorners" zoneid="258" />
+	<zone name="Minigames-Bomberman-GamePlayerSpawn" zoneid="256" />
+	<zone name="Minigames-Bomberman-LobbyArea" zoneid="255" />
+	<zone name="Minigames-Bomberman-LobbyEntrancePosition" zoneid="253" />
+	<zone name="Minigames-Bomberman-LobbyPlayerSpawn" zoneid="254" />
+	<zone name="Minigames-Bomberman-StonePositionsCorners" zoneid="259" />
 	<zone name="Minigames-Crossroad-EdgePositions" zoneid="14" />
 	<zone name="Minigames-Crossroad-FinishTeleport" zoneid="197" />
 	<zone name="Minigames-Crossroad-GameArea" zoneid="11" />
