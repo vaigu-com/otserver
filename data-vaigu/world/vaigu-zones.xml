@@ -56,6 +56,11 @@
 	<zone name="Minigames-Crossroad-LobbyArea" zoneid="9" />
 	<zone name="Minigames-Crossroad-LobbyEntrancePosition" zoneid="12" />
 	<zone name="Minigames-Crossroad-LobbyPlayerSpawn" zoneid="8" />
+	<zone name="Minigames-Meteor-GameArea" zoneid="260" />
+	<zone name="Minigames-Meteor-GamePlayerSpawn" zoneid="261" />
+	<zone name="Minigames-Meteor-LobbyArea" zoneid="264" />
+	<zone name="Minigames-Meteor-LobbyEntrancePosition" zoneid="262" />
+	<zone name="Minigames-Meteor-LobbyPlayerSpawn" zoneid="263" />
 	<zone name="Minigames-Zombie-GameArea" zoneid="231" />
 	<zone name="Minigames-Zombie-GamePlayerSpawn" zoneid="232" />
 	<zone name="Minigames-Zombie-LobbyArea" zoneid="230" />

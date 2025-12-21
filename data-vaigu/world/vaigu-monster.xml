@@ -59520,6 +59520,163 @@
 	<monster centerx="5929" centery="1957" centerz="7" radius="1">
 		<monster name="Forest Fury" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="5964" centery="2408" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5966" centery="2409" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5967" centery="2414" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5970" centery="2415" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5974" centery="2417" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5971" centery="2418" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="1" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5973" centery="2419" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5972" centery="2422" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5954" centery="2425" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5947" centery="2426" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5977" centery="2427" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="0" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5977" centery="2429" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5946" centery="2430" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5948" centery="2430" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5944" centery="2431" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5976" centery="2431" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="0" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5976" centery="2433" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5942" centery="2435" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5946" centery="2435" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5956" centery="2435" centerz="7" radius="1">
+		<monster name="Zombie" x="-1" y="-1" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="-1" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5968" centery="2435" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="-1" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5974" centery="2435" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5950" centery="2436" centerz="7" radius="1">
+		<monster name="Zombie" x="-1" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5944" centery="2437" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5960" centery="2437" centerz="7" radius="1">
+		<monster name="Zombie" x="-1" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="-1" y="1" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="0" y="1" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="1" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5962" centery="2437" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5946" centery="2438" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5949" centery="2438" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5973" centery="2438" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5954" centery="2439" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5961" centery="2439" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5956" centery="2440" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5966" centery="2440" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5969" centery="2440" centerz="7" radius="1">
+		<monster name="Zombie" x="-1" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="1" y="1" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5963" centery="2441" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5979" centery="2442" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5974" centery="2443" centerz="7" radius="1">
+		<monster name="Zombie" x="-1" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5965" centery="2444" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="5967" centery="2445" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5969" centery="2447" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5974" centery="2449" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="60" />
+		<monster name="Zombie" x="1" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5976" centery="2449" centerz="7" radius="1">
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
+	<monster centerx="5967" centery="2451" centerz="7" radius="1">
+		<monster name="Zombie" x="-1" y="0" z="7" spawntime="-668663808" />
+		<monster name="Zombie" x="0" y="0" z="7" spawntime="-668663808" />
+	</monster>
 	<monster centerx="6725" centery="2518" centerz="7" radius="1">
 		<monster name="Blood Crab" x="0" y="0" z="7" spawntime="90" />
 	</monster>
