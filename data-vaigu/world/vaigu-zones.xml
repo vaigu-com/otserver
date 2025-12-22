@@ -62,6 +62,14 @@
 	<zone name="Minigames-Meteor-LobbyEntrancePosition" zoneid="262" />
 	<zone name="Minigames-Meteor-LobbyPlayerSpawn" zoneid="263" />
 	<zone name="Minigames-Meteor-MonsterBuffer" zoneid="265" />
+	<zone name="Minigames-VisLuxVersus-ChestPositionsCorners" zoneid="272" />
+	<zone name="Minigames-VisLuxVersus-GameArea" zoneid="266" />
+	<zone name="Minigames-VisLuxVersus-GameAreaCorners" zoneid="271" />
+	<zone name="Minigames-VisLuxVersus-GamePlayerSpawn" zoneid="267" />
+	<zone name="Minigames-VisLuxVersus-LobbyArea" zoneid="269" />
+	<zone name="Minigames-VisLuxVersus-LobbyEntrancePosition" zoneid="270" />
+	<zone name="Minigames-VisLuxVersus-LobbyPlayerSpawn" zoneid="268" />
+	<zone name="Minigames-VisLuxVersus-MonsterBuffer" zoneid="273" />
 	<zone name="Minigames-Zombie-GameArea" zoneid="231" />
 	<zone name="Minigames-Zombie-GamePlayerSpawn" zoneid="232" />
 	<zone name="Minigames-Zombie-LobbyArea" zoneid="230" />
