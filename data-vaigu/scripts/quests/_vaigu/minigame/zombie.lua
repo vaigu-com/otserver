@@ -13,35 +13,42 @@ pseudoQuest
 		local function createMonsterWithGraphicAnnouncement(context)
 			context.effectEnum = context.effectEnum or CONST_ME_TELEPORT
 
-			for i = 1, context.effectsCount do
+			for i = 1, context.effectsCount or 2 do
 				addEvent(function()
 					context.position:sendMagicEffect(context.effectEnum)
 				end, i * context.delayBetweenEffectsSeconds * 1000)
 			end
 
 			addEvent(function()
-				Game.createMonster(context.monsterName, context.position)
+				Game.createMonster(context.monsterName, context.position, nil, true)
 			end, (context.effectsCount + 1) * context.delayBetweenEffectsSeconds * 1000)
 		end
-		local minigameZombieName = "Zombie Minigame"
-		local effectsBeforeSpawn = 2
-		local delayBetweenEffects = 1
-		zombieMinigame.beforeStart = function()
-			local gameAreaZone = zombieMinigame:GetGameAreaZone()
+		zombieMinigame.beforeStart = function() end
 
-			local context = {
-				monsterName = minigameZombieName,
-				effectsCount = effectsBeforeSpawn,
-				effectEnum = CONST_ME_TELEPORT,
-				delayBetweenEffectsSeconds = delayBetweenEffects,
-			}
-			for i = 1, math.floor(gameAreaZone:getWalkableSize() / 2) do
-				context.position = gameAreaZone:randomPosition()
-				zombieMinigame:addEvent(function()
-					createMonsterWithGraphicAnnouncement(context)
-				end, i * 10 * 1000)
+		local zombieCreationContext = {
+			monsterName = "Zombie Minigame",
+			effectsCount = 2,
+			effectEnum = CONST_ME_TELEPORT,
+			delayBetweenEffectsSeconds = 1,
+		}
+		local gameAreaZone = zombieMinigame:GetGameAreaZone()
+
+		local gameLoop = GlobalEvent(Minigames.Zombie:GetEventScope():Get("ZombieSpawner"))
+		function gameLoop.onThink()
+			if not Minigames.Zombie:IsActive() then
+				return GLOBAL_EVENT_OK
 			end
+
+			if Minigames.Zombie:GetLifetime() < 5 then
+				return GLOBAL_EVENT_OK
+			end
+
+			zombieCreationContext.position = gameAreaZone:randomPosition()
+			createMonsterWithGraphicAnnouncement(zombieCreationContext)
+			return GLOBAL_EVENT_OK
 		end
+		gameLoop:interval(5000)
+		gameLoop:register()
 
 		local startEvent = TalkAction("!zombie")
 
@@ -54,7 +61,7 @@ pseudoQuest
 		startEvent:register()
 	end)
 	:MonsterEvent(function()
-		local healthPercentagePerSwing = 0.19
+		local healthPercentagePerSwing = 0.09
 		local zombieMelee = Combat()
 		zombieMelee:setParameter(COMBAT_PARAM_TYPE, COMBAT_NEUTRALDAMAGE)
 		function onGetFormulaValues(creature, target)
@@ -108,8 +115,8 @@ pseudoQuest
 			Locations = "Cemetery Quarter, Drefia, Vampire Castle, Treasure Island, Isle of Evil, Upper Spike.",
 		}
 
-		monster.health = 500000
-		monster.maxHealth = 500000
+		monster.health = 50000
+		monster.maxHealth = 50000
 		monster.race = "undead"
 		monster.corpse = 8961
 		monster.speed = 40
@@ -142,7 +149,7 @@ pseudoQuest
 			healthHidden = false,
 			isBlockable = false,
 			canWalkOnEnergy = true,
-			canWalkOnFire = false,
+			canWalkOnFire = true,
 			canWalkOnPoison = true,
 		}
 
@@ -160,21 +167,10 @@ pseudoQuest
 			{ text = "Httt.... hmnnsss...", yell = false },
 		}
 
-		monster.loot = {
-			{ name = "gold coin", chance = 82000, maxCount = 65 },
-			{ name = "halberd", chance = 3750 },
-			{ name = "mace", chance = 7250 },
-			{ name = "battle hammer", chance = 7000 },
-			{ name = "steel helmet", chance = 4600 },
-			{ name = "brass helmet", chance = 9400 },
-			{ name = "simple dress", chance = 560 },
-			{ name = "mana potion", chance = 740 },
-			{ id = 8894, chance = 5680 }, -- heavily rusted armor
-			{ name = "half-eaten brain", chance = 10000 },
-		}
+		monster.loot = {}
 
 		monster.attacks = {
-			{ name = "minigame zombie melee swing", interval = 2000, chance = 100, range = 1, target = true },
+			{ name = "minigame zombie melee swing", interval = 1000, chance = 100, range = 1, target = true },
 		}
 
 		monster.defenses = {
@@ -184,16 +180,16 @@ pseudoQuest
 		}
 
 		monster.elements = {
-			{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-			{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-			{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-			{ type = COMBAT_FIREDAMAGE, percent = 50 },
-			{ type = COMBAT_LIFEDRAIN, percent = 100 },
+			{ type = COMBAT_PHYSICALDAMAGE, perent = 0 },
+			{ type = COMBAT_ENERGYDAMAGE, perent = 0 },
+			{ type = COMBAT_EARTHDAMAGE, perent = 0 },
+			{ type = COMBAT_FIREDAMAGE, perent = 0 },
+			{ type = COMBAT_LIFEDRAIN, perent = 0 },
 			{ type = COMBAT_MANADRAIN, percent = 0 },
-			{ type = COMBAT_DROWNDAMAGE, percent = 100 },
-			{ type = COMBAT_ICEDAMAGE, percent = 100 },
-			{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-			{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+			{ type = COMBAT_DROWNDAMAGE, perent = 0 },
+			{ type = COMBAT_ICEDAMAGE, perent = 0 },
+			{ type = COMBAT_HOLYDAMAGE, perent = 0 },
+			{ type = COMBAT_DEATHDAMAGE, perent = 0 },
 		}
 
 		monster.immunities = {
