@@ -23,6 +23,22 @@ function Zone:getRandomPlayer()
 	return table.random(self:getPlayers())
 end
 
+function Zone:getCorners()
+	local positions = self:getPositions()
+	if not (#positions == 2) then
+		logger.error(debug.traceback(T("Zone:getWalkableSize() - Zone :name: doesnt affect exactly two positions, therefore it has no corners!", { name = self:getName() })))
+		return nil
+	end
+
+	local axisStart = { x = 0, y = 0, z = 0 }
+	local corner1, corner2 = positions[1], positions[2]
+	if corner1:ManhattanDistance(axisStart) < corner2:ManhattanDistance(axisStart) then
+		return corner1, corner2
+	else
+		return corner2, corner1
+	end
+end
+
 function Zone:getWalkableSize()
 	local positions = self:getPositions()
 	if #positions == 0 then

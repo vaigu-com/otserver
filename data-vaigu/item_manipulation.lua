@@ -97,9 +97,9 @@ setmetatable(ItemExList, {
 	end,
 })
 
-function ItemExList:Moved(x,y,z)
+function ItemExList:Moved(x, y, z)
 	for _, itemEx in pairs(self:Get()) do
-		itemEx:moveTo(itemEx:getPosition():Moved(x,y,z))
+		itemEx:moveTo(itemEx:getPosition():Moved(x, y, z))
 	end
 	return self
 end
@@ -134,8 +134,28 @@ function ItemExList:RadiusSquare(pos, radius)
 	return self
 end
 
+function ItemExList:Pos(pos)
+	local tile = Tile(pos)
+	if not tile then
+		return self
+	end
+	self:AddMultiple(tile:getItems() or {})
+	return self
+end
+
+function ItemExList:Positions(positions)
+	if not positions then
+		logger.warn(debug.traceback("[ItemExList:Positions] No positions provided."))
+	end
+
+	for _, pos in pairs(positions or {}) do
+		self:Pos(pos)
+	end
+	return self
+end
+
 function ItemExList:Area(area)
-	local pos1,pos2 = area:GetCorners()
+	local pos1, pos2 = area:GetCorners()
 	IterateBetweenPositions(pos1, pos2, function(context)
 		local tile = Tile(context.pos)
 		if not tile then
@@ -249,10 +269,14 @@ function ItemExList:ForEach(callback)
 	end
 end
 
-function ItemExList:Copied(destination)
+function ItemExList:Copied(vector)
 	local copiedList = ItemExList()
 	for _, item in pairs(self.items) do
-		copiedList:Add(item:clone():moveTo(destination))
+		local clone = item:clone()
+		if vector then
+			clone:moveTo(item:getPosition():MovedByVector(vector))
+		end
+		copiedList:Add(clone)
 	end
 	return copiedList
 end

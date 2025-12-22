@@ -686,7 +686,7 @@ quest
 				local function displayBookContent(player, book)
 					player:registerEvent("DesertQuestBook_Modal_Window")
 
-					local bookVector = book:getPosition():VectorBetween(DESERT_QUEST_ONE_ANCHOR)
+					local bookVector = DESERT_QUEST_ONE_ANCHOR:VectorBetween(book:getPosition())
 					local message = (function()
 						for vector, message in pairs(vectorToMessage) do
 							if vector == bookVector then
