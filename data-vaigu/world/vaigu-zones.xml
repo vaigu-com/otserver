@@ -70,6 +70,10 @@
 	<zone name="Minigames-VisLuxVersus-LobbyEntrancePosition" zoneid="270" />
 	<zone name="Minigames-VisLuxVersus-LobbyPlayerSpawn" zoneid="268" />
 	<zone name="Minigames-VisLuxVersus-MonsterBuffer" zoneid="273" />
+	<zone name="Minigames-VisLuxVersus-Ring1" zoneid="274" />
+	<zone name="Minigames-VisLuxVersus-Ring2" zoneid="275" />
+	<zone name="Minigames-VisLuxVersus-Ring3" zoneid="276" />
+	<zone name="Minigames-VisLuxVersus-Ring4" zoneid="277" />
 	<zone name="Minigames-Zombie-GameArea" zoneid="231" />
 	<zone name="Minigames-Zombie-GamePlayerSpawn" zoneid="232" />
 	<zone name="Minigames-Zombie-LobbyArea" zoneid="230" />
