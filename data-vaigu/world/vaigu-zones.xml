@@ -41,6 +41,7 @@
 	<zone name="Encounter-SKURWIWIJ-ExitTeleportDestination" zoneid="38" />
 	<zone name="Encounter-SKURWIWIJ-MonsterSpawnPositions" zoneid="39" />
 	<zone name="Encounter-SKURWIWIJ-PlayerAppearPositions" zoneid="35" />
+	<zone name="Minigame-Meteor-MonsterBuffer" zoneid="265" />
 	<zone name="Minigames-Bomberman-GameArea" zoneid="257" />
 	<zone name="Minigames-Bomberman-GameAreaCorners" zoneid="258" />
 	<zone name="Minigames-Bomberman-GamePlayerSpawn" zoneid="256" />
