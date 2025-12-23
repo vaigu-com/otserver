@@ -3,7 +3,7 @@ local pseudoQuest = Quest(LOCALIZERS.NONE)
 pseudoQuest
 	:NoQuestlog()
 	:Script(function()
-		local zombieMinigame = MinigameData({
+		local zombieMinigame = 	MinigameData({
 			minigameName = "Zombie",
 			competitionType = MINIGAME_COMPETITION_TYPE.LAST_MAN_STANDING,
 			requiredPlayers = 1,
