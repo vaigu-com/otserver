@@ -332,7 +332,7 @@ return {
 	["Hello! You want to {trade}, or repair your worn {soft boots}? I can also exchange your {medicine pouch}."] = "Dzien dobry! Pohandlujemy, a moze naprawie Ci zuzyte {soft boots}? Potrzebuje takze {medicine pouch}, zglos sie jesli zdobedziesz jakies.",
 	["Oh hello! Check out my new recipes, we can {trade} a little."] = "Czesc! Sprawdz moje nowe receptury i skladniki, wpisujac {trade}.",
 	["I can exchange your life crystals for a life rings. Is that what youre interested in?"] = "Potrafie wytwarzac pierscienie z {life crystal}, nauczyla mnie tego mama. Czy chcesz, abym przetworzyl twoje krysztaly?",
-	["Here you go."] = "Prosze bardzo, oto Twoje buty.",
+	["Here you go."] = "Prosze bardzo.",
 	["Im sorry, but you dont have such crystal. Only life crystal counts."] = "Sorry, ale nie masz tego krysztalu ze soba. Tylko {life crystal} nadaje sie do wytworzenia tego pierscienia.",
 	["Would you like to exchange {worn soft boots}, or {charge} active ones? Cost of both services is 20k of gold."] = "Chcesz zamienic {worn soft boots}, czy {doladowac} jeszcze nie zuzyte? Koszt przywrocenia butow do stanu uzywalnosci to 20k.",
 	["Here you are."] = "Prosze bardzo.",
