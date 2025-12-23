@@ -1361,7 +1361,7 @@ bool Player::canWalkthrough(const std::shared_ptr<Creature> &creature) {
 	if (group->access || creature->isInGhostMode()) {
 		return true;
 	}
-	if (creature->getPlayer() && isOnMinigame()) {
+	if (creature->getPlayer() && isOnMinigame() && getStorageValueByKey("Storage-Minigames-AllowPlayersWalkthrough") == 1) {
 		return true;
 	}
 
@@ -1419,7 +1419,7 @@ bool Player::canWalkthroughEx(const std::shared_ptr<Creature> &creature) const {
 	if (group->access) {
 		return true;
 	}
-	if (creature->getPlayer() && isOnMinigame()) {
+	if (creature->getPlayer() && isOnMinigame() && getStorageValueByKey("Storage-Minigames-AllowPlayersWalkthrough") == 1) {
 		return true;
 	}
 
@@ -4164,7 +4164,7 @@ void Player::setDailyReward(uint8_t reward) {
 
 void Player::removeList() {
 	setLoggingOut(true);
-	//g_game().removePlayer(static_self_cast<Player>());
+	// g_game().removePlayer(static_self_cast<Player>());
 
 	for (const auto &[key, player] : g_game().getPlayers()) {
 		player->vip().notifyStatusChange(static_self_cast<Player>(), VipStatus_t::Offline);
@@ -6219,9 +6219,9 @@ void Player::onGainExperience(uint64_t gainExp, const std::shared_ptr<Creature> 
 	if (hasFlag(PlayerFlags_t::NotGainExperience)) {
 		return;
 	}
-	
+
 	std::shared_ptr<Monster> monster = target->getMonster();
-	if (!monster){
+	if (!monster) {
 		return;
 	}
 
@@ -11539,8 +11539,8 @@ const std::string &Player::getDisplayName(const std::string &language) const {
 	return getName();
 }
 
-//Vaigu custom
-const std::unordered_set<uint32_t>& Player::getKnownCreatureSet() const {
+// Vaigu custom
+const std::unordered_set<uint32_t> &Player::getKnownCreatureSet() const {
 	return client->knownCreatureSet;
 }
 bool Player::isFirstOnStack() const {

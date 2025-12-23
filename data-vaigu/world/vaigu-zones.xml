@@ -41,6 +41,13 @@
 	<zone name="Encounter-SKURWIWIJ-ExitTeleportDestination" zoneid="38" />
 	<zone name="Encounter-SKURWIWIJ-MonsterSpawnPositions" zoneid="39" />
 	<zone name="Encounter-SKURWIWIJ-PlayerAppearPositions" zoneid="35" />
+	<zone name="Minigames-Bomberman-GameArea" zoneid="257" />
+	<zone name="Minigames-Bomberman-GameAreaCorners" zoneid="258" />
+	<zone name="Minigames-Bomberman-GamePlayerSpawn" zoneid="256" />
+	<zone name="Minigames-Bomberman-LobbyArea" zoneid="255" />
+	<zone name="Minigames-Bomberman-LobbyEntrancePosition" zoneid="253" />
+	<zone name="Minigames-Bomberman-LobbyPlayerSpawn" zoneid="254" />
+	<zone name="Minigames-Bomberman-StonePositionsCorners" zoneid="259" />
 	<zone name="Minigames-Crossroad-EdgePositions" zoneid="14" />
 	<zone name="Minigames-Crossroad-FinishTeleport" zoneid="197" />
 	<zone name="Minigames-Crossroad-GameArea" zoneid="11" />
@@ -49,6 +56,24 @@
 	<zone name="Minigames-Crossroad-LobbyArea" zoneid="9" />
 	<zone name="Minigames-Crossroad-LobbyEntrancePosition" zoneid="12" />
 	<zone name="Minigames-Crossroad-LobbyPlayerSpawn" zoneid="8" />
+	<zone name="Minigames-Meteor-GameArea" zoneid="260" />
+	<zone name="Minigames-Meteor-GamePlayerSpawn" zoneid="261" />
+	<zone name="Minigames-Meteor-LobbyArea" zoneid="264" />
+	<zone name="Minigames-Meteor-LobbyEntrancePosition" zoneid="262" />
+	<zone name="Minigames-Meteor-LobbyPlayerSpawn" zoneid="263" />
+	<zone name="Minigames-Meteor-MonsterBuffer" zoneid="265" />
+	<zone name="Minigames-VisLuxVersus-ChestPositionsCorners" zoneid="272" />
+	<zone name="Minigames-VisLuxVersus-GameArea" zoneid="266" />
+	<zone name="Minigames-VisLuxVersus-GameAreaCorners" zoneid="271" />
+	<zone name="Minigames-VisLuxVersus-GamePlayerSpawn" zoneid="267" />
+	<zone name="Minigames-VisLuxVersus-LobbyArea" zoneid="269" />
+	<zone name="Minigames-VisLuxVersus-LobbyEntrancePosition" zoneid="270" />
+	<zone name="Minigames-VisLuxVersus-LobbyPlayerSpawn" zoneid="268" />
+	<zone name="Minigames-VisLuxVersus-MonsterBuffer" zoneid="273" />
+	<zone name="Minigames-VisLuxVersus-Ring1" zoneid="274" />
+	<zone name="Minigames-VisLuxVersus-Ring2" zoneid="275" />
+	<zone name="Minigames-VisLuxVersus-Ring3" zoneid="276" />
+	<zone name="Minigames-VisLuxVersus-Ring4" zoneid="277" />
 	<zone name="Minigames-Zombie-GameArea" zoneid="231" />
 	<zone name="Minigames-Zombie-GamePlayerSpawn" zoneid="232" />
 	<zone name="Minigames-Zombie-LobbyArea" zoneid="230" />

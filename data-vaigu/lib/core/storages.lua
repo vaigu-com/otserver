@@ -3420,11 +3420,13 @@ Storage.GrimEventPlayerCount = {}
 Storage.GrimEventState = {}
 Storage.LMSJoinedCount = {}
 Storage.LMSEventState = {}
+--[[
 Storage.Bomberman = {}
 Storage.BombermanTimer = {}
 Storage.BombermanArea = {}
 Storage.BomberEventPlayerCount = {}
 Storage.BomberEventState = {}
+]]
 Storage.MeteorEventPlayerCount = {}
 Storage.MeteorEventState = {}
 Storage.SpleefDepo = {}
