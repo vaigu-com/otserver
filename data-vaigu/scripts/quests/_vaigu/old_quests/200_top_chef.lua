@@ -52,7 +52,7 @@ local function grantExpForDish(context)
 	local questState = player:getStorageValueByKey(Storage.TopChef.Mission01)
 	local nextState = math.max(questState, 0) + 1
 
-	local grantedExp = 100000 * 1.3 ^ nextState
+	local grantedExp = 50000 * 1.3 ^ nextState
 	AddExperienceWithAnnouncement(player, grantedExp)
 end
 
