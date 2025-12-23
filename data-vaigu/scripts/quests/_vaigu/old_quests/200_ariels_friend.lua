@@ -270,10 +270,10 @@ quest
 	end)
 	:State(function()
 		return { min = QuestState.ArielsFriend.HumbleRequest.AskForNewMission }, QuestFactory.Dialog("Ariel", {
-			[{ "gertrude" }] = {
+			[{ "gertrude", "Gertrude" }] = {
 				text = "She moved near the lizards' village. They stay out of each other's way though.",
 			},
-			[{ "konmuld" }] = {
+			[{ "konmuld", "Konmuld" }] = {
 				text = "He holed up in an abandoned village on steppes. I don't think anyone visits him there.",
 			},
 		})
