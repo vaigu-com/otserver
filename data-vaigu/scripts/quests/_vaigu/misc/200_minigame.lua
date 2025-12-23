@@ -18,6 +18,8 @@ pseudoQuest
 			SharedLobbyPlayerSpawn = {},
 			SharedLobbyArea = {},
 			LastSharedLobbyEnterFromPostion = {},
+
+			AllowPlayersWalkthrough = {},
 		}
 	end)
 	:Constant(function()
@@ -389,6 +391,7 @@ pseudoQuest
 				end
 
 				player:sendTextMessage(MESSAGE_FAILURE, "During minigames, you cannot use potions, runes or spells and your movement speed will be fixed to a certain value.")
+				player:setStorageValueByKey(Storage.Minigames.AllowPlayersWalkthrough, ACCESS_GRANTED)
 				player:isOnMinigame(true)
 				player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 100)
 				player:changeSpeed()
@@ -737,6 +740,11 @@ end
 				--self:SetupEntranceLeverUse()
 
 				self.requiredPlayers = context.requiredPlayers or 3
+
+				self.allowPlayersWalkthrough = false
+				if context.allowPlayersWalkthrough ~= nil then
+					self.allowPlayersWalkthrough = context.allowPlayersWalkthrough
+				end
 
 				--Fight
 				self.stages = {}
@@ -1279,8 +1287,17 @@ end
 			})
 		end
 
+		function MinigameData:IsAllowingPlayersWalkthrough()
+			return self.allowPlayersWalkthrough
+		end
+
 		function MinigameData:SetMinigameLock(player)
 			player:isOnMinigame(true)
+			if self:IsAllowingPlayersWalkthrough() then
+				player:setStorageValueByKey(Storage.Minigames.AllowPlayersWalkthrough, ACCESS_GRANTED)
+			else
+				player:setStorageValueByKey(Storage.Minigames.AllowPlayersWalkthrough, ACCESS_NOT_GRANTED)
+			end
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, self.fixedSpeed)
 			player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.minigameName)
 			player:changeSpeed()
