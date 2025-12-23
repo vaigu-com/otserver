@@ -484,6 +484,17 @@ local function generateItemsTemporary(items)
 	return itemsToAddNonStore, itemsToAddStore
 end
 
+function Player:CanAddItemsCapacity(items)
+	local itemsToAddNonStore, itemsToAddStore = generateItemsTemporary(items)
+
+	local requiredCap = itemsToAddNonStore:CalculateRequiredCap()
+	local hasCap, capMessage = self:ErrorIfHasNotEnoughCapacity(requiredCap)
+	if not hasCap then
+		return false, capMessage
+	end
+	return true
+end
+
 function Player:CanAddItems(items)
 	local itemsToAddNonStore, itemsToAddStore = generateItemsTemporary(items)
 
