@@ -29,7 +29,7 @@ function personalChestUse.onUse(player, chest, fromPosition, target, toPosition,
 		return true
 	end
 
-	local chestContent = ExtractChestContent(chest)
+	local chestContent = ExtractAndWrapChestContent(chest)
 	if player:TryAddItems(chestContent) then
 		setLockout(player, chest)
 		player:getPosition():sendMagicEffect(CONST_ME_STUN)

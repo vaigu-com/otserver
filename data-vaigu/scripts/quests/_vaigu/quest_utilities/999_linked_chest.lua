@@ -75,9 +75,11 @@ function linked.onUse(player, chestItemEx, fromPosition, target, toPosition, isH
 		return DONT_OPEN_CONTAINER_ON_USE
 	end
 
-	local rewards = ExtractChestContent(chestItemEx)
-	local chestStorageData = chests[chestItemEx:getKey()]
+	local rewards = ExtractAndWrapChestContent(chestItemEx)
+	local chestKey = chestItemEx:getKey()
+	local chestStorageData = chests[chestKey]
 	if not chestStorageData then
+		logger.warn("[linkedChest.onUse] chestKey is not defined in defined in Storage, but has no entry in local chest table!")
 		return DONT_OPEN_CONTAINER_ON_USE
 	end
 
