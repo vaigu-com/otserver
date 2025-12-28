@@ -66257,7 +66257,6 @@ former students at the Noodles Academy. Awarded by TibiaLabs.com"/>
 		<attribute key="weight" value="1700"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="right-hand"/>
-			<attribute key="vocation" value="None;true, Paladin;true, Royal Paladin"/>
 		</attribute>
 	</item>
 	<item id="35563" article="a" name="magic shield potion">
