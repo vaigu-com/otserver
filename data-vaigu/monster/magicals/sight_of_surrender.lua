@@ -82,18 +82,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 100000, maxCount = 15 },
+	{ name = "platinum coin", chance = 80000, maxCount = 10 },
 	{ name = "might ring", chance = 8000 },
-	{ name = "stone skin amulet", chance = 18000 },
+	{ name = "stone skin amulet", chance = 14000 },
 	{ name = "hammer of wrath", chance = 1380 },
-	{ name = "crystal mace", chance = 5500 },
-	{ name = "magic plate armor", chance = 1380 },
-	{ name = "crown legs", chance = 920 },
-	{ name = "crusader helmet", chance = 920 },
-	{ name = "tower shield", chance = 1380 },
-	{ name = "steel boots", chance = 920 },
-	{ name = "onyx flail", chance = 920 },
-	{ name = "jade hammer", chance = 920 },
+	{ name = "crystal mace", chance = 4500 },
+	{ name = "magic plate armor", chance = 1180 },
+	{ name = "crown legs", chance = 2920 },
+	{ name = "crusader helmet", chance = 3920 },
+	{ name = "steel boots", chance = 2520 },
+	{ name = "onyx flail", chance = 1920 },
+	{ name = "jade hammer", chance = 1920 },
 	{ name = "great mana potion", chance = 78000, maxCount = 5 },
 	{ name = "great spirit potion", chance = 72000, maxCount = 5 },
 	{ name = "ultimate health potion", chance = 30000, maxCount = 5 },
@@ -103,10 +102,13 @@ monster.loot = {
 	{ name = "green crystal splinter", chance = 30000, maxCount = 5 },
 	{ name = "brown crystal splinter", chance = 30410, maxCount = 5 },
 	{ name = "blue crystal splinter", chance = 40000, maxCount = 5 },
-	{ name = "cluster of solace", chance = 11800 },
-	{ name = "sight of surrender's eye", chance = 100000 },
-	{ name = "broken visor", chance = 100000 },
-	{ id = 20208, chance = 460 }, -- string of mending
+	{ name = "cluster of solace", chance = 18800 },
+	{ name = "sight of surrender's eye", chance = 90000 },
+	{ name = "broken visor", chance = 80000 },
+	{ id = 20208, chance = 500 }, -- string of mending
+	{ id = 25088, chance = 1230 },
+	{ id = 3278, chance = 30 },
+	{ id = 8097, chance = 140 },
 }
 
 monster.attacks = {
@@ -119,21 +121,21 @@ monster.defenses = {
 	defense = 70,
 	armor = 92,
 	mitigation = 2.31,
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_HEALING, minDamage = 550, maxDamage = 1100, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 550, maxDamage = 1100, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = 520, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 30 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
-	{ type = COMBAT_FIREDAMAGE, percent = 35 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 15 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 40 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -5 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 20 },
+	{ type = COMBAT_ICEDAMAGE, percent = -15 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -15 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 33 },
 }
 
 monster.immunities = {

@@ -80,15 +80,17 @@ monster.loot = {
 	{ name = "gold coin", chance = 64000, maxCount = 53 },
 	{ name = "meat", chance = 34000 },
 	{ name = "wolf paw", chance = 7900 },
-	{ name = "flaming arrow", chance = 15000, maxCount = 8 },
+	{ name = "flaming arrow", chance = 15000, maxCount = 18 },
 	{ name = "fiery heart", chance = 7900 },
+	{ name = "fire sword", chance = 2800 },
+	{ name = "bonfire amulet", chance = 2700 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -68 },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = -35, maxDamage = -70, range = 1, shootEffect = CONST_ANI_WHIRLWINDSWORD, target = true },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -30, maxDamage = -70, range = 7, radius = 2, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_EXPLOSIONHIT, target = true },
-	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 2, target = true },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -168 },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = -35, maxDamage = -170, range = 1, shootEffect = CONST_ANI_WHIRLWINDSWORD, target = true },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -30, maxDamage = -170, range = 7, radius = 2, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_EXPLOSIONHIT, target = true },
+	{ name = "firefield", interval = 2000, chance = 20, range = 7, radius = 2, target = true },
 }
 
 monster.defenses = {

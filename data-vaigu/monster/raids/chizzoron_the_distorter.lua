@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Chizzoron the Distorter")
 local monster = {}
 
 monster.description = "Chizzoron the Distorter"
-monster.experience = 4000
+monster.experience = 40000
 monster.outfit = {
 	lookType = 340,
 	lookHead = 0,
@@ -80,13 +80,18 @@ monster.voices = {
 monster.loot = {
 	{ id = 9058, chance = 71550, maxCount = 2 }, -- gold ingot
 	{ id = 3031, chance = 69825, maxCount = 100 }, -- gold coin
-	{ id = 3031, chance = 69825, maxCount = 10 }, -- gold coin
 	{ id = 3032, chance = 5750 }, -- small emerald
-	{ id = 5881, chance = 100000 }, -- lizard scale
+	{ id = 5881, chance = 90000 }, -- lizard scale
 	{ id = 3038, chance = 16300 }, -- green gem
 	{ id = 3053, chance = 11025 }, -- time ring
-	{ id = 239, chance = 5750 }, -- great health potion
+	{ id = 239, chance = 85750 }, -- great health potion
 	{ id = 3386, chance = 5750 }, -- dragon scale mail
+	{ id = 19083, chance = 55750 },
+	{ id = 8052, chance = 3750 },
+	{ id = 8041, chance = 2750 },
+	{ id = 10200, chance = 2750 },
+	{ id = 3402, chance = 825 },
+	{ id = 3400, chance = 225 },
 }
 
 monster.attacks = {
