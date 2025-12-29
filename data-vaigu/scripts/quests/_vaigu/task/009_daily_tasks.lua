@@ -7,7 +7,7 @@ quest
 			DailyLimit = {},
 			RandomTasksExpiry = {},
 			Board = {},
-			DailyLimitExpiry= {},
+			DailyLimitExpiry = {},
 		}
 	end)
 	:Constant(function()
@@ -1068,6 +1068,7 @@ quest
 			local key = dailyTask.storage
 			dailyPamphletUse:key(key)
 			dailyPamphletLook:key(key)
+			MovableKeys:Add(key)
 		end
 		dailyPamphletUse:register()
 		dailyPamphletLook:register()

@@ -1,5 +1,5 @@
-local baseBoltsPerOrb = 1
-local additionalBoltsChance = 0.1
+local baseBoltsPerOrb = 2
+local additionalBoltsChance = 0.25
 local additionalBoltsNumber = 6
 local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
 
