@@ -42,7 +42,7 @@ local function extractItemData(item)
 		uid = item:getUniqueId(),
 		key = item:getKey(),
 		text = item:getText(),
-		addToStore = nil,
+		addToStore = false,
 	}
 
 	if forceUntradeability[id] or (data.key and data.key ~= "") then
