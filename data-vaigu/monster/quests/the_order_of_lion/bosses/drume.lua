@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Drume")
 local monster = {}
 
 monster.description = "Drume"
-monster.experience = 25000
+monster.experience = 250000
 monster.outfit = {
 	lookType = 1317,
 	lookHead = 38,
@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_ARCHFOE,
 }
 
-monster.health = 80000
-monster.maxHealth = 80000
+monster.health = 15000
+monster.maxHealth = 15000
 monster.race = "blood"
 monster.corpse = 33973
 monster.speed = 130
@@ -29,7 +29,7 @@ monster.faction = FACTION_LIONUSURPERS
 monster.enemyFactions = { FACTION_LION, FACTION_PLAYER }
 
 monster.summon = {
-	maxSummons = 1,
+	maxSummons = 3,
 	summons = {
 		{ name = "preceptor lazare", chance = 10, interval = 8000, count = 1 },
 		{ name = "grand commander soeren", chance = 10, interval = 8000, count = 1 },
@@ -89,7 +89,7 @@ monster.loot = {
 	{ name = "ultimate mana potion", chance = 55723, maxCount = 20 },
 	{ name = "yellow gem", chance = 35843, maxCount = 2 },
 	{ id = 3039, chance = 35542, maxCount = 2 }, -- red gem
-	{ name = "ultimate spirit potion", chance = 31627, maxCount = 6 },
+	{ name = "ultimate spirit potion", chance = 31627, maxCount = 20 },
 	{ name = "royal star", chance = 31325, maxCount = 100 },
 	{ name = "bullseye potion", chance = 22590, maxCount = 10 },
 	{ name = "berserk potion", chance = 21988, maxCount = 10 },
@@ -98,31 +98,25 @@ monster.loot = {
 	{ name = "green gem", chance = 17470, maxCount = 2 },
 	{ id = 281, chance = 15060 }, -- giant shimmering pearl (green)
 	{ name = "gold ingot", chance = 13253 },
-	{ name = "terra rod", chance = 11145 },
 	{ name = "crystal coin", chance = 10241 },
 	{ name = "stone skin amulet", chance = 10241 },
 	{ name = "silver token", chance = 8735, maxCount = 3 },
-	{ name = "terra legs", chance = 8735 },
-	{ name = "terra mantle", chance = 7831 },
 	{ name = "raw watermelon tourmaline", chance = 7229 },
 	{ name = "wand of voodoo", chance = 6024 },
 	{ name = "violet gem", chance = 5723 },
-	{ name = "terra hood", chance = 4819 },
-	{ name = "terra amulet", chance = 4518 },
 	{ name = "giant sapphire", chance = 4217 },
 	{ name = "giant ruby", chance = 3012 },
-	{ name = "underworld rod", chance = 2410 },
-	{ name = "lion spangenhelm", chance = 300 },
-	{ name = "lion plate", chance = 300 },
-	{ name = "lion shield", chance = 300 },
-	{ name = "lion longsword", chance = 350 },
-	{ name = "lion hammer", chance = 300 },
-	{ name = "lion axe", chance = 300 },
-	{ name = "lion longbow", chance = 300 },
-	{ name = "lion spellbook", chance = 350 },
-	{ name = "lion wand", chance = 300 },
-	{ name = "lion amulet", chance = 300 },
-	{ name = "lion rod", chance = 300 },
+	{ name = "lion spangenhelm", chance = 700 },
+	{ name = "lion plate", chance = 600 },
+	{ name = "lion shield", chance = 600 },
+	{ name = "lion longsword", chance = 500 },
+	{ name = "lion hammer", chance = 500 },
+	{ name = "lion axe", chance = 500 },
+	{ name = "lion longbow", chance = 700 },
+	{ name = "lion spellbook", chance = 700 },
+	{ name = "lion wand", chance = 800 },
+	{ name = "lion amulet", chance = 1500 },
+	{ name = "lion rod", chance = 800 },
 }
 
 monster.attacks = {
@@ -142,16 +136,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 35 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 25 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -30 },
+	{ type = COMBAT_FIREDAMAGE, percent = -30 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -20 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 50 },
+	{ type = COMBAT_ICEDAMAGE, percent = 20 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 20 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 40 },
 }
 
 monster.immunities = {

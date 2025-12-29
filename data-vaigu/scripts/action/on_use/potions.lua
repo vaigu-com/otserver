@@ -139,19 +139,18 @@ pseudoQuest
 			if parent == storeInbox then
 				return false
 			end
-			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) == 0) then
-				return false
-			end
 
 			if container:getEmptySlots() > 0 then
 				container:addItem(potionData.flask)
 				return true
 			end
 
-			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) > 0) then
-				container:addItem(potionData.flask, nil, nil, FLAG_NOLIMIT)
+			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) % 100 ~= 0) then
+				container:addItem(potionData.flask)
 				return true
 			end
+
+			return false
 		end
 
 		local function tryCreateEmptyFlask(player, usedPotionEx, potionData, fromPosition)
@@ -170,7 +169,7 @@ pseudoQuest
 			local parent = usedPotionEx:getParent()
 
 			local emptyFlaskData = { id = potionData.flask, count = 1, dontAnnounce = true }
-			if player:CanAddItems({ emptyFlaskData }) then
+			if player:CanAddItemsCapacity({ emptyFlaskData }) then
 				if not tryAddToSameContainer(parent, storeInbox, container, potionData) then
 					player:AddCustomItem(emptyFlaskData)
 				end

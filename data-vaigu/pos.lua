@@ -644,9 +644,9 @@ end
 ---@return Vector vector
 function Position:VectorBetween(destination)
 	local vector = Vector()
-	vector.x = self.x - destination.x
-	vector.y = self.y - destination.y
-	vector.z = self.z - destination.z
+	vector.x = destination.x - self.x
+	vector.y = destination.y - self.y
+	vector.z = destination.z - self.z
 	return vector
 end
 

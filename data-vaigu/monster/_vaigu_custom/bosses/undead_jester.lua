@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Undead Jester")
 local monster = {}
 
 monster.description = "an undead jester"
-monster.experience = 350
+monster.experience = 800
 monster.outfit = {
 	lookType = 273,
 	lookHead = 0,
@@ -70,7 +70,7 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -450 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 2, maxDamage = -8 },
 	{
 		name = "combat",
 		interval = 2000,

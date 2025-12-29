@@ -338,7 +338,7 @@ quest
 					requiredState = {
 						[Storage.LocalSupport.WoodDelivery] = { min = QuestState.LocalSupport.WoodDelivery.TakeTrollskyReward },
 					},
-					outfitRewards = QuestRewards.OutfitsAddons.ToCarryThePigs.Norse0
+					outfitRewards = QuestRewards.OutfitsAddons.ToCarryThePigs.Norse0,
 				},
 			})
 	end)

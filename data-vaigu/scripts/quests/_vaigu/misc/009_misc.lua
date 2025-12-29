@@ -82,7 +82,7 @@ quest
 		cookieUse:register()
 
 		local cookieLook = Look()
-		function cookieLook.onLook(player)
+		function cookieLook.onLook(player, cookie)
 			local exp = tonumber(cookie:getKey())
 			player:sendTextMessage(MESSAGE_LOOK, T("Usage: eat me. (:exp: experience)", { exp = exp }))
 			return DONT_SHOW_ONLOOK

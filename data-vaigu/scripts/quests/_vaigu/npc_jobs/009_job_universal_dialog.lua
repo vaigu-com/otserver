@@ -219,7 +219,7 @@ pseudoQuest
 			},
 		}
 		JOB_UNIVERSAL_DIALOGS[JOB_JEWELLER] = {
-			[{ "life crystal", "life ring", "life" }] = {
+			[{ "life crystal", "life ring", "life", "LIFE CRYSTAL" }] = {
 				text = "I can exchange your life crystals for a life rings. Is that what youre interested in?",
 				nextTopic = QuestTopics.JOB_TOPICS.confirmLifecrystalExchange,
 			},

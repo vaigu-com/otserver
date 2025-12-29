@@ -153,13 +153,13 @@ public:
 	// Vaigu custom
 	void updateBonusPercentage() {
 		if (bonus == PreyBonus_Damage) {
-			bonusPercentage = 4 * bonusRarity + 25;
+			bonusPercentage = 4 * bonusRarity + 20;
 		} else if (bonus == PreyBonus_Defense) {
-			bonusPercentage = 3 * bonusRarity + 15;
+			bonusPercentage = 2 * bonusRarity + 15;
 		} else if (bonus == PreyBonus_Experience) {
 			bonusPercentage = 3 * bonusRarity + 20;
 		} else if (bonus == PreyBonus_Loot) {
-			bonusPercentage = 8 * bonusRarity + 20;
+			bonusPercentage = 5 * bonusRarity + 15;
 		}
 	}
 

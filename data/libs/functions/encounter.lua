@@ -72,7 +72,7 @@ end
 ---@field private requiredState table?
 ---@field private lockoutExpiryTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
 ---@field private lockoutTriggerCriterion LOCKOUT_TRIGGER_CRITERION?
----@field private timeToDefeat number?
+---@field private timeToDefeatSeconds number?
 ---@field private ejectAfterCompletionSeconds number?
 ---@field private requiredLevel number?
 ---@field private requiredPlayers integer? -- size of entrance grid if nil
@@ -97,7 +97,7 @@ EncounterDataContext = EncounterDataContext
 ---@field private requiredState table?
 ---@field private lockoutExpiryTime number|LOCKOUT_TIME hours or "DAILY" (resets at 5 AM) or "WEEKLY" (resets at 5 AM wednesday)
 ---@field private lockoutTriggerCriterion LOCKOUT_TRIGGER_CRITERION?
----@field private timeToDefeat number?
+---@field private timeToDefeatSeconds number?
 ---@field private ejectAfterCompletionSeconds number?
 ---@field private requiredLevel number?
 ---@field private requiredPlayers integer?
@@ -481,7 +481,7 @@ function EncounterData:Data(context)
 	self.lockoutExpiryTime = context.lockoutExpiryTime or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN)
 	self.lockoutTriggerCriterion = context.lockoutTriggerCriterion or LOCKOUT_TRIGGER_CRITERION.ON_ENTER
 
-	self.timeToDefeat = context.timeToDefeat or configManager.getNumber(configKeys.BOSS_DEFAULT_TIME_TO_DEFEAT)
+	self.timeToDefeatSeconds = context.timeToDefeat or context.timeToDefeatSeconds or (10 * 60)
 	self.ejectAfterCompletionSeconds = context.ejectAfterCompletionSeconds or 60
 
 	self.healthMultipliedPerDifficulty = context.healthMultipliedPerLevel or 0.2
@@ -709,7 +709,7 @@ function EncounterData:handleTimeEvent(zone)
 			player:teleportTo(self.exitTeleportDestination)
 		end
 		ActiveEncounterRegistry:Unregister(self)
-	end, self.timeToDefeat * 1000, zone)
+	end, self.timeToDefeatSeconds * 1000, zone)
 end
 function EncounterData:checkCustom(players, leverUser)
 	for _, player in pairs(players) do

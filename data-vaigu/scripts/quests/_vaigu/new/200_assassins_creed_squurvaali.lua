@@ -397,7 +397,7 @@ quest
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission03] = QuestState.AssassinsCreedSquurvaali.Mission03.FindVislavShivka,
 					},
-					expReward = 150000,
+					expReward = 50000,
 					rewards = { ExerciseWeaponBox(300) },
 				},
 			})

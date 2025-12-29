@@ -80,7 +80,6 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "platinum coin", chance = 89725, maxCount = 5 },
-	{ name = "leather legs", chance = 27060 },
 	{ name = "meat", chance = 16582 },
 	{ name = "lion cloak patch", chance = 11190 },
 	{ name = "violet gem", chance = 6002 },
@@ -90,7 +89,11 @@ monster.loot = {
 	{ name = "great mana potion", chance = 4680 },
 	{ name = "blue gem", chance = 4171 },
 	{ name = "green gem", chance = 2238 },
-	{ name = "magma legs", chance = 610 },
+	{ name = "lion plate", chance = 10 },
+	{ name = "lion shield", chance = 10 },
+	{ name = "lion longsword", chance = 10 },
+	{ name = "lion hammer", chance = 10 },
+	{ name = "lion axe", chance = 10 },
 }
 
 monster.attacks = {

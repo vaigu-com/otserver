@@ -26,7 +26,7 @@ JOB_SHOPS = {
 		{ itemName = "soldier helmet", clientId = 3375, buy = 110 },
 		{ itemName = "studded armor", clientId = 3378, buy = 90 },
 		{ itemName = "studded helmet", clientId = 3376, buy = 58 },
-		{ itemName = "sweetheart ring", clientId = 21955, buy = 500 },
+		--{ itemName = "sweetheart ring", clientId = 21955, buy = 500 },
 		{ itemName = "tribal mask", clientId = 3403, buy = 250 },
 		{ itemName = "viking helmet", clientId = 3367, buy = 265 },
 		{ itemName = "bast skirt", clientId = 3560, sell = 750 },

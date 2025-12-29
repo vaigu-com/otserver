@@ -215,7 +215,7 @@ quest
 			QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 				[{ "mission", "misja" }] = {
 					text = "For your service to the druids, you may go to our sacred tree and pick a sample of the Griffinclaw flower.\nOur sacred tree is located in the very heart of the jungle. As a bonus, take this necklace. We welcome you to our community.",
-					expReward = 256000,
+					expReward = 90000,
 					rewards = {
 						{ id = 5940 },
 					},
