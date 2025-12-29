@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Usurper Commander")
 local monster = {}
 
 monster.description = "an usurper commander"
-monster.experience = 7200
+monster.experience = 17200
 monster.outfit = {
 	lookType = 1317,
 	lookHead = 40,
@@ -62,11 +62,11 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 5,
+	maxSummons = 3,
 	summons = {
-		{ name = "hardened usurper archer", chance = 0, interval = 600000, count = 2 },
-		{ name = "hardened usurper warlock", chance = 0, interval = 600000, count = 2 },
-		{ name = "hardened usurper knight", chance = 0, interval = 600000, count = 2 },
+		{ name = "hardened usurper archer", chance = 10, interval = 6000, count = 1 },
+		{ name = "hardened usurper warlock", chance = 8, interval = 6000, count = 1 },
+		{ name = "hardened usurper knight", chance = 12, interval = 6000, count = 1 },
 	},
 }
 
@@ -76,7 +76,19 @@ monster.voices = {
 	{ text = "FORMATION!", yell = true },
 }
 
-monster.loot = {}
+monster.loot = {
+	{ name = "lion spangenhelm", chance = 100 },
+	{ name = "lion plate", chance = 100 },
+	{ name = "lion shield", chance = 100 },
+	{ name = "lion longsword", chance = 100 },
+	{ name = "lion hammer", chance = 100 },
+	{ name = "lion axe", chance = 100 },
+	{ name = "lion longbow", chance = 130 },
+	{ name = "lion spellbook", chance = 110 },
+	{ name = "lion wand", chance = 100 },
+	{ name = "lion amulet", chance = 200 },
+	{ name = "lion rod", chance = 100 },
+}
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -500, effect = CONST_ME_DRAWBLOOD },
@@ -93,16 +105,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 1 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 1 },
-	{ type = COMBAT_DEATHDAMAGE, percent = -1 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = -20 },
 }
 
 monster.immunities = {

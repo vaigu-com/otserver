@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("General Murius")
 local monster = {}
 
 monster.description = "General Murius"
-monster.experience = 450
+monster.experience = 8450
 monster.outfit = {
 	lookType = 611,
 	lookHead = 0,
@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_NEMESIS,
 }
 
-monster.health = 550
-monster.maxHealth = 550
+monster.health = 2550
+monster.maxHealth = 2550
 monster.race = "blood"
 monster.corpse = 21091
 monster.speed = 125
@@ -62,10 +62,12 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 4,
+	maxSummons = 8,
 	summons = {
-		{ name = "Minotaur Archer", chance = 15, interval = 1000, count = 2 },
-		{ name = "Minotaur Guard", chance = 12, interval = 1000, count = 2 },
+		{ name = "Minotaur Archer", chance = 30, interval = 1000, count = 2 },
+		{ name = "Minotaur Guard", chance = 40, interval = 1000, count = 2 },
+		{ name = "Minotaur Mage", chance = 20, interval = 1000, count = 1 },
+
 	},
 }
 
@@ -85,32 +87,34 @@ monster.loot = {
 	{ name = "platinum coin", chance = 92310, maxCount = 3 },
 	{ name = "brass armor", chance = 76920 },
 	{ name = "double axe", chance = 76920 },
-	{ name = "piercing bolt", chance = 38460, maxCount = 11 },
 	{ name = "meat", chance = 30770 },
-	{ name = "battle shield", chance = 23080 },
-	{ name = "chain legs", chance = 23080 },
 	{ id = 7401, chance = 23080 }, -- minotaur trophy
-	{ name = "power bolt", chance = 23080, maxCount = 7 },
+	{ name = "power bolt", chance = 23080, maxCount = 27 },
 	{ name = "fishing rod", chance = 7690 },
 	{ name = "strong health potion", chance = 7690 },
+	{ id = 21174, chance = 8000 }, -- mino lance
+	{ id = 21175, chance = 11100 }, -- mino shield
+	{ id = 3396, chance = 5550 },
+	{ id = 21166, chance = 11410 },
+	{ id = 12669, chance = 11410 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -170 },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -120, range = 7, shootEffect = CONST_ANI_BOLT, target = false },
-	{ name = "combat", interval = 1000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -80, radius = 3, effect = CONST_ME_HITAREA, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -270 },
+	{ name = "combat", interval = 1000, chance = 22, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -320, range = 7, shootEffect = CONST_ANI_BOLT, target = false },
+	{ name = "combat", interval = 1000, chance = 40, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -280, radius = 4, effect = CONST_ME_HITAREA, target = false },
 }
 
 monster.defenses = {
-	defense = 22,
-	armor = 16,
+	defense = 52,
+	armor = 26,
 	--	mitigation = ???,
-	{ name = "combat", interval = 1000, chance = 15, type = COMBAT_HEALING, minDamage = 50, maxDamage = 100, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 1000, chance = 25, type = COMBAT_HEALING, minDamage = 120, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = 275, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
 	{ type = COMBAT_FIREDAMAGE, percent = 20 },
