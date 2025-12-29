@@ -26,7 +26,7 @@ return {
 	["Moustachilles trusted you with his bags of fent. Deliver the other bag to second client - the soccer fan. Moustachilles hinted the south slums."] = "Andrzej Wasacz powierzyl ci torby z fentem. Dostarcz druga torbe drugiemu klientowi - fanowi pilki noznej. Andrzej Wasacz wspomnial o poludniowych slumsach.",
 	["Report to moustachilles and bring him his money."] = "Zglos sie do Andrzeja Wasacza i przynies mu jego pieniadze.",
 	["You completed this mission."] = "Ukonczyles te misje.",
-	["Me and my friends are hosting a meat beating competition. We need 2 medals of honour for that. Come back when you have them."] = "Ja i moi przyjaciele organizujemy zawody w waleniu konia. Potrzebujemy 10 medali konnych. Wroc, gdy je zdobedziesz.",
+	["Me and my friends are hosting a meat beating competition. We need 2 medals of honour for that. Come back when you have them."] = "Ja i moi przyjaciele organizujemy zawody w waleniu konia. Potrzebujemy 2 medali konnych. Wroc, gdy je zdobedziesz.",
 	["Thanks for your help. Here is your reward."] = "Dzieki za pomoc. Oto twoja nagroda.",
 	["Come back with the the medals i asked for."] = "Wroc z medalami, o ktore prosilem.",
 	["Do you happen to know the local gang boss, Moustachilles? Recently he lost some of his coke and now is desperate to retreive it. I think you could help him with his troubles."] = "Znasz moze lokalnego bossa gangu, Andrzeja Wasacza? Ostatnio zgubil troche kokainy i teraz desperacko probuje ja odzyskac. Mysle, ze moglbys mu pomoc.",

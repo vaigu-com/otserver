@@ -99,7 +99,7 @@ quest
 				},
 				[{ "tactical task", "zadanie bojowe" }] = {
 					text = "If you would like to expand your vocation expertise, you should meet Vislav Shivka. While he is a master imbiber of magical elixirs himself, he is also capable of teaching his 'craft' to others. Ask him about tactical task and he will surely guide you. Tell him that i sent u there or he might not want to share this knowledge with you. Also take this experience as your reward.",
-					expReward = 400000,
+					expReward = 150000,
 					requiredTopic = QuestTopics.EnterTheDrunkTank.AcceptTacticalTask,
 					nextState = {
 						[Storage.EnterTheDrunkTank.Mission01] = QuestState.EnterTheDrunkTank.Mission01.AskVislavAboutTask,

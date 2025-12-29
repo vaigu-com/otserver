@@ -1055,7 +1055,7 @@ quest
 				}] = {
 					text = "Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
 					rewards = { { id = 9087 }, { id = 36734 }, { id = 6392 } },
-					expReward = 150000,
+					expReward = 65000,
 					requiredItems = {
 						QuestKeyItems.LocalSupport.PoisonedCheese,
 					},

@@ -83,10 +83,11 @@ monster.voices = {
 monster.loot = {
 	{ name = "gold coin", chance = 33750, maxCount = 90 },
 	{ name = "gold coin", chance = 33750, maxCount = 60 },
-	{ name = "strong health potion", chance = 3150 },
-	{ name = "strong mana potion", chance = 4150 },
-	{ name = "dragon robe", chance = 950 },
-	{ name = "draptor scales", chance = 6650 },
+	{ name = "strong health potion", chance = 33150 },
+	{ name = "strong mana potion", chance = 24150 },
+	{ name = "dragon robe", chance = 1950 },
+	{ name = "draptor scales", chance = 26650 },
+	{ name = "bonfire amulet", chance = 6450 },
 }
 
 monster.attacks = {
@@ -112,7 +113,7 @@ monster.elements = {
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }

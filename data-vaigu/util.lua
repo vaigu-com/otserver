@@ -561,17 +561,17 @@ function PrintTableRecursive(tbl, indent)
 		local keyString = parseString(key)
 		local valueString = parseString(value)
 		if type(value) == "table" then
-			print(string.rep(" ", indent) .. keyString .. ":")
+			logger.warn(string.rep(" ", indent) .. keyString .. ":")
 			PrintTableRecursive(value, indent + 4)
 		else
-			print(string.rep(" ", indent) .. "|-" .. keyString .. ": " .. valueString)
+			logger.warn(string.rep(" ", indent) .. "|-" .. keyString .. ": " .. valueString)
 		end
 	end
 end
 
 function PrintAnything(thing)
 	if type(thing) ~= "table" then
-		print(thing)
+		logger.warn(thing)
 		return
 	end
 	PrintTableRecursive(thing)
