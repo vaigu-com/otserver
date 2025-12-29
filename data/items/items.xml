@@ -8449,8 +8449,8 @@
 		<attribute key="description" value="It's the magic Cyclopmania Sword"/>
 		<attribute key="weaponType" value="sword"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="attack" value="55"/>
-		<attribute key="defense" value="40"/>
+		<attribute key="attack" value="65"/>
+		<attribute key="defense" value="45"/>
 		<attribute key="weight" value="4300"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="140"/>
@@ -9259,7 +9259,6 @@
 	<item id="3331" article="a" name="ravager's axe">
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="15"/>
 		<attribute key="elementholy" value="3"/>
 		<attribute key="attack" value="49"/>
@@ -9483,8 +9482,8 @@
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="description" value="A scent of death and decay sticks to this weapon"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="attack" value="40"/>
-		<attribute key="extradef" value="2"/>
+		<attribute key="attack" value="45"/>
+		<attribute key="extradef" value="5"/>
 		<attribute key="defense" value="30"/>
 		<attribute key="weight" value="4100"/>
 		<attribute key="script" value="moveevent;weapon">
@@ -19865,13 +19864,11 @@
 	<item id="7409" article="a" name="northern star">
 		<attribute key="primarytype" value="club weapons"/>
 		<attribute key="weaponType" value="club"/>
-		<attribute key="absorbpercentice" value="5"/>
-		<attribute key="magiclevelpoints" value="1"/>
-        <attribute key="absorbpercentmanadrain" value="5"/>
-		<attribute key="elementice" value="3"/>
-		<attribute key="attack" value="42"/>
-		<attribute key="extradef" value="1"/>
-		<attribute key="defense" value="15"/>
+		<attribute key="absorbpercentice" value="8"/>
+        <attribute key="absorbpercentmanadrain" value="15"/>
+		<attribute key="elementice" value="4"/>
+		<attribute key="attack" value="41"/>
+		<attribute key="defense" value="25"/>
 		<attribute key="weight" value="4200"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="50"/>
@@ -19882,8 +19879,7 @@
 	</item>
 	<item id="7410" article="a" name="queen's sceptre">
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentholy" value="15"/>
+		<attribute key="absorbpercentholy" value="5"/>
         <attribute key="elementholy" value="3"/>
 		<attribute key="attack" value="43"/>
 		<attribute key="defense" value="19"/>
@@ -20088,12 +20084,11 @@
 	</item>
 	<item id="7420" article="a" name="reaper's axe">
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="10"/>
 		<attribute key="elementdeath" value="4"/>
 		<attribute key="attack" value="46"/>
-		<attribute key="extradef" value="2"/>
-		<attribute key="defense" value="25"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="28"/>
 		<attribute key="weight" value="5900"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="70"/>
@@ -20429,7 +20424,7 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammotype" value="arrow"/>
-		<attribute key="hitchance" value="3"/>
+		<attribute key="hitchance" value="2"/>
 		<attribute key="range" value="6"/>
 		<attribute key="weight" value="3900"/>
 		<attribute key="imbuementslot" value="3">
@@ -20502,7 +20497,9 @@
 	<item id="7450" article="a" name="hammer of prophecy">
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="attack" value="52"/>
+		<attribute key="attack" value="50"/>
+		<attribute key="elementice" value="4"/>
+		<attribute key="magiclevelpoints" value="1"/>
 		<attribute key="defense" value="35"/>
 		<attribute key="weight" value="11000"/>
 		<attribute key="script" value="moveevent;weapon">
@@ -20650,6 +20647,8 @@
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="description" value="It feels nice and warm on your ears"/>
 		<attribute key="armor" value="3"/>
+		<attribute key="absorbpercentice" value="8"/>
+		<attribute key="absorbpercentfire" value="-10"/>
 		<attribute key="weight" value="1800"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3"/>
@@ -22410,7 +22409,8 @@
 	<item id="8097" article="a" name="solar axe">
 		<attribute key="primarytype" value="axe weapons"/>
 		<attribute key="weaponType" value="axe"/>
-		<attribute key="attack" value="52"/>
+		<attribute key="attack" value="40"/>
+		<attribute key="elementfire" value="15"/>
 		<attribute key="extradef" value="3"/>
 		<attribute key="defense" value="29"/>
 		<attribute key="weight" value="11000"/>
@@ -22490,7 +22490,6 @@
 	<item id="8101" article="the" name="stomper">
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="5"/>
 		<attribute key="attack" value="51"/>
 		<attribute key="defense" value="28"/>
@@ -29129,7 +29128,6 @@
 	</item>
 	<item id="11688" article="a" name="shield of corruption">
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="skillsword" value="3"/>
 		<attribute key="defense" value="36"/>
 		<attribute key="weight" value="4900"/>
@@ -29176,7 +29174,6 @@
 	<item id="11691" article="a" name="snake god's wristguard">
 		<attribute key="description" value="It shows your spells and can also shield against attacks when worn"/>
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="10"/>
 		<attribute key="absorbpercentice" value="-20"/>
 		<attribute key="magiclevelpoints" value="3"/>
@@ -29190,7 +29187,6 @@
 	</item>
 	<item id="11692" article="a" name="snake god's sceptre">
 		<attribute key="weaponType" value="club"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="20"/>
 		<attribute key="absorbpercentice" value="-40"/>
 		<attribute key="elementearth" value="2"/>
@@ -29214,9 +29210,12 @@
 	</item>
 	<item id="11693" article="a" name="blade of corruption">
 		<attribute key="weaponType" value="sword"/>
-		<attribute key="attack" value="48"/>
+		<attribute key="elementdeath" value="22"/>
+		<attribute key="attack" value="28"/>
 		<attribute key="extradef" value="2"/>
 		<attribute key="defense" value="29"/>
+		<attribute key="absorbpercentholy" value="-30"/>
+		<attribute key="absorbpercentdeath" value="4"/>
 		<attribute key="weight" value="6400"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="elemental damage" value="3"/>
@@ -30611,7 +30610,7 @@
 		<attribute key="decayTo" value="0"/>
 	</item>
 	<item id="12599" article="a" name="mage's cap">
-		<attribute key="absorbpercentfire" value="4"/>
+		<attribute key="absorbpercentfire" value="14"/>
 		<attribute key="armor" value="3"/>
 		<attribute key="weight" value="1000"/>
 		<attribute key="script" value="moveevent">
@@ -32087,7 +32086,7 @@
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="description" value="Enables underwater exploration"/>
 		<attribute key="absorbpercentdrown" value="100"/>
-		<attribute key="armor" value="8"/>
+		<attribute key="armor" value="10"/>
 		<attribute key="weight" value="4600"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="150"/>
@@ -32097,7 +32096,7 @@
 	<item id="13996" article="a" name="depth ocrea">
 		<attribute key="primarytype" value="legs"/>
 		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentmanadrain" value="15"/>
+		<attribute key="absorbpercentmanadrain" value="25"/>
 		<attribute key="armor" value="8"/>
 		<attribute key="weight" value="4800"/>
 		<attribute key="script" value="moveevent">
@@ -32110,7 +32109,7 @@
 		<attribute key="primarytype" value="boots"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="5"/>
-		<attribute key="speed" value="-5"/>
+		<attribute key="speed" value="-10"/>
 		<attribute key="armor" value="3"/>
 		<attribute key="weight" value="3700"/>
 		<attribute key="imbuementslot" value="1"/>
@@ -32156,7 +32155,6 @@
 	<item id="14000" article="an" name="ornate shield">
 		<attribute key="primarytype" value="shields"/>
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentphysical" value="5"/>
 		<attribute key="defense" value="36"/>
 		<attribute key="weight" value="7100"/>
@@ -33035,7 +33033,6 @@
 	<item id="14769" article="a" name="spellbook of ancient arcana">
 		<attribute key="description" value="It shows your spells and can also shield against attacks when worn"/>
 		<attribute key="weaponType" value="spellbook"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentdeath" value="5"/>
 		<attribute key="magiclevelpoints" value="4"/>
 		<attribute key="defense" value="19"/>
@@ -34256,7 +34253,6 @@
 	<item id="16107" article="a" name="spellbook of vigilance">
 		<attribute key="description" value="It shows your spells and can also shield against attacks when worn"/>
 		<attribute key="weaponType" value="spellbook"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentpoison" value="3"/>
 		<attribute key="absorbpercentfire" value="-3"/>
 		<attribute key="magiclevelpoints" value="3"/>
@@ -34392,8 +34388,7 @@
 	<item id="16116" article="a" name="prismatic shield">
 		<attribute key="primarytype" value="shields"/>
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
-		<attribute key="absorbpercentphysical" value="4"/>
+		<attribute key="absorbpercentphysical" value="3"/>
 		<attribute key="skillshield" value="2"/>
 		<attribute key="defense" value="37"/>
 		<attribute key="weight" value="7200"/>
@@ -34694,9 +34689,9 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammotype" value="bolt"/>
-		<attribute key="hitchance" value="3"/>
+		<attribute key="hitchance" value="4"/>
 		<attribute key="range" value="6"/>
-		<attribute key="attack" value="4"/>
+		<attribute key="attack" value="5"/>
 		<attribute key="weight" value="8400"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="90"/>
@@ -39505,11 +39500,10 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammotype" value="bolt"/>
-		<attribute key="showAttributes" value="1"/>
-		<attribute key="hitchance" value="3"/>
+		<attribute key="hitchance" value="4"/>
 		<attribute key="range" value="5"/>
 		<attribute key="attack" value="3"/>
-		<attribute key="absorbpercentpoison" value="15"/>
+		<attribute key="absorbpercentearth" value="15"/>
 		<attribute key="weight" value="6200"/>
 		<attribute key="imbuementslot" value="3">
 			<attribute key="elemental damage" value="3"/>
@@ -39540,6 +39534,7 @@
 		<attribute key="primarytype" value="armors"/>
 		<attribute key="showAttributes" value="1"/>
 		<attribute key="armor" value="11"/>
+		<attribute key="magiclevelpoints" value="1"/>
 		<attribute key="weight" value="8400"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="life leech" value="3"/>
@@ -39573,7 +39568,7 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammotype" value="arrow"/>
-		<attribute key="showAttributes" value="1"/>
+		<attribute key="absorbpercentice" value="6"/>
 		<attribute key="hitchance" value="4"/>
 		<attribute key="range" value="6"/>
 		<attribute key="attack" value="1"/>
@@ -39593,7 +39588,6 @@
 	<item id="19363" article="a" name="runic ice shield">
 		<attribute key="primarytype" value="shields"/>
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentice" value="10"/>
 		<attribute key="defense" value="31"/>
 		<attribute key="weight" value="4900"/>
@@ -39649,7 +39643,6 @@
 	<item id="19373" article="a" name="haunted mirror piece">
 		<attribute key="primarytype" value="shields"/>
 		<attribute key="weaponType" value="shield"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentholy" value="20"/>
 		<attribute key="absorbpercentdeath" value="-30"/>
 		<attribute key="defense" value="34"/>
@@ -40351,9 +40344,9 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammotype" value="arrow"/>
-		<attribute key="hitchance" value="5"/>
+		<attribute key="hitchance" value="6"/>
 		<attribute key="range" value="7"/>
-		<attribute key="attack" value="2"/>
+		<attribute key="attack" value="3"/>
 		<attribute key="weight" value="5000"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="75"/>
@@ -43361,7 +43354,8 @@ My sad story is told by few living humans but many dead warriors"/>
 	</item>
 	<item id="21892" article="a" name="crest of the deep seas">
 		<attribute key="absorbpercentice" value="5"/>
-		<attribute key="speed" value="5"/>
+		<attribute key="absorbpercentdrown" value="25"/>
+		<attribute key="speed" value="10"/>
 		<attribute key="armor" value="7"/>
 		<attribute key="weight" value="4500"/>
 		<attribute key="script" value="moveevent">
@@ -45455,8 +45449,9 @@ Awarded by TibiaMisterios.com.br"/>
 		</attribute>
 	</item>
 	<item id="22757" article="a" name="shroud of despair">
-		<attribute key="armor" value="7"/>
-		<attribute key="absorbpercentdeath" value="3"/>
+		<attribute key="armor" value="8"/>
+		<attribute key="absorbpercentdeath" value="12"/>
+		<attribute key="absorbpercentholy" value="-22"/>
 		<attribute key="weight" value="3400"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="150"/>
@@ -45467,6 +45462,8 @@ Awarded by TibiaMisterios.com.br"/>
 		<attribute key="primarytype" value="shields"/>
 		<attribute key="weaponType" value="shield"/>
 		<attribute key="defense" value="38"/>
+		<attribute key="absorbpercentphysical" value="3"/>
+		<attribute key="absorbpercentholy" value="-10"/>
 		<attribute key="weight" value="7900"/>
 		<attribute key="imbuementslot" value="1">
 			<attribute key="elemental protection death" value="3"/>
@@ -45565,8 +45562,8 @@ Awarded by TibiaMisterios.com.br"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="65"/>
 			<attribute key="mana" value="17"/>
-			<attribute key="fromDamage" value="65"/>
-			<attribute key="toDamage" value="95"/>
+			<attribute key="fromDamage" value="115"/>
+			<attribute key="toDamage" value="175"/>
 			<attribute key="weaponType" value="wand"/>
 			<attribute key="wandType" value="energy"/>
 			<attribute key="vocation" value="Sorcerer;true, Master Sorcerer"/>
@@ -45577,7 +45574,7 @@ Awarded by TibiaMisterios.com.br"/>
 		<attribute key="description" value="It is made of platinum and emeralds and topped by a large F made of gold"/>
 		<attribute key="weaponType" value="wand"/>
 		<attribute key="shootType" value="energy"/>
-		<attribute key="magiclevelpoints" value="1"/>
+		<attribute key="magiclevelpoints" value="3"/>
 		<attribute key="duration" value="86400"/>
 		<attribute key="decayTo" value="22764"/>
 		<attribute key="range" value="4"/>
@@ -45585,8 +45582,8 @@ Awarded by TibiaMisterios.com.br"/>
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="level" value="100"/>
 			<attribute key="mana" value="19"/>
-			<attribute key="fromDamage" value="80"/>
-			<attribute key="toDamage" value="110"/>
+			<attribute key="fromDamage" value="130"/>
+			<attribute key="toDamage" value="190"/>
 			<attribute key="weaponType" value="wand"/>
 			<attribute key="wandType" value="energy"/>
 			<attribute key="vocation" value="Sorcerer;true, Master Sorcerer"/>
