@@ -449,7 +449,7 @@ maxMessageBuffer = 4
 emoteSpells = true
 allowWalkthrough = true
 coinPacketSize = 25
-coinImagesURL = "http://127.0.0.1/images/store/"
+coinImagesURL = "https://vaigu.com/images/store/"
 classicAttackSpeed = false
 showScriptsLogInConsole = false
 -- time to suppress negative conditions after being affected by them (ms)
