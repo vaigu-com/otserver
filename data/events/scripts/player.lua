@@ -653,12 +653,14 @@ function Player:onGainExperience(target, exp, rawExp)
 	end
 
 	-- Prey System
+	--[[
 	if configManager.getBoolean(configKeys.PREY_ENABLED) then
 		local monsterType = target:getType()
 		if monsterType and monsterType:raceId() > 0 then
 			exp = math.ceil((exp * self:getPreyExperiencePercentage(monsterType:raceId())) / 100)
 		end
 	end
+	]]
 
 	-- VIP Bonus Experience
 	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then

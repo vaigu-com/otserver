@@ -29,9 +29,9 @@ function callback.monsterOnDropLoot(monster, corpse)
 		table.insert(preyActivators, participant:getName())
 		preyChance = preyChance + participantChance
 	end
-	if #preyActivators > 0 then
+	if #preyActivators > 1 then
 		local numActivators = #preyActivators
-		preyChance = (preyChance / numActivators) ^ configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR)
+		preyChance = (preyChance / numActivators) * configManager.getFloat(configKeys.PARTY_SHARE_LOOT_BOOSTS_DIMINISHING_FACTOR)
 	end
 	if math.random(1, 100) > preyChance then
 		return
