@@ -59,25 +59,33 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 3,
+	maxSummons = 2,
 	summons = {
-		{ name = "skeleton mage", chance = 30, interval = 2000, count = 1 },
+		{ name = "skeleton mage", chance = 10, interval = 2000, count = 1 },
 	},
 }
 
 monster.loot = {
-	{ id = 8853, chance = 10000, maxCount = 1 },
+	{ id = 8853, chance = 50000, maxCount = 1 },
+	{ id = 12669, chance = 5000 },
+	{ id = 3081, chance = 10000 },
+	{ id = 5909, chance = 6000 },
+	{ id = 5910, chance = 6000 },
+	{ id = 5911, chance = 6000 },
+	{ id = 5912, chance = 6000 },
+	{ id = 5913, chance = 6000 },
+	{ id = 5914, chance = 6000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 2, maxDamage = -8 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 2, maxDamage = -18 },
 	{
 		name = "combat",
 		interval = 2000,
 		chance = 40,
 		type = COMBAT_LIFEDRAIN,
 		minDamage = 0,
-		maxDamage = -5,
+		maxDamage = -15,
 		length = 8,
 		spread = 0,
 		effect = CONST_ME_MAGIC_RED,
@@ -89,7 +97,7 @@ monster.attacks = {
 		chance = 50,
 		type = COMBAT_EARTHDAMAGE,
 		minDamage = -1,
-		maxDamage = -2,
+		maxDamage = -20,
 		radius = 6,
 		effect = CONST_ME_MAGIC_GREEN,
 		target = false,
@@ -100,7 +108,7 @@ monster.attacks = {
 		chance = 15,
 		type = COMBAT_ENERGYDAMAGE,
 		minDamage = -1,
-		maxDamage = -7,
+		maxDamage = -17,
 		range = 6,
 		length = 6,
 		spread = 7,

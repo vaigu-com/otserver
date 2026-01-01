@@ -684,6 +684,7 @@ JOB_SHOPS = {
 		},
 	},
 	[JOB_CREATURE_PRODUCT] = {
+		{ itemName = "draptor scales", clientId = 12309, sell = 800 },
 		{ itemName = "badger fur", clientId = 10299, sell = 15 },
 		{ itemName = "broken gladiator shield", clientId = 9656, sell = 190 },
 		{ itemName = "coal", clientId = 12600, sell = 20 },

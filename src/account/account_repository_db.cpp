@@ -75,10 +75,8 @@ void AccountRepositoryDB::flushNewDonationCoins(const uint32_t &id) {
 bool AccountRepositoryDB::save(const std::unique_ptr<AccountInfo> &accInfo) {
 	bool successful = g_database().executeQuery(
 		fmt::format(
-			"UPDATE `accounts` SET `type` = {}, `premdays` = {}, `lastday` = {}, `creation` = {}, `premdays_purchased` = {}, `house_bid_id` = {}, `coins` = {}, `coins_transferable` = {}, `tournament_coins` = {} WHERE `id` = {}",
+			"UPDATE `accounts` SET `type` = {}, `creation` = {}, `premdays_purchased` = {}, `house_bid_id` = {}, `coins` = {}, `coins_transferable` = {}, `tournament_coins` = {} WHERE `id` = {}",
 			accInfo->accountType,
-			accInfo->premiumRemainingDays,
-			accInfo->premiumLastDay,
 			accInfo->creationTime,
 			accInfo->premiumDaysPurchased,
 			accInfo->houseBidId,
