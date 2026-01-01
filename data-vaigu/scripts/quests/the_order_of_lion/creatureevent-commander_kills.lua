@@ -35,7 +35,7 @@ local usurperCommanderDeath = CreatureEvent("UsurperCommanderDeath")
 function usurperCommanderDeath.onPrepareDeath(creature)
 	-- Vaigu custom
 	do
-		return
+		return true
 	end
 
 	local totalCommanders = Game.getStorageValueByKey(Storage.TheOrderOfTheLion.Drume.TotalUsurperCommanders)

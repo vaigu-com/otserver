@@ -197,6 +197,7 @@ void IOBosstiary::addBosstiaryKill(const std::shared_ptr<Player> &player, const 
 	auto pointsForCurrentLevel = infoForCurrentRace[newBossLevel - 1].points;
 	player->addBossPoints(pointsForCurrentLevel);
 
+	/*
 	int32_t value = player->getStorageValueByKey(STORAGEVALUE_PODIUM);
 	if (value != 1 && newBossLevel == 2) {
 		auto returnValue = g_game().addItemStoreInbox(player, ITEM_PODIUM_OF_VIGOUR);
@@ -212,6 +213,7 @@ void IOBosstiary::addBosstiaryKill(const std::shared_ptr<Player> &player, const 
 
 		player->setStorageValueByKey(STORAGEVALUE_PODIUM, 1);
 	}
+	*/
 }
 
 uint16_t IOBosstiary::calculateLootBonus(uint32_t bossPoints) const {
