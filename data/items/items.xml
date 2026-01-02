@@ -2098,7 +2098,7 @@
 		<attribute key="weaponType" value="ammunition"/>
 		<attribute key="ammotype" value="arrow"/>
 		<attribute key="shootType" value="flammingarrow"/>
-		<attribute key="elementfire" value="14"/>
+		<attribute key="elementfire" value="28"/>
 		<attribute key="maxhitchance" value="91"/>
 		<attribute key="attack" value="14"/>
 		<attribute key="weight" value="70"/>
