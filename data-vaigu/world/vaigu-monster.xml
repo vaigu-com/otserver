@@ -16795,6 +16795,9 @@
 	<monster centerx="7637" centery="991" centerz="6" radius="1">
 		<monster name="Mercury Blob" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="7143" centery="992" centerz="6" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="6" spawntime="60" />
+	</monster>
 	<monster centerx="7148" centery="992" centerz="6" radius="1">
 		<monster name="Island Troll" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -16805,9 +16808,6 @@
 		<monster name="Mercury Blob" x="-1" y="0" z="6" spawntime="90" />
 		<monster name="Mercury Blob" x="0" y="0" z="6" spawntime="90" />
 		<monster name="Mercury Blob" x="-1" y="1" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="7140" centery="993" centerz="6" radius="1">
-		<monster name="Nomad Blue" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="7641" centery="993" centerz="6" radius="1">
 		<monster name="Mercury Blob" x="0" y="0" z="6" spawntime="90" />
@@ -33332,8 +33332,8 @@
 	<monster centerx="7100" centery="957" centerz="7" radius="1">
 		<monster name="Sandcrawler" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7114" centery="957" centerz="7" radius="1">
-		<monster name="Novice of the Cult" x="0" y="0" z="7" spawntime="90" />
+	<monster centerx="7113" centery="957" centerz="7" radius="1">
+		<monster name="Island Troll" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="6238" centery="958" centerz="7" radius="1">
 		<monster name="Carniphila" x="0" y="0" z="7" spawntime="90" />
@@ -34258,9 +34258,6 @@
 	</monster>
 	<monster centerx="6553" centery="996" centerz="7" radius="1">
 		<monster name="Skunk" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7198" centery="996" centerz="7" radius="1">
-		<monster name="Young Sea Serpent" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7211" centery="996" centerz="7" radius="1">
 		<monster name="Fish" x="0" y="0" z="7" spawntime="90" />
