@@ -2008,7 +2008,7 @@ ReturnValue Game::checkMoveItemToCylinder(const std::shared_ptr<Player> &player,
 			bool isValidMoveItem = false;
 			auto fromHouseTile = fromCylinder->getTile();
 			auto house = fromHouseTile ? fromHouseTile->getHouse() : nullptr;
-			if (house && house->getHouseAccessLevel(player) < HOUSE_OWNER) {
+			if (house && house->getHouseAccessLevel(player) < HOUSE_SUBOWNER) {
 				return RETURNVALUE_NOTPOSSIBLE;
 			}
 
@@ -2045,7 +2045,7 @@ ReturnValue Game::checkMoveItemToCylinder(const std::shared_ptr<Player> &player,
 		auto house = toHouseTile ? toHouseTile->getHouse() : nullptr;
 		if (fromCylinder->getContainer()) {
 			if (item->isStoreItem()) {
-				if (house && house->getHouseAccessLevel(player) < HOUSE_OWNER) {
+				if (house && house->getHouseAccessLevel(player) < HOUSE_SUBOWNER) {
 					return RETURNVALUE_NOTPOSSIBLE;
 				}
 			}
