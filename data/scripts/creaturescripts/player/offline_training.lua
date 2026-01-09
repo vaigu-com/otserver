@@ -1,136 +1,82 @@
-SECONDS_PER_MINUTE = 60
-SECONDS_PER_HOUR = 3600
-SECONDS_PER_DAY = 86400
-MAX_OFFLINE_TRAINING_DAYS = 21
-MIN_REQUIRED_OFFLINE_MINUTES = 10
-MAX_TRAINING_SECONDS = SECONDS_PER_DAY * 7
-
-local function getOfflineTimeSeconds(player)
-	local lastLogout = player:getLastLogout()
-	if lastLogout == 0 then
-		return 0
-	end
-	local elapsed = os.time() - lastLogout
-	local maxSeconds = SECONDS_PER_DAY * MAX_OFFLINE_TRAINING_DAYS
-	return math.min(elapsed, maxSeconds)
-end
-
-local function selectedAnySkill(player, offlineTimeSeconds)
-	if player:getOfflineTrainingSkill() == SKILL_NONE then
-		return false
-	end
-
-	player:addOfflineTrainingTime(offlineTimeSeconds * 1000)
-	return true
-end
-
-local function trainedForMinimumTime(offlineTimeSeconds)
-	if offlineTimeSeconds >= MIN_REQUIRED_OFFLINE_MINUTES * SECONDS_PER_MINUTE then
-		return true
-	end
-
-	return false
-end
-
-local function getTrainingTimeSeconds(player, offlineTimeSeconds)
-	local storedSeconds = player:getOfflineTrainingTime() / 1000
-	local cappedSeconds = math.min(MAX_TRAINING_SECONDS, storedSeconds)
-	return math.max(0, math.min(offlineTimeSeconds, cappedSeconds))
-end
-
-local function hasRemainingTrainingTime(trainingTimeSeconds)
-	return trainingTimeSeconds >= SECONDS_PER_MINUTE
-end
-
-local function buildDurationText(trainingTimeSeconds)
-	local hours = math.floor(trainingTimeSeconds / SECONDS_PER_HOUR)
-	local minutes = math.floor((trainingTimeSeconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE)
-	local parts = {}
-
-	if hours > 0 then
-		if hours == 1 then
-			table.insert(parts, T(":hours: hour", { hours = hours }))
-		else
-			table.insert(parts, T(":hours: hours", { hours = hours }))
-		end
-	end
-	if minutes > 0 then
-		if minutes == 1 then
-			table.insert(parts, T(":minutes: minute", { minutes = minutes }))
-		else
-			table.insert(parts, T(":minutes: minutes", { minutes = minutes }))
-		end
-	end
-
-	return T("During your absence you trained for :duration:.", {
-		duration = table.concat(parts, " "),
-	})
-end
-
-local function computeTrainingTries(player, trainingTimeSeconds, offlineTrainingSkill)
-	local vocation = player:getVocation()
-	local promotion = vocation:getPromotion()
-	local topVocation = promotion or vocation
-
-	if table.contains({ SKILL_CLUB, SKILL_SWORD, SKILL_AXE, SKILL_DISTANCE }, offlineTrainingSkill) then
-		local attackSeconds = topVocation:getBaseAttackSpeed() / 1000
-		local divisor = (offlineTrainingSkill == SKILL_DISTANCE) and 4 or 2
-		return (trainingTimeSeconds / attackSeconds) / divisor
-	end
-
-	if offlineTrainingSkill == SKILL_MAGLEVEL then
-		local ticks = topVocation:getManaGainTicks() / 1000
-		if ticks == 0 then
-			ticks = 1
-		end
-		return trainingTimeSeconds * (vocation:getManaGainAmount() / ticks)
-	end
-
-	return nil
-end
-
-local function applySkillTries(player, offlineTrainingSkill, trainingTimeSeconds)
-	local tries = computeTrainingTries(player, trainingTimeSeconds, offlineTrainingSkill)
-	if not tries then
-		return
-	end
-
-	local rate = configManager.getFloat(configKeys.RATE_OFFLINE_TRAINING_SPEED)
-	local updated = player:addOfflineTrainingTries(offlineTrainingSkill, tries * rate)
-
-	if updated then
-		player:addOfflineTrainingTries(SKILL_SHIELD, trainingTimeSeconds / 4)
-	end
-end
-
 local offlineTraining = CreatureEvent("OfflineTraining")
+
 function offlineTraining.onLogin(player)
-	local offlineTimeSeconds = getOfflineTimeSeconds(player)
-	local selectedSkill = player:getOfflineTrainingSkill()
-	if not selectedAnySkill(player, offlineTimeSeconds) then
+	local lastLogout = player:getLastLogout()
+	local offlineTime = lastLogout ~= 0 and math.min(os.time() - lastLogout, 86400 * 21) or 0
+	local offlineTrainingSkill = player:getOfflineTrainingSkill()
+	if offlineTrainingSkill == SKILL_NONE then
+		player:addOfflineTrainingTime(offlineTime * 1000)
 		return true
 	end
-	if not trainedForMinimumTime(offlineTimeSeconds) then
+
+	player:setOfflineTrainingSkill(SKILL_NONE)
+
+	if offlineTime < 600 then
 		player:sendTextMessage(MESSAGE_OFFLINE_TRAINING, "You must be logged out for more than 10 minutes to start offline training.")
 		return true
 	end
 
-	local trainingTimeSeconds = getTrainingTimeSeconds(player, offlineTimeSeconds)
-	player:setOfflineTrainingSkill(SKILL_NONE)
-	player:removeOfflineTrainingTime(trainingTimeSeconds * 1000)
+	local trainingTime = math.max(0, math.min(offlineTime, math.min(43200, player:getOfflineTrainingTime() / 1000)))
+	player:removeOfflineTrainingTime(trainingTime * 1000)
 
-	local remainderSeconds = offlineTimeSeconds - trainingTimeSeconds
-	if remainderSeconds > 0 then
-		player:addOfflineTrainingTime(remainderSeconds * 1000)
+	local remainder = offlineTime - trainingTime
+	if remainder > 0 then
+		player:addOfflineTrainingTime(remainder * 1000)
 	end
 
-	if not hasRemainingTrainingTime(trainingTimeSeconds) then
+	if trainingTime < 60 then
 		return true
 	end
 
-	player:sendTextMessage(MESSAGE_OFFLINE_TRAINING, buildDurationText(trainingTimeSeconds))
-	applySkillTries(player, selectedSkill, trainingTimeSeconds)
+	local text = "During your absence you trained for"
+	local hours = math.floor(trainingTime / 3600)
+	if hours > 1 then
+		text = string.format("%s %d hours", text, hours)
+	elseif hours == 1 then
+		text = string.format("%s 1 hour", text)
+	end
 
+	local minutes = math.floor((trainingTime % 3600) / 60)
+	if minutes ~= 0 then
+		if hours ~= 0 then
+			text = string.format("%s and", text)
+		end
+
+		if minutes > 1 then
+			text = string.format("%s %d minutes", text, minutes)
+		else
+			text = string.format("%s 1 minute", text)
+		end
+	end
+
+	text = string.format("%s.", text)
+	player:sendTextMessage(MESSAGE_OFFLINE_TRAINING, text)
+
+	local vocation = player:getVocation()
+	local promotion = vocation:getPromotion()
+	local topVocation = not promotion and vocation or promotion
+
+	local tries = nil
+	if table.contains({ SKILL_CLUB, SKILL_SWORD, SKILL_AXE, SKILL_DISTANCE }, offlineTrainingSkill) then
+		local modifier = topVocation:getBaseAttackSpeed() / 1000
+		tries = (trainingTime / modifier) / (offlineTrainingSkill == SKILL_DISTANCE and 4 or 2)
+	elseif offlineTrainingSkill == SKILL_MAGLEVEL then
+		local gainTicks = topVocation:getManaGainTicks() / 1000
+		if gainTicks == 0 then
+			gainTicks = 1
+		end
+
+		tries = trainingTime * (vocation:getManaGainAmount() / gainTicks)
+	end
+
+	local updateSkills = false
+	if tries then
+		updateSkills = player:addOfflineTrainingTries(offlineTrainingSkill, tries * configManager.getFloat(configKeys.RATE_OFFLINE_TRAINING_SPEED))
+	end
+
+	if updateSkills then
+		player:addOfflineTrainingTries(SKILL_SHIELD, trainingTime / 4)
+	end
 	return true
 end
 
