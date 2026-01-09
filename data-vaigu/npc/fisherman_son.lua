@@ -83,6 +83,7 @@ local customDialogs = {
 local context = {
 	name = name,
 	outfit = outfit,
+	jobs = { JOB_FISHER },
 	customDialogs = customDialogs,
 	voices = voices,
 	checkInteraction = false,

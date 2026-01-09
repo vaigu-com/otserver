@@ -56,7 +56,7 @@ return {
 	["TRANSFER_OK"] = function(context)
 		local amount = PlayerCustomDialogDataRegistry:Get(context.player).amount
 		local recipient = PlayerCustomDialogDataRegistry:Get(context.player).recipient
-		return T("Very well. You have transferred :amount: gold to :recipient.", { amount = amount, recipient = recipient })
+		return T("Very well. You have transferred :amount: gold to :recipient:.", { amount = amount, recipient = recipient })
 	end,
 
 	["You do not have enough gold."] = "You do not have enough gold.",

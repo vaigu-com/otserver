@@ -672,7 +672,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 				Getting liquid silver out of the mountain needs concentration and a steady hand."
 			)
 		end
-	elseif target:getActionId() == 60000 then
+	elseif target.actionid == 60000 then
 		--The Ice Islands Quest, Nibelor 1: Breaking the Ice
 		local missionProgress = player:getStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.Mission02)
 		local pickAmount = player:getStorageValueByKey(Storage.Quest.U8_0.TheIceIslands.PickAmount)
@@ -918,7 +918,7 @@ function onUseCrowbar(player, item, fromPosition, target, toPosition, isHotkey)
 				player:setStorageValueByKey(Storage.Quest.U7_24.ThePostmanMissions.Mission02, 2)
 				toPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			end
-		elseif target:getActionId() == 40041 and target.itemid == 4848 then
+		elseif target.actionid == 40041 and target.itemid == 4848 then
 			-- The ape city - mission 7
 			local apeCityStorage = player:getStorageValueByKey(Storage.Quest.U7_6.TheApeCity.Casks)
 			if apeCityStorage < 3 then

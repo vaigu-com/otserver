@@ -208,10 +208,24 @@ quest
 				},
 			}),
 			QuestFactory.Script(function(missionState)
+				local chairPos = Position(5685, 1408, 7)
+				local chairIndicator = MoveEvent()
+				function chairIndicator.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
+					if not player:isPlayer() then
+						return false
+					end
+
+					if player:getStorageValueByKey(Storage.AssassinsCreedSquurvaali.Mission01) ~= MISSION_NOT_STARTED then
+						return false
+					end
+
+					player:sendMagicEffect(chairPos, CONST_ME_GHOST_SMOKE)
+				end
+				chairIndicator:key(Storage.AssassinsCreedSquurvaali.IndicateChair)
+				chairIndicator:register()
+
 				local princess = { name = "Ghasstly Princess", pos = { x = 5682, y = 1408, z = 7 } }
-
 				local chairIn = MoveEvent()
-
 				function chairIn.onStepIn(player, item, fromPosition, target, toPosition, isHotkey)
 					if not player:isPlayer() then
 						return false
@@ -229,7 +243,6 @@ quest
 						Game.createNpc(princess.name, princess.pos)
 					end
 				end
-
 				chairIn:key(Storage.AssassinsCreedSquurvaali.GhostChair)
 				chairIn:register()
 
@@ -265,7 +278,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
 			QuestFactory.Dialog("Oldrak", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I understand. You need to go to the Caribbean Island, and from there, from the highest mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
 				},
 				[{ "poleciec", "fly" }] = {
@@ -301,7 +314,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission02.FindMareesha,
 			QuestFactory.Dialog("Mareesha", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Magic carpets? What nonsense. If you want, I can {sew} the green carpet you're talking about, but don't expect any magical abilities.",
 				},
 				[{ "tailor", "uszyc", "sew" }] = {
@@ -320,7 +333,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Ryan", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I knew you were a thief, come out, Tomek! |PLAYERNAME|, I will need your help in the ritual to expel this thief. In return, I will help you recover the stolen item. And now, we begin: It's all your fault. The {Rat King} will decide your fate!",
 					specialActionsOnSuccess = {
 						{
@@ -438,7 +451,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission03.FindWafers,
 			QuestFactory.Dialog("Lambor", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Some time ago, I heard rumors about smuggling silicon wafers. High-ranked heroes and some god raiders were involved in the whole operation. Perhaps the best way to find the smuggling location and thus the warehouse for the goods is to penetrate their structure. To infiltrate their gang, you will have to live among them for weeks, months, years! When they trust you completely, you will be able to learn the storage location... Or you can hack their GPS, just like I did a moment ago. The interesting bit for me is in the underground, where heroes, god raiders, and their pets - bone beasts - have settled. If I believe the readings, it's the same cave where the black knight quest is, but I can't be a hundred percent sure.",
 				},
 			}),
@@ -456,7 +469,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission03.ReturnWafersToLambor,
 			QuestFactory.Dialog("Lambor", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thanks for your help. Now I will handle your request. I will need 5 dead weights to enchant your carpet. I will place them all on the carpet, which should result in overflow, and the carpet's weight should become negative. Return when you have 5 pieces of dead weight.",
 					requiredItems = { QuestKeyItems.AssassinsCreedSquurvaali.SiliconWafersForLambor },
 					textNoRequiredItems = "Did you lose a bag somewhere? Well...",
@@ -469,7 +482,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission03.BringDeadweightsToLambor,
 			QuestFactory.Dialog("Lambor", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Please take this carpet. Remember that the flying function only works in specific places, namely on the peaks of the highest mountains. One of these peaks is surely in the Caribbean.",
 					requiredItems = { { id = 20202, count = 5 } },
 					nextState = {
@@ -485,7 +498,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission04.GoToHighestMountain,
 			QuestFactory.Dialog("Ghasstly Princess", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "You managed to get the carpet! Now try to go to the top of the mountain that the djinn mentioned. It's my only hope.",
 				},
 			}),
@@ -521,7 +534,7 @@ quest
 				path:register()
 			end),
 			QuestFactory.Dialog("Aunor", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "As for an ordinary person, it's a great effort and sacrifice for someone you didn't even know. Know that your deeds have been noticed. From now on, we will patrol the land much more closely to find lost souls. Please, take this magical flare. Use the flare at the entrance to the Ghasstly Princess' cave. We will take care of delivering it to us. Meanwhile, unfortunately, I will have to close the heavenly road for you. When your time comes, it will be reopened. I will be {seeing}, adventurer.",
 				},
 				[{ "seeing", "zegnaj" }] = {
@@ -542,7 +555,7 @@ quest
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare,
 			QuestFactory.Dialog("Ghasstly Princess", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "You should fire the flare outside, not inside, silly.",
 				},
 			}),

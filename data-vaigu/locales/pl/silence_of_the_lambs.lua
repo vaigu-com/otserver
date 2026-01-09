@@ -17,7 +17,7 @@ return {
 	["Ask Lecter for a new mission."] = "Zapytaj Lectera o nowa misje.",
 	["In exchange for your help, Lecter bestowed you with his old soul-extraction tool."] = "W zamian za wykazanie sie, Lecter podarowal ci stary przyrzad do wyciagania dusz.",
 	["Fashionable clothes"] = "Modne ubrania",
-	["Lecter asked you to bring him 20 leathers of every kind."] = "Lecter poprosil cie o przyniesienie po 20 skor kazdego rodzaju.",
+	["Lecter asked you to bring him 2 leathers of every kind."] = "Lecter poprosil cie o przyniesienie po 2 skory kazdego rodzaju.",
 	["For your help you have been taught how to skin human carcass."] = "W zamian za pomoc w zdobyciu materialow do szycia, nauczyl cie skorowac ludzi.",
 	["Rub Meat With Lecter"] = "Gotuj z Lecterem",
 	["Lecter wants you to hoard 15 human hearts. He needs them for his cannibals party."] = "Lecter prosi cie o uzbieranie 15 serc ludzkich na impreze kanibali.",

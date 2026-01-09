@@ -824,14 +824,18 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 		end
 	end
 
+	local runeReward = { { id = conjureId, count = conjureCount } }
+	if not self:CanAddItems(runeReward) then
+		return false
+	end
+
 	if reagentId ~= 0 and not self:removeItem(reagentId, 1, -1) then
 		self:sendCancelMessage(RETURNVALUE_YOUNEEDAMAGICITEMTOCASTSPELL)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false
 	end
 
-	local success = self:AddCustomItem({ id = conjureId, count = conjureCount })
-	if not success then
+	if not self:TryAddItems(runeReward) then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false

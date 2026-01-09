@@ -686,7 +686,7 @@ void Game::setGameState(GameState_t newState) {
 		}
 
 		case GAME_STATE_SHUTDOWN: {
-			g_globalEvents().save();
+			// g_globalEvents().save();
 			g_globalEvents().shutdown();
 
 			// kick all players that are still online
@@ -695,27 +695,26 @@ void Game::setGameState(GameState_t newState) {
 				player->removePlayer(true);
 			}
 			saveMotdNum();
-			g_saveManager().saveAll();
+			// g_saveManager().saveAll();
 
-			g_dispatcher().addEvent([this] { shutdown(); }, __FUNCTION__);
+			g_dispatcher().scheduleEvent(3000, [this] { shutdown(); }, __FUNCTION__);
 			break;
 		}
 
 		case GAME_STATE_CLOSED: {
-			g_globalEvents().save();
+			// g_globalEvents().save();
 
 			/* kick all players without the CanAlwaysLogin flag */
-			auto it = players.begin();
-			while (it != players.end()) {
+			for (auto it = players.begin(); it != players.end();) {
 				if (!it->second->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
 					it->second->removePlayer(true);
-					it = players.begin();
+					it = players.erase(it); // safely remove and get next iterator
 				} else {
 					++it;
 				}
 			}
 
-			g_saveManager().saveAll();
+			// g_saveManager().saveAll();
 			break;
 		}
 
@@ -2009,7 +2008,7 @@ ReturnValue Game::checkMoveItemToCylinder(const std::shared_ptr<Player> &player,
 			bool isValidMoveItem = false;
 			auto fromHouseTile = fromCylinder->getTile();
 			auto house = fromHouseTile ? fromHouseTile->getHouse() : nullptr;
-			if (house && house->getHouseAccessLevel(player) < HOUSE_OWNER) {
+			if (house && house->getHouseAccessLevel(player) < HOUSE_SUBOWNER) {
 				return RETURNVALUE_NOTPOSSIBLE;
 			}
 
@@ -2046,7 +2045,7 @@ ReturnValue Game::checkMoveItemToCylinder(const std::shared_ptr<Player> &player,
 		auto house = toHouseTile ? toHouseTile->getHouse() : nullptr;
 		if (fromCylinder->getContainer()) {
 			if (item->isStoreItem()) {
-				if (house && house->getHouseAccessLevel(player) < HOUSE_OWNER) {
+				if (house && house->getHouseAccessLevel(player) < HOUSE_SUBOWNER) {
 					return RETURNVALUE_NOTPOSSIBLE;
 				}
 			}
@@ -4885,6 +4884,16 @@ void Game::playerStowItem(uint32_t playerId, const Position &pos, uint16_t itemI
 	}
 
 	if (pos.x != 0xFFFF && !Position::areInRange<1, 1, 0>(pos, player->getPosition())) {
+		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
+		return;
+	}
+
+	if (item->getTopParent() == player->getStoreInbox()) {
+		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
+		return;
+	}
+
+	if (!item->getAttribute<std::string>(ItemAttribute_t::KEY).empty()) {
 		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
 		return;
 	}
@@ -9200,10 +9209,10 @@ void Game::playerNpcGreet(uint32_t playerId, uint32_t npcId) {
 
 	auto npcsSpectators = spectators.filter<Npc>();
 
-	if (npc->getSpeechBubble() == SPEECHBUBBLE_TRADE) {
-		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "trade", false, &npcsSpectators);
-	} else if (npc->isTransportNpc()) {
+	if (npc->isTransportNpc()) {
 		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "travel", false, &npcsSpectators);
+	} else if (npc->getSpeechBubble() == SPEECHBUBBLE_TRADE) {
+		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "trade", false, &npcsSpectators);
 	}
 
 	player->updateUIExhausted();
@@ -9537,57 +9546,6 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		return;
 	}
 
-	const auto &playerInbox = player->getInbox();
-	if (offer.marketAction == CANCEL_SELL) {
-		player->setBankBalance(player->getBankBalance() + offer.price * offer.amount);
-		g_metrics().addCounter("balance_decrease", offer.price * offer.amount, { { "player", player->getName() }, { "context", "market_purchase" } });
-		// Send market window again for update stats
-		player->sendMarketEnter(player->getLastDepotId());
-	} else if (offer.marketAction == CANCEL_BUY) {
-		const ItemType &it = Item::items[offer.itemId];
-		if (it.id == 0) {
-			return;
-		}
-
-		if (it.id == ITEM_STORE_COIN) {
-			// Do not register a transaction for coins upon cancellation
-			player->getAccount()->addCoins(CoinType::Transferable, offer.amount, "");
-		} else if (it.stackable) {
-			uint16_t tmpAmount = offer.amount;
-
-			while (tmpAmount > 0) {
-				int32_t stackCount = std::min<int32_t>(it.stackSize, tmpAmount);
-				const auto &item = Item::CreateItem(it.id, stackCount);
-				if (internalAddItem(playerInbox, item, INDEX_WHEREEVER, FLAG_NOLIMIT) != RETURNVALUE_NOERROR) {
-					break;
-				}
-
-				if (offer.tier > 0) {
-					item->setAttribute(ItemAttribute_t::TIER, offer.tier);
-				}
-
-				tmpAmount -= stackCount;
-			}
-		} else {
-			int32_t subType;
-			if (it.charges != 0) {
-				subType = it.charges;
-			} else {
-				subType = -1;
-			}
-
-			for (uint16_t i = 0; i < offer.amount; ++i) {
-				const auto &item = Item::CreateItem(it.id, subType);
-				if (internalAddItem(playerInbox, item, INDEX_WHEREEVER, FLAG_NOLIMIT) != RETURNVALUE_NOERROR) {
-					break;
-				}
-
-				if (offer.tier > 0) {
-					item->setAttribute(ItemAttribute_t::TIER, offer.tier);
-				}
-			}
-		}
-	}
 
 	g_iomarket().cancelAndAppendToHistory(offer);
 
@@ -11245,6 +11203,10 @@ void Game::updatePlayersOnline(const phmap::parallel_flat_hash_map<uint32_t, std
 		// Insert the current players
 		DBInsert stmt("INSERT IGNORE INTO `players_online` (player_id) VALUES ");
 		for (const auto &[key, player] : m_players) {
+			auto group = player->getGroup();
+			if (!group || group->id != 1) {
+				continue;
+			}
 			std::ostringstream playerQuery;
 			playerQuery << "(" << player->getGUID() << ")";
 			stmt.addRow(playerQuery.str());
@@ -11700,4 +11662,16 @@ bool Game::processBankAuction(std::shared_ptr<Player> player, const std::shared_
 	}
 
 	return true;
+}
+
+void Game::clearJustLoggedOutPlayerNames() {
+	justLoggedOutPlayerNames.clear();
+}
+
+void Game::addJustLoggedOutPlayerName(const std::string &name) {
+	justLoggedOutPlayerNames.insert(name);
+}
+
+bool Game::isMarkedAsJustLoggedOut(const std::string &name) const {
+	return justLoggedOutPlayerNames.find(name) != justLoggedOutPlayerNames.end();
 }

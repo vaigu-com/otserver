@@ -696,12 +696,12 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Turdstin lives in the slums, Mirko. His life professions include homelessness, MGTOW, collecting cans, and being an insurance agent.",
 				},
 			}),
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Good day person |PLAYERNAME|. We are here to {discuss} compensation claims related to the 'accident' in which Mr. HF-P/X was injured.",
 				},
 				[{ "omowic", "discuss" }] = {
@@ -718,7 +718,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission01.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Well, hes just the smartest person in the world. Okay, let's not waste any more time. After HF-P/X's death, a time-delayed mechanism was activated, which opened a portal to the past. Now immigrants are flooding in from everywhere. Go to the portal in Knurow and head to the Knurow of the past. Find someone there who will help you with the task of stopping the influx of immigrants.",
 					nextState = {
 						[Storage.FourActTragedy.Mission01] = MISSION_FINISHED,
@@ -732,7 +732,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.FindSomeoneInKnurow,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I told you to use the portal in Knurow, although I don't remember exactly where it was located. Something tells me it was somewhere along the shore...",
 				},
 			}),
@@ -742,7 +742,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Timmy", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "It seems I got lost in the corridors of time. I have vague memories from the future that I am a bouncer in my hometown. I think I could help you with the immigrant influx, but first, I need to reconcile with my present self. Find my equipment stolen by bandits, and I will help you.",
 					nextState = {
 						[Storage.FourActTragedy.Mission02] = QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
@@ -794,7 +794,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.FindTimmyEquipment,
 			QuestFactory.Dialog("Timmy", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I don't know where they moved my stuff to.",
 				},
 			}),
@@ -852,7 +852,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.ReturnEquipmentToTimmy,
 			QuestFactory.Dialog("Timmy", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thank you, that's mine. Okay, now I'm going back to the {present}!",
 					requiredItems = {
 						QuestKeyItems.FourActTragedy.TimmyBag,
@@ -892,7 +892,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission02.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "So, it's Rat Bum. Hmm, but in the memes, it said that Rat Bum can't do anything. I know his origin. I would like to tell you where to find him, but currently he is protected by a narrative armor. So, I suggest you go get some beer at Lewiatan now.",
 					nextState = {
 						[Storage.FourActTragedy.Mission02] = MISSION_FINISHED,
@@ -1018,7 +1018,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission03.FindAndKillLewiatan,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "If you don't know where to find the nearest Lewiatan, ask Christopher Columbus.",
 				},
 			}),
@@ -1418,7 +1418,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission03.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "But I wasn't talking about some monster, just that shop on the corner. During that time, I went to Walmart to get heineken because I couldn't wait for you. Now, back to the point. I recalled this old story: people from the northeast whisper about certain {slippers} that Rat Bum nibbled on. They say he tried to steal them from his Master, who, under the influence of slippers, descended into the abyss of corruption. The prophecy was funded by the Ministry of State Security of the People's Republic of China.",
 				},
 				[{ "slippers", "kapciach" }] = {
@@ -1433,7 +1433,7 @@ quest
 	:Mission(Storage.FourActTragedy.Mission04)
 	:State(function()
 		return QuestState.FourActTragedy.Mission04.FindBribeslippers,
-			QuestFactory.Dialog("GM Romek", { [{ "mission" }] = {
+			QuestFactory.Dialog("GM Romek", { [{ "mission", "misja" }] = {
 				text = "Ruins are located in the northern part of Kongo",
 			} }),
 			QuestFactory.OnUseDeclarations({
@@ -1490,7 +1490,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission04.BringSlippersToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Did you find anything about slippers owner?",
 				},
 				[{
@@ -1675,7 +1675,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission04.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Grazhena Core? Hmm... My mother Xena once belonged to a rural housewives club. Ask her if she knows more about this object. She is the leader of the feminists. Maybe you've already met her.",
 					requiredItems = {
 						QuestKeyItems.FourActTragedy.GrazynaCore,
@@ -1726,7 +1726,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission05.KillRatBum,
 			QuestFactory.Dialog("Grazhena", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Cave entrance is here. Im gonna wait outside.",
 				},
 			}),
@@ -1855,7 +1855,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission05.ReportToRomek,
 			QuestFactory.Dialog("Grazhena", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I'll now return to the village and meet my friends from my club. Thank you for your help.",
 				},
 				[{ GREET }] = {

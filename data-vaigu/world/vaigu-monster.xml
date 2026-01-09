@@ -6490,17 +6490,34 @@
 	<monster centerx="7725" centery="1369" centerz="4" radius="1">
 		<monster name="Orc Berserker" x="0" y="0" z="4" spawntime="90" />
 	</monster>
+	<monster centerx="5640" centery="1370" centerz="4" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="4" spawntime="90" />
+		<monster name="Juvenile Bashmu" x="1" y="0" z="4" spawntime="90" />
+	</monster>
 	<monster centerx="5897" centery="1371" centerz="4" radius="1">
 		<monster name="Dragon Lord Hatchling" x="0" y="0" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="6314" centery="1371" centerz="4" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="4" spawntime="90" />
 	</monster>
+	<monster centerx="5641" centery="1372" centerz="4" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="4" spawntime="90" />
+		<monster name="Bashmu" x="1" y="0" z="4" spawntime="90" />
+	</monster>
+	<monster centerx="5643" centery="1372" centerz="4" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="4" spawntime="90" />
+	</monster>
 	<monster centerx="6317" centery="1373" centerz="4" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="6327" centery="1373" centerz="4" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="4" spawntime="90" />
+	</monster>
+	<monster centerx="5640" centery="1374" centerz="4" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="4" spawntime="90" />
+	</monster>
+	<monster centerx="5642" centery="1374" centerz="4" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="4" spawntime="90" />
 	</monster>
 	<monster centerx="6307" centery="1374" centerz="4" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="4" spawntime="90" />
@@ -12030,6 +12047,9 @@
 	<monster centerx="6336" centery="1330" centerz="5" radius="1">
 		<monster name="Pirate Buccaneer" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5573" centery="1331" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6119" centery="1332" centerz="5" radius="1">
 		<monster name="Crawler" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -12039,6 +12059,15 @@
 	<monster centerx="6149" centery="1332" centerz="5" radius="1">
 		<monster name="Waspoid" x="1" y="-1" z="5" spawntime="90" />
 		<monster name="Waspoid" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5562" centery="1333" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5565" centery="1333" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5571" centery="1333" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6130" centery="1333" centerz="5" radius="1">
 		<monster name="Spitter" x="0" y="0" z="5" spawntime="90" />
@@ -12068,17 +12097,51 @@
 	<monster centerx="7640" centery="1336" centerz="5" radius="1">
 		<monster name="Crypt Defiler" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5572" centery="1337" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="7413" centery="1339" centerz="5" radius="1">
 		<monster name="Werehyaena Shaman" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5587" centery="1340" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5572" centery="1341" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6031" centery="1341" centerz="5" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5588" centery="1342" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5599" centery="1342" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="7415" centery="1342" centerz="5" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5573" centery="1343" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5579" centery="1343" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5584" centery="1343" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="-1" y="0" z="5" spawntime="90" />
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5591" centery="1343" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5600" centery="1344" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="7653" centery="1345" centerz="5" radius="1">
 		<monster name="Braindeath" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5576" centery="1346" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6030" centery="1347" centerz="5" radius="1">
 		<monster name="Dark Magician" x="0" y="0" z="5" spawntime="90" />
@@ -12118,11 +12181,20 @@
 	<monster centerx="7411" centery="1349" centerz="5" radius="1">
 		<monster name="Werehyaena Shaman" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5605" centery="1350" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="5880" centery="1351" centerz="5" radius="1">
 		<monster name="Dragon" x="0" y="1" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5610" centery="1352" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="7466" centery="1352" centerz="5" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5602" centery="1353" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="5898" centery="1353" centerz="5" radius="1">
 		<monster name="Dragon" x="0" y="0" z="5" spawntime="90" />
@@ -12132,6 +12204,9 @@
 	</monster>
 	<monster centerx="7413" centery="1353" centerz="5" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5611" centery="1354" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6149" centery="1354" centerz="5" radius="3">
 		<monster name="Spitter" x="1" y="-2" z="5" spawntime="90" />
@@ -12147,6 +12222,9 @@
 		<monster name="Spitter" x="-3" y="-2" z="5" spawntime="90" />
 		<monster name="Crawler" x="-3" y="3" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5595" centery="1355" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6026" centery="1355" centerz="5" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -12155,6 +12233,12 @@
 	</monster>
 	<monster centerx="7617" centery="1355" centerz="5" radius="1">
 		<monster name="Grave Robber" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5597" centery="1356" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5599" centery="1356" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6038" centery="1356" centerz="5" radius="1">
 		<monster name="Dark Apprentice" x="-1" y="-1" z="5" spawntime="90" />
@@ -12249,6 +12333,9 @@
 	<monster centerx="7436" centery="1365" centerz="5" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5572" centery="1367" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="5889" centery="1367" centerz="5" radius="1">
 		<monster name="Dragon" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -12260,6 +12347,9 @@
 	</monster>
 	<monster centerx="6839" centery="1367" centerz="5" radius="1">
 		<monster name="Hyaena" x="-1" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5582" centery="1368" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6156" centery="1368" centerz="5" radius="3">
 		<monster name="Crawler" x="2" y="-2" z="5" spawntime="90" />
@@ -12282,9 +12372,8 @@
 	<monster centerx="7763" centery="1368" centerz="5" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="5" spawntime="90" />
 	</monster>
-	<monster centerx="5639" centery="1369" centerz="5" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
-		<monster name="Juvenile Bashmu" x="1" y="0" z="5" spawntime="90" />
+	<monster centerx="5579" centery="1369" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="5876" centery="1369" centerz="5" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="5" spawntime="90" />
@@ -12298,18 +12387,20 @@
 	<monster centerx="6243" centery="1369" centerz="5" radius="1">
 		<monster name="White Shade" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5570" centery="1370" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5634" centery="1370" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6300" centery="1370" centerz="5" radius="1">
 		<monster name="Pirat Scoundrel" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="7724" centery="1370" centerz="5" radius="1">
 		<monster name="Orc" x="0" y="0" z="5" spawntime="90" />
 	</monster>
-	<monster centerx="5640" centery="1371" centerz="5" radius="1">
+	<monster centerx="5641" centery="1371" centerz="5" radius="1">
 		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
-		<monster name="Bashmu" x="1" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="5642" centery="1371" centerz="5" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="5896" centery="1371" centerz="5" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="5" spawntime="90" />
@@ -12323,10 +12414,7 @@
 	<monster centerx="6467" centery="1372" centerz="5" radius="1">
 		<monster name="Exotic Bat" x="0" y="0" z="5" spawntime="90" />
 	</monster>
-	<monster centerx="5639" centery="1373" centerz="5" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
-	</monster>
-	<monster centerx="5641" centery="1373" centerz="5" radius="1">
+	<monster centerx="5640" centery="1373" centerz="5" radius="1">
 		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6303" centery="1373" centerz="5" radius="1">
@@ -12338,15 +12426,34 @@
 	<monster centerx="6472" centery="1373" centerz="5" radius="1">
 		<monster name="Exotic Bat" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5569" centery="1374" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="-1" z="5" spawntime="90" />
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5636" centery="1374" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="5928" centery="1374" centerz="5" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5642" centery="1375" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6185" centery="1375" centerz="5" radius="1">
 		<monster name="White Shade" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5613" centery="1376" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6326" centery="1376" centerz="5" radius="1">
 		<monster name="Pirat Cutthroat" x="-1" y="-1" z="5" spawntime="90" />
 		<monster name="Pirat Mate" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5568" centery="1377" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5600" centery="1377" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="5880" centery="1377" centerz="5" radius="1">
 		<monster name="Dragon" x="0" y="0" z="5" spawntime="90" />
@@ -12402,17 +12509,26 @@
 	<monster centerx="7356" centery="1383" centerz="5" radius="1">
 		<monster name="Stone Rhino" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5635" centery="1384" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6286" centery="1384" centerz="5" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6896" centery="1385" centerz="5" radius="1">
 		<monster name="Pirate Cutthroat" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5567" centery="1386" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6168" centery="1386" centerz="5" radius="1">
 		<monster name="White Shade" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="7363" centery="1386" centerz="5" radius="1">
 		<monster name="Parder" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5569" centery="1387" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6172" centery="1387" centerz="5" radius="1">
 		<monster name="White Shade" x="0" y="0" z="5" spawntime="90" />
@@ -12437,6 +12553,12 @@
 	</monster>
 	<monster centerx="7267" centery="1388" centerz="5" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5565" centery="1389" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5614" centery="1389" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6171" centery="1389" centerz="5" radius="1">
 		<monster name="White Shade" x="0" y="0" z="5" spawntime="90" />
@@ -12469,6 +12591,9 @@
 	<monster centerx="7779" centery="1391" centerz="5" radius="1">
 		<monster name="Orc" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5588" centery="1392" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6082" centery="1392" centerz="5" radius="1">
 		<monster name="Bandit" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -12493,6 +12618,9 @@
 	<monster centerx="6829" centery="1395" centerz="5" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5646" centery="1396" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6073" centery="1396" centerz="5" radius="1">
 		<monster name="Smuggler" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -12502,6 +12630,9 @@
 	<monster centerx="7365" centery="1396" centerz="5" radius="1">
 		<monster name="Stone Rhino" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5599" centery="1398" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="6303" centery="1398" centerz="5" radius="1">
 		<monster name="Pirat Scoundrel" x="0" y="0" z="5" spawntime="90" />
 	</monster>
@@ -12510,6 +12641,9 @@
 	</monster>
 	<monster centerx="6303" centery="1400" centerz="5" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5582" centery="1402" centerz="5" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="7355" centery="1402" centerz="5" radius="1">
 		<monster name="Stone Rhino" x="0" y="0" z="5" spawntime="90" />
@@ -12523,11 +12657,17 @@
 	<monster centerx="7348" centery="1404" centerz="5" radius="1">
 		<monster name="Parder" x="0" y="0" z="5" spawntime="90" />
 	</monster>
+	<monster centerx="5591" centery="1405" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
+	</monster>
 	<monster centerx="7515" centery="1405" centerz="5" radius="1">
 		<monster name="Cave Parrot" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="7361" centery="1409" centerz="5" radius="1">
 		<monster name="Stone Rhino" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5606" centery="1410" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6109" centery="1410" centerz="5" radius="1">
 		<monster name="Hero" x="0" y="0" z="5" spawntime="90" />
@@ -12537,6 +12677,9 @@
 	</monster>
 	<monster centerx="7676" centery="1414" centerz="5" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="5" spawntime="90" />
+	</monster>
+	<monster centerx="5644" centery="1415" centerz="5" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="5" spawntime="90" />
 	</monster>
 	<monster centerx="6842" centery="1415" centerz="5" radius="1">
 		<monster name="Roaring Lion" x="0" y="0" z="5" spawntime="90" />
@@ -21260,9 +21403,6 @@
 	<monster centerx="7068" centery="1329" centerz="6" radius="1">
 		<monster name="Pirate Ghost" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5572" centery="1330" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5920" centery="1330" centerz="6" radius="1">
 		<monster name="Minotaur Archer" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21302,15 +21442,6 @@
 	</monster>
 	<monster centerx="6544" centery="1331" centerz="6" radius="1">
 		<monster name="Terramite" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5561" centery="1332" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5564" centery="1332" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5570" centery="1332" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6003" centery="1332" centerz="6" radius="1">
 		<monster name="Bat" x="0" y="0" z="6" spawntime="90" />
@@ -21378,9 +21509,6 @@
 	<monster centerx="7631" centery="1335" centerz="6" radius="1">
 		<monster name="Grave Robber" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5571" centery="1336" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5821" centery="1336" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21395,6 +21523,9 @@
 	</monster>
 	<monster centerx="7649" centery="1336" centerz="6" radius="1">
 		<monster name="Grave Robber" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5555" centery="1337" centerz="6" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5819" centery="1337" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="-1" y="-1" z="6" spawntime="90" />
@@ -21440,9 +21571,6 @@
 	<monster centerx="7646" centery="1338" centerz="6" radius="1">
 		<monster name="Gang Member" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5586" centery="1339" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5792" centery="1339" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21461,39 +21589,17 @@
 	<monster centerx="7633" centery="1339" centerz="6" radius="1">
 		<monster name="Gang Member" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5571" centery="1340" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5788" centery="1340" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6564" centery="1340" centerz="6" radius="1">
 		<monster name="Terramite" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5587" centery="1341" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5598" centery="1341" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5794" centery="1341" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6019" centery="1341" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5572" centery="1342" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5578" centery="1342" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5583" centery="1342" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="-1" y="0" z="6" spawntime="90" />
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5590" centery="1342" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6490" centery="1342" centerz="6" radius="1">
 		<monster name="Baleful Bunny" x="0" y="0" z="6" spawntime="90" />
@@ -21503,9 +21609,6 @@
 	</monster>
 	<monster centerx="7632" centery="1342" centerz="6" radius="1">
 		<monster name="Crypt Defiler" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5599" centery="1343" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5798" centery="1343" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="-1" z="6" spawntime="90" />
@@ -21534,9 +21637,6 @@
 	</monster>
 	<monster centerx="7372" centery="1344" centerz="6" radius="1">
 		<monster name="Bulltaur Brute" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5575" centery="1345" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5818" centery="1345" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
@@ -21607,9 +21707,6 @@
 	<monster centerx="7431" centery="1348" centerz="6" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5604" centery="1349" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5791" centery="1349" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21634,9 +21731,6 @@
 	<monster centerx="6782" centery="1350" centerz="6" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5609" centery="1351" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="5792" centery="1351" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21655,14 +21749,8 @@
 	<monster centerx="7426" centery="1351" centerz="6" radius="1">
 		<monster name="Werehyaena Shaman" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5601" centery="1352" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6778" centery="1352" centerz="6" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5610" centery="1353" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5820" centery="1353" centerz="6" radius="1">
 		<monster name="Orc Berserker" x="0" y="0" z="6" spawntime="90" />
@@ -21678,9 +21766,6 @@
 	</monster>
 	<monster centerx="7811" centery="1353" centerz="6" radius="1">
 		<monster name="Dragon Hatchling" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5594" centery="1354" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6032" centery="1354" centerz="6" radius="1">
 		<monster name="Dark Magician" x="0" y="0" z="6" spawntime="90" />
@@ -21698,11 +21783,12 @@
 	<monster centerx="6834" centery="1354" centerz="6" radius="1">
 		<monster name="Tortoise" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5596" centery="1355" centerz="6" radius="1">
+	<monster centerx="5623" centery="1355" centerz="6" radius="1">
 		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5598" centery="1355" centerz="6" radius="1">
+	<monster centerx="5629" centery="1355" centerz="6" radius="1">
 		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Juvenile Bashmu" x="-1" y="1" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6505" centery="1355" centerz="6" radius="1">
 		<monster name="Hyaena" x="0" y="0" z="6" spawntime="90" />
@@ -21724,6 +21810,13 @@
 	</monster>
 	<monster centerx="7450" centery="1356" centerz="6" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5625" centery="1357" centerz="6" radius="1">
+		<monster name="Bashmu" x="1" y="-1" z="6" spawntime="90" />
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5627" centery="1357" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5819" centery="1357" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
@@ -21836,6 +21929,11 @@
 	<monster centerx="7561" centery="1364" centerz="6" radius="1">
 		<monster name="Banshee" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="5609" centery="1365" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="-1" z="6" spawntime="90" />
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Bashmu" x="0" y="1" z="6" spawntime="90" />
+	</monster>
 	<monster centerx="6511" centery="1365" centerz="6" radius="1">
 		<monster name="Cobra" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21851,17 +21949,14 @@
 	<monster centerx="7570" centery="1365" centerz="6" radius="1">
 		<monster name="Ghost" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5571" centery="1366" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6469" centery="1366" centerz="6" radius="1">
 		<monster name="Baleful Bunny" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6507" centery="1366" centerz="6" radius="1">
 		<monster name="Cobra" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5581" centery="1367" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5608" centery="1367" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6328" centery="1367" centerz="6" radius="1">
 		<monster name="Pirate Corsair" x="0" y="0" z="6" spawntime="90" />
@@ -21882,8 +21977,8 @@
 	<monster centerx="7568" centery="1367" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5578" centery="1368" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5594" centery="1368" centerz="6" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6149" centery="1368" centerz="6" radius="3">
 		<monster name="Insectoid Worker" x="-2" y="-3" z="6" spawntime="90" />
@@ -21918,12 +22013,6 @@
 	<monster centerx="7775" centery="1368" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5569" centery="1369" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5633" centery="1369" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6005" centery="1369" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -21942,8 +22031,8 @@
 	<monster centerx="7778" centery="1369" centerz="6" radius="1">
 		<monster name="Orc" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5640" centery="1370" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5593" centery="1370" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="5995" centery="1370" centerz="6" radius="1">
 		<monster name="Bat" x="0" y="0" z="6" spawntime="90" />
@@ -21976,8 +22065,14 @@
 	<monster centerx="7568" centery="1371" centerz="6" radius="1">
 		<monster name="Skeleton Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5639" centery="1372" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5634" centery="1372" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5638" centery="1372" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5642" centery="1372" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="7456" centery="1372" centerz="6" radius="1">
 		<monster name="Werehyaena" x="0" y="0" z="6" spawntime="90" />
@@ -21988,13 +22083,6 @@
 	<monster centerx="7617" centery="1372" centerz="6" radius="1">
 		<monster name="Rustheap Golem" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5568" centery="1373" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="-1" z="6" spawntime="90" />
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5635" centery="1373" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6246" centery="1373" centerz="6" radius="1">
 		<monster name="Werebadger" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -22004,9 +22092,6 @@
 	<monster centerx="7576" centery="1373" centerz="6" radius="1">
 		<monster name="Skeleton Warrior" x="0" y="0" z="6" spawntime="90" />
 		<monster name="Banshee" x="0" y="1" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5641" centery="1374" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6191" centery="1374" centerz="6" radius="1">
 		<monster name="White Shade" x="0" y="0" z="6" spawntime="90" />
@@ -22030,8 +22115,8 @@
 	<monster centerx="7794" centery="1374" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5612" centery="1375" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5591" centery="1375" centerz="6" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6006" centery="1375" centerz="6" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="6" spawntime="90" />
@@ -22051,14 +22136,11 @@
 	<monster centerx="7570" centery="1375" centerz="6" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5567" centery="1376" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5599" centery="1376" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="7556" centery="1376" centerz="6" radius="1">
 		<monster name="Ghost" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5592" centery="1377" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6296" centery="1377" centerz="6" radius="1">
 		<monster name="Pirat Cutthroat" x="0" y="0" z="6" spawntime="90" />
@@ -22090,6 +22172,9 @@
 		<monster name="Skeleton" x="0" y="0" z="6" spawntime="90" />
 		<monster name="Ghost" x="0" y="1" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="5592" centery="1379" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+	</monster>
 	<monster centerx="6097" centery="1379" centerz="6" radius="1">
 		<monster name="Hero" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -22108,6 +22193,9 @@
 	<monster centerx="7724" centery="1380" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="5593" centery="1381" centerz="6" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	</monster>
 	<monster centerx="7266" centery="1381" centerz="6" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -22116,9 +22204,6 @@
 	</monster>
 	<monster centerx="7555" centery="1382" centerz="6" radius="1">
 		<monster name="Skeleton Warrior" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5634" centery="1383" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6142" centery="1383" centerz="6" radius="1">
 		<monster name="Hunter" x="0" y="0" z="6" spawntime="90" />
@@ -22135,7 +22220,7 @@
 	<monster centerx="7571" centery="1384" centerz="6" radius="1">
 		<monster name="Banshee" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5566" centery="1385" centerz="6" radius="1">
+	<monster centerx="5628" centery="1385" centerz="6" radius="1">
 		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6845" centery="1385" centerz="6" radius="1">
@@ -22149,9 +22234,6 @@
 	</monster>
 	<monster centerx="7603" centery="1385" centerz="6" radius="1">
 		<monster name="Metal Gargoyle" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5568" centery="1386" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6311" centery="1386" centerz="6" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="6" spawntime="90" />
@@ -22172,12 +22254,6 @@
 	</monster>
 	<monster centerx="7778" centery="1387" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5564" centery="1388" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5613" centery="1388" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6525" centery="1388" centerz="6" radius="1">
 		<monster name="Minotaur Mage" x="0" y="0" z="6" spawntime="90" />
@@ -22209,9 +22285,6 @@
 	<monster centerx="7773" centery="1390" centerz="6" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5587" centery="1391" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6083" centery="1391" centerz="6" radius="1">
 		<monster name="Barbarian Headsplitter" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -22233,17 +22306,14 @@
 	<monster centerx="6314" centery="1394" centerz="6" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5645" centery="1395" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6069" centery="1395" centerz="6" radius="1">
 		<monster name="Barbarian Headsplitter" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6074" centery="1395" centerz="6" radius="1">
 		<monster name="Bandit" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5598" centery="1397" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5632" centery="1398" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6164" centery="1398" centerz="6" radius="1">
 		<monster name="White Shade" x="0" y="0" z="6" spawntime="90" />
@@ -22256,6 +22326,13 @@
 	</monster>
 	<monster centerx="6875" centery="1398" centerz="6" radius="1">
 		<monster name="Pirate Buccaneer" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5585" centery="1399" centerz="6" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+		<monster name="Bashmu" x="1" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5587" centery="1399" centerz="6" radius="1">
+		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6051" centery="1399" centerz="6" radius="1">
 		<monster name="Wild Warrior" x="0" y="0" z="6" spawntime="90" />
@@ -22281,8 +22358,8 @@
 	<monster centerx="6148" centery="1400" centerz="6" radius="1">
 		<monster name="Witch" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5581" centery="1401" centerz="6" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="6" spawntime="90" />
+	<monster centerx="5619" centery="1401" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6040" centery="1401" centerz="6" radius="1">
 		<monster name="Hero" x="0" y="0" z="6" spawntime="90" />
@@ -22306,9 +22383,6 @@
 	<monster centerx="7633" centery="1402" centerz="6" radius="1">
 		<monster name="Metal Gargoyle" x="0" y="0" z="6" spawntime="90" />
 	</monster>
-	<monster centerx="5590" centery="1404" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
-	</monster>
 	<monster centerx="6055" centery="1404" centerz="6" radius="1">
 		<monster name="Smuggler" x="0" y="0" z="6" spawntime="90" />
 	</monster>
@@ -22327,9 +22401,6 @@
 	</monster>
 	<monster centerx="6085" centery="1407" centerz="6" radius="1">
 		<monster name="Barbarian Skullhunter" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5605" centery="1409" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="7584" centery="1409" centerz="6" radius="1">
 		<monster name="Rustheap Golem" x="0" y="0" z="6" spawntime="90" />
@@ -22355,11 +22426,11 @@
 	<monster centerx="6050" centery="1412" centerz="6" radius="1">
 		<monster name="Wild Warrior" x="0" y="0" z="6" spawntime="90" />
 	</monster>
+	<monster centerx="5633" centery="1413" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
+	</monster>
 	<monster centerx="7662" centery="1413" centerz="6" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="6" spawntime="90" />
-	</monster>
-	<monster centerx="5643" centery="1414" centerz="6" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="6053" centery="1415" centerz="6" radius="1">
 		<monster name="Smuggler" x="0" y="0" z="6" spawntime="90" />
@@ -22369,6 +22440,9 @@
 	</monster>
 	<monster centerx="6121" centery="1418" centerz="6" radius="1">
 		<monster name="Hero" x="0" y="0" z="6" spawntime="90" />
+	</monster>
+	<monster centerx="5609" centery="1419" centerz="6" radius="1">
+		<monster name="Juvenile Bashmu" x="0" y="0" z="6" spawntime="90" />
 	</monster>
 	<monster centerx="7669" centery="1419" centerz="6" radius="1">
 		<monster name="Gargoyle" x="0" y="0" z="6" spawntime="90" />
@@ -42637,6 +42711,12 @@
 	<monster centerx="7589" centery="1249" centerz="7" radius="1">
 		<monster name="Dark Apprentice" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7694" centery="1249" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7702" centery="1249" centerz="7" radius="1">
+		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7779" centery="1249" centerz="7" radius="1">
 		<monster name="Orc Rider" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -42730,7 +42810,11 @@
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7693" centery="1251" centerz="7" radius="1">
-		<monster name="Rorc" x="0" y="0" z="7" spawntime="90" />
+		<monster name="Orc Warrior" x="-1" y="0" z="7" spawntime="1159253248" />
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7696" centery="1251" centerz="7" radius="1">
+		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="7812" centery="1251" centerz="7" radius="1">
 		<monster name="Orc Marauder" x="0" y="0" z="7" spawntime="90" />
@@ -42780,9 +42864,6 @@
 	</monster>
 	<monster centerx="7661" centery="1252" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7697" centery="1252" centerz="7" radius="1">
-		<monster name="Rorc" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="4932" centery="1253" centerz="7" radius="1">
 		<monster name="Old Wasp" x="0" y="0" z="7" spawntime="90" />
@@ -42841,6 +42922,9 @@
 	</monster>
 	<monster centerx="7571" centery="1253" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
+	</monster>
+	<monster centerx="7700" centery="1253" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="8068" centery="1253" centerz="7" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="7" spawntime="90" />
@@ -42960,6 +43044,9 @@
 	<monster centerx="7665" centery="1255" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7723" centery="1255" centerz="7" radius="1">
+		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7794" centery="1255" centerz="7" radius="1">
 		<monster name="Orc Rider" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -43010,9 +43097,6 @@
 	</monster>
 	<monster centerx="7663" centery="1256" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7702" centery="1256" centerz="7" radius="1">
-		<monster name="Rorc" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7746" centery="1256" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="90" />
@@ -43097,8 +43181,8 @@
 	<monster centerx="7723" centery="1258" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7735" centery="1258" centerz="7" radius="1">
-		<monster name="Orc Marauder" x="0" y="0" z="7" spawntime="90" />
+	<monster centerx="7727" centery="1258" centerz="7" radius="1">
+		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="5941" centery="1259" centerz="7" radius="1">
 		<monster name="Mummy" x="0" y="0" z="7" spawntime="90" />
@@ -43187,6 +43271,12 @@
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="90" />
 		<monster name="Orc Warrior" x="0" y="1" z="7" spawntime="90" />
 	</monster>
+	<monster centerx="7712" centery="1260" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7715" centery="1260" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</monster>
 	<monster centerx="7722" centery="1260" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -43235,9 +43325,6 @@
 	<monster centerx="7678" centery="1261" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7714" centery="1261" centerz="7" radius="1">
-		<monster name="Orc Marauder" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="7755" centery="1261" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -43279,8 +43366,11 @@
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="90" />
 		<monster name="Orc Warrior" x="1" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="7704" centery="1262" centerz="7" radius="1">
-		<monster name="Rorc" x="0" y="0" z="7" spawntime="90" />
+	<monster centerx="7707" centery="1262" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
+	</monster>
+	<monster centerx="7720" centery="1262" centerz="7" radius="1">
+		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="60" />
 	</monster>
 	<monster centerx="8069" centery="1262" centerz="7" radius="1">
 		<monster name="Marsh Stalker" x="0" y="0" z="7" spawntime="90" />
@@ -43459,9 +43549,6 @@
 	<monster centerx="7645" centery="1266" centerz="7" radius="1">
 		<monster name="Mutated Human" x="0" y="0" z="7" spawntime="90" />
 		<monster name="Mutated Human" x="1" y="1" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7706" centery="1266" centerz="7" radius="1">
-		<monster name="Orc Marauder" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7798" centery="1266" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="90" />
@@ -44028,9 +44115,6 @@
 	</monster>
 	<monster centerx="7200" centery="1277" centerz="7" radius="1">
 		<monster name="Valkyrie" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="7674" centery="1277" centerz="7" radius="1">
-		<monster name="Rorc" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6056" centery="1278" centerz="7" radius="1">
 		<monster name="Gozzler" x="0" y="0" z="7" spawntime="90" />
@@ -46324,9 +46408,6 @@
 	<monster centerx="7681" centery="1335" centerz="7" radius="1">
 		<monster name="Ghoulish Hyaena" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5554" centery="1336" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5819" centery="1336" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -46956,13 +47037,6 @@
 	<monster centerx="7507" centery="1353" centerz="7" radius="1">
 		<monster name="Zombie" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5622" centery="1354" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5628" centery="1354" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Juvenile Bashmu" x="-1" y="1" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="6149" centery="1354" centerz="7" radius="3">
 		<monster name="Waspoid" x="3" y="0" z="7" spawntime="90" />
 		<monster name="Waspoid" x="3" y="2" z="7" spawntime="90" />
@@ -47032,13 +47106,6 @@
 	</monster>
 	<monster centerx="7491" centery="1355" centerz="7" radius="1">
 		<monster name="Banshee" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5624" centery="1356" centerz="7" radius="1">
-		<monster name="Bashmu" x="1" y="-1" z="7" spawntime="90" />
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5626" centery="1356" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5959" centery="1356" centerz="7" radius="1">
 		<monster name="Minotaur" x="0" y="0" z="7" spawntime="90" />
@@ -47271,11 +47338,6 @@
 	<monster centerx="7856" centery="1363" centerz="7" radius="1">
 		<monster name="Bear" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5608" centery="1364" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="-1" z="7" spawntime="90" />
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Bashmu" x="0" y="1" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5949" centery="1364" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -47322,17 +47384,11 @@
 	<monster centerx="7758" centery="1365" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5607" centery="1366" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="6309" centery="1366" centerz="7" radius="1">
 		<monster name="Pirat Mate" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="7657" centery="1366" centerz="7" radius="1">
 		<monster name="Skeleton" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5593" centery="1367" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6525" centery="1367" centerz="7" radius="1">
 		<monster name="Cobra" x="0" y="0" z="7" spawntime="90" />
@@ -47400,9 +47456,6 @@
 	<monster centerx="7778" centery="1368" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5592" centery="1369" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5811" centery="1369" centerz="7" radius="1">
 		<monster name="Orc Spearman" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -47445,15 +47498,6 @@
 	<monster centerx="7786" centery="1370" centerz="7" radius="1">
 		<monster name="Orc Warrior" x="-1" y="0" z="7" spawntime="90" />
 		<monster name="Orc Warrior" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5633" centery="1371" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5637" centery="1371" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5641" centery="1371" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6309" centery="1371" centerz="7" radius="1">
 		<monster name="Pirat Bombardier" x="0" y="0" z="7" spawntime="90" />
@@ -47561,9 +47605,6 @@
 	<monster centerx="7858" centery="1373" centerz="7" radius="1">
 		<monster name="Bear" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5590" centery="1374" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5787" centery="1374" centerz="7" radius="1">
 		<monster name="Slime" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -47623,9 +47664,6 @@
 	<monster centerx="7846" centery="1375" centerz="7" radius="1">
 		<monster name="Bear" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5591" centery="1376" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5830" centery="1376" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -47680,9 +47718,6 @@
 	</monster>
 	<monster centerx="7787" centery="1377" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5591" centery="1378" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5789" centery="1378" centerz="7" radius="1">
 		<monster name="Toad" x="0" y="0" z="7" spawntime="90" />
@@ -47776,9 +47811,6 @@
 	</monster>
 	<monster centerx="7835" centery="1379" centerz="7" radius="1">
 		<monster name="Bear" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5592" centery="1380" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5990" centery="1380" centerz="7" radius="1">
 		<monster name="Deer" x="0" y="0" z="7" spawntime="90" />
@@ -47946,9 +47978,6 @@
 	</monster>
 	<monster centerx="7795" centery="1383" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5627" centery="1384" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5840" centery="1384" centerz="7" radius="1">
 		<monster name="Troll" x="0" y="0" z="7" spawntime="90" />
@@ -48371,9 +48400,6 @@
 	<monster centerx="7829" centery="1396" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5631" centery="1397" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5931" centery="1397" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -48385,13 +48411,6 @@
 	</monster>
 	<monster centerx="7827" centery="1397" centerz="7" radius="1">
 		<monster name="Bug" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5584" centery="1398" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
-		<monster name="Bashmu" x="1" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5586" centery="1398" centerz="7" radius="1">
-		<monster name="Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6108" centery="1398" centerz="7" radius="1">
 		<monster name="Bandit" x="0" y="0" z="7" spawntime="90" />
@@ -48419,9 +48438,6 @@
 	</monster>
 	<monster centerx="7752" centery="1399" centerz="7" radius="1">
 		<monster name="Orc" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5618" centery="1400" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5717" centery="1400" centerz="7" radius="1">
 		<monster name="Bonelord" x="0" y="0" z="7" spawntime="90" />
@@ -48780,9 +48796,6 @@
 	<monster centerx="7727" centery="1411" centerz="7" radius="1">
 		<monster name="Forest Fury" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5632" centery="1412" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
-	</monster>
 	<monster centerx="5752" centery="1412" centerz="7" radius="1">
 		<monster name="Bonelord" x="0" y="0" z="7" spawntime="90" />
 	</monster>
@@ -48985,9 +48998,6 @@
 	</monster>
 	<monster centerx="7850" centery="1417" centerz="7" radius="1">
 		<monster name="Rotworm" x="0" y="0" z="7" spawntime="90" />
-	</monster>
-	<monster centerx="5608" centery="1418" centerz="7" radius="1">
-		<monster name="Juvenile Bashmu" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="5958" centery="1418" centerz="7" radius="1">
 		<monster name="Snake" x="0" y="0" z="7" spawntime="90" />
@@ -85401,11 +85411,8 @@
 		<monster name="Young Sea Serpent" x="0" y="0" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="7545" centery="1604" centerz="9" radius="1">
-		<monster name="Young Sea Serpent" x="1" y="-1" z="9" spawntime="90" />
 		<monster name="Young Sea Serpent" x="0" y="0" z="9" spawntime="90" />
-		<monster name="Young Sea Serpent" x="1" y="0" z="9" spawntime="90" />
 		<monster name="Young Sea Serpent" x="0" y="1" z="9" spawntime="90" />
-		<monster name="Young Sea Serpent" x="1" y="1" z="9" spawntime="90" />
 	</monster>
 	<monster centerx="6544" centery="1605" centerz="9" radius="1">
 		<monster name="Burster Spectre" x="0" y="0" z="9" spawntime="90" />
@@ -92701,9 +92708,6 @@
 	<monster centerx="5956" centery="1303" centerz="10" radius="1">
 		<monster name="Worker Golem" x="0" y="0" z="10" spawntime="90" />
 	</monster>
-	<monster centerx="6788" centery="1303" centerz="10" radius="1">
-		<monster name="Crypt Warrior" x="0" y="0" z="10" spawntime="90" />
-	</monster>
 	<monster centerx="6901" centery="1303" centerz="10" radius="1">
 		<monster name="Nightmare" x="0" y="0" z="10" spawntime="90" />
 	</monster>
@@ -95418,9 +95422,6 @@
 	<monster centerx="6517" centery="1694" centerz="10" radius="1">
 		<monster name="Enlightened of the Cult" x="0" y="0" z="10" spawntime="90" />
 		<monster name="Enlightened of the Cult" x="1" y="1" z="10" spawntime="90" />
-	</monster>
-	<monster centerx="6519" centery="1696" centerz="10" radius="1">
-		<monster name="a carved stone tile" x="0" y="0" z="10" spawntime="90" />
 	</monster>
 	<monster centerx="6707" centery="1697" centerz="10" radius="3">
 		<monster name="Phantasm" x="-2" y="-1" z="10" spawntime="90" />
@@ -99297,12 +99298,6 @@
 	<monster centerx="5947" centery="1299" centerz="11" radius="1">
 		<monster name="War Golem" x="0" y="0" z="11" spawntime="90" />
 	</monster>
-	<monster centerx="6773" centery="1299" centerz="11" radius="1">
-		<monster name="Necromancer" x="0" y="0" z="11" spawntime="90" />
-	</monster>
-	<monster centerx="6778" centery="1299" centerz="11" radius="1">
-		<monster name="Necromancer" x="0" y="0" z="11" spawntime="90" />
-	</monster>
 	<monster centerx="6822" centery="1299" centerz="11" radius="1">
 		<monster name="Necromancer" x="0" y="0" z="11" spawntime="90" />
 	</monster>
@@ -99317,6 +99312,9 @@
 	</monster>
 	<monster centerx="7623" centery="1300" centerz="11" radius="1">
 		<monster name="Vampire Bride" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6772" centery="1301" centerz="11" radius="1">
+		<monster name="Necromancer" x="0" y="0" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="6777" centery="1301" centerz="11" radius="1">
 		<monster name="Ghoul" x="0" y="0" z="11" spawntime="90" />
@@ -99341,6 +99339,9 @@
 	</monster>
 	<monster centerx="7564" centery="1302" centerz="11" radius="1">
 		<monster name="Vampire" x="0" y="0" z="11" spawntime="90" />
+	</monster>
+	<monster centerx="6779" centery="1303" centerz="11" radius="1">
+		<monster name="Necromancer" x="0" y="0" z="11" spawntime="90" />
 	</monster>
 	<monster centerx="6790" centery="1303" centerz="11" radius="1">
 		<monster name="Mummy" x="0" y="0" z="11" spawntime="90" />

@@ -52,4 +52,5 @@ return {
 	["Fashionista Onanista"] = "Fashionista Onanista",
 	["Cum Bucket"] = "Cum Bucket",
 	["I see that you are looking Moustachilles belongings. Follow my instructions and you might be lucky enough to bring it back to him. Bring me a bullseye potion and meet me at the abandoned house, south of Kongo."] = "Szukasz towaru Wasacza? Postepuj zgodnie z moimi intrukcjami, a moze go odzyskasz. Przynies mi eliksir bullseye sp. zoo. Spotkajmy sie na poddaszu opuszczonej rudery na poludnie od kongo.",
+	["What!? Thats way too much. Imma pass."] = "What!? Thats way too much. Imma pass.",
 }

@@ -1,8 +1,27 @@
 local CREATURE_SKINNING_CHANCE = 25000 -- 25000 = 25% success chance
 SKINNING_SPECIAL_ACTION_NOT_PERFORMED = "SKINNING_SPECIAL_ACTION_NOT_PERFORMED"
 SKINNING_SPECIAL_ACTION_PERFORMED = "SKINNING_SPECIAL_ACTION_PERFORMED"
+
+local obsidianKnifeId = 5908
+
 local toolToCorpseToData = {
-	[5908] = {
+	[obsidianKnifeId] = {
+		[7441] = {
+			successChance = 22000,
+			nextCorpseId = 7442,
+		},
+		[7442] = {
+			successChance = 4800,
+			nextCorpseId = 7444,
+		},
+		[7444] = {
+			successChance = 900,
+			nextCorpseId = 7445,
+		},
+		[7445] = {
+			successChance = 40,
+			nextCorpseId = 7446,
+		},
 		[5688] = {
 			successChance = 15000,
 			rewardId = 9633,
@@ -321,15 +340,16 @@ local function onIceCubeSculpting(player, corpse, corpseId, corpseData, roll)
 	corpse:getPosition():sendMagicEffect(effect)
 
 	if roll <= corpseData.successChance then
-		if corpseData.rewardId == 7446 then
+		if corpseData.nextCorpseId == 7446 then
 			player:addAchievement("Ice Sculptor")
 			player:addAchievementProgress("Cold as Ice", 10)
 		end
-		corpse:transform(corpseData.rewardId, 1)
+		corpse:transform(corpseData.nextCorpseId, 1)
 	else
 		player:say("The attempt of sculpting failed miserably.", TALKTYPE_MONSTER_SAY)
 		corpse:remove()
 	end
+	return SKINNING_SPECIAL_ACTION_PERFORMED
 end
 local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 	local added = false
@@ -360,6 +380,7 @@ local function onMarbleSculpting(player, corpse, corpseId, corpseData, roll)
 		corpse:getPosition():sendMagicEffect(effect)
 		corpse:remove()
 	end
+	return SKINNING_SPECIAL_ACTION_PERFORMED
 end
 local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
 	local reward = table.random(corpseData)
@@ -373,18 +394,18 @@ local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
 			player:say("I got it!", TALKTYPE_MONSTER_SAY)
 			corpse:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 		end
-		corpse:transform(reward.nextCorpseId)
+		corpse:transform(reward.nextCorpseId or 0)
 		return SKINNING_SPECIAL_ACTION_PERFORMED
 	end
 
 	player:AddCustomItem({ id = reward.rewardId, count = reward.amount or 1 })
 	local effect = CONST_ME_HITAREA
 	corpse:getPosition():sendMagicEffect(effect)
-	corpse:transform(corpseData.nextCorpseId)
+	corpse:transform(reward.nextCorpseId)
+	return SKINNING_SPECIAL_ACTION_PERFORMED
 end
 local toolToCorpseIdToSpecialAction = {
 	[5908] = {
-
 		[4240] = onHumanSkinning,
 		[4247] = onHumanSkinning,
 		[18034] = onHumanSkinning,
@@ -481,6 +502,7 @@ local function defaultOnSuccessSkin(player, corpseData, usePosition, skinningToo
 	else
 		player:addAchievementProgress("Skin-Deep", 500)
 	end
+
 	local container = Container(skinningTool:getParent().uid)
 	if isInBags(usePosition) and container:getEmptySlots() ~= 0 then
 		container:addItem(corpseData.rewardId, corpseData.amount or 1)

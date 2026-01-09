@@ -6,25 +6,4 @@ return {
 	["Pol"] = "Czarne i biale kratki zadaja coraz wiecej obrazen, im dluzej na nich stoisz. Zeby wyzerowac te obrazenia, musisz zejsc z danego koloru na kilka sekund.\nPol potrafi wykonywac obszarowe ataki. Badz czujny i natychmiast ich unikaj!",
 	["Skurwiwij"] = "Skurwiwij pobiera moc z najblizszego fialru. Aby zresetowac moc pobrana z filaru, musisz przeprowadzic bossa do drugiego filaru.\nPrzy zmienie kolumny, poprzednia kolumna wybucha i za kazdym wybuchem obrazenia sa coraz wieksze, wiec nie rob tego za czesto.",
 	["Ruk'ca Maw"] = "Poczatek walki jest bardzo trudny. Ruk'ca jest glodna i sprobuje zjesc wszystko co sie rusza. Doprowadz ja do klatek, aby zjadla mala foczke. To ja uspokoi... na pewien czas. Lepiej sie pospiesz, bo z wraz z glodem rosnie jej furia.\nProwadz ja do konca jaskini, gdzie znajdzies krysztaly soli, na ktore jest uczulona.",
-	["LIST_ENCOUNTERS"] = function(context)
-		local finalString = ""
-		finalString = finalString .. "Zapytaj mnie o jakas walke, a podziele sie z toba wiedza. Oto walki, ktore znam:"
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
-			if type(desc) == "string" then
-				finalString = finalString .. "\n{" .. name .. "}"
-			end
-		end
-		return finalString
-	end,
-	["ENCOUNTER_DESCRIPTION"] = function(context)
-		local message = context.msg
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
-			if type(desc) == "string" and name:lower() == message:lower() then
-				return desc
-			end
-		end
-		return "Nie mam informacji na temat tej walki."
-	end,
 }
