@@ -58,7 +58,10 @@ public:
 	const MarketActiveOffer getOfferByCounter(uint32_t expiryTimestamp, uint16_t counter);
 	void decrementAndAppendToHistory(const MarketActiveOffer &boughtOutOffer, uint16_t boughtAmount, uint32_t acceptingPlayerId);
 	void cancelAndAppendToHistory(const MarketActiveOffer &cancelledOffer);
-
+	void clearNewActive() {
+		newActive.clear();
+	}
+	
 private:
 	// [uint16_t = item id, [uint8_t = item tier, MarketStatistics = structure of the statistics]]
 	StatisticsMap purchaseStatistics;
@@ -68,6 +71,8 @@ private:
 	const MarketActiveOfferList getNewActive() const {
 		return newActive;
 	}
+
+
 	bool initialized = false;
 
 	MarketOfferNewContainer activeOffers;

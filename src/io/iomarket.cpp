@@ -527,6 +527,8 @@ void IOMarket::cancelAndAppendToHistory(const MarketActiveOffer &cancelledOffer)
 		getHistoricOfferContainer().insert(historicOffer);
 		boughtoutCancelledActive.push_back(cancelledOffer);
 		getActiveOfferContainer().erase(it);
+	} else {
+		g_logger().warn("[IOMarket::cancelAndAppendToHistory] cancelledOffer not found!");
 	}
 }
 
