@@ -4888,6 +4888,16 @@ void Game::playerStowItem(uint32_t playerId, const Position &pos, uint16_t itemI
 		return;
 	}
 
+	if (item->getTopParent() == player->getStoreInbox()) {
+		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
+		return;
+	}
+
+	if (!item->getAttribute<std::string>(ItemAttribute_t::KEY).empty()) {
+		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
+		return;
+	}
+
 	player->stowItem(item, count, allItems);
 
 	// Refresh depot search window if necessary
