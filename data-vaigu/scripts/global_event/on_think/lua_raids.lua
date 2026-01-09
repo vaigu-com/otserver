@@ -20,14 +20,14 @@ pseudoQuest
 	:Register()
 
 ---@class Wave
----@field delay number
+---@field delaySeconds number
 ---@field monsters table
 ---@field notifications table
 Wave = {}
 Wave.__index = Wave
-function Wave.New(delay)
+function Wave.New(delaySeconds)
 	local newObj = {}
-	newObj.delay = delay
+	newObj.delaySeconds = delaySeconds
 	newObj.monsters = {}
 	newObj.notifications = {}
 	setmetatable(newObj, Wave)
@@ -49,9 +49,9 @@ function Wave:Creature(name, area, amount, forceSpawn)
 	return self
 end
 
-function Wave:Notification(delay, text)
+function Wave:Notification(delaySeconds, text)
 	table.insert(self.notifications, {
-		delay = self.delay + delay,
+		delaySeconds = self.delaySeconds + delaySeconds,
 		text = text,
 	})
 
@@ -102,14 +102,14 @@ function Wave:EnqueueCreatureSpawns(difficultyTier)
 				trySpawnRaidMonster(pos, monsterData, additionalLoot)
 			end
 		end
-	end, self.delay * 1000, self.monsters)
+	end, self.delaySeconds * 1000, self.monsters)
 end
 
 function Wave:EnqueueNotifications()
 	for _, notification in pairs(self.notifications) do
 		addEvent(function()
 			Game.broadcastMessage(notification.text, MESSAGE_STATUS_WARNING, true)
-		end, notification.delay * 1000)
+		end, notification.delaySeconds * 1000)
 	end
 end
 
@@ -129,7 +129,7 @@ local fourHours = 14400
 ---@field name string
 ---@field perDay number
 ---@field waves Wave[]
----@field cooldown integer seconds
+---@field cooldownSeconds integer seconds
 ---@field minPlayerOnline integer
 ---@field isRare boolean generated field
 ---@field isCommon boolean generated field
@@ -142,7 +142,7 @@ function LuaRaid.New(name, difficultyTier)
 	newObj.name = name
 	newObj.perDay = 0.1
 	newObj.waves = {}
-	newObj.cooldown = fourHours
+	newObj.cooldownSeconds = fourHours
 	newObj.minPlayersOnline = 0
 	newObj.difficultyTier = difficultyTier or LUA_RAID_DIFFICULTY_TIER.silver
 
@@ -160,14 +160,14 @@ setmetatable(LuaRaid, {
 function LuaRaid:Context(context)
 	self.perDay = context.perDay or self.perDay
 	self.waves = context.waves or {}
-	self.cooldown = context.cooldown or self.cooldown
+	self.cooldownSeconds = context.cooldownSeconds or self.cooldownSeconds
 	self.minPlayersOnline = context.minPlayersOnline or self.minPlayersOnline
 	return self
 end
 
 function LuaRaid:CanStart()
 	local secondsSinceThisRaidEnded = os.time() - self.lastRunTime
-	if secondsSinceThisRaidEnded < self.cooldown then
+	if secondsSinceThisRaidEnded < self.cooldownSeconds then
 		return false
 	end
 
@@ -210,7 +210,7 @@ function LuaRaidRegistry:Register(luaRaid)
 end
 
 function LuaRaidRegistry:Get(name)
-	return self.registry[name] or self.registry
+	return self.registry[name]
 end
 
 function LuaRaidRegistry:TryStartRandomCommon()
