@@ -89,7 +89,7 @@ monster.loot = {
 	{ id = 3412, chance = 4730 }, -- wooden shield
 	{ name = "leather boots", chance = 10000 },
 	{ name = "meat", chance = 15000 },
-	{ name = "bunch of troll hair", chance = 1000 },
+	{ name = "bunch of troll hair", chance = 10000 },
 	{ id = 23986, chance = 1000 }, -- heavy old tome
 }
 

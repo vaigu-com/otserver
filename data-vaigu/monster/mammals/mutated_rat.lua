@@ -88,7 +88,7 @@ monster.loot = {
 	{ name = "stone herb", chance = 4920 },
 	{ name = "health potion", chance = 560 },
 	{ name = "spellbook of enlightenment", chance = 300 },
-	{ name = "mutated rat tail", chance = 3800 },
+	{ name = "mutated rat tail", chance = 19000 },
 }
 
 monster.attacks = {

@@ -70,6 +70,7 @@ quest
 					states = {
 						[QuestState.Firestarter.Mission02.SetGuardTreeOnFire] = "Hymel want to mischief the local guards, by setting an old tree on fire. You can find it near their resting camp.",
 						[QuestState.Firestarter.Mission02.ReportToHymel] = "You did it, the guards didn't even notice, go back and see Hymel.",
+						[QuestState.Firestarter.Mission02.AskForNewMission] = "Hymel gave you an incendiary firebug. Ask him for a new mission.",
 						[MISSION_FINISHED] = "In return for your help, Hymel gave you the staff of a real reefer.",
 					},
 				},
@@ -155,7 +156,7 @@ quest
 		return QuestState.Firestarter.Mission01.AskForNewMission,
 			QuestFactory.Dialog("Hymel", {
 				[{ "mission", "mission", "ask", "pytaj" }] = {
-					text = "When I was still living in MirkoTown I've seen place where guards are going for a brake, they are sitting around campfire and rest there.\nSet the tree on fire near them, they will get mad for sure.\nAre you down for that?",
+					text = "When I was still living in MirkoTown I've seen place where guards are going for a break, they are sitting around campfire and rest there.\nSet the tree on fire near them, they will get mad for sure.\nAre you down for that?",
 					nextTopic = QuestTopics.Firestarter.AcceptGuardTreeQuest,
 				},
 				[{ "yes", "tak" }] = {
@@ -257,14 +258,11 @@ quest
 					end
 
 					local posIdentifier = toPosition:ToString()
-					for key, flower in pairs(Storage.Firestarter.Flowers) do
-						local state = player:getStorageValueByKey(flower)
-						if state == posIdentifier then
-							return false
-						end
-						if state ~= MISSION_NOT_STARTED then
+					for _, flowerStorage in pairs(Storage.Firestarter.Flowers) do
+						local state = player:getStorageValueByKey(flowerStorage)
+						if state == DEFAULT_STORAGE_VALUE then
 							toPosition:sendMagicEffect(CONST_ME_FIREAREA)
-							player:setStorageValueByKey(flower, posIdentifier)
+							player:setStorageValueByKey(flowerStorage, posIdentifier)
 							return true
 						end
 					end

@@ -9,7 +9,7 @@ return {
 	["Hello, I can see you have completed one of the tasks. Talk to me to get your {reward}!"] = "Siemaneczko, widze ze zadanie o ktore cie prosilem zostalo wykonane. Nalezy ci sie {nagroda}!",
 	["Finish one of {tasks}, then we can talk about reward."] = "Ukoncz jakis z {taskow}, to porozmawiamy o nagrodzie.",
 	["TASKS_HELP_WINDOW_INFO"] = function()
-		return T("Za wykonywanie taskow dostajesz nagrody w postaci: expa, pieniedzy, osiagniec od CV oraz mozliwosci walki z bossami.\n\nMozesz posiadac jednoczesnie :maxTasks: zadania.", { maxTasks = #Storage.Task.PlayerOngoingTasks })
+		return T("Za wykonywanie taskow dostajesz nagrody w postaci: expa, pieniedzy, osiagniec do CV oraz mozliwosci walki z bossami.\n\nMozesz posiadac jednoczesnie :maxTasks: zadania.", { maxTasks = #Storage.Task.PlayerOngoingTasks })
 	end,
 	["TASK_REWARDS_DIALOG"] = function(context)
 		local task = context.task

@@ -45,6 +45,14 @@ local function extractItemData(item)
 		addToStore = false,
 	}
 
+	local itemType = ItemType(id)
+	local maxCharges = itemType:getCharges()
+	if maxCharges > 0 then
+		data.count = maxCharges
+	elseif itemType:isFluidContainer() then
+		data.fluidType = item:getFluidType()
+	end
+
 	if forceUntradeability[id] or (data.key and data.key ~= "") then
 		data.addToStore = true
 	end

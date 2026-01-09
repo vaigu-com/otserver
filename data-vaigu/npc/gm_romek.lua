@@ -11,12 +11,12 @@ local outfit = {
 local unusedDialogs = {
 	[Storage.BigKlamoty.Localizer] = {
 		[Storage.BigKlamoty.Mission01] = {
-			[1] = { [{ "mission" }] = { text = "To be continued..." } },
+			[1] = { [{ "mission", "misja" }] = { text = "To be continued..." } },
 		},
 	},
 	[Storage.SpojrzenieTysiacaYtongow.Mission01] = {
 		[1] = {
-			[{ "mission" }] = {
+			[{ "mission", "misja" }] = {
 				text = "Pozwol ze przedstawie Ci pewna opowiesc. O tym nie bylo na historii w podstawowce ani w gimbazie. Kondominium rosyjsko-niemieckie pod zydowsko-amerykanskim zarzadem powierniczym. Wigilia, rok 1980 - po obiedzie. Mlody Marceliusz czekal, az mikolaj przybedzie z prezentami. Wlasciwie to Marceliusz mial juz wtedy 14 lat, wiec wiedzial, ze mikolaj nie {istnieje}.",
 			},
 			[{ "real", "istnieje" }] = {
@@ -42,11 +42,11 @@ local unusedDialogs = {
 				},
 			},
 		},
-		[2] = { [{ "mission" }] = {} },
+		[2] = { [{ "mission", "misja" }] = {} },
 	},
 	[Storage.SprawiedliwyWobecNarodow.Mission01] = {
 		[1] = {
-			[{ "mission" }] = {
+			[{ "mission", "misja" }] = {
 				text = 'Od niedawna jedna rzecz nie daje mi spokoju. Gdy szczur Krolow przeobrazil sie w Janusza Gwiezdnego, to zaczal od slow "Halo, Pjoter, slychac mnie?". Czy pomylilo mu sie cos i myslal, ze rozmawia z Petrusem Gnebicielem? Ta sprawa bardzo mnie dziwi. Udaj sie do wiezy petrusa gnebiciela i sproboj znalezc cos wiecej na ten temat.',
 				nextState = {
 					[Storage.SprawiedliwyWobecNarodow.Mission01] = 2,
@@ -56,7 +56,7 @@ local unusedDialogs = {
 		},
 		-- [2] znajdujemy dziennik petrusa
 		[3] = {
-			[{ "mission" }] = {
+			[{ "mission", "misja" }] = {
 				text = "Jesli to co pisal Petrus to prawda, to pozostaje jedno pytanie. Jakiego koloru byl nadgarstek szczura krolow, gdy ostatni raz go widziales?",
 			},
 			[{ ANY_MESSAGE }] = { text = "W takim razie nie ma sie czym martwic." },

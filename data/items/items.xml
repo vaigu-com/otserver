@@ -19344,7 +19344,7 @@
 		<attribute key="attack" value="65"/>
 		<attribute key="weight" value="200"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="33"/>
+			<attribute key="breakChance" value="20"/>
 			<attribute key="level" value="80"/>
 			<attribute key="unproperly" value="true"/>
 			<attribute key="weaponType" value="missile"/>

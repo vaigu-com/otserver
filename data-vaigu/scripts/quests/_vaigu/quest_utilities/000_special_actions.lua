@@ -238,7 +238,7 @@ SPECIAL_ACTIONS_IMBUING = {
 
 		local player = context.player
 		player:AddItemsAnnounce(bundleData.items)
-		player:removeMoney(bundleData.moneyPrice)
+		player:removeMoney(bundleData.moneyCost)
 		player:IncrementStorage(Storage.Task.TaskPoints, -bundleData.taskPointsCost)
 	end,
 }

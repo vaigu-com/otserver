@@ -29,7 +29,7 @@ end
 ---@field lootboxId number
 ---@field rewards LootboxReward[]
 ---@field effect number|nil
----@field rollToRewardId table<number, number>
+---@field rollToRewardIndex table<number, number>
 LootboxData = {}
 LootboxData.__index = LootboxData
 function LootboxData.New(context)
@@ -46,6 +46,17 @@ function LootboxData.New(context)
 		logger.warn(debug.traceback("[Lootbox::New] No rewards specified for the Lootbox."))
 		return
 	end
+
+	local maxRewardWeight = 0
+	local maxWeightRewardData = {}
+	for _, reward in pairs(newObj.rewards) do
+		local rewardWeight = ItemType(reward.rewardItemId):getWeight() * (reward.count or 1)
+		if rewardWeight > maxRewardWeight then
+			maxRewardWeight = rewardWeight
+			maxWeightRewardData = { rewardItemId = reward.rewardItemId, count = reward.count }
+		end
+	end
+	newObj.maxWeightRewardData = maxWeightRewardData
 
 	setmetatable(newObj, LootboxData)
 	newObj:InitializeRollMap()
@@ -64,7 +75,7 @@ end
 
 ---@return LootboxReward|nil
 function LootboxData:GetRandomReward()
-	local randomRewardId = table.random(self.rollToRewardId)
+	local randomRewardId = table.random(self.rollToRewardIndex)
 	local randomReward = self.rewards[randomRewardId]
 
 	if not randomReward then
@@ -79,14 +90,14 @@ end
 
 ---@return LootboxData
 function LootboxData:InitializeRollMap()
-	local rollToRewardId = {}
+	local rollToRewardIndex = {}
 	for index, reward in ipairs(self.rewards) do
 		for _ = 1, reward.weight do
-			table.insert(rollToRewardId, index)
+			table.insert(rollToRewardIndex, index)
 		end
 	end
 
-	self.rollToRewardId = rollToRewardId
+	self.rollToRewardIndex = rollToRewardIndex
 	return self
 end
 
@@ -385,12 +396,14 @@ function lootboxUse.onUse(player, lootbox, fromPosition, target, toPosition, isH
 	if not lootboxData then
 		return true
 	end
+	if not player:CanAddItems({ lootboxData.maxWeightRewardData, lootboxData.maxWeightRewardData }) then
+		return false
+	end
 
-	lootbox:remove(1)
-
-	local reward = lootboxData:GetRandomReward()
-	if reward then
-		player:AddCustomItem({ id = reward.rewardItemId, count = reward.count })
+	local rewardData = lootboxData:GetRandomReward()
+	if rewardData then
+		local itemData = { id = rewardData.rewardItemId, count = rewardData.count }
+		player:AddCustomItem(itemData)
 	else
 		player:say("You found nothing useful.", TALKTYPE_MONSTER_SAY)
 	end
@@ -399,6 +412,7 @@ function lootboxUse.onUse(player, lootbox, fromPosition, target, toPosition, isH
 		lootbox:getPosition():sendMagicEffect(lootboxData.effect)
 	end
 
+	lootbox:remove(1)
 	return true
 end
 for lootboxId in pairs(LootboxDataRegistry:GetAll()) do

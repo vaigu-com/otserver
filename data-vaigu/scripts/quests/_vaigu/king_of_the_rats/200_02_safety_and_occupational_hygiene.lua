@@ -422,7 +422,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thank you for your help with the last task. I have now achieved justice on the level of a true Rat King. Therefore, I think I am worthy of entrusting you with a new task. Go to Turdstin, a member of the MGTOW clan. Anticipating your question: yes, he is disabled. However, it's possible that he knows how to locate the Rat of Kings.",
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
@@ -433,12 +433,12 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission01.AskTurdstinForKingLocation,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Turdstin lives on the southern beach of Mirkotown.",
 				},
 			}),
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Maybe I have some information about this Rat, but it certainly won't be free. I am the most important person in the world because I belong to the MGTOW order, and of all people, I loathe women the most, as they ruin this world. Go to their village and convince them to acknowledge our superiority and remove their cuckurse.",
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
@@ -449,7 +449,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission01.ConvinceXenaToLiftTheCurse,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Amazon leader lives in the western mountains.",
 				},
 			}),
@@ -478,7 +478,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission02.AskTurdstinForFirstMission,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I am currently collecting cans that may still contain a certain amount of volts. Bring me about 100 small used vials, and I will reward you.",
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
@@ -489,7 +489,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission02.CollectCansForTurdstin,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Here is your reward. Come back in some time, preferably in the evening.",
 					requiredItems = {
 						any = {
@@ -510,7 +510,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission02.DealWithEmperorHooligans,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "That damn emperor took away my rights to the land where I collected cans. I won't let him get away with it, and I certainly won't let the new masters feel safe here. Come here at night because that's when the bums sleep. We'll ambush the invaders then, and maybe we won't wake up all the bums. Ask me about {attack} if you're ready.",
 				},
 				[{ "attack", "atak" }] = {
@@ -529,7 +529,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission02.AskForNewMission,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I didn't expect this. The group of local bums from this beach, under the leadership of their chief, got upset, so someone else will now take their cans on a massive scale. Anyway, thanks for your help.\nHere is your reward.\nA while ago, I found a premium account on 4chan - all thanks to my metal detector. Someone must have thrown it away. And rightly so, because it doesn't work. But the Amazons probably don't know that. Try to bribe them with this account to get rid of my cuckurse.",
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission02] = QuestState.SafetyAndOccupationalHygiene.Mission02.BribeXena,
@@ -659,7 +659,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRatOfKings,
 			QuestFactory.Dialog("Rat of Kings", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "So, this is the end of Petrus' reign. Let me now tell you about another threat that slumbers deep in the underground of Kongo. It's an ancient creature sent by aliens to enslave humanity by undermining the authority of the King of Rats. Its name is HF-P/X. You shouldn't go on this journey alone. Ask Tom if he knows anyone who would like to accompany you.",
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission03] = QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
@@ -670,7 +670,7 @@ quest
 	:State(function()
 		return QuestState.SafetyAndOccupationalHygiene.Mission03.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thank you for your help with the task and for the information from the Rat of Kings. Come back to me after some time, and I will tell you about the fate of someone close to me who wanted to defeat HF-P/X. Although his motivations were somewhat unusual.",
 					nextState = {
 						[Storage.SafetyAndOccupationalHygiene.Mission03] = MISSION_FINISHED,

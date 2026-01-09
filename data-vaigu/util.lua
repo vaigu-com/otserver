@@ -612,7 +612,7 @@ function Player:AddOutfitsAndAddons(outfitsAndAddons)
 end
 
 local function annonceReceivedMount(player, mountId)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { outfitName = Game.getMountNameByLookType(mountId) }))
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { mountName = Game.getMountNameByLookType(mountId) }))
 end
 
 function Player:AddMounts(mounts)

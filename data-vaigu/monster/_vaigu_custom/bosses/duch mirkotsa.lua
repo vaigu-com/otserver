@@ -26,10 +26,10 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	health = 15,
-	damage = 15,
-	random = 10,
+	nearest = 10,
+	health = 10,
+	damage = 10,
+	random = 70,
 }
 
 monster.flags = {
@@ -105,7 +105,8 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 4, attack = 40 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -250 },
+	{ name = "combat", interval = 2000, chance = 4, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -100, range = 7, shootEffect = CONST_ANI_ENVENOMEDARROW, condition = { type = CONDITION_POISON, totalDamage = 1500, interval = 1000 }, target = false },
 	{ name = "effect", interval = 2000, chance = 12, length = 7, spread = 3, target = false, effect = CONST_ME_POISONAREA },
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 20, minDamage = -10, maxDamage = -20, radius = 6, effect = CONST_ME_INSECTS, target = false },
 	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_DEATHDAMAGE, minDamage = -10, maxDamage = -20, length = 6, spread = 2, effect = CONST_ME_POISONAREA, target = false },
@@ -114,7 +115,7 @@ monster.attacks = {
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "rat" },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "rotworm" },
 	{ name = "outfit", interval = 2000, chance = 20, range = 7, target = false, duration = 4000, outfitMonster = "snake" },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -5, maxDamage = -15, radius = 8, effect = CONST_ME_MAGIC_GREEN, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = -5, maxDamage = -500, radius = 8, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.defenses = {

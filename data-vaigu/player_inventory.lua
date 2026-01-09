@@ -537,3 +537,14 @@ function Player:AddCustomItem(itemData, localizer)
 	self:AddItemsAnnounce({ itemData }, localizer)
 	return true
 end
+
+-- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
+---@param itemData table
+function Player:TryAddCustomItem(itemData, localizer)
+	if not self:CanAddItems({ itemData }) then
+		return false
+	end
+	
+	self:AddItemsAnnounce({ itemData }, localizer)
+	return true
+end

@@ -200,7 +200,6 @@ quest
 			{
 				id = 405,
 				key = Storage.ToCarryThePigs.SmugglingListChest,
-
 				rewards = {
 					QuestKeyItems.ToCarryThePigs.SmugglingList,
 				},
@@ -289,7 +288,7 @@ quest
 	:State(function()
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Fat Myrrus", {
-				[{ "mission", "misja" }] = {
+				[{ "mission", "misja", "zadanie" }] = {
 					text = "I need to finally lose weight. I heard that somewhere to the south, witches grow huge carrots that help with slimming. ...\nYou should leave MirkoTown through the southern gate and then head to the swamps. That's where you should find those carrots. Just bring me one.",
 					textNoRequiredState = "Help Commissioner Fisher first, I cant trust you now.",
 					requiredState = {
@@ -384,6 +383,9 @@ quest
 			QuestFactory.Dialog("[SOLID] Kitz", {
 				[{ "mission", "misja" }] = {
 					text = "Is that THIS bow? Guess I got played by the elves. I will make them regret..\nBut thanks, you finished your mission. Here, keep my old bow in return.",
+					rewards = {
+						{ id = 19362 },
+					},
 					nextState = {
 						[Storage.ToCarryThePigs.KitzDominando] = MISSION_FINISHED,
 						[Storage.Finished.KitzDominando] = MISSION_FINISHED,

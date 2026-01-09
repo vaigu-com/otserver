@@ -109,6 +109,10 @@ void ProtocolStatus::sendStatusString() {
 	uint32_t real = 0;
 	std::map<uint32_t, uint32_t> listIP;
 	for (const auto &[key, player] : g_game().getPlayers()) {
+		auto group = player->getGroup();
+		if (!group || group->id != 1) {
+			continue;
+		}
 		if (player->getIP() != 0) {
 			auto ip = listIP.find(player->getIP());
 			if (ip != listIP.end()) {

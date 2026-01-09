@@ -32,6 +32,7 @@ pseudoQuest
 			"jazda",
 			"jedziemy",
 			"podwiezc",
+			"poplynac",
 		}
 
 		DEFAULT_TRAVEL_PRICE = 200

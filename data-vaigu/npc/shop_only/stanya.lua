@@ -10,8 +10,8 @@ local outfit = {
 
 local context = {
 	name = name,
-	greetJob = JOB_UTILITY,
-	jobs = { JOB_UTILITY },
+	greetJob = JOB_FOOD,
+	jobs = { JOB_FOOD },
 	outfit = outfit,
 	customDialogs = customDialogs,
 	voices = voices,

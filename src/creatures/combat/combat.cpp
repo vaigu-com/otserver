@@ -121,7 +121,7 @@ void Combat::getCombatArea(const Position &centerPos, const Position &targetPos,
 	}
 
 	if (area) {
-		area->getList(centerPos, targetPos, list, getDirectionTo(targetPos, centerPos));
+		area->getList(centerPos, targetPos, list, getDirectionTo(centerPos, centerPos));
 	} else {
 		list.emplace_back(g_game().map.getOrCreateTile(targetPos));
 	}
@@ -244,7 +244,7 @@ ReturnValue Combat::canTargetCreature(const std::shared_ptr<Player> &player, con
 		}
 
 		if (player->hasSecureMode() && !Combat::isInPvpZone(player, target)) {
-				return RETURNVALUE_TURNSECUREMODETOATTACKUNMARKEDPLAYERS;
+			return RETURNVALUE_TURNSECUREMODETOATTACKUNMARKEDPLAYERS;
 		}
 	}
 
@@ -1952,7 +1952,7 @@ AreaCombat::~AreaCombat() {
 }
 
 void AreaCombat::getList(const Position &centerPos, const Position &targetPos, std::vector<std::shared_ptr<Tile>> &list, const Direction dir) const {
-	auto casterPos = getNextPosition(dir, targetPos);
+	auto casterPos = getNextPosition(dir, centerPos);
 
 	const std::unique_ptr<MatrixArea> &area = getArea(centerPos, targetPos);
 	if (!area) {
