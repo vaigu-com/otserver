@@ -209,7 +209,7 @@ bool ConfigManager::load() {
 	loadFloatConfig(L, ANIMUS_MASTERY_MONSTERS_XP_MULTIPLIER, "animusMasteryMonstersXpMultiplier", 0.1);
 
 	loadIntConfig(L, ACTIONS_DELAY_INTERVAL, "timeBetweenActions", 200);
-	loadIntConfig(L, ADVENTURERSBLESSING_LEVEL, "adventurersBlessingLevel", 21);
+	loadIntConfig(L, ADVENTURERSBLESSING_LEVEL, "adventurersBlessingLevel", 8);
 	loadIntConfig(L, BESTIARY_KILL_MULTIPLIER, "bestiaryKillMultiplier", 1);
 	loadIntConfig(L, BLACK_SKULL_DURATION, "blackSkullDuration", 45);
 	loadIntConfig(L, BOOSTED_BOSS_KILL_BONUS, "boostedBossKillBonus", 3);
