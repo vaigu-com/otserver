@@ -265,7 +265,7 @@ pseudoQuest
 				text = "Here you are.",
 				requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 				requiredState = {
-					[Storage.Task.TaskPoints] = powerfulImbueUnlockCost,
+					[Storage.Task.TaskPoints] = { min = powerfulImbueUnlockCost },
 					[Storage.powerfulImbue] = { max = 0 },
 				},
 				nextState = {
@@ -846,6 +846,7 @@ pseudoQuest
 			},
 			[{ "<recipient> [recipientNameSegment2] [recipientNameSegment3]" }] = {
 				text = "CONFIRM_TRANSFER",
+				nextTopis = QuestTopics.JOB_TOPICS.confirmTransfer,
 				requiredTopic = QuestTopics.JOB_TOPICS.declareRecipient,
 				specialRequirements = {
 					{

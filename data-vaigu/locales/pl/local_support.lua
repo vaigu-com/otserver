@@ -1,7 +1,7 @@
 return {
 	["This caravan of wood was just attacked. I better follow the path of loose wooden planks."] = "Mozliwe, ze to karawana z dostawa drewna o ktorej mowil Ryba. Wyglada na to, ze zostala niedawno zaatakowana. Ciekawe dokad prowadza te porozrzucane deski..",
 	["Thanks for your help. Although i wont be needing your assistance for now."] = "Dzieki za twoja pomoc, jakkolwiek aktualnie raczej nie bede potrzebowac juz pomocy.",
-	["Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you."] = "Piotrek ze stepow zna saie na gotowaniu. Sproboj z nim pogadac, z moze uda wam sie przygotowac te dania.",
+	["Pewter from the steppes would know a thing or two about cooking. Head there and talk to him and he might just help you."] = "Piotrek ze stepow zna sie na gotowaniu. Sproboj z nim pogadac, z moze uda wam sie przygotowac te dania.",
 	["Well i have a mission that could interest you. My competitor, walmart is selling mana and health regenerating food dirt cheap. I need few ingredients to undermine her reputation. When you have them, come back to me. You can check exactly what i need in your questlog. Also, when you want to report to me, use our codeword {journeyman} when you have all ingredients."] = "Interes mam do ciebie. Chce zrobic psikusa Biedronce, psikuta mysli ze sobie moze tak bez podatku sprzedawac te zarobaczale jedzenie. Ja jej pokaze na czym polega sabotaz.. to znaczy subtelnosc. Jak zbierzes wszystkie itemy, ktore spisalem w twoim questlogu, to zglos sie do mnie i pamietaj, aby uzyc naszego hasla - {czeladnik}.",
 	["Thanks, these are things i needed. Here's your reward."] = "Trzymaj - to za twoja pomoc. Mam nadzieje sie to nie konieci bedziesz chcial mi jeszcze pomoc.",
 	["My plan is very sticky. Make sure to not tell anyone, alright?"] = "Taka sytuacja - sliski temat ogolnie. Nie mozesz nikomu powiedziec o tym, ok?",
@@ -41,7 +41,7 @@ return {
 	["This parcel was delayed for a few weeks, and I was beginning to worry that alibaba was trying to trick me. Here's your reward for your help. I found something inside that Stary Anona ordered, probably a {bait} for fish. If you're passing by, deliver it to him. He will surely reward you."] = "Ten parcel spoznial sie juz kilka tygodni i juz sie obawialem, ze alibaba probowal mnie wydymac. Oto twoja nagroda za pomoc. W srodku znalazlem cos, co zamawial Stary Anona, to chyba {zaneta} dla ryb. Jezeli masz po drodze, to mu ja zanies. Na pewno sie odwdzieczy.",
 	["Could you take this package to Anon's father? He's surely getting impatient, so he'll reward you for your help."] = "Czy moglbys zaniesc ten pakunek do Starego Anona? Na pewno sie niecierpliwi, wiec nagrodzi cie za twoja pomoc.",
 	["Here, please, this box. Anon's father hangs around a pond near the {barracks}."] = "Prosze, oto ta puszka. Stary anona kreci sie przy oczku wodnym obok {koszarow}.",
-	["Come back with the food."] = "Wroc jak ogarniesz zarelko.",
+	["Come back with the food. I would like to eat {rotworm stew} and {roasted dragon wings}."] = "Wroc jak ogarniesz zarelko. Prosilem o {zupe rotormowa} i {pieczone smocze skrzydelka}",
 	["That's all, thanks for your help."] = "To tyle, dzieki za twoja pomoc.",
 	["Thank you for finding perpetrator. Your reward is upstairs, in my drawers.\nMeanwhile I will call to two almighty Mirks, so they will bring my stolen stuff from those undergrounds. [...] I checked the list of stolen items, I saw that he had a ball that Gypsy was looking for. Wait, its not {all}."] = "Dziekuje za wykrycie sprawcy. Twoja nagroda jest na pietrze. Ja tymczasem zadzwonie do dwoch poteznych Mirkow, zeby wyniesli moje skradzione rzeczy z tych podziemi. [...] Sprawdzilem liste skradzionych przedmiotow, i znalazlem tam kule cygana. Byc moze jej szuka. Chwileczke, to nie {wszystko}.",
 	["We must stop this thief as fast as possible. He might be scheming how to get back unnoticed and take back his loot. Ask people around, maybe someone saw where he ran to."] = "Tak, musimy jak najszybciej zatrzymac naszego zlodzieja. Juz teraz pewnie planuje jak wrocic do 'biznesu' meblarskiego. Popytaj ludzi wokol, moze ktos widzial, w ktora strone uciekl.",
@@ -86,12 +86,12 @@ return {
 	["Return with the stew, or the things might become unpleasant!"] = "Wroc z zupa, bo nie recze!",
 	["Visit Lebesgue for this reward, and then meet Fstab. He should provide you some supplies."] = "Po ta nagrode zglos sie do Calki, oraz pozniej do Fstaba po przydzial potionow.",
 	["Well, thank you on behalf of our City for your help, get some of these potions."] = "Ah tak, dziekuje ci w imieniu Miasta jeszcze raz za pomoc, tutaj twoj przydzial potionow.",
-	["It fell into the small pond nearby once. I hope you find it."] = "Wpadl mi kiedys do stawku obok. Mam nadzieje, ze go znajdziesz.",
+	["It fell into the small pond nearby once. Try looking just outside the west gate."] = "Wpadl mi kiedys do stawku tuz za zachodnia brama.",
 	["Few years ago it was peaceful here, but now it is difficult to live with barbarians roaming around.\nTry to take care of them. I know it's going to be hard to get everyone out, but even a few less of their kind will be a success.\nFor proof of defeating a few of them, bring me Brutetamers Staff and Fur Boots, this is their basic equipment.\nSo, would you like to help me?"] = "Ciagle panosza sie tu barbarzyncy. Jeszcze pare lat temu byl tutaj spokoj, jednak teraz ciezko sie z nimi zyje.\nSprobuj sie nimi zajac. Wiem, ze trudno bedzie wykurzyc wszystkich, ale nawet kilku mniej bedzie sukcesem.\nNa dowod pokonania kilku z nich przynies mi Brutetamers Staff oraz Fur Boots, to ich podstawowy ekwupunek.\nTo co piszesz sie na to?",
 	["Great, I'll give you a special pickaxe as a reward. I'll tell you what to do with it for later."] = "Swietnie, w nagrode dostaniesz ode mnie specjalny kilof. Podpowiem ci pozniej, do czego mozna go wykorzystac.",
 	["Thank you! Here's your reward. Wait a moment! Someone scribbled on my chair with a marker! Oh, {darn} it... For my current condition, only a stew with Chinese ping pong onion, meat from an under-milked centennial bull raised by wolves, all topped with wine stolen from the Kutonapleton winery, will help. Alternatively, a simple rotworm {stew} might do the trick."] = "Dzieki! Oto twoja na nagroda. Ale chwila! - ktos pogryzmolil moj stolek mazakiem! Nosz {kuuurla}.. Na moj aktualny stan pomoze tylko bigos z chinska cebula ping pong, miesem z niedojonego stuletniego byka wychowanego przez wilki i wszystko podlane winem ukradzionym z winnicy kutonapletonu. Ewentualnie moze tez byc zwykla {zupa} rotwormowa.",
-	["It slipped into the water by the lake at the beach. I hope you find it."] = "Wpadl mi do wody nad jeziorkiem przy plazy. Mam nadzieje, ze go znajdziesz.",
-	["I lost it while fishing by the western gate. I hope you can find it."] = "Zgubilem go lowiac za zachodnia brama. Mam nadzieje, ze go znajdziesz.",
+	["It slipped into the water by the lake at the beach with parasols."] = "Wpadl mi do wody nad jeziorkiem przy plazy z parasolami.",
+	["I lost it while fishing right there. I think it might be entanged with some weeds. If thats true, you might wanna ask Grave Digger for a machete."] = "Zgubilem go lowiac z tego miejsca. Mozliwe ze zaplatal sie w szuwary. W takim wypadku spytaj Grave Diggera o maczete.",
 	["Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway."] = "Zajebiscie, dzieki. Udko sobie wezme, ale na zupe jednak nie mam ochoty. Mozesz poplywac sobie moja lodka jesli chcesz. Wez to przebranko legii, na mnie i tak za maly rozmiar.",
 	["Well, I was supposed to go to my favourite team's match, but the nationalists came up and they ripped the from my hands. Help me get it back."] = "No tak, mialem isc na mecz legii, ale przyszli onrowcy i podjebali mi bilet. Pomoz mi go odzyskac.",
 	["Thank you, the quality is not cutting edge but in the end I am Madame Malkin. I can replace your mystic turbans, red robes and green tunics for pieces of {cloth} from now on."] = "Dziekuje ci, moze nie sa najlepszej jakosci, ale w koncu jestem Madame Malkin.",
@@ -221,12 +221,12 @@ return {
 	["You completed Old Man Frost's request."] = "Wypleniles zadania Dziadka Mroza.",
 	["I will change your {mystic turban}, {red robe}, {green tunic} for corresponding cloth of similar colour."] = "Wymienie twoj {mistyczny turban}, {czerwona szate}, {zielona tunike} na kawalek materialu o podobnym kolorze.",
 	["I will need EXCHANGE_RATE turbans to sew one blue cloth. Would you like to exchange?"] = function(context)
-		return T("Aby uszyc jedna niebieska szmatke bede potrzebowac turbany w liczbie EXCHANGE_RATE. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
+		return T("Aby uszyc jedna niebieska szmatke bede potrzebowac turbany w liczbie :EXCHANGE_RATE:. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
 	end,
 	["I will need EXCHANGE_RATE robes to sew one red cloth. Would you like to exchange?"] = function(context)
-		return T("Aby uszyc jedna czerwona szmatke bede potrzebowac szat w liczbie EXCHANGE_RATE. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
+		return T("Aby uszyc jedna czerwona szmatke bede potrzebowac szat w liczbie :EXCHANGE_RATE:. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
 	end,
 	["I will need EXCHANGE_RATE tunics to sew one green cloth. Would you like to exchange?"] = function(context)
-		return T("Aby uszyc jedna zielona szmatke bede potrzebowac tunik w liczbie EXCHANGE_RATE. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
+		return T("Aby uszyc jedna zielona szmatke bede potrzebowac tunik w liczbie :EXCHANGE_RATE:. Chcesz sie wymienic?", { EXCHANGE_RATE = context.exchangeRate })
 	end,
 }

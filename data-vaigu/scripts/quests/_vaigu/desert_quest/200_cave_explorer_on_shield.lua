@@ -219,7 +219,7 @@ quest
 		return QuestState.CaveExplorerOnShield.Mission01.ShowPageToGermi,
 			QuestFactory.Dialog("Ghost of Germi the Journeyman", {
 				[{ GREET }] = { text = "Have you found anything yet?" },
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Have you found anything yet?",
 					nextTopic = 0,
 				},

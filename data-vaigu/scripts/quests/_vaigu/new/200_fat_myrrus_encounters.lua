@@ -29,7 +29,7 @@ quest
 	end)
 	:State(function()
 		return MISSION_FINISHED, QuestFactory.Dialog("Fat Myrrus", {
-			[{ "encounters", "bosses", "boss", "bossami" }] = {
+		[{ "encounters", "bosses", "boss", "bossami", "encounter" }] = {
 				text = "LIST_ENCOUNTERS",
 				nextTopic = QuestTopics.FatMyrrusEncounters.SayEncounterName,
 			},

@@ -24,6 +24,28 @@ local toOrdinalGrandPlace = {
 }
 
 return {
+	["LIST_ENCOUNTERS"] = function(context)
+		local finalString = ""
+		finalString = finalString .. "Zapytaj mnie o jakas walke, a podziele sie z toba wiedza. Oto walki, ktore znam:"
+		local playerLanguage = getPlayerLanguage(context.player)
+		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
+			if type(desc) == "string" then
+				finalString = finalString .. "\n{" .. name .. "}"
+			end
+		end
+		return finalString
+	end,
+	["ENCOUNTER_DESCRIPTION"] = function(context)
+		local message = context.msg
+		local playerLanguage = getPlayerLanguage(context.player)
+		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
+			if type(desc) == "string" and name:lower() == message:lower() then
+				return desc
+			end
+		end
+		return "Nie mam informacji na temat tej walki."
+	end,
+	["Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?"] = "Witaj |PLAYERNAME|. Masz moze puste {butelki} na wymiane?",
 	[NO_TEXT] = NO_TEXT,
 	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hej. Ja jestem Zong! Chcialbys, aby Cie gdzies {podwiezc}?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Dzien dobry! Wygladasz na glodnego.. Wpisz {trade} aby zobaczyc oferte.",
@@ -184,6 +206,7 @@ return {
 	end,
 	["This amount is not a number."] = "To nie jest prawdziwa liczba.",
 	["To be continued..."] = "Ciag dalszy nastapi...",
+	["Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world."] = "Hej |PLAYERNAME|. Jak nie wiesz co za brama to ci moge sprzedac te {Informacje}. Przy okazji: jestem eksprtem od raidow w WoWie. Mozliwe, ze bede mogl ci pomoc z {bossami} na tym swiecie.",
 	["Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world."] = "Hej |PLAYERNAME|. Jak nie wiesz co za brama to ci moge sprzedac te {Informacje}. Mam tez dla ciebie {zadanie}. Przy okazji: jestem eksprtem od raidow w WoWie. Mozliwe, ze bede mogl ci pomoc z {bossami} na tym swiecie.",
 	["They call me reborn eater, because i have a meat mortar in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = 'Mowia na mnie pozeracz rebornow, bo w gaciach mam miesny tluczek, ktorym ich zmiekczam i potem "zjadam", jesli wiesz o czym mowie. Przepuszcze was, jesli przyniesiecie mi soczystego reborna na tacy.',
 	["Lebewohl."] = "Lebewohl.",
@@ -385,7 +408,7 @@ return {
 	["Here you are. There are your soft boots."] = "Prosze bardzo. Oto twoje miekkie buty.",
 	["They call me reborn eater, because i have a mortar for reborns in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = "Nazywaja mnie pozeraczem rebornow, bo mam mozdzierz na reborny w spodniach, jesli wiesz, o co chodzi. Przynies mi swiezego chlopaka Reborna, a pozwole ci odejsc.",
 	["As-salamu alaykum, |PLAYERNAME|. You want to buy parcel, letter, or make a bank transfer? Im here to help you."] = "As-salamu alaykum, |PLAYERNAME|. Chcesz kupic paczke, list, albo zrobic przelew bankowy? Jestem tu, by ci pomoc.",
-	["You you like me to {sail} you anywhere?"] = "Chcesz gdzies {popylanac}?",
+	["You you like me to {sail} you anywhere?"] = "Chcesz gdzies {poplynac}?",
 	["Hello. I can help you with acquiring {addons} for your outfits. Are you interested?"] = "Czesc. Moge ci pomoc z uszyciem {dodatkow} do twoich strojow. Jestes zainteresowany?",
 	[YOU_NEED_TO_BRING_THE_FOLLOWING_ITEMS] = function(context)
 		local requiredItems = context.requiredItems

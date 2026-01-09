@@ -18,7 +18,16 @@ local voices = {
 }
 local customDialogs = {
 	[{ GREET }] = {
+		requiredState = {
+			[Storage.ToCarryThePigs.BalancedDiet] = MISSION_NOT_STARTED,
+		},
 		text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
+	},
+	[{ GREET }] = {
+		requiredState = {
+			[Storage.ToCarryThePigs.BalancedDiet] = { neq = MISSION_NOT_STARTED },
+		},
+		text = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
 	},
 	[WALKAWAY] = { text = "SoldierWalkaway" },
 	[{ "informacja", "information", "informations" }] = {

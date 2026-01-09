@@ -132,7 +132,7 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission02.AskChesterForMission,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "My career as a TV fortune teller was going well. Some time ago, I took out a loan to start my own business, which turned out to be a scam, of course. I went to the turf accountant and bet on RKS Huwdu winning. Those failures of a human decided to lose, and I ended up with a payday loan with 69% interest! The deadline for the first loan installment is approaching. I don't want the bailiff to seize my house. Try asking Moustachilles about my problem. They always manage to avoid the law and responsibility.",
 					nextState = {
 						[Storage.ChesterTheDwarf.Mission02] = QuestState.ChesterTheDwarf.Mission02.ObtainDocuments,
@@ -143,13 +143,13 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission02.ObtainDocuments,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Moustachilles has its bandit shithole located on east of mirkotown.",
 				},
 			}),
 			QuestFactory.Dialog("Moustachilles", {
 				[{ "tozsamosc", "dokument", "document", "identity", "czeslaw", "chester" }] = {
-					text = "So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have a crystal coin with you.",
+					text = "So, you want to know how to obtain a new identity? Oh, you're asking for a friend? Sure.. Have a chat with Ornuld in the jungle, he specializes in such matters...\nYou might need something to write with and paper, preferably from a very common book, and, of course, the payment...\nIf silence is gold, then forging documents is crystal. What the hell am I saying... Anyway, have some money with you.",
 				},
 			}),
 			QuestFactory.Dialog("Ornuld", {
@@ -177,7 +177,7 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission02.BringDocumentsToChester,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thanks for your help. Now I'll be able to set up my office properly. Please take my mining helmet as a reward.",
 					requiredItems = {
 						QuestKeyItems.ChesterTheDwarf.IdentityDocument,
@@ -197,7 +197,7 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission03.AskChesterForMission,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "You still need to help me with one more thing. I accidentally burned my cover, and the officials will seize my house soon. For financial scams, evading the authorities and other frauds, I'll get at least 15 years. I'm too old for that. I won't even survive that long. I thought about escaping from this continent. Somewhere in the desert, deep underground, I parked my steamboat. It was a long time ago, so I don't remember where the entrance to the cave is where I keep the steam engine. All I remember is that the entrance is boarded up. Just find that place and come back to me to mark it on the map.",
 					nextState = {
 						[Storage.ChesterTheDwarf.Mission03] = QuestState.ChesterTheDwarf.Mission03.FindCave,
@@ -242,7 +242,7 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission03.ReportToChester,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Are you sure that's the place? All right, here are the keys to my mole. I don't remember where I parked it, but actually, any mole will do. One more thing: I heard that my travel companion, Gandalf, is still alive. We used to steal from a certain library where we found a prophecy about the resurrection of the Crypt King. If that moment ever comes, I think Gandalf will count on the help of the bravest warriors like you. If you want to befriend him, it's worth remembering this secret passphrase: {aside from that people}. Meanwhile, I'm heading out of here. Goodbye.",
 					nextState = {
 						[Storage.ChesterTheDwarf.Mission03] = MISSION_FINISHED,
@@ -288,7 +288,7 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission04.FindChester,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Found, not stolen. But due to our acquaintance, I can return what I took from Gandalf. Here's his camo backpack that I couldn't open. I won't lie, I'd like to know what's inside. Besides that, I have some stuff from WotE and this strange bag.",
 					nextState = {
 						[Storage.ChesterTheDwarf.Mission04] = QuestState.ChesterTheDwarf.Mission04.ReturnToGandalf,
@@ -315,7 +315,7 @@ quest
 	:State(function()
 		return QuestState.ChesterTheDwarf.Mission04.ReturnToGandalf,
 			QuestFactory.Dialog("Gandalf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "In this bag i kept an item from the WotE quest. I completed it on the *REDACTED* server. Do you remember was item it was?",
 				},
 				[{ "Royal Draken Mail", "royal draken mail" }] = {

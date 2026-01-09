@@ -732,7 +732,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission01.ChesterSpeakingAboutJanuszex,
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I now have my eye on a certain Januszex TM. They have their headquarters far to the east. I would start working on my CV, but first, i need to learn more about the working conditions there. I would like to ask you to go there by {train}. They have a special metro line that stops at their company. When you are there, search for building with 'C' marking outside.",
 					nextState = {
 						[Storage.ProdigalSon.Mission01] = QuestState.ProdigalSon.Mission01.YouAreLookingForJanuszex,
@@ -778,7 +778,7 @@ quest
 	:Mission(Storage.ProdigalSon.Mission02)
 	:State(function()
 		return QuestState.ProdigalSon.Mission02.FindForeman, QuestFactory.Dialog("Henry the Foreman", {
-			[{ "mission" }] = {
+			[{ "mission", "misja" }] = {
 				text = "Are you new here? This will be your first job: paint the topex hammers. Head to the 'A' building first.",
 				nextState = {
 					[Storage.ProdigalSon.Mission02] = QuestState.ProdigalSon.Mission02.PaintHammers,
@@ -823,7 +823,7 @@ quest
 				paint:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Get to making calculators, you slacker! Go to the 'P' building now.",
 					nextState = {
 						[Storage.ProdigalSon.Mission02] = QuestState.ProdigalSon.Mission02.MakingCalculators,
@@ -884,7 +884,7 @@ quest
 				lever:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Non-standard work footwear! For that you will go to the 'S' building and take care of plier work order.",
 					nextState = {
 						[Storage.ProdigalSon.Mission02] = QuestState.ProdigalSon.Mission02.MakingPliers,
@@ -936,7 +936,7 @@ quest
 				lever:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Good job. You just earned your way into the assistant position. You are now granted a permission to use main entrance and exit to the surface.",
 					nextState = {
 						[Storage.ProdigalSon.Mission02] = MISSION_FINISHED,
@@ -969,7 +969,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission03.KillArechekForSoap,
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Those goddamn parasites! This company net profit is barely positive, and they are trying to ruin us!",
 					nextState = {
 						[Storage.ProdigalSon.Mission03] = QuestState.ProdigalSon.Mission03.AskForNewMission,
@@ -1002,7 +1002,7 @@ quest
 	end)
 	:State(function()
 		return QuestState.ProdigalSon.Mission03.AskForNewMission, QuestFactory.Dialog("Henry the Foreman", {
-			[{ "mission" }] = {
+			[{ "mission", "misja" }] = {
 				text = "A bunch of Arecheks trying to create a worker union. Get rid of their leader, and they will surely yield.",
 				nextState = {
 					[Storage.ProdigalSon.Mission03] = QuestState.ProdigalSon.Mission03.KillArechekLeader,
@@ -1072,7 +1072,7 @@ quest
 				bed:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "If i recall correctly, their leader won a cozy bed at a poker table. Its located between A and S buildings.",
 				},
 			})
@@ -1247,7 +1247,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission03.ReportKillngArechekLeader,
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thanks for help. Now i wont have to worry about labour law or some human rights.",
 					nextState = {
 						[Storage.ProdigalSon.Mission03] = MISSION_FINISHED,
@@ -1320,7 +1320,7 @@ quest
 				lever:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Alright, there are all the book you need. Now for the real task: we are hosting a party in the conference room. You can find some of our clients here. Try to convince them to take out a loan for one of our 'pristine' products. The books i had you bring to me were in Swahili, so you wouldnt understand a word. And now: I doth grant unto thee ye might of larcraeft.",
 					requiredItems = {
 						QuestKeyItems.ProdigalSon.BookOne,
@@ -1366,7 +1366,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Badass, dude - you got all of them to take out a loan for those >products. You are thereby promoted to senior assistant. Now you can access the main cave system on the north.",
 					textNoRequiredItems = "Come back when you are done collecting the loan declarations.",
 					requiredItems = {
@@ -1389,7 +1389,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission05.AskForNewMission,
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I have a new mission for you. Do you remember when i mentioned that northern caves are now flooded? Officially, everyone was out when the flooding occured, but acutally it was swarming with miners there. It were rush hours when it happened. Arechek lives dont matter, so noone ever investigated it. Later, cave has been ravaged by hostile water-shaped creatures. One of the dwarfs here had something i need now. Try to find his corpse. You can identify him by his gray Beard.",
 					nextState = {
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.FindingDwarfNecklace,
@@ -1408,7 +1408,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Yeah, this is the one i was looking for.",
 					nextState = {
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.FoundNecklace_AskForNewMission,
@@ -1421,7 +1421,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission05.FoundNecklace_AskForNewMission,
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "What else could you help me with... hmmm. Well, you check can the lava mines for new finds. Reach the top of one of the silos, and check its state by using the special machine. Also some Arechek reported that he found an abandoned cultivator there. Romek, the King of Rats might be interested in it, so give it a try and find it.",
 					nextState = {
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.CheckingOnSilo,
@@ -1450,7 +1450,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission05.CheckedOnSilo,
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Nothing special, as i thought. Now, you have to help me with something. My friend, Fredi, is currently in the north-eastern mines. I need him here, so try to convince him to come. If he wont move, try to find a distilling machine. Its content will make him move. Fredi is very aggressive when drunk, so be careful.",
 					nextState = {
 						[Storage.ProdigalSon.Mission05] = QuestState.ProdigalSon.Mission05.EscortingFredi,
@@ -1478,7 +1478,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Fredi Kamionka", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Alrigth, lets go.",
 					requiredItems = { QuestKeyItems.ProdigalSon.FrediBeer },
 					specialRequirements = {
@@ -1745,7 +1745,7 @@ quest
 				blackboardLook:register()
 			end),
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Did you find out what is the password? What is it?",
 				},
 				[{ "yes", "tak" }] = {
@@ -1882,7 +1882,7 @@ quest
 	:State(function()
 		return QuestState.ProdigalSon.Mission06.KilledImperator,
 			QuestFactory.Dialog("Henry the Foreman", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Alright. For all your effort i present to you this legendary payslip. Dont worry, it works outside our company shop.",
 					rewards = { QuestKeyItems.ProdigalSon.Payslip },
 					nextState = {

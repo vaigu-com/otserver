@@ -618,7 +618,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission01.TalkToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Shireajevo, year two thousand fifteen. Or was it {sixteenth}? Hmm, not sure...",
 				},
 				[{ "szesnasty", "sixteenth" }] = {
@@ -657,7 +657,7 @@ quest
 				[{ GREET }] = {
 					text = "What are you doing in my kosher cave? And you know what, I only have two entrances here: one normal and one through the toilet. I can smell which one you used, you pig.",
 				},
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I'm Goldblum, and I feel like you'll want something from me that I won't want to give. Like money, for example. Or maybe you need {help}?",
 				},
 				[{ "way", "wyjsc", "help" }] = {
@@ -725,7 +725,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission03.FindCompanyAtHive,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Look at him! He cant use a {toilet} properly.",
 				},
 				[{ "toilet", "latryny" }] = {
@@ -745,7 +745,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission03.AskBilbeusToJoin,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Those wolves were just spirits I summoned to better illustrate the story. The real Jan Kockodan is much more dangerous. If you want to join us, you must complete one challenge. Let's say you steal rum from these pirates here.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission03] = QuestState.ThreeSramatiansAndTheDragon.Mission03.FindRum,
@@ -756,7 +756,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission03.FindRum,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "You can see them from our current location. Be careful; spirited water is only ordinary pastime, but rum on the other hand... It's their holy grail.",
 				},
 			}),
@@ -870,12 +870,12 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission04.EscapeDungeon_FindGertrude,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "We played ourselves. We'll distract the guard, and you try to escape. If we succeed too, we'll meet up at Gertruda place. If we were to separate, seek help from her.",
 				},
 			}),
 			QuestFactory.Dialog("Gertrude", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Your team left me a note stating they headed to the desert. You can ask Lambor for help finding them.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission04] = MISSION_FINISHED,
@@ -889,7 +889,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission05.AskLamborForHelp,
 			QuestFactory.Dialog("Lambor", {
-				[{ "mission" }] = {
+				[{ "mission", "misja", "company", "bilbeus", "party" }] = {
 					text = "I know where you can find your friends. But first, I expect something in return. Bring me two dragon beefbottoms, and I'll help you.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission05] = QuestState.ThreeSramatiansAndTheDragon.Mission05.BringMeatToLambor,
@@ -900,7 +900,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission05.BringMeatToLambor,
 			QuestFactory.Dialog("Lambor", {
-				[{ "mission" }] = {
+				[{ "mission", "misja", "company", "bilbeus", "party" }] = {
 					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
 					requiredItems = { { id = 3583, count = 2 } },
 					textNoRequiredItems = "Come back with two dragon beefbottoms, and I promise I'll help you.",
@@ -914,12 +914,12 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission05.FindCompanyAtWyverns,
 			QuestFactory.Dialog("Lambor", {
-				[{ ANY_MESSAGE }] = {
+				[{ "company", "bilbeus", "party" }] = {
 					text = "Your party went to the only source of pure water - the abandoned shack on the Wyvern Hill.",
 				},
 			}),
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Good thing you found us. I was starting to worry. No time for chit-chat. We tried to extract information about HF-P/X from the desert nomads. One of them claims to know where to find one of the ancient artifacts. We couldn't negotiate with them - maybe you can. Their settlement is in the north of the desert.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission05] = MISSION_FINISHED,
@@ -932,12 +932,12 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission06.TalkToNomad,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Tourists in such a place are an easy target. I told one of the nomads that we wouldn't renovate their old town. Maybe you can offer him something in exchange for information. Currently, they're camped on one of the rocks in the north.",
 				},
 			}),
 			QuestFactory.Dialog("Polychek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I've been visited before by those who asked, 'spare any help, boss?' If you renovate my old town, we'll consider it. You can also bring me a crystal of the depths. Do one of these, and I'll surely reward you.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission06] = QuestState.ThreeSramatiansAndTheDragon.Mission06.BringDepthsCrystal,
@@ -948,7 +948,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission06.BringDepthsCrystal,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Tourists in such a place are an easy target. I told one of the nomads that we wouldn't renovate their old town. Maybe you can offer him something in exchange for information. Currently, they're camped on one of the rocks in the north.",
 				},
 			}),
@@ -959,7 +959,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Polychek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "What you're looking for is in the lizardmen village. The lizardmen stumbled upon underground bug light deposits, and now they're exploiting them to the max. However, they stumbled upon something much more powerful - an ancient artifact. My scouts told me they guard it like a treasure it is. They recently moved it to the highest tower.",
 					requiredItems = { QuestKeyItems.ThreeSramatiansAndTheDragon.DeepCrystal },
 					textNoRequiredItems = "If you don't know where to find the crystals, try diving into the sea east of here.",
@@ -972,7 +972,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission06.ReportToBilbeus,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I've heard of underground chocolate chip cookie deposits, but natural bud light formations, never. Are you sure about my truth? Well, okay. Go to the lizard village and try to find at least one bud light. In the meantime, we'll go to the Medusa Tower area. Zwalin wants to meet Marluk sister. Although now I come to think about it, we won't stay there long. Ultimately, we'll meet at Hairycles's.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission06] = MISSION_FINISHED,
@@ -995,7 +995,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHairycles,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Hairycles provided us with directions to HF-P/X's hideout. But first, we need to do him a favor. If possible, bring us about 2^log(10000) bananas.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = QuestState.ThreeSramatiansAndTheDragon.Mission07.BringBananasToBilbeus,
@@ -1006,7 +1006,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.BringBananasToBilbeus,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thanks for your help. Now we'll head to the eastern monkey village. Between the Kongo village and the monkey grove there lies a hidden entrance to the ruins of an ancient temple.",
 					requiredItems = { { id = 3587, count = 16 } },
 					textNoRequiredItems = "I need exactly 16 bananas to avoid embarassment in front of Hairycles.",
@@ -1021,7 +1021,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission07.FindCompanyAtHellspawnTemple,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I have a feeling that Jan Kockodan got ahead of us. Maybe he's hiding somewhere in this hellish cave. Watch out for him! From the notes given to me by Hairycles, it appears that somewhere in this temple are enchanted doors. The key to opening them is to collect three different magical runes. Fortunately, all the runes are in the temple... if no one has stolen them.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission07] = QuestState.ThreeSramatiansAndTheDragon.Mission07.FindThreeMagicRunes,
@@ -1068,7 +1068,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Yes, those are all the needed runes. You can now try to find the enchanted doors I mentioned. Maybe we'll find HF-P/X here.",
 					requiredItems = {
 						QuestKeyItems.ThreeSramatiansAndTheDragon.Rune1,
@@ -1085,7 +1085,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Rat of Kings", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Don't wait for the sramatians. They're slacking on purpose to avoid having to fight {HF-P/X}. Besides, do you have all the {runes}?",
 				},
 				[{ "hfpx", "hf-p/x", "HF-P/X" }] = {
@@ -1116,12 +1116,12 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission08.FindAndDefeatHfpx,
 			QuestFactory.Dialog("Bilbeus", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Wait! Behind those doors might be HF-P/X! Try not to go too deep until we finish collecting, okay?",
 				},
 			}),
 			QuestFactory.Dialog("Rat of Kings", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I'm gonna stay here and have your back.",
 				},
 			}),
@@ -1184,7 +1184,7 @@ quest
 		local monster = {}
 
 		monster.description = "the Operator HF-P/X"
-		monster.experience = 500000
+		monster.experience = 200000
 		monster.outfit = {
 			lookType = 1142,
 			lookHead = 0,
@@ -1434,7 +1434,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission08.ReportToRatOfKings,
 			QuestFactory.Dialog("Rat of Kings", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "WHAAAAAT??? How many Passats were lost there? I'm about to faint...",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission08] = QuestState.ThreeSramatiansAndTheDragon.Mission08.ReportToRomek,
@@ -1447,7 +1447,7 @@ quest
 	:State(function()
 		return QuestState.ThreeSramatiansAndTheDragon.Mission08.ReportToRomek,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I have bad news. The stress level of the Rat of Kings reached the maximum possible value upon hearing about the Passat wreckage. Rats, unlike humans, react differently to such circumstances. Their reaction is self-destruction of the organism and tearing the soul into billions of smaller rat souls and Schrodinger's souls, each existing and not existing at the same time. The only way to bring him back to life is to find all the Schrödinger's souls and separate them from the real rat ones. Leave this problem to me, as I need you for another {task}.",
 					nextState = {
 						[Storage.ThreeSramatiansAndTheDragon.Mission08] = MISSION_FINISHED,

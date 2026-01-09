@@ -24,6 +24,28 @@ local toOrdinalGrandPlace = {
 }
 
 return {
+	["LIST_ENCOUNTERS"] = function(context)
+		local finalString = ""
+		finalString = finalString .. "Just ask me about specific encounter and i will give you tips to best of my ability. These are the bosses i know:"
+		local playerLanguage = getPlayerLanguage(context.player)
+		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][LOCALIZERS.FatMyrrusEncounters]) do
+			if type(desc) == "string" then
+				finalString = finalString .. "\n{" .. name .. "}"
+			end
+		end
+		return finalString
+	end,
+	["ENCOUNTER_DESCRIPTION"] = function(context)
+		local message = context.msg
+		local playerLanguage = getPlayerLanguage(context.player)
+		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][LOCALIZERS.FatMyrrusEncounters]) do
+			if type(desc) == "string" and name:lower() == message:lower() then
+				return desc
+			end
+		end
+		return "I dont have informations on this encounter."
+	end,
+	["Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?"] = "Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?",
 	[NO_TEXT] = NO_TEXT,
 	["Hey, Im Zong! Would you like to {ride} somewhere?"] = "Hey, Im Zong! Would you like to {ride} somewhere?",
 	["Hello! You look really hungry.. Ask about {trade} to see my offer."] = "Hello! You look really hungry.. Ask about {trade} to see my offer.",
@@ -184,6 +206,7 @@ return {
 	end,
 	["This amount is not a number."] = "This amount is not a number.",
 	["To be continued..."] = "To be continued...",
+	["Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world."] = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
 	["Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world."] = "Hello |PLAYERNAME|. I can tell you {informations} about whats behind the gates. You can also take some {mission} from me. By the way: im an expert at WoW raids, and I might be able to help you with dangerous {encounters} of this world.",
 	["They call me reborn eater, because i have a meat mortar in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go."] = "They call me reborn eater, because i have a meat mortar in my pants, if you know what i mean. Bring me a fresh Reborn boy, and i will let you go.",
 	["Lebewohl."] = "Lebewohl.",

@@ -393,10 +393,10 @@ quest
 	:State(function()
 		return QuestState.FashionistaOnanista.Mission03.SellFentToBarrack,
 			QuestFactory.Dialog("xXxTurdstinxXx", {
-				[{GREET}] = {
-					text = "Whats good, slime? You got any of that cosmic {fent}?"
+				[{ GREET }] = {
+					text = "Whats good, slime? You got any of that cosmic {fent}?",
 				},
-				[{ "fent" }] = {
+				[{ "fent", "drugs", "dragi", "narkotyki", "koka", "stuff", "kush" }] = {
 					text = "Finally.. How much platinum' for this?",
 					nextTopic = QuestTopics.FashionistaOnanista.Mission03.ConfirmBagPrice,
 				},
@@ -413,7 +413,7 @@ quest
 								if not amount then
 									return NO_REQUIREMENT_FAIL_TEXT
 								end
-								return amount <= 130
+								return amount <= 130 and amount > 0
 							end,
 							requiredOutcome = true,
 							textFailedRequirement = "What!? Thats way too much. Imma pass.",

@@ -36,7 +36,7 @@ quest
 	:State(function()
 		return QuestState.RubelsteinLegacy.Mission01.TalkToRubelstein,
 			QuestFactory.Dialog("Rubelstein", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thanks for helping me get out. Keep this - it's my cigarette case that I got for my eighteenth birthday. Personally I don't smoke, so maybe you'll find a better use for it.",
 					rewards = {
 						[6104] = {

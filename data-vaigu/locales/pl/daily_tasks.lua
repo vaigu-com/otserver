@@ -79,7 +79,7 @@ return {
 		local player = context.player
 		local dailyTask = context.dailyTask
 		local name = dailyTask.name
-		local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
+		local currentKills = math.max(player:getStorageValueByKey(dailyTask.currentKills), 0)
 		local requiredKills = dailyTask.requiredKills
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Dzisiejsze zadanie na :name:!\n\n", { name = name })
