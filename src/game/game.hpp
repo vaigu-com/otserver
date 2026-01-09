@@ -731,6 +731,10 @@ public:
 	// Vaigu custom
 	void updatePlayersOnline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>> &players) const;
 
+	void clearJustLoggedOutPlayerNames();
+	void addJustLoggedOutPlayerName(const std::string &name);
+	bool isMarkedAsJustLoggedOut(const std::string &name) const;
+
 private:
 	std::map<uint16_t, Achievement> m_achievements;
 	std::map<std::string, uint16_t> m_achievementsNameToId;
@@ -883,6 +887,8 @@ private:
 	phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Guild>> guilds;
 	phmap::flat_hash_map<uint16_t, std::shared_ptr<Item>> uniqueItems;
 	phmap::parallel_flat_hash_map<uint32_t, std::string> m_playerNameCache;
+
+	std::unordered_set<std::string> justLoggedOutPlayerNames;
 
 	/* Items stored from the lua scripts positions
 	 * For example: ActionFunctions::luaActionPosition

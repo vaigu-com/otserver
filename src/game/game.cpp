@@ -11663,3 +11663,15 @@ bool Game::processBankAuction(std::shared_ptr<Player> player, const std::shared_
 
 	return true;
 }
+
+void Game::clearJustLoggedOutPlayerNames() {
+	justLoggedOutPlayerNames.clear();
+}
+
+void Game::addJustLoggedOutPlayerName(const std::string &name) {
+	justLoggedOutPlayerNames.insert(name);
+}
+
+bool Game::isMarkedAsJustLoggedOut(const std::string &name) const {
+	return justLoggedOutPlayerNames.find(name) != justLoggedOutPlayerNames.end();
+}
