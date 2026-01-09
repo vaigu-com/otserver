@@ -9209,10 +9209,10 @@ void Game::playerNpcGreet(uint32_t playerId, uint32_t npcId) {
 
 	auto npcsSpectators = spectators.filter<Npc>();
 
-	if (npc->getSpeechBubble() == SPEECHBUBBLE_TRADE) {
-		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "trade", false, &npcsSpectators);
-	} else if (npc->isTransportNpc()) {
+	if (npc->isTransportNpc()) {
 		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "travel", false, &npcsSpectators);
+	} else if (npc->getSpeechBubble() == SPEECHBUBBLE_TRADE) {
+		internalCreatureSay(player, TALKTYPE_PRIVATE_PN, "trade", false, &npcsSpectators);
 	}
 
 	player->updateUIExhausted();
