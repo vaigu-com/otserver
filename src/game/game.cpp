@@ -686,7 +686,7 @@ void Game::setGameState(GameState_t newState) {
 		}
 
 		case GAME_STATE_SHUTDOWN: {
-			g_globalEvents().save();
+			// g_globalEvents().save();
 			g_globalEvents().shutdown();
 
 			// kick all players that are still online
@@ -695,27 +695,26 @@ void Game::setGameState(GameState_t newState) {
 				player->removePlayer(true);
 			}
 			saveMotdNum();
-			g_saveManager().saveAll();
+			// g_saveManager().saveAll();
 
-			g_dispatcher().addEvent([this] { shutdown(); }, __FUNCTION__);
+			g_dispatcher().scheduleEvent(3000, [this] { shutdown(); }, __FUNCTION__);
 			break;
 		}
 
 		case GAME_STATE_CLOSED: {
-			g_globalEvents().save();
+			// g_globalEvents().save();
 
 			/* kick all players without the CanAlwaysLogin flag */
-			auto it = players.begin();
-			while (it != players.end()) {
+			for (auto it = players.begin(); it != players.end();) {
 				if (!it->second->hasFlag(PlayerFlags_t::CanAlwaysLogin)) {
 					it->second->removePlayer(true);
-					it = players.begin();
+					it = players.erase(it); // safely remove and get next iterator
 				} else {
 					++it;
 				}
 			}
 
-			g_saveManager().saveAll();
+			// g_saveManager().saveAll();
 			break;
 		}
 
