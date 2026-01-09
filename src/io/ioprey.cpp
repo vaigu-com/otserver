@@ -68,7 +68,7 @@ void PreyMonsterBuilder::init() {
 }
 
 void PreyMonsterBuilder::filterByLevel(uint32_t level) {
-	const double baseIndex = 2 * (level * pow(std::log10(level), 2) * 2 + 1);
+	const double baseIndex = 2 * (level * pow(std::log10(level), 2) * 1.5f + 1);
 	double minDifficulty = baseIndex * 2 - 100;
 	double maxDifficulty = baseIndex * (1 + std::log10(baseIndex)) + 100;
 	if (level >= 200) {
@@ -405,7 +405,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 		}
 
 		rerollType = true;
-		rarityPenalty = 1;
+		rarityPenalty = 0;
 		maintainBonusType = true;
 		maintainMonster = false;
 		nextOption = PreyOption_None;
@@ -427,7 +427,7 @@ void IOPrey::parsePreyAction(std::shared_ptr<Player> player, PreySlot_t slotId, 
 			return;
 		}
 
-		rarityPenalty = 0;
+		rarityPenalty = 1;
 		nextState = PreyDataState_Active;
 		maintainState = false;
 		maintainBonusType = false;
