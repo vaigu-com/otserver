@@ -9546,57 +9546,6 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 		return;
 	}
 
-	const auto &playerInbox = player->getInbox();
-	if (offer.marketAction == CANCEL_SELL) {
-		player->setBankBalance(player->getBankBalance() + offer.price * offer.amount);
-		g_metrics().addCounter("balance_decrease", offer.price * offer.amount, { { "player", player->getName() }, { "context", "market_purchase" } });
-		// Send market window again for update stats
-		player->sendMarketEnter(player->getLastDepotId());
-	} else if (offer.marketAction == CANCEL_BUY) {
-		const ItemType &it = Item::items[offer.itemId];
-		if (it.id == 0) {
-			return;
-		}
-
-		if (it.id == ITEM_STORE_COIN) {
-			// Do not register a transaction for coins upon cancellation
-			player->getAccount()->addCoins(CoinType::Transferable, offer.amount, "");
-		} else if (it.stackable) {
-			uint16_t tmpAmount = offer.amount;
-
-			while (tmpAmount > 0) {
-				int32_t stackCount = std::min<int32_t>(it.stackSize, tmpAmount);
-				const auto &item = Item::CreateItem(it.id, stackCount);
-				if (internalAddItem(playerInbox, item, INDEX_WHEREEVER, FLAG_NOLIMIT) != RETURNVALUE_NOERROR) {
-					break;
-				}
-
-				if (offer.tier > 0) {
-					item->setAttribute(ItemAttribute_t::TIER, offer.tier);
-				}
-
-				tmpAmount -= stackCount;
-			}
-		} else {
-			int32_t subType;
-			if (it.charges != 0) {
-				subType = it.charges;
-			} else {
-				subType = -1;
-			}
-
-			for (uint16_t i = 0; i < offer.amount; ++i) {
-				const auto &item = Item::CreateItem(it.id, subType);
-				if (internalAddItem(playerInbox, item, INDEX_WHEREEVER, FLAG_NOLIMIT) != RETURNVALUE_NOERROR) {
-					break;
-				}
-
-				if (offer.tier > 0) {
-					item->setAttribute(ItemAttribute_t::TIER, offer.tier);
-				}
-			}
-		}
-	}
 
 	g_iomarket().cancelAndAppendToHistory(offer);
 
