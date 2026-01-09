@@ -11245,6 +11245,10 @@ void Game::updatePlayersOnline(const phmap::parallel_flat_hash_map<uint32_t, std
 		// Insert the current players
 		DBInsert stmt("INSERT IGNORE INTO `players_online` (player_id) VALUES ");
 		for (const auto &[key, player] : m_players) {
+			auto group = player->getGroup();
+			if (!group || group->id != 1) {
+				continue;
+			}
 			std::ostringstream playerQuery;
 			playerQuery << "(" << player->getGUID() << ")";
 			stmt.addRow(playerQuery.str());
