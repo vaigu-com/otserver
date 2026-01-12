@@ -78,26 +78,28 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 161 },
-	{ name = "platinum coin", chance = 52380, maxCount = 3 },
+	{ name = "gold coin", chance = 70000, maxCount = 100 },
+	{ name = "platinum coin", chance = 32380, maxCount = 3 },
 	{ name = "wyrm scale", chance = 33330 },
 	{ name = "dragon ham", chance = 23810, maxCount = 2 },
 	{ name = "strong health potion", chance = 23810 },
 	{ name = "strong mana potion", chance = 19050 },
 	{ name = "crossbow", chance = 14290 },
 	{ name = "small diamond", chance = 4760 },
-	{ name = "soul orb", chance = 4760 },
+	{ name = "soul orb", chance = 6760 },
 	{ name = "wand of draconia", chance = 1510 },
 	{ name = "power bolt", chance = 1030, maxCount = 10 },
 	{ name = "wand of starstorm", chance = 830 },
-	{ name = "lightning pendant", chance = 750 },
-	{ name = "lightning legs", chance = 600 },
+	{ name = "lightning pendant", chance = 950 },
+	{ name = "lightning legs", chance = 300 },
 	{ name = "lightning robe", chance = 290 },
-	{ name = "dragonbone staff", chance = 240 },
-	{ name = "composite hornbow", chance = 220 },
-	{ name = "shadow sceptre", chance = 170 },
-	{ name = "lightning boots", chance = 150 },
-	{ name = "shockwave amulet", chance = 120 },
+	{ name = "dragonbone staff", chance = 540 },
+	{ name = "composite hornbow", chance = 620 },
+	{ name = "shadow sceptre", chance = 370 },
+	{ name = "lightning boots", chance = 350 },
+	{ name = "shockwave amulet", chance = 420 },
+	{ id = 12669, chance = 280 },
+	{ name = "bullseye potion", chance = 710 },
 }
 
 monster.attacks = {

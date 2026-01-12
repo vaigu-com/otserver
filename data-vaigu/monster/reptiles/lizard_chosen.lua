@@ -76,19 +76,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small diamond", chance = 2550, maxCount = 5 },
-	{ name = "gold coin", chance = 33000, maxCount = 100 },
-	{ name = "gold coin", chance = 32000, maxCount = 100 },
-	{ name = "gold coin", chance = 32000, maxCount = 36 },
+	{ name = "small diamond", chance = 3550, maxCount = 5 },
+	{ name = "gold coin", chance = 45000, maxCount = 100 },
 	{ name = "platinum coin", chance = 2920, maxCount = 5 },
-	{ name = "tower shield", chance = 1100 },
-	{ name = "lizard leather", chance = 2000 },
-	{ name = "lizard scale", chance = 980, maxCount = 3 },
+	{ name = "tower shield", chance = 1000 },
+	{ name = "lizard leather", chance = 3000 },
+	{ name = "lizard scale", chance = 5000 },
 	{ name = "great health potion", chance = 5350, maxCount = 3 },
 	{ name = "zaoan armor", chance = 980 },
-	{ name = "zaoan helmet", chance = 140 },
-	{ name = "zaoan shoes", chance = 810 },
-	{ name = "zaoan legs", chance = 940 },
+	{ name = "zaoan helmet", chance = 250 },
+	{ name = "zaoan shoes", chance = 1310 },
+	{ name = "zaoan legs", chance = 640 },
 	{ name = "spiked iron ball", chance = 9890 },
 	{ name = "corrupted flag", chance = 3350 },
 	{ name = "cursed shoulder spikes", chance = 5800 },
@@ -113,14 +111,14 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 90 },
+	{ type = COMBAT_FIREDAMAGE, percent = 20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 10 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 5 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -3 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 10 },
 }
 
 monster.immunities = {

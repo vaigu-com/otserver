@@ -79,25 +79,24 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 33400, maxCount = 100 },
-	{ name = "gold coin", chance = 33400, maxCount = 100 },
-	{ name = "platinum coin", chance = 49610, maxCount = 6 },
+	{ name = "platinum coin", chance = 49610, maxCount = 5 },
 	{ name = "necrotic rod", chance = 980 },
 	{ name = "wand of cosmic energy", chance = 910 },
-	{ id = 5884, chance = 140 }, -- spirit container
-	{ id = 6299, chance = 300 }, -- death ring
+	{ id = 5884, chance = 240 }, -- spirit container
+	{ id = 6299, chance = 400 }, -- death ring
 	{ name = "great mana potion", chance = 8000 },
 	{ name = "ultimate health potion", chance = 9400 },
-	{ name = "souleater trophy", chance = 20 },
+	{ name = "souleater trophy", chance = 120 },
 	{ name = "lizard essence", chance = 15250 },
-	{ name = "ectoplasmic sushi", chance = 2000 },
+	{ name = "ectoplasmic sushi", chance = 4000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -210 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -20, maxDamage = -210 },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ICEDAMAGE, minDamage = -60, maxDamage = -100, range = 7, shootEffect = CONST_ANI_SMALLICE, target = true },
 	{ name = "souleater drown", interval = 2000, chance = 10, target = false },
 	{ name = "souleater wave", interval = 2000, chance = 10, minDamage = -100, maxDamage = -200, target = false },
-	{ name = "combat", interval = 2000, chance = 14, type = COMBAT_LIFEDRAIN, minDamage = -0, maxDamage = -60, radius = 4, effect = CONST_ME_MAGIC_RED, target = false },
+	{ name = "combat", interval = 2000, chance = 14, type = COMBAT_LIFEDRAIN, minDamage = -0, maxDamage = -160, radius = 6, effect = CONST_ME_MAGIC_RED, target = false },
 }
 
 monster.defenses = {
@@ -109,7 +108,7 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 60 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 40 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
 	{ type = COMBAT_FIREDAMAGE, percent = -10 },

@@ -76,8 +76,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 100000, maxCount = 3 }, -- platinum coin
+	{ id = 3031, chance = 80000, maxCount = 100 }, -- gold coin
+	{ id = 3035, chance = 70000, maxCount = 3 }, -- platinum coin
 	{ id = 21203, chance = 9090 }, -- glooth bag
 	{ id = 21816, chance = 7692 }, -- tainted glooth capsule
 	{ id = 238, chance = 5882 }, -- great mana potion
@@ -88,11 +88,11 @@ monster.loot = {
 	{ id = 7643, chance = 2000 }, -- ultimate health potion
 	{ id = 21178, chance = 1515 }, -- glooth club
 	{ id = 21183, chance = 1515 }, -- glooth amulet
-	{ id = 7386, chance = 1000 }, -- mercenary sword
-	{ id = 811, chance = 1000 }, -- terra mantle
+	{ id = 7386, chance = 800 }, -- mercenary sword
+	{ id = 811, chance = 700 }, -- terra mantle
 	{ id = 281, chance = 1000 }, -- giant shimmering pearl (green)
 	{ id = 814, chance = 1000 }, -- terra amulet
-	{ id = 7412, chance = 1000 }, -- butcher's axe
+	{ id = 7412, chance = 600 }, -- butcher's axe
 	{ id = 3038, chance = 1000 }, -- green gem
 	{ id = 813, chance = 502 }, -- terra boots
 	{ id = 7419, chance = 502 }, -- dreaded cleaver
@@ -117,7 +117,7 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 25 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 90 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },

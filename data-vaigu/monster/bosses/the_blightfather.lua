@@ -68,17 +68,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 2000, maxCount = 61 }, -- gold coin
-	{ id = 3031, chance = 2000, maxCount = 60 }, -- gold coin
+	{ id = 3031, chance = 2000, maxCount = 91 }, -- gold coin
 	{ id = 9692, chance = 17500 }, -- lump of dirt
-	{ id = 9640, chance = 12500 }, -- poisonous slime
-	{ id = 10455, chance = 7000 }, -- lancer beetle shell
-	{ id = 10457, chance = 400 }, -- beetle necklace
-	{ id = 3033, chance = 800 }, -- small amethyst
+	{ id = 9640, chance = 72500 }, -- poisonous slime
+	{ id = 10455, chance = 17000 }, -- lancer beetle shell
+	{ id = 10457, chance = 1400 }, -- beetle necklace
+	{ id = 3033, chance = 8100 }, -- small amethyst
+	{ id = 12669, chance = 8100 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 40, attack = 80 },
+	{ name = "melee", interval = 1000, chance = 100, skill = 40, attack = 80 },
 }
 
 monster.defenses = {
@@ -89,16 +89,16 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 30 },
 }
 
 monster.immunities = {
