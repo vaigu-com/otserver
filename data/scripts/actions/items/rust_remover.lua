@@ -1,68 +1,68 @@
 local config = {
 	[8894] = { -- heavily rusted armor
-		[1] = { id = 3358, chance = 6994 }, -- chain armor
-		[2] = { id = 3377, chance = 3952 }, -- scale armor
-		[3] = { id = 3359, chance = 1502 }, -- brass armor
-		[4] = { id = 3357, chance = 197 }, -- plate armor
+		[1] = { id = 3358, chance = 9994 }, -- chain armor
+		[2] = { id = 3377, chance = 5952 }, -- scale armor
+		[3] = { id = 3359, chance = 3502 }, -- brass armor
+		[4] = { id = 3357, chance = 1197 }, -- plate armor
+		[5] = { id = 17829, chance = 437 }, -- buckle
+		[7] = { id = 3402, chance = 100 }, -- native armor
 	},
 	[8895] = { -- rusted armor
-		[1] = { id = 3358, chance = 6437 }, -- scale armor
-		[2] = { id = 3358, chance = 4606 }, -- chain armor
-		[3] = { id = 3359, chance = 3029 }, -- brass armor
-		[4] = { id = 3357, chance = 1559 }, -- plate armor
-		[5] = { id = 3370, chance = 595 }, -- knight armor
-		[6] = { id = 8063, chance = 283 }, -- paladin armor
-		[7] = { id = 3381, chance = 49 }, -- crown armor
+		[1] = { id = 3377, chance = 10237 }, -- scale armor
+		[2] = { id = 3359, chance = 9329 }, -- brass armor
+		[3] = { id = 3357, chance = 7559 }, -- plate armor
+		[4] = { id = 3370, chance = 3595 }, -- knight armor
+		[5] = { id = 3381, chance = 1749 }, -- crown armor
+		[6] = { id = 8063, chance = 683 }, -- paladin armor
+		[7] = { id = 3360, chance = 449 }, -- golden armor
+		[8] = { id = 7993, chance = 158 }, -- Witchhunter's Coat
 	},
 	[8896] = { -- slightly rusted armor
-		[1] = { id = 3359, chance = 6681 }, -- brass armor
-		[2] = { id = 3357, chance = 3767 }, -- plate armor
-		[3] = { id = 3370, chance = 1832 }, -- knight armor
-		[4] = { id = 3381, chance = 177 }, -- crown armor
-		[5] = { id = 8063, chance = 31 }, -- paladin armor
-		[6] = { id = 3360, chance = 10 }, -- golden armor
+		[1] = { id = 3357, chance = 13767 }, -- plate armor
+		[2] = { id = 3370, chance = 7832 }, -- knight armor
+		[3] = { id = 3567, chance = 1677 }, -- blue robe
+		[4] = { id = 8063, chance = 710 }, -- paladin armor
+		[5] = { id = 3360, chance = 500 }, -- golden armor
+		[6] = { id = 25779, chance = 145 }, -- Swan Feather Cloak
 	},
 	[8897] = { -- heavily rusted legs
-		[1] = { id = 3558, chance = 6949 }, -- chain legs
-		[2] = { id = 3362, chance = 3692 }, -- studded legs
-		[3] = { id = 3372, chance = 1307 }, -- brass legs
-		[4] = { id = 3557, chance = 133 }, -- plate legs
+		[1] = { id = 3558, chance = 16949 }, -- chain legs
+		[2] = { id = 3372, chance = 11307 }, -- brass legs
+		[3] = { id = 3557, chance = 8133 }, -- plate legs
 	},
 	[8898] = { -- rusted legs
-		[1] = { id = 3362, chance = 5962 }, -- studded legs
-		[2] = { id = 3558, chance = 4037 }, -- chain legs
-		[3] = { id = 3372, chance = 2174 }, -- brass legs
-		[4] = { id = 3557, chance = 1242 }, -- plate legs
-		[5] = { id = 3371, chance = 186 }, -- knight legs
+		[1] = { id = 3372, chance = 12174 }, -- brass legs
+		[2] = { id = 3557, chance = 8242 }, -- plate legs
+		[3] = { id = 3371, chance = 2286 }, -- knight legs
+		[4] = { id = 21168, chance = 586 }, -- Alloy Legs
 	},
 	[8899] = { -- slightly rusted legs
-		[1] = { id = 3372, chance = 6500 }, -- brass legs
-		[2] = { id = 3557, chance = 3800 }, -- plate legs
-		[3] = { id = 3371, chance = 200 }, -- knight legs
-		[4] = { id = 3382, chance = 52 }, -- crown legs
-		[5] = { id = 3364, chance = 30 }, -- golden legs
+		[1] = { id = 3557, chance = 13800 }, -- plate legs
+		[2] = { id = 3382, chance = 5002 }, -- crown legs
+		[3] = { id = 3364, chance = 1130 }, -- golden legs
+		[4] = { id = 14087, chance = 1130 }, -- Grasshopper Legs
 	},
 	[8902] = { -- slightly rusted shield
-		[1] = { id = 3410, chance = 3137 }, -- plate shield
-		[2] = { id = 3432, chance = 2887 }, -- ancient shield
-		[3] = { id = 7460, chance = 929 }, -- norse shield
-		[4] = { id = 3419, chance = 23 }, -- crown shield
-		[5] = { id = 3434, chance = 10 }, -- vampire shield
+		[1] = { id = 3432, chance = 12887 }, -- ancient shield
+		[2] = { id = 7460, chance = 8929 }, -- norse shield
+		[3] = { id = 3419, chance = 5523 }, -- crown shield
+		[4] = { id = 3434, chance = 1110 }, -- vampire shield
+		[5] = { id = 3438, chance = 510 }, -- eagle shield
+		[6] = { id = 8076, chance = 138 }, -- Spellscroll of Prophecies
 	},
 	[8907] = { -- rusted helmet
-		[1] = { id = 3354, chance = 2200 }, -- brass helmet
-		[2] = { id = 3376, chance = 1870 }, -- studded helmet
-		[3] = { id = 3353, chance = 1490 }, -- iron helmet
-		[4] = { id = 3351, chance = 1010 }, -- steel helmet
-		[5] = { id = 3385, chance = 190 }, -- crown helmet
-		[6] = { id = 3391, chance = 10 }, -- crusader helmet
+		[1] = { id = 3353, chance = 15490 }, -- iron helmet
+		[2] = { id = 3351, chance = 10010 }, -- steel helmet
+		[3] = { id = 3385, chance = 7190 }, -- crown helmet
+		[4] = { id = 3391, chance = 4210 }, -- crusader helmet
+		[5] = { id = 5460, chance = 1210 }, -- Helmet of the Deep
 	},
 	[8908] = { -- slightly rusted helmet
-		[1] = { id = 3353, chance = 3156 }, -- iron helmet
-		[2] = { id = 3351, chance = 2976 }, -- steel helmet
-		[3] = { id = 3385, chance = 963 }, -- crown helmet
-		[4] = { id = 3391, chance = 210 }, -- crusader helmet
-		[5] = { id = 3392, chance = 7 }, -- royal helmet
+		[1] = { id = 3351, chance = 17976 }, -- steel helmet
+		[2] = { id = 3385, chance = 11263 }, -- crown helmet
+		[3] = { id = 3391, chance = 6210 }, -- crusader helmet
+		[4] = { id = 3392, chance = 1027 }, -- royal helmet
+		[5] = { id = 10451, chance = 177 }, -- Jade Hat
 	},
 }
 
