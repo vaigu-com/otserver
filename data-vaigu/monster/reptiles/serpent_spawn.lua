@@ -81,27 +81,26 @@ monster.voices = {
 monster.loot = {
 	{ name = "golden mug", chance = 2870 },
 	{ name = "small sapphire", chance = 12000 },
-	{ name = "gold coin", chance = 97250, maxCount = 239 },
+	{ name = "gold coin", chance = 97250, maxCount = 89 },
 	{ id = 3051, chance = 590 }, -- energy ring
-	{ id = 3052, chance = 6250 }, -- life ring
-	{ name = "life crystal", chance = 800 },
-	{ name = "snakebite rod", chance = 930 },
+	{ id = 3052, chance = 1250 }, -- life ring
+	{ name = "life crystal", chance = 1800 },
 	{ name = "warrior helmet", chance = 560 },
-	{ name = "strange helmet", chance = 670 },
+	{ name = "strange helmet", chance = 1670 },
 	{ name = "crown armor", chance = 510 },
 	{ id = 4831, chance = 550 }, -- old parchment
 	{ name = "royal helmet", chance = 140 },
 	{ name = "tower shield", chance = 920 },
-	{ name = "power bolt", chance = 6200 },
+	{ name = "power bolt", chance = 16200 },
 	{ name = "green mushroom", chance = 18200 },
 	{ name = "charmer's tiara", chance = 180 },
-	{ name = "mercenary sword", chance = 2070 },
+	{ name = "mercenary sword", chance = 1070 },
 	{ name = "noble axe", chance = 750 },
-	{ name = "great mana potion", chance = 2000 },
+	{ name = "great mana potion", chance = 3000 },
 	{ name = "swamplair armor", chance = 90 },
-	{ name = "spellbook of mind control", chance = 90 },
+	{ name = "spellbook of mind control", chance = 190 },
 	{ name = "snake skin", chance = 14800 },
-	{ name = "winged tail", chance = 960 },
+	{ name = "winged tail", chance = 3960 },
 }
 
 monster.attacks = {

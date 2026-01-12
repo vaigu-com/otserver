@@ -69,7 +69,7 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 1,
+	maxSummons = 2,
 	summons = {
 		{ name = "stone golem", chance = 10, interval = 2000, count = 1 },
 	},
@@ -86,17 +86,16 @@ monster.voices = {
 monster.loot = {
 	{ name = "red tome", chance = 300 },
 	{ name = "candlestick", chance = 1500 },
-	{ name = "piggy bank", chance = 60 },
-	{ name = "ring of the sky", chance = 430 },
-	{ id = 3007, chance = 700 }, -- crystal ring
+	{ name = "piggy bank", chance = 560 },
+	{ name = "ring of the sky", chance = 330 },
+	{ id = 3007, chance = 1700 }, -- crystal ring
 	{ name = "small sapphire", chance = 1190 },
 	{ name = "gold coin", chance = 29340, maxCount = 80 },
-	{ name = "talon", chance = 1150 },
-	{ id = 3051, chance = 2200 }, -- energy ring
+	{ name = "talon", chance = 2150 },
+	{ id = 3051, chance = 1200 }, -- energy ring
 	{ name = "mind stone", chance = 2000 },
 	{ name = "stone skin amulet", chance = 330 },
-	{ name = "poison dagger", chance = 7600 },
-	{ name = "skull staff", chance = 6370 },
+	{ name = "skull staff", chance = 5370 },
 	{ name = "golden armor", chance = 240 },
 	{ id = 3509, chance = 1000 }, -- inkwell
 	{ name = "blue robe", chance = 1410 },
@@ -104,7 +103,6 @@ monster.loot = {
 	{ name = "bread", chance = 9000 },
 	{ name = "dark mushroom", chance = 3000 },
 	{ name = "assassin star", chance = 3500, maxCount = 4 },
-	{ name = "assassin star", chance = 3470, maxCount = 4 },
 	{ name = "great mana potion", chance = 4760 },
 	{ name = "great health potion", chance = 5190 },
 	{ name = "lightning robe", chance = 1000 },
@@ -114,12 +112,12 @@ monster.loot = {
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -130 },
 	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_ENERGYDAMAGE, minDamage = -90, maxDamage = -180, range = 7, shootEffect = CONST_ANI_ENERGY, target = false },
-	{ name = "warlock skill reducer", interval = 2000, chance = 5, range = 5, target = false },
+	{ name = "warlock skill reducer", interval = 2000, chance = 10, range = 5, target = false },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_MANADRAIN, minDamage = 0, maxDamage = -120, range = 7, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -50, maxDamage = -180, range = 7, radius = 3, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_FIREAREA, target = true },
-	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 2, shootEffect = CONST_ANI_FIRE, target = true },
+	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 1, shootEffect = CONST_ANI_FIRE, target = true },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ENERGYDAMAGE, minDamage = -150, maxDamage = -230, length = 8, spread = 0, effect = CONST_ME_BIGCLOUDS, target = false },
-	{ name = "speed", interval = 2000, chance = 15, speedChange = -600, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 20000 },
+	{ name = "speed", interval = 2000, chance = 15, speedChange = -500, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 10000 },
 }
 
 monster.defenses = {
@@ -127,18 +125,18 @@ monster.defenses = {
 	armor = 33,
 	mitigation = 1.32,
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 100, maxDamage = 225, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 2000, chance = 20, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "invisible", interval = 2000, chance = 15, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 95 },
-	{ type = COMBAT_FIREDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 75 },
+	{ type = COMBAT_FIREDAMAGE, percent = 92 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 100 },
+	{ type = COMBAT_ICEDAMAGE, percent = 90 },
 	{ type = COMBAT_HOLYDAMAGE, percent = -8 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }

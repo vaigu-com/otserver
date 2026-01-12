@@ -80,29 +80,29 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 105 },
-	{ name = "dandelion seeds", chance = 14870 },
+	{ name = "gold coin", chance = 50000, maxCount = 100 },
+	{ name = "dandelion seeds", chance = 10870 },
 	{ name = "strong health potion", chance = 11760 },
 	{ name = "fresh fruit", chance = 10290 },
 	{ name = "shimmering beetles", chance = 9330 },
-	{ name = "leaf star", chance = 8720, maxCount = 3 },
+	{ name = "leaf star", chance = 12720, maxCount = 3 },
 	{ name = "goat grass", chance = 7280 },
 	{ name = "cookie", chance = 6150, maxCount = 5 },
 	{ name = "grapes", chance = 5400 },
-	{ name = "rainbow quartz", chance = 5260, maxCount = 2 },
-	{ name = "small stone", chance = 5260, maxCount = 2 },
+	{ name = "rainbow quartz", chance = 2260 },
+	{ name = "small stone", chance = 5260, maxCount = 4 },
 	{ name = "panpipes", chance = 4510 },
 	{ name = "great health potion", chance = 3590 },
-	{ name = "wood cape", chance = 820 },
-	{ name = "leaf legs", chance = 340 },
-	{ name = "wooden spellbook", chance = 210 },
-	{ id = 5792, chance = 140 }, -- die
+	{ name = "wood cape", chance = 520 },
+	{ name = "leaf legs", chance = 1040 },
+	{ name = "wooden spellbook", chance = 150 },
+	{ id = 5792, chance = 340 }, -- die
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -165 },
-	{ name = "combat", interval = 1000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = -35, maxDamage = -45, range = 7, shootEffect = CONST_ANI_SNOWBALL, effect = CONST_ME_POFF, target = false },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ENERGYDAMAGE, minDamage = -45, maxDamage = -65, length = 3, spread = 0, effect = CONST_ME_POFF, target = false },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = -35, maxDamage = -75, range = 7, shootEffect = CONST_ANI_SNOWBALL, effect = CONST_ME_POFF, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -45, maxDamage = -65, length = 4, spread = 0, effect = CONST_ME_POFF, target = false },
 }
 
 monster.defenses = {

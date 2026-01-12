@@ -76,8 +76,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 100000, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 100000, maxCount = 3 }, -- platinum coin
+	{ id = 3031, chance = 80000, maxCount = 100 }, -- gold coin
+	{ id = 3035, chance = 80000, maxCount = 3 }, -- platinum coin
 	{ id = 21816, chance = 9090 }, -- tainted glooth capsule
 	{ id = 238, chance = 7142 }, -- great mana potion
 	{ id = 21203, chance = 5555 }, -- glooth bag
@@ -88,21 +88,21 @@ monster.loot = {
 	{ id = 21814, chance = 3030 }, -- glooth capsule
 	{ id = 21179, chance = 2500 }, -- glooth blade
 	{ id = 21178, chance = 2500 }, -- glooth club
-	{ id = 21165, chance = 2000 }, -- rubber cap
+	{ id = 21165, chance = 1000 }, -- rubber cap
 	{ id = 3032, chance = 1492, maxCount = 2 }, -- small emerald
-	{ id = 21158, chance = 1492 }, -- glooth spear
+	{ id = 21158, chance = 5492 }, -- glooth spear
 	{ id = 7643, chance = 1492 }, -- ultimate health potion
 	{ id = 21146, chance = 1000 }, -- glooth steak
 	{ id = 3324, chance = 1000 }, -- skull staff
-	{ id = 21164, chance = 1000 }, -- glooth cape
+	{ id = 21164, chance = 800 }, -- glooth cape
 	{ id = 3038, chance = 1000 }, -- green gem
 	{ id = 21180, chance = 1000 }, -- glooth axe
-	{ id = 3342, chance = 1000 }, -- war axe
-	{ id = 811, chance = 1000 }, -- terra mantle
+	{ id = 3342, chance = 800 }, -- war axe
+	{ id = 811, chance = 800 }, -- terra mantle
 	{ id = 3344, chance = 1000 }, -- beastslayer axe
 	{ id = 21183, chance = 500 }, -- glooth amulet
 	{ id = 813, chance = 500 }, -- terra boots
-	{ id = 812, chance = 500 }, -- terra legs
+	{ id = 812, chance = 300 }, -- terra legs
 }
 
 monster.attacks = {
@@ -114,7 +114,7 @@ monster.defenses = {
 	defense = 32,
 	armor = 46,
 	mitigation = 1.65,
-	{ name = "combat", interval = 3000, chance = 35, type = COMBAT_HEALING, minDamage = 200, maxDamage = 250, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 4000, chance = 25, type = COMBAT_HEALING, minDamage = 200, maxDamage = 250, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {

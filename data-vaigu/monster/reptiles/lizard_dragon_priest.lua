@@ -82,27 +82,26 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 5000, maxCount = 100 },
-	{ name = "gold coin", chance = 4400, maxCount = 88 },
+	{ name = "gold coin", chance = 15000, maxCount = 100 },
 	{ name = "small amethyst", chance = 4900, maxCount = 3 },
 	{ name = "platinum coin", chance = 4090, maxCount = 2 },
 	{ name = "yellow gem", chance = 1000 },
-	{ id = 3052, chance = 770 }, -- life ring
+	{ id = 3052, chance = 970 }, -- life ring
 	{ name = "terra rod", chance = 1001 },
 	{ name = "wand of inferno", chance = 1480 },
-	{ name = "lizard leather", chance = 980 },
-	{ name = "lizard scale", chance = 1130 },
-	{ name = "strong mana potion", chance = 12110 },
-	{ name = "great mana potion", chance = 7940 },
-	{ name = "focus cape", chance = 660 },
-	{ name = "bunch of ripe rice", chance = 960 },
-	{ name = "zaoan shoes", chance = 450 },
+	{ name = "lizard leather", chance = 580 },
+	{ name = "lizard scale", chance = 2130 },
+	{ name = "strong mana potion", chance = 15110 },
+	{ name = "great mana potion", chance = 9940 },
+	{ name = "focus cape", chance = 760 },
+	{ name = "bunch of ripe rice", chance = 1960 },
+	{ name = "zaoan shoes", chance = 650 },
 	{ name = "zaoan robe", chance = 300 },
 	{ name = "dragon priest's wandtip", chance = 9910 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -100 },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -125, maxDamage = -190, range = 7, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_FIREATTACK, target = true },
 	-- poison
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -320, maxDamage = -400, range = 7, radius = 1, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = true },
@@ -112,19 +111,19 @@ monster.defenses = {
 	defense = 15,
 	armor = 22,
 	mitigation = 0.78,
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_HEALING, minDamage = 200, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 2000, chance = 15, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 100, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "invisible", interval = 2000, chance = 12, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 90 },
 	{ type = COMBAT_FIREDAMAGE, percent = 85 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -2 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }

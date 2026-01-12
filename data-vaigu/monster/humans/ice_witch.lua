@@ -77,17 +77,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 29630, maxCount = 90 },
-	{ name = "clerical mace", chance = 920 },
-	{ name = "mystic turban", chance = 430 },
-	{ name = "green mushroom", chance = 1310 },
-	{ name = "shard", chance = 530 },
-	{ name = "diamond sceptre", chance = 330 },
+	{ name = "gold coin", chance = 31630, maxCount = 90 },
+	{ name = "clerical mace", chance = 2920 },
+	{ name = "mystic turban", chance = 1430 },
+	{ name = "green mushroom", chance = 4310 },
+	{ name = "shard", chance = 930 },
+	{ name = "diamond sceptre", chance = 630 },
 	{ id = 7441, chance = 10000 }, -- ice cube
-	{ name = "crystal sword", chance = 400 },
-	{ name = "pair of earmuffs", chance = 90 },
-	{ name = "strong mana potion", chance = 820 },
-	{ name = "glacier shoes", chance = 280 },
+	{ name = "crystal sword", chance = 800 },
+	{ name = "pair of earmuffs", chance = 390 },
+	{ name = "strong mana potion", chance = 4820 },
+	{ name = "glacier shoes", chance = 580 },
 }
 
 monster.attacks = {
@@ -95,21 +95,21 @@ monster.attacks = {
 	{ name = "outfit", interval = 2000, chance = 1, range = 7, shootEffect = CONST_ANI_SNOWBALL, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, outfitItem = 7172 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = -60, maxDamage = -130, length = 5, spread = 2, effect = CONST_ME_ICETORNADO, target = false },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ICEDAMAGE, minDamage = -55, maxDamage = -115, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
-	{ name = "speed", interval = 2000, chance = 15, speedChange = -600, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICETORNADO, target = false, duration = 20000 },
+	{ name = "speed", interval = 2000, chance = 15, speedChange = -400, range = 6, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICETORNADO, target = false, duration = 10000 },
 }
 
 monster.defenses = {
 	defense = 20,
-	armor = 70,
+	armor = 50,
 	mitigation = 0.91,
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_HEALING, minDamage = 90, maxDamage = 120, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 90, maxDamage = 120, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 40 },
-	{ type = COMBAT_FIREDAMAGE, percent = 50 },
+	{ type = COMBAT_FIREDAMAGE, percent = 20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
