@@ -94,19 +94,18 @@ monster.loot = {
 	{ name = "gold coin", chance = 30000, maxCount = 80 },
 	{ name = "silver amulet", chance = 8700 },
 	{ id = 3059, chance = 520 }, -- spellbook
-	{ name = "life crystal", chance = 70 },
+	{ name = "life crystal", chance = 570 },
 	{ name = "stone skin amulet", chance = 820 },
 	{ id = 3098, chance = 730 }, -- ring of healing
 	{ id = 2949, chance = 910 }, -- lyre
-	{ name = "poison dagger", chance = 1350 },
 	{ name = "red robe", chance = 150 },
 	{ name = "blue robe", chance = 700 },
 	{ name = "simple dress", chance = 6050 },
-	{ name = "strong mana potion", chance = 680 },
+	{ name = "strong mana potion", chance = 3680 },
 	{ name = "terra mantle", chance = 340 },
 	{ name = "petrified scream", chance = 4150 },
 	{ name = "hair of a banshee", chance = 4810 },
-	{ name = "sweet smelling bait", chance = 40 },
+	{ name = "sweet smelling bait", chance = 140 },
 }
 
 monster.attacks = {
@@ -124,14 +123,14 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 100 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 90 },
+	{ type = COMBAT_FIREDAMAGE, percent = 60 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 100 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -10 },
 	{ type = COMBAT_HOLYDAMAGE, percent = -25 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Fahim the Wise")
 local monster = {}
 
 monster.description = "Fahim the Wise"
-monster.experience = 1500
+monster.experience = 9000
 monster.outfit = {
 	lookType = 104,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 2000
-monster.maxHealth = 2000
+monster.health = 3000
+monster.maxHealth = 3000
 monster.race = "blood"
 monster.corpse = 6033
 monster.speed = 90
@@ -57,7 +57,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 3,
 	summons = {
-		{ name = "blue djinn", chance = 10, interval = 2000, count = 3 },
+		{ name = "blue djinn", chance = 30, interval = 2000, count = 1 },
 	},
 }
 
@@ -72,29 +72,32 @@ monster.loot = {
 	{ name = "jewelled belt", chance = 99990 },
 	{ name = "gold coin", chance = 95240, maxCount = 118 },
 	{ name = "noble turban", chance = 66670 },
-	{ name = "royal spear", chance = 57140, maxCount = 3 },
 	{ name = "shiny stone", chance = 47620 },
 	{ name = "strong mana potion", chance = 42860, maxCount = 3 },
 	{ name = "blueberry", chance = 40480, maxCount = 22 },
 	{ name = "mystic turban", chance = 33330 },
 	{ name = "small sapphire", chance = 14290, maxCount = 2 },
-	{ name = "seeds", chance = 7140 },
+	{ name = "seeds", chance = 17140 },
 	{ name = "magma monocle", chance = 4760 },
-	{ name = "blue gem", chance = 2380 },
-	{ name = "small oil lamp", chance = 580 },
-	{ id = 2948, chance = 480 }, -- wooden flute
-	{ name = "heavy machete", chance = 380 },
+	{ name = "blue gem", chance = 12380 },
+	{ name = "small oil lamp", chance = 9580 },
+	{ id = 2948, chance = 6480 }, -- wooden flute
+	{ id = 25088, chance = 7230 }, -- porcelain mask
+	{ id = 3014, chance = 6590 }, -- star amulet
+	{ id = 12669, chance = 16220 }, -- star ring
+	{ id = 8899, chance = 16220 },
+	{ id = 8907, chance = 16350 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -130 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -180 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ENERGYDAMAGE, minDamage = -100, maxDamage = -300, range = 7, shootEffect = CONST_ANI_ENERGYBALL, target = false },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -30, maxDamage = -90, range = 7, effect = CONST_ME_MAGIC_RED, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -30, maxDamage = -290, range = 7, effect = CONST_ME_MAGIC_RED, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = -650, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 1500 },
 	{ name = "drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_ENERGY, target = false, duration = 6000 },
 	{ name = "outfit", interval = 2000, chance = 1, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, outfitMonster = "rabbit" },
 	{ name = "djinn electrify", interval = 2000, chance = 15, range = 5, target = false },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -30, maxDamage = -90, radius = 3, effect = CONST_ME_ENERGYHIT, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -30, maxDamage = -190, radius = 3, effect = CONST_ME_ENERGYHIT, target = false },
 }
 
 monster.defenses = {
@@ -105,15 +108,15 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 1 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 40 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 10 },
+	{ type = COMBAT_FIREDAMAGE, percent = -12 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = -15 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 1 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 15 },
 	{ type = COMBAT_DEATHDAMAGE, percent = -10 },
 }
 

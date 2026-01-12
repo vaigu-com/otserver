@@ -79,8 +79,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 95730, maxCount = 192 },
-	{ name = "dragon ham", chance = 43130 },
+	{ name = "gold coin", chance = 75730, maxCount = 92 },
+	{ name = "dragon ham", chance = 23130 },
 	{ name = "strong health potion", chance = 19910 },
 	{ name = "wyrm scale", chance = 17540 },
 	{ name = "strong mana potion", chance = 15170 },
@@ -90,10 +90,10 @@ monster.loot = {
 	{ name = "small diamond", chance = 1420, maxCount = 3 },
 	{ name = "wand of starstorm", chance = 1420 },
 	{ name = "wand of draconia", chance = 1420 },
-	{ name = "composite hornbow", chance = 950 },
+	{ name = "composite hornbow", chance = 350 },
 	{ name = "dragonbone staff", chance = 470 },
-	{ name = "lightning pendant", chance = 470 },
-	{ name = "shockwave amulet", chance = 470 },
+	{ name = "lightning pendant", chance = 770 },
+	{ name = "shockwave amulet", chance = 570 },
 	{ name = "hibiscus dress", chance = 470 },
 }
 
@@ -115,8 +115,8 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 75 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 90 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 65 },
 	{ type = COMBAT_FIREDAMAGE, percent = 20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },

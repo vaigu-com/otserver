@@ -72,6 +72,12 @@ monster.light = {
 	color = 0,
 }
 
+monster.summon = {
+	maxSummons = 2,
+	summons = {
+		{ name = "skeleton mage", chance = 20, interval = 2000, count = 1 },
+	},
+}
 monster.voices = {
 	interval = 5000,
 	chance = 10,
@@ -79,28 +85,22 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 50000, maxCount = 9 },
-	{ id = 3446, chance = 90450, maxCount = 10 }, -- bolt
+	{ name = "platinum coin", chance = 50000, maxCount = 5 },
 	{ id = 3031, chance = 75410, maxCount = 30 }, -- gold coin
 	{ id = 3592, chance = 15400 }, -- grapes
-	{ id = 239, chance = 12340, maxCount = 2 }, -- great health potion
 	{ id = 3577, chance = 5000 }, -- meat
-	{ id = 3349, chance = 830 }, -- crossbow
 	{ id = 3563, chance = 760 }, -- green tunic
-	{ id = 3048, chance = 700, maxCount = 2 }, -- might ring
-	{ id = 3003, chance = 1000 }, -- rope
-	{ id = 3572, chance = 1000 }, -- scarf
-	{ id = 2815, chance = 830 }, -- scroll
-	{ id = 3028, chance = 830 }, -- small diamond
-	{ id = 3279, chance = 130 }, -- war hammer
-	{ id = 3269, chance = 830 }, -- halberd
-	{ id = 3415, chance = 330 }, -- guardian shield
-	{ id = 3371, chance = 230 }, -- knight legs
-	{ id = 3369, chance = 200 }, -- warrior helmet
+	{ id = 3048, chance = 3700 }, -- might ring
+	{ id = 3028, chance = 8830 }, -- small diamond
+	{ id = 12669, chance = 900 }, -- star ring
+	{ id = 3014, chance = 200 }, -- star amulet
+	{ name = "cultish robe", chance = 11720 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 10, maxDamage = -580 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -380 },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_DEATHDAMAGE, minDamage = -175, maxDamage = -200, range = 1, shootEffect = CONST_ANI_DEATH, target = false },
+	{ name = "melee", interval = 2000, chance = 10, minDamage = 0, maxDamage = -220, condition = { type = CONDITION_POISON, totalDamage = 180, interval = 4000 } },
 }
 
 monster.defenses = {
@@ -111,10 +111,10 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 30 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 30 },
-	{ type = COMBAT_FIREDAMAGE, percent = 30 },
+	{ type = COMBAT_FIREDAMAGE, percent = 20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
