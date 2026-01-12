@@ -1,5 +1,5 @@
-local baseBoltsPerOrb = 1
-local additionalBoltsChance = 0.1
+local baseBoltsPerOrb = 2
+local additionalBoltsChance = 0.25
 local additionalBoltsNumber = 6
 local averageAdditionalBoltsMultiplier = (additionalBoltsChance * additionalBoltsNumber) + (1 - additionalBoltsChance) * baseBoltsPerOrb
 
@@ -238,7 +238,7 @@ SPECIAL_ACTIONS_IMBUING = {
 
 		local player = context.player
 		player:AddItemsAnnounce(bundleData.items)
-		player:removeMoney(bundleData.moneyPrice)
+		player:removeMoney(bundleData.moneyCost)
 		player:IncrementStorage(Storage.Task.TaskPoints, -bundleData.taskPointsCost)
 	end,
 }

@@ -20,15 +20,15 @@ function faq.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		.. "\n - Kanaly po wschodniej czesci miasta, poziom -2"
 		.. "\n"
 		.. "\n 6. Jak ustawic autoloot?"
-		.. "\n - Ctrl + ppm na plecak - Manage Loot Containers, celowniczkiem wybierasz plecak do ktorego ma zbierac. Aby nie zbieralo danego itemu to ppm i 'Add to Loot List'."
+		.. "\n - Ctrl + ppm na plecak - Manage Loot Containers, celowniczkiem wybierasz plecak do ktorego ma zbierac. Aby nie zbieralo danego itemu to ppm i 'Add to Loot List'. Dodatkowo alt+q podnosi przedmioty ze wszystkich pobliskich cial."
 
 	local engtext = "Frequently asked questions:"
 		.. "\n"
 		.. "\n 1. Where can I buy promotion?"
-		.. "\n - First floor in MirkoTowns temple, cost 15k"
+		.. "\n - First floor in MirkoTown temple, cost 15k"
 		.. "\n"
 		.. "\n 2. Where can I get tasks?"
-		.. "\n - South of depot, npc Tropiciel Wielki"
+		.. "\n - South of depot, npc The Great Tracker"
 		.. "\n"
 		.. "\n 3. Where can I train?"
 		.. "\n - Offline training statues are in first building south west of temple"
@@ -41,9 +41,9 @@ function faq.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		.. "\n - Sewers in eastern part of MirkoTown, floor -2"
 		.. "\n"
 		.. "\n 6. How to use autoloot?"
-		.. "\n - Ctrl + RMB on backpack - Manage Loot Containers, select container you want to collect items into with crosshair. If you dont want to collect certain item - RMB and 'Add to Loot List'."
+		.. "\n - Ctrl + RMB on backpack - Manage Loot Containers, select container you want to collect items into with crosshair. If you dont want to collect certain item - RMB and 'Add to Loot List'. Also, you can loot all nearby corpses by using alt+q"
 
-	if getPlayerLanguage(player) == "PL" then
+		if getPlayerLanguage(player) == "PL" then
 		player:showTextDialog(7879, text)
 	else
 		player:showTextDialog(7879, engtext)

@@ -39,7 +39,7 @@ local function createAndRegisterEvent(startHour)
 	lotteryEvent:register()
 end
 
-for hour = 0, 23 do
+for hour = 0, 23, 3 do
 	createAndRegisterEvent(hour)
 end
 

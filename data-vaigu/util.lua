@@ -561,17 +561,17 @@ function PrintTableRecursive(tbl, indent)
 		local keyString = parseString(key)
 		local valueString = parseString(value)
 		if type(value) == "table" then
-			print(string.rep(" ", indent) .. keyString .. ":")
+			logger.warn(string.rep(" ", indent) .. keyString .. ":")
 			PrintTableRecursive(value, indent + 4)
 		else
-			print(string.rep(" ", indent) .. "|-" .. keyString .. ": " .. valueString)
+			logger.warn(string.rep(" ", indent) .. "|-" .. keyString .. ": " .. valueString)
 		end
 	end
 end
 
 function PrintAnything(thing)
 	if type(thing) ~= "table" then
-		print(thing)
+		logger.warn(thing)
 		return
 	end
 	PrintTableRecursive(thing)
@@ -612,7 +612,7 @@ function Player:AddOutfitsAndAddons(outfitsAndAddons)
 end
 
 local function annonceReceivedMount(player, mountId)
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { outfitName = Game.getMountNameByLookType(mountId) }))
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, T("You have obtained :mountName: mount!", { mountName = Game.getMountNameByLookType(mountId) }))
 end
 
 function Player:AddMounts(mounts)

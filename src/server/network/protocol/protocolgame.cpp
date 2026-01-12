@@ -634,6 +634,10 @@ void ProtocolGame::release() {
 }
 
 void ProtocolGame::login(const std::string &name, uint32_t accountId, OperatingSystem_t operatingSystem) {
+	if (g_game().isMarkedAsJustLoggedOut(name)) {
+		g_dispatcher().addEvent([self = getThis(), name, accountId, operatingSystem] { self->login(name, accountId, operatingSystem); }, __FUNCTION__);
+		return;
+	}
 	handleClientFeatures(operatingSystem);
 	logPlayerLogin();
 

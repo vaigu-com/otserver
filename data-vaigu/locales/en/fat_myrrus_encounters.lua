@@ -6,25 +6,4 @@ return {
 	["Pol"] = "The white and black tiles are daming you whenever you are on tile with color other that boss's. The more times you fail to stand on same color, the more damage this will inflict.\nThis boss also has deadly plus shaped attack, so you should be always ready to move!",
 	["Skurwiwij"] = "He is constantly draining elemental power from a nearby pylon, or pylons in case both are in same distance.\nIf a new pylon becomes the nearest one, drained power of previous pylon is reset. After that, the furthest pylon explodes.\nYou have to switch between pylons when his elemental damage becomes unbearable. Be careful not to do it too often, as each next pylon explosion is stronger.",
 	["Ruk'ca Maw"] = "The start is very rough. Ruk'ca is very hungry and will try to consume anything. Move him to the cages, so he eats a baby seal and calms down... for a moment. Do it fast, as his fury is gonna ramp up constantly.\nWhile moving through his tunnels, you have to finally move him to the piles of salt at the end of cave. He is allergic to it.",
-	["LIST_ENCOUNTERS"] = function(context)
-		local finalString = ""
-		finalString = finalString .. "Just ask me about specific encounter and i will give you tips to best of my ability. These are the bosses i know:"
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
-			if type(desc) == "string" then
-				finalString = finalString .. "\n{" .. name .. "}"
-			end
-		end
-		return finalString
-	end,
-	["ENCOUNTER_DESCRIPTION"] = function(context)
-		local message = context.msg
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
-			if type(desc) == "string" and name:lower() == message:lower() then
-				return desc
-			end
-		end
-		return "I dont have informations on this encounter."
-	end,
 }

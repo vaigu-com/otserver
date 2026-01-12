@@ -6,9 +6,9 @@ return {
 		if remainingQuestRepeats <= 0 then
 			return "Dostarczyles Oskarkowi medale na ten tydzien."
 		elseif remainingQuestRepeats > 1 then
-			return T("Przynies 10 medali honoru do Oskarka na jego cotygodniowe zawody w waleniu konia. Oskarek organizowal zawody w poprzednich tygodniach, ale nie mial z czego rozdac podbitych medali. Mozesz oddac Oskarkowi medale jeszcze :remainingQuestRepeats: razy.", { remainingQuestRepeats = remainingQuestRepeats })
+			return T("Przynies 10 medali konnych do Oskarka na jego cotygodniowe zawody w waleniu konia. Oskarek organizowal zawody w poprzednich tygodniach, ale nie mial z czego rozdac podbitych medali. Mozesz oddac Oskarkowi medale jeszcze :remainingQuestRepeats: razy.", { remainingQuestRepeats = remainingQuestRepeats })
 		else
-			return "Przynies 10 medali honoru do Oskarka na jego cotygodniowe zawody w waleniu konia."
+			return "Przynies 10 medali konnych do Oskarka na jego cotygodniowe zawody w waleniu konia."
 		end
 	end,
 	["I see you have heard about the umpcoming meat beating competition. Bring me another 10 medals, so we can honour the winners."] = "Widze, ze slyszales o nadchodzacych zawodach w waleniu konia. Przynies mi kolejne 10 medali, abysmy mogli uhonorowac zwyciezcow.",
@@ -26,7 +26,7 @@ return {
 	["Moustachilles trusted you with his bags of fent. Deliver the other bag to second client - the soccer fan. Moustachilles hinted the south slums."] = "Andrzej Wasacz powierzyl ci torby z fentem. Dostarcz druga torbe drugiemu klientowi - fanowi pilki noznej. Andrzej Wasacz wspomnial o poludniowych slumsach.",
 	["Report to moustachilles and bring him his money."] = "Zglos sie do Andrzeja Wasacza i przynies mu jego pieniadze.",
 	["You completed this mission."] = "Ukonczyles te misje.",
-	["Me and my friends are hosting a meat beating competition. We need 2 medals of honour for that. Come back when you have them."] = "Ja i moi przyjaciele organizujemy zawody w waleniu konia. Potrzebujemy 10 medali konnych. Wroc, gdy je zdobedziesz.",
+	["Me and my friends are hosting a meat beating competition. We need 2 medals of honour for that. Come back when you have them."] = "Ja i moi przyjaciele organizujemy zawody w waleniu konia. Potrzebujemy 2 medali konnych. Wroc, gdy je zdobedziesz.",
 	["Thanks for your help. Here is your reward."] = "Dzieki za pomoc. Oto twoja nagroda.",
 	["Come back with the the medals i asked for."] = "Wroc z medalami, o ktore prosilem.",
 	["Do you happen to know the local gang boss, Moustachilles? Recently he lost some of his coke and now is desperate to retreive it. I think you could help him with his troubles."] = "Znasz moze lokalnego bossa gangu, Andrzeja Wasacza? Ostatnio zgubil troche kokainy i teraz desperacko probuje ja odzyskac. Mysle, ze moglbys mu pomoc.",
@@ -52,4 +52,5 @@ return {
 	["Fashionista Onanista"] = "Fashionista Onanista",
 	["Cum Bucket"] = "Wiadro Spuchy",
 	["I see that you are looking Moustachilles belongings. Follow my instructions and you might be lucky enough to bring it back to him. Bring me a bullseye potion and meet me at the abandoned house, south of Kongo."] = "I see that you are looking Moustachilles belongings. Follow my instructions and you might be lucky enough to bring it back to him. Bring me a bullseye potion and meet me at the abandoned house, south of Kongo.",
+	["What!? Thats way too much. Imma pass."] = "What!? Thats way too much. Imma pass.",
 }

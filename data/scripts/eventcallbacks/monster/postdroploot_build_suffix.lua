@@ -94,11 +94,11 @@ end
 
 local callback = EventCallback("MonsterPostDropLootAddLootToCorpse")
 function callback.monsterPostDropLoot(monster, corpse)
-	local player = Player(corpse:getCorpseOwner())
-	if not player then
+	local corpseOwner = Player(corpse:getCorpseOwner())
+	if not corpseOwner then
 		return
 	end
-	if not player:canReceiveLoot() then
+	if not corpseOwner:canReceiveLoot() then
 		return
 	end
 
@@ -123,7 +123,7 @@ function callback.monsterPostDropLoot(monster, corpse)
 	end
 
 	if hasValuableItem then
-		corpse:getPosition():sendMagicEffect(CONST_ME_TUTORIALARROW)
+		corpseOwner:sendMagicEffect(corpse:getPosition(), CONST_ME_TUTORIALARROW)
 	end
 end
 

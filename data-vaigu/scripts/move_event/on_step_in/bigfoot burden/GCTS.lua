@@ -4,7 +4,7 @@ local teleportsData = {
 	{ stepInPosition = Position(7207, 1048, 7), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(6218, 1050, 8), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(5924, 1393, 9), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
-	{ stepInPosition = Position(7517, 1848, 12), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
+	{ stepInPosition = Position(7533, 1804, 12), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(7016, 786, 7), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 	{ stepInPosition = Position(5570, 1606, 7), destinationPosition = Position(32801, 31766, 9), requiresCrystal = true },
 
@@ -30,7 +30,7 @@ local teleportsData = {
 	{ stepInPosition = Position(32805, 31743, 9), destinationPosition = Position(7208, 1049, 7), requiresCrystal = true }, -- maioorka
 	{ stepInPosition = Position(32786, 31754, 9), destinationPosition = Position(6217, 1049, 8), requiresCrystal = true }, --steppes
 	{ stepInPosition = Position(32772, 31776, 9), destinationPosition = Position(5923, 1394, 9), requiresCrystal = true }, -- mirko
-	{ stepInPosition = Position(32831, 31797, 9), destinationPosition = Position(7516, 1849, 12), requiresCrystal = true }, -- orshaawa
+	{ stepInPosition = Position(32831, 31797, 9), destinationPosition = Position(7532, 1804, 12), requiresCrystal = true }, -- orshaawa
 	{ stepInPosition = Position(32827, 31757, 9), destinationPosition = Position(7017, 787, 7), requiresCrystal = true }, -- kongo
 	{ stepInPosition = Position(32783, 31792, 9), destinationPosition = Position(5571, 1605, 7), requiresCrystal = true }, -- knurow
 }

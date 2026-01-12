@@ -623,7 +623,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Qasim", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "This will be one of the largest {orders} I've ever received during my life. I'll be able to start working on this project right away.",
 				},
 				[{ "orders", "zamowien" }] = {
@@ -649,7 +649,7 @@ quest
 				[{ "Glooth Converter" }] = {
 					text = "Finding such a device won't be easy. It's possible it will be where Glooth creatures are created. Try your luck in the underground swamps.",
 				},
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Good job. I'm getting ready to work on the spaceship. In the meantime, I suggest you start looking for star maps. You'll need them for navigation in space. You'll probably find some map pieces in the city of Byggoschch, Maioorka. I heard rumors about some witches hiding their map in the ruined chapel, south of maioorka. I think three pieces should be enough for starters. You should also find rocket engine plans. They fell into the hands of the mysterious magician, who allied with outlaws on the north east from Maioor'ka. Now he refuses to share this piece crucial piece. You'll need to acquire both the maps and the engine blueprint for me so I can properly install the rocket propulsion in your vehicle.",
 					requiredItems = {
 						{ id = 8775, count = 20 },
@@ -692,7 +692,7 @@ quest
 				},
 			}),
 			QuestFactory.Dialog("Qasim", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Alright, that's everything I needed. I'll send your spaceship into orbit with a special catapult shortly. I'd have you sit inside it right now, but it's too dangerous. You'll be able to access it through the unlicensed teleporter in the deepling base. Besides, I found this item in my warehouse. If I remember correctly, it's one of the components of rocket fuel. You can produce the fuel by using an atomic splitter on the fuel rod. I've placed this device on your spaceship. You'll also find a remote depot there. I think it will come in handy.",
 					requiredItems = {
 						QuestKeyItems.PerIustitiaAdAstra.Map1,
@@ -717,7 +717,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission02.BoardShipInDeeplingTemple,
 			QuestFactory.Dialog("Qasim", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Flights within a given system require only the power of mana. For intergalactic travel, you'll need rocket fuel. Therefore, you'll need to find a refueling station that sells such fuel. I've included the coordinates of a CPN-sponsored one in the ship's navigation. Good luck!",
 				},
 			}),
@@ -1113,7 +1113,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission02.ReturnCrateToSwagger,
 			QuestFactory.Dialog("Swagger", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thanks for your help. In return, I can give you one rod. Be careful; they're very heavy! I can sell you more rods for a small fee of 1000 gp each. One more thing: recently, Sad Gentlemen turned up at my station. From an overheard conversation, I learned that they're involved in transporting REDACTED to Hugo Boss's summer cottage.",
 					requiredItems = {
 						QuestKeyItems.PerIustitiaAdAstra.SwagierCrate,
@@ -1159,7 +1159,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission03.GrabKeysFromUpperRoomLocker,
 			QuestFactory.Dialog("Rubelstein", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Go to the coachman's room now. There are probably various keys and uniforms stored there. It's on the upper floors of this building.",
 				},
 			}),
@@ -1174,7 +1174,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission03.BringDocumentsToRubelstein,
 			QuestFactory.Dialog("Rubelstein", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "So, one of the soldiers left their ID document in the dressing room... Maybe you can use that information to convince the main {guard} to release me.",
 					nextState = {
 						[Storage.PerIustitiaAdAstra.Mission03] = QuestState.PerIustitiaAdAstra.Mission03.TalkToOfficerOnTop,
@@ -1266,7 +1266,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission04.FindHugoDrinkRecipe,
 			QuestFactory.Dialog("Hugo BoSS", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Unfortunately, I lost the key to the library. I'm afraid you'll have to find another way to get upstairs and find that {recipe}. Maybe try being a Spider-Man.",
 				},
 			}),
@@ -1298,7 +1298,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission04.FindHammer_RepairPipes,
 			QuestFactory.Dialog("Hugo BoSS", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I have another task for you. You've probably noticed that the castle is overrun by partygoers. They're no nobles, so they don't know how to behave. They recently damaged part of the castle in the east wing. I hired no one other than Boguslaw Lecina to repair it. Now, not only do I have a damaged wall, but there are also grooves from the sanding. Or maybe it's just residue from his cigarettes that settled on the wall? It's not important. Find his toolbox and take one hammer from it. Then go to the waterworks and loosen the valve in the lower part. There's so much mess and I dont even know what else, that we can't flush corpses down the toilet anymore.",
 				},
 			}),
@@ -1346,7 +1346,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission04.FindOldChest,
 			QuestFactory.Dialog("Hugo BoSS", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "My great-grandmother, a witch, once mentioned that to open the chest, I would need some runes. I don't know anything about magic, so I can't help you with that.",
 				},
 			}),
@@ -1411,7 +1411,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission04.AskHugoForMission,
 			QuestFactory.Dialog("Hugo BoSS", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "I have one more thing you can help me with. I heard that people who visit the southern archipelago disappear under mysterious circumstances. Investigate this matter.",
 					nextState = {
 						[Storage.PerIustitiaAdAstra.Mission04] = MISSION_FINISHED,
@@ -1425,7 +1425,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission05.FindBeachLurker,
 			QuestFactory.Dialog("Hugo BoSS", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "As I said, beachgoers have been disappearing in the southern archipelago. Try looking there.",
 				},
 			}),
@@ -1758,7 +1758,7 @@ quest
 	:State(function()
 		return QuestState.PerIustitiaAdAstra.Mission05.ReportToHugo,
 			QuestFactory.Dialog("Hugo BoSS", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Thank you for your help. I think I have a suitable reward for you. Perhaps you'll be interested in an ancient artifact I lost somewhere in the northern dump. You can keep it if you find it.",
 					nextState = {
 						[Storage.PerIustitiaAdAstra.Mission05] = QuestState.PerIustitiaAdAstra.Mission05.ReportToAstralJanus,

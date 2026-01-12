@@ -227,7 +227,7 @@ quest
 	:State(function()
 		return QuestState.ArielsFriend.HumbleRequest.ReportToAriel,
 			QuestFactory.Dialog("Ariel", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Wow! I can feel the flow of positive energy. Even the flowers started to sing from happiness. Thank you for your help, my friend. Here, keep your reward. I can tell you my {story}, if you want.",
 					nextState = {
 						[Storage.ArielsFriend.HumbleRequest] = QuestState.ArielsFriend.HumbleRequest.AskForNewMission,
@@ -270,10 +270,10 @@ quest
 	end)
 	:State(function()
 		return { min = QuestState.ArielsFriend.HumbleRequest.AskForNewMission }, QuestFactory.Dialog("Ariel", {
-			[{ "gertrude" }] = {
+			[{ "gertrude", "Gertrude" }] = {
 				text = "She moved near the lizards' village. They stay out of each other's way though.",
 			},
-			[{ "konmuld" }] = {
+			[{ "konmuld", "Konmuld" }] = {
 				text = "He holed up in an abandoned village on steppes. I don't think anyone visits him there.",
 			},
 		})
@@ -515,7 +515,7 @@ quest
 			QuestFactory.Dialog("Konmuld", {
 				[{ "mission", "misja", "dusza", "gertruda" }] = {
 					text = "GREAT! I will create a virgin from that soul just for myself!\nAs I promised, you can choose one of yalahari pieces: {mask}, {legs} or {armor}. What is your choice?",
-					expReward = 750000,
+					expReward = 75000,
 					outfitRewards = QuestRewards.OutfitsAddons.ArielsFriend.Yalaharian3,
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece,
@@ -563,7 +563,7 @@ quest
 	:State(function()
 		return MISSION_NOT_STARTED,
 			QuestFactory.Dialog("Konmuld", {
-				[{ "mission", "misja", "aloha" }] = {
+				[{ "mission", "misja", "aloha", "misje" }] = {
 					text = "Before we migrated here, Ariel had a grandpa who was an inventor. His magic skills are nothing compared to mine, but his engineering skills were something else.. Long story short: i was in Retro Knurowo - scrapping some valubles with my metal detector - i encountered some weird signals, similar to ones from our radios. Should you find this radio, you should consult Ariel.",
 					nextState = {
 						[Storage.ArielsFriend.RadioFreeHirschberg] = QuestState.ArielsFriend.RadioFreeHirschberg.FindRadio,

@@ -552,7 +552,6 @@ quest
 					},
 				},
 				{
-
 					id = 2472,
 					key = Storage.DesertQuestOne.Rewards.HiddenLibraryBush,
 					rewards = { { id = 3035, count = 30 } },

@@ -44,7 +44,7 @@ local function addDish(context)
 	if not dishData then
 		return false
 	end
-	player:AddCustomItem({  id = ItemType(dishData.dishName):getId()  })
+	player:AddCustomItem({ id = ItemType(dishData.dishName):getId() })
 end
 
 local function grantExpForDish(context)
@@ -52,7 +52,7 @@ local function grantExpForDish(context)
 	local questState = player:getStorageValueByKey(Storage.TopChef.Mission01)
 	local nextState = math.max(questState, 0) + 1
 
-	local grantedExp = 100000 * 1.3 ^ nextState
+	local grantedExp = 50000 * 1.3 ^ nextState
 	AddExperienceWithAnnouncement(player, grantedExp)
 end
 
@@ -321,7 +321,7 @@ quest
 					text = "Congratulations, you finished my training program. These are my books on cooking. Please, take them.",
 					rewards = {
 						--{ id = 11541 },
-						{id = 9093 },
+						{ id = 9093 },
 					},
 					nextState = {
 						[Storage.TopChef.Mission01] = QuestState.TopChef.CanMakeAllDishes,

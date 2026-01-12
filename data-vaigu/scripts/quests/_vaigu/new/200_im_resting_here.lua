@@ -197,7 +197,7 @@ quest
 				contract:register()
 			end),
 			QuestFactory.Dialog("Chester the Dwarf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Listen, I've finished exploring holes, and now I have a different passion. If you want to help me, listen up. Some time ago, I got a job as a TV presenter, and I still have that job. Unfortunately, the salary is not entirely satisfactory. I found out that one of the fortune tellers hosting some show on the network where I work has been quarantined. The station is now looking for a replacement for his position, and I think I'm suited for it - I have a degree in quackery, but I'll need a few props. Are you ready to help me?",
 				},
 				[{ "yes", "tak" }] = {

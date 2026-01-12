@@ -17,13 +17,15 @@ function closeServer.onSay(player, words, param)
 		if configManager.getBoolean(configKeys.GLOBAL_SERVER_SAVE_SHUTDOWN) then
 			Game.setGameState(GAME_STATE_SHUTDOWN, true)
 		end
-	elseif param == "maintainance" then
+	elseif param == "maintenance" then
 		Game.setGameState(GAME_STATE_MAINTAIN)
 		player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Server is set to maintenance mode.")
-	else
+	elseif param == "close" then
 		Game.setGameState(GAME_STATE_CLOSED)
 		player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Server is now closed.")
 		Webhook.sendMessage(":yellow_square: Server was closed by: **" .. player:getName() .. "**", announcementChannels["serverAnnouncements"])
+	else
+		player:sendTextMessage(MESSAGE_ADMINISTRATOR, "Unknown param")
 	end
 	return true
 end

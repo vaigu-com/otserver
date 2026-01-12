@@ -1157,7 +1157,7 @@ quest
 		return QuestState.TheaterOfCheapThrills.Mission07.AskRomekForMission,
 			QuestFactory.Dialog("GM Romek", {
 				[{ "mission", "misja" }] = {
-					text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 platinum coins?",
+					text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 coins?",
 					nextState = {
 						[Storage.TheaterOfCheapThrills.Mission07] = QuestState.TheaterOfCheapThrills.Mission07.DonateToRomek,
 					},
@@ -1168,9 +1168,9 @@ quest
 		return QuestState.TheaterOfCheapThrills.Mission07.DonateToRomek,
 			QuestFactory.Dialog("GM Romek", {
 				[{ GREET }] = {
-					text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 platinum coins?",
+					text = "I'm currently raising funds for an artistic bohemia. Come back when I'm closing or donate a symbolic {amount}. How about 100 coins?",
 				},
-				[{ "mission", "misja", "kwote","amount" }] = {
+				[{ "mission", "misja", "kwote", "amount" }] = {
 					text = "Ytong is Ytong.",
 					requiredItems = { { id = 3031, count = 100 } },
 					textNoRequiredItems = "Then come back when I finish the fundraiser. The organization of the festival alone was worth at least 8 coronas extra.",
@@ -1303,7 +1303,7 @@ quest
 				[{ GREET }] = {
 					text = "Juerdo Titsgo is very short. He might hide somewhere when he sees you. His children, on the other hand, are huge mutants.",
 				},
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Juerdo Titsgo is very short. He might hide somewhere when he sees you. His children, on the other hand, are huge mutants.",
 				},
 			}),
@@ -1401,7 +1401,7 @@ quest
 						[Storage.SafetyAndOccupationalHygiene.Mission01] = QuestState.SafetyAndOccupationalHygiene.Mission01.AskRomekForMission,
 					},
 					rewards = { ExerciseWeaponBox(300) },
-					outfitRewards = QuestRewards.OutfitsAddons.ThreaterOfCheapThrills.Raccoon1
+					outfitRewards = QuestRewards.OutfitsAddons.ThreaterOfCheapThrills.Raccoon1,
 				},
 			})
 	end)

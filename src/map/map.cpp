@@ -631,12 +631,15 @@ bool Map::checkSightLine(Position start, Position destination) {
 		if (distanceY > distanceX) {
 			eAdj = (static_cast<uint32_t>(distanceX) << 16) / static_cast<uint32_t>(distanceY);
 
+			// Determine X direction BEFORE swapping
+			if (start.x > destination.x) {
+				deltaX = 0xFFFF;
+			}
+
 			if (start.y > destination.y) {
 				std::swap(start.x, destination.x);
 				std::swap(start.y, destination.y);
-			}
-			if (start.x > destination.x) {
-				deltaX = 0xFFFF;
+				deltaX = (deltaX == 0x0001) ? 0xFFFF : 0x0001; // Flip the direction
 				eAcc -= eAdj;
 			}
 
@@ -662,12 +665,15 @@ bool Map::checkSightLine(Position start, Position destination) {
 		} else {
 			eAdj = (static_cast<uint32_t>(distanceY) << 16) / static_cast<uint32_t>(distanceX);
 
+			// Determine Y direction BEFORE swapping
+			if (start.y > destination.y) {
+				deltaY = 0xFFFF;
+			}
+
 			if (start.x > destination.x) {
 				std::swap(start.x, destination.x);
 				std::swap(start.y, destination.y);
-			}
-			if (start.y > destination.y) {
-				deltaY = 0xFFFF;
+				deltaY = (deltaY == 0x0001) ? 0xFFFF : 0x0001; // Flip the direction
 				eAcc -= eAdj;
 			}
 

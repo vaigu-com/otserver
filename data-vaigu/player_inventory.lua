@@ -484,6 +484,17 @@ local function generateItemsTemporary(items)
 	return itemsToAddNonStore, itemsToAddStore
 end
 
+function Player:CanAddItemsCapacity(items)
+	local itemsToAddNonStore, itemsToAddStore = generateItemsTemporary(items)
+
+	local requiredCap = itemsToAddNonStore:CalculateRequiredCap()
+	local hasCap, capMessage = self:ErrorIfHasNotEnoughCapacity(requiredCap)
+	if not hasCap then
+		return false, capMessage
+	end
+	return true
+end
+
 function Player:CanAddItems(items)
 	local itemsToAddNonStore, itemsToAddStore = generateItemsTemporary(items)
 
@@ -523,6 +534,17 @@ end
 -- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
 ---@param itemData table
 function Player:AddCustomItem(itemData, localizer)
+	self:AddItemsAnnounce({ itemData }, localizer)
+	return true
+end
+
+-- For any non-standard key k with value v, this will be performed: setCustomAttribute(k, v)
+---@param itemData table
+function Player:TryAddCustomItem(itemData, localizer)
+	if not self:CanAddItems({ itemData }) then
+		return false
+	end
+	
 	self:AddItemsAnnounce({ itemData }, localizer)
 	return true
 end

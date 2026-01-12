@@ -20,6 +20,9 @@ local voices = {
 	{ text = "Wymiana pustych fiolek- butelek po miksturach!" },
 }
 local customDialogs = {
+	[{ GREET }] = {
+		text = "Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?",
+	},
 	[{
 		"butelki",
 		"vials",

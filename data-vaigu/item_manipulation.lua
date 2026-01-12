@@ -35,16 +35,29 @@ end
 
 local function extractItemData(item)
 	local id = item:getId()
-	local count = item:getCount()
-	local actionid = item:getActionId()
-	local uniqueid = item:getUniqueId()
-	local key = item:getKey()
-	local text = item:getText()
-	local addToStore = nil
-	if forceUntradeability[id] then
-		addToStore = true
+	local data = {
+		id = id,
+		count = item:getCount(),
+		aid = item:getActionId(),
+		uid = item:getUniqueId(),
+		key = item:getKey(),
+		text = item:getText(),
+		addToStore = false,
+	}
+
+	local itemType = ItemType(id)
+	local maxCharges = itemType:getCharges()
+	if maxCharges > 0 then
+		data.count = maxCharges
+	elseif itemType:isFluidContainer() then
+		data.fluidType = item:getFluidType()
 	end
-	return { id = id, count = count, aid = actionid, uid = uniqueid, key = key, addToStore = addToStore, text = text }
+
+	if forceUntradeability[id] or (data.key and data.key ~= "") then
+		data.addToStore = true
+	end
+
+	return data
 end
 local function extractBagItems(bagItemsEx)
 	local extractedItems = {}
@@ -60,24 +73,40 @@ end
 
 local bagId = 2853
 local backpackId = 2854
-function ExtractChestContent(chest)
-	local chestItems = chest:getItems()
-	local addItems = extractBagItems(chestItems)
-	local addItemsSize = TableSize(addItems)
+function ExtractAndWrapChestContent(chest)
+	local chestItemsData = extractBagItems(chest:getItems())
+
+	local storeItems = {}
+	local wrappableItems = {}
+	for _, chestItemData in pairs(chestItemsData) do
+		if chestItemData.addToStore == true then
+			table.insert(storeItems, chestItemData)
+		elseif chestItemData.addToStore == false then
+			table.insert(wrappableItems, chestItemData)
+		end
+	end
+
+	local wrappableCount = TableSize(wrappableItems)
+	if wrappableCount <= 1 then
+		return chestItemsData
+	end
+
 	local wrapId = nil
-	if addItemsSize > 1 then
+	if wrappableCount > 1 then
 		wrapId = bagId
 	end
-	if addItemsSize > 8 then
+	if wrappableCount > 8 then
 		wrapId = backpackId
 	end
-	if addItemsSize > 20 then
+	if wrappableCount > 20 then
 		wrapId = chest:getId()
 	end
-	if wrapId then
-		addItems = { [wrapId] = addItems }
+
+	local combined = { [wrapId] = chestItemsData }
+	for key, storeItem in pairs(storeItems) do
+		table.insert(combined, storeItem)
 	end
-	return addItems
+	return combined
 end
 
 ---@class ItemExList

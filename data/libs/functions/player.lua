@@ -131,6 +131,7 @@ function Player.transferMoneyTo(self, target, amount)
 	if targetPlayer then
 		targetPlayer:sendTextMessage(MESSAGE_LOOK, self:getName() .. " has transferred " .. FormatNumber(amount) .. " gold coins to you.")
 	end
+	logger.info(T("Player :player: transferred :amount: to :target:", { player = self:getName(), amount = amount, target = target }))
 	return true
 end
 

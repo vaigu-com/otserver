@@ -300,8 +300,8 @@ local function isImmovable(item, fromPosition, toPosition)
 
 	if not isInStoreinbox(item) then
 		local key = item:getKey()
-		if key and key ~="" then
-			return not MovableKeys:Has(key) 
+		if key and key ~= "" then
+			return not MovableKeys:Has(key)
 		end
 	end
 
@@ -311,10 +311,10 @@ end
 IS_HOUSE_DECORATION = "IS_HOUSE_DECORATION"
 
 function Item:isHouseDecoration()
-    return self:getCustomAttribute(IS_HOUSE_DECORATION)
+	return self:getCustomAttribute(IS_HOUSE_DECORATION)
 end
 function Item:setIsHouseDecoration(nextState)
-    self:setCustomAttribute(IS_HOUSE_DECORATION, nextState)
+	self:setCustomAttribute(IS_HOUSE_DECORATION, nextState)
 end
 
 local exhaust = {}
@@ -558,6 +558,9 @@ function Player:onReportRuleViolation(targetName, reportType, reportReason, comm
 end
 
 function Player:onReportBug(message, position, category)
+	SimpleTextDisplay(self, T("Your report was NOT sent to :serverName:! Please use our discord bug-reports channel or tracker on our website: https://tracker.vaigu.com/", { serverName = configManager.getString(configKeys.SERVER_NAME) }))
+
+	--[[
 	local name = self:getName():gsub("%s+", "_")
 	FS.mkdir_p(string.format("%s/reports/bugs/%s", CORE_DIRECTORY, name))
 	local file = io.open(string.format("%s/reports/bugs/%s/report.txt", CORE_DIRECTORY, name), "a")
@@ -580,6 +583,7 @@ function Player:onReportBug(message, position, category)
 
 	self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your report has been sent to " .. configManager.getString(configKeys.SERVER_NAME) .. ".")
 	return true
+	]]
 end
 
 function Player:onTurn(direction)
@@ -653,12 +657,14 @@ function Player:onGainExperience(target, exp, rawExp)
 	end
 
 	-- Prey System
+	--[[
 	if configManager.getBoolean(configKeys.PREY_ENABLED) then
 		local monsterType = target:getType()
 		if monsterType and monsterType:raceId() > 0 then
 			exp = math.ceil((exp * self:getPreyExperiencePercentage(monsterType:raceId())) / 100)
 		end
 	end
+	]]
 
 	-- VIP Bonus Experience
 	if configManager.getBoolean(configKeys.VIP_SYSTEM_ENABLED) then
@@ -675,7 +681,7 @@ function Player:onGainExperience(target, exp, rawExp)
 			local taintLevel = self:getTaintLevel() or 0
 			if taintLevel > 0 then
 				local taintBoost = SoulWarQuest.taintExperienceBoostMap[taintLevel] and SoulWarQuest.taintExperienceBoostMap[taintLevel].boost or 0
-				soulwarMultiplier =  (1 + taintBoost / 100)
+				soulwarMultiplier = (1 + taintBoost / 100)
 			end
 		end
 	end

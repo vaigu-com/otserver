@@ -69,7 +69,7 @@ quest
 	:Constant(function()
 		QuestKeyItems.TheWayOfADruid = {
 			SandniggerMap = { id = 22107, key = Storage.TheWayOfADruid.SandniggerMap },
-			BenekKnife = { id = 5908, key = Storage.TheWayOfADruid.BenekKnife },
+			BenekKnife = { id = 3469, key = Storage.TheWayOfADruid.BenekKnife },
 			OrnuldWyrmEgg = { id = 18996, key = Storage.TheWayOfADruid.WyrmEgg },
 			OrnuldMedicine = { id = 8819, key = Storage.TheWayOfADruid.OrnuldMedicine },
 			RadaghastFirebug = { id = 5467, key = Storage.TheWayOfADruid.RadaghastFirebug },
@@ -172,7 +172,7 @@ quest
 		return { min = QuestState.TheWayOfADruid.CouncilOfDruids.HelpedThree },
 			QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 				[{ "mission", "misja" }] = {
-					text = "For your service to the druids, you may go to our holy tree and fetch a gob of water from the spring.\nOur sacred tree is located in the very heart of the jungle.",
+					text = "For your service to the druids, you may go to our holy tree and fetch a gob of water from the spring.\nOur sacred tree is located in the very west of the kongo jungle.",
 					expReward = 47000,
 					requiredState = {
 						[Storage.TheWayOfADruid.CouncilThreeDruidsReward] = MISSION_NOT_STARTED,
@@ -214,8 +214,8 @@ quest
 		return { min = QuestState.TheWayOfADruid.CouncilOfDruids.HelpedFive },
 			QuestFactory.Dialog({ "Radaghast the brown", "Sand Nigger", "Malfurion", "Mundral", "Estep" }, {
 				[{ "mission", "misja" }] = {
-					text = "For your service to the druids, you may go to our sacred tree and pick a sample of the Griffinclaw flower.\nOur sacred tree is located in the very heart of the jungle. As a bonus, take this necklace. We welcome you to our community.",
-					expReward = 256000,
+					text = "For your service to the druids, you may go to our sacred tree and pick a sample of the Griffinclaw flower.\nOur sacred tree is located in the very west of the kongo jungle. As a bonus, take this necklace. We welcome you to our community.",
+					expReward = 90000,
 					rewards = {
 						{ id = 5940 },
 					},

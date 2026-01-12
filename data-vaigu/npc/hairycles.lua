@@ -451,7 +451,7 @@ local function creatureSayCallback(npc, creature, type, message)
 
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Ah, jajo! Potezny wojownik z ciebie! Dziekuje. Hairycles zaraz odstawi je w bezpieczne miejsce." or "Ah, the egg! Mighty warrior you be! Thank you. Hairycles will put it at safe place immediately.", npc, creature)
 			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 10)
-			AddExperienceWithAnnouncement(player, 170000)
+			AddExperienceWithAnnouncement(player, 47000)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Pospiesz sie. Hairycles nie wie kiedy Lizardy uderza ponownie." or "Please hurry. Hairycles not knows when evil lizards strike again.", npc, creature)
 		end
@@ -476,7 +476,7 @@ local function creatureSayCallback(npc, creature, type, message)
 			end
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Niemozliwe,  przyniosles mi witches' cap! Teraz mam juz wszystko do poteznego amuletu zycia. Ale jeszcze {misja} jest dla ciebie, przyjacielu." or "Incredible, you brought a witches' cap! Now me can prepare mighty charm of life. Yet still other {missions} will await you, friend.", npc, creature)
 			player:setStorageValueByKey(Storage.TheApeCity.QuestProgress, 12)
-			AddExperienceWithAnnouncement(player, 85000)
+			AddExperienceWithAnnouncement(player, 35000)
 		elseif table.contains({ "nie", "no" }, message) then
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze, sprobuj poszukac witches' cap." or "Please try to find me a witches' cap.", npc, creature)
 			addEvent(function()

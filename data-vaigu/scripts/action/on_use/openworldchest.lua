@@ -344,7 +344,7 @@ local openWorldChestRewardCategories = {
 		{ id = 3286, chance = 12000, count = 1 }, -- mace
 		{ id = 3305, chance = 2000, count = 1 }, -- battle hammer
 		{ id = 3322, chance = 150, count = 1 }, -- dragon hammer
-		{ id = 3271, chance = 2000, count = 1 }, -- spike sword
+		{ id = 3271, chance = 500, count = 1 }, -- spike sword
 		{ id = 3297, chance = 400, count = 1 }, -- serpent sword
 		{ id = 3031, chance = 18000, count = 36 }, -- gold coin
 		{ id = 3091, chance = 2000, count = 1 }, -- sword ring

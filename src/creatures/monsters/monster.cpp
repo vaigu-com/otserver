@@ -1535,7 +1535,7 @@ void Monster::pushCreatures(const std::shared_ptr<Tile> &tile) {
 
 	for (int i = static_cast<int>(creaturesCopy.size()) - 1; i >= 0; --i) {
 		const auto &creature = creaturesCopy[i];
-		if (!creature) {
+		if (!creature || creature->getName() == BASE_ESCORT_MONSTER_NAME) {
 			continue;
 		}
 

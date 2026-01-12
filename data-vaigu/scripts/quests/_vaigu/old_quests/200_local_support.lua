@@ -1055,7 +1055,7 @@ quest
 				}] = {
 					text = "Are you sure it will work? Thanks for your help. Keep this little gift from me. This {flask} was given te me by Fstab, but in fact i don't have any use for it.",
 					rewards = { { id = 9087 }, { id = 36734 }, { id = 6392 } },
-					expReward = 150000,
+					expReward = 65000,
 					requiredItems = {
 						QuestKeyItems.LocalSupport.PoisonedCheese,
 					},
@@ -1452,7 +1452,7 @@ quest
 				},
 				[{ "mission", "misja", "food", "soup", "order", "zupa" }] = {
 					text = "Fantastic, thanks! Nevermind about the soup. Just the wings will suffice. You can use my boat whenever you want and take this soccer T-shirt. The size doesn't fit me anyway.",
-					textNoRequiredItems = "Come back with the food.",
+					textNoRequiredItems = "Come back with the food. I would like to eat {rotworm stew} and {roasted dragon wings}.",
 					expReward = 150000,
 					requiredItems = {
 						{ id = 9081 },
@@ -1468,7 +1468,7 @@ quest
 				},
 			}),
 			QuestFactory.Script(function()
-				InstantTravel({ positions = { Position(5746, 1377, 7), Position(5640, 1423, 7) }, requiredState = { [Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED } }):Register()
+				InstantTravel({ positions = { Position(5746, 1377, 7), Position(5641, 1424, 6) }, requiredState = { [Storage.LocalSupport.OcellatusBoat] = ACCESS_GRANTED } }):Register()
 			end)
 	end)
 	:Mission(Storage.LocalSupport.IKEAForTheBold)
@@ -1988,13 +1988,13 @@ quest
 					outfitRewards = QuestRewards.OutfitsAddons.LocalSupport.Beggar1,
 				},
 				[{ "float", "splawik" }] = {
-					text = "It fell into the small pond nearby once. I hope you find it.",
+					text = "It fell into the small pond nearby once. Try looking just outside the west gate.",
 				},
 				[{ "reel", "spinning" }] = {
-					text = "I lost it while fishing by the western gate. I hope you can find it.",
+					text = "I lost it while fishing right there. I think it might be entanged with some weeds. If thats true, you might wanna ask Grave Digger for a machete.",
 				},
 				[{ "stool", "stolek" }] = {
-					text = "It slipped into the water by the lake at the beach. I hope you find it.",
+					text = "It slipped into the water by the lake at the beach with parasols.",
 				},
 			}),
 			QuestFactory.OnUseDeclarations({

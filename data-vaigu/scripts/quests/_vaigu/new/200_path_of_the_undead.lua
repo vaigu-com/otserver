@@ -1066,7 +1066,7 @@ quest
 	:State(function()
 		return QuestState.PathOfTheUndead.Mission02.VisitMagicalCircles,
 			QuestFactory.Dialog("Gandalf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Hocus Pocus! Now everything should work. Something very dark lurks in the pyramid's underground. Ask Konmuld for advice, and maybe you will escape from there alive. Oh, I almost forgot: from now on, you can now use the sealed doors in the pyramid.",
 					nextState = {
 						[Storage.PathOfTheUndead.Mission02] = MISSION_FINISHED,
@@ -1480,7 +1480,7 @@ quest
 	:State(function()
 		return QuestState.PathOfTheUndead.Mission03.ReturnToGandalf,
 			QuestFactory.Dialog("Gandalf", {
-				[{ "mission" }] = {
+				[{ "mission", "misja" }] = {
 					text = "Here is your reward for your effort. Wait, wait... where is my backpack!? It was probably Chester doing. Well, I guess your bonus reward is gone.",
 					nextState = {
 						[Storage.PathOfTheUndead.Mission03] = MISSION_FINISHED,

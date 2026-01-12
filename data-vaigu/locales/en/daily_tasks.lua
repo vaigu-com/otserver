@@ -32,7 +32,7 @@ return {
 	["YOU_DONT_HAVE_REQUIRED_DAILY_TASK_KILLS"] = function(context)
 		local dailyTask = context.dailyTask
 		local player = context.player
-		local currentKills = player:getStorageValueByKey(dailyTask.storage)
+		local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
 		local requiredKills = dailyTask.requiredKills
 		local name = dailyTask.name
 		return T("You didn't execute enough monsters for the :name: daily task. Your current progress: :currentKills:/:requiredKills: ", {
@@ -79,7 +79,7 @@ return {
 		local player = context.player
 		local dailyTask = context.dailyTask
 		local name = dailyTask.name
-		local currentKills = player:getStorageValueByKey(dailyTask.currentKills)
+		local currentKills = math.max(player:getStorageValueByKey(dailyTask.currentKills), 0)
 		local requiredKills = dailyTask.requiredKills
 		local requiredItems = dailyTask.items
 		local dailyTaskDescription = T("Daily task for :name:!\n\n", { name = name })

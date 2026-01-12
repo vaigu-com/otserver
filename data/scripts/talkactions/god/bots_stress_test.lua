@@ -1,3 +1,4 @@
+--[[
 local anchor = Position(1000, 1000, 7)
 local walkableTileOffset = Vector(70, 40, 0)
 
@@ -1211,3 +1212,4 @@ botNameToDesination = {
 	["bot_vaigu_sorcerer_1000999"] = Position(2269, 1450, 7),
 	["bot_vaigu_sorcerer_1001000"] = Position(2269, 1655, 7),
 }
+]]--

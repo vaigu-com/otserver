@@ -219,7 +219,7 @@ pseudoQuest
 			},
 		}
 		JOB_UNIVERSAL_DIALOGS[JOB_JEWELLER] = {
-			[{ "life crystal", "life ring", "life" }] = {
+			[{ "life crystal", "life ring", "life", "LIFE CRYSTAL" }] = {
 				text = "I can exchange your life crystals for a life rings. Is that what youre interested in?",
 				nextTopic = QuestTopics.JOB_TOPICS.confirmLifecrystalExchange,
 			},
@@ -265,7 +265,7 @@ pseudoQuest
 				text = "Here you are.",
 				requiredTopic = QuestTopics.JOB_TOPICS.confirmUnlockPowerfulimbue,
 				requiredState = {
-					[Storage.Task.TaskPoints] = powerfulImbueUnlockCost,
+					[Storage.Task.TaskPoints] = { min = powerfulImbueUnlockCost },
 					[Storage.powerfulImbue] = { max = 0 },
 				},
 				nextState = {
@@ -846,6 +846,7 @@ pseudoQuest
 			},
 			[{ "<recipient> [recipientNameSegment2] [recipientNameSegment3]" }] = {
 				text = "CONFIRM_TRANSFER",
+				nextTopis = QuestTopics.JOB_TOPICS.confirmTransfer,
 				requiredTopic = QuestTopics.JOB_TOPICS.declareRecipient,
 				specialRequirements = {
 					{

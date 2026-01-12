@@ -22,7 +22,7 @@ public:
 	}
 
 	static uint32_t nextActiveId() {
-		currentActiveId = currentActiveId + 1;
+		currentActiveId = currentActiveId + 1U;
 		return currentActiveId;
 	}
 
@@ -32,7 +32,7 @@ public:
 	}
 
 	static uint32_t nextHistoricId() {
-		currentHistoricId = currentHistoricId + 1;
+		currentHistoricId = currentHistoricId + 1U;
 		return currentHistoricId;
 	}
 
@@ -94,7 +94,7 @@ public:
 		const auto counter = (id ^ 0xABCDEF) & 0xFFFF;
 		const auto expiryTimestamp = getCurrentTimestamp() + g_configManager().getNumber(MARKET_OFFER_DURATION);
 
-		return MarketActiveOffer(id, playerId, marketAction, itemId, amount, expiryTimestamp, isAnonymous, price, tier, OFFERSTATE_ACTIVE, counter, std::move(playerName), true);
+		return MarketActiveOffer(id, playerId, marketAction, itemId, amount, expiryTimestamp, isAnonymous, price, tier, OFFERSTATE_ACTIVE, counter, std::move(playerName), false);
 	}
 	// Runtime + database
 	const uint32_t id;

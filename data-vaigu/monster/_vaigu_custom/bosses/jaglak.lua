@@ -26,10 +26,10 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 70,
+	nearest = 10,
 	health = 10,
 	damage = 10,
-	random = 10,
+	random = 70,
 }
 
 monster.flags = {
@@ -114,7 +114,9 @@ monster.loot = {
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = -12, maxDamage = -170 },
-	{ name = "groundshaker", interval = 2000, chance = 25, minDamage = -8, maxDamage = -13, target = false },
+	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_PHYSICALDAMAGE, minDamage = -250, maxDamage = -150, radius = 5, effect = CONST_ME_GROUNDSHAKER, target = false },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = -200, maxDamage = -150, range = 4, radius = 5, shootEffect = CONST_ANI_LARGEROCK, effect = CONST_ME_POFF, target = true },
+	{ name = "groundshaker", interval = 2000, chance = 25, minDamage = -8, maxDamage = -130, target = false },
 	{ name = "phantasm drown", interval = 2000, chance = 15, target = false },
 	{ name = "speed", interval = 2000, chance = 10, speedChange = -650, range = 6, shootEffect = CONST_ANI_WHIRLWINDAXE, target = true, duration = 10000 },
 }

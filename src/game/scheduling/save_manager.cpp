@@ -44,7 +44,7 @@ SaveManager &SaveManager::getInstance() {
 	return inject<SaveManager>();
 }
 
-std::vector<std::string> SaveManager::flushOffline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>>& players){
+std::vector<std::string> SaveManager::flushOffline(const phmap::parallel_flat_hash_map<uint32_t, std::shared_ptr<Player>>& players) {
 	std::vector<std::string> justLoggedOutPlayerGuids;
 	for (const auto &[_, player] : players) {
 		if (player->isLoggingOut()) {
@@ -53,10 +53,18 @@ std::vector<std::string> SaveManager::flushOffline(const phmap::parallel_flat_ha
 		} else if (!player->isOffline()) {
 			player->loginPosition = player->getPosition();
 		}
+	}
+	g_game().clearJustLoggedOutPlayerNames();
+	for (const auto &[_, player] : players) {
+		if (!player->isOnline()) {
+			justLoggedOutPlayerGuids.push_back(std::to_string(player->getGUID()));
+			g_game().addJustLoggedOutPlayerName(player->getName());
+		}
+	}
+	for (const auto &[_, player] : players) {
 		if (!player->isOnline()) {
 			g_game().removePlayer(player);
 			player->setRemoved();
-			justLoggedOutPlayerGuids.push_back(std::to_string(player->getGUID()));
 		}
 	}
 	return justLoggedOutPlayerGuids;
@@ -123,6 +131,7 @@ void SaveManager::saveAll() {
 
 		fflush(stdout);
 	} else {
+		g_iomarket().clearNewActive();
 		child_saver_pid = pid;
 	}
 }

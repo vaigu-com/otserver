@@ -62,7 +62,7 @@ quest
 					name = "Fashionable clothes",
 					storage = Storage.SilenceOfTheLambs.FashionableClothes,
 					states = {
-						[QuestState.SilenceOfTheLambs.FashionableClothes.BringLeatherToLecter] = "Lecter asked you to bring him 20 leathers of every kind.",
+						[QuestState.SilenceOfTheLambs.FashionableClothes.BringLeatherToLecter] = "Lecter asked you to bring him 2 leathers of every kind.",
 						[QuestState.SilenceOfTheLambs.FashionableClothes.AskLecterForNewMission] = "Ask Lecter for a new mission.",
 						[MISSION_FINISHED] = "For your help you have been taught how to skin human carcass.",
 					},
