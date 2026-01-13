@@ -596,7 +596,7 @@ void Game::start(ServiceManager* manager) {
 
 	/*
 	g_dispatcher().cycleEvent(
-		UPDATE_PLAYERS_ONLINE_DB, [this] { updatePlayersOnline(); }, "Game::updatePlayersOnline"
+	    UPDATE_PLAYERS_ONLINE_DB, [this] { updatePlayersOnline(); }, "Game::updatePlayersOnline"
 	);
 	*/
 }
@@ -2199,13 +2199,15 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 	// remove the item
 	int32_t itemIndex = fromCylinder->getThingIndex(item);
 	std::shared_ptr<Item> updateItem = nullptr;
+
+	std::shared_ptr<Item> originalItem = item;
 	fromCylinder->removeThing(item, m);
 
 	// update item(s)
-	if (item->isStackable()) {
+	if (originalItem->isStackable()) {
 		uint32_t n;
 
-		if (toItem && item->equals(toItem)) {
+		if (toItem && originalItem->equals(toItem)) {
 			n = std::min<uint32_t>(toItem->getStackSize() - toItem->getItemCount(), m);
 			toCylinder->updateThing(toItem, toItem->getID(), toItem->getItemCount() + n);
 			updateItem = toItem;
@@ -2215,24 +2217,23 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 
 		int32_t newCount = m - n;
 		if (newCount > 0) {
-			moveItem = item->clone();
+			moveItem = originalItem->clone();
 			moveItem->setItemCount(newCount);
 		} else {
 			moveItem = nullptr;
 		}
 
-		if (item->isRemoved()) {
-			item->stopDecaying();
+		if (originalItem->isRemoved()) {
+			originalItem->stopDecaying();
 		}
 	}
 
-	// add item
 	if (moveItem /*m - n > 0*/) {
 		toCylinder->addThing(index, moveItem);
 	}
 
 	if (itemIndex != -1) {
-		fromCylinder->postRemoveNotification(item, toCylinder, itemIndex);
+		fromCylinder->postRemoveNotification(originalItem, toCylinder, itemIndex);
 	}
 
 	if (moveItem) {
@@ -2255,7 +2256,7 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 		if (moveItem) {
 			*movedItem = moveItem;
 		} else {
-			*movedItem = item;
+			*movedItem = originalItem;
 		}
 	}
 
@@ -2273,7 +2274,7 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 		}
 	}
 
-	if (SoundEffect_t soundEffect = item->getMovementSound(toCylinder);
+	if (SoundEffect_t soundEffect = originalItem->getMovementSound(toCylinder);
 	    toCylinder && soundEffect != SoundEffect_t::SILENCE) {
 		if (toCylinder->getContainer() && actor && actor->getPlayer() && (toCylinder->getContainer()->isInsideDepot(true) || toCylinder->getContainer()->getHoldingPlayer())) {
 			actor->getPlayer()->sendSingleSoundEffect(toCylinder->getPosition(), soundEffect, SourceEffect_t::OWN);
@@ -2283,7 +2284,7 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 	}
 
 	// we could not move all, inform the player
-	if (item->isStackable() && maxQueryCount < count) {
+	if (originalItem->isStackable() && maxQueryCount < count) {
 		return retMaxCount;
 	}
 
@@ -2304,8 +2305,8 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 
 		if (const auto &playerActor = actor->getPlayer()) {
 			// Refresh depot search window if necessary
-			if (playerActor->isDepotSearchOpenOnItem(item->getID()) && ((fromCylinder->getItem() && fromCylinder->getItem()->isInsideDepot(true)) || (toCylinder->getItem() && toCylinder->getItem()->isInsideDepot(true)))) {
-				playerActor->requestDepotSearchItem(item->getID(), item->getTier());
+			if (playerActor->isDepotSearchOpenOnItem(originalItem->getID()) && ((fromCylinder->getItem() && fromCylinder->getItem()->isInsideDepot(true)) || (toCylinder->getItem() && toCylinder->getItem()->isInsideDepot(true)))) {
+				playerActor->requestDepotSearchItem(originalItem->getID(), originalItem->getTier());
 			}
 
 			const ItemType &it = Item::items[fromCylinder->getItem()->getID()];
@@ -2314,8 +2315,8 @@ ReturnValue Game::internalMoveItem(std::shared_ptr<Cylinder> fromCylinder, std::
 			}
 
 			// Looting analyser
-			if (it.isCorpse && toContainer->getTopParent() == playerActor && item->getIsLootTrackeable()) {
-				playerActor->sendLootStats(item, static_cast<uint8_t>(item->getItemCount()));
+			if (it.isCorpse && toContainer->getTopParent() == playerActor && originalItem->getIsLootTrackeable()) {
+				playerActor->sendLootStats(originalItem, static_cast<uint8_t>(originalItem->getItemCount()));
 			}
 		}
 	}
@@ -4888,16 +4889,6 @@ void Game::playerStowItem(uint32_t playerId, const Position &pos, uint16_t itemI
 		return;
 	}
 
-	if (item->getTopParent() == player->getStoreInbox()) {
-		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
-		return;
-	}
-
-	if (!item->getAttribute<std::string>(ItemAttribute_t::KEY).empty()) {
-		player->sendCancelMessage(RETURNVALUE_NOTPOSSIBLE);
-		return;
-	}
-
 	player->stowItem(item, count, allItems);
 
 	// Refresh depot search window if necessary
@@ -6341,18 +6332,14 @@ void Game::playerChangeOutfit(uint32_t playerId, Outfit_t outfit, bool setMount,
 			outfit.lookMount = 0;
 		}
 
-		auto deltaSpeedChange = mount->speed;
-		if (player->isMounted()) {
-			const auto prevMount = mounts->getMountByID(player->getLastMount());
-			if (prevMount) {
-				deltaSpeedChange -= prevMount->speed;
-			}
-		}
 		int32_t bonusMountedSpeed = player->getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
-		deltaSpeedChange += std::max(bonusMountedSpeed, 0);
 
 		player->setCurrentMount(mount->id);
-		changeSpeed(player, deltaSpeedChange);
+		if (player->isMounted()) {
+			player->setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_MOUNT, bonusMountedSpeed);
+		} else {
+			player->resetSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_MOUNT);
+		}
 	} else if (player->isMounted()) {
 		player->dismount();
 	}
@@ -6773,23 +6760,18 @@ void Game::checkCreatures() {
 	index = (index + 1) % EVENT_CREATURECOUNT;
 }
 
-void Game::changeSpeed(const std::shared_ptr<Creature> &creature, int32_t varSpeedDelta) {
-	int32_t varSpeed = creature->getSpeed() - creature->getBaseSpeed();
-	varSpeed += varSpeedDelta;
-
-	creature->setSpeed(varSpeed);
-
-	// Vaigu custom
-	auto stepSpeed = creature->getStepSpeed();
+void Game::sendSpeedUpdate(const std::shared_ptr<Creature> &creature) {
+	auto stepSpeed = creature->getSpeed();
 	std::shared_ptr<Player> player = creature->getPlayer();
+
+	// Example special minigame override using new fixed system:
 	if (player && player->isOnMinigame()) {
-		auto minigameFixedSpeed = player->getStorageValueByKey("Storage-Minigames-FixedSpeed");
-		if (minigameFixedSpeed > 0) {
-			stepSpeed = minigameFixedSpeed;
+		int32_t mini = creature->getFixedSpeed(FixedSpeed_t::FIXED_SPEED_MINIGAME);
+		if (mini > 0) {
+			stepSpeed = mini;
 		}
 	}
 
-	// Send to clients
 	for (const auto &spectator : Spectators().find<Player>(creature->getPosition())) {
 		spectator->getPlayer()->sendChangeSpeed(creature, stepSpeed);
 	}
@@ -9545,7 +9527,6 @@ void Game::playerCancelMarketOffer(uint32_t playerId, uint32_t timestamp, uint16
 	if (offer.id == 0 || offer.playerId != player->getGUID()) {
 		return;
 	}
-
 
 	g_iomarket().cancelAndAppendToHistory(offer);
 

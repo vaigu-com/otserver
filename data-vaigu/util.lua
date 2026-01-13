@@ -690,3 +690,7 @@ function normalizedItemData(itemData, localizer)
 	normalized.localizer = itemData.localizer or localizer
 	return normalized
 end
+
+function Creature:changeSpeedDEPRECATED()
+	logger.error(debug.traceback("[Creature:changeSpeedDEPRECATED] is deprecated. See creature::setSpeedComponent"))
+end

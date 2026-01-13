@@ -441,8 +441,9 @@ public:
 
 	bool canThrowObjectTo(const Position &fromPos, const Position &toPos, SightLines_t lineOfSight = SightLine_CheckSightLine, int32_t rangex = MAP_MAX_CLIENT_VIEW_PORT_X, int32_t rangey = MAP_MAX_CLIENT_VIEW_PORT_Y);
 	bool isSightClear(const Position &fromPos, const Position &toPos, bool sameFloor);
-
-	void changeSpeed(const std::shared_ptr<Creature> &creature, int32_t varSpeedDelta);
+	
+	// Vaigu custom
+	void sendSpeedUpdate(const std::shared_ptr<Creature>& creature); 
 	void setCreatureSpeed(const std::shared_ptr<Creature> &creature, int32_t speed); // setCreatureSpeed
 	void changePlayerSpeed(const std::shared_ptr<Player> &player, int32_t varSpeedDelta);
 	void internalCreatureChangeOutfit(const std::shared_ptr<Creature> &creature, const Outfit_t &oufit);

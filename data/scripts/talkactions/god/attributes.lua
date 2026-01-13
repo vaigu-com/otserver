@@ -125,7 +125,7 @@ local creatureFunctions = {
 	["speed"] = {
 		isActive = true,
 		targetFunction = function(creature, target)
-			return creature:changeSpeed(target)
+			return creature:changeSpeedDEPRECATED(target)
 		end,
 	},
 	["droploot"] = {

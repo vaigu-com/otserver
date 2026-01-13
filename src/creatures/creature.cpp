@@ -1970,3 +1970,76 @@ void Creature::updateCalculatedStepSpeed() {
 
 	walk.recache();
 }
+
+void Creature::setSpeedComponent(SpeedComponent_t comp, int32_t value) {
+	if (comp == SpeedComponent_t::SPEED_COMPONENT_NONE) {
+		g_logger().warn("{} speed component is SPEED_COMPONENT_NONE. Value: {}", __FUNCTION__, value);
+		return;
+	}
+	speedComponents[comp] = value;
+	updateSpeed();
+}
+
+void Creature::resetSpeedComponent(SpeedComponent_t comp) {
+	if (comp == SpeedComponent_t::SPEED_COMPONENT_NONE) {
+		g_logger().warn("{} speed component is SPEED_COMPONENT_NONE.", __FUNCTION__);
+		return;
+	}
+	speedComponents[comp] = 0;
+	updateSpeed();
+}
+
+void Creature::resetSpeedComponents() {
+	for (auto &pair : speedComponents) {
+		pair.second = 0;
+	}
+	updateSpeed();
+}
+
+void Creature::setFixedSpeed(FixedSpeed_t fixedSpeed, int32_t value) {
+	if (fixedSpeed == FixedSpeed_t::FIXED_SPEED_NONE) {
+		g_logger().warn("{} fixed speed is FIXED_SPEED_NONE. Value: {}", __FUNCTION__, value);
+		return;
+	}
+	fixedSpeeds[fixedSpeed] = value;
+	updateSpeed();
+}
+
+void Creature::resetFixedSpeed(FixedSpeed_t fixedSpeed) {
+	if (fixedSpeed == FixedSpeed_t::FIXED_SPEED_NONE) {
+		g_logger().warn("{} fixed speed is FIXED_SPEED_NONE.", __FUNCTION__);
+		return;
+	}
+	fixedSpeeds[fixedSpeed] = 0;
+	updateSpeed();
+}
+
+int32_t Creature::getFixedSpeed(FixedSpeed_t fixedSpeed) const {
+	auto it = fixedSpeeds.find(fixedSpeed);
+	return (it != fixedSpeeds.end() ? it->second : 0);
+}
+
+void Creature::updateSpeed() {
+	// 1. Check for a positive fixed speed
+	int32_t chosenFixed = NO_FIXED_SPEED;
+	for (const auto &pair : fixedSpeeds) {
+		if (pair.second > 0 && pair.second < chosenFixed) {
+			chosenFixed = pair.second;
+		}
+	}
+
+	if (chosenFixed != NO_FIXED_SPEED) {
+		// Use fixed speed, ignore all components
+		setSpeed(chosenFixed);
+		return;
+	}
+
+	// 2. Sum components if no fixed speeds apply
+	int32_t total = 0;
+	for (const auto &pair : speedComponents) {
+		total += pair.second;
+	}
+	setSpeed(total);
+
+	g_game().sendSpeedUpdate(static_self_cast<Creature>());
+}

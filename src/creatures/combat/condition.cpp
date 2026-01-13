@@ -2384,7 +2384,9 @@ bool ConditionSpeed::startCondition(std::shared_ptr<Creature> creature) {
 		}
 	}
 
-	g_game().changeSpeed(creature, speedDelta);
+	if (speedDelta != 0) {
+		creature->setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_CONDITION_BUFF_DEBUFF, speedDelta);
+	}
 	return true;
 }
 
@@ -2393,7 +2395,7 @@ bool ConditionSpeed::executeCondition(const std::shared_ptr<Creature> &creature,
 }
 
 void ConditionSpeed::endCondition(std::shared_ptr<Creature> creature) {
-	g_game().changeSpeed(creature, -speedDelta);
+	creature->resetSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_CONDITION_BUFF_DEBUFF);
 }
 
 void ConditionSpeed::addCondition(std::shared_ptr<Creature> creature, const std::shared_ptr<Condition> addCondition) {
@@ -2429,7 +2431,7 @@ void ConditionSpeed::addCondition(std::shared_ptr<Creature> creature, const std:
 
 	int32_t newSpeedChange = (speedDelta - oldSpeedDelta);
 	if (newSpeedChange != 0) {
-		g_game().changeSpeed(creature, newSpeedChange);
+		creature->setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_CONDITION_BUFF_DEBUFF, newSpeedChange);
 	}
 }
 

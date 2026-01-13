@@ -120,4 +120,10 @@ private:
 	static int luaCreatureGetAttachedEffects(lua_State* L);
 	static int luaCreatureGetShader(lua_State* L);
 	static int luaCreatureSetShader(lua_State* L);
+
+	// Vaigu custom
+	static int luaCreatureSetSpeedComponent(lua_State* L);
+	static int luaCreatureResetSpeedComponent(lua_State* L);
+	static int luaCreatureSetFixedSpeed(lua_State* L);
+	static int luaCreatureResetFixedSpeed(lua_State* L);
 };

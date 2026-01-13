@@ -253,11 +253,6 @@ function doSetCreatureDropLoot(cid, doDrop)
 	return c and c:setDropLoot(doDrop) or false
 end
 
-function doChangeSpeed(cid, delta)
-	local c = Creature(cid)
-	return c and c:changeSpeed(delta) or false
-end
-
 function doAddCondition(cid, conditionId)
 	local c = Creature(cid)
 	return c and c:addCondition(conditionId) or false

@@ -47,7 +47,13 @@ void CreatureFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Creature", "getSpeed", CreatureFunctions::luaCreatureGetSpeed);
 	Lua::registerMethod(L, "Creature", "setSpeed", CreatureFunctions::luaCreatureSetSpeed);
 	Lua::registerMethod(L, "Creature", "getBaseSpeed", CreatureFunctions::luaCreatureGetBaseSpeed);
-	Lua::registerMethod(L, "Creature", "changeSpeed", CreatureFunctions::luaCreatureChangeSpeed);
+
+	// Vaigu custom
+	Lua::registerMethod(L, "Creature", "setSpeedComponent", CreatureFunctions::luaCreatureSetSpeedComponent);
+	Lua::registerMethod(L, "Creature", "resetSpeedComponent", CreatureFunctions::luaCreatureResetSpeedComponent);
+	Lua::registerMethod(L, "Creature", "setFixedSpeed", CreatureFunctions::luaCreatureSetFixedSpeed);
+	Lua::registerMethod(L, "Creature", "resetFixedSpeed", CreatureFunctions::luaCreatureResetFixedSpeed);
+
 	Lua::registerMethod(L, "Creature", "setDropLoot", CreatureFunctions::luaCreatureSetDropLoot);
 	Lua::registerMethod(L, "Creature", "setSkillLoss", CreatureFunctions::luaCreatureSetSkillLoss);
 	Lua::registerMethod(L, "Creature", "getPosition", CreatureFunctions::luaCreatureGetPosition);
@@ -465,20 +471,7 @@ int CreatureFunctions::luaCreatureGetBaseSpeed(lua_State* L) {
 	return 1;
 }
 
-int CreatureFunctions::luaCreatureChangeSpeed(lua_State* L) {
-	// creature:changeSpeed(delta)
-	const auto &creature = Lua::getCreature(L, 1);
-	if (!creature) {
-		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
-		Lua::pushBoolean(L, false);
-		return 1;
-	}
 
-	const int32_t delta = Lua::getNumber<int32_t>(L, 2);
-	g_game().changeSpeed(creature, delta);
-	Lua::pushBoolean(L, true);
-	return 1;
-}
 
 int CreatureFunctions::luaCreatureSetDropLoot(lua_State* L) {
 	// creature:setDropLoot(doDrop)
@@ -1291,4 +1284,70 @@ int CreatureFunctions::luaCreatureSetShader(lua_State* L) {
 	g_game().updateCreatureShader(creature);
 	Lua::pushBoolean(L, true);
 	return 1;
+}
+
+int CreatureFunctions::luaCreatureSetSpeedComponent(lua_State* L) {
+    // creature:setSpeedComponent(componentEnum, value)
+    const auto &creature = Lua::getUserdataShared<Creature>(L, 1, "Creature");
+    if (!creature) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
+        Lua::pushBoolean(L, false);
+        return 1;
+    }
+
+    const SpeedComponent_t component = Lua::getNumber<SpeedComponent_t>(L, 2);
+    const int32_t value = Lua::getNumber<int32_t>(L, 3);
+
+    creature->setSpeedComponent(component, value);
+    Lua::pushBoolean(L, true);
+    return 1;
+}
+
+int CreatureFunctions::luaCreatureResetSpeedComponent(lua_State* L) {
+    // creature:resetSpeedComponent(componentEnum)
+    const auto &creature = Lua::getUserdataShared<Creature>(L, 1, "Creature");
+    if (!creature) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
+        Lua::pushBoolean(L, false);
+        return 1;
+    }
+
+    const SpeedComponent_t component = Lua::getNumber<SpeedComponent_t>(L, 2);
+
+    creature->resetSpeedComponent(component);
+    Lua::pushBoolean(L, true);
+    return 1;
+}
+
+int CreatureFunctions::luaCreatureSetFixedSpeed(lua_State* L) {
+    // creature:setFixedSpeed(fixedEnum, value)
+    const auto &creature = Lua::getUserdataShared<Creature>(L, 1, "Creature");
+    if (!creature) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
+        Lua::pushBoolean(L, false);
+        return 1;
+    }
+
+    const FixedSpeed_t type = Lua::getNumber<FixedSpeed_t>(L, 2);
+    const int32_t value = Lua::getNumber<int32_t>(L, 3);
+
+    creature->setFixedSpeed(type, value);
+    Lua::pushBoolean(L, true);
+    return 1;
+}
+
+int CreatureFunctions::luaCreatureResetFixedSpeed(lua_State* L) {
+    // creature:resetFixedSpeed(fixedEnum)
+    const auto &creature = Lua::getUserdataShared<Creature>(L, 1, "Creature");
+    if (!creature) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_CREATURE_NOT_FOUND));
+        Lua::pushBoolean(L, false);
+        return 1;
+    }
+
+    const FixedSpeed_t type = Lua::getNumber<FixedSpeed_t>(L, 2);
+
+    creature->resetFixedSpeed(type);
+    Lua::pushBoolean(L, true);
+    return 1;
 }

@@ -202,6 +202,7 @@ quest
 				max = 45,
 				bossName = "The Horned Fox",
 			},
+			--[[
 			{
 				name = "Green Djinns",
 				requiredKills = 300,
@@ -230,6 +231,7 @@ quest
 				max = 121,
 				bossName = "Fahim the Wise",
 			},
+			]]
 			{
 				name = "Mutated Humans",
 				requiredKills = 200,
@@ -699,7 +701,7 @@ quest
 			{
 				name = "Sea Serpents",
 				requiredKills = 500,
-				creatures = { "sea serpent", "young sea serpent", "seacrest serpent " },
+				creatures = { "sea serpent", "young sea serpent", "seacrest serpent" },
 				exp = 450000,
 				money = 7000,
 				tibiaCoins = 2,

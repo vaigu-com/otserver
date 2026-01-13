@@ -410,7 +410,7 @@ pseudoQuest
 
 			local nextValue = tryIncrementBombermanStorage(player, Storage.Meteor.PlayerPerks.BonusSpeed)
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, Minigames.Bomberman:GetFixedSpeed() + nextValue * 10)
-			player:changeSpeed()
+			player:SetMinigameFixedSpeed()
 			item:remove()
 			return true
 		end

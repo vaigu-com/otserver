@@ -312,7 +312,7 @@ function Player:createFamiliar(familiarName, timeLeft)
 
 	myFamiliar:setOutfit({ lookType = self:getFamiliarLooktype() })
 	myFamiliar:registerEvent("FamiliarDeath")
-	myFamiliar:changeSpeed(math.max(self:getSpeed() - myFamiliar:getBaseSpeed(), 0))
+	myFamiliar:setSpeedComponent(SPEED_COMPONENT_FAMILIAR, math.max(self:getSpeed() - myFamiliar:getBaseSpeed(), 0))
 	playerPosition:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	myFamiliar:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	-- Divide by 2 to get half the time (the default total time is 30 / 2 = 15)

@@ -3057,7 +3057,7 @@ void Player::addItemImbuementStats(const Imbuement* imbuement) {
 
 	// Add imbuement speed
 	if (imbuement->speed != 0) {
-		g_game().changeSpeed(static_self_cast<Player>(), imbuement->speed);
+		setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_IMBUEMENT, imbuement->speed);
 	}
 
 	// Add imbuement capacity
@@ -3096,7 +3096,7 @@ void Player::removeItemImbuementStats(const Imbuement* imbuement) {
 
 	// Remove imbuement speed
 	if (imbuement->speed != 0) {
-		g_game().changeSpeed(static_self_cast<Player>(), -imbuement->speed);
+		resetSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_IMBUEMENT);
 	}
 
 	// Remove imbuement capacity
@@ -3429,7 +3429,8 @@ void Player::addExperience(const std::shared_ptr<Creature> &target, uint64_t exp
 
 		updateBaseSpeed();
 		setBaseSpeed(getBaseSpeed());
-		g_game().changeSpeed(static_self_cast<Player>(), 0);
+
+		updateSpeed();
 		g_game().addCreatureHealth(static_self_cast<Player>());
 		g_game().addPlayerMana(static_self_cast<Player>());
 
@@ -3515,8 +3516,8 @@ void Player::removeExperience(uint64_t exp, bool sendText /* = false*/) {
 
 		updateBaseSpeed();
 		setBaseSpeed(getBaseSpeed());
+		updateSpeed();
 
-		g_game().changeSpeed(static_self_cast<Player>(), 0);
 		g_game().addCreatureHealth(static_self_cast<Player>());
 		g_game().addPlayerMana(static_self_cast<Player>());
 
@@ -7423,13 +7424,6 @@ bool Player::toggleMount(bool mount) {
 		defaultOutfit.lookMount = currentMount->clientId;
 		setCurrentMount(currentMount->id);
 		kv()->set("last-mount", currentMount->id);
-
-		if (currentMount->speed != 0) {
-			auto deltaSpeedChange = currentMount->speed;
-			int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
-			deltaSpeedChange += std::max(bonusMountedSpeed, 0);
-			g_game().changeSpeed(static_self_cast<Player>(), deltaSpeedChange);
-		}
 	} else {
 		if (!isMounted()) {
 			return false;
@@ -7440,6 +7434,12 @@ bool Player::toggleMount(bool mount) {
 
 	g_game().internalCreatureChangeOutfit(static_self_cast<Player>(), defaultOutfit);
 	lastToggleMount = OTSYS_TIME();
+
+	if (isMounted()) {
+		int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
+		setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_MOUNT, bonusMountedSpeed);
+	}
+
 	return true;
 }
 
@@ -7512,12 +7512,8 @@ bool Player::hasMount(const std::shared_ptr<Mount> &mount) const {
 
 void Player::dismount() {
 	const auto &mount = g_game().mounts->getMountByID(getCurrentMount());
-	if (mount && mount->speed > 0) {
-		auto deltaSpeedChange = mount->speed;
-		int32_t bonusMountedSpeed = getStorageValueByKey(KEY_MOUNT_BONUS_SPEED);
-		deltaSpeedChange += std::max(bonusMountedSpeed, 0);
-		g_game().changeSpeed(static_self_cast<Player>(), -deltaSpeedChange);
-	}
+	
+	resetSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_MOUNT);
 
 	defaultOutfit.lookMount = 0;
 }
@@ -10720,7 +10716,8 @@ void Player::onCreatureAppear(const std::shared_ptr<Creature> &creature, bool is
 			toggleMount(true);
 		}
 
-		g_game().changePlayerSpeed(static_self_cast<Player>(), 0);
+		g_game().sendSpeedUpdate(static_self_cast<Creature>());
+		// g_game().changePlayerSpeed(static_self_cast<Player>(), 0); // TODO CHECK IF CORRECT
 	}
 }
 

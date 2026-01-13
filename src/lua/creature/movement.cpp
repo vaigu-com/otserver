@@ -579,6 +579,33 @@ uint32_t MoveEvent::RemoveItemField(const std::shared_ptr<Item> &, const std::sh
 	return 1;
 }
 
+inline SpeedComponent_t slotToSpeedComponent(uint8_t slot) {
+	switch (slot) {
+		case CONST_SLOT_HEAD:
+			return SpeedComponent_t::SPEED_COMPONENT_HEAD;
+		case CONST_SLOT_NECKLACE:
+			return SpeedComponent_t::SPEED_COMPONENT_NECKLACE;
+		case CONST_SLOT_BACKPACK:
+			return SpeedComponent_t::SPEED_COMPONENT_BACKPACK;
+		case CONST_SLOT_ARMOR:
+			return SpeedComponent_t::SPEED_COMPONENT_ARMOR;
+		case CONST_SLOT_RIGHT:
+			return SpeedComponent_t::SPEED_COMPONENT_RIGHT;
+		case CONST_SLOT_LEFT:
+			return SpeedComponent_t::SPEED_COMPONENT_LEFT;
+		case CONST_SLOT_LEGS:
+			return SpeedComponent_t::SPEED_COMPONENT_LEGS;
+		case CONST_SLOT_FEET:
+			return SpeedComponent_t::SPEED_COMPONENT_FEET;
+		case CONST_SLOT_RING:
+			return SpeedComponent_t::SPEED_COMPONENT_RING;
+		case CONST_SLOT_AMMO:
+			return SpeedComponent_t::SPEED_COMPONENT_AMMO;
+		default:
+			return SpeedComponent_t::SPEED_COMPONENT_NONE;
+	}
+}
+
 uint32_t MoveEvent::EquipItem(const std::shared_ptr<MoveEvent> &moveEvent, const std::shared_ptr<Player> &player, const std::shared_ptr<Item> &item, Slots_t slot, bool isCheck) {
 	if (player == nullptr) {
 		g_logger().error("[MoveEvent::EquipItem] - Player is nullptr");
@@ -642,9 +669,8 @@ uint32_t MoveEvent::EquipItem(const std::shared_ptr<MoveEvent> &moveEvent, const
 			player->addCondition(condition);
 		}
 
-		if (item->getSpeed() != 0) {
-			g_game().changePlayerSpeed(player, item->getSpeed());
-		}
+		auto comp = slotToSpeedComponent(slot);
+		player->setSpeedComponent(comp, item->getSpeed());
 
 		player->addConditionSuppressions(it.abilities->conditionSuppressions);
 		player->sendIcons();
@@ -761,9 +787,8 @@ uint32_t MoveEvent::DeEquipItem(const std::shared_ptr<MoveEvent> &, const std::s
 		}
 	}
 
-	if (item->getSpeed() != 0) {
-		g_game().changePlayerSpeed(player, -item->getSpeed());
-	}
+	auto comp = slotToSpeedComponent(slot);
+	player->resetSpeedComponent(comp);
 
 	std::vector<ConditionType_t> toRemove;
 	for (auto cond : it.abilities->conditionSuppressions) {

@@ -149,7 +149,7 @@ pseudoQuest
 
 			local playerBonus = tryIncrementVisLuxVersusStorage(player, Storage.VisLuxVersus.PlayerPerks.BonusSpeed)
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, Minigames.VisLuxVersus:GetFixedSpeed() + playerBonus * 10)
-			player:changeSpeed()
+			player:SetMinigameFixedSpeed()
 			item:remove()
 			return true
 		end

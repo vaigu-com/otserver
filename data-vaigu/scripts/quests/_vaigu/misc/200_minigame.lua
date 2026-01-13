@@ -73,7 +73,6 @@ pseudoQuest
 		---@field private onReset function?
 		---@field private beforeStart function?
 		---@field private active boolean
-		---@field private isMinigame boolean?
 		---@field public bossName string?
 		MinigameDataContext = MinigameDataContext
 
@@ -345,7 +344,6 @@ pseudoQuest
 		---@field private onReset function?
 		---@field private beforeStart function?
 		---@field private active boolean
-		---@field private isMinigame boolean?
 		---@field private minigameName string
 		---@field private enableDebug boolean?
 		---generated:
@@ -392,9 +390,8 @@ pseudoQuest
 
 				player:sendTextMessage(MESSAGE_FAILURE, "During minigames, you cannot use potions, runes or spells and your movement speed will be fixed to a certain value.")
 				player:setStorageValueByKey(Storage.Minigames.AllowPlayersWalkthrough, ACCESS_GRANTED)
-				player:isOnMinigame(true)
 				player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 100)
-				player:changeSpeed()
+				SetLobbyLock(player)
 				return true
 			end
 
@@ -403,8 +400,7 @@ pseudoQuest
 				if not player then
 					return
 				end
-				player:isOnMinigame(false)
-				player:changeSpeed()
+				ResetMinigameLock(player)
 			end
 
 			zoneEvents:register()
@@ -719,7 +715,7 @@ end
 				--Position where teleport to this minigame lobby will appear
 				local lobbyEntrancePositionScope = self:GetScope():Get(minigameScopes.LobbyEntrancePosition)
 				self.lobbyEntrancePosition = Zone(lobbyEntrancePositionScope):randomPosition()
-				
+
 				self.competitionType = context.competitionType
 				if not self.competitionType then
 					logger.error(T("[MinigameData:Data] Minigame :name: no competitionType declared. Not registering.", { name = self.minigameName }))
@@ -1291,6 +1287,12 @@ end
 			return self.allowPlayersWalkthrough
 		end
 
+		function SetLobbyLock(player)
+			player:isOnMinigame(true)
+			player:setStorageValueByKey(Storage.Minigames.AllowPlayersWalkthrough, ACCESS_GRANTED)
+			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 100)
+			player:SetMinigameFixedSpeed()
+		end
 		function MinigameData:SetMinigameLock(player)
 			player:isOnMinigame(true)
 			if self:IsAllowingPlayersWalkthrough() then
@@ -1300,14 +1302,14 @@ end
 			end
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, self.fixedSpeed)
 			player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.minigameName)
-			player:changeSpeed()
+			player:SetMinigameFixedSpeed()
 		end
 		function ResetMinigameLock(player)
 			player:isOnMinigame(false)
+			player:unregisterEvent("MinigamePlayerDeath")
 			SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 			player:setStorageValueByKey(Storage.Minigames.FixedSpeed, 0)
-			player:unregisterEvent("MinigamePlayerDeath")
-			player:changeSpeed()
+			player:ResetMinigameFixedSpeed()
 		end
 		function MinigameData:AfterEnterAnyMinigameState(player)
 			player:registerEvent("MinigamePlayerDeath")
@@ -1315,7 +1317,6 @@ end
 			SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
 
 			self:SetMinigameLock(player)
-			player:changeSpeed()
 		end
 
 		function MinigameData:GetCurrentPlayersCount()
@@ -1445,6 +1446,14 @@ end
 				return
 			end
 			logger.debug(...)
+		end
+
+		function Player:SetMinigameFixedSpeed()
+			self:setFixedSpeed(FIXED_SPEED_MINIGAME, self:getStorageValueByKey(Storage.Minigames.FixedSpeed))
+		end
+
+		function Player:ResetMinigameFixedSpeed()
+			self:setFixedSpeed(FIXED_SPEED_MINIGAME, self:getStorageValueByKey(Storage.Minigames.FixedSpeed))
 		end
 
 		--[[

@@ -111,6 +111,7 @@ void LuaEnums::init(lua_State* L) {
 	monsterSoundEnums(L);
 	effectsSoundEnums(L);
 	initWheelEnums(L);
+	initSpeedComponentEnums(L);
 	initAttributeConditionSubIdEnums(L);
 	initConcoctionsEnum(L);
 }
@@ -1832,4 +1833,28 @@ void LuaEnums::initWheelEnums(lua_State* L) {
 	for (const auto value : magic_enum::enum_values<WheelSpellBoost_t>()) {
 		registerMagicEnumNamespace(L, wheelNamespace, value);
 	}
+}
+
+void LuaEnums::initSpeedComponentEnums(lua_State* L) {
+	registerEnum(L, SPEED_COMPONENT_NONE);
+	registerEnum(L, SPEED_COMPONENT_BASE);
+	registerEnum(L, SPEED_COMPONENT_CONDITION_BUFF_DEBUFF);
+	registerEnum(L, SPEED_COMPONENT_MOUNT);
+	registerEnum(L, SPEED_COMPONENT_WHEEL_OF_DESTINY);
+	registerEnum(L, SPEED_COMPONENT_IMBUEMENT);
+	registerEnum(L, SPEED_COMPONENT_HEAD);
+	registerEnum(L, SPEED_COMPONENT_NECKLACE);
+	registerEnum(L, SPEED_COMPONENT_BACKPACK);
+	registerEnum(L, SPEED_COMPONENT_ARMOR);
+	registerEnum(L, SPEED_COMPONENT_RIGHT);
+	registerEnum(L, SPEED_COMPONENT_LEFT);
+	registerEnum(L, SPEED_COMPONENT_LEGS);
+	registerEnum(L, SPEED_COMPONENT_FEET);
+	registerEnum(L, SPEED_COMPONENT_RING);
+	registerEnum(L, SPEED_COMPONENT_AMMO);
+	registerEnum(L, SPEED_COMPONENT_DEPOT);
+	registerEnum(L, SPEED_COMPONENT_FAMILIAR);
+
+	registerEnum(L, FIXED_SPEED_NONE);
+	registerEnum(L, FIXED_SPEED_MINIGAME);
 }

@@ -46,6 +46,7 @@ static constexpr uint8_t WALK_DIAGONAL_EXTRA_COST = 3;
 static constexpr int32_t EVENT_CREATURECOUNT = 10;
 static constexpr int32_t EVENT_CREATURE_THINK_INTERVAL = 1000;
 static constexpr int32_t EVENT_CHECK_CREATURE_INTERVAL = (EVENT_CREATURE_THINK_INTERVAL / EVENT_CREATURECOUNT);
+static constexpr int32_t NO_FIXED_SPEED = INT32_MAX;
 
 class FrozenPathingConditionCall {
 public:
@@ -63,6 +64,35 @@ public:
 
 private:
 	Position targetPos;
+};
+
+enum SpeedComponent_t {
+	SPEED_COMPONENT_NONE,
+	SPEED_COMPONENT_BASE,
+	SPEED_COMPONENT_CONDITION_BUFF_DEBUFF,
+	// special
+	SPEED_COMPONENT_MOUNT,
+	SPEED_COMPONENT_WHEEL_OF_DESTINY,
+	SPEED_COMPONENT_IMBUEMENT,
+	SPEED_COMPONENT_FAMILIAR,
+	// equipment
+	SPEED_COMPONENT_HEAD,
+	SPEED_COMPONENT_NECKLACE,
+	SPEED_COMPONENT_BACKPACK,
+	SPEED_COMPONENT_ARMOR,
+	SPEED_COMPONENT_RIGHT,
+	SPEED_COMPONENT_LEFT,
+	SPEED_COMPONENT_LEGS,
+	SPEED_COMPONENT_FEET,
+	SPEED_COMPONENT_RING,
+	SPEED_COMPONENT_AMMO,
+	SPEED_COMPONENT_DEPOT,
+};
+
+enum FixedSpeed_t {
+	FIXED_SPEED_NONE,
+	FIXED_SPEED_MINIGAME,
+	// add more here if needed
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -192,6 +222,21 @@ public:
 
 	int32_t getWalkDelay(Direction dir = DIRECTION_NONE);
 	int64_t getTimeSinceLastMove() const;
+
+	// Vaigu custom
+	std::unordered_map<SpeedComponent_t, int32_t> speedComponents;
+	std::unordered_map<FixedSpeed_t, int32_t> fixedSpeeds;
+
+	void setSpeedComponent(SpeedComponent_t comp, int32_t value);
+	int32_t getSpeedComponent(SpeedComponent_t comp) const;
+	void resetSpeedComponent(SpeedComponent_t comp);
+	void resetSpeedComponents();
+
+	void setFixedSpeed(FixedSpeed_t type, int32_t value);
+	void resetFixedSpeed(FixedSpeed_t type);
+	int32_t getFixedSpeed(FixedSpeed_t type) const;
+
+	void updateSpeed();
 
 	int64_t getEventStepTicks(bool onlyDelay = false);
 	uint16_t getStepDuration(Direction dir = DIRECTION_NONE);

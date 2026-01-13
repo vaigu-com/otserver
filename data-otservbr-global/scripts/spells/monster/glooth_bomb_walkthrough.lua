@@ -9,7 +9,7 @@ local function changeSpeeds(cid, var)
 	if not creature then
 		return
 	end
-	creature:changeSpeed(creature:getBaseSpeed())
+	creature:changeSpeedDEPRECATED(creature:getBaseSpeed())
 end
 
 local spell = Spell("instant")
@@ -22,7 +22,7 @@ function spell.onCastSpell(creature, var)
 	if not creature:getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT, 88888) then
 		creature:addCondition(condition)
 		creature:teleportTo(Position(nextPosition.x, nextPosition.y - 1, nextPosition.z), true)
-		creature:changeSpeed(-speed)
+		creature:changeSpeedDEPRECATED(-speed)
 		addEvent(changeSpeeds, 11 * 1000, creature:getId(), var)
 		if not topCreature then
 			return

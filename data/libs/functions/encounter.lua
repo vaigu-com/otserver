@@ -87,7 +87,6 @@ end
 ---@field private onReset function?
 ---@field private beforeStart function?
 ---@field private active boolean
----@field private isMinigame boolean?
 ---@field public bossName string?
 EncounterDataContext = EncounterDataContext
 
@@ -112,7 +111,6 @@ EncounterDataContext = EncounterDataContext
 ---@field private onReset function?
 ---@field private beforeStart function?
 ---@field private active boolean
----@field private isMinigame boolean?
 ---@field public bossName string?
 ---@field public encounterId string
 ---generated:
@@ -499,10 +497,6 @@ function EncounterData:Data(context)
 
 	--Custom
 	self:AppendCustomFields(context)
-	if self.isMinigame then
-		self.fixedSpeed = context.fixedSpeed or 200
-		self:SetupScopesMinigame()
-	end
 
 	self:ConfigureOnEnterLeave()
 end
@@ -1203,24 +1197,6 @@ function EncounterData:addRemovePlayers()
 	})
 end
 
-function EncounterData:AfterEnterMinigame(player)
-	player:registerEvent("MinigamePlayerDeath")
-
-	SPECIAL_ACTIONS_UNIVERSAL.clearConditions({ player = player })
-	player:addHealth(player:getMaxHealth())
-	player:addHealth(-(player:getMaxHealth() - player:getMaxBaseHealth()), COMBAT_UNDEFINEDDAMAGE)
-	local maxMana = player:getMaxMana()
-	player:addMana(-maxMana)
-
-	player:setStorageValueByKey(Storage.Minigames.CurrentMinigame, self.displayName)
-	player:incrementStorageByKeyClampZero(Storage.Minigames.AllMinigamesStatistics.Matches)
-	player:incrementStorageByKeyClampZero(self.matchesStorage)
-
-	SetMinigameLock(player)
-	player:setStorageValueByKey(Storage.Minigames.FixedSpeed, self.fixedSpeed)
-	player:changeSpeed()
-end
-
 ---Automatically starts the encounter when players enter the zone
 function EncounterData:ConfigureOnEnterLeave()
 	local zoneEvents = ZoneEvent(self:GetEncounterZone())
@@ -1235,10 +1211,6 @@ function EncounterData:ConfigureOnEnterLeave()
 		end
 		if self:canStart() then
 			self:start()
-		end
-		if self.isMinigame then
-			Game.broadcastMessage("MINIGAME_JUST_STARTED_GOOD_LUCK", nil, true, { eventName = self.displayName })
-			self:AfterEnterMinigame(player)
 		end
 	end
 
