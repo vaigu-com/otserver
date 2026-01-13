@@ -3430,7 +3430,6 @@ void Player::addExperience(const std::shared_ptr<Creature> &target, uint64_t exp
 		updateBaseSpeed();
 		setBaseSpeed(getBaseSpeed());
 
-		updateSpeed();
 		g_game().addCreatureHealth(static_self_cast<Player>());
 		g_game().addPlayerMana(static_self_cast<Player>());
 
@@ -3516,7 +3515,7 @@ void Player::removeExperience(uint64_t exp, bool sendText /* = false*/) {
 
 		updateBaseSpeed();
 		setBaseSpeed(getBaseSpeed());
-		updateSpeed();
+		setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_BASE, getBaseSpeed());
 
 		g_game().addCreatureHealth(static_self_cast<Player>());
 		g_game().addPlayerMana(static_self_cast<Player>());

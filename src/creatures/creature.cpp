@@ -1496,17 +1496,17 @@ LightInfo Creature::getCreatureLight() const {
 }
 
 uint16_t Creature::getSpeed() const {
-	return std::clamp(baseSpeed + varSpeed, 0, static_cast<int>(std::numeric_limits<uint16_t>::max()));
+	return std::clamp(totalSpeed, 0, static_cast<int>(std::numeric_limits<uint16_t>::max()));
 }
 
-void Creature::setSpeed(int32_t varSpeedDelta) {
+void Creature::setSpeed(int32_t newSpeed) {
 	// Prevents creatures from not exceeding the maximum allowed speed
 	if (getSpeed() >= PLAYER_MAX_SPEED) {
 		return;
 	}
 
 	int32_t oldSpeed = getSpeed();
-	varSpeed = varSpeedDelta;
+	totalSpeed = newSpeed;
 
 	if (getSpeed() <= 0) {
 		stopEventWalk();
@@ -2031,6 +2031,7 @@ void Creature::updateSpeed() {
 	if (chosenFixed != NO_FIXED_SPEED) {
 		// Use fixed speed, ignore all components
 		setSpeed(chosenFixed);
+		stepSpeed = chosenFixed;
 		return;
 	}
 

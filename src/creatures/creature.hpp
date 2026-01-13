@@ -248,6 +248,7 @@ public:
 
 	void setBaseSpeed(uint16_t newBaseSpeed) {
 		baseSpeed = newBaseSpeed;
+		setSpeedComponent(SpeedComponent_t::SPEED_COMPONENT_BASE, newBaseSpeed);
 	}
 	uint16_t getBaseSpeed() const {
 		return baseSpeed;
@@ -826,6 +827,7 @@ protected:
 	uint16_t baseSpeed = 110;
 	uint32_t mana = 0;
 	int32_t varSpeed = 0;
+	int32_t totalSpeed = 110;
 	int32_t health = 1000;
 	int32_t maxBaseHealth = 1000;
 	int32_t healthMax = 1000;
