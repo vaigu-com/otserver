@@ -2246,7 +2246,7 @@ void Player::sendPing() {
 				g_game().removeCreature(static_self_cast<Player>(), true);
 			}
 		} else {
-			shouldForceLogout = false;
+			shouldForceLogout = true;
 		}
 	}
 }
@@ -2649,7 +2649,9 @@ void Player::onChangeZone(ZoneType_t zone) {
 
 		if (!g_configManager().getBoolean(TOGGLE_MOUNT_IN_PZ) && !group->access && isMounted()) {
 			dismount();
-			g_game().internalCreatureChangeOutfit(getPlayer(), defaultOutfit);
+			if(!hasCondition(CONDITION_OUTFIT)){
+				g_game().internalCreatureChangeOutfit(getPlayer(), defaultOutfit);
+			}
 			wasMounted = true;
 		}
 	} else {
@@ -8919,19 +8921,16 @@ void Player::stowItem(const std::shared_ptr<Item> &item, uint32_t count, bool al
 		return;
 	}
 
-	if (!item->isItemStorable() && item->getID() != ITEM_GOLD_POUCH) {
-		if (!item->getParent()) {
-			sendCancelMessage("This item cannot be stowed here.");
-			return;
-		}
-		if (!item->getParent()->getItem()) {
-			sendCancelMessage("This item cannot be stowed here.");
-			return;
-		}
-		if (item->getParent()->getItem()->getID() != ITEM_GOLD_POUCH) {
-			sendCancelMessage("This item cannot be stowed here.");
-			return;
-		}
+	if ((item->getParent() && item->getParent()->getItem() && item->getParent()->getItem()->getID() == ITEM_STORE_INBOX)) {
+		return;
+	}
+
+	bool isGoldPouch = (item->getID() == ITEM_GOLD_POUCH);
+	bool parentIsGoldPouch = (item->getParent() && item->getParent()->getItem() && item->getParent()->getItem()->getID() == ITEM_GOLD_POUCH);
+
+	if (!item->isItemStorable() && !isGoldPouch && !parentIsGoldPouch) {
+	    sendCancelMessage("This item cannot be stowed here.");
+	    return;
 	}
 
 	StashContainerList itemDict;
