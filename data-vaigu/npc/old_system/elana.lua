@@ -81,6 +81,8 @@ local items = {
 	[30] = { name = "Goromaphone", id = 34210 },
 }
 
+goldenRaidTokenId = 19082
+silverRaidTokenId = 19083
 local function creatureSayCallback(npc, creature, type, message)
 	local player = Player(creature)
 	local playerId = player:getId()
@@ -109,7 +111,7 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 1 then
 		if getPlayerItemCount(creature, 21400) >= 10 then
 			doPlayerRemoveItem(creature, 21400, 10)
-			doPlayerAddItem(creature, 21399, 1)
+			doPlayerAddItem(creature, goldenRaidTokenId, 1)
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo." or "Here you are.", npc, creature)
 		else
 			npcHandler:say(getPlayerLanguage(player) == "PL" and "Potrzebujesz 10 silver raid tokenow." or "You need 10 silver raid tokens.", npc, creature)
@@ -118,9 +120,9 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 2 then -- stroj
 		npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo." or "Here you are.", npc, creature)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 3 then -- jousting eagle
-		if getPlayerItemCount(creature, 21399) >= 20 then
+		if getPlayerItemCount(creature, goldenRaidTokenId) >= 20 then
 			if not player:hasMount(145) then
-				doPlayerRemoveItem(creature, 21399, 20)
+				doPlayerRemoveItem(creature, goldenRaidTokenId, 20)
 				player:addMount(145)
 				player:getPosition():sendMagicEffect(CONST_ME_BLUE_FIREWORKS)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo." or "Here you are.", npc, creature)
@@ -132,9 +134,9 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 4 then -- cerberus champion
-		if getPlayerItemCount(creature, 21399) >= 20 then
+		if getPlayerItemCount(creature, goldenRaidTokenId) >= 20 then
 			if not player:hasMount(146) then
-				doPlayerRemoveItem(creature, 21399, 20)
+				doPlayerRemoveItem(creature, goldenRaidTokenId, 20)
 				player:addMount(146)
 				player:getPosition():sendMagicEffect(CONST_ME_BLUE_FIREWORKS)
 				npcHandler:say(getPlayerLanguage(player) == "PL" and "Prosze bardzo." or "Here you are.", npc, creature)
@@ -146,9 +148,9 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 5 then -- Makeshift Warrior
-		if getPlayerItemCount(creature, 21399) >= 20 then
+		if getPlayerItemCount(creature, goldenRaidTokenId) >= 20 then
 			if not player:hasOutfit(1043) then
-				doPlayerRemoveItem(creature, 21399, 20)
+				doPlayerRemoveItem(creature, goldenRaidTokenId, 20)
 				player:addOutfit(1042)
 				player:addOutfit(1043)
 				player:getPosition():sendMagicEffect(CONST_ME_BLUE_FIREWORKS)
@@ -161,9 +163,9 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 		npcHandler:setTopic(playerId, 0)
 	elseif table.contains({ "yes", "tak" }, message) and npcHandler:getTopic(playerId) == 6 then -- Battle Mage
-		if getPlayerItemCount(creature, 21399) >= 20 then
+		if getPlayerItemCount(creature, goldenRaidTokenId) >= 20 then
 			if not player:hasOutfit(1070) then
-				doPlayerRemoveItem(creature, 21399, 20)
+				doPlayerRemoveItem(creature, goldenRaidTokenId, 20)
 				player:addOutfit(1069)
 				player:addOutfit(1070)
 				player:getPosition():sendMagicEffect(CONST_ME_BLUE_FIREWORKS)
@@ -196,8 +198,8 @@ local function creatureSayCallback(npc, creature, type, message)
 	if message then
 		for i = 1, #items do
 			if MsgContains(message, items[i].name) then
-				if getPlayerItemCount(creature, 19083) >= 20 then
-					doPlayerRemoveItem(creature, 19083, 20)
+				if getPlayerItemCount(creature, silverRaidTokenId) >= 20 then
+					doPlayerRemoveItem(creature, silverRaidTokenId, 20)
 					doPlayerAddItem(creature, items[i].id, 1)
 					npcHandler:say(getPlayerLanguage(player) == "PL" and "Oto twoj " .. getItemName(items[i].name) .. "." or "You just swapped 20 silver raid tokens for 1 " .. getItemName(items[i].name) .. ".", npc, creature)
 				else

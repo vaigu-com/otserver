@@ -228,7 +228,7 @@ quest
 				local cooldownSeconds = 22 * 3600
 				local meadHorn = Action()
 				function meadHorn.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-					if target.uid == 8000 and item.itemid == 7140 then
+					if target:getActionId() == 8000 then
 						if player:getStorageValueByKey(Storage.MeadVial) >= os.time() then
 							player:say("Ehh, its been emptied already.", TALKTYPE_MONSTER_SAY)
 							return false

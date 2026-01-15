@@ -432,7 +432,7 @@ quest
 				end
 				if isInHotspot then
 					local randomReward = hotspotLootbox:GetRandomReward()
-					player:AddCustomItem({ id = randomReward.rewardItemId, count = randomReward.count })
+					player:addItem(randomReward.rewardItemId, randomReward.count)
 				end
 			end
 			return true

@@ -22,10 +22,8 @@ local shop = {
 	{ itemName = "Bread", clientId = 3600, buy = 3 },
 	{ itemName = "juice squeezer", clientId = 5865, buy = 350 },
 	{ itemName = "Bug Milk", clientId = 8758, buy = 550 },
-	{ itemName = "Water", clientId = 2875, subType = 1, buy = 20 },
-	{ itemName = "Mug of beer", clientId = 2880, subType = 3, buy = 5 },
-	{ itemName = "Mug of wine", clientId = 2880, subType = 2, buy = 10 },
 	{ itemName = "Empty mead horn", clientId = 7140, buy = 320 },
+	{ itemName = "rice ball", clientId = 10329, buy = 380 },
 }
 local customDialogs = {
 	[{ GREET }] = {

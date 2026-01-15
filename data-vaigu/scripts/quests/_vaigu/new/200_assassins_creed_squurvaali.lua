@@ -466,6 +466,9 @@ quest
 				},
 			})
 	end)
+	:Script(function()
+		NoKeyAction(QuestKeyItems.AssassinsCreedSquurvaali.SiliconWafersForLambor.key)
+	end)
 	:State(function()
 		return QuestState.AssassinsCreedSquurvaali.Mission03.ReturnWafersToLambor,
 			QuestFactory.Dialog("Lambor", {

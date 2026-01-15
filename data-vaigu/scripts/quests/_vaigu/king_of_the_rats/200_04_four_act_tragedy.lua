@@ -131,7 +131,7 @@ quest
 					states = {
 						[QuestState.FourActTragedy.Mission03.FindAndKillLewiatan] = "Romek asked you to buy him a beer at nearby Lewiatan.",
 						[QuestState.FourActTragedy.Mission03.ReportToRomek] = "You defeated the kraken. Go back to Romek.",
-						[MISSION_FINISHED] = "Find slippers bitten by the Rat Bum. Romek mentioned northern rat collaborators as his allies.",
+						[MISSION_FINISHED] = "You finished this mission.",
 					},
 				},
 				{
@@ -685,7 +685,7 @@ quest
 	:State(function()
 		return QuestState.FourActTragedy.Mission01.AskRomekForMission,
 			QuestFactory.Dialog("GM Romek", {
-				[{ "mission", "misja","task","zadanie" }] = {
+				[{ "mission", "misja", "task", "zadanie" }] = {
 					text = "Ehh... before I tell you what's next, we need to deal with the HF-P/X insurance agent. You probably know him - they call him Turdstin.",
 					nextState = {
 						[Storage.FourActTragedy.Mission01] = QuestState.FourActTragedy.Mission01.NegotiateWithTurdstin,
@@ -1519,8 +1519,8 @@ quest
 					[Storage.FourActTragedy.Mission04] = QuestState.FourActTragedy.Mission04.ReportToRomek,
 				}
 
-				local leviathanDeath = CreatureEvent("SkurwiwijDeath")
-				function leviathanDeath.onDeath(creature)
+				local skurwiwijDeath = CreatureEvent("SkurwiwijDeath")
+				function skurwiwijDeath.onDeath(creature)
 					if not creature or not creature:isMonster() then
 						return true
 					end
@@ -1536,7 +1536,9 @@ quest
 					return true
 				end
 
-				leviathanDeath:register()
+				skurwiwijDeath:register()
+
+				NoKeyAction(QuestKeyItems.FourActTragedy.GrazynaCore.key)
 			end)
 	end)
 	:EncounterData(function(missionState)
@@ -1715,7 +1717,7 @@ quest
 				[{ "itchy", "swedzi", "itching" }] = {
 					text = "It's Rat Bum! I have Rat Bum in my pants! When I pull him out, he jumps back in. {Help} me deal with him!",
 				},
-				[{ "help", "pomoz" }] = {
+				[{ "help", "pomoz", "Pomoz" }] = {
 					text = "He jumped out! You must have scared him! He jumped into that hole, which is too small for a human. There's some hole in front of my cell. Perhaps it leads to the same cave where that rascal fled!",
 					nextState = {
 						[Storage.FourActTragedy.Mission05] = QuestState.FourActTragedy.Mission05.KillRatBum,

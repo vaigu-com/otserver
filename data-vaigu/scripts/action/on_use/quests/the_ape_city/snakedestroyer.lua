@@ -12,7 +12,7 @@ local allowedLizardHeadIds = {
 
 local action = Action()
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	if not allowedLizardHeadIds[item:getId()] then
+	if not allowedLizardHeadIds[target:getId()] then
 		return false
 	end
 

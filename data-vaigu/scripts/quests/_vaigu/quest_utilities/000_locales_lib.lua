@@ -62,22 +62,40 @@ LOCALIZERS = {
 }
 
 TRANSLATION_TABLES = {}
-for _, language in pairs(LANGUAGES) do
-	TRANSLATION_TABLES[language] = {}
-	for _, localizer in pairs(LOCALIZERS) do
-		if localizer ~= LOCALIZERS.NONE then
-			local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
-			local success, fileContent = pcall(require, filePath)
-			if not success then
-				logger.warn(T("[TRANSLATION_TABLES init] File :filePath: does not exist\n:trace:", { filePath = filePath, trace = debug.traceback() }))
-			end
-			TRANSLATION_TABLES[language][localizer] = fileContent
-		end
-	end
-end
+local testMe = {}
 
+local pseudoQuest = Quest(LOCALIZERS.NONE)
+pseudoQuest
+	:NoQuestlog()
+	:Script(function()
+		for _, language in pairs(LANGUAGES) do
+			TRANSLATION_TABLES[language] = {}
+			for _, localizer in pairs(LOCALIZERS) do
+				if localizer ~= LOCALIZERS.NONE then
+					local filePath = T("/:mainDir:/:language:/:localizer:", { mainDir = mainDir, language = language, localizer = localizer }):lower():sub(2)
+					local success, fileContent = pcall(require, filePath)
+					if not success then
+						logger.warn(T("[TRANSLATION_TABLES init] File :filePath: does not exist\n:trace:", { filePath = filePath, trace = debug.traceback() }))
+					end
+					TRANSLATION_TABLES[language][localizer] = fileContent
+				end
+			end
+		end
+	end)
+	:Script(function()
+		for k, tuple in pairs(testMe) do
+			for _, language in pairs(LANGUAGES) do
+				for _, string in pairs(tuple.strings) do
+					MissingStrings:TestLanguage(language, string, tuple.localizer)
+				end
+			end
+		end
+	end)
+	:Script(function()
+		Game.initializeTranslationTable()
+	end)
+	:Register()
 -- this registers TRANSLATION_TABLES on cpp side
-Game.initializeTranslationTable()
 
 local function translatedFromSpecificQuest(str, localizer, language)
 	local questConf = TRANSLATION_TABLES[language][localizer]
@@ -159,6 +177,22 @@ function Localizer:Get(translateMe)
 	return self.translated
 end
 
+---@param translateMe string|table
+function Localizer:GetStrict(translateMe)
+	if not translateMe then
+		logger.warn(debug.traceback("[Localizer::GetStrict] Trying to translate nil"))
+		return nil
+	end
+	if type(translateMe) == "table" then
+		translateMe = translateMe[math.random(1, #translateMe)]
+	end
+
+	local targetLanguage = self.player:getLanguage()
+	local translated = translatedFromSpecificQuest(translateMe, self.localizer, targetLanguage)
+	self.translated = Evaluate(translated, self.context)
+	return self.translated
+end
+
 function Localizer:Context(context)
 	context = context or {}
 	context.player = self.player
@@ -205,15 +239,11 @@ function MissingStrings:TestAllLanguages(strOrTable, localizer)
 		strings = { strOrTable }
 	end
 
-	for _, language in pairs(LANGUAGES) do
-		for _, string in pairs(strings) do
-			self:TestLanguage(language, string, localizer)
-		end
-	end
+	table.insert(testMe, { strings = strings, localizer = localizer })
 end
 
 local function is_windows()
-	return package.config:sub(1,1) == '\\'
+	return package.config:sub(1, 1) == "\\"
 end
 
 function MissingStrings:SerializeWindows()

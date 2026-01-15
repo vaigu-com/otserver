@@ -837,7 +837,7 @@ quest
 				[{ "belty", "bolts" }] = {
 					text = "Here are bolts for you. You should visit Fstab for a potion supply.",
 					nextState = { [Storage.LocalSupport.WoodDelivery] = QuestState.LocalSupport.WoodDelivery.TakeFstabReward },
-					rewards = { { id = 7364, count = 300 } },
+					rewards = { { id = 7363, count = 300 } },
 				},
 				[{ "strzaly", "arrows" }] = {
 					text = "Here are arrows for you. You should visit Fstab for a potion supply.",

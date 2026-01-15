@@ -161,7 +161,7 @@ quest
 					storage = Storage.ArielsFriend.PreludeToThaumaturgy,
 					states = {
 						[QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp] = "Konmuld asked you to bring him a virgin's soul. You can ask Grave Digger for help with your mission.",
-						[QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul] = "Grave Digger said that there are no remaining virgins left, however, you can dig up a virgin's soul from a grave.",
+						[QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul] = "Grave Digger said that there are no remaining virgins left, however, you can dig up a virgin's soul from a grave, using bare hands.",
 						[QuestState.ArielsFriend.PreludeToThaumaturgy.ReportToKonmuld] = "You managed to get a virgin's soul. Now go see Konmuld.",
 						[QuestState.ArielsFriend.PreludeToThaumaturgy.ChooseYalahariPiece] = "Konmuld offered you to choose one of the Yalahari set pieces to keep for yourself.",
 						[MISSION_FINISHED] = "In his gratitude, Konmuld gave you one of his old Yalahari set pieces.",
@@ -472,7 +472,7 @@ quest
 		return QuestState.ArielsFriend.PreludeToThaumaturgy.AskGraveDiggerForhelp,
 			QuestFactory.Dialog("Grave Digger", {
 				[{ "dusze", "dusza", "dusza dziewicy", "soul", "souls", "virgin's soul", "someone" }] = {
-					text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is a shovel in my hand and digging {graves}, which is what I like best!",
+					text = "Oh yes, I remember when we were young we used to hunt for virgins. Now these foolish girls are banging left and right. It's hard to find any left.\nBut it is very possible that you can squeeze something out of dead virgins. So the only solution I see is digging {graves} with your bare hands, which is what I like best!",
 					nextState = {
 						[Storage.ArielsFriend.PreludeToThaumaturgy] = QuestState.ArielsFriend.PreludeToThaumaturgy.DigUpVirginSoul,
 					},
@@ -593,7 +593,7 @@ quest
 				[{ "radio", "old radio", "stare radio" }] = {
 					text = "This radio looks very similar to ones we had back in Hirschberg. I cannot make it {work} again, its just some buzzing.",
 				},
-				[{ "work", "naprawic" }] = {
+				[{ "work", "naprawic", "zadzialalo" }] = {
 					text = "I heard about this elvish engineer who tinkers with things like this one. You can ask him for help. His name is Celebimber. You shall find him in the jungle of Kongo.",
 					requiredItems = {
 						QuestKeyItems.ArielsFriend.OldRadioBroken,
