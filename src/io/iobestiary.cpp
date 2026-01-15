@@ -50,7 +50,18 @@ void IOBestiary::parseCharmCarnage(const std::shared_ptr<Charm> &charm, const st
 bool IOBestiary::parseOffensiveCharmCombat(const std::shared_ptr<Charm> &charm, const std::shared_ptr<Player> &player, const std::shared_ptr<Creature> &target, CombatDamage &charmDamage, CombatParams &charmParams) {
 	static double_t maxHealthLimit = 0.08; // 8% max health (max damage)
 	static uint8_t maxLevelsLimit = 2; // 2x level (max damage)
-	static constexpr std::array<std::pair<int8_t, int8_t>, 4> offsets = { { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } } };
+	// static constexpr std::array<std::pair<int8_t, int8_t>, 4> offsets = { { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } } };
+	static constexpr std::array<std::pair<int8_t,int8_t>, 20> carnageMask = {{
+		{ -2, -1 }, { -2,  0 }, { -2,  1 },
+
+		{ -1, -2 }, { -1, -1 }, { -1,  0 }, { -1,  1 }, { -1,  2 },
+
+		{  0, -2 }, {  0, -1 },             {  0,  1 }, {  0,  2 },
+
+		{  1, -2 }, {  1, -1 }, {  1,  0 }, {  1,  1 }, {  1,  2 },
+
+		{  2, -1 }, {  2,  0 }, {  2,  1 },
+	}};
 
 	int32_t value = 0;
 	const auto &targetPosition = target->getPosition();
@@ -70,21 +81,21 @@ bool IOBestiary::parseOffensiveCharmCombat(const std::shared_ptr<Charm> &charm, 
 			if (!monster || !monster->isDead()) {
 				return false;
 			}
-
+		
 			maxLevelsLimit = 6;
 			value = target->getMaxHealth();
-
-			for (const auto &[dx, dy] : offsets) {
+		
+			for (const auto& [dx, dy] : carnageMask) {
 				Position damagePosition(targetPosition.x + dx, targetPosition.y + dy, targetPosition.z);
-				const auto &tile = g_game().map.getTile(damagePosition);
-
+				const auto& tile = g_game().map.getTile(damagePosition);
+			
 				if (!tile) {
 					continue;
 				}
-
+			
 				g_game().addMagicEffect(damagePosition, CONST_ME_DRAWBLOOD);
-
-				const auto &topCreature = tile->getTopCreature();
+			
+				const auto& topCreature = tile->getTopCreature();
 				if (topCreature && topCreature->getType() == CREATURETYPE_MONSTER) {
 					int32_t damage = std::min<int32_t>(
 						std::ceil(value * (charm->percent / 100.0)),
