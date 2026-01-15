@@ -25,25 +25,18 @@ local toOrdinalGrandPlace = {
 
 return {
 	["LIST_ENCOUNTERS"] = function(context)
-		local finalString = ""
-		finalString = finalString .. "Zapytaj mnie o jakas walke, a podziele sie z toba wiedza. Oto walki, ktore znam:"
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
-			if type(desc) == "string" then
-				finalString = finalString .. "\n{" .. name .. "}"
-			end
+		local finalString = "Zapytaj mnie o jakas walke, a podziele sie z toba wiedza. Oto walki, ktore znam:"
+		for name, displayName in pairs(QuestConstants.FatMyrrusEncounters.EncounterNames) do
+			finalString = finalString .. "\n{" .. displayName .. "}"
 		end
 		return finalString
 	end,
 	["ENCOUNTER_DESCRIPTION"] = function(context)
-		local message = context.msg
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][Storage.FatMyrrusEncounters]) do
-			if type(desc) == "string" and name:lower() == message:lower() then
-				return desc
-			end
-		end
-		return "Nie mam informacji na temat tej walki."
+		local localizer = player:Localizer(LOCALIZERS.FatMyrrusEncounters)
+		local saidEncounterName = context.msg:lower()
+		local encounterDesc = localizer:GetStrict(saidEncounterName)
+
+		return encounterDesc or "Nie mam informacji na temat tej walki."
 	end,
 	["Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?"] = "Witaj |PLAYERNAME|. Masz moze puste {butelki} na wymiane?",
 	[NO_TEXT] = NO_TEXT,

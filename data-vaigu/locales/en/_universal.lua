@@ -25,25 +25,18 @@ local toOrdinalGrandPlace = {
 
 return {
 	["LIST_ENCOUNTERS"] = function(context)
-		local finalString = ""
-		finalString = finalString .. "Just ask me about specific encounter and i will give you tips to best of my ability. These are the bosses i know:"
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][LOCALIZERS.FatMyrrusEncounters]) do
-			if type(desc) == "string" then
-				finalString = finalString .. "\n{" .. name .. "}"
-			end
+		local finalString = "Just ask me about specific encounter and i will give you tips to best of my ability. These are the ones i know:"
+		for name, displayName in pairs(QuestConstants.FatMyrrusEncounters.EncounterNames) do
+			finalString = finalString .. "\n{" .. displayName .. "}"
 		end
 		return finalString
 	end,
 	["ENCOUNTER_DESCRIPTION"] = function(context)
-		local message = context.msg
-		local playerLanguage = getPlayerLanguage(context.player)
-		for name, desc in pairs(TRANSLATION_TABLES[playerLanguage][LOCALIZERS.FatMyrrusEncounters]) do
-			if type(desc) == "string" and name:lower() == message:lower() then
-				return desc
-			end
-		end
-		return "I dont have informations on this encounter."
+		local localizer = player:Localizer(LOCALIZERS.FatMyrrusEncounters)
+		local saidEncounterName = context.msg:lower()
+		local encounterDesc = localizer:GetStrict(saidEncounterName)
+
+		return encounterDesc or "I dont have informations on this encounter."
 	end,
 	["Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?"] = "Hi |PLAYERNAME|. Maybe you want to deposit some {vials}?",
 	[NO_TEXT] = NO_TEXT,
