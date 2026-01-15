@@ -144,69 +144,78 @@ bool EventsScheduler::generateWeekendEventsXml() {
 		eventsNode = doc.append_child("events");
 	}
 
-	// Create a map of existing event dates to avoid duplicates
+	// Collect existing events to avoid duplicates
 	std::set<std::string> existingStartDates;
 	for (const auto &eventNode : eventsNode.children("event")) {
 		existingStartDates.insert(eventNode.attribute("startdate").as_string());
 	}
 
+	// Current date
 	time_t t = time(nullptr);
 	tm date = *localtime(&t);
 
-	// Calculate date 2 months ahead
+	// Move date to the most recent Friday
+	// (so running on Saturday/Sunday still generates this weekend)
+	int daysSinceFriday = (date.tm_wday - 5 + 7) % 7;
+	date.tm_mday -= daysSinceFriday;
+	mktime(&date);
+
+	// Calculate 2 months ahead
 	tm endDate = date;
 	endDate.tm_mon += 2;
-	mktime(&endDate); // Normalize
+	mktime(&endDate);
 
 	while (mktime(&date) <= mktime(&endDate)) {
-		if (date.tm_wday == 5) { // Friday
-			tm friday = date;
-			tm sunday = date;
-			sunday.tm_mday += 2;
-			mktime(&sunday);
+		// date is always a Friday here
+		tm friday = date;
+		tm sunday = date;
+		sunday.tm_mday += 2;
+		mktime(&sunday);
 
-			char startDateStr[32], endDateStr[32];
-			snprintf(startDateStr, sizeof(startDateStr), "%d/%d/%d", friday.tm_mon + 1, friday.tm_mday, friday.tm_year + 1900);
-			snprintf(endDateStr, sizeof(endDateStr), "%d/%d/%d", sunday.tm_mon + 1, sunday.tm_mday, sunday.tm_year + 1900);
+		// Format dates
+		char startDateStr[32], endDateStr[32];
+		snprintf(startDateStr, sizeof(startDateStr), "%d/%d/%d", friday.tm_mon + 1, friday.tm_mday, friday.tm_year + 1900);
+		snprintf(endDateStr, sizeof(endDateStr), "%d/%d/%d", sunday.tm_mon + 1, sunday.tm_mday, sunday.tm_year + 1900);
 
-			// Avoid duplicate generation
-			if (existingStartDates.find(startDateStr) == existingStartDates.end()) {
-				std::stringstream ss;
-				ss << "Weekend 30% Exp Boost!";
+		// Avoid duplicate generation
+		if (existingStartDates.find(startDateStr) == existingStartDates.end()) {
+			std::stringstream ss;
+			ss << "Weekend 30% Exp Boost!";
 
-				auto event = eventsNode.append_child("event");
-				event.append_attribute("name") = ss.str().c_str();
-				event.append_attribute("startdate") = startDateStr;
-				event.append_attribute("enddate") = endDateStr;
-				event.append_attribute("script") = "";
+			auto event = eventsNode.append_child("event");
+			event.append_attribute("name") = ss.str().c_str();
+			event.append_attribute("startdate") = startDateStr;
+			event.append_attribute("enddate") = endDateStr;
+			event.append_attribute("script") = "";
 
-				auto ingameNode = event.append_child("ingame");
-				ingameNode.append_attribute("exprate") = 130;
-				ingameNode.append_attribute("lootrate") = 100;
-				ingameNode.append_attribute("bosslootrate") = 100;
-				ingameNode.append_attribute("spawnrate") = 100;
-				ingameNode.append_attribute("skillrate") = 100;
+			auto ingameNode = event.append_child("ingame");
+			ingameNode.append_attribute("exprate") = 130;
+			ingameNode.append_attribute("lootrate") = 100;
+			ingameNode.append_attribute("bosslootrate") = 100;
+			ingameNode.append_attribute("spawnrate") = 100;
+			ingameNode.append_attribute("skillrate") = 100;
 
-				auto descriptionNode = event.append_child("description");
-				descriptionNode.append_attribute("description") = "Weekend Event: 30% Exp Boost!";
+			auto descriptionNode = event.append_child("description");
+			descriptionNode.append_attribute("description") = "Weekend Event: 30% Exp Boost!";
 
-				auto colorsNode = event.append_child("colors");
-				colorsNode.append_attribute("colordark") = "#235c00";
-				colorsNode.append_attribute("colorlight") = "#2d7400";
+			auto colorsNode = event.append_child("colors");
+			colorsNode.append_attribute("colordark") = "#235c00";
+			colorsNode.append_attribute("colorlight") = "#2d7400";
 
-				auto detailsNode = event.append_child("details");
-				detailsNode.append_attribute("displaypriority") = 6;
-				detailsNode.append_attribute("isseasonal") = 0;
-				detailsNode.append_attribute("specialevent") = 0;
+			auto detailsNode = event.append_child("details");
+			detailsNode.append_attribute("displaypriority") = 6;
+			detailsNode.append_attribute("isseasonal") = 0;
+			detailsNode.append_attribute("specialevent") = 0;
 
-				g_logger().info("Generated weekend event in XML: {}", ss.str());
-			}
+			g_logger().info("Generated weekend event in XML: {}", ss.str());
 		}
-		// Move to next day
-		date.tm_mday++;
+
+		// Move to next Friday (7 days later)
+		date.tm_mday += 7;
+		mktime(&date);
 	}
 
-	// Save updated XML back
+	// Save updated XML
 	if (!doc.save_file(folder.c_str())) {
 		g_logger().error("{} - Failed to save updated events.xml", __FUNCTION__);
 		return false;
