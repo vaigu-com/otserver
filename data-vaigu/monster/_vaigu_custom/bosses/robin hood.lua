@@ -114,9 +114,9 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -500, maxDamage = -200 },
-	{ name = "combat", interval = 2000, chance = 65, type = COMBAT_PHYSICALDAMAGE, minDamage = -300, maxDamage = -1300, range = 7, shootEffect = CONST_ANI_ARROW, target = false },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = -1300, maxDamage = -2800, range = 7, shootEffect = CONST_ANI_ARROW, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -200 },
+	{ name = "combat", interval = 2000, chance = 65, type = COMBAT_PHYSICALDAMAGE, minDamage = -300, maxDamage = -900, range = 7, shootEffect = CONST_ANI_ARROW, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = -130, maxDamage = -580, range = 7, shootEffect = CONST_ANI_ARROW, target = false },
 	{ name = "ghastly dragon curse", interval = 2000, chance = 22, range = 6, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = -850, radius = 1, effect = CONST_ME_MAGIC_RED, target = true, duration = 30000 },
 }
