@@ -152,9 +152,16 @@ local toolToCorpseToData = {
 			rewardId = 22729,
 			nextCorpseId = 22778,
 		},
+		--Monke
+		[6043] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4334 },
+		[6044] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4337 },
+		[6045] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4340 },
+
 		[4333] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4334 },
-		[4339] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4340 },
 		[4336] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4337 },
+		[4339] = { successChance = 10000, rewardId = 5883, nextCorpseId = 4340 },
+		---s
+		[6072] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5625 },
 		[5624] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5625 },
 		[5627] = { successChance = 4000, rewardId = 5899, nextCorpseId = 5628 },
 		[4007] = { successChance = 25000, rewardId = 5897 },
@@ -398,7 +405,7 @@ local function onHumanSkinning(player, corpse, corpseId, corpseData, roll)
 		return SKINNING_SPECIAL_ACTION_PERFORMED
 	end
 
-	player:AddCustomItem({ id = reward.rewardId, count = reward.amount or 1 })
+	player:addItem(reward.rewardId, reward.amount)
 	local effect = CONST_ME_HITAREA
 	corpse:getPosition():sendMagicEffect(effect)
 	corpse:transform(reward.nextCorpseId)
@@ -507,21 +514,47 @@ local function defaultOnSuccessSkin(player, corpseData, usePosition, skinningToo
 	if isInBags(usePosition) and container:getEmptySlots() ~= 0 then
 		container:addItem(corpseData.rewardId, corpseData.amount or 1)
 	else
-		player:AddCustomItem({ id = corpseData.rewardId, count = corpseData.amount or 1 })
+		player:addItem(corpseData.rewardId, corpseData.amount or 1)
 	end
+end
+
+local function getAllCorpseStageIds(firstStageCorpseId)
+	local corpses = { firstStageCorpseId }
+
+	local previousStageId = firstStageCorpseId
+	for _ = 1, 5 do --safeguard against infinite loop
+		local corpseItemType = ItemType(previousStageId)
+		if not corpseItemType then
+			break
+		end
+
+		local nextStageId = corpseItemType:getDecayId()
+		if (not nextStageId) or nextStageId == 0 then
+			break
+		end
+		previousStageId = nextCorpseId
+	end
+
+	return corpses
 end
 
 local defaultMaxRoll = 100000
 local function calculateMaxRoll(player, corpseId)
-	local maxRoll = defaultMaxRoll
 	local charmMType = player:getCharmMonsterType(CHARM_SCAVENGE)
-	if charmMType then
-		local charmCorpse = charmMType:getCorpseId()
-		if charmCorpse == corpseId or ItemType(charmCorpse):getDecayId() == corpseId then
-			maxRoll = maxRoll * GLOBAL_CHARM_SCAVENGE / 100
-		end
+	if not charmMType then
+		return defaultMaxRoll
 	end
-	return maxRoll
+
+	local charmBonus = player:getCharmChance(CHARM_SCAVENGE) or 0
+	if charmBonus <= 0 then
+		return defaultMaxRoll
+	end
+
+	local firstStageCorpseId = charmMType:getCorpseId()
+	if table.contains(getAllCorpseStageIds(firstStageCorpseId), corpseId) then
+		return defaultMaxRoll * ((100 + charmBonus) / 100)
+	end
+	return defaultMaxRoll
 end
 
 local function tryPerformSpecialCorpseAction(player, corpse, corpseData, roll, toolId, corpseId)

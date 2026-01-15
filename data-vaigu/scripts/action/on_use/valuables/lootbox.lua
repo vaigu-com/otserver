@@ -402,8 +402,7 @@ function lootboxUse.onUse(player, lootbox, fromPosition, target, toPosition, isH
 
 	local rewardData = lootboxData:GetRandomReward()
 	if rewardData then
-		local itemData = { id = rewardData.rewardItemId, count = rewardData.count }
-		player:AddCustomItem(itemData)
+		player:addItem(rewardData.rewardItemId, rewardData.count)
 	else
 		player:say("You found nothing useful.", TALKTYPE_MONSTER_SAY)
 	end

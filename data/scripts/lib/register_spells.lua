@@ -835,7 +835,7 @@ function Player:conjureItem(reagentId, conjureId, conjureCount, effect)
 		return false
 	end
 
-	if not self:TryAddItems(runeReward) then
+	if not self:addItem(conjureId, conjureCount) then
 		self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 		self:getPosition():sendMagicEffect(CONST_ME_POFF)
 		return false

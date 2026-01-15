@@ -35,7 +35,7 @@ function templeTeleport.onStepIn(creature, item, toPosition, fromPosition)
 	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 
 	local localizer = player:Localizer(LOCALIZERS.Universal)
-	local translatedTownName = localizer:Get(town:getName())
+	local townName = town:getName()
 	local translatedMessage = localizer:Context({ townName = translatedTownName }):Get("YOU_ARE_NOW_CITIZEN_OF")
 
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, translatedMessage)

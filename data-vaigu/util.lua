@@ -690,3 +690,12 @@ function normalizedItemData(itemData, localizer)
 	normalized.localizer = itemData.localizer or localizer
 	return normalized
 end
+
+function NoKeyAction(key)
+	local action = Action()
+	function action.onUse()
+		return DONT_OPEN_CONTAINER_ON_USE
+	end
+	action:key(key)
+	action:register()
+end

@@ -202,6 +202,7 @@ quest
 				max = 45,
 				bossName = "The Horned Fox",
 			},
+			--[[
 			{
 				name = "Green Djinns",
 				requiredKills = 300,
@@ -230,6 +231,7 @@ quest
 				max = 121,
 				bossName = "Fahim the Wise",
 			},
+			]]
 			{
 				name = "Mutated Humans",
 				requiredKills = 200,

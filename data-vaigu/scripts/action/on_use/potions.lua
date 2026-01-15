@@ -146,8 +146,9 @@ pseudoQuest
 			end
 
 			if container:getEmptySlots() == 0 and (container:getItemCountById(potionData.flask) % 100 ~= 0) then
-				container:addItem(potionData.flask)
-				return true
+				return pcall(function()
+					container:addItem(potionData.flask)
+				end)
 			end
 
 			return false
@@ -171,7 +172,7 @@ pseudoQuest
 			local emptyFlaskData = { id = potionData.flask, count = 1, dontAnnounce = true }
 			if player:CanAddItemsCapacity({ emptyFlaskData }) then
 				if not tryAddToSameContainer(parent, storeInbox, container, potionData) then
-					player:AddCustomItem(emptyFlaskData)
+					player:addItem(potionData.flask)
 				end
 			else
 				Game.createItem(potionData.flask, 1, player:getPosition())

@@ -77,6 +77,7 @@ local raidData = {
 		waves = {
 			Wave(60 * 3)
 				:Creature("Ocyakao", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 1)
+				:Creature("Ocyakao", Area(Position(6389, 1706, 8), Position(6423, 1677, 8)), 1)
 				:Creature("Chakoya Windcaller", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 11)
 				:Creature("Chakoya Toolshaper", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 14)
 				:Creature("Chakoya Tribewarden", Area(Position(6432, 1796, 7), Position(6402, 1846, 7)), 22)
@@ -662,10 +663,10 @@ local raidData = {
 		cooldown = 14400,
 		minPlayersOnline = 1,
 	}),
-	LuaRaid("The_old_Widow"):Context({
+	LuaRaid("The_Old_Widow2"):Context({
 		perDay = 0.648,
 		waves = {
-			Wave(10):Creature("The old Widow", Area(Position(7375, 1661, 9), Position(7375, 1661, 9)), 1, false),
+			Wave(10):Creature("The Old Widow", Area(Position(7458, 1642, 9), Position(7458, 1642, 9)), 1, false),
 		},
 		cooldown = 10800,
 		minPlayersOnline = 1,
@@ -1035,7 +1036,7 @@ local raidData = {
 	LuaRaid("Undead_Cavebear2"):Context({
 		perDay = 0.648,
 		waves = {
-			Wave(10):Creature("Undead Cavebear", Area(Position(7507, 1706, 11), Position(7507, 1706, 11)), 1, false),
+			Wave(10):Creature("Undead Cavebear", Area(Position(7485, 1716, 11), Position(7485, 1716, 11)), 1, false),
 		},
 		cooldown = 10800,
 		minPlayersOnline = 1,

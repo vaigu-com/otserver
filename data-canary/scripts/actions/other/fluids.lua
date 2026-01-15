@@ -82,6 +82,11 @@ function fluid.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 	end
 
+	if target and target:isMonster() then
+		if target:getName():lower() == "cow" then
+			item:transform(item:getId(), FLUID_MILK)
+		end
+	end
 	return true
 end
 
