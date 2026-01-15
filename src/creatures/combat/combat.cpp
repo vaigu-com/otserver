@@ -1952,7 +1952,7 @@ AreaCombat::~AreaCombat() {
 }
 
 void AreaCombat::getList(const Position &centerPos, const Position &targetPos, std::vector<std::shared_ptr<Tile>> &list, const Direction dir) const {
-	auto casterPos = getNextPosition(dir, centerPos);
+	auto casterPos = getNextPosition(dir, targetPos);
 
 	const std::unique_ptr<MatrixArea> &area = getArea(centerPos, targetPos);
 	if (!area) {
