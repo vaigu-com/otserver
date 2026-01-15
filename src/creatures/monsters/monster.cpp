@@ -2475,20 +2475,6 @@ void Monster::updateLookDirection() {
 const std::string Monster::dropLoot(std::shared_ptr<Container> corpse, bool shouldColor) {
 	std::string empty;
 	if (corpse && lootDrop) {
-		// Only fiendish drops sliver
-		if (ForgeClassifications_t classification = getMonsterForgeClassification();
-		    // Condition
-		    classification == ForgeClassifications_t::FORGE_FIENDISH_MONSTER) {
-			auto minSlivers = g_configManager().getNumber(FORGE_MIN_SLIVERS);
-			auto maxSlivers = g_configManager().getNumber(FORGE_MAX_SLIVERS);
-
-			auto sliverCount = static_cast<uint16_t>(uniform_random(minSlivers, maxSlivers));
-
-			const auto &sliver = Item::CreateItem(ITEM_FORGE_SLIVER, sliverCount);
-			if (g_game().internalAddItem(corpse, sliver) != RETURNVALUE_NOERROR) {
-				corpse->internalAddThing(sliver);
-			}
-		}
 		if (!this->isRewardBoss() && g_configManager().getNumber(RATE_LOOT) > 0) {
 			g_callbacks().executeCallback(EventCallback_t::monsterOnDropLoot, &EventCallback::monsterOnDropLoot, getMonster(), corpse);
 			g_callbacks().executeCallback(EventCallback_t::monsterPostDropLoot, &EventCallback::monsterPostDropLoot, getMonster(), corpse);

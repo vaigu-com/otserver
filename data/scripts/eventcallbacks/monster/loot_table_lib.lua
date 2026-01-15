@@ -8,6 +8,7 @@ MONSTER_LOOT_LAYER = {
 	hazard = "hazard",
 	atelier = "atelier",
 	raidSilver = "raidSilver",
+	exaltationForge = "exaltationForge",
 }
 
 ForceBaseLootMonsters = {
@@ -222,6 +223,9 @@ function TryGenerateLootRoll(layerName, monster, player, lootFactor, applyGut)
 
 	if layerName == MONSTER_LOOT_LAYER.atelier then
 		return monster:generateGemAtelierLoot()
+	end
+	if layerName == MONSTER_LOOT_LAYER.exaltationForge then
+		return monster:generateForgeLoot()
 	end
 	if layerName == MONSTER_LOOT_LAYER.raidSilver then
 		return GenerateLootRollMonster(monster, player, lootFactor, applyGut)
