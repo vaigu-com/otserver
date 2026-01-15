@@ -1,17 +1,3 @@
-local function removeEmpowermentItem(position)
-	for x = -1, 1 do
-		for y = -1, 1 do
-			local tile = Tile(Position(position.x + x, position.y + y, position.z))
-			if tile then
-				local item = tile:getItemById(ITEM_DIVINE_EMPOWERMENT)
-				if item then
-					item:remove()
-				end
-			end
-		end
-	end
-end
-
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, var)
@@ -26,17 +12,29 @@ function spell.onCastSpell(creature, var)
 		return false
 	end
 
+	local empowermentItemPositions = {}
+	local ownerId = creature:getId()
 	local position = creature:getPosition()
-	for x = -1, 1 do
-		for y = -1, 1 do
-			local item = Game.createItem(ITEM_DIVINE_EMPOWERMENT, 1, Position(position.x + x, position.y + y, position.z))
-			if item then
-				item:setAttribute(ITEM_ATTRIBUTE_OWNER, creature:getId())
+	IterateBetweenPositions(position:Moved(-1, -1, 0), position:Moved(1, 1, 0), function(context)
+		local pos = context.pos
+		local item = Game.createItem(ITEM_DIVINE_EMPOWERMENT, 1, pos)
+		item:setAttribute(ITEM_ATTRIBUTE_OWNER, ownerId)
+		table.insert(empowermentItemPositions, item:getPosition())
+	end)
+
+	addEvent(function()
+		local empowermentItems = {}
+		for _, position in pairs(empowermentItemPositions) do
+			local empowermentItem = position:GetItemById(ITEM_DIVINE_EMPOWERMENT)
+			if empowermentItem then
+				table.insert(empowermentItems, empowermentItem)
 			end
 		end
-	end
+		for _, empowermentItem in pairs(empowermentItems) do
+			empowermentItem:remove()
+		end
+	end, 5000)
 
-	addEvent(removeEmpowermentItem, 5000, position)
 	creature:onThinkWheelOfDestiny(true)
 	return true
 end
