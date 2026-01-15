@@ -302,7 +302,7 @@ local function setFields(addedItems, itemData, localizer)
 	local tier = itemData.tier
 	localizer = itemData.localizer or localizer
 
-	--cpp Player::addItems will return table of ItemEx when count > 100; this makes sure single item and table is handled the same way
+	--cpp Player::addItems will return table of ItemEx when count > 100; this makes sure that both cases (single item and table) are handled the same way
 	if type(addedItems) ~= "table" then
 		addedItems = { addedItems }
 	end
@@ -316,21 +316,20 @@ local function setFields(addedItems, itemData, localizer)
 				addedItem:setAttribute(k, v)
 			end
 		end
-		if uid ~= 0 then
+		if uid and uid ~= 0 then
 			addedItem:setUniqueId(uid)
 		end
-		if desc then
+		if desc and desc ~= "" then
 			addedItem:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, desc)
 		end
-		if text then
+		if text and text ~= "" then
 			addedItem:setAttribute(ITEM_ATTRIBUTE_TEXT, text)
 		end
-		if key then
+		if key and key ~= "" then
 			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, key)
 		end
-		addedItem:setActionId(aid)
-		if aid == 0 then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, nil)
+		if aid and aid ~= 0 then
+			addedItem:setAttribute(ITEM_ATTRIBUTE_ACTIONID, aid)
 		end
 		if tier then
 			addedItem:setTier(tier)
@@ -342,12 +341,8 @@ local function setFields(addedItems, itemData, localizer)
 		if localizer then
 			addedItem:setCustomAttribute("localizer", localizer)
 		end
-		if key == "" then
-			addedItem:setAttribute(ITEM_ATTRIBUTE_KEY, nil)
-		end
 	end
 end
-
 ---@param container Container
 ---@param normalizedData table
 ---@return ItemEx[]
@@ -544,7 +539,7 @@ function Player:TryAddCustomItem(itemData, localizer)
 	if not self:CanAddItems({ itemData }) then
 		return false
 	end
-	
+
 	self:AddItemsAnnounce({ itemData }, localizer)
 	return true
 end

@@ -23,7 +23,7 @@ local function findAndConvertCoins(player, container, converter)
 				if item:getId() == fromId and item:getCount() == 100 then
 					item:remove()
 					if not (container:addItem(toId, 1)) then
-						player:AddCustomItem({ id = toId, count = 1 })
+						player:addItem(toId)
 					end
 
 					converter:setAttribute(ITEM_ATTRIBUTE_CHARGES, converter:getAttribute(ITEM_ATTRIBUTE_CHARGES) - 1)
