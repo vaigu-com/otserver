@@ -859,7 +859,7 @@ int MonsterFunctions::luaMonsterAddLoot(lua_State* L) {
 	// monster:addLoot(loot)
 	const auto &monster = Lua::getUserdataShared<Monster>(L, 1, "Monster");
 	if (monster) {
-		const auto &loot = Lua::getUserdataShared<Loot>(L, 1, "Loot");
+		const auto &loot = Lua::getUserdataShared<Loot>(L, 2, "Loot");
 		if (loot) {
 			monster->loadLoot(monster, loot->lootBlock);
 			Lua::pushBoolean(L, true);
