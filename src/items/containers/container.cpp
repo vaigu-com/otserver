@@ -941,12 +941,16 @@ void Container::internalAddThing(uint32_t, const std::shared_ptr<Thing> &thing) 
 	updateItemWeight(item->getWeight());
 }
 
-uint16_t Container::getFreeSlots() const {
+uint16_t Container::getFreeSlots(bool allowQuiver) const {
+	if (isQuiver() && !allowQuiver) {
+		return 0;
+	}
+
 	uint16_t counter = std::max<uint16_t>(0, capacity() - size());
 
 	for (const auto &item : itemlist) {
 		if (const auto &container = item->getContainer()) {
-			counter += std::max<uint16_t>(0, container->getFreeSlots());
+			counter += std::max<uint16_t>(0, container->getFreeSlots(allowQuiver));
 		}
 	}
 

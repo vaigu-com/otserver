@@ -236,7 +236,7 @@ public:
 
 	uint32_t getItemHoldingCount();
 	uint32_t getContainerHoldingCount();
-	uint16_t getFreeSlots() const;
+	uint16_t getFreeSlots(bool allowQuiver = false) const;
 	uint32_t getWeight() const final;
 
 	bool isUnlocked() const {
