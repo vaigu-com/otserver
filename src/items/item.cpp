@@ -365,32 +365,68 @@ bool Item::equals(const std::shared_ptr<Item> &compareItem) const {
 	if (id != compareItem->id) {
 		return false;
 	}
-
 	if (isStoreItem() != compareItem->isStoreItem()) {
 		return false;
 	}
-
 	if (getOwnerId() != compareItem->getOwnerId()) {
 		return false;
 	}
 
-	for (const auto &attribute : getAttributeVector()) {
-		if (attribute.getAttributeType() == ItemAttribute_t::STORE) {
-			continue;
+	bool hasStoreA = false;
+	bool hasStoreB = false;
+
+	for (const auto &a : getAttributeVector()) {
+		if (a.getAttributeType() == ItemAttribute_t::STORE) {
+			hasStoreA = true;
+			break;
+		}
+	}
+
+	for (const auto &b : compareItem->getAttributeVector()) {
+		if (b.getAttributeType() == ItemAttribute_t::STORE) {
+			hasStoreB = true;
+			break;
+		}
+	}
+
+	if (hasStoreA != hasStoreB) {
+		return false;
+	}
+
+	std::unordered_map<ItemAttribute_t, const Attributes*> mapA;
+	std::unordered_map<ItemAttribute_t, const Attributes*> mapB;
+
+	for (const auto &a : getAttributeVector()) {
+		if (a.getAttributeType() != ItemAttribute_t::STORE) {
+			mapA[a.getAttributeType()] = &a;
+		}
+	}
+
+	for (const auto &b : compareItem->getAttributeVector()) {
+		if (b.getAttributeType() != ItemAttribute_t::STORE) {
+			mapB[b.getAttributeType()] = &b;
+		}
+	}
+
+	/*
+	if (mapA.size() != mapB.size()) {
+		return false;
+	}
+	*/
+
+	for (const auto &[type, a] : mapA) {
+		auto it = mapB.find(type);
+		if (it == mapB.end()) {
+			return false;
 		}
 
-		for (const auto &compareAttribute : compareItem->getAttributeVector()) {
-			if (attribute.getAttributeType() != compareAttribute.getAttributeType()) {
-				continue;
-			}
+		const Attributes* b = it->second;
 
-			if (isAttributeInteger(attribute.getAttributeType()) && attribute.getInteger() != compareAttribute.getInteger()) {
-				return false;
-			}
-
-			if (isAttributeString(attribute.getAttributeType()) && attribute.getString() != compareAttribute.getString()) {
-				return false;
-			}
+		if (isAttributeInteger(type) && a->getInteger() != b->getInteger()) {
+			return false;
+		}
+		if (isAttributeString(type) && a->getString() != b->getString()) {
+			return false;
 		}
 	}
 
@@ -522,6 +558,7 @@ bool Item::isItemStorable() {
 	if (isStoreItem() || hasOwner() || canDecay()) {
 		return false;
 	}
+
 	const auto isContainerAndHasSomethingInside = (getContainer() != nullptr) && (!getContainer()->getItemList().empty());
 	return (isStowable() || isContainerAndHasSomethingInside);
 }
