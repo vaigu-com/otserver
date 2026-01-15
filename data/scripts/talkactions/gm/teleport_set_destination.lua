@@ -1,3 +1,4 @@
+--[[
 -- Script for set teleport destination
 -- /teleport xxxx, xxxx, x
 local teleportSetDestination = TalkAction("/teleport", "/tp")
@@ -34,3 +35,4 @@ end
 teleportSetDestination:separator(" ")
 teleportSetDestination:groupType("gamemaster")
 teleportSetDestination:register()
+]]

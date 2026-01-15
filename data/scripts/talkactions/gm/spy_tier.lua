@@ -27,7 +27,7 @@ local function getItemsInContainer(container, sep)
 	return text
 end
 
-local spy = TalkAction("/spy")
+local spy = TalkAction("/spytier")
 
 function spy.onSay(player, words, param)
 	-- create log
@@ -46,7 +46,7 @@ function spy.onSay(player, words, param)
 		for i = 1, 10 do
 			text = text .. "\n\n"
 			local item = target:getSlotItem(i)
-			if item and item.itemid > 0 then
+			if item and item.itemid > 0 and item:getTier() > 0 then
 				if item:isContainer() then
 					text = text .. slotName[i] .. ": " .. ItemType(item.itemid):getName() .. getItemsInContainer(item, 1)
 				else
@@ -57,9 +57,7 @@ function spy.onSay(player, words, param)
 						count = ""
 					end
 					text = text .. slotName[i] .. ": " .. ItemType(item.itemid):getName() .. " " .. count
-					if item:getTier() > 0 then
-						text = text .. " t" .. tostring(item:getTier())
-					end
+					text = text .. " t" .. tostring(item:getTier())
 				end
 			else
 				text = text .. slotName[i] .. ": Empty"

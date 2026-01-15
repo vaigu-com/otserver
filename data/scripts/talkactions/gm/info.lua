@@ -22,7 +22,7 @@ function info.onSay(player, words, param)
 	text = text .. "Access: " .. (target:getGroup():getAccess() and "1" or "0") .. "\n"
 	text = text .. "Speed: " .. target:getSpeed() .. "\n"
 	text = text .. "Position: " .. string.format("(%0.5d / %0.5d / %0.3d)", target:getPosition().x, target:getPosition().y, target:getPosition().z) .. "\n"
-	text = text .. "IP: " .. Game.convertIpToString(targetIp) .. "\n\n"
+	text = text .. "IP: CHECK LOGS \n\n"
 
 	text = text .. "Skills: \n\n"
 	text = text .. "* Level: " .. target:getLevel() .. "\n"
@@ -35,6 +35,8 @@ function info.onSay(player, words, param)
 	text = text .. "* Skill Sword: " .. target:getSkillLevel(SKILL_SWORD) .. "\n"
 
 	player:popupFYI(text)
+
+	logger.info(target:getName() .. "IP:" .. Game.convertIpToString(targetIp))
 
 	local players = {}
 	for _, targetPlayer in ipairs(Game.getPlayers()) do

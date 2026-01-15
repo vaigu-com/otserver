@@ -1,3 +1,4 @@
+--[[
 local talkaction = TalkAction("!kills", "!frags")
 
 function talkaction.onSay(player, words, param)
@@ -113,3 +114,4 @@ end
 talkaction:separator(" ")
 talkaction:groupType("normal")
 talkaction:register()
+]]
