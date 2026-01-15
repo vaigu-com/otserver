@@ -3839,7 +3839,7 @@
 		<attribute key="attack" value="5"/>
 		<attribute key="weight" value="360"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="3"/>
+			<attribute key="breakChance" value="2"/>
 			<attribute key="weaponType" value="missile"/>
 			<attribute key="slot" value="hand"/>
 		</attribute>
@@ -9543,10 +9543,10 @@
 		<attribute key="shootType" value="huntingspear"/>
 		<attribute key="maxhitchance" value="80"/>
 		<attribute key="range" value="3"/>
-		<attribute key="attack" value="32"/>
+		<attribute key="attack" value="33"/>
 		<attribute key="weight" value="2200"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="6"/>
+			<attribute key="breakChance" value="4"/>
 			<attribute key="level" value="20"/>
 			<attribute key="unproperly" value="true"/>
 			<attribute key="weaponType" value="missile"/>
@@ -10840,7 +10840,7 @@
 		<attribute key="ammotype" value="arrow"/>
 		<attribute key="shootType" value="burstarrow"/>
 		<attribute key="maxhitchance" value="100"/>
-		<attribute key="attack" value="27"/>
+		<attribute key="attack" value="30"/>
 		<attribute key="weight" value="90"/>
 	</item>
 	<item id="3450" article="a" name="power bolt">
@@ -19405,7 +19405,7 @@
 		<attribute key="attack" value="35"/>
 		<attribute key="weight" value="2500"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="3"/>
+			<attribute key="breakChance" value="2"/>
 			<attribute key="level" value="25"/>
 			<attribute key="unproperly" value="true"/>
 			<attribute key="weaponType" value="missile"/>
@@ -49050,7 +49050,7 @@ hands of its owner. Granted by TibiaRoyal.com"/>
 		<attribute key="attack" value="48"/>
 		<attribute key="weight" value="200"/>
 		<attribute key="script" value="moveevent;weapon">
-			<attribute key="breakChance" value="40"/>
+			<attribute key="breakChance" value="20"/>
 			<attribute key="level" value="60"/>
 			<attribute key="unproperly" value="true"/>
 			<attribute key="weaponType" value="missile"/>
