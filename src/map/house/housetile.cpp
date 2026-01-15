@@ -73,14 +73,7 @@ ReturnValue HouseTile::queryAdd(int32_t index, const std::shared_ptr<Thing> &thi
 			}
 		} else if (const auto &monster = creature->getMonster()) {
 			if (monster->isSummon()) {
-				if (!house->isInvited(monster->getMaster()->getPlayer())) {
-					return RETURNVALUE_NOTPOSSIBLE;
-				}
-				if (house->isInvited(monster->getMaster()->getPlayer()) && (hasFlag(TILESTATE_BLOCKSOLID) || (hasBitSet(FLAG_PATHFINDING, flags) && hasFlag(TILESTATE_NOFIELDBLOCKPATH)))) {
-					return RETURNVALUE_NOTPOSSIBLE;
-				} else {
-					return RETURNVALUE_NOERROR;
-				}
+				return RETURNVALUE_NOTPOSSIBLE;
 			}
 		}
 	} else if (thing->getItem() && actor) {
