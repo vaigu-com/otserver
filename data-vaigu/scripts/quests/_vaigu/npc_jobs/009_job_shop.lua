@@ -685,6 +685,7 @@ JOB_SHOPS = {
 		},
 	},
 	[JOB_CREATURE_PRODUCT] = {
+		{ itemName = "shard", clientId = 7290, sell = 2000 },
 		{ itemName = "piece of draconian steel", clientId = 5889, sell = 3000 },
 		{ itemName = "pirate treasure map", clientId = 9205, sell = 100 },
 		{ itemName = "twig arms", clientId = 30336, sell = 50 },
