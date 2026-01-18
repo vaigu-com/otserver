@@ -79,7 +79,7 @@ quest
 			{
 				name = "War Golems",
 				requiredKills = 200,
-				creatures = { "war Golem" },
+				creatures = { "war golem" },
 				exp = 750000,
 				money = 40000,
 				tibiaCoins = 8,
@@ -231,7 +231,7 @@ quest
 				max = 121,
 				bossName = "Fahim the Wise",
 			},
-			]]
+			]]--
 			{
 				name = "Mutated Humans",
 				requiredKills = 200,
@@ -701,7 +701,7 @@ quest
 			{
 				name = "Sea Serpents",
 				requiredKills = 500,
-				creatures = { "sea serpent", "young sea serpent", "seacrest serpent " },
+				creatures = { "sea serpent", "young sea serpent", "seacrest serpent" },
 				exp = 450000,
 				money = 7000,
 				tibiaCoins = 2,
