@@ -41,7 +41,7 @@ void IOPrey::initializePreyMonsters() {
 		auto &monsterInfo = monsterType->info;
 		auto &name = monsterType->typeName;
 
-		if (monsterInfo.raceid <= 0) {
+		if (monsterInfo.raceid <= 0 || monsterInfo.isRewardBoss || monsterInfo.bosstiaryRace != BosstiaryRarity_t::BOSS_INVALID) {
 			continue;
 		}
 		auto it = monsterCounts.find(name);
