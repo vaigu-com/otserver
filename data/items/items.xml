@@ -8161,7 +8161,7 @@
 		<attribute key="weight" value="1300"/>
 	</item>
 	<item id="3244" article="an" name="old and used backpack">
-		<attribute key="description" value="A label on the backpack reads: Property of Sam, Thais"/>
+		<attribute key="description" value="A label on the backpack reads: Property of Trollsky, Mirkotown"/>
 		<attribute key="containersize" value="20"/>
 		<attribute key="weight" value="1800"/>
 		<attribute key="imbuementslot" value="1">
@@ -9637,6 +9637,8 @@
 	<item id="3356" article="a" name="devil helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="armor" value="7"/>
+		<attribute key="absorbpercentfire" value="3"/>
+		<attribute key="firemagiclevelpoints" value="2"/>
 		<attribute key="weight" value="5000"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -9712,6 +9714,10 @@
 	<item id="3363" name="dragon scale legs">
 		<attribute key="primarytype" value="legs"/>
 		<attribute key="armor" value="10"/>
+		<attribute key="absorbpercentphysical" value="1"/>
+		<attribute key="absorbpercentice" value="-10"/>
+		<attribute key="absorbpercentenergy" value="-10"/>
+		<attribute key="reflectdamage" value="3"/>
 		<attribute key="weight" value="4800"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="legs"/>
@@ -10278,6 +10284,8 @@
 	<item id="3408" article="a" name="bonelord helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="armor" value="7"/>
+		<attribute key="absorbpercentearth" value="2"/>
+		<attribute key="healingmagiclevelpoints" value="2"/>
 		<attribute key="weight" value="4600"/>
 		<attribute key="imbuementslot" value="2">
 			<attribute key="mana leech" value="3"/>
@@ -20692,6 +20700,7 @@
 	<item id="7461" article="a" name="krimhorn helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="armor" value="6"/>
+		<attribute key="reflectdamage" value="2"/>
 		<attribute key="weight" value="5100"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -20700,6 +20709,7 @@
 	<item id="7462" article="a" name="ragnir helmet">
 		<attribute key="primarytype" value="helmets"/>
 		<attribute key="armor" value="6"/>
+		<attribute key="reflectdamage" value="1"/>
 		<attribute key="weight" value="3100"/>
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="head"/>
@@ -34177,7 +34187,7 @@
 	</item>
 	<item id="16099" article="a" name="mushroom backpack">
 		<attribute key="primarytype" value="containers"/>
-		<attribute key="containersize" value="20"/>
+		<attribute key="containersize" value="28"/>
 		<attribute key="weight" value="1800"/>
 		<attribute key="imbuementslot" value="1">
 			<attribute key="increase capacity" value="3"/>
@@ -39611,9 +39621,8 @@
 	</item>
 	<item id="19366" name="icy culottes">
 		<attribute key="primarytype" value="legs"/>
-		<attribute key="showAttributes" value="1"/>
 		<attribute key="absorbpercentice" value="18"/>
-		<attribute key="absorbpercentfire" value="35"/>
+		<attribute key="absorbpercentfire" value="-25"/>
 		<attribute key="armor" value="8"/>
 		<attribute key="weight" value="1500"/>
 		<attribute key="script" value="moveevent">
