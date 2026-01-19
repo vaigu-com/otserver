@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Dawnfire Asura")
 local monster = {}
 
 monster.description = "a dawnfire asura"
-monster.experience = 4100
+monster.experience = 4000
 monster.outfit = {
 	lookType = 150,
 	lookHead = 114,
@@ -26,8 +26,8 @@ monster.Bestiary = {
 	Locations = "Asura Palace.",
 }
 
-monster.health = 2900
-monster.maxHealth = 2900
+monster.health = 3000
+monster.maxHealth = 3000
 monster.race = "blood"
 monster.corpse = 21987
 monster.speed = 140
@@ -79,8 +79,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 69190, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 84140, maxCount = 2 }, -- platinum coin
+	{ id = 3031, chance = 49190, maxCount = 100 }, -- gold coin
+	{ id = 3035, chance = 74140, maxCount = 2 }, -- platinum coin
 	{ id = 6558, chance = 20910, maxCount = 2 }, -- flask of demonic blood
 	{ id = 238, chance = 8590, maxCount = 2 }, -- great mana potion
 	{ id = 3033, chance = 3140, maxCount = 1 }, -- small amethyst
@@ -90,13 +90,13 @@ monster.loot = {
 	{ id = 9057, chance = 2840, maxCount = 1 }, -- small topaz
 	{ id = 3041, chance = 220 }, -- blue gem
 	{ id = 6299, chance = 340 }, -- death ring
-	{ id = 6499, chance = 10660 }, -- demonic essence
-	{ id = 21974, chance = 1230 }, -- golden lotus brooch
-	{ id = 826, chance = 570 }, -- magma coat
+	{ id = 6499, chance = 8660 }, -- demonic essence
+	{ id = 21974, chance = 2230 }, -- golden lotus brooch
+	{ id = 826, chance = 370 }, -- magma coat
 	{ id = 3078, chance = 1160 }, -- mysterious fetish
 	{ id = 3574, chance = 2190 }, -- mystic turban
 	{ id = 21981, chance = 310 }, -- oriental shoes
-	{ id = 21975, chance = 11110 }, -- peacock feather fan
+	{ id = 21975, chance = 3110 }, -- peacock feather fan
 	{ id = 5911, chance = 2340 }, -- red piece of cloth
 	{ id = 3016, chance = 800 }, -- ruby necklace
 	{ id = 5944, chance = 19560 }, -- soul orb
@@ -106,6 +106,7 @@ monster.loot = {
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -269 },
+	{ name = "drunk", interval = 2000, chance = 8, length = 4, spread = 2, effect = CONST_ME_STUN, target = false, duration = 5000 },
 	{ name = "combat", interval = 3700, chance = 17, type = COMBAT_LIFEDRAIN, minDamage = -100, maxDamage = -300, length = 8, spread = 0, effect = CONST_ME_PURPLEENERGY, target = false },
 	{ name = "combat", interval = 3200, chance = 25, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -350, radius = 4, range = 5, target = true, effect = CONST_ME_MORTAREA },
 	{ name = "combat", interval = 2700, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -95, maxDamage = -180, range = 3, shootEffect = CONST_ANI_FIRE, target = true },

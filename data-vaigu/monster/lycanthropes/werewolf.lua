@@ -101,6 +101,7 @@ monster.loot = {
 	{ id = 8895, chance = 210 }, -- rusted armor
 	{ id = 22052, chance = 15000 }, -- werewolf fangs
 	{ name = "werewolf fur", chance = 10650 },
+	{ id = 22083, chance = 200 }, -- moonlight crystals
 }
 
 monster.attacks = {

@@ -22,7 +22,7 @@ monster.health = 5500
 monster.maxHealth = 5500
 monster.race = "blood"
 monster.corpse = 10371
-monster.speed = 230
+monster.speed = 260
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -70,17 +70,17 @@ monster.voices = {
 monster.loot = {
 	{ id = 3031, chance = 33000, maxCount = 100 }, -- gold coin
 	{ id = 10409, chance = 15800 }, -- corrupted flag
-	{ id = 3035, chance = 2920, maxCount = 5 }, -- platinum coin
+	{ id = 3035, chance = 12920, maxCount = 5 }, -- platinum coin
 	{ id = 10410, chance = 13800 }, -- cursed shoulder spikes
-	{ id = 9058, chance = 3800 }, -- gold ingot
+	{ id = 9058, chance = 6600 }, -- gold ingot
 	{ id = 10408, chance = 13800 }, -- spiked iron ball
-	{ id = 10386, chance = 3800 }, -- zaoan shoes
-	{ id = 10385, chance = 3800 },
-	{ id = 10387, chance = 3800 },
+	{ id = 10386, chance = 7800 }, -- zaoan shoes
+	{ id = 10385, chance = 4800 },
+	{ id = 10387, chance = 5900 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 80, attack = 100 },
+	{ name = "melee", interval = 2000, chance = 100, skill = 90, attack = 100 },
 	-- poison
 	{ name = "condition", type = CONDITION_POISON, interval = 2000, chance = 15, minDamage = -440, maxDamage = -820, length = 3, spread = 2, effect = CONST_ME_POISONAREA, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -290, maxDamage = -540, radius = 3, effect = CONST_ME_HITBYPOISON, target = false },
@@ -88,23 +88,23 @@ monster.attacks = {
 }
 
 monster.defenses = {
-	defense = 45,
+	defense = 65,
 	armor = 45,
 	mitigation = 1.86,
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 475, maxDamage = 625, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 70 },
+	{ type = COMBAT_FIREDAMAGE, percent = 10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 40 },
 }
 
 monster.immunities = {

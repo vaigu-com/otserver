@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Hairman the Huge")
 local monster = {}
 
 monster.description = "Hairman the Huge"
-monster.experience = 335
+monster.experience = 1335
 monster.outfit = {
 	lookType = 116,
 	lookHead = 0,
@@ -71,13 +71,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 60 },
+	{ name = "gold coin", chance = 90000, maxCount = 90 },
 	{ id = 3093, chance = 25000 }, -- club ring
-	{ name = "banana", chance = 25000, maxCount = 1 },
+	{ name = "banana", chance = 25000, maxCount = 10 },
+	{ name = "silver token", chance = 5140 },
+	{ id = 5785, chance = 20000 },
+	{ name = "ape fur", chance = 8980 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 45, attack = 40 },
+	{ name = "melee", interval = 2000, chance = 100, skill = 65, attack = 60 },
 }
 
 monster.defenses = {

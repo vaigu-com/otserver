@@ -63,9 +63,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 2,
+	maxSummons = 3,
 	summons = {
-		{ name = "Lizard Dragon Priest", chance = 10, interval = 2000, count = 2 },
+		{ name = "Lizard Dragon Priest", chance = 30, interval = 3000, count = 1 },
 	},
 }
 
@@ -80,18 +80,16 @@ monster.voices = {
 monster.loot = {
 	{ id = 9058, chance = 71550, maxCount = 2 }, -- gold ingot
 	{ id = 3031, chance = 69825, maxCount = 100 }, -- gold coin
-	{ id = 3032, chance = 5750 }, -- small emerald
-	{ id = 5881, chance = 90000 }, -- lizard scale
+	{ id = 3032, chance = 15750 }, -- small emerald
+	{ id = 5881, chance = 100000 }, -- lizard scale
 	{ id = 3038, chance = 16300 }, -- green gem
 	{ id = 3053, chance = 11025 }, -- time ring
 	{ id = 239, chance = 85750 }, -- great health potion
 	{ id = 3386, chance = 5750 }, -- dragon scale mail
-	{ id = 19083, chance = 55750 },
-	{ id = 8052, chance = 3750 },
-	{ id = 8041, chance = 2750 },
-	{ id = 10200, chance = 2750 },
-	{ id = 3402, chance = 825 },
-	{ id = 3400, chance = 225 },
+	{ id = 10200, chance = 15750 },
+	{ id = 3014, chance = 11650 },
+	{ id = 3402, chance = 5260 },
+	{ id = 12669, chance = 16220 }, -- star ring
 }
 
 monster.attacks = {
@@ -109,10 +107,10 @@ monster.defenses = {
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 80 },
+	{ type = COMBAT_FIREDAMAGE, percent = 70 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

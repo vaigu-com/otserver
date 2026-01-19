@@ -73,27 +73,27 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3031, chance = 70980, maxCount = 100 }, -- gold coin
-	{ id = 3035, chance = 80500, maxCount = 6 }, -- platinum coin
-	{ id = 3567, chance = 680 }, -- blue robe
-	{ id = 7368, chance = 6640, maxCount = 5 }, -- assassin star
+	{ id = 3031, chance = 50980, maxCount = 100 }, -- gold coin
+	{ id = 3035, chance = 40500, maxCount = 6 }, -- platinum coin
+	{ id = 3567, chance = 580 }, -- blue robe
+	{ id = 7368, chance = 5640, maxCount = 5 }, -- assassin star
 	{ id = 3027, chance = 5320, maxCount = 1 }, -- black pearl
-	{ id = 3007, chance = 250 }, -- crystal ring
+	{ id = 3007, chance = 1250 }, -- crystal ring
 	{ id = 6558, chance = 19650 }, -- flask of demonic blood
-	{ id = 6499, chance = 15850 }, -- demonic essence
-	{ id = 3028, chance = 8200, maxCount = 1 }, -- small diamond
+	{ id = 6499, chance = 11850 }, -- demonic essence
+	{ id = 3028, chance = 6200, maxCount = 1 }, -- small diamond
 	{ id = 3032, chance = 3970, maxCount = 1 }, -- small emerald
 	{ id = 3030, chance = 4560, maxCount = 1 }, -- small ruby
-	{ id = 3029, chance = 7600, maxCount = 3 }, -- small sapphire
+	{ id = 3029, chance = 5600, maxCount = 3 }, -- small sapphire
 	{ id = 9057, chance = 4770, maxCount = 1 }, -- small topaz
-	{ id = 239, chance = 12080, maxCount = 2 }, -- great health potion
-	{ id = 3026, chance = 7480 }, -- white pearl
+	{ id = 239, chance = 8080, maxCount = 2 }, -- great health potion
+	{ id = 3026, chance = 5480 }, -- white pearl
 	{ id = 7404, chance = 550 }, -- assassin dagger
 	{ id = 3041, chance = 300 }, -- blue gem
 	{ id = 9058, chance = 380 }, -- gold ingot
-	{ id = 21974, chance = 19650 }, -- golden lotus brooch
+	{ id = 21974, chance = 9650 }, -- golden lotus brooch
 	{ id = 21981, chance = 340 }, -- oriental shoes
-	{ id = 21975, chance = 17280 }, -- peacock feather fan
+	{ id = 21975, chance = 7280 }, -- peacock feather fan
 	{ id = 8061, chance = 250 }, -- skullcracker armor
 	{ id = 3017, chance = 5790 }, -- silver brooch
 	{ id = 3054, chance = 1100 }, -- silver amulet
@@ -101,14 +101,14 @@ monster.loot = {
 	{ id = 8074, chance = 420 }, -- spellbook of mind control
 	{ id = 3403, chance = 3380 }, -- tribal mask
 	{ id = 3037, chance = 1820 }, -- yellow gem
-	{ id = 3067, chance = 19520 }, -- hailstorm rod
-	{ id = 8083, chance = 19520 }, -- northwind rod
+	{ id = 3067, chance = 1520 }, -- hailstorm rod
+	{ id = 8083, chance = 9520 }, -- northwind rod
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = -110, maxDamage = -400 },
-	{ name = "combat", interval = 1300, chance = 14, type = COMBAT_HOLYDAMAGE, minDamage = -185, maxDamage = -210, length = 8, spread = 0, effect = CONST_ME_ICETORNADO, target = false },
-	{ name = "combat", interval = 1000, chance = 9, type = COMBAT_ICEDAMAGE, minDamage = -120, maxDamage = -200, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_HOLYDAMAGE, minDamage = -185, maxDamage = -310, length = 6, spread = 3, effect = CONST_ME_ICETORNADO, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = -120, maxDamage = -400, range = 7, shootEffect = CONST_ANI_SMALLICE, effect = CONST_ME_ICEATTACK, target = true },
 }
 
 monster.defenses = {
@@ -120,7 +120,7 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -10 },
 	{ type = COMBAT_EARTHDAMAGE, percent = -10 },
 	{ type = COMBAT_FIREDAMAGE, percent = -15 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },

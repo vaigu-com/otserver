@@ -76,9 +76,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 13600, maxCount = 100 },
-	{ name = "gold coin", chance = 13600, maxCount = 100 },
-	{ name = "platinum coin", chance = 13110, maxCount = 10 },
+	{ name = "gold coin", chance = 43600, maxCount = 100 },
+	{ name = "platinum coin", chance = 43110, maxCount = 7 },
 	{ name = "great health potion", chance = 13600, maxCount = 10 },
 	{ name = "red crystal fragment", chance = 13600, maxCount = 2 },
 	{ name = "small enchanted ruby", chance = 13600, maxCount = 3 },
@@ -91,9 +90,11 @@ monster.loot = {
 	{ name = "dreaded cleaver", chance = 1400 },
 	{ name = "fur armor", chance = 4400 },
 	{ name = "fur boots", chance = 7400 },
-	{ id = 22102, chance = 2250 }, -- wereboar trophy
-	{ name = "silver token", chance = 1250 },
+	{ id = 22102, chance = 6250 }, -- wereboar trophy
+	{ name = "silver token", chance = 2250 },
 	{ name = "wolf backpack", chance = 1100 },
+	{ id = 8902, chance = 12250 },
+	{ id = 22083, chance = 800 }, -- moonlight crystals
 }
 
 monster.attacks = {

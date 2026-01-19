@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Grynch Clan Goblin")
 local monster = {}
 
 monster.description = "a grynch clan goblin"
-monster.experience = 4
+monster.experience = 40
 monster.outfit = {
 	lookType = 61,
 	lookHead = 0,
@@ -28,8 +28,8 @@ monster.Bestiary = {
 			There are two or three messages that appear on each raid and three massive spawns of goblins.",
 }
 
-monster.health = 80
-monster.maxHealth = 80
+monster.health = 180
+monster.maxHealth = 180
 monster.race = "blood"
 monster.corpse = 6002
 monster.speed = 100
@@ -104,18 +104,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 2639, chance = 4000 }, -- picture
+	{ id = 2639, chance = 1400 }, -- picture
 	{ id = 2950, chance = 5000 }, -- lute
 	{ id = 2983, chance = 500 }, -- flower bowl
 	{ id = 2992, chance = 7000, maxCount = 5 }, -- snowball
-	{ name = "piggy bank", chance = 1000 },
+	{ name = "piggy bank", chance = 3000 },
 	{ name = "gold coin", chance = 22500, maxCount = 22 },
-	{ name = "scarab coin", chance = 500, maxCount = 2 },
+	{ name = "scarab coin", chance = 1500, maxCount = 2 },
 	{ id = 3047, chance = 4000 }, -- magic light wand
-	{ name = "blank rune", chance = 5000 },
 	{ id = 3211, chance = 1500 }, -- witchesbroom
 	{ id = 3463, chance = 1000 }, -- mirror
-	{ name = "scarf", chance = 4000 },
+	{ name = "scarf", chance = 3000 },
 	{ name = "red apple", chance = 700, maxCount = 3 },
 	{ name = "orange", chance = 7000, maxCount = 3 },
 	{ name = "cherry", chance = 7000, maxCount = 4 },
@@ -124,14 +123,14 @@ monster.loot = {
 	{ id = 3606, chance = 5000, maxCount = 2 }, -- egg
 	{ name = "explorer brooch", chance = 4000 },
 	{ name = "orichalcum pearl", chance = 500, maxCount = 2 },
-	{ id = 5792, chance = 1000 }, -- die
+	{ id = 5792, chance = 700 }, -- die
 	{ name = "chicken feather", chance = 4000, maxCount = 5 },
 	{ name = "bat wing", chance = 4000, maxCount = 3 },
 	{ name = "honeycomb", chance = 4000 },
-	{ name = "lump of cake dough", chance = 7000, maxCount = 3 },
+	{ name = "lump of cake dough", chance = 5000, maxCount = 3 },
 	{ name = "valentine's cake", chance = 1500 },
-	{ name = "christmas present bag", chance = 7000 },
-	{ name = "gingerbreadman", chance = 4000, maxCount = 2 },
+	{ name = "christmas present bag", chance = 9000 },
+	{ name = "gingerbreadman", chance = 6000, maxCount = 2 },
 	{ name = "walnut", chance = 3500, maxCount = 5 },
 	{ name = "peanut", chance = 3500, maxCount = 100 },
 }
@@ -142,19 +141,19 @@ monster.defenses = {
 	defense = 12,
 	armor = 5,
 	mitigation = 0.25,
-	{ name = "speed", interval = 1000, chance = 15, speedChange = 500, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
+	{ name = "speed", interval = 1000, chance = 15, speedChange = 700, effect = CONST_ME_MAGIC_RED, target = false, duration = 7000 },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 10 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }
 

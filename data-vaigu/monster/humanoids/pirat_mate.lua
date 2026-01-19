@@ -77,18 +77,18 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "pirate coin", chance = 10000, maxCount = 10 },
-	{ name = "cyan crystal fragment", chance = 10000 },
+	{ name = "cyan crystal fragment", chance = 5000 },
 	{ name = "small diamond", chance = 10000 },
-	{ name = "red crystal fragment", chance = 10000 },
-	{ name = "mouldy powder", chance = 9000 },
+	{ name = "red crystal fragment", chance = 5000 },
+	{ name = "mouldy powder", chance = 8000 },
 	{ name = "pirat's tail", chance = 7000 },
-	{ id = 3039, chance = 6000 }, -- red gem
-	{ name = "fire sword", chance = 5000 },
+	{ id = 3039, chance = 4000 }, -- red gem
+	{ name = "fire sword", chance = 4000 },
 	{ name = "small emerald", chance = 5000 },
 	{ name = "onyx chip", chance = 4000 },
 	{ name = "shark fins", chance = 4000 },
 	{ name = "yellow gem", chance = 3000 },
-	{ name = "ice rapier", chance = 3000 },
+	{ name = "ice rapier", chance = 2000 },
 	{ name = "green crystal shard", chance = 2000 },
 	{ name = "small treasure chest", chance = 2000 },
 }
@@ -96,7 +96,7 @@ monster.loot = {
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -400 },
 	{ name = "energy beam", interval = 2000, chance = 10, minDamage = -150, maxDamage = -210, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYAREA, target = false },
-	{ name = "energy wave", interval = 2000, chance = 10, minDamage = -140, maxDamage = -80, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYAREA, target = false },
+	{ name = "energy wave", interval = 2000, chance = 10, minDamage = -140, maxDamage = -280, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYAREA, target = false },
 }
 
 monster.defenses = {

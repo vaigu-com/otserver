@@ -77,17 +77,17 @@ monster.loot = {
 	{ id = 3732, chance = 25650, maxCount = 7 }, -- green mushroom
 	{ id = 3029, chance = 12000 }, -- small sapphire
 	{ id = 238, chance = 9500 }, -- great mana potion
-	{ id = 7365, chance = 4250, maxCount = 5 }, -- onyx arrow
-	{ id = 3061, chance = 850 }, -- life crystal
-	{ id = 3450, chance = 19650, maxCount = 10 }, -- power bolt
+	{ id = 3061, chance = 8850 }, -- life crystal
+	{ id = 3450, chance = 19650, maxCount = 50 }, -- power bolt
 	{ id = 3051, chance = 10250 }, -- energy ring
 	{ id = 239, chance = 9500 }, -- great health potion
-	{ id = 3386, chance = 1700 }, -- dragon scale mail
+	{ id = 3386, chance = 5700 }, -- dragon scale mail
 	{ id = 3583, chance = 75200, maxCount = 10 }, -- dragon ham
 	{ id = 5948, chance = 13700 }, -- red dragon leather
 	{ id = 2842, chance = 10250 }, -- book (gemmed)
-	{ id = 2903, chance = 6000 }, -- golden mug
-	{ id = 3280, chance = 1700 }, -- fire sword
+	{ id = 2903, chance = 60000 }, -- golden mug
+	{ id = 3280, chance = 11700 }, -- fire sword
+	{ id = 8039, chance = 2700 }, -- dragon robe
 }
 
 monster.attacks = {

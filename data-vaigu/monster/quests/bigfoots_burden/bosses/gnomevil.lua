@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Gnomevil")
 local monster = {}
 
 monster.description = "Gnomevil"
-monster.experience = 400000
+monster.experience = 280000
 monster.outfit = {
 	lookType = 504,
 	lookHead = 0,
@@ -35,9 +35,9 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 70,
+	nearest = 60,
 	health = 10,
-	damage = 10,
+	damage = 20,
 	random = 10,
 }
 
@@ -78,20 +78,26 @@ monster.voices = {
 monster.loot = {
 	{ id = 16161, chance = 7030 }, -- crystalline axe
 	{ id = 16163, chance = 9120 }, -- crystal crossbow
-	{ id = 16205, chance = 99150 }, -- gnomevil's hat
+	{ id = 16205, chance = 99150, unique = true }, -- gnomevil's hat
 	{ id = 16175, chance = 6690 }, -- shiny blade
 	{ id = 16164, chance = 8400 }, -- mycological bow
 	{ id = 16162, chance = 7120 }, -- mycological mace
 	{ id = 16160, chance = 14100 }, -- crystalline sword
 	{ id = 16155, chance = 3710 }, -- decorative ribbon
+	{ id = 8899, chance = 13710 },
+	{ id = 8908, chance = 13710 },
+	{ id = 8775, chance = 5550 },
+	{ id = 19357, chance = 410 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 1300, chance = 100, skill = 80, attack = 140 },
-	{ name = "speed", interval = 2000, chance = 20, speedChange = -400, range = 7, shootEffect = CONST_ANI_WHIRLWINDAXE, target = false, duration = 2500 },
+	{ name = "melee", interval = 1300, chance = 100, skill = 100, attack = 140 },
+	{ name = "combat", interval = 3000, chance = 16, type = COMBAT_HOLYDAMAGE, minDamage = -200, maxDamage = -830, range = 7, radius = 6, effect = CONST_ME_HITBYFIRE, target = false },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_HOLYDAMAGE, minDamage = -485, maxDamage = -710, length = 6, spread = 4, effect = CONST_ME_ICETORNADO, target = false },
+	{ name = "speed", interval = 2000, chance = 20, speedChange = -700, range = 7, shootEffect = CONST_ANI_WHIRLWINDAXE, target = false, duration = 2500 },
 	{ name = "combat", interval = 2000, chance = 100, type = COMBAT_FIREDAMAGE, minDamage = -820, maxDamage = -950, range = 7, effect = CONST_ME_ENERGYAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 9, type = COMBAT_MANADRAIN, minDamage = -230, maxDamage = -500, length = 8, spread = 3, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ENERGYDAMAGE, minDamage = -350, maxDamage = -800, range = 3, effect = CONST_ME_PURPLEENERGY, target = true },
+	{ name = "combat", interval = 2000, chance = 9, type = COMBAT_MANADRAIN, minDamage = -230, maxDamage = -500, length = 8, spread = 4, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ENERGYDAMAGE, minDamage = -350, maxDamage = -800, range = 4, effect = CONST_ME_PURPLEENERGY, target = true },
 }
 
 monster.defenses = {
@@ -103,13 +109,13 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 90 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 50 },
 	{ type = COMBAT_FIREDAMAGE, percent = 50 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 50 },
+	{ type = COMBAT_ICEDAMAGE, percent = 20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 50 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 27 },
 }

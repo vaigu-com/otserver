@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ashmunrah")
 local monster = {}
 
 monster.description = "Ashmunrah"
-monster.experience = 3100
+monster.experience = 13100
 monster.outfit = {
 	lookType = 91,
 	lookHead = 0,
@@ -41,7 +41,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -63,8 +63,8 @@ monster.light = {
 monster.summon = {
 	maxSummons = 4,
 	summons = {
-		{ name = "Ancient Scarab", chance = 100, interval = 1000, count = 2 },
-		{ name = "Green Djinn", chance = 100, interval = 1000, count = 2 },
+		{ name = "Ancient Scarab", chance = 80, interval = 8000, count = 2 },
+		{ name = "Green Djinn", chance = 80, interval = 8000, count = 2 },
 	},
 }
 
@@ -81,21 +81,23 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "silver brooch", chance = 7000 },
-	{ name = "holy scarab", chance = 400 },
+	{ name = "silver brooch", chance = 70000 },
+	{ name = "holy scarab", chance = 4000 },
 	{ name = "gold coin", chance = 50000, maxCount = 80 },
-	{ name = "gold coin", chance = 50000, maxCount = 60 },
-	{ name = "might ring", chance = 1000 },
-	{ name = "crown armor", chance = 80000 },
-	{ name = "great mana potion", chance = 1500 },
+	{ name = "might ring", chance = 10000 },
+	{ name = "crown armor", chance = 40000 },
+	{ name = "great mana potion", chance = 10500 },
+	{ id = 12669, chance = 12280 },
+	{ id = 21955, chance = 5280 },
+	{ id = 10290, chance = 22280 }, -- Mini Mummy
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -1000, condition = { type = CONDITION_POISON, totalDamage = 55, interval = 4000 } },
-	{ name = "combat", interval = 3000, chance = 7, type = COMBAT_LIFEDRAIN, minDamage = -100, maxDamage = -700, range = 1, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -800, condition = { type = CONDITION_POISON, totalDamage = 55, interval = 4000 } },
+	{ name = "combat", interval = 3000, chance = 7, type = COMBAT_LIFEDRAIN, minDamage = -100, maxDamage = -500, range = 1, target = false },
 	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_EARTHDAMAGE, minDamage = -100, maxDamage = -500, range = 7, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = false },
-	{ name = "combat", interval = 3000, chance = 12, type = COMBAT_PHYSICALDAMAGE, minDamage = -120, maxDamage = -750, range = 7, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_MORTAREA, target = false },
-	{ name = "speed", interval = 3000, chance = 25, speedChange = -650, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 50000 },
+	{ name = "combat", interval = 3000, chance = 12, type = COMBAT_PHYSICALDAMAGE, minDamage = -120, maxDamage = -550, range = 7, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_MORTAREA, target = false },
+	{ name = "speed", interval = 3000, chance = 25, speedChange = -650, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 10000 },
 	{ name = "combat", interval = 2000, chance = 18, type = COMBAT_LIFEDRAIN, minDamage = -50, maxDamage = -550, length = 8, spread = 3, effect = CONST_ME_YELLOW_RINGS, target = false },
 }
 
@@ -103,9 +105,9 @@ monster.defenses = {
 	defense = 30,
 	armor = 25,
 	--	mitigation = ???,
-	{ name = "combat", interval = 1000, chance = 20, type = COMBAT_HEALING, minDamage = 200, maxDamage = 400, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 1000, chance = 7, effect = CONST_ME_MAGIC_BLUE },
-	{ name = "outfit", interval = 1000, chance = 3, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 6000, outfitMonster = "ancient scarab" },
+	{ name = "combat", interval = 3000, chance = 30, type = COMBAT_HEALING, minDamage = 100, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "invisible", interval = 2000, chance = 10, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "outfit", interval = 1000, chance = 8, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 6000, outfitMonster = "ancient scarab" },
 }
 
 monster.elements = {

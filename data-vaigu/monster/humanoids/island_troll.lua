@@ -90,7 +90,7 @@ monster.loot = {
 	{ name = "leather boots", chance = 10500 },
 	{ name = "mango", chance = 5000 },
 	{ id = 5901, chance = 30000 }, -- wood
-	{ name = "marlin", chance = 40 },
+	{ name = "marlin", chance = 1350 },
 }
 
 monster.attacks = {

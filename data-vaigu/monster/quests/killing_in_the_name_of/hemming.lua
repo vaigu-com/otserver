@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Hemming")
 local monster = {}
 
 monster.description = "Hemming"
-monster.experience = 2850
+monster.experience = 12850
 monster.outfit = {
 	lookType = 308,
 	lookHead = 0,
@@ -82,19 +82,20 @@ monster.loot = {
 	{ id = 3081, chance = 70000 }, -- stone skin amulet
 	{ id = 3027, chance = 62000, maxCount = 5 }, -- black pearl
 	{ id = 5479, chance = 31000 }, -- cat's paw
-	{ id = 3741, chance = 21000 }, -- troll green
+	{ id = 3741, chance = 71000 }, -- troll green
 	{ id = 10389, chance = 15000 }, -- sai
 	{ id = 7419, chance = 9800 }, -- dreaded cleaver
-	{ id = 3053, chance = 6000 }, -- time ring
-	{ id = 7428, chance = 2000 }, -- bonebreaker
-	{ id = 22516, chance = 2000 },
+	{ id = 3053, chance = 16000 }, -- time ring
+	{ id = 7428, chance = 4000 }, -- bonebreaker
+	{ id = 22516, chance = 12000 },
+	{ id = 11701, chance = 12000 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -450 },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -180, maxDamage = -265, radius = 3, effect = CONST_ME_SOUND_RED, target = false },
 	{ name = "outfit", interval = 2000, chance = 5, effect = CONST_ME_SOUND_BLUE, target = false, duration = 2000, outfitMonster = "Werewolf" },
-	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_PHYSICALDAMAGE, radius = 3, effect = CONST_ME_SOUND_WHITE, target = false },
+	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_PHYSICALDAMAGE, minDamage = -170, maxDamage = -225, radius = 4, effect = CONST_ME_SOUND_WHITE, target = false },
 	{ name = "werewolf skill reducer", interval = 2000, chance = 15, range = 1, target = false },
 }
 

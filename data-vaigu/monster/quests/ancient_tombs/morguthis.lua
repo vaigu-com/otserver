@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Morguthis")
 local monster = {}
 
 monster.description = "Morguthis"
-monster.experience = 3000
+monster.experience = 13000
 monster.outfit = {
 	lookType = 84,
 	lookHead = 0,
@@ -42,7 +42,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -62,9 +62,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 3,
+	maxSummons = 5,
 	summons = {
-		{ name = "Hero", chance = 100, interval = 2000, count = 3 },
+		{ name = "Hero", chance = 30, interval = 3000, count = 1 },
 	},
 }
 
@@ -80,17 +80,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3019, chance = 500 }, -- demonbone amulet
-	{ name = "black pearl", chance = 7000 },
+	{ id = 3019, chance = 5500 }, -- demonbone amulet
+	{ name = "black pearl", chance = 70000 },
 	{ name = "gold coin", chance = 50000, maxCount = 80 },
-	{ name = "gold coin", chance = 50000, maxCount = 73 },
-	{ name = "stone skin amulet", chance = 7000 },
-	{ name = "sword hilt", chance = 100000 },
-	{ name = "knight axe", chance = 7000 },
-	{ name = "ravager's axe", chance = 300 },
-	{ name = "steel boots", chance = 500 },
-	{ name = "assassin star", chance = 500, maxCount = 3 },
-	{ name = "great health potion", chance = 1500 },
+	{ name = "stone skin amulet", chance = 17000 },
+	{ name = "sword hilt", chance = 90000 },
+	{ name = "knight axe", chance = 17000 },
+	{ name = "ravager's axe", chance = 4300 },
+	{ name = "steel boots", chance = 3500 },
+	{ name = "assassin star", chance = 50000, maxCount = 30 },
+	{ name = "great health potion", chance = 71500 },
+	{ id = 10290, chance = 22280 }, -- Mini Mummy
+	{ id = 3395, chance = 3000 },
+	{ id = 8902, chance = 31000 },
 }
 
 monster.attacks = {
@@ -104,20 +106,20 @@ monster.attacks = {
 monster.defenses = {
 	defense = 25,
 	armor = 35,
-	{ name = "combat", interval = 1000, chance = 13, type = COMBAT_HEALING, minDamage = 200, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "speed", interval = 1000, chance = 7, speedChange = 1201, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
+	{ name = "combat", interval = 3000, chance = 30, type = COMBAT_HEALING, minDamage = 100, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "speed", interval = 1000, chance = 17, speedChange = 1201, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000 },
 	{ name = "invisible", interval = 2000, chance = 10, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 52 },
 	{ type = COMBAT_EARTHDAMAGE, percent = -15 },
-	{ type = COMBAT_FIREDAMAGE, percent = 60 },
+	{ type = COMBAT_FIREDAMAGE, percent = -40 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 62 },
+	{ type = COMBAT_ICEDAMAGE, percent = 22 },
 	{ type = COMBAT_HOLYDAMAGE, percent = -22 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }

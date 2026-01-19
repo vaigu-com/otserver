@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Xenia")
 local monster = {}
 
 monster.description = "Xenia"
-monster.experience = 255
+monster.experience = 1255
 monster.outfit = {
 	lookType = 137,
 	lookHead = 95,
@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_NEMESIS,
 }
 
-monster.health = 200
-monster.maxHealth = 200
+monster.health = 600
+monster.maxHealth = 600
 monster.race = "blood"
 monster.corpse = 18261
 monster.speed = 88
@@ -71,14 +71,17 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3114, chance = 100000, maxCount = 2 }, -- skull
-	{ name = "gold coin", chance = 66666, maxCount = 34 },
+	{ id = 3114, chance = 80000, maxCount = 2 }, -- skull
+	{ name = "gold coin", chance = 66666, maxCount = 74 },
 	{ name = "sabre", chance = 33000 },
-	{ name = "studded shield", chance = 33000 },
+	{ name = "hunting spear", chance = 5155 },
+	{ name = "protective charm", chance = 13200 },
+	{ name = "protection amulet", chance = 1100 },
+	{ name = "plate armor", chance = 5830 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -10, maxDamage = -80 },
 	{ name = "drunk", interval = 2000, chance = 10, length = 3, spread = 2, effect = CONST_ME_SOUND_RED, target = false, duration = 5000 },
 }
 

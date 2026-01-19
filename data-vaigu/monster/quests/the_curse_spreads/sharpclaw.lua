@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Sharpclaw")
 local monster = {}
 
 monster.description = "Sharpclaw"
-monster.experience = 3000
+monster.experience = 7000
 monster.outfit = {
 	lookType = 1031,
 	lookHead = 0,
@@ -63,9 +63,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 2,
+	maxSummons = 3,
 	summons = {
-		{ name = "Werebadger", chance = 20, interval = 2000, count = 2 },
+		{ name = "Werebadger", chance = 30, interval = 6000, count = 1 },
 	},
 }
 
@@ -76,24 +76,25 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 13600000, maxCount = 100 },
-	{ name = "gold coin", chance = 13600000, maxCount = 100 },
-	{ name = "platinum coin", chance = 13600000, maxCount = 10 },
-	{ name = "brown mushroom", chance = 13600000, maxCount = 9 },
-	{ name = "onyx chip", chance = 13600000, maxCount = 9 },
-	{ name = "small enchanted amethyst", chance = 13600000, maxCount = 9 },
-	{ name = "beetroot", chance = 13600000, maxCount = 9 },
-	{ name = "great mana potion", chance = 13600000, maxCount = 9 },
-	{ name = "platinum amulet", chance = 13600000 },
-	{ id = 3098, chance = 13600000 }, -- ring of healing
-	{ name = "troll green", chance = 13600000, maxCount = 9 },
-	{ name = "ultimate mana potion", chance = 13600000, maxCount = 9 },
-	{ name = "werebadger claws", chance = 13600000, maxCount = 9 },
-	{ name = "werebadger skull", chance = 13600000, maxCount = 9 },
-	{ name = "badger boots", chance = 400 },
-	{ name = "underworld rod", chance = 400 },
-	{ name = "wand of voodoo", chance = 400 },
-	{ name = "wolf backpack", chance = 250 },
+	{ name = "gold coin", chance = 88000, maxCount = 100 },
+	{ name = "platinum coin", chance = 71000, maxCount = 10 },
+	{ name = "brown mushroom", chance = 91000, maxCount = 9 },
+	{ name = "onyx chip", chance = 81000, maxCount = 9 },
+	{ name = "small enchanted amethyst", chance = 29000, maxCount = 5 },
+	{ name = "beetroot", chance = 84000, maxCount = 9 },
+	{ name = "great mana potion", chance = 77000, maxCount = 9 },
+	{ name = "platinum amulet", chance = 52000 },
+	{ id = 3098, chance = 91000 }, -- ring of healing
+	{ name = "troll green", chance = 71100, maxCount = 9 },
+	{ name = "ultimate mana potion", chance = 22000, maxCount = 6 },
+	{ name = "werebadger claws", chance = 71300, maxCount = 2 },
+	{ name = "werebadger skull", chance = 74600, maxCount = 2 },
+	{ name = "badger boots", chance = 7400 },
+	{ name = "underworld rod", chance = 6400 },
+	{ name = "wand of voodoo", chance = 4400 },
+	{ name = "wolf backpack", chance = 1250 },
+	{ name = "silver token", chance = 1250 },
+	{ id = 22083, chance = 700 }, -- moonlight crystals
 }
 
 monster.attacks = {

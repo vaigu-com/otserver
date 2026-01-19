@@ -69,18 +69,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 100000, maxCount = 5 },
-	{ name = "gold coin", chance = 100000, maxCount = 60 },
+	{ name = "platinum coin", chance = 90000, maxCount = 5 },
 	{ name = "small enchanted sapphire", chance = 5000, maxCount = 2 },
 	{ name = "black pearl", chance = 5000, maxCount = 2 },
 	{ name = "ham", chance = 5000, maxCount = 2 },
 	{ name = "meat", chance = 5000, maxCount = 2 },
-	{ name = "soul orb", chance = 5000, maxCount = 2 },
+	{ name = "soul orb", chance = 5000, maxCount = 5 },
 	{ name = "white pearl", chance = 1500, maxCount = 2 },
 	{ name = "ankh", chance = 5000 },
 	{ name = "crystal sword", chance = 5000 },
 	{ name = "serpent sword", chance = 5000 },
-	{ name = "rapier", chance = 5000 },
 	{ name = "lion's mane", chance = 5000 },
 	{ name = "lightning headband", chance = 1500 },
 	{ name = "steel helmet", chance = 1500 },
@@ -115,7 +113,7 @@ monster.elements = {
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = -25 },
-	{ type = COMBAT_HOLYDAMAGE, percent = -5 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 15 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 50 },
 }
 

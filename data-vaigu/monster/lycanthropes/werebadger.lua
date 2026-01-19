@@ -93,7 +93,7 @@ monster.loot = {
 	{ id = 3098, chance = 430 }, -- ring of healing
 	{ id = 8082, chance = 220 }, -- underworld rod
 	{ id = 8094, chance = 200 }, -- wand of voodoo
-	{ id = 22083, chance = 150 }, -- moonlight crystals
+	{ id = 22083, chance = 350 }, -- moonlight crystals
 	{ id = 22060, chance = 200 }, -- werewolf amulet
 	{ id = 22101, chance = 100 }, -- werebadger trophy
 }

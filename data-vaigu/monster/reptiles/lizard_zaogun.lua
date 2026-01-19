@@ -78,39 +78,40 @@ monster.voices = {
 
 monster.loot = {
 	{ name = "gold coin", chance = 31500, maxCount = 100 },
-	{ name = "gold coin", chance = 31500, maxCount = 100 },
-	{ name = "gold coin", chance = 31000, maxCount = 68 },
 	{ name = "small emerald", chance = 4830, maxCount = 5 },
 	{ name = "platinum coin", chance = 48900, maxCount = 2 },
-	{ name = "tower shield", chance = 1000 },
+	{ name = "tower shield", chance = 1100 },
 	{ name = "lizard leather", chance = 14360 },
 	{ name = "lizard scale", chance = 12520 },
 	{ name = "strong health potion", chance = 1900 },
-	{ name = "great health potion", chance = 7000, maxCount = 3 },
+	{ name = "great health potion", chance = 17000, maxCount = 3 },
 	{ name = "red lantern", chance = 2170 },
 	{ name = "zaoan armor", chance = 530 },
-	{ name = "zaoan shoes", chance = 1000 },
-	{ name = "zaoan legs", chance = 1001 },
-	{ name = "zaogun flag", chance = 8280 },
+	{ name = "zaoan shoes", chance = 1600 },
+	{ name = "zaoan legs", chance = 401 },
+	{ name = "zaogun flag", chance = 18280 },
 	{ name = "zaogun shoulderplates", chance = 14980 },
+	{ name = "zaoan helmet", chance = 120 },
+	{ id = 12669, chance = 220 }, -- star ring
+	{ id = 8898, chance = 790 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -349 },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -220, maxDamage = -375, range = 7, radius = 1, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_EARTHDAMAGE, minDamage = -220, maxDamage = -375, range = 6, radius = 1, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POISONAREA, target = true },
 }
 
 monster.defenses = {
 	defense = 40,
 	armor = 42,
 	mitigation = 1.37,
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 175, maxDamage = 275, effect = CONST_ME_MAGIC_GREEN, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 75, maxDamage = 275, effect = CONST_ME_MAGIC_GREEN, target = false },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 5 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 20 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 90 },
 	{ type = COMBAT_FIREDAMAGE, percent = 45 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },

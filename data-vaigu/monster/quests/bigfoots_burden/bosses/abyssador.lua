@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Abyssador")
 local monster = {}
 
 monster.description = "Abyssador"
-monster.experience = 400000
+monster.experience = 320000
 monster.outfit = {
 	lookType = 495,
 	lookHead = 0,
@@ -79,31 +79,31 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 16206, chance = 100000 }, -- abyssador's lash
-	{ id = 16163, chance = 8333 }, -- crystal crossbow
-	{ id = 16161, chance = 7333 }, -- crystalline axe
-	{ id = 16175, chance = 5333 }, -- shiny blade
-	{ id = 16160, chance = 6666 }, -- crystalline sword
-	{ id = 16164, chance = 6263 }, -- mycological bow
+	{ id = 16206, chance = 91000, unique = true }, -- abyssador's lash
+	{ id = 16163, chance = 7333 }, -- crystal crossbow
+	{ id = 16161, chance = 6333 }, -- crystalline axe
+	{ id = 16175, chance = 4333 }, -- shiny blade
+	{ id = 16160, chance = 4666 }, -- crystalline sword
+	{ id = 16164, chance = 4263 }, -- mycological bow
 	{ id = 16155, chance = 2754 }, -- decorative ribbon
-	{ id = 16162, chance = 2754 }, -- mycological mace
+	{ id = 16162, chance = 3754 }, -- mycological mace
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 3000, chance = 100, skill = 300, attack = 150 },
 	-- energy damage
-	{ name = "condition", type = CONDITION_ENERGY, interval = 1000, chance = 10, minDamage = -800, maxDamage = -800, radius = 4, shootEffect = CONST_ANI_POISON, effect = CONST_ME_SMALLPLANTS, target = false },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -500, maxDamage = -1600, radius = 4, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = false },
+	{ name = "condition", type = CONDITION_ENERGY, interval = 1000, chance = 10, minDamage = -800, maxDamage = -800, radius = 5, shootEffect = CONST_ANI_POISON, effect = CONST_ME_SMALLPLANTS, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ENERGYDAMAGE, minDamage = -500, maxDamage = -1600, radius = 5, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT, target = false },
 	{ name = "abyssador poison wave", interval = 1000, chance = 20, minDamage = -1000, maxDamage = -1800, target = false },
 }
 
 monster.defenses = {
-	defense = 20,
-	armor = 15,
+	defense = 40,
+	armor = 35,
 	--	mitigation = ???,
-	{ name = "combat", interval = 1000, chance = 1, type = COMBAT_HEALING, minDamage = 0, maxDamage = 300000, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "combat", interval = 5000, chance = 30, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 1000, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 2000, chance = 25, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "combat", interval = 2000, chance = 5, type = COMBAT_HEALING, minDamage = 5000, maxDamage = 30000, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 5000, chance = 30, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 10000, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "invisible", interval = 2000, chance = 20, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {

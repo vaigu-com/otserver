@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Omruc")
 local monster = {}
 
 monster.description = "Omruc"
-monster.experience = 2950
+monster.experience = 12950
 monster.outfit = {
 	lookType = 90,
 	lookHead = 0,
@@ -42,7 +42,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -62,9 +62,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 4,
+	maxSummons = 8,
 	summons = {
-		{ name = "Stalker", chance = 100, interval = 2000, count = 4 },
+		{ name = "Stalker", chance = 40, interval = 4000, count = 4 },
 	},
 }
 
@@ -79,19 +79,18 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "small diamond", chance = 7000, maxCount = 3 },
+	{ name = "small diamond", chance = 17000, maxCount = 3 },
 	{ name = "gold coin", chance = 50000, maxCount = 90 },
-	{ name = "gold coin", chance = 50000, maxCount = 70 },
-	{ name = "yellow gem", chance = 5000 },
-	{ id = 3049, chance = 5000 }, -- stealth ring
-	{ name = "boots of haste", chance = 1500 },
-	{ name = "crystal arrow", chance = 100000 },
-	{ name = "arrow", chance = 10000, maxCount = 21 },
-	{ name = "poison arrow", chance = 10000, maxCount = 20 },
-	{ id = 3449, chance = 10000, maxCount = 15 }, -- burst arrow
-	{ name = "power bolt", chance = 10000, maxCount = 3 },
-	{ name = "onyx arrow", chance = 10000, maxCount = 2 },
-	{ name = "great health potion", chance = 7000 },
+	{ name = "yellow gem", chance = 15000 },
+	{ id = 3049, chance = 15000 }, -- stealth ring
+	{ name = "boots of haste", chance = 8500 },
+	{ name = "crystal arrow", chance = 90000 },
+	{ id = 3449, chance = 80000, maxCount = 55 }, -- burst arrow
+	{ name = "power bolt", chance = 70000, maxCount = 30 },
+	{ name = "great health potion", chance = 70000 },
+	{ id = 10290, chance = 12280 }, -- Mini Mummy
+	{ id = 2993, chance = 7180 },
+	{ id = 3405, chance = 11880 },
 }
 
 monster.attacks = {
@@ -100,27 +99,27 @@ monster.attacks = {
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_EARTHDAMAGE, minDamage = -200, maxDamage = -500, shootEffect = CONST_ANI_POISONARROW, target = false },
 	{ name = "combat", interval = 1000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -120, maxDamage = -450, range = 3, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_EXPLOSIONAREA, target = false },
 	{ name = "melee", interval = 3000, chance = 20, minDamage = -150, maxDamage = -500 },
-	{ name = "speed", interval = 1000, chance = 25, speedChange = -900, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 50000 },
+	{ name = "speed", interval = 1000, chance = 25, speedChange = -900, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 10000 },
 }
 
 monster.defenses = {
 	defense = 35,
 	armor = 20,
-	{ name = "combat", interval = 1000, chance = 17, type = COMBAT_HEALING, minDamage = 100, maxDamage = 200, effect = CONST_ME_MAGIC_BLUE, target = false },
-	{ name = "invisible", interval = 2000, chance = 14, effect = CONST_ME_MAGIC_BLUE },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 100, maxDamage = 200, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "invisible", interval = 3000, chance = 14, effect = CONST_ME_MAGIC_BLUE },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
+	{ type = COMBAT_FIREDAMAGE, percent = 20 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -2 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 80 },
 }
 
 monster.immunities = {

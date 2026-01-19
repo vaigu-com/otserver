@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Horestis")
 local monster = {}
 
 monster.description = "Horestis"
-monster.experience = 3500
+monster.experience = 13500
 monster.outfit = {
 	lookType = 91,
 	lookHead = 0,
@@ -43,7 +43,7 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
@@ -63,9 +63,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 2,
+	maxSummons = 4,
 	summons = {
-		{ name = "Sandstone Scorpion", chance = 12, interval = 1000, count = 2 },
+		{ name = "Sandstone Scorpion", chance = 20, interval = 2000, count = 2 },
 	},
 }
 
@@ -76,19 +76,22 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 12509, chance = 100000 }, -- scorpion sceptre
+	{ id = 12509, chance = 70000 }, -- scorpion sceptre
 	{ id = 3031, chance = 95000, maxCount = 243 }, -- gold coin
 	{ id = 3035, chance = 36000, maxCount = 5 }, -- platinum coin
 	{ id = 12483, chance = 17000 }, -- pharaoh banner
 	{ id = 3042, chance = 14000, maxCount = 5 }, -- scarab coin
 	{ id = 12482, chance = 12000 }, -- hieroglyph banner
-	{ id = 3017, chance = 12000 }, -- silver brooch
-	{ id = 238, chance = 10000, maxCount = 3 }, -- great mana potion
-	{ id = 239, chance = 5000, maxCount = 4 }, -- great health potion
+	{ id = 3017, chance = 62000 }, -- silver brooch
+	{ id = 238, chance = 80000, maxCount = 3 }, -- great mana potion
+	{ id = 239, chance = 25000, maxCount = 4 }, -- great health potion
 	{ id = 3334, chance = 5000 }, -- pharaoh sword
 	{ id = 10290, chance = 2500 }, -- mini mummy
 	{ id = 8897, chance = 2500 }, -- heavily rusted legs
 	{ id = 3335, chance = 2500 }, -- twin axe
+	{ id = 8898, chance = 2500 }, -- rusted legs
+	{ id = 8907, chance = 2500 }, -- rusted helmet
+	{ name = "gold token", chance = 8580 },
 }
 
 monster.attacks = {
@@ -111,12 +114,12 @@ monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = -5 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 5 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 50 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 20 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
 }
 

@@ -77,7 +77,6 @@ monster.voices = {
 monster.loot = {
 	{ name = "small diamond", chance = 1001, maxCount = 2 },
 	{ name = "gold coin", chance = 44000, maxCount = 100 },
-	{ name = "gold coin", chance = 54000, maxCount = 65 },
 	{ name = "lizard leather", chance = 970 },
 	{ name = "lizard scale", chance = 980, maxCount = 3 },
 	{ name = "strong health potion", chance = 3880 },
@@ -86,10 +85,10 @@ monster.loot = {
 	{ name = "zaoan armor", chance = 70 },
 	{ name = "zaoan shoes", chance = 460 },
 	{ name = "drakinata", chance = 710 },
-	{ name = "zaoan halberd", chance = 960 },
+	{ name = "zaoan halberd", chance = 1960 },
 	{ name = "legionnaire flags", chance = 1940 },
 	{ name = "broken halberd", chance = 14940 },
-	{ name = "lizard trophy", chance = 20 },
+	{ name = "lizard trophy", chance = 120 },
 }
 
 monster.attacks = {
@@ -106,7 +105,7 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
 	{ type = COMBAT_FIREDAMAGE, percent = 45 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },

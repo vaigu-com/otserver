@@ -69,16 +69,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 100000, maxCount = 5 },
-	{ name = "great spirit potion", chance = 100000, maxCount = 2 },
+	{ name = "platinum coin", chance = 80000, maxCount = 5 },
+	{ name = "great spirit potion", chance = 80000, maxCount = 2 },
 	{ name = "small enchanted ruby", chance = 5000, maxCount = 2 },
 	{ name = "meat", chance = 5000, maxCount = 2 },
 	{ name = "crystal sword", chance = 5000 },
-	{ name = "lion's mane", chance = 5000 },
+	{ name = "lion's mane", chance = 8000 },
 	{ name = "silver brooch", chance = 1500 },
 	{ name = "small diamond", chance = 1500, maxCount = 2 },
 	{ name = "war hammer", chance = 1500 },
-	{ name = "doublet", chance = 1500 },
 	{ name = "dark shield", chance = 1500 },
 	{ name = "titan axe", chance = 1500 },
 	{ name = "spiked squelcher", chance = 1500 },

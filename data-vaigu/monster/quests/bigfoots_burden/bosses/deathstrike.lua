@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Deathstrike")
 local monster = {}
 
 monster.description = "Deathstrike"
-monster.experience = 40000
+monster.experience = 140000
 monster.outfit = {
 	lookType = 500,
 	lookHead = 0,
@@ -35,10 +35,10 @@ monster.changeTarget = {
 }
 
 monster.strategiesTarget = {
-	nearest = 70,
+	nearest = 60,
 	health = 10,
 	damage = 10,
-	random = 10,
+	random = 20,
 }
 
 monster.flags = {
@@ -77,27 +77,35 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 16175, chance = 8430 }, -- shiny blade
+	{ id = 16175, chance = 6430 }, -- shiny blade
 	{ id = 16162, chance = 6570 }, -- mycological mace
-	{ id = 16160, chance = 10480 }, -- crystalline sword
-	{ id = 16136, chance = 100000 }, -- deathstrike's snippet
-	{ id = 16163, chance = 12380 }, -- crystal crossbow
+	{ id = 16160, chance = 7480 }, -- crystalline sword
+	{ id = 16136, chance = 91000, unique = true }, -- deathstrike's snippet
+	{ id = 16163, chance = 10380 }, -- crystal crossbow
 	{ id = 16161, chance = 7430 }, -- crystalline axe
-	{ id = 16164, chance = 11430 }, -- mycological bow
+	{ id = 16164, chance = 5430 }, -- mycological bow
+	{ id = 8908, chance = 8430 },
+	{ id = 8899, chance = 8430 },
+	{ name = "bullseye potion", chance = 10810, maxCount = 3 },
+	{ name = "ultimate health potion", chance = 17000, maxcount = 7 },
+	{ name = "ultimate mana potion", chance = 14300, maxcount = 5 },
+	{ name = "ultimate spirit potion", chance = 15750, maxcount = 4 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 1300, chance = 100, skill = 80, attack = 120 },
+	{ name = "melee", interval = 1000, chance = 100, skill = 80, attack = 120 },
+	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_ENERGYDAMAGE, minDamage = -200, maxDamage = -800, radius = 5, effect = CONST_ME_ENERGYAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_EARTHDAMAGE, minDamage = -400, maxDamage = -600, length = 5, spread = 3, effect = CONST_ME_POISONAREA, target = false },
 	{ name = "speed", interval = 2000, chance = 20, speedChange = -400, range = 7, shootEffect = CONST_ANI_WHIRLWINDAXE, target = false, duration = 2500 },
 	{ name = "combat", interval = 2000, chance = 100, type = COMBAT_FIREDAMAGE, minDamage = -820, maxDamage = -950, range = 7, effect = CONST_ME_FIREAREA, target = false },
-	{ name = "combat", interval = 1000, chance = 12, type = COMBAT_ENERGYDAMAGE, minDamage = -350, maxDamage = -800, range = 3, effect = CONST_ME_PURPLEENERGY, target = true },
+	{ name = "combat", interval = 2000, chance = 12, type = COMBAT_ENERGYDAMAGE, minDamage = -350, maxDamage = -800, range = 4, effect = CONST_ME_PURPLEENERGY, target = true },
 }
 
 monster.defenses = {
 	defense = 35,
-	armor = 25,
+	armor = 55,
 	--	mitigation = ???,
-	{ name = "combat", interval = 1000, chance = 25, type = COMBAT_HEALING, minDamage = 1000, maxDamage = 5500, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 1000, chance = 10, type = COMBAT_HEALING, minDamage = 2000, maxDamage = 5500, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
