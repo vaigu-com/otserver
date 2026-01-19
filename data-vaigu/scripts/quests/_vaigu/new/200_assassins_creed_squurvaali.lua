@@ -80,14 +80,14 @@ quest
 						[QuestState.AssassinsCreedSquurvaali.Mission03.FindWafers] = "The Djinn instructed you on where to find the smugglers' base. Try to find something there that might interest him.",
 						[QuestState.AssassinsCreedSquurvaali.Mission03.ReturnWafersToLambor] = "You found a box of wafers that Djinn mentioned. Return to him and ask for his help with your task.",
 						[QuestState.AssassinsCreedSquurvaali.Mission03.BringDeadweightsToLambor] = "Djinn agreed to help with 'enchanting' the carpet. Now find the missing dead weight, and Djinn will do his job.",
-						[MISSION_FINISHED] = "You delivered the materials needed for 'enchanting' the carpet to Djinn. From now on, you will be able to fly from the highest mountain in the Caribbean.",
+						[MISSION_FINISHED] = "You delivered the materials needed for 'enchanting' the carpet to Djinn. From now on, you will be able to fly from the magical mountain in the Caribbean.",
 					},
 				},
 				{
 					name = "The Final Stretch",
 					storage = Storage.AssassinsCreedSquurvaali.Mission04,
 					states = {
-						[QuestState.AssassinsCreedSquurvaali.Mission04.GoToHighestMountain] = "Go to the top of the highest mountain in the Caribbean, get on the enchanted carpet, and...",
+						[QuestState.AssassinsCreedSquurvaali.Mission04.GoToHighestMountain] = "Go to the western magical mountain in the Caribbean, get on the enchanted carpet, and...",
 						[QuestState.AssassinsCreedSquurvaali.Mission04.FireFlare] = "Standing in front of the cave, ignite the flare given to you by the guardian to help the ghost.",
 						[QuestState.AssassinsCreedSquurvaali.Mission04.ReportToGhasstlyPrincess] = "You ignited the flare in front of the ghost's cave. In the meantime, have a conversation with the ghost.",
 						[QuestState.AssassinsCreedSquurvaali.Mission04.ReportToFatherNatanek] = "At the moment when the undead king of the crypt was about to finish you, an angel arrived and managed to teleport you to safety. You don't know his or the king of the crypt's fate. Seek advice from Father Natanek.",
@@ -279,7 +279,7 @@ quest
 		return QuestState.AssassinsCreedSquurvaali.Mission01.FindOldrak,
 			QuestFactory.Dialog("Oldrak", {
 				[{ "mission", "misja" }] = {
-					text = "I understand. You need to go to the Caribbean Island, and from there, from the highest mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
+					text = "I understand. You need to go to the Caribbean Island, and from there, from the western mountain, {fly} straight west. If you don't lose your way, you'll reach Squurva'ali. There you should meet Aunor, he will definitely help you.",
 				},
 				[{ "poleciec", "fly" }] = {
 					text = "As a mere mortal, you will need a magical carpet for this. It must be a carpet that can float very high above the ground. Humans can produce only one carpet {capable} of such flights: the enchanted carpet of the green one.",
@@ -486,7 +486,7 @@ quest
 		return QuestState.AssassinsCreedSquurvaali.Mission03.BringDeadweightsToLambor,
 			QuestFactory.Dialog("Lambor", {
 				[{ "mission", "misja" }] = {
-					text = "Please take this carpet. Remember that the flying function only works in specific places, namely on the peaks of the highest mountains. One of these peaks is surely in the Caribbean.",
+					text = "Please take this carpet. Remember that the flying function only works in specific places, namely on the peaks of the magical mountains. One of these peaks is surely in western the Caribbean.",
 					requiredItems = { { id = 20202, count = 5 } },
 					nextState = {
 						[Storage.AssassinsCreedSquurvaali.Mission03] = MISSION_FINISHED,

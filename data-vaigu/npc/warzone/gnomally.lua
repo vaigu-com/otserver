@@ -116,7 +116,7 @@ local function creatureSayCallback(npc, creature, type, message)
 		npcHandler:say({
 			"For ten major tokens, I can offer you a {gill gugel}, a {gill coat}, {gill legs}, a {spellbook} of vigilance, a {prismatic helmet}, a {prismatic armor}, {prismatic legs}, {prismatic boots} or a {prismatic shield} ...",
 			"For twenty major tokens, I can offer you a {basic soil guardian outfit}, a {basic crystal warlord outfit}, an {iron loadstone} or a {glow wine}. ...",
-			"For forty major tokens, I can offer you an {gnome helmet}, an {gnome armor}, an {gnome legs}, an {gnome sword} and an {gnome shield}. ...",
+			"For eighty major tokens, I can offer you an {gnome helmet}, an {gnome armor}, an {gnome legs}, an {gnome sword} and an {gnome shield}. ...",
 		}, npc, creature)
 	elseif MsgContains(message, "minor") then
 		npcHandler:say({
