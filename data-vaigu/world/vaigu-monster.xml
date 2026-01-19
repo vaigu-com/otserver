@@ -52384,7 +52384,7 @@
 	<monster centerx="5581" centery="1568" centerz="7" radius="1">
 		<monster name="Wolf" x="0" y="0" z="7" spawntime="90" />
 	</monster>
-	<monster centerx="5661" centery="1568" centerz="7" radius="1">
+	<monster centerx="5662" centery="1568" centerz="7" radius="1">
 		<monster name="Rabbit" x="0" y="0" z="7" spawntime="90" />
 	</monster>
 	<monster centerx="6085" centery="1568" centerz="7" radius="1">
@@ -73688,7 +73688,7 @@
 	<monster centerx="5759" centery="1786" centerz="8" radius="1">
 		<monster name="Dark Faun" x="0" y="0" z="8" spawntime="90" />
 	</monster>
-	<monster centerx="5812" centery="1786" centerz="8" radius="1">
+	<monster centerx="5813" centery="1786" centerz="8" radius="1">
 		<monster name="Twisted Pooka" x="0" y="0" z="8" spawntime="90" />
 	</monster>
 	<monster centerx="5827" centery="1786" centerz="8" radius="1">
