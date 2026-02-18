@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Ekatrix")
 local monster = {}
 
 monster.description = "Ekatrix"
-monster.experience = 200
+monster.experience = 1200
 monster.outfit = {
 	lookType = 54,
 	lookHead = 0,
@@ -13,8 +13,8 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 500
-monster.maxHealth = 500
+monster.health = 900
+monster.maxHealth = 900
 monster.race = "blood"
 monster.corpse = 18254
 monster.speed = 51
@@ -76,14 +76,18 @@ monster.loot = {
 	{ name = "coat", chance = 37500 },
 	{ name = "cookie", chance = 25000, maxCount = 10 },
 	{ name = "star herb", chance = 11333 },
+	{ name = "powder herb", chance = 8443 },
 	{ name = "bag of apple slices", chance = 2940 },
 	{ name = "necrotic rod", chance = 2940 },
+	{ id = 12669, chance = 31670 },
+	{ name = "witch hat", chance = 1180 },
+	{ name = "stuffed toad", chance = 810 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -20 },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -30, maxDamage = -60, range = 5, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_HITBYFIRE, target = false },
-	{ name = "firefield", interval = 2000, chance = 10, range = 5, radius = 1, shootEffect = CONST_ANI_FIRE, target = true },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -40 },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -50, maxDamage = -90, range = 5, shootEffect = CONST_ANI_FIRE, effect = CONST_ME_HITBYFIRE, target = false },
+	{ name = "firefield", interval = 2000, chance = 10, range = 6, radius = 2, shootEffect = CONST_ANI_FIRE, target = true },
 }
 
 monster.defenses = {
@@ -93,9 +97,9 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 100 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 70 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 50 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Iks Churrascan")
 local monster = {}
 
 monster.description = "an iks churrascan"
-monster.experience = 0
+monster.experience = 2000
 monster.outfit = {
 	lookType = 1587,
 	lookHead = 0,
@@ -26,8 +26,8 @@ monster.Bestiary = {
 	Locations = "Iksupan",
 }
 
-monster.health = 1520
-monster.maxHealth = 1520
+monster.health = 2520
+monster.maxHealth = 2520
 monster.race = "blood"
 monster.corpse = 42061
 monster.speed = 105
@@ -74,19 +74,19 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 249 },
-	{ name = "brown crystal splinter", chance = 7080 },
-	{ name = "small enchanted sapphire", chance = 6990 },
-	{ name = "green crystal splinter", chance = 6220 },
-	{ name = "small emerald", chance = 4230 },
-	{ name = "onyx chip", chance = 3890 },
-	{ name = "small ruby", chance = 3540 },
-	{ name = "opal", chance = 3370 },
+	{ name = "gold coin", chance = 80000, maxCount = 49 },
+	{ name = "brown crystal splinter", chance = 1080 },
+	{ name = "small enchanted sapphire", chance = 1490 },
+	{ name = "green crystal splinter", chance = 1220 },
+	{ name = "small emerald", chance = 1230 },
+	{ name = "onyx chip", chance = 1690 },
+	{ name = "small ruby", chance = 1540 },
+	{ name = "opal", chance = 1370 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -250, effect = CONST_ME_PURPLEENERGY },
-	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_PHYSICALDAMAGE, minDamage = -75, maxDamage = -100, length = 7, spread = 0, effect = 216, target = false },
+	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_PHYSICALDAMAGE, minDamage = -75, maxDamage = -200, length = 7, spread = 0, effect = 216, target = false },
 	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = -100, maxDamage = -160, range = 1, radius = 0, effect = CONST_ME_EXPLOSIONHIT, target = true },
 }
 

@@ -66,34 +66,34 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ id = 3035, chance = 100000, minCount = 1, maxCount = 17 }, -- platinum coin
-	{ id = 7643, chance = 100000, minCount = 1, maxCount = 5 }, -- ultimate health potion
+	{ id = 3035, chance = 80000, minCount = 1, maxCount = 17 }, -- platinum coin
+	{ id = 7643, chance = 80000, minCount = 1, maxCount = 5 }, -- ultimate health potion
 	{ id = 9651, chance = 54050, minCount = 1, maxCount = 5 }, -- scorpion tail
 	{ id = 3010, chance = 10810 }, -- emerald bangle
 	{ id = 24391, chance = 8650 }, -- coral brooch
-	{ id = 822, chance = 7570 }, -- lightning legs
-	{ id = 34101, chance = 4320 }, -- utua's poison
-	{ id = 24392, chance = 3240 }, -- gemmed figurine
-	{ id = 5741, chance = 3240 }, -- skull helmet
-	{ id = 3036, chance = 3240 }, -- violet gem
-	{ id = 7427, chance = 2700 }, -- chaos mace
+	{ id = 822, chance = 570 }, -- lightning legs
+	{ id = 34101, chance = 14320 }, -- utua's poison
+	{ id = 24392, chance = 1240 }, -- gemmed figurine
+	{ id = 5741, chance = 1240 }, -- skull helmet
+	{ id = 3036, chance = 1240 }, -- violet gem
+	{ id = 7427, chance = 3700 }, -- chaos mace
 	{ id = 9058, chance = 2700 }, -- gold ingot
 	{ id = 3038, chance = 2700 }, -- green gem
-	{ id = 3333, chance = 2160 }, -- crystal mace
-	{ id = 821, chance = 2160 }, -- magma legs
-	{ id = 7386, chance = 2160 }, -- mercenary sword
-	{ id = 14040, chance = 2160 }, -- warrior's axe
-	{ id = 823, chance = 1620 }, -- glacier kilt
-	{ id = 7456, chance = 1620 }, -- noble axe
-	{ id = 7440, chance = 1080 }, -- mastermind potion
-	{ id = 23531, chance = 1080 }, -- ring of green plasma
+	{ id = 3333, chance = 1160 }, -- crystal mace
+	{ id = 821, chance = 1160 }, -- magma legs
+	{ id = 7386, chance = 1160 }, -- mercenary sword
+	{ id = 14040, chance = 1160 }, -- warrior's axe
+	{ id = 823, chance = 620 }, -- glacier kilt
+	{ id = 7456, chance = 620 }, -- noble axe
+	{ id = 7440, chance = 10080 }, -- mastermind potion
+	{ id = 23531, chance = 2080 }, -- ring of green plasma
 	{ id = 12546, chance = 540 }, -- fist on a stick
-	{ id = 14043, chance = 540 }, -- guardian axe
+	{ id = 14043, chance = 5540 }, -- guardian axe
 	{ id = 3366, chance = 540 }, -- magic plate armor
 	{ id = 34258, chance = 540 }, -- red silk flower
-	{ id = 10438, chance = 540 }, -- spellweaver's robe
+	{ id = 10438, chance = 1540 }, -- spellweaver's robe
 	{ id = 3420, chance = 360 }, -- demon shield
-	{ id = 824, chance = 360 }, -- glacier robe
+	{ id = 824, chance = 1360 }, -- glacier robe
 	{ id = 33778, chance = 360 }, -- raw watermelon tourmaline
 }
 
@@ -105,23 +105,23 @@ monster.attacks = {
 }
 
 monster.defenses = {
-	defense = 0,
+	defense = 60,
 	armor = 42,
 	--	mitigation = ???,
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 60, maxDamage = 100, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 160, maxDamage = 300, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 20 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 15 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 40 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 60 },
 	{ type = COMBAT_FIREDAMAGE, percent = 25 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = -10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 30 },
 }
 
 monster.immunities = {

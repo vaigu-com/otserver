@@ -31,16 +31,16 @@ monster.flags = {
 	hostile = true,
 	convinceable = false,
 	pushable = false,
-	rewardBoss = false,
+	rewardBoss = true,
 	illusionable = false,
 	canPushItems = true,
 	canPushCreatures = true,
 	staticAttackChance = 90,
 	targetDistance = 1,
-	runHealth = 0,
+	runHealth = 100,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = true,
+	canWalkOnEnergy = false,
 	canWalkOnFire = true,
 	canWalkOnPoison = true,
 	pet = false,
@@ -57,7 +57,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 76000, minCount = 5, maxCount = 7 },
+	{ name = "platinum coin", chance = 76000, minCount = 2, maxCount = 7 },
 	{ id = 3030, chance = 68000, maxCount = 4 },
 	{ id = 3732, chance = 3208 },
 	{ id = 10412, chance = 35000 },
@@ -67,13 +67,15 @@ monster.loot = {
 	{ id = 3280, chance = 17140 },
 	{ id = 817, chance = 32300 },
 	{ id = 818, chance = 12600 },
-	{ id = 3428, chance = 9500 },
+	{ id = 3428, chance = 4600 },
 	{ id = 12669, chance = 9500 },
-	
+	{ id = 10201, chance = 500 },
+	{ id = 3564, chance = 2500 },
+	{ id = 8898, chance = 12500 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, skill = 50, attack = 60, condition = { type = CONDITION_FIRE, totalDamage = 30, interval = 9000 } },
+	{ name = "melee", interval = 2000, chance = 100, skill = 50, attack = 60, condition = { type = CONDITION_FIRE, totalDamage = 30, interval = 3000 } },
 	{ name = "firefield", interval = 2000, chance = 10, range = 7, radius = 3, shootEffect = CONST_ANI_FIRE, target = false },
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -40, maxDamage = -170, radius = 3, effect = CONST_ME_MAGIC_RED, target = true },
 	{ name = "combat", interval = 2000, chance = 24, type = COMBAT_FIREDAMAGE, minDamage = -60, maxDamage = -170, range = 7, shootEffect = CONST_ANI_FIRE, target = false },
@@ -82,7 +84,7 @@ monster.attacks = {
 }
 
 monster.defenses = {
-	defense = 20,
+	defense = 40,
 	armor = 20,
 	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 70, maxDamage = 100, effect = CONST_ME_SOUND_WHITE, target = false },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = 820, effect = CONST_ME_SOUND_YELLOW, target = false, duration = 5000 },
@@ -90,15 +92,15 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 50 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 80 },
+	{ type = COMBAT_FIREDAMAGE, percent = 70 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 5 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+	{ type = COMBAT_ICEDAMAGE, percent = -12 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -5 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 70 },
 }
 
 monster.immunities = {

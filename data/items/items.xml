@@ -19784,9 +19784,10 @@
 		<attribute key="weaponType" value="sword"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="absorbpercentpoison" value="12"/>
-		<attribute key="absorbpercentdeath" value="-30"/>
+		<attribute key="absorbpercentfire" value="-5"/>
+		<attribute key="absorbpercentdeath" value="-38"/>
 		<attribute key="elementearth" value="6"/>
-		<attribute key="attack" value="49"/>
+		<attribute key="attack" value="46"/>
 		<attribute key="defense" value="34"/>
 		<attribute key="weight" value="7200"/>
 		<attribute key="imbuementslot" value="3">
@@ -21597,9 +21598,9 @@
 		<attribute key="weaponType" value="distance"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="ammotype" value="bolt"/>
-		<attribute key="hitchance" value="-10"/>
+		<attribute key="hitchance" value="-12"/>
 		<attribute key="range" value="6"/>
-		<attribute key="attack" value="25"/>
+		<attribute key="attack" value="22"/>
 		<attribute key="weight" value="5500"/>
 		<attribute key="imbuementslot" value="3">
 			<attribute key="elemental damage" value="3"/>

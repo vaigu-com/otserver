@@ -63,36 +63,26 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 100000, maxCount = 5 },
-	{ name = "dirty fur", chance = 53750 },
-	{ id = 3130, chance = 8300 }, -- twigs
-	{ name = "fishbone", chance = 9500 },
-	{ name = "dark shield", chance = 2000 },
+	{ name = "platinum coin", chance = 80000, maxCount = 5 },
+	{ name = "dark shield", chance = 20000 },
 	{ name = "ham", chance = 53750 },
-	{ name = "dirty cape", chance = 47500 },
-	{ id = 3114, chance = 28750 }, -- skull
-	{ name = "knife", chance = 25000 },
 	{ name = "broken helmet", chance = 23750 },
 	{ name = "dark armor", chance = 18750 },
-	{ name = "bug meat", chance = 12500 },
-	{ name = "combat knife", chance = 8750 },
+	{ name = "bug meat", chance = 42500 },
 	{ name = "plate armor", chance = 7500 },
-	{ name = "studded shield", chance = 7500 },
-	{ name = "big bone", chance = 5000 },
-	{ name = "cape", chance = 5000 },
 	{ name = "life preserver", chance = 3750 },
-	{ name = "dwarven shield", chance = 1250 },
-	{ name = "lion spangenhelm", chance = 35 },
-	{ name = "lion plate", chance = 35 },
-	{ name = "lion shield", chance = 35 },
-	{ name = "lion longsword", chance = 35 },
-	{ name = "lion hammer", chance = 35 },
-	{ name = "lion axe", chance = 35 },
-	{ name = "lion longbow", chance = 35 },
-	{ name = "lion spellbook", chance = 35 },
-	{ name = "lion wand", chance = 35 },
-	{ name = "lion amulet", chance = 35 },
-	{ name = "lion rod", chance = 35 },
+	{ name = "dwarven shield", chance = 41250 },
+	{ name = "lion spangenhelm", chance = 135 },
+	{ name = "lion plate", chance = 75 },
+	{ name = "lion shield", chance = 105 },
+	{ name = "lion longsword", chance = 85 },
+	{ name = "lion hammer", chance = 135 },
+	{ name = "lion axe", chance = 165 },
+	{ name = "lion longbow", chance = 155 },
+	{ name = "lion spellbook", chance = 165 },
+	{ name = "lion wand", chance = 135 },
+	{ name = "lion amulet", chance = 195 },
+	{ name = "lion rod", chance = 135 },
 }
 
 monster.attacks = {
@@ -106,22 +96,22 @@ monster.attacks = {
 
 monster.defenses = {
 	defense = 60,
-	armor = 0,
+	armor = 80,
 	--	mitigation = ???,
 	{ name = "speed", interval = 1000, chance = 10, speedChange = 160, effect = CONST_ME_POFF, target = false, duration = 4000 },
 }
 
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 10 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = -20 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 20 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = -30 },
+	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 40 },
 }
 
 monster.immunities = {

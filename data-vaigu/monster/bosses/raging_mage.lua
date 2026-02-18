@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Raging mage")
 local monster = {}
 
 monster.description = "a raging mage"
-monster.experience = 3250
+monster.experience = 13250
 monster.outfit = {
 	lookType = 416,
 	lookHead = 0,
@@ -17,8 +17,8 @@ monster.events = {
 	"RagingMageDeath",
 }
 
-monster.health = 3500
-monster.maxHealth = 3500
+monster.health = 7500
+monster.maxHealth = 7500
 monster.race = "blood"
 monster.corpse = 12678
 monster.speed = 100
@@ -56,8 +56,8 @@ monster.flags = {
 	runHealth = 300,
 	healthHidden = false,
 	isBlockable = false,
-	canWalkOnEnergy = false,
-	canWalkOnFire = false,
+	canWalkOnEnergy = true,
+	canWalkOnFire = true,
 	canWalkOnPoison = false,
 }
 
@@ -67,9 +67,10 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 1,
+	maxSummons = 2,
 	summons = {
 		{ name = "Golden Servant", chance = 50, interval = 2000, count = 1 },
+		{ name = "Yielothax", chance = 50, interval = 2000, count = 1 },
 	},
 }
 
@@ -104,12 +105,15 @@ monster.loot = {
 	{ id = 9067, chance = 610 }, -- crystal of power
 	{ id = 5741, chance = 610 }, -- skull helmet
 	{ id = 8074, chance = 610 }, -- spellbook of mind control
+	{ id = 3014, chance = 4880 }, -- star amulet
+	{ id = 11701, chance = 2880 }, -- old cape
+	{ id = 3402, chance = 2180 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -50 },
-	{ name = "thunderstorm rune", interval = 2000, chance = 35, minDamage = -100, maxDamage = -200, range = 7, target = true },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_MANADRAIN, minDamage = -100, maxDamage = -200, range = 7, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -150 },
+	{ name = "thunderstorm rune", interval = 2000, chance = 35, minDamage = -100, maxDamage = -300, range = 7, target = true },
+	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_MANADRAIN, minDamage = -100, maxDamage = -400, range = 7, target = false },
 	{ name = "energyfield", interval = 2000, chance = 15, range = 7, radius = 2, shootEffect = CONST_ANI_ENERGY, target = true },
 }
 
@@ -126,8 +130,8 @@ monster.elements = {
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
+	{ type = COMBAT_ICEDAMAGE, percent = 20 },
+	{ type = COMBAT_HOLYDAMAGE, percent = 30 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 15 },
 }
 

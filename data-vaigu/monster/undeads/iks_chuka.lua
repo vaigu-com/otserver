@@ -76,16 +76,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 382 },
-	{ name = "violet crystal shard", chance = 15870 },
-	{ name = "green crystal splinter", chance = 12350 },
-	{ name = "small sapphire", chance = 9940 },
-	{ name = "royal spear", chance = 3960, maxCount = 1 },
+	{ name = "gold coin", chance = 80000, maxCount = 82 },
+	{ name = "violet crystal shard", chance = 5870 },
+	{ name = "green crystal splinter", chance = 2350 },
+	{ name = "small sapphire", chance = 940 },
+	{ name = "royal spear", chance = 13960, maxCount = 1 },
 	{ id = 3007, chance = 1760 }, -- crystal ring
 	{ name = "rotten feather", chance = 1710 },
 	{ name = "ritual tooth", chance = 1340 },
 	{ name = "gold-brocaded cloth", chance = 960 },
-	{ name = "broken iks spear", chance = 110 },
+	{ name = "broken iks spear", chance = 5110 },
 	{ name = "broken iks headpiece", chance = 50 },
 }
 

@@ -44,7 +44,7 @@ monster.flags = {
 	canPushCreatures = true,
 	staticAttackChance = 90,
 	targetDistance = 1,
-	runHealth = 40,
+	runHealth = 140,
 	healthHidden = false,
 	isBlockable = false,
 	canWalkOnEnergy = false,
@@ -81,14 +81,16 @@ monster.loot = {
 	{ id = 3391, chance = 16000 }, -- crusader helmet
 	{ id = 3381, chance = 10000 }, -- crown armor
 	{ id = 9088, chance = 10000 },
-	{ id = 12670, chance = 10000 },
+	{ id = 12669, chance = 30000 },
 	{ id = 22516, chance = 10000 },
+	{ id = 8908, chance = 10000 },
+	{ id = 8902, chance = 40000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -285 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -40, maxDamage = -285 },
 	{ name = "combat", interval = 2000, chance = 7, type = COMBAT_ICEDAMAGE, minDamage = -108, maxDamage = -237, radius = 4, effect = CONST_ME_ICEAREA, target = false },
-	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -270, radius = 3, effect = CONST_ME_HITAREA, target = false },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_PHYSICALDAMAGE, minDamage = -30, maxDamage = -270, radius = 3, effect = CONST_ME_HITAREA, target = false },
 	{ name = "poisonfield", interval = 2000, chance = 19, radius = 3, shootEffect = CONST_ANI_POISON, target = false },
 	{ name = "speed", interval = 2000, chance = 18, speedChange = -360, range = 7, shootEffect = CONST_ANI_SNOWBALL, target = false, duration = 5000 },
 }
@@ -103,14 +105,14 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = -15 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 60 },
 	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
 	{ type = COMBAT_ICEDAMAGE, percent = 100 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 20 },
 }
 
 monster.immunities = {

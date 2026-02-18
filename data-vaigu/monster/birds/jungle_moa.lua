@@ -74,15 +74,15 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "Gold Coin", chance = 100000, minCount = 1, maxCount = 227 },
-	{ name = "Jungle Moa Claw", chance = 21100 },
+	{ name = "Gold Coin", chance = 80000, minCount = 10, maxCount = 127 },
+	{ name = "Jungle Moa Claw", chance = 11100 },
 	{ name = "Meat", chance = 20140 },
-	{ name = "Cyan Crystal Fragment", chance = 11410 },
-	{ name = "Jungle Moa Feather", chance = 10480, minCount = 1, maxCount = 2 },
-	{ name = "Strong Mana Potion", chance = 9860, minCount = 1, maxCount = 2 },
+	{ name = "Cyan Crystal Fragment", chance = 1410 },
+	{ name = "Jungle Moa Feather", chance = 10480, minCount = 1, maxCount = 3 },
+	{ name = "Strong Mana Potion", chance = 9860, minCount = 1, maxCount = 3 },
 	{ name = "Jungle Moa Egg", chance = 8350 },
-	{ name = "Doublet", chance = 4540 },
-	{ name = "Spellbook of Enlightenment", chance = 1790 },
+	{ name = "Doublet", chance = 540 },
+	{ name = "Spellbook of Enlightenment", chance = 790 },
 }
 
 monster.attacks = {
@@ -101,12 +101,12 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
-	{ type = COMBAT_EARTHDAMAGE, percent = -5 },
-	{ type = COMBAT_FIREDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 15 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_ICEDAMAGE, percent = -10 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = -10 },
 }

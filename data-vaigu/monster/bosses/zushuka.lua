@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Zushuka")
 local monster = {}
 
 monster.description = "zushuka" -- (immortal) // (mortal): lookType = 149, lookHead = 86, lookBody = 10, lookLegs = 11, lookFeet = 4, lookAddons = 0, lookMount = 0
-monster.experience = 9000
+monster.experience = 90000
 monster.outfit = {
 	lookType = 149,
 	lookHead = 0,
@@ -81,12 +81,12 @@ monster.loot = {
 	{ id = 7642, chance = 42000, maxCount = 5 }, -- great spirit potion
 	{ id = 3284, chance = 42000 }, -- ice rapier
 	{ id = 3052, chance = 42000 }, -- life ring
-	{ id = 7443, chance = 35000 }, -- bullseye potion
+	{ id = 7443, chance = 75000 }, -- bullseye potion
 	{ id = 819, chance = 35000 }, -- glacier shoes
-	{ id = 7440, chance = 35000 }, -- mastermind potion
+	{ id = 7440, chance = 45000 }, -- mastermind potion
 	{ id = 3035, chance = 35000 }, -- platinum coin
 	{ id = 5909, chance = 35000, maxCount = 2 }, -- white piece of cloth
-	{ id = 7439, chance = 28000 }, -- berserk potion
+	{ id = 7439, chance = 18000 }, -- berserk potion
 	{ id = 3041, chance = 28000 }, -- blue gem
 	{ id = 3574, chance = 28000 }, -- mystic turban
 	{ id = 815, chance = 21000 }, -- glacier amulet
@@ -106,22 +106,27 @@ monster.loot = {
 	{ id = 19365, chance = 7000 }, -- trapped lightning
 	{ id = 19366, chance = 3000 }, -- icy culottes
 	{ id = 7410, chance = 3000 }, -- queen's sceptre
+	{ id = 7450, chance = 800 },
+	{ id = 3405, chance = 3000 },
+	{ id = 3021, chance = 2000 },
+	{ id = 10200, chance = 1000 },
+	{ id = 8902, chance = 10000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -560 },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = 0, maxDamage = -100, length = 8, spread = 0, effect = CONST_ME_ICEATTACK, target = false },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ICEDAMAGE, minDamage = 0, maxDamage = -110, range = 7, shootEffect = CONST_ANI_SNOWBALL, target = false },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = -300, maxDamage = -750, length = 8, spread = 0, effect = CONST_ME_ICEAREA, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -220, maxDamage = -560 },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = -100, maxDamage = -500, length = 8, spread = 0, effect = CONST_ME_ICEATTACK, target = false },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_ICEDAMAGE, minDamage = -50, maxDamage = -410, range = 7, shootEffect = CONST_ANI_SNOWBALL, target = false },
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_ICEDAMAGE, minDamage = -300, maxDamage = -750, length = 5, spread = 3, effect = CONST_ME_ICEAREA, target = false },
 	{ name = "outfit", interval = 2000, chance = 10, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, outfitItem = 7172 },
 	{ name = "speed", interval = 2000, chance = 15, speedChange = -330, range = 7, effect = CONST_ME_ICETORNADO, target = false, duration = 20000 },
 }
 
 monster.defenses = {
-	defense = 20,
-	armor = 20,
+	defense = 60,
+	armor = 50,
 	--	mitigation = ???,
-	{ name = "combat", interval = 10000, chance = 1, type = COMBAT_HEALING, minDamage = 7500, maxDamage = 7515, effect = CONST_ME_MAGIC_BLUE, target = false },
+	{ name = "combat", interval = 5000, chance = 5, type = COMBAT_HEALING, minDamage = 5000, maxDamage = 9000, effect = CONST_ME_MAGIC_BLUE, target = false },
 	{ name = "combat", interval = 3000, chance = 15, type = COMBAT_HEALING, minDamage = 200, maxDamage = 500, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 

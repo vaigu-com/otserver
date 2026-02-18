@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Gravelord Oshuran")
 local monster = {}
 
 monster.description = "Gravelord Oshuran"
-monster.experience = 2400
+monster.experience = 5400
 monster.outfit = {
 	lookType = 99,
 	lookHead = 0,
@@ -65,7 +65,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 4,
 	summons = {
-		{ name = "Bonebeast", chance = 10, interval = 2000, count = 3 },
+		{ name = "Bonebeast", chance = 20, interval = 2000, count = 1 },
 	},
 }
 
@@ -85,6 +85,7 @@ monster.loot = {
 	{ id = 820, chance = 2900 }, -- lightning boots
 	{ id = 8076, chance = 3200 }, -- spellscroll of prophecies
 	{ id = 12304, chance = 1200 },
+	{ id = 3373, chance = 11200 },
 }
 
 monster.attacks = {
@@ -103,9 +104,9 @@ monster.defenses = {
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 80 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 60 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 70 },
+	{ type = COMBAT_FIREDAMAGE, percent = -10 },
 	{ type = COMBAT_LIFEDRAIN, percent = 100 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

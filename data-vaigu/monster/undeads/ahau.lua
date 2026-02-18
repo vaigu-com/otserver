@@ -18,8 +18,8 @@ monster.bosstiary = {
 	bossRace = RARITY_ARCHFOE,
 }
 
-monster.health = 9000
-monster.maxHealth = 9000
+monster.health = 19000
+monster.maxHealth = 19000
 monster.race = "blood"
 monster.corpse = 42069
 monster.speed = 350
@@ -74,16 +74,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 100 },
-	{ name = "the living idol of tukh", chance = 100000 },
+	{ name = "gold coin", chance = 90000, maxCount = 100 },
+	{ name = "the living idol of tukh", chance = 10000 },
 	{ name = "rotten feather", chance = 50000 },
 	{ name = "great health potion", chance = 40000, maxCount = 5 },
 	{ name = "great spirit potion", chance = 25530, maxCount = 1 },
 	{ name = "great mana potion", chance = 34040, maxCount = 5 },
 	{ name = "ritual tooth", chance = 32980 },
-	{ name = "diamond", chance = 5320, maxCount = 8 },
-	{ name = "amber with a bug", chance = 3190 },
-	{ name = "amber", chance = 5320 },
+	{ name = "diamond", chance = 15320, maxCount = 3 },
+	{ name = "amber with a bug", chance = 2190 },
+	{ name = "amber", chance = 4320 },
 	{ id = 23533, chance = 3500 }, --ring of red plasma
 	{ id = 23531, chance = 3500 }, --ring of green plasma
 	{ id = 23529, chance = 3500 }, --ring of blue plasma
@@ -94,33 +94,41 @@ monster.loot = {
 	{ name = "broken macuahuitl", chance = 1000 },
 	{ name = "broken iks faulds", chance = 1000 },
 	{ name = "broken iks cuirass", chance = 1000 },
+	{ id = 44605, chance = 3500 },
+	{ id = 44602, chance = 3500 },
+	{ id = 44611, chance = 3500 },
+	{ id = 44608, chance = 3500 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 1700, chance = 100, minDamage = 0, maxDamage = -456, effect = 244 },
-	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_EARTHDAMAGE, minDamage = -350, maxDamage = -422, range = 1, radius = 0, effect = CONST_ME_GREENSMOKE, target = true },
-	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_FIREDAMAGE, minDamage = -400, maxDamage = -500, length = 5, spread = 0, effect = 216, target = false },
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_EARTHDAMAGE, minDamage = -415, maxDamage = -570, radius = 2, effect = CONST_ME_STONE_STORM, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -456, effect = 244 },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_EARTHDAMAGE, minDamage = -350, maxDamage = -422, range = 1, radius = 1, effect = CONST_ME_GREENSMOKE, target = true },
+	{ name = "combat", interval = 2000, chance = 40, type = COMBAT_FIREDAMAGE, minDamage = -400, maxDamage = -500, length = 6, spread = 3, effect = 216, target = false },
+	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_EARTHDAMAGE, minDamage = -415, maxDamage = -570, radius = 3, effect = CONST_ME_STONE_STORM, target = false },
 	{ name = "boulder ring", interval = 2000, chance = 20, minDamage = -460, maxDamage = -500 },
 }
 
 monster.defenses = {
 	defense = 64,
-	armor = 0,
+	armor = 20,
 	--	mitigation = ???,
 }
 
+monster.reflects = {
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 30 },
+}
+
 monster.elements = {
-	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
+	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 5 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 5 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 75 },
+	{ type = COMBAT_FIREDAMAGE, percent = 50 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 0 },
-	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 100 },
+	{ type = COMBAT_ICEDAMAGE, percent = -20 },
+	{ type = COMBAT_HOLYDAMAGE, percent = -10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 80 },
 }
 
 monster.immunities = {

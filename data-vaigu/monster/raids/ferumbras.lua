@@ -63,9 +63,9 @@ monster.light = {
 }
 
 monster.summon = {
-	maxSummons = 4,
+	maxSummons = 6,
 	summons = {
-		{ name = "Demon", chance = 12, interval = 3000, count = 4 },
+		{ name = "Demon", chance = 30, interval = 3000, count = 1 },
 	},
 }
 
@@ -84,46 +84,46 @@ monster.loot = {
 	{ id = 3031, chance = 98000, maxCount = 184 }, -- gold coin
 	{ id = 9058, chance = 75000, maxCount = 2 }, -- gold ingot
 	{ id = 3422, chance = 26000, unique = true }, -- great shield
-	{ id = 8075, chance = 26000 }, -- spellbook of lost souls
-	{ id = 3360, chance = 24000 }, -- golden armor
-	{ id = 3364, chance = 22000 }, -- golden legs
-	{ id = 8074, chance = 22000 }, -- spellbook of mind control
-	{ id = 8040, chance = 22000 }, -- velvet mantle
-	{ id = 3420, chance = 20000 }, -- demon shield
-	{ id = 8057, chance = 20000 }, -- divine plate
+	{ id = 8075, chance = 11000 }, -- spellbook of lost souls
+	{ id = 3360, chance = 14000 }, -- golden armor
+	{ id = 3364, chance = 12000 }, -- golden legs
+	{ id = 8074, chance = 12000 }, -- spellbook of mind control
+	{ id = 8040, chance = 15000 }, -- velvet mantle
+	{ id = 3420, chance = 10000 }, -- demon shield
+	{ id = 8057, chance = 10000 }, -- divine plate
 	{ id = 821, chance = 20000 }, -- magma legs
-	{ id = 3442, chance = 20000 }, -- tempest shield
+	{ id = 3442, chance = 10000 }, -- tempest shield
 	{ id = 3010, chance = 18000 }, -- emerald bangle
 	{ id = 823, chance = 18000 }, -- glacier kilt
 	{ id = 822, chance = 18000 }, -- lightning legs
-	{ id = 3439, chance = 18000 }, -- phoenix shield
-	{ id = 8090, chance = 18000 }, -- spellbook of dark mysteries
+	{ id = 3439, chance = 10000 }, -- phoenix shield
+	{ id = 8090, chance = 12000 }, -- spellbook of dark mysteries
 	{ id = 812, chance = 18000 }, -- terra legs
-	{ id = 8102, chance = 16000 }, -- emerald sword
-	{ id = 7405, chance = 16000 }, -- havoc blade
+	{ id = 8102, chance = 4000 }, -- emerald sword
+	{ id = 7405, chance = 5000 }, -- havoc blade
 	{ id = 7451, chance = 16000 }, -- shadow sceptre
 	{ id = 3032, chance = 16000, maxCount = 100 }, -- small emerald
 	{ id = 281, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (green)
 	{ id = 282, chance = 14000, maxCount = 5 }, -- giant shimmering pearl (brown)
-	{ id = 3366, chance = 14000 }, -- magic plate armor
-	{ id = 3414, chance = 14000 }, -- mastermind shield
-	{ id = 7417, chance = 14000 }, -- runed sword
+	{ id = 3366, chance = 12000 }, -- magic plate armor
+	{ id = 3414, chance = 9000 }, -- mastermind shield
+	{ id = 7417, chance = 7000 }, -- runed sword
 	{ id = 8076, chance = 14000 }, -- spellscroll of prophecies
 	{ id = 7427, chance = 12000 }, -- chaos mace
-	{ id = 8098, chance = 12000 }, -- demonwing axe
+	{ id = 8098, chance = 8000 }, -- demonwing axe
 	{ id = 8041, chance = 12000 }, -- greenwood coat
-	{ id = 3029, chance = 12000, maxCount = 98 }, -- small sapphire
-	{ id = 3026, chance = 12000, maxCount = 88 }, -- white pearl
+	{ id = 3029, chance = 12000, maxCount = 18 }, -- small sapphire
+	{ id = 3026, chance = 12000, maxCount = 18 }, -- white pearl
 	{ id = 7407, chance = 10000 }, -- haunted blade
-	{ id = 8096, chance = 10000 }, -- hellforged axe
-	{ id = 7411, chance = 10000 }, -- ornamented axe
-	{ id = 3033, chance = 10000, maxCount = 54 }, -- small amethyst
-	{ id = 9057, chance = 10000, maxCount = 87 }, -- small topaz
-	{ id = 7382, chance = 8000 }, -- demonrage sword
+	{ id = 8096, chance = 7000 }, -- hellforged axe
+	{ id = 7411, chance = 6000 }, -- ornamented axe
+	{ id = 3033, chance = 10000, maxCount = 14 }, -- small amethyst
+	{ id = 9057, chance = 10000, maxCount = 17 }, -- small topaz
+	{ id = 7382, chance = 3000 }, -- demonrage sword
 	{ id = 7422, chance = 8000 }, -- jade hammer
 	{ id = 3035, chance = 8000, maxCount = 58 }, -- platinum coin
-	{ id = 7423, chance = 8000 }, -- skullcrusher
-	{ id = 5944, chance = 8000, maxCount = 9 }, -- soul orb
+	{ id = 7423, chance = 5000 }, -- skullcrusher
+	{ id = 5944, chance = 80000, maxCount = 9 }, -- soul orb
 }
 
 monster.attacks = {

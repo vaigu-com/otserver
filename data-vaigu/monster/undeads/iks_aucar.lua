@@ -77,17 +77,16 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 100000, maxCount = 475 },
+	{ name = "gold coin", chance = 80000, maxCount = 75 },
 	{ name = "brown crystal splinter", chance = 15500 },
 	{ name = "green crystal splinter", chance = 15060 },
 	{ name = "small enchanted sapphire", chance = 10100 },
-	{ name = "plate shield", chance = 8720 },
-	{ name = "onyx chip", chance = 8060, maxCount = 2 },
-	{ name = "opal", chance = 7260 },
-	{ name = "small emerald", chance = 6820 },
+	{ name = "onyx chip", chance = 2060, maxCount = 2 },
+	{ name = "opal", chance = 2260 },
+	{ name = "small emerald", chance = 2820 },
 	{ name = "war hammer", chance = 5620 },
 	{ name = "strong health potion", chance = 5180, maxCount = 2 },
-	{ name = "small ruby", chance = 4300, maxCount = 2 },
+	{ name = "small ruby", chance = 2300, maxCount = 2 },
 	{ name = "rotten feather", chance = 2170 },
 	{ name = "ritual tooth", chance = 1330 },
 	{ name = "gold-brocaded cloth", chance = 890 },

@@ -64,21 +64,25 @@ monster.voices = {
 
 monster.loot = {
 	{ id = 12314, chance = 90000 }, -- hollow stampor hoof
-	{ id = 3370, chance = 90000 }, -- knight armor
-	{ id = 3035, chance = 90000, maxCount = 13 }, -- platinum coin
-	{ id = 9057, chance = 90000, maxCount = 15 }, -- small topaz
+	{ id = 3370, chance = 40000 }, -- knight armor
+	{ id = 3035, chance = 60000, maxCount = 13 }, -- platinum coin
+	{ id = 9057, chance = 60000, maxCount = 15 }, -- small topaz
 	{ id = 12312, chance = 90000 }, -- stampor horn
-	{ id = 12313, chance = 90000, maxCount = 4 }, -- stampor talons
-	{ id = 236, chance = 90000, maxCount = 20 }, -- strong health potion
-	{ id = 237, chance = 90000, maxCount = 20 }, -- strong mana potion
+	{ id = 12313, chance = 60000, maxCount = 4 }, -- stampor talons
+	{ id = 236, chance = 80000, maxCount = 20 }, -- strong health potion
+	{ id = 237, chance = 70000, maxCount = 20 }, -- strong mana potion
 	{ id = 7452, chance = 50000 }, -- spiked squelcher
 	{ id = 9079, chance = 20000 },
+	{ id = 27565, chance = 200 },
+	{ id = 34080, chance = 400 },
+	{ id = 22721, chance = 8000 },
+	{ id = 3402, chance = 1000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -315 },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_PHYSICALDAMAGE, minDamage = -170, maxDamage = -300, radius = 3, effect = CONST_ME_GROUNDSHAKER, target = false },
-	{ name = "combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -90, maxDamage = -230, shootEffect = CONST_ANI_SMALLSTONE, target = true },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -80, maxDamage = -315 },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = -170, maxDamage = -300, radius = 3, effect = CONST_ME_GROUNDSHAKER, target = false },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_LIFEDRAIN, minDamage = -90, maxDamage = -230, shootEffect = CONST_ANI_SMALLSTONE, target = true },
 	{ name = "stampor skill reducer", interval = 2000, chance = 20, range = 5, target = true },
 }
 

@@ -78,9 +78,8 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "power bolt", chance = 1000000 },
-	{ name = "small enchanted sapphire", chance = 790, maxCount = 2 },
-	{ name = "platinum coin", chance = 85000, maxCount = 11 },
+	{ name = "small enchanted sapphire", chance = 1790, maxCount = 2 },
+	{ name = "platinum coin", chance = 85000, maxCount = 9 },
 	{ id = 5921, chance = 10500 }, -- heaven blossom
 	{ name = "dream essence egg", chance = 8500 },
 	{ name = "elvish talisman", chance = 7200 },
@@ -90,11 +89,11 @@ monster.loot = {
 	{ name = "leaf star", chance = 4000, maxCount = 8 },
 	{ id = 23529, chance = 2500 }, -- ring of blue plasma
 	{ name = "sun fruit", chance = 890 },
-	{ id = 23542, chance = 900 }, -- collar of blue plasma
+	{ id = 23542, chance = 1500 }, -- collar of blue plasma
 	{ name = "wood cape", chance = 1300 },
-	{ name = "small diamond", chance = 600 },
-	{ name = "yellow gem", chance = 1000 },
-	{ name = "crystal crossbow", chance = 500 },
+	{ name = "small diamond", chance = 1600 },
+	{ name = "yellow gem", chance = 2000 },
+	{ name = "crystal crossbow", chance = 700 },
 }
 
 monster.attacks = {
@@ -117,7 +116,7 @@ monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = -10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = 40 },
+	{ type = COMBAT_FIREDAMAGE, percent = 70 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

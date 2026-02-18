@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("The Snapper")
 local monster = {}
 
 monster.description = "The Snapper"
-monster.experience = 150
+monster.experience = 1550
 monster.outfit = {
 	lookType = 119,
 	lookHead = 0,
@@ -13,11 +13,11 @@ monster.outfit = {
 	lookMount = 0,
 }
 
-monster.health = 300
-monster.maxHealth = 300
+monster.health = 500
+monster.maxHealth = 500
 monster.race = "blood"
 monster.corpse = 6046
-monster.speed = 120
+monster.speed = 180
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -69,15 +69,15 @@ monster.loot = {
 	{ id = 3557, chance = 44000 }, -- plate legs
 	{ id = 3357, chance = 39800 }, -- plate armor
 	{ id = 3556, chance = 6000 }, -- crocodile boots
-	{ id = 3370, chance = 400 }, -- knight armor
+	{ id = 3370, chance = 1400 }, -- knight armor
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -60 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -30, maxDamage = -90 },
 }
 
 monster.defenses = {
-	defense = 5,
+	defense = 15,
 	armor = 13,
 	mitigation = 0.28,
 }

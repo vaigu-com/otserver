@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Thorner")
 local monster = {}
 
 monster.description = "a thorner"
-monster.experience = 1500
+monster.experience = 5000
 monster.outfit = {
 	lookType = 198,
 	lookHead = 0,
@@ -17,7 +17,7 @@ monster.health = 3000
 monster.maxHealth = 3000
 monster.race = "blood"
 monster.corpse = 6073
-monster.speed = 50
+monster.speed = 150
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -51,26 +51,36 @@ monster.light = {
 	color = 0,
 }
 
+monster.summon = {
+	maxSummons = 3,
+	summons = {
+		{ name = "Tortoise", chance = 30, interval = 3000, count = 1 },
+	},
+}
+
 monster.voices = {
 	interval = 5000,
 	chance = 10,
 }
 
 monster.loot = {
-	{ name = "platinum coin", chance = 100000, minCount = 5, maxCount = 8 },
+	{ name = "platinum coin", chance = 80000, minCount = 5, maxCount = 8 },
 	{ id = 5678, chance = 45000, maxCount = 6 },
-	{ id = 9643, chance = 100000, minCount = 3, maxCount = 6 },
-	{ id = 5899, chance = 100000, minCount = 4, maxCount = 6 },
+	{ id = 9643, chance = 80000, minCount = 3, maxCount = 6 },
+	{ id = 5899, chance = 80000, minCount = 4, maxCount = 6 },
 	{ id = 6131, chance = 29000 },
 	{ id = 3065, chance = 15000 },
 	{ id = 830, chance = 75090 },
 	{ id = 9086, chance = 5090 },
+	{ id = 12669, chance = 5090 },
+	{ id = 11701, chance = 3030 },
+	{ id = 8899, chance = 13050 },
 }
 
 monster.attacks = {
 	{ name = "melee", interval = 2000, chance = 100, skill = 45, attack = 70, condition = { type = CONDITION_POISON, totalDamage = 90, interval = 4000 } },
 	{ name = "serpent spawn paralyze", interval = 2000, chance = 17, range = 7, target = false },
-	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_EARTHDAMAGE, minDamage = -66, maxDamage = -140, length = 8, spread = 3, effect = CONST_ME_CARNIPHILA, target = false },
+	{ name = "combat", interval = 2000, chance = 23, type = COMBAT_EARTHDAMAGE, minDamage = -66, maxDamage = -140, length = 8, spread = 3, effect = CONST_ME_CARNIPHILA, target = false },
 	{ name = "combat", interval = 2000, chance = 27, type = COMBAT_PHYSICALDAMAGE, minDamage = -50, maxDamage = -130, range = 7, radius = 2, shootEffect = CONST_ANI_POISON, effect = CONST_ME_POFF, target = true },
 }
 
@@ -82,7 +92,7 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 25 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = -20 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 20 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 40 },
 	{ type = COMBAT_FIREDAMAGE, percent = -15 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },

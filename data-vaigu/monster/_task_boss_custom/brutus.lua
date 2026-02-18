@@ -65,8 +65,8 @@ monster.loot = {
 	{ id = 3030, chance = 22000, maxCount = 4 },
 	{ id = 3026, chance = 24000 },
 	{ id = 11447, chance = 56200 },
-	{ id = 22188, chance = 95720 },
-	{ id = 22189, chance = 95310 },
+	{ id = 22188, chance = 85720 },
+	{ id = 22189, chance = 75310 },
 	{ id = 22193, chance = 21870, maxCount = 2 },
 	{ id = 22194, chance = 21580, maxCount = 2 },
 	{ id = 3050, chance = 1580 },
@@ -76,35 +76,36 @@ monster.loot = {
 	{ id = 22172, chance = 12000 },
 	{ id = 22183, chance = 20620 },
 	{ id = 12669, chance = 8190 },
+	{ id = 22763, chance = 18190 },
 	{ id = 22192, chance = 8190 },
 	{ name = "butcher's axe", chance = 5000 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -250, condition = { type = CONDITION_FIRE, totalDamage = 20, interval = 9000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -100, maxDamage = -250, condition = { type = CONDITION_FIRE, totalDamage = 20, interval = 4000 } },
 	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -70, maxDamage = -180, range = 7, shootEffect = CONST_ANI_POISON, target = false },
 	{ name = "drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_ENERGY, effect = CONST_ME_TELEPORT, target = false, duration = 2000 },
 	{ name = "combat", interval = 4000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = -180, maxDamage = -350, range = 7, radius = 4, shootEffect = CONST_ANI_EXPLOSION, effect = CONST_ME_GROUNDSHAKER, target = true },
-	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_FIREDAMAGE, minDamage = -50, maxDamage = -250, range = 7, radius = 5, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_FIREAREA, target = true },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_FIREDAMAGE, minDamage = -50, maxDamage = -250, range = 7, radius = 5, shootEffect = CONST_ANI_BURSTARROW, effect = CONST_ME_FIREAREA, target = true },
 }
 
 monster.defenses = {
-	defense = 20,
-	armor = 20,
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 80, maxDamage = 95, effect = CONST_ME_MAGIC_BLUE, target = false },
+	defense = 40,
+	armor = 30,
+	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_HEALING, minDamage = 80, maxDamage = 195, effect = CONST_ME_MAGIC_BLUE, target = false },
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 10 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = -15 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = 10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 50 },
+	{ type = COMBAT_FIREDAMAGE, percent = 70 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = 10 },
+	{ type = COMBAT_ICEDAMAGE, percent = -20 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 10 },
-	{ type = COMBAT_DEATHDAMAGE, percent = 10 },
+	{ type = COMBAT_DEATHDAMAGE, percent = 30 },
 }
 
 monster.immunities = {
